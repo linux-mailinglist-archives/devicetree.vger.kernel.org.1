@@ -1,225 +1,150 @@
-Return-Path: <devicetree+bounces-215189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4FCB50BB2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:49:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABBDB50C03
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 817C55E6B0A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:48:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40D524E612A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C238250C06;
-	Wed, 10 Sep 2025 02:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991B4246BD8;
+	Wed, 10 Sep 2025 02:57:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867B6246760;
-	Wed, 10 Sep 2025 02:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9575221FCD;
+	Wed, 10 Sep 2025 02:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757472302; cv=none; b=ArbB5zAMfniZdxEg1M4gyzpmpa3wmiKLgY1j/0Yt1/xexM74qNYtzTuy9EEoYtFTQxxo9H6vF6USzflxKEIk8QkKziJdyKaVEHNVcqq3MPAmQqsoL/sU6aJ3WUZ/DpBIS0hIOi70SyJbqLPzdV+rUnh6a79TrJjvRjjroxQdlaQ=
+	t=1757473038; cv=none; b=EAZU8Yyw29ggY/3cMt9Pz8Yopzz/XCmk+J9O/56K5HvaMW69fJPOkqyflE7A0mRP0MaxJ5lRiX5Ln7CyennPgSAL0gO6ujn82WAMn+/1XhlcpcfGXg8vbwa01IvtnjFNbnjZdd0btym1MosYiyaAf3NcE7ZI3cpgoha9Sgin734=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757472302; c=relaxed/simple;
-	bh=c2GgqaCCU6MCybKkX3fh3H6ioby4mdMWd3h6PdjqnKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J90YeEjfA8URbEyzBuen171NF3DOcsI9nobUngk28Bb7PopepqpqOfF0OgufXNax9C4b5dPXFT8eEeZZufkOe3nn1KZ1TxGWJCtcovxaL21v3csBLf1hf3OhqHbmEXKMwqXtPtYNhwl09q85W47HirPWYumnFA3t2RIhXSecY4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1757472216t68456359
-X-QQ-Originating-IP: 17bfSa2F654IBMiotK29/iMQ0Y0VqjXIV2xOVHSsz2c=
-Received: from [IPV6:240f:10b:7440:1:e5ed:636d ( [localhost])
+	s=arc-20240116; t=1757473038; c=relaxed/simple;
+	bh=wo9OsIKUSOb4y/YjQTxP7fSgYy7JcUtfrnlbE0zFHYE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JkY/5SxNt4V90jwJhE30/PCP0DtWKuwz751S867GlbPeYB34qqwyufhIgZEK2IftTjJgDs9nK9Kswrw4wWJKfUts0HcRnTONnTkkvJo7GxvOth/7FeJ98m9yPmWkrlmQidYuncuJHjsJStyHTLNJ52YvBbGyY+P47aIux/5eIT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
+X-QQ-mid: zesmtpgz1t1757472967t74690c6b
+X-QQ-Originating-IP: M3qgbrrmtUk2hnbg2au9CWkEhPxB9US2+LWcIhSpDN0=
+Received: from dkx-H410M-H-V2 ( [183.51.121.90])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 10 Sep 2025 10:43:31 +0800 (CST)
+	id ; Wed, 10 Sep 2025 10:55:22 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1856156394840416114
-Message-ID: <AF1546E3BE23C6D5+08234a44-4321-45da-9c74-5690f3437e03@radxa.com>
-Date: Wed, 10 Sep 2025 11:43:30 +0900
+X-BIZMAIL-ID: 654995868464269577
+EX-QQ-RecipientCnt: 16
+Message-ID: <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add devicetree for the
+ ROC-RK3588-RT
+From: Kaison <dkx@t-chip.com.cn>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Wayne Chou
+ <zxf@t-chip.com.cn>, Quentin Schulz <quentin.schulz@cherry.de>, Dragan
+ Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>, FUKAUMI Naoki
+ <naoki@radxa.com>, Peter Robinson <pbrobinson@gmail.com>,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,  linux-kernel@vger.kernel.org
+Date: Wed, 10 Sep 2025 10:55:22 +0800
+In-Reply-To: <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
+References: <cover.1757322046.git.dkx@t-chip.com.cn>
+	 <42ae6d16ed9162582e7b03cbad661a7950c0db55.1757322046.git.dkx@t-chip.com.cn>
+	 <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
-To: Jonas Karlman <jonas@kwiboo.se>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250727144409.327740-1-jonas@kwiboo.se>
- <B055BC95C67D129C+d7a2ff39-8367-48cf-8697-f12fd9f885a4@radxa.com>
- <7d3c3b29-f89f-4801-8fd7-d6d0645095af@kwiboo.se> <17232684.geO5KgaWL5@diego>
- <a443fca9-e660-4a7a-b637-ec840ac8ed1e@kwiboo.se>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <a443fca9-e660-4a7a-b637-ec840ac8ed1e@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NDtUtlvFer7vF80qLC4s/JK3islawpqQwIo1XTtrY7c+MywMujiMYhNh
-	/5vTvNeKr3IptPQTnhzXcbxrMkLyNiiWb82VcyIUyaeEPDxX7YbIJPN+9gSDUaQfUkBaxcD
-	EJXpigyyzk7US7RwWXQoJwvKqJoYgYidl5VI+qY9/vEdvVwq33cLKn2CNiBIJyFLm1GCF1C
-	/5dQmdnQZeJYWFP3IkEBjZph1ZfISnvA/f7h3sBfVGs3Csb8NE336SkndWkZR8nXDQQk3tk
-	gjumFae8smy+rETr+2L25FdzVX3tTXEtVXjRTPbUkP/ViuYGutLh1N2CmrBaMWg3zpWpvNj
-	YG+5LkfOn8y23bvfvBJ002uGcRVp2h2KbmQgFrqgllkwKbefTVxsPT/SxpCZByn4DQaaF1T
-	VegZyJoOuGXd8j3TjAAuYJRpGiEuuPIJH037TKdozH2REIynME6SXg08dztLnPkSRI7TGKk
-	AuW5t/ehbsj83nzyaMXVqbZzZYvcrabURHmGTpAz13YRC09XiVg/k5feWSIcwuOzkkJIJn6
-	YjuFAjd3jK49BgYeVJXalp0vJmWWwRz81Z36EVxDd5IHYcWThn/JG0ejVMZmwXmTY2Gtd0P
-	fELJ/SSuEjuYJfg/PMfRLRmrmoma1MOm5wK8q5rZKQMd+gWBohHvog5K3You1JnrgW0fL9T
-	bMbRbtYoh16GsRHkZwVdL4a3rJzar2KrCzl1xC1dcAmHGAwF3FQmQ1cevDmJ2OaBjPksfki
-	A4W2YPnpzylrJXQ/mML+2sEx3ZTR4h+cdSUrU5b3WNmw7cgOgn1MsPVe4gzdVYfveNsxDed
-	8xL2lLnq73YT01B373CZmZXF5zWkw/Rv+wAhNX07wx6WSsmComnrWHju9RoTiuBOxCx8G34
-	S5bXweQJxujbGyAa+kGMQbZOv94kLMs4CvXVi7LfdAqWaTg1NSR+04AGdwbyjq5dXU0Ae0Q
-	CxIgiaarNTR86Db1+kstUTXuuV9Sg49FY+vJ9EQj/evJP1UtsroQVWj+A
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+Feedback-ID: zesmtpgz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: Mdc3TkmnJyI/6FAGiVcHwJ65lGMqzzmC4ZTtdU2m2p2uPPUJu7BMkcsK
+	KlYEwj7i1oKfzoiSgPlZ9UYslC1ildvmL36d8LoGHnVfGG5unWPERjYrbD2hRAVTsgyNmI1
+	3IbtkZniHef03LV6kIapNrwbf7nm7AawHJ7pzBsE2KoM7A3hGWd5o5pfJquKub6O5PDAyNG
+	wdAsUSja73QUu04ik8NgopRS4+rwPSkl8R8boGMMhH9NYwWAEVJVk/PQZGtScaADukCvMVl
+	DF4UYnJ9mT5BXATIgaQx6kqKHxpKZR2B9I8b9HqavS9Qoqt4iexiplvCpLXHqpZTnUPB7X2
+	b8YDfkYQh3n5VsrH1iL7p1Y9wqBSw5eGQBrqiEPn7j2kgjCZVlfiBPa2m+iPsm+HFZ/2CxR
+	/BxK3R0Eya5XirYggByvrf7fGDjrLtp4mggeRLlOU7jVl7gc1Ilnjsx1EWx2rKiUNrZ6iBJ
+	VUe+fEQzl3g940Qr879lVt8DJ3VtbCssvhM4ctuTB8VntdsZxbGWaaOzr5+c6heMxGQQ/1t
+	d+lBQlpqQseLNOaxzdrAcNoOypIbWA4aswCvps+wU3wowXaIp3x5BcFW+pD8KQABT+X17sG
+	2ufjW8iRjHRI8x18O+jD2yjsTnZ/4IPPLLAkxaoyms6gBIN9QhckYrEprgCvtX/Bas5vX2p
+	dESicn1Vd5G7UDgzYMNmuIIQRIzOukKmmbm8cciNFUcnk8p5BsiTZlVLTBS9dvGgdVUyflA
+	vlBEzBSKP+nf/FCcKaQkxxJ4r9etcmrHZrOei5krT2ZvgYbMqYHUBLCrubXowhyAJiN0mcJ
+	ZhrPbbzGoEO4PyiaNPCGi1Ab4X3ezQPAoV4MykZ0BxSvh6jrUyiJtjMdGqhQPZyzd+B705h
+	dqKS0E6+AV/PGP+vpMhkU+kVLtj1nSn6cyPclHEx3My4H3EMxRW/kZLlH475RJBNSMh8DaP
+	ebQxs1dOVr2d3JYHBpRgEuhOUH/hCGD9lB2apuVvIanK1b7rabj9yJTdXraeaOjZb4gvct4
+	VER6O/LjAsKXAzn7C7jiMagzoiRgVde8U/TIAw7cUzHysd8UtIyHTJQzj6Ego=
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
 X-QQ-RECHKSPAM: 0
 
-Hi Jonas, Heiko,
+hi,
+I'm very sorry. Due to the default configuration of my email, I didn't
+receive your email normally. I have fixed this issue.
 
-On 9/10/25 04:36, Jonas Karlman wrote:
-> On 9/9/2025 5:39 PM, Heiko Stübner wrote:
->> Am Dienstag, 9. September 2025, 16:48:25 Mitteleuropäische Sommerzeit schrieb Jonas Karlman:
->>> On 9/9/2025 2:28 PM, FUKAUMI Naoki wrote:
->>>> Hi Jonas,
->>>>
->>>> On 7/27/25 23:44, Jonas Karlman wrote:
->>>>> The Radxa E24C is a compact, high-performance network computer
->>>>> developed by Radxa, based on the Rockchip RK3528A SoC.
->>>>>
->>>>> Add initial device tree for the Radxa E24C.
->>>>>
->>>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->>>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>>>> ---
->>>>> Schematics: https://dl.radxa.com/e/e24c/docs/radxa_e24c_v1200_schematic.pdf
->>>>> ---
->>>>>    arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>>>    .../boot/dts/rockchip/rk3528-radxa-e24c.dts   | 519 ++++++++++++++++++
->>>>>    2 files changed, 520 insertions(+)
->>>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
->>>>> index 0662fcf00628..dc62fd5305be 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>>>> @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-armsom-sige1.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-nanopi-zero2.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e20c.dtb
->>>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e24c.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2a.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2f.dtb
->>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3562-evb2-v10.dtb
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
->>>>> new file mode 100644
->>>>> index 000000000000..225f2b0c5339
->>>>> --- /dev/null
->>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
->>>>> @@ -0,0 +1,519 @@
->>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>>> +
->>>>> +/dts-v1/;
->>>>> +
->>>>> +#include <dt-bindings/input/input.h>
->>>>> +#include <dt-bindings/leds/common.h>
->>>>> +#include "rk3528.dtsi"
->>>>> +
->>>>> +/ {
->>>>> +	model = "Radxa E24C";
->>>>> +	compatible = "radxa,e24c", "rockchip,rk3528";
->>>>> +
->>>>> +	aliases {
->>>>> +		ethernet0 = &gmac1;
->>>>> +		i2c0 = &i2c0;
->>>>> +		i2c1 = &i2c1;
->>>>> +		i2c5 = &i2c5;
->>>>> +		mmc0 = &sdhci;
->>>>> +		mmc1 = &sdmmc;
->>>>> +		rtc0 = &hym8563;
->>>>> +		rtc1 = &rk805;
->>>>> +		serial0 = &uart0;
->>>>> +	};
->>>>> +
->>>>> +	chosen {
->>>>> +		stdout-path = "serial0:1500000n8";
->>>>> +	};
->>>>> +
->>>>> +	adc-keys {
->>>>> +		compatible = "adc-keys";
->>>>> +		io-channels = <&saradc 0>;
->>>>> +		io-channel-names = "buttons";
->>>>> +		keyup-threshold-microvolt = <1800000>;
->>>>> +		poll-interval = <100>;
->>>>> +
->>>>> +		button-maskrom {
->>>>> +			label = "MASKROM";
->>>>> +			linux,code = <KEY_SETUP>;
->>>>> +			press-threshold-microvolt = <0>;
->>>>> +		};
->>>>> +	};
->>>>> +
->>>>> +	gpio-keys {
->>>>> +		compatible = "gpio-keys";
->>>>> +		pinctrl-names = "default";
->>>>> +		pinctrl-0 = <&gpio0_a0_user>;
->>>>> +
->>>>> +		button-user {
->>>>> +			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
->>>>> +			label = "USER";
->>>>> +			linux,code = <BTN_1>;
->>>>
->>>> I prefer to assign BTN_0 to the 1st button :)
->>>
->>> The E20C (and other RK boards) already use BTN_1 for user button, it
->>> only seem to be the recently added E54C that is using BTN_0.
->>>
->>> For consistency I suggest we keep using BTN_1 for this user button and
->>> possible fixup E54C, if you want to use same button for all variants.
->>
->> Yep, that would also keep the amount of userspace-facing changes
->> minimal.
+On Tue, 2025-09-09 at 14:31 +0200, Andrew Lunn wrote:
+> > - 2x Gigabit Ethernet, 1x 2.5G Ethernet
 > 
-> I mixed up e54c and e52c so my statement was not fully correct above,
-> however there is a mixed use of BTN_1 and BTN_0 for user button:
-> 
-> - rk3588s-nanopi-r6c/r6s uses BTN_1, added in v6.9-rc1
-> - rk3588-friendlyelec-cm3588-nas uses BTN_1, added in v6.11-rc1
-> - rk3582-radxa-e52c uses BTN_0, added in v6.14-rc1
-> - rk3528-radxa-e20c uses BTN_1, added in v6.15-rc1
-> - rk3576-nanopi-m5 uses BTN_1, added in v6.17-rc1
-> 
-> Majority seem to be using BTN_1 for a user button.
+> I actually only see the 2x 1G. Is the 2.5G not supported yet?
+The 2.5G Ethernet is based on the Realtek RTL8125 network controller of
+PCIe 2.0x1.
 
-If we can unify to BTN_1 even if it breaks backward compatibility, I 
-wouldn't be opposed to it.
++&combphy0_ps {
++       status = "okay";
++};
 
-(I remember a "sync with others" patch being rejected in the past, but I 
-might be remembering it wrong.)
+[snip]
 
-Best regards,
++&pcie2x1l2 {
++       pinctrl-names = "default";
++       pinctrl-0 = <&pcie2_2_rst>;
++       reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
++       status = "okay";
++};
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Regards,
-> Jonas
 > 
->>
->> Heiko
->>
->>
->>
+> > +&gmac0 {
+> > +	clock_in_out = "output";
+> > +	phy-handle = <&rgmii_phy0>;
+> > +	phy-mode = "rgmii-rxid";
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&gmac0_miim
+> > +		     &gmac0_tx_bus2
+> > +		     &gmac0_rx_bus2
+> > +		     &gmac0_rgmii_clk
+> > +		     &gmac0_rgmii_bus>;
+> > +	tx_delay = <0x47>;
 > 
+> What happened about my comment that "rgmii-rxid" is probably wrong?
 > 
+> If you think it is correct, you should reply with a
+> justification. Maybe PCB is very odd? In which case, a comment would
+> be good to explain who it is odd.
+The Ethernet part of the board is designed with reference to the
+rockchip evb1 board. 
+
+link: 
+https://github.com/Firefly-rk-linux/docs/blob/rk3588/firefly-public/en/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
+
+
+The document describes the usage of the rgmii-rxid mode:
+
+When the hardware enables the RX delay of the PHY. Need to turn off the
+RX delay of the GMAC, and the dts configuration mode becomes "rgmii-
+rxid".
+
+> 
+> 	Andrew
+> 
+
+Kaison
 
 
