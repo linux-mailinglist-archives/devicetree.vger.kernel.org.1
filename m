@@ -1,177 +1,305 @@
-Return-Path: <devicetree+bounces-215459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A813BB5178F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:06:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF42B5191D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E5D446E59
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:06:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 957763A4CDE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BEF928751A;
-	Wed, 10 Sep 2025 13:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="SBKt3h9L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0502192F5;
+	Wed, 10 Sep 2025 14:19:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010038.outbound.protection.outlook.com [52.101.84.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EE5272805;
-	Wed, 10 Sep 2025 13:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757509568; cv=fail; b=EtkizKZ5jBMJx//MBVQdiRWak/YhlAq32VCXdsUYSKR5Es3KeseL8haYXzXu7WyPVIImurBEney2WfquxAyF7ADw9Hn6GotNB0bcBme19NSa3dO/26CbN7WOtjspp2XGVJ9Ao8yVNZUqeR9SDj4WcsEROvgfEAuSJYq+k8TpePM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757509568; c=relaxed/simple;
-	bh=vytFf8ahPHa/kYFAOqisVqFjMNf4HGQkmChNANDz7go=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=laa7B7WPxLZJoaKg1vvvjEOsPfqOu4E5kg4GJ0d6iiNQUnNWi1Ja1VcpxIsFG/BnVd2TXQn2Qnf3h+mOLFuqiX7BVhp7SPLNgKBEBA5rv/b7UVPAMn/UTktR0K25Honw8cwIN/zHCFq/rPFPHlAhNVLwyGqRryy9WXLPZeCpLMI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=SBKt3h9L; arc=fail smtp.client-ip=52.101.84.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hvHX7+nqFJXmGlq47QivimgLA0qemMrCy3kU9xUSVcE4fIxY3e2++CbOoe6OYkcZhSdN9NW8rm4wRoyAptKhD4+fLlhKjizZjnuqMmaepdOSLzslX3wSMjVVrSRFdro+vSrIzwVCRkcWAXnH5TuPIaT33KPgu7+R7vdbjoU868xvA3GxqZerc18Wp58wqd4e6AVfqud6rdA6AO84NnW3M2jYLIQPkODRtRikfM8jqPR3/RHZuOrf2kdeanVXcSoMJ7NtUSdUiKkJ9XzXPvAgT+/W+v3eiwyotFnyzMMaHfgiFfjXBcJbJ+qvVIlTRphRlFB3Va9BdDqrTRiirim2jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vytFf8ahPHa/kYFAOqisVqFjMNf4HGQkmChNANDz7go=;
- b=D+xQvywY64DU3e/vkzmiMio4rYubOyWd0/S13ocZtSyDAd+wwawbYj0Ebl0xNAlwVkx80IFmwhyNHCLTRPFRqDzKT/wX3R7H+YkVK4CAgEH18MYf1P8QduRtGF491xKdX52ss8TaSQcrj8aFWNa9sxMSg1F29rkpVHxq7NJdehZNfrYEKpq3hOImvO5gA8Lje03etRf0arSkDicNdQyPDcLLSFv3/H1r4mByvcNGMSdSbwbPJ+xojjdZHVHIbw4/ipWp+5KKXzVznCZhKXp7fmGDyU9g0835PMD8ESOcg8SDrLiec2lgERneiyJriJDak4xXR+25GzcpVeId/5G00g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vytFf8ahPHa/kYFAOqisVqFjMNf4HGQkmChNANDz7go=;
- b=SBKt3h9LRmnb4FNykSxl5CfSqTwRgDujLosWSIGw/b72Lc4rHFaTQI6zIl39jPb2rdhyW1ZCuXpFgVJDd/VXtCIuzz3i2b4CTX/y0PYfoGqHDleb4YgRXwBPte8S3mKklFgm4r2DtyasE+HVrnU+K2mZ/K/mxE7QqftHaA1776RCti9HznandmzNkjWKhUQbM0e7OwJzI7GbQuZq0InzRBmBVPHIUFfEbytbHVJIVIX8n+LCpaK/skNNZ3dkrWdUGQrrvVwnMk5qf3nYXoC8BLwIZODwYgAXEnaG2ONrAFDUjChS61981LL/ozdlyDG9A+XTt+khBCmApwBYrDIt/g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AS4PR04MB9435.eurprd04.prod.outlook.com (2603:10a6:20b:4eb::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.15; Wed, 10 Sep
- 2025 13:06:00 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9115.010; Wed, 10 Sep 2025
- 13:05:59 +0000
-Date: Wed, 10 Sep 2025 22:17:30 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Andreas Kemnade <akemnade@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alistair Francis <alistair@alistair23.me>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] ARM: dts: imx: e70k02: add sy7636
-Message-ID: <20250910141730.GB29628@nxa18884-linux.ap.freescale.net>
-References: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
- <20250909-sy7636-rsrc-v2-3-cfd9f44fd259@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250909-sy7636-rsrc-v2-3-cfd9f44fd259@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SG2PR03CA0130.apcprd03.prod.outlook.com
- (2603:1096:4:91::34) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760DE1F3BAC;
+	Wed, 10 Sep 2025 14:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757513945; cv=none; b=qvje0sJ7S9T4MHgsE8ltQQmQyPFK735ggDMlgXNezygeFf/oUZeAcor7TkfgeW/DOPZRiJRO+wXZUQnf6UWY81INZr5YlwkMV7dBUmE+2Lhp6+gSMiA8iMHOkqGgkZy5hQSCJ7Ps8eByGK4hR7KeTemY6Zh6kj167kb35nIWVjE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757513945; c=relaxed/simple;
+	bh=IEXO0ieIiVHuQ9yIVaCY0Rp/VRoxd2AGbEMnZGmT/hU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ueFR9+BP5YY5pCJBr2EJkwUdTadpGk2xS/MrbPWbEts27721VrJXS/vQH/pt63wj9Pn4brG5f9oUdxfAq6RXk71h6WNphFSRhBV2KTMQuiDvykBsFmvl1t5svSGiesLkjDxjdhq+zytUIqGjzat0p2+Qs9sYmK759QZkCOZbpMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-545df2bb95dso3107141e0c.0;
+        Wed, 10 Sep 2025 07:19:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757513942; x=1758118742;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AqARIgzNgRRqB4bGKr4xQDPB4kRwfIXG8r9cjQp0qlk=;
+        b=lQSCWrzCidArdJUh8beMZJAZvHw+8f58rXoNPyRxkJwLqh/9Q9ThdtGj82ah5Fdpgl
+         Jfq/swLBL6Hjybvn8XmKxgbnq9/lHmbtwVM4LGfHvnBtOjR5/ayIvK+C6ZqiYRAUE/gO
+         it46xfNt/JJjZjimGZMppAK0ZehKKRurpyhj4KabWhZDuF77JA+q4J2lhXUmbtD5+Eik
+         beNcQZG/eSj43KI3bi+kDND5sk5rpxQlDIbGixFlzD7Y0EN+HiIlgSzYH9AYP5Napd/O
+         mhysyWJOrNSK+2fWeASU+h4TivkCV2gADEQuOTaDY+oIQnLX5TzaIA0onPXp5mfj052T
+         FhZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYD74Dh14zJEub3SLu05cKxdDOkivg/rZJbPMnlEYvYmfPjpZaAW6fqNMjsjzzbUM+H7Egdscddxrl@vger.kernel.org, AJvYcCWGI3ocIOLUM72YCSvbIlZSCkOyS0c1ZA3xO/qYPBBtl9h0+/Tbm/wXg2oO9pFiHmne/UnXf66to4c1bouv/GVrPdk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywl+gonz8kWnHCwuIE84jQkwdFXnnkE+8XmRkSqWGuE8kSlukXY
+	at5YYjGZA8YOE5a4BrdnsFgJyWmH0TpZbZVhgxLY5u44AHiDzASWUGJESSkSqF9U
+X-Gm-Gg: ASbGncuEzjcEG0/jSlwtwlfk+ZD5KYtalT6AVNYt8KPUOI1gBFuNbJscLs4/Lo6+vlu
+	5uzQub8NVMAir/8Qj8cGO0eUoggCq7XF49ccY+s5Ac0zr4k6MxUgPL3jwPDR5mZOYoxhmIcvyPr
+	vUxGEsJGgPh6OUju/YpKFvNISfDfwS37Tr8HluzjqVTLQ25AoLKI0StiXhbuhNEYGR9p+sw92Hf
+	6iVoRS21Kpmi9p34oIm9TPYK+mfNsTAH7vGEEGy/Uym/pChFn3O074PDzUqqnXuShGy02b4ueCw
+	sMGlUEef8QEA3gsMiCzMPoCxuRhvzkeDLkjklPJ/fwA1vidUekeXEZEVR5UTW2X/Dg0/K85VKWd
+	0ZeV+I7b3uzp9tuPlWYZ2JBNNDY08uhckEYBSrfXrk60xWM5EY4FpQzK0ZIwbRr98rAjBTzc=
+X-Google-Smtp-Source: AGHT+IEh50pQuUs8x8FEe8gkapcAACjxseSHcHLKeBTZ944IZ8UvHUcmGY63z6ywhHLkHX6+0mBp2Q==
+X-Received: by 2002:a05:6102:808f:b0:523:95bb:b63a with SMTP id ada2fe7eead31-53d1376b8demr4710972137.21.1757513942013;
+        Wed, 10 Sep 2025 07:19:02 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-52af214ea0esm12098633137.16.2025.09.10.07.19.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Sep 2025 07:19:01 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-52a80b778e7so2147782137.1;
+        Wed, 10 Sep 2025 07:19:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVE6FMaEZ2TWh576A5MX5ieL20mslC/+i5DxKth1Eea0HnpwguWoRRwQ5grLj+vszZCa2FqZ1zAeDlSd/ELkpx+f5M=@vger.kernel.org, AJvYcCVRekiRBJVoxm9bzzQ6Z+qcXhKt4YIx9WG82P/jdqcRg0lkZJc5/KvgWyxZbHRDg0x9ICxg4eqJMyjj@vger.kernel.org
+X-Received: by 2002:a05:6102:5114:b0:52a:ef9a:cbef with SMTP id
+ ada2fe7eead31-53d162c0ddfmr5454694137.35.1757513941167; Wed, 10 Sep 2025
+ 07:19:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AS4PR04MB9435:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5eba3fa9-7580-41c1-d8fe-08ddf06ac939
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|52116014|376014|366016|7416014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?FiRgjtuHUV1gyHDFTT81EzaYqyv+GPhS2SkPd8oXAUIVVGZj1AWcek84H9do?=
- =?us-ascii?Q?Nq6ZvPYVZRWY7G9wwxsJnYAyTd5Svrzvo1RTkboGn2np0tQdpZzM0BNbT34+?=
- =?us-ascii?Q?IH53NEXC3oz9fmXM1va8CJT3br/8wYJR1fPVQCwNTtXVwCdoEES8mVnOBr4Y?=
- =?us-ascii?Q?PnsMgaIZobSC+ZHuWMip7waTgVCozpXjfxJeP9dM/eCAE4beS+4Rzg8/yjm9?=
- =?us-ascii?Q?/BctOVFwqTy0SlvEV+2O4ynwaXtGT5cpPOB71tSo/RJaMi9ksVGOgmYg4Rg0?=
- =?us-ascii?Q?e40ewpKFkuzwjiAAgG3b3oP7Qqc9fZwzpIjXEiOSl1Luv460lJrh1wRoK3Gr?=
- =?us-ascii?Q?OocNDZHwTvsCvT4v/AUTevWM3gRNT+4HqZdOz8DlXtXRJB/ZxJ/WJOy9o4cn?=
- =?us-ascii?Q?1Q6Av0hxEXhDVdmegtscVGm+Y0bIs5CrBJllVngMFkaiJjIkoyKOxQ3FK+5O?=
- =?us-ascii?Q?hgYZL4DpQ5sH1IM1YVCdoQWw9RzMIB5CMlmFefqh3SWZ24q4L0N1ig+8bSTQ?=
- =?us-ascii?Q?zHFEQMquPGXFRRRcIvR36B/8iRhKr4RYHJZpD6Do0T/8lOu1Q+lgkuEet1rD?=
- =?us-ascii?Q?04/7BNYubw4Hjb/QS06lnwk1Ze0w/+4tCz649xiuJxZ12V+SBQ8D3qqGyLhg?=
- =?us-ascii?Q?QiUikhVrzfC+VdQwCUPbQVYwRWs5R1Q06SLuMbxvL3tVjCxAeuIh04n+Mjku?=
- =?us-ascii?Q?NfNdiV8YDUnNvMsVGFW+KyrrF2HX99rAmROECnC+oUp6E5b0qxwRJ0U4ibKD?=
- =?us-ascii?Q?aG2ihtsVNcSPcCrCmr/9Qgn0k5ZcdrTuwIRBIjLgdNBWhLWD3N11zUWJZQyF?=
- =?us-ascii?Q?sX0dtPdSLzCx3N0UoIZ+rMKpK90TIU5YABsICJGmtGvGtZcq7lNZy+KMbKHm?=
- =?us-ascii?Q?yKHo4vMmu1vsFxYb3TTcE7vO5OXNtWJfyoCmytoco8hfN+XPMk5V2oFWNwLB?=
- =?us-ascii?Q?nS7s19I3vBnhKNxNKhlUtRHIjgvG3qf6TIBRYEoPnLULtNK/m1b2/L6H9acs?=
- =?us-ascii?Q?0e+579SRrqSVWIkCnNizNiZK9X+2Fkcm3rS3aj1RpziUpUzvdXXDzMHJ5O8B?=
- =?us-ascii?Q?u3VVUnDYGJETJwrztz97lC0dsG/J2eMg+bZXyKI6urERp04CAgS06yjq2SuZ?=
- =?us-ascii?Q?qjMHQulmzLaYL//YONBt7/bvfV4sBRo4sQnvfRwroYUVMhhYYxTnUffMsvXz?=
- =?us-ascii?Q?6O9AiCJ4+1HrOwis87jdoqHCswsalvgSIcWfiZLN4sEydtnfiJcAiyV+lstF?=
- =?us-ascii?Q?vmoYB1FNByIhRl4rneLsIKflCUwvxGDOmJAdv3xJukZ/Zz26ttOdhDph/SjB?=
- =?us-ascii?Q?0W75Fs91Bp2C65EVLrJbHImqBSOVWLGht1DA1JxvLV1Cx5VtDTSypX0RTQs+?=
- =?us-ascii?Q?3HAZ/QhXs6hnjJJbG9vt0AcM5zWiPGwwArfuldZeZ2sbdW3+2BBMmpAswrmt?=
- =?us-ascii?Q?R8DlHfrYr1obL53Z5RoWeQtMSnVUH8dYg432iw5B3LYwwvj5NNOa+Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(52116014)(376014)(366016)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?mELbiaDnJjdHxJHDapmByF34pgk13GcZ98oPXC5IkI5nrixr64xp0btJAUtH?=
- =?us-ascii?Q?wXckxvgBHhN3ZFKjS+C/RjVLnrckHBLCCg3Mu1Swu1qTd/I8TTC13R9gOt6x?=
- =?us-ascii?Q?3zWOCeRMgohnEBLXoyqMnLZIP68C4+8hg+HksPkVughFWl8VE4oetITcyPXm?=
- =?us-ascii?Q?nZWdsTuo3GgElug+FMAvoNsl4bfT/imm79qkgDA8IyfOKfmHLgKcarR0bBIt?=
- =?us-ascii?Q?kKO9Rn9KqYpjQkJeJVOw5XXKAdHPBrH3sm/OG/R1h9F0bW4Oz21sgW+gU86u?=
- =?us-ascii?Q?RO7uo72gKcnShIFsDWUfA/ZT4XMB+sgCMFmjAD2sQRtIjqUfLrl5giJrFvD1?=
- =?us-ascii?Q?4occA4GslNByKkrEMqgeTEnZRQEoLmtghT/OsZaRZN3dE/AG4v84IYfGO1Ur?=
- =?us-ascii?Q?yQA88iOu65AiUmsWlEIt2umwhCJRl3L45ZUzFTKZPQ7CQxNbRSYbTElshF45?=
- =?us-ascii?Q?lj7bAsFqBjcAh1jm7XxprCSdQsQ5k9/o35IU2ZyXJlcUcA9yXnULJ0UCyhG8?=
- =?us-ascii?Q?DX4WVobWvx51J1Ok8X6T2JLqwemEfa/uWpUBbSZob4hCwemacH9RJtCrg+Jb?=
- =?us-ascii?Q?lls0KhSCxvgs4rxaKXOIXs6xeCVpMbMBHf/a+szEdmPZbLivtYpxC39hj7+5?=
- =?us-ascii?Q?EUfaIRRi/nCszYFOcdcu7Vn6bm0J3dudgjlQh90/P0qQWGayd1/rQ8CkZJAP?=
- =?us-ascii?Q?1SmJtuHAftFGg+64Lv3s9hwx9FRLtDMJU9QZSZdk/tCBDDg2+J+79dnHMtWB?=
- =?us-ascii?Q?eQOtkzZe4DVIeaocO0Oy39EF8jumyVTjNdB41PoWMl07Ych70wtQ7Y36Uqyz?=
- =?us-ascii?Q?ebffIdPVYzlDGDAZyytDtQ9Wycy0moaRbamqeN3vVkgGN/HnFJSPCoRpkB7N?=
- =?us-ascii?Q?l687e2h8vk2ARaTdYLbcUJbYNv0T/GlwzdZkenre1z69WGO+jVKk/6aLIveU?=
- =?us-ascii?Q?9ZKywRyDpiagAOu4LKikUPBkc2p5mZ436/BeaJQ+xqToeFww2vXOP3v4oGpm?=
- =?us-ascii?Q?4qTiYnFo+FeV3aDrbkuogtpVF1ytojEIl+IetREyz7E2UyIpa9dGzyG3DSPj?=
- =?us-ascii?Q?G/QXgc4YB2i281fo2ymu5epAJ6fSI9fGDrJpoV34hluezJj+QK8bNLXNC4H1?=
- =?us-ascii?Q?Xcytm+nNibss+mgiBeWagsXNt4vEZgF2ebwhIDgOUCp8BE1aye0HbseWRZht?=
- =?us-ascii?Q?fyD19P8mQIi8Y3Po024SRfvEPCcM0Ci6tXveYyIGlD7FsDgjm+X/QwlA3A8/?=
- =?us-ascii?Q?IGZXdwFxeVQ3oMI/v76qcKswPnzFiYUm0OTs8qmQoGmiITMFZz/ZeIr3BKnG?=
- =?us-ascii?Q?7L1EXlpIGWO/aKHiqrhBdd1YT08/QD0xYXSbuBp70y0vjB/t8T+8p8QVow0i?=
- =?us-ascii?Q?lJlPGcVQz7Qb7t98PBPIU6F5MF41ORWrtUX4wcVXfUHkvmDVqvGS6HAW29h7?=
- =?us-ascii?Q?6pJW6eyv7JtrrJf50S2MXASTOPY3UJVMOfYhqAgASZn+4b5tygMrT+XFcDTA?=
- =?us-ascii?Q?LOy39neISxZFAYuKeLdHAIY/ljRXr2yD+drXDZ0QfqXGsu1t24z5/c6ifkvD?=
- =?us-ascii?Q?U+9T3iH2AOl5bBxa83FDIsOsX/FnvfC7PTxD5jRN?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5eba3fa9-7580-41c1-d8fe-08ddf06ac939
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 13:05:59.1233
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2YaOZKj/P8YmDzdxjWW2j29U/mcxPNNwopPb3rByP787g2wCNXUi7OFYzgCmCiwNJga/PcNxNSpU75jmRMTPyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9435
+References: <87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com> <87jz27vzec.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87jz27vzec.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 10 Sep 2025 16:18:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVVV5tY_iwb=Xn6XVY-Ai6spBY70yXhc5VRxwDva8BGng@mail.gmail.com>
+X-Gm-Features: AS18NWB5ZbRYOQNXMfBZ0XBpEyOe37_5a6ML1OKvAik19oOXwDMTmOk3fDfNglA
+Message-ID: <CAMuHMdVVV5tY_iwb=Xn6XVY-Ai6spBY70yXhc5VRxwDva8BGng@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Sep 09, 2025 at 10:33:04PM +0200, Andreas Kemnade wrote:
->Add the EPD PMIC for the e70k02 based devices as a step towards full EPD
->support.
+Hi Morimoto-san,
+
+On Wed, 10 Sept 2025 at 04:01, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Hai Pham <hai.pham.ud@renesas.com>
 >
->Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
->Acked-by: Alistair Francis <alistair@alistair23.me>
+> Add initial DT support for R8A78000 (R-Car X5H) SoC.
+>
+> [Kuninori: tidyup for upstreaming]
+>
+> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
+> Signed-off-by: Minh Le <minh.le.aj@renesas.com>
+> Signed-off-by: Huy Bui <huy.bui.wm@renesas.com>
+> Signed-off-by: Khanh Le <khanh.le.xr@renesas.com>
+> Signed-off-by: Phong Hoang <phong.hoang.wz@renesas.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a78000.dtsi
+
+> +/ {
+
+> +       cpus {
+> +               #address-cells = <2>;
+> +               #size-cells = <0>;
+
+> +               a720_0: cpu@0 {
+> +                       compatible = "arm,cortex-a720";
+
+"arm,cortex-a720ae"?
+
+> +                       reg = <0x0 0x0>;
+> +                       device_type = "cpu";
+> +                       next-level-cache = <&L1_CA720_0>;
+> +                       enable-method = "psci";
+
+Please drop this line, as there is no psci node yet.
+
+> +
+> +                       L1_CA720_0: controller-0 {
+
+cache-controller (lots of places).
+
+> +                               compatible = "cache";
+> +                               cache-unified;
+
+The L1 cache is not unified, according to the documentation?
+
+> +                               cache-level = <1>;
+
+dtschema/schemas/cache-controller.yaml says valid values are 2..32,
+so I think you just have to ignore the L1 cache.
+I.e. drop it from DTS, and let the CPU's next-level-cache point to
+the L2 cache.
+
+> +                               next-level-cache = <&L2_CA720_0>;
+> +                       };
+> +
+> +                       L2_CA720_0: controller-1 {
+> +                               compatible = "cache";
+> +                               cache-unified;
+> +                               cache-level = <2>;
+> +                               next-level-cache = <&L3_CA720_0>;
+> +                       };
+
+Shouldn't this node be located outside the cpu@0 node?
+
+> +               };
+
+> +
+> +       extal_clk: clock-extal {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* clock-frequency must be set on board */
+> +       };
+> +
+> +       extalr_clk: clock-extalr {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* clock-frequency must be set on board */
+> +       };
+> +
+> +       /*
+> +        * In the early phase, there is no clock control support,
+> +        * so assume that the clocks are enabled by default.
+> +        * Therefore, dummy clocks are used.
+> +        */
+> +       dummy_clk_sgasyncd4: dummy-clk-sgasyncd4 {
+
+Perhaps use clock-*, for consistency with extal(r)?
+However, please note that so far no Renesas DTS files use "clock-*"
+as a node name, but "*-clk" is in active use. Krzysztof?
+
+And don't forget to say "Thank you!" to our SCMI overlords ;-)
+
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               clock-frequency = <266660000>;
+> +       };
+> +
+> +       /* External SCIF clock - to be overridden by boards that provide it */
+> +       scif_clk: clock-scif {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* clock-frequency must be set on board */
+
+This clock is optional, and thus may be left unpopulated on a board,
+so please (re-)add "clock-frequency = <0>;".
+
+> +       };
+> +
+> +       soc: soc {
+
+> +               /* The Arm GIC-700AE - View 1 */
+
+s/700/720/
+
+> +               gic: interrupt-controller@39000000 {
+> +                       compatible = "arm,gic-v3";
+
+The documentation states it is compliant with GICv4.1?
+
+> +                       #interrupt-cells = <3>;
+> +                       #address-cells = <0>;
+> +                       interrupt-controller;
+> +                       redistributor-stride = <0x0 0x40000>;
+> +                       #redistributor-regions = <32>;
+> +                       reg = <0 0x39000000 0 0x20000>, // GICD
+
+The base address is 0x38000000, according to the docs?
+
+> +                             <0 0x39080000 0 0x40000>, // GICR Core0
+> +                             <0 0x390C0000 0 0x40000>, // GICR Core1
+> +                             <0 0x39100000 0 0x40000>, // GICR Core2
+> +                             <0 0x39140000 0 0x40000>, // GICR Core3
+> +                             <0 0x39180000 0 0x40000>, // GICR Core4
+> +                             <0 0x391C0000 0 0x40000>, // GICR Core5
+> +                             <0 0x39200000 0 0x40000>, // GICR Core6
+> +                             <0 0x39240000 0 0x40000>, // GICR Core7
+> +                             <0 0x39280000 0 0x40000>, // GICR Core8
+> +                             <0 0x392C0000 0 0x40000>, // GICR Core9
+> +                             <0 0x39300000 0 0x40000>, // GICR Core10
+> +                             <0 0x39340000 0 0x40000>, // GICR Core11
+> +                             <0 0x39380000 0 0x40000>, // GICR Core12
+> +                             <0 0x393C0000 0 0x40000>, // GICR Core13
+> +                             <0 0x39400000 0 0x40000>, // GICR Core14
+> +                             <0 0x39440000 0 0x40000>, // GICR Core15
+> +                             <0 0x39480000 0 0x40000>, // GICR Core16
+> +                             <0 0x394C0000 0 0x40000>, // GICR Core17
+> +                             <0 0x39500000 0 0x40000>, // GICR Core18
+> +                             <0 0x39540000 0 0x40000>, // GICR Core19
+> +                             <0 0x39580000 0 0x40000>, // GICR Core20
+> +                             <0 0x395C0000 0 0x40000>, // GICR Core21
+> +                             <0 0x39600000 0 0x40000>, // GICR Core22
+> +                             <0 0x39640000 0 0x40000>, // GICR Core23
+> +                             <0 0x39680000 0 0x40000>, // GICR Core24
+> +                             <0 0x396C0000 0 0x40000>, // GICR Core25
+> +                             <0 0x39700000 0 0x40000>, // GICR Core26
+> +                             <0 0x39740000 0 0x40000>, // GICR Core27
+> +                             <0 0x39780000 0 0x40000>, // GICR Core28
+> +                             <0 0x397C0000 0 0x40000>, // GICR Core29
+> +                             <0 0x39800000 0 0x40000>, // GICR Core30
+> +                             <0 0x39840000 0 0x40000>; // GICR Core31
+
+No GICC, GICH, and GICV?
+
+> +                       interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +               };
+> +
+> +               scif0: serial@c0700000 {
+> +                       compatible = "renesas,rcar-gen5-scif", "renesas,scif";
+
+Missing "renesas,scif-r8a78000" (everywhere)
+("make dtbs_check" would have told you).
+
+> +                       reg = <0 0xc0700000 0 0x40>;
+> +                       interrupts = <GIC_SPI 4074 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&dummy_clk_sgasyncd4>, <&dummy_clk_sgasyncd4>, <&scif_clk>;
+> +                       clock-names = "fck", "brg_int", "scif_clk";
+
+"fck" on SCIF should be (derived from) SGASYNCD16 (66.666 MHz).
+
+According to the DT bindings, "power-domains" and "resets" are missing.
+
+> +                       status = "disabled";
+> +               };
+
+> +               hscif0: serial@c0710000 {
+> +                       compatible = "renesas,rcar-gen5-hscif", "renesas,hscif";
+
+Missing "renesas,hscif-r8a78000".
+
+> +                       reg = <0 0xc0710000 0 0x60>;
+> +                       interrupts = <GIC_SPI 4078 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&dummy_clk_sgasyncd4>, <&dummy_clk_sgasyncd4>, <&scif_clk>;
+> +                       clock-names = "fck", "brg_int", "scif_clk";
+
+"fck" on HSCIF should be (derived from) SGASYNCD8 (133.33 MHz).
+
+According to the DT bindings, "power-domains" and "resets" are missing.
+
+> +                       status = "disabled";
+> +               };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
