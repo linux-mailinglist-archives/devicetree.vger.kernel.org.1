@@ -1,176 +1,143 @@
-Return-Path: <devicetree+bounces-215510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD87B51ADB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:07:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F167CB51AF3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:09:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A408C1892E62
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:02:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01B4D1882C1A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C200D334724;
-	Wed, 10 Sep 2025 14:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919E923D7C5;
+	Wed, 10 Sep 2025 15:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SR17GPLm"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="jQPxB1FV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83DA32C331
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 14:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757516158; cv=none; b=amu4r4CT8i/bjDBFGA3wT6f/Jt3nwwUThR90yxICf93B4CK4zIKrYoB0Dqh4ucpRZ2Tcmmo6NVOJkYDjSFxr/tDWhI7SpHbkd7yQ4x1LiARJwaiOTuJjNQ1kc1apqL4DRZYc83HGtMG2Uq6P1ScdMNxpzLxptgZcsB7HAj//mTY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757516158; c=relaxed/simple;
-	bh=NRsUrwsfDBVIR7zlW4wHZ1hxvm6bFw8otTg0Io2tZxY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KfkT6np7oqx8ocFuUVJc7BK6S/0SjBNEuCWgmbsRQ0zOv4vJtiPEOHHtkkkdIp7KlEU1tpeq1ntIenrvspNnb8XIFbIjPf0oAWgygPX6I9uJeyOt8uBhjp/UwGovsSYK2/pOO2D8ZIpSGkc6KMtLijaL23YxzlgxCobFjhvz8O8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SR17GPLm; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 01A711A0C6B;
-	Wed, 10 Sep 2025 14:55:55 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E687D606D4;
-	Wed, 10 Sep 2025 14:55:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 538D3102F2982;
-	Wed, 10 Sep 2025 16:55:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757516154; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=XoKGOrO1Ey6obEn8h5SKfYR6XgUo5CImp+vP8RhoOl8=;
-	b=SR17GPLmDx/c2f6RuJqn2RxWzsFXKEER0zSR2+bmcdGZ+UhJ1QrmQYZHs2WSlr5ahyrtyy
-	3GJN92WhvJsJOTNPXZgd1g6H2DpiDnrAKlAgkyUI7QiNSu+rMxcxcAwlAr48Nvj1paHPH9
-	2fXlio33TrE0+47FH2SmCJ+sDMn8Lz42oNIhUVd2wU1N0c9QHfuO45szMDJNR0mPuh6a9v
-	ey1dNrnC7HqAjiqED3LcdFYwNU4NsdcRtqPe3t5O9WMtcbnL1Sd+6O/UjCisPzgCT7q5jl
-	ndbghqSiW+PFpghc/iXaLxSgwbMjBJ7sVrbjsaq2qAVkz0wm19Ue2OFN8bpynA==
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Date: Wed, 10 Sep 2025 16:55:25 +0200
-Subject: [PATCH net-next 2/2] net: dsa: microchip: configure strap pins
- during reset
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE3F1E8320;
+	Wed, 10 Sep 2025 15:03:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757516625; cv=pass; b=NPfXtVQzPpNAND/qnb2sYWnfgJxaVq+Xu+kd4OQzb2AYYWpM29AjqwXC01jA7tcdpmIzJqPYzeLm2A1JEshjP1WYSeeifPusncKZFcDZN1KGpW/wMmz/qcFBRyHJBeodSTe3OCTZSFHl4ZzJUVQjSldJsO/8nMBxbgn2h/IuLcs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757516625; c=relaxed/simple;
+	bh=Xw+/4WyQm5ISX5P9Xq6fcVT5Ub7wAv4zcJxXCMGhux8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZljhatN7/RgSYxQajzCZRsJUsJqrucA5+VPQ6nIDKSg2+jA0AbtQ6x7DNfseez4lEH6uL4X0wteJGKWLmmLAKCVKByJbxn1Xsm5UL22uVAc/4FMn0ZCctW0gQqcnNGSy1L8htmfgnwVYH8QZF4bKGWWwEAFaZmX6abJGxdG28cU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=jQPxB1FV; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757516557; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=OjGcbwHQ7qFc4F9AAkVwIzKWD5HRtNcVph5abNLqKUYPGk4w1ePjBCj0tz7hti9MHbxdOhEYELdQk/ziPXJHC2RDGoKpa9/5V5AU76oYgTS7M4uFLMI+DKOBXicgR2t+7eQlayb2lIUGu7Thpeqbqbt6dIgRH5W5B/PtH+5r7iQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757516557; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QfGtFkV2BjKT/6QYgO3xE9sPr0RNHiuBKm13evHqiAQ=; 
+	b=LOEC3tcunob47lit5X+QQ9cxlFjZCpyRGy0IBEJP/2ah/bJ6nUgxS8poFqqzD1B/vLwVrqQVOYrF+0STYNRWbvQfXdnIeWb9becwEvVf8U6HrNC2fD1GBVkDCe8oB8ETdatHQJqPnph74AncKieCSksqeFj/wxL2bVtsipVvcOM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
+	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757516557;
+	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=QfGtFkV2BjKT/6QYgO3xE9sPr0RNHiuBKm13evHqiAQ=;
+	b=jQPxB1FVZqyhfX615s1wyOYg+A9wixZAqzUKYwPAYzueo/S9dJFzf0F2jcR21D0D
+	Scy1nrNCr6VGsY3IM6pc3R62vRrVdqtj1AgrtdZQRCsDrWeQgb1iGdpx2unAltp3b8y
+	RazFXuHMg1VK5VGe5MWq7DkXjZp4cPizww9OdPxk=
+Received: by mx.zohomail.com with SMTPS id 1757516554744986.7207805498508;
+	Wed, 10 Sep 2025 08:02:34 -0700 (PDT)
+Message-ID: <6ebef7d1-69b3-4f40-85ba-3c15653eba8e@collabora.com>
+Date: Wed, 10 Sep 2025 12:02:22 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 14/14] dt-bindings: media: mediatek,jpeg: Fix jpeg
+ encoder/decoder ranges
+To: Rob Herring <robh@kernel.org>
+Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch,
+ andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
+ broonie@kernel.org, chunkuang.hu@kernel.org, ck.hu@mediatek.com,
+ conor+dt@kernel.org, davem@davemloft.net, dmitry.torokhov@gmail.com,
+ edumazet@google.com, flora.fu@mediatek.com, houlong.wei@mediatek.com,
+ jeesw@melfas.com, jmassot@collabora.com, kernel@collabora.com,
+ krzk+dt@kernel.org, kuba@kernel.org,
+ kyrie.wu@mediatek.corp-partner.google.com, lgirdwood@gmail.com,
+ linus.walleij@linaro.org, louisalexis.eyraud@collabora.com,
+ maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+ mchehab@kernel.org, minghsiu.tsai@mediatek.com, mripard@kernel.org,
+ p.zabel@pengutronix.de, pabeni@redhat.com, sean.wang@kernel.org,
+ simona@ffwll.ch, support.opensource@diasemi.com, tiffany.lin@mediatek.com,
+ tzimmermann@suse.de, yunfei.dong@mediatek.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-sound@vger.kernel.org, netdev@vger.kernel.org
+References: <20250820171302.324142-1-ariel.dalessandro@collabora.com>
+ <20250820171302.324142-15-ariel.dalessandro@collabora.com>
+ <20250820185508.GA273751-robh@kernel.org>
+Content-Language: en-US
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+In-Reply-To: <20250820185508.GA273751-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250910-ksz-strap-pins-v1-2-6308bb2e139e@bootlin.com>
-References: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
-In-Reply-To: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
-To: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com, 
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- Pascal Eberhard <pascal.eberhard@se.com>, 
- Woojung Huh <Woojung.Huh@microchip.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Bastien Curutchet (Schneider Electric)" <bastien.curutchet@bootlin.com>
-X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+X-ZohoMailClient: External
 
-At reset, some KSZ switches use strap based configuration. If the
-required pull-ups/pull-downs are missing (by mistake or by design to
-save power) the pins may float and the configuration can go wrong.
+Rob,
 
-Introduce a configure_strap() function, called during the device reset.
-It relies on the 'strap-gpios' OF property and the 'reset' pinmux
-configuration to drive the configuration pins to the proper state.
-Support the KSZ8463's strap configuration that enforces SPI as
-communication bus, since it is the only bus supported by the driver.
+On 8/20/25 3:55 PM, Rob Herring wrote:
+> On Wed, Aug 20, 2025 at 02:13:02PM -0300, Ariel D'Alessandro wrote:
+>> Commit 14176e94bb35d ("arm64: dts: mediatek: mt8195: Fix ranges for jpeg
+> 
+> That commit is not in any upstream tree.
 
-Signed-off-by: Bastien Curutchet (Schneider Electric) <bastien.curutchet@bootlin.com>
----
- drivers/net/dsa/microchip/ksz_common.c | 47 ++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+Ugh, indeed. Dropping this patch.
 
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 7292bfe2f7cac3a0d88bb51339cc287f56ca1d1f..0ab201a3c336b99ba92d87c003ba48f7f82a098a 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -23,6 +23,7 @@
- #include <linux/of_mdio.h>
- #include <linux/of_net.h>
- #include <linux/micrel_phy.h>
-+#include <linux/pinctrl/consumer.h>
- #include <net/dsa.h>
- #include <net/ieee8021q.h>
- #include <net/pkt_cls.h>
-@@ -5338,6 +5339,44 @@ static int ksz_parse_drive_strength(struct ksz_device *dev)
- 	return 0;
- }
- 
-+static int ksz_configure_strap(struct ksz_device *dev)
-+{
-+	struct pinctrl_state *state = NULL;
-+	struct pinctrl *pinctrl;
-+	int ret;
-+
-+	if (of_device_is_compatible(dev->dev->of_node, "microchip,ksz8463")) {
-+		struct gpio_desc *rxd0;
-+		struct gpio_desc *rxd1;
-+
-+		rxd0 = devm_gpiod_get_index_optional(dev->dev, "strap", 0, GPIOD_OUT_LOW);
-+		if (IS_ERR(rxd0))
-+			return PTR_ERR(rxd0);
-+
-+		rxd1 = devm_gpiod_get_index_optional(dev->dev, "strap", 1, GPIOD_OUT_HIGH);
-+		if (IS_ERR(rxd1))
-+			return PTR_ERR(rxd1);
-+
-+		/* If at least one strap definition is missing we don't do anything */
-+		if (!rxd0 || !rxd1)
-+			return 0;
-+
-+		pinctrl = devm_pinctrl_get(dev->dev);
-+		if (IS_ERR(pinctrl))
-+			return PTR_ERR(pinctrl);
-+
-+		state = pinctrl_lookup_state(pinctrl, "reset");
-+		if (IS_ERR(state))
-+			return PTR_ERR(state);
-+
-+		ret = pinctrl_select_state(pinctrl, state);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- int ksz_switch_register(struct ksz_device *dev)
- {
- 	const struct ksz_chip_data *info;
-@@ -5353,10 +5392,18 @@ int ksz_switch_register(struct ksz_device *dev)
- 		return PTR_ERR(dev->reset_gpio);
- 
- 	if (dev->reset_gpio) {
-+		ret = ksz_configure_strap(dev);
-+		if (ret)
-+			return ret;
-+
- 		gpiod_set_value_cansleep(dev->reset_gpio, 1);
- 		usleep_range(10000, 12000);
- 		gpiod_set_value_cansleep(dev->reset_gpio, 0);
- 		msleep(100);
-+
-+		ret = pinctrl_select_default_state(dev->dev);
-+		if (ret)
-+			return ret;
- 	}
- 
- 	mutex_init(&dev->dev_mutex);
+> 
+>> enc/decoder nodes") redefined jpeg encoder/decoder children node ranges.
+>> Update the related device tree binding yaml definition to match
+>> mediatek/mt8195.dtsi, as this is currently the only one using it.
+>>
+>> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>> ---
+>>   .../media/mediatek,mt8195-jpegdec.yaml        | 31 ++++++++++---------
+>>   .../media/mediatek,mt8195-jpegenc.yaml        | 15 ++++-----
+>>   2 files changed, 24 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+>> index e5448c60e3eb5..b1f3df258dc87 100644
+>> --- a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+>> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+>> @@ -36,7 +36,7 @@ properties:
+>>   
+>>   # Required child node:
+>>   patternProperties:
+>> -  "^jpgdec@[0-9a-f]+$":
+>> +  "^jpgdec@[0-9],[0-9a-f]+$":
+> 
+> This is wrong unless 0-9 is a separate, distinct address (like a chip
+> select #).
+
+Ack.
+
+Thanks for the feedback.
+Regards,
 
 -- 
-2.51.0
+Ariel D'Alessandro
+Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
+Registered in England & Wales, no. 5513718
 
 
