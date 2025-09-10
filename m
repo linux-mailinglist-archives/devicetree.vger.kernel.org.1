@@ -1,223 +1,163 @@
-Return-Path: <devicetree+bounces-215286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 686CBB510C4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:13:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BFA1B510C1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0BB3483420
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:12:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 924B91C829D8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24488315772;
-	Wed, 10 Sep 2025 08:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2691830F7F1;
+	Wed, 10 Sep 2025 08:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="k9OW7Ic/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CX1/coYv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83D2314B75;
-	Wed, 10 Sep 2025 08:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1962989B0;
+	Wed, 10 Sep 2025 08:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757491694; cv=none; b=Dfd2UtGVMy5PADRMgUGAq7GESOSwAdtVia4Y0ymrtXt7jROaoP7uBePPQxbqo3kji8MhHrXHKmA6BA4Sz/eG/aj11aP8r72XqV1iy3YgQrs4Gm23Cq23BVPFJxsq8GENTDcRtpD1RWvfzO8ER3mvQ9dWSJfLn4YMk9mvE/Qugl4=
+	t=1757491729; cv=none; b=nK3nVgAMdmmb3JAvOw6KNrJS+a16e31uyBbxu7DlY1HmXo0rg0yB1fy3w6m3xao6yeYb3mGSFsvgCOFvfMf1TkPANzup7UuKN0oXS/c1vzFn1BrmKY2wp5dfcSmcTaP6rDSmcgAQejPbmJs+jEzwFK7hjXg8jNevwjmtNOnKrdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757491694; c=relaxed/simple;
-	bh=ewJW9uXlncTo2CtudqjwkqrHwdZRf+Dps7gnHmeAfms=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PXKoGq6B3Sycfy/xZmRvs0utboZF2TM/Cm8pJilfHCH1LtNISV/+XxFOytBL4HrE0aVBgLVC4NMRr9QQC6OBjHNAQxto2l7DWOYxi2lUNgwUf2XxGvGO7hHm/rCgrjt9a2LkNNyo524dlgZgQSraZEKNzrpH3FwPzDL3uJyRWtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=k9OW7Ic/; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=OKtae1/MTEFxe7xmafsPAa0wGzFLGfdejPFoPYDGp2U=; b=k9OW7Ic/qBSej1y4jPGXZrPgeX
-	oL+IcP7PA+rtbDaMdMDqroOQsPB4DpioOg6ekYmCUmRZ9Wn77nr/UCZl9a5JVsLGEeXPCqp43YuQZ
-	xcT/lIUokAjFQGEXdK4apfXuyoZfJTmLHtLS7+4oqVxnatty+LP1YMlnthZKCmPbgljmAfdt8V12Q
-	jTD9Njalu5FVDuZEm/XX3kx+pftHkn7uCGQmKcteo2/RiiA6C1b07Ie91eQHh9Ev3P38lzkmK6Him
-	NsTCzidqF1M5lG8NTZd8+y7WNo5rDe9zebEvFjynP1BJTw8o8WpJPtoKp156j8bU2fbrKkBhZpwlN
-	ryXgTZ5Q==;
-Received: from i53875b8a.versanet.de ([83.135.91.138] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uwFrr-0008H8-RD; Wed, 10 Sep 2025 10:07:51 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Jonas Karlman <jonas@kwiboo.se>, FUKAUMI Naoki <naoki@radxa.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
-Date: Wed, 10 Sep 2025 10:07:49 +0200
-Message-ID: <3331537.aV6nBDHxoP@diego>
-In-Reply-To: <AF1546E3BE23C6D5+08234a44-4321-45da-9c74-5690f3437e03@radxa.com>
-References:
- <20250727144409.327740-1-jonas@kwiboo.se>
- <a443fca9-e660-4a7a-b637-ec840ac8ed1e@kwiboo.se>
- <AF1546E3BE23C6D5+08234a44-4321-45da-9c74-5690f3437e03@radxa.com>
+	s=arc-20240116; t=1757491729; c=relaxed/simple;
+	bh=hKmT9I0iFjACYnLmxYQLMOutlSipq6SF9dblKH9+7sA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WrPAWO/c1L0Jwlae3n3jdi1ECpooNyPgzUyFkdch5whJO6baao5LjMTM2fHibcxPy5DWO/mweXMcGMkQ3UUbCrtW2hYNLYlmmUf2jjta5GZKeur8HxxWQ1Ex9cJ+nkWvTlfBkbTZP3hU/NPC6ilbf9XbOpCiVTnzTGELeUpCMgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CX1/coYv; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58A88LvL095414;
+	Wed, 10 Sep 2025 03:08:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757491702;
+	bh=ISe2QleZokgkYclvuW677FsPG22emPPyU0CtFKxyG/I=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=CX1/coYvASgXaFrtPzzVUj3SLn/KBnUykHzIEw3PLeChZhoKMSyHvAU3N4cu25SC3
+	 xZPpFLo3ZQ5V6/Z3qH/aRMN1r5RgLNY0aZbUQKcrJ5pTrEpAUujSLPhMTTLjr3fjvX
+	 eqWo6DJlVh4babVK9Sd8Aw0Zcsea9Qa8HCFaPCLE=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58A88Lsa3773653
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 10 Sep 2025 03:08:21 -0500
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 10
+ Sep 2025 03:08:20 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 10 Sep 2025 03:08:20 -0500
+Received: from [172.24.235.208] (hkshenoy.dhcp.ti.com [172.24.235.208])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58A88DcL171472;
+	Wed, 10 Sep 2025 03:08:14 -0500
+Message-ID: <a04ded27-a3b2-4290-9084-70d302f77381@ti.com>
+Date: Wed, 10 Sep 2025 13:38:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-Am Mittwoch, 10. September 2025, 04:43:30 Mitteleurop=C3=A4ische Sommerzeit=
- schrieb FUKAUMI Naoki:
-> Hi Jonas, Heiko,
->=20
-> On 9/10/25 04:36, Jonas Karlman wrote:
-> > On 9/9/2025 5:39 PM, Heiko St=C3=BCbner wrote:
-> >> Am Dienstag, 9. September 2025, 16:48:25 Mitteleurop=C3=A4ische Sommer=
-zeit schrieb Jonas Karlman:
-> >>> On 9/9/2025 2:28 PM, FUKAUMI Naoki wrote:
-> >>>> Hi Jonas,
-> >>>>
-> >>>> On 7/27/25 23:44, Jonas Karlman wrote:
-> >>>>> The Radxa E24C is a compact, high-performance network computer
-> >>>>> developed by Radxa, based on the Rockchip RK3528A SoC.
-> >>>>>
-> >>>>> Add initial device tree for the Radxa E24C.
-> >>>>>
-> >>>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> >>>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> >>>>> ---
-> >>>>> Schematics: https://dl.radxa.com/e/e24c/docs/radxa_e24c_v1200_schem=
-atic.pdf
-> >>>>> ---
-> >>>>>    arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >>>>>    .../boot/dts/rockchip/rk3528-radxa-e24c.dts   | 519 ++++++++++++=
-++++++
-> >>>>>    2 files changed, 520 insertions(+)
-> >>>>>    create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e24=
-c.dts
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boo=
-t/dts/rockchip/Makefile
-> >>>>> index 0662fcf00628..dc62fd5305be 100644
-> >>>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> >>>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> >>>>> @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399pro-rock-p=
-i-n10.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-armsom-sige1.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-nanopi-zero2.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-radxa-e20c.dtb
-> >>>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-radxa-e24c.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-rock-2a.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3528-rock-2f.dtb
-> >>>>>    dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3562-evb2-v10.dtb
-> >>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts b/a=
-rch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..225f2b0c5339
-> >>>>> --- /dev/null
-> >>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
-> >>>>> @@ -0,0 +1,519 @@
-> >>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >>>>> +
-> >>>>> +/dts-v1/;
-> >>>>> +
-> >>>>> +#include <dt-bindings/input/input.h>
-> >>>>> +#include <dt-bindings/leds/common.h>
-> >>>>> +#include "rk3528.dtsi"
-> >>>>> +
-> >>>>> +/ {
-> >>>>> +	model =3D "Radxa E24C";
-> >>>>> +	compatible =3D "radxa,e24c", "rockchip,rk3528";
-> >>>>> +
-> >>>>> +	aliases {
-> >>>>> +		ethernet0 =3D &gmac1;
-> >>>>> +		i2c0 =3D &i2c0;
-> >>>>> +		i2c1 =3D &i2c1;
-> >>>>> +		i2c5 =3D &i2c5;
-> >>>>> +		mmc0 =3D &sdhci;
-> >>>>> +		mmc1 =3D &sdmmc;
-> >>>>> +		rtc0 =3D &hym8563;
-> >>>>> +		rtc1 =3D &rk805;
-> >>>>> +		serial0 =3D &uart0;
-> >>>>> +	};
-> >>>>> +
-> >>>>> +	chosen {
-> >>>>> +		stdout-path =3D "serial0:1500000n8";
-> >>>>> +	};
-> >>>>> +
-> >>>>> +	adc-keys {
-> >>>>> +		compatible =3D "adc-keys";
-> >>>>> +		io-channels =3D <&saradc 0>;
-> >>>>> +		io-channel-names =3D "buttons";
-> >>>>> +		keyup-threshold-microvolt =3D <1800000>;
-> >>>>> +		poll-interval =3D <100>;
-> >>>>> +
-> >>>>> +		button-maskrom {
-> >>>>> +			label =3D "MASKROM";
-> >>>>> +			linux,code =3D <KEY_SETUP>;
-> >>>>> +			press-threshold-microvolt =3D <0>;
-> >>>>> +		};
-> >>>>> +	};
-> >>>>> +
-> >>>>> +	gpio-keys {
-> >>>>> +		compatible =3D "gpio-keys";
-> >>>>> +		pinctrl-names =3D "default";
-> >>>>> +		pinctrl-0 =3D <&gpio0_a0_user>;
-> >>>>> +
-> >>>>> +		button-user {
-> >>>>> +			gpios =3D <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-> >>>>> +			label =3D "USER";
-> >>>>> +			linux,code =3D <BTN_1>;
-> >>>>
-> >>>> I prefer to assign BTN_0 to the 1st button :)
-> >>>
-> >>> The E20C (and other RK boards) already use BTN_1 for user button, it
-> >>> only seem to be the recently added E54C that is using BTN_0.
-> >>>
-> >>> For consistency I suggest we keep using BTN_1 for this user button and
-> >>> possible fixup E54C, if you want to use same button for all variants.
-> >>
-> >> Yep, that would also keep the amount of userspace-facing changes
-> >> minimal.
-> >=20
-> > I mixed up e54c and e52c so my statement was not fully correct above,
-> > however there is a mixed use of BTN_1 and BTN_0 for user button:
-> >=20
-> > - rk3588s-nanopi-r6c/r6s uses BTN_1, added in v6.9-rc1
-> > - rk3588-friendlyelec-cm3588-nas uses BTN_1, added in v6.11-rc1
-> > - rk3582-radxa-e52c uses BTN_0, added in v6.14-rc1
-> > - rk3528-radxa-e20c uses BTN_1, added in v6.15-rc1
-> > - rk3576-nanopi-m5 uses BTN_1, added in v6.17-rc1
-> >=20
-> > Majority seem to be using BTN_1 for a user button.
->=20
-> If we can unify to BTN_1 even if it breaks backward compatibility, I=20
-> wouldn't be opposed to it.
->=20
-> (I remember a "sync with others" patch being rejected in the past, but I=
-=20
-> might be remembering it wrong.)
-
-you remember correctly :-) .
-
-Changing the reported key just for "syncing" is generally not desired.
-It'd be like your "a" key reporting "z" with a new kernel version, even
-if the label on the key states "z" since the beginning [0]
-
-So any adaptation always is on a case-by-case basis.
-
-My hunch right now is that we might be able to adapt the button
-on that rk3582 board, because I assume due to the lottery soc
-(disabled cores and/or disabled gpu/...) it might not be overly
-spread out in the wild?
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: drm/bridge: MHDP8546 bridge binding
+ changes for DSC
+To: Rob Herring <robh@kernel.org>
+CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
+        <s-jain1@ti.com>
+References: <20250909054622.1439487-1-h-shenoy@ti.com>
+ <20250910023608.GA3662482-robh@kernel.org>
+Content-Language: en-US
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+In-Reply-To: <20250910023608.GA3662482-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-[0] https://xkcd.com/1172/ ;-)
-
-
-
-
+On 9/10/25 08:06, Rob Herring wrote:
+> On Tue, Sep 09, 2025 at 11:16:22AM +0530, Harikrishna Shenoy wrote:
+>> From: Swapnil Jakhade <sjakhade@cadence.com>
+>>
+>> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
+>> DPI/DP bridge.
+>>
+>> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+>> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+>> ---
+>> Changelog v3 -> v4:
+>> -Remove maxItems as item list is mentioned for reg-names, resolves
+>> dt_bindings_check warning.
+>> Log link- <https://gist.github.com/h-shenoy/5391ea514bb58a6cba3f39248d20916b>
+>> Link to v3- https://lore.kernel.org/all/20250908054609.1113360-1-h-shenoy@ti.com/
+>>
+>>   .../bindings/display/bridge/cdns,mhdp8546.yaml | 18 ++++++++++++++----
+>>   1 file changed, 14 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+>> index c2b369456e4e..b40630de6d89 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+>> @@ -27,6 +27,8 @@ properties:
+>>             Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+>>         - description:
+>>             Register block of mhdptx sapb registers.
+>> +      - description:
+>> +          Register block for mhdptx DSC encoder registers.
+>>   
+>>     reg-names:
+>>       minItems: 1
+>> @@ -34,6 +36,7 @@ properties:
+>>         - const: mhdptx
+>>         - const: j721e-intg
+>>         - const: mhdptx-sapb
+>> +      - const: dsc
+>>   
+>>     clocks:
+>>       maxItems: 1
+>> @@ -100,18 +103,25 @@ allOf:
+>>         properties:
+>>           reg:
+>>             minItems: 2
+>> -          maxItems: 3
+>> +          maxItems: 4
+>>           reg-names:
+>>             minItems: 2
+>> -          maxItems: 3
+>> +          items:
+>> +            - const: mhdptx
+>> +            - const: j721e-intg
+>> +            - const: mhdptx-sapb
+>> +            - const: dsc
+>>       else:
+>>         properties:
+>>           reg:
+>>             minItems: 1
+>> -          maxItems: 2
+>> +          maxItems: 3
+>>           reg-names:
+>>             minItems: 1
+>> -          maxItems: 2
+>> +          items:
+>> +            - const: mhdptx
+>> +            - const: mhdptx-sapb
+>> +            - const: dsc
+> Still obviously not tested with a DT having this. Because this
+> contradicts the top-level schema. Both cannot be true.
+>
+> Rob
+Will update and test with the other compatible on some dummy dt and 
+share logs
 
