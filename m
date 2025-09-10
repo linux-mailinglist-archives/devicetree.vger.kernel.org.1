@@ -1,87 +1,124 @@
-Return-Path: <devicetree+bounces-215448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0CAB51747
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:52:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67BC2B51751
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:54:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 722AE4E310A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77A641BC51A6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380EE31CA5D;
-	Wed, 10 Sep 2025 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC1DF31A55F;
+	Wed, 10 Sep 2025 12:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="PPbYFE0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-4323.protonmail.ch (mail-4323.protonmail.ch [185.70.43.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113D231CA4C;
-	Wed, 10 Sep 2025 12:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D37B2C234B;
+	Wed, 10 Sep 2025 12:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757508742; cv=none; b=dKLur58brTPcKpMrNap91jY1+9GQPHlmxPiXVCGOsGRcbIAp1H8Imduh/Fj4CHAxoqV57xUe2VEzrDPBd2sRNzGoii7+4Y9TvqrEfTC3pjzPL1fK7J51ulmuMAMXEYd5HxQZjBPRAX97zMyopJep8EOlbNzXsfoZWOgDw9QGDtI=
+	t=1757508858; cv=none; b=GdGrTuMnbwOkmgCkOaNxZChl2sYytCF8uOKrtleoRFxN1cEgTUBLMRqmZ7YtJJbXYtHhuDK4aUcHWzfWMlwJGjxH0viZcoyK5AkBKLf6q1yUukdkE0hjLSwTlsc8DwdHaX4LKpiaFvREC22QFkcTjrGbfxAGZUaCZKpiKRfv4NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757508742; c=relaxed/simple;
-	bh=u4MtrbVggNOeGuUPoasRtsmuiD+SWq522C5ibLwqSjY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Q77q1Yf/g2brHd6hN69qUfdjUvNzLhDvXbhxr4WsPJq6n1ej6K8H/Qk2lCR0F1EG7SLohj/wNiTysvuQ1MXHmiPc/RVWGPjO/2bE/h71fgfMk/JdGPc4oG3MPAASm6tg+nKJJX/yyPCuWEtDKhQpFIU6a/TkuSAdR2MoAATQDAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3C4C4CEF8;
-	Wed, 10 Sep 2025 12:52:21 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 12CEE5F846;
-	Wed, 10 Sep 2025 20:52:19 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20250908181059.1785605-1-wens@kernel.org>
-References: <20250908181059.1785605-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH net-next v4 00/10] net: stmmac: Add support
- for Allwinner A523 GMAC200
-Message-Id: <175750873902.2588463.10161966012825754065.b4-ty@csie.org>
-Date: Wed, 10 Sep 2025 20:52:19 +0800
+	s=arc-20240116; t=1757508858; c=relaxed/simple;
+	bh=7+fsNNidjxNObR90f70OwgFco16kLUQCyb7Ba6apIq4=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=X9173X0BZq+dvPl3oS7EcqMU/Vx36LUQTsgXuxefvocDH+HJNd/qhHNjhydaKRrON6kOGY/9dW7uwt5ej3mSc5LbFTXSa6s0y3oyB+pWHuxl5sL02dmdNrtXdXE25VnSEZ5KT3emIq9MhESL0kDxlkOBG2aVYtEJrlx2+OJ97v4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=PPbYFE0W; arc=none smtp.client-ip=185.70.43.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1757508854; x=1757768054;
+	bh=PokhKJSZTXFCrGmMN/e6OXnW4hgUUtPyE2Nv9QDkEkU=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=PPbYFE0WjYXpLeP3xJkXhRvE7JkuJkEVtJjIKNTdgMH/YUtYX44AW+lTd8ESATSu9
+	 yJJpS0VCptZRhalCFAnur7KEPF87eRdwthsLplDtqo5HSwN2pSump+NsGMpXdeSp6j
+	 WNecwig7Okb871+Hk98KxTd+VCFSQMHpgy2eNlXJwgM/NKDi3Mij3ZtZjQIHmP7qgH
+	 0FWD6VCNvzkBPQXkPv3VLZfjfdasccKpJ8+Bog72jmJvynWfxiup13lFdM0n5gIvSk
+	 WNDbPqjyYC+HzwhJyBvKfPalAK4nQ4/KxQKVHTRZigTbQYXi6LzZw+SaDkd5MMAfYE
+	 R5XtCoU4r8Tiw==
+Date: Wed, 10 Sep 2025 12:54:08 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, threeway@gmail.com, Andy Shevchenko <andy.shevchenko@gmail.com>, Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 3/4] leds: led-class: Add devicetree support to led_get()
+Message-ID: <jsLJqyPfjA2iFNHMvAxgz-zO1WecVgleSahWgW_B5BshbYat4X1UqUuKpexfxlRxnD3oWlAnHqeLGpne8JebFV-ICVxvr5g-5nI8P2Q6dY8=@vinarskis.com>
+In-Reply-To: <b9017909-1643-4cef-bfff-5b672dd73960@oss.qualcomm.com>
+References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com> <20250910-leds-v5-3-bb90a0f897d5@vinarskis.com> <b9017909-1643-4cef-bfff-5b672dd73960@oss.qualcomm.com>
+Feedback-ID: 158356072:user:proton
+X-Pm-Message-ID: 2ce1b8c37d3e00ed785d5c327f7ece8e07ee03ac
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 09 Sep 2025 02:10:49 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> Hi everyone,
-> 
-> This is v4 of my Allwinner A523 GMAC200 support series.
-> 
-> Changes since v3:
-> - driver
->   - Fixed printf format specifier warning
-> - Link to v3
->   https://lore.kernel.org/all/20250906041333.642483-1-wens@kernel.org/
-> 
-> [...]
 
-Applied to sunxi/drivers-for-6.18 in local tree, thanks!
 
-[03/10] soc: sunxi: sram: add entry for a523
-        commit: 30849ab484f7397c9902082c7567ca4cd4eb03d3
-[04/10] soc: sunxi: sram: register regmap as syscon
-        commit: e6b84cc2a6fe62b4070d73f2d2d7b2544a11df87
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
 
+
+On Wednesday, September 10th, 2025 at 14:22, Konrad Dybcio <konrad.dybcio@o=
+ss.qualcomm.com> wrote:
+
+>
+>
+> On 9/10/25 2:01 PM, Aleksandrs Vinarskis wrote:
+>
+> > From: Hans de Goede hansg@kernel.org
+> >
+> > Add 'name' argument to of_led_get() such that it can lookup LEDs in
+> > devicetree by either name or index.
+> >
+> > And use this modified function to add devicetree support to the generic
+> > (non devicetree specific) [devm_]led_get() function.
+> >
+> > This uses the standard devicetree pattern of adding a -names string arr=
+ay
+> > to map names to the indexes for an array of resources.
+> >
+> > Reviewed-by: Andy Shevchenko andy.shevchenko@gmail.com
+> > Reviewed-by: Lee Jones lee@kernel.org
+> > Reviewed-by: Linus Walleij linus.walleij@linaro.org
+> > Signed-off-by: Hans de Goede hansg@kernel.org
+> > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+> > ---
+>
+>
+> I was thinking, perhaps we should introduce some sort of an exclusive
+> access mechanism, so that the e.g. user (or malware) can't listen to
+> uevents and immediately shut down the LED over sysfs
+
+It is already done by the original series from Hans (linked in cover),
+which was merged few years back. It is also the reason why this
+approach is used instead of typically used trigger-source - that
+would've indeed allowed anyone with access to sysfs to disable the
+indicator.
+
+As per Hans [1], v4l2-core would disable sysfs of privacy indicator:
+
+    sd->privacy_led =3D led_get(sd->dev, "privacy-led")
+    led_sysfs_disable(sd->privacy_led);
+
+
+Of course, this security only holds if one has secure boot enforced,
+kernel, modules, _and_ device-tree blobs are signed.
+
+Regards,
+Alex
+
+[1] https://lore.kernel.org/all/daf442a6-b4d6-4213-8ec0-10397d682cc4@kernel=
+.org/
+
+>
+> Konrad
 
