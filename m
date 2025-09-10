@@ -1,126 +1,105 @@
-Return-Path: <devicetree+bounces-215428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3647CB5169F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:16:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 657AFB516B1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:20:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E623B3BF158
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:16:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 217184E6EC1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA3E245005;
-	Wed, 10 Sep 2025 12:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1D2314A7B;
+	Wed, 10 Sep 2025 12:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZTbMEACN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8ISRPkm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6D8FC0A;
-	Wed, 10 Sep 2025 12:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D1D264638;
+	Wed, 10 Sep 2025 12:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757506557; cv=none; b=G1bCp0RfAV+HrxUbqx6bW7Q8iF0IdQ6TvJhDTsr7miFh10oQM2Ou0fL9ormxD5Pm8fpzEfHSryWti5QKZ5tn/S0XPNGU0lhxXZCy4GTQqnH+OkthuuSgGMdj62wWH41qfRHNadFWeWC8DToJikGZptHOd1Q4WSTTtM01v17g/is=
+	t=1757506848; cv=none; b=tYLNvA62vXoZgrauc355MMLkCc1y0MUFQOrRfLf5UICPTbJBpMsim1U56/jwFhSwqQQu5bWy+ulnrSeyOZE+oeJ0NItOcVvypUsxWwsTkQtRSFb8HU1yP9J++c+YoMG+a2m+HDJu9vdYHkysNz/7Kf0E6humgesu/3avE/iUXoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757506557; c=relaxed/simple;
-	bh=KwexyF4UKF/+DwYyTo1Fmr7gDsd8VpjyldGERchJczc=;
+	s=arc-20240116; t=1757506848; c=relaxed/simple;
+	bh=9ziSh7+jqZyf3UzqZajs8CYNo1sTpmApE/Ayopvs16o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nXvBnaQoyDfU7XNmM8hcnLKoguAqHR5SXcAwoQebtD0k2uAyusBq83jvKApL2STlVtv6pCaBMklK7bR+rq14PD4Yg/KBaM18LGeAJDbvmn879FPhRfl+Fr7jbgzeuYt2JAyYE4zDpZxtV5/cx81bCTSQh8Sk3taGzjqVtCDku2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZTbMEACN; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0DyqbbA1ZUCcjEgFCs3V8UYrQ/Dy0tn2WnKs8noBz34=; b=ZTbMEACNtDoGeX4I1SHmnsNMrg
-	iEm2zkz90efE9oFDeUhbiIsb5hdpZBnsmCw5qWDN+4pIp92zVImepYnA3diWOoYcqv6VnFTxUzxQN
-	x771697TzZ/BCD2nZWvEzBoxS5fhuIqiYU/YjUsdePp4WM5GpGbe/RI/iZ0dWJh0nQb8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uwJjZ-007w5t-QA; Wed, 10 Sep 2025 14:15:33 +0200
-Date: Wed, 10 Sep 2025 14:15:33 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Kaison <dkx@t-chip.com.cn>
-Cc: Rob Herring <robh@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lsBZXBn+1gzRh+kH/UGg3uLLCmN+wS1mVnY8q1HnWVb/kDvRyWY2GUJqNgZkZnVSZZDSIOwSzm3wx5N3wWzY3NXlBNXq87zukoFfpCF2r3GUF8ka117BQamXT8V/MbXia68iCZtl+IJrpBxCRDrj3pcMshsLgRhRKuQpqGpzCvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q8ISRPkm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F05FC4CEF0;
+	Wed, 10 Sep 2025 12:20:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757506847;
+	bh=9ziSh7+jqZyf3UzqZajs8CYNo1sTpmApE/Ayopvs16o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q8ISRPkm6DSTl3snhoL8y++8BXcZSOq1nbIGJu+WpGPiPuBTWZOcEou6TRZTK0cb0
+	 5w9y8+QsLq5fbHFecF+64tInUBFAM+46A5rfaxSWdFHVF6K6PFIpI89BLcSy1qfCcC
+	 /Dr37obCYmvSpRkr/GC6/Hu42Tw1rLujmFhOwaPSamrC5SufsJ1S521aJA3tBkS6yP
+	 AEErbxprqZFrJ7jKY7Ag23PIwEAIsfRqD29XSRiqhL4di/mZ8nWcbidLW7jF/GEUVH
+	 az9sgMXwaJoAGJvb/1ftFjE8GSVFJ2EUdlqBLYM3e5dX+9RN09BNLANGYG8inJjr/8
+	 zgIXFAV7948QA==
+Date: Wed, 10 Sep 2025 13:20:41 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Andreas Kemnade <akemnade@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Wayne Chou <zxf@t-chip.com.cn>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add devicetree for the
- ROC-RK3588-RT
-Message-ID: <ec8a3649-3f8f-40b7-a534-041b3523efe4@lunn.ch>
-References: <cover.1757322046.git.dkx@t-chip.com.cn>
- <42ae6d16ed9162582e7b03cbad661a7950c0db55.1757322046.git.dkx@t-chip.com.cn>
- <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
- <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
+	Alistair Francis <alistair@alistair23.me>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: sy7636a: Add missing gpio pins
+ and supply
+Message-ID: <9853ad77-555d-4a38-972c-834ff45b9cb7@sirena.org.uk>
+References: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
+ <20250909-sy7636-rsrc-v2-1-cfd9f44fd259@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="08SCNPHVt+IzhmFS"
+Content-Disposition: inline
+In-Reply-To: <20250909-sy7636-rsrc-v2-1-cfd9f44fd259@kernel.org>
+X-Cookie: I think my career is ruined!
+
+
+--08SCNPHVt+IzhmFS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
 
-On Wed, Sep 10, 2025 at 10:55:22AM +0800, Kaison wrote:
-> hi,
-> I'm very sorry. Due to the default configuration of my email, I didn't
-> receive your email normally. I have fixed this issue.
-> 
-> On Tue, 2025-09-09 at 14:31 +0200, Andrew Lunn wrote:
-> > > - 2x Gigabit Ethernet, 1x 2.5G Ethernet
-> > 
-> > I actually only see the 2x 1G. Is the 2.5G not supported yet?
-> The 2.5G Ethernet is based on the Realtek RTL8125 network controller of
-> PCIe 2.0x1.
+On Tue, Sep 09, 2025 at 10:33:02PM +0200, Andreas Kemnade wrote:
+> To be able to fully describe how the SY7636A is connected to the system,
+> add properties for the EN and VCOM_EN pins. To squeeze out every bit
+> of unused current, in many devices it is possible to power off the
+> complete chip. Add an input regulator to allow that.
 
-Ah, O.K. Maybe add a comment, because i was looking for something
-integrated into the SoC, not a PCIe device.
+Lee, the code for this is in the regulator tree so it probably makes
+sense to merge the binding update there too?
 
-> > > +&gmac0 {
-> > > +	clock_in_out = "output";
-> > > +	phy-handle = <&rgmii_phy0>;
-> > > +	phy-mode = "rgmii-rxid";
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&gmac0_miim
-> > > +		     &gmac0_tx_bus2
-> > > +		     &gmac0_rx_bus2
-> > > +		     &gmac0_rgmii_clk
-> > > +		     &gmac0_rgmii_bus>;
-> > > +	tx_delay = <0x47>;
-> > 
-> > What happened about my comment that "rgmii-rxid" is probably wrong?
-> > 
-> > If you think it is correct, you should reply with a
-> > justification. Maybe PCB is very odd? In which case, a comment would
-> > be good to explain who it is odd.
-> The Ethernet part of the board is designed with reference to the
-> rockchip evb1 board. 
-> 
-> link: 
-> https://github.com/Firefly-rk-linux/docs/blob/rk3588/firefly-public/en/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
-> 
-> 
-> The document describes the usage of the rgmii-rxid mode:
-> 
-> When the hardware enables the RX delay of the PHY. Need to turn off the
-> RX delay of the GMAC, and the dts configuration mode becomes "rgmii-
-> rxid".
+--08SCNPHVt+IzhmFS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Vendors get this wrong as well, and give you bad advice. Please look
-at:
+-----BEGIN PGP SIGNATURE-----
 
-https://elixir.bootlin.com/linux/v6.16.5/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L264
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjBbRgACgkQJNaLcl1U
+h9DOSwf/T2EB8PZz+auYD+noS9Bw0dg85UYJrG+bYea2qYRMFLDrCUIgvLct2UPp
+2ktkLkieGmEy7MFzC3f1YLXHweE2w19JO/kYkacFpW2pz0hjagVHam+Z504lWpyM
+wkjicYM58xTdX8RnarCd0f4ICwhQg0690Uz33IFe6iH9/VK+YZA3OCcLbrvzaOVN
+4Yah1l+s+R23fLs0EMjVWmxt+zw8XzLQ9OOoSCyYU78tSinLJw7LlYqIG25Vo0eS
+9lZB2lktjR+3fpW1gndQM72do0TfOnQLja2F4j4iCDfull8fl+jBGJ+dFzzda/cR
+syefzGHG8QR2JW1A3WD9f4i60ZIErg==
+=bcPe
+-----END PGP SIGNATURE-----
 
-	Andrew
+--08SCNPHVt+IzhmFS--
 
