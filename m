@@ -1,228 +1,173 @@
-Return-Path: <devicetree+bounces-215582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F60B51F56
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:47:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988F5B51F5C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:48:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B63A2189FC36
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:47:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA54A04906
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17D5334388;
-	Wed, 10 Sep 2025 17:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3283335BBB;
+	Wed, 10 Sep 2025 17:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnoGWGmD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XxXIqeoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f48.google.com (mail-yx1-f48.google.com [74.125.224.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBEF261B9A;
-	Wed, 10 Sep 2025 17:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D4F33436A
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 17:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757526385; cv=none; b=X3VAOByE9HIhx/67C0EzWFhAG3Aso3WDyLTUPWV8wskmv3sdzAbxIE2L7khZ39wAjuTZ9xQhlWyTjw+A36jniTgA2E9hi7dj14nQUCVwIH3MPxz+JEwqrZ0iusv8KuODthZJTMTfAL225EUKiTqIJPvS/F4HQzgXyATyG38FknU=
+	t=1757526465; cv=none; b=hvNjiJaXc29kIZqjVv4FUqUAQg2W6Eozu2AzpWQ8qHXSyOSM6XVHmZpJxiv3UTqG2PMp77s+f0qe/of5YdjMgwAFoWYCGUDLTYeOuEDdb4MW3AsK/EpoleyM2R3hziVxy20Hxe5/1PimUKJlLcKibreDcFTC8XnGbWGvE244hp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757526385; c=relaxed/simple;
-	bh=0dXcKztqcBTIOPXYflckkwx4jmeZlOxeJTyT5RrxD4E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P6vStQQ4/Fqd18JEePhO6PPYkpZDZ9e4/ZFMV0MvN3TWCRHojxgu858aP39HxnU2Jz5AmqTsgeViqNn+LIpAlpP6OPxJ+wJ+gx9MNumYlNvIrerklnfacoWH/75rXS+6CveqlQSDghVaQpZswlOj1zYztKSuZ9TF+EuuSQatTY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnoGWGmD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94622C4CEEB;
-	Wed, 10 Sep 2025 17:46:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757526385;
-	bh=0dXcKztqcBTIOPXYflckkwx4jmeZlOxeJTyT5RrxD4E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hnoGWGmDsGGsuBI8+xP9ocNVkgIr1W7X79Iy8FHpqHRwlfqsr0bcNw97A2akFb9ab
-	 H4vfxU/L377lNc6Y3f9tdzKpp9XAIIJtCboHfGPpPoYVVy9W4lnqzaB9yxdw1Ri3Xs
-	 BBZPJO8lzXJjTYZXiCd8L0rSxHl7WbDBiS5Td53z2yzj8liwKQqfq9sAFhvukRjRvk
-	 HpSqobSH5GbYN4S69SgLIB+MEoPA4YepCjpb0bkodHkQ/oK6gTVSq9AYMq01lccK11
-	 AprDuLOpqW8/99B4l7wMDJW86FpeSpxmxmaxpzdspoa9/OXvG0sF8CHPw8u4x7bZgp
-	 F3/jPcySK/r5A==
-Date: Wed, 10 Sep 2025 18:46:19 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-Message-ID: <20250910184619.0303163d@jic23-huawei>
-In-Reply-To: <20250910-bd79112-v4-2-f82f43746a8c@gmail.com>
-References: <20250910-bd79112-v4-0-f82f43746a8c@gmail.com>
-	<20250910-bd79112-v4-2-f82f43746a8c@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1757526465; c=relaxed/simple;
+	bh=4cQwm7Q2pRjHNrxMhXKFmcxzEdebTfOxr8vSlGhts8Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aRKp81+Berd5iLSEag4IOQhnNzcTGDCXrMpp3UyktKpQjVOr1AppoY6rdBi5RjhEFMLZMlPbpxS7eljiWiXotfiT4jmTx063fhmgE4+f/3WC/ZFIc6hUplUaFs2DOHtfWFJV/uij0bIPRy31phHS/quAIok3ioAJkweLzJEKfmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XxXIqeoF; arc=none smtp.client-ip=74.125.224.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-60296e4926eso2093745d50.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 10:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757526463; x=1758131263; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=043TJq6hpWw8pYqx0PWm3cQzQQkOF8ixWKwRpDFzK+o=;
+        b=XxXIqeoFCiTE6dLksjPMry56lc+fBNBEuDI7T9Lr55owuYSvvejsFeYoAm5fsSwGHJ
+         tYhJySfG52UcikCsX6p1kqq/jw+xHkYVcejry4QiYKT8vJ+XR1bcI1Nogh3DpsUIbHtN
+         yEzO8XZEiTpb1k+g+qL8TlIi4DdXaBAF3iFTlwA2BO3dWnqhivt2I1Y8rGcqlmwcTXdJ
+         B8XUQM/b+NmmrqTWaVIIUo7tNEcTJm+KRkD1rCueZ2Aw4g9yLmNWBEv1/ZOMozYT9lgH
+         05hdeP6yPf/c2aT18Y3KsU4+GjF/u2XLVMWRMgKWFyQxUg4M7w7UkjhSdindYlPT9sUH
+         Kpiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757526463; x=1758131263;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=043TJq6hpWw8pYqx0PWm3cQzQQkOF8ixWKwRpDFzK+o=;
+        b=JAyamW2K4wS6aEIsMSS+bnkrUDdsY+7NCPAKyZdrI1J52Wt0hcRP/00tdvhr4EpKFZ
+         GJvIrf2bKbjeJxSI8fT6QFQypo19GEWCRBfNyyHU1lGNNqEHyMq0R7wRvyB4De03/hlu
+         U+AqKEJz5QPYk6FaDEkQyIrV3s3y2OFXQvk3ZCnSkVAzuE138zkbRwowzXqykNrTFLMA
+         VWol9ndI1wBAUuqiFfe+27BJUIYlnz+oDXHDCYO5B7Y6NPzmnPaOFfTI+DIxxYwGfMO3
+         toTGUWgFjGjCKmql+u82nipADqc/6alqGuXJOnIJtDNm+8lzfIOWEpQgyGTu9ynp1jla
+         v7ow==
+X-Forwarded-Encrypted: i=1; AJvYcCWCwIEc+RtDWPrSoSxzSzg2feHyJgmFc46MwgxoyEsPcdqB5d3+EZjj1A3A8kxjJQmUQRvDNT2JZ1Qe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXys3vwxlsYHKc0ckm7UimOznOLp+KwJEb16znqy3qCNTdyUQj
+	6FA1+KpBwGTWMj4VxnzGzIBl6OoY4XT0ydZK88fdqBgHgDePaReKmA+mO5LMwfXP3ClkLv/p/kY
+	6LK6sCoNQ8+c/0ifrVJkiTlrhoS95hzA=
+X-Gm-Gg: ASbGncsxYLp6WQWwnMEd8tx0syUWsIxhC1rrG4L2xq8xJr/sW4YQ2CECYRIBNN60H8R
+	KIbDDo3oO6N+X2jmhJ+SGBS3hVnOyaYE8CsyQ+Fnjxbk3eto2mRDRadl5AjPQVLEVuFep0diePC
+	0lFVFCXRIhg7bq3xdPTRjmylyUL8TnB5BdkwR3gTOu35J9g9N0DW7EHpkT2NALHvB2W4M1NyGlD
+	KPTMwBk
+X-Google-Smtp-Source: AGHT+IHxqld34a90SEM7ZlyhxBZvKGmf9aZideR0Sg0xlweL+lpFqlqovs0nnqC44Do1K8CC6oK2kjmZ56tu8gmw1Tg=
+X-Received: by 2002:a05:690e:430e:b0:5fc:541b:cea3 with SMTP id
+ 956f58d0204a3-6102135dfeemr9750495d50.2.1757526462993; Wed, 10 Sep 2025
+ 10:47:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
+ <20250910-leds-v5-4-bb90a0f897d5@vinarskis.com> <CAOvMTZhxJ3atv62ui5+ahNKV1vb7JXnwwm4xxvg5p=o5p2HnDQ@mail.gmail.com>
+In-Reply-To: <CAOvMTZhxJ3atv62ui5+ahNKV1vb7JXnwwm4xxvg5p=o5p2HnDQ@mail.gmail.com>
+From: Steev Klimaszewski <threeway@gmail.com>
+Date: Wed, 10 Sep 2025 12:47:32 -0500
+X-Gm-Features: Ac12FXwyR3KsW504KghsIm6qGTQ8W8fmNLhinJPGzylKTRxTbEJk3t0TSqYGRWY
+Message-ID: <CAOvMTZhmacxPsM3GcLL9cNq-1BonkwycYKY=hwtVXTz5UF_LYQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: sc8280xp-x13s: enable camera
+ privacy indicator
+To: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
+	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 10 Sep 2025 14:24:35 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+Hi Aleksandrs,
 
-> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
-> 
-> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> daisy-chain configuration) and maximum sampling rate is 1MSPS.
-> 
-> The IC does also support CRC but it is not implemented in the driver.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+On Wed, Sep 10, 2025 at 12:04=E2=80=AFPM Steev Klimaszewski <threeway@gmail=
+.com> wrote:
+>
+> Hi Aleksandrs,
+>
+> On Wed, Sep 10, 2025 at 7:01=E2=80=AFAM Aleksandrs Vinarskis <alex@vinars=
+kis.com> wrote:
+> >
+> > Leverage newly introduced 'leds' and 'led-names' properties to pass
+> > indicator's phandle and function to v4l2 subnode. The latter supports
+> > privacy led since couple of years ago under 'privacy-led' designation.
+> > Unlike initially proposed trigger-source based approach, this solution
+> > cannot be easily bypassed from userspace, thus reducing privacy
+> > concerns.
+> >
+> > Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 8 ++++---=
+-
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
+ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > index 637430719e6d7d3c0eeb4abf2b80eea1f8289530..3b3f7137689a6fa292ffe4f=
+ec8c1d1f20ee525bc 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -83,14 +83,11 @@ leds {
+> >                 pinctrl-names =3D "default";
+> >                 pinctrl-0 =3D <&cam_indicator_en>;
+> >
+> > -               led-camera-indicator {
+> > -                       label =3D "white:camera-indicator";
+> > +               privacy_led: privacy-led {
+>
+> Should this now be privacy_led: privacy { ?
+>
+> >                         function =3D LED_FUNCTION_INDICATOR;
+> >                         color =3D <LED_COLOR_ID_WHITE>;
+> >                         gpios =3D <&tlmm 28 GPIO_ACTIVE_HIGH>;
+> > -                       linux,default-trigger =3D "none";
+> >                         default-state =3D "off";
+> > -                       /* Reuse as a panic indicator until we get a "c=
+amera on" trigger */
+> >                         panic-indicator;
+> >                 };
+> >         };
+> > @@ -685,6 +682,9 @@ camera@10 {
+> >                 pinctrl-names =3D "default";
+> >                 pinctrl-0 =3D <&cam_rgb_default>;
+> >
+> > +               leds =3D <&privacy_led>;
+> > +               led-names =3D "privacy";
+> > +
+> >                 clocks =3D <&camcc CAMCC_MCLK3_CLK>;
+> >
+> >                 orientation =3D <0>;      /* Front facing */
+> >
+> > --
+> > 2.48.1
+> >
+>
+> v5 does not turn the led on here on my X13s whereas v3 did (and v4 was
+> not tested)
 
-Hi Matti,
+From IRC conversations, the issue was not having
+https://lore.kernel.org/all/20250910104702.7470-1-hansg@kernel.org
+applied - with this prerequisite, v5 works here
 
-A few trivial things that I'll tidy up if nothing else comes up (I might not
-bother given how trivial they are!)
-
-Also one question. I couldn't immediately follow why any random register
-read is sanity checking if an ADC pin is configured as GPIO.
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/rohm-bd79112.c b/drivers/iio/adc/rohm-bd79112.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..a2a3affe2c6dc86a237a164139c27ec66dc9d131
-> --- /dev/null
-> +++ b/drivers/iio/adc/rohm-bd79112.c
-> @@ -0,0 +1,553 @@
-
-
-> +/*
-> + * The BD79112 requires "R/W bit" to be set for SPI register (not ADC data)
-> + * reads and an "IOSET bit" to be set for read/write operations (which aren't
-> + * reading the ADC data).
-> + */
-
-> +/*
-> + * Read transaction consists of two 16-bit sequences separated by CSB.
-> + * For register read, 'IOSET' bit must be set. For ADC read, IOSET is cleared
-> + * and ADDR equals the channel number (0 ... 31).
-> + *
-> + * First 16-bit sequence, MOSI as below, MISO data ignored:
-> + * - SCK: | 1 | 2 |   3   |    4   | 5 .. 8 | 9 .. 16 |
-> + * - MOSI:| 0 | 0 | IOSET | RW (1) |  ADDR  |  8'b0   |
-> + *
-> + * CSB released and re-acquired between these sequences
-> + *
-> + * Second 16-bit sequence, MISO as below, MOSI data ignored:
-> + *   For Register read data is 8 bits:
-> + *   - SCK: | 1 .. 8 |   9 .. 16   |
-> + *   - MISO:|  8'b0  | 8-bit data  |
-> + *
-> + *   For ADC read data is 12 bits:
-> + *   - SCK: | 1 .. 4 |   4 .. 16   |
-> + *   - MISO:|  4'b0  | 12-bit data |
-> + */
-> +static int bd79112_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct bd79112_data *data = context;
-> +	int ret;
-> +
-> +	if (reg & BD79112_BIT_IO)
-> +		reg |= BD79112_BIT_RW;
-> +
-> +	data->read_tx[0] = reg;
-> +
-> +	ret = spi_sync(data->spi, &data->read_msg);
-> +	if (!ret)
-> +		*val = be16_to_cpu(data->read_rx);
-> +
-> +	if (reg & BD79112_BIT_IO && *val & BD79112_ADC_STATUS_FLAG)
-> +		dev_err(data->dev, "ADC pin configured as GPIO\n");
-
-Why are we checking this in a regmap callback?
-Maybe it needs rewording and the point is some missmatch in what we
-can read vs the state?
-
-> +
-> +	return ret;
-> +}
-
-> +
-> +static int bd79112_probe(struct spi_device *spi)
-> +{
-> +	struct bd79112_data *data;
-> +	struct iio_dev *iio_dev;
-> +	struct iio_chan_spec *cs;
-> +	struct device *dev = &spi->dev;
-> +	unsigned long gpio_pins, pin;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!iio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(iio_dev);
-> +	data->spi = spi;
-> +	data->dev = dev;
-> +	data->map = devm_regmap_init(&spi->dev, NULL, data, &bd79112_regmap);
-
-	data->mpa = devm_regmap_init(dev, ...
-
-
-> +	if (IS_ERR(data->map))
-> +		return dev_err_probe(dev, PTR_ERR(data->map),
-> +				     "Failed to initialize Regmap\n");
-> +
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
-> +
-> +	data->vref_mv = ret / 1000;
-> +
-> +	ret = devm_regulator_get_enable(dev, "iovdd");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
-> +
-> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
-> +	data->read_xfer[0].len = sizeof(data->read_tx);
-> +	data->read_xfer[0].cs_change = 1;
-> +	data->read_xfer[1].rx_buf = &data->read_rx;
-> +	data->read_xfer[1].len = sizeof(data->read_rx);
-> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
-> +
-> +	data->write_xfer.tx_buf = &data->reg_write_tx[0];
-> +	data->write_xfer.len = sizeof(data->reg_write_tx);
-> +	spi_message_init_with_transfers(&data->write_msg, &data->write_xfer, 1);
-> +
-> +	ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
-> +						    BD79112_MAX_NUM_CHANNELS - 1,
-> +						    &cs);
-> +
-> +	/* Register all pins as GPIOs if there are no ADC channels */
-> +	if (ret == -ENOENT)
-> +		goto register_gpios;
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	iio_dev->num_channels = ret;
-> +	iio_dev->channels = cs;
-> +
-> +	for (i = 0; i < iio_dev->num_channels; i++) {
-> +		unsigned int ch = cs[i].channel;
-> +
-> +		cs[i].datasheet_name = bd79112_chan_names[ch];
-
-Could have done
-
-		cs[i].datasheet_name = bd79112_chan_names[cs[i].channel];
-
-and I don't think it makes it harder to read, but doesn't matter enough to respin.
-
-> +	}
-
-
+Tested-by: Steev Klimaszewski <threeway@gmail.com>
 
