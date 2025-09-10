@@ -1,63 +1,69 @@
-Return-Path: <devicetree+bounces-215572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83E5B51E26
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:47:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B6FB51E2C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1748E5E3783
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:47:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E35425E6E15
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E86527A93D;
-	Wed, 10 Sep 2025 16:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D6E286413;
+	Wed, 10 Sep 2025 16:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FVnlEL1l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0zO5tM1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A0027602F;
-	Wed, 10 Sep 2025 16:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4B8285417;
+	Wed, 10 Sep 2025 16:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757522846; cv=none; b=g6MgQAxMK0wxA6DoxVk5JDEoV2/sj6Cbdv+V/GBJR5AXXEn3N7uYo68sfaKw5rGGHO4gNG0BqyGhWkZkP+9VpjpBdeCNUFyqvKmkUQrdbVKhDyNwV/5FlVEE6GcTcnRCzDwrbMO2oDZfkg1UlWS5Nc0rQRkUWIHTk5bdpB2bJdQ=
+	t=1757522859; cv=none; b=TFMF80Cl3nkhfMhy/roYyKJnSfbtClN1qzT4hGJ9IIpqP8/3fRwFo6aIZoTKDupyBz8xZQVLHHLM2H0dWHxZzUebLV8qBgrbgEbZ612nJwgDtXU8yRATpOnxRB97QphyGWhNxC3xxvdHRXvN9PpwcrAbGzIh9QoLGu/Q6k4UpM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757522846; c=relaxed/simple;
-	bh=62Kld7JTWpGcejeXzL2pSMaMWwHGWlpqGWR2nvOnp4Y=;
+	s=arc-20240116; t=1757522859; c=relaxed/simple;
+	bh=5LVOay0CBSTzKX6JQb+omIyOhnTXbtPDOJBt3OJI80U=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rFPpcf+RWzdv/MHj+TXZH9749RmwTgZUGn6VAY3EQBYqWV0Kfcq2iU3fiM0m31AhUt+4TWxl0X+XtNytmwGg+L+pOmrB5rmp/AvBsmL3BVvPbbSI2mSDjIaEBjwBtAtMqGe82ofKmKuD+hvDQNm6AWiZ47Em/0HAWyFBb83Tdr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FVnlEL1l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFD1C4CEEB;
-	Wed, 10 Sep 2025 16:47:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=HaQlR0cYb0dfIJpWNFDN/dVkFZKHYdg5kNVp82c3qLS7TeCq7KRf/yaof6YIOLeHKDjdQuxJTkqtBQR6HNv79vpZ1WtbpFMxKAzyu09qcWyNWTVPzHtlf2XWQHo9CJaWDmTxbRkS1D92oLF9AK6wDF3Rm+hpi6CYQPeC8ZXM+WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0zO5tM1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80388C4CEF9;
+	Wed, 10 Sep 2025 16:47:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757522845;
-	bh=62Kld7JTWpGcejeXzL2pSMaMWwHGWlpqGWR2nvOnp4Y=;
+	s=k20201202; t=1757522858;
+	bh=5LVOay0CBSTzKX6JQb+omIyOhnTXbtPDOJBt3OJI80U=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=FVnlEL1lDTV1YR+A8J7uibu4yWINGyomz3bF6CJfqS/UN6fvYIN6wqbHiIbf0/box
-	 3FAJG98TDCgaw7pzqq0BgmcM/FoWbrLw+G5U+VLpz/mr+Rr4jnzg7sdvgb2FBT7+Wl
-	 30Nf8QazzuJsL/Di9fq/ulNdZdZVvMLzdW2ChFJxZbmXrsuqfuePJ+KexOXmWXZSGQ
-	 BbXR7CxeJ+RNUDLHeSjnon1bu43HtBqIKX/9qeRiW0ET+RVUoykGvR5Uz9IXTZmm1M
-	 4/iFXIeDfd3wUmzFwNnZtNnBb+tJYHWrB4UjCIieOnj6zM1Q4CywaxKejr/vqOFWTu
-	 a7WHOQ/GLn2WQ==
+	b=s0zO5tM1IFmM+YDTx3+eUjNq80Vk0WVQ5hpj3j1jEG1rmZUYEX1OZDKOH2XNRAS95
+	 X1wL4schmp48KEFQjOmi6xash8eHMiP54yqP4d77D2PbfYJ1pCy4iriDnSECOUB8J/
+	 b6q37uHO0fW/DgcgJgOmX/PUc1vxSP4xdQVyDPOJXwREgy8HpPhVEtsCAoo/OxOA3c
+	 MVk68IchiwQ+qzWpwB9yGeuEDVtYocvjMvzOyxpDk+ww0bu38FiseL95MY2C3JPXYN
+	 aPR4zTs9SJlWAM3bG2XXeprrgLvP8fm13dkSdhtrHem84BgZz4IyrWhCg+D+Z524yM
+	 wm2qvXkYyiG2w==
 From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, 
- Longbin Li <looong.bin@gmail.com>
-In-Reply-To: <20250708063038.497473-1-inochiama@gmail.com>
-References: <20250708063038.497473-1-inochiama@gmail.com>
-Subject: Re: [PATCH v5 0/2] riscv: sophgo: add USB phy support for CV18XX
- series
-Message-Id: <175752284008.484319.10400801407053619384.b4-ty@kernel.org>
-Date: Wed, 10 Sep 2025 22:17:20 +0530
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Diederik de Haas <didi.debian@cknow.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Michael Riesch <michael.riesch@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, stable@kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
+References: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
+Subject: Re: (subset) [PATCH v4 0/7] phy: rockchip:
+ phy-rockchip-inno-csidphy: add support for rk3588 variant
+Message-Id: <175752285211.484319.18097786132863236205.b4-ty@kernel.org>
+Date: Wed, 10 Sep 2025 22:17:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,23 +75,29 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Tue, 08 Jul 2025 14:30:35 +0800, Inochi Amaoto wrote:
-> Add USB PHY support for CV18XX/SG200X series
+On Wed, 03 Sep 2025 19:04:48 +0200, Michael Riesch wrote:
+> Habidere,
 > 
-> Changed from v4:
-> - https://lore.kernel.org/all/20250611081804.1196397-1-inochiama@gmail.com
-> 1. patch 1: apply Conor's tag
-> 2. patch 2: remove dr_mode debugfs entry.
-> 3. patch 2: simplify the cv1800_usb_phy_set_clock function
+> The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused with
+> the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
+> supported using the existing phy-rockchip-inno-csidphy driver, the notable
+> differences being
+>  - the control bits in the GRF
+>  - the additional reset line
+> This patch series adds support for this variant.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: phy: Add Sophgo CV1800 USB phy
-      commit: cdb2511bf3925ce095c31e1647c12086d34f9cc2
-[2/2] phy: sophgo: Add USB 2.0 PHY driver for Sophgo CV18XX/SG200X
-      commit: f0c6d776f74d1d8bda94f6f042b2919bcd615280
+[2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make power-domains non-required
+      commit: c254815b02673cc77a84103c4c0d6197bd90c0ef
+[3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588 variant
+      commit: 5072b8e98eef4685a5a9a8bae56072cb65a2ef69
+[4/7] phy: rockchip: phy-rockchip-inno-csidphy: allow writes to grf register 0
+      commit: 8c7c19466c854fa86b82d2148eaa9bf0e6531423
+[5/7] phy: rockchip: phy-rockchip-inno-csidphy: allow for different reset lines
+      commit: 260435153c90c8e90553e456ec43578834a14a71
 
 Best regards,
 -- 
