@@ -1,364 +1,173 @@
-Return-Path: <devicetree+bounces-215344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46EFBB512E7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:42:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3403B512ED
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF08C7BA2FF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:40:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3C751C21051
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6108313544;
-	Wed, 10 Sep 2025 09:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5763148B7;
+	Wed, 10 Sep 2025 09:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OuRMaL9S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4072pDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45FB43019CB
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 09:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C0A3115B8;
+	Wed, 10 Sep 2025 09:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757497320; cv=none; b=oKRmHi15JNovnV/Zi53smAm9XRtvMIUA10ONRnov/bBoLAna7qrZOuNDZ1bpIkdHGXICu5wXb8Y1GDpxgsBOJUh4EothdzWmWldoFhNzIO0zetU+80aFOptkYyLRM0dHAMlx/jLrhhqTfRRr8ajMjlJCPxeO/w0/e++GJF7+DpQ=
+	t=1757497397; cv=none; b=A6LombGBNHgVfI6wR5Zp0hjjWBSBVAf2eBWPjrx0IgokHN4caWFoWgB48AzndQdtNVA15PPOrWV62IBwvVNyS8jFbkYLJEiTKSotd1y7rai6DS7oEDvVxp82aw4nBcSmyVJNonrYT8RgqTaIw3A/b86goUB0oM/S6D23Nl0ys3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757497320; c=relaxed/simple;
-	bh=TBOyz5XF2Xafm9XcIDOjhJZALVaCDkLt8Lqpf+qFVvQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=XBUEt3+Ku4qQy68itzi6I3+nI+WccyNXpcEKmrbIBRIaMvUXsiuiyDjPCzvYZFYjqRGhmtogge5zf00WYZLBNyVj0rLpKdxLwIcRlMXPNdsZBH3EEziGLcPnn4w2zTs5UHyjApbzqfuhL0CNmQ6/HtYgVXCcdl0md/4cLHAj6OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OuRMaL9S; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45de60d39b7so22030455e9.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 02:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757497317; x=1758102117; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0OBSNMCSZFkYoD+gDD6u3qKCw6C8XYzkirO4cLs6lbo=;
-        b=OuRMaL9Ss7DmGq7Fi3lxLmbR0YOoaPzATo+OhzBAWM3GaF4Xptx443uaeIHllmFTI7
-         rVNFWkkdgTq79C829ISDxVDigjpkQep5ep/hxCbAm3KhyMyoNGw5yGPcaPSy3xPcCPaV
-         iGUfhq3t+YWzvFSUFwvK7P/nGhOPoOwqyRBR7mjHVkJQh/B85KB/VB3U/4jCKY+qW5KJ
-         RjMKyWQcvfaNA8k+NEiMMfucfKLkpbSlsmOxhqmjfB5EbCSVQwvCytLEvxHuPq8v2nU4
-         EArvSiCf9FEi48EhaZ8iZwEEJzQBlP+s+iEIQgvy1YddLar5npn7Vt0+8p5LwCmYnFIA
-         6TCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757497317; x=1758102117;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0OBSNMCSZFkYoD+gDD6u3qKCw6C8XYzkirO4cLs6lbo=;
-        b=TvARmqJ3fcBtxeypZJAI95NLKD5pEZuRaRsp/P7IETMUnYEKiQmAp1Tp545YCXk7sn
-         C/XKFLjEMJ/FLddpkQT3ZNcHL8uiO9vyPdioGnmD8R1PxwtPnAcAxXThsG8grruWX7rA
-         m2e1SuKCR5NFMFeHU7E4MZeSdTlISAFZBJ1cmohL85tMusn8XzZyaLqiVqQs6FgtQepo
-         hnGgH5DTe0QNmAr0gddHMgwpVk0kgMzpgeeEkrPkPx+y6UxSwslq2zVJi2t3TvZDQ6dO
-         3nv5ap2QlbwcaZLpJz1cPNSYAXOAA+eDFF2O5cPdFwFSN0U/gCJ5VgGyzWD0PU0XUkod
-         tuJg==
-X-Forwarded-Encrypted: i=1; AJvYcCV50VzbsMQt+Gvzu//CtVfRpZ8nvHLqUyrLiEzGlduL68e7Z7kNUVZmwePRoV4pU2y62PcrpzkJz7/W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw055FqnH8uj8UcK628gDJtgTL5N1l7eyClkaoRweBg1CE3fJZM
-	qCj7YJBfatiisYPjPZuJrDcAhQZ5sVXvl7COywImlpBnHv4HyRep6D2kVrEZyHPWikU=
-X-Gm-Gg: ASbGncsRzknxs+PWHtDDX2UxfaZbzDJ6tZnhZKRhdp6nGAgkdhiN70mN+487+zgTjJw
-	lW/GT96vos31ZeJJlBnu0Q9L+wmyhLQSQe0mL4qKj/thJpsX9r8zKwbX90yAxAIPGbAmfNfnXtQ
-	frR6lhhLIwUlOf3wQ5my5FODWX9muGCozndozDxFPqr7lJ5YY0Zb54iqq0wBVbmHX87E9CeDpOA
-	tNZeh55XaVtnt6j++AOMma3qul59Huszl0hau5SxyypXFW3ABr8Lo81Z15FRBJRYk/FTqnF2tWz
-	a1WQhvGSc/pt1Gnj09mfPGcE//efmkB34srvtn8HRj+s4B6/+tDDCNuxIJeLrVr8TGn8xmpmCvP
-	djybUHZjR/rPlFgxHCd8JdIlDfQMlNkuF
-X-Google-Smtp-Source: AGHT+IFhJUYuLbSMnUTSqjS1CD9WH9ciAuMmnQkgVDBas13o9m9uUxWF1IbevCk3GCBXb/HsRxReFw==
-X-Received: by 2002:a05:6000:18a4:b0:3cc:8d94:1108 with SMTP id ffacd0b85a97d-3e641e3cffemr11252957f8f.22.1757497316478;
-        Wed, 10 Sep 2025 02:41:56 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:c75e:f70c:b449:e087])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3e7521bf85esm6365253f8f.1.2025.09.10.02.41.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Sep 2025 02:41:55 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  chuan.liu@amlogic.com,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/2] clk: amlogic: add video-related clocks for S4 SoC
-In-Reply-To: <20250909-add_video_clk-v4-2-5e0c01d47aa8@amlogic.com> (Chuan Liu
-	via's message of "Tue, 09 Sep 2025 15:29:12 +0800")
-References: <20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com>
-	<20250909-add_video_clk-v4-2-5e0c01d47aa8@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Wed, 10 Sep 2025 11:41:55 +0200
-Message-ID: <1jv7lqiqzg.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1757497397; c=relaxed/simple;
+	bh=S+aQbFX9hu/DKfI431C7M1rHrzo8lXM2Z2qWlgAtuNU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hwrM1uCUbxtdOgp0TussNfX4enHeePmj/J3qAOw2Yq8TPPn72uOtolhjesprUGn5TicsIf0z9QKi353LD25vjKdHEbWqCK3bF4ZeCzv25FS0wVQ89CpG38GgoQJu+wji82ORJFEER2swqWd5rzq681Mx299kMBUmC02nKImjjZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4072pDR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438AEC4CEF0;
+	Wed, 10 Sep 2025 09:43:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757497396;
+	bh=S+aQbFX9hu/DKfI431C7M1rHrzo8lXM2Z2qWlgAtuNU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H4072pDRHr6l5lHaFv/4xDl6o8R2z7n/Lp+zEBYoPrpxoitzdLaoQxiSTM+ciqDlw
+	 L9R7CS0TwD5cF6B3iOX6YMEkv+SgUQbwGte8f+E6XB7KKBKo1b/Uj0wwWNpAM/E4h0
+	 Ttvqmmk260dyEqp5D4JCSTtmM8gvwahuU1uvrmnXoEjKZ972wWwRHzlZplrb01krMV
+	 Rt9eeSR8FyYc3njUME7vwyRrFbSg1LhMQjwrY70cPr8x9tf6VpPH0y35/L3tliE9bL
+	 wXsYOxr56Xq9500NbTRT9h9p31NSvVGD6e4Tc4c6I6adNokCEJjdIvRzt+u7NXmm2I
+	 ZK731WSjFPlAQ==
+Message-ID: <a8dcffa4-c578-46d7-8fdf-cd4f5a29a2a6@kernel.org>
+Date: Wed, 10 Sep 2025 11:43:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS8300 sound
+ card
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@oss.qualcomm.com, prasad.kumpatla@oss.qualcomm.com,
+ ajay.nandam@oss.qualcomm.com
+References: <20250905142647.2566951-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250905142647.2566951-2-mohammad.rafi.shaik@oss.qualcomm.com>
+ <43090acb-ea36-4015-b14f-78d44d789d42@kernel.org>
+ <a9507045-b900-49ee-8841-0f8fd30816ba@kernel.org>
+ <abc66798-dc91-4860-b0b4-de39a58b5745@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <abc66798-dc91-4860-b0b4-de39a58b5745@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue 09 Sep 2025 at 15:29, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+On 10/09/2025 10:05, Mohammad Rafi Shaik wrote:
+> 
+> 
+> On 9/10/2025 1:09 PM, Krzysztof Kozlowski wrote:
+>> On 10/09/2025 09:26, Krzysztof Kozlowski wrote:
+>>>> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>>>> index 8ac91625dce5..eebf80c1d79a 100644
+>>>> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>>>> @@ -35,6 +35,7 @@ properties:
+>>>>             - qcom,qcm6490-idp-sndcard
+>>>>             - qcom,qcs6490-rb3gen2-sndcard
+>>>>             - qcom,qcs8275-sndcard
+>>>
+>>> So what is the point of this compatible? There is no user of it and I
+>>> think you added QCS8275 for this case exactly...
+>>>
+>>> Shall I start reverting commits from Qualcomm because you post patches
+>>> "just in case" and turns out they are completely not needed? No single
+>>> user of such code?
+>>
+>>
+>> @Mark,
+>>
+>> In case it wasn't obvious, please do not merge the patch till we get
+>> some clarification. For sure it is wrong one way or another: either
+>> incomplete or just duplicated.
+>>
+> 
+> The device tree currently uses qcs8275 as the sound compatible, and
+> the corresponding Device tree changes have already been applied and merged.
+> 
+> Reverting this now would break the ABI.
 
-> From: Chuan Liu <chuan.liu@amlogic.com>
->
-> Add video encoder, demodulator and CVBS clocks.
->
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  drivers/clk/meson/s4-peripherals.c | 203 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 203 insertions(+)
->
-> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
-> index 6d69b132d1e1..b855e8f1fc04 100644
-> --- a/drivers/clk/meson/s4-peripherals.c
-> +++ b/drivers/clk/meson/s4-peripherals.c
-> @@ -44,6 +44,7 @@
->  #define CLKCTRL_VDIN_MEAS_CLK_CTRL                 0x0f8
->  #define CLKCTRL_VAPBCLK_CTRL                       0x0fc
->  #define CLKCTRL_HDCP22_CTRL                        0x100
-> +#define CLKCTRL_CDAC_CLK_CTRL                      0x108
->  #define CLKCTRL_VDEC_CLK_CTRL                      0x140
->  #define CLKCTRL_VDEC2_CLK_CTRL                     0x144
->  #define CLKCTRL_VDEC3_CLK_CTRL                     0x148
-> @@ -1126,6 +1127,22 @@ static struct clk_regmap s4_cts_encp_sel = {
->  	},
->  };
->  
-> +static struct clk_regmap s4_cts_encl_sel = {
-> +	.data = &(struct clk_regmap_mux_data){
-> +		.offset = CLKCTRL_VIID_CLK_DIV,
-> +		.mask = 0xf,
-> +		.shift = 12,
-> +		.table = s4_cts_parents_val_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "cts_encl_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_hws = s4_cts_parents,
-> +		.num_parents = ARRAY_SIZE(s4_cts_parents),
-> +		.flags = CLK_SET_RATE_PARENT,
+If reverting would break ABI then:
 
-Do you really expect the rate of the parents to be adjusted when calling
-set_rate() on this clock ?
+> 
+> A new device tree patch with qcs8300 is currently under review:
+> 
+> https://lore.kernel.org/linux-arm-msm/20250910044512.1369640-1-mohammad.rafi.shaik@oss.qualcomm.com/
 
-It all trickle down to vclks which are shared with enci encp and vdac
-clocks, so maybe not such a good idea, don't you think ?
+This is ABI break thus NAK.
 
-> +	},
-> +};
-> +
->  static struct clk_regmap s4_cts_vdac_sel = {
->  	.data = &(struct clk_regmap_mux_data){
->  		.offset = CLKCTRL_VIID_CLK_DIV,
-> @@ -1205,6 +1222,22 @@ static struct clk_regmap s4_cts_encp = {
->  	},
->  };
->  
-> +static struct clk_regmap s4_cts_encl = {
-> +	.data = &(struct clk_regmap_gate_data){
-> +		.offset = CLKCTRL_VID_CLK_CTRL2,
-> +		.bit_idx = 3,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "cts_encl",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_cts_encl_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
->  static struct clk_regmap s4_cts_vdac = {
->  	.data = &(struct clk_regmap_gate_data){
->  		.offset = CLKCTRL_VID_CLK_CTRL2,
-> @@ -2735,6 +2768,165 @@ static struct clk_regmap s4_gen_clk = {
->  	},
->  };
->  
-> +/* CVBS DAC */
-> +static struct clk_regmap s4_cdac_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
-> +		.mask = 0x3,
-> +		.shift = 16,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "cdac_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal", },
-> +			{ .fw_name = "fclk_div5" },
-> +		},
-> +		.num_parents = 2,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_cdac_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
-> +		.shift = 0,
-> +		.width = 16,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "cdac_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_cdac_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_cdac = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = CLKCTRL_CDAC_CLK_CTRL,
-> +		.bit_idx = 20,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "cdac",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_cdac_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_demod_core_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.mask = 0x3,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "demod_core_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal" },
-> +			{ .fw_name = "fclk_div7" },
-> +			{ .fw_name = "fclk_div4" }
-> +		},
-> +		.num_parents = 3,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_demod_core_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.shift = 0,
-> +		.width = 7,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "demod_core_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_demod_core_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_demod_core = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.bit_idx = 8
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "demod_core",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_demod_core_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +/* CVBS ADC */
-> +static struct clk_regmap s4_adc_extclk_in_sel = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.mask = 0x7,
-> +		.shift = 25,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "adc_extclk_in_sel",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_data = (const struct clk_parent_data []) {
-> +			{ .fw_name = "xtal" },
-> +			{ .fw_name = "fclk_div4" },
-> +			{ .fw_name = "fclk_div3" },
-> +			{ .fw_name = "fclk_div5" },
-> +			{ .fw_name = "fclk_div7" },
-> +			{ .fw_name = "mpll2" },
-> +			{ .fw_name = "gp0_pll" },
-> +			{ .fw_name = "hifi_pll" }
-> +		},
-> +		.num_parents = 8,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_adc_extclk_in_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.shift = 16,
-> +		.width = 7,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "adc_extclk_in_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_adc_extclk_in_sel.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap s4_adc_extclk_in = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-> +		.bit_idx = 24
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "adc_extclk_in",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&s4_adc_extclk_in_div.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
->  static const struct clk_parent_data s4_pclk_parents = { .hw = &s4_sys_clk.hw };
->  
->  #define S4_PCLK(_name, _reg, _bit, _flags) \
-> @@ -3028,6 +3220,17 @@ static struct clk_hw *s4_peripherals_hw_clks[] = {
->  	[CLKID_HDCP22_SKPCLK_SEL]	= &s4_hdcp22_skpclk_sel.hw,
->  	[CLKID_HDCP22_SKPCLK_DIV]	= &s4_hdcp22_skpclk_div.hw,
->  	[CLKID_HDCP22_SKPCLK]		= &s4_hdcp22_skpclk.hw,
-> +	[CLKID_CTS_ENCL_SEL]		= &s4_cts_encl_sel.hw,
-> +	[CLKID_CTS_ENCL]		= &s4_cts_encl.hw,
-> +	[CLKID_CDAC_SEL]		= &s4_cdac_sel.hw,
-> +	[CLKID_CDAC_DIV]		= &s4_cdac_div.hw,
-> +	[CLKID_CDAC]			= &s4_cdac.hw,
-> +	[CLKID_DEMOD_CORE_SEL]		= &s4_demod_core_sel.hw,
-> +	[CLKID_DEMOD_CORE_DIV]		= &s4_demod_core_div.hw,
-> +	[CLKID_DEMOD_CORE]		= &s4_demod_core.hw,
-> +	[CLKID_ADC_EXTCLK_IN_SEL]	= &s4_adc_extclk_in_sel.hw,
-> +	[CLKID_ADC_EXTCLK_IN_DIV]	= &s4_adc_extclk_in_div.hw,
-> +	[CLKID_ADC_EXTCLK_IN]		= &s4_adc_extclk_in.hw,
->  };
->  
->  static const struct meson_clkc_data s4_peripherals_clkc_data = {
+> 
+> Once the machine driver and device tree patch with qcs8300 are accepted 
+> and merged,
+> 
+> I will promptly submit a cleanup patch to remove of discontinued 
+> compatibles from the machine driver.
 
--- 
-Jerome
+So this is the same hardware? Then no, we do not rename compatibles.
+
+Best regards,
+Krzysztof
 
