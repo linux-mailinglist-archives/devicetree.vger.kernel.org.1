@@ -1,120 +1,80 @@
-Return-Path: <devicetree+bounces-215221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1333B50E87
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4533EB50E8A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C2AB540E98
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 005075410A5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FCBD2D7DD6;
-	Wed, 10 Sep 2025 06:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950BB2D7DD6;
+	Wed, 10 Sep 2025 06:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="X+03SsaU"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Wm52vjo0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1197819D89E
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 06:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08EF619D89E;
+	Wed, 10 Sep 2025 06:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757487232; cv=none; b=LyoDg3kQaZV4xBES+NHX49ZXPcKp7Ge71y9GAzm1gdDwRBFSyHHW0HJ/IPz98c9lAAAGC6/NKeZ42RCkPGu47333cHpi+25iwEtK9rGBcBDStxdxySwyUyCGwfyptZ/tP7gp/VJc6dDpISZXem2SjA4X8Ub/3psOXZaic13gYAk=
+	t=1757487306; cv=none; b=drMiR3W4tvKGH8jprxHRAnc6iE7X0QdPHxGdJpLKe4lFPn5jBmLQprrHz+U2P3QIuyIizxGpkLm0i21WOsL6lluG4vZMr3B4LP2FIVza3kQc5pyRkNvecbUpu6xwhsukJ3fKURpnV3YlJ4ORhIgWOMWTWWa2pBZUXN1KRwEJdJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757487232; c=relaxed/simple;
-	bh=ahBCd4v3Y3Hy+9eZhfS/meSLZLldCa8IFQTVi71bMhM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=imBFKg8IfVoisijhNi6W+5f+0uIwrCiPjcpVqftdECq0PtP6Q1C52LOI1eB4R8yyg80tcC/kBrxwZe2Y/1XdrsENHn4YljPg4voXN8kYYHEML8/vnCgwKmBifoKeW4CU9mXd+iHEwfuSz390GN6kbgwj9xcmBTdzwoSjWGyOlno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=X+03SsaU; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=3QtE
-	MO80KSRXHHcQR8iUtZcbvRTUZ2MQ4g/xitu0XMA=; b=X+03SsaUtrd32NsYB/ek
-	Utpb54jRVdJDLObVVwoDyiusfnS9O2OyeGgQiBpDjgotrjKW/0x5pZScoBm6XFSa
-	moWMpTEnJzn845L+uck2N1Pv8KtIBPdx+MXXg/YRTJ289Ms4Emvu8qc3otno6ane
-	OgePiIUXNIV76JoX8RyBMwC0B2u0YVIgV7Jt0v2QMtBwVrB3nVKW02con7gKwmLF
-	pdCYGFN/U9HXgYqk6RNRe+f4LZp/uDhZS6T+etrY7nL8zBYQg90JUdISfCWI8A3+
-	J+S48TZAzOcQtmu5BtZtw0MfR/LaAYZYhuG97/alxh2IJiuS6Ygd7nkR3RWHnK6v
-	cA==
-Received: (qmail 500977 invoked from network); 10 Sep 2025 08:53:45 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Sep 2025 08:53:45 +0200
-X-UD-Smtp-Session: l3s3148p1@OJ+94Ww+VOwgAwDPXyerAKQ7QDbxBzog
-Date: Wed, 10 Sep 2025 08:53:44 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Durai.ManickamKR@microchip.com
-Cc: Frank.li@nxp.com, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Balamanikandan.Gunasundar@microchip.com,
-	Nicolas.Ferre@microchip.com
-Subject: Re: [PATCH 2/4] i3c: master: add Microchip SAMA7D65 I3C HCI master
- driver
-Message-ID: <aMEgeHLnrDyGjYM3@shikoro>
-References: <20250909111333.170016-1-durai.manickamkr@microchip.com>
- <20250909111333.170016-3-durai.manickamkr@microchip.com>
- <aMCZw2v8Ey6aGbqk@lizhi-Precision-Tower-5810>
- <3229da67-9d67-47ff-9f01-0d71bfabb6a6@microchip.com>
+	s=arc-20240116; t=1757487306; c=relaxed/simple;
+	bh=hBaHY4BNsxndwoSEevuLfbygxEfDcvCZduBgamhiLyU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=nS3wu6gausyuBi2cqmXv8RXQTyswf54Kyh3PGFmRYkg+TVhAPiJBEdcx237GBYzSnTmRaaFuL4OOZ/nNfegmBkJnWSnWkUbJA5CAxxtRqarDtFwmQWZ1I2frhC6ljOZ9roFcyljrK50C8JGztyX9/U7xY5tdvgHlzuuIRXPliPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Wm52vjo0; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1757487302;
+	bh=oe3cxkXt/q2JPyVdIDXoHlk1IlmJAzFO2nNbBbqCMZI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=Wm52vjo0yGm9yLddJf8W6MO2tmsTQreghqcEGUTooX0HuiOyhYgcc1JAOegg9qIA4
+	 ZKi4Hz2FywXjQfEbMuB68TvFcgR1u6hXWpa8DZMXLC+N6RJlW43Hu5hraj1Knqqn9l
+	 y3fLQ4CESLbcdxW/4S6OhaLINhbpIa2NEncQQ4AfpfmKvYpMLRk+4re6sLuwTmBAiG
+	 Ih2qA3w80tGIvp5WCexHdpkL0QzQg5BHcWifLTXW39ycRy/p8BNO7hMVzVL4T58MNH
+	 vMR8nzf11pQXEqTlh3OlxaCHqufvWGzWu0zxqJ5YtbXabDpyo6+HyVWcW1JClAhFm/
+	 t/ADaFTCPoBug==
+Received: from [127.0.1.1] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 7B3286443C;
+	Wed, 10 Sep 2025 14:55:02 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250829211330.1336274-1-robh@kernel.org>
+References: <20250829211330.1336274-1-robh@kernel.org>
+Subject: Re: [PATCH] ARM: dts: aspeed: Drop syscon "reg-io-width"
+ properties
+Message-Id: <175748730236.660876.7704019071552566777.b4-ty@codeconstruct.com.au>
+Date: Wed, 10 Sep 2025 16:25:02 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3229da67-9d67-47ff-9f01-0d71bfabb6a6@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Hi Durai,
-
-> 1. To introduce a Microchip SoC specific macro to add Microchip specific 
-> I3C changes to the existing driver. But in this approach, if suppose we 
-> have a changes in the i3c-hci driver, we have to adapt the changes to 
-> our IP also during every kernel updation and I donot know whether this 
-> is accepted by the i3c-hci driver maintainer.
+On Fri, 29 Aug 2025 16:13:29 -0500, Rob Herring (Arm) wrote:
+> The default width is 4 bytes for "syscon" devices, so "reg-io-width" is
+> redundant and can be dropped.
 > 
-> 2. Otherwise, creating a separate platform driver by reusing the 
-> existing i3c-hci driver.
+> 
 
-Usually, 2) is the way to go for the reason you gave above. If there are
-fixes to the core part, you don't need to sync with your driver.
-Maintenance burden is lower for most of the times.
+Thanks, I've applied this to the BMC tree.
 
-If the hardware is so different that the modifications to the core
-driver turn out to be more complex (and harder to maintain) than a
-seperate driver, then 1) can be an option.
-
-Without knowing your hardware, from the description above I'd think you
-can reuse the existing HCI core driver. It is mainly about not using
-stuff like DMA. Maybe that can be handled with newly introduced quirk
-flags.
-
-> I raised a query few weeks back to decide which approach to proceed 
-> before sending this patch to upstream. But i have received comments like 
-> "its upto us to decide which is best way". I dont have much idea on 
-> which is best way to proceed and maintain.So, I have decided to go with 
-> approach 2.
-
-Your patch looks like approach 1), though? You don't hook into the HCI
-driver or am I overlooking this?
-
-
-> >> Features tested and supported :
-> >>     Standard CCC commands.
-> >>     I3C SDR mode private transfers in PIO mode.
-> >>     I2C transfers in PIO mode.
-> >>     Pure bus mode and mixed bus mode.
-> >>
-> >> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-
-Please delete lines you don't quote anymore (here, the whole driver).
-
-Happy hacking,
-
-   Wolfram
+-- 
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
