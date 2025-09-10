@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-215427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77679B51684
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:06:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3647CB5169F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B35EC1C8126D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:06:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E623B3BF158
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA49328DF36;
-	Wed, 10 Sep 2025 12:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA3E245005;
+	Wed, 10 Sep 2025 12:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="fM7clJ7t";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="fM7clJ7t"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZTbMEACN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F52C28C87C;
-	Wed, 10 Sep 2025 12:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6D8FC0A;
+	Wed, 10 Sep 2025 12:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757505987; cv=none; b=FMOFC/O4wlLTBd8BuW94tACgNaIhbvgdoH5Rldn3Fl/3Kbf5Fq3W4LZWsLWMPimqrNsbz8mMgopwmJwAWF2wAsOKYC7A3d8aUfDnpy1sUCDSqhgYIQdQrteNQPa/sPykgYLWrz1BV0P5t7EUrh8sFVZ+8iiEnBSX3Etg6SYK47k=
+	t=1757506557; cv=none; b=G1bCp0RfAV+HrxUbqx6bW7Q8iF0IdQ6TvJhDTsr7miFh10oQM2Ou0fL9ormxD5Pm8fpzEfHSryWti5QKZ5tn/S0XPNGU0lhxXZCy4GTQqnH+OkthuuSgGMdj62wWH41qfRHNadFWeWC8DToJikGZptHOd1Q4WSTTtM01v17g/is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757505987; c=relaxed/simple;
-	bh=n8uo/+X4cJWRjA9CXCXEuKfSuSoKhT15GXPbuvWzaqQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mj3rcYOTL2iX+QL/nbWX/PCTZmd3m8/cBVd7pQv4x0JcWJqGAu/LTFUqpJ+bsbrXAFQC91FsPfGMIxMcWjECsNUP0TqCehLnrMEZrHwySYciUlYoHfGd8CaIggG+FILyVDPNLpIVdpcKU2kKu3y4GTw1DY/HDnkMaDT/+VLuOC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=fM7clJ7t; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=fM7clJ7t; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1757505977; bh=n8uo/+X4cJWRjA9CXCXEuKfSuSoKhT15GXPbuvWzaqQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fM7clJ7toOc7mAASUwV4oG6CSnxTHXzJco8Az+lZJRTs6yUjutvvpeZpX/LUN72py
-	 VyH8thYEgQfE2dPgCt8Xm03yYsK0hqGMhN71/cjjS4AiRtV+4A+XgEuQ1HSesJkWnD
-	 vsCTIw9ibOOA+dkIlTihpnlWXSBM5a6BiRKS0ihcsovC33Z9wm2rCdEpgw330cgaRV
-	 JUNN99dHdvSA8NR1e2MnQ2+0KeJbfVE0kvdZbUHQPmgFsU4xaQdrR0iU4PRV2yZ9dX
-	 iUf5SvqrD90Nz/LVxfu5tFvrh0yqp7KL7hGlFT3g4V/M80mJoXFwjrw2D63wU5c5du
-	 evGigoG1lhYxw==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id C56D33D364D;
-	Wed, 10 Sep 2025 12:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1757505977; bh=n8uo/+X4cJWRjA9CXCXEuKfSuSoKhT15GXPbuvWzaqQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fM7clJ7toOc7mAASUwV4oG6CSnxTHXzJco8Az+lZJRTs6yUjutvvpeZpX/LUN72py
-	 VyH8thYEgQfE2dPgCt8Xm03yYsK0hqGMhN71/cjjS4AiRtV+4A+XgEuQ1HSesJkWnD
-	 vsCTIw9ibOOA+dkIlTihpnlWXSBM5a6BiRKS0ihcsovC33Z9wm2rCdEpgw330cgaRV
-	 JUNN99dHdvSA8NR1e2MnQ2+0KeJbfVE0kvdZbUHQPmgFsU4xaQdrR0iU4PRV2yZ9dX
-	 iUf5SvqrD90Nz/LVxfu5tFvrh0yqp7KL7hGlFT3g4V/M80mJoXFwjrw2D63wU5c5du
-	 evGigoG1lhYxw==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 35B4F3D348C;
-	Wed, 10 Sep 2025 12:06:17 +0000 (UTC)
-Message-ID: <e526e93e-1373-4f1e-82ab-6b22d68211cd@mleia.com>
-Date: Wed, 10 Sep 2025 15:06:12 +0300
+	s=arc-20240116; t=1757506557; c=relaxed/simple;
+	bh=KwexyF4UKF/+DwYyTo1Fmr7gDsd8VpjyldGERchJczc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nXvBnaQoyDfU7XNmM8hcnLKoguAqHR5SXcAwoQebtD0k2uAyusBq83jvKApL2STlVtv6pCaBMklK7bR+rq14PD4Yg/KBaM18LGeAJDbvmn879FPhRfl+Fr7jbgzeuYt2JAyYE4zDpZxtV5/cx81bCTSQh8Sk3taGzjqVtCDku2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZTbMEACN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=0DyqbbA1ZUCcjEgFCs3V8UYrQ/Dy0tn2WnKs8noBz34=; b=ZTbMEACNtDoGeX4I1SHmnsNMrg
+	iEm2zkz90efE9oFDeUhbiIsb5hdpZBnsmCw5qWDN+4pIp92zVImepYnA3diWOoYcqv6VnFTxUzxQN
+	x771697TzZ/BCD2nZWvEzBoxS5fhuIqiYU/YjUsdePp4WM5GpGbe/RI/iZ0dWJh0nQb8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uwJjZ-007w5t-QA; Wed, 10 Sep 2025 14:15:33 +0200
+Date: Wed, 10 Sep 2025 14:15:33 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kaison <dkx@t-chip.com.cn>
+Cc: Rob Herring <robh@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Wayne Chou <zxf@t-chip.com.cn>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add devicetree for the
+ ROC-RK3588-RT
+Message-ID: <ec8a3649-3f8f-40b7-a534-041b3523efe4@lunn.ch>
+References: <cover.1757322046.git.dkx@t-chip.com.cn>
+ <42ae6d16ed9162582e7b03cbad661a7950c0db55.1757322046.git.dkx@t-chip.com.cn>
+ <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
+ <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: media: ti,ds90ub953: Add new property
- ti,gpio-data
-To: Guoniu Zhou <guoniu.zhou@nxp.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250910-ds90ub953-v1-0-a7813ffbdf11@nxp.com>
- <20250910-ds90ub953-v1-1-a7813ffbdf11@nxp.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20250910-ds90ub953-v1-1-a7813ffbdf11@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20250910_120617_825763_E76A8A58 
-X-CRM114-Status: GOOD (  10.98  )
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
 
-On 9/10/25 12:44, Guoniu Zhou wrote:
-> Add new property ti,gpio-data to let user select ds90ub953 gpio output
-> remote data coming from the compatible deserializer.
+On Wed, Sep 10, 2025 at 10:55:22AM +0800, Kaison wrote:
+> hi,
+> I'm very sorry. Due to the default configuration of my email, I didn't
+> receive your email normally. I have fixed this issue.
 > 
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
->   Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
+> On Tue, 2025-09-09 at 14:31 +0200, Andrew Lunn wrote:
+> > > - 2x Gigabit Ethernet, 1x 2.5G Ethernet
+> > 
+> > I actually only see the 2x 1G. Is the 2.5G not supported yet?
+> The 2.5G Ethernet is based on the Realtek RTL8125 network controller of
+> PCIe 2.0x1.
+
+Ah, O.K. Maybe add a comment, because i was looking for something
+integrated into the SoC, not a PCIe device.
+
+> > > +&gmac0 {
+> > > +	clock_in_out = "output";
+> > > +	phy-handle = <&rgmii_phy0>;
+> > > +	phy-mode = "rgmii-rxid";
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&gmac0_miim
+> > > +		     &gmac0_tx_bus2
+> > > +		     &gmac0_rx_bus2
+> > > +		     &gmac0_rgmii_clk
+> > > +		     &gmac0_rgmii_bus>;
+> > > +	tx_delay = <0x47>;
+> > 
+> > What happened about my comment that "rgmii-rxid" is probably wrong?
+> > 
+> > If you think it is correct, you should reply with a
+> > justification. Maybe PCB is very odd? In which case, a comment would
+> > be good to explain who it is odd.
+> The Ethernet part of the board is designed with reference to the
+> rockchip evb1 board. 
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
-> index 2e129bf573b79e0ca8f25b4ec5fc6ea76c50abd7..7c3144677f11004468ed3a3fba74e6eee2d259d2 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
-> @@ -26,6 +26,16 @@ properties:
->   
->     gpio-controller: true
->   
-> +  ti,gpio-data:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    default: 0
-> +    minimum: 0
-> +    maximum: 15
-> +    description: |
-> +      Program each gpio pin to output remote data coming from compatible
-> +      deserializer using the LOCAL_GPIO_DATA[7:4] register. This property
-> +      has to be a '/bits/ 8' value.
-> +
-
-No, this shall be done as a GPIO controller function of the IC, and not
-as a hardcoded (!) custom property.
-
->     clocks:
->       maxItems: 1
->       description:
+> link: 
+> https://github.com/Firefly-rk-linux/docs/blob/rk3588/firefly-public/en/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
 > 
+> 
+> The document describes the usage of the rgmii-rxid mode:
+> 
+> When the hardware enables the RX delay of the PHY. Need to turn off the
+> RX delay of the GMAC, and the dts configuration mode becomes "rgmii-
+> rxid".
 
-NAK, the approach is wrong.
+Vendors get this wrong as well, and give you bad advice. Please look
+at:
 
--- 
-Best wishes,
-Vladimir
+https://elixir.bootlin.com/linux/v6.16.5/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L264
+
+	Andrew
 
