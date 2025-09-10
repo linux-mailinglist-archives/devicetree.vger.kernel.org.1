@@ -1,113 +1,145 @@
-Return-Path: <devicetree+bounces-215318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE5AB511E2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:57:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4965BB511FE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1425B56266C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:57:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54E1F4814CA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7023115B5;
-	Wed, 10 Sep 2025 08:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vmSmM908"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2C13126AD;
+	Wed, 10 Sep 2025 09:01:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7DD3115AE
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA2730C351;
+	Wed, 10 Sep 2025 09:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757494618; cv=none; b=FU8b01+8X3aGnjx++3vSJOGNh+h7/y+qV7lzCDZd8GWe99Kh8D2x9ywL4nbiEFDuOnoX1zGe3kCuYseIMvUu2BPu/gaBAJ+57I7iAkWnRi93O6WPCvoyMd+Apgts4fb4jCgpF4wxAh/jTfPtNWKyOmASIP6qXXPGPyNeXAIprIk=
+	t=1757494870; cv=none; b=PX9vK0EwJt7Um2g0F/gSFy3WukUT7nKjdjNl87lan2YwMbJmV5MFpqenYzAQ6UQu3VT8taioP3aAVWv5kh1dtwHQuRvoTptXSybec0MPPWaEplYcmIXI5JymfLbArXIEFUESOHrGobxEjDe7wyH9PWVxqF5JU90qUtBSDwzIZzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757494618; c=relaxed/simple;
-	bh=RMF005p9u9dfBw7QNthPu/NejOw7XiP7uoknr3J7Uko=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jd88LeVEYXljgCfEs2OHUHS6hYvuYIGGQqDslp6Zh2Ic4cHYA6LwCeNWc+eu9OsDWL4oY8inaC3SJBieg/JZFjK7PrUXkMMqRRva2UXQ9LAJnAWA7Tgpfn+M9g3qm8/ktuMDyPN2hoLjVoCh2zfAhVs/j30Y6VRqGauuLKFi1YM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vmSmM908; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 24FA5C6B3AC;
-	Wed, 10 Sep 2025 08:56:39 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E0E72606D4;
-	Wed, 10 Sep 2025 08:56:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C79FE102F1D2E;
-	Wed, 10 Sep 2025 10:56:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757494614; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=qo2BlmEUSD/J8v+xzmhhSNhPkQC0w+4Piainj47b+IU=;
-	b=vmSmM908Ow2DoozMw2yMHS167Mej8C9ju6lL/Gg899huQ+nJBJFri8u4BDtkXL8M22LPIe
-	0Ht8uTa91iphxBPGQjo3x0oGM33tLvd0o771n3UnzYqpZq82ioH3gU0+hIOssSAQFzfvUV
-	F7px4NXyWWOt5UirxxI9Q02/0rCyKAarA2CSZzcKLlroxQrsjNfQJg5OqrQQIfUP0EytbY
-	4KioQUzyA1b9vSF+6yZ98w9mcB5rSVlEY4S6qXoo9xj6AEAI7pd86r+G5y61WdWaClSBzb
-	rvNGaTbwMSCSdyMptAn46evHaf2zgYUpErZgSemIRLBlQSYic8ROyK/1pBsarg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Huacai Chen <chenhuacai@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
- loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-mtd@lists.infradead.org
-In-Reply-To: <cover.1756991031.git.zhoubinbin@loongson.cn>
-References: <cover.1756991031.git.zhoubinbin@loongson.cn>
-Subject: Re: [PATCH v4 0/7] mtd: rawnand: loongson: Add Loongson-2K nand
- controller support
-Message-Id: <175749461059.461240.3393347019053494264.b4-ty@bootlin.com>
-Date: Wed, 10 Sep 2025 10:56:50 +0200
+	s=arc-20240116; t=1757494870; c=relaxed/simple;
+	bh=1ejmRaKPPiRElvXHDKAuk+uu/4bmfOebIKtynk7aOV8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CtF44i0KY9c5jGCskv/kYL7/P8+aJBnz3J9UCgPDbxP56Wz/FCrWFpuDKvpiMfm6ZLeRCROjrFKsiX/v4Q0AY+NZRn8F7kSu+J1eqjdjZ6qECWFZl5ElXytBcDpMCkOBCM2wUPZ/BRJRjNcfWNg32pfzhMOv+hbZzqNSO2HzrlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D26316F8;
+	Wed, 10 Sep 2025 02:00:58 -0700 (PDT)
+Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8718D3F63F;
+	Wed, 10 Sep 2025 02:01:01 -0700 (PDT)
+Message-ID: <e8d05e0f-044f-485d-8630-1c4ec48b8032@arm.com>
+Date: Wed, 10 Sep 2025 10:01:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 15/33] arm_mpam: Probe MSCs to find the supported
+ partid/pmg values
+To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-16-james.morse@arm.com>
+ <507919cd-a6d0-42b7-8721-d35f232edfa5@arm.com>
+ <cbc2a9e2-4919-4ade-9d1b-afd0464f43bf@arm.com>
+From: Ben Horgan <ben.horgan@arm.com>
+Content-Language: en-US
+In-Reply-To: <cbc2a9e2-4919-4ade-9d1b-afd0464f43bf@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 04 Sep 2025 21:06:32 +0800, Binbin Zhou wrote:
-> This patchset adds support for the Loongson-2K0500/Loongson-2K1000 NAND
-> controllers, which are similar to the Loongson-1C NAND controller.
+Hi James,
+
+On 9/9/25 17:56, James Morse wrote:
+> Hi Ben,
 > 
-> They support a maximum capacity of 16GB FLASH per chip, with a maximum
-> page size of 8KB. The chip supports up to 4 chip selects and 4 RDY signals.
+> On 28/08/2025 14:12, Ben Horgan wrote:
+>> On 8/22/25 16:29, James Morse wrote:
+>>> CPUs can generate traffic with a range of PARTID and PMG values,
+>>> but each MSC may have its own maximum size for these fields.
+>>> Before MPAM can be used, the driver needs to probe each RIS on
+>>> each MSC, to find the system-wide smallest value that can be used.
+>>>
+>>> While doing this, RIS entries that firmware didn't describe are create
+>>> under MPAM_CLASS_UNKNOWN.
+>>>
+>>> While we're here, implement the mpam_register_requestor() call
+>>> for the arch code to register the CPU limits. Future callers of this
+>>> will tell us about the SMMU and ITS.
 > 
-> The key difference between the Loongson-2K NAND controllers is that the
-> Loongson-2K1000 explicitly configures the DMA controller routing, while
-> the Loongson-2K0500 defaults to using APBDMA0.
+>>> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+>>> index 9d6516f98acf..012e09e80300 100644
+>>> --- a/drivers/resctrl/mpam_devices.c
+>>> +++ b/drivers/resctrl/mpam_devices.c
+>>> @@ -106,6 +116,74 @@ static inline u32 _mpam_read_partsel_reg(struct mpam_msc *msc, u16 reg)
 > 
-> [...]
+>>> +int mpam_register_requestor(u16 partid_max, u8 pmg_max)
+>>> +{
+>>> +	int err = 0;
+>>> +
+>>> +	lockdep_assert_irqs_enabled();
+>>> +
+>>> +	spin_lock(&partid_max_lock);
+>>> +	if (!partid_max_init) {
+>>> +		mpam_partid_max = partid_max;
+>>> +		mpam_pmg_max = pmg_max;
+>>> +		partid_max_init = true;
+>>> +	} else if (!partid_max_published) {
+>>> +		mpam_partid_max = min(mpam_partid_max, partid_max);
+>>> +		mpam_pmg_max = min(mpam_pmg_max, pmg_max);
+> 
+>> Do we really need to reduce these maximum here? If, say, we add an SMMU
+>> requester which supports fewer partids than the cpus don't we want to be
+>> able to carry on using those partids from the cpus. In this case the
+>> SMMU requestor can, without risk of error interrupts, just use all the
+>> partids it supports.
+> 
+> How would it do that?
+> 
+> We're probably going to expose that SMMU, or the devices behind it, via resctrl. You can
+> create 10 control groups in resctrl - but can't assign the SMMU/devices to the last two
+> because it doesn't actually support that many...
 
-Applied to nand/next, thanks!
 
-[1/7] mtd: rawnand: loongson1: Rename the prefix from ls1x to loongson
-      commit: 7a1e3a452a574ef337c4c2cd9202332a1ae9cd94
-[2/7] mtd: rawnand: loongson: Add 6-byte NAND ID reading support
-      commit: fb1dd6b6722b5187a4fa7385d0be60b28c0f9936
-[3/7] mtd: rawnand: loongson: Add nand chip select support
-      commit: 7ad5bdf88d7295c295a363a5daf481b283acedc2
-[4/7] dt-bindings: mtd: loongson,ls1b-nand-controller: Document the Loongson-2K0500 NAND controller
-      commit: 4a2bab7ccceb14b48e86794b87104248c75aa587
-[5/7] mtd: rawnand: loongson: Add Loongson-2K0500 NAND controller support
-      commit: e55bbdd4a4b654dfe8ee8649b3be1db82319d6c0
-[6/7] dt-bindings: mtd: loongson,ls1b-nand-controller: Document the Loongson-2K1000 NAND controller
-      commit: 0b1ae6480c3be58ad31afe757cbf1069ae072bb1
-[7/7] mtd: rawnand: loongson: Add Loongson-2K1000 NAND controller support
-      commit: 5808ae66f22e665c7131816e146548f2d7903ae1
+Ok. If that's how it's going to be exposed to the user then it make sense.
 
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
+> 
+> 
+> Thanks,
+> 
+> James
 
-Kind regards,
-Miquèl
+Thanks,
+
+Ben
 
 
