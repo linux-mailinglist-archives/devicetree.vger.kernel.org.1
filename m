@@ -1,108 +1,75 @@
-Return-Path: <devicetree+bounces-215299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB998B5114E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4840AB5116F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE8FE4435F5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:32:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04670483A45
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B37310627;
-	Wed, 10 Sep 2025 08:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D1C30FF39;
+	Wed, 10 Sep 2025 08:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mMLu5Y9Z"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TTC97Rhn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7167E30F544;
-	Wed, 10 Sep 2025 08:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9828D309EEF;
+	Wed, 10 Sep 2025 08:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757493105; cv=none; b=dQ/NOycQydU1GMOD2Njk+oXcntXMr8FOefBnOsN6RvDt97lq8lEquaO5o6+HzfZjRN7MAeYeZ0uQgTVPLlBNkOCmexxx9rJeIBHS+Gd7ezk3ErS9O2j1Rw0sRZhe3zk08RXBaPp45KmbbZMECzbzqBGqlB3xOggVXisp5mIUSdI=
+	t=1757493291; cv=none; b=cr8g+tM4DSOYTEp2bsM9U7cdB8N8nMyF6pnYN7975UnbobnL5O6h+M/R89uuJW4zsEXizmmWF98qeNvm2qAy5grEAb2MpMviFttp1KmIfW4Wpk/3TPitFXBme0juFUggHpTvBBjf0gvPdylntqV6woJEsJKEHMwM0TSJmhAijGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757493105; c=relaxed/simple;
-	bh=YMeOTS2s5UrKb4GkderWVzhb5EkilUWg4YaxZ3sZMjo=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EGiMIT0GhEiQzqmJCGR8NWVwEjUYd7nG7WKejqJQOQBb0u26ytRtBfs7EBQyVK1odrmqnONoLPnEFce+Kq5g9YerG4yxOQPI+gETsoPUfKm7Uw6YX8eKaTyFz2aO7wgkjKm0TevmxYVCEpsawpg6vJs3YpT6QnJSg2ahTNQ+C3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mMLu5Y9Z; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3e4aeaa57b9so3572717f8f.1;
-        Wed, 10 Sep 2025 01:31:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757493102; x=1758097902; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+Vq3ysZS2lc4WhA67yDwpubRjl51dbZS1N3bA03ln0=;
-        b=mMLu5Y9Z+xIV9D6wXsHKyKeOSJhjqfKqg65wIsoDACdgp+Zz3gbYHFwCp7t/HpiqPx
-         rh2q7dCOaResaXyXtcE/4DMvOi+lo6CCfjbT7xuXCksdLVdshuOauv23Jzo8i0+6cAiq
-         BWGNEmCmdZX3NGyQkHgVoY9kNfKcoAexLdfxqFL9CG4GmQyeqYVkjgiPDS7vVH4E+pIz
-         +Z+BBdyEVmrz4QXTSLAs5aIieDUqJU06/n2Fs7MvDURs8INSmQsIV39NFqF21yfBCiQJ
-         Qlco7PRcVw42IiDZ9+TPBBQotkruzBSO3pjoK34PO6rbqY8S48sORgPxU5OmQiFm8s0V
-         dVrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757493102; x=1758097902;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7+Vq3ysZS2lc4WhA67yDwpubRjl51dbZS1N3bA03ln0=;
-        b=vl5BB7dVg14NRGycmqsB4itDxph6YNItq8+4buGCNjOchj3O0bACfPgMUXKFVOlZKK
-         NTn/Sg0b133MX0x6iUbEFVeWQrTvgzhp/Jl20rPRflfGWvPgaMfB51hIA9ZzDv8j5Thn
-         p0PWaXOB+DGsETqP5zm4eLbGQ5k5I/NI7aJz46ohGJpPafbxfU6sM2bmvZVAUJA2RGIF
-         8hXMjqBwvLubOORO8EPzKRmKlAswrndfSqjee511fmJi33HRkvXgtREMRLrMpMERirvi
-         kLONLwrbbC7HkqkUOd99P+2Bo/8j4Tq5O7ItDJpwvE3aXyYsEv+fUdkd03qvvfc1d8Pf
-         ZXGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWNdMs3enasyWcFVRkfFkbgGGKls/bjr2Kaz6qnJrNX21y8FlGz4FUDsp83qwBHc2oROPvXciBqI2+@vger.kernel.org, AJvYcCWqrKsevEG1g2LBdqiv5EdMgA7wr+B8lepcNdC+c9922WkgCQJJHYttP05752Hik4n9wjy6ROJm@vger.kernel.org, AJvYcCXnkYK9GEqoLDw9vE1FiI/htUUw+3VB8Um0kPatlegG8P6i6Tp6OEljw1bur74a6ZgWh7isCOQ1TWT3BQJX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRjrH8SOTNUq18dpqvl2ZsV41qiPz0aWWM7Eu3j+eYmIzb5A7r
-	fqduaQUqRMlF6msan1619B7wPt2ffBQtV0yI3ENykxynyOmL6M84t3MX
-X-Gm-Gg: ASbGnctF3ZucoMhQCC+cKQzRkHvAREKoENUUBlb1nRqvg2XJ4vYH62aifUOd1nsiM5I
-	MElK8FHhuzOoSRgFghncDBxWJTElWHoRXYSTllrRWw6tdOyKxhtr8p8CDUnfTokb0yu9Zg5Gcn0
-	sAjPajrRDnpqGq2sVNDEvQwayNrLN0XCmFnyCamZAdMlND5kMiXD46e9WDC4NvnHQUuYZt6ovIa
-	qpErz0Jt5y0+pUthTPyGmMjPIlfVQicKvzQfu6zaNJBhcjtH1ObRrf4KBHauN7mQ7yztAvuntQ0
-	p5ZPnIGSq6BEDCl/cdRRT2sS9XMVL2FHwaKRkTVrB811FFQObue3VIht73bhnpQma5ngv2ir4aI
-	DT2mDXlI7rnzvsQy1yn0D8pg8GR+qz+1eiQcm2b9ZsidYZl2RoafRf5wWhVqH5/muwbGGUA==
-X-Google-Smtp-Source: AGHT+IGx/xbJUIH4+beV7q9PMqx0glsggALR4qg5rZZAhjCkYIwZFcTKRYd4C8GT0jF1ei0YocGGkA==
-X-Received: by 2002:a05:6000:2f87:b0:3d7:df92:5e31 with SMTP id ffacd0b85a97d-3e641e3b09amr13400380f8f.16.1757493101468;
-        Wed, 10 Sep 2025 01:31:41 -0700 (PDT)
-Received: from Ansuel-XPS. (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7521ca2aesm6060026f8f.26.2025.09.10.01.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Sep 2025 01:31:41 -0700 (PDT)
-Message-ID: <68c1376d.050a0220.2085dc.675b@mx.google.com>
-X-Google-Original-Message-ID: <aME3Z0CacqPJNZT8@Ansuel-XPS.>
-Date: Wed, 10 Sep 2025 10:31:35 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1757493291; c=relaxed/simple;
+	bh=b30MO4zp9p/RKhKI6RZvaV69XNrXjRj73xkh/4Xi8jM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WU+fpiOLxSREt1g8quH4mzaRZCgVnVKYGbXjfJD4YetzfDK378Z+POYcuE7Rh5qVK7QB1PmtwLdz1w/eSc3Yc4Fc2NzAQFeMlWtLKFIK7Nrd3FCdJ/7ajaeFh3uWV+JC9zxOVfgOVvgX+gMzEGyOzrO+Sxf7CqcegXsrLOQfFqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TTC97Rhn; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=ZfdHANOehTUP1HPo2Io2Zx+Al3fFDMd7EV9Pa2pY7UU=;
+	b=TTC97RhnEgJfdlDzGW47lqFtg2e6cVlsSCFfrsS/oXpiK2FMEG2qNi5T/ibO0f
+	vlpeixtVmt1bFDP4BvEV0nNZDFTnVMZhDOA/n2fPXrb7JnyIKu8wBGBocSMbxJwL
+	sE+NWsgAtsE0QI2yAAAtP0WKCTHAT8Tu4r4IigBUOgd8k=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgBnJW+NN8FoDMs8BA--.39270S3;
+	Wed, 10 Sep 2025 16:32:16 +0800 (CST)
+Date: Wed, 10 Sep 2025 16:32:13 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank.Li@nxp.com
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>,
+	Shuah Khan <shuah@kernel.org>, Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>, Simon Horman <horms@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v16 10/10] net: dsa: tag_mtk: add comments about
- Airoha usage of this TAG
-References: <20250909004343.18790-1-ansuelsmth@gmail.com>
- <20250909004343.18790-1-ansuelsmth@gmail.com>
- <20250909004343.18790-11-ansuelsmth@gmail.com>
- <20250909004343.18790-11-ansuelsmth@gmail.com>
- <20250910082017.hjlq3664xvg5qjub@skbuf>
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>, dlemoal@kernel.org,
+	jdmason@kudzu.us, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v21 9/9] arm64: dts: imx95: Add msi-map for pci-ep device
+Message-ID: <aME3jbmlRVcT2biX@dragon>
+References: <20250710-ep-msi-v21-0-57683fc7fb25@nxp.com>
+ <20250710-ep-msi-v21-9-57683fc7fb25@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,55 +78,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250910082017.hjlq3664xvg5qjub@skbuf>
+In-Reply-To: <20250710-ep-msi-v21-9-57683fc7fb25@nxp.com>
+X-CM-TRANSID:M88vCgBnJW+NN8FoDMs8BA--.39270S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU8zVbUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhB84WjBN5DjOQAA37
 
-On Wed, Sep 10, 2025 at 11:20:17AM +0300, Vladimir Oltean wrote:
-> On Tue, Sep 09, 2025 at 02:43:41AM +0200, Christian Marangi wrote:
-> > Add comments about difference between Airoha AN8855 and Mediatek tag
-> > bitmap.
-> > 
-> > Airoha AN88555 doesn't support controlling SA learning and Leaky VLAN
+On Thu, Jul 10, 2025 at 03:13:55PM -0400, Frank Li via B4 Relay wrote:
+> From: Frank Li <Frank.Li@nxp.com>
 > 
-> Is there an extra 5 in AN88555?
+> Add msi-map for pci-ep device.
 > 
-> > from tag. Although these bits are not used (and even not defined for
-> > Leaky VLAN), it's worth to add comments for these difference to prevent
-> > any kind of regression in the future if ever these bits will be used.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  net/dsa/tag_mtk.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/net/dsa/tag_mtk.c b/net/dsa/tag_mtk.c
-> > index b670e3c53e91..ac3f956abe39 100644
-> > --- a/net/dsa/tag_mtk.c
-> > +++ b/net/dsa/tag_mtk.c
-> > @@ -18,6 +18,9 @@
-> >  #define MTK_HDR_XMIT_TAGGED_TPID_88A8	2
-> >  #define MTK_HDR_RECV_SOURCE_PORT_MASK	GENMASK(2, 0)
-> >  #define MTK_HDR_XMIT_DP_BIT_MASK	GENMASK(5, 0)
-> > +/* AN8855 doesn't support SA_DIS and Leaky VLAN
-> > + * control in tag as these bits doesn't exist.
-> > + */
-> 
-> I think it would be good to present the AN8855 tag using a different
-> string, so that libpcap knows it shouldn't decode these bits. The code
-> can be reused for now.
->
+> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Do you think I can implement 2 tagger in the same driver or do I need to
-make a library of this driver? Just asking what is the correct way to
-generalize it.
+Applied, thanks!
 
-> >  #define MTK_HDR_XMIT_SA_DIS		BIT(6)
-> >  
-> >  static struct sk_buff *mtk_tag_xmit(struct sk_buff *skb,
-> > -- 
-> > 2.51.0
-> > 
-> 
-
--- 
-	Ansuel
 
