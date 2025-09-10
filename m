@@ -1,116 +1,170 @@
-Return-Path: <devicetree+bounces-215331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F7EB51251
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:21:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958D8B51262
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:23:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 116A61B27577
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:22:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38AB2487C49
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E959C3126C0;
-	Wed, 10 Sep 2025 09:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C460313E0F;
+	Wed, 10 Sep 2025 09:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="CgSV/a87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-24420.protonmail.ch (mail-24420.protonmail.ch [109.224.244.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A5030BBB7;
-	Wed, 10 Sep 2025 09:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838CF30E825;
+	Wed, 10 Sep 2025 09:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757496106; cv=none; b=ZOHMzIO03JSuj/6f5kNdVS24Hzj1oyiMQP4p4Neou9siWid6lchLW26hEDBeHdSlkF65crs9X9JpghyIE1d/4MkkpXQJlyxqycimLN9kG5xXeFxiODApaYAZQrO1xugvOJrH1i9jtsczBvrGFSJQxpRm/8JkbX0uN6b8qiBr8yo=
+	t=1757496183; cv=none; b=lUxKtzUeAWrwOyfrq/rkVpbYHpmHlBa79kDISid7Z6fB7OO2SVTw0dRfEi0ncKVszpEZLSP+s+VJ9VIIuWlrwy4xzhVn+YljnnEL4Sf4MSoMF4TC0aEWllRui5zzOhyhgdiD8kbX8I6VY37w0hth+7//I9Cy7afxSm5HI009xMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757496106; c=relaxed/simple;
-	bh=7OEFVnHe4YlEyWaSYy8lXKm9Z+SLn86GNHr9Gmmbsz0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pNWnONcYGEn3Xre7ZVGuWRRzE1MmO80caHhDZCb7njdTK3ON/FQEA5cCm1r0O+mofZM3E/ZwIf1YasCHtH5uiK7Lrnjs8p0k/2fYzydF09kJd5w6D5TM0Chl41zwCSwm27Esu5gl0RDq46bg32ALSLph8NUIKK0GMmyj6xBtyTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-53042807be7so4767466137.3;
-        Wed, 10 Sep 2025 02:21:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757496104; x=1758100904;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mdyKRMHpAuu3HaQWjL+6fWVbChCcQy/Tsqxhv5tvLyI=;
-        b=RwjEbtnthdKsjK4xjuOD6vfT8EHFzCiBoa/iYGStbDGkDIMmzbQYxz4DhPTDl2rMrP
-         SW7HQ2RzsGnf8ULlaMUOMpHfNdDJyvesTeZwn6WG8cEZQboXY4W0TMtkgWby4JpGiLjE
-         tXcCMANAmsoHc6SF39tl+0QoOFIqtduWIm9vqyZcGUjk0JPo/UdLFzzVCJjvl8EZZ/Zo
-         2eJ9ORg74DR43eocQTBv2of9M0o+K3OfuJKq2+sKv+Sh5MpVJGuuL2AieE1Zj8JLLxNE
-         Tc/Yr6uOo2Xadm/MuvRnJSJUMr+y+Iskk7Rg+eezzxJOXRuMMIaydZmoqDjI/x08x0AG
-         U/nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTt5bzv6No+X+wSTx7Kq0ZhlmSppaB650HKO2IMsNBzYHKFR4L72J+al7+ch7aOj7QlY9b2ngJI0KE@vger.kernel.org, AJvYcCUbDKadr2KYgNPlU1yAvF3Niky+KVJoZqJZBOuhVs1uX5WLv097fmJW22kbUH6/c52N9ddc8CPh/x9v@vger.kernel.org, AJvYcCWBhwxfW5hmiQVtXfWE59TugV2NWZJ/VNIEBs5kitherItG+ugEuWUNGetTUHfpUYt7zJan1xJuXrHxqffV@vger.kernel.org, AJvYcCXyN0uKzPcqHUbteMK0Hi/nfybFpUN8HnuRX/kZa9CQyYcj/3tWwR5wIsj/zgJcoSI2X9WyatZ7F5roSosZAwEqDoM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJkRGXa9gkwzs+mDnrUUD0R2C0fkOMRi1g10ACaQRpStY5aUm6
-	OAuxJjLCoY/FT3uSa9e0C+/qPiVyz0OtvgVuzENLZY5FkxhiqYduJVJHbyO59eKK
-X-Gm-Gg: ASbGncv4v8gKSRuaHa9rhHg1bZErsW+QnZIkBwLft0wuMV2zLTIvZMYh5NwT2H6PHcG
-	m5yvRj8xkjdRwU0OHddexWa4WUY46n+UdvkCVtfMs1qZ09yvWST8LjaQhXCEf635/wS/7H2yzkF
-	AZTUCNUrFEX1Ywen6GW556O3CS1HnEezovoLwFy9cRgW5IIKdcyyO1KtiPT2Wch+PxRrEts5bPh
-	ku7s53rt6la3bQrpYlnxDzVDCXl/jpOdTF0zD/IFm7GRo4hHn8rSSk879Luh9ssyTz55nia6KQO
-	SEQ+tEE0t6+hUJMjHDlIpjonpYrePN3lk8gQHX29gtaPQZc+VQelJPy56PWBR1hS5saqBjQtUx7
-	lJAcPnpIzFqhpGH3TChPD0MHPjnDZjQkUrKW5qWGyy88stk7/DRwHekf1MIf1KBZv1Vs7zgC7RG
-	ibql70Eg==
-X-Google-Smtp-Source: AGHT+IH/8sTgTJDH+6grDjkiwiCk1aCIn0GyouZHX0xqyU/qh4V5YAyaIRnFy8wg6LPoFE1ybBF9Lg==
-X-Received: by 2002:a05:6102:1612:b0:524:2917:61aa with SMTP id ada2fe7eead31-53d2490d7a8mr5250182137.32.1757496103729;
-        Wed, 10 Sep 2025 02:21:43 -0700 (PDT)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-52aef458ebasm12474032137.4.2025.09.10.02.21.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 02:21:43 -0700 (PDT)
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-52dd67b03c8so4642363137.2;
-        Wed, 10 Sep 2025 02:21:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU1etOwUurqBtToZ8Q2dyH9L51v4R6LqcGZBOtMf8Ljw/nG4iu0hd2KqHExU7D49iSaoGsl8VJDQBWEJvIsQpyj330=@vger.kernel.org, AJvYcCVb+o1xBHFKsHmhtoO/P5263KPqNV7EO8ZQ1pn9Ez80NUNq0xNMmxIoGl844wYX5GEusglMLFPbblK2@vger.kernel.org, AJvYcCWS2Dg1jp5h58UCTBF0WfcW3FE4vVLD4q+21MtDhyMlw0+mn0AQETwY0iDkFwGcKyeTfolihZGhYK61@vger.kernel.org, AJvYcCX4F5auMVuDe3zaIpyC96PJUFhc7fE5+5+JI8JPE7AoBp0pgDc82KBOjaVVZXv83syZgcUFmXm9uWVh/Rhh@vger.kernel.org
-X-Received: by 2002:a05:6102:688c:b0:528:92b8:6c3e with SMTP id
- ada2fe7eead31-53d1afa24d7mr5249377137.1.1757496102999; Wed, 10 Sep 2025
- 02:21:42 -0700 (PDT)
+	s=arc-20240116; t=1757496183; c=relaxed/simple;
+	bh=4onIzWMeUt//GL9CyNwI0FhKhKNi3drWUGjY2yv9wa8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RSAglvxMJz191gT5qTECTyXGe7Aw9ruI0DvN+DCq5sbcMj4V4tjVnq6+tSYYmFggApq1iIyPe/8mvdffPCTuSlAPul0ZwKLlGTAR4w0sIwU72Mm65C2bKNldQhBsB1J057mj3dNhWD8FowufSn7JzRYgidBZvFVjDqhKNUrxU+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=CgSV/a87; arc=none smtp.client-ip=109.224.244.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1757496176; x=1757755376;
+	bh=4onIzWMeUt//GL9CyNwI0FhKhKNi3drWUGjY2yv9wa8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=CgSV/a87QtXOKD/VDNEQGeFeRKWFFnJ6lSD75SjxX+25xcJS98O1Q03OS2+6GyoJX
+	 dVsNSU+kX8vPlH6gjCnciUUOu9vVEeMNzIOWzdChcANqCdfYdTSWFKod5ArUKSC61l
+	 izs9Lm4GDxHHqV6YVkPmX/6r9jptLfaqrQXXAejA5i310zJjwbJFPoMsy8QoBsFXfl
+	 VjEl5k+XM2SBxGpwz/JG++f3o27ExkInkiwecwS9vwYYUTxQGpiRqAHWuoU2Tasn80
+	 WtX1M8Fe7pABIvrYWUewDoSx4ro/vdyepm1xYazylM43ahXvWopM/IygBZET6BtWDq
+	 Th5nwOvvJPe5Q==
+Date: Wed, 10 Sep 2025 09:22:53 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: leds: add generic LED consumer documentation
+Message-ID: <u6ZY13Lkl_fUDmiudck6EB28tChZkCOAUHGYLWvwJAQCWGBVio_VmhdPHlS1WBmN9XrftBvjSjwT7Ok-IpeW57AX2xv7u4dMPoC-1iO5z0g=@vinarskis.com>
+In-Reply-To: <108895ac-0c4d-4aee-86b1-96461e00def3@oss.qualcomm.com>
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com> <20250908-leds-v3-1-5944dc400668@vinarskis.com> <MOj2NUVAdyu9bvVkEON8rhAlGJ9FRRh9gJABkrOR_6gKhE8rmeZ5Isbj9noA1bDZ12gY4dlDpEtmEjxlRTucCssKwTo4f5nCowMOin85IKk=@vinarskis.com> <d957d16f-d206-4f7d-b52e-a2cad9e4abfc@kernel.org> <108895ac-0c4d-4aee-86b1-96461e00def3@oss.qualcomm.com>
+Feedback-ID: 158356072:user:proton
+X-Pm-Message-ID: d2805003f1d5c8c724396ed245543dea6900c2f6
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250909180803.140939-1-biju.das.jz@bp.renesas.com> <20250909180803.140939-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250909180803.140939-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 10 Sep 2025 11:21:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU_+LcV8RAnc_=SANUi2stzOGmyY3Cf0u9H4P5dXR7PiQ@mail.gmail.com>
-X-Gm-Features: AS18NWAfM8YujtH91FxFyPet0z11UNmtJsu3JK2AKWVeld-ja1-RWegx_fvOj_8
-Message-ID: <CAMuHMdU_+LcV8RAnc_=SANUi2stzOGmyY3Cf0u9H4P5dXR7PiQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: clock: renesas,r9a09g047-cpg: Add
- USB3.0 core clocks
-To: Biju <biju.das.au@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 9 Sept 2025 at 20:08, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Add definitions for USB3.0 core clocks in the R9A09G047 CPG DT bindings
-> header file.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks, will queue in a branch shared by renesas-clk for v6.18 and DTS.
 
-Gr{oetje,eeting}s,
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+On Wednesday, September 10th, 2025 at 10:35, Konrad Dybcio <konrad.dybcio@o=
+ss.qualcomm.com> wrote:
+
+>=20
+>=20
+> On 9/9/25 10:39 PM, Hans de Goede wrote:
+>=20
+> > Hi,
+> >=20
+> > On 9-Sep-25 6:57 PM, Aleksandrs Vinarskis wrote:
+> >=20
+> > > On Monday, September 8th, 2025 at 01:18, Aleksandrs Vinarskis alex@vi=
+narskis.com wrote:
+> > >=20
+> > > > Introduce common generic led consumer binding, where consumer defin=
+es
+> > > > led(s) by phandle, as opposed to trigger-source binding where the
+> > > > trigger source is defined in led itself.
+> > > >=20
+> > > > Add already used in some schemas 'leds' parameter which expects
+> > > > phandle-array. Additionally, introduce 'led-names' which could be u=
+sed
+> > > > by consumers to map LED devices to their respective functions.
+> > > >=20
+> > > > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+> > > >=20
+> > > > ---
+> > > > .../devicetree/bindings/leds/leds-consumer.yaml | 89 ++++++++++++++=
+++++++++
+> > > > 1 file changed, 89 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.y=
+aml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..d50a3850f6336e9e3a5=
+2eb1374e36ea50de27f47
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+> > > > @@ -0,0 +1,89 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Common leds consumer
+> > > > +
+> > > > +maintainers:
+> > > > + - Aleksandrs Vinarskis alex@vinarskis.com
+> > > >=20
+> > > > +
+> > > > +description:
+> > > > + Some LED defined in DT are required by other DT consumers, for ex=
+ample
+> > > > + v4l2 subnode may require privacy or flash LED. Unlike trigger-sou=
+rce
+> > > > + approach which is typically used as 'soft' binding, referencing L=
+ED
+> > > > + devices by phandle makes things simpler when 'hard' binding is de=
+sired.
+> > > > +
+> > > > + Document LED properties that its consumers may define.
+> > > > +
+> > > > +select: true
+> > > > +
+> > > > +properties:
+> > > > + leds:
+> > > > + oneOf:
+> > > > + - type: object
+> > > > + - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > > + description:
+> > > > + A list of LED device(s) required by a particular consumer.
+> > > > + items:
+> > > > + maxItems: 1
+> > > > +
+> > > > + led-names:
+> > >=20
+> > > While going over the feedback I realized `leds` and `led-names` do
+> > > not follow `property`, `property-names` convention. Any objections
+> > > if I rename `led-names` to `leds-names` for consistency?
+> >=20
+> > No objections from me, `leds-names` indeed is better.
+>=20
+>=20
+> FWIW we have "clocks"/"clock-names", "resets"/"reset-names" etc.
+>=20
+> I sometimes refer to "property"/"property-names" during review to
+> bring attention to the preferred style (ordering of such entries),
+> which is maybe what confused you
+
+Hmm fair. Just thought 'led-names' looks a bit ugly under 'leds'. But
+you are right, since there are already "clocks"/"clock-names",
+"resets"/"reset-names", lets keep it that way.
+
+Thanks for clarification,
+
+Alex
+
+>=20
+> Konrad
 
