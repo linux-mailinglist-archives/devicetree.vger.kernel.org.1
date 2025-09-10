@@ -1,196 +1,127 @@
-Return-Path: <devicetree+bounces-215470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700A6B5186B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:55:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3708B51899
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F06E56140C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:55:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F4CD563A1D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4437521B195;
-	Wed, 10 Sep 2025 13:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212F93218B7;
+	Wed, 10 Sep 2025 13:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SoRbWa+k"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="RX3VqmJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6D8218ACC;
-	Wed, 10 Sep 2025 13:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3839321F38
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 13:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757512496; cv=none; b=UhuWjR+qmYvtFP1HVdQEfsbybhlByC7EG1Q3CM/7lBbFc7EC2R7+WvKNeCZ5/wXJYjE+qRMr6zwcAFpUHzmlODme3lfAv39UN2CHM8vo6yIMII2T0LEfjG7Dza+ZaYOtvPuEHYwfllH5exZ5iP3JdpH00WVaVRdXKCPDTPwkvr0=
+	t=1757512763; cv=none; b=kl19wJl7hXNMmBMEILNduAXQa8f8F/jrNgYUtkwf8TdIjWrS5REAJx6meBcsxIBkYVzfofZcDPKvXt3No8wlJfsWYbdFjdiTf9U3pwNcJUwo+tg1qookP54PvdwAPiqmWIVQOaaqH+CWZqqODJC7Oq/h7jxRjEdk6hFJs9nYli8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757512496; c=relaxed/simple;
-	bh=/8UtYirEDYoOIbphyHMIVX0/QMGG1VCWOJPYddPzLD4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JgnUFdVn4YgexZEJQXzDq0hmiuNeGziZjxtwLd6S6ibvc7Upnuc4OdfDEGtvVrkgdz1N9t1FN+cdPoc8VMPnFt3T/pydNZWMGECw2FoLzGhIpCQUSwxtxmNYwcJTcv4bfpPPSva9Qbno70mH0KsyGgIhCm8sk399fo+3qH8P+Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SoRbWa+k; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757512491;
-	bh=/8UtYirEDYoOIbphyHMIVX0/QMGG1VCWOJPYddPzLD4=;
-	h=From:Date:Subject:To:Cc:From;
-	b=SoRbWa+kDhB9TzKR+tCQk5cxSM9+BvVzlO0Q4RcaVwUvc4NjgiwDdSSUt6abI+3Ug
-	 2ICt72HDwN3INq23r2f4C6tz8QayhHSz0AxTt6NPQ+CzXjJo3qGJyFzw1m2Z/ryWUI
-	 DglsBglH9bdVUC+/jtebE0TukzdZuvxk854VleQUzgUbo+QxwfFNG8GGeep0Bz34/u
-	 seIqjIZK1a1quNulXCt2DXL6zqU1zyuRb96VT6FbznTr2YTKF9phyNxL4tqWMZv4Dl
-	 ZxVA29YmwTFw/x8dZUzkCbsl+l+u1kSSpAuQJ4QdZoRmrZJXsdw4FpGgp+aiYfBgSM
-	 nZ6ekpzsouE0w==
-Received: from jupiter.universe (dyndsl-091-248-188-108.ewe-ip-backbone.de [91.248.188.108])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BAF0217E088B;
-	Wed, 10 Sep 2025 15:54:51 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 79570480044; Wed, 10 Sep 2025 15:54:51 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Wed, 10 Sep 2025 15:54:51 +0200
-Subject: [PATCH] arm64: dts: rockchip: Fix network on rk3576 evb1 board
+	s=arc-20240116; t=1757512763; c=relaxed/simple;
+	bh=AWJAwvgvveAZl1A50d2qJ+nKO1wYxvt7+BQ4m1FIVUA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l3ZB5DKjMKHkMXQcxgDBupw5JAwXKFslh9Q7dXKKC8noukAWFlM3+6XKHu7D71t1ys9L1DIiaTESot3Sg/VUJA491gREDUjWM5FpwLT4F5ByxP6NDi1Qyxybq2dEVDOQ5EA0Vc2txTnm59DLC/f0srdCq1Cb6O80Q2tnW5QDE98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=RX3VqmJa; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6188b5ad681so9140746a12.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 06:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1757512759; x=1758117559; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3o5U5m9O7nE0eZDTkvDCuOBdIrzGojz2eY5IrxD0WOo=;
+        b=RX3VqmJa2b8O97kue4xrkVpuhLeNv4D9ml/AFe2APfEmDOQdSkzAZhdTPcCa6RJGIB
+         HC0IsQAPjVWcysCb1nCZeQQ0i/GMIGXvoV+DpkgF+jRop6gF4N4eQ32MSt53eBzHQbCv
+         39rzGJsWFL4P5SF/M2b3IEbnwvLqK2ECrRuXA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757512759; x=1758117559;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3o5U5m9O7nE0eZDTkvDCuOBdIrzGojz2eY5IrxD0WOo=;
+        b=FHajeObfZFrRbavmsWOvkcH9dJ/iyov63460Otci/npisrD/KPxnvuQnyqTbApNaZ8
+         Sei5PyHkD7D685X24oPtNkrvdsLQV41s90hDUNAokG4M76B8qmsVohM1a3DerAL2tu8E
+         O6fzBUQMDHtgYG757PsvDUluo8HyQaDrbKPEvDFYt3taZoJA5/5aOlm0bxzzdoF70wi2
+         5DGLQgDsqxElSwV63IzPn+TqWkey3kixgzKrtXr1DqNtq1VQahX66RyW4Nbi/kVWuu7O
+         FkDu9u7h0355nYEzzJQpsbfeffGx24vCPgTZBMpHFbPQm/szvk2v6/73eRRjp+XB/kcE
+         rWBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVOVIuJ84nvWQ3o1EPj8owGk1uZOqE/kbQo/7rR8Dcf1vGRKg3jsSZMOcfSCR0ASsdYbfqhb9f0T3Jq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQLkyfZkeXtaGxJndkqg0f7e+RmyFxbwwilXTHpBt18UoJBlo8
+	R8/2hys3+KzUlQEdE0P8g8bUuQe8dwFmMOc9QaYHTFv1jr2eOeUzdf8thDWKiKhS8Z8=
+X-Gm-Gg: ASbGnctLD72IGTHykrRNgijUvMpDLGyf9HGLViabPpa8Dck5RELDH7p9aLbtYHzc+rL
+	exxi6sy5ktrtZr66g6sv9gzTGzdY/TO2e4PZi+Qg6DS02ugIm4ab9cR5aoRVjeluWiv3y5M54Ho
+	wc9cgRsK7BCUUcxYXKpVj1ivklcmi0+n1S+sBlczgWYoEQtgcErZEdP6KBh1vHlfScgBi8KXyDw
+	2kiffOgYtKobkndWvWgXVYIZApaMHwdfHSO8TU0tW4LMP+Vg4PRqMU3YCwiW8sncwTs2Ks3iwoi
+	if1s/IO/FLHqXiyWQ2swVpzqiO8ZFFdtGcY2HGr3wuVSWN32aP070EGN2nu3J9VWj3QsS0iLg+I
+	taQkdfAl5IAe7VXdVbDoLUYd6QZxoLR0xz8fGwCzW201SIXLpfyE82VFg77EtuyD85sOQ4h9Veb
+	T2Q/cMlrzuladKXibVrFYfpn32sssM0SszjcK3Fqn82PpFHkMGeuKCc8/Eck4wrXFhxwqJf42Za
+	sI=
+X-Google-Smtp-Source: AGHT+IEM5i1cMh4aLi1EphlUfiAbqmiYBmZm0lNR7FL1Faw8bxW5JsLRVOWS0WjIXeABAYnQD9GwCQ==
+X-Received: by 2002:a17:907:3ea2:b0:b04:1b90:8d7a with SMTP id a640c23a62f3a-b04b1463381mr1739025766b.27.1757512759136;
+        Wed, 10 Sep 2025 06:59:19 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07833a4e37sm172523066b.76.2025.09.10.06.59.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Sep 2025 06:59:18 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Trimarchi <michael@amarulasolutions.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org
+Subject: [RESEND PATCH 0/4] Input: imx6ul_tsc - set glitch threshold by dts property
+Date: Wed, 10 Sep 2025 15:58:34 +0200
+Message-ID: <20250910135916.3939502-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250910-rk3576-evb-network-v1-1-68ed4df272a2@collabora.com>
-X-B4-Tracking: v=1; b=H4sIACqDwWgC/x3MwQpAQBCA4VfRnE3NrhCvIgfLYFJLs1pK3t3m+
- B3+/4HAKhygzR5QjhJk9wkmz2BcB78wypQMlmxJjSHUrSjrCjk69Hxeu27oqBkd2YrIGEjhoTz
- L/U+7/n0/pbO4qGQAAAA=
-X-Change-ID: 20250910-rk3576-evb-network-b09cb0260011
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3340;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=/8UtYirEDYoOIbphyHMIVX0/QMGG1VCWOJPYddPzLD4=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGjBgyv0Snl1hIYtTGv1yO1KIdE5RcXUVbExR
- iQ4YXBWaLwBmokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJowYMrAAoJENju1/PI
- O/qaBOkQAKMN/8cj7wuP2lEaE7js7l+HmzH07C5ToGZ7aVe6EJ0NXEwozv2ItC2mLGlavxhl773
- rWmymc+sSoVP67KtoOeLb/h7+71wkjDOg/iTDA+zZaHRGxGbM+b2ebSOUwq0NGiWYD33PW4vQS4
- aDrmYPKRef9tCFkz8hxPmQsMGYZzpxvCTOG/9hUewg+Q3Q6bC70mIhpC4FoWRUG62lCqlPEg93n
- 5TRnR+6FVY4UViPX84scJdTSCl+e5z51LVKiCtP+jjPb6MQsDZygYygKMtvW3sgt4TPJPGYMQJu
- 2H272hUQJtR6aiJlhcJfM+J841hZb8WmNKEW+cX8pz7HLHJ12Ca/4BU0lUx1W+Tcsjy8qmveRY/
- oWzOy8GX4HdkRok4n8IXs5UKIlb9uhjP/wPh4XHmeCZGUSqdXTh2xnRn57l3xR+WMVpTzJ7Ypny
- EE6aT6l0D72vUxopFQR/noL0TSl8rBdLUE7sc8iFKOx1qZMoGZlY3jMICckxH5OdTy2sj3cYlSQ
- 7bxMV8L/1tSyfy2eclx2Pa69U0JUCwnblGbIKSqDsE0Lgq7GhWShMmvHZpO2bsbxSmNO5F+0mz8
- aVSdyNEi+XFSTMHUprG+SgrdqUqh/AWB+tjwRY7S62Ads6sf72Pk76CaaVqX5CzcNGjNwXDr3z4
- 55B97I8mYJo51ZO4O/2c4Dw==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Transfer-Encoding: 8bit
 
-The RK3576 EVB1 has a RTL8211F PHY for each GMAC interface with
-a dedicated reset line and the 25MHz clock provided by the SoC.
-The current description results in non-working Ethernet as the
-clocks are only enabled by the PHY driver, but probing the right
-PHY driver currently requires that the PHY ID register can be read
-for automatic identification.
+The series allows setting the glitch threshold for the detected signal
+from a DTS property instead of a hardcoded value.
+In addition, I applied a patch that replaces opencoded masking and
+shifting, with BIT(), GENMASK(), FIELD_GET() and FIELD_PREP() macros.
 
-This fixes up the network description to get the network functionality
-working reliably and cleans up usage of deprecated DT properties while
-at it.
 
-Fixes: f135a1a07352 ("arm64: dts: rockchip: Add rk3576 evb1 board")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 38 +++++++++++++++++-------
- 1 file changed, 28 insertions(+), 10 deletions(-)
+Dario Binacchi (3):
+  dt-bindings: input: touchscreen: fsl,imx6ul-tsc: add
+    fsl,glitch-threshold
+  Input: imx6ul_tsc - set glitch threshold by DTS property
+  Input: imx6ul_tsc - use BIT, FIELD_{GET,PREP} and GENMASK macros
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index 439831715cbb55a67ce9ca8736d70549377e8048..db8fef7a4f1b9570cb517ccc9a857d1c93c9d2db 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -275,9 +275,6 @@ &eth0m0_rx_bus2
- 		     &eth0m0_rgmii_clk
- 		     &eth0m0_rgmii_bus
- 		     &ethm0_clk0_25m_out>;
--	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
--	snps,reset-active-low;
--	snps,reset-delays-us = <0 20000 100000>;
- 	tx_delay = <0x21>;
- 	status = "okay";
- };
-@@ -293,9 +290,6 @@ &eth1m0_rx_bus2
- 		     &eth1m0_rgmii_clk
- 		     &eth1m0_rgmii_bus
- 		     &ethm0_clk1_25m_out>;
--	snps,reset-gpio = <&gpio3 RK_PA3 GPIO_ACTIVE_LOW>;
--	snps,reset-active-low;
--	snps,reset-delays-us = <0 20000 100000>;
- 	tx_delay = <0x20>;
- 	status = "okay";
- };
-@@ -715,18 +709,32 @@ hym8563: rtc@51 {
- };
- 
- &mdio0 {
--	rgmii_phy0: phy@1 {
--		compatible = "ethernet-phy-ieee802.3-c22";
-+	rgmii_phy0: ethernet-phy@1 {
-+		compatible = "ethernet-phy-id001c.c916";
- 		reg = <0x1>;
- 		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-+		assigned-clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-+		assigned-clock-rates = <25000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rgmii_phy0_rst>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
- 	};
- };
- 
- &mdio1 {
--	rgmii_phy1: phy@1 {
--		compatible = "ethernet-phy-ieee802.3-c22";
-+	rgmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-id001c.c916";
- 		reg = <0x1>;
- 		clocks = <&cru REFCLKO25M_GMAC1_OUT>;
-+		assigned-clocks = <&cru REFCLKO25M_GMAC1_OUT>;
-+		assigned-clock-rates = <25000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&rgmii_phy1_rst>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_LOW>;
- 	};
- };
- 
-@@ -786,6 +794,16 @@ rtc_int: rtc-int {
- 		};
- 	};
- 
-+	network {
-+		rgmii_phy0_rst: rgmii-phy0-rst {
-+			rockchip,pins = <2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		rgmii_phy1_rst: rgmii-phy1-rst {
-+			rockchip,pins = <3 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pcie0 {
- 		pcie0_rst: pcie0-rst {
- 			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
+Michael Trimarchi (1):
+  Input: imx6ul_tsc - fix typo in register name
 
----
-base-commit: 02761df1f09ec1d3e03ec2c68c6c5c85955dd8f4
-change-id: 20250910-rk3576-evb-network-b09cb0260011
+ .../input/touchscreen/fsl,imx6ul-tsc.yaml     |  18 +++
+ drivers/input/touchscreen/imx6ul_tsc.c        | 112 +++++++++++-------
+ 2 files changed, 86 insertions(+), 44 deletions(-)
 
-Best regards,
 -- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+2.43.0
 
+base-commit: 9dd1835ecda5b96ac88c166f4a87386f3e727bd9
+branch: tsc_de_glitch
 
