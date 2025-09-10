@@ -1,213 +1,143 @@
-Return-Path: <devicetree+bounces-215252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90257B50FF0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:47:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4955AB50FFB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:52:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F2B27A516D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:45:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336A41B27519
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB4730B515;
-	Wed, 10 Sep 2025 07:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EA130BF5A;
+	Wed, 10 Sep 2025 07:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jDeaDYDj"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="UpAiqXB3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9EA022333B;
-	Wed, 10 Sep 2025 07:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E52325CC69;
+	Wed, 10 Sep 2025 07:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757490429; cv=none; b=Y89cPWMVwu5+QySGN4r+2I2vhYyvaKz5C9gYRVUGncK41ShJyiUdmjR/+6C/2zKANpC+cRQzlWdvYduwdbApIxab16MmfNQME+A4/edVF+EsiANjnoBaC0IT0h0XnesE6jix8XlOd3mLn2kx+11P5ROI1AZi6KElQdNlpuTT1ZU=
+	t=1757490742; cv=none; b=ZQnZQovwAVvYVqpKGTZoKcJ/tITf4K/W+kHSVX2x2BQ9mSe6q55IEc76WxH5SSicHkfjjbEkJk39fyhudAefU0OIsi7cepveohKYBNN0x8eOQHHs3MtP5IJ6D2tJN8mJxdMEaBumD1W1JCY3XmgHwBo+ziuefbsLKltiacNsmUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757490429; c=relaxed/simple;
-	bh=liVmnk8QHJ8DU7cSnweepl2EzqreCFPaY8VRfmTnkmY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TjSkMpYGpvBaQpSmr3Ztxix8AMBp8u/0ONavtf61161eSh9NI74QxpV1K4N3/ON56LKoLP95qPuB0v/Hz0R9HZDyH2oW5U7Qk2hpErgK10RkWYnLsc+xDVxmHrHU7HNZ4pt5CWWGO4K6lufpbBzpzHOm/WTQjvRCAnjCQKsBffI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jDeaDYDj; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45cb5e5e71eso33222395e9.2;
-        Wed, 10 Sep 2025 00:47:07 -0700 (PDT)
+	s=arc-20240116; t=1757490742; c=relaxed/simple;
+	bh=0t9yGEEXA3Nn31jI+sccFFY5GV7rY3i2PAjiZdNyzW8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qKfUvncmjcXldl8QznS7CKV9gOTKnkkU/c3pIXaKj/RADTDjDJet7rDwSQmo2iiXOyNY5OI348vLN0w/pLe+9RDUniARUt3d9IGdFtcSNT2PjSdfqIRXmvD6HXoKXc8Urwf5X2dnBLwIaAkfJxxe5NqKIVIDv9/dNq3Ia8ZJZzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=UpAiqXB3; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757490426; x=1758095226; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+WG/fOgOed7F+q/vykBWwKRqhGGU2/L6CsAzZkzcjHA=;
-        b=jDeaDYDjz8xjZHCBMizgQ4BkC70nHP7JimHG4M+0u/AMZnABpkhXdr6ABNI2GPpl1k
-         e8xfK/OkH70QCIjL509W7c3y9P0vvXgW2TapfMMAxdrTe6cG0IBJiRykd7EaHCCl9DhF
-         oe1MvjmJakn2bmboZCjAR07KnqEsHBkeLPv08M4b1nVmTn9gsmUOo7KgAM8M/aCMU0Ia
-         KfWgsdCmXUtOCe8aVLn4ORA9nnOEMUEeKoxBLjAK1FKcRpF2g1qLUcuT/WBz4m/MxNt/
-         MyfTWGoJdOnpkIYMzliRHtB4OImKdEALAEWztjAsnk9TTrNpUVCKMSXQlL+qGP7Ns1mz
-         Z+Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757490426; x=1758095226;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+WG/fOgOed7F+q/vykBWwKRqhGGU2/L6CsAzZkzcjHA=;
-        b=g/xMFhr/Q17GQjpB/zN9VGlxAR1cLr4KAzXc86HGHyv/zacEPkCfZgpxe3FiqTzLMX
-         5/t4oYQy3oO5r4//TYYeAj9Hw7TH4CQ2ONRYcoX9ng0HKBhXf8yMhGyvlMLGY2KkMars
-         Zv30qUf1NM8AtHpO3PR7EbQieKvkfp90GDkl2ILmaKoHOksj1BUoPc+b28xKYeQ6M3oA
-         UoZiq9SRNGEEgFQbbhNRiOYgoIb7QxnuJKbyTmAW+3i+SU/YEsTWF21+7vrhh4hTdDKA
-         52Q6qTpwX9+l51jo7k6Qc6WfFYygpPsEojXaJzxJ2b4xpMp8xKhTEuMp67KPwjYnFchA
-         ZiBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHslPSRcc/NBBqOc97+o+nPYuyRrj1rWy4LQqjmLoXdu3CkLVAQr84GvRx+TubKqZxEyWAj5kjWYV4@vger.kernel.org, AJvYcCX4OJeK6NTc4jKPUpsWrEOTD2JYH3Wbh0s+DO4e9Lc/mDGKDQKqB9aYhOFssHCMt6v752M8/5cK/d1A@vger.kernel.org, AJvYcCXCDnfB49Dqck08tl3lnUs4WCuoCujA44ogLDoqjhGLeBu83GJyReE4OgBryZg7pTRfynOmJXULajSateA7rnnfQw==@vger.kernel.org, AJvYcCXlfJSHpkaOrS/Zo5fMhFq5+aGfBJnzbUjfmOyW1rJI5vBfdBg6WLS3YlpQfwwvTRAxS2zhyzpiXW4u@vger.kernel.org, AJvYcCXqOFGvihM2RqL3H/ZsWwCnKQHKtaUGsLSkcVQsrOyIP8SLHm7zCUfKAUdv7yzZHI0BlOotTpsUhAE072Ca@vger.kernel.org
-X-Gm-Message-State: AOJu0YztD7RD+86t3u6lhCapc0A9WrHeGDPPfAtqiU6O8Y+kadbrw1Aw
-	KSTPlJvDr9NjFT6qp1AnmB+/yjqgkfrZ/HziG6cLnQPsPCNkfoeIseqY
-X-Gm-Gg: ASbGnctDWZAiWa9N1BMSjVz5T/XbG9B3wFbHmyeKU0QkJH+rXr5LM4o9ezawsp4fdK/
-	+Ap7xYpcvyySH2uXcVBe9ZTCoO2I3EfDc2VuO9Q37tPfHDM7bPS1CjGhhzYrmv7Zz6xmuDRoE5Q
-	iDAIfVnSfI2QJHkg9f1bQBI21zoDzjPtFC9aKBYd86795Y7ezlTbHxiGn4wm2UgThBrLyUE5g5f
-	r7j9DeDDtReP7AxkQvm/+HWhWbu5fLDvq1gQgueECzFDqveFrktM0AS7GM3IdBWpb5G7GAJ9/eB
-	VD5Riv3IWJdhwUYvr7edtOhAeDSp47zrTQKdr531/0kMu8ufmPUGqil3Zf3ntqn+hLFZwqJ9hXj
-	tsAuL2uu0MNoR7nW9zTUJqla06elM5ITy8/+qndf2SFYhrjqlnLZ/Xm8SKGhcyG243hWOUT5+7L
-	QpM/b5d9QiZSW4uF/G9qbOhm/fqcXZCYxaVO1gEL/XV2fTb6w1smqV25eXWbSvtyM5rMibNyUn8
-	w==
-X-Google-Smtp-Source: AGHT+IHCQlyEGA4dQJ+eF6cYPq/TcQfhp+X5TSRzHZoqn+jcag/Ng+LaHLBRVKb0m1OSVaCN+kNKcA==
-X-Received: by 2002:a05:600c:4f91:b0:45b:88d6:8db5 with SMTP id 5b1f17b1804b1-45ddde82fc0mr127441425e9.12.1757490425798;
-        Wed, 10 Sep 2025 00:47:05 -0700 (PDT)
-Received: from ?IPV6:2a02:8440:7135:4f4c:9000:7072:695b:3ef? (2a02-8440-7135-4f4c-9000-7072-695b-03ef.rev.sfr.net. [2a02:8440:7135:4f4c:9000:7072:695b:3ef])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df821f714sm17367435e9.16.2025.09.10.00.47.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 00:47:05 -0700 (PDT)
-Message-ID: <19e664da-df4c-4bc0-84ce-41e4364f10bc@gmail.com>
-Date: Wed, 10 Sep 2025 09:47:03 +0200
+	d=codeconstruct.com.au; s=2022a; t=1757490737;
+	bh=0t9yGEEXA3Nn31jI+sccFFY5GV7rY3i2PAjiZdNyzW8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=UpAiqXB3yiQEgpvPHKLvbnNRdMV2SHfn0p0a6v3MF12xT+5TlctwrtOaez6Zk8spA
+	 HKpx8SPWcBAY4YqjIMk26VoKiqfN5w5wLppLQellIXouGegIg0Jcf6Kp9IyriWmXN9
+	 LLRHX8UelKi428SLse1/00tT3wpIxnQlJDYHdMvIsMU567h1onU0npm/Htx10tLv2c
+	 pcAN37aMAdTZ11uKoQ2sZf/3NM6BDgVBIp/JnZ3DMe5shE9ZVpfO7dQM8ZmyyfxHRY
+	 SX8pU7R2QMK5P8ueaTyw3akgbDB00Zs3klVO2sFazRiUMlspkxMDyhX33Q6x52mLsD
+	 w2X6o2szzBrzQ==
+Received: from [192.168.68.113] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A1CD067672;
+	Wed, 10 Sep 2025 15:52:15 +0800 (AWST)
+Message-ID: <bee023bb9b2ccb3e2437e466190dff2304268db9.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 1/2] arm64: dts: nuvoton: npcm845: Add peripheral
+ nodes
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Tomer Maimon <tmaimon77@gmail.com>, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ avifishman70@gmail.com,  tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com,  benjaminfair@google.com
+Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 10 Sep 2025 17:22:14 +0930
+In-Reply-To: <20250908125938.3584927-2-tmaimon77@gmail.com>
+References: <20250908125938.3584927-1-tmaimon77@gmail.com>
+	 <20250908125938.3584927-2-tmaimon77@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/20] bus: firewall: move stm32_firewall header file
- in include folder
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Julius Werner <jwerner@chromium.org>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
- <20250909-b4-ddrperfm-upstream-v6-1-ce082cc801b5@gmail.com>
- <9a46c8a8-1d25-410c-9fa2-267eb4040390@foss.st.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-In-Reply-To: <9a46c8a8-1d25-410c-9fa2-267eb4040390@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-On 09/09/2025 14:25, Gatien CHEVALLIER wrote:
-> 
-> 
-> On 9/9/25 12:12, Clément Le Goffic wrote:
->> From: Clément Le Goffic <clement.legoffic@foss.st.com>
->>
->> Other driver than rifsc and etzpc can implement firewall ops, such as
->> rcc.
->> In order for them to have access to the ops and type of this framework,
->> we need to get the `stm32_firewall.h` file in the include/ folder.
->>
->> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->> Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
->> ---
->>   drivers/bus/stm32_etzpc.c                       | 3 +--
->>   drivers/bus/stm32_firewall.c                    | 3 +--
->>   drivers/bus/stm32_rifsc.c                       | 3 +--
->>   {drivers => include/linux}/bus/stm32_firewall.h | 0
->>   4 files changed, 3 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/bus/stm32_etzpc.c b/drivers/bus/stm32_etzpc.c
->> index 7fc0f16960be..4918a14e507e 100644
->> --- a/drivers/bus/stm32_etzpc.c
->> +++ b/drivers/bus/stm32_etzpc.c
->> @@ -5,6 +5,7 @@
->>   #include <linux/bitfield.h>
->>   #include <linux/bits.h>
->> +#include <linux/bus/stm32_firewall.h>
->>   #include <linux/device.h>
->>   #include <linux/err.h>
->>   #include <linux/init.h>
->> @@ -16,8 +17,6 @@
->>   #include <linux/platform_device.h>
->>   #include <linux/types.h>
->> -#include "stm32_firewall.h"
->> -
->>   /*
->>    * ETZPC registers
->>    */
->> diff --git a/drivers/bus/stm32_firewall.c b/drivers/bus/stm32_firewall.c
->> index 2fc9761dadec..ef4988054b44 100644
->> --- a/drivers/bus/stm32_firewall.c
->> +++ b/drivers/bus/stm32_firewall.c
->> @@ -5,6 +5,7 @@
->>   #include <linux/bitfield.h>
->>   #include <linux/bits.h>
->> +#include <linux/bus/stm32_firewall.h>
->>   #include <linux/bus/stm32_firewall_device.h>
->>   #include <linux/device.h>
->>   #include <linux/err.h>
->> @@ -18,8 +19,6 @@
->>   #include <linux/types.h>
->>   #include <linux/slab.h>
->> -#include "stm32_firewall.h"
->> -
->>   /* Corresponds to STM32_FIREWALL_MAX_EXTRA_ARGS + firewall ID */
->>   #define STM32_FIREWALL_MAX_ARGS        
->> (STM32_FIREWALL_MAX_EXTRA_ARGS + 1)
->> diff --git a/drivers/bus/stm32_rifsc.c b/drivers/bus/stm32_rifsc.c
->> index 4cf1b60014b7..643ddd0a5f54 100644
->> --- a/drivers/bus/stm32_rifsc.c
->> +++ b/drivers/bus/stm32_rifsc.c
->> @@ -5,6 +5,7 @@
->>   #include <linux/bitfield.h>
->>   #include <linux/bits.h>
->> +#include <linux/bus/stm32_firewall.h>
->>   #include <linux/device.h>
->>   #include <linux/err.h>
->>   #include <linux/init.h>
->> @@ -16,8 +17,6 @@
->>   #include <linux/platform_device.h>
->>   #include <linux/types.h>
->> -#include "stm32_firewall.h"
->> -
->>   /*
->>    * RIFSC offset register
->>    */
->> diff --git a/drivers/bus/stm32_firewall.h b/include/linux/bus/ 
->> stm32_firewall.h
->> similarity index 100%
->> rename from drivers/bus/stm32_firewall.h
->> rename to include/linux/bus/stm32_firewall.h
->>
+SGkgVG9tZXIsCgpPbiBNb24sIDIwMjUtMDktMDggYXQgMTU6NTkgKzAzMDAsIFRvbWVyIE1haW1v
+biB3cm90ZToKPiBFbmFibGUgcGVyaXBoZXJhbCBzdXBwb3J0IGZvciB0aGUgTnV2b3RvbiBOUENN
+ODQ1IFNvQyBieSBhZGRpbmcgZGV2aWNlCj4gbm9kZXMgZm9yIEV0aGVybmV0IGNvbnRyb2xsZXJz
+LCBNTUMgY29udHJvbGxlciwgU1BJIGNvbnRyb2xsZXJzLCBVU0IKPiBkZXZpY2UgY29udHJvbGxl
+cnMsIHJhbmRvbSBudW1iZXIgZ2VuZXJhdG9yLCBBREMsIFBXTS1GQU4gY29udHJvbGxlciwKPiBh
+bmQgSTJDIGNvbnRyb2xsZXJzLiBJbmNsdWRlIHBpbm11eCBjb25maWd1cmF0aW9ucyBmb3IgcmVs
+ZXZhbnQKPiBwZXJpcGhlcmFscyB0byBzdXBwb3J0IGhhcmR3YXJlIG9wZXJhdGlvbi4gQWRkIGFu
+IE9QLVRFRSBmaXJtd2FyZSBub2RlCj4gZm9yIHNlY3VyZSBzZXJ2aWNlcy4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBUb21lciBNYWltb24gPHRtYWltb243N0BnbWFpbC5jb20+Cj4gLS0tCj4gwqAuLi4v
+ZHRzL251dm90b24vbnV2b3Rvbi1jb21tb24tbnBjbTh4eC5kdHNpwqDCoCB8IDcwMiArKysrKysr
+KysrKysrKysrKy0KPiDCoC4uLi9ib290L2R0cy9udXZvdG9uL251dm90b24tbnBjbTg0NS5kdHNp
+wqDCoMKgwqAgfMKgwqAgNyArCj4gwqAyIGZpbGVzIGNoYW5nZWQsIDcwOCBpbnNlcnRpb25zKCsp
+LCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbnV2
+b3Rvbi9udXZvdG9uLWNvbW1vbi1ucGNtOHh4LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL251
+dm90b24vbnV2b3Rvbi1jb21tb24tbnBjbTh4eC5kdHNpCj4gaW5kZXggMjQxMzM1MjhiOGU5Li43
+ZjEyMGRhMzMxMGEgMTAwNjQ0Cj4gCgoqc25pcCoKCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGZpdTE6IHNwaUBmYjAwMjAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
+Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmYjAwMjAwMCAweDAgMHgxMDAwPjsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJj
+b250cm9sIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGNsb2NrcyA9wqAgPCZjbGsgTlBDTThYWF9DTEtfU1BJMT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1uYW1lcyA9ICJjbGtfc3BpMSI7Cj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5h
+bWVzID0gImRlZmF1bHQiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgcGluY3RybC0wID0gPCZzcGkxX3BpbnM+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RhdHVzID0gImRpc2FibGVkIjsKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGZpdTM6IHNwaUBjMDAwMDAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
+Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhjMDAwMDAwMCAweDAgMHgxMDAwPjsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJj
+b250cm9sIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGNsb2NrcyA9wqAgPCZjbGsgTlBDTThYWF9DTEtfU1BJMz47Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1uYW1lcyA9ICJjbGtfc3BpMyI7Cj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5h
+bWVzID0gImRlZmF1bHQiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgcGluY3RybC0wID0gPCZzcGkzX3BpbnM+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RhdHVzID0gImRpc2FibGVkIjsKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGZpdXg6IHNwaUBmYjAwMTAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
+Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmYjAwMTAwMCAweDAgMHgxMDAwPiwKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDwweDAgMHhmODAwMDAw
+MCAweDAgMHgyMDAwMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJjb250cm9sIiwgIm1lbW9yeSI7Cj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPcKgIDwmY2xrIE5QQ004
+WFhfQ0xLX1NQSVg+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgY2xvY2stbmFtZXMgPSAiY2xrX2FoYiI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJsZWQiOwo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqB9OwoKQ2FuIHlvdSBwbGVhc2UgYXVkaXQgdGhlIHBhdGNoIChh
+bmQgdGhlIHJlc3Qgb2YgdGhlIGR0c2kpIHRvIG1ha2Ugc3VyZQphbGwgbm9kZXMgYXJlIG9yZGVy
+ZWQgYnkgYXNjZW5kaW5nIHVuaXQgYWRkcmVzcywgYXMgcGVyIHRoZSBEVFMgc3R5bGUKZ3VpZGU/
+CgpodHRwczovL2RvY3Mua2VybmVsLm9yZy9kZXZpY2V0cmVlL2JpbmRpbmdzL2R0cy1jb2Rpbmct
+c3R5bGUuaHRtbCNvcmRlci1vZi1ub2RlcwoKQW5kcmV3Cgo+ICsKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgbWM6IG1lbW9yeS1jb250cm9sbGVyQGYwODI0MDAwIHsKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibnV2
+b3RvbixucGNtODQ1LW1lbW9yeS1jb250cm9sbGVyIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmMDgyNDAwMCAweDAgMHgxMDAw
+PjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVy
+cnVwdHMgPSA8R0lDX1NQSSAyNSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCgoqc25pcCoK
 
-Hi Gatien
-
-> As the firewall header is moved to a dedicated firewall directory,
-
-I don't move it to a dedicated firewall directory just to the "bus" 
-directory where the "stm32_firewall_device.h" header file is already 
-located.
-
-> maybe it would be coherent to create the same kind of directory
-> for the sources as non-buses drivers use it. I can test it on my
-> side if you're willing to make the change.
-
-Do you mean create an include/linux/bus/firewall/ directory ?
-
-Best regards,
-Clément
 
