@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-215175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FBBB50B1E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:36:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A74B50B23
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:36:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A83387B3552
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C2B1C6027B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E5324166E;
-	Wed, 10 Sep 2025 02:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E84F18E1F;
+	Wed, 10 Sep 2025 02:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L325wlde"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2DaKw3K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0115018E1F;
-	Wed, 10 Sep 2025 02:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BF8241673;
+	Wed, 10 Sep 2025 02:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757471770; cv=none; b=FYb2mzKQouMkwiUxy0mTJHhuGssEUpekZu84dq5SnD4P0CiVgB2PKm4Ivuajy+OYOtCL7MnTD+47FvXfvrqLIO6PXfP7s4s9ckBVav+5ZItXC94oJR0QC8y1wfpWMGU1PpCFctnDgoV/8mZ63oITLyCaz+FADveoW7Z7x8wykcI=
+	t=1757471799; cv=none; b=TBj4yUZjh1P5aa/hyE4uTt5RK9QIQ/99Ov5mbADO+6jUvfkrUAQ56KYLIMXq1mNOvDLP08i0FMHqW+2L3R5EGd5X3avAXKVOaf8CotXtuunNAzpxOW1ZwfZDERxcPwkzfyxQUv3H4sVrZJp/okYNiJzVcdRwv0aDPAyJmr3SQYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757471770; c=relaxed/simple;
-	bh=0H7itlJ0+/GdkQTyOfCGv/vZ5r2kkd58PNJCMOwIJPY=;
+	s=arc-20240116; t=1757471799; c=relaxed/simple;
+	bh=7LXy0U+1fCW8qn4duZDli2vtbqHftWoW8ljc8W9VqPg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pAj4Y7Z66ratgwDaUo+GZgixvEPYAYtritUTUZYK+iTFNaeEqqZZT97LcQKfxiaQxZr6dVDEDU1hQBqqOFheWLm4qhfh6+KfFir0Pzd1O4nAexVBC2ddQCjUa1ADNB3gUrGXdSx3OsA0YwwZRjJ6cAJc9ZXuK5PISrex006PhaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L325wlde; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FE81C4CEF4;
-	Wed, 10 Sep 2025 02:36:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQ+L8stDg9ERKxd/zF0T5LUl2Skymyqst/JGc/Z566mGIw0ndzvPQ8Dn3tjfinAiYiKAsA9TisgOYEx3nAY1araHwsiV+MO34ou+bPpXaYiE1oN+l3z9hnRwTxPo7GadVoNgQgIZYtq9gg/ShCpB1PCbKffi68t8fpRUIp25iuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2DaKw3K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F905C4CEF4;
+	Wed, 10 Sep 2025 02:36:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757471769;
-	bh=0H7itlJ0+/GdkQTyOfCGv/vZ5r2kkd58PNJCMOwIJPY=;
+	s=k20201202; t=1757471799;
+	bh=7LXy0U+1fCW8qn4duZDli2vtbqHftWoW8ljc8W9VqPg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L325wlde+o9ZmWvmWairncEVADIUea2Ju4p99hajBelDi4xgT8RXcWrQ18nHr605C
-	 neIKMSh6yiUwpoa7wXFDhWs+hSrRsgTOtn+CMgE2f1IvdZUxg2phyOJ1Etep3TDC/N
-	 8oq4iepC9MpB13hUVhyoewHxAENJ3VAKOWtZSXRHXvEGNWcZxQfGU13yno1lFhpM+7
-	 iZWNmoroilSgZblXLW0sjd8ri5tgw1k6eUDzTeG+DS71qYKkmb34Ye22AuAZKgjrvr
-	 n8J3YJDEnBg2JmeChRY97rnOQW1PBOr8C8Mp9Z0YfCXDRNdup40K58GCxidGOH87lt
-	 0yYLSMmwuX4qA==
-Date: Tue, 9 Sep 2025 21:36:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Harikrishna Shenoy <h-shenoy@ti.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	sjakhade@cadence.com, yamonkar@cadence.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devarsht@ti.com, u-kumar1@ti.com,
-	s-jain1@ti.com
-Subject: Re: [PATCH v4] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for DSC
-Message-ID: <20250910023608.GA3662482-robh@kernel.org>
-References: <20250909054622.1439487-1-h-shenoy@ti.com>
+	b=h2DaKw3Kbm7DwDwBet6VuOzRh1p9IvD9VDR9F944q9dlYZSqxMYGNlyTvk9MTte+7
+	 u5BARDsa+73XYVnGXFs8qyG2/ljE0A1KIYfYjjFH5ciad344dxxDrnM0fuchfOnpis
+	 Px0Sf4jm1QAYfEPTVXpNBfmtho32tCuiMpYo32H+xhQZjQncLpj77HOesldWh6JJGg
+	 gprH2sK0qyWAgIsNIMQsmJLrDueoe81IV3wLkamFx65c0NhRUWwicoD+1SkjXZK9je
+	 f6OeMEem1q3w5Hkk338Ljpd++tffbV5hYYdXfR+OwiH1FuSy4Ddy0MNfw2xtYlKBsN
+	 xsAfJXeMIrwSQ==
+Date: Tue, 9 Sep 2025 21:36:38 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-input@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Henrik Rydberg <rydberg@bitmath.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Nick Dyer <nick@shmanahar.org>,
+	Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: maxtouch: add common
+ touchscreen properties
+Message-ID: <175747179838.3665416.6625910946432624617.robh@kernel.org>
+References: <20250909054903.11519-1-clamor95@gmail.com>
+ <20250909054903.11519-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,77 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250909054622.1439487-1-h-shenoy@ti.com>
+In-Reply-To: <20250909054903.11519-2-clamor95@gmail.com>
 
-On Tue, Sep 09, 2025 at 11:16:22AM +0530, Harikrishna Shenoy wrote:
-> From: Swapnil Jakhade <sjakhade@cadence.com>
+
+On Tue, 09 Sep 2025 08:49:02 +0300, Svyatoslav Ryhel wrote:
+> Since atmel,maxtouch describes touchscreens too, it should include common
+> touchscreen properties.
 > 
-> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
-> DPI/DP bridge.
-> 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
-> Changelog v3 -> v4:
-> -Remove maxItems as item list is mentioned for reg-names, resolves 
-> dt_bindings_check warning.
-> Log link- <https://gist.github.com/h-shenoy/5391ea514bb58a6cba3f39248d20916b>
-> Link to v3- https://lore.kernel.org/all/20250908054609.1113360-1-h-shenoy@ti.com/
+>  Documentation/devicetree/bindings/input/atmel,maxtouch.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
->  .../bindings/display/bridge/cdns,mhdp8546.yaml | 18 ++++++++++++++----
->  1 file changed, 14 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index c2b369456e4e..b40630de6d89 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -27,6 +27,8 @@ properties:
->            Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->        - description:
->            Register block of mhdptx sapb registers.
-> +      - description:
-> +          Register block for mhdptx DSC encoder registers.
->  
->    reg-names:
->      minItems: 1
-> @@ -34,6 +36,7 @@ properties:
->        - const: mhdptx
->        - const: j721e-intg
->        - const: mhdptx-sapb
-> +      - const: dsc
->  
->    clocks:
->      maxItems: 1
-> @@ -100,18 +103,25 @@ allOf:
->        properties:
->          reg:
->            minItems: 2
-> -          maxItems: 3
-> +          maxItems: 4
->          reg-names:
->            minItems: 2
-> -          maxItems: 3
-> +          items:
-> +            - const: mhdptx
-> +            - const: j721e-intg
-> +            - const: mhdptx-sapb
-> +            - const: dsc
->      else:
->        properties:
->          reg:
->            minItems: 1
-> -          maxItems: 2
-> +          maxItems: 3
->          reg-names:
->            minItems: 1
-> -          maxItems: 2
-> +          items:
-> +            - const: mhdptx
-> +            - const: mhdptx-sapb
-> +            - const: dsc
 
-Still obviously not tested with a DT having this. Because this 
-contradicts the top-level schema. Both cannot be true.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
