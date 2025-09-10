@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-215309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53275B511A8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:41:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEC6B511B5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:43:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09261168E27
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:41:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D3424E2DA5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328AC3101D9;
-	Wed, 10 Sep 2025 08:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753AF311598;
+	Wed, 10 Sep 2025 08:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MpRI2CqC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bx1M4qmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8DD2BE7D5;
-	Wed, 10 Sep 2025 08:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69649310628
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757493707; cv=none; b=ZQ7u8jcNEPHrO/13mqUcXPJfIBK4G0sqawwESK456ugccrEW3O18A2xse0viNW5LqF0Bs5ONZXjueWwBj/nrMBxG2b/BDlBO9TfuO9dEJRvLchsh9rFhk6GwMO44prV55Dl/2bn6NdAL7dqpQZ3TJc6II5U5dKuS0LFneVZDR4Q=
+	t=1757493770; cv=none; b=cFn3DhOMOSX2n01h4bgBZNE2XQURF3qd6omNdHWxBSm5XSvpi6V72yyyyO/kM1Vr2GmfDHm6y0shZOscXPhyD1Tij1BR3ZLyg3S1TznNmAum+Mt84KmkbPtxTrzJij/nybtYVgulNNEbvYnvYhjMIF8MJd9uwZNReyYnPmpdfvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757493707; c=relaxed/simple;
-	bh=WXEEu67YxLZJ0AVlikwwITZAXBcBgZXrS90WmG7/K0M=;
+	s=arc-20240116; t=1757493770; c=relaxed/simple;
+	bh=sI6ml4hTh+NeJSK15fW+krN1+UqokRd841kdomv2beQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kfVvCYexzPipzCUd6pIxr8Op50zy3FCSXvhvU+KPvhKx5Q4NK/y87nLFlZXjcWh2M7rVYqzNlHexgqmrL3lljiFVjoQ6piwkZ2pdshEiHvPTzkk5eAZv9fC8VyY6ceAaZWh5cAJwiJle9rZ3RDiA8YukCN38k2FV/p+3tpDCFSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MpRI2CqC; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so40558585e9.0;
-        Wed, 10 Sep 2025 01:41:45 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=en1GY4Yj1lL6PzAp7XnXhuUh51vI5STtvY4LUwpWpFNseDpGjhPbrEq7sIt8M6AJ/RKlFFgQbyCsnlC6AYkzqNnV7NdT7z5FE6fYj7OAwtp0UEdPtCzDJHAN3LYmgIFzNJ7HIt4cmz/AQlbatpEWIZbi+k+2j8dZstpBuwr1d4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bx1M4qmF; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45df656889cso6290235e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 01:42:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757493704; x=1758098504; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=linaro.org; s=google; t=1757493766; x=1758098566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P3IKUpQfaLekPKjen96M//7ifX26lwnIh4aj6a3++lk=;
-        b=MpRI2CqCBsG0v1sLGeXXpbe6zcal6XaDBbzaNfxzVyYHxTvynE5srpo2ZHAIFIjxAj
-         nTa2CVx1SQG0XyMRnaLQfxc9x+O0hdSFZYDeWPte2YNxZDdfm+F5+ZVIN1b7HMyr69H8
-         4hkoGm/7nLtQ9OVRgC490djfSXkK5RpDkNmz7Q3Ktzm71Ujg3pflDBqEtdNnkhqgJ7Qx
-         K7Wiw23lm8cwi4gHw5Cc44HpFJBf7KzG+5yag1nLPzNCEcsATHNefCMngBJJvQ0EzQy+
-         K5fG3IbBnKsI4rae88EaoTTsOUd+BpOkHzer5jy6k854auZM5Zlev0N+ybodTDUD2Pdx
-         vFcA==
+        bh=lquJ5PztwzuglOeRIwX9xUr/VMazVnds3G/8YT7Fvc4=;
+        b=Bx1M4qmFf/fvaj3xSI0o53J5qtElAsxAMW1njKe6tJotp2Wb/bA4qKFPyEtv7gXFdj
+         8N4jddmgJAxc9vNGVLYGK1UefzsF45pDTMRResB/tREqius0PgCZX40EZqfdXzvPc5uA
+         l0f/6i4hCZqC7Xfqe4u2yQ4UEPurbbJYkDxtF96QC7e361+U+DurXtgYBBwg7E0mK9WO
+         At9ECdgJOu2PLhWbvjhGxomW/tRoSr/5CvK5HOz45T54WwhH1utv8jA/Ygn9PjfgHkQj
+         I5QQeLK1xYSZKCM9ECgV8CyJFI+79OTFB0FetDgbvylR1agpfuMZf0S23ra73H6uI/gF
+         KdWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757493704; x=1758098504;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1757493766; x=1758098566;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P3IKUpQfaLekPKjen96M//7ifX26lwnIh4aj6a3++lk=;
-        b=f8pImHltOEx6MiGT/kPYJn9GMSd34OQ++jBMDUmFPQPXQJZPpABbWsnY4TFI6UJ3dU
-         UZA6UQ97FefxdivRJCimaUqePwmQQlLtpYNCaPRvAxdpUsoX+CSh3rPqN0EP6TTrLeyg
-         iWdNKKqhx8ngV7DP+r4AtRc4wuD5ysWqDOsgPBW0boUYo0lVa3/ldg2qGo26JRdzFfzq
-         3Sy8bTGvVzMulEY/ftPbggPTji3rwoghuIWQZzO3a1D/j6/b3s3gXc/dxPhn1zpiKfzk
-         gUGf5vHGzxYjOSSFxhb8BVyFZzJPt0+e5ThQgMk4rylnIZSrZhTK2lcYoBoQdsU+/XVX
-         IuPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUR3VoLNvesKy7Cob8Fq1jYWGGbTDRjhC70fcIEoTyheOuN/8PoYZ+9zelcrK6TJbLvZOLADZZXMpHy@vger.kernel.org, AJvYcCVvB7qT6V+1rE3WIIF+te9wpB9nZi+KD++uqJKZQM/ZSWHNVvTajhLELRcgkBYasSaTM4O7sQIwqboatY7u@vger.kernel.org, AJvYcCWnmPuq0aRBpw1IfpMZS6Xf7X9MbLiLY9K1Dv/JBZPhT1DC0SovNTWVj0iKOvC09188hX3hnzC15Y3B@vger.kernel.org, AJvYcCWwusylzWsjpaSw9si7Qh58UTzAHAkwBUgkweomF7AH9EsKYHOnpTDVCMBKAZMyGSzOuIv5Yn5h+fcA@vger.kernel.org, AJvYcCXAFC3GwuTw8TBG+pjsCEwbndYDIN/GuClaSUp+Q6GVsJQIgSfrmEnfo6LTAccZJNtxQGStrXYaVuubI7YC5L8uGg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxqk7XqjYVLz+9aNHh4uT2fICD/1kYCEzMNw318KZsLWJN2OqtQ
-	64rtfw7u+get86A+LC/FOYxhnpOJ+wqZlLvgNDOL4RP8p7a/BifMpKR3
-X-Gm-Gg: ASbGncuaf16pYCO9GRVGIPbop1HNG0vodPSjHEDppUjiZ5fVDKrLFLNI9GFKMdY1Rp5
-	l2uDLnu/wWXPRGiSwTEH1awPR5N9Tr6miXm0FsFX66RHla4Nzpv1354MvU07Kj5nYLs9yZqfDZT
-	WEzbyJOQHBMSDuLgGYdVyLvJ1CrqVCwtCkZhuJhXbSOeJwyorhBLfCBfCHS2cganWQdI0BIuUvD
-	0DbA8G9GaVLLll1sHRYaNn4CEYkPE8Fv8xg4aCPXyyV3TxyKARwZ4MALXGC0G9AmE1VU5v+cnSC
-	Y55b8IZ+5xy76EfF/JvbR+sNlgmtHwS0ihcG77x0MlPe/R8OYXIQCYu8S2e4461KAfbK0plJTdB
-	To6fZtL9Vs9PU5ckLWG/zqHh4p6baCimHQiFi63H4CBDYmvbCCQGQbYkPlnP3sJWAC8pQGT5zND
-	T5gBM6WoILQvrbsyRSfnIJncWwtniILHPXFJJUWOweEBHZqPcpp+lrPuAIz3dmXzm47X1HpmrcD
-	A==
-X-Google-Smtp-Source: AGHT+IFAC+KaKdWZCDt0F29FwBEVeFET6FJu2DQLhogXKqRlrNmNAmvGOz7dmZmfwY3vjWPcfaiR9g==
-X-Received: by 2002:a05:600c:1387:b0:45b:9c93:d237 with SMTP id 5b1f17b1804b1-45dddeb93f1mr119978935e9.14.1757493703536;
-        Wed, 10 Sep 2025 01:41:43 -0700 (PDT)
-Received: from ?IPV6:2a02:8440:7135:4f4c:9000:7072:695b:3ef? (2a02-8440-7135-4f4c-9000-7072-695b-03ef.rev.sfr.net. [2a02:8440:7135:4f4c:9000:7072:695b:3ef])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df81d3ee4sm19382275e9.6.2025.09.10.01.41.41
+        bh=lquJ5PztwzuglOeRIwX9xUr/VMazVnds3G/8YT7Fvc4=;
+        b=uiHMWxjS+IBqTHvvq8qQhMd/LWfmxf8v7gRY51tymEB77fml5LCC2JZIriq+PlMpQL
+         SuV65+5kPYofYDprE2xmQKUL3R+2VxKIkFKEZCz2aIwPBRY5hAnLWTK/Jc9dnH57mwuw
+         swhkIIWGSAUV6dqeEKOPzX5EpG2L0gpqThchlwoR4B0ZrOqzP3scv3P4rkIIQJP0RCRs
+         S/GnSRi+t6Ko0cu6spn+POja37QA84zv+p80Rc9+dnnYRSTWyhHqDzkxAurIOcSNuAYQ
+         rJvFnZwvb5Z6GTn4l5kyzFxG1+O+ff9foBlpNlgtz2rpxXuCwlx7e8vc4qSvzdG2nmYy
+         FHkg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9XkK124JWrRjydSovbjNc0s8YNCHoNvuKzyh1A3ACZDbLhM3mSQd/QcQWxcbkjhAuk0txOmViBEsx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdsjaQv4w4wQR6EC5lmlOIUUQkYbnu3/0CdXIZ+GyMp42yQj3J
+	P/DPs4UxPx4kO5l6ruhfsHNXVLxcbJVVBfm8Wi0SJ246X+99SLLpqwNjVs2XIN5cgz4=
+X-Gm-Gg: ASbGncvpiMf+mqJ5t14ClTPVb8BulCuADJDfd6JukIIHE7KrF/5AUkEmojqq9sxf/Yi
+	todpQb9Y16zO4FJ+D1PklzzRcCmYbzkx6hbBiBjBs5A+lI0Bv64GXhtS+VA4b8nKyjRtB+EijVz
+	l92DiDDBaitthW+3WfDcV/6/a/yDaXBs48vtIrAg1fqUNgdfBsw55FhBfJrvqgiwA85maDaboo2
+	VQT4wEH/ONNv0mhtgMDWQjcimN9I072ACpDPdQKPn0T+2cabvWgdHQcsnjZhc7KjhntgLQW1cwY
+	sd7JnckruJN2mF25PSa5itUEBmZgjyaUb2QvW7h5PoF8SNNcmEaJUuUal22YOTIHwyhiL/RdFxH
+	aVvBnVHh/e2LBjtm5p63MI6eA/UnY1PtKtQvMLXKhkJHbq9iY87ClwCYzW9MI6ckE8yY++uWjF1
+	KiZml0rlQhcBZqNei+QiA=
+X-Google-Smtp-Source: AGHT+IHVjNthO4SktB1Xz75HnDS8/BmjdCNmc8dzepzAh2MGw5GBwzE8aoUhNAen8jMgrcMcoay5OA==
+X-Received: by 2002:a05:600c:474e:b0:456:1b6f:c888 with SMTP id 5b1f17b1804b1-45dddecd894mr125340515e9.23.1757493765680;
+        Wed, 10 Sep 2025 01:42:45 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df8247acbsm19112915e9.13.2025.09.10.01.42.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 01:41:43 -0700 (PDT)
-Message-ID: <899eb863-6b6d-42f0-9e7c-e2020ee45f4d@gmail.com>
-Date: Wed, 10 Sep 2025 10:41:41 +0200
+        Wed, 10 Sep 2025 01:42:45 -0700 (PDT)
+Message-ID: <c7635e11-d606-4e65-b48e-d8c26ee7be1d@linaro.org>
+Date: Wed, 10 Sep 2025 09:42:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,56 +83,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/20] dt-bindings: memory: factorise LPDDR props into
- SDRAM props
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
- Julius Werner <jwerner@chromium.org>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jonathan Corbet <corbet@lwn.net>, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
- <20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com>
- <20250910-flat-raptor-of-temperance-5e8c7c@kuoka>
+Subject: Re: [PATCH v3 1/7] media: dt-bindings: Add qcom,qcs8300-camss
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Vikram Sharma <quic_vikramsa@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+ cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250813053724.232494-1-quic_vikramsa@quicinc.com>
+ <20250813053724.232494-2-quic_vikramsa@quicinc.com>
+ <f1e3c3a9-9929-477a-b1ad-e485c059cbc2@linaro.org>
+ <d16d40ab-8a35-4886-b11f-2eee15849e1c@quicinc.com>
+ <8c1163ad-6e65-450b-ae44-c9a71a045333@kernel.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-In-Reply-To: <20250910-flat-raptor-of-temperance-5e8c7c@kuoka>
+In-Reply-To: <8c1163ad-6e65-450b-ae44-c9a71a045333@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/09/2025 09:54, Krzysztof Kozlowski wrote:
-> On Tue, Sep 09, 2025 at 12:12:12PM +0200, Clément Le Goffic wrote:
->> From: Clément Le Goffic <clement.legoffic@foss.st.com>
+On 10/09/2025 08:42, Krzysztof Kozlowski wrote:
+> On 10/09/2025 09:26, Vikram Sharma wrote:
 >>
->> LPDDR and DDR bindings are SDRAM types and are likely to share the same
->> properties (at least for density, io-width and reg).
->> To avoid bindings duplication, factorise the properties.
+>> On 9/10/2025 12:35 PM, Krzysztof Kozlowski wrote:
+>>> On 13/08/2025 07:37, Vikram Sharma wrote:
+>>>> Add the compatible string "qcom,qcs8300-camss" to support the
+>>>> Camera Subsystem (CAMSS) on the Qualcomm QCS8300 platform.
+>>>>
+>>>> The QCS8300 platform provides:
+>>>> - 2 x VFE (version 690), each with 3 RDI
+>>>> - 5 x VFE Lite (version 690), each with 6 RDI
+>>>> - 2 x CSID (version 690)
+>>>> - 5 x CSID Lite (version 690)
+>>>> - 3 x CSIPHY (version 690)
+>>>> - 3 x TPG
+>>>>
+>>>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>    .../bindings/media/qcom,qcs8300-camss.yaml    | 336 ++++++++++++++++++
+>>>>    1 file changed, 336 insertions(+)
+>>> So it turns out this code is wrong and you already sent fixes for it.
 >>
->> The compatible description has been updated because the MR (Mode
->> registers) used to get manufacturer ID and revision ID are not present
->> in case of DDR.
->> Those information should be in a SPD (Serial Presence Detect) EEPROM in
->> case of DIMM module or are known in case of soldered memory chips as
->> they are in the datasheet of the memory chips.
->>
->> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+>> Hi Krzysztof,
+>> Thanks for your comments. These bindings are tested with TPG (Test Pattern Generator), As camera sensor testing was not possible at that point.
 > 
-> Is this email defunct now, that you add second SoB?
+> You cannot test bindings with TPG. It's impossible.
+> 
+>> This is because Monaco-evk kit was not ready which can be used to enable sensor.
+>>
+>> These Bindings are complete in its own, If someone want to use TPG.
+> 
+> No. You do not understand - they are not complete if you add new
+> properties to them!
+> 
+> How bindings could be complete if you add now supplies!?!?
+> 
+>>
+>> My latest update in these bindings are for camera sensor enablement which needs supplies too.
+>>
+>> Please let me know if this justification works to accept these bindings it its current form and add supplies as a separate patch.
+> 
+> NAK. Read writing bindings doc. Or internal docs.
+> 
+> Best regards,
+> Krzysztof
 
-Yes, but I still want to upstream it and was thinking to keep the 
-"original" author even if it is me.
-Am I wrong here ? What should I do ?
+@Vikram
 
->> Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
+Could you send an updated dt-bindings with the supplies included ASAP as 
+a v4 of this series ?
 
+The -supplies in your email here look fine
 
+20250909114241.840842-5-quic_vikramsa@quicinc.com
+
+Otherwise we will have to drop this binding and the associated driver 
+changes.
+
+---
+bod
 
