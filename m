@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-215505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF06B51ABA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:03:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B78B51AD5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67FB55630DA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:56:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3774B5E384A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F8B337694;
-	Wed, 10 Sep 2025 14:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF6D329F0A;
+	Wed, 10 Sep 2025 14:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dN0wJOtD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LqLch/HL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1BD32C33D;
-	Wed, 10 Sep 2025 14:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5C7329F03;
+	Wed, 10 Sep 2025 14:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757515720; cv=none; b=ShG2wkfMPf7IR5rayU8Omh6UYAwU0JfHExCCAZR2/J2TDxzQz+daITRzInc4Rmd5qFT3JqpR4MPmG7HAE8v8KyTm4Im3RllqHyl2v+RdgF38hdH8By/JVmqE606WKgeZUchEP0fRy/fjgGDt/MGFWFNjsCRLNK4EyNhwwky4fio=
+	t=1757515972; cv=none; b=Obl1GX+ezr/rCewGn9oisGCBakYDX93KedtBvCv8SkuhOeQBWtPqBiMz9uUtUoT/e7XazH5j5C3vi0IYXfi3WCnYKOHoTqOeYyGle5gYvboNwz0kpeg3l9yybRnjpZ+fYIKZ50ES4rH9tkirflIqLXjCA3JKSFeuJyE9teU/w7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757515720; c=relaxed/simple;
-	bh=YlY//Pvz8+fMkbtb+RnIB4jbU50kH014LcVifhtNo2k=;
+	s=arc-20240116; t=1757515972; c=relaxed/simple;
+	bh=/D9w36xr3vyYJAw7zMSUaDO22thiw41rjUYxYDxD94w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jr8EBXT8dspMPMMTORVXWcI78b84bRJMceN6i4rrmr8ymn118nqEnsWSyRIzTpkv7fo69sMhP/MEHhC6mSVcoqhwuKBfrS106N0qOO7p4LReXxQ/qhzutZE5syDHYEi19xw3NyHRdcpxS6Dza2/CUAKWwHio+agO32pQokjrSO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dN0wJOtD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607FFC4CEF7;
-	Wed, 10 Sep 2025 14:48:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dKngQf4gfnXp+ywO9FewLQtZQ+YOWW71AV3iGyvG4lvhHjliz70YBnECJrJu50otL97Cn4VlC0afmu4gXv1spOtIUgd0pibetIL0um668mN6KBuq7MEpKr3RycWuVX1dl3pHmE+Je9ZtnZF93dkyBusg9bFuZm67lnCGU7TP7Is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LqLch/HL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A12F3C4CEEB;
+	Wed, 10 Sep 2025 14:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757515719;
-	bh=YlY//Pvz8+fMkbtb+RnIB4jbU50kH014LcVifhtNo2k=;
+	s=k20201202; t=1757515971;
+	bh=/D9w36xr3vyYJAw7zMSUaDO22thiw41rjUYxYDxD94w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dN0wJOtDOVFSWz3OD3pu1qROLgPzvE1lQ4NFgkhOwW0BXocTJajpVUlj37ka45TOI
-	 d5JGpAxX43CCT1KuHn9YxPJNbmVfqR2tmf6WKjLdgLvQqauln+6jNDmw+oN3Rj28e1
-	 oC6UyhzMdvt3/Sd9xH7P8SZtPxXUcyM/w5wFd/kh+V6Ez/eE9nr6rXkmQWZZXZdll9
-	 ggegkxc6PqC4hwI5vVRm1xlhqGOclA/5VPzHdkxUcit1CG6PFldqWKUHtzjZWiPpv0
-	 l6JnNmy8/PvX4Nur68jo7PO1HmPm2QY7R/CSYK2V4/X8Gh8JJl+t7358fFaiWk6qhE
-	 DF9hdiu/FZyHg==
-Date: Wed, 10 Sep 2025 09:48:38 -0500
-From: Rob Herring <robh@kernel.org>
+	b=LqLch/HLCdVxZU2bDOU0qSlMTIaJR21hb0SaKwpyMoJRthlvSV3ctQIF6bpD8GJLn
+	 N7lUfUsSSUcfgxZAup3InvlRryXBX1hKC5NBrn0XMWE2CfCvu9w304v1yno3ulOi7L
+	 xX4UDnsiC48qJwAb+IcdQJbIFny2lCbJmlKNR3TXq1+0ZMXuA5HgzhcryQVsqsxd06
+	 y84SHJx79/GhIkL1KMm7rYNHLTX0lD6iUdXqFj66CL8BsQ3ypB+wve80QXbLyX+3IT
+	 ulYVD8L7HlPVxXJ36C88I/YEgcBu3P6nX3ivlWHk0FYB+BNuC3Si4HaJnUMZbgoaJs
+	 Scq5RGYG3WOSg==
+Date: Wed, 10 Sep 2025 09:52:50 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: document Sharp
- LQ079L1SX01 panel
-Message-ID: <20250910144838.GA4169578-robh@kernel.org>
-References: <20250909073831.91881-1-clamor95@gmail.com>
- <20250909073831.91881-2-clamor95@gmail.com>
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Ion Agorria <ion@agorria.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: tegra: add Xiaomi Mi Pad (A0101)
+Message-ID: <175751597012.31534.1884891197656872074.robh@kernel.org>
+References: <20250909074958.92704-1-clamor95@gmail.com>
+ <20250909074958.92704-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,129 +63,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250909073831.91881-2-clamor95@gmail.com>
+In-Reply-To: <20250909074958.92704-2-clamor95@gmail.com>
 
-On Tue, Sep 09, 2025 at 10:38:30AM +0300, Svyatoslav Ryhel wrote:
-> Document Sharp LQ079L1SX01 panel found in Xiaomi Mi Pad.
+
+On Tue, 09 Sep 2025 10:49:57 +0300, Svyatoslav Ryhel wrote:
+> Add a compatible for the Xiaomi Mi Pad (A0101) tablet.
 > 
 > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../display/panel/sharp,lq079l1sx01.yaml      | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml
+>  Documentation/devicetree/bindings/arm/tegra.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml
-> new file mode 100644
-> index 000000000000..1dbb4a4bb772
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/sharp,lq079l1sx01.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sharp Microelectronics 7.9" WQXGA TFT LCD panel
-> +
-> +maintainers:
-> +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> +
-> +description:
 
-Needs '>' modifier to maintain paragraph formatting.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +  This panel requires a dual-channel DSI host to operate and it supports
-> +  only left-right split mode, where each channel drives the left or right
-> +  half of the screen and only video mode.
-> +
-> +  Each of the DSI channels controls a separate DSI peripheral.
-> +  The peripheral driven by the first link (DSI-LINK1), left one, is
-> +  considered the primary peripheral and controls the device.
-> +
-> +allOf:
-> +  - $ref: panel-common-dual.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sharp,lq079l1sx01
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: regulator that supplies the analog voltage
-> +
-> +  vddio-supply:
-> +    description: regulator that supplies the I/O voltage
-> +
-> +  vsp-supply:
-> +    description: positive boost supply regulator
-> +
-> +  vsn-supply:
-> +    description: negative boost supply regulator
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  backlight: true
-> +  ports: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +  - vddio-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi0 {
-
-dsi {
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "sharp,lq079l1sx01";
-> +            reg = <0>;
-> +
-> +            reset-gpios = <&gpio 59 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&avdd_lcd>;
-> +            vddio-supply = <&vdd_lcd_io>;
-> +            vsp-supply = <&vsp_5v5_lcd>;
-> +            vsn-supply = <&vsn_5v5_lcd>;
-> +
-> +            backlight = <&backlight>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    panel_in0: endpoint {
-> +                        remote-endpoint = <&dsi0_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    panel_in1: endpoint {
-> +                        remote-endpoint = <&dsi1_out>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.48.1
-> 
 
