@@ -1,249 +1,130 @@
-Return-Path: <devicetree+bounces-215193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865EBB50BFF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6D1B50C30
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 05:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 452CB4459CA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:56:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 963FD5E7A42
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 03:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096A7248F5C;
-	Wed, 10 Sep 2025 02:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15AD25A642;
+	Wed, 10 Sep 2025 03:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ImSsWBc8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EefktYQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40502246BD8;
-	Wed, 10 Sep 2025 02:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A1C4315F;
+	Wed, 10 Sep 2025 03:06:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757472989; cv=none; b=bnQiR5PttMH+JIfhJ10URVwbV2M+SkkIfEbjDJefFswWlwaiUA1yY9rD2XBdUFuasAcEKTvWdTjvXeV9BF/sm5f7ZcpQpknD6YFbltWVOCI/bQRMwwWgiQpWGo5ejtCgd1fUjFdN8F30Btng7CGWWOj0W1z8olwRMBKr4MBdlfY=
+	t=1757473564; cv=none; b=Fc+pK8PseYCSWg7brQICad/Bok7TzCFyrsaXcXLXCUP+VQzBp7ylFqpQxEXqJa2I6qRyxBcZ+0TpUoPmZHjVEhu6N6J5uUyKT/z55W6fa6YHqJHfdqaG1Id8yvk18oIBAVLmZH4mwTbM7iwXAkeJpyJ//IDNCdyYybxV8m/0Wzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757472989; c=relaxed/simple;
-	bh=9aZWBowem9quzBxMewIkYmZOsbgydJUvO2LjN/H0tPI=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C9LJztbJ40tPcuNs3XyCpcDo9fVdj+AQ4HEnw899eZf8SQ5psVGaR2ZBB9YhjykprOAK32yqrYSV3sGhZkjZHZKEPJJeMvAus+Vm/UL7u+eMjxr539zm6RuGPvQaPZjS7XUWZkSu2CsiYbp07urz4+m4YHXswBuuama0UQHersY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ImSsWBc8; arc=none smtp.client-ip=209.85.214.182
+	s=arc-20240116; t=1757473564; c=relaxed/simple;
+	bh=gfjTr5zP2U+GyvGLNyxX4J33NOBtOA+LsVGcthn3XR8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mTE7kX37TBnrZqSVEQ38a+R/aD/sUQ4Hmpj9l5sgrYp6xjT8R2auJYWXot0bbGZxafjOPL77sWIjE+phmyvtGlCz7pXUscqQIAFitXOl6PnzFzXNCJzKyqbrSQyd2NFm/qFxLBWfAL1rGlGzZ4qkb9p/HTyZpM/dU5yTwuMb5Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EefktYQl; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-24cbd9d9f09so82071285ad.2;
-        Tue, 09 Sep 2025 19:56:28 -0700 (PDT)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-323266d6f57so7046395a91.0;
+        Tue, 09 Sep 2025 20:06:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757472987; x=1758077787; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bccMpZ/9BOkjWFOHbeJr/ZW3cHQMAN90oKmu+ORNptc=;
-        b=ImSsWBc8FLTnx56pKlA6dHUdl9HzQ5g4yCl3McTfult02hgK4Sx8sJRbX6SzXEMTT/
-         hbwHR+Ga2OXlVB8POcCXcNNwia/8ZGgEZKKR7xG8mxb/zhT3zAp9QjQEZ9tTmHQWUi+l
-         y/5JeIE+jj+ayUTtBsxUvUx2iVMOL4To311pYzbm7SBhIEa9yhFsxhjB7Q67P7QeXWRP
-         nzmCfLGYgAVjwhAcVhmDvu6334O/c5xAL7mBHqCu5SR0tWbD3nbsbyvLX93dV8GGrYYb
-         56hjn/HXWIUgU1cyENBWpcJRwsyK5s/ht9Cnh1ciRmebfSRqxDhQh9Fmg4qkcg8BdHan
-         9+dw==
+        d=gmail.com; s=20230601; t=1757473561; x=1758078361; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sQTQWVOok5Rz5EsWa62UL+1rMIHEWSusnO/rTh03xFQ=;
+        b=EefktYQldNppBJcOJj/FE7xRB+fwLuoa3RCoqfWbmNa0Wl6xcB7Qya9M69CoCCQhlP
+         5PENsHbQ7OnGUgeeZ1qbpxqM4H3Idut2ZQIISFs9XCXF2o3KTeAh+lulQdv5WQFwXBkZ
+         4N+djyPThhe0ohk/kFjRu8Osw5j3ASwzIcS5vN+igJ7TWPdO2G6FodjIFsel/PF6BlJ5
+         6g77HQzEomZI854kI14XyqNUGffp07KsmbbU1vb0gyybAndyXKer2JuURXWIYkZRnDVx
+         SOoKLCxlpwKAGkHq92kY352sXh5HbR6E22nJOhMjbfypjSAoFZzerarn9zdUpVZxJO6m
+         dZQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757472987; x=1758077787;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bccMpZ/9BOkjWFOHbeJr/ZW3cHQMAN90oKmu+ORNptc=;
-        b=boX+C4mAuqMMvpjvDB1Uhs5RQXY38ZJHg6stXt8R9wMfuIYDmRg27uMi/RWofoAi/a
-         gAuvJPQCDmFczNl3nIHPvt0JQuiv5SkNUTbfaB5QqywM95jsbHDFR/L7xPHgA14PKPGO
-         s3QWuGYc+ljUl2IGpqNAvEQ0saW+0FCfzKvzCi1BSAN+CDnRUIhD84oM0q8mGwdFFhZy
-         bxZEaaF/0+V//btC/UA7jkSU67Fl+Lv2mQriUwLuDVuSiqa+Xcr9HL82lRgtcVW8iHZf
-         eems2Aq43J2CgcvdchOdlsVJibccBsdbk31oMfZIaZrLdjr3baKSMBOg65znnKXAzDrL
-         F/ww==
-X-Forwarded-Encrypted: i=1; AJvYcCWcN0diVLSLyd1UpjcdV9mQTFKTZmnxanYlUBmOE5xnVSoMTuIGUr07sesLza7cipMhQRslq93x0kYM@vger.kernel.org, AJvYcCXN+8ZSkRveaXInp6FfYX48mSr0Dc5yX23btDwXqDcJ97ub7e17vkcZ0F3vtXdd6X1iVnEmLMDTiDHUUJYU@vger.kernel.org, AJvYcCXYT/5aS5w16rCpQNOC6ExPMVKUI2wuYU9ZiithAdJh4OnbFY/EOf674UK/xq2I5+L0CKBmwBcR678V@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzovAgZpbU8x/zQ3Tof0TgCJLTxhx3v/iivmzkNu90ajQdJJF5
-	JpWiIY7G1HxrCuaXUxoESaoRPhQwqj/ramsnLj3DHBxgCttUwqrrsxG9
-X-Gm-Gg: ASbGncs+JNLtWY44fLpwpulIKpLyHrm6o0p58D/GIo8hOLr3rR3ucmXkTbcifSi/WGz
-	K8hG2BnwTAB9gk3dP88zlP/n0SPK6Hl/PiJiioKPCzdJ0lxKCMa0VrStcSAdkR51FklUuhUF/LC
-	yHdXa4oXf5stQHEg2/VYOxV1em4HG5J1UFRFheMNX3IgLnbwSuYSkgCn+O+RK1GFPopQo1SeDCt
-	f1uCvoYYWXQdy7pO4EYRl9qqJxYnx0v+6hq267SWHP5Aan3hHZhneKocNTBeb84pJqbDbLRxgnP
-	JoJV7C7K7Z6bKCTv+Wy+71vEMYFOYFFp3nE+Ig9pGdvgmkPuDnizpXaKSfzsVXvcpO6zB59wkWX
-	0RFD2msOueLPgQDV4zCquwegAuwKPcHsd
-X-Google-Smtp-Source: AGHT+IFNBos7noDUln9W5GM7yi+/GGgz4QmYFcZtpZbyom0FkxzLpYxnYCZbcxZV/hMMSxTnIj0g7Q==
-X-Received: by 2002:a17:903:1c2:b0:249:1213:6725 with SMTP id d9443c01a7336-251753d88d0mr190803255ad.50.1757472987403;
-        Tue, 09 Sep 2025 19:56:27 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-32dbb5efe7asm650016a91.17.2025.09.09.19.56.26
+        d=1e100.net; s=20230601; t=1757473561; x=1758078361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sQTQWVOok5Rz5EsWa62UL+1rMIHEWSusnO/rTh03xFQ=;
+        b=HnULef9YxkvoXGTmnygjauZHhcRWclMwQG9A+TW0I0sVvay2UXQItmqeiJdtaQ04kO
+         c66qEiSi1sVUn+AtyCfwpRZlKG2EUNwiFnBo/WzsqSTeFJqNQU+YpPdA0OHJqTGQU5z4
+         ddrGZnIZ/qHyr5kIV1N2/ZdBhj8pxI1xxPffCzMPeJ23iplFQdsa/X5NrBTLb9FYlAmw
+         9t88VFK4k4sLHWbIvmy1ZkvPi9pIKU70ovIZLF6oNeQ0GuDgc+6Qc6Szb4oYfzanaa1d
+         +cSIPGDDBCMSxJ1b/egc3n5CInHOXkY7RUY2cL2re+noelWgJgxg6pvhuHZfoTpHiBaD
+         xlIw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQT0RV7SuP5nNPZrzbuUWe7PDwdwPRqylxlXVUUyjZVEh4eTHHoeSCBmR8kPnuaUIBdcabqrHJZeuFPWT5@vger.kernel.org, AJvYcCXX3NRcqVIU8bw4U0YIWrmSBPtG5KQkak5CI9c1shbvabPoqWBApJmfwIPvo3koZzFDMtrYlbsorjDk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyywY9B5OXPcRUtzkSDvqkKH2AxCIgGbPRnqeTuTaH656m3But5
+	kQtzMT24+WybEOgfNUmsKaUcfneIVBkPJHhehqF8a2qvtDO5ZY2VyD/y
+X-Gm-Gg: ASbGncur1O7cUCah99D5Q1U0NQmaDtVnZQXGFPj6DJ6FWcBe2UGAlAw4frc0vyrSG08
+	+uU8o+3vHIgdGKfS4N4VIQwrGFbz7FXYGHNxG2+CQBs1asipq+/++g3FSsk8vam6TIT2AJhyiTX
+	QaNGm8DpxHQi431srZHYVjHRLzTgpfSi2J1h9EUaep7k49AaMGSRAUJDYDu9a7X9Mx4IXfPO9ql
+	lS2Y8RmQA+uN6yQ2/FGESPaSZrdyr+Wz4e25jQI9bwKlUP0UHKhtpi0RomWlL8wtz51UXA4yqz6
+	DvOtR7uOo0vPZGve77h9YvWs3ouqX+MpUMUeu6tGbNG9oEoJ3FzTt2vCdw+NxXi0ywc9wLhFn6E
+	0NJwdSHp612O8WgC2b+W6zNFQxGPReodIfhVdhV6xU+vRwnxLjR0hM/frxVeHucsyaljsG/ff+0
+	C48uxlnSTeLIhlg6biAIXw2dMteYB6VsZaWE1gTzK0yNR5szDIQRSpn2A=
+X-Google-Smtp-Source: AGHT+IEQfzBjwOqCuuatAsbH0lkQs589LNfHL0lVajH292OEXnFVwAmGYUIRPLqbMCBNk93dfO2O4A==
+X-Received: by 2002:a17:90a:c2c7:b0:32b:df87:1ede with SMTP id 98e67ed59e1d1-32d43f18a2bmr19741918a91.12.1757473561477;
+        Tue, 09 Sep 2025 20:06:01 -0700 (PDT)
+Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77466290d84sm3539093b3a.65.2025.09.09.20.06.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 19:56:27 -0700 (PDT)
-Date: Wed, 10 Sep 2025 10:56:23 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicornxw@gmail.com>, kwilczynski@kernel.org, 
-	u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, alex@ghiti.fr, arnd@arndb.de, 
-	bwawrzyn@cisco.com, bhelgaas@google.com, unicorn_wang@outlook.com, 
-	conor+dt@kernel.org, 18255117159@163.com, inochiama@gmail.com, kishon@kernel.org, 
-	krzk+dt@kernel.org, lpieralisi@kernel.org, mani@kernel.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, robh@kernel.org, s-vadapalli@ti.com, tglx@linutronix.de, 
-	thomas.richard@bootlin.com, sycamoremoon376@gmail.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev, rabenda.cn@gmail.com, chao.wei@sophgo.com, 
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-Subject: Re: [PATCH v2 3/7] PCI: sg2042: Add Sophgo SG2042 PCIe driver
-Message-ID: <xmk5uvnw7mcizxpaoarvx2c2sejaz2skaiyyac7oo5y6loyjgp@5v3sldwbqpw5>
-References: <cover.1757467895.git.unicorn_wang@outlook.com>
- <162d064228261ccd0bf9313a20288e510912effd.1757467895.git.unicorn_wang@outlook.com>
+        Tue, 09 Sep 2025 20:06:00 -0700 (PDT)
+Received: from hqs-appsw-a2o.mp600.macronix.com (linux-patcher [172.17.236.67])
+	by twhmp6px (Postfix) with ESMTPS id A4845800FC;
+	Wed, 10 Sep 2025 11:10:33 +0800 (CST)
+From: Cheng Ming Lin <linchengming884@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: tudor.ambarus@linaro.org,
+	mmkurbanov@salutedevices.com,
+	Takahiro.Kuwano@infineon.com,
+	pratyush@kernel.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alvinzhou@mxic.com.tw,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: [PATCH v2 0/3] mtd: spi-nand: Add support for randomizer
+Date: Wed, 10 Sep 2025 11:02:58 +0800
+Message-Id: <20250910030301.1368372-1-linchengming884@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <162d064228261ccd0bf9313a20288e510912effd.1757467895.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 10, 2025 at 10:08:39AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Add support for PCIe controller in SG2042 SoC. The controller
-> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
-> PCIe controller will work in host mode only, supporting data
-> rate(gen4) and lanes(x16 or x8).
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/pci/controller/cadence/Kconfig       |  10 ++
->  drivers/pci/controller/cadence/Makefile      |   1 +
->  drivers/pci/controller/cadence/pcie-sg2042.c | 104 +++++++++++++++++++
->  3 files changed, 115 insertions(+)
->  create mode 100644 drivers/pci/controller/cadence/pcie-sg2042.c
-> 
-> diff --git a/drivers/pci/controller/cadence/Kconfig b/drivers/pci/controller/cadence/Kconfig
-> index 666e16b6367f..02a639e55fd8 100644
-> --- a/drivers/pci/controller/cadence/Kconfig
-> +++ b/drivers/pci/controller/cadence/Kconfig
-> @@ -42,6 +42,15 @@ config PCIE_CADENCE_PLAT_EP
->  	  endpoint mode. This PCIe controller may be embedded into many
->  	  different vendors SoCs.
->  
-> +config PCIE_SG2042_HOST
-> +	tristate "Sophgo SG2042 PCIe controller (host mode)"
-> +	depends on OF && (ARCH_SOPHGO || COMPILE_TEST)
-> +	select PCIE_CADENCE_HOST
-> +	help
-> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
-> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
-> +	  PCIe core.
-> +
->  config PCI_J721E
->  	tristate
->  	select PCIE_CADENCE_HOST if PCI_J721E_HOST != n
-> @@ -67,4 +76,5 @@ config PCI_J721E_EP
->  	  Say Y here if you want to support the TI J721E PCIe platform
->  	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
->  	  core.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
-> index 9bac5fb2f13d..5e23f8539ecc 100644
-> --- a/drivers/pci/controller/cadence/Makefile
-> +++ b/drivers/pci/controller/cadence/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCIE_CADENCE_HOST) += pcie-cadence-host.o
->  obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep.o
->  obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
->  obj-$(CONFIG_PCI_J721E) += pci-j721e.o
-> +obj-$(CONFIG_PCIE_SG2042_HOST) += pcie-sg2042.o
-> diff --git a/drivers/pci/controller/cadence/pcie-sg2042.c b/drivers/pci/controller/cadence/pcie-sg2042.c
-> new file mode 100644
-> index 000000000000..c026e1ca5d6e
-> --- /dev/null
-> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
-> @@ -0,0 +1,104 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * pcie-sg2042 - PCIe controller driver for Sophgo SG2042 SoC
-> + *
-> + * Copyright (C) 2025 Sophgo Technology Inc.
-> + * Copyright (C) 2025 Chen Wang <unicorn_wang@outlook.com>
-> + */
-> +
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include "pcie-cadence.h"
-> +
-> +/*
-> + * SG2042 only supports 4-byte aligned access, so for the rootbus (i.e. to
-> + * read/write the Root Port itself, read32/write32 is required. For
-> + * non-rootbus (i.e. to read/write the PCIe peripheral registers, supports
-> + * 1/2/4 byte aligned access, so directly using read/write should be fine.
-> + */
-> +
-> +static struct pci_ops sg2042_pcie_root_ops = {
-> +	.map_bus	= cdns_pci_map_bus,
-> +	.read		= pci_generic_config_read32,
-> +	.write		= pci_generic_config_write32,
-> +};
-> +
-> +static struct pci_ops sg2042_pcie_child_ops = {
-> +	.map_bus	= cdns_pci_map_bus,
-> +	.read		= pci_generic_config_read,
-> +	.write		= pci_generic_config_write,
-> +};
-> +
-> +static int sg2042_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pci_host_bridge *bridge;
-> +	struct cdns_pcie *pcie;
-> +	struct cdns_pcie_rc *rc;
-> +	int ret;
-> +
-> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
-> +	if (!bridge) {
-> +		dev_err_probe(dev, -ENOMEM, "Failed to alloc host bridge!\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	bridge->ops = &sg2042_pcie_root_ops;
-> +	bridge->child_ops = &sg2042_pcie_child_ops;
-> +
-> +	rc = pci_host_bridge_priv(bridge);
-> +	pcie = &rc->pcie;
-> +	pcie->dev = dev;
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_no_callbacks(dev);
-> +	devm_pm_runtime_enable(dev);
-> +
-> +	ret = cdns_pcie_init_phy(dev, pcie);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to init phy!\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = cdns_pcie_host_setup(rc);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to setup host!\n");
-> +		cdns_pcie_disable_phy(pcie);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
+From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-> +static void sg2042_pcie_remove(struct platform_device *pdev)
-> +{
-> +	struct cdns_pcie *pcie = platform_get_drvdata(pdev);
-> +
-> +	cdns_pcie_disable_phy(pcie);
-> +}
-> +
+Introduce randomizer feature for SPI-NAND devices.
 
-I think this remove is useless, as it is almost impossible to
-remove a pcie at runtime.
+Add a new DT property named "enable-randomizer-otp" to enable the
+randomizer feature.
 
-Regards,
-Inochi
+v2:
+* Create a global NAND DT property
+
+Cheng Ming Lin (3):
+  dt-bindings: mtd: spi-nand: Add enable-randomizer-otp property
+  mtd: spi-nand: Add support for randomizer
+  mtd: spi-nand: macronix: Add randomizer support
+
+ .../devicetree/bindings/mtd/spi-nand.yaml     |  4 +
+ drivers/mtd/nand/spi/core.c                   | 24 +++++
+ drivers/mtd/nand/spi/macronix.c               | 89 ++++++++++++++++---
+ include/linux/mtd/spinand.h                   |  7 ++
+ 4 files changed, 114 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
+
 
