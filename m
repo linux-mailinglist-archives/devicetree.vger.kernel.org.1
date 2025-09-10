@@ -1,141 +1,142 @@
-Return-Path: <devicetree+bounces-215553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113A7B51D71
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D88BBB51D93
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:25:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6383A0293F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:22:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F8E944388E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B340327A04;
-	Wed, 10 Sep 2025 16:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC0633438E;
+	Wed, 10 Sep 2025 16:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jC4TLgrH"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="QzkQ1Lc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280D81EF091;
-	Wed, 10 Sep 2025 16:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED5226B75C;
+	Wed, 10 Sep 2025 16:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757521333; cv=none; b=ANr5heKsNg/UzyOLRPat5Q5cZ+urEFX5dKv0EVjh5aTZzeizKifDZgYvut04Lho5mPTnLidGBvrNjvhosLDbiUnv0VS6er4IzeHe5wShn5D84KXpsw+xGUeyZIFpFWPLpqOiWKJQ3n2CidQmj7vtGMS5unMImjfYtgAcJwsESc8=
+	t=1757521550; cv=none; b=KTx23R4RiaCLDAx/Za5M3yll8kRqMnq0HmILh1H4YdOsQxP+qdAw46QkqRHlPW/kfhdtfH6fnS67QQoihXyldUyBLZlYp2YHKXOoS8Rn3VS/OV+oOVmSOF/bwKdWgbnDy2e9u0SAw6sHGuok+gKkFYFGqjOc89vtWAx3OQHGcL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757521333; c=relaxed/simple;
-	bh=PYI6dtOT/CwSIUL6uAP6xtAEqE1iA9VJzX34pPBFuwk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=S5RR7KEFVavTS+lRCwTME2UHjXVCgqyF92eom4eECJSzs81KiAryTknHnuNW8lbGPGrawABqpeGghL60Pk9dlnrgCTAPoxF5/zs/BQr1kGQdzjmz0oHm0+KCjIEMTJacs7di3i7Bs1kMyvy6AhV3Zhz+B9D71onzZs3BYM2G8s4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jC4TLgrH; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 640C71A0C6B;
-	Wed, 10 Sep 2025 16:22:09 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 451AE606D4;
-	Wed, 10 Sep 2025 16:22:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 28D50102F28CF;
-	Wed, 10 Sep 2025 18:22:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757521328; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ZctRQ7ts/8TVQPiO2r4kt975iBBgUJD5+xfPFF8APxs=;
-	b=jC4TLgrHH0tSuMTXzghrf6gN9uTFLcQX1gNuQiind9B9slKj9lsPIcFJfqODhIDpQb10Rd
-	rrxr5QiGq3cuB/TLVuGEoCdLetVHHBvpzxxwUtYxQjuc90/HlgbAHVqMKAoOGX51x3JsJT
-	dc8aoTvd5NAZ8s6Q9OiZPNGKrjz1d0+uYz2U6BzohIxJjaw5UEcd+RlE+4rBFhUSLU2lBw
-	nJHgWnm8zeAhMSy4LcZydyn0b//0KbpxDLWVsfWN7FZ37x+uWI2hgYR7n5p2ykT86+waYp
-	gGMAWYaiAbLYmGNOIWz29nXdU6fHl+y205i9z9dcG53iASupTIGcEe5FBm1jOA==
+	s=arc-20240116; t=1757521550; c=relaxed/simple;
+	bh=yxsZly4e4NNU/BnRyZTfCx+kf32JMESOMXhbZsii9A8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=J9MKZwnh0jYQ5+twJM9tgCFaeyMs6Q9WmDOvdmtoRFMpyvbTExkba/7CujIghw5jJ2nhWSgkD+7LiZiTnZYZq9XZ8HSGVc9IRljAbxtObmN75EDyhXDVAEuoPMemA3Uvr6jfdLLJ2yZmY0e4aasx+45xLSfTOoshfO9+bSSkc1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=QzkQ1Lc6; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8CB6B25B19;
+	Wed, 10 Sep 2025 18:25:45 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id KKyL2TSpdQ30; Wed, 10 Sep 2025 18:25:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757521544; bh=yxsZly4e4NNU/BnRyZTfCx+kf32JMESOMXhbZsii9A8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=QzkQ1Lc6ExLEV1/UmoYpaz5DQ71e9J9VxxTTkjjG8Qx3SduHlePv6WK4cb5E+o7cC
+	 jqzp40ctssOgp1/HPhaadt3gm69iXskPEkhRD6rMCjXYi+X3rApjYV5av0mrUGeW8s
+	 WyZ3c72njeDfFUs7x8NnbW24U8ze9Bp2kiEFXouA8av6Lk6cEdZcroVL5qqftbKchw
+	 ZZKEI27gp5M4utH6NJgLSvjspwWc5gIVo7NOjJL4t3aC1rpNXQlrw7SF3yKY/0bcd8
+	 9yYUJAaudozmVkfGdUQCpcLU2GgEVCHmjfkT5Ptg9Db3SD+bjfUFDCp5D/1CTDqr0K
+	 N87zpNJJM+fuA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Sep 2025 18:22:03 +0200
-Message-Id: <DCP9B9VNMQVW.2XKBF1MH15N91@bootlin.com>
-Subject: Re: [PATCH net v4 4/5] net: macb: single dma_alloc_coherent() for
- DMA descriptors
-Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Sean Anderson" <sean.anderson@linux.dev>
-To: "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Claudiu Beznea" <claudiu.beznea@tuxon.dev>, "Geert Uytterhoeven"
- <geert@linux-m68k.org>, "Harini Katakam" <harini.katakam@xilinx.com>,
- "Richard Cochran" <richardcochran@gmail.com>, "Russell King"
- <linux@armlinux.org.uk>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
- <20250820-macb-fixes-v4-4-23c399429164@bootlin.com>
- <010e0551-58b8-4b61-8ad7-2f03ecc6baa3@microchip.com>
-In-Reply-To: <010e0551-58b8-4b61-8ad7-2f03ecc6baa3@microchip.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Date: Wed, 10 Sep 2025 16:25:40 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
+ <jessica.zhang@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 0/2] Support for Synaptics TDDI series panels
+In-Reply-To: <20250820-panel-synaptics-tddi-v5-0-d4e3fd4987c6@disroot.org>
+References: <20250820-panel-synaptics-tddi-v5-0-d4e3fd4987c6@disroot.org>
+Message-ID: <38e3a32db8402c1cbf3dc2fdf9f04ac3@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Nicolas,
+Hi,
 
-On Tue Aug 26, 2025 at 5:23 PM CEST, Nicolas Ferre wrote:
-> On 20/08/2025 at 16:55, Th=C3=A9o Lebrun wrote:
->> Move from 2*NUM_QUEUES dma_alloc_coherent() for DMA descriptor rings to
->> 2 calls overall.
->>=20
->> Issue is with how all queues share the same register for configuring the
->> upper 32-bits of Tx/Rx descriptor rings. Taking Tx, notice how TBQPH
->> does *not* depend on the queue index:
->>=20
->>          #define GEM_TBQP(hw_q)          (0x0440 + ((hw_q) << 2))
->>          #define GEM_TBQPH(hw_q)         (0x04C8)
->>=20
->>          queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
->>          #ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->>          if (bp->hw_dma_cap & HW_DMA_CAP_64B)
->>                  queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring=
-_dma));
->>          #endif
->>=20
->> To maximise our chances of getting valid DMA addresses, we do a single
->> dma_alloc_coherent() across queues. This improves the odds because
->> alloc_pages() guarantees natural alignment. Other codepaths (IOMMU or
->> dev/arch dma_map_ops) don't give high enough guarantees
->> (even page-aligned isn't enough).
->>=20
->> Two consideration:
->>=20
->>   - dma_alloc_coherent() gives us page alignment. Here we remove this
->>     constraint meaning each queue's ring won't be page-aligned anymore.
->
-> However... We must guarantee alignement depending on the controller's=20
-> bus width (32 or 64 bits)... but being page aligned and having=20
-> descriptors multiple of 64 bits anyway, we're good for each descriptor=20
-> (might be worth explicitly adding).
+Bumping to collect some reviews on this series. Thanks!
 
-Sorry, your comment was unclear to me.
-
- - I don't see how we can guarantee bus alignment using
-   dma_alloc_coherent() which doesn't ask for desired alignment. In
-   what case can the DMA APIs return something with less than the
-   tolerated bus alignment?
-
- - What does "having descriptors multiple of 64 bits anyway" mean?
-
-Thanks for your review and acks! V5 got published here:
-https://lore.kernel.org/lkml/20250910-macb-fixes-v5-0-f413a3601ce4@bootlin.=
-com/
-
-Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+On 2025-08-20 14:24, Kaustabh Chakraborty wrote:
+> Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+> employs a single chip for both touchscreen and display capabilities.
+> Such designs reportedly help reducing costs and power consumption.
+> 
+> Although the touchscreens, which are powered by Synaptics'
+> Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+> driver support in the kernel, the MIPI DSI display panels don't.
+> 
+> This series introduces a rudimentary driver for controlling said 
+> display
+> panels, which supports TD4101 and TD4300 panels.
+> 
+> [1] https://www.synaptics.com/technology/display-integration
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> Changes in v5:
+> - added missing Reviewed-by tag from Krzysztof in [v3 1/2]
+> - Link to v4: 
+> https://lore.kernel.org/r/20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org
+> 
+> Changes in v4:
+> - utilized drm_connector_helper_get_modes_fixed() (dmitry.baryshkov)
+> - constified backlight properties (dmitry.baryshkov)
+> - Link to v3: 
+> https://lore.kernel.org/r/20250720-panel-synaptics-tddi-v3-0-43a5957f4b24@disroot.org
+> 
+> Changes in v3:
+> - fixed various dt_binding_check errors (robh's bot)
+> - adjusted commit description of [v2 1/2] (robh)
+> - utilized devm_drm_panel_alloc() and devm_regulator_bulk_get_const()
+> - Link to v2: 
+> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+> 
+> Changes in v2:
+> - fixed various dt_binding_check errors (conor)
+> - did s/tddi_update_brightness/tddi_update_status
+> - added check for panel enable in tddi_update_status()
+> - used backlight_get_brightness() in appropriate places
+> - Link to v1: 
+> https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
+> 
+> ---
+> Kaustabh Chakraborty (2):
+>       dt-bindings: display: panel: document Synaptics TDDI panel
+>       drm: panel: add support for Synaptics TDDI series DSI panels
+> 
+>  .../display/panel/synaptics,td4300-panel.yaml      |  89 +++++++
+>  drivers/gpu/drm/panel/Kconfig                      |  11 +
+>  drivers/gpu/drm/panel/Makefile                     |   1 +
+>  drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 276 
+> +++++++++++++++++++++
+>  4 files changed, 377 insertions(+)
+> ---
+> base-commit: 5303936d609e09665deda94eaedf26a0e5c3a087
+> change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
+> 
+> Best regards,
+> --
+> Kaustabh Chakraborty <kauschluss@disroot.org>
 
