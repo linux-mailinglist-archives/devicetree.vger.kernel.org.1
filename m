@@ -1,83 +1,130 @@
-Return-Path: <devicetree+bounces-215500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A544AB51978
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:35:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D88BCB51985
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:36:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FA093AF29C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:35:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BF497AD4DE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8C031AF06;
-	Wed, 10 Sep 2025 14:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C6E32A3FB;
+	Wed, 10 Sep 2025 14:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZTfNxdG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TcziRYTY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE36D31DDA4;
-	Wed, 10 Sep 2025 14:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7302A32A3D7;
+	Wed, 10 Sep 2025 14:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757514896; cv=none; b=GrAdUOgjBZuOmCWmcdduhSBRMBeRUQve65743Wiq0IZVT5/3QWf/N6lv4gXS/C5Kbiltqu5qTIq7qSC7EtEGR3iMCRNF/hhoOZ6ITTu2lMIipVcwjV4J+1PCI/H5WR9y5h3k/YRN0813bbNgkG8qEVj2jBn8XUJU2X6PBO8LKYA=
+	t=1757514979; cv=none; b=CYMHBXlJiwDkclCcpCuNLynvgz7mysVt3FS1yVMdexdBIsVVj3scXDHFlbWFKjFt1JRGb/HRn3b7ocvraa81/qBZTmVuPja87/iVoAm1FOpQfKsXRQxJp8HymP4S6WjiPgWxDYsFe50c9lyrjO4aJztY5sO3js6muNdGv0omYyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757514896; c=relaxed/simple;
-	bh=xjYSrTXZn2L7+z07HiLOzSt4wzGMOD/saMQb5WcdX3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=f2AKdo+/0Vz+c0pDwWrNX+0oiqA/QtRpi9ZEBYlh5xXvg0WVTWjtRbo+/cVewSy12eA+M8JVuHIFHQ2JAJFBslcWwFbmPkreiFgHslNaXicCFnIrLf5CZEN1jSt1nBTR6x1rZuecgxHk1fASAY+Dldxcj1ezAUNkU0gIBGoPL9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZTfNxdG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EC15C4CEEB;
-	Wed, 10 Sep 2025 14:34:55 +0000 (UTC)
+	s=arc-20240116; t=1757514979; c=relaxed/simple;
+	bh=YzN2vCtNXOfPmEUy/QtzOmDZxzWZ2vYAup9vdx715rk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u8RbOC+1yq+Dm1tC747pIYaZSrjq4CWBOlUxRsOpNHUari0XWdOSmKEZoU921vvMrajyA6PiSaPGVXwxRXWhg0sErL94HaG7psYe3P1WcBozA8FfeKtOGuL7o3/66LZ99Q1/pYN5gDQHkkuPDp6GGqiO3RGcZhs8b0ElnVcocv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TcziRYTY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3EC0C4CEEB;
+	Wed, 10 Sep 2025 14:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757514895;
-	bh=xjYSrTXZn2L7+z07HiLOzSt4wzGMOD/saMQb5WcdX3g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=mZTfNxdGDMJd16WavKni+yoqXTP+Gqz+lZsuuz8ArGJqWcu6LJwJRCqTuoIUbslaE
-	 JnpLpbgvTq1pjFCqt0go3f9iie1Zra0iWRO/JZ7oPMJWklYQvadpBCMljKdoIPsF5c
-	 j4s0+KMvmJlXyTpdssMKAkAr3mMGnu4RTTG8kAUragSTGUiB7jOyzuOHIjbIf2+3T4
-	 ZKrWUFvMSZOAM6TjiMJMzdXFl/xMZ8XFHSTRSoWUuCIOY7Fklzhx3ztXMrHL3UFBcn
-	 LGLe3ccIU7axC27rvLrRU3mgxEA4Td88GFTAgYWVGy/xI5Rki/AskwMkkhpwKGA2uj
-	 MqUIlPR9qXMaQ==
-Date: Wed, 10 Sep 2025 09:34:53 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kwilczynski@kernel.org, u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, arnd@arndb.de,
-	bwawrzyn@cisco.com, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, 18255117159@163.com, inochiama@gmail.com,
-	kishon@kernel.org, krzk+dt@kernel.org, lpieralisi@kernel.org,
-	mani@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	robh@kernel.org, s-vadapalli@ti.com, tglx@linutronix.de,
-	thomas.richard@bootlin.com, sycamoremoon376@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev, rabenda.cn@gmail.com, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-Subject: Re: [PATCH v2 3/7] PCI: sg2042: Add Sophgo SG2042 PCIe driver
-Message-ID: <20250910143453.GA1533730@bhelgaas>
+	s=k20201202; t=1757514978;
+	bh=YzN2vCtNXOfPmEUy/QtzOmDZxzWZ2vYAup9vdx715rk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TcziRYTYjchVtxoB9c9jxPGdTtH8mRcmyM0KzU+MT9Wvq7cTN3ItuzY3bIARaBIQ0
+	 maLWUpobcoR0VBLEhkZQtzjsRyGo5BQrMjAvQU1kuWrgkrnQ2JOXsP1Rqcl0FyYFRZ
+	 MgY3Z1fV4VgFb8slQlwvM8aTQbqcrE4wiViC2hkhs3XXOcNBx/gH+aa24Byz2Bq9xH
+	 YDcQN6Mg00HsekKooHydArdlKbBPtw3EatWrexA5irgomMXn/0wjp/3cJQ3lFqXJ2t
+	 Er39O+Ouvu8cFbvN8cO71In7Sk+0MoLdX/YjJ/eB6on0oDpqYWfMIwBlI8co8JhIa3
+	 auGJTVRYZcT7A==
+Date: Wed, 10 Sep 2025 09:36:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Vinod Koul <vkoul@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: net: qcom: document the ethqos device
+ for SCMI-based systems
+Message-ID: <20250910143618.GA4072335-robh@kernel.org>
+References: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
+ <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org>
+ <175751081352.3667912.274641295097354228.robh@kernel.org>
+ <CAMRc=Mfom=QpqTrTSc_NEbKScOi1bLdVDO7kJ0+UQW9ydvdKjQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <162d064228261ccd0bf9313a20288e510912effd.1757467895.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=Mfom=QpqTrTSc_NEbKScOi1bLdVDO7kJ0+UQW9ydvdKjQ@mail.gmail.com>
 
-On Wed, Sep 10, 2025 at 10:08:39AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On Wed, Sep 10, 2025 at 03:43:38PM +0200, Bartosz Golaszewski wrote:
+> On Wed, Sep 10, 2025 at 3:38 PM Rob Herring (Arm) <robh@kernel.org> wrote:
+> >
+> >
+> > On Wed, 10 Sep 2025 10:07:39 +0200, Bartosz Golaszewski wrote:
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > Describe the firmware-managed variant of the QCom DesignWare MAC. As the
+> > > properties here differ a lot from the HLOS-managed variant, lets put it
+> > > in a separate file.
+> > >
+> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/net/qcom,ethqos-scmi.yaml  | 101 +++++++++++++++++++++
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml        |   4 +-
+> > >  MAINTAINERS                                        |   1 +
+> > >  3 files changed, 105 insertions(+), 1 deletion(-)
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): power-domains: [[4294967295]] is too short
+> >         from schema $id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): Unevaluated properties are not allowed ('clock-names', 'clocks', 'interrupt-names', 'interrupts', 'phy-mode', 'power-domains', 'reg', 'rx-fifo-depth', 'snps,multicast-filter-bins', 'snps,perfect-filter-entries', 'tx-fifo-depth' were unexpected)
+> >         from schema $id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): power-domains: [[4294967295]] is too short
+> >         from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): power-domains: [[4294967295, 4]] is too short
+> >         from schema $id: http://devicetree.org/schemas/net/mediatek-dwmac.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): Unevaluated properties are not allowed ('mac-address', 'phy-mode', 'reg', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were unexpected)
+> >         from schema $id: http://devicetree.org/schemas/net/mediatek-dwmac.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): power-domains: [[4294967295, 4]] is too short
+> >         from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+> >
 > 
-> Add support for PCIe controller in SG2042 SoC. The controller
-> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
-> PCIe controller will work in host mode only, supporting data
-> rate(gen4) and lanes(x16 or x8).
+> These seem to be a false-positives triggered by modifying the
+> high-level snps.dwmac.yaml file?
 
-Strictly speaking, "gen4" is a spec revision, not a data rate.
-Include the GT/s rate instead or in addition.  We can fix this when
-merging if there's no other reason to repost (I assume you mean 16
-GT/s).  Will also add spaces before the open "(".
+No. You just made 3 power-domains required for everyone.
+
+You have to test without DT_SCHEMA_FILES set so that every example is 
+tested with every possible schema.
+
+Rob
 
