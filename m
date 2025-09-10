@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-215496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB836B51938
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:23:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB1DB51965
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:31:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6808016F071
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744521899A74
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A373304975;
-	Wed, 10 Sep 2025 14:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZXqV7Y5w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D23C322C70;
+	Wed, 10 Sep 2025 14:31:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7671684A4;
-	Wed, 10 Sep 2025 14:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB6832A833
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 14:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757514203; cv=none; b=ovnr9FzyPd1fCDgbwItWZasdoglbkR2N+0yv8MSHYyobZC8RcSbN2CgVCT6V7JQZCF/Tx2GBB3oc3dsZZ0ogzu3O3qY2SnLWCcDU+EsMYjSxUFPl3PkwBYDYSTP7ci8bLmbTbWwt6Wkxz9UBaPVTaAHm9yfVoV/QIcZdtO3TRRI=
+	t=1757514661; cv=none; b=XExU0FgJEdPw6d0O2DWGkOBmiTFTV0Mg8NztVs9xwMUeSim3nGUhpWOl7pS7fj21iE5LIeakY5JYbQ6zqbpsSIn+3l8f55q5uAYlm064o7XoOK3bNHEKaIwq9/znrBRhr8Ie9xZAh5QAlw7v75F26homscVMXDNiId81i9U72Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757514203; c=relaxed/simple;
-	bh=sPrb8D0bSLp1Js3/8C0uU0W0ATkZZf+fqUxj/05AtlY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=PjtJO5vEWLlMFN0oOtARUpXI6O9DTtddHyYL5kprF+GTJWCUNGL/bzqgegDAP1UJgmIB8hTnLQOkr1XU527xd1A4hj4yZvzoETLk3EYUltOldsLuY36kOzPIdAX3+ZqfheOCCOjNZs/yH9FnZ20mowiAxhOJs1ODZQQwvNXim1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZXqV7Y5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79A7FC4CEEB;
-	Wed, 10 Sep 2025 14:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757514202;
-	bh=sPrb8D0bSLp1Js3/8C0uU0W0ATkZZf+fqUxj/05AtlY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ZXqV7Y5wyyMy8XPbh7JLpkdcpaKmaztp6Y0DwSjdEv41hAbGELyFer083foOLZxDB
-	 uVTwM9d0VzXe5ApdhOhBcOigUrmCndv5r7VieWdnOyaoM19Y2rzdYnc1aoBHnuFulc
-	 AqIe8dr5b831dN+Kb2n63v4Akag6nRBwY80VbL4FSiuspLylF3TddTA/6EyrER5x/B
-	 DDJiWxz4rrkQ5gD0S9WprL3hWsUolUwdU5r0Q36JY+D4tTcHsNqhb229bRBfxu4z9Y
-	 ZHr8s3wIy6jmv8qTiakGq+vJ6g4lTDSc0pwVl5u9S7lykALNBAxV4MmKgjiH15D5tn
-	 w5RdZe7h8z7oA==
-Date: Wed, 10 Sep 2025 09:23:21 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kwilczynski@kernel.org, u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, arnd@arndb.de,
-	bwawrzyn@cisco.com, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, 18255117159@163.com, inochiama@gmail.com,
-	kishon@kernel.org, krzk+dt@kernel.org, lpieralisi@kernel.org,
-	mani@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	robh@kernel.org, s-vadapalli@ti.com, tglx@linutronix.de,
-	thomas.richard@bootlin.com, sycamoremoon376@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev, rabenda.cn@gmail.com, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-Subject: Re: [PATCH v2 2/7] PCI: cadence: Check pcie-ops before using it.
-Message-ID: <20250910142321.GA1533672@bhelgaas>
+	s=arc-20240116; t=1757514661; c=relaxed/simple;
+	bh=G1Aaivtu3qjtIaWwq2xO2UzCmo8ur1SlqjoB88xSAis=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cbafNXJ5ZR+RTDhXpiEJDJYrigHLfiXEhStqZoj1N1mSPOANC91Fpe1tK09j5ITkISTrqMSeoHeCzU/jcKI8kl7QLSOYjy+YVu7ESV5ElcNm2wA2MrDYoBlgpSq3SGvrfvE7Tvh3BJB0459Up4NNwyHVG9kvtfhdyoIS09knwgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uwLqQ-00075Z-3V; Wed, 10 Sep 2025 16:30:46 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uwLqO-000beC-2I;
+	Wed, 10 Sep 2025 16:30:44 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1uwLqO-00GHZB-1j;
+	Wed, 10 Sep 2025 16:30:44 +0200
+Date: Wed, 10 Sep 2025 16:30:44 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Jonas Rebmann <jre@pengutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-sound@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios
+ property
+Message-ID: <20250910143044.jfq5fsv2rlsrr5ku@pengutronix.de>
+References: <20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de>
+ <20250910-imx8mp-prt8ml-v1-1-fd04aed15670@pengutronix.de>
+ <20250910125611.wmyw2b4jjtxlhsqw@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,91 +77,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <18aba25b853d00caf10cc784093c0b91fdc1747d.1757467895.git.unicorn_wang@outlook.com>
+In-Reply-To: <20250910125611.wmyw2b4jjtxlhsqw@skbuf>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Drop period at end of subject.
+On 25-09-10, Vladimir Oltean wrote:
+> On Wed, Sep 10, 2025 at 02:35:21PM +0200, Jonas Rebmann wrote:
+> > Both the nxp,sja1105 and the nxp,sja1110 series feature an active-low
+> > reset pin, rendering reset-gpios a valid property for all of the
+> > nxp,sja1105 family.
+> > 
+> > Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+> > index 9432565f4f5d..8f4ef9d64556 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+> > @@ -32,6 +32,11 @@ properties:
+> >    reg:
+> >      maxItems: 1
+> > 
+> > +  reset-gpios:
+> > +    description:
+> > +      GPIO to be used to reset the whole device
+> > +    maxItems: 1
+> > +
+> >    spi-cpha: true
+> >    spi-cpol: true
+> > 
+> > 
+> > --
+> > 2.51.0.178.g2462961280
+> >
+> 
+> There are multiple issues with the reset line and I was considering
+> dropping driver support for it.
+> 
+> The most important issue is the fact that, according to NXP document
+> AH1704, the RST_N signal has to be kept asserted for 5 us after power-on
+> reset. That is hard to achieve if this pin is routed to an SoC GPIO.
 
-On Wed, Sep 10, 2025 at 10:08:16AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> ops of struct cdns_pcie may be NULL, direct use
-> will result in a null pointer error.
-> 
-> Add checking of pcie->ops before using it for new
-> driver that may not supply pcie->ops.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/pci/controller/cadence/pcie-cadence-host.c | 2 +-
->  drivers/pci/controller/cadence/pcie-cadence.c      | 4 ++--
->  drivers/pci/controller/cadence/pcie-cadence.h      | 6 +++---
->  3 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> index 59a4631de79f..fffd63d6665e 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
-> @@ -531,7 +531,7 @@ static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
->  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_PCI_ADDR1(0), addr1);
->  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(0), desc1);
->  
-> -	if (pcie->ops->cpu_addr_fixup)
-> +	if (pcie->ops && pcie->ops->cpu_addr_fixup)
->  		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
->  
->  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(12) |
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence.c b/drivers/pci/controller/cadence/pcie-cadence.c
-> index 70a19573440e..61806bbd8aa3 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence.c
-> @@ -92,7 +92,7 @@ void cdns_pcie_set_outbound_region(struct cdns_pcie *pcie, u8 busnr, u8 fn,
->  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(r), desc1);
->  
->  	/* Set the CPU address */
-> -	if (pcie->ops->cpu_addr_fixup)
-> +	if (pcie->ops && pcie->ops->cpu_addr_fixup)
->  		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
->  
->  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(nbits) |
-> @@ -123,7 +123,7 @@ void cdns_pcie_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie,
->  	}
->  
->  	/* Set the CPU address */
-> -	if (pcie->ops->cpu_addr_fixup)
-> +	if (pcie->ops && pcie->ops->cpu_addr_fixup)
->  		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
->  
->  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(17) |
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
-> index 1d81c4bf6c6d..2f07ba661bda 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence.h
-> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
-> @@ -468,7 +468,7 @@ static inline u32 cdns_pcie_ep_fn_readl(struct cdns_pcie *pcie, u8 fn, u32 reg)
->  
->  static inline int cdns_pcie_start_link(struct cdns_pcie *pcie)
->  {
-> -	if (pcie->ops->start_link)
-> +	if (pcie->ops && pcie->ops->start_link)
->  		return pcie->ops->start_link(pcie);
->  
->  	return 0;
-> @@ -476,13 +476,13 @@ static inline int cdns_pcie_start_link(struct cdns_pcie *pcie)
->  
->  static inline void cdns_pcie_stop_link(struct cdns_pcie *pcie)
->  {
-> -	if (pcie->ops->stop_link)
-> +	if (pcie->ops && pcie->ops->stop_link)
->  		pcie->ops->stop_link(pcie);
->  }
->  
->  static inline bool cdns_pcie_link_up(struct cdns_pcie *pcie)
->  {
-> -	if (pcie->ops->link_up)
-> +	if (pcie->ops && pcie->ops->link_up)
->  		return pcie->ops->link_up(pcie);
->  
->  	return true;
-> -- 
-> 2.34.1
-> 
+Can you please elaborate a bit more? I was curious and checked the
+AH1704, it says:
+
+"The RST_N signal must be kept low for at least 5 us after all power
+supplies and reference clock signals become stable."
+
+This is very common, so the driver only needs to ensure that the pin was
+pulled low for at least 5us but not exact 5us.
+
+> Additionally, routing the reset signal to a host SoC GPIO does not bring
+> any particular benefit, since the switch can be (and is) also reset by
+> the driver over SPI.
+
+I don't know the switch but it's also common that a so called
+software-reset may not reset all registers, state machines, etc.
+
+There it's common practice that the driver tries to pull the hw reset
+line and if not present falls back to a software reset.
+
+> So, at least for this particular switch, having a "reset-gpios" actively
+> points towards a potential violation of its POR timing requirements.
+
+Really? Please see my above comment.
+
+> That is, unless the power rails are also software-controlled. But they
+> aren't.
+
+AH1704 Fig.10 just illustrate a reset and power-on sequence. I highly
+doubt that the host can't pull the hw rest line if the supplies and the
+clock is already running.
+
+You're right about the fact that the driver is currently not able to do
+a proper power-on sequence, so the kernel relies on the prev. firmware
+or the hw-setup. But this is another problem.
+
+Regards,
+  Marco
 
