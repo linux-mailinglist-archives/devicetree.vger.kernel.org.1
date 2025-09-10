@@ -1,175 +1,160 @@
-Return-Path: <devicetree+bounces-215577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A59CB51E67
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:58:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778FEB51E7E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48DD17AB9CB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:56:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C7B4480FF4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BAC28C860;
-	Wed, 10 Sep 2025 16:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B3926F2B9;
+	Wed, 10 Sep 2025 17:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1gbJxRWG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j5tvGL5U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABA42857C2
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 16:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83E361A2387;
+	Wed, 10 Sep 2025 17:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757523475; cv=none; b=QShhiDEJMAgiBwPl2cu8NWWCMwjPae45biLf1+2oVPhFkZnKsjklpzSnwb99nT4KkK61DCLlu5TuplEAe5PpxRtKyS5b2mAaEYZkEOzFtbJCQ/ud/0KQyFkFGWXEzAXnu2SOhep6XdgWS1lPQ+CYo/3B0f7GPt5oKh3xbpJc0q0=
+	t=1757523853; cv=none; b=AJQ48A5KsgYD/rqiQiycUf1qT2fElYDMQA3bi0MbRArkW4p6UWVoQfHcNyYwNBxjmX8SfWTtnfyJsf5tti/pZF/4Tx4j+czUPxAoOHnlP/2H4fOJlFmEb47l9tNY6VgJ7IWntX8KnoUJdtLAktxnYCURRSbpgBqZCdGsEFISEBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757523475; c=relaxed/simple;
-	bh=DtE9miUBQAJCy5AeiKeGehsF4pgnBKqNW9ryVVfwaFE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=JJZvd3Fene5vTQNWnuvNV0nCDJCVUqwc7GXIve4LoZZjksy+1XmleuN66EykcP+sxZxs8mQW4e4R97qfiogCotE6fWIausO55HA/0+XAjQ7cuLqW0VZhYk8HMjlwf86/SW9M9ShZOtl13OQiH/XPleOW4FNec3SBPAz+XGtczww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1gbJxRWG; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 118304E40BA8;
-	Wed, 10 Sep 2025 16:57:51 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E6122606D4;
-	Wed, 10 Sep 2025 16:57:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E431C102F2833;
-	Wed, 10 Sep 2025 18:57:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757523468; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4szWPvO4QJK7QXpJTUGbKS9tON103WxwvOm5NDrmuMM=;
-	b=1gbJxRWG9xSsrPgDIudnpxMmPnmBcGhPlleMVERqlMGN5PBPGFylksL/5CZ5YKfw82vclr
-	pN87gSozbGFw7JoU0OsC2FGCzPXsr7nayyyqXutREb4U2rhCcW/hfNWsLCIbfxyEptcaJO
-	NpaaRyXPWzG3yhXSYCWajaowwzfZvQ/J7FrhkSeqfW1qJqtq9UD5LeU02UzPANnRlz/0mK
-	1O7Bfu4cKF4BdQdrWALzTiA6PlOw7Pp8hDf5Nbx9Oi7hLToIeQIjrZh4lbhSQXl1VSbcR5
-	7DjUCQbZcG2txaupiwFZ053mN+AWnhmbgdzfIKXGrpnwhz6tM3zRdIRxo8WOOA==
+	s=arc-20240116; t=1757523853; c=relaxed/simple;
+	bh=8NxnRH/NqFBuV2JRnBAgXpAgLSBJuz9+bNobY8EfMaI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iqKv9R8HID7RZiwh/zUwsTF+MNXEtgGZaEdTzCLqlNh+24g4yqXoseENVCV1pkZk3FS92mmF7yQJjSJN4c6iY+b6HPbO8c1Z2ChsB3o00gLSYOE8g0WEuciTAL271FOmVYmHpGCKNKcj5duIN7zX6FueZeI5A3t3HZ3OVM0Kgl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j5tvGL5U; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e94d678e116so7248701276.2;
+        Wed, 10 Sep 2025 10:04:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757523850; x=1758128650; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iAhi2nhP6RcwyawffhfphrfKgf6fcZyr9ahN0hYRF7o=;
+        b=j5tvGL5U2mkWsQ4Sn2/ZpX+ch0M3yJjZf4WnS7QJphh808EAmCkMzShZrCdkdyTH3G
+         diRCpFjQn7v2sBaT4+Htm4DQbJf2P8M93rALPGL+OyN4x10EW7GkWegevkbkTl85BTiE
+         qoZL9bG1iBXpg3dgh3ylg7PziR3fn75/goL7a5TUrCjzt5PvBF44fhI6nwwwD6GGj4QL
+         b2/23Qx7+Wc/eDeZ+LjYx7FO5RFepFRTJeneanr70INkQpWJsElXuatHqdwrLZayj5kp
+         7ye+D+xD4WkUYnR18yx7APuv+33vtItdK/mMIJzIqsEKGaBGeIB9ClBVIFie/6PZFjLt
+         5P4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757523850; x=1758128650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iAhi2nhP6RcwyawffhfphrfKgf6fcZyr9ahN0hYRF7o=;
+        b=Z9sdwQqgDtCBRLjS3rLQkKMme1/ZETdwKnCgRukjk7ZwISEKgI/5zHCZ2YU+3n4VKy
+         TvNRX6nYUFjp4Qkm3sFkzY+jkCH+UAp0/+gAtzaEPtqFNF0TwdakbVmIIS0UPapz026l
+         YkpMLuCyzkdCI0MVuWFWZ857COUC/XcqPSh4FK1eIHFqH0qG09ovmNDXE8QaJvYZ56Z1
+         5h+1Y5i114Xsh47wBulSGixWq8QJiq4nX1o0c8anM/1Yar9woIgZsDJBSm2mQALKiT+7
+         Gl2gyUyP+yBGYWBBy/se/023NbAIZITy6GvVYwb0/bhqiTImvQ0oxeYffRp/biwVu8wZ
+         Aa6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUEo75YS5JnT00ILcQcO1XgW93bXmWh/0AIORGaRMzwec6OpcuvVegTlT9ThMHDhxiW1pu/pyWQCSlopT4=@vger.kernel.org, AJvYcCUq7GEuXxnOkU6syy/XYm3CnSR6Hda6nehQhP5s3oVdVIQWs4hJHZXfjA0lWVfNbAlV7nARgjIpYVQzww==@vger.kernel.org, AJvYcCXUTephv8VGVNlr2dFNEOlpQZYm1QkxQRQiFBPSr2FE0YC47je1T4TCf50Aqe6Vci+QBNs27Tuwq3KP@vger.kernel.org, AJvYcCXXJUyi3mPbzbH8MjtNE/CkJdTjv1EWzERxKaURD0TLboptFaYsvmYj4b+FC+zfagZYRBSdtGONgJFYoIXOcA==@vger.kernel.org, AJvYcCXsQ9M82UcAgeMZAymahjZzg0wieWwRVe+imdEwcmvwPDIQ1rVv/6s3QAnZekdrbNIoBU2RNtFi5kBdamYN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMhJQpYNXWAPO1PIuPqhCfFFoB4kos6Rz+P27muNEFWu1y4cDb
+	6Pw/CJ5D12REUzU1k8IDR+AMy5+eOs0tNSaWzWYbHl7Vr4mzaMIupFAnPRPrJ/hZkJN0Kzbt63c
+	Oih+lIrEqx4wRQliT21kjIyBxZRKGPI0=
+X-Gm-Gg: ASbGncsmo2pmthuvv/vnRiqFPCy07LPg+Xg2i+tVRT4TRtlZQ8fTgNhjL0VbBGfzUxY
+	ML27sJrkl8/RBtcb7ZPdrPQzyAmzAQ88VJdPOcwdlv7Es4zkhLd+OQgjKzCJLNAj5PvoFi9OTm1
+	lfV7mo+mHAT8/nUIGpuN5ZnLYvmf82NTu7WVAN+g2hf5nOfcLwJ3OYCsAi+E1wM40ZQZAyKvd7x
+	oPvDRulrKlGO3yhV3k=
+X-Google-Smtp-Source: AGHT+IEfnhT9ZSnLfrxKenO2m0z1nuzfqS7vviy8OiPv+Dkiyq8OrSHh9+vCeh+cYF0spuidfc9qnQhd9ZCiFqloKVc=
+X-Received: by 2002:a05:690e:250b:10b0:5fa:ccca:7c27 with SMTP id
+ 956f58d0204a3-6102c30b9f6mr12766300d50.8.1757523850376; Wed, 10 Sep 2025
+ 10:04:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com> <20250910-leds-v5-4-bb90a0f897d5@vinarskis.com>
+In-Reply-To: <20250910-leds-v5-4-bb90a0f897d5@vinarskis.com>
+From: Steev Klimaszewski <threeway@gmail.com>
+Date: Wed, 10 Sep 2025 12:04:00 -0500
+X-Gm-Features: Ac12FXwb-SXXuwNDs7DFnPiik28LYopuJH_w6GUXGeVeKXumFwg8fkQlWOaiNp0
+Message-ID: <CAOvMTZhxJ3atv62ui5+ahNKV1vb7JXnwwm4xxvg5p=o5p2HnDQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: sc8280xp-x13s: enable camera
+ privacy indicator
+To: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
+	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Sep 2025 18:57:23 +0200
-Message-Id: <DCPA2BR78XM8.HWKZZ8WQF3S8@bootlin.com>
-Cc: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rpi-kernel@lists.infradead.org>, "Broadcom internal kernel review
- list" <bcm-kernel-feedback-list@broadcom.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Florian Fainelli"
- <florian.fainelli@broadcom.com>, "Andrea della Porta"
- <andrea.porta@suse.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>, "Phil
- Elwell" <phil@raspberrypi.com>, "Jonathan Bell" <jonathan@raspberrypi.com>,
- "Dave Stevenson" <dave.stevenson@raspberrypi.com>,
- <stable@vger.kernel.org>, "Andrew Lunn" <andrew@lunn.ch>
-To: "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Jakub Kicinski"
- <kuba@kernel.org>, "Stanimir Varbanov" <svarbanov@suse.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 1/5] net: cadence: macb: Set upper 32bits of DMA ring
- buffer
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250822093440.53941-1-svarbanov@suse.de>
- <20250822093440.53941-2-svarbanov@suse.de>
- <20250825165310.64027275@kernel.org>
- <3bccf773-abd6-4ade-a1c5-99f2a773b723@microchip.com>
-In-Reply-To: <3bccf773-abd6-4ade-a1c5-99f2a773b723@microchip.com>
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hello Nicolas, Jakub, Stanimir,
+Hi Aleksandrs,
 
-On Tue Aug 26, 2025 at 11:14 AM CEST, Nicolas Ferre wrote:
-> On 26/08/2025 at 01:53, Jakub Kicinski wrote:
->> On Fri, 22 Aug 2025 12:34:36 +0300 Stanimir Varbanov wrote:
->>> In case of rx queue reset and 64bit capable hardware, set the upper
->>> 32bits of DMA ring buffer address.
->>>
->>> Cc: stable@vger.kernel.org # v4.6+
->>> Fixes: 9ba723b081a2 ("net: macb: remove BUG_ON() and reset the queue to=
- handle RX errors")
->>> Credits-to: Phil Elwell <phil@raspberrypi.com>
->>> Credits-to: Jonathan Bell <jonathan@raspberrypi.com>
->>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>=20
->>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/eth=
-ernet/cadence/macb_main.c
->>> index ce95fad8cedd..36717e7e5811 100644
->>> --- a/drivers/net/ethernet/cadence/macb_main.c
->>> +++ b/drivers/net/ethernet/cadence/macb_main.c
->>> @@ -1634,7 +1634,11 @@ static int macb_rx(struct macb_queue *queue, str=
-uct napi_struct *napi,
->>>                macb_writel(bp, NCR, ctrl & ~MACB_BIT(RE));
->>>
->>>                macb_init_rx_ring(queue);
->>> -             queue_writel(queue, RBQP, queue->rx_ring_dma);
->>> +             queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_dm=
-a));
->>> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->>> +             if (bp->hw_dma_cap & HW_DMA_CAP_64B)
->>> +                     macb_writel(bp, RBQPH, upper_32_bits(queue->rx_ri=
-ng_dma));
->>> +#endif
->>>
->>>                macb_writel(bp, NCR, ctrl | MACB_BIT(RE));
->>>
->>=20
->> Looks like a subset of Th=C3=A9o Lebrun's work:
->> https://lore.kernel.org/all/20250820-macb-fixes-v4-0-23c399429164@bootli=
-n.com/
->> let's wait for his patches to get merged instead?
+On Wed, Sep 10, 2025 at 7:01=E2=80=AFAM Aleksandrs Vinarskis <alex@vinarski=
+s.com> wrote:
 >
-> Yes, we can certainly wait. As RBOPH changes by Th=C3=A9o are key, they w=
-ill=20
-> probably remove the need for this fix altogether: but I count on you=20
-> Stanimir to monitor that (as I don't have a 64 bit capable platform at=20
-> hand).
+> Leverage newly introduced 'leds' and 'led-names' properties to pass
+> indicator's phandle and function to v4l2 subnode. The latter supports
+> privacy led since couple of years ago under 'privacy-led' designation.
+> Unlike initially proposed trigger-source based approach, this solution
+> cannot be easily bypassed from userspace, thus reducing privacy
+> concerns.
+>
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b=
+/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 637430719e6d7d3c0eeb4abf2b80eea1f8289530..3b3f7137689a6fa292ffe4fec=
+8c1d1f20ee525bc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -83,14 +83,11 @@ leds {
+>                 pinctrl-names =3D "default";
+>                 pinctrl-0 =3D <&cam_indicator_en>;
+>
+> -               led-camera-indicator {
+> -                       label =3D "white:camera-indicator";
+> +               privacy_led: privacy-led {
 
-I when looking for where this patch came from.
-Commit in the raspberrypi downstream kernel:
-https://github.com/raspberrypi/linux/commit/e45c98decbb16e58a79c7ec6fbe4374=
-320e814f1
+Should this now be privacy_led: privacy { ?
 
-It is somewhat unreadable; the only part that seems related is the:
+>                         function =3D LED_FUNCTION_INDICATOR;
+>                         color =3D <LED_COLOR_ID_WHITE>;
+>                         gpios =3D <&tlmm 28 GPIO_ACTIVE_HIGH>;
+> -                       linux,default-trigger =3D "none";
+>                         default-state =3D "off";
+> -                       /* Reuse as a panic indicator until we get a "cam=
+era on" trigger */
+>                         panic-indicator;
+>                 };
+>         };
+> @@ -685,6 +682,9 @@ camera@10 {
+>                 pinctrl-names =3D "default";
+>                 pinctrl-0 =3D <&cam_rgb_default>;
+>
+> +               leds =3D <&privacy_led>;
+> +               led-names =3D "privacy";
+> +
+>                 clocks =3D <&camcc CAMCC_MCLK3_CLK>;
+>
+>                 orientation =3D <0>;      /* Front facing */
+>
+> --
+> 2.48.1
+>
 
-> net: macb: Several patches for RP1
-> 64-bit RX fix
-
- - Is there any MACB hardware (not GEM) that uses 64-bit DMA
-   descriptors? What platforms? RPi maybe?
-
- - Assuming such a platform exists, the next question is why does
-   macb_rx() need to reinit RBQPH/0x04D4. It reinits RBQP/0x0018
-   because it is the buffer pointer and increments as buffers get used.
-
-   To reinit RBQPH would be for the case of the increment overflowing
-   into the upper 32-bits. Sounds like a reasonable fix (for a really
-   rare bug) if that hardware actually exists.
-
-   This wouldn't be needed on GEM because RBQPH is shared across queues.
-   So of course RBQPH would not increment with the buffer pointer.
-
-If this patch is needed (does HW exist?), then my series doesn't address
-it. I can take the patch in a potential V6 if you want. V5 got posted
-today [0].
-
-[0]: https://lore.kernel.org/lkml/20250910-macb-fixes-v5-0-f413a3601ce4@boo=
-tlin.com/
-
-Thanks,
-Have a nice day,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+v5 does not turn the led on here on my X13s whereas v3 did (and v4 was
+not tested)
 
