@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-215257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455C6B51014
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:58:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 310D3B51073
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:05:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F02051737CC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:58:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8174F7BC26B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FE530DD0D;
-	Wed, 10 Sep 2025 07:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB51930DEC5;
+	Wed, 10 Sep 2025 07:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ+7M+e8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NMUjGtan"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC17305E19;
-	Wed, 10 Sep 2025 07:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B288830DEA5;
+	Wed, 10 Sep 2025 07:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757491076; cv=none; b=WZYxbljNNYYhZDcl/Pp/PT9dKmHYH4Q4KOI3v85t8SX+qHQf9m/eOnnh7dLMMNcShPJjPw01jBgAt1K6eZj6QWAQlgszM3LBdrnccuhnCN0LyMaoUOru6toN7Ftd6UNEfwDgzC0p9zCnEfMxsxhTrEx7Nb8X87Hm5eR/szoWOJc=
+	t=1757491186; cv=none; b=VL26YClQCfTbrR3l5FPvIT4ncPrgkmjzHkU8zpXkNq+DGfO95DM/m8GffRd93igN/xIe/NbM9canguGuXbrOldF9eGoFkJYSHu96VV4WDhdDfMay2bKqjFbHhVh3YnxaR3c1fHxhx/J/DaSlGPi0jdfaAmQgPZ9H/ypJ595kTEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757491076; c=relaxed/simple;
-	bh=6uVpYxLKgfz2XvbYZoJ8wzUbrjvZJR0Y4MBIqOJj0J0=;
+	s=arc-20240116; t=1757491186; c=relaxed/simple;
+	bh=gHRPiMfD/P1RXxFuG3WCUYCOP8iCBS2qErNi8xfZIf4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CDBF+gOBiK61oRzfcDzuwYLPILHCTRQHSWrqXWI33OcAZxFmehZkmGMj8cmvFfq825YByMlHTcJdmvunHlOW+bQeyeic9sp7hY6T/8CmwAhL64CZgZHgU6alFjyd4Lw6Q1nh7ucdDLbpj48IqTEE1gJQaYixhsqist0J29AqmVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQ+7M+e8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41744C4CEF0;
-	Wed, 10 Sep 2025 07:57:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DP1M0AWrz3HqWdau6omrZwgUdZTnp50dl8MCghHQzLO/NaJikpH4ycn01PJQaUeem3o2Fk6mJyEQRequzkwdZTStBWzR/g/ORsPWgMQN1S31IdR/4pXKBK2vBYiWyHKGdoh5/+id7/EEz4fZTvKB/pI9zbhuhO4b4PvRamweVPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NMUjGtan; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 883C1C4CEF0;
+	Wed, 10 Sep 2025 07:59:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757491074;
-	bh=6uVpYxLKgfz2XvbYZoJ8wzUbrjvZJR0Y4MBIqOJj0J0=;
+	s=k20201202; t=1757491186;
+	bh=gHRPiMfD/P1RXxFuG3WCUYCOP8iCBS2qErNi8xfZIf4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eQ+7M+e8mrS/qUabUDxQGA+IrOlNrJ/W1e/kVNdL2rEOx9xwy5R0VZYrC5aKWmoN0
-	 CFlRAkOhoJl0/qGhK75yDnQ1nmMpzrHL05fQvr8Ex6EA1HFx2t3MRamt8EcGv0wzbE
-	 zsB8nSvKD+dQ7hyH6b2v/bs3POgOGyWqDgOlmRFbinttriUvWAUYF5hwLoVS5kUtI+
-	 c6/hrqv5mVWzzmHUaTwalsO5jeGyG9DS4AFuJQHLVYQK1D+gCZ3bZYqIdEXA5hj/Dk
-	 mJxUw5rUzCSLkV4Ayzz4Mi+U+N6J8JDprluIx8uja7fPPNfuE/9FvgKzGiPW1/OzV1
-	 6wGhQ70VBn9xw==
-Date: Wed, 10 Sep 2025 09:57:52 +0200
+	b=NMUjGtanNgDMLjWGcM2/wQ7wr07ehIVgPSceSZXUquehEf2KqvAIPSO5EMggjg9uk
+	 hbpXJZWWWCpfXhw0LenaPqfUCAS87Z3EvN/xPv8k+3yYcQU4j3Z7h3Zo8tyl7gFITt
+	 YOEt7bCNeIMzh2tZlDk8yyi4Goavwxwwq5IN2Wm6RKClqOE2qx5FtDmI0i9AjCpYN7
+	 TH/M217lOlA7/J15RXpfhX/y68bWsTBAkZDbNW79f6J6ohVLsvl98Q+Z0Hxiq0crTk
+	 dwXDoMWNyvbZmtn1Q2xKQsU7qwjZZ01olNg1c9QRs3GCQIqOt+Q7MeN381lzNxDRhr
+	 PxiQO6WlSSp5A==
+Date: Wed, 10 Sep 2025 09:59:43 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?Q?Cl=C3=A9ment?= Le Goffic <legoffic.clement@gmail.com>
-Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Julius Werner <jwerner@chromium.org>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org, 
-	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clement.legoffic@foss.st.com>
-Subject: Re: [PATCH v6 12/20] dt-bindings: perf: stm32: introduce DDRPERFM
- dt-bindings
-Message-ID: <20250910-encouraging-masterful-dodo-3d1f60@kuoka>
-References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
- <20250909-b4-ddrperfm-upstream-v6-12-ce082cc801b5@gmail.com>
+To: Harikrishna Shenoy <h-shenoy@ti.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	sjakhade@cadence.com, yamonkar@cadence.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, devarsht@ti.com, u-kumar1@ti.com, 
+	s-jain1@ti.com
+Subject: Re: [PATCH v4] dt-bindings: drm/bridge: MHDP8546 bridge binding
+ changes for DSC
+Message-ID: <20250910-silent-classic-vicugna-fdc1ab@kuoka>
+References: <20250909054622.1439487-1-h-shenoy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,23 +63,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250909-b4-ddrperfm-upstream-v6-12-ce082cc801b5@gmail.com>
+In-Reply-To: <20250909054622.1439487-1-h-shenoy@ti.com>
 
-On Tue, Sep 09, 2025 at 12:12:19PM +0200, Cl=C3=A9ment Le Goffic wrote:
-> From: Cl=C3=A9ment Le Goffic <clement.legoffic@foss.st.com>
->=20
-> DDRPERFM is the DDR Performance Monitor embedded in STM32MPU SoC.
-> It allows to monitor DDR events that come from the DDR Controller
-> such as read or write events.
+On Tue, Sep 09, 2025 at 11:16:22AM +0530, Harikrishna Shenoy wrote:
+> From: Swapnil Jakhade <sjakhade@cadence.com>
+> 
+> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
+> DPI/DP bridge.
 
-Also:
-
-A nit, subject: drop second/last, redundant "dt-bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/=
-bindings/submitting-patches.rst#L18
+Also, where is any user of this change (DSC)? Why are you adding changes
+to the bindings which no one uses?
 
 Best regards,
 Krzysztof
