@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-215588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50338B51F92
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:58:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 403FBB51FA7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 20:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A58A1C24DEE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:59:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00DDB482CCC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC6E2BE7D7;
-	Wed, 10 Sep 2025 17:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B63A23314BC;
+	Wed, 10 Sep 2025 18:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnoQMl12"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ktShncOj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6166B24C068;
-	Wed, 10 Sep 2025 17:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B07F1E3DD7;
+	Wed, 10 Sep 2025 18:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757527130; cv=none; b=ZojfYyddldS09LbeTXUAIilL7uBvzFvbdETZbl1lYYF165rj6fOW30NwAkYVL0VBceE34DO6WtNmM/7MUIfFFC/LxOD8FuAMNeQd6Lt+wG7dJ6s7COTpaB7T9Z7zhj0f+68FtaLcqu64MJz2kgFLGD+dAFaw1QJVq8achp7APk8=
+	t=1757527322; cv=none; b=Mo2NsPDmaj0n/Px1Gd/hzQytJCW8/+oS2CJVhcdRcUrdBYEG68HbN1Ckzfk4SjKcA+lpn8iSgok92GjEtRp/RWR/6w/hPPLsQ7hXiFdayHIhQaebvxtREzvZM8UTWxvaggwGgGZ9zzWIraalstObXz9Al5sZSrOinul+jbXYu+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757527130; c=relaxed/simple;
-	bh=g2xed9pxoxUvYaYcTwnFZ+tdZ8w4HAXKzjc4YLhXk9I=;
+	s=arc-20240116; t=1757527322; c=relaxed/simple;
+	bh=kvm3hMWUOuOY5DDurnpAR7I7+H/TSB9Py1JhO6s39sI=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y3S6HPhdlXTCZsTngtFjxCNw4BExTyTeJkbUUyMVjFAocf3kFlxoS9SSjKmFSvv6W+5tM1Bgn/QtSriScev4ugjOMD8N+ygbuhvO+ZU623xCr4DjYtZ8+7SR1tnNZFZt9HGL9IXKaD4KAW6KmdmI714PVQt/VeFFs/079Assvds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnoQMl12; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B9BC4CEEB;
-	Wed, 10 Sep 2025 17:58:46 +0000 (UTC)
+	 MIME-Version:Content-Type; b=rmrvxQVRZqW+a0xPf8Bwu4V+M6Tz5kEo69mX1iPP7vKiCcoxgP3EArLgczPGJv+89D/K8as/x2uNSeN6emPaAeu4LbKMrjauOc675vdhxlvpb9VDtad9yFEHR9pbrCcHu1DFubeelyYilGsrH2zzwcvRASJaZUiX9G6kkJ8A/ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ktShncOj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31119C4CEEB;
+	Wed, 10 Sep 2025 18:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757527129;
-	bh=g2xed9pxoxUvYaYcTwnFZ+tdZ8w4HAXKzjc4YLhXk9I=;
+	s=k20201202; t=1757527322;
+	bh=kvm3hMWUOuOY5DDurnpAR7I7+H/TSB9Py1JhO6s39sI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OnoQMl12ZDhP3vlKfv+GqmgcN3uFjROZ/lUTMJJZpPd6wuRTAi2gw8FJhxowP0FkN
-	 MLkUmHkBz+3YqS9VCd/UQOIIQjpQ5gq/GAklyUX3KdJhPiHY37YgfEdta+GljLin5X
-	 hemJXD/YN9ChdDleZIMjxVHbt+KH24dRBj6xlC8kd68n856dUbc0gvoscChJR7L2Ni
-	 75jQm2QpBGDomwm9SBon01q933NmpHi4K2RsRJoti3Hc7bLwcTUkaAiS8X8zmVzMIP
-	 e5Uozcv/lnMWJyq57xIMHp+aGiAFMDkSp58k5OLzPl8usJrSx/yMfC7HUY5GQTwPEs
-	 E+BdZAQUR/0QQ==
-Date: Wed, 10 Sep 2025 18:58:41 +0100
+	b=ktShncOjjXHrEH8T3TSP60lZseKI6FNbJwRx2l+jx+dHM7kL2LQGF/ry9Z/YL4dKq
+	 t7lFOikwEg20ZS8e2ZbYkMw2j3j5HjuVv7I6msm92UPB9cgizQMotd3U3tgtM2P5fS
+	 TavlyzNdXNHtRZ3Noe0NLdfTWW/7pdDYju1L2vWb9g+5bAQQ7lRmse9HKjJBBuzrzD
+	 b28PSi5lxaMmAo4o26CVRgWoncQU8MeTcUAAO33MNaS2C65AvaY0j68xmx0timeALr
+	 5zdVtsQVkudAPBiy+6Ra7JFJm6MP9Ub8Q6zdkNznajisf/K5AAyNP7q3CQZoN6MIEw
+	 U3mc8UHAjsjNg==
+Date: Wed, 10 Sep 2025 19:01:54 +0100
 From: Jonathan Cameron <jic23@kernel.org>
 To: Petre Rodan <petre.rodan@subdimension.ro>
 Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
@@ -50,11 +50,12 @@ Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
  <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 06/14] iio: accel: bma220: add get regulator check
-Message-ID: <20250910185841.075594bb@jic23-huawei>
-In-Reply-To: <20250910-bma220_improvements-v2-6-e23f4f2b9745@subdimension.ro>
+Subject: Re: [PATCH v2 07/14] iio: accel: bma220: reset registers during
+ init stage
+Message-ID: <20250910190154.0c5ab461@jic23-huawei>
+In-Reply-To: <20250910-bma220_improvements-v2-7-e23f4f2b9745@subdimension.ro>
 References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
-	<20250910-bma220_improvements-v2-6-e23f4f2b9745@subdimension.ro>
+	<20250910-bma220_improvements-v2-7-e23f4f2b9745@subdimension.ro>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,39 +66,26 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Wed, 10 Sep 2025 10:57:11 +0300
+On Wed, 10 Sep 2025 10:57:12 +0300
 Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-I don't follow the 'add get regulator check' of the patch description.
-This is ensuring they are powered up if necessary.  So I'd
-just go with the vague: "turn power supplies on"
-
-
-> Add devm_regulator_bulk_get_enable() to device probe().
+> Bring all configuration registers to default values during device probe().
 > 
 > Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> ---
-> no change
-> ---
->  drivers/iio/accel/bma220_core.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/iio/accel/bma220_core.c b/drivers/iio/accel/bma220_core.c
-> index 6bc2e5c3fb6cebd50209acbcc2d5340630c27cd1..b6f1374a9cca52966c1055113710061a7284cf5a 100644
-> --- a/drivers/iio/accel/bma220_core.c
-> +++ b/drivers/iio/accel/bma220_core.c
-> @@ -11,6 +11,7 @@
->  #include <linux/module.h>
->  #include <linux/mutex.h>
->  #include <linux/pm.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/types.h>
->  #include <linux/spi/spi.h>
->  
-> @@ -205,6 +206,13 @@ static const struct iio_info bma220_info = {
->  static int bma220_init(struct spi_device *spi)
->  {
->  	int ret;
+
+Hi Petre
+
+One comment on code you happened to be moving.  The patch itself looks good
+to me so this is a 'whilst we are here' type comment, though should be addressed
+in a separate patch.
+
+thanks,
+
+Jonathan
+
+> +static int bma220_init(struct spi_device *spi)
+> +{
+> +	int ret;
 > +	static const char * const regulator_names[] = { "vddd", "vddio", "vdda" };
 > +
 > +	ret = devm_regulator_bulk_get_enable(&spi->dev,
@@ -105,9 +93,26 @@ just go with the vague: "turn power supplies on"
 > +					     regulator_names);
 > +	if (ret)
 > +		return dev_err_probe(&spi->dev, ret, "Failed to get regulators\n");
->  
->  	ret = bma220_read_reg(spi, BMA220_REG_ID);
->  	if (ret != BMA220_CHIP_ID)
-> 
+> +
+> +	ret = bma220_read_reg(spi, BMA220_REG_ID);
+> +	if (ret != BMA220_CHIP_ID)
+> +		return -ENODEV;
+
+Not relevant to this patch as such, but we should relax this constraint so that
+fallback compatibles work in device tree.  Convention is to just print a
+dev_info() message if we get a wrong ID and carry on.
+
+> +
+> +	/* Make sure the chip is powered on and config registers are reset */
+> +	ret = bma220_power(spi, true);
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret, "Failed to power-on chip\n");
+> +
+> +	ret = bma220_reset(spi, true);
+> +	if (ret)
+> +		return dev_err_probe(&spi->dev, ret, "Failed to soft reset chip\n");
+> +
+> +	return 0;
+> +}
 
 
