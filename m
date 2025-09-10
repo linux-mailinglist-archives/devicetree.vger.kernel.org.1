@@ -1,150 +1,249 @@
-Return-Path: <devicetree+bounces-215194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABBDB50C03
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:57:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 865EBB50BFF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40D524E612A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:57:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 452CB4459CA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 02:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991B4246BD8;
-	Wed, 10 Sep 2025 02:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096A7248F5C;
+	Wed, 10 Sep 2025 02:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ImSsWBc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9575221FCD;
-	Wed, 10 Sep 2025 02:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40502246BD8;
+	Wed, 10 Sep 2025 02:56:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757473038; cv=none; b=EAZU8Yyw29ggY/3cMt9Pz8Yopzz/XCmk+J9O/56K5HvaMW69fJPOkqyflE7A0mRP0MaxJ5lRiX5Ln7CyennPgSAL0gO6ujn82WAMn+/1XhlcpcfGXg8vbwa01IvtnjFNbnjZdd0btym1MosYiyaAf3NcE7ZI3cpgoha9Sgin734=
+	t=1757472989; cv=none; b=bnQiR5PttMH+JIfhJ10URVwbV2M+SkkIfEbjDJefFswWlwaiUA1yY9rD2XBdUFuasAcEKTvWdTjvXeV9BF/sm5f7ZcpQpknD6YFbltWVOCI/bQRMwwWgiQpWGo5ejtCgd1fUjFdN8F30Btng7CGWWOj0W1z8olwRMBKr4MBdlfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757473038; c=relaxed/simple;
-	bh=wo9OsIKUSOb4y/YjQTxP7fSgYy7JcUtfrnlbE0zFHYE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JkY/5SxNt4V90jwJhE30/PCP0DtWKuwz751S867GlbPeYB34qqwyufhIgZEK2IftTjJgDs9nK9Kswrw4wWJKfUts0HcRnTONnTkkvJo7GxvOth/7FeJ98m9yPmWkrlmQidYuncuJHjsJStyHTLNJ52YvBbGyY+P47aIux/5eIT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=54.243.244.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
-X-QQ-mid: zesmtpgz1t1757472967t74690c6b
-X-QQ-Originating-IP: M3qgbrrmtUk2hnbg2au9CWkEhPxB9US2+LWcIhSpDN0=
-Received: from dkx-H410M-H-V2 ( [183.51.121.90])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 10 Sep 2025 10:55:22 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 654995868464269577
-EX-QQ-RecipientCnt: 16
-Message-ID: <76B19AD42CA555FC+fff44db30522cf270802ec31912a9c19d29b2d39.camel@t-chip.com.cn>
-Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add devicetree for the
- ROC-RK3588-RT
-From: Kaison <dkx@t-chip.com.cn>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Wayne Chou
- <zxf@t-chip.com.cn>, Quentin Schulz <quentin.schulz@cherry.de>, Dragan
- Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>, FUKAUMI Naoki
- <naoki@radxa.com>, Peter Robinson <pbrobinson@gmail.com>,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,  linux-kernel@vger.kernel.org
-Date: Wed, 10 Sep 2025 10:55:22 +0800
-In-Reply-To: <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
-References: <cover.1757322046.git.dkx@t-chip.com.cn>
-	 <42ae6d16ed9162582e7b03cbad661a7950c0db55.1757322046.git.dkx@t-chip.com.cn>
-	 <307a76a6-cc92-44a1-9ac0-97005bf51b4b@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+	s=arc-20240116; t=1757472989; c=relaxed/simple;
+	bh=9aZWBowem9quzBxMewIkYmZOsbgydJUvO2LjN/H0tPI=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C9LJztbJ40tPcuNs3XyCpcDo9fVdj+AQ4HEnw899eZf8SQ5psVGaR2ZBB9YhjykprOAK32yqrYSV3sGhZkjZHZKEPJJeMvAus+Vm/UL7u+eMjxr539zm6RuGPvQaPZjS7XUWZkSu2CsiYbp07urz4+m4YHXswBuuama0UQHersY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ImSsWBc8; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-24cbd9d9f09so82071285ad.2;
+        Tue, 09 Sep 2025 19:56:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757472987; x=1758077787; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bccMpZ/9BOkjWFOHbeJr/ZW3cHQMAN90oKmu+ORNptc=;
+        b=ImSsWBc8FLTnx56pKlA6dHUdl9HzQ5g4yCl3McTfult02hgK4Sx8sJRbX6SzXEMTT/
+         hbwHR+Ga2OXlVB8POcCXcNNwia/8ZGgEZKKR7xG8mxb/zhT3zAp9QjQEZ9tTmHQWUi+l
+         y/5JeIE+jj+ayUTtBsxUvUx2iVMOL4To311pYzbm7SBhIEa9yhFsxhjB7Q67P7QeXWRP
+         nzmCfLGYgAVjwhAcVhmDvu6334O/c5xAL7mBHqCu5SR0tWbD3nbsbyvLX93dV8GGrYYb
+         56hjn/HXWIUgU1cyENBWpcJRwsyK5s/ht9Cnh1ciRmebfSRqxDhQh9Fmg4qkcg8BdHan
+         9+dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757472987; x=1758077787;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bccMpZ/9BOkjWFOHbeJr/ZW3cHQMAN90oKmu+ORNptc=;
+        b=boX+C4mAuqMMvpjvDB1Uhs5RQXY38ZJHg6stXt8R9wMfuIYDmRg27uMi/RWofoAi/a
+         gAuvJPQCDmFczNl3nIHPvt0JQuiv5SkNUTbfaB5QqywM95jsbHDFR/L7xPHgA14PKPGO
+         s3QWuGYc+ljUl2IGpqNAvEQ0saW+0FCfzKvzCi1BSAN+CDnRUIhD84oM0q8mGwdFFhZy
+         bxZEaaF/0+V//btC/UA7jkSU67Fl+Lv2mQriUwLuDVuSiqa+Xcr9HL82lRgtcVW8iHZf
+         eems2Aq43J2CgcvdchOdlsVJibccBsdbk31oMfZIaZrLdjr3baKSMBOg65znnKXAzDrL
+         F/ww==
+X-Forwarded-Encrypted: i=1; AJvYcCWcN0diVLSLyd1UpjcdV9mQTFKTZmnxanYlUBmOE5xnVSoMTuIGUr07sesLza7cipMhQRslq93x0kYM@vger.kernel.org, AJvYcCXN+8ZSkRveaXInp6FfYX48mSr0Dc5yX23btDwXqDcJ97ub7e17vkcZ0F3vtXdd6X1iVnEmLMDTiDHUUJYU@vger.kernel.org, AJvYcCXYT/5aS5w16rCpQNOC6ExPMVKUI2wuYU9ZiithAdJh4OnbFY/EOf674UK/xq2I5+L0CKBmwBcR678V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzovAgZpbU8x/zQ3Tof0TgCJLTxhx3v/iivmzkNu90ajQdJJF5
+	JpWiIY7G1HxrCuaXUxoESaoRPhQwqj/ramsnLj3DHBxgCttUwqrrsxG9
+X-Gm-Gg: ASbGncs+JNLtWY44fLpwpulIKpLyHrm6o0p58D/GIo8hOLr3rR3ucmXkTbcifSi/WGz
+	K8hG2BnwTAB9gk3dP88zlP/n0SPK6Hl/PiJiioKPCzdJ0lxKCMa0VrStcSAdkR51FklUuhUF/LC
+	yHdXa4oXf5stQHEg2/VYOxV1em4HG5J1UFRFheMNX3IgLnbwSuYSkgCn+O+RK1GFPopQo1SeDCt
+	f1uCvoYYWXQdy7pO4EYRl9qqJxYnx0v+6hq267SWHP5Aan3hHZhneKocNTBeb84pJqbDbLRxgnP
+	JoJV7C7K7Z6bKCTv+Wy+71vEMYFOYFFp3nE+Ig9pGdvgmkPuDnizpXaKSfzsVXvcpO6zB59wkWX
+	0RFD2msOueLPgQDV4zCquwegAuwKPcHsd
+X-Google-Smtp-Source: AGHT+IFNBos7noDUln9W5GM7yi+/GGgz4QmYFcZtpZbyom0FkxzLpYxnYCZbcxZV/hMMSxTnIj0g7Q==
+X-Received: by 2002:a17:903:1c2:b0:249:1213:6725 with SMTP id d9443c01a7336-251753d88d0mr190803255ad.50.1757472987403;
+        Tue, 09 Sep 2025 19:56:27 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-32dbb5efe7asm650016a91.17.2025.09.09.19.56.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 19:56:27 -0700 (PDT)
+Date: Wed, 10 Sep 2025 10:56:23 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicornxw@gmail.com>, kwilczynski@kernel.org, 
+	u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, alex@ghiti.fr, arnd@arndb.de, 
+	bwawrzyn@cisco.com, bhelgaas@google.com, unicorn_wang@outlook.com, 
+	conor+dt@kernel.org, 18255117159@163.com, inochiama@gmail.com, kishon@kernel.org, 
+	krzk+dt@kernel.org, lpieralisi@kernel.org, mani@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, robh@kernel.org, s-vadapalli@ti.com, tglx@linutronix.de, 
+	thomas.richard@bootlin.com, sycamoremoon376@gmail.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	sophgo@lists.linux.dev, rabenda.cn@gmail.com, chao.wei@sophgo.com, 
+	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
+Subject: Re: [PATCH v2 3/7] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+Message-ID: <xmk5uvnw7mcizxpaoarvx2c2sejaz2skaiyyac7oo5y6loyjgp@5v3sldwbqpw5>
+References: <cover.1757467895.git.unicorn_wang@outlook.com>
+ <162d064228261ccd0bf9313a20288e510912effd.1757467895.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: Mdc3TkmnJyI/6FAGiVcHwJ65lGMqzzmC4ZTtdU2m2p2uPPUJu7BMkcsK
-	KlYEwj7i1oKfzoiSgPlZ9UYslC1ildvmL36d8LoGHnVfGG5unWPERjYrbD2hRAVTsgyNmI1
-	3IbtkZniHef03LV6kIapNrwbf7nm7AawHJ7pzBsE2KoM7A3hGWd5o5pfJquKub6O5PDAyNG
-	wdAsUSja73QUu04ik8NgopRS4+rwPSkl8R8boGMMhH9NYwWAEVJVk/PQZGtScaADukCvMVl
-	DF4UYnJ9mT5BXATIgaQx6kqKHxpKZR2B9I8b9HqavS9Qoqt4iexiplvCpLXHqpZTnUPB7X2
-	b8YDfkYQh3n5VsrH1iL7p1Y9wqBSw5eGQBrqiEPn7j2kgjCZVlfiBPa2m+iPsm+HFZ/2CxR
-	/BxK3R0Eya5XirYggByvrf7fGDjrLtp4mggeRLlOU7jVl7gc1Ilnjsx1EWx2rKiUNrZ6iBJ
-	VUe+fEQzl3g940Qr879lVt8DJ3VtbCssvhM4ctuTB8VntdsZxbGWaaOzr5+c6heMxGQQ/1t
-	d+lBQlpqQseLNOaxzdrAcNoOypIbWA4aswCvps+wU3wowXaIp3x5BcFW+pD8KQABT+X17sG
-	2ufjW8iRjHRI8x18O+jD2yjsTnZ/4IPPLLAkxaoyms6gBIN9QhckYrEprgCvtX/Bas5vX2p
-	dESicn1Vd5G7UDgzYMNmuIIQRIzOukKmmbm8cciNFUcnk8p5BsiTZlVLTBS9dvGgdVUyflA
-	vlBEzBSKP+nf/FCcKaQkxxJ4r9etcmrHZrOei5krT2ZvgYbMqYHUBLCrubXowhyAJiN0mcJ
-	ZhrPbbzGoEO4PyiaNPCGi1Ab4X3ezQPAoV4MykZ0BxSvh6jrUyiJtjMdGqhQPZyzd+B705h
-	dqKS0E6+AV/PGP+vpMhkU+kVLtj1nSn6cyPclHEx3My4H3EMxRW/kZLlH475RJBNSMh8DaP
-	ebQxs1dOVr2d3JYHBpRgEuhOUH/hCGD9lB2apuVvIanK1b7rabj9yJTdXraeaOjZb4gvct4
-	VER6O/LjAsKXAzn7C7jiMagzoiRgVde8U/TIAw7cUzHysd8UtIyHTJQzj6Ego=
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <162d064228261ccd0bf9313a20288e510912effd.1757467895.git.unicorn_wang@outlook.com>
 
-hi,
-I'm very sorry. Due to the default configuration of my email, I didn't
-receive your email normally. I have fixed this issue.
-
-On Tue, 2025-09-09 at 14:31 +0200, Andrew Lunn wrote:
-> > - 2x Gigabit Ethernet, 1x 2.5G Ethernet
+On Wed, Sep 10, 2025 at 10:08:39AM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> I actually only see the 2x 1G. Is the 2.5G not supported yet?
-The 2.5G Ethernet is based on the Realtek RTL8125 network controller of
-PCIe 2.0x1.
-
-+&combphy0_ps {
-+       status = "okay";
-+};
-
-[snip]
-
-+&pcie2x1l2 {
-+       pinctrl-names = "default";
-+       pinctrl-0 = <&pcie2_2_rst>;
-+       reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+       status = "okay";
-+};
-
+> Add support for PCIe controller in SG2042 SoC. The controller
+> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
+> PCIe controller will work in host mode only, supporting data
+> rate(gen4) and lanes(x16 or x8).
 > 
-> > +&gmac0 {
-> > +	clock_in_out = "output";
-> > +	phy-handle = <&rgmii_phy0>;
-> > +	phy-mode = "rgmii-rxid";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&gmac0_miim
-> > +		     &gmac0_tx_bus2
-> > +		     &gmac0_rx_bus2
-> > +		     &gmac0_rgmii_clk
-> > +		     &gmac0_rgmii_bus>;
-> > +	tx_delay = <0x47>;
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  drivers/pci/controller/cadence/Kconfig       |  10 ++
+>  drivers/pci/controller/cadence/Makefile      |   1 +
+>  drivers/pci/controller/cadence/pcie-sg2042.c | 104 +++++++++++++++++++
+>  3 files changed, 115 insertions(+)
+>  create mode 100644 drivers/pci/controller/cadence/pcie-sg2042.c
 > 
-> What happened about my comment that "rgmii-rxid" is probably wrong?
-> 
-> If you think it is correct, you should reply with a
-> justification. Maybe PCB is very odd? In which case, a comment would
-> be good to explain who it is odd.
-The Ethernet part of the board is designed with reference to the
-rockchip evb1 board. 
+> diff --git a/drivers/pci/controller/cadence/Kconfig b/drivers/pci/controller/cadence/Kconfig
+> index 666e16b6367f..02a639e55fd8 100644
+> --- a/drivers/pci/controller/cadence/Kconfig
+> +++ b/drivers/pci/controller/cadence/Kconfig
+> @@ -42,6 +42,15 @@ config PCIE_CADENCE_PLAT_EP
+>  	  endpoint mode. This PCIe controller may be embedded into many
+>  	  different vendors SoCs.
+>  
+> +config PCIE_SG2042_HOST
+> +	tristate "Sophgo SG2042 PCIe controller (host mode)"
+> +	depends on OF && (ARCH_SOPHGO || COMPILE_TEST)
+> +	select PCIE_CADENCE_HOST
+> +	help
+> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
+> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
+> +	  PCIe core.
+> +
+>  config PCI_J721E
+>  	tristate
+>  	select PCIE_CADENCE_HOST if PCI_J721E_HOST != n
+> @@ -67,4 +76,5 @@ config PCI_J721E_EP
+>  	  Say Y here if you want to support the TI J721E PCIe platform
+>  	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
+>  	  core.
+> +
+>  endmenu
+> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
+> index 9bac5fb2f13d..5e23f8539ecc 100644
+> --- a/drivers/pci/controller/cadence/Makefile
+> +++ b/drivers/pci/controller/cadence/Makefile
+> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCIE_CADENCE_HOST) += pcie-cadence-host.o
+>  obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep.o
+>  obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
+>  obj-$(CONFIG_PCI_J721E) += pci-j721e.o
+> +obj-$(CONFIG_PCIE_SG2042_HOST) += pcie-sg2042.o
+> diff --git a/drivers/pci/controller/cadence/pcie-sg2042.c b/drivers/pci/controller/cadence/pcie-sg2042.c
+> new file mode 100644
+> index 000000000000..c026e1ca5d6e
+> --- /dev/null
+> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
+> @@ -0,0 +1,104 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * pcie-sg2042 - PCIe controller driver for Sophgo SG2042 SoC
+> + *
+> + * Copyright (C) 2025 Sophgo Technology Inc.
+> + * Copyright (C) 2025 Chen Wang <unicorn_wang@outlook.com>
+> + */
+> +
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include "pcie-cadence.h"
+> +
+> +/*
+> + * SG2042 only supports 4-byte aligned access, so for the rootbus (i.e. to
+> + * read/write the Root Port itself, read32/write32 is required. For
+> + * non-rootbus (i.e. to read/write the PCIe peripheral registers, supports
+> + * 1/2/4 byte aligned access, so directly using read/write should be fine.
+> + */
+> +
+> +static struct pci_ops sg2042_pcie_root_ops = {
+> +	.map_bus	= cdns_pci_map_bus,
+> +	.read		= pci_generic_config_read32,
+> +	.write		= pci_generic_config_write32,
+> +};
+> +
+> +static struct pci_ops sg2042_pcie_child_ops = {
+> +	.map_bus	= cdns_pci_map_bus,
+> +	.read		= pci_generic_config_read,
+> +	.write		= pci_generic_config_write,
+> +};
+> +
+> +static int sg2042_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pci_host_bridge *bridge;
+> +	struct cdns_pcie *pcie;
+> +	struct cdns_pcie_rc *rc;
+> +	int ret;
+> +
+> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
+> +	if (!bridge) {
+> +		dev_err_probe(dev, -ENOMEM, "Failed to alloc host bridge!\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	bridge->ops = &sg2042_pcie_root_ops;
+> +	bridge->child_ops = &sg2042_pcie_child_ops;
+> +
+> +	rc = pci_host_bridge_priv(bridge);
+> +	pcie = &rc->pcie;
+> +	pcie->dev = dev;
+> +
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_no_callbacks(dev);
+> +	devm_pm_runtime_enable(dev);
+> +
+> +	ret = cdns_pcie_init_phy(dev, pcie);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "Failed to init phy!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = cdns_pcie_host_setup(rc);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "Failed to setup host!\n");
+> +		cdns_pcie_disable_phy(pcie);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
-link: 
-https://github.com/Firefly-rk-linux/docs/blob/rk3588/firefly-public/en/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
+> +static void sg2042_pcie_remove(struct platform_device *pdev)
+> +{
+> +	struct cdns_pcie *pcie = platform_get_drvdata(pdev);
+> +
+> +	cdns_pcie_disable_phy(pcie);
+> +}
+> +
 
+I think this remove is useless, as it is almost impossible to
+remove a pcie at runtime.
 
-The document describes the usage of the rgmii-rxid mode:
-
-When the hardware enables the RX delay of the PHY. Need to turn off the
-RX delay of the GMAC, and the dts configuration mode becomes "rgmii-
-rxid".
-
-> 
-> 	Andrew
-> 
-
-Kaison
-
+Regards,
+Inochi
 
