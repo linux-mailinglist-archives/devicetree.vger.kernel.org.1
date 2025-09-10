@@ -1,153 +1,98 @@
-Return-Path: <devicetree+bounces-215316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31C9B511D3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:52:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A556B511DF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB601B2728D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:53:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D29B1C232B8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F953311598;
-	Wed, 10 Sep 2025 08:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9147A31063B;
+	Wed, 10 Sep 2025 08:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6vHoYKe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="naov1dQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC95304BC6;
-	Wed, 10 Sep 2025 08:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D9530C351
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757494363; cv=none; b=qIxTWfPPrcoSW49mcYOmS5G8IkHnWGRY7ZV3774JCOparTbWLGfRoRC/eNzEY9EdOqH3JL6w9j74TtiEhz5Wu/25IXpJAazxWe81KmpzvlzFVttreJ2k0meJex373KqvbTN3xp+3EprsBwZAuw5XgkamVte8Tc0exlxLhLENJUo=
+	t=1757494544; cv=none; b=ZumZEJZS3wkYkSitvDfHT95Z8ibIDK1tRPS2je5LdGmPzaUdG/Uzd+XeC4eSCtDhfl8HqGWhdJDBL7VoBjk1SyXBYFpAJA862vvQwzbKW9h41IhmSjaYkzUXSwoiUgIXtKdrpEnCfKX5lafnbyZTkDTFLe3o4nUBK4cu78lhy1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757494363; c=relaxed/simple;
-	bh=BGCsHd+sg36gGyPa8SrCibmlCLKwotYFCrxqqP26p6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QKX5oqJ1TwWrKD/kobtL8MuKDm1cufJSA9IuDUwsaTTbvo7RJ0P4+JIvVgtV9CwRRoGi4Sz4rnY/FxNu0SQIsK3sW0YEaje4Bq/x0CjPcoL0KNvRg/2Zu/KxM7OWg+O1pbPjt7Qk4B9PLQ8F3PPpT8f1r8l3yro77hg7NP63rZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6vHoYKe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10FCFC4CEF0;
-	Wed, 10 Sep 2025 08:52:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757494363;
-	bh=BGCsHd+sg36gGyPa8SrCibmlCLKwotYFCrxqqP26p6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S6vHoYKeSk8MIXhXJzqr1LQqqFGmpmjzi/79DZqOcOtTzjbZMnm6O7dTD9celLsjL
-	 DMQJbrwzWYZiLJyrkzYd5477RMxn6wBgEEYSSuVZYq8D27hdo0m2DtvAGrnAL0VX/s
-	 wHKkS3tlj1QET/xQ00lWdTjZ67DXncQOPL1sGvqQVHwhH0ab9qpXb+vmp7ibsRXI2Y
-	 y4+7LEi/MPF8RMIvW4LgLCFkqhqV4OI07ai9LfAkDWK6SByCpFQS/BzExXkewcYlwh
-	 y0YRXJIkyv+l3bZ2PEE58unVkWp9KdM8Lt+8gp/8v0wv8dd4MhKVmy7Hhtfi72cqoW
-	 Rdirkp40HEYXA==
-Message-ID: <d084b27b-eea0-48a1-a8a6-171280bec69f@kernel.org>
-Date: Wed, 10 Sep 2025 10:52:36 +0200
+	s=arc-20240116; t=1757494544; c=relaxed/simple;
+	bh=xa9auGg8cwqhPNG0DFih02jn1l20IbvqO550FrgoUcU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=fEQotIvL1n4N78lM61RqD9R1N6iglYxdetbmVI8RhdjfPNnuLkKADgXph6pfgwRsw5Bv1673CHc9z7a/rTVoVusNFfO2HAXEkpaEa0eKwqB8ZgLFIKtieMD274qEsEzK3VvJqlmE0W0uhOwP6q3Sa6DzBDCHgbKa2rY6N6Kh048=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=naov1dQz; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 98D794E40BA8;
+	Wed, 10 Sep 2025 08:55:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 561B7606D4;
+	Wed, 10 Sep 2025 08:55:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 493A8102F28B2;
+	Wed, 10 Sep 2025 10:55:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757494539; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=xa9auGg8cwqhPNG0DFih02jn1l20IbvqO550FrgoUcU=;
+	b=naov1dQzy5RX8zG17asjtec42pCCqEJSVEwtsIoyuSWmnS/CkepAtfPQR80S6a5tmqfXJP
+	doOWqlr3m2PvJHGcALeZI2rXQGYBaYyf4SRnpPYFhHdDirDtnc/3ANrpoJtMYZcsEbk7qn
+	MS9PGc+bD9HHMgEFMXUNL2Qa5kYUTrG7LRgbRxBYksPAR0ODNv1JOd/2BIrycZtH3JvdgK
+	1ydED6axMydA4qf4cH/Lic8I8rsxOV44Rm6SUiSpbg2E0tBnNImoBz3QsF8pIk6KEo6di5
+	s9F2SaCfrxzuTQm4+6ywJb7ZPcz/6spumNInJM+yRS8eIejLSq3UPWBqcohn5g==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,  Huacai Chen
+ <chenhuacai@loongson.cn>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Keguang Zhang <keguang.zhang@gmail.com>,  Richard Weinberger
+ <richard@nod.at>,  Vignesh Raghavendra <vigneshr@ti.com>,  Huacai Chen
+ <chenhuacai@kernel.org>,  Xuerui Wang <kernel@xen0n.name>,
+  loongarch@lists.linux.dev,  devicetree@vger.kernel.org,
+  linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v4 1/7] mtd: rawnand: loongson1: Rename the prefix from
+ ls1x to loongson
+In-Reply-To: <87bjnielsa.fsf@bootlin.com> (Miquel Raynal's message of "Wed, 10
+	Sep 2025 10:47:49 +0200")
+References: <cover.1756991031.git.zhoubinbin@loongson.cn>
+	<8c804abb75277f0ff389151c1cd58c94f2b258ca.1756991031.git.zhoubinbin@loongson.cn>
+	<87bjnielsa.fsf@bootlin.com>
+User-Agent: mu4e 1.12.7; emacs 30.1
+Date: Wed, 10 Sep 2025 10:55:36 +0200
+Message-ID: <87348uelfb.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/20] dt-bindings: memory: factorise LPDDR props into
- SDRAM props
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
- Julius Werner <jwerner@chromium.org>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jonathan Corbet <corbet@lwn.net>, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
- <20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com>
- <20250910-flat-raptor-of-temperance-5e8c7c@kuoka>
- <899eb863-6b6d-42f0-9e7c-e2020ee45f4d@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <899eb863-6b6d-42f0-9e7c-e2020ee45f4d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 10/09/2025 10:41, Clément Le Goffic wrote:
-> On 10/09/2025 09:54, Krzysztof Kozlowski wrote:
->> On Tue, Sep 09, 2025 at 12:12:12PM +0200, Clément Le Goffic wrote:
->>> From: Clément Le Goffic <clement.legoffic@foss.st.com>
->>>
->>> LPDDR and DDR bindings are SDRAM types and are likely to share the same
->>> properties (at least for density, io-width and reg).
->>> To avoid bindings duplication, factorise the properties.
->>>
->>> The compatible description has been updated because the MR (Mode
->>> registers) used to get manufacturer ID and revision ID are not present
->>> in case of DDR.
->>> Those information should be in a SPD (Serial Presence Detect) EEPROM in
->>> case of DIMM module or are known in case of soldered memory chips as
->>> they are in the datasheet of the memory chips.
->>>
->>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->>
->> Is this email defunct now, that you add second SoB?
-> 
-> Yes, but I still want to upstream it and was thinking to keep the 
-> "original" author even if it is me.
-> Am I wrong here ? What should I do ?
+On 10/09/2025 at 10:47:49 +02, Miquel Raynal <miquel.raynal@bootlin.com> wr=
+ote:
 
+> Hi Binbin,
+>
+> On 04/09/2025 at 21:06:33 +08, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+>
+>> I am going to introduce the NAND controllers of the Loongson-2K series
+>
+> Please adopt a more global phrasing, like "In order to introduce" rather
+> than the first singular person.
 
-It's fine, I just wanted to clarify this.
+This will be a hint for next submission, the rest of the series looks
+good, so I'm taking it anyway, no need to resubmit.
 
-
-Best regards,
-Krzysztof
+Thanks,
+Miqu=C3=A8l
 
