@@ -1,329 +1,308 @@
-Return-Path: <devicetree+bounces-215319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB78B511F4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:00:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F6EB511B9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 380993AD51D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:00:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C115D1C26A81
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90815311955;
-	Wed, 10 Sep 2025 09:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CBB30E846;
+	Wed, 10 Sep 2025 08:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oitxkUzs";
-	dkim=pass (1024-bit key) header.d=stmicroelectronics.onmicrosoft.com header.i=@stmicroelectronics.onmicrosoft.com header.b="LevCEaZZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KGpB+5bV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E9730C62A;
-	Wed, 10 Sep 2025 09:00:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757494840; cv=fail; b=ZLPVEFMzXahCiqYi/r97B+2LMxeskjp8GOoKUQCdv3h7lBM5yrwfzdknRp57+FKkp0P4EEATp/5ICCwsPsDO38CsZbr7oTXKMcFIy4P9XG3GdUJro9y73LYeJnoJ7hiPD25M8fIyc4SQaJk555XWaUzfCH6bLX4285XvfRPx0q4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757494840; c=relaxed/simple;
-	bh=/m4T7Obdo8nSf4gaxRZ5uzcwRuTUz9/6p+z+et4vvZQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IPOp9XPrUwHauHBInW7Dj/IcEZ3ZkAiCAu6svPCyoUen/JchSQe1kIntsHRlVXLMJV1m0tZvL10PV53PEPKopC7ypEDUbEuR1Ik+0EWfQmSv7YMm7X+6aemj2DCPXTfkb0Q+HS8EyHhdEJIfYlEODv3TG3WPnT4pP9qI8sXGGHY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oitxkUzs; dkim=pass (1024-bit key) header.d=stmicroelectronics.onmicrosoft.com header.i=@stmicroelectronics.onmicrosoft.com header.b=LevCEaZZ; arc=fail smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58A8g4pQ006049;
-	Wed, 10 Sep 2025 10:42:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	J4FpgXhEMAGf7egEgiEdPnRQIewNbRLswdo2X/eMG6w=; b=oitxkUzse9wagNRf
-	EvValU/t6Wnvtm0pkJ8Exr+ELHNZv6ByI4/i5EMrQ/4K3DZ+nvZQtxRXhKIH9Bm7
-	KWdGBjFWcoSqVim5J4XqjdGcRs1iACAOtC07w1OV58IMkfipAzonmnoDDP/0D2cz
-	U3ll0k9NlxlNQvCw7P/XXGoU2YzwIEaHaI5TouuMBAWa/iTi5lZtxt3qhn7Ue16t
-	NxDYaMxgvylgUaSyK8uJ+kcHjnqKXTqa+rbitlNY0jGzyiLCyeJ838XEbAViCN4B
-	dpKs5BcCyanlVpLImK/AWC9VBQPKYgdY+b989qfmQwGUqTMzeJFJa0USIC4myzMH
-	TgYrRA==
-Received: from am0pr02cu008.outbound.protection.outlook.com (mail-westeuropeazon11013061.outbound.protection.outlook.com [52.101.72.61])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 490a386umx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Sep 2025 10:42:52 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t7JmGUMtOp3202VdA120D9Sa7atEVQLWxx27LHJVmHr7htQVK+1g1FMtJnX8F387T+rtAQsrNztMdYnDAegVKVfdi8JsjDdL5lJjZoQWmaXQhzPL6y+LhVXvLupA4fVqKY9LGY1uA33LuLGsduxgTQbolMv683Bv9svIhoGxlau8mx9Nkn+CGNUPmz9prkTM0C7Vp4Z8Id85a6t32bxd3lpjvbXkExB6UP2CxXuFszkiK9tCMA7mV3pXaPJZAShtH6VDREh+Ftbzi9BMVe61UHjAoH4ZUPXhIYSTej0hqf2c+CT4pA+cUyn+1FslLwIaOsTmEuH5uX1nRVE/ySA7QQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J4FpgXhEMAGf7egEgiEdPnRQIewNbRLswdo2X/eMG6w=;
- b=B4Nqo38sdEgKQBBP7jyeVjKFG4cjvDCpNZTBQNoy0LCqdLkBfMeWPEX7GLYTXmmbI+0ZkbinwyxBbwmdcmVIFDht3QXGl6YYvYF6/wTsi0SHs+zZQYOo2CaXepHnlGD2iFA4xTb60sy60gI6ZmY4aXtLtN12Rf58oOIPhJ9o4/u6+qVAubA3xinS0tTe+5Fu+AVycVghSXEYVRTQ59GhC5Yw1BjGpCo+Npc4DRMGrXqWBpPD8bCcfsOnK1zcmSXZWC1dMbMCHt6qE9o846NznhzvtaHQzBFo1IylDwWKXZt0VADnZLt5NMDPe3irP9G/kF9Jd9IcGi5TZbJtOPjkrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.43) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=stmicroelectronics.onmicrosoft.com;
- s=selector2-stmicroelectronics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J4FpgXhEMAGf7egEgiEdPnRQIewNbRLswdo2X/eMG6w=;
- b=LevCEaZZLjQ7re4ypqqZ0M/BA15Me9faC0jV1SsGUaxfWOw+2+IzwW4itUopdfBidlIv4FUXVwWQvnWO5grC0B4L5kcxEyfLZGWREHFem0fyDFgeyMVA5UauVkhJrGV/LsxhW2cTVQnnbQI7JdXfqdeKujxdij6fjeqKG7T8S/A=
-Received: from DB8PR06CA0060.eurprd06.prod.outlook.com (2603:10a6:10:120::34)
- by VI1PR10MB3230.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:136::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
- 2025 08:42:49 +0000
-Received: from DU6PEPF00009525.eurprd02.prod.outlook.com
- (2603:10a6:10:120:cafe::fd) by DB8PR06CA0060.outlook.office365.com
- (2603:10a6:10:120::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.15 via Frontend Transport; Wed,
- 10 Sep 2025 08:42:49 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.43; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.43) by
- DU6PEPF00009525.mail.protection.outlook.com (10.167.8.6) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Wed, 10 Sep 2025 08:42:48 +0000
-Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
- (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 10 Sep
- 2025 10:40:26 +0200
-Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 10 Sep
- 2025 10:42:46 +0200
-Message-ID: <7cfb167a-26df-4abf-a6ec-73813a1a0986@foss.st.com>
-Date: Wed, 10 Sep 2025 10:42:57 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703372C026F
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757493810; cv=none; b=TDgaFwgOz5podXxY7YYtCqfDtPlx4NN8FwM7fkrIa5F/0IWwq52nG9m3R52n7Y8rZKIkT0oU9gcxC5UutN1PHsEEqRucfpTZtz3ttyFsv9fPuQr+St5yhmzATDlfdhJ4xxOCkPuyTDMXxGXHGO6mwWpxi4YQGNWpY5klP67x954=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757493810; c=relaxed/simple;
+	bh=di/VZnISnm/3i1BobAtmOuLyt9q4t6AA+0R2UqttECI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ksF0VnMrytYfDS/+9hG/FxfG9QqawRkTn6lHmUiw/8RqDTk808xSFYptHUwFlDBrzzegnD2sCdBfmjvMuCcF5TQTgr140En7GSdu1Q+jByGkEW5gNpSBOcTXHaqbIVz3Vx8Fj9WninB4uvVN5z8V4Y98iThBVq3e28H+IcPwVTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KGpB+5bV; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 9C0311A0BFB;
+	Wed, 10 Sep 2025 08:43:25 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6A0CA606D4;
+	Wed, 10 Sep 2025 08:43:25 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6FF5F102F1D2E;
+	Wed, 10 Sep 2025 10:43:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757493804; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=MKdBghLgZ/Yd64oSt/OaMQnpjo06vhaw7WliBuhohZs=;
+	b=KGpB+5bV+LEHQ+GKCNtfpSEBO0YUStGO016SnuOPxJ/VC7JIOabIYOxsiYIun9LMFMAk0I
+	GQbafpLrPNZlKIBNw0E94ec7WkWf7JSEnKbFfTJPGl+t6ZpRakpavwj+xnqvkzaOhN9uWR
+	P+7/1tz2Kgg0Q2FnhLWRkn2Wn0BaxxU40hv9mfRVmKM/P0ZLiCv2l2haSGGOkg8j2H4du9
+	VRLBg9y4E+PugtMlQNODGeNV72Q22lfiTqZJ5z6YZDiLUoH177cuOJCUejhdhw1uQ0e+QC
+	lOon7KK3+CmvW4hURoPbAhr3d4BseLCc+U+RTIGFrWhBXGV9n1v5dpjRb1eZyA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Markus Stockhausen <markus.stockhausen@gmx.de>
+Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
+  conor+dt@kernel.org,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mtd: nand: realtek-ecc: Add Realtek external ECC
+ engine support
+In-Reply-To: <20250828143408.2511086-3-markus.stockhausen@gmx.de> (Markus
+	Stockhausen's message of "Thu, 28 Aug 2025 10:34:08 -0400")
+References: <20250828143408.2511086-1-markus.stockhausen@gmx.de>
+	<20250828143408.2511086-3-markus.stockhausen@gmx.de>
+User-Agent: mu4e 1.12.7; emacs 30.1
+Date: Wed, 10 Sep 2025 10:43:15 +0200
+Message-ID: <87ms72elzw.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/20] bus: firewall: move stm32_firewall header file
- in include folder
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
-        "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Gabriel
- Fernandez" <gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>,
-        Julius Werner <jwerner@chromium.org>, Will Deacon
-	<will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
- <20250909-b4-ddrperfm-upstream-v6-1-ce082cc801b5@gmail.com>
- <9a46c8a8-1d25-410c-9fa2-267eb4040390@foss.st.com>
- <19e664da-df4c-4bc0-84ce-41e4364f10bc@gmail.com>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <19e664da-df4c-4bc0-84ce-41e4364f10bc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF00009525:EE_|VI1PR10MB3230:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ee64fa2-aa79-4dca-4c9a-08ddf04605be
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|82310400026|36860700013|921020|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aVJVWkFZa2IvRHdicU8xWVRGa2xGa2xYUEJhNVcwblhCN3lkWS9kYkhKNmta?=
- =?utf-8?B?WXJmUXBTSTE4WkJ5MVpSWVBHMHZsNVhGZ1VkUGRXdVBXZG54WUdEaW1IMTV3?=
- =?utf-8?B?em5XZk9zL3JYRnVBekpJWTVCUis2MEw4c1I0dHFjemtFbEZONGZNNURudWk5?=
- =?utf-8?B?ejBMQms1L2RKd3l3blZPd1hrZnNSeFhzQThuQ0lvNEZ3Z1hRY0Q0M3ZDUTJ6?=
- =?utf-8?B?Q1RXbWZ5TE5ldmZiL1BZK2VhV2U3QmZ5WkNDMUp0c3ZFVmxRR21TaVNRM25F?=
- =?utf-8?B?UmJhMDF5ajN4bVJ2anFZbEFTN2Y0UUNzQzFyNjhkNnF4ZmJWUnVydk9tMzR5?=
- =?utf-8?B?Z0laY2hOaVZiWmdsZ2ZLd01Sb09abDBPRDkrQitPN013ZHBVVUcyWHpML055?=
- =?utf-8?B?QzZwc1JqeWdvWkh1b3h5elI0cVpXWXN3cGl5MGdidDRBaWJyU1E3eWg5SGht?=
- =?utf-8?B?bktDQUpzcjM3YW1nVmdEUG9yQU5uV2RaT2pOUXNaZDJYVVNlcFFheUEwWkt1?=
- =?utf-8?B?SWFzYVQ2UDZqRUlDbGlENWdSbkpRREIxdm1KbUEvTHg0M1lTRTQ2S0h2VndI?=
- =?utf-8?B?L1JNeXhRNVJtTmdSUlhHemJpVHZTL1hpSklnaG83MTNSR2hPendZUE9xNjFa?=
- =?utf-8?B?cXd1TC9veEVFQTU5UjlYd1l2MC9PajVFOGdKZXpFaUlVYjhEWlNwT0dJRGdN?=
- =?utf-8?B?SlRBNjlxMktZRktNTnMxYzNYekN2anYyTHU1bFpnV2dVRlBMOC9hMmtUYmRv?=
- =?utf-8?B?TFE5Tkd5cWtLK00vbEdITEJ2OGlkN3RKNXRYUm84TVBxNlBsR2NzVG8wL3Az?=
- =?utf-8?B?QTNYLzFnRkRJQmV3dm5ZV0hFdnVJQUtuVVd1a0ZNanMwUWhDTFgvbkJiMWpP?=
- =?utf-8?B?ek1nZVVzTkpzY2s0YzBNeFJsMVZnVUZKbDNhV0dCN1BMZUk3SlNOZmF5VGgz?=
- =?utf-8?B?S2gyakJrd0pkaGkxUVBEcHN1QUhJOEp3eXFzRmppai9TbVBmcGNTR3cvWkZn?=
- =?utf-8?B?MzJCTFNmZjk3K21JemJqMkJCNGExWEVFMmdzQ3I4ZTFzUS9KNUsyMFFnTXgy?=
- =?utf-8?B?WUthUGRlSy8weXhQdDZQVWxiVXA1SHJoZWxlU2FmR01JVFdMWWdyOElXdnVF?=
- =?utf-8?B?SnJhQXR0eGQ4UGRLNFBXa3Zlczg0ZFhRSFB0c2gycW9yNWZTdGxDTHZIanU0?=
- =?utf-8?B?WTFUdm5wdFJRSnZtSDF1SStJclNGWDhIUjBobktyWDA4eWlDZTVRbXlKY2w1?=
- =?utf-8?B?U0ZucTNoem9KQ0hLWTVQWlFqVGxYUjhxTHVBSjZDa1V3a3UvQjd1Y2ZrV0lt?=
- =?utf-8?B?ZmtTbkYzWW45aHRkT2JTNGVOYXBUY0FRdHVIYVNHMGJrelA3ZERkNUJZaVhw?=
- =?utf-8?B?WnBaaG1GSzUxclNWdmF0bDNOdzBrcWFpNmZOZVNWSXhhN3RZOVZJZDc3U0Va?=
- =?utf-8?B?ZnpZbXpzM1hLb0Vqc2FLK3VvSitBWDFXZ0FMTkxtZ0QrYW1ZTmN2S1BWWGRz?=
- =?utf-8?B?WWJtS3I4ck1uc0V3ZGkyRnRwUTJ1MmNOY2tKdC81eEp2RjBWajJWVkc1aEZV?=
- =?utf-8?B?UGV6d1R6QmN5eEx3VnNYWklvSlE0RGtmQUdUVVRUbDNsNWdqcXJQT21QdUhV?=
- =?utf-8?B?a3laQ0o4TkZTS3ZLNktjU21XUFJKZVVZZmNqRVlFcTQ4MDV0bVh6aEIxL2lB?=
- =?utf-8?B?VGdoUEp1bWVkdU53dVZtblY4ZzhpeTFuSTN4VGlteGprS1YvL0NqSGt5Q3l1?=
- =?utf-8?B?ais2Sk82YjRzbnN5RlZ2NkZERXBsV3dnOG5keld1VDE4aHRWbGRRUERERWNs?=
- =?utf-8?B?RmlJa1h2a044b0EvWXBmbnlaTHNlM2x3TFFCV3lnakdxek1RdEpGczVpd1lM?=
- =?utf-8?B?NDVvemRURmxkNVhmT1dYY041MHg2RUdrOEF6dzJQMzVFOFJvZ01JUm9wQnZi?=
- =?utf-8?B?M3VPY3daTFNsZzFFSmVoL09MN3Z6dGlMTUx4U0lrQWJTdEVmZ1dsNEhqQzlE?=
- =?utf-8?B?Wm95UjVKUUZIOHV2cDJNWTFHdFdlWHBCTVRCOFVzVnI0cEM4Y1FRdGxQcEdT?=
- =?utf-8?B?M1dhSzJjU0FNeXJZOHloNDFua29EZENPNS8vZz09?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(82310400026)(36860700013)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 08:42:48.9991
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ee64fa2-aa79-4dca-4c9a-08ddf04605be
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF00009525.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3230
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA1MDIzNyBTYWx0ZWRfX1KbADuoLthWh i/LCcDEK8JaapDabifDHC/znWq9h3yhpmGDO2S0tMSbNq/x7zQzrmzWR9ISGHCxsnJdEKOs12xb 7xsY/6UIkKPwqA0tZqquzW49AQm385YlKXY77or+b028m7bTqumHHqhpF/Z+H/hyCn58acEIloJ
- ga1GXoh+32y2pEuYnQDkvlb25AWC7leQdoXNyD4kv7G1BCG1sKgzANGL+DyQM/YeUg3emgFjjz7 H//mpTFsNItmrxDg2mr49UHBqburvH0+vLJjv3soB2XSxpUeIrOte0GHpiwkBrorgn9y4nVq9pZ SYJp+c7ap9xHlkb/9xBiYBqg7sqUAsswXOXf31w3xJpYApM6OgK8S3XKUPMKkoSe1xmH1I2jSl8 T62I6LXd
-X-Proofpoint-GUID: I6cA2-H2HqpFTqPVdZoFNp0I1FAr5hgO
-X-Proofpoint-ORIG-GUID: I6cA2-H2HqpFTqPVdZoFNp0I1FAr5hgO
-X-Authority-Analysis: v=2.4 cv=WLB/XmsR c=1 sm=1 tr=0 ts=68c13a0c cx=c_pps a=lih53SDVldumcZxYoUPpqg==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
- a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=ei1tl_lDKmQA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=FUbXzq8tPBIA:10 a=8b9GpE9nAAAA:8 a=pGLkceISAAAA:8 a=1Ic4tg3mJiWtIKtg5K4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_03,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 clxscore=1015 adultscore=0
- impostorscore=0 phishscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
- definitions=main-2509050237
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hello Markus,
 
+On 28/08/2025 at 10:34:08 -04, Markus Stockhausen <markus.stockhausen@gmx.d=
+e> wrote:
 
-On 9/10/25 09:47, Clément Le Goffic wrote:
-> On 09/09/2025 14:25, Gatien CHEVALLIER wrote:
->>
->>
->> On 9/9/25 12:12, Clément Le Goffic wrote:
->>> From: Clément Le Goffic <clement.legoffic@foss.st.com>
->>>
->>> Other driver than rifsc and etzpc can implement firewall ops, such as
->>> rcc.
->>> In order for them to have access to the ops and type of this framework,
->>> we need to get the `stm32_firewall.h` file in the include/ folder.
->>>
->>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->>> Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
->>> ---
->>>   drivers/bus/stm32_etzpc.c                       | 3 +--
->>>   drivers/bus/stm32_firewall.c                    | 3 +--
->>>   drivers/bus/stm32_rifsc.c                       | 3 +--
->>>   {drivers => include/linux}/bus/stm32_firewall.h | 0
->>>   4 files changed, 3 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/bus/stm32_etzpc.c b/drivers/bus/stm32_etzpc.c
->>> index 7fc0f16960be..4918a14e507e 100644
->>> --- a/drivers/bus/stm32_etzpc.c
->>> +++ b/drivers/bus/stm32_etzpc.c
->>> @@ -5,6 +5,7 @@
->>>   #include <linux/bitfield.h>
->>>   #include <linux/bits.h>
->>> +#include <linux/bus/stm32_firewall.h>
->>>   #include <linux/device.h>
->>>   #include <linux/err.h>
->>>   #include <linux/init.h>
->>> @@ -16,8 +17,6 @@
->>>   #include <linux/platform_device.h>
->>>   #include <linux/types.h>
->>> -#include "stm32_firewall.h"
->>> -
->>>   /*
->>>    * ETZPC registers
->>>    */
->>> diff --git a/drivers/bus/stm32_firewall.c b/drivers/bus/stm32_firewall.c
->>> index 2fc9761dadec..ef4988054b44 100644
->>> --- a/drivers/bus/stm32_firewall.c
->>> +++ b/drivers/bus/stm32_firewall.c
->>> @@ -5,6 +5,7 @@
->>>   #include <linux/bitfield.h>
->>>   #include <linux/bits.h>
->>> +#include <linux/bus/stm32_firewall.h>
->>>   #include <linux/bus/stm32_firewall_device.h>
->>>   #include <linux/device.h>
->>>   #include <linux/err.h>
->>> @@ -18,8 +19,6 @@
->>>   #include <linux/types.h>
->>>   #include <linux/slab.h>
->>> -#include "stm32_firewall.h"
->>> -
->>>   /* Corresponds to STM32_FIREWALL_MAX_EXTRA_ARGS + firewall ID */
->>>   #define STM32_FIREWALL_MAX_ARGS (STM32_FIREWALL_MAX_EXTRA_ARGS + 1)
->>> diff --git a/drivers/bus/stm32_rifsc.c b/drivers/bus/stm32_rifsc.c
->>> index 4cf1b60014b7..643ddd0a5f54 100644
->>> --- a/drivers/bus/stm32_rifsc.c
->>> +++ b/drivers/bus/stm32_rifsc.c
->>> @@ -5,6 +5,7 @@
->>>   #include <linux/bitfield.h>
->>>   #include <linux/bits.h>
->>> +#include <linux/bus/stm32_firewall.h>
->>>   #include <linux/device.h>
->>>   #include <linux/err.h>
->>>   #include <linux/init.h>
->>> @@ -16,8 +17,6 @@
->>>   #include <linux/platform_device.h>
->>>   #include <linux/types.h>
->>> -#include "stm32_firewall.h"
->>> -
->>>   /*
->>>    * RIFSC offset register
->>>    */
->>> diff --git a/drivers/bus/stm32_firewall.h b/include/linux/bus/ 
->>> stm32_firewall.h
->>> similarity index 100%
->>> rename from drivers/bus/stm32_firewall.h
->>> rename to include/linux/bus/stm32_firewall.h
->>>
-> 
-> Hi Gatien
-> 
->> As the firewall header is moved to a dedicated firewall directory,
-> 
-> I don't move it to a dedicated firewall directory just to the "bus" 
-> directory where the "stm32_firewall_device.h" header file is already 
-> located.
-> 
+> The Realtek RTl93xx switch SoC series has a built in ECC controller
+> that can provide BCH6 or BCH12 over 512 data and 6 tag bytes. It
+> generates 10 (BCH6) or 20 (BCH12) bytes of parity.
+>
+> This engine will most likely work in conjunction with the Realtek
+> spi-mem based NAND controller but can work on its own. Therefore
+> the initial implementation will be of type external.
+>
+> Remark! The engine can support any data blocks that are multiples
+> of 512 bytes. For now limit it to data+oob layouts that have been
+> analyzed from existing devices. This way it keeps compatibility
+> and pre-existing vendor data can be read.
+>
+> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+> ---
+> Changes in v2:
+> - include bitfield.h
+> - fill mtd->ecc_stats.corrected
+> - Reduce chattiness with dev_dbg()
+> - Convert return codes from context based to function based
+> - Add more documentation about vendor specifications
+> - Convert variables from vendor style to kernel style (e.g. tag)
 
-Yes, my bad, I mixed my words there.
+Thanks for the changes, a few more comments and we'll be good.
 
->> maybe it would be coherent to create the same kind of directory
->> for the sources as non-buses drivers use it. I can test it on my
->> side if you're willing to make the change.
-> 
-> Do you mean create an include/linux/bus/firewall/ directory ?
-> 
+...
 
-Rather include/linux/firewall/(stm32/). and a drivers/firewall/(stm32/)
-directory for the firewall files would be great. If that's not too much
-of a burden.
+> + * Altogether this gives currently the following block layout.
+> + *
+> + * +------+------+------+------+-----+------+------+------+------+-----+=
+-----+-----+-----+
+> + * |  512 |  512 |  512 |  512 |   2 |    4 |    6 |    6 |    6 |  10 |=
+  10 |  10 |  10 |
+> + * +------+------+------+------+-----+------+------+------+------+-----+=
+-----+-----+-----+
+> + * | data | data | data | data | BBI | free | free | free | free | ECC |=
+ ECC | ECC | ECC |
+> + * +------+------+------+------+-----+------+------+------+------+-----+=
+-----+-----+-----+
 
-Cheers,
-Gatien
+Thanks, very informative.
 
-> Best regards,
-> Clément
+...
+
+> +static int rtl_ecc_wait_for_engine(struct rtl_ecc_ctx *ctx)
+> +{
+> +	struct rtl_ecc_engine *rtlc =3D ctx->rtlc;
+> +	int ret, status, bitflips;
+> +	bool all_one;
+> +
+> +	/*
+> +	 * The ECC engine needs 6-8 us to encode/decode a BCH6 syndrome for 512=
+ bytes of data
+> +	 * and 6 free bytes. In case the NAND area has been erased and all data=
+ and oob is
+> +	 * set to 0xff, decoding takes 30us (reason unknown). Although the engi=
+ne can trigger
+> +	 * interrupts when finished, use active polling for now. 12 us maximum =
+wait time has
+> +	 * proven to be a good tradeoff between performance and overhead.
+> +	 */
+> +
+> +	ret =3D regmap_read_poll_timeout(rtlc->regmap, RTL_ECC_STATUS, status,
+> +				       !(status & RTL_ECC_OP_STATUS), 12, 600);
+
+Polling delay matters, but if you reach the timeout you're already in a
+faulty situation so the responsiveness is less a concern in this
+situation. I fear if the machine is loaded and if the triggers get
+delayed somehow you might easily reach the timeout. In general I'd
+advocate in favour of a default 1s timeout.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D FIELD_GET(RTL_ECC_RESULT, status);
+> +	all_one =3D FIELD_GET(RTL_ECC_ALL_ONE, status);
+
+Maybe you should check whether all_one remains true if there are
+correctable bitflips in your buffer (you may use nandflipbits for that
+purpose). If not, you shall probably spend extra time when checking for
+ret checking if there are less bitflips than the ECC controller can
+correct compared to ones in the *entire* buffer, which would indicate
+that you are really in the presence of an erased page, see:
+https://elixir.bootlin.com/linux/v6.16.5/source/drivers/mtd/nand/raw/nand_b=
+ase.c#L2841
+
+This helper may be moved if you need it.
+
+> +	bitflips =3D FIELD_GET(RTL_ECC_CORR_COUNT, status);
+> +
+> +	/* For erased blocks (all bits one) error status can be ignored */
+> +	if (ret && all_one)
+
+Can be simplified?
+
+    if (all_one)
+        ret =3D 0;
+
+> +		ret =3D 0;
+> +
+> +	return ret ? -EBADMSG : bitflips;
+> +}
+> +
+> +static int rtl_ecc_run_engine(struct rtl_ecc_ctx *ctx, char *data, char =
+*free,
+> +			      char *parity, int operation)
+> +{
+> +	struct rtl_ecc_engine *rtlc =3D ctx->rtlc;
+> +	char *buf_parity =3D rtlc->buf + RTL_ECC_BLOCK_SIZE + RTL_ECC_FREE_SIZE;
+> +	char *buf_free =3D rtlc->buf + RTL_ECC_BLOCK_SIZE;
+> +	char *buf_data =3D rtlc->buf;
+> +	int ret;
+> +
+> +	mutex_lock(&rtlc->lock);
+> +
+> +	memcpy(buf_data, data, RTL_ECC_BLOCK_SIZE);
+> +	memcpy(buf_free, free, RTL_ECC_FREE_SIZE);
+> +	memcpy(buf_parity, parity, ctx->parity_size);
+> +
+> +	dma_sync_single_for_device(rtlc->dev, rtlc->buf_dma, RTL_ECC_DMA_SIZE, =
+DMA_TO_DEVICE);
+> +	rtl_ecc_kick_engine(ctx, operation);
+> +	ret =3D rtl_ecc_wait_for_engine(ctx);
+> +	dma_sync_single_for_cpu(rtlc->dev, rtlc->buf_dma, RTL_ECC_DMA_SIZE, DMA=
+_FROM_DEVICE);
+> +
+> +	if (ret >=3D 0) {
+> +		memcpy(data, buf_data, RTL_ECC_BLOCK_SIZE);
+> +		memcpy(free, buf_free, RTL_ECC_FREE_SIZE);
+> +		memcpy(parity, buf_parity, ctx->parity_size);
+> +	}
+> +
+> +	mutex_unlock(&rtlc->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int rtl_ecc_prepare_io_req(struct nand_device *nand, struct nand_=
+page_io_req *req)
+> +{
+> +	struct rtl_ecc_engine *rtlc =3D nand_to_rtlc(nand);
+> +	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
+> +	char *data, *free, *parity;
+> +	int ret =3D 0;
+> +
+> +	if (req->mode =3D=3D MTD_OPS_RAW)
+> +		return 0;
+> +
+> +	nand_ecc_tweak_req(&ctx->req_ctx, req);
+> +
+> +	if (req->type =3D=3D NAND_PAGE_READ)
+> +		return 0;
+> +
+> +	free =3D req->oobbuf.in;
+> +	data =3D req->databuf.in;
+> +	parity =3D req->oobbuf.in + ctx->steps * RTL_ECC_FREE_SIZE;
+> +
+> +	for (int i =3D 0; i < ctx->steps; i++) {
+> +		ret |=3D rtl_ecc_run_engine(ctx, data, free, parity, RTL_ECC_OP_ENCODE=
+);
+> +
+> +		free +=3D RTL_ECC_FREE_SIZE;
+> +		data +=3D RTL_ECC_BLOCK_SIZE;
+> +		parity +=3D ctx->parity_size;
+> +	}
+> +
+> +	if (unlikely(ret))
+> +		dev_dbg(rtlc->dev, "ECC calculation failed\n");
+> +
+> +	return ret ? -EBADMSG : 0;
+> +}
+> +
+> +static int rtl_ecc_finish_io_req(struct nand_device *nand, struct nand_p=
+age_io_req *req)
+> +{
+> +	struct rtl_ecc_engine *rtlc =3D nand_to_rtlc(nand);
+> +	struct rtl_ecc_ctx *ctx =3D nand_to_ctx(nand);
+> +	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
+> +	char *data, *free, *parity;
+> +	bool failure =3D false;
+> +	int bitflips =3D 0;
+> +	int ret;
+> +
+> +	if (req->mode =3D=3D MTD_OPS_RAW)
+> +		return 0;
+> +
+> +	if (req->type =3D=3D NAND_PAGE_WRITE) {
+> +		nand_ecc_restore_req(&ctx->req_ctx, req);
+> +		return 0;
+> +	}
+> +
+> +	free =3D req->oobbuf.in;
+> +	data =3D req->databuf.in;
+> +	parity =3D req->oobbuf.in + ctx->steps * RTL_ECC_FREE_SIZE;
+> +
+> +	for (int i =3D 0 ; i < ctx->steps; i++) {
+> +		ret =3D rtl_ecc_run_engine(ctx, data, free, parity, RTL_ECC_OP_DECODE);
+> +
+> +		if (unlikely(ret < 0)) {
+> +			failure =3D true;
+> +			mtd->ecc_stats.failed ++;
+
+Extra space                                  ^
+
+> +		} else {
+> +			mtd->ecc_stats.corrected +=3D ret;
+> +			bitflips =3D max_t(unsigned int, bitflips, ret);
+> +		}
+> +
+> +		free +=3D RTL_ECC_FREE_SIZE;
+> +		data +=3D RTL_ECC_BLOCK_SIZE;
+> +		parity +=3D ctx->parity_size;
+> +	}
+> +
+> +	nand_ecc_restore_req(&ctx->req_ctx, req);
+> +
+> +	if (unlikely(failure))
+> +		dev_dbg(rtlc->dev, "ECC correction failed\n");
+> +	else if (unlikely(bitflips > 2))
+> +		dev_dbg(rtlc->dev, "%d bitflips detected\n", bitflips);
+> +
+> +	return failure ? -EBADMSG : bitflips;
+> +}
+
+Rest lgtm.
+
+Thanks,
+Miqu=C3=A8l
 
