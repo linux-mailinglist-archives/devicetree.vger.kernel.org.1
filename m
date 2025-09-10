@@ -1,104 +1,144 @@
-Return-Path: <devicetree+bounces-215148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC2CB50A3D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 03:27:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D813B50A47
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 03:33:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76A62442204
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 01:27:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F48A1C60B30
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 01:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663FA1F2BA4;
-	Wed, 10 Sep 2025 01:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931361E5213;
+	Wed, 10 Sep 2025 01:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P/p4zt+9"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="jRGOMphx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADEB1C84DC;
-	Wed, 10 Sep 2025 01:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBC01A38F9
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 01:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757467639; cv=none; b=OVcVYZjcYLEJcQpZsXcF5g8w+FKMlv53Tm+TarT4TbQtMqxneOAApfTUcwIx0z/QV+HhrK8G0+o4faZn7H8HxzBs9DKqpZ8KIAPmdbQYLa/KmTWp019Ry6XN0F0AO5+8gxAcdnmuOuSpK4Hm/zIPkCOJhzhpkIeVfpBDhJJjkIU=
+	t=1757468031; cv=none; b=qWKsx5j7WGebMWPQY+nHN41YfaBrJUyOXhIzH8BNhu7K9IcThjCHObCA0Xd/nnYXhR/29CRBpk3LIJNJreYScFOGJki6QSbDlSxEhvB3ZyRlFzxPClluh8Q7YZSyCvlQp6XP8x/tpugku23oae/dTWzoeP0bMD4n5jnGmU5RWU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757467639; c=relaxed/simple;
-	bh=NRt740wDewvEnDlLdECaG6cLn7kaZWZqxGlfu2JNWsw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CJFtSuVBKl8zn1c3DiUOmElRnOiP3rzmeWVUXfg00NVHMqhj4NWn0JHInq6S3oYpbVwRVcHIUkhKluSXagEdlNJr+Kv4/pj6YgATr7A8/L+aQiiMwbMJ2fwP+CbLG9JEzD/zkd3xLZtRncGskebQQqm8crL8nxm7kq+0H7hQ9+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P/p4zt+9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BECF7C4CEF4;
-	Wed, 10 Sep 2025 01:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757467636;
-	bh=NRt740wDewvEnDlLdECaG6cLn7kaZWZqxGlfu2JNWsw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P/p4zt+9Uw2DL4OMJy1/XVbuSqelY/71VrvHceoS/1wEaVqHHCD+ZmSjt49rc8Ogc
-	 Kewg8NznvyUjJPrJ6xvSwqS50JKJAqofD0DX6cUVFycs1vLwQ8NFV/2dBDFYHkhcrM
-	 x07qultJGHaugcJLAOgBZOhbFLImWe95uUEG9FSBHJ0vxsDm5YrmunclJtWPvWpMM3
-	 1CBUgAQjH+0vXspTD2O6d2hSAS+tXxnYd5I2Mbe/MrAfwzphOwQSmFAPD+IjLW1LSs
-	 +fXZ6J8Rr4bwJUR4Zd8HHRhh68Ga1Zeo99S9wM9FXCIkeLg5wU00hhJ76sPGfgL9In
-	 Jh5O7DU3QdnHA==
-Date: Tue, 9 Sep 2025 20:27:16 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-i3c@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Frank Li <Frank.Li@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v2] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and
- RZ/V2N support
-Message-ID: <175746763548.3566130.10675698517636127630.robh@kernel.org>
-References: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1757468031; c=relaxed/simple;
+	bh=UE1dW2vjyCtvAjqcbpkaQjgaA6fRIygDccPoGm5LG1Q=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=CFFQNnwkgNqepDxNxihb1FKVvebXj08dOS5hqg+1q3fw5O0F3CYKhDcrwaTk/I1OSSvvFdRoJCuMNbf7R1WYRPxMnodcGJELYUSieQG1ce+1n9w9INpHBqiPGscp10ljQ/FaL4xeoCv5421Zv0MHtpVyorFb27QyJFowKdmsxjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=jRGOMphx; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250910013346epoutp040aa129004884e1b85ab6caf133e41950~jx9vMgrre1916419164epoutp04I
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 01:33:46 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250910013346epoutp040aa129004884e1b85ab6caf133e41950~jx9vMgrre1916419164epoutp04I
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1757468026;
+	bh=B/cQztE6JVsN29H2UCnnOkTaLkGI3st9SaYIAZ0Aj6I=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=jRGOMphxr9OlYaJEH6x1gYZyDvpOgTnngtS/3I3ljide5pEQgBPHPyvfPhpoecHxL
+	 MIApyz7+jUfWexphehLhwg6aRsUOj3CAnGERFpgOk5n9bZnwnsZlDyxsipwQ5cWOc5
+	 9MerGn9AbIJGYFCRZ9NMOm1pfNQ3IgfUSKGKrM48=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250910013345epcas2p1627ed06365bff0aaf2d6a0810b074777~jx9ui-Lrd2488624886epcas2p1h;
+	Wed, 10 Sep 2025 01:33:45 +0000 (GMT)
+Received: from epcas2p1.samsung.com (unknown [182.195.36.70]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4cM3B075H5z6B9mD; Wed, 10 Sep
+	2025 01:33:44 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250910013344epcas2p265fefabdfed14e90b66cc856c559e561~jx9tOknPz1132511325epcas2p2b;
+	Wed, 10 Sep 2025 01:33:44 +0000 (GMT)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250910013344epsmtip1bcef11072703a7ec40ff187ab78578bf~jx9tKKmwA3018230182epsmtip1Y;
+	Wed, 10 Sep 2025 01:33:44 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Bartlomiej Zolnierkiewicz'"
+	<bzolnier@gmail.com>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
+ Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
+	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
+	<alim.akhtar@samsung.com>
+Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <e71e6f3d-af02-4910-91ae-acf41692ac5b@kernel.org>
+Subject: RE: [PATCH v2 1/3] dt-bindings: thermal: samsung: Add tmu-name and
+ sensor-index-ranges properties
+Date: Wed, 10 Sep 2025 10:33:43 +0900
+Message-ID: <03a301dc21f2$f2236380$d66a2a80$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJcDpuT0zWDya8nliyk6vzs/32vBQIURjbqAvLO/ccA7RxvPrNcJnHw
+Content-Language: ko
+X-CMS-MailID: 20250910013344epcas2p265fefabdfed14e90b66cc856c559e561
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91
+References: <20250903073634.1898865-1-shin.son@samsung.com>
+	<CGME20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91@epcas2p4.samsung.com>
+	<20250903073634.1898865-2-shin.son@samsung.com>
+	<e71e6f3d-af02-4910-91ae-acf41692ac5b@kernel.org>
 
+Hello, Krzysztof Kozlowski.
 
-On Mon, 08 Sep 2025 10:39:30 +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+> Sent: Saturday, September 6, 2025 9:06 PM
+> To: Shin Son <shin.son@samsung.com>; Bartlomiej Zolnierkiewicz
+> <bzolnier@gmail.com>; Rafael J . Wysocki <rafael@kernel.org>; Daniel
+> Lezcano <daniel.lezcano@linaro.org>; Zhang Rui <rui.zhang@intel.com>;
+> Lukasz Luba <lukasz.luba@arm.com>; Rob Herring <robh@kernel.org>; Conor
+> Dooley <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>
+> Cc: linux-pm@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org
+> Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: samsung: Add tmu-name
+> and sensor-index-ranges properties
 > 
-> Add device tree binding support for the I3C Bus Interface on Renesas
-> RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
-> that found on the RZ/G3E SoC.
+> On 03/09/2025 09:36, Shin Son wrote:
+> >  > +  samsung,hw-sensor-indices:
+> > +    description: |
+> > +      List of hardware sensor indices that are physically present and
+> usable
+> > +      in this TMU instance. Indices not listed are either unmapped or
+> unused.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 16
+> > +    uniqueItems: true
 > 
-> Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
-> "renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
-> "renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
-> compatibility with the RZ/G3E implementation.
 > 
-> Update the title to be more generic as it now covers multiple SoC
-> families beyond just RZ/G3S and RZ/G3E.
+> For v3 you also need:
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
-> v1->v2:
-> - Updated title to be more generic.
-> - Updated commit message to reflect changes.
-> - Added Reviewed-by tag.
-> ---
->  .../devicetree/bindings/i3c/renesas,i3c.yaml     | 16 +++++++++++-----
->  1 file changed, 11 insertions(+), 5 deletions(-)
+>   items:
+>     maximum: 16
+> (or whatever values are actually correct)
 > 
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Ok, I understood. I will add it in the next version
+Thank you for your feedback.
+
+Best regards,
+Shin Son
 
 
