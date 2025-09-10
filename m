@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-215230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E12B50EC4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:10:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B25B50EC7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32BCF543136
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:10:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CC881C2214A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96622305058;
-	Wed, 10 Sep 2025 07:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45B5305E19;
+	Wed, 10 Sep 2025 07:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txfS6Etg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plbVd2yo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D587175A5;
-	Wed, 10 Sep 2025 07:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A20B305058;
+	Wed, 10 Sep 2025 07:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757488244; cv=none; b=X10YZIS5QZFsqH8xuEZnjjP1Rcg4TTUDukskg4OenMlUcJp3OzF8fcroICiyFcKQwP7j2ZxoHACr1JOCOd55aUgjscDmqIBSb3tr/yESAxR08zTK09Su/hQylHTVyJpyvU0GSkNFJdzPWnGbpkr4E/2SuJB+tdXC3xdEvsZ69lQ=
+	t=1757488295; cv=none; b=uWOoXlmVQapcEUWjDOkDwUV2FOTxcyDUZqysL8Jv5rkYpTYe+8xh5Udi4ONV4usMkQL6lnOxalSoEg0HB4dX0uCDy7D0w8RKwiMJFW4p/5VyCh2OWvcbi5Rf32c8eiqzfx/oBXibDpD7pUWsKtCu+wGqeyQYtfUsAoGLXg0KR2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757488244; c=relaxed/simple;
-	bh=kJGN4eUpnQFayOKu89xNmgdsMXpg0yHumEE/CC4ylSU=;
+	s=arc-20240116; t=1757488295; c=relaxed/simple;
+	bh=HKOuKlqZ5BjBhjFY5x/Px27d5T3CtyQzr3nOlrxkL/U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FR3yJ06kNyv8osGLS/GEd+6yS0uGA5rJkbf6ORotWdTGpt1e67bzevTx8hZiHmeYkySW7fSgZt7eGjHyiZLC/DBuO6b4nMbn9ol7p7UL9ZsKjnxywdrBpRhinhEluJr0ipXH74jGDZ9c6rdGM6uN6WAXXvlrSTjmoovNKGwt83k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txfS6Etg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE475C4CEF0;
-	Wed, 10 Sep 2025 07:10:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RYDx58i8Rp5AHgZ70L22gJkFSOg1JC+dwbVqhYGikd5lwwWC4Zrkz9gt4aG8ivM1qaNkR+7PIiF1TukQjiO05QOmtV17SHF6ZnbS9B6JRl/gPQqCGQz6LjE1tn4bv/04tRaIi3cN3q7+ZWY1+1KWw4/yR8+MUKwpgZuTmcynwzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=plbVd2yo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3872BC4CEF0;
+	Wed, 10 Sep 2025 07:11:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757488243;
-	bh=kJGN4eUpnQFayOKu89xNmgdsMXpg0yHumEE/CC4ylSU=;
+	s=k20201202; t=1757488295;
+	bh=HKOuKlqZ5BjBhjFY5x/Px27d5T3CtyQzr3nOlrxkL/U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=txfS6EtgtkyudyVQ2MJQv8Eo/5De9Gt721TJKH8nmbFcGU2ysk+DIWaMKxrxQb0iW
-	 U65CmyTWDE7zbKIxDAvtObsq74irrVlaL4mxU9v77tW+2e8LZzjIUa3qG0Tb2qhs2r
-	 YMuDu48hJGtYWiDrrdn59frTUJpMgHIN58JOU3qXy8fsIhPORxFjwSUn1Hb3nunfWd
-	 bHueGERLRYcgpOeFwsz0lCoXaYKEzb/NqUcUk7bCrZn3SXPL79yoMKimlymTha6iS1
-	 k7qnDMUdmPT52ZnNdPCpD9r2Kh87CZ1DrVQwn0CwDXAi6SwFk220TBOT5U7Hp18xqq
-	 0TsBbFuJtA8yw==
-Message-ID: <74b42187-ee90-4499-a93d-800c3a55c5e8@kernel.org>
-Date: Wed, 10 Sep 2025 09:10:38 +0200
+	b=plbVd2yoAcmDY10/m2ehgzNriUv4lzxYaGmlOsHe+K9B783WCNBZD7/IiU3AAHRd7
+	 QbGXZv1CRPT6p8dlt+nF7Isci2EYqSlGEryNUqzN8HSOm6ktzClU/+qVc9p97vjjlz
+	 41948MPRisGQ5JPE5VvPSRuO/XhC6/PLxt+mze+vw8cmGGcagLUwk8WNXxsTX5hbna
+	 hE3sa72Sb40O8i65ohNgVEAatHrSpOE6kxOfAFL7DLElJa1C8Mhiw6szbBhKTh2ZFo
+	 NOEn5yD0sRcCZm4qCbOizzn/77FWT2J3Pb7CkDvrTMKw/mcjp90zLg2L2FKsC2nsaE
+	 sg8JoNznzW1Bg==
+Message-ID: <983be392-e76f-40b3-ac57-5321f5d88abc@kernel.org>
+Date: Wed, 10 Sep 2025 09:11:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Firefly
- ROC-RK3588-RT
-To: Kaison Deng <dkx@t-chip.com.cn>
-Cc: Rob Herring <robh@kernel.org>, Jimmy Hon <honyuenkwun@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Wayne Chou <zxf@t-chip.com.cn>, Quentin Schulz <quentin.schulz@cherry.de>,
- Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
- FUKAUMI Naoki <naoki@radxa.com>, Peter Robinson <pbrobinson@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1757322046.git.dkx@t-chip.com.cn>
- <27b2ce7950fdbf28c6c8404c3f8be3c1c35d6b3c.1757322046.git.dkx@t-chip.com.cn>
- <20250909-romantic-efficient-sambar-4fc38f@kuoka>
- <55CC0521CC5B0671+91c4b933e5c5f604ade4f7e314be6fe49efc9e99.camel@t-chip.com.cn>
+Subject: Re: [PATCH 4/4] arm64: renesas: Add R8A78000 Ironhide board code
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
+ <87o6rk9z6c.wl-kuninori.morimoto.gx@renesas.com>
+ <20250909-witty-successful-toucan-beca41@kuoka>
+ <87segvw5yr.wl-kuninori.morimoto.gx@renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,30 +105,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <55CC0521CC5B0671+91c4b933e5c5f604ade4f7e314be6fe49efc9e99.camel@t-chip.com.cn>
+In-Reply-To: <87segvw5yr.wl-kuninori.morimoto.gx@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/09/2025 07:47, Kaison Deng wrote:
->>> +      - description: Firefly ROC-RK3588-RT
->>> +        items:
->>> +          - const: firefly,roc-rk3588-rt
->>
->> That's just enum with ROC-RK3576-PC. BTW, all these descriptionis are
->> completely redundant. Actually getting harmful, because copy+paste of
->> the same is only obfuscating code.
->>
->> Best regards,
->> Krzysztof
->>
->>
+On 10/09/2025 01:39, Kuninori Morimoto wrote:
 > 
-> The ROC-RK3576-PC is based on the RK3576 SoC (4*Cortex-A72 + 4*Cortex-
-> A53). The ROC-RK3588-RT is based on the RK3588 SoC (4*Cortex-A76 +
+> Hi Krzysztof
+> 
+>>> +	chosen {
+>>> +		bootargs = "ignore_loglevel rw maxcpus=1";
+>>
+>> Drop bootargs. Not suitable for mainline. I really do not understand why
+>> all users in mainline and other projects (not your development) must be
+>> limited to cpus=1.
+> 
+> This is initial patch, and only 1 CPU is available for now.
+> The limitaion will be removed in the future, but not yet for now.
 
-Uh, you are right, somehow I mixed up numbers.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You do not understand the problem - DTS describes the hardware, not your
+current stage of Linux support. These bootargs are wrong, I have been
+commenting on this since years.
 
 Best regards,
 Krzysztof
