@@ -1,107 +1,117 @@
-Return-Path: <devicetree+bounces-215573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04B6FB51E2C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0ADB51E3C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:50:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E35425E6E15
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:47:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C863A1EAF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D6E286413;
-	Wed, 10 Sep 2025 16:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47BB0274B4B;
+	Wed, 10 Sep 2025 16:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0zO5tM1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPAOgAbm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4B8285417;
-	Wed, 10 Sep 2025 16:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBC825CC40;
+	Wed, 10 Sep 2025 16:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757522859; cv=none; b=TFMF80Cl3nkhfMhy/roYyKJnSfbtClN1qzT4hGJ9IIpqP8/3fRwFo6aIZoTKDupyBz8xZQVLHHLM2H0dWHxZzUebLV8qBgrbgEbZ612nJwgDtXU8yRATpOnxRB97QphyGWhNxC3xxvdHRXvN9PpwcrAbGzIh9QoLGu/Q6k4UpM4=
+	t=1757523012; cv=none; b=QcpLMQt1VwYHHbM7gDgFiQ6oSkGp6OllVx0qj+2KsazkLsXfGXY0SDLIQhVXFeze5k9m9qEIj99iBcmRP7raCtMzFqjvais9gMaCr25UXbkLoDl2NG75rQtugJTKCN7xRkrGApcX5VHgEmeathQLNMBtJmTH/Y8sZuPbKrAKXSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757522859; c=relaxed/simple;
-	bh=5LVOay0CBSTzKX6JQb+omIyOhnTXbtPDOJBt3OJI80U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=HaQlR0cYb0dfIJpWNFDN/dVkFZKHYdg5kNVp82c3qLS7TeCq7KRf/yaof6YIOLeHKDjdQuxJTkqtBQR6HNv79vpZ1WtbpFMxKAzyu09qcWyNWTVPzHtlf2XWQHo9CJaWDmTxbRkS1D92oLF9AK6wDF3Rm+hpi6CYQPeC8ZXM+WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0zO5tM1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80388C4CEF9;
-	Wed, 10 Sep 2025 16:47:32 +0000 (UTC)
+	s=arc-20240116; t=1757523012; c=relaxed/simple;
+	bh=ug5CvfYVPJihh5Zy5QREZIKCevb4x/BKaIGi7u0wAkU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sJUNJz++1I4yU3mSQwbT3OPsX7Iy6zfLiRU3hfkWp8RRZl7BtDfFk7a6FvrePy8/R/Gg6dhUwuFWrBJbWS21tfxRB3Zz34lAkJgiaXqIEEJ7vfnI5R4dWY9yqK8qwTZdoIoBqiX+o7H8/ObQf6AowhVaWXSjD2W0MoGaS6mC0AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPAOgAbm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AB16C4CEEB;
+	Wed, 10 Sep 2025 16:50:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757522858;
-	bh=5LVOay0CBSTzKX6JQb+omIyOhnTXbtPDOJBt3OJI80U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=s0zO5tM1IFmM+YDTx3+eUjNq80Vk0WVQ5hpj3j1jEG1rmZUYEX1OZDKOH2XNRAS95
-	 X1wL4schmp48KEFQjOmi6xash8eHMiP54yqP4d77D2PbfYJ1pCy4iriDnSECOUB8J/
-	 b6q37uHO0fW/DgcgJgOmX/PUc1vxSP4xdQVyDPOJXwREgy8HpPhVEtsCAoo/OxOA3c
-	 MVk68IchiwQ+qzWpwB9yGeuEDVtYocvjMvzOyxpDk+ww0bu38FiseL95MY2C3JPXYN
-	 aPR4zTs9SJlWAM3bG2XXeprrgLvP8fm13dkSdhtrHem84BgZz4IyrWhCg+D+Z524yM
-	 wm2qvXkYyiG2w==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Diederik de Haas <didi.debian@cknow.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Michael Riesch <michael.riesch@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, stable@kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
-References: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
-Subject: Re: (subset) [PATCH v4 0/7] phy: rockchip:
- phy-rockchip-inno-csidphy: add support for rk3588 variant
-Message-Id: <175752285211.484319.18097786132863236205.b4-ty@kernel.org>
-Date: Wed, 10 Sep 2025 22:17:32 +0530
+	s=k20201202; t=1757523011;
+	bh=ug5CvfYVPJihh5Zy5QREZIKCevb4x/BKaIGi7u0wAkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CPAOgAbmybkyYUUePXHpTFbjK4/sSheXD5Cb30bErD6cxup1wf9xVxlmDMRNMwIRT
+	 USv2axQrbQ9wY+QTzUewNNHgDwGIdgP0EjSPGNTVuC9d0QkPOrgMA92s+XiOFek6X1
+	 PGMz9vUOXTxn0jSQ3m8DaC5UtBYLbIJXCJZ0NwZftg6ovmRECwNzzyDuBU0ehgCApW
+	 EEOuiAPzHvdeIAFmWJxQp2PNt2U3wGDVHlH3skZ/ypc4gZkH9N44g0S0cm0zhGw28r
+	 TpE4NPHIm94DswLhRiL/EjL0BtfMRvLWNDtU8OlRbNqE+QNkJW4kvmOlj4D7+u+QnS
+	 LICDXPxSa2YPw==
+Date: Wed, 10 Sep 2025 11:50:10 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andrey Ryabinin <arbn@yandex-team.com>
+Cc: linux-kernel@vger.kernel.org, Alexander Graf <graf@amazon.com>,
+	Mike Rapoport <rppt@kernel.org>, James Gowans <jgowans@amazon.com>,
+	Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Baoquan He <bhe@redhat.com>,
+	kexec@lists.infradead.org, Pratyush Yadav <ptyadav@amazon.de>,
+	Jason Gunthorpe <jgg@nvidia.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	David Rientjes <rientjes@google.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
+	Chris Li <chrisl@kernel.org>, Ashish.Kalra@amd.com,
+	William Tu <witu@nvidia.com>, David Matlack <dmatlack@google.com>,
+	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/7] kho: replace KHO FDT with kstate metadata
+Message-ID: <20250910165010.GA223810-robh@kernel.org>
+References: <20250909201446.13138-1-arbn@yandex-team.com>
+ <20250909201446.13138-5-arbn@yandex-team.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909201446.13138-5-arbn@yandex-team.com>
 
-
-On Wed, 03 Sep 2025 19:04:48 +0200, Michael Riesch wrote:
-> Habidere,
+On Tue, Sep 09, 2025 at 10:14:39PM +0200, Andrey Ryabinin wrote:
+> Store KSTATE physical address & size instead of FDT in kho_data.
+> and initialize KSTATE from kho_populate().
+> To be able to use FDT in parallel with KSTATE place FDT
+> address&size into 'struct kho_fdt' and save/restore it using KSTATE.
 > 
-> The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused with
-> the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
-> supported using the existing phy-rockchip-inno-csidphy driver, the notable
-> differences being
->  - the control bits in the GRF
->  - the additional reset line
-> This patch series adds support for this variant.
+> This finishes wiring KSTATE with KHO, making it fully functional.
 > 
-> [...]
+> Signed-off-by: Andrey Ryabinin <arbn@yandex-team.com>
+> ---
+>  arch/x86/include/uapi/asm/setup_data.h |  4 +-
+>  arch/x86/kernel/kexec-bzimage64.c      |  6 +--
+>  arch/x86/kernel/setup.c                |  3 +-
+>  drivers/of/fdt.c                       |  6 +--
+>  include/linux/kexec.h                  |  2 +-
+>  include/linux/kstate.h                 |  1 +
+>  kernel/liveupdate/kexec_handover.c     | 60 +++++++++++++++++++++-----
+>  7 files changed, 61 insertions(+), 21 deletions(-)
+> 
+> diff --git a/arch/x86/include/uapi/asm/setup_data.h b/arch/x86/include/uapi/asm/setup_data.h
+> index 2671c4e1b3a0..844f5b93473f 100644
+> --- a/arch/x86/include/uapi/asm/setup_data.h
+> +++ b/arch/x86/include/uapi/asm/setup_data.h
+> @@ -83,8 +83,8 @@ struct ima_setup_data {
+>   * Locations of kexec handover metadata
+>   */
+>  struct kho_data {
+> -	__u64 fdt_addr;
+> -	__u64 fdt_size;
+> +	__u64 kstate_addr;
+> +	__u64 kstate_size;
+>  	__u64 scratch_addr;
+>  	__u64 scratch_size;
+>  } __attribute__((packed));
 
-Applied, thanks!
+Isn't this part of the ABI which you can't just change.
 
-[2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make power-domains non-required
-      commit: c254815b02673cc77a84103c4c0d6197bd90c0ef
-[3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588 variant
-      commit: 5072b8e98eef4685a5a9a8bae56072cb65a2ef69
-[4/7] phy: rockchip: phy-rockchip-inno-csidphy: allow writes to grf register 0
-      commit: 8c7c19466c854fa86b82d2148eaa9bf0e6531423
-[5/7] phy: rockchip: phy-rockchip-inno-csidphy: allow for different reset lines
-      commit: 260435153c90c8e90553e456ec43578834a14a71
-
-Best regards,
--- 
-~Vinod
-
-
+Rob
 
