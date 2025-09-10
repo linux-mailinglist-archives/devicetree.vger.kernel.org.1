@@ -1,232 +1,162 @@
-Return-Path: <devicetree+bounces-215218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D239DB50E17
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6921B50E6B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A2314E5C99
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:39:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51D6656347B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4CC303A1A;
-	Wed, 10 Sep 2025 06:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B7E830AD04;
+	Wed, 10 Sep 2025 06:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nUvsQpLJ"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="C5PY8Btm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AED246788;
-	Wed, 10 Sep 2025 06:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180CA309F0F;
+	Wed, 10 Sep 2025 06:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757486388; cv=none; b=ita0U14V1i9i+fOdIlGsV7FBrm8rKnTP6hUw+W7apZEaoTuIaOeSki+WuBRdqRZnzGUlVuCTtu2c7fjgf6NFZ3panq68bGqs831uK40p6iEsc6TYMlx50DlIb4oSFF5NYfkLGS5AKvDDmPMvGJRsmfP2X4ThrW2YwT12sDXRaOs=
+	t=1757486711; cv=none; b=VA2Zc2xoNTiUWodT5rctJFHOJD/IjJfjfdDwFVS/ZXiaRtgmEe6Lf5uVEJWAInewYdjZYP+0Pqbk2dCrfYpJFQY5/OjiPOgcMl8p2JlwLys+AixpjGCLs4WXzeeegFxBldpsllU3IB+rHWaAqM0xhDNTowvYdxlVOhwknHugJZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757486388; c=relaxed/simple;
-	bh=zpOHZC/gXQcma22GGygnWRWcRNGegH/ozfLbDoXfWIY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F0yDBQR4SIuQSLWIFJzRWeRHgV7J1e4OgxQat0el7wU/F+xM5ISR4pKcNM9mClSKZpDEVjdVY45e7QNqp57DBrmfhwo/hd3Z6V24jxF7GQsIx+whav/ESqrkjSmy4iOP9UO4/vxYGcK3teWc7WJm4n+yrkvlaXLaWuluOBI76A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nUvsQpLJ; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757486385; x=1789022385;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zpOHZC/gXQcma22GGygnWRWcRNGegH/ozfLbDoXfWIY=;
-  b=nUvsQpLJH/RD+9YbV9yT1WwYYYcTJe8XX2nCCAF8M8LX7bEb5Xrp2PrQ
-   PXdglwDtZGdEkIws4JVsjZTxZE28SbL8lEhMWqVEP6xYIrXB4THFoALWD
-   z7hOQ6gtHZdlgrXCAU5OeibhkUu1cThyahMmTb18z3zildvNDcI2iDHPv
-   Vi4XOB0ISQpDuErUI283tAaZnGvTrPaIGr4kqIyqTqNJAQJjDrhmwNY/K
-   VC2FRMyM/WHzh5XimdGmF1UgYDf7A71ziR0wHrxYlTbvHen1Pz6sv8+HH
-   khug2MQOb8+KmTimTVN5pWwmbRZ4LZNyR+/3qNR6lxdJATZ7zagfwtggq
-   Q==;
-X-CSE-ConnectionGUID: k3+z5K3eRyGGmrBgfzWwvA==
-X-CSE-MsgGUID: BFIVsmdHTEGr19X0bkT6SQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59861661"
-X-IronPort-AV: E=Sophos;i="6.18,253,1751266800"; 
-   d="scan'208";a="59861661"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 23:39:43 -0700
-X-CSE-ConnectionGUID: PYuGWqYjQrSQjsZJI/J+1A==
-X-CSE-MsgGUID: zM8uovvHQZiOvlj6Zd0FSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,253,1751266800"; 
-   d="scan'208";a="178518386"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 09 Sep 2025 23:39:40 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uwEUS-0005bP-2L;
-	Wed, 10 Sep 2025 06:39:36 +0000
-Date: Wed, 10 Sep 2025 14:39:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gokul Praveen <g-praveen@ti.com>, j-keerthy@ti.com, vigneshr@ti.com,
-	wbg@kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, g-praveen@ti.com, u-kumar1@ti.com,
-	n-francis@ti.com
-Subject: Re: [PATCH 2/2] counter: ti-dmtimer-cap : capture driver support for
- OMAP DM timer
-Message-ID: <202509101412.ze6xyOUu-lkp@intel.com>
-References: <20250909080042.36127-3-g-praveen@ti.com>
+	s=arc-20240116; t=1757486711; c=relaxed/simple;
+	bh=3YPyGBPViuuy+MQWe1UuKZmxR3auif0+dY1aauOfHdQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AgcfhxHJNNmXIRvhV4mOsNiRLikx6oH8GHHpvuvyj50OM/NqOoN1jhCAJLMUkgJrUrlqq9Ba9qRydbihOqlaBEqV8m/W+3VhzTVSy69GlKlGpN7Ljj/6S/MjMXp4WhnrVoDwgXaF69RVKC8cQFqHBpNuwLWB7aAgbmjjYwzFkYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=C5PY8Btm; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1757486706;
+	bh=3YPyGBPViuuy+MQWe1UuKZmxR3auif0+dY1aauOfHdQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=C5PY8BtmZt2m7YaYZKkopUq2hbifUqxPz6rZaBR9758s4MM+boq64U+FicZVIvaqK
+	 OFQsPloKc3+MUxk8lBx1pNNPzJA0Hzbqg8sJg0/QiTyh58fXeBUUjsQcXPjcZPDxot
+	 oh6BUoRMdNEek9zRNC4zj28phwl90yx8Wh2V3DeiDPPkzUCYilEtExmltcOkhU9DK9
+	 QOFpmTENe6Sf1VWTljVLA1gGx5gEfl+yKoeudE3uptrd/7cJmbWFZ9B6i3tjhhD6RX
+	 w38LcO7Biyo1ld9Hqwm/GGmYWjYbG3v0pxsc0xMvsDQ0aCI4ulLnNGwh6MzF3JEO44
+	 MZ0FkIMnivkeg==
+Received: from [192.168.68.113] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 46F036443C;
+	Wed, 10 Sep 2025 14:45:04 +0800 (AWST)
+Message-ID: <8d8ab9ba45946b23a4c2dcd78d20f577d12a6625.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v11 2/2] ARM: dts: aspeed: ventura: add Meta Ventura BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: "P.K. Lee" <pkleequanta@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+  conor+dt@kernel.org, joel@jms.id.au, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, patrick@stwcx.xyz
+Cc: Jerry.Lin@quantatw.com, Jason-Hsu@quantatw.com, yang.chen@quantatw.com, 
+	p.k.lee@quantatw.com
+Date: Wed, 10 Sep 2025 16:15:03 +0930
+In-Reply-To: <20250903120600.632041-3-pkleequanta@gmail.com>
+References: <20250903120600.632041-1-pkleequanta@gmail.com>
+	 <20250903120600.632041-3-pkleequanta@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250909080042.36127-3-g-praveen@ti.com>
 
-Hi Gokul,
+T24gV2VkLCAyMDI1LTA5LTAzIGF0IDIwOjA2ICswODAwLCBQLksuIExlZSB3cm90ZToKPiBBZGQg
+TGludXggZGV2aWNlIHRyZWUgcmVsYXRlZCB0byBNZXRhIChGYWNlYm9vaykgVmVudHVyYSBzcGVj
+aWZpYwo+IGRldmljZXMgY29ubmVjdGVkIHRvIHRoZSBCTUMgKEFTVDI2MDApIFNvQy4gVGhlIHB1
+cnBvc2Ugb2YgVmVudHVyYSBpcyB0bwo+IGRldGVjdCBsaXF1aWQgbGVha2FnZSBmcm9tIGFsbCBj
+b21wdXRlIHRyYXlzLCBzd2l0Y2ggdHJheXMgYW5kIHJhY2sKPiBzZW5zb3JzIHdpdGhpbiB0aGUg
+cmFjaywgbG9nIHRoZSBldmVudHMsIGFuZCB0YWtlIG5lY2Vzc2FyeSBhY3Rpb25zCj4gYWNjb3Jk
+aW5nbHkuCj4gCj4gU2lnbmVkLW9mZi1ieTogUC5LLiBMZWUgPHBrbGVlcXVhbnRhQGdtYWlsLmNv
+bT4KPiAtLS0KPiDCoGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9NYWtlZmlsZcKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCB8wqDCoMKgIDEgKwo+IMKgLi4uL2FzcGVlZC9hc3BlZWQtYm1jLWZhY2Vi
+b29rLXZlbnR1cmEuZHRzwqDCoMKgIHwgMTU3OCArKysrKysrKysrKysrKysrKwo+IMKgMiBmaWxl
+cyBjaGFuZ2VkLCAxNTc5IGluc2VydGlvbnMoKykKPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNo
+L2FybS9ib290L2R0cy9hc3BlZWQvYXNwZWVkLWJtYy1mYWNlYm9vay12ZW50dXJhLmR0cwo+IAo+
+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQvTWFrZWZpbGUgYi9hcmNoL2Fy
+bS9ib290L2R0cy9hc3BlZWQvTWFrZWZpbGUKPiBpbmRleCAwZjBiNWI3MDc2NTQuLjQ3NmVlYTgz
+NDQ1YiAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQvTWFrZWZpbGUKPiAr
+KysgYi9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQvTWFrZWZpbGUKPiBAQCAtMzIsNiArMzIsNyBA
+QCBkdGItJChDT05GSUdfQVJDSF9BU1BFRUQpICs9IFwKPiDCoMKgwqDCoMKgwqDCoMKgYXNwZWVk
+LWJtYy1mYWNlYm9vay1taW5pcGFjay5kdGIgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1j
+LWZhY2Vib29rLXNhbnRhYmFyYmFyYS5kdGIgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1j
+LWZhY2Vib29rLXRpb2dhcGFzcy5kdGIgXAo+ICvCoMKgwqDCoMKgwqDCoGFzcGVlZC1ibWMtZmFj
+ZWJvb2stdmVudHVyYS5kdHMgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vib29r
+LXdlZGdlNDAuZHRiIFwKPiDCoMKgwqDCoMKgwqDCoMKgYXNwZWVkLWJtYy1mYWNlYm9vay13ZWRn
+ZTEwMC5kdGIgXAo+IMKgwqDCoMKgwqDCoMKgwqBhc3BlZWQtYm1jLWZhY2Vib29rLXdlZGdlNDAw
+LWRhdGE2NC5kdGIgXAo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQvYXNw
+ZWVkLWJtYy1mYWNlYm9vay12ZW50dXJhLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9h
+c3BlZWQtYm1jLWZhY2Vib29rLXZlbnR1cmEuZHRzCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiBp
+bmRleCAwMDAwMDAwMDAwMDAuLmUwMDk5MzEwMDAyNwo+IC0tLSAvZGV2L251bGwKPiArKysgYi9h
+cmNoL2FybS9ib290L2R0cy9hc3BlZWQvYXNwZWVkLWJtYy1mYWNlYm9vay12ZW50dXJhLmR0cwo+
+IEBAIC0wLDAgKzEsMTU3OCBAQAo+IAoKKnNuaXAqCgpXaGF0IGZvbGxvd3MgYXJlIHRoZSB1c3Vh
+bCByZWZlcmVuY2VzIG1vZGlmeWluZyBub2RlcyBmcm9tIHRoZSBEVFNJLgpSZWNlbnRseSBJJ3Zl
+IHN0YXJ0ZWQgYXNraW5nIHRoYXQgd2Ugb3JkZXIgX3RoZXNlXyBhbHBoYWJldGljYWxseSwgYXMK
+aXQgbWFrZXMgaXQgbXVjaCBlYXNpZXIgZm9yIG1lIHRvIHRlbGwgaWYgdGhleSdyZSBmb2xsb3dp
+bmcgc29tZQpjb25zaXN0ZW50IG9yZGVyIChhcyB0aGUgdW5pdCBhZGRyZXNzIGlzIG5vdCBwcmVz
+ZW50KS4KCkkgcmVhbGlzZSB5b3UndmUgZG9uZSBhIGJ1bmNoIG9mIHJlb3JkZXJpbmcgdG8gdGhp
+cyBwb2ludCBhbHJlYWR5LApwbGVhc2UgZXhjdXNlIHRoaXMgKGhvcGVmdWxseSkgZmluYWwgcmVx
+dWVzdC4KCkhvd2V2ZXIsIEkgYWxzbyBoYXZlIHNvbWUgZnVydGhlciByZXF1ZXN0cyBiZWxvdy4K
+Cj4gKwo+ICsmZm1jIHsKPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK8KgwqDC
+oMKgwqDCoMKgZmxhc2hAMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0YXR1
+cyA9ICJva2F5IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbTI1cCxmYXN0LXJl
+YWQ7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxhYmVsID0gImJtYyI7Cj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNwaS1tYXgtZnJlcXVlbmN5ID0gPDUwMDAwMDAw
+PjsKPiArI2luY2x1ZGUgIm9wZW5ibWMtZmxhc2gtbGF5b3V0LTEyOC5kdHNpIgo+ICvCoMKgwqDC
+oMKgwqDCoH07Cj4gK8KgwqDCoMKgwqDCoMKgZmxhc2hAMSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgbTI1cCxmYXN0LXJlYWQ7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxh
+YmVsID0gImFsdC1ibWMiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzcGktbWF4
+LWZyZXF1ZW5jeSA9IDw1MDAwMDAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgfTsKPiArfTsKPiArCj4g
+KyZtZGlvMCB7Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiAr
+Jm1hYzMgewo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiArwqDCoMKgwqDCoMKg
+wqBwaHktbW9kZSA9ICJybWlpIjsKPiArwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5hbWVzID0gImRl
+ZmF1bHQiOwo+ICvCoMKgwqDCoMKgwqDCoHBpbmN0cmwtMCA9IDwmcGluY3RybF9ybWlpNF9kZWZh
+dWx0PjsKPiArwqDCoMKgwqDCoMKgwqBmaXhlZC1saW5rIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgc3BlZWQgPSA8MTAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgZnVsbC1kdXBsZXg7Cj4gK8KgwqDCoMKgwqDCoMKgfTsKPiArfTsKPiArCj4gKyZlaGNpMCB7
+Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiArJmVoY2kxIHsK
+PiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK307Cj4gKwo+ICsmdWhjaSB7Cj4g
+K8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiArJmFkYzAgewo+ICvC
+oMKgwqDCoMKgwqDCoHZyZWYtc3VwcGx5ID0gPCZwMXY4X2JtY19hdXg+Owo+ICvCoMKgwqDCoMKg
+wqDCoHN0YXR1cyA9ICJva2F5IjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgcGluY3RybC1uYW1lcyA9
+ICJkZWZhdWx0IjsKPiArwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnBpbmN0cmxfYWRjMF9k
+ZWZhdWx0ICZwaW5jdHJsX2FkYzFfZGVmYXVsdAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAmcGluY3RybF9hZGMyX2RlZmF1bHQgJnBpbmN0cmxfYWRjM19kZWZhdWx0Cj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCZwaW5jdHJsX2FkYzRfZGVmYXVsdCAmcGluY3RybF9h
+ZGM1X2RlZmF1bHQKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgJnBpbmN0cmxfYWRj
+Nl9kZWZhdWx0ICZwaW5jdHJsX2FkYzdfZGVmYXVsdD47Cj4gK307CgoKKnNuaXAqCgo+ICsKPiAr
+JmkyYzMgewo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiArCj4gK8KgwqDCoMKg
+wqDCoMKgaTJjLW11eEA3NyB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBh
+dGlibGUgPSAibnhwLHBjYTk1NDgiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
+ZWcgPSA8MHg3Nz47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNl
+bGxzID0gPDE+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAjc2l6ZS1jZWxscyA9
+IDwwPjsKPiAKCipzbmlwKgoKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGky
+YzNtdXgwY2g1OiBpMmNANSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAjYWRkcmVzcy1jZWxscyA9IDwxPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNzaXplLWNlbGxzID0gPDA+Owo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0gPDU+Owo+ICsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHB3bUAyMCB7Cj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgY29tcGF0aWJsZSA9ICJtYXgzMTc5MCI7CgpUaGlzIGNhdXNlcyB0aGUgZm9sbG93aW5nIHdh
+cm5pbmc6CgphcmNoL2FybS9ib290L2R0cy9hc3BlZWQvYXNwZWVkLWJtYy1mYWNlYm9vay12ZW50
+dXJhLmR0YjogL2FoYi9hcGIvYnVzQDFlNzhhMDAwL2kyY0AyMDAvaTJjLW11eEA3Ny9pMmNANS9w
+d21AMjA6IGZhaWxlZCB0byBtYXRjaCBhbnkgc2NoZW1hIHdpdGggY29tcGF0aWJsZTogWydtYXgz
+MTc5MCddCgpUaGUgdmFsaWQgY29tcGF0aWJsZSBzdHJpbmcgaXMgIm1heGltLG1heDMxNzkwIi4g
+UGxlYXNlIHVwZGF0ZSBpdC4KCipzbmlwKgoKPiArCj4gKyZpMmMxMCB7Cj4gK8KgwqDCoMKgwqDC
+oMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiAKCipzbmlwKgoKPiArCj4gK8KgwqDCoMKgwqDCoMKg
+cG93ZXItbW9uaXRvckA2OSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBh
+dGlibGUgPSAicG1idXMiOwoKUGxlYXNlIGRyb3AgdGhpcyBub2RlLCBpdCBjYXVzZXMgdGhlIGZv
+bGxvd2luZyB3YXJuaW5nOgoKYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFj
+ZWJvb2stdmVudHVyYS5kdGI6IC9haGIvYXBiL2J1c0AxZTc4YTAwMC9pMmNANTgwL3Bvd2VyLW1v
+bml0b3JANjk6IGZhaWxlZCB0byBtYXRjaCBhbnkgc2NoZW1hIHdpdGggY29tcGF0aWJsZTogWydw
+bWJ1cyddCgpDaGVlcnMsCgpBbmRyZXcKCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oHJlZyA9IDwweDY5PjsKPiArwqDCoMKgwqDCoMKgwqB9Owo+ICt9Owo+ICsK
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.17-rc5 next-20250909]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Gokul-Praveen/dt-bindings-counter-Add-new-ti-omap-dmtimer-cap-compatible/20250909-160651
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250909080042.36127-3-g-praveen%40ti.com
-patch subject: [PATCH 2/2] counter: ti-dmtimer-cap : capture driver support for OMAP DM timer
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20250910/202509101412.ze6xyOUu-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250910/202509101412.ze6xyOUu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509101412.ze6xyOUu-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/counter/ti-dmtimer-cap.c: In function 'cap_omap_dmtimer_is_enabled':
->> drivers/counter/ti-dmtimer-cap.c:73:31: error: 'const struct omap_dm_timer_ops' has no member named 'get_cap_status'; did you mean 'get_pwm_status'?
-      73 |         status = omap->pdata->get_cap_status(omap->dm_timer);
-         |                               ^~~~~~~~~~~~~~
-         |                               get_pwm_status
-   drivers/counter/ti-dmtimer-cap.c: In function 'cap_omap_dmtimer_apply':
->> drivers/counter/ti-dmtimer-cap.c:117:26: error: 'const struct omap_dm_timer_ops' has no member named 'set_cap'
-     117 |         ret = omap->pdata->set_cap(omap->dm_timer, true, true);
-         |                          ^~
-   drivers/counter/ti-dmtimer-cap.c: In function 'cap_omap_dmtimer_capture':
->> drivers/counter/ti-dmtimer-cap.c:140:34: error: 'const struct omap_dm_timer_ops' has no member named 'read_cap'
-     140 |         *duty_cycle = omap->pdata->read_cap(omap->dm_timer, false);
-         |                                  ^~
-   drivers/counter/ti-dmtimer-cap.c: In function 'cap_omap_dmtimer_period':
-   drivers/counter/ti-dmtimer-cap.c:161:29: error: 'const struct omap_dm_timer_ops' has no member named 'read_cap'
-     161 |         period = omap->pdata->read_cap(omap->dm_timer, true);
-         |                             ^~
-   drivers/counter/ti-dmtimer-cap.c: In function 'cap_omap_dmtimer_probe':
-   drivers/counter/ti-dmtimer-cap.c:355:19: error: 'const struct omap_dm_timer_ops' has no member named 'set_cap'
-     355 |             !pdata->set_cap ||
-         |                   ^~
-   drivers/counter/ti-dmtimer-cap.c:356:21: error: 'const struct omap_dm_timer_ops' has no member named 'get_cap_status'; did you mean 'get_pwm_status'?
-     356 |             !pdata->get_cap_status ||
-         |                     ^~~~~~~~~~~~~~
-         |                     get_pwm_status
-   drivers/counter/ti-dmtimer-cap.c:357:23: error: 'const struct omap_dm_timer_ops' has no member named 'read_cap'
-     357 |                 !pdata->read_cap ||
-         |                       ^~
-
-
-vim +73 drivers/counter/ti-dmtimer-cap.c
-
-    62	
-    63	/**
-    64	 * cap_omap_dmtimer_is_enabled() -  Detect if the timer capture is enabled.
-    65	 * @omap:	Pointer to cap omap dm timer counter
-    66	 *
-    67	 * Return true if capture is enabled else false.
-    68	 */
-    69	static bool cap_omap_dmtimer_is_enabled(struct cap_omap_dmtimer_counter *omap)
-    70	{
-    71		u32 status;
-    72	
-  > 73		status = omap->pdata->get_cap_status(omap->dm_timer);
-    74	
-    75		return !!(status & OMAP_TIMER_CTRL_ST);
-    76	}
-    77	
-    78	static int cap_omap_dmtimer_clk_get_freq(struct counter_device *counter,
-    79					 struct counter_signal *signal, u64 *freq)
-    80	{
-    81		struct cap_omap_dmtimer_counter *omap = counter_priv(counter);
-    82		struct clk *fclk;
-    83	
-    84		fclk = omap->pdata->get_fclk(omap->dm_timer);
-    85		if (!fclk) {
-    86			dev_err(counter->parent, "invalid dmtimer fclk\n");
-    87			return -EINVAL;
-    88		}
-    89	
-    90		*freq = clk_get_rate(fclk);
-    91		if (!(*freq)) {
-    92			dev_err(counter->parent, "invalid dmtimer fclk rate\n");
-    93			return -EINVAL;
-    94		}
-    95	
-    96		return 0;
-    97	}
-    98	/**
-    99	 * cap_omap_dmtimer_apply() - Changes the state of the cap omap dm timer counter.
-   100	 * @counter:Pointer to capture counter.
-   101	 *
-   102	 * Return 0 if successfully changed the state else appropriate error.
-   103	 */
-   104	static int cap_omap_dmtimer_apply(struct counter_device *counter)
-   105	{
-   106		struct cap_omap_dmtimer_counter *omap = counter_priv(counter);
-   107		struct device *dev = &omap->dm_timer_pdev->dev;
-   108		int ret = 0;
-   109	
-   110		/* Ensure that the timer is in stop mode so that the configs can be changed. */
-   111		if (cap_omap_dmtimer_is_enabled(omap)) {
-   112			ret = omap->pdata->stop(omap->dm_timer);
-   113			if (ret)
-   114				dev_err(dev, "%d: Failed to stop timer.\n", ret);
-   115		}
-   116	
- > 117		ret = omap->pdata->set_cap(omap->dm_timer, true, true);
-   118		if (ret) {
-   119			dev_err(dev, "%d: Failed to set timer capture configuration.\n", ret);
-   120			return ret;
-   121		}
-   122	
-   123		cap_omap_dmtimer_start(omap);
-   124	
-   125		return ret;
-   126	}
-   127	
-   128	static int cap_omap_dmtimer_capture(struct counter_device *counter,
-   129						struct counter_count *count, u64 *duty_cycle)
-   130	{
-   131		struct cap_omap_dmtimer_counter *omap = counter_priv(counter);
-   132		*duty_cycle = 0;
-   133	
-   134		if (!omap->enabled) {
-   135			dev_err(counter->parent, "Timer is disabled.\n");
-   136			omap->pdata->stop(omap->dm_timer);
-   137			return 0;
-   138		}
-   139	
- > 140		*duty_cycle = omap->pdata->read_cap(omap->dm_timer, false);
-   141	
-   142		*duty_cycle = *duty_cycle > 0 ? *duty_cycle : 0;
-   143	
-   144		return *duty_cycle;
-   145	}
-   146	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
