@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-215250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F53B50FC8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:42:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85FF8B50FD1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1236B3AAC52
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:42:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843D21C81B38
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFD230C613;
-	Wed, 10 Sep 2025 07:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E165330C616;
+	Wed, 10 Sep 2025 07:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAJUqusD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="go2TuMzt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6FC30BB81;
-	Wed, 10 Sep 2025 07:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B551C30C35D;
+	Wed, 10 Sep 2025 07:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757490167; cv=none; b=Xgs/XGh1/8vaxCJj3TLt5WInHZDODU0fWHZcogbPoL1+mnASrAC/OAX2JmgzyZ3mPCkjzO8pCG4Pi74ONfeAKnMD/hi/is3/xn80LjRzqSSuwN62gUZKYRjbKtSk47psO56qQKjWSUwq8Gum9xAoCHtjlqqUPNBtmsrwTmPKMH0=
+	t=1757490245; cv=none; b=qO8qtXu1+SQ6wPUWpDhlEYqcvGGCDd2YwF8RuGwDUfYSf0y0OgSGXifMzLKD0CrtXoEuP6uOKZO3XfJpwT/FfBd4UykWJ7ZksHzBvc6ZGPQdTdQqzwle5DM1Ijzv549i+EXeX6k9llcZDE86DZbODFd6dDYiE9ru6B61wZNfsj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757490167; c=relaxed/simple;
-	bh=+4M6tsS1noq3CdhW7Sll0jWiqizEr50fsdQiGPuss64=;
+	s=arc-20240116; t=1757490245; c=relaxed/simple;
+	bh=vhA146lvkec3HC3Joxhiwid2YmBF/nfJVgyKveiDn8s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZXqoaNWTK/SCM1Q6u1HMrLK78FEIGw8EVW8Cio78A3R4jCPUYvtuecbblD8cjougSnoEP871pWDCwN9ZEn5+gbXzJydqP9YgEyOQeTeIbbk9ZWtvokxwsuVq7SDXDXceg1dknAFSRFbpcIzHgrgxpDNlHu5ed5wbcnkz2xSXbWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAJUqusD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FF1C4CEF0;
-	Wed, 10 Sep 2025 07:42:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=M0G9RxHCKQb7svEDYoE4Qy5Vu2XbVjK6pUzoCJ7qxzWYy6DzjQjAHpxBLBse/XEKVtHKeEHKytbNVYLAIRrR0F+WUYyTjTDc3otlVT/xXA2tDYqM4GQGjgN1j45hGPN7GaNHKTN5qidoZG//B/MTt/gESzJoYHuHob7mu6wY868=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=go2TuMzt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A722C4CEF0;
+	Wed, 10 Sep 2025 07:44:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757490166;
-	bh=+4M6tsS1noq3CdhW7Sll0jWiqizEr50fsdQiGPuss64=;
+	s=k20201202; t=1757490245;
+	bh=vhA146lvkec3HC3Joxhiwid2YmBF/nfJVgyKveiDn8s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vAJUqusDyMsHxoK8/VpNOPxDfF73Vsb5zgcHKHvT1CcG3cK5iVZnu8lkO/Qa2YuH3
-	 NWn8HkwuCZZ2hJZ3wVIFuJ5kaPKNWOITD8oZyeeU0kShMhymQngMwsN6coIH9ZoEYP
-	 is6HvqnlJrCFcbUUdYeqdOcADhFeGv/8eVljf7nJ8Mb+vDzmOrASFHLcToG2jK6bNE
-	 w94+SBOG+jH8E7QBQeTtHF1QQUQB3DeEZLfdL/0DOUQgc9tsDSfhHzmbuXL/9QBcwy
-	 5JdHI1DUdQtUzGcAMq9fwGR+D3AeWkZ28a9K/OuhTDezF9E86ioO8jsDQyWjo3dbKR
-	 rLBOzcWnlZNbA==
-Message-ID: <8c1163ad-6e65-450b-ae44-c9a71a045333@kernel.org>
-Date: Wed, 10 Sep 2025 09:42:40 +0200
+	b=go2TuMztyzqu7CED12rV9+Tu29j0TGK4JMAthkEJnfcvKdLmzQ3tnJHQf+4EZSkAk
+	 RLgjWzNn6WK6DEZ3zASy7yFqpSl/QlDHhOeus6TlGGDTGr7XbicJe4nTmdYcyk/Ge/
+	 1wh/+PGiv/6Af29Rxmisnea+cIWjwlUtqRROKMKKO8dE3HFqJQ8MT2zQ5RlI9P+vzW
+	 gopjgmVAL3qnSrJj/DTsxaMCwzKcGZILIUb+A05kuusjI52EKE8R6nXgwdwylIrzDp
+	 Hdp+9no22ZjzR8IIxNVbMHv0fi/E5gsGy6VNfeHQuC/sgoAYmUVhv+vbMX+gB6EFf2
+	 /zXS8JrEvZ4lg==
+Message-ID: <f9fc4b59-bdcd-4983-b7c2-0fec94e62176@kernel.org>
+Date: Wed, 10 Sep 2025 09:44:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] media: dt-bindings: Add qcom,qcs8300-camss
- compatible
-To: Vikram Sharma <quic_vikramsa@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250813053724.232494-1-quic_vikramsa@quicinc.com>
- <20250813053724.232494-2-quic_vikramsa@quicinc.com>
- <f1e3c3a9-9929-477a-b1ad-e485c059cbc2@linaro.org>
- <d16d40ab-8a35-4886-b11f-2eee15849e1c@quicinc.com>
+Subject: Re: [PATCH v16 1/3] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+To: Jeremy Kerr <jk@ozlabs.org>, Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ Mo Elbadry <elbadrym@google.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "joel@jms.id.au" <joel@jms.id.au>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+References: <20250224055936.1804279-1-ryan_chen@aspeedtech.com>
+ <d1b184c5-84c1-4d76-a1d0-a9f37f1e363c@kernel.org>
+ <OS8PR06MB7541D1D2E16C5E77037F3BB0F2CB2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <069b9fe4-c54a-4efd-923e-1558c59fe3f4@kernel.org>
+ <OS8PR06MB7541C69AB8E6425313DA8606F2DF2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <677cb075-24ae-45d8-bfb4-9b23fbacc5df@kernel.org>
+ <OS8PR06MB7541C3B70B15F45F4824772BF2D92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <994cb954-f3c4-4a44-800e-9303787c1be9@kernel.org>
+ <SI6PR06MB753542037E1D6BBF5CE8D2E7F2A42@SI6PR06MB7535.apcprd06.prod.outlook.com>
+ <4523caea-3406-4de0-9ab5-424fb7a0a474@kernel.org>
+ <SI6PR06MB7535BAD19B51A381171A0E64F2A42@SI6PR06MB7535.apcprd06.prod.outlook.com>
+ <8e8aa069-af9f-453f-9bd0-e3dc2eab59ab@kernel.org>
+ <OS8PR06MB7541FD8691B43EA33BDC1D22F2A72@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <99053328-a117-493e-b5f3-00902669c8e7@kernel.org>
+ <44ef5c93448a3625fcfd003b47a516e8ba795b62.camel@ozlabs.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,52 +128,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <d16d40ab-8a35-4886-b11f-2eee15849e1c@quicinc.com>
+In-Reply-To: <44ef5c93448a3625fcfd003b47a516e8ba795b62.camel@ozlabs.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/09/2025 09:26, Vikram Sharma wrote:
+On 10/09/2025 09:25, Jeremy Kerr wrote:
+> Hi Ryan & Krzysztof,
 > 
-> On 9/10/2025 12:35 PM, Krzysztof Kozlowski wrote:
->> On 13/08/2025 07:37, Vikram Sharma wrote:
->>> Add the compatible string "qcom,qcs8300-camss" to support the
->>> Camera Subsystem (CAMSS) on the Qualcomm QCS8300 platform.
->>>
->>> The QCS8300 platform provides:
->>> - 2 x VFE (version 690), each with 3 RDI
->>> - 5 x VFE Lite (version 690), each with 6 RDI
->>> - 2 x CSID (version 690)
->>> - 5 x CSID Lite (version 690)
->>> - 3 x CSIPHY (version 690)
->>> - 3 x TPG
->>>
->>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>   .../bindings/media/qcom,qcs8300-camss.yaml    | 336 ++++++++++++++++++
->>>   1 file changed, 336 insertions(+)
->> So it turns out this code is wrong and you already sent fixes for it.
+> [my response is intended to make progress on the newer v18 submission,
+> but we still have this item from v16 to resolve, hence picking up this
+> thread]
 > 
-> Hi Krzysztof,
-> Thanks for your comments. These bindings are tested with TPG (Test Pattern Generator), As camera sensor testing was not possible at that point.
+>> Your compatible already expressed that there are two interfaces, so
+>> your drivers can just choose whichever they want. If you need to toggle a
+>> bit in system controller, it is fine. If you need different compatible,
+>> then that's a NAK.
 
-You cannot test bindings with TPG. It's impossible.
+You trimmed response and brought some very old thread which does not
+exist in my inbox.
 
-> This is because Monaco-evk kit was not ready which can be used to enable sensor.
-> 
-> These Bindings are complete in its own, If someone want to use TPG.
-
-No. You do not understand - they are not complete if you add new
-properties to them!
-
-How bindings could be complete if you add now supplies!?!?
+I have absolutely no clue what this refers to.
 
 > 
-> My latest update in these bindings are for camera sensor enablement which needs supplies too.
+> I think the mention of "two register interfaces" is a bit misleading
+> here; it implies that it's just two interfaces to the same hardware.
 > 
-> Please let me know if this justification works to accept these bindings it its current form and add supplies as a separate patch.
+> From reading between the lines on the datasheet, it seems that this is
+> two completely separate IP cores, that:
+> 
+>  * are mapped to the same MMIO space; but
+>  * both happen to be I2C controllers.
+> 
+> - where the single "global register" (which you mention above) provides
+> the facility to mux the MMIO mapping between the two. Some versions of
+> the overall SoC have only the old core, some have only the new, and some
+> have both, selectable via this register.
+> 
+> Ryan, can you confirm whether this is the case?
+> 
+> Given there are actual behavioural differences between the two
+> peripherals - beyond just the register set - that would seem to indicate
+> separate binding types (+ a syscon mux control) to me, but I'm keen to
+> hear any other options.
+> 
+> Krzysztof, if that is the case, any thoughts on the representation of
+> separate bindings?
 
-NAK. Read writing bindings doc. Or internal docs.
+
+I have no clue what is this about.
+
 
 Best regards,
 Krzysztof
