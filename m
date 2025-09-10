@@ -1,88 +1,64 @@
-Return-Path: <devicetree+bounces-215446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C554B5173B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C958B51741
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 836AE4681AC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:48:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9454650C9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:51:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F677315D59;
-	Wed, 10 Sep 2025 12:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2AC31C57D;
+	Wed, 10 Sep 2025 12:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eb/iU509"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="E575mXj8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1135827603B
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 12:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5932D592C
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 12:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757508529; cv=none; b=TPohkQBxzIkF+bRb/ZYbv5TRqKk0YLOh9BQzqYZ1l/Aph8LQju7uI/iKayFgDQhQT1CC8bLq0KJICt9CjZFDNW6Pbl3xSd76ksJ/JQEIEUNqWIV921G0iXoaX0LOD0MCgJf2cv5IMeYye9UZHKm8DlSOISZNHGc1RviOu9nvpgQ=
+	t=1757508709; cv=none; b=l8AKDhkEe1MoOe70IuU/tTQUOBgJrV3dTiDJ2HVGTyv+9H3yen4iUK5ON8bMUz/r/6o9FgyZJQAsTnfwfrmIRCfvjHK65nx1ofDYQSqLE7O3JuAb7zC2CzA+uSlkKfGOSMqrGZR7GTuQxX6ng38jxeqyvD1kfi3/RHxKHcptbTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757508529; c=relaxed/simple;
-	bh=Sa5XlTaknz8Q2bGhSjnRD0BypV8mOQK0jc3f3H4in3E=;
+	s=arc-20240116; t=1757508709; c=relaxed/simple;
+	bh=r2jAEhbN4xsHGh1Uf6qscOG8PZsW7orCgvKgjYy4i/8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hHik+qy/PCJ98MZ8zPs6ep0iK17av0hvp+U1kjBjdEU+FluK+1M4rwhPr3oxapJy/9KPloA0PmewnE7xUraR2FVmzPtTzgFlkliyDynlRcQbQGeXkbhOwfH1qc8OE4NmxqlbumdGVm/lrTE3Nxg0JnGCUzmxilHQCvaZzSCT5W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eb/iU509; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ACgbjb013924
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 12:48:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2hLzDCHQ287+835m55C/xeetdRQfkul00hmOXMYpJPE=; b=eb/iU509PSQTrGCB
-	gdxgseS4bxmqf6d5tCf6/BZIv7GJhIiXcJ7IDFYc1VPr0rVPsBaZoFxQckC6ChUO
-	8xrxv+71kRnFabbee08/GiUHWb5FIYLLyzEJsb0MFYUZmL/r4FXK0l5oRoiQk4UG
-	H1gn7e0SKV37BmH6ssECSBzyWkgnA4Z2UBH6GHV6gQ+Ikfx31PEOlQHbWPxlEQMw
-	8XveI8/zo+/rblh0B+Fc5HRAwfRRs2qobZBldpVhJIoLzlq4BUlPzNWVRmsoeSs3
-	tbCgv858lHWRhFV3vDyJF1UbWr6b3LbJHfM05+5NMoeddvMGdQbXLrqTX8qBRUak
-	4apKKw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e8abs2c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 12:48:47 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b601ceb41cso16373511cf.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 05:48:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757508526; x=1758113326;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2hLzDCHQ287+835m55C/xeetdRQfkul00hmOXMYpJPE=;
-        b=cpbKc645irhRcziuwr9t4B3NNA+sTOYKT3NHTjOcD9CK7yWYA0bQgy9G6KhiezrkqR
-         qhqMTF7c/AswLr6X5g9IX4lvwrXKY8a6J0CD04fbRwny/wq3y2dC6bRZ0mahzLcA61He
-         rvV5ITEcntxgDNuEJFx4rWqLtxd3U2MAnqURfhKKYm95lc9CBt/CgeW+ChjPTlGUYAnY
-         YF+Ozzk8TMmMEAwlgXhRKg3aWiC5bvgVfQEzI8J5TTasnVy/LEA8UHztoVQvFSqVGdn9
-         Efx4cANEn/xDmUnfASjx9HkWN8YcxszQX7Kjb7gazalHIVEfhONl9ZwE4hbLIzB8S9lr
-         q0gg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgdtoQV1gdIKYWq/xdqzdsC2Giuhva6j0+rtZkeOZitGnWoeqK62LiWUdtYzibk/S0faY0L0IioffV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz03mJ3/bi4Yq7c0H5GTtYSxOB4EEXDbVFvgYFq9pUX7/RpQX9
-	ZBjA/IjlqecJ52T2gcXiQp9dM67A83fIejqNya2sufB4fyNFrxnzLWkVQbL0OUQZhkaBje4k4QN
-	Jn0X45HzlyZYrhwUsbuSz+uncrjtZH3MFM+j0MHgP63eM8OMEaw/vrFCjRemWoNBh
-X-Gm-Gg: ASbGncsFcVFdBq3uUXuZkFZaul4kGX/NdTSdWsQvZ6Mfhv44L+TgxTkHRGlyfwGCXH1
-	+fo0U7GEv28YIzn7ei0ZPJ/cw1a/81t1VvlK0I5pMa6cixlp+bfb8t5lrE4klVEonOB7s3BsMjT
-	BSSJQZzZLfISMHAsnIUF2Hsc2R2PTjJMmUzIIHHSn7PHNX0NMEwlcmeMdez7QfPLQxfErFwRPqn
-	2rO7QObwY+xJf1MAB01T0N5nNNsWPKjGL3oErZmPfjqo1/KyNhLISMiLwuBcbAKjBne5VNtoIhs
-	3I1q3VUvPGE53RPLbwsAozO/bjdJCQlQh7+N11UuF+QG2H78s6isDLKwA1+mTmKX5JzR+pjPpPa
-	XOewqzZ/ERTU4NINzWLTqxg==
-X-Received: by 2002:a05:622a:19a7:b0:4b4:9070:f27e with SMTP id d75a77b69052e-4b5f826059cmr106840801cf.0.1757508525893;
-        Wed, 10 Sep 2025 05:48:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQJJlCuiyW/pcIWNAfk0Cxu+p3Dd7IMOZXLW6sjV+Sj7pqR7+0vV4WzKU91XkLNccK+WxwgQ==
-X-Received: by 2002:a05:622a:19a7:b0:4b4:9070:f27e with SMTP id d75a77b69052e-4b5f826059cmr106840241cf.0.1757508524991;
-        Wed, 10 Sep 2025 05:48:44 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0783049ecbsm163687966b.8.2025.09.10.05.48.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 05:48:44 -0700 (PDT)
-Message-ID: <9463ba5b-f305-47f4-854e-2ba0dd41bb32@oss.qualcomm.com>
-Date: Wed, 10 Sep 2025 14:48:41 +0200
+	 In-Reply-To:Content-Type; b=Y6hNnET2jGk92vlGjLgeaDb6cFtp1hA2gjlpRa46EcgF5QX36kuJw1q7uQMLALsIg4MUhfczyo/hl+VqviYxjmrpWHtsEy9UYpyCgULcNIHYyisYq9ircOQYiIVabTgTFsTxHxYE39rnHPCSYvMsllqIeqCV7KUlL3s69ie43OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=E575mXj8; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1757508704;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=muXGymnR0Ck2Gspyi/n7s49QXlP0Ml/xlcXFqVMuFR4=;
+	b=E575mXj8fIz5RGOnCELxY2Clbgst7wWsXFXj4Q4RmlH+TsPUQrpmeNW2OsSCmwUO91uzbt
+	+7Cznn5dBMTy+FlJDyHFLJdNyoMTaRYWaUFAcw/M8ehhVXOWNlt3DpFcIYVJQuTng9uTNT
+	6D89ACX7/xMsPHCIMuKLAMhMp/6eJH0=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-606-8NXqkBmqNy2JsBM0TRxoUA-1; Wed,
+ 10 Sep 2025 08:51:41 -0400
+X-MC-Unique: 8NXqkBmqNy2JsBM0TRxoUA-1
+X-Mimecast-MFC-AGG-ID: 8NXqkBmqNy2JsBM0TRxoUA_1757508699
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 65B2C180057D;
+	Wed, 10 Sep 2025 12:51:38 +0000 (UTC)
+Received: from [10.45.225.144] (unknown [10.45.225.144])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 7C7B31800447;
+	Wed, 10 Sep 2025 12:51:34 +0000 (UTC)
+Message-ID: <dcca9d10-b2b7-4534-abe6-999a9013a8e9@redhat.com>
+Date: Wed, 10 Sep 2025 14:51:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,89 +66,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Connor Abbott <cwabbott0@gmail.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-References: <20250910-a663-gpu-support-v6-0-5da15827b249@oss.qualcomm.com>
- <20250910-a663-gpu-support-v6-3-5da15827b249@oss.qualcomm.com>
+Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
+ reference property
+To: Andrew Lunn <andrew@lunn.ch>, Jiri Pirko <jiri@resnulli.us>
+Cc: Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
+ mschmidt@redhat.com, poros@redhat.com,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250815144736.1438060-1-ivecera@redhat.com>
+ <20250820211350.GA1072343-robh@kernel.org>
+ <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
+ <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
+ <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
+ <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
+ <4dc015f7-63ad-4b44-8565-795648332ada@redhat.com>
+ <350cecaf-9e41-4c34-8bc0-4b1c93b0ddfe@lunn.ch>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250910-a663-gpu-support-v6-3-5da15827b249@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=H7Dbw/Yi c=1 sm=1 tr=0 ts=68c173af cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=EGTmXSwiq2C_3XJcCkUA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: 36UQKrnLNfC7vJCmug1UCmRC7AoGsyPJ
-X-Proofpoint-ORIG-GUID: 36UQKrnLNfC7vJCmug1UCmRC7AoGsyPJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOSBTYWx0ZWRfX6Dq0OV4FhfPS
- vuNyetwQJVIdb4YjFTBpvfvbkpRurBwyDBiHKHXW6L0Ra8ZvGUzk580b82k6TXhr95oA2clsFev
- Sadtnmr4lZoDxmWuXyntyX1snd0NfHyv8Q6+oC4AGB3vSxFfAExzpZyk+HodCKtFyCehPNdzLpH
- zMFxbL3io5cg34HMUB1T1CublZ8p5zeTXImhrY/cAu03y6vbPmEiusooLPeWerGw7qH+Kr0fW2H
- v79WKcOkzyG/ijjPq5w00e+6oNeX/uzJKli+OpPzi/XoxY0CqExS32fW+GO0MWGcMMKO1+HLsTU
- uY6CMa0+BYGp7k2R6gTO9QVmQ8ki2IGtakHhDzu0kHE7AReeijXb1N2SJT+HtVTtobk33dqDvZw
- JtEgfTaa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-10_01,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- clxscore=1015 suspectscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060039
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <350cecaf-9e41-4c34-8bc0-4b1c93b0ddfe@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-On 9/10/25 1:25 PM, Akhil P Oommen wrote:
-> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+On 09. 09. 25 3:50 odp., Andrew Lunn wrote:
+>>>> Yesterday I was considering the implementation from the DPLL driver's
+>>>> perspective and encountered a problem when the relation is defined from
+>>>> the Ethernet controller's perspective. In that case, it would be
+>>>> necessary to enumerate all devices that contain a “dpll” property whose
+>>>> value references this DPLL device.
+>>>
+>>> Why is that?
+>>
+>> Because the DPLL driver has to find a mac-address of the ethernet
+>> controller to generate clock identity that is used for DPLL device
+>> registration.
 > 
-> Add gpu and gmu nodes for sa8775p chipset. Also, add the speedbin
-> qfprom node and wire it up with GPU node.
-> 
-> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> Maybe this API is the wrong way around? Maybe what you want is that
+> the MAC driver says to the DPLL driver: hey, you are my clock
+> provider, here is an ID to use, please start providing me a clock?
 
-[...]
+Yes, this could be fine but there is a problem because clock id is part
+of DPLL device and pins registration and it is not possible to change
+the clock id without full de-re-registration. I have provided in zl3073x
+a user to change the clock id via devlink but it means that the driver
+has to unregister all dpll devices and pins and register them under
+different clock id.
 
-> +		gmu: gmu@3d6a000 {
-> +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
-> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
-> +			      <0x0 0x03de0000 0x0 0x10000>,
-> +			      <0x0 0x0b290000 0x0 0x10000>;
-> +			reg-names = "gmu", "rscc", "gmu_pdc";
-> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hfi", "gmu";
-> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-> +				 <&gpucc GPU_CC_CXO_CLK>,
-> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gpucc GPU_CC_AHB_CLK>,
-> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+> So it is the MAC driver which will follow the phandle, and then make a
+> call to bind the dpll to the MAC, and then provide it with the ID?
 
-Akhil mentioned offline that having this clock under the GMU node
-is a hw team recommendation that's rather platform-specific
+In fact that would be enough to expose from the DPLL core a function
+to change clock id of the existing DPLL devices.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+E.g.
 
-Konrad
+int dpll_clock_id_change(struct module *module, u64 clock_id,
+			 u64 new_clock_id)
+{
+	struct dpll_device *dpll_pos;
+	struct dpll_pin *pin_pos;
+	unsigned long i;
+
+	mutex_lock(&dpll_lock);
+	/* Change clock_id of all devices registered by given module
+	 * with given clock_id.
+	 */
+	xa_for_each(&dpll_device_xa, i, dpll_pos) {
+		if (dpll->clock_id == clock_id &&
+		    dpll->module == module)
+			dpll_pos->clock_id = new_clock_id;
+		}
+	}
+	/* Change clock_id of all pins registered by given module
+	 * with given clock_id.
+	 */
+	xa_for_each(&dpll_pin_xa, i, pos) {
+		if (pin_pos->clock_id == clock_id &&
+		    pin_pos->module == module) {
+			pos->clock_id = new_clock_id;
+		}
+	}
+	mutex_unlock(&dpll_lock);
+}
+
+With this, the standalone DPLL driver can register devices and pins with
+arbitrary clock_id and then the MAC driver can change it.
+
+Thoughts?
+
+Thanks,
+Ivan
+
 
