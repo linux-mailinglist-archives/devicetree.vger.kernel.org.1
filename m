@@ -1,193 +1,202 @@
-Return-Path: <devicetree+bounces-215648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16FFB5236C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 23:24:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9E3B52378
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 23:29:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79B5C465CC1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:24:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B3171BC3217
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124493115B5;
-	Wed, 10 Sep 2025 21:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5131A24C068;
+	Wed, 10 Sep 2025 21:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eyZhsvi3"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="CYbGwQML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3150E30FC3D;
-	Wed, 10 Sep 2025 21:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32A330BBA4
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 21:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757539440; cv=none; b=s9d/s4kYtpSNndutJN/yjpoUufvRxew5DOt/auLx4qZ9tqTXYfcYxsXb9bNTao6kBKkgZXlvP5X83FWctI+fXAzDANFvriPPE2wlHDXaBahw5VBMmJvk5wEjMxr7TunKcsgyWx7cBO5LdULrNZr8UtIVBtXZqMG32lvgmfMnSKs=
+	t=1757539764; cv=none; b=FIn8DW6SS3DYfC8QH/YalgpwFke7IcGA/tr7eQkGLCghAf3fRSEVhHUdca92YYh3Y5Q2JCkOfocVH4MWAWA9qnwBQ7X7uor3Ikbftle6zu+1cZ6b4ekdCEQFSeN4peO0xb9ksr2nKyBUGqegOTtY01caw4aFxOHhtahBojzr2Es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757539440; c=relaxed/simple;
-	bh=u01b/oiLKeGK9/KT8JgvFv/p5W3E/aZpSOzfJMIofiA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=e7ifzOie9I+4HBKDuOfiYw3PqQ3ABzPjwLa+/5LAyvKpP7z/SDJVzaxxgT1tsxeLyLoPUXoWIc3fkCC2nc6r2w0ijERjrB4T5cvqKuf0CsVvrhhuneU2VxhBMLOlr0PTLw47yxJ3+VzyOU1CBO7kJg0rqWvfZkZLHD+j2HJq+7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eyZhsvi3; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58ALNoxC600362;
-	Wed, 10 Sep 2025 16:23:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757539430;
-	bh=iUPPMaqnvzEwIfBCj818WmKjsFyCRvzYa1dHNs7kXjU=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=eyZhsvi3iaznKcVFErdQnz7XSr0MBi7TfhhgHH3baqpln4iRB6LMtVGAbbaAT2vIf
-	 dWzSspz3PLhBpoM4W6ifFUFSzvcbpJbSVaamcr8WUFgzrLd4OQsyqPaOMjQOIZpi5P
-	 0pwF+icWCLVYOoVbLOoT+WaSnbxfIkooqiJve6ww=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58ALNnFp572646
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 10 Sep 2025 16:23:49 -0500
-Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 10
- Sep 2025 16:23:49 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE203.ent.ti.com
- (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 10 Sep 2025 16:23:49 -0500
-Received: from [127.0.1.1] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58ALNnZ51097742;
-	Wed, 10 Sep 2025 16:23:49 -0500
-From: Kendall Willis <k-willis@ti.com>
-Date: Wed, 10 Sep 2025 16:23:32 -0500
-Subject: [PATCH v2 2/2] serial: 8250: omap: Support wakeup pinctrl state on
- suspend
+	s=arc-20240116; t=1757539764; c=relaxed/simple;
+	bh=aCgUYgywrm/2h1KX190TpAXxadjFS7iwP5A6Tamnbcg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GPm1/LL5UPKeEdjl9QuucCEHTzzfaU7ZYqlffTUROEkSXqixgaTVr5aNdA9t8P9ju3Sli9pIcSthMcPfPrk0eK7jqivcSjU0AZjTjSshV6bJaTRLeADFCS0w6nm56r/5wvJ+XdPxaEpvmWiGq8nSrdmmoE+y3oHQYdrkngf3IvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=CYbGwQML; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1757539755;
+ bh=Z1MeHN/FAuAOkxz9iJEKMCLiQPrMJjTHwVbwSN9mvp8=;
+ b=CYbGwQMLTFunSmaFklc2ZRemAoFT5+vyEMyJ9zhM0U1np/MVRgis6FEqG+zEyR1BkffozC41M
+ J66h7cmCVzR0E9/1gVGxH5f7zLEzEYm28RVG21O1WBUfi5qE7LJfgTg28rNbLtsc1grgzVBwVWF
+ QfGxYqCnZ4hPYOiTmlHXdHoPT+mrsICQSU2fKie3tjFwkDIk7ewfkkNeLeif6N61lSubK7qVIRa
+ cvahGADbXqe65TwllzKynoStcmupkIHATU0AD7ShRPoZRNZDcuaZGeNJXaZorCBUO1bTMVc80Vt
+ qsyhIc77L2QvphVXP8CgziSMm31YcFbDit7NLgiEyFBw==
+X-Forward-Email-ID: 68c1eda3343e597491a9aa4c
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.2.14
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <38e80b6d-1dc9-47a8-8b23-e875c2848e6e@kwiboo.se>
+Date: Wed, 10 Sep 2025 23:29:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add PCIe Gen2x1 controller for
+ RK3528
+To: Yao Zi <ziyao@disroot.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Chukun Pan <amadeus@jmu.edu.cn>
+References: <20250906135246.19398-1-ziyao@disroot.org>
+ <20250906135246.19398-3-ziyao@disroot.org>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250906135246.19398-3-ziyao@disroot.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250910-uart-daisy-chain-8250-omap-v2-2-e90d44c1a9ac@ti.com>
-References: <20250910-uart-daisy-chain-8250-omap-v2-0-e90d44c1a9ac@ti.com>
-In-Reply-To: <20250910-uart-daisy-chain-8250-omap-v2-0-e90d44c1a9ac@ti.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <d-gole@ti.com>, <vishalm@ti.com>,
-        <sebin.francis@ti.com>, <msp@baylibre.com>, <khilman@baylibre.com>,
-        <a-kaur@ti.com>, <andriy.shevchenko@linux.intel.com>,
-        <yujiaoliang@vivo.com>, <b-liu@ti.com>, <u.kleine-koenig@baylibre.com>,
-        Kendall Willis
-	<k-willis@ti.com>
-X-Mailer: b4 0.14.2
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Markus Schneider-Pargmann <msp@baylibre.com>
+Hi Yao Zi,
 
-UART can be used as a wakeup source for am62 from suspend to ram states.
-To enable wakeup from UART am62 requires a wakeup flag being set in the
-pinctrl.
+On 9/6/2025 3:52 PM, Yao Zi wrote:
+> Describes the PCIe Gen2x1 controller integrated in RK3528 SoC. The SoC
+> doesn't provide a separate MSI controller, thus the one integrated in
+> designware PCIe IP must be used.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 56 +++++++++++++++++++++++-
+>  1 file changed, 55 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> index db5dbcac7756..2d2af467e5ab 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/pinctrl/rockchip.h>
+>  #include <dt-bindings/clock/rockchip,rk3528-cru.h>
+>  #include <dt-bindings/power/rockchip,rk3528-power.h>
+> @@ -239,7 +240,7 @@ gmac0_clk: clock-gmac50m {
+>  
+>  	soc {
+>  		compatible = "simple-bus";
+> -		ranges = <0x0 0xfe000000 0x0 0xfe000000 0x0 0x2000000>;
+> +		ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x44400000>;
 
-If the device is marked as wakeup enabled, select the 'wakeup' pinctrl
-state on suspend and restore the default pinctrl state on resume.
+We should use the dbi reg area in the 32-bit address space, please use:
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-Signed-off-by: Kendall Willis <k-willis@ti.com>
----
- drivers/tty/serial/8250/8250_omap.c | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+  ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x4000000>;
 
-diff --git a/drivers/tty/serial/8250/8250_omap.c b/drivers/tty/serial/8250/8250_omap.c
-index bb23afdd63f29353351aa21fccf6c8de99011a65..9e49ef48b851bf6cd3b04a77a4d0d7b4e064dc5f 100644
---- a/drivers/tty/serial/8250/8250_omap.c
-+++ b/drivers/tty/serial/8250/8250_omap.c
-@@ -27,6 +27,8 @@
- #include <linux/pm_wakeirq.h>
- #include <linux/dma-mapping.h>
- #include <linux/sys_soc.h>
-+#include <linux/reboot.h>
-+#include <linux/pinctrl/consumer.h>
- 
- #include "8250.h"
- 
-@@ -145,6 +147,9 @@ struct omap8250_priv {
- 	spinlock_t rx_dma_lock;
- 	bool rx_dma_broken;
- 	bool throttled;
-+
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pinctrl_wakeup;
- };
- 
- struct omap8250_dma_params {
-@@ -1349,6 +1354,18 @@ static int omap8250_no_handle_irq(struct uart_port *port)
- 	return 0;
- }
- 
-+static int omap8250_select_wakeup_pinctrl(struct device *dev,
-+					  struct omap8250_priv *priv)
-+{
-+	if (IS_ERR_OR_NULL(priv->pinctrl_wakeup))
-+		return 0;
-+
-+	if (!device_may_wakeup(dev))
-+		return 0;
-+
-+	return pinctrl_select_state(priv->pinctrl, priv->pinctrl_wakeup);
-+}
-+
- static struct omap8250_dma_params am654_dma = {
- 	.rx_size = SZ_2K,
- 	.rx_trigger = 1,
-@@ -1573,6 +1590,11 @@ static int omap8250_probe(struct platform_device *pdev)
- 	priv->line = ret;
- 	pm_runtime_mark_last_busy(&pdev->dev);
- 	pm_runtime_put_autosuspend(&pdev->dev);
-+
-+	priv->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (!IS_ERR_OR_NULL(priv->pinctrl))
-+		priv->pinctrl_wakeup = pinctrl_lookup_state(priv->pinctrl, "wakeup");
-+
- 	return 0;
- err:
- 	pm_runtime_dont_use_autosuspend(&pdev->dev);
-@@ -1630,6 +1652,13 @@ static int omap8250_suspend(struct device *dev)
- 	struct uart_8250_port *up = serial8250_get_port(priv->line);
- 	int err = 0;
- 
-+	err = omap8250_select_wakeup_pinctrl(dev, priv);
-+	if (err) {
-+		dev_err(dev, "Failed to select wakeup pinctrl, aborting suspend %pe\n",
-+			ERR_PTR(err));
-+		return err;
-+	}
-+
- 	serial8250_suspend_port(priv->line);
- 
- 	err = pm_runtime_resume_and_get(dev);
-@@ -1651,6 +1680,13 @@ static int omap8250_resume(struct device *dev)
- 	struct uart_8250_port *up = serial8250_get_port(priv->line);
- 	int err;
- 
-+	err = pinctrl_select_default_state(dev);
-+	if (err) {
-+		dev_err(dev, "Failed to select default pinctrl state on resume: %pe\n",
-+			ERR_PTR(err));
-+		return err;
-+	}
-+
- 	if (uart_console(&up->port) && console_suspend_enabled) {
- 		err = pm_runtime_force_resume(dev);
- 		if (err)
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  
+> @@ -1133,6 +1134,59 @@ combphy: phy@ffdc0000 {
+>  			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
+>  			status = "disabled";
+>  		};
+> +
+> +		pcie: pcie@fe4f0000 {
 
--- 
-2.34.1
+With the dbi reg area changed below, please update the node name and
+move this node to top of the soc node.
+
+  pcie@fe000000
+
+> +			compatible = "rockchip,rk3528-pcie",
+> +				     "rockchip,rk3568-pcie";
+> +			reg = <0x1 0x40000000 0x0 0x400000>,
+
+We should use the dbi reg area in the 32-bit address space, please use:
+
+  reg = <0x0 0xfe000000 0x0 0x400000>,
+
+> +			      <0x0 0xfe4f0000 0x0 0x10000>,
+> +			      <0x0 0xfc000000 0x0 0x100000>;
+> +			reg-names = "dbi", "apb", "config";
+> +			bus-range = <0x0 0xff>;
+> +			clocks = <&cru ACLK_PCIE>, <&cru HCLK_PCIE_SLV>,
+> +				 <&cru HCLK_PCIE_DBI>, <&cru PCLK_PCIE>,
+> +				 <&cru CLK_PCIE_AUX>, <&cru PCLK_PCIE_PHY>;
+> +			clock-names = "aclk_mst", "aclk_slv",
+> +				      "aclk_dbi", "pclk",
+> +				      "aux", "pipe";
+
+In my U-Boot test I did not have the pipe/phy clock here, do we need it?
+
+With above fixed this more or less matches my U-Boot testing, and is:
+
+Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+
+Regards,
+Jonas
+
+> +			device_type = "pci";
+> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err",
+> +					  "msi";
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,
+> +					<0 0 0 2 &pcie_intc 1>,
+> +					<0 0 0 3 &pcie_intc 2>,
+> +					<0 0 0 4 &pcie_intc 3>;
+> +			linux,pci-domain = <0>;
+> +			max-link-speed = <2>;
+> +			num-lanes = <1>;
+> +			phys = <&combphy PHY_TYPE_PCIE>;
+> +			phy-names = "pcie-phy";
+> +			power-domains = <&power RK3528_PD_VPU>;
+> +			ranges = <0x01000000 0x0 0xfc100000 0x0 0xfc100000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0xfc200000 0x0 0xfc200000 0x0 0x1e00000>,
+> +				 <0x03000000 0x1 0x00000000 0x1 0x00000000 0x0 0x40000000>;
+> +			resets = <&cru SRST_PCIE_POWER_UP>, <&cru SRST_P_PCIE>;
+> +			reset-names = "pwr", "pipe";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			status = "disabled";
+> +
+> +			pcie_intc: legacy-interrupt-controller {
+> +				interrupt-controller;
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 155 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+>  	};
+>  };
+>  
 
 
