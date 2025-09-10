@@ -1,239 +1,181 @@
-Return-Path: <devicetree+bounces-215374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B156FB514D0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:06:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43821B514D3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:07:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A5511727D7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:06:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AFBC1C82D24
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B7631A04D;
-	Wed, 10 Sep 2025 11:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815E53176FA;
+	Wed, 10 Sep 2025 11:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jtMTPCYX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UGeaF/GH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07603317717;
-	Wed, 10 Sep 2025 11:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B608331064B;
+	Wed, 10 Sep 2025 11:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757502371; cv=none; b=rzZVDy3DN6Sks+XQLt253rIoFPncVWB8Bs/RRqD2yN4KYxDLWBXCkNkyyiWka4YyCcPfyojXnkvpuqqxcielHEGgjy83BTP+vgXlsWP7eo0ZLxXNNNaakGUX69FXRT0kk19nb81ucYJstshYkSErD6BLugU8/5jyncPji68jzN0=
+	t=1757502415; cv=none; b=Y/6oKixbeGj7ZfGch+WMi2vnXf3rFHZGa8YE/s+/I/MYDClo2BaKQHVTMFbfaBbwXuakm5tJtJ9yrJe0ogSZLJ1QLIVKBcfVU49cJYVwnnsz8VHqYe48D0TTiiFeoan/5HcvOepH0oJUEV2xJglZfpJDyVNgLFb/Mal5A2yP0LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757502371; c=relaxed/simple;
-	bh=yYLZnKKLUYDcpvOnTT3Dg0STIelu5l13z6+PGs2RgzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C06hwsvwvXJZ3jHCbv4N3bOfJoCTMZwxHS0cEYVp7rpPWOOElk805By1TOJWTMK948mSz2hSV+78LL3C9fBmwR3Fomti6gdeKZEycO7gyXshuGHh/uGtiuvexfkBd9mQJwS7ABtnPrHtMXSY30gTyKMLJldy0GYaQWNX3RPLJg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jtMTPCYX; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757502370; x=1789038370;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yYLZnKKLUYDcpvOnTT3Dg0STIelu5l13z6+PGs2RgzQ=;
-  b=jtMTPCYXtT9oNwjZTvGJEIwA6FQGK8Z3ozieYoV19gh+hidtAzqGEZGN
-   ggKXhBUN4UkDfqiHJeTke3kuPwSHfPF1pOgTLO6/s0sFLzMfQuGE/lkMb
-   NtK+wHDvaqbg0H/2QQiY+ljFAI2Z5StvkhDUgaGY8Q4gibFwfW6//kwtR
-   efcQSJmLYjKqGadp+UE1JJfZik26uwetsOp96a2wVtOMq+egTRUT02UQQ
-   AIlMW5JpQjGqYnreVHfHpIspbP7HL3je4MSfvMALxDGermWcsATHWUFPg
-   OCjINL1Mo+1zLmeaz6xJCo0vywcz/s9DInZeBRCpVvkOi5m1gE1F2A3JJ
-   w==;
-X-CSE-ConnectionGUID: 5lqV8YRzToOXSost5d7plQ==
-X-CSE-MsgGUID: lVS+arVURQuu5vsbAuPfHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59950720"
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
-   d="scan'208";a="59950720"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 04:06:09 -0700
-X-CSE-ConnectionGUID: b4uroy7dQnqHmHGGxEgDwA==
-X-CSE-MsgGUID: B5Vl9CKoS2iYe1JJz9g8BA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
-   d="scan'208";a="204350439"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 10 Sep 2025 04:06:05 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uwIeJ-0005rV-24;
-	Wed, 10 Sep 2025 11:06:03 +0000
-Date: Wed, 10 Sep 2025 19:05:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Haowei Zheng <zhenghaowei@loongson.cn>
-Cc: oe-kbuild-all@lists.linux.dev, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] serial: 8250: Add Loongson uart driver support
-Message-ID: <202509101843.2PXpHVfr-lkp@intel.com>
-References: <91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1757502415; c=relaxed/simple;
+	bh=qt5sSLI8mEL2xDASgkEbhwWOO/rAUjjLi4cBTEJnCHw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=A82DrNTMClr4AJlkTyjW2JsBRFiPYzNyD+4MH4qRZw8OR7Nd/Kh2vxJtH03gwp2h9Vq4i8iy41c78/fokr/o/Nzcxwo2PbXRHsYaXr1MAdAxMAksmlZbgsTWftM/X02/C/UZAZbamfy/b70fMqVGKDf9kqgiIvpHEGVzQLusPz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UGeaF/GH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58AAFE8Z012504;
+	Wed, 10 Sep 2025 11:06:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=o8Yyrm2oQhPPsXlJZ5n+1l
+	vn6Vg98FlNvPqZypR2fvQ=; b=UGeaF/GHtIk/Q49PUCQXE2OE5dW17MhxPSlEcV
+	HX+6jncKbGCaOagh10kZtbIj9UfUhrVjshrrq13I6cVBfvVOHeY18YJzUgwdY922
+	296MHmULPAKRXHzV136fs9HRj7YbgI97YkcmvkZ56mZdBZbBuWLAkxSmDt+9Gf4t
+	Oap7f4im785xdGMqssXMg0HlkTFZKrkUn2FoF5RcWNqW+MgZOxJdz/NTDLvvx0hq
+	JjQoOJ3E1CuL3pTmSVINbY3GlnGrLAD54kcoHmi2jKDV+Tnk3Lc3oDCgxXUzTes7
+	+/aUouPPhz2tiKJZo+DPrYF1uLd1mxXmeABm8iAqyVi95h+Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwsbqu2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Sep 2025 11:06:48 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58AB6lFX014561
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Sep 2025 11:06:47 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Wed, 10 Sep 2025 04:06:43 -0700
+From: Wenmeng Liu <quic_wenmliu@qualcomm.com>
+Subject: [PATCH v4 0/3] Add CCI and imx577 sensor support for lemans evk
+Date: Wed, 10 Sep 2025 19:06:20 +0800
+Message-ID: <20250910-camss_rb8-v4-0-28f44e1880b8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK1bwWgC/22Myw7CIBQFf6W5a2mwiIAr/8M0BnlYEinKVaJp+
+ HexazcnmZPJLIAuB4dw6BbIrgQMaW6w23RgJj1fHQm2MQx04FRRRYyOiOd8kcQKxfbUC7/lEpp
+ /z86H99o6jY2ngM+UP2u6sN/7r1IYocQII61nknuljwmxf7z0zaQY+zYw1lq/umL5Z6kAAAA=
+X-Change-ID: 20250909-camss_rb8-d79360f7f158
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+	<rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, <vladimir.zapolskiy@linaro.org>
+CC: <linux-i2c@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, Wenmeng Liu <quic_wenmliu@qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757502402; l=2403;
+ i=wenmeng.liu@oss.qualcomm.com; s=20250211; h=from:subject:message-id;
+ bh=qt5sSLI8mEL2xDASgkEbhwWOO/rAUjjLi4cBTEJnCHw=;
+ b=e2h7ULgoYY4UNo6nVXnlHa6cm6uqxGKLAQ4LKYP9qxWa6XA6PB5de4F0iO0AhC8V66g+tqfSA
+ HuDSKz8We+gCwuesuZJctNELPpQcTIC8kfhjhh/ARz8It1sU0DrWZnu
+X-Developer-Key: i=wenmeng.liu@oss.qualcomm.com; a=ed25519;
+ pk=PTegr3w0f1C9dOSL6CUdJR5+u+X/4vsW7VMfwIMeMXQ=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tDE9MAU0XfPDrMZA43nRm7wywX48F8QW
+X-Proofpoint-GUID: tDE9MAU0XfPDrMZA43nRm7wywX48F8QW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX7CTupzh5nYcr
+ 1vzg0jolMaLgq28UWCds8KotvDr2/0A8zpCHVgM5NQYVACk41xh2kPa/i3dSRfBFW0QNZwNL8Cp
+ JJrK56WOFmRM3VVIDk4nhRM0mmsJPH8aBHceR5GHI6+XDPnskRFX41z7xEoq9qA9joY1pCCrdUk
+ DwnYie9NiHoE5d71N4X7o1v5PQKFPI09j0c/F5FXYs811ePk/mkG27yovbmaUKuP3O+P53YRu87
+ gVhh2YRqPae743qcG0bOEX1B6/qrYcTF4eKKLSQazVUPjFbyzuwhh7W3rkDvjAFWCdwUU+vsr3L
+ 06WL6Ol0JForbS8thC8XgBhMCRq7GEGv2Md1ZK2uuZLE/owJkgAauoqC5g25jpQ7amhCqEEVmaS
+ 8ZBLAGQP
+X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c15bc8 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=L1m54Ubpix6UO_NYMN8A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-09_03,2025-09-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
 
-Hi Binbin,
+This series adds cci definition and imx577 sensor enablement
+via cci1 on lemans evk.
 
-kernel test robot noticed the following build errors:
+An example media-ctl pipeline for the imx577 is:
 
-[auto build test ERROR on b601e1f41edd4667062aa7cccb4e5199814979a3]
+media-ctl -d /dev/media0 --reset
+media-ctl -d /dev/media0 -V '"imx577 0-001a":0[fmt:SRGGB10/4056x3040 field:none]'
+media-ctl -d /dev/media0 -V '"msm_csiphy1":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -l '"msm_csiphy1":1->"msm_csid0":0[1]'
+media-ctl -d /dev/media0 -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-serial-Add-Loongson-UART-controller/20250909-201640
-base:   b601e1f41edd4667062aa7cccb4e5199814979a3
-patch link:    https://lore.kernel.org/r/91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin%40loongson.cn
-patch subject: [PATCH v4 2/3] serial: 8250: Add Loongson uart driver support
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250910/202509101843.2PXpHVfr-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250910/202509101843.2PXpHVfr-lkp@intel.com/reproduce)
+yavta -B capture-mplane  -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0 --capture=5
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509101843.2PXpHVfr-lkp@intel.com/
+Changes in v4:
+- Correct the formatting issue by replacing the spaces with tabs.
+- Link to v3: https://lore.kernel.org/r/20250909-camss_rb8-v3-0-c7c8df385f9a@oss.qualcomm.com
 
-All errors (new ones prefixed by >>):
+Changes in v3:
+- Revise the annotations according to Konrad's suggestions.
+- Remove the enable of camcc, camcc default to being enabled.
+- Link to v2:
+  https://lore.kernel.org/r/20250815-rb8_camera-v2-0-6806242913ed@quicinc.com/
 
-   drivers/tty/serial/8250/8250_loongson.c: In function 'loongson_uart_probe':
->> drivers/tty/serial/8250/8250_loongson.c:102:9: error: implicit declaration of function 'device_property_read_u32' [-Wimplicit-function-declaration]
-     102 |         device_property_read_u32(dev, "clock-frequency", &uart.port.uartclk);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tty/serial/8250/8250_loongson.c:117:28: error: implicit declaration of function 'device_get_match_data'; did you mean 'device_match_any'? [-Wimplicit-function-declaration]
-     117 |         flags = (uintptr_t)device_get_match_data(dev);
-         |                            ^~~~~~~~~~~~~~~~~~~~~
-         |                            device_match_any
-   drivers/tty/serial/8250/8250_loongson.c: At top level:
->> drivers/tty/serial/8250/8250_loongson.c:179:34: error: array type has incomplete element type 'struct of_device_id'
-     179 | static const struct of_device_id loongson_uart_of_ids[] = {
-         |                                  ^~~~~~~~~~~~~~~~~~~~
+Changes in v2:
+- Remove the patch that adds PHY supply documentation in the sa8775p CAMSS
+  bindings. This change should be submitted together with the sa8775p bindings patch.
+- Fix the string ordering in the DTS file.
+- Remove the source clock from the CCI node.
+- Move the sensor enable configuration from lemans-evk.dts to lemans-evk-camera.dtso.
+- Remove the definitions for CCI and regulators that are not enabled.
+- Link to v1:
+  https://lore.kernel.org/all/20250514-rb8_camera-v1-0-bf4a39e304e9@quicinc.com/
 
+Dependencies:
+https://lore.kernel.org/all/20250814101615.1102795-1-quic_vikramsa@quicinc.com/
 
-vim +/device_property_read_u32 +102 drivers/tty/serial/8250/8250_loongson.c
+---
+Wenmeng Liu (3):
+      dt-bindings: i2c: qcom-cci: Document sa8775p compatible
+      arm64: dts: qcom: sa8775p: Add CCI definitions
+      arm64: dts: qcom: lemans-evk-camera: Add DT overlay
 
-    80	
-    81	static int loongson_uart_probe(struct platform_device *pdev)
-    82	{
-    83		struct device *dev = &pdev->dev;
-    84		struct uart_8250_port uart = {};
-    85		struct loongson_uart_data *ddata;
-    86		struct resource *res;
-    87		unsigned int flags;
-    88		int ret;
-    89	
-    90		ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
-    91		if (!ddata)
-    92			return -ENOMEM;
-    93	
-    94		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-    95		if (!res)
-    96			return -ENODEV;
-    97	
-    98		uart.port.irq = platform_get_irq(pdev, 0);
-    99		if (uart.port.irq < 0)
-   100			return -EINVAL;
-   101	
- > 102		device_property_read_u32(dev, "clock-frequency", &uart.port.uartclk);
-   103	
-   104		spin_lock_init(&uart.port.lock);
-   105		uart.port.flags = UPF_SHARE_IRQ | UPF_FIXED_PORT | UPF_FIXED_TYPE | UPF_IOREMAP;
-   106		uart.port.iotype = UPIO_MEM;
-   107		uart.port.regshift = 0;
-   108		uart.port.dev = dev;
-   109		uart.port.type = PORT_LOONGSON;
-   110		uart.port.private_data = ddata;
-   111	
-   112		uart.port.mapbase = res->start;
-   113		uart.port.mapsize = resource_size(res);
-   114		uart.port.serial_in = loongson_serial_in;
-   115		uart.port.serial_out = loongson_serial_out;
-   116	
- > 117		flags = (uintptr_t)device_get_match_data(dev);
-   118	
-   119		if (flags & LOONGSON_UART_HAS_FRAC) {
-   120			uart.port.get_divisor = loongson_frac_get_divisor;
-   121			uart.port.set_divisor = loongson_frac_set_divisor;
-   122		}
-   123	
-   124		if (flags & LOONGSON_UART_QUIRK_MCR)
-   125			ddata->mcr_invert |= (UART_MCR_RTS | UART_MCR_DTR);
-   126	
-   127		if (flags & LOONGSON_UART_QUIRK_MSR)
-   128			ddata->msr_invert |= (UART_MSR_CTS | UART_MSR_DSR);
-   129	
-   130		ddata->rst = devm_reset_control_get_optional_shared(dev, NULL);
-   131		if (IS_ERR(ddata->rst))
-   132			return PTR_ERR(ddata->rst);
-   133	
-   134		ret = reset_control_deassert(ddata->rst);
-   135		if (ret)
-   136			return ret;
-   137	
-   138		ret = serial8250_register_8250_port(&uart);
-   139		if (ret < 0) {
-   140			reset_control_assert(ddata->rst);
-   141			return ret;
-   142		}
-   143	
-   144		ddata->line = ret;
-   145		platform_set_drvdata(pdev, ddata);
-   146	
-   147		return 0;
-   148	}
-   149	
-   150	static void loongson_uart_remove(struct platform_device *pdev)
-   151	{
-   152		struct loongson_uart_data *ddata = platform_get_drvdata(pdev);
-   153	
-   154		serial8250_unregister_port(ddata->line);
-   155		reset_control_assert(ddata->rst);
-   156	}
-   157	
-   158	static int loongson_uart_suspend(struct device *dev)
-   159	{
-   160		struct loongson_uart_data *ddata = dev_get_drvdata(dev);
-   161	
-   162		serial8250_suspend_port(ddata->line);
-   163	
-   164		return 0;
-   165	}
-   166	
-   167	static int loongson_uart_resume(struct device *dev)
-   168	{
-   169		struct loongson_uart_data *data = dev_get_drvdata(dev);
-   170	
-   171		serial8250_resume_port(data->line);
-   172	
-   173		return 0;
-   174	}
-   175	
-   176	static DEFINE_SIMPLE_DEV_PM_OPS(loongson_uart_pm_ops, loongson_uart_suspend,
-   177					loongson_uart_resume);
-   178	
- > 179	static const struct of_device_id loongson_uart_of_ids[] = {
-   180		{ .compatible = "loongson,ls2k0500-uart", .data = (void *)LS2K0500_UART_FLAG },
-   181		{ .compatible = "loongson,ls2k1500-uart", .data = (void *)LS2K1500_UART_FLAG },
-   182		{ /* sentinel */ },
-   183	};
-   184	MODULE_DEVICE_TABLE(of, loongson_uart_of_ids);
-   185	
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   4 +
+ arch/arm64/boot/dts/qcom/lemans-evk-camera.dtso    | 101 ++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi               | 268 +++++++++++++++++++++
+ 4 files changed, 375 insertions(+)
+---
+base-commit: 0292e5668a417d680b48901c0185bc191693c05c
+change-id: 20250909-camss_rb8-d79360f7f158
 
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Wenmeng <wenmeng.liu@oss.qualcomm.com>
+
 
