@@ -1,140 +1,214 @@
-Return-Path: <devicetree+bounces-215388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188DEB5155F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:23:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B816B51564
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:23:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46FA91B2861E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:23:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1431D563846
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1A427B355;
-	Wed, 10 Sep 2025 11:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA65927B50C;
+	Wed, 10 Sep 2025 11:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTfcYx8M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f9MshjF9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B742475C8;
-	Wed, 10 Sep 2025 11:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39AF274B23;
+	Wed, 10 Sep 2025 11:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757503397; cv=none; b=tVoJ0oUJEpYdf3posPDo+3s97KjqA+INUGgtnAMWh46aRsuUzLGuTi/KTbaqX5lkhaIzqeJAopPL29N14wCtJTQm6tue21RqrK709nNS+xMya4mwZk0wr7EQ4ELQBGVqMDpP98EK5kxD0wFO5r3Edshsajzpg830taHcYp1SGD4=
+	t=1757503434; cv=none; b=PV1d3IwX1ewHn1jogVxlRE88IH/zGH760SdyXR3BsqyuH7UBPsMzDYEiWSZ6NO2JHp94NQEDDMGjpf3TNmsn+eXbXX1NO01fr4fTp5o+/m6NEfRLjdhO8Odziusgj+tDvbkUz9xcbo7msKT/cGC6rF1TNQZxxPd6UaCrKaMsgQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757503397; c=relaxed/simple;
-	bh=Gwa5t8VUZsrfVtQx50cZow74a84fJ+Ue6y7aWzEdtM4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uRydYyeZAqHM4AwQds7arfppRxY4/GHHscFjq2KhEzvHNRWjYIlDWvcCVwwYYSO2xpFGtsxHgsAoCDGGhRKtx20gePlkUFtIx9zlUHWcGK0qa/D2Tnd0qKnazHWEKryE94wZtOONB3GLY1P7AstbC5eJ8zjUTxnkWf2f3+ntwX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTfcYx8M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBACFC4CEF0;
-	Wed, 10 Sep 2025 11:23:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757503395;
-	bh=Gwa5t8VUZsrfVtQx50cZow74a84fJ+Ue6y7aWzEdtM4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lTfcYx8MIx7hjWRoaMrAQ3jChcUQFThU+LknUmF2U7C91IUulxIqnVNWGl+jx9ls/
-	 wvua9aXqM694AyOZpn7ebxlFeS9bBXP78br29Y7WG+mAs/4xWjuHU944elObgKhRG4
-	 RYpkttw1W8zgV7NY6rcFw5pLHL1y+IQ9/xV2SWkcVB3YsDG67D2hV0zzJTiqck/rLD
-	 oFmT/BPvh7JE2rvfZaKbfo+sWD1peL9dHbBc0F3TBYGrfGSTbkFeP6LIIIWK3qd/NB
-	 cI+MN3Ym6rFrZk1Dux7S37e8c5vvxFT8BE8JpKLjzpkqtvBxOgU/YNcUMm0G4G+dTa
-	 /uMD8FOqu1IiQ==
-Message-ID: <6725e8af-624b-4b78-9b67-62b63e46b38c@kernel.org>
-Date: Wed, 10 Sep 2025 13:23:10 +0200
+	s=arc-20240116; t=1757503434; c=relaxed/simple;
+	bh=WdQaWEEj6zFIxUqvPggI0fiQew7wLJcex4Pwhghs7bA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=HBhzHcekxF3+T6aogVlbUQz7DGRUgfv3KN/QGKkz1d5cKU9N9ehghcaUz7/nPQV4ZI35u0ya/IWu46PLM+Zq03acrzaGFcTQTmDboqRv2v+Bl2QGgObwHwSLX+4syRmkMURnqKvuGK271ilWSNrFM0U9HpAZso9eF5BRkSvp0GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f9MshjF9; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f6b0049fbso7514136e87.0;
+        Wed, 10 Sep 2025 04:23:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757503430; x=1758108230; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TCWlIKsn6VpyPvju2k855dDUq8CJXY07guBoClsf4qc=;
+        b=f9MshjF9WPVV4I+z8TY3+jVmtTko0xurbf5mrv4hxfzaOrVPHuaSqofwRjwfe7Grgo
+         h/7qQYf2ZDSjyiHcUw9o+a30UWLATOH26dn5Gt/OEqWFsUbEngWE3up7NG+PmXP1xdAK
+         Rli/kQcaFO5hxrJnd/EvpO8y18O8s3Oq7O58EHb7lcipxqcv7qIgGoJp2609ZvY4F9ZZ
+         r0wx8eN9RkNGuL2YnXxucEqZSqrU/Vkk9hdE3svM6pvcoe3BI6mNibri5OFQ+h/uUTgQ
+         igTB9Q0iAyp7vnh5m0Y9QAofzODXFbZp+amA39DsDieRNSgX2YxgxkLtqVwhUoTfp2Qa
+         ZbIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757503430; x=1758108230;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TCWlIKsn6VpyPvju2k855dDUq8CJXY07guBoClsf4qc=;
+        b=WX1wJPWW81g23/rKG3WGXvZs6AnYP/d7eJX6gleECZPVLuPYdRTb1URzErWafdCNGE
+         rhkJxmTB3w8fjPHFIgX6g66dm7XsNancrDmQ2Eil38pu2GXWxKOpnF8Tmd7gM5ZKf9XW
+         MTu4lan2brTd67f0Oe8C/1DBA+WDWPEBoMglq3HAxrLH9S0rXKqic1Fr0HEhQq90V20C
+         vm8GvQjw6oqoyq8z1IKPaUi3h2luWymJF4y3BhDyBJHoHlgS9m/KcGf3HqGmwSWfJHKm
+         7vDAX5QJwQe1Rh/uwpdJhfvBtznF84zT4pfNCX3p7AQ75uYoLcmEx/OCPZ/Q82PN/IFE
+         HdDw==
+X-Forwarded-Encrypted: i=1; AJvYcCV8YibiyvnZQVmSZUnyx0pMKr+4W7FSki70TUdTEnTfu2VQ8xy1PkIYZzclbznljarKs5AyxuyG9G9AgS5V@vger.kernel.org, AJvYcCVR9NQwFPWi5/SDiC1DxyaFu2reA17ZuOsg6e31Z2NinKpsB3aO7skwd1fM1sTcBQ4Jqkl+2/6Lg3o5@vger.kernel.org, AJvYcCX8S8A3WPrI+zN0Mcrrmbopp6p3xXmjgHwDr2gyylLQwkXI0ydD2mAzeDP03hheLyTlOV7W6i27xPLv7Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0YznGMjo7vgoYCc3YSAxm3CtZ4cZNKw7cDFkqECvhswxi1cGqKf7
+	oWsJCHv6l/7X842tBykuyab3eU1y+xuB83RtxNt7Weqp86ODdpM+Q43T
+X-Gm-Gg: ASbGnctiCHjjxCFjKo7coaIl/ftfTgkTmadk0yINNMLAzuXIWKsFwpAqbKA48iBuTaW
+	4r15z0uR/2TrmS/Gwh+zWZatBopHYT0iZ6l1JC+l3iUjf0fTgkw/bq0yNtbfOlalAcJf1uNw6dU
+	ezrq48p7O49Cog8pHu9CUYQFjCGBVZrhMCMirZtfN4b/kxvJCNVGCWKJRAyGPWV/oc9gZxuluT5
+	220RsJnod391jz3Yw275B7WWLKy94SSP8c8FKD0mt3b+irf8ZSdKfLb7E51XMMGzlSt93L4Yamc
+	QHT6HPjEWsIVRKqR/Fvm4GRSPj8ipiPRkNtPy9gcUXXWYlYYmaaSpunFyQJVsSQKsbRiOHKOCHO
+	khzOTSD+Qt0svcyLvKl/hVDaCYzJ/MQ==
+X-Google-Smtp-Source: AGHT+IGsXDCG4ZjN7pLx7lx8UFP/pMnqrU6SGROqMgXZekNuMXpdZ2YyX9RsZUMPTG7fRqTAPyeU/g==
+X-Received: by 2002:a05:6512:308b:b0:55f:43ba:93f2 with SMTP id 2adb3069b0e04-56260e41eb7mr5840133e87.18.1757503429842;
+        Wed, 10 Sep 2025 04:23:49 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5681795d5f9sm1164484e87.78.2025.09.10.04.23.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Sep 2025 04:23:48 -0700 (PDT)
+Date: Wed, 10 Sep 2025 14:23:34 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 0/3] Support ROHM BD79112 ADC
+Message-ID: <20250910-bd79112-v4-0-f82f43746a8c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS8300 sound
- card
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@oss.qualcomm.com, prasad.kumpatla@oss.qualcomm.com,
- ajay.nandam@oss.qualcomm.com
-References: <20250905142647.2566951-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250905142647.2566951-2-mohammad.rafi.shaik@oss.qualcomm.com>
- <43090acb-ea36-4015-b14f-78d44d789d42@kernel.org>
- <a9507045-b900-49ee-8841-0f8fd30816ba@kernel.org>
- <abc66798-dc91-4860-b0b4-de39a58b5745@oss.qualcomm.com>
- <a8dcffa4-c578-46d7-8fdf-cd4f5a29a2a6@kernel.org>
- <136ad3f0-c4a9-47dc-9c62-682a830da823@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <136ad3f0-c4a9-47dc-9c62-682a830da823@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="naZTmkm+dDrSdzud"
+Content-Disposition: inline
+X-B4-Tracking: v=1; b=H4sIAAlfwWgC/x3NSw6DIBAG4KuYWRcCClK76j2aLqY46iRFGqSm0
+ Xj3Epdf8j92WCgxLXCrdki08sJxLjCXCvyE80iC+2KoVW1Vp5V49a7TuhamaVFdHVqlGyjpT6K
+ Bf+fS41k8pBhEnhLh2fdxpSS1s07ZxthWjpxlwG0r5+h9/M75Pgbkt/QxwHH8AcaTwKWZAAAA
+X-Change-ID: 20250910-bd79112-436a087a5013
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2933;
+ i=mazziesaccount@gmail.com; h=from:subject:message-id;
+ bh=K5kBEYwPCiL2VCpMX2TvfCPMM5mtV90zLtesxp2x3/o=;
+ b=owEBbQGS/pANAwAKAXhQN/9N2qHFAcsmYgBowV8JjLO9BCWd8Do9M/zrFw0sOa6CLWJH/rWgb
+ KZYwulDGs6JATMEAAEKAB0WIQQjH5/zBlvbx8soSFN4UDf/TdqhxQUCaMFfCQAKCRB4UDf/Tdqh
+ xXo7CAC2C6bXMFGxNrmg5LvbkrcbingPjFb06o19+x5YfDo95SZxSENGga2tCsN0EKYkrvP+XCa
+ AqPd3puFg7lNdxlPjTtvLU42VyTaMMDW7BkP5kH9NtTQD97YYxhZMIK+AwX7fQZDfv576GI3YNW
+ +/2R17jyJZqzWdRN32WTLAUL1EYQ6BevK9M6m42wFH8ahUBeBNNCnDExHk6rysLi8uB63UOCQLE
+ 1qzFAFJYWZPKMq5a1Xn3VxWGLlU9TqKk6JxbamJ1mIWMAj8zOhvbr3QBslQ+ZEOJ2hLlqxjyoZG
+ Bsrey/u+kVKTbk64pmgH+MJQUfrc/RIQh2B5+842qDIQRDW+
+X-Developer-Key: i=mazziesaccount@gmail.com; a=openpgp;
+ fpr=83351EE69759B11AF0A3107B40497F0C4693EF47
 
-On 10/09/2025 12:20, Konrad Dybcio wrote:
-> That said.. I'm a little confused why we're accepting SoC-compatibles
-> as well as board-compatibles for soundcards (e.g. rb2, rb3gen2,
-> 6940idp) in parallel.. is it with an intention that the SoC one is
-> present in reference designs and therefore will be common?
 
-"Sound card" here is partially a software or architectural construct.
-Basically bindings for the sound machine driver. There is no such thing
-as sound card on the device, there is bunch of audio-related components.
+--naZTmkm+dDrSdzud
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's why we assume that many boards of given SoC will use same sound
-card driver. Some boards might be also different so they have their own
-compatible... or they were added in different time.
+Support ROHM BD79112 ADC/GPIO
 
-I don't have particular guidelines here, for me it is a bit blurry.
+The ROHM BD79112 is a 12-bit, 32 channel SAR ADC / GPIO IC. Or, a "Signal
+Monitor Hub IC" as data-sheet describes it.
+
+Data sheet states the maximum sampling rate to be 1 MSPS, but achieving
+this would probably require the SPI and samples to be processed by
+something else but the CPU running Linux. This could work with the "SPI
+offloading" which has recently landed upstream - but I have no HW to test
+this so nothing fancy is implemented here. It's still worth mentioning
+if someone needs the speed and wants to try implementing it :)
+
+The SPI protocol is slightly peculiar. Accesses are done in 16-bit
+sequences, separated by releasing and re-aquiring the chip-select.
+
+Register write takes 1 such sequence. The 8-bit register data to write,
+is stored in the last 8 bits. The high 8 bits contain register address
+and an I/O-bit which needs to be set for register accesses.
+
+Register read consists of two 16-bit sequences (separated by
+chip-select). First sequence has again the register address and an IO
+bit in the high byte. Additionally, reads must have a 'read bit' set.
+The last 8 bits must be zero. The register data will be carried in the
+last 8 bits of the next 16-bit sequence while high bits in reply are zero.
+
+ADC data reading is similar to register reading except:
+ - No R/W bit or I/O bit should be set.
+ - Register address is replaced by channel number (0 - 31).
+ - Reply data is carried in the 12 low bits (instead of 8 bits) of the
+   reply sequence.
+
+The protocol is implemented using custom regmap read() and write()
+operations.
+
+Other than that, pretty standard device and driver.
+
+Revision history:
+ v3 =3D> v4:
+ - Fix Kconfig dependency (I2C =3D> SPI)
+ - Styling as suggested by Andy and Jonathan
+ - Moved I/O documentation comment and read/write functions next to each
+   other and tried clarifying the comment
+
+ v2 =3D> v3:
+ - Mostly cosmetic changes to the driver
+ - dt-bindings and MAINTAINERS unchanged
+
+ v1 =3D> v2:
+ - Plenty of fixes to the driver (thanks to reviewers, Andy and David)
+ - Add gpio-controller information to the device-tree bindings
+
+See individual patches for more accurate changelog
+
+---
+Matti Vaittinen (3):
+      dt-bindings: iio: adc: ROHM BD79112 ADC/GPIO
+      iio: adc: Support ROHM BD79112 ADC/GPIO
+      MAINTAINERS: Support ROHM BD79112 ADC
+
+ .../devicetree/bindings/iio/adc/rohm,bd79112.yaml  | 104 ++++
+ MAINTAINERS                                        |   3 +-
+ drivers/iio/adc/Kconfig                            |  10 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/rohm-bd79112.c                     | 553 +++++++++++++++++=
+++++
+ 5 files changed, 670 insertions(+), 1 deletion(-)
+---
+base-commit: d1487b0b78720b86ec2a2ac7acc683ec90627e5b
+change-id: 20250910-bd79112-436a087a5013
 
 Best regards,
-Krzysztof
+--=20
+Matti Vaittinen <mazziesaccount@gmail.com>
+
+
+--naZTmkm+dDrSdzud
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmjBX7YACgkQeFA3/03a
+ocWuAQf9HFI2G8kA6QakaO+3gtVqg+TtZKvI8wAz1aozh/phdlDTlWCGK7MEZgaM
+O35uZ0bDW7GPsnX+jLBg//Zi/0YDB1VoR5bE19Cg6Q5QpsYE/wPk31G88cAOtXnz
+i5MBLLwa0IJnmAcceNzzeFZDh0T8FFe07rYpe6lLFU/3mC8AayLdSOdg7Nj0zSnn
+E5s4wEOrJFU+rdNsMD69pIWoS6Dln7aDu2AnjkgESffpulTd+yCmfwMJt8HXV8x/
+1xsOo499BWKsrpflJWvR3TuhBSOUN1WnVCw4jbPqjuheJdAk6Vo5YKyB6Q/dO9GG
+lPZYhJpTs0WuqelPvN30pWkxFsiocA==
+=ZPow
+-----END PGP SIGNATURE-----
+
+--naZTmkm+dDrSdzud--
 
