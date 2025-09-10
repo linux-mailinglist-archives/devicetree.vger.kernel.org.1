@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-215412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8AAB515F2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:38:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF678B515F4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 857A7170D62
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:38:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0731D1C83AC1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F58929AAF8;
-	Wed, 10 Sep 2025 11:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2AB22D7DFF;
+	Wed, 10 Sep 2025 11:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IvEKwMyY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L96dwETf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2261F1C5D46;
-	Wed, 10 Sep 2025 11:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEF4221271;
+	Wed, 10 Sep 2025 11:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757504326; cv=none; b=b65ab6L2TbpkQThokJ/EEJSlrlKqsDuro4yhJ2Tha5B/OkBiTe47InO++ZBvsz9WlpN8gep3bCd+qjC31FNeTLEUJIYDTv5S13wpe0ddwPHMuFmDTNYmfwD3AYwYYJ5NZG2LZYbgGgom7XOMGqj9avACteWXlZBEGGhgtxiiHco=
+	t=1757504425; cv=none; b=BLf534wvtaArTVrDGDwnKMMVRqilSx6kP8+Qtde0dpZvnBPdoOIEMcQ2dcJzR6ZDdX6P4XwKHtPa/dMacBCz4zU6AH5873lPwS5YKcO20S8hojEnyPAkbRvCaUFfB1N4GZSkHdTZEVcPj0wxW3MpIJ+VY2RIlWM2m+/kRsv0DGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757504326; c=relaxed/simple;
-	bh=CfDP9NnOJJ4XePyfe8vxmQejIgGJ0Qdeqb1FNfRZmZI=;
+	s=arc-20240116; t=1757504425; c=relaxed/simple;
+	bh=yG+NMaxzNA8zIaIVLj6jr5NYBeJjfeuertNdU0usCsI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i//tL7irBj+jruePgEDoTvhRtmeu2tfIxZ3QXPb5N6Kn5uuunjvCgWJWtDPSkIouJxRZrdmhc3mUsOhnSoFxcYsETdyQxPStyi0G3T5n44Y3w/lRvsUaE9lPuu2abQILv7FwL0aG6bA2z2NQo59ykBcnLqftoOEVXwxTOTCX4ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IvEKwMyY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AE9AC4CEF0;
-	Wed, 10 Sep 2025 11:38:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hBeJd7hevvIKZLiNo53uoG2bt5NUa76nqO1wWkAxXq+mQv2fojxBGTyaCE0+FZNqa8XYvoXiSWaNYKkoBLa1Huwn5llLvWyuPIhFM3OPt9VKakNyWTv4MMq9445CP4Ncu2XGZudXI3RWH+CO6ypWNc0ybD2sBOt4nTbK2moQU0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L96dwETf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2D63C4CEF0;
+	Wed, 10 Sep 2025 11:40:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757504325;
-	bh=CfDP9NnOJJ4XePyfe8vxmQejIgGJ0Qdeqb1FNfRZmZI=;
+	s=k20201202; t=1757504425;
+	bh=yG+NMaxzNA8zIaIVLj6jr5NYBeJjfeuertNdU0usCsI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IvEKwMyYoI6KNd8d3uhEdSSM6OPwToO2EECRmEowA5aAqOg1XoJx3TG5hkEdSlRvA
-	 QjZsQ1Nkd7v54hDO6mtBrQ7RJbvrci+dOGU6qwPKAsIp7ILvApFPa+V9bBFSjS91wo
-	 R7EKGfVwgv6xKSQYIIQTZDBy4YQBYwx6mPI/GRsTNRIbOyIdTBV93Ob0W+b6+lKCW8
-	 v3LXrbV6SGWsyhKBh7+6BrvcA6DS572J9jy3Tcxhp22bIJfwYMDUSr98CNjYddjc8z
-	 a3guo0jykFZE2a+5Y+tONtYGC5nA6s+W1jHTXzasBqsZXeJeNrBqBACI0BozyXx/Uo
-	 wHpea8Aaoj0/A==
-Date: Wed, 10 Sep 2025 13:38:43 +0200
+	b=L96dwETf4nJsRVmr4Mqv5w9o4oKpkrzyrMRkuxfKJV4O6QI+si1/rbdIwOWXOEXy2
+	 DEYNQytfbt/pGdsZK/F6tpTKlhSoIZ34X16X5jHDa7nI9fW5ywdsIsg+MtGfNRSiGp
+	 OnZedxxr9+hFCewsLCqA45nRhn34uvWoJ7yzBDdF83+Ql0+2xbkpvBwLLo1BWnMUEw
+	 MKmGkt7njWkEUMo0lFZSfA7ggcAkmrTluTqSSu6nGYfcwumxvyNhUS7y9ILwUMDZtN
+	 EZ0zlxK+dFJdHXPDONsdlhs4OqcObKvFrwkAdLZ62KxwQR5JsRLC9F9RBYXR1L9fTH
+	 JaYlyXetTsRyA==
+Date: Wed, 10 Sep 2025 13:40:22 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andreas Kemnade <akemnade@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alistair Francis <alistair@alistair23.me>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: sy7636a: Add missing gpio pins
- and supply
-Message-ID: <20250910-crafty-adorable-sheep-f6265f@kuoka>
-References: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
- <20250909-sy7636-rsrc-v2-1-cfd9f44fd259@kernel.org>
+To: Cheng Ming Lin <linchengming884@gmail.com>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	tudor.ambarus@linaro.org, mmkurbanov@salutedevices.com, Takahiro.Kuwano@infineon.com, 
+	pratyush@kernel.org, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, alvinzhou@mxic.com.tw, Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
+ enable-randomizer-otp property
+Message-ID: <20250910-godlike-berserk-sambar-cd25f7@kuoka>
+References: <20250910030301.1368372-1-linchengming884@gmail.com>
+ <20250910030301.1368372-2-linchengming884@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +62,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250909-sy7636-rsrc-v2-1-cfd9f44fd259@kernel.org>
+In-Reply-To: <20250910030301.1368372-2-linchengming884@gmail.com>
 
-On Tue, Sep 09, 2025 at 10:33:02PM +0200, Andreas Kemnade wrote:
-> To be able to fully describe how the SY7636A is connected to the system,
-> add properties for the EN and VCOM_EN pins. To squeeze out every bit
-> of unused current, in many devices it is possible to power off the
-> complete chip. Add an input regulator to allow that.
+On Wed, Sep 10, 2025 at 11:02:59AM +0800, Cheng Ming Lin wrote:
+> From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 > 
-> Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/silergy,sy7636a.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> Add a new boolean property "enable-randomizer-otp" to enable the
+> randomizer feature on supported SPI-NAND devices.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What is randomizer feature? Subject, commit msg, description - none of
+them explain me that. Is this some standard for NAND? Why is this a
+common property?
+
+So many questions and zero explanations in the commit msg. Instead you
+just wrote what we see in the diff - that's completely redundant.
 
 Best regards,
 Krzysztof
