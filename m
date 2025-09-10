@@ -1,142 +1,95 @@
-Return-Path: <devicetree+bounces-215559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D88BBB51D93
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:25:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD7AB51D9C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F8E944388E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:25:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B2521C80292
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC0633438E;
-	Wed, 10 Sep 2025 16:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77F8D334728;
+	Wed, 10 Sep 2025 16:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="QzkQ1Lc6"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3N1bM+YG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED5226B75C;
-	Wed, 10 Sep 2025 16:25:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5B99463;
+	Wed, 10 Sep 2025 16:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757521550; cv=none; b=KTx23R4RiaCLDAx/Za5M3yll8kRqMnq0HmILh1H4YdOsQxP+qdAw46QkqRHlPW/kfhdtfH6fnS67QQoihXyldUyBLZlYp2YHKXOoS8Rn3VS/OV+oOVmSOF/bwKdWgbnDy2e9u0SAw6sHGuok+gKkFYFGqjOc89vtWAx3OQHGcL8=
+	t=1757521691; cv=none; b=P0qPMfiaCV4zNTFBNHkYXli2XO762THBMORyhN35T8WXjzTM4Tys5npRc/c8mHyb+zBTZRFkl6vDVuXxr1Sj6rK8yUnPpzzRTwKOXDox50sRsW1VBLOdJb55nlICOu3AxI3QCXpznWtlulOuSgI8gruOrBaNh9d3aFbFISGTIOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757521550; c=relaxed/simple;
-	bh=yxsZly4e4NNU/BnRyZTfCx+kf32JMESOMXhbZsii9A8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=J9MKZwnh0jYQ5+twJM9tgCFaeyMs6Q9WmDOvdmtoRFMpyvbTExkba/7CujIghw5jJ2nhWSgkD+7LiZiTnZYZq9XZ8HSGVc9IRljAbxtObmN75EDyhXDVAEuoPMemA3Uvr6jfdLLJ2yZmY0e4aasx+45xLSfTOoshfO9+bSSkc1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=QzkQ1Lc6; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8CB6B25B19;
-	Wed, 10 Sep 2025 18:25:45 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id KKyL2TSpdQ30; Wed, 10 Sep 2025 18:25:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1757521544; bh=yxsZly4e4NNU/BnRyZTfCx+kf32JMESOMXhbZsii9A8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=QzkQ1Lc6ExLEV1/UmoYpaz5DQ71e9J9VxxTTkjjG8Qx3SduHlePv6WK4cb5E+o7cC
-	 jqzp40ctssOgp1/HPhaadt3gm69iXskPEkhRD6rMCjXYi+X3rApjYV5av0mrUGeW8s
-	 WyZ3c72njeDfFUs7x8NnbW24U8ze9Bp2kiEFXouA8av6Lk6cEdZcroVL5qqftbKchw
-	 ZZKEI27gp5M4utH6NJgLSvjspwWc5gIVo7NOjJL4t3aC1rpNXQlrw7SF3yKY/0bcd8
-	 9yYUJAaudozmVkfGdUQCpcLU2GgEVCHmjfkT5Ptg9Db3SD+bjfUFDCp5D/1CTDqr0K
-	 N87zpNJJM+fuA==
+	s=arc-20240116; t=1757521691; c=relaxed/simple;
+	bh=Ip/KN2ZBg4uirjUszlcMbTp+luH52XTz8G/cRfWRFX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LJSlrcG2jYfxcHbAFD53+H4VsUhwkfoeyN8Vrbwv0ahV/ryrHO9MPNm3fcKEkOmdoU+ON8AcZIYryh0NFBHawPBAyjYTyLQuKNXnmKakrAecAYACfGyJZsDv5U2nWK0E961oNu3paREFarUU7nYuWKu2leTK+vvLk6pu0ntPv+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3N1bM+YG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/xjGoP5vn/+OHaRa5itQ8wKINnejO/BR/dQQpInoLBQ=; b=3N1bM+YGSMC9Ti8OTLgjBhKB0T
+	Ldrt3k3BjutpLirPelsVDJ9tkzlbslgsdsIHSDwGQIBWGhVDRLR3UYN4ZvPaH1MqKR+6AoFUJwWBp
+	VYdccpB8p18eo2HU3gQT6dPWJ7iPNUPVzVMwdMW/ucXpIwoEjt4FEQjSgoY45hgiNpYw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uwNfm-007yKv-RE; Wed, 10 Sep 2025 18:27:54 +0200
+Date: Wed, 10 Sep 2025 18:27:54 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	Pascal Eberhard <pascal.eberhard@se.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add strap
+ configuration during reset
+Message-ID: <393f0c41-57f2-491a-9ac6-5069c7db089e@lunn.ch>
+References: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 10 Sep 2025 16:25:40 +0000
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
- <jessica.zhang@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 0/2] Support for Synaptics TDDI series panels
-In-Reply-To: <20250820-panel-synaptics-tddi-v5-0-d4e3fd4987c6@disroot.org>
-References: <20250820-panel-synaptics-tddi-v5-0-d4e3fd4987c6@disroot.org>
-Message-ID: <38e3a32db8402c1cbf3dc2fdf9f04ac3@disroot.org>
-X-Sender: kauschluss@disroot.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
 
-Hi,
+On Wed, Sep 10, 2025 at 04:55:23PM +0200, Bastien Curutchet wrote:
+> Hi all,
+> 
+> This small series aims to allow to configure the KSZ8463 switch at
+> reset. This configuration is determined by pin states while the chip is
+> held in reset. Normally, this kind of configuration is handled with
+> pull-ups/pull-downs. However, in some designs these pull-ups/pull-downs
+> can be missing (either intentionally to save power or simply by mistake).
+> In such cases, we need to manually drive the configuration pins during
+> reset to ensure the switch is set up correctly.
+> 
+> PATCH 0 adds a new property to the bindings that describes the GPIOs to
+> be set during reset in order to configure the switch properly. Alongside
+> this new property, a new 'reset' pinctrl state is introduced.
+> 
+> PATCH 1 implements the use of this property in the driver. I only have a
+> KSZ8463 to test with, so only its configuration is supported.
 
-Bumping to collect some reviews on this series. Thanks!
+Are you setting switch state which cannot be set via register writes?
 
-On 2025-08-20 14:24, Kaustabh Chakraborty wrote:
-> Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
-> employs a single chip for both touchscreen and display capabilities.
-> Such designs reportedly help reducing costs and power consumption.
-> 
-> Although the touchscreens, which are powered by Synaptics'
-> Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
-> driver support in the kernel, the MIPI DSI display panels don't.
-> 
-> This series introduces a rudimentary driver for controlling said 
-> display
-> panels, which supports TD4101 and TD4300 panels.
-> 
-> [1] https://www.synaptics.com/technology/display-integration
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
-> Changes in v5:
-> - added missing Reviewed-by tag from Krzysztof in [v3 1/2]
-> - Link to v4: 
-> https://lore.kernel.org/r/20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org
-> 
-> Changes in v4:
-> - utilized drm_connector_helper_get_modes_fixed() (dmitry.baryshkov)
-> - constified backlight properties (dmitry.baryshkov)
-> - Link to v3: 
-> https://lore.kernel.org/r/20250720-panel-synaptics-tddi-v3-0-43a5957f4b24@disroot.org
-> 
-> Changes in v3:
-> - fixed various dt_binding_check errors (robh's bot)
-> - adjusted commit description of [v2 1/2] (robh)
-> - utilized devm_drm_panel_alloc() and devm_regulator_bulk_get_const()
-> - Link to v2: 
-> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
-> 
-> Changes in v2:
-> - fixed various dt_binding_check errors (conor)
-> - did s/tddi_update_brightness/tddi_update_status
-> - added check for panel enable in tddi_update_status()
-> - used backlight_get_brightness() in appropriate places
-> - Link to v1: 
-> https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
-> 
-> ---
-> Kaustabh Chakraborty (2):
->       dt-bindings: display: panel: document Synaptics TDDI panel
->       drm: panel: add support for Synaptics TDDI series DSI panels
-> 
->  .../display/panel/synaptics,td4300-panel.yaml      |  89 +++++++
->  drivers/gpu/drm/panel/Kconfig                      |  11 +
->  drivers/gpu/drm/panel/Makefile                     |   1 +
->  drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 276 
-> +++++++++++++++++++++
->  4 files changed, 377 insertions(+)
-> ---
-> base-commit: 5303936d609e09665deda94eaedf26a0e5c3a087
-> change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
-> 
-> Best regards,
-> --
-> Kaustabh Chakraborty <kauschluss@disroot.org>
+	Andrew
 
