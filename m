@@ -1,126 +1,187 @@
-Return-Path: <devicetree+bounces-215603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D02CEB520DC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:21:58 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D36B520ED
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:29:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CA781C85351
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:22:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B1C014E080A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11672D46C0;
-	Wed, 10 Sep 2025 19:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Zg95o4qd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C582D5937;
+	Wed, 10 Sep 2025 19:29:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22692D46A9;
-	Wed, 10 Sep 2025 19:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92CE270553;
+	Wed, 10 Sep 2025 19:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757532088; cv=none; b=Gf5Rx7JMG0exKuebi3dE6IbkZXtAdHYx8fuCzMeTUMby5GGe+IGIleU4jmezU9et1Oh500IyWJRKdb+etnqg/g20RBmmZB5kvyNW21DNBGkhOdoVh4XoNWu42caR++emLGCUnA0MlqR7V0yT7HQO58Q191+K9VaTrGlblaSMh0s=
+	t=1757532566; cv=none; b=kfj0RkdUfKTB5q4JPSrzYG5wLJEvjEoTTfFwXUZDe2A/0ePz79Pg7S1TZ8VdaL/XhnlHsbIhbOfn/UfpFb7sBwUqF6YuspHjqZ+IKrEd+l31Nt1mjS3D7qRZce93VyEEsSaocPYpi8KTzbwRFcFBldVZFyr37qP8mMk61bc19Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757532088; c=relaxed/simple;
-	bh=n0xFBIOnBhEtYm96QIlAYZ1gCC1TVIO7etk/8VacZrQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k1TucaX2E7Xy/WL9uw29sC9UFpOG9RytaEnzZtdtbyCMtnvbrdjY8EruHmnWQAGw0ngmjIHcRGPv7A4QpmsctEqdKoEYHj0CglFKdMg+OZ6KaOQKQvhLf72xG7eGck1tR7sU/daxEiemYVoFgyvgo/9y61aheMDw+8mrmnmY12Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Zg95o4qd; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=uhFI9oI1xsX/5VketVeksgJo6o20zmCCJbkUrT20l+4=; b=Zg95o4qdhQ3n5T72uj5V2eaTxd
-	VbPPVM1DcFUw4tMgnKoPHVlb0k+AZnZmGRS51s0Wnh5SGPnQo5N8OZKxcMeK+ggYYA55asJBryyPA
-	LMTUVzjI7nOygkIJM6AHGAnADS8cbzoUK8SgKF3g6PM41ibsclMNJiFouUQaScYlVIou8iadwnEaB
-	oysIgeMbqjDsnStF/iIe/B/zaVxOeBi6O3YjSTAWHZhBck6On3L4zUooO0wUCUrMR5nG5ht9Yv7lE
-	orCYm7q2L5QFLHmHJhlOieOS4GXp3ZoMAlUvsVYhWL6nX7JOv0/fk3meEy9Ybv5hfsOy3kGawWqgL
-	ojyrPRKw==;
-Received: from i53875b8a.versanet.de ([83.135.91.138] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uwQNM-0003mh-8i; Wed, 10 Sep 2025 21:21:04 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Collabora Kernel Team <kernel@collabora.com>,
- Michael Riesch <michael.riesch@collabora.com>, Vinod Koul <vkoul@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, stable@kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: (subset) [PATCH v4 0/7] phy: rockchip: phy-rockchip-inno-csidphy: add
- support for rk3588 variant
-Date: Wed, 10 Sep 2025 21:21:03 +0200
-Message-ID: <2070639.PIDvDuAF1L@diego>
-In-Reply-To: <175752285211.484319.18097786132863236205.b4-ty@kernel.org>
-References:
- <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
- <175752285211.484319.18097786132863236205.b4-ty@kernel.org>
+	s=arc-20240116; t=1757532566; c=relaxed/simple;
+	bh=WMWEAkkDalb+8QdbfQFU5N2F0M0vF3Pgf+eeCWx8UL0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AipOawa84J9GwrAnvuo+3pAkEOES/n7aU5auxZKb2aU8lN4uzVEL75EGuMTrOjDM1woeWQS3UKTeno7h5x16nq9mqvmLbcqlJ+J1JPZwEATJZSAxNbWi0nWgpZ0T+AQP8XvHXeQlUmrNmEJ7u8ig3yFlsr9jRevwsjuOiEIxGRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8771D16F2;
+	Wed, 10 Sep 2025 12:29:15 -0700 (PDT)
+Received: from [10.1.197.69] (eglon.cambridge.arm.com [10.1.197.69])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D5EC03F694;
+	Wed, 10 Sep 2025 12:29:17 -0700 (PDT)
+Message-ID: <7353f490-2cac-4b97-9f48-c612b9034561@arm.com>
+Date: Wed, 10 Sep 2025 20:29:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/33] ACPI / PPTT: Add a helper to fill a cpumask from a
+ cache_id
+To: Dave Martin <Dave.Martin@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Koba Ko <kobak@nvidia.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ fenghuay@nvidia.com, baisheng.gao@unisoc.com,
+ Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring
+ <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-7-james.morse@arm.com>
+ <aK7ju2caTjqf1+VN@e133380.arm.com>
+ <2e4c3c00-b248-421e-8ff1-d24b7b03be1a@arm.com>
+ <aL/9/KSH35ou8Mgj@e133380.arm.com>
+Content-Language: en-GB
+From: James Morse <james.morse@arm.com>
+In-Reply-To: <aL/9/KSH35ou8Mgj@e133380.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Vinod,
+Hi Dave,
 
-Am Mittwoch, 10. September 2025, 18:47:32 Mitteleurop=C3=A4ische Sommerzeit=
- schrieb Vinod Koul:
->=20
-> On Wed, 03 Sep 2025 19:04:48 +0200, Michael Riesch wrote:
-> > Habidere,
-> >=20
-> > The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused w=
-ith
-> > the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
-> > supported using the existing phy-rockchip-inno-csidphy driver, the nota=
-ble
-> > differences being
-> >  - the control bits in the GRF
-> >  - the additional reset line
-> > This patch series adds support for this variant.
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make power-domains non-re=
-quired
->       commit: c254815b02673cc77a84103c4c0d6197bd90c0ef
-> [3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588 variant
->       commit: 5072b8e98eef4685a5a9a8bae56072cb65a2ef69
-> [4/7] phy: rockchip: phy-rockchip-inno-csidphy: allow writes to grf regis=
-ter 0
->       commit: 8c7c19466c854fa86b82d2148eaa9bf0e6531423
-> [5/7] phy: rockchip: phy-rockchip-inno-csidphy: allow for different reset=
- lines
->       commit: 260435153c90c8e90553e456ec43578834a14a71
+On 09/09/2025 11:14, Dave Martin wrote:
+> On Thu, Aug 28, 2025 at 04:58:16PM +0100, James Morse wrote:
+>> On 27/08/2025 11:53, Dave Martin wrote:
+>>> On Fri, Aug 22, 2025 at 03:29:47PM +0000, James Morse wrote:
+>>>> MPAM identifies CPUs by the cache_id in the PPTT cache structure.
+>>>>
+>>>> The driver needs to know which CPUs are associated with the cache,
+>>>> the CPUs may not all be online, so cacheinfo does not have the
+>>>> information.
 
-question, what happened to patch 6?
-  [PATCH v4 6/7] phy: rockchip: phy-rockchip-inno-csidphy: add support for =
-rk3588 variant
+>>>> diff --git a/drivers/acpi/pptt.c b/drivers/acpi/pptt.c
+>>>> index 660457644a5b..cb93a9a7f9b6 100644
+>>>> --- a/drivers/acpi/pptt.c
+>>>> +++ b/drivers/acpi/pptt.c
+>>>> @@ -971,3 +971,65 @@ int find_acpi_cache_level_from_id(u32 cache_id)
+> 
+> [...]
+> 
+>>>> + * acpi_pptt_get_cpumask_from_cache_id() - Get the cpus associated with the
+>>>> + *					   specified cache
+>>>> + * @cache_id: The id field of the unified cache
+>>>> + * @cpus: Where to build the cpumask
+>>>> + *
+>>>> + * Determine which CPUs are below this cache in the PPTT. This allows the property
+>>>> + * to be found even if the CPUs are offline.
+>>>> + *
+>>>> + * The PPTT table must be rev 3 or later,
+>>>> + *
+>>>> + * Return: -ENOENT if the PPTT doesn't exist, or the cache cannot be found.
+>>>> + * Otherwise returns 0 and sets the cpus in the provided cpumask.
+>>>> + */
+>>>> +int acpi_pptt_get_cpumask_from_cache_id(u32 cache_id, cpumask_t *cpus)
+>>>> +{
+> 
+> [...]
+> 
+>>>> +	/*
+>>>> +	 * If we found the cache first, we'd still need to walk from each cpu.
+>>>> +	 */
+>>>> +	for_each_possible_cpu(cpu) {
+> 
+> [...]
+> 
+>>> Again, it feels like we are repeating the same walk multiple times to
+>>> determine how deep the table is (on which point the table is self-
+>>> describing anyway), and then again to derive some static property, and
+>>> then we are then doing all of that work multiple times to derive
+>>> different static properties, etc.
+>>>
+>>> Can we not just walk over the tables once and stash the derived
+>>> properties somewhere?
+>>
+>> That is possible - but its a more invasive change to the PPTT parsing code.
+>> Before the introduction of the leaf flag, the search for a processor also included a
+>> search to check if the discovered node was a leaf.
+>>
+>> I think this is trading time - walking over the table multiple times, against the memory
+>> you'd need to de-serialise the tree to find the necessary properties quickly. I think the
+>> reason Jeremy L went this way was because there may never be another request into this
+>> code, so being ready with a quick answer was a waste of memory.
+>>
+>> MPAM doesn't change this - all these things are done up front during driver probing, and
+>> the values are cached by the driver.
+> 
+> I guess that's true.
+> 
+>>> I'm still getting my head around this parsing code, so I'm not saying
+>>> that the approach is incorrect here -- just wondering whether there is
+>>> a way to make it simpler.
+>>
+>> It's walked at boot, and on cpu-hotplug. Neither are particularly performance critical.
 
-or is it just missing from this mail?
+> Do we do this only for unknown late secondaries (e.g., that haven't
+> previously come online?) 
 
-Thanks
-Heiko
+No, each time a CPU comes online.
 
 
+> I haven't gone to track this down but, if not,
+> this cuts across the assertion that "there may never be another request
+> into this code".
+
+CPU hotplug is optional - you don't have to bounce CPUs. It's very common on mobile parts
+for power saving. I think its fairly unusual on server parts, once CPUs are online they
+stay online.
+
+The cacheinfo code doesn't cache this, it re-reads it every time. That turns out to be
+because of PowerPC where some of these properties can be changed while a CPU is offline.
+Sure, we could have a Kconfig thing to say ARCH_STATIC_TABLES_ARE_STATIC, but that would
+be a different piece of work.
+(I've had a couple of stabs at this, but cacheinfo is the shape it needs to be)
+
+
+> cpu hotlug is slow in practice, but gratuitous cost on this path should
+> still be avoided where feasible.
+> 
+>> I agree that as platforms get bigger, there will be a tipping point ... I don't think
+>> anyone has complained yet!
+> 
+> Ack -- when in ACPI, do as the ACPI folks do, I guess.
+
+
+Thanks,
+
+James
 
