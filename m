@@ -1,187 +1,153 @@
-Return-Path: <devicetree+bounces-215502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1756CB51A98
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:59:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B9FEB51AAB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:01:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A78158250E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:52:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADAD13B3C43
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4727332ED32;
-	Wed, 10 Sep 2025 14:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910EC33436F;
+	Wed, 10 Sep 2025 14:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="W9I9dslU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LfSK4Dvy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500B530C373
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 14:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8903314B0;
+	Wed, 10 Sep 2025 14:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757515386; cv=none; b=dbeinfHoIZvDUzt6sns2wX3R9M0pjEEkyRlRMz2qdKtcAsPuCGquikqP3S1BAdMVo81IENBwzp7LwRfSlfdhS0X7O85RQ29i2R9tOV+fL6QN9pU7NB/FoboOgIjOLIUxvVAnk/m9Rgu+/hK2S8wjY6Tz0ezOiEMFI3XuVCjZHcs=
+	t=1757515405; cv=none; b=rt06jxRa3iAd6zIcX2EW84RHYjXNz1XY5rd4WM6lK9OdTNxtkD8+OtIJ+J0qb1iP6njEPLGJMnSUwfaHTpCmYBrAHPvnyuZhPHdMLbEnWwPB4fvBt8X9hTRum4kmiLTO9PUY1vWVF8JTJZkSJzj+wqpLf0RhWW92tpo5mmFt4LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757515386; c=relaxed/simple;
-	bh=N/wKflTYmUXg8HGSLU8QR0Phvp1v3e5wOBQSK2/SdsU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JFihasjJueWv+OcR9AvJ1GY6NNn/cKPq9sHDDc1sUx724naKnPkZ9KIjn5GsvOB9FgbaUnhfhyTpXP9qwRF9tbx0/CSuI5A/5LIRswha865nOiS42g83zkRufggCAYeruePQmcsW+ygGYlwwb+QvrCyDN4w9RQUL4bnimoSjrtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=W9I9dslU; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-56afe77bc1eso1179685e87.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 07:43:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757515382; x=1758120182; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UkhFCZ5ofWJHJ2EhMv0fguBBuTeG4Pes0q1AF4EcfFA=;
-        b=W9I9dslUEhE3BND5cfXcf2bNcL4/rCz7WLDlhW+n9sFA6JGBh87OqomtvMoUqGtFTg
-         ubzNGCcC2aymD7bAYd0SWlbahLdtbCyCVZox8r16Fr72k6xtRyLwBi7GEpFjZ1ZOeLrU
-         iSacvW2KM9340LWGAOGYB/zl+mDq2tBTwUQ+y6PnVrvUoDuUVud/+JxQGirrpV113Nfd
-         C9z0o06DC7YeQ5CfnuUjo+V/l2SeLKEnqJnN+RI7Bh4Yxl/8ADILf5bFeJ4+4C+t37u2
-         sisVmjs5eilsldP3ExVtTkBAUtVFdsswM78rsxPCpS8KAiV+f+wXBmoFLDVEcBJiP07q
-         sgZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757515382; x=1758120182;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UkhFCZ5ofWJHJ2EhMv0fguBBuTeG4Pes0q1AF4EcfFA=;
-        b=gKPIA6i+keiBeawOcc/wNMNBJ4TCkY+DxEBreXRi7LuH3Lm+priw83E35a32a9vDIg
-         l/ovpbWbKJ+oq9dFGF22xB/FR7iuBGAu3oiAPxjJQ+qW8y2B7THyMiWsDdxT0lK9SRJu
-         yr1h6+zPlbPBUSp/zAKupIqlVdr//M+pDrqRpywS9dnqZGkTO2eWwCuS9NEP93i3BGXQ
-         Pr99E0LyVJrFzTela+XpOYC0CV/NCkjlBxj7Qj/BfRIPDLQN9PLDz3LOwLtI1kYBKRDa
-         z+FCeEyzQ8r6tM9IxBS2bf8UWOoNv+mNuaIDpB+QpChBmq7zo0CxFYx8N+HozVyyl5X7
-         /sTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXZmTxuAsaapp7pz4wJYeL7E04OOvoCKi+X2udQdwipJgHg2j4Li7CkI+B1m32kLghBbhaIsmnXwwMI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxmch0WNC0Ab8EK3S+pkcPV+Z/Dh2Gnm6Wowk/1eelpG0b0ZQ/O
-	+meuKNm1FXOhJJAouBPFmM9uJt0ZP9nxbBdXJIKXa7YCT9AtJXEl9ESq8gtZvgA6r9ZqZHJxvdH
-	lUMaY74pLxxp42IlMY9ef8OXsvr+fb0XIotaaQlgtAQ==
-X-Gm-Gg: ASbGncsPHWlh2EhxdQi3NzadBi8cWee6szZgp/iswHyYHhVv2SeRQVV+0acbDPtpzUi
-	3xGgT+7+IT/335pFCfC9alS+niClI/4hDwTwPEpGNeq6WbtKfrC9zlAUrM1nCexRH+fPIzJfY3i
-	6wVZRCW6svKg1Q2MlzU+wRwk0vA+P+8jpwfpcRwdJ1x3vM+KgIjDIPnpML1ugSF2ZexaEyq03m7
-	t9oil6B0FI4ALr7LpfFzR09PWz6jDjHE/tPNu8=
-X-Google-Smtp-Source: AGHT+IFwwWMP72rjU0xLemNq3S4L4evCHuBoOQsJ51CqzV+zQGmHuO0tvNuPBH/4DumR325PTGGiK6U/D6n2L75MFaY=
-X-Received: by 2002:a05:6512:e82:b0:55f:4429:15a6 with SMTP id
- 2adb3069b0e04-5626310e5efmr4881766e87.48.1757515382294; Wed, 10 Sep 2025
- 07:43:02 -0700 (PDT)
+	s=arc-20240116; t=1757515405; c=relaxed/simple;
+	bh=ZbY2B6yVl12t9+vakyT6Odcj14A3coWtEtGibMgyy5g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SGv8AVhx0VKN6CZZQrvv1v+gbI/A9sqNP6JiILaObQYFgYsz5jTga1LPcYcdvRn0b4GMzm2kPVH3GgUy7kmBb9dHGGoIf0M9nGGxv5d3UdlsB/MTzr+6hFXicM+ZqdYV5OabnahpTXnM6VFbDoGTF0xPHiEsE7fQwN9B7naD5QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LfSK4Dvy; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757515404; x=1789051404;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZbY2B6yVl12t9+vakyT6Odcj14A3coWtEtGibMgyy5g=;
+  b=LfSK4DvyERA/iNHfF5ncuvpu7wtYxlMM7hlGj4IXxXXE7WAc7qUgD1io
+   Wwx0VuoCwCdxdX4myd1yzWonbhFamRhcIp731HHF8SMXF+nyMu4aR9rSx
+   lcp7353g+aD4xiiboUb4y6wUbESlxhyHdgMIIEbqC6jv2/JaOBnL6zO4d
+   NmhVNy7ZntrvoMegvfulghyPqwqyMc/ab3fdTUm1RTizXyNkwYYE5uzbY
+   Rtmn7wovRq+S7HT2CZakOTFmWbRQtkGKxnGMYRF4o0mGxEpTHxUOJMPbu
+   1vfqCO2csdPeGIftVWIAJw4x7TOwCHKYHC2/0nQqDcR6vEShIdXgXpDvN
+   Q==;
+X-CSE-ConnectionGUID: 2+1n5nY/S3CYQYwQzdCXcg==
+X-CSE-MsgGUID: UFGrXi9yS0KA00qj+3roQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="71248286"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
+   d="scan'208";a="71248286"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 07:43:21 -0700
+X-CSE-ConnectionGUID: 8xOG4fZsS/Wlx1q+FywMXA==
+X-CSE-MsgGUID: uILFlauiRmePsJvk6TcztA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
+   d="scan'208";a="177742939"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.108])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 07:43:16 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id F09371201B4;
+	Wed, 10 Sep 2025 17:43:12 +0300 (EEST)
+Date: Wed, 10 Sep 2025 17:43:12 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+Cc: Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Julien Massot <julien.massot@collabora.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v7 00/24] media: i2c: add Maxim GMSL2/3 serializer and
+ deserializer drivers
+Message-ID: <aMGOgHzwig8NvxT-@kekkonen.localdomain>
+References: <20250718152500.2656391-1-demonsingur@gmail.com>
+ <aLBqxQQsnY3ZK4eT@kekkonen.localdomain>
+ <d558ede0-5838-4a69-b25d-cafaa3b6cc97@gmail.com>
+ <aMEgNtjcy1-NuBds@kekkonen.localdomain>
+ <1b79e467-1d39-457f-a488-0f3eb9e14efc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
- <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org> <175751081352.3667912.274641295097354228.robh@kernel.org>
- <CAMRc=Mfom=QpqTrTSc_NEbKScOi1bLdVDO7kJ0+UQW9ydvdKjQ@mail.gmail.com> <20250910143618.GA4072335-robh@kernel.org>
-In-Reply-To: <20250910143618.GA4072335-robh@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 10 Sep 2025 16:42:50 +0200
-X-Gm-Features: Ac12FXw3DEUYlNQHBVzd7vCIYANNaG3yJ5y0y_Zklwl-sYjU6Q6eUcIMkXz0GhY
-Message-ID: <CAMRc=McKF1O4KmB=LVX=gTvAmKjBC3oAM3BhTkk77U_MXuMJAA@mail.gmail.com>
-Subject: Re: [PATCH 2/9] dt-bindings: net: qcom: document the ethqos device
- for SCMI-based systems
-To: Rob Herring <robh@kernel.org>
-Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, Eric Dumazet <edumazet@google.com>, 
-	linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Vinod Koul <vkoul@kernel.org>, Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
-	"David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1b79e467-1d39-457f-a488-0f3eb9e14efc@gmail.com>
 
-On Wed, Sep 10, 2025 at 4:36=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Sep 10, 2025 at 03:43:38PM +0200, Bartosz Golaszewski wrote:
-> > On Wed, Sep 10, 2025 at 3:38=E2=80=AFPM Rob Herring (Arm) <robh@kernel.=
-org> wrote:
-> > >
-> > >
-> > > On Wed, 10 Sep 2025 10:07:39 +0200, Bartosz Golaszewski wrote:
-> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > >
-> > > > Describe the firmware-managed variant of the QCom DesignWare MAC. A=
-s the
-> > > > properties here differ a lot from the HLOS-managed variant, lets pu=
-t it
-> > > > in a separate file.
-> > > >
-> > > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > > ---
-> > > >  .../devicetree/bindings/net/qcom,ethqos-scmi.yaml  | 101 +++++++++=
-++++++++++++
-> > > >  .../devicetree/bindings/net/snps,dwmac.yaml        |   4 +-
-> > > >  MAINTAINERS                                        |   1 +
-> > > >  3 files changed, 105 insertions(+), 1 deletion(-)
-> > > >
-> > >
-> > > My bot found errors running 'make dt_binding_check' on your patch:
-> > >
-> > > yamllint warnings/errors:
-> > >
-> > > dtschema/dtc warnings/errors:
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-=
-gmac): power-domains: [[4294967295]] is too short
-> > >         from schema $id: http://devicetree.org/schemas/net/renesas,rz=
-n1-gmac.yaml#
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-=
-gmac): Unevaluated properties are not allowed ('clock-names', 'clocks', 'in=
-terrupt-names', 'interrupts', 'phy-mode', 'power-domains', 'reg', 'rx-fifo-=
-depth', 'snps,multicast-filter-bins', 'snps,perfect-filter-entries', 'tx-fi=
-fo-depth' were unexpected)
-> > >         from schema $id: http://devicetree.org/schemas/net/renesas,rz=
-n1-gmac.yaml#
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-=
-gmac): power-domains: [[4294967295]] is too short
-> > >         from schema $id: http://devicetree.org/schemas/net/snps,dwmac=
-.yaml#
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac)=
-: power-domains: [[4294967295, 4]] is too short
-> > >         from schema $id: http://devicetree.org/schemas/net/mediatek-d=
-wmac.yaml#
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac)=
-: Unevaluated properties are not allowed ('mac-address', 'phy-mode', 'reg',=
- 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were=
- unexpected)
-> > >         from schema $id: http://devicetree.org/schemas/net/mediatek-d=
-wmac.yaml#
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
-gs/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac)=
-: power-domains: [[4294967295, 4]] is too short
-> > >         from schema $id: http://devicetree.org/schemas/net/snps,dwmac=
-.yaml#
-> > >
-> >
-> > These seem to be a false-positives triggered by modifying the
-> > high-level snps.dwmac.yaml file?
->
-> No. You just made 3 power-domains required for everyone.
->
+Hi Cosmin,
 
-With a maxItems: 3?
+On Wed, Sep 10, 2025 at 01:48:29PM +0300, Cosmin Tanislav wrote:
+> 
+> 
+> On 9/10/25 9:52 AM, Sakari Ailus wrote:
+> > Hi Cosmin,
+> > 
+> > On Thu, Sep 04, 2025 at 10:52:09AM +0300, Cosmin Tanislav wrote:
+> > > Hi Sakari.
+> > > 
+> > > I recently left Analog Devices but I will continue to try upstreaming
+> > > this driver. After the upstreaming is done we can switch the
+> > > maintainer status to someone else.
+> > 
+> > Ack, thank you.
+> > 
+> > > 
+> > > Here's the output for the commands you asked, provided by my
+> > > ex-coworker. It's for MAX96716 + 2xMAX96717 + 2x IMX219.
+> > > 
+> > > Do we need to fix anything based on the compliance tests?
+> > 
+> > Looking at the errors, it looks like some fixing is needed, possibly also
+> > on v4l2-compliance side.
+> > 
+> 
+> I'll take a closer look at the failures whenever I get the time.
+> 
+> > Regarding GMSL, are the image width, height or mbus code used for anything
+> > by the serialiser or deserialiser drivers?
+> > 
+> 
+> No, not really. All the information needed by the GMSL drivers is
+> provided through get_frame_desc() ops, and there's no fallback for the
+> data type, so the stream format is not involved at all, but as far as I
+> remember it's necessary to be set properly for the media pipeline to
+> pass validation.
 
-What is the correct approach then?
+In earlier iterations of multi-stream support we've had link validation dig
+this information up from the closest sub-device that supported get_fmt pad
+op but that also made the assumption there would be no stream branching
+taking place, which is not the case anymore.
 
-Bartosz
+I guess the most simple way to address this indeed would be to add the
+formats to the streams, even if the driver doesn't need them. Also for
+backwards compatiblity related reasons they are probably necessary -- the
+older max9671* drivers did support them, too.
 
-> You have to test without DT_SCHEMA_FILES set so that every example is
-> tested with every possible schema.
->
-> Rob
+This would also address (most of?) the v4l2-compliance issues.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
