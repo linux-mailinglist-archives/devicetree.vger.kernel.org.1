@@ -1,173 +1,120 @@
-Return-Path: <devicetree+bounces-215583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988F5B51F5C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:48:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7724DB51F65
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 19:48:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA54A04906
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:47:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B51631BC1CC2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3283335BBB;
-	Wed, 10 Sep 2025 17:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C3A26F2B9;
+	Wed, 10 Sep 2025 17:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XxXIqeoF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPdkph+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f48.google.com (mail-yx1-f48.google.com [74.125.224.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D4F33436A
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 17:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FCE29A2;
+	Wed, 10 Sep 2025 17:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757526465; cv=none; b=hvNjiJaXc29kIZqjVv4FUqUAQg2W6Eozu2AzpWQ8qHXSyOSM6XVHmZpJxiv3UTqG2PMp77s+f0qe/of5YdjMgwAFoWYCGUDLTYeOuEDdb4MW3AsK/EpoleyM2R3hziVxy20Hxe5/1PimUKJlLcKibreDcFTC8XnGbWGvE244hp8=
+	t=1757526499; cv=none; b=jBCVTSB/JB260ddeMJAcUIYefSvdV+ComkcFRv84ffAuZsNQx1Jdm0gk+KsmGxIdqHLy772dokSBOG0TOSKOCweia1rM5xALZC6lVH5wGsZeag+fFoP916JwQCmVP998bOVg5KKlP7/vDQuXNGoBw9jQ18yrizzLCvOoE6oRO+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757526465; c=relaxed/simple;
-	bh=4cQwm7Q2pRjHNrxMhXKFmcxzEdebTfOxr8vSlGhts8Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aRKp81+Berd5iLSEag4IOQhnNzcTGDCXrMpp3UyktKpQjVOr1AppoY6rdBi5RjhEFMLZMlPbpxS7eljiWiXotfiT4jmTx063fhmgE4+f/3WC/ZFIc6hUplUaFs2DOHtfWFJV/uij0bIPRy31phHS/quAIok3ioAJkweLzJEKfmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XxXIqeoF; arc=none smtp.client-ip=74.125.224.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-60296e4926eso2093745d50.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 10:47:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757526463; x=1758131263; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=043TJq6hpWw8pYqx0PWm3cQzQQkOF8ixWKwRpDFzK+o=;
-        b=XxXIqeoFCiTE6dLksjPMry56lc+fBNBEuDI7T9Lr55owuYSvvejsFeYoAm5fsSwGHJ
-         tYhJySfG52UcikCsX6p1kqq/jw+xHkYVcejry4QiYKT8vJ+XR1bcI1Nogh3DpsUIbHtN
-         yEzO8XZEiTpb1k+g+qL8TlIi4DdXaBAF3iFTlwA2BO3dWnqhivt2I1Y8rGcqlmwcTXdJ
-         B8XUQM/b+NmmrqTWaVIIUo7tNEcTJm+KRkD1rCueZ2Aw4g9yLmNWBEv1/ZOMozYT9lgH
-         05hdeP6yPf/c2aT18Y3KsU4+GjF/u2XLVMWRMgKWFyQxUg4M7w7UkjhSdindYlPT9sUH
-         Kpiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757526463; x=1758131263;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=043TJq6hpWw8pYqx0PWm3cQzQQkOF8ixWKwRpDFzK+o=;
-        b=JAyamW2K4wS6aEIsMSS+bnkrUDdsY+7NCPAKyZdrI1J52Wt0hcRP/00tdvhr4EpKFZ
-         GJvIrf2bKbjeJxSI8fT6QFQypo19GEWCRBfNyyHU1lGNNqEHyMq0R7wRvyB4De03/hlu
-         U+AqKEJz5QPYk6FaDEkQyIrV3s3y2OFXQvk3ZCnSkVAzuE138zkbRwowzXqykNrTFLMA
-         VWol9ndI1wBAUuqiFfe+27BJUIYlnz+oDXHDCYO5B7Y6NPzmnPaOFfTI+DIxxYwGfMO3
-         toTGUWgFjGjCKmql+u82nipADqc/6alqGuXJOnIJtDNm+8lzfIOWEpQgyGTu9ynp1jla
-         v7ow==
-X-Forwarded-Encrypted: i=1; AJvYcCWCwIEc+RtDWPrSoSxzSzg2feHyJgmFc46MwgxoyEsPcdqB5d3+EZjj1A3A8kxjJQmUQRvDNT2JZ1Qe@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXys3vwxlsYHKc0ckm7UimOznOLp+KwJEb16znqy3qCNTdyUQj
-	6FA1+KpBwGTWMj4VxnzGzIBl6OoY4XT0ydZK88fdqBgHgDePaReKmA+mO5LMwfXP3ClkLv/p/kY
-	6LK6sCoNQ8+c/0ifrVJkiTlrhoS95hzA=
-X-Gm-Gg: ASbGncsxYLp6WQWwnMEd8tx0syUWsIxhC1rrG4L2xq8xJr/sW4YQ2CECYRIBNN60H8R
-	KIbDDo3oO6N+X2jmhJ+SGBS3hVnOyaYE8CsyQ+Fnjxbk3eto2mRDRadl5AjPQVLEVuFep0diePC
-	0lFVFCXRIhg7bq3xdPTRjmylyUL8TnB5BdkwR3gTOu35J9g9N0DW7EHpkT2NALHvB2W4M1NyGlD
-	KPTMwBk
-X-Google-Smtp-Source: AGHT+IHxqld34a90SEM7ZlyhxBZvKGmf9aZideR0Sg0xlweL+lpFqlqovs0nnqC44Do1K8CC6oK2kjmZ56tu8gmw1Tg=
-X-Received: by 2002:a05:690e:430e:b0:5fc:541b:cea3 with SMTP id
- 956f58d0204a3-6102135dfeemr9750495d50.2.1757526462993; Wed, 10 Sep 2025
- 10:47:42 -0700 (PDT)
+	s=arc-20240116; t=1757526499; c=relaxed/simple;
+	bh=yodsL3noDTGmBFHR90KbCJnz5Ar5YAZILQ6cTmd6h3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rOKHqEPxzAYWZ276j8IJ/Esm+ImvTIe0jNwkPqs2yqItWERPOwriK3BshLl99NGdXIlu3zM0ll1YYHVRqSGvYnCh20g0Qbtb3KFRmXJv3xBElJJytChsDh541P1ACjpV3VEL8wCwDrLMyeJprvBIicc6XgLQKp2WVqVWQx50W/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPdkph+x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CFDCC4CEEB;
+	Wed, 10 Sep 2025 17:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757526498;
+	bh=yodsL3noDTGmBFHR90KbCJnz5Ar5YAZILQ6cTmd6h3E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BPdkph+xLLXcjILvTHWvXViSXhsIgY9s/t5Sc3QDpPnJwZMxRxrwN7chVKtWEpp3P
+	 A/wF86j3EnQvKHE4kto1CGuMITg8RZA+EWRsqnbAazbZT3weung1sJc7QIwInrtZnS
+	 TUjuV74n8/UUpVcstCK8/80WYbyMQlWLW7a8EaqrxgutqYSYFjYAqZMlSotQ7yakpy
+	 onnhD1fWkZbKwFEvGfNComH6/AlK8hNifL4tvV4inS4SdIe595oDK9MX7vCsxaI2aW
+	 hz2E0NrAiiMbZJVeeASs3hTP9CDgLEghCYtLEHaA0iYGdVsMMbJSjPPUp+r8kuuw/H
+	 DASH1MBJ4g2TQ==
+Date: Wed, 10 Sep 2025 18:48:09 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/14] dt-bindings: iio: accel: bosch,bma220 setup
+ SPI clock mode
+Message-ID: <20250910184809.34a7328e@jic23-huawei>
+In-Reply-To: <20250910-bma220_improvements-v2-2-e23f4f2b9745@subdimension.ro>
+References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
+	<20250910-bma220_improvements-v2-2-e23f4f2b9745@subdimension.ro>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
- <20250910-leds-v5-4-bb90a0f897d5@vinarskis.com> <CAOvMTZhxJ3atv62ui5+ahNKV1vb7JXnwwm4xxvg5p=o5p2HnDQ@mail.gmail.com>
-In-Reply-To: <CAOvMTZhxJ3atv62ui5+ahNKV1vb7JXnwwm4xxvg5p=o5p2HnDQ@mail.gmail.com>
-From: Steev Klimaszewski <threeway@gmail.com>
-Date: Wed, 10 Sep 2025 12:47:32 -0500
-X-Gm-Features: Ac12FXwyR3KsW504KghsIm6qGTQ8W8fmNLhinJPGzylKTRxTbEJk3t0TSqYGRWY
-Message-ID: <CAOvMTZhmacxPsM3GcLL9cNq-1BonkwycYKY=hwtVXTz5UF_LYQ@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] arm64: dts: qcom: sc8280xp-x13s: enable camera
- privacy indicator
-To: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
-	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Aleksandrs,
+On Wed, 10 Sep 2025 10:57:07 +0300
+Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-On Wed, Sep 10, 2025 at 12:04=E2=80=AFPM Steev Klimaszewski <threeway@gmail=
-.com> wrote:
->
-> Hi Aleksandrs,
->
-> On Wed, Sep 10, 2025 at 7:01=E2=80=AFAM Aleksandrs Vinarskis <alex@vinars=
-kis.com> wrote:
-> >
-> > Leverage newly introduced 'leds' and 'led-names' properties to pass
-> > indicator's phandle and function to v4l2 subnode. The latter supports
-> > privacy led since couple of years ago under 'privacy-led' designation.
-> > Unlike initially proposed trigger-source based approach, this solution
-> > cannot be easily bypassed from userspace, thus reducing privacy
-> > concerns.
-> >
-> > Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 8 ++++---=
--
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts=
- b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > index 637430719e6d7d3c0eeb4abf2b80eea1f8289530..3b3f7137689a6fa292ffe4f=
-ec8c1d1f20ee525bc 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> > @@ -83,14 +83,11 @@ leds {
-> >                 pinctrl-names =3D "default";
-> >                 pinctrl-0 =3D <&cam_indicator_en>;
-> >
-> > -               led-camera-indicator {
-> > -                       label =3D "white:camera-indicator";
-> > +               privacy_led: privacy-led {
->
-> Should this now be privacy_led: privacy { ?
->
-> >                         function =3D LED_FUNCTION_INDICATOR;
-> >                         color =3D <LED_COLOR_ID_WHITE>;
-> >                         gpios =3D <&tlmm 28 GPIO_ACTIVE_HIGH>;
-> > -                       linux,default-trigger =3D "none";
-> >                         default-state =3D "off";
-> > -                       /* Reuse as a panic indicator until we get a "c=
-amera on" trigger */
-> >                         panic-indicator;
-> >                 };
-> >         };
-> > @@ -685,6 +682,9 @@ camera@10 {
-> >                 pinctrl-names =3D "default";
-> >                 pinctrl-0 =3D <&cam_rgb_default>;
-> >
-> > +               leds =3D <&privacy_led>;
-> > +               led-names =3D "privacy";
-> > +
-> >                 clocks =3D <&camcc CAMCC_MCLK3_CLK>;
-> >
-> >                 orientation =3D <0>;      /* Front facing */
-> >
-> > --
-> > 2.48.1
-> >
->
-> v5 does not turn the led on here on my X13s whereas v3 did (and v4 was
-> not tested)
+> Assert CPOL for a high-idle clock signal and CPHA for sampling on the
+> trailing (rising) edge.
+> 
+> Quoting from the datasheet:
+> 
+>  "During the transitions on CSB, SCK must be high. SDI and SDO are driven
+>  at the falling edge of SCK and should be captured at the rising edge of
+>  SCK."
+> 
+> The sensor does not function with the default SPI clock mode.
+> 
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
 
-From IRC conversations, the issue was not having
-https://lore.kernel.org/all/20250910104702.7470-1-hansg@kernel.org
-applied - with this prerequisite, v5 works here
+Perhaps this one deserves a fixes tag? I'm not 100% sure for
+dt-bindings that are broken like this.
 
-Tested-by: Steev Klimaszewski <threeway@gmail.com>
+> ---
+> ChangeLog:
+> - split out from a bigger patch file
+> ---
+>  Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml
+> index da047258aca3d84e8b2cbe92a9c98309236fe7ae..0e27ec74065acca611e63309d6ae889b8a3134ce 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma220.yaml
+> @@ -20,6 +20,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+>    vdda-supply: true
+>    vddd-supply: true
+>    vddio-supply: true
+> @@ -44,6 +47,8 @@ examples:
+>              compatible = "bosch,bma220";
+>              reg = <0>;
+>              spi-max-frequency = <2500000>;
+> +            spi-cpol;
+> +            spi-cpha;
+>              interrupt-parent = <&gpio0>;
+>              interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+>          };
+> 
+
 
