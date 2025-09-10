@@ -1,143 +1,105 @@
-Return-Path: <devicetree+bounces-215253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4955AB50FFB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:52:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A858EB51004
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:54:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336A41B27519
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:52:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62C5B3BE7FC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EA130BF5A;
-	Wed, 10 Sep 2025 07:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC8530C626;
+	Wed, 10 Sep 2025 07:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="UpAiqXB3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ByAqknhQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E52325CC69;
-	Wed, 10 Sep 2025 07:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72C9301036;
+	Wed, 10 Sep 2025 07:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757490742; cv=none; b=ZQnZQovwAVvYVqpKGTZoKcJ/tITf4K/W+kHSVX2x2BQ9mSe6q55IEc76WxH5SSicHkfjjbEkJk39fyhudAefU0OIsi7cepveohKYBNN0x8eOQHHs3MtP5IJ6D2tJN8mJxdMEaBumD1W1JCY3XmgHwBo+ziuefbsLKltiacNsmUQ=
+	t=1757490891; cv=none; b=r7QfbAmtjrQhpreNXS8GWPiwoxQAjcIAl9z9CTvlsOCjX/XLH0R0uQQMl2BmbjJ+3ybL5HCbm8OcrbPPU3cgy8rvROFJGi1GxejcMzLJmPG8m5c86sIUh6vGFzWMdY6QPno4G8lJqc39bjqvm5GST/3B5FUTSsJEwV3BDprc7W8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757490742; c=relaxed/simple;
-	bh=0t9yGEEXA3Nn31jI+sccFFY5GV7rY3i2PAjiZdNyzW8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qKfUvncmjcXldl8QznS7CKV9gOTKnkkU/c3pIXaKj/RADTDjDJet7rDwSQmo2iiXOyNY5OI348vLN0w/pLe+9RDUniARUt3d9IGdFtcSNT2PjSdfqIRXmvD6HXoKXc8Urwf5X2dnBLwIaAkfJxxe5NqKIVIDv9/dNq3Ia8ZJZzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=UpAiqXB3; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1757490737;
-	bh=0t9yGEEXA3Nn31jI+sccFFY5GV7rY3i2PAjiZdNyzW8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=UpAiqXB3yiQEgpvPHKLvbnNRdMV2SHfn0p0a6v3MF12xT+5TlctwrtOaez6Zk8spA
-	 HKpx8SPWcBAY4YqjIMk26VoKiqfN5w5wLppLQellIXouGegIg0Jcf6Kp9IyriWmXN9
-	 LLRHX8UelKi428SLse1/00tT3wpIxnQlJDYHdMvIsMU567h1onU0npm/Htx10tLv2c
-	 pcAN37aMAdTZ11uKoQ2sZf/3NM6BDgVBIp/JnZ3DMe5shE9ZVpfO7dQM8ZmyyfxHRY
-	 SX8pU7R2QMK5P8ueaTyw3akgbDB00Zs3klVO2sFazRiUMlspkxMDyhX33Q6x52mLsD
-	 w2X6o2szzBrzQ==
-Received: from [192.168.68.113] (unknown [180.150.112.213])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A1CD067672;
-	Wed, 10 Sep 2025 15:52:15 +0800 (AWST)
-Message-ID: <bee023bb9b2ccb3e2437e466190dff2304268db9.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 1/2] arm64: dts: nuvoton: npcm845: Add peripheral
- nodes
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Tomer Maimon <tmaimon77@gmail.com>, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- avifishman70@gmail.com,  tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com,  benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 10 Sep 2025 17:22:14 +0930
-In-Reply-To: <20250908125938.3584927-2-tmaimon77@gmail.com>
-References: <20250908125938.3584927-1-tmaimon77@gmail.com>
-	 <20250908125938.3584927-2-tmaimon77@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1757490891; c=relaxed/simple;
+	bh=/Cvlcl3lSVxIswV9jynJ/e4AYCtz89efpAEudugYMIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VlK4Dy1GhtzkOrxnqHNpO4M4mYGSQuKcErk7jIqDu4jEZzvQ/FpGfE5nTWS7ehXIwn9dmiEmZeDT0yf8M0dIw55/c4eR9F3jKqVe8z1ILeAQ99EZPs8I6ZhK2Sy1Sqsezt8qyfnUNKh97YDRcEDV5sD51qFiyZ8OwMlGkW9D4dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ByAqknhQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFF3C4CEF5;
+	Wed, 10 Sep 2025 07:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757490891;
+	bh=/Cvlcl3lSVxIswV9jynJ/e4AYCtz89efpAEudugYMIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ByAqknhQxTz5AuwNFMa3NeXS+psWNlXu858IH8RhV5WRDRT6/Er16498NMAI/6bBD
+	 SsC6di1+qrYZKG0/JLFvcqTvMr778/sGlSuvjhc3v7KNFW/kHbl2CwMpRFR4Bu051l
+	 ErX7CASZW0ejiZAsqXt0gFlI0gWrH7YNL4Xmy/DMDRBbPry/DVhl/4pP5qqFKV8f2x
+	 h8yd10TqVJiygJy32AMSB5ilvaj42MMp/VVLc9xh6do1MDxS1tIxU07JPOTLpA805e
+	 e8Cp5j4A/PLS0IIY/yEHZyxPqkY8mah+LGTBZfNzP7ncfQCPQbt5Z5LJlbCiidHE0R
+	 kPE8/SWr9/cPQ==
+Date: Wed, 10 Sep 2025 09:54:48 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?Q?Cl=C3=A9ment?= Le Goffic <legoffic.clement@gmail.com>
+Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Julius Werner <jwerner@chromium.org>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org, 
+	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Subject: Re: [PATCH v6 05/20] dt-bindings: memory: factorise LPDDR props into
+ SDRAM props
+Message-ID: <20250910-flat-raptor-of-temperance-5e8c7c@kuoka>
+References: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
+ <20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com>
 
-SGkgVG9tZXIsCgpPbiBNb24sIDIwMjUtMDktMDggYXQgMTU6NTkgKzAzMDAsIFRvbWVyIE1haW1v
-biB3cm90ZToKPiBFbmFibGUgcGVyaXBoZXJhbCBzdXBwb3J0IGZvciB0aGUgTnV2b3RvbiBOUENN
-ODQ1IFNvQyBieSBhZGRpbmcgZGV2aWNlCj4gbm9kZXMgZm9yIEV0aGVybmV0IGNvbnRyb2xsZXJz
-LCBNTUMgY29udHJvbGxlciwgU1BJIGNvbnRyb2xsZXJzLCBVU0IKPiBkZXZpY2UgY29udHJvbGxl
-cnMsIHJhbmRvbSBudW1iZXIgZ2VuZXJhdG9yLCBBREMsIFBXTS1GQU4gY29udHJvbGxlciwKPiBh
-bmQgSTJDIGNvbnRyb2xsZXJzLiBJbmNsdWRlIHBpbm11eCBjb25maWd1cmF0aW9ucyBmb3IgcmVs
-ZXZhbnQKPiBwZXJpcGhlcmFscyB0byBzdXBwb3J0IGhhcmR3YXJlIG9wZXJhdGlvbi4gQWRkIGFu
-IE9QLVRFRSBmaXJtd2FyZSBub2RlCj4gZm9yIHNlY3VyZSBzZXJ2aWNlcy4KPiAKPiBTaWduZWQt
-b2ZmLWJ5OiBUb21lciBNYWltb24gPHRtYWltb243N0BnbWFpbC5jb20+Cj4gLS0tCj4gwqAuLi4v
-ZHRzL251dm90b24vbnV2b3Rvbi1jb21tb24tbnBjbTh4eC5kdHNpwqDCoCB8IDcwMiArKysrKysr
-KysrKysrKysrKy0KPiDCoC4uLi9ib290L2R0cy9udXZvdG9uL251dm90b24tbnBjbTg0NS5kdHNp
-wqDCoMKgwqAgfMKgwqAgNyArCj4gwqAyIGZpbGVzIGNoYW5nZWQsIDcwOCBpbnNlcnRpb25zKCsp
-LCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbnV2
-b3Rvbi9udXZvdG9uLWNvbW1vbi1ucGNtOHh4LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL251
-dm90b24vbnV2b3Rvbi1jb21tb24tbnBjbTh4eC5kdHNpCj4gaW5kZXggMjQxMzM1MjhiOGU5Li43
-ZjEyMGRhMzMxMGEgMTAwNjQ0Cj4gCgoqc25pcCoKCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGZpdTE6IHNwaUBmYjAwMjAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
-Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmYjAwMjAwMCAweDAgMHgxMDAwPjsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJj
-b250cm9sIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGNsb2NrcyA9wqAgPCZjbGsgTlBDTThYWF9DTEtfU1BJMT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1uYW1lcyA9ICJjbGtfc3BpMSI7Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5h
-bWVzID0gImRlZmF1bHQiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgcGluY3RybC0wID0gPCZzcGkxX3BpbnM+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RhdHVzID0gImRpc2FibGVkIjsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGZpdTM6IHNwaUBjMDAwMDAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
-Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhjMDAwMDAwMCAweDAgMHgxMDAwPjsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJj
-b250cm9sIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGNsb2NrcyA9wqAgPCZjbGsgTlBDTThYWF9DTEtfU1BJMz47Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9jay1uYW1lcyA9ICJjbGtfc3BpMyI7Cj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5h
-bWVzID0gImRlZmF1bHQiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgcGluY3RybC0wID0gPCZzcGkzX3BpbnM+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RhdHVzID0gImRpc2FibGVkIjsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGZpdXg6IHNwaUBmYjAwMTAwMCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gIm51dm90b24sbnBjbTg0NS1maXUiOwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3Mt
-Y2VsbHMgPSA8MT47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAjc2l6ZS1jZWxscyA9IDwwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmYjAwMTAwMCAweDAgMHgxMDAwPiwKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDwweDAgMHhmODAwMDAw
-MCAweDAgMHgyMDAwMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoHJlZy1uYW1lcyA9ICJjb250cm9sIiwgIm1lbW9yeSI7Cj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjbG9ja3MgPcKgIDwmY2xrIE5QQ004
-WFhfQ0xLX1NQSVg+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgY2xvY2stbmFtZXMgPSAiY2xrX2FoYiI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJsZWQiOwo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqB9OwoKQ2FuIHlvdSBwbGVhc2UgYXVkaXQgdGhlIHBhdGNoIChh
-bmQgdGhlIHJlc3Qgb2YgdGhlIGR0c2kpIHRvIG1ha2Ugc3VyZQphbGwgbm9kZXMgYXJlIG9yZGVy
-ZWQgYnkgYXNjZW5kaW5nIHVuaXQgYWRkcmVzcywgYXMgcGVyIHRoZSBEVFMgc3R5bGUKZ3VpZGU/
-CgpodHRwczovL2RvY3Mua2VybmVsLm9yZy9kZXZpY2V0cmVlL2JpbmRpbmdzL2R0cy1jb2Rpbmct
-c3R5bGUuaHRtbCNvcmRlci1vZi1ub2RlcwoKQW5kcmV3Cgo+ICsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgbWM6IG1lbW9yeS1jb250cm9sbGVyQGYwODI0MDAwIHsKPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibnV2
-b3RvbixucGNtODQ1LW1lbW9yeS1jb250cm9sbGVyIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmMDgyNDAwMCAweDAgMHgxMDAw
-PjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVy
-cnVwdHMgPSA8R0lDX1NQSSAyNSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsKPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCgoqc25pcCoK
+On Tue, Sep 09, 2025 at 12:12:12PM +0200, Cl=C3=A9ment Le Goffic wrote:
+> From: Cl=C3=A9ment Le Goffic <clement.legoffic@foss.st.com>
+>=20
+> LPDDR and DDR bindings are SDRAM types and are likely to share the same
+> properties (at least for density, io-width and reg).
+> To avoid bindings duplication, factorise the properties.
+>=20
+> The compatible description has been updated because the MR (Mode
+> registers) used to get manufacturer ID and revision ID are not present
+> in case of DDR.
+> Those information should be in a SPD (Serial Presence Detect) EEPROM in
+> case of DIMM module or are known in case of soldered memory chips as
+> they are in the datasheet of the memory chips.
+>=20
+> Signed-off-by: Cl=C3=A9ment Le Goffic <clement.legoffic@foss.st.com>
+
+Is this email defunct now, that you add second SoB?
+
+> Signed-off-by: Cl=C3=A9ment Le Goffic <legoffic.clement@gmail.com>
+
+I still see in this patchset around 5 different subsystems. Nothing in
+the cover letter explains the dependencies, so grouping looks like
+coincidence and you just make it difficult for maintainers for no
+reason.
+
+Please organize your patchsets per subsystems, see submitting patches
+doc for more details.
+
+Best regards,
+Krzysztof
 
 
