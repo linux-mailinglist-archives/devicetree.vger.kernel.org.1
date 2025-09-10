@@ -1,1724 +1,1554 @@
-Return-Path: <devicetree+bounces-215209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98060B50D73
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:35:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30823B50D7B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:39:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68E647B3E90
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 05:33:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF19C3A8651
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 05:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06E12BCF43;
-	Wed, 10 Sep 2025 05:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1339D2BCF43;
+	Wed, 10 Sep 2025 05:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="Pz3u6iaD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rmisp-mx-out2.tele.net (rmisp-mx-out2.tele.net [194.208.23.37])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022093.outbound.protection.outlook.com [52.101.126.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D582925D1F7;
-	Wed, 10 Sep 2025 05:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.37
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757482509; cv=none; b=thyA7CEbleJ9BiEl4Gyu4bWZsyayTwOWzU5G4hV3EBjs8+Io1Oh/4VV8xQd3Vqap3jxBo824eA3lihFLxAdh4KnzQQ5audT2pGWwJxVJqWEjbH729ItbsL1bt+14QSCIT2PJahRKz12lJDKFnxpAITGp1WgvcPD3vturpmIb3r4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757482509; c=relaxed/simple;
-	bh=FHnKvwTsWZLqLHcnPjEggt1eJFpUICSGy+PtjevSpNg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Kfpts6eTScuMnFgyUYT9FjDl8AYlLXLwRiST5SVbCPmSRdiU8KnsyO4Fm2q8MJ8txjPs3MZWcyFQFX603FrWcUkWqpRzhRfTLN9VUni4gkl1YAHnrp8gX5fRknWgPh4AA3xixKL9YGooiwnZTWGn5Xpx/MrRIbKIXuFaY85jUmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
-Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
-	by rmisp-mx-out2.tele.net (Postfix) with ESMTPA id 5912210E3CA7;
-	Wed, 10 Sep 2025 07:27:35 +0200 (CEST)
-Message-ID: <da810d23-aed7-4fef-b4d0-baba363acca1@emfend.at>
-Date: Wed, 10 Sep 2025 07:27:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260622248BD;
+	Wed, 10 Sep 2025 05:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757482741; cv=fail; b=PZHD9PO14GVMjtUXFxuTcE1Yu+JqZo9dToYvGyX6Itrnv7kwFv60xs81ym4mmUEW7Dy1ZOW7NXk5/xBjqkzUeGrWfq2B4Ao2JEjZ1++p9ltCxossGQvN2XWLh9CAajM3G5Ft7m1x7djwKqKHxMRlFjMb5+nHJIwJAk5xNg7VWj4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757482741; c=relaxed/simple;
+	bh=ndvF/zFW5TURg4O6jciK5TmV58IhGkSvjjD6btSOCq0=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XFfsHGpwQaE2rj49a0McQrlIgmY8wwIH1VewT8yesxohFhV1qiw49GqX/sO86sAJ1hOrEs2H9p/quJnGv52FCg1RimOYbRZqfNbLZUw/yZHrHIXzVzZ2TBtSiqcfWoUA2JJcbI+2OITFCQVcssv/VphL2pObOLgvlDoszFixzIk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=Pz3u6iaD; arc=fail smtp.client-ip=52.101.126.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tIKH3vHRxMMeZyhm0Uf1lCV64Ol/kEzZ4rNzqoBnK+pCEsPwAR34DaEBsCemF1vyxJIVQ0JrBEOhSotCr1SYubnaOSRNTMXmKWQvbN2cGVRC74ObSr0VQnN1GpDL1/Z56stRGj2Jxz7a6rQmmZwHgJU9OYoX6KOCu96Er6Orwc0tt+T25YHhg7/dj8r+1jDP49GNeqbl1U+HM6DXqg/bkXc97e1YTEgMXciF18gDcWY2QmZpTjV6LJD4a+NCZiy2M6b0vzhXX19grtRPWEaPzVfp1GiSGpaY4k6UcdgPsMCUVeuYw7b3/SuVr7g1u6m5cifSFmkpwxUziTCQPhmqhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mMXWTzpZv9IHyBpEjA9fEtOZ7/2zhO+mtQE5xksTuKY=;
+ b=FZjc0KVcNychq4BUN4mgcCC+YNpzI9pI1rpSDkVz4w1e+Sw0OFvB6Ky/LikjwHXGPU03JooB6SAJyInMB+KzUbydOJosmuj4B/rIYDhcCSo0bk9Iydbk/5SnMn1zV8EUV9GWuraMsr/xMH9PWJ2NDV9rOcePJfdeNwKtYnJNYJA8xt25QI/bj93GCiriygQD4PSo6HDFBxShCdSsrkoZqgcfGaD4DngSpgBUZBVRA//hKLZkb5+FFQNQFKNUZuxtkWVVYP6mh1kcSR0o1hqKDOp/C9kkLKO5QkCeq52tek0k/RGjb7TvwdVgEhCB5amdn4qI1c83c9omZfCQ1nO4Ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mMXWTzpZv9IHyBpEjA9fEtOZ7/2zhO+mtQE5xksTuKY=;
+ b=Pz3u6iaDqGe3BjrRhPcjT33XX+Pa/e9fjJXlfUOKvqQKTtyv2++xNmxlbUuDvu4WkLoAkrcSdg3QfdvsmHJf/uxkapUps5BNYuZiMzD+D3URLFc+0cFYJmA2dB2aflgLSwNOo6OLbjErLoAQj1Txl4n3cnmpcGjOn9GihruYjvVDInTMXk6TbWEQjbxBBDpGqsGQxMUH2VBehvoRdOK8VAidSXvz8YiQ9ANjHdphiIoLstdAdmM9x8K4QxwC5TWpArpCPY1TGiWrSQEnY0hES6B9dFV555wSIs/wxroRtLxuMPQghoINNTsAzaIXjMcH8i67GgF+m7fr5rP3dloc/w==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by SEYPR06MB6181.apcprd06.prod.outlook.com (2603:1096:101:de::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
+ 2025 05:38:51 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
+ 05:38:50 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>, Rom
+ Lemarchand <romlem@google.com>, William Kennington <wak@google.com>, Yuxiao
+ Zhang <yuxiaozhang@google.com>, "wthai@nvidia.com" <wthai@nvidia.com>,
+	"leohu@nvidia.com" <leohu@nvidia.com>, "dkodihalli@nvidia.com"
+	<dkodihalli@nvidia.com>, "spuranik@nvidia.com" <spuranik@nvidia.com>
+Subject: RE: [PATCH v12 3/3] clk: aspeed: add AST2700 clock driver
+Thread-Topic: [PATCH v12 3/3] clk: aspeed: add AST2700 clock driver
+Thread-Index: AQHb78lA+IAukcGqZkm+EFuCwOI247QpWPIAgFRyMGCADn+I0A==
+Date: Wed, 10 Sep 2025 05:38:50 +0000
+Message-ID:
+ <OS8PR06MB7541E956F4CB35D562C0C785F20EA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
+ <20250708052909.4145983-4-ryan_chen@aspeedtech.com>
+ <OS8PR06MB7541E7FCB367AE610EBBE121F249A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <OS8PR06MB7541DE6608D4A457760C42CAF207A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+In-Reply-To:
+ <OS8PR06MB7541DE6608D4A457760C42CAF207A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|SEYPR06MB6181:EE_
+x-ms-office365-filtering-correlation-id: fc728628-b5ca-495e-3521-08ddf02c5277
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021|921020;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?kWXNT9VvfFCTLaqMu6tNDZ7Tlnk3bTyfxBGdFphv7clC5w5FjArB021fZagp?=
+ =?us-ascii?Q?Od0e4k0EEjb0p6stWbHvfRGDyqHePJ/K5BKXiyYU5SMyDPLmWZkFu5CdgBnb?=
+ =?us-ascii?Q?28cIpwd9VUEmJx66gDXHQJQCMyunWbnozz+CS7Igyv3djDx81e/t08ittIe1?=
+ =?us-ascii?Q?S56vgMWzsQt/g5HsKA+/mL+xoq8e5Dx0Ax2zv/sDETBvvDeXddZuajTbkxuj?=
+ =?us-ascii?Q?WTN/zjnCnrW+57xGngtjfiy/rs84z+c7LcB3VEwe3V69TI74hEycbAmo/D57?=
+ =?us-ascii?Q?tokjI/lM32Rz3SWBPbSGxOsI5X7QLwQG34k5IoutGng2THpeXRGhrxyYNQj2?=
+ =?us-ascii?Q?aDh6SliQHCBENgIl4yuY4uDmNVSRPohyxuJDsOFOK1Lc7OJu3nnBJzv5YuIO?=
+ =?us-ascii?Q?DXUFhZ+TTzXcaECoCIpHf0yI4xSBKxKxszza4wuz3ZKfrBqDLQTLPjzTNquT?=
+ =?us-ascii?Q?SZB+xKIvyMCJcDlEAyeP0waopBmVkRzW6/orC3tiVLkFTWuhaculM8NG00jx?=
+ =?us-ascii?Q?06M8RwTdZBmS61mm7m0lemHsF9C2JUfOwBm1J2x+tKzSGHBxL7BczYzF/HW5?=
+ =?us-ascii?Q?Hoa1/YsNc4a/yxtrtxQd8ioRaHN/+CeaAXD4wavAW/ZrO1tmMLZyOYWg/FgL?=
+ =?us-ascii?Q?mCaVSgwLFV+xwdCXpW+5UYZCQp+qC7TG6onbPmv3Gh1edllyoDcJxGWTiScn?=
+ =?us-ascii?Q?91ANB8PpPQU1eNds636UJAP77zTxsb4BDB9vyX3/zbo+llbdh1D1hjKJybDg?=
+ =?us-ascii?Q?cEC3nsYPdCdzHgcNzylmkSIAg0N8OwfTUwZwYbMxyvTTfNohFr9g0N7vYVb3?=
+ =?us-ascii?Q?8/hxVD+h7jgkOdirZRnxeK5h7ub3wJ0AymnsLFT/34BueASgIPDJWsgjs/j9?=
+ =?us-ascii?Q?E7MDEHhPUwghtpz1heSisGQj/qGheaBQGlsp2NV0nQchPSoXg+HkpE3XnTHH?=
+ =?us-ascii?Q?QvQ9p346nfkKxOE7c2hxJ9BCtdm50jXepy4qWkjdKwo7CD8KTM0vGfYmpmYP?=
+ =?us-ascii?Q?EJ7KHrudfs5gco9jIo40RxenN7JKarUxuicBh5Fdx//YOWPL7jC0sEPFpDef?=
+ =?us-ascii?Q?itUhWNr4ZyZyRibIBCN7sWi5b5zwmvAvP2qVNouhQ1bXHMYE0xPPq3tHZmU9?=
+ =?us-ascii?Q?f2HHxvAGQamOU+MdnkIQmqlhgg4Atr/cyZVP0UkfVo5xkdCBpTfX5XWSQTn/?=
+ =?us-ascii?Q?ZZ7+re+7QUoWveVYkSiqMsffEuuqgenEN+Y7frmemDUZwZSB/PrwcgsX9+Qo?=
+ =?us-ascii?Q?cqSANPwJKDG8iDuBnDr7nw3UpDgMf0CLIVS8Y/jJbsxak6Hjf5am085MJgSR?=
+ =?us-ascii?Q?9gYKgYY/hJnRoN+92ks03SbK6TYkZ5fpu9n+LvVOe/TzdodAhRtswHnTksje?=
+ =?us-ascii?Q?Qod4QJ0igF7uL8hC3LHcxJak3FySiB5A57dIeY0IfzckJOLFXQBBLkNFFbpM?=
+ =?us-ascii?Q?sbZJXcRf4Henbe4AXc5hd5rMhvmkVfprsaseMCcgi/cg6ymIjMnO8g7guAYW?=
+ =?us-ascii?Q?U27aR2x65Dega44=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021)(921020);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pqWzfaenbiAi5OWLAssJEE4FxyZ8FjR24xWKziZxZ/s6xLjRz/HCA8c0vlEP?=
+ =?us-ascii?Q?Br1PEbRXoB49yVQ2xSRj2SY0zLLvXgJ5ZqMN0udylA/rheWTp+Jkf2LibvoQ?=
+ =?us-ascii?Q?et+RJapTF3ZYp93gP5v0nVhRCvro35Tm1nnl1+2mC58+2JRhYhV9rnryQvfq?=
+ =?us-ascii?Q?ogBaVfxxLkIF0J+eQ+ezul0IZdSpjejwYztR3+yeseB5twAerFcPENcx8B0h?=
+ =?us-ascii?Q?z1SbQ0MmhHuhDSoMyxZ9MzEm4f0e7o7r/19AQVgcUhGn+V3/IoOmsEmD/+/A?=
+ =?us-ascii?Q?LWW2GOLIvgwvpN/1RJ8jujFbs1NWKc9FPv1+EYvu6mNHRr8ZVAtA9dhOCblP?=
+ =?us-ascii?Q?KmGpK1NbwcLoJDDfYYgeSmnsxBgFGJrtEsBcpyzUmEcB2N34oi3ua7Y2/s98?=
+ =?us-ascii?Q?YQBlO5SzmWmlIJIBZu3O7HMgwM5CugAaZcYeCUvwEoQaIs3PU3LhL4zXcCs1?=
+ =?us-ascii?Q?2AdNpPhiEcd4yuKU4N1VaqmmMyHY69BoBFfbMRJtyOCxoJsOO3+Efx/AO9JI?=
+ =?us-ascii?Q?5AiCgjYG+IjXbDWh5uTspbSQTnliCZvnXoUvaSD7Qb4NfJvkpczGsBZIadf2?=
+ =?us-ascii?Q?vWTyJaEbyghWZ6bGZKXFz79ySurf7e2hJDTblsMqr3wGgEzdJnP1Ms9Xo7If?=
+ =?us-ascii?Q?odqXhuPO6iIUc/uvB6CoYQB8LZz9OmOl4CY5vBCWk5IemYDigJq97e/c2oMh?=
+ =?us-ascii?Q?6mUL+izn6wVIM3wDLlH+unmrXGY6TzQ67oHTD2sgTqnk+BHkJI28sHZ1d5UR?=
+ =?us-ascii?Q?LCXcpCWdoRN92r2ObnqMLzQbjlKCLebgoqpLbw6tKA74oBx4rYtKb0hjJwaK?=
+ =?us-ascii?Q?iWPdwg6i40dmR5CxvgPNfvszj6jTfvHL7xoaprzQCmatXggWnoM7BpFbjRog?=
+ =?us-ascii?Q?0DL5tUSkNdVFb6TP/O3J3LQ7SEx/l4h28jtXQyBlfAaTNERlLLfQL8b1lFcE?=
+ =?us-ascii?Q?uGy7RNeq7RUv112jpa5bQb7AR8ubYOrzfeKZTyJc4LlIXCqPak8vGep2Mte7?=
+ =?us-ascii?Q?yzh6hKT2beK35RFHciSUYurtiiBEv+iDck9RCL/UL34RhDHS/ZYu49EmAZ7J?=
+ =?us-ascii?Q?82jZOjXgc1Jy8Z8/WlafZPP2gRb+axKnmLu7N59ZpUyBPszZ3Q/vUrGwbKiG?=
+ =?us-ascii?Q?eae3mTLgqJ7bfzghQGvB/hAURo6ul5eNV10QZaCuf9eOW2hcHbQMq2qjnDd8?=
+ =?us-ascii?Q?gc9T8nkyW5xPKzABEgE2ma3c2v5oQpF6ihNrPXfKO4MY7xlGcKAj09Nn2iwB?=
+ =?us-ascii?Q?rtvbuIklzQ0dFNF/gHQtyUiQelJaiU38F8+6Pd+jh2ttDhmgL+bXvBKsqW5H?=
+ =?us-ascii?Q?+trkgaITr4/OfV8Od22WYOIIffBJTzLSnq0Zmk0G/OiXAW5QxREB8cxWQc2i?=
+ =?us-ascii?Q?HlxtfmVeV31hCNtVdVHzDbAHen9k2zG8jG2eQbe5snbfsgWsiBPH+j8/6mFN?=
+ =?us-ascii?Q?laSYYcyG0w90Y/4qOLM8GFFqWAx3pjye0bgIxn7fBpZ67iZjLoK4Gmf9BRHg?=
+ =?us-ascii?Q?ua/Sk0IeW+NsplEslDLfqq4EKE1K5j7MWhU2dFE7T8PJ0vWHwo59F7yVASCl?=
+ =?us-ascii?Q?Tptn5X0Q3ffSx2yI/UIZnOcZCZzO6TFKyC9j4BXM?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Matthias Fend <matthias.fend@emfend.at>
-Subject: Re: [PATCH v2 2/2] media: i2c: add Himax HM1246 image sensor driver
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- "bsp-development.geo@leica-geosystems.com"
- <bsp-development.geo@leica-geosystems.com>
-References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
- <20250526-hm1246-v2-2-6b882827a3a5@emfend.at>
- <PN3P287MB1829BA783455C6AB967AACCB8B00A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-Content-Language: de-DE
-In-Reply-To: <PN3P287MB1829BA783455C6AB967AACCB8B00A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc728628-b5ca-495e-3521-08ddf02c5277
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2025 05:38:50.8685
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: I56hmSqvORA/kQ60nUm21JEdA4UO+bfwfjvkbmgoTx+3lTgKasLoU+8nTrb8vi9wS7icvikL+5KlRkGi+LqZFwQMyRLRBbMU1zxo9F7BAY0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6181
 
-Hi Tarang,
-
-thanks a lot for your feedback!
-
-Am 05.09.2025 um 11:18 schrieb Tarang Raval:
-> Hi Matthias,
-> 
-> Use ./scripts/get_maintainer.pl to get the correct CC list.
-
-I thought that's what 'b4 prep --auto-to-cc' relies on.
-But even with get_maintainer.pl, I didn't notice any changes to the 
-recipient list - am I missing something?
-
-> 
->> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
->>   
->> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
->> array size of 1296 x 976. It is programmable through an I2C interface and
->> connected via parallel bus.
->>   
->> The sensor has an internal ISP with a complete image processing pipeline
->> including control loops. However, this driver uses the sensor in raw mode
->> and the entire ISP is bypassed.
->>   
->> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
->> ---
->>   MAINTAINERS                |    8 +
->>   drivers/media/i2c/Kconfig  |    9 +
->>   drivers/media/i2c/Makefile |    1 +
->>   drivers/media/i2c/hm1246.c | 1421 ++++++++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 1439 insertions(+)
->>   
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index dd844ac8d9107b0a9d1dd3cf592f0637bd6fdc38..12f156f742eddac0e41f6bb909d0247cbc8ac2a2 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -10642,6 +10642,14 @@ L:     linux-kernel@vger.kernel.org
->>   S:     Maintained
->>   F:     drivers/misc/hisi_hikey_usb.c
->>   
->> +HIMAX HM1246 SENSOR DRIVER
->> +M:     Matthias Fend <matthias.fend@emfend.at>
->> +L:     linux-media@vger.kernel.org
->> +S:     Maintained
->> +T:     git git://linuxtv.org/media_tree.git
->> +F:     Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
->> +F:     drivers/media/i2c/hm1246.c
->> +
->>   HIMAX HX83112B TOUCHSCREEN SUPPORT
->>   M:     Job Noorman <job@noorman.info>
->>   L:     linux-input@vger.kernel.org
->> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
->> index e45ba127069fc0848f1a06ceb789efd3c222c008..70de3d5a186c0bfb439fc81b52a221c2f37a2ca2 100644
->> --- a/drivers/media/i2c/Kconfig
->> +++ b/drivers/media/i2c/Kconfig
->> @@ -127,6 +127,15 @@ config VIDEO_HI847
->>             To compile this driver as a module, choose M here: the
->>             module will be called hi847.
->>   
->> +config VIDEO_HM1246
->> +       tristate "Himax HM1246 sensor support"
-> 
-> Please add:
-> select V4L2_CCI_I2C
-> 
->> +       help
->> +         This is a Video4Linux2 sensor driver for the Himax
->> +         HM1246 camera.
->> +
->> +         To compile this driver as a module, choose M here: the
->> +         module will be called hm1246.
->> +
->>   config VIDEO_IMX208
->>          tristate "Sony IMX208 sensor support"
->>          help
->> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
->> index 6c23a4463527cf762032df663bbfe26be29018c8..9a3bf03c0a4de318294be70bcffc7df713fe7ef9 100644
->> --- a/drivers/media/i2c/Makefile
->> +++ b/drivers/media/i2c/Makefile
->> @@ -44,6 +44,7 @@ obj-$(CONFIG_VIDEO_GC2145) += gc2145.o
->>   obj-$(CONFIG_VIDEO_HI556) += hi556.o
->>   obj-$(CONFIG_VIDEO_HI846) += hi846.o
->>   obj-$(CONFIG_VIDEO_HI847) += hi847.o
->> +obj-$(CONFIG_VIDEO_HM1246) += hm1246.o
->>   obj-$(CONFIG_VIDEO_I2C) += video-i2c.o
->>   obj-$(CONFIG_VIDEO_IMX208) += imx208.o
->>   obj-$(CONFIG_VIDEO_IMX214) += imx214.o
->> diff --git a/drivers/media/i2c/hm1246.c b/drivers/media/i2c/hm1246.c
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..5fe228ae9a433fd5fc89d8f57f0a2fc7c16e182f
->> --- /dev/null
->> +++ b/drivers/media/i2c/hm1246.c
->> @@ -0,0 +1,1421 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Driver for Himax HM1246 image sensor
->> + *
->> + * Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio.h>
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/units.h>
->> +#include <media/v4l2-cci.h>
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-device.h>
->> +#include <media/v4l2-event.h>
->> +#include <media/v4l2-fwnode.h>
->> +
->> +/* Status registers */
->> +#define HM1246_MODEL_ID_REG             CCI_REG16(0x0000)
->> +
->> +/* General setup registers */
->> +#define HM1246_MODE_SELECT_REG          CCI_REG8(0x0100)
->> +#define HM1246_MODE_SELECT_STANDBY      0x00
->> +#define HM1246_MODE_SELECT_STREAM       0x01
->> +#define HM1246_MODE_SELECT_STOP                 0x02
->> +#define HM1246_IMAGE_ORIENTATION_REG    CCI_REG8(0x0101)
->> +#define HM1246_IMAGE_ORIENTATION_VFLIP  BIT(1)
->> +#define HM1246_IMAGE_ORIENTATION_HFLIP  BIT(0)
->> +#define HM1246_CMU_UPDATE_REG           CCI_REG8(0x0104)
->> +
->> +/* Output setup registers */
->> +#define HM1246_COARSE_INTG_REG          CCI_REG16(0x0202)
->> +#define HM1246_ANALOG_GLOBAL_GAIN_REG   CCI_REG8(0x0205)
->> +
->> +/* Clock setup registers */
->> +#define HM1246_PLL1CFG_REG              CCI_REG8(0x0303)
->> +#define HM1246_PLL1CFG_MULTIPLIER(x)    (((x) & 0xFF) << 0)
->> +#define HM1246_PLL2CFG_REG              CCI_REG8(0x0305)
->> +#define HM1246_PLL2CFG_PRE_DIV(x)       (((x) & 0x1F) << 1)
->> +#define HM1246_PLL2CFG_MULTIPLIER(x)    (((x) & 0x01) << 0)
->> +#define HM1246_PLL3CFG_REG              CCI_REG8(0x0307)
->> +#define HM1246_PLL3CFG_POST_DIV(x)      (((x) & 0x3) << 6)
->> +#define HM1246_PLL3CFG_SYSCLK_DIV(x)    (((x) & 0x3) << 4)
->> +#define HM1246_PLL3CFG_PCLK_DIV(x)      (((x) & 0x7) << 0)
->> +
->> +/* Frame timing registers */
->> +#define HM1246_FRAME_LENGTH_LINES_REG   CCI_REG16(0x0340)
->> +#define HM1246_LINE_LENGTH_PCK_REG      CCI_REG16(0x0342)
->> +
->> +/* Image size registers */
->> +#define HM1246_X_ADDR_START_REG                 CCI_REG16(0x0344)
->> +#define HM1246_Y_ADDR_START_REG                 CCI_REG16(0x0346)
->> +#define HM1246_X_ADDR_END_REG           CCI_REG16(0x0348)
->> +#define HM1246_Y_ADDR_END_REG           CCI_REG16(0x034A)
->> +#define HM1246_X_LA_START_REG           CCI_REG16(0x0351)
->> +#define HM1246_X_LA_END_REG             CCI_REG16(0x0353)
->> +#define HM1246_Y_LA_START_REG           CCI_REG16(0x0355)
->> +#define HM1246_Y_LA_END_REG             CCI_REG16(0x0357)
->> +
->> +/* Test pattern registers */
->> +#define HM1246_TEST_PATTERN_MODE_REG    CCI_REG8(0x0601)
->> +#define HM1246_TEST_PATTERN_MODE_MODE(x) (((x) & 0xF) << 4)
->> +#define HM1246_TEST_PATTERN_MODE_ENABLE         BIT(0)
->> +#define HM1246_TEST_DATA_BLUE_REG       CCI_REG16(0x0602)
->> +#define HM1246_TEST_DATA_GB_REG                 CCI_REG16(0x0604)
->> +#define HM1246_TEST_DATA_RED_REG        CCI_REG16(0x0606)
->> +#define HM1246_TEST_DATA_GR_REG                 CCI_REG16(0x0608)
->> +
->> +/* SBC registers */
->> +#define HM1246_SBC_BOOT_REF2_REG        CCI_REG8(0x2001)
->> +#define HM1246_SBC_BOOT_REF2_PLL_LOCK   BIT(4)
->> +#define HM1246_SBC_CTRL_REG             CCI_REG8(0x2003)
->> +#define HM1246_SBC_CTRL_PLL_EN          BIT(0)
->> +
->> +/* System registers */
->> +#define HM1246_OUTPUT_PRT_CTRL_REG      CCI_REG8(0x2F02)
->> +#define HM1246_POLARITY_CTRL_REG        CCI_REG8(0x2F20)
->> +#define HM1246_POLARITY_CTRL_HSYNC      BIT(7)
->> +#define HM1246_POLARITY_CTRL_VSYNC      BIT(6)
->> +#define HM1246_PCLK_CTRL_REG            CCI_REG8(0x2F24)
->> +#define HM1246_PCLK_CTRL_POL            BIT(3)
->> +
->> +/* Digital window control & parameter registers */
->> +#define HM1246_DWIN_XOFFSET_REG                 CCI_REG16(0xD5E4)
->> +#define HM1246_DWIN_XSIZE_REG           CCI_REG16(0xD5E6)
->> +#define HM1246_DWIN_YOFFSET_REG                 CCI_REG16(0xD5E8)
->> +#define HM1246_DWIN_YSIZE_REG           CCI_REG16(0xD5EA)
->> +
->> +#define HM1246_MODEL_ID                         0x1245
->> +
->> +#define HM1246_NATIVE_WIDTH             1296
->> +#define HM1246_NATIVE_HEIGHT            976
->> +
->> +#define HM1246_VTS_MAX                  65535
->> +
->> +#define HM1246_COARSE_INTG_MARGIN       2
->> +#define HM1246_COARSE_INTG_MIN          4
->> +#define HM1246_COARSE_INTG_STEP                 1
->> +
->> +#define HM1246_ANALOG_GLOBAL_GAIN_MIN   0x00
->> +#define HM1246_ANALOG_GLOBAL_GAIN_MAX   0xE8
->> +#define HM1246_ANALOG_GLOBAL_GAIN_STEP  1
-> 
-> I think it would make more sense to include the following 6 definitions
-> in the 'Output setup registers' block. However, I don't mind either way.
-> 
->> +
->> +#define HM1246_XCLK_MIN                         (6 * HZ_PER_MHZ)
->> +#define HM1246_XCLK_MAX                         (27 * HZ_PER_MHZ)
->> +
->> +#define HM1246_PCLK_MIN                         (8 * HZ_PER_MHZ)
->> +#define HM1246_PCLK_MAX                         (96 * HZ_PER_MHZ)
->> +
->> +#define HM1246_PLL_VCO_MIN              360000000
->> +#define HM1246_PLL_VCO_MAX              680000000
->> +
->> +#define HM1246_PLL_INCLK_MIN            1000000
->> +#define HM1246_PLL_INCLK_MAX            2500000
->> +
->> +#define HM1246_PLL_MULTI_L_MIN          1
->> +#define HM1246_PLL_MULTI_L_MAX          256
->> +
->> +#define HM1246_PLL_MULTI_H_MIN          2
->> +#define HM1246_PLL_MULTI_H_MAX          3
->> +
->> +#define HM1246_PLL_MULTI_MIN \
->> +       (HM1246_PLL_MULTI_H_MIN * HM1246_PLL_MULTI_L_MIN)
->> +#define HM1246_PLL_MULTI_MAX \
->> +       (HM1246_PLL_MULTI_H_MAX * HM1246_PLL_MULTI_L_MAX)
->> +
->> +static const char *const hm1246_test_pattern_menu[] = {
->> +       "Disabled",
->> +       "Checkboard",
->> +       "Ramp",
->> +       "Moving ones",
->> +       "Blending color bars",
->> +       "Color bars",
->> +       "Solid white",
->> +       "Solid black",
->> +       "Solid red",
->> +       "Solid green",
->> +       "Solid blue",
->> +};
->> +
->> +static const s64 hm1246_link_freqs[] = {\
-> 
-> Do we really need signed here?
-
-It is signed because v4l2_ctrl_new_int_menu uses 'const s64 *' as parameter.
-
-> 
->> +       42174000, /* 1420x990 @ 30Hz (RAW) */
->> +};
->> +
->> +static const char *const hm1246_supply_names[] = {
->> +       "avdd",
->> +       "iovdd",
->> +       "dvdd",
->> +};
->> +
->> +struct hm1246 {
->> +       struct device *dev;
->> +       struct v4l2_subdev sd;
->> +       struct media_pad pad;
->> +
->> +       struct regulator_bulk_data supplies[ARRAY_SIZE(hm1246_supply_names)];
->> +       struct clk *xclk;
->> +       unsigned long xclk_freq;
->> +       struct gpio_desc *reset_gpio;
->> +       unsigned int mbus_flags;
->> +
->> +       struct v4l2_ctrl_handler ctrls;
->> +       struct v4l2_ctrl *pixel_rate_ctrl;
->> +       struct v4l2_ctrl *link_freq_ctrl;
->> +       struct v4l2_ctrl *exposure_ctrl;
->> +       struct v4l2_ctrl *vblank_ctrl;
->> +       struct v4l2_ctrl *hblank_ctrl;
->> +       struct v4l2_ctrl *hflip_ctrl;
->> +       struct v4l2_ctrl *vflip_ctrl;
->> +
->> +       struct regmap *regmap;
->> +
->> +       bool identified;
->> +       const struct hm1246_mode *cur_mode;
->> +};
->> +
->> +static const struct cci_reg_sequence mode_1296x976_raw[] = {
->> +       { HM1246_X_LA_START_REG, 60 },
->> +       { HM1246_X_LA_END_REG, 1355 },
->> +       { HM1246_Y_LA_START_REG, 0 },
->> +       { HM1246_Y_LA_END_REG, 975 },
->> +       { HM1246_OUTPUT_PRT_CTRL_REG, 0x20 },
->> +       { CCI_REG8(0x300A), 0x01 },
->> +       { CCI_REG8(0x300B), 0x00 },
->> +       { CCI_REG8(0x50F5), 0x01 },
->> +       { CCI_REG8(0x50DD), 0x00 },
->> +       { CCI_REG8(0x50A1), 0x02 },
->> +       { CCI_REG8(0x50AA), 0x1C },
->> +       { CCI_REG8(0x50AC), 0xDD },
->> +       { CCI_REG8(0x50AD), 0x08 },
->> +       { CCI_REG8(0x50AB), 0x04 },
->> +       { CCI_REG8(0x50A0), 0x40 },
->> +       { CCI_REG8(0x50A2), 0x12 },
->> +       { CCI_REG8(0x50AE), 0x30 },
->> +       { CCI_REG8(0x50B3), 0x04 },
->> +       { CCI_REG8(0x5200), 0x04 },
-> 
-> ^^^1
-> 
->> +       { CCI_REG8(0x5204), 0x40 },
->> +       { CCI_REG8(0x5208), 0x55 },
->> +       { CCI_REG8(0x5209), 0x06 },
->> +       { CCI_REG8(0x520B), 0x05 },
->> +       { CCI_REG8(0x520D), 0x40 },
->> +       { CCI_REG8(0x5214), 0x18 },
->> +       { CCI_REG8(0x5215), 0x0F },
->> +       { CCI_REG8(0x5217), 0x01 },
->> +       { CCI_REG8(0x5218), 0x07 },
->> +       { CCI_REG8(0x5219), 0x01 },
->> +       { CCI_REG8(0x521A), 0x50 },
->> +       { CCI_REG8(0x521B), 0x24 },
->> +       { CCI_REG8(0x5232), 0x01 },
->> +       { CCI_REG8(0x5220), 0x11 },
->> +       { CCI_REG8(0x5227), 0x01 },
->> +       { CCI_REG8(0x5106), 0xC1 },
->> +       { CCI_REG8(0x5115), 0xC0 },
->> +       { CCI_REG8(0x5116), 0xC1 },
->> +       { CCI_REG8(0x5138), 0x40 },
->> +       { CCI_REG8(0x5139), 0x60 },
->> +       { CCI_REG8(0x513A), 0x80 },
->> +       { CCI_REG8(0x513B), 0xA0 },
->> +       { CCI_REG8(0x513C), 0xA1 },
->> +       { CCI_REG8(0x513D), 0xA2 },
->> +       { CCI_REG8(0x513E), 0xA3 },
->> +       { CCI_REG8(0x5140), 0x40 },
->> +       { CCI_REG8(0x5141), 0x60 },
->> +       { CCI_REG8(0x5142), 0x80 },
->> +       { CCI_REG8(0x5143), 0x81 },
->> +       { CCI_REG8(0x5144), 0x82 },
->> +       { CCI_REG8(0x5145), 0x83 },
->> +       { CCI_REG8(0x5146), 0x93 },
->> +       { CCI_REG8(0x51C1), 0xC3 },
->> +       { CCI_REG8(0x51C5), 0xC3 },
->> +       { CCI_REG8(0x51C9), 0xC3 },
->> +       { CCI_REG8(0x51CD), 0xC2 },
->> +       { CCI_REG8(0x51D1), 0xC1 },
->> +       { CCI_REG8(0x51D5), 0xC1 },
->> +       { CCI_REG8(0x51D9), 0x81 },
->> +       { CCI_REG8(0x51DD), 0x81 },
->> +       { CCI_REG8(0x51C2), 0x49 },
->> +       { CCI_REG8(0x51C6), 0x49 },
->> +       { CCI_REG8(0x51CA), 0x49 },
->> +       { CCI_REG8(0x51CE), 0x49 },
->> +       { CCI_REG8(0x51D2), 0x49 },
->> +       { CCI_REG8(0x51D6), 0x59 },
->> +       { CCI_REG8(0x51DA), 0x59 },
->> +       { CCI_REG8(0x51DE), 0x59 },
->> +       { CCI_REG8(0x51C3), 0x20 },
->> +       { CCI_REG8(0x51C7), 0x38 },
->> +       { CCI_REG8(0x51CB), 0x21 },
->> +       { CCI_REG8(0x51CF), 0x11 },
->> +       { CCI_REG8(0x51D3), 0x11 },
->> +       { CCI_REG8(0x51D7), 0x13 },
->> +       { CCI_REG8(0x51DB), 0x13 },
->> +       { CCI_REG8(0x51DF), 0x13 },
->> +       { CCI_REG8(0x51E0), 0x03 },
->> +       { CCI_REG8(0x51E2), 0x03 },
->> +       { CCI_REG8(0x51F0), 0x42 },
->> +       { CCI_REG8(0x51F1), 0x40 },
->> +       { CCI_REG8(0x51F2), 0x4A },
->> +       { CCI_REG8(0x51F3), 0x48 },
->> +       { CCI_REG8(0x5015), 0x73 },
->> +       { CCI_REG8(0x504A), 0x04 },
->> +       { CCI_REG8(0x5044), 0x07 },
->> +       { CCI_REG8(0x5040), 0x03 },
->> +       { CCI_REG8(0x5135), 0xC4 },
->> +       { CCI_REG8(0x5136), 0xC5 },
->> +       { CCI_REG8(0x5166), 0xC4 },
->> +       { CCI_REG8(0x5196), 0xC4 },
->> +       { CCI_REG8(0x51C0), 0x10 },
->> +       { CCI_REG8(0x51C4), 0x10 },
->> +       { CCI_REG8(0x51C8), 0xA0 },
->> +       { CCI_REG8(0x51CC), 0xA0 },
->> +       { CCI_REG8(0x51D0), 0xA1 },
->> +       { CCI_REG8(0x51D4), 0xA5 },
->> +       { CCI_REG8(0x51D8), 0xA5 },
->> +       { CCI_REG8(0x51DC), 0xA5 },
->> +       { CCI_REG8(0x5200), 0xE4 },
-> 
-> It seems that these register writes are duplicated (see above '1'). The same entries
-> appear earlier in the code, so I suggest keeping only the last occurrence.
-> 
-> There might be other repeated register entries as well
-
-Many registers are not even mentioned in the data sheet, and this 
-register sequence is provided by the manufacturer. Since I cannot tell 
-with certainty whether these are simply static registers or whether a 
-sequence must be followed here, I am reluctant to remove register accesses.
-
-> 
->> +       { CCI_REG8(0x5209), 0x04 },
->> +       { CCI_REG8(0x301B), 0x01 },
->> +       { CCI_REG8(0x3130), 0x01 },
->> +       { CCI_REG8(0x5013), 0x07 },
->> +       { CCI_REG8(0x5016), 0x01 },
->> +       { CCI_REG8(0x501D), 0x50 },
->> +       { CCI_REG8(0x0350), 0xFE },
->> +       { CCI_REG8(0x0343), 0x8C },
-> 
-> I believe this is a line length register, which you are already
-> setting in hm1246_setup_moderegs. You can remove this entry here.
-> 
->> +       { CCI_REG8(0x2F03), 0x15 },
->> +       { CCI_REG8(0xD380), 0x00 },
->> +       { CCI_REG8(0x3047), 0x7F },
->> +       { CCI_REG8(0x304D), 0x34 },
->> +       { CCI_REG8(0x3041), 0x4B },
->> +       { CCI_REG8(0x3042), 0x2D },
->> +       { CCI_REG8(0x3056), 0x64 },
->> +       { CCI_REG8(0x3059), 0x1E },
->> +       { CCI_REG8(0x305E), 0x10 },
->> +       { CCI_REG8(0x305F), 0x10 },
->> +       { CCI_REG8(0x306D), 0x10 },
->> +       { CCI_REG8(0x306E), 0x0C },
->> +       { CCI_REG8(0x3064), 0x50 },
->> +       { CCI_REG8(0x3067), 0x78 },
->> +       { CCI_REG8(0x3068), 0x4B },
->> +       { CCI_REG8(0x306A), 0x78 },
->> +       { CCI_REG8(0x306B), 0x4B },
->> +       { CCI_REG8(0xD442), 0x3D },
->> +       { CCI_REG8(0xD443), 0x06 },
->> +       { CCI_REG8(0xD440), 0x63 },
->> +       { CCI_REG8(0xD446), 0xB0 },
->> +       { CCI_REG8(0xD447), 0x60 },
->> +       { CCI_REG8(0xD448), 0x48 },
->> +       { CCI_REG8(0xD449), 0x30 },
->> +       { CCI_REG8(0xD44A), 0x18 },
->> +       { CCI_REG8(0xD360), 0x03 },
->> +       { CCI_REG8(0x30AC), 0x10 },
->> +       { CCI_REG8(0x30AD), 0x10 },
->> +       { CCI_REG8(0x30AE), 0x10 },
->> +       { CCI_REG8(0x3040), 0x0B },
->> +       { CCI_REG8(0x2002), 0x00 },
->> +       { CCI_REG8(0x2000), 0x08 },
->> +};
->> +
->> +struct hm1246_reg_list {
->> +       u32 num_of_regs;
->> +       const struct cci_reg_sequence *regs;
->> +};
->> +
->> +struct hm1246_mode {
->> +       u32 codes[4];
->> +       u32 link_freq_index;
->> +       u32 clocks_per_pixel;
->> +       u32 top;
->> +       u32 left;
->> +       u32 width;
->> +       u32 height;
->> +       u32 hts;
->> +       u32 vts_min;
->> +       const struct hm1246_reg_list reg_list;
->> +};
->> +
->> +#define FLIP_FORMAT_INDEX(v, h) ((v ? 2 : 0) | (h ? 1 : 0))
->> +
->> +/* Get the format code of the mode considering current flip setting. */
->> +static u32 hm1246_get_format_code(struct hm1246 *hm1246,
->> +                                 const struct hm1246_mode *hm1246_mode)
->> +{
->> +       return hm1246_mode->codes[FLIP_FORMAT_INDEX(hm1246->vflip_ctrl->val,
->> +                                                   hm1246->hflip_ctrl->val)];
->> +}
->> +
->> +static const struct hm1246_mode hm1246_modes[] = {
->> +       {
->> +               .codes = {
->> +                       [FLIP_FORMAT_INDEX(0, 0)] = MEDIA_BUS_FMT_SBGGR10_1X10,
->> +                       [FLIP_FORMAT_INDEX(0, 1)] = MEDIA_BUS_FMT_SGBRG10_1X10,
->> +                       [FLIP_FORMAT_INDEX(1, 0)] = MEDIA_BUS_FMT_SGRBG10_1X10,
->> +                       [FLIP_FORMAT_INDEX(1, 1)] = MEDIA_BUS_FMT_SRGGB10_1X10,
->> +               },
->> +               .link_freq_index = 0,
->> +               .clocks_per_pixel = 1,
->> +               .top = 0,
->> +               .left = 0,
->> +               .width = 1296,
->> +               .height = 976,
->> +               .hts = 1420,
->> +               .vts_min = 990,
->> +               .reg_list = {
->> +                       .num_of_regs = ARRAY_SIZE(mode_1296x976_raw),
->> +                       .regs = mode_1296x976_raw,
->> +               },
->> +       },
->> +};
->> +
->> +static inline struct hm1246 *to_hm1246(struct v4l2_subdev *sd)
->> +{
->> +       return container_of(sd, struct hm1246, sd);
-> 
-> Use container_of_const.
-> 
->> +}
->> +
->> +static const struct hm1246_mode *
->> +hm1246_find_mode_by_mbus_code(struct hm1246 *hm1246, u32 code)
->> +{
->> +       for (int i = 0; i < ARRAY_SIZE(hm1246_modes); i++) {
->> +               if (code == hm1246_get_format_code(hm1246, &hm1246_modes[i]))
->> +                       return &hm1246_modes[i];
->> +       }
->> +
->> +       return ERR_PTR(-EINVAL);
->> +}
->> +
->> +static int hm1246_power_on(struct device *dev)
->> +{
->> +       struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       int ret;
->> +
->> +       ret = regulator_bulk_enable(ARRAY_SIZE(hm1246_supply_names),
->> +                                   hm1246->supplies);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "failed to enable regulators\n");
->> +               return ret;
->> +       }
->> +
->> +       ret = clk_prepare_enable(hm1246->xclk);
->> +       if (ret) {
->> +               regulator_bulk_disable(ARRAY_SIZE(hm1246_supply_names),
->> +                                      hm1246->supplies);
->> +               dev_err(hm1246->dev, "failed to enable clock\n");
->> +               return ret;
->> +       }
->> +
->> +       gpiod_set_value_cansleep(hm1246->reset_gpio, 0);
->> +
->> +       /*
->> +        * XSHUTDOWN to crystal clock oscillation:  tcrystal typ.  650us
->> +        * Sample bootstrap pin:                    tsample  max. 2000us
->> +        * Built in self test:                      tbist    max. 3000us
->> +        */
->> +       fsleep(6000);
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_power_off(struct device *dev)
->> +{
->> +       struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +
->> +       gpiod_set_value_cansleep(hm1246->reset_gpio, 1);
->> +
->> +       clk_disable_unprepare(hm1246->xclk);
->> +
->> +       regulator_bulk_disable(ARRAY_SIZE(hm1246_supply_names),
->> +                              hm1246->supplies);
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_enum_mbus_code(struct v4l2_subdev *sd,
->> +                                struct v4l2_subdev_state *sd_state,
->> +                                struct v4l2_subdev_mbus_code_enum *code)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +
->> +       if (code->index >= ARRAY_SIZE(hm1246_modes))
->> +               return -EINVAL;
->> +
->> +       code->code = hm1246_get_format_code(hm1246, &hm1246_modes[code->index]);
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_enum_frame_size(struct v4l2_subdev *subdev,
->> +                                 struct v4l2_subdev_state *sd_state,
->> +                                 struct v4l2_subdev_frame_size_enum *fse)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(subdev);
->> +       const struct hm1246_mode *mode = NULL;
->> +
->> +       if (fse->index > 0)
->> +               return -EINVAL;
->> +
->> +       mode = hm1246_find_mode_by_mbus_code(hm1246, fse->code);
->> +       if (IS_ERR(mode))
->> +               return PTR_ERR(mode);
->> +
->> +       fse->min_width = mode->width;
->> +       fse->max_width = mode->width;
->> +       fse->min_height = mode->height;
->> +       fse->max_height = mode->height;
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_update_controls(struct hm1246 *hm1246,
->> +                                 const struct hm1246_mode *mode)
->> +{
->> +       s64 pixel_rate, exposure_max, vblank, hblank;
->> +       int ret;
->> +
->> +       ret = __v4l2_ctrl_s_ctrl(hm1246->link_freq_ctrl, mode->link_freq_index);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "link_freq ctrl range update failed\n");
->> +               return ret;
->> +       }
->> +
->> +       pixel_rate = div_u64(hm1246_link_freqs[mode->link_freq_index],
->> +                            mode->clocks_per_pixel);
->> +       ret = __v4l2_ctrl_modify_range(hm1246->pixel_rate_ctrl, pixel_rate,
->> +                                      pixel_rate, 1, pixel_rate);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "pixel_rate ctrl range update failed\n");
->> +               return ret;
->> +       }
->> +
->> +       vblank = mode->vts_min - mode->height,
->> +       ret = __v4l2_ctrl_modify_range(hm1246->vblank_ctrl, vblank,
->> +                                      HM1246_VTS_MAX - mode->height, 1,
->> +                                      vblank);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "vblank ctrl range update failed\n");
->> +               return ret;
->> +       }
->> +
->> +       hblank = mode->hts - mode->width;
->> +       ret = __v4l2_ctrl_modify_range(hm1246->hblank_ctrl, hblank, hblank, 1,
->> +                                      hblank);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "hblank ctrl range update failed\n");
->> +               return ret;
->> +       }
->> +
->> +       exposure_max = mode->vts_min - HM1246_COARSE_INTG_MARGIN;
->> +       ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
->> +                                      HM1246_COARSE_INTG_MIN, exposure_max,
->> +                                      HM1246_COARSE_INTG_STEP, exposure_max);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "exposure ctrl range update failed\n");
->> +               return ret;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +static void hm1246_update_pad_format(struct hm1246 *hm1246,
->> +                                    const struct hm1246_mode *hm1246_mode,
->> +                                    struct v4l2_mbus_framefmt *fmt)
->> +{
->> +       fmt->width = hm1246_mode->width;
->> +       fmt->height = hm1246_mode->height;
->> +       fmt->code = hm1246_get_format_code(hm1246, hm1246_mode);
->> +       fmt->field = V4L2_FIELD_NONE;
->> +       fmt->colorspace = V4L2_COLORSPACE_RAW;
->> +       fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(fmt->colorspace);
->> +       fmt->quantization = V4L2_QUANTIZATION_FULL_RANGE;
->> +       fmt->xfer_func = V4L2_XFER_FUNC_NONE;
->> +}
->> +
->> +static int hm1246_set_format(struct v4l2_subdev *sd,
->> +                            struct v4l2_subdev_state *state,
->> +                            struct v4l2_subdev_format *fmt)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       struct v4l2_mbus_framefmt *mbus_fmt;
->> +       struct v4l2_rect *crop;
->> +       const struct hm1246_mode *mode;
->> +
->> +       mode = hm1246_find_mode_by_mbus_code(hm1246, fmt->format.code);
->> +       if (IS_ERR(mode))
->> +               mode = &hm1246_modes[0];
->> +
->> +       crop = v4l2_subdev_state_get_crop(state, 0);
->> +       crop->top = mode->top;
->> +       crop->left = mode->left;
->> +       crop->width = mode->width;
->> +       crop->height = mode->height;
->> +
->> +       hm1246_update_pad_format(hm1246, mode, &fmt->format);
->> +       mbus_fmt = v4l2_subdev_state_get_format(state, 0);
->> +       *mbus_fmt = fmt->format;
->> +
->> +       if (fmt->which == V4L2_SUBDEV_FORMAT_TRY)
->> +               return 0;
->> +
->> +       hm1246->cur_mode = mode;
->> +       hm1246_update_controls(hm1246, mode);
-> 
-> I believe hm1246_update_controls could fail, so you should check
-> for errors here.
-> 
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_get_selection(struct v4l2_subdev *sd,
->> +                               struct v4l2_subdev_state *state,
->> +                               struct v4l2_subdev_selection *sel)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       const struct hm1246_mode *mode = hm1246->cur_mode;
->> +
->> +       switch (sel->target) {
->> +       case V4L2_SEL_TGT_CROP:
->> +               sel->r = *v4l2_subdev_state_get_crop(state, 0);
->> +               return 0;
->> +
->> +       case V4L2_SEL_TGT_NATIVE_SIZE:
->> +               sel->r.top = 0;
->> +               sel->r.left = 0;
->> +               sel->r.width = HM1246_NATIVE_WIDTH;
->> +               sel->r.height = HM1246_NATIVE_HEIGHT;
->> +               return 0;
->> +
->> +       case V4L2_SEL_TGT_CROP_DEFAULT:
->> +       case V4L2_SEL_TGT_CROP_BOUNDS:
->> +               sel->r.top = mode->top;
->> +               sel->r.left = mode->left;
->> +               sel->r.width = mode->width;
->> +               sel->r.height = mode->height;
->> +               break;
->> +       default:
->> +               return -EINVAL;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_init_state(struct v4l2_subdev *sd,
->> +                            struct v4l2_subdev_state *state)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       struct v4l2_subdev_format fmt = {
->> +               .which = V4L2_SUBDEV_FORMAT_TRY,
->> +               .pad = 0,
->> +               .format = {
->> +                       .code = hm1246_get_format_code(hm1246,
->> +                                                      &hm1246_modes[0]),
->> +                       .width = hm1246_modes[0].width,
->> +                       .height = hm1246_modes[0].height,
->> +               },
->> +       };
->> +
->> +       hm1246_set_format(sd, state, &fmt);
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_calc_pll(struct hm1246 *hm1246, u32 xclk, u32 link_freq,
->> +                          u32 clocks_per_pixel, u8 *pll1, u8 *pll2, u8 *pll3)
->> +{
->> +       const u8 pclk_div_table[] = { 4, 5, 6, 7, 8, 12, 14, 16 };
->> +       const u8 sysclk_div_table[] = { 1, 2, 3, 4 };
->> +       const u8 post_div_table[] = { 1, 2, 4, 8 };
->> +       const int sysclk_pclk_ratio = 3; /* Recommended value */
->> +       u32 pclk, vco_out, best_vco_diff;
->> +       int pclk_div_index, sysclk_div_index, post_div_index;
->> +       u8 pre_div, multiplier_h, multiplier_l;
->> +       bool sysclk_pclk_ratio_found = false;
->> +
->> +       if (link_freq < HM1246_PCLK_MIN || link_freq > HM1246_PCLK_MAX)
->> +               return -EINVAL;
->> +
->> +       /* In raw mode (1 pixel per clock) the pixel clock is internally
->> +        * divided by two.
->> +        */
-> 
-> /*
->   * In raw mode (1 pixel per clock) the pixel clock is internally
->   * divided by two.
->   */
-> 
->> +       pclk = (2 * link_freq) / clocks_per_pixel;
->> +
->> +       /* Find suitable PCLK and SYSCLK dividers. */
->> +       for (pclk_div_index = 0; pclk_div_index < ARRAY_SIZE(pclk_div_table);
->> +            pclk_div_index++) {
->> +               for (sysclk_div_index = 0;
->> +                    sysclk_div_index < ARRAY_SIZE(sysclk_div_table);
->> +                    sysclk_div_index++) {
->> +                       if (sysclk_div_table[sysclk_div_index] *
->> +                                   sysclk_pclk_ratio ==
->> +                           pclk_div_table[pclk_div_index]) {
->> +                               sysclk_pclk_ratio_found = true;
->> +                               break;
->> +                       }
->> +               }
->> +               if (sysclk_pclk_ratio_found)
->> +                       break;
->> +       }
->> +
->> +       if (!sysclk_pclk_ratio_found)
->> +               return -EINVAL;
->> +
->> +       /* Determine an appropriate post divider. */
->> +       for (post_div_index = 0; post_div_index < ARRAY_SIZE(post_div_table);
->> +            post_div_index++) {
->> +               vco_out = pclk * (pclk_div_table[pclk_div_index] *
->> +                                 post_div_table[post_div_index]);
->> +
->> +               if (vco_out >= HM1246_PLL_VCO_MIN &&
->> +                   vco_out <= HM1246_PLL_VCO_MAX)
->> +                       break;
->> +       }
->> +       if (post_div_index >= ARRAY_SIZE(post_div_table))
->> +               return -EINVAL;
->> +
->> +       /* Find best pre-divider and multiplier values. */
->> +       best_vco_diff = U32_MAX;
->> +       for (u32 div = DIV_ROUND_UP(xclk, HM1246_PLL_INCLK_MAX);
->> +            div <= (xclk / HM1246_PLL_INCLK_MIN); div++) {
->> +               u32 multi, multi_h, multi_l, vco, diff;
->> +
->> +               multi = DIV_ROUND_CLOSEST_ULL((u64)vco_out * div, xclk);
->> +               if (multi < HM1246_PLL_MULTI_MIN ||
->> +                   multi > HM1246_PLL_MULTI_MAX)
->> +                       continue;
->> +
->> +               multi_h = multi / (HM1246_PLL_MULTI_H_MIN *
->> +                                  HM1246_PLL_MULTI_L_MAX) +
->> +                         2;
-> 
-> HM1246_PLL_MULTI_L_MAX) + 2;
-> 
->> +               multi_l = multi / multi_h;
->> +               vco = div_u64((u64)xclk * multi_h * multi_l, div);
->> +
->> +               diff = abs(vco_out - vco);
->> +               if (diff < best_vco_diff) {
->> +                       best_vco_diff = diff;
->> +                       pre_div = div;
->> +                       multiplier_h = multi_h;
->> +                       multiplier_l = multi_l;
->> +               }
->> +
->> +               if (!diff)
->> +                       break;
->> +       }
->> +
->> +       if (best_vco_diff == U32_MAX)
->> +               return -EINVAL;
->> +
->> +       *pll1 = HM1246_PLL1CFG_MULTIPLIER(multiplier_l - 1);
->> +       *pll2 = HM1246_PLL2CFG_PRE_DIV(pre_div - 1) |
->> +               HM1246_PLL2CFG_MULTIPLIER(multiplier_h - 2);
->> +       *pll3 = HM1246_PLL3CFG_POST_DIV(post_div_index) |
->> +               HM1246_PLL3CFG_SYSCLK_DIV(sysclk_div_index) |
->> +               HM1246_PLL3CFG_PCLK_DIV(pclk_div_index);
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_cci_write_pll(struct hm1246 *hm1246, u8 pll1, u8 pll2,
->> +                               u8 pll3)
->> +{
->> +       struct cci_reg_sequence pll_regs[] = {
->> +               { HM1246_PLL1CFG_REG, pll1 },
->> +               { HM1246_PLL2CFG_REG, pll2 },
->> +               { HM1246_PLL3CFG_REG, pll3 },
->> +               { HM1246_SBC_CTRL_REG, HM1246_SBC_CTRL_PLL_EN },
->> +       };
->> +
->> +       return cci_multi_reg_write(hm1246->regmap, pll_regs,
->> +                                  ARRAY_SIZE(pll_regs), NULL);
->> +}
->> +
->> +static int hm1246_pll_check_locked(struct hm1246 *hm1246)
->> +{
->> +       u64 boot_ref2;
->> +       int ret;
->> +
->> +       ret = cci_read(hm1246->regmap, HM1246_SBC_BOOT_REF2_REG, &boot_ref2,
->> +                      NULL);
->> +       if (ret)
->> +               return ret;
->> +
->> +       return (boot_ref2 & HM1246_SBC_BOOT_REF2_PLL_LOCK) ? 0 : -EIO;
->> +}
->> +
->> +static int hm1246_setup_pll(struct hm1246 *hm1246,
->> +                           const struct hm1246_mode *mode)
->> +{
->> +       u8 pll1, pll2, pll3;
->> +       int ret;
->> +
->> +       ret = hm1246_calc_pll(hm1246, hm1246->xclk_freq,
->> +                             hm1246_link_freqs[mode->link_freq_index],
->> +                             mode->clocks_per_pixel, &pll1, &pll2, &pll3);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = hm1246_cci_write_pll(hm1246, pll1, pll2, pll3);
->> +       if (ret)
->> +               return ret;
->> +
->> +       /* PLL lock time: tpll typ. 100us */
->> +       fsleep(200);
->> +
->> +       ret = hm1246_pll_check_locked(hm1246);
->> +       if (ret)
->> +               return ret;
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_cci_write_test_pattern(struct hm1246 *hm1246, u8 mode, u16 r,
->> +                                        u16 g, u16 b)
->> +{
->> +       struct cci_reg_sequence tpg_enable_regs[] = {
->> +               { HM1246_TEST_DATA_RED_REG, r },
->> +               { HM1246_TEST_DATA_GR_REG, g },
->> +               { HM1246_TEST_DATA_GB_REG, g },
->> +               { HM1246_TEST_DATA_BLUE_REG, b },
->> +               { HM1246_TEST_PATTERN_MODE_REG, mode },
->> +       };
->> +
->> +       return cci_multi_reg_write(hm1246->regmap, tpg_enable_regs,
->> +                                  ARRAY_SIZE(tpg_enable_regs), NULL);
->> +}
->> +
->> +static int hm1246_test_pattern(struct hm1246 *hm1246, u32 pattern_index)
->> +{
->> +       const u16 RGBMAX = 0x3FF;
->> +       int pattern;
->> +       u8 mode = HM1246_TEST_PATTERN_MODE_ENABLE;
->> +       u16 r = 0, g = 0, b = 0;
->> +
->> +       switch (pattern_index) {
->> +       case 1: /* Checkboard Pattern */
->> +               pattern = 0;
->> +               break;
->> +       case 2: /* Ramp */
->> +               pattern = 1;
->> +               break;
->> +       case 3: /* Moving ones */
->> +               pattern = 2;
->> +               break;
->> +       case 4: /* Blending color bars */
->> +               pattern = 3;
->> +               break;
->> +       case 5: /* Color bars */
->> +               pattern = 4;
->> +               break;
->> +       case 6: /* Solid white */
->> +               pattern = 15;
->> +               r = RGBMAX;
->> +               g = RGBMAX;
->> +               b = RGBMAX;
->> +               break;
->> +       case 7: /* Solid black */
->> +               pattern = 15;
->> +               break;
->> +       case 8: /* Solid red */
->> +               pattern = 15;
->> +               r = RGBMAX;
->> +               break;
->> +       case 9: /* Solid green */
->> +               pattern = 15;
->> +               g = RGBMAX;
->> +               break;
->> +       case 10: /* Solid blue */
->> +               pattern = 15;
->> +               b = RGBMAX;
->> +               break;
->> +
->> +       case 0: /* Disabled */
->> +       default:
->> +               mode = 0;
->> +               pattern = 0;
->> +               break;
->> +       }
->> +
->> +       mode |= HM1246_TEST_PATTERN_MODE_MODE(pattern);
->> +
->> +       return hm1246_cci_write_test_pattern(hm1246, mode, r, g, b);
->> +}
->> +
->> +static int hm1246_cci_write_cmu(struct hm1246 *hm1246, u32 reg, u64 val)
->> +{
->> +       struct cci_reg_sequence reg_seq[] = {
->> +               { reg, val },
->> +               { HM1246_CMU_UPDATE_REG, 0 },
->> +       };
->> +
->> +       return cci_multi_reg_write(hm1246->regmap, reg_seq, ARRAY_SIZE(reg_seq),
->> +                                  NULL);
->> +}
-> 
-> Do we really need this function ??
-> 
-> I guess In hm1246_set_ctrl after switch case you can write like:
-> cci_write(hm1246->regmap, HM1246_CMU_UPDATE_REG, 0, &ret);
-
-Currently, this is required for most controls, but not for all of them, 
-such as V4L2_CID_TEST_PATTERN.
-And currently, it is only one access instead of two otherwise.
-
-> 
->> +static int hm1246_set_ctrl(struct v4l2_ctrl *ctrl)
->> +{
->> +       struct hm1246 *hm1246 = container_of(ctrl->handler, struct hm1246,
->> +                                            ctrls);
-> 
-> Use container_of_const.
-> 
->> +       const struct v4l2_mbus_framefmt *format;
->> +       struct v4l2_subdev_state *state;
->> +       u32 val;
->> +       int ret;
->> +
->> +       state = v4l2_subdev_get_locked_active_state(&hm1246->sd);
->> +       format = v4l2_subdev_state_get_format(state, 0);
->> +
->> +       if (ctrl->id == V4L2_CID_VBLANK) {
->> +               s64 exposure_max;
->> +
->> +               exposure_max =
->> +                       format->height + ctrl->val - HM1246_COARSE_INTG_MARGIN;
->> +               ret = __v4l2_ctrl_modify_range(hm1246->exposure_ctrl,
->> +                                              hm1246->exposure_ctrl->minimum,
->> +                                              exposure_max,
->> +                                              hm1246->exposure_ctrl->step,
->> +                                              exposure_max);
->> +
->> +               if (ret) {
->> +                       dev_err(hm1246->dev, "exposure ctrl range update failed\n");
->> +                       return ret;
->> +               }
->> +       }
->> +
->> +       if (!pm_runtime_get_if_active(hm1246->dev))
->> +               return 0;
->> +
->> +       switch (ctrl->id) {
->> +       case V4L2_CID_EXPOSURE:
->> +               ret = hm1246_cci_write_cmu(hm1246, HM1246_COARSE_INTG_REG,
->> +                                          ctrl->val);
->> +               break;
->> +
->> +       case V4L2_CID_ANALOGUE_GAIN:
->> +               ret = hm1246_cci_write_cmu(hm1246,
->> +                                          HM1246_ANALOG_GLOBAL_GAIN_REG,
->> +                                          ctrl->val);
->> +               break;
->> +
->> +       case V4L2_CID_VBLANK:
->> +               val = hm1246->cur_mode->height + ctrl->val;
->> +               ret = hm1246_cci_write_cmu(hm1246,
->> +                                          HM1246_FRAME_LENGTH_LINES_REG, val);
->> +               break;
->> +
->> +       case V4L2_CID_HFLIP:
->> +       case V4L2_CID_VFLIP:
->> +               val = 0;
->> +               if (hm1246->hflip_ctrl->val)
->> +                       val |= HM1246_IMAGE_ORIENTATION_HFLIP;
->> +               if (hm1246->vflip_ctrl->val)
->> +                       val |= HM1246_IMAGE_ORIENTATION_VFLIP;
->> +
->> +               ret = hm1246_cci_write_cmu(hm1246, HM1246_IMAGE_ORIENTATION_REG,
->> +                                          val);
->> +               break;
->> +
->> +       case V4L2_CID_TEST_PATTERN:
->> +               ret = hm1246_test_pattern(hm1246, ctrl->val);
->> +               break;
->> +
->> +       default:
->> +               ret = -EINVAL;
->> +               break;
->> +       }
->> +
->> +       pm_runtime_put(hm1246->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static const struct v4l2_ctrl_ops hm1246_ctrl_ops = {
->> +       .s_ctrl = hm1246_set_ctrl,
->> +};
->> +
->> +static int hm1246_identify_module(struct hm1246 *hm1246)
->> +{
->> +       u64 model_id;
->> +       int ret;
->> +
->> +       if (hm1246->identified)
->> +               return 0;
->> +
->> +       ret = cci_read(hm1246->regmap, HM1246_MODEL_ID_REG, &model_id, NULL);
->> +       if (ret)
->> +               return ret;
->> +
->> +       if (model_id != HM1246_MODEL_ID) {
->> +               dev_err(hm1246->dev, "model id mismatch: 0x%llx!=0x%x\n",
->> +                       model_id, HM1246_MODEL_ID);
->> +               return -ENXIO;
->> +       }
->> +
->> +       hm1246->identified = true;
->> +
->> +       return 0;
->> +}
->> +
->> +static int hm1246_setup_moderegs(struct hm1246 *hm1246,
->> +                                const struct hm1246_mode *mode)
->> +{
->> +       const struct hm1246_reg_list *reg_list = &mode->reg_list;
->> +       const struct cci_reg_sequence modeaw[] = {
->> +               { HM1246_X_ADDR_START_REG, mode->left },
->> +               { HM1246_Y_ADDR_START_REG, mode->top },
->> +               { HM1246_X_ADDR_END_REG, mode->width - 1 },
->> +               { HM1246_Y_ADDR_END_REG, mode->height - 1 },
->> +               { HM1246_DWIN_XOFFSET_REG, mode->left },
->> +               { HM1246_DWIN_YOFFSET_REG, mode->top },
->> +               { HM1246_DWIN_XSIZE_REG, mode->width },
->> +               { HM1246_DWIN_YSIZE_REG, mode->height },
->> +               { HM1246_LINE_LENGTH_PCK_REG, mode->hts },
->> +       };
->> +       int ret = 0;
->> +
->> +       cci_multi_reg_write(hm1246->regmap, modeaw, ARRAY_SIZE(modeaw), &ret);
->> +       cci_multi_reg_write(hm1246->regmap, reg_list->regs,
->> +                           reg_list->num_of_regs, &ret);
->> +
->> +       return ret;
->> +}
->> +
->> +static int hm1246_setup_bus(struct hm1246 *hm1246)
->> +{
->> +       u64 polarity_ctrl = 0, pclk_ctrl = 0;
->> +       int ret = 0;
->> +
->> +       if (hm1246->mbus_flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
->> +               polarity_ctrl |= HM1246_POLARITY_CTRL_HSYNC;
->> +
->> +       if (hm1246->mbus_flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
->> +               polarity_ctrl |= HM1246_POLARITY_CTRL_VSYNC;
->> +
->> +       cci_write(hm1246->regmap, HM1246_POLARITY_CTRL_REG, polarity_ctrl,
->> +                 &ret);
->> +
->> +       /* If the clock output polarity flag PCLK_CTRL[3] is set (high), the
->> +        * data lines change state on the falling edge of PCLK and should
->> +        * therefore be sampled on the rising edge.
->> +        * This is different than described in the data sheet.
->> +        */
-> 
-> /*
->   * This is
->   * the correct format.
->   */
-> 
-> Correct this for all multiline comments.
-> 
->> +       if (hm1246->mbus_flags & V4L2_MBUS_PCLK_SAMPLE_RISING)
->> +               pclk_ctrl |= HM1246_PCLK_CTRL_POL;
->> +
->> +       cci_write(hm1246->regmap, HM1246_PCLK_CTRL_REG, pclk_ctrl, &ret);
->> +
->> +       return ret;
->> +}
->> +
->> +static int hm1246_enable_streams(struct v4l2_subdev *sd,
->> +                                struct v4l2_subdev_state *state, u32 pad,
->> +                                u64 streams_mask)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       const struct hm1246_mode *mode = hm1246->cur_mode;
->> +       int ret;
->> +
->> +       ret = pm_runtime_resume_and_get(hm1246->dev);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = hm1246_identify_module(hm1246);
->> +       if (ret)
->> +               goto err_rpm_put;
-> 
-> Why do we need to check this every time when enabling the stream?
-> Can we check it only once in the probe function?
-> 
-> Also, drop "identified" from the hm1246 struct.
-> After the change above, it will no longer be needed.
-
-Since the sensor is not even switched on at startup, it cannot be 
-identified there. This therefore happens once, when the sensor is 
-actually used for the first time. This behavior is also implemented by 
-some other drivers.
-
-> 
->> +
->> +       ret = hm1246_setup_pll(hm1246, mode);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "failed to setup PLL\n");
->> +               goto err_rpm_put;
->> +       }
->> +
->> +       ret = hm1246_setup_moderegs(hm1246, mode);
->> +       if (ret)
->> +               goto err_rpm_put;
->> +
->> +       ret = hm1246_setup_bus(hm1246);
->> +       if (ret)
->> +               goto err_rpm_put;
->> +
->> +       ret = __v4l2_ctrl_handler_setup(&hm1246->ctrls);
->> +       if (ret) {
->> +               dev_err(hm1246->dev, "failed to setup v4l2 controls\n");
->> +               goto err_rpm_put;
->> +       }
->> +
->> +       ret = cci_write(hm1246->regmap, HM1246_MODE_SELECT_REG,
->> +                       HM1246_MODE_SELECT_STREAM, NULL);
->> +       if (ret)
->> +               goto err_rpm_put;
->> +
->> +       /* Since mirroring may change the actual pixel format, it must not be
->> +        * changed during streaming.
->> +        */
->> +       __v4l2_ctrl_grab(hm1246->vflip_ctrl, true);
->> +       __v4l2_ctrl_grab(hm1246->hflip_ctrl, true);
->> +
->> +       return 0;
->> +
->> +err_rpm_put:
->> +       pm_runtime_put(hm1246->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static int hm1246_disable_streams(struct v4l2_subdev *sd,
->> +                                 struct v4l2_subdev_state *state, u32 pad,
->> +                                 u64 streams_mask)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       int ret;
->> +
->> +       ret = cci_write(hm1246->regmap, HM1246_MODE_SELECT_REG,
->> +                       HM1246_MODE_SELECT_STANDBY, NULL);
->> +
->> +       __v4l2_ctrl_grab(hm1246->vflip_ctrl, false);
->> +       __v4l2_ctrl_grab(hm1246->hflip_ctrl, false);
->> +
->> +       pm_runtime_put(hm1246->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static const struct v4l2_subdev_video_ops hm1246_video_ops = {
->> +       .s_stream = v4l2_subdev_s_stream_helper,
->> +
-> 
-> Droup extra line.
->   
->> +};
->> +
->> +static const struct v4l2_subdev_pad_ops hm1246_subdev_pad_ops = {
->> +       .enum_mbus_code = hm1246_enum_mbus_code,
->> +       .enum_frame_size = hm1246_enum_frame_size,
->> +       .get_fmt = v4l2_subdev_get_fmt,
->> +       .set_fmt = hm1246_set_format,
->> +       .get_selection = hm1246_get_selection,
->> +       .enable_streams = hm1246_enable_streams,
->> +       .disable_streams = hm1246_disable_streams,
->> +};
->> +
->> +static int __maybe_unused hm1246_g_register(struct v4l2_subdev *sd,
->> +                                           struct v4l2_dbg_register *reg)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       u64 val;
->> +       int ret;
->> +
->> +       if (!pm_runtime_get_if_in_use(sd->dev))
->> +               return 0;
->> +
->> +       ret = cci_read(hm1246->regmap, CCI_REG8(reg->reg), &val, NULL);
->> +       reg->val = val;
->> +
->> +       pm_runtime_put(sd->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static int __maybe_unused hm1246_s_register(struct v4l2_subdev *sd,
->> +                                           const struct v4l2_dbg_register *reg)
->> +{
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +       int ret;
->> +
->> +       if (!pm_runtime_get_if_in_use(sd->dev))
->> +               return 0;
->> +
->> +       ret = cci_write(hm1246->regmap, CCI_REG8(reg->reg), (u64)reg->val,
->> +                       NULL);
->> +
->> +       pm_runtime_put(sd->dev);
->> +
->> +       return ret;
->> +}
->> +
->> +static const struct v4l2_subdev_core_ops hm1246_core_ops = {
->> +#ifdef CONFIG_VIDEO_ADV_DEBUG
->> +       .g_register = hm1246_g_register,
->> +       .s_register = hm1246_s_register,
->> +#endif
->> +       .subscribe_event = v4l2_ctrl_subdev_subscribe_event,
->> +       .unsubscribe_event = v4l2_event_subdev_unsubscribe,
-> 
-> Droup this.
-> 
-> see: https://lore.kernel.org/linux-media/20241029162106.3005800-1-tomm.merciai@gmail.com
-> 
->> +};
->> +
->> +static const struct v4l2_subdev_ops hm1246_subdev_ops = {
->> +       .core = &hm1246_core_ops,
->> +       .video = &hm1246_video_ops,
->> +       .pad = &hm1246_subdev_pad_ops,
->> +};
->> +
->> +static const struct v4l2_subdev_internal_ops hm1246_internal_ops = {
->> +       .init_state = hm1246_init_state,
->> +};
->> +
->> +static int hm1246_get_regulators(struct device *dev, struct hm1246 *hm1246)
->> +{
->> +       unsigned int i;
->> +
->> +       for (i = 0; i < ARRAY_SIZE(hm1246_supply_names); i++)
->> +               hm1246->supplies[i].supply = hm1246_supply_names[i];
->> +
->> +       return devm_regulator_bulk_get(dev, ARRAY_SIZE(hm1246_supply_names),
->> +                                      hm1246->supplies);
->> +}
->> +
->> +static int hm1246_parse_fwnode(struct hm1246 *hm1246)
->> +{
->> +       struct fwnode_handle *endpoint;
->> +       struct v4l2_fwnode_endpoint bus_cfg = {
->> +               .bus_type = V4L2_MBUS_PARALLEL,
->> +       };
->> +       struct device *dev = hm1246->dev;
->> +       int ret;
->> +
->> +       endpoint = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
->> +                                                  FWNODE_GRAPH_ENDPOINT_NEXT);
->> +       if (!endpoint)
->> +               return dev_err_probe(dev, -EINVAL, "missing endpoint node\n");
->> +
->> +       ret = v4l2_fwnode_endpoint_parse(endpoint, &bus_cfg);
->> +       if (ret) {
->> +               dev_err_probe(dev, ret, "parsing endpoint node failed\n");
->> +               goto done;
->> +       }
->> +
->> +       hm1246->mbus_flags = bus_cfg.bus.parallel.flags;
->> +
->> +done:
->> +       fwnode_handle_put(endpoint);
->> +
->> +       return ret;
->> +}
->> +
->> +static int hm1246_init_controls(struct hm1246 *hm1246)
->> +{
->> +       struct i2c_client *client = v4l2_get_subdevdata(&hm1246->sd);
-> 
-> Unused, droup this.
-> 
->> +       const struct hm1246_mode *mode = &hm1246_modes[0];
->> +       const struct v4l2_ctrl_ops *ops = &hm1246_ctrl_ops;
-> 
-> Unused, droup this.
-> 
->> +       struct v4l2_fwnode_device_properties props;
->> +       struct v4l2_ctrl_handler *ctrl_hdlr;
->> +       s64 pixel_rate, exposure_max, vblank_min, hblank;
->> +       int ret;
->> +
->> +       ctrl_hdlr = &hm1246->ctrls;
->> +       ret = v4l2_ctrl_handler_init(ctrl_hdlr, 9);
-> 
-> v4l2_ctrl_new_fwnode_properties() adds 2 more, so this should be 11.
-> 
-> No need to check the return value explicitly here.
->   
->> +       if (ret)
->> +               return ret;
->> +
->> +       hm1246->hflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                              V4L2_CID_HFLIP, 0, 1, 1, 0);
->> +       if (hm1246->hflip_ctrl)
->> +               hm1246->hflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
->> +
->> +       hm1246->vflip_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                              V4L2_CID_VFLIP, 0, 1, 1, 0);
->> +       if (hm1246->vflip_ctrl)
->> +               hm1246->vflip_ctrl->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
->> +
->> +       v4l2_ctrl_cluster(2, &hm1246->hflip_ctrl);
->> +
->> +       hm1246->link_freq_ctrl =
->> +               v4l2_ctrl_new_int_menu(ctrl_hdlr,
->> +                                      &hm1246_ctrl_ops,
->> +                                      V4L2_CID_LINK_FREQ,
->> +                                      ARRAY_SIZE(hm1246_link_freqs) - 1,
->> +                                      0,
->> +                                      hm1246_link_freqs);
->> +       if (hm1246->link_freq_ctrl)
->> +               hm1246->link_freq_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
->> +
->> +       pixel_rate = div_u64(hm1246_link_freqs[mode->link_freq_index],
->> +                            mode->clocks_per_pixel);
->> +       hm1246->pixel_rate_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                                   V4L2_CID_PIXEL_RATE, 0,
->> +                                                   pixel_rate, 1, pixel_rate);
->> +
->> +       vblank_min = mode->vts_min - mode->height;
->> +       hm1246->vblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                               V4L2_CID_VBLANK, vblank_min,
->> +                                               HM1246_VTS_MAX - mode->height,
->> +                                               1, vblank_min);
->> +
->> +       hblank = mode->hts - mode->width;
->> +       hm1246->hblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                               V4L2_CID_HBLANK, hblank, hblank,
->> +                                               1, hblank);
->> +       if (hm1246->hblank_ctrl)
->> +               hm1246->hblank_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
->> +
->> +       v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
->> +                         HM1246_ANALOG_GLOBAL_GAIN_MIN,
->> +                         HM1246_ANALOG_GLOBAL_GAIN_MAX,
->> +                         HM1246_ANALOG_GLOBAL_GAIN_STEP,
->> +                         HM1246_ANALOG_GLOBAL_GAIN_MIN);
->> +
->> +       exposure_max = mode->vts_min - HM1246_COARSE_INTG_MARGIN;
->> +       hm1246->exposure_ctrl = v4l2_ctrl_new_std(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                                 V4L2_CID_EXPOSURE,
->> +                                                 HM1246_COARSE_INTG_MIN,
->> +                                                 exposure_max,
->> +                                                 HM1246_COARSE_INTG_STEP,
->> +                                                 exposure_max);
->> +
->> +       v4l2_ctrl_new_std_menu_items(ctrl_hdlr, &hm1246_ctrl_ops,
->> +                                    V4L2_CID_TEST_PATTERN,
->> +                                    ARRAY_SIZE(hm1246_test_pattern_menu) - 1,
->> +                                    0, 0, hm1246_test_pattern_menu);
->> +
->> +       ret = v4l2_fwnode_device_parse(&client->dev, &props);
->> +       if (ret)
->> +               goto err_v4l2_ctrl_handler_free;
->> +
->> +       ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, ops, &props);
->> +       if (ret)
->> +               goto err_v4l2_ctrl_handler_free;
->> +
->> +       if (ctrl_hdlr->error) {
->> +               ret = ctrl_hdlr->error;
->> +               goto err_v4l2_ctrl_handler_free;
->> +       }
->> +
->> +       hm1246->sd.ctrl_handler = ctrl_hdlr;
->> +
->> +       return 0;
->> +
->> +err_v4l2_ctrl_handler_free:
->> +       v4l2_ctrl_handler_free(ctrl_hdlr);
->> +
->> +       return ret;
->> +}
->> +
->> +static int hm1246_probe(struct i2c_client *client)
->> +{
->> +       struct device *dev = &client->dev;
->> +       struct hm1246 *hm1246;
->> +       int ret;
->> +
->> +       hm1246 = devm_kzalloc(dev, sizeof(*hm1246), GFP_KERNEL);
->> +       if (!hm1246)
->> +               return -ENOMEM;
->> +
->> +       hm1246->dev = dev;
-> 
-> No need for a temporary variable.
-
-Since the variable is used more than 10 times, I thought it would be worth.
-
-> 
-> hm1246->dev = &client->dev;
->   
->> +
->> +       ret = hm1246_parse_fwnode(hm1246);
->> +       if (ret)
->> +               return ret;
->> +
->> +       hm1246->regmap = devm_cci_regmap_init_i2c(client, 16);
->> +       if (IS_ERR(hm1246->regmap))
->> +               return dev_err_probe(dev, PTR_ERR(hm1246->regmap),
->> +                                    "failed to init CCI\n");
->> +
->> +       hm1246->xclk = devm_clk_get(dev, NULL);
-> 
-> Use devm_v4l2_sensor_clk_get.
-
-Oh. I wasn't aware that these patches had already been finally accepted 
-or merged.
-
-> 
->> +       if (IS_ERR(hm1246->xclk))
->> +               return dev_err_probe(dev, PTR_ERR(hm1246->xclk),
->> +                                    "failed to get xclk\n");
->> +
->> +       hm1246->xclk_freq = clk_get_rate(hm1246->xclk);
->> +       if (hm1246->xclk_freq < HM1246_XCLK_MIN ||
->> +           hm1246->xclk_freq > HM1246_XCLK_MAX)
->> +               return dev_err_probe(dev, -EINVAL,
->> +                                    "xclk frequency out of range: %luHz\n",
->> +                                    hm1246->xclk_freq);
->> +
->> +       ret = hm1246_get_regulators(dev, hm1246);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "failed to get regulators\n");
->> +
->> +       hm1246->reset_gpio =
->> +               devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->> +       if (IS_ERR(hm1246->reset_gpio))
->> +               return dev_err_probe(dev, PTR_ERR(hm1246->reset_gpio),
->> +                                    "failed to get reset GPIO\n");
->> +
->> +       v4l2_i2c_subdev_init(&hm1246->sd, client, &hm1246_subdev_ops);
->> +       hm1246->sd.internal_ops = &hm1246_internal_ops;
->> +       hm1246->cur_mode = &hm1246_modes[0];
-> 
-> I don't think we need cur_mode, so drop this.
-> Instead, use v4l2_find_nearest_size where appropriate.
-> 
->> +       ret = hm1246_init_controls(hm1246);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "failed to init controls\n");
->> +
->> +       hm1246->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
->> +                           V4L2_SUBDEV_FL_HAS_EVENTS;
-> 
-> see: https://lore.kernel.org/linux-media/20241029162106.3005800-1-tomm.merciai@gmail.com
->   
->> +       hm1246->pad.flags = MEDIA_PAD_FL_SOURCE;
->> +       hm1246->sd.dev = &client->dev;
-> 
-> Unused, droup this line.
-
-Was used in hm1246_{g,s}_register but I could replace it there.
-
-> 
->> +       hm1246->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
->> +
->> +       ret = media_entity_pads_init(&hm1246->sd.entity, 1, &hm1246->pad);
->> +       if (ret) {
->> +               dev_err_probe(dev, ret, "failed to init media pads\n");
->> +               goto err_v4l2_ctrl_handler_free;
->> +       }
->> +
->> +       hm1246->sd.state_lock = hm1246->ctrls.lock;
->> +       ret = v4l2_subdev_init_finalize(&hm1246->sd);
->> +       if (ret) {
->> +               dev_err_probe(dev, ret, "failed to init v4l2 subdev\n");
->> +               goto err_media_entity_cleanup;
->> +       }
->> +
->> +       ret = v4l2_async_register_subdev_sensor(&hm1246->sd);
->> +       if (ret) {
->> +               dev_err_probe(dev, ret, "failed to register v4l2 subdev\n");
->> +               goto err_subdev_cleanup;
->> +       }
->> +
->> +       pm_runtime_enable(hm1246->dev);
->> +       pm_runtime_set_autosuspend_delay(hm1246->dev, 1000);
->> +       pm_runtime_use_autosuspend(hm1246->dev);
-> 
-> Runtime PM should be fully initialized before calling
-> v4l2_async_register_subdev_sensor(), so you need to move the lines above
-> the subdevice registration.
-> 
-> Also, right now the device status is suspended,
-> so use pm_runtime_set_active().
-
-As mentioned above, the sensor should not be switched on during probe.
-But the sequence should still be changed, of course.
-
-Thanks,
-  ~Matthias
-
->   
->> +       pm_runtime_idle(hm1246->dev);
->> +
->> +       return 0;
->> +
->> +err_subdev_cleanup:
->> +       v4l2_subdev_cleanup(&hm1246->sd);
->> +       pm_runtime_disable(hm1246->dev);
->> +       pm_runtime_set_suspended(hm1246->dev);
->> +
->> +err_media_entity_cleanup:
->> +       media_entity_cleanup(&hm1246->sd.entity);
->> +
->> +err_v4l2_ctrl_handler_free:
->> +       v4l2_ctrl_handler_free(&hm1246->ctrls);
->> +
->> +       return ret;
->> +}
->> +
->> +static void hm1246_remove(struct i2c_client *client)
->> +{
->> +       struct v4l2_subdev *sd = i2c_get_clientdata(client);
->> +       struct hm1246 *hm1246 = to_hm1246(sd);
->> +
->> +       v4l2_async_unregister_subdev(&hm1246->sd);
->> +       v4l2_subdev_cleanup(sd);
->> +       media_entity_cleanup(&hm1246->sd.entity);
->> +       v4l2_ctrl_handler_free(&hm1246->ctrls);
->> +
->> +       pm_runtime_disable(&client->dev);
->> +       if (!pm_runtime_status_suspended(&client->dev)) {
->> +               hm1246_power_off(hm1246->dev);
->> +               pm_runtime_set_suspended(&client->dev);
->> +       }
->> +}
->> +
->> +static const struct of_device_id hm1246_of_match[] = {
->> +       { .compatible = "himax,hm1246" }pm_runtime_set_active,
->> +       {}
->> +};
->> +MODULE_DEVICE_TABLE(of, hm1246_of_match);
->> +
->> +static DEFINE_RUNTIME_DEV_PM_OPS(hm1246_pm_ops, hm1246_power_off,
->> +                                hm1246_power_on, NULL);
->> +
->> +static struct i2c_driver hm1246_i2c_driver = {
->> +       .driver = {
->> +               .of_match_table = hm1246_of_match,
->> +               .pm = pm_ptr(&hm1246_pm_ops),
->> +               .name = "hm1246",
->> +       },
->> +       .probe = hm1246_probe,
->> +       .remove = hm1246_remove,
->> +};
->> +module_i2c_driver(hm1246_i2c_driver);
->> +
->> +MODULE_DESCRIPTION("Himax HM1246 camera driver");
->> +MODULE_AUTHOR("Matthias Fend <matthias.fend@emfend.at>");
->> +MODULE_LICENSE("GPL");
->>   
->> --
->> 2.34.1
-> 
-> Best Regards,
-> Tarang
+Hello Stephen, Michael.
+	sorry to bother you, do you have time to review this patch?
+Ryan
+> >
+> > > -----Original Message-----
+> > > From: Ryan Chen <ryan_chen@aspeedtech.com>
+> > > Sent: Tuesday, July 8, 2025 1:29 PM
+> > > To: Ryan Chen <ryan_chen@aspeedtech.com>; Michael Turquette
+> > > <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Philipp
+> > > Zabel <p.zabel@pengutronix.de>; Joel Stanley <joel@jms.id.au>;
+> > > Andrew Jeffery <andrew@codeconstruct.com.au>; Rob Herring
+> > > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor
+> > > Dooley <conor+dt@kernel.org>; linux-clk@vger.kernel.org;
+> > > linux-arm-kernel@lists.infradead.org;
+> > > linux-aspeed@lists.ozlabs.org; devicetree@vger.kernel.org;
+> > > linux-kernel@vger.kernel.org; Mo Elbadry <elbadrym@google.com>; Rom
+> > > Lemarchand <romlem@google.com>; William Kennington
+> > <wak@google.com>;
+> > > Yuxiao Zhang <yuxiaozhang@google.com>; wthai@nvidia.com;
+> > > leohu@nvidia.com; dkodihalli@nvidia.com; spuranik@nvidia.com
+> > > Subject: [PATCH v12 3/3] clk: aspeed: add AST2700 clock driver
+> > >
+> > > Add AST2700 clock controller driver and also use axiliary device
+> > > framework register the reset controller driver.
+> > > Due to clock and reset using the same register region.
+> > >
+> > > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> > > ---
+> > >  drivers/clk/Kconfig       |    8 +
+> > >  drivers/clk/Makefile      |    1 +
+> > >  drivers/clk/clk-ast2700.c | 1138
+> > > +++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 1147 insertions(+)  create mode 100644
+> > > drivers/clk/clk-ast2700.c
+> > >
+> > > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig index
+> > > 19c1ed280fd7..10b67370f65d 100644
+> > > --- a/drivers/clk/Kconfig
+> > > +++ b/drivers/clk/Kconfig
+> > > @@ -288,6 +288,14 @@ config COMMON_CLK_ASPEED
+> > >  	  The G4 and G5 series, including the ast2400 and ast2500, are
+> > > supported
+> > >  	  by this driver.
+> > >
+> > > +config COMMON_CLK_AST2700
+> > > +	bool "Clock driver for AST2700 SoC"
+> > > +	depends on ARCH_ASPEED || COMPILE_TEST
+> > > +	help
+> > > +	  This driver provides support for clock on AST2700 SoC.
+> > > +	  The driver is responsible for managing the various clocks require=
+d
+> > > +	  by the peripherals and cores within the AST2700.
+> > > +
+> > >  config COMMON_CLK_S2MPS11
+> > >  	tristate "Clock driver for S2MPS1X/S5M8767 MFD"
+> > >  	depends on MFD_SEC_CORE || COMPILE_TEST diff --git
+> > > a/drivers/clk/Makefile b/drivers/clk/Makefile index
+> > > 42867cd37c33..3d911b81149c 100644
+> > > --- a/drivers/clk/Makefile
+> > > +++ b/drivers/clk/Makefile
+> > > @@ -63,6 +63,7 @@ obj-$(CONFIG_COMMON_CLK_FSL_SAI)	+=3D
+> clk-fsl-sai.o
+> > >  obj-$(CONFIG_COMMON_CLK_GEMINI)		+=3D clk-gemini.o
+> > >  obj-$(CONFIG_COMMON_CLK_ASPEED)		+=3D clk-aspeed.o
+> > >  obj-$(CONFIG_MACH_ASPEED_G6)		+=3D clk-ast2600.o
+> > > +obj-$(CONFIG_COMMON_CLK_AST2700)	+=3D clk-ast2700.o
+> > >  obj-$(CONFIG_ARCH_HIGHBANK)		+=3D clk-highbank.o
+> > >  obj-$(CONFIG_CLK_HSDK)			+=3D clk-hsdk-pll.o
+> > >  obj-$(CONFIG_COMMON_CLK_K210)		+=3D clk-k210.o
+> > > diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
+> > > new file mode
+> > > 100644 index 000000000000..c6d77e3f4ace
+> > > --- /dev/null
+> > > +++ b/drivers/clk/clk-ast2700.c
+> > > @@ -0,0 +1,1138 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Copyright (c) 2024 ASPEED Technology Inc.
+> > > + * Author: Ryan Chen <ryan_chen@aspeedtech.com>  */ #include
+> > > +<linux/auxiliary_bus.h> #include <linux/bitfield.h> #include
+> > > +<linux/clk-provider.h> #include <linux/io.h> #include
+> > > +<linux/mod_devicetable.h> #include <linux/of_platform.h> #include
+> > > +<linux/platform_device.h> #include <linux/slab.h> #include
+> > > +<linux/units.h>
+> > > +
+> > > +#include <dt-bindings/clock/aspeed,ast2700-scu.h>
+> > > +
+> > > +#define SCU_CLK_12MHZ	(12 * HZ_PER_MHZ)
+> > > +#define SCU_CLK_24MHZ	(24 * HZ_PER_MHZ)
+> > > +#define SCU_CLK_25MHZ	(25 * HZ_PER_MHZ)
+> > > +#define SCU_CLK_192MHZ	(192 * HZ_PER_MHZ)
+> > > +
+> > > +/* SOC0 */
+> > > +#define SCU0_HWSTRAP1		0x010
+> > > +#define SCU0_CLK_STOP		0x240
+> > > +#define SCU0_CLK_SEL1		0x280
+> > > +#define SCU0_CLK_SEL2		0x284
+> > > +#define GET_USB_REFCLK_DIV(x)	((GENMASK(23, 20) & (x)) >> 20)
+> > > +#define UART_DIV13_EN		BIT(30)
+> > > +#define SCU0_HPLL_PARAM		0x300
+> > > +#define SCU0_DPLL_PARAM		0x308
+> > > +#define SCU0_MPLL_PARAM		0x310
+> > > +#define SCU0_D0CLK_PARAM	0x320
+> > > +#define SCU0_D1CLK_PARAM	0x330
+> > > +#define SCU0_CRT0CLK_PARAM	0x340
+> > > +#define SCU0_CRT1CLK_PARAM	0x350
+> > > +#define SCU0_MPHYCLK_PARAM	0x360
+> > > +
+> > > +/* SOC1 */
+> > > +#define SCU1_REVISION_ID	0x0
+> > > +#define REVISION_ID		GENMASK(23, 16)
+> > > +#define SCU1_CLK_STOP		0x240
+> > > +#define SCU1_CLK_STOP2		0x260
+> > > +#define SCU1_CLK_SEL1		0x280
+> > > +#define SCU1_CLK_SEL2		0x284
+> > > +#define SCU1_CLK_I3C_DIV_MASK	GENMASK(25, 23)
+> > > +#define SCU1_CLK_I3C_DIV(n)	((n) - 1)
+> > > +#define UXCLK_MASK		GENMASK(1, 0)
+> > > +#define HUXCLK_MASK		GENMASK(4, 3)
+> > > +#define SCU1_HPLL_PARAM		0x300
+> > > +#define SCU1_APLL_PARAM		0x310
+> > > +#define SCU1_DPLL_PARAM		0x320
+> > > +#define SCU1_UXCLK_CTRL		0x330
+> > > +#define SCU1_HUXCLK_CTRL	0x334
+> > > +#define SCU1_MAC12_CLK_DLY	0x390
+> > > +#define SCU1_MAC12_CLK_DLY_100M	0x394
+> > > +#define SCU1_MAC12_CLK_DLY_10M	0x398
+> > > +
+> > > +enum ast2700_clk_type {
+> > > +	CLK_MUX,
+> > > +	CLK_PLL,
+> > > +	CLK_HPLL,
+> > > +	CLK_GATE,
+> > > +	CLK_MISC,
+> > > +	CLK_FIXED,
+> > > +	DCLK_FIXED,
+> > > +	CLK_DIVIDER,
+> > > +	CLK_UART_PLL,
+> > > +	CLK_FIXED_FACTOR,
+> > > +	CLK_GATE_ASPEED,
+> > > +};
+> > > +
+> > > +struct ast2700_clk_fixed_factor_data {
+> > > +	const struct clk_parent_data *parent;
+> > > +	unsigned int mult;
+> > > +	unsigned int div;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_gate_data {
+> > > +	const struct clk_parent_data *parent;
+> > > +	u32 flags;
+> > > +	u32 reg;
+> > > +	u8 bit;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_mux_data {
+> > > +	const struct clk_parent_data *parents;
+> > > +	unsigned int num_parents;
+> > > +	u8 bit_shift;
+> > > +	u8 bit_width;
+> > > +	u32 reg;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_div_data {
+> > > +	const struct clk_div_table *div_table;
+> > > +	const struct clk_parent_data *parent;
+> > > +	u8 bit_shift;
+> > > +	u8 bit_width;
+> > > +	u32 reg;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_pll_data {
+> > > +	const struct clk_parent_data *parent;
+> > > +	u32 reg;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_fixed_rate_data {
+> > > +	unsigned long fixed_rate;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_info {
+> > > +	const char *name;
+> > > +	u8 clk_idx;
+> > > +	u32 reg;
+> > > +	u32 type;
+> > > +	union {
+> > > +		struct ast2700_clk_fixed_factor_data factor;
+> > > +		struct ast2700_clk_fixed_rate_data rate;
+> > > +		struct ast2700_clk_gate_data gate;
+> > > +		struct ast2700_clk_div_data div;
+> > > +		struct ast2700_clk_pll_data pll;
+> > > +		struct ast2700_clk_mux_data mux;
+> > > +	} data;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_data {
+> > > +	struct ast2700_clk_info const *clk_info;
+> > > +	unsigned int nr_clks;
+> > > +	const int scu;
+> > > +};
+> > > +
+> > > +struct ast2700_clk_ctrl {
+> > > +	const struct ast2700_clk_data *clk_data;
+> > > +	struct device *dev;
+> > > +	void __iomem *base;
+> > > +	spinlock_t lock; /* clk lock */
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_rgmii_div_table[] =3D {
+> > > +	{ 0x0, 4 },
+> > > +	{ 0x1, 4 },
+> > > +	{ 0x2, 6 },
+> > > +	{ 0x3, 8 },
+> > > +	{ 0x4, 10 },
+> > > +	{ 0x5, 12 },
+> > > +	{ 0x6, 14 },
+> > > +	{ 0x7, 16 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_rmii_div_table[] =3D {
+> > > +	{ 0x0, 8 },
+> > > +	{ 0x1, 8 },
+> > > +	{ 0x2, 12 },
+> > > +	{ 0x3, 16 },
+> > > +	{ 0x4, 20 },
+> > > +	{ 0x5, 24 },
+> > > +	{ 0x6, 28 },
+> > > +	{ 0x7, 32 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_clk_div_table[] =3D {
+> > > +	{ 0x0, 2 },
+> > > +	{ 0x1, 2 },
+> > > +	{ 0x2, 3 },
+> > > +	{ 0x3, 4 },
+> > > +	{ 0x4, 5 },
+> > > +	{ 0x5, 6 },
+> > > +	{ 0x6, 7 },
+> > > +	{ 0x7, 8 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_clk_div_table2[] =3D {
+> > > +	{ 0x0, 2 },
+> > > +	{ 0x1, 4 },
+> > > +	{ 0x2, 6 },
+> > > +	{ 0x3, 8 },
+> > > +	{ 0x4, 10 },
+> > > +	{ 0x5, 12 },
+> > > +	{ 0x6, 14 },
+> > > +	{ 0x7, 16 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_hclk_div_table[] =3D {
+> > > +	{ 0x0, 6 },
+> > > +	{ 0x1, 5 },
+> > > +	{ 0x2, 4 },
+> > > +	{ 0x3, 7 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_div_table ast2700_clk_uart_div_table[] =3D {
+> > > +	{ 0x0, 1 },
+> > > +	{ 0x1, 13 },
+> > > +	{ 0 }
+> > > +};
+> > > +
+> > > +static const struct clk_parent_data soc0_clkin[] =3D {
+> > > +	{ .fw_name =3D "soc0-clkin", .name =3D "soc0-clkin" }, };
+> > > +
+> > > +static const struct clk_parent_data pspclk[] =3D {
+> > > +	{ .fw_name =3D "pspclk", .name =3D "pspclk" }, };
+> > > +
+> > > +static const struct clk_parent_data mphysrc[] =3D {
+> > > +	{ .fw_name =3D "mphysrc", .name =3D "mphysrc" }, };
+> > > +
+> > > +static const struct clk_parent_data u2phy_refclksrc[] =3D {
+> > > +	{ .fw_name =3D "u2phy_refclksrc", .name =3D "u2phy_refclksrc" }, };
+> > > +
+> > > +static const struct clk_parent_data soc0_hpll[] =3D {
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" }, };
+> > > +
+> > > +static const struct clk_parent_data soc0_mpll[] =3D {
+> > > +	{ .fw_name =3D "soc0-mpll", .name =3D "soc0-mpll" }, };
+> > > +
+> > > +static const struct clk_parent_data axi0clk[] =3D {
+> > > +	{ .fw_name =3D "axi0clk", .name =3D "axi0clk" }, };
+> > > +
+> > > +static const struct clk_parent_data soc0_ahbmux[] =3D {
+> > > +	{ .fw_name =3D "soc0-ahbmux", .name =3D "soc0-ahbmux" }, };
+> > > +
+> > > +static const struct clk_parent_data soc0_uartclk[] =3D {
+> > > +	{ .fw_name =3D "soc0-uartclk", .name =3D "soc0-uartclk" }, };
+> > > +
+> > > +static const struct clk_parent_data emmcclk[] =3D {
+> > > +	{ .fw_name =3D "emmcclk", .name =3D "emmcclk" }, };
+> > > +
+> > > +static const struct clk_parent_data emmcsrc_mux[] =3D {
+> > > +	{ .fw_name =3D "emmcsrc-mux", .name =3D "emmcsrc-mux" }, };
+> > > +
+> > > +static const struct clk_parent_data soc1_clkin[] =3D {
+> > > +	{ .fw_name =3D "soc1-clkin", .name =3D "soc1-clkin" }, };
+> > > +
+> > > +static const struct clk_parent_data soc1_hpll[] =3D {
+> > > +	{ .fw_name =3D "soc1-hpll", .name =3D "soc1-hpll" }, };
+> > > +
+> > > +static const struct clk_parent_data soc1_apll[] =3D {
+> > > +	{ .fw_name =3D "soc1-apll", .name =3D "soc1-apll" }, };
+> > > +
+> > > +static const struct clk_parent_data sdclk[] =3D {
+> > > +	{ .fw_name =3D "sdclk", .name =3D "sdclk" }, };
+> > > +
+> > > +static const struct clk_parent_data sdclk_mux[] =3D {
+> > > +	{ .fw_name =3D "sdclk-mux", .name =3D "sdclk-mux" }, };
+> > > +
+> > > +static const struct clk_parent_data huartxclk[] =3D {
+> > > +	{ .fw_name =3D "huartxclk", .name =3D "huartxclk" }, };
+> > > +
+> > > +static const struct clk_parent_data uxclk[] =3D {
+> > > +	{ .fw_name =3D "uxclk", .name =3D "uxclk" }, };
+> > > +
+> > > +static const struct clk_parent_data huxclk[] =3D {
+> > > +	{ .fw_name =3D "huxclk", .name =3D "huxclk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart0clk[] =3D {
+> > > +	{ .fw_name =3D "uart0clk", .name =3D "uart0clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart1clk[] =3D {
+> > > +	{ .fw_name =3D "uart1clk", .name =3D "uart1clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart2clk[] =3D {
+> > > +	{ .fw_name =3D "uart2clk", .name =3D "uart2clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart3clk[] =3D {
+> > > +	{ .fw_name =3D "uart3clk", .name =3D "uart3clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart5clk[] =3D {
+> > > +	{ .fw_name =3D "uart5clk", .name =3D "uart5clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart4clk[] =3D {
+> > > +	{ .fw_name =3D "uart4clk", .name =3D "uart4clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart6clk[] =3D {
+> > > +	{ .fw_name =3D "uart6clk", .name =3D "uart6clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart7clk[] =3D {
+> > > +	{ .fw_name =3D "uart7clk", .name =3D "uart7clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart8clk[] =3D {
+> > > +	{ .fw_name =3D "uart8clk", .name =3D "uart8clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart9clk[] =3D {
+> > > +	{ .fw_name =3D "uart9clk", .name =3D "uart9clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart10clk[] =3D {
+> > > +	{ .fw_name =3D "uart10clk", .name =3D "uart10clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart11clk[] =3D {
+> > > +	{ .fw_name =3D "uart11clk", .name =3D "uart11clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart12clk[] =3D {
+> > > +	{ .fw_name =3D "uart12clk", .name =3D "uart12clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart13clk[] =3D {
+> > > +	{ .fw_name =3D "uart13clk", .name =3D "uart13clk" }, };
+> > > +
+> > > +static const struct clk_parent_data uart14clk[] =3D {
+> > > +	{ .fw_name =3D "uart14clk", .name =3D "uart14clk" }, };
+> > > +
+> > > +static const struct clk_parent_data soc1_i3c[] =3D {
+> > > +	{ .fw_name =3D "soc1-i3c", .name =3D "soc1-i3c" }, };
+> > > +
+> > > +static const struct clk_parent_data canclk[] =3D {
+> > > +	{ .fw_name =3D "canclk", .name =3D "canclk" }, };
+> > > +
+> > > +static const struct clk_parent_data rmii[] =3D {
+> > > +	{ .fw_name =3D "rmii", .name =3D "rmii" }, };
+> > > +
+> > > +static const struct clk_parent_data hclk_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-mpll", .name =3D "soc0-mpll" }, };
+> > > +
+> > > +static const struct clk_parent_data mhpll_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-mpll", .name =3D "soc0-mpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" }, };
+> > > +
+> > > +static const struct clk_parent_data mphy_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-mpll", .name =3D "soc0-mpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-dpll", .name =3D "soc0-dpll" },
+> > > +	{ .fw_name =3D "soc0-clk192Mhz", .name =3D "soc0-clk192Mhz" }, };
+> > > +
+> > > +static const struct clk_parent_data psp_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-mpll", .name =3D "soc0-mpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-mpll_div2", .name =3D "soc0-mpll_div2" },
+> > > +	{ .fw_name =3D "soc0-hpll_div2", .name =3D "soc0-hpll_div2" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" },
+> > > +	{ .fw_name =3D "soc0-hpll", .name =3D "soc0-hpll" }, };
+> > > +
+> > > +static const struct clk_parent_data uart_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-clk24Mhz", .name =3D "soc0-clk24Mhz" },
+> > > +	{ .fw_name =3D "soc0-clk192Mhz", .name =3D "soc0-clk192Mhz" }, };
+> > > +
+> > > +static const struct clk_parent_data emmc_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc0-mpll_div4", .name =3D "soc0-mpll_div4" },
+> > > +	{ .fw_name =3D "soc0-hpll_div4", .name =3D "soc0-hpll_div4" }, };
+> > > +
+> > > +static const struct clk_parent_data sdio_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc1-hpll", .name =3D "soc1-hpll" },
+> > > +	{ .fw_name =3D "soc1-apll", .name =3D "soc1-apll" }, };
+> > > +
+> > > +static const struct clk_parent_data ux_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "soc1-apll_div4", .name =3D "soc1-apll_div4" },
+> > > +	{ .fw_name =3D "soc1-apll_div2", .name =3D "soc1-apll_div2" },
+> > > +	{ .fw_name =3D "soc1-apll", .name =3D "soc1-apll" },
+> > > +	{ .fw_name =3D "soc1-hpll", .name =3D "soc1-hpll" }, };
+> > > +
+> > > +static const struct clk_parent_data uartx_clk_sels[] =3D {
+> > > +	{ .fw_name =3D "uartxclk", .name =3D "uartxclk" },
+> > > +	{ .fw_name =3D "huartxclk", .name =3D "huartxclk" }, };
+> > > +
+> > > +#define FIXED_CLK(_id, _name, _rate) \
+> > > +	[_id] =3D { \
+> > > +		.type =3D CLK_FIXED, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { .rate =3D { .fixed_rate =3D _rate, } }, \
+> > > +	}
+> > > +
+> > > +#define PLL_CLK(_id, _type, _name, _parent, _reg) \
+> > > +	[_id] =3D { \
+> > > +		.type =3D _type, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { .pll =3D { .parent =3D _parent, .reg =3D _reg, } }, \
+> > > +	}
+> > > +
+> > > +#define MUX_CLK(_id, _name, _parents, _num_parents, _reg, _shift,
+> > > +_width)
+> > > \
+> > > +	[_id] =3D { \
+> > > +		.type =3D CLK_MUX, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { \
+> > > +			.mux =3D { \
+> > > +				.parents =3D _parents, \
+> > > +				.num_parents =3D _num_parents, \
+> > > +				.reg =3D _reg, \
+> > > +				.bit_shift =3D _shift, \
+> > > +				.bit_width =3D _width, \
+> > > +			}, \
+> > > +		}, \
+> > > +	}
+> > > +
+> > > +#define DIVIDER_CLK(_id, _name, _parent, _reg, _shift, _width,
+> > > +_div_table)
+> > \
+> > > +	[_id] =3D { \
+> > > +		.type =3D CLK_DIVIDER, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { \
+> > > +			.div =3D { \
+> > > +				.parent =3D _parent, \
+> > > +				.reg =3D _reg, \
+> > > +				.bit_shift =3D _shift, \
+> > > +				.bit_width =3D _width, \
+> > > +				.div_table =3D _div_table, \
+> > > +			}, \
+> > > +		}, \
+> > > +	}
+> > > +
+> > > +#define FIXED_FACTOR_CLK(_id, _name, _parent, _mult, _div) \
+> > > +	[_id] =3D { \
+> > > +		.type =3D CLK_FIXED_FACTOR, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { .factor =3D { .parent =3D _parent, .mult =3D _mult, .d=
+iv =3D
+> _div, } }, \
+> > > +	}
+> > > +
+> > > +#define GATE_CLK(_id, _type, _name, _parent, _reg, _bit, _flags) \
+> > > +	[_id] =3D { \
+> > > +		.type =3D _type, \
+> > > +		.name =3D _name, \
+> > > +		.data =3D { \
+> > > +			.gate =3D { \
+> > > +				.parent =3D _parent, \
+> > > +				.reg =3D _reg, \
+> > > +				.bit =3D _bit, \
+> > > +				.flags =3D _flags, \
+> > > +			}, \
+> > > +		}, \
+> > > +	}
+> > > +
+> > > +static const struct ast2700_clk_info ast2700_scu0_clk_info[] __initc=
+onst =3D
+> {
+> > > +	FIXED_CLK(SCU0_CLKIN, "soc0-clkin", SCU_CLK_25MHZ),
+> > > +	FIXED_CLK(SCU0_CLK_24M, "soc0-clk24Mhz", SCU_CLK_24MHZ),
+> > > +	FIXED_CLK(SCU0_CLK_192M, "soc0-clk192Mhz", SCU_CLK_192MHZ),
+> > > +	FIXED_CLK(SCU0_CLK_U2PHY_CLK12M, "u2phy_clk12m",
+> > > SCU_CLK_12MHZ),
+> > > +	PLL_CLK(SCU0_CLK_HPLL, CLK_HPLL, "soc0-hpll", soc0_clkin,
+> > > SCU0_HPLL_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_DPLL, CLK_PLL, "soc0-dpll", soc0_clkin,
+> > > SCU0_DPLL_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_MPLL, CLK_PLL, "soc0-mpll", soc0_clkin,
+> > > SCU0_MPLL_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_D0, DCLK_FIXED, "d0clk", NULL,
+> > > SCU0_D0CLK_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_D1, DCLK_FIXED, "d1clk", NULL,
+> > > SCU0_D1CLK_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_CRT0, DCLK_FIXED, "crt0clk", NULL,
+> > > SCU0_CRT0CLK_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_CRT1, DCLK_FIXED, "crt1clk", NULL,
+> > > SCU0_CRT1CLK_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_MPHY, CLK_MISC, "mphyclk", mphysrc,
+> > > SCU0_MPHYCLK_PARAM),
+> > > +	PLL_CLK(SCU0_CLK_U2PHY_REFCLK, CLK_MISC, "u2phy_refclk",
+> > > u2phy_refclksrc, SCU0_CLK_SEL2),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_HPLL_DIV2, "soc0-hpll_div2",
+> soc0_hpll,
+> > > +1,
+> > > 2),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_HPLL_DIV4, "soc0-hpll_div4",
+> soc0_hpll,
+> > > +1,
+> > > 4),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_MPLL_DIV2, "soc0-mpll_div2",
+> soc0_mpll,
+> > > 1, 2),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_MPLL_DIV4, "soc0-mpll_div4",
+> soc0_mpll,
+> > > 1, 4),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_MPLL_DIV8, "soc0-mpll_div8",
+> soc0_mpll,
+> > > 1, 8),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_AXI0, "axi0clk", pspclk, 1, 2),
+> > > +	FIXED_FACTOR_CLK(SCU0_CLK_AXI1, "axi1clk", soc0_mpll, 1, 4),
+> > > +	DIVIDER_CLK(SCU0_CLK_AHB, "soc0-ahb", soc0_ahbmux,
+> > > +		    SCU0_HWSTRAP1, 5, 2, ast2700_hclk_div_table),
+> > > +	DIVIDER_CLK(SCU0_CLK_EMMC, "emmcclk", emmcsrc_mux,
+> > > +		    SCU0_CLK_SEL1, 12, 3, ast2700_clk_div_table2),
+> > > +	DIVIDER_CLK(SCU0_CLK_APB, "soc0-apb", axi0clk,
+> > > +		    SCU0_CLK_SEL1, 23, 3, ast2700_clk_div_table2),
+> > > +	DIVIDER_CLK(SCU0_CLK_UART4, "uart4clk", soc0_uartclk,
+> > > +		    SCU0_CLK_SEL2, 30, 1, ast2700_clk_uart_div_table),
+> > > +	DIVIDER_CLK(SCU0_CLK_HPLL_DIV_AHB, "soc0-hpll-ahb", soc0_hpll,
+> > > +		    SCU0_HWSTRAP1, 5, 2, ast2700_hclk_div_table),
+> > > +	DIVIDER_CLK(SCU0_CLK_MPLL_DIV_AHB, "soc0-mpll-ahb",
+> soc0_mpll,
+> > > +		    SCU0_HWSTRAP1, 5, 2, ast2700_hclk_div_table),
+> > > +	MUX_CLK(SCU0_CLK_PSP, "pspclk", psp_clk_sels,
+> > > ARRAY_SIZE(psp_clk_sels),
+> > > +		SCU0_HWSTRAP1, 2, 3),
+> > > +	MUX_CLK(SCU0_CLK_AHBMUX, "soc0-ahbmux", hclk_clk_sels,
+> > > ARRAY_SIZE(hclk_clk_sels),
+> > > +		SCU0_HWSTRAP1, 7, 1),
+> > > +	MUX_CLK(SCU0_CLK_EMMCMUX, "emmcsrc-mux", emmc_clk_sels,
+> > > ARRAY_SIZE(emmc_clk_sels),
+> > > +		SCU0_CLK_SEL1, 11, 1),
+> > > +	MUX_CLK(SCU0_CLK_MPHYSRC, "mphysrc", mphy_clk_sels,
+> > > ARRAY_SIZE(mphy_clk_sels),
+> > > +		SCU0_CLK_SEL2, 18, 2),
+> > > +	MUX_CLK(SCU0_CLK_U2PHY_REFCLKSRC, "u2phy_refclksrc",
+> > > mhpll_clk_sels,
+> > > +		ARRAY_SIZE(mhpll_clk_sels), SCU0_CLK_SEL2, 23, 1),
+> > > +	MUX_CLK(SCU0_CLK_UART, "soc0-uartclk", uart_clk_sels,
+> > > ARRAY_SIZE(uart_clk_sels),
+> > > +		SCU0_CLK_SEL2, 14, 1),
+> > > +	GATE_CLK(SCU0_CLK_GATE_MCLK, CLK_GATE_ASPEED, "mclk-gate",
+> > > soc0_mpll,
+> > > +		 SCU0_CLK_STOP, 0, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_ECLK, CLK_GATE_ASPEED, "eclk-gate",
+> NULL,
+> > > SCU0_CLK_STOP, 1, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_2DCLK, CLK_GATE_ASPEED, "gclk-gate",
+> > NULL,
+> > > SCU0_CLK_STOP, 2, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_VCLK, CLK_GATE_ASPEED, "vclk-gate",
+> NULL,
+> > > SCU0_CLK_STOP, 3, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_BCLK, CLK_GATE_ASPEED, "bclk-gate",
+> NULL,
+> > > +		 SCU0_CLK_STOP, 4, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_VGA0CLK,  CLK_GATE_ASPEED,
+> > > "vga0clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 5, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_REFCLK,  CLK_GATE_ASPEED,
+> > > "soc0-refclk-gate", soc0_clkin,
+> > > +		 SCU0_CLK_STOP, 6, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_PORTBUSB2CLK, CLK_GATE_ASPEED,
+> > > "portb-usb2clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 7, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_UHCICLK, CLK_GATE_ASPEED,
+> "uhciclk-gate",
+> > > NULL, SCU0_CLK_STOP, 9, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_VGA1CLK, CLK_GATE_ASPEED,
+> > "vga1clk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 10, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_DDRPHYCLK, CLK_GATE_ASPEED,
+> > > "ddrphy-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 11, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_E2M0CLK, CLK_GATE_ASPEED,
+> > > "e2m0clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 12, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_HACCLK, CLK_GATE_ASPEED,
+> "hacclk-gate",
+> > > NULL, SCU0_CLK_STOP, 13, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_PORTAUSB2CLK, CLK_GATE_ASPEED,
+> > > "porta-usb2clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 14, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_UART4CLK, CLK_GATE_ASPEED,
+> > > "uart4clk-gate", uart4clk,
+> > > +		 SCU0_CLK_STOP, 15, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_SLICLK, CLK_GATE_ASPEED,
+> > "soc0-sliclk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 16, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_DACCLK, CLK_GATE_ASPEED,
+> "dacclk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 17, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_DP, CLK_GATE_ASPEED, "dpclk-gate",
+> NULL,
+> > > +		 SCU0_CLK_STOP, 18, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_E2M1CLK, CLK_GATE_ASPEED,
+> > > "e2m1clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 19, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU0_CLK_GATE_CRT0CLK, CLK_GATE_ASPEED,
+> "crt0clk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 20, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_CRT1CLK, CLK_GATE_ASPEED,
+> "crt1clk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 21, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_ECDSACLK, CLK_GATE_ASPEED,
+> > "eccclk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 23, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_RSACLK, CLK_GATE_ASPEED,
+> "rsaclk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 24, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_RVAS0CLK, CLK_GATE_ASPEED,
+> > > "rvas0clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 25, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_UFSCLK, CLK_GATE_ASPEED,
+> "ufsclk-gate",
+> > > NULL,
+> > > +		 SCU0_CLK_STOP, 26, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_EMMCCLK, CLK_GATE_ASPEED,
+> > > "emmcclk-gate", emmcclk,
+> > > +		 SCU0_CLK_STOP, 27, 0),
+> > > +	GATE_CLK(SCU0_CLK_GATE_RVAS1CLK, CLK_GATE_ASPEED,
+> > > "rvas1clk-gate", NULL,
+> > > +		 SCU0_CLK_STOP, 28, 0),
+> > > +};
+> > > +
+> > > +static const struct ast2700_clk_info ast2700_scu1_clk_info[] __initc=
+onst =3D
+> {
+> > > +	FIXED_CLK(SCU1_CLKIN, "soc1-clkin", SCU_CLK_25MHZ),
+> > > +	PLL_CLK(SCU1_CLK_HPLL, CLK_PLL, "soc1-hpll", soc1_clkin,
+> > > SCU1_HPLL_PARAM),
+> > > +	PLL_CLK(SCU1_CLK_APLL, CLK_PLL, "soc1-apll", soc1_clkin,
+> > > SCU1_APLL_PARAM),
+> > > +	PLL_CLK(SCU1_CLK_DPLL, CLK_PLL, "soc1-dpll", soc1_clkin,
+> > > SCU1_DPLL_PARAM),
+> > > +	PLL_CLK(SCU1_CLK_UARTX, CLK_UART_PLL, "uartxclk", uxclk,
+> > > SCU1_UXCLK_CTRL),
+> > > +	PLL_CLK(SCU1_CLK_HUARTX, CLK_UART_PLL, "huartxclk", huxclk,
+> > > SCU1_HUXCLK_CTRL),
+> > > +	FIXED_FACTOR_CLK(SCU1_CLK_APLL_DIV2, "soc1-apll_div2",
+> soc1_apll,
+> > > +1,
+> > > 2),
+> > > +	FIXED_FACTOR_CLK(SCU1_CLK_APLL_DIV4, "soc1-apll_div4",
+> soc1_apll,
+> > > +1,
+> > > 4),
+> > > +	FIXED_FACTOR_CLK(SCU1_CLK_UART13, "uart13clk", huartxclk, 1, 1),
+> > > +	FIXED_FACTOR_CLK(SCU1_CLK_UART14, "uart14clk", huartxclk, 1, 1),
+> > > +	FIXED_FACTOR_CLK(SCU1_CLK_CAN, "canclk", soc1_apll, 1, 10),
+> > > +	DIVIDER_CLK(SCU1_CLK_SDCLK, "sdclk", sdclk_mux,
+> > > +		    SCU1_CLK_SEL1, 14, 3, ast2700_clk_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_APB, "soc1-apb", soc1_hpll,
+> > > +		    SCU1_CLK_SEL1, 18, 3, ast2700_clk_div_table2),
+> > > +	DIVIDER_CLK(SCU1_CLK_RMII, "rmii", soc1_hpll,
+> > > +		    SCU1_CLK_SEL1, 21, 3, ast2700_rmii_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_RGMII, "rgmii", soc1_hpll,
+> > > +		    SCU1_CLK_SEL1, 25, 3, ast2700_rgmii_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_MACHCLK, "machclk", soc1_hpll,
+> > > +		    SCU1_CLK_SEL1, 29, 3, ast2700_clk_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_APLL_DIVN, "soc1-apll_divn", soc1_apll,
+> > > +		    SCU1_CLK_SEL2, 8, 3, ast2700_clk_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_AHB, "soc1-ahb", soc1_hpll,
+> > > +		    SCU1_CLK_SEL2, 20, 3, ast2700_clk_div_table),
+> > > +	DIVIDER_CLK(SCU1_CLK_I3C, "soc1-i3c", soc1_hpll,
+> > > +		    SCU1_CLK_SEL2, 23, 3, ast2700_clk_div_table),
+> > > +	MUX_CLK(SCU1_CLK_UART0, "uart0clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 0, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART1, "uart1clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 1, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART2, "uart2clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 2, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART3, "uart3clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 3, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART5, "uart5clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 5, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART6, "uart6clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 6, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART7, "uart7clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 7, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART8, "uart8clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 8, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART9, "uart9clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 9, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART10, "uart10clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 10, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART11, "uart11clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 11, 1),
+> > > +	MUX_CLK(SCU1_CLK_UART12, "uart12clk", uartx_clk_sels,
+> > > ARRAY_SIZE(uartx_clk_sels),
+> > > +		SCU1_CLK_SEL1, 12, 1),
+> > > +	MUX_CLK(SCU1_CLK_SDMUX, "sdclk-mux", sdio_clk_sels,
+> > > ARRAY_SIZE(sdio_clk_sels),
+> > > +		SCU1_CLK_SEL1, 13, 1),
+> > > +	MUX_CLK(SCU1_CLK_UXCLK, "uxclk", ux_clk_sels,
+> > > ARRAY_SIZE(ux_clk_sels),
+> > > +		SCU1_CLK_SEL2, 0, 2),
+> > > +	MUX_CLK(SCU1_CLK_HUXCLK, "huxclk", ux_clk_sels,
+> > > ARRAY_SIZE(ux_clk_sels),
+> > > +		SCU1_CLK_SEL2, 3, 2),
+> > > +	GATE_CLK(SCU1_CLK_MAC0RCLK, CLK_GATE, "mac0rclk-gate", rmii,
+> > > SCU1_MAC12_CLK_DLY, 29, 0),
+> > > +	GATE_CLK(SCU1_CLK_MAC1RCLK, CLK_GATE, "mac1rclk-gate", rmii,
+> > > SCU1_MAC12_CLK_DLY, 30, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LCLK0, CLK_GATE_ASPEED, "lclk0-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP, 0, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LCLK1, CLK_GATE_ASPEED, "lclk1-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP, 1, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_ESPI0CLK, CLK_GATE_ASPEED,
+> > > "espi0clk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 2, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_ESPI1CLK, CLK_GATE_ASPEED,
+> > > "espi1clk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 3, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_SDCLK, CLK_GATE_ASPEED, "sdclk-gate",
+> > > sdclk,
+> > > +		 SCU1_CLK_STOP, 4, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_IPEREFCLK, CLK_GATE_ASPEED,
+> > > "soc1-iperefclk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 5, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_REFCLK, CLK_GATE_ASPEED,
+> > > "soc1-refclk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 6, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LPCHCLK, CLK_GATE_ASPEED,
+> "lpchclk-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP, 7, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_MAC0CLK, CLK_GATE_ASPEED,
+> > > "mac0clk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 8, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_MAC1CLK, CLK_GATE_ASPEED,
+> > > "mac1clk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 9, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_MAC2CLK, CLK_GATE_ASPEED,
+> > > "mac2clk-gate", NULL,
+> > > +		 SCU1_CLK_STOP, 10, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART0CLK, CLK_GATE_ASPEED,
+> > > "uart0clk-gate", uart0clk,
+> > > +		 SCU1_CLK_STOP, 11, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART1CLK, CLK_GATE_ASPEED,
+> > > "uart1clk-gate", uart1clk,
+> > > +		 SCU1_CLK_STOP, 12, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART2CLK, CLK_GATE_ASPEED,
+> > > "uart2clk-gate", uart2clk,
+> > > +		 SCU1_CLK_STOP, 13, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART3CLK, CLK_GATE_ASPEED,
+> > > "uart3clk-gate", uart3clk,
+> > > +		 SCU1_CLK_STOP, 14, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I2CCLK, CLK_GATE_ASPEED,
+> "i2cclk-gate",
+> > > NULL, SCU1_CLK_STOP, 15, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C0CLK, CLK_GATE_ASPEED,
+> "i3c0clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 16, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C1CLK, CLK_GATE_ASPEED,
+> "i3c1clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 17, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C2CLK, CLK_GATE_ASPEED,
+> "i3c2clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 18, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C3CLK, CLK_GATE_ASPEED,
+> "i3c3clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 19, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C4CLK, CLK_GATE_ASPEED,
+> "i3c4clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 20, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C5CLK, CLK_GATE_ASPEED,
+> "i3c5clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 21, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C6CLK, CLK_GATE_ASPEED,
+> "i3c6clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 22, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C7CLK, CLK_GATE_ASPEED,
+> "i3c7clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 23, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C8CLK, CLK_GATE_ASPEED,
+> "i3c8clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 24, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C9CLK, CLK_GATE_ASPEED,
+> "i3c9clk-gate",
+> > > soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 25, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C10CLK, CLK_GATE_ASPEED,
+> > > "i3c10clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 26, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C11CLK, CLK_GATE_ASPEED,
+> > > "i3c11clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 27, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C12CLK, CLK_GATE_ASPEED,
+> > > "i3c12clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 28, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C13CLK, CLK_GATE_ASPEED,
+> > > "i3c13clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 29, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C14CLK, CLK_GATE_ASPEED,
+> > > "i3c14clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 30, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_I3C15CLK, CLK_GATE_ASPEED,
+> > > "i3c15clk-gate", soc1_i3c,
+> > > +		 SCU1_CLK_STOP, 31, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART5CLK, CLK_GATE_ASPEED,
+> > > "uart5clk-gate", uart5clk,
+> > > +		 SCU1_CLK_STOP2, 0, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART6CLK, CLK_GATE_ASPEED,
+> > > "uart6clk-gate", uart6clk,
+> > > +		 SCU1_CLK_STOP2, 1, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART7CLK, CLK_GATE_ASPEED,
+> > > "uart7clk-gate", uart7clk,
+> > > +		 SCU1_CLK_STOP2, 2, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART8CLK, CLK_GATE_ASPEED,
+> > > "uart8clk-gate", uart8clk,
+> > > +		 SCU1_CLK_STOP2, 3, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART9CLK, CLK_GATE_ASPEED,
+> > > "uart9clk-gate", uart9clk,
+> > > +		 SCU1_CLK_STOP2, 4, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART10CLK, CLK_GATE_ASPEED,
+> > > "uart10clk-gate", uart10clk,
+> > > +		 SCU1_CLK_STOP2, 5, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART11CLK, CLK_GATE_ASPEED,
+> > > "uart11clk-gate", uart11clk,
+> > > +		 SCU1_CLK_STOP2, 6, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UART12CLK, CLK_GATE_ASPEED,
+> > > "uart12clk-gate", uart12clk,
+> > > +		 SCU1_CLK_STOP2, 7, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_FSICLK, CLK_GATE_ASPEED,
+> "fsiclk-gate",
+> > > NULL, SCU1_CLK_STOP2, 8, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LTPIPHYCLK, CLK_GATE_ASPEED,
+> > > "ltpiphyclk-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 9, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LTPICLK, CLK_GATE_ASPEED,
+> "ltpiclk-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP2, 10, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_VGALCLK, CLK_GATE_ASPEED,
+> "vgalclk-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP2, 11, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_UHCICLK, CLK_GATE_ASPEED,
+> > > "usbuartclk-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 12, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_CANCLK, CLK_GATE_ASPEED,
+> "canclk-gate",
+> > > canclk,
+> > > +		 SCU1_CLK_STOP2, 13, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_PCICLK, CLK_GATE_ASPEED,
+> "pciclk-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP2, 14, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_SLICLK, CLK_GATE_ASPEED,
+> > "soc1-sliclk-gate",
+> > > NULL,
+> > > +		 SCU1_CLK_STOP2, 15, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_E2MCLK, CLK_GATE_ASPEED,
+> > > "soc1-e2m-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 16, CLK_IS_CRITICAL),
+> > > +	GATE_CLK(SCU1_CLK_GATE_PORTCUSB2CLK, CLK_GATE_ASPEED,
+> > > "portcusb2-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 17, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_PORTDUSB2CLK, CLK_GATE_ASPEED,
+> > > "portdusb2-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 18, 0),
+> > > +	GATE_CLK(SCU1_CLK_GATE_LTPI1TXCLK, CLK_GATE_ASPEED,
+> > > "ltp1tx-gate", NULL,
+> > > +		 SCU1_CLK_STOP2, 19, 0),
+> > > +};
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_hpll(void __iomem *reg=
+,
+> > > +						   const char *name, const char
+> *parent_name,
+> > > +						   struct ast2700_clk_ctrl *clk_ctrl) {
+> > > +	unsigned int mult, div;
+> > > +	u32 val;
+> > > +
+> > > +	val =3D readl(clk_ctrl->base + SCU0_HWSTRAP1);
+> > > +	if ((readl(clk_ctrl->base) & REVISION_ID) && (val & BIT(3))) {
+> > > +		switch ((val & GENMASK(4, 2)) >> 2) {
+> > > +		case 2:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1800 * HZ_PER_MHZ);
+> > > +		case 3:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1700 * HZ_PER_MHZ);
+> > > +		case 6:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1200 * HZ_PER_MHZ);
+> > > +		case 7:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 800 * HZ_PER_MHZ);
+> > > +		default:
+> > > +			return ERR_PTR(-EINVAL);
+> > > +		}
+> > > +	} else if ((val & GENMASK(3, 2)) !=3D 0) {
+> > > +		switch ((val & GENMASK(3, 2)) >> 2) {
+> > > +		case 1:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1900 * HZ_PER_MHZ);
+> > > +		case 2:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1800 * HZ_PER_MHZ);
+> > > +		case 3:
+> > > +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev,
+> name,
+> > > NULL,
+> > > +							       0, 1700 * HZ_PER_MHZ);
+> > > +		default:
+> > > +			return ERR_PTR(-EINVAL);
+> > > +		}
+> > > +	} else {
+> > > +		val =3D readl(reg);
+> > > +
+> > > +		if (val & BIT(24)) {
+> > > +			/* Pass through mode */
+> > > +			mult =3D 1;
+> > > +			div =3D 1;
+> > > +		} else {
+> > > +			u32 m =3D val & 0x1fff;
+> > > +			u32 n =3D (val >> 13) & 0x3f;
+> > > +			u32 p =3D (val >> 19) & 0xf;
+> > > +
+> > > +			mult =3D (m + 1) / (2 * (n + 1));
+> > > +			div =3D (p + 1);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, name,
+> > > +parent_name, 0, mult, div); }
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_pll(int clk_idx, void
+> > > +__iomem
+> > > *reg,
+> > > +						  const char *name, const char
+> *parent_name,
+> > > +						  struct ast2700_clk_ctrl *clk_ctrl) {
+> > > +	int scu =3D clk_ctrl->clk_data->scu;
+> > > +	unsigned int mult, div;
+> > > +	u32 val =3D readl(reg);
+> > > +
+> > > +	if (val & BIT(24)) {
+> > > +		/* Pass through mode */
+> > > +		mult =3D 1;
+> > > +		div =3D 1;
+> > > +	} else {
+> > > +		u32 m =3D val & 0x1fff;
+> > > +		u32 n =3D (val >> 13) & 0x3f;
+> > > +		u32 p =3D (val >> 19) & 0xf;
+> > > +
+> > > +		if (scu) {
+> > > +			mult =3D (m + 1) / (n + 1);
+> > > +			div =3D (p + 1);
+> > > +		} else {
+> > > +			if (clk_idx =3D=3D SCU0_CLK_MPLL) {
+> > > +				mult =3D m / (n + 1);
+> > > +				div =3D (p + 1);
+> > > +			} else {
+> > > +				mult =3D (m + 1) / (2 * (n + 1));
+> > > +				div =3D (p + 1);
+> > > +			}
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, name,
+> > > +parent_name, 0, mult, div); }
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_dclk(void __iomem
+> > > +*reg,
+> > > const char *name,
+> > > +						   struct ast2700_clk_ctrl *clk_ctrl) {
+> > > +	unsigned int mult, div, r, n;
+> > > +	u32 xdclk;
+> > > +	u32 val;
+> > > +
+> > > +	val =3D readl(clk_ctrl->base + 0x284);
+> > > +	if (val & BIT(29))
+> > > +		xdclk =3D 800 * HZ_PER_MHZ;
+> > > +	else
+> > > +		xdclk =3D 1000 * HZ_PER_MHZ;
+> > > +
+> > > +	val =3D readl(reg);
+> > > +	r =3D val & GENMASK(15, 0);
+> > > +	n =3D (val >> 16) & GENMASK(15, 0);
+> > > +	mult =3D r;
+> > > +	div =3D 2 * n;
+> > > +
+> > > +	return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
+> > > +0, (xdclk * mult) / div); }
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_uartpll(void __iomem
+> *reg,
+> > > +						      const char *name, const char
+> > > *parent_name,
+> > > +						      struct ast2700_clk_ctrl *clk_ctrl) {
+> > > +	unsigned int mult, div;
+> > > +	u32 val =3D readl(reg);
+> > > +	u32 r =3D val & 0xff;
+> > > +	u32 n =3D (val >> 8) & 0x3ff;
+> > > +
+> > > +	mult =3D r;
+> > > +	div =3D n * 2;
+> > > +
+> > > +	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, name,
+> > > +						 parent_name, 0, mult, div);
+> > > +}
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_misc(int clk_idx,
+> > > +void
+> > > __iomem *reg,
+> > > +						   const char *name, const char
+> *parent_name,
+> > > +						   struct ast2700_clk_ctrl *clk_ctrl) {
+> > > +	u32 div =3D 0;
+> > > +
+> > > +	if (clk_idx =3D=3D SCU0_CLK_MPHY) {
+> > > +		div =3D readl(reg) + 1;
+> > > +	} else if (clk_idx =3D=3D SCU0_CLK_U2PHY_REFCLK) {
+> > > +		if (readl(clk_ctrl->base) & REVISION_ID)
+> > > +			div =3D (GET_USB_REFCLK_DIV(readl(reg)) + 1) << 4;
+> > > +		else
+> > > +			div =3D (GET_USB_REFCLK_DIV(readl(reg)) + 1) << 1;
+> > > +	} else {
+> > > +		return ERR_PTR(-EINVAL);
+> > > +	}
+> > > +
+> > > +	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, name,
+> > > +						   parent_name, 0, 1, div);
+> > > +}
+> > > +
+> > > +static int ast2700_clk_is_enabled(struct clk_hw *hw) {
+> > > +	struct clk_gate *gate =3D to_clk_gate(hw);
+> > > +	u32 clk =3D BIT(gate->bit_idx);
+> > > +	u32 reg;
+> > > +
+> > > +	reg =3D readl(gate->reg);
+> > > +
+> > > +	return !(reg & clk);
+> > > +}
+> > > +
+> > > +static int ast2700_clk_enable(struct clk_hw *hw) {
+> > > +	struct clk_gate *gate =3D to_clk_gate(hw);
+> > > +	u32 clk =3D BIT(gate->bit_idx);
+> > > +
+> > > +	if (readl(gate->reg) & clk)
+> > > +		writel(clk, gate->reg + 0x04);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void ast2700_clk_disable(struct clk_hw *hw) {
+> > > +	struct clk_gate *gate =3D to_clk_gate(hw);
+> > > +	u32 clk =3D BIT(gate->bit_idx);
+> > > +
+> > > +	/* Clock is set to enable, so use write to set register */
+> > > +	writel(clk, gate->reg);
+> > > +}
+> > > +
+> > > +static const struct clk_ops ast2700_clk_gate_ops =3D {
+> > > +	.enable =3D ast2700_clk_enable,
+> > > +	.disable =3D ast2700_clk_disable,
+> > > +	.is_enabled =3D ast2700_clk_is_enabled, };
+> > > +
+> > > +static struct clk_hw *ast2700_clk_hw_register_gate(struct device
+> > > +*dev, const
+> > > char *name,
+> > > +						   const struct clk_parent_data	*parent,
+> > > +						   void __iomem *reg, u8 clock_idx,
+> > > +						   unsigned long clk_gate_flags, spinlock_t
+> > > *lock) {
+> > > +	struct clk_gate *gate;
+> > > +	struct clk_hw *hw;
+> > > +	struct clk_init_data init;
+> > > +	int ret =3D -EINVAL;
+> > > +
+> > > +	gate =3D kzalloc(sizeof(*gate), GFP_KERNEL);
+> > > +	if (!gate)
+> > > +		return ERR_PTR(-ENOMEM);
+> > > +
+> > > +	init.name =3D name;
+> > > +	init.ops =3D &ast2700_clk_gate_ops;
+> > > +	init.flags =3D clk_gate_flags;
+> > > +	init.parent_names =3D parent ? &parent->name : NULL;
+> > > +	init.num_parents =3D parent ? 1 : 0;
+> > > +
+> > > +	gate->reg =3D reg;
+> > > +	gate->bit_idx =3D clock_idx;
+> > > +	gate->flags =3D 0;
+> > > +	gate->lock =3D lock;
+> > > +	gate->hw.init =3D &init;
+> > > +
+> > > +	hw =3D &gate->hw;
+> > > +	ret =3D clk_hw_register(dev, hw);
+> > > +	if (ret) {
+> > > +		kfree(gate);
+> > > +		hw =3D ERR_PTR(ret);
+> > > +	}
+> > > +
+> > > +	return hw;
+> > > +}
+> > > +
+> > > +static void ast2700_soc1_configure_i3c_clk(struct ast2700_clk_ctrl
+> > > +*clk_ctrl) {
+> > > +	if (readl(clk_ctrl->base + SCU1_REVISION_ID) & REVISION_ID)
+> > > +		/* I3C 250MHz =3D HPLL/4 */
+> > > +		writel((readl(clk_ctrl->base + SCU1_CLK_SEL2) &
+> > > +			~SCU1_CLK_I3C_DIV_MASK) |
+> > > +			       FIELD_PREP(SCU1_CLK_I3C_DIV_MASK,
+> > > +					  SCU1_CLK_I3C_DIV(4)),
+> > > +		       clk_ctrl->base + SCU1_CLK_SEL2); }
+> > > +
+> > > +static int ast2700_soc_clk_probe(struct platform_device *pdev) {
+> > > +	const struct ast2700_clk_data *clk_data;
+> > > +	struct clk_hw_onecell_data *clk_hw_data;
+> > > +	struct ast2700_clk_ctrl *clk_ctrl;
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	struct auxiliary_device *adev;
+> > > +	void __iomem *clk_base;
+> > > +	struct clk_hw **hws;
+> > > +	char *reset_name;
+> > > +	int ret;
+> > > +	int i;
+> > > +
+> > > +	clk_ctrl =3D devm_kzalloc(dev, sizeof(*clk_ctrl), GFP_KERNEL);
+> > > +	if (!clk_ctrl)
+> > > +		return -ENOMEM;
+> > > +	clk_ctrl->dev =3D dev;
+> > > +	dev_set_drvdata(&pdev->dev, clk_ctrl);
+> > > +
+> > > +	spin_lock_init(&clk_ctrl->lock);
+> > > +
+> > > +	clk_base =3D devm_platform_ioremap_resource(pdev, 0);
+> > > +	if (IS_ERR(clk_base))
+> > > +		return PTR_ERR(clk_base);
+> > > +
+> > > +	clk_ctrl->base =3D clk_base;
+> > > +
+> > > +	clk_data =3D device_get_match_data(dev);
+> > > +	if (!clk_data)
+> > > +		return -ENODEV;
+> > > +
+> > > +	clk_ctrl->clk_data =3D clk_data;
+> > > +	reset_name =3D devm_kasprintf(dev, GFP_KERNEL, "reset%d",
+> > > +clk_data->scu);
+> > > +
+> > > +	clk_hw_data =3D devm_kzalloc(dev, struct_size(clk_hw_data, hws,
+> > > clk_data->nr_clks),
+> > > +				   GFP_KERNEL);
+> > > +	if (!clk_hw_data)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	clk_hw_data->num =3D clk_data->nr_clks;
+> > > +	hws =3D clk_hw_data->hws;
+> > > +
+> > > +	if (clk_data->scu)
+> > > +		ast2700_soc1_configure_i3c_clk(clk_ctrl);
+> > > +
+> > > +	for (i =3D 0; i < clk_data->nr_clks; i++) {
+> > > +		const struct ast2700_clk_info *clk =3D &clk_data->clk_info[i];
+> > > +		void __iomem *reg;
+> > > +
+> > > +		if (clk->type =3D=3D CLK_FIXED) {
+> > > +			const struct ast2700_clk_fixed_rate_data *fixed_rate =3D
+> > > +&clk->data.rate;
+> > > +
+> > > +			hws[i] =3D devm_clk_hw_register_fixed_rate(dev, clk->name,
+> > > NULL, 0,
+> > > +								 fixed_rate->fixed_rate);
+> > > +		} else if (clk->type =3D=3D CLK_FIXED_FACTOR) {
+> > > +			const struct ast2700_clk_fixed_factor_data *factor =3D
+> > > +&clk->data.factor;
+> > > +
+> > > +			hws[i] =3D devm_clk_hw_register_fixed_factor(dev,
+> clk->name,
+> > > +								   factor->parent->name,
+> > > +								   0, factor->mult, factor->div);
+> > > +		} else if (clk->type =3D=3D DCLK_FIXED) {
+> > > +			const struct ast2700_clk_pll_data *pll =3D &clk->data.pll;
+> > > +
+> > > +			reg =3D clk_ctrl->base + pll->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_dclk(reg, clk->name,
+> > > clk_ctrl);
+> > > +		} else if (clk->type =3D=3D CLK_HPLL) {
+> > > +			const struct ast2700_clk_pll_data *pll =3D &clk->data.pll;
+> > > +
+> > > +			reg =3D clk_ctrl->base + pll->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_hpll(reg, clk->name,
+> > > +							      pll->parent->name, clk_ctrl);
+> > > +		} else if (clk->type =3D=3D CLK_PLL) {
+> > > +			const struct ast2700_clk_pll_data *pll =3D &clk->data.pll;
+> > > +
+> > > +			reg =3D clk_ctrl->base + pll->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_pll(i, reg, clk->name,
+> > > +							     pll->parent->name, clk_ctrl);
+> > > +		} else if (clk->type =3D=3D CLK_UART_PLL) {
+> > > +			const struct ast2700_clk_pll_data *pll =3D &clk->data.pll;
+> > > +
+> > > +			reg =3D clk_ctrl->base + pll->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_uartpll(reg, clk->name,
+> > > +								 pll->parent->name, clk_ctrl);
+> > > +		} else if (clk->type =3D=3D CLK_MUX) {
+> > > +			const struct ast2700_clk_mux_data *mux =3D
+> &clk->data.mux;
+> > > +
+> > > +			reg =3D clk_ctrl->base + mux->reg;
+> > > +			hws[i] =3D
+> devm_clk_hw_register_mux_parent_data_table(dev,
+> > > clk->name,
+> > > +									    mux->parents,
+> > > +									    mux->num_parents, 0,
+> > > +									    reg, mux->bit_shift,
+> > > +									    mux->bit_width, 0,
+> > > +									    NULL, &clk_ctrl->lock);
+> > > +		} else if (clk->type =3D=3D CLK_MISC) {
+> > > +			const struct ast2700_clk_pll_data *misc =3D &clk->data.pll;
+> > > +
+> > > +			reg =3D clk_ctrl->base + misc->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_misc(i, reg, clk->name,
+> > > +							      misc->parent->name, clk_ctrl);
+> > > +		} else if (clk->type =3D=3D CLK_DIVIDER) {
+> > > +			const struct ast2700_clk_div_data *div =3D &clk->data.div;
+> > > +
+> > > +			reg =3D clk_ctrl->base + div->reg;
+> > > +			hws[i] =3D devm_clk_hw_register_divider_table(dev,
+> clk->name,
+> > > +								    div->parent->name, 0,
+> > > +								    reg, div->bit_shift,
+> > > +								    div->bit_width, 0,
+> > > +								    div->div_table,
+> > > +								    &clk_ctrl->lock);
+> > > +		} else if (clk->type =3D=3D CLK_GATE_ASPEED) {
+> > > +			const struct ast2700_clk_gate_data *gate =3D
+> &clk->data.gate;
+> > > +
+> > > +			reg =3D clk_ctrl->base + gate->reg;
+> > > +			hws[i] =3D ast2700_clk_hw_register_gate(dev, clk->name,
+> > > gate->parent,
+> > > +							      reg, gate->bit, gate->flags,
+> > > +							      &clk_ctrl->lock);
+> > > +
+> > > +		} else {
+> > > +			const struct ast2700_clk_gate_data *gate =3D
+> &clk->data.gate;
+> > > +
+> > > +			reg =3D clk_ctrl->base + gate->reg;
+> > > +			hws[i] =3D devm_clk_hw_register_gate_parent_data(dev,
+> > > clk->name, gate->parent,
+> > > +								       0, reg, clk->clk_idx, 0,
+> > > +								       &clk_ctrl->lock);
+> > > +		}
+> > > +
+> > > +		if (IS_ERR(hws[i]))
+> > > +			return PTR_ERR(hws[i]);
+> > > +	}
+> > > +
+> > > +	ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > > clk_hw_data);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	adev =3D devm_auxiliary_device_create(dev, reset_name, (__force
+> void
+> > > *)clk_base);
+> > > +	if (!adev)
+> > > +		return -ENODEV;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static const struct ast2700_clk_data ast2700_clk0_data =3D {
+> > > +	.scu =3D 0,
+> > > +	.nr_clks =3D ARRAY_SIZE(ast2700_scu0_clk_info),
+> > > +	.clk_info =3D ast2700_scu0_clk_info, };
+> > > +
+> > > +static const struct ast2700_clk_data ast2700_clk1_data =3D {
+> > > +	.scu =3D 1,
+> > > +	.nr_clks =3D ARRAY_SIZE(ast2700_scu1_clk_info),
+> > > +	.clk_info =3D ast2700_scu1_clk_info, };
+> > > +
+> > > +static const struct of_device_id ast2700_scu_match[] =3D {
+> > > +	{ .compatible =3D "aspeed,ast2700-scu0", .data =3D
+> &ast2700_clk0_data },
+> > > +	{ .compatible =3D "aspeed,ast2700-scu1", .data =3D
+> &ast2700_clk1_data },
+> > > +	{ /* sentinel */ }
+> > > +};
+> > > +
+> > > +MODULE_DEVICE_TABLE(of, ast2700_scu_match);
+> > > +
+> > > +static struct platform_driver ast2700_scu_driver =3D {
+> > > +	.probe =3D ast2700_soc_clk_probe,
+> > > +	.driver =3D {
+> > > +		.name =3D "clk-ast2700",
+> > > +		.of_match_table =3D ast2700_scu_match,
+> > > +	},
+> > > +};
+> > > +
+> > > +static int __init clk_ast2700_init(void) {
+> > > +	return platform_driver_register(&ast2700_scu_driver);
+> > > +}
+> > > +arch_initcall(clk_ast2700_init);
+> > > --
+> > > 2.34.1
+>=20
 
 
