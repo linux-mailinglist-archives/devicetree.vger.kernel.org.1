@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-215277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21138B510B8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:12:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5479B510CD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7334B465BF3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:09:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73D9A7BDBF5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8309730EF89;
-	Wed, 10 Sep 2025 08:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092C23115AB;
+	Wed, 10 Sep 2025 08:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="0Ig17JDg"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="1agyELXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B3330E0D3
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91F430EF9E
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757491670; cv=none; b=B/eCIEWdWvbQiuJDpsGkK5sVdLJs0P9N4uAK1ezE/EXjR/2lHpzSUz06caxksM4NFyzZTCOZUCuSIz1PtAqJX3scdeLtLI39wiwC88ezJzzISzCNRji9kWxPZRqh/LSm+RotH4PALWi+rgF1WpiXuQwLwYx9Ltc2b78hg4+5NPw=
+	t=1757491672; cv=none; b=XQRybz32pD6NLR+rfvwWouCUXTT+shMGPGLH+O4fnrOicWFgzx75/j8+elm1GdvlgCqt33IVQ4xwTyLY91FD2La2jUkP/ZVfqcsqnVIU0NzwGNNjzoqqSZkhDqc83Fpn5N8TQLYuOD91sa5pMMQx4d5RUnRrjpQQoy9oWGEJOeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757491670; c=relaxed/simple;
-	bh=jEbsMly2FhQ711GN2jP5t9Qv9vt4zsmwcTKD0IWsKSw=;
+	s=arc-20240116; t=1757491672; c=relaxed/simple;
+	bh=cCMCySr/VpbA7jK3NVpeLcWLGZWtRb22jM/wUssJ6zQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UqhlLQvFSvNrT3S9WAHIHBCZCemxvYZVmk4C9DJMqU+HbmQ3fGBgefA7xrkJeJv1KcsEbl2Q+0spWwE+d8pnT9VPKRJtwXznOix0FKZ2X5UTf6jXscTetyT/5jD/mp6+7sImJ1eCPM6i4J5YJ3LA1lhKD9sUe3Q1TMf9AIBeCHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=0Ig17JDg; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:To:Cc; b=hmOaCDETT9rcdBdpMTox2W+YyE+dTMHG8OiI8CBY9qG+8fl4h/Sbc8yGYpkgpeWYIaAT33dj1heOUIitKdNDPSZyaWAu62KECD8R0vG4W/9gvHd6O3Ep3uFqTTynIshqW+yQcIe12stSiXFtez3Vg9qrZnTqPlhWCEh8wpivqN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=1agyELXW; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45dd7b15a64so3316265e9.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 01:07:47 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45ded619608so14445145e9.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 01:07:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757491666; x=1758096466; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757491669; x=1758096469; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1alLi5TCWrgqVg4gWAi4guSOwfn7tcAcmAIIueAQAFg=;
-        b=0Ig17JDg62mPBhDX25I1XWg+q6ToxeJhsYehamK3dYN7vIGIOkyI0aeZSA5qZmG86l
-         2pP5KEIX6RlRy6AEa/U0rT7DAPm9QQu6YxeXgjpnesjfPqoq0hre5bm83tkBYika0Rby
-         TdXrHC0ckRCs0l0QoJm8WzaaV6Gh2SxWHQzKB8zOsWgk42Y9aIvDv+78tRTPP6GTZnfr
-         z54p5mJeDP6eeLJb38ftvBPnAio+GzcHNGzDwO+8IL+nTtlVwO9yvuU/waNM8L46pDlO
-         ZUAqdlveIBNqJM15lSpKbpOIFvGh6kuJc9JLbpGQG7G2rBCffyQqHVqavUSwjTtgdQ33
-         hNww==
+        bh=uY7tyXoLmxoMYiQ/WAWTMF4JkPWNBAVamog1AGlGOlk=;
+        b=1agyELXWC/rpnRf6lizLT83wrK3i74HpO3tbqI+B9gpgyIzVRhHCeFNAm740hkQHZF
+         hzQi+vTx2PzUsWh4VtY/K2/WfYNXzp6qqTVLB5Yyv6XqMoISLkgD4iLwHiN7X1oG9scj
+         b7fkZavUGHkUe/WN8G95bgWj0GDMS/HLE1WWqkyy/yUVhfG9PRjuJBz+yAxwT6kVpgMV
+         8wFllLl1/GWRtktGNYl4jqs+ug5vLr4LOFiJBdoMio40XZCvMVlEZtxDNCiG9jljqIzk
+         qH10imkkKegSTUj/Z3+soQvHzs9Q+MJRAwd1iWzbJ6iPeCN/ZC1PD0IPl4Q5bUgz3zTT
+         iWQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757491666; x=1758096466;
+        d=1e100.net; s=20230601; t=1757491669; x=1758096469;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1alLi5TCWrgqVg4gWAi4guSOwfn7tcAcmAIIueAQAFg=;
-        b=DUdE5Bed8FsP0aF1pvDIb5ONVuCtUED4YRzSxsixgDyLHtZhZTOnJDLzjlCNQMVWpp
-         BiXkqAi9BTc1jVNMnA/9kKC+d6CYxqfg1SU98mi8Dk6mzabMVgz09FBC/Yt1UuA5B79H
-         zJKQboogEWTGKELCI34QPOYOmuFBrOxTTm/N6+BpptLktK3rpOuG1WV920LsMikmL5Ke
-         RmVRBlL97Mm1ExXcAYzhlorsBcoMRpp/SQQiniNytCdN2iK/D45UYOUi5EECoZPKKOC8
-         NsJybIM8XF6vd4dAOw0o24A1mnrfhZ/dqANyN+sDEw4M2vTTct/lIVG6tNtiyKj31/J2
-         Kh1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ6bu32HqINRoyXhe9ow6WNaGRuhWmlqCtQz0l9YZq6zpIAYbwzAmX9J6iBwmAPAIcsaw/FssAhpom@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8MfKlQwojYH3vRQy8GxXWt/wneERK2e/flFFyXVESehnC8Pwo
-	q8ofAiqazQvXuNHYVKQ7TOKApSJUBaVdU/Lsc+oAZm9lYlcrLyNJrA7qa9P5KLZUGTM=
-X-Gm-Gg: ASbGnctsvjW2QLqxSAEIGQQbXkM2YOIdwScxpe3vkRKJ1sAAzmsd0Ny2ulmgohEb33a
-	C8zybpZbQVwx1NzgndZwqPNhlVD9/+Oz/CeUg0QERWIRfQ5Q1pSftt59jixw5ScbBnRCXBd62gk
-	1G8MaOCg6vvvxSNI5YJ5XMn/6K6eJqrzW5IyvcUSJkgvzfRY/0fD5Z3PAuaqiIfsMORIRtrxLxZ
-	gfSQx1KIBNTHb7j+dfUWl2URI612i7IHZESv34xjq2O0VwgB1JFdfE3Oujnk0FsWHAmuzmMNSEw
-	em8znWqKwdfxRwVqcGxSAvM2CcZR5RBM4pGQZLnPC5QsoiBcWBTdqaBBCtviXCEK1py9j8KBjM6
-	F+lGfuyLwnWwom+jwsA==
-X-Google-Smtp-Source: AGHT+IHUfNjE0pY7vZ+IcCgXIXh8Lahm+PtGcdsfEFu9OwRBe2SmxKxdGyY8wQLIJhN0eScOcZH4jg==
-X-Received: by 2002:a05:600c:3b97:b0:456:942:b162 with SMTP id 5b1f17b1804b1-45dde200426mr141421605e9.11.1757491666390;
-        Wed, 10 Sep 2025 01:07:46 -0700 (PDT)
+        bh=uY7tyXoLmxoMYiQ/WAWTMF4JkPWNBAVamog1AGlGOlk=;
+        b=EaNmSL3wD28R52U91z2FNl3NHaQuqI/wBHtT8ZEqOp4bICcmyu7wTZQMpEQ5gznsG9
+         TsAbmsSOc97fRgxyHk9bULuDjlxyzgWII5v6wBU6Cc3fbg6tJviA7EMPU71fmHrE2d4C
+         wNUwXB20pn+IZFXb0+8tLfQvzL+STZlNdsdMqFeTERMFVf2+Osf/Zd9tf9uCLvIde54C
+         ORQuhbC8uspxdp0/mkA4bikPiUQTx2EUChGZuHOTG2mcTledojzvJvKjfjUag52SZO/9
+         fGkzGFUOPQS8+JGh+fVJ65AH41bhB6CHvJFowDNuiCxuvhb3gWfrUWVLpm3tCF3KqfeD
+         v06Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWBlmtwVCXIQfqtld3sEvyVskcUKaMYZFT1+FzIdiVN8xpfEwSJZ7Qa3Kk6j6l23D6hfYFKsuJPu9f5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxN+U/USzUDDP+YO3PtnzX3svjpy86SYcP6HgmkwnlSPKhUr3VT
+	Dc3LeJ5GE6xm0qOPprB0tbC5vPxtETTAZhjqv+DhUoql64j7LHlFGtzvQHfMXxwLvwY=
+X-Gm-Gg: ASbGncuGc0qY5l7PrQKfE+9LRAPIdN004CsSpN8okrNfPuT/fa3lBrQZbTUhizh5s6q
+	ikltXEFT7xI+lsZ2ik8qbIph7vCsFvu1scj5waZUp1KLZgw3fPtAaHbFBwgl99804aUmYbt8P3B
+	PKpRHlqnuoEO9pDcwcIuEOAbWKREgPJ89BQwYSukSEDrJ1JIaAowtdI3x6Tc9+kXwOiOlFMlLeM
+	IPpgxc/Au0DG1aS1A4A0Vvj8il9eAfkjeBoY8sM+VbzHzu2eKupd/dLUD2WDV1VFE+RgDQKTPKz
+	v3uAO2May91wdKU+dhFdJj9npmZRDXTQWATHuF2SXy9y8bnYDx7i1KCnJzD0vod7UZRxRTwuwXS
+	ITeyo2w2EJUaWS37mcEVuOs81Fezxuun0T77zEmg=
+X-Google-Smtp-Source: AGHT+IFnNZEgNDzwo9ApEnobHwV8aAoxFw0Jkpaf4P9Rpvk6aHXizs1NLoPb9xG6C0xsESVPAcwBNQ==
+X-Received: by 2002:a05:600c:3b23:b0:45d:d3f4:a640 with SMTP id 5b1f17b1804b1-45ddde82751mr137637395e9.15.1757491668832;
+        Wed, 10 Sep 2025 01:07:48 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:3936:709a:82c4:3e38])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df8247cc6sm17813605e9.12.2025.09.10.01.07.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df8247cc6sm17813605e9.12.2025.09.10.01.07.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Sep 2025 01:07:45 -0700 (PDT)
+        Wed, 10 Sep 2025 01:07:47 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 10 Sep 2025 10:07:38 +0200
-Subject: [PATCH 1/9] arm64: dts: qcom: sa8255: add ethernet nodes
+Date: Wed, 10 Sep 2025 10:07:39 +0200
+Subject: [PATCH 2/9] dt-bindings: net: qcom: document the ethqos device for
+ SCMI-based systems
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250910-qcom-sa8255p-emac-v1-1-32a79cf1e668@linaro.org>
+Message-Id: <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org>
 References: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
 In-Reply-To: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -105,322 +106,185 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6804;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4931;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=6sz23anPDRYU+tsW+2XaI9tMLFTu/c/A2ZuoT/MQdio=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBowTHMW6xqaogABRNf5jUw3TNxGIijVhn0iE2mz
- +JPHFY9Xq6JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaMExzAAKCRARpy6gFHHX
- cokeEACkWEntE6cCSgV4bnEfG5JjbhSGi4KEv3WLjNNIVMmMVfSOm8K2pX2w4btzgnQP+pc/PR0
- R5RfDyNuRpjDjawkEmAmVI0gghRTBaPea5XNfJczc+FUAAquNr9BdGAnpejL1TP2LLYzb0pCu5Z
- HyVPHLlx5pXLQSREfLTxbal4NI99m4QzS6KNSrlYX5+pT7Xmx2Xfgmxk1VWv3/2irrZBEwjkUHW
- JFOiMMHtTe3oSNvZJMn/b1uyakFUGedEdNwc6UgfHZR9qMJcxpMQHC0hVX7EpUaAB3K8bNGBjxs
- VLK200yoFl0u+z9eyPIjFg1G2n04kpT4UavsqwSS2VVABsVElOxCCc94fWbsh+NC5+We34qaejf
- V/IaglWkftnQnnkByHw2TCpYqGVvqq1RQ6MZgBjxB5BsgMs8SW6kg7Ef4b6J+0DSFYZCW1gNRJz
- YiOXauKAIoa07K+tpYqBXZr3sh9P0aSmRD5pE+lvI5yA6wynpcAsE5QOVsS0ByV+ZmO3Dng1cbn
- Vw/wfzOxLt4CCA9L7J6clGkNzKrcwk7Wupq6z+9ng05E9IbPIdkgtRXGbaJeVsfSJgUWB3eZXzn
- Tf3FJkOwlVdpodvRNFeQfGlcUg2JYOUVwiqGvm9/JXSKVgOEb3zfqV8yV5+yOHnDZX5yXjlbuyw
- rWEI0tlQdSBnq7g==
+ bh=YiaOUOOI0GWV9ljzY4gBLMGGn2gS4PsTZMpw74epeYo=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBowTHM5rrhVBB6aGbLx1+QUka9GEHLBn1Bh6zAk
+ 6upsGPRnFWJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCaMExzAAKCRARpy6gFHHX
+ clb7EACr8mgXcJhgQAtdioBd+rpPreLM1NgdsdbVw1eRYaLBKd8D6Gvowzq+W+SOWk6p5nt42LT
+ yHphk380KW+A8RxjYCIPTDF0aIgEqXkvdtxViXF4WMU5rXPnG7YAgYGkZmV7XkaOBfXvkt8jr+f
+ JIRuGuyNcLxrBDfdE+3aHT30Z5ImO3a8GAd+d1TlQT5QQr+IH+RWSddXjYXVRHbnZpNDw6A58xc
+ 1rKH5ZhUrllwrmvfZ2tL2ySQJ2tr7t9lCwdOxEMLp7x8ceU7gyDZSMEbYHCCqhKT1CUrbX3cEQ7
+ seg3SC2afuBtDvkQh32Jf6v3Re9tHnMjpyzZJJGoWKnKTZlFkBWphcwA2GozI+ebZE8kGRRMM47
+ u6/gFnm3+i2pePRz2BGlXiErGT4soU0D/Cxykz7AN1/zIyYJrJhKqUkty4KDQdmhD1a8dU0BQTA
+ 5Z1htu1KKk31ys72gNFQV+RrBNke/CJDTVmAqI1iuBusokeSjFbI9TLna6rROjPIGQiCIoc60VC
+ mV701Kemnb8TglYfSTSZIc9hFX5TCfNFi4mRxn9lma7RRwmQqIo6eCuNx3kSRcTiGo5hnqnIFYQ
+ CLS6xFvNuIDwVOKEau13A1WLlFvA6s5WHJuXCP42XtIpc6DPAghOU8OtItJIo+kk4eQtt0/u7DA
+ QWzLqY6L+dkuFdw==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add ethernet nodes for sa8255 SoC and enable them on sa8255p-ride.
+Describe the firmware-managed variant of the QCom DesignWare MAC. As the
+properties here differ a lot from the HLOS-managed variant, lets put it
+in a separate file.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8255p-ride.dts | 201 ++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sa8255p.dtsi     |  44 +++++++
- 2 files changed, 245 insertions(+)
+ .../devicetree/bindings/net/qcom,ethqos-scmi.yaml  | 101 +++++++++++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml        |   4 +-
+ MAINTAINERS                                        |   1 +
+ 3 files changed, 105 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8255p-ride.dts b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
-index cb866f897d0a372ed82b08a1734202fddb4e4d3e..62b3101caeca2ef43b2eb096753dd38b665684c6 100644
---- a/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8255p-ride.dts
-@@ -16,6 +16,8 @@ / {
- 	compatible = "qcom,sa8255p-ride", "qcom,sa8255p";
+diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..d7d6c013311c2643d5ac0e2a75e0180911487d96
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/qcom,ethqos-scmi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Ethernet ETHQOS device (firmware managed)
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++  - Konrad Dybcio <konradybcio@kernel.org>
++  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
++
++description:
++  dwmmac based Qualcomm ethernet devices which support Gigabit
++  ethernet (version v2.3.0 and onwards) with clocks, interconnects, etc.
++  managed by firmware
++
++allOf:
++  - $ref: snps,dwmac.yaml#
++
++properties:
++  compatible:
++    const: qcom,sa8255p-ethqos
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: stmmaceth
++      - const: rgmii
++
++  interrupts:
++    items:
++      - description: Combined signal for various interrupt events
++      - description: The interrupt that occurs when HW safety error triggered
++
++  interrupt-names:
++    items:
++      - const: macirq
++      - const: sfty
++
++  power-domains: true
++
++  power-domain-names:
++    items:
++      - const: power_core
++      - const: power_mdio
++      - const: perf_serdes
++
++  iommus:
++    maxItems: 1
++
++  dma-coherent: true
++
++  phys: true
++
++  phy-names:
++    const: serdes
++
++required:
++  - compatible
++  - reg-names
++  - power-domains
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ethernet: ethernet@7a80000 {
++        compatible = "qcom,sa8255p-ethqos";
++        reg = <0x23040000 0x10000>,
++              <0x23056000 0x100>;
++        reg-names = "stmmaceth", "rgmii";
++
++        iommus = <&apps_smmu 0x120 0x7>;
++
++        interrupts = <GIC_SPI 946 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 782 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "macirq", "sfty";
++
++        dma-coherent;
++
++        snps,tso;
++        snps,pbl = <32>;
++        rx-fifo-depth = <16384>;
++        tx-fifo-depth = <16384>;
++
++        phy-handle = <&sgmii_phy1>;
++        phy-mode = "2500base-x";
++
++        snps,mtl-rx-config = <&mtl_rx_setup1>;
++        snps,mtl-tx-config = <&mtl_tx_setup1>;
++        snps,ps-speed = <1000>;
++
++        power-domains = <&scmi8_pd 0>, <&scmi8_pd 1>, <&scmi8_dvfs 0>;
++        power-domain-names = "power_core", "power_mdio","perf_serdes";
++    };
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 4e3cbaa062290a6e8e5e60d0d01b0b39485c5478..07264c9c62778e9e8e2768999c5c377fce6811a1 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -71,6 +71,7 @@ properties:
+         - loongson,ls7a-dwmac
+         - nxp,s32g2-dwmac
+         - qcom,qcs404-ethqos
++        - qcom,sa8255p-ethqos
+         - qcom,sa8775p-ethqos
+         - qcom,sc8280xp-ethqos
+         - qcom,sm8150-ethqos
+@@ -175,7 +176,7 @@ properties:
+           - const: ahb
  
- 	aliases {
-+		ethernet0 = &ethernet0;
-+		ethernet1 = &ethernet1;
- 		serial0 = &uart10;
- 		serial1 = &uart4;
- 	};
-@@ -31,6 +33,179 @@ &adreno_smmu {
- 	status = "okay";
- };
+   power-domains:
+-    maxItems: 1
++    maxItems: 3
  
-+&ethernet0 {
-+	phy-handle = <&sgmii_phy0>;
-+	phy-mode = "2500base-x";
-+
-+	pinctrl-0 = <&ethernet0_default>;
-+	pinctrl-names = "default";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,ps-speed = <1000>;
-+
-+	power-domains = <&scmi7_pd 0>, <&scmi7_pd 1>, <&scmi7_dvfs 0>;
-+	power-domain-names = "power_core", "power_mdio","perf_serdes";
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		sgmii_phy0: phy@8 {
-+			compatible = "ethernet-phy-id31c3.1c33";
-+			reg = <0x8>;
-+			device_type = "ethernet-phy";
-+			resets = <&scmi7_rst 0>;
-+			reset-names = "phy";
-+			reset-assert-us = <11000>;
-+			reset-deassert-us = <70000>;
-+		};
-+
-+		sgmii_phy1: phy@0 {
-+			compatible = "ethernet-phy-id31c3.1c33";
-+			reg = <0x0>;
-+			device_type = "ethernet-phy";
-+			resets = <&scmi8_rst 0>;
-+			reset-names = "phy";
-+			reset-assert-us = <11000>;
-+			reset-deassert-us = <70000>;
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
-+&ethernet1 {
-+	phy-handle = <&sgmii_phy1>;
-+	phy-mode = "2500base-x";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup1>;
-+	snps,mtl-tx-config = <&mtl_tx_setup1>;
-+	snps,ps-speed = <1000>;
-+
-+	power-domains = <&scmi8_pd 0>, <&scmi8_pd 1>, <&scmi8_dvfs 0>;
-+	power-domain-names = "power_core", "power_mdio","perf_serdes";
-+
-+	status = "okay";
-+
-+	mtl_rx_setup1: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup1: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &gpll0_board_clk {
- 	clock-frequency = <300000000>;
- };
-@@ -59,6 +234,14 @@ &qupv3_id_1 {
- 	status = "okay";
- };
+   mac-mode:
+     $ref: ethernet-controller.yaml#/properties/phy-connection-type
+@@ -638,6 +639,7 @@ allOf:
+                 - ingenic,x1830-mac
+                 - ingenic,x2000-mac
+                 - qcom,qcs404-ethqos
++                - qcom,sa8255p-ethqos
+                 - qcom,sa8775p-ethqos
+                 - qcom,sc8280xp-ethqos
+                 - qcom,sm8150-ethqos
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cd7ff55b5d321752ac44c91d2d7e74de28e08960..ab453e599a174e5414fc0c1baab5a64e0d88dd78 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20745,6 +20745,7 @@ M:	Vinod Koul <vkoul@kernel.org>
+ L:	netdev@vger.kernel.org
+ L:	linux-arm-msm@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml
+ F:	Documentation/devicetree/bindings/net/qcom,ethqos.yaml
+ F:	drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
  
-+&scmi7 {
-+	status = "okay";
-+};
-+
-+&scmi8 {
-+	status = "okay";
-+};
-+
- &scmi11 {
- 	status = "okay";
- };
-@@ -75,6 +258,24 @@ &sleep_clk {
- 	clock-frequency = <32000>;
- };
- 
-+&tlmm {
-+	ethernet0_default: ethernet0-default-state {
-+		ethernet0_mdc: ethernet0-mdc-pins {
-+			pins = "gpio8";
-+			function = "emac0_mdc";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		ethernet0_mdio: ethernet0-mdio-pins {
-+			pins = "gpio9";
-+			function = "emac0_mdio";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
- &uart4 {
- 	power-domains = <&scmi11_pd 4>, <&scmi11_dvfs 4>;
- 	power-domain-names = "power", "perf";
-diff --git a/arch/arm64/boot/dts/qcom/sa8255p.dtsi b/arch/arm64/boot/dts/qcom/sa8255p.dtsi
-index bde94f8af8f7d2844855fe7ce432dbbaa996b6cc..144745b2ac75b5d42b682bb107ebe4b27afb6644 100644
---- a/arch/arm64/boot/dts/qcom/sa8255p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8255p.dtsi
-@@ -1093,6 +1093,50 @@ cpufreq_hw: cpufreq@18591000 {
- 			clock-names = "xo", "alternate";
- 			#freq-domain-cells = <1>;
- 		};
-+
-+		ethernet1: ethernet@23000000 {
-+			compatible = "qcom,sa8255p-ethqos";
-+			reg = <0x0 0x23000000 0x0 0x10000>,
-+			      <0x0 0x23016000 0x0 0x100>;
-+			reg-names = "stmmaceth", "rgmii";
-+
-+			iommus = <&apps_smmu 0x140 0x7>;
-+
-+			interrupts = <GIC_SPI 929 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 781 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "sfty";
-+
-+			dma-coherent;
-+
-+			snps,tso;
-+			snps,pbl = <32>;
-+			rx-fifo-depth = <16384>;
-+			tx-fifo-depth = <16384>;
-+
-+			status = "disabled";
-+		};
-+
-+		ethernet0: ethernet@23040000 {
-+			compatible = "qcom,sa8255p-ethqos";
-+			reg = <0x0 0x23040000 0x0 0x10000>,
-+			      <0x0 0x23056000 0x0 0x100>;
-+			reg-names = "stmmaceth", "rgmii";
-+
-+			iommus = <&apps_smmu 0x120 0x7>;
-+
-+			interrupts = <GIC_SPI 946 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 782 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "sfty";
-+
-+			dma-coherent;
-+
-+			snps,tso;
-+			snps,pbl = <32>;
-+			rx-fifo-depth = <16384>;
-+			tx-fifo-depth = <16384>;
-+
-+			status = "disabled";
-+		};
- 	};
- 
- 	thermal-zones {
 
 -- 
 2.48.1
