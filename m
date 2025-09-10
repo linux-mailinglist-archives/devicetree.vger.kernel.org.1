@@ -1,152 +1,215 @@
-Return-Path: <devicetree+bounces-215475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAA0B518A0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:00:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA829B51892
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:59:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60CFB4850DD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:59:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD2253B767E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9D732275E;
-	Wed, 10 Sep 2025 13:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="FGr4p1mP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF96320CDF;
+	Wed, 10 Sep 2025 13:59:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87D42C029C
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 13:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4F4289358;
+	Wed, 10 Sep 2025 13:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757512765; cv=none; b=JazkLyQLpgaVrpk55DXSKfvqp3BJrMG6mlmKKWMdaQu6Q4/Am8BiMkKIQWRf4fzHXScl5AQMXHhKut6uZ4xQbTSci/8LcyFkvIavGPSQbZmtScZx/pQEFzIBWlV3Pn1aac1h6i156c37xHslmgR4Q4RYIqQP1032LA82EjQdejk=
+	t=1757512757; cv=none; b=JDDMXbjQiFPLmcfRzkRMKL5G2sJqM0VkQ0nY3sQL+nHsF9wMhiPxef+sWmR7c6yolbrwoQdw+TrXg85ujyBkLzfT7X+Q8KECNtfiHGeyTZ4O+JYuzPOBJPBCHoS0t9hBw8vkXI61gVNwrdqCwDyUuQr5AiPpgrEPaeDI6aiHmPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757512765; c=relaxed/simple;
-	bh=6DM9dMZAtcwlDKvhQvsmdFJDn+355Evyd4COdeLDukI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cGEtNwCTRttRS7gpI8ZXCBsoNpTL0uHxFM/bwSO72+jWqyrlYveTH+1L/Ml4r7p37NmhgddaWVhwaZt1N02SbUnDYsdqE/g9a86cmiE1FwQC9HUh6ftAaPgREsMlItJbKiIVLathUMyvYoy8rrV1205M2buh3DeS38CG10q1Qco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=FGr4p1mP; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b045d56e181so1022169066b.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 06:59:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757512762; x=1758117562; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GtY6xQODciaFQXT13QEjMt2xFfxEtt0WYueluTMBhAE=;
-        b=FGr4p1mPt3o3KMsqm8t8Vr0lNxxODvzir+BfjRbAffjFFbeZcxFSGZofGT+rqfR8ct
-         hunTWYBhA2tI7hulGU4SAIUjlqnDWJgv2uOsE+dqfH3stDacSnRPz2qIDTRi6T/0vsi9
-         9rUgJiztKDYtwq6tWB9ByfQmpv+vi6Cq7ZQRo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757512762; x=1758117562;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GtY6xQODciaFQXT13QEjMt2xFfxEtt0WYueluTMBhAE=;
-        b=lqq0GLaIdFSXRehIlOJ4sDmWyfmXjIrH+AGCn5Myx+PvVOt1sSmDVebOmBPA1dQWoW
-         y/sgdqISOhij3eUKXV19+mCsqpbGhJiBcrVK6gOaGWl17/518jXlRFo2qnowlGBk74Qb
-         DhJiF+nxC8vkAnShZqgV85CPJgNYErPL3W5MK82ANDroRD2HsSelnVZO9O4BU3nl0MTX
-         f7UEHoleMzT+e7Fmy81gSKkyIDtE+1fM8MXrzIMpAD/6azSfJEoI3hL19gYNm0ss6Mux
-         cCJhGz3Tnjmcq9u21uglPkc4J4Vzfa3kirVXbZ19bhIvnSRNcxAnCoOvRHIO1lNIcaH9
-         9N9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUF/mOEPO0UtnpZvG+G+ootT2dGoT2Hll8XASEIR4Q+s5vu5hXtu/aLG42x9d6kCCx3c/qw+6QiaKs6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVQTIAg4QujYd5+MtlmX3YHANTLCSa66kqWh+pPvIpem0R2ERD
-	GcIlENPwOTiqDtJfnzPJlDeM6rsOHufPu38rh5uusFWtL9BJ/hk6sgYEWjoR1wrKZHw=
-X-Gm-Gg: ASbGncv6eQdHRkmbxtNs396Z9ZwYToaO9gWzCHRSuOleeTY6cOtK1OzsVPNZ9yxyEaY
-	5ccevfFqKJTcvV6rYd3J7iiPZXsH5Df/jkgkezxemFAaHSjlkjpwx8N3m4ePMw9vTDQ8VmDnHIB
-	uztCPDfpUhLEuO8DjBc6OW3F/QBpxh7ENqoTMeFHg5dReh5nta3sD6q1qF3hPyGngXDXw+68p9K
-	r631Jinq8xXqNENJM/eJRyRUHOMWCckgn0O/XOuoMUuwzbyDj6UkkYcFadSDqdW7ZCl2HbuV+M8
-	Jwty0GC7+xOmvub6KqZHzsk3rejAF1nUbUDNYPRljIEd4gdp0sOr+ellorEhSLVVlpTMJZlpr38
-	bFsSofCq2CWwELbxi4vsGyDhEZs0GGrzlxB8fdIgJuR0cauusy8PEd9ZdNCRIU93XwQG8Y+OKya
-	3j3ZurG2WVf2pOPayABtYImQNJw9mdwKCqgj+/Ubj4lZrMf90ymKT+9cJ9wpOea9hy
-X-Google-Smtp-Source: AGHT+IEwFKbwXQOp9vR5RWBfca+LwdgNqWC2NlCsLiPo9Z3IGD4hXe/SLsqdKeNLsPpGK5bn7AW6lQ==
-X-Received: by 2002:a17:907:d91:b0:b04:626e:f43d with SMTP id a640c23a62f3a-b04b167b9f2mr1190384166b.47.1757512761817;
-        Wed, 10 Sep 2025 06:59:21 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07833a4e37sm172523066b.76.2025.09.10.06.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Sep 2025 06:59:21 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-input@vger.kernel.org
-Subject: [RESEND PATCH 2/4] dt-bindings: input: touchscreen: fsl,imx6ul-tsc: add fsl,glitch-threshold
-Date: Wed, 10 Sep 2025 15:58:36 +0200
-Message-ID: <20250910135916.3939502-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250910135916.3939502-1-dario.binacchi@amarulasolutions.com>
-References: <20250910135916.3939502-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1757512757; c=relaxed/simple;
+	bh=u+HJQufIiCIozy/YxwbprUuqZZx3WzySTZMP4USJNHA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tXapyjKJNwsDxx0gJ9byispWiV4FMMLMcGQK6mgngfFAeKyV283e9mXTNbsVZdkd+5aZRbnbIbJ3YmMhOUxUFIqurd19AJXTu1Pypa66JLgRx051DSryM2pG1VVTOS8NRwUB6rRfk6LikRfTvTEYq/oXFmBV4FmszVQiP5f/SCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D0141595;
+	Wed, 10 Sep 2025 06:59:01 -0700 (PDT)
+Received: from [10.1.25.55] (e122027.cambridge.arm.com [10.1.25.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 461F73F694;
+	Wed, 10 Sep 2025 06:59:03 -0700 (PDT)
+Message-ID: <b4fd2074-d00f-4726-a85d-541105cdc6fd@arm.com>
+Date: Wed, 10 Sep 2025 14:59:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 06/10] drm/panthor: call into devfreq for current
+ frequency
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com>
+ <20250905-mt8196-gpufreq-v1-6-7b6c2d6be221@collabora.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250905-mt8196-gpufreq-v1-6-7b6c2d6be221@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for glitch threshold configuration. A detected signal is valid
-only if it lasts longer than the set threshold; otherwise, it is regarded
-as a glitch.
+On 05/09/2025 11:23, Nicolas Frattaroli wrote:
+> As it stands, panthor keeps a cached current frequency value for when it
+> wants to retrieve it. This doesn't work well for when things might
+> switch frequency without panthor's knowledge.
+> 
+> Instead, implement the get_cur_freq operation, and expose it through a
+> helper function to the rest of panthor.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+Reviewed-by: Steven Price <steven.price@arm.com>
 
- .../input/touchscreen/fsl,imx6ul-tsc.yaml      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-index 678756ad0f92..2fee2940213f 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-tsc.yaml
-@@ -62,6 +62,23 @@ properties:
-     description: Number of data samples which are averaged for each read.
-     enum: [ 1, 4, 8, 16, 32 ]
- 
-+  fsl,glitch-threshold:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    enum: [ 0, 1, 2, 3 ]
-+    description: |
-+      Indicates the glitch threshold. The threshold is defined by number
-+      of clock cycles. A detect signal is only valid if it is exist longer
-+      than threshold; otherwise, it is regarded as a glitch.
-+      0: Normal function: 8191 clock cycles
-+         Low power mode: 9 clock cycles
-+      1: Normal function: 4095 clock cycles
-+         Low power mode: 7 clock cycles
-+      2: Normal function: 2047 clock cycles
-+         Low power mode: 5 clock cycles
-+      3: Normal function: 1023 clock cycles
-+         Low power mode: 3 clock cycles
-+
- required:
-   - compatible
-   - reg
-@@ -94,4 +111,5 @@ examples:
-         measure-delay-time = <0xfff>;
-         pre-charge-time = <0xffff>;
-         touchscreen-average-samples = <32>;
-+        fsl,glitch-threshold = <2>;
-     };
--- 
-2.43.0
+> ---
+>  drivers/gpu/drm/panthor/panthor_devfreq.c | 33 +++++++++++++++++++++++++++----
+>  drivers/gpu/drm/panthor/panthor_devfreq.h |  2 ++
+>  drivers/gpu/drm/panthor/panthor_device.h  |  3 ---
+>  drivers/gpu/drm/panthor/panthor_drv.c     |  4 +++-
+>  4 files changed, 34 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> index 3686515d368db5bb329f4858d4a7247a4957cc24..8903f60c0a3f06313ac2008791c210ff32b6bd52 100644
+> --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
+> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> @@ -62,7 +62,6 @@ static void panthor_devfreq_update_utilization(struct panthor_devfreq *pdevfreq)
+>  static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
+>  				  u32 flags)
+>  {
+> -	struct panthor_device *ptdev = dev_get_drvdata(dev);
+>  	struct dev_pm_opp *opp;
+>  	int err;
+>  
+> @@ -72,8 +71,6 @@ static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
+>  	dev_pm_opp_put(opp);
+>  
+>  	err = dev_pm_opp_set_rate(dev, *freq);
+> -	if (!err)
+> -		ptdev->current_frequency = *freq;
+>  
+>  	return err;
+>  }
+> @@ -115,11 +112,21 @@ static int panthor_devfreq_get_dev_status(struct device *dev,
+>  	return 0;
+>  }
+>  
+> +static int panthor_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
+> +{
+> +	struct panthor_device *ptdev = dev_get_drvdata(dev);
+> +
+> +	*freq = clk_get_rate(ptdev->clks.core);
+> +
+> +	return 0;
+> +}
+> +
+>  static struct devfreq_dev_profile panthor_devfreq_profile = {
+>  	.timer = DEVFREQ_TIMER_DELAYED,
+>  	.polling_ms = 50, /* ~3 frames */
+>  	.target = panthor_devfreq_target,
+>  	.get_dev_status = panthor_devfreq_get_dev_status,
+> +	.get_cur_freq = panthor_devfreq_get_cur_freq,
+>  };
+>  
+>  int panthor_devfreq_init(struct panthor_device *ptdev)
+> @@ -198,7 +205,6 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
+>  		return PTR_ERR(opp);
+>  
+>  	panthor_devfreq_profile.initial_freq = cur_freq;
+> -	ptdev->current_frequency = cur_freq;
+>  
+>  	/*
+>  	 * Set the recommend OPP this will enable and configure the regulator
+> @@ -296,3 +302,22 @@ void panthor_devfreq_record_idle(struct panthor_device *ptdev)
+>  
+>  	spin_unlock_irqrestore(&pdevfreq->lock, irqflags);
+>  }
+> +
+> +unsigned long panthor_devfreq_get_freq(struct panthor_device *ptdev)
+> +{
+> +	struct panthor_devfreq *pdevfreq = ptdev->devfreq;
+> +	unsigned long freq = 0;
+> +	int ret;
+> +
+> +	if (!pdevfreq || !pdevfreq->devfreq)
+> +		return 0;
+> +
+> +	if (pdevfreq->devfreq->profile->get_cur_freq) {
+> +		ret = pdevfreq->devfreq->profile->get_cur_freq(ptdev->base.dev,
+> +							       &freq);
+> +		if (ret)
+> +			return 0;
+> +	}
+> +
+> +	return freq;
+> +}
+> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.h b/drivers/gpu/drm/panthor/panthor_devfreq.h
+> index b7631de695f7d79456478c87e8af5dc47673cd1d..f8e29e02f66cb3281ed4bb4c75cda9bd4df82b92 100644
+> --- a/drivers/gpu/drm/panthor/panthor_devfreq.h
+> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.h
+> @@ -18,4 +18,6 @@ void panthor_devfreq_suspend(struct panthor_device *ptdev);
+>  void panthor_devfreq_record_busy(struct panthor_device *ptdev);
+>  void panthor_devfreq_record_idle(struct panthor_device *ptdev);
+>  
+> +unsigned long panthor_devfreq_get_freq(struct panthor_device *ptdev);
+> +
+>  #endif /* __PANTHOR_DEVFREQ_H__ */
+> diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
+> index 4fc7cf2aeed577f623aac73ed287d6327645ecaa..a14239c8f9ca9229d8d6d36d327e6fd6d05f8f2f 100644
+> --- a/drivers/gpu/drm/panthor/panthor_device.h
+> +++ b/drivers/gpu/drm/panthor/panthor_device.h
+> @@ -200,9 +200,6 @@ struct panthor_device {
+>  	/** @profile_mask: User-set profiling flags for job accounting. */
+>  	u32 profile_mask;
+>  
+> -	/** @current_frequency: Device clock frequency at present. Set by DVFS*/
+> -	unsigned long current_frequency;
+> -
+>  	/** @fast_rate: Maximum device clock frequency. Set by DVFS */
+>  	unsigned long fast_rate;
+>  
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+> index 4c202fc5ce0504e3f08bf6c8f18a314890eb88ec..c85a16e1339eaa164a8719ffecf5214cafff1a55 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -25,6 +25,7 @@
+>  #include <drm/gpu_scheduler.h>
+>  #include <drm/panthor_drm.h>
+>  
+> +#include "panthor_devfreq.h"
+>  #include "panthor_device.h"
+>  #include "panthor_fw.h"
+>  #include "panthor_gem.h"
+> @@ -1519,7 +1520,8 @@ static void panthor_gpu_show_fdinfo(struct panthor_device *ptdev,
+>  		drm_printf(p, "drm-cycles-panthor:\t%llu\n", pfile->stats.cycles);
+>  
+>  	drm_printf(p, "drm-maxfreq-panthor:\t%lu Hz\n", ptdev->fast_rate);
+> -	drm_printf(p, "drm-curfreq-panthor:\t%lu Hz\n", ptdev->current_frequency);
+> +	drm_printf(p, "drm-curfreq-panthor:\t%lu Hz\n",
+> +		   panthor_devfreq_get_freq(ptdev));
+>  }
+>  
+>  static void panthor_show_internal_memory_stats(struct drm_printer *p, struct drm_file *file)
+> 
 
 
