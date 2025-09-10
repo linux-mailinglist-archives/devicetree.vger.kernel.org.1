@@ -1,110 +1,136 @@
-Return-Path: <devicetree+bounces-215436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FDBB516DE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:28:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7AEB516E0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:28:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852C21C84483
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:28:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FAD4176054
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959822749E2;
-	Wed, 10 Sep 2025 12:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4395131A06C;
+	Wed, 10 Sep 2025 12:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l5GE7C3d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8928926AAAB;
-	Wed, 10 Sep 2025 12:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B67331A05B
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 12:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757507294; cv=none; b=HqpKunEEcjnRFWMvNQTGu0uMGm12pQvmw+BtLxnmmlwb5vC66ooGycEmWjAjTZ4xKnjGYWnWdropOpyLxYt7ySDj7WCDS0a/uMGtNzz27bbx65HXvTthrIxYJKVjzMfL3Y1tIsMfTs/JB94LNe1kgcH98B3CUpeBncSB1880xLI=
+	t=1757507311; cv=none; b=dXvkbJ2Bn5Q4Cwasn+yWGlgR8W7JSWR7jvmIP5lYRuf8nugGBhEa5/xIQy1XRTjHFC/I5/PXa5eS24dzKxceRD4OwycY0Csf1bxm2/JmixlqDWkDzqk5GMiRwQMnM2ktwQ9t0qbwLAo2TexjYPNDEDdNUaSQ6BZtdbVD94GdTEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757507294; c=relaxed/simple;
-	bh=L4bjAEH1o0JK/jeYT3aGj7l2lqzXfDiaiCwAYLFb6NM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ntfbaiWtF3GqEYCkwfV/Qb2bnbqL7CuikRr9IFhMSAXV7/M02TvF2/xWt7zsCvJMPHR5wFbL7dsplE8gz5TvWaJZapjBs3+Z8abk5/Kg/TL26pqv8QW3H+wOj/a4IvZfY59WhLdDU4lDthLUPdvP7Ijn6MWKhjSvj9adRJ2TXmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-545df2bb95dso3040183e0c.0;
-        Wed, 10 Sep 2025 05:28:12 -0700 (PDT)
+	s=arc-20240116; t=1757507311; c=relaxed/simple;
+	bh=xr+pHWDpFhG101gZJW36qscUm47fFzwtzUnoWeWDmLY=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=ib1wKAEvdnPc3EVXOFmF3pwPUfu6sR1vyAdh6fl7PNxVQGoZ8qz6SE34tK98vkQ1/t8ZuRfzhPxNNebepeE6HG9fDMyQCLQXqRZRU5NI83y5pwXe70AciXLLAphUMZCxyOQK0gXJaw+PPcwY8wCx7e11S6MFgy1yhhhmh2WGbvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l5GE7C3d; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-77250e45d36so5881601b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 05:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757507309; x=1758112109; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uKKz38rJoChd6hasvypIOinRdsvj7L3C/cH5A2UhAis=;
+        b=l5GE7C3dJ/JUFsuAQJ4aaeKurtCtKAnlEFMprKqNZJ+/ZLB9IlR0GSmxOeuxvdSB2L
+         8fSb7iU+9/+tf/O14nKK92dojn/fKfeSIIV6a1sy+d9oQxWDfAdqYxn3oa4admdir6u4
+         ZqhqStWxuMfK2NuA0IAbloU3TXh+Fs2RsCdY1db+JiPNBekQmwf5WhutRkuj1hs4/BZ6
+         D93QLuXm8xT1NdiXREHvHMgK1B4ubx1Swnva5ckMnUoXHqRgvvS+GvdUGvWGw9eBr18x
+         tDc8u+3hQeOR5EXKC9JVfF/f4Y+brypIATG5Jlj8L/S7/VoABBKbeGXUgaDMTet0364q
+         KNTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757507291; x=1758112091;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xW7YzhHQJkY7WdnM/CAx2uPR1cph/idX63DhLteRaRw=;
-        b=aYMjODFkngOcynVOW03T1mSNGUassPR1Qx9KPMnyEisK0Km5kvaYfKsPPaLaDXNSuB
-         fi33hdHJPa2IDaIU+LILSX8fG2nO6ZHaXLaLNvZ3yKHixFt9AqvoROQXRclIEkdk192c
-         4sB7P2kWpLgnpdr6zOW4mdkLPYnalh5uPRsTuP8TJVq13Y58RQyzM7ud9+LvkdQp192u
-         jKh13ubq1qCjWQnS0X4Ovy/pyevwAKwC1kxCXsSaiWdUyb+uUl52WGLy66tI61bMmiGd
-         ppp9j/dGLjxPTz4W43X0YGuQZYZNls9MTJX5GYJ9gNM+kkf8Acm5ZF8vVMUOn0ruxGh5
-         PQvw==
-X-Forwarded-Encrypted: i=1; AJvYcCVW54Jf56jHXrd6rZIGpvv2L46daPZRFfAWYJuYwmJTHnM0dB+0Yg96qpwMb72KCkXggtvb7gOfgVef7nLXEDFqDwM=@vger.kernel.org, AJvYcCXLidtamOE1K339PlIHNWmhs697uSEs8HrGK0d8LNa7AbRWIs+jzLomWFCOkMm66D+j2xFwHBxhxhKE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv37YQySjhEyMXZYw9KTuhOLbdXCb1p2+hzLSI0fSnfyJGlmpR
-	MUiO/ddR37yMDq3UipWSHjYZjStU0rbuwfy8YaUnbnhzDq5DKRtIwuveIudU1MOl
-X-Gm-Gg: ASbGncu1/CVks5VENELw2Sz7CQGjJNQvrQUNhR/UIKmvnQoRSmaBYtXywofHjMZT0bv
-	EUb1HY13LPQde59JWtrBLHrT5PXRPEBshi8OknWWba/dQ4reEqVbUJvhlnXXyX3GW7T3qaMxi+6
-	Ykp7YVepkW4VrOHj2sVHVe9nJ2pd9MVg4E4FTSeXexj16PGgfOX4V8NNGF5p+EXXOEj14Ta4OW/
-	pvDzINZ7rCigqhsFINMnYEDzOA57Be8MCJuDZKof13OUFftAqY1IMAESXyNTHXpjT4rL4Rh8XaZ
-	QSVL5RyEV05lIPnuj/TPWDpUH/3hRJ3piihyZxBakcP2Wl4PGM9lfhOIhNJAIefhgTFwKTwjIyk
-	K1EDBqgIWace+iPPdNw6l39bXue80xPix8QYnpvYcrFit39J+oRqgZOXv2bWeNHyutG2tf4EYza
-	WA9EgKrw==
-X-Google-Smtp-Source: AGHT+IHEUtFHr3UFTBlseh7nakrz1ncfSTegxpslVMgEyNJGstzBG3S+Ay+rACtNp0XYWvkv18+d9Q==
-X-Received: by 2002:a05:6122:1d4b:b0:543:1d45:a8ea with SMTP id 71dfb90a1353d-5472abf2739mr3861619e0c.0.1757507291198;
-        Wed, 10 Sep 2025 05:28:11 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54491464b7dsm13846686e0c.15.2025.09.10.05.28.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 05:28:10 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-890190c7912so1650842241.2;
-        Wed, 10 Sep 2025 05:28:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU3L/Ycr6pz8uhpwlt36hiRevHvpNmtbcw7MfmEcRHCDoR9CuRjm0zfCOFCGdMdPZp2xznXTqJCXt/L@vger.kernel.org, AJvYcCUsr8zvFZaHMUanMUZ2eRtWuBqDSlyPMdKrs7yx6qMklIWqUz5eMkZLZh3ZBzCTbRRYG7JOxU+sA7UHkDzjTIABpgg=@vger.kernel.org
-X-Received: by 2002:a05:6102:1623:b0:524:b3f6:fe7d with SMTP id
- ada2fe7eead31-53d160d3ee0mr4782671137.32.1757507290343; Wed, 10 Sep 2025
- 05:28:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757507309; x=1758112109;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uKKz38rJoChd6hasvypIOinRdsvj7L3C/cH5A2UhAis=;
+        b=XUySB/+eO5Aym8vRK+OSOF3ukWV542MnXOHaumTX9zZrX715sMQZdEbFaEBQWWW5pY
+         vLEahZtTrSgcPKPZusmWzaUbBz6pUW55wq8q0hk0q9ihwsfufuhsoW/RJ49Z4AKQ0WYy
+         XIE1f1cowc/vWTQvviIwLoQ1JR2fW5bvk62g+LbmQws78Bc65PsHGKOl7e2mpxPp4mBp
+         FyhyaqwWdTZdhoYva5d5MGnGuFaVFQj6Nq0+xXMi1CyA+VXetsufV+VO8en4BJLUdpbz
+         yoF6WTwgpuFSoYi3ItEerQ/mbmIdw5svbUDt+Tkl6h+1Q1+6BNgoRtZj1mKLgoyE68Gf
+         KWTw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxcRGdgFOgMWKprPsh85gfoVnKimDe9FHb1rfjVesuS6fsNetexG3YhCC24K+UaqkdSSmmS3m5dkJU@vger.kernel.org
+X-Gm-Message-State: AOJu0YykGpTxeLxUrJodEoBnRaGuPkg0UTyW14HnjMUd3h8Id+yBq/2c
+	T7OSzDU9/gbvw1SRqMfYwswJq3MhEyQfyW1Ul1Miy1qmhuU7CuybL0gfXf20w6/uL5FSm5W2wNj
+	CGPEP/IkTcwCDjQyREhTthi60sA00Uh1OW2ubk+jvQg==
+X-Gm-Gg: ASbGncv2MMcQwa9mL1YU3VPMsUO7fBA7Gsa3qa9pnbC/l2PCq/oAYkirn/QM2JVhh+q
+	DfyRnT4/RRno58QTVQ+P+wiELTPC35AWMJNBoDVNbr1yBL2VkHBjGDwQDAt+Fzx7+H2LjaNgL7L
+	3AoPEpLqeJGVRnnoT9rfJOoaaEVsFQHWXIGAckbZQXhrF4dYiwoiHEkkLYZHVGPGqEXdT2fooJl
+	hMhyI/MDWWpnw7Z93q2oFt8KfZ+ZMOhB1tYYMiqp5ZXVkr2UL7pTw0gkG/LiRCSExWBuMRoluY9
+	iFzwwUlNG4XzgHO7Ug==
+X-Google-Smtp-Source: AGHT+IG4qzDgYzLw61c20CouFv01sBXpB434aIve9D/nBM4iCZ8x3Y3u0nVvalLiKmVp0DIuV/6ujgGhDDoSGv7mFtM=
+X-Received: by 2002:a05:6a20:734a:b0:243:b38b:eba3 with SMTP id
+ adf61e73a8af0-2533d225e5amr22112020637.20.1757507308800; Wed, 10 Sep 2025
+ 05:28:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com> <87ms73vzen.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87ms73vzen.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 10 Sep 2025 14:27:59 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXaxG6bwbCG44FW++TRohCtHV64GNykWeRenv7wK=TK1Q@mail.gmail.com>
-X-Gm-Features: AS18NWDGjjslsafTOV2qHmKlGQtNee1KVedWiSlnl6J4A2ThSrW1mM-bbqs6Za0
-Message-ID: <CAMuHMdXaxG6bwbCG44FW++TRohCtHV64GNykWeRenv7wK=TK1Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: renesas: Document R-Car X5H Ironhide
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
+From: Naresh Kamboju <naresh.kamboju@linaro.org>
+Date: Wed, 10 Sep 2025 17:58:17 +0530
+X-Gm-Features: AS18NWC_Ip5gUfztIBhg-V1fX8vYtT8uTSYaRWdst2tMKb6IDGdmP3wp0PVgMdM
+Message-ID: <CA+G9fYuW3VZHpAzoL5pRXu6_K9LMHynNzMO9ULrdsC4UKY-ELA@mail.gmail.com>
+Subject: next-20250910: ERROR: modpost: "typec_switch_set" [drivers/extcon/extcon-ptn5150.ko]
+ undefined!
+To: open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org, 
+	Linux Regressions <regressions@lists.linux.dev>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Anders Roxell <anders.roxell@linaro.org>, 
+	Ben Copeland <benjamin.copeland@linaro.org>, Frank Li <Frank.Li@nxp.com>, 
+	Xu Yang <xu.yang_2@nxp.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Stephen Boyd <swboyd@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 10 Sept 2025 at 04:01, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> Document the compatible values for the Renesas R-Car X5H (R8A78000) SoC,
-> as used on the Renesas Ironhide board.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The following build warnings / errors are noticed with arm64 defconfig+
+with gcc-12 and gcc-13 toolchains on the Linux next-20250910 tag.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+Regression Analysis:
+- New regression? Yes
+- Reproducibility? yes
 
-Gr{oetje,eeting}s,
+Build regression: next-20250910: arm64: "typec_switch_set"
+[drivers/extcon/extcon-ptn5150.ko] undefined!
+Build regression: next-20250910: arm64: "fwnode_typec_switch_get"
+[drivers/extcon/extcon-ptn5150.ko] undefined!
 
-                        Geert
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+The suspected patch, (The git bisection is in progress)
+  0d6a9aca15c987b4774f7fdb34114ab0d483766a
+  extcon: ptn5150: Add Type-C orientation switch support
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+## Build log
+ERROR: modpost: "typec_switch_set" [drivers/extcon/extcon-ptn5150.ko] undefined!
+ERROR: modpost: "fwnode_typec_switch_get"
+[drivers/extcon/extcon-ptn5150.ko] undefined!
+
+## Source
+* Kernel version: 6.17.0-rc5
+* Git tree: https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next.git
+* Git describe: 6.17.0-rc5-next-20250910
+* Git commit: 5f540c4aade9f1d58fb7b9490b4b7d5214ec9746
+* Architectures: arm64
+* Toolchains: gcc-12 and gcc-13
+* Kconfigs: defconfig+lkftconfigs
+
+## Build
+* Build log: https://qa-reports.linaro.org/api/testruns/29839409/log_file/
+* Build details:
+https://regressions.linaro.org/lkft/linux-next-master/next-20250910/build/gcc-12-lkftconfig-graviton4/
+* Build plan: https://tuxapi.tuxsuite.com/v1/groups/linaro/projects/lkft/builds/32V3KFrDCJV0h7Mw72c5hdncTEL
+* Build link: https://storage.tuxsuite.com/public/linaro/lkft/builds/32V3KFrDCJV0h7Mw72c5hdncTEL/
+* Kernel config:
+https://storage.tuxsuite.com/public/linaro/lkft/builds/32V3KFrDCJV0h7Mw72c5hdncTEL/config
+
+--
+Linaro LKFT
 
