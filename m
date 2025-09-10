@@ -1,156 +1,239 @@
-Return-Path: <devicetree+bounces-215373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1285B514A5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 12:57:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B156FB514D0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A78453AFA7C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:57:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A5511727D7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8433F314A7B;
-	Wed, 10 Sep 2025 10:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B7631A04D;
+	Wed, 10 Sep 2025 11:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lvFPZhWa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jtMTPCYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15650303A1A
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 10:57:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07603317717;
+	Wed, 10 Sep 2025 11:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757501851; cv=none; b=cftHwd3suGDv9kkwWnzEp5R2P203Em403uTFyPN6hJSxj1aC0hEaXfJHfKBstXKHfHEaEUOkh4YmOiW6HcRy+t9JRlFPjOrbsseL09cRtVLMfc3IGvBOaxKaVbo4AX6p6Zjbn2TFuK2upL465xexIHOKrVcApLlThFxZOGZlEEI=
+	t=1757502371; cv=none; b=rzZVDy3DN6Sks+XQLt253rIoFPncVWB8Bs/RRqD2yN4KYxDLWBXCkNkyyiWka4YyCcPfyojXnkvpuqqxcielHEGgjy83BTP+vgXlsWP7eo0ZLxXNNNaakGUX69FXRT0kk19nb81ucYJstshYkSErD6BLugU8/5jyncPji68jzN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757501851; c=relaxed/simple;
-	bh=ETY73F/1juZbW7WCW2HFqawiQ2oZ4Ab2w9qPn8AUR8c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VXm00LVaUKG0kN7ro5priTn6fdKVSS1a9DFjvAO2OFlzMvrs9C47VZK9VOHOGhNJVsxRyMfYtCPSzptDaNgBoKxHkWJQkinUgdVBmBSsRWdQt/tUEYcJkiUdz/VULsOYF7sjRjLcFtpipXOrqFYQNBhCr4IVCvKRkr5DvoN9RV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lvFPZhWa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58AAFFGP012527
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 10:57:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lcfYeUt7GVAfg53FE5BnAJF8/ug/A2SYlkIbbEr5UUU=; b=lvFPZhWaUOLfnZ/6
-	iXAPHSGtZbqd76CGVBAtm3Yj1JFF3XoM1WbVrSaOw325d+hiqQjQzDHyDGkxl6f0
-	gv8ONfdqlwc6qcPagsY8wwE4n8pNrbuQlHGrXO8o0QAzQB3KZiVRWn5xPvg86rsn
-	SE3kUFztYTqpkEYlnG+zQpV5Cc8PRJaw5oTTpT8pmvntYKsU8Rt26H5jErGI0W+R
-	nx2HTm7W8ex0O7DXMNQZU7BvmLlMEgvzj5/77SfZkCHocB9YU78Jqj5v9hD7BtLz
-	Xz3r3MAIIdkRzVqAbgM1/257bA5Y9GYCvF9vUzzHrY58u0r61XbMm+2R5H1uqLEG
-	iaxESA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwsbq1f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 10:57:29 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7724903b0edso5520167b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 03:57:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757501848; x=1758106648;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lcfYeUt7GVAfg53FE5BnAJF8/ug/A2SYlkIbbEr5UUU=;
-        b=DYZp0C4kkPIFWyORC7qkudJp07ProQDbJKyCiD3Xv4hqk7mR6GxU3c1FTAs6UUA0iy
-         vdzRsg8taJ8VNEaKr8Fnn6RSqFeLFajFvygN70lqZfSpLHyF1NL8xSjBg2GqEpodS2mf
-         4KJY4ekLCxVTHh/H40dZCVe7Ku10tBzkWF/6Ft/LrDNe2+kKiA99dJBZkNPp8Lp/7EGw
-         IOPRx7jv9MX6urcPKeeSJUJguSIDriVlUhF87CWGJxjr83RWxnbdv9SjZl+QtaDh1kio
-         JqbNBJ7BuuHS8xu3ckUNcJAjg8knoliZ1B3R6lV/gflNueIiAMjjWS6P8DhvHC30LjnJ
-         O1Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCVef/DCatHieOwIBPzyXhge0MPiMp3PTH8gIvinULXhuV8a0Gek5SrPWWu0GKL1cTzrXNDh6yeQh7IX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWEvSZOJseFc3pkuaYEG5z/zDCsf4Bz9IhfVRG7VfZ2ahtqM+/
-	E/on6nyGeXjziIatx3BTqxC38bJ2JEpKc37rmtAlmIZPyHlNnh3RyMZ2Xekbfc30Ve2KrqLTGbW
-	vuvl/6Ab/v45206N2KWa7L0qGzrPVZomzSsGy2B1cwyVoZ/RmsOsTGSdE6Spzw1Ne
-X-Gm-Gg: ASbGncusoOV7jLL3tv21lR9m7OlR0AAKKKk5wWzXvlHoTfgMIcRVFdMB73d/gjSBky5
-	eMXin5QM9h/AA1RCiVLabBdUXje/e4ITaX7raNVyWdGDeXfbjrVQMvw/R2VC6WIvPNZHVLDN5l9
-	kWFvQMvwuuCaBs0DLp+4d4utdK7G2n2zNwiS1ZNwToI6kr/mcQDl1M5Xf/un7OGg3g2d0sY/nfg
-	oSqVYRo6PdCufyWbOCSljnwEYDsV/xJTD/+3D4BjLGXonveg5G3HxxYQEMO8gJ9NCesH0DkeWSv
-	TWCJCmixq3L6g+zrpiVTLIDhQ5ignAWtVQOzSA57OdETx08rLVrVOsIh+ZReWL5RnmT2gNcST2s
-	=
-X-Received: by 2002:a05:6a21:6d9e:b0:253:2fae:5287 with SMTP id adf61e73a8af0-2533e18d170mr20798154637.26.1757501848590;
-        Wed, 10 Sep 2025 03:57:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEAd+1N4v2AfeNoYwFOl+bjuiXGrs3u3rlBpUd9S2XvNr6uBsVx1PO/O6R0zKylE+mie5ldNw==
-X-Received: by 2002:a05:6a21:6d9e:b0:253:2fae:5287 with SMTP id adf61e73a8af0-2533e18d170mr20798121637.26.1757501848153;
-        Wed, 10 Sep 2025 03:57:28 -0700 (PDT)
-Received: from [10.217.219.207] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-775f4976bcasm2333665b3a.100.2025.09.10.03.57.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 03:57:27 -0700 (PDT)
-Message-ID: <d37765f8-2cef-4c15-8423-b82a0fba3b54@oss.qualcomm.com>
-Date: Wed, 10 Sep 2025 16:27:23 +0530
+	s=arc-20240116; t=1757502371; c=relaxed/simple;
+	bh=yYLZnKKLUYDcpvOnTT3Dg0STIelu5l13z6+PGs2RgzQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C06hwsvwvXJZ3jHCbv4N3bOfJoCTMZwxHS0cEYVp7rpPWOOElk805By1TOJWTMK948mSz2hSV+78LL3C9fBmwR3Fomti6gdeKZEycO7gyXshuGHh/uGtiuvexfkBd9mQJwS7ABtnPrHtMXSY30gTyKMLJldy0GYaQWNX3RPLJg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jtMTPCYX; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757502370; x=1789038370;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yYLZnKKLUYDcpvOnTT3Dg0STIelu5l13z6+PGs2RgzQ=;
+  b=jtMTPCYXtT9oNwjZTvGJEIwA6FQGK8Z3ozieYoV19gh+hidtAzqGEZGN
+   ggKXhBUN4UkDfqiHJeTke3kuPwSHfPF1pOgTLO6/s0sFLzMfQuGE/lkMb
+   NtK+wHDvaqbg0H/2QQiY+ljFAI2Z5StvkhDUgaGY8Q4gibFwfW6//kwtR
+   efcQSJmLYjKqGadp+UE1JJfZik26uwetsOp96a2wVtOMq+egTRUT02UQQ
+   AIlMW5JpQjGqYnreVHfHpIspbP7HL3je4MSfvMALxDGermWcsATHWUFPg
+   OCjINL1Mo+1zLmeaz6xJCo0vywcz/s9DInZeBRCpVvkOi5m1gE1F2A3JJ
+   w==;
+X-CSE-ConnectionGUID: 5lqV8YRzToOXSost5d7plQ==
+X-CSE-MsgGUID: lVS+arVURQuu5vsbAuPfHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59950720"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
+   d="scan'208";a="59950720"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 04:06:09 -0700
+X-CSE-ConnectionGUID: b4uroy7dQnqHmHGGxEgDwA==
+X-CSE-MsgGUID: B5Vl9CKoS2iYe1JJz9g8BA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; 
+   d="scan'208";a="204350439"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 10 Sep 2025 04:06:05 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uwIeJ-0005rV-24;
+	Wed, 10 Sep 2025 11:06:03 +0000
+Date: Wed, 10 Sep 2025 19:05:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Haowei Zheng <zhenghaowei@loongson.cn>
+Cc: oe-kbuild-all@lists.linux.dev, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] serial: 8250: Add Loongson uart driver support
+Message-ID: <202509101843.2PXpHVfr-lkp@intel.com>
+References: <91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] i2c: qcom-cci: Add OPP table support and enforce
- FAST_PLUS requirements
-To: Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
- <20250904-topic-cci_updates-v1-4-d38559692703@oss.qualcomm.com>
-Content-Language: en-US
-From: Mukesh Savaliya <mukesh.savaliya@oss.qualcomm.com>
-In-Reply-To: <20250904-topic-cci_updates-v1-4-d38559692703@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 2pyfp9bdzcQTUoGnzkPddtqGM554S9ZY
-X-Proofpoint-GUID: 2pyfp9bdzcQTUoGnzkPddtqGM554S9ZY
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX72327xktKGZS
- EiXV4Wj6BgA51d8KxK+t+K87F6DXvtvwORxBpZKji1jA8nuABSDVrVj6yUBU/Yx9fjk1CPqKPJ1
- TJcqjEv6k1mS84BUtkwbziJEGqBtuH+xLH/r2SFzS9u2YLhrw3HN53GrTNQga2nHgRSLjgXzVTS
- 611T2GoQzXbEDcKRuCDi54UWWz27Ow3IxEGQGV6G7iq58TG1FWjLGejKGrkXEUSIUr79j4PsQqm
- 9scJBu8plcjsXPU4iQmyN7D6jGMYpgzffIuPN0mJNkKZJ6+igCcdzAY8QX4gnD2INZAcHG4Wz4J
- O+d4tGCJ3cBqwv2Hfy0qBr4+MbSqCmd5DVod/8OQNTMqYZyd/ZO01zKsgkwzl+Gnf3RC8kmMSFl
- 8xXBttBD
-X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c15999 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=x1LqVQa0TBYraXIDtAYA:9
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_03,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin@loongson.cn>
+
+Hi Binbin,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on b601e1f41edd4667062aa7cccb4e5199814979a3]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-serial-Add-Loongson-UART-controller/20250909-201640
+base:   b601e1f41edd4667062aa7cccb4e5199814979a3
+patch link:    https://lore.kernel.org/r/91ae8cd4f903ac452e337e4662bbabf8a412b061.1757318368.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v4 2/3] serial: 8250: Add Loongson uart driver support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250910/202509101843.2PXpHVfr-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250910/202509101843.2PXpHVfr-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509101843.2PXpHVfr-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/tty/serial/8250/8250_loongson.c: In function 'loongson_uart_probe':
+>> drivers/tty/serial/8250/8250_loongson.c:102:9: error: implicit declaration of function 'device_property_read_u32' [-Wimplicit-function-declaration]
+     102 |         device_property_read_u32(dev, "clock-frequency", &uart.port.uartclk);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/tty/serial/8250/8250_loongson.c:117:28: error: implicit declaration of function 'device_get_match_data'; did you mean 'device_match_any'? [-Wimplicit-function-declaration]
+     117 |         flags = (uintptr_t)device_get_match_data(dev);
+         |                            ^~~~~~~~~~~~~~~~~~~~~
+         |                            device_match_any
+   drivers/tty/serial/8250/8250_loongson.c: At top level:
+>> drivers/tty/serial/8250/8250_loongson.c:179:34: error: array type has incomplete element type 'struct of_device_id'
+     179 | static const struct of_device_id loongson_uart_of_ids[] = {
+         |                                  ^~~~~~~~~~~~~~~~~~~~
 
 
+vim +/device_property_read_u32 +102 drivers/tty/serial/8250/8250_loongson.c
 
-On 9/4/2025 8:01 PM, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> The CCI clock has voltage requirements, which need to be described
-> through an OPP table.
-> 
-> The 1 MHz FAST_PLUS mode requires the CCI core clock runs at 37,5 MHz
-Typo: 37.5 MHz> (which is a value common across all SoCs), since it's 
-not possible to
-> reach the required timings with the default 19.2 MHz rate.
-> 
-> Address both issues by introducing an OPP table and using it to vote
-> for the faster rate.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
-[...]
+    80	
+    81	static int loongson_uart_probe(struct platform_device *pdev)
+    82	{
+    83		struct device *dev = &pdev->dev;
+    84		struct uart_8250_port uart = {};
+    85		struct loongson_uart_data *ddata;
+    86		struct resource *res;
+    87		unsigned int flags;
+    88		int ret;
+    89	
+    90		ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+    91		if (!ddata)
+    92			return -ENOMEM;
+    93	
+    94		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+    95		if (!res)
+    96			return -ENODEV;
+    97	
+    98		uart.port.irq = platform_get_irq(pdev, 0);
+    99		if (uart.port.irq < 0)
+   100			return -EINVAL;
+   101	
+ > 102		device_property_read_u32(dev, "clock-frequency", &uart.port.uartclk);
+   103	
+   104		spin_lock_init(&uart.port.lock);
+   105		uart.port.flags = UPF_SHARE_IRQ | UPF_FIXED_PORT | UPF_FIXED_TYPE | UPF_IOREMAP;
+   106		uart.port.iotype = UPIO_MEM;
+   107		uart.port.regshift = 0;
+   108		uart.port.dev = dev;
+   109		uart.port.type = PORT_LOONGSON;
+   110		uart.port.private_data = ddata;
+   111	
+   112		uart.port.mapbase = res->start;
+   113		uart.port.mapsize = resource_size(res);
+   114		uart.port.serial_in = loongson_serial_in;
+   115		uart.port.serial_out = loongson_serial_out;
+   116	
+ > 117		flags = (uintptr_t)device_get_match_data(dev);
+   118	
+   119		if (flags & LOONGSON_UART_HAS_FRAC) {
+   120			uart.port.get_divisor = loongson_frac_get_divisor;
+   121			uart.port.set_divisor = loongson_frac_set_divisor;
+   122		}
+   123	
+   124		if (flags & LOONGSON_UART_QUIRK_MCR)
+   125			ddata->mcr_invert |= (UART_MCR_RTS | UART_MCR_DTR);
+   126	
+   127		if (flags & LOONGSON_UART_QUIRK_MSR)
+   128			ddata->msr_invert |= (UART_MSR_CTS | UART_MSR_DSR);
+   129	
+   130		ddata->rst = devm_reset_control_get_optional_shared(dev, NULL);
+   131		if (IS_ERR(ddata->rst))
+   132			return PTR_ERR(ddata->rst);
+   133	
+   134		ret = reset_control_deassert(ddata->rst);
+   135		if (ret)
+   136			return ret;
+   137	
+   138		ret = serial8250_register_8250_port(&uart);
+   139		if (ret < 0) {
+   140			reset_control_assert(ddata->rst);
+   141			return ret;
+   142		}
+   143	
+   144		ddata->line = ret;
+   145		platform_set_drvdata(pdev, ddata);
+   146	
+   147		return 0;
+   148	}
+   149	
+   150	static void loongson_uart_remove(struct platform_device *pdev)
+   151	{
+   152		struct loongson_uart_data *ddata = platform_get_drvdata(pdev);
+   153	
+   154		serial8250_unregister_port(ddata->line);
+   155		reset_control_assert(ddata->rst);
+   156	}
+   157	
+   158	static int loongson_uart_suspend(struct device *dev)
+   159	{
+   160		struct loongson_uart_data *ddata = dev_get_drvdata(dev);
+   161	
+   162		serial8250_suspend_port(ddata->line);
+   163	
+   164		return 0;
+   165	}
+   166	
+   167	static int loongson_uart_resume(struct device *dev)
+   168	{
+   169		struct loongson_uart_data *data = dev_get_drvdata(dev);
+   170	
+   171		serial8250_resume_port(data->line);
+   172	
+   173		return 0;
+   174	}
+   175	
+   176	static DEFINE_SIMPLE_DEV_PM_OPS(loongson_uart_pm_ops, loongson_uart_suspend,
+   177					loongson_uart_resume);
+   178	
+ > 179	static const struct of_device_id loongson_uart_of_ids[] = {
+   180		{ .compatible = "loongson,ls2k0500-uart", .data = (void *)LS2K0500_UART_FLAG },
+   181		{ .compatible = "loongson,ls2k1500-uart", .data = (void *)LS2K1500_UART_FLAG },
+   182		{ /* sentinel */ },
+   183	};
+   184	MODULE_DEVICE_TABLE(of, loongson_uart_of_ids);
+   185	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
