@@ -1,335 +1,342 @@
-Return-Path: <devicetree+bounces-215338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CE0B512B2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:38:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B0FB512C7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8D5546497B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:38:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AAA1188CA5A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C444F314A95;
-	Wed, 10 Sep 2025 09:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD86E314A61;
+	Wed, 10 Sep 2025 09:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hut0o4aI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC97314A82
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 09:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B82D3148D4;
+	Wed, 10 Sep 2025 09:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757497083; cv=none; b=I+f1/TyJqQlPsrqJ5+I2YL4fIS8yHXgPE7sfFy7wsp4dZN/6FIskdiBmuoXuFAVoJR/wHEh7rbE8wcC6Ujzd1imEOeYOOZA8bIEoC0BQyAzW0q9SJa4Tb7WqCfkTDwyJl/EXTAql156W5HgmM9FGKlMr8DAPnzgPme+a32MkHHI=
+	t=1757497187; cv=none; b=k6I6ewiPPLDTSTvE2cq6tmNo8xTH5MoFqx6Fop+BxounRFkOFMbmjffvQoi5E8jxuTrsZQKvXRJVilVJGaUxbvVYynZ9v+9sPfglvKMgnVb9B/r29LYWRhN73BE0sPz/GQkJD0hJy/n5HGlIEz2q90WuNn4IgxW5B5IMzPHHYWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757497083; c=relaxed/simple;
-	bh=5SV8L6x3HJ6R7zEONs4fhj8HkTB0HxhgWa8yz90iYk8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SUTbYDjlWtBSIJbIjkUGbfz/o7c5nHgAz6nJKryQxiYCZn2YJNPMKbkDtOqzjKkPfBD0sKk0SMTBMG/a/6bX1VCJdhPIjN9dz28gjWprMrr19Vzh/sz/K4HZpP2/dJGnZNF4pTGsJuF5oWvz81HOfrn8y181Rd4p8f7bCgPc8wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1uwHGt-0007uO-Ja; Wed, 10 Sep 2025 11:37:47 +0200
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1uwHGs-000ZLe-3A;
-	Wed, 10 Sep 2025 11:37:46 +0200
-Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
-	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
-	(envelope-from <s.kerkmann@pengutronix.de>)
-	id 1uwHGs-000000090kl-3lGO;
-	Wed, 10 Sep 2025 11:37:46 +0200
-From: Stefan Kerkmann <s.kerkmann@pengutronix.de>
-Date: Wed, 10 Sep 2025 11:34:06 +0200
-Subject: [PATCH v2 2/2] ASoC: codecs: pcm1754: add pcm1754 dac driver
+	s=arc-20240116; t=1757497187; c=relaxed/simple;
+	bh=DG29mR2Uzj3dMeySz9wzg/RJdg+PsDMyEmYkbWnfp5A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F58shjjSqjYggIDzGfjFiTGAxTQLwqezK2BhrOFYlPrNFLmag3V7f9QMoFj0ihsM+nCDIOnExqx+w3VFZ/bisPOfIYIA79uNaLC7MrujhD4IbD/NhPL75RLGd8WHs1JC+4m3uVDLw5Qy4dWuc1GgALuSPf6DaUx7KlgT8sLBWQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hut0o4aI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE81C4CEF0;
+	Wed, 10 Sep 2025 09:39:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757497187;
+	bh=DG29mR2Uzj3dMeySz9wzg/RJdg+PsDMyEmYkbWnfp5A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hut0o4aITN8IhWBbeVDXtd+SC34BUn+ftJ03ciGhpANktF6MmaO/7irdZ34XbsDJL
+	 a3z0gpB00y4B59dsrzELzNGorBJixpfImFpJ9cpZ+eK5/eJy3fXhJD78PXEDkFM4jI
+	 aENpbOsuBKE+7/Pcy7fFQtW5q/4oqeZi5iQZkrUup9HTGXC2IRRlvgJCpRC8kv9X3n
+	 rYOotru4HKyn+pzESjCRF4gssRxPPUZq4H/GTyqJ+SvCo5gGI7xOB7xeszw5CrCMst
+	 cgqsDU9rbjxjupI9MHqy/Bn0GxeEqNylOoT9lNY9avjmEHhDB1wvhsD7IHweDtPaV3
+	 iWsUppX5llJkQ==
+Message-ID: <29ec10fa-1ca4-43eb-a865-7219d39c7140@kernel.org>
+Date: Wed, 10 Sep 2025 11:39:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250910-v6-12-topic-pcm1754-v2-2-0917dbe73c65@pengutronix.de>
-References: <20250910-v6-12-topic-pcm1754-v2-0-0917dbe73c65@pengutronix.de>
-In-Reply-To: <20250910-v6-12-topic-pcm1754-v2-0-0917dbe73c65@pengutronix.de>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
- Stefan Kerkmann <s.kerkmann@pengutronix.de>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: s.kerkmann@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/9] memory: tegra210: Support interconnect framework
+To: webgeek1234@gmail.com, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Dmitry Osipenko <digetx@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
+ <20250906-t210-actmon-v3-5-1403365d571e@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250906-t210-actmon-v3-5-1403365d571e@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On 06/09/2025 22:16, Aaron Kling via B4 Relay wrote:
+> +
+> +static int tegra_emc_interconnect_init(struct tegra210_emc *emc)
+> +{
+> +	const struct tegra_mc_soc *soc = emc->mc->soc;
+> +	struct icc_node *node;
+> +	int err;
+> +
+> +	emc->icc_provider.dev = emc->dev;
+> +	emc->icc_provider.set = emc_icc_set;
+> +	emc->icc_provider.data = &emc->icc_provider;
+> +	emc->icc_provider.aggregate = soc->icc_ops->aggregate;
+> +	emc->icc_provider.xlate_extended = emc_of_icc_xlate_extended;
+> +	emc->icc_provider.get_bw = tegra_emc_icc_get_init_bw;
+> +
+> +	icc_provider_init(&emc->icc_provider);
+> +
+> +	/* create External Memory Controller node */
+> +	node = icc_node_create(TEGRA_ICC_EMC);
+> +	if (IS_ERR(node)) {
+> +		err = PTR_ERR(node);
+> +		goto err_msg;
 
-The Texas Instruments PCM1754[1] is a simple stereo DAC without any
-digital
-management interface but soft mute, PCM input format and 44.1 kHz
-digital de-emphasis can be configured via strapping pins. Only soft mute
-and PCM input format selection is currently exposed via optional GPIOs
-in the driver.
+return dev_err_probe
 
-[1]: https://www.ti.com/product/PCM1754
+> +	}
+> +
+> +	node->name = "External Memory Controller";
+> +	icc_node_add(node, &emc->icc_provider);
+> +
+> +	/* link External Memory Controller to External Memory (DRAM) */
+> +	err = icc_link_create(node, TEGRA_ICC_EMEM);
+> +	if (err)
+> +		goto remove_nodes;
+> +
+> +	/* create External Memory node */
+> +	node = icc_node_create(TEGRA_ICC_EMEM);
+> +	if (IS_ERR(node)) {
+> +		err = PTR_ERR(node);
+> +		goto remove_nodes;
+> +	}
+> +
+> +	node->name = "External Memory (DRAM)";
+> +	icc_node_add(node, &emc->icc_provider);
+> +
+> +	err = icc_provider_register(&emc->icc_provider);
+> +	if (err)
+> +		goto remove_nodes;
+> +
+> +	return 0;
+> +
+> +remove_nodes:
+> +	icc_nodes_remove(&emc->icc_provider);
+> +err_msg:
+> +	dev_err(emc->dev, "failed to initialize ICC: %d\n", err);
 
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Co-developed-by: Stefan Kerkmann <s.kerkmann@pengutronix.de>
-Signed-off-by: Stefan Kerkmann <s.kerkmann@pengutronix.de>
----
- sound/soc/codecs/Kconfig   |   5 ++
- sound/soc/codecs/Makefile  |   2 +
- sound/soc/codecs/pcm1754.c | 185 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 192 insertions(+)
+Write descriptive error messages or skip it. It's printing errors also
+on ENOMEM.
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 7092842480ef17d705920a6ac62a85158119352e..7b2d677453872b5e8d7c115c5f5618be55b7a4a1 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -170,6 +170,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_NAU8825
- 	imply SND_SOC_HDMI_CODEC
- 	imply SND_SOC_PCM1681
-+	imply SND_SOC_PCM1754
- 	imply SND_SOC_PCM1789_I2C
- 	imply SND_SOC_PCM179X_I2C
- 	imply SND_SOC_PCM179X_SPI
-@@ -1367,6 +1368,10 @@ config SND_SOC_PCM1681
- 	tristate "Texas Instruments PCM1681 CODEC"
- 	depends on I2C
- 
-+config SND_SOC_PCM1754
-+	tristate "Texas Instruments PCM1754 CODEC"
-+	depends on GPIOLIB
-+
- config SND_SOC_PCM1789
- 	tristate
- 
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 54cbc3feae3277ae29d6ea8fe891d4d17e5c9b17..1c6fbdc752309ab75486a979b21be50c3f67fdcf 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -191,6 +191,7 @@ snd-soc-nau8824-y := nau8824.o
- snd-soc-nau8825-y := nau8825.o
- snd-soc-hdmi-codec-y := hdmi-codec.o
- snd-soc-pcm1681-y := pcm1681.o
-+snd-soc-pcm1754-y := pcm1754.o
- snd-soc-pcm1789-codec-y := pcm1789.o
- snd-soc-pcm1789-i2c-y := pcm1789-i2c.o
- snd-soc-pcm179x-codec-y := pcm179x.o
-@@ -593,6 +594,7 @@ obj-$(CONFIG_SND_SOC_NAU8824)   += snd-soc-nau8824.o
- obj-$(CONFIG_SND_SOC_NAU8825)   += snd-soc-nau8825.o
- obj-$(CONFIG_SND_SOC_HDMI_CODEC)	+= snd-soc-hdmi-codec.o
- obj-$(CONFIG_SND_SOC_PCM1681)	+= snd-soc-pcm1681.o
-+obj-$(CONFIG_SND_SOC_PCM1754)	+= snd-soc-pcm1754.o
- obj-$(CONFIG_SND_SOC_PCM179X)	+= snd-soc-pcm179x-codec.o
- obj-$(CONFIG_SND_SOC_PCM1789_I2C)	+= snd-soc-pcm1789-i2c.o
- obj-$(CONFIG_SND_SOC_PCM1789)	+= snd-soc-pcm1789-codec.o
-diff --git a/sound/soc/codecs/pcm1754.c b/sound/soc/codecs/pcm1754.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..b68a528000be89b15c1d7770ba8f55fbdadeb6b8
---- /dev/null
-+++ b/sound/soc/codecs/pcm1754.c
-@@ -0,0 +1,185 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * PCM1754 DAC ASoC codec driver
-+ *
-+ * Copyright (c) 2022 Alvin Šipraga <alsi@bang-olufsen.dk>
-+ * Copyright (c) 2025 Stefan Kerkmann <s.kerkmann@pengutronix.de>
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+
-+struct pcm1754_priv {
-+	unsigned int format;
-+	struct gpio_desc *gpiod_mute;
-+	struct gpio_desc *gpiod_format;
-+};
-+
-+static int pcm1754_set_dai_fmt(struct snd_soc_dai *codec_dai,
-+				   unsigned int format)
-+{
-+	struct snd_soc_component *component = codec_dai->component;
-+	struct pcm1754_priv *priv = snd_soc_component_get_drvdata(component);
-+
-+	priv->format = format;
-+
-+	return 0;
-+}
-+
-+static int pcm1754_hw_params(struct snd_pcm_substream *substream,
-+				 struct snd_pcm_hw_params *params,
-+				 struct snd_soc_dai *codec_dai)
-+{
-+	struct snd_soc_component *component = codec_dai->component;
-+	struct pcm1754_priv *priv = snd_soc_component_get_drvdata(component);
-+	int format;
-+
-+	switch (priv->format & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_RIGHT_J:
-+		switch (params_width(params)) {
-+		case 16:
-+			format = 1;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case SND_SOC_DAIFMT_I2S:
-+		switch (params_width(params)) {
-+		case 16:
-+			fallthrough;
-+		case 24:
-+			format = 0;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		dev_err(component->dev, "Invalid DAI format\n");
-+		return -EINVAL;
-+	}
-+
-+	gpiod_set_value_cansleep(priv->gpiod_format, format);
-+
-+	return 0;
-+}
-+
-+static int pcm1754_mute_stream(struct snd_soc_dai *dai, int mute, int stream)
-+{
-+	struct pcm1754_priv *priv = snd_soc_component_get_drvdata(dai->component);
-+
-+	gpiod_set_value_cansleep(priv->gpiod_mute, mute);
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops pcm1754_dai_ops = {
-+	.set_fmt = pcm1754_set_dai_fmt,
-+	.hw_params = pcm1754_hw_params,
-+	.mute_stream = pcm1754_mute_stream,
-+};
-+
-+static const struct snd_soc_dai_driver pcm1754_dai = {
-+	.name = "pcm1754",
-+	.playback = {
-+		.stream_name	= "Playback",
-+		.channels_min	= 2,
-+		.channels_max	= 2,
-+		.rates		= SNDRV_PCM_RATE_CONTINUOUS,
-+		.rate_min	= 5000,
-+		.rate_max	= 200000,
-+		.formats	= SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_LE
-+	},
-+	.ops = &pcm1754_dai_ops,
-+};
-+
-+static const struct snd_soc_dapm_widget pcm1754_dapm_widgets[] = {
-+	SND_SOC_DAPM_REGULATOR_SUPPLY("VCC", 0, 0),
-+
-+	SND_SOC_DAPM_DAC("DAC1", "Channel 1 Playback", SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_DAC("DAC2", "Channel 2 Playback", SND_SOC_NOPM, 0, 0),
-+
-+	SND_SOC_DAPM_OUTPUT("VOUTL"),
-+	SND_SOC_DAPM_OUTPUT("VOUTR"),
-+};
-+
-+static const struct snd_soc_dapm_route pcm1754_dapm_routes[] = {
-+	{ "DAC1", NULL, "Playback" },
-+	{ "DAC2", NULL, "Playback" },
-+
-+	{ "DAC1", NULL, "VCC" },
-+	{ "DAC2", NULL, "VCC" },
-+
-+	{ "VOUTL", NULL, "DAC1" },
-+	{ "VOUTR", NULL, "DAC2" },
-+};
-+
-+static const struct snd_soc_component_driver soc_component_dev_pcm1754 = {
-+	.dapm_widgets = pcm1754_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(pcm1754_dapm_widgets),
-+	.dapm_routes = pcm1754_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(pcm1754_dapm_routes),
-+};
-+
-+static int pcm1754_probe(struct platform_device *pdev)
-+{
-+	struct pcm1754_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	struct snd_soc_dai_driver *dai_drv;
-+	int ret;
-+
-+	dai_drv = devm_kmemdup(dev, &pcm1754_dai, sizeof(*dai_drv), GFP_KERNEL);
-+	if (!dai_drv)
-+		return -ENOMEM;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->gpiod_mute = devm_gpiod_get_optional(dev, "mute", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->gpiod_mute))
-+		return dev_err_probe(dev, PTR_ERR(priv->gpiod_mute),
-+					 "failed to get mute gpio");
-+
-+	priv->gpiod_format = devm_gpiod_get_optional(dev, "format", GPIOD_OUT_LOW);
-+	if (IS_ERR(priv->gpiod_format))
-+		return dev_err_probe(dev, PTR_ERR(priv->gpiod_format),
-+					 "failed to get format gpio");
-+
-+	dev_set_drvdata(dev, priv);
-+
-+	ret = devm_snd_soc_register_component(
-+		&pdev->dev, &soc_component_dev_pcm1754, dai_drv, 1);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register");
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id pcm1754_of_match[] = {
-+	{ .compatible = "ti,pcm1754" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, pcm1754_of_match);
-+#endif
-+
-+static struct platform_driver pcm1754_codec_driver = {
-+	.driver = {
-+		.name = "pcm1754-codec",
-+		.of_match_table = of_match_ptr(pcm1754_of_match),
-+	},
-+	.probe = pcm1754_probe,
-+};
-+
-+module_platform_driver(pcm1754_codec_driver);
-+
-+MODULE_DESCRIPTION("ASoC PCM1754 driver");
-+MODULE_AUTHOR("Alvin Šipraga <alsi@bang-olufsen.dk>");
-+MODULE_AUTHOR("Stefan Kerkmann <s.kerkmann@pengutronix.de>");
-+MODULE_LICENSE("GPL");
+I will send a patch to fix existing code.
 
--- 
-2.47.3
+> +
+> +	return err;
+> +}
+> +
+> +static int tegra_emc_opp_table_init(struct tegra210_emc *emc)
+> +{
+> +	u32 hw_version = BIT(tegra_sku_info.soc_speedo_id);
+> +	struct dev_pm_opp *opp;
+> +	unsigned long rate;
+> +	int opp_token, err, max_opps, i;
+> +
+> +	err = dev_pm_opp_set_supported_hw(emc->dev, &hw_version, 1);
+> +	if (err < 0) {
+> +		dev_err(emc->dev, "failed to set OPP supported HW: %d\n", err);
+> +		return err;
 
+return dev_err_probe
+
+> +	}
+> +	opp_token = err;
+> +
+> +	err = dev_pm_opp_of_add_table(emc->dev);
+> +	if (err) {
+> +		if (err == -ENODEV)
+> +			dev_warn(emc->dev, "OPP table not found, please update your device tree\n");
+> +		else
+> +			dev_err(emc->dev, "failed to add OPP table: %d\n", err);
+> +
+> +		goto put_hw_table;
+> +	}
+> +
+> +	max_opps = dev_pm_opp_get_opp_count(emc->dev);
+> +	if (max_opps <= 0) {
+> +		dev_err(emc->dev, "Failed to add OPPs\n");
+> +		goto remove_table;
+> +	}
+> +
+> +	if (emc->num_timings != max_opps) {
+> +		dev_err(emc->dev, "OPP table does not match emc table\n");
+> +		goto remove_table;
+> +	}
+> +
+> +	for (i = 0; i < emc->num_timings; i++) {
+> +		rate = emc->timings[i].rate * 1000;
+> +		opp = dev_pm_opp_find_freq_exact(emc->dev, rate, true);
+> +		if (IS_ERR(opp)) {
+> +			dev_err(emc->dev, "Rate %lu not found in OPP table\n", rate);
+> +			goto remove_table;
+> +		}
+> +
+> +		dev_pm_opp_put(opp);
+> +	}
+> +
+> +	dev_info_once(emc->dev, "OPP HW ver. 0x%x, current clock rate %lu MHz\n",
+> +		      hw_version, clk_get_rate(emc->clk) / 1000000);
+> +
+> +	return 0;
+> +
+> +remove_table:
+> +	dev_pm_opp_of_remove_table(emc->dev);
+> +put_hw_table:
+> +	dev_pm_opp_put_supported_hw(opp_token);
+> +
+> +	return err;
+> +}
+> +
+
+...
+
+> diff --git a/drivers/memory/tegra/tegra210.c b/drivers/memory/tegra/tegra210.c
+> index cfa61dd885577a8fbd79c396a1316101197ca1f2..20828a07d2d0cafa739b534c20c12f065b276669 100644
+> --- a/drivers/memory/tegra/tegra210.c
+> +++ b/drivers/memory/tegra/tegra210.c
+> @@ -3,6 +3,9 @@
+>   * Copyright (C) 2015 NVIDIA CORPORATION.  All rights reserved.
+>   */
+>  
+> +#include <linux/of.h>
+> +#include <linux/device.h>
+> +
+>  #include <dt-bindings/memory/tegra210-mc.h>
+>  
+>  #include "mc.h"
+> @@ -1273,6 +1276,83 @@ static const struct tegra_mc_reset tegra210_mc_resets[] = {
+>  	TEGRA210_MC_RESET(TSECB,     0x970, 0x974, 13),
+>  };
+>  
+> +static int tegra210_mc_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	/* TODO: program PTSA */
+> +	return 0;
+> +}
+> +
+> +static int tegra210_mc_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
+> +				     u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
+> +{
+> +	/*
+> +	 * ISO clients need to reserve extra bandwidth up-front because
+> +	 * there could be high bandwidth pressure during initial filling
+> +	 * of the client's FIFO buffers.  Secondly, we need to take into
+> +	 * account impurities of the memory subsystem.
+> +	 */
+> +	if (tag & TEGRA_MC_ICC_TAG_ISO)
+> +		peak_bw = tegra_mc_scale_percents(peak_bw, 400);
+> +
+> +	*agg_avg += avg_bw;
+> +	*agg_peak = max(*agg_peak, peak_bw);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct icc_node_data *
+> +tegra210_mc_of_icc_xlate_extended(const struct of_phandle_args *spec, void *data)
+> +{
+> +	struct tegra_mc *mc = icc_provider_to_tegra_mc(data);
+> +	const struct tegra_mc_client *client;
+> +	unsigned int i, idx = spec->args[0];
+> +	struct icc_node_data *ndata;
+> +	struct icc_node *node;
+> +
+> +	list_for_each_entry(node, &mc->provider.nodes, node_list) {
+> +		if (node->id != idx)
+> +			continue;
+> +
+> +		ndata = kzalloc(sizeof(*ndata), GFP_KERNEL);
+> +		if (!ndata)
+> +			return ERR_PTR(-ENOMEM);
+> +
+> +		client = &mc->soc->clients[idx];
+> +		ndata->node = node;
+> +
+> +		switch (client->swgroup) {
+> +		case TEGRA_SWGROUP_DC:
+> +		case TEGRA_SWGROUP_DCB:
+> +		case TEGRA_SWGROUP_PTC:
+> +		case TEGRA_SWGROUP_VI:
+> +			/* these clients are isochronous by default */
+> +			ndata->tag = TEGRA_MC_ICC_TAG_ISO;
+> +			break;
+> +
+> +		default:
+> +			ndata->tag = TEGRA_MC_ICC_TAG_DEFAULT;
+> +			break;
+> +		}
+> +
+> +		return ndata;
+> +	}
+> +
+> +	for (i = 0; i < mc->soc->num_clients; i++) {
+> +		if (mc->soc->clients[i].id == idx)
+> +			return ERR_PTR(-EPROBE_DEFER);
+
+This feels like more reasonable use of deferred probe, but I wonder how
+is this condition possible.
+
+This xlate is called at earliest after MC ICC is registered. At this
+tage all nodes are created, so previous list_for_each_entry() should
+succeed and return. If previous list_for_each_entry() did not return,
+how can you find a matching client for which the node will be added
+later, thus deferred probe?
+
+This is again existing code, of course :)
+
+
+
+Best regards,
+Krzysztof
 
