@@ -1,79 +1,74 @@
-Return-Path: <devicetree+bounces-215463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06745B51831
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:44:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD98B51855
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:52:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8EBC542E51
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:44:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC4541BC191C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EC1303C8D;
-	Wed, 10 Sep 2025 13:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C336B245031;
+	Wed, 10 Sep 2025 13:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lf/LWaAR"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="RNP6Tu6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C2B91494CC;
-	Wed, 10 Sep 2025 13:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A71218AAF
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 13:52:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757511888; cv=none; b=Gj/eXX8bYfubLJmyQXdF1WgJePqPbPFJ6rZ2FU1cIAe+bHf1F/+/6jMrCzuy9IT/H0UXCuMt0WOVX4FGi7zOt1apgMndDR6C1matUchqVmafSXg3jXSQ81RXq/hsHKqhud7N3/Hao9PCCm05Hfzfkd2F8DhO9ffWLspVw4BuHhk=
+	t=1757512352; cv=none; b=f0yWBwiVz3Y2q5nwqPP7ecV6TCVBoqxn2D3FQaL+MCwOBI+eDaMJWuWltbiimq6i9kS3GctnnZQGz24aWLv3gwbPn9J/xq2Srio2CSKCWS1FK8VNu/xZPDPSakthQ8aEQKKwjWSW/fBkveuqAtxsPmKgUbadZSgtYuqlnMagjc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757511888; c=relaxed/simple;
-	bh=lQtS1uAvZyCIoOaVmx4Kjk/94Sw+HBfw4GcgLVbEaBA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=awjqoHYh6+Hd1HeAKZBDXrQbDjvYGyrLrdwABuLD7BEkvLmCtfT/pGiIaKPkks+/4ZqczAcklUxkQwy1uKO26vU1Tog9W8iHr8hH3+N2HNbV+1HvoZa53cPT6rHv8nZ/UFAXSouZ1bNP3KL42Yh249kdcxLuoWUXIeh3FL9oWiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lf/LWaAR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A457C4CEF0;
-	Wed, 10 Sep 2025 13:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757511886;
-	bh=lQtS1uAvZyCIoOaVmx4Kjk/94Sw+HBfw4GcgLVbEaBA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lf/LWaARgNYUiFbHFsFtVjyFH8HFYjWCzyl1Y41QLK+pYBfO5yQs0F4JyuMrT0vlZ
-	 nxXzMsM7ujPcVBkPiVsfRCvmcRbPxqvh+hL8VDf1pl4x68gtJf1/40DuKCZvI7dg6v
-	 txKPIb8/FgUR+Kc1e/v0dKCHAwNZGfL+v0SZoh75LkO8X0eu2J6a3DHSimPml/E7Kq
-	 MMh+8z6eijjQ9DKcmgRbB8z8k6MFHLdKmeSblm/VQdK4ADEdZDN8dNLe4cJOouSsHz
-	 mwP0zzSco/lp97bKe1ipPtEXDcQbsJrgkA3W+EXAtaVo4AWXdr7CQXIPReD6WP2Q/L
-	 t+pxtFM7t41IQ==
-Date: Wed, 10 Sep 2025 15:44:35 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: James Morse <james.morse@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	shameerali.kolothum.thodi@huawei.com,
-	D Scott Phillips OS <scott@os.amperecomputing.com>,
-	carl@os.amperecomputing.com, lcherian@marvell.com,
-	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
-	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
-	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
-	dfustini@baylibre.com, amitsinght@marvell.com,
-	David Hildenbrand <david@redhat.com>,
-	Rex Nie <rex.nie@jaguarmicro.com>,
-	Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
-	baisheng.gao@unisoc.com,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
-	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH 04/33] ACPI / PPTT: Stop acpi_count_levels() expecting
- callers to clear levels
-Message-ID: <aMGAw4+/IAWBPiqn@lpieralisi>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-39-james.morse@arm.com>
+	s=arc-20240116; t=1757512352; c=relaxed/simple;
+	bh=2dbjA/3olzd+QMHYz4UiuHRdvT0/b5KhrTMMWsmdV6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=s/ehXs6A9P+EEt37G2191ectrJtSNWRiR5a7L1/I1nEe87SKS8bIYHjYayGn723LAaOthSo54awV/shisCausQosWfYXzsrAI4Xf7NgaUAR1GPPYR4bQsxmr3eis/4GodwI7xCy0DNp5Mhwc5qmfB+asj52L++Q3SjuEMj7VX9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=RNP6Tu6K; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id AECE1101622F
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 19:22:16 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in AECE1101622F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1757512336; bh=2dbjA/3olzd+QMHYz4UiuHRdvT0/b5KhrTMMWsmdV6M=;
+	h=Date:From:To:Cc:Subject:From;
+	b=RNP6Tu6KZhzMC3LmubXRzsf7BAqMiNV956srT8YGgAiwoUSIVBTWgmvfDeIHzmRR9
+	 ch5bgI0chLUlkdxrUMKMiZ3cHVYdx3A5WTt1PV9w7QR5nojZF5ySxWX4fCs/vZJWr9
+	 iP13WbknkfCxcZGVSqwSadWbZDdrwJTPcyUsDeu0=
+Received: (qmail 31463 invoked by uid 510); 10 Sep 2025 19:22:16 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 5.204798 secs; 10 Sep 2025 19:22:16 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
+  by ldns1.iitb.ac.in with SMTP; 10 Sep 2025 19:22:11 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns1.iitb.ac.in (Postfix) with ESMTP id B5281360036;
+	Wed, 10 Sep 2025 19:22:10 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 836041E813E1;
+	Wed, 10 Sep 2025 19:22:09 +0530 (IST)
+Date: Wed, 10 Sep 2025 19:22:04 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org
+Cc: skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	akhileshpatilvnit@gmail.com
+Subject: [PATCH v2 0/6] rtc: m41t93: add new features alarm, clock out,
+ watchdog
+Message-ID: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,101 +77,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250822153048.2287-39-james.morse@arm.com>
 
-On Fri, Aug 22, 2025 at 03:30:19PM +0000, James Morse wrote:
-> acpi_count_levels() passes the number of levels back via a pointer argument.
-> It also passes this to acpi_find_cache_level() as the starting_level, and
-> preserves this value as it walks up the cpu_node tree counting the levels.
-> 
-> This means the caller must initialise 'levels' due to acpi_count_levels()
-> internals. The only caller acpi_get_cache_info() happens to have already
-> initialised levels to zero, which acpi_count_levels() depends on to get the
-> correct result.
-> 
-> Two results are passed back from acpi_count_levels(), unlike split_levels,
-> levels is not optional.
-> 
-> Split these two results up. The mandatory 'levels' is always returned,
-> which hides the internal details from the caller, and avoids having
-> duplicated initialisation in all callers. split_levels remains an
-> optional argument passed back.
-> 
-> Suggested-by: Jonathan Cameron <jonathan.cameron@huawei.com>
-> Signed-off-by: James Morse <james.morse@arm.com>
-> 
-> ---
-> Changes since RFC:
->  * Made acpi_count_levels() return the levels value.
-> ---
->  drivers/acpi/pptt.c | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/acpi/pptt.c b/drivers/acpi/pptt.c
-> index 4791ca2bdfac..8f9b9508acba 100644
-> --- a/drivers/acpi/pptt.c
-> +++ b/drivers/acpi/pptt.c
-> @@ -181,10 +181,10 @@ acpi_find_cache_level(struct acpi_table_header *table_hdr,
->   * levels and split cache levels (data/instruction).
->   * @table_hdr: Pointer to the head of the PPTT table
->   * @cpu_node: processor node we wish to count caches for
-> - * @levels: Number of levels if success.
->   * @split_levels:	Number of split cache levels (data/instruction) if
-> - *			success. Can by NULL.
-> + *			success. Can be NULL.
+This patch series adds following to m41t93 rtc driver.
 
-Nit: tempting but this change does not belong here.
+Functionalities: 
+- Alarm support (support to configure alarm 1)
+- Square wave output support
+- Watchdog support
 
->   *
-> + * Returns number of levels.
->   * Given a processor node containing a processing unit, walk into it and count
->   * how many levels exist solely for it, and then walk up each level until we hit
->   * the root node (ignore the package level because it may be possible to have
-> @@ -192,14 +192,18 @@ acpi_find_cache_level(struct acpi_table_header *table_hdr,
->   * split cache levels (data/instruction) that exist at each level on the way
->   * up.
->   */
-> -static void acpi_count_levels(struct acpi_table_header *table_hdr,
-> -			      struct acpi_pptt_processor *cpu_node,
-> -			      unsigned int *levels, unsigned int *split_levels)
-> +static int acpi_count_levels(struct acpi_table_header *table_hdr,
-> +			     struct acpi_pptt_processor *cpu_node,
-> +			     unsigned int *split_levels)
->  {
-> +	int starting_level = 0;
-> +
->  	do {
-> -		acpi_find_cache_level(table_hdr, cpu_node, levels, split_levels, 0, 0);
-> +		acpi_find_cache_level(table_hdr, cpu_node, &starting_level, split_levels, 0, 0);
->  		cpu_node = fetch_pptt_node(table_hdr, cpu_node->parent);
->  	} while (cpu_node);
-> +
-> +	return starting_level;
->  }
->  
->  /**
-> @@ -731,7 +735,7 @@ int acpi_get_cache_info(unsigned int cpu, unsigned int *levels,
->  	if (!cpu_node)
->  		return -ENOENT;
->  
-> -	acpi_count_levels(table, cpu_node, levels, split_levels);
-> +	*levels = acpi_count_levels(table, cpu_node, split_levels);
+Code improvements:
+this series migrates existing driver to use standard regmap interface
+for spi instead of direct spi calls and uses regmap for new features.
 
-Looks fine to me - though initializing
+Device tree support:
+Adds device tree support to the driver along with binding documentation.
 
-*levels = 0
+Testing:
+This patch series is validated on TI am62x board with m41t93 rtc chip
+connected to spi0 bus.
+regmap migration is additionally tested by observing spi transfers
+with the help of logic analyzer. Short summary of test flow is added in
+commit message of respective features.
 
-upper in the function now becomes superfluous (?) (well, it initializes
-*levels to 0 if an error path is hit but on that case the caller should
-not expect *levels to be initialized to anything IIUC).
+Datasheet:
+https://www.st.com/resource/en/datasheet/m41t93.pdf
 
-Apart from these (very) minor things:
+patch 4 to 6 depend on patch 3 (regmap patch)
 
-Reviewed-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+---
+Changes in v2:
+- Address DTS and bindings coding style feedback from Krzysztof
+- Verify bindings using $ make dt_binding_check 
+- Update example in binding documentation after testing.
+- Analyze and Fix build warnings as suggested by kernel test robot.
+- Drop patch 5 from series (device detect logic change).
+  This will be taken separately. Focus on functionalities in this series.
+- Update commit messages with short test steps for each feature.
+- Link to v1: https://lore.kernel.org/lkml/cover.1756908788.git.akhilesh@ee.iitb.ac.in/
+---
+Akhilesh Patil (6):
+  dt-bindings: rtc: Add ST m41t93
+  rtc: m41t93: add device tree support
+  rtc: m41t93: migrate to regmap api for register access
+  rtc: m41t93: Add alarm support
+  rtc: m41t93: Add square wave clock provider support
+  rtc: m41t93: Add watchdog support
 
->  	pr_debug("Cache Setup: last_level=%d split_levels=%d\n",
->  		 *levels, split_levels ? *split_levels : -1);
-> -- 
-> 2.20.1
-> 
+ .../devicetree/bindings/rtc/st,m41t93.yaml    |  50 ++
+ drivers/rtc/rtc-m41t93.c                      | 488 ++++++++++++++++--
+ 2 files changed, 486 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+
+-- 
+2.34.1
+
 
