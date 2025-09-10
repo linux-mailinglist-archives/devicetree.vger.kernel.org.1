@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-215409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F87B515CA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:33:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6120CB515D6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE8F61736FD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:33:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 177CC563A54
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 11:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E6331158E;
-	Wed, 10 Sep 2025 11:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C7427B320;
+	Wed, 10 Sep 2025 11:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dw0oDyMk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oyt3iiv6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C2130C371;
-	Wed, 10 Sep 2025 11:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FB823A9AE;
+	Wed, 10 Sep 2025 11:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757503971; cv=none; b=VN31zpgUFGB48IDjkyfZrDik9CYig75t+rc3Pl90ovzzPFMCpnF3trrozTGfB5wZWxg5Eeg36dG3868M0qYA687tSQE37sH8FUCJQ+TRfe3VmpWOM+ASlUJoAMi3PKp57Ik5lnKJ1fbiGbFfoxcSgshRUrecbdFn3t/qel6Tsvg=
+	t=1757504143; cv=none; b=Rdjq/Dk5V62whqRZuEftDHSeMA8WM4qEglkhWMFWQCFmE8/XkpSeW0JxqXqbembqAQKELAa/ebpLkermXjecB1y3uS4rQUhmUxcea8hPl4vqOeQ449PlU5v4xaKHb0w7CIKArrDRa+Uw2wQqI00kVOZpm0MNYDwQqH8ivruvQJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757503971; c=relaxed/simple;
-	bh=erV4920Yq0T2rbBU/yUFkESQG/Yc/YjZ7mIxIQVhfpw=;
+	s=arc-20240116; t=1757504143; c=relaxed/simple;
+	bh=i6Z2NDahm7CLx4TBaP4siTR23mUGVC+/9EIqEzuOL68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tApe9Nb7PjysbbdnAwR8shbVug2wU736xAOk2YjCiyhhxeh5yYgDTNf9owKCi/fSSqra+LwpIO32kws8HQ1OgHrx+bWA6wSCVQLgZbf2ofPvY0gVAcdDoBgjh81T9TXc9oeQtXZeQ3seujHygk0IWsdbQ4F1sMEQyjZx2UPqxnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dw0oDyMk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F1F8C4CEFB;
-	Wed, 10 Sep 2025 11:32:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UIb9OI8CNrYw3h51Nx45gWc1pa5s99G0xpNRvx92FfEEv+goprtJ+HxwBPVppAJQwXm7G8Wr0hwfLFweZ/dUxVVLxs1itDuuorCPd5+5Qp9Efe5d2haEFrA3nmCiCyDd5VsuvhClveAFkoWlGsXRV0bsSEGHr0MybYGVnhhGUx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oyt3iiv6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5BAC4CEF0;
+	Wed, 10 Sep 2025 11:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757503970;
-	bh=erV4920Yq0T2rbBU/yUFkESQG/Yc/YjZ7mIxIQVhfpw=;
+	s=k20201202; t=1757504142;
+	bh=i6Z2NDahm7CLx4TBaP4siTR23mUGVC+/9EIqEzuOL68=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dw0oDyMk6hhum3hcABSV0D6G3Gs7c72pqAso2J5Ckm5L0woIwzYULd31G148Wtw6E
-	 WtfILYnSfxL/MWqTs3jEqny+PVs6li3OwVrTOXZ07fil3SUseeTAgm6TTM/TW0ODxh
-	 QB1ohFU/6Tf9FiGHmVbdniaEZIhfIylrGPTaPXiObOutGyhX+ZMBvICYgENGkm3Op4
-	 7MGQZ2zBvOYqCnZo5JovbsbiiHJeSPQEY2sWvjVp5YYrUWMm8BAAYZetjLBfnyXPdO
-	 PUHJB1lvCgD9PLPqaDo9gRHVLTTbvuHn46pHRq9o0XwYf/E2J1gAfHJPFofI/k5hVq
-	 1+YawLlhNy+vg==
-Date: Wed, 10 Sep 2025 13:32:48 +0200
+	b=Oyt3iiv6aPyQ25GkTyqU4y24qMajRCx/pzq+ugEir/izBj5M7pyRsA8OZStiNfH8y
+	 UnR9dAoBcF5GV5vSuAXDUJr2EGPrBj5A8AcXCvsuQnRCMQtzH1NbxMGgX3hr1dr1QT
+	 /RczUH9k53Mvt102cepRNnuIww15Os+glyKHgI+W2BsLtN1OxDVm47V5anfYpMdvSp
+	 hX8UCpSvTMcDRrLtuB3xXerfO6IO8xFvIcjxKS/v8Ihv7d7Sy4Y0wsMAAW9Qd1RS9w
+	 HEEXr4YbiFH0M7PEFAwIkTiFwEH4/D0rw/MyQsqHpfFZIaS5QJKVnqvyfV7j5xTptL
+	 xL6VO/GfuLEAw==
+Date: Wed, 10 Sep 2025 13:35:39 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Martin Hecht <mhecht73@gmail.com>
-Cc: linux-media@vger.kernel.org, sakari.ailus@linux.intel.com, 
-	michael.roeder@avnet.eu, martin.hecht@avnet.eu, Tommaso Merciai <tomm.merciai@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: alliedvision,alvium-csi2
-Message-ID: <20250910-arboreal-alligator-of-tact-c04463@kuoka>
-References: <20250909113218.2595516-1-mhecht73@gmail.com>
- <20250909113218.2595516-2-mhecht73@gmail.com>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: sitronix,st7920: Add DT
+ schema
+Message-ID: <20250910-ant-of-angelic-vastness-b5caa5@kuoka>
+References: <20250909-st7920-v2-0-409f4890fb5f@gmail.com>
+ <20250909-st7920-v2-2-409f4890fb5f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,19 +63,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250909113218.2595516-2-mhecht73@gmail.com>
+In-Reply-To: <20250909-st7920-v2-2-409f4890fb5f@gmail.com>
 
-On Tue, Sep 09, 2025 at 01:32:15PM +0200, Martin Hecht wrote:
-> Change from my company email address to gmail.com.
+On Tue, Sep 09, 2025 at 06:52:44PM +0200, Iker Pedrosa wrote:
+> Add binding for Sitronix ST7920 display.
 > 
-> Signed-off-by: Martin Hecht <mhecht73@gmail.com>
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
 > ---
->  .../devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/display/sitronix,st7920.yaml          | 52 ++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please organize the patch documenting compatible (DT bindings) before their user.
+See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
 
-Best regards,
-Krzysztof
+...
 
+> +  reg:
+> +    description: The chip-select number for the device on the SPI bus.
+
+Drop description, obvious/redundant.
+
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 600000
+> +
+
+I don't see how my comment about supply was addressed. You never
+responded, nothing explained in the changelog, nothing explained in the
+commit msg.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    // Example: ST7920 connected to an SPI bus
+
+Drop comment.
+
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        display@0 {
+> +            compatible = "sitronix,st7920";
+> +            reg = <0>;
+> +            spi-max-frequency = <600000>;
+> +            spi-cs-high;
+> +        };
+> +    };
+> 
+> -- 
+> 2.51.0
+> 
 
