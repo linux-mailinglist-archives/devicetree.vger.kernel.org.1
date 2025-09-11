@@ -1,92 +1,93 @@
-Return-Path: <devicetree+bounces-216053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A539B53817
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:45:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91714B5382A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:50:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA759171046
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:45:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3BFE1885B72
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C09634DCFD;
-	Thu, 11 Sep 2025 15:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6300F352FC7;
+	Thu, 11 Sep 2025 15:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LhXp7Jw5"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="C6w8A73a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011030.outbound.protection.outlook.com [52.101.65.30])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013047.outbound.protection.outlook.com [40.107.159.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159112367D1;
-	Thu, 11 Sep 2025 15:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.30
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B66322536;
+	Thu, 11 Sep 2025 15:49:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.47
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757605520; cv=fail; b=gNcPbRb+fic1ygq9nozjiEKHERMbZxZEkofqPqOit45Ishzm3YVs2ZVY+UsPh/4vzpDOTEDUUTanLUlRMF4/giu8alH2MDLiJNtRHDGXleN+6plkCWQCuQnu4cVRnyQ25pIiP2xI5eJUYu4BG4M5B5Cknu4Hio/9C2tRW0zuC88=
+	t=1757605786; cv=fail; b=D5jO7po3bPNQyDeSEvBeJpqkm5v44s16ZoW6Tz6cX83ELfLNwGvxLN2oOjeXcNAAFzsXPCsrUW2HyQcJy6pOzfNWQkpukpFUrVf6K7Gd+4c2hfW17yCOEPKgoptWG5H1cTmqPxP4/dgUpxJ7U+/cY+LT1OJdhgulpftGUQTI5FY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757605520; c=relaxed/simple;
-	bh=4hDrgHEppKIFiUk+TsSNBeZ0F52IfN9YOmQwXc/ZmUQ=;
+	s=arc-20240116; t=1757605786; c=relaxed/simple;
+	bh=kzjG/DnUnsJCwK+j4pZke3oJNPdcDmqObTnxBGL756E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=g53KLOIMC+1/bGrL67xQfWRAeR8sU0/2Vgk8Hi9uUxmzAFgJO+DUygKH8+QKK//dMUPCjl58cyqOmJ1Iwmc0lTXlNJoMc1Bh6+J0GT61b2oNdnntIGTVkib4ChvImXD/nbPEAlJ/dkzeiUGb3GsN1ZqpcWWhfvQIZh/WwtBw7c0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LhXp7Jw5; arc=fail smtp.client-ip=52.101.65.30
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ARLOvR9MD+POTlKUKfXBoS9k92PuyJRyrv3iNRUJaTodl7yLXHsBFXZ3k8UVAZnyET7/DavSmrgt78HQJpIJSnHmszJt5XTGWIx5JRFu8uQFheSIrgIGRhGmktln5YP0LzHQev9e1qlXAuHzHqaDQVFrSA+c0p3toxLy70uQro8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=C6w8A73a; arc=fail smtp.client-ip=40.107.159.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=G0Ze0e7IM84R6Tn+Y70xlaBcgIQxdpA9i0Cft1zHI7Deu09koWPX+2+b136e+OU959UGFjCcw0HIPnAjLl+We2hU4d2TVootuu3SD7fgtIBZFoYTUy3+HAGdNWfhxA3ekNpy6/eBYYvCtvWQYz29GEREKHYfcTPO/jsWMC33gRt+dHhf4aLy/saraT0jV2JjhZO93rAcAjN2f+XeXbxE83Ccv+PGFw1Vno6NPWgrJQr083sRh9mbclvuGJKStwDlyZMKipZq+BQIpSze+cfpJRUJSy91zjxxPFU6lTMA7CTX7+CHtjD8THKyVF9cAg4RWCTPZ9b5kLQ+noQ0cr77Mg==
+ b=N+HR92Er4DeX5i/R3zR8LQoP+I56la6KGk1ozSPES4y23TQKaB6KDZ8zBni7UPvsjNRpS9VcvLtaCGYx5RFXfc+2/3CNZJ32P65xyZxFTDEGzjZ6ZI7AnFfnPkt/6DPEhske/YRPBWugO9euL9b3/WOzhuc5S9IThcWPkN/oo13l7UX44vFzCiGnsf0/N2XABVySQ0GDTj0HQiFIWUNZ9zOVDwlKQIrqi0IKciV4YXXRu3SAk+mqkwb+qTH+m/A+c0Wk2dLjYBj834BcyyNyw2aZIXCv91mdn4/1s8dhFTOLa2uGfzywMXWt9QSB7/YyLsldtBtGDGhXb8MjXozHrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cINv/udmgtuTTEOKrs7SoB7Ia9D02il6wXx13KN5AQY=;
- b=iSuQvNK9KtvAkp4W3OwyApxtOHZdM3zXs6aAtOIKMIT0mDFYcniwPIedfybb4gkzuY4dtVTG8tIm1AYsUAv8hXf/3rYiAsAaoL4h7UBxayjm5REz08PCxDt7Q+CZseUpRa/uMsbS1MU3dEd0CxSf0CcZSqQKuPcvwpGaNpt99qZRYOa7oBGoENxqiLByZEn5I7LWM0BDqvD8xekNKfYKedQLuxyQrR9Ghvd+dAvzWKifkdv3cVY3MdzoUwA+5CArgJQKzFwTg4Ino1nZG9JqlnuZD03PWArW/FWm+xPXEQlu+ewptn/IyhH+GweG51ZI1T8slpwYLp62JEQv87wryQ==
+ bh=wRbndY2ppD2vdkWzYhggzXNrZclMmLOaLopyIpNVKSU=;
+ b=Sa3t4SkFXQyMSP1nUqwVemQSD+tqfgVSyYiUbNQntbLskStTeG7vBqVy8XaeSlYk92W6N0YQytVXSsSeDuGvGTfZ9t+4ziJXE901CYvFBwIyWZUdrriNL7gr/Nq85Asy+riYQIlMWPDthQlfPzndq3aN5N7aY+/wRFDwiK60cdXE5Fx6Zq0LQXAEEUXm95KEFrCWm9pZ+2YJrZi8XjVncAaO0Eri0Al+h/iqsBHKwQNl6gk7Wv9DglG6PrsG3t6ci5UUkbLn7M0qFJ1uMbwPC2SB0KJ0rgMOTF2lr6D91HMUQCo1exnsAz+tUoxxU1XdAfS5xNVvSZ0P7jf4K0tPcw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cINv/udmgtuTTEOKrs7SoB7Ia9D02il6wXx13KN5AQY=;
- b=LhXp7Jw5T/zROzHlCUmyTXGlUPRhLUPRx27+ZsuloMXzvhbZrGUHITeNgy7cbRdS0TOS7bDdopvW1H/TMPVmdn3u1OsHpXKVOQI4vsdLeGXwjgBmh1E/GmLm4OkaGtzS9PkVu3lW+10on4yZkXuOrroUPzm3WBFoZhQEFEQypZANMTBkBDao3XzLAukf+hC+hMSvJlTPxn4RiIr7I5xhlOaAQWkbh9i5MHApaLFtupNy5582znxOemr3ztq4ASBKC6PCksXzHqhPRqzjpFPv6WBSBkI3izW9PhwyLgBsM9J3mQ/wLxAtv8PYBftkRyhL0AtLScZS+65POxxrGq/cUA==
+ bh=wRbndY2ppD2vdkWzYhggzXNrZclMmLOaLopyIpNVKSU=;
+ b=C6w8A73aaHQWqROXwC6//qtO0Bs1nWcRHEsPug2t4z7jg1eEMdFj9LeUzCfxJqBl2yjk/2Eh9Bj9gjqwgB22FEiT3yskUGVw92int/r7QkR7i9p1hWTRMDPLKEIo0QGgrC7pr71uS3nfo/UNVzZNIChmDIcvVqvhlSmRI5b8jhHg8DnvPDT85/VJlK2njjWo2qv4GvdGCLg+wGGptzV2avg3d7Njz5w1E6HzQBDapSMzaf/7lzGxvY2xU/uI+GkKY5ERwRQRhnQyUmd2s9NnwxAFoTkmkWVRxEaBMHDN+72HxpqE9uplO9MkMzAWuMJV6zyYmqGzYgvzARyv7ipRjA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by PA4PR04MB9710.eurprd04.prod.outlook.com (2603:10a6:102:268::14) with
+ by AS8PR04MB8248.eurprd04.prod.outlook.com (2603:10a6:20b:3fd::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.33; Thu, 11 Sep
- 2025 15:45:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.16; Thu, 11 Sep
+ 2025 15:49:36 +0000
 Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
  ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
  ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9115.015; Thu, 11 Sep 2025
- 15:45:10 +0000
-Date: Thu, 11 Sep 2025 11:45:01 -0400
+ 15:49:36 +0000
+Date: Thu, 11 Sep 2025 11:49:25 -0400
 From: Frank Li <Frank.li@nxp.com>
-To: "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
-Cc: "git (AMD-Xilinx)" <git@amd.com>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"kees@kernel.org" <kees@kernel.org>,
-	"gustavoars@kernel.org" <gustavoars@kernel.org>,
-	"jarkko.nikula@linux.intel.com" <jarkko.nikula@linux.intel.com>,
-	"linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>,
-	"Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
-	"Goud, Srinivas" <srinivas.goud@amd.com>,
-	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-	"manion05gk@gmail.com" <manion05gk@gmail.com>
-Subject: Re: [PATCH V6 2/2] i3c: master: Add AMD I3C bus controller driver
-Message-ID: <aMLufaWnrhPxVyxm@lizhi-Precision-Tower-5810>
-References: <20250910112954.553353-1-manikanta.guntupalli@amd.com>
- <20250910112954.553353-3-manikanta.guntupalli@amd.com>
- <aMGtdFxlXRanIAuM@lizhi-Precision-Tower-5810>
- <DM4PR12MB6109FB1956E8AC4979DFE85A8C09A@DM4PR12MB6109.namprd12.prod.outlook.com>
+To: Rui Miguel Silva <rmfrfs@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eugen Hristev <eugen.hristev@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Alice Yuan <alice.yuan@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Steve Longerbeam <slongerbeam@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	linux-staging@lists.linux.dev, Luis Oliveira <lolivei@synopsys.com>
+Subject: Re: [PATCH v3 00/31] media: add imx93 mipi/controller csi support
+Message-ID: <aMLvhdJRGHM+8yIH@lizhi-Precision-Tower-5810>
+References: <20250821-95_cam-v3-0-c9286fbb34b9@nxp.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM4PR12MB6109FB1956E8AC4979DFE85A8C09A@DM4PR12MB6109.namprd12.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0160.namprd03.prod.outlook.com
- (2603:10b6:a03:338::15) To AS4PR04MB9621.eurprd04.prod.outlook.com
+In-Reply-To: <20250821-95_cam-v3-0-c9286fbb34b9@nxp.com>
+X-ClientProxiedBy: PH0PR07CA0073.namprd07.prod.outlook.com
+ (2603:10b6:510:f::18) To AS4PR04MB9621.eurprd04.prod.outlook.com
  (2603:10a6:20b:4ff::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -95,314 +96,196 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|PA4PR04MB9710:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34e39de2-be7f-4934-39ec-08ddf14a308e
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AS8PR04MB8248:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3d63617-cc93-4a72-d7ba-08ddf14acf40
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|19092799006|38350700014|7053199007;
+ BCL:0;ARA:13230040|7416014|52116014|376014|366016|1800799024|19092799006|38350700014|921020;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?RKaj94N+4rG6z0cK/Kt7NZwGevQHOvisLHleqBlInbdj87Pvvm1Jdgs0o+YI?=
- =?us-ascii?Q?bKHw839tYudyHBZw70kgKmStK7R2rzGWRdust8PduYXzRz4cS5hBSCcqUr2D?=
- =?us-ascii?Q?gmdd/s+n3p5eukrI8INP4wfD4WxSHZJ+889NfByjOw/zlf47CgF/o/JKzcZX?=
- =?us-ascii?Q?Gvn1v5Q4ZmTFAkLiTiYSPbLt7br2v+quWXIvOEkqlegJmJhnvA3WnvuDIreL?=
- =?us-ascii?Q?XoucsHjaXsjc9rs0qRT8/n8cQU9oLZru+u+EBI92CTjL870mMs6hNnoCDvNN?=
- =?us-ascii?Q?2LyrlHwpImZfeH+4W3eitr/nzOS0WrBb9dYJCGBowPM3oLKOKbah/00kTTRn?=
- =?us-ascii?Q?WDqgb1QPO/fw0DST+t+E62B/nlqYYPpGLX38v+NK2Pd7P/kl/0eOSMtTy3D8?=
- =?us-ascii?Q?9eRtijCKFZmxLRbSgfMqYT2lHg3kP1txqcDJ2Ah7Qp+rQ/67rqrk1dxBcBgv?=
- =?us-ascii?Q?AJ0AX/5SEITrymoBlhrjRVfPg9Qx3BJPFAHofEHs9Sd8wh8UkMhRmRglAH5s?=
- =?us-ascii?Q?7HViUHZGH9N1clLHDZJMjwMg5UryPfWybwYCTLOTocSdAK+HPYA5fjT6fxp2?=
- =?us-ascii?Q?+8tJ21fDpfhynamoawurH6Z8WyEHD48Lf7ZvonjM4yblcXoRpzNifaM3VLi2?=
- =?us-ascii?Q?tiy5gjhGWa+Gf8BHqS6bW7+1PVdCsmiL68nPVDy/nT99fer1XOaq7eSFMq+O?=
- =?us-ascii?Q?0vbkmrTOzWch+3/Jo7bR1L2RpP1Rq1kTx3R2uCmIIhzY+Q3WN1mYae4BARsS?=
- =?us-ascii?Q?5eXBRpl9Z4dHJI3a023qLXIjAcUhMV7nHctcUzeqeAjfWHuRxF6QWKgMTHOP?=
- =?us-ascii?Q?v0xcakn/K2Qu+X5YkotoqbnrWC5FGnETJ5EyVLaNHuz3EbHVEAgUgQlmLYFv?=
- =?us-ascii?Q?mDcsga/dMOh9y1Hw2YQIZZKiT0D3dGohvg3Md4ZW3+941z4RRo88idKVoAxN?=
- =?us-ascii?Q?L7XTegD9p0Kly0YHnbd7JR2Ac7waARoKFBjWbNQ9vMYXlMECN0dFek8ZqsMB?=
- =?us-ascii?Q?Hz++Ift+6KP8gDrIwWRQyYA0ylxnh+k8gw6hS5LsashwLB5ggbnL1gcPoJJL?=
- =?us-ascii?Q?ISA4pbPmEgKRDX4MBamLdtCaaKTgsJbYjWcEPs7jjKjsxZQcWUNZQjv7lcX3?=
- =?us-ascii?Q?ahkgDIuFhKia8+t6DaLyLNDxHq5Cps45TvQW8t43qc0gu54hL8Y3pyyl7e7Y?=
- =?us-ascii?Q?JOJKrXAsux51F+tK4RwOM72yz3wFGsRLO5aYsTfl8kCei00neuymhW8pR+sY?=
- =?us-ascii?Q?FNbvQP3IXjllR/u8KHvtGBptVfpMnsyRZJJ0fvto/vErY9Y77d92FHD4cTYo?=
- =?us-ascii?Q?h5INRhw7VQUHU6D4ZcHduMOB02Jh+30wbNEz6CFwCRogey/WlnaJ1Nrp4jP5?=
- =?us-ascii?Q?MNKm/Ujhdn5pZaGV/rS5imGdM1xuWr2ApQmQp/A7nkU4Qh2mYk2BNIxA6ryq?=
- =?us-ascii?Q?39CzURtCh8Qp0Fm9kHTVkV9OtaDXZUGY?=
+ =?us-ascii?Q?8cFjLdlRzbn9399XgyZlXk765g9K3oYJj2Y57jOxQnOoEVFwbrWV7e5Bm7gy?=
+ =?us-ascii?Q?lVKLA678IlUt++VXDPTkq8PGai7QMbiKNaVRKibff0Bb4ydIRJWfx7W/qp/e?=
+ =?us-ascii?Q?KfHRKRfVu3F0a9OhfE2T2f340a8qzG2yk79YOqAkE9IZ6bTpSaasEZoGp80q?=
+ =?us-ascii?Q?35xEu9rWpramsbFykaWxIP9DLQW+KVewlzV1qOU8tl6btx+2l9736pXyoteN?=
+ =?us-ascii?Q?RVEYkJVNoWI99HAU89O+RU9ct3o7aKsb0BSj5DhU+lRuTd1kKHfJWZQk+Gf3?=
+ =?us-ascii?Q?lKfJwQn88svLZfXUGecC7dybxPATS3f/UM2jD0aLDP/LurP1pTdNuPXwvbhy?=
+ =?us-ascii?Q?ue+mplnMwL2Dxjxg7NLMzQKPoVECBGmM92u1DmSMBLZdUgWpWhVKyZNlPigN?=
+ =?us-ascii?Q?ocXocnSUrG+3av6mu62V4UJmcRbd02K3ZkdiS1OlNbss3VArr+zb1u30/L67?=
+ =?us-ascii?Q?KOPalPyeJJ55T5svo1sUbRo+l6avSs8GNQsEsKn4Dna0K+5m+SkCUAyVRIQr?=
+ =?us-ascii?Q?qM/9BFmoBNct6L06lViftrwrenUM0JNFbNPtKKcvvYIncrklvCcL6F1upEib?=
+ =?us-ascii?Q?DO/Cty2QhhOF/dRbYOqyrmNCu/0vJj6rvMRQq6sVxfa8YtPFpIPLxfLAjDMd?=
+ =?us-ascii?Q?T18agfLPlfkKkEApEZubOk8DMLftuehbB77g1NaGFksRKH7VecrTDWb1rCw+?=
+ =?us-ascii?Q?0pvq2awznVFvp5azCADiM32f/cp2B5GFqpkjL0eWzmfaZbslNLiPTE3nufoG?=
+ =?us-ascii?Q?sDJDTAPQYDVc/uMhLnxq829hIYsN9kwF9b5J3D2cL9tmUhaGE1TIkuJbdO23?=
+ =?us-ascii?Q?prMExXq5mS/WpJhfQPW6bYyQunHzMDjJdLU+4wHAvA587npp/Jm3DhgjZcdU?=
+ =?us-ascii?Q?33VxNRDmoTEck4V46hUzjFPlUjJIRihB78Z5hOlDUlUlhmt3kvXhaQ4eVyLj?=
+ =?us-ascii?Q?wiSItGFVa1EdW09QVMnBEDg7cZIgwLrOpzNNtap3hDubrC5LDVFshFPmHRBk?=
+ =?us-ascii?Q?6Ng2dsRReVrP7OuJbmYiZbmA1e96/+Q2zVoUYn6QXicMvbU6xfRe2RAhjkYX?=
+ =?us-ascii?Q?ZAM73Luh0l1nbDR8BN1w10tVYGa5pzTynALwnr4/6r3Z585upIx4xq/D2gJk?=
+ =?us-ascii?Q?oQWMlmLBeEc/RcsUj/y9ejoogGM1pLgul6evlStoOjTvk8LbjmqFlKVDIBw3?=
+ =?us-ascii?Q?OcHB5SBL+3j0U8DVNibDhrr+DevQF2+ak17oZZdL9pv6UV9YG3lffyhnEHev?=
+ =?us-ascii?Q?f7Auka+fg1k+oF1xxvaf4y4DfxsPjww9xradHLGLWDAtkfm/ze+gkf2Kv0WP?=
+ =?us-ascii?Q?VpWNuztE6iidtK6AadH44q/YqXL4Mk2ttwniFUP9SHox/SQfnaskaNvSa9zL?=
+ =?us-ascii?Q?NhQxA5dNcK7CBPcicmYw6vkvg05B/vdow02MJflXtLBTb/H0giE2vILsJE1a?=
+ =?us-ascii?Q?Nn73/hCA3w0dQ1yM6Wb994kmNSTmeUjkavFvzasajCtP8e9R6TFT+vVFn4Yo?=
+ =?us-ascii?Q?5xHNG68+7L6yis0nF0wAkqbYLW9KZb1sjKUC?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(366016)(1800799024)(19092799006)(38350700014)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jhV7LtfPgI+nRw1qfDSWvgupw4qvkzdHo6HO/U/Rg9ENuCz7Tr7q5PUbenkq?=
- =?us-ascii?Q?CVAq64v5MvZjkaMS6pMEwwUP8TimXQ2PajQW9r7bG0zWDwB+5spZEYlYwQnU?=
- =?us-ascii?Q?VY5epi49/MzTOn81O751vbjm20gonAMDb9i+gCUkWSCMnYaqwR4OiGTH/lRm?=
- =?us-ascii?Q?tSkDd6gUSSY0RtWsE3VTja6p1Rp4s+OWAJSevH7mL9pR7LlOLUY6KpkbMJI7?=
- =?us-ascii?Q?NqdJGkZah7OC3r0OzI0d+Ykuaw4X6jV36YL7YRcAYHWodoD1IIxxTtFEaXQe?=
- =?us-ascii?Q?my9/hIQGu4QMy1g6PuEX+nzenOYDOYmpgaP/gqtEhGNKt9Z2nv0vvig6v0RI?=
- =?us-ascii?Q?wYlZp2TmS6Y66uBVH7IuhnWydUE3SmnehTyh622IZTTaNFrVjdClHg7Oy+7Z?=
- =?us-ascii?Q?QsBsMU/Bug6d+N00BegGW81emCfKrhkbSuAM9QFPeDdkrJcjF/14XO7G1eUK?=
- =?us-ascii?Q?5NiO29PadHNLcGR2ssz4n1eeV0KqHJyLfU+Xe+W9MbdjcV6mn7Hfn0hVdI71?=
- =?us-ascii?Q?q/CiVMU3eD0Jn1LBi/5aW6q0f1V1WTD4OwQ7YtK/h6WQMj3whbkXggq8sXTV?=
- =?us-ascii?Q?QAEOnbsr+nmDdhnbacmQ1SDx/ch3lYt+P0038ED5uctz4tfpv/xyHqQ5oYKI?=
- =?us-ascii?Q?/vZIiQ0+nSHe2ir72ax30VaU6W1yjVP2UpCnpdeSZBNTCTVjfkkOjJeTMlVc?=
- =?us-ascii?Q?b++TwM0YOjHiQGpy6TXyssbxKW+pncNoxfqBH+nU1i3Do+Rhko5TV8oFJWWY?=
- =?us-ascii?Q?77aCsHSyYnbrD5bBO4ZXbZ7pz9Of5MHzDToGxLROkqMn6pEG/k2uobN+1Eas?=
- =?us-ascii?Q?2O9OYkBzUhbUVGobt7pPA+Kvf+4q+T8Id2mZ4yaeFJiWXd9DcDf+Algb+z/g?=
- =?us-ascii?Q?t1icQ/wVhVtcffUAypB9x0C2cJ/c5Gtgwj6ZO8ipJfOLFrVHMLEEVRJaumU4?=
- =?us-ascii?Q?fcvWMUIuSQDznNJYsU2YOeKlpqPkoyPtQ8h1whLBjLBeC/4WMc5CYbcvOcPR?=
- =?us-ascii?Q?vBuYiQEvF7XuEvU0F8v/LLjsaxJZi3wTjZljdL46dw6fVz+J4G9vQPc7SlAk?=
- =?us-ascii?Q?yO1FWsLMHb9aOIJ2hQ9qXa9s5f8tzYBSrAdwk9xPQD5GaWhV5UQNUnUdCZ+M?=
- =?us-ascii?Q?Z6Po1codHDowuxmMo1fW1/sd3Lj+hGZAcU1FtQl6GmsUcV0beirWPoKKfhRN?=
- =?us-ascii?Q?93BG4vOZff771natrOc6dglqs3qXbJyrHTYsJ1CPRPFjfNYOW+iE4T0PED5i?=
- =?us-ascii?Q?1E8nt3EPUc9Bo5tZrDgV/9FYEw0s6973yYRbjaPGH4p9htCm9/fyzINBgmH3?=
- =?us-ascii?Q?vjtrEaQ0GL4RjMo8dvvAPEfKfu5gk/C8DiL9K/ReGq8ibyJiTGSJ2gBa0orM?=
- =?us-ascii?Q?yq0Sn+qMiiHC8dViDl3PRbKxNNSgG2FKEsWHHUxq7cvqC0BENtT3/QZCMI3r?=
- =?us-ascii?Q?ncxCD/ok3umFnrzSynwWHV27uGhVZxc5rUbbgWE3jlrp8HnyknJl63pah1N7?=
- =?us-ascii?Q?ZQYlKpaUaZXqwMDoBZn0bcWuCNtAopTFlXJgEClYjREoWBj3F3mzZNkvDNTq?=
- =?us-ascii?Q?FAulvamHjyXW9NQGE0G1o74cu2cKeKJydi9DoZKL?=
+ =?us-ascii?Q?5yxTW2n1R8J/oItIh9IMyFybLQ62j3TOz1tZ3EkEr3ZJhlBnAb/59QXRq9N0?=
+ =?us-ascii?Q?NbeB5sXUThdrVLnHRRJJUv5X+IOfZEZQGBdM5B6VeEfg3Xx8CQcya2kApi3u?=
+ =?us-ascii?Q?4Q4naH1KMVH0qYsglLxt9R52UBIfdjS5OkDNMV++Buh0oNSBoawTOmSMNfpL?=
+ =?us-ascii?Q?CthTPmivoZtqVe6W+dMnqeSF/cxL/3IbT/YmSeWweOiQ2vfYQC5mJVitwLAq?=
+ =?us-ascii?Q?w0wSkTGXdORWGp3FN4f2dCFXb7KW4xAVdwVW/agLGRghJAY0TpV4ivvdCeUl?=
+ =?us-ascii?Q?lkzu5rPRtK1oBYPrulnyVAbEi+TwCtxtWk2rdz3LY65k7rC4+DLxAIJSTqg/?=
+ =?us-ascii?Q?nXzFFcvD7nC/E/vTFC0PUD6xhkh8VEoUSpmUFY21oNMhtauRTXWPVGylnLtz?=
+ =?us-ascii?Q?jxJgY7oSjCZAbeu2w95G76HlRQw3AI6oeL4wc/JncwXUlXKcc3baCrYskmy5?=
+ =?us-ascii?Q?7mcqDgyJrIi5PUZ24X7NR9cFHb0ABptrJDoFLRMC+2twsMbc0T5tlhx8cus5?=
+ =?us-ascii?Q?vIidhJnnwZbWgbNij0WrgK2qfBt542XnhulbQL0o5KwnJJMtz6uHcsW3Lbz8?=
+ =?us-ascii?Q?9/4L+aMj0A/7hkPzmUEGDMwFZ0PhNbQNkPEo+Xzvackuybz7ujIkWfiS1FjG?=
+ =?us-ascii?Q?VaxigkmqaUodH5oV+/u+uu+SpMUbpvvx1fspu3Swk2GlSxMoBnETFqIPcNEx?=
+ =?us-ascii?Q?rOeVfSkYyncpLAQ7Nbs/t6s9rccPlj0GvZu759UCcpKK8uMQpWL3dDb9qWuW?=
+ =?us-ascii?Q?FGtBooAfaejmkzql0YK5PqtwsT5pslOnzUfBW9j7C7nQ4lP8evp/qhH7g2q2?=
+ =?us-ascii?Q?FxKipVGEQm0DOXx6dcBzMwAPwLs0K7JMyQNUkGgw60Q/OnU3h0WYf9OKcs1I?=
+ =?us-ascii?Q?kJpwxuCgf+wgg8+BHOkaXr+X1UJD2OfBavD57xO2GQTNzIABKcccOtGCWxW+?=
+ =?us-ascii?Q?qp2kAH19WrG/kAbUEr40RLh5IqKwNE6kyr10HVaIwB63bZZezKeeZaQ6tR4Q?=
+ =?us-ascii?Q?dC7fFAznqbzLh+ib4kNDnFdY9zlXFuW4Lu+CcVQfDlZjZbqybmdaH4+gBfQZ?=
+ =?us-ascii?Q?LINgpoe6zxeadAJxKteXC2gJfrkik6EXJkNbYn+9NjVTdEqpuNnnimQxyUee?=
+ =?us-ascii?Q?2nBvjwIbkxn63UxG6VLvY0HJPyzn82VhLj8G8H0JPGgYRcxdvQ5h2wIZ7zdv?=
+ =?us-ascii?Q?2kz/bjZfzpIxauPeqEzQ3/fmFJYZ70QJnTH7JpQjNSSYld0zuMGb8T1GN2qS?=
+ =?us-ascii?Q?QBQ16MQkOxM3RKUdotFkNBh7CvA6lYNlDWmKZJgtxqhJLXdcvmzOx/h06G90?=
+ =?us-ascii?Q?Z+P0qhyFjx71O6GVINS1+V7+8khaH+bs6dVZIlWa/JKopKg+7+q3A97PNb6J?=
+ =?us-ascii?Q?zRCkWEY3JnjE2+o1Aa9xiibgFQ5rWP1mgwroTNCPoBGPdNVGX19AIGKDd7Ai?=
+ =?us-ascii?Q?ZNLxJjYII6j/t8s+jqr8M75kBBWegpdQjrjY02d1dgYSc2kybLqzqaq7Yly/?=
+ =?us-ascii?Q?a82mWXe+VR2Sukut6LwJ2X6gLihihlhYFnkV5cygLiKb15j5OZztmhto5GCl?=
+ =?us-ascii?Q?DjJO/okqXnB+fvXwjdazm+M5ZmhxCPqh3x/aC/k8?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34e39de2-be7f-4934-39ec-08ddf14a308e
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3d63617-cc93-4a72-d7ba-08ddf14acf40
 X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 15:45:10.5020
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 15:49:36.5703
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KbR39cXPY6Cf3xRzh0C3d7tYmTEeb1MnIMR/sz5biIqPZ0qS/K9KDNEI+Zfc9K+72lKtt9TrIBvxeAAJXoqKCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9710
+X-MS-Exchange-CrossTenant-UserPrincipalName: RZyQf94by45J6Vy3HA9Xg3YPzvNZPPDyY8mU/1kdISaaxGVsylVOZrHGr4+bcw+6q23hJFTEQ9BLDDApjhxQSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8248
 
-On Thu, Sep 11, 2025 at 06:07:59AM +0000, Guntupalli, Manikanta wrote:
-> [Public]
->
-> Hi,
->
-> > -----Original Message-----
-> > From: Frank Li <Frank.li@nxp.com>
-> > Sent: Wednesday, September 10, 2025 10:25 PM
-> > To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
-> > Cc: git (AMD-Xilinx) <git@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> > alexandre.belloni@bootlin.com; robh@kernel.org; krzk+dt@kernel.org;
-> > conor+dt@kernel.org; kees@kernel.org; gustavoars@kernel.org;
-> > jarkko.nikula@linux.intel.com; linux-i3c@lists.infradead.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> > hardening@vger.kernel.org; Pandey, Radhey Shyam
-> > <radhey.shyam.pandey@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
-> > Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; manion05gk@gmail.com
-> > Subject: Re: [PATCH V6 2/2] i3c: master: Add AMD I3C bus controller driver
-> >
-> > On Wed, Sep 10, 2025 at 04:59:54PM +0530, Manikanta Guntupalli wrote:
-> > > Add an I3C master driver and maintainers fragment for the AMD I3C bus
-> > > controller.
-> > >
-> > > The driver currently supports the I3C bus operating in SDR i3c mode,
-> > > with features including Dynamic Address Assignment, private data
-> > > transfers, and CCC transfers in both broadcast and direct modes. It
-> > > also supports operation in I2C mode.
-> > >
-> > > Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> > > ---
-> > > Changes for V2:
-> > > Updated commit description.
-> > > Added mixed mode support with clock configuration.
-> > > Converted smaller functions into inline functions.
-> > > Used FIELD_GET() in xi3c_get_response().
-> > > Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
-> > > Used parity8() for address parity calculation.
-> > > Added guards for locks.
-> > > Dropped num_targets and updated xi3c_master_do_daa().
-> > > Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
-> > > Dropped PM runtime support.
-> > > Updated xi3c_master_read() and xi3c_master_write() with
-> > > xi3c_is_resp_available() check.
-> > > Created separate functions: xi3c_master_init() and xi3c_master_reinit().
-> > > Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
-> > > in error paths.
-> > > Added DAA structure to xi3c_master structure.
-> > >
-> > > Changes for V3:
-> > > Resolved merge conflicts.
-> > >
-> > > Changes for V4:
-> > > Updated timeout macros.
-> > > Removed type casting for xi3c_is_resp_available() macro.
-> > > Used ioread32() and iowrite32() instead of readl() and writel() to
-> > > keep consistency.
-> > > Read XI3C_RESET_OFFSET reg before udelay().
-> > > Removed xi3c_master_free_xfer() and directly used kfree().
-> > > Skipped checking return value of i3c_master_add_i3c_dev_locked().
-> > > Used devm_mutex_init() instead of mutex_init().
-> > >
-> > > Changes for V5:
-> > > Used GENMASK_ULL for PID mask as it's 64bit mask.
-> > >
-> > > Changes for V6:
-> > > Removed typecast for xi3c_getrevisionnumber(), xi3c_wrfifolevel(), and
-> > > xi3c_rdfifolevel().
-> > > Replaced dynamic allocation with a static variable for pid_bcr_dcr.
-> > > Fixed sparse warning in do_daa by typecasting the address parity value
-> > > to u8.
-> > > Fixed sparse warning in xi3c_master_bus_init by typecasting the pid
-> > > value to u64 in info.pid calculation.
-> > > ---
-> > >  MAINTAINERS                         |    7 +
-> > >  drivers/i3c/master/Kconfig          |   16 +
-> > >  drivers/i3c/master/Makefile         |    1 +
-> > >  drivers/i3c/master/amd-i3c-master.c | 1009
-> > > +++++++++++++++++++++++++++
-> > >  4 files changed, 1033 insertions(+)
-> > >  create mode 100644 drivers/i3c/master/amd-i3c-master.c
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS index
-> > > 1af81124bba3..ff603ce5e78d 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -11693,6 +11693,13 @@ L: linux-i2c@vger.kernel.org
-> > >  S: Maintained
-> > >  F: drivers/i2c/i2c-stub.c
-> > >
-> > > +I3C DRIVER FOR AMD AXI I3C MASTER
-> > > +M: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> > > +R: Michal Simek <michal.simek@amd.com>
-> > > +S: Maintained
-> > > +F: Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
-> > > +F: drivers/i3c/master/amd-i3c-master.c
-> > > +
-> > >  I3C DRIVER FOR ASPEED AST2600
-> > >  M: Jeremy Kerr <jk@codeconstruct.com.au>
-> > >  S: Maintained
-> > > diff --git a/drivers/i3c/master/Kconfig b/drivers/i3c/master/Kconfig
-> > > index 13df2944f2ec..4b884a678893 100644
-> > > --- a/drivers/i3c/master/Kconfig
-> > > +++ b/drivers/i3c/master/Kconfig
-> > > @@ -1,4 +1,20 @@
-> > >  # SPDX-License-Identifier: GPL-2.0-only
-> > > +
-> > > +config AMD_I3C_MASTER
-> > > +   tristate "AMD I3C Master driver"
-> > > +   depends on I3C
-> > > +   depends on HAS_IOMEM
-> > > +   help
-> > > +     Support for AMD I3C Master Controller.
-> > > +
-> > > +     This driver allows communication with I3C devices using the AMD
-> > > +     I3C master, currently supporting Standard Data Rate (SDR) mode.
-> > > +     Features include Dynamic Address Assignment, private transfers,
-> > > +     and CCC transfers in both broadcast and direct modes.
-> > > +
-> > > +     This driver can also be built as a module.  If so, the module
-> > > +     will be called amd-i3c-master.
-> > > +
-> > >  config CDNS_I3C_MASTER
-> > >     tristate "Cadence I3C master driver"
-> > >     depends on HAS_IOMEM
-> > > diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
-> > > index aac74f3e3851..109bd48cb159 100644
-> > > --- a/drivers/i3c/master/Makefile
-> > > +++ b/drivers/i3c/master/Makefile
-> > > @@ -1,4 +1,5 @@
-> > >  # SPDX-License-Identifier: GPL-2.0-only
-> > > +obj-$(CONFIG_AMD_I3C_MASTER)               += amd-i3c-master.o
-> > >  obj-$(CONFIG_CDNS_I3C_MASTER)              += i3c-master-cdns.o
-> > >  obj-$(CONFIG_DW_I3C_MASTER)                += dw-i3c-master.o
-> > >  obj-$(CONFIG_AST2600_I3C_MASTER)   += ast2600-i3c-master.o
-> > > diff --git a/drivers/i3c/master/amd-i3c-master.c
-> > > b/drivers/i3c/master/amd-i3c-master.c
-> > > new file mode 100644
-> > > index 000000000000..cd9d85a0be80
-> > > --- /dev/null
-> > > +++ b/drivers/i3c/master/amd-i3c-master.c
-> > > @@ -0,0 +1,1009 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * I3C master driver for the AMD I3C controller.
-> > > + *
-> > > + * Copyright (C) 2025, Advanced Micro Devices, Inc.
-> > > + */
-> > > +
-> > ...
-> > > +
-> > > +/* timeout waiting for the controller finish transfers */
-> > > +#define XI3C_XFER_TIMEOUT_MS                       10000
-> > > +#define XI3C_XFER_TIMEOUT
-> >       (msecs_to_jiffies(XI3C_XFER_TIMEOUT_MS))
-> >
-> > Do I missed your reply? I have not seen
-> > https://lore.kernel.org/linux-i3c/aL7+Urm4NB9kwOwQ@lizhi-Precision-Tower-5810/
-> >
-> > If you need define two macro for it. Need unit XI3C_XFER_TIMEOUT_JIFFIES to
-> > avoid confuse.
-> Sure, I'll update the macro name to XI3C_XFER_TIMEOUT_JIFFIES to avoid confusion.
-> >
-> >
-> > > +
-> > > +#define xi3c_getrevisionnumber(master)                                             \
-> > > +   (FIELD_GET(XI3C_REV_NUM_MASK,
-> >       \
-> > > +              ioread32((master)->membase + XI3C_VERSION_OFFSET)))
-> > > +
-> >
-> > ...
-> >
-> > > +static void xi3c_master_wr_to_tx_fifo(struct xi3c_master *master,
-> > > +                                 struct xi3c_cmd *cmd)
-> > > +{
-> > > +   u8 *tx_buf = (u8 *)cmd->tx_buf;
-> > > +   u32 data = 0;
-> > > +   u16 len;
-> > > +
-> > > +   len = cmd->tx_len;
-> > > +   if (len > 0) {
-> > > +           len = (len >= XI3C_WORD_LEN) ? XI3C_WORD_LEN : len;
-> > > +           memcpy(&data, tx_buf, len);
-> > > +           tx_buf += len;
-> > > +           cmd->tx_len -= len;
-> > > +   }
-> > > +   cmd->tx_buf = tx_buf;
-> > > +
-> > > +   /* Write the 32-bit value to the Tx FIFO */
-> > > +   iowrite32be(data, master->membase + XI3C_WR_FIFO_OFFSET); }
-> >
-> > i3c_writel(readl)_fifo() did similar things, why not use it?
-> >
-> > Did you miss my review comment or I missed your reply?
-> You have missed my earlier reply on this.
-> The helpers i3c_writel_fifo() and i3c_readl_fifo() rely on the CPU's native endianness,
-> whereas in this case the FIFO should always be accessed in big-endian format.
-> Hence, we cannot use the common helpers directly.
->
-> For reference, here's my previous reply:
-> https://lore.kernel.org/all/DM4PR12MB6109F6D5D032723C675472448C0FA@DM4PR12MB6109.namprd12.prod.outlook.com/
+On Thu, Aug 21, 2025 at 04:15:35PM -0400, Frank Li wrote:
+> Totally rewrite CSI part driver compared to V1.
 
-Sorry, can you improve i3c_writel(readl)_fifo() to support endianness? I
-think not only you have this kind problem in future.
+Laurent Pinchart:
+
+	can you help review these patches? especial first two patches
+
+media: v4l2-common: Add helper function v4l_get_required_align_by_bpp()
+media: v4l2-common: Add helper function media_bus_fmt_to_csi2_(bpp|dt)()
+
+After that, I can start do more code clean up work.
+
+	all of "media: staging: media: imx6-mipi-csi2 *" are trivial cleanup
+patches.
 
 Frank
 
 >
-> >
-> > ...
-> > > +
-> > > +static const struct of_device_id xi3c_master_of_ids[] = {
-> > > +   { .compatible = "xlnx,axi-i3c-1.0" },
-> > > +   { },
-> > > +};
-> > > +
-> > > +static struct platform_driver xi3c_master_driver = {
-> > > +   .probe = xi3c_master_probe,
-> > > +   .remove = xi3c_master_remove,
-> > > +   .driver = {
-> > > +           .name = "axi-i3c-master",
-> > > +           .of_match_table = xi3c_master_of_ids,
-> > > +   },
-> > > +};
-> > > +module_platform_driver(xi3c_master_driver);
-> > > +
-> > > +MODULE_AUTHOR("Manikanta Guntupalli <manikanta.guntupalli@amd.com>");
-> > > +MODULE_DESCRIPTION("AXI I3C master driver");
-> > MODULE_LICENSE("GPL");
-> > > --
-> > > 2.34.1
-> > >
+> This only includes CSI related patches.
 >
-> Thanks,
-> Manikanta.
+> DTS part: see https://lore.kernel.org/imx/20250701-95_cam-v1-6-c5172bab387b@nxp.com/
+> PHY part: see https://lore.kernel.org/imx/20250701-95_cam-v1-4-c5172bab387b@nxp.com/
+> AP1302 part: see https://lore.kernel.org/imx/20250701-95_cam-v1-7-c5172bab387b@nxp.com/
+> 	upstream: https://lore.kernel.org/imx/20250623-ap1302-v3-0-c9ca5b791494@nxp.com/
+>
+> First 3 patches add some common helper function to simple code and remove
+> duplicated code in difference CSI2 drivers.
+>
+> Clean up stage imx6 old version csi2 driver, and prepare create common
+> dw csi2 library for difference IP version.
+>
+> Move stage driver under driver/media/synosis.
+>
+> Create simple platform driver for common dw csi2 use case.
+>
+> TODO:
+> 	1. create bus, to probe phy driver under "test_if" interface for
+> specific phys under CSI2.
+> 	2. support to combine phy, (which connect to both dw CSI and DSI's
+> test_if). Need use DSI's test_if to config combo phy to switch to RX mode.
+> and also need config RX part's phy register by use CSI's testif.
+> 	3. move other vendor's csi driver to use this common DWC CSI
+> library.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Changes in v3:
+> - update binding doc
+> - combine two add helper function's patch to one. and use media_bus_fmt_info
+> data structure.
+> - Link to v2: https://lore.kernel.org/r/20250808-95_cam-v2-0-4b29fa6919a7@nxp.com
+>
+> Changes in v2:
+> - totally rewrite, see above section
+> - Link to v1: https://lore.kernel.org/r/20250701-95_cam-v1-0-c5172bab387b@nxp.com
+>
+> ---
+> Eugen Hristev (1):
+>       dt-bindings: media: add DW MIPI CSI-2 Host support
+>
+> Frank Li (30):
+>       media: v4l2-common: Add helper function v4l_get_required_align_by_bpp()
+>       media: v4l2-common: Add helper function media_bus_fmt_to_csi2_(bpp|dt)()
+>       media: staging: media: imx6-mipi-csi2: replace space with tab for alignment
+>       media: staging: media: imx6-mipi-csi2: use devm_add_action_or_reset() to simplify code
+>       media: staging: media: imx6-mipi-csi2: use devm_clk_bulk_get_all() to fetch clocks
+>       media: staging: media: imx6-mipi-csi2: use devm_mutex_init() to simplify code
+>       media: staging: media: imx6-mipi-csi2: use guard() to simplify code
+>       media: staging: media: imx6-mipi-csi2: use register structure to match hardware
+>       media: staging: media: imx6-mipi-csi2: use devm_platform_ioremap_resource() simplify code
+>       media: staging: media: imx6-mipi-csi2: move probe part to imx6-csi2.c
+>       media: staging: media: imx6-mipi-csi2: move sd imx6's specific initialization into imx6-sci2.c
+>       media: staging: media: imx6-mipi-csi2: move csi2ipu_gasket_init() to imx6-csi2.c
+>       media: staging: media: imx6-mipi-csi2: move number pad macro define into imx6-csi2.c
+>       media: staging: media: imx6-mipi-csi2: move dphy init part to imx6-csi2.c
+>       media: staging: media: imx6-mipi-csi2: use runtime_pm frame to control clks
+>       media: synopsys: move imx6-mipi-csi2.c to synopsys/mipi-csi2.c
+>       media: synopsys: csi2: Remove deprecated s_stream and use v4l2_subdev_pad_ops
+>       media: synopsys: csi2: Add phy interface support
+>       media: synopsys: csi2: Add basic v150* version register
+>       media: synopsys: csi2: Add irq support to record error count
+>       media: synopsys: csi2: Handle alignment requirement for width
+>       media: synopsys: csi2: Add register prefix to register field definitions
+>       media: synopsys: csi2: Add need_dphy_reset in config
+>       media: synopsys: csi2: Add default simple dw_csi2_subdev_init_state
+>       media: synopsys: csi2: Add v150 lane stop state register bit define
+>       media: synopsys: csi2: use standard v4l2_subdev_get_fmt() function
+>       media: synopsys: csi2: Add customize get_frame_desc() callback
+>       media: synopsys: csi2: Add Image Pixel Interface (IPI) support for v150
+>       media: synopsys: csi2: Remove source pad connected check at dw_csi2_enable_streams()
+>       media: synopsys: csi2: Add simple synopsys platform driver
+>
+>  .../bindings/media/snps,dw-mipi-csi2-v150.yaml     |  151 +++
+>  MAINTAINERS                                        |    1 +
+>  drivers/media/platform/synopsys/Kconfig            |   20 +
+>  drivers/media/platform/synopsys/Makefile           |    3 +
+>  drivers/media/platform/synopsys/mipi-csi2-simple.c |   75 ++
+>  drivers/media/platform/synopsys/mipi-csi2.c        | 1260 ++++++++++++++++++++
+>  drivers/media/v4l2-core/v4l2-common.c              |  149 +++
+>  drivers/staging/media/imx/Kconfig                  |    1 +
+>  drivers/staging/media/imx/Makefile                 |    2 +-
+>  drivers/staging/media/imx/imx6-csi2.c              |  181 +++
+>  drivers/staging/media/imx/imx6-mipi-csi2.c         |  846 -------------
+>  include/media/dw-mipi-csi2.h                       |  120 ++
+>  include/media/mipi-csi2.h                          |   30 +
+>  include/media/v4l2-common.h                        |   30 +
+>  14 files changed, 2022 insertions(+), 847 deletions(-)
+> ---
+> base-commit: ad0a162e543964443feec3a6a9395a64fe6c35c9
+> change-id: 20250606-95_cam-b74c094ad1fb
+>
+> Best regards,
+> --
+> Frank Li <Frank.Li@nxp.com>
+>
 
