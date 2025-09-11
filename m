@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-216085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 691D9B53978
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:41:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F03BCB5397D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:41:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D67C7A06B27
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:41:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B617A06299
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9B835CEA1;
-	Thu, 11 Sep 2025 16:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697E335E4C9;
+	Thu, 11 Sep 2025 16:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hK23W9QZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VAP+/3aI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CEC35AAB1
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 16:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3EE935AAD4
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 16:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757608853; cv=none; b=u6fJ/f87haNLuQNOl88E1xerKUrM4bwNHwoSq3W2PQ55ACLs4/EHCn52ee1OKT0CKNjvwcxkj4F0fdoIfR44oTzomXr7ojKCUcO32851DXrGb0k/FxQBtazXlCO4/O8f/AT6JFX7/rQPTES7NQdWHQ02Fb9+GYod1TvMTeA9K7o=
+	t=1757608855; cv=none; b=KW4QnchtimU7odSxq09iPCTlwXYUK3OeD52bGRWeWm54C9jVZTyCjBEY5xYSte1EPxx+e1G4K0a/vvDIwbb3nYPGqZtaQH7ram0VDsWKn138v4BcyKQXfcfRAmjmOp2Zv2qT0CQpfqjqttk8qb9ccn4RtGAw5Uivm788eS2363Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757608853; c=relaxed/simple;
-	bh=a4DgACCHBYE7klse7BZobqD/NjzeLWKDISI/21WHr8g=;
+	s=arc-20240116; t=1757608855; c=relaxed/simple;
+	bh=hTnvvxl+lyL52rYp9D+lJFkBieFPMCtFihiRlKLamkE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iscQF4ocf5WNIwHvUoAof6M/IWnyrCbgB9jpWby5G6bokl9H/QGz18dL+5o4Q5ZTsA5nFqh3Qqhk8BI6X6uf4SLA5IZKNbXbmYoj346lYTZlYJ6iB3e4mFfVNENfhOcaAEHvZZuanaRY+Pbv/MfnreqN2dsRT9ns79WHR0OjKkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hK23W9QZ; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:To:Cc; b=gbPCr4FBplWwJtS+MlH8apbqdrCTS1SlFQXXkHljdASC/ZFcBo5223l9RdL6+9rgu+xTxbIDSQD2wOkjzyG/+fMOq4yu1oNcBm/8X+J40ceZtPnr3w/YJgLG2yvhpKqztIIthC5rZ1JaXs8cvxN2/vVoR3iX/ETgmDBB25f6lGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VAP+/3aI; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45dfb6cadf3so8961275e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 09:40:51 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3df3be0e098so649617f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 09:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757608850; x=1758213650; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757608851; x=1758213651; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gO/UfK1aYEVqxe5Kt8p5mu5GTkTJwSNJjdbcvgmikd4=;
-        b=hK23W9QZWgWCCYIgUX0whAqsO3y99h+/cAajOwtLzT/DDAxD/mtK3Ux1IWV3SOdimO
-         iy3MO0xkLF7cZEDXI3qM255VlkI46quH0AFpu0YmY0Fp6jlfXvG9UtNMrNsYfoPYWw9b
-         ShJnhKwWdDeAw61cUhMpq5unjWAE3v2cfd9hL+wJKOx2q/BGw5kff3vSXyunQQ1kJkeW
-         2ubtsajLO2qxQhe0/SlxPuUIozLek9si1LN6NlGKetIlD/63WRdW3sdmmfo2ty42YRcn
-         r/6/EI1OxrEt9RqY8utOu3MqWgobhiiKaHKaRPZ1//20fB0dCSThFvR09km1nTAfAi+S
-         Jexg==
+        bh=DJ9s0RW4TlNtw5bKE6LaaAXASB0Bfcws+yTXIrMiB70=;
+        b=VAP+/3aIuDYC/oz2sITHnDr+D9kFO9OCv3prXN3cT7PeLp8RpUPwQyYa4DhiWsg4wq
+         rvMSqi+hO/HObWJ2Oq8U8Yg2ZgAhBzzWBzJ2j4OENeZDr+1R4fiXhyb/rqX0H41RwLK6
+         mt2SvyjSmDLS2DfNLfnK8TuUGENJngZO5GA3HlLnY8aOqRPfGjZcVVu1Lit/b57YFmpQ
+         VA4d2v+h5SJfL2b2JXXZWyDmanqecdRQWQcSkSR9a2mlEw0lsK0Po5zxSVXiGEnnj9AP
+         Qj1G3WIc+/fwDrtkWDslCelYvKegEvVEF21zB+ZqNrWUzqKSBOTh3FyeKF0Ox5HW1PoV
+         D/9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757608850; x=1758213650;
+        d=1e100.net; s=20230601; t=1757608851; x=1758213651;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gO/UfK1aYEVqxe5Kt8p5mu5GTkTJwSNJjdbcvgmikd4=;
-        b=AldJyKZwhwEKtaPKmYCCH4HKkuOTBIgTmD+ABPeHxyF1EOp4Rd1Bri4HK1EjnYm297
-         zmR+OdfPLHrJz2LVslSC7uwRqlnixfTK2ayH/SEwy2WbZDgoMD/4i6BtwxnHTA6tgbtf
-         sq+CE+Y9vnY8dzrpiOBgXmJ39YYIunVs/D6cwoHj92ikmGCGPg7Iaa6wfu32cEQor+eu
-         UeWTBxWdc152Dm/+JwTPlfQM4xj4kBJZtINFDF4vxX/91ebVpNAXW6dnF74Wu9U9Q2vT
-         1vPMwusvbh6C86zfChbfGqdfsfLKFvkmbAiS+wWoZoaweDw8boV2U/2RL/1mm8VIHrAS
-         /KyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXInBE87t82LV+r593FS8nGATDz73KF6FGiGpaTuW5e8nE3ISCtYSzzHWpOiKd3zr76JemDsw7PnUuw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+y6YHZR32LGrMZ8yq9IN6oXqGyfjvNSmE0l3w8kIQqfVPgf03
-	dKcFVIxAIEHt5QsNmomGqk0vicjFS8NQvcJPR9DAGbUXevnMkoa+2EEf
-X-Gm-Gg: ASbGnctyMtUVxPijSyGakpmdqSFC3Aggmb6nAF+USXDidZs4k8PSRqCtNHOP0mX/wdM
-	ULvpaOc7WkLz/+nHDz4R41EqzoJYEGQIcJiJ7fW58XAvvE28sjkts9J1baTjsHucXr0lh2wuYEM
-	R4ZphZDDBJJM6EL2OBVKNyEwtAaWDDp7RYzNlTes7OmUsedwOV6toRm9z+l97PtS+F5ucMtDs+L
-	w1uuemCde6+NS87zWWQW5boTopdHdzeFRAu8VJbpYfJhIoxR5RSZh3xIt0FyP7IHCcJ3Gmekcco
-	YkBgIWmeohWnz4pR4bX2Aqoi2zx97aMjteNajlki+2N0HeoauuH/MMbDm0mf0/gM1/coD9IEpBW
-	+YTvhS19wQCXEaoOwUc9PxDM=
-X-Google-Smtp-Source: AGHT+IFNINYP07L5vnE6dG0TQi6RkPduUefTVgGS8sPFZixor0lyaNc1rPgv7TghYgLkzMGhKmEl2Q==
-X-Received: by 2002:a05:600c:6549:b0:45d:5c71:769a with SMTP id 5b1f17b1804b1-45f211efde9mr749025e9.26.1757608849705;
-        Thu, 11 Sep 2025 09:40:49 -0700 (PDT)
+        bh=DJ9s0RW4TlNtw5bKE6LaaAXASB0Bfcws+yTXIrMiB70=;
+        b=bM1JuD33zwlm3xfEWd5OIApzCzKPkxqRbilRKQg2Igu+f3V4vgYNvTT0Gj0L0GM3FH
+         Zbn/6RnRQTu6eATYaC99Ld2dxj9q6AltEP4I9cfHUtTpmfkAIEBmEJxBhDB4uALzv4Mu
+         VeDPQTWoxljbvVI8jpuuem2LQrNBv38TLFBqzV7o3X1OzDomDbQTvZvVBE234iDkQN1H
+         GokrngDWowYjNXX/XZFdFP1AyigXlYpar/Xm95Xk3X6+FuA0poXM1MkH4ItjlVG7Mm4X
+         EARHhP/eliWd/PrsF/M0S9PxVjIEYl1UtPRKCVWrsGpxWEWV46kqfg4Z9q0Jr/o8oirk
+         Z5Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFIVbyVKe2J1BMizfYhkPXblAZC2vpzyFckqPI+JlQbdA3bItWCO0GH3zOY6ed7cLBp6YYGuuElHYa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5z+0LWetCei+M52pO3p4f9aRr5Da34Nn+krg5Wn2ZI3hYsD3V
+	qfCbHiOwdn6Eg7MfYH06MSbRs4Zr9b2hqQt69+tRk7E/8wgtMrbgw5cC
+X-Gm-Gg: ASbGncvvkDwpttIKBEEDIO/0jx01jLL7zX+Jm4nyskkfK+cuiR+YuScNJ7deh//5RjB
+	FgAaYXpPGfsvt5Gj8DcupnctAKqx5lDkxPGoSINqu8kVcz28zy3x1BoDYjq5NjsVYWcn3S4t1lx
+	0pNOoKzN/vg2bV8nZT02J38OAif40RDKdgxzEKzdnQ0HDBtPUiRHStCoL1y/kqPWkHgpeUNCPQz
+	idhDqNuT1zJBewJheljiZ8SlqPSFinM/Ngh14NTHDQvIo7wIStTlLJ/mYS39mf/CHzQKi1V76DT
+	7xdkfxEOAmw9lOs6d5fMZokR+813AhCk+rW3t+03qQ7q6wEzYgGOX+vNUugcokvjcdaO8NumYZi
+	yAqAj2AbEZGxUD0FwGlk/QodSvnMfuufL9w==
+X-Google-Smtp-Source: AGHT+IFZzKABY43DwcNpn0sIkbPkCHkfh0kQ0czrR2B5ofp4usmiPOKFnkWKHqqX0qUfZ2kpalXOwg==
+X-Received: by 2002:a5d:5d0a:0:b0:3e0:37f3:7778 with SMTP id ffacd0b85a97d-3e7657ae107mr16246f8f.26.1757608850960;
+        Thu, 11 Sep 2025 09:40:50 -0700 (PDT)
 Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45e037c9d91sm28641195e9.20.2025.09.11.09.40.48
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45e01519f67sm16926915e9.1.2025.09.11.09.40.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 09:40:49 -0700 (PDT)
+        Thu, 11 Sep 2025 09:40:50 -0700 (PDT)
 From: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Date: Thu, 11 Sep 2025 18:39:58 +0200
-Subject: [PATCH 2/4] dt-bindings: media: remove support of
- stih407-c8sectpfe
+Date: Thu, 11 Sep 2025 18:39:59 +0200
+Subject: [PATCH 3/4] clk: st: flexgen: remove unused compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250911-master-v1-2-5d5d5ea9af22@gmail.com>
+Message-Id: <20250911-master-v1-3-5d5d5ea9af22@gmail.com>
 References: <20250911-master-v1-0-5d5d5ea9af22@gmail.com>
 In-Reply-To: <20250911-master-v1-0-5d5d5ea9af22@gmail.com>
 To: Patrice Chotard <partice.chotard@foss.st.com>, 
@@ -97,124 +96,155 @@ To: Patrice Chotard <partice.chotard@foss.st.com>,
 Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-clk@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4064; i=rgallaispou@gmail.com;
- h=from:subject:message-id; bh=a4DgACCHBYE7klse7BZobqD/NjzeLWKDISI/21WHr8g=;
- b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBowvuL9Vjok3vHYY6V+qRwOsG+KAigufBL7elki
- FcVB90OdG2JAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaML7iwAKCRDnIYpo1BLC
- tVHyEACZI3TtS23Qapj61fuiC+QFCObIViOThyK/uTv+4H/VrfgAg/TDIAKlh3+qHMlPNGNjGud
- RQU/CHEbQ4qYPAGovDR8oq4PonutJaj3NWPROGF5GZ3trRhuSftIDPOWMUpLnLiyBaa/cCkTXX0
- v+os5L+PiMixN/YESNipdC5oU8M0NPOCyJvbXJed6tFoXeur52DmcYoz5dXrOpJpEdxgVtMGHHm
- l+vOL+kiUnW7tCoZaWxrbXFdTD6DgWfRnMWw3fcGm1TKn7ai7FkvQ8fkfk8HE5+i7yd6vCwK7JY
- yivdW/+iXh6/dc4VTfGV1EZQNIGBk0iAtLlakSCo4+yIvHmXJABCExLrlPujIB6gPHAmW2ZBbdd
- JBh1gdr7teeV1YlmP5K12p2JRkYWF5knsAm7o7aHKl0OBrdXtM8p204unMblkdNmQCgL15pF4BD
- E3kYgjQnruHtXRecG2lUKcOfTg/eF4JKBDOF+G3+Jk5DBmGZXH8wg/ntyOe//9UacE9D5fbJqdw
- rNcqvaM/AqN9WLEpGCX8fM5ziBoXoTbSooJOoCl5SIUbanngNlScVP0V/1IOuO0ZFMR0/fBx0Gj
- mZW6adXkB1SY2tVQD9WjYVHBMss5DSHojps+ZY9VWzE6QXr6KqF4foIRDuKB8U8xqdo0QNqa0dU
- zO+hTPC2q6KTqzw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4682; i=rgallaispou@gmail.com;
+ h=from:subject:message-id; bh=hTnvvxl+lyL52rYp9D+lJFkBieFPMCtFihiRlKLamkE=;
+ b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBowvuMbY1OQnXPxpMBncePehdQ10L+g/H6JEtbv
+ Llk2v7/cUOJAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaML7jAAKCRDnIYpo1BLC
+ tYd6D/9CeOdaET0JgwgX5keygapOzB//kV385w0P358vyQ7CnF1H+k4iUSrwV7zb2vA+j7t9Qyt
+ 9DNzrNmJA6JyBx26lu14UFwHl8muLg6QGp58YPd6hrU1+49CrQLwX5b9P86dAJ/gJvYJzhdJCkM
+ LPy87Iy4LI2TUpaerZIccGhQYG4MtKb9t49GTHptLwcBY7MC5ZCooeoifzhPlUXXmVXlqNGdQLK
+ rK/z4UCUHXtr3zU0GkOmgpDxV6zwIU98mUpv927D1C0n9LVUabX5v09fj1tAGTEedfo3RCfUftR
+ FnsBGg4Uop/ay2M3HWnT+Gjih+Mg74t/emauYRKQhxMUoyTxhrL1zWccuwISxjti2775niY/mro
+ X4helvzgrfuqBv0oCJpzgAIyYaTrE3af/9HZi9Sn9slkSSx/jRPi7efKoCQGAt9Jm3vjnVkn3Tp
+ GjA68iEz7cs3brDE7bb/QYt6xLpFF4qyyjujDiwlUX1GK6qZ+Kyr0UxisxsP8D3iIJNUQuQmbJl
+ RC/knn3+z1oBonq6eDiJZGQrnw484UByKsOmWVDE+MUS/1hNDucQSJ6Hv7kSYQ7vS7zaVBUGB2g
+ fIbrxcsoZRUEYF+ZwEkPC10uhCL131HE694p/5tNRRR47iQot/b/c1UQ40gQ8s2gMFzLeDBvSci
+ GsnhcVm0C+5Kjsg==
 X-Developer-Key: i=rgallaispou@gmail.com; a=openpgp;
  fpr=20997BF613E7EF6D5FFDBA2FE7218A68D412C2B5
 
-Remove file documentation from stih407-c8sectpfe driver.
+Following B2120 boards removal in commit dee546e1adef ("ARM: sti: drop
+B2120 board support"), several compatibles are left unused.  Remove
+them.
 
 Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 ---
- .../bindings/media/stih407-c8sectpfe.txt           | 88 ----------------------
- 1 file changed, 88 deletions(-)
+ drivers/clk/st/clk-flexgen.c | 80 --------------------------------------------
+ 1 file changed, 80 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt b/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
-deleted file mode 100644
-index 880d4d70c9fd741ac13101721ced18f04336c373..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
-+++ /dev/null
-@@ -1,88 +0,0 @@
--STMicroelectronics STi c8sectpfe binding
--============================================
+diff --git a/drivers/clk/st/clk-flexgen.c b/drivers/clk/st/clk-flexgen.c
+index 5292208c4dd8b45edfe7c2722e934dd0299c6d34..e8e7626c76db06b2255908a6658bca1f42600c85 100644
+--- a/drivers/clk/st/clk-flexgen.c
++++ b/drivers/clk/st/clk-flexgen.c
+@@ -303,16 +303,6 @@ static const struct clkgen_data clkgen_video = {
+ 	.mode = 1,
+ };
+ 
+-static const struct clkgen_clk_out clkgen_stih407_a0_clk_out[] = {
+-	/* This clk needs to be on so that memory interface is accessible */
+-	{ .name = "clk-ic-lmi0", .flags = CLK_IS_CRITICAL },
+-};
 -
--This document describes the c8sectpfe device bindings that is used to get transport
--stream data into the SoC on the TS pins, and into DDR for further processing.
+-static const struct clkgen_data clkgen_stih407_a0 = {
+-	.outputs = clkgen_stih407_a0_clk_out,
+-	.outputs_nb = ARRAY_SIZE(clkgen_stih407_a0_clk_out),
+-};
 -
--It is typically used in conjunction with one or more demodulator and tuner devices
--which converts from the RF to digital domain. Demodulators and tuners are usually
--located on an external DVB frontend card connected to SoC TS input pins.
+ static const struct clkgen_clk_out clkgen_stih410_a0_clk_out[] = {
+ 	/* Those clks need to be on so that memory interface is accessible */
+ 	{ .name = "clk-ic-lmi0", .flags = CLK_IS_CRITICAL },
+@@ -324,51 +314,6 @@ static const struct clkgen_data clkgen_stih410_a0 = {
+ 	.outputs_nb = ARRAY_SIZE(clkgen_stih410_a0_clk_out),
+ };
+ 
+-static const struct clkgen_clk_out clkgen_stih407_c0_clk_out[] = {
+-	{ .name = "clk-icn-gpu", },
+-	{ .name = "clk-fdma", },
+-	{ .name = "clk-nand", },
+-	{ .name = "clk-hva", },
+-	{ .name = "clk-proc-stfe", },
+-	{ .name = "clk-proc-tp", },
+-	{ .name = "clk-rx-icn-dmu", },
+-	{ .name = "clk-rx-icn-hva", },
+-	/* This clk needs to be on to keep bus interconnect alive */
+-	{ .name = "clk-icn-cpu", .flags = CLK_IS_CRITICAL },
+-	/* This clk needs to be on to keep bus interconnect alive */
+-	{ .name = "clk-tx-icn-dmu", .flags = CLK_IS_CRITICAL },
+-	{ .name = "clk-mmc-0", },
+-	{ .name = "clk-mmc-1", },
+-	{ .name = "clk-jpegdec", },
+-	/* This clk needs to be on to keep A9 running */
+-	{ .name = "clk-ext2fa9", .flags = CLK_IS_CRITICAL },
+-	{ .name = "clk-ic-bdisp-0", },
+-	{ .name = "clk-ic-bdisp-1", },
+-	{ .name = "clk-pp-dmu", },
+-	{ .name = "clk-vid-dmu", },
+-	{ .name = "clk-dss-lpc", },
+-	{ .name = "clk-st231-aud-0", },
+-	{ .name = "clk-st231-gp-1", },
+-	{ .name = "clk-st231-dmu", },
+-	/* This clk needs to be on to keep bus interconnect alive */
+-	{ .name = "clk-icn-lmi", .flags = CLK_IS_CRITICAL },
+-	{ .name = "clk-tx-icn-disp-1", },
+-	/* This clk needs to be on to keep bus interconnect alive */
+-	{ .name = "clk-icn-sbc", .flags = CLK_IS_CRITICAL },
+-	{ .name = "clk-stfe-frc2", },
+-	{ .name = "clk-eth-phy", },
+-	{ .name = "clk-eth-ref-phyclk", },
+-	{ .name = "clk-flash-promip", },
+-	{ .name = "clk-main-disp", },
+-	{ .name = "clk-aux-disp", },
+-	{ .name = "clk-compo-dvp", },
+-};
 -
--Currently 7 TS input (tsin) channels are supported on the stih407 family SoC.
+-static const struct clkgen_data clkgen_stih407_c0 = {
+-	.outputs = clkgen_stih407_c0_clk_out,
+-	.outputs_nb = ARRAY_SIZE(clkgen_stih407_c0_clk_out),
+-};
 -
--Required properties (controller (parent) node):
--- compatible	: Should be "stih407-c8sectpfe"
+ static const struct clkgen_clk_out clkgen_stih410_c0_clk_out[] = {
+ 	{ .name = "clk-icn-gpu", },
+ 	{ .name = "clk-fdma", },
+@@ -482,19 +427,6 @@ static const struct clkgen_data clkgen_stih418_c0 = {
+ 	.outputs_nb = ARRAY_SIZE(clkgen_stih418_c0_clk_out),
+ };
+ 
+-static const struct clkgen_clk_out clkgen_stih407_d0_clk_out[] = {
+-	{ .name = "clk-pcm-0", },
+-	{ .name = "clk-pcm-1", },
+-	{ .name = "clk-pcm-2", },
+-	{ .name = "clk-spdiff", },
+-};
 -
--- reg		: Address and length of register sets for each device in
--		  "reg-names"
+-static const struct clkgen_data clkgen_stih407_d0 = {
+-	.flags = CLK_SET_RATE_PARENT,
+-	.outputs = clkgen_stih407_d0_clk_out,
+-	.outputs_nb = ARRAY_SIZE(clkgen_stih407_d0_clk_out),
+-};
 -
--- reg-names	: The names of the register addresses corresponding to the
--		  registers filled in "reg":
--			- c8sectpfe: c8sectpfe registers
--			- c8sectpfe-ram: c8sectpfe internal sram
--
--- clocks	: phandle list of c8sectpfe clocks
--- clock-names	: should be "c8sectpfe"
--See: Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--- pinctrl-names	: a pinctrl state named tsin%d-serial or tsin%d-parallel (where %d is tsin-num)
--		   must be defined for each tsin child node.
--- pinctrl-0	: phandle referencing pin configuration for this tsin configuration
--See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--
--Required properties (tsin (child) node):
--
--- tsin-num	: tsin id of the InputBlock (must be between 0 to 6)
--- i2c-bus	: phandle to the I2C bus DT node which the demodulators & tuners on this tsin channel are connected.
--- reset-gpios	: reset gpio for this tsin channel.
--
--Optional properties (tsin (child) node):
--
--- invert-ts-clk		: Bool property to control sense of ts input clock (data stored on falling edge of clk).
--- serial-not-parallel	: Bool property to configure input bus width (serial on ts_data<7>).
--- async-not-sync	: Bool property to control if data is received in asynchronous mode
--			   (all bits/bytes with ts_valid or ts_packet asserted are valid).
--
--- dvb-card		: Describes the NIM card connected to this tsin channel.
--
--Example:
--
--/* stih410 SoC b2120 + b2004a + stv0367-pll(NIMB) + stv0367-tda18212 (NIMA) DT example) */
--
--	c8sectpfe@8a20000 {
--		compatible = "st,stih407-c8sectpfe";
--		reg = <0x08a20000 0x10000>, <0x08a00000 0x4000>;
--		reg-names = "stfe", "stfe-ram";
--		interrupts = <GIC_SPI 34 IRQ_TYPE_NONE>, <GIC_SPI 35 IRQ_TYPE_NONE>;
--		interrupt-names = "stfe-error-irq", "stfe-idle-irq";
--		pinctrl-0	= <&pinctrl_tsin0_serial>;
--		pinctrl-1	= <&pinctrl_tsin0_parallel>;
--		pinctrl-2	= <&pinctrl_tsin3_serial>;
--		pinctrl-3	= <&pinctrl_tsin4_serial_alt3>;
--		pinctrl-4	= <&pinctrl_tsin5_serial_alt1>;
--		pinctrl-names	= "tsin0-serial",
--				  "tsin0-parallel",
--				  "tsin3-serial",
--				  "tsin4-serial",
--				  "tsin5-serial";
--		clocks = <&clk_s_c0_flexgen CLK_PROC_STFE>;
--		clock-names = "c8sectpfe";
--
--		/* tsin0 is TSA on NIMA */
--		tsin0: port@0 {
--			tsin-num		= <0>;
--			serial-not-parallel;
--			i2c-bus			= <&ssc2>;
--			reset-gpios		= <&pio15 4 GPIO_ACTIVE_HIGH>;
--			dvb-card		= <STV0367_TDA18212_NIMA_1>;
--		};
--
--		tsin3: port@3 {
--			tsin-num		= <3>;
--			serial-not-parallel;
--			i2c-bus			= <&ssc3>;
--			reset-gpios		= <&pio15 7 GPIO_ACTIVE_HIGH>;
--			dvb-card		= <STV0367_TDA18212_NIMB_1>;
--		};
--	};
+ static const struct clkgen_clk_out clkgen_stih410_d0_clk_out[] = {
+ 	{ .name = "clk-pcm-0", },
+ 	{ .name = "clk-pcm-1", },
+@@ -596,18 +528,10 @@ static const struct of_device_id flexgen_of_match[] = {
+ 		.compatible = "st,flexgen-video",
+ 		.data = &clkgen_video,
+ 	},
+-	{
+-		.compatible = "st,flexgen-stih407-a0",
+-		.data = &clkgen_stih407_a0,
+-	},
+ 	{
+ 		.compatible = "st,flexgen-stih410-a0",
+ 		.data = &clkgen_stih410_a0,
+ 	},
+-	{
+-		.compatible = "st,flexgen-stih407-c0",
+-		.data = &clkgen_stih407_c0,
+-	},
+ 	{
+ 		.compatible = "st,flexgen-stih410-c0",
+ 		.data = &clkgen_stih410_c0,
+@@ -616,10 +540,6 @@ static const struct of_device_id flexgen_of_match[] = {
+ 		.compatible = "st,flexgen-stih418-c0",
+ 		.data = &clkgen_stih418_c0,
+ 	},
+-	{
+-		.compatible = "st,flexgen-stih407-d0",
+-		.data = &clkgen_stih407_d0,
+-	},
+ 	{
+ 		.compatible = "st,flexgen-stih410-d0",
+ 		.data = &clkgen_stih410_d0,
 
 -- 
 2.51.0
