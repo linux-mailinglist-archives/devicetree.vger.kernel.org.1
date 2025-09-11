@@ -1,187 +1,205 @@
-Return-Path: <devicetree+bounces-215881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897A9B52EC2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:39:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B31DDB52EFE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EB5316B89A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:39:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59C035858F7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6052730DD15;
-	Thu, 11 Sep 2025 10:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8713730F54A;
+	Thu, 11 Sep 2025 10:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdKPMovo"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TIUk3XSD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB4F2E7BAD;
-	Thu, 11 Sep 2025 10:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757587190; cv=none; b=avLpt4CsQjIk7zvUcUNctnCoX1WlZBN/r4ZA0dUXh/fMg262xNuYZCXCXLbhZz8SRKtXtdTCkIY0l2KK6TlyHMQ7fHildC8xgx9wsKVtUqzPm8Cms7ohEJvp81+b8Nck2aEbIGijdUsQzNRPXn7uJ1CyQr0MNRQdJEL5vtxwrkk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757587190; c=relaxed/simple;
-	bh=UNGCJmmeHVEWauLXJHkwHmIe5gGbiGUznfmjg75Y67c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L+de88zXOX2lSqxPE+66T/dJkofG8ciuWVYxJzak+WEUFBESDsXTB32reQJR2krU4fZZLFWLnmn3Y66x+nS/0izDCem7IzAHneNMDdvxE+UT+V2kS3Iki5mmeHt0rW87S2A6fjkzdoq7HlaOQRRGBe405K3D+oibwCNT93l/90o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdKPMovo; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-31d6e39817fso633934fac.3;
-        Thu, 11 Sep 2025 03:39:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757587188; x=1758191988; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DLjSCnWswzv9dZZDKZ0ejlzc7IJyVoJkpxm14LgUN2A=;
-        b=AdKPMovon6UeGb97Nrq6ilRWirsgd+jcI9keggVMycXrArdEZHKpOJ0AF1oXu/LBQO
-         vj5Hh1Vjdr978Rox80LzN9vwxRs/UvWqpqGG5gWZ6B5gVjl5e27CUzy5ANYLt3e4Itq3
-         rJ8QQFzu8nVysSOsnR1uVBMtPabgcNosug89n6YXNffQ5qiC3XUHuTT8xrCboOMbm0i4
-         N4qVhjDYJ2MmYcIK3mzprn1bt3LQSNingwSqEh6sWnw2a+eLAczfwgKuBbT2jB3RBfnS
-         aIs+XreFGcKdHSZnXr5tI+UIYy5d5KoEIPBcKzHCyAq9jUnvSBHWoJpXkzlovBIScOXR
-         4GVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757587188; x=1758191988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DLjSCnWswzv9dZZDKZ0ejlzc7IJyVoJkpxm14LgUN2A=;
-        b=B08Gg6nxspme+2YUM1t/IIAksFqPMuzWs+FszDm9njwI0Y6TEdaBEt4iB9iJpcTjjn
-         90sL7p3QPQpTpCHNULRqI4yFrntP2Y9Hxqc5UoTciuZ7gOsOXav9KNUBqKlgS0mLKJqt
-         oeCeuIXIMUeQKVEJTh23ChMe+tXaDB0+DKtJfugISmDF6O7HztVHHbZAjXABmaiCmv4J
-         ryFGHCq3ItsALS+BbHgKh7n9VM08CzySoNYUBYGQ70FY+7caLr7n3xqrwbZhDvCexIdd
-         3UvpNHccbTnY7TuCFQ8FvI5z2GZ9CgQTWk+vkUr7z14LuwkIr51Dvhkek78BeZySEN+l
-         rmww==
-X-Forwarded-Encrypted: i=1; AJvYcCWdEnjO4xCWhdvFBzvSn51akGO9WGx+Zn97stsJII7d1g4Y0fydqIv5p93+cRDkqu2YYa/rjDNDqRF1@vger.kernel.org, AJvYcCXkJ19yRL66K2FWrzmq9TApkCUAtKJgp/FQkBZfFHf0aSICYh/qmWpLbamwDqawpCivSwmFVznhG+A9cs8F@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMZ42aR8aaIR2fNUwxtVM0Gi8CLGmSoImSd30tsra48KxZIA4B
-	EXFmZt6jNv1+8gfmdZhvhZL++els5DZed/sNaTAlJiuCiGLVIxo7gjVgK5Yeuq/UgJ0g2tCCm5T
-	a9pmWTzv7Fvk91CTQIIKfDGRfvs02rAY=
-X-Gm-Gg: ASbGncvJeM5MPrdbFNe+tZDwZmq0vD+uZhwLvB6tMfziGu9xclqDU1k5wunajcW6h1R
-	LBfxB0FGsfWvcA5paEQ1mZSQN4MNXsVXVVGiFkPPVIgCXZLsNEAIHQclSKHnWPpqFAaNmc8LIFt
-	q0K7hIM9tW2al1QfCeH8z9i4kqJY4NoPZuBlYLwZDd6e3iI7MwuPbi2WlordlN9xOiCtfY31VVr
-	wBIu/JJQrIH0njjN0i3Ca4f+Nk48btH+vOsopLqgw==
-X-Google-Smtp-Source: AGHT+IFyCkhyOO5BdxLqYhRVEoHLOKncnMI10XYYASRWLWgCIofWQYolA+/K09A/SdRXA+1mjsurgRLKWiZBhqwM3To=
-X-Received: by 2002:a05:6871:d489:b0:32b:d4f1:89f1 with SMTP id
- 586e51a60fabf-32bd4f1a28cmr2767601fac.16.1757587187676; Thu, 11 Sep 2025
- 03:39:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9FC1A9FA0;
+	Thu, 11 Sep 2025 10:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757588027; cv=fail; b=RBhkjBW/r1qqdLyL2AYH6E+3A65797/geNkfS444q/hJHb1UFHYWbsOUNJJsDoRlaHOJDxvTXOb1BvcklmpdU+Sy+g1B4skoSCz4Fbfsvt0lWr94cPlwhTGzF+skOPwh3PVJ2ioghRms27whTBRvEzQQOP+5weWNeLv6+p7mGTA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757588027; c=relaxed/simple;
+	bh=vi8ln8rS9/04Uv7lQN26wnkZ332v9CjshN2FOa9S6bw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=idGzlc+wwQJaRl7huuJXeabh2e92ZhsUqHiuYlhFQFs0ONWzSPlljsgSWMCJSa2pFCzOzRR8uHkXXutriI+OOCDcvXTXAjZVD6jxJUUlRD8FcxysFhLm9ErzLM5hWWSH0OxC7VlooI+6JCfTYu1UIbXNrNfGCiI1vcGWAS1ArJs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TIUk3XSD; arc=fail smtp.client-ip=40.107.220.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=clRoZYXDKjqxhOwx5AN6jlQ8epeCOyobhMQlvuIr9LK4uT+9iXGqZDese5RyShLNG5AXKCTRAbz5QUwN+V0m7HfWDOEEXqYMSUbO42JblZ9X6eOM3u9ha5H2di25L61QiWtDl+4iwuDQoY3aVVgh9tIZyOXNrcG7q4yCXKx/xyDK4IaF/hswIVK2lVzsoCThkk0oeA0wdlhY9zv+IzrcExz8jZIvIOsqB4IBE1Bs7Ok+vgSkNxD6h6JSwEmT/8Mjc8DSILA2FQb1sqlwiXrcuGnVPtDBRbCjiBSqTlu/V+rJmBsUI5ZzmjuQj2owfHzj+tKN7pz7N3EHsGbM5X9yYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vi8ln8rS9/04Uv7lQN26wnkZ332v9CjshN2FOa9S6bw=;
+ b=B6Ci0RFGp12iv+RsaHlvtiCV4ItV4xTSXpo5QVN3KsX8Y0V2DA1boVJGYNupcugibvBwPQoypPcToVHtlkIQgAQ1tJRCYSZnQRQ3cVaY4pA2gYmEzjkbtV1Uetg1PrBzJIy8F9DbjJs9VT803gvpoex9JrS8/ppmijiCLzT0xtFaur71rY6bmgk3Xu9lJhMUbh7pzMkcqunb4BWljAXM+VJ6ivYr/aZmyPlFA+n270umPWDbHwUXMhZXtdSyJE9PPuvoVtMvDkWQc3/qYNCErv4GN94fro9KLdDZlLNqvZKQ9R5BNFaez7H/R0LuEjOcRYAnGxeBPlbVqVVXScuQrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vi8ln8rS9/04Uv7lQN26wnkZ332v9CjshN2FOa9S6bw=;
+ b=TIUk3XSDSnqNk1Z/BnglxgIWFAfiWkkOpOLuFTO9y3KZ9mXpoY39grkeyfiTulAVW/WXoaOxrn494G+xmUox30JJU3ZkNfEiMATbrKBs6T8jC+EpuWKioofoTmPgHcyLkhrbWOZyEigj5IHxFav0WuvV10Xm1VHqQ13skpyc5uoxd+KfPa9X9d1xYerAcuV6ZmamobphWn7g6QFMyFuCQhgrsWNY9E+HVCjyLqAZl+gVmViKuD6qG1mu2PX+CKjWnB6/Ua2X+cF4Q9DP6UwjHx9ZATkDgfQ3B+LmneOe3Iv55iwYoLfvDyFbc2Sra8DS01S3/VSpZj8VmCi97rHIFw==
+Received: from SA1PR11MB8278.namprd11.prod.outlook.com (2603:10b6:806:25b::19)
+ by DM3PPFCA3BFC2BF.namprd11.prod.outlook.com (2603:10b6:f:fc00::f4c) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
+ 2025 10:53:41 +0000
+Received: from SA1PR11MB8278.namprd11.prod.outlook.com
+ ([fe80::84fa:e267:e389:fa9]) by SA1PR11MB8278.namprd11.prod.outlook.com
+ ([fe80::84fa:e267:e389:fa9%5]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
+ 10:53:41 +0000
+From: <Parthiban.Veerasooran@microchip.com>
+To: <bastien.curutchet@bootlin.com>, <Woojung.Huh@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <marex@denx.de>
+CC: <thomas.petazzoni@bootlin.com>, <miquel.raynal@bootlin.com>,
+	<pascal.eberhard@se.com>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: configure strap pins
+ during reset
+Thread-Topic: [PATCH net-next 2/2] net: dsa: microchip: configure strap pins
+ during reset
+Thread-Index: AQHcImSfxkeqKajulkWkTfxGEb781rSNz+EA
+Date: Thu, 11 Sep 2025 10:53:41 +0000
+Message-ID: <7361bf07-892b-406f-aca5-c53a7d876ac4@microchip.com>
+References: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
+ <20250910-ksz-strap-pins-v1-2-6308bb2e139e@bootlin.com>
+In-Reply-To: <20250910-ksz-strap-pins-v1-2-6308bb2e139e@bootlin.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Mozilla Thunderbird
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR11MB8278:EE_|DM3PPFCA3BFC2BF:EE_
+x-ms-office365-filtering-correlation-id: 0e7ffddd-fe26-43c7-c512-08ddf121785d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?NXdlVmRqajJmODRPSDlGalRFQ0NxZ1V6blpOSzJjTXdWdDFtTGR5ZEc1S0RI?=
+ =?utf-8?B?Q1hBNE12OVRkcEgyZm9KTEY5TVB0SnAwd0xVYkdpZllaUkorbmNnNjFZbjJ6?=
+ =?utf-8?B?a28rYjVIU0hMZVBJMUVLWnd4dzErc2lJVVNxd084ZFpSaHUwMzB2YWN2MFdB?=
+ =?utf-8?B?eUcweGNQRXhFc1FpVW1PQlRHWjRyakxEaUd6a2VzdkdVOFlZVmZWSDVCOFhD?=
+ =?utf-8?B?NHZManFMWUExT1E5WlpobWFkTUlOVTI1WjFoeTdkTWhSSnNKY0dEaFVzclJz?=
+ =?utf-8?B?Z1V0a0U1MFc4bDNHZXhLdGJUWWdxTkFQNlN0andBbnFERW9sUFJJL05LVDlC?=
+ =?utf-8?B?MW1rSlhsZFZNZ2RXSFpsV0lsaTBwOEF5RURCS1dPajl2empBNTkwb2xuVlU2?=
+ =?utf-8?B?SUpvczhDdlBwdVh2OVh4WWtFSFY1VExpbEthek5hTFhXWlgwNnVuL2RkL3pE?=
+ =?utf-8?B?aUFBZVEzbzZXWjlkTCtXN1R0cXl0aDdabzVjUERqVDRPRmVCbUJSNDIyeEty?=
+ =?utf-8?B?MmgweXk3a1NoTDhtZnlyRWtxL3dHcnVPQXNTV2VMaWNqZHNTdzN2N0d3Sk1D?=
+ =?utf-8?B?R3JKNHIzM2t5S1Viajdtd245aVZjZ1k2UnlsUlpwVHhBR2ZPbEdaZmxvM0Ny?=
+ =?utf-8?B?Wkp0SVlZY2hVdXdRWWd0NmpZMlE3eVBoa2dCQWhURHhvb3lJbkhsUThwQWN2?=
+ =?utf-8?B?ZFBtOHBlaVJnWldRK3ZBL2N4YkZwcGtQbnRXc1BaNkYvT2xRQmgzWGZLQ2JS?=
+ =?utf-8?B?S0NuclVIaGdRRmpkanZzeFZUakNMRFRReGV1V3VNQ2o0N2lxSUNZaHZFSnBH?=
+ =?utf-8?B?UXEwd0o2dTVLT2xvOHpkZVNBOGQzUFc3VUJEMmpjMjczMUlndzZnWnJjMTQ2?=
+ =?utf-8?B?dzlDSUJ5cmZaaVlaNmprQk9TMzBSTjBic1dBazJQKzlGdVpzb0FqTzBBY1hh?=
+ =?utf-8?B?ZDdwVEE0cVMyRWNhaUcybzdNOXBMcVZoY25KRittU0plUlM4T1hjZVZOa1ZE?=
+ =?utf-8?B?MlV5RVZXRnd2UlV5M1JZUm40cWc1eXM0RCtIdE05QTMyOWNBNXg4TGRSd25h?=
+ =?utf-8?B?Si9VTFRuSEpEelhpNjVPbi9CcFlrL2dzRnE2eGlDNDIvbnJHcys4cUtyRXdN?=
+ =?utf-8?B?QldvVkx5RTVGd3VwTldxQ1dJWFBGMXVVb0lCaG9yRVVIMG0wTEtkMG1KUlpU?=
+ =?utf-8?B?eUpMUUk4aVg5a0F5L2NlcDhXMUNEL2VlVllDQktGRXRlWXlKaXozMFBYMGdE?=
+ =?utf-8?B?b0dMVFcxMGhDZlFsZEpLa1FZbzR2UzEvMjZUVStza0luZGpkb3VCQ3FXR214?=
+ =?utf-8?B?QTd5RlowSm8vUU0zWEdBZGVBR1B4NjZ1Yjg1MmpKdDBJSVFXUU05MGo4bjBJ?=
+ =?utf-8?B?cTE0dDNaVjVZejl5ZW5CS1VhTG1OVWN0eWxJTWplZjRXdE1oRkVPajFqQzF2?=
+ =?utf-8?B?Yld1V0lydFlXRy9pUDJPTTRtVzBNZjNGMXRyd1A0d0lnNHhVdndqeWk5QkFQ?=
+ =?utf-8?B?MnZkUG40TW5TWFY3bGJWM2tiYmpsc0dJZk1ONXJXTzg3N1cyN3MwOTVFN25Q?=
+ =?utf-8?B?UGh4SlQxS1NNcmhhcGt3QUYxTXQvYkcwdENYaWxlQ2Q2TUsvL0VFNkh5dkRG?=
+ =?utf-8?B?Rm54QkZuL1ROOEtZbEhRS252bmk0RGxvVXY5ZWJDNGFZeUlCa2JqdGQrUlNF?=
+ =?utf-8?B?VTQ5T3JyS0d6Q0Y4U1RkcmNoQ2plRk01QktWUTNFV2loRFdmaEtoc3pFOEE4?=
+ =?utf-8?B?VFdzN0xNQXN5SjhGZmZNc0c2eVhlS2xFYU1BNWYyTDdQaVdWQmppL0s0UU85?=
+ =?utf-8?B?dlA2eFdXZkdTd0NORGNUNkIwOGlmd0JEVWI0blpHSXpSWWJReGRUS0ZoNHAr?=
+ =?utf-8?B?ck5OMERVTWZHMmU4eUMrc0xrVjFtQjhxZW5YTlZselI0VDczRm0rSnFMbmJo?=
+ =?utf-8?B?SWJkTXNVcnR4YnJKRUZaWFBjUy84WUNiUmdjSWJadDFQQXlIYzZiYStGaDM2?=
+ =?utf-8?Q?JBQXpnVpfBHE75ke5+LREWr34w9uLU=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR11MB8278.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(921020)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?UXlQSTJPeHhCazRBU0ZVRklZbW16OEYwS0tWcjJOTmJyQmZXbTNCR0pyMGJk?=
+ =?utf-8?B?QW80UG9nM3FhbmZZV2F4RitXY0Z1NFN4REovc0tkbkUxaTg1a1pCdTUrSjV2?=
+ =?utf-8?B?UGQyc09CbGZtcXVBcGF4dXAxaDJ4bHlzTzF3U1NNb29mR1gzT21tcjl6Tm5C?=
+ =?utf-8?B?K1NTS0I4RmNmbU5UWUJRdlNGTHVUZkd3V21kOHZhdk9DNVVqK2duak5RQ2pi?=
+ =?utf-8?B?YXRORzRGdUljMVJxckZTVG5DdWxIM0NOMFluTXlFbkRmN0d5UE11WFU2NEtN?=
+ =?utf-8?B?K1FmM3I4OG81K2o3MW5wWmYrMzRXajNDT0QzcGJNbjgzM0wxU0o5Mm8zMVRi?=
+ =?utf-8?B?QnpuckpFeCt2Z3l3Y3JRSEdla25GUG5BdUFaOVVST1RHbDY5cHZRVTRQVDVM?=
+ =?utf-8?B?aWdGNHVyaFlBejZsVU9CQ3lTT0hOU1FLaVZCY1hYbHJ5WW5Rd2gvWVBEUHEr?=
+ =?utf-8?B?dUcxRWRFTGlkdFovUzNpZ2hobnNsaEtqTXlDU3VHeE1abGQvM245ZW5tR1Aw?=
+ =?utf-8?B?b1FBaTd5aCtWR3lPRUcwc3JieWNEVUs2bkdjdm9wZ0JPODBKVEc0c3BBUUN0?=
+ =?utf-8?B?eGx0WUxKS2xBcExCTTkyUkpGOHRHVjN1czJCSHY4L3cxd2p2OGRJendVSHlH?=
+ =?utf-8?B?dHpLN2Zab2dYRW1rNnFUa3FWS2Z3UkFrTnFNNmQ2K3hTTkFvbUhEejQ1NXA4?=
+ =?utf-8?B?cFliUzIxdTVnQ2xsVWhFTGRyOHJDK3h6cGNMdjFtWmxQZ1A1RUxZbi9aMWRZ?=
+ =?utf-8?B?N0pJTkhmRkpmak1xOWwyNmE4UmNTUzdqMUdtR2xQY25FTDFoYWw0ZC9kaCt4?=
+ =?utf-8?B?UHE1RGYzMnpNRnVndmV5SEg3Q0FsVEx0R1VFY3VLUGhsTDVoeWF1ZzNYakxL?=
+ =?utf-8?B?aHZKZlpOUDNYMlNtNVdDRlVGUVkvQnMyVitLTmxPYmJib1d0VjZwQ3B4amFl?=
+ =?utf-8?B?eHAxYitRQ1VqYTB3M3ViclBHV3ZnaUZ4a0w5QnBGbzVCU0pSU1dlSTNvWm5o?=
+ =?utf-8?B?UWVwYzhjKzdQWFlKMkxzV2lkVzNEM21QemcrQzhIWHBjWmMzZWFMRVR6ODMw?=
+ =?utf-8?B?eTNXMmZVTnRPbXEzRmpNS3RZTHJyL2hvVHpCN3pVVGJPMUI2TzVYMjBaV2Mx?=
+ =?utf-8?B?ckNobWcxZG9LV3RzL1pvbGh1U1V2Y1MySHNJc0cxYTJlOURuZ3hHR3BSZnBa?=
+ =?utf-8?B?cUkxKzRhZWFGUExIano4clRlUUdXUFRlTkRXTzNtYlphaExTSGhFVC9SSkRT?=
+ =?utf-8?B?MzVUeGdCTEdaMVJyeWoza3BnMWFyZHNxSkVIVE1HdWp0ekJLS2pzWUxiRURQ?=
+ =?utf-8?B?MWVZbGdid1pKaUpsVHRaalY2TzIxTkxJT2xyV2p4aU5wK1ZaUWVKYzNTY0Qz?=
+ =?utf-8?B?TnBDR1RRbG5GQXNBQkN5emM1U2crZlRiNjIzdEE2NFc4K0VSN2ZkMTNuOXFi?=
+ =?utf-8?B?aGlBNU5qVHFJT05Mc2k0M29VRmRYNE1CUzhvbWZUYXRXWmh6YmxOUjI2eVhy?=
+ =?utf-8?B?MXV5VXhrVVRmT0N1eTNBK1plOTFoSGdibjlQbjNXaWllTHNkZGVLS0VweU5L?=
+ =?utf-8?B?dG5sUEttbHgvWjFJV05OaEtsa1JEZkw3dy90MWR3ZHhhVUR1SWxHQ1JmUVJG?=
+ =?utf-8?B?R3pMVkNxbnpXaUZ0a2c5a1J3c1NLcnJyTk9LaDZxSzRVY2ViNlVxYm9lS21H?=
+ =?utf-8?B?eUQzVGdNdm5HK2p3VjhSY2hqUzE2cnRleFE5aHpacnBiWE5CSDZOVG5Yem5L?=
+ =?utf-8?B?SWVMSm14dHZlanRrSGdKVDBDcnhFcDVYWEFtaTNiallmT2FjVHEwV0F2Zi95?=
+ =?utf-8?B?YTlTdTVNcVZ3cXl0Y3piZkQ5S3NWeGRFbmZXUW5uT0Q1cGhMdnpYWU9Lemdv?=
+ =?utf-8?B?b1pmbnpwZDdTK2ZqU0d4RnZGOFBEVk9xdXJDa280YWt6Rmp3ODE1ZHladU9I?=
+ =?utf-8?B?UTJUOCtFa09qMnIvWjNkanV5dDFxTlVZOHMwYlRZUmp2Y3dnckFyOFg2ajNP?=
+ =?utf-8?B?K0h4MVlRNUQ5bWQvbjlUMUZQa05zdmhrMVFReXdLcHNDVytzM3dmdmhkMVlT?=
+ =?utf-8?B?UWFoUUc2cXI3enc0RGF5OHlFM0xnNEY1UUhRRjVxZ3kvYllMTEFhTVJEWlhx?=
+ =?utf-8?B?NlZ5OTN4elB4UFBFdVpqai9BVDdQWCtrM0VUM0hDeXpxeUxMemR6S0hnSm9E?=
+ =?utf-8?B?R3c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E96766CA0A18D84EA63D9DE44D9F0167@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
- <CABZAGRHSVY3uneK7qb2nwDrjjRsLXzsm0mwQncU1iRZac6tAkw@mail.gmail.com>
- <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org> <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
- <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
-In-Reply-To: <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
-From: Nick Huang <sef1548@gmail.com>
-Date: Thu, 11 Sep 2025 18:39:36 +0800
-X-Gm-Features: AS18NWCiHma0gY1K7rqjlYLs1_HbIaST8Q5Euaa4jJzJpE8oJOca4cQdUYtCVD0
-Message-ID: <CABZAGRH=cu5_HZwseJ+GuokUNkEPDzoHewebXmLzcMFaTGdTOQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
- the documentation by replacing "abd" with the correct word "and". This
- improves readability and avoids confusion in the description.
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Johnsodn Huang <kusogame68@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	weiyan huang <dory85109@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8278.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e7ffddd-fe26-43c7-c512-08ddf121785d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 10:53:41.1582
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HPa/l78NLH8A4FkIKieZ+zVp+DZBLTCn+4w1k2DfgO9DJYyab+i+CxGUxZzjV2HrIGcRIik6zXEPd2zeFCcY7sDyQ0dJZF7J/I4fstbvN3XWuJ0NoKFTTPakg01zVTyJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFCA3BFC2BF
 
-Matti Vaittinen <mazziesaccount@gmail.com> =E6=96=BC 2025=E5=B9=B49=E6=9C=
-=8811=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:33=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> ma 8.9.2025 klo 2.43 Nick Huang (sef1548@gmail.com) kirjoitti:
-> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=88=
-7=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:07=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> > > On 07/09/2025 15:38, Nick Huang wrote:
-> > > > Lee Jones <lee@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=883=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:42=E5=AF=AB=E9=81=93=EF=BC=9A
-> > > >>
-> > > >> Looks like you corrupted the subject line with the commit message.
-> > > >>
-> > > >> Please resubmit.
-> > > >>
-> > > >>> From: Johnson Huang <kusogame68@gmail.com>
-> > > >>
-> > > >> Use `git format-patch` and `git send-email` instead.
-> > > >>
-> > > >>> Co-developed-by: Nick Huang <sef1548@gmail.com>
-> > > >>> Signed-off-by: Nick Huang <sef1548@gmail.com>
-> > > >>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
-> > > >>
-> > > >> It took two of you to correct the word "and"?
-> > > >>
-> > > >>> ---
-> > > >>>  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2=
- +-
-> > > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >>>
-> > > >>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-p=
-mic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-> > > >>> index d783cc4e4e..d16c82e398 100644
-> > > >>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yam=
-l
-> > > >>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yam=
-l
-> > > >>> @@ -41,7 +41,7 @@ properties:
-> > > >>>    clock-output-names:
-> > > >>>      maxItems: 1
-> > > >>>
-> > > >>> -# The BD71847 abd BD71850 support two different HW states as res=
-et target
-> > > >>> +# The BD71847 and BD71850 support two different HW states as res=
-et target
-> > > >>>  # states. States are called as SNVS and READY. At READY state al=
-l the PMIC
-> > > >>>  # power outputs go down and OTP is reload. At the SNVS state all=
- other logic
-> > > >>>  # and external devices apart from the SNVS power domain are shut=
- off. Please
-> > > >>> --
-> > > >>> 2.43.0
->
-> Hi Nick,
->
-> Thanks for the typo fix. It looks good.
-> I, however, am curious how did you build the recipient list? I hoped
-> to be notified about changes to these bindings and I'm not CC'd.
->
-> Yours,
->     -- Matti
->
-> --
->
-> Matti Vaittinen
-> Linux kernel developer at ROHM Semiconductors
-> Oulu Finland
->
-> ~~ When things go utterly wrong vim users can always type :help! ~~
->
-> Discuss - Estimate - Plan - Report and finally accomplish this:
-> void do_work(int time) __attribute__ ((const));
-
-Hi Matii
-
-I used ./scripts/get_maintainer.pl
-Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml to
-generate the maintainer and CC list.
-Sorry for missing you previously =E2=80=94 I=E2=80=99m including you this t=
-ime.
-
-With the current patch, should I resend it? I=E2=80=99m not quite sure what
-the proper next step is.
-
---=20
-Regards,
-Nick Huang
+SGksDQoNCk9uIDEwLzA5LzI1IDg6MjUgcG0sIEJhc3RpZW4gQ3VydXRjaGV0IHdyb3RlOg0KPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvZHNhL21pY3JvY2hpcC9rc3pfY29tbW9uLmMgYi9kcml2
+ZXJzL25ldC9kc2EvbWljcm9jaGlwL2tzel9jb21tb24uYw0KPiBpbmRleCA3MjkyYmZlMmY3Y2Fj
+M2EwZDg4YmI1MTMzOWNjMjg3ZjU2Y2ExZDFmLi4wYWIyMDFhM2MzMzZiOTliYTkyZDg3YzAwM2Jh
+NDhmN2Y4MmEwOThhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL25ldC9kc2EvbWljcm9jaGlwL2tz
+el9jb21tb24uYw0KPiArKysgYi9kcml2ZXJzL25ldC9kc2EvbWljcm9jaGlwL2tzel9jb21tb24u
+Yw0KPiBAQCAtMjMsNiArMjMsNyBAQA0KPiAgICNpbmNsdWRlIDxsaW51eC9vZl9tZGlvLmg+DQo+
+ICAgI2luY2x1ZGUgPGxpbnV4L29mX25ldC5oPg0KPiAgICNpbmNsdWRlIDxsaW51eC9taWNyZWxf
+cGh5Lmg+DQo+ICsjaW5jbHVkZSA8bGludXgvcGluY3RybC9jb25zdW1lci5oPg0KPiAgICNpbmNs
+dWRlIDxuZXQvZHNhLmg+DQo+ICAgI2luY2x1ZGUgPG5ldC9pZWVlODAyMXEuaD4NCj4gICAjaW5j
+bHVkZSA8bmV0L3BrdF9jbHMuaD4NCj4gQEAgLTUzMzgsNiArNTMzOSw0NCBAQCBzdGF0aWMgaW50
+IGtzel9wYXJzZV9kcml2ZV9zdHJlbmd0aChzdHJ1Y3Qga3N6X2RldmljZSAqZGV2KQ0KPiAgICAg
+ICAgICByZXR1cm4gMDsNCj4gICB9DQo+IA0KPiArc3RhdGljIGludCBrc3pfY29uZmlndXJlX3N0
+cmFwKHN0cnVjdCBrc3pfZGV2aWNlICpkZXYpDQo+ICt7DQo+ICsgICAgICAgc3RydWN0IHBpbmN0
+cmxfc3RhdGUgKnN0YXRlID0gTlVMTDsNCkkgZG9uJ3QgdGhpbmsgeW91IG5lZWQgdG8gaW5pdGlh
+bGl6ZSBoZXJlLg0KPiArICAgICAgIHN0cnVjdCBwaW5jdHJsICpwaW5jdHJsOw0KPiArICAgICAg
+IGludCByZXQ7DQo+ICsNCg0KQmVzdCByZWdhcmRzLA0KUGFydGhpYmFuIFYNCg==
 
