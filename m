@@ -1,163 +1,165 @@
-Return-Path: <devicetree+bounces-215755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926C0B528C4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:32:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16BEB528CE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:33:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3F2D189443C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:32:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFA2118991C9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D9326980B;
-	Thu, 11 Sep 2025 06:31:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7048A259CA3;
+	Thu, 11 Sep 2025 06:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxvOzzTP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k/R9okPm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86521267B94;
-	Thu, 11 Sep 2025 06:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1009238142;
+	Thu, 11 Sep 2025 06:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757572319; cv=none; b=lvOOkxZ9nQJZBCT8pvPN3Noc6mjk19tx2/zbCoa4bI5yh1mEuX1QX832mxFpfz2HZWZpKd93JxWjOG6udkKUKSXOi4cPWm9LySkD7VhKReCrSc7NNUglmCnXpRUVEmh6lnxiAEhlj9KDgSj1XYBAtbc1rjiZYthmE0OtaT1/VJ4=
+	t=1757572400; cv=none; b=htpquHUtR+cBHLo7rqC2L485feomaTmufeCKj5y/uDqpX2gy6XLE6XPqFRiD7ZLqfiPi7gNSKU9Owiu4nY/AidI2akiSzsivpcwxxjtraHP5A5T1HmzJVGV3LDukxEcwUMbSA9zuAbsJlSpYmq/Wkk/+lFRCVV5Ahhgj2KfhDdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757572319; c=relaxed/simple;
-	bh=IOFTFKA236+E0sFOssT7ukZoMvaWI5Ipl6F5c9xNPpY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jzzYYPMjcWNDizoKM8cthwA1gRHBRrBF0WZBuvMFFRet4pTBq4e/0sFYhCyTI80mHcnT1MotSbqnEZ8D3s4+bRS+577jopDDyh5X4CGK6hW1zOHkYkBZi4wY6IuHu5sc5UZmHMVEUcFAhw/jsUtJScafad7NBCzArtFGoXxZss0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxvOzzTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A3F3C4CEF1;
-	Thu, 11 Sep 2025 06:31:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757572319;
-	bh=IOFTFKA236+E0sFOssT7ukZoMvaWI5Ipl6F5c9xNPpY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hxvOzzTPrWJfHY1oiNtjm3sYJu9SH9ApqF6WB5J0u7gx391929DrmYtB0KR63OuLV
-	 9gtIUFfMxmb2/JN5EjSzQ4Yzh4kVRd010VZrYKk8pvLGsUDiQewcxbrib7Exd1gNsS
-	 cOnd84rBQg33mId/Wk9C94x6vx6l36wliIrz9XTI2W/KJxVcPPztbWiJeDPLTF5oa5
-	 ptTmKv0OUiJFGauSzliSzO7BeVNJISKtgpZCWcIHb3DoX5TbxMiuvjq0u259uT7y+R
-	 vlG89CfjB5/WXq9bSk3ThWY5ihRPo3ilKY9wVCDbn0jpnP9+zsVdksnErxB/MOUlxU
-	 lg5AG8TgSEVdQ==
-Message-ID: <cbb57a2d-c64e-448b-87dd-688458f87900@kernel.org>
-Date: Thu, 11 Sep 2025 08:31:54 +0200
+	s=arc-20240116; t=1757572400; c=relaxed/simple;
+	bh=uvScEIM/afzzxjdPV5Xl1jMKnkvszb/XF0beRADiX+g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rRV+BRFPormD65odSVmpQPYpCXy/e8Bha11V4q8Cj1rJd2OI5qOWglpbacIRV/EiOacPHw7IhACHczCgUYBWFaGEhfh4wJsjGEes96C0gIZLW0xoKL5UaysmQpnb6NW1ElOVKKp0s1DgbJqGtarVMUGChXCOrZ92HFfMuPIN/60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/R9okPm; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-32326e2f0b3so236581a91.2;
+        Wed, 10 Sep 2025 23:33:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757572398; x=1758177198; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0LM5Pvg5BsIFt5z+SVzlehXV1m0UwhXg3szUWfgfVE4=;
+        b=k/R9okPmFMfRqiONIeVgV1+n+clPtNWAOg3oqKvMjywGrsPqw5glnSbV7UfNmqOklj
+         tdgQD/A7ghyXA9DWwoqlGgmSYEzKQ71kMvW8Se5tAUGjs9lUTuplmwNONyPIjcZNwOhJ
+         TK7/mlG7Gh1tdA6vG6VtgkNAFwukK9IwONqmvAzvmmTxgElKwHbQEcSMNjJJhZgZtiN8
+         JLr68dOlzaOeGQpdc3PvtBlOnGx+AxZZ3H8aX1o6822b+h2IJns+2+yaZx4S3QWNIXYt
+         QEfjKDlNPxWmgQSRel6Fvhq9AomNfBcUlcg8X2uCbU4jCEI2c/ehgaeTLzLxCTGSW+i9
+         hb0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757572398; x=1758177198;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0LM5Pvg5BsIFt5z+SVzlehXV1m0UwhXg3szUWfgfVE4=;
+        b=CRDRZqDMhPqA0JeeNG8iaFz/IoSHhPv4kOwH/GKZ6b3Cnhp+kiZ3xvs1ZBOEl9804B
+         iLJVdBFK3yjPW5MYvWxKhnTO9jruptZYBqI/yvRD3ItH4D7IPQNepDY9t/whm9dyXWHa
+         yIRhyf/8o2vu9XqepMxPpjnkwt64j+KfzhQmjWUFpFL3DFRVn8rxIv1d8vPXJ2A6VT4g
+         w/qZ/K2pcdirxy5auyL7byDkZIZb+tSOj4h2WaZN6gXrfcFPrOJGgQasdVNvK8VrsRkA
+         FCyBlI1wX81SrlzqFeaMaXX6u4B2+lJp0uCQ808rss9QkKy3eullfiOiqDTsEI9JHyfX
+         Jipw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFY5xBV8YobixJvYJMgiiIPyYyGLTbWDRzjKMxXUhtPzy521mUof9CiqkmkV7MdQsi1hu29p9DwDtj@vger.kernel.org, AJvYcCWHLsGt/L7E7yEThvrY1NYGKlVXHl6PtfIU1crT3zvBQJJInk8xMNGu00eg7DV2GvzZlDJas3FVcUea2wUh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWMcg7MeVCQxg5aslGDUZJP4ZHmpTqE1pl+SqEavrZcQzR+O4V
+	fUgoXAu+eE2+5JMl6ZAewXKgKENH981qnCLh2cPYj4KeGe0fY4MJBJNApRhcdGcsoBfePiUymDA
+	NE4JdU7gd7lBjryMw82AlSVkwHOq6sBw=
+X-Gm-Gg: ASbGncuY1rPmf/3ttjntPik4vxFt40UOxQZZz85DdrEMxITWhpXiQrdMFOi+xoVK9iF
+	29fV6j3RTCJvD32nv8HJtUU+NHZL0YTu+VWFYwiC8h/SRL8Zbk8CQBOwj4Wwng5nM8AyKVXIjwU
+	Y+fuohOBJjA0g57cqFB7butSytCKFN/mYbdA6abzxN7y0jX0LDQ5SkdsWJ6FFNewXlzu9BRQnva
+	mNqkk+8v0Iq4BPCOTBSCFjZbxCLKkxrYpjn+Zq/tQ==
+X-Google-Smtp-Source: AGHT+IFmEN8gIddP3xTUY357MDA5IPWnhKOkvlOkLJ3SgdjzEPq95PnA2fm5fDjMoQ9iGX5gOqavQnl0ptzRIfiNC/Q=
+X-Received: by 2002:a17:90b:4c12:b0:329:f110:fe9e with SMTP id
+ 98e67ed59e1d1-32d43f5bc76mr24382241a91.17.1757572397967; Wed, 10 Sep 2025
+ 23:33:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] soundwire: qcom: add support for v3.1.0
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
- Alexey Klimov <alexey.klimov@linaro.org>, vkoul@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- srini@kernel.org, yung-chuan.liao@linux.intel.com,
- pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20250904105616.39178-1-srinivas.kandagatla@oss.qualcomm.com>
- <DCPK67SQ5DEI.2AFDVRKZSEWTS@linaro.org>
- <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
+ <CABZAGRHSVY3uneK7qb2nwDrjjRsLXzsm0mwQncU1iRZac6tAkw@mail.gmail.com>
+ <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org> <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
+In-Reply-To: <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+Date: Thu, 11 Sep 2025 09:33:06 +0300
+X-Gm-Features: Ac12FXw6bS0Qfg8U8auC3A13VBea4lnWf2dRfsPuLP_GT-Utusd0lS-EGuB9PDo
+Message-ID: <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Nick Huang <sef1548@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Johnsodn Huang <kusogame68@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	weiyan huang <dory85109@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/09/2025 07:49, Srinivas Kandagatla wrote:
-> 
-> 
-> On 9/11/25 1:52 AM, Alexey Klimov wrote:
->> On Thu Sep 4, 2025 at 11:56 AM BST, Srinivas Kandagatla wrote:
->>> This patch series adds support for Qualcomm Soundwire Controller
->>> version v3.1.0.
->>> As part for adding this support, a new macro of_property_read_u8_index()
->>> is added so that we can remove the qcom,din-ports and qcom,dout-ports.
->>> As v3.1.0 supports more than 17 soundwire ports. Also due to change in
->>> the register offsets, new entries are added to the variant data.
->>>
->>> Tested this patchset on X14s and Glymur reference platform.
->>
->> Well, I don't have any Glymur devices and no idea what is
->> x14s (I guess some laptop), but I picked the series locally to test
->> on sm8550, it seems there are some generic changes, and
->> qcom-soundwire probe failed:
->>
->>  remoteproc remoteproc1: powering up adsp
->>  remoteproc remoteproc1: Booting fw image qcom/sm8550/adsp.mbn, size 8364
->>  remoteproc remoteproc1: remote processor adsp is now up
->>  qcom,fastrpc 6800000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: no reserved DMA memory for FASTRPC
->>  PDR: Indication received from msm/adsp/audio_pd, state: 0x1fffffff, trans-id: 1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@3: Adding to iommu group 12
->>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@4: Adding to iommu group 13
->>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:2
->>  PDR: Indication received from msm/adsp/charger_pd, state: 0x1fffffff, trans-id: 1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@5: Adding to iommu group 14
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@6: Adding to iommu group 15
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@7: Adding to iommu group 16
->>  qcom-apm gprsvc:service:2:1: CMD timeout for [1001021] opcode
->>  platform 6800000.remoteproc:glink-edge:gpr:service@1:dais: Adding to iommu group 17
->>  va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
->>  qcom-soundwire 6d30000.soundwire: probe with driver qcom-soundwire failed with error -75
->>  sched: DL replenish lagged too much
->>  platform sound: deferred probe pending: snd-sc8280xp: WCD Playback: codec dai not found
->>
->> Are there any dependencies I am missing?
-> 
-> Looks like there is a bug in sm8550 dts, its adding incorrect number of
-> ports, which is why we are seeing this error.
+ma 8.9.2025 klo 2.43 Nick Huang (sef1548@gmail.com) kirjoitti:
+> Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=887=
+=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:07=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > On 07/09/2025 15:38, Nick Huang wrote:
+> > > Lee Jones <lee@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=883=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:42=E5=AF=AB=E9=81=93=EF=BC=9A
+> > >>
+> > >> Looks like you corrupted the subject line with the commit message.
+> > >>
+> > >> Please resubmit.
+> > >>
+> > >>> From: Johnson Huang <kusogame68@gmail.com>
+> > >>
+> > >> Use `git format-patch` and `git send-email` instead.
+> > >>
+> > >>> Co-developed-by: Nick Huang <sef1548@gmail.com>
+> > >>> Signed-off-by: Nick Huang <sef1548@gmail.com>
+> > >>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
+> > >>
+> > >> It took two of you to correct the word "and"?
+> > >>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2 +=
+-
+> > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmi=
+c.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> > >>> index d783cc4e4e..d16c82e398 100644
+> > >>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> > >>> @@ -41,7 +41,7 @@ properties:
+> > >>>    clock-output-names:
+> > >>>      maxItems: 1
+> > >>>
+> > >>> -# The BD71847 abd BD71850 support two different HW states as reset=
+ target
+> > >>> +# The BD71847 and BD71850 support two different HW states as reset=
+ target
+> > >>>  # states. States are called as SNVS and READY. At READY state all =
+the PMIC
+> > >>>  # power outputs go down and OTP is reload. At the SNVS state all o=
+ther logic
+> > >>>  # and external devices apart from the SNVS power domain are shut o=
+ff. Please
+> > >>> --
+> > >>> 2.43.0
 
+Hi Nick,
 
-Yes, the DTS has incorrect value for number of ports. Few others have as
-well. It's known (for me :) ), but I never bothered to fix it because it
-is not that trivial - need also port config for missing node.
+Thanks for the typo fix. It looks good.
+I, however, am curious how did you build the recipient list? I hoped
+to be notified about changes to these bindings and I'm not CC'd.
 
-Best regards,
-Krzysztof
+Yours,
+    -- Matti
+
+--=20
+
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
 
