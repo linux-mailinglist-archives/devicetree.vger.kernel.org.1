@@ -1,149 +1,211 @@
-Return-Path: <devicetree+bounces-215943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C8CB5337E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:19:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA5FFB53398
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09709A05998
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:19:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AC4C17DB12
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98314324B37;
-	Thu, 11 Sep 2025 13:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DC9327A0B;
+	Thu, 11 Sep 2025 13:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="c8jmXGwL"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="AZe2TiuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED027322C66
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080CA3112D9
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757596772; cv=none; b=OFAi1gQQTYbTx5NU6LooPgJml0J2BoBjGtxs4s+zlhBPJcZEMDcELevmeu83A2EiXwM1G5gJ3D4LsUCscZPlyQw4RcK+7Lp3GJ1TbLo8E+/q8oqtB7Tk3orDh9Zr0ehi4jcjLOCw9lWU0DDMFNbuLAOoA0BtekN4coJGhBUlhJE=
+	t=1757597060; cv=none; b=JLyi8NBWYgUY0vtdE/SRmY+D5T5zg1wetkW1NNc1yGi1gK4cCtbp3XSPIv9AQPpAcG2/S6BV2Ggi6Ri9mR9ZcTtzOLRCnU+MEX1tr6LEMZkKK5+wD1TH5jODtxJJ8pTMkACEgug0hR/Y8gIvXZuZvPqDTUc2q0LAONxZPpvENxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757596772; c=relaxed/simple;
-	bh=0bqSOryJEQ/X3+/vSnEr3yI4I9N6P79OuHfoWbsAg2w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fjXMf/RwmqJdiD0QChuESFIPqKU/qwmmGmDmCxPAqK1veaYTyTKcEFVCSL0IsNuqUQg3Yb/VJXLI2siXfrOq7jxE6hA/N81wgpixSR2K2qgrX0U8tw4XD93Xusms+D00q/J7JwMDS9tjcCQpQxcZuWsLOV7pyzmKxVzGdESMDXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=c8jmXGwL; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45df7dc1b98so3920655e9.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:19:29 -0700 (PDT)
+	s=arc-20240116; t=1757597060; c=relaxed/simple;
+	bh=TaQueTEoC6o4eB4nfhhT60PYphmO+Aqh4TLGtadNh0Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VU4XSnh5ThBrmNUzJc37dDAOos/ZAqg008nyGXUHq3TkYOjY33wjrE2OE3tOyIbdRWKqH95tHZoohpi6K32mKG6IVA2KvaFvnMn/A9ijlo9krjg4UnbJjTZZPxMMmavvnH7GnYOdlOlRmPvvsZ1aXMEHt/ogNOvhnMI5e9Sj1uA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=AZe2TiuN; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-30ccec59b4bso509968fac.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:24:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757596768; x=1758201568; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=bytedance.com; s=google; t=1757597057; x=1758201857; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RoTjGjEf5o3PoFa4Kwu5lnAnxIVCW5Ws6ti5lef2kWA=;
-        b=c8jmXGwL0xzs8zb1abu5BzxzKey4ymBXTIgFJY6lILtF7HJoSnsCppAwVXMQzT1Rgf
-         q5h+RWO7Js5D5A00RsievlHEpipbAxWilWlz2EwZjwvlmNUzd4fTYgHfLZN1dirubq4T
-         s29hz5+7yMIWoFkZ1ODYKMTvXdzzxP5xZTwMCFEjl2Axguux2v/t/Xaql41wm9e7blvh
-         XyGIWXvWtmP1rHuc3eJ44TF7YT89LLPJy2l/BOiDdrcJBRtpsiDF5gQOLOgUNQ6q2lcT
-         HPTz57/oWzzwG1sAhtm6ZV5mMYVg0Vyk1yFu199Gkkc51wnrc5ZDvwsUI5lAbLruS8wJ
-         luow==
+        bh=gfBLhNXXq9Rsc8Z2YKn++Jo2sHEm+zyXMU4WnJYLHBc=;
+        b=AZe2TiuNvKAyR3O64Gf1pmmac6nhibKl0D9U/RGp5QiY4wdCa9iqwGCc7mlUqEurJL
+         Axull3NGyACzSOti43Eh3Rahh9250OVwGJAta2enzLZoXLgc4+139qgE8EQF3rXfnyYH
+         sthP5xJ7cjaqBKnTinsd7fxYveZjjwwUTIGXajF6ANJE6DRB5lCrMGUm119ezv/LMhxW
+         0TJUDGGUdGGd57wZfgOLTt2fP5BxjtD6GEQIuEw6IuTXOozMt1UQjpmqB0Og1cEUoQi7
+         5neTIK5UhjJELgAtKrxVbHVkWqJKDzE7ETtWtpV8Y3psMF0XaLpYykLGG9cK2lp8D2up
+         wb8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757596768; x=1758201568;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1757597057; x=1758201857;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RoTjGjEf5o3PoFa4Kwu5lnAnxIVCW5Ws6ti5lef2kWA=;
-        b=do1QfBtT1VSyKGrwrrHk5UafR9JUQyOxoDwDr2qRcZDTcjmqrk8wyW160mt4vk1zIa
-         pg/qkPkuJyxk+2n9A6OYGMHGF9f5HZ2UUtrJIP1ibhbreVz8/TCin09O6UK1bHJr2SRK
-         8tYwLMGhYIpoWNhSDtm0cFDy4t+P8zJF0/Vae8ThnJ/aomFH95Z1PJ5IkTYxNiTj3kF0
-         YJOKbdCKZe4SACfKqRoqYOY5jp45CKt3K88RCrEWAm6j7r7uU8cacmzWvb6v33OcRTnX
-         5aYUMzF98VLhThX4GzMkiQ5zrFQOJKdGA8lK4JfH0IERJlcN/iNVmX0ntsJXZ0wiH5FM
-         mg7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXKKTbGY+44IzPOu4/6axB+PWyaxzT5TY6NklN3s4Wk3zUsWYjp9M444iUDbZ+J7DH8CNF5OfsyxbQ0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHVoMIoPIp9sHtmLj7YSL5KGb8ffKA9r3PaQT1XIYadl/px1kt
-	RX17zOOCH4T7XZRSe9DIpNLYXqjEDke0XpkklKyHsas3sqoonT/BXQY4UWoHDPC0r/I=
-X-Gm-Gg: ASbGnct8CQiPlhx1WdOx/9OYwpVW8vGu6OGlr2x5ZT8iDZWCkOwHen2ZOBjgO2Iu0yQ
-	Psb+bppG8rl56hC9BCgGa6uXG7txxwIuQXOn8I88CwNCWPoLOzzgOlj3aQntEe+SjqAWGnkxTtm
-	Mfz9dqgjROEGQSLm4VqnZc4dWOZOXboed/00DkvrK4T7DyZ46tCABzWAMJxXW00AJLoSJtg81gr
-	UpPydWg7xPAdJf0BvSWMOLxfm+WDD1/t+eu5BN4PbBuG1Hqx9QMuZfyKG/duIVH/6A6v3qfx4Ju
-	zJzFfE2ksz43XuADn/pUGcza/ZTYDBpBbvhG2qQCx+j6/vDkSsMYCLxO2pk77Z4TtOO8KmaiQWh
-	IKaYIJ5YH3o6VOaVtm7FH3JI=
-X-Google-Smtp-Source: AGHT+IH8nHuk3NSLqjFY2vj/PBH77XKaFOpHdcKlyadMrh/8ELLpleuBiAgM8Qj5GJ3//zqteimh3g==
-X-Received: by 2002:a05:6000:2886:b0:3e2:e079:ab32 with SMTP id ffacd0b85a97d-3e642309dc7mr17268671f8f.7.1757596767963;
-        Thu, 11 Sep 2025 06:19:27 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:3e84:ca5d:e1de:73b8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607870c4sm2483656f8f.22.2025.09.11.06.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 06:19:26 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	kernel@oss.qualcomm.com,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	Monish Chunara <quic_mchunara@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-	Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
-	Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
-	Vikash Garodia <quic_vgarodia@quicinc.com>,
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-	Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
-	Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v4 00/14] arm64: dts: qcom: lemans-evk: Extend board support for additional peripherals
-Date: Thu, 11 Sep 2025 15:19:25 +0200
-Message-ID: <175759676089.37240.12221834042390731955.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com>
-References: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com>
+        bh=gfBLhNXXq9Rsc8Z2YKn++Jo2sHEm+zyXMU4WnJYLHBc=;
+        b=KhRWC5BVg0fOpoUUPWLD1ZKIYpTPl89qN8+A5KSs6IbUwESu8/h/Kqw7g2npYJdtwY
+         JgPsuFQQslTZFWLKf5PAnJu7x7JkQGUCGw+nL7kXhzCTte7vX4XfRNPugfACAam9lNKU
+         OfeoouTDiWXNBBUqMyCa1aAxnJxQbn7YGtiYnZr58A0IR/jMeF7jENzOArB7q3qM+yP0
+         iN/8/Z8cfj9FtVCumNTlX5L+WR4YA60AFokc8kB6zzq25dkXudYpfOOuPW+TW6pfQg+T
+         0/dDrFFplkuqqjNltwOr/drR7hgqyQH+sY5pFVTYl+tVf7LMDcMy7MmRkMnNIdmvRLKN
+         BwVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUu5ytCT1WgXmNNdR5lk59wVgw9WRv7ezfZoeONmf9TWgrTdVD1lrLU9Lal5jR9uGDXMPAhzOBO5qW6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFKUAxVAeme/RyuSky++g8P7E8B2ycbSvAISYDk2FTYCIuVr2Y
+	OK7PqSMT7yC6/ITwckiYlWoJ3SOtpcCZNFdYvREFxCVia4mLBDvvfBCJrvyhAjSprzM9wtOjdVA
+	4E6AqKHIi5gS9ThQCpfhhkGJrEQbZCxzBz0ks2Gsqiw==
+X-Gm-Gg: ASbGncse6CXEa6k1Q0YIsC2CeQooygjW0tRCNkLl2jfi7VmFo2AZP10NyJW+fywJUj5
+	oF/G2tiEiwCQY53GnLLUX8xAORMl92bgcVeg0wn4mSvAj2jEVkIYwvPYJQbybb2N9g+qC4gjMN/
+	3dU0/fI06Qe0t7HSQC83Dn7LxO1Omz8sRQa2NEhbBdoeIO7RbUGEJRtyoVJGtELfbg6qkWEG3aQ
+	OfWL/GWUlDjhOXD
+X-Google-Smtp-Source: AGHT+IHRdBKXm1Bz1NHFHe2IrSKtcJoxyFdHCG+gmrlFxehDwahE40seZUC2QEjKPDn+5kw4bLLqvWTXBPHddQo3Z4w=
+X-Received: by 2002:a05:6870:4e8c:b0:31d:63f9:b247 with SMTP id
+ 586e51a60fabf-32264607e14mr11225562fac.25.1757597056938; Thu, 11 Sep 2025
+ 06:24:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20250327-counter_delegation-v5-0-1ee538468d1b@rivosinc.com> <20250327-counter_delegation-v5-18-1ee538468d1b@rivosinc.com>
+In-Reply-To: <20250327-counter_delegation-v5-18-1ee538468d1b@rivosinc.com>
+From: yunhui cui <cuiyunhui@bytedance.com>
+Date: Thu, 11 Sep 2025 21:24:04 +0800
+X-Gm-Features: Ac12FXwLi65vQtG3EKjaprZe3vR6jcXi2qMAlWPQLWbqK3WvwYrKsOxiKlH-8R4
+Message-ID: <CAEEQ3wk92bmHQb=EbM-Ev0ra=eS-ZH6_aGTqAw1WENXpORXUKg@mail.gmail.com>
+Subject: Re: [External] [PATCH v5 18/21] RISC-V: perf: Add Qemu virt machine events
+To: Atish Patra <atishp@rivosinc.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Ian Rogers <irogers@google.com>, Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-perf-users@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Atish,
 
+On Fri, Mar 28, 2025 at 3:46=E2=80=AFAM Atish Patra <atishp@rivosinc.com> w=
+rote:
+>
+> Qemu virt machine supports a very minimal set of legacy perf events.
+> Add them to the vendor table so that users can use them when
+> counter delegation is enabled.
+>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/vendorid_list.h |  4 ++++
+>  drivers/perf/riscv_pmu_dev.c           | 36 ++++++++++++++++++++++++++++=
+++++++
+>  2 files changed, 40 insertions(+)
+>
+> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/=
+asm/vendorid_list.h
+> index a5150cdf34d8..0eefc844923e 100644
+> --- a/arch/riscv/include/asm/vendorid_list.h
+> +++ b/arch/riscv/include/asm/vendorid_list.h
+> @@ -10,4 +10,8 @@
+>  #define SIFIVE_VENDOR_ID       0x489
+>  #define THEAD_VENDOR_ID                0x5b7
+>
+> +#define QEMU_VIRT_VENDOR_ID            0x000
+> +#define QEMU_VIRT_IMPL_ID              0x000
+> +#define QEMU_VIRT_ARCH_ID              0x000
+> +
+>  #endif
+> diff --git a/drivers/perf/riscv_pmu_dev.c b/drivers/perf/riscv_pmu_dev.c
+> index 8a079949e3a4..cd2ac4cf34f1 100644
+> --- a/drivers/perf/riscv_pmu_dev.c
+> +++ b/drivers/perf/riscv_pmu_dev.c
+> @@ -26,6 +26,7 @@
+>  #include <asm/sbi.h>
+>  #include <asm/cpufeature.h>
+>  #include <asm/vendor_extensions.h>
+> +#include <asm/vendorid_list.h>
+>  #include <asm/vendor_extensions/andes.h>
+>  #include <asm/hwcap.h>
+>  #include <asm/csr_ind.h>
+> @@ -391,7 +392,42 @@ struct riscv_vendor_pmu_events {
+>           .hw_event_map =3D _hw_event_map, .cache_event_map =3D _cache_ev=
+ent_map, \
+>           .attrs_events =3D _attrs },
+>
+> +/* QEMU virt PMU events */
+> +static const struct riscv_pmu_event qemu_virt_hw_event_map[PERF_COUNT_HW=
+_MAX] =3D {
+> +       PERF_MAP_ALL_UNSUPPORTED,
+> +       [PERF_COUNT_HW_CPU_CYCLES]              =3D {0x01, 0xFFFFFFF8},
+> +       [PERF_COUNT_HW_INSTRUCTIONS]            =3D {0x02, 0xFFFFFFF8}
+> +};
+> +
+> +static const struct riscv_pmu_event qemu_virt_cache_event_map[PERF_COUNT=
+_HW_CACHE_MAX]
+> +                                               [PERF_COUNT_HW_CACHE_OP_M=
+AX]
+> +                                               [PERF_COUNT_HW_CACHE_RESU=
+LT_MAX] =3D {
+> +       PERF_CACHE_MAP_ALL_UNSUPPORTED,
+> +       [C(DTLB)][C(OP_READ)][C(RESULT_MISS)]   =3D {0x10019, 0xFFFFFFF8}=
+,
+> +       [C(DTLB)][C(OP_WRITE)][C(RESULT_MISS)]  =3D {0x1001B, 0xFFFFFFF8}=
+,
+> +
+> +       [C(ITLB)][C(OP_READ)][C(RESULT_MISS)]   =3D {0x10021, 0xFFFFFFF8}=
+,
+> +};
+> +
+> +RVPMU_EVENT_CMASK_ATTR(cycles, cycles, 0x01, 0xFFFFFFF8);
+> +RVPMU_EVENT_CMASK_ATTR(instructions, instructions, 0x02, 0xFFFFFFF8);
+> +RVPMU_EVENT_CMASK_ATTR(dTLB-load-misses, dTLB_load_miss, 0x10019, 0xFFFF=
+FFF8);
+> +RVPMU_EVENT_CMASK_ATTR(dTLB-store-misses, dTLB_store_miss, 0x1001B, 0xFF=
+FFFFF8);
+> +RVPMU_EVENT_CMASK_ATTR(iTLB-load-misses, iTLB_load_miss, 0x10021, 0xFFFF=
+FFF8);
 
-On Mon, 08 Sep 2025 13:49:50 +0530, Wasim Nazir wrote:
-> This series extend support for additional peripherals on the Qualcomm
-> Lemans EVK board to enhance overall hardware functionality.
-> 
-> It includes:
->   - New peripherals like:
->     - I2C based devices like GPIO I/O expander and EEPROM.
->     - GPI (Generic Peripheral Interface) DMA controllers and QUPv3 controllers
->       for peripheral communication.
->     - PCIe HW with required regulators and PHYs.
->     - Remoteproc subsystems for supported DSPs.
->     - Iris video codec.
->     - First USB controller in device mode.
->     - SD card support on SDHC v5.
->     - Qca8081 2.5G Ethernet PHY.
->   - Audio change [1] to support capture and playback on I2S.
-> 
-> [...]
+If other vendors intend to define it, would that throw a duplicate
+definition error?
 
-Applied, thanks!
+> +
+> +static struct attribute *qemu_virt_event_group[] =3D {
+> +       RVPMU_EVENT_ATTR_PTR(cycles),
+> +       RVPMU_EVENT_ATTR_PTR(instructions),
+> +       RVPMU_EVENT_ATTR_PTR(dTLB_load_miss),
+> +       RVPMU_EVENT_ATTR_PTR(dTLB_store_miss),
+> +       RVPMU_EVENT_ATTR_PTR(iTLB_load_miss),
+> +       NULL,
+> +};
+> +
+>  static struct riscv_vendor_pmu_events pmu_vendor_events_table[] =3D {
+> +       RISCV_VENDOR_PMU_EVENTS(QEMU_VIRT_VENDOR_ID, QEMU_VIRT_ARCH_ID, Q=
+EMU_VIRT_IMPL_ID,
+> +                               qemu_virt_hw_event_map, qemu_virt_cache_e=
+vent_map,
+> +                               qemu_virt_event_group)
+>  };
+>
+>  const struct riscv_pmu_event *current_pmu_hw_event_map;
+>
+> --
+> 2.43.0
+>
+>
 
-[05/14] dt-bindings: eeprom: at24: Add compatible for Giantec GT24C256C
-        https://git.kernel.org/brgl/linux/c/c7ec58c39b0252e6635dde55e5c708132ab25cfc
-
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Thanks,
+Yunhui
 
