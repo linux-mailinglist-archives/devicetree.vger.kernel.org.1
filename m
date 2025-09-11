@@ -1,195 +1,138 @@
-Return-Path: <devicetree+bounces-215743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A73CB52836
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:44:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E90F9B52839
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:46:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1D3A4E01D0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:44:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9643E48766C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA46924290D;
-	Thu, 11 Sep 2025 05:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3AF241CB7;
+	Thu, 11 Sep 2025 05:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lhKFSt0h"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qw69tnfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD1C748F
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:44:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E096E329F29;
+	Thu, 11 Sep 2025 05:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757569479; cv=none; b=Y0LRZL7c3AAHmsIJii0v3v99d8T1pp4Y9bwVLMKa6wnLYZfral+cxYYgctLMWhtxQRbsFtJq16ckuPyTAxUc10DVESDu11iiYs9Zs+pQu1iDIcLpkMfwwzPhPDp7EJi4qjaXkHcx6u3e0IFdOA7wyi+UWMO/JKs9Gfte6Nducds=
+	t=1757569579; cv=none; b=JFE68btfk96Wi05H3qY78OrCeG7KRu81bb5MlgnwyRcBks9XqRMyLDO6OzQwL12QnoOLHVyhLitnS2NjyCJbT7GThMpLCPVm5nUU1Oniwpvze3Apg3KElGhmr19bRDjFRrrisvxx/IGqvWgf50Q9oUwYkbO4mGRUYbqxDflO4Vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757569479; c=relaxed/simple;
-	bh=OMtGTExh4pcQAOusF0QsuJQZIODVOUx8i1XlOSomzSw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZgMuA/h9ubBhn0f80i/nDl0izxQa/oja+Ejp+tg/2Kat1h+yeag1xC0rYGBqwzWCbuTe5hps+pYKQrtgqLjGfKEYWEzteX9KAe54C92kV76g3wbJOJ0KGrlwk0CpSAG2tNOc2Bpn2qLaiSJxxOYar5rzMZQ1jY3utoG0Ks3USZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lhKFSt0h; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55f720ffe34so400333e87.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 22:44:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757569476; x=1758174276; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rMIGN5Dtji/fICaLmPTyfkuwaheBNYfZUOrUfndT+g0=;
-        b=lhKFSt0hwtF6TfrwI2wueGcL7Wfq0xNOwStJA0w9gwEk7ldzmuwHCGH6gKeUBoaAeS
-         BhR7mgGveTJrsCbnO/mGtabastbqHIUxagnX931QRhcv+/yGtB//FB9wkM/Nna9kxZDH
-         k/0Xd/6atsl5AU6SDNCZs6xSmQBiMlx6ipYZHxdq2oEqs+AmOtcy2GftAG9hiaz69e2g
-         QHdmIOenNa+ZkWXFKwSeKv3pMFpny7zZc8mTQzWlgLszFjRvWULN+/HYFZDFc3+UONEl
-         ri8P1e0JaYokT0gOJ6w/1apYCXo7CFRrUHfcIl3Y5emDRMjh3TV4moHATRFt7c5CWxBX
-         Mbhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757569476; x=1758174276;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rMIGN5Dtji/fICaLmPTyfkuwaheBNYfZUOrUfndT+g0=;
-        b=SltWJN/9c08i2LdtZUg5oX5m8Ej7jkPx39xFhUi5LQ1oX7h1IAUZyRcSi9O0gKifhX
-         m9MB6quiSKkqv8FJJZ4ZyDvsp02/xo00ytS0qeTZ1u1+fysiBkwAI82/8AX78YlxAQzM
-         Na+l+ib8Z2LZ7e8fJd9gC3E6stRiPxQ0Y02myg0usm9/yIWK/3WoKEwb4BvBZugyhaz3
-         LtME8jozR9jM6FhcQhrTThHT89mdKdQPkrzN45Oq47ui5NJb8iESOrZf6dNUCySvjNVi
-         xsT3Z45jfxVFncGrETa/+a2A62Zy8JpVJgwA659cfVz2ntS1Zlt+YtDhugsAAjflUh7s
-         Grgw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYVUCDAk09BuikdeMSem4GQdaAJmC/9sNr6BIbkQT/oRq9h3q059SmSZ70ub+ky/HmhUpXtpc/qrvb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxx0ZfogM1XKbmi5nh5tBxLpOdRy2NRUIYajv0YSi/i6JWR3N8Y
-	5Xyj6MJN8IPtYRB4yDv0kPgF0kgoDoJzrMXN13BheEvUJtkmob5eXTgIa/h3k31DLq8auB30SdO
-	1jQ4yxJpM1wdSp1ruK/BuU17Arbnrh/s=
-X-Gm-Gg: ASbGnctoBvrWCAngMVRdH7C90koaQECwgVarupmPBV7t2YIxOXQTZwUZPIJzTZufh2W
-	GmIGxs1DFvCL5gDOUBKBwe8Nrikt8jW5jQ2dleUYEZSPCqwlTCtz1/EWMQvxDKcL15B+C5frIRm
-	/iKDM8wRig/dp3jRDKUBCFtH2NgkPUY0pqiKFTk0o6lX4IuyJh+ybl2+95dcaJL+c1eXdwHgNd2
-	JDjT/EeEpFjnLKW4EsjmoSg1qUqSQ==
-X-Google-Smtp-Source: AGHT+IFXXzbUmqfUVHrK9y+Tz+xUgPLo8Z/WQoqhWiJEUjVlgtHkwjMb8D/bEp5cJbkjZ9GKy8JPh87QF0toRaHkPG0=
-X-Received: by 2002:a05:6512:31d2:b0:55f:45f7:f7a0 with SMTP id
- 2adb3069b0e04-56d7b8f884bmr603188e87.28.1757569475645; Wed, 10 Sep 2025
- 22:44:35 -0700 (PDT)
+	s=arc-20240116; t=1757569579; c=relaxed/simple;
+	bh=c2nj22zVziZFPvapQg27VQzeDhrb67McvUBfPobnuoQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mG/AIYT96gfFL0K5M18euUcceIXaTjZeP4SDk2Wr16Yg4Mr0B/0BzNfzqNlkwt0UDKMeQZR2/F1wQ04BOrWUoni5rMaV9uO325914QPd0PkLsMlOttlBO4NHXdcoUDLjTEVrtlYx0+k5HgmSPqgWo7/hCSG9yDh9fxBnRoVX/Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qw69tnfV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2Iudm002518;
+	Thu, 11 Sep 2025 05:46:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Hk0nyjFBdVjbYa0ltbjCu4YLTzNc1aOKbnfW04uCYs4=; b=Qw69tnfVBEoyHO8T
+	x6HV0MdRcqYOuFxPE4rNtHaf92FgQ3zubL07HMlLlvBzLGpVTWLN6/+O5pAkONaZ
+	O7zl/EQav9hN/5m+KyqYSOzQN7DIk+SnoeZSVqJhVH0aiwEuYqQQX5+q3nMPPSUj
+	GMH5VeVfTPyO0qeVLQxbGIcUKHdIoh6yDibFrARROkgRP5Za27eIcL2REgqkn8p8
+	ey3sLOUwczstxjf906MGan7tsMxRcny82YyueSl188x/3Iio7c61RxMgf81YWiK5
+	PfnWkAfdMOqK9wkuSNUZ+sTYjwUlNwFqKFsDfIkEV8MqM8OrcbvsoKrmnKyFHv1X
+	0Gumug==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db8pe5t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Sep 2025 05:46:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58B5kC9G006874
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Sep 2025 05:46:12 GMT
+Received: from [10.38.244.45] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 10 Sep
+ 2025 22:46:04 -0700
+Message-ID: <8b194a19-182f-4f49-9427-c0044a9b4dfe@qualcomm.com>
+Date: Thu, 11 Sep 2025 13:45:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1756991031.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1756991031.git.zhoubinbin@loongson.cn>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Thu, 11 Sep 2025 13:43:58 +0800
-X-Gm-Features: AS18NWB5DuSI91t4oeMBT2UUvtcIx7VW5QEF-xbXLNgu0nfFPDPblbd44x_70lk
-Message-ID: <CAJhJPsXwT45Q7j5XtEujsMnYgMMAbzg53d0T8YGCv1SuoYFJ_g@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] mtd: rawnand: loongson: Add Loongson-2K nand
- controller support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-For the whole series:
-
-Reviewed-by: Keguang Zhang <keguang.zhang@gmail.com>
-Tested-by: Keguang Zhang <keguang.zhang@gmail.com> # on LS1B & LS1C
-
-On Thu, Sep 4, 2025 at 9:07=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
- wrote:
->
-> Hi all:
->
-> This patchset adds support for the Loongson-2K0500/Loongson-2K1000 NAND
-> controllers, which are similar to the Loongson-1C NAND controller.
->
-> They support a maximum capacity of 16GB FLASH per chip, with a maximum
-> page size of 8KB. The chip supports up to 4 chip selects and 4 RDY signal=
-s.
->
-> The key difference between the Loongson-2K NAND controllers is that the
-> Loongson-2K1000 explicitly configures the DMA controller routing, while
-> the Loongson-2K0500 defaults to using APBDMA0.
->
-> Summary of the patchset:
-> Ptach 1: Rename all prefixes from ls1x to loongson
-> Patch 2: Add 6-byte NAND ID reading
-> Patch 3: Add chip select support
-> Patch 4-5: Add Loongson-2K0500 NAND controller support
-> Patch 6-7: Add Loongson-2K1000 NAND controller support
->
-> Thanks.
->
-> -------
-> V4:
-> Patch (5/7):
->   - Split the flags variable into dma_bits;
->   - Chip selects set before requesting the DMA channel;
->   - '|' should be last character on the previous line.
-> Patch (7/7):
->   - Use devm_platform_ioremap_resource_byname();
->   - Add the dma_config() function pointer to replace the previous flags.
->
-> Link to V3:
-> https://lore.kernel.org/all/cover.1755757841.git.zhoubinbin@loongson.cn/
->
-> V3:
-> Patch (1/7):
->   - Merge the first two rename patches;
-> Patch (3/7)
->   - Refact chip capacity calculation. Use a big switch-case
->     for writesize, and sort the big switch-case by writesize;
->   - Drop the redundant 'nand_cs =3D 0x0';
-> Patch (6/7)
->   - Add Reviewed-by tag from Rob, thanks.
->
-> Link to V2:
-> https://lore.kernel.org/all/cover.1754890670.git.zhoubinbin@loongson.cn/
->
-> V2:
-> Patch (5/8):
->   - Add Acked-by tag from Rob, thanks;
-> Patch (7/8):
->   - Update reg-names attribute description.
->
-> Link to V1:
-> https://lore.kernel.org/all/cover.1753166096.git.zhoubinbin@loongson.cn/
->
-> Binbin Zhou (6):
->   mtd: rawnand: loongson1: Rename the prefix from ls1x to loongson
->   mtd: rawnand: loongson: Add nand chip select support
->   dt-bindings: mtd: loongson,ls1b-nand-controller: Document the
->     Loongson-2K0500 NAND controller
->   mtd: rawnand: loongson: Add Loongson-2K0500 NAND controller support
->   dt-bindings: mtd: loongson,ls1b-nand-controller: Document the
->     Loongson-2K1000 NAND controller
->   mtd: rawnand: loongson: Add Loongson-2K1000 NAND controller support
->
-> Keguang Zhang (1):
->   mtd: rawnand: loongson: Add 6-byte NAND ID reading support
->
->  .../mtd/loongson,ls1b-nand-controller.yaml    |   56 +-
->  MAINTAINERS                                   |    2 +-
->  drivers/mtd/nand/raw/Kconfig                  |    8 +-
->  drivers/mtd/nand/raw/Makefile                 |    2 +-
->  .../mtd/nand/raw/loongson-nand-controller.c   | 1024 +++++++++++++++++
->  .../mtd/nand/raw/loongson1-nand-controller.c  |  836 --------------
->  6 files changed, 1083 insertions(+), 845 deletions(-)
->  create mode 100644 drivers/mtd/nand/raw/loongson-nand-controller.c
->  delete mode 100644 drivers/mtd/nand/raw/loongson1-nand-controller.c
->
->
-> base-commit: c9f62564252c21d739a5003e9b2d6ad0828aa7bd
-> --
-> 2.47.3
->
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: lemans-evk-camera: Add DT
+ overlay
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+	<rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, <vladimir.zapolskiy@linaro.org>,
+        <linux-i2c@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250910-camss_rb8-v4-0-28f44e1880b8@oss.qualcomm.com>
+ <20250910-camss_rb8-v4-3-28f44e1880b8@oss.qualcomm.com>
+ <u437qomhok4yg6pef4xttd3a6zibuybzaeys33gxu5frbyp2kp@mgmym6c5dr72>
+Content-Language: en-US
+From: Wenmeng Liu <quic_wenmliu@qualcomm.com>
+In-Reply-To: <u437qomhok4yg6pef4xttd3a6zibuybzaeys33gxu5frbyp2kp@mgmym6c5dr72>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfXx3J+vFEioTpC
+ yQ+XysRwFvZIJSBHP1dJ/Tw2Y2uMC6hLN2NsDC4Q7cSHsupeOBQCt2wcA7gIOz/+zZ4oov5lgMl
+ PKld15bkn/dQ72a82C7/W3wV2ZAv0n+PFEFULwHQ+/SjS4TLRF1jfmZ2vJUWwj/wstgxpFNLARZ
+ c29jAqbfNA+D09+JHSnB6IZYe1r1r8BYXjujS+A88VBtqPZ+/ypTMYqZ+eCbCVfgQ+imW4X7fAS
+ F4+7Wu8TY+WJjg7AR3m3PzUSVv4tQMmUIqug7dyXg1RSA1eO7BB5Ll71kOK1V9G/H0VxEt2v4tt
+ Fa91mmEPN0/YRgWkIzKvwaaQGeeE2YU8oM2dH5f2arKLue/1uqhqnKDcJH7od5mHGvn6tM5WvpL
+ f6HIq9UT
+X-Proofpoint-ORIG-GUID: FgBDNynFUxujAwApYBUo3niDWhMtQkQj
+X-Proofpoint-GUID: FgBDNynFUxujAwApYBUo3niDWhMtQkQj
+X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68c26225 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
+ a=7BtIlnkysfzPWxNvCm8A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
 
 
---=20
-Best regards,
 
-Keguang Zhang
+On 9/10/2025 11:23 PM, Dmitry Baryshkov wrote:
+> On Wed, Sep 10, 2025 at 07:06:23PM +0800, Wenmeng Liu wrote:
+>> Enable IMX577 via CCI1 on LeMans EVK Core Kit.
+> 
+> Is it a part of the Core Kit? Is it a part of some kind of mezzanine
+> board? Why is it being enabled as an overlay instead of being a part of
+> lemans-evk.dts?
+> 
+Since the sensor is not part of the default hardware configuration on 
+the core kit, we adopt a device tree overlay solution to enable its 
+integration dynamically.
+
+Thanks,
+Wenmeng
+
 
