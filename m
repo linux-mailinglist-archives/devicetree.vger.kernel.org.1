@@ -1,231 +1,139 @@
-Return-Path: <devicetree+bounces-216075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E745B538DA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:13:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A47B538DC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:13:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDAE73A95A4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:13:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E09AD3AA7E0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F11635334F;
-	Thu, 11 Sep 2025 16:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7218133EB0D;
+	Thu, 11 Sep 2025 16:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nic.cz header.i=@nic.cz header.b="MEHaG9VD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VUZScqso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.nic.cz (mail.nic.cz [217.31.204.67])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD6C313E3E
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 16:13:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.31.204.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B9220ADD6;
+	Thu, 11 Sep 2025 16:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757607208; cv=none; b=PNdYBNMG/SsPJYdVcJcqDqyYlLQG0Gws4vLJstzECG3aWySoeVCsg/C/PJTNyyTzVg1gQU7zeH5vvFcAd5y72OhHP+CXZwOPP6a+GcVSB4fya0E+kLKWkGplOxtfbnMrX0EdO13LJJhqe/eQI6/x0Si3K6HvJ8KUizNpqXotzno=
+	t=1757607223; cv=none; b=KKi8qEyDv3ChMJx2tu5sm5rmmeoHc0j7Mmtpb2RVpvTiIFRDshfSFd0HIqXOKK9P6aXJD8HUAgHUzqxvTpi4fdpHTt9avyhHrWU7SodvxkdFVPighDXUJN/2NKU4Q1xG3CeLn1i0M0kLDth7E0mkMRa57QkpIKTwjUdBjz/ZL98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757607208; c=relaxed/simple;
-	bh=loPbKNgZ8J9ICzz7t+HtfeYKoO2K29YEzzDdGgM0vwc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jkEXxKmIqfAWtPUOm6v7xveIf1mst2zS2YEI1ipZooIkOiw+2/ZYJoSVhRBO6hJK2z++S8nQ6UTXXK3wYehqsXZS+oX5kXy1vka/hrrXwWQK1oRLJl2NQADJQJfuJuEH72hyhlgPA2IjpRyQ1VfTbLnCA7mcvULCj1XPYt7Dy2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nic.cz; spf=pass smtp.mailfrom=nic.cz; dkim=pass (1024-bit key) header.d=nic.cz header.i=@nic.cz header.b=MEHaG9VD; arc=none smtp.client-ip=217.31.204.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nic.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nic.cz
-Received: from localhost.localdomain (unknown [IPv6:2001:1488:fffe:6220:c8a4:e06:31cb:d419])
-	by mail.nic.cz (Postfix) with ESMTPSA id 311841C116E;
-	Thu, 11 Sep 2025 18:13:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nic.cz; s=default;
-	t=1757607199;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E22GG/NNmBS10tfg9faKQUgB2503XOAKhaqk/cxmMWo=;
-	b=MEHaG9VD8Lzw76uy0EHIjddsZhkGYGTrZlTBw44ZKKX0BDDTsfI4uVWe0nJ2VRr5S6tCou
-	0R1zNLx104PVTcfZc9ZLy2ZYzFYJMVLhHPCquhuTe8BKcqE6gaS84HX/M38WXZ7iLkWKAr
-	Tao5r+erGlFjh4zkyva8wr9wS9mHF7M=
-Authentication-Results: mail.nic.cz;
-	auth=pass smtp.auth=tomas.macholda@nic.cz smtp.mailfrom=tomas.macholda@nic.cz
-From: =?UTF-8?q?Tom=C3=A1=C5=A1=20Macholda?= <tomas.macholda@nic.cz>
-To: gregory.clement@bootlin.com
-Cc: devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	robh@kernel.org,
-	kabel@kernel.org,
-	michal.hrusecky@nic.cz,
-	=?UTF-8?q?Tom=C3=A1=C5=A1=20Macholda?= <tomas.macholda@nic.cz>
-Subject: [PATCH v3 2/2] arm64: dts: marvell: add dts for RIPE Atlas Probe v5
-Date: Thu, 11 Sep 2025 18:13:08 +0200
-Message-ID: <20250911161308.52876-3-tomas.macholda@nic.cz>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250911161308.52876-1-tomas.macholda@nic.cz>
-References: <20250911161308.52876-1-tomas.macholda@nic.cz>
+	s=arc-20240116; t=1757607223; c=relaxed/simple;
+	bh=1etK93HnG/U70MtpQ4yz5j14nB+hdJHjl+ApAiWS2Mo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Ttnffz2I+IJpBEr4r+NL7yoOZrrR2hF/bVoYzSw00mToXyeCJbZ04BM14sgarN2dBLqDCrFILDnlAAH9J/9I4RpDiHpyMmsiKkUmL1dw71Oy03nFe3WBzcTvYuvgGPwqe7OLsq2/iNdbTYgZYxvhJ+yuZ+0ItHS0q8+HBE11SgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VUZScqso; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D28C4CEF0;
+	Thu, 11 Sep 2025 16:13:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757607222;
+	bh=1etK93HnG/U70MtpQ4yz5j14nB+hdJHjl+ApAiWS2Mo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=VUZScqsox3d0qSL/0Mbgt4MPOpU/rsy7a4hdYqTV5mgagrR4cIWgFI8I2A7KD+DvG
+	 uxP/vIJi0YEQ/E9sXrvNPVt1slixvGb/BThrphuGSGscOO3qxaFx0zm9PgfeMnxdqx
+	 xUfiQJM2KfldAJcV5uvbI7NwX6NKZZt2Lo2FDBWHjBjDgCfNPU6GrowJnL+x8jo0ly
+	 sMsve+0diToJfCtYfYYxMLwXMD/KP3r/5ZfC/YZOM+Iwqe7n3f+s+Z5cOgy9ZSr1Pt
+	 6wljjrg7PAzSJiy7eqn5K/cfNkWxZA+L3+G2do+p8FU/J1j5WUGl1qjpBcZFJRvqZ6
+	 jlwvQ4kGyCOcQ==
+Date: Thu, 11 Sep 2025 11:13:41 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+	Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@amd.com>
+Subject: Re: [PATCH] PCI: of: Update parent unit address generation in
+ of_pci_prop_intr_map()
+Message-ID: <20250911161341.GA1579997@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Action: no action
-X-Rspamd-Pre-Result: action=no action;
-	module=multimap;
-	Matched map: WHITELISTED_IP
-X-Rspamd-Queue-Id: 311841C116E
-X-Spamd-Bar: /
-X-Spamd-Result: default: False [0.49 / 16.00];
-	R_MIXED_CHARSET(0.59)[subject];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	ASN(0.00)[asn:25192, ipnet:2001:1488::/32, country:CZ];
-	ARC_NA(0.00)[];
-	WHITELISTED_IP(0.00)[2001:1488:fffe:6220:c8a4:e06:31cb:d419];
-	FROM_HAS_DN(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email,0.0.0.1:email];
-	DKIM_SIGNED(0.00)[nic.cz:s=default];
-	FROM_EQ_ENVFROM(0.00)[];
-	MIME_TRACE(0.00)[0:+]
-X-Rspamd-Server: mail
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250818093504.80651-1-lpieralisi@kernel.org>
 
-internet measurement device based on Turris MOX
+On Mon, Aug 18, 2025 at 11:35:04AM +0200, Lorenzo Pieralisi wrote:
+> Some interrupt controllers require an #address-cells property in their
+> bindings without requiring a "reg" property to be present.
+> 
+> The current logic used to craft an interrupt-map property in
+> of_pci_prop_intr_map() is based on reading the #address-cells
+> property in the interrupt-parent and, if != 0, read the interrupt
+> parent "reg" property to determine the parent unit address to be
+> used to create the parent unit interrupt specifier.
+> 
+> First of all, it is not correct to read the "reg" property of
+> the interrupt-parent with an #address-cells value taken from the
+> interrupt-parent node, because the #address-cells value define the
+> number of address cells required by child nodes.
+> 
+> More importantly, for all modern interrupt controllers, the parent
+> unit address is irrelevant in HW in relation to the
+> device<->interrupt-controller connection and the kernel actually
+> ignores the parent unit address value when hierarchically parsing
+> the interrupt-map property (ie of_irq_parse_raw()).
+> 
+> For the reasons above, remove the code parsing the interrupt
+> parent "reg" property in of_pci_prop_intr_map() - it is not
+> needed and as it is it is detrimental in that it prevents
+> interrupt-map property generation on systems with an
+> interrupt-controller that has no "reg" property in its
+> interrupt-controller node - and leave the parent unit address
+> always initialized to 0 since it is simply ignored by the kernel.
+> 
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Lizhi Hou <lizhi.hou@amd.com>
+> Link: https://lore.kernel.org/lkml/aJms+YT8TnpzpCY8@lpieralisi/
 
-Signed-off-by: Tomáš Macholda <tomas.macholda@nic.cz>
----
- arch/arm64/boot/dts/marvell/Makefile          |   1 +
- .../boot/dts/marvell/armada-3720-atlas-v5.dts | 110 ++++++++++++++++++
- 2 files changed, 111 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dts
+Applied to pci/of for v6.18, thanks, Lorenzo!
 
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 40e5ac6cd468..a774bc74a0a0 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- # Mvebu SoC Family
-+dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-atlas-v5.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dts b/arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dts
-new file mode 100644
-index 000000000000..070d10a705bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dts
-@@ -0,0 +1,110 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree file for RIPE Atlas Probe v5
-+ * 2025 by Marek Behún <kabel@kernel.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/bus/moxtet.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "armada-372x.dtsi"
-+
-+/ {
-+	model = "RIPE Atlas Probe v5";
-+	compatible = "ripe,atlas-v5", "marvell,armada3720",
-+		     "marvell,armada3710";
-+
-+	aliases {
-+		ethernet0 = &eth0;
-+		mmc0 = &sdhci0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led {
-+			gpios = <&gpiosb 21 GPIO_ACTIVE_LOW>;
-+			function = LED_FUNCTION_ACTIVITY;
-+			color = <LED_COLOR_ID_RED>;
-+			linux,default-trigger = "default-on";
-+		};
-+	};
-+
-+	vsdc_reg: vsdc-reg {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vsdc";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+
-+		gpios = <&gpiosb 23 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+		states = <1800000 0x1
-+			  3300000 0x0>;
-+		enable-active-high;
-+	};
-+
-+	firmware {
-+		armada-3700-rwtm {
-+			compatible = "marvell,armada-3700-rwtm-firmware", "cznic,turris-mox-rwtm";
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>;
-+	status = "okay";
-+};
-+
-+&eth0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii_pins>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&phy1>;
-+	status = "okay";
-+};
-+
-+&sdhci0 {
-+	non-removable;
-+	bus-width = <4>;
-+	mmc-ddr-1_8v;
-+	mmc-hs400-1_8v;
-+	sd-uhs-sdr104;
-+	marvell,xenon-emmc;
-+	marvell,xenon-tun-count = <9>;
-+	marvell,pad-type = "fixed-1-8v";
-+	vqmmc-supply = <&vsdc_reg>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc_pins>;
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	mmccard: mmccard@0 {
-+		compatible = "mmc-card";
-+		reg = <0>;
-+	};
-+};
-+
-+&mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&smi_pins>;
-+	status = "okay";
-+
-+	phy1: ethernet-phy@1 {
-+		reg = <1>;
-+	};
-+};
--- 
-2.47.3
-
+> ---
+>  drivers/pci/of_property.c | 21 ++++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> index 506fcd507113..09b7bc335ec5 100644
+> --- a/drivers/pci/of_property.c
+> +++ b/drivers/pci/of_property.c
+> @@ -279,13 +279,20 @@ static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+>  			mapp++;
+>  			*mapp = out_irq[i].np->phandle;
+>  			mapp++;
+> -			if (addr_sz[i]) {
+> -				ret = of_property_read_u32_array(out_irq[i].np,
+> -								 "reg", mapp,
+> -								 addr_sz[i]);
+> -				if (ret)
+> -					goto failed;
+> -			}
+> +
+> +			/*
+> +			 * A device address does not affect the
+> +			 * device<->interrupt-controller HW connection for all
+> +			 * modern interrupt controllers; moreover, the kernel
+> +			 * (ie of_irq_parse_raw()) ignores the values in the
+> +			 * parent unit address cells while parsing the interrupt-map
+> +			 * property because they are irrelevant for interrupts mapping
+> +			 * in modern system.
+> +			 *
+> +			 * Leave the parent unit address initialized to 0 - just
+> +			 * take into account the #address-cells size to build
+> +			 * the property properly.
+> +			 */
+>  			mapp += addr_sz[i];
+>  			memcpy(mapp, out_irq[i].args,
+>  			       out_irq[i].args_count * sizeof(u32));
+> -- 
+> 2.48.0
+> 
 
