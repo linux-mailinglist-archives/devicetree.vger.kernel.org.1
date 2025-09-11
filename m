@@ -1,99 +1,114 @@
-Return-Path: <devicetree+bounces-215944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723F1B5339A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:24:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51FCAB533AA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:26:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0B3E7BFC51
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:22:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDE40A0803C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DBC326D58;
-	Thu, 11 Sep 2025 13:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D15532ED30;
+	Thu, 11 Sep 2025 13:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CaDSz7w6"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="FIfIOjPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654103112D9;
-	Thu, 11 Sep 2025 13:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B12532BF49
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757597046; cv=none; b=loYPLPpnuNvREl+9gErmsUTS3whONwYxJB0Va6HvlPMglI0BKY4+uZDeuFpHb/buknACzX5yrick5TVjbladxrr5ILL/8q/iNtoo7ocp7x/3SPR2rVrG5wrigbHXaP63nQrsWigmtO0RNXjV5TdvUwWQffximr0VOF/P+sRRFUE=
+	t=1757597115; cv=none; b=l9bhgEkLzgTq3mHpSxn2M+neKbV5FuTrAgi7siqffGR2sk9ds7cdZYI+o44RmG/jLTQay1IFOmIknKw3yguMAs3I/NOX3JSeB9t1sZpi4/fVuxZurHQm2qEG2HlvLSqEU4gy/y4UzHHqWbvykIO+wyidz8ikA27lY6AKQDzMqiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757597046; c=relaxed/simple;
-	bh=ReBPBkxXd+EypkUBHcKbC5D48dqv14ID4CKpjTXEUa4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qVG3GUuNgJ3qAl8Zb+HzCko0OaVI2hah5guCxCTNFzoPL9vNeapZuYGBTpD4kmXEM/60MeH44MKoCHaSfoIx9QKCKSDk9k8S//JxGkIPnCXQ4MFZucSi/cTeZ6L4WWiNZB1wKFOZbPtyF2st1SpOGaBr2XJvqrT4g4b7ECQfZAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CaDSz7w6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2804AC4CEF0;
-	Thu, 11 Sep 2025 13:24:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757597046;
-	bh=ReBPBkxXd+EypkUBHcKbC5D48dqv14ID4CKpjTXEUa4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CaDSz7w62JVQ9qph9vkiqPWEkMdO9ksAVmIJj6NNKrNQhtpY77er7EdYsXNaC3Gw7
-	 Or7QidGxUnAo4jA+WYPKEG0esydorOwwWQZMNuyXSKReLFJbk9OUJjmMX1h8WrZaCC
-	 kdugKwZrxFmyMFGRCijvIsDKthcvmqU6FbjU7TfoPRV/fEKPknX6eThWyBYYYCmWGy
-	 NnptvyWq2o2frDJrRPJalmbwzPlpzkUokxPIWhCQK0WY4lfqfYh6AH5G/p/N9YIJYF
-	 TZ4WZwjrZBDTfKUguTN6o6JgjeEoNWh5YbaKNSRXQFbXRrQSUX+E1cGz+mssdgJDSF
-	 6ZLuO0WOJbW1Q==
-Date: Thu, 11 Sep 2025 06:24:04 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: Shawn Guo <shawnguo2@yeah.net>, Frank Li <Frank.li@nxp.com>, Joy Zou
- <joy.zou@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, richardcochran@gmail.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- frieder.schrempf@kontron.de, primoz.fiser@norik.com, othacehe@gnu.org,
- Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com, netdev@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v10 0/6] Add i.MX91 platform support
-Message-ID: <20250911062404.1d2c98f6@kernel.org>
-In-Reply-To: <aMI6HNACh3y1UWhW@dragon>
-References: <20250901103632.3409896-1-joy.zou@nxp.com>
-	<175694281723.1237656.10367505965534451710.git-patchwork-notify@kernel.org>
-	<aMI0PJtHJyPom68X@dragon>
-	<aMI1ljdUkC3qxGU9@lizhi-Precision-Tower-5810>
-	<aMI6HNACh3y1UWhW@dragon>
+	s=arc-20240116; t=1757597115; c=relaxed/simple;
+	bh=tvHtynkzdv1a6/2GIDVhvXbYgP7ctogGxu+SLDsFVek=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eoN+ZR+JAKmj1m3F08ZSNtIpWl1j2k+inG6PsIRgKUPVV9xXllk4rEkR9TT+iT105eM0jKBzVGZRePnXGs64L2oDW4M3MIYufkA6EIKqYzlkInA5QcOzQmVci4LShgcTs9wG/UaJESjbbXfAImFyoVCeJyEs75OSwIvcIkXPfeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=FIfIOjPk; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-55f6b0049fbso792790e87.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:25:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757597111; x=1758201911; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sKH9Tq5JpqAq1HnW1xohkQd88Pw1g4E8ukSxiOhM484=;
+        b=FIfIOjPkSwlc6EbFu6WXdlEpy4VWaKnLjZR6H/dP1XwFlkg+C2xUgxtbIOc1g7yz7M
+         GJVAZPqabKe1lAheW1Q+c9zQ2lV18QjU0DIbNJMMk7mVeT9dWXagRHkRqCMbFEAp1L9e
+         ejOYM2V75YUgzrxWHgptill6ER5hots1aOG1mrlrP6UUL9RzTQfRpCBKqQLurGZG5aEa
+         Jo3yGr7g5ANpqubCjx0vo3xFiN7IFMa+jUikcTnIkfgDdqRVjf9yi6RZmP8BvsoDvQol
+         cXlP123VceslaCUvdMGv3JzT2H//oIcQfYpvbh+2O84RpMJeaTtmPhuPkZPOyoCfRglR
+         pnHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757597111; x=1758201911;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sKH9Tq5JpqAq1HnW1xohkQd88Pw1g4E8ukSxiOhM484=;
+        b=f8cM3NQ8nfmg3won3cWHtF1r7AgChZR9aoPk4ITMWGkLJT8V4DWjmtUb7+deP4Qdhe
+         J3VqAapIbf6fFRgh59r7RjCG9OoDA9Yz7BgU29J6hZAWOwuH2XverK63QaUJkUAU43+C
+         t5Pyf70mN/aChnH0+k6DB/M2w/5rdiEdvbksWooStdB/aV+aH/EdkcV65wBHcBCd3sk1
+         IKlN3NLXaYWeg7dlCalp7FiPGI7a+UFP/hxg3VAcfaTjNKJwCYTHX1+tGjicEUN/K5K1
+         pFwO1/9gnAJnNSvAdMMSrPYBIy1C9s+gQ4TxbsbKZVU5BaT/3RKJ+5SpVzJaYSUVtv/P
+         84PA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNSvSWPtzrSRegkSrRwW21ROFhdoZERv3Yjqh/9ocviVuCcKqdUb1yS6dUTc/1Y979hP4hhMnBloyH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwW2QuOo1pzt2ZOaj3r7ytVVbVkgPZd0AkwSmysN1LY3Y0BhfZJ
+	0Dh3B2p3gktmuBZuTdsbDnOsUZ3lKwLwnbH57M5fYTtqhQFBJvOBFMnkvArCJYknk5/mrQiQiih
+	e4dxjwTf7c/OIixBIMvHxcIYIKehcLb8nWNQYqui51w==
+X-Gm-Gg: ASbGncvJtV3ZRVIJTfnuvt69gbLLFvD5QQqa4KWakFglK0o9Zcnr5MfCg2DGOSoINrN
+	WLicEO9X/OX969NKWGIESo+o5AOQqmW+YZepMh7jvMRGpZNWeMIDaJ0frlX081R0zN4OSabriS1
+	k3UAsc4t+tmrSQhZSx8UKOHqh2xKtDpMrRr1CqE0HmTCjt8eOvaCNHrh12EuDczrqOmQOR2WzGA
+	EwzeFUuh7dyDKLnUn+MsJrE0mgyoxJ56O3dSxY=
+X-Google-Smtp-Source: AGHT+IFsA5ZOyU9tpTag4iQY+UEBWc1v4AgFQ6DjU2UnALeCrswvvm+lEztT+M/sSG35UIi0IcRGR77vi6rw6ChMafc=
+X-Received: by 2002:a05:6512:33cd:b0:55f:489d:7bd with SMTP id
+ 2adb3069b0e04-5625d28e732mr6154709e87.0.1757597111174; Thu, 11 Sep 2025
+ 06:25:11 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 11 Sep 2025 08:25:10 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 11 Sep 2025 08:25:10 -0500
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20250908-lemans-evk-bu-v4-4-5c319c696a7d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com> <20250908-lemans-evk-bu-v4-4-5c319c696a7d@oss.qualcomm.com>
+Date: Thu, 11 Sep 2025 08:25:10 -0500
+X-Gm-Features: Ac12FXyxL1zBhnbmQPIz3eBGCsQd9d-c4NEoyZ66twALqJFT9m4E9c429dd_4HA
+Message-ID: <CAMRc=Mf8P=4vucch0sAtPNZ7DBB0Kw1hgvP1YLgZ5ZRfusFG-w@mail.gmail.com>
+Subject: Re: [PATCH v4 04/14] arm64: dts: qcom: lemans-evk: Add TCA9534 I/O expander
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 11 Sep 2025 10:55:24 +0800 Shawn Guo wrote:
-> > > Can you stop applying DTS changes via net tree?  
-> > 
-> > shawn:
-> > 	Suppose Jaku only pick patch 6.
-> > 
-> >         - [v10,6/6] net: stmmac: imx: add i.MX91 support
-> >           https://git.kernel.org/netdev/net-next/c/59aec9138f30
-> > 
-> > other patches is "(no matching commit)"  
-> 
-> Ah, sorry for missing that!  Thanks for pointing it out, Frank!
+On Mon, 8 Sep 2025 10:19:54 +0200, Wasim Nazir
+<wasim.nazir@oss.qualcomm.com> said:
+> From: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+>
+> Integrate the TCA9534 I/O expander via I2C to provide 8 additional
+> GPIO lines for extended I/O functionality.
+>
+> Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/lemans-evk.dts | 32 ++++++++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>
 
-The output is a little confusing.
-
-Konstantin, would it be possible to add (part) to the subject of the
-patchwork bot reply when only some patches were applied? I've seen
-other people's bots do this. Something like:
-
- Re: (part) $subject
-
-? Maybe there are other ideas how to express that just part of the
-series was applied, no real preference.
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
