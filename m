@@ -1,118 +1,208 @@
-Return-Path: <devicetree+bounces-216023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C7AB536EC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0E2B5370E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10AD51671D0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:05:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 285F21610F0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17B432A837;
-	Thu, 11 Sep 2025 15:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3C03469F0;
+	Thu, 11 Sep 2025 15:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="Tp0xnrD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB3B3112D8;
-	Thu, 11 Sep 2025 15:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757603119; cv=none; b=ghbEvcPODHCPwJWOgS7wtRXuUMg+Lqp5aTXeWAuiWuQwh2OlsXznV2ivTHvRKXas/vuGVMk9PFB8WjNA1u6yZHcUbm0EQ/nAHF8ogzyzrw/wzE6xyz/wKW5naqqqNLxk6G2NTJvenV427A3Xb9XI+mEzrXNlzecx7hTEY+8J8nY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757603119; c=relaxed/simple;
-	bh=KRY2FXreUBqtRhbOZ7otiCoe732nLJvk9bnCJZazRVA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Sg5Ip4dQBd1JEU5Jc+9rOHPyHxqjkgKbuuOo+FsnUF1UIHnq1ykfazMSFFkiOzB6aoH3J2Bo4ER6xWxbthAT2v0fURC6Rox+IVJOWUI87CRwRtn3o0jG9VO7RmbNmmD5HINGr62bVGXNLv7enA+eErkdFZ7iAyolktlOK3QsNZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-72267c05050so7152927b3.3;
-        Thu, 11 Sep 2025 08:05:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757603115; x=1758207915;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IaaIltXRJkN9MT3ArkM4E5oYZVvz3Y8pYWZcT0NrNFI=;
-        b=lsQXx+AAFpA4wCHFyXYeVeSpWn0HXs+kFERSDIdGx677f+ORfTqVNaVCZ+xypR29YS
-         C+QryBHvz3ubOItajB+XWDM5dkW/yL+5lYRF9uEkni+V0oE2Imyg+/KqnT1t+Z4pmle4
-         I8kjZfoU2yAEIkOMufykxaBgvAmUHy6iy21pBezJU2gM9zNmUZMnnv/4hd265ccYh7ch
-         kyhK+1VtDMQN9EdtfKmsGy9z7WRjid8Xlw8ZBBYxWZXNVBjp0Wci7/1ncoma58VGXRnp
-         Blqo1zgxIQi4SspOB2Le/TEDfuGjELASE0zaAGUG/+S4/w9ptXhC2XFWI6N45yJGX8qV
-         Ukyg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpFgBOla/0AaGzr511U1XzCdRbXB0Xy+RQ/Bt1eVdkUldPcBtyMfAtiXhusNLehKakPNpdQAIGIj16Py7q87EzSsA=@vger.kernel.org, AJvYcCXraXkdAUiuuuUuKCIn/zDTqp0Foz2WDa48WoXuLgF74HaUVX7M9O5JCO8AAEL9cvoG/iUOZPyarYEI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGAbWcRO5u7KP6jGie73+K6sZBqvQprxmeLRL6wxs/PoOTZ+nC
-	AsCkCwV0EbE+KPLd6hEb61fdv5w64WqMdFvN0BrJWUBiIg0q+/nPq04TUg164gcD
-X-Gm-Gg: ASbGncsWJ8QKf3VyacGiPEg7lhyJ+Sen72psF4bGabuSzQVCnR9nbfT420LPE2yFt16
-	DPPEzHfUOdRe9QHex2j+lNqkvsXxIR8oLi91nAhWR19cifFMQA/q0l47TU5L+Bl3rf4esKM86AK
-	c27R5LKITshkxst7DrAJ/p9+8fLUcEMKlYij4N7Kfj6Zyt+VcGcS7pvJZlZ9UNnSvzAuq+kYkQd
-	DbLXhNxuIi9q58jV+h7XvRSbMURDcu9sQGDVzrd30gZELaESpMNGEh7tKewhP+CbwTkXbCIHrWx
-	WkP3Jtiukl8BUQzhD6JIwBlkIvYyWQ3Dre/Ie+2VoGsr5zCHYiIy3IUzbDVRrPb3mO+ZEPHYwyV
-	lV4IsjRQUc+Zw6E/JpJziklTH9MbDJNWkNuDbskROVYJWCqvy61PRSjUS6RA7Nn+q
-X-Google-Smtp-Source: AGHT+IG/9djbvdZovWHdNEqXP5FX5nc2kpOR5cArBrcUAUVjHMXvHZ1IVSlo1sZ4CA7L40zbPQPdcw==
-X-Received: by 2002:a05:690c:3609:b0:721:6b2e:a08e with SMTP id 00721157ae682-727f4d614e4mr148978907b3.34.1757603114647;
-        Thu, 11 Sep 2025 08:05:14 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-72f769302acsm4053057b3.29.2025.09.11.08.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 08:05:14 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e94d678e116so852522276.2;
-        Thu, 11 Sep 2025 08:05:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUuCjCFANYkzdjfVEYh/bXa942Fl0eRhnolqqJQFahg0FsrtpzlSyL9hKyGYKQVdoadms8CwYeQ6tZ/@vger.kernel.org, AJvYcCVYbKzg9RnVtcM4Ebw9a9tJ3f1IG77OHQevv+WcpiaGQtqD3QGUOEsgdd7LqXRjRj3ICFOtPRcu8dO+cY/I9iOfRW4=@vger.kernel.org
-X-Received: by 2002:a05:6902:2004:b0:e97:a30:99f2 with SMTP id
- 3f1490d57ef6-e9f677a2599mr16435493276.30.1757603113356; Thu, 11 Sep 2025
- 08:05:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2FE15746E;
+	Thu, 11 Sep 2025 15:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757603592; cv=pass; b=hqh3e5WQh6x+lCeKEymzLyrYR7a/ZOA0qo+fAC3o4o5fNLB+Us9J4SNMez5hCeCRXGBLqhvxNNWf09f20m/+HyZWoJbPVwdajZ9HWFvbCqLlQ8TTqL2aEXegK92ib0FIT33rTKX83PRnRmRpnnkfp49V8erk/ba4uJzLXQh+mbQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757603592; c=relaxed/simple;
+	bh=dPiSK05fxe+FuQby1ebrZdrIQ9EXZx7N4NljlqZ2c2U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oS/k0DkoOhvLPDWRDqvH16uRVp73hvXAOWgqluoZnVklb3eubfX6TLMph/fhEAZHzjuA2FpTBWtBKsNkE4Q3bPFMR0q9ftrpNziLsANUkHKGKmX5UNl/bmFHviMg+Aymuu+cPa2EB4qb9i9hoAz1jA4QSR1FUccObPrGnlog45g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=Tp0xnrD2; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757603532; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=B9IGFw7LplNPOkZEq5rg//uOHf2EjeiJHVJse7seMUTzZIMxYd1TVrOZN0zUbq5Xq33L+9q9+TqFilkErBnjfaa/NpughWfaUjECxVa+0PaEb+YDKAdGNrY++tuNVVIv/wj8tJU+KqRR3v9zzmvdP6gOS405s9ICJ1bawZoNf0E=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757603532; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4E1gkCV3bUB24+jEbYd5O83SC/ksIpy9YseSb1Bd3iA=; 
+	b=OYspCStGN7dInL2eQAJ59H16VwPLP5z4wWe5Nr6htKYI4pPJuPUYGIV4faEbAdxSfzVEwkFgj+ZF3SmcHreJc8qUT/uzUAHUdyXtnkWOokhqUalCV4rW9dIvNsZfNzhRjZLbbMNHmz9gEQaCCxIvVLYhrFc0Y2lAOG7iIOnvWyc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
+	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757603532;
+	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=4E1gkCV3bUB24+jEbYd5O83SC/ksIpy9YseSb1Bd3iA=;
+	b=Tp0xnrD2zRi58CffU5G3TaTiLbJcAER4BZDZ/9WPboVLvTu6uzg9VYi/ZTt2X5qw
+	PMD8pJ8vo2CnYFCkcKqSC4Ganw2/UNoxh4q3T1CUWsieDlvzRf8LKJqusv5Qlx+IBze
+	ExFMJOuw5cTRX/uVEXriSe7jqmq8yEDKe+84VPaw=
+Received: by mx.zohomail.com with SMTPS id 1757603530466436.8737694403886;
+	Thu, 11 Sep 2025 08:12:10 -0700 (PDT)
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To: airlied@gmail.com,
+	amergnat@baylibre.com,
+	andrew+netdev@lunn.ch,
+	andrew-ct.chen@mediatek.com,
+	angelogioacchino.delregno@collabora.com,
+	ariel.dalessandro@collabora.com,
+	broonie@kernel.org,
+	chunkuang.hu@kernel.org,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	dmitry.torokhov@gmail.com,
+	edumazet@google.com,
+	flora.fu@mediatek.com,
+	heiko@sntech.de,
+	houlong.wei@mediatek.com,
+	jeesw@melfas.com,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	lgirdwood@gmail.com,
+	linus.walleij@linaro.org,
+	louisalexis.eyraud@collabora.com,
+	luiz.dentz@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	marcel@holtmann.org,
+	matthias.bgg@gmail.com,
+	mchehab@kernel.org,
+	minghsiu.tsai@mediatek.com,
+	mripard@kernel.org,
+	p.zabel@pengutronix.de,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	sean.wang@kernel.org,
+	simona@ffwll.ch,
+	support.opensource@diasemi.com,
+	tiffany.lin@mediatek.com,
+	tzimmermann@suse.de,
+	yunfei.dong@mediatek.com
+Cc: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-bluetooth@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-sound@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v2 00/12] MediaTek dt-bindings sanitization (MT8173)
+Date: Thu, 11 Sep 2025 12:09:49 -0300
+Message-ID: <20250911151001.108744-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se> <20250905084050.310651-5-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20250905084050.310651-5-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Sep 2025 17:05:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXGq28ckKnFpoxRdoGhY=Lr2PYxFT9Rz-4wRYdc0KeGoA@mail.gmail.com>
-X-Gm-Features: AS18NWD-ws9A7GUZQDNSJNGFupkCVY15toHjBurWFud7AiSvgbGshpeDxs2Fck4
-Message-ID: <CAMuHMdXGq28ckKnFpoxRdoGhY=Lr2PYxFT9Rz-4wRYdc0KeGoA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] arm64: dts: renesas: sparrow-hawk: Add overlay for
- IMX462 on J2
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Fri, 5 Sept 2025 at 10:45, Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add an overlay to connect an IMX462 camera sensor to the J2 connector.
-> The IMX462 utilizes 4 CSI-2 D-PHY lanes. This enables the video capture
-> pipeline behind the CSI41 Rx to be enabled to process images from the
-> sensor.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+This patch series continues the effort to address Device Tree validation
+warnings for MediaTek platforms, with a focus on MT8173. It follows the
+initial cleanup series by Angelo [0].
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+Similarly to the ongoing MT8183 work done by Julien Massot, this patchset
+eliminates several of the remaining warnings by improving or converting DT
+bindings to YAML, adding missing properties, and updating device tree files
+accordingly.
 
-Gr{oetje,eeting}s,
+[0] https://www.spinics.net/lists/kernel/msg5780177.html
 
-                        Geert
+Changes in v2:
+* Wrapped commit messages to 75 columns line wrap.
+* Replaced "YAML" by "DT schema" in patches subject and content.
+* mt8173-mdp: Fixed properties: compatible, clocks, iommus and
+  mediatek,vpu.
+* mt8173-vpu: Fixed line wrap. Dropped memory-region property description.
+* mediatek,mmsys: Dropped patch as it's not a binding issue.
+* mediatek,od: Rewrote commit log with details on DT schema users missing
+  the related property. Rewrote mediatek,gce-client-reg property.
+* mediatek,ufoe: Rewrote commit log with details on DT schema users missing
+  the related property. Rewrote mediatek,gce-client-reg property.
+* marvell,sd8897-bt: Moved to net/bluetooth/. Added missing ref to
+  bluetooth-controller.yaml. Dropped example. Updated reference in another
+  file. Minor fixes in properties.
+* mediatek,mt8173-rt5650: Dropped unnecessary quotes and unused label.
+* dlg,da9211: Dropped enable-gpios description. Rewrote generic example
+  node names. Minor fixes in properties.
+* melfas,mip4_ts: Dropped unnecessary quotes. Added "active high" to
+  ce-gpios property description.
+* mediatek,jpeg: Dropped patch as it doesn't apply.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Ariel D'Alessandro (12):
+  dt-bindings: media: Convert MediaTek mt8173-mdp bindings to DT schema
+  dt-bindings: media: Convert MediaTek mt8173-vpu bindings to DT schema
+  dt-bindings: net: Convert Marvell 8897/8997 bindings to DT schema
+  dt-bindings: ASoC: Convert MediaTek RT5650 codecs bindings to DT
+    schema
+  dt-bindings: display: mediatek,od: Add mediatek,gce-client-reg
+    property
+  dt-bindings: display: mediatek,ufoe: Add mediatek,gce-client-reg
+    property
+  arm64: dts: mediatek: mt8173: Fix mt8173-pinctrl node names
+  dt-bindings: pinctrl: mt65xx: Allow gpio-line-names
+  dt-bindings: regulator: Convert Dialog DA9211 Regulators to DT schema
+  arm64: dts: mediatek: mt8173-elm: Drop unused bank supply
+  dt-bindings: soc: mediatek: pwrap: Add power-domains property
+  dt-bindings: input: Convert MELFAS MIP4 Touchscreen to DT schema
+
+ .../display/mediatek/mediatek,od.yaml         |  14 ++
+ .../display/mediatek/mediatek,ufoe.yaml       |  15 ++
+ .../input/touchscreen/melfas,mip4_ts.yaml     |  56 +++++
+ .../input/touchscreen/melfas_mip4.txt         |  20 --
+ .../bindings/media/mediatek,mt8173-mdp.yaml   | 169 +++++++++++++++
+ .../bindings/media/mediatek,mt8173-vpu.yaml   |  74 +++++++
+ .../bindings/media/mediatek-mdp.txt           |  95 --------
+ .../bindings/media/mediatek-vpu.txt           |  31 ---
+ .../net/bluetooth/marvell,sd8897-bt.yaml      |  79 +++++++
+ .../devicetree/bindings/net/btusb.txt         |   2 +-
+ .../bindings/net/marvell-bt-8xxx.txt          |  83 -------
+ .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |   2 +
+ .../devicetree/bindings/regulator/da9211.txt  | 205 ------------------
+ .../bindings/regulator/dlg,da9211.yaml        | 104 +++++++++
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml |  15 ++
+ .../sound/mediatek,mt8173-rt5650.yaml         |  73 +++++++
+ .../bindings/sound/mt8173-rt5650.txt          |  31 ---
+ .../dts/rockchip/rk3288-veyron-fievel.dts     |   2 +-
+ .../boot/dts/rockchip/rk3288-veyron-jaq.dts   |   2 +-
+ .../boot/dts/mediatek/mt8173-elm-hana.dtsi    |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  |  33 ++-
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts   |  14 +-
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  14 +-
+ 23 files changed, 633 insertions(+), 502 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas,mip4_ts.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/melfas_mip4.txt
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-vpu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vpu.txt
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/da9211.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9211.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
+
+-- 
+2.50.1
+
 
