@@ -1,103 +1,97 @@
-Return-Path: <devicetree+bounces-215807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7CE1B52BAD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:32:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2BCB52BFD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 919AB3BC67E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:32:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC80C7A4FA3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC2B2E1757;
-	Thu, 11 Sep 2025 08:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7E82E424F;
+	Thu, 11 Sep 2025 08:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggwfqerC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HK57PNrI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920DC2E06C9;
-	Thu, 11 Sep 2025 08:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DD12580E4;
+	Thu, 11 Sep 2025 08:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757579548; cv=none; b=ooYXZxYMKXXjtpYQVpSL6W2VQfnk+WLxRJ+4DUkoATKU3Pwn/+cFpqp1Y4AooR0+ASyyu67BsljL5uOGyedlV7+ZCJP3n7dafY4txxRGua0fUYQiE/aqo7omBFx4Cz1kM62GEMT4pVjoqcKEYG7P+h1TfS4P9dsDAdfx5o0Ey5E=
+	t=1757580083; cv=none; b=SeQPNEeg8r//2ZKWf+hh+PkRthzBGzJABXJV04MendWvgPhV9ynmpBrvU6LL1ihvx/P4DL24ModfckRUZwvpz7LUGZb0G+9x7QjwwdDDLCC5NexN9ADq03AWF6Upaii2XL0Iio8QFrfTjZOj1J9uVVM8fa7lKQTxcuJjsUEiWZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757579548; c=relaxed/simple;
-	bh=b2VdI0oiFgANIQ5EcSr5TSR36SCbiu1w6XGUxBLPye0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OT8EV7w8tT6wyDRmF8s7ArRN6loCejvo7vMBCtqgdXEfZVCs06hb6tH24WWun2dWiOY8YA1eaVCs1upkGA5gQ5TZ8w7m9kRAhTaFt+flMR9tyvPTwVIb6zSfQU0hVEa/dTZP9NZyw/3Cg7tpT1iB0G8fy/4gh36mjOBeQyaBIf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggwfqerC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC5DC4CEF7;
-	Thu, 11 Sep 2025 08:32:28 +0000 (UTC)
+	s=arc-20240116; t=1757580083; c=relaxed/simple;
+	bh=njNtH9FhW2DlFoODAUIyk2oz+HJWD6+ZLPh16fXR9Ik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDUw3Uykxe+QJGJPa/wT2iiyntTAcJj7AezIyTUEgRYx1CKaVbsFWMsizcDrxWSoG6Q5li9wgOc6sUa4mKNtFltL6EUt+l5+cTCX27oKGq9SWeaTg08pPq8tG7RbFT67Q68P8512BIvjb86TO+XiN7pNb7CMyqxulkiBySNuLII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HK57PNrI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F5B7C4CEF1;
+	Thu, 11 Sep 2025 08:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757579548;
-	bh=b2VdI0oiFgANIQ5EcSr5TSR36SCbiu1w6XGUxBLPye0=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=ggwfqerCBJ1oYsXw0auys/TMtk4zaG9x7lznAz0fZd/PEGMVwaFpxx0uC/OsvO39x
-	 SiawMvf9VZHE+ShtVyxyx3ND5AFG23QTZC6RqijxgWVv7A/iT4xT3WqwkD+9SQjEFV
-	 G16eIdL1mlAZGfESCa+MEFecoFzqyCZppbIosb/lkhblLK68WwNSwX/LhJzLFhlYSQ
-	 cnkSQ7m6QIysXsCxnQM0mTpbpbScGyq/sDikZDPvF605zIhC/8WqxkIpOxdRp6pYBm
-	 4ArupEjs/BkGtlCSwwFWRUXEfBCrPlMM1jVV/+yVuPaNFSJVB58j8RrqE8DEIo6Wx1
-	 2ISRg3UigNqNA==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-336b5c44a5bso14399131fa.1;
-        Thu, 11 Sep 2025 01:32:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUJ4BRTqYxOs41dFTIOJAIRbayX7oAF78wgvQgmzHErlDfMTi/4M85IRkVFML6yDEDZ8cQeUcTlZFmzliPc@vger.kernel.org, AJvYcCWzy6VwmYz0Yye08gmkajIOoyn7/0BCguCr0EWiugPJnM9LJY0Gh+30CxFEI6C5Oe2KUSeQxHKr3wTw@vger.kernel.org, AJvYcCXQQAnAm9sQTUncYMnY/0lNI/rZjmQKByfklGwutdi7SvutNvv2Jk2aIa/7fnb7Q8cYMFiqdezK2m7x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzohSpiCZ5tGjJ5zb2GmUDe3RZ/xbwdWneVCbTAD2nnY8zQUxm
-	58WX+lK81dNNpCiIcGPPzPLTyFuVSTSQktbd11055Jt7e76tJvCHjBmJrhEAd6VbjuDu+AuJYvZ
-	y9Se3XVBJEPg7dAH7tMGOhmY5g79NhEU=
-X-Google-Smtp-Source: AGHT+IEz1m0zWqpjfWD3q5Mpqcxnmo7hPZOolLE36cs3jks02zZUBgKBjW6cLa1Fu1krMrNSe+ZBiHzMUOEzh8/ZDyU=
-X-Received: by 2002:a2e:a78a:0:b0:336:e03d:6f2e with SMTP id
- 38308e7fff4ca-34e315d71a6mr9066571fa.1.1757579546741; Thu, 11 Sep 2025
- 01:32:26 -0700 (PDT)
+	s=k20201202; t=1757580083;
+	bh=njNtH9FhW2DlFoODAUIyk2oz+HJWD6+ZLPh16fXR9Ik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HK57PNrIXzvvTfQ8/mtZgky6ZFIjKFWEOSNIYn9ZcUATwXcnY29BV/XFaW3Q9jvYw
+	 aruvnuIWZzoovnYcM9+UF9uwji+aOmaCrEzVfmeyawPf6B17F45zgikOpMu6ZaPATB
+	 8t6o/WnsjPisypWrXcKnnD+p03DlaLaVuFliO4wyPKy6pTiCHgZDIzEWuXwvBZKVe3
+	 29r4ZR+zfez7QjaRbdOMPayAQgFze6YGig0SVVCDdRH1cWHiSJdCf6I5LH6thfG2zg
+	 GDBTkQ8n/glZ9rPFx8aV4joLXtxkBPa3mMCvjmi9POo3y6q6Q3eKKIOMlqvWWeJCTC
+	 rLOnHUdgGR6UQ==
+Date: Thu, 11 Sep 2025 09:41:19 +0100
+From: Lee Jones <lee@kernel.org>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] nvmem: add driver for the eeprom in qnap-mcu
+ controllers
+Message-ID: <20250911084119.GF9224@google.com>
+References: <20250730172248.1875122-1-heiko@sntech.de>
+ <20250730172248.1875122-3-heiko@sntech.de>
+ <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250830170901.1996227-1-wens@kernel.org> <175751929795.2643345.10671677254490584515.b4-ty@csie.org>
-In-Reply-To: <175751929795.2643345.10671677254490584515.b4-ty@csie.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 11 Sep 2025 16:32:14 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64i8fU-KTE8A0sE+ZL2++c3faUPKyGp51S7_rWV9ydOGQ@mail.gmail.com>
-X-Gm-Features: Ac12FXyr2JevaeRf3qm7Q61BcimJDVOxLg7_etSYLuUPLWauqufXTtpAA-OUUag
-Message-ID: <CAGb2v64i8fU-KTE8A0sE+ZL2++c3faUPKyGp51S7_rWV9ydOGQ@mail.gmail.com>
-Subject: Re: (subset) [PATCH 0/8] arm64: allwinner: a523: Enable MCU PRCM and NPU
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
 
-On Wed, Sep 10, 2025 at 11:48=E2=80=AFPM Chen-Yu Tsai <wens@csie.org> wrote=
-:
->
-> On Sun, 31 Aug 2025 01:08:53 +0800, Chen-Yu Tsai wrote:
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > Hi folks,
-> >
-> > This series adds support for the MCU PRCM and the NPU.
-> >
-> > The MCU PRCM is a Power, Reset & Clock Management block that has some
-> > clock and reset controls for the MCU, DSP and some peripherals that the
-> > MCU could use.
-> >
-> > [...]
->
-> Applied to sunxi/clk-for-6.18 in local tree, thanks!
->
-> [4/8] clk: sunxi-ng: sun55i-a523-ccu: Add missing NPU module clock
->       commit: 1ec8e9ba1f663d6ca5e71ab9f5e919c338075ff0
+On Tue, 09 Sep 2025, Srinivas Kandagatla wrote:
 
-I forgot this needs a bit of work and a new version sent. Backing this
-one out (facepalm).
+> 
+> 
+> On 7/30/25 6:22 PM, Heiko Stuebner wrote:
+> > The qnap-mcu also has an eeprom connected to it, that contains some
+> > specific product-information like the mac addresses for the network
+> > interfaces.
+> > 
+> > Add a nvmem driver for it.
+> > 
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  drivers/mfd/qnap-mcu.c          |   1 +
+> >  drivers/nvmem/Kconfig           |   9 +++
+> >  drivers/nvmem/Makefile          |   2 +
+> >  drivers/nvmem/qnap-mcu-eeprom.c | 110 ++++++++++++++++++++++++++++++++
+> >  4 files changed, 122 insertions(+)
+> >  create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
+> > 
+> In case Lee you want to take this via MFD,
+> 
+> Acked-by: Srinivas Kandagatla <srini@kernel.org>
 
-ChenYu
+Actually this patch should be split up.
+
+I'll take the MFD part, you can take the NVMEM part.
+
+-- 
+Lee Jones [李琼斯]
 
