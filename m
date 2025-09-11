@@ -1,142 +1,217 @@
-Return-Path: <devicetree+bounces-215926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63B9B5329F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:44:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF4EDB532A8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17738484DD9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:44:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E4CC5884B5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA61324B17;
-	Thu, 11 Sep 2025 12:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2333324B2A;
+	Thu, 11 Sep 2025 12:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m/ZfSOA4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OClbhVIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B908322DB7;
-	Thu, 11 Sep 2025 12:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C0B322DBD;
+	Thu, 11 Sep 2025 12:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757594636; cv=none; b=RVEJdzBUUYvPSuQ8HXgfXTVriLtXR2CQUIwJZV09KxMjJ9HSs7PIKMo9V1LnftGxZ6th1hNA0lCvUd2te/2CzS0Pgv9jd4i4/hD/X2G0I6vc7CsriF9R992g1w7RKf7PJnBt8BENSHXk+g7C5UoiP0J589WyKzwR0fjl+Qail4k=
+	t=1757594728; cv=none; b=hJQHLJMf1sKDJcSBpwG80srP21iBzUfOUsRDN0VWxP5X8f4MEAdbr5Wtx66QFbI8f/FmWjXlL4EGdc16eBaS/qt9aEuhIeZUbLGul0LIoKSyQXJeGMPGowZmt/lWIl6PE2dPNNkLSl5G3rwcBqtF9LxYuFRTVa52czxZxNbEU4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757594636; c=relaxed/simple;
-	bh=xe9Gywa0nrV57XMMQehx9rCXvTi1V7YVWIVSt+PJfi0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SXpRJbaE4N4Qd1LHhCRS418Cair9SceVmBlcFcwlAtrFuU8hUT2Qkwbb/CxPg+T0bTUF1p05KwKxC6WRP+SFF4B1Y+odz1KXewvAiQHW/3VrtB9Gf27VmuhAgn+IH20dvM1/OEM6Z/XU96VSdmDfAXQAUvEdmj9PyHjTVNe/PGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m/ZfSOA4; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3df3be0e098so482732f8f.1;
-        Thu, 11 Sep 2025 05:43:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757594633; x=1758199433; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ffstATfAOIYcJlHHnicc/Ajw/zJxaIpci9UFmXyAMeo=;
-        b=m/ZfSOA4i6JwaZtVe0X8vsbmVMQCJklHAfVlEDSFYh/y2AActfVUX0FF47m5M1uV38
-         o1+k6YPxVle4sdrQDMV8ONfH+WJLXN3wmahZ6ic+jNlfGiaj9inlKFPgBRiEfHV3gBqU
-         IjpCeJxeVqDZ7d2//eILa+JA+cdGsCRU/GWbW6EE//0aOmDOoabmIG82npQ5drYSV2Wb
-         Ztr+SVjiXLmtNRDmjxDUbb7j7fINPrxBZBm5//wbsk3uPh1xrl75kG4Xod+DCftREeoG
-         BEyv423tUhGVi0K0EaZe5/ig2nyVgI0ojEOm+PXAwmri2ZHxg4oxL0BbCFyJKDBTeTb9
-         bNAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757594633; x=1758199433;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ffstATfAOIYcJlHHnicc/Ajw/zJxaIpci9UFmXyAMeo=;
-        b=I0to3CdtnwQ2mGpH/CzNL+OVUdNb+jFoj1RsOPgsB4lKIO8KnFkhmUHfUC2MOIwmfj
-         D3ef6vE+cUl8P4IQ7BIVeR2f0r7gx5JxFaSSwPuf/yduT4d1A2NRL5ElsG7AL7T+Gk7H
-         JDcJjobWIQbUuBBLBhxTNfkQu1SXKmiAEZ9fP5mXKC+hp8bA6BKrYz8YcLvX+arws6XC
-         rmIklx3+CG1+Guev9pWRnTV1+gmBCqfDIhqbvu/t+KuMQMwsivQOFDIbJhsQS0kteazl
-         xUdzjw52F/KhV3K3WoaaTcCGbrrgaq19J3L083wHPVXJ4b0Rrx4z7bWLtk4loi6ylRXv
-         USrA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdALz3eWSpYNPqigNUW2A7UjsqqopqngTfpjhbX/3XSed8kKJOl9jAo0acfMjRwYW+BCbXNLa9mr7jRb4b@vger.kernel.org, AJvYcCW/WeF58Ww5T+VNFXQzGgIlWVvTLYOQdFP72fHBAmYrrR5CGr0Afkx9UAZh79Hz6vGAXGIKplcC4fRb@vger.kernel.org, AJvYcCWYg5fLsU4CstDyL5jU9+pINYT+Qy+Q4GMee9o7M6UNMVZwWXqgUmdbHwka1lghU+dnxqUGDXsuWzej@vger.kernel.org, AJvYcCWyoSXcEg8/73Fsu/lVV2gjVb8d73DUvAVIZ7E+YNJHmLPGoPuu/EmHlStqIAJ9N2rMJDIJM5E3nF5IPe8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLsM/RrwheygXcjoJZTVXkGl6qdj8lLAd/wyWghkP6+J64YKWb
-	A+jDiQ/MQarfdfzaAcLRcMjFjaBFQvocMwB+3/9hwE/S3KYvytm/PP3m
-X-Gm-Gg: ASbGnct6m+gXJiga/7cwEi4/UdT8oWCOLinmFjFI53aFMIvAwI/7yO1EZBucjOJI8E7
-	Y6BQXGlOH+Re6ust18iS8VlFnvWsplM3HttD7mPxfIZ91hrlKHyFMo8B4eWsRVPHC+VYhI29OC1
-	cA/2tjmKcTtO2KNxuefXpLcZcymj/aVsgVBla+sR52BFhsCmaLUOELZGjnr1+v6hBoeNt51JG97
-	2lQ7Kld7oKSxL5C9i1dsP3TElVz5zEFZwULgtv6az0HJJoXuk0+ehqXRtpHZVmktexhMgnhWcz0
-	nF5831uOR3zB4E6tSQuUqVkDJU8uCjcwWy1LYZ3K9E1EuMODeCL3Ihe2wczGomZN10cDi1fdB4M
-	jcxiphIu0NLGP0KVeRLgNXH6xYUB+/ty0O1DhexEN5SJ36Iss2p9aCnuWa8ZruYJEIKMGix9qQd
-	ua
-X-Google-Smtp-Source: AGHT+IHMo/U3BdX8IVk6itPiCLbgeG+HLRPTKaSeSv6yYfTnMgD79N39xh4sXUrfzCHQln7ROZ0dMg==
-X-Received: by 2002:a5d:5f96:0:b0:3e0:43f0:b7ad with SMTP id ffacd0b85a97d-3e6425eb809mr13914249f8f.18.1757594633350;
-        Thu, 11 Sep 2025 05:43:53 -0700 (PDT)
-Received: from Radijator.localdomain (93-143-13-188.adsl.net.t-com.hr. [93.143.13.188])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e03729c76sm22591495e9.6.2025.09.11.05.43.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 05:43:52 -0700 (PDT)
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
-Date: Thu, 11 Sep 2025 14:43:46 +0200
-Subject: [PATCH v4 3/3] mfd: 88pm886: Add GPADC cell
+	s=arc-20240116; t=1757594728; c=relaxed/simple;
+	bh=XRcVmZ1ZyfltRROAE2ameocQTP7l5w0Qo71VLpa2cLs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gABwCoDbH+Dlbei2fiUnSQjOlYt1StqJWn6Kcx5E7RV4s0wB+JVR/maZb2sPUksfcKrzQVc1ox6/cGXLrTEurBQa02/k9o12Grij9FESiYQUu1sZY+bcGKcxdGjop9EkF2WYSD9+RKltP55/Ad0IGrf7r9MWOVH1uflboCnGfrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OClbhVIp; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id EC5704E40C95;
+	Thu, 11 Sep 2025 12:45:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C0ABF60630;
+	Thu, 11 Sep 2025 12:45:22 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0D649102F28C0;
+	Thu, 11 Sep 2025 14:45:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757594721; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=tHh/qi/3IlidAk2jgmjJykEnX0p6XLUXjIm0eo+RjTQ=;
+	b=OClbhVIpEM5AOkBoRnpvC38+a4UPnGhuoin+pzdvl+NrNXG198fX6S5FmLJ1yBAtB6ypMD
+	Y02ZpH1DspR7wIVidLe3tF5XHjWn2Ud8dAGxsaSsNrT9zGcgIZ1ZMO7tnEs8TreRvw91eT
+	rajPisCUsPti94lSN+Bll9Ywdxg1Yko5SfyeZWnlIar1EVKv4pdXrK7Mx1hFHPFtW3wcVW
+	W9dwjfRMMazy6Ng3pUBqIdSvVMWeikw8GGuzZSjmH+zAZSKTuUxSrJOzH2Kqkkj1XRKjpK
+	bEa4ttAC19uNKMFsCxdUegb7bXuxImJt5yY1SWKD6tnFU8xaq9TAenLHBzQLJw==
+Date: Thu, 11 Sep 2025 14:45:06 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, David Gibson
+ <david@gibson.dropbear.id.au>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob
+ Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <20250911144506.51809eb3@bootlin.com>
+In-Reply-To: <36a85af7-75b1-46db-8df8-e83372d33b93@beagleboard.org>
+References: <20250902105710.00512c6d@booty>
+	<aLkiNdGIXsogC6Rr@zatzit>
+	<337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
+	<aL5dNtzwiinq_geg@zatzit>
+	<20250908145155.4f130aec@bootlin.com>
+	<aL-2fmYsbexEtpNp@zatzit>
+	<20250909114126.219c57b8@bootlin.com>
+	<aMD_qYx4ZEASD9A1@zatzit>
+	<20250911104828.48ef2c0e@bootlin.com>
+	<CAMuHMdUUGoaetdsTEVx27TYQZ_khzyCn0wzi2+TibYcvkg1fXw@mail.gmail.com>
+	<20250911122333.2e25e208@bootlin.com>
+	<36a85af7-75b1-46db-8df8-e83372d33b93@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250911-88pm886-gpadc-v4-3-60452710d3a0@dujemihanovic.xyz>
-References: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
-In-Reply-To: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Karel Balej <balejk@matfyz.cz>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=797; i=duje@dujemihanovic.xyz;
- s=20240706; h=from:subject:message-id;
- bh=9JhG6l9aYXd0tr5rpMP/JH7+4zmVZlrSGb616SvhYjU=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBmHjjDWzL4o6v6r5sgz0TdidX4tMufuzUvnuGqQwDVLX
- +t/e+GFjlIWBjEuBlkxRZbc/47XeD+LbN2evcwAZg4rE8gQBi5OAZhIbw0jwwZHC3/Hx2lHXuQ5
- c1qom1wreretz323vIxBVk+JsXbFVIa/Arfv1LXV3VFzepunHDJTqvhgd/fHrsMvPz+dyH6icIY
- qPwA=
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Duje Mihanović <duje@dujemihanovic.xyz>
+Hi Ayush,
 
-Add a cell for the PMIC's onboard General Purpose ADC.
+On Thu, 11 Sep 2025 17:45:17 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-Acked-by: Karel Balej <balejk@matfyz.cz> # for the PMIC
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
-v2:
-- Sort cell names
----
- drivers/mfd/88pm886.c | 1 +
- 1 file changed, 1 insertion(+)
+> On 9/11/25 15:53, Herve Codina wrote:
+> > Hi Geert,
+> >
+> > On Thu, 11 Sep 2025 10:54:02 +0200
+> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >  
+> >> Hi Hervé,
+> >>
+> >> On Thu, 11 Sept 2025 at 10:48, Herve Codina <herve.codina@bootlin.com> wrote:  
+> >>> On Wed, 10 Sep 2025 14:33:45 +1000
+> >>> David Gibson <david@gibson.dropbear.id.au> wrote:  
+> >>>> On Tue, Sep 09, 2025 at 11:41:26AM +0200, Herve Codina wrote:  
+> >>>>> Suppose a base board with 2 connectors:
+> >>>>>   - connA
+> >>>>>   - connB
+> >>>>>
+> >>>>> Case 1: Addons are independant
+> >>>>>                 +--------+
+> >>>>>    connA <----> | AddonA |
+> >>>>>                 +--------+
+> >>>>>                            +--------+
+> >>>>>    connB <---------------->| AddonB |
+> >>>>>                            +--------+
+> >>>>>
+> >>>>> With addonA and B two addon board each connected at one connector without any
+> >>>>> relationship between addon A and B
+> >>>>>
+> >>>>> Case 2: Only one Addons using ressources from both connector
+> >>>>>
+> >>>>>                  +------+
+> >>>>>    connA <-----> |Addon |
+> >>>>>                  |      |
+> >>>>>    connB <-----> |      |
+> >>>>>                  +------+  
+> >>>> Case 2 is what I'm talking about.  Case 1 is the easy one.
+> >>>>     
+> >>>>> The addon is connected to both connector and uses ressources from connA and
+> >>>>> connB in a dependent manner.
+> >>>>>
+> >>>>>
+> >>>>> The Case 2 can be solved using a connector that described both connA and connB.
+> >>>>> Having the split connA and connB is a mechanical point of view.  
+> >>>> I don't think that's a good solution, because it means you have to
+> >>>> make that decision at the board layer.  If I understand his case
+> >>>> correctly, you have a board where you could do either case 1 or case 2
+> >>>> at runtime.  We'd want the differences between these cases to only be
+> >>>> reflected on the addon device tree, not the base board device tree.  
+> >>> Based on my understanding of Geer's use-case, I think decision at base
+> >>> board level will be needed.
+> >>>
+> >>> base board        addon board
+> >>>    connA +--------+conn1
+> >>>    connB +--------+conn2
+> >>>    connC +
+> >>>
+> >>> Or
+> >>>
+> >>> base board        addon board
+> >>>    connA +--------+conn1
+> >>>    connB +    ,---+conn2
+> >>>    connC +---'
+> >>>
+> >>> Or any other combination that would match.
+> >>>
+> >>>  From the addon board point of view, the only think we can
+> >>> say is "me, as an addon board, I need a connector of type 'foo' and a
+> >>> connector of type 'bar'".
+> >>>
+> >>> Also, at base board level, statically defined in the DT
+> >>> connA is described (type 'foo'), connB and connC are
+> >>> described (type 'bar').  
+> >> Correct.
+> >>  
+> >>> The choice to map connA to the type 'foo' connector expected by the addon
+> >>> and the choice to map connB or connC to the type 'bar' connector expected by
+> >>> the addon can only be done at runtime and probably with the help of a driver
+> >>> that have the knowledge of the 3 connectors.
+> >>>
+> >>> I have the feeling that the choice of physical connectors to which the addon
+> >>> board is connected to is a human choice when the board is connected.  
+> >> All these choices and decisions apply to single-connector add-on boards, too.
+> >>  
+> > Yes, in our use case (me and Luca), each addon has an eeprom, wired exactly the
+> > same on all supported addon, which allows to known the exact addon. Also addon
+> > insertions and removals are detected using some gpios wired to the connector.
+> >
+> > Based on that our specific driver handling our specific connector perform the
+> > following operations on addon insertion detection:
+> >    - load a first addon DT to have access to the eeprom
+> >    - Read the eeprom to determine the addon type
+> >    - load the DT matching with the addon type
+> >
+> > This part is of course connector type specific. I mean having an eeprom with
+> > some encoded addon type values and hotplug detection with gpio is a part of
+> > the contract between the board and the addon (part of connector specification).
+> >
+> > Best regards,
+> > Hervé
+> >  
+> 
+> My usecase is a bit more complicated, since I am trying to model all the 
+> available headers on BeagleBoard.org sbcs (particularly PocketBeagle 2 
+> initially) as connectors. However, that still ends up being a single 
+> connector which can have multiple addon-boards simultaneously instead of 
+> the other way around.
+> 
 
-diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
-index 39dd9a818b0f0e1e5839f76768ff54940f4cefa5..e411d8dee55420e10b6d7ad7069576c681360de1 100644
---- a/drivers/mfd/88pm886.c
-+++ b/drivers/mfd/88pm886.c
-@@ -35,6 +35,7 @@ static const struct resource pm886_onkey_resources[] = {
- };
- 
- static const struct mfd_cell pm886_devs[] = {
-+	MFD_CELL_NAME("88pm886-gpadc"),
- 	MFD_CELL_RES("88pm886-onkey", pm886_onkey_resources),
- 	MFD_CELL_NAME("88pm886-regulator"),
- 	MFD_CELL_NAME("88pm886-rtc"),
+In that case, a connector cannot have the state "free" or "used" handled
+globally by a core part.
 
--- 
-2.51.0
+IMHO, each connector drivers should handle this kind of state if relevant.
+I mean, in case of "pmods" compatible driver having this state per PMOD
+connector could make sense whereas in "beagle-connector" it doesn't.
 
+Also, on my side, with my 2-step DT loading, the first loading should not
+consider the connector as 'used'.
+
+All of that is implied by the "contract" between the board and the addon.
+It is connector specific and so should be handled by the specific connector
+driver itself.
+
+Best regards,
+Hervé
 
