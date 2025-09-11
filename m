@@ -1,198 +1,163 @@
-Return-Path: <devicetree+bounces-215798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D833B52B1F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:04:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE42B52B33
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42E9D3B8556
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:04:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B99D16BDD4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937532D3759;
-	Thu, 11 Sep 2025 08:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA72D593B;
+	Thu, 11 Sep 2025 08:08:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xzYSFwwk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fra0lWFH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFC32D24B7
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5990B2D5933;
+	Thu, 11 Sep 2025 08:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757577861; cv=none; b=Vm92AHCK7k7tS13sa6Y/uH1/KEk0syzu2dm2cwJYHJEp9+g88nqMmOW6z7KG0rGWGGGibEe2ueTgRhY0+IdQqGEOIob7/Zzd4//Hg4KN7G/3SfUo7PrRhiC6Q9MYwPU+/yCv5XVH4ArUknx6QlFOZhxngJizygRdmoyK9vMMLYI=
+	t=1757578106; cv=none; b=qjbcw910WRFBaBtbaZbFdNCcawBYEH+QSG0Xz5T+ljH3/b6kx6VHDmud1y633PyKq/NxK17PG+GrqVqzXQePqAyEEh0C4PnWf5UdaVZ4Fz8DYkCUQoEcTiDx59mILt+aklXYM54Sj86l66zPi8Wvw4ZDoogKicjdAhckM3Dchqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757577861; c=relaxed/simple;
-	bh=wel+RQMd/D0rIIzoZJ0pNSXaqgxpgXmD2e20QHrSRYw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DynvlSwlqphFinFe7I4cJalqAdABVhF1AYexTWbhZhALTxTgLNWQ1MMvCVvnOLWPFFEyTMczaUKNG4ntEhrYBEDc0y76RvMC34SS0+Hdy3IvVjB9clFM6wlNRv55Qj3RPOtpUdoW/AD7LiMcioiW8DDk4lID+KxkjM7YQv7Npro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xzYSFwwk; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 2E07C1A0EB4;
-	Thu, 11 Sep 2025 08:04:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 006D4606BB;
-	Thu, 11 Sep 2025 08:04:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E1B8102F28ED;
-	Thu, 11 Sep 2025 10:04:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757577856; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=DZGt3QLwJ9N71a9DCxu/GWZRlIPdeB9auBfTQxCKJG4=;
-	b=xzYSFwwkxAWb8XscvM7u98ioGJL0xDga1pmOx0T9nLMF0pNno67AEMgVGWgpTLeRJRXGye
-	OepoelxKsa9Pdk72ubBxung9cUGTAmRfBTDHJRQD8wJU7bNzTo5yPNmYu4biGl9RK2oM6H
-	SRKoqURim92TUohmwxP30oADP9perHg+TS81tr0tk6q8Ele65W+BeHMAlFUf2rTswvj2pp
-	HR7r0/2DKOL0eZbka7tGuf3z4Awc/ISo4GGgkfGffug2ycZ42c29PjGYuqhE0geCm6VfhB
-	BvegShwaQzZgwQKbW4wEnrdDoyCwfDDLo8L/cmmJbozgEt3ptGxPpVeI0w10og==
-Message-ID: <9c543fa2-1ac1-463b-bb1d-f89be61f7ece@bootlin.com>
-Date: Thu, 11 Sep 2025 10:04:00 +0200
+	s=arc-20240116; t=1757578106; c=relaxed/simple;
+	bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qcOjeXvey5T+l8We/mqbAbURtVXHRUXCfh0avh+5Z2K55F2se4IyiwEuLFQeZUKX6tsI/MqF5wNdbSblemLtmv5wJ/6Ot/QOXLVGLgR/hj0D5YLBM+u30jjACxP6N9mC1qveUyfzFOySvZSIQiGJpqRrokfY/bUwhM19HSYSnNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fra0lWFH; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-32da35469f7so365815a91.1;
+        Thu, 11 Sep 2025 01:08:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757578104; x=1758182904; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
+        b=Fra0lWFHrEkU3bOSsQ+EG7AxCs4bDoCvMH7MWVLUNM66/FU0tE7WNrZKwmo47O1Uqb
+         anD8eT7vHIciICzhx+wIycI3q9UvV12TZViHRak0BdpOvPdZB+c/Yg4T25grxOJ0CFST
+         e16PWZkSpp1oInlYDYUrNgt3y4UImgDWiQLSdINf68D/SEubq+RfRcfVFs+NWDr8M8GX
+         40gVvvRqaXK7tn6XQU4ipzTKmVjw/aU3M8IPtRnLjmbji6nt8Tid7t+ENIKqLFIbzotA
+         vbpzw0ZK5iSjZIxGjdKZI6v5a1Dly8QPyraR3nhMBYbxJt/GKpHVBjJRd/pRYNhY7ALh
+         WQ6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757578104; x=1758182904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
+        b=ctfXStuDx+1ouYoEUj7m7OQLIq64unQ6kjdcVqkih+q90PBLeYi/hOhQVuSUbc31XY
+         moSSJVSNMrbZ3EUQkGZy0YQLOvgQZzYkxDAPtguOCjRO5GI3aesVah4p0+OYmWMZkx2q
+         bHxFMqK8OyqaMJN1TXsBbRk9u90WDOHYjRLqyMEVKDgEB/Sa7Cd2tF7yNojfp3KsdkRG
+         Ogc/t7EyvOreGWuMCljxVtQeUKTzxBalZZVwmWOEJr0A7eLI9qLPF+d84hlVNpYO9tq6
+         aa7Z+cXi5x8jpxKUhBvNetbJTM84yseeRyizcgCKgMRGyyvfnZ47UygWt/QZQUW8Hwtr
+         B4Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCUzolV0ABH5GDABmPOMoxKwwKlYmgOYOIui3f7xMKj50aocJDBLLk1DxOMjl2cVNKe/ZnqAYfmrdKa7wgFY@vger.kernel.org, AJvYcCWkQHdJYWoNe8aqo2ffP96X4gSNLezhVlAnONQYI/MhPBys2PZzwFDmqUQftXl/4Ij7k1KpeNYymeAs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAl+d8xQkDAAG8VMoFxfIYiJ73dxiAGf9lw53gQtgol+xmHcXF
+	0tYs0FOQmFY5854dIYUfUUq74FR/k4fOG2Evj5sYoNQYNJD2NXWAx8VOPiLuqfJfxOLZJF9P5Lp
+	6ZdvWHPkVZ/wjPYhPrbLFSNswtxp0pEc=
+X-Gm-Gg: ASbGncvQ+eiRItsZZZW5GmzYxI0TsIKsnbZlhIS/YHoCXq2VmuTtLCCKw3eAxPCFjAb
+	Nov1fnf9eajzQJs8rLmcNpvtPEoWUI99dLiaNhVgUmmn9bZID6VO3dycKCRchU6BscbYt72XJJQ
+	Sbe52lTd0FZ2Mvu3dOMpkndfWCvTg5EQQu5qG8pYpZ6rOUr97JAxz+3VHH9BjdnuOelyqQYuEW4
+	T0bRK231gYf+OiOacR07Sp3cCWZXara2SaeWMCHOkJE8kvwLCybjeoqJNR/zipxvIUvLBHf5X4X
+	yTSuww==
+X-Google-Smtp-Source: AGHT+IG+CYWgOqOKulCdN8Yazwf+YU8Cv8POaXoSZ+NDltxvwpRzupcwLo7PooHvhIBsmf6LQty0AKdRu+LzJWLeS8E=
+X-Received: by 2002:a17:90a:da90:b0:32b:8b8d:c2c6 with SMTP id
+ 98e67ed59e1d1-32d43f2f458mr20260397a91.14.1757578104427; Thu, 11 Sep 2025
+ 01:08:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: configure strap pins
- during reset
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- Pascal Eberhard <pascal.eberhard@se.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250910-ksz-strap-pins-v1-0-6308bb2e139e@bootlin.com>
- <20250910-ksz-strap-pins-v1-2-6308bb2e139e@bootlin.com>
- <14114502-f087-4d3b-a91e-cff0dfe59045@lunn.ch>
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <14114502-f087-4d3b-a91e-cff0dfe59045@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250910030301.1368372-1-linchengming884@gmail.com>
+ <20250910030301.1368372-2-linchengming884@gmail.com> <20250910-godlike-berserk-sambar-cd25f7@kuoka>
+In-Reply-To: <20250910-godlike-berserk-sambar-cd25f7@kuoka>
+From: Cheng Ming Lin <linchengming884@gmail.com>
+Date: Thu, 11 Sep 2025 16:05:21 +0800
+X-Gm-Features: Ac12FXz4c-ZW_4rN1oqVd4xLR1hown8Pq90Ds8_JG-yDyxe8dzsU5NnL_4sRICw
+Message-ID: <CAAyq3SZO3miC0S14DmgLvZ1dnVXkAVS_j61+erE8c7A-yYJWMw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
+ enable-randomizer-otp property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	tudor.ambarus@linaro.org, mmkurbanov@salutedevices.com, 
+	Takahiro.Kuwano@infineon.com, pratyush@kernel.org, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, alvinzhou@mxic.com.tw, 
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
+Hi Krzysztof,
 
-On 9/10/25 6:46 PM, Andrew Lunn wrote:
->> Support the KSZ8463's strap configuration that enforces SPI as
->> communication bus, since it is the only bus supported by the driver.
-> 
-> So this is the key sentence for this patchset, which should of been in
-> patch 0/X. You have a chicken/egg problem. You cannot talk to the
-> switch to put it into SPI mode because you cannot talk to the switch
-> using SPI.
-> 
-> The current patch descriptions, and the patches themselves don't make
-> this clear. They just vaguely mention configuration via strapping.
-> 
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=8810=
+=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=887:40=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On Wed, Sep 10, 2025 at 11:02:59AM +0800, Cheng Ming Lin wrote:
+> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
+> >
+> > Add a new boolean property "enable-randomizer-otp" to enable the
+> > randomizer feature on supported SPI-NAND devices.
+>
+> What is randomizer feature? Subject, commit msg, description - none of
+> them explain me that. Is this some standard for NAND? Why is this a
+> common property?
 
-Indeed, that wasn't clear, sorry. My intention was to keep it somewhat 
-'generic', since other KSZ switches also use strap configurations. I 
-thought the DT property could be re-used by others to enforce different 
-kinds of strap configurations.
+To the best of our knowledge, Macronix was the first vendor to
+implement this feature in hardware to enhance data reliability and
+endurance, especially under high P/E cycle stress.
 
-But I agree with you, it's probably better to have something KSZ8463 
-specific.
+Since this is a vendor-specific implementation rather than a common
+NAND standard, I agree that this property should be handled within
+the Marconix driver specifically, not as a common property. I will
+make the necessary adjustments.
 
->> +static int ksz_configure_strap(struct ksz_device *dev)
-> 
-> Please make it clear this function straps the switch for SPI. If
-> somebody does add support for I2C, they need to understand that...
-> 
->> +{
->> +	struct pinctrl_state *state = NULL;
->> +	struct pinctrl *pinctrl;
->> +	int ret;
->> +
->> +	if (of_device_is_compatible(dev->dev->of_node, "microchip,ksz8463")) {
-> 
-> I would not hide this here. Please move this if into
-> ksz_switch_register(). I also think this function should have the
-> ksz8463 prefix, since how you strap other devices might differ. So
-> ksz8463_configure_straps_spi() ?
-> 
+>
+> So many questions and zero explanations in the commit msg. Instead you
+> just wrote what we see in the diff - that's completely redundant.
 
-Ack.
+Thank you for your feedback. I apologize that the commit message was not
+clear and did not provide sufficient context for this feature.
+Your questions are very valid and I should have included these details from
+the beginning.
 
->> +		struct gpio_desc *rxd0;
->> +		struct gpio_desc *rxd1;
->> +
->> +		rxd0 = devm_gpiod_get_index_optional(dev->dev, "strap", 0, GPIOD_OUT_LOW);
->> +		if (IS_ERR(rxd0))
->> +			return PTR_ERR(rxd0);
->> +
->> +		rxd1 = devm_gpiod_get_index_optional(dev->dev, "strap", 1, GPIOD_OUT_HIGH);
->> +		if (IS_ERR(rxd1))
->> +			return PTR_ERR(rxd1);
->> +
->> +		/* If at least one strap definition is missing we don't do anything */
->> +		if (!rxd0 || !rxd1)
->> +			return 0;
-> 
-> I would say, if you have one, not two, the DT blob is broken, and you
-> should return -EINVAL.
-> 
+According to JEDEC standard JESD22-A117E, no single data pattern
+represents a universal worst-case for all NAND flash failure mechanisms.
+Different patterns, such as fully programmed, checkerboard, or mostly
+erased, can disproportionately stress specific cells (e.g., programmed,
+erased, or those influenced by adjacent states).
 
-Ack.
+Given that no fixed pattern can cover all scenarios, the use of a
+randomized data pattern is a practical and effective mitigation strategy.
+Our hardware implements a randomizer feature that scrambles user data
+before it is written to the flash and restores the original data upon read.
 
->> +
->> +		pinctrl = devm_pinctrl_get(dev->dev);
->> +		if (IS_ERR(pinctrl))
->> +			return PTR_ERR(pinctrl);
->> +
->> +		state = pinctrl_lookup_state(pinctrl, "reset");
->> +		if (IS_ERR(state))
->> +			return PTR_ERR(state);
->> +
->> +		ret = pinctrl_select_state(pinctrl, state);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   int ksz_switch_register(struct ksz_device *dev)
->>   {
->>   	const struct ksz_chip_data *info;
->> @@ -5353,10 +5392,18 @@ int ksz_switch_register(struct ksz_device *dev)
->>   		return PTR_ERR(dev->reset_gpio);
->>   
->>   	if (dev->reset_gpio) {
->> +		ret = ksz_configure_strap(dev);
->> +		if (ret)
->> +			return ret;
->> +
->>   		gpiod_set_value_cansleep(dev->reset_gpio, 1);
->>   		usleep_range(10000, 12000);
->>   		gpiod_set_value_cansleep(dev->reset_gpio, 0);
->>   		msleep(100);
->> +
->> +		ret = pinctrl_select_default_state(dev->dev);
->> +		if (ret)
->> +			return ret;
-> 
-> This does not look symmetrical. Maybe put the
-> pinctrl_select_default_state() inside a function called
-> ksz8463_release_straps_spi()?
-> 
+This ensures the data stored on the media is more evenly distributed,
+thus reducing pattern-dependent degradation. This is especially crucial
+for preventing errors caused by unbalanced data (e.g., all zeros or
+all ones) in blocks with high program/erase (P/E) cycle counts.
+Ultimately, the randomizer improves the long-term reliability and
+endurance of the flash device.
+
+Please refer to the following link for randomizer feature:
+Link: https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051=
+V1-The%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35x=
+FxG24AD.pdf
+
+>
+> Best regards,
+> Krzysztof
 >
 
-Ack.
-
 Best regards,
--- 
-Bastien Curutchet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Cheng Ming Lin
 
