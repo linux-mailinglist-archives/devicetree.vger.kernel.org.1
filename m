@@ -1,113 +1,144 @@
-Return-Path: <devicetree+bounces-216051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CADFDB537EF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:36:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4382B537F5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 896895A1F0C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:36:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 824F63B325A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A02633A03D;
-	Thu, 11 Sep 2025 15:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3A6341659;
+	Thu, 11 Sep 2025 15:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXY/g7KK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B495213E02A;
-	Thu, 11 Sep 2025 15:36:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C008223DC1
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757604966; cv=none; b=XtRaW7J4OcJLDEpAYO7jAWEd/gZpvTTVcowhIryUsZVXCCCfPwEgObdUcUcDGp49rmtkN9NY2fX93FKWiNO63/oHZWkNjrkXKrvAfjqrEYtn4yuw/oXE2pQKKFITeY7h9F4giKXFax5oJoMO7JVDxNArI18Xw8WSplq6VxylkCQ=
+	t=1757605065; cv=none; b=iaHsQTsEL3/irvHCdnaLR/LfJjYDyOD2drZWX/zEswewL5zc/MvAM95iA9MLdW9VcstI7AryBtbSLekmRe5HKhE/W1Bm8ET9XM1X/CRDxBZ59MEi4gaqgT542d1BAF1gBP8PWu8YVwpanrYCndeqWYduF3GGUADhHWsDvYErQ14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757604966; c=relaxed/simple;
-	bh=rxW6LjatMXABSFF50dD6Mr7NKj8XRfl0EDC8vjfgTtg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Eqq6vs4ukhMCD1vbBAUDD9KiGfJQ1+heK3/S9dA5QmQbHJBM0wzSbLLiGrP01ior62TWkLN0PutKJ/5/A5KFC3H0YRE/tTCp2v0hFx7zAzy5gjosQB1dhiyE4gXdX4kUgDZQXuTEAOCNW6pRGVnBQB/uxl4JWSuCwMoMHh9iAvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1757605065; c=relaxed/simple;
+	bh=jGCbtWcrlVGOlsw7vSJ37YM2eaVCO3X/a+iFWrzFEgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eP6sycYerxSrqUhsCUNFHZoG92y+pifuXNJwtUyItPehwgDPa32b7XxuB+TTen+4HdRcqGSwzAddZGmSvY4wTpOC7wXSDcxB33QTsCDdCp/XNKvgocRorfIopRffUgNQOwB7kq971dSE7DzR78YUGJgYxQdNekAon4xpjSRw/T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXY/g7KK; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-8a1d640b50eso599178241.1;
-        Thu, 11 Sep 2025 08:36:04 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so661323f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757605062; x=1758209862; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jGCbtWcrlVGOlsw7vSJ37YM2eaVCO3X/a+iFWrzFEgU=;
+        b=HXY/g7KKP83uIqjy5r045LPH5MpsAuD9jkea61fwAnc8eEcUK7Nh2SqHjW0k30AoQi
+         2PZE2AL5GG2g5/obncCCFDnc1WnE3H/PvimlPHLsdqniTL/iw6bfE4KRtruz3FrFoOX7
+         PXj4AyHyf21KI4NgVf1O3/l3mHuT2xSRzGHWEeRqYvp0Ae1ZUgkUKtne5f4QkzIHgC0a
+         IvMUNtAfJ7IpetajrKQ/+5a+VFvxlhtjgORQDNnnVE7GOz7j0rM+phlsXPwLkHjvtEo7
+         Xw9TjuAkjs3kqxY9c9ZQ+xRyWvR75Va6Sp4W8z80NbwpXC6H02nzOc04+pGYobVf+gZG
+         Zp0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757604963; x=1758209763;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HED7AzArbGTC5OcrHXoQ6N9kTMoymyrW7L3VT9L9XFM=;
-        b=o0UscLgNOK+YBv//2BpmXPF/ay8d0VIdzFz0QpjM26j5/Y12JpIXvPN6e3VCGNCZ/C
-         hoeyvDYOvSEzEkd873/rs6/xQ+dZvWwfo9IAamciopdgczPqdyJI+NASi3QJlzhictIb
-         MCTkTZAjOFFnuK5WCOUkRkbO7XmKDOt2B0w3ZC/u5UTFNHsWr8LPQXuukJj0Ia5GfUGo
-         /QIzozwWBZ7sGoEdDha5M80oH2uN7GirFXixvrIkwwVHbJRUsL+ooUTxxElbsu7F34kK
-         AdRYcoE8/HeGHhWbGkbeOpQrayB9129yTKnEkTX4MOT2VLspAGIBrx0KmrIg92vYJWCc
-         7iPA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1yicO1EPQ91Bft5eq1ftzlT1mwWc8uZJ8OLyY9fbZtr9n2d4YC3oWWC3aoRJ9SHeP+Q/KFiQtGYOlDTqH8jTfyR0=@vger.kernel.org, AJvYcCWB0a4a3u0xvicDGhTCrfWLtYfJKozPivv5Vyu3eUcYMPnUe0oxz8aluwRXll2YSzijDKJt2SUrFqa2yex9@vger.kernel.org, AJvYcCWG0fOJmIS5HOF0GQxwf5QnxwkMa9K5IUxv5XBlFdKeXwY0FQ+2lt6upZXcuLtaoW6D2OSkCdqrilqD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEGwJ/Nolah8Hiz76TgD4y8ZqIKZtYaVQoo8Z/EswOpV7Cpy2f
-	GYJ6VCFPySPRTM53Qpw9oNhpztY0JxrGxJni2JQu24VKe12uCz42eczTw1eoZbkA
-X-Gm-Gg: ASbGncuM5WtHfguJVL0HC+SSqwTCawzr5NWB6fuX+hh7g6giuBQJvSNwi8ZB7JLYU71
-	DsG7Qwf2etc0/i6kcwSQ2mpKYihxa2qePszH/YMNc+iZ8RyNRhDL1owJGld2l7FC5M/+5n5CZPu
-	UrYxRd9ak2xAah8d1/Ojz1Ow546IPiIjACvOpeKtN9wtBLA0XDtMV0qm10i0VnY4comgO4LAMP3
-	ESQoGri3bTJ3WLRGsrDuZgTUshpWk1DiJZJG7fM8jiimJUYC/DCurWM+sidsmCc4q7bWXPzLG55
-	1pr/sN+SbJQ2mIJaWPcKid9XhfMRb+vxJdtfPJ19xrh2LW7qP9Y3mXE43qV+zbMlET3o4gRM6OU
-	sFAWKVNyUhAHRf55Dl+YzT/I5QT03fAl3d0th3UydUx/5kLdBnh16GUbS14+80EYdsYkkzQM=
-X-Google-Smtp-Source: AGHT+IGZLE5uNG1QZnGgdGLhzdmxXsyScuFuR3i6AkV1j53y6QtH9IKqHHhEqfnvV1UKuHuLfUHZaw==
-X-Received: by 2002:a67:e709:0:b0:4e9:cd8e:c28f with SMTP id ada2fe7eead31-5560908cef6mr22754137.1.1757604963385;
-        Thu, 11 Sep 2025 08:36:03 -0700 (PDT)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8ccd640ab51sm283853241.19.2025.09.11.08.36.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 08:36:03 -0700 (PDT)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-8a1d640b50eso599158241.1;
-        Thu, 11 Sep 2025 08:36:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX+ojZiUPrnZwwn5GzAZ5uxxWXcmhEbtD8tgk9s//0TXqfcw4mOgzOE6ccd9u+xyi+yTWEjvf00HZ8qtnAmEc8xxfs=@vger.kernel.org, AJvYcCX4eiR/G2wJL9titnBM2OAUzJz7tGZ/ovRa4DogJWK3a8SPoOvtwAgOWTW4wbJcyQajG6QRIexU5/7g@vger.kernel.org, AJvYcCXR8jO2htrbaAuxrmvzqsW0Fng89rvv3/bjZplWdEDsXV8TR0YEoOpEX9yqF8ZtlPkTS+owS3n+z8GNlwrt@vger.kernel.org
-X-Received: by 2002:a05:6102:374f:b0:524:4800:77a8 with SMTP id
- ada2fe7eead31-5560908dc48mr21383137.5.1757604962863; Thu, 11 Sep 2025
- 08:36:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757605062; x=1758209862;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jGCbtWcrlVGOlsw7vSJ37YM2eaVCO3X/a+iFWrzFEgU=;
+        b=dN1i8ruV9LzV056aGRY2/P8WiYfC8724ub3PRGhjb3/EJo0j4Vt4pVtmBVbHoqmL2a
+         FgjFiMO+DYmhlpEfxq/pctJy6J2zKwexfEf4SK6GanBq3EMsR43I61PmKLZ/5F6awArp
+         06l0qwOkvJ/76SFG3xctuuP55DA8Jzth7dsdwBjvr/sZdu4VXX8EdBOEtnVNMc2bi71g
+         hFqEsUHc+LsdAqVWw/4uIaN/A1lQupiJkawqNqQ/s+MiSvAAxdU9eEZHY+rSziYl11vl
+         Kr4dK9iOJn7nwUxqAGGsJDmRHOlrOVqfTs/Hif6vTpXCg7NIUMREGoXrBC03AYhttcIV
+         NHkw==
+X-Forwarded-Encrypted: i=1; AJvYcCXHsU1ADa9EXKwPd1kvNKMUXKAemUYOoTy3araYrL5F2WCnAouZsVbCFpbrxwWehkzObYlrzOGZyD7L@vger.kernel.org
+X-Gm-Message-State: AOJu0YxK27gGrQNU7W8fYCJKhoe16If6pjJEJCngVqBPbcboy966QKcd
+	7d09OPlzhyZwdCAdxZc+uM/yOA1sMcF1S0HDbbk9BaAdy0bVSpGKgS0rNZJlWw==
+X-Gm-Gg: ASbGncsnnrUzClciuGpwzWTjlFN8ltXwzgqcs0p2z27rvGU9oFpFuM0cPqckBS0H1ok
+	yXio/W4fyy1wy4fOKOfH9p5Pz808ixJAAmuCpOBOk9ocDNriRQFUgn8udBa+1U9ti1dQ0xEj+lB
+	V5Ga35tTIt2r0W017Yu7mri4nEsNVLzlzWtRUtXt/upwB73qDh48snY0rWRgwXKdToKA2Gysyar
+	OuNuBFmx+7m2yfCU+MXvY6n/fhBfuM+RMBlGEG6IX3g0OprBQ8sQGMBMYXbfkyyQroKgT7k7XXK
+	1zJSA1qdFrJ72Db0JWqyJopjtfukNtMqS4WrV2JLE+F5RlwCWn2WtB4r51YYVPuS/fJsHNfffsk
+	vWfQI8BRr6Y3eGrKDHtAr5l7OVA3W1T66/IqYUyzlODTtYl2mBUviszGGHZGVqa2e5E3a0Ozdgu
+	ttXPTwVpigEizpFS32v58=
+X-Google-Smtp-Source: AGHT+IHeomjwGshdwXJ7GtRZ0kQRCHXFbt99q/ME4Q1c9UOw/gT9genHwKUAtxXldEZTN6dWsqdfzw==
+X-Received: by 2002:a05:6000:2209:b0:3e5:31d3:e330 with SMTP id ffacd0b85a97d-3e641a62252mr17500369f8f.25.1757605062220;
+        Thu, 11 Sep 2025 08:37:42 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd424sm2807855f8f.36.2025.09.11.08.37.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Sep 2025 08:37:41 -0700 (PDT)
+Date: Thu, 11 Sep 2025 17:37:39 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, Sheetal <sheetal@nvidia.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: power: Add power domain IDs for Tegra264
+Message-ID: <bdll2m3pgx6vdkjblzjcwx2yyu276mdapdy3ygxhy7kzhmzdah@q3v3vmo3mvjl>
+References: <20250828112924.3773782-1-thierry.reding@gmail.com>
+ <20250829175432.GA1070947-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250817145135.166591-1-biju.das.jz@bp.renesas.com> <20250817145135.166591-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250817145135.166591-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Sep 2025 17:35:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXaZpM4VKarTxS5JdazZj9HAiYc1o=YhFiJCdMra2=4Xg@mail.gmail.com>
-X-Gm-Features: AS18NWBiBreY4smpMUQm1HruUYPp5Rw6clODld_mbh98V88VzBpKfWDiBXbno-k
-Message-ID: <CAMuHMdXaZpM4VKarTxS5JdazZj9HAiYc1o=YhFiJCdMra2=4Xg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a09g047e57-smarc: Use schmitt
- input for NMI function
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hit7guxpysqbu3ng"
+Content-Disposition: inline
+In-Reply-To: <20250829175432.GA1070947-robh@kernel.org>
 
-On Sun, 17 Aug 2025 at 16:51, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> The latest RZ/G3E pin control document (rev 1.2) recommends using Schmitt
-> input when PS0 pin used as NMI function. Enable Schmitt input for PS0 pin.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Makes perfect sense, sp
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+--hit7guxpysqbu3ng
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] dt-bindings: power: Add power domain IDs for Tegra264
+MIME-Version: 1.0
 
-Gr{oetje,eeting}s,
+On Fri, Aug 29, 2025 at 12:54:32PM -0500, Rob Herring wrote:
+> On Thu, Aug 28, 2025 at 01:29:24PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Add the set of power domain IDs available on the Tegra264 SoC so that
+> > they can be used in device tree files.
+>=20
+> What binding is this part of? 'git grep nvidia,tegra264-powergate' gives=
+=20
+> nothing.
 
-                        Geert
+These are the IDs used for the power domain provider exposed by the
+BPMP, so it's technically part of "nvidia,tegra264-bpmp" but because
+that also exposes clocks and resets, the IDs are split into separate
+files.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thierry
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--hit7guxpysqbu3ng
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmjC7MMACgkQ3SOs138+
+s6GSbw/+KNSsSyDeolsDUliha+lOTYPks7ylxlENZw5A33O0wGgMY/sGvN1lFQG6
+w/8kZkZYuGPit4/bgLbpTkZ4zAKsnu6K7ZzUGUEdjm4HU5ukebeZ82qqVSuGLdmD
+Y5z/HQYEmSrPaFwtpm5k7rjSdg3ZPVIVYvDY4MvnC6JB1M1hvDU8ph9rg4gbJOCs
+l6DF2hhOubiU4tbqBZXpNFKVaoTrGhzFEh8mIyw31HEwg8zE8bMrnRi9oGSxa8kp
+0P6JP5Hgx8Lq2SnwAdRi7JDyoxoGgsccrFixsWISB0zzm/y1QHyoFTF/xi1wfqQc
+W+3QzVMEoLcr014k3XKsAgIi14ChHnRPVA0MUkJKqvhtB7jGt/F27u2po439h1Hn
+aL+pspDPYQfX21dUPdpDjcWtpDd36uVBFyj7s9uvQi/y1fUOPzo73nRIzOnmCDBa
+tjHq6/mUtP16wZVZJmupGGrjiy5tedvWcJEhTj51ZLz5tatN4sLsXqL4RJb6Lrnu
+GOoJVhkwf3OFW4JKlTWRyAUd2smKn5JlQIVu09xmvpzDAq597uwK+sUIndMK4VOH
+jBf/hrXzcNfuJeVqLninaox7YQzq6mIqvwpK9cl+/n4suyhcwDcdSy5TeDoUQ15b
+qc3736AbBCEuYhxg/g6/0YDqGB489OGPfIEacoXTP1W3refJAAk=
+=C2Fx
+-----END PGP SIGNATURE-----
+
+--hit7guxpysqbu3ng--
 
