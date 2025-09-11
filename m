@@ -1,163 +1,110 @@
-Return-Path: <devicetree+bounces-215799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE42B52B33
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:08:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F24EB52B36
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:10:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B99D16BDD4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:08:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3D1D1890BF7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA72D593B;
-	Thu, 11 Sep 2025 08:08:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5E12D5C86;
+	Thu, 11 Sep 2025 08:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fra0lWFH"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="fuDdhKdr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5990B2D5933;
-	Thu, 11 Sep 2025 08:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998B82D5952;
+	Thu, 11 Sep 2025 08:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757578106; cv=none; b=qjbcw910WRFBaBtbaZbFdNCcawBYEH+QSG0Xz5T+ljH3/b6kx6VHDmud1y633PyKq/NxK17PG+GrqVqzXQePqAyEEh0C4PnWf5UdaVZ4Fz8DYkCUQoEcTiDx59mILt+aklXYM54Sj86l66zPi8Wvw4ZDoogKicjdAhckM3Dchqw=
+	t=1757578197; cv=none; b=iev93yJxQKzqWWJ/SdZke6NMNIU69yNM5l3JEaK10eorGeyCKvXjbkERNGSRFblLu56KNguipb8aLhGZu2j7msYe1LzE8KUffwB/Mr0ur03EVO+J0vBNDytXvwB0WB51JIf+oz6RngVKbUherO4oOV9d0VgXYK18A618n0wvg7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757578106; c=relaxed/simple;
-	bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qcOjeXvey5T+l8We/mqbAbURtVXHRUXCfh0avh+5Z2K55F2se4IyiwEuLFQeZUKX6tsI/MqF5wNdbSblemLtmv5wJ/6Ot/QOXLVGLgR/hj0D5YLBM+u30jjACxP6N9mC1qveUyfzFOySvZSIQiGJpqRrokfY/bUwhM19HSYSnNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fra0lWFH; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-32da35469f7so365815a91.1;
-        Thu, 11 Sep 2025 01:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757578104; x=1758182904; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
-        b=Fra0lWFHrEkU3bOSsQ+EG7AxCs4bDoCvMH7MWVLUNM66/FU0tE7WNrZKwmo47O1Uqb
-         anD8eT7vHIciICzhx+wIycI3q9UvV12TZViHRak0BdpOvPdZB+c/Yg4T25grxOJ0CFST
-         e16PWZkSpp1oInlYDYUrNgt3y4UImgDWiQLSdINf68D/SEubq+RfRcfVFs+NWDr8M8GX
-         40gVvvRqaXK7tn6XQU4ipzTKmVjw/aU3M8IPtRnLjmbji6nt8Tid7t+ENIKqLFIbzotA
-         vbpzw0ZK5iSjZIxGjdKZI6v5a1Dly8QPyraR3nhMBYbxJt/GKpHVBjJRd/pRYNhY7ALh
-         WQ6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757578104; x=1758182904;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yWZc8TqB1iXVf2SuiFfDpIJC0os90AJ8zoKq9v5Sveo=;
-        b=ctfXStuDx+1ouYoEUj7m7OQLIq64unQ6kjdcVqkih+q90PBLeYi/hOhQVuSUbc31XY
-         moSSJVSNMrbZ3EUQkGZy0YQLOvgQZzYkxDAPtguOCjRO5GI3aesVah4p0+OYmWMZkx2q
-         bHxFMqK8OyqaMJN1TXsBbRk9u90WDOHYjRLqyMEVKDgEB/Sa7Cd2tF7yNojfp3KsdkRG
-         Ogc/t7EyvOreGWuMCljxVtQeUKTzxBalZZVwmWOEJr0A7eLI9qLPF+d84hlVNpYO9tq6
-         aa7Z+cXi5x8jpxKUhBvNetbJTM84yseeRyizcgCKgMRGyyvfnZ47UygWt/QZQUW8Hwtr
-         B4Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzolV0ABH5GDABmPOMoxKwwKlYmgOYOIui3f7xMKj50aocJDBLLk1DxOMjl2cVNKe/ZnqAYfmrdKa7wgFY@vger.kernel.org, AJvYcCWkQHdJYWoNe8aqo2ffP96X4gSNLezhVlAnONQYI/MhPBys2PZzwFDmqUQftXl/4Ij7k1KpeNYymeAs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAl+d8xQkDAAG8VMoFxfIYiJ73dxiAGf9lw53gQtgol+xmHcXF
-	0tYs0FOQmFY5854dIYUfUUq74FR/k4fOG2Evj5sYoNQYNJD2NXWAx8VOPiLuqfJfxOLZJF9P5Lp
-	6ZdvWHPkVZ/wjPYhPrbLFSNswtxp0pEc=
-X-Gm-Gg: ASbGncvQ+eiRItsZZZW5GmzYxI0TsIKsnbZlhIS/YHoCXq2VmuTtLCCKw3eAxPCFjAb
-	Nov1fnf9eajzQJs8rLmcNpvtPEoWUI99dLiaNhVgUmmn9bZID6VO3dycKCRchU6BscbYt72XJJQ
-	Sbe52lTd0FZ2Mvu3dOMpkndfWCvTg5EQQu5qG8pYpZ6rOUr97JAxz+3VHH9BjdnuOelyqQYuEW4
-	T0bRK231gYf+OiOacR07Sp3cCWZXara2SaeWMCHOkJE8kvwLCybjeoqJNR/zipxvIUvLBHf5X4X
-	yTSuww==
-X-Google-Smtp-Source: AGHT+IG+CYWgOqOKulCdN8Yazwf+YU8Cv8POaXoSZ+NDltxvwpRzupcwLo7PooHvhIBsmf6LQty0AKdRu+LzJWLeS8E=
-X-Received: by 2002:a17:90a:da90:b0:32b:8b8d:c2c6 with SMTP id
- 98e67ed59e1d1-32d43f2f458mr20260397a91.14.1757578104427; Thu, 11 Sep 2025
- 01:08:24 -0700 (PDT)
+	s=arc-20240116; t=1757578197; c=relaxed/simple;
+	bh=x352PQuhLLNf6YiSW+jdH4w7Z+cRMhcTOsK7TWAibzU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qDDRHuTdUBdJ6djLsL9O9tk+H2aRT8XsDlCeyVMRwvNNK5p+7mrGif0rqtKVmYV/Lhd21+7y48oZSPFQBNoKlFEnx9/DN+afns6xk6VgNOZncHgvfVfM7Uuj6OiZCkRtdfTj7IldqG9etlqlhelcdCtm9HsoLoaeIaX45upn98A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=fuDdhKdr; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id D2F3E21AC3;
+	Thu, 11 Sep 2025 10:09:53 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id YH6VOlBShjIH; Thu, 11 Sep 2025 10:09:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757578193; bh=x352PQuhLLNf6YiSW+jdH4w7Z+cRMhcTOsK7TWAibzU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fuDdhKdrSXxaYAPHhpfiXcmtnT926GU+qcEojSTORsEPqoel76uoRXDdpxMUdccPM
+	 3UmdTwgzFvn60ZXhAX5BywthCQXxvmGImelUv6ZaGfp4nuXYtsNUqNo8xTm5IOaW/G
+	 EcbiT9DdgSXEVhIS9WGpf98wG64U67QT8B7VVxMN8DE6pWrDJ9/5Xy7s1dW47IlxVB
+	 L3LFYl+YqsPlv92PV+veJTj17TIsNZNfjgnGlwxZJFlvduseMiq29W9PL005kAdSFG
+	 iubM+kckz5QPAUknYQYpa4MG861jZsjXrJw9pRC441mIjRsyqXy+o0QVVZCfuTq9ci
+	 JuUyGgUggRtSw==
+Date: Thu, 11 Sep 2025 08:09:33 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
+	kwilczynski@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, lpieralisi@kernel.org,
+	mani@kernel.org, robh@kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add PCIe Gen2x1 controller for
+ RK3528
+Message-ID: <aMKDvcbJ2T-QNYxw@pie>
+References: <20250906135246.19398-3-ziyao@disroot.org>
+ <20250909125029.2553286-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250910030301.1368372-1-linchengming884@gmail.com>
- <20250910030301.1368372-2-linchengming884@gmail.com> <20250910-godlike-berserk-sambar-cd25f7@kuoka>
-In-Reply-To: <20250910-godlike-berserk-sambar-cd25f7@kuoka>
-From: Cheng Ming Lin <linchengming884@gmail.com>
-Date: Thu, 11 Sep 2025 16:05:21 +0800
-X-Gm-Features: Ac12FXz4c-ZW_4rN1oqVd4xLR1hown8Pq90Ds8_JG-yDyxe8dzsU5NnL_4sRICw
-Message-ID: <CAAyq3SZO3miC0S14DmgLvZ1dnVXkAVS_j61+erE8c7A-yYJWMw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
- enable-randomizer-otp property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	tudor.ambarus@linaro.org, mmkurbanov@salutedevices.com, 
-	Takahiro.Kuwano@infineon.com, pratyush@kernel.org, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alvinzhou@mxic.com.tw, 
-	Cheng Ming Lin <chengminglin@mxic.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909125029.2553286-1-amadeus@jmu.edu.cn>
 
-Hi Krzysztof,
+On Tue, Sep 09, 2025 at 08:50:29PM +0800, Chukun Pan wrote:
+> Hi,
+> 
+> > +			reg = <0x1 0x40000000 0x0 0x400000>,
+> > +			      <0x0 0xfe4f0000 0x0 0x10000>,
+> > +			      <0x0 0xfc000000 0x0 0x100000>;
+> 
+> Aligning the address for reg and ranges will look better:
+> 
+> 		reg = <0x1 0x40000000 0x0 0x400000>,
+> 		      <0x0 0xfe4f0000 0x0 0x010000>,
+> 		      <0x0 0xfc000000 0x0 0x100000>;
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=8810=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=887:40=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> On Wed, Sep 10, 2025 at 11:02:59AM +0800, Cheng Ming Lin wrote:
-> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> >
-> > Add a new boolean property "enable-randomizer-otp" to enable the
-> > randomizer feature on supported SPI-NAND devices.
->
-> What is randomizer feature? Subject, commit msg, description - none of
-> them explain me that. Is this some standard for NAND? Why is this a
-> common property?
+Thanks, this makes sense.
 
-To the best of our knowledge, Macronix was the first vendor to
-implement this feature in hardware to enhance data reliability and
-endurance, especially under high P/E cycle stress.
+> BTW do we possibly need this?
+> https://github.com/rockchip-linux/kernel/commit/e9397245c4b1bd62ef929d221e20225d58467dc7
 
-Since this is a vendor-specific implementation rather than a common
-NAND standard, I agree that this property should be handled within
-the Marconix driver specifically, not as a common property. I will
-make the necessary adjustments.
+I'm still unsure its purpose, but am willing to adapt this change. See
+my reply to Jonas' comment.
 
->
-> So many questions and zero explanations in the commit msg. Instead you
-> just wrote what we see in the diff - that's completely redundant.
+> > +			clocks = <&cru ACLK_PCIE>, <&cru HCLK_PCIE_SLV>,
+> > +				 <&cru HCLK_PCIE_DBI>, <&cru PCLK_PCIE>,
+> > +				 <&cru CLK_PCIE_AUX>, <&cru PCLK_PCIE_PHY>;
+> 
+> <&cru PCLK_PCIE_PHY> has already been defined in the combphy node,
+> is it repeated here?
 
-Thank you for your feedback. I apologize that the commit message was not
-clear and did not provide sufficient context for this feature.
-Your questions are very valid and I should have included these details from
-the beginning.
+Yes, it should be managed by PHY instead of the controller. I'll fix it
+in v2.
 
-According to JEDEC standard JESD22-A117E, no single data pattern
-represents a universal worst-case for all NAND flash failure mechanisms.
-Different patterns, such as fully programmed, checkerboard, or mostly
-erased, can disproportionately stress specific cells (e.g., programmed,
-erased, or those influenced by adjacent states).
-
-Given that no fixed pattern can cover all scenarios, the use of a
-randomized data pattern is a practical and effective mitigation strategy.
-Our hardware implements a randomizer feature that scrambles user data
-before it is written to the flash and restores the original data upon read.
-
-This ensures the data stored on the media is more evenly distributed,
-thus reducing pattern-dependent degradation. This is especially crucial
-for preventing errors caused by unbalanced data (e.g., all zeros or
-all ones) in blocks with high program/erase (P/E) cycle counts.
-Ultimately, the randomizer improves the long-term reliability and
-endurance of the flash device.
-
-Please refer to the following link for randomizer feature:
-Link: https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051=
-V1-The%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35x=
-FxG24AD.pdf
-
->
-> Best regards,
-> Krzysztof
->
+> Thanks,
+> Chukun
 
 Best regards,
-Cheng Ming Lin
+Yao Zi
 
