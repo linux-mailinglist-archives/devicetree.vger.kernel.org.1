@@ -1,117 +1,101 @@
-Return-Path: <devicetree+bounces-216108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F2FB53AAC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:48:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2760BB53ACD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:56:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5AD1AA7029
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F0CF1626F4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988AA369996;
-	Thu, 11 Sep 2025 17:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD3D362097;
+	Thu, 11 Sep 2025 17:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aAixnrkK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJ9KJYfA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69977369983;
-	Thu, 11 Sep 2025 17:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5437C35FC3C;
+	Thu, 11 Sep 2025 17:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757612836; cv=none; b=RGL9fiWsBo2AsdcGFWE3m/eIQLQed231a8+Zoxgk/D5mU/ew0ISWYWEESjy4Id357mOo0dCZkYvC/FCMMKcfUOd7xIf/HXX5bemSz8dDheOlg1fmWRzMQBU2hOwYclviOviCUvPYVU42EjtwEL1caxCq/8vzGhsg7QwtIk+/WMo=
+	t=1757613380; cv=none; b=AM8YpnkOW6zB7WT4zkh8FCWI4SFo+Pak5qZt08uHxA4ZhwgLz4liIlw7H73rL5KrMnaoOCFO9w6Ob8/CNYoyiUI9FbrJ/QgpmbN1fWhBWraZicHWFPZExjZh7vHW+s+J6nVIeyuK5mUZt+x1YHVM3WSyx2ud6FS5E+x8MIVJbKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757612836; c=relaxed/simple;
-	bh=WzFwdnb/weY1BfCYsn8nBeYLnmC5YscOBh1kWZFapkI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=uFDezeDi3SajlMrzbOZC9tXXra/eIeeqE6wglkHltTb0ACjX8HzxfwKW8oK2i7K2HZT5z6Mgx6VlYjFzACHBA+0WZIvObnp+2m+PwuD/Py3kF1g5zIq2u8OHvEMxhpJ5KM99zu4A6YFKu1kxe4xtoBps2JQjBrshpHK37I43RQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aAixnrkK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AE50C113CF;
-	Thu, 11 Sep 2025 17:47:16 +0000 (UTC)
+	s=arc-20240116; t=1757613380; c=relaxed/simple;
+	bh=OCHmyyyREP4+Sk7q9SH4hwADD3BC7U5F+hODRDkJinA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vFUqZyw0E42IfyurjfDXRYSX0noUNlyzFDhcgGCFLzCAflstY7zHT5K9viKnbGmobbh3aiStJoskqNVPMzkJHK3S5C7yfdqOu2ZQ52TJATWFOWVHD1FtE1Kw0THIrOoVSXpvpYxxXM1kMMFkcnAS2inLLmaHna2kUHXRm90egC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJ9KJYfA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A15A9C4CEF0;
+	Thu, 11 Sep 2025 17:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757612836;
-	bh=WzFwdnb/weY1BfCYsn8nBeYLnmC5YscOBh1kWZFapkI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aAixnrkK6ogY1UdA6Cjp6ThQtGasFtjjg7sxdNkWSd9Bzoi7Ywv8jyy+YKxjk4PZB
-	 NCra51SZcYII02kG/CZqAumdBg5f8gzKlrLFZ+g8aHT3ev2763V+Mn3tIenDlABlBd
-	 j+st1A3dxxpzf+Pm+B8VqvzhqTEzS2LfbIKZzcxFnbY3qlWWj8tEhOtjFrC8SG9+PY
-	 QjlWs6lqRm/8I8cx5OkqZRttMYErGjuZiI3HEIuE+BdJ1oit+wx12NgkEK1TKFAm/C
-	 H0QCpV/ocb0h6IfOOqjHJUX4B4/a2KF9u/C6HMJOOaBYaPUESczovx+Pjm0v4qVJcU
-	 Hjqm/FjFSpftQ==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 112515FEEE; Fri, 12 Sep 2025 01:47:12 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	linux-sunxi@lists.linux.dev,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] arm64: dts: allwinner: a523: Add NPU device node
-Date: Fri, 12 Sep 2025 01:47:10 +0800
-Message-Id: <20250911174710.3149589-8-wens@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250911174710.3149589-1-wens@kernel.org>
-References: <20250911174710.3149589-1-wens@kernel.org>
+	s=k20201202; t=1757613379;
+	bh=OCHmyyyREP4+Sk7q9SH4hwADD3BC7U5F+hODRDkJinA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iJ9KJYfAa+ZHiVzHuni8+5wVh1groCL0QGr8j3o6M1YeaKgZ/1CEvx5mJ9rxghYcP
+	 U9MnU8ubpuf/eQ1Efabg0aZvOqKQzkzNp/ssxhkYZpC4FTcG+8Bd9KhP3OfxSE40gK
+	 +u5g8JMipzDx0UyWtOEOMk9KX76a9PHoRTM+2icbAcQqrNjldgtfUUQkGLsKPXqXho
+	 LSL3in6LySimo1PemYXe77fKK59k4Y/zllA7P4lIlgntSNPzTFvbpN/rFNtCMBVOYA
+	 Pf0+wI9N4jhc/Z5qlMvQF8CiDWxDQyAjT8Q85Z9LP38x2rg6rhQlR/jUvtdvs5RhQ6
+	 Q3+LsdkDAP12A==
+Date: Thu, 11 Sep 2025 23:26:11 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp
+Subject: Re: [PATCH v3 2/2] PCI: dwc: visconti: Remove cpu_addr_fix() after
+ DTS fix ranges
+Message-ID: <chsfhg3u5akllpggnjnld5uv2jauwfaccuaoodcmzlpv2nou4s@czb4swbr3she>
+References: <1757298848-15154-3-git-send-email-nobuhiro.iwamatsu.x90@mail.toshiba>
+ <20250908215510.GA1467223@bhelgaas>
+ <aMGi4smALwIJS8Tc@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aMGi4smALwIJS8Tc@lizhi-Precision-Tower-5810>
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Wed, Sep 10, 2025 at 12:10:10PM GMT, Frank Li wrote:
+> On Mon, Sep 08, 2025 at 04:55:10PM -0500, Bjorn Helgaas wrote:
+> > In subject, s/PCI: dwc: visconti:/PCI: visconti:/ to match previous
+> > history.
+> >
+> > On Mon, Sep 08, 2025 at 11:34:08AM +0900, Nobuhiro Iwamatsu wrote:
+> > > From: Frank Li <Frank.Li@nxp.com>
+> > >
+> > > Remove cpu_addr_fix() since it is no longer needed. The PCIe ranges
+> > > property has been corrected in the DTS, and the DesignWare common code now
+> > > handles address translation properly without requiring this workaround.
+> >
+> > As Mani pointed out, the driver has to continue working correctly with
+> > any old DTs in the field.
+> 
+> DTS should be merged first, then after some linux release cycle, then PCI
+> can merge this change.
+> 
+> The similar case happen at other area, which broken back compatible. But
+> we still need move forward.
+> 
 
-The Allwinner T527 SoC has an NPU built in. Based on identifiers found
-in the BSP, it is a Vivante IP block. After enabling it, the etnaviv
-driver reports it as a GC9000 revision 9003.
+Absolutely not! DT is a firmware. Even though the firmware turns out to be
+buggy, we should not regress platforms that were using the old firmware.
 
-The standard bindings are used as everything matches directly. There is
-no option for DVFS at the moment. That might require some more work,
-perhaps on the efuse side to map speed bins.
+We can surely remove the check after some time. Maybe when all the stable
+kernels stop supporting older DTs. But not until then.
 
-It is unclear whether the NPU block is fused out at the hardware level
-or the BSP limits use of the NPU through software, as the author only
-has boards with the T527.
+- Mani
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index f93376372aba..9676caf9bd4e 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -852,6 +852,18 @@ mcu_ccu: clock-controller@7102000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 		};
-+
-+		npu: npu@7122000 {
-+			compatible = "vivante,gc";
-+			reg = <0x07122000 0x1000>;
-+			interrupts = <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&mcu_ccu CLK_BUS_MCU_NPU_ACLK>,
-+				 <&ccu CLK_NPU>,
-+				 <&mcu_ccu CLK_BUS_MCU_NPU_HCLK>;
-+			clock-names = "bus", "core", "reg";
-+			resets = <&mcu_ccu RST_BUS_MCU_NPU>;
-+			power-domains = <&ppu PD_NPU>;
-+		};
- 	};
- 
- 	thermal-zones {
 -- 
-2.39.5
-
+மணிவண்ணன் சதாசிவம்
 
