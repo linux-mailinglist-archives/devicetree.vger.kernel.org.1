@@ -1,112 +1,173 @@
-Return-Path: <devicetree+bounces-216094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1F7B53A64
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:29:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3BA6B53A85
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A5BB7AB335
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:27:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01ECC1BC7A89
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1662835CEAD;
-	Thu, 11 Sep 2025 17:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7138236207D;
+	Thu, 11 Sep 2025 17:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="smNZawjv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AB9173
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 17:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF2035A2B9;
+	Thu, 11 Sep 2025 17:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757611735; cv=none; b=NQxkkAOXDsuBfmzMSEJ8jqMmuLWdsJuafjY3+WMGv11btG/OgInorJ+KFnF3XQT28yFy6EJCP3uP0bmnh787izyQt1x5ln6mAmXWMqKIvqpNay71TLpgeaktvsinB9J/MzsluPl2NQDFMTXE6af8oCJe6Y3LID9hOVp1fkfOkEI=
+	t=1757612436; cv=none; b=kx6mmy522B4FUKNBgazQxniAOprsN0J2lMYtZ/MuKUh7NbUeFUkOILcyiwaSQTge1k+pe11wk7zdoxt7JYPRr776kgl4Bb3ZZ4tzWarYY8hXcUtDyw1hUEuBd+Q3tf5/Ky6m+yvo1NUfhFCjP31GwMEgASu8iAtB794ghh7ELgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757611735; c=relaxed/simple;
-	bh=BdWBmM3pGAEjuR8ywljtmJOivr5eFXGIIviSTZvwLdY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SAuGaepvudTTzPYxYnqmqv4W/gIr0Xt3PbtZ2m/MRh6ErBZlOLrNVo650jVH9jAZU1FJpE44rnMxHfEWDXp44SGxxBGhnJ6wW/CKaAqoQevowTl2iT3E9p74virvdN6mry+iHcF/PI8b7vdrcRav40THHiaKVrV2NdxPDs/dCTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-89018ec3597so572977241.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:28:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757611731; x=1758216531;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nNwKnllKcgNmSxozD/+n9dLn0I91saVxOj9Y59G/HOU=;
-        b=LHiB46D5t4yfhWQUV7Ra2+ONW5srP3IEEipoxv0+5llUm89WmuZGkL5MRMZJO/m5pf
-         4OXV5sdQ/Wf51QbJj41kD3idvR0IPsfabAEJ1wxJBTUFSGZHrRg5wj9uSTlDAU82sNs+
-         8vb9rwppTwVywUrRmp+MMcholAftDbsrRv9syS7GWGGdl6N8mDTfvmaDtl6X9lssNLyS
-         9k3cty39WJI++bdjVY14C1NQV0DWVfBc/0r5NuUzt0bWLGvAsLjoOum19v2WChb2Qf56
-         RXe0LXIiJDgeaUlAilKLglocOZnUv0O+ZDVPCdWjq3bKl5e7yCtg96Fc+1kztEeWjhug
-         WOFA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdZxLdmjo0wWvYKcwuPgBOI2YnHLvujDFqfsG3Sg/H4ZVHSPVSTwgey56slUXZObw2ZWPFEQsX+grL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpY4VYkfBb2r36A4W6kZXwKLUlvv+6DGCKR4+UyKEtW2HCzSRM
-	+5FAv/w2fzTnPTcDjpNRogt332jEJWIxHYrlu6IUsdBZjIJ6EaH4i3rL28R+6LES
-X-Gm-Gg: ASbGncvZjJVwHb5LU+ijiZGWZIi9PQScuRKAm3ZgiASZWgw8GsXPfOYrX++CcW6wFJc
-	YYb1ch8um7J5kjXLKYMeME7CClvUWhZ+EjqGMNa+HjNlzUZERkHOOmwot1xqgBGTy9KXSokRReh
-	PbtGl1x0Ew4YdtZx6E4LmFV4epqO1RFoklmrpe/1EmertljHp25MkI6w/lC2rXGntNQ++jxiAiQ
-	0Js+3gdCGnDRok3WqEdQiZp2Ce1Z1aofs0zVsVviyGL5z3t8qdjuV79wGZ3F8TA3IZrq/6bhNdR
-	UFvURmGI+uU6/dZoEol0wyhqq5PdMne4tAFBjWI8/5WtLvGMKVPlPrIUrnjBJ30vLXKCyIwSiTt
-	q0Cw9hi7BIpF6H38Yr2xmhHKKk5Zp8mcyV+3k/3xW8Dt59SJBqtwHXYLw/jEr
-X-Google-Smtp-Source: AGHT+IGMwlOmWc8kdfgRebNhg5MVrrjlBaqaPAeoW8UNQwQKNmUe48cImCZa9GO54F2YJTs26JW9hA==
-X-Received: by 2002:a05:6102:2588:20b0:51e:8a52:2dce with SMTP id ada2fe7eead31-5560c6e630dmr195322137.21.1757611730840;
-        Thu, 11 Sep 2025 10:28:50 -0700 (PDT)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8ccd38f8c8asm348829241.12.2025.09.11.10.28.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 10:28:50 -0700 (PDT)
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-529f4770585so660193137.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:28:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUpePte64pTTJNWdY2r4UIsD09Ay0xlsTyXKg07WVJ8/Hl/221vk9lU4/iR022kCQ6vFsxliybYMshf@vger.kernel.org
-X-Received: by 2002:a05:6102:41a2:b0:4fb:fc47:e8c2 with SMTP id
- ada2fe7eead31-55607e2ba72mr193657137.9.1757611729558; Thu, 11 Sep 2025
- 10:28:49 -0700 (PDT)
+	s=arc-20240116; t=1757612436; c=relaxed/simple;
+	bh=vYog93aVwPGcrQHrhdWWZg2csKqucpy1r2ESXP87NFo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=s8Oow3nJzb6phYG1gkL13elAsI5Woo3MZFIEpXN3aN9sN9eGU9EiGo4ySJT1rF1ZDmnVBuKZEhgwtKOg79XFw/XxeB+L0t8QeabkbksEHuesoHAMYjf+kmhJs51d5huDG21ups1T8kU1AVJg4fMdcnMDGAOqRI9UIWuuGgr4izE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=smNZawjv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC32BC4AF09;
+	Thu, 11 Sep 2025 17:40:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757612435;
+	bh=vYog93aVwPGcrQHrhdWWZg2csKqucpy1r2ESXP87NFo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=smNZawjvOfWS5UEukIAynejXDJXcbQIJw9Mbp4xYb8+Vdyyr42apkGaojQ/AH1uz9
+	 xqpjeVdLBpLL/lf++i4DTJOyxgQus/oXTFmopDHLVVh7Z7IE5KdzGiXOk3Wv25NG7N
+	 ZWCnB4MEkMhQYVGCqGGhp/y5veG6LrHhB1VmZ3t/TC7BY5b2foO3EYsuWvcaK+02tZ
+	 vpAyN8XKjbxrwMT9APNhkz5vjSdpFwA4nTxI2F4BVo8QCWWhv3LEsYYNBdJAIb5fvF
+	 shSopGdcL/ocfCS0rWPtVlX8DJH8szOFZNuiWGkOL2uhi3489vNvdmLjoDX2e0CrSO
+	 F/6r/MvzJH4dQ==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 03E5A5FBFA; Fri, 12 Sep 2025 01:40:32 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Andre Przywara <andre.przywara@arm.com>
+Subject: [PATCH net-next v5 0/6] net: stmmac: Add support for Allwinner A523 GMAC200
+Date: Fri, 12 Sep 2025 01:40:26 +0800
+Message-Id: <20250911174032.3147192-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250907225338.426253-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250907225338.426253-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Sep 2025 19:28:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUHwp7EiVw97CFZG0zmcK3opAgO-YGcdSGRaF3tGwgLcw@mail.gmail.com>
-X-Gm-Features: AS18NWCqPuEA5ue65D37BzPjM6jGqyVU7S3WL9hosSlR-Z0YeWoG17bjv1N9sFE
-Message-ID: <CAMuHMdUHwp7EiVw97CFZG0zmcK3opAgO-YGcdSGRaF3tGwgLcw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Rework fan hwmon comment
- on Retronix R-Car V4H Sparrow Hawk fan DTO
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, 8 Sept 2025 at 00:53, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Reword fan DT overlay hwmon comment to accurately locate the
-> fan control sysfs hwmon node on Retronix R-Car V4H Sparrow Hawk.
-> No functional change.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+From: Chen-Yu Tsai <wens@csie.org>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+Hi everyone,
 
-Gr{oetje,eeting}s,
+This is v5 of my Allwinner A523 GMAC200 support series.
 
-                        Geert
+Changes since v4:
+- Moved clock-names list to main schema in DT binding (Rob)
+- Dropped 4 patches that are already merged
+- Link to v4
+  https://lore.kernel.org/all/20250908181059.1785605-1-wens@kernel.org/
+
+Changes since v3:
+- driver
+  - Fixed printf format specifier warning
+- Link to v3
+  https://lore.kernel.org/all/20250906041333.642483-1-wens@kernel.org/
+
+Changes since v2:
+- DT binding
+  - Added "select" to avoid matching against all dwmac entries
+- driver
+  - Include "ps" unit in "... must be multiple of ..." error message
+  - Use FIELD_FIT to check if delay value is in range and FIELD_MAX to get
+    the maximum value
+  - Reword error message for delay value exceeding maximum
+  - Drop MASK_TO_VAL
+- Link to v2:
+  https://lore.kernel.org/all/20250813145540.2577789-1-wens@kernel.org/
+
+Changes since v1:
+- Dropped RFT tag
+- Switched to generic (tx|rx)-internal-delay-ps 
+- dwmac-sun55i driver bits
+  - Changed dev_err() + return to dev_err_probe()
+  - Added check of return value from syscon regmap write
+  - Changed driver name to match file name
+- sram driver bits
+  - Fixed check on return value
+  - Expanded commit message
+- dtsi
+  - Fixed typo in tx-queues-config
+- cubie a5e
+  - Add PHY regulator delay
+- Link to v1:
+  https://lore.kernel.org/all/20250701165756.258356-1-wens@kernel.org/
+
+This series adds support for the second Ethernet controller found on the
+Allwinner A523 SoC family. This controller, dubbed GMAC200, is a DWMAC4
+core with an integration layer around it. The integration layer is
+similar to older Allwinner generations, but with an extra memory bus
+gate and separate power domain.
+
+Patch 1 adds a new compatible string combo to the existing Allwinner
+EMAC binding.
+
+Patch 2 adds a new driver for this core and integration combo.
+
+Patch 3 adds a device node and pinmux settings for the GMAC200.
+
+Patches 4, 5, and 6 enable the GMAC200 on three boards. I only tested
+the Orangepi 4A and Radxa Cubie A5E.
+
+
+Please have a look and help test on the Avaota A1. I don't expect
+any issues there though, since the PHY is always on, unlike on the
+Cubie A5E.
+
+Patches 1 and 2 should go through net-next, and I will take all the
+other patches through the sunxi tree. Hopefully we can get this merged
+for v6.18.
+
+
+Thanks
+ChenYu
+
+Chen-Yu Tsai (6):
+  dt-bindings: net: sun8i-emac: Add A523 GMAC200 compatible
+  net: stmmac: Add support for Allwinner A523 GMAC200
+  arm64: dts: allwinner: a523: Add GMAC200 ethernet controller
+  arm64: dts: allwinner: a527: cubie-a5e: Enable second Ethernet port
+  arm64: dts: allwinner: t527: avaota-a1: enable second Ethernet port
+  arm64: dts: allwinner: t527: orangepi-4a: Enable Ethernet port
+
+ .../net/allwinner,sun8i-a83t-emac.yaml        |  95 ++++++++++-
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi |  55 ++++++
+ .../dts/allwinner/sun55i-a527-cubie-a5e.dts   |  28 ++-
+ .../dts/allwinner/sun55i-t527-avaota-a1.dts   |  26 ++-
+ .../dts/allwinner/sun55i-t527-orangepi-4a.dts |  23 +++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-sun55i.c    | 159 ++++++++++++++++++
+ 8 files changed, 393 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-sun55i.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.39.5
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
