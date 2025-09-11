@@ -1,167 +1,209 @@
-Return-Path: <devicetree+bounces-215804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B101B52B63
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:17:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9ADCB52B6D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:17:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B8C13A5E2F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:17:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F5FF7BB569
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702C42E54BD;
-	Thu, 11 Sep 2025 08:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWF4PwSs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A7F21FF39;
+	Thu, 11 Sep 2025 08:17:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFE82E03F9;
-	Thu, 11 Sep 2025 08:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45D4219A86;
+	Thu, 11 Sep 2025 08:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757578548; cv=none; b=mo/1L5QguIJgofkbTZ7D+tIZZm0qGoGL2guY7qhcZ+Rr7s8B8FzCh9Pogu/dLmsmzEPSeTztS9bQtv0vvh47Hdt1y7ApM+k6wiKnlnFtyJ/ulDw7kvbaVXXTNFESGuYbbDSYaffAjvNlj591R6u+M+3IOFNPOHJARUTTDzD2Lfg=
+	t=1757578647; cv=none; b=Q1zgTD0CetQr4y8nvwsOj+scu/TDBq+SOPzvtSyPh+z62jfaM5Kmt6WuhQtK8FMaDJRlhY7Sa4QgIIluLtPdvMpmgeCZ432iJkK67zqSDj7nE7mU00mj7sR5/yj67m/aBZFAZVWg/EvFp0VZfeISO+zHymdZvC1/dHlogW+Gx6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757578548; c=relaxed/simple;
-	bh=MZkSNF729QqNTQj4q9PWDrOZg6xdXAe10HC4k5HQhA8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cY7uGiqc9t19ck2u4GVtFlI6b/i76bFtvPCtJMqsVNFha+Gv2PyQP+mBJmobHz5eBYBsHILHt7Q3japa16Z+pWSV5+OD3aaopPcV/+6dQ8gvfG4JcUTlbqLiftZ9uuhYXaAqYftWbsbvfyqQOh28iNbfVmQ3eFo/Hs7gf8+sYpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWF4PwSs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33EAAC4CEF1;
-	Thu, 11 Sep 2025 08:15:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757578547;
-	bh=MZkSNF729QqNTQj4q9PWDrOZg6xdXAe10HC4k5HQhA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XWF4PwSs+H43I/a5ob6RMVM1e7DIddUYISGAQpdHdB80rrbiLOVmgcwYPDbdQnUnx
-	 omtvKRdXL9kTjEdlT/mA6jcklq7qN05N6uV9vCrQDL9vwf2XykyhKIe/72SVOdrx+A
-	 M7Ofe21pJ8uU3amFLq3Ax6U/b4wc38Lpy+nDSEAKq7mJut1cuyhKuyB4hcSPvxVZZc
-	 1iLX3srlsJ8AQTUL/+NQxW3+c4rSxYQDXBo0De6JI1YAEML44dP19+ZdA4PsVnYCWq
-	 SjViXlstokf3/Zj7+xaABT+0BnWcftX8znP6k27TosFQZFbWHmbojTAEUbEpqV+iWR
-	 BqXbC2lhEsZpA==
-Date: Thu, 11 Sep 2025 09:15:40 +0100
-From: Lee Jones <lee@kernel.org>
-To: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: Hans de Goede <hansg@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, threeway@gmail.com,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 3/4] leds: led-class: Add devicetree support to
- led_get()
-Message-ID: <20250911081540.GD9224@google.com>
-References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
- <20250910-leds-v5-3-bb90a0f897d5@vinarskis.com>
+	s=arc-20240116; t=1757578647; c=relaxed/simple;
+	bh=wHfI0Zex5SRmzFSXfaqcAMgB3WV407FMktikanLNJus=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i4GtXDBugvtSx+ExLQ6EJISLgP7cE2gyFxX6PadpW71Jn1RrzH0FUDq2hco4gwX612XbkcocBK6z+YfyF+GhrAV+tiIyQpcdmkT6H2Y0IuyxD2om8uweUq/5/6SPcaUawdWmsZfh7xUyDPr3/qI/gVfS8HaKoZyaw/2xlf2Adus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-8902ee514deso317302241.1;
+        Thu, 11 Sep 2025 01:17:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757578645; x=1758183445;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=js/8UDggOvfLe3IaSH9Cswopzmf6KAi8oVvdx2AROQ0=;
+        b=BeLK16/XMUj4JDxfgT++eu/RJ4nfOIhXcM3Y1cdnaST2mJbTXz3/jEeQYLx3eHxy+D
+         iv8QFgGZpWRMa45JAu1aTqkHVDO7vuxIYRdUtGwsL1BT3AcxrUqQdZasG2WRF+aKn8Im
+         yp3zEelLVZTD0KYWGOw0OL3lUY6bVppkhtvwFOinPLcTsJxpcrwD9UmuFU5es9FR8lER
+         NI8Md1BNr5li843MbIrEpRiNlds/QbDfNIEV+5AZdjyv5rLuOvOM33r56UfmQ9fknVIn
+         pvb8gU/cagYGO9qqHPUgesIdsemGS54sefV5VkBFw3GzE/NRXdaVM338zAw8Pcgg1xXl
+         qb3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVVzaFU4h/6KrgUCPA+CnO02LsYxstg/ia3fHwhLV9dwyrUJ+N8wmjjkfuZqX5gIhsCfbRoOXCcBxk2@vger.kernel.org, AJvYcCVhaKzrHAnlSjv/qVMCs6TaU4GMRQgcn7juiPmuqdmi+z8R6STajGhkQYCPQczzx5XWgO4sgqoqoj4yGoBXN+U=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMcUIbManRNQK+/C5D122gWsMtWSG3GYXjsFkuDVQsa/bLG7OC
+	YgzkpBH6fevqejCV1fQoFlvoi1r2uCS5hBSR+ikCV0WKxmIU+oAwL3RPXq3JiMnj
+X-Gm-Gg: ASbGnctdvJGFt6jWKjKL2GSfDMv/QAZAtyFbGG22RSfj0e8hDxtH62Z9ngEWGrusNqb
+	mJ61CKnH+Gdt0/qba/vWBjKDXGmV5Ugcg6SYPRY7uHMNmMDzTQqjb95sIemicUBQGK81aSa987J
+	5K0F/eWAfI5kiqqw2CBoUyHHnub9+/3z6yESi174EDo5HcHOJhOWRzdWRzHg8NUvEeQ3Mv0lQ1F
+	UD9eQcSwZa/EscomXK7CMOwU5WYoQffsL2OUrpakBqoUwee4BCn9CB+4f/gMrHxRxUyKg7KjFDk
+	PnaI61Am9Fccueg0U3J3bvEk8bxaxWwkCVvjXImnkDhdSeY6iJhbGvTvH0Yd7FjeS2WK831wuYE
+	YpKqmeSj4AsRQfrVPURNftmBZULPCN+Lj3nLDYVEGK1e/VGIcuUP3gv6UnXQT
+X-Google-Smtp-Source: AGHT+IE6RMYmUnZQHYhALihC2o3qWVSpdKvqKrgo0MYV66KWCPN148hZCll52KkBMBRYxHpSznVryg==
+X-Received: by 2002:a05:6102:292c:b0:528:9956:6a3d with SMTP id ada2fe7eead31-5520c29c86amr947316137.12.1757578644686;
+        Thu, 11 Sep 2025 01:17:24 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8ccd3bd595csm145490241.10.2025.09.11.01.17.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 01:17:24 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-528a601a3cbso925247137.1;
+        Thu, 11 Sep 2025 01:17:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBEPA3MzEML76o1Du1UBYAlKXk0Y6szSmtGN2cB9EJ3xGpPhgh5H3yhR4Pgo1GqnVRdHr/oWGZkoPP@vger.kernel.org, AJvYcCVXUnWVuvxf2l4Bdeg0bwmwrEp86z13wsN9qKLGiCjOU/0WOWTR5+t86ad/S90RqQKDzbJJNe+Almjet7f9DQs=@vger.kernel.org
+X-Received: by 2002:a67:e04b:0:b0:4e9:963a:a42b with SMTP id
+ ada2fe7eead31-55207cdefc5mr588780137.8.1757578643963; Thu, 11 Sep 2025
+ 01:17:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250910-leds-v5-3-bb90a0f897d5@vinarskis.com>
+References: <20250910210646.2443-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250910210646.2443-1-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 10:17:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUmxav90n=5P8E2hTW2AcBgopwX=yMTBaziQWrgZ3mcwQ@mail.gmail.com>
+X-Gm-Features: AS18NWBMKbagIFfwdulwWim8tXBtXDY5-SJL7aFbkpUtfKOkvs80DJZv2jRtWt8
+Message-ID: <CAMuHMdUmxav90n=5P8E2hTW2AcBgopwX=yMTBaziQWrgZ3mcwQ@mail.gmail.com>
+Subject: Re: [RFC PATCH] dt-bindings: watchdog: Add Renesas WWDT
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 10 Sep 2025, Aleksandrs Vinarskis wrote:
+Hi Wolfram,
 
-> From: Hans de Goede <hansg@kernel.org>
-> 
-> Add 'name' argument to of_led_get() such that it can lookup LEDs in
-> devicetree by either name or index.
-> 
-> And use this modified function to add devicetree support to the generic
-> (non devicetree specific) [devm_]led_get() function.
-> 
-> This uses the standard devicetree pattern of adding a -names string array
-> to map names to the indexes for an array of resources.
-> 
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Reviewed-by: Lee Jones <lee@kernel.org>
+On Wed, 10 Sept 2025 at 23:19, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Describe the Windowed Watchdog timer found on Renesas R-Car SoCs from
+> late Gen3 onwards.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Remind me why this can't go in through LED again?
+Thanks for your patch!
 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hans de Goede <hansg@kernel.org>
-> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> ---
->  drivers/leds/led-class.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 15633fbf3c166aa4f521774d245f6399a642bced..f3faf37f9a08ac762ed87b91cb3cab5faa8eacb0 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -252,15 +252,23 @@ static const struct class leds_class = {
->   * of_led_get() - request a LED device via the LED framework
->   * @np: device node to get the LED device from
->   * @index: the index of the LED
-> + * @name: the name of the LED used to map it to its function, if present
->   *
->   * Returns the LED device parsed from the phandle specified in the "leds"
->   * property of a device tree node or a negative error-code on failure.
->   */
-> -static struct led_classdev *of_led_get(struct device_node *np, int index)
-> +static struct led_classdev *of_led_get(struct device_node *np, int index,
-> +				       const char *name)
->  {
->  	struct device *led_dev;
->  	struct device_node *led_node;
->  
-> +	/*
-> +	 * For named LEDs, first look up the name in the "led-names" property.
-> +	 * If it cannot be found, then of_parse_phandle() will propagate the error.
-> +	 */
-> +	if (name)
-> +		index = of_property_match_string(np, "led-names", name);
->  	led_node = of_parse_phandle(np, "leds", index);
->  	if (!led_node)
->  		return ERR_PTR(-ENOENT);
-> @@ -324,7 +332,7 @@ struct led_classdev *__must_check devm_of_led_get(struct device *dev,
->  	if (!dev)
->  		return ERR_PTR(-EINVAL);
->  
-> -	led = of_led_get(dev->of_node, index);
-> +	led = of_led_get(dev->of_node, index, NULL);
->  	if (IS_ERR(led))
->  		return led;
->  
-> @@ -342,9 +350,14 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
->  struct led_classdev *led_get(struct device *dev, char *con_id)
->  {
->  	struct led_lookup_data *lookup;
-> +	struct led_classdev *led_cdev;
->  	const char *provider = NULL;
->  	struct device *led_dev;
->  
-> +	led_cdev = of_led_get(dev->of_node, -1, con_id);
-> +	if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
-> +		return led_cdev;
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wwdt.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/renesas,wwdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	mutex_lock(&leds_lookup_lock);
->  	list_for_each_entry(lookup, &leds_lookup_list, list) {
->  		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
-> 
-> -- 
-> 2.48.1
-> 
-> 
+> +title: Renesas Windowed Watchdog Timer (WWDT) Controller
+> +
+> +maintainers:
+> +  - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: renesas,r8a779g0-wwdt  # V4H
+> +      - const: renesas,rcar-gen4-wwdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Pretimeout, 75% of overflow reached
+> +      - description: Error occurred
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: pretimeout
+> +      - const: error
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus clock
+> +      - description: Counting clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: cnt
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: Reset circuitry driven by bus clock
+> +      - description: Reset circuitry driven by counting clock
+> +
+> +  reset-names:
+> +    items:
+> +      - const: bus
+> +      - const: cnt
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+
+resets, pm-domains?
+
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a779g0-cpg-mssr.h>
+> +    #include <dt-bindings/power/r8a779g0-sysc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+
+Please insert a blank line.
+
+> +    wwdt0: watchdog@ffc90000 {
+> +            compatible = "renesas,r8a779g0-wwdt",
+> +                         "renesas,rcar-gen4-wwdt";
+> +            reg = <0xffc90000 0x10>;
+> +            interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "pretimeout", "error";
+> +            clocks = <&cpg CPG_CORE R8A779G0_CLK_SASYNCRT>,
+> +                     <&cpg CPG_CORE R8A779G0_CLK_R>;
+> +            clock-names = "bus", "cnt";
+> +            power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
+> +            resets = <&cpg 1318>, <&cpg 1200>;
+
+The first reset is no longer documented in the latest R-Car V4H Hardware
+User Manual (Rev.1.30).
+It is not documented on R-Car Gen3, either.
+
+> +            reset-names = "bus", "cnt";
+> +    };
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
