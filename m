@@ -1,192 +1,111 @@
-Return-Path: <devicetree+bounces-215778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5ACFB529D7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:27:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD49B529CB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CEE1A029FE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:27:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC52E1B21837
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7A926B098;
-	Thu, 11 Sep 2025 07:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BScjYEGi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025CA269B01;
+	Thu, 11 Sep 2025 07:24:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F67256C61
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C537329F11
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757575660; cv=none; b=Zm8fXyPIyDMVVIU62NuVD080y8UjC2Dz2oGi1hVt5OaQHbWgTCvxwx5Z3G5qx9ofw/xy2uyiE0qK1mz38AFFjCY0pVhyEb1XRvqkp3qR7hAtq5NBv9lYLLruiDsT2nagfTQ0DgjAkgDr7TN+uMAN1XkhLZJrxlHgaywh2TGjElM=
+	t=1757575497; cv=none; b=AtLd0v+Hmvo23zG2smIP79EoXC1gVAXrSm9lqHLz8BgO1LVLCWDQjOGyW030EZ7h6Q/2dA0z7PtJi1k/hBZD7VBTRZSL9azjg50MklXZaqcCsF19u4FfwPjQBrG+vv7B6AmX4u1h5NhD56PcF/iJH+XX/LlC9saDz9vJg/b1Tfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757575660; c=relaxed/simple;
-	bh=WCXFlTq4/NdVl1ou3si6JVfNN5hHGcyPApo3youXCqk=;
+	s=arc-20240116; t=1757575497; c=relaxed/simple;
+	bh=eSOfox1KQuppsPr7L+jj1UyzRlNphPeTKcqMNNeUsUs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O4lNCcuH8GLNJQQZkPil7gSL+eBC46MW6eDJXq6KjeGXYjE2+GXgf4tLN9+OMbYgs6ZTgwDc9qvooXHSVV0wbCZnai+TyoSEjwQKWbD3iEAzMKshzhYXXAsyoo5ZP+vHw7LwhMwkGB2b8ak6EdCI4gmKkTdUVg23B6ts95e1u1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BScjYEGi; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=V3We15w9hoYDI3WqxomH+g18IooBRl4wHTrTAhQCWKj/5LRYzyB15zoTqL5kziTVqDlGoIAehid9NSOPXo7gIgrSLQgHlU7pLWxd9HeYZrRzfC9UIarzqDehD/IHzVYOKtkWTLnl7eYXl8sGqBLKWMsij2RtZ09tspKwByrXDNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7725de6b57dso516865b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 00:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757575658; x=1758180458; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3IxiYNCciyhdbcX0Wp57UVsdWd/rQlfFnyOYCGJ7WZc=;
-        b=BScjYEGiNrH/PjXinklHddSRDwoKMRSd5I8QEQ7f+D/cWFa7P7QiwOkd4+2MY8Uxam
-         qFGMcfAlfex+HssTCz4vxZNwxn9rjvkJH2N7MKXdPCGkJ26GGtL/tj2H0ludlXIsdZEZ
-         DqVok1to9SIRGvfem2acuNwAPdr7gCfEX2f9ceQCsMvlvBvmLVJ65FbHkiy4fnsD1tSp
-         3JZXuyIlJqSM+VYGkXo+97KX8ZTljdk7rk53LVVYoDdEInouWoJiVu6COXn38Y6udJcx
-         diqn3XHlmtpbaQR8o0TVjocvr8vyxJLISfD1H0xSbILoRAsQBMsfh4D8fqdD72u//8eV
-         yCrQ==
+Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-544af5b745cso269015e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 00:24:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757575658; x=1758180458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3IxiYNCciyhdbcX0Wp57UVsdWd/rQlfFnyOYCGJ7WZc=;
-        b=iJDJXgtnPMAZnZvgW54XsgdXSFtELi5Pwg2t4g1cyCV8tL+fIRs00jKF7aKfJDbxFl
-         zSdBwHN5FLbvzenzaTA0U37Xc2E93hI/4f9nU3cP03SabFXZhpe9KWRe8+Zrhie3X4UX
-         8s0s7LwYf88YDFANHPOMPr1uYlkk+SiiOl1ykVtR70l+NLbqj5gYUMzUmDTscZRtCjMd
-         lTCmlsyQc6OSKOwz7XwUXmZoJiI7EB9C5Zl7pHZZFZvGrlCEBZEZe82jhxI83aINhej0
-         m4Kx0fJq/cd1wCBOw3CoAVEIURt6ZjpN8djGMRK1+yDYdOAKuWT46DEpbd9LyQPc2MdF
-         mZUg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3AT7LQeaJKCb0Zvm0ePLpO1SOwdbzSUk5gdbpToO5hT/2lYTCBYsJ5SdPbD/OgtsYqF74ouhaelC8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqm8/RJAyQNer20IwDUyVz404Ml3rFEphs1Pl8ZxzEtoehltnM
-	YMHSMOpzgTeByLG0Lmn4LkTnT9XT7WyGXzXIVdC9BQNt926UhIMnEnPniV+EZgmhlu2nlb9M7tz
-	/lzyPOT3mLlaWJGIO+ot8W7rNCeeSv78=
-X-Gm-Gg: ASbGncvrLSL0+e5w3X6WsbheHCiNWdAmuk2XWfAUnQU4B2axWDjjm7FFRLGE4pXvUPP
-	CCDEbXInw75aMcXxSuwCXJmhM4+V2pwYH+grG8c3nFWEvm70m6rMaHdXGSX0UkxGdTKpyD8UBUm
-	2gVkS7P8a0+LVvvOeHkvYmS7Yo7XIikeLEfN6PXGXvREuNvOA3HfsFqHfPHXiCfC4DlZzYArY6O
-	YYsuZq6br74RW/jQ5mkhRhWQi56mfb4R0xYqlcg+JIUQ/P4SE5xLCVwHMcyRcd0bBPZKZgxPO7d
-	hJT0AQ==
-X-Google-Smtp-Source: AGHT+IEK3FOFAc8CqBrE58Q0X7qAvx6ovvpjHhcP/WLfd4cTYoJu3yF9/cNaQzZZzEySVQZ/WcetUbyqA5DJPZOt0Ts=
-X-Received: by 2002:a05:6a21:8906:b0:254:b352:64a9 with SMTP id
- adf61e73a8af0-254b380a9b4mr20835704637.21.1757575658285; Thu, 11 Sep 2025
- 00:27:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757575495; x=1758180295;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9nZA/l5Q3xCHBcBP78le63J0ZUX22UfxL9a5mk+UrWw=;
+        b=DUQBN1RkyxNkYBdWpZDW+ul4UYhkkJmUNN2Sz6fUSE3Hhs/fmveEDt7586OpP8xKlN
+         6Vs5Yb8PyCGki2SFmC4kAfQDbsGcdRprnoBcYfT1LbAhmFRRSwF5DLI2nPZhfRUH2xJE
+         gocc9Ne/QxyL0VMiVbatal1xqbwhILNs9c7xfJ/rfS3o2rIF1BcAvK/qTWU0WRYNK/GC
+         iTkOHMXbj08MUa2bxgyaScyr6GZAatpwwX7b9hvpA7vLZA+xPDdpR0XnAKJszZ3ptHPm
+         sOaAnm1TzDxnt5lcCVLlWuKK5bL6jhd5KZf+9kHateJ+ga1Ho8V3SSNyT2q97RLe8gxm
+         Nsxg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrDQBFuv2g2Y1mK67j8Z711q48oyJC1QVmx5oF9as+zoLxlHj3zRWW6qHimsNbv2AA5wE8asgmkgnq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyO60Op+t93oNeRLItUS/5alFuJ0npLQ8QXbz18HwKYuiiYmutY
+	YYWxIaobCqMazYEGYZfzcBV3BZkmn5KjadXhHqGXeTorK969GpcOrEThb9kazkEK
+X-Gm-Gg: ASbGncvoGBcfD8Ngw6Oh+28M2ty+M4zyZbck8clxLkhxSBkfevDdijB3ix8ITHCoa1G
+	aq1qW/Q9vImJByRZAhh/+Y1H3vvqe+4Tgd+7yiHUHGdpg+LIaoWOJ77yeWkIx05681AABV8QKQg
+	3Q0ot1ngNJZxVVY1gUN6l6WVERfhrXILS0JiQkaJGUO2Yk1QgRI545AtyYCgwInEzdnbWmulC0l
+	zm83Pou8p92vGvTedipH2rs7xkyHS92paXUZmMj0eZiE5HIzvEUwTp6vM34bndNfGbAy95IpiNl
+	BcZwndg4Rlb1TSM8o7HzTYkEDf1RHzdiJcKcImq34az3uyG7zR/LM6ceTyGI43RHa0vkGgh34mP
+	W7dha/8LEaBAN50GipQekgJVHvhiVhI5Ti2QfkFHFLY5DYrKOrjHqGlng/hhI
+X-Google-Smtp-Source: AGHT+IE3vE0NQKTFvcJjEt3h44xFfUgOIPe8yFQz/5wF/tBW39BHxJQXAMeOMCfnDDkT0rWDdfGR0g==
+X-Received: by 2002:a05:6122:30a2:b0:544:9313:8387 with SMTP id 71dfb90a1353d-5473d478dccmr6492295e0c.15.1757575495348;
+        Thu, 11 Sep 2025 00:24:55 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8ccc7f65aa0sm130761241.2.2025.09.11.00.24.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 00:24:54 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-50f8bf5c518so364880137.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 00:24:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUE12MNzOfJVowLVIPFDZDPz+VyuuSVXa20/e1ze8Q3UfbOYZiE/2l2E+k76pfRr1T997Uh0pT5yoZA@vger.kernel.org
+X-Received: by 2002:a67:e7cc:0:b0:51c:77b:2999 with SMTP id
+ ada2fe7eead31-53d1aead9a3mr6302748137.2.1757575494024; Thu, 11 Sep 2025
+ 00:24:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250910030301.1368372-1-linchengming884@gmail.com>
- <20250910030301.1368372-2-linchengming884@gmail.com> <87wm66d67k.fsf@bootlin.com>
-In-Reply-To: <87wm66d67k.fsf@bootlin.com>
-From: Cheng Ming Lin <linchengming884@gmail.com>
-Date: Thu, 11 Sep 2025 15:24:35 +0800
-X-Gm-Features: Ac12FXxQbMqgBdhf8vRv10u0KG0v6L4LrQmY9Oat7o2VyF5BcMBJZNy0FdPHeho
-Message-ID: <CAAyq3SbXiPUjZE7OCAe1=uw4h82bFN7DSU4bLx1dhKe_XFtu=w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
- enable-randomizer-otp property
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tudor.ambarus@linaro.org, mmkurbanov@salutedevices.com, 
-	Takahiro.Kuwano@infineon.com, pratyush@kernel.org, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alvinzhou@mxic.com.tw, 
-	Cheng Ming Lin <chengminglin@mxic.com.tw>
+References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
+ <87o6rk9z6c.wl-kuninori.morimoto.gx@renesas.com> <20250909-witty-successful-toucan-beca41@kuoka>
+ <87segvw5yr.wl-kuninori.morimoto.gx@renesas.com> <983be392-e76f-40b3-ac57-5321f5d88abc@kernel.org>
+ <CAMuHMdUFOGNNuogp19WoCy4c-4a6KjBfyutp=UWfvBD2oHtOAw@mail.gmail.com> <bf4a92d4-0472-4d0f-95d5-83fca816ae03@kernel.org>
+In-Reply-To: <bf4a92d4-0472-4d0f-95d5-83fca816ae03@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 09:24:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVvhso0E=w3Y8tk_GnBWsV8GrjGPwYkSq19aDr+VDSymg@mail.gmail.com>
+X-Gm-Features: AS18NWDfHsUnNDTnYC23I-0l_-nwegNPIqhIwsoKV6lC3uv_Pt7GXLVKQdvLYWs
+Message-ID: <CAMuHMdVvhso0E=w3Y8tk_GnBWsV8GrjGPwYkSq19aDr+VDSymg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: renesas: Add R8A78000 Ironhide board code
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Miquel,
+Hi Krzysztof,
 
-Miquel Raynal <miquel.raynal@bootlin.com> =E6=96=BC 2025=E5=B9=B49=E6=9C=88=
-10=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:10=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Hello Cheng Ming,
->
-> On 10/09/2025 at 11:02:59 +08, Cheng Ming Lin <linchengming884@gmail.com>=
- wrote:
->
-> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> >
-> > Add a new boolean property "enable-randomizer-otp" to enable the
-> > randomizer feature on supported SPI-NAND devices.
-> >
-> > Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> > ---
-> >  Documentation/devicetree/bindings/mtd/spi-nand.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Docu=
-mentation/devicetree/bindings/mtd/spi-nand.yaml
-> > index 77a8727c7..432bc79e9 100644
-> > --- a/Documentation/devicetree/bindings/mtd/spi-nand.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
-> > @@ -21,6 +21,10 @@ properties:
-> >      description: Encode the chip-select line on the SPI bus
-> >      maxItems: 1
-> >
-> > +  enable-randomizer-otp:
->
-> This is a NAND wide feature, so we should probably add a prefix, such as
-> "nand,".
->
-> Now, what about this "otp" suffix? Many (if not all) chips have a
-> volatile setting for that. About the naming, "otp" often reflects to the
-> OTP area, which is not what you imply here, as you want to insist
-> (rightfully) on the fact that this feature cannot be disabled.
+On Thu, 11 Sept 2025 at 09:16, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> What's more, it breaks my imaginary system root, because I am running it
+> from readonly NFS root.
 
-Yes, my intention is that once the randomizer feature is enabled, it
-should not be disabled again. You are correct that this bit does not
-belong to the OTP area, but rather to the v2 volatile register. The v2
-volatile register has a default value that can be changed through a
-special OTP configuration register program operation. Regarding the
-"otp" suffix, I will remove it to avoid misunderstanding.
+Real mean run NFS root over SLIP on the serial console
+(which is so far the only I/O device described in the DTB ;-).
 
->
-> Also, this is a per-chip configuration, while I would have welcomed a
-> per-partition configuration. I can easily imagine two cases:
->
-> - The boot ROM, for longevity purposes, expects the first blocks
->   containing the bootloader to be scrambled. However the rest of the
->   system does not really care and disables randomization.
->
-> - The boot ROM is not capable of de-scrambling, however the rest of the
->   system relies on the (probably) more robust scrambling feature.
->
-> In both cases a chip wide variable is not relevant.
+Gr{oetje,eeting}s,
 
-The scrambling and descrambling are handled by the NAND flash hardware
-itself. Therefore, the boot ROM does not need to support a descrambling
-feature.
+                        Geert
 
-In the case of Macronix parts, the randomizer is controlled through a
-configuration register, and once it is enabled it covers the entire chip
-(main and/or spare depending on the randopt bit). There is no hardware
-mechanism to enable it only on certain ranges.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->
-> The fact that it is a one-time feature makes it even harder to fit into
-> something generic.
->
-
-This isn't a true one-time programming feature. Its default value can be
-changed through a specific procedure.
-
-Please refer to page 29 and page 51 of the datasheet for specific
-procedure and details.
-Link: https://www.mxic.com.tw/Lists/Datasheet/Attachments/9036/MX35LF4G24AD=
-,%203V,%204Gb,%20v1.4.pdf
-
-> How do you think these constraints could fit with your needs? Can you
-> please explain again (sorry for the repetition) what Macronix chips have
-> the volatile capability and which ones do not?
-
-Macronix chips that support the randomizer feature are V2 type registers.
-
->
-> Thanks,
-> Miqu=C3=A8l
-
-Thanks,
-Cheng Ming Lin
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
