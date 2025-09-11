@@ -1,163 +1,145 @@
-Return-Path: <devicetree+bounces-215976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80B4FB5353E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC6CB535C6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3069F17788B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:26:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E792517664B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBBA7338F55;
-	Thu, 11 Sep 2025 14:26:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kpzjQl4g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200A5345720;
+	Thu, 11 Sep 2025 14:35:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9DF338F27;
-	Thu, 11 Sep 2025 14:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C0B33EAFD;
+	Thu, 11 Sep 2025 14:35:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757600797; cv=none; b=NzDnpQ7k/HPAxjUM3Yly8XAC3K50V3IzVpAUgxtZThZcGq0KlzLlds2sYyhyVAGLtT7x7epZN/yc7ZD5/53CLxqGNOiPFlQ6N2byOCx6XBAGB70PYwV91AtGN2dM4sADP7CXNbN38nmYmFapvs7fqJwpAdz/atfhXCs4UBAIlhQ=
+	t=1757601347; cv=none; b=EQXpy6M/DZqUUNEntKjLremcO/oppieDKSn2NkHh2csPquwTC2A/hEdrtHzrlV/HnhAJs93ZWOo7yJmdnW9xcW+JmC1Ycn6UXFJryLG6vhZ8SlrVKTW2aTM66Ay5Sr6ld12bLxlHMJyp0TbdxRwh2IWyqkil5Dafnt1FSJJAfyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757600797; c=relaxed/simple;
-	bh=qReZW+H6OyZz2AFMbvTmZJxvwut6V42yTPOtJKgTkkU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dY9vp19RAsuIts1Bt0PQU8YSXJ1D6CcFbHi1OrqOsUDN9FJDEKUNWsxpIivnjWEFPVq1MZyC8kcfvbgODIIUaIEiNEyaVeQQgw/tcEtJ2C78rx/dPJSj6onJwH9+5vZOQ5DyWhQziiM/6O8+xUlU1pTk8svwCAl05bD9tZNav54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kpzjQl4g; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AA8114A4;
-	Thu, 11 Sep 2025 16:25:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1757600718;
-	bh=qReZW+H6OyZz2AFMbvTmZJxvwut6V42yTPOtJKgTkkU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kpzjQl4gHzaXfBaGIdp3zuciJs1QF8I/wYVcHwLnl59KOl7jEas+jL5LeJ96wC5Ub
-	 zGuq1AJN7MzcYbfZTRr8d+DxG8OQJKotvXXy/fday67G0eqfN0+IJ1Yxa4Hjt8sAVI
-	 qjKQNZLyubtI9u63SW/VYvSbd4XDTS7yEGqj8nBg=
-Message-ID: <f1e671a3-77af-4ae2-aa6e-bde93aaa54b7@ideasonboard.com>
-Date: Thu, 11 Sep 2025 17:26:28 +0300
+	s=arc-20240116; t=1757601347; c=relaxed/simple;
+	bh=oEHwdsG7PFk3cvd+M6jwNjfXhmP6roseGLMNWQos0VA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WVD0ql0zeXcZ34/6v1tJd9XTzI1bZfGC0gpgIGC2q7G8TTTxL+UNhKnLvKmEVCYHg1qLz8Rsc6Cj1W6zsyJwsRlhDLLfLlnbdwb+NkA9017paeaoUXhkReQgFDJseWugm4NYqFFzTtSRA47R6qhh3KpQRG2rnYRSGrSKZsRJy5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-88432e2975cso21350439f.2;
+        Thu, 11 Sep 2025 07:35:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757601344; x=1758206144;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SdO1CSLui5RRcTpK5b6MAqtw8kcTxu+RvPzYwpqfiQQ=;
+        b=uB0Fz98VVvdfdSXGhIQqx6rK18mkzD0ZijBH2co9svLOcqMdW08bV6pc+/OhlCrz6j
+         hX5qnCwK0FRKNAIaFOl4Q5RVgrMTMZwfXT4EuVHtenPckPFbK4OhQS6q5neWvvWZSHNt
+         4awUv3O5bvn53vv2Vg6ZA7rEhL6whS+GOKBBu+ivvI23Z5ReOYeOiMolTd6Sv1hYdVb4
+         PnTIPL3mmYNRqiNEKM8m5vYBPOCzHqOS7XGyvS06g+1CIEJkoJfQ20k6kPkNZLSWshfj
+         m4+tAap4M3GISQgNklEIbDY874dVghROh4vyX/0AXCYS3YpoZV0rZzOrx+beBQ5obyo+
+         wr/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVLduNZVadkfnYgjBQWJ3+ALaYy+YbXKskx5At3B4g2n8fP3wNMhwpAcPWAkEiILnW80IOjLjIC4FEj@vger.kernel.org, AJvYcCWlxRSahJLEZnLZft8jApl1q6obZx4lYvXSlTzXYsboSdFbjmfZWVvAx7ACffcz/z6eUC5o6RtHEniR5uu/@vger.kernel.org, AJvYcCXI8sbydsrtD83sKTrmIhVOl6LpG0lZ+9DYMSsDKOZOTNVi3Qurr+xCiTl0RS5vZ5qX7E+FLH8fznI/5HMfReesXss=@vger.kernel.org, AJvYcCXaJfpmFE2YBenqzSOxeV8dT4XfRwaew/N36KLT82fh4yUgmfo2bHkGMePwBrqJER+vrr/OTg1HlvOfffda@vger.kernel.org
+X-Gm-Message-State: AOJu0YybYFhnTsz6LWjENCET/lTpNHvOBIRPMfRLH7fKqPf0dptnVDt5
+	Peqb+iiEdHPUAHr2e8xmaW/5XG/XnFQUuXl97u16Ex0oI84NAp/nTJpUIKuzp+im
+X-Gm-Gg: ASbGncvZbr2aiAVeFgFpTD5yMo5ztBsAx5rEWcZ+AOZtFsM/xynbwKoVk3JfeEf4n9C
+	ArAa1wOrvx05lreJUxUDTtzdHsj+68d51y6D6KzbAwBrwRJmhpPM52xhoXNhHzSJWcmgB8B/kuY
+	tdzGCvbxvnRXaSxzVrTM0zR+DChoRMdNojBxQSyXRqXHae0yQxnZz9tjZZFpP8e3YGlEJqIMft/
+	DbT4jVgJYHpF8te51jeo8SMTUsJy0lDrPYZ6Vj2Vjvkv1YncOtoHm2Ha1gwxt1fpUuJc9nLg27l
+	HC9RQ+8Y5q9zPS+yXVm5WqMvhfYJYzs5v43dAlUDB8llFxwQTrqNX1GZhxlNx/dxwYgcK92jNXt
+	9YYOKeU5bnGmQwwJ01rcXThVvPYUm56VgW+ddh0iGgHocEsxWjRrsXfj3yGfo89Ed
+X-Google-Smtp-Source: AGHT+IE/7zJAEQxzz3RVVfq2tXIx5M/+aOiFd/XCp5cgKrEbakpL5+B/7v7GxHNiG0Ce/KdERW39Xg==
+X-Received: by 2002:a05:6602:3fd2:b0:88c:3ad8:3f06 with SMTP id ca18e2360f4ac-88cb9e810b3mr1289141239f.12.1757601344226;
+        Thu, 11 Sep 2025 07:35:44 -0700 (PDT)
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com. [209.85.166.169])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-88f2d69e06asm68863939f.9.2025.09.11.07.35.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 07:35:44 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-4202550e2bcso1279375ab.1;
+        Thu, 11 Sep 2025 07:35:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWY0GTJRhvweQ7SuQg2T26JBZ0JGE6DsmOERHT3Vlh+nXh4GWX15wzI0krxzggYQQQpXUrpyYIB4myRvT9T@vger.kernel.org, AJvYcCX4tRpVpG1A2C8toGHn9YkYaKm5xj6j5sRoqPrY9+wXN+WahV2oPtSbRVTy29hkgSDYGdXbUlpLbSdf7AFYqSsRKmo=@vger.kernel.org, AJvYcCX99zxWSmraBI3CHidCENVWiUOjRFdtQSHPRwcxeQg+xA9AaFjJh0uExdGh0KPY5v8pS0MAuZFs0n/ZnC6K@vger.kernel.org, AJvYcCXIoEShr3arao5CX8KuwK2+Lb8XILuieNN0SV28eM7lQ5G/GwnXtOEJbrACyE5y1bqo56bFp3kfkeGt@vger.kernel.org
+X-Received: by 2002:a05:6102:5128:b0:525:9f17:9e55 with SMTP id
+ ada2fe7eead31-53d24251fe0mr7482216137.32.1757600847846; Thu, 11 Sep 2025
+ 07:27:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/6] clk: renesas: rzv2h-cpg: Add support for DSI
- clocks
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
- Magnus Damm <magnus.damm@gmail.com>
-References: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250903161718.180488-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <db2fc907-218c-4688-aebf-4a929f21b074@ideasonboard.com>
- <CA+V-a8vghwkHKWoqU8NQ3O9ZdHxB+cEvMv7Z9LQOMsZcx9vjPA@mail.gmail.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <CA+V-a8vghwkHKWoqU8NQ3O9ZdHxB+cEvMv7Z9LQOMsZcx9vjPA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <CGME20250911141714epcas5p29f591a1d645c9c69dc5b7d2c2d12af50@epcas5p2.samsung.com>
+ <20250911141605.13034-1-ravi.patel@samsung.com> <20250911141605.13034-4-ravi.patel@samsung.com>
+In-Reply-To: <20250911141605.13034-4-ravi.patel@samsung.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 16:27:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVe-FULHWk3QCBENG7TsbEZyxj0N5shhESxWBWd49JmOw@mail.gmail.com>
+X-Gm-Features: AS18NWA9988xiKX4_TVZURlwneQiJAxbodcHMKtf18AoQ7BwMpO-0BHXub4ifEg
+Message-ID: <CAMuHMdVe-FULHWk3QCBENG7TsbEZyxj0N5shhESxWBWd49JmOw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] tty: serial: samsung: Remove unused artpec-8 specific code
+To: Ravi Patel <ravi.patel@samsung.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jesper.nilsson@axis.com, 
+	lars.persson@axis.com, alim.akhtar@samsung.com, arnd@kernel.org, 
+	krzk@kernel.org, andriy.shevchenko@linux.intel.com, geert+renesas@glider.be, 
+	thierry.bultel.yh@bp.renesas.com, dianders@chromium.org, 
+	robert.marko@sartura.hr, schnelle@linux.ibm.com, kkartik@nvidia.com, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com, 
+	ksk4725@coasia.com, kenkim@coasia.com, smn1196@coasia.com, 
+	pjsin865@coasia.com, shradha.t@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hi Ravi,
 
-On 11/09/2025 11:14, Lad, Prabhakar wrote:
-> Hi Tomi,
-> 
-> On Wed, Sep 10, 2025 at 1:30 PM Tomi Valkeinen
-> <tomi.valkeinen+renesas@ideasonboard.com> wrote:
->>
->> Hi,
->>
->> On 03/09/2025 19:17, Prabhakar wrote:
->>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>
->>> Add support for PLLDSI and PLLDSI divider clocks.
->>>
->>> Introduce the `renesas-rzv2h-cpg-pll.h` header to centralize and share
->>> PLLDSI related data structures, limits, and algorithms between the
->>> RZ/V2H(P) CPG and DSI drivers.
->>>
->>> The DSI PLL is functionally similar to the CPG's PLLDSI, but has slightly
->>> different parameter limits and omits the programmable divider present in
->>> CPG. To ensure precise frequency calculations, especially for milliHz-level
->>> accuracy needed by the DSI driver, the shared algorithm allows both drivers
->>> to compute PLL parameters consistently using the same logic and input
->>> clock.
->>
->> Can you elaborate a bit more why a new clock APIs are needed for the DSI
->> PLL? This is the first time I have heard a DSI TX (well, any IP) require
->> more precision than Hz. Is that really the case? Are there other reasons?
->>
-> Im pasting the same reply from Fab
-> (https://lore.kernel.org/all/TYCPR01MB12093A7D99392BC3D6B5E5864C2BC2@TYCPR01MB12093.jpnprd01.prod.outlook.com/#t)
-> for the similar concern.
-> 
-> The PLL found inside the DSI IP is very similar to the PLLDSI found in
-> the CPG IP block, although the limits for some of the parameters are
+On Thu, 11 Sept 2025 at 16:17, Ravi Patel <ravi.patel@samsung.com> wrote:
+> Since ARTPEC-8 is using exynos8895 driver data, remove the unused
+> artpec-8 specific driver data.
+>
+> ARTPEC-8 is using exynos4210 for earlycon, so earlycon code
+> for ARTPEC-8 is also not required.
+>
+> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
 
-Thanks. As discussed on chat, this confused me: There's a PLLDSI on CPG,
-which doesn't provide a DSI clock, but a pixel clock. And then there's a
-PLL in the DSI D-PHY which provides the DSI clock.
+Thanks for your patch!
 
-A few comments overall some for this driver but also the dsi driver:
+> --- a/drivers/tty/serial/samsung_tty.c
+> +++ b/drivers/tty/serial/samsung_tty.c
 
-This hardcodes the refclk rate to 24 MHz with RZ_V2H_OSC_CLK_IN_MEGA in
-the header file. That doesn't feel right, shouldn't the refclk rate come
-from the clock framework with clk_get_rate()?
+> @@ -2655,8 +2621,6 @@ static const struct of_device_id s3c24xx_uart_dt_match[] = {
+>                 .data = S5L_SERIAL_DRV_DATA },
+>         { .compatible = "samsung,exynos850-uart",
+>                 .data = EXYNOS850_SERIAL_DRV_DATA },
+> -       { .compatible = "axis,artpec8-uart",
+> -               .data = ARTPEC8_SERIAL_DRV_DATA },
+>         { .compatible = "google,gs101-uart",
+>                 .data = GS101_SERIAL_DRV_DATA },
+>         { .compatible = "samsung,exynos8895-uart",
+> @@ -2828,8 +2792,6 @@ OF_EARLYCON_DECLARE(s5pv210, "samsung,s5pv210-uart",
+>                         s5pv210_early_console_setup);
+>  OF_EARLYCON_DECLARE(exynos4210, "samsung,exynos4210-uart",
+>                         s5pv210_early_console_setup);
+> -OF_EARLYCON_DECLARE(artpec8, "axis,artpec8-uart",
+> -                       s5pv210_early_console_setup);
+>
+>  static int __init gs101_early_console_setup(struct earlycon_device *device,
+>                                             const char *opt)
 
-While not v2h related, I think it would be good to have a comment in the
-dsi driver about how the g2l hs clock rate is derived directly from the
-pixel clock.
+Removing these breaks backwards-compatibility with existing DTBs,
+which lack the new "samsung,exynos8895-uart" fallback compatible value.
 
-I still don't see why all the code here has to be in a header file.
-Usually headers contain only a few lines of inline code. Is there a
-reason why it's not in a .c file?
+Gr{oetje,eeting}s,
 
-And last, we discussed the milliHz a bit on chat, you said you'll come
-back to that. I don't think it's a blocker, but I'm very curious why
-exactly it is needed in the DSI. +/- 12 Hz with, say 3.6GHz clock does
-not sound very much to me, and there should be enough time every line
-during blanking period to empty any fifos and "catch up".
+                        Geert
 
-In fact, if the DSI is so picky about the rate, I find the HW design
-odd: in g2l the pixel clock and the DSI clock come from a single source,
-which keeps them neatly in sync. If that is required, why change the
-design here so that the DSI PLL is independent of the pixel clock, yet
-still the DSI PLL must be programmed to be exactly matched to the pixel
-clock.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-The docs say v2h supports burst mode. Isn't the idea with DSI burst mode
-that you run the DSI much faster than the display controller (i.e. with
-much higher clock than HSFREQ = (VCLK * bpp) / num_lanes), so that the
-DSI can burst the data out from its fifos and then go to sleep? The
-separate PLL in v2h allows independent DSI clock config, allowing burst
-mode. If the HW can support that, then there shouldn't be a strict
-requirement for HSFREQ = (VCLK * bpp) / num_lanes, or hitting the
-pclk-hsfreq ratio exactly to milliHz precision.
-
- Tomi
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
