@@ -1,120 +1,118 @@
-Return-Path: <devicetree+bounces-216047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72429B537BF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:29:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD96CB537B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 311D2AA233A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:29:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99C4FAA165D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF80352FE0;
-	Thu, 11 Sep 2025 15:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TjIDLpeo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2395350D61;
+	Thu, 11 Sep 2025 15:27:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057A1350D5B;
-	Thu, 11 Sep 2025 15:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298F634F47B
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757604506; cv=none; b=tAS6zNsWR4c1clvKu4M0/c9aTF2ETiHhsOpSa6jwE9TNdpazyMkKdZPU6J4qqQqpvKoEMSqNEvzUWNH75w8JUA0AYDGHdNGvUHCImoLwi6y2gWe3VruVhByjULA/MT1Vt93ANSaF1LOOebtVMzrZ+ywkEq4SbHLalgmEGO3xcbA=
+	t=1757604440; cv=none; b=I7zSHB0pzncLoLA9qXc/FJsdjNdzyTZqiRH6rylXFvVGkCkqH425j8F/k8DAvi2YZNDc7YN1xlDS0XpxO4X8p4Omiz8g29UR6spo701XMG9Vn5Wl5abbj0gbLRhNmQdHAq0RcYC36H8h7IaE10cPasb29EVBhPZ88TGpOAmCGz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757604506; c=relaxed/simple;
-	bh=/mLGAizM4D0NKvOiayu53Ks5IeoiBFtYbwR9O/5P3ws=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=QUZ6S6b2X2raeK6r2fXyXG1ZeBLTCCtbNKSfgnXiNfEvFpYMkFXxIayxEYAb4pe/bczdFBQYMc9M6hwgJ9ParkSdbqz6c/y6jnMLz9SKEgdphK5p4bY52QgPbs0qd51Qyv5C/k4BT6jv68Ul4iiyue0bnngsGgUxYZTenbisaWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TjIDLpeo; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1757604504; x=1789140504;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=/mLGAizM4D0NKvOiayu53Ks5IeoiBFtYbwR9O/5P3ws=;
-  b=TjIDLpeoPbheyh8wGdDEXTP2guEyynVSTa3LVqC3l61iogBx2Qn66Xmb
-   FLWjcvH7ozDfK47WipkNrcVlDifQF07NtAtH1qrlyczFzrUH/8YK9dpBO
-   gNlczUBaikXZo984Fpy49ka3Tr7/IdeP8yv+5qDoWfD5Qeea6NFJSIbE0
-   VHLBiXU3NR9R8Qc76tMqwHlCsCDEMAZRGcKb96ZbpnjaKkbx/72q2BqkV
-   IRH3G9pDk3gCJQwPM5b9dQnkL9oWvFlChd22cmrn8XESQJvuzzZoHWVNq
-   /W8Z4u7AIbLvXBB47SBqsMvHlEvP9nf0NH/yff351/6i0lh3kPTRdGCsD
-   w==;
-X-CSE-ConnectionGUID: wLSDZ5hSTNSXS1TQWmJymw==
-X-CSE-MsgGUID: 2qR1GhkmSEm/uyQPjbW9Nw==
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; 
-   d="scan'208";a="213773303"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Sep 2025 08:28:22 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 11 Sep 2025 08:28:00 -0700
-Received: from ROU-LL-M19942.mpu32.int (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 11 Sep 2025 08:27:57 -0700
-From: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-Date: Thu, 11 Sep 2025 17:26:29 +0200
-Subject: [PATCH 5/5] ARM: configs: at91_dt_defconfig: enable GFX2D driver
+	s=arc-20240116; t=1757604440; c=relaxed/simple;
+	bh=QP8zVxm3a3UK1G9l3fTpfk+VR1gAC1g6wpjwqtTIoMs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B2q9E/4VQYm8RFuERdpUeMW/AYCXGLltWWSKAEuKADHgSOfo5QPgP2WxepghOaBsUXj45sNGxBS2uwp/zdQ1tZvdg7L5WkYRcar2HWG+cHVtQ8AhNqqQzbi8G1IidMi1UzIOkqWKAcCu3NTKC25kBAzEhj3gvpSfiax1qIrga04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-5448c576e3bso288823e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:27:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757604435; x=1758209235;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lPc2XsAxmYi3h6MxGsxCl43YcyPTx0afvcilP6Ob1WA=;
+        b=GdOzacTxNU5TNwkLIEi02+BBx307y8ZkvghttzjxL5G/OriGKeodtzKs2C/fjs3mP1
+         tgmLoIwgT1HwubwPD0bpYmPqKle3xmjz+IR/irt3DVRKe6f2PQom0aGpL90OKhhwCHUK
+         xNeXGRG+dndGxmegGf1s0rwijDQdVu9l2WPzYdut7+84qHSlYGE2I3ZIedIWLNDoJO4M
+         OFrFajSkCP2/CeTuXpiTKjiMRCyP1NUAfqND0RXXcQFxmOv5MTNpAQWCHhjpNet40MfV
+         xATiNIBSj29nDYzR+bg9BXnMxgxsW59IRHdhRH+h9pzhFmRyv4EXZnPNJFUbh6IXSk4O
+         ByZw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSli9cs6vdGFxBylx5ecmIYqeXeTz4nFueNtAv6dUzDPrsfNDl9PgUXpYVnvvlA5KoJ2uQsKtMvTJz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYM9uYREPK3aCDluRa+K3tC526AZB2fiVN8qM7h04kLaNm06jA
+	/f3GPIo7UzLF6x2l1AT328ambIoe1AW/oSV6Gc8r3YM8j4a6XNAq961/cX9cOoE2
+X-Gm-Gg: ASbGncs5mosj14f8rUq04O+8OjqN1ca5Dw1bPyTyhtLFe5sO8ClZM6MgrDnlg6A2F4z
+	aI4wKPWlYVogJP4dvEWH21NZ/Glndq0XzW0U/SpW82fE7oG/+LSGAlR4CXL0YggzSSBLRNgexYj
+	QB/GHabvMrDl7SbmcCkznQX0UTJp8wCwxhxOWO/YTw7VJWY3sNT9bet5DqRe4/w+LJBJxP7P2D+
+	eYlJzWLLBYmjN57eGwEoIZvUHCymMLwYo/5fVRX7rM4euZ3Z/lveBd29USVy8AbpIBIWWYUOLU+
+	h6nQVrnHBKQ0uqAfsleTFpET+a1cDkxppHCfeKf5gqlcb7K2iXc3Ubv4VlhQtV0+uFPSbO2ftPO
+	RgvpT5fMpHcn9rIreIw/81y29xZKX525GPU6KTmBCnGYfs1cgH3UzwaXOvOGyX5dN4LNyo8E=
+X-Google-Smtp-Source: AGHT+IHPtqTqNHGqs/V4TsDcfdEyFHFMK32BdDNWzaXCrarn65seT1++kuh08BAiQOEHSwhcRIcElw==
+X-Received: by 2002:a05:6122:2012:b0:544:c8bf:6504 with SMTP id 71dfb90a1353d-5473cbaee77mr5812228e0c.12.1757604434715;
+        Thu, 11 Sep 2025 08:27:14 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d3f0769sm296810e0c.18.2025.09.11.08.27.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 08:27:14 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-52a73cc9f97so326254137.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:27:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVx9NNYaRgr3Jw0SdrOnnNCvw6rbMJ3SQHv+XsGzg5C/3yqty9Rbfc/2iTj+Xg8snEiWikjTm/8d9po@vger.kernel.org
+X-Received: by 2002:a67:e705:0:b0:522:2b10:7d07 with SMTP id
+ ada2fe7eead31-53d160d3c64mr6513188137.30.1757604433799; Thu, 11 Sep 2025
+ 08:27:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250911-cpitchen-mainline_gfx2d-v1-5-d7fab1a381ee@microchip.com>
-References: <20250911-cpitchen-mainline_gfx2d-v1-0-d7fab1a381ee@microchip.com>
-In-Reply-To: <20250911-cpitchen-mainline_gfx2d-v1-0-d7fab1a381ee@microchip.com>
-To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	"Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
-	"Alexandre Belloni" <alexandre.belloni@bootlin.com>, Claudiu Beznea
-	<claudiu.beznea@tuxon.dev>, Russell King <linux@armlinux.org.uk>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	Cyrille Pitchen <cyrille.pitchen@microchip.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=751;
- i=cyrille.pitchen@microchip.com; h=from:subject:message-id;
- bh=/mLGAizM4D0NKvOiayu53Ks5IeoiBFtYbwR9O/5P3ws=;
- b=owGbwMvMwCXmf6yzKqEsVIbxtFoSQ8ahV5kvmMVNL/+e/elgq0JlwT5+r5DOZ6c3ivmsnm2du
- OXfstlNHaUsDGJcDLJiiiyH3mztzTz+6rHdK1EpmDmsTCBDGLg4BWAimxcwMvz0WTLN12Nn8fwP
- E6v6Gm/zns2aMYE5mVEw+nr2rAyOghWMDIdvLzv5er3/n2AdjqcCNy/v3jGtaGXezbAfG8Qa7rM
- fV+cAAA==
-X-Developer-Key: i=cyrille.pitchen@microchip.com; a=openpgp;
- fpr=7A21115D7D6026585D0E183E0EF12AA1BFAC073D
+References: <20250817145135.166591-1-biju.das.jz@bp.renesas.com> <20250817145135.166591-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250817145135.166591-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 17:27:02 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXHzk30U09bLOzwMD6SsP_jVJ60r7feDGiaP=9VFgsYVA@mail.gmail.com>
+X-Gm-Features: AS18NWCEx-CGg4oNyhEX62psOpxj-1sWUL_xztZ7vzAgM6MsdT2-vWQYD8op1dY
+Message-ID: <CAMuHMdXHzk30U09bLOzwMD6SsP_jVJ60r7feDGiaP=9VFgsYVA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g047e57-smarc: Fix gpio
+ key's pin control node
+To: Biju <biju.das.au@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The GFX2D GPU is embedded in both SAM9X60 and SAM9X75; enable the
-driver to use it.
+On Sun, 17 Aug 2025 at 16:51, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Adding pin control node to the child won't parse the pins during driver
+> bind. Fix the issue by moving it to parent node.
+>
+> This issue is observed while adding Schmitt input enable for PS0 pin on
+> later patch. Currently the reset value of the PIN is set to NMI function
+> and hence there is no breakage.
+>
+> Fixes: 9e95446b0cf9 ("arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys")
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
----
- arch/arm/configs/at91_dt_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
-diff --git a/arch/arm/configs/at91_dt_defconfig b/arch/arm/configs/at91_dt_defconfig
-index ff13e1ecf4bb9545d6d2210b2f3059e6807779a0..85e9b52152aec6746f660dd0c299cd5aa12ce2ea 100644
---- a/arch/arm/configs/at91_dt_defconfig
-+++ b/arch/arm/configs/at91_dt_defconfig
-@@ -144,6 +144,7 @@ CONFIG_VIDEO_OV2640=m
- CONFIG_VIDEO_OV7740=m
- CONFIG_DRM=y
- CONFIG_DRM_ATMEL_HLCDC=y
-+CONFIG_DRM_MICROCHIP_GFX2D=y
- CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
- CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_DRM_PANEL_EDP=y
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-2.48.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
