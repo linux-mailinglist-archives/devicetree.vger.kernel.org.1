@@ -1,206 +1,119 @@
-Return-Path: <devicetree+bounces-215767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7E6B5297E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:01:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A79BB5298D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:05:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7F68170734
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:01:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE227A17A8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876B4238142;
-	Thu, 11 Sep 2025 07:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66B2265629;
+	Thu, 11 Sep 2025 07:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNGHzc5L"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="R81DX7l4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5121A1553A3;
-	Thu, 11 Sep 2025 07:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E300226D1F;
+	Thu, 11 Sep 2025 07:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757574087; cv=none; b=o3XpmL+auTgb//k6WLK3Tx+5XY+cfOmutxvC44/CETza+lhthTg+pMlVamgMTh02szc0f0cqyUPkmWpxrVgMzZ64WJr+MCUR7D+uYErdLELCLlAKrPoPrh4Cn+nEbw3jZ39FXKaU2xTBHAzBxau2lp9oMOcU8nIqi+8iVlg8U7Q=
+	t=1757574348; cv=none; b=G+YZiZLpzIwcAiAgqDNG+JkZai6mFT3KyEwyq5TnaFw78Wjpr+oHVBM1PVo22XjJGngJBrTRBNOMyt67wrhz9f1E3yppmb2jkZL3iTB4C6Bcbjv3jQpnluCmbf/cc5DCxx78Q2bJVR6AGHZGHSyXe1PRynW+x63WrYE7HDHx3bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757574087; c=relaxed/simple;
-	bh=qr122yp8JUYBZU96I18Z8ELkl5DxLXHRqTyQLe7CWAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Krk4FDfqexsK4L2B5ZrpOZy/H5qiAFvLfe2G6B7UqvQxGPzjiXge/02hcolJI6RUGT+/nURzb4F2qF4kJ9nzurLuah58GuvLM+zmEb9xlcJNBbLxSg8vkOLWCzR6+d5fwhxyt9ej0QO56tPZsZ4xQtkvNavTVfUoG+BK8dwBKAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNGHzc5L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94A72C4CEF1;
-	Thu, 11 Sep 2025 07:01:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757574086;
-	bh=qr122yp8JUYBZU96I18Z8ELkl5DxLXHRqTyQLe7CWAE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kNGHzc5LShxDoby6w+5B0rArOpeaiVE7rVvfrO816zAUBMrrpPJ0dUr2xaf4QLWhy
-	 mY+qNgBlxPEy3zXyUFdDDnJB7hi5Du0P4X6pW0kdRkHGArzrm9yHV3/MYgsA8NDNol
-	 kmc10a26FwkUmvRqIHSernvfMzY0CdmAsh3Czgj8l9W7P7M98o4M3GihQZm0juWDRk
-	 toFJKJ3PZMpypAvEJVOGELJQc633e95pfQW2Kg002tmNI4Q1oSKL6qki07jMnup1Ke
-	 H+qB+p4h7SiSVsY56tuJxfXBJm07+J0rYDESBrULBjJSENWLQsudeVU2Kao2Bgs1zO
-	 ZqAhYn49Hv17Q==
-Date: Thu, 11 Sep 2025 09:01:24 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: "T.J. Mercier" <tjmercier@google.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Robin Murphy <robin.murphy@arm.com>, Jonathan Corbet <corbet@lwn.net>, Andrew Davis <afd@ti.com>, 
-	Jared Kangas <jkangas@redhat.com>, Mattijs Korpershoek <mkorpershoek@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v7 0/5] dma-buf: heaps: Create a CMA heap for each CMA
- reserved region
-Message-ID: <20250911-didactic-authentic-cockle-e6d5fc@houat>
-References: <20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kernel.org>
- <20250826-vagabond-catfish-of-courtesy-cbfa76@houat>
- <20250910-vigorous-attractive-gorilla-af6fec@houat>
- <CABdmKX29ftpNro+d=Ce6JGoMaG0UQeBbzL7DXiBkGkC0nwacTQ@mail.gmail.com>
+	s=arc-20240116; t=1757574348; c=relaxed/simple;
+	bh=yyiUFUCUBmqE1yB6VFtqNmcfwBmBV2+S6J/sE/W3Yq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ezXL84eHjJcnH5ERw5IXfqOiqSNUOl2HZDRolLrcFez30kdIliD38nq4ODwc6EoGgsquzuC8CSOAJkDtiATN0qQpHlQtV0rEgX/uTKCTHmuUWB57JsRfx+CDS9hRmcpM1BXo4bL4/G0C6Zv02QQdi8dChlaOlJdXp31owwosm98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=R81DX7l4; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 7394CC6B3AB;
+	Thu, 11 Sep 2025 07:05:27 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 29A29606BB;
+	Thu, 11 Sep 2025 07:05:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D42F0102F28D9;
+	Thu, 11 Sep 2025 09:05:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757574342; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=NVEKI7kAnykMj9HJvXc3qX3+FSJ439W0rcfUBK46rSw=;
+	b=R81DX7l4+R9LcCwr7NzF9EUT276PBC5ktIypbV1Fuac8PHzflskebnl//yUwDRQIcH/klV
+	auTbKgwMC3TCiRzV0GylY3Q4GdhXGR19/JVFLKHcWyjEJqNLzbEOM60/c+z2EOL7if4k6H
+	BQT8B8lVwAXjHqMrsBi6Js48w5J+byicIuk7va5tDOcoo/PCs9FSkCEAsvSWxJHbfaEtV3
+	LVK84lT2lghh1Q8Fw2ipSmW3NPRHndCeso4AWmXR8jNudsf17jk5saTmU0qLu7XvrgfjEZ
+	qmI67rmjvsrzXvtGvfHS6H7xqd3wifwYho9+pqXxcAg4XxduYfsJhcld7zSN+Q==
+Date: Thu, 11 Sep 2025 09:04:50 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
+ Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
+ Eberhard <pascal.eberhard@se.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 0/8] gpio: renesas: Add support for GPIO and related
+ interrupts in RZ/N1 SoC
+Message-ID: <20250911090450.32c7cdbe@bootlin.com>
+In-Reply-To: <87segvtkha.ffs@tglx>
+References: <20250909120041.154459-1-herve.codina@bootlin.com>
+	<87y0qntkmy.ffs@tglx>
+	<87segvtkha.ffs@tglx>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="mvqneghb5gn2pldr"
-Content-Disposition: inline
-In-Reply-To: <CABdmKX29ftpNro+d=Ce6JGoMaG0UQeBbzL7DXiBkGkC0nwacTQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Thomas,
 
---mvqneghb5gn2pldr
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 0/5] dma-buf: heaps: Create a CMA heap for each CMA
- reserved region
-MIME-Version: 1.0
+On Tue, 09 Sep 2025 22:54:41 +0200
+Thomas Gleixner <tglx@linutronix.de> wrote:
 
-Hi TJ,
-
-On Wed, Sep 10, 2025 at 01:44:45PM -0700, T.J. Mercier wrote:
-> On Wed, Sep 10, 2025 at 12:33=E2=80=AFAM Maxime Ripard <mripard@kernel.or=
-g> wrote:
+> On Tue, Sep 09 2025 at 22:51, Thomas Gleixner wrote:
+> > On Tue, Sep 09 2025 at 14:00, Herve Codina wrote:  
+> >>   Patch 5 (new in v2)
+> >>    - Convert irqchip/ls-extirq to use for_each_of_imap_item
+> >>
+> >>   Patch 6 (new in v2)
+> >>    - Convert irqchip/renesas-rza1 to use for_each_of_imap_item  
 > >
-> > On Tue, Aug 26, 2025 at 09:36:03AM +0200, Maxime Ripard wrote:
-> > > Hi,
-> > >
-> > > On Mon, Jul 21, 2025 at 01:17:29PM +0200, Maxime Ripard wrote:
-> > > > Here's another attempt at supporting user-space allocations from a
-> > > > specific carved-out reserved memory region.
-> > > >
-> > > > The initial problem we were discussing was that I'm currently worki=
-ng on
-> > > > a platform which has a memory layout with ECC enabled. However, ena=
-bling
-> > > > the ECC has a number of drawbacks on that platform: lower performan=
-ce,
-> > > > increased memory usage, etc. So for things like framebuffers, the
-> > > > trade-off isn't great and thus there's a memory region with ECC dis=
-abled
-> > > > to allocate from for such use cases.
-> > > >
-> > > > After a suggestion from John, I chose to first start using heap
-> > > > allocations flags to allow for userspace to ask for a particular ECC
-> > > > setup. This is then backed by a new heap type that runs from reserv=
-ed
-> > > > memory chunks flagged as such, and the existing DT properties to sp=
-ecify
-> > > > the ECC properties.
-> > > >
-> > > > After further discussion, it was considered that flags were not the
-> > > > right solution, and relying on the names of the heaps would be enou=
-gh to
-> > > > let userspace know the kind of buffer it deals with.
-> > > >
-> > > > Thus, even though the uAPI part of it had been dropped in this seco=
-nd
-> > > > version, we still needed a driver to create heaps out of carved-out=
- memory
-> > > > regions. In addition to the original usecase, a similar driver can =
-be
-> > > > found in BSPs from most vendors, so I believe it would be a useful
-> > > > addition to the kernel.
-> > > >
-> > > > Some extra discussion with Rob Herring [1] came to the conclusion t=
-hat
-> > > > some specific compatible for this is not great either, and as such =
-an
-> > > > new driver probably isn't called for either.
-> > > >
-> > > > Some other discussions we had with John [2] also dropped some hints=
- that
-> > > > multiple CMA heaps might be a good idea, and some vendors seem to do
-> > > > that too.
-> > > >
-> > > > So here's another attempt that doesn't affect the device tree at al=
-l and
-> > > > will just create a heap for every CMA reserved memory region.
-> > > >
-> > > > It also falls nicely into the current plan we have to support cgrou=
-ps in
-> > > > DRM/KMS and v4l2, which is an additional benefit.
-> > > >
-> > > > Let me know what you think,
-> > > > Maxime
-> > >
-> > > Any chance we can get this merged?
+> > How are those two patches related to adding GPIO support?
 > >
-> > Guys, can we move forward on this?
-> >
-> > Maxime
->=20
-> Hi Maxime,
->=20
-> Sorry I've been MIA the last couple of months.
->=20
-> The docs for the "reusable" property say, "device driver(s) owning the
-> region need to be able to reclaim it back", but how can a driver
-> reclaim memory backing a dmabuf, since pages allocated for a dmabuf
-> aren't necessarily movable. Couldn't a user allocate all of it, and
-> refuse to close those dmabufs?
+> > AFAICT, they are completely unrelated and just randomly sprinkled into
+> > this series, but I might be missing something.  
+> 
+> Ah. I missed that this iterator got introduced in this series. Did you
+> check whether that creates any conflicts against pending irqchip
+> patches?
+> 
 
-I guess, but how is that any different than what we're doing on the
-default allocator already?
+Indeed, I have a conflict in my patch 6 with 40c26230a1bf ("irqchip: Use int
+type to store negative error codes").
 
-It also has to be reusable, and will not be able to reclaim any memory
-allocated through the heap.
+I can rebase my next iteration on top of 40c26230a1bf and mention this commit
+in my next iteration cover letter but an immutable tag and referencing this
+tag in the cover letter should be better.
 
-> I backported this to 6.6 and ran it on a Pixel. While there are
-> already similar out-of-tree dmabuf heap drivers that expose heaps for
-> these reserved regions, they do more than just cma_alloc (multiple
-> flavors of buffer securing, use case specific alignment and padding,
-> and slightly different allocation strategies) so I don't think this
-> series would allow us to completely drop the custom heap code, but
-> it's a nice start.
+What is the best approach?
 
-Thanks for testing, and I totally expect more heaps coming for things
-like protected memory, but it should indeed reduce the number of heap
-drivers needed going forward.
-
-> Does the cgroup part come in because the plan is to add charging in
-> cma_heap.c?
-
-Yes, and the system heap as well.
-
-Maxime
-
---mvqneghb5gn2pldr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaMJzxAAKCRAnX84Zoj2+
-dsvHAX9IpZOMjeU0ynWChRbSjBVdeZtylN7gZQL2xiSKdre2cCOs+EzPryzJzsTk
-tRNxMScBfAwmOazIjwKlseNgI+HDT4rryBoWdzpYERPwpsG4vLSlAqtaiPiPmf41
-ekyA/2h0Sg==
-=POxF
------END PGP SIGNATURE-----
-
---mvqneghb5gn2pldr--
+Best regards,
+Hervé
 
