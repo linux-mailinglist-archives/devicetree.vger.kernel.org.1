@@ -1,56 +1,67 @@
-Return-Path: <devicetree+bounces-215711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B7D1B526B0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:53:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF35B526BB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:57:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1071B24C31
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:54:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2323562CA3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8C422172C;
-	Thu, 11 Sep 2025 02:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B8E223337;
+	Thu, 11 Sep 2025 02:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WlYgDmVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0F318EFD1;
-	Thu, 11 Sep 2025 02:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1B933D8;
+	Thu, 11 Sep 2025 02:57:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757559234; cv=none; b=CYpigTp8Lq+t2hpwO1gEJfxLqwO46sa339Ll0EZnHLkj6OGoHbo+ga9DqsmUcZo06Nf31WCHT7wh9fAo2LG3ruqJskb7mmRaHI92Q3HyKKa1Nqovmh5iPNnOk7Np60XRHji4Upt3cp6qmFf6Uv1hxKC3UXs5/VwEzb9g+BCeSvw=
+	t=1757559464; cv=none; b=GmOre5Nhjw8mq6brkBvMbf8FJJEr9QxLfCLdaGcS5zebQf8EiXDfuJubpipK+rHK0LS9w/7TbJPq0PLXb0le7MtW5wBRkLJgFd9RYcChPIdpQ/XJw6M9IUnoqupTMWtpANFdqICXaB8IjJV02/fDKfIryQdz+gGcGSZ9WB9Nwf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757559234; c=relaxed/simple;
-	bh=uVVIOjK0iB7TLpDTB5l8Jh0U+U7U4acZbxxyUpEblFM=;
+	s=arc-20240116; t=1757559464; c=relaxed/simple;
+	bh=IWC4gv/+MV4wQpmWIljhamgnPDMr1J6qUiVNr3movps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nfZztKNanh88JkXGRRjZ5lyOCtPE83wBWpd3Q4nfsXgf+F3S4L6Iy0k/hyzMnUiWT0CYLUtTMRAL+qx6RopGDqQulXp5d0rKUSzTXV50p0DJETQGCu/r9wX2SNzgxXFxTrZ/ZMJuRd5GAQPJ6vMJcEp2nJ7HGESzcYXUKXaT1iU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from localhost (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [IPV6:240e:474:b942:3f59:6226:58b7:4db:46bd])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 22684c28a;
-	Thu, 11 Sep 2025 10:53:41 +0800 (GMT+08:00)
-Date: Thu, 11 Sep 2025 10:53:41 +0800
-From: Ze Huang <huangze@whut.edu.cn>
-To: Frank Li <Frank.li@nxp.com>, Ze Huang <huang.ze@linux.dev>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Ze Huang <huangze@whut.edu.cn>
-Subject: Re: [PATCH v7 1/2] dt-bindings: usb: dwc3: add support for SpacemiT
- K1
-Message-ID: <aMI5tSq3e2MbFrlV@monica.localdomain>
-References: <20250729-dwc3_generic-v7-0-5c791bba826f@linux.dev>
- <20250729-dwc3_generic-v7-1-5c791bba826f@linux.dev>
- <aMH5P3Xae0MCt6wu@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ezER38L+eZeh/jSlbjFwNy5QA1mFeI2fDAoe0ouB7HgVh1W3anz8sjSO6qLwaEfnLcvet8gOTglJaZ5GeESIX0uQy2iAYX2VszwtdNZWo7npH8uurkbWx8gAHP9/P9OW7cyoWutHmSRqNXjg1EPORKBS1/mJSzL0I7m4fVdmzAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WlYgDmVJ; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Raijf0pxSNsl3FesVHkWVDpo58+B3Fa1eBdInzF1Pzo=;
+	b=WlYgDmVJKeOz2HCf2T+/k5D8y+gVK/8GI5wnA3CJUtFKLCw3FKtT0HQ+SMWNbN
+	r1wUJRj7/OCzAdF3qFfo7/QL143fSqZlCBNUoLAN0RUyGDl9hrO6ejStoJN9kwpN
+	2v5r3juk1e+SmN/7wYQu30AYMQ0qkRkmT26/xaXEquwfs=
+Received: from dragon (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAHe3scOsJocw1PBA--.47548S3;
+	Thu, 11 Sep 2025 10:55:27 +0800 (CST)
+Date: Thu, 11 Sep 2025 10:55:24 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, Joy Zou <joy.zou@nxp.com>,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, richardcochran@gmail.com, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	frieder.schrempf@kontron.de, primoz.fiser@norik.com,
+	othacehe@gnu.org, Markus.Niebel@ew.tq-group.com,
+	alexander.stein@ew.tq-group.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com,
+	netdev@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v10 0/6] Add i.MX91 platform support
+Message-ID: <aMI6HNACh3y1UWhW@dragon>
+References: <20250901103632.3409896-1-joy.zou@nxp.com>
+ <175694281723.1237656.10367505965534451710.git-patchwork-notify@kernel.org>
+ <aMI0PJtHJyPom68X@dragon>
+ <aMI1ljdUkC3qxGU9@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,41 +70,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aMH5P3Xae0MCt6wu@lizhi-Precision-Tower-5810>
-X-HM-Tid: 0a9936b16c3d03a1kunm4e2ef7fb19acdd
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHkkZVkgZSk5MTUlMTkNDSFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQU9MT0EZQk9JQUgdTkJBTUlJTUFOQxlMQU8fGUFPTRkfWVdZFhoPEh
-	UdFFlBWU9LSFVKS0lCTUtKVUpLS1VLWQY+
+In-Reply-To: <aMI1ljdUkC3qxGU9@lizhi-Precision-Tower-5810>
+X-CM-TRANSID:Mc8vCgAHe3scOsJocw1PBA--.47548S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Jw1DAFWDKryUWw18Wr18uFg_yoWxAwbEvF
+	4UZw4kCws8GF4UK3Wktrn3AwnYya47Xa4xXr1UWw43Z3Z5ArWkXFWFgFWkJFn5KFWkJFna
+	yr9IqrWq9rWa9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8S1v3UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwXFZWjCG0lVNgAAs1
 
-On Wed, Sep 10, 2025 at 06:18:39PM -0400, Frank Li wrote:
-> On Tue, Jul 29, 2025 at 12:33:55AM +0800, Ze Huang wrote:
-> > Add support for the USB 3.0 Dual-Role Device (DRD) controller embedded
-> > in the SpacemiT K1 SoC. The controller is based on the Synopsys
-> > DesignWare Core USB 3 (DWC3) IP, supporting USB3.0 host mode and USB 2.0
-> > DRD mode.
+On Wed, Sep 10, 2025 at 10:36:06PM -0400, Frank Li wrote:
+> On Thu, Sep 11, 2025 at 10:30:20AM +0800, Shawn Guo wrote:
+> > On Wed, Sep 03, 2025 at 11:40:17PM +0000, patchwork-bot+netdevbpf@kernel.org wrote:
+> > > Hello:
+> > >
+> > > This series was applied to netdev/net-next.git (main)
+> > > by Jakub Kicinski <kuba@kernel.org>:
 > >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
-> > ---
+> > Jakub,
+> >
+> > Can you stop applying DTS changes via net tree?
 > 
-> Ze Huang:
+> shawn:
+> 	Suppose Jaku only pick patch 6.
 > 
->    I seen Krzysztof and Thinh Nguyen already acked this patches. Do you
-> wait for greg pick it up or need respin?
+>         - [v10,6/6] net: stmmac: imx: add i.MX91 support
+>           https://git.kernel.org/netdev/net-next/c/59aec9138f30
 > 
->    My one layerscape usb patch depend on this one!
-> 
-> Frank
+> other patches is "(no matching commit)"
 
-Hi Frank,
+Ah, sorry for missing that!  Thanks for pointing it out, Frank!
 
-I'll remove the PCIe reset in the update - since Alex's latest combo PHY
-work now manages this functionality. The patch is otherwise in good shape though.
+Shawn
 
-Look for the updated series from me before end of week.
-
-Best,
-Ze
 
