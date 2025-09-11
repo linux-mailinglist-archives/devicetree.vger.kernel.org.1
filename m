@@ -1,182 +1,188 @@
-Return-Path: <devicetree+bounces-215939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49771B53329
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 718BCB53336
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:08:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D7E81C20D40
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:07:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9192D1C20D9E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BC2324B06;
-	Thu, 11 Sep 2025 13:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pb1dCeLi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0F0321F4D;
+	Thu, 11 Sep 2025 13:08:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9B561FFE;
-	Thu, 11 Sep 2025 13:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55BF61FFE;
+	Thu, 11 Sep 2025 13:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757596030; cv=none; b=o5jjKQa2VkjibvV+KEk/xtUr3aIHJ7cxJm8rDCtmP+n88JsCQQgBI3KHHggjEPHGhabLuLJl7I3ektVRtWlxI7reYu/64OLbtuHSq4B21lFDZvUIDhqk+VMVlk0qpsHrJDw7usBPuOIMEgHtUaESfBaf2Sxxwgjk8NdIBNBQpk0=
+	t=1757596129; cv=none; b=YoMSQuuUYwmeMlK4AH5YkwlobEaNWW+i0iweF6nVG5dLBLCA+Dx1TwO6UXgvDPUaU30r8rRLoR3T1Fy826IM5UgqmHgWLdNsLGJ8Rl5F1DcWjUJMh6zhG8fKWU77q57a9EdurX5uYlCNv5XFUv+BiiaDwEiGg2f9kaOLQJ+Kd9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757596030; c=relaxed/simple;
-	bh=RWKhIIzKw74Ldz2LKrbaS8ybBgR7LLoijT68vLLdbEw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N2UZnypAev0kJDZdnkLXLcoFco9B7Fm/EV30qaCGohzPv81NC1BZZtLKc3HNz7AiSb7PipEGEVp4wGNu6zSpEEqBgwGUS9vr3HeiwpffGGKUhNX4qrEP78Y8X03XRYl6Ph2Bs39OVIIK4erlA0+cPTCWcAr2Fu856J/AGHo6GdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pb1dCeLi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65712C4CEF8;
-	Thu, 11 Sep 2025 13:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757596030;
-	bh=RWKhIIzKw74Ldz2LKrbaS8ybBgR7LLoijT68vLLdbEw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Pb1dCeLieglj3LY662S/zagkYDg6b+Reom8hm93YAod/fn+IlJZxmiPkr6DtVR5kR
-	 JZjILz0Q+viONNkBiBkq30jtzdGvM4EYUlM7ZhFI6/LLQMNNGZjRzSWCX+Nn99sdYJ
-	 jNVqI4miqoTC2S51iPBEn1jnEIB2YmxV00CaqrQ2pm7qdELNCC51z09GufEsMPLUsY
-	 Vaa6kNFKIM1McObmdnCWUrsVLxVSb++vJDOL/+NU0DC5ccsa8mtt+tOgLvGipICB/9
-	 9jh1I85BcXaqBkuknpf4VALTe5kjKd/92ZZFHrQ5fexims1n6iiSThurvJigJcibLZ
-	 qBNS0wL8R2Nbw==
-Message-ID: <391229ff-d85a-4707-8e7c-ea64e0e3d7cb@kernel.org>
-Date: Thu, 11 Sep 2025 15:07:05 +0200
+	s=arc-20240116; t=1757596129; c=relaxed/simple;
+	bh=xnazJWXBcfz2KniCGMVpI1ypAbJdIZM7Pkx9ejLmHbs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ew6z2IFhfUfzlKA3VWmRLDpnWl2MSk44tR7JlyPSBihHuzwGQgIyxq20ejJMYwRo1iUepuB2PLFQjV/TmCeUS65Z3SD7KNJxj3lDUc8/tB02Hjh0ePylEpVqzrSHt6BDH97Tya75l+SK2TaRXvlGzII1f3/TiFTT650UO1YqZpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54492cc6eb1so425223e0c.2;
+        Thu, 11 Sep 2025 06:08:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757596126; x=1758200926;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CG5K1nBleVisCU6FRznqNgmm5nk8FGFClvtyMXzVxV4=;
+        b=mE16GKznSw7R4D+sOGvVRz28r/dPHZu3VaEwLY5oXj8X5iLXPMnoGiUiFHtTjj+XIP
+         Tv7LnqOej2AxhMzU5/xdIuHUWR5R9V+btfA3bEUDsSnHOVLiSECPLknJMaeI16e06NSN
+         DwJW/uGHdRlefoOKfT2suJ3mbW5vfP7oloikBKOBpLPMaAISnPLBFzYqiUhulaz3byyn
+         4S9svGhPx9CGX5hiecPaj7K2oGawXUljK7AAmLi1/kFdLnIiP5eVnA3jA8rbDDsdaM5T
+         QmxYrVOPhHpQc5+BxYVNlq0ST+ErmTWi2XtgJbHALi7gSxN56/ufTWHRSOB5VvaFi/r3
+         MnSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0b6Vtb4ATOOkDMmztTG0SlIaNlweUze28Ma03PgzXE8dICDN+Pl0LA6JSDDFQQUgyBgnhkQeoV1Qq8Q==@vger.kernel.org, AJvYcCUK2FgK06mb2xRgEiN67xB0J4Yp1DVLmhmyuZRPwvHg6MrAr14RiiuNCq+yQVAj9jklPCC+ZIJdBItRqGE2C4rFShjs@vger.kernel.org, AJvYcCUmQCCquGTDkATONNY5GQmtSkDuxaYzrhcxaybPIwtDSnU1IO7uI+E13gS3M9JNtmD4O0+WniV7Bmig7+RN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxxy3wrwh1eQYawPc2Tig6m5a4oWh9PR05wggm45XVi1IAG3wRH
+	DF8DA4DYDlIucHX1UhrnlNu9otWork/iv5mV5PAsDOTMWNHjjkQbs1Iaedh3Nryb
+X-Gm-Gg: ASbGncvF/S7qyHgtWvjm5wgg9dUCX+R+Rn6eq0wf1U/y8ZAqmrmBSWTNtqN9Ob5UQzx
+	s5KBLs8pE2nkglgJX2E/RtszFluvmkqlN4l0gZkKJlS2SvqXCcotBLV5P7B6E0flZUwfazADgGJ
+	DV3Cn+jVbU+u6DnHsC3JUqWC4fSF2sw2/AR/OYx9TgEQyLU3lpUZzEuuexXgIDDYMu0UTi5uKQu
+	DNQ7T6Outeev5wMxCGMBMOut8o+0vNWEeLzOFNqHHVieeUI32aXWMS8H4QKmkLA9hknH11RK5dc
+	TqtyNLKWQxep3/jUXLlyQYGqog8MvDtsSHKTimIViHdwnV8fqESorJh6RWmxBtDLlDRRoR26DzE
+	Yx+A4D0br2jwBuGRhonvbtuw/mwftg2EnULRIikV0Z7k8WrhzjFBMU+0FfyU/P/PnSiJfj6U=
+X-Google-Smtp-Source: AGHT+IGzL/CY0kZABIxLgFRNp1VwmErV/BXkJOZZzEs8xd8q0QhVQAAd6bY6gG80iofntF0TgE37qg==
+X-Received: by 2002:a05:6122:658b:b0:544:4ee5:1334 with SMTP id 71dfb90a1353d-5472a006752mr6459760e0c.2.1757596126118;
+        Thu, 11 Sep 2025 06:08:46 -0700 (PDT)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d424de5sm226943e0c.26.2025.09.11.06.08.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 06:08:45 -0700 (PDT)
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-8a00c77a62dso475553241.1;
+        Thu, 11 Sep 2025 06:08:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUEELFMiePh9rxmJIBcpY2pTqRBhc8o6NS+xHNlUqBODIQLouY687bkcaGvH5u0rG8Ad47EIyI+T00D28THCDqsvB/7@vger.kernel.org, AJvYcCUODt5RiujDffl9VOT40/mJcTeyf0/SbnFNCuESZ5o3gOScJMgrNqbSFOwG0mwnDHMlBvGtGxkzI9mjexUR@vger.kernel.org, AJvYcCVrJkhxl7I7h2vM5mjdSlWtdbzZjMrUekUSl8Fhyn2atQTDoXFL+Mns7Glj+Rvr/UVDhSm+AiZNO8ID7Q==@vger.kernel.org
+X-Received: by 2002:a05:6102:5107:b0:534:cfe0:f861 with SMTP id
+ ada2fe7eead31-53d21db953bmr573995137.18.1757596125422; Thu, 11 Sep 2025
+ 06:08:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/14] iio: accel: bma220: reset registers during init
- stage
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno S?? <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
- <20250910-bma220_improvements-v2-7-e23f4f2b9745@subdimension.ro>
- <a10a2f6d-6cb7-4922-b505-dc6994f0415f@kernel.org> <aMLCWFatVkePTxCa@sunspire>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aMLCWFatVkePTxCa@sunspire>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250902105710.00512c6d@booty> <aLkiNdGIXsogC6Rr@zatzit>
+ <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org> <aL5dNtzwiinq_geg@zatzit>
+ <20250908145155.4f130aec@bootlin.com> <aL-2fmYsbexEtpNp@zatzit>
+ <20250909114126.219c57b8@bootlin.com> <aMD_qYx4ZEASD9A1@zatzit>
+ <20250911104828.48ef2c0e@bootlin.com> <CAMuHMdUUGoaetdsTEVx27TYQZ_khzyCn0wzi2+TibYcvkg1fXw@mail.gmail.com>
+ <20250911122333.2e25e208@bootlin.com> <36a85af7-75b1-46db-8df8-e83372d33b93@beagleboard.org>
+ <20250911144506.51809eb3@bootlin.com>
+In-Reply-To: <20250911144506.51809eb3@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 15:08:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdULiX83n5bLEipE1j99HyuyXCpAYS9qYu-8y_vmEyO_ag@mail.gmail.com>
+X-Gm-Features: AS18NWC8F9c9Xz1zFrQjM9AgyEVI6jdiBD3mJBt-Ew68CVPoMvwon9xnR63ml5U
+Message-ID: <CAMuHMdULiX83n5bLEipE1j99HyuyXCpAYS9qYu-8y_vmEyO_ag@mail.gmail.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion at ELCE
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Ayush Singh <ayush@beagleboard.org>, David Gibson <david@gibson.dropbear.id.au>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/09/2025 14:36, Petre Rodan wrote:
-> 
-> Hi Krzysztof,
-> 
-> On Thu, Sep 11, 2025 at 09:35:52AM +0200, Krzysztof Kozlowski wrote:
->> On 10/09/2025 09:57, Petre Rodan wrote:
->>> Bring all configuration registers to default values during device probe().
->>>
->>> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
->>> ---
->>>  drivers/iio/accel/bma220_core.c | 71 ++++++++++++++++++++++++++++-------------
->>>  1 file changed, 49 insertions(+), 22 deletions(-)
->>>
->>> diff --git a/drivers/iio/accel/bma220_core.c b/drivers/iio/accel/bma220_core.c
->>> index b6f1374a9cca52966c1055113710061a7284cf5a..322df516c90a7c645eeca579cae9803eb31caad1 100644
->>> --- a/drivers/iio/accel/bma220_core.c
->>> -static int bma220_init(struct spi_device *spi)
->>> +static int bma220_reset(struct spi_device *spi, bool up)
->>>  {
->>> -	int ret;
->>> -	static const char * const regulator_names[] = { "vddd", "vddio", "vdda" };
->>> +	int i, ret;
->>>  
->>> -	ret = devm_regulator_bulk_get_enable(&spi->dev,
->>
->>
->> You just added this code in patch 6. Don't add code which immediately
->> you remove. I understand you re-add this later, so basically it is a
->> move, but such patch diff is still confusing.
-> 
-> sorry, but this is an artefact of 'git diff' I don't think I have no control of.
+Hi Herv=C3=A9,
 
+On Thu, 11 Sept 2025 at 14:45, Herve Codina <herve.codina@bootlin.com> wrot=
+e:
+> On Thu, 11 Sep 2025 17:45:17 +0530
+> Ayush Singh <ayush@beagleboard.org> wrote:
+> > On 9/11/25 15:53, Herve Codina wrote:
+> > > On Thu, 11 Sep 2025 10:54:02 +0200
+> > > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > >> On Thu, 11 Sept 2025 at 10:48, Herve Codina <herve.codina@bootlin.co=
+m> wrote:
+> > >>> The choice to map connA to the type 'foo' connector expected by the=
+ addon
+> > >>> and the choice to map connB or connC to the type 'bar' connector ex=
+pected by
+> > >>> the addon can only be done at runtime and probably with the help of=
+ a driver
+> > >>> that have the knowledge of the 3 connectors.
+> > >>>
+> > >>> I have the feeling that the choice of physical connectors to which =
+the addon
+> > >>> board is connected to is a human choice when the board is connected=
+.
+> > >> All these choices and decisions apply to single-connector add-on boa=
+rds, too.
+> > >>
+> > > Yes, in our use case (me and Luca), each addon has an eeprom, wired e=
+xactly the
+> > > same on all supported addon, which allows to known the exact addon. A=
+lso addon
+> > > insertions and removals are detected using some gpios wired to the co=
+nnector.
+> > >
+> > > Based on that our specific driver handling our specific connector per=
+form the
+> > > following operations on addon insertion detection:
+> > >    - load a first addon DT to have access to the eeprom
+> > >    - Read the eeprom to determine the addon type
+> > >    - load the DT matching with the addon type
+> > >
+> > > This part is of course connector type specific. I mean having an eepr=
+om with
+> > > some encoded addon type values and hotplug detection with gpio is a p=
+art of
+> > > the contract between the board and the addon (part of connector speci=
+fication).
+> >
+> > My usecase is a bit more complicated, since I am trying to model all th=
+e
+> > available headers on BeagleBoard.org sbcs (particularly PocketBeagle 2
+> > initially) as connectors. However, that still ends up being a single
+> > connector which can have multiple addon-boards simultaneously instead o=
+f
+> > the other way around.
+>
+> In that case, a connector cannot have the state "free" or "used" handled
+> globally by a core part.
+>
+> IMHO, each connector drivers should handle this kind of state if relevant=
+.
+> I mean, in case of "pmods" compatible driver having this state per PMOD
+> connector could make sense whereas in "beagle-connector" it doesn't.
 
-Don't think so. Before bma220_init() was above bma220_power(). After
-your patch bma220_init() is BELOW bma220_power(), so that's a move.
+It depends on whether the add-on board has stacking headers, or not ;-)
 
+> Also, on my side, with my 2-step DT loading, the first loading should not
+> consider the connector as 'used'.
+>
+> All of that is implied by the "contract" between the board and the addon.
+> It is connector specific and so should be handled by the specific connect=
+or
+> driver itself.
 
+Since stacking boards is a fairly common use case (beagle, rpi), perhaps
+it makes sense to have a simple method to re-export / forward a connector?
+The alternative would be to re-describe and re-export everything.
 
-> 
-> the bma220_reset() function was added to bma220_core.c with this patch and the
-> diff process merged lines from this new function with lines from bma220_init()
-> causing the apparent removal of the lines added in the previous patch.
-> if you look a few lines below your cut, the bma220_init() function contains the
-> code:
-> 
-> +static int bma220_init(struct spi_device *spi)
-> +{
-> +	int ret;
-> +	static const char * const regulator_names[] = { "vddd", "vddio", "vdda" };
-> +
-> +	ret = devm_regulator_bulk_get_enable(&spi->dev,
-> +					     ARRAY_SIZE(regulator_names),
-> +					     regulator_names);
-> +	if (ret)
-> +		return dev_err_probe(&spi->dev, ret, "Failed to get regulators\n");
-> [..]
-> 
-> Just for my curiosity, do reviewers apply the patches one by one to (a branch of)
-> the tree itself or do they provide feedback directly based on the diffs?
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Each commit must stand on its own, is reviewed independently and entire
-patchset must be 100% bisectable.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
