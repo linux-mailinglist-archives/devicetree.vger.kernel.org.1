@@ -1,193 +1,413 @@
-Return-Path: <devicetree+bounces-215749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C91AB52861
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:56:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B71B5287C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:08:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 054F4460482
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:56:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ECEA5682C5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70F22517AC;
-	Thu, 11 Sep 2025 05:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E0524BD03;
+	Thu, 11 Sep 2025 06:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PwHnlDp/"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="V2aTw8nL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2071.outbound.protection.outlook.com [40.107.244.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3C923C50F
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:56:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757570206; cv=none; b=Zsu4iKq19FU2e+y+BtOnTAqt0vuNxPlH8blpAxR40Z3qxPuaFKu00Nd5KZ9K3NEqjkkX/EHkFgSpzYeJVtc8WCNWpPsQ7oWpuzjrwzy6k5beY+BlBmcIkMTZ4s1stblWNeBCrA8jRdV5xrM7lb6oMWUQ1bw6mpqXxMgsE514FKM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757570206; c=relaxed/simple;
-	bh=DmshXf/5scl3Pm/UJbDqoYcBADlVEZ5RAfxYLM+kk4o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MlmqVtHwzom7U6fEMCj/5gEEOwlI2jCz4y5yRbWHvGGPkaRB/kFi29koIO1cL6zZ+wUSz4z2LFQebp0gUfRJnKBpUR3Ztgn2w3C5f8d7y8Cs7SRkewBlhiorQds5bb4sGGis15GZeahOJADKOu/AKfiTU6ubnNsCuckEN6UcJHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PwHnlDp/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2IVjo008178
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:56:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Qrl5C0hT9w9e5dT2xeERuIRlc0KOrzACJwYdylUap00=; b=PwHnlDp/ETMk3YYU
-	poO8JWPb67K5IavZXTuLwG9jh2l2IjAmMTrG5cBBCrhfbE761CfkGE3EV+Uyt+nC
-	SdUk9JR34iezNr3YpVyOxIueASf5R86tfD4tP80oCgsUIND6KsfrhbY0QabWEX+L
-	g/XNkVK03pIAODkXX024d/TOZgGEENfCrahBIT031EEfHKqVv2BP2CEZ+tnPVGfD
-	L363AJllhbvILVG8kC36T4rkECu8zweElQPJJYA1x6xlDtzZDZ17wDcdQE3+moyn
-	KkxrbviquK5hCJpP0szRw2xeNd2hWHHSYblshcVyaSfWQjn1rO1Zr9ZIjK4UCakv
-	XBtUmA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490aapppqw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:56:43 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-72023d1be83so12914496d6.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 22:56:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757570203; x=1758175003;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qrl5C0hT9w9e5dT2xeERuIRlc0KOrzACJwYdylUap00=;
-        b=ALQlZ+/aEBKaQIy7Y+F+soOJuklwwdAXKe3jooHp8eWxjTnEB9qm8TFyIwIQHrXC7g
-         U0Kw90Lc3dbk8iT1PKEjfOv5d1cA4f29Pt6W0fzD0+y2Si5Yw2fK5k4kYWot5QuBrRVJ
-         e76/rumTbBqg8CkM6LgQYGlh6E7EX8+KpplkhLXfycnUEdWlJFCabY7MxxvajiBImKv1
-         O9aj61eSqtTOqeeKBHmN4rCoVGzz94f9cI1E5NgjLm4292W5doPqf0T9v4LEQ94DZUZA
-         nrRvTm5YXZP3J3D7QX2pfEK0ykP2BR129jCqwpyATe4s8k2MkOsCQBqMRCRTVJJ3d6i0
-         B7ag==
-X-Forwarded-Encrypted: i=1; AJvYcCWtnToziv6TmnYhqCmyNtsW2WfAMEkTAHP+dX04qJiGPEjKySt8XYPoIbeq8WFi8CoUMlI8M6kJ2Cwb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWv88u8Y58fdKEDYlbYlROdYVAZae55IVOUtVnhy0ISHtIgNEH
-	ryWl5BsQKf7SuDvBaoP22+hTr95DP8t6f0vOjwpwr5i8Nlh7Z0TBcEv1Gx2nD6O2kcrGLKmIONY
-	ATsBuYaxGZJ07FpWR0U10OnzEQkK2Ux2cyRZ/i1dpeDeonp99r+lCc57XoYFj9Sp0
-X-Gm-Gg: ASbGncscp6pA+H+32oM5DEB/Ypqsxqg1ir8nK3dLxWymhr0Sz9fronoiwMg7JcZHNqS
-	BPr27ansWt5UHtmDsxSiN9NT0FIwXJ+PZZhbeuUsEI6Oin1sgDYx69/qvaDRM43ADa6kmFnB8lT
-	W6oHnupnrdhxdFAKEOCngKqnhlJRX2E/FT7T6I3I4qfj/XHzd4AF5Xr8qq2mqQ+8+PevjbXGnov
-	YC43WDHJ6bhCOvm80xcBcl3TEyGgZIxPnP7dNRhyDuwIFJGr+3q/CHlEH/4c3/PGKxKM7Q+JBMe
-	TzwMsmBK430M//HIaPYxe0F1ekUgLry9sSkDDvjCMUG4QCXus2CM3l9Dv/sN0KbHp0g=
-X-Received: by 2002:a05:6214:224c:b0:728:a449:2187 with SMTP id 6a1803df08f44-7394587e1d2mr211055256d6.62.1757570203144;
-        Wed, 10 Sep 2025 22:56:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEctnZbvL6Nob+WnC7gYxO6xEq3FJkrxhfSF7sRsmUMyUoMSDUtaNN2Zbm0L9GTtQcYr+zoig==
-X-Received: by 2002:a05:6214:224c:b0:728:a449:2187 with SMTP id 6a1803df08f44-7394587e1d2mr211055146d6.62.1757570202741;
-        Wed, 10 Sep 2025 22:56:42 -0700 (PDT)
-Received: from [192.168.68.120] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45e03718c64sm10121535e9.3.2025.09.10.22.56.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 22:56:42 -0700 (PDT)
-Message-ID: <947514af-5039-4ed7-9d24-893e8e6a436f@oss.qualcomm.com>
-Date: Thu, 11 Sep 2025 06:56:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C00221FCD;
+	Thu, 11 Sep 2025 06:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757570887; cv=fail; b=E08OWLiEyYwAdBTUo8Gg0q6lJVQawO2e5rlvEDk9USdx6n5uuYnSRYYqV/619JDyGh/Fo5rC9zhw2aJXqzL09ZWWuEMqLR6Lldp2yBXLfFG2e/zHDQMYZnloNdWSd+rsKFNVETbTn3DC6m8FfYBWUEkqg2UkA8HJF9C67iT4/Zo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757570887; c=relaxed/simple;
+	bh=GhDKWn+KwehBLQCUb//49s7ECnbxfCiWvsdt5VYAYjE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AR/VFu0zd+S6IEjpk4W0Mrd4qIAktqE6JvdyPiJX7RHg8hf0KlXxJuNYQdue39bv4UhM2dsgVWgxO2pCPgCgDapsO/Ow4XgTV0ABrKDYaVZivtdwtjYNOIYhJyrPCTy4weuiHcWNX+ez0ARcwF4j7JIZgTlw5i8Sm8y/kosRVjE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=V2aTw8nL; arc=fail smtp.client-ip=40.107.244.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wZggIsL3N5sedT0i130/2in/yrOY3cFeiO3VQozEP0xqOdTYspOPPHqpL0ziLyUSOAbIFmebXcaOv0STfNteAYDEfQSCgjuOLoyrr7JS8PlKXu8NsOyEMDIISn8WxffrMp6+pntiLMRI14hThZMFM5yJnZlNEye6dLJ+oYwYZ9nxp9OWrJYgSNrd1jGPJu6RbRMJ8XyERqVxZ91M4BATIjhCIXB8zmdi2MQ+V6ycAhBWQoax016ICQB42dWMYx9uAKMvFhIrieTdYD/dOyhq84idm6EA1/Ip18BOHUTMiIzV5+XMa6J82VVJT+JrcUYyk0Xrd1Z1nGQdwiMUIgf8ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F2q24isugxZunHXXg1l2QNH7AuFiLkWbbAWjgbzLELc=;
+ b=s/qRx6tin+J3xEbqAmn4cZ3vrTUTaWK007KxM5auPLMbH9znqo6NtwUCygCQbcHmiTDTENqdYjkJ3im1VlIXq2T2h1I+aKWKSQa1bA3VcA6eefcuLYY019B5BwFITaRk5zPukEkzcJc7vORgMKSGesqZlADo8NphgURFBLzuILe2WwxI0lXLD4v05633HBCBc+g/zJ8zY/70MzSiIqQe1rZA8xeFc/dyfMgxHB1Vsot71jaPxVY8iLFx3VlIYp20z+0WXrjdMiMH27aeLcICg3NCLgOCJd5vEr+Ko/vPFuKjvpp3o83j8csVE9+HpYjmgJJr5LVnzR1N3N7U+E4cUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F2q24isugxZunHXXg1l2QNH7AuFiLkWbbAWjgbzLELc=;
+ b=V2aTw8nLTTQZ11eILCXyKaMek/MVbTNCz3GN5XbeDKvqbQXCUiJng+mFiLxWcEiR3/9KDoZ1+RVDNh2XAkJiWt7/ogjEt2ufs8B4V1aqep+sShhdPHRNX5Z51VbftgsRw6Ai3aYqZ4aJHxZl3XhG/9A1Rts/Zr7oK0FCxOtMNZw=
+Received: from DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) by
+ DS0PR12MB7535.namprd12.prod.outlook.com (2603:10b6:8:13a::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9094.22; Thu, 11 Sep 2025 06:08:00 +0000
+Received: from DM4PR12MB6109.namprd12.prod.outlook.com
+ ([fe80::680c:3105:babe:b7e1]) by DM4PR12MB6109.namprd12.prod.outlook.com
+ ([fe80::680c:3105:babe:b7e1%4]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
+ 06:08:00 +0000
+From: "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
+To: Frank Li <Frank.li@nxp.com>
+CC: "git (AMD-Xilinx)" <git@amd.com>, "Simek, Michal" <michal.simek@amd.com>,
+	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"kees@kernel.org" <kees@kernel.org>, "gustavoars@kernel.org"
+	<gustavoars@kernel.org>, "jarkko.nikula@linux.intel.com"
+	<jarkko.nikula@linux.intel.com>, "linux-i3c@lists.infradead.org"
+	<linux-i3c@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-hardening@vger.kernel.org"
+	<linux-hardening@vger.kernel.org>, "Pandey, Radhey Shyam"
+	<radhey.shyam.pandey@amd.com>, "Goud, Srinivas" <srinivas.goud@amd.com>,
+	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>, "manion05gk@gmail.com"
+	<manion05gk@gmail.com>
+Subject: RE: [PATCH V6 2/2] i3c: master: Add AMD I3C bus controller driver
+Thread-Topic: [PATCH V6 2/2] i3c: master: Add AMD I3C bus controller driver
+Thread-Index: AQHcIkZvn4aTq4cirkSmmfELS1IUxLSMotAAgADGrwA=
+Date: Thu, 11 Sep 2025 06:07:59 +0000
+Message-ID:
+ <DM4PR12MB6109FB1956E8AC4979DFE85A8C09A@DM4PR12MB6109.namprd12.prod.outlook.com>
+References: <20250910112954.553353-1-manikanta.guntupalli@amd.com>
+ <20250910112954.553353-3-manikanta.guntupalli@amd.com>
+ <aMGtdFxlXRanIAuM@lizhi-Precision-Tower-5810>
+In-Reply-To: <aMGtdFxlXRanIAuM@lizhi-Precision-Tower-5810>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-11T04:46:45.0000000Z;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB6109:EE_|DS0PR12MB7535:EE_
+x-ms-office365-filtering-correlation-id: 04068ff3-d680-4911-4b23-08ddf0f98f63
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|1800799024|7416014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?jWjRw0RZt2jqWYlUSCo6bmwKB6z/dd1FjrAmEbe0DTAEPE9rtyMADIdt53Io?=
+ =?us-ascii?Q?XbVe08TglgXoS3zxVEIO0qfbNFeEB6tlgKGrIqrCmMhqUraveKFXVhM44OMo?=
+ =?us-ascii?Q?uojJRG7rChGDCeuO3Q5ItNA5dT68p1jimpXYyx7XVGWEwOtUhaYKAT6xMN7P?=
+ =?us-ascii?Q?T9Tm5IiBKSZDbY00gRBlHXt1kN02tuvDgzMB8H8VyHRjxkc64WAog7bE38of?=
+ =?us-ascii?Q?Ayl2PJy1T8PhFM+p5/0f3Zm6Tt1q0TNQhwhZUQvZ/FjajOui3tXFe2/GTXEs?=
+ =?us-ascii?Q?dzYkwtktKDppmdlRc4jxejH8e3NtGVPlA0kpf60lrtuw39PwD4TttP88Qrff?=
+ =?us-ascii?Q?k5hcFXwURdZmMJVB+Q+SdRFetHz1JXDnCPwzE4rUJz4+s17JkinzDf+30MP8?=
+ =?us-ascii?Q?TcFynuzfe1k+SzIWfeG9s6xwcA6TkAzgR8XRRxOGs4xs5ieQz0CEPpaGGAtD?=
+ =?us-ascii?Q?9zFzK+AycwJbQnigCC0I5Tho1fV9ywVokr5Js46/LwHo9xH5dlZ1DnG8pSE8?=
+ =?us-ascii?Q?0D+j9/6ut24Tu+bFeySiLsLk0c9KIsfN0Q3yZ7x6SKMsAbjGDl8EaGerpx7V?=
+ =?us-ascii?Q?asL3fT/BrtEmUNPrmqtHgL5v6FtXfyR3h5G+X8MxbP9f4hxvPj0ql4mJIuct?=
+ =?us-ascii?Q?iV8ACf3qKiyweWaGGsbZe3I0yWQ++jyfUffuBnRDTvER1CDHpyZ1LepRQwOf?=
+ =?us-ascii?Q?aCxKsVTHm7qnAa+3GtpzpQCOhELhI9M9cU3coRvX5+xaWZOH6AtL8PUu1PHD?=
+ =?us-ascii?Q?v4fLSXp7vehlR93OV/QTssCfdwqVJkJvzHMvy4xXSEj8lQQGEr7ihQEkozAP?=
+ =?us-ascii?Q?HOHt4lMT/kKYPdx4I65prYZLgJvy2WAFwIHWSEzJ3AG643N/IpeNBvPjMIcp?=
+ =?us-ascii?Q?sYpuLfUv74oj8q4BRIk0mZ8n6zi697PFWq9afESN0mn2vxKDNVfdDcw0DUue?=
+ =?us-ascii?Q?WGvUUjI1RvVyWGS5tfJySngjCJX6n3sCmxfiIhPY8r0vH0EEKGPNO2MqwJ20?=
+ =?us-ascii?Q?BrwBP7oZtSz6dPpLkZjECeroLsUyuNQrGzPjw2M3SkwGyhWOg9jENytiHvIN?=
+ =?us-ascii?Q?ZL9ls0SZtpE7t+kS8UH9NQe+SZn/eUtjiDBeVX/Z+JYZ+lfRS22FWrEDqNlF?=
+ =?us-ascii?Q?9H2SQGK9fyClkcxKBOeJFXrIHHG+HBgMdXDB00M/pJtgvKbcTcS3uJkntGIZ?=
+ =?us-ascii?Q?Dm7SMMXOcIdXduZJlfHthgufh74yEqKf3IAdZn37g/DPeKKQ0sgjfHGzHluz?=
+ =?us-ascii?Q?s+FFCwZTSwE0agyAEB2bhXSP/jy5vZiTDJg/Idq7iaBPu2gKbmc9PicwyNIV?=
+ =?us-ascii?Q?0z2To8Km0CljlgOWHne7jBakMLpw5OHQwxBqoo35NiqgdrFGadX5j0kFKQsK?=
+ =?us-ascii?Q?VFXrh8mKwDgkFIs57qaGVbyMLhCEaFOxucdetS1CrOCjspm3k9bd5XmcPB/7?=
+ =?us-ascii?Q?aa7Ox2c1z6lsESuW9p+OBdK+zwBRApnC?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?D1DbS+0n2xDUhvZTNRKrpcqSz78tD3O1+gEHwfprfONX17uid+ggsf1eKPkn?=
+ =?us-ascii?Q?FsrBmmeny5/9OUcfp3snp+kbZJNdJ1bMxEBh2Nqa5cP1qJ5o5BWjsp/HvsCT?=
+ =?us-ascii?Q?SlXWfWpOmEWNMdhMBP8WTtjmicRnDe4HbEiQtU5qlTqMr5/E20YLkp+REDpd?=
+ =?us-ascii?Q?UK1SWSU39dEtuss0keeEqfHsOYXjdQxv5TbKSd1MH5MjfQkh0AxTY7tNC9ke?=
+ =?us-ascii?Q?hGWtnVZb0RaF/Qz1Q0gJjtet9FRHoTYsCKY1vAof5qgOw8X0D/JZKj+x4ioB?=
+ =?us-ascii?Q?pZZVBQlZVz0k5MPG4uLYoh/voLMkvIwgnA4Qol/50ayVzQ8Wr4GfUXppDw6e?=
+ =?us-ascii?Q?4E8H2SfTIE/tlSnoDvEBGFy7FXMGGMZRgIBETPrjuGnp1v+r474NiaAK5LmM?=
+ =?us-ascii?Q?k06V3a+INzoJSjMEUwIxZNRez+VXilNmoEOYAfuuhHUPzWRHJMB2SRSQkozw?=
+ =?us-ascii?Q?oy+K1SfTbO90IOALwQ/dtm9akXbk5/Mm2aIczxQS9YbYyCmtMfYfDctivCNK?=
+ =?us-ascii?Q?+HGMgfHlkusj3L7Cn1ko+NGyj+y12R0mvMSyXtS/eH2QNq9Tzs/Bz/SdZM08?=
+ =?us-ascii?Q?v2fUPUNgVu+AIFmFN+hD3+HMf2PjYsteTPAKyzmaepmj+s+bQKHJYqrZpSUV?=
+ =?us-ascii?Q?HGyL5xrGhJL3NU1SYZIn68LLXcGbZ/qKY8pRtS6F+p0sJYeX60m9Gj4rVGgE?=
+ =?us-ascii?Q?Kpws18VDU4/zENnYhgxCOslddV/3JCQyEKMijz0f7pMloqgR9tyCgFfji/nb?=
+ =?us-ascii?Q?nUwf4tWo3JrbiKJrZ7xJIlEGBFpx6NT5bGRIv2vz2UWxIY26PQSUIKUQaT1x?=
+ =?us-ascii?Q?FQqvaYfbjBZ4TgXd8BE7+D4rukdsBtTLl2pzXRTJFogjPFsaY+ZA5luLEfA9?=
+ =?us-ascii?Q?wIuYL3a5SEU0foflGPyX3IMfjONdpf3vFqjx6An+evt0zqCU8HHlcqearVYL?=
+ =?us-ascii?Q?RppXnaIteFsJNRJoqkY9us4AyltRlRewI3irCYm4nPeEMQ+Yps2IM+TsJ1ga?=
+ =?us-ascii?Q?r0Zk9VPgbms4ATIWyC5gcvfAej56lXycBjEhejYrYdUWyG+5OyaQSqj5f+pm?=
+ =?us-ascii?Q?02fl3og9PQ+kWcxwuOizgfD2nGjTUOuUNfu0T5a+56KwkMNU/5xR8ZEJA8vn?=
+ =?us-ascii?Q?iMr1PCRpgzqYCExKFSVX0416wB1wvl6p+ZX2zod0IV+S/yA3J4kn/nlGybu8?=
+ =?us-ascii?Q?e3svfYfh/NSiob/wCKWu2QClpDdE6NoZ87Sp1nWjZ9mHag8TNxd7wNGUejTB?=
+ =?us-ascii?Q?zNMbNRXFvokoNt/HmYBGNMAlnaMZEmsOPd6rKB2jWdT7anbFSnI8u8XoodXo?=
+ =?us-ascii?Q?Kcyat2G+AjIanJ6D4vqGy8oDeT098qASkcxyu6+s22d95c7YYW7BVUoS66f2?=
+ =?us-ascii?Q?685jXP1Q3XbwILPee7EZcRryq7fNI+SP0caARpAgAVsSPCuppkZ8Y+JkZzwX?=
+ =?us-ascii?Q?NJzsawSVpKL0vPV/w0Q+wGyo9LKdFDAP8iZVNlRUj3yZflggi5jIpWAoectx?=
+ =?us-ascii?Q?7mTfQzFtpcfQLpHQGy8XJkjIsv5dS/MmObCh9urtt15BrS9vxEWOmFtgG1tc?=
+ =?us-ascii?Q?uG1BEa+0J5ocQfN7l9Y=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] soundwire: qcom: add support for v3.1.0
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        Alexey Klimov <alexey.klimov@linaro.org>, vkoul@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org,
-        yung-chuan.liao@linux.intel.com, pierre-louis.bossart@linux.dev,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-sound@vger.kernel.org
-References: <20250904105616.39178-1-srinivas.kandagatla@oss.qualcomm.com>
- <DCPK67SQ5DEI.2AFDVRKZSEWTS@linaro.org>
- <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=eMETjGp1 c=1 sm=1 tr=0 ts=68c2649c cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=1gS6Q4nU2R3-upBo_fUA:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: AipKc6j_ziGyn0YeiYdCtVU-Z1jrCx4c
-X-Proofpoint-ORIG-GUID: AipKc6j_ziGyn0YeiYdCtVU-Z1jrCx4c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAwMCBTYWx0ZWRfX+hm1KQsoklWk
- SLWIy4y4iTsBzkrnUDQJX612MucS1bZQoxGAQWLBVEdS8v6sJwlEYt+34F33pYCrEJ+zKi8hMoT
- 06eS4skJTtyK26dqCAjeuJNZo54oq5RO05U2nUrIQTVbXGK/A1ZLgJQmCtgxvalgZ/c6eAfX3FA
- ZVGb6fs0uo4Enx3XWkal5+yzmxCsl7BmoSiF4sErQAY8fy0vxHBCZQvxVqDVIsLXEvaBodZiQJU
- gBFkr7ieWCYOmP61x92fW3fL4UgUkcPvonfP2KmD3UDAblq8n35y+HG+DVgH0g+ozATzbzZBQvH
- 63t0Mvbyye7SKUpNDL92pO5g5GGrhmFsM7PXHy/g8QOTiQ501we6KOVhneQD5Z9No9hRWwZ1w2o
- xiBGVvE+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
- bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509060000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6109.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04068ff3-d680-4911-4b23-08ddf0f98f63
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 06:07:59.9367
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: WC+nf9aT82qR1fk+Idon/jzzuII2TyM0+YWaWjCkWTlOKKfjOwAYjP0aK/cmkCnXPK2oB00YZEJ9vc/aCgkcZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7535
 
+[Public]
 
+Hi,
 
-On 9/11/25 6:49 AM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 9/11/25 1:52 AM, Alexey Klimov wrote:
->> On Thu Sep 4, 2025 at 11:56 AM BST, Srinivas Kandagatla wrote:
->>> This patch series adds support for Qualcomm Soundwire Controller
->>> version v3.1.0.
->>> As part for adding this support, a new macro of_property_read_u8_index()
->>> is added so that we can remove the qcom,din-ports and qcom,dout-ports.
->>> As v3.1.0 supports more than 17 soundwire ports. Also due to change in
->>> the register offsets, new entries are added to the variant data.
->>>
->>> Tested this patchset on X14s and Glymur reference platform.
->>
->> Well, I don't have any Glymur devices and no idea what is
->> x14s (I guess some laptop), but I picked the series locally to test
->> on sm8550, it seems there are some generic changes, and
->> qcom-soundwire probe failed:
->>
->>  remoteproc remoteproc1: powering up adsp
->>  remoteproc remoteproc1: Booting fw image qcom/sm8550/adsp.mbn, size 8364
->>  remoteproc remoteproc1: remote processor adsp is now up
->>  qcom,fastrpc 6800000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: no reserved DMA memory for FASTRPC
->>  PDR: Indication received from msm/adsp/audio_pd, state: 0x1fffffff, trans-id: 1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@3: Adding to iommu group 12
->>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@4: Adding to iommu group 13
->>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:2
->>  PDR: Indication received from msm/adsp/charger_pd, state: 0x1fffffff, trans-id: 1
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@5: Adding to iommu group 14
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@6: Adding to iommu group 15
->>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@7: Adding to iommu group 16
->>  qcom-apm gprsvc:service:2:1: CMD timeout for [1001021] opcode
->>  platform 6800000.remoteproc:glink-edge:gpr:service@1:dais: Adding to iommu group 17
->>  va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
->>  qcom-soundwire 6d30000.soundwire: probe with driver qcom-soundwire failed with error -75
->>  sched: DL replenish lagged too much
->>  platform sound: deferred probe pending: snd-sc8280xp: WCD Playback: codec dai not found
->>
->> Are there any dependencies I am missing?
-> 
-> Looks like there is a bug in sm8550 dts, its adding incorrect number of
-> ports, which is why we are seeing this error.
-> 
-> Its good that alteast this series is detecting some of the bugs.
-> 
-Am suspecting there might be other platforms which could hit this issue.
-Eventhough allowing old way is prone to errors, we could check the
-existence of those properties and allow old behavior, may be with some
-message or warning that incorrect ports are being setup.
+> -----Original Message-----
+> From: Frank Li <Frank.li@nxp.com>
+> Sent: Wednesday, September 10, 2025 10:25 PM
+> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
+> Cc: git (AMD-Xilinx) <git@amd.com>; Simek, Michal <michal.simek@amd.com>;
+> alexandre.belloni@bootlin.com; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; kees@kernel.org; gustavoars@kernel.org;
+> jarkko.nikula@linux.intel.com; linux-i3c@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+> hardening@vger.kernel.org; Pandey, Radhey Shyam
+> <radhey.shyam.pandey@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
+> Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; manion05gk@gmail.com
+> Subject: Re: [PATCH V6 2/2] i3c: master: Add AMD I3C bus controller drive=
+r
+>
+> On Wed, Sep 10, 2025 at 04:59:54PM +0530, Manikanta Guntupalli wrote:
+> > Add an I3C master driver and maintainers fragment for the AMD I3C bus
+> > controller.
+> >
+> > The driver currently supports the I3C bus operating in SDR i3c mode,
+> > with features including Dynamic Address Assignment, private data
+> > transfers, and CCC transfers in both broadcast and direct modes. It
+> > also supports operation in I2C mode.
+> >
+> > Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> > ---
+> > Changes for V2:
+> > Updated commit description.
+> > Added mixed mode support with clock configuration.
+> > Converted smaller functions into inline functions.
+> > Used FIELD_GET() in xi3c_get_response().
+> > Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
+> > Used parity8() for address parity calculation.
+> > Added guards for locks.
+> > Dropped num_targets and updated xi3c_master_do_daa().
+> > Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
+> > Dropped PM runtime support.
+> > Updated xi3c_master_read() and xi3c_master_write() with
+> > xi3c_is_resp_available() check.
+> > Created separate functions: xi3c_master_init() and xi3c_master_reinit()=
+.
+> > Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
+> > in error paths.
+> > Added DAA structure to xi3c_master structure.
+> >
+> > Changes for V3:
+> > Resolved merge conflicts.
+> >
+> > Changes for V4:
+> > Updated timeout macros.
+> > Removed type casting for xi3c_is_resp_available() macro.
+> > Used ioread32() and iowrite32() instead of readl() and writel() to
+> > keep consistency.
+> > Read XI3C_RESET_OFFSET reg before udelay().
+> > Removed xi3c_master_free_xfer() and directly used kfree().
+> > Skipped checking return value of i3c_master_add_i3c_dev_locked().
+> > Used devm_mutex_init() instead of mutex_init().
+> >
+> > Changes for V5:
+> > Used GENMASK_ULL for PID mask as it's 64bit mask.
+> >
+> > Changes for V6:
+> > Removed typecast for xi3c_getrevisionnumber(), xi3c_wrfifolevel(), and
+> > xi3c_rdfifolevel().
+> > Replaced dynamic allocation with a static variable for pid_bcr_dcr.
+> > Fixed sparse warning in do_daa by typecasting the address parity value
+> > to u8.
+> > Fixed sparse warning in xi3c_master_bus_init by typecasting the pid
+> > value to u64 in info.pid calculation.
+> > ---
+> >  MAINTAINERS                         |    7 +
+> >  drivers/i3c/master/Kconfig          |   16 +
+> >  drivers/i3c/master/Makefile         |    1 +
+> >  drivers/i3c/master/amd-i3c-master.c | 1009
+> > +++++++++++++++++++++++++++
+> >  4 files changed, 1033 insertions(+)
+> >  create mode 100644 drivers/i3c/master/amd-i3c-master.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS index
+> > 1af81124bba3..ff603ce5e78d 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11693,6 +11693,13 @@ L: linux-i2c@vger.kernel.org
+> >  S: Maintained
+> >  F: drivers/i2c/i2c-stub.c
+> >
+> > +I3C DRIVER FOR AMD AXI I3C MASTER
+> > +M: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> > +R: Michal Simek <michal.simek@amd.com>
+> > +S: Maintained
+> > +F: Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+> > +F: drivers/i3c/master/amd-i3c-master.c
+> > +
+> >  I3C DRIVER FOR ASPEED AST2600
+> >  M: Jeremy Kerr <jk@codeconstruct.com.au>
+> >  S: Maintained
+> > diff --git a/drivers/i3c/master/Kconfig b/drivers/i3c/master/Kconfig
+> > index 13df2944f2ec..4b884a678893 100644
+> > --- a/drivers/i3c/master/Kconfig
+> > +++ b/drivers/i3c/master/Kconfig
+> > @@ -1,4 +1,20 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> > +
+> > +config AMD_I3C_MASTER
+> > +   tristate "AMD I3C Master driver"
+> > +   depends on I3C
+> > +   depends on HAS_IOMEM
+> > +   help
+> > +     Support for AMD I3C Master Controller.
+> > +
+> > +     This driver allows communication with I3C devices using the AMD
+> > +     I3C master, currently supporting Standard Data Rate (SDR) mode.
+> > +     Features include Dynamic Address Assignment, private transfers,
+> > +     and CCC transfers in both broadcast and direct modes.
+> > +
+> > +     This driver can also be built as a module.  If so, the module
+> > +     will be called amd-i3c-master.
+> > +
+> >  config CDNS_I3C_MASTER
+> >     tristate "Cadence I3C master driver"
+> >     depends on HAS_IOMEM
+> > diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
+> > index aac74f3e3851..109bd48cb159 100644
+> > --- a/drivers/i3c/master/Makefile
+> > +++ b/drivers/i3c/master/Makefile
+> > @@ -1,4 +1,5 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> > +obj-$(CONFIG_AMD_I3C_MASTER)               +=3D amd-i3c-master.o
+> >  obj-$(CONFIG_CDNS_I3C_MASTER)              +=3D i3c-master-cdns.o
+> >  obj-$(CONFIG_DW_I3C_MASTER)                +=3D dw-i3c-master.o
+> >  obj-$(CONFIG_AST2600_I3C_MASTER)   +=3D ast2600-i3c-master.o
+> > diff --git a/drivers/i3c/master/amd-i3c-master.c
+> > b/drivers/i3c/master/amd-i3c-master.c
+> > new file mode 100644
+> > index 000000000000..cd9d85a0be80
+> > --- /dev/null
+> > +++ b/drivers/i3c/master/amd-i3c-master.c
+> > @@ -0,0 +1,1009 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * I3C master driver for the AMD I3C controller.
+> > + *
+> > + * Copyright (C) 2025, Advanced Micro Devices, Inc.
+> > + */
+> > +
+> ...
+> > +
+> > +/* timeout waiting for the controller finish transfers */
+> > +#define XI3C_XFER_TIMEOUT_MS                       10000
+> > +#define XI3C_XFER_TIMEOUT
+>       (msecs_to_jiffies(XI3C_XFER_TIMEOUT_MS))
+>
+> Do I missed your reply? I have not seen
+> https://lore.kernel.org/linux-i3c/aL7+Urm4NB9kwOwQ@lizhi-Precision-Tower-=
+5810/
+>
+> If you need define two macro for it. Need unit XI3C_XFER_TIMEOUT_JIFFIES =
+to
+> avoid confuse.
+Sure, I'll update the macro name to XI3C_XFER_TIMEOUT_JIFFIES to avoid conf=
+usion.
+>
+>
+> > +
+> > +#define xi3c_getrevisionnumber(master)                                =
+             \
+> > +   (FIELD_GET(XI3C_REV_NUM_MASK,
+>       \
+> > +              ioread32((master)->membase + XI3C_VERSION_OFFSET)))
+> > +
+>
+> ...
+>
+> > +static void xi3c_master_wr_to_tx_fifo(struct xi3c_master *master,
+> > +                                 struct xi3c_cmd *cmd)
+> > +{
+> > +   u8 *tx_buf =3D (u8 *)cmd->tx_buf;
+> > +   u32 data =3D 0;
+> > +   u16 len;
+> > +
+> > +   len =3D cmd->tx_len;
+> > +   if (len > 0) {
+> > +           len =3D (len >=3D XI3C_WORD_LEN) ? XI3C_WORD_LEN : len;
+> > +           memcpy(&data, tx_buf, len);
+> > +           tx_buf +=3D len;
+> > +           cmd->tx_len -=3D len;
+> > +   }
+> > +   cmd->tx_buf =3D tx_buf;
+> > +
+> > +   /* Write the 32-bit value to the Tx FIFO */
+> > +   iowrite32be(data, master->membase + XI3C_WR_FIFO_OFFSET); }
+>
+> i3c_writel(readl)_fifo() did similar things, why not use it?
+>
+> Did you miss my review comment or I missed your reply?
+You have missed my earlier reply on this.
+The helpers i3c_writel_fifo() and i3c_readl_fifo() rely on the CPU's native=
+ endianness,
+whereas in this case the FIFO should always be accessed in big-endian forma=
+t.
+Hence, we cannot use the common helpers directly.
 
---srini
+For reference, here's my previous reply:
+https://lore.kernel.org/all/DM4PR12MB6109F6D5D032723C675472448C0FA@DM4PR12M=
+B6109.namprd12.prod.outlook.com/
 
-> 
-> --srini
->>
->> When I reverted the series the audio started to work again.
->>
->> Best regards,
->> Alexey
-> 
+>
+> ...
+> > +
+> > +static const struct of_device_id xi3c_master_of_ids[] =3D {
+> > +   { .compatible =3D "xlnx,axi-i3c-1.0" },
+> > +   { },
+> > +};
+> > +
+> > +static struct platform_driver xi3c_master_driver =3D {
+> > +   .probe =3D xi3c_master_probe,
+> > +   .remove =3D xi3c_master_remove,
+> > +   .driver =3D {
+> > +           .name =3D "axi-i3c-master",
+> > +           .of_match_table =3D xi3c_master_of_ids,
+> > +   },
+> > +};
+> > +module_platform_driver(xi3c_master_driver);
+> > +
+> > +MODULE_AUTHOR("Manikanta Guntupalli <manikanta.guntupalli@amd.com>");
+> > +MODULE_DESCRIPTION("AXI I3C master driver");
+> MODULE_LICENSE("GPL");
+> > --
+> > 2.34.1
+> >
 
+Thanks,
+Manikanta.
 
