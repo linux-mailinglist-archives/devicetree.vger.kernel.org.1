@@ -1,165 +1,91 @@
-Return-Path: <devicetree+bounces-215756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16BEB528CE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:33:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686E8B528F2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:37:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFA2118991C9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:34:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F320163A8A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7048A259CA3;
-	Thu, 11 Sep 2025 06:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA67C274B5A;
+	Thu, 11 Sep 2025 06:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k/R9okPm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQNlHGAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1009238142;
-	Thu, 11 Sep 2025 06:33:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98AFD26B0BE;
+	Thu, 11 Sep 2025 06:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757572400; cv=none; b=htpquHUtR+cBHLo7rqC2L485feomaTmufeCKj5y/uDqpX2gy6XLE6XPqFRiD7ZLqfiPi7gNSKU9Owiu4nY/AidI2akiSzsivpcwxxjtraHP5A5T1HmzJVGV3LDukxEcwUMbSA9zuAbsJlSpYmq/Wkk/+lFRCVV5Ahhgj2KfhDdg=
+	t=1757572535; cv=none; b=NbVGjXaWqKbxzLXmMspCnGje4vVWcrep949ujWuRRGCuum9Tf3wcyNqC47uiKJfS2/CCT0GLvwqz4EmFU/44Mkcfp/6fjl/AOZf9qbOZwcnuVx21o2BidEJ87LQMCttyICELRv1nJ8x0sIlzEqX4SPRiaTcqWHjdEd+n2rHZ93Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757572400; c=relaxed/simple;
-	bh=uvScEIM/afzzxjdPV5Xl1jMKnkvszb/XF0beRADiX+g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rRV+BRFPormD65odSVmpQPYpCXy/e8Bha11V4q8Cj1rJd2OI5qOWglpbacIRV/EiOacPHw7IhACHczCgUYBWFaGEhfh4wJsjGEes96C0gIZLW0xoKL5UaysmQpnb6NW1ElOVKKp0s1DgbJqGtarVMUGChXCOrZ92HFfMuPIN/60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/R9okPm; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-32326e2f0b3so236581a91.2;
-        Wed, 10 Sep 2025 23:33:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757572398; x=1758177198; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0LM5Pvg5BsIFt5z+SVzlehXV1m0UwhXg3szUWfgfVE4=;
-        b=k/R9okPmFMfRqiONIeVgV1+n+clPtNWAOg3oqKvMjywGrsPqw5glnSbV7UfNmqOklj
-         tdgQD/A7ghyXA9DWwoqlGgmSYEzKQ71kMvW8Se5tAUGjs9lUTuplmwNONyPIjcZNwOhJ
-         TK7/mlG7Gh1tdA6vG6VtgkNAFwukK9IwONqmvAzvmmTxgElKwHbQEcSMNjJJhZgZtiN8
-         JLr68dOlzaOeGQpdc3PvtBlOnGx+AxZZ3H8aX1o6822b+h2IJns+2+yaZx4S3QWNIXYt
-         QEfjKDlNPxWmgQSRel6Fvhq9AomNfBcUlcg8X2uCbU4jCEI2c/ehgaeTLzLxCTGSW+i9
-         hb0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757572398; x=1758177198;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0LM5Pvg5BsIFt5z+SVzlehXV1m0UwhXg3szUWfgfVE4=;
-        b=CRDRZqDMhPqA0JeeNG8iaFz/IoSHhPv4kOwH/GKZ6b3Cnhp+kiZ3xvs1ZBOEl9804B
-         iLJVdBFK3yjPW5MYvWxKhnTO9jruptZYBqI/yvRD3ItH4D7IPQNepDY9t/whm9dyXWHa
-         yIRhyf/8o2vu9XqepMxPpjnkwt64j+KfzhQmjWUFpFL3DFRVn8rxIv1d8vPXJ2A6VT4g
-         w/qZ/K2pcdirxy5auyL7byDkZIZb+tSOj4h2WaZN6gXrfcFPrOJGgQasdVNvK8VrsRkA
-         FCyBlI1wX81SrlzqFeaMaXX6u4B2+lJp0uCQ808rss9QkKy3eullfiOiqDTsEI9JHyfX
-         Jipw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFY5xBV8YobixJvYJMgiiIPyYyGLTbWDRzjKMxXUhtPzy521mUof9CiqkmkV7MdQsi1hu29p9DwDtj@vger.kernel.org, AJvYcCWHLsGt/L7E7yEThvrY1NYGKlVXHl6PtfIU1crT3zvBQJJInk8xMNGu00eg7DV2GvzZlDJas3FVcUea2wUh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWMcg7MeVCQxg5aslGDUZJP4ZHmpTqE1pl+SqEavrZcQzR+O4V
-	fUgoXAu+eE2+5JMl6ZAewXKgKENH981qnCLh2cPYj4KeGe0fY4MJBJNApRhcdGcsoBfePiUymDA
-	NE4JdU7gd7lBjryMw82AlSVkwHOq6sBw=
-X-Gm-Gg: ASbGncuY1rPmf/3ttjntPik4vxFt40UOxQZZz85DdrEMxITWhpXiQrdMFOi+xoVK9iF
-	29fV6j3RTCJvD32nv8HJtUU+NHZL0YTu+VWFYwiC8h/SRL8Zbk8CQBOwj4Wwng5nM8AyKVXIjwU
-	Y+fuohOBJjA0g57cqFB7butSytCKFN/mYbdA6abzxN7y0jX0LDQ5SkdsWJ6FFNewXlzu9BRQnva
-	mNqkk+8v0Iq4BPCOTBSCFjZbxCLKkxrYpjn+Zq/tQ==
-X-Google-Smtp-Source: AGHT+IFmEN8gIddP3xTUY357MDA5IPWnhKOkvlOkLJ3SgdjzEPq95PnA2fm5fDjMoQ9iGX5gOqavQnl0ptzRIfiNC/Q=
-X-Received: by 2002:a17:90b:4c12:b0:329:f110:fe9e with SMTP id
- 98e67ed59e1d1-32d43f5bc76mr24382241a91.17.1757572397967; Wed, 10 Sep 2025
- 23:33:17 -0700 (PDT)
+	s=arc-20240116; t=1757572535; c=relaxed/simple;
+	bh=6DTLMJM89tF5/jVK0wcyq6wVr69uLQFAwN/VGS1+y3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gw0Gdh66ahRtpgHLce5ShhxCEY8xhQMLhGiiYTwmgZ/CFbewWv8uNzOMDCsnphmkHjayAun78bgJscBpZLIV6GH6sbpxMyn03oFjaQYXcWU2MwES+kDXt+z8643ReCUv/DTjfbNF1DqeMfBoDY1LLHqrZck91fYbKcu4xRCRljI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQNlHGAG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82789C4CEFA;
+	Thu, 11 Sep 2025 06:35:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757572535;
+	bh=6DTLMJM89tF5/jVK0wcyq6wVr69uLQFAwN/VGS1+y3k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HQNlHGAGZTPfHCU+Kz12U2j20xer1K82Sf4W99o0iVJTkU5gCZyfgM412weiNlyc6
+	 7CS5179vBt/m0Tv5CGHncFNRZidFvjbSYlXnXrvksSUWM5mZ+vH0FISuGdfBkuSDG9
+	 a2KchMpfG+M4bUyHnzXAS6DGRucXxvFMH9pShQq+ybqML4NfeP86yAZBFHnHVCR/Qj
+	 Eq4kg7ISVUi3vLJqNsnbNsQTmDuNztj73wArCJV4MGeHmZe96oaNETxzGQRF1iYRj7
+	 4GP5jBYcOpNrdHu0bZSWl7SvC7lO9kmLiPxn4xF2HloMM9pGCNVaqwWkltXC2eTh7R
+	 6TdX9fn17smQg==
+Date: Thu, 11 Sep 2025 08:35:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: andreas@kemnade.info, lee@kernel.org, krzk+dt@kernel.org, 
+	tony@atomide.com, robh@kernel.org, conor+dt@kernel.org, ukleinek@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH v7 0/3] dt-bindings: mfd: twl: Consolidate and fix TI TWL
+ family bindings
+Message-ID: <20250911-dainty-penguin-of-fragrance-9b4cef@kuoka>
+References: <20250910160704.115565-1-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
- <CABZAGRHSVY3uneK7qb2nwDrjjRsLXzsm0mwQncU1iRZac6tAkw@mail.gmail.com>
- <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org> <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
-In-Reply-To: <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Date: Thu, 11 Sep 2025 09:33:06 +0300
-X-Gm-Features: Ac12FXw6bS0Qfg8U8auC3A13VBea4lnWf2dRfsPuLP_GT-Utusd0lS-EGuB9PDo
-Message-ID: <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
- the documentation by replacing "abd" with the correct word "and". This
- improves readability and avoids confusion in the description.
-To: Nick Huang <sef1548@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Johnsodn Huang <kusogame68@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	weiyan huang <dory85109@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250910160704.115565-1-jihed.chaibi.dev@gmail.com>
 
-ma 8.9.2025 klo 2.43 Nick Huang (sef1548@gmail.com) kirjoitti:
-> Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=887=
-=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:07=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> > On 07/09/2025 15:38, Nick Huang wrote:
-> > > Lee Jones <lee@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=883=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:42=E5=AF=AB=E9=81=93=EF=BC=9A
-> > >>
-> > >> Looks like you corrupted the subject line with the commit message.
-> > >>
-> > >> Please resubmit.
-> > >>
-> > >>> From: Johnson Huang <kusogame68@gmail.com>
-> > >>
-> > >> Use `git format-patch` and `git send-email` instead.
-> > >>
-> > >>> Co-developed-by: Nick Huang <sef1548@gmail.com>
-> > >>> Signed-off-by: Nick Huang <sef1548@gmail.com>
-> > >>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
-> > >>
-> > >> It took two of you to correct the word "and"?
-> > >>
-> > >>> ---
-> > >>>  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2 +=
--
-> > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmi=
-c.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-> > >>> index d783cc4e4e..d16c82e398 100644
-> > >>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-> > >>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-> > >>> @@ -41,7 +41,7 @@ properties:
-> > >>>    clock-output-names:
-> > >>>      maxItems: 1
-> > >>>
-> > >>> -# The BD71847 abd BD71850 support two different HW states as reset=
- target
-> > >>> +# The BD71847 and BD71850 support two different HW states as reset=
- target
-> > >>>  # states. States are called as SNVS and READY. At READY state all =
-the PMIC
-> > >>>  # power outputs go down and OTP is reload. At the SNVS state all o=
-ther logic
-> > >>>  # and external devices apart from the SNVS power domain are shut o=
-ff. Please
-> > >>> --
-> > >>> 2.43.0
+On Wed, Sep 10, 2025 at 06:07:01PM +0200, Jihed Chaibi wrote:
+> This version addresses a final piece of feedback from Andreas to make
+> the twl4030/twl6030-specific child nodes (audio, usb, keypad etc.)
+> conditional by moving them out of the common block, which now only
+> contains common properties (rtc, charger, pwm, pwmled..) ensuring
+> the schema is fully accurate.
+>=20
+> The complete dtbs_check for this binding is clean except for two
+> warnings originating from pre-existing bugs in the OMAP DTS files,
+> for which fixes have already been submitted separately [1][2].
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
+>=20
+> ---
+> Changes in v7:
+>   - (1/3): Moved twl4030/twl6030-specific child node definitions (audio,
+>     usb etc.) into the conditional 'if/then' block to improve schema
+>     accuracy.
 
-Hi Nick,
+Who asked for this? It's wrong code.
 
-Thanks for the typo fix. It looks good.
-I, however, am curious how did you build the recipient list? I hoped
-to be notified about changes to these bindings and I'm not CC'd.
+Best regards,
+Krzysztof
 
-Yours,
-    -- Matti
-
---=20
-
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
-Discuss - Estimate - Plan - Report and finally accomplish this:
-void do_work(int time) __attribute__ ((const));
 
