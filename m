@@ -1,189 +1,162 @@
-Return-Path: <devicetree+bounces-216143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFE8B53C03
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 21:00:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9D3B53C0C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 21:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 910D61BC6EE9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:00:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71B60164E85
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602A8253F11;
-	Thu, 11 Sep 2025 19:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F156254AE4;
+	Thu, 11 Sep 2025 19:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="a4CJlwA6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bBo1Debg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D006724DCE2
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 19:00:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502D81863E
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 19:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757617213; cv=none; b=DzFDiGahF/ob47+oKwC2i7WZGTCAswxU4RpHRMI8p1dXq0veO33KdXglRCWg5XrxxsZMO/rw3YiLaG77gvPkSHPgyRuphvBSy8wqVJW0VmdId9ZFjLUtOvOXKWJN3EB4pIgYKwsyr7ofztrJOevBBEh7nAOx2RqLoRP55j+8v9A=
+	t=1757617283; cv=none; b=FPbanRVk19HYq3QYJoCh+PI40/F3Ki4RdzvUudyVfjTUf28Zzq3jRC2Wa4Cv9zAkhIgbMACWF4xrTl4jyT8qvmlQnQRYaTDV2hpn/d9GtUwq/dCdq/3SnJkEBmjdn8mxp4ysTYSyq+gvBQUIMSfZdGvhcSnnFX3LNUQe7fHNsKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757617213; c=relaxed/simple;
-	bh=jEuIH5ZZU/EeovpVRYUTQgyVitJw0q9Q0W9biAJS/lc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VIerG9V9KaTCPqaIFH9lNTt+CNwVgwMlxGSHKslkgd6Pri+mhjLt78MKmwt2sRi0D6yIE3YpRTOWXCAWgulTh6jo4tPJULX20FTvM+GixsEuJZmnJTeYimHI5oebndXxGutlgQi0U3aM8YN9Ph2IF/2QJ1FLPnLSP5Z8nhQXG4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=a4CJlwA6; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-772679eb358so996112b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:00:11 -0700 (PDT)
+	s=arc-20240116; t=1757617283; c=relaxed/simple;
+	bh=iNSdi8waQkKMEng9ruRDLzVSv65292Ob9iM0hJksiT0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MVSvlMH90wBERzlm4nlRo4LczYwof/1zrKAj4QfGFakjZ4UC1CNIXJir3x0Xi1jLIipWlfUzUJLlx1IB5nTxh5G3qXbe7I4F2fWlDQ6YDu3fDYKkgPDxhFH45UCxsDJVq2GJaJCJ3sA+4zx28YPHnCDqxRB/ERwR2bPwl63fOYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bBo1Debg; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-61e74d053cfso266718eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:01:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1757617211; x=1758222011; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=03MaJ+6ytyPItqY2qyW/Ajcv1dYvzwe/SXOVragEWgY=;
-        b=a4CJlwA6VVy3uyYy7GblD9FTXrIHb3du8k7MPiIQOeNw7U7Du8t/SxkfXUsQal8lOQ
-         MMB5JeEk+CO+6xCxtVm/wtcQuyoyUWnF1TvGrcMcT5gHd25nitXVwmOMbdl1jhIoXYMl
-         tnwu3idsErMW9kh4uGukwd94ZIVr6mpIjvm9Q=
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757617279; x=1758222079; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fthKq2rW3gORdFxE06iIbkm3SFnx/Wct4rEjy2bskcs=;
+        b=bBo1Debgcxq/z/Tdf9x7g3qFYatU+hs/r499zQrMyT9vrGwKn0z1EmHEKESVs9MvKE
+         NTQPKjFt1ae0ihjRb502uh15Rjt1M7gdbAttqKiesFHWd4/Hfj3j85XcyHL+Hp0UpcOR
+         Wmn2UGtPtSDKUYqOemR25ztePeJabyLhmTfX7ZvilvinyySn6HHR3IWEskWCiqcX05q0
+         Qg5S+1ASClg+x1N9UWNRGQ+7MUXmzprNCO+9BkIk/RxmeuoKZYevrAdJ0EPHjO/yi/02
+         1lo21w3f8KVzpmXhYXQzGYtUJ0IHTO2qbJuaZV56MUJ95jQLf9s9hOwnx7zWVMI5+rdd
+         lPFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757617211; x=1758222011;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=03MaJ+6ytyPItqY2qyW/Ajcv1dYvzwe/SXOVragEWgY=;
-        b=BTnOK5/4CeqV0c7rx4Fh2pOX9KIhXK6OLXs0HL571mEAPNL7aEhQJVjqbPyjMsAGXZ
-         nf/O7Q/Wr2D7rZGIHbDREOgiChhV2PbtY/5sqJ/qQ2wiThzgwAB5zvALx1oDj0WjFIpB
-         lY2nKElxaqAvU8PZNII9Sdbxeo+M7OsX6xWt4ABm8CU6I4nDRkoPJyntp7OEv0DHaobO
-         wDAkGiWSPChf7Fn5vA//Tdset97YriFe3QdIXME+ySUoULJAWAQ332MpoNgEcdmrMVCd
-         +hWlQv9zkHg1hdaqr+xDZJoId7gH0SN2QIH8tgaBCLm7wQCVG2VHREpiQH92QcYF2Olo
-         WAgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX53XyP1mnxVZDgUQIqXg6yr2pgLwvocAK70Z05LAdDnYppgIEuHYLG0WzJV45bXsy2XvexVSIrrWvn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPXAjI92myz1SIxwfWzJRkes9yXEZCD67J3vI8oR482tMhG4va
-	iuikKi6SnOlBMfAgyYGyVSizK91nSudSK4yDIJyiFNkwEFgzEirEqwgXDjxdYaLe5w==
-X-Gm-Gg: ASbGncs4xew5HG5hAPsqYzH+EmcC9R+ZscV+sVBuxMoHZi/CU48FbH/ZAu/7hW04HkF
-	2ivoOlyoOO4QM2q7NGQrOHk4An1e4gGo/1an3om2v8f609u6lG3R9JCUb7kCRx60xNgk3mtbgOl
-	xrmBHu3OmmfxA8+YZY4VNB+qQGLm8R3UvCho+edyGOPUq+KROUOfhR5ALt5S1Z29Vzk3aUQeVtq
-	O4wqOxl3vI5suThNux/6Mg1PzhPn3/A10WI2kw7Gn/+lIhUPULV2+JCGL0gzmORMPHZXZS1xLwC
-	w4kBen89KKwYWLRWprZddBPBUJH5OEDFQce4QORK82xvkyXe8J9Ivdae0oFCXcWQ3zOxcbcIvLz
-	WwWOXuxZCely0oroS1a1VtDmFRixIB/YbbrJewzy9EVtPVTolwG+i19ST6+q0ACUUPKbFqmXQU9
-	46sX8z
-X-Google-Smtp-Source: AGHT+IF+E6MG4K4ru1HMLDWmmyjU/+acTljGFHni8hj8gJV4DBQdRTFv1WxeplPA7OnCTPEFvHrPHQ==
-X-Received: by 2002:a17:902:d592:b0:246:441f:f144 with SMTP id d9443c01a7336-25d27c2236fmr3853315ad.56.1757617209513;
-        Thu, 11 Sep 2025 12:00:09 -0700 (PDT)
-Received: from localhost ([2a00:79e0:2e14:7:6690:568:13de:b368])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-25c3b305427sm25200305ad.138.2025.09.11.12.00.07
+        d=1e100.net; s=20230601; t=1757617279; x=1758222079;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fthKq2rW3gORdFxE06iIbkm3SFnx/Wct4rEjy2bskcs=;
+        b=w186TbZ9JvEHjLUswtQR8yc5skJw5eBDps7WNoSVRY5Ste1Z7/dB51UeMeO1K6qnxk
+         kNCwfXWPeCBD0IMOYhBxff1JDVBXPFver1lP9XcoYcA4c1JJUp3h2SwfIa+M9meeZW9L
+         KeRZD7YqekencMUTxPRy+T/LpF0/JuG9jiXrN+u7kx4RKst5ivoarEDFl6ox34DLD/L3
+         YfR8A3gC6BFNHuYyX2tB+yNFyw9aiDwBOobsKlfnGN6flFR4FRPkZmzNM9Tu97aGHcsz
+         LUkNRlEGS2gnvG6RA0bsBuLQWlLKyX/tgt8RXDN6rZr0NXy7vwphdtGJ1xYpDgD8iF3N
+         GmRw==
+X-Forwarded-Encrypted: i=1; AJvYcCV6NpGSnEwPYIHs/rpPK4QFImcFyR7dU55bY/5DSOcAqb1psLg2wER944WevyOlGkshYiGMgb3fd2Pi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5J8rEyfo/8hVcEBdMyd6N2j4VNf1ZEqBET4xbJLJGEIY4raz8
+	rrPVv1cpX6V8rDonXSrOSN2nUdiTBDTS6VOjXqTyMVi/alqpkTsZqgmoLQvAwDwdH5M=
+X-Gm-Gg: ASbGncsPXdJmB5cYuZgv79G3ET1mF6+X3YSG+09vIZlL3+kD2M1LsNeJbgSvJxwHFKy
+	yqX2wU+Sq8J1lPoTl1MxATSDgfwZ84loVPMbiuBdJlr+VoYRTqcy8DDpr4AKU+hzi4OKd60HiVP
+	nneUnatuOo16V66FlqkHUUTNuGNavs07mQZcjDgzx9opKpXiJv2H3KTxGtYLAw6MoANInHrTwhV
+	mudyggEKEU3yGDfjJvt2t/6U6pkHKK7UOREfiJ2sxsz1LLsox67bfFMposVdJF5m9FydlD7G9rx
+	OVHtEdDEYu4oabUxP6qi4IDvbYMLrQhnHFx7wAKPWGu2lcf7AGTDRSCLA0fuyiNQ4H4rX+pbHe/
+	6b539WNi7tC8J6cqB6G3mKrTgjdDI1MO1C3GURYQWT9Anx9Q/xbzLJleEFvUlwktfE+p9mQU6kr
+	ug6sPZnxYPRQ==
+X-Google-Smtp-Source: AGHT+IG/WjqpLxUF8gahCWiYxp4DdbPjm4+PK7gdmbSkpf8+fsZcBh3p4ZtjWEJ/jdx0r0UonKQdJA==
+X-Received: by 2002:a05:6820:509:b0:621:a61e:c54 with SMTP id 006d021491bc7-621bed56e66mr291001eaf.2.1757617279052;
+        Thu, 11 Sep 2025 12:01:19 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:d684:59db:8b2a:5451? ([2600:8803:e7e4:1d00:d684:59db:8b2a:5451])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-621b7d83b68sm191994eaf.26.2025.09.11.12.01.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 12:00:08 -0700 (PDT)
-Date: Thu, 11 Sep 2025 12:00:06 -0700
-From: Brian Norris <briannorris@chromium.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Odelu Kukatla <quic_okukatla@quicinc.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS
- clocks on Herobrine
-Message-ID: <aMMcNn82AmSavJYf@google.com>
-References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
- <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
- <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
+        Thu, 11 Sep 2025 12:01:18 -0700 (PDT)
+Message-ID: <74607630-3ee3-43b0-88b0-37ea1bef6dc5@baylibre.com>
+Date: Thu, 11 Sep 2025 14:01:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/14] iio: accel: bma220: split original driver
+To: Petre Rodan <petre.rodan@subdimension.ro>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
+ <20250910-bma220_improvements-v2-4-e23f4f2b9745@subdimension.ro>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250910-bma220_improvements-v2-4-e23f4f2b9745@subdimension.ro>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Konrad,
-
-On Tue, Sep 02, 2025 at 02:02:15PM +0200, Konrad Dybcio wrote:
-> On 8/26/25 12:55 AM, Brian Norris wrote:
-> > Ever since these two commits
-> > 
-> >   fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
-> >   2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
-> > 
-> > Herobrine systems fail to boot due to crashes like the following:
-> > 
-> > [    0.243171] Kernel panic - not syncing: Asynchronous SError Interrupt
-> > [    0.243173] CPU: 7 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.11.0 #1 c5464041cff584ced692726af2c4400fa2bde1db
-> > [    0.243178] Hardware name: Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+) (DT)
-> > [    0.243180] Call trace:
-> > [    0.243182]  dump_backtrace+0x104/0x128
-> > [    0.243194]  show_stack+0x24/0x38
-> > [    0.243202]  __dump_stack+0x28/0x38
-> > [    0.243208]  dump_stack_lvl+0x28/0xb8
-> > [    0.243211]  dump_stack+0x18/0x30
-> > [    0.243215]  panic+0x134/0x340
-> > [    0.243219]  nmi_panic+0x48/0x98
-> > [    0.243227]  arm64_serror_panic+0x6c/0x80
-> > [    0.243245]  arm64_is_fatal_ras_serror+0xd8/0xe0
-> > [    0.243261]  do_serror+0x5c/0xa8
-> > [    0.243265]  el1h_64_error_handler+0x34/0x48
-> > [    0.243272]  el1h_64_error+0x7c/0x80
-> > [    0.243285]  regmap_mmio_read+0x5c/0xc0
-> > [    0.243289]  _regmap_bus_reg_read+0x78/0xf8
-> > [    0.243296]  regmap_update_bits_base+0xec/0x3a8
-> > [    0.243300]  qcom_icc_rpmh_probe+0x2d4/0x490
-> > [    0.243308]  platform_probe+0xb4/0xe0
-> > [...]
-> > 
-> > Specifically, they fail in qcom_icc_set_qos() when trying to write the
-> > QoS settings for qhm_qup1. Several of the previous nodes (qhm_qspi,
-> > qhm_qup0, ...) seem to configure without crashing.
-> > 
-> > We suspect that the TZ firmware on these devices does not expose QoS
-> > regions to Linux. The right solution here might involve deleting both
-> > 'clocks' and 'reg', but 'reg' would cause more problems. Linux is
-> > already OK with a missing 'clocks', since pre-2b5004956aff DTBs need to
-> > be supported, so we go with an easier solution.
+On 9/10/25 2:57 AM, Petre Rodan wrote:
+> In preparation for the i2c module, move the original code into multiple
+> source files without any other functional change.
 > 
-> Just to make sure I'm reading this right - the clocks enable just fine,
-> but it's the writes to the QoS settings that trigger the hang?
+> Create the additional bma220_core module.
+> Fix checkpatch warning about GPL v2 license in bma220_spi.c.
+> 
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+> ---
+> Changes:
+> - split out open firmware table modification into separate patch
+> - bma220_write_raw() exits without dev_err() based on similar feedback
+>   from David
+> - change includes in bma220.h
+> - include bma220.h in bma220_core.c
+> - add mutex.h and pm.h includes to bma220_core.c
+> - cleanup struct spacing in bma220_spi.c
+> ---
+>  drivers/iio/accel/Kconfig       |   9 +-
+>  drivers/iio/accel/Makefile      |   3 +-
+>  drivers/iio/accel/bma220.h      |  19 +++
+>  drivers/iio/accel/bma220_core.c | 313 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/iio/accel/bma220_spi.c  | 307 ++-------------------------------------
+>  5 files changed, 354 insertions(+), 297 deletions(-)
+> 
+> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
+> index 8c3f7cf55d5fa432a4d4662b184a46cd59c3ebca..2cc3075e26883df60b5068c73b0551e1dd02c32e 100644
+> --- a/drivers/iio/accel/Kconfig
+> +++ b/drivers/iio/accel/Kconfig
+> @@ -218,15 +218,20 @@ config BMA180
+>  
+>  config BMA220
+>  	tristate "Bosch BMA220 3-Axis Accelerometer Driver"
+> -	depends on SPI
 
-Yes.
+I think we still want to keep `depends on SPI`. (And later add `|| I2C`)
 
-> Any chance skipping qhm_qup1 specifically makes things better?
+There isn't much point in allowing this on systems that it can't
+communicate with.
 
-Yes, it seems so. Or specifically, this diff:
 
---- a/drivers/interconnect/qcom/sc7280.c
-+++ b/drivers/interconnect/qcom/sc7280.c
-@@ -52,12 +52,6 @@ static struct qcom_icc_node qhm_qup1 = {
- 	.id = SC7280_MASTER_QUP_1,
- 	.channels = 1,
- 	.buswidth = 4,
--	.qosbox = &(const struct qcom_icc_qosbox) {
--		.num_ports = 1,
--		.port_offsets = { 0x8000 },
--		.prio = 2,
--		.urg_fwd = 0,
--	},
- 	.num_links = 1,
- 	.links = { SC7280_SLAVE_A1NOC_SNOC },
- };
-
-> Could you please share your exact software version (which I assume is really
-> just the version of TF-A in this case) so I can try and reproduce it?
-
-I'm not much of an expert on the makeup of QCOM firmware, but reading my
-firmware logs, that'd be:
-
-  coreboot-v1.9308_26_0.0.22-32067-g641732a20a
-
-and
-
-  BL31: v2.8(debug):v2.8-776-g0223d1576
-
-IIUC, the latter points to TF-A hash:
-
-  0223d15764ed Merge "feat(docs): allow verbose build" into integration
-
-Brian
+>  	select IIO_BUFFER
+>  	select IIO_TRIGGERED_BUFFER
+> +	select BMA220_SPI if SPI
+>  	help
+>  	  Say yes here to add support for the Bosch BMA220 triaxial
+>  	  acceleration sensor.
+>  
+>  	  To compile this driver as a module, choose M here: the
+> -	  module will be called bma220_spi.
+> +	  module will be called bma220_core and you will also get
+> +	  bma220_spi if SPI is enabled.
+> +
+> +config BMA220_SPI
+> +	tristate
+> +	depends on BMA220
+>  
+>  config BMA400
+>  	tristate "Bosch BMA400 3-Axis Accelerometer Driver"
 
