@@ -1,138 +1,181 @@
-Return-Path: <devicetree+bounces-215744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E90F9B52839
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:46:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00998B52845
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:48:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9643E48766C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:46:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F18C57B46BA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3AF241CB7;
-	Thu, 11 Sep 2025 05:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5413257843;
+	Thu, 11 Sep 2025 05:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qw69tnfV"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="pMwb1HTB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.65.219])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E096E329F29;
-	Thu, 11 Sep 2025 05:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7CE9254B09;
+	Thu, 11 Sep 2025 05:47:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.65.219
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757569579; cv=none; b=JFE68btfk96Wi05H3qY78OrCeG7KRu81bb5MlgnwyRcBks9XqRMyLDO6OzQwL12QnoOLHVyhLitnS2NjyCJbT7GThMpLCPVm5nUU1Oniwpvze3Apg3KElGhmr19bRDjFRrrisvxx/IGqvWgf50Q9oUwYkbO4mGRUYbqxDflO4Vg=
+	t=1757569678; cv=none; b=a49jvco+l+OK6FN0qinnH6n5b0Nm39Ym4XrGP8mm2z/fuhVU8w/RN3ssK+T8SXjYRFhi3JkFZn0TGpeNomqqpPjle4BDMV7bF69v67DANr9SVe+pv3lcALBqxpKxyHtF2EqKsP2DAqVK6chPzocoFSQwJcEYC0xrzh8nJPqExZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757569579; c=relaxed/simple;
-	bh=c2nj22zVziZFPvapQg27VQzeDhrb67McvUBfPobnuoQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mG/AIYT96gfFL0K5M18euUcceIXaTjZeP4SDk2Wr16Yg4Mr0B/0BzNfzqNlkwt0UDKMeQZR2/F1wQ04BOrWUoni5rMaV9uO325914QPd0PkLsMlOttlBO4NHXdcoUDLjTEVrtlYx0+k5HgmSPqgWo7/hCSG9yDh9fxBnRoVX/Yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qw69tnfV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2Iudm002518;
-	Thu, 11 Sep 2025 05:46:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Hk0nyjFBdVjbYa0ltbjCu4YLTzNc1aOKbnfW04uCYs4=; b=Qw69tnfVBEoyHO8T
-	x6HV0MdRcqYOuFxPE4rNtHaf92FgQ3zubL07HMlLlvBzLGpVTWLN6/+O5pAkONaZ
-	O7zl/EQav9hN/5m+KyqYSOzQN7DIk+SnoeZSVqJhVH0aiwEuYqQQX5+q3nMPPSUj
-	GMH5VeVfTPyO0qeVLQxbGIcUKHdIoh6yDibFrARROkgRP5Za27eIcL2REgqkn8p8
-	ey3sLOUwczstxjf906MGan7tsMxRcny82YyueSl188x/3Iio7c61RxMgf81YWiK5
-	PfnWkAfdMOqK9wkuSNUZ+sTYjwUlNwFqKFsDfIkEV8MqM8OrcbvsoKrmnKyFHv1X
-	0Gumug==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db8pe5t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Sep 2025 05:46:13 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58B5kC9G006874
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Sep 2025 05:46:12 GMT
-Received: from [10.38.244.45] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 10 Sep
- 2025 22:46:04 -0700
-Message-ID: <8b194a19-182f-4f49-9427-c0044a9b4dfe@qualcomm.com>
-Date: Thu, 11 Sep 2025 13:45:59 +0800
+	s=arc-20240116; t=1757569678; c=relaxed/simple;
+	bh=wyo7J5QXwYorHs3VIYK952W/gBVMDZcLxmYyvyfKHKw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WoY5oe7jJ7NT+pWSXQ1f9ZHD6Yfhx/ctYbLgY4Ow88SKutsJMolYJvVHpEI7PvxjEhErWBj7g2y7OnRKw3+PZXBfqfgMLA9Nb6qb6iRstDSAKMVMOlYTsILo+bWNBpivMA8WTuUR3CFCVf2tpx9M03cHuCL/mq8iidFY5uPBS7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=pMwb1HTB; arc=none smtp.client-ip=114.132.65.219
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1757569647;
+	bh=gba1Pk4T5pQwOY2V80nBcfMbzr4ZlXRsPp1nhoH8bGc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=pMwb1HTBJoByXcZi6NBPN7p1l5wqf7G0hCReGWdvnltO+3ZClJOjy9rrkZxiWLfjs
+	 qRu+kyJpl/nxmHO+9HOoQogYEvdp0rGR9gCvl9G3GVpBevqXeGxi49fDPycCVfFpBA
+	 rlYfJiFAsyByfRzC214uXcvoSu2Q0DTz0z9dUcqw=
+X-QQ-mid: esmtpgz15t1757569640td1eec744
+X-QQ-Originating-IP: zD+y2Tss7YaPUqLQHkkUXRkXYwluZmlFiaX+x5Us2Xk=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 11 Sep 2025 13:47:18 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10611340100835449465
+EX-QQ-RecipientCnt: 16
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH v3 0/2] ASoC: spacemit: add i2s support to K1 SoC
+Date: Thu, 11 Sep 2025 13:47:09 +0800
+Message-Id: <20250911-k1-i2s-v3-0-57f173732f9c@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: lemans-evk-camera: Add DT
- overlay
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss
-	<rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, <todor.too@gmail.com>,
-        <bryan.odonoghue@linaro.org>, <vladimir.zapolskiy@linaro.org>,
-        <linux-i2c@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250910-camss_rb8-v4-0-28f44e1880b8@oss.qualcomm.com>
- <20250910-camss_rb8-v4-3-28f44e1880b8@oss.qualcomm.com>
- <u437qomhok4yg6pef4xttd3a6zibuybzaeys33gxu5frbyp2kp@mgmym6c5dr72>
-Content-Language: en-US
-From: Wenmeng Liu <quic_wenmliu@qualcomm.com>
-In-Reply-To: <u437qomhok4yg6pef4xttd3a6zibuybzaeys33gxu5frbyp2kp@mgmym6c5dr72>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfXx3J+vFEioTpC
- yQ+XysRwFvZIJSBHP1dJ/Tw2Y2uMC6hLN2NsDC4Q7cSHsupeOBQCt2wcA7gIOz/+zZ4oov5lgMl
- PKld15bkn/dQ72a82C7/W3wV2ZAv0n+PFEFULwHQ+/SjS4TLRF1jfmZ2vJUWwj/wstgxpFNLARZ
- c29jAqbfNA+D09+JHSnB6IZYe1r1r8BYXjujS+A88VBtqPZ+/ypTMYqZ+eCbCVfgQ+imW4X7fAS
- F4+7Wu8TY+WJjg7AR3m3PzUSVv4tQMmUIqug7dyXg1RSA1eO7BB5Ll71kOK1V9G/H0VxEt2v4tt
- Fa91mmEPN0/YRgWkIzKvwaaQGeeE2YU8oM2dH5f2arKLue/1uqhqnKDcJH7od5mHGvn6tM5WvpL
- f6HIq9UT
-X-Proofpoint-ORIG-GUID: FgBDNynFUxujAwApYBUo3niDWhMtQkQj
-X-Proofpoint-GUID: FgBDNynFUxujAwApYBUo3niDWhMtQkQj
-X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68c26225 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
- a=7BtIlnkysfzPWxNvCm8A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
- phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
+X-B4-Tracking: v=1; b=H4sIAGBiwmgC/22R3W7bMAyFXyXw9VSQEvXjYBj2HsMQ0BKVCmmcz
+ krdFkXevbLbDhmWSxI653zUeeuqTEVqt928dZPMpZbT2AbzbdPFex73okpqc6dBWwho1AFV0VU
+ h2iE7K8wxdO3x4yS5vKxGv35/zJP8eWp+549lN3AVFU/HYzlvN9lE6wxmD0KGxGCIRAAomtAn8
+ h4yuJigu+bYblYKD6ieT9OhjPtdOvJuWexmrXzSMVtwzMlvZ7tI/8kUYzT1qLNYBstGmEyfMnn
+ ntBUfg+Soh54X4VFq5c/Q72tqj7jcHh8O6/17GWXic/stNZMCFQfWQGwhUfj5UManl7v6yFFa8
+ l0D+PEfTciWxUByffKWjIhA8gDBJM6UJGRBm2ywt2mCpmua2TYEjX5wg4/C4G4iLL3cl3o+Ta9
+ r3zOuxXxWS1/VzrjcYxCpH3QPhDfMVq9ZX+l1+KvXTQ+9+IFai6DjTf3lcnkH6Rban30CAAA=
+X-Change-ID: 20250813-k1-i2s-115bf65eaac8
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Jinmei Wei <weijinmei@linux.spacemit.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757569637; l=3133;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=wyo7J5QXwYorHs3VIYK952W/gBVMDZcLxmYyvyfKHKw=;
+ b=iQIwYBxkdVAD/JmeC/sIDKyr80CBKdbO6QwoyhiURHDrmlgONjNFU6gLoyjhAd0u0U/UA6+jb
+ aV0mzBdX1xdC2qd7P81w+h6MfH4EBBo5olHja30qxUOlLOvdPzRSU+x
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MA4gBIaQqRQg3kL+u/xQbbRIikTTteDhmXsZPSJKc1N4l+hYE6nomKJh
+	Hz8JYgPfx3boklRdfIu0W/n2yCszq5JpEm0aqqMT1st2ipMLw6VU5LhBw7/Dr5uwcgK8dKX
+	vsr0BQm6X/3CvpZhnESnfzJWy77wwvliRQ1rqqKh50ioQyMOyWhwQcJnoXGn4c09WSH/imu
+	Vwm501cc+zBB7oZxuqnTbZyxNFNb4NK11kTQ5V9XjJ2LRnIPM/wlL2LPqySBDOdzoZy2m/h
+	jd0hn7ohxZsuuvKbdTP80Saq6Ex+ebyLaVtG5x9W6a8vnOto5WfRWtzgtlWfi/or/3xy8SH
+	74SBgiTh0LmKbh8hpzV/Fnpah2DWR9pGgNSY0jn722U1/6jrj/1hzhttDX//UlE323tdTT6
+	ebWU3hGDLf5z6oxj4wQi0ZJGQzopDwJKKX4MYQHQIiVGCvbYBt007HEtsReASmlXAvK1cK0
+	D++tl2Pslbc8aRO2Or8DiYdOwEOpzDRnc2W5XWMycT3QMgwnrTARVGMj9PhgWk3CHKpBqqj
+	iZgfi5/fECYqrbiMFgV8x1lmiwnVr6GF8fnyme9F8yVp+bfx6ve1Dvyl0w0MPTydnI0weo0
+	mG7mz7s7M76HBy1LgDr0UQCQNR1bMNEZdxlcGM4mfZmjnkFCA0JkyJqZO6XH0tWTXyqBr3m
+	PbjEDzTVDSxwiXhewFSOJdv0URfyO4KyDYec7yxlWNrPnC4GWTD2Gsz0sVvgZay6hFfUuvq
+	Af4PbLVMdVs4siXsOkAjELLoH5dBRuz5iUDXmNYCUMgZYAPesDEDMj3qZYfySa+pAZA8Q+Q
+	bunhfCwIWyznZKHLCq/BWMMd3Y7NQpsq9WmNrIH+BUnVQJb3n7dPjvRMN4EdK+milzLxx4k
+	wtOGAdJTScomUpgDv32wVRtm7jGfWNqfPSmHWlHeFL3nTa/1iVfgFfnDlS1EaI+M3U6+m47
+	/ZkQa667pkoQLhAekU96NOZKmL6ucBxGkKQCuFbyb/AJAhgGHuKJSqp3rEYIHcEJnNnMMFY
+	gY3Q2G1zewPtU+k/vdZd21MaqLMOJ/b97Wd6ehSsXm1j2ojxWOxt+oK51MQMrKL52TPMx7l
+	d2i+cheYwKQi7l/p2svHnU6wQzWawB6HgTx6iV4ftTq
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
+On the K1 SoC, there is a full-duplex I2S controller.
 
+The I2S is programmable, with the sample width configurable
+to 8, 16, 18, or 32 bits.
 
-On 9/10/2025 11:23 PM, Dmitry Baryshkov wrote:
-> On Wed, Sep 10, 2025 at 07:06:23PM +0800, Wenmeng Liu wrote:
->> Enable IMX577 via CCI1 on LeMans EVK Core Kit.
-> 
-> Is it a part of the Core Kit? Is it a part of some kind of mezzanine
-> board? Why is it being enabled as an overlay instead of being a part of
-> lemans-evk.dts?
-> 
-Since the sensor is not part of the default hardware configuration on 
-the core kit, we adopt a device tree overlay solution to enable its 
-integration dynamically.
+A dedicated FIFO is provided for transmit (TXFIFO) and another
+for receive (RXFIFO). In non-packed mode, both FIFOs are 32
+entries deep and 32 bits wide, giving a total of 32 samples each.
 
-Thanks,
-Wenmeng
+The register definitions can be found here[1]
+
+Link:
+https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#18.2-spi%2Fi2s [1]
+
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+Changes in v3:
+- Patch 1/2:
+  - simplify dma-names definition
+- Patch 2/2 
+  - remove empty spacemit_i2s_remove()
+  - move FSRT setup for DSP_A into switch-case in spacemit_i2s_set_fmt()
+- Link to v2: https://lore.kernel.org/r/20250828-k1-i2s-v2-0-09e7b40f002c@linux.spacemit.com
+
+Changes in v2:
+- Patch 1/2:
+  - modify commit message
+  - remove unused third cell from pdma dmas property
+  - update SPDX license in spacemit,k1-i2s.yaml to (GPL-2.0-only OR BSD-2-Clause)
+- Patch 2/2:
+  - modify commit message
+  - reset_assert in dai_ops::remove
+  - select CMA and DMA_CMA in Kconfig
+  - use devm_reset_control_get_exclusive
+- Link to v1: https://lore.kernel.org/r/20250814-k1-i2s-v1-0-c31149b29041@linux.spacemit.com
+
+---
+Troy Mitchell (2):
+      ASoC: dt-bindings: Add bindings for SpacemiT K1
+      ASoC: spacemit: add i2s support for K1 SoC
+
+ .../devicetree/bindings/sound/spacemit,k1-i2s.yaml |  87 ++++
+ sound/soc/Kconfig                                  |   1 +
+ sound/soc/Makefile                                 |   1 +
+ sound/soc/spacemit/Kconfig                         |  16 +
+ sound/soc/spacemit/Makefile                        |   5 +
+ sound/soc/spacemit/k1_i2s.c                        | 444 +++++++++++++++++++++
+ 6 files changed, 554 insertions(+)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250813-k1-i2s-115bf65eaac8
+prerequisite-change-id: 20250701-working_dma_0701_v2-7d2cf506aad7:v5
+prerequisite-patch-id: 3fe97698036c32c20d03b1b835a5735e8ee8126c
+prerequisite-patch-id: bf64cb2fbb9699d2ace64ae517532f13c6f8d277
+prerequisite-patch-id: 49263c65c84a0b045f9b5ae6831dc011c4dea52f
+prerequisite-patch-id: 2b43599bf7568e6432faa2f6aca5b2db792cd1c1
+prerequisite-patch-id: 1b840918a99543f4497b6475ee52977bdb59f1c3
+prerequisite-patch-id: 2f77be523fd5423bd011e3081a3635d130410096
+prerequisite-patch-id: 78bcc660796fc4f73b884d17a1b63e62f99dfdd0
+prerequisite-patch-id: 62d0b3678cf825bca51424ad85cf35ebdd6dc171
+prerequisite-message-id: <20250911-k1-clk-i2s-generation-v4-0-cba204a50d48@linux.spacemit.com>
+prerequisite-patch-id: b46d4007c5b20f11845db739fc78ffccc54f4dab
+prerequisite-patch-id: 1e193c412de1206c024a674e2dd7da88092976b9
+prerequisite-patch-id: af07a4bca4109b13a74c0b20a12f96af863090ef
+prerequisite-message-id: <20250824-k1-clk-i2s-v5-0-217b6b7cea06@linux.spacemit.com>
+prerequisite-patch-id: 6f2626811da4833395f52f712d9f2a5fb553cb48
+prerequisite-patch-id: d2594982f7a8f39c2aa4f21490a19e93ab67254d
+
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
 
 
