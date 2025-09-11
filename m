@@ -1,194 +1,106 @@
-Return-Path: <devicetree+bounces-215774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79A3B529C3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:22:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D873BB529C6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3BB71B27FE9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:22:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 970805801BC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AEA826E16C;
-	Thu, 11 Sep 2025 07:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA01426A0B9;
+	Thu, 11 Sep 2025 07:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BP0dghcv"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="AuTW9KW+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 384C8329F2D;
-	Thu, 11 Sep 2025 07:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF4822D4F1
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757575343; cv=none; b=eA8oI01suS2GZDZK9/rJhppvdBBhAHqUB+rYhCiQkp9zJV4KDEsQtZawxaYAObAaBdVwWT2ttPR5h7XOXSRPqFjFNXX3A5rK2ydi6Tce8KVr5chmwJx+ouORqLsQca40wRs2heY2oqsZYZwQdct7gkf01ApjxwMNAhW3wBL+xrU=
+	t=1757575374; cv=none; b=cDMwEKSOToGi28zAWTSDecpAZR18TJJ9pjGi/GcrXKMB50p0oLKU8kqT2z04Mk2WOzoU5cwtZgGEix3RLS1Wg5/B/RzsMEa5i50dIHRnbEqXcv0FkCBPw5Qy2BCsjPaXLMuIlKbHKd8+G7qGkX3zDKxBhFomD2LfQZVCgUEpoKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757575343; c=relaxed/simple;
-	bh=MLuilW7Tf9Dno/7YBATXESI/1zTrs/0ck7+Glf2DvQc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=O2DCD5sdtWDTzNh3wSOMqvW3yvr+nUMPN3+9TqNaVeLbdELfoXYuAtBsATE3bhuUnZoXLyg5UBRo/Wzf1EVntN3/1RRx8qQkBipZa8ZFjBmwYKS/pvbN8qIGlntV9/2OGws4Yah1k/FUG6Rlp4p9It0umGlIJCmxbAxfpmdjNUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BP0dghcv; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8941EC6B3AB;
-	Thu, 11 Sep 2025 07:22:02 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5C391606BB;
-	Thu, 11 Sep 2025 07:22:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 96128102F2882;
-	Thu, 11 Sep 2025 09:21:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757575334; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ymIxetTWocC2/T6DcUZLUqfBudVyTjFDiSDhCwPR4IA=;
-	b=BP0dghcvk2HqRbfKQS3O7ySBOrhO100W9n5AqVrR5PeKtATxfQw0Fg34/tSl45/GNCqkB5
-	4YDn3TU+esRYKH/S7xLXUPXNvWIRKopAHuqEnYhzTqOUVbkXD55NDWUtJs2pjGQaJesftt
-	4UyhJvGAks1d4dAvYXnQCbrr99n+3bCVBOl1UC9ecNzEoDjWRsI8lWbZQqgdjHlJEaAybm
-	wVUUwXjiHFuXkBHSHLPSqCRtPjtCqbF4BeojkAze1q8uA62pIfkwavllHdygrvVrct1wTr
-	rgMfHHXK5dOG9RdqE9rA5g4ojdhyInfMVW5tD3BRfmQ2KzRRrXlhsvcwN2UlPA==
+	s=arc-20240116; t=1757575374; c=relaxed/simple;
+	bh=NHyOmU0yD9kwK6z7img4IS1VLrA1y4xR/AWChr8PwWk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ke9hFJHm68IXNV8M/Tyh33wTvOGb1ZTrJMPyOWJryvnh49su8l5qaW5OVYJgmqe0P5OoqgrU/qZ/kcKw4ZARfkhTZeCqDi6k+atEhY3NsZVYf7DPDKEvKzuQcfHQqDc/3JEXuQIixvAhJ5j+t4dS1HPWxoE8hal2e/zwyIw8gAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AuTW9KW+; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=NHyO
+	mU0yD9kwK6z7img4IS1VLrA1y4xR/AWChr8PwWk=; b=AuTW9KW+rjtBJlcNB9Sp
+	9tcCfLQxpnjpB8169qRjQE5UNpCdCZBeHMzkoBLi9N0cnjQoGR5ZLYptliBrY8fc
+	Mq9arakGRZTaCy2Z8d4vWlkZfzedPS4nqLs8b2hPcXuwXNq6tkvBREv8JEakBmMV
+	RwiQf+Gu43lk3/u0Snq3f6BD4lxlktqpfO2cMy17rcjjKUNzcFdZDVOGAfbPetNs
+	7JL0SfXsZJ13TMCgAgw3NQagFgyW7od3mk4ZYCZHltSXYpA4m9fDIAlQSPLQTCjl
+	bXHykK9CcGM9i5DlBCVgdhDdsiTngEAsygQFaY5lYfntfLEhfQ28zTgCPNyyqTo5
+	wg==
+Received: (qmail 883424 invoked from network); 11 Sep 2025 09:22:49 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Sep 2025 09:22:49 +0200
+X-UD-Smtp-Session: l3s3148p1@yGCTZ4E+nosgAwDPXyerAKQ7QDbxBzog
+Date: Thu, 11 Sep 2025 09:22:49 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
+Message-ID: <aMJ4ySzK0Qr5l3BF@shikoro>
+References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com>
+ <20250807151434.5241-9-wsa+renesas@sang-engineering.com>
+ <7737de72-701a-43ce-88a4-90d2d17c48f8@tuxon.dev>
+ <aJcSOlS1kfem0Bd2@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Sep 2025 09:21:34 +0200
-Message-Id: <DCPSFZLWJLG7.1B4NISSDKLWBQ@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 1/5] net: cadence: macb: Set upper 32bits of DMA ring
- buffer
-Cc: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rpi-kernel@lists.infradead.org>, "Broadcom internal kernel review
- list" <bcm-kernel-feedback-list@broadcom.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Florian Fainelli"
- <florian.fainelli@broadcom.com>, "Andrea della Porta"
- <andrea.porta@suse.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>, "Phil
- Elwell" <phil@raspberrypi.com>, "Jonathan Bell" <jonathan@raspberrypi.com>,
- "Dave Stevenson" <dave.stevenson@raspberrypi.com>,
- <stable@vger.kernel.org>, "Andrew Lunn" <andrew@lunn.ch>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Stanimir Varbanov" <svarbanov@suse.de>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250822093440.53941-1-svarbanov@suse.de>
- <20250822093440.53941-2-svarbanov@suse.de>
- <20250825165310.64027275@kernel.org>
- <3bccf773-abd6-4ade-a1c5-99f2a773b723@microchip.com>
- <DCPA2BR78XM8.HWKZZ8WQF3S8@bootlin.com>
-In-Reply-To: <DCPA2BR78XM8.HWKZZ8WQF3S8@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XIS55XHH93jbeXWf"
+Content-Disposition: inline
+In-Reply-To: <aJcSOlS1kfem0Bd2@shikoro>
 
-On Wed Sep 10, 2025 at 6:57 PM CEST, Th=C3=A9o Lebrun wrote:
-> Hello Nicolas, Jakub, Stanimir,
->
-> On Tue Aug 26, 2025 at 11:14 AM CEST, Nicolas Ferre wrote:
->> On 26/08/2025 at 01:53, Jakub Kicinski wrote:
->>> On Fri, 22 Aug 2025 12:34:36 +0300 Stanimir Varbanov wrote:
->>>> In case of rx queue reset and 64bit capable hardware, set the upper
->>>> 32bits of DMA ring buffer address.
->>>>
->>>> Cc: stable@vger.kernel.org # v4.6+
->>>> Fixes: 9ba723b081a2 ("net: macb: remove BUG_ON() and reset the queue t=
-o handle RX errors")
->>>> Credits-to: Phil Elwell <phil@raspberrypi.com>
->>>> Credits-to: Jonathan Bell <jonathan@raspberrypi.com>
->>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>>=20
->>>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/et=
-hernet/cadence/macb_main.c
->>>> index ce95fad8cedd..36717e7e5811 100644
->>>> --- a/drivers/net/ethernet/cadence/macb_main.c
->>>> +++ b/drivers/net/ethernet/cadence/macb_main.c
->>>> @@ -1634,7 +1634,11 @@ static int macb_rx(struct macb_queue *queue, st=
-ruct napi_struct *napi,
->>>>                macb_writel(bp, NCR, ctrl & ~MACB_BIT(RE));
->>>>
->>>>                macb_init_rx_ring(queue);
->>>> -             queue_writel(queue, RBQP, queue->rx_ring_dma);
->>>> +             queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_d=
-ma));
->>>> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->>>> +             if (bp->hw_dma_cap & HW_DMA_CAP_64B)
->>>> +                     macb_writel(bp, RBQPH, upper_32_bits(queue->rx_r=
-ing_dma));
->>>> +#endif
->>>>
->>>>                macb_writel(bp, NCR, ctrl | MACB_BIT(RE));
->>>>
->>>=20
->>> Looks like a subset of Th=C3=A9o Lebrun's work:
->>> https://lore.kernel.org/all/20250820-macb-fixes-v4-0-23c399429164@bootl=
-in.com/
->>> let's wait for his patches to get merged instead?
->>
->> Yes, we can certainly wait. As RBOPH changes by Th=C3=A9o are key, they =
-will=20
->> probably remove the need for this fix altogether: but I count on you=20
->> Stanimir to monitor that (as I don't have a 64 bit capable platform at=
-=20
->> hand).
->
-> I when looking for where this patch came from.
-> Commit in the raspberrypi downstream kernel:
-> https://github.com/raspberrypi/linux/commit/e45c98decbb16e58a79c7ec6fbe43=
-74320e814f1
->
-> It is somewhat unreadable; the only part that seems related is the:
->
->> net: macb: Several patches for RP1
->> 64-bit RX fix
->
->  - Is there any MACB hardware (not GEM) that uses 64-bit DMA
->    descriptors? What platforms? RPi maybe?
->
->  - Assuming such a platform exists, the next question is why does
->    macb_rx() need to reinit RBQPH/0x04D4. It reinits RBQP/0x0018
->    because it is the buffer pointer and increments as buffers get used.
->
->    To reinit RBQPH would be for the case of the increment overflowing
->    into the upper 32-bits. Sounds like a reasonable fix (for a really
->    rare bug) if that hardware actually exists.
->
->    This wouldn't be needed on GEM because RBQPH is shared across queues.
->    So of course RBQPH would not increment with the buffer pointer.
->
-> If this patch is needed (does HW exist?), then my series doesn't address
-> it. I can take the patch in a potential V6 if you want. V5 got posted
-> today [0].
->
-> [0]: https://lore.kernel.org/lkml/20250910-macb-fixes-v5-0-f413a3601ce4@b=
-ootlin.com/
 
-Coming back after some sleep: my series does address this.
-It updates macb_alloc_consistent() so allocs look like:
+--XIS55XHH93jbeXWf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-   size =3D bp->num_queues * macb_tx_ring_size_per_queue(bp);
-   tx =3D dma_alloc_coherent(dev, size, &tx_dma, GFP_KERNEL);
-   if (!tx || upper_32_bits(tx_dma) !=3D upper_32_bits(tx_dma + size - 1))
-      goto out_err;
 
-   // same for rx
+> I assumed the firmware is setting that bit. Never checked, though, and
+> can't do before end of August.
 
-In the MACB (!GEM) case, bp->num_queues=3D1 so we will check that the
-start and end of the DMA descriptor ring buffer have the same upper
-32-bits.
+Point taken. It seems I need to handle the registers you mentioned.
+Thanks for the heads up!
 
-That implies macb_rx() doesn't have to reinit RBQPH/0x04D4.
 
-Thanks,
+--XIS55XHH93jbeXWf
+Content-Type: application/pgp-signature; name="signature.asc"
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjCeMUACgkQFA3kzBSg
+KbZukQ//TmG+S6e+XzFirwQ68dTm672apKkHAJX14lfu/Qo28qUnX/y5v5dALuGG
+U0NNQ4WwKtr4yGPHg8dgwCVdzJYCUA3XxxNaSck9ve+cTR3YSIXnqK7DpI+JNeDa
+MQBPLLw3S8YwSGayAswIH1XeVlkywonLqii0VP2lg97XyQwwfckQ2cSTw577ixhw
++3+vMkZ9eGNqydMQPbDs350mfTi8JQ6Zh0m/SHEddXPAuTTKqaKnf7Q16CEi1hXx
+I811+L8jp2vp5xHrQbxzp5AceflPPZ+mArIy0AhDoOaJEUAGZd1tuT8P6AxKJz5A
+H18juCAmNyoh56/FWgb3x7TdcmES9rs7rQ7GZegmeHfLulAFFvoUPehAsPoXoX+Q
+sToBi8qZRgiu97h2BtJnSa0rM1PonACeZXWhdPqTSJc6tPGy7n/+gnLLU95NZ2vA
+TA9f4BF3JQZ2ygYrtupuUtExLbHsBJhOVUPWFyOMs/c51Ll2m/f1EcUK8L8wEGVH
+1coItyBToe+wjRjgvDvgWLw1MsTNg6uywCZ2uxmDj9DZMj0OeIl1A9RW3yRufGX2
+i24TJx+aHhTyP/ZXpOQ2cCPA/uRUQpDK9UhJq4XL8WbzznZZyk4KSy+9l6BYFJmJ
+4tpqKcT8LJ1bSyKMcbYMU9sones5Gx/XLA223PNPsmD9E+l+Btw=
+=/EfS
+-----END PGP SIGNATURE-----
+
+--XIS55XHH93jbeXWf--
 
