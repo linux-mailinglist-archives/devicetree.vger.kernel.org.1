@@ -1,65 +1,56 @@
-Return-Path: <devicetree+bounces-215710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D433BB5268F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:37:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7D1B526B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EE767B5A9A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:35:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1071B24C31
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8ED1E260D;
-	Thu, 11 Sep 2025 02:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="LNUxbfE6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8C422172C;
+	Thu, 11 Sep 2025 02:53:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73017154423;
-	Thu, 11 Sep 2025 02:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0F318EFD1;
+	Thu, 11 Sep 2025 02:53:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757558244; cv=none; b=RoWEMVyUSVFYLfgONpNv2PlgbHvIkKDAVytDrCBvolmxPmMxlXxBQOX7eu3jDXa+aGGlCuhGad4+ygCuUCrQI/mDO1OVXjm7ZV4auVgfaNju883KyFUqYBDqOc9NpJlAHzLFR7twtkoy3FLJwNIXUdbuYoC7fS28c01beEi+xXY=
+	t=1757559234; cv=none; b=CYpigTp8Lq+t2hpwO1gEJfxLqwO46sa339Ll0EZnHLkj6OGoHbo+ga9DqsmUcZo06Nf31WCHT7wh9fAo2LG3ruqJskb7mmRaHI92Q3HyKKa1Nqovmh5iPNnOk7Np60XRHji4Upt3cp6qmFf6Uv1hxKC3UXs5/VwEzb9g+BCeSvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757558244; c=relaxed/simple;
-	bh=fZnQdAvO46ck0hoeOgRAeVwDLANdJVf4Jk/B6m+N1PU=;
+	s=arc-20240116; t=1757559234; c=relaxed/simple;
+	bh=uVVIOjK0iB7TLpDTB5l8Jh0U+U7U4acZbxxyUpEblFM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tR7CqF2DOq+68BeU0y7ldVCOL7YUZDBBEbm9Vuan775KN4wPFiQP/HqU7Yoe/kybLft5G78MtvYHmYk0noD+HI+b1kNx9oPB85j/21p8yvxHTFi3DyCIjqmFK1tZI5V7uWNPjmIY+GDeYP7r7QOYcwHCbYKNRDgxAZnq5ON0zuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=LNUxbfE6; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Zu/ILIakLLn37rYFw5PvXVXf22PCnsMSBiyyFDARzl8=;
-	b=LNUxbfE6VV4SLAXXaUc2enyKWX3CzNsQeTquFa24c/YqA3DtbIWaWxSlZL2QTY
-	j6r6RKdmhYJgOsiVLuvuKFbEgPyZaPGWzN61nCOmjZfyZ0X5u7dwNL1V0cjh+Lae
-	eI51un27bmcSFLxOLoGJoerqTZZUZrqziKt9H752u3gjk=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnX_mnNcJo1g9gBA--.44535S3;
-	Thu, 11 Sep 2025 10:36:25 +0800 (CST)
-Date: Thu, 11 Sep 2025 10:36:22 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=nfZztKNanh88JkXGRRjZ5lyOCtPE83wBWpd3Q4nfsXgf+F3S4L6Iy0k/hyzMnUiWT0CYLUtTMRAL+qx6RopGDqQulXp5d0rKUSzTXV50p0DJETQGCu/r9wX2SNzgxXFxTrZ/ZMJuRd5GAQPJ6vMJcEp2nJ7HGESzcYXUKXaT1iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from localhost (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [IPV6:240e:474:b942:3f59:6226:58b7:4db:46bd])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 22684c28a;
+	Thu, 11 Sep 2025 10:53:41 +0800 (GMT+08:00)
+Date: Thu, 11 Sep 2025 10:53:41 +0800
+From: Ze Huang <huangze@whut.edu.cn>
+To: Frank Li <Frank.li@nxp.com>, Ze Huang <huang.ze@linux.dev>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linaro-s32@linaro.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: s32g: Add device tree information for
- the OCOTP driver
-Message-ID: <aMI1pidrSAIAwab9@dragon>
-References: <cover.1756800543.git.dan.carpenter@linaro.org>
- <7877e1958fa92df92b2b5229365c86493c620c8c.1756800543.git.dan.carpenter@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Ze Huang <huangze@whut.edu.cn>
+Subject: Re: [PATCH v7 1/2] dt-bindings: usb: dwc3: add support for SpacemiT
+ K1
+Message-ID: <aMI5tSq3e2MbFrlV@monica.localdomain>
+References: <20250729-dwc3_generic-v7-0-5c791bba826f@linux.dev>
+ <20250729-dwc3_generic-v7-1-5c791bba826f@linux.dev>
+ <aMH5P3Xae0MCt6wu@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +59,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7877e1958fa92df92b2b5229365c86493c620c8c.1756800543.git.dan.carpenter@linaro.org>
-X-CM-TRANSID:Ms8vCgDnX_mnNcJo1g9gBA--.44535S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUzcTmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNAlCp2jCNanx7wAA3w
+In-Reply-To: <aMH5P3Xae0MCt6wu@lizhi-Precision-Tower-5810>
+X-HM-Tid: 0a9936b16c3d03a1kunm4e2ef7fb19acdd
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHkkZVkgZSk5MTUlMTkNDSFYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQU9MT0EZQk9JQUgdTkJBTUlJTUFOQxlMQU8fGUFPTRkfWVdZFhoPEh
+	UdFFlBWU9LSFVKS0lCTUtKVUpLS1VLWQY+
 
-On Tue, Sep 02, 2025 at 12:47:57PM +0300, Dan Carpenter wrote:
-> Add the device tree information for the S32G On Chip One-Time
-> Programmable Controller (OCOTP) chip.
+On Wed, Sep 10, 2025 at 06:18:39PM -0400, Frank Li wrote:
+> On Tue, Jul 29, 2025 at 12:33:55AM +0800, Ze Huang wrote:
+> > Add support for the USB 3.0 Dual-Role Device (DRD) controller embedded
+> > in the SpacemiT K1 SoC. The controller is based on the Synopsys
+> > DesignWare Core USB 3 (DWC3) IP, supporting USB3.0 host mode and USB 2.0
+> > DRD mode.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Ze Huang <huang.ze@linux.dev>
+> > ---
 > 
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Ze Huang:
+> 
+>    I seen Krzysztof and Thinh Nguyen already acked this patches. Do you
+> wait for greg pick it up or need respin?
+> 
+>    My one layerscape usb patch depend on this one!
+> 
+> Frank
 
-It doesn't apply to imx/dt64 branch.  Could you rebase?
+Hi Frank,
 
-Shawn
+I'll remove the PCIe reset in the update - since Alex's latest combo PHY
+work now manages this functionality. The patch is otherwise in good shape though.
 
+Look for the updated series from me before end of week.
+
+Best,
+Ze
 
