@@ -1,84 +1,76 @@
-Return-Path: <devicetree+bounces-215704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0375B52647
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:04:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD365B52651
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:13:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9F2C1C8104A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:04:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64DA97AAD08
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162F01F37A1;
-	Thu, 11 Sep 2025 02:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16472367A8;
+	Thu, 11 Sep 2025 02:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="TgXMS//u"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WHdHDVBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CB11990D9;
-	Thu, 11 Sep 2025 02:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E649322688C;
+	Thu, 11 Sep 2025 02:13:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757556266; cv=none; b=tyLBwbRK7KRs1DAq+qAk5PP6K4O9SRixhbFzQpvwhoBNG3QDjGBbgEJfTL7QdbX/nQwl59dY+kn/+M8GMOE/bTanoft+lCqsBMxna4LhiiipcULqFBHMgQTW3q/ynTXtoQOe1oghvzX1boASn5/bRYiTQ5AoQsbA7NPEACUpfK4=
+	t=1757556812; cv=none; b=LBFBSWZ7D7XYUlP6+pFOiO9M3JFiqcLeQ0SZbBWFdHxbIH77xyiJTLSh+FW3fL1vUiYy7bQQUtJ8P/VU6GzKx39p1AwLDUTRwUEEFKLCwmUsgf8SmW4jH1irg3IYFHV4e8MIC9Ev2cgvftABPvVea4r+Wa3sZYYJZRbz/PiRdLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757556266; c=relaxed/simple;
-	bh=ormrv/kurQQ3uyKZks3x990bi2mrbiWK19RpJlCssQg=;
+	s=arc-20240116; t=1757556812; c=relaxed/simple;
+	bh=3R0IfSXCM5JxJLz9PDkMt8H5vrcJv/yrzZqyo3kd8t0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MCHxLvVjDhdo7UMdhpE+rzH92Lsm/5sEnFpdwIoLwv2Xi1pDzDBGoa0PkXz69HAwseOXUdRIVpiu3LU3f21Aw+CsDbSf0VUn7f8GtR5GffqKLURgVlCDJTQCPlP1ZCcBDHRbi0f4g6QoZFwqCLyab7UYwftgA4qzXdUcRYbk0ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=TgXMS//u; arc=none smtp.client-ip=220.197.32.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=i424G5CQrV5wD3Dmg8ZnlM+ks5GbhC9HceMMB/m4moBVYIoSuYdfovQ2Xqvluwtlkjj9BHQEtdXigsxRj8sEfHZB9waUSqQ/tEZMv+q5ARzbXjPcaxbN5psB8iIrLhX5FuEmuX62QUTtWoV13eQuOWvnYR3fZ/1csq/TgFSo3uI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WHdHDVBE; arc=none smtp.client-ip=1.95.21.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=/ovddB11c5XSfbN+IkHJ3Pb74oXCQSIbUsT6dab88c8=;
-	b=TgXMS//u0UN4LXuhEDFiSmVTQVOmuO9rWuV914TrFeefb9eLpMKvnY4/aI/7Qr
-	KkM5Cmy5sy7+4z8djApZG7eCUIn28DQPP68UnJgbyAX8pFSk9hFdIbBS2otTcpjO
-	8Qdh3H+CjydhZRQ/igAFVOzpFTyezJoGCT7TfgHzZI/R4=
+	Content-Type; bh=+kbZIg2zkqWzaa4TZTIFqXZU2NxqBThBQSS8aPSbuJA=;
+	b=WHdHDVBE+Qa6rifrjy7uSUzeXvCiFBGCLwSsfxxtlL4cCJ8zegvgtrdTj4+OaA
+	8Kg8SPZEhx7Gn3MR2jGyjVHjW0jUQLj3rDXQXYERdCLZ8sqgcx1/gcj1mQPiSOGF
+	h09ZW+PF1m6tqZMHykC34U7yoW5meKo6Gda6MHgbreyU0=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD399gHLsJo9n5OBA--.47148S3;
-	Thu, 11 Sep 2025 10:03:53 +0800 (CST)
-Date: Thu, 11 Sep 2025 10:03:51 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDnjyQvMMJo_8tfBA--.20024S3;
+	Thu, 11 Sep 2025 10:13:04 +0800 (CST)
+Date: Thu, 11 Sep 2025 10:13:02 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Bence =?iso-8859-1?B?Q3Pza+Fz?= <csokas.bence@prolan.hu>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Csaba Buday <buday.csaba@prolan.hu>
-Subject: Re: [PATCH v2] ARM: dts: imx6ul-tx6ul: Switch away from deprecated
- `phy-reset-gpios`
-Message-ID: <aMIuBwgtrWDe-5Fk@dragon>
-References: <20250825-b4-tx6ul-dt-phy-rst-v2-1-0d3ba9736b0e@prolan.hu>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: lx2160a-cex7/lx2160a-clearfog-cx: add
+ missing descriptions
+Message-ID: <aMIwLoRSFQR61UU-@dragon>
+References: <20250825-lx2160-clearfog-omissions-v1-0-e3a28c0ea55f@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250825-b4-tx6ul-dt-phy-rst-v2-1-0d3ba9736b0e@prolan.hu>
-X-CM-TRANSID:Mc8vCgD399gHLsJo9n5OBA--.47148S3
+In-Reply-To: <20250825-lx2160-clearfog-omissions-v1-0-e3a28c0ea55f@solid-run.com>
+X-CM-TRANSID:Ms8vCgDnjyQvMMJo_8tfBA--.20024S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUc1xRDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBLFZWjCB7lcQQAAs-
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU0rWrDUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBBTFZWjCB7liYQAAsn
 
-On Mon, Aug 25, 2025 at 02:52:09PM +0200, Bence Csókás wrote:
-> The Ethernet PHY's reset GPIO should be specified in the node of the PHY
-> itself, instead of the MAC (`fec`). The latter is deprecated, and was an
-> i.MX-specific extension, incompatible with the new reset controller
-> subsystem.
-> 
-> Co-developed-by: Csaba Buday <buday.csaba@prolan.hu>
-> Signed-off-by: Csaba Buday <buday.csaba@prolan.hu>
-> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+On Mon, Aug 25, 2025 at 08:00:54PM +0200, Josua Mayer wrote:
+> Josua Mayer (2):
+>       arm64: dts: lx2160a-cex7: add interrupts for rtc and ethernet phy
+>       arm64: dts: lx2160a-clearfog-itx: enable pcie nodes for x4 and x8 slots
 
-Applied, thanks!
+Applied both, thanks!
 
 
