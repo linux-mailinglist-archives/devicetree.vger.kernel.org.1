@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-215754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F98B528BC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:29:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 926C0B528C4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:32:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FBE47A8CC1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:28:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3F2D189443C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BD4259C94;
-	Thu, 11 Sep 2025 06:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D9326980B;
+	Thu, 11 Sep 2025 06:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+IboIes"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxvOzzTP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0100258EF9;
-	Thu, 11 Sep 2025 06:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86521267B94;
+	Thu, 11 Sep 2025 06:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757572175; cv=none; b=TdFHjbh6L+EuCUzfBKQysAucfKaxM0akfZDKrcwcbFqcd2tyhU2Y/g2LZMDv6UxXtgWKpKDB/IhVohE9om7KhTTx1FLJLCdABB7TDjWzHXRxCFFVY1mF9v90EsP0Z7oNSLpLQ5Ul14IW3DDw/4IMTlT9pxHLn7IPjQEN6o4Rdt8=
+	t=1757572319; cv=none; b=lvOOkxZ9nQJZBCT8pvPN3Noc6mjk19tx2/zbCoa4bI5yh1mEuX1QX832mxFpfz2HZWZpKd93JxWjOG6udkKUKSXOi4cPWm9LySkD7VhKReCrSc7NNUglmCnXpRUVEmh6lnxiAEhlj9KDgSj1XYBAtbc1rjiZYthmE0OtaT1/VJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757572175; c=relaxed/simple;
-	bh=HH8pm2TzBanivE2VNFEmUQehhv/+sFfQjKIF+rowc3g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=PAMtztpS9ALqqor/g/ARpKLlCCs7zP0UM00ZS0c9oPjl2i/5ZqsT0bpdM9QIkPvAUPI6P6ODjCtygspv7V+7yLCGj5teWoIb0wOiTLGjmOBUHPaVlC3OhAFAMJ7Xn6bHVUqVllnF0B674bQePpdr+O3Q2Lc+h7J58iUVMGdmD1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+IboIes; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10A2CC4CEF1;
-	Thu, 11 Sep 2025 06:29:32 +0000 (UTC)
+	s=arc-20240116; t=1757572319; c=relaxed/simple;
+	bh=IOFTFKA236+E0sFOssT7ukZoMvaWI5Ipl6F5c9xNPpY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jzzYYPMjcWNDizoKM8cthwA1gRHBRrBF0WZBuvMFFRet4pTBq4e/0sFYhCyTI80mHcnT1MotSbqnEZ8D3s4+bRS+577jopDDyh5X4CGK6hW1zOHkYkBZi4wY6IuHu5sc5UZmHMVEUcFAhw/jsUtJScafad7NBCzArtFGoXxZss0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxvOzzTP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A3F3C4CEF1;
+	Thu, 11 Sep 2025 06:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757572175;
-	bh=HH8pm2TzBanivE2VNFEmUQehhv/+sFfQjKIF+rowc3g=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=b+IboIesEGrSanJ+6tc7s/2/BNbmVC4p6HqGVIGX197dEDGYwgfitGBjsQzynnaOY
-	 fUd/krWHwpC4tWyok4kBBBr4rRV8dw6B3+hGvBqTpzhB/qO124N6wUpHashB9ZGQ0i
-	 oWVR9xk9K4AUP5zZNb58aLuuR1Hzp9B2Lh/C9ffFkX+hCI+0OxLnYsUgs45upr6T7c
-	 4Md3L7NA/wIR/dF0YqgQuamodWy7/CB812peCVDGO+Sf4eTUrt4MTzQMmMgIheimg7
-	 DPM3FOXfZzsl2L4Hx7VIg5zb8XzU1kGNICWN7plx6zl5A2xxLKbyndNfhtqHi8GxpB
-	 HcNMNGrvXp2rA==
-Message-ID: <3a2fe895-2849-4cb1-b4f7-fe5c0e1a76cc@kernel.org>
-Date: Thu, 11 Sep 2025 08:29:31 +0200
+	s=k20201202; t=1757572319;
+	bh=IOFTFKA236+E0sFOssT7ukZoMvaWI5Ipl6F5c9xNPpY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hxvOzzTPrWJfHY1oiNtjm3sYJu9SH9ApqF6WB5J0u7gx391929DrmYtB0KR63OuLV
+	 9gtIUFfMxmb2/JN5EjSzQ4Yzh4kVRd010VZrYKk8pvLGsUDiQewcxbrib7Exd1gNsS
+	 cOnd84rBQg33mId/Wk9C94x6vx6l36wliIrz9XTI2W/KJxVcPPztbWiJeDPLTF5oa5
+	 ptTmKv0OUiJFGauSzliSzO7BeVNJISKtgpZCWcIHb3DoX5TbxMiuvjq0u259uT7y+R
+	 vlG89CfjB5/WXq9bSk3ThWY5ihRPo3ilKY9wVCDbn0jpnP9+zsVdksnErxB/MOUlxU
+	 lg5AG8TgSEVdQ==
+Message-ID: <cbb57a2d-c64e-448b-87dd-688458f87900@kernel.org>
+Date: Thu, 11 Sep 2025 08:31:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
- board
-To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250911051009.4044609-1-rebecca@bsdio.com>
- <20250911051009.4044609-2-rebecca@bsdio.com>
+Subject: Re: [PATCH v3 0/7] soundwire: qcom: add support for v3.1.0
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ Alexey Klimov <alexey.klimov@linaro.org>, vkoul@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ srini@kernel.org, yung-chuan.liao@linux.intel.com,
+ pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20250904105616.39178-1-srinivas.kandagatla@oss.qualcomm.com>
+ <DCPK67SQ5DEI.2AFDVRKZSEWTS@linaro.org>
+ <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,37 +105,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250911051009.4044609-2-rebecca@bsdio.com>
+In-Reply-To: <7b7db1d2-5f53-4b08-920d-67a57d975313@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/09/2025 07:10, Rebecca Cran wrote:
-> Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
-> compatibles.
+On 11/09/2025 07:49, Srinivas Kandagatla wrote:
 > 
-> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
-> ---
+> 
+> On 9/11/25 1:52 AM, Alexey Klimov wrote:
+>> On Thu Sep 4, 2025 at 11:56 AM BST, Srinivas Kandagatla wrote:
+>>> This patch series adds support for Qualcomm Soundwire Controller
+>>> version v3.1.0.
+>>> As part for adding this support, a new macro of_property_read_u8_index()
+>>> is added so that we can remove the qcom,din-ports and qcom,dout-ports.
+>>> As v3.1.0 supports more than 17 soundwire ports. Also due to change in
+>>> the register offsets, new entries are added to the variant data.
+>>>
+>>> Tested this patchset on X14s and Glymur reference platform.
+>>
+>> Well, I don't have any Glymur devices and no idea what is
+>> x14s (I guess some laptop), but I picked the series locally to test
+>> on sm8550, it seems there are some generic changes, and
+>> qcom-soundwire probe failed:
+>>
+>>  remoteproc remoteproc1: powering up adsp
+>>  remoteproc remoteproc1: Booting fw image qcom/sm8550/adsp.mbn, size 8364
+>>  remoteproc remoteproc1: remote processor adsp is now up
+>>  qcom,fastrpc 6800000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: no reserved DMA memory for FASTRPC
+>>  PDR: Indication received from msm/adsp/audio_pd, state: 0x1fffffff, trans-id: 1
+>>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@3: Adding to iommu group 12
+>>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:1
+>>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@4: Adding to iommu group 13
+>>  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:2
+>>  PDR: Indication received from msm/adsp/charger_pd, state: 0x1fffffff, trans-id: 1
+>>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@5: Adding to iommu group 14
+>>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@6: Adding to iommu group 15
+>>  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@7: Adding to iommu group 16
+>>  qcom-apm gprsvc:service:2:1: CMD timeout for [1001021] opcode
+>>  platform 6800000.remoteproc:glink-edge:gpr:service@1:dais: Adding to iommu group 17
+>>  va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
+>>  qcom-soundwire 6d30000.soundwire: probe with driver qcom-soundwire failed with error -75
+>>  sched: DL replenish lagged too much
+>>  platform sound: deferred probe pending: snd-sc8280xp: WCD Playback: codec dai not found
+>>
+>> Are there any dependencies I am missing?
+> 
+> Looks like there is a bug in sm8550 dts, its adding incorrect number of
+> ports, which is why we are seeing this error.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here ('b4 trailers -u ...'). However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
+Yes, the DTS has incorrect value for number of ports. Few others have as
+well. It's known (for me :) ), but I never bothered to fix it because it
+is not that trivial - need also port config for missing node.
 
 Best regards,
 Krzysztof
