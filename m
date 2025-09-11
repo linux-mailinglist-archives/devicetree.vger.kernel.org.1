@@ -1,54 +1,59 @@
-Return-Path: <devicetree+bounces-215723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4ECB5270A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:33:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35BC1B5271B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:36:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1540D6873E4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:33:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87FD0189BA06
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1765B19F111;
-	Thu, 11 Sep 2025 03:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B6C23817D;
+	Thu, 11 Sep 2025 03:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bXCaCvHh"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="BgHRdRcg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B909329F21
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 03:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE43423183A;
+	Thu, 11 Sep 2025 03:35:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757561618; cv=none; b=NAwAAF52TjEIDLpwLO/ElixcddQq6MUydnfz3ve3eWKoxivBR8Vtz7lFvlxOshFBIy08ZSkpaoqijVu4QSyllDy+l6z+p/TQ4cOkSOI727lXnXBgN9G0tjMyiWYqNiwzo+g/YsnxN7QeeOT0tg56rQA5wiPkqdDFXiM/xvjL0s0=
+	t=1757561707; cv=none; b=IJ5HL/SMFcHh0/UUyb3fxbshLsbjGulOpBjE5ub83AzFbloAuesrgLMD5KV+G7aKeO6SxJkh1svqfiz26NaPnvukRscO1/0/OYGIHGu99zLGu64Hnl9jxnzGFD9r26LU+cCY+QlviXnGDvZs4qgwAgZtz6q6q2pKKYjQGjA1H4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757561618; c=relaxed/simple;
-	bh=Xv7LqoFiazY/1FA5081CUy89DKBDEfG9HSv8i9xRUWM=;
+	s=arc-20240116; t=1757561707; c=relaxed/simple;
+	bh=5K+fzwbWX432QtirHOzxhrMZ6T8493VGbop9fUkROb4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eWQXpJM/eWGQ8uFbCEtKdnJGYHF/u5JfMNVa5SdC+1ThoGP0IJGrLK0Kk0sdXV5Pvd0+MyeUGNnOMOl+bI/PurUcBhQQjGRj3aL3QqlYjxL9LjEaXI7XZV43+uiJ8y66E3CVBjaTu+L7lo/zWnt+ZH9BsN2m4hJUXU7APPiya0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bXCaCvHh; arc=none smtp.client-ip=1.95.21.14
+	 Content-Type:Content-Disposition:In-Reply-To; b=WGmMAOoJxb6VcoEo0p4ryXJWE3Cm8KMyzQc6lNM2fnvOKtt92mAxF/XKpwuNJj+btCkeIZYxJJvoyUqdmmqkdq/C4ZgwRyKRuUqkAhtXh5cyBJQhEqEPhzT5z8Yq2HTg0hG/UX6NMzhnVsSXYaf6RraBLLsbnrte4ZFXsQvbGVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=BgHRdRcg; arc=none smtp.client-ip=1.95.21.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=w/N4P0dQFX0EiNShkkaQjSdBZSD1JMf6VXokKtscJKs=;
-	b=bXCaCvHhgaZtl6WnJ6PdFtKTQRLe2b9PB633zfLNNEbjWVQ05sU4IXZp55N7Rx
-	PX+bOT/11xj/iJVF8qtIJKwys4ipRNE4WF6dP36ISSh4Z8a/9GQ1MAq5mjgb7bQK
-	LO9GB2LzdxqckIKq0rL3YmQSyWYZL1XCpZJlzgMzrIjNY=
+	Content-Type; bh=9lfbb59Z653T2kjJpk8QzXlXjSD55hbRo8AmzH45kE8=;
+	b=BgHRdRcgS4ePFTe3iK+gqw0Bx/wuh6tIqL+9EY5lyDoskjqNv3S9ifbHaXqkJX
+	ETu66++yDjNGbkm5UmOqL9YfRuo7V0DnnwdIKzrufBEN/YRWnaA6J/S09HOSpe7S
+	ARMo73gN7biOrc+xBtZfiVZGcVSs/ZU3W19jzz9trzhfY=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBHddn3QsJo4KJgBA--.47756S3;
-	Thu, 11 Sep 2025 11:33:12 +0800 (CST)
-Date: Thu, 11 Sep 2025 11:33:11 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAXhtsaQ8JoCKRgBA--.51790S3;
+	Thu, 11 Sep 2025 11:33:48 +0800 (CST)
+Date: Thu, 11 Sep 2025 11:33:46 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6sll: Use 'dma-names'
-Message-ID: <aMJC91yfcxtSL7e-@dragon>
-References: <20250908164431.67052-1-festevam@gmail.com>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH] arm64: dts: freescale: imx93-phycore-som: Remove
+ "fsl,magic-packet"
+Message-ID: <aMJDGigkz986YC0M@dragon>
+References: <20250908111705.2956825-1-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,21 +62,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250908164431.67052-1-festevam@gmail.com>
-X-CM-TRANSID:Ms8vCgBHddn3QsJo4KJgBA--.47756S3
+In-Reply-To: <20250908111705.2956825-1-primoz.fiser@norik.com>
+X-CM-TRANSID:Ms8vCgAXhtsaQ8JoCKRgBA--.51790S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUY73kUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgDFZWjB-Squ0QAAsz
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUzSoGUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIhyiCGjCQxzcSQAA30
 
-On Mon, Sep 08, 2025 at 01:44:31PM -0300, Fabio Estevam wrote:
-> 'dma-name' is not a valid property and causes the following dt-schema
-> warning:
+On Mon, Sep 08, 2025 at 01:17:05PM +0200, Primoz Fiser wrote:
+> FEC WoL (Wake-on-Lan) functionality depends on using Ethernet PHY in IRQ
+> mode. However, on phyCORE-i.MX93 SoM, polling mode is used instead for
+> the FEC Ethernet PHY. Consequently, WoL is non-functional. Thus disable
+> it by removing "fsl,magic-packet" property. This allows us to save some
+> power during device suspend as PHY is not kept awake.
 > 
-> dma-name: b'rx\x00tx\x00' is not of type 'object', 'integer', 'array', 'boolean', 'null'
-> 
-> Fix it by using 'dma-names' instead.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
 
 Applied, thanks!
 
