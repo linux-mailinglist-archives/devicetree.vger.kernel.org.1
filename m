@@ -1,241 +1,227 @@
-Return-Path: <devicetree+bounces-215759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0F5B5291B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:41:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F3AB5292C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 638991C80C7F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:40:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 155291881D4F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBBF264F8A;
-	Thu, 11 Sep 2025 06:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE98261B99;
+	Thu, 11 Sep 2025 06:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXrfYKG9"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Gq8WQrAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF18145A05;
-	Thu, 11 Sep 2025 06:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757572716; cv=none; b=bkSKMxqsrJiV7X4x5h+uxYzt9W63npg3mAiUhY3wIXyJXmi9HiSInHeNq4UIjl7iMo04LDSa/bXcd+t9c3wgGgpOapkIHEqdICSwLlQzprGL2O5rpqp0Dr5VZTwW+gNyHx38Mg4Si9cwMC0gUTyd5ezg5SoPYIolNot88bIklgU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757572716; c=relaxed/simple;
-	bh=gbCwXPLyTC5MhQX1VWb6MXo22NztA5Y6EwS0vFTkdfg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pOX85zTZKvD63SbPWT1u6qwy3b6hMvpdXulYezj4ZgJTcxsuSIHqvFAsslO7j3O5lcW/c4ypOkr5HwVefHBPLfmBNoETZjWvksdrdBUa9J0ninZCCZmVTtnqbkeUDIaZyKP/Bk3E0U0wk3B8bhuqU1m/1PuP03c0MnEfkny2cmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXrfYKG9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6AC3C4CEF7;
-	Thu, 11 Sep 2025 06:38:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757572715;
-	bh=gbCwXPLyTC5MhQX1VWb6MXo22NztA5Y6EwS0vFTkdfg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=mXrfYKG9IuvTt7X/Lv4CPK91XkPR7h4c+KsutnOj8KaO4KO2xYBKPk4bFcAXMmuUL
-	 KStPeFC0sMrn95DFXDbcV+XE3qZKoNSVE8T1/D/pn47YXVxoptom2S3SGefpKeLXOS
-	 ykefA03LN7Yj6bjgvHOsXNTaCnrS1v5No7wNG0rg6oEQEs+iWJAyEtJ4j68U22TJCZ
-	 tlRtZJtBeKnW6R/wovJd0C3JyGefvnjFGsG4zKzmdQE2hdFxtoJ8BCvpmYfXLkrsvx
-	 D4wbm9bPHCLtHEpxPZ9CnrB1pvhThJ8wZxWrPf6dBr58Mc0aI9dj7Cec93asulg8G8
-	 Oti4nISZHvGtg==
-Message-ID: <6679d951-a572-49e8-b847-e59f33692d77@kernel.org>
-Date: Thu, 11 Sep 2025 08:38:31 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E3F225768;
+	Thu, 11 Sep 2025 06:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757573006; cv=fail; b=OSTzxBZgnGdK4mXY6ZxLTjpITRFc6BTMItNizuqUs526NYT5eaSH4Iko1hPMkMZ21zZbciPb5ZltRWDff5ZvQlV1k4+6kenkSjWJL7JOnPNVLWuLX18sBBfgYnFsZeSSiZcDXtftuyGDik0haKx/IIjZfVe8MLbvjqM+a+i6F8A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757573006; c=relaxed/simple;
+	bh=UjEhNS3/5eLiaEhf0YMu54oMGFosQ+o0iuv8l4uROzk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=BggmWTddDX8E8bzYtRrcoQtZlTIIirMuWlKXNf0RWLvDaWTy0aiFtLTsN56fRaScSF4g056h+MYOhVkbs/AWiS6scfA/R2Z29XK7LipdMcBTyfDAlaQv3rhZi51HAa0pRMWkdgT2BOLAybW09QvBzpfWowR2krEs3IjYNNbbwAg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Gq8WQrAW; arc=fail smtp.client-ip=40.107.237.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P5xNzQh6qwOlWCNILnRE3ct6QOlWRP5oGMTz9q+1NlXacEpfByMt/p6Fo0FMHeSpAIx1/z/1sy546MxeseMVstoSJfFMRLDoX+r62yOlHP4G/nds1mBHJ8G5tU3nWdbnkt12GCJNw6cHuZxmGQUOGqZLsl8sEKnfBDs+wRNLyN5J5OBD+GKrwNFAjpZlbtPz+tHPlMVZ58LZSNwvkKl0naywAnU4bVqZ3g9A4GELz2UeX4NbEhDXbCce2I+sH3OFDQ4kkLS7uLpVyiY/DF6MHv0Da/zWnLJo8crRH4mDYJUOsbM9BlPcJHQG+w9D0zO/TR7v5ZtE9VVWt5sjU2PkgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4KEYslCAI5HQwUasjH3rLqTAGRVpVA5r5NghIw7wgZE=;
+ b=oLM5/anl+7rI4I7iQFmg92t0Stc8pUFR0oW9dxi2p1B/mwUyVexnHUkzphxcJ0kRVS8t529kbNfkIjPaDTgJz5JkmZeK+L/j/8dOgQSs8IrzPUNHgZVHN3TZcQFhd6WDipXPdCWUgsyYTqIP3uddyuKMJORwIkB8lX1rHig2xgPjnjdVdgDja3UFravRVuFVhOU6d/erc/TDrlhWE9QXr6Zfm6+reqzHXR9J9xyNJX8a7hSKooHQyUVPa41l6DtT7mnsSaCrS4oixTkgNaT/9KDQ/1xGBOxNRFJjnpJu8ii/twlxB99nL7+K2vGZDqpypSgJ+Dt71X7FOdJfp62zAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4KEYslCAI5HQwUasjH3rLqTAGRVpVA5r5NghIw7wgZE=;
+ b=Gq8WQrAW4LDMyBzzuWYSdfoHYscNjadj7O0SlAnarAAUZp65k/eFu9+2KpxZWKzHAN3L07EuClpzaQ/33WEsCnO2SLHK9NngPUmcxBg9y1r2znwrY3V3t8romoJBqR4I4R2yvtZg5jakfXyzPNVq5/ux+W1awTCNAiSA4rUoS8I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5946.namprd12.prod.outlook.com (2603:10b6:208:399::8)
+ by MN0PR12MB5859.namprd12.prod.outlook.com (2603:10b6:208:37a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
+ 2025 06:43:22 +0000
+Received: from BL1PR12MB5946.namprd12.prod.outlook.com
+ ([fe80::3e0f:111:5294:e5bf]) by BL1PR12MB5946.namprd12.prod.outlook.com
+ ([fe80::3e0f:111:5294:e5bf%7]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
+ 06:43:22 +0000
+Message-ID: <ba25cca0-adbf-435b-8c21-f03c567045b1@amd.com>
+Date: Thu, 11 Sep 2025 12:13:10 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net v5 3/5] net: macb: move ring size computation to
+ functions
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Harini Katakam <harini.katakam@xilinx.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20250910-macb-fixes-v5-0-f413a3601ce4@bootlin.com>
+ <20250910-macb-fixes-v5-3-f413a3601ce4@bootlin.com>
+Content-Language: en-US
+From: "Karumanchi, Vineeth" <vineeth@amd.com>
+In-Reply-To: <20250910-macb-fixes-v5-3-f413a3601ce4@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0097.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::12) To BL1PR12MB5946.namprd12.prod.outlook.com
+ (2603:10b6:208:399::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/3] dt-bindings: mfd: twl: Add missing sub-nodes for
- TWL4030 & TWL603x
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: andreas@kemnade.info, lee@kernel.org, krzk+dt@kernel.org,
- tony@atomide.com, robh@kernel.org, conor+dt@kernel.org, ukleinek@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20250910160704.115565-1-jihed.chaibi.dev@gmail.com>
- <20250910160704.115565-2-jihed.chaibi.dev@gmail.com>
- <20250911-curvy-doberman-of-thunder-1ef4aa@kuoka>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250911-curvy-doberman-of-thunder-1ef4aa@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5946:EE_|MN0PR12MB5859:EE_
+X-MS-Office365-Filtering-Correlation-Id: f162131f-76ed-48c5-9f94-08ddf0fe7feb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UldJQWRzWGNFUlFrc2p1TzV1RWxQbzlYM1EzUUZnTEhvcUN1OFdHTkJpWkZv?=
+ =?utf-8?B?MzA2c3FBRDd5UzNlYVFPdXZsQnVYanpIOHJPS1VudkRiSDYyclpPek9wdG1I?=
+ =?utf-8?B?QWxBd0UvVUxqM3NKZVNBeVkyam04SWNvVEc3OEs5UXRPdkovUWtPSXRsYmMv?=
+ =?utf-8?B?dS9wcFhleUQwZUlVckpBUmlCclNxd0g2MjNqSmhqNkJSWWt0bm5hL2drRGVD?=
+ =?utf-8?B?UWk4ejczVnI2eDR4cWFJOS9YMzB0RzZRNkUxaDFBRTFiZlE3eWZpN1lXVkk0?=
+ =?utf-8?B?bWh6Ymo1bXpEYkFvNUFyUjlUNHFGZEdtbEp5RDdLWGlYbExUaGFaZzZpOTl2?=
+ =?utf-8?B?NWhtRkpZaWVXSHdhK3lNVDRQWjZsOThtRW9LSVlmNndCRUYzazdjd3NWdXYv?=
+ =?utf-8?B?d3BnMmFnS2lXazVrSGdmYTBQeFRyZ3E5WGorNXhSZTdTYURnZkVSaHkvSlMw?=
+ =?utf-8?B?WldXZnJUZGl0WjRjcktVeEJhYXh3OFpHL1ZKR3BDUnVCUUEvMnFCL0hPNndN?=
+ =?utf-8?B?VkdncHVwWHZDbE5PMHk5Mmg2ZmhJYzVvbHpUclVOV1oxR1JCUTdaWXhpaEs1?=
+ =?utf-8?B?d3owRno5QmNncHZ0N0tDdnpWWUlqN0RBeUorMGJRQ2Yxb21IT21YRjVSMkhk?=
+ =?utf-8?B?Sm9wYy9yM0pDVURpR3o2aWR1bTI4eFBTRUZoenJGSkE0U3lENDN1dUVoMkcz?=
+ =?utf-8?B?VlluOFJYK2V1TlU4Z1pBbWxBc21COHZUdEsvUW8veUN1WFVRRk5XdDZzQWZQ?=
+ =?utf-8?B?Ty9JakhRaEF0MWcwMTF0NmlQY3BTNWVmU09PT2l1emxoaG4zMzZ5WEN4SlVp?=
+ =?utf-8?B?N0piOW9hcUQzaFpCRllrVmRlN081U0lMY1hOMkxtQVNZT3lieno0T3k0dGlO?=
+ =?utf-8?B?VE8vaVUvNEt2RUkwZXZJYTl1bjZmblZIankvcFdNMWdRdzJWSmdRb2U1K1ho?=
+ =?utf-8?B?aDYzMnNjVTNtM1hlR1llR3dtMXpOTm14WGdGSHp1MU80UWFxRUhvdng2Z1RU?=
+ =?utf-8?B?TTZhdXJBc0tZTFlFTXJHS1FQMWVtaytHdHB5QzUzeTFwRzZBMktZVld2bmY3?=
+ =?utf-8?B?b002aldDMW9ScVd1MTZJeklKRXRwdzBNWGpHT1B2K3UrWGVSTnJlSENoWXpn?=
+ =?utf-8?B?QVlSY2I5TUtraC9BVDJrMjNuVXpOQzN5R056WlE0UDdKdWt2dFlqSmlvNGh4?=
+ =?utf-8?B?bE1Xc0Jlbml6Mk5rdWVKaWZ6MktUcE1MbVRvRTZ5NlVXNGFNRk5LWEpURklJ?=
+ =?utf-8?B?d2tSdFRVS3VEL0ppK0VkWmhWYmxEaVg0d2FUSFlZYys3cEU1RTVKRG11NVhC?=
+ =?utf-8?B?WGt0N2huMVloRFN3R3lBMk4vdnJnSVR0QVE2YVBqNHYwdFpjT1UzYkltUEt5?=
+ =?utf-8?B?RVdEV2Nzb2ovSlp6REpad2d4TUUrNGMwZ1g2V21UL1pDaytJV0ZJcUg0a0VW?=
+ =?utf-8?B?N01rVndZS1R1dGlQa1VnN2xSL2NYbW8rNzV2VndiejIzdTMzUFp1aWw1cXFu?=
+ =?utf-8?B?ODJnZUZGN3VOR1cwNWVQcFpZRm4zTkFoZjAxbnlWZzl1STRLV3VuQzVHMi9Q?=
+ =?utf-8?B?V3dBRGYzUkNTT0gyUWd5Tk96NHdYOXNEbVYzQUY1QlZoY1c2T09Fbjd6b3hU?=
+ =?utf-8?B?dGY5Ymd2b01hR2h0QW9VZXk0Tm5QWHNWRThhdHpvV0d0MjZ0WmNVSGlBTUh0?=
+ =?utf-8?B?M1d3YS9ZWHhxZUlYVDJMaDRTWlNuejZMOGxxUHY3TnNjWmJFL1hjZ1dNMmhF?=
+ =?utf-8?B?eTlKWTJkdHNUWERhK1VEYXJiYkVpN3gxRWFJbEo3UGRYR2VpMjlyVTJjUEpU?=
+ =?utf-8?B?bGJLMXV1SGlZU1ArL3ZGK3oyL01rY3AvRkdWZnU5eWhheVpEUVpJaEJMaElJ?=
+ =?utf-8?B?aCtmblZxdmo4RUlYdkNwZmlKc0g2WERadk12azR3amdmbDRnUk14ZWVHUjBR?=
+ =?utf-8?B?OEcvN1hXR2hlcVc2UUhKbG4zZXRHZmREaFh3K3NISno0d1Rsc1pGLzN2M0xi?=
+ =?utf-8?B?TjNDZjZNeXlnPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5946.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WndvNG8va094VVdQZTBFYm1ZOTlYbWtlT3phTGhCUy81bHFkT1IwbVYrM0l4?=
+ =?utf-8?B?U1UxbTU4NTJVWXliOHB5RE9uUkFGUW5JK2tnamd0ejc0UWhGeit5R0VvQVdZ?=
+ =?utf-8?B?aWs1UlhVTXRZYXJlaHV0SGlNSHFnRDNYRFJQR3JueCtjV1pBV3U4TTU1S1dQ?=
+ =?utf-8?B?OXRuWWRkQnJodk13anRReVVOaHprOHBIOWF3RlJRSm90bERPRi9GQzhlSzJj?=
+ =?utf-8?B?QVcrcWtNUWNZMUc2ejdZU0ZpL01jd2RvdDFTQkIrNnhtMDVJazg1dHBZWkFx?=
+ =?utf-8?B?WWh2SiszNlVBYmpXWm9XcGZZRHE0NzJUd0J2dXcvVUNFRElYSG5WVHlXVEcx?=
+ =?utf-8?B?SUhoWjBiM0hoWStRUkc5OXdqRkV1djd2azgrNWhiY2VNMTJGUWNTQ1luTEd4?=
+ =?utf-8?B?cU8rSjM2ODhyY0oyWDdqM05RYkJnZS9sZ2NxbFJ1R0RoczRyOHF1c3o4bnNZ?=
+ =?utf-8?B?bnBRZVhRV25qTFhQeVU5OGQ3N3ZYZjRNcUxhbjA4MlhYZHJPYXNoRi9KbVNI?=
+ =?utf-8?B?UFhQdERMRGo5cUsxRHR0dStqZk1DVjRGRkY1VC8yc3FqcWRPdVMycitwOTVK?=
+ =?utf-8?B?c1hiS3EzMFZ1Y1g0U2k4azk2emZwNXo4ZEhjT2YxZ2IvMVBKWWtDZ0dCTjhH?=
+ =?utf-8?B?VGxYQnI3QXc5M0ZkTUpaU0c4bG1lUkJZYXkxNlF2anozMVFpTFhYQWpQdURO?=
+ =?utf-8?B?TkVQdHE0eG5BNlZsVjY5SU5FY1ZIQWlYNGZiS3dVR0J3aVBOZ3pEdE9iZHhk?=
+ =?utf-8?B?S0NqUGc0cmRuays4TXJVWGtXbTZmbnp4bkdQb243TWF3OFd4dTBXNG9QWVZY?=
+ =?utf-8?B?TW1EeFpmZUpSbExyN3doU3VNam9PVEl0bU1panR5TTFudTFUQ0ZwczdRZUIy?=
+ =?utf-8?B?ZGFQdlFkaFcxSGQ5eXF2VzNCenV1OXdkK3J3U2dETmJkMGxqWUlDRW5YMHlj?=
+ =?utf-8?B?NThLL3ZEUGtLSnVsMk1ONUpWUGRnV3FpTkw4WktDblcwUlBNOVNyVmRNYitu?=
+ =?utf-8?B?RGkzY2RQc3VobzdSRmpwc3RlYjBtbDQxTmxEV3dOclNJOEh3eTRTTGNGQzFr?=
+ =?utf-8?B?bkp3MmxjdEVFWmVTckJ1bW0xMlVCMVBSNUdzK2MzNHBJQ0Z1Tlc4bE83OUgr?=
+ =?utf-8?B?SUlNd0NxbmFIUEFvcjJCRkp0ZXJSSXNEYk5nclhCZkQ4ZHFINlRWNUVBWnNJ?=
+ =?utf-8?B?dFFyQlFMalZibGpoMTZSOENHVmY5VkxqRnY0WjliemE1QldFaVdadDYzT3F1?=
+ =?utf-8?B?emxmdEN1Z2Vqc2hLc3UyYmZIaDEzOHVRcE0zUmN0V3hTamd4L2VvQWxkUGFI?=
+ =?utf-8?B?Z0h2b1B4em9SNXhNVVFoR0k1ZS9kTE9hZ2dvQmo5ZDR1ZFBPak9OS0pXR3Nj?=
+ =?utf-8?B?eC9EZHY3dmxZWU9EQVVHYUxSZWNUQ2F4YUVLYmZJemg0ZW1XWG90Y2JqYmJ6?=
+ =?utf-8?B?UDdybU9ySmFCUlNFM3hvWENuV1VlOUtHV2hwYkg4akJvdmI3bWxYSitxcHYv?=
+ =?utf-8?B?MTFjRHYwYXh4SDhLaUNuQ2NleUNWSFpJeUpjc0tCaTZHc0tVR0lxVVRqTU5B?=
+ =?utf-8?B?Q2g0c0cwZlViRHBPMG1XTVZ6Nzl2V1ZzSmprU2tSSHF4Zk5ncmo1QUNWTjlt?=
+ =?utf-8?B?b1JSMEZ3M3BOczVxaFpUQWtVTlJYUzRmMllFeE41V3BobEFkVUc4ZkM1UTE3?=
+ =?utf-8?B?QlhDQzBzMkhXMzVmZjRpelNoNVk0bmtTUDJBYk0zUzEzUDM1Zzh1bXJkWmtt?=
+ =?utf-8?B?S2xMMHlpSFR3L2RNQ0tDQUhjVmFqMzlIVXhsZllZdTRvZEZabFBxRlY3KzNQ?=
+ =?utf-8?B?MUVwMXVpQnZxZTJ6UzhiRmN2aDZpa0VhWkovV0ozeHU1V0lva3R4cnlZdm1a?=
+ =?utf-8?B?RjlpQU1rQXM4VmpidlpDREdxMjVUL0hLd2NSenNjKzZudkxRWU93cjdQbTl5?=
+ =?utf-8?B?ZWpMZVpFbnhUNVNHQk1NK3FuQUF5UDNiTUZCMUtaelNwOEJoOEtpSWpmVFdR?=
+ =?utf-8?B?a3pUc0dsNjN3SG80Y29QSmVqOWFwZDZzS2c1NUFHcjUydEZvcEdCWkFVWUhj?=
+ =?utf-8?B?eUh5WFpCSG01S3VzaEVwd2x2TFFQMzBjQ0x4UTVmOXJVU1MrK3hGOEhncXMz?=
+ =?utf-8?Q?6wSFVGn7ajV8mjd28XbcnqQ9G?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f162131f-76ed-48c5-9f94-08ddf0fe7feb
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5946.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 06:43:21.9601
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 95ex/wjpH84mW+Yo2pWSzmF6pyG3FiG2FyXU8oZx19xJhg+FCPdvdd7KD7Ct3cG4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5859
 
-On 11/09/2025 08:36, Krzysztof Kozlowski wrote:
-> On Wed, Sep 10, 2025 at 06:07:02PM +0200, Jihed Chaibi wrote:
->> Update the main TI TWL-family binding to be self-contained and to fix
->> pre-existing validation errors.
->>
->> To ensure future patches are bisectable, child nodes whose bindings
->> are in other patches (audio, keypad, usb, etc.) are now defined using
->> a flexible 'additionalProperties: true' pattern. This removes hard
->> dependencies between the MFD and subsystem bindings.
->>
->> The complete dtbs_check for this binding is clean except for two
->> warnings originating from pre-existing bugs in the OMAP DTS files,
->> for which fixes have already been submitted separately [1][2].
->>
->> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
->>
->> ---
->> Changes in v7:
->>   - Moved twl4030/twl6030-specific child node definitions (audio, usb..)
->>     into the conditional 'if/then' block to improve schema accuracy.
->>
->> Changes in v6:
->>   - Refactored the ti,twl4030-power compatible schema to be much stricter,
->>     removing obsolete board-specific compatibles (-n900, -beagleboard-xm),
->>     that were added in v5. The schema now only permits specific, valid
->>     fallback combinations. This change is supported by subsequent patches
->>     in the same series (2/3) & (3/3), which update the affected DTS files.
->>   - Enforced the presence of the compatible property on all relevant
->>     sub-nodes by adding 'required: - compatible', closing a key validation
->>     loophole.
->>   - Applied various formatting cleanups for readability and correctness.
->>
->> Changes in v5:
->>   - Restructured the entire binding to define properties at the top
->>     level instead of if/then blocks, per maintainer feedback.
->>   - Added specific compatible enums for new child nodes instead of a
->>     generic 'compatible: true'.
->>   - Set 'unevaluatedProperties: false' for 'pwm' and 'pwmled' nodes to
->>     enforce strict validation.
->>   - Expanded 'power' node compatible enum to include all board-specific
->>     compatible strings (used in existing device trees, e.g. OMAP3-based
->>     boards) for more complete coverage.
->>   - Corrected the schema for the 'power' node compatible to properly
->>     handle single and fallback entries.
->>
->> Changes in v4:
->>   - Reworked binding to be independent and bisectable per maintainer
->>     feedback by using 'additionalProperties: true' for child nodes.
->>   - Added board-specific compatibles to the 'power' node enum.
->>   - Added definitions for 'clocks' and 'clock-names' properties.
->>   - Renamed 'twl6030-usb' child node to 'usb-comparator' to match
->>     existing Device Tree usage (twl6030.dtsi).
->>   - Fixed some spelling/grammar erros in the description.
->>
->> Changes in v3:
->>   - New patch to consolidate simple bindings (power, pwm) and add
->>     definitions for all child nodes to fix dtbs_check validation
->>     errors found in v2.
->>
->> Changes in v2:
->>   - This patch is split from larger series [3] per maintainer feedback.
->>   - Added missing sub-node definitions, resolving dtbs_check errors.
->>
->> [1] https://lore.kernel.org/all/20250822222530.113520-1-jihed.chaibi.dev@gmail.com/
->> [2] https://lore.kernel.org/all/20250822225052.136919-1-jihed.chaibi.dev@gmail.com/
->> [3] https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
->> ---
->>  .../devicetree/bindings/mfd/ti,twl.yaml       | 232 +++++++++++++++++-
->>  .../devicetree/bindings/mfd/twl4030-power.txt |  48 ----
->>  .../devicetree/bindings/pwm/ti,twl-pwm.txt    |  17 --
->>  .../devicetree/bindings/pwm/ti,twl-pwmled.txt |  17 --
->>  4 files changed, 221 insertions(+), 93 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
->>  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
->>  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> index f162ab60c09b..95238a10ecda 100644
->> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> @@ -9,11 +9,13 @@ title: Texas Instruments TWL family
->>  maintainers:
->>    - Andreas Kemnade <andreas@kemnade.info>
->>  
->> -description: |
->> +description: >
-> 
-> Why?
-> 
->>    The TWLs are Integrated Power Management Chips.
->> -  Some version might contain much more analog function like
->> +
->> +  Some versions might contain much more analog functionality like
->>    USB transceiver or Audio amplifier.
->> -  These chips are connected to an i2c bus.
->> +
->> +  These chips are connected to an I2C bus.
->>  
->>  allOf:
->>    - if:
->> @@ -62,6 +64,7 @@ allOf:
->>          pwrbutton:
->>            type: object
->>            additionalProperties: false
->> +
->>            properties:
->>              compatible:
->>                const: ti,twl4030-pwrbutton
->> @@ -73,9 +76,109 @@ allOf:
->>          watchdog:
->>            type: object
->>            additionalProperties: false
->> +
->>            properties:
->>              compatible:
->>                const: ti,twl4030-wdt
->> +
->> +        audio:
-> 
-> Don't define properties in conditional block.
+Hi Theo,
 
-Really, I don't understand. You got review from the DT maintainer, you
-got other ack and you drop both and introduce a completely odd change
-(it's even documented in writing bindings not to do that change).
 
-No, revert to v6 and re-apply all the tags you received.
+On 9/10/2025 9:45 PM, Théo Lebrun wrote:
+<...>
+>   #define DEFAULT_TX_RING_SIZE	512 /* must be power of 2 */
+>   #define MIN_TX_RING_SIZE	64
+>   #define MAX_TX_RING_SIZE	4096
+> -#define TX_RING_BYTES(bp) (macb_dma_desc_get_size(bp) \
+> - * (bp)->tx_ring_size)
+>   
+>   /* level of occupied TX descriptors under which we wake up TX process */
+>   #define MACB_TX_WAKEUP_THRESH(bp)	(3 * (bp)->tx_ring_size / 4)
+> @@ -2470,11 +2466,20 @@ static void macb_free_rx_buffers(struct macb *bp)
+>   	}
+>   }
+>   
+> +static unsigned int macb_tx_ring_size_per_queue(struct macb *bp)
+> +{
+> + return macb_dma_desc_get_size(bp) * bp->tx_ring_size + bp- 
+>  >tx_bd_rd_prefetch;
+> +}
+> +
+> +static unsigned int macb_rx_ring_size_per_queue(struct macb *bp)
+> +{
+> + return macb_dma_desc_get_size(bp) * bp->rx_ring_size + bp- 
+>  >rx_bd_rd_prefetch;
+> +}
+> +
 
-Best regards,
-Krzysztof
+
+it would be good to have these functions as inline.
+May be as a separate patch.
+
+<...>
+-- 
+🙏 Vineeth
+
 
