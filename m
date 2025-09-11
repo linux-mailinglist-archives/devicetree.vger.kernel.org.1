@@ -1,97 +1,108 @@
-Return-Path: <devicetree+bounces-216180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1EDB53F1C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 01:40:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2F1B53F46
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 01:52:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA025189812D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 23:40:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 657FF7B2392
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 23:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C39274B27;
-	Thu, 11 Sep 2025 23:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22CC2D3759;
+	Thu, 11 Sep 2025 23:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lujBudA5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BH9caTF9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B8F2DC77F;
-	Thu, 11 Sep 2025 23:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FB02D2390;
+	Thu, 11 Sep 2025 23:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757633994; cv=none; b=R3cex9Tpz+BCN2X4XwMmiA5gg3l/zhThAu7GPXNZyhcQmcxFKN80MOsb5QL5fGzVKEkrlwZARdpk2i2eoYokQfOOu8dA8NtQ2Pz1Qg1799jpyUneL9rfHeY9RS+xqjSrp8Z9LsbfQzFj6rV0kwOrLnedlKNJ/pWWUlLEEf6wM34=
+	t=1757634732; cv=none; b=sN5q6dbK7oxi0uW8zf3nrWsxbN1xQAyPWZcvMnfpE1dk+3QgL5zcgZxTZDe45Wjx8J+TlXDKa3lftL/35G91GStJ3wt1M2McbuBGE4kxLbeTT2RpyPtHEUhHjDey3I0GmN3iLS+P8QgsmC1JWcah2sQsnXQoJSqrAljvLPWOxo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757633994; c=relaxed/simple;
-	bh=QgoknCooODVZDsLdwBBv5hUTRch16VwsBQrZi8gmPXM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jrEUySU1rHSz4JIhA5gTTCNZNZRoFDRi7KFJ74O57D1ITsoS+4P1fm4gy3rj05Bp8YsJRra3B+dSRGAv+Ym3oAqQML+StB/gyg/A8kC7Fl778EJpE+3oLTw7gVQvoE7lSEkKzDFzuC2PQH8EZ7d7tD3NCy0LsscYlApawQCVLE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lujBudA5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA85C4CEF0;
-	Thu, 11 Sep 2025 23:39:53 +0000 (UTC)
+	s=arc-20240116; t=1757634732; c=relaxed/simple;
+	bh=rXQlLipzuO460hLM6yk6F8xNPGedj1EQygxLedmpBzk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nZs/sY0luQxiWpqwZuEEmAiusbIbgowlQJEmrzBAWhx9IaNWwaagGNFLQfJ92qWIT2lp/c0CoCXfv/JtFZ2Oi3QyfDVlnugawOUs4spVJaAJfIPlj9Kp7vI874Nk6o7Im7rDNHRKzYUS86kSF8hW6VUMdQsKUKnMcv+3G9mCzwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BH9caTF9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 62D95C4CEF5;
+	Thu, 11 Sep 2025 23:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757633993;
-	bh=QgoknCooODVZDsLdwBBv5hUTRch16VwsBQrZi8gmPXM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lujBudA5KBuwzJWLr8MW7rP4CB9I/5IgQ+HN+cnfp4j+2NJztsysky5XUYm1Il3SY
-	 QX6UVYqohEhCu4uh7633vFng88pyMilvG3UuKS+qnikmvQQbXMQSiyyDGb6zvZE5e2
-	 1mVVFs/rbpjAH1N4vpdy5o7RN7ISBTfmuvz+aOoNfdH/kmTEBQLAYxpChbpbo2l4VW
-	 oXFfStfceSjsMJJip9f/T+bIpUDAF7HKEt8lrpUf/WR8mu8khI66FcJpBk1MSO2UbV
-	 OPJq58qKxjqxU/9hefpDoGc5yjg5EsP8RVhpVGtR6ciWi8gxskzN+rtC5W4OuR52La
-	 HGpj1VVwKkp9Q==
-Date: Thu, 11 Sep 2025 16:39:52 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: "Karumanchi, Vineeth" <vineeth@amd.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>, "Harini Katakam"
- <harini.katakam@xilinx.com>, "Richard Cochran" <richardcochran@gmail.com>,
- "Russell King" <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH net v5 3/5] net: macb: move ring size computation to
- functions
-Message-ID: <20250911163952.1e61c6cb@kernel.org>
-In-Reply-To: <DCPUUQHYSZGE.WH37VP8WHJ8E@bootlin.com>
-References: <20250910-macb-fixes-v5-0-f413a3601ce4@bootlin.com>
-	<20250910-macb-fixes-v5-3-f413a3601ce4@bootlin.com>
-	<ba25cca0-adbf-435b-8c21-f03c567045b1@amd.com>
-	<DCPUUQHYSZGE.WH37VP8WHJ8E@bootlin.com>
+	s=k20201202; t=1757634732;
+	bh=rXQlLipzuO460hLM6yk6F8xNPGedj1EQygxLedmpBzk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=BH9caTF9ac1H+H/LjH1X37ysQw2c8Is712Owi6XkgEIQC+cE6cknDD3lWn4UrJ9cz
+	 fWyQg5D/WTyCQKU+UZCW4yv2UOPgiIemWFzDUWuAlTx7kwkf2EWi2nar5WHjBdtXbr
+	 GEnn/HwzziVxLTJgirGXAcd93UFng7kvhzIp21y88y+MKkb44o61veubkUF/BrEmog
+	 vdo8CyQNuaGsbQb3zXiFH00vUxKY2RJwuOQasExrS7iUBLTrzrLZ2mqzPo0D1/cSV2
+	 dvXvlnklxNC28aXOkhMJEYa77G+KKvinTHYWzlEZLEYrXpaA+kxlMGk9EIdQ44OVMA
+	 ToBgTu+JBLuVw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EE7DCAC592;
+	Thu, 11 Sep 2025 23:52:12 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH 0/2] Initial Amediatech X96Q support based on Allwinner
+ H313
+Date: Fri, 12 Sep 2025 01:52:08 +0200
+Message-Id: <20250912-x96q-v1-0-8471daaf39db@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKhgw2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDS0ND3QpLs0JdU/NUM2NjCwMLA5NUJaDSgqLUtMwKsDHRsbW1ABhukK1
+ WAAAA
+X-Change-ID: 20250911-x96q-57e63380804e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757634731; l=937;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=rXQlLipzuO460hLM6yk6F8xNPGedj1EQygxLedmpBzk=;
+ b=M0EgaUBY/bR66z8j4+11q/JqRm4pXPtp1UZ7NvBJPd6gL5yfBzHzCDkiWsBp+AaLirOtDR1Dr
+ DGry5a6MTTIATIpQgaOccON/kpyi2do+5HKGBE9ZynXJ1z/i4K7Kkk6
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-On Thu, 11 Sep 2025 11:14:52 +0200 Th=C3=A9o Lebrun wrote:
-> > it would be good to have these functions as inline.
-> > May be as a separate patch. =20
->=20
-> I don't see why? Compilers are clever pieces, they'll know to inline it.
->=20
-> If we added inline to macb_{tx,rx}_ring_size_per_queue(), should we also
-> add it to macb_dma_desc_get_size()? I do not know, but my compiler
-> decided to inline it as well. It might make other decisions on other
-> platforms.
->=20
-> Last point I see: those two functions are not called in the hotpath,
-> only at alloc & free. If we talk about inline for the theoretical speed
-> gain, then it doesn't matter in that case. If it is a code size aspect,
-> then once again the compiler is more aware than myself.
->=20
-> I don't like the tone, but it is part of the kernel doc and is on topic:
-> https://www.kernel.org/doc/html/latest/process/coding-style.html#the-inli=
-ne-disease
+This patchset adds an initial devicetree for the X96Q set-top box.
+WiFi, Ethernet, and HDMI depend on drivers that are currently not
+available in mainline Linux, and I didn't enable them in the devicetree.
+The builtin infrared receiver produces IRQs when a nearby remote sends
+events, but I have not checked whether the events are decoded correctly.
 
-=F0=9F=91=8D=EF=B8=8F FWIW, please don't sprinkle inlines.
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+J. Neuschäfer (2):
+      dt-bindings: arm: sunxi: Add Amediatech X96Q
+      arm64: dts: allwinner: h313: Add Amediatech X96Q
+
+ Documentation/devicetree/bindings/arm/sunxi.yaml   |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h313-x96q.dts | 235 +++++++++++++++++++++
+ 3 files changed, 241 insertions(+)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250911-x96q-57e63380804e
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
+
 
