@@ -1,176 +1,218 @@
-Return-Path: <devicetree+bounces-215806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99E7B52BA5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C957BB52B5B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64CE45818D6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:30:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD8DB580A0B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B802E1C58;
-	Thu, 11 Sep 2025 08:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9692E2F14;
+	Thu, 11 Sep 2025 08:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="yg9H/dvZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KmlIBjGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53022E0922;
-	Thu, 11 Sep 2025 08:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13A72E2679;
+	Thu, 11 Sep 2025 08:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757579407; cv=none; b=fmvYAWFZEi0eOfIh09X7pj/1MXHqXuq0O+0w0sL/a2D2ZWNvGCaPebhBCIRLx+4BmIcrbjQh9VSdhC8vytT2e+rmL6zp/NoSVetVfGS4Qwsfk6j+1ztrrgqB72tbIgDzsiYMMTgTsgw4IfDEDH7hVdMn7hvwFPAt7yKQEjYUP6Y=
+	t=1757578526; cv=none; b=oqVNgRPM/RBTZs4wOd+7sEZoewjsch7TywuT6Y7WqOaRvs2uZWERf1+iviiN8zL1PDe1n9MrW8E9232/FRoveQUkBLfL7mXQMPs2CfBpQnHwr9TEBtbf5XK22H9hHXGPb3BzWhTiEpnQRvZDxG+3aiv3BKIVBz5uboZ7JN8oQDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757579407; c=relaxed/simple;
-	bh=6yQW0ml2hneuegSu/DND2ZHAHnDbMIQgiFkYLrD8ZzY=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=TFWbiZM69Y1ag4E2gPINE18MvypTyblSBbiiootDadJFP8l4i6HyX/fZYdQ0BpR16GBKXw918fK9vVdlwqRtQn+pb7frYmlNxRagAOKt2rBf6pXKoqWD0e62azrMSf81pln4lOV3UEwPXWcL+n3FNur3JqiDrCwTyOdpYMgxLGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=yg9H/dvZ; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=3X9+A0P0F92W8xd1mm/wdAzjQD7bN49SA+/OJzzCmm4=; b=yg9H/dvZuy+suCTZ203CdRADS7
-	nNXV+ibyvDbulq170sSwsMU8++kmF/wux1Q5JpPvos3Ant6WGGswNDj9aslDfRfJsKO0B8TM6gWTE
-	PaYSbEw+R25eXbHqUitRQ6mUsmfsl89NaJkf9F0sKnxM9SCGsbS6ftGp8nwgUJZTnDla4+wI/iXUk
-	pQWFiiUN9RyvXuHp3a5XKYhPdUuJ5qZTmlKihwZMU9tpPbe46RvjKzr/rDlPYGXTHxJ0mupfiyKoV
-	etE7LkMzSBDcA3tzaSX4pJ19FmYyT7sboWO0MrXhD474LW4O7edyl0xL+xNej0n0gLMKJxTazG2Y9
-	6+nZE4Kw==;
-Received: from [122.175.9.182] (port=33004 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uwcPk-000000015ts-2XgD;
-	Thu, 11 Sep 2025 04:12:21 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 526AB1781F05;
-	Thu, 11 Sep 2025 13:42:14 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 2754D17840BC;
-	Thu, 11 Sep 2025 13:42:14 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id N5Rg2jz0nb_G; Thu, 11 Sep 2025 13:42:14 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id C74831781F05;
-	Thu, 11 Sep 2025 13:42:13 +0530 (IST)
-Date: Thu, 11 Sep 2025 13:42:13 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: kuba <kuba@kernel.org>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	m-malladi <m-malladi@ti.com>, s hauer <s.hauer@pengutronix.de>, 
-	afd <afd@ti.com>, 
-	michal swiatkowski <michal.swiatkowski@linux.intel.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, horms <horms@kernel.org>, 
-	johan <johan@kernel.org>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, s-anna <s-anna@ti.com>, 
-	glaroque <glaroque@baylibre.com>, 
-	saikrishnag <saikrishnag@marvell.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Bastien Curutchet <bastien.curutchet@bootlin.com>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <1472700459.335961.1757578333581.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250908133019.44602174@kernel.org>
-References: <20250904101729.693330-1-parvathi@couthit.com> <20250905183151.6a0d832a@kernel.org> <974157264.314549.1757343020136.JavaMail.zimbra@couthit.local> <20250908133019.44602174@kernel.org>
-Subject: Re: [PATCH net-next v15 0/5] PRU-ICSSM Ethernet Driver
+	s=arc-20240116; t=1757578526; c=relaxed/simple;
+	bh=sWbPf7+kNfG1EA2QI6Aw6Y1H/91adzKDkDy0MSMAesY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UqHbeZwQafSROEKM4FgfRVX2YoobGfsziMZuqSbNR41nN8MHtPCDq8gsnju4n0z4dXKSnvZTXC+YOJCNMdNA9GQN3KDBsxElE3GciBiltJLibHMIaKs5xPcH5aBqbS3eoYrzkcIz+xKCzr3qT6od+kZ7ikwRW4lhK0GfXNcWvTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KmlIBjGW; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-61d3d622a2bso2309510a12.0;
+        Thu, 11 Sep 2025 01:15:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757578523; x=1758183323; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EtBJ7XRZRXHnb1oRAlJMLn1CzpEHjZeP/Tjuzyg5UAo=;
+        b=KmlIBjGWh2mgCPlrmpvNV1jH/oewn701CjzGV5lalo0Rj9+7UxeIF7O0Za2jNUFk0h
+         9ltRkEgVQiNuz/UMmw8Yfk00URUUp/DSKedgvXwpTfNOEyg1mTfPaY0uLo9aVZirmi3w
+         x8M/sWbhGOMJi2EhCtrmiH21ilDEXN/MArNxvr1ZJiuAGm7xQqUNG80Fa4npTFn6rQlv
+         1SXErzTV+22aYtmfdYs6IHxcXh1U2Wx+J9usRNZbE31CYj1k8cXMUvtxvK5kKfN0d0Qf
+         RRti4N2tWisDlS46Gia0KKz7SrUNgvqcdEMa1bOfWiAd7YR4UBfyXAC81QGo0Zppz1SX
+         2O0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757578523; x=1758183323;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EtBJ7XRZRXHnb1oRAlJMLn1CzpEHjZeP/Tjuzyg5UAo=;
+        b=oJpmViQuRk1EN0wZo3j3VkR94WtcE4rUbIcTdOh0AzMWoW/yhj/wDCtWfHdW7HjMQZ
+         Wj7b452i6JBN/rA527BpwEqG2fPpbiRafQXUJ7v3gd2Vj01H7Ad4n5gxUqqXkAPtNcNW
+         QyotiPAKBCGH7kXp5T4x6WBHiVtqSF/FFqAqTz2pXqu0VqCXeaFETxKvvRZrHGTIvUo1
+         8blum22yZttoNOLm+Fw1nmPntAQ8DGpWFO92NfqzjZXNbLIzM/1erZtJgKaYoqfLlMIB
+         GE3MyFqP7v7ll6qNKNNQf9zaDVNC6Zls+XcAEe8Dgd+pd0RoNOKlL0ejdZWPgW4ztEyd
+         9atg==
+X-Forwarded-Encrypted: i=1; AJvYcCUUnmPBcj6nQ+7G6xivxEXxYrwchHXS78ug4gJvZyDGq5fCJkKCGIQ7k/UY23lw1AKRpAi6LXYfXlo4TO42@vger.kernel.org, AJvYcCVUSImXpvCFbgfBmurP8e0cXFTVg9pc9j9w7mheYTP5OWkJ5B1GgA3dQjlBHTk4mfD1JN/PmTFupByL@vger.kernel.org, AJvYcCWF0lIxXwtiUOUO9fnJcdwFcpRi/13HVHj/WPferpx6o9sYsD+AHMua+bAKVC8TA8H2kYK38msLnN1Q@vger.kernel.org, AJvYcCWs7r7Pd/ycjtFgLV3OxghZiOhojc5gebPMlRDV8GAZGParh0kWn7ihknH7xF/Z1SCVJb7rg4JtQroIVwWu67lwDE0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0+NbYCFtaQiCUIe6mftORHYgxXPr0Vi5vHSW75cRCazc8xbNu
+	j1tkogW8d1Aa6lWypJaUQ41UjcQPK81IGkveoV6/0Bm/6WQDFDptccWe/N0GR99EOLfOjRy+OJy
+	WQEYaW6+qXaAMrSSf4T2oY2qgNNe2Edc=
+X-Gm-Gg: ASbGnctL8awUbzu/Um7k0tI9xMb1Csv4E6dJsbwAA2/69e96vrWAdzjf36M6Z4lrLWT
+	5xlccSZwT55EnEMiauVhrFzei8KLWmPAbVy8C6k14SmPeG4gGkbSN5vxNdFDSNqZTldBLEK7OBt
+	V9nJJTyavqSo/h9iEfwIGY34OV2V1Vu3fKFswNEmQrKg+WqpH5J602yt2tmt3gLVlTzP5cHR3ev
+	mWlQZVIrPsdp3hx+syG5G2qDm9U96sM6E6mzb/EkWhnu7TNDgk=
+X-Google-Smtp-Source: AGHT+IEnp+5Pp/hKtvuNcvkPD7ilbt2E7mIP6OMzOLx6fAXAtKZDlirtxajpgqUgKHbow62KqE/NON7LEPov9/q3UY0=
+X-Received: by 2002:a17:907:2da5:b0:b04:4579:486e with SMTP id
+ a640c23a62f3a-b07a6403229mr286982766b.28.1757578522708; Thu, 11 Sep 2025
+ 01:15:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: PRU-ICSSM Ethernet Driver
-Thread-Index: /Xec1/3639+TyIC3wc37Kq4oOeNPjg==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250903161718.180488-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <db2fc907-218c-4688-aebf-4a929f21b074@ideasonboard.com>
+In-Reply-To: <db2fc907-218c-4688-aebf-4a929f21b074@ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 11 Sep 2025 09:14:56 +0100
+X-Gm-Features: Ac12FXwA2G13xPdRFdy3yeIIErYfrkajYLbpZADAiTZT6Kl8ibBEbrC_wV_N2u8
+Message-ID: <CA+V-a8vghwkHKWoqU8NQ3O9ZdHxB+cEvMv7Z9LQOMsZcx9vjPA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Magnus Damm <magnus.damm@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Tomi,
 
-> On Mon, 8 Sep 2025 20:20:20 +0530 (IST) Parvathi Pudi wrote:
->> > On Thu,  4 Sep 2025 15:45:37 +0530 Parvathi Pudi wrote:
->> >> The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
->> >> is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
->> >> Megabit ICSS (ICSSM).
->> > 
->> > Looks like the new code is not covered by the existing MAINTAINERS
->> > entries. Who is expected to be maintaining the new driver?
->> > Please consult:
->> > https://docs.kernel.org/next/maintainer/feature-and-driver-maintainers.html
->> 
->> We will update the MAINTAINERS information in a separate patch to
->> this series and share the next version soon.
-> 
-> I wasn't asking if you can update the MAINTAINERS, I was asking what
-> you will update it with. Since that's still not clear I'm dropping
-> the series from pw, please repost with the MAINTAINERS entry included.
+On Wed, Sep 10, 2025 at 1:30=E2=80=AFPM Tomi Valkeinen
+<tomi.valkeinen+renesas@ideasonboard.com> wrote:
+>
+> Hi,
+>
+> On 03/09/2025 19:17, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add support for PLLDSI and PLLDSI divider clocks.
+> >
+> > Introduce the `renesas-rzv2h-cpg-pll.h` header to centralize and share
+> > PLLDSI related data structures, limits, and algorithms between the
+> > RZ/V2H(P) CPG and DSI drivers.
+> >
+> > The DSI PLL is functionally similar to the CPG's PLLDSI, but has slight=
+ly
+> > different parameter limits and omits the programmable divider present i=
+n
+> > CPG. To ensure precise frequency calculations, especially for milliHz-l=
+evel
+> > accuracy needed by the DSI driver, the shared algorithm allows both dri=
+vers
+> > to compute PLL parameters consistently using the same logic and input
+> > clock.
+>
+> Can you elaborate a bit more why a new clock APIs are needed for the DSI
+> PLL? This is the first time I have heard a DSI TX (well, any IP) require
+> more precision than Hz. Is that really the case? Are there other reasons?
+>
+Im pasting the same reply from Fab
+(https://lore.kernel.org/all/TYCPR01MB12093A7D99392BC3D6B5E5864C2BC2@TYCPR0=
+1MB12093.jpnprd01.prod.outlook.com/#t)
+for the similar concern.
 
-The new entry for the ICSSM Ethernet driver will be added immediately
-after the existing ICSSG driver section.
+The PLL found inside the DSI IP is very similar to the PLLDSI found in
+the CPG IP block, although the limits for some of the parameters are
+different. Also, the PLLDSI is followed by a programmable divider,
+whereas there is no such thing in the DSI PLL IP.
 
-We will update the MAINTAINERS file with the change shown below.
+The limits for the PLL found within the DSI IP are:
+1 <=3D PLL_P <=3D 4
+64 <=3D PLL_M <=3D 1023
+0 <=3D PLL_S <=3D 5
+=E2=88=9232768 <=3D PLL_K <=3D 32767
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b81595e9ea95..c7f04ff96cf0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25320,6 +25320,18 @@ S:     Maintained
- F:     Documentation/devicetree/bindings/net/ti,icss*.yaml
- F:     drivers/net/ethernet/ti/icssg/*
+The limits for PLLDSI (found in CPG) are:
+1 <=3D PLL_P <=3D 4
+64 <=3D PLL_M <=3D 533
+0 <=3D PLL_S <=3D 6
+=E2=88=9232768 <=3D PLL_K <=3D 32767
+The limits for the PLLDSI related divider are:
+CSDIV =3D 1/(2 + 2 * n), with n=3D0,...,15
 
-+TI ICSSM ETHERNET DRIVER (ICSSM)
-+M:     MD Danish Anwar <danishanwar@ti.com>
-+M:     Parvathi Pudi <parvathi@couthit.com>
-+R:     Roger Quadros <rogerq@kernel.org>
-+R:     Mohan Reddy Putluru <pmohan@couthit.com>
-+L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:     netdev@vger.kernel.org
-+S:     Maintained
-+F:     Documentation/devicetree/bindings/net/ti,icssm*.yaml
-+F:     Documentation/devicetree/bindings/net/ti,pruss-ecap.yaml
-+F:     drivers/net/ethernet/ti/icssm/*
-+
- TI J721E CSI2RX DRIVER
- M:     Jai Luthra <jai.luthra@linux.dev>
- L:     linux-media@vger.kernel.org
---
+Header file `renesas-rzv2h-cpg-pll.h` is added so that both the CPG
+and DSI drivers can reuse exactly the same data structures and
+algorithm, although they'll drive  rzv2h_get_pll*pars() with different
+limits.
+
+While the CPG driver only needs visibility of the limits for the
+PLLDSI, the DSI driver is going to need visibility of the limits for
+both PLLDSI and for the PLL inside the DSI IP.
+
+The DSI driver requires a resolution higher than Hz (which is what the
+clock subsystem currently does not support), namely: mHz. This is
+vital to allow the DSI driver to keep the error between the calculated
+value of HSFREQ and the generated value of HSFREQ below a certain
+threshold. The difficulty in achieving a small error is down to the
+accuracy of the VCLK representation.
+Since the clock subsystem only allows for Hz, a 1/2 Hz error on the
+representation of VCLK (down to the selection of frequencies that
+cannot be precisely achieved and related rounding errors) may lead to
+a very big error in the calculation of HSFREQ, which uses the below
+formula:
+HSFREQ =3D (VCLK * bpp) / num_lanes
+In the worst case scenario (1 lane and 24 bpp), a 1/2 Hz error on the
+representation of VCLK will lead to an error of 12Hz(!) on the
+calculation of HSFREQ, leading to a non working video output.
+
+By granting the DSI driver access to the PLL calculations and PLLDSI
+(CPG) limits, the DSI driver can work out the best solution for VCLK
+independently from the CPG driver, and it can set VCLK accordingly
+(knowing that the CPG driver will use exactly the same parameters
+determined by the DSI driver, as it will be using the same input
+frequency and the same algorithm for the calculations).
+
+For convenience, macro RZV2H_CPG_PLL_DSI_LIMITS() is added to avoid
+replicating the declaration of the PLLDSI limits and therefore it can
+be used in both the CPG driver and in the DSI driver.
+
+Make use of the data structures and algorithm defined in header file
+`renesas-rzv2h-cpg-pll.h` to add PLLDSI support, including its
+divider.
+
+Since we need to make sure that the DSI driver knows exactly which
+frequency the PLLDSI + divider combo is going to generate, the CPG
+driver is instructed to calculate the parameters for the PLLDSI +
+divider combo (by calling into rzv2h_get_pll_dtable_pars()) only from
+rzv2h_cpg_plldsi_div_determine_rate(). rzv2h_cpg_plldsi_div_set_rate()
+will simply reuse the pre-calculated parameter values."
 
 
-Thanks and Regards,
-Parvathi.
+> If such precision is really needed, does it then indicate that it could
+> be needed on other IPs too? Thus, we need improvements to the common clk
+> API.
+>
+As of now, this requirement is specific to the DSI IP on the RZ/V2H(P)
+SoC. For other IPs we haven=E2=80=99t seen a need yet. Once similar cases
+arise in the future, we can certainly revisit the clock subsystem and
+look into extending the common clk API to support this more generally.
+
+Cheers,
+Prabhakar
 
