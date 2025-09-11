@@ -1,152 +1,173 @@
-Return-Path: <devicetree+bounces-215921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC76EB5325C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:34:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B96B5326E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:37:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 260CC16720A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:33:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD5A03AEE0A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 803693218A8;
-	Thu, 11 Sep 2025 12:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE59320CD7;
+	Thu, 11 Sep 2025 12:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p/hfNz8F"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="s1/ILfAQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F36E32144E
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:33:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED1E23CEF9;
+	Thu, 11 Sep 2025 12:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757594018; cv=none; b=J0pRss05vlmuW7fkk6MQvPtwTY2z6Aq619IzgufpAPl/0zUL4kAdezQXsZpo29S7CS2ic+7Ta6wpFY5dad5v3/an9XgNVLKNpaCpuEFV0Zug01Vt2rvPGF7ogD0Rqio1oSIjyKwziMBLwIxtrg4h3nYiWirGNkDwDIKFVkoxRps=
+	t=1757594209; cv=none; b=DbeprVBItCIKVbCMmNhbxzGFMOcPUBLthiefTZRPoEhKQTBKEX6Mcm4G4PnbAFMtRlLxTOjFDCyXWM1I+qd0s7kSa/7bjeJH1LBhbgOXlzjkl6Nrk7XOOgdxOjnJXxaeaw3IVkxzd7HVFDWvctUk/735nC/8l7bCD9v5fHW2tuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757594018; c=relaxed/simple;
-	bh=VE1roVfRus68bBPTerPNOcsbtdx+CTPzLCSXO4Sv5PI=;
+	s=arc-20240116; t=1757594209; c=relaxed/simple;
+	bh=QkQdBI8anUDvfOf9RgkkrxdhKfPTw8O5oRJZTgWZeG8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zu2+cEOle5BBgvJi4LpMzACgzaqxAdmMWroSHBwCWksi2EQA4hCeQW1gl0QuZs+SJyvReN+HPpr5YG6XfFk6FziWM25srbmquPwT4rGcNISXQ/C8OcmH4Fgg+hVM53oK+07kpa6SFOCwCUthAjvTkShAYdH2GW9rxU5hyI9ZjNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p/hfNz8F; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45cb6180b60so4826465e9.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757594015; x=1758198815; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=77w/BLu3louQ5LAeAyTpxsMARQdOP7fXiEQcpRRVAfE=;
-        b=p/hfNz8FyXbfz8wSydDkHFhvFh5pbEd3jnxW8vjsvF8CqiJwvrRoKYDrpP07Sb/wc6
-         Z4E5IQwNqJcN7dINKaFHD8gB41HuuxKSdPk3pv0UhcksdM7XNpqOa61z5ZVjmletvrx+
-         EYvpaWNvp1NlxoomYo/odLPdDwOxybfUA1HRaGtclHj7eaICViJ0S8SzS/fGkUI1RT7O
-         Y4JKxdMazQneyfjFAfIzc8nKCar970Rr0eWaucl5MOYHLnEK1XcIhmXH42CNN1aQcnS3
-         BZVNjURcWLEkFDJlhARcVwnDE5s8Drc5HJiRtGgzV/QtFECKm91QpuvTWfWTRp7YpNnO
-         58Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757594015; x=1758198815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=77w/BLu3louQ5LAeAyTpxsMARQdOP7fXiEQcpRRVAfE=;
-        b=AOtic1/c4Gf0eUqAFLLv0vOpFkVvUilh5AR3GqHTlSllQKqchyfu+pM3eFbuNBcSvu
-         Ip41A38mCV9Ixad7QQwNjOwPMn35cc2GVRpN2AmQvNZ3oYkRiHnTSI9OwU/Bmoz1SjZt
-         rgg1xglQD5rlRsisGqu+I+1QULHQc16oN0CK3xrxUsY4YcTTfUEhJkORuhFlfnXUnUMF
-         oaRApXtwo3tpieErLC77GBvkRlR0KmTEqYrmrXtdoHcdKBh/eSH9SfPrNfLMbuLOM1x7
-         fvccIR0GbEnC+eMZCjMYOeDyv142Bg5PoWXfxcd2BQ8xaXpSpYOm+tsVjfM3B5bIGW8e
-         PKrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSTpwEiUCSdbnRAPh9tnhyZSs9Gl2E2nYJw2DYtCxdklKezzlJ9qhn+/8XiDCQj9WLQs1R2scDGZTS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCKC3YbPyLZW17LuMA/TAteN8ngPD6yuXGMuInMh2IV57o3Gta
-	Yu8Ct6ihUbQQcf69bGf8I4ON72FB/zUgrvrDUJjUAQT2ja2WRf3r6l9/FNTTZ4uw7BF1xJ5dSpP
-	pDM41
-X-Gm-Gg: ASbGncvF5bt8qBZz/e/6AG+Dl2HxAdubht8HsK6gQS2XHTZ4IPrQ8tDfd9IzQ8Vx+gU
-	v56hhNzcov024RVL773fyDTPXr0OjF2j9w+sQQ9eEDCC+Ufp3zmJbMpwUUXVok7XbfZbEsjyDMd
-	kibYGweW13UaiI0iD1WeyiJQQuaJpj1k0LRe/e44+lVvCNtB3dCSIr8p0z1z9OQNPr0lEG25lyO
-	KaPWq9RUBKAQb4MNMxTy7tRkUlqILLc1RYbJbheaul7Pzohl3Jz/LutRc7q46rKqdvHkaxM4HkR
-	zzMxe2iRG8I+JFfEKUlOPvFP7eFPpinfmy9h9pTpg1mO0UaSYSi62cA1nX2co7cVYtkJEg2iD9q
-	aMxL06gzht81ZVrnCvaNgRA==
-X-Google-Smtp-Source: AGHT+IERNyAnFxuua9N1uDZtOVhilat+DKTgWSq+/gMo1aCu3TqF6Sb2iqngQDwNMVzvjL69GHQfIQ==
-X-Received: by 2002:a05:600c:1993:b0:45b:8b3e:9f66 with SMTP id 5b1f17b1804b1-45dddeb93b3mr157844605e9.13.1757594014898;
-        Thu, 11 Sep 2025 05:33:34 -0700 (PDT)
-Received: from linaro.org ([86.121.170.194])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e0153fbd5sm13210085e9.5.2025.09.11.05.33.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 05:33:33 -0700 (PDT)
-Date: Thu, 11 Sep 2025 15:33:31 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] phy: qcom: edp: Add Glymur platform support
-Message-ID: <2mcs5cov44frxyvg3k3nuov3zedaoc6ayd5dpoh7r5kcsxa5eu@qrqxpvnrkgj2>
-References: <20250909-phy-qcom-edp-add-glymur-support-v2-0-02553381e47d@linaro.org>
- <20250909-phy-qcom-edp-add-glymur-support-v2-3-02553381e47d@linaro.org>
- <3bo2xr3jb3hrzsetjzd62dmcif2biizvoanxwtyhr2dmkb4g7x@dgrcvzujcwgq>
- <wetzewmbraeawwintmxqntjhvennq5iu2jeegel3glk7y6rsnf@4vwscm5bwezr>
- <fff688c9-af7d-43fd-a3f1-00209842bcc9@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=r1JIFhpc6Q8zlrE1Aw87rNiY9o0u9uzRJhekNSVj6W4JS43qK7EiBMY/Y3L8sOJMegbFfGAUsG5m8EQa79fkWCMpaSsyqx6d6QXpE0ZIMZee5PHgwCr7i8j52Pm172EL4AZ8fZj7m6AC4sJLOxf5CUCu1YS8r6VlM5GAjMgmg9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=s1/ILfAQ; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from sunspire (unknown [IPv6:2a02:2f0e:3e0c:5b00:e2d5:5eff:fed9:f1c4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 18889173BE2;
+	Thu, 11 Sep 2025 15:36:43 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1757594203;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6gEyFK0DSqrZL6C1lK+mBxeLuPQap3TA12mpV61nNXA=;
+	b=s1/ILfAQuLX1I6zZS9VzGx6qDFb0T2qEOhGnwDJb2nC14h6TafGjhBeXuOEq/lcjppdy3d
+	jpg2eWccIogbvJbu2ccUNa8ZVUCU/0RyhHzYknVV30q/sI2Vt8tvAEIPR8B+LJTnaKVPhz
+	9fZHJIml0QkKtp467TlxL3S5277cy0NX0ReYa55gVX1jp8/JbYaZiQe02sBtlpvU8VHFzo
+	Nsu7imStmQB32cd6JZA8gzs0WmJAri82OMDVXnzFQe0JfGvykXNLyIuvQGa+kVmV7cZ4HK
+	LYhgqBYzme5pE+6H7sTJgRQt46I13oaaaIqv9V/HB4GVcqIytqZGDLJr9EOiHQ==
+Date: Thu, 11 Sep 2025 15:36:40 +0300
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno S?? <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 07/14] iio: accel: bma220: reset registers during init
+ stage
+Message-ID: <aMLCWFatVkePTxCa@sunspire>
+References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
+ <20250910-bma220_improvements-v2-7-e23f4f2b9745@subdimension.ro>
+ <a10a2f6d-6cb7-4922-b505-dc6994f0415f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NNBeZRJGrv3j1F1i"
+Content-Disposition: inline
+In-Reply-To: <a10a2f6d-6cb7-4922-b505-dc6994f0415f@kernel.org>
+
+
+--NNBeZRJGrv3j1F1i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fff688c9-af7d-43fd-a3f1-00209842bcc9@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 25-09-11 11:18:53, Konrad Dybcio wrote:
-> On 9/11/25 10:52 AM, Abel Vesa wrote:
-> > On 25-09-09 14:12:46, Dmitry Baryshkov wrote:
-> >> On Tue, Sep 09, 2025 at 01:07:28PM +0300, Abel Vesa wrote:
-> >>> The Qualcomm Glymur platform has the new v8 version
-> >>> of the eDP/DP PHY. So rework the driver to support this
-> >>> new version and add the platform specific configuration data.
-> >>>
-> >>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> >>> ---
-> >>>  drivers/phy/qualcomm/phy-qcom-edp.c | 242 ++++++++++++++++++++++++++++++++++--
-> >>>  1 file changed, 235 insertions(+), 7 deletions(-)
-> >>>
-> >>> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-> >>> index ca9bb9d70e29e1a132bd499fb9f74b5837acf45b..b670cda0fa066d3ff45c66b73cc67e165e55b79a 100644
-> >>> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
-> >>> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-> >>> @@ -26,13 +26,15 @@
-> >>>  #include "phy-qcom-qmp-qserdes-com-v4.h"
-> >>>  #include "phy-qcom-qmp-qserdes-com-v6.h"
-> >>>  
-> >>> +#include "phy-qcom-qmp-dp-qserdes-com-v8.h"
-> >>> +
-> >>>  /* EDP_PHY registers */
-> >>>  #define DP_PHY_CFG                              0x0010
-> >>>  #define DP_PHY_CFG_1                            0x0014
-> >>>  #define DP_PHY_PD_CTL                           0x001c
-> >>>  #define DP_PHY_MODE                             0x0020
-> >>>  
-> >>> -#define DP_AUX_CFG_SIZE                         10
-> >>> +#define DP_AUX_CFG_SIZE                         13
-> >>
-> >> If it differs from platform to platform, do we need to continue defining
-> >> it?
-> >>
-> >> Also, if the AUX CFG size has increased, didn't it cause other registers
-> >> to shift too?
-> > 
-> > AFAICT, all platforms have AUX_CFG0 through AUX_CFG12, we just didn't
-> > need to write anything to the last two so far.
-> 
-> I checked 7180/7280/8180/8280/x1e/Glymur and they all do
-> 
-> It would make sense to perhaps spell this out explicitly in a separate
-> patch
 
-Makes sense. Will do.
+Hi Krzysztof,
 
-Thanks.
+On Thu, Sep 11, 2025 at 09:35:52AM +0200, Krzysztof Kozlowski wrote:
+> On 10/09/2025 09:57, Petre Rodan wrote:
+> > Bring all configuration registers to default values during device probe=
+().
+> >=20
+> > Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+> > ---
+> >  drivers/iio/accel/bma220_core.c | 71 ++++++++++++++++++++++++++++-----=
+--------
+> >  1 file changed, 49 insertions(+), 22 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/accel/bma220_core.c b/drivers/iio/accel/bma220=
+_core.c
+> > index b6f1374a9cca52966c1055113710061a7284cf5a..322df516c90a7c645eeca57=
+9cae9803eb31caad1 100644
+> > --- a/drivers/iio/accel/bma220_core.c
+> > -static int bma220_init(struct spi_device *spi)
+> > +static int bma220_reset(struct spi_device *spi, bool up)
+> >  {
+> > -	int ret;
+> > -	static const char * const regulator_names[] =3D { "vddd", "vddio", "v=
+dda" };
+> > +	int i, ret;
+> > =20
+> > -	ret =3D devm_regulator_bulk_get_enable(&spi->dev,
+>=20
+>=20
+> You just added this code in patch 6. Don't add code which immediately
+> you remove. I understand you re-add this later, so basically it is a
+> move, but such patch diff is still confusing.
+
+sorry, but this is an artefact of 'git diff' I don't think I have no contro=
+l of.
+
+the bma220_reset() function was added to bma220_core.c with this patch and =
+the
+diff process merged lines from this new function with lines from bma220_ini=
+t()
+causing the apparent removal of the lines added in the previous patch.
+if you look a few lines below your cut, the bma220_init() function contains=
+ the
+code:
+
++static int bma220_init(struct spi_device *spi)
++{
++	int ret;
++	static const char * const regulator_names[] =3D { "vddd", "vddio", "vdda"=
+ };
++
++	ret =3D devm_regulator_bulk_get_enable(&spi->dev,
++					     ARRAY_SIZE(regulator_names),
++					     regulator_names);
++	if (ret)
++		return dev_err_probe(&spi->dev, ret, "Failed to get regulators\n");
+[..]
+
+Just for my curiosity, do reviewers apply the patches one by one to (a bran=
+ch of)
+the tree itself or do they provide feedback directly based on the diffs?
+
+best regards,
+peter
+
+--NNBeZRJGrv3j1F1i
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE2Ap/wXYVGTXsPl+pzyaZmYROfzAFAmjCwlgACgkQzyaZmYRO
+fzBX3Q//bhgiqNrozUCco7QKapysnP4QMmkVJoHXuwQTjOCQlIbzO2yh3AV9RAJ+
+Fb23RjjRJcjVn5OpWnRY5pYiQAXwccNi0E6rZPozAJaGpX+I1sNqHxmfPJqh49GF
+YlZImOdM9rrYOdYyv2xUR3WfdxDCCCsfOu3R1Gj6X7oGm2X/JoA3wQ25+QUQ869X
+lCbW4I4qSWoXE7XlIUw6iVNGrllT8hmThKCZnqLCk/vshf46iBG8XfWGsjIjAuGb
+3T7tm0mqQjpoU+5VKf4rPMM7Pidze6kSYGNfJtNG2ASCY/3DL3N34L3Av7fpD2ce
+CtxWpHnpfYP4F5XmtOgYnZjj96UGI74QuaKNIFrfhBquvMtixkzxt2zVVgkesBvy
+8qH0AB/+a6CYb7S/aniZG8/BYtT22gpnKFPtAFq7zKM3JcFWygMr2HYRZCwniB2Q
+A4xJwf5444UOMPiO5U/hwGn+oqS+otR3YcFmSzYjmxz9TdTVaK4Ur+DAHhLnWa7/
+RWr5y5d05AcUJ9gy1Ardc0yItofdbFNSARIcxPjsWI9aZiT0HUQG805ilxiGf0Oz
+o8mXmMo+p8G0nEJauw0RhfkLepRQbQddWEKTynfw4EEL5kD102MMEqo+tKj5bDYz
+xImuNYWpK9RrQQPIb5XiuowtQBMwbSZ+eh2AllxnzbI+EBBll9A=
+=B4BN
+-----END PGP SIGNATURE-----
+
+--NNBeZRJGrv3j1F1i--
 
