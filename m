@@ -1,282 +1,187 @@
-Return-Path: <devicetree+bounces-215880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60014B52E98
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:35:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 897A9B52EC2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:39:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C384B7BED04
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:33:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EB5316B89A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1CD314B6B;
-	Thu, 11 Sep 2025 10:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6052730DD15;
+	Thu, 11 Sep 2025 10:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TYUdA5Sl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdKPMovo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA58F314B90;
-	Thu, 11 Sep 2025 10:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB4F2E7BAD;
+	Thu, 11 Sep 2025 10:39:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757586655; cv=none; b=CQQUpd0WGdNW5rodW8+m2KlOmuBARqUWDHvoyewwFIUx2y1S6VbHuHNrpVNvxJRMakYm+zwbpln8lCDMffpWEpq7cmelw/Prwf0NXKAcrg503RT3IPSJUUmxrproFNPiqo/XFtf/OwY6H/cWW4Q46FhGkQR2sqHp8wEBAcVfuC0=
+	t=1757587190; cv=none; b=avLpt4CsQjIk7zvUcUNctnCoX1WlZBN/r4ZA0dUXh/fMg262xNuYZCXCXLbhZz8SRKtXtdTCkIY0l2KK6TlyHMQ7fHildC8xgx9wsKVtUqzPm8Cms7ohEJvp81+b8Nck2aEbIGijdUsQzNRPXn7uJ1CyQr0MNRQdJEL5vtxwrkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757586655; c=relaxed/simple;
-	bh=PeQcWgW+6BRifCT1bAsn59BMr7bmgL6Wn8VU5RvTy5A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=saOG5oOuyfnq0mkm+ElGaSN6LNlqTJ6/53LcCnTOur+zU4HzjAir2JwmYLasAqJ+zp5bqpBuN6SR138v8oVwgS90xN2x5U8sVqH81CLDUFMTYxGSlNTnDmIFkf0l5h7UqcaI2cEaqCslOQlwVdJClog10YlMVXNVG6Q1QTqBzYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TYUdA5Sl; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BAUXk7784589;
-	Thu, 11 Sep 2025 05:30:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757586633;
-	bh=QVv8AdI4R/QwDcoR2XXlW2WKNnCARwiE4G1Ip3urWKU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=TYUdA5SlfeCvwvodqf90cmwHEd9l7iltgTCL09iEG+m1HA8tOpwNyjQitub1Ox/K6
-	 rtmFTGgZ57Wn+zw0OtEczFiMVqTRjfQOhcNp5QjvcovwBDJG4Xxj4clsumNBWzuPIJ
-	 vpYYuuhAMnnYAjuYQxcZU/yA7Ipfn+HxDB/jzlZ0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BAUWx4433782
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 11 Sep 2025 05:30:32 -0500
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 11
- Sep 2025 05:30:32 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 11 Sep 2025 05:30:32 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BASXbu1985821;
-	Thu, 11 Sep 2025 05:30:25 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
-        <mripard@kernel.org>
-CC: <r-donadkar@ti.com>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
-        <s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <conor+dt@kernel.org>, <sakari.ailus@linux.intel.com>,
-        <hverkuil-cisco@xs4all.nl>, <tomi.valkeinen@ideasonboard.com>,
-        <jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-        <jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
-        <hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v7 16/16] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
-Date: Thu, 11 Sep 2025 15:58:32 +0530
-Message-ID: <20250911102832.1583440-17-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250911102832.1583440-1-r-donadkar@ti.com>
-References: <20250911102832.1583440-1-r-donadkar@ti.com>
+	s=arc-20240116; t=1757587190; c=relaxed/simple;
+	bh=UNGCJmmeHVEWauLXJHkwHmIe5gGbiGUznfmjg75Y67c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L+de88zXOX2lSqxPE+66T/dJkofG8ciuWVYxJzak+WEUFBESDsXTB32reQJR2krU4fZZLFWLnmn3Y66x+nS/0izDCem7IzAHneNMDdvxE+UT+V2kS3Iki5mmeHt0rW87S2A6fjkzdoq7HlaOQRRGBe405K3D+oibwCNT93l/90o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdKPMovo; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-31d6e39817fso633934fac.3;
+        Thu, 11 Sep 2025 03:39:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757587188; x=1758191988; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DLjSCnWswzv9dZZDKZ0ejlzc7IJyVoJkpxm14LgUN2A=;
+        b=AdKPMovon6UeGb97Nrq6ilRWirsgd+jcI9keggVMycXrArdEZHKpOJ0AF1oXu/LBQO
+         vj5Hh1Vjdr978Rox80LzN9vwxRs/UvWqpqGG5gWZ6B5gVjl5e27CUzy5ANYLt3e4Itq3
+         rJ8QQFzu8nVysSOsnR1uVBMtPabgcNosug89n6YXNffQ5qiC3XUHuTT8xrCboOMbm0i4
+         N4qVhjDYJ2MmYcIK3mzprn1bt3LQSNingwSqEh6sWnw2a+eLAczfwgKuBbT2jB3RBfnS
+         aIs+XreFGcKdHSZnXr5tI+UIYy5d5KoEIPBcKzHCyAq9jUnvSBHWoJpXkzlovBIScOXR
+         4GVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757587188; x=1758191988;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DLjSCnWswzv9dZZDKZ0ejlzc7IJyVoJkpxm14LgUN2A=;
+        b=B08Gg6nxspme+2YUM1t/IIAksFqPMuzWs+FszDm9njwI0Y6TEdaBEt4iB9iJpcTjjn
+         90sL7p3QPQpTpCHNULRqI4yFrntP2Y9Hxqc5UoTciuZ7gOsOXav9KNUBqKlgS0mLKJqt
+         oeCeuIXIMUeQKVEJTh23ChMe+tXaDB0+DKtJfugISmDF6O7HztVHHbZAjXABmaiCmv4J
+         ryFGHCq3ItsALS+BbHgKh7n9VM08CzySoNYUBYGQ70FY+7caLr7n3xqrwbZhDvCexIdd
+         3UvpNHccbTnY7TuCFQ8FvI5z2GZ9CgQTWk+vkUr7z14LuwkIr51Dvhkek78BeZySEN+l
+         rmww==
+X-Forwarded-Encrypted: i=1; AJvYcCWdEnjO4xCWhdvFBzvSn51akGO9WGx+Zn97stsJII7d1g4Y0fydqIv5p93+cRDkqu2YYa/rjDNDqRF1@vger.kernel.org, AJvYcCXkJ19yRL66K2FWrzmq9TApkCUAtKJgp/FQkBZfFHf0aSICYh/qmWpLbamwDqawpCivSwmFVznhG+A9cs8F@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMZ42aR8aaIR2fNUwxtVM0Gi8CLGmSoImSd30tsra48KxZIA4B
+	EXFmZt6jNv1+8gfmdZhvhZL++els5DZed/sNaTAlJiuCiGLVIxo7gjVgK5Yeuq/UgJ0g2tCCm5T
+	a9pmWTzv7Fvk91CTQIIKfDGRfvs02rAY=
+X-Gm-Gg: ASbGncvJeM5MPrdbFNe+tZDwZmq0vD+uZhwLvB6tMfziGu9xclqDU1k5wunajcW6h1R
+	LBfxB0FGsfWvcA5paEQ1mZSQN4MNXsVXVVGiFkPPVIgCXZLsNEAIHQclSKHnWPpqFAaNmc8LIFt
+	q0K7hIM9tW2al1QfCeH8z9i4kqJY4NoPZuBlYLwZDd6e3iI7MwuPbi2WlordlN9xOiCtfY31VVr
+	wBIu/JJQrIH0njjN0i3Ca4f+Nk48btH+vOsopLqgw==
+X-Google-Smtp-Source: AGHT+IFyCkhyOO5BdxLqYhRVEoHLOKncnMI10XYYASRWLWgCIofWQYolA+/K09A/SdRXA+1mjsurgRLKWiZBhqwM3To=
+X-Received: by 2002:a05:6871:d489:b0:32b:d4f1:89f1 with SMTP id
+ 586e51a60fabf-32bd4f1a28cmr2767601fac.16.1757587187676; Thu, 11 Sep 2025
+ 03:39:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
+ <CABZAGRHSVY3uneK7qb2nwDrjjRsLXzsm0mwQncU1iRZac6tAkw@mail.gmail.com>
+ <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org> <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
+ <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
+In-Reply-To: <CANhJrGMa29YMLUJSL3yqxC+AH+wcLNb8Qe_aiN2uuM9ZCvF72g@mail.gmail.com>
+From: Nick Huang <sef1548@gmail.com>
+Date: Thu, 11 Sep 2025 18:39:36 +0800
+X-Gm-Features: AS18NWCiHma0gY1K7rqjlYLs1_HbIaST8Q5Euaa4jJzJpE8oJOca4cQdUYtCVD0
+Message-ID: <CABZAGRH=cu5_HZwseJ+GuokUNkEPDzoHewebXmLzcMFaTGdTOQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Johnsodn Huang <kusogame68@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	weiyan huang <dory85109@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Jai Luthra <jai.luthra@ideasonboard.com>
+Matti Vaittinen <mazziesaccount@gmail.com> =E6=96=BC 2025=E5=B9=B49=E6=9C=
+=8811=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:33=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> ma 8.9.2025 klo 2.43 Nick Huang (sef1548@gmail.com) kirjoitti:
+> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=88=
+7=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:07=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > > On 07/09/2025 15:38, Nick Huang wrote:
+> > > > Lee Jones <lee@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=883=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:42=E5=AF=AB=E9=81=93=EF=BC=9A
+> > > >>
+> > > >> Looks like you corrupted the subject line with the commit message.
+> > > >>
+> > > >> Please resubmit.
+> > > >>
+> > > >>> From: Johnson Huang <kusogame68@gmail.com>
+> > > >>
+> > > >> Use `git format-patch` and `git send-email` instead.
+> > > >>
+> > > >>> Co-developed-by: Nick Huang <sef1548@gmail.com>
+> > > >>> Signed-off-by: Nick Huang <sef1548@gmail.com>
+> > > >>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
+> > > >>
+> > > >> It took two of you to correct the word "and"?
+> > > >>
+> > > >>> ---
+> > > >>>  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2=
+ +-
+> > > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >>>
+> > > >>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-p=
+mic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> > > >>> index d783cc4e4e..d16c82e398 100644
+> > > >>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yam=
+l
+> > > >>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yam=
+l
+> > > >>> @@ -41,7 +41,7 @@ properties:
+> > > >>>    clock-output-names:
+> > > >>>      maxItems: 1
+> > > >>>
+> > > >>> -# The BD71847 abd BD71850 support two different HW states as res=
+et target
+> > > >>> +# The BD71847 and BD71850 support two different HW states as res=
+et target
+> > > >>>  # states. States are called as SNVS and READY. At READY state al=
+l the PMIC
+> > > >>>  # power outputs go down and OTP is reload. At the SNVS state all=
+ other logic
+> > > >>>  # and external devices apart from the SNVS power domain are shut=
+ off. Please
+> > > >>> --
+> > > >>> 2.43.0
+>
+> Hi Nick,
+>
+> Thanks for the typo fix. It looks good.
+> I, however, am curious how did you build the recipient list? I hoped
+> to be notified about changes to these bindings and I'm not CC'd.
+>
+> Yours,
+>     -- Matti
+>
+> --
+>
+> Matti Vaittinen
+> Linux kernel developer at ROHM Semiconductors
+> Oulu Finland
+>
+> ~~ When things go utterly wrong vim users can always type :help! ~~
+>
+> Discuss - Estimate - Plan - Report and finally accomplish this:
+> void do_work(int time) __attribute__ ((const));
 
-As this device is the "orchestrator" for the rest of the media
-pipeline, we need to stop all on-going streams before system suspend and
-enable them back when the system wakes up from sleep.
+Hi Matii
 
-Using .suspend/.resume callbacks does not work, as the order of those
-callbacks amongst various devices in the camera pipeline like the sensor,
-FPD serdes, CSI bridge etc. is impossible to enforce, even with
-device links. For example, the Cadence CSI bridge is a child device of
-this device, thus we cannot create a device link with the CSI bridge as
-a provider and this device as consumer. This can lead to situations
-where all the dependencies for the bridge have not yet resumed when we
-request the subdev to start streaming again through the .resume callback
-defined in this device.
+I used ./scripts/get_maintainer.pl
+Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml to
+generate the maintainer and CC list.
+Sorry for missing you previously =E2=80=94 I=E2=80=99m including you this t=
+ime.
 
-Instead here we register a notifier callback with the PM framework
-which is triggered when the system is fully functional. At this point we
-can cleanly stop or start the streams, because we know all other devices
-and their dependencies are functional. A downside of this approach is
-that the userspace is also alive (not frozen yet, or just thawed), so
-the suspend notifier might complete before the userspace has completed
-all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
+With the current patch, should I resend it? I=E2=80=99m not quite sure what
+the proper next step is.
 
-Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
----
- .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 128 ++++++++++++++++++
- 1 file changed, 128 insertions(+)
-
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 7a6e9a9d6c19..862b9a82aa71 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -132,6 +132,7 @@ struct ti_csi2rx_dev {
- 	struct v4l2_subdev		*source;
- 	struct v4l2_subdev		subdev;
- 	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
-+	struct notifier_block		pm_notifier;
- 	u8				pix_per_clk;
- 	/* Buffer to drain stale data from PSI-L endpoint */
- 	struct {
-@@ -1557,6 +1558,124 @@ static int ti_csi2rx_runtime_resume(struct device *dev)
- 	return 0;
- }
- 
-+static int ti_csi2rx_suspend(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	enum ti_csi2rx_dma_state state;
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	unsigned long flags = 0;
-+	int i, ret = 0;
-+
-+	/* If device was not in use we can simply suspend */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/*
-+	 * If device is running, assert the pixel reset to cleanly stop any
-+	 * on-going streams before we suspend.
-+	 */
-+	writel(0, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+
-+		spin_lock_irqsave(&dma->lock, flags);
-+		state = dma->state;
-+		spin_unlock_irqrestore(&dma->lock, flags);
-+
-+		if (state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Disable source */
-+			ret = v4l2_subdev_disable_streams(&csi->subdev,
-+							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							  BIT(0));
-+			if (ret)
-+				dev_err(csi->dev, "Failed to stop subdev stream\n");
-+		}
-+
-+		/* Stop any on-going streams */
-+		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-+
-+		/* Drain DMA */
-+		ti_csi2rx_drain_dma(ctx);
-+
-+		/* Terminate DMA */
-+		ret = dmaengine_terminate_sync(ctx->dma.chan);
-+		if (ret)
-+			dev_err(csi->dev, "Failed to stop DMA\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_resume(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	struct ti_csi2rx_buffer *buf;
-+	unsigned long flags = 0;
-+	unsigned int reg;
-+	int i, ret = 0;
-+
-+	/* If device was not in use, we can simply wakeup */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/* If device was in use before, restore all the running streams */
-+	reg = SHIM_CNTL_PIX_RST;
-+	writel(reg, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+		spin_lock_irqsave(&dma->lock, flags);
-+		if (dma->state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Re-submit all previously submitted buffers to DMA */
-+			list_for_each_entry(buf, &ctx->dma.submitted, list) {
-+				ti_csi2rx_start_dma(ctx, buf);
-+			}
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+
-+			/* Restore stream config */
-+			ti_csi2rx_setup_shim(ctx);
-+
-+			ret = v4l2_subdev_enable_streams(&csi->subdev,
-+							 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							 BIT(0));
-+			if (ret)
-+				dev_err(ctx->csi->dev, "Failed to start subdev\n");
-+		} else {
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-+				 unsigned long action, void *data)
-+{
-+	struct ti_csi2rx_dev *csi =
-+		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
-+
-+	switch (action) {
-+	case PM_HIBERNATION_PREPARE:
-+	case PM_SUSPEND_PREPARE:
-+	case PM_RESTORE_PREPARE:
-+		ti_csi2rx_suspend(csi->dev);
-+		break;
-+	case PM_POST_SUSPEND:
-+	case PM_POST_HIBERNATION:
-+	case PM_POST_RESTORE:
-+		ti_csi2rx_resume(csi->dev);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
- static const struct dev_pm_ops ti_csi2rx_pm_ops = {
- 	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
- 		       NULL)
-@@ -1629,6 +1748,13 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
- 		goto err_notifier;
- 	}
- 
-+	csi->pm_notifier.notifier_call = ti_csi2rx_pm_notifier;
-+	ret = register_pm_notifier(&csi->pm_notifier);
-+	if (ret) {
-+		dev_err(csi->dev, "Failed to create PM notifier: %d\n", ret);
-+		goto err_notifier;
-+	}
-+
- 	pm_runtime_set_active(csi->dev);
- 	pm_runtime_enable(csi->dev);
- 	pm_request_idle(csi->dev);
-@@ -1659,6 +1785,8 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
- 		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
- 
- 	ti_csi2rx_cleanup_notifier(csi);
-+	unregister_pm_notifier(&csi->pm_notifier);
-+
- 	ti_csi2rx_cleanup_v4l2(csi);
- 	mutex_destroy(&csi->mutex);
- 	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
--- 
-2.34.1
-
+--=20
+Regards,
+Nick Huang
 
