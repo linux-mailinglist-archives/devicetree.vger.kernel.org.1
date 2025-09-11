@@ -1,181 +1,157 @@
-Return-Path: <devicetree+bounces-215929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0EEFB532D6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:55:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF7EB532E6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:57:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C71CA8493F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:55:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D1917A2A30
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50560324B17;
-	Thu, 11 Sep 2025 12:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9220322DA6;
+	Thu, 11 Sep 2025 12:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i0HYpqA9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LOFpioyS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B302322C9B
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E153322A33
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757595306; cv=none; b=HvXk9BLLtPjOdXMvVqFunVRlDnr7lrHEiSk6SqeuclRYEDhIz+OYKnxiEfDPy3PklzL5qt2B/yfCQkDoMK07RwYB4DhkIiwoq14KSq4TB0iBpJTk49+EOZDT4LoktLJdtgXciXb0Am1+J9WOYWXRXGnSjf47d6Pnku+uODUoFJ8=
+	t=1757595450; cv=none; b=stW9CUd8T+tdkfCCkoWWH/+BguX6dc8rG57SVqBfnbXmXMTsV5gYuAyOQ3aHWvhhomc5yHXXpbQZRZSwIcxg1Z1vEmYJ8z+Ag9OmDCPa4jqLVIg5PJjRycKUEHJGQRQJVWbTogBLpkpzp3OFF3+iHQeV4mNR6pX8+odCyK90kjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757595306; c=relaxed/simple;
-	bh=2oSOqVZN2yEJdOr1yjJzjaX0EOiSKgZ7QouF6tLg8hI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PAh/cOgCJASGNN9Dw9Lb97XwLbh+LP7CNguc0fuAQgXI1031UdWBFVdsPYazGifF0Jsd/vrvgz11c1lkTcTog+r5kVhSIeX3oZtpBvcev4dwPts5BUy48jOsNyjFlHBlKywr0T1x1xK2uHStSC0ydYm4XWr2ZqbOroS7B6n/vo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i0HYpqA9; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3e4aeaa57b9so762029f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:55:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757595302; x=1758200102; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lzHYWAUSXTU099HyzOJQWZd7CmwZnR6rVbbpZB00I6A=;
-        b=i0HYpqA9pIZnYpH66vlaiYOoUVo2UcmMd8R1bZO1Br3fDvHP+XPLOWDweEnV9BG28l
-         KMKIHIzqJVThkhBxjoonazAog5ojh8jILz2Ho5p9H+2irfGIsTAq0VF6jqSvTTlWl01g
-         daNCOngDBz+dKWsV76O8rk3udNhCD1QFVtAgU6K3NgDa5iwuwjL7rUAeKgeDyixhotbb
-         6/Zj08lQJtTUQJXRd2ABrbVpg/boX6pgUxdq32ovPgeZVfgE1iS/GGFX9vbhi6mks5Ae
-         cwksYUyX966LFxtasKaaA4ifA+3ZkJLpg8IGObzFFsaohT04aIjla/ZJP0AxSMcBUMxk
-         tDqw==
+	s=arc-20240116; t=1757595450; c=relaxed/simple;
+	bh=eYP9ldOr8fFehKQpvW8BhB6kTjTJQtw4xncb4uUpb7g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qIV98ocJ85TH57SK0JdCTBK/KnPZQGfRC22p1Uba/4Ga1W1yFB51UdiQG9lTua4+b3CJEdS5Y8f+KY/nchNsVb+20kH9Lp3MJIOS9OCoDh6nhhrtu8l/0mRVZ0zDmxE7tegWrMTt85xW3/LtWu6fgAxpPhPwUc2AnV+4LpbFwGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LOFpioyS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58BAQbBV008244
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:57:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=5F4kfREjeTfa3WqC2b/52lNM
+	yv9yD3hosyjF57uJTA8=; b=LOFpioyS9HMKxtSXT1eBG8itb3soeCkkvdviL5y7
+	r7k7dvSbrqFumJfMv129e9MLbytCrCNOlkgq/BzGfpKPyQYRXDQfYYsnyhfQ2LzC
+	jiFiHMPazPyXNf87ca9RgMd5JlYmblWTs0lIbK7JtevSbJR8Z7XTwpnQI/jZSucv
+	CYzI3gpj3CMVywF4txmp9Bo/ZzjqOhO0AhvGbgf83fcSaBLBnI9I1/YT+Up6Y6TP
+	PUEG+Lwb/UC6OjzgHy5B4W/pWH4zOSEY4GVR+Gf4t6NDeAcWBOT4ED8XhNLc1Sc3
+	il3+Agv3M2bXsMT71eo23InBbrzEKBBlyLkAKgWpuSOylQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490aapqy03-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:57:28 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b3472b7efeso13581061cf.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:57:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757595302; x=1758200102;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lzHYWAUSXTU099HyzOJQWZd7CmwZnR6rVbbpZB00I6A=;
-        b=jUWSNOVJaof7gxfKvqAGHLTXJJsQnDjU0pFASMDj/Ie82JQIbp+6gqnY1NDKag1fjF
-         27YSVQ8x9biitV2TofgitNW+1fcWWUkHT9TNt4hy2hIRSattpBVnMR+gw71OXC0A4v17
-         ytigw4+5sgceILbHOszuPiLE3hgMkCGDSZwc8MO4IkkbDaRwgwK+vHsTYuIlsUMhKIwv
-         ysBX5VaAMnLNXGXR/x/RMzqqU9dcbpC/Y85TqS9xgeB3/WL3zXc1D889gpjI4rCEV7f1
-         yfbvsz6Guph1OEpooTFsoWBTT7zkDkdAYMtV08QIw06yLRTyOxrOrlXQOsosfKs0sIva
-         ZEcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPzm1I/Z9+Ajee0wvCVl1sAtzetu+V57QkDlmViQthaqkEvXNQzcEzeO3TZKENN0bunRpSCO8TJbv1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+kKSMUHXb4oD1GOFKzEaLhkVmzB3jqrHO6Z3uzLzimodv5Z8G
-	OIr/TgG+Rhp4pGwRW/vX6krb6lZW68Wj3k0Q5EO1+23vDSdHan4UESGhhoiSMbF7kt0=
-X-Gm-Gg: ASbGnctgi9V3O5yHjBiQ8YGYWHQ7EeICUPKOmE7F9Emc4lwPrGRNsxWZgQcFdZPRUg+
-	ZZdo4SDD7s95zvlqV1ttJpLGuzhHjC/9wfdG2FyPalR3XqmqZDOVzG3kgoYqvdk4PH6gZ3wAI83
-	jT+ruL31PeuI84gGEwg0ufy675Q3n6P1Yt6LbMP/9gdmIBZ6hucX7pZX356A2odwz0pvSxA58SK
-	hpCj56S6hl5CdVRwMhwtUyIbFMKDnShwVUwnlQxauXf5cJDvTE8CDj3XhYzMCz2Wo1g6UpXGlrm
-	lQjP2rq2ybdFItg4mjRUGCuKDJwWjAfdYscRoiC86NtkB4HyteVe/vifnDayuMKEWQygMdwTy9K
-	w2CF9elgJRdQMTw1Dg3pa8UkHuqICnx9j/kLxuJg25x1jw6hRIO4JQDSXpMEMZHFklaoxDth+j6
-	3JS3d4GR3S5G1bZPz3PKh4c6k=
-X-Google-Smtp-Source: AGHT+IEebi/zE5XDYf831iEgQZ391cMJunsa1tiSBIWMBmOGscKQgCSQqBnDSCMdT7jr02fwbzNWdQ==
-X-Received: by 2002:a05:6000:2003:b0:3e4:bb5f:ee6d with SMTP id ffacd0b85a97d-3e641a6015bmr16847418f8f.15.1757595301674;
-        Thu, 11 Sep 2025 05:55:01 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:d521:838e:7c69:f457? ([2a05:6e02:1041:c10:d521:838e:7c69:f457])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3e7607d7593sm2360205f8f.43.2025.09.11.05.55.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 05:55:01 -0700 (PDT)
-Message-ID: <b4d2ad54-54d5-4c26-be49-b6ac671683d2@linaro.org>
-Date: Thu, 11 Sep 2025 14:55:00 +0200
+        d=1e100.net; s=20230601; t=1757595447; x=1758200247;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5F4kfREjeTfa3WqC2b/52lNMyv9yD3hosyjF57uJTA8=;
+        b=fR8wAnJew1Ep0wr/a4aWNEuLyDWNH7rJ/YnX+aNXY1Pni4m4SIbr5+4t9d73fJnJl6
+         8kIPjZNw2HXtQxl1lu31reiJcAzwYye/luyfs/1OMCQN/nPkwc0GWklm0IDArc2wHKRe
+         kheD0ZZSmEI4D1fySFk3TvOWR7TuQw0rhRmigLwUHiMdBHPK6aaB1bXR/B/BTBEAnFxp
+         dEFTrdNut9E0FxzBlJOXgKLbcZlJ5VdIzVrHQlpjfIBK/JHKMa7XHTGvBch9AxqgjUpY
+         3C+Rv9DprRTl1o8Rlo8+LvZvDXoeKxac7LHKTQkAK/iwpUKcYQuMx0iDE43gHNnKe2YK
+         EQmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUKFl3G8wVbk9DieUMuY6AHx4RFHK2cvBbwsHNTbh7Lt0gWIYNHtYoBc+i0WA2andmJQcgcOzzE/tYo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVBurJCfBm+UKvpPdaEfzoQIRUWktKHOWm+J1He50MFmpYs4RF
+	a7KJ7DgXsp30mcpMJ87cd9BmP7Vpoi29E0UvgAwWQGdHNXptr+AcPtoJJebsRgtgToCX7JluVAo
+	vJN9tSa4ITnLCuxPJ4TKIiXU3lK+jT29woIFJo8huBZBp7NzkeFeFtxH1/Vjn2nhY
+X-Gm-Gg: ASbGncsLnfw8941sFYHDB5Ue3/uytpVZjeT0L3/S7+0n6tsRu1gK84hvr9QIW7qoe+t
+	RaN/vSrf+hvPric8CszHi9LwFxPQ645w/r6WJspmFpiI87Y9Wp1Fr6tsPEFzjhc0Ww/GxEAbmtp
+	Kll+qLt9cR3K42/OTKIFo10DSID1dKfPCyedBJBlbEmdi3T63ffSbhy5UFCdxOEAQUBuYvTdZM4
+	BvnvFY1hDqM1vi/xGenzl/Evkd4+xvRJP3zcXsWg0YOrxzXXijXk3NNYuIk96RJQ6MPZxLQOw1n
+	iGsrU7wqBfD8XnVd8GgKYl0e6Mk9JrqlN44ryOXTbdBpmCiz3LNyb/9Yf7SWHnwCaoKLDQ9tbNk
+	2dlL3aInL8YSw/ZoA/zMjASoOMBHd118GN77ft/ABphbZXCAzm1cO
+X-Received: by 2002:a05:622a:130d:b0:4b5:6f48:e55a with SMTP id d75a77b69052e-4b6346f39e1mr42311741cf.12.1757595446927;
+        Thu, 11 Sep 2025 05:57:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEmfeR7fqbYQsz/Cx0vhB0h7BtieRzZWfwREik41OqRawcDy0H0xPFZm8LueVdNLZmIIf7boA==
+X-Received: by 2002:a05:622a:130d:b0:4b5:6f48:e55a with SMTP id d75a77b69052e-4b6346f39e1mr42311341cf.12.1757595446424;
+        Thu, 11 Sep 2025 05:57:26 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e5c3b5fadsm422254e87.6.2025.09.11.05.57.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Sep 2025 05:57:25 -0700 (PDT)
+Date: Thu, 11 Sep 2025 15:57:23 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/6] drm/msm/dpu: Add support for Glymur
+Message-ID: <d7his4r3txgmpgptl6ohnjzslm5s3wquxxsi67gli4wcyszlsd@klru2kjlk6i4>
+References: <20250911-glymur-display-v1-0-d391a343292e@linaro.org>
+ <20250911-glymur-display-v1-5-d391a343292e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250910155759.75380-1-daniel.lezcano@linaro.org>
- <20250910155759.75380-3-daniel.lezcano@linaro.org>
- <20250910183212.6640e662@jic23-huawei>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20250910183212.6640e662@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250911-glymur-display-v1-5-d391a343292e@linaro.org>
+X-Authority-Analysis: v=2.4 cv=eMETjGp1 c=1 sm=1 tr=0 ts=68c2c738 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=Z5WwtQVXMiuTecYWR00A:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: 6-Y_ivCh9LYpJ_S66pOYQj1K8t3_67Pw
+X-Proofpoint-ORIG-GUID: 6-Y_ivCh9LYpJ_S66pOYQj1K8t3_67Pw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAwMCBTYWx0ZWRfXxv6dcDvvVaQR
+ xAQRd+IHgI4A5aWEK5pd/n4cTTdOWVC2Q+eHv92c7gqkLSy2EXldlpk2R5EJfqPzJRSa8i5tYKH
+ i5XAk0cWbIMkss0ZNUPS0tr/S+3PJxGfimZAYxcy3Fa2FVItXt5sDDeatL3NRyZ64BH5Yx7BzYm
+ 7QSZevcfHEosGWn8KqtQlzalGVX+CpmL6uy88EOeeSnY/gPvHfF2rFV346tYcnMSFMBkk/fy613
+ H8l0cEVeKnOjqa78vV5JrMvA9vMTwRbOmWvyEG3yBr0lIrSatbWqcq4Cnm/krNT512oAMZi20br
+ /fRLruXP29dbHoYXc1eZ4LdfQjCMeFmWPl6XaetvBgpU7HPWLEVhliR4tpB1/nmUUOugI2gXoSq
+ P8T/CCU0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-10_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
+ bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509060000
 
-
-Hi Jonathan,
-
-thanks for the review
-
-On 10/09/2025 19:32, Jonathan Cameron wrote:
-> On Wed, 10 Sep 2025 17:57:56 +0200
-> Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
-
-[ ... ]
-
->> +/* Main Configuration Register */
->> +#define REG_ADC_MCR(__base)		((__base) + 0x00)
+On Thu, Sep 11, 2025 at 03:28:52PM +0300, Abel Vesa wrote:
+> Add DPU version v12.2 support for the Glymur platform.
 > 
-> I'm not really convinced these macros help over just having
-> readl(info->regs + NXP_SADC_MCR_REG);
-
-That is really a matter of taste :)
-
-I used to create this format in order to stick the macros with the 
-debugfs register code which is not part of these changes. There is a 
-similar format in drivers/clocksource/timer-nxp-stm.c or 
-driver/thermal/mediatek/lvts.c IMHO is less prone to error than base + 
-REG all around the code.
-
-Do you want me to convert all the macros to info->__base + MACRO ?
-
-[ ... ]
-
->> +static const struct iio_chan_spec nxp_sar_adc_iio_channels[] = {
->> +	ADC_CHAN(0, IIO_VOLTAGE),
->> +	ADC_CHAN(1, IIO_VOLTAGE),
->> +	ADC_CHAN(2, IIO_VOLTAGE),
->> +	ADC_CHAN(3, IIO_VOLTAGE),
->> +	ADC_CHAN(4, IIO_VOLTAGE),
->> +	ADC_CHAN(5, IIO_VOLTAGE),
->> +	ADC_CHAN(6, IIO_VOLTAGE),
->> +	ADC_CHAN(7, IIO_VOLTAGE),
->> +	IIO_CHAN_SOFT_TIMESTAMP(32),
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  .../drm/msm/disp/dpu1/catalog/dpu_12_2_glymur.h    | 541 +++++++++++++++++++++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        |   6 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+>  5 files changed, 550 insertions(+)
 > 
-> Whilst we only insist on monotonic numbering, putting it all the way down
-> at 32 seems excessive. Why not 8?  Perhaps a comment if this is to avoid
-> moving it for some future feature.
 
-The ADC has 8 channels for external acquisition however others channels 
-8->31 are described as reserved. They may evolve in the future to more 
-channels. That is probably the reason why 32 is used here.
-
-[ ... ]
-
->> +	indio_dev->name = dev_name(dev);
-> 
-> This should be the 'part number'.  That is a little ill defined
-> for a SoC integrated ADC, but generally not what we get from dev_name()
-> on the platform_device.
-
-Sorry, I don't get the comment. If I refer to the different drivers 
-there is not consistency with the iio_dev->name.
-
-rtq6056.c:      indio_dev->name = "rtq6056";
-rzg2l_adc.c:    indio_dev->name = DRIVER_NAME;
-sc27xx_adc.c:   indio_dev->name = dev_name(dev);
-mt6359-auxadc.c:  indio_dev->name = adc_dev->chip_info->model_name;
-mcp3911.c:      indio_dev->name = spi_get_device_id(spi)->name;
-
-Are you suggesting to use the compatible part number ?
-
-	indio->name = "s32g2-sar-adc";
-
-
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+With best wishes
+Dmitry
 
