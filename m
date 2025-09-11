@@ -1,138 +1,174 @@
-Return-Path: <devicetree+bounces-215823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC04B52C5F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:58:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D618CB52C6B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 11:00:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2ED537AA2AE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:57:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56D9A7AEBE4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0712E6CB9;
-	Thu, 11 Sep 2025 08:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6F6221DB9;
+	Thu, 11 Sep 2025 09:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="LWPQrx41"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jM9vdag0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3294C329F09;
-	Thu, 11 Sep 2025 08:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C045A1D8DFB;
+	Thu, 11 Sep 2025 09:00:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757581113; cv=none; b=mKwtkw7/nZlIfpTDBu3pBFetC2epcIVEIXx4wp3MuLHIvGfPzjtuyqJOlIz2PkkOaJfe/BzsE/vof7s4jnqJFVKeh98Nd1tN7kKNqObjolliUlPIjb/LepNIu4/BgXbQaE3ePvVhvvCd5hn1iUSCwqa8NTJfIzzbKFcNyeoEI+Q=
+	t=1757581227; cv=none; b=C/yZ5ElxCmyL0svSivVqwdZRCOKs0xw3oxQdHW7p6+FxbZPPAWmJGdmBojfPvlftFQU+3Rt0mcDYxG55JvZH6Q7oSQ9k3yfpBDp0aGuRvuZGIWX/k19BgmiOzwM9Flh7+TxFJxWlWBgmipzXMk78MbH+2in9UieXUbqotbdMam0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757581113; c=relaxed/simple;
-	bh=GD1F5c/GfNTnWRPnAjonwQ5ZTjazKOg/tPdnxdK9PSo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=csqqK7Kdfgc5YiLbXzB7NboTiI4FNdeviNlJO21unqEm9bIyxyLo2dUhywGDzHKGezJn/ATEXLQ4nm8hZLnpujKKjGUclAqHIT0GrIBFmXg019X78VOSEGLiPR5zBKrlu7Xk8ZpnU6EiV86sZePyc+/8JAfi5YJUiHJwPT/5wRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=LWPQrx41; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tPLuj/xTIdlTADyQSmFwiDNGb2wswqT9CA7Ixd8e3JM=; b=LWPQrx41+Rmfg6soc8oQ3DEebT
-	bVi4OQPrsC+xG5p3CX+gQM//aAIc3Fnm7CMBogIaJolTkGVZpz2Pq+qCDdf6M9oASVduVjkTUMkDE
-	tkqEKyQ4V0gmgNaLeX5b14pHDON4ar7eA4rlZSv0JkApnRdB5RIlEZRTj0D0s5cD2x/NFYbAvbAd3
-	szZLZ1NVhaUdbLgJFt8OgaW3ECtv6UMA3JqySsjpdMqATN+8kKmDE9peKt/5dsZ6xXNmv93m5GeTg
-	Hih91SSLoTQ4FYfTqr7bzcGsNJaSWHwmiZmVpQp+ElZ58lMPYeUOq0qVfZWAd/s5KzzoiEdSdGda8
-	T5s8PQkA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55362)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uwd89-000000002hN-1Tq6;
-	Thu, 11 Sep 2025 09:58:13 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uwd84-000000002Db-3VMI;
-	Thu, 11 Sep 2025 09:58:08 +0100
-Date: Thu, 11 Sep 2025 09:58:08 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 2/9] dt-bindings: net: qcom: document the ethqos device
- for SCMI-based systems
-Message-ID: <aMKPIFmOS1riOajH@shell.armlinux.org.uk>
-References: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
- <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org>
- <24cd127d-1be7-42f4-a2ec-697c5e7554db@lunn.ch>
+	s=arc-20240116; t=1757581227; c=relaxed/simple;
+	bh=MABwQ3+7+YgcFQDg54W+M2+alk8Qc13M7omCKmNLchA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SItP38qGMzYMHbqBKnaBVI2xP0pA9BQDnU7fjuCx4zto3K3NRvREX52udJdLg2KMclB/vPFD8S6wF9qjOK1BK7KtLsADwopAfW//3HxByhpgPAq8D4nuU0DY3x1LwMRq+0qRC7VPm9sOtEpCMcSVGxzGHxsmdL7E5xAEXz6hyoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jM9vdag0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B612C4CEF0;
+	Thu, 11 Sep 2025 09:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757581227;
+	bh=MABwQ3+7+YgcFQDg54W+M2+alk8Qc13M7omCKmNLchA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jM9vdag0netknClNaegVXbSNE5BWspMqNy9BlafJAJ0HELbecIkZwE1ouHRxstzAo
+	 +6ndafzcoP3G/wt1kLeURKBAKr3hakdube+TSEI1Z8tiXE7vU+FkyQqp0ykXyO8F9d
+	 DU2x9BXytTNORNhVb2EIJ/pYJVOQ57NKj833XJ4pxgGAvQbV6PoBq0jXzCZ+8xWQDe
+	 xrJor3WeNnLiF6kxYaI6LyI2Pddm4GCJjORGB23fnCvjRVz/siglJj8kkAjL/c69cC
+	 XPIBkFZAT4TSAgyNMXTXUDpFp5IFv1P9qiQPLqWCXDSnT2ycVvt4QV6Wxfwy7s11V2
+	 4zf50kWU6bbJg==
+Message-ID: <58fd8506-678e-409d-8283-1dc44c9aa8e2@kernel.org>
+Date: Thu, 11 Sep 2025 11:00:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <24cd127d-1be7-42f4-a2ec-697c5e7554db@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] LoongArch: dts: Add uart new compatible string
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>,
+ Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <cover.1757318368.git.zhoubinbin@loongson.cn>
+ <2f93b8f20c6e93a15258888998e926814bfd0adf.1757318368.git.zhoubinbin@loongson.cn>
+ <20250910-fast-seahorse-of-valor-bf6c86@kuoka>
+ <CAMpQs4K-6Re=-gELPEg8kP_NKR5_1U=BD6fnXM3wgUF+eMtpGg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAMpQs4K-6Re=-gELPEg8kP_NKR5_1U=BD6fnXM3wgUF+eMtpGg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 10, 2025 at 06:04:28PM +0200, Andrew Lunn wrote:
-> > +    ethernet: ethernet@7a80000 {
-> > +        compatible = "qcom,sa8255p-ethqos";
-> > +        reg = <0x23040000 0x10000>,
-> > +              <0x23056000 0x100>;
-> > +        reg-names = "stmmaceth", "rgmii";
-> > +
-> > +        iommus = <&apps_smmu 0x120 0x7>;
-> > +
-> > +        interrupts = <GIC_SPI 946 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 782 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names = "macirq", "sfty";
-> > +
-> > +        dma-coherent;
-> > +
-> > +        snps,tso;
-> > +        snps,pbl = <32>;
-> > +        rx-fifo-depth = <16384>;
-> > +        tx-fifo-depth = <16384>;
-> > +
-> > +        phy-handle = <&sgmii_phy1>;
-> > +        phy-mode = "2500base-x";
+On 11/09/2025 09:55, Binbin Zhou wrote:
+> Hi Krzysztof:
 > 
-> Nitpicking: It is clearly not an SGMII PHY if it support
-> 2500BaseX. You might want to give the node a better name.
+> Thanks for your reply.
 > 
-> > +        snps,mtl-rx-config = <&mtl_rx_setup1>;
-> > +        snps,mtl-tx-config = <&mtl_tx_setup1>;
-> > +        snps,ps-speed = <1000>;
+> On Wed, Sep 10, 2025 at 4:27 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Tue, Sep 09, 2025 at 08:11:20PM +0800, Binbin Zhou wrote:
+>>> Add loongson,ls2k*-uart compatible string on uarts.
+>>>
+>>> Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
+>>> Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>> ---
+>>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi | 2 +-
+>>>  arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
+>>>  arch/loongarch/boot/dts/loongson-2k2000.dtsi | 2 +-
+>>>  3 files changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+>>> index 588ebc3bded4..357de4ca7555 100644
+>>> --- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+>>> +++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+>>> @@ -380,7 +380,7 @@ tsensor: thermal-sensor@1fe11500 {
+>>>               };
+>>>
+>>>               uart0: serial@1ff40800 {
+>>> -                     compatible = "ns16550a";
+>>> +                     compatible = "loongson,ls2k0500-uart", "ns16550a";
+>>
+>> You clearly never bothered to actually test this against own code.
 > 
-> Since this MAC can do 2.5G, is 1000 correct here?
+> Sorry, perhaps I should have included more detailed descriptions in
+> the binding file.
+> 
+> As per Chapter 15 of the Loongson-3A5000 manual[1], the Loongson UART
+> registers and functionality are compatible with the NS16550A. However,
+> generic 16550A drivers cannot support full serial port capabilities,
+> such as hardware flow control.
+> 
+> Based on your feedback in the V3 patchset[2], I attempted to use
+> compatible fallbacks to avoid API breakage.
+> 
+> These fallbacks match according to the Makefile's compilation
 
-The driver only accepts 10, 100 and 1000 here. Not sure if that's
-documented in the binding.
+DT bindings and fallbacks in DTS cannot match Makefile. You are mixing
+concepts.
 
-Also, does snps,ps-speed need to be set if we're not immitating a PHY
-with the PCS? My understanding is that snps,ps-speed is only relevant
-in that circumstance. (I suspect many DTS get this wrong.)
+I said, this was not tested. I am 100% sure. Instead of replying with
+irrelevant build related stuff, please come with actual arguments, e.g.
+output (on some pastebin.com) of entire dtbs_check proving no new
+warnings are there.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+But even without warnings, I see with my own eyes that DTS is just
+wrong. Or bindings.
+
+Best regards,
+Krzysztof
 
