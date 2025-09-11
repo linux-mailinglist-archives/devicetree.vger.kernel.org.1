@@ -1,156 +1,119 @@
-Return-Path: <devicetree+bounces-216119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E0AB53B30
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:15:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E323B53B47
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41EB7564792
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:15:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6261D1CC3682
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8177536998C;
-	Thu, 11 Sep 2025 18:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1AFE368083;
+	Thu, 11 Sep 2025 18:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QLfIzDYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE0A369990;
-	Thu, 11 Sep 2025 18:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AE535A2B4
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757614524; cv=none; b=V8gRmllBTSNcHFdWlhkdv1XG1WBQSSvpfaG+2PDF+OlV4RKPTxGzl3nIzIPonykTBm0DskmvOrPS+FHTOGrefcGvsNBe+ywcIjf1EhdNgrn4d2+k0RRfw6TVIwxHwZnq3/WwJLBFBZTxdCkfZqEXMS2Q7vnoVPeL8V0BLT90XsA=
+	t=1757614690; cv=none; b=Bao2QMI85MgGkgcI6EZ+JLN3MfhekfqRCdnVfVrTU1f+rqG2YUj0XTD9paRo2Ghwr5jsxRKAtWaWZBsl3j1oGZTH7zQxwq3Cug9rAP7Ap4vBHsAuEv3M8/PuQqYuH9ADC2oeBvqE/pOkwPc4cen4c+o9rFIZc6F/jJvf1b8J46E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757614524; c=relaxed/simple;
-	bh=5uErrrV3rp6pA/pHEkzJKprTkfL5j3WOFyZrL2Ec1jM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TP+hRiAtAVk8k7TO3lRVf1ZwrnqqXtUkWXYK37FryifoAlBb7LRrIOxb4H2lWvya42uUPW9c+B9TQb7/3QWd8catZidjCqHxwjoaErAbCCu9S8lymEvGJYs+jqsevVbQhNiy29yyI/WMqozlX+ZUn3x/zzIdhXhD9MQp6CQhXWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [127.0.0.2] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowACn9H5sEcNoZr9SAg--.27064S7;
-	Fri, 12 Sep 2025 02:14:06 +0800 (CST)
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Fri, 12 Sep 2025 02:13:57 +0800
-Subject: [PATCH net-next v11 5/5] riscv: dts: spacemit: Add Ethernet
- support for Jupiter
+	s=arc-20240116; t=1757614690; c=relaxed/simple;
+	bh=clA8GqiEaZLpxSps/Zg9+uXbFOxSOUyl+6EIrGzL37g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SiJP2fXkdRQWGddupsbVTJ+mGKKd6Ht6SkHRxNxvXM29h78aKDvMfkW55GL9Mt0UnSSDWcXbCWwKKTc2aTOOvaZX8GhP8qp2wb3TzcOW2R6X4g0EbioE71HyzUhBdhubPrYgJifgQTQIWVjJ42XqFAl5gCTy2WuiLF18/r8K2PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QLfIzDYC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32D0BC4CEFE
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:18:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757614690;
+	bh=clA8GqiEaZLpxSps/Zg9+uXbFOxSOUyl+6EIrGzL37g=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=QLfIzDYCHc0/UNmTxImRu5nZHNoGCtg5/JZmaRjEOnoKDCf3RLPNrxMTvHsBDzTqp
+	 BVCYw0Yf15yTITpxUrhGNq6uiB8uIpZnuUBoIHTYQ3k8VgYxIvT/gZ0UW5aCS96Zv4
+	 lKHsAsgVa7Hh8yO8oKxyekmV1cK1niIt6gZzgYU9tWbIpevjl2fUF5UxWBqiXMbrxP
+	 CGpCtxfmeQIOi6F6Nl6sIeBYPwRID+E1Ya2Embdk8AaFxaLylcLD46Me15Re57e6xI
+	 WIjC79qlRk/xHIzDFsKMHDNsH5eU5uStSYF9Zn3YHMBOjfzrKRkRo0D97+JMF/k1xG
+	 BByAcFeZ22png==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-336b071e7e5so8614671fa.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 11:18:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXj4OJTZ68QZGf6SkLGFXvGpMwA3KmVJmPPer2SoRdaH64NA0abOQNob4GKhQwIz+QmxDB+TEbDgrpG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYlFLH8bG5IsRkVH+JuMwdH3es8gzLAJA6POr/uDjJPNMApSd4
+	75MqWpL3kG+5pOQuNR9GYiyaHOILMMTzU+Z7OyT07TiWwCjfQF5lZSrjRgIDWmw5aWaDdwz7VCr
+	U5dt8b0MZRc+6Nxg1I1/8Wp0+UFtiCMQ=
+X-Google-Smtp-Source: AGHT+IFNhBqlOYMX7VhHL/3/WsyBugQCqv4OR+B6SohRHQQkUzEv33t/qS3NjuPROvGHTdFWqUdjtxSUm5WWLxfziaM=
+X-Received: by 2002:a05:651c:4386:20b0:338:1ce5:4034 with SMTP id
+ 38308e7fff4ca-3513d96a5femr123181fa.32.1757614688354; Thu, 11 Sep 2025
+ 11:18:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250912-net-k1-emac-v11-5-aa3e84f8043b@iscas.ac.cn>
-References: <20250912-net-k1-emac-v11-0-aa3e84f8043b@iscas.ac.cn>
-In-Reply-To: <20250912-net-k1-emac-v11-0-aa3e84f8043b@iscas.ac.cn>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Vivian Wang <wangruikang@iscas.ac.cn>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, 
- Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-CM-TRANSID:rQCowACn9H5sEcNoZr9SAg--.27064S7
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kw43Gw1ftrWfAF43Cr45Jrb_yoW8WFW8pa
-	y3CFsaqFZ7Cr1fKw43Zr9F9F13Ga95GrWkC3y3uF1rJ3yIvFZ0vw1ftw1xtr1DGrW5X34Y
-	vr1IyFyxurnFkw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmm14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j
-	6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7V
-	C0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j
-	6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x0262
-	8vn2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE
-	7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI
-	8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8
-	JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr
-	0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1U
-	YxBIdaVFxhVjvjDU0xZFpf9x0pRQJ5wUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+References: <20250908181059.1785605-1-wens@kernel.org> <20250908181059.1785605-3-wens@kernel.org>
+ <aMMQSR7yYBQkY4CI@shell.armlinux.org.uk>
+In-Reply-To: <aMMQSR7yYBQkY4CI@shell.armlinux.org.uk>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Fri, 12 Sep 2025 02:17:55 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64n_eMBiUaT1S=V6v4Bqv5hLP8vP3=20sp4w4Fxh7RcOQ@mail.gmail.com>
+X-Gm-Features: Ac12FXyLWsyObIH64arQzyilGb9hj5BcnDeSxUoNsS-pX-JbEZMJGsbKHCxIoyA
+Message-ID: <CAGb2v64n_eMBiUaT1S=V6v4Bqv5hLP8vP3=20sp4w4Fxh7RcOQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 02/10] net: stmmac: Add support for Allwinner
+ A523 GMAC200
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Andre Przywara <andre.przywara@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Milk-V Jupiter uses an RGMII PHY for each port and uses GPIO for PHY
-reset.
+On Fri, Sep 12, 2025 at 2:09=E2=80=AFAM Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+>
+> Hi,
+>
+> I drafted this but never sent it and can't remember why, but it's
+> relevant for v5 that you recently posted. Same concern with v5.
+>
+> On Tue, Sep 09, 2025 at 02:10:51AM +0800, Chen-Yu Tsai wrote:
+> > +     switch (plat->mac_interface) {
+> > +     case PHY_INTERFACE_MODE_MII:
+> > +             /* default */
+> > +             break;
+> > +     case PHY_INTERFACE_MODE_RGMII:
+> > +     case PHY_INTERFACE_MODE_RGMII_ID:
+> > +     case PHY_INTERFACE_MODE_RGMII_RXID:
+> > +     case PHY_INTERFACE_MODE_RGMII_TXID:
+> > +             reg |=3D SYSCON_EPIT | SYSCON_ETCS_INT_GMII;
+> > +             break;
+> > +     case PHY_INTERFACE_MODE_RMII:
+> > +             reg |=3D SYSCON_RMII_EN;
+> > +             break;
+> > +     default:
+> > +             return dev_err_probe(dev, -EINVAL, "Unsupported interface=
+ mode: %s",
+> > +                                  phy_modes(plat->mac_interface));
+>
+> I'm guessing that there's no way that plat->phy_interface !=3D
+> plat->mac_interface on this platform? If so, please use
+> plat->phy_interface here.
 
-Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 46 +++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Makes sense. Looking at stmmac_platform.c, for us mac_interface only comes
+from phy_interface.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 4483192141049caa201c093fb206b6134a064f42..c5933555c06b66f40e61fe2b9c159ba0770c2fa1 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -20,6 +20,52 @@ chosen {
- 	};
- };
- 
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
+I'll wait a day before sending yet another version.
 
--- 
-2.50.1
-
+ChenYu
 
