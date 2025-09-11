@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-215736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B87B527C5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:36:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E7EB52805
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:09:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 713C1160474
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:36:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D9C9465BAD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124761E1E04;
-	Thu, 11 Sep 2025 04:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F325721D5AA;
+	Thu, 11 Sep 2025 05:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oRkcekVR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUXiklMO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4C5329F3C;
-	Thu, 11 Sep 2025 04:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C794E329F29;
+	Thu, 11 Sep 2025 05:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757565381; cv=none; b=m54IuPdOzfqIRImgzoUyqwm9mVTBtlnbM/Fq3E5Skc1C1uBKsPWvCh9vMk9Tge8jjf38vMHqiwbM732Wagui2/3MORjHWGyBIjqmMtxUlIvJf4KI3mw7REG6ZOIrviu8OdUOsPB8Z9hXcG6hbChCTl6yRO5z43Fs0ujfnwbZJM0=
+	t=1757567394; cv=none; b=rbzv9J2RlLsWkx6uP21YDfklfPHdC5Da+nzlrpDRx1hJW/yHdLSpYswMx5jtlbsKug/37kSz27JYttShvb0X5gtHYmOK5u5ZPyhQp8Y8vZIO2eDxfw2EiOtfoulNCxduD6DSbwHuJMVsKUp4S3tZG9Au0LmYbyGqvC/7Qdx/Tcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757565381; c=relaxed/simple;
-	bh=ZgftlexC7m0f7G9tB59+CtBtIlpZM1B//E5L2IXaVTY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hFsvIlHZ3hqX17skTXH7kcqTD2PBKG2e3UG+nqQfVOcN7w36vYF0OD8mk+Hoa9t+KOVULTgEhkgTeUuOAsTUwvY6m2nYREgi9bj4f5FSM3eN5qRDNyzskLfGwUGdN7L83pT86mMl/doJiKSCa+Zbg5odPIbqV2z9oRlDHqO2zDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oRkcekVR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCAB8C4CEF1;
-	Thu, 11 Sep 2025 04:36:19 +0000 (UTC)
+	s=arc-20240116; t=1757567394; c=relaxed/simple;
+	bh=Ey9contA2Kpz3RtT5dMWiuizXGWkDz6xohXX0manX30=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=IHZgSPMxHherBbo/CpuMJP7Cr5lozi6b4SHQBGu/qCBvdl05D3wb/IiQbVkFcSvGL4a2osD4V7f6wPw1d/I37bZ3CXXQYyFU4wdrhEcNAa90t5+jhNcYKKNifovvpPODTsxNTe9hKBK1lhCp4eAzeVS1bPX7sUL3WJTNCF0snK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUXiklMO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4831BC4CEF1;
+	Thu, 11 Sep 2025 05:09:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757565380;
-	bh=ZgftlexC7m0f7G9tB59+CtBtIlpZM1B//E5L2IXaVTY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oRkcekVRHWqQcu29cLjnza7mjmFYeioVBFoZ4C2HaBoRqNuyBVZbDyqt4Mtp98RIi
-	 yg5PkRkr3lcW9/XzDtiK4FKRSu6RzVuD7U5bu6XXZ72WbqkejhRlEiJKcts1oHeGjn
-	 PO0zVs+Kn7Q2MGgubGvhhlaQDoLNrsHGaM/WGjooetq54WOyoY01TXI2daU4dPDCfx
-	 +7ps5yf4qQncVWIrZ8cwSFiI0xwtm+LKFU1h7XiW9QeBQeCD+n77uzahLq8zk1pgi+
-	 +5V1fJ3tA6NUaU9HLKMyeVGYPvPXRdg31VxdpMhkD9GmrTSGa7Lt2AREADvZZHKvY5
-	 AUSqnBPIrc+AA==
-Date: Thu, 11 Sep 2025 10:06:16 +0530
+	s=k20201202; t=1757567394;
+	bh=Ey9contA2Kpz3RtT5dMWiuizXGWkDz6xohXX0manX30=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=gUXiklMOCFFLqDMJowfdrtdEt/usyskqJmqZqq1K0C4Kl5idjkrLxyPR8sYlFC9Op
+	 Y5oxZBWTksq2X6ZCVT/efzhvY8w7PZOIQfsJ+/CPBHFFtKuihdqVpIIhaSPODJOvCs
+	 WUubcF60siSGM0KTuy0iDB5TGc7MwI021j+lIxVca1QYqKdftxIoHh6Ec8vBjsS6Sn
+	 Dnf0RVVpAJIWVHCXKrg3w9ikTKcp3MgehAhHzZF7Oj4mqXxATzBDQGhpA1W8+/5bHK
+	 ZkxJoI/Vb6tIhCafS+mDDaKcg24lcmZfGq+zYYv3M8ozOySukWREvTKqTQC4RLFZvL
+	 ybhC39jgVUGMA==
 From: Vinod Koul <vkoul@kernel.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Michael Riesch <michael.riesch@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, stable@kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Diederik de Haas <didi.debian@cknow.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Michael Riesch <michael.riesch@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, stable@kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
+References: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
 Subject: Re: (subset) [PATCH v4 0/7] phy: rockchip:
  phy-rockchip-inno-csidphy: add support for rk3588 variant
-Message-ID: <aMJRwENKCuNQKbYC@vaman>
-References: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
- <175752285211.484319.18097786132863236205.b4-ty@kernel.org>
- <2070639.PIDvDuAF1L@diego>
+Message-Id: <175756738898.509621.6509696151657981708.b4-ty@kernel.org>
+Date: Thu, 11 Sep 2025 10:39:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2070639.PIDvDuAF1L@diego>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
 
-Hi Heiko,
-
-On 10-09-25, 21:21, Heiko Stübner wrote:
-> Hi Vinod,
+On Wed, 03 Sep 2025 19:04:48 +0200, Michael Riesch wrote:
+> Habidere,
 > 
-> Am Mittwoch, 10. September 2025, 18:47:32 Mitteleuropäische Sommerzeit schrieb Vinod Koul:
-> > 
-> > On Wed, 03 Sep 2025 19:04:48 +0200, Michael Riesch wrote:
-> > > Habidere,
-> > > 
-> > > The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused with
-> > > the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
-> > > supported using the existing phy-rockchip-inno-csidphy driver, the notable
-> > > differences being
-> > >  - the control bits in the GRF
-> > >  - the additional reset line
-> > > This patch series adds support for this variant.
-> > > 
-> > > [...]
-> > 
-> > Applied, thanks!
-> > 
-> > [2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make power-domains non-required
-> >       commit: c254815b02673cc77a84103c4c0d6197bd90c0ef
-> > [3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add rk3588 variant
-> >       commit: 5072b8e98eef4685a5a9a8bae56072cb65a2ef69
-> > [4/7] phy: rockchip: phy-rockchip-inno-csidphy: allow writes to grf register 0
-> >       commit: 8c7c19466c854fa86b82d2148eaa9bf0e6531423
-> > [5/7] phy: rockchip: phy-rockchip-inno-csidphy: allow for different reset lines
-> >       commit: 260435153c90c8e90553e456ec43578834a14a71
+> The Rockchip RK3588 features two MIPI CSI-2 DPHYs (not to be confused with
+> the two combo MIPI DSI/CSI CPHY/DPHY blocks). The CSI-2 DPHYs can be
+> supported using the existing phy-rockchip-inno-csidphy driver, the notable
+> differences being
+>  - the control bits in the GRF
+>  - the additional reset line
+> This patch series adds support for this variant.
 > 
-> question, what happened to patch 6?
->   [PATCH v4 6/7] phy: rockchip: phy-rockchip-inno-csidphy: add support for rk3588 variant
-> 
-> or is it just missing from this mail?
+> [...]
 
-Looks like I missed, picked now
+Applied, thanks!
 
+[6/7] phy: rockchip: phy-rockchip-inno-csidphy: add support for rk3588 variant
+      commit: bdb978979ed133c47e19099ff2a4ae51e515452b
+
+Best regards,
 -- 
 ~Vinod
+
+
 
