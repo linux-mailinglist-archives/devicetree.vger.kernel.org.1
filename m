@@ -1,114 +1,159 @@
-Return-Path: <devicetree+bounces-216083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E78B5396A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:38:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86808B53973
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6D371CC0C96
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:38:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37DEE5A34FD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9BDE3570C5;
-	Thu, 11 Sep 2025 16:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C96935A2AB;
+	Thu, 11 Sep 2025 16:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YdlVCj/l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AHylLhz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7432350D61
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 16:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC033570CB
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 16:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757608695; cv=none; b=TiDuT0l8UFuoyzp73PYmy5LjQa3VWCDt4JJEWheKmuNCM1tI047J6CIgRYVgFkZxEj9mytDKFLosOJRutvcaTHrVfqTD6NVveyc4OjffGesY7pnIWzStAaKgZ+wmqoHdNcRDMbDJJC7qNYbE1xbeq/nvV6BzhIWq3YiaBG59YaM=
+	t=1757608850; cv=none; b=QpKeKUhIJy5Ton/5I3hmL0iKhE6HFVuOPFLbJVplB7Yd47EpMGiEamsVn+aawqnm3VsUpBv9XCLlolwkZO/Y666pGzqJo54WtLm/HdVHt8KhdVtHBp4txp2f+CX3WbZKTBJIiguT8d66gdd0oxLll1YuyBNGmhTCmNKfz2pIX5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757608695; c=relaxed/simple;
-	bh=bex2+V7d3fY5yk+kOmpGFKebQ4zJwljGd3CvhqQ/V6w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qs4XH4X0hsuCsMVWj0t191xHvgC8Uz35DyM9BzTUInjXa5MP8YPww9YyIMfcftcUrRo0usN1BH0bKJgopbREf4WsyemnWnpFEv+KFS/UqEsPBYlF7wqmGa9ai7h2LR4KL0RM+e+Zw1OmNkJiMRZXvvwaZhNdI5Sxo+HmsCuvP/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YdlVCj/l; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-336cdca667aso7709521fa.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 09:38:13 -0700 (PDT)
+	s=arc-20240116; t=1757608850; c=relaxed/simple;
+	bh=PGUYgHqS7CEbT5QLDYSKpf+raKUBoMSG/SoVXw8S0ZU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nollMXW612NNTf5DlV28oGSYW05t4qklmR5pOcRFv5YHM7SemiEbtoTaI35P/DK+dqdNGWcklENfmgT3q1+8Z2ebFBcGwW3SBmXALI5QpQAhFELOKKRD27mrILWKokW3HWALkdFg3CylFuGUa7VihPTINFN+NbzKP/KfrPEgGFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AHylLhz/; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45dde353b47so6184115e9.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 09:40:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757608692; x=1758213492; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bex2+V7d3fY5yk+kOmpGFKebQ4zJwljGd3CvhqQ/V6w=;
-        b=YdlVCj/l3L51d6Gpto2HNFtGTHtCN+b83cKNrWnEIT4xQ8Q/3ZYfzejXpo9b/bwRiY
-         tAdAEjJzQEj3EzNL+rU/HtyuIlfbwoKlqEWOIwUI33H5W/Kr6iQC2OsvgUZN+1hgDSHZ
-         w0iwmytaG4LiPMKeMSZbsdKHUuPabzEUuCHxUa8IlRV6Gu3OUNNwAl57F6JVd/svKXZh
-         Ch4PHQcIoBuhUysFNZE2um65xwig/za5KhNhPM5rFarHp6ZhaPz1r28NooWrNbx39gOX
-         zI1WXs+drRDTJUVDoun4r/1BwZ4T9acqZo82Qj4Q6Kuv1AFtwKQKAYN2Rf8NH7dvHUBN
-         oFZQ==
+        d=gmail.com; s=20230601; t=1757608847; x=1758213647; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iUkbXECYsNALn3AVpSeO9cAaZnIpWugEqcmf3/zSHD8=;
+        b=AHylLhz/bswBbHNEEFgE4zATHDvY404L/0zDC+EnupsYaEprtkhCphMmRcqCRumgDQ
+         rM0xhDzqoWT7BimokK0vZMxPXh5Sez4XbUFYOc66aNZVX11sdpV1pOslprO+qE2zzo+p
+         dZSkEeKFaOoBWMOEMiIYJR5EPUUGPV6Zy0jFESgpFV9iNJfSdp1QLYNTvBRvHeOlPUVl
+         +06YZaxrRuatW1evM0OV5mtH6fz7WmtLS3ZtLzxZogH/nNgz/7+BaBCuuRlOC1OjXRir
+         BP68I4U4cgTAobECUVtK9/RoyUW2vRDSlWu08TujidOHw7rINhe+rK/3Zatctc6jwlXB
+         m+Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757608692; x=1758213492;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bex2+V7d3fY5yk+kOmpGFKebQ4zJwljGd3CvhqQ/V6w=;
-        b=fbkNzDhyicz9B9yTJVFg/ff2h7OTKKWRxE6jcSNUB88Au35qaQSXUB98TiOBZ7bqFd
-         LWFbUu9hLR7HTIucmLks3iJsd94RWLwEBUY4nx7c9d4TlK/MZFOkt7PpoH0gvcDnHYW5
-         0eW0PJiAntcaeCkaOuZnapkmQvkM7cMtwoUDCZpqeGRxuMojnDduNMTcYSR+WJDkxbk9
-         r3co2hl4gmfDoxIqTp84r7AIPbpU0ACoOLJZm/dF0vQ1Ewz5omvOlAo3HgrkF1w7e4wm
-         6SmIhTa+9LZ4h1hkbsHQYdnPplh66xkyySVdF9Ul+7KqPcRFNBlmfv4XYYYI1/CA8Dc+
-         yisA==
-X-Forwarded-Encrypted: i=1; AJvYcCXF4jq1bqhnbQB0NZOl4c4xTaBs8XPM59r0zc7l4OFP8gB4Xf8bLvzyuTawLhQJfVWwyKJv0PAao180@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUOGF91DqgPEWHa/rJx3aN6Np/HEdAOe8AqBr8Mdu3BEkzgHQA
-	uDck7f/fEItEr3nJUaVAxClziswnTFuSuewPxPwvq65qhOqLQMPIFCAjEYa733wIoa1a4ka3tNi
-	UPKLelHZSL1i2ADB3WMjPHPNi5xqJjoZBJpR90/02ug==
-X-Gm-Gg: ASbGncv2JkUglX2RHRs2UhmGpVsfXo/XYlTbkRvInnQX+1DwKqy1Yl5XweRzjoARqD2
-	OwOxU8A2hwPzhti3aDPrQ4QvkapLR5DkFGEnGALzUDQ9bLySP0v0DMPQKGYQxQ6q/xNJUOE1x/7
-	t1jP+pen5DzFE5VfkQI59fpVpjV6b/Dl1T/puSBjjZFx4EDL0r1SbvNlclHRtB2EvxW9SLfABgr
-	jUxW7c=
-X-Google-Smtp-Source: AGHT+IH5GDSID+SNmkZ+hBsqboCV6rCoacLulWcRRWpDCMeGBv1RsbWZSmbv+7M3X/ucDVSiUVTrG/nHZ4e4Zv2VBw4=
-X-Received: by 2002:a05:651c:20ce:20b0:336:e1d6:8920 with SMTP id
- 38308e7fff4ca-33b537e751dmr53150541fa.31.1757608691862; Thu, 11 Sep 2025
- 09:38:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757608847; x=1758213647;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iUkbXECYsNALn3AVpSeO9cAaZnIpWugEqcmf3/zSHD8=;
+        b=ajyArj+p+BcIpc1zSQqj+rEfJ2ZrzgpzuWrJVVrBwkLfJZp5KtPYSaQRR4/UVIvTUQ
+         77HUxctc5fcdvJl69PcoJNjjF1ZJCTkqSWisTpPxh72Wv8Sdsr0+mWS4HN3DNEN4nKNg
+         ExClwhi1MXnXQH0zQonCNhzw7hpdcxQy2qKLd0p2QLFk5EWgUe62OLruyH6yL1Frf5GJ
+         kYEnk7OIapAERY+fd3sJY9kWRA0udKvTuuUQ+dFk2sfHzFYW51IBPWhsAQnwL8VSqjzK
+         kmUji9Aj5/fVOCdZ2LpKntg5/3RYy4r3GNzcbdaGu1qlQrWYldhLkGlq7ExcL3RbEImv
+         FWmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDmYtaGapTWfyCObAOljPCakgLZo1Pa+TPaTYbltDpA8xCBJy4K8qKyJuL3Mi9yaB4LLTQGgJA88u8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8k8Yyki5Lwb12NurHcV6I3Z7nfmsjpGKz73EBQl7EToj3zkf9
+	YjG+406OkIO6ipI3z1UbZWv1enjp3s2zp3wagHCElUv6Ro4+C8YBpPbH
+X-Gm-Gg: ASbGnctpv+prnmk0nBOko3/BepHsg5WtmpWFQEuMQykgBFgzddzHPOUdb+Jpm2sy5E6
+	ly1vqvA5d23CTC4ABV1dtX+GxzXEW8R5uiOkg7DM1WZg7GYxEYKx0l7A0JtvrPCoe+KRLsbBX82
+	7eTQpRmfJWDybNAxD7r9tZgTJJrOdCjOFsjlZBdic4MseqTLgGu3A2Z8cjqAfimrY7xibqpSE6y
+	xLbEFUPwK+O6fqSxckO0nM9bY6lF7e4pc+/u7Kncm54d+X8IVlmnIz4ZEgWc/7QjrG8ZtZl0VDR
+	IZ5hpwrgsb5nNm01LnrmnK7yJKXWgVmBtvSksrGP04BTX/GPrCd0surKKxWLekT/wqWol92MNDf
+	ljaC4t0Olzc+bhpLY3RE9a6pApKJZ+sEO2Q==
+X-Google-Smtp-Source: AGHT+IH+e4l4aKUISAkDkWhELbFiMdLI/yWf42i3aNGaNUM7NHoqldoqBTm7FI7Nsal5lPBry54xSg==
+X-Received: by 2002:a05:600c:3b8d:b0:45d:dba1:b4d3 with SMTP id 5b1f17b1804b1-45f21185db1mr1793415e9.0.1757608846269;
+        Thu, 11 Sep 2025 09:40:46 -0700 (PDT)
+Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45e037b9215sm29772365e9.12.2025.09.11.09.40.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Sep 2025 09:40:45 -0700 (PDT)
+From: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Subject: [PATCH 0/4] STi drivers cleanup
+Date: Thu, 11 Sep 2025 18:39:56 +0200
+Message-Id: <20250911-master-v1-0-5d5d5ea9af22@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com> <CACRpkdaX2VPAb+vihZ5BEAsGy+jNUdQ8q+3c3Q78uWmqZYeu=g@mail.gmail.com>
- <PUZPR06MB58879640C5849ABA55EF0C34EF0FA@PUZPR06MB5887.apcprd06.prod.outlook.com>
- <CACRpkdZzqRo9LRkF8=BSDANweWd0ccWtu5_nznDUn_FS6Fb0BQ@mail.gmail.com> <PUZPR06MB588739911F77623C32AEACCAEF09A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-In-Reply-To: <PUZPR06MB588739911F77623C32AEACCAEF09A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 11 Sep 2025 18:37:59 +0200
-X-Gm-Features: Ac12FXzHNnPAyVkfAfBXUIgdGtuNy2-qsTIWg_VXZwNkdVHi4GMCBwA0X_hlFmQ
-Message-ID: <CACRpkdZwiCjej7yDi7w0OVTFA1jCjzzvRkDN00VU+94JAVL0MA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFz7wmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSwML3dzE4pLUIl3TZNNkSwuD5LQkA2MloOKCotS0zAqwQdGxtbUAm0b
+ bTVgAAAA=
+X-Change-ID: 20250908-master-5c5c980cfb03
+To: Patrice Chotard <partice.chotard@foss.st.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1840; i=rgallaispou@gmail.com;
+ h=from:subject:message-id; bh=PGUYgHqS7CEbT5QLDYSKpf+raKUBoMSG/SoVXw8S0ZU=;
+ b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBowvt4M6eCDUbwniAvFsl7B6c6vFEZGtq6YBW2O
+ Qvzkm+meM2JAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaML7eAAKCRDnIYpo1BLC
+ tVZAEACJnq8EfqnB4N/xnh4xaA6NCv1zk6Axys6t8WWk9pLoeMLamXr9+zsfJ8YLhn+sTHNNtuF
+ vV4zgzpXaotV5kWh9URYwYedts569Z3slS5u4TS9p4UBeFnyQaUzJFouhtCipwApOL+ghTccmNl
+ BqzTj0bVxgu1CK6l4HuK5l9ZlsyQulqDDHXAGQHsGkdOdjixtND3iUtORyCL5wkNWW1XaYtxPCo
+ oKLie0xb044BtXbtiON85ojR0dg4XVLk+mbPwDBqODW/7HqUUQa2EjCpg16+elAA0WQYkDoh0zT
+ IjIT9LtBPEP1tU/diotyKuiBfbVkgcLKSoyxViMPM83xd3sKpjsyHAVssWIEfPvvng+Sr8D1iKl
+ mVWWTuJkSsY4zXqoTgzMwJxylBu0l5s+nVlhao1zocKmk/sY+ZLCIQIMjufXWUnDWaauEcW2Ymg
+ SesDSlR4fHfrTWCRnD3sqKobAnR2Z8jTucUwtGEmppu0kpnbcaKrMoH68y8z0KQwUguF8Gt+EQ3
+ SGCvmD7PC6Qdy5004D5nHQQh0MvEjCxHhzxe0C83qeZa1U92VQwevkPsK9qpvUsXWpdM1k++2QD
+ wXD9mdOwb7iAVSQdjlD3/Lavsoi3Ha5bte93wUXWmXKALdfkPAkA1KcimgEq9pEytPQJRXZp+lP
+ sy74W8wCLcmL41w==
+X-Developer-Key: i=rgallaispou@gmail.com; a=openpgp;
+ fpr=20997BF613E7EF6D5FFDBA2FE7218A68D412C2B5
 
-On Thu, Sep 11, 2025 at 3:58=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
-rote:
+With B2120 board removal[1] several drivers are left unused.
 
-> Yes, I understand your thinking now. we also find some examples under arc=
-h/arm64/boot/dts/*/*.h.
->
-> for example: arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h and arch/arm6=
-4/boot/dts/mediatek/mt8516-pinfunc.h
->
-> We will take them as example, and create arch/arm64/boot/dts/cix/sky1-pin=
-func.h. All right?
+Remove the following compatibles:
+- st,flexgen-stih407-a0
+- st,flexgen-stih407-c0
+- st,flexgen-stih407-d0
+- st,stih407-c8sectpfe
 
-Yes go ahead with this!
+[1] commit dee546e1adef ("ARM: sti: drop B2120 board support")
 
-Yours,
-Linus Walleij
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+Raphael Gallais-Pou (4):
+      media: c8sectpfe: remove support of STi c8sectpfe driver
+      dt-bindings: media: remove support of stih407-c8sectpfe
+      clk: st: flexgen: remove unused compatible
+      dt-bindings: clock: st: flexgen: remove deprecated compatibles
+
+ .../devicetree/bindings/clock/st/st,flexgen.txt    |    3 -
+ .../bindings/media/stih407-c8sectpfe.txt           |   88 --
+ MAINTAINERS                                        |    1 -
+ drivers/clk/st/clk-flexgen.c                       |   80 --
+ drivers/media/platform/st/sti/Kconfig              |    1 -
+ drivers/media/platform/st/sti/Makefile             |    1 -
+ drivers/media/platform/st/sti/c8sectpfe/Kconfig    |   28 -
+ drivers/media/platform/st/sti/c8sectpfe/Makefile   |   11 -
+ .../platform/st/sti/c8sectpfe/c8sectpfe-common.c   |  262 -----
+ .../platform/st/sti/c8sectpfe/c8sectpfe-common.h   |   60 -
+ .../platform/st/sti/c8sectpfe/c8sectpfe-core.c     | 1158 --------------------
+ .../platform/st/sti/c8sectpfe/c8sectpfe-core.h     |  287 -----
+ .../platform/st/sti/c8sectpfe/c8sectpfe-debugfs.c  |  244 -----
+ .../platform/st/sti/c8sectpfe/c8sectpfe-debugfs.h  |   23 -
+ .../platform/st/sti/c8sectpfe/c8sectpfe-dvb.c      |  235 ----
+ .../platform/st/sti/c8sectpfe/c8sectpfe-dvb.h      |   17 -
+ 16 files changed, 2499 deletions(-)
+---
+base-commit: 8f21d9da46702c4d6951ba60ca8a05f42870fe8f
+change-id: 20250908-master-5c5c980cfb03
+
+Best regards,
+-- 
+Raphael Gallais-Pou <rgallaispou@gmail.com>
+
 
