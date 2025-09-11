@@ -1,125 +1,148 @@
-Return-Path: <devicetree+bounces-215770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D23B52993
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:08:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B198B529A6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B62A317B566
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:08:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0424A01919
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71008267713;
-	Thu, 11 Sep 2025 07:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE60266B67;
+	Thu, 11 Sep 2025 07:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KG+eNPYX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YwfOqgbQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D91E226D1F
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6027D213E9C;
+	Thu, 11 Sep 2025 07:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757574521; cv=none; b=oDhvDRdfcYs9HMUCuizI9LK2mnJXqFf1dlbHFDd5DUTfZ5vs6DqrPLpq0I0vxrPkIDMucOh3yX9u86CbPW7AYv+UsraK10pylZ6pAHMSQ5tbcpqeA29gnfteYc2vKc2MXyXH6HckITCfoNGgMQJMlm3jA8HNxkbios6bllTqzX4=
+	t=1757574784; cv=none; b=GV1rtMiLti2KkMwCGcesHSpUchivYWURF+PTDSH6GOJRonr3Wrf/PwaJlrH0TXsp1fIgCxhz/MBr7BswinQmf+xRAvhMQRDuPeUeyz+u/EOTa9/90jaS7V8v0xdoSiYPN03bqH8V/UJGi4Mwrr6GftJxaX/j9zUt7W26kTtIhWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757574521; c=relaxed/simple;
-	bh=bhNDS7r8Kd+yF1km8cFRwJNMfwGdMPi3saV8F1M7gEc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=PkTFDnXl6+sfCFcrb8Uufo7NK4DkcOSCSRIzr3T93TqNZZ3qX3rkp5LWvDddzLg4DaR0uqsGtaYZDk1IwFvTX5MD/ehPmp6EdFz5ksunghYuT32iEBNfyHaBfnyByU3c+JX0j6CWizhVIoqmuEVbOgOQzc7xC+HTesFBbUvSHY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KG+eNPYX; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 96C5EC6B3AB;
-	Thu, 11 Sep 2025 07:08:20 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 70A53606BB;
-	Thu, 11 Sep 2025 07:08:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1CA29102F28AF;
-	Thu, 11 Sep 2025 09:08:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757574515; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=eAKEcYhJqeo3WpbpnN9yL0ePD0pDirbDTpiQAUZj6l8=;
-	b=KG+eNPYXCREyj3lyG85m4mI9JA/fjr6GoroXKBsJ71JPWT8Htfbsh8sGzHliQlySONeGxD
-	Z445mci8fK8dZlZSDbtbc/z/+ay+J+bpqXg5k/1/yoWuMt7FhJKNSYF1F+Ua6BbNhgVbsp
-	5nKy9ec9Xq+9Pa1JUC/3L+lzRqrZw/6gSmr6tLp0Be1tpOk1mXN4Mv9Ne+CNUcncZevkoH
-	NqX+mfL1VbteQgbhA62OHhhk3ItozgUcFlJQA2gqdKK/V5cIKwew82zpi2BtDqvP8RXbfh
-	6rU/GipcfqLoM/UUS9pJOW7Outko6AewFsJLlNeYbsMrPjErQO8fhFwVBE9otw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Cheng Ming Lin <linchengming884@gmail.com>,  richard@nod.at,
-  vigneshr@ti.com,  krzk+dt@kernel.org,  conor+dt@kernel.org,
-  tudor.ambarus@linaro.org,  mmkurbanov@salutedevices.com,
-  Takahiro.Kuwano@infineon.com,  pratyush@kernel.org,
-  linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  alvinzhou@mxic.com.tw,  Cheng Ming Lin
- <chengminglin@mxic.com.tw>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
- enable-randomizer-otp property
-In-Reply-To: <20250910163631.GA142639-robh@kernel.org> (Rob Herring's message
-	of "Wed, 10 Sep 2025 11:36:31 -0500")
-References: <20250910030301.1368372-1-linchengming884@gmail.com>
-	<20250910030301.1368372-2-linchengming884@gmail.com>
-	<87wm66d67k.fsf@bootlin.com> <20250910163631.GA142639-robh@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 30.1
-Date: Thu, 11 Sep 2025 09:08:12 +0200
-Message-ID: <87jz25bh5v.fsf@bootlin.com>
+	s=arc-20240116; t=1757574784; c=relaxed/simple;
+	bh=snkOtNyxDCmTGIb2trLLp5STd7LEtnJbDqtvZo/OjpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YqkUGlA6KVDtwjGJ1clm7vj+XhNU8LSXEPU/HdjI3QX4frCgVdsxamlTNE3eerPgZcTKZvht55QQsyBx+AAJCQE+FaCk+NOyV60C8sJ5Scv4PhJArSmTl+a6mTShIXFEJfpuVZS6k+20ymn71GhTmaZyTjFVGboyfgwjHPJE6Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwfOqgbQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D114DC4CEF1;
+	Thu, 11 Sep 2025 07:12:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757574783;
+	bh=snkOtNyxDCmTGIb2trLLp5STd7LEtnJbDqtvZo/OjpM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YwfOqgbQHs9d6JnqTkVDiYqPCDzieGDdoBShlX5VWrMhc1fl39RBsBZVoCu+lASiO
+	 PuqNdxnD7cVzaQmwiJMPqPkRLL1ymUJ5SjYoVciVPJ/D7xeQC6p8/xUIyBSW2ZCxDX
+	 tTgom79+Zj+uQQBPxaTjBZhJZsP/SYsrOi5Dfa75t/k+IoU1YWNewW54rUIwUIisAX
+	 kCjR/ycxbkJGQnsrZqjHC2zUWbxVlOce1Yvg4I4i5VQ0SITAbtU8fU9PylI9Qhg5Ek
+	 nbvGyuYCLBF509qc+W5bFhjCh7qrlyY67bIZdu+MHIQeX0bGkPHJ/qK8MDd/8jfzil
+	 v2+XuQBqiFkGA==
+Message-ID: <3e7e640a-88b0-496b-9ba3-53a36f31be80@kernel.org>
+Date: Thu, 11 Sep 2025 09:12:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: drm/bridge: MHDP8546 bridge binding
+ changes for DSC
+To: Harikrishna Shenoy <h-shenoy@ti.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ sjakhade@cadence.com, yamonkar@cadence.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, devarsht@ti.com,
+ u-kumar1@ti.com, s-jain1@ti.com
+References: <20250909054622.1439487-1-h-shenoy@ti.com>
+ <20250910-silent-classic-vicugna-fdc1ab@kuoka>
+ <fa31edd5-faec-4bf4-b001-610275eb8339@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <fa31edd5-faec-4bf4-b001-610275eb8339@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 10/09/2025 10:12, Harikrishna Shenoy wrote:
+> 
+> On 9/10/25 13:29, Krzysztof Kozlowski wrote:
+>> On Tue, Sep 09, 2025 at 11:16:22AM +0530, Harikrishna Shenoy wrote:
+>>> From: Swapnil Jakhade <sjakhade@cadence.com>
+>>>
+>>> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
+>>> DPI/DP bridge.
+>> Also, where is any user of this change (DSC)? Why are you adding changes
+>> to the bindings which no one uses?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> Cadence MHDP has DSC IP which can be enabled, DT will need to define DSC 
+> register space
+> 
+> for using the feature, was planning to  post DT and driver changes once 
+> bindings get accepted.
 
-On 10/09/2025 at 11:36:31 -05, Rob Herring <robh@kernel.org> wrote:
+No, this is not how it works. Read the docs... recently TI dropped the
+ball and you really send crappy patches.
 
-> On Wed, Sep 10, 2025 at 11:09:35AM +0200, Miquel Raynal wrote:
->> Hello Cheng Ming,
->>=20
->> On 10/09/2025 at 11:02:59 +08, Cheng Ming Lin <linchengming884@gmail.com=
-> wrote:
->>=20
->> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
->> >
->> > Add a new boolean property "enable-randomizer-otp" to enable the
->> > randomizer feature on supported SPI-NAND devices.
->> >
->> > Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
->> > ---
->> >  Documentation/devicetree/bindings/mtd/spi-nand.yaml | 4 ++++
->> >  1 file changed, 4 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Doc=
-umentation/devicetree/bindings/mtd/spi-nand.yaml
->> > index 77a8727c7..432bc79e9 100644
->> > --- a/Documentation/devicetree/bindings/mtd/spi-nand.yaml
->> > +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
->> > @@ -21,6 +21,10 @@ properties:
->> >      description: Encode the chip-select line on the SPI bus
->> >      maxItems: 1
->> >=20=20
->> > +  enable-randomizer-otp:
->>=20
->> This is a NAND wide feature, so we should probably add a prefix, such as
->> "nand,".
->
-> 'nand' is not a vendor, so no.
+You post always bindings and users, in this case with driver.
 
-Sorry for the confusion I meant "nand-", like we already have:
-- nand-ecc-engine
-- nand-use-soft-ecc-engine
-- nand-ecc-strength
-- nand-ecc-step-size
-etc
+To be clear for this patch alone:
 
-Thanks,
-Miqu=C3=A8l
+NAK
+
+
+Best regards,
+Krzysztof
 
