@@ -1,103 +1,113 @@
-Return-Path: <devicetree+bounces-215761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3CCB5292F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:43:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E88CAB52972
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:00:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E61177BE35A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:42:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38EBE1C8044A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:01:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09254262FE7;
-	Thu, 11 Sep 2025 06:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="aKGilMM0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA614270EBF;
+	Thu, 11 Sep 2025 07:00:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31434225768;
-	Thu, 11 Sep 2025 06:43:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CA926F2B2
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757573013; cv=none; b=Ok1IIAUykd7WiuA6AOBYrGbDOJzEMLZdS/x1Xo51wt6aqwcADxMwpRYf/SrkRvYiBUnihWchpmPLEEa4OBAQjExWg86ptsZleftrVGiVPOcjkiWgIEa8o3vVGaUMq8SVG62zxIKqGMB2hiBUEF/MF0cc/Xe125+wm6nIXoOgot8=
+	t=1757574001; cv=none; b=e+opXVHKOakjB+xGLssRuqe0yhx5CTZsdAKafDBo/EhpyO39kHHm3Xo30NlhR8y5zYxAQ4jLT1jxdD0TbmF80dKTfcoDVc5aa+gW6u5PKxfk0p0vk5H+qjcFXlZu2pQwg9yZnV3xASzUjS68VVV7tacO+6iHKjZEBTw4cXrFXcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757573013; c=relaxed/simple;
-	bh=kJwYC7m9zxvw8t0Wh8werWniscpbbGs2n2AbxCagyyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IBPo7G0jLYtjWT9TIZf9tkm75yejiBxmmeFAvX5nJBuzKJlkcNs8jlDQCGiAnY91dD3Azk8bjUG/p2pqSCq8CMsYV4kdsD/AAAc7QxCwI5/thUs2G+9QQa18RF6VWFbCb3hXLfooi3Rb+YjJZIOmzLnunmAk5yQyoSqYvtNmc1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=aKGilMM0; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=SH8grCcQsI/A0Zb/ejlOuThuyf2HO3NNcGzlLC9g4yY=; b=aKGilMM0327KDVFXFHWUmWBs/T
-	D0Dec7HW0mGxsGX3W1rgFhbQcUHbox2iR9coWBN+C/3XIcIJM4VLQFm+4/NXxhoF9ZBLalCRojyG4
-	5RYY6BeShVptaKVqVqHGOo1SV8E9LqTdjpP0w4XlifY3EisPsloU0uv12oJw2q5beTv5oqVupakfE
-	F1tXQiOfUTXrMYryalZDCREjsE1HBGxJ5QQtgDeLGuH5YULlkipMck/0rSa2YWLsjeUlOOSyq+pSx
-	bkFSPRcd206PHwn8Z6okl8fUmqU0o815gvchRSMO7PVEN7Qb0J1dI/5GXI1dyWOHJmpyQ7P/i0g4k
-	flV+8nMw==;
-Date: Thu, 11 Sep 2025 08:43:23 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, lee@kernel.org,
- krzk+dt@kernel.org, tony@atomide.com, robh@kernel.org, conor+dt@kernel.org,
- ukleinek@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH v7 0/3] dt-bindings: mfd: twl: Consolidate and fix TI
- TWL family bindings
-Message-ID: <20250911084323.357caec2@akair>
-In-Reply-To: <20250911-dainty-penguin-of-fragrance-9b4cef@kuoka>
-References: <20250910160704.115565-1-jihed.chaibi.dev@gmail.com>
-	<20250911-dainty-penguin-of-fragrance-9b4cef@kuoka>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1757574001; c=relaxed/simple;
+	bh=xYIy1XN64GZ5/gu04ZuovWY5JAMht1uak8z/8ld38Yg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rPy7UIg8Xhl91ZVTelQLr2AXt/ZVm0w8Xup9YH4Ufrrzal31GHr8R5zQ7t462S3PwuGtpWth5CdAXI5E03zGE/P8itLmu+Ba9/E95CVd00RmkK88FTKhthFX0G50uffCPdj+BU0+RQ53YZ/aFPdmn9nWxoye54bFQaVD3OhEpwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.trumtrar@pengutronix.de>)
+	id 1uwbHa-0002uj-Sn; Thu, 11 Sep 2025 08:59:50 +0200
+From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Subject: [PATCH v3 0/3] LED: Add basic LP5860 LED matrix driver
+Date: Thu, 11 Sep 2025 08:59:30 +0200
+Message-Id: <20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFJzwmgC/3XNQQqDMBCF4auUrDslGRMTu+o9SheaRB0oKtEGi
+ 3j3Ril0UVz+D+abhY0+kB/Z9bSw4CON1HcpsvOJ2bbsGg/kUjPkqDiKAmIOQsLUD2RhIngOyuQ
+ calSlNFWOVhcs3Q7B1zTv7v2RuqVx6sN7fxPFtn5F5AdiFMBBotGyclYrkd0G3zWvKfQdzRfn2
+ cZG/FEqIQcUJkqjt9bUpSyd/qPWdf0AjxwtwwoBAAA=
+X-Change-ID: 20250219-v6-14-topic-ti-lp5860-f25a48b62c79
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Steffen Trumtrar <kernel@pengutronix.de>, Pavel Machek <pavel@kernel.org>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Steffen Trumtrar <s.trumtrar@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Am Thu, 11 Sep 2025 08:35:32 +0200
-schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+The lp5860 is a LED matrix driver with 18 constant current sinks and 11
+scan switches which allows controlling up to 196 LED dots.
 
-> On Wed, Sep 10, 2025 at 06:07:01PM +0200, Jihed Chaibi wrote:
-> > This version addresses a final piece of feedback from Andreas to make
-> > the twl4030/twl6030-specific child nodes (audio, usb, keypad etc.)
-> > conditional by moving them out of the common block, which now only
-> > contains common properties (rtc, charger, pwm, pwmled..) ensuring
-> > the schema is fully accurate.
-> >=20
-> > The complete dtbs_check for this binding is clean except for two
-> > warnings originating from pre-existing bugs in the OMAP DTS files,
-> > for which fixes have already been submitted separately [1][2].
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Acked-by: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
-> >=20
-> > ---
-> > Changes in v7:
-> >   - (1/3): Moved twl4030/twl6030-specific child node definitions (audio,
-> >     usb etc.) into the conditional 'if/then' block to improve schema
-> >     accuracy. =20
->=20
-> Who asked for this? It's wrong code.
->=20
-maybe I was not clear there. That was not was I meant. As far as I
-understand, the correct pattern is to define things outside of the
-if/then block and
-then disable it with property-name: false in the if/then block
-Example: Handling of regulator-initial-mode property.
+This series adds just the basic support for the device on the SPI bus.
+It is also possible to use it on I2C. The interface can be
+switched/selected via an interface select pin.
 
-Sorry, for the confusion.
+Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+---
+Changes in v3:
+- fix c-styling errors
+- rename functions/defines/variables
+- split out ABI documentation
+- rename [rgb]_current* to [rgb]_global_brightness*
+- rework multi-led probing
+- Link to v2: https://lore.kernel.org/r/20250514-v6-14-topic-ti-lp5860-v2-0-72ecc8fa4ad7@pengutronix.de
 
-Regards,
-Andreas
+Changes in v2:
+- add open and short detection
+- add ABI documentation
+- fix devicetree binding (maxItems/minItems)
+- fix commit message to imperative mood
+- minor cleanup
+- Link to v1: https://lore.kernel.org/r/20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de
+
+---
+Steffen Trumtrar (3):
+      dt-bindings: leds: add lp5860 LED controller
+      leds: add support for TI LP5860 LED driver chip
+      Documentation: ABI: add lp5860 led matrix controller
+
+ Documentation/ABI/testing/sysfs-class-spi-lp5860   |  23 ++
+ .../devicetree/bindings/leds/leds-lp5860.yaml      | 111 ++++++++
+ drivers/leds/Kconfig                               |  28 ++
+ drivers/leds/Makefile                              |   2 +
+ drivers/leds/leds-lp5860-core.c                    | 222 +++++++++++++++
+ drivers/leds/leds-lp5860-spi.c                     |  90 ++++++
+ include/linux/platform_data/leds-lp5860.h          | 305 +++++++++++++++++++++
+ 7 files changed, 781 insertions(+)
+---
+base-commit: a32cf8a562e776ee75d4fa9432719e855d70fc03
+change-id: 20250219-v6-14-topic-ti-lp5860-f25a48b62c79
+
+Best regards,
+-- 
+Steffen Trumtrar <s.trumtrar@pengutronix.de>
+
 
