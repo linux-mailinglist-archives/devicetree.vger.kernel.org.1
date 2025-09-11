@@ -1,150 +1,231 @@
-Return-Path: <devicetree+bounces-216058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8A5B53848
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:53:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E456B53843
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:53:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CE66480EE5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:52:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F41471683D5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A1935208A;
-	Thu, 11 Sep 2025 15:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CA835337E;
+	Thu, 11 Sep 2025 15:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eKLHp68P"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lyVGzEBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AA43431F1
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E01261B83
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757605952; cv=none; b=nqp+9Agq5tg+HKQA5EHpS1joI896tvIh52OKG42Ya08z/kx7gTFDf6MJDc1bd3RnTENZtuHmDuPpHN84P98X4ubtO6PFblFo224dOnhzyCDRN37TWOUT1WJlU2UP/X6sMfcNrkhyc9vvQXjmQd1djho5uEnnhD0zXv5jKBHym3w=
+	t=1757605964; cv=none; b=ZiwjTfHlmcD3jh/uYVZVdnGcNOj/SHmZzKkQKwO+4hx0ltkS1FOAzyLdl6f0y6gNns7n3dClKazUGLWBRGAot2URkZNEgsb7nGNDOrw9MCAueziUmLxx7Yd2qcpYE2Xz3GdBLCO73IncDBJLVZ9RxZxU48J+5wkffv/jpTywgkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757605952; c=relaxed/simple;
-	bh=kB0PcEHHl5mi05isLvthbmDv7jXVGde9iru/Ft+xJoc=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=EXrnrvW3sV6SbRTikcRJggEu7yLJTjs/EaNdb2DycEFVylfAe+TieORJAS8DA3e/HIdnrI172UCKieY3RWH8tRmLjYn6KIU35ki7utC97welni0aYL0cxkcLALcFpPL8/AbYNNXQBQK7c63kS/9nty23RDQa6E0fY7Nn/qMHZdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eKLHp68P; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250911155228epoutp048fef92cba1c5d3520154acd082524c05~kRUw-M5g52901629016epoutp04j
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:52:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250911155228epoutp048fef92cba1c5d3520154acd082524c05~kRUw-M5g52901629016epoutp04j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1757605948;
-	bh=PIwqjCKaBtnZ2f92Qn6L1rSKvFT+8xiThxIV5Da48ic=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=eKLHp68PLUqMq6bvZsQ4PrBsti8H1WEeFxtNLK/Yhko+cKVYg91/ohw1rNku5zKdA
-	 SHMb0aENu6G3wmM5qQ1LNZj1wPFttrISLvDMlnFtUlKl4fTsriQASb0bZrAqaHQ/UO
-	 RxDqUih+H2ssR7BbGrPXk72DI4uueNg6gRxsei/E=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250911155227epcas5p28ffdbdbbc5fb99ede41166173acf4fbf~kRUwMy0ZP1886018860epcas5p2_;
-	Thu, 11 Sep 2025 15:52:27 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cN2BL3vpFz6B9m5; Thu, 11 Sep
-	2025 15:52:26 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250911155225epcas5p4f39dd82d8c40e0f51e8a0b2ab33039be~kRUuJaSAC1471514715epcas5p49;
-	Thu, 11 Sep 2025 15:52:25 +0000 (GMT)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250911155221epsmtip167c1cabfb1160a05e746d1c73091c81d~kRUqyOpq40708107081epsmtip1i;
-	Thu, 11 Sep 2025 15:52:21 +0000 (GMT)
-From: "Ravi Patel" <ravi.patel@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <gregkh@linuxfoundation.org>,
-	<jirislaby@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <jesper.nilsson@axis.com>, <lars.persson@axis.com>,
-	<alim.akhtar@samsung.com>, <arnd@kernel.org>
-Cc: <andriy.shevchenko@linux.intel.com>, <geert+renesas@glider.be>,
-	<thierry.bultel.yh@bp.renesas.com>, <dianders@chromium.org>,
-	<robert.marko@sartura.hr>, <schnelle@linux.ibm.com>, <kkartik@nvidia.com>,
-	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-arm-kernel@axis.com>,
-	<ksk4725@coasia.com>, <kenkim@coasia.com>, <smn1196@coasia.com>,
-	<pjsin865@coasia.com>, <shradha.t@samsung.com>
-In-Reply-To: <b9a2c3cc-49d6-480c-8c57-fffe0cf9d527@kernel.org>
-Subject: RE: [PATCH 1/3] dt-bindings: serial: samsung: Update
- axis,artpec8-uart to use samsung,uart-fifosize
-Date: Thu, 11 Sep 2025 21:22:20 +0530
-Message-ID: <000001dc2334$117ae310$3470a930$@samsung.com>
+	s=arc-20240116; t=1757605964; c=relaxed/simple;
+	bh=foMaJCpT5aQB0DVDGayrfvczYmTKtjYQaxnfqBcxeQk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y9R6Xe1yrYK6mdC8ZSyLxF3q39k6jcV+OQLfhsrHUmIicDOrmNFapClOQ9M4YHdQPMzrgNzImDMxNWNTJA8IzSTmYua3QLQ2wD/uupvQVyYrehPKgme2/KmH2S3nFESEqWw2MOVax6krWBokYd556WK6mRu3P7CTuIGkxEbo0bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lyVGzEBJ; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45dd9d72f61so103215e9.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:52:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1757605959; x=1758210759; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=foMaJCpT5aQB0DVDGayrfvczYmTKtjYQaxnfqBcxeQk=;
+        b=lyVGzEBJZWsKaIbB3apC5mC2zHl9kkzUAsPP9DKFYnMfWl8Kcl75ils8I25fa0jEdL
+         wVV3/oXxepXtxPJmiTrVkTGXe5sYtv7fyOObJ18tjr3cfnSkwOKj1doCSU+/pLI1tW6n
+         itrLyT7f9zzoVLe+e/v1sGtkT6AAn827J6GzKgp/VYcwEvoxLPEHJ418lc0pu3Omu1O1
+         Oe/mUBIjm7uc4x/erbCsV3twb4BJeAy3iik0acxe63mkytm0cPvVNc4B6iHxBFNl2bmc
+         3p7C9socHqRpVDsc8lgiFrcuCKVoSItNFESV4e2SD3IEW7qhfQtPXgCtPVDWzhYsoDFW
+         mtqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757605959; x=1758210759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=foMaJCpT5aQB0DVDGayrfvczYmTKtjYQaxnfqBcxeQk=;
+        b=oXJglVHsoTpAtMdQhCXQ7hmNiz5Xun8UA+N6iagLLpZmAIkyBAFZEnGCYxpbtpIgkP
+         honWV/IDggXtj8EoXUMtNE5bS40wkfvLKOXw6Nz7ychiSE6DtJyX2jxPzsLUO924jZJF
+         QVNcVcB6sNJ5mdtET27y4JIVTtfEJLxltwLdACM/3hzgZjqFUlV/HkE2pDt/tADLiOUf
+         2VJpXh6mOoVjqhHklmfp6wGvDbTW65OoTZkw2XZ92VY2GmmKUawPvWmMR5ORok9k71Ap
+         5uMe2xh1iwK/Ufh4L1G+y1+6/JIXgpg5KRqm6jM6Jr66hZQl5an45AXm+GOEEui5499w
+         wvjA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+fm48szdLnpoDbzV1nwgRI2SXfBgD+ymm+AX4Y6z9FOub4wWtBjS0u7X3mRjStsuF/YFzCaNq0zWm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVu6uIeglREVFiXlcwDxeUbMK5lOphqnwpMNYJQ/rtPmdAPTZi
+	ywpCZUBlegM3TKsOOrcM9zKkl1yoomesqjngLZG1nFiM497gWI+pAbpWLOWBIOYqD2MzfVfGguh
+	IJqb8jXnqLNALrbsfguJJhNR9xQIRccA4PnR/CIGW
+X-Gm-Gg: ASbGncszf3V+JhIDDOtNJeh/3+75KK5xZpaCRE0I0slE3qlBwaJVlUvaEZS8jJTb87+
+	SUBOGDaID94PdzgxZ6xS7rQ4AnNADZhVDdBZyUaBjXKivKyUL7mD7UntoC4YHT7M2nPhvxd/HyN
+	O5xj6uSKtWyASMU170PFCsY/yT+Mq9pWRSmcFEZQcNGj14JaMmX+NZguOKZNUmBOR6OlRqF5K9t
+	svpPnfT2/XTJDARAV3/3DEB3m+J55VWB/0iIrzKwIc=
+X-Google-Smtp-Source: AGHT+IFPtXGS3xfleXOqxUh4NB8MIkaUyVVSq3pObyoX2WKiKcEimPgaW/wvhaqmwPl3cn8wFgGAwaPg27+INgq99jg=
+X-Received: by 2002:a05:600c:4193:b0:45c:b621:9199 with SMTP id
+ 5b1f17b1804b1-45df821ead8mr2846075e9.7.1757605959182; Thu, 11 Sep 2025
+ 08:52:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHCvJCefXNgXa49SBfbwsspKb9l0wIPxsz+Ajb57S8CO2v7oLSM3O1g
-Content-Language: en-in
-X-CMS-MailID: 20250911155225epcas5p4f39dd82d8c40e0f51e8a0b2ab33039be
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250911141706epcas5p29ba4f0af11e3a95a9754fd6255f7b5a7
-References: <20250911141605.13034-1-ravi.patel@samsung.com>
-	<CGME20250911141706epcas5p29ba4f0af11e3a95a9754fd6255f7b5a7@epcas5p2.samsung.com>
-	<20250911141605.13034-2-ravi.patel@samsung.com>
-	<b9a2c3cc-49d6-480c-8c57-fffe0cf9d527@kernel.org>
+References: <20250721-dma-buf-ecc-heap-v7-0-031836e1a942@kernel.org>
+ <20250826-vagabond-catfish-of-courtesy-cbfa76@houat> <20250910-vigorous-attractive-gorilla-af6fec@houat>
+ <CABdmKX29ftpNro+d=Ce6JGoMaG0UQeBbzL7DXiBkGkC0nwacTQ@mail.gmail.com> <20250911-didactic-authentic-cockle-e6d5fc@houat>
+In-Reply-To: <20250911-didactic-authentic-cockle-e6d5fc@houat>
+From: "T.J. Mercier" <tjmercier@google.com>
+Date: Thu, 11 Sep 2025 08:52:27 -0700
+X-Gm-Features: AS18NWAeBqzBQ72YMefW3bpdVUuxd7DtaUCa6fSUYA3My40EoN0I9-kxEb7x3sc
+Message-ID: <CABdmKX1RhwgHb1EizSHUE0PHnxgXib7C8=ZWuVeCi6QetQgGSw@mail.gmail.com>
+Subject: Re: [PATCH v7 0/5] dma-buf: heaps: Create a CMA heap for each CMA
+ reserved region
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Andrew Davis <afd@ti.com>, Jared Kangas <jkangas@redhat.com>, 
+	Mattijs Korpershoek <mkorpershoek@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+	iommu@lists.linux.dev, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 11 September 2025 20:03
-...
-> 
-> On 11/09/2025 16:16, Ravi Patel wrote:
-> > Update the axis,artpec8-uart compatible such that it uses the
-> > samsung,uart-fifosize as required property.
+On Thu, Sep 11, 2025 at 12:01=E2=80=AFAM Maxime Ripard <mripard@kernel.org>=
+ wrote:
+>
+> Hi TJ,
+>
+> On Wed, Sep 10, 2025 at 01:44:45PM -0700, T.J. Mercier wrote:
+> > On Wed, Sep 10, 2025 at 12:33=E2=80=AFAM Maxime Ripard <mripard@kernel.=
+org> wrote:
+> > >
+> > > On Tue, Aug 26, 2025 at 09:36:03AM +0200, Maxime Ripard wrote:
+> > > > Hi,
+> > > >
+> > > > On Mon, Jul 21, 2025 at 01:17:29PM +0200, Maxime Ripard wrote:
+> > > > > Here's another attempt at supporting user-space allocations from =
+a
+> > > > > specific carved-out reserved memory region.
+> > > > >
+> > > > > The initial problem we were discussing was that I'm currently wor=
+king on
+> > > > > a platform which has a memory layout with ECC enabled. However, e=
+nabling
+> > > > > the ECC has a number of drawbacks on that platform: lower perform=
+ance,
+> > > > > increased memory usage, etc. So for things like framebuffers, the
+> > > > > trade-off isn't great and thus there's a memory region with ECC d=
+isabled
+> > > > > to allocate from for such use cases.
+> > > > >
+> > > > > After a suggestion from John, I chose to first start using heap
+> > > > > allocations flags to allow for userspace to ask for a particular =
+ECC
+> > > > > setup. This is then backed by a new heap type that runs from rese=
+rved
+> > > > > memory chunks flagged as such, and the existing DT properties to =
+specify
+> > > > > the ECC properties.
+> > > > >
+> > > > > After further discussion, it was considered that flags were not t=
+he
+> > > > > right solution, and relying on the names of the heaps would be en=
+ough to
+> > > > > let userspace know the kind of buffer it deals with.
+> > > > >
+> > > > > Thus, even though the uAPI part of it had been dropped in this se=
+cond
+> > > > > version, we still needed a driver to create heaps out of carved-o=
+ut memory
+> > > > > regions. In addition to the original usecase, a similar driver ca=
+n be
+> > > > > found in BSPs from most vendors, so I believe it would be a usefu=
+l
+> > > > > addition to the kernel.
+> > > > >
+> > > > > Some extra discussion with Rob Herring [1] came to the conclusion=
+ that
+> > > > > some specific compatible for this is not great either, and as suc=
+h an
+> > > > > new driver probably isn't called for either.
+> > > > >
+> > > > > Some other discussions we had with John [2] also dropped some hin=
+ts that
+> > > > > multiple CMA heaps might be a good idea, and some vendors seem to=
+ do
+> > > > > that too.
+> > > > >
+> > > > > So here's another attempt that doesn't affect the device tree at =
+all and
+> > > > > will just create a heap for every CMA reserved memory region.
+> > > > >
+> > > > > It also falls nicely into the current plan we have to support cgr=
+oups in
+> > > > > DRM/KMS and v4l2, which is an additional benefit.
+> > > > >
+> > > > > Let me know what you think,
+> > > > > Maxime
+> > > >
+> > > > Any chance we can get this merged?
+> > >
+> > > Guys, can we move forward on this?
+> > >
+> > > Maxime
 > >
-> > This is to remove the axis,artpec8-uart specific code (which is
-> > kind of duplicated) from the driver and use the other matching
-> > exynos8895 uart code for ARTPEC-8.
+> > Hi Maxime,
 > >
-> > Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> > ---
-> >  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > Sorry I've been MIA the last couple of months.
 > >
-> > diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> > index 1a1f991d5364..08eceaae2921 100644
-> > --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> > @@ -152,7 +152,6 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - apple,s5l-uart
-> > -              - axis,artpec8-uart
-> >                - samsung,exynos4210-uart
-> >                - samsung,exynos5433-uart
-> 
-> You need to start testing patches, because this obviously fails basic
-> tests. And toolset would tell you if you bothered.
+> > The docs for the "reusable" property say, "device driver(s) owning the
+> > region need to be able to reclaim it back", but how can a driver
+> > reclaim memory backing a dmabuf, since pages allocated for a dmabuf
+> > aren't necessarily movable. Couldn't a user allocate all of it, and
+> > refuse to close those dmabufs?
+>
+> I guess, but how is that any different than what we're doing on the
+> default allocator already?
 
-Oh my bad, somehow I missed it.
-Will fix (dtbs_check) in next version
+Yeah fair, it's not. I'm thinking that makes determining a size for a
+reusable driver-specified region that's always exposed to userspace a
+bit fuzzy. The requirements for the driver can probably be known, but
+for potentially unrelated allocations from userspace? The default
+ownership / file permissions for the heap would have to be changed to
+allow those non-reclaimable allocations, so maybe that's enough of an
+opt-in for such regions.
 
-Thanks for pointing out.
+> It also has to be reusable, and will not be able to reclaim any memory
+> allocated through the heap.
+>
+> > I backported this to 6.6 and ran it on a Pixel. While there are
+> > already similar out-of-tree dmabuf heap drivers that expose heaps for
+> > these reserved regions, they do more than just cma_alloc (multiple
+> > flavors of buffer securing, use case specific alignment and padding,
+> > and slightly different allocation strategies) so I don't think this
+> > series would allow us to completely drop the custom heap code, but
+> > it's a nice start.
+>
+> Thanks for testing, and I totally expect more heaps coming for things
+> like protected memory, but it should indeed reduce the number of heap
+> drivers needed going forward.
+>
+> > Does the cgroup part come in because the plan is to add charging in
+> > cma_heap.c?
+>
+> Yes, and the system heap as well.
+>
+> Maxime
 
 Thanks,
-Ravi
 
-> 
-> This does not fit documented Samsung SoC maintainer rules (because of (1)).
-> 
-> Best regards,
-> Krzysztof
-
+Reviewed-by: T.J. Mercier <tjmercier@google.com>
 
