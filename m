@@ -1,143 +1,357 @@
-Return-Path: <devicetree+bounces-215853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DBAB52D71
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 11:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74583B52D95
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 11:46:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80372581914
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:40:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CBAA58725D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CDE2EA49F;
-	Thu, 11 Sep 2025 09:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EEB2EA755;
+	Thu, 11 Sep 2025 09:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="snvitfwS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYwaHgnR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502262E975A;
-	Thu, 11 Sep 2025 09:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECE92EB844;
+	Thu, 11 Sep 2025 09:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757583645; cv=none; b=j+D7YX41s1X5+7gC1e+2YYsESwmSrCiw2PzLwFE7mS8bYsq6NEWtjpMLugzAvzJsocBketr+7N54kCQhWSIL+VKN8jZK49GfeKPp69UVWv8gwpSgnrjQo3lSCRk/lLCaLiD/K8jA62ecvvnTU1eFYc8vmUv7ia3dn5Fg5dHxSR8=
+	t=1757583851; cv=none; b=FeU2joZ8LSIeyR+t8PgsPnq/4JHcA+/+TJehCSDyLrfuVRvGHM/V+jFsm+hBwLNuGXxxteQpqvObK7jf5FIX8ZG8YjS+2JI5XsuzeraAlkg6mRvfHhUrj+s0csaJ+iZPGoRgQSa3b5kRWj7nIiSBX96zilqTHMMkeBMJ32h4bak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757583645; c=relaxed/simple;
-	bh=xt64zrr/lxWZUjAUgd2iHBnjkwAc3+1CEp1tCAr52z0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MtiKyZZkwrwb1WrvNJf3NsNrM25ghceQA7mXMkdcKiE2AVod6lW1tymFqiPR0kObxaym04z+biQIedKzpeOhT+mvSi9FUeb4aWLmmxgZdy/a/ajm7hW/Z01wu2SlNA4Tif6UPTTfM3eMMDj+Hax44on9+kVRvQDKGYW8+bYPNW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=snvitfwS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 285CCC4CEF0;
-	Thu, 11 Sep 2025 09:40:40 +0000 (UTC)
+	s=arc-20240116; t=1757583851; c=relaxed/simple;
+	bh=kV7vZm9Eyd7Ie8xphsJvcVh9Ceje97yHegYdpuD0swc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qRgvtnPpUMyio4byCj4wklLFdS8kNCEVwyNF1gQ5rd3u1TZcQzJlVv0QWDH1K248YOglMtylfPgHJcmvA4uvNZys+PDBneV7Dlf+nVaTB2Hypich4uf31xWBjurv+ZHmJpxHBJ8RFYMTB6iSYHx+RzbajSzAHAlaXWBby4JTlSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYwaHgnR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B4EC4CEF0;
+	Thu, 11 Sep 2025 09:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757583644;
-	bh=xt64zrr/lxWZUjAUgd2iHBnjkwAc3+1CEp1tCAr52z0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=snvitfwSCLkpj43x3vQbes+YL7jGFU0weXdseaNpEtt/HZB9EJbgu8Z0iDaxCFQn+
-	 HIxll5ELYaMf+aWpCIQTT9Gnkli1o2feZ1Ft6piX+FMr6mB3a2mZMi9GxtTpJO4BNn
-	 XHZaOX2GPRiEnVKFR0vjw76SFSiohkpVx4w2lYvEsLbg1d4XfxWi4+Zi+5gp/Jd7UU
-	 hJlSEso0z3sWccxycnXhRibz8zA6NV0GIoBGQZ8JgcTHkC0wQ1smrscgl09ySgAGdL
-	 mQabr6TyIYaxlY54vnGXmqAHi1MarqKnRnJY/ht0rR8+/V05GLlEBSZlgtDdhsFN41
-	 t1lfC1ptLmPHA==
-Message-ID: <6710e476-9f64-4bd7-b5e4-e065a2423c27@kernel.org>
-Date: Thu, 11 Sep 2025 11:40:39 +0200
+	s=k20201202; t=1757583851;
+	bh=kV7vZm9Eyd7Ie8xphsJvcVh9Ceje97yHegYdpuD0swc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lYwaHgnRT+GFwqcavqxcw9A4C7X2fUz/eMmP2CAjUY9KxbeQ4TQg5XKYtWvKFkfyW
+	 NvzZTzaT2zvGhYjMljGyoHNlO5lt6yuSaoE8hSreAlQY/ZdNbIMxpPL4U62k4I2IXH
+	 a0NaZjV/Xa3AKAGw1spn5xg5qN6cz6YVhuojI+EWHls+w6rjRxpysYPv9GYSRxTFpJ
+	 0xosjezjr2D/5fTo2RQaCOqOFYY+vaxbSKdL+zm7IH3+oksSJ5kBksETELZcCVyPPR
+	 1dxuZOlSmTcmQWLWGXmHVez01boMB1HTG7E+YdgCxqTH/Z4IfoWS6fixP0yFukMD0X
+	 yil8bQMqkS20g==
+Date: Thu, 11 Sep 2025 10:44:04 +0100
+From: Simon Horman <horms@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vivian Wang <uwu@dram.page>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: Re: [PATCH net-next v10 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250911094404.GE30363@horms.kernel.org>
+References: <20250908-net-k1-emac-v10-0-90d807ccd469@iscas.ac.cn>
+ <20250908-net-k1-emac-v10-2-90d807ccd469@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: next-20250910: ERROR: modpost: "typec_switch_set"
- [drivers/extcon/extcon-ptn5150.ko] undefined!
-To: Naresh Kamboju <naresh.kamboju@linaro.org>, imx@lists.linux.dev,
- lkft-triage@lists.linaro.org, Xu Yang <xu.yang_2@nxp.com>
-Cc: open list <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, Linux Regressions
- <regressions@lists.linux.dev>, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Arnd Bergmann <arnd@arndb.de>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- Anders Roxell <anders.roxell@linaro.org>,
- Ben Copeland <benjamin.copeland@linaro.org>, Frank Li <Frank.Li@nxp.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Stephen Boyd <swboyd@chromium.org>
-References: <CA+G9fYuW3VZHpAzoL5pRXu6_K9LMHynNzMO9ULrdsC4UKY-ELA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CA+G9fYuW3VZHpAzoL5pRXu6_K9LMHynNzMO9ULrdsC4UKY-ELA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250908-net-k1-emac-v10-2-90d807ccd469@iscas.ac.cn>
 
-On 10/09/2025 14:28, Naresh Kamboju wrote:
-> The following build warnings / errors are noticed with arm64 defconfig+
-> with gcc-12 and gcc-13 toolchains on the Linux next-20250910 tag.
+On Mon, Sep 08, 2025 at 08:34:26PM +0800, Vivian Wang wrote:
+> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
+> that only superficially resembles some other embedded MACs. SpacemiT
+> refers to them as "EMAC", so let's just call the driver "k1_emac".
 > 
-> Regression Analysis:
-> - New regression? Yes
-> - Reproducibility? yes
+> Supports RGMII and RMII interfaces. Includes support for MAC hardware
+> statistics counters. PTP support is not implemented.
 > 
-> Build regression: next-20250910: arm64: "typec_switch_set"
-> [drivers/extcon/extcon-ptn5150.ko] undefined!
-> Build regression: next-20250910: arm64: "fwnode_typec_switch_get"
-> [drivers/extcon/extcon-ptn5150.ko] undefined!
-> 
-> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
-> 
-> The suspected patch, (The git bisection is in progress)
->   0d6a9aca15c987b4774f7fdb34114ab0d483766a
->   extcon: ptn5150: Add Type-C orientation switch support
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> Tested-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  drivers/net/ethernet/Kconfig            |    1 +
+>  drivers/net/ethernet/Makefile           |    1 +
+>  drivers/net/ethernet/spacemit/Kconfig   |   29 +
+>  drivers/net/ethernet/spacemit/Makefile  |    6 +
+>  drivers/net/ethernet/spacemit/k1_emac.c | 2156 +++++++++++++++++++++++++++++++
 
-I think the patch was dropped from the next.
+This is a large patch, so I'm sure I've missed some things.
+But, overall, I think this is coming together.
+Thanks for your recent updates.
 
-Still some addressing from the author would be nice...
+As the Kernel Patch Robot noticed a problem,
+I've provided some minor feedback for your consideration.
 
+...
 
-Best regards,
-Krzysztof
+> +static void emac_wr(struct emac_priv *priv, u32 reg, u32 val)
+> +{
+> +	writel(val, priv->iobase + reg);
+> +}
+> +
+> +static int emac_rd(struct emac_priv *priv, u32 reg)
+
+nit: maybe u32 would be a more suitable return type.
+
+> +{
+> +	return readl(priv->iobase + reg);
+> +}
+
+...
+
+> +static int emac_alloc_tx_resources(struct emac_priv *priv)
+> +{
+> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
+> +	struct platform_device *pdev = priv->pdev;
+> +	u32 size;
+> +
+> +	size = sizeof(struct emac_tx_desc_buffer) * tx_ring->total_cnt;
+> +
+> +	tx_ring->tx_desc_buf = kzalloc(size, GFP_KERNEL);
+
+nit: I think you can use kcalloc() here.
+
+> +	if (!tx_ring->tx_desc_buf)
+> +		return -ENOMEM;
+> +
+> +	tx_ring->total_size = tx_ring->total_cnt * sizeof(struct emac_desc);
+> +	tx_ring->total_size = ALIGN(tx_ring->total_size, PAGE_SIZE);
+> +
+> +	tx_ring->desc_addr = dma_alloc_coherent(&pdev->dev, tx_ring->total_size,
+> +						&tx_ring->desc_dma_addr,
+> +						GFP_KERNEL);
+> +	if (!tx_ring->desc_addr) {
+> +		kfree(tx_ring->tx_desc_buf);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	tx_ring->head = 0;
+> +	tx_ring->tail = 0;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int emac_alloc_rx_resources(struct emac_priv *priv)
+> +{
+> +	struct emac_desc_ring *rx_ring = &priv->rx_ring;
+> +	struct platform_device *pdev = priv->pdev;
+> +	u32 buf_len;
+> +
+> +	buf_len = sizeof(struct emac_rx_desc_buffer) * rx_ring->total_cnt;
+> +
+> +	rx_ring->rx_desc_buf = kzalloc(buf_len, GFP_KERNEL);
+
+Ditto.
+
+> +	if (!rx_ring->rx_desc_buf)
+> +		return -ENOMEM;
+> +
+> +	rx_ring->total_size = rx_ring->total_cnt * sizeof(struct emac_desc);
+> +
+> +	rx_ring->total_size = ALIGN(rx_ring->total_size, PAGE_SIZE);
+> +
+> +	rx_ring->desc_addr = dma_alloc_coherent(&pdev->dev, rx_ring->total_size,
+> +						&rx_ring->desc_dma_addr,
+> +						GFP_KERNEL);
+> +	if (!rx_ring->desc_addr) {
+> +		kfree(rx_ring->rx_desc_buf);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	rx_ring->head = 0;
+> +	rx_ring->tail = 0;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int emac_mii_read(struct mii_bus *bus, int phy_addr, int regnum)
+> +{
+> +	struct emac_priv *priv = bus->priv;
+> +	u32 cmd = 0, val;
+> +	int ret;
+> +
+> +	cmd |= phy_addr & 0x1F;
+> +	cmd |= (regnum & 0x1F) << 5;
+
+nit: I think this could benefit from using FIELD_PREP
+     Likewise for similar patterns in this patch.
+
+> +	cmd |= MREGBIT_START_MDIO_TRANS | MREGBIT_MDIO_READ_WRITE;
+> +
+> +	emac_wr(priv, MAC_MDIO_DATA, 0x0);
+> +	emac_wr(priv, MAC_MDIO_CONTROL, cmd);
+> +
+> +	ret = readl_poll_timeout(priv->iobase + MAC_MDIO_CONTROL, val,
+> +				 !((val >> 15) & 0x1), 100, 10000);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	val = emac_rd(priv, MAC_MDIO_DATA);
+> +	return val;
+> +}
+
+...
+
+> +/*
+> + * Even though this MAC supports gigabit operation, it only provides 32-bit
+> + * statistics counters. The most overflow-prone counters are the "bytes" ones,
+> + * which at gigabit overflow about twice a minute.
+> + *
+> + * Therefore, we maintain the high 32 bits of counters ourselves, incrementing
+> + * every time statistics seem to go backwards. Also, update periodically to
+> + * catch overflows when we are not otherwise checking the statistics often
+> + * enough.
+> + */
+> +
+> +#define EMAC_STATS_TIMER_PERIOD		20
+> +
+> +static int emac_read_stat_cnt(struct emac_priv *priv, u8 cnt, u32 *res,
+> +			      u32 control_reg, u32 high_reg, u32 low_reg)
+> +{
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* The "read" bit is the same for TX and RX */
+> +
+> +	val = MREGBIT_START_TX_COUNTER_READ | cnt;
+> +	emac_wr(priv, control_reg, val);
+> +	val = emac_rd(priv, control_reg);
+> +
+> +	ret = readl_poll_timeout_atomic(priv->iobase + control_reg, val,
+> +					!(val & MREGBIT_START_TX_COUNTER_READ),
+> +					100, 10000);
+> +
+> +	if (ret) {
+> +		netdev_err(priv->ndev, "Read stat timeout\n");
+> +		return ret;
+> +	}
+> +
+> +	*res = emac_rd(priv, high_reg) << 16;
+> +	*res |= (u16)emac_rd(priv, low_reg);
+
+nit: I think lower_16_bits() and lower_16_bits() would be appropriate here.
+
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static void emac_update_counter(u64 *counter, u32 new_low)
+> +{
+> +	u32 old_low = (u32)*counter;
+> +	u64 high = *counter >> 32;
+
+Similarly, lower_32_bits() and upper_32_bits here.
+
+> +
+> +	if (old_low > new_low) {
+> +		/* Overflowed, increment high 32 bits */
+> +		high++;
+> +	}
+> +
+> +	*counter = (high << 32) | new_low;
+> +}
+> +
+> +static void emac_stats_update(struct emac_priv *priv)
+> +{
+> +	u64 *tx_stats_off = (u64 *)&priv->tx_stats_off;
+> +	u64 *rx_stats_off = (u64 *)&priv->rx_stats_off;
+> +	u64 *tx_stats = (u64 *)&priv->tx_stats;
+> +	u64 *rx_stats = (u64 *)&priv->rx_stats;
+
+nit: I think it would be interesting to use a union containing
+     1. the existing tx/rx stats struct and 2. an array of u64.
+     This may allow avoiding this cast. Which seems nice to me.
+     But YMMV.
+
+> +	u32 i, res;
+> +
+> +	assert_spin_locked(&priv->stats_lock);
+> +
+> +	if (!netif_running(priv->ndev) || !netif_device_present(priv->ndev)) {
+> +		/* Not up, don't try to update */
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i < sizeof(priv->tx_stats) / sizeof(*tx_stats); i++) {
+> +		/*
+> +		 * If reading stats times out, everything is broken and there's
+> +		 * nothing we can do. Reading statistics also can't return an
+> +		 * error, so just return without updating and without
+> +		 * rescheduling.
+> +		 */
+> +		if (emac_tx_read_stat_cnt(priv, i, &res))
+> +			return;
+> +
+> +		/*
+> +		 * Re-initializing while bringing interface up resets counters
+> +		 * to zero, so to provide continuity, we add the values saved
+> +		 * last time we did emac_down() to the new hardware-provided
+> +		 * value.
+> +		 */
+> +		emac_update_counter(&tx_stats[i], res + (u32)tx_stats_off[i]);
+
+nit: maybe lower_32_bits(tx_stats_off[i]) ?
+
+> +	}
+> +
+> +	/* Similar remarks as TX stats */
+> +	for (i = 0; i < sizeof(priv->rx_stats) / sizeof(*rx_stats); i++) {
+> +		if (emac_rx_read_stat_cnt(priv, i, &res))
+> +			return;
+> +		emac_update_counter(&rx_stats[i], res + (u32)rx_stats_off[i]);
+
+Likewise, here for rx_stats_off[i].
+
+> +	}
+> +
+> +	mod_timer(&priv->stats_timer, jiffies + EMAC_STATS_TIMER_PERIOD * HZ);
+> +}
+
+...
+
+> +static u64 emac_get_stat_tx_dropped(struct emac_priv *priv)
+> +{
+> +	u64 result;
+> +	int cpu;
+> +
+> +	for_each_possible_cpu(cpu) {
+> +		result += READ_ONCE(per_cpu(*priv->stat_tx_dropped, cpu));
+> +	}
+
+nit: no need for {} here ?
+
+> +
+> +	return result;
+> +}
+
+...
 
