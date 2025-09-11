@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-215720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 671F8B526FF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:23:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB79B52702
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:26:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2559E461280
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:23:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAF921C23E81
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71BA22759C;
-	Thu, 11 Sep 2025 03:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0FAC2288C6;
+	Thu, 11 Sep 2025 03:26:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="frCjEGxs"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="WmGY6S1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0650313D891;
-	Thu, 11 Sep 2025 03:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16011DED5B;
+	Thu, 11 Sep 2025 03:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757560993; cv=none; b=hqx269CoiKQPazmXNHalL3NE0zwXDTPLZgwPTQdveKEyEWLFze1mQ1hdxNwGcSprTrBE+vBLVnVrRjQcJ3UhY08adteBljIzXrJPHoK6cxlvsH1fuTstqheugECQYCF/vWAPdmIqTfSO4jpaqAXov3nKNxVbrXeIdUDtZZ2PUh8=
+	t=1757561209; cv=none; b=PAuOLNaypIhpwod3tNUbQO225XtOxj6+ABAaxaGeWAGqmFRxoxctX7JlbOjiRBpDam9PPwL4yA21Zrn1fb4c2dGJePdo5QneLiTZ5FnATKNf6BnAyhDZNkAalwOu70I+EcPsQKzRu/lFMrt1wbCgAxU1/xawv08wMuG+HxM0dCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757560993; c=relaxed/simple;
-	bh=1G77BigPRMZi5VbYGFj3vPc+tY7bX4tVaDZbtyle2Kc=;
+	s=arc-20240116; t=1757561209; c=relaxed/simple;
+	bh=opmYNSL9Bkg2+AhPMnSGWCNt7L49Bfmo1aHWyinNS20=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HqX/xOWuVZ08xDCaZUZRzcpl6680c+Fh5SGr8atiBYi+yOw1yaFvYDmYoLLyImnK+miWgbebtWbHl+iFEwhi1dCAn98S1bwLmiN3WoMnz82YhKAlOWUl+hCZNwJVgKI5/xIci02dhYf+RMyvxHBMegyh+CAoKnYd7IW1PGuh4Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=frCjEGxs; arc=none smtp.client-ip=220.197.32.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=DEHib5AMefoM9bTNhgQ5SHnGg9OTDnWgV+le/3zGqjk3cFYDOQgViqF3Avv9xOGg/CmTkuuwGScRAKAsWphoRqpgUQIdFWlxrl4VTnQ3vrodalJL/SSCz5VxEF8ao0treHlp9SRiGbTlzsvg7BdyQhtrydaTBL0SM00ynZPbq40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=WmGY6S1t; arc=none smtp.client-ip=220.197.32.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=THlvFbB78RIDz28+vysH0ce88JgTgR3a3bl/ZMN0Ldg=;
-	b=frCjEGxsW1ezgKWmLhsN0TmHjLL2JoC5L+raMBoyUyvnOAOSNStaIaJQGHF9u3
-	zurLhWJVjJIDL19H+plKT5YNLLNmV3Zu9IwdertN/JX3hHRrbUpnOg4xPwGS9Fg9
-	kkbbhEEmSiIpiv3TQ115gyE+1rAtcDiKciz7UAZ8EhWU8=
+	Content-Type; bh=y0emQFrKhNRaK9F8r9wT8+xRJD7zvWcKi6l+Zuoa3vU=;
+	b=WmGY6S1tqjFy/BldE2CA52isqt8G20G5GJV0T5WeYkKUgwJ6DNMyfUi+jg8g9w
+	sEglbfjRxxm46O72IGqWPhkx0prJDjJZzpAiiKTV5x5uIVBYCChyKzqtnhMn6RwT
+	2qw0falr7x80qRxvDOCJYszSSrGW0GDVeVm0mT4N/N888=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDn3wx_QMJoV4hgBA--.15626S3;
-	Thu, 11 Sep 2025 11:22:41 +0800 (CST)
-Date: Thu, 11 Sep 2025 11:22:39 +0800
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgCXnvYzQcJor49gBA--.42817S3;
+	Thu, 11 Sep 2025 11:25:41 +0800 (CST)
+Date: Thu, 11 Sep 2025 11:25:39 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, Frank.Li@nxp.com, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx95: add standard PCI device compatible
- string to NETC Timer
-Message-ID: <aMJAf_L0AbVfat5m@dragon>
-References: <20250904020049.1397308-1-wei.fang@nxp.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Amit Kucheria <amit.kucheria@linaro.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Correct thermal sensor index
+Message-ID: <aMJBM3GANP3NtJkK@dragon>
+References: <20250905-imx8mp-thermal-v1-1-64401ac8edb0@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +62,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250904020049.1397308-1-wei.fang@nxp.com>
-X-CM-TRANSID:Ms8vCgDn3wx_QMJoV4hgBA--.15626S3
+In-Reply-To: <20250905-imx8mp-thermal-v1-1-64401ac8edb0@nxp.com>
+X-CM-TRANSID:Ms8vCgCXnvYzQcJor49gBA--.42817S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
 	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7jg4UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIQL6YGjCQIJmVwAA3g
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgnFZWjB-SqphAAAso
 
-On Thu, Sep 04, 2025 at 10:00:49AM +0800, Wei Fang wrote:
-> PCI devices should have a compatible string based on the vendor and
-> device IDs. So add this compatible string to NETC Timer.
+On Fri, Sep 05, 2025 at 11:01:09AM +0800, Peng Fan wrote:
+> The TMU has two temperature measurement sites located on the chip. The
+> probe 0 is located inside of the ANAMIX, while the probe 1 is located near
+> the ARM core. This has been confirmed by checking with HW design team and
+> checking RTL code.
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> So correct the {cpu,soc}-thermal sensor index.
+> 
+> Fixes: 30cdd62dce6b ("arm64: dts: imx8mp: Add thermal zones support")
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
 Applied, thanks!
 
