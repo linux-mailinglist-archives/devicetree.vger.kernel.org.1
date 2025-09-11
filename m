@@ -1,119 +1,166 @@
-Return-Path: <devicetree+bounces-215949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D0EB533DB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:35:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3403B533ED
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:39:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8655D3A046A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:35:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E1E3587331
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA9232A837;
-	Thu, 11 Sep 2025 13:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0173732C33A;
+	Thu, 11 Sep 2025 13:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DJJVXlpG"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="Fk3d5f5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BCC327A38
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757597701; cv=none; b=sgRELQS++Y4mHGkOyhx04j7NpbGjmmVVFQTgh4+VVA5Iu8rhzhM3Yw+SFPonADeDOq4EgRbnj8U1/0ET+qZprP3eAvZUIkA7euO20a+9Nm5GeQYrxS4lnjDWOw1VWs2uVi+7vNJpcU5I8OzGHilolnAJUunPkxLlZajhUIdGX8M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757597701; c=relaxed/simple;
-	bh=dKD8GMOoG+4Yyag3B2X/sjwh1L9UvQheZXr6rel0Y0I=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MsCgEBS/sBGQIX2/uN+Xzug6B5bTVwZVgXjmQh3G7dzv6nO6BTJQtx4fXp2l2CdkrOflzbttxhcdDGXw5V1tXnE0ks4xj45Q2cfRSgz6i7R4EhpOLh7jceUunHyMF7bUsmSIgMG1tIf0tH4oltfL02zEKYO75Sxy+IUBUtGvojQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DJJVXlpG; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-56a04f7691aso1667264e87.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1757597698; x=1758202498; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yuU7uzJ803t+7G/jlS9fqoPlRvJYw9o9k9ZjizAu5JE=;
-        b=DJJVXlpGtzC+xDmqltEFTTxXxDcfvZnVnMmnpNhysBeDurHm9H61+W61i/22Hd2FOt
-         RSpCHxsw+mv2hrtqsQdwknz47rmGSlI0HHfJDRpF/pBQ9PlQzACqFbkUIVh/BQg1hIPz
-         wxfhlCr8jmZom0t2ArdnNBTKvFhG6WyZpFREKxsBByHImUjPVZVmjVgRIIuD2msZ4Nqi
-         +Q2vGMMx4DInfzGlDwa+SA3jhK86a9+rlPxSdyhnc84YrH3W5yxUDjzShbxzlaTv/LBf
-         qPH83HkrT1M5A0/fONxifhSRHaDcTFNwrDWY0H+4abT1rPTu2qH6mAS0wLeJM2n5K65Q
-         RgPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757597698; x=1758202498;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yuU7uzJ803t+7G/jlS9fqoPlRvJYw9o9k9ZjizAu5JE=;
-        b=eLuAsWfk9C4G8JY8LbiIjv/42iGe3wDexxkIsWPurUeinSxKgw+x46GKKD60Tro+d6
-         2GpNpSGw8gM27kVqTRX5Ggeek2ddN+BWEvR8XZgHxSiErdi4SRzuMobLIinMq/ZpH90Y
-         R9l0RN+Fz9gbAFPGUMpfJolUyfd2E4FiRR5w76juSUq7GdFOn+lQfuht0GLT+XEX4YEF
-         09YoWnuMGuNx2GC5RJkhEyCsEGMqibXueBxXS2C175NJWNwaRMeCjUJ6v6nFBsoewN98
-         ITjrdMXWRCiLYJ8fBqz4dddMFRZdGLPED0g9GRE/2CV43iuzeVdTb57ywxBJI7sQMkCB
-         w+Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCWmXyIn2qVQKvmJ4edbFHIc0fT8lOLBgp0hR9CnJUtb2tSXYrN1cgx7ApWix2WVTsyguLyf9eigTFZO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9d9SAiBy9JGgcALHxLWJsuD0R3MLWV1QhVHd6h43qW0/BCj5B
-	mWWf8/0ce9K0MCODieHoU3xJMJ1siHW3golvVdSx1YQZxhAu+nZRlcsxSZVKsywvUEl0ENW+YHr
-	8MnKjFqfxz2bQc9dXJeAMN795B2cgFsygiu8xNoeOMw==
-X-Gm-Gg: ASbGncs7zlXdORR4bG/hB6py/p1Cebq3+/G0QZN+sVF6b9spHkTej9XCmb57mcZM7np
-	IcdrSBpaOZPsfSwC/mtb9ag2oBnhM8b4IzHmD0z73a0bYvOkaDBFYBsb/oZPNeAI/Ni4aw8Ac6w
-	x1qAz8ELGBXzdgt8JvsVFbYEe82U00C5FsHN0RCL/383YWLUHVh5XUfVpHP0Aj6fvFdNx7r+63w
-	ovy/rocfHQQSjzUfKCr867yz2iYgg7Ft01iHktzKEFjnmgvTA==
-X-Google-Smtp-Source: AGHT+IGZyVuFS0SWwhsW0GkXG7C2O7hdvLrhWa2ouKXjUmaKEWGKB5rOyUWCPW4ZDky63sjUjVaIfTVqhhGY31to38o=
-X-Received: by 2002:a05:6512:3b13:b0:560:87c4:e0ed with SMTP id
- 2adb3069b0e04-56d789b0dc9mr1285479e87.18.1757597697646; Thu, 11 Sep 2025
- 06:34:57 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 11 Sep 2025 08:34:54 -0500
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 11 Sep 2025 08:34:54 -0500
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20250908-lemans-evk-bu-v4-6-5c319c696a7d@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8713631B131;
+	Thu, 11 Sep 2025 13:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757597986; cv=pass; b=BS/UwxN/rGv4iy/M9bK7PaIC+VXoISyihRUyYNIUeU3XY3bDcvICS57/gq5TYmE23mdkdWDpQ8U4tCx2BDslFwlZ7RRFkB6P16r/IuJs2EI8CHFLLZjt5mrx8AD34mMovq5q/AA6Dl0FTDCSJIPrx25ZRq5FtyXGk3tudr3sECw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757597986; c=relaxed/simple;
+	bh=j8lpntQzzYMtk7wMPyC9pfzz7cSxvnQauwFcEWCrz+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PJHudjNn0ZVehifHiMEOA6R8YFRlzvXYTLFvtuiNy1cFHz061kS4Piu6WXFgy3vBMkyBMVE/+RjUwy5q0KmmIzvb2e9aSPvWgs7y3MMkZb9RljlbHp/52ruMX1Zck2RWcPrB3zA+aAkvh/XNF+x4VNidmJpnVk99QD5iy9Zvrn8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=Fk3d5f5c; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757597924; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=cW8WQVw54kCwOrp4Z6nOM5zB+0ttwfZp2WlQWstN3VR5HDOvUIUqj7OMd52M9joD6VV4KN+dfh1dQl0/5irEs3WahGrue0xzDie3hjaV5tdBCW5k0AttByOZuRIZk3wFOzjsTr7EerdMeKTQT6Q0jEdxIQCRmWwkyus6WmtY4rc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757597924; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=z0wfAw1RoyH3XxGnHu3OjGHYgzFrel7esRCkMh235Uo=; 
+	b=OeyfDXnfBQFt2RGO4gMm6yb7HyyWhJFSbXpukrZivXBHUSu4zZB8tX0p+rGZvOotIcQlOG+e+z+/2AUnulQ/1bXPqaS4dqL3N5WfURJHVehrqpu51EIbJ/iUuIEJYOINb4anVnFgKEZp2BKvmfJNvG1rj5/t+jyUxszFxqMpZ4w=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
+	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757597924;
+	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=z0wfAw1RoyH3XxGnHu3OjGHYgzFrel7esRCkMh235Uo=;
+	b=Fk3d5f5c7xQh1L26LGxVS1MYZeolPRgvuj4odZIpMebZ02Z5jpCxFefRidPAF1ey
+	NwGxrrIocLa0JWk6u1Dpzl1zGCrU4lt1loeAoSLF2sMV/6OmrnCFottPBZbgLe1Y1W+
+	P4w+y0nD1DpQDK/sWlie56qNQMIlY8RyUyzFaKLM=
+Received: by mx.zohomail.com with SMTPS id 175759792104776.9989768199938;
+	Thu, 11 Sep 2025 06:38:41 -0700 (PDT)
+Message-ID: <f4a18a08-516a-4a0b-a477-1e9f5269f1d8@collabora.com>
+Date: Thu, 11 Sep 2025 10:38:23 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com> <20250908-lemans-evk-bu-v4-6-5c319c696a7d@oss.qualcomm.com>
-Date: Thu, 11 Sep 2025 08:34:54 -0500
-X-Gm-Features: Ac12FXwwEtmXKsTJF1Zy2OvzYXGdM0No2024s7j2f5LD4-m8j7oBYTl11y-yDd8
-Message-ID: <CAMRc=MegZ4Xe8zc0U=ruACUMA4KpP=aw6jrKCN+=KRfUKTuLkA@mail.gmail.com>
-Subject: Re: [PATCH v4 06/14] arm64: dts: qcom: lemans-evk: Add EEPROM and
- nvmem layout
-To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 01/14] media: dt-bindings: Convert MediaTek mt8173-mdp
+ bindings to YAML
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch,
+ andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
+ broonie@kernel.org, chunkuang.hu@kernel.org, ck.hu@mediatek.com,
+ conor+dt@kernel.org, davem@davemloft.net, dmitry.torokhov@gmail.com,
+ edumazet@google.com, flora.fu@mediatek.com, houlong.wei@mediatek.com,
+ jeesw@melfas.com, jmassot@collabora.com, kernel@collabora.com,
+ krzk+dt@kernel.org, kuba@kernel.org,
+ kyrie.wu@mediatek.corp-partner.google.com, lgirdwood@gmail.com,
+ linus.walleij@linaro.org, louisalexis.eyraud@collabora.com,
+ maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+ mchehab@kernel.org, minghsiu.tsai@mediatek.com, mripard@kernel.org,
+ p.zabel@pengutronix.de, pabeni@redhat.com, robh@kernel.org,
+ sean.wang@kernel.org, simona@ffwll.ch, support.opensource@diasemi.com,
+ tiffany.lin@mediatek.com, tzimmermann@suse.de, yunfei.dong@mediatek.com,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20250820171302.324142-1-ariel.dalessandro@collabora.com>
+ <20250820171302.324142-2-ariel.dalessandro@collabora.com>
+ <20250821-silky-slug-of-novelty-e4bb64@kuoka>
+ <d286ec0b-c8dc-4103-9aa3-2f40e0ade4a3@collabora.com>
+ <5421cfe7-dfe0-4bb8-8722-6f449cd365be@kernel.org>
+Content-Language: en-US
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+In-Reply-To: <5421cfe7-dfe0-4bb8-8722-6f449cd365be@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, 8 Sep 2025 10:19:56 +0200, Wasim Nazir
-<wasim.nazir@oss.qualcomm.com> said:
-> From: Monish Chunara <quic_mchunara@quicinc.com>
->
-> Integrate the GT24C256C EEPROM via I2C to enable access to
-> board-specific non-volatile data.
->
-> Also, define an nvmem-layout to expose structured regions within the
-> EEPROM, allowing consumers to retrieve configuration data such as
-> Ethernet MAC addresses via the nvmem subsystem.
->
-> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/lemans-evk.dts | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
+Krzysztof,
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 9/9/25 3:32 AM, Krzysztof Kozlowski wrote:
+> On 08/09/2025 19:52, Ariel D'Alessandro wrote:
+>> Krzysztof,
+>>
+>> On 8/21/25 3:46 AM, Krzysztof Kozlowski wrote:
+>>> On Wed, Aug 20, 2025 at 02:12:49PM -0300, Ariel D'Alessandro wrote:
+
+[...]
+
+>>>> +          - enum:
+>>>> +              - mediatek,mt8173-mdp-rdma
+>>>> +              - mediatek,mt8173-mdp-rsz
+>>>> +              - mediatek,mt8173-mdp-wdma
+>>>> +              - mediatek,mt8173-mdp-wrot
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - mediatek,mt8173-mdp-rdma
+>>>> +              - mediatek,mt8173-mdp-rsz
+>>>> +              - mediatek,mt8173-mdp-wdma
+>>>> +              - mediatek,mt8173-mdp-wrot
+>>>> +          - const: mediatek,mt8173-mdp
+>>>
+>>> This makes no sense. How devices can be compatible and can not be
+>>> compatible.
+>>
+>> According to the driver source code (and the previous txt mt8173-mdp
+>> bindings), there must be a "controller node" with compatible
+>> `mediatek,mt8173-mdp`. Then its sibling nodes (including itself) should
+> 
+> But you did not define "mediatek,mt8173-mdp" here, so what are you
+> talking about?
+> 
+> I talk here about "wrot" and others, I thought it is obvious from the
+> mistake in the schema.
+
+Ack.
+
+[...]
+
+>>>> +
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: mediatek,mt8173-mdp
+>>>
+>>> This makes no sense either.
+>>
+>> Same question above about compatibles.
+> 
+> How same question? Do you understand this code? It is nothing the same -
+> you have here contains!
+
+
+Ack. Will resubmit properly in v2.
+
+Thanks,
+
+-- 
+Ariel D'Alessandro
+Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
+Registered in England & Wales, no. 5513718
+
 
