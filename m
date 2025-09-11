@@ -1,98 +1,121 @@
-Return-Path: <devicetree+bounces-215969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04CBB534EC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56320B534FC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 16:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 805E4AA228F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:09:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11CA23AE40A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67576335BD5;
-	Thu, 11 Sep 2025 14:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3531F5827;
+	Thu, 11 Sep 2025 14:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zAYMqDb3"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="patOuB01"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DB83314CC;
-	Thu, 11 Sep 2025 14:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CD41F37D4
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 14:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757599794; cv=none; b=BShRcSC6Y2I8ugcM6cZS1xQJt+byqErK+3RDCckj8qUh6mXckEs7Fv/tFzoAB8ZATxX6PZFLFSultOjo3pe7AxI9rnL87ECK1G1dTeKd5HIa3HapxLndCaEV4fIGrSwX9jwIJ9W0SLkJNGNYpthZLcW9xyiHFCMnIVCMbUKwxiE=
+	t=1757600235; cv=none; b=ttaSsnfrYH7P6T/YCK2lYQsFBK3y/UFRJiKgDVX8dQBPv3+VuNF6EqtOCCgzvA0ZbZUFpKVCeSLx5OpU7JVGmvp23+4UP8jwQfbHBsrxvN2lI4wL7TvkI02ilKvHGLIfSIJMlIxgazZHu4quf1nsBiSe6JkjPiuH5HZcENsBptY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757599794; c=relaxed/simple;
-	bh=oEpQbz08KIQIjmYjW4TF8QaIfqdMPLGPiCOahYPFnu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XycrcBneMfaSg5yGJN7J7UsWJNRO6sBDt2YEBRML5V18/oAu+i4QeJnmqIBxSItPwBZ16tfZHqi9AULwEIN8/KKiUhdcbh1oUDnLoXVCRb3CVs8RI2fj5Yc2LxI03n6qDpCC/CdJGEIDQM3M0XwLjFQX6PPQ115+Ew1TMzstNMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zAYMqDb3; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=UTOFlXWDRobea92uCzaSAenu3tACfKoporlUKOZNwkA=; b=zAYMqDb3NB78c7pxSOBOHgTqCO
-	zH9pcex8Gn8Bl2yKiHF1FxhZm3/Sj1cNPlYKcA2EG0Y9eCbwBx+ALxGJt498GEKlMUupshhaQK1q7
-	YoLAowsS0fLwn5NeD5tOEeDYjU9XScIYzBhn5J3o4oaBGYmo/CXkfeYFWN3E1cpUEVwQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uwhzS-0085aR-Vh; Thu, 11 Sep 2025 16:09:34 +0200
-Date: Thu, 11 Sep 2025 16:09:34 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rebecca Cran <rebecca@bsdio.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	s=arc-20240116; t=1757600235; c=relaxed/simple;
+	bh=mbPCGX4UM3HTT02k6+HyBLV9KQeGijMJ1WmgYeVW2tM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=DIjlyfNA81Lk9rHNOTPP9Glw09WxhAVBA90e1y9S0lRT0CV5eWieSw8Jx75VgxnrE5Le12vKrdMBsYzWYlJYRD1rMDjab7x5b5e2hPBnxudT/X+okk1pAeHlYrMmXVm8drLQaZS49wNES3erWOk+eX4BZwLep3OXmcden707qoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=patOuB01; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250911141704epoutp0476c3b142c2d7c3852ba6da9e6e7b6458~kQBeX7RXw1985819858epoutp04B
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 14:17:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250911141704epoutp0476c3b142c2d7c3852ba6da9e6e7b6458~kQBeX7RXw1985819858epoutp04B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1757600224;
+	bh=RLpdNx7Q7daLl1m5w+1HBX92mGtsG9KdY01cT624FQQ=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=patOuB017iAODXDePtilJ66dkb0gEC6N1VU/RJczUip/26hnOiE/qxD33Lp5kZbmY
+	 HnvpnuPfqwhQWE3wLQ6cGeNSuwY+SvXliiR96oEnnTExZwoHk7SsF+lM/M85luGu2p
+	 sM6X41V8dqUBe4RkQOFJTk3ahTWUXeksV8rj0kqU=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250911141703epcas5p45f1cdb7fe1cc1b01d11f889708713a03~kQBdmAcvf2847928479epcas5p4v;
+	Thu, 11 Sep 2025 14:17:03 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.95]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4cN04G6Kmdz6B9m4; Thu, 11 Sep
+	2025 14:17:02 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250911141702epcas5p23d6a0708919eca66f9b29104efafbc1f~kQBcMU3Uf2246622466epcas5p2c;
+	Thu, 11 Sep 2025 14:17:02 +0000 (GMT)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250911141658epsmtip1c22551d755a82731ba8ba8a915095e45~kQBYqjAjg3172231722epsmtip1b;
+	Thu, 11 Sep 2025 14:16:58 +0000 (GMT)
+From: Ravi Patel <ravi.patel@samsung.com>
+To: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jesper.nilsson@axis.com,
+	lars.persson@axis.com, alim.akhtar@samsung.com, arnd@kernel.org,
+	krzk@kernel.org
+Cc: andriy.shevchenko@linux.intel.com, geert+renesas@glider.be,
+	thierry.bultel.yh@bp.renesas.com, dianders@chromium.org,
+	robert.marko@sartura.hr, schnelle@linux.ibm.com, kkartik@nvidia.com,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
- ALTRAD8 BMC
-Message-ID: <58a092c5-5dd0-4718-831a-e25ecb184087@lunn.ch>
-References: <20250911051009.4044609-1-rebecca@bsdio.com>
- <20250911051009.4044609-3-rebecca@bsdio.com>
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
+	ksk4725@coasia.com, kenkim@coasia.com, smn1196@coasia.com,
+	pjsin865@coasia.com, shradha.t@samsung.com, Ravi Patel
+	<ravi.patel@samsung.com>
+Subject: [PATCH 0/3] Use exynos8895 driver data for ARTPEC-8 platform
+Date: Thu, 11 Sep 2025 19:46:02 +0530
+Message-ID: <20250911141605.13034-1-ravi.patel@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250911051009.4044609-3-rebecca@bsdio.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250911141702epcas5p23d6a0708919eca66f9b29104efafbc1f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250911141702epcas5p23d6a0708919eca66f9b29104efafbc1f
+References: <CGME20250911141702epcas5p23d6a0708919eca66f9b29104efafbc1f@epcas5p2.samsung.com>
 
-> +&mac0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii1_default>;
-> +	clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>,
-> +		 <&syscon ASPEED_CLK_MAC1RCLK>;
-> +	clock-names = "MACCLK", "RCLK";
-> +	use-ncsi;
-> +
-> +	nvmem-cells = <&eth0_macaddress>;
-> +	nvmem-cell-names = "mac-address";
-> +};
+Existing samsung uart driver has separately added ARTPEC-8 specific
+driver data, which is added long back (> 2yrs).
 
-There is no phy-handle here, and no mdio node in this file. What is
-the MAC connected to? Does it connect to the hosts Ethernet interface?
+This driver data can be removed and other similar driver data
+like exynos8895 can be used with some changes in the dt-binding and
+device tree.
+This patch series does the same.
 
-> +
-> +&mac1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
-> +
-> +	nvmem-cells = <&eth1_macaddress>;
-> +	nvmem-cell-names = "mac-address";
-> +};
+NOTE: This series is useful for the upcoming ARTPEC-9 base patches
+where uart is exactly same as the ARTPEC-8.
 
-RGMII pinctrl is referenced here. This opens up the question about
-RGMII delays. What is this MAC connected to?
+Ravi Patel (3):
+  dt-bindings: serial: samsung: Update axis,artpec8-uart to use
+    samsung,uart-fifosize
+  arm64: dts: axis: Add samsung,exynos8895-uart compatible for serial
+    node
+  tty: serial: samsung: Remove unused artpec-8 specific code
 
-	Andrew
+ .../bindings/serial/samsung_uart.yaml         |  2 +-
+ arch/arm64/boot/dts/exynos/axis/artpec8.dtsi  |  3 +-
+ drivers/tty/serial/Kconfig                    |  2 +-
+ drivers/tty/serial/samsung_tty.c              | 38 -------------------
+ 4 files changed, 4 insertions(+), 41 deletions(-)
+
+--
+2.17.1
+
 
