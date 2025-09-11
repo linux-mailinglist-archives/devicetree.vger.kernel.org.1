@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-216165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75104B53D56
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 22:57:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82926B53D57
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 22:57:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34F0C7B1351
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:55:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 420125A0A82
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB512D8788;
-	Thu, 11 Sep 2025 20:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402AF2D9792;
+	Thu, 11 Sep 2025 20:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ak9Oh9xk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DMuLMZfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890882C2364
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 20:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DF8A2D7DE6
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 20:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757624226; cv=none; b=HLWOZ8QR5n0PC1Zq/LbS7WfCkTyXAnAZPw5ZdYMqZiWSmcn0YrtwZU8sQn/eOYS7oMMmyHXnEle+I93ZWIYiKK0ncHtGX/z5IdWvPzJJDin0Djh4uqHzUuYs4CeBwK0My15dwKj8jvOTI8kDif1H2vVPaTjk0ehXefueGHUTj9k=
+	t=1757624227; cv=none; b=ELwJmIxx+sX0vYSC6ldKDFQZHdfv6gU1BFPy/o8sXxX2uSj9CVeSaiWbJa6pVCTdpBAMioJL2IaHtZrk49EH4fMvVBWbSEu3DP5NXrAygbsWpLL8ihNhmgIfk3jqY1JuNzKoT14eI+H0UGf0C5SjVutg/n7CZQao0zkxbW5FFDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757624226; c=relaxed/simple;
-	bh=3/RgRAcFV2NW0rUq1O8pSUOarRj54QaeN5/ojlVNaE8=;
+	s=arc-20240116; t=1757624227; c=relaxed/simple;
+	bh=nUEAyXgbLn4v9azKT5n1vztEvNCnWVI0bOzq5dWBoz4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mlBeUQB8vxRAcpVzolx4BC/QbiooPX84hGGj0Gkd8a3o9V5XbH1HjcyNJoc7+RstgOW7OELQCiBsy/XijL3zZf+zxLlvWyuatsAcHgS7vVpy68F2r3+nbMjWbARJz2FjHNQ5AbamRyCgR0sOGFmAPeymLw2zonGywiTlAaCseow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ak9Oh9xk; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:To:Cc; b=bFTuFmq6fwTBWqEulmUp7URi5kQJW8aeIbMUjHdV8Jyu5yzb75rUccPFooCYoabeZGCun4FKjkQppvGcj5DK6VG1Tk+ZRaRgQKq9tCzH7m2EsKlpGka5YXLGLUITqLJuqPfWQZc+Qb/b1PQ/CoaeQFMmGan1AOvbd2HtSjut9FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DMuLMZfJ; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb7322da8so229665066b.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:57:04 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b0418f6fc27so206461066b.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757624223; x=1758229023; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757624224; x=1758229024; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=f6aOjs8PgmMeVOmmIH10qFkLTayDVCN1LF6r/kVHD1s=;
-        b=Ak9Oh9xkVmpI07XrcH6OJrH4iBbaqqA4NLdGjnzh6TEI0UDmko++HT5vd+PI4hbb7p
-         p9ncWfCSz1USyg+i6PMrhU4pw9nbOIxJLGDIMomJY/YOYOMnuLfMR/JgCK+PkvXPEFVx
-         LCi+gUOYIw/334v+UvmNj5nQe4/TH3c9DN4CtcKb5PN4rnMg1PD/NpyfbQTG0T12rjP6
-         hujI2CxxhAZnuxmcgZfS6uyEzzmza7gYcAldWk9E78kUQ068TRTThr6ugcl06iKpiS7x
-         GnOVYwvvyAJyevkIvRFXC8GWqA96/ss9MpDA+FZn6Wx8PpRZoNJqdvE0rrArJzrLB2pR
-         QmTQ==
+        bh=C0JmqMyBdGbQ8gI7VodLEj+HaxvKC2psqCBIe1Mn6TI=;
+        b=DMuLMZfJNajLmfaPEPIeJslP5wEBbAiy6kG2XpsUU4ilXr/Uiw+bFTqA9gMPqVTnCy
+         B/aEBONHFp43C/fatEgZ+tYnFIZMed5ZZKk+676tnPiQNqu/MtxHzN3OG3wcVv7XV4iX
+         S9126ms33ZfGkeEdbhIizVmfFrLqy/i4vPbWV9r5GQxRznm1yE9pw4MOzuikkzVMf4uW
+         zUPdfi9CUvW8q5iZDLDLbsB8i5L9V9AWxeqTm2UqMuTyRYXDbFHai6NZHTAcogKxegZk
+         kfXEtajtuWCCDWbKYhXveNfNTcY/LR2i4Wwk4gxbc4B9FkESTDvsqWqVlfKa9vlBLoiw
+         CEQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757624223; x=1758229023;
+        d=1e100.net; s=20230601; t=1757624224; x=1758229024;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=f6aOjs8PgmMeVOmmIH10qFkLTayDVCN1LF6r/kVHD1s=;
-        b=HvZYDmQh4SGoOXTz6tes2+D2EWRQrvb2MrVcT5ejLd5Kv97hp3UZVeLKLRg4Z8TzKy
-         H5xjw7vUFuhu5ACx4SKzWTA5rICmssokLpKdBf8KPkkEDQYarjyQ3UHekAiColas1vDK
-         zeKKFqr16b3JB6NyZuof/nR11TQ1Slk/oqM48JwLQHK2izhCNW+5tzJAHprTGHgG/8ib
-         jebFrmGo3FvierjVMvAUtChfF56hpoUKIyx89xT0lDB4CPg7PshdLKZNqh3uavun6Mjg
-         a+mHPfTkg3NGEl6+6xUTC6a5rvBKmzC06hJLo3jShO7Lhvw5GeN/HjsLB10VY/z+kzRy
-         ayGg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0i3kZSAa91Qcoro1d3fuMmV1X222xSQLSe82hbkgvJw4qafekmPMjGRBIlBOSz58rI2ExvgKE9ifH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyrw6l+ig1JVUgZ6Ss0yetpKQ93rumcdfBBcFhRWILvIDz8e6x3
-	VKAh4o39Cyltfu9jGteX8kjUa1VTd5ZydARjg8NcJF+i2/th7WmsUBpP
-X-Gm-Gg: ASbGncsK/8/WXRoUsLDSSzre3Qu3BlW0nO8kaU1iI3T148cNEHZ0YKYD219+cDmfMvC
-	0ros/mPMaiFiRxjKkcOT3fiMaJxxBx29r2ReK/6A4AFdvwHqW15tuZvEF+lkX3P7yfWy9hRi3s3
-	vHpAO4C8t8RGWETbpgk+hTUtPpjWFhz7i6WrjRSURW0CgUTccimhTYkl81gTx6lnnTpW/Qy4w/H
-	S9/7I4TQpG1Wt6ZbM9gXXYjoGe0GP7kdhgMAkiehkHDoFMwy2RaHtFdmCrkA+ZgnaHEsKV3Rvwd
-	sOGWOBd906+FV+CtaGX/Pq+1HgD5xvffUAG72dpgdBBZE0BP/8/3SJFNZi1iIw0EDASHst0KoWU
-	LxX7a2moMZQHsO52dY+PG6Ax27e/8nQAEkAZNbOuSlg==
-X-Google-Smtp-Source: AGHT+IHWdhuUM6f2lywRYg4GOnoPtBiWkw6/PuE3vzVz7Rso77GO0FX2u+NDjsUbuHwsz2f4SXE3DQ==
-X-Received: by 2002:a17:907:60d0:b0:ae3:8c9b:bd61 with SMTP id a640c23a62f3a-b07c354fae7mr53944066b.12.1757624222769;
-        Thu, 11 Sep 2025 13:57:02 -0700 (PDT)
+        bh=C0JmqMyBdGbQ8gI7VodLEj+HaxvKC2psqCBIe1Mn6TI=;
+        b=eQCpqwGlaBfUGqJMnM5VnKyRU54WDnQJtnrC+xnS5CWB7MFyTWD2KJm9mpsohvNO4U
+         v/u/lDDK9eYl2E+9I5DwvwwBEuW4OKsWEhKmAV2G0GJdHc6lnMEUZ6sLKFxZaE+9rW4L
+         58s55IQxhCdUXwqfeGRkKfE5y4sQCxy+hZE+yRFKnOIFJyCVjIX7ou4lH9dOo4YR4jzF
+         NHRCn9+1QV6+CjLGrZwNw7IDbcvtdQF2xbfL9Fzt0OY5UAGPn5td6cPrTBINyriHfiHm
+         9ixB+bhmHRPbS/tm0MRufoP6i+LAKCmT+8ODzxrbybKwwjCzWkPgVlMeZOih/Uq8JZPl
+         4MhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4MtBc7BNHgn7X/F1X4HhgaPtJcvTKgz3lgWZ5feIegJO7zmnwGrKE/broMqGktiqgmQETElriCs6E@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0Jxl8D5q6YooZ3B5xP4L+iyResRi3FmJBX9JlxM4IbhOye0yx
+	drUJwz4ffaFCce51tZQxhA6vw7hUj+EU0eFA8XtqhZVSQX1sDc7EdXZp
+X-Gm-Gg: ASbGncsxcCUjKnoo4g0lmTlhXxXpWOeJOqweaLy5SAGI0ez3Un3RvQAQHgBYiiXZa2O
+	c2XyAhyrPZNKR5nIg4T+/tH6V4VrTiO7qo2aeCGTdYP2QHToa204TGj0jrEgXy2nyu++3m5iBSo
+	pozV0WWPZTSu7w2qZscxsxOvBDTU1IlbghGEnBRwaDkdas+rQPkKFaEwjQfpSoavxF2GcfLFKi0
+	050vdeoa99dhSSST7jyEos3i1pXTBa0E/pjlJxxgrk7t+iZE3H9aeWkP1WxY6QcJ57zWOedBcG/
+	Yn/oVQYVlOLjdAj6HXDOcoG7PfmQMKCuepyFoFpwSGw2BUVH9TchtoxCY821cI4MPlHgTVpSah9
+	3nodob+g/oAoVXRTpcLSagC0l13JS//4=
+X-Google-Smtp-Source: AGHT+IF32n+ghR2lvp3OruPrYSdGU7Y+rlNr3st/nMIgdWGllWQUKQeSB5kNG3qCsFPT9IxV4Ues/g==
+X-Received: by 2002:a17:907:9705:b0:afe:764d:6b22 with SMTP id a640c23a62f3a-b07c347fa5cmr49768566b.9.1757624223756;
+        Thu, 11 Sep 2025 13:57:03 -0700 (PDT)
 Received: from [127.0.1.1] ([46.53.240.27])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b07c28f190fsm38775366b.39.2025.09.11.13.57.01
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b07c28f190fsm38775366b.39.2025.09.11.13.57.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 13:57:02 -0700 (PDT)
+        Thu, 11 Sep 2025 13:57:03 -0700 (PDT)
 From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Thu, 11 Sep 2025 23:56:56 +0300
-Subject: [PATCH 1/2] arm64: dts: qcom: sdm845-starqltechn: fix slpi
- reserved mem
+Date: Thu, 11 Sep 2025 23:56:57 +0300
+Subject: [PATCH 2/2] arm64: dts: qcom: sdm845-starqltechn: add slpi support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250911-starqltechn_slpi-v1-1-93ebf951a932@gmail.com>
+Message-Id: <20250911-starqltechn_slpi-v1-2-93ebf951a932@gmail.com>
 References: <20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com>
 In-Reply-To: <20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -95,41 +94,63 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757624220; l=1069;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757624220; l=1353;
  i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=3/RgRAcFV2NW0rUq1O8pSUOarRj54QaeN5/ojlVNaE8=;
- b=r49EsUNrjWPtZZoQrQ5ZDJdhA/iXH+3jXbgBpvJhDi6VzZKIxfYF7ar34ZX5QtZVE1HAIpRJm
- SD5KLWof2lqAW2ZPaBVxsi7wHs6XHrnGwhBUd49y5OlxYCRUKZdS8YR
+ bh=nUEAyXgbLn4v9azKT5n1vztEvNCnWVI0bOzq5dWBoz4=;
+ b=27svf7Ue9vYWwhzsEw473UyOaGIigV5yMC8y292nwZYZx8smqYzOpcLd5YpIxLyOkNEf7ioH3
+ 7TNd6E/3hIbDI+dM/LRkxqhQEgg05+jN7I+Z7kRmQ/a1S00gttS36VN
 X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
  pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-When adding adsp reserved mem, slpi reserved memory was shrunk
-according to vendor kernel log:
+Add support for Qualcomm sensor low power island.
 
-`Removed memory: created DMA memory pool at 0x0000000096700000, size 15 M`
-
-However, kernel refuses to boot firmware with 15MiB reserved region.
-Increase slpi reserved region to 16MiB.
-
-Fixes: 58782c229e3e ("arm64: dts: qcom: sdm845-starqltechn: add initial sound support")
 Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 24 ++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-index 9eeb4b807465..32ce666fc57e 100644
+index 32ce666fc57e..2c1157ee7b2d 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-@@ -118,7 +118,7 @@ removed_region: removed-region@88f00000 {
- 		};
+@@ -902,6 +902,14 @@ &ipa {
+ 	status = "okay";
+ };
  
- 		slpi_mem: slpi@96700000 {
--			reg = <0 0x96700000 0 0xf00000>;
-+			reg = <0 0x96700000 0 0x1000000>;
- 			no-map;
- 		};
++&slpi_pas {
++	firmware-name = "qcom/sdm845/starqltechn/slpi.mbn";
++	pinctrl-0 = <&slpi_ldo_active_state>;
++	pinctrl-1 = <&slpi_ldo_sleep_state>;
++	pinctrl-names = "default", "sleep";
++	status = "okay";
++};
++
+ &usb_1 {
+ 	status = "okay";
+ };
+@@ -1028,6 +1036,22 @@ sd_card_det_n_state: sd-card-det-n-state {
+ 		bias-pull-up;
+ 	};
  
++	slpi_ldo_active_state: slpi-ldo-active-state {
++		pins = "gpio8";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-high;
++	};
++
++	slpi_ldo_sleep_state: slpi-ldo-sleep-state {
++		pins = "gpio8";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-low;
++	};
++
+ 	touch_irq_state: touch-irq-state {
+ 		pins = "gpio120";
+ 		function = "gpio";
 
 -- 
 2.39.5
