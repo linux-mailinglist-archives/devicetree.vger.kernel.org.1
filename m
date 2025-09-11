@@ -1,209 +1,459 @@
-Return-Path: <devicetree+bounces-215702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD89B52638
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:59:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44406B5263E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:01:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 347934E1A11
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 01:59:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D5B304E1CEA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 02:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2493423645D;
-	Thu, 11 Sep 2025 01:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F4E22154B;
+	Thu, 11 Sep 2025 02:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="cRWUwERm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023103.outbound.protection.outlook.com [52.101.127.103])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022091.outbound.protection.outlook.com [52.101.126.91])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8DB2264B7;
-	Thu, 11 Sep 2025 01:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.103
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0125563CB;
+	Thu, 11 Sep 2025 02:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.91
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757555928; cv=fail; b=DsIIG3ZkSVW7Qe24as7Htjev+zjKi8DlsLaomZGyo7uF/DcHw1zawVivyGX7Gm7wzvhVlj571oE5VsYtK/Vg8Vy7huUhBN1FYyLXHwrioBoYx+ccVjVMEfzBwiaijjFGVYhnXc4AIxa+fafUGtIZNzBT+LysR9FR72du3dF/bOY=
+	t=1757556101; cv=fail; b=k3i6OLmjuZK1be6rNEg1NpGsRN+E6B9MaHJZN9oUVYo/bjGyRlfhxUGnbbvelwWoSDzoSXKQTWA+fqYt1BQzOXzN+m83LwCf8iOWiKyGE2XLsRvk6NO40TKR3I6bs1zbKvrvvp1wdN26KEomIhyqUZlPY+qXeF8AW+NoSFJQlV4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757555928; c=relaxed/simple;
-	bh=TsjhQCmVgzjGp/SUTs1hVbwdL8/L3zMrn9ipClHFdOc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=spA4FgL8Y39y+ACs3Q1YH4LIsPkMaP/9MTq3ySyBKn5qNstcE/oP5ce6KI0a0s/91qx3gMgRT1GE/dkhf0zCHFXdX+R2JRqdLzVPZmF8l4UdEPO9OCqbtz4wUbY4pnmH6tOhC27srAR3X2+oeEd228Ers0hE4nxpLhR09utI2rY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.103
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+	s=arc-20240116; t=1757556101; c=relaxed/simple;
+	bh=KaoC+PjGPZjj7nOL8tW2NfyZgJZyPVeZa/syePzJ27g=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=hxk0Pp6hrj7BIgN6UfkzbfpwjFVdTBRCfFQjKyMqkhuT619E/bZN/W25o2bOO3chJVm3DdbqtVWwGcc4qimPpMuhDly9y+oa5kl9BQly9r2EmYUJ7EXfbOfcfRHM42xQCwi/RQ8HlCDKB4mA7MIhdcM0D4DO/bDe4Vt3aajGMlQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=cRWUwERm; arc=fail smtp.client-ip=52.101.126.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VvOzBiD5uLrY5XTGxaAtRw2T6VtTHbjXHBj+Z0QDGCL3qF3XHa1K9+KGObeC+t/j0Nl/sR8p0HW1z9inv9c5NO68DY9TeUU37PkFK57b0ctBXd88lwDVz2wlXIINrNxvbUbxBlNDEDDaUH+pTZSQX2F8Wdm5sfLzc9OP/ClB/g9vw06Ybd2VHIOYypK6J2+g2BSaNX9OoyLtKW9/NkdQWq7MKTeH7uu1lBeUBLtGIYjVx45mlI5q/ekixloWA7JMmd88QqVZvdnFeWI+07F1WMFelxGLOpHYHaK+F5C2ep6kGrwS1b1BNtaZLfUHWNhZsiJ7Ekf/gRo0DldIsCp8TA==
+ b=yXf8W7oj2evL9s/3HmGKINOd3P4RkpQOADBYxL9julmzjtkR/eTjIKm09QsdNR0Tjhs1AWPA4cGKTQXQZ8hzN+6r3IZdxo1XB1wt/BJVHIlDTjYUcZc3pcJxxwXI+F+HnePn3SEfCk0uvuHtfDTyq75DhQVHECBsB+2kwOpiGoKzPrvaPtj1NJH+r5NMk1Hf2O3xaa54vGP7/AOJWE8SaZ9mVlQ5KrmcXgwos6tagklwkO4gvF+Pg9tIzeLog+5cEZFKz3OWG/evLxZsJ2uDf6Eg3Rljv5y8CDprdzc4AUGWe8xKXw40aTkX9VcJ9r7k6nJB4HZWEAuqcbmyYukfkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TsjhQCmVgzjGp/SUTs1hVbwdL8/L3zMrn9ipClHFdOc=;
- b=PkPeght5R1ErTt0K2lbRTJ18BG2lWWfp2HwdR4W1vvYrwmTDVEAQD37IkcMWLCND4ZwpCH/S3BQrCFpLO8/pu6AujXgwBNWtsoDaJhRJ7cq7XUxuNgkDtssZ5+Wt2ugIAcyySh51qbkBGXm9uyS+FFetkxDwnjUxqOgQTZ3v+j7qJ8jy3/cdhg1btRW6MWvGbfmAR4ta2dFzc/V5UtivSi46kHcE4KJBLRRtyuBs/0RA80n5WhQqpewelrMqF4+1Vf0aPMFGHaC+yFnzOr1AIYHJ8ecRq9ERD7yL3Enyjwhkb32lCQTN7nDUjB6OdEr3XVd7vGRnf/PB29M9Qu6u7Q==
+ bh=2hZlguZQpHWo+/cJzWVwwh3gyS9Rl1ZHQI7rstGZLJE=;
+ b=UK3tIDAYudGPCu0ebm7m/NnxI4LBLe457popQIOzD3VE0YuPWVGPKiSlPtaSlpZIqymc/8mQ8qPJ0rPAXGhWFav6myvWPgHc+gvR3V3443NvL9Vkddw7L4jkXIMqtgv4fEozcBBCF7X6Ku3KMFINKekLRSh2K70Yxe5sYPyqtXx6qHLlFKLbfM19H910jniTD+wKPyPUdGyAg0MgvkQ2VN9x/YYkBYiqgV6eCWHZUA2SyAUXq3aVPl7XV3n6gHOF6Loym2nJ2+gFrBq1l7yfRCIxJBP5zvk8dafGoa3LT8bMsYxLkEPFVT9p/o2iv9g6Al8aceMUkuUi2NaQ38gwyQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
- dkim=pass header.d=cixtech.com; arc=none
-Received: from PUZPR06MB5887.apcprd06.prod.outlook.com (2603:1096:301:117::13)
- by SEYPR06MB5279.apcprd06.prod.outlook.com (2603:1096:101:82::6) with
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2hZlguZQpHWo+/cJzWVwwh3gyS9Rl1ZHQI7rstGZLJE=;
+ b=cRWUwERmAAbWlJ4AXHKsqwdwz1P760x0TRrTE1HTb22USrOvdrFqfvc/dl3kf9547hafCE3nNLd+9LnwUW0hgFTn9pvKz+AVEYOeBjSeQvN6Hp164YdH7tiKhamu88ZzBs/LnBcWpOs+MtnUrhQunNtHIb/Xq4nmNY1vUF8ClGFyKGhGEa/zKXCgZiFA9buaDIFb2q18k61wcg6UXM8lPIRm2VfbSxNZ+Bf6sO/0nBNXV4QszLIvwwrFY92SVqxRdnHsbvSCTjAkJFMJcpsAE0Isn7MzmuE7QEcxW2PTm9yTxiRn18JVIK5i8dhmCbtTwHOJNVQeNje4EoMTOwrPmQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
+ by SEZPR03MB7033.apcprd03.prod.outlook.com (2603:1096:101:e2::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
- 2025 01:58:41 +0000
-Received: from PUZPR06MB5887.apcprd06.prod.outlook.com
- ([fe80::611c:7f38:af2e:22d]) by PUZPR06MB5887.apcprd06.prod.outlook.com
- ([fe80::611c:7f38:af2e:22d%6]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
- 01:58:40 +0000
-From: Gary Yang <gary.yang@cixtech.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-Subject:
- =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggMi8zXSBkdC1iaW5kaW5nczogcGluY3RybDogQWRk?=
- =?utf-8?Q?_cix,sky1-pinctrl?=
-Thread-Topic: [PATCH 2/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-Thread-Index: AQHcFvw6Jst8WcIA+kKHV/WtkB0Of7R4ZNEAgBHcnvCAAsqSgIAAQ0Ug
-Date: Thu, 11 Sep 2025 01:58:40 +0000
-Message-ID:
- <PUZPR06MB588739911F77623C32AEACCAEF09A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com>
- <CACRpkdaX2VPAb+vihZ5BEAsGy+jNUdQ8q+3c3Q78uWmqZYeu=g@mail.gmail.com>
- <PUZPR06MB58879640C5849ABA55EF0C34EF0FA@PUZPR06MB5887.apcprd06.prod.outlook.com>
- <CACRpkdZzqRo9LRkF8=BSDANweWd0ccWtu5_nznDUn_FS6Fb0BQ@mail.gmail.com>
-In-Reply-To:
- <CACRpkdZzqRo9LRkF8=BSDANweWd0ccWtu5_nznDUn_FS6Fb0BQ@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cixtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PUZPR06MB5887:EE_|SEYPR06MB5279:EE_
-x-ms-office365-filtering-correlation-id: 08d4ae66-3670-4c49-b46f-08ddf0d6bb0a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?NEN2cTRPNHY5VDFORGRHV1VvYWdBSEU4RnQybjZoT1Z3SDVLZzhzZll1VFg0?=
- =?utf-8?B?cmxRZDNsb1N5MTZjaE92Q0grWTg1a2NQZ0MrTzMyQXVoaHRUMHo2VmY1TWYv?=
- =?utf-8?B?aHRMY3dNNXY1Rk5BaEFvMlRFSE1FTTU1U0ZyMTFCNHpLTGdrcEl4Q1Z4d0hC?=
- =?utf-8?B?Q3ZMbm1BbmN3Qjh2b0FrcFIxeXdiQlhwSGFQZ1RFekRvYVA5YnhsazVJcUJJ?=
- =?utf-8?B?TWtTcE81dS9GeCs0WHN4Q0IrNnZlY0tWc0NFZ0ROQjFXM29pOTgrT2IvY2tP?=
- =?utf-8?B?K2NLR051amxZYmdBZHZaM2FxM0RmL0VIL0tzTXIySkJ1ZUt3Mk4zTkQ3NGZX?=
- =?utf-8?B?TFVLS1pKT2pORXhuc1R0QStvanUzNnVtUVJ0QnMrREU2ZGo3QUcvYzloMkJL?=
- =?utf-8?B?SXpSZVQ1Z2pDaE9CbnR3MHBCcm90K0tSbkFaVG1HN24zTUthN0kweExVQnc3?=
- =?utf-8?B?cjhjb09MRU5tb0hIZzdrK2VEZkNBZkxKTDg2ZmN0OTVBTlZRazN3eHVJWHA3?=
- =?utf-8?B?RDh4MWlEZzRZWlZMajlHVjhEdlhUdzFVZG83Q0lVZFF4dm0vT3UweFdTYUNp?=
- =?utf-8?B?WEFhaU9pMUtZczR4MEt1VkRmTm9aT3N3bjBKM0F2Q2NVeGE4OGk0Tzd0MUY5?=
- =?utf-8?B?QUNla0Z1WlRpRUtuRlZQRVIzQ3g4ZXQrb2RVZnV2UklZRDlId3hOVXB2SWdC?=
- =?utf-8?B?TmtYTHQvSHJwR1pLOUF4T3VqcmpOWktHL1BGR2MxZUFDTXBhQVgweUlpbXJK?=
- =?utf-8?B?bERQVFRyTUMxUGhPWkRMYjZ5MUVLSXRJOE9wYmZNRExSUjl6SVNRR2lHWlNu?=
- =?utf-8?B?MkcxakxSa3F4K2haYUt2WHRnVEFyT3ZmUS9ha21iSlBHUzk4eVhnWXVSY0hi?=
- =?utf-8?B?TVN5cXBRMDdSNjZkclJlT3J1ZkVNUzZRVkU1eWFWM0FLaE5QREU0ME5BWDZh?=
- =?utf-8?B?MEVmZEVYUDl4blpRY1hma0dNVUJneCtTbDFRS2krRlJwTm9NeWtoK29IWDVH?=
- =?utf-8?B?MVM1dzVjOFlvSlRPNloyUDdwOHZpcEk0OUl3UEg3S3dZcE1xanZQdU5pby9U?=
- =?utf-8?B?Z1F2aWhUU3EzVDE2OEY4ZFdCaHo1ODhLSnd0L3ZiWEFtV01acXlVNVNEelox?=
- =?utf-8?B?T2kzYk5OTnZrMTU1ZmIwU3pqbHZEWjR1dGYrNGVjVmgrWUY2aWxFZmE2Ym5h?=
- =?utf-8?B?SHJGR3Z4SWVJNEIzdnY2dHlWZWxWUEYwTHVobjRaa2E0blgzelRaVklZc0Nh?=
- =?utf-8?B?a3ljbmxPWVVqenVpRWtKTnV0YUdFdThEeDRROEs1V1VQcXBPZyt1Z2lwSXRn?=
- =?utf-8?B?S3hmSHlzM1FMMzlHMUg4aCtvYStocnBCT1I0YnQvRDVibSs1SE8zdmpVajdP?=
- =?utf-8?B?dWk3Szd0MldHN1hkWEk4dFBSSHd1b2ltSVMwaVduZkU2ZXcyL2lkQi8wd3BG?=
- =?utf-8?B?TkhDWVQ1VG1LL3Zmb0ZQYU9SbWhQVGovVWVuU0dmWTMyU0JwUStmSS8xRlpH?=
- =?utf-8?B?c2g3d3FWN25jK2txK0daOHdvdHM4L0lpRWxFTklOaVlFZFBpbzVEdTFUVmhm?=
- =?utf-8?B?R2RXc3o5UWo4L29VRjU3Mk1ESFArQWJlWEVJL0k1RkpJRGVSWFpMbmQwWkRS?=
- =?utf-8?B?a2FENkhNL3JYelptTTB2cWtnbFR4MEVHcHg3QU0zQWFrTGZhOEJzZXBhbHg2?=
- =?utf-8?B?ZVVnUlI0eHJiSlpIaHJnS3F1VEhjY1h6SGpELytYdUd1V25HUExCa1ZLY1pa?=
- =?utf-8?B?VkFoYnNhMUU5alBZTEN0RnB5dXR2L2lUS2l0VFlmai9ydDlzTEp2Sjk3ZHd4?=
- =?utf-8?B?Z1NmYnkxSkQxWkwxdW84SEZ3QWdMK2YyRGFreitiM1lZUTRvYkxLK2NEUXVj?=
- =?utf-8?B?S0tuNVpnWFdBTkhTZEVmVGtmYVpWZ0U0UEsvNkpDSXIyRnNaMWh3K2UzMWk0?=
- =?utf-8?B?d1BMaGtLaDJQSE1odXpCNFBZNXZqSlArQi9YL09MSWp5cFIxbEpsT04rc2k2?=
- =?utf-8?Q?HzXRIXti0p2/ypgaeucY9SIFNjoFXg=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR06MB5887.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?QzA0MEhYOTgyNGk3Zmg0K0J5ZUlJL0VTT3EwREVCcTlMWWJ0elJ0UFpYQ0JQ?=
- =?utf-8?B?WFVDeE5ITjU0S3hPZTFMRzRDVFpoQWduV2YyQnZ2dVB3UGhrOXFUejlCWEYz?=
- =?utf-8?B?a1QrMXA1cmNxTzRjYk4xZVpkcHFIOWY1clV5UFlzK0dmT1lDZ21haE9wVXBR?=
- =?utf-8?B?V3RsbnQxUUR5cnRhMFhBNVVteisyL0E0ZEZFL3l0Qkh6czhaRFJvMDBQV3p6?=
- =?utf-8?B?YWJlVGhUMWRjYXFUMythWlRCUDNNdU95cTJBZ3BvK2xRZ3JCbUNQOUZEbTNy?=
- =?utf-8?B?TjNXYnU2S3NnMS9zT2FSQWQzMjVQTXJhQ0FPZG8ydS9VSVhXM1RWT0IzUlhR?=
- =?utf-8?B?NzFxKzlqaElEWklkRVc0WGtSbTZqK0lkdkFsVlNrWmVmNEVpUW9PU3A1eWFT?=
- =?utf-8?B?L1NTUkNsc0FnTWZmSWZUamJtYzljV2pMNEJObEpYdGRDSWtlRW13VzlzMzcy?=
- =?utf-8?B?enBiTG1NRXBDMldCSGdUOThaNW40RWdZSE5XcWtWQVhZUlcydTRyMFVZK3BP?=
- =?utf-8?B?Y3BMNjVydW5Ka1dON2UwcTRLQ1pnZm5tM3V1VFVaUk9sQkx4dU1kM0NCb2tw?=
- =?utf-8?B?K3RzZXZvMGd2b2t5ZnQ5UDR2ODcrMHpoTWFoZEgwYjk1UENHM2NYNVNSV2RC?=
- =?utf-8?B?c0toWFU5VktwTnBwRkhRYmNIQVJLZmFYcndteEU3UUg1QkorSk1MUG9qclJJ?=
- =?utf-8?B?TjBwL1krUER3eEVhV2k4Tm5VcWM3VGNUVXY4a1JScnlZaEdhbE5QT09DRi9R?=
- =?utf-8?B?TnNKVTByQUF3aXBsS1dkYkpDelBxSEFEeXU4eXM4aEtEQ2tJV0g2ZlgrR2xE?=
- =?utf-8?B?S0xSVXdabXY0aWJYRCtmRHpSdmVlWDh6SE9kOHFKWG81a0xPakExM2N4ZGNG?=
- =?utf-8?B?djc2MVZieUpYaERwaGN1SXJLY1ZXT2I2RXR0TElKME9jK0RXNys4RGo5dzhO?=
- =?utf-8?B?dE4vSFFCYVdrTjhYUUFvRzlTWWhJUEk0VUVjOEViOEp5WFlBY21ZZWZmemdy?=
- =?utf-8?B?Y2wvZ1NtTmtNWmQzQ3MwRk96TGIrVzRmcFhXdWtlK2c1SWU4SnlnUi9XYkZJ?=
- =?utf-8?B?bmhjUkg1aTVPRHRoV3hvVFBkdGRnMko4dE0xazlBUFpHQkFwRStSNWxlVyto?=
- =?utf-8?B?ZlBsQzA0cGN3OXZHT3ZLaVpDMkpsdm5pc3ZGbVI4YVJiUlI4c0FtRnZ1Yncy?=
- =?utf-8?B?MWhoK3NsdTZhME5OR1dTU3h1L29yektPT29rYTd6Q0VhVTBYNW5ObFJRTE9R?=
- =?utf-8?B?cEU4dXpCOUE4WnRBUUNHVXNKUTIxdHZLNGZwVWV0NThhNUFMQ1V3T3FQVWlC?=
- =?utf-8?B?bnBtT2t6SE5HYTJQM2QrK01DTWFWcXZaMDA4eTFsak8zNTAvMnBQWFoxejZx?=
- =?utf-8?B?ZFVhNmpKc3hSMU9QT0oyeU1KSmtORjJSN2pid3hmb1pJQVJzSERyNWV2RndW?=
- =?utf-8?B?NU9wUFVNNEowVkpPSzZMM0NOU3NnQ1ZQVnMvWDJTMCs5bis0aytRMU03Wk45?=
- =?utf-8?B?WjZOd0JkSkFWOXdOQWJSWHltMlZKMkxIOUt5LzJtR010NklBTG9zRWJtelda?=
- =?utf-8?B?TWVQZmxYU2RKTmVRaW5FVTZucmhlZERGMk9KeWdnU2J6bnE4NzdBeUxFbTB6?=
- =?utf-8?B?VnFST3lyUTlnK3dwdnBvK3IxZmlTTEJMWUJMTHlrYjVmUHhoSVVSYkJLYWtJ?=
- =?utf-8?B?N29pampKaVNNazViVWwybTRJYnZIVkZNbjM4NWtGZmZEWTNrZ1FaM1BqM05F?=
- =?utf-8?B?ZWJNZWtERzlQRklRK09EMjlOcUhlUC9NcSt3dFhEWmlKL2J6WFZMbUxCeGg0?=
- =?utf-8?B?VTU1UG1lWGlDMFptRWNzOEdoTkxKc0lFK3NvaVg5dHMyVmtZMUFGVmlsNm9n?=
- =?utf-8?B?RkE4V0JWV2F3YXVvRFErUWNYbU5HdzNmOEF3LzRING13VnhSekM2OU5Zemhy?=
- =?utf-8?B?VWJ4bm5JTTA2VXI1Lys3WUdXL1ZXNnlqVjVUVXptendpbWh0emRPOCtjU3hS?=
- =?utf-8?B?bFhkM1FOR21SbEVTdGU0ZDAveHI2a3YxSmVKMllFOWpjV2pUYlN6QUlMSnZl?=
- =?utf-8?B?NkhPU01oVURDbG1LeTNXVHJyMDhTMEFrSCszb3dlMDlGZDBGakU1cHpjQlRP?=
- =?utf-8?Q?ItJ+7kV681Bb41cV7yirgkDUJ?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2025 02:01:34 +0000
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9094.018; Thu, 11 Sep 2025
+ 02:01:33 +0000
+Message-ID: <28399ab7-2560-482a-be7b-c83d631ac351@amlogic.com>
+Date: Thu, 11 Sep 2025 10:01:03 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] clk: amlogic: add video-related clocks for S4 SoC
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com>
+ <20250909-add_video_clk-v4-2-5e0c01d47aa8@amlogic.com>
+ <1jv7lqiqzg.fsf@starbuckisacylon.baylibre.com>
+From: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <1jv7lqiqzg.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR04CA0211.apcprd04.prod.outlook.com
+ (2603:1096:4:187::19) To KL1PR03MB5778.apcprd03.prod.outlook.com
+ (2603:1096:820:6d::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: cixtech.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEZPR03MB7033:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0734a7f3-677a-498e-39ac-08ddf0d72205
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?K1JEMlJvTUF0MWJHaEFUdDhrcW5hejBaN2YyakNFbWpjVkdpTkdDWlNTbmVs?=
+ =?utf-8?B?c0VqZVhncmU1Y0RJdzFwOFE3YVNYc0Nsa1RYRUJRNUNaMWpMelNJMEZudUFY?=
+ =?utf-8?B?a29UTE9FR0VtVWVjR1BLT1JvS0x0MEQ5RnJLbmluK05zM2dPR2hkMFBsZVhx?=
+ =?utf-8?B?Tk1vd2k2SXhwVG12N2ZSNkV5QUFKV3Y3Vm9ZaE1YTjlpWDBtQXpNdmtZL3RZ?=
+ =?utf-8?B?aDlLdGt6T0xxN1lrR0UyQURPWENYNnp3TFRQempkL3B5SUVJQ2Y4WU1JczAw?=
+ =?utf-8?B?U0dFaTk0LzYvQVk1azJDMXdHQ0pTYjRDb3RzYXpSMUZQSnlFcnZKRlVaTEx5?=
+ =?utf-8?B?alYyZGhFVWY1SSttT2U1TEJyM1JEU29xS0dPeUFOYm5sQWY2TnhteWtMUFdI?=
+ =?utf-8?B?K0hiUkZjMldyYTRoaWxRZU9CRkt4eEN0amZUa05PbTNDc2hJUnAyRDAvektN?=
+ =?utf-8?B?OEk3RW44dmU4RXhtVC9uNkZSUEluZk43a0hsWE5rMjA1eURYU1paRVRhdkZk?=
+ =?utf-8?B?S3JwWTQraGlSdFBITlFZRXVFTXZXbDlpbStIckU1anY1ZmlvYlZJWW4ycklH?=
+ =?utf-8?B?eHF5TjZrR3RlYjVvK0paU2JhVEU4bVVicVF5N2IzZ3ZTc3hOajF5WC83N1Fs?=
+ =?utf-8?B?My9jSVRieW02d0lqbVFmMHFtbFMxUmhCVzRBaUFmTW5LS3VSU3h3dGpQZ3ZI?=
+ =?utf-8?B?ZnJNWStwRk4rZlY0WG9UMWMxOVEvcDd0V1NtendDSldCdVVkak96SytBUjd1?=
+ =?utf-8?B?eHVWM09ScnUrdTNpWTF0UnlBcTFqckF3a2ZuTWZiZ3JYc0p4WHNWN2xlYWgv?=
+ =?utf-8?B?VEtLeUtNVVRBWFI2NjlEZEUyOERLVXdkTEFoM2Z5aHkzNDZpRkpjYW1LR2Va?=
+ =?utf-8?B?NWFXQXVKZ3FwRFEzNU0xYVBDTjcrUm5PV3gxZVQ3K3JhM2I1NE1TRTNXOEUr?=
+ =?utf-8?B?OE13QzJHQlQ4T3IrRjRRZit1ZEhQR2FZQzZPZkdqcUd6NHg1TGx6cGJhSWZX?=
+ =?utf-8?B?ek04TmxCM254VFlnVHl3Z3Jqb3pDOVlSTzM4OCtQc1UzUnBsRzc5UDkxZEFD?=
+ =?utf-8?B?NDBrS0JzVng2dzUxQVNtTjlRSWV1dTRJeFNmZ01rMDg1dUIwc0VMbXlTRGp1?=
+ =?utf-8?B?YW52ekY4UGRhdXc4Z241ckJ4eStZY09PSHZlaTZ5WS9abmxsbXhpRmVZRkgy?=
+ =?utf-8?B?UTdBdGNjbEVuNEVKWDF2cUJlRk1xSDVhbzd5V2RCdXZjcklMVjdxMmZBRGwz?=
+ =?utf-8?B?d0lHMUlYb1ZRYUhzZjBUTmhiZi83S05MdmFnNmZhWnNBM09LZG1xMmQvSjJu?=
+ =?utf-8?B?MU5Cekg2cEExRVZYZldIZENuZThhdS9PVVM0aExNbnlIZEphZ1NKeTM1RXli?=
+ =?utf-8?B?YWVCZkNNL3JlKzNOa1FBOXB4NCt4NXYxNHA2bTNDOVNnZFJ5VEFIdnhqZVBn?=
+ =?utf-8?B?V1lHL2M1U2VXbC9LQ0ZDWEUzbitHQmpoTkptTlBIUFFaUW5zR2l3SUt6OGNq?=
+ =?utf-8?B?emladWdDNzRoYWhsU2oweFJNVmhKTnUyb1NPWXV0YVRWaDg3djQ5ZHZHaDMz?=
+ =?utf-8?B?TUQvTzRkc1p1WEJwb25QbXQ2NHNxVWNESTBFb2h6eW1LYVg0YkFyeFpWWncx?=
+ =?utf-8?B?S21zeDEvbFVUOGhtZDV3VkVWYUw2SGx3bTEyYmR0a09ub1JLdU9vWW0zc0dJ?=
+ =?utf-8?B?aGM4YUI2UHFleGNoUGRyUzdrYWVYK0xmRjVaZ1puTTN2TDNDZy93VjhCVXFj?=
+ =?utf-8?B?TzNIOE12V0Q1bUNFUDNnYmp3MldtRmZUTkpxQVdUbVM4b1ZwM21yOFNRbHlo?=
+ =?utf-8?B?Z3NmOHVrbGIxWFIwaitRV3NVaUVoVzdaK1Q5VUZhK01lZ2hDMHFuZStGbTJM?=
+ =?utf-8?B?SEVWQUJxMjQ2QXR6dDgrTVJyTEdtZ1J3T0ZnYVVlQXk1eklDQis1aURzRStv?=
+ =?utf-8?Q?9GjVtR24uY0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N2xXcDREd0VCTXlvV1hQSmlRdDVNV1prNFpKeGtRcjhZb1hEV0RPSy9yd3R5?=
+ =?utf-8?B?Q0JEMy9rTXlod0laVm9BRGw4ZllDNnpVdmFmanJOTFNIazJzV2theC9hVlJj?=
+ =?utf-8?B?OHFzb21wNWZVaGV0YUEwZktmSjVZVWJIY3BMeklDdHk5d3JNNDhkbWI2RjJt?=
+ =?utf-8?B?V1J3RU11WFBmSzQvZEROYTZRa1hhdW0rWHZPYnZtRyszenpvVzBhVFpHaEx4?=
+ =?utf-8?B?UjRFN2Y0NGxOQWtMQXdqanN0SFY1Y3l3UHVnTDBiSXdrMnYyRVFUWHVLR1Bt?=
+ =?utf-8?B?WXlJMEhDZ0lVQWlueDlFMStLVWxYcTVHdTNQMEdMSFNzbytoMEljN3ZFMnIx?=
+ =?utf-8?B?TUdLVnhpOHFoNGpSOUFGd2htT0grWi8wLzBCbzZrMkdBNEwwWm8rNldkTk9J?=
+ =?utf-8?B?NGJWODhxakJ3S0lhaWFMKzRncFNrU0NMejI2LythU2RDYzZWU1U1OTJaYUVl?=
+ =?utf-8?B?QktpTytHNEdNTVZKRDNtOS85UjhLSUpDeTdXbEM2ODNBaDB0Q1o4a2daeFZD?=
+ =?utf-8?B?Z0JvVXE3ZE8yZE52SWRMTXhWNWE2VTMvSEliSXlsazllNXJyRGxTRDl0Nkd2?=
+ =?utf-8?B?MVk5dnBQUDJwRG9XOFlJRkxlV1dYOXdycytXcTNiS3B1SXVhYUNKaG92WFk5?=
+ =?utf-8?B?TTdNdkxiaE1uNlNXNUQ4K2hPZGN2SG45ajBYODdJVkhIQ3JQZkozLzVZSkZC?=
+ =?utf-8?B?UURaV0J2N1Jna1NLNjhqNENubUUxNlZydUpPcFp6b3RKbnJ0dXdLUWlVNkkv?=
+ =?utf-8?B?WHNtTk5VWHpPakN5YXZEN2RpZXpWOUpvdS8yMjBySGo4anB4V0tVZmdPWU0w?=
+ =?utf-8?B?TzNNVTRObWlaNmNEWVZmL0M5RUJ2cWZUZHlERzc1TUE4UEpRMUIvdWFxU1lj?=
+ =?utf-8?B?allMZmh2NUlDaWEwVjFsT2NYQmM0dzRuMEtKR1BRckR5NEw5ZGdaMFNoNGg2?=
+ =?utf-8?B?bVE1NGI5NTVmRVM5d3J1RVZnRzVOamhvNjRnSENqR3gvVmdLMDZoblRZanFs?=
+ =?utf-8?B?Q0xDUDFKMmFIcVJnK0pRK0lpaXErcEtMd2xDMXhkdGxNU21QRnZRaVV3aTVO?=
+ =?utf-8?B?UUJVRHkwUGI2SHZERy92bnJ2QVFPcENXWDY1dUc5Uk1Xc01TZHJERjFKdkxw?=
+ =?utf-8?B?Y2ZINjM4ZXBXL3dZQWI2eXVQTTZhMTZUQkxuMVdXb1dISzBPei93bjJCa0Vr?=
+ =?utf-8?B?dTNXcVZwZEdSMTRZa1ZxNmx5cmY3dGNoTHVEaWRoMGIzdC96VWlXQzBVSHZz?=
+ =?utf-8?B?OEZLc2RNeWNnYXEwQjVlS2FYRVRleVlmK29JMGYxYTFHNm1WTVV4WnlqbnBE?=
+ =?utf-8?B?SWdwZEtDK2FpV2RnL0wwYlZ5YlhzblBaa3Z1NzVmYk5FdnhvRnBOcktxWVBM?=
+ =?utf-8?B?N2I0bmljMFU4a2V1aVRlanFOaGMzRnl0bjdoSWpVK0F2MWN6NlRkVjc3REJY?=
+ =?utf-8?B?T0RBckxqdTkvcFphMDdGTllPaGxMYzFnODFYTFhQRHBLdm1qR2Q0bnFyZEJv?=
+ =?utf-8?B?NHNmV0YzcHB2SXFoR2cwRzZGR3c3eXZ6RDk3UlJocmJDaW1BNUxvTW5BQ2NW?=
+ =?utf-8?B?cTNEa0x5R3drNGI0akxtWTBTNVdTd0g1V1pPeGFYTGxWYmhhY2NIaUV5WjND?=
+ =?utf-8?B?LytHZHF5aW91dWY4aS9ZZWpzekVTd2ZDTDUyM2tnUUNsV2hsRzRuZ1N0cGFU?=
+ =?utf-8?B?MjhYZWtZMms3bUNieWZpT0dlRDM0SEx1SU5Gdk1uQU1FUXZrdmxPMGdwak9H?=
+ =?utf-8?B?WndZdnV5WHNHM1hmZXlGZEMzUFVmNUNZMXhXQnhucms2MkJxYTV1MzQ5cmI2?=
+ =?utf-8?B?bE1QeWI3REU0TUE4SDJiYjY3QldTbzl3MnR4bVQvR3J4Nk1PNVhaVFNYSnA2?=
+ =?utf-8?B?SmphY2VKTzZoRk1yTEhUS3NBSURsZzdKcVFRWWNYY1VlSjRrQXpHZFEwMUhQ?=
+ =?utf-8?B?VWtTdFArZGIzeTBoT05ZeTRDQS8wdmxnSnZRUlBHOERHeHJOSkx4cCsrMXZT?=
+ =?utf-8?B?SVlPU0JSTnBmRmNwL1c2SklqcUJkN1ZLUkM4UXU1OE1mT2N1Uit5YjUwZHVh?=
+ =?utf-8?B?QkVUMkdyNlNDdHhEcmdmZ2w5eFAvdkIvamQzajYxU0QyUHljdXdWOG1naUk2?=
+ =?utf-8?Q?LoEYXdNERBeh9kQA7le4KEW7z?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0734a7f3-677a-498e-39ac-08ddf0d72205
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PUZPR06MB5887.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08d4ae66-3670-4c49-b46f-08ddf0d6bb0a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 01:58:40.7806
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 02:01:33.7419
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YS+dQFMmwAi6jSiDdDwZp2lIzilLLs3+DwbnM9izrQ+OnFdSdV/cwZqfVy0JulnqzRdj1P52MtlZJQQM2Y2UVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5279
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QaL/YfMkmO3kxZS6bFYT2SNK6ulBfSXWXa+boeLkDCqfVTmNJyt5H2cqlNDKNGJtRnjpE3+Toi31Z0KnZ8y7cw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7033
 
-SGkgTGludXMsDQoNCj4gT24gVHVlLCBTZXAgOSwgMjAyNSBhdCA1OjMw4oCvQU0gR2FyeSBZYW5n
-IDxnYXJ5LnlhbmdAY2l4dGVjaC5jb20+IHdyb3RlOg0KPiANCj4gPiBGaXJzdCBzaGFyZSBhIGdv
-b2QgbmV3cyB3aXRoIHlvdS4gSXQncyB0aGF0IFdlIGhhdmUgdmVyaWZpZWQgdGhlIG5ldyBzY2hl
-bWUNCj4gcGFzcyBvbiBSYWRheCBPNiBib2FyZC4NCj4gDQo+IFRoYXQncyBncmVhdCENCj4gDQo+
-ID4gV2UganVzdCBoYXZlIGEgcXVlc3Rpb24gYmVmb3JlIHN1Ym1pdCBuZXcgcGF0Y2hzLiBBcyB5
-b3Uga25vdywgdGhlcmUgYXJlDQo+IHNvbWUgbWFjcm9zIGRlZmluZXMgaW4gZHRzL2R0c2kgZmls
-ZS4NCj4gPg0KPiA+IFdoZXJlIHNob3VsZCB0aGVzZSBkZWZpbmVzIGxvY2F0ZT8gV2UgZm91bmQg
-dGhlc2UgZGVmaW5lcyBsb2NhdGUgaW4NCj4gPiBpbmNsdWRlL2R0LWJpbmRpbmdzL3BpbmN0cmwv
-DQo+ID4NCj4gPiBtdDc2MjMtcGluZnVuYy5oIG9uIE1UNzYyMyBwbGF0Zm9ybS4gV2UgZG9uJ3Qg
-ZmluZA0KPiBhcmNoL2FybTY0L2Jvb3QvZHRzLyovKiAtcGlubXV4LXByb3BzLmR0c2kuDQo+ID4N
-Cj4gPiBXaGF0J3MgeW91ciBzdWdnZXN0aW9uPyBQbGVhc2Uga2luZGx5IHJlbWluZCBtZSBpZiBJ
-IG1pc3VuZGVyc3RhbmQgYW5kDQo+IG1pc3MgYW55dGhpbmcuDQo+IA0KPiBZZXMgdGhlc2UgYXJl
-IG9sZCBoYWJpdHMgZnJvbSBNZWRpYXRlayBwbGF0Zm9ybXMgd2hpY2ggYXJlIGJhZC4NCj4gDQo+
-IFNpbmNlIHRoZXkgYXJlIG5vdCBiaW5kaW5ncywganVzdCBjb252ZW5pZW5jZSBkZWZpbmVzLCBJ
-IHdvdWxkIHN1Z2dlc3QgeW91DQo+IG1vdmUgdGhlIHN0dWZmIGZyb20gaW5jbHVkZS9kdC1iaW5k
-aW5ncy9waW5jdHJsL3BhZHMtc2t5MS5oDQo+IA0KPiBJbnRvDQo+IGFyY2gvYXJtNjQvYm9vdC9k
-dHMvY2l4L3BhZHMtc2t5MVsuaHwuZHRzaV0NCj4gDQo+IEkgYW0gbm90IGF3YXJlIHRoYXQgdXNp
-bmcgLmggb3IgLmR0c2kgaGFzIGFueSBzZW1hbnRpYyBkaWZmZXJlbmNlLCBtYXliZSB0aGUNCj4g
-RFQgZXhwZXJ0cyBjYW4gdGVsbC4gTWF5YmUgdXNlIHBhZHMtc2t5MS5oIHRvIGJlIG9uIHRoZSBz
-YWZlIHNpZGUuDQo+IA0KDQpZZXMsIEkgdW5kZXJzdGFuZCB5b3VyIHRoaW5raW5nIG5vdy4gd2Ug
-YWxzbyBmaW5kIHNvbWUgZXhhbXBsZXMgdW5kZXIgYXJjaC9hcm02NC9ib290L2R0cy8qLyouaC4N
-Cg0KZm9yIGV4YW1wbGU6IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1waW5m
-dW5jLmggYW5kIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4NTE2LXBpbmZ1bmMuaA0K
-DQpXZSB3aWxsIHRha2UgdGhlbSBhcyBleGFtcGxlLCBhbmQgY3JlYXRlIGFyY2gvYXJtNjQvYm9v
-dC9kdHMvY2l4L3NreTEtcGluZnVuYy5oLiBBbGwgcmlnaHQ/DQoNClRoYW5rcyBmb3IgeW91ciBz
-dWdnZXN0aW9uLg0KDQpJZiBtaXNzIGFueSBpbmZvcm1hdGlvbiwgcGxlYXNlIGtpbmRseSByZW1p
-bmQgbWUuDQoNCj4gWW91cnMsDQo+IExpbnVzIFdhbGxlaWoNCg0KQmVzdCB3aXNoZXMNCkdhcnkN
-Cg0K
+Hi Jerome:
+
+
+On 9/10/2025 5:41 PM, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On Tue 09 Sep 2025 at 15:29, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+>
+>> From: Chuan Liu <chuan.liu@amlogic.com>
+>>
+>> Add video encoder, demodulator and CVBS clocks.
+>>
+>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+>> ---
+>>   drivers/clk/meson/s4-peripherals.c | 203 +++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 203 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+>> index 6d69b132d1e1..b855e8f1fc04 100644
+>> --- a/drivers/clk/meson/s4-peripherals.c
+>> +++ b/drivers/clk/meson/s4-peripherals.c
+>> @@ -44,6 +44,7 @@
+>>   #define CLKCTRL_VDIN_MEAS_CLK_CTRL                 0x0f8
+>>   #define CLKCTRL_VAPBCLK_CTRL                       0x0fc
+>>   #define CLKCTRL_HDCP22_CTRL                        0x100
+>> +#define CLKCTRL_CDAC_CLK_CTRL                      0x108
+>>   #define CLKCTRL_VDEC_CLK_CTRL                      0x140
+>>   #define CLKCTRL_VDEC2_CLK_CTRL                     0x144
+>>   #define CLKCTRL_VDEC3_CLK_CTRL                     0x148
+>> @@ -1126,6 +1127,22 @@ static struct clk_regmap s4_cts_encp_sel = {
+>>        },
+>>   };
+>>
+>> +static struct clk_regmap s4_cts_encl_sel = {
+>> +     .data = &(struct clk_regmap_mux_data){
+>> +             .offset = CLKCTRL_VIID_CLK_DIV,
+>> +             .mask = 0xf,
+>> +             .shift = 12,
+>> +             .table = s4_cts_parents_val_table,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "cts_encl_sel",
+>> +             .ops = &clk_regmap_mux_ops,
+>> +             .parent_hws = s4_cts_parents,
+>> +             .num_parents = ARRAY_SIZE(s4_cts_parents),
+>> +             .flags = CLK_SET_RATE_PARENT,
+> Do you really expect the rate of the parents to be adjusted when calling
+> set_rate() on this clock ?
+>
+> It all trickle down to vclks which are shared with enci encp and vdac
+> clocks, so maybe not such a good idea, don't you think ?
+
+
+Thanks for pointing this out. You're right, this flag doesn't belong
+here.
+
+I'll drop it in the next revision. If there are no further objections
+on other aspects, I'll prepare a v5 series that also includes Conor's
+Acked-by that I missed...
+
+
+>> +     },
+>> +};
+>> +
+>>   static struct clk_regmap s4_cts_vdac_sel = {
+>>        .data = &(struct clk_regmap_mux_data){
+>>                .offset = CLKCTRL_VIID_CLK_DIV,
+>> @@ -1205,6 +1222,22 @@ static struct clk_regmap s4_cts_encp = {
+>>        },
+>>   };
+>>
+>> +static struct clk_regmap s4_cts_encl = {
+>> +     .data = &(struct clk_regmap_gate_data){
+>> +             .offset = CLKCTRL_VID_CLK_CTRL2,
+>> +             .bit_idx = 3,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "cts_encl",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_cts_encl_sel.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>>   static struct clk_regmap s4_cts_vdac = {
+>>        .data = &(struct clk_regmap_gate_data){
+>>                .offset = CLKCTRL_VID_CLK_CTRL2,
+>> @@ -2735,6 +2768,165 @@ static struct clk_regmap s4_gen_clk = {
+>>        },
+>>   };
+>>
+>> +/* CVBS DAC */
+>> +static struct clk_regmap s4_cdac_sel = {
+>> +     .data = &(struct clk_regmap_mux_data) {
+>> +             .offset = CLKCTRL_CDAC_CLK_CTRL,
+>> +             .mask = 0x3,
+>> +             .shift = 16,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "cdac_sel",
+>> +             .ops = &clk_regmap_mux_ops,
+>> +             .parent_data = (const struct clk_parent_data []) {
+>> +                     { .fw_name = "xtal", },
+>> +                     { .fw_name = "fclk_div5" },
+>> +             },
+>> +             .num_parents = 2,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_cdac_div = {
+>> +     .data = &(struct clk_regmap_div_data) {
+>> +             .offset = CLKCTRL_CDAC_CLK_CTRL,
+>> +             .shift = 0,
+>> +             .width = 16,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "cdac_div",
+>> +             .ops = &clk_regmap_divider_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_cdac_sel.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_cdac = {
+>> +     .data = &(struct clk_regmap_gate_data) {
+>> +             .offset = CLKCTRL_CDAC_CLK_CTRL,
+>> +             .bit_idx = 20,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "cdac",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_cdac_div.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_demod_core_sel = {
+>> +     .data = &(struct clk_regmap_mux_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .mask = 0x3,
+>> +             .shift = 9,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "demod_core_sel",
+>> +             .ops = &clk_regmap_mux_ops,
+>> +             .parent_data = (const struct clk_parent_data []) {
+>> +                     { .fw_name = "xtal" },
+>> +                     { .fw_name = "fclk_div7" },
+>> +                     { .fw_name = "fclk_div4" }
+>> +             },
+>> +             .num_parents = 3,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_demod_core_div = {
+>> +     .data = &(struct clk_regmap_div_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .shift = 0,
+>> +             .width = 7,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "demod_core_div",
+>> +             .ops = &clk_regmap_divider_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_demod_core_sel.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_demod_core = {
+>> +     .data = &(struct clk_regmap_gate_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .bit_idx = 8
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "demod_core",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_demod_core_div.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +/* CVBS ADC */
+>> +static struct clk_regmap s4_adc_extclk_in_sel = {
+>> +     .data = &(struct clk_regmap_mux_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .mask = 0x7,
+>> +             .shift = 25,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "adc_extclk_in_sel",
+>> +             .ops = &clk_regmap_mux_ops,
+>> +             .parent_data = (const struct clk_parent_data []) {
+>> +                     { .fw_name = "xtal" },
+>> +                     { .fw_name = "fclk_div4" },
+>> +                     { .fw_name = "fclk_div3" },
+>> +                     { .fw_name = "fclk_div5" },
+>> +                     { .fw_name = "fclk_div7" },
+>> +                     { .fw_name = "mpll2" },
+>> +                     { .fw_name = "gp0_pll" },
+>> +                     { .fw_name = "hifi_pll" }
+>> +             },
+>> +             .num_parents = 8,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_adc_extclk_in_div = {
+>> +     .data = &(struct clk_regmap_div_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .shift = 16,
+>> +             .width = 7,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "adc_extclk_in_div",
+>> +             .ops = &clk_regmap_divider_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_adc_extclk_in_sel.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>> +static struct clk_regmap s4_adc_extclk_in = {
+>> +     .data = &(struct clk_regmap_gate_data) {
+>> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
+>> +             .bit_idx = 24
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "adc_extclk_in",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &s4_adc_extclk_in_div.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +             .flags = CLK_SET_RATE_PARENT,
+>> +     },
+>> +};
+>> +
+>>   static const struct clk_parent_data s4_pclk_parents = { .hw = &s4_sys_clk.hw };
+>>
+>>   #define S4_PCLK(_name, _reg, _bit, _flags) \
+>> @@ -3028,6 +3220,17 @@ static struct clk_hw *s4_peripherals_hw_clks[] = {
+>>        [CLKID_HDCP22_SKPCLK_SEL]       = &s4_hdcp22_skpclk_sel.hw,
+>>        [CLKID_HDCP22_SKPCLK_DIV]       = &s4_hdcp22_skpclk_div.hw,
+>>        [CLKID_HDCP22_SKPCLK]           = &s4_hdcp22_skpclk.hw,
+>> +     [CLKID_CTS_ENCL_SEL]            = &s4_cts_encl_sel.hw,
+>> +     [CLKID_CTS_ENCL]                = &s4_cts_encl.hw,
+>> +     [CLKID_CDAC_SEL]                = &s4_cdac_sel.hw,
+>> +     [CLKID_CDAC_DIV]                = &s4_cdac_div.hw,
+>> +     [CLKID_CDAC]                    = &s4_cdac.hw,
+>> +     [CLKID_DEMOD_CORE_SEL]          = &s4_demod_core_sel.hw,
+>> +     [CLKID_DEMOD_CORE_DIV]          = &s4_demod_core_div.hw,
+>> +     [CLKID_DEMOD_CORE]              = &s4_demod_core.hw,
+>> +     [CLKID_ADC_EXTCLK_IN_SEL]       = &s4_adc_extclk_in_sel.hw,
+>> +     [CLKID_ADC_EXTCLK_IN_DIV]       = &s4_adc_extclk_in_div.hw,
+>> +     [CLKID_ADC_EXTCLK_IN]           = &s4_adc_extclk_in.hw,
+>>   };
+>>
+>>   static const struct meson_clkc_data s4_peripherals_clkc_data = {
+> --
+> Jerome
 
