@@ -1,138 +1,167 @@
-Return-Path: <devicetree+bounces-216134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E476B53BC6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:45:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2644FB53BCB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:46:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F6327B52B2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92BBD5A1AEC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3312DC79A;
-	Thu, 11 Sep 2025 18:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881EA2DC79C;
+	Thu, 11 Sep 2025 18:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F1uxIby+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L9GrAblU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310CB2DC786
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165342DC778
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757616331; cv=none; b=k5DhV+Edr2p06izlXArdD4edKUSuG5avVKDpH4EeG84FV766ey4TVSHPkMLGL11khDrLTJQwsHvKlb53tYK5s5C01ZvbRnZ6LxhnfcLuf+Cep17oyYJ7JJvfwU6LH7rm9X6RqKq2RJyRwed69qzQ6Uch/m5gsw+IamSHa3vkOh4=
+	t=1757616363; cv=none; b=l6GvUdXXUvspcI5uBTEbjzHk6k3H6lkiR7Qk15mJydxG0oV3Pt8vf5Ua3/gYUuQKhcNbAqmDwd/2gwIGRdvL0xi8cjxMbgr2avENYOY7Fv6UFXahPWl7KwIugptIf3HpKHSP4nEKGWF3cC+rCEmuagwgQPO4pQk7rOjJJCtJr9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757616331; c=relaxed/simple;
-	bh=PU72Key0SVmvWQm9PWpGLknK5t1ThOCAfthGViLodCM=;
+	s=arc-20240116; t=1757616363; c=relaxed/simple;
+	bh=jMIemCZzS4/8PenidOe4LvP1cFNH/RQ3gLJoU+jtxQo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D57HAnNhbxzmz1d1OK452DQRssBCd+MzI3pig9t05cNmwTJuNPJHUTO0/TfDtVqQzdZtUhCPtBOzQ6xCzZjXX6uqQMSrhstvUjdaR/moVrTpd7XpqIyNQh1tMN/xzx7zlmj3kiOLBc7mkYx8jKIOrglHx3/05WPgTnn5y6n8kOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F1uxIby+; arc=none smtp.client-ip=209.85.128.52
+	 MIME-Version; b=NJEbm1Dx22P7Vdlvkfpyil24pN7l9P7qeHxQzaq8lZhNOUW6YuX0RM6v3sKU5H3Kud3FWqMU0dGdKQ6jPmoaBOK8p+Yy5CfLZTrx2mB6iCYEU0SSrdfBefpT4PVg8ynCEp8PShxHuTaJ3AI6owc2Xz0OKP33wN4ZyrxHIZfBPuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L9GrAblU; arc=none smtp.client-ip=209.85.210.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45dcfecdc0fso10725965e9.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 11:45:29 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-77287fb79d3so940193b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 11:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757616328; x=1758221128; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757616361; x=1758221161; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qgoU6ODnHJHjlxJ7O2reyqhOrHLfmkxgDzAUfsAuBJc=;
-        b=F1uxIby+n1jD+eHkASJDtKaDlKcr0uDSdut0D2oEdcPWsLxNf4XiqJdf5V13zl2CsW
-         Whs0PIfU93LX4cvBT1dxLgB3ewp87RX0wPjDqwkITf4WsnNC7UhxNHBglyGD/gRLUZIP
-         6z9W9OrIuEvZvuFjPkfWqky7FVlbxX7rpQtaXRgFJitnH7BLL2L2gfbCwBgV6y2+KyrV
-         O5WmqxEiWBj/1B5EGxgSc5KatPJtNrx+exYcbta7liENKRxdihoGLZfeCVcF6TKhP8qp
-         fayCccMwtd0008RDBI64tJmo+Mn1cAP4FojO1Z1MpjY37jZ5IuWMoqRZ4jQa663u8sun
-         Rdog==
+        bh=11u3ge/kZdqOdUCXMGxE61YAG8eluHRkzjjiYZfqJsk=;
+        b=L9GrAblUfF4kPgYlg0grC159YedXe+iqMOCXhiMWaL29bwNW2fMhPHuHm8PzYSf171
+         XvBaKTLdU83mhhuRP8Cf1Sm5+w0VfNctsMDlC6RVtMqivAV9m282XYUR94pFZYqj9PL4
+         /UrzreDGyNysNdyzVdH4n4uFpCci9MHN2Zgx8XZ+JhqrIb+uDWjC8uWALnHsVFNUjq46
+         NBdzfE36LdE/5oC+na0KQNcBmYtIiS0sN11ziahUSVowq2e+zyAg66w6v0oT/spwg4bh
+         5i3vyQr8QP0xN3z4R2kLgO4pEikOFAhjTQLnhb23aINi75ELXpVDv67B5mAdPuqFNU/a
+         eHUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757616328; x=1758221128;
+        d=1e100.net; s=20230601; t=1757616361; x=1758221161;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qgoU6ODnHJHjlxJ7O2reyqhOrHLfmkxgDzAUfsAuBJc=;
-        b=KnVBtVYgewXvRria8AaKaZKlnLKj7r7OCCej4zX1b75vZv29uYjHYrSZ5UIVoMu0ME
-         pI+R+sgaqmn7vbGCRFgi61Oczv7wLeckw5Syv+JAsq5c63+BIRMbeqCEW0Q3ORiqBpUp
-         3msuo3gcT9gvI5F2w50C86YHC2qapQ63QbweNVCI0KhncbnsOo60UaKCtlPyA79so9nv
-         koaejCTn5fN1G1RUKHYb9JgRVE7lLr+dsi7YUC5FPQWI4F2Yqq9ws4Rt6cGnNj8joqAg
-         b5bSeZQwQUvkf5EodQlsT9Dr7sTwgcA8xF5cJp9a+uHOA9AQrGbPoMk5G6a1TfP0pJbb
-         lZIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWe46LwwD7f5O02nc2pRQZrTvEmtCf/TWOT8xm2Bs5Bj592zOAFXr0dg7gNoxY6Yt6vPSapk4zdU/YV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIV271K3Y63r4K6yDlMXH+izfVyCzpEhrwTaSMnSkWMWNnVjy9
-	V4P9MyIa+jy6O3l7qcxdjejCGBtMPPHrPYkPRlJjeTKb9JTnBx+0PMI0
-X-Gm-Gg: ASbGnctDXz+sLsZovI0HDdGocZUfWNGCmEgHo05VECaMNFNtstM9ISkdjsA0rv68L9e
-	Lq1ObBeQbgW8S2ICF6RPkMQYo3TyVWiXUFfaPbHvDGgbh+gwHW9uQb6Zu0HQcR1o8psJvuQR0tx
-	zpmewQ4QN2VUvpeUx4gn+Jen5LGmKIEyu5zjtDc5h9Qgp1mClVhdqog1sE+EMxMf1d5heEwejBm
-	xy5Opo+yrqugkTJzV6+dnJsWsMdFOp0opBNZP9ko1ZYujPakBnjBBrLxJC/TbhS7Gie3NioF8Q+
-	9U6lQl/V2gfNxlwRLCbu3bLj7oflBFElbaMPTW9aj4DKsaM2Td7sHmLslaZVWohwtiH017xAibG
-	24nHA+vBNZrzYJr6S4elBRvstc1a6OCZlZbZKN6rIirbGDK4coEnqSg67vLPFwCbCEYe9PBl5ar
-	xJYPxLsvQKqqpJIRM6h6w=
-X-Google-Smtp-Source: AGHT+IF35WXiz7qtt5E7pbWdiKdOZLXpqRy4oaXj/fJmaGWMagVTnOpk2kyKlLObTat0jClq3/mWxg==
-X-Received: by 2002:a05:600c:34d4:b0:453:2066:4a26 with SMTP id 5b1f17b1804b1-45f211d008dmr7116755e9.16.1757616328099;
-        Thu, 11 Sep 2025 11:45:28 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e01575fadsm36130825e9.6.2025.09.11.11.45.27
+        bh=11u3ge/kZdqOdUCXMGxE61YAG8eluHRkzjjiYZfqJsk=;
+        b=QgeKhMBzl2g7UUflIWJe4BfDxilzXyfC7NUCtg1CXbjcGrh5rzRVg5BJRzSUXKwxNB
+         CMNzYRXrFlL8N9Kx1e0CqyJixcQk98AAYcwNeybFzz3GOR85YOEy7mao2e4bZkMriN+Z
+         9Dgvl/VaeIlZYn4fhRnsJ82/AduEZrRMQzH7kit2s4B2KB1B3/K5wrDb3ihGGsT3Mbgf
+         J9VadL85cywTJRkCFoPW4Ouc/uZjI7UUa/xyC2llOKd/60wwYnKXNnQj06ldNlH0EcM9
+         yNj8S3mxWk8xg6C3VIfCDBOrSfGtU/U3PVypBjB8raNJ/8k8JPwTiWeUSZtOQfZHYq/7
+         6lkg==
+X-Gm-Message-State: AOJu0Yy6FFoHPxDGy3xbMvAiX1GepiJ6x+SW7EarBeXVEeWXGEWkviyw
+	1gtaGCNf2JAhleJm6g2PPsCRb1L/SGUNHDgtl/qnFZNGhGPua/QdMK5ghVkjX00iFOB5rw==
+X-Gm-Gg: ASbGncshjVcv55cDmk8l/mgs+SRGWWoI3fCuyAtBnOj2WjDBzyaVRnH6nL9dcfrC/mx
+	KpXCXB0Tq1hFaJi9Mpn3A7qipYh9I8OFght5hWc0einiHehP9l2xnsxTOH5YEI9t10Xdu04TZk8
+	DZgiaXGwvZnWldGzGIEicsnb96hxot8fI4JC2VylCdaHq4gksHSnv0bsCRIapKNilDFJqrl9Fq5
+	586DYcFVF4y8UAzkLUa1s9uFUpxpTcS6YYfsaCKUOJZbPp/DKcBvn5eU7cnmjZBCdYYU5cp2NY9
+	74UUOzM6UAIoMZCmi1vlGfK+WwMY+6wXz2rlQga9MY1fQIK403qNJGLSffzcNF88uLn21pMSItW
+	XnsFbjZIpJJll22RzQ69nNbm5Nt3miJ/6z8KhYU93qGy8Y4YsawBAJ7YDsQGgfDus9HWWvkjHoG
+	rmZo4a6WNFUG5e77kzrbBnKg==
+X-Google-Smtp-Source: AGHT+IHd/qXnQXTsb5UgYgP0uV+8e03FjtD7UCE3WoNBYNYrck3TNfpFhSjkvJMDSsyUWGXnMfLorg==
+X-Received: by 2002:a05:6a20:6a06:b0:243:966e:21a with SMTP id adf61e73a8af0-2602bb59c2cmr401286637.36.1757616360643;
+        Thu, 11 Sep 2025 11:46:00 -0700 (PDT)
+Received: from localhost.localdomain (static.148.173.216.95.clients.your-server.de. [95.216.173.148])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607b34790sm2762616b3a.81.2025.09.11.11.45.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 11:45:27 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 5/7] clk: sunxi-ng: add support for the A523/T527 MCU CCU
-Date: Thu, 11 Sep 2025 20:45:26 +0200
-Message-ID: <5037780.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20250911174710.3149589-6-wens@kernel.org>
-References:
- <20250911174710.3149589-1-wens@kernel.org>
- <20250911174710.3149589-6-wens@kernel.org>
+        Thu, 11 Sep 2025 11:46:00 -0700 (PDT)
+From: Han Gao <rabenda.cn@gmail.com>
+To: devicetree@vger.kernel.org,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Han Gao <rabenda.cn@gmail.com>
+Cc: linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH 1/3] riscv: dts: thead: add xtheadvector to the th1520 devicetree
+Date: Fri, 12 Sep 2025 02:45:26 +0800
+Message-ID: <20250911184528.1512543-2-rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20250911184528.1512543-1-rabenda.cn@gmail.com>
+References: <20250911184528.1512543-1-rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Dne =C4=8Detrtek, 11. september 2025 ob 19:47:08 Srednjeevropski poletni =
-=C4=8Das je Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
->=20
-> The A523/T527 SoCs have a new MCU PRCM, which has more clocks and reset
-> controls for the RISC-V MCU and other peripherals. There is a second
-> audio PLL, but no bus clock dividers. The BSP driver uses the 24MHz main
-> oscillator as the parent for all the bus clocks. But the diagram
-> suggests busses from the other PRCM are used in this block as well.
->=20
-> Add a driver to support this part. Unlike the BSP driver, the SoC's main
-> MBUS clock is chosen as the parent for the MCU MBUS clock, and the
-> latter then serves as the parent of the MCU DMA controller's MBUS clock.
-> The bus gate clocks also use their respective bus clocks as parents
-> according to the system bus tree diagram. In cases where a block does
-> not appear in that diagram, an educated guess is made.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
-> Changes since v1:
-> - Added comment for "fixed" dividers in audio PLL clock
-> - Corrected variable names for audio PLL divider clocks
-> - Added comment for the reversed order of some of the DSP clock's
->   parents when compared to the manual
-> - Added comments for clocks and resets only found in the BSP driver
-> - Corrected register offset for i2s3-asrc and bus-mcu-pwm0 clocks
-> - Made "r-ahb" and new "r-apb0" external bus clocks the parents of the
->   bus gate clocks, with comments if guessed which one applies
-> - Moved .num_clks to after the list of clocks, making it obvious that
->   the value needs to be added if more clocks are added to the list
+The th1520 support xtheadvector [1] so it can be included in the
+devicetree. Also include vlenb for the cpu. And set vlenb=16 [2].
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+This can be tested by passing the "mitigations=off" kernel parameter.
 
-Best regards,
-Jernej
+Link: https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-4-236c22791ef9@rivosinc.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/aCO44SAoS2kIP61r@ghost/ [2]
 
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+index 42724bf7e90e..59d1927764a6 100644
+--- a/arch/riscv/boot/dts/thead/th1520.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+@@ -25,7 +25,8 @@ c910_0: cpu@0 {
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm";
++					       "zifencei", "zihpm", "xtheadvector";
++			thead,vlenb = <16>;
+ 			reg = <0>;
+ 			i-cache-block-size = <64>;
+ 			i-cache-size = <65536>;
+@@ -49,7 +50,8 @@ c910_1: cpu@1 {
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm";
++					       "zifencei", "zihpm", "xtheadvector";
++			thead,vlenb = <16>;
+ 			reg = <1>;
+ 			i-cache-block-size = <64>;
+ 			i-cache-size = <65536>;
+@@ -73,7 +75,8 @@ c910_2: cpu@2 {
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm";
++					       "zifencei", "zihpm", "xtheadvector";
++			thead,vlenb = <16>;
+ 			reg = <2>;
+ 			i-cache-block-size = <64>;
+ 			i-cache-size = <65536>;
+@@ -97,7 +100,8 @@ c910_3: cpu@3 {
+ 			riscv,isa = "rv64imafdc";
+ 			riscv,isa-base = "rv64i";
+ 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm";
++					       "zifencei", "zihpm", "xtheadvector";
++			thead,vlenb = <16>;
+ 			reg = <3>;
+ 			i-cache-block-size = <64>;
+ 			i-cache-size = <65536>;
+-- 
+2.47.3
 
 
