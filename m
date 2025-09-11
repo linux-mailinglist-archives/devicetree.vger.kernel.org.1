@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-215752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C27AB5289B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:17:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5C1B528B8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4828A05527
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:17:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D62F67A1CF5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2225A257841;
-	Thu, 11 Sep 2025 06:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300A9258EF9;
+	Thu, 11 Sep 2025 06:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cbUarncB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E1pKxW5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550363F9C5
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:16:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0701511CBA;
+	Thu, 11 Sep 2025 06:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757571421; cv=none; b=qTHM7+64mSuKNSIakBzn1763Am/UtjwOEiB3iptbG0W3vnySsFdaqYMj+Vqq7ms5pTExlfuy8HpnTTyotWmPkoF6fRgor9c9B5QNHOh6X/zZWsHqjHkFsPox7si+hQIKPmjlfAJgLiUylPIdnGBToKxUg5i8vS/tiJFTUkw9NMQ=
+	t=1757572161; cv=none; b=gdAQ+Zq+m29Zczy1CW4ox0MHueVeSz9vbSfx/uVUHZ0xCqJbIoffaxpd9WwYN3c/7tgQzmADgV2FDuxxPeMfVitr+0/Z3aqg/1WOVaqzfLJy1iMtx/URiMOzpyxtILi9a7cjVXjMGzzE0+UD/dzsw41kg7AKmyOGAIDnUwXVUEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757571421; c=relaxed/simple;
-	bh=tp9gIEhkm3nPQ5lAX6WNJ7qKAMdj7t76MyO8kgCsjIk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jH0uaFKukZKDZ9J+4w85vr+Xy0tK6nflPqMV80k/+iqURxhGM8TyybDdOGhB/ngV0YBNd/lE/Xm+TZf/8DESu1j/tHF9Y6Wbq4q8IQca+uxtbuiH3rfI+TFy/eNCwNBhuZTNyURUT5+HFWOeImzSsmN5WHdVo0dHe4T4FXofZ2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cbUarncB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2IYtA026069
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:16:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xUKV4tzeMZk7PUXMYsNdlnlxveYGyatPAuyxc4rrGtk=; b=cbUarncBVC5HY7uG
-	b/p73x8K0vfbV3NpesiEFwEmVMGNc0LwifZ0Jfp/g5n3vq9N/qhlbKElqJtJtmWU
-	oCQoRb6RhbZ3S1E4J+ITBx6uUSR/XWwmI/Xrj7fmKXFfCwP2oghmhxsj4JcZE2Tj
-	3jwgc6q1gN8ob+QEWJeQmGxdFPBgGejCj/09cNYF0xSTaWPF5HXo2Lg4i674n3Z1
-	l8EG7mNl1wtloNpoWbZg4u5mZmlUkIZ1eNZ7hAO3G1v9Ja2swHjEfla/tQjwoX6t
-	YmTn7dKqTqDvgF+jX6l8cUK/5VukpUHmaPEkSNX3wcM127/Ao2sboTOPCJPWmC/f
-	kNS9oA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490cj0xe15-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 06:16:58 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5e9b60ce6so11399161cf.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 23:16:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757571417; x=1758176217;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xUKV4tzeMZk7PUXMYsNdlnlxveYGyatPAuyxc4rrGtk=;
-        b=Wwa8H9Vd4wrY2JglXwcsl/Uk78xTzRkbjUosU8Ai9qO+5+21Tlb9WQsPjQ0+ToXtHt
-         PuY0mwzLfuvb2tKooC8TtA5x5yWPZcwdf5k5VB+Oop3DVYnBK9gyxNeTAdlk5zNLnXI2
-         PMv5USrrIio20+JoBwAUd4c0VpxAz9t/M1qAav8wddsLdXUwsTdp7bByyBsmwk0vEvz5
-         6EVE+1uliMPiL06zCUnNJHgPWUudNdHf/b+/PxYkNUyB+h5kX8e0ep02wNMvSx5gPGXb
-         uv989QdS2Lp/yzq1HNzxFBFlec+iT+skx1ZPA0AirUKH6Mjz8Q3+SONyUEN76WXBfele
-         ZPOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXMjSLxfIKB7Dd1EVm1OY/GQNfHjHVb3i1sAlFvXGU1Gd5oC8R7WYZNRSzdH2SPfvylnajzllJLk2dn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdC7AqN2IBnTOhm2j9gORYMJzsB+eLglBDOmzuilmVoGzr/mto
-	3BJMqvp0hJ7zRpjgD8FfA8kyrbVtCO1GsaWgW6ZUbB8txOS+l+Q/fPjQyeSsUWHpQ+jGtp5SOgw
-	AOcqqCzudCbOoUCF8uHXHexrwUqh8knSCPOnGxzKUlOC7+3I4xvhwYHT5Yg/2KM+7
-X-Gm-Gg: ASbGncsp6vYBrOI522/9jjAxBGEk+MLxlaKqUJmWUry5h4hBuDLOw3r6yY+32/CZEAQ
-	bWVvi1QoDAH99875mDmQUJVuom9AKWBG15JH1va/sSJso62s213krVyWgNxW+dtvVwDTtZMuarr
-	51j5hGmJ2x0zBmaIJVDE9RMANPw1A+b4N0jGoMv6uBJTZblmfUFCq6XFSsYr+dYd/iC7PdCzXIh
-	5VY6pIlr+D7nIr3ixGJYAtdArwA3lqbgVgEIYqcgYJMU1aHSQ9C7eM4IqaWRAOmmsLE9XcZnZFY
-	YJsBVr5ZnNIvhLGCOIA97nyvt1GC7azHVWJjwTDue5tICJZ9B1okohFxaWW0f5kOn7E=
-X-Received: by 2002:a05:6214:485:b0:712:8b65:d37a with SMTP id 6a1803df08f44-7393d42bbcbmr202002716d6.43.1757571417157;
-        Wed, 10 Sep 2025 23:16:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEHSNw8Su7OR12obsrdfm5Y2WPxrkPUqoNEP+Q/mONDJZD/GLYsP/1z0hTN+IDLz+fH4C089w==
-X-Received: by 2002:a05:6214:485:b0:712:8b65:d37a with SMTP id 6a1803df08f44-7393d42bbcbmr202002486d6.43.1757571416658;
-        Wed, 10 Sep 2025 23:16:56 -0700 (PDT)
-Received: from [192.168.68.120] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45e037b922csm10587475e9.15.2025.09.10.23.16.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 23:16:56 -0700 (PDT)
-Message-ID: <b7a637d1-8868-40f3-8f82-8f5ab0684d52@oss.qualcomm.com>
-Date: Thu, 11 Sep 2025 07:16:55 +0100
+	s=arc-20240116; t=1757572161; c=relaxed/simple;
+	bh=3ww/jS1fs9nHT7j3wCS68DaL7+qVCfA7ppHd8n2uUdc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=YvyofcobAu2ObpmvJLQbdcBDinGzSWR3iAUeoUXe6LBP9qhUZApFIWRthGprAsXeHn0Yt/O8nDU+o3poOgcM+fD/tknTEWM8WnpTPaIo0GNkGPvLoTcGUjFjcQL64kucry9a+XgWgvHO70G3TXAO2xKhB9qRCz/vzNdu5fqVjaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E1pKxW5G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDFB1C4CEF1;
+	Thu, 11 Sep 2025 06:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757572160;
+	bh=3ww/jS1fs9nHT7j3wCS68DaL7+qVCfA7ppHd8n2uUdc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=E1pKxW5GoaZaQISBvQIQBAM789VE3o8LUozMR/afizF4FZtKfNilMWZWF5gfvmzG1
+	 JuzdssHiZQlyOJvhDBte4ceKkZp0C+1X2V9Mpoziiv6OemWZszlsU/BwnOx6/BKaSK
+	 GkJpftKyTzApRYpb2MwOe2aGrFWuVZhGsJhSxCRxpRbD0iJxyHFR8mKkXyLi27JyhO
+	 oT9uTFt7Q81J99/r6qRF2gX0U4GbgajEvd5GVmGfanY92V+pFheOurjajrANiHMh7w
+	 /FBKmpbfLYMUDvKgBd0cH/kbEBHg66Zt8n8SvNoPUz4GIKmi9BxpMoGsG3WHX9cUlX
+	 gbXI0AYJJJ5rA==
+Message-ID: <1e4c65c6-4745-45e2-9e20-9d2e69ae2ea4@kernel.org>
+Date: Thu, 11 Sep 2025 08:29:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,131 +50,457 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] soundwire: qcom: add support for v3.1.0
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        vkoul@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, srini@kernel.org,
-        yung-chuan.liao@linux.intel.com, pierre-louis.bossart@linux.dev,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-sound@vger.kernel.org
-References: <20250904105616.39178-1-srinivas.kandagatla@oss.qualcomm.com>
- <DCPK67SQ5DEI.2AFDVRKZSEWTS@linaro.org>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
+ ALTRAD8 BMC
+To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250911051009.4044609-1-rebecca@bsdio.com>
+ <20250911051009.4044609-3-rebecca@bsdio.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <DCPK67SQ5DEI.2AFDVRKZSEWTS@linaro.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250911051009.4044609-3-rebecca@bsdio.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: f8SDPbVU2pmOaNja66nwpc3MNGnBKTPO
-X-Proofpoint-GUID: f8SDPbVU2pmOaNja66nwpc3MNGnBKTPO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyNCBTYWx0ZWRfXxlooU/veQ1ql
- jAzBUrlpDBnZwuXm2wWPBk5t18k5C3lluMgDvN0T3NrpTEi+4fQddeTppwsQeY0PRffIOwSSo5A
- 2IKlAclP51mVlIw5TEtfg6xjQAPwasY/pZTqnAj5DBcdO+najH8Fu+ZmsVzhVrKvI0dcPnG2Mk4
- b7SJ9MdIfmBlmqat0duyfkvLuXdWPhJCYtWRPU5ZcznyhblEG8chMh+VX9zAehb+KLVvLSmRyAS
- OU/MsEnLxppXgfDlaeSnzMUhqeiHuUCImgJML5TtN4DezVkADEsORH/vdm1ymP86WwzYsg8b4YQ
- /wnZQdpQIhPOb6OA2PvUuDbS1q9TNr4B6DgOE/inA636iEjgoTeatUCxIDyRqiFvn7A0yWHMx4Q
- 7S+I0uNu
-X-Authority-Analysis: v=2.4 cv=QeFmvtbv c=1 sm=1 tr=0 ts=68c2695a cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=ctXafwwC4ABjd9pVO5wA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0 impostorscore=0
- bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509060024
 
-Thanks Alexey,
-
-On 9/11/25 1:52 AM, Alexey Klimov wrote:
-> On Thu Sep 4, 2025 at 11:56 AM BST, Srinivas Kandagatla wrote:
->> This patch series adds support for Qualcomm Soundwire Controller
->> version v3.1.0.
->> As part for adding this support, a new macro of_property_read_u8_index()
->> is added so that we can remove the qcom,din-ports and qcom,dout-ports.
->> As v3.1.0 supports more than 17 soundwire ports. Also due to change in
->> the register offsets, new entries are added to the variant data.
->>
->> Tested this patchset on X14s and Glymur reference platform.
+On 11/09/2025 07:10, Rebecca Cran wrote:
+> The ALTRAD8 BMC is an Aspeed AST2500-based BMC for the ASRock Rack
+> ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q boards.
 > 
-> Well, I don't have any Glymur devices and no idea what is
-> x14s (I guess some laptop), but I picked the series locally to test
-> on sm8550, it seems there are some generic changes, and
-> qcom-soundwire probe failed:
+> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+> ---
+>  arch/arm/boot/dts/aspeed/Makefile                      |   1 +
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts | 647 ++++++++++++++++++++
+>  2 files changed, 648 insertions(+)
 > 
->  remoteproc remoteproc1: powering up adsp
->  remoteproc remoteproc1: Booting fw image qcom/sm8550/adsp.mbn, size 8364
->  remoteproc remoteproc1: remote processor adsp is now up
->  qcom,fastrpc 6800000.remoteproc:glink-edge.fastrpcglink-apps-dsp.-1.-1: no reserved DMA memory for FASTRPC
->  PDR: Indication received from msm/adsp/audio_pd, state: 0x1fffffff, trans-id: 1
->  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@3: Adding to iommu group 12
->  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:1
->  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@4: Adding to iommu group 13
->  qcom,apr 6800000.remoteproc:glink-edge.adsp_apps.-1.-1: Adding APR/GPR dev: gprsvc:service:2:2
->  PDR: Indication received from msm/adsp/charger_pd, state: 0x1fffffff, trans-id: 1
->  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@5: Adding to iommu group 14
->  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@6: Adding to iommu group 15
->  platform 6800000.remoteproc:glink-edge:fastrpc:compute-cb@7: Adding to iommu group 16
->  qcom-apm gprsvc:service:2:1: CMD timeout for [1001021] opcode
->  platform 6800000.remoteproc:glink-edge:gpr:service@1:dais: Adding to iommu group 17
->  va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
->  qcom-soundwire 6d30000.soundwire: probe with driver qcom-soundwire failed with error -75
->  sched: DL replenish lagged too much
->  platform sound: deferred probe pending: snd-sc8280xp: WCD Playback: codec dai not found
-> 
-> Are there any dependencies I am missing?
-
-Can you pl try this change an see if it helps,
-
----------------------->cut<----------------------------------
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index a7b6d9ecc3ba..622cc6c31264 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1426,6 +1426,26 @@ static int qcom_swrm_get_port_config(struct
-qcom_swrm_ctrl *ctrl)
-        ctrl->num_dout_ports =
-FIELD_GET(SWRM_COMP_PARAMS_DOUT_PORTS_MASK, val);
-        ctrl->num_din_ports = FIELD_GET(SWRM_COMP_PARAMS_DIN_PORTS_MASK,
-val);
-
-+       ret = of_property_read_u32(np, "qcom,din-ports", &val);
-+       if (!ret) { /* only if present */
-+               if (val != ctrl->num_din_ports) {
-+                       dev_err(ctrl->dev, "din-ports (%d) miss match
-with controller (%d)",
-+                               val, ctrl->num_din_ports);
-+               }
-+
-+               ctrl->num_din_ports = val;
-+       }
-+
-+       ret = of_property_read_u32(np, "qcom,dout-ports", &val);
-+       if (!ret) { /* only if present */
-+               if (val != ctrl->num_dout_ports) {
-+                       dev_err(ctrl->dev, "dout-ports (%d) miss match
-with controller (%d)",
-+                               val, ctrl->num_dout_ports);
-+               }
-+
-+               ctrl->num_dout_ports = val;
-+       }
-+
-        ctrl->nports = ctrl->num_dout_ports + ctrl->num_din_ports;
-
-        ctrl->pconfig = devm_kcalloc(ctrl->dev, ctrl->nports + 1,
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index aba7451ab749..6bffb7130839 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-ampere-mtjefferson.dtb \
+>  	aspeed-bmc-ampere-mtmitchell.dtb \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+> +	aspeed-bmc-asrock-altrad8.dtb \
+>  	aspeed-bmc-asrock-e3c246d4i.dtb \
+>  	aspeed-bmc-asrock-e3c256d4i.dtb \
+>  	aspeed-bmc-asrock-romed8hm3.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
+> new file mode 100644
+> index 000000000000..61f6cf8018c0
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
+> @@ -0,0 +1,647 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/dts-v1/;
+> +#include "aspeed-g5.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +
+> +/ {
+> +	model = "ASRock ALTRAD8 BMC";
+> +	compatible = "asrock,altrad8-bmc", "aspeed,ast2500";
+> +
+> +	aliases {
+> +		serial4 = &uart5;
+> +		i2c50 = &m2_2;
+> +		i2c51 = &pcie4;
+> +		i2c52 = &pcie5;
+> +		i2c53 = &pcie6;
+> +		i2c54 = &pcie7;
+> +		i2c55 = &ocu_2;
+> +		i2c56 = &ocu_1;
+> +		i2c57 = &m2_1;
+> +		i2c58 = &slim1_1;
+> +		i2c59 = &slim2_1;
+> +		i2c60 = &slim3_1;
+> +		i2c61 = &slim4_1;
+> +		i2c62 = &slim1_2;
+> +		i2c63 = &slim2_2;
+> +		i2c64 = &slim3_2;
+> +		i2c65 = &slim4_2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +		bootargs = "console=ttyS4,115200 earlycon";
 
 
----------------------->cut<----------------------------------
+Please drop bootargs. Baud rate goes to stdout-path and earlycon is
+debugging tool, not suitable for mainline.
 
---srini
-> 
-> When I reverted the series the audio started to work again.
-> 
-> Best regards,
-> Alexey
+> +	};
+> +
+> +	memory@80000000 {
+> +		reg = <0x80000000 0x20000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		gfx_memory: framebuffer {
+> +			size = <0x01000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		vga_memory: framebuffer@9f000000 {
+> +			no-map;
+> +			reg = <0x9f000000 0x01000000>; /* 16M */
+> +		};
+> +
+> +		video_engine_memory: jpegbuffer {
+> +			size = <0x02000000>;	/* 32M */
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		systemfault {
 
+Never tested.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+
+> +			gpios = <&gpio ASPEED_GPIO(G,3) GPIO_ACTIVE_LOW>;
+> +			label = "platform:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +
+> +		enclosure_identify {
+> +			gpios = <&gpio ASPEED_GPIO(G,0) GPIO_ACTIVE_LOW>;
+> +			label = "platform:green:indicator";
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +		};
+> +	};
+> +
+> +	leds-fanfail {
+> +		compatible = "gpio-leds";
+> +
+> +		fan1 {
+> +			retain-state-shutdown;
+> +			default-state = "off";
+> +			gpios = <&pca0 0 GPIO_ACTIVE_LOW>;
+> +			label = "fan1:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +
+> +		fan2 {
+> +			retain-state-shutdown;
+> +			default-state = "off";
+> +			gpios = <&pca0 1 GPIO_ACTIVE_LOW>;
+> +			label = "fan2:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +
+> +		fan3 {
+> +			retain-state-shutdown;
+> +			default-state = "off";
+> +			gpios = <&pca0 2 GPIO_ACTIVE_LOW>;
+> +			label = "fan3:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +
+> +		fan4 {
+> +			retain-state-shutdown;
+> +			default-state = "off";
+> +			gpios = <&pca0 3 GPIO_ACTIVE_LOW>;
+> +			label = "fan4:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +
+> +		fan5{
+> +			retain-state-shutdown;
+> +			default-state = "off";
+> +			gpios = <&pca0 4 GPIO_ACTIVE_LOW>;
+> +			label = "fan5:red:fault";
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_FAULT;
+> +		};
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels =	<&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
+> +				<&adc 4> ,<&adc 5>, <&adc 6>, <&adc 7>,
+> +				<&adc 8>, <&adc 9>, <&adc 10>, <&adc 11>,
+> +				<&adc 12>, <&adc 13>, <&adc 14>, <&adc 15>;
+> +	};
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";
+> +		label = "bmc";
+> +		m25p,fast-read;
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64.dtsi"
+> +	};
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "pnor";
+> +		spi-max-frequency = <100000000>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			code@400000 {
+> +				reg = <0x400000 0x1C00000>;
+> +				label = "pnor-code";
+> +			};
+> +			tfa@400000 {
+> +				reg = <0x400000 0x200000>;
+> +				label = "pnor-tfa";
+> +			};
+> +			uefi@600000 {
+> +				reg = <0x600000 0x1A00000>;
+> +				label = "pnor-uefi";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd1_default
+> +			 &pinctrl_rxd1_default
+> +			 &pinctrl_ncts1_default
+> +			 &pinctrl_nrts1_default>;
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd2_default
+> +			 &pinctrl_rxd2_default>;
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd3_default
+> +			 &pinctrl_rxd3_default>;
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd4_default
+> +			 &pinctrl_rxd4_default>;
+> +};
+> +
+> +/* The BMC's uart */
+> +&uart5 {
+> +	status = "okay";
+> +};
+> +
+> +&mac0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rmii1_default>;
+> +	clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>,
+> +		 <&syscon ASPEED_CLK_MAC1RCLK>;
+> +	clock-names = "MACCLK", "RCLK";
+> +	use-ncsi;
+> +
+> +	nvmem-cells = <&eth0_macaddress>;
+> +	nvmem-cell-names = "mac-address";
+> +};
+> +
+> +&mac1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+> +
+> +	nvmem-cells = <&eth1_macaddress>;
+> +	nvmem-cell-names = "mac-address";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +	bus-frequency = <100000>;
+> +
+> +	ipmb0@10 {
+
+0 suffix is not generic.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+
+> +		compatible = "ipmb-dev";
+> +		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +		i2c-protocol;
+> +	};
+> +
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +	bus-frequency = <100000>;
+> +
+> +	pca9548@73 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x73>;
+> +		i2c-mux-idle-disconnect;
+> +
+> +		m2_2: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +		};
+> +
+> +		pcie4: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <1>;
+> +		};
+> +
+> +		pcie5: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <2>;
+> +		};
+> +
+> +		pcie6: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <3>;
+> +		};
+> +
+> +		pcie7: i2c@4 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <4>;
+> +		};
+> +
+> +		ocu_2: i2c@5 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <5>;
+> +		};
+> +
+> +		ocu_1: i2c@6 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <6>;
+> +		};
+> +
+> +		m2_1: i2c@7 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +
+> +	pca9548@75 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+... and same comments everywhere else.
+
+Since this wasn't ever tested, I am not doing full review.
+
+
+Best regards,
+Krzysztof
 
