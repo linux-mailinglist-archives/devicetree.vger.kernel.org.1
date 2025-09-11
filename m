@@ -1,119 +1,154 @@
-Return-Path: <devicetree+bounces-216021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D709B536E6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:05:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887D3B536E5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20A9F1622D8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:04:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9DC83A5A61
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51ADB33EAFD;
-	Thu, 11 Sep 2025 15:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC379343D85;
+	Thu, 11 Sep 2025 15:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XEipPzJn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF3B2367A0
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4E7327A36
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757603082; cv=none; b=orsigdDatdaCo/T7t8Dbg2RZnMVIxY0ly4YK2G8MTjpaVbpawbE7wQMY6M4LUqFNUenwxPmZ5M30KAkWyYNbWHzijLDdQkjE7ZB2qYMEyjiti7F4tY8dcfRSk6p8MdNqpdzD4qvPyQhpxg/H5XCiTD2ZmrKMA0AEMDz70V5TOHU=
+	t=1757603087; cv=none; b=Gxjpo4JFhiq1/HC1F2acVyCNmWMJo44NgUFDY7lZJojTruPikekaF2duWBC9VlIni3Qg4AcAK8zA7l+r8ff4KITuPD4Jkqi+qKrb2fIWWWmK7mFEnuRhEwsaiiQvK1kdV5iZ6Hbb6OKyFpj53JKIenyKG5/9EeeEQlyKG6t2UnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757603082; c=relaxed/simple;
-	bh=hDIjhZ6wAHYWNsMfgUFiT7VXXk4Wa0eoDOj1hGyg8P0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V9zglcPMZ2MkbXlTZyeLnvMDnRT3nB8N4m7mOlp3QOEIzW9WMrlnUVuN3YLByroKMakYbBdnyov0DgWShX/MG1aHy7eGOdAhOMIWbLsaz5V5OVqBzdSVcy2Z6EUMeaS+0Kb/Ij0qCoN4vJNN/tFzhx58TfJoQP2qVtK9so1r4FQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-72267c05111so6182777b3.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:04:40 -0700 (PDT)
+	s=arc-20240116; t=1757603087; c=relaxed/simple;
+	bh=4YrZyyB8Rfh+T+OQdySIWTJZ0Z8Gm32c75Hx6y54/Jk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nd3Ho5HC673NPp2YMX1w1PFuTo/dQgR9Q5aM8+vRhlpItMFmrG/n8naFtXokkY53p2eNr9g/Be2EvknFS1uOyMCHaA/Y+vS0JNUAd/gVEopyRIBP8do31KXFxGHYMiPgEPYg4wPkfVeEaAtXsXCXqrvIU501So57YIUCX57+RPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XEipPzJn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58BAjaIC006616
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:04:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6FKGH0QcPq3zUDyOCCypdh5UbCID7mN5vXsMYkcjroE=; b=XEipPzJnvAcMMuSp
+	rQ3ee6JkPG3R8DPRaI7rTSrrfrayqYsM6hwMWsZfks66TdYvX/cx4bnBGuROXhRg
+	vot5BBI/Fs1CmMWqS7rSc2e/WVQqmYqLP6hbJPuX1jn2A7sGP1fr5+Q24xFUVQxt
+	Qp+DpKkv6bjRzSmeToebculihMnO5yxbEyHTo4l7eiicZiavfJ3imkGhX3mtaTOq
+	m0gPy8oZWiLBDBzb94AQ7EZVMvg1cLFrQrnoYw4Wdq7oKCp4j5Z+yDqkl1OsKXbI
+	jS7DthkM8CUeyLTHuReci23rdT8UgocSEzDSHvy2GLeu+MKs7R2E5RnlG4ykO3W+
+	pLZwIg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc2c94s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 15:04:45 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5f15a5f3dso549001cf.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:04:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757603079; x=1758207879;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TS0EL8aORZwbi8PmaP9iDcnqk5bgKxhbrNCQjz+ikhM=;
-        b=w+/GzzTF19Z4Pz30jeOIeE46LAjZNcBjNzNpQUoeiFxtOz1EmAa/ExLl455CTiC5+q
-         aj0W5n5YdjeJ9DK4Hn/SLdnIFO0jEYbcrpDsJrhBStImgI+MC88r8pSxjEYemafEciu7
-         eyOBC9zqb1+rgl4ZFXigXT3qTtiBej9kjlpVldQOqHnN6KyLymTs8S8FWKRoqqQiY0w/
-         nDHTOFbLXYHhuC6YKXUZwTNvAtUv+dMg55GmhyzY39+MdfoEUq2SJl/XeUbYqC2ZM1jD
-         AYZlA0rj7xZ28Mv5pVV4a4Id8/692EQVAw6saoWGYWBsObT1oIA52lyHeSz2VQc+oEcB
-         FZgA==
-X-Forwarded-Encrypted: i=1; AJvYcCUE84UHsZlA0eYHdK8vnAA/gHVirg3vujAZb5fN7fMEG8wjwQd/RIY2tAZo7iYug2x56RE2SMZMbstc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDtb7OMsgrycewXjH0ftmSYO8YNgUTUHTrbo2FxpQ/RcY44Frp
-	pUKR61c8tJx/CsJEkkj8/uJBWxlwqkHPK8wW0NUsS+ZfA9DhQ6yeGEq+r+m43U1pkmA=
-X-Gm-Gg: ASbGncsDzJ68g8A2McodcpK0KNfyo7Y6iwDmYOvhiaRM3EWMTxwMqHzrpvxMMxR9BcR
-	KQau4KE6tQPOjDINOpVfU6fODUPTya/4cvO/nd+dh/au2WZ+IfP373r5NlIKpKh2Xn1SvzkQCpm
-	7vyBMSmFEz42z7AbJMCMI1Gvk3O39/QlRBKyaRYcTsvIR2BgeeYCGtgR3fztjJFW/aBB4jlUktc
-	GhMah8vE8pYyPWP6IWnnxfrq1ye2G5y1Q6DRo7zNhcbPFylDI7yMbuEpcPQvt5m6Z3nLdXZxcTr
-	J0u+26zeIm5cZFDZE+Sf2DO8ceSUSr6GVFxo54acBQJO92CxMZRa13oly2kCHALSdHectq+wsv3
-	6oc5+zYyj4sVbIwMW7sQJtoWLUb+0hAHxogHtyx6cfhsDpowefTFSV+ft9mzx
-X-Google-Smtp-Source: AGHT+IGeDmV05ETva63H69JhogRT9mupsWwYph8Z5h63eCR4YghT5hRX2HqNIDzkkrIehelmhB7BVg==
-X-Received: by 2002:a05:690c:450e:b0:723:8943:d6d3 with SMTP id 00721157ae682-727f2dbf912mr153061577b3.6.1757603077641;
-        Thu, 11 Sep 2025 08:04:37 -0700 (PDT)
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com. [74.125.224.50])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-72f791a38cbsm3989367b3.42.2025.09.11.08.04.36
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1757603084; x=1758207884;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6FKGH0QcPq3zUDyOCCypdh5UbCID7mN5vXsMYkcjroE=;
+        b=jFt0XC7NNqy8yJ+f4Kf5nfbrhfi9qtJnD5EMZscGzVPPoybwvU1t2X06VXcNSvpn5h
+         UavXJJS6lhwNkeSqvstHFnUmgTW21kuaOijTpBw7ZTRIJLSXja0qTVM6cWag6U8n4qZr
+         CwHTJ2X4/VkYFQoH+6XkxVG3SQrz8PaMlQ4p55XjJJE+blRALcp2DZyNA55mQhJknlkd
+         CN2TIMHVwlreU0TViTzV3AX2GBiHAunxJrNdX7xHUo83leBfJiMfpzXSU7h3HFsPHFb4
+         +0EmBYMPkjQlUCK0KOxiLYpfEQX200dtqDQ645qWJwXrofk+2Nt9jp2Lv6wwMh7m1Xxz
+         5aNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVaJvahAOtccEq83JnpHDIgdG80R7O5JzA4u76ofTCq3sqWo0peEGFBczZ2oLLR1KUk2bRNLtE/eSRT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzspstw1wCdqoPJBqEAE610PNxezvQfy3JdCazpU7iuGB3q5tvH
+	oaEWzjiQP3F8Q9rcEHVBzOo0WXHOiHTeKm5nDJDdu9I+aZg8EB9W9gBLctQtbC4b0nCWAUn0f1C
+	+yDNS4SGrqdNS9UaKUuY1oAfa8ktpq5Jd88apGKkeO9NRWMqfHAaxuNn4nGl6wTrc
+X-Gm-Gg: ASbGncum1d80HViwSiRS9VwRGxbHantOmFsEvA0+Afm4/BUAS3aOC+C2GL2PJp8kunC
+	l1jODGf9OjxkJHaWTgsFYqE+WCvhG+InDH3s57Xc55Xc1ByAgpQSG0r2AmkT/Ewrc5Ta6iK0lU7
+	mb6AVnas7J9vaMuRQCEx276GSJBW03jXBP2eXGFCKdA/XYVV76ybE9OEmjF2Lm4NtykbU1zqkuA
+	I6HSqIp4UJ4yO7TUbetsZnJfw3EDZh5TFoG+VkjeU2JDluRR0QIelyeS1zBSwmUA7qe5QBcvpDH
+	RPQv2TmJ0C99oIDzzydTv7AezyF3HVUgpy5tmTDV6W9jQdte+B84KXxAAcByOgfJ0+727Zcw1Ay
+	eJq7ORtekN3m1dugY+z0xPA==
+X-Received: by 2002:ac8:5f14:0:b0:4b4:9175:fd48 with SMTP id d75a77b69052e-4b5f830417amr151528371cf.0.1757603084226;
+        Thu, 11 Sep 2025 08:04:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE0FppMif3cYGizhNCQ1L/ibDbAQ5mYytEfu5gYANTSlZP+Xwy1nadB0B3Hzn2U//SYcIlZqw==
+X-Received: by 2002:ac8:5f14:0:b0:4b4:9175:fd48 with SMTP id d75a77b69052e-4b5f830417amr151527391cf.0.1757603083289;
+        Thu, 11 Sep 2025 08:04:43 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b317124esm149966666b.46.2025.09.11.08.04.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Sep 2025 08:04:36 -0700 (PDT)
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-624e08e8e64so391069d50.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:04:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVntwgKzXPMs0lvbyV+h0d3UtptVm4kl9IB9+10In8MxzEyEOSE1YXF7/aAlfuJYOmkxfyYfPQPgoyM@vger.kernel.org
-X-Received: by 2002:a05:690e:1515:b0:625:27aa:61e8 with SMTP id
- 956f58d0204a3-62527b9a69cmr1270304d50.1.1757603076433; Thu, 11 Sep 2025
- 08:04:36 -0700 (PDT)
+        Thu, 11 Sep 2025 08:04:42 -0700 (PDT)
+Message-ID: <53f1e121-302c-4b35-9dad-114d16c2a9a6@oss.qualcomm.com>
+Date: Thu, 11 Sep 2025 17:04:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se> <20250905084050.310651-4-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20250905084050.310651-4-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Sep 2025 17:04:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVUYFiHx2owbezcOLwUdYd5_7XZEYjF8-Khvc1WWavGQw@mail.gmail.com>
-X-Gm-Features: AS18NWCW04nNVUUV0t60126nxRdvBxmyhce0KqBQMo7ha578-b8sIe7Ehrnf0RA
-Message-ID: <CAMuHMdVUYFiHx2owbezcOLwUdYd5_7XZEYjF8-Khvc1WWavGQw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] arm64: dts: renesas: sparrow-hawk: Add overlay for
- IMX462 on J1
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] phy: qcom: edp: Fix the DP_PHY_AUX_CFG registers
+ count
+To: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250911-phy-qcom-edp-add-glymur-support-v3-0-1c8514313a16@linaro.org>
+ <20250911-phy-qcom-edp-add-glymur-support-v3-2-1c8514313a16@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250911-phy-qcom-edp-add-glymur-support-v3-2-1c8514313a16@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c2e50d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=c4sUNlcVcd6a9V-9oyAA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: yRnBlmHidPwPE_SkmYx5IbgDSwLqT6Qw
+X-Proofpoint-GUID: yRnBlmHidPwPE_SkmYx5IbgDSwLqT6Qw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfXwWcSltvNzloD
+ R29BDw0qu5GBtOOnYJZlbrB9G4RDt0buf+Jv/xaE1hhczuCCfb6eTeVLG83wkRHjcyGkXF7nYgP
+ kJ0EXRAMk+9I4Y+d4mLalT9mTuw9jGUNe1IAAxnw1hU284j1pj4bvLsZdfv5FKdzgEcVPNpHdXy
+ 0g4YLT8ecgLb/GJxZm68V2974cO+8XbnEwJJOalLLxWHMzZODAM+doCLFYvgGtTSAfRlfih+v6S
+ j6M4NCBtX6X/EyjjsMyrKtTq+Yde0BoN7IuI6KJQbGVDUpeUI2483XOzWPeKarWWtPjmUElTTB7
+ +K3+WFveX/7uv38JEupoNJaSVSuPbHSwNcjYGUXPQ2gXGuLwX7xe86YKuQjxL4eSFRsWeDY8Jy/
+ ykic38iw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-11_01,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080094
 
-On Fri, 5 Sept 2025 at 10:45, Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Add an overlay to connect an IMX462 camera sensor to the J1 connector.
-> The IMX462 utilizes 4 CSI-2 D-PHY lanes. This enables the video capture
-> pipeline behind the CSI40 Rx to be enabled to process images from the
-> sensor.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+On 9/11/25 4:45 PM, Abel Vesa wrote:
+> On all platforms supported by this driver, there are 13 DP_PHY_AUX_CFGx
+> registers. This hasn't been an issue so far on currently supported
+> platforms, because the init sequence never spanned beyond DP_PHY_AUX_CFG9.
+> 
+> However, on the new upcoming Glymur platform, these are updated along
+> with the rest of the init sequence.
+> 
+> So update the size of the array holding the config to 13.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
