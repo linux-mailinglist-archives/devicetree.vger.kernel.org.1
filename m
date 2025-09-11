@@ -1,174 +1,112 @@
-Return-Path: <devicetree+bounces-216093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F400B53A48
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:22:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1F7B53A64
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:29:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA393587235
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:22:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A5BB7AB335
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6BD35FC29;
-	Thu, 11 Sep 2025 17:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NrD2ri/X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1662835CEAD;
+	Thu, 11 Sep 2025 17:28:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB22822AE45
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 17:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AB9173
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 17:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757611353; cv=none; b=u2j/dXePsqZLDWbzLaC/Uy0SHU7QJHCPIOIWsRNv/g0Z9Wt69yFLW781x0GXVWON1ovdg8FdW5Uh45rMG9yiswKMqpMZMJ7/PR99QW1Ie4ePwDcfHVJqeAKYCvzsNSW1EtbAm8CtO4AkVkA4T3V/msWBOb4v9VN8BL4CRBmnF8s=
+	t=1757611735; cv=none; b=NQxkkAOXDsuBfmzMSEJ8jqMmuLWdsJuafjY3+WMGv11btG/OgInorJ+KFnF3XQT28yFy6EJCP3uP0bmnh787izyQt1x5ln6mAmXWMqKIvqpNay71TLpgeaktvsinB9J/MzsluPl2NQDFMTXE6af8oCJe6Y3LID9hOVp1fkfOkEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757611353; c=relaxed/simple;
-	bh=6SGthHS4qrvYOf3o0liwoAGvJXCeYkPogYQn1CUGiwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THtIAKrwYbX7FDv4lvwH9vY3KZztqYarjWWrz7aG7+++8C0vcRXt91feLDB6SV3FemRS512XFIxqaP172zrqy92+Gmdr05tp3QW5JmRoZjscfrRAkzja9wFEhE+MQD+ClfDqgYRO2CEKkCunW7JkE48SwvjzxpoYKMmq1JsIHOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NrD2ri/X; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1757611735; c=relaxed/simple;
+	bh=BdWBmM3pGAEjuR8ywljtmJOivr5eFXGIIviSTZvwLdY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SAuGaepvudTTzPYxYnqmqv4W/gIr0Xt3PbtZ2m/MRh6ErBZlOLrNVo650jVH9jAZU1FJpE44rnMxHfEWDXp44SGxxBGhnJ6wW/CKaAqoQevowTl2iT3E9p74virvdN6mry+iHcF/PI8b7vdrcRav40THHiaKVrV2NdxPDs/dCTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3e07ffffb87so603216f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:22:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757611350; x=1758216150; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=al+SGVJLrQ5Ai/9RbesG/7WJAj4tFEzw9mmlTmlbQoY=;
-        b=NrD2ri/X+HgTLoJdS5cK3jk/4XvZ/tr7aKsdf6UxEr52HXyXTc1RGcHizDLthifJcd
-         bES/yBJ9mtCLx3aUJ5G9XNO44NLVj5t8DkPubgRI64qkdUuVM5PMvqFLiVy3CZlY9Rx0
-         ErfvxL7JWpX7xgAHdZrLJ/346oPk1AZ8ep7R01fTjmEtErwZzpSJW3SMQQh4F+BXaJrU
-         dr7Wb9EPHMb5gGnBq5MzpVjzwJyooz6WAtLyyv2Qo6IPBnrdTtTVWk+AyD0zTa1wtUXI
-         6on7dzQIFFdfISzzhnvQ6hsCr2JMYsk7LC1tO7Nf9jOdAwQOSJc/hvLNhEaGZ0zF/4nd
-         LAqA==
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-89018ec3597so572977241.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:28:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757611350; x=1758216150;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=al+SGVJLrQ5Ai/9RbesG/7WJAj4tFEzw9mmlTmlbQoY=;
-        b=oRJ4fB8W9mOgJ514uXSy+MP6WdoZsq1TTG0kN/NMpmnXQFJBlBkGKat7XyRMlw8M/g
-         TLtbBvBizWDHD3/6kHoB/T7PqPTHKk+DNGkWwFK0WmP1EWQQcex0waotjUz/vm4kuOI8
-         oOcDq3g5MiCMWx/9cQhYnYBOWT7CFQS1XnU8u+jhWxqVcUIQumVSPgw6xq48ZYQa/pBf
-         IrT/9RrUIYjlb4vmqWUdzWPJ4JgO6bl+q6x2ynf++5KmwCQ4Pz+ivVhMd8wWj1jxhoH6
-         EAqWanrusFXAN99LfSoIBftUbnKNCS+rjjp8Ppf6PfRW4sODkgigVyATUk/Ff29cCJ/z
-         9gXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWC+R3KkNR5icAiiNeIlk7wabybasFdyY0X04WHuwWqYRYEFxu9RDRrJ1kbkoubzxnmieGkpNmb+cPU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8PcaS0YZ2X73o1uDiBWCfg2V3EYQsy45mluaBThP+v7DUcWFz
-	Iaqy82DA0ow0gprBAD2eoMgTJ3VbP5mmdVJ9kq/f/p6E63j/VeOEVXwn
-X-Gm-Gg: ASbGncsIxhkTxAuawpqTpof0u7HqUIufqSVY3OdUTdlBWJ0C9+NodyMb/qV8kLoVyYM
-	I1JtMen+Tg89IkxMuukmVp9Q9O35GjJN207pzHwZGMMm5WbDeqM82a+5WaeFiMVDw67A0LP5DyC
-	d++KfyYOHCtko4/BZwOGr6M7y7buTU1Qol2XEHMv7kViTTlJy4Xtp4eLQUK3s2NuBSsfpDXJ937
-	wxWCauty3WkSR0iJLunsdCbeYP0otjdAN4ojx/yjTw2XSre6LUeYAIWcasmH/dfi7aB2b+TZnWl
-	J7CNCf92yafwjEaXkoTDzPvxebvCNUuy9Qb/7THJgat+oyTshrexhlFZgEG1yfFYmKHHEKZFVwN
-	iB0MBy9HMfawCCSvbV9JHOHq9XLtU55zGqGkagG0jPnyKVEfiPPhmaugJ9H4UxWEcGzFGPRm87s
-	lVoj5u/NQ+
-X-Google-Smtp-Source: AGHT+IEkwCAU/UDUcPwD0Y2oC6Cjayd4uEvKVlhGx0N1h1LmikPqq6SKErYIBBoArS7lWmOvMtPcYw==
-X-Received: by 2002:a05:6000:26c1:b0:3e3:2c0b:dc3d with SMTP id ffacd0b85a97d-3e7657b9cdcmr160359f8f.17.1757611349960;
-        Thu, 11 Sep 2025 10:22:29 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607e13f4sm3156998f8f.57.2025.09.11.10.22.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 10:22:28 -0700 (PDT)
-Date: Thu, 11 Sep 2025 19:22:26 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Thierry Reding <treding@nvidia.com>, 
-	Svyatoslav Ryhel <clamor95@gmail.com>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] clk: tegra: add DFLL support for Tegra114
-Message-ID: <o6agzaasqcnfibvtf5hgvjxlbrcgz4ulld657xfduhitk465pd@l27ge5ilkpjv>
-References: <20250829122235.119745-1-clamor95@gmail.com>
- <wmbbnybxsnbhnkifqfwp7g7bklurxgx3qe4djxcwdcs6aketcy@kqiwizt46gee>
+        d=1e100.net; s=20230601; t=1757611731; x=1758216531;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nNwKnllKcgNmSxozD/+n9dLn0I91saVxOj9Y59G/HOU=;
+        b=LHiB46D5t4yfhWQUV7Ra2+ONW5srP3IEEipoxv0+5llUm89WmuZGkL5MRMZJO/m5pf
+         4OXV5sdQ/Wf51QbJj41kD3idvR0IPsfabAEJ1wxJBTUFSGZHrRg5wj9uSTlDAU82sNs+
+         8vb9rwppTwVywUrRmp+MMcholAftDbsrRv9syS7GWGGdl6N8mDTfvmaDtl6X9lssNLyS
+         9k3cty39WJI++bdjVY14C1NQV0DWVfBc/0r5NuUzt0bWLGvAsLjoOum19v2WChb2Qf56
+         RXe0LXIiJDgeaUlAilKLglocOZnUv0O+ZDVPCdWjq3bKl5e7yCtg96Fc+1kztEeWjhug
+         WOFA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdZxLdmjo0wWvYKcwuPgBOI2YnHLvujDFqfsG3Sg/H4ZVHSPVSTwgey56slUXZObw2ZWPFEQsX+grL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpY4VYkfBb2r36A4W6kZXwKLUlvv+6DGCKR4+UyKEtW2HCzSRM
+	+5FAv/w2fzTnPTcDjpNRogt332jEJWIxHYrlu6IUsdBZjIJ6EaH4i3rL28R+6LES
+X-Gm-Gg: ASbGncvZjJVwHb5LU+ijiZGWZIi9PQScuRKAm3ZgiASZWgw8GsXPfOYrX++CcW6wFJc
+	YYb1ch8um7J5kjXLKYMeME7CClvUWhZ+EjqGMNa+HjNlzUZERkHOOmwot1xqgBGTy9KXSokRReh
+	PbtGl1x0Ew4YdtZx6E4LmFV4epqO1RFoklmrpe/1EmertljHp25MkI6w/lC2rXGntNQ++jxiAiQ
+	0Js+3gdCGnDRok3WqEdQiZp2Ce1Z1aofs0zVsVviyGL5z3t8qdjuV79wGZ3F8TA3IZrq/6bhNdR
+	UFvURmGI+uU6/dZoEol0wyhqq5PdMne4tAFBjWI8/5WtLvGMKVPlPrIUrnjBJ30vLXKCyIwSiTt
+	q0Cw9hi7BIpF6H38Yr2xmhHKKk5Zp8mcyV+3k/3xW8Dt59SJBqtwHXYLw/jEr
+X-Google-Smtp-Source: AGHT+IGMwlOmWc8kdfgRebNhg5MVrrjlBaqaPAeoW8UNQwQKNmUe48cImCZa9GO54F2YJTs26JW9hA==
+X-Received: by 2002:a05:6102:2588:20b0:51e:8a52:2dce with SMTP id ada2fe7eead31-5560c6e630dmr195322137.21.1757611730840;
+        Thu, 11 Sep 2025 10:28:50 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8ccd38f8c8asm348829241.12.2025.09.11.10.28.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 10:28:50 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-529f4770585so660193137.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:28:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUpePte64pTTJNWdY2r4UIsD09Ay0xlsTyXKg07WVJ8/Hl/221vk9lU4/iR022kCQ6vFsxliybYMshf@vger.kernel.org
+X-Received: by 2002:a05:6102:41a2:b0:4fb:fc47:e8c2 with SMTP id
+ ada2fe7eead31-55607e2ba72mr193657137.9.1757611729558; Thu, 11 Sep 2025
+ 10:28:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4m23ttv7p46bf745"
-Content-Disposition: inline
-In-Reply-To: <wmbbnybxsnbhnkifqfwp7g7bklurxgx3qe4djxcwdcs6aketcy@kqiwizt46gee>
+References: <20250907225338.426253-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250907225338.426253-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 19:28:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUHwp7EiVw97CFZG0zmcK3opAgO-YGcdSGRaF3tGwgLcw@mail.gmail.com>
+X-Gm-Features: AS18NWCqPuEA5ue65D37BzPjM6jGqyVU7S3WL9hosSlR-Z0YeWoG17bjv1N9sFE
+Message-ID: <CAMuHMdUHwp7EiVw97CFZG0zmcK3opAgO-YGcdSGRaF3tGwgLcw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Rework fan hwmon comment
+ on Retronix R-Car V4H Sparrow Hawk fan DTO
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Mon, 8 Sept 2025 at 00:53, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Reword fan DT overlay hwmon comment to accurately locate the
+> fan control sysfs hwmon node on Retronix R-Car V4H Sparrow Hawk.
+> No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
---4m23ttv7p46bf745
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 0/4] clk: tegra: add DFLL support for Tegra114
-MIME-Version: 1.0
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
-On Mon, Sep 01, 2025 at 04:57:37PM +0200, Thierry Reding wrote:
-> On Fri, Aug 29, 2025 at 03:22:30PM +0300, Svyatoslav Ryhel wrote:
-> > DFLL is a dedicated clock source for the Fast CPU. The DFLL is based on
-> > a ring oscillator and translates voltage changes into frequency
-> > compensation changes needed to prevent the CPU from failing and is
-> > essential for correct CPU frequency scaling.
-> >=20
-> > ---
-> > Changes in v2:
-> > - dropped 'drivers:' from commit title
-> > - aligned naming to Tegra114
-> >=20
-> > Changes in v3:
-> > - add DFLL support for Tegra 114 was split into dt header addition,
-> >   DFLL reset configuration and CVB tables implementation.
-> > - added cleaner commit message to dt header commit
-> > - added T210_ prefixes to Tegra210 CVB table macros
-> >=20
-> > Changes in v4:
-> > - expanded commit message of car header adding commit
-> >=20
-> > Changes in v5:
-> > - renamed tegra114-car.h to nvidia,tegra114-car.h
-> > ---
-> >=20
-> > Svyatoslav Ryhel (4):
-> >   dt-bindings: reset: add Tegra114 car header
-> >   clk: tegra: add DFLL DVCO reset control for Tegra114
-> >   clk: tegra: dfll: add CVB tables for Tegra114
-> >   ARM: tegra: Add DFLL clock support for Tegra114
->=20
-> Hi Michael, Stephen,
->=20
-> Given the cross-dependency between the dt-bindings header, the driver
-> and the DT, do you want me to pick this up into the Tegra tree and
-> resolve the dependency there?
+Gr{oetje,eeting}s,
 
-I've applied these four patches to the Tegra tree now and plan to send
-the drivers/clk bits to you as a pull request. Let me know if you have
-any objections.
+                        Geert
 
-Thanks,
-Thierry
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---4m23ttv7p46bf745
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmjDBVIACgkQ3SOs138+
-s6EsbhAAveaZCF46Un/jnPJTP0ZvUFKqK9n8UqAdtzZLD+01XEz7gWGYGh3c7296
-Exo4ShFpAdHtu0ebHjCPd7xNk97wRwKMx8VxhjBST4RBW7hqZSjs/b4ErAY0i7Ya
-qnLXVUTqJxMD8RjinA0ndzyIzxp2VBRKQlhC/9EUkHBE5BPWcndfrGtwy2mWL417
-iDSLGZiGx+XT9a2XKV04kioYJbgfPASIvDKJU9XtLTVKU238rvhfolLhuZGsN8eE
-Fgadt1EwK7msPvrVJZVgp9SiM9riqzVHfIPnPcUC9fLvHjiVjBeSzXuH/88yYObE
-+xdh0n77T2iNhwvV2g403iWvmmkDHc2ofy7NP37cvj87p+FsAGnFF5Fss4zpfxl9
-pzRYn6EuYS1dm9KNGRvphvOqSCzUeOooFEMSz+UuH9v5WpauW8njKUk5TZDPoHaX
-LxRg5de6hCkoN4sntE4MLyJKMuu67IkG8/RyKNF0Uxv9S75URyk3a89doNr/nqoN
-CK5aaxRrmR9W8l573himO4rrVw/A/x8CwR52HZrXBXwj0X4ILbRMQVVjPppLdeg6
-/BZFb5jUWFfFNz0x2Ws/IkojZprXFsoaMu1i5fTmkLbPOWUmkMj7neP1lDtvmxCS
-p4ZPhDJA6UHCnzCRCEOLd2he0jSxufBBNXjZdv9jo5i8PpGeq6g=
-=F/Cm
------END PGP SIGNATURE-----
-
---4m23ttv7p46bf745--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
