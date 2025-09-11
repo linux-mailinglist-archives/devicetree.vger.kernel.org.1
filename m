@@ -1,186 +1,187 @@
-Return-Path: <devicetree+bounces-216111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F740B53AFE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:05:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C7FB53B04
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:07:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E95565A1806
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 040361CC00B2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 18:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFB235A298;
-	Thu, 11 Sep 2025 18:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49FA035AADA;
+	Thu, 11 Sep 2025 18:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpEybyKX"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SOiFgN7w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012069.outbound.protection.outlook.com [52.101.66.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D660032274C;
-	Thu, 11 Sep 2025 18:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757613926; cv=none; b=A5pBCeaMo5BObwlZGQhek259OjaHfIvATfo6SHjxnPs4plQCp6yg8bJgztAZPyKLMisBqpQ4OYiLmpBnS5LdYL4Sluu9G8E25lQ3JTtluAySUyKSUvncct5y0mCmJpJ5IORbT7h3JJRB66RRWkdQ7N3kmE4QFlHZ0H0V/ia2KGo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757613926; c=relaxed/simple;
-	bh=2KNA9CUisSqGTNs+pjOvgziFv5NqIjtSrtlbLeja3pI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fhobPRSfMw7TE54yoH6x6uG/6jNK87VRdhUb8gps2YsAsApHXn3fsBzkPslQuAe95VkxTT0cNh1ICxCXtx0FwvjIilfFtMWI+1FxzjUqmmYaYwetux21/Qyp30ZY4Pq8AsPSG/kSWLTVX3A52nS49NV6HvHW/fw0feWGAftmJW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpEybyKX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2304CC4CEF0;
-	Thu, 11 Sep 2025 18:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757613926;
-	bh=2KNA9CUisSqGTNs+pjOvgziFv5NqIjtSrtlbLeja3pI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VpEybyKX/63+ZZb6qs2IoyyE4FvNCGP90GL62zJKk7I3msaMsZEF9Je3lm11LNcYl
-	 3ilH5hwRhfIDQKRuUkuBJl6xw1xfSnqooP1IjChyM/T1GSdJCCbyJjRPHCdrQNcONe
-	 sHVNKF6evlm9h5qWuTpxJzuU4gl7EkL++4SaavOhrhb2ruTMRu1P4AtSD448tGQ89n
-	 ZLokA+XygCWCx9uGWyBQgLAPIztYDygimqgwZd8LtJCQg0Zfd+Pf8Jam9ZIOlbYaXO
-	 kUVUXbfQ68Fpmk1J50JQrriEpRalPtv7ePIJhyA+zlPcTcEGzFIy5G1T1m35yYY7Vs
-	 kpsxX79osoKpA==
-Date: Thu, 11 Sep 2025 19:05:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB0A35337E;
+	Thu, 11 Sep 2025 18:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757614026; cv=fail; b=aHlNUsF19+283Ljb0N89Rleb+puHKK/uIHu+ZRbCeJBhFCKsIsDRwoZWSb3p9PCHgxpoBPZdAawN//An+h8OFob2t+ajKn6qeRlE//x7MiSG51nxpNDXS6Neobqm8V+L2qcHPWoC30sFQEg5PTzz+Yer19BMFZ3fQBkNRUPGi1k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757614026; c=relaxed/simple;
+	bh=euDh0uipkJxbkuCmH/tPIhS5D9G6q7UVK2OXuvdkoBI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=C4D5Q3zx+1m0RkNGx0zHBxGnFX7sta2C+o989QgNVcxr/bf1w8w/vrneFRbjtuqSd7KDn/DYJeteqgH0HCwtqu4kt7JDu47KypXageHuOFxjpv5GaMWGeLXMcY9FqL/L4zMGSj9CA7PwgZ4J3eDE4JRubsj6DxeGJqZ8MZ6nPic=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SOiFgN7w; arc=fail smtp.client-ip=52.101.66.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Vp8OmXMuSxUzAg0pT/T9p2W2DbjRsAerNMTlErsLmx5B7Bvjyqk03FFcubJ5fEm2E90p0hjru/39pCqvYULsfSl29L2dPFfdFXJvQlSfONw2SDCudGUX3lCHVeyBsCClNYuArjDNvGCcwsNsFgd7g10KE25gmDMZ6WtoYcKA4wzEeaWmhA5haFBMfpIB1Uc+kTbV6KdT0co2Cg1VQGb4f9uJpSOYdcQqP2+jYtzRX7ku8mCBaXfb6H5rxpPl1Bv3IJlmSwyjqLTVXCIBQd5aMp/jMlH+NoaAYvLrJB6tub6qkp5SKWt+OeXmxXdvrsVRVO/g8H/5swpxqn09mDL4iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s3nF0Qm6W30bWSyPciiZ0ew94eZSaRnd966EmIWEoto=;
+ b=PAJNipEGr296GaWum4yVAIWhqWXhgv8J/5gEl26Cj0cDxr+XIogZLV4waT8IKEJOua7UEm8vXNROMkn9rVpvlfSSzKQbXBNq5jojCOJH6xxeA8/tN12sD3B2ay2MZBBRjXDq6qkaD00IDY4LiHIoHAyNzVLTLPu6GC+VHz3FV6sB/1rwAASg8407se2AVoAkPWghTyORkEjncHEppryfDf7oKuSMybD8agtG6SrLbhEreRzmbUVtlVZtM3gY4leqA/BtCoecbbgUzVC5Np7BJChYWtY6GMHigzv5JWqgrp/jamSq+o0UdyjS7K6VdVEVpOODEAK7yBUUyVN7//kUiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s3nF0Qm6W30bWSyPciiZ0ew94eZSaRnd966EmIWEoto=;
+ b=SOiFgN7wlelc3tCtsM1cHKJpSwI+D+LTjvQc7KLP7MijlbDKmAH/NkMOYGBodJbnygX0X9RYf5RlDvgw6nFiNVkdYuG3nY2q6SPFzGD6yAkhSF+dNYypzV3mtKXK7FI6Bba9U920XdzrzP8Q5fJ3mISEiD3YwGcQnZ2UTWHn/S2HbbqIbk2SpXybQN9LaN2peM66pj5PjMf0NOqkBe3wNxRDrD2+DQ3b2rype0R4R9X55ruZZWoAeBHElvk8eqUO9CDK3Gp7qJN+W1ldxxEVzQV3GGeji3ZkvqQ0lg3p9ZsSlOQKsBMZDKpkcbySaujR2+6MOzqvUE6fU+YeAE5W0g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
+ by AM0PR04MB7076.eurprd04.prod.outlook.com (2603:10a6:208:19a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.15; Thu, 11 Sep
+ 2025 18:06:56 +0000
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9115.015; Thu, 11 Sep 2025
+ 18:06:56 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Robin van der Gracht <robin@protonic.nl>,
+	Andy Shevchenko <andy@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Russell King <linux@armlinux.org.uk>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/5] dt-bindings: gpu: add bindings for the Microchip
- GFX2D GPU
-Message-ID: <20250911-iron-stadium-ea225e18bc42@spud>
-References: <20250911-cpitchen-mainline_gfx2d-v1-0-d7fab1a381ee@microchip.com>
- <20250911-cpitchen-mainline_gfx2d-v1-1-d7fab1a381ee@microchip.com>
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: auxdisplay: change to unevaluatedProperties
+Date: Thu, 11 Sep 2025 14:06:41 -0400
+Message-Id: <20250911180641.1031346-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH5P222CA0012.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:34b::8) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TFmC7SfvXiIlch8N"
-Content-Disposition: inline
-In-Reply-To: <20250911-cpitchen-mainline_gfx2d-v1-1-d7fab1a381ee@microchip.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AM0PR04MB7076:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a6c4a2e-d1dc-4c21-7ab8-08ddf15dfe1c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?K4eJRxABz0CDBBCE/JdyX7GS8+XmHu3QQ4S0osrLTj8bEAvrmi0n3wB0BQvZ?=
+ =?us-ascii?Q?aAV3SFGd8qFrM42BP/WU4Qg3v8Cyz2oQNI6AcfY4VzZ9BeIr9sFxGjTORQsr?=
+ =?us-ascii?Q?1oJcm4hlXAcdxU7k3/t49RtvDZVhg90d3u19/yjybetMdawiJ2hDdR1QqYmE?=
+ =?us-ascii?Q?hmB05wIKTIyRUjD4DlCcZH5NPPHmrw1QOJg3WnnmdjWpDyVA7NNUGfdL1hb9?=
+ =?us-ascii?Q?MxND58QGIzBTegoI9fBvUgZ1jnjti65fxYQLSjZlC/90kHKzx15jUC56QEFt?=
+ =?us-ascii?Q?JvAHHt/JL8D+tc/PLAwfpEpzh+6qJ3yFmbrP7lB1dgonYl6nId2lR2RUuQrn?=
+ =?us-ascii?Q?UC6RV3fjd0lEtX57fIqjAP2+fYfRdBkvPuJTmwPNOV1Tj9JxTdIGHkMScoi2?=
+ =?us-ascii?Q?eyCyz2TMvqqnnQ5kLhiHdePbHa381DrX6decAfnlLK26I4JNx1shWgUs8/5I?=
+ =?us-ascii?Q?pEYdJB9SNa9Lc2C1u8n/ig4TKGt6YtG83zZ4JlwdP9w8mR5KKAI5oPXm7v1I?=
+ =?us-ascii?Q?zfiFF2TFsC0gnxPSx0SQbGvGkq3XKEcOf/3ZMuNE9p0UbtT4TV1VL3WI6d5r?=
+ =?us-ascii?Q?r1UnzV+phY5ESTwmzAsoIH0VYhz5QoeBhks74tIj5N/y336hDVGrDnqyAThA?=
+ =?us-ascii?Q?4uRZMPIxHNcDAzRGNBw2IRgGfF1DxjtrCIEjXvh1ZroDNLkRIc0UY2v82zXa?=
+ =?us-ascii?Q?spDMbIWs9uirBJ8w7MC3UAkN5lErSe9ydTvZ05hkDtSfkn4uKMpT3q1sjnHR?=
+ =?us-ascii?Q?mpgq21BCBoT3VNiPb9/6U39GO92f7w18CZsvH15/jFzGsORb0z/r/l5me5Wr?=
+ =?us-ascii?Q?TdGMHaS54YVTF9fD6rUb+sLwwPH2siiYUy3M2ChFR9jS8tTqxCv66ydj7smF?=
+ =?us-ascii?Q?2tZR/siKTcg6EAjjAXte2FEDMEqdqe8QWLpc3/cIKJmzjYRdMudcy5okBaBK?=
+ =?us-ascii?Q?WwCfOPShSmFaCVE3VFrhBx8ZQ2sMFHipkEOeo+SK8SXRyvstmHrf2vJA7lRQ?=
+ =?us-ascii?Q?6FFvArIdC0tFFG9jddK7qF9cff6Mb4H3yrN29qM//9bQMcQNzAgSkqxLle0y?=
+ =?us-ascii?Q?2qXlFg5VrZDc/L2bVams7yCwwDaHUOqdqSpKsWtTXSWGjwHHtVwH0BvdelKb?=
+ =?us-ascii?Q?BrE07XWKLBy5vy+4pvoVTDHi0V+4s+yXLx9+UtdPebmomKRTr9Cy6Rs+xD77?=
+ =?us-ascii?Q?nGLi+YL75ILg6FOa+4MCv4ko8j5DZB9QU9Z8L29xCVGE9cEC/qI8rHGnJUYg?=
+ =?us-ascii?Q?OGSUtc0JeClcgYMCwz4QMVi7EX15hAsZsfjHYbVVR8+1TzLF5pkD+Q3NPMx2?=
+ =?us-ascii?Q?Oyg6FShzaVHRvP9j3yunPQ11dfhSmh214ESYz/op7EW2pHNwM6u9ldcyO/ks?=
+ =?us-ascii?Q?fzRnZ4VRJfRDvtGRjEhqrWULdfqpKRRaZZULY9f06GN9z0O49Oaqi3C88hR5?=
+ =?us-ascii?Q?yfAmldR7qq8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+2nDd19I9NIbtBoX3jMKTwXRDBAKc6H6mvEhZdZtla4Af0DUFSOyGgrI2ZwV?=
+ =?us-ascii?Q?ziwJlM7KV9jDFXxWdx/j8o+uu8o7CCzsOZrFi2SslUmaKgmPTiDl+H5Y6lop?=
+ =?us-ascii?Q?pblycOWk8zzTNp1Kp3Kixn2jTTTyIR2KK3GJbulmOcZmV8aGlphGCRQtRbo0?=
+ =?us-ascii?Q?/XPOz0cOfMeXOLBhS/GtrlPanQA8tc4J0sthRdN1YQRQVJacHe558lFennoY?=
+ =?us-ascii?Q?e3NcZQtDM7o+KZ0v1FnjcSFpIO8GgphpxlNyIH91GzsQYYUGuqcIzaCsGPWD?=
+ =?us-ascii?Q?Kp3lmQN6SgVom6Lk+SrK4sF77AdODJAzJ1TY87WgJ+LtVLN4AzyZDU1O8mx/?=
+ =?us-ascii?Q?SsNw/MIP2c8MP0LRD9/KN1nsZ9KQk6CzCjFZ/O7poeWbMai/hCPj26LZ/RfC?=
+ =?us-ascii?Q?wFfJDfyZLDMUSBZjl2xwedaC3Xet4WNqJZPIpCzNXX5ZYdabVKA3JvEqNDG1?=
+ =?us-ascii?Q?HVh4JJuMjGQsvBTJyknowh17SxatNQw4YJlLar3xJQcSW2S2HJTUpf+cTEZc?=
+ =?us-ascii?Q?5XDxIqaaGpWJrDbJck5v4wTwt110kWonP3SzqjEc6TMy6h4PNQNJcU+N1JVA?=
+ =?us-ascii?Q?qlyinPBp7kvMUJCm7bdPjp8/cLQ19tfYPKGl+EH3mwwZQe4Llaycy0WEYfmV?=
+ =?us-ascii?Q?BFArKkDYI3E9Atg+rukqEuUnUt4hHrvglbw1BT6CVwq6UpuETNYz3vdy+/QP?=
+ =?us-ascii?Q?MmUfHwgZqnDUgKw1bkqcrYxPjkjtNqVt3PfuJtrCiM6Mjp4gw5GSL9mnMU6v?=
+ =?us-ascii?Q?dZJikzoeS9aiyZq/QnsY2699bOHjh7mUvH1wCm1ZuBExn1cjWjqzDoco5bv7?=
+ =?us-ascii?Q?R6cMM7q5+WsuStt6G14bEm6OjXIRE2gqGLg6JELsoy3z6JvaI/kJw44PYhar?=
+ =?us-ascii?Q?b5YTRTjbYZhSmcShnMhudRvIaH2whR7TOFO2FxP+nab1PWZcb8jaVCi86d6l?=
+ =?us-ascii?Q?O9aewFIqZPF3ASTs0z1rbpu+imSByIe/waMjxfxTtUl70UN6F3K/PyTraF/K?=
+ =?us-ascii?Q?thWjjV3klZwqDkXxIp0hASwCgm+mc97aM7AK4z4/+BW34D28NKwZFlfaG/66?=
+ =?us-ascii?Q?pOASSFOGTOnipwpyMHO36+arlcOOsKADaeFVn2LelKaRRC9Ci/NV8MftsZkc?=
+ =?us-ascii?Q?AVBtXKauXioRRXacrKASGufGOsw+/snFXTvUbyQFt5NjlDMbmkaurGTrBNMm?=
+ =?us-ascii?Q?M4v5tf2vJeHGbDTGNiP59dGM4Yk2k3YVp0WNtDisXoFr25EvuHBx59bl6DtQ?=
+ =?us-ascii?Q?hItaZ5ssg4tuY62wAWcn1WbQEa5ECP3y/RpE7cwT99Osauyevdhp40Xem7IZ?=
+ =?us-ascii?Q?0hHVL0CSpUp3mSnUe8j0gUQDmnEDqnTBYv9o/7M9/9G/dHYO2K7A1ebxHhta?=
+ =?us-ascii?Q?I0zmBbWX93X5oA+W6UVXaCS6XRaQr7UIm/d14VrH7eBkvFGhR250/CN4yBj1?=
+ =?us-ascii?Q?GrY+IAcDBEy0OSbQMy2inclFI20UomfGAT42X6p6KZFap3RoLDHoDrXGMqYo?=
+ =?us-ascii?Q?dP2qJusZD0vwCdfZF8XY3DnCahmO64wO5Mv4Dx8iXCDWf6ttixhOZ/xmeA8/?=
+ =?us-ascii?Q?wvQ1/OrgyXrw6MUGZBo=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a6c4a2e-d1dc-4c21-7ab8-08ddf15dfe1c
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2025 18:06:56.1736
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Hes9ViocbYo7hEGeUL/nKI7X6BlXgNCOt0Nv0ABe8G2KoR7e8JhErYlZYpxLwPmH6RkPtawAEYD8rIIbRzqp7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7076
 
+Change additionalProperties to unevaluatedProperties because it refs to
+/schemas/input/matrix-keymap.yaml.
 
---TFmC7SfvXiIlch8N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fix below CHECK_DTBS warnings:
+arch/arm/boot/dts/nxp/imx/imx6dl-victgo.dtb: keypad@70 (holtek,ht16k33): 'keypad,num-columns', 'keypad,num-rows' do not match any of the regexes: '^pinctrl-[0-9]+$'
+        from schema $id: http://devicetree.org/schemas/auxdisplay/holtek,ht16k33.yaml#
 
-On Thu, Sep 11, 2025 at 05:26:25PM +0200, Cyrille Pitchen wrote:
-> The Microchip GFX2D GPU is embedded in the SAM9X60 and SAM9X7 SoC family.
-> Describe how the GFX2D GPU is integrated in these SoCs, including
-> register space, interrupt and clock.
->=20
-> Signed-off-by: Cyrille Pitchen <cyrille.pitchen@microchip.com>
-> ---
->  .../devicetree/bindings/gpu/microchip,gfx2d.yaml   | 53 ++++++++++++++++=
-++++++
->  1 file changed, 53 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/microchip,gfx2d.yaml b=
-/Documentation/devicetree/bindings/gpu/microchip,gfx2d.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e416e13bc6627a0fef3c70625=
-a6a3e2d91636ffc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/microchip,gfx2d.yaml
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Filename matching a compatible please.
+diff --git a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+index b90eec2077b4b..fe1272e86467e 100644
+--- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
++++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+@@ -66,7 +66,7 @@ then:
+   required:
+     - refresh-rate-hz
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/microchip,gfx2d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip GFX2D GPU
-> +
-> +maintainers:
-> +  - Cyrille Pitchen <cyrille.pitchen@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,sam9x60-gfx2d
-> +      - microchip,sam9x7-gfx2d
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      const: periph_clk
-> +    maxItems: 1
-
-Why do you need clock-names if you only have one clock?
-If there's a reason to keep it, drop the _clk - it's redundant.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/at91.h>
-> +    gfx2d@f0018000 {
-
-"gfx2d" is not a generic node name, I assume this should actually be
-"gpu"?
-
-Cheers,
-Conor.
-
-> +      compatible =3D "microchip,sam9x60-gfx2d";
-> +      reg =3D <0xf0018000 0x4000>;
-> +      interrupts =3D <36 IRQ_TYPE_LEVEL_HIGH 0>;
-> +      clocks =3D <&pmc PMC_TYPE_PERIPHERAL 36>;
-> +      clock-names =3D "periph_clk";
-> +    };
-> +
-> +...
->=20
-> --=20
-> 2.48.1
->=20
->=20
-
---TFmC7SfvXiIlch8N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMMPYAAKCRB4tDGHoIJi
-0mCPAQC6UaFapuUKAGnIg8753752/OZNLNqKf7dFbaRi37RaxwEAhSubE7nu3aOl
-m3nlEqNOdGn2aVpzZhbXTywzoJ2zugg=
-=NuVS
------END PGP SIGNATURE-----
-
---TFmC7SfvXiIlch8N--
 
