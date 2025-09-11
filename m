@@ -1,141 +1,162 @@
-Return-Path: <devicetree+bounces-215790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771EFB52A97
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:53:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 207C3B52AA6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 09:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 316A63A47D3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:53:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18E741BC26AE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 07:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8032BE64A;
-	Thu, 11 Sep 2025 07:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068312BEC2D;
+	Thu, 11 Sep 2025 07:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJjYVfUV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GOfBmC5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B068429E112;
-	Thu, 11 Sep 2025 07:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480512BE65C
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 07:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757577208; cv=none; b=BwpoVJKhVEz14CMVYpJWxZpiENQU42mmgH0beFKpd6lvshJLO9Z1webTWt9HgfoXJQqRsJNaJUmsGGaX+FTt5gw6GxuXTjG/Yonz67+k2yOoyO0omuq+pjmoMUeqDhj8rK3lzEsb6h3XDR7iB800E4yPaBiaoLt3d+WCvOlVzfw=
+	t=1757577320; cv=none; b=DQXKvvD8wW3LqMYXr3jlNkb1nRLTJPpy35MVx3iX4KJCxKda4TwfWRnCuP+dYEvSQJGoAFwHPGILEFRK3WyvcYLc350R+I7GCD6vZpjOb1uB4tHqmG9jqZr/YfJVmQCKmpX4ZjiQ9L+ev10a3NJXCsqd5oWlztrkvMRsGnfNruM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757577208; c=relaxed/simple;
-	bh=LJSX/YJBkIOu6NLyPR0jclq0ztLZ+upJxjY3L0qzdts=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MoVuuvRY+UHgCMGW99BW4CF6jTirTQx2Fcfz9WAR5PEJq3NoKeDitbrWfRP/iEv+EB9a3IJY8bB+YI82+a7SUgTUtggD8zsF6e9g2Nj5c3Tab9kWnPLIA76MUMTb8qSmK+wdZGutS44CXXiMTLheClGx3Fx/TMgKosWIO2FjYVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJjYVfUV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 620A2C113D0;
-	Thu, 11 Sep 2025 07:53:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757577208;
-	bh=LJSX/YJBkIOu6NLyPR0jclq0ztLZ+upJxjY3L0qzdts=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZJjYVfUV6Ie6wL2FIicKoSuwDryKXx8JcttdSm8wwIgrEH/rLJVDsLSz0bmmWwnJr
-	 fuiRk/vCTQBBvSocDSVIdPi9WiG5V43QDvghM7g0R2xTYbqGKFDpaSbGM5gpbjGlca
-	 hSsFMLp72xj+fKcquHfXKwIt4VPu6QNIfC2SQNYqQ+9OLAjsuvGTi7gpV1JksPcV1v
-	 JQm9az14Tal5jo96qbQ0iEwQGeSY9dE+/Oy2iln3kpj9OqhZJJgPsg1Sl28hYGhB/o
-	 xRwshqhvR4jed5BoprxScJB3jgMFbQ1kCLfoFcaRjBtPr8RgT3hLPnFF2kmrIe2kE1
-	 SIiRWFJvza1iA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57910CAC594;
-	Thu, 11 Sep 2025 07:53:28 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Thu, 11 Sep 2025 09:53:21 +0200
-Subject: [PATCH v3 4/4] arm64: dts: freescale:
- moduline-display-av123z7m-n17: add backlight
+	s=arc-20240116; t=1757577320; c=relaxed/simple;
+	bh=uW93kY0+OZCRekYhUWm/qQ0d+bv3Ef14UmeWSYv06cc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=srftDiqZqKgxT1LY6otx2VQvMjLFPfPTwoAaUHSpxIok8DSO+XtQuMVkHgYN8vHqsiJtmWVdNz+yI5m3va+qiE3EJ2qabiPDRb+7iZYdB141865EMmcAhBRd2R/Eh6BGc2W8nM7spFFdxaT3qQQ4vSxcLeS+ICYw/SYhXHwuBsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GOfBmC5S; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-6228de280a4so681955a12.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 00:55:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757577317; x=1758182117; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c/Zni9gQlrJqNXECo6PJyQCl0lpKWQXeS/S54r6ee38=;
+        b=GOfBmC5S42YcrCrrMbZ5jwxBkT5P+nlczpqfYQy1V22cSJi9KRMqEGkwIH2RJqFFpR
+         jLiK8ujHiMeSN39H22OlgtZWyZIjfbu71ZsZ0tbWn/5RV1u8kTYUiEDEuvX7KWGpg52n
+         LcWS1QQRuGV2gmoELKhEJR1kPHWnTm4wR7Lx1QUA3WBeJOR6gg511RP72wgD9CHlPu0j
+         0Oy0q4KoSt3XVVRYK30YlpzRm9rcpwN3WLt9eJjlVxTtrtI1HuQlRr/+jfn7VbW/eK15
+         EaB2r0vR+Clu+a01t/0E7zpML2n4Sgw3KyWwpnN+Z8y39gkvA8Xj+F5uKNVXwAN35ua0
+         w61g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757577317; x=1758182117;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c/Zni9gQlrJqNXECo6PJyQCl0lpKWQXeS/S54r6ee38=;
+        b=P/lBE26S9R13lMuHZmuPc+u4igkHQ8CO8OwNNPQSlDy1Mp4cnMQE6zdNI3/A5t6weT
+         Hfv1xPz5cMZiH/SUd8J42EUfsW6pQC5FMx1kA9I2p2stJPB66l2h5QylgUknVejXmeeJ
+         nreVUi5CpkByVVMcjbIvks9ALE27Yg7XZ3cFdzcFsiLZJ6hPPWr4vojEtaUyWYJ6qYMB
+         peHXHbQyRt/oUlJUFSCoU7Z0VsH1pDb2MA8g5pnXo3Ovrqp9C4P8ElMLfpfkY+HbfvlE
+         xxYUhewPuC66sI9AJljOqwefLmj6rM4zCyi4OzCbV77MTbC6KV5TBLbkkof/GGmKKPjO
+         g9Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCV7kiHm4dtPNfRkuQqfJRB+K3XCZ+vp7s6ryHxOez0NSgNa/GcGNRgi6RwVsNaeKpWHnwu5L0rUgB+R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwymvU4ejSOat656uiCOqe7iaqZ/GMmMyRJHhOh+8gQXDNr+TnG
+	tkxFeoDruXzvDQXLLrcxDPpXsUctKTDxr95i/uTMZfdXiCH0zInJBC3FYSwLMuHST4sdR+A3cf/
+	/kklJ3JTs4cYpeiBJMLobXfqnXEV5m7U=
+X-Gm-Gg: ASbGncugELyA5Y8shTJXCGuqsfikGxN2xe85yOReI0Q++vvGJmHZAosNiVI/Z9P+4I6
+	Bi/c4N02VU2tyJSqsNn5ejFGyX+s+dVl99Ylx+j7kgmVSRyeXzeO/1KD+AvaLwAy3aaHjApOiKD
+	x+SAwZ84GPAjjGvKFVe77q+9vvSMsV5aZLXuPVavN6idzutXcq4Q2o0qIXCoKYWmVseUT1/LNwj
+	bdbkFIz3g==
+X-Google-Smtp-Source: AGHT+IEQYL88af+znhDJjCoMbmK7lED2mZrcyiOVZkFqEOFz4gATF4l90/Zv3H30LLZwTPuhz78xnP1a64hjMASXg/8=
+X-Received: by 2002:a05:6402:4406:b0:62c:34ed:bbed with SMTP id
+ 4fb4d7f45d1cf-62c34edbf2fmr7977478a12.19.1757577316373; Thu, 11 Sep 2025
+ 00:55:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250911-max25014-v3-4-d03f4eba375e@gocontroll.com>
-References: <20250911-max25014-v3-0-d03f4eba375e@gocontroll.com>
-In-Reply-To: <20250911-max25014-v3-0-d03f4eba375e@gocontroll.com>
-To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Maud Spierings <maudspierings@gocontroll.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757577207; l=1572;
- i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=+aYLH/ybVi5ZerWepGpRa9xOZexNmERp/UmcwCxehRI=;
- b=YtagMT7BdxUBqeoCBONoCdU+5rEpYVDLrI6lTl22BO4sEXpAhosycuRxEdFyi3aLKihg2F4gu
- N/ak4sYXqdpCsm5KBsGV2d4+qsLu8ep3uhIhCWgTzFc8zObCS/xTg/F
-X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
- pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
-X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
- with auth_id=341
-X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
-Reply-To: maudspierings@gocontroll.com
+References: <cover.1757318368.git.zhoubinbin@loongson.cn> <2f93b8f20c6e93a15258888998e926814bfd0adf.1757318368.git.zhoubinbin@loongson.cn>
+ <20250910-fast-seahorse-of-valor-bf6c86@kuoka>
+In-Reply-To: <20250910-fast-seahorse-of-valor-bf6c86@kuoka>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 11 Sep 2025 15:55:03 +0800
+X-Gm-Features: AS18NWBY0ItJVlEtg4-Jrs_bUJGB4ODfYLmQ4u0lZWjWBEGzhnR72KNCiw8ZDmQ
+Message-ID: <CAMpQs4K-6Re=-gELPEg8kP_NKR5_1U=BD6fnXM3wgUF+eMtpGg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] LoongArch: dts: Add uart new compatible string
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Maud Spierings <maudspierings@gocontroll.com>
+Hi Krzysztof:
 
-Add the missing backlight.
+Thanks for your reply.
 
-Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
----
- ...p-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+On Wed, Sep 10, 2025 at 4:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Sep 09, 2025 at 08:11:20PM +0800, Binbin Zhou wrote:
+> > Add loongson,ls2k*-uart compatible string on uarts.
+> >
+> > Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  arch/loongarch/boot/dts/loongson-2k0500.dtsi | 2 +-
+> >  arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
+> >  arch/loongarch/boot/dts/loongson-2k2000.dtsi | 2 +-
+> >  3 files changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loonga=
+rch/boot/dts/loongson-2k0500.dtsi
+> > index 588ebc3bded4..357de4ca7555 100644
+> > --- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+> > +++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+> > @@ -380,7 +380,7 @@ tsensor: thermal-sensor@1fe11500 {
+> >               };
+> >
+> >               uart0: serial@1ff40800 {
+> > -                     compatible =3D "ns16550a";
+> > +                     compatible =3D "loongson,ls2k0500-uart", "ns16550=
+a";
+>
+> You clearly never bothered to actually test this against own code.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-index 3eb665ce9d5d2a1c742ffb4feca046e406e29956..0b969c8c04db1c86b2a90c5f5ef91e494e5de7a6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-@@ -16,6 +16,7 @@
- 
- 	panel {
- 		compatible = "boe,av123z7m-n17";
-+		backlight = <&backlight>;
- 		enable-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&pinctrl_panel>;
- 		pinctrl-names = "default";
-@@ -91,10 +92,26 @@ lvds1_out: endpoint {
- 		};
- 	};
- 
--	/* max25014 @ 0x6f */
-+	backlight: backlight@6f {
-+		compatible = "maxim,max25014";
-+		reg = <0x6f>;
-+		default-brightness = <50>;
-+		enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_backlight>;
-+		maxim,iset = <7>;
-+		maxim,strings = <1 1 1 1>;
-+	};
- };
- 
- &iomuxc {
-+	pinctrl_backlight: backlightgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO04__GPIO1_IO04
-+				(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+		>;
-+	};
-+
- 	pinctrl_lvds_bridge: lvdsbridgegrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI1_TXD2__GPIO4_IO14
+Sorry, perhaps I should have included more detailed descriptions in
+the binding file.
 
--- 
-2.51.0
+As per Chapter 15 of the Loongson-3A5000 manual[1], the Loongson UART
+registers and functionality are compatible with the NS16550A. However,
+generic 16550A drivers cannot support full serial port capabilities,
+such as hardware flow control.
 
+Based on your feedback in the V3 patchset[2], I attempted to use
+compatible fallbacks to avoid API breakage.
 
+These fallbacks match according to the Makefile's compilation
+order[3]. Therefore, if 8250_loongson exists, it will prioritize
+matching ls2k_* compatible; otherwise, it will fallback to ns16550a.
+
+[1]: https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-use=
+rmanual-EN.pdf
+[2]: https://lore.kernel.org/all/51f564ea-9507-40b4-a943-23bdd330e6d6@kerne=
+l.org/
+[3]: https://elixir.bootlin.com/linux/v6.16/source/drivers/tty/serial/8250/=
+Makefile
+
+>
+> NAK
+>
+> Best regards,
+> Krzysztof
+>
+
+--=20
+Thanks.
+Binbin
 
