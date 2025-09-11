@@ -1,42 +1,52 @@
-Return-Path: <devicetree+bounces-216159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3416B53D1A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 22:24:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74513B53D17
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 22:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AEAD7BFF13
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:22:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28C10488A6C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC272281520;
-	Thu, 11 Sep 2025 20:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF302877F7;
+	Thu, 11 Sep 2025 20:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpjYmvhV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D962827F01E
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 20:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9152D2877CA;
+	Thu, 11 Sep 2025 20:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757622183; cv=none; b=DvMTtWn9+++AuvOAKp9ZU4YSLTDbw/1poCCyvv9hF/OzmS9ljSxjmSWVQcsQRGtsWOD/6CStWkytwAuh2uvRQQOw4OKAoyVqT6jqOMYGl6NzDh0hrHEknckUWQk4PBnitr2nisLYBWH4YP+pEpxca1OqBLuGNocZQHKT/b19AQQ=
+	t=1757622236; cv=none; b=SJI27cWLJ3/evzbZimmu7LktNqCE1qfjYmfgxcHDgItUEW8p6PSeGLMjP5Fh170rRqUNnBIbLfLm9M6ZvrEn2ZbNaHBlXWnOVgmf22s1U/vf2FJztVfvyZLBH+6ku4WV3kSY6GHgFSyjHd5Vgxqa7O/geFjW104MVePpQh61Ii8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757622183; c=relaxed/simple;
-	bh=t3Qxwy3AnC9M50lFGea/MNR0jGvER4KJxcZ+31kFsDs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JPu7L8pKkqV8g08VTdaTp7DwY8690md7Itr1Lco3z7mW8xHWdEAd7Nr3MQemBPTV1jlwF2uZbJhvnm8A/dpglvygTJF+2dG6wjHdGeiY5Hp9KQWmeZnQJzb9smHpFDn6N0dw9Hiwx81xay9i0iok0Lrp/7/eEd+5+EpxtQgyL5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1uwnog-0005yg-QY; Thu, 11 Sep 2025 22:22:50 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Thu, 11 Sep 2025 22:22:46 +0200
-Subject: [PATCH v4 5/5] usb: misc: onboard_dev: add hub downstream port
- host vbus-supply handling
+	s=arc-20240116; t=1757622236; c=relaxed/simple;
+	bh=EbMD20lOlZxBydAK7zCQataQpHJmiIQr5rbqpG7Zzpc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NI9+q8XsVlNTMwMoUGrIa8nKpD00rAUU4Byfht2ZO0DExnXilISvNUfGMcY5a51AAKReKib1eg3OswfZZcW71+IUZ/HB5GuAEbbCv89E8d2qfHMK1aihLos7xuM34T3SC1W6K4aajxAbHN50Q26f5A6WI0t2R6ELRzRzyUe9j+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpjYmvhV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 25865C4CEF0;
+	Thu, 11 Sep 2025 20:23:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757622236;
+	bh=EbMD20lOlZxBydAK7zCQataQpHJmiIQr5rbqpG7Zzpc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DpjYmvhVHH2069jY8Xk+ovmziVk63trTPnxw8lWwh//40wIZFF7azO8G3FOVbmNDU
+	 YV7wb/ATHm5u60ySQGT9TIqxg6S3vLMPDPI4z7H/ibGwMC/HVU8NWsvDe5Oqyh/Bit
+	 5YV/pdA26H4veimr2BEaCKET2DAP9RkzNPh3qsaq/HkuWBba08d+RDr/IIlNe7jCEd
+	 w+mjgtz+ggbQgdfPpYqIiO0JiJHyBskWnuOCDoAyoCk/ZemsliCKUAa6twB8oMHUcX
+	 3cSeKMTDQBZaT+gVaPU3CZ9iGX8utS+AWn7EPZ6SShv+wHA7JIAzBto/wGXDPBumDn
+	 JN5yUxIH0+eNQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15EF3CAC58F;
+	Thu, 11 Sep 2025 20:23:56 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v3 0/3] Audio and other peripherals on Orange Pi Zero
+Date: Thu, 11 Sep 2025 22:23:54 +0200
+Message-Id: <20250911-opz-audio-v3-0-9dfd317a8163@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,210 +54,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250911-v6-16-topic-usb-onboard-dev-v4-5-1af288125d74@pengutronix.de>
-References: <20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de>
-In-Reply-To: <20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
- Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANovw2gC/1WMwQ6CMBAFf4X07Jq2tLJ48j+MBwqL9EJJWxuV8
+ O8WEiMe5+XNzCyQtxTYuZiZp2SDdWOG8lCwdmjGO4HtMjPJpeZKVOCmNzSPzjrAmqOqWzRGEsv
+ /yVNvn1vress82BCdf23pJNb1W8FdJQkQoAhPxmjTVqW6TC5EcseRIlszSf5U5PVelcChV30nt
+ NayQfmnLsvyAewWE7DeAAAA
+X-Change-ID: 20250417-opz-audio-890849c8bb2e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
 X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757622235; l=1167;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=EbMD20lOlZxBydAK7zCQataQpHJmiIQr5rbqpG7Zzpc=;
+ b=wrDUZIaMhF3qOeFIsCo2Hiqq6KZy/a7n1QcgKTmhRJX9sBv2YeeyfbFOsg1KkbXU4p7XXCuuU
+ /H5tiRvvRcXB2dd2l6Syk5t8My1EdZRf2a9hUdq3dBNHUuRh8m4r6LV
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Some PCB designs don't use the dedicated USB hub port power GPIOs.
-Instead they route the signals to the host. So the host is in charge to
-power the VBUS supplies.
-
-As first step the USB hub OF information is parsed and possible optional
-vbus-supply regulators are added. This is done during the platform
-driver probe() function.
-
-Afterwards, during the usb driver probe() function and in case this is
-an USB hub, the set/clear features hooks are registered via the new
-usb_hub_register_port_feature_hooks().
-
-After this registration all generic usb hub set/clear features calls are
-passed to the onboard_dev driver too. This allows the driver to
-en-/disable the regulators.
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
- drivers/usb/misc/onboard_usb_dev.c | 117 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
+Changes in v3:
+- Fix name of orangepi-zero-plus2 in patch title
+- Link to v2: https://lore.kernel.org/r/20250809-opz-audio-v2-0-f4fd15552a82@posteo.net
 
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index 5b481876af1b2c10ce625fcf0fb8bfbe8905aa8c..1ceea75d30d320e5d2203c768b9641876ebd37ad 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -54,6 +54,12 @@ struct usbdev_node {
- 	struct list_head list;
- };
- 
-+struct onboard_dev_port_regulator {
-+	struct regulator *vbus_supply;
-+	unsigned int port;
-+	struct list_head list;
-+};
-+
- struct onboard_dev {
- 	struct regulator_bulk_data supplies[MAX_SUPPLIES];
- 	struct device *dev;
-@@ -65,6 +71,7 @@ struct onboard_dev {
- 	struct list_head udev_list;
- 	struct mutex lock;
- 	struct clk *clk;
-+	struct list_head ext_vbus_supplies;
- };
- 
- static int onboard_dev_get_regulators(struct onboard_dev *onboard_dev)
-@@ -226,6 +233,71 @@ static int onboard_dev_add_usbdev(struct onboard_dev *onboard_dev,
- 	return err;
- }
- 
-+static int onboard_dev_port_power(struct onboard_dev *onboard_dev, int port1,
-+				  bool enable)
-+{
-+	struct onboard_dev_port_regulator *regulator;
-+	struct regulator *vbus_supply = NULL;
-+
-+	list_for_each_entry(regulator, &onboard_dev->ext_vbus_supplies, list) {
-+		if (regulator->port == port1) {
-+			vbus_supply = regulator->vbus_supply;
-+			break;
-+		}
-+	}
-+
-+	/* External supplies are optional, return no error */
-+	if (!vbus_supply)
-+		return 0;
-+
-+	if (enable)
-+		return regulator_enable(vbus_supply);
-+
-+	return regulator_disable(vbus_supply);
-+}
-+
-+static int onboard_dev_add_ext_vbus_supplies(struct onboard_dev *onboard_dev)
-+{
-+	struct device *dev = onboard_dev->dev;
-+
-+	if (!onboard_dev->pdata->is_hub)
-+		return 0;
-+
-+	INIT_LIST_HEAD(&onboard_dev->ext_vbus_supplies);
-+
-+	for_each_child_of_node_scoped(dev->of_node, child) {
-+		struct onboard_dev_port_regulator *regulator;
-+		struct regulator *port_supply;
-+		u32 port;
-+
-+		port_supply = devm_of_regulator_get_optional(dev, child, "vbus");
-+		if (IS_ERR(port_supply)) {
-+			if (PTR_ERR(port_supply) == -ENODEV)
-+				continue;
-+			return PTR_ERR(port_supply);
-+		}
-+
-+		/*
-+		 * The VBUS of this downstream port is controlled by a host
-+		 * managed regulator
-+		 */
-+		if (of_property_read_u32(child, "reg", &port)) {
-+			dev_err(dev, "Failed to parse USB device reg property\n");
-+			return -EINVAL;
-+		}
-+
-+		regulator = devm_kzalloc(dev, sizeof(*regulator), GFP_KERNEL);
-+		if (!regulator)
-+			return -ENOMEM;
-+
-+		regulator->vbus_supply = port_supply;
-+		regulator->port = port;
-+		list_add(&regulator->list, &onboard_dev->ext_vbus_supplies);
-+	}
-+
-+	return 0;
-+}
-+
- static void onboard_dev_remove_usbdev(struct onboard_dev *onboard_dev,
- 				      const struct usb_device *udev)
- {
-@@ -460,6 +532,10 @@ static int onboard_dev_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(onboard_dev->reset_gpio),
- 				     "failed to get reset GPIO\n");
- 
-+	err = onboard_dev_add_ext_vbus_supplies(onboard_dev);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to parse port vbus supplies\n");
-+
- 	mutex_init(&onboard_dev->lock);
- 	INIT_LIST_HEAD(&onboard_dev->udev_list);
- 
-@@ -573,6 +649,44 @@ static struct platform_driver onboard_dev_driver = {
- #define VENDOR_ID_VIA		0x2109
- #define VENDOR_ID_XMOS		0x20B1
- 
-+static int onboard_dev_port_feature(struct usb_device *udev, bool set,
-+				    int feature, int port1)
-+{
-+	struct device *dev = &udev->dev;
-+	struct onboard_dev *onboard_dev = dev_get_drvdata(dev);
-+
-+	/*
-+	 * Check usb_hub_register_port_feature_hooks() if you want to extent
-+	 * the list of handled features. At the moment only power is synced
-+	 * after adding the hook.
-+	 */
-+	switch (feature) {
-+	case USB_PORT_FEAT_POWER:
-+		return onboard_dev_port_power(onboard_dev, port1, set);
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static int
-+onboard_dev_set_port_feature(struct usb_device *udev, int feature, int port1)
-+{
-+	return onboard_dev_port_feature(udev, true, feature, port1);
-+}
-+
-+static int
-+onboard_dev_clear_port_feature(struct usb_device *udev, int feature, int port1)
-+{
-+	return onboard_dev_port_feature(udev, false, feature, port1);
-+}
-+
-+static void
-+onboard_dev_register_hub_hooks(struct usb_device *udev)
-+{
-+	usb_hub_register_port_feature_hooks(udev, onboard_dev_set_port_feature,
-+					    onboard_dev_clear_port_feature);
-+}
-+
- /*
-  * Returns the onboard_dev platform device that is associated with the USB
-  * device passed as parameter.
-@@ -632,6 +746,9 @@ static int onboard_dev_usbdev_probe(struct usb_device *udev)
- 
- 	dev_set_drvdata(dev, onboard_dev);
- 
-+	if (onboard_dev->pdata->is_hub)
-+		onboard_dev_register_hub_hooks(udev);
-+
- 	err = onboard_dev_add_usbdev(onboard_dev, udev);
- 	if (err)
- 		return err;
+Changes in v2:
+- Rebase on (almost) 6.17-rc1
+- Disable audio pins by default
+- Provide separate DT overlay for the Orange Pi Zero Interface Board
+- Link to v1: https://lore.kernel.org/r/20250418-opz-audio-v1-1-4e86bb5bc734@posteo.net
 
+---
+J. Neuschäfer (3):
+      ARM: dts: allwinner: orangepi-zero: Add default audio routing
+      ARM: dts: allwinner: orangepi-zero-plus2: Add default audio routing
+      ARM: dts: allwinner: Add Orange Pi Zero Interface Board overlay
+
+ arch/arm/boot/dts/allwinner/Makefile               |  7 ++++
+ .../dts/allwinner/sun8i-h2-plus-orangepi-zero.dts  | 14 +++++++
+ .../dts/allwinner/sun8i-h3-orangepi-zero-plus2.dts | 14 +++++++
+ .../sun8i-orangepi-zero-interface-board.dtso       | 46 ++++++++++++++++++++++
+ 4 files changed, 81 insertions(+)
+---
+base-commit: 29fdda97f8d5797b160aa8ad1c7248710bb8ffda
+change-id: 20250417-opz-audio-890849c8bb2e
+
+Best regards,
 -- 
-2.47.3
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
