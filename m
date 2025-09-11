@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-215816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4FD9B52C1F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:46:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5F2B52C2D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3843A841E3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:46:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5A3516F55F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D352E54D3;
-	Thu, 11 Sep 2025 08:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102EE293B73;
+	Thu, 11 Sep 2025 08:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uWvOWWRP"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Y2dX9Cpz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA4B2E54DA;
-	Thu, 11 Sep 2025 08:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6732BCF43;
+	Thu, 11 Sep 2025 08:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757580327; cv=none; b=UB4DdWFZm3YUUEP69knBXYDNYDURn1b9Q2vnDM9WDIwpfCmcPxgzUkPfm9hwoeopd94DarN254P3dws63LO/OFsK7qAiAFLyMi9Lo6n1gqXIeeJMXB8tvqIoWmYN2rhBEjPDzEXdyO83WG3/Sg7Dlc5kghI/fOextQUcZXtoWzA=
+	t=1757580513; cv=none; b=nygDSqr7G35HXlCw/HGCeochx2CAmZprZB44dYcJi3CDjTei+lwqvIVc/JExzYR5t03xbZE9pwgYht+PIbuKXjk8FFDv8QmUTh8BwN1uhUQrBl2ol6zyvDgYoZuxUi3GMaSAFC/2zBKWpdE5DdrBddotVcqwcXgAbS9AixqDajo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757580327; c=relaxed/simple;
-	bh=53yhZfFyRELoKxsnWRyQDmkkksjZMP5Wq9WxE/8k7yE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RuVM6GC23JRe4fhMOlzLq7SH5HCz/C6ZC8YSIbuF0NCATKZUgXXo2R2UgNvKyQUy5kkIOJUp1G2S9+0nb5HUaqVVoKA+BHDXCUdcc8IxcOkHACsSgCZ6hxf9iRK1oaP/CF/W+rKt/VbFVJqIHsc0j8sbx4R8Ve+KAQI0eLhXSQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uWvOWWRP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC772C4CEF1;
-	Thu, 11 Sep 2025 08:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757580326;
-	bh=53yhZfFyRELoKxsnWRyQDmkkksjZMP5Wq9WxE/8k7yE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uWvOWWRPJ5CiISu3PJfaN6bxrRiIodsz0odHM+RJVNgzhAzDpuseU3QxWKXfpbkXW
-	 uMqK0yl0RZ9fBtA2Qy5yR7ro73XUgGKcK6awuV45BRNLmNyijtGg9ge0L/mgspbN3Z
-	 BEcpKk0or3K+EMD4JaxouZJpZVqyhXv1ANNt96cTjhC0V1bq4qMXQrvqWYfzqwElcu
-	 ZptRarlAxRbf2kNuA0tmqfnay5ul+lcLZsOT+A/9d2noGi3PidRAc2wGVsJ+ibdXQl
-	 tYrQmc4nYY1H3lWcmsGUoUCdqA1OVehiWTTwGyIiLBqZFNOdp/lAGJzdAnW3JITSro
-	 pP71d83oe/5YQ==
-Message-ID: <07a663ff-1eb1-4e21-85dc-0d523633cbe3@kernel.org>
-Date: Thu, 11 Sep 2025 10:45:22 +0200
+	s=arc-20240116; t=1757580513; c=relaxed/simple;
+	bh=Ds8BlXfgI8bVbt4+3FkQ4VyJ3zNdY0T+TrEfbY1k9HQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kNm2WV/0f9QGvY5KquWMRXGPI0FkNUYsfq7j/brLz5+Seis5+4kTt7fl7M1gYzC1U12OiY9Mo2kfONJq/ndWEw1oXMVdO5hk4Ec2c5B2VobiHnxB2fWFph2jrigGrU5uAZdRYIptRVdox9TKjRGXbens9NfUi+AC9jvs/hLGkq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Y2dX9Cpz; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=zhx45ShbB/QPou0yiuhgDtnnTKKcIbOFazmtLWZzM94=; b=Y2dX9CpzR90Ul+yJ3csJVI7AOY
+	YhefiRAgKoMFGxSrLRLgJPbDyB9p5d7hyCglCcVupfoK/X7xOYL1MSXH0zgol4x5Wy4laCKuRqmWS
+	Xo1qrfg3Bh5wL7tWb+GgCcESPYVSp9PywjNXp0V0nQe1Do+WsOsCDVWxtz6UB2o8Jqg+3rkCiUSwR
+	YTlYI5Wy30zD1bUcsExzESyS7QO5yyx3ha74sA5OXlIxF5HukzTMC5us6YxN2hE+VOTpT9U66WYKf
+	yoTXS/0Ez8zETAVLj7rTYzGHnObKuoasbhWWneoJ+X0AT9d0g0oPcfvZ5IFnVbhIjDXGboxQI83zx
+	qa88n9YQ==;
+Received: from i53875b0e.versanet.de ([83.135.91.14] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uwcyi-0008Q9-CY; Thu, 11 Sep 2025 10:48:28 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Srinivas Kandagatla <srini@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 2/2] nvmem: add driver for the eeprom in qnap-mcu controllers
+Date: Thu, 11 Sep 2025 10:48:27 +0200
+Message-ID: <2273730.1BCLMh4Saa@diego>
+In-Reply-To: <20250911084119.GF9224@google.com>
+References:
+ <20250730172248.1875122-1-heiko@sntech.de>
+ <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
+ <20250911084119.GF9224@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: renesas: Add R8A78000 Ironhide board code
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
- <87o6rk9z6c.wl-kuninori.morimoto.gx@renesas.com>
- <20250909-witty-successful-toucan-beca41@kuoka>
- <87segvw5yr.wl-kuninori.morimoto.gx@renesas.com>
- <983be392-e76f-40b3-ac57-5321f5d88abc@kernel.org>
- <CAMuHMdUFOGNNuogp19WoCy4c-4a6KjBfyutp=UWfvBD2oHtOAw@mail.gmail.com>
- <bf4a92d4-0472-4d0f-95d5-83fca816ae03@kernel.org>
- <CAMuHMdVvhso0E=w3Y8tk_GnBWsV8GrjGPwYkSq19aDr+VDSymg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAMuHMdVvhso0E=w3Y8tk_GnBWsV8GrjGPwYkSq19aDr+VDSymg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 11/09/2025 09:24, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Thu, 11 Sept 2025 at 09:16, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> What's more, it breaks my imaginary system root, because I am running it
->> from readonly NFS root.
-> 
-> Real mean run NFS root over SLIP on the serial console
-> (which is so far the only I/O device described in the DTB ;-).
+Hi Lee,
 
-My imaginary system is very imaginary :).
+Am Donnerstag, 11. September 2025, 10:41:19 Mitteleurop=C3=A4ische Sommerze=
+it schrieb Lee Jones:
+> On Tue, 09 Sep 2025, Srinivas Kandagatla wrote:
+> > On 7/30/25 6:22 PM, Heiko Stuebner wrote:
+> > > The qnap-mcu also has an eeprom connected to it, that contains some
+> > > specific product-information like the mac addresses for the network
+> > > interfaces.
+> > >=20
+> > > Add a nvmem driver for it.
+> > >=20
+> > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > > ---
+> > >  drivers/mfd/qnap-mcu.c          |   1 +
+> > >  drivers/nvmem/Kconfig           |   9 +++
+> > >  drivers/nvmem/Makefile          |   2 +
+> > >  drivers/nvmem/qnap-mcu-eeprom.c | 110 ++++++++++++++++++++++++++++++=
+++
+> > >  4 files changed, 122 insertions(+)
+> > >  create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
+> > >=20
+> > In case Lee you want to take this via MFD,
+> >=20
+> > Acked-by: Srinivas Kandagatla <srini@kernel.org>
+>=20
+> Actually this patch should be split up.
+>=20
+> I'll take the MFD part, you can take the NVMEM part.
 
-Best regards,
-Krzysztof
+(1) the original problem was, that this patch essentially requires
+  "mfd: qnap-mcu: Include linux/types.h in qnap-mcu.h shared header" [0]
+to not break builds, hence was "supposed" go into the mfd tree after [0]
+got applied.
+
+But as we're close to -rc6 anyway, we can also just move things after the
+next merge-window if that is better.
+
+(2) For the splitting part, just to make sure I understand correctly, you'd
+like the part of
+
+@@ -346,6 +346,7 @@ static const struct qnap_mcu_variant qnap_ts433_mcu =3D=
+ {
+ };
+=20
+ static struct mfd_cell qnap_mcu_cells[] =3D {
++       { .name =3D "qnap-mcu-eeprom", },
+        { .name =3D "qnap-mcu-input", },
+        { .name =3D "qnap-mcu-leds", },
+        { .name =3D "qnap-mcu-hwmon", }
+
+to be its own patch for the mfd subsystem?
+
+Thanks
+Heiko
+
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/commit/?h=
+=3Dfor-mfd-next&id=3De379ee309fcfa70fca4d3b03815159397e1b0551
+
+
 
