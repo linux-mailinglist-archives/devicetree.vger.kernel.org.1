@@ -1,209 +1,270 @@
-Return-Path: <devicetree+bounces-215725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D88B52710
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 05:35:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE97AB52798
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 06:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A58DA1895F4B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 03:35:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99DD0483C54
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 04:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8C82376FC;
-	Thu, 11 Sep 2025 03:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972B82343B6;
+	Thu, 11 Sep 2025 04:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="dlf5cqnW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YlPg3OOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43032153FB;
-	Thu, 11 Sep 2025 03:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CA919258E
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 04:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757561686; cv=none; b=Ukzw138nPhd2frBQheqGUr5Xiw4wEerRpsXPJ2EjykD/b9H5e21lmG+jrSdXhubpODpvW7dByNdQNCE7qmJ9QwCt6lUYJIz88KTrx/vHV/9EXS9JjcR4VdnrM7fEwKeKNiGhL4XoSAgMj6W83ULqqnX+p+km6McXeraKc4WTv3g=
+	t=1757565190; cv=none; b=UQy6Zsv9OGWO45jrRS4ABXFdqYhc0QdYVxS6WCCeNN8TeGwWhNLseDYvnUaYHVuyK/KpourJBsNCHx6lQiQfs6i+mbauUzUnAyPBJSBocJlLX8Bjv6J8NMvhb2QSEFrsk7cuohr1qgyAf5qPZ8HYgJOY+pvvCg2gv49P4vIJS7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757561686; c=relaxed/simple;
-	bh=8vF7EJspH6w1AlvO0Jhpe6nfMvzzMDDLu+qMOL0JjTg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KIn9EOgkErPDIV7I1+JycjBUcCPUiIT0bBufPMtCa+CgvL4+uP5tUVH71M2Q11BHaKy+h4P1vdW1HFLMIXy562oK6OpYx1vewOWydE95W7VVDvpp6qXL3Da0nMnHxCZOcgKdrzOwxJvAZV5MfopHox4NaIhUB2CYnzyPrgixbXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=dlf5cqnW; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1757561662;
-	bh=6cIpFHh8JqmTbERos517ybZUEXPDKNh75tATmTM7P3k=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=dlf5cqnW39q0U9OqXPs36q4aQhBrW23ouhilOI+KEdhcwwa66IxTdzfpb2u2Sfeg6
-	 rI9q3taDedWIKQDi+eFJpEp/ln777/9OAR9fHNJLz6K7oHvChAPZBbvN3EglGxjcrv
-	 T8C8uha+tCi7IVUi9x/pUJ9jyvRFoLK23Adf2Fdk=
-X-QQ-mid: esmtpsz21t1757561660t871e2e00
-X-QQ-Originating-IP: QJTV/3qbzO7kVHvyxsNO+eqgGoYbsBX3FUfXfw0F3+M=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 11 Sep 2025 11:34:17 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 12270443823912362904
-EX-QQ-RecipientCnt: 16
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Thu, 11 Sep 2025 11:34:05 +0800
-Subject: [PATCH RESEND v4 3/3] clk: spacemit: fix i2s clock
+	s=arc-20240116; t=1757565190; c=relaxed/simple;
+	bh=O6eWIJr8+46650Np0lYhA73HNNggUR/2TCpyEJ4KVaQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l/nrRi20JUE+PVORCNa2Jrob7CdJ8ZHvd/rOUbFpc6Drkh5OhRVEl/Ly/a4xs5MV+ThAA2NM+43s4PNcsIVGIIaxoBPVtsJj+6Rz8UT2f/dY9EbZy6OVhJP5OT08ozav77ZuUToVQOeARHQAoCSzK5W34DvLJ1XYcniASRxTJ1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YlPg3OOg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2IVVl032171
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 04:33:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=d0CMaRDbC1gH0+RvxPdiQkc3aLz0hIoneHd
+	tDR0m7Zc=; b=YlPg3OOg983APctQdmDqbBi+8mXTuSbz4gC1f2DBQ0w8gyTRndm
+	gAc96ZMEuHP450MEKsHBI1I+6IrooTlyI84E8w0NgqhmRuegk9ssVRCPkfsdOgAz
+	sHpPGg44pql2GxzhnO8Li0r6VG7hBn4Nr1jKUWuihAYzDmHXS4EOzp+5R4JDJFt4
+	UIsjIDZuTMmvlfyFhccHM80u97sVbw9VK6Gtda32wjFafBL3IhYoPJ8J/8R47dkO
+	xmBv32mU2PKZrsJArjQ2/KTlFq3SmScFAGjoiVHjwldFNOlvYMmXF2bX5wzCUAzn
+	CvaUHTISPx37pR1hRYy5iEAAn0GG9I4eXzQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 493cpb1s9e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 04:33:07 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-24ce3e62946so4454135ad.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 21:33:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757565186; x=1758169986;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d0CMaRDbC1gH0+RvxPdiQkc3aLz0hIoneHdtDR0m7Zc=;
+        b=EUvsyQ9iceenIsMQn1qg5fQ4swh+rpcgE//SLry4PGj82jcAN49IExU1ZLQQr1vtcu
+         FNBSo0eaiYXVMIfAeEsCIwzt+Pkca1gK4ImEGhyffmwqubc4HoRnks5k7Ly3FqsuEpag
+         /SIudZrCHvnPkxvbFwwN8blxN43qh1z4DqDzZp2zI3x6/8zvQoFGJwn3O1YBd1Weuq1j
+         ILtJWY72jtsrs0qzEHfU9Ufq8SnDgIINekQ3InycNVs2f0Nwn4pYOUc5wDfe5zK1icmC
+         nb7hR6p7J9JCKbFGeWZ01VsSWw2fKUVr353qKXg9P0qIVlMGCnZHUd5QwYpQN88DIZrS
+         R0TA==
+X-Forwarded-Encrypted: i=1; AJvYcCV4gzqvUH5bjXVy3cB7jD+yKiHPWYh1pQ8r42rJtsQJFEQXxmHQib9h+tVhF0/r20bNGlNiSYK+2kPS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrPL1MqGdf0fKCq1bUesG0bwxKbiqngpuxjJbM6OQUajSh60wn
+	Vf1wwfuKxqyOIkZIe6vuIasaXVNK+un5kc/vsTLZSG5QvBBCS+GUbtfD5M0olMrfNdTUP53fc+h
+	8VneZ6moKsMxIYhOraRxBfB/6nf1kDTSXCoWAJXVflZJNujBVi6oQDbkvs7zf9gZk
+X-Gm-Gg: ASbGnct/NY71eGISVl69qvnzJQTSw6EipPXHYhLYj05DwtYaYjEdZzKhk0RXXvyif6O
+	I0uH3NMuqDxmw/XFJ3j5I8DI1t81K8v1GThQMo7hKc+Ol9+El4zo/sG2RqfZOoEHvQP1A5O/cws
+	HdRkzVPYL9A4c8ITnrxC1oYzzYFUVwO4BHmyPXZzIl860X8N5sYc6vswMki7cOCF8Z1c0Olofhs
+	f5txC0UER9xQ/qNrBynrb5XK5kV4CD2kK0Q+ETD+CjFZ7kJyCdeL78ihHTPIDTsJeFUKv+dhQrp
+	hZEfeJ1q6wqMDqJ858DKHn/qyEcL/bqeZTic95SgoD2jhTbdLc/9vdQxd0SK5x7KhinEgRASWjF
+	8
+X-Received: by 2002:a17:903:46cb:b0:24d:f9f:de8f with SMTP id d9443c01a7336-2516fbdcc8amr266964235ad.17.1757565186132;
+        Wed, 10 Sep 2025 21:33:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHa/7Qd8m4VQSi9D/4a5Bf46TIWZywfkvsusP0Hkifjzk/FqUnVhUo3mumJRpk5C2HzKnOlFQ==
+X-Received: by 2002:a17:903:46cb:b0:24d:f9f:de8f with SMTP id d9443c01a7336-2516fbdcc8amr266963805ad.17.1757565185564;
+        Wed, 10 Sep 2025 21:33:05 -0700 (PDT)
+Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c3a84a46csm4323975ad.91.2025.09.10.21.33.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Sep 2025 21:33:05 -0700 (PDT)
+From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, broonie@kernel.org,
+        johan+linaro@kernel.org, dianders@chromium.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: mukesh.savaliya@oss.qualcomm.com,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v7 0/6] Add support to load QUP SE firmware from
+Date: Thu, 11 Sep 2025 10:02:50 +0530
+Message-Id: <20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250911-k1-clk-i2s-generation-v4-3-cba204a50d48@linux.spacemit.com>
-References: <20250911-k1-clk-i2s-generation-v4-0-cba204a50d48@linux.spacemit.com>
-In-Reply-To: <20250911-k1-clk-i2s-generation-v4-0-cba204a50d48@linux.spacemit.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757561644; l=4010;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=8vF7EJspH6w1AlvO0Jhpe6nfMvzzMDDLu+qMOL0JjTg=;
- b=10oG8zpdU52YluNw4UoXjusApo3IbWbq+z6jZ7QTwnEIDsRNVpJLfhG28nn0Ci6E5yfMrH5i6
- yry+XbgPjh6CthSUdzQKpJi69cltQvTJGIcNCdA8DVdUH8THeYmeWFf
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: OJiFY9Ubx80kavjCyE6/6IQ8hNrja44ca1dzSp5fbBDmAPX3AOXh324J
-	iygycmCkUJIvSOwaDJWEA3RWIKbsoF4lKsVhhCv2liLsnQbqrqvvHY62WL/8ztIbMxbc4A+
-	D4F4Y9ymCPBC71PbPW1m8sJq0wA27uCLvo22xaDuw/zC/zh8+6PJTReCQJ+gccXDg+jbPvF
-	SDm4QVuG2YM6RVzGvtxZnp3j/pJuNyiByDIJKhndfeDLH2E/vG6SWnyZr4OgaPACNnQyubH
-	achkTRJ+enJJBVplkWJrHWivRT+Ay9EH9Zm0YYmTj9LyITgHdrvMKjDde+DB2JHmHoOh4fi
-	A++qVYm4uwWybKrhJbMGYiuxjcgIStV9zvZo/KrQ9fcM4YILdSZlpvAi8lL7shZrmX82+sa
-	/mNy1NVYWH5+JavO2JbxOdPc3f663m9vnBkB4MU0wNrteMiWSaVg5JctzrO0RB2CXR11SvI
-	HGfDbOmYl3AWssKKy+zMRlmidkS+zQw3bkCdWlvFmHprC0IBr1QPAAGT2HWjWIrmDkRo+Bj
-	6o213RIwr1qz/LyKIQd7lyItD+QYuu/ccwiWhZ8f8/IPYlvuy4NafYOhPVBZK30qUoAxoqJ
-	nq9LKtUQXLn26Ow+S3rW4+tPfLORD5muIf7y/XhyMQPeCfMhTBu+1o1/QRfmfFUJfxFx/QZ
-	S0bjGv0njshdOFuFfOCpR2Ozn3z+BAk6dMQddB0hyFAfsrJU+SF5dxdqyFzOOBveObPSt6w
-	4S+lm623j5wRncE7qLgkd0ldMVi1v7LBfbdx2GJ8zjw3SLt+yWwABIRBgaf6Fr8M9OlsNgC
-	9eH9uU3Azp8jKtuht/dfqiEWRMLxBIV5OYyMAZ0g+UM7TiTQ2YyQjp8+iuXAJUclvTPxu01
-	thEA0K3Bm3oQ8iEfGzRvJcDGeUd5PVaVMtz6RFvupKVHiWdi3mtbF4Ag9VS2mUO6BdimPGV
-	e3R4mZTAd90TWeiReCdOo8ZZhEFBv2wHXcfi+Y+vX3SHsDLUOhW/WGYxE2Phyk2y+B5TjfC
-	7hfeJRAhagmSeVSavwxx8REvFMUamYa987a8GdxgcGyBuSDnZExHePtZJoee1VkqKpjJusp
-	aSPgK+B185Raui+1hCmYG8=
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEwMDE1MCBTYWx0ZWRfX4/aNosndswc8
+ TRIPcuX7IsfL65pkJGwvh/JbphebWLXbTYFRVfHqOAQZrnh+PB3HxmvMgb97DNe4E+ZiKuZTjko
+ Gw9pKwD1r2mgDFwA1jA1rByA11ErN/nElk2bN5Ijn81wp+fbL5qv6peYCCgtGm/a4NJSh0RKkd9
+ EPGEqHT393Rpj1CpDMHiPJr4N02BOO1WadOuT8tzIRZ5zT+/0S/4avDpZuPDnzEY8RYH7KJPiWA
+ KB3nFANmgAMwWJnPHRelp2Ohbm/MvIEbu7feHwfC2s55hDCg6ozD5sFXsXmUQdpWvVRJ7hUoxAR
+ 3br5tvAb0h5UOQsD5L+bfF4ISTbQXFLLoBv8jHiXb3IlWZds6GAtN5Xu/1NQumdm5plgZmfcJWt
+ wR5A9Q9h
+X-Proofpoint-ORIG-GUID: ww_ldY55KYW2YxkOHe2FS_Jo0xi9xlWH
+X-Proofpoint-GUID: ww_ldY55KYW2YxkOHe2FS_Jo0xi9xlWH
+X-Authority-Analysis: v=2.4 cv=P4k6hjAu c=1 sm=1 tr=0 ts=68c25103 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=HXvFq9hwUs1lQpdr-HAA:9 a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-10_04,2025-09-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 suspectscore=0
+ spamscore=0 bulkscore=0 malwarescore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509100150
 
-Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
-for real I2S use cases.
-
-Moreover, the current I2S clock configuration does not work as expected
-due to missing parent clocks.
-
-This patch adds the missing parent clocks, defines i2s_sysclk as
-a DDN clock, and i2s_bclk as a DIV clock.
-
-A special note for i2s_bclk:
-
-From the register definition, the i2s_bclk divider always implies
-an additional 1/2 factor.
-
-The following table shows the correspondence between index
-and frequency division coefficients:
-
-| index |  div  |
-|-------|-------|
-|   0   |   2   |
-|   1   |   4   |
-|   2   |   6   |
-|   3   |   8   |
-
-From a software perspective, introducing i2s_bclk_factor as the
-parent of i2s_bclk is sufficient to address the issue.
-
-The I2S-related clock registers can be found here [1].
-
-Link:
-https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
-[1]
-
-Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
-Suggested-by: Haylen Chu <heylenay@4d2.org>
-Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
+hardware has traditionally been managed by TrustZone (TZ). This setup
+handled Serial Engines(SE) assignments and access control permissions,
+ensuring a high level of security but limiting flexibility and
+accessibility.
+ 
+This limitation poses a significant challenge for developers who need more
+flexibility to enable any protocol on any of the SEs within the QUP
+hardware.
+ 
+To address this, we are introducing a change that opens the firmware
+loading mechanism to the Linux environment. This enhancement increases
+flexibility and allows for more streamlined and efficient management. We
+can now handle SE assignments and access control permissions directly
+within Linux, eliminating the dependency on TZ.
+ 
+We propose an alternative method for firmware loading and SE
+ownership/transfer mode configuration based on device tree configuration.
+This method does not rely on other execution environments, making it
+accessible to all developers.
+ 
+For SEs used prior to the kernel, their firmware will be loaded by the
+respective image drivers (e.g., Debug UART, Secure or trusted SE).
+Additionally, the GSI firmware, which is common to all SEs per QUPV3 core,
+will not be loaded by Linux driver but TZ only. At the kernel level, only
+the SE protocol driver should load the respective protocol firmware.
 ---
- drivers/clk/spacemit/ccu-k1.c    | 28 ++++++++++++++++++++++++++--
- include/soc/spacemit/k1-syscon.h |  1 +
- 2 files changed, 27 insertions(+), 2 deletions(-)
+v6 -> v7:
 
-diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-index 7155824673fb450971439873b6b6163faf48c7e5..50b472a2721121414f33e9fac6370f544e6b8229 100644
---- a/drivers/clk/spacemit/ccu-k1.c
-+++ b/drivers/clk/spacemit/ccu-k1.c
-@@ -141,8 +141,28 @@ CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 2, 0);
+- Resolve kernel test robot warnings.
+- Defer the probe if the firmware from the filesystem is not available during early boot time. 
+
+v6 Link: https://lore.kernel.org/all/20250822072651.510027-1-viken.dadhaniya@oss.qualcomm.com/
+
+v5 -> v6:
+
+- Added extra patch for cleanup in qcom-geni-se.c file.
+- Moved contents of qup-fw-load.h into qcom-geni-se.c.
+- Specified endianness for all members of the se_fw_hdr structure.
+- Changed the return type and arguments of the geni_read_elf function.
+- Renamed geni_read_elf to geni_find_protocol_fw for clarity.
+- Added error logging for corrupt firmware.
+- Passed SE mode and protocol type explicitly to all relevant functions.
+- Replaced writel_relaxed with writel for stricter memory ordering.
+- Renamed variable reg_val to reg for consistency.
+- Moved firmware length validation logic into geni_find_protocol_fw.
+- Updated function documentation for clarity and accuracy.
+- Removed redundant firmware length check.
+- Inlined the qup_fw_load function and removed its definition.
+- Removed the MAX_PROTOCOL macro.
+- Dropped mode and protocol fields from the geni_se structure.
+- Moved unrelated firmware loading code into a separate patch.
+- Added Acked-by tag.
+
+v5 Link: https://lore.kernel.org/linux-i2c/20250624095102.1587580-1-viken.dadhaniya@oss.qualcomm.com/
+
+v4 -> v5:
+
+- Added Reviewd-by tag.
+- Resolved kernel test robot error by including the missing bitfield header file.
+- Updated the SE firmware ELF structure name for consistency.
+- Specified _leb4 format for the magic number definition.
+- Updated the email domain from 'quic' to 'oss'.
+
+v4 Link: https://lore.kernel.org/all/20250503111029.3583807-1-quic_vdadhani@quicinc.com/ 
+
+v3 -> v4: 
+
+- Drop patch 1 of the v3 series as it has been reviewed and merged.
+- Update the qcom,gsi-dma-allowed property name to qcom,enable-gsi-dma.
+- Remove the full stop from the title.
+- Add a reference to the common schema YAML in the I2C, SPI, and SERIAL
+  YAML files in a single patch and drop the individual patches for protocol YAML.
+- Update the commit message.
+- Resolve kernel test robot warnings.
+- Add a multiline comment in the Copyright section.
+- Remove valid_seg_size and geni_config_common_control functions and add the code inline.
+- Rename read_elf function to geni_read_elf.
+- Add a firmware size check.
+- Assign *pelfseg after finding a match.
+- Break one large condition check into multiple checks to improve code readability.
+- Remove return type documentation for void functions.
+- Update error messages to be more descriptive.
+- Correct indentation.
+- Rename geni_flash_fw_revision function to geni_write_fw_revision.
+- Remove __func__ from all print statements.
+- Move resource_on to the appropriate section after parsing the firmware file.
+- Update variable names and function arguments as suggested.
+- Use FIELD_GET, FIELD_PREP, and GENMASK.
+- Use memcpy_toio() instead of memcpy.
+- Remove duplicate registers and bitmask macros.
+- Remove rsc struct and add required variables in geni_se struct.
+- Add a patch dependency note.
+
+v3 Link: https://lore.kernel.org/linux-arm-msm/20250303124349.3474185-1-quic_vdadhani@quicinc.com/ 
+
+v2 -> v3:
+
+- Add a new YAML file for QUP peripheral-specific properties for I2C, SPI, and SERIAL buses.
+- Drop the 'qcom,xfer-mode' property and add the 'qcom,gsi-dma-allowed' property in protocol-specific YAML.
+- Add a reference for the QUP peripheral shared YAML to protocol-specific YAML.
+- Enhance error handling and remove redundant if conditions in the qcom-geni-se.c driver.
+- Remove the ternary operator in the qup_fw_load function.
+- Update function descriptions and use imperative mood in qcom-geni-se.c
+- Load firmware during probe only if the protocol is invalid.
+
+v2 Link: https://lore.kernel.org/linux-kernel/20250124105309.295769-1-quic_vdadhani@quicinc.com/ 
  
- CCU_GATE_DEFINE(wdt_clk, CCU_PARENT_HW(pll1_d96_25p6), MPMU_WDTPCR, BIT(1), 0);
- 
--CCU_FACTOR_GATE_DEFINE(i2s_sysclk, CCU_PARENT_HW(pll1_d16_153p6), MPMU_ISCCR, BIT(31), 50, 1);
--CCU_FACTOR_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR, BIT(29), 1, 1);
-+CCU_FACTOR_DEFINE(i2s_153p6, CCU_PARENT_HW(pll1_d8_307p2), 2, 1);
-+
-+static const struct clk_parent_data i2s_153p6_base_parents[] = {
-+	CCU_PARENT_HW(i2s_153p6),
-+	CCU_PARENT_HW(pll1_d8_307p2),
-+};
-+CCU_MUX_DEFINE(i2s_153p6_base, i2s_153p6_base_parents, MPMU_FCCR, 29, 1, 0);
-+
-+static const struct clk_parent_data i2s_sysclk_src_parents[] = {
-+	CCU_PARENT_HW(pll1_d96_25p6),
-+	CCU_PARENT_HW(i2s_153p6_base)
-+};
-+CCU_MUX_GATE_DEFINE(i2s_sysclk_src, i2s_sysclk_src_parents, MPMU_ISCCR, 30, 1, BIT(31), 0);
-+
-+CCU_DDN_DEFINE(i2s_sysclk, i2s_sysclk_src, MPMU_ISCCR, 0, 15, 15, 12, 1, 0);
-+
-+CCU_FACTOR_DEFINE(i2s_bclk_factor, CCU_PARENT_HW(i2s_sysclk), 2, 1);
-+/*
-+ * Divider of i2s_bclk always implies a 1/2 factor, which is
-+ * described by i2s_bclk_factor.
-+ */
-+CCU_DIV_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_bclk_factor), MPMU_ISCCR, 27, 2, BIT(29), 0);
- 
- static const struct clk_parent_data apb_parents[] = {
- 	CCU_PARENT_HW(pll1_d96_25p6),
-@@ -756,6 +776,10 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
- 	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
- 	[CLK_APB]		= &apb_clk.common.hw,
- 	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
-+	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
-+	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
-+	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
-+	[CLK_I2S_BCLK_FACTOR]	= &i2s_bclk_factor.common.hw,
- };
- 
- static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
-diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
-index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..354751562c55523ef8a22be931ddd8aca9651084 100644
---- a/include/soc/spacemit/k1-syscon.h
-+++ b/include/soc/spacemit/k1-syscon.h
-@@ -30,6 +30,7 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
- 
- /* MPMU register offset */
- #define MPMU_POSR			0x0010
-+#define MPMU_FCCR			0x0008
- #define  POSR_PLL1_LOCK			BIT(27)
- #define  POSR_PLL2_LOCK			BIT(28)
- #define  POSR_PLL3_LOCK			BIT(29)
+v1 -> v2:
+
+- Drop the qcom,load-firmware property.
+- Remove the fixed firmware path.
+- Add the 'firmware-name' property in the QUP common driver.
+- Add logic to read the firmware path from the device tree.
+- Resolve kernel test robot warnings.
+- Update the 'qcom,xfer-mode' property description.
+
+v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-1-quic_vdadhani@quicinc.com/ 
+---
+
+Viken Dadhaniya (6):
+  dt-bindings: qcom: se-common: Add QUP Peripheral-specific properties
+    for I2C, SPI, and SERIAL bus
+  soc: qcom: geni-se: Cleanup register defines and update copyright
+  soc: qcom: geni-se: Add support to load QUP SE Firmware via Linux
+    subsystem
+  i2c: qcom-geni: Load i2c qup Firmware from linux side
+  spi: geni-qcom: Load spi qup Firmware from linux side
+  serial: qcom-geni: Load UART qup Firmware from linux side
+
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |   1 +
+ .../serial/qcom,serial-geni-qcom.yaml         |   1 +
+ .../soc/qcom/qcom,se-common-props.yaml        |  26 +
+ .../bindings/spi/qcom,spi-geni-qcom.yaml      |   1 +
+ drivers/i2c/busses/i2c-qcom-geni.c            |   8 +-
+ drivers/soc/qcom/qcom-geni-se.c               | 506 +++++++++++++++++-
+ drivers/spi/spi-geni-qcom.c                   |   6 +
+ drivers/tty/serial/qcom_geni_serial.c         |   8 +-
+ include/linux/soc/qcom/geni-se.h              |   4 +
+ 9 files changed, 540 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,se-common-props.yaml
 
 -- 
-2.51.0
+2.34.1
 
 
