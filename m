@@ -1,137 +1,206 @@
-Return-Path: <devicetree+bounces-215964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666ACB53493
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5463B534A5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ACDA172ED5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:54:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83CA1585238
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 13:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43216335BCB;
-	Thu, 11 Sep 2025 13:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73006335BA2;
+	Thu, 11 Sep 2025 13:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="LkK6jdpx";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="HnHouNSe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E8XgB5JL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1C8335BBB;
-	Thu, 11 Sep 2025 13:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB3432F751
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757598746; cv=none; b=Uze7yOf9Du22il+82coWq8ABTekp7TCJWf1Kkxrv+7CqbB2XHs1kq9Q9kNKDA04HdUnrd+YbRwB8aUxNs0TYfB+At9VM4NAN5Pa1ofLNrgcdhNF67BVuvNsSimdEeVcNiPL4WpZklsIb+ucBr3fUVdyu7j2MlAg+trrNFNAHDEM=
+	t=1757599032; cv=none; b=I8CXC2eaIPMwp+R0WJdXQEuDCypRO2igbgPFT2M3XKhLReKiKKagatlHyZw344/BWKrbEoMR6noZiL06rPZtSTwZOt1j9I+X+j1SdW52928709iy49tFG2GkGIjafBzMnJB3vPEUCeF5AVwBp9ct67Qdkr2zJFBLTOcyIcJEMq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757598746; c=relaxed/simple;
-	bh=deGvupzM/LLKwOeN5SKhrOyqbm5RrItp4EoBaXJwJCM=;
+	s=arc-20240116; t=1757599032; c=relaxed/simple;
+	bh=oDf5VY2SMDhWKzWUCn3C1u6sbTRxHqiOGBPOElxerfE=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=O2WzBguI/jdHVobNGI098Bm+zRFNRxM7WRW3HXBvFBJOcfYpNEbmpiq3rMgjIYFJunsqejQ2zONpARPCR7FUfxc6LSwkP+B3dxYET7qa3EYrT2U37TVg+gU95D55EV6QkgZYvcNle5Hv0WyXVe7+ILqLg7LdUs5TfLwLGfAW8c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=LkK6jdpx; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=HnHouNSe; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1757598742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=C92gKHTmPMKru6z9KnmAjno8euROQELszOPMKezd0q4=;
-	b=LkK6jdpxw21FjYkLcj1CNXjZ4trzKKHygKuDeJVQAC72SCjmTtdwpmSDIVJtOfvxUTtu/E
-	MrkjH9BZm9gcLa8xnTG+kkxvGY2DQJ/zGj+PXZSKW99G0V5DeX96wFvl+85VdqGdOisqAe
-	JrXYBwsSYyn9+ed/hrwNvwa9k6kWby3U9Po8aMzo6jNERFwwiCSK72ldY/U1f/hR+uqIZE
-	Oq9BVCOQutMM7+wZJIkIxg5h3u4koSSlorKovwuReQMFsYxcFeZ9oqhEanhx5i0mB1ogxg
-	4mRhgP43rBruIFfHEXSdV6yYmTXwKqDoLXKk7fTjaWRU0UnDAHpbrnnMfPGWGg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1757598742;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=C92gKHTmPMKru6z9KnmAjno8euROQELszOPMKezd0q4=;
-	b=HnHouNSegRS6LE+/7RLUmAhvPaJKyUXtknAuAb6SrGfH+ZreDU91Pnl0x68VvI5zDFg8m/
-	fIoDD0wV6LaRjvDg==
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus
- Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
- Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
- Eberhard <pascal.eberhard@se.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-In-Reply-To: <20250911090450.32c7cdbe@bootlin.com>
-References: <20250909120041.154459-1-herve.codina@bootlin.com>
- <87y0qntkmy.ffs@tglx> <87segvtkha.ffs@tglx>
- <20250911090450.32c7cdbe@bootlin.com>
-Date: Thu, 11 Sep 2025 15:52:21 +0200
-Message-ID: <87cy7xrt9m.ffs@tglx>
+	 MIME-Version:Content-Type; b=bSFzOh7gC3gwOk6wTrLM7NR6pS66MNItfevZdO0U5Rl+PedQizFf7bjPIcUxYnF+RY69pXskKS2RPqYxIarBlZaRtJRdQsWFG65X7Ka/0tmg5o12jY4GW1zB0TlvHN+ahbnE6kyKGeCa3sFgDoG8CHa83VJwtbdz5LAwgwDvmFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E8XgB5JL; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A05CD1A0DD7;
+	Thu, 11 Sep 2025 13:57:07 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 73D0160630;
+	Thu, 11 Sep 2025 13:57:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A837E102F28F0;
+	Thu, 11 Sep 2025 15:56:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757599026; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=+8MOtjR/SCOGwiIdk6r9cBes34StJlpvtG+zzPpGcNk=;
+	b=E8XgB5JLS/mPkRP1zvTiKqUhwKzCA50gJAmpUmbn01XBtfVmKS4Mmx2LW+weWFYiXbLH8B
+	7U+nZamCADWhQ7XINEFNoWGdB6kbpB2qEKCacWxQ2puVuYq/3970GdAsI/HvDBhLCYI8a6
+	THjK6d4knuwr10/hrmHRGtt4684EiGcs9uAoFv8id8p42I1TgMzZQ+wTUsiwHWgitCRJV5
+	A4gtTMa0gNDS1DmQ9wLQkI4ZVAVL9rdt227qpHd/5W4ml06QAyFjhTILEGmzZzoh/rLZAU
+	TMgyahAWNFF02OROSkqTXN1H4J7HdvZERF+ls+yJlZ0wezFot/vxH8S4YrQJ1g==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Cheng Ming Lin <linchengming884@gmail.com>
+Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
+  conor+dt@kernel.org,  tudor.ambarus@linaro.org,
+  mmkurbanov@salutedevices.com,  Takahiro.Kuwano@infineon.com,
+  pratyush@kernel.org,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  alvinzhou@mxic.com.tw,  Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: spi-nand: Add
+ enable-randomizer-otp property
+In-Reply-To: <CAAyq3SZUToRjWVgAX_=We7cMFjVjuGLvFYBSpOG=M_e_MD6aeQ@mail.gmail.com>
+	(Cheng Ming Lin's message of "Thu, 11 Sep 2025 16:30:11 +0800")
+References: <20250910030301.1368372-1-linchengming884@gmail.com>
+	<20250910030301.1368372-2-linchengming884@gmail.com>
+	<87wm66d67k.fsf@bootlin.com>
+	<CAAyq3SbXiPUjZE7OCAe1=uw4h82bFN7DSU4bLx1dhKe_XFtu=w@mail.gmail.com>
+	<878qilbes9.fsf@bootlin.com>
+	<CAAyq3SZUToRjWVgAX_=We7cMFjVjuGLvFYBSpOG=M_e_MD6aeQ@mail.gmail.com>
+User-Agent: mu4e 1.12.7; emacs 30.1
+Date: Thu, 11 Sep 2025 15:56:42 +0200
+Message-ID: <87wm659jol.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, Sep 11 2025 at 09:04, Herve Codina wrote:
-> On Tue, 09 Sep 2025 22:54:41 +0200
-> Thomas Gleixner <tglx@linutronix.de> wrote:
->
->> On Tue, Sep 09 2025 at 22:51, Thomas Gleixner wrote:
->> > On Tue, Sep 09 2025 at 14:00, Herve Codina wrote:  
->> >>   Patch 5 (new in v2)
->> >>    - Convert irqchip/ls-extirq to use for_each_of_imap_item
+Hi,
+
+>> >> This is a NAND wide feature, so we should probably add a prefix, such=
+ as
+>> >> "nand,".
 >> >>
->> >>   Patch 6 (new in v2)
->> >>    - Convert irqchip/renesas-rza1 to use for_each_of_imap_item  
+>> >> Now, what about this "otp" suffix? Many (if not all) chips have a
+>> >> volatile setting for that. About the naming, "otp" often reflects to =
+the
+>> >> OTP area, which is not what you imply here, as you want to insist
+>> >> (rightfully) on the fact that this feature cannot be disabled.
 >> >
->> > How are those two patches related to adding GPIO support?
+>> > Yes, my intention is that once the randomizer feature is enabled, it
+>> > should not be disabled again.
+>>
+>> I believe the motivation behind this choice is incorrect and does not
+>> fit such an OS as Linux. We want to give the system administrator the
+>> choice to select and unselect features as it sees fit. So if there is a
+>> volatile way to enable something, we should go for it and we will pay
+>> the extra penalty of a set_feature() (or whatever) command after each
+>> boot. Making this type of change permanent makes development and
+>> debugging much more painful. There are plenty of configurations that we
+>> refuse to apply with non volatile configurations. In general, stateful
+>> modes are problematic if they are kept after a reboot and we try our
+>> best to avoid them.
+>>
+>> Once this feature is enabled, for the lifetime of "a product", it does
+>> not make sense to disable it indeed. And the DT must remain correct, if
+>> it is changed in a non compatible way, that's the administrator
+>> responsibility.
+>>
+>> So are there ways to enable this feature in a way that returns to the
+>> default state after a reset?
+>
+> Thank you for the detailed feedback. I understand and agree with the
+> principle of favoring volatile configurations to give administrators
+> more control and simplify debugging.
+>
+> Yes, it is possible to enable this feature in a way that it returns
+> to the default state after a reset.
+>
+> We can use the standard set_feature command to set the RANDEN bit to 1,
+> which enables the randomizer. This configuration is volatile and will
+> not persist through a power cycle. The feature will remain disabled by
+> default on each boot unless it is explicitly enabled again.
+>
+> I will update the patch to implement this volatile approach.
+
+I would be in favour of implementing this method. Hence, no more OTP
+constraint to express in the binding either.
+
+>> > You are correct that this bit does not
+>> > belong to the OTP area, but rather to the v2 volatile register. The v2
+>> > volatile register has a default value that can be changed through a
+>> > special OTP configuration register program operation. Regarding the
+>> > "otp" suffix, I will remove it to avoid misunderstanding.
 >> >
->> > AFAICT, they are completely unrelated and just randomly sprinkled into
->> > this series, but I might be missing something.  
->> 
->> Ah. I missed that this iterator got introduced in this series. Did you
->> check whether that creates any conflicts against pending irqchip
->> patches?
->> 
+>> >>
+>> >> Also, this is a per-chip configuration, while I would have welcomed a
+>> >> per-partition configuration. I can easily imagine two cases:
+>> >>
+>> >> - The boot ROM, for longevity purposes, expects the first blocks
+>> >>   containing the bootloader to be scrambled. However the rest of the
+>> >>   system does not really care and disables randomization.
+>> >>
+>> >> - The boot ROM is not capable of de-scrambling, however the rest of t=
+he
+>> >>   system relies on the (probably) more robust scrambling feature.
+>> >>
+>> >> In both cases a chip wide variable is not relevant.
+>> >
+>> > The scrambling and descrambling are handled by the NAND flash hardware
+>> > itself. Therefore, the boot ROM does not need to support a descrambling
+>> > feature.
+>> >
+>> > In the case of Macronix parts, the randomizer is controlled through a
+>> > configuration register, and once it is enabled it covers the entire ch=
+ip
+>> > (main and/or spare depending on the randopt bit). There is no hardware
+>> > mechanism to enable it only on certain ranges.
+>>
+>> After thinking once again, I am no longer aligned with myself from the
+>> past. This is perhaps too Macronix specific in the end and if it is a
+>> fully transparent feature, then why not.
+>>
+>> Are there any ways we can read the raw data (unscrambled) once
+>> scrambling has been enabled? (I mean, without changing the user default
+>> OTP state). Maybe one big difference with the raw NAND world that needs
+>> to be taken into account is that the chip itself always return
+>> unscrambled data, hence we probably do not care much, from a Linux
+>> perspective.
 >
-> Indeed, I have a conflict in my patch 6 with 40c26230a1bf ("irqchip: Use int
-> type to store negative error codes").
+> Unfortunately, there is no way to do this. If a user decides to use the
+> randomizer feature, they must enable it before programming the user OTP
+> area. If the randomizer is not enabled before the user OTP is programmed,
+> any subsequent reads will result in corrupted data.
 >
-> I can rebase my next iteration on top of 40c26230a1bf and mention this commit
-> in my next iteration cover letter but an immutable tag and referencing this
-> tag in the cover letter should be better.
+> Marconix raw NAND chip itself does not always return unscrambled data.
+>
+> The ability to read unscrambled data is dependent on whether the
+> randomizer feature was enabled and configured correctly. When the
+> randomizer is turned on, the chip's internal hardware automatically
+> handles the unscrambling process. If the feature is not enabled, the
+> data read from the memory will be the raw, scrambled information, which
+> is unusable without the correct key and algorithm. In other words, the
+> chip only returns unscrambled data if randomizer feature is enabled.
 
-No. Don't do that.
+That is interesting and might be useful. In Linux we will enable the
+scrambler if the data property is enabled before we get to play with the
+OTP anyway, so hopefully people will get it right.
 
-> What is the best approach?
+Regarding the property name, it is going to be a per SPI NAND chip
+property. I am still not sure whether we should make this prop generic
+or not. Perhaps the safest approach is to keep it vendor specific, but
+the concept of scrambling internal data for longevity purposes is common
+enough to deserve a nand- prefix. Although it's gonna be like ECC
+engines, we'll need to decide which part of the system handles the
+scrambling (software, hardware on host or chip itself) and whether it is
+enabled per-chip or per-partition when that's possible.
 
-Just base it on upstream and mentioning the conflict in the cover
-letter. For actual merging, if it's ready before the merge window, we
-can sort it out by:
-
-  1) You putting patch (3-6) in front of the queue
-
-  2) Me picking up these 4 patches into a separate branch based on rc1
-     or later, which gets tagged and is consumable by the GPIO
-     maintainers.
-
-     Then I can merge that branch into irq/drivers and resolve the
-     conflict, which is trivial enough
-
-Alternatively GPIO folks pick up the whole lot and sort the conflict out
-with -next and Linus themself. No real preference from my side.
+I am open to suggestions.
 
 Thanks,
-
-        tglx
+Miqu=C3=A8l
 
