@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-215923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D3FB53297
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:44:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22E3EB5329C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 14:44:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95DCE565718
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:44:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 593477AA5B1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0553322770;
-	Thu, 11 Sep 2025 12:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8074322DA6;
+	Thu, 11 Sep 2025 12:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cC20Iulj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XM1A9Ec6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5772322544
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CAE632275B
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 12:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757594631; cv=none; b=JuGUwZ+y6JCg+ptcjQtjcSf0TK+Gh3jiTMs6yQUUDXfY4p+hPNboFOw4qWazJCwMrvj+2JFHXKzv+LvVT3H3pRnmAmJq53E6edJD0HYemF0QIBkv0EHFrpKMTcegJ+CQsgPbDmBgVBu7gF+CBRZGm0RPS8T9IJHlWdu9Ruj9VGs=
+	t=1757594634; cv=none; b=ZrLA96h6Ten3LaZ7gTyv6v4oT1oNwZgs954Ii8RC+4HSPcKCdupE+Y84GBHpfY8+rn0L8gvLk26duMXgzVaG836VCt3ZD7nDgVh9fSPfQmbtZMKCWsMKgrixhjI26TtMteeD79Z+Wc1PyOhO4g5o2wP8Ln0L+6A4WlaxY+7vocg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757594631; c=relaxed/simple;
-	bh=yBCaFmppglJhLccQJZKQZw4xpkp6mRE3c++kCJrg1T4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KmgbCOeQuNgKBAhNzBU9ih1hG+4PtEgU18j625NmqRK8nMRLIowd7VvT87Hn9iw/0G8bNLf/zQh1DE+BiHD59OBa70UKWThakMAQ3XfATXIRUI52x9od5/tWlpOj/CGbN/16HyjRxg0+DCMxmBDkyoz6NKqc6qknSLgu55cNWAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cC20Iulj; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1757594634; c=relaxed/simple;
+	bh=a+1IafQzMkRqd9Hy7+2ryDB7W6wFRG7cDp4dZjBJvkM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=G13Sb5y77GE+Y9WlAMpZSL9IzDbxM2tasCJhFhOi/FPDbxjOU0prH1BTVfZdawltpvhuxNZLJmEhESpHM9mBZUe2SP/DZIte93t21HS+t8lk6fBjf9+/jrH423rdo3YFsjJnRuQIVQTiQNxcUxGp1eg2K/aNgqrvYD6hyAR3uWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XM1A9Ec6; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3df35a67434so490172f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:43:49 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45dec026c78so7351875e9.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 05:43:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757594628; x=1758199428; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+cxhDISSO7o9GdiN7Tbrubbnu3jZsi+4r/rV2Buvoow=;
-        b=cC20IuljYqQV2E1OVFiHD/bavQVqW6fQtfzSVnsXI0do4A2lh5Y/dRd9N66jo6njWg
-         ehE2cQm6UqVDG5U2puyU+DE5eVQVLtPu8609OQ31oGlxyLxyZ1Hw8CrgxE0tGZps/Rmx
-         FTvMGnxjiFnCFsBGG7DpR60TGUcvceIbxzcGeZIEikHJ62huB9aX0xye+ommjVoVIM52
-         RLflMkphUWMpgbXW4TMLQJUnSKkKkUAzkeO4b3TSafPJy49AwLqhzTk6Wg/Pd6Kvkcfg
-         k/4kjVSmtM1SwNmoR1Wej6x7Mk1V48lV1xPSk0wI2BbylnOfSzHQ0kPiaCe+emJOXL9C
-         n5Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757594628; x=1758199428;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1757594630; x=1758199430; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+cxhDISSO7o9GdiN7Tbrubbnu3jZsi+4r/rV2Buvoow=;
-        b=hHO57quzjHsT1sSSZVDiPgLeiiy5gqo1l70xQw2rFmxPX7zIW/b0RhMJAElVjQ4Vn3
-         Bwq1Pip/eqrPcIeSm+v6cNBZc0MpJNF1B3RxLTOzlaNMUg6CXpyfliVB7lJWj5kXIUNu
-         09uEthvlhQZc0ghrgnhttHww3BRzgbnq6pPtO2AcyH4WsDgFfRSZYWUHsxFt8ZDZZlos
-         Lx2eTy2A2K9hHo4dOqGOzBQqhtun0442xwMXh85zR1vqRVLSTkkbI+lZCGu9y5Yow55H
-         uBO2SVgQkLdLe1h8HBa5CX/LmY4kgTtMqr2aIL0YwUOFrCsqNg78jXZGunB5C0DgDQod
-         MLEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCV9QMxtZHLivy3gTy9/j5Bp3YiAmEVHfXtZ1nsuWSAz6X+ZdrCQxzFo2pqfcObVbWDVeXo7ZlnAb0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy35NxqKgeJV1SvkwigO6dNZ3cp44mwxURbVY1VOaDqdGr5hRmu
-	Hnwv0ZcF3IPq2w3qcCw+w1u30G2ilX+b6NjAtv8iz93I3BQ85BaoU5Qu
-X-Gm-Gg: ASbGnct42hATZHTRzSYQVOhT/WQCPSDsznJA2EUHzxCVc7JMVLPcWNiGdAa/KMcuErb
-	s2fQ+b+/VDfqUCys92Ant70GkB+/5KGT+nJfIlCGeL/dS6uhPdGVpDvchTSCXPgMzRnlshyU7FO
-	PTdPBZmF08Uh4058o7DIemymPndwSCxjOrgtiWUOFU6r4hlq/44E6obB4zRw2kMG3ebWV/c22FG
-	zC+sApIFnIqF5mSbmYtAYhk4GZozFaP9m3hCZZMxnaJkn6SLZJHXhzAFN5lr+TJu8rqCgm9l255
-	QDwHe8nKbEVGxv/Ln9l3ApHnvwnI0JTe8MMr0P6995BqzJAi93+/W0P3Hmrp+wxQ9StJe00Yd6l
-	uWTWMtFgqxFfGlhcz2JFdUDeb2stTw0LIj+t2s7WhJUbyviGYQDTWPjzRy0mAPgdr9uWTDam0gO
-	H8
-X-Google-Smtp-Source: AGHT+IEoGaMrYGkJ4T3Yd0bCD2iHWWdU1nSheZhOJ5yRImg85hMTre/1891fZpRuN44sRaZK3S19rQ==
-X-Received: by 2002:a5d:5f56:0:b0:3e7:5f26:f1ec with SMTP id ffacd0b85a97d-3e75f26f712mr2058592f8f.19.1757594627953;
-        Thu, 11 Sep 2025 05:43:47 -0700 (PDT)
+        bh=hoN8KhslkXmRFB53xJxTZys7BqlERNC+NzX0ipuiFjA=;
+        b=XM1A9Ec63PIL6dD/4D84TuFrAs1yt7BbgsD9kQGQpLf9tve9uBlsTcOOhMiyufDtkC
+         +SCZCAYRbQunKnm8I92kPkmlZ/3aaDTE4QomeQw32b+XCy2U0tGL6kIv+JHS+K/hFM3X
+         TEQ64ZP4yo/NZuIrGAYtt8PZ/FgnTaQR50j3h21oFITAwMhTmKr03QOV6lh8Lw2rbVx4
+         MBkURDx6eT6LuyWCL+9UYJXFFXTMgpii/hsiz3Asss8BT+L14KcQeFsQqk9Xkl8FS5+y
+         MlYI63r/k9TLP+zWw+HG7RKxRVHmf+lUrWmaulbSPyRaxuRi2o/tAAH1k0XfMdYR5V2W
+         ULMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757594630; x=1758199430;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hoN8KhslkXmRFB53xJxTZys7BqlERNC+NzX0ipuiFjA=;
+        b=wKU7Pqurof9+IRll9lkk/1wRau41raHWztYYsf+JFhCpFqavy4kRKepPZrnxasomwy
+         U8Ad080QhmGMLJwhmBMUSJQKkWq/eNo7hLn3h35D1B+KA7I+v5H/aJjV3mAK1F79jpbt
+         QHA8CDFHhbQKW/Cs0eLMpoRbkXPHQm0qgrkLQTMW+RUf/OfcKLuuHhN911hpGhY3k8sn
+         9WVtPlw0bLYuzyUZrLCZsVvtIA1iMgSTPQ3NlvG4KwDvscnNENPYbJD/MHIZP0usS/II
+         ldBYRwU8vZY7Xsq+aR1HBTSPncHCrCL55tzjEmFSxYfcUrf3fnHFoh4nOu57NgzH4Uzx
+         GwWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkslkBqtb4qO/Sqv6UhFMyEH2fhb78cAptOw2ugEQkYWX+VouPf/OYQRzc7+4SBG7Gx0P28otnjM5U@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCUQ3x3fo5QMD2OruOwJl+iUKl1vW9LzOTFlFasr4g7wlFsYCo
+	x63v70Fyza2E0TrMPUvS1z9OCYTbvRY/LLbcxcYY1Usp70YhWqEMPwsI
+X-Gm-Gg: ASbGncsYmXN1+MlN0kaN71f/TI8m3lnMVWlytaGDaZmnasOLQb7tcg/Ph2F0QkZrfot
+	fTOFlt7GSEv0THI1t2ToHCJi7UDvpMP9gyMjBkctcU0sXiA08NovF8GNLq6nqe370ln+M1Qjb9H
+	SFwHAajD6QtwaSzfcDJ1U7oLuH/MWhFEGJOEOOfF20D2d6r5oGFSPz29EyPLHjQ06/GhqRLSCdf
+	mfeSV3odZbfMb8IQU4tCkW9YQbwXwUQY3Jo/Jd8EiWHwiEXiukHHx6aCRXlFa2jlvlimZoUFhqE
+	GQ6eo5ni4XwrZ0K4QY5Kr3PLhs80uUJJKjA+6YCmCy9gHprJT0GETZm9xnFUNzpJDwB8OfPTas+
+	7heTG9qQ3UsIbhR2BUVMHA3+HLUXDpc9+mGcUAcAa6JdLy7n3QbfsZkOUp1USrZQc4W+qLB/KzI
+	C3
+X-Google-Smtp-Source: AGHT+IGe1XpReT0Pizyuk+QKSriouplCWFhyveLmKS0j9Z8nPLjbNJUdn7tPUVc9o8qqTN1eAfqofQ==
+X-Received: by 2002:a05:600c:3b1a:b0:45b:9291:320d with SMTP id 5b1f17b1804b1-45ddded3454mr190632425e9.31.1757594629743;
+        Thu, 11 Sep 2025 05:43:49 -0700 (PDT)
 Received: from Radijator.localdomain (93-143-13-188.adsl.net.t-com.hr. [93.143.13.188])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e03729c76sm22591495e9.6.2025.09.11.05.43.46
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e03729c76sm22591495e9.6.2025.09.11.05.43.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 05:43:47 -0700 (PDT)
+        Thu, 11 Sep 2025 05:43:49 -0700 (PDT)
 From: =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
-Subject: [PATCH v4 0/3] Marvell 88PM886 PMIC GPADC driver
-Date: Thu, 11 Sep 2025 14:43:43 +0200
-Message-Id: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
+Date: Thu, 11 Sep 2025 14:43:44 +0200
+Subject: [PATCH v4 1/3] dt-bindings: mfd: 88pm886: Add #io-channel-cells
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,11 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAP/DwmgC/3XOTQrCMBCG4atI1kYy0yZNXHkPcRGTqUboD60Gt
- fTupgVRii7fD+ZhBtZTF6hn29XAOoqhD02dIl+vmDvb+kQ8+NQMBUqhseBat5XWip9a6x3XQOg
- seImOWLppOyrDffb2h9Tn0F+b7jHzEab1LZmFFIELXiqBClGpkuzO3y5UhfREE4Pb3B9PNokRv
- 5QMlgompZDGAUHujSz/KdlHMUIulSwpuRJgvXHuKOGXMo7jC9fpjug+AQAA
-X-Change-ID: 20250827-88pm886-gpadc-81e2ca1d52ce
+Message-Id: <20250911-88pm886-gpadc-v4-1-60452710d3a0@dujemihanovic.xyz>
+References: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
+In-Reply-To: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
 To: Jonathan Cameron <jic23@kernel.org>, 
  David Lechner <dlechner@baylibre.com>, 
  =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
@@ -102,59 +101,58 @@ Cc: David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org,
  =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1653;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1291;
  i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=yBCaFmppglJhLccQJZKQZw4xpkp6mRE3c++kCJrg1T4=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBmHjjCqvGOawPdf5Hv8CzUbgakLgj+5m3bfW3vGZ/37D
- /5uZn/rO0pZGMS4GGTFFFly/zte4/0ssnV79jIDmDmsTCBDGLg4BWAiMk6MDNO2z/WpnZXS6OI6
- 4+xRlrel6kIeGn3+h8vSrRaHGZsoLWH4p7O7UW1O5cPzGy8cP8hnLLFkvVXW2k1nF0uGZYrVX4u
- wZgYA
+ bh=8lO4nr828tWQwLxmjjV752k5xLRe27/oDan4m5yXVVA=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBmHjjA+mxQe8XOnYVTbmVm3Gx2atTRdJabx75wyq3Zf6
+ aVbtmzzOkpZGMS4GGTFFFly/zte4/0ssnV79jIDmDmsTCBDGLg4BWAiB00YGd48eV8Wb/rMZhvX
+ 7OxNz3zvl31c9OLnza+ZZaYe2tIWLd8YGT5wprVvncL8rHe6ZNFE1fLQGbG54esFlARtBF83uCz
+ ZzwgA
 X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
  fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
-This series adds a driver for the GPADC found on the Marvell 88PM886
-PMIC. The GPADC monitors various system voltages and is a prerequisite
-for battery monitoring on boards using the PMIC.
+From: Duje Mihanović <duje@dujemihanovic.xyz>
 
+Add an #io-channel-cells property to the Marvell 88PM886 PMIC binding to
+allow referencing the IO channels exposed by its GPADC.
+
+Acked-by: Karel Balej <balejk@matfyz.cz> # for the PMIC
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 ---
-Changes in v4:
-- More refactoring
+v3:
 - Update trailers
-- Rebase on v6.17-rc5
-- Link to v3: https://lore.kernel.org/r/20250905-88pm886-gpadc-v3-0-4601ad9ccb51@dujemihanovic.xyz
 
-Changes in v3:
-- Refactor driver according to comments
-- Update trailers
-- Rebase on v6.17-rc4
-- Link to v2: https://lore.kernel.org/r/20250831-88pm886-gpadc-v2-0-759c1e14d95f@dujemihanovic.xyz
-
-Changes in v2:
-- Refactor driver according to comments
-- Add binding patch
-- Link to v1: https://lore.kernel.org/r/20250829-88pm886-gpadc-v1-0-f60262266fea@dujemihanovic.xyz
-
+v2:
+- New patch
 ---
-Duje Mihanović (3):
-      dt-bindings: mfd: 88pm886: Add #io-channel-cells
-      iio: adc: Add driver for Marvell 88PM886 PMIC ADC
-      mfd: 88pm886: Add GPADC cell
+ Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- .../bindings/mfd/marvell,88pm886-a1.yaml           |   4 +
- MAINTAINERS                                        |   5 +
- drivers/iio/adc/88pm886-gpadc.c                    | 393 +++++++++++++++++++++
- drivers/iio/adc/Kconfig                            |  13 +
- drivers/iio/adc/Makefile                           |   1 +
- drivers/mfd/88pm886.c                              |   1 +
- include/linux/mfd/88pm886.h                        |  58 +++
- 7 files changed, 475 insertions(+)
----
-base-commit: 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
-change-id: 20250827-88pm886-gpadc-81e2ca1d52ce
+diff --git a/Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml b/Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
+index d6a71c912b76f7d24787d346d4b4cd51919b1cf6..92a72a99fd790805e775727e39d457608fa1795d 100644
+--- a/Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
++++ b/Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
+@@ -35,6 +35,9 @@ properties:
+         description: LDO or buck regulator.
+         unevaluatedProperties: false
+ 
++  '#io-channel-cells':
++    const: 1
++
+ required:
+   - compatible
+   - reg
+@@ -53,6 +56,7 @@ examples:
+         reg = <0x30>;
+         interrupts = <0 4 IRQ_TYPE_LEVEL_HIGH>;
+         interrupt-parent = <&gic>;
++        #io-channel-cells = <1>;
+         wakeup-source;
+ 
+         regulators {
 
-Best regards,
 -- 
-Duje Mihanović <duje@dujemihanovic.xyz>
+2.51.0
 
 
