@@ -1,162 +1,380 @@
-Return-Path: <devicetree+bounces-215861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D29CB52E20
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:16:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1F4B52E40
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 12:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D4116EF0C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:16:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565AF3B6A23
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F58E30FF39;
-	Thu, 11 Sep 2025 10:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eAM12sLK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764E230FF39;
+	Thu, 11 Sep 2025 10:24:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A75E2773EC
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF94630F93E;
+	Thu, 11 Sep 2025 10:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757585762; cv=none; b=l23vh9lYW+GRrk7BCoEoFbzRSqDpcZJ4EGVs+QeJEuZ4LdamMhZHzOfRVPR0VBgG1gSP5gC9khSo0Q/klp9F5v+yj5SeoniwhUNIDXplqqor1+Q87+H8w+89KgJgi6LV6KZ4gwakG2kIozpkyLoOMuWKGxQhp2a0wkSDWmjVZiM=
+	t=1757586266; cv=none; b=uKNkwjEaqUsfmrjw7wf1yPcUgpg5ODQrx10iYy+yy2N7rARht7WIwa/BHU+L1JMqzBEjhjDMCykwrrWvI4D7XZCB5oU8RuS4ybs4SBh0BTSsnA5LK8OpjyTOC365tjvEZIhFW7LHTGqzOUPoV23YuQJsW1tYPOlVL1yL7TnKjZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757585762; c=relaxed/simple;
-	bh=ca2ySU4dyYlyOWJGaxHKU1ZLVW/b67pBynQ6HDMkqQY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WKay1iYgT+aXQ9xaW3UZYZQWqoIbhBoNoQ2x631hSaSTkwrmXZDrUhInjysfQdiwXsi9LZk7S9IY5WBfZ5B21jka9wWPIMpGboDFY5nzTRlxZqdfzDgyY5Cfeu5Y7bxBNpQJL74rM5GFN0lt9jUcHsbuNxdDYzBO42TO0DArG3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eAM12sLK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58B2JAvJ007257
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:15:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=oph/BqXdzMBPwBrMip4MvFuk
-	jtsewo8GJDCyXuPq3cc=; b=eAM12sLKRw7iHA4nK7P0RsTQpfsV6QY9XETeZn3G
-	UVIE2cPKj7JMqzAzfTrqecqCZw8BRXTrfl0dv7VkVDpH2gdQwye0xgVxCfwxn3vg
-	e8IXG0wo/pnmkmPYNxf1kgY8PeBawUXunhzz5IkfZFWwd3h+qYudDviRl8VIIzeo
-	fKk2qDnJrPGMt5JeBWs7B7tMV30KtgxXNw1yWd0iHH14snWTAhF2dbKy0JDp8A0p
-	8BAyy12bbX/BBo5O4pK1oyM6j/o1EVr6O3H5jKZlyIshw7yTR7s8sFAeKwKbbQ9G
-	mu/gGN3eK6Kj6NLxqc6l5nbM5WevE352xJjwO4goTBplNA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e8af6pv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 10:15:59 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b302991816so11807081cf.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 03:15:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757585758; x=1758190558;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oph/BqXdzMBPwBrMip4MvFukjtsewo8GJDCyXuPq3cc=;
-        b=ZzHcLHCfGSqnn2tdFagqfiTy9yySBy2CDemsbRHnoopuu5t8nR7calPFBPcTo3Xrbt
-         bGI3GQ63tsfpBaTe/s7bRRUq/Icj8HENrj4rsPDR9XgtB9q8BlyC/MyjmUmyeffG4MZF
-         a/n+wMTAwlKWp4CwXkArelmtBki/+jzvzr2+R/ZMKbvrN5p+2Y4w3t2bKZdJeVPaj7Wq
-         6L5qmtit0aqDg/tCgHMMsCZUPzbvtA9tM+mD9ww/mXUWB6AhJAMMaN5KuK4ZxiWRKcjE
-         388YpDWWw0gy+YeBfcPPaoqZEKHIxZyHh9RGNd8T9kac9LaqM7RJ45p3kwYI+gAD2ONY
-         jufg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ/azma2vouI74/9iUlBLczp2EGBCg9q5fNRjcCSjcZdfisswlMKJFnPSBgUPw9ExQ5ZMJorYA91hY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3wIDfDBAgiNJzZNFFfa6x4+fQOsU3aZkTQmA0OF5cCaOHAI1X
-	13kpOJP/FrK0Ef9R7qc5fkVWtUdAP9o14V+priR18wWZNprVHnurtuYdSHw2Dwe41dtRDgOZCde
-	Hb9A9tyYyV2QXYrdrFcVwLec/XyrU+wEs7iWbjTtJmNUrirftKQ8s/pn1l0DEcCnW
-X-Gm-Gg: ASbGncsUwkBawK0Cfm4O2YlbTTfK7fHjpt7XOY26UMOIuTKRZQRWSw28S6SZb/gphg3
-	mH0WidKEVmNoNYD7UpyiuoOMXkZ7nj2tpQqcd9UIl6Py8pR/lJhdvQ+nPbgkxFTW0MAviGxj9Jw
-	yMRzLCDxUfiQij8lGSJuGo4V370bZja/axRigwYc5XUjwIG1s2bduRqJiC0EG3CrFQcS15Q6DTf
-	bU+1velMIs0ZPmW8678fiurvXIG4RpKTkQ15CdCqDBmfu98N3jTw1gLw3ERV6dvaySE2M7f8LIh
-	h5aq17rIX4cRAJgjELlJcFRjPo7noWD2P6eaRI1aM69FAzBpDzBnFwpHqO/Jlp3/byLGfgqQhuk
-	/YYgvKn9VBwb6qrMyY6GYwogYBLznVjJwCcWYTrscFF22I37JH7yV
-X-Received: by 2002:a05:622a:a953:10b0:4b0:8890:105e with SMTP id d75a77b69052e-4b621507117mr87845251cf.2.1757585758268;
-        Thu, 11 Sep 2025 03:15:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+FP/EvbksufoGB7yZt87mFGo9Mn7VdVzO2soInO78NzAyreFx9DhQ6rNkNHS/PzrUOKTl/g==
-X-Received: by 2002:a05:622a:a953:10b0:4b0:8890:105e with SMTP id d75a77b69052e-4b621507117mr87844921cf.2.1757585757776;
-        Thu, 11 Sep 2025 03:15:57 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e65d11926sm321542e87.140.2025.09.11.03.15.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 03:15:56 -0700 (PDT)
-Date: Thu, 11 Sep 2025 13:15:55 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wenmeng Liu <quic_wenmliu@qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, todor.too@gmail.com,
-        bryan.odonoghue@linaro.org, vladimir.zapolskiy@linaro.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: lemans-evk-camera: Add DT
- overlay
-Message-ID: <srawt2oh3hcevopcrvpnmbocw4wknaytyvxt6yjmnet3yujupr@ub3t36ffbrcx>
-References: <20250910-camss_rb8-v4-0-28f44e1880b8@oss.qualcomm.com>
- <20250910-camss_rb8-v4-3-28f44e1880b8@oss.qualcomm.com>
- <u437qomhok4yg6pef4xttd3a6zibuybzaeys33gxu5frbyp2kp@mgmym6c5dr72>
- <8b194a19-182f-4f49-9427-c0044a9b4dfe@qualcomm.com>
+	s=arc-20240116; t=1757586266; c=relaxed/simple;
+	bh=uMraBvcxnOW3qr8ZpGaYaLUWx50wDsuxhEvd7ZJe6Fk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XwpRFy4O1TIChJskQE28CmL8kxEV+9DyIG9IBWQlIC3Ldz/D2dYGiYLejs+bo9IISXr50puTP7MuVIPX2H5X3fGQ7r8HC6qhb/MAovBo/wjnOtcU27vK5t0LasA31Tz4Gv0cZry9SzPgGjzY2r5WZM4CiWXAvfCqqX1DbDPr0hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.105] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowAD3mBIQo8Joe2xDAg--.40639S2;
+	Thu, 11 Sep 2025 18:23:12 +0800 (CST)
+Message-ID: <7895b23a-2b50-4f3e-bdef-f9b7397beef2@iscas.ac.cn>
+Date: Thu, 11 Sep 2025 18:23:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8b194a19-182f-4f49-9427-c0044a9b4dfe@qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=H7Dbw/Yi c=1 sm=1 tr=0 ts=68c2a15f cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=lHPSLNiHg4AawE14pKwA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: Kbt52SKJ2An7CIS_qGVdD7xAxv6v6VB0
-X-Proofpoint-ORIG-GUID: Kbt52SKJ2An7CIS_qGVdD7xAxv6v6VB0
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOSBTYWx0ZWRfX9dbhcGfmy1Gv
- 13n7R9jBhLUo2m7wHMWb+XlTppwdbiijEY6bEC6p815V5yUo6LhidbQ31oElckIFCrHtmq5z2YC
- gyRz5gaHdZGXYx5VhUYB0wJjwJSDDsZnkLwz836cDqXYw9uHlHgG32WUuppWIV/O3SKgbfPicZU
- sZDkDfks8QjDORkAOsWjXqddi5Vn11IoNTjajk5QqWE/tGQCV69QYHzfpNRjh0Kzn9ZOwbxykZt
- paAEBa1MwtQW4ediCTDBsvNSDpDo/F5ilKSM2smWGgg4H187Hp8DTzWCexBStdOdwPTIvKDBT/A
- Jl7wwlATvM31eUsM8vbJHWNU3cd1dDJkXNFW/9w83GsvEbmHN88PI3JdMhkMmOfLgmNI96xwOfF
- GtVoM82Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-10_04,2025-09-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- clxscore=1015 suspectscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060039
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v10 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Vadim Fedorenko
+ <vadim.fedorenko@linux.dev>, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
+References: <20250908-net-k1-emac-v10-0-90d807ccd469@iscas.ac.cn>
+ <20250908-net-k1-emac-v10-2-90d807ccd469@iscas.ac.cn>
+ <20250911094404.GE30363@horms.kernel.org>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250911094404.GE30363@horms.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowAD3mBIQo8Joe2xDAg--.40639S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxKr4UGF43WF4fWF17ZFyxZrb_yoWfGw4UpF
+	WUKa1DAFW0vF1xtrsFqayDJrnIv34ftr1j9FyYy3yI9FnIy3WSyas5KrWY934kuryq9r1F
+	vw4jv3srGa90vrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
+	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
+	1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
+	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
+	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
+	ZFpf9x07bIBTOUUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On Thu, Sep 11, 2025 at 01:45:59PM +0800, Wenmeng Liu wrote:
-> 
-> 
-> On 9/10/2025 11:23 PM, Dmitry Baryshkov wrote:
-> > On Wed, Sep 10, 2025 at 07:06:23PM +0800, Wenmeng Liu wrote:
-> > > Enable IMX577 via CCI1 on LeMans EVK Core Kit.
-> > 
-> > Is it a part of the Core Kit? Is it a part of some kind of mezzanine
-> > board? Why is it being enabled as an overlay instead of being a part of
-> > lemans-evk.dts?
-> > 
-> Since the sensor is not part of the default hardware configuration on the
-> core kit, we adopt a device tree overlay solution to enable its integration
-> dynamically.
+Hi Simon,
 
-This is less helpful than a similar response to the similar monaco-evk
-question.
+On 9/11/25 17:44, Simon Horman wrote:
+> On Mon, Sep 08, 2025 at 08:34:26PM +0800, Vivian Wang wrote:
+>> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
+>> that only superficially resembles some other embedded MACs. SpacemiT
+>> refers to them as "EMAC", so let's just call the driver "k1_emac".
+>>
+>> Supports RGMII and RMII interfaces. Includes support for MAC hardware
+>> statistics counters. PTP support is not implemented.
+>>
+>> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+>> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+>> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+>> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
+>> Tested-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+>> ---
+>>  drivers/net/ethernet/Kconfig            |    1 +
+>>  drivers/net/ethernet/Makefile           |    1 +
+>>  drivers/net/ethernet/spacemit/Kconfig   |   29 +
+>>  drivers/net/ethernet/spacemit/Makefile  |    6 +
+>>  drivers/net/ethernet/spacemit/k1_emac.c | 2156 +++++++++++++++++++++++++++++++
+> This is a large patch, so I'm sure I've missed some things.
+> But, overall, I think this is coming together.
+> Thanks for your recent updates.
+>
+> As the Kernel Patch Robot noticed a problem,
+> I've provided some minor feedback for your consideration.
 
-Is it the only configuration that we are going to support? If not, then
-the overlay should be named accordingly.
+(That's the function at the end)
 
-These details should be described in the commit message.
+> ...
+>
+>> +static void emac_wr(struct emac_priv *priv, u32 reg, u32 val)
+>> +{
+>> +	writel(val, priv->iobase + reg);
+>> +}
+>> +
+>> +static int emac_rd(struct emac_priv *priv, u32 reg)
+> nit: maybe u32 would be a more suitable return type.
+>
+Ah, right, will change to u32 in the next version.
 
--- 
-With best wishes
-Dmitry
+>> +{
+>> +	return readl(priv->iobase + reg);
+>> +}
+> ...
+>
+>> +static int emac_alloc_tx_resources(struct emac_priv *priv)
+>> +{
+>> +	struct emac_desc_ring *tx_ring = &priv->tx_ring;
+>> +	struct platform_device *pdev = priv->pdev;
+>> +	u32 size;
+>> +
+>> +	size = sizeof(struct emac_tx_desc_buffer) * tx_ring->total_cnt;
+>> +
+>> +	tx_ring->tx_desc_buf = kzalloc(size, GFP_KERNEL);
+> nit: I think you can use kcalloc() here.
+>
+>> +	if (!tx_ring->tx_desc_buf)
+>> +		return -ENOMEM;
+>> +
+>> +	tx_ring->total_size = tx_ring->total_cnt * sizeof(struct emac_desc);
+>> +	tx_ring->total_size = ALIGN(tx_ring->total_size, PAGE_SIZE);
+>> +
+>> +	tx_ring->desc_addr = dma_alloc_coherent(&pdev->dev, tx_ring->total_size,
+>> +						&tx_ring->desc_dma_addr,
+>> +						GFP_KERNEL);
+>> +	if (!tx_ring->desc_addr) {
+>> +		kfree(tx_ring->tx_desc_buf);
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	tx_ring->head = 0;
+>> +	tx_ring->tail = 0;
+>> +
+>> +	return 0;
+>> +}
+> ...
+>
+>> +static int emac_alloc_rx_resources(struct emac_priv *priv)
+>> +{
+>> +	struct emac_desc_ring *rx_ring = &priv->rx_ring;
+>> +	struct platform_device *pdev = priv->pdev;
+>> +	u32 buf_len;
+>> +
+>> +	buf_len = sizeof(struct emac_rx_desc_buffer) * rx_ring->total_cnt;
+>> +
+>> +	rx_ring->rx_desc_buf = kzalloc(buf_len, GFP_KERNEL);
+> Ditto.
+
+Will change these uses of kcalloc for these array allocations in next
+version.
+
+>> +	if (!rx_ring->rx_desc_buf)
+>> +		return -ENOMEM;
+>> +
+>> +	rx_ring->total_size = rx_ring->total_cnt * sizeof(struct emac_desc);
+>> +
+>> +	rx_ring->total_size = ALIGN(rx_ring->total_size, PAGE_SIZE);
+>> +
+>> +	rx_ring->desc_addr = dma_alloc_coherent(&pdev->dev, rx_ring->total_size,
+>> +						&rx_ring->desc_dma_addr,
+>> +						GFP_KERNEL);
+>> +	if (!rx_ring->desc_addr) {
+>> +		kfree(rx_ring->rx_desc_buf);
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	rx_ring->head = 0;
+>> +	rx_ring->tail = 0;
+>> +
+>> +	return 0;
+>> +}
+> ...
+>
+>> +static int emac_mii_read(struct mii_bus *bus, int phy_addr, int regnum)
+>> +{
+>> +	struct emac_priv *priv = bus->priv;
+>> +	u32 cmd = 0, val;
+>> +	int ret;
+>> +
+>> +	cmd |= phy_addr & 0x1F;
+>> +	cmd |= (regnum & 0x1F) << 5;
+> nit: I think this could benefit from using FIELD_PREP
+>      Likewise for similar patterns in this patch.
+>
+Right... I'll take a look, thanks.
+
+>> +	cmd |= MREGBIT_START_MDIO_TRANS | MREGBIT_MDIO_READ_WRITE;
+>> +
+>> +	emac_wr(priv, MAC_MDIO_DATA, 0x0);
+>> +	emac_wr(priv, MAC_MDIO_CONTROL, cmd);
+>> +
+>> +	ret = readl_poll_timeout(priv->iobase + MAC_MDIO_CONTROL, val,
+>> +				 !((val >> 15) & 0x1), 100, 10000);
+>> +
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	val = emac_rd(priv, MAC_MDIO_DATA);
+>> +	return val;
+>> +}
+> ...
+>
+>> +/*
+>> + * Even though this MAC supports gigabit operation, it only provides 32-bit
+>> + * statistics counters. The most overflow-prone counters are the "bytes" ones,
+>> + * which at gigabit overflow about twice a minute.
+>> + *
+>> + * Therefore, we maintain the high 32 bits of counters ourselves, incrementing
+>> + * every time statistics seem to go backwards. Also, update periodically to
+>> + * catch overflows when we are not otherwise checking the statistics often
+>> + * enough.
+>> + */
+>> +
+>> +#define EMAC_STATS_TIMER_PERIOD		20
+>> +
+>> +static int emac_read_stat_cnt(struct emac_priv *priv, u8 cnt, u32 *res,
+>> +			      u32 control_reg, u32 high_reg, u32 low_reg)
+>> +{
+>> +	u32 val;
+>> +	int ret;
+>> +
+>> +	/* The "read" bit is the same for TX and RX */
+>> +
+>> +	val = MREGBIT_START_TX_COUNTER_READ | cnt;
+>> +	emac_wr(priv, control_reg, val);
+>> +	val = emac_rd(priv, control_reg);
+>> +
+>> +	ret = readl_poll_timeout_atomic(priv->iobase + control_reg, val,
+>> +					!(val & MREGBIT_START_TX_COUNTER_READ),
+>> +					100, 10000);
+>> +
+>> +	if (ret) {
+>> +		netdev_err(priv->ndev, "Read stat timeout\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	*res = emac_rd(priv, high_reg) << 16;
+>> +	*res |= (u16)emac_rd(priv, low_reg);
+> nit: I think lower_16_bits() and lower_16_bits() would be appropriate here.
+
+This one is building up a 32-bit value instead of splitting a 32-bit
+value in two, and we don't have those macros in linux/wordpart.h. So I
+think I'll make a local helper:
+
+static u32 emac_make_stat(u16 high, u16 low)
+
+>> +
+>> +	return 0;
+>> +}
+> ...
+>
+>> +static void emac_update_counter(u64 *counter, u32 new_low)
+>> +{
+>> +	u32 old_low = (u32)*counter;
+>> +	u64 high = *counter >> 32;
+> Similarly, lower_32_bits() and upper_32_bits here.
+>
+Thanks, this one I'll change to {lower,upper}_32_bits.
+
+>> +
+>> +	if (old_low > new_low) {
+>> +		/* Overflowed, increment high 32 bits */
+>> +		high++;
+>> +	}
+>> +
+>> +	*counter = (high << 32) | new_low;
+>> +}
+>> +
+>> +static void emac_stats_update(struct emac_priv *priv)
+>> +{
+>> +	u64 *tx_stats_off = (u64 *)&priv->tx_stats_off;
+>> +	u64 *rx_stats_off = (u64 *)&priv->rx_stats_off;
+>> +	u64 *tx_stats = (u64 *)&priv->tx_stats;
+>> +	u64 *rx_stats = (u64 *)&priv->rx_stats;
+> nit: I think it would be interesting to use a union containing
+>      1. the existing tx/rx stats struct and 2. an array of u64.
+>      This may allow avoiding this cast. Which seems nice to me.
+>      But YMMV.
+
+Looks like I can use a union with a DECLARE_FLEX_ARRAY for this. I'll
+change it in the next version.
+
+>> +	u32 i, res;
+>> +
+>> +	assert_spin_locked(&priv->stats_lock);
+>> +
+>> +	if (!netif_running(priv->ndev) || !netif_device_present(priv->ndev)) {
+>> +		/* Not up, don't try to update */
+>> +		return;
+>> +	}
+>> +
+>> +	for (i = 0; i < sizeof(priv->tx_stats) / sizeof(*tx_stats); i++) {
+>> +		/*
+>> +		 * If reading stats times out, everything is broken and there's
+>> +		 * nothing we can do. Reading statistics also can't return an
+>> +		 * error, so just return without updating and without
+>> +		 * rescheduling.
+>> +		 */
+>> +		if (emac_tx_read_stat_cnt(priv, i, &res))
+>> +			return;
+>> +
+>> +		/*
+>> +		 * Re-initializing while bringing interface up resets counters
+>> +		 * to zero, so to provide continuity, we add the values saved
+>> +		 * last time we did emac_down() to the new hardware-provided
+>> +		 * value.
+>> +		 */
+>> +		emac_update_counter(&tx_stats[i], res + (u32)tx_stats_off[i]);
+> nit: maybe lower_32_bits(tx_stats_off[i]) ?
+>
+>> +	}
+>> +
+>> +	/* Similar remarks as TX stats */
+>> +	for (i = 0; i < sizeof(priv->rx_stats) / sizeof(*rx_stats); i++) {
+>> +		if (emac_rx_read_stat_cnt(priv, i, &res))
+>> +			return;
+>> +		emac_update_counter(&rx_stats[i], res + (u32)rx_stats_off[i]);
+> Likewise, here for rx_stats_off[i].
+>
+Thanks, these I will use lower_32_bits in these two places in the next
+version.
+
+>> +	}
+>> +
+>> +	mod_timer(&priv->stats_timer, jiffies + EMAC_STATS_TIMER_PERIOD * HZ);
+>> +}
+> ...
+>
+>> +static u64 emac_get_stat_tx_dropped(struct emac_priv *priv)
+>> +{
+>> +	u64 result;
+>> +	int cpu;
+>> +
+>> +	for_each_possible_cpu(cpu) {
+>> +		result += READ_ONCE(per_cpu(*priv->stat_tx_dropped, cpu));
+>> +	}
+> nit: no need for {} here ?
+
+Thanks for the catch, but with regards to this entire function, I'm
+moving tx_dropped to dstats, so this would be moot.
+
+>> +
+>> +	return result;
+>> +}
+> ...
+
+Thanks for your review.
+
+Vivian "dramforever" Wang
+
 
