@@ -1,97 +1,191 @@
-Return-Path: <devicetree+bounces-215809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2BCB52BFD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:41:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4950CB52C07
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 10:44:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC80C7A4FA3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:39:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A33D1B2779F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 08:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7E82E424F;
-	Thu, 11 Sep 2025 08:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E572E54D3;
+	Thu, 11 Sep 2025 08:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HK57PNrI"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="PO/TOHub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DD12580E4;
-	Thu, 11 Sep 2025 08:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3CA42206A7
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 08:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757580083; cv=none; b=SeQPNEeg8r//2ZKWf+hh+PkRthzBGzJABXJV04MendWvgPhV9ynmpBrvU6LL1ihvx/P4DL24ModfckRUZwvpz7LUGZb0G+9x7QjwwdDDLCC5NexN9ADq03AWF6Upaii2XL0Iio8QFrfTjZOj1J9uVVM8fa7lKQTxcuJjsUEiWZc=
+	t=1757580274; cv=none; b=oEJu2KGVo95GTWrcPQq6e3iflzzPrwO1GkxQtGFzJX8w1kMmElBJHv9D6Dr0aVTk9vA1EwOyHC6ViEHXQdi7eleOGvxbN4jjbyG/zrLuRt5WFGwlq/Ra/OxrpEIAAklo3QyzIRc+Up/VKv3DWgS18q1daElm8QDfrTksC3AzVrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757580083; c=relaxed/simple;
-	bh=njNtH9FhW2DlFoODAUIyk2oz+HJWD6+ZLPh16fXR9Ik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iDUw3Uykxe+QJGJPa/wT2iiyntTAcJj7AezIyTUEgRYx1CKaVbsFWMsizcDrxWSoG6Q5li9wgOc6sUa4mKNtFltL6EUt+l5+cTCX27oKGq9SWeaTg08pPq8tG7RbFT67Q68P8512BIvjb86TO+XiN7pNb7CMyqxulkiBySNuLII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HK57PNrI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F5B7C4CEF1;
-	Thu, 11 Sep 2025 08:41:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757580083;
-	bh=njNtH9FhW2DlFoODAUIyk2oz+HJWD6+ZLPh16fXR9Ik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HK57PNrIXzvvTfQ8/mtZgky6ZFIjKFWEOSNIYn9ZcUATwXcnY29BV/XFaW3Q9jvYw
-	 aruvnuIWZzoovnYcM9+UF9uwji+aOmaCrEzVfmeyawPf6B17F45zgikOpMu6ZaPATB
-	 8t6o/WnsjPisypWrXcKnnD+p03DlaLaVuFliO4wyPKy6pTiCHgZDIzEWuXwvBZKVe3
-	 29r4ZR+zfez7QjaRbdOMPayAQgFze6YGig0SVVCDdRH1cWHiSJdCf6I5LH6thfG2zg
-	 GDBTkQ8n/glZ9rPFx8aV4joLXtxkBPa3mMCvjmi9POo3y6q6Q3eKKIOMlqvWWeJCTC
-	 rLOnHUdgGR6UQ==
-Date: Thu, 11 Sep 2025 09:41:19 +0100
-From: Lee Jones <lee@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] nvmem: add driver for the eeprom in qnap-mcu
- controllers
-Message-ID: <20250911084119.GF9224@google.com>
-References: <20250730172248.1875122-1-heiko@sntech.de>
- <20250730172248.1875122-3-heiko@sntech.de>
- <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
+	s=arc-20240116; t=1757580274; c=relaxed/simple;
+	bh=iD0m5qHzlc7V64bQ971FKQ/OWd0ILTt+45PnPJ40xhY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JVHqo9EV0z11cYn9fpAAuIzW6qBaHGYWpqH2ZN4X4+dhrMGDwfv3w+GA4xrdWgeQPZjh+2N6q4X3IYSPm1bwoJE4OEL8WXLDOSeKxWqle4XdPa03QkBIn8OkbIMsLifRJMhKpZ5NsYLmJRmJPXEThMUIdQ0dvUsT43gXc8S/3A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=PO/TOHub; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1757580272;
+ bh=71L95gSKTmlkjoVh2fs/9dex/A1y0fWYRyHyjXcBq4g=;
+ b=PO/TOHubsjk2yumad9DyRCyhfuhmcSQ37AHuW0O2SA/PmFxNxZ9hYUOgRSn4EQTnGEcKGK3Tu
+ BNNGicRPmpW+auybmDSusavnKjIlt3fp2P4Huwc1oj+zRrvELD1pn2vYt5/6HVYRoZrXm9K0QpU
+ 9L76qqK0hJEs+tZ5hxsCUlHjg4qkzcqoPgqCgDepLQEOySF3WurK0sfE25SxIWA8+ExZiHJQKoA
+ izKrT6PXBr1i6R6qTONJu0cnnoceRVu9p3QabzarJ0f2PNhEW7Xy1jpNVDRZosqp7ocRs75m52h
+ Jg629G6WJrhzzl5kDFK7nvBfqXhVirOrs9jhRkm61xwQ==
+X-Forward-Email-ID: 68c28be303561882c9813720
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.2.14
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <59cff81f-4be2-45e7-bc41-60fb52bfc6ca@kwiboo.se>
+Date: Thu, 11 Sep 2025 10:44:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add PCIe Gen2x1 controller for
+ RK3528
+To: Yao Zi <ziyao@disroot.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Chukun Pan <amadeus@jmu.edu.cn>
+References: <20250906135246.19398-1-ziyao@disroot.org>
+ <20250906135246.19398-3-ziyao@disroot.org>
+ <38e80b6d-1dc9-47a8-8b23-e875c2848e6e@kwiboo.se> <aMKAvCglcaC6-00k@pie>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <aMKAvCglcaC6-00k@pie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 09 Sep 2025, Srinivas Kandagatla wrote:
+On 9/11/2025 9:56 AM, Yao Zi wrote:
+> On Wed, Sep 10, 2025 at 11:29:00PM +0200, Jonas Karlman wrote:
+>> Hi Yao Zi,
+>>
+>> On 9/6/2025 3:52 PM, Yao Zi wrote:
+>>> Describes the PCIe Gen2x1 controller integrated in RK3528 SoC. The SoC
+>>> doesn't provide a separate MSI controller, thus the one integrated in
+>>> designware PCIe IP must be used.
+>>>
+>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 56 +++++++++++++++++++++++-
+>>>  1 file changed, 55 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>>> index db5dbcac7756..2d2af467e5ab 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>>> @@ -7,6 +7,7 @@
+>>>  #include <dt-bindings/gpio/gpio.h>
+>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/phy/phy.h>
+>>>  #include <dt-bindings/pinctrl/rockchip.h>
+>>>  #include <dt-bindings/clock/rockchip,rk3528-cru.h>
+>>>  #include <dt-bindings/power/rockchip,rk3528-power.h>
+>>> @@ -239,7 +240,7 @@ gmac0_clk: clock-gmac50m {
+>>>  
+>>>  	soc {
+>>>  		compatible = "simple-bus";
+>>> -		ranges = <0x0 0xfe000000 0x0 0xfe000000 0x0 0x2000000>;
+>>> +		ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x44400000>;
+>>
+>> We should use the dbi reg area in the 32-bit address space, please use:
+>>
+>>   ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x4000000>;
+> 
+> This seems strange to me. I read through TRMs for RK3562 and RK3576, and
+> found it's common for Rockchip SoCs to map DBI regions of PCIe
+> controllers to two separate MMIO regions, but am still not sure why it's
+> necessary to use the mapping in the 32-bit address space.
+
+I prefer the use of the 32-bit address range to ensure better
+compatibility with bootloaders and possible other OS that may have
+issues with regs in 64-bit address range.
+
+E.g. U-Boot have had issues with accessing >32-bit addressable range in
+the past, use of the 32-bit dbi range ensure we can use pcie in
+U-Boot without having to possible patch DT in a <soc>-u-boot.dtsi file.
+
+Regards,
+Jonas
 
 > 
+> However, I'm willing to follow the vendor's decision here in order to
+> avoid unexpected problems. Will adapt this in v2.
 > 
-> On 7/30/25 6:22 PM, Heiko Stuebner wrote:
-> > The qnap-mcu also has an eeprom connected to it, that contains some
-> > specific product-information like the mac addresses for the network
-> > interfaces.
-> > 
-> > Add a nvmem driver for it.
-> > 
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >  drivers/mfd/qnap-mcu.c          |   1 +
-> >  drivers/nvmem/Kconfig           |   9 +++
-> >  drivers/nvmem/Makefile          |   2 +
-> >  drivers/nvmem/qnap-mcu-eeprom.c | 110 ++++++++++++++++++++++++++++++++
-> >  4 files changed, 122 insertions(+)
-> >  create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
-> > 
-> In case Lee you want to take this via MFD,
+>>>  		#address-cells = <2>;
+>>>  		#size-cells = <2>;
+>>>  
+>>> @@ -1133,6 +1134,59 @@ combphy: phy@ffdc0000 {
+>>>  			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
+>>>  			status = "disabled";
+>>>  		};
+>>> +
+>>> +		pcie: pcie@fe4f0000 {
+>>
+>> With the dbi reg area changed below, please update the node name and
+>> move this node to top of the soc node.
+>>
+>>   pcie@fe000000
+>>
+>>> +			compatible = "rockchip,rk3528-pcie",
+>>> +				     "rockchip,rk3568-pcie";
+>>> +			reg = <0x1 0x40000000 0x0 0x400000>,
+>>
+>> We should use the dbi reg area in the 32-bit address space, please use:
+>>
+>>   reg = <0x0 0xfe000000 0x0 0x400000>,
+>>
+>>> +			      <0x0 0xfe4f0000 0x0 0x10000>,
+>>> +			      <0x0 0xfc000000 0x0 0x100000>;
+>>> +			reg-names = "dbi", "apb", "config";
+>>> +			bus-range = <0x0 0xff>;
+>>> +			clocks = <&cru ACLK_PCIE>, <&cru HCLK_PCIE_SLV>,
+>>> +				 <&cru HCLK_PCIE_DBI>, <&cru PCLK_PCIE>,
+>>> +				 <&cru CLK_PCIE_AUX>, <&cru PCLK_PCIE_PHY>;
+>>> +			clock-names = "aclk_mst", "aclk_slv",
+>>> +				      "aclk_dbi", "pclk",
+>>> +				      "aux", "pipe";
+>>
+>> In my U-Boot test I did not have the pipe/phy clock here, do we need it?
 > 
-> Acked-by: Srinivas Kandagatla <srini@kernel.org>
+> Just as mentioned by Chukun, the clock should indeed be managed by phy
+> instead of the PCIe controller. Will fix it as well.
+> 
+>> With above fixed this more or less matches my U-Boot testing, and is:
+>>
+>> Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+> 
+> Much thanks.
+> 
+>> Regards,
+>> Jonas
+> 
+> Best regards,
+> Yao Zi
 
-Actually this patch should be split up.
-
-I'll take the MFD part, you can take the NVMEM part.
-
--- 
-Lee Jones [李琼斯]
 
