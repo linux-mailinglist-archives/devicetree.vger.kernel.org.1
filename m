@@ -1,111 +1,111 @@
-Return-Path: <devicetree+bounces-216055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042C3B5383C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E97FB53842
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 17:52:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E91D14860DA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:51:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B60E1AA8424
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 15:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999C334DCFD;
-	Thu, 11 Sep 2025 15:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AFnDgDqu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3DA353373;
+	Thu, 11 Sep 2025 15:51:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71417135A53;
-	Thu, 11 Sep 2025 15:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DF932A821;
+	Thu, 11 Sep 2025 15:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757605867; cv=none; b=KQG5sThFLuLtmGguRR96BfokJOhaKPyBqnuGQDgF0yvOV2Hoc6MSPpf/CFWqe3P4e3F1orfNMnwIer7BOGFEj2lZJQj+ucd9idKObqPMmyO0XxL7Z81u+USYL28mA2ldszKCdvlb5odqgLkDSnAcUZfYeXVFFzlyiOKSzDdPqQo=
+	t=1757605895; cv=none; b=drm2snAT/VZAI8W+FfTBA9AENNpuTxLKb8yHhDQhH8YQVoOmacQv1FR9LmNSoTTah6xz1L5jrNjXj4z9D8aFGbxUlPmgeizbKOkkDKhDiGS9+gUk91FArUPs6BQvXx7ev26jVLGBVNt+/Z1BUl5e0u3WMQi6m5x/dBXpN728Iq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757605867; c=relaxed/simple;
-	bh=D+Kiy6o94m1pRNW35/OkOm3daFa7P2zcK4Au4ZPzqxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=udqgbWqJKxOxnQCtIUVl8FxP839RdF966teGsj7Qhc14llpR++2rhEI4Y0tGCVNOYnt7Zl4sDlRHrrHLfs8a8ibfQy5RsgiygNUdwC/fAg3hqBpdsSK5+oZulE/l9e7p1Cn2VkNYeDml0pVponU1lpilthNXRGaMe6GdJtJd3fQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AFnDgDqu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A446CC4CEF0;
-	Thu, 11 Sep 2025 15:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757605867;
-	bh=D+Kiy6o94m1pRNW35/OkOm3daFa7P2zcK4Au4ZPzqxM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AFnDgDquTQ4yMZNrF/l3efaw61XvagSaqRTcqUNm2kYVUlgPqlHzMggjyZWecy8mr
-	 yqf7yie6CvD2Un7SKUu5Axyk47npfDJfDfPp7/LrAOhnshXgGnes96Vzn9ALEbAQEF
-	 KTt4O7sXRZWjYjik02lYyltg9Qiasu/Z5h1Bd5gJxhqRZ6JoNu0WkAzQGQqzsWGXAR
-	 lOcwjAouDJM7lGgaMcT9dW/XFFnOosZIRye+xBqYwjTAVGer1Ypc5otdezY4T96QRs
-	 eQbm9/yNKZqkN+KYSI/1vFFm2wR3YIIjx188IXYk2UyRkQtE/z3rTgDIt9gumGvNjJ
-	 cqj5lkn5Rn4Hg==
-Date: Thu, 11 Sep 2025 16:51:01 +0100
-From: Lee Jones <lee@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [GIT PULL] Immutable branch between MFD, Power and Regulator due for
- the v6.18 merge window
-Message-ID: <20250911155101.GA1637058@google.com>
-References: <20250904160530.66178-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1757605895; c=relaxed/simple;
+	bh=hOTM2YqsaaQZ0s4xX5Jh9E9LY69GPHvMm7oS3CiEjig=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h6Jd/K03XJkqBHGOywK6dX2jS1+JdX4f4ZKOoAuQ5I8ZT5Sx3p3L4NQHeBcToGkTWfSkQDMHnQqx1qu6pBE64Sr70i0tXFCrskdv+jlCkAuuXJIJWrLuGyMF+dTnYPvsP2ML9sMZLoSM18LW0ewHxPV9d6G91tw4MI5CrWgt1iI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5449432a854so414344e0c.3;
+        Thu, 11 Sep 2025 08:51:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757605892; x=1758210692;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q6SXCiZ7DVZ5Pu8qLc9Tk6fbK09WaCvmseyy2i8FgAY=;
+        b=j5QPzMKZe9cVs+svFhJdqeX75lkbBmwqq33A0ZLu8JO2I5B/AS6APJL8r/uVmkDxrC
+         mD18NNNhdTOWAxcvUfO7J/YmwaaPPs4S2SgqQGhLrTTzTkJcoOcv+fQekog3/gGjAIuu
+         xFYjPCyDGOC0kPHlaMdjp5JrWP/BLzYIojm3QANILAcy0ocGM0T/XMZ2HZcCeBhgki1w
+         HpbJFJNtJqWkC3+Mdezhc8jXW07NmyV6DW8dMra2fTm3FmFSOuF9dko3rsA24ReDpMQF
+         OLOPjaUIQmcHQBvebRSE0ClqcvE9y9PF5Xakv9huMzjD3+lx/3Zhw6zUGTwtPYLo3LoS
+         HD3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUCQM7RKePL43ztKwYxKCBdkMnz35j6G54WbNPC6bnY8DqbIROaAHE6WPpO86Blf8eFEjkZmxeKs6JzDf72@vger.kernel.org, AJvYcCVs22fBc1glsSYUi6CiolthGCer3e2qJFYb/uYcrk+qBBRp5IvYiUWlaZ8oTXCUd4TFvpy6bwm2m88V@vger.kernel.org, AJvYcCXom95jbax5zN9F0vB63EaGnV9KzMHeraEG25/cYV7OQRLRrW1JUmF/cySqjFu1ax7Hk8tJXyaeBmqzurfXWXcXmO0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsUSvDdgeAunB4RygPnh3AGCo0sxK5ZUKJ02GKv5h5TlziWk/O
+	IR+1kjQgqrK/nbx9eMumMNIjWrYqeL3g0DSoAtg1D8dddDlJkdJ1MOqNcFQOPbBd
+X-Gm-Gg: ASbGnctsj/mi0BsqWfLOXq0MBu9zDtItgCtt387iS0du0nPv6GvabED/rcNxStnjMlD
+	cpvED2zXVbF9IromNQShpn0xS3/GQW5ce8AV8HdWfdnI6B/t8Q/UjYtpr1ifGe17xMUXM5IpVoa
+	S2hkETBpeE8z0JrqGuw+8xAYddaHx9A8tf2MWkRoS/wSYxOLhDW5rmIL1TpwUKBsPDEOYRY7O/M
+	nKG3xvIBykbdsj/MYrtowV+uiSG4XLpO8QyiDqyoG+OSnq2ZokY+lFaqNjj2F1f3dBrOAVUP4PJ
+	A4lyymLWwrjcYiC5tC7JJGO4QviDSP9gUnKAtB0yrxEzcJNYwGFwSbYfBDM5vzm8xl7cG6fOZmR
+	eztF7J5rU7AzKE4XLUwsDJfMOEhfx5TTGEM4SPJJkPURjIVIHug84z8KVMLRS
+X-Google-Smtp-Source: AGHT+IFAkXJF0LvzuCH7iocUk9B8Sa39PwOmxr6zHAePc4uA/AK/Kxtw2oWkhPAG/3WTxT7xH8vL9A==
+X-Received: by 2002:a05:6122:2022:b0:544:9414:105d with SMTP id 71dfb90a1353d-5471d8435e8mr7131988e0c.0.1757605892514;
+        Thu, 11 Sep 2025 08:51:32 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d424de5sm319632e0c.26.2025.09.11.08.51.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 08:51:32 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5357f3e2520so710695137.1;
+        Thu, 11 Sep 2025 08:51:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUqaEr5lySgJ8+U9g0yWXwiriVCKJHQEtT/iayHANt3FJNxDFKCODGR4YBBTE1Anr0std27WBsES/e6@vger.kernel.org, AJvYcCW9PWBLvOHiYO8mLszgne1+Q+Q21NOSN95VUlcjU0tm6wfKfb3BmIYah3HPlS3aU+FcrS4sEWdhY6HX4yA57NGdaQ4=@vger.kernel.org, AJvYcCXoQkm+DuqprJLELsRSlfI3euvFY+dDi25aGqyd9OQH/pk0YLkC8T8p9vY4drPDOlLRSQghYZUpt1ZvS4nJ@vger.kernel.org
+X-Received: by 2002:a05:6102:3053:b0:533:ff66:696d with SMTP id
+ ada2fe7eead31-5560fd2d1c1mr15152137.23.1757605892095; Thu, 11 Sep 2025
+ 08:51:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250904160530.66178-1-macroalpha82@gmail.com>
+References: <20250904165909.281131-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250904165909.281131-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250904165909.281131-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 11 Sep 2025 17:51:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVYtoq8ib7yzJG5tJWDvObVB4CGn9kyM-1vDqW3HaraHw@mail.gmail.com>
+X-Gm-Features: AS18NWCmVR8fO1uCxVPbnC5g85Xsc3bZdmW1WeHulaSUijhLjemDonm3PsQ-eNU
+Message-ID: <CAMuHMdVYtoq8ib7yzJG5tJWDvObVB4CGn9kyM-1vDqW3HaraHw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g057: Add I3C node
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Enjoy!
+On Thu, 4 Sept 2025 at 18:59, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add I3C node to RZ/V2H(P) ("R9A09G057") SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
-  Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
+Gr{oetje,eeting}s,
 
-are available in the Git repository at:
+                        Geert
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-power-regulator-v6.18
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-for you to fetch changes up to 981dd162b63578aee34b5c68795e246734b76d70:
-
-  regulator: bq257xx: Add bq257xx boost regulator driver (2025-09-11 15:55:41 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Power and Regulator due for the v6.18 merge window
-
-----------------------------------------------------------------
-Chris Morgan (4):
-      dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
-      mfd: bq257xx: Add support for BQ25703A core driver
-      power: supply: bq257xx: Add support for BQ257XX charger
-      regulator: bq257xx: Add bq257xx boost regulator driver
-
- .../devicetree/bindings/mfd/ti,bq25703a.yaml       | 117 ++++
- drivers/mfd/Kconfig                                |  11 +
- drivers/mfd/Makefile                               |   1 +
- drivers/mfd/bq257xx.c                              |  99 +++
- drivers/power/supply/Kconfig                       |   7 +
- drivers/power/supply/Makefile                      |   1 +
- drivers/power/supply/bq257xx_charger.c             | 755 +++++++++++++++++++++
- drivers/regulator/Kconfig                          |   8 +
- drivers/regulator/Makefile                         |   1 +
- drivers/regulator/bq257xx-regulator.c              | 186 +++++
- include/linux/mfd/bq257xx.h                        | 104 +++
- 11 files changed, 1290 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
- create mode 100644 drivers/mfd/bq257xx.c
- create mode 100644 drivers/power/supply/bq257xx_charger.c
- create mode 100644 drivers/regulator/bq257xx-regulator.c
- create mode 100644 include/linux/mfd/bq257xx.h
-
--- 
-Lee Jones [李琼斯]
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
