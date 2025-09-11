@@ -1,111 +1,363 @@
-Return-Path: <devicetree+bounces-216152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0038B53CC0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 21:55:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3FB6B53CF3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 22:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90CD21CC5913
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 19:55:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5DC33AA61A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 20:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0DB260590;
-	Thu, 11 Sep 2025 19:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7386825CC74;
+	Thu, 11 Sep 2025 20:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cnfeupin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E916924A04A;
-	Thu, 11 Sep 2025 19:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A439724A04A
+	for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 20:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757620515; cv=none; b=AVgUxObabaUdCQTdAsIch1Gw2jD+M04igGyTXH4oGzYqiRsIJRBb384oWonZS66xMnB+nVEp+AiHNvHzTcicYesRjzoASFPHglaXdw4tfLee56F3CVXrzaHKfW9LQkOh15QL1WCgGzVt7aY7bSZtwD+MoPDFapL0sncrNItsUpQ=
+	t=1757621455; cv=none; b=kQXKAJdhCPODdXha9NF7XBWQYlm1XFZ3KE4f9GdTPUAs6p+081ZpH2KHc+nbFMAfpNshtyMKvUHuZ1cMuiXlWfPkdDg9pGcjDcXPlwyUGzKn9t1PoZZIspi69vgFyDILnpUAm5RYalX5SxSRqBszRL9lGMtLTU6i0iIafMk8eOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757620515; c=relaxed/simple;
-	bh=Xobcx+JBTN1wOClC166lyLtzG+jp5ZjUpFZ7pPrajjY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=epeeXu/TtfI+UoUpDYS0KPbGmFJTDzzynWtFOc1NLtbEkn8hhHxAhKArGGogegznVYHFwgCZyyPjHZnEMt5WEfTS+mdx0ANHmfgIlfUBaFLdimonkfcsGyD9ANUxdBYV1nl4hit2lMa724JGFM3dQIePWpVUchmnUWHWlPnK854=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.168])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 05E0C335DB4;
-	Thu, 11 Sep 2025 19:55:10 +0000 (UTC)
-Date: Fri, 12 Sep 2025 03:55:02 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: Lee Jones <lee@kernel.org>, lgirdwood@gmail.com, broonie@kernel.org,
-	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mat.jonczyk@o2.pl, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	linux.amoon@gmail.com, troymitchell988@gmail.com,
-	guodong@riscstar.com, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
-Message-ID: <20250911195502-GYA1223946@gentoo.org>
-References: <20250825172057.163883-1-elder@riscstar.com>
- <175690199980.2656286.5459018179105557107.b4-ty@kernel.org>
- <ec882a78-9604-45b1-9405-8f2f958f307c@riscstar.com>
+	s=arc-20240116; t=1757621455; c=relaxed/simple;
+	bh=qYBVM3fe4BGHMXxVL6g9/6MFTFWbPMqYggM/QPmNt/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jkbRuuJZvWc1k55SRKoTfhFq4XpbwSvNLKhS/bfAlKgpf1MRYAtuBdFk3HKxEi7qh+e++TWnXGPFU5+PfK8wBdwkmnj4Zs+s961GqQAY1vcpN4cOsY6N/fGFzCClgCyvAlp7r144rZKxyf8SrirTi7PPTFOb55rp3GULWGjSP/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cnfeupin; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-74542b1b2bcso1229786a34.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 13:10:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757621451; x=1758226251; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jVR1xB3u1lrq++KAtUqQDXjBQx9C8pkwXfrhVmqDDLo=;
+        b=cnfeupin/N4ERbVEo/C2jkbJPdMa23fvhhKEcYm0Z3I5qdrgB8ONymJA3+oVY/haZU
+         HhGieYAgLncie5PQbhwQFO3tu7iLXoeLuFABeK1APkqp5e+K0t+R7w8X+P2KRuZ/w+Ww
+         hSvK/DnVaRB7KwkHxWlyKxKHwHfz0QniPLLBgggmQOmwVGSOKNjfZLwmgM/sfBbwb8VA
+         bCRjm5WZiSyugPdjGmsTkoQubuiBUna1T0/sI9AgAGVzA5d2IQ8t5lycMFjTR5pYIxwD
+         h1hRJwxmnfZajAytrUk+sbwOng2G9GsgVIcYH2/wGUN1oLJCZWG9xZFe4NeyRnVF/ci/
+         47tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757621451; x=1758226251;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jVR1xB3u1lrq++KAtUqQDXjBQx9C8pkwXfrhVmqDDLo=;
+        b=ZlM12GIgpmcohPDC21/1L2l+XBakLN7zVtALS72EYJksPOeKzoFYbg5NUb6ndQmFKw
+         HTc0pvDEUuvW3l7Y+Be7wJ7U9Qr0mSd0b6UulbVxWxUs6jgX4lvr1bcxrZKDrzCtMYZf
+         OLP6jktrU2wWfCqFOwyB+vaPXueEnQ4MRuxceF/u5fexFpiPS9YvnMRPeINaxWTWPYl6
+         y1RatuYLUV2/cGJSQBtEwKODPDgtpkP+A0GQu0eoVTgMJAThap/xMeydQf/vVrK2lrmK
+         SpTAdRTU+RwWXYp2Eqg8iu11E5Xjb68CBBFXVrZ3BVamIWLPl/EOGGONlV9q9Y9XNKf0
+         KyJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUkuto06EjDPWOBvus5iEOUUXYAhqYVOoz+nYrdlBhyiKW01RgjrjpvuQgMrLKIYpfUJZVSBXSbxfaG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHXp2FAW44kEq6zihUgzVVfLuFRqrV58MbatbUyOvQHZlV1h6f
+	QDM7K+vrntCl0IV/KF96s0fsYqvOT8F87z5jspqGRlW9qJdgEdYMNeTL0FRkoIiWnG8=
+X-Gm-Gg: ASbGncsR8haXLrk013daCvLkVYAj/JjvR/5rAtuHH/+N45hkFJH6YpzcfjqgmgKF1yQ
+	hDVjUvzGGNhKhLoxEZkp+a2z59aSd4DOMo9s/jXlVNZAY8nimjVoLY748bM/RrveZhh0XITLPR+
+	eAs+fylV4IvMXze3NSzg1zAEeNlCNUUACbdadaW6lkew25/KbMd0UZHUw74W+uYoyUgRAHuWJDk
+	Tggj71gLwmuBiCYRAA/bYzVXaB2ihoJ/vUgbf2OX+Aad7G6Jez6h47e/CTyJX489fbB1q6W4wDS
+	tuyHcb5gAM0t9Fw30U/GmtdUgdFXr+4y0BvZwFPj84vw6+SmZZahh/h19YL92sdDxn6tp4OGScq
+	7W3IsMoe5pjfb5B9MKe1AtWQQTTe3yfDeJCbfwwoR6ynsul1KINRLuVIO4IpQSE2C8kxLQu48Pj
+	Q=
+X-Google-Smtp-Source: AGHT+IEPeaLAXI4MuSkVTX84m53HoFbAgfzK58U6F293kMnmLeY68gXTEEXyi0LKbeSqZTIF0Vrtyw==
+X-Received: by 2002:a05:6830:6618:b0:73c:e29c:3fdc with SMTP id 46e09a7af769-75354cfe5e6mr373180a34.18.1757621450629;
+        Thu, 11 Sep 2025 13:10:50 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:d684:59db:8b2a:5451? ([2600:8803:e7e4:1d00:d684:59db:8b2a:5451])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-75249961b08sm555259a34.16.2025.09.11.13.10.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Sep 2025 13:10:50 -0700 (PDT)
+Message-ID: <d53b22d1-35d6-4fb8-ae56-3ba4953b64af@baylibre.com>
+Date: Thu, 11 Sep 2025 15:10:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ec882a78-9604-45b1-9405-8f2f958f307c@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, jic23@kernel.org,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20250910155759.75380-1-daniel.lezcano@linaro.org>
+ <20250910155759.75380-3-daniel.lezcano@linaro.org>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250910155759.75380-3-daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
+On 9/10/25 10:57 AM, Daniel Lezcano wrote:
+> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> 
+> The NXP S32G2 and S32G3 platforms integrate a successive approximation
+> register (SAR) ADC. Two instances are available, each providing 8
+> multiplexed input channels with 12-bit resolution. The conversion rate
+> is up to 1 Msps depending on the configuration and sampling window.
+> 
+> The SAR ADC supports raw, buffer, and trigger modes. It can operate
+> in both single-shot and continuous conversion modes, with optional
+> hardware triggering through the cross-trigger unit (CTU) or external
+> events. An internal prescaler allows adjusting the sampling clock,
+> while per-channel programmable sampling times provide fine-grained
+> trade-offs between accuracy and latency. Automatic calibration is
+> performed at probe time to minimize offset and gain errors.
+> 
+> The driver is derived from the BSP implementation and has been partly
+> rewritten to comply with upstream requirements. For this reason, all
+> contributors are listed as co-developers, while the author refers to
+> the initial BSP driver file creator.
+> 
+> All modes have been validated on the S32G274-RDB2 platform using an
+> externally generated square wave captured by the ADC. Tests covered
+> buffered streaming via IIO, trigger synchronization, and accuracy
+> verification against a precision laboratory signal source.
+> 
+> Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
+> Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
+> Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+> Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>  drivers/iio/adc/Kconfig       |   13 +
+>  drivers/iio/adc/Makefile      |    1 +
+>  drivers/iio/adc/nxp-sar-adc.c | 1026 +++++++++++++++++++++++++++++++++
+>  3 files changed, 1040 insertions(+)
+>  create mode 100644 drivers/iio/adc/nxp-sar-adc.c
+> 
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 6de2abad0197..4c2473a1fa20 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1168,6 +1168,19 @@ config NPCM_ADC
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called npcm_adc.
+>  
+> +config NXP_SAR_ADC
+> +	tristate "NXP S32G SAR-ADC driver"
+> +	depends on ARCH_S32 || COMPILE_TEST
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGERED_BUFFER
+> +	select IIO_SYSFS_TRIGGER
+> +	help
+> +	  Say yes here to build support for S32G platforms
+> +	  analog-to-digital converter.
+> +
+> +	  This driver can also be built as a module. If so, the module will be
+> +	  called nxp_sar_adc.
+> +
+>  config PAC1921
+>  	tristate "Microchip Technology PAC1921 driver"
+>  	depends on I2C
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index 1c6ca5fd4b6d..d1d939753bcc 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -119,6 +119,7 @@ obj-$(CONFIG_RN5T618_ADC) += rn5t618-adc.o
+>  obj-$(CONFIG_ROHM_BD79124) += rohm-bd79124.o
+>  obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
+>  obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
+> +obj-$(CONFIG_NXP_SAR_ADC) += nxp-sar-adc.o
 
-On 11:36 Thu 11 Sep     , Alex Elder wrote:
-> On 9/3/25 7:19 AM, Lee Jones wrote:
-> > On Mon, 25 Aug 2025 12:20:49 -0500, Alex Elder wrote:
-> >> The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
-> >> converters and 12 LDOs.  It contains a load switch, ADC channels,
-> >> GPIOs, a real-time clock, and a watchdog timer.
-> >>
-> >> This series introduces a multifunction driver for the P1 PMIC as
-> >> well as drivers for its regulators and RTC.
-> >>
-> >> [...]
-> > 
-> > Applied, thanks!
-> > 
-> > [1/7] dt-bindings: mfd: add support the SpacemiT P1 PMIC
-> >        commit: baac6755d3e8ddf47eee2be3ca72fe14ebae2143
-> > [2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
-> >        commit: 49833495c85f26d070e70148fd9607c6fbf927fd
-> > 
-> > --
-> > Lee Jones [李琼斯]
-> > 
-> 
-> Yixun Lan plans to merge patches 5-7 of this series.
-> 
-DT patches usually go as the last one, in this case, they effectively
-depened on patch 3 which adds the regulator support
+We try to keep these in alphabetical order.
 
-As Mark suggest it go via MFD, that leaves Jones to handle,
-It's close to the release of rc6, I'd hope it isn't too late..
+>  obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
+>  obj-$(CONFIG_SD_ADC_MODULATOR) += sd_adc_modulator.o
+>  obj-$(CONFIG_SOPHGO_CV1800B_ADC) += sophgo-cv1800b-adc.o
+> diff --git a/drivers/iio/adc/nxp-sar-adc.c b/drivers/iio/adc/nxp-sar-adc.c
+> new file mode 100644
+> index 000000000000..421ce42ad9ec
+> --- /dev/null
+> +++ b/drivers/iio/adc/nxp-sar-adc.c
+> @@ -0,0 +1,1026 @@
+> +// SPDX-License-Identifier: GPL-2.0
 
-> That leaves patch 3, which enables regulator support, and patch
-> 4, which adds RTC support.
-> 
-> How should these two patches be merged?  Mark has reviewed the
-> regulator patch 3 and Alexandre has acked the RTC patch 4.
-> 
-> Thank you.
-> 
-> 					-Alex
+Prefer explicit GPL-2.0-only or GPL-2.0-or-later
 
--- 
-Yixun Lan (dlan)
+...
+
+> +static void nxp_sar_adc_dma_cb(void *data)
+> +{
+> +	struct nxp_sar_adc *info = iio_priv((struct iio_dev *)data);
+> +	struct iio_dev *indio_dev = data;
+> +	struct dma_tx_state state;
+> +	struct circ_buf *dma_buf;
+> +	struct device *dev_dma;
+> +	u32 *dma_samples;
+> +	s64 timestamp;
+> +	int idx, ret;
+> +
+> +	guard(spinlock_irqsave)(&info->lock);
+> +
+> +	dma_buf = &info->dma_buf;
+> +	dma_samples = (u32 *)dma_buf->buf;
+> +	dev_dma = info->dma_chan->device->dev;
+> +
+> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
+> +
+> +	dma_sync_single_for_cpu(dev_dma, info->rx_dma_buf,
+> +				NXP_SAR_ADC_DMA_BUFF_SZ, DMA_FROM_DEVICE);
+> +	/* Current head position */
+> +	dma_buf->head = (NXP_SAR_ADC_DMA_BUFF_SZ - state.residue) /
+> +			NXP_SAR_ADC_DMA_SAMPLE_SZ;
+> +
+> +	/* If everything transferred, avoid an off by one error. */
+> +	if (!state.residue)
+> +		dma_buf->head--;
+> +
+> +	/* Something went wrong and nothing transferred. */
+> +	if (state.residue == NXP_SAR_ADC_DMA_BUFF_SZ)
+> +		goto out;
+> +
+> +	/* Make sure that head is multiple of info->channels_used */
+> +	dma_buf->head -= dma_buf->head % info->channels_used;
+> +
+> +	/* dma_buf->tail != dma_buf->head condition will become false
+> +	 * because dma_buf->tail will be incremented with 1.
+> +	 */
+> +	while (dma_buf->tail != dma_buf->head) {
+> +		idx = dma_buf->tail % info->channels_used;
+> +		info->buffer[idx] = dma_samples[dma_buf->tail];
+> +		dma_buf->tail = (dma_buf->tail + 1) % NXP_SAR_ADC_DMA_SAMPLE_CNT;
+> +		if (idx != info->channels_used - 1)
+> +			continue;
+> +
+> +		/* iio_push_to_buffers_with_timestamp should not be called
+> +		 * with dma_samples as parameter. The samples will be smashed
+> +		 * if timestamp is enabled.
+> +		 */
+> +		timestamp = iio_get_time_ns(indio_dev);
+> +		ret = iio_push_to_buffers_with_timestamp(indio_dev,
+> +							 info->buffer,
+> +							 timestamp);
+
+Is it OK to call this with spinlock held? It looks like it can call
+devm_krealloc() which may sleep.
+
+> +		if (ret < 0 && ret != -EBUSY)
+> +			dev_err_ratelimited(&indio_dev->dev,
+> +					    "failed to push iio buffer: %d",
+> +					    ret);
+> +	}
+> +
+> +	dma_buf->tail = dma_buf->head;
+> +out:
+> +	dma_sync_single_for_device(dev_dma, info->rx_dma_buf,
+> +				   NXP_SAR_ADC_DMA_BUFF_SZ, DMA_FROM_DEVICE);
+> +}
+> +
+
+...
+
+> +static int nxp_sar_adc_probe(struct platform_device *pdev)
+> +{
+> +	const struct nxp_sar_adc_data *data;
+> +	struct nxp_sar_adc *info;
+> +	struct iio_dev *indio_dev;
+> +	struct resource *mem;
+> +	struct device *dev = &pdev->dev;
+> +	int irq;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct nxp_sar_adc));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	info = iio_priv(indio_dev);
+> +
+> +	data = device_get_match_data(dev);
+> +
+> +	info->vref_mV = data->vref_mV;
+> +
+> +	info->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
+> +	if (IS_ERR(info->regs))
+> +		return dev_err_probe(dev, PTR_ERR(info->regs),
+> +				     "failed to get and remap resource");
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	ret = devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
+> +			       dev_name(dev), indio_dev);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed requesting irq, irq = %d\n", irq);
+> +
+> +	info->regs_phys = mem->start;
+> +	spin_lock_init(&info->lock);
+> +
+> +	info->clk = devm_clk_get_enabled(dev, "adc");
+
+clock-names was dropped from bindings, so name should be NULL.
+
+> +	if (IS_ERR(info->clk))
+> +		return dev_err_probe(dev, PTR_ERR(info->clk),
+> +				     "failed to get the clock\n");
+> +
+> +	platform_set_drvdata(pdev, indio_dev);
+> +
+> +	init_completion(&info->completion);
+> +
+> +	indio_dev->name = dev_name(dev);
+> +	indio_dev->info = &nxp_sar_adc_iio_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
+> +	indio_dev->channels = nxp_sar_adc_iio_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(nxp_sar_adc_iio_channels);
+> +
+> +	nxp_sar_adc_set_default_values(info);
+> +
+> +	ret = nxp_sar_adc_calibration(info);
+> +	if (ret) {
+> +		dev_err(dev, "Calibration failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = nxp_sar_adc_dma_probe(dev, info);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to initialize the dma\n");
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &nxp_sar_adc_trigger_handler,
+> +					      &iio_triggered_buffer_setup_ops);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Couldn't initialise the buffer\n");
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Couldn't register the device\n");
+> +
+> +	return 0;
+> +}
+> +
+
+...
+
+> +static const struct nxp_sar_adc_data s32g2_sar_adc_data = { .vref_mV = 1800 };
+
+Why have this if there is only one option?
+
+> +
+> +static const struct of_device_id nxp_sar_adc_match[] = {
+> +	{ .compatible = "nxp,s32g2-sar-adc", .data = &s32g2_sar_adc_data },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, nxp_sar_adc_match);
+> +
 
