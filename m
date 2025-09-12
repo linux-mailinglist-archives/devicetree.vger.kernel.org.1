@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-216364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D946B54840
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A96B54843
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74DAC1BC4E00
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:49:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B8DA1BC4F7C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F78F27AC44;
-	Fri, 12 Sep 2025 09:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EEA280035;
+	Fri, 12 Sep 2025 09:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q16QU3RU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="h4JuWNDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3161A27D771;
-	Fri, 12 Sep 2025 09:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D9B27B4F5;
+	Fri, 12 Sep 2025 09:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757670519; cv=none; b=L99lnU2SoS2BGd8mVBJ31J8QTMly5g+Sqzzb29ddilF3QQZ2zJJEq42F9h54hgM4mD7iBk4YBVyo2meEHxjOCvOCcL6lsJL3OkNdO/9EHJh6Uz//qY/KxYaO6oAh7w9UfpKiMs+U2GMwLTyaBFdM8HVtmE3JO7GUOLpLAUx5Tf0=
+	t=1757670548; cv=none; b=HS6vTj3LYd1qoM34ecFtG15t5giNJZ0t3f2J5y/jN3PSHZ2qgeEhHD4RCdIK18itpH7sf927tnEmjQSoVtaDYm2blGyzSpb5Vvrw0XFRSwvmr4E7SiZFo0qQJfIiiYmR8LX7GSIkV9k9Ti9LjIDDnH7+pqcQSTE48s9qEligayE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757670519; c=relaxed/simple;
-	bh=iqQ1Yw/DqLZRc/p7ftpsV0eMyy6LzD42Nr10R5sz5E4=;
+	s=arc-20240116; t=1757670548; c=relaxed/simple;
+	bh=Sdg1NAQGFsOKkh1ScLEOZGGLKMK6oPxVQ3JwS8cbF7Y=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=okEEVsNBYEj4MiSQDl1SKb1xfrsmrkDpTXSiiypcRfyDxwi8J+RJahqKs6M4owBNACIAaTne24AW+Go6OkceSHhTARlcieA5YH1jS3TdJc5ZJedjV7SSv5ejU/o4gBkHVba7nAXUBJN8672RkXCB7DnTqs2mIN9ee6vNegQONb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q16QU3RU; arc=none smtp.client-ip=198.47.23.235
+	 MIME-Version:Content-Type; b=FrRjW+bXszl1ml0zrKaRhAERkEjwEonz0SdI/62q/J7pbRmHuwWEAlJXpp1r4dWBosyb+8Ei4IsIsGVU2tbliv4UfkQFsnxgVlyff4QVcAsgqeNEybajzRy0ew7J5k2Vp1rvxptA/L4LNEHnjukXhTttJrI8n4qQ6p5toLIDQnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=h4JuWNDQ; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58C9mLV91008151;
-	Fri, 12 Sep 2025 04:48:21 -0500
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58C9n2E1580003;
+	Fri, 12 Sep 2025 04:49:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757670501;
-	bh=r4hpL1WjqUwGCaqWkzYGDifvsElcMhYMPsGMRUV9Mt8=;
+	s=ti-com-17Q1; t=1757670542;
+	bh=k2+RB6MUOQtyzxNDapW6pVtIpKR/wAmc57WmHmeFGhs=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Q16QU3RUq3NqRnLwztT1oObzs5RQ9HBg/64I5/34nKjWYKYRXvUF0xAqenQ9rupSm
-	 DMDLYcUGpMrMC2FMrdaCCIf+THvnRcVL4q1MZxP8km86Reh3oR+YtkLSCpW/LqMw7s
-	 xca8z1LyEo+Pu2BSGApkVozSY7+vZx0pnVuj8a04=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58C9mL8S2685103
+	b=h4JuWNDQkmKTC5rEsIYfu5pCqofF1pvE5x7WTBswvkhhc/CH7ko9MFLI9OVrCIv3+
+	 x48ALvy2WrpCmlauo7u/JqPOktTHfPiv6DQefxscbVkuYwxABJFUohcl//pOo2wnO+
+	 TS3fkQaXj+n257fq8HExvwE3VlT+tgSgTYSwa1vc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58C9n2F81218723
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 12 Sep 2025 04:48:21 -0500
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 12 Sep 2025 04:49:02 -0500
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 12
- Sep 2025 04:48:20 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 04:49:01 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 12 Sep 2025 04:48:20 -0500
+ Transport; Fri, 12 Sep 2025 04:49:01 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58C9mKuC3715494;
-	Fri, 12 Sep 2025 04:48:20 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58C9n1An3715971;
+	Fri, 12 Sep 2025 04:49:01 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        Anshul Dalal <anshuld@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 0/4] Add support for TI AM6254atl SiP
-Date: Fri, 12 Sep 2025 04:48:17 -0500
-Message-ID: <175766786841.25865.5286816232704724647.b4-ty@ti.com>
+        Beleswar Padhi <b-padhi@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <afd@ti.com>, <u-kumar1@ti.com>,
+        <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU R5F cores
+Date: Fri, 12 Sep 2025 04:48:57 -0500
+Message-ID: <175766786719.25561.15602931252398544025.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250814134531.2743874-1-anshuld@ti.com>
-References: <20250814134531.2743874-1-anshuld@ti.com>
+In-Reply-To: <20250823163111.2237199-1-b-padhi@ti.com>
+References: <20250823163111.2237199-1-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,36 +79,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Anshul Dalal,
+Hi Beleswar Padhi,
 
-On Thu, 14 Aug 2025 19:15:26 +0530, Anshul Dalal wrote:
-> This patch series adds support for AM6254atl SiP (or AM62x SiP for short)
-> to the linux device-tree.
+On Sat, 23 Aug 2025 22:01:11 +0530, Beleswar Padhi wrote:
+> The J742S2 SoC reuses the common k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+> for its MCU domain, but it does not override the firmware-name property
+> for its R5F cores. This causes the wrong firmware binaries to be
+> referenced.
 > 
-> The OPN (Orderable Part Number) 'AM6254atl' expands as follows[1]:
-> 
-> AM6254atl
->      ||||
->      |||+-- Feature Lookup (L indicates 512MiB of integrated LPDDR4)
->      ||+--- Device Speed Grade (T indicates 1.25GHz/1.4GHz on the A53 cores)
->      |+---- Silicon PG Revision (A indicates SR 1.0)
->      +----- Core configuration (4 indicates A53's in Quad core config)
+> Introduce a new k3-j742s2-mcu-wakeup.dtsi file to override the
+> firmware-name property with correct names for J742s2.
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1]. As part
-of applying the series, I have had to fix a minor merge conflict due
-to the order I picked patches, do check if all OK and report if not.
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/4] arm64: dts: ti: k3-am62*: remove SoC dtsi from common dtsi
-      commit: e0b9feca7329c495a76891d7766a781dea73787d
-[2/4] dt-bindings: arm: ti: Add binding for AM625 SiP
-      commit: 3e915577cf0b7d3f9088c398888e5e01e10356d7
-[3/4] arm64: dts: ti: Introduce base support for AM6254atl SiP
-      commit: 7c1d13a14e61ab33eec330cb6cabbddb37eecaa9
-[4/4] arm64: dts: ti: Add support for AM6254atl SiP SK
-      commit: 2517e476b819df986fa1fe53927c099032bb72dc
+[1/1] arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU R5F cores
+      commit: 00c8fdc2809f05422d919809106f54c23de3cba3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
