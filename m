@@ -1,303 +1,255 @@
-Return-Path: <devicetree+bounces-216395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1FDB54A2A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CADB54A30
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF7F3AF94C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:46:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F818AC237F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:47:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844002FD1AB;
-	Fri, 12 Sep 2025 10:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D8A2FD7CA;
+	Fri, 12 Sep 2025 10:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="W/sj3sNr";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="fxVYywmX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yF4ok2Dn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF861A41;
-	Fri, 12 Sep 2025 10:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757674015; cv=fail; b=sJKFRQ82ssIfNqsWw57FBNJI+7b1vGWLz3U/YXAfHzUHatfmBUPNn7pePEkeeNKWWbUAJaVE2ylWu6ZAjRrRg6x5HfbZlmZdbyZ+mp2hnbOPeGX4KO10wiTBdTrLyKjDDf1qKy2xObp8dJHSlXp+brPPRn60HcZ23NDmPlmAbEE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757674015; c=relaxed/simple;
-	bh=Z71A7T/4k+ANYtestCIMmxwBFPXXayN8iWUZfgC9u3k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EDsnYR7KFMyFzfgIjzA8eYBTHIJS+7xojSclTeNvIhGK0FZfCXbBt3iKcDrccAyoTP7S+WSOSKYPDNNOOvmiR6Q6VNDD5/bvXp+0AvxlvRSRF+s4DjqOq8Hm3vsQowfwcmBDw+4Pp0RVNiMu+OQIgiUsbdzMxhrCmCppv0h3rOY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=W/sj3sNr; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=fxVYywmX; arc=fail smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 58C4oDu41137784;
-	Fri, 12 Sep 2025 05:46:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=FKoDupw6iAZh+442GD4UOmv+03loFRrD7e6ENv+GptU=; b=
-	W/sj3sNriH2p09lx6WV43YAEjuT2qdR3efW0DCOAgneHq5bj5FWEURuig/YJuZWN
-	n4MHkUXV7W6KHRZT2u8C7apQynSYBxMACyjKeAdzxZitQcpc/1fgFeW13mKir56f
-	LgKmKzQlW9fpr91QC85o265Tomi8521ucPDg17KJ2HK7yuQn+jIYcOva6fdRXsa8
-	d5zJc23sB5o2HSN4uDqywesYQLsYrywnSaWV3qUNHFUzlQzIp6Fw2yf41UnKAB0d
-	FuRgNXPB54Bl20lb+QgG4Ap8D7Ov/+BYLj+/dR49xpD7pTVjqypOGmn43kXLk7/H
-	Sy9FW3ZQt7oCie+yZkBZBA==
-Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11on2123.outbound.protection.outlook.com [40.107.220.123])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 492q6tcpv4-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 12 Sep 2025 05:46:51 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dI9kiJ11Fz2NOrxKbqn/OWFyXk4GMTHpCtHBq6ejoxTjmsyQ8YJrt3ZPtrzkao1i368Zex1DmzMz/MrjhqntOOVutIbu9VdqIKkXmlSrBuwvGXwmb9Wzn9O/ZrXxV+d8YicrteCyMhksqekJnQ/lmX/M9KVxx8sq7eRKsEzFFEVpAEn6oBfGlgO6PxK6OsHukFWB63tKCMmg8LL1Kvav4iIsyb8Wv5hU09AgRzlpDDoNbAqzNPlZfzCFIiUGisIm/sGuKqGjozLG1OfkRIvBR0YzMTSHWbWXksJniFsQZgYB+YAbRXi7d/JYN7eFMYOdRWguap4oG1taq00DzT3VNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FKoDupw6iAZh+442GD4UOmv+03loFRrD7e6ENv+GptU=;
- b=kJHIsbFpHXOBKB90Yds9sfV4JkdqWh7k2ne0RltOK5tmySgELrmAIJljo8rvd266u4X1sNcZtxjeXPGjJYhreObNstzurquw3SKmQ5UydxD0jovMveiP+WyZ5C0oh7l4OPIRubaY1rmn1suS/7UobPahtsMTYnaFFOXVPXRYthanwuSks7076jksoaMgbrEdnZEikLMarGe+7ZkmtIePiCPiE9hzIlXXDIErkY2qWFqsZ/NMxEqjCfW8fIucFIyadTwIsKRhrUdL3ANbwJTkgkEyiw/zTahmMTTUodNJcz4k1AAprRYVJDOatu14uSxG2O106v2Uha1pYeT8NA9L1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 84.19.233.75) smtp.rcpttodomain=cirrus.com
- smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
- action=oreject header.from=opensource.cirrus.com; dkim=none (message not
- signed); arc=none (0)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5A62FD7BC
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:47:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757674055; cv=none; b=VkgTRV0ZU6l8gqrKWv9jSXod+NeN5lpKcwAesANcScCSPHXwarGhFr6bJI203rHm1Mz1qgtV2yfhKTOD7+YHeG3wp17x7Alo6P2TX0ApZ0lwgOT6XFoPZkpYLTWluYHSUf8mnOzJCx770YFyF2QYRHwJuEVH0LtA1/CxVXpcQQU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757674055; c=relaxed/simple;
+	bh=fZ2Y+QVj1Q980T6u7XGCiKBFfT4CA2Sib8XpluNcSWI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iv46szGt9OClgCul/F8EVF32XFuz9fMvMsMjIhOlKNmVPya2tL8GItUrSi3sVIOM/tZgFRA6sG1DbaRVpYZbqMD4mW2XLpfAExain9HMWuVooqMjDYW7IVjWl628ADyTjy18AXQjlRrb+mYmRcprqgBaaw9u+Cigbhr9Ub/mh3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yF4ok2Dn; arc=none smtp.client-ip=209.85.210.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-751415c488cso1482456a34.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:47:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FKoDupw6iAZh+442GD4UOmv+03loFRrD7e6ENv+GptU=;
- b=fxVYywmXPhYMWIwMy4AO9TXxV+6y72a3dz3M6/ZvV9FkKD3vi56YCl9wpXHeRsuEq5L8JE5HfN3GhPVsi4L6mxlSTRPObFfj/0zK/1lhKvwd04bLQeCzqxYeQq2e5O2vm+ZnShHoL59kdevyUIhya1CC/nkuWcC9ScVEqh2wGoQ=
-Received: from BN9PR03CA0945.namprd03.prod.outlook.com (2603:10b6:408:108::20)
- by BLAPR19MB4418.namprd19.prod.outlook.com (2603:10b6:208:299::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Fri, 12 Sep
- 2025 10:46:47 +0000
-Received: from BN1PEPF00004681.namprd03.prod.outlook.com
- (2603:10b6:408:108:cafe::82) by BN9PR03CA0945.outlook.office365.com
- (2603:10b6:408:108::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9094.22 via Frontend Transport; Fri,
- 12 Sep 2025 10:46:47 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
- smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
-Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
- does not designate 84.19.233.75 as permitted sender)
- receiver=protection.outlook.com; client-ip=84.19.233.75;
- helo=edirelay1.ad.cirrus.com;
-Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
- BN1PEPF00004681.mail.protection.outlook.com (10.167.243.87) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.13
- via Frontend Transport; Fri, 12 Sep 2025 10:46:46 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id C52B2406545;
-	Fri, 12 Sep 2025 10:46:45 +0000 (UTC)
-Received: from lonswws02.ad.cirrus.com (lonswws02.ad.cirrus.com [198.90.188.42])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 8AFBE82024A;
-	Fri, 12 Sep 2025 10:46:45 +0000 (UTC)
-From: Stefan Binding <sbinding@opensource.cirrus.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        Stefan Binding <sbinding@opensource.cirrus.com>
-Subject: [PATCH v1 2/2] ASoC: cs35l41: Fallback to reading Subsystem ID property if not ACPI
-Date: Fri, 12 Sep 2025 11:45:38 +0100
-Message-ID: <20250912104612.361125-3-sbinding@opensource.cirrus.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250912104612.361125-1-sbinding@opensource.cirrus.com>
-References: <20250912104612.361125-1-sbinding@opensource.cirrus.com>
+        d=linaro.org; s=google; t=1757674052; x=1758278852; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3OPza13UxQG3vaIXj292M6st2XTaYne/dlf9fQOIh4A=;
+        b=yF4ok2DnJKy8g4WUEIhF3p62qGvM3lhFUmSA+pAVbC5cd8u1tPHpMIKPp1WCJOHSG5
+         TJvn82wDF1U+SAryIeD5w3sAWzpqOHjGwk+lrj39hqSDkEsRzt98LF3tofAAGv2uIS65
+         hrK9WYDiJTx1+QNjrj26dbaxPxqoP6MYnIzKaXLUhLVtxLt948OJ1bCJY+9UW6My8Edb
+         N5Nojj2kserwLQbtOJkAEL9IrXIOeLCHjR0xgoT1ggIBZcoQ60UjKGEDDDHjzVCaTMoL
+         X4ONxGToHxIEkk0mkazVU7I8nsSc1lmc1D6kh+MX94c0HkmK1swfajfwlv51MGVHoG9a
+         x7Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757674052; x=1758278852;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OPza13UxQG3vaIXj292M6st2XTaYne/dlf9fQOIh4A=;
+        b=H6qlaLVGWhyz4TNIO1yANLr44qNvHesquddNxXyKPtwEAzNHTosVYZFdBpesAOvUXP
+         esvNOGrrk11cYxD2/VL3kKsxY4kASKH4ooxZhKnQmHKPLpy9AllVAhPTBRXFYTsa+9i8
+         mtesk1F7pPRugJw1AFwM+kE8fZYByMfe/8Efe/o+/E79LzAUE6dZ4hbDqND77lSMk3mA
+         jmgpnikKTtdlXsJeieYX8byse3AvsVd9VhSg96P0t9+vCPWy20kD6ek1NkitCoLilsNd
+         rNWE/UiNRQhnUS9DmuaiqQ9CFB5c36spMQ0coP7IyqAcd3oxEbP34Tc9Zj+c3CLowHy9
+         lMRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVoRwXBDUV3QmmMuRzZRqIu1SUB4J8LcO15BcxldJrvmbaBfcLgKoK7GDckxJbTllJul2XZfHJV6t7u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2NesUxci6KvxW4jVSEsSDYCRc+5F1KWmRuGC6nAo0aKR1hFzd
+	lXRQ7gIwOiGiJLwuJf2VFXPGVCNp+ZqLojrHexOsqUW0uI7L4AD+8Z1knTThsHMv3LePe6WRDZl
+	52PUxJ3G2vx5yhSa/jHLl8nLA29JcAKPssFEsZFrllQ==
+X-Gm-Gg: ASbGnctP0HMIlrNnC1w1CA7p7pzXYGz4x1F7PA/a+/doCF1K1mQ1c0vTrEGs82VXwMx
+	1lj+Laq6KyoTxkpmvJzDyt8urhg7TurmqahSTdEC0RJmrFqAzW+nytumofMx82X/2UOwWEkZibK
+	zpcXsUD6zpLiKqj06Tcc1BRQ2fgZ9Xj+Xa0fPU9DTsWfhHvSIpFHOeSFy3+ONlmNaoklKBh5IvN
+	l4n2l0=
+X-Google-Smtp-Source: AGHT+IEwK6PAnW60amX/KFZUitg+3IWCKUF6YtBbEuqSyk7vuHndUimzJs3aHNTIWVsqYWSuZljSYmdD0ujXlXGOsTc=
+X-Received: by 2002:a05:6830:25c3:b0:741:924c:3f60 with SMTP id
+ 46e09a7af769-753550e1f31mr1194594a34.20.1757674052466; Fri, 12 Sep 2025
+ 03:47:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004681:EE_|BLAPR19MB4418:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 93cbb022-b0bd-4011-030f-08ddf1e9abfd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|36860700013|61400799027;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?wrpqDPrsutw1QbvtqR+tYK2eGpDE6tH0zndMn8J8JkCMlXR6KDG7l84oLEve?=
- =?us-ascii?Q?/CyUTQnzecbUiOq5Z+R6zMp60WZQz2Qk7wV7ya1qli6p3fJxfMDTmfO2ByCo?=
- =?us-ascii?Q?VBgeuVGMZXdg3KytmA50XMrJPZHgPDy6tY6QjOBZV4o58gbCxwUFghzWPsh6?=
- =?us-ascii?Q?cK9YuRSVEMewiHrH78K1vVZ+fLlSkzr6JhnwK7umryLwfWSP9GY9wj2n8soJ?=
- =?us-ascii?Q?vfikNhukrxRBHmUOrP7uZzGrkAemQVXdu5TxWtIz+lti0MMRUf+xHZL8ue+E?=
- =?us-ascii?Q?oZ/gecV2gI2RhiMRkwtGFtmyY4K+eECygYUzXSYIw9ZGXBTAszLUDkjoLRsd?=
- =?us-ascii?Q?bdwfFIe6pt3OEwTKi7C9Uk9dDu6TLdcq8wNfpbzKSnvKfVsIrUkLO1YCJG+C?=
- =?us-ascii?Q?1vUHPkUZ3VDRZzQO6cBgTsUcZQViSPxAO5OGb87GXi6XFGvi6JKopD14zaeo?=
- =?us-ascii?Q?ONnR3gP0rfsQLnPyPDqjD40S/A9Reoj08cIpccfgskfhggD9xR+Ec2YpdIu6?=
- =?us-ascii?Q?akMotlFl+eAhVTuYIet9xI47MBGnOvkL/f3mAOpxc/WY5MrePmypxoVc5JjS?=
- =?us-ascii?Q?N7lMFZbifVpZqcGobQAtqg0EdS6R748560OCpFcfeG/G63T/LbwZ7foT1u+V?=
- =?us-ascii?Q?AsOdY87psoGWZ4ymuGkVtcigRNipO79uEMjdNYDEtWimXC9VAAnWa0cRqgkH?=
- =?us-ascii?Q?ZcXVwWt5RPGYUFBqUFM7644oh4wdIpByg7ByT8TlYVGm9VHfQ6gZX3U2n2Gb?=
- =?us-ascii?Q?LJ3nsLCcp9JBIoZEriBzIFGHPGSBN1OeqDCrioHMLwB5u41BWKLfbJHh5eR2?=
- =?us-ascii?Q?50n/edMzsUvonqvHF/mr+UiAM/2Sz+gASOn+aCEVz2Y5W1xRDftjd2eCv/bG?=
- =?us-ascii?Q?Es6TDXewp9re+oRKXOJrGbrpDie98n+dvsqaKWHyWhTaPBdrGTChsKl154BQ?=
- =?us-ascii?Q?pZU1AjsMfHBjwe1nxhkSmMC29Sno70SnuRBEGqfvzGLbaBaSRxKloURVzgtA?=
- =?us-ascii?Q?17XSLxtkzY8/iNs8JQRSq+NfoQFXQMpm01/aQlGyMpIoP/cOB2sqbWzmw1eq?=
- =?us-ascii?Q?gTUy3LgTG2fDDEWwwWH+PYO85wjaM/nUIQw6P84ttv5IfqPkp5NkHLhF2VdZ?=
- =?us-ascii?Q?OLeLNgYoQcxd6mRDqoEBEZvuyGj1Vs0FyaocTTtrh0duLBZ4eFAasYC3jbRA?=
- =?us-ascii?Q?7ljQ1LLtk04MuNeWZUIUvA+BbueijhvUO/IZw4WfWQ/G4geepM9mQoYpBC15?=
- =?us-ascii?Q?cgGsJqhaxoFngEeAG3DJQTfBnxaiWxaX0KV9SCA4nxQ/8vCLWC0bEV+lwu9I?=
- =?us-ascii?Q?sZvb8LHfaEU+oO6/WnAwrPsgHbXxBw2DY3O77oPZ66LwzDAtgCNFFgCi//+T?=
- =?us-ascii?Q?B/UNeDK5JrR6nXsG/Hnqq6TgQvDzxzDFD4QjsucrQnhEkA8kqNWaPJomLxJP?=
- =?us-ascii?Q?vCmrYdEt3D/XSVnKF8RsPaNIkasNwg68k+Zets3f5RQggazDP2zp9tqP/Ebd?=
- =?us-ascii?Q?FmYkvqj+gsYvqcqajwfPkRABxah3RnmCgc+Q?=
-X-Forefront-Antispam-Report:
-	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(61400799027);DIR:OUT;SFP:1102;
-X-OriginatorOrg: opensource.cirrus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 10:46:46.9488
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93cbb022-b0bd-4011-030f-08ddf1e9abfd
-X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BN1PEPF00004681.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR19MB4418
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEyMDEwMCBTYWx0ZWRfX6oJbhgBuX9yJ
- XHh+I4gsBiOxudtC+YAF1bgvf7j0y80gW1/65/51bt5Lyf9COpxxYIYAoJp18V/nJk6TAMxzYNh
- ydhJFrH7yCxwbp4t34iO6G5MDXimkj0XhBKsOIKu2We4NNh005QRok68ceBrN2njhahgKdg4ABM
- 7N0CMhSkM5OxG9m+ZiRIPxROjtTVswH1oT8EZhtw1h1d1GaIXL7/J3dkWIeKziP3a3Ou/kR02LN
- 5K69YlAr5Uw7rKaeCopsTf9h1Nu+48aUIp9T2tTUnEydrvzuLVHQQ4VqDSZXooVlb2xPZvMeVkp
- MxaphAPJ+0m659hoyTiqgWv1ECPXowsKY7w9qqa6CDVFc3NUBn5QhclFNLmsQg=
-X-Proofpoint-GUID: mdwPVoCwifqwVnhAPp-MxXIO6mLqPFRI
-X-Authority-Analysis: v=2.4 cv=X71SKHTe c=1 sm=1 tr=0 ts=68c3fa1b cx=c_pps
- a=f3Kr4HZljxwrsYTGj9vx4g==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10 a=w1d2syhTAAAA:8
- a=bL0rdlc7CeB77TPmB0MA:9
-X-Proofpoint-ORIG-GUID: mdwPVoCwifqwVnhAPp-MxXIO6mLqPFRI
-X-Proofpoint-Spam-Reason: safe
+References: <20250804-b4-gs101_max77759_fg-v5-0-03a40e6c0e3d@uclouvain.be> <20250804-b4-gs101_max77759_fg-v5-4-03a40e6c0e3d@uclouvain.be>
+In-Reply-To: <20250804-b4-gs101_max77759_fg-v5-4-03a40e6c0e3d@uclouvain.be>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 12 Sep 2025 11:47:21 +0100
+X-Gm-Features: Ac12FXyNpSAUYBZClLOkGpS7sVjhUkL1QiaqAQuJpPSEayd4ohKDjbLy5QhjEPs
+Message-ID: <CADrjBPqT8GORaMReQwMGUV+Lrh-njhk_giD2gQUPJRRuSz4XNw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] arm64: dts: exynos: google: add Maxim MAX77759 Fuel-gauge
+To: t.antoine@uclouvain.be
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-If ACPI is not used, then there is currently no way of reading a
-Subsystem ID property used for a system name to uniquely identify
-the system in order to load the correct firmware and tuning.
-Add a new property which can be read from device tree to be able to set
-the system name.
+On Mon, 4 Aug 2025 at 15:25, Thomas Antoine via B4 Relay
+<devnull+t.antoine.uclouvain.be@kernel.org> wrote:
+>
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>
+> Add the node for the Maxim MAX77759 fuel gauge as a slave of the i2c.
+>
+> The TODO is still applicable given there are other slaves on the
+> bus (e.g. PCA9468, other MAX77759 functions and the MAX20339 OVP).
+>
+> For the device specific values (full design capacity and terminal
+> current), the device should check an EEPROM at address 0x50 of the
+> hsi2c_8 for a battery id stored in register 0x17. A set of parameters
+> for the initialization of the fuel gauge should be chosen based on
+> this id. Those sets are defined here:
+>
+> Link: https://android.googlesource.com/kernel/gs/+/refs/heads/android-gs-raviole-5.10-android15/arch/arm64/boot/dts/google/gs101-oriole-battery-data.dtsi
+> Link: https://android.googlesource.com/kernel/gs/+/refs/heads/android-gs-raviole-5.10-android15/arch/arm64/boot/dts/google/gs101-raven-battery-data.dtsi
+>
+> This does not seem to be a standard pattern in the kernel currently
+> so it is not implemented. Values observed on tested devices are
+> instead used. The driver or the devicetree should be should be
+> extended in the future to take versions into account.
+>
+> The pinctrl name follows the convention proposed in
+> Link: https://lore.kernel.org/all/20250524-b4-max77759-mfd-dts-v2-2-b479542eb97d@linaro.org/
+>
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> ---
 
-Signed-off-by: Stefan Binding <sbinding@opensource.cirrus.com>
----
- sound/soc/codecs/cs35l41.c | 77 ++++++++++++++++++++++----------------
- 1 file changed, 44 insertions(+), 33 deletions(-)
+This needs rebasing now to apply. With Andre's feedback addressed
 
-diff --git a/sound/soc/codecs/cs35l41.c b/sound/soc/codecs/cs35l41.c
-index 224d65987a8d..d7e3d89de652 100644
---- a/sound/soc/codecs/cs35l41.c
-+++ b/sound/soc/codecs/cs35l41.c
-@@ -7,6 +7,7 @@
- // Author: David Rhodes <david.rhodes@cirrus.com>
- 
- #include <linux/acpi.h>
-+#include <acpi/acpi_bus.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/init.h>
-@@ -1147,45 +1148,55 @@ static int cs35l41_dsp_init(struct cs35l41_private *cs35l41)
- 	return ret;
- }
- 
--#ifdef CONFIG_ACPI
--static int cs35l41_acpi_get_name(struct cs35l41_private *cs35l41)
-+static int cs35l41_get_system_name(struct cs35l41_private *cs35l41)
- {
- 	struct acpi_device *adev = ACPI_COMPANION(cs35l41->dev);
--	acpi_handle handle = acpi_device_handle(adev);
--	const char *hid;
--	const char *sub;
--
--	/* If there is no acpi_device, there is no ACPI for this system, return 0 */
--	if (!adev)
--		return 0;
-+	const char *sub = NULL;
-+	const char *tmp;
-+	int ret = 0;
- 
--	sub = acpi_get_subsystem_id(handle);
--	if (IS_ERR(sub)) {
--		/* If no _SUB, fallback to _HID, otherwise fail */
--		if (PTR_ERR(sub) == -ENODATA) {
--			hid = acpi_device_hid(adev);
--			/* If dummy hid, return 0 and fallback to legacy firmware path */
--			if (!strcmp(hid, "device"))
--				return 0;
--			sub = kstrdup(hid, GFP_KERNEL);
--			if (!sub)
--				sub = ERR_PTR(-ENOMEM);
--
--		} else
--			return PTR_ERR(sub);
-+	/* If there is no acpi_device, there is no ACPI for this system, skip checking ACPI */
-+	if (adev) {
-+		acpi_handle handle = acpi_device_handle(adev);
-+
-+		sub = acpi_get_subsystem_id(handle);
-+		ret = PTR_ERR(sub);
-+		if (ret) {
-+			sub = NULL;
-+			/* If no _SUB, fallback to _HID, otherwise fail */
-+			if (ret == -ENODATA) {
-+				tmp = acpi_device_hid(adev);
-+				/* If dummy hid, return 0 and fallback to legacy firmware path */
-+				if (!strcmp(tmp, "device")) {
-+					ret = 0;
-+					goto err;
-+				}
-+				sub = kstrdup(tmp, GFP_KERNEL);
-+				if (!sub) {
-+					ret = -ENOMEM;
-+					goto err;
-+				}
-+			}
-+		}
-+	} else {
-+		if (!device_property_read_string(cs35l41->dev, "cirrus,subsystem-id", &tmp)) {
-+			sub = kstrdup(tmp, GFP_KERNEL);
-+			if (!sub) {
-+				ret = -ENOMEM;
-+				goto err;
-+			}
-+		}
- 	}
- 
--	cs35l41->dsp.system_name = sub;
--	dev_dbg(cs35l41->dev, "Subsystem ID: %s\n", cs35l41->dsp.system_name);
-+err:
-+	if (sub) {
-+		cs35l41->dsp.system_name = sub;
-+		dev_info(cs35l41->dev, "Subsystem ID: %s\n", cs35l41->dsp.system_name);
-+	} else
-+		dev_warn(cs35l41->dev, "Subsystem ID not found\n");
- 
--	return 0;
--}
--#else
--static int cs35l41_acpi_get_name(struct cs35l41_private *cs35l41)
--{
--	return 0;
-+	return ret;
- }
--#endif /* CONFIG_ACPI */
- 
- int cs35l41_probe(struct cs35l41_private *cs35l41, const struct cs35l41_hw_cfg *hw_cfg)
- {
-@@ -1317,7 +1328,7 @@ int cs35l41_probe(struct cs35l41_private *cs35l41, const struct cs35l41_hw_cfg *
- 		goto err;
- 	}
- 
--	ret = cs35l41_acpi_get_name(cs35l41);
-+	ret = cs35l41_get_system_name(cs35l41);
- 	if (ret < 0)
- 		goto err;
- 
--- 
-2.43.0
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
+
+
+
+>  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 10 ++++++++
+>  .../boot/dts/exynos/google/gs101-pixel-common.dtsi | 30 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/exynos/google/gs101-raven.dts  | 11 ++++++++
+>  3 files changed, 51 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> index 8df42bedbc036b5e97f6238d64820370043ffef2..18d147f6ea4a1a76c375996557349c866b9dad72 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> @@ -13,6 +13,12 @@
+>  / {
+>         model = "Oriole";
+>         compatible = "google,gs101-oriole", "google,gs101";
+> +
+> +       battery: battery {
+> +               compatible = "simple-battery";
+> +               charge-full-design-microamp-hours = <4524000>;
+> +               charge-term-current-microamp = <45000>;
+> +       };
+>  };
+>
+>  &cont_splash_mem {
+> @@ -27,3 +33,7 @@ &framebuffer0 {
+>         format = "a8r8g8b8";
+>         status = "okay";
+>  };
+> +
+> +&fuel_gauge {
+> +       monitored-battery = <&battery>;
+> +};
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+> index d6ddcc13f7b20c6dfbe92e86abafe965870d0c78..3362ad89ef6bacb7349259cf9e14452193ff7361 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+> @@ -10,6 +10,7 @@
+>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/usb/pd.h>
+>  #include "gs101-pinctrl.h"
+>  #include "gs101.dtsi"
+> @@ -99,6 +100,16 @@ &hsi2c_8 {
+>         eeprom: eeprom@50 {
+>                 compatible = "atmel,24c08";
+>                 reg = <0x50>;
+> +
+> +               nvmem-layout {
+> +                       compatible = "fixed-layout";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +
+> +                       fg_state: fgstate@42 {
+> +                               reg = <0x42 0x17>;
+> +                       };
+> +               };
+>         };
+>  };
+>
+> @@ -188,6 +199,18 @@ usbc0_role_sw: endpoint {
+>                         };
+>                 };
+>         };
+> +
+> +       fuel_gauge: fuel-gauge@36 {
+> +               compatible = "maxim,max77759-fg";
+> +               reg = <0x36>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&if_pmic_fg_int>;
+> +               interrupt-parent = <&gpa9>;
+> +               interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +               shunt-resistor-micro-ohms = <5000>;
+> +               nvmem-cell-names = "fg_state";
+> +               nvmem-cells = <&fg_state>;
+> +       };
+>  };
+>
+>  &pinctrl_far_alive {
+> @@ -214,6 +237,13 @@ typec_int: typec-int-pins {
+>  };
+>
+>  &pinctrl_gpio_alive {
+> +       if_pmic_fg_int: if-pmic-fg-int-pins {
+> +               samsung,pins = "gpa9-3";
+> +               samsung,pin-function = <GS101_PIN_FUNC_EINT>;
+> +               samsung,pin-pud = <GS101_PIN_PULL_UP>;
+> +               samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
+> +       };
+> +
+>         key_power: key-power-pins {
+>                 samsung,pins = "gpa10-1";
+>                 samsung,pin-function = <GS101_PIN_FUNC_EINT>;
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
+> index 1e7e6b34b8649bc700a745c579a0268f0f6a9524..f91800879ea94b8fb0008c5e1f828072cabc1ac7 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
+> @@ -13,6 +13,13 @@
+>  / {
+>         model = "Raven";
+>         compatible = "google,gs101-raven", "google,gs101";
+> +
+> +       battery: battery {
+> +               compatible = "simple-battery";
+> +
+> +               charge-full-design-microamp-hours = <4904000>;
+> +               charge-term-current-microamp = <49000>;
+> +       };
+>  };
+>
+>  &cont_splash_mem {
+> @@ -27,3 +34,7 @@ &framebuffer0 {
+>         format = "a8r8g8b8";
+>         status = "okay";
+>  };
+> +
+> +&fuel_gauge {
+> +       monitored-battery = <&battery>;
+> +};
+>
+> --
+> 2.50.1
+>
+>
 
