@@ -1,144 +1,163 @@
-Return-Path: <devicetree+bounces-216469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA8BB54DC7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:31:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAB0B54DE8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:35:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3776F1D63645
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0459BAC0F48
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6B4130EF64;
-	Fri, 12 Sep 2025 12:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11981303CAF;
+	Fri, 12 Sep 2025 12:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="UuT9PLWb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="isoXHVb9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA8E305973
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5441330146B
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:28:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757679903; cv=none; b=KNfwgDitgc0tXJsWzwj8IA48epS5ogCprUfdgKWqUkMbSs2mLJdicaZ8oIzKU3uDBHOjD5HAbssQz7z1SKhENtlREMlgjYaxS4M6ogCOBN+twqS7Cf1+ODLY5qLJczT+pakYR0ht/Nfa6ULl8xRR/NtERZmaj7greysH8iqI7tk=
+	t=1757680086; cv=none; b=K8zBPfXHqN1ii4c7EAgdkMLpAVTxk30giH+z9EuL6qFFirfVsPupNVO0JhRSDLBihF+v4IMz6rjMfCvQbU2U5vUUNNxTCaExewJupKzr7Ngnx5vv7IZmViS2wh+9cJvCYGeb9yiY+eaQxUynjuM/FgiNagti0jfISH6kg2djgLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757679903; c=relaxed/simple;
-	bh=rlU12FG+4sUq0XnXmaxg6zY2V7ONJn4T+IfJgTnkVPc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=D/f4yF3vpTv1egT7JRt623r0y+0Qj2ePPgllWa2YBBuAFefiRKphGy/BOfFu2w9TtEtYf5zZ4hbFtL0MyLcNZ+GNUPdBvVtjmFsYOxqyYk7bPxYenjpRcdTbqX3V9saZulrJSGHdIfdFJh8RA2PYbTJ6lra428cv2J0GPTOHzkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=UuT9PLWb; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45dd505a1dfso15485465e9.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:25:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1757679900; x=1758284700; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=md5nkDmRRh2gMN/cfSkiCbamlknh5oiGopcdy0QJF8Y=;
-        b=UuT9PLWb2lfWbAIh0WkT7qwgzoW0KT8KC3XMLU9NE5FRaozLRPm4CS8L6q7a35uSL9
-         49+DAdxtYhNJIrCiw6sz3BYnCMkDSu0MIquWtcQAyeAOnLMJF+LNcb0dvIgsKZpYhXs9
-         5oq1c5B8AZL9zrdbYBR21Q/Bn9wbOSsKvzA1WbREOC5qmtIDZ3eHZslt/6rKxr9Htf4i
-         g7JJrb3SosqooP9y2AuPB+hZdsII1wlGE7kHcYf25imF9A1TmriSUzDLPyC6GDLCKGu6
-         8jQbaSkmnJCymmITs7rPIi9serU0ipAcFhuoSMuSm2EKES7uZKHNzpd2e+Y8WVA77jtZ
-         hAJA==
+	s=arc-20240116; t=1757680086; c=relaxed/simple;
+	bh=iJsSVwqOcKJ+jvcqQulAE5UoFoAGbSHsV9vI7EwrTJU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JUxQGYmm7X9/x8iQ+a0NNGVQzqIFiTJm31ICelncwtupymIV+FG+acHX7lo+yVoa2pDdWDwrbSF0o7Eo/ImZgyeNmlorTyl1MouZ9lEOSxhYlN2L1Mv+4gYcSWXKdqcDfs6TeihOXyxqQhb+NfDwFXKwN6ovTPKXJtQ/160B9Eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=isoXHVb9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fGC4019748
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:28:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hFUuM/6CWr6E6Ua8sjPcJgSq1lagiIOIVJ2nUPnOckM=; b=isoXHVb9i2tKsBRJ
+	TQm4lxsHWuFDL7n3ICfQNr262hzzQiEbEnirW7xfG/7AoV8ef1UK6Oc8txWnMXkA
+	uxSc1ukeqFtUkLzScgVskQLkNub7tfNBboRwknb7MMknY+C1DYWtSTbt0mEKpO/Z
+	PApWevCNI/ZjOkWlZL5uoMwBfZOKfYiXZNEWLsEPPeQf/9sKmO7E9cZr0ulIzkqC
+	XQoQwgJPqog8flCd5Bhxp0fZwSS2vxDQs9v9x/lo2QEEa46wKaxYKXGXXfYfLna4
+	UC+J23gHmjvSNYciHYAvf4nvezoEx3vG9Z2g2XJVajs19Z2ktEeWUwgdZDQ1C+Tw
+	uJbHGw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491t3881kc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:28:04 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b33e296278so512651cf.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:28:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757679900; x=1758284700;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=md5nkDmRRh2gMN/cfSkiCbamlknh5oiGopcdy0QJF8Y=;
-        b=qPMCXGrDdO7r1piZJhq4VGDNe+aGpW4CcrHOHrkbZigtFkt/MOHejBQ3GeHWiLn4MN
-         Cm1PSeHENfY2LzzRdUfsx7IOcs/ok6z2Qbfyp8vBVjFgklLROdZ4EgLvrV2p99m+VPUl
-         EJRoN+RDkZXnpwe50G/VzaNAyUJdeOlMCgtmTDU00WLJN9ReFO+x8txIUlhJyAMmonIR
-         iVKK1sGEnZO1e/o1VleyR6sfx6chwZk1G02x8gbHpCkxwCDk1qnX1rD2QMuL9cvnKQtM
-         gNjHchQ6twxzGgITBwhlv8qCCpkQbD5IIPQ0ABvO/N/MJDmBtliGGv4tDgB8YwyfR1Wq
-         7zfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHV7/IXa+m8Bg4pHZ6ide6vJ5Ixmtg58cOCMcGi+JB7/RAGP5YbbbpUy/Xl9lYVDdhqupYiEAfcp+N@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU2JylzRJWHc+CYo+NaSnD1TPnVJUg7bpi5bI5s6d1o+qdQfTx
-	zSaOob8hRY/1HsFcEQPdhFYpgNvRn04VxZB6KvOMif3tQ140KGXDlsj/dCKTXrvzd5A=
-X-Gm-Gg: ASbGnctbJKQONrHwFT4IKe5XEIsL61wBdnvJnzeZyKxL0Cut6OnQJq/W1pVYMrRuPte
-	Sf7JKceWis6oC5YWnlU1+vhGAAF9yBqpcRf6mO+wWo+kqCAjpt/+qa31hcWv7MsUOYc8nrWT8Hu
-	zd6gcoM+QV3CSKs6fSdULZVG2cWleWTyJc4JzzGZ+uEOhUVO4TrsS62R2AgCYe/5DS1IwMoFPtO
-	V6wga36kCX9FlOejbpS3T2s9MFkH5/Q5gO9abTNd6Fj5tsgFq+o5ImCl8lwGYs4kb7rHAS50sUb
-	Q2uoUiJmVmv+ifrDGnSqd3H1amiSzuJIwcyxyncEpbdE/gu2UhZ1wQOHj2HCypWHKgeyT4BiNbL
-	tXmENR05+1PRN60jZCph2aRJ6dVAC5Zj/lbXm+59abp7rwZLRwCd0
-X-Google-Smtp-Source: AGHT+IFeFgkWbvNLPP6zQb3x+mqbY/nkKchmA7T4My9baxdYYpQETFEEocYlizuFZpzNAgPRzsrfUw==
-X-Received: by 2002:a05:6000:240b:b0:3e7:6457:ca85 with SMTP id ffacd0b85a97d-3e765781280mr3017656f8f.5.1757679899686;
-        Fri, 12 Sep 2025 05:24:59 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.153])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607770c2sm6320091f8f.8.2025.09.12.05.24.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 05:24:59 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	p.zabel@pengutronix.de
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v4 6/6] arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-Date: Fri, 12 Sep 2025 15:24:44 +0300
-Message-ID: <20250912122444.3870284-7-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1757680083; x=1758284883;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hFUuM/6CWr6E6Ua8sjPcJgSq1lagiIOIVJ2nUPnOckM=;
+        b=KcmSaEUHeTiv+LdWf5GPtoAyjZ4d0HFlFsEezvvE31UeNN7q0fVrbnej2SjbK8r+mw
+         xfwDKhXgvLkMl7fl6bGIvDmThUYo3TxKaeGncGjzh2nW2GChhH2aWKH0mKH6bnkhKUVm
+         d89kQnXawPOJTFlJfMSfse7Ip0rtoDDoHto/iaZNaF9TkqjvPNo9sAKhlcxOakFikSOn
+         V04bkWmWIXUlJL9rIZGQaP2nouLNsrREOpLHzd7c8QfeqN3bFMo8HK53QX8dNGFfEaDn
+         IMza5QEUopvRtgrsgULWEb6ZWrLcy+6PQzAORil4wA+T+HHsb+EPdQ2CSCwJeUaKe+GL
+         kEYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhNvEqT3gDAi4VOuebiNl7zhei9KosVnMPizGjU6lIlCrEghM6u/9XBbBo9qbbFEpo2v5uq5tkkVWO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUKgZvVL04uwyM3muzxSr/xxcjuxWbsNnwVIhasweZZm9lhePK
+	Fdm3UgnlbLtgB45fzatAQ4pUB0Zch/7AEOI/XpMmHoPKGAOVHVSt/1AeVrRWzYap4BNoYRBJXLn
+	QmHj7rf6ArppNelzYHvZzqQqXxHCsgqTksoqvCYJHKf/beLXJ/MgDhsncHp9dNsec
+X-Gm-Gg: ASbGncsdXxZzrwKs7cvGiMxckLdy3lVwXMRqsgiZ8yJtK0aFKRL4O9vLvacIV8blkF0
+	mu38AdcNqjfHJ11MVEDG8KG4OX5xDRCl4L8woAhn8X/rRsQNikuaIFLQU4fw8WW6uApAByJlfM4
+	hxZQtBzLsyycie7SVmFudYApBtgzkBr6y3+2QFLKXhRQBeBAojrUy6eOlIsT7IKBJhg0YO9K0cZ
+	6oqA1S4bw+soYOI4xCMU8G9AsM8TGbd0Ijy7t+A8zLjQN389gTS8Kjoz9rHqhlvVb99k9u+8JTQ
+	uVwjKPVs2ah9f3Mm+R9R12zh59otHGXEuL8m3kD+nxG3OyqYAdMT1R5ZOOpjt3qtCBNrAbIoLzo
+	3aM7QolfP+JOCvGGzxL/X6A==
+X-Received: by 2002:a05:622a:1984:b0:4b5:dfdc:1f0c with SMTP id d75a77b69052e-4b77d06ecbemr20553651cf.12.1757680083096;
+        Fri, 12 Sep 2025 05:28:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8QzuRduFlaCIEb8iFypsFpoHRpXBscWN+xA6q9Sfc+5OImw0a6uM7bXGrxC/zLDbpdQwBZg==
+X-Received: by 2002:a05:622a:1984:b0:4b5:dfdc:1f0c with SMTP id d75a77b69052e-4b77d06ecbemr20553301cf.12.1757680082556;
+        Fri, 12 Sep 2025 05:28:02 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b32dd6f3sm359239166b.67.2025.09.12.05.28.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Sep 2025 05:28:01 -0700 (PDT)
+Message-ID: <cb2a5c93-0643-4c6b-a97f-b947c9aad32c@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 14:27:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 07/14] arm64: dts: qcom: lemans-evk: Enable PCIe
+ support
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+References: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com>
+ <20250908-lemans-evk-bu-v4-7-5c319c696a7d@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250908-lemans-evk-bu-v4-7-5c319c696a7d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 20YUBoG9oOL88E6Yqu0Z3ra2aUB11GbI
+X-Proofpoint-GUID: 20YUBoG9oOL88E6Yqu0Z3ra2aUB11GbI
+X-Authority-Analysis: v=2.4 cv=NdLm13D4 c=1 sm=1 tr=0 ts=68c411d4 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=nUKbQzcQiuh6IjOItDgA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA2NiBTYWx0ZWRfX99ggWVdsBP7Z
+ g8U3k56hA/l0H1qAw+VeJnArbOKHG/IAh14sYn4ZHOEcgAe4WVVaGvi3SpLMwftMr9f9G/9Ocal
+ oHpRWpS/iLfPO4y83kSlPF0Y142vjwnfoSGfjH8kYe6R6BEI32lFvqDqh1dyrAWz8ZK7w5Sq5QH
+ Ye7G9W+0GnL6/BQWb+A2q9O5inczvG0hnyWJDuGzAjvpLq7llC19FyRPlumasCwTvalP/djZlM0
+ VbG6lEuXLGqd2aym9kGehF4+1rBY9YzNoNe2KJOniOgPIXmWA5o7GdlgFMDzOR/3Uybu5Q2vGpU
+ KUgd8lAdyei8kYIAdInOL+v5q2fIt3YfFr6+dS+NXP56AFO7+35v44pGYJodtsgEljzcRZ+DBr2
+ 4CbtHhYc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080066
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 9/8/25 10:19 AM, Wasim Nazir wrote:
+> From: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> 
+> Enable PCIe0 and PCIe1 along with the respective phy-nodes.
+> 
+> PCIe0 is routed to an m.2 E key connector on the mainboard for wifi
+> attaches while PCIe1 routes to a standard PCIe x4 expansion slot.
+> 
+> Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> ---
 
-Enable PCIe for the Renesas RZ/G3S SoC.
+[...]
 
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+> +		perst-pins {
+> +			pins = "gpio2";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
 
-Changes in v4:
-- made it builtin
+Pulling down an active-low pin is a bad idea
 
-Changes in v3:
-- collected tags
-
-Changes in v2:
-- none
-
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5dcf36e99cd2..ca731843a9ba 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -230,6 +230,7 @@ CONFIG_PCIE_MEDIATEK_GEN3=m
- CONFIG_PCI_TEGRA=y
- CONFIG_PCIE_RCAR_HOST=y
- CONFIG_PCIE_RCAR_EP=y
-+CONFIG_PCIE_RENESAS_RZG3S_HOST=y
- CONFIG_PCIE_ROCKCHIP_HOST=m
- CONFIG_PCI_XGENE=y
- CONFIG_PCI_IMX6_HOST=y
--- 
-2.43.0
-
+Konrad
 
