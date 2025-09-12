@@ -1,208 +1,161 @@
-Return-Path: <devicetree+bounces-216361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA41B5481F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:42:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D6EB54834
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB9A11883184
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:42:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A834B16D173
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B889D280308;
-	Fri, 12 Sep 2025 09:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD57281358;
+	Fri, 12 Sep 2025 09:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="frl1N9yB"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="KVsCRTZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out-172.mta1.migadu.com (out-172.mta1.migadu.com [95.215.58.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225CF27E1B1
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA2A28E3F
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757670118; cv=none; b=TfbE0hgP+u/GbmOpkACexBtag4IQCNw7BuO7TBAqssTkQnIJDSU3XTowH3VS6WLCaavKS7dIjLyWh6xHsom7AqbI0KzL6V3UjVXIqsoI6LR6mKpTsYe+WYpJIKB8pnA4NhiZtImCYEk4JxoKcsFpKRxgJkSdYXCMys98+Fzquyk=
+	t=1757670391; cv=none; b=XwQzehq6im0cO8edzViJoyVhxiwKt8VupDnVYHJ89d7aGvdO7Wa/HvdJAF320wRoh+DnCw+7UeugS/pBSNrhFqABBT2nBZAbC1EpBISncSNQx+5XcJi/qbWSMAXrwsPzDMBj7bcbB7VUeCxq2zC20l5EJ6GKrGbRihJKs8mMCI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757670118; c=relaxed/simple;
-	bh=aHZH4YS5dVoOj6kl4jXgDRDoWhg+l0J0dv5TXRxoBzo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YPBq+9387PsAGyeni6kJYzIh/Djsmd14CB2Li6EKhPWEJuG+OGACAsrMtC+955Ee0xzd+tf2vPylYcsBxmTYPq2HVcEzjWaXOg7HYzmeBKp1UUIbeY72aSCoUXDqG6LMUypzZROCivgdaYsjJwvl4TGIBqqIAggX/n5ecp2q8+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=frl1N9yB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fPsg012864
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ubdZE+2MGy4tFDpQKrzviatnp7P+PiPFBJ3kNogasGs=; b=frl1N9yBvDBrBz+g
-	vYpk/y637iCILK5KDEzRuFB1WIT4wlp3iA7Ak3xcVXtckYYSF94Zme5MDaBuQXn2
-	91njJBp2xEcqFGcBQUSHSCBnCBuYDkDiHbsoiQ8yGQmexU7bb7Ntfmp0WyCqOTE2
-	uGBhM20XnimXZfWw4fPpeDIuzI/fN9Fzes9TkxsPQT4QCeCepqUAKEdHfQ9GoQe4
-	yyubFKuDfYboEzIEUsyPMdiDwshIPMZ43ycg4ycI1BYoYRnv3T+sAr8dN6p5Ydok
-	7pBYoiTgxjeMZhxFiYq4EkyTupvgEh5gDNuWZbvNu3+AaZD0zNVjIQzDOtn6lQYg
-	w+PA8g==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490dqgat6b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-80d884c99e2so37306785a.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:41:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757670115; x=1758274915;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ubdZE+2MGy4tFDpQKrzviatnp7P+PiPFBJ3kNogasGs=;
-        b=fSVcZrLBTORv4V7EEXp1pgaYKhA/7UXivRwXaQvBOTKjqhzZFMDxmgk/wd5d+G05EZ
-         2nf75k+j9y1mdExGVzuHwFtg9qAsroD7ggDyixqM2UqhbhqF6e6eeNB3ajXbGM8HtvOL
-         /a692PR1/IdlIoiXIgpWfS8pzszUbG81yQ8LC9cV2Ia5x3EEznJPvQKKHhXfKAoIQ6p/
-         cxQ2HJSQvKhAFMUDQWn3yoDkEYeZMbhwjXQFgEYtWuPT2ivGdlUN6KxW8fLkZIIBbCp9
-         3/udET+V34qIS0NrybF6viMOKsQ0Gv1UH9v1BQ+ANLg39HwZWxM2238ioQtelgSckph7
-         z3yA==
-X-Forwarded-Encrypted: i=1; AJvYcCUfmR2pvIfdwXjCLTr/xnSABTP1I5rWzXeh6R2VT0GhpjmKBPSeGlPiUtFRE0XluaplBR7oVmzNedVs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvQJLWgF8waQP9AOj++fjI51RFHs3e384fVo610r5oSbJaFM4Q
-	BKJeL8zMDwTso1DvP05lGPABeO5fP/OKubWXTrP8C2k3LKsqgboL2CIu89hWipsl0CfkZLzWvi/
-	9XcpG4Lz+Vt6pevtoa0BUSgvZdWvHjHNNA1nNwywSju6Tl1j0am+wlQ8RFC1nAGR9
-X-Gm-Gg: ASbGnctwncpDidL9JC5yZBcfcPVCIoFzueTI4Fpjdb3wuNga6iBUvgK5MgY7KChthOI
-	akiq/YW+aSvXxRCiA75u74PC2y+qUhYkXnrzd/vFv1Q1LG0JHtVqDgLv/dJt3L0gvc93QxFB0Ry
-	TE0gXTyDm8mjMtg61q+gcOi3aSkCzduPEBOX7XrnRJ5Z/VcGMCl+PjX+6wqNCxXMh3hz1OKDKFA
-	BhGZDVK1wWqgttNHHnag3aRAJ2WnaBUayC5j1yGbW2wQYcYKqdZpV0wgGLBFmqr3Q3y3dpRvtFz
-	TSmLG8Zta8W5Iq1ZpVfkL+nYEIvfUyELtgrCMUEHaY8GA79hqefawUD1enWDqTMvEXdoKwhtuLQ
-	8svJpnrynpWUqGapCfMX3vw==
-X-Received: by 2002:a05:6214:f05:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-767c1c8fd01mr17754236d6.3.1757670114661;
-        Fri, 12 Sep 2025 02:41:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEW19WjSadyXUxnUE5X6AqSmTHftlhz5SicnK4cbK2PU6jUKPiXVwSAYDJJeeQH+UMau1p6vw==
-X-Received: by 2002:a05:6214:f05:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-767c1c8fd01mr17753866d6.3.1757670114134;
-        Fri, 12 Sep 2025 02:41:54 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62eed9aec1asm131613a12.3.2025.09.12.02.41.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 02:41:53 -0700 (PDT)
-Message-ID: <0f9d55a4-83a1-48f6-aa19-e3117192bebb@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 11:41:49 +0200
+	s=arc-20240116; t=1757670391; c=relaxed/simple;
+	bh=18QaPivvpbs2RaLR7+Z/JhsNBMB5R07jQG+uioWLDOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NtbSE28FIr2ct5aRb00NzQF1cpm7ox8yUwJvWUP4lG0m3thitMlJOGk2zO5gG5hs6P9SgXDxJHXnkeeha4RcXCwopqP6uFj4OK8r/aLzeHkc4RmU8xWJS1vBYjJp7/SEDxZyXJBTE0SbJ9k1rfSlqirrbPYYbolkN9KXUIl3l3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=KVsCRTZr; arc=none smtp.client-ip=95.215.58.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Fri, 12 Sep 2025 15:15:53 +0530
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1757670386;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CPvY+gIRUaJ+o9UNC3uUVIC0hJMldSHBR8LX4cHih0E=;
+	b=KVsCRTZrlnSyPsyGQMO779a1MA4KGRhnD+OvLd1VbduWW0NDixm3xmmkySBbpxNp8mZs5Q
+	ljsottBjGTW0VLIGwpP4F0eUGjlhf2ERKbHoIa2RRUpKBYaQpt9V+8vrUrKbAVCepB57zv
+	5SiBxKJ2nFev/feDOWKSByp8TXrb4Fw=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Jai Luthra <jai.luthra@linux.dev>
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+Cc: laurent.pinchart@ideasonboard.com, mripard@kernel.org, 
+	y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, 
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, 
+	conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, 
+	tomi.valkeinen@ideasonboard.com, jai.luthra@ideasonboard.com, changhuang.liang@starfivetech.com, 
+	jack.zhu@starfivetech.com, sjoerd@collabora.com, hverkuil+cisco@kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 00/16] media: cadence,ti: CSI2RX Multistream Support
+Message-ID: <u6mfrp4ybddvuwgwtjefzp4mjzcdu46er7sdtznqmgtm445b3i@rowfoegkl7h4>
+X-PGP-Key: http://jailuthra.in/files/public-key.asc
+References: <20250911102832.1583440-1-r-donadkar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/10] dt-bindings: clock: Add required
- "interconnect-cells" property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Luo Jie <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
- <20250909-qcom_ipq5424_nsscc-v5-2-332c49a8512b@quicinc.com>
- <20250912-nocturnal-horse-of-acumen-5b2cbd@kuoka>
- <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
- <2951b362-c3c1-4608-8534-4d25b089f927@oss.qualcomm.com>
- <52714c33-5bd7-4ca5-bf1d-c89318c77746@linaro.org>
- <d293a11b-155d-45d3-bafc-00c2f90e8c43@oss.qualcomm.com>
- <1cd6a0f9-2955-4189-8d1e-85fa8ad8dddd@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <1cd6a0f9-2955-4189-8d1e-85fa8ad8dddd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: P7HjoCos8PwMz6-CVr3EJR3OioI4qtf_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzNSBTYWx0ZWRfX7zGFYXGO6qgv
- ri53iqXJr3KCtxgHmzsNaVxo3TQRSeXu6jnEvka0fxB30CFDLE1V5upku3s/7dxUuoMzU24yn+u
- 1kwfN7zBpVae6E/OxivU8k5r8S8fP8VrrGHflZmKPZL6cKrHsAbsf8/BCFOLo+vgjvckBkPrG9C
- x0tfMikNIf7uZlnXzotp2KFJj5ZHFlmaPNYpkUPnV6amd5OrB2+OcAk+EbTaFenyweZ83L11dAZ
- XLAhBurSePGKlvHg/XOeO8nCT/syBcfOIyYp7mMiLbAOVx+RY4KOlAOpnLWwi1OFIeas8ut+Kg4
- wg3lGtN5uAy9+14N0vgy8ReuBjyhZKiV5sD1Xz2Bhh8sHL6/qF8kuSS9ewM4Y43KKw+xE5UP/ZH
- VHLmlPkd
-X-Proofpoint-GUID: P7HjoCos8PwMz6-CVr3EJR3OioI4qtf_
-X-Authority-Analysis: v=2.4 cv=N8UpF39B c=1 sm=1 tr=0 ts=68c3eae4 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=r2WM0BnHFFIPBb0dDCkA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 malwarescore=0 clxscore=1015 bulkscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060035
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ew6pgjt7iz3rcyuq"
+Content-Disposition: inline
+In-Reply-To: <20250911102832.1583440-1-r-donadkar@ti.com>
+X-Migadu-Flow: FLOW_OUT
 
-On 9/12/25 11:27 AM, Krzysztof Kozlowski wrote:
-> On 12/09/2025 11:21, Konrad Dybcio wrote:
->> On 9/12/25 11:17 AM, Krzysztof Kozlowski wrote:
->>> On 12/09/2025 11:13, Konrad Dybcio wrote:
->>>> On 9/12/25 11:13 AM, Konrad Dybcio wrote:
->>>>> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
->>>>>> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
->>>>>>> The Networking Subsystem (NSS) clock controller acts as both a clock
->>>>>>> provider and an interconnect provider. The #interconnect-cells property
->>>>>>> is mandatory in the Device Tree Source (DTS) to ensure that client
->>>>>>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
->>>>>>> the NSS ICC provider.
->>>>>>>
->>>>>>> Although this property is already present in the NSS CC node of the DTS
->>>>>>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
->>>>>>> omitted from the list of required properties in the bindings documentation.
->>>>>>> Adding this as a required property is not expected to break the ABI for
->>>>>>> currently supported SoC.
->>>>>>>
->>>>>>> Marking #interconnect-cells as required to comply with Device Tree (DT)
->>>>>>> binding requirements for interconnect providers.
->>>>>>
->>>>>> DT bindings do not require interconnect-cells, so that's not a correct
->>>>>> reason. Drop them from required properties.
->>>>>
->>>>> "Mark #interconnect-cells as required to allow consuming the provided
->>>>> interconnect endpoints"?
->>>>
->>>> "which are in turn necessary for the SoC to function"
->>>
->>> If this never worked and code was buggy, never booted, was sent
->>> incomplete and in junk state, then sure. Say like that. :)
->>>
->>> But I have a feeling code was working okayish...
->>
->> If Linux is unaware of resources, it can't turn them off/on, so it was
->> only working courtesy of the previous boot stages messing with them.
-> 
-> 
-> Which is fine and present in all other cases/drivers/devices. Entire
-> Linux in many places relies on bootloader and that is not a "work by
-> coincidence".
-> 
-> Another thing is if you keep backwards compatibility in the driver but
-> want to enforce DTS to care about these resources, but that is not
-> explained here, I think.
 
-I don't feel like arguing axiology today ;) But I see your point and I
-won't object to either outcome, so long as the property is *allowed*
+--ew6pgjt7iz3rcyuq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 00/16] media: cadence,ti: CSI2RX Multistream Support
+MIME-Version: 1.0
 
-As a sidenote the IPQ SoCs have a rather thin layer of fw
+On Thu, 11 Sep 2025 15:58:16 +0530, Rishikesh Donadkar wrote:
+> This series adds multi-stream support and PM support for Cadence CSI2RX
+> and TI CSI2RX SHIM drivers.
+>=20
+> PM patches are picked from:
+> https://lore.kernel.org/all/20250902-ti_csi_pm-v2-0-59a3be199940@ideasonb=
+oard.com/
+>=20
+> PATCH 01 :    Remove word size alignment restriction on frame width
+> PATCH 02-07:  Support multiple DMA contexts/video nodes in TI CSI2RX
+> PATCH 08-09:  Use get_frame_desc to propagate virtual channel
+>               information across Cadence and TI CSI-RX subdevs
+> PATCH 10-11:  Use new multi-stream APIs across the drivers to support
+>               multiplexed cameras from sources like UB960 (FPDLink)
+> PATCH 12:     Optimize stream on by submitting all queued buffers to DMA
+> PATCH 13:     Change the drain architecture to support multi-stream and
+>               implement completion barriers for last drain.
+> PATCH 14-16:  Runtime PM and System PM support for CSI-RX.
+>=20
+> [...]
 
-Konrad
+Applied, thanks!
+
+[01/16] media: ti: j721e-csi2rx: Remove word size alignment on frame width
+        commit: 1c9700339fa03322b93250f4c5230cfe56699da8
+[02/16] dt-bindings: media: ti,j721e-csi2rx-shim: Support 32 dma chans
+        commit: e68618974943c3c890e74129828aeb5446c881e0
+[03/16] media: ti: j721e-csi2rx: separate out device and context
+        commit: dd777697ea891159c8945f1b10507d4505e9bfd5
+[04/16] media: ti: j721e-csi2rx: prepare SHIM code for multiple contexts
+        commit: 3774446f009438fbc16f16ffab2f66b2f16ce083
+[05/16] media: ti: j721e-csi2rx: allocate DMA channel based on context index
+        commit: 17cfe31a25598f520d8fdcb58a6f9d260a15d018
+[06/16] media: ti: j721e-csi2rx: add a subdev for the core device
+        commit: 9b52e6fc0ab094734fe5700681ad37c76a25efae
+[07/16] media: ti: j721e-csi2rx: get number of contexts from device tree
+        commit: 267acec4a9fed35a3b56644a44a3cbb7f41ee8ed
+[08/16] media: cadence: csi2rx: add get_frame_desc wrapper
+        commit: ff0230dcd5b7400f2f0bfff4b54d6edeb728d48e
+[09/16] media: ti: j721e-csi2rx: add support for processing virtual channels
+        commit: b54a9e4352a6fc404a547bc654755fdfc7f78fec
+[10/16] media: cadence: csi2rx: add multistream support
+        commit: 8137d27fe3417c163b901085b917acbeeaa768b6
+[11/16] media: ti: j721e-csi2rx: add multistream support
+        commit: ce08035f3c477445f97f8c9a9a8c91e143ed4232
+[12/16] media: ti: j721e-csi2rx: Submit all available buffers
+        commit: a511f813d4018fd3d2d552b017e8882777b22926
+[13/16] media: ti: j721e-csi2rx: Change the drain architecture for multistr=
+eam
+        commit: e420b12e79f2fb8079cc35cee2e7c80fcbfa78ec
+[14/16] media: cadence: csi2rx: Support runtime PM
+        commit: d900df7c657609c125ca92a4b70add5cf05449f6
+[15/16] media: ti: j721e-csi2rx: Support runtime suspend
+        commit: f65a312b06ff948e3a7d480fd0cd7272aac6990a
+[16/16] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
+        commit: c694e74c651e79838e817a8c6644dc72cf80540d
+
+Best regards,
+--=20
+Jai Luthra <jai.luthra@linux.dev>
+
+
+--ew6pgjt7iz3rcyuq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmjD69EACgkQQ96R+SSa
+cUXNBRAAmGdTeAzuB7vI2iaLVrfGlaYKh4pOJHUGiYMxKVvBuum8tfwV2tATW9jm
+o+E2uUW4CnXgfn61H43i1PNAt7swKLL2IDcXzhaTP1yOAOlGotf4h1HyeQMLQQF4
+UCSwWId/VA/DkcEMSnrSxnOAcuI+nSBd2fkZm1lUes3hz3LDSyB1/lr8khPkK3W2
+GIaeeebUOfbgrnmkSpZaU+5WfgxmV0+8mteg0+m6jruH+KOjfAGQ0TE60Y+se/IX
+pR9z46OJhRze3mp9zXdN0wqvEYssrxlRlvKhY2j1ejn5wAvKmdrSu5vW+hEYWwFn
+P5m+7GSQfV1wspmSn/VRLgvfY+stcWjyNbdX/Y9TaZCt8+i14w/O1VyodwWVGz6x
+H68KWWE9nOd7ia60ZJj1kY6RQUi7BAzqBhlTR9Al+xL+lc3kdKS95kytq1qOBHM2
+x68U70Nb//mn+k7FPaz9rMDHRPSe4B8XlgVuSYpabrmM6h9R8HXAg1UtKJQTACki
+Yv+0Rw9u9hlZucU2S6nv2oCSoyucvCK6QwULU3pWSbwEDd1Ip8cpCnWqB2UbLsiL
+xStNxi+w4NW19DuTDcfExX2TiPIul0F1aex+eoEBfSCIZk9dGYE8i4dA/gla1+Hv
+K4FHTbjlStEUAJRItqtZPJOvWTRQC+1WfaErITC1lUUUfOMn0OA=
+=p7RI
+-----END PGP SIGNATURE-----
+
+--ew6pgjt7iz3rcyuq--
 
