@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-216344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3DEB546A3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:16:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708E6B546BB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0B848504F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:16:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5156581BB0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCD8274B5A;
-	Fri, 12 Sep 2025 09:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9BB277CA5;
+	Fri, 12 Sep 2025 09:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cTsSaNu1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z4CtvbSQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8651F9A89
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97FE526CE2F
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:17:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757668579; cv=none; b=u1SWn3/LSDklB+Ftc4WOg91PMiqCy3WZBc22TdDx7NN9YMIeVr9x6GyiAOJgUww/LrgGbg86OeLdAsgSzefHpBIQ0vkGo5UpcaTEBpgTVzbxfmhb7tmqdz59YaOcX3BLl3C47QmskQECpROLYJH4H/xD6ILRDjC9MPdGSLN4fb0=
+	t=1757668631; cv=none; b=EKtSr1izFyDANucFO2ArDG5ZQuv1iCuAOJxf797guGGCmh73CaofrzbJXUnl18Zu5DU+eU/0YWmmIDahUuFgO+8d3V9kcMYAoDXOPlYCW64pq0kVVQG2qSCRBKq7q7w8qIHRAYiEc5DM2O/SpNduwFb6aLGngmyYK2VPLw7WajU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757668579; c=relaxed/simple;
-	bh=rbS/1vMnW+r9vE3ko/WdtF1tXfqWrp2841CIMEd3PnU=;
+	s=arc-20240116; t=1757668631; c=relaxed/simple;
+	bh=a5RCVLs88Ds9tMcha2Ryp9L18Wn0jZU/FrTcQ5n5tyQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i+M/CO0IFm7t182WC5qXF/306TPGK/qMDYhXu6cJkFzI6yrAR0e33g/WgYZ4geHs8o6+0Fk8nlEgCVY2QoIHtAkmoE5ppQIYeG/D2kFg99k5Vn93FJ0jOaqiU3Esp9wVav5yhbG/F9rkptVp4zGF3jnFDGVsIEVRHzn2GcRNk1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cTsSaNu1; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=S+2bs0gThgIv8TXqQ0gdoygCZq4sPqp8O3JSZsaCn+QH/axhhsE6oSVtGHyaLj8j4mTRR3M7u5G9B/JJuxp67FSdsGbPcugmg7Tbyzp60BhR6NLTnXz5Uw1pcTfPqoXDJuK0uG0Akno9CNG1jf1BjV3cshFe2jzOR+IGn1mSAB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z4CtvbSQ; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45de5a7a080so926925e9.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:16:17 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45dd505ae02so2235935e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:17:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757668576; x=1758273376; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1757668628; x=1758273428; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=AakhypBYQL8o+d6jwji8uy7YTM/iJpZSs4ckPqgcd2U=;
-        b=cTsSaNu1mALFJ5kaj0JR++tpxC6WvbsNC9z/zZLvIis9kB+m1v+Fs7Kg4oM3+o5+d/
-         1S3mjwyhTZ/qzMGFU51n9fRlIcD+CZL/dfcT9WWhSjRIYkNfndv7R9tuqHfEuxhhnIos
-         Qyk/utQuX15bG4y7AeCUgPS7aU5c73yKUMZ/2FdeGLUowFL0OC4qKXPv/Jd5pvgm/zaX
-         Ugv6thr8HuOgOJdX+kTksWx/qIKpdZ/FK3veQOvmuu4JKcdAtkQTaMY0mcQj5y6WmfGO
-         1YsoRZ4H0Ult7BsNu8mUoJfHhhI3nOOSjHBKESPSs1o7UpUYjkvHXINmg04wCiIJA9ps
-         TM/Q==
+        bh=Na0sRM1JzNDX0cAD9RNRTd0BRFOVeZmTu9S+7uFIpUM=;
+        b=Z4CtvbSQCYOKjzrrmJnQXwmEAbznId7qRcMsI5lfA+E3G3HhnjuiEd2xAp2PQZ/fIs
+         fxU3SCm+XYIIkyQrGTAon6ZS0afSUpkWmIcGIhvskODmj9ZjhkNgndNJPouTXw3J5pAT
+         rkYhI8tHhWFRGBD4t11BVV617BBDZ69YYCVNfH8xtkSn2jEvYzXt4Yu0aoK//Hj1YqzI
+         7OOf5/tS6Ep0eiNoJGg+YvAqsMrpCXGkleAhcyvwkC2upBqzeGurLvp6uWDv/YevfrK+
+         H7iAtHdQv76aCDVQ694jw2GEJ4Jlist7dVR6luK0yEPe30MVTpy82KTh7H+k7plYMzw5
+         R7Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757668576; x=1758273376;
+        d=1e100.net; s=20230601; t=1757668628; x=1758273428;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AakhypBYQL8o+d6jwji8uy7YTM/iJpZSs4ckPqgcd2U=;
-        b=g+1nduTLfJJ+bRsM8R4p2/3dbrXh6bjUAXnq/mg2uF4KeTQuwlbn2eA0YNlAVreS7z
-         +cktU9kl48COzz3qceDiMxkTsQ7+bLEvOeWNdOiu3vT0shfMb1lfsNCs/in8V3obRIoE
-         6nN82FmKWG0A74Xd8Wc941UOq8rrySsmZ6Zm14oApCNRRW6zqSiLIoqX1PZTwYOtiu2R
-         uXxJLoYJW+ptDilo9Q5ivVbPqcfqT4fn5t4p1OuywfkSuKALFYQjfPhfr55Z7sGgRioC
-         wOXVjBba6tB3lokdjwU9/HRZU7ajYQbvlq8wmS9AZ0cJwi9W3H1PcqiPh5UdYIRUK5l2
-         IqRg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXRlqlw/sBIumMKZoOF7jPC+SKkLZjdFmpVoxxhtokYeUORydHlMEFXQIhblzf0iS//wkMHfoxvuj6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+9bOmsotibji053GMFy4i82cTLo7Ajw/QsaYuasNT8Njgz/NC
-	+kb30KimwwcM0+hGwNuxG1ouEJpSNbg/xpuvdnzSVtGbzLIvGihNOQfXEx1Ztmo5kQs=
-X-Gm-Gg: ASbGncu5WWjDL2MwOV/egi9vjQ24Hthz60OVg05crDFbsU5k0LS597cDbJm+cl5DawU
-	8PEkniLn9GjDPyOSywPOO5aDLT1EcZPMP74ThDGAJsOXrUDEvR8DrZYuDFJhprUykkRT0kM9eHw
-	vO6LkSFkFzthAj/+tLqDEiP7FCKzOowelBsaqaNMkeNPMnonzd7i4dUkc6z8BeHvDBR6mED6UoH
-	Rt7JCiyrRih7LDmJvORBycJVvGycxjsEU0taML/Iaa5J0aPFrb0K853UfqXfpWc8RMcB2pDk7lm
-	jzuINYf5ewH13I8il8r1zdDElT7FDBPq8I/2vudnlm4JB1RNXT7YoBDLRhUe5xXoa4JJmOVtUV6
-	feWDGtf4gz1rFOdss2zVmooNCuIrFzwaVMKXwH38ShL1lBqKwY3XqPg==
-X-Google-Smtp-Source: AGHT+IF8vJt3OJv2R8HpQH2zes8jRU5cdpMi8Ohs9bCmtG+T7zKSQBaHZYMDfUi9FSV/gYpCZFu5Ww==
-X-Received: by 2002:a05:600c:1c87:b0:45d:d33b:4697 with SMTP id 5b1f17b1804b1-45f2313d499mr6962295e9.3.1757668576008;
-        Fri, 12 Sep 2025 02:16:16 -0700 (PDT)
+        bh=Na0sRM1JzNDX0cAD9RNRTd0BRFOVeZmTu9S+7uFIpUM=;
+        b=ndS0aWE8cGNtvO3a6xpx/4VQ1kxxIXA+NaU745c6aBj9RIDqrLne9dlFOze4whnQM+
+         lPcf2B//XhCHYPEgyf0sL98Ra42gxJdsvZZmb2auoHZTLARJ8EuPhOamLK6ZidJJG9QM
+         XXhmlhxW22HWmVIg5qZ7C4+7qaq+oqPUwsMk0RJGv8OKHXlkEo6zf2JA/iHiHrVq9Ns5
+         4HQATE/2NJtTV2LAE8iut8KCE9pL/vO+v8ERS3O9LKemdRUoJD7unK9xVrX/FAy3B3wD
+         mdHn3vEbmX2tiDtLX4J6Hg8HBWzNGxOGYV431dLhaxyqZaTxl7PFBtE2JQzEfDlOES/z
+         uUVA==
+X-Forwarded-Encrypted: i=1; AJvYcCXhzyxAgiRa015ChDpSd/qqLyxzMuROuWlgbqZbatLYDtK11l8ba8wQ0hnNmknlBLBQU4A8aGzeOo9P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxehIHS+rZ4GQMLvn15Hy3Z+7obEoh/oxZE/ejjsPfaB3wgmvM7
+	F9En/uzBEmom8BDJVQjGLxURTrlaO7fdN5Nvi6U5dCAR8kbMaWaAoBYLFNNPWmQyNig=
+X-Gm-Gg: ASbGnctdDe1BRsaN4fYAGYGNr0jGUReJSO9JNrWst558HOvo5R/uI97VkBca9akO+ry
+	8HfsJvLMmSnER9nuep3z7y69HyvS5YsffmGo6bPQbqWdzXHuMXxvf5sUm77Cl9UM3wwXQyLOO9v
+	Wl4CbhnAFnorRRCmuXoHdHVXbLkmIcjDIJ89RGm4/V3DflPq8IlQ/bG2vBc3CF+tFbJtcO0FTlq
+	Ne+vEg/Ab8lWkPQOtxCDlI7agbAVYuXAh7VWJBxG58aMEnmK7lgUeEpJaxiuHgX2z1eMqkkI8HQ
+	XrbESGMkdrmiGZpeYSIT6Jd+9LsWPICsyNLDWv9R6585VieGHeL5vFhx05dBbCCYS5Fz+re9pmc
+	oU222uyMSgSros+MczQF+5OPgbg9scHfVGHVNUGk51/Q=
+X-Google-Smtp-Source: AGHT+IHTCW9xZs8Bgrgtw3py8hA8Nlqz8Jk0NP4ZX+1dPY2l87YZ77GgC3GQhGAE7LZOnnpcJM3huA==
+X-Received: by 2002:a05:600c:c165:b0:45d:f7df:26e8 with SMTP id 5b1f17b1804b1-45f212095e8mr13275895e9.7.1757668627916;
+        Fri, 12 Sep 2025 02:17:07 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e037c9d91sm53878945e9.20.2025.09.12.02.16.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e017c1dd3sm32051445e9.2.2025.09.12.02.17.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 02:16:15 -0700 (PDT)
-Message-ID: <0aa8bf54-50e4-456d-9f07-a297a34b86c5@linaro.org>
-Date: Fri, 12 Sep 2025 11:16:12 +0200
+        Fri, 12 Sep 2025 02:17:06 -0700 (PDT)
+Message-ID: <52714c33-5bd7-4ca5-bf1d-c89318c77746@linaro.org>
+Date: Fri, 12 Sep 2025 11:17:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,6 +109,7 @@ References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
  <20250909-qcom_ipq5424_nsscc-v5-2-332c49a8512b@quicinc.com>
  <20250912-nocturnal-horse-of-acumen-5b2cbd@kuoka>
  <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
+ <2951b362-c3c1-4608-8534-4d25b089f927@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -155,36 +156,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
+In-Reply-To: <2951b362-c3c1-4608-8534-4d25b089f927@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/09/2025 11:13, Konrad Dybcio wrote:
-> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
->> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
->>> The Networking Subsystem (NSS) clock controller acts as both a clock
->>> provider and an interconnect provider. The #interconnect-cells property
->>> is mandatory in the Device Tree Source (DTS) to ensure that client
->>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
->>> the NSS ICC provider.
+> On 9/12/25 11:13 AM, Konrad Dybcio wrote:
+>> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
+>>> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
+>>>> The Networking Subsystem (NSS) clock controller acts as both a clock
+>>>> provider and an interconnect provider. The #interconnect-cells property
+>>>> is mandatory in the Device Tree Source (DTS) to ensure that client
+>>>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
+>>>> the NSS ICC provider.
+>>>>
+>>>> Although this property is already present in the NSS CC node of the DTS
+>>>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
+>>>> omitted from the list of required properties in the bindings documentation.
+>>>> Adding this as a required property is not expected to break the ABI for
+>>>> currently supported SoC.
+>>>>
+>>>> Marking #interconnect-cells as required to comply with Device Tree (DT)
+>>>> binding requirements for interconnect providers.
 >>>
->>> Although this property is already present in the NSS CC node of the DTS
->>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
->>> omitted from the list of required properties in the bindings documentation.
->>> Adding this as a required property is not expected to break the ABI for
->>> currently supported SoC.
->>>
->>> Marking #interconnect-cells as required to comply with Device Tree (DT)
->>> binding requirements for interconnect providers.
+>>> DT bindings do not require interconnect-cells, so that's not a correct
+>>> reason. Drop them from required properties.
 >>
->> DT bindings do not require interconnect-cells, so that's not a correct
->> reason. Drop them from required properties.
+>> "Mark #interconnect-cells as required to allow consuming the provided
+>> interconnect endpoints"?
 > 
-> "Mark #interconnect-cells as required to allow consuming the provided
-> interconnect endpoints"?
+> "which are in turn necessary for the SoC to function"
 
+If this never worked and code was buggy, never booted, was sent
+incomplete and in junk state, then sure. Say like that. :)
 
-The point is they do not have to be required.
+But I have a feeling code was working okayish...
 
 Best regards,
 Krzysztof
