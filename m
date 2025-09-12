@@ -1,150 +1,175 @@
-Return-Path: <devicetree+bounces-216653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B6EB55808
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 23:05:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49467B55810
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 23:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FFE41CC7111
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 21:06:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E87A97AC9DE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 21:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F53B334391;
-	Fri, 12 Sep 2025 21:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB592C11DD;
+	Fri, 12 Sep 2025 21:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YgG5eUwo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmNyLeKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9128334375
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 21:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF2A1946DF;
+	Fri, 12 Sep 2025 21:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757711139; cv=none; b=nldnH08kNLVYUsJQej+n4+lZjvGnkPXGhL2twbCjt2HlnCVLybbFiQCsToQYQq6zf2ig0ZDuG2AZifauU99wirxWQ2BXf15WHPInXkrmCryj3eUCG+2wKS8CAX/WQ9Sqh9KUr6H1j4AQc10xv+ktSuAktOXjcbGS24cA/OkJLhM=
+	t=1757711280; cv=none; b=UXegrbWWWvV2ZuT5eOJnrHTfH3Qw01WCLgXYPczX21ph3o5aZZWlpeOsRQ7B6W+J3JQP3AnLR4amTrXdQ7QSGxE3hu3BaNbTOIzFSOw9uIouW2+NFElsPvOKC++TPN2LqUjnOsjzxqtaddVHhm/9ZBmr3U/ladjViW2YCSNA3ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757711139; c=relaxed/simple;
-	bh=tAKgUDssB2Zg+/L2UJaRq55G33qRsupCF9DvLWF0uL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jGPZDQg7gCKbKh89lw/Z0vDOs+wKOkD2wbEHyhvxRNyyGuulUghyEz3XZbiwYTMn30danhk8Qn1fq5w+6eWZYy0jb4Y928NoeAKOsS70KbsI/UKYXiim7Djp3OcFJoSfpqjTm3IAgcyckmwTzg9TOoQ9uiSEEz9TxxZhnWx5Z7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YgG5eUwo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CHg3rc017571
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 21:05:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f6x45dTFSIMJV/gJWuKckpagRMD+esitL+Lw3qTQiUk=; b=YgG5eUwoIypKISQz
-	S3iZ8dryEFCU7L9bIY5x1iq3uIv6ymIkOmPeNnHca4X+3aVlPvagBFvQv9khD2f7
-	dbviXKSxuMoAaglxDZkFhI/6RweerfDJxanl2R8S/b4UDKBUKuFj5/wXZMVPnvAs
-	PkiaULnpAHyFMGtnxEDCIpinpiE8bEJxRgGEZjdQQp67f9hN0Vd6RCC/j5MO48lQ
-	McODbKSYYi5XBZ/PtaZyJUd8q6ESW6orIrH1a/MH5BgzwmxP4F2lB1ern6n2Egoy
-	0YsUd9GOkgh20tdc8ZZhVa/LiNH7s1gdQuMAgu11leBEqlW1QGkxA2Hk8XGP4N4l
-	0d3+Ng==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwsn069-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 21:05:36 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-770c244004bso12293776d6.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:05:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757711135; x=1758315935;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f6x45dTFSIMJV/gJWuKckpagRMD+esitL+Lw3qTQiUk=;
-        b=uPDnRid8F4j0zYVWr+ZiIKug6rASK3qsN1ruLaRErCyqSIsxY9eq8l9Um8E9lDXM50
-         h6maQvcWE/7MK6RDKpVdfIOkM1lBtqq99SB52T8xDmcIWJ47ZgXSoBoQ9INx3isKpqnz
-         ma96YViykPvIpb2ZY14HNI++7OtEv1fZR0cpQM7Y0BvjP8jIbNovQM4fAF7LsHCiqWZm
-         Cu4jB18wu7kjlR2+LjYbuOpCLH+wj6qHTSblSEMvcQKapzWeoDm/2eJDSqtHKaKTtfCQ
-         LfVGMJ/I9BoXqmjEq2W7WKrhR7YXuQDWbYAU61ySij82dlM9T5TylbowCPFNoxb76Dd4
-         hUAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdqogVffLnKJcVKLvb/fmWyCb05lVc8iqNkc5qm9J/rAA9uf5dkXmaIJsXpmDmM09ZhMh12sG95LV5@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywnew5klrFgrxmK/aGYtFJYbhd2JqdsawuPqrIIHIL0p5JAyYDO
-	yTHt5dqtdzaSH3bj6FvtCfIYXYzHOrkEV7NOyLUtL5vGp4u5PKn4Bx4e8lecnXywK27xmnuCw5X
-	L15jMjFj0eI3kNAprErBOhdqEjlTSO3idG2GeBCa3spKDKemmKyLqPj9msbJpPaGI
-X-Gm-Gg: ASbGncsUf4I8hoPcXmtkLFDr3/mFI9xuihAkF6lZ72kL/X7LSGzvgqQ+R9sBM08rZl8
-	BU/nfUUnKOZHAeG7CsL/RIH6RCHNy54+5SiedxDPrFdkuF5x2noDe4toftRBuj6vAS5R95G86+C
-	W13LR04d79+njbI+abkvZCJfdMHvOa6h8IS9oN4jTLhRINAQNDXiSVUP5WPB2Mh5hTBldQ2kF2o
-	b5PZsuEx7/QkvM2PlpF/ZZU+G9A9thBShVi+3CKevo//l/ktz4m35FqFjLjyL6gRl/fOe5VPUGA
-	hCx7Jw8fkUag4OeLYqth70sYBvgxD6thPV5e/DkggZVFRBdeQBbcYU8Ax+ANinpCUxx2s31tvCO
-	qeZxeVnyJkmQ5/rvKtZuUsItQJaq1c5nv+dwmkyYY/jilWX8T8Ru+
-X-Received: by 2002:a05:6214:5298:b0:72e:d34:573f with SMTP id 6a1803df08f44-767c215fe50mr70480756d6.39.1757711135134;
-        Fri, 12 Sep 2025 14:05:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHnPEfmxh9SvYDKqxVQYcOajqc191SHlEL2DXweV7tBIxlxuRMvWPEoACAWRiuFYSJsB6Xgsg==
-X-Received: by 2002:a05:6214:5298:b0:72e:d34:573f with SMTP id 6a1803df08f44-767c215fe50mr70479806d6.39.1757711134456;
-        Fri, 12 Sep 2025 14:05:34 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e63c63e47sm1413683e87.80.2025.09.12.14.05.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 14:05:33 -0700 (PDT)
-Date: Sat, 13 Sep 2025 00:05:31 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Eric =?utf-8?Q?Gon=C3=A7alves?= <ghatto404@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/1] arm64: dts: qcom: add initial support for Samsung
- Galaxy S22
-Message-ID: <sbushql2kigkpuqdgt5w2b5jdim5h2jk3ncestgfgyaloqswpk@gf4pakjdcp53>
-References: <20250912202603.7312-1-ghatto404@gmail.com>
- <20250912202603.7312-2-ghatto404@gmail.com>
+	s=arc-20240116; t=1757711280; c=relaxed/simple;
+	bh=NIJe9mERpIKa7P3BRwvWUGSJaqJfWGo09ZUKZCduWIM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=BWttzulikl1OjLDVN9Zf/fR+UFn+wwLbDTXjQ1HXyZfgztnYFjyGoxdOnEXVnvJ2Gz+3BR67bd2slB07nvzpWZN1GcosQXFh/yAZzcewNvdyJN5x1B8geueVlkTP5ypBLNAq4CDO3DqcLl4CsBTtcWd++lAZE5AMgtg30Qe7oz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmNyLeKm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB9AC4CEF1;
+	Fri, 12 Sep 2025 21:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757711278;
+	bh=NIJe9mERpIKa7P3BRwvWUGSJaqJfWGo09ZUKZCduWIM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=cmNyLeKmgLuSrUJDD7Q8d7ASQTWuQT1hXG+cXJe2LkS7MM3vqBnH5I5ptTocWQgYs
+	 0NDh4GkJC/Mu2UhbaD5n5/HVDCY0FqXxxQri6aWq1Z0QeQ8XHVlK67aFQEpvgYEgxP
+	 FLjcaLyuKqm1uCNIWJVbug61TfcaNhx6hOEge0uj8eierD3YbzejUd5HWUUIwSIsUf
+	 +6BCtXwdl047tguoa0jHckpR2XocPlBceBJDtnL/GMCDhHAGHoP66rZ4c4b8aeWk5/
+	 tCzXTXhfPZikHsjmsRnxDbq9GBMaC38KJwnVgbXHX9td2W3x6sD9i7ZmodDOvQ+vQ8
+	 7psgvIycDelGw==
+Date: Fri, 12 Sep 2025 16:07:56 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v8 5/5] PCI: qcom: Add support for ECAM feature
+Message-ID: <20250912210756.GA1639208@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250912202603.7312-2-ghatto404@gmail.com>
-X-Proofpoint-ORIG-GUID: yTJYEqL-qZqdfTjmCn9f30PBNkzRJ2AU
-X-Proofpoint-GUID: yTJYEqL-qZqdfTjmCn9f30PBNkzRJ2AU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX7YihzJdY+5/W
- N1pcZpGrs4Lie22tgH9K+7P34rqquajtHYIH8kB2v1fTOpBvu1nmnWLPsLySQvsZK0K+ZD2fGJ+
- YCKM0MPkLXLBGA1KY1avX4RtQx8HZAj33RpfyUOQUZPuU2j46/ytK/sTTFJRIGe2KdASkWBUfPz
- Rw5cRddMg7rfXoU4ZKh9qIO1kaPmxPxacYI6++PX4pWuiU5XTr1vkVP/KJhLDXmlm+A5Fzf4wLr
- 7EqqlCWJ5T+OHaTVtA9agQ2ZNwatPlcy/gjKpgxP/EBV5D7c0a3+sV8qUoUCz8XyP7ZqTT2FjUJ
- 3gS2oO/O5SnY7SW52QGJ6mkfI/TfTI9YzQZXEccq0kXPu/qqb+b9cnyma/6TnDulydPnUDjcYtt
- GFH9GzaN
-X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c48b20 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=fUB9F6JP8phhdykgREMA:9
- a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_08,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
+In-Reply-To: <20250903195721.GA1216663@bhelgaas>
 
-On Fri, Sep 12, 2025 at 08:25:57PM +0000, Eric Gonçalves wrote:
-> Add new device support for the Samsung Galaxy S22 (SM-S901E) phone
+On Wed, Sep 03, 2025 at 02:57:21PM -0500, Bjorn Helgaas wrote:
+> On Thu, Aug 28, 2025 at 01:04:26PM +0530, Krishna Chaitanya Chundru wrote:
+> > The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+> > gives us the offset from which ELBI starts. So override ELBI with the
+> > offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
+> > 
+> > On root bus, we have only the root port. Any access other than that
+> > should not go out of the link and should return all F's. Since the iATU
+> > is configured for the buses which starts after root bus, block the
+> > transactions starting from function 1 of the root bus to the end of
+> > the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+> > outside the link through ECAM blocker through PARF registers.
+
+> > +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
+> > +{
+> > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> > +	u64 addr, addr_end;
+> > +	u32 val;
+> > +
+> > +	/* Set the ECAM base */
+> > +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
+> > +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
+> > +
+> > +	/*
+> > +	 * The only device on root bus is the Root Port. Any access to the PCIe
+> > +	 * region will go outside the PCIe link. As part of enumeration the PCI
+> > +	 * sw can try to read to vendor ID & device ID with different device
+> > +	 * number and function number under root bus. As any access other than
+> > +	 * root bus, device 0, function 0, should not go out of the link and
+> > +	 * should return all F's. Since the iATU is configured for the buses
+> > +	 * which starts after root bus, block the transactions starting from
+> > +	 * function 1 of the root bus to the end of the root bus (i.e from
+> > +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
+> > +	 */
+> > +	addr = pci->dbi_phys_addr + SZ_4K;
+> > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
+> > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
+> > +
+> > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
+> > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
+> > +
+> > +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
 > 
-> What works:
-> - SimpleFB
-> - USB
-> 
-> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 145 ++++++++++++++++++
->  2 files changed, 146 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
-> 
+> I guess this is an implicit restriction to a single Root Port on the
+> root bus at bb:00.0, right?  So when the qcom IP eventually supports
+> multiple Root Ports or even a single Root Port at a different
+> device/function number, this would have to be updated somehow?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+The driver already supported ECAM in the existing "firmware_managed"
+path (which looks untouched by this series and doesn't do any of this
+iATU configuration).
 
+And IIUC, this series adds support for ECAM whenever the DT 'config'
+range is sufficiently aligned.  In this new ECAM support, it looks
+like we look for and pay attention to 'bus-range' in this path:
 
--- 
-With best wishes
-Dmitry
+  qcom_pcie_probe
+    dw_pcie_host_init
+      devm_pci_alloc_host_bridge
+        devm_of_pci_bridge_init
+          pci_parse_request_of_pci_ranges
+            devm_of_pci_get_host_bridge_resources
+              of_pci_parse_bus_range
+                of_property_read_u32_array(node, "bus-range", ...)
+      dw_pcie_host_get_resources
+        res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config")
+        pp->ecam_enabled = dw_pcie_ecam_enabled(pp, res)
+
+Since qcom_pci_config_ecam() doesn't look at the root bus number at
+all, is this also an implicit restriction that the root bus must be
+bus 0?  Does qcom support root buses other than 0?  
+
+> > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
+> > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
+> > +
+> > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
+> > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
+> > +
+> > +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
+> > +	val |= PCIE_ECAM_BLOCKER_EN;
+> > +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
+> > +}
+> > +
+> >  static int qcom_pcie_start_link(struct dw_pcie *pci)
+> >  {
+> >  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> > @@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+> >  		qcom_pcie_common_set_16gt_lane_margining(pci);
+> >  	}
+> >  
+> > +	if (pci->pp.ecam_enabled)
+> > +		qcom_pci_config_ecam(&pci->pp);
+
+qcom_pcie_start_link() seems like a strange place to do this
+ECAM-related iATU configuration.  ECAM is a function of the host
+bridge, not of any particular Root Port or link.
+
+> >  	/* Enable Link Training state machine */
+> >  	if (pcie->cfg->ops->ltssm_enable)
+> >  		pcie->cfg->ops->ltssm_enable(pcie);
 
