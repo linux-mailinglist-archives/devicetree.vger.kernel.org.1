@@ -1,87 +1,193 @@
-Return-Path: <devicetree+bounces-216681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7DA1B55A4E
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 01:36:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791DEB55A64
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 01:37:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 263EB5C4B94
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 23:36:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33E00A06584
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 23:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B6F284B35;
-	Fri, 12 Sep 2025 23:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351F726D4EF;
+	Fri, 12 Sep 2025 23:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BR2z8lhq"
+	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="NxKfWVKQ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="RvKv6szh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b2-smtp.messagingengine.com (fhigh-b2-smtp.messagingengine.com [202.12.124.153])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489842848B4;
-	Fri, 12 Sep 2025 23:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CF9270EBF;
+	Fri, 12 Sep 2025 23:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757719694; cv=none; b=Y6rMdzxGJzA6tEd9FlMC2RgSSYheGgJOkq4C0Zec/JzhAM7Pz5M0AMhAaKofyUcZqGTOjHcIcaovVFennMHbGDnvPGa75MVjFT0u8T3DiBUM9Jguq2WLTRIuQI93XX+zUYfZzNxtdgcectjSZV6EeA1Gmm/oVeFU05DdokJ4Tok=
+	t=1757720229; cv=none; b=FjU/LR/wKw2RupbsioDH9PpmxIf1/9rdHFzXR5yVbdTMtDTPA/PqMWEQxx0Dvgr3ZImtftVI8pFA22fI+wEQOrKWIw8IlDwXxx9h+cvK59nxoXwXc4beHlGxnBigCn4pXhn9Xus75VzF1l9TM08EvVd7CLMqNvAIpX029L72P28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757719694; c=relaxed/simple;
-	bh=8aays/36IMWxKFg+6HUicPJw3dVwhelQvKgnzcrf4y0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=O4nSAEF7OHCIZ/paMQSL+04PtQnOeHQM3B/Fh/ySjcDDdt8jRAnq1T74/iXfAguQrCtojCLT6C0VPmeXInVR8pqIK1T+lxzOGg7j83WBjwNNrcZm3j9jESKGAvBNB3tRFJ+DtJLmU52evOho1dFJawdz1PMWFB1fxZ2KN826cTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BR2z8lhq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F1DBC4CEF1;
-	Fri, 12 Sep 2025 23:28:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757719692;
-	bh=8aays/36IMWxKFg+6HUicPJw3dVwhelQvKgnzcrf4y0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=BR2z8lhq1OeLRpJmgnOWMrQwddzmPMCEtj7jooaxe5IMc/ASnSketFBj+4VIaQSS7
-	 pw/b91vEpSZ4w5XWe6h5M1LHFYXH8AqFSm7c6BF2b2NFY3MOj6Sk0Igrzi+4sbPON5
-	 kNH2sWzYjDZ+ahDK5cfn/UF70bkw5JyFzyWarE2bGEUos0g0HKdbwUIitMAgRCEU03
-	 EAiYT+eN269w0RfCCjisKYlZSyJJdm8h1bkk9q8P9GuMuFdtyQzPbBSC7oR55q7v9C
-	 WvbAdn1tHo6iDBtmc4hfTf0kEjlPjvYjVHneb+oiZa7qFsvkldubVRjo/3RrFrfN/+
-	 fediSzDgls5PA==
-Date: Fri, 12 Sep 2025 18:28:11 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 3/4] PCI: qcom: Parse PERST# from all PCIe bridge nodes
-Message-ID: <20250912232811.GA1653368@bhelgaas>
+	s=arc-20240116; t=1757720229; c=relaxed/simple;
+	bh=UpNCpUB25TCiVfx1g+tZY5qvRbCbukbCF1ca8RYNruU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
+	 In-Reply-To:Content-Type; b=W5lMV4QMLexq3JBgX0TQh/jL/696GpMABOcZ9va/cV2RWD36BAStZg+RJ5UZgDG5J2CIBVVrhR4sC1MrqVF4RccKNWYMxiPL907oV/TjWK1mYCc/m7do01s5HRQBWjk7716mAgxqTHy+JaFslf/AhltAp0MMLik552mSshvPfCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=NxKfWVKQ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=RvKv6szh; arc=none smtp.client-ip=202.12.124.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id B74147A0183;
+	Fri, 12 Sep 2025 19:37:05 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Fri, 12 Sep 2025 19:37:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1757720225;
+	 x=1757806625; bh=40KXg9kUsO5+HICeEL0Iq0HUslxsWdLGZ0xsN27NPfo=; b=
+	NxKfWVKQ4CZWI0LoscpaJX6WEp/yA+hcrArsFRjvTb1Yh/ZSoPIpBPtL4KYOU00M
+	38QVUlT/7a7YMf72tkR097ADhnPbtOkw7DyOZLLwbX6BIOoe7MHHzZb0d/X/gWpi
+	S15rmczJcIaW+7HGY1U/CvmRG0ZkpjEGiaRRzoUzy/9wL5O6W+NwTRXa/OB1CCQC
+	UDb9uoxAQ49XZKMUyLFcx46B0ZUBrSUvtucWYguKS2k03kerl3p4XI68kJqP82Mt
+	0iqgS9PHrmUTnkK33tWqpJCNcKTuLUVQg3NlHKmFxxOHGhpPWzM4eVhjReRaHb/s
+	ZuiSR3iiG/Awpps8xfCiew==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1757720225; x=1757806625; bh=4
+	0KXg9kUsO5+HICeEL0Iq0HUslxsWdLGZ0xsN27NPfo=; b=RvKv6szhC/uAWRcFF
+	qLZYBUM/JzLSb/NJYPC5xOdDg7UZlCXmlT2+ZNqZ4NVFI1AvHGAWvpLCH6+NqGQq
+	Q5X5XBnHGImJG3vOGOqi/bH/dWFOMFXZWX2Mz3PhdQ1c4mTaMc/hNZs6lEko+qbS
+	OhxxZgnexJMz+KhEH5PbXt77zd1SXVHcr+QZTazEJ66/BoIL0hkpOp2VIbno6vdV
+	pJhFKOxSkgkKtXBPo7oBpPSwRQuQhrIJgdl7W5CqMLjviXfTDZDWEpQ+9OYY2KLO
+	1B7VrxXtq+vjmU3KrAEZPpObI2UOVepofCwCekRdnZjinhuQhNerjqOGnWD/Kx9h
+	cv1JQ==
+X-ME-Sender: <xms:oK7EaJWYWiIWWi1ubcmf9R1QkKK68HTnHhD5xmKA-HllO9gwbUeDDA>
+    <xme:oK7EaIzwz7QQSi2KUGDzwg6g-Ms4dVfQZuAutLIULmlkMhRdn1C3jNkFKENjVGeBA
+    L8Z2w30mXE5sERHVt0>
+X-ME-Received: <xmr:oK7EaIGe6LRlxraxQZL_KowjeX4CU3Ow2Li3_S0w6HcCogDyvmROIHmuIwEtufnWy_I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeftdeflecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefkffggfgfhuffvfhgjtgfgsehtkeertddtvdejnecuhfhrohhmpeftvggsvggttggr
+    ucevrhgrnhcuoehrvggsvggttggrsegsshguihhordgtohhmqeenucggtffrrghtthgvrh
+    hnpeevheehieegvddujeeiudffffdtheeifefhteetledvveehudffiefghfevieejueen
+    ucffohhmrghinheplhhinhgrrhhordhorhhgpdguvghvihgtvghtrhgvvgdrohhrghenuc
+    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrvggsvggt
+    tggrsegsshguihhordgtohhmpdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtph
+    houhhtpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehr
+    ohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvg
+    hlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopehjohgvlhesjhhmshdrihgurdgruhdprhgtphhtthhopegrnhgurhgvfiestg
+    houggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghpthhtohepuggvvhhitggvthhr
+    vggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmh
+    dqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohep
+    lhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdrohhrgh
+X-ME-Proxy: <xmx:oK7EaFucsMrYmPiOzaLV5Joh5nyfmWetEsObfDVTDsCDNRVmkAStbA>
+    <xmx:oK7EaACSPjqS8GeqrVllmbcDFFjpsygEjTtdZhehqkGveIAHoavnnw>
+    <xmx:oK7EaIDAWuJJarms6BbMKlVyAvbbtnCb9TsGiS1g4d4rTqiGhfBQvw>
+    <xmx:oK7EaCrIlYqTfavDdVcugJ8lwrNDX45sk83lJljnJRFozs5xjrL9JA>
+    <xmx:oa7EaJ8VYrSyWOWQR9gC9FDzBO0j_Ikl6dLEyIEqBwFOqz6jMAvU686L>
+Feedback-ID: i5b994698:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 12 Sep 2025 19:37:03 -0400 (EDT)
+Message-ID: <04b0799e-b0a3-4dbc-98f3-239869c79305@bsdio.com>
+Date: Fri, 12 Sep 2025 17:37:02 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250912-pci-pwrctrl-perst-v3-3-3c0ac62b032c@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+From: Rebecca Cran <rebecca@bsdio.com>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
+ ALTRAD8 BMC
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250911051009.4044609-1-rebecca@bsdio.com>
+ <20250911051009.4044609-3-rebecca@bsdio.com>
+ <1e4c65c6-4745-45e2-9e20-9d2e69ae2ea4@kernel.org>
+Content-Language: en-US
+In-Reply-To: <1e4c65c6-4745-45e2-9e20-9d2e69ae2ea4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 12, 2025 at 02:05:03PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> Devicetree schema allows the PERST# GPIO to be present in all PCIe bridge
-> nodes, not just in Root Port node. But the current logic parses PERST# only
-> from the Root Port nodes. Though it is not causing any issue on the current
-> platforms, the upcoming platforms will have PERST# in PCIe switch
-> downstream ports also. So this requires parsing all the PCIe bridge nodes
-> for the PERST# GPIO.
-> 
-> Hence, rework the parsing logic to extend to all PCIe bridge nodes starting
-> from the Root Port node. If the 'reset-gpios' property is found for a PCI
-> bridge node, the GPIO descriptor will be stored in qcom_pcie_perst::desc
-> and added to the qcom_pcie_port::perst list.
+On 9/11/25 00:29, Krzysztof Kozlowski wrote:
+> Never tested.
+>
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
 
-The switch part doesn't seem qcom specific.  Aren't we going to end up
-with lots of drivers reimplementing something like the
-qcom_pcie_port.perst list?
+
+Am I doing something wrong, or are a certain number of validation issues 
+expected?
+
+For example, I'm seeing these - most of which are from aspeed-g5.dtsi, 
+not my dts file:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/memory-controller@1e6e0000: failed to match any schema with 
+compatible: ['aspeed,ast2500-sdram-edac']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/syscon@1e6e2000/p2a-control@2c: failed to match any schema with 
+compatible: ['aspeed,ast2500-p2a-ctrl']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/display@1e6e6000: failed to match any schema with compatible: 
+['aspeed,ast2500-gfx', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/timer@1e782000: failed to match any schema with compatible: 
+['aspeed,ast2400-timer']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/pwm-tacho-controller@1e786000: failed to match any schema with 
+compatible: ['aspeed,ast2500-pwm-tacho']
+/home/bcran/src/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+fan@0: aspeed,fan-tach-ch: b'\x00\x08' is not of type 'object', 
+'integer', 'array', 'boolean', 'null'
+     from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+
+...
+
+/home/bcran/src/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+lpc@1e789000 (aspeed,ast2500-lpc-v2): reg-io-width: 4 is not of type 
+'object'
+     from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+/home/bcran/src/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+lpc@1e789000 (aspeed,ast2500-lpc-v2): lpc-snoop@90: 'clocks' does not 
+match any of the regexes: '^pinctrl-[0-9]+$'
+     from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+/home/bcran/src/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+kcs@24 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the 
+regexes: '^pinctrl-[0-9]+$'
+     from schema $id: 
+http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+
+...
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with 
+compatible: ['aspeed,ast2500-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with 
+compatible: ['aspeed,ast2500-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+/ahb/apb/bus@1e78a000/i2c@100/power-supply@3c: failed to match any 
+schema with compatible: ['pmbus']
+/home/bcran/src/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: 
+gpio@1c (nxp,pca9557): '#address-cells', '#size-cells', 'gpio@0', 
+'gpio@1', 'gpio@2', 'gpio@3', 'gpio@4', 'gpio@5', 'gpio@6', 'gpio@7' do 
+not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 
+'^pinctrl-[0-9]+$'
+     from schema $id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
+
+
+-- 
+Rebecca Cran
+
 
