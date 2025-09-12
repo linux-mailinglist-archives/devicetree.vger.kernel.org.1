@@ -1,242 +1,290 @@
-Return-Path: <devicetree+bounces-216309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D8AB54553
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:28:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6A2B5455C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D18746465E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:28:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7501CC2E58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A3C2D6417;
-	Fri, 12 Sep 2025 08:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55F12D876B;
+	Fri, 12 Sep 2025 08:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A4QQCTls"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="B2zDjiL7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E252C2DC780;
-	Fri, 12 Sep 2025 08:27:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C875D2D8385
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757665662; cv=none; b=SpzHSuWqXaPDEjnAemhQEfQGuBtZ2RlyCAdmteta6I2K8zGgNXpgIkRrFhSJ59OoOpF19QhPaMm2vHyI7UGx9gYgqVwFMQGlpcQ+WNDJpEur8rfsRCYXLAflrLNcYNlb1HDoW9EHoM1v0UTzjVuLq1NrdHbLPgJULwLn6ispjJQ=
+	t=1757665682; cv=none; b=k/4rnYX+m5dxWurgmGqa/FUZJZ7LvID3elpCHNsQGBdRJcPI4TMIh6qupERtRGENMwfEzuv//2op3tJn0oOk5+TafyhEY24hI2JjUxn+KpTxxO+qDtqC+i4tP0RWtuDxeHjHIS7ppcvUMHiC0w3KWxJzbKzlOs0DPJbtltxMjWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757665662; c=relaxed/simple;
-	bh=6xxzzd/ernId8OPpo0sEQcfNMw1jhcfLCa6q7kv32EU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JiJT0yhbJ61UWMK32e/d0rogI8uLsI0Jpwc4yUrQ5IU40D0wRcQ9VanggiqkZYmEb8NfwDEwYuPnY0ztkUU6paqRI1qOW4pdOGdRz5boZp3uPTsMRAntEydSNXGIfpLTYbMH23TSrObIzzJ/KuVvqutDbvmQjelD5ax/lBtXsyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A4QQCTls; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB056C4CEF4;
-	Fri, 12 Sep 2025 08:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757665661;
-	bh=6xxzzd/ernId8OPpo0sEQcfNMw1jhcfLCa6q7kv32EU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A4QQCTls3hEVEbvxLogVWLsmPwqUlMAuTpTowWWWXM/+qphMfQKBOABU+yM5dMtWj
-	 ae84y6BbOT/fovVXR+wZlIPtLKXys/5Jhqb5DHlw13M69uyAZroR0mrIZ6n0iarwIl
-	 +t2ixIcdZy6kDp5rBgjXoCJDdTRgh6ifdEhruEA7uh2536m5HYeIhGb5dW4Mqg/eTP
-	 qO7sqZCBXwBv/0KIzwufRxRpyDncba3zabmcbwlc8yca8UmcDNOFSYyEQ55u58wbTt
-	 Pavc5brh/OnI0vsO/0+quZs+20Ydj1FxAs/5gFTcSofITixZF+zHsrW+r3WimXMm1a
-	 HENDyOFg6iDzg==
-Date: Fri, 12 Sep 2025 13:57:34 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v2 5/5] PCI: qcom: Allow pwrctrl core to toggle PERST#
- for new DT binding
-Message-ID: <r7cpjk2jun3h4xnfncqldeyfov4ad3bpq5kcfcxcx3eyg6g2hj@rcajqn7snemy>
-References: <20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061@oss.qualcomm.com>
- <20250908193428.GA1437972@bhelgaas>
+	s=arc-20240116; t=1757665682; c=relaxed/simple;
+	bh=M4UFtGv3HJ7UUX5/e1FKWhwvIsp06D8ghh/PjljWBns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L2OK/zC5Aqrqw3Dhixc3CuzJyNn4MnRxp9KMhcJYXJyKuD2ErexydKgUruVL5DuObXGmpsyJx8O4Lcmwlg4os5+vAFheIMMm9sGN1rMTqr0/mVf+mQY5xCRTYYTWttZP68r8ZgPlInRtyUDGO3eFCCJlWzKl0YZKtQclpUZebzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=B2zDjiL7; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-35073bec7d6so9193381fa.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:27:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1757665677; x=1758270477; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zi88VRbZEuFnGbKkriA0LDu6mR+gOJpwP4/2p/PnZ1A=;
+        b=B2zDjiL7rZBnxNGGG1W/zmptbbexjIiboTdiZnl8P4MXjlQtPzFfRQpdeok/XTS5Jp
+         2tYa7NiJe80HLUyXzUiCGN0k7CE9Hp1tLLFZNilsU6onniafBlyY6lVXUsv5BDI15KVt
+         LDURTgbjXb1Z1OrajtBcuSgIYEK2gWqlUUQu0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757665677; x=1758270477;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zi88VRbZEuFnGbKkriA0LDu6mR+gOJpwP4/2p/PnZ1A=;
+        b=ZUfIvt89useh4mN2r3IleCmgRWYhpPV210dHV4PBOtgVTI9w/y3H95bLSl/S8ysu28
+         IebBNUIAffLamzVH/Xa7pvVEa6RB2efvXA++AIX4RxYa7M8LxIHKECNdlqCQ1i+eG/tl
+         uCaRFQ8U5iDrEO0mz+ZQJCtVUc0fN4bDd/vqinM6BfOz2vRz0YFVT6W7yVqN1tWmeS/z
+         gj7bUNu+wFn3V77kFc//+QDmD4wnvzDtuCLr7wg4/JItFlwjDJntiEW+seZBlEJ67LiK
+         4AZ0ExFTDKA15ngraQtPLMVQ30rXUgO5c8qVf7WgU/05QbmsSnriosoary9sEPhmADKh
+         CF/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXHy7U9MfmWN/Q36YfJYA/YWHoTo7HkFhwXO7lpPkFuHBq/Z2zrWd6y/yPdbNx6vY7NyD2tCdoZfmBE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEDFHn9Q6IF0LodB6yIN7TiEicisNgFqQ/zKphOw/CZ2Q5492E
+	Kl2uGJMLvt0TB2yHNccq74VE5YxRuXknpb6zJY/9yQOndHFn7Vc+WejVd+mfmzhMTSozzbSeSjM
+	cMNuYJAMSUiXo8Y5enuDfm1C8hZQMKIIZEcx80GQE
+X-Gm-Gg: ASbGncu7LFY2NTBbiKeaQwUj1saByf34IWPXtfQ6Ftc/zzD11OVon0qDC+bxyMZ0mUJ
+	hZZUxvlt0WGSRICuRdW/sUxClg5EYbPX/Lr7The1CWMKTQ3Lr/aNy1zJnoeQwVfV9xXTpxxVOA5
+	iYqmVP1vYHUC1+zsN24c67nPXWondXGkaXnOS27onYBVP4dr6tbKv0NxPgfKZgPCbWEyiV39smZ
+	+xr3FDWxmkP9NcvIrYwWr3DE+mVFpAi0vsFFg==
+X-Google-Smtp-Source: AGHT+IGuFu/6x8GGdyKs3uZP46gycKBj+oJ6yMQK+fd/K5sFBfDmEqPc/X66Qf0G8U/XPK4phpEvZh/Ddpcm0n+c0BE=
+X-Received: by 2002:a05:651c:4350:20b0:336:6481:1549 with SMTP id
+ 38308e7fff4ca-3513aeb2e2amr5142751fa.12.1757665676867; Fri, 12 Sep 2025
+ 01:27:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250908193428.GA1437972@bhelgaas>
+References: <20250911151001.108744-1-ariel.dalessandro@collabora.com>
+ <20250911151001.108744-2-ariel.dalessandro@collabora.com> <20250912-alluring-turaco-of-conversion-dca193@kuoka>
+In-Reply-To: <20250912-alluring-turaco-of-conversion-dca193@kuoka>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 12 Sep 2025 16:27:45 +0800
+X-Gm-Features: Ac12FXxVG1RuSVKZojzF8lrEoj8T-u7pZlbyr1abmA13aynWyYRO-SXBCvUw2XE
+Message-ID: <CAGXv+5GovP7NuG042AwfmtC-sPJMGuFAm6iZ0iqNZgU0VE+qmQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/12] dt-bindings: media: Convert MediaTek mt8173-mdp
+ bindings to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>, airlied@gmail.com, 
+	amergnat@baylibre.com, andrew+netdev@lunn.ch, andrew-ct.chen@mediatek.com, 
+	angelogioacchino.delregno@collabora.com, broonie@kernel.org, 
+	chunkuang.hu@kernel.org, conor+dt@kernel.org, davem@davemloft.net, 
+	dmitry.torokhov@gmail.com, edumazet@google.com, flora.fu@mediatek.com, 
+	heiko@sntech.de, houlong.wei@mediatek.com, jeesw@melfas.com, 
+	kernel@collabora.com, krzk+dt@kernel.org, kuba@kernel.org, 
+	lgirdwood@gmail.com, linus.walleij@linaro.org, 
+	louisalexis.eyraud@collabora.com, luiz.dentz@gmail.com, 
+	maarten.lankhorst@linux.intel.com, marcel@holtmann.org, 
+	matthias.bgg@gmail.com, mchehab@kernel.org, minghsiu.tsai@mediatek.com, 
+	mripard@kernel.org, p.zabel@pengutronix.de, pabeni@redhat.com, 
+	robh@kernel.org, sean.wang@kernel.org, simona@ffwll.ch, 
+	support.opensource@diasemi.com, tiffany.lin@mediatek.com, tzimmermann@suse.de, 
+	yunfei.dong@mediatek.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-bluetooth@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-sound@vger.kernel.org, 
+	netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 08, 2025 at 02:34:28PM GMT, Bjorn Helgaas wrote:
-> On Wed, Sep 03, 2025 at 12:43:27PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > If the platform is using the new DT binding, let the pwrctrl core toggle
-> > PERST# for the device. This is achieved by populating the
-> > 'pci_host_bridge::toggle_perst' callback with qcom_pcie_toggle_perst().
-> 
-> Can we say something here about how to identify a "new DT binding"?
-> I assume there is a DT property or something that makes it "new"?
-
-This is taken care now.
-
-> 
-> > qcom_pcie_toggle_perst() will find the PERST# GPIO descriptor associated
-> > with the supplied 'device_node' and toggles PERST#. If PERST# is not found
-> > in the supplied node, the function will look for PERST# in the parent node
-> > as a fallback. This is needed since PERST# won't be available in the
-> > endpoint node as per the DT binding.
-> > 
-> > Note that the driver still asserts PERST# during the controller
-> > initialization as it is needed as per the hardware documentation. Apart
-> > from that, the driver wouldn't touch PERST# for the new binding.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+On Fri, Sep 12, 2025 at 2:06=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Thu, Sep 11, 2025 at 12:09:50PM -0300, Ariel D'Alessandro wrote:
+> > Convert the existing text-based DT bindings for MediaTek MT8173 Media D=
+ata
+> > Path to a DT schema.
+> >
+> > Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 > > ---
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 89 +++++++++++++++++++++++++++++-----
-> >  1 file changed, 78 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 78355d12f10d263a0bb052e24c1e2d5e8f68603d..3c5c65d7d97cac186e1b671f80ba7296ad226d68 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -276,6 +276,7 @@ struct qcom_pcie_port {
-> >  struct qcom_pcie_perst {
-> >  	struct list_head list;
-> >  	struct gpio_desc *desc;
-> > +	struct device_node *np;
-> >  };
-> >  
-> >  struct qcom_pcie {
-> > @@ -298,11 +299,50 @@ struct qcom_pcie {
-> >  
-> >  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-> >  
-> > -static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
-> > +static struct gpio_desc *qcom_find_perst(struct qcom_pcie *pcie, struct device_node *np)
-> > +{
-> > +	struct qcom_pcie_perst *perst;
+> >  .../bindings/media/mediatek,mt8173-mdp.yaml   | 169 ++++++++++++++++++
+> >  .../bindings/media/mediatek-mdp.txt           |  95 ----------
+> >  2 files changed, 169 insertions(+), 95 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt=
+8173-mdp.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-md=
+p.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8173-md=
+p.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+> > new file mode 100644
+> > index 0000000000000..8ca33a733c478
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+> > @@ -0,0 +1,169 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/mediatek,mt8173-mdp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +	list_for_each_entry(perst, &pcie->perst, list) {
-> > +		if (np == perst->np)
-> > +			return perst->desc;
-> > +	}
+> > +title: MediaTek MT8173 Media Data Path
 > > +
-> > +	return NULL;
-> > +}
+> > +maintainers:
+> > +  - Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 > > +
-> > +static void qcom_toggle_perst_per_device(struct qcom_pcie *pcie,
-> > +					 struct device_node *np, bool assert)
-> > +{
-> > +	int val = assert ? 1 : 0;
-> > +	struct gpio_desc *perst;
+> > +description:
+> > +  Media Data Path is used for scaling and color space conversion.
 > > +
-> > +	perst = qcom_find_perst(pcie, np);
-> > +	if (perst)
-> > +		goto toggle_perst;
-> > +
-> > +	/*
-> > +	 * If PERST# is not available in the current node, try the parent. This
-> > +	 * fallback is needed if the current node belongs to an endpoint or
-> > +	 * switch upstream port.
-> > +	 */
-> > +	if (np->parent)
-> > +		perst = qcom_find_perst(pcie, np->parent);
-> 
-> Ugh.  I think we need to fix the data structures here before we go
-> much farther.  We should be able to search for PERST# once at probe of
-> the Qcom controller.  Hopefully we don't need lists of things.
-> 
-> See https://lore.kernel.org/r/20250908183325.GA1450728@bhelgaas.
-> 
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - mediatek,mt8173-mdp-rdma
+> > +          - mediatek,mt8173-mdp-rsz
+> > +          - mediatek,mt8173-mdp-wdma
+> > +          - mediatek,mt8173-mdp-wrot
+>
+> Why there is no mediatek,mt8173-mdp here? What does this compatible
+> represent?
+>
+> > +      - items:
+> > +          - const: mediatek,mt8173-mdp-rdma
+>
+> Still suspicious. Device cannot be simulatanously: compatible and not
+> compatible. This is not a well known cat that has superposition of two
+> states, whenenver you look the other way.
+>
+> Maybe the old binding was incorrect, maybe the in-tree DTS is incorrect.
+> Whichever the reason, this must be investigated and documented, because
+> by standard rules this is wrong. Each wrong code needs very clear
+> explanations (and "someone did it" is not a good enough explanation).
 
-I've added a patch to fix in the next version of this series.
+My guess is that "mediatek,mt8173-mdp" is meant to serve as a single
+entry point for the implementation to bind the driver to. The MDP is
+a Data Pipeline and there could be multiple instances of the same
+IP block, as seen in the original example.
 
-> > +toggle_perst:
-> > +	/* gpiod* APIs handle NULL gpio_desc gracefully. So no need to check. */
-> > +	gpiod_set_value_cansleep(perst, val);
-> > +}
+The datasheet I have doesn't cover the "RDMA" block specifically, so
+I can't say whether there is an actual difference between the two RDMA
+blocks.
+
+
+ChenYu
+
+> > +          - const: mediatek,mt8173-mdp
 > > +
-> > +static void qcom_perst_reset(struct qcom_pcie *pcie, struct device_node *np,
-> > +			      bool assert)
-> >  {
-> >  	struct qcom_pcie_perst *perst;
-> >  	int val = assert ? 1 : 0;
-> >  
-> > +	if (np)
-> > +		return qcom_toggle_perst_per_device(pcie, np, assert);
+> > +  reg:
+> > +    maxItems: 1
 > > +
-> >  	if (list_empty(&pcie->perst))
-> >  		gpiod_set_value_cansleep(pcie->reset, val);
-> >  
-> > @@ -310,22 +350,34 @@ static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
-> >  		gpiod_set_value_cansleep(perst->desc, val);
-> >  }
-> >  
-> > -static void qcom_ep_reset_assert(struct qcom_pcie *pcie)
-> > +static void qcom_ep_reset_assert(struct qcom_pcie *pcie, struct device_node *np)
-> >  {
-> > -	qcom_perst_assert(pcie, true);
-> > +	qcom_perst_reset(pcie, np, true);
-> >  	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
-> >  }
-> >  
-> > -static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
-> > +static void qcom_ep_reset_deassert(struct qcom_pcie *pcie,
-> > +				   struct device_node *np)
-> >  {
-> >  	struct dw_pcie_rp *pp = &pcie->pci->pp;
-> >  
-> >  	msleep(PCIE_T_PVPERL_MS);
-> > -	qcom_perst_assert(pcie, false);
-> > +	qcom_perst_reset(pcie, np, false);
-> >  	if (!pp->use_linkup_irq)
-> >  		msleep(PCIE_RESET_CONFIG_WAIT_MS);
-> >  }
-> >  
-> > +static void qcom_pcie_toggle_perst(struct pci_host_bridge *bridge,
-> > +				    struct device_node *np, bool assert)
-> > +{
-> > +	struct qcom_pcie *pcie = dev_get_drvdata(bridge->dev.parent);
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
 > > +
-> > +	if (assert)
-> > +		qcom_ep_reset_assert(pcie, np);
-> > +	else
-> > +		qcom_ep_reset_deassert(pcie, np);
-> > +}
+> > +  power-domains:
+> > +    maxItems: 1
 > > +
-> >  static int qcom_pcie_start_link(struct dw_pcie *pci)
-> >  {
-> >  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > @@ -1320,7 +1372,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> >  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> >  	int ret;
-> >  
-> > -	qcom_ep_reset_assert(pcie);
-> > +	qcom_ep_reset_assert(pcie, NULL);
-> >  
-> >  	ret = pcie->cfg->ops->init(pcie);
-> >  	if (ret)
-> > @@ -1336,7 +1388,13 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> >  			goto err_disable_phy;
-> >  	}
-> >  
-> > -	qcom_ep_reset_deassert(pcie);
-> > +	/*
-> > +	 * Only deassert PERST# for all devices here if legacy binding is used.
-> > +	 * For the new binding, pwrctrl driver is expected to toggle PERST# for
-> > +	 * individual devices.
-> 
-> Can we replace "new binding" with something explicit?  In a few
-> months, "new binding" won't mean anything.
-> 
-
-So I've introduced a new flag, qcom_pcie::legacy_binding, which gets set if the
-driver uses qcom_pcie_parse_legacy_binding(). Based on this flag, PERST# will be
-deasserted in this driver.
-
-And I've removed references to 'new binding' term.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  mediatek,vpu:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to Mediatek Video Processor Unit for HW Codec encode/dec=
+ode and
+> > +      image processing.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - power-domains
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: mediatek,mt8173-mdp-rdma
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: Main clock
+> > +            - description: Mutex clock
+> > +    else:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: Main clock
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8173-mdp-rdma
+> > +              - mediatek,mt8173-mdp-wdma
+> > +              - mediatek,mt8173-mdp-wrot
+> > +    then:
+> > +      required:
+> > +        - iommus
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: mediatek,mt8173-mdp
+> > +    then:
+> > +      required:
+> > +        - mediatek,vpu
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/mt8173-clk.h>
+> > +    #include <dt-bindings/memory/mt8173-larb-port.h>
+> > +    #include <dt-bindings/power/mt8173-power.h>
+> > +
+> > +    soc {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        mdp_rdma0: rdma@14001000 {
+> > +            compatible =3D "mediatek,mt8173-mdp-rdma",
+> > +                         "mediatek,mt8173-mdp";
+> > +            reg =3D <0 0x14001000 0 0x1000>;
+> > +            clocks =3D <&mmsys CLK_MM_MDP_RDMA0>,
+> > +                     <&mmsys CLK_MM_MUTEX_32K>;
+> > +            power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
+> > +            iommus =3D <&iommu M4U_PORT_MDP_RDMA0>;
+> > +            mediatek,vpu =3D <&vpu>;
+> > +        };
+> > +
+> > +        mdp_rdma1: rdma@14002000 {
+> > +            compatible =3D "mediatek,mt8173-mdp-rdma";
+> > +            reg =3D <0 0x14002000 0 0x1000>;
+> > +            clocks =3D <&mmsys CLK_MM_MDP_RDMA1>,
+> > +                     <&mmsys CLK_MM_MUTEX_32K>;
+> > +            power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
+> > +            iommus =3D <&iommu M4U_PORT_MDP_RDMA1>;
+> > +        };
+>
+> My previous comment applies.
+>
+> Keep one or two examples.
+>
+> Best regards,
+> Krzysztof
+>
 
