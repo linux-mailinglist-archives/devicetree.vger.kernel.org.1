@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-216312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF68DB54570
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:32:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C23B54575
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:32:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CD373B9658
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:32:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25FE27B4F56
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B3026F293;
-	Fri, 12 Sep 2025 08:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FE026E715;
+	Fri, 12 Sep 2025 08:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hwGaiLgk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OSoZgAXK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795B119E97A
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E86A2AD13
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757665954; cv=none; b=DQ+G1KUq+8q/e5zMltPDaMWYY47Qf+lDV9aPEWKRiiVY8WFdGQwR9GHi5+/DnOR+O+OOT4XIgHfAwU8I6xX+Pe2lpAdt0qZIsOEc5lvkcv8ZN/9f1PhkFzVNERHp/fKHvfSobofuUKQyYFqrfRS4yS5yTOAPliO0wvqnSqTBvw0=
+	t=1757665956; cv=none; b=Y8TvAzfa3+6MRc8yPdAZMkhuPsf3FbS9cvSiGoXxJNS7SbOHfXsd62u8yzrRifaP+6GZVmNOOOZktebryRV+xRKk4fKJkELHQYMfUiCdTG5deDD2bwSt/PizDhp+TiXCyLikP5gKutD4gLKf0EiJsB5c5fULMgY1ADv+WcTEBCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757665954; c=relaxed/simple;
-	bh=BWh7wHrK8yZtB0eeU6Iysd3kLhRZzpxdN6HZoeCFTmI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VXuiH4bYAIyxE6Hz3CmLog/Csg+2HVqmNEkiHunFWZGfuxWoa1HiPVsQfprnrGDDkLKUl/TPJwcwkoXEUZVBTntAv01cy4lW1Jxjn6qdVOgHjqFAPeV5EYYjYgqmaqs6H7M5+el7Pale/tgyJcWPpb2yN74DIYZCv9oZCDaxs10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hwGaiLgk; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1757665956; c=relaxed/simple;
+	bh=6dzcJu5beHXFPE2ysDUwBwwBtBpB4yJJYn3tCF46Fow=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=OcWie8CJ3g4IN8TpZwu6IMnYj7o4LDvu8QUu3uFbYKdptofPUeWOHCdx75VZOpmUZpLUL38NZpUdr5kB+Y04K9/ro2oJv3CivNr/RlPXxTbh0V5Ax3dg+/ACoVjk1opTiPimd/c5Fd4iofvdcvlDS6Ft1gi2qdwMhByOAFt7sDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OSoZgAXK; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C7Fb5Z005760
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:31 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C7LGj4005468
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=x+G4Fopcs9BfzCpIG/+vVPae3N/6PqxOMft
-	1V4SqZbo=; b=hwGaiLgkPHUx3Pho3y5EX2l96qa8rjA1SAsZ1kqNeJR1G5Ql6lT
-	48qq2IgL5Rev6N3gtI/mTz6ZFM2CFU07KCqwxiUWRijfIeSYhD602uAytFnwq7+6
-	1MZTNX855NDoMROZ/E0+Qgmtfo9jXuTAD+lxXlb0OTiy95zGiI0+3zWHmDCKTBqD
-	kmf/Y+B9/fKt+bFvUHee2RNoDnAIcMitG23Ehet37yrVQZt3e+MCFEy5CZZYo6Dn
-	u/ZJ2t6DrHVV8ODPr+GvmItfNbPpZgA33z9RyaqGu+CeTLlHDlt5qwSQxdqGzoxQ
-	E9Rxp0OY3fvElI4Cf7Ip2rGk3cjYEf+srHw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc2ewgb-1
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=B6VI6rYD+l1
+	gAQRdPHYZqiU7gvDzWifBcr0RacDOpag=; b=OSoZgAXKmdqUY6KvgQqtrGReG4d
+	cm4zghAOs5ox6GVceNxcAUbwQV2+Y5gemn2EpBQHlZdlm1HoaJvZQDTxwwiVH1tj
+	Ht33z8GbxpXPB0iIQGp3zX51CgCK4XCJYZ82NBDkKFsGPdRKsDEncKhCe4lX7GvT
+	dzb7Vu3DGKpu/IVggLM7D8yGSTy9IE+usRNXyEf2LnikXfqNPRpK7NTNLgiSHvwY
+	uNM92GkNLS8p0sgGfmXCslbXp074YuhrSJTP6hjuVtyPktrmttlF43rtWGfamxyG
+	xdWzNNgHdpJ9f/xHE/Tvt91MvQPCnyiQPBH4ZCbUPqgejR/KBYsaR239FBA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc2ewgg-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:31 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b49666c8b8so36178951cf.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:32:31 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:32:33 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-70edbfb260fso30559186d6.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:32:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757665950; x=1758270750;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x+G4Fopcs9BfzCpIG/+vVPae3N/6PqxOMft1V4SqZbo=;
-        b=h/niJBDfITaZZDOp9n3B3eWI6OTie99hCDxGUBnCvOfNlo7C4fQJSdGWN/uOpAh8tT
-         doCeQ63RE6FCX1gU+GjViJXt+Cy0RcxdIFLeXQiws4+ltlfe2kdQDz9NkRGSX5jhLMG5
-         6SRCr/2Lay+8uess2KEiqtuUE4h9Y61SzkkzNzs/lFuuzFsIm8ZgvWtXMtt2SbB2ty46
-         bv7Z7gT6imD7KnOOrE5sSrre3LQK3u6RhK/QgdnY1pYiEOf4gakgfmw6S+Fh93ccFg8d
-         ccDFjwv1FkWZCibFMEuieXKoc+5rRjoanJzOVrx/aKOejvV/x1hKh8qj8hkwCh7lnvd1
-         SRDw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1PQtuBaJRHhqGUMD5SyDnWwPKdQtkqSI62l2ehvQW/gR2CsiT0oZ+fqphL29tDuYgj6zjxGl9Jkln@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxJLUR38cBBhNaZX1w1yi/vVJfjKjCvCwdNpS95K6g8VixNB8c
-	82V+fzU+UJOBibR9sXbL1mbGypaa7Upb4FDIlL0iPJ6ZnNKfVMqDIKHQYgj4yAgZ8+NxGo2PEk8
-	oL6MS5+Md0XkEZ32KBUCrz2vTikiN1ZboMM/RD0lwD7SpJJua/BB8NcvOGNV+DaZ5
-X-Gm-Gg: ASbGnctbciYHM14nhP4v9JZC73K6fD5VjmG0eQa8MlCyxxl/pWe/4IIoVyZMVKNlY1/
-	uGF0NzZKn7bM5qzkQcZFEwQbUQ5mpapO1x6uL4OYB1IAkDL5Igczdh8MUQ3AH2ONcS+M4kj6QY+
-	ts4DgmjedLf/960bpb7O89tpzeTyejZuVbWtMOopBrTiLuogv6IRdXJuiY+VH6eXV3xo+zNxowQ
-	a40mLJaZXYuhnjazzpsnjhn/5lGVl9w60A2sCP0hVSbtewmREYSoDswTijqGvasEaXhEgSUK2Pl
-	Z69OkgBrp4T2nflDejiF3YHLcfwnb6X7mQH54lVCt0qQJ0tGHLQHng==
-X-Received: by 2002:a05:622a:60c:b0:4b5:db9f:9904 with SMTP id d75a77b69052e-4b77d096969mr25291991cf.22.1757665950395;
+        d=1e100.net; s=20230601; t=1757665952; x=1758270752;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B6VI6rYD+l1gAQRdPHYZqiU7gvDzWifBcr0RacDOpag=;
+        b=dVJ5weI8R+fMeA3gXq2GDDo9IybCL1Q9s6/s/Krk+qxAE9s7JN54dx1OCmzhB3P7uN
+         fzF1oobAUFpLOM7od91x/0ZZ/fbR2hz1zEQk5H7Coq5xBU4dAyIP8ycoMD4Lk7nBL3Vl
+         XspUfKAvoSRlqGNflrRYw+dw4l64Ia6GnHv8nl9JvzSaU77laxhdNHs+FmpAXo0H0AfL
+         SFXmHsaapZD3fYdZPz0BdOA2qRS8/1DIISt0o1ux7gCM2ZNJEZDe0JBtlwR/lt8icIaj
+         1wXlNXyZQ0pPNGszwiJ06W+pbZQZ015qRMFPn+TG2/wUU0XjNVqEdXYTJX9ZXuUzMxaz
+         n3LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1Jf+jRBGBmfgQHE5cLWUvtiqyz4ZxYVCxBjhkZlfAy5NWVOplRlbLgz2/hgSbmtOfKuPt2nkgBOCA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdyD8yuThJ84Od8ebvwcq+ryt30v+o8AqecKc4WbPiJDSpfFAZ
+	mGcRwFDfnydToHjP8SeLQhsKD/tzJpE50qSBfiJeQ4+8y+/hlYR++BhraribG0x/eV6v9ZRg/cf
+	4gJMACY+Ac1sPXZA+GsQftXTPd+vaiUcWvrEqXE5rkJ+H2UYoNBKCmm5cbhP5AQzd
+X-Gm-Gg: ASbGnctks+AQWE2/dqow2ggezB2P7RmULE4u7MDVS5eTyNaAPdHUgF4ZppZj8mXH1hj
+	9l6c5ujlBES4DDwPE6o+iFfVhT6DdGtH1sbRcPqDNoVyos6eWf2o+7jSC2uZFKn5nwWRuJUZaBH
+	SqYKwL7vk9Z6hm6u/i9k3NfKQqt0W30LQa2CZxDye2/xh4JAjLLpWmWyvd3IfDGfJelu5DFF9DB
+	j9nMi3+vrrBhajdO/t1/PjTyaHk8HB53q9466ULiBVBzSC58jvbhVUiuF+xeY6YZnYEuwttzF3O
+	9tuq+atohdpALjjRvkw0eh4FfflCyTv+rt5a4Tq478f++tTGn2WSNw==
+X-Received: by 2002:a05:6214:e6f:b0:763:e314:63ec with SMTP id 6a1803df08f44-767c5af17e2mr29399156d6.67.1757665951435;
+        Fri, 12 Sep 2025 01:32:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG0qy4hjjfisWxEbcXf4ENJkYksaMBthTfpP/gGk+hCjiWoQIz3yScOjbpnmM/mruFNXXqz0w==
+X-Received: by 2002:a05:6214:e6f:b0:763:e314:63ec with SMTP id 6a1803df08f44-767c5af17e2mr29398906d6.67.1757665950959;
         Fri, 12 Sep 2025 01:32:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFmfYwelW8JgprI2UZVxfQqLOHW7kQBbcL91njBTANWpPA6QoJQBKRe6HjQSbxJkGd5DAR5RA==
-X-Received: by 2002:a05:622a:60c:b0:4b5:db9f:9904 with SMTP id d75a77b69052e-4b77d096969mr25291771cf.22.1757665949914;
-        Fri, 12 Sep 2025 01:32:29 -0700 (PDT)
 Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e017c1dd3sm31247265e9.2.2025.09.12.01.32.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e017c1dd3sm31247265e9.2.2025.09.12.01.32.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 01:32:29 -0700 (PDT)
+        Fri, 12 Sep 2025 01:32:30 -0700 (PDT)
 From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 To: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org
 Cc: conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com,
@@ -85,10 +86,12 @@ Cc: conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com,
         devicetree@vger.kernel.org, alexey.klimov@linaro.org,
         linux-sound@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v4 0/7] soundwire: qcom: add support for v3.1.0
-Date: Fri, 12 Sep 2025 09:32:18 +0100
-Message-ID: <20250912083225.228778-1-srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v4 1/7] of: base: Add of_property_read_u8_index
+Date: Fri, 12 Sep 2025 09:32:19 +0100
+Message-ID: <20250912083225.228778-2-srinivas.kandagatla@oss.qualcomm.com>
 X-Mailer: git-send-email 2.50.0
+In-Reply-To: <20250912083225.228778-1-srinivas.kandagatla@oss.qualcomm.com>
+References: <20250912083225.228778-1-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,18 +99,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c3da9f cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=yJojWOMRYYMA:10 a=plMaQY1jPcDNhxvH7e0A:9 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-ORIG-GUID: eZ1VBa2O4EdhF_4CtDmI9VE0BwokaAWm
-X-Proofpoint-GUID: eZ1VBa2O4EdhF_4CtDmI9VE0BwokaAWm
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfXyOlmexlRrmwA
- v1yxeJdLsDT1OvaKUEcwidDpR920DXMKXoqaRpovLqXMXo8JKeycfvwu6CCURtJw5s7g22icB5H
- syIzYdoNOst0Ib+f7tRI2LKfXMexkIJ1ZPfmtaaHzRt+uukLbWwqE6CNa2D3ajE592nsjrkSloe
- tpS/IJYUUMt3vtKr+V9TQdQ/A7Dp29TvUmuPnCTim5VE+f340ouGlM65csqPvIdKZL+pohAvXVh
- VG7jTGlB7MmdH1oqiyADr+S4A4MxubTxKvshG7DXHTEFV5zse0TwcxIpogsZLgVoFDrk2vUuyv4
- tkxQBKEQn9Ev9gJQNhWJDlEJvvbN9Y17mYf+3iB9BhmcXpp+GcwzitqaqxSGnDq5OBF56UEjwBi
- gRxJCDaK
+X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c3daa1 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=3hxEEigdzuJGYQGY9uYA:9
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: Lep07oqJEYRpXE5N2-FoHLP6K5aL7Zav
+X-Proofpoint-GUID: Lep07oqJEYRpXE5N2-FoHLP6K5aL7Zav
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfX3QwzMv7SNgLA
+ vw09MCzHIqjqcV7gJg0hI8+n+o87+11qfxiTTFQlxEjX5UUKnKsmBZ1KR7KzM0eoU9NhOw1O7oQ
+ +vOf5pCz4Qyo7kRKTTvl8kM7jFUml0MjOJZw/02cAXZlh9/26Ok+VHZy80KpL/RjKHMBbKJFG3I
+ wpuQFfIavoAuBH7WJXE3a3QYzVsecgHft1PYtejB3pGOM4aeBd7+0wMoYwqcQ0ishfK7oosEFo/
+ 70HSjXtmDmnd1FtMkgQDfgtSGTRrDg61EbAw7d6C1XBtUljoVYVZSVEF5vhatXI8S+J6b3f7Ddc
+ mstIj4VGPPaj/mxcRA2lnjYqp/gy+o5qv4DI264mYVXqGthonKxxEtECuSeBhgMoOmkp4zDutwg
+ 770fVvY4
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
@@ -117,44 +121,89 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080094
 
-This patch series adds support for Qualcomm Soundwire Controller
-version v3.1.0.
-As part for adding this support, a new macro of_property_read_u8_index()
-is added so that we can remove the qcom,din-ports and qcom,dout-ports.
-As v3.1.0 supports more than 17 soundwire ports. Also due to change in
-the register offsets, new entries are added to the variant data.
+Add support for of_property_read_u8_index(), simillar to others
+u16 and u32 variants. Having this helper makes the code more tidy in
+isome cases, specially when we are parsing multiple of these into
+data structures.
 
-Tested this patchset on T14s and Glymur reference platform.
-Alexey also tested this on SM8550
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ drivers/of/property.c | 33 +++++++++++++++++++++++++++++++++
+ include/linux/of.h    |  9 +++++++++
+ 2 files changed, 42 insertions(+)
 
-Merge strategy:
-
-I think the patches can go via soundwire tree given that Rob has
-provided Reviewed-by on the of_property patch.
-Vinod are you okay with this?
-
-Changes since v3:
-	- added bit more flexiblity to driver with a missmatch message
-	to address incorrectly specified dt-entires.
-
-Thanks,
-Srini
-
-Srinivas Kandagatla (7):
-  of: base: Add of_property_read_u8_index
-  soundwire: qcom: remove unused rd_fifo_depth
-  dt-bindings: soundwire: qcom: deprecate qcom,din/out-ports
-  soundwire: qcom: deprecate qcom,din/out-ports
-  soundwire: qcom: prepare for v3.x
-  dt-bindings: soundwire: qcom: Document v3.1.0 version of IP block
-  soundwire: qcom: adding support for v3.1.0
-
- .../bindings/soundwire/qcom,soundwire.yaml    |   8 +-
- drivers/of/property.c                         |  33 +++
- drivers/soundwire/qcom.c                      | 257 +++++++++++-------
- include/linux/of.h                            |   9 +
- 4 files changed, 199 insertions(+), 108 deletions(-)
-
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index c1feb631e383..4e3524227720 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -147,6 +147,39 @@ static void *of_find_property_value_of_size(const struct device_node *np,
+ 	return prop->value;
+ }
+ 
++/**
++ * of_property_read_u8_index - Find and read a u8 from a multi-value property.
++ *
++ * @np:		device node from which the property value is to be read.
++ * @propname:	name of the property to be searched.
++ * @index:	index of the u8 in the list of values
++ * @out_value:	pointer to return value, modified only if no error.
++ *
++ * Search for a property in a device node and read nth 8-bit value from
++ * it.
++ *
++ * Return: 0 on success, -EINVAL if the property does not exist,
++ * -ENODATA if property does not have a value, and -EOVERFLOW if the
++ * property data isn't large enough.
++ *
++ * The out_value is modified only if a valid u8 value can be decoded.
++ */
++int of_property_read_u8_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u8 *out_value)
++{
++	const u8 *val = of_find_property_value_of_size(np, propname,
++					((index + 1) * sizeof(*out_value)),
++					0, NULL);
++
++	if (IS_ERR(val))
++		return PTR_ERR(val);
++
++	*out_value = val[index];
++	return 0;
++}
++EXPORT_SYMBOL_GPL(of_property_read_u8_index);
++
+ /**
+  * of_property_read_u16_index - Find and read a u16 from a multi-value property.
+  *
+diff --git a/include/linux/of.h b/include/linux/of.h
+index a62154aeda1b..0c95e26c7191 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -316,6 +316,9 @@ extern struct property *of_find_property(const struct device_node *np,
+ extern bool of_property_read_bool(const struct device_node *np, const char *propname);
+ extern int of_property_count_elems_of_size(const struct device_node *np,
+ 				const char *propname, int elem_size);
++extern int of_property_read_u8_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u8 *out_value);
+ extern int of_property_read_u16_index(const struct device_node *np,
+ 				       const char *propname,
+ 				       u32 index, u16 *out_value);
+@@ -639,6 +642,12 @@ static inline int of_property_count_elems_of_size(const struct device_node *np,
+ 	return -ENOSYS;
+ }
+ 
++static inline int of_property_read_u8_index(const struct device_node *np,
++			const char *propname, u32 index, u8 *out_value)
++{
++	return -ENOSYS;
++}
++
+ static inline int of_property_read_u16_index(const struct device_node *np,
+ 			const char *propname, u32 index, u16 *out_value)
+ {
 -- 
 2.50.0
 
