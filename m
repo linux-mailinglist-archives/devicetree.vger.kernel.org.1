@@ -1,162 +1,169 @@
-Return-Path: <devicetree+bounces-216492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CDD0B54FAE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:35:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2193B54FCE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:41:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F93E1CC7DBC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:35:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55C4117CFFE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CEA3009F1;
-	Fri, 12 Sep 2025 13:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF69306490;
+	Fri, 12 Sep 2025 13:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ffQiWbGc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bh6kI93o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7CF3009F0
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 13:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B934B304BB5;
+	Fri, 12 Sep 2025 13:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757684110; cv=none; b=Q1DVKdvLhxkhEnNVE5IfyEOUthp7hMVEtXdHkUQ1Mxu0py/HBYC7VQ+/qEVp2LyXZ/jDzqDMWC5EXLEXNos0BxwkAn5DZoqFg4xTFW1X6WCUPlNywIktBO9I20qdyLRV9ucbDy0QqNd9xisfyfCH6xkWAPGsOKZqrzkZf35Ht5g=
+	t=1757684470; cv=none; b=ZIsP/NKyd0li2XEkF8ybnCoLtXADYUoAgEqTFZyL+1Gj1i68vcQN+Q829VR+hnCM7Zjpw2WQ13MGNIeJohUysJKeslbs8VR5y2PjLQi7IkGK9fqiEvne8FPOVnDmuamfeonetV6VgJeDxwdKcUvutNJn9wHJ9d6yb6B313myf0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757684110; c=relaxed/simple;
-	bh=Mw1uqYx7xqErJ7dWKzMJLyxHHuWnHuDvctPdOSnJ6Uc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Idg5DBTSSikUQXe018KcQy93osdPjdGvxaSlZ9JxhqagoXXvPtt1Dgsb5yvaRskxfD/N2EVQ/RtVTF6y8ch7wuUISV6OObDNvZg9HPydILcK9I1rqYurVgp9dimdgJtDnboHw5fD2hyUwSnIpUCBTyR5er9/Apq1LYFoGXlnuH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ffQiWbGc; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-ea3e8330e8aso388400276.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757684108; x=1758288908; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oif+Qq/ko4e9IqPBpRdx3M/nH7onkOEoHN9rr45t7A0=;
-        b=ffQiWbGc8jBI0/MMekKJOTGkZ8I5gVMNordx3lAAXmMexZijDRX/sDFrNJ3Ypu1iEM
-         SHIZsWei5E7e5pkXjsTysVPt0NtxGHy6FR8zcwp58R7e0lasL+xCANzO8/WS6UeP4JRn
-         pmf9tutWHLs+bL0uBzV9ttQ0x0eOTZaJs9Y2Lmx+5TKgq+ox+i2/MePnp7cUx0WpPOBD
-         yOYNJudMtypBBjyesWYlU2BRbqBWFzvMoqCwhzkGiTvzxGY01RT+weROfGd9SGZgv/R1
-         862GSVo1ZFhrPWa+Cji/qFWzofTLJ9zu7FAMnQ6yF8f1FNFXAfO9UjKTlI715jxsXB4k
-         VweQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757684108; x=1758288908;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Oif+Qq/ko4e9IqPBpRdx3M/nH7onkOEoHN9rr45t7A0=;
-        b=qiaxyZ2z4WaZwJUIBpRkSFg0ywcjdu0ANgkq0l+HtO5YdHw3wMjKgy6pJxriwGKXn7
-         tVpQRcDxJqQkK7SU3v9RH69hIAZKQwwgGA8VANR6eq1Id87DBmu+jfzDL8N7ZTEmVJD/
-         FJvOkxB2LMaEElw0FSaU9IztIVNWQFPwW2nIFnyyvYXhvCuBsroycsdBgULT+Rg8V28b
-         9V6UINXCiN454yUZAKBKYoSyfal7+LkVNtIjZmEPp1pu1e8a+kZItENlr96QdNqmbt7V
-         DCLh5gbwxxDf3fXJqEziemARa+09jYeyc935kJL6owXTXPGoj7D7xtlCKLwDG/bf973b
-         r1YA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQygQT0RY4gY0yk0Bzr0ISRzcQI6fZYG0WqgAz/L2MzQmLpNLdZYiqoaO/XwBXbMTU4MYjYRPi/yUR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzG3zR1pVPI5xe5FxDsvR5mYQAArZc+kSSDgvVbWULTiYS9EV2d
-	nxyXLzbPTmye2sljAhUyuF/v/CSX+t+MwE/198yNZDQI0Bfqpxybj7OPegxl7PsJZTeRP2wcC3l
-	XrAvSCRJjR+544374m2ipxLxTOOZrUmei8IH4LFyTBA==
-X-Gm-Gg: ASbGncucJboxF68+ogrWKky6Iu44rYw/QjHO+0ykgSncT0g3txqMxIcO+jDIX9zpa10
-	o9rG5XCrRWLXvAN4Ha5cGoWcQRNcqu2DYGcYu5DuQENtr+veHq3LLJ8CVcxKGsv5GXpGqSzbE41
-	UxjN9xHqeH+J5/EGPymVgZi9syOmHXB8bC5E0Ss92J+QrOOGy1u8A/EQ0Z2pgE8unT0gwdy5R0J
-	+2+ztaiPgu59l0zIbQCtSfU6pUIYQ==
-X-Google-Smtp-Source: AGHT+IGATGH4zT90wO86AA8WBiOnGk/LXDY5uDAcwdw9i5ErydnHz9qSPT6Guu/RQKz7ZbqSt/y/uvpf3m3dqjiDPL4=
-X-Received: by 2002:a05:690e:155a:10b0:62a:42ce:b7b9 with SMTP id
- 956f58d0204a3-62a42ceb93fmr411217d50.1.1757684107248; Fri, 12 Sep 2025
- 06:35:07 -0700 (PDT)
+	s=arc-20240116; t=1757684470; c=relaxed/simple;
+	bh=E4eP4rC4TDnQOL6fwlL/6K6S0ylH6QAGXdXkuNjGzVU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kNmrcZ6WdEylWSZr5LZ7n/F04JerFOXEzUoxYD00LjpN4MkZI3+VPmecdTjzctKYMOy8t9pbbIwdA/aXjzZcl80ehp7SESomYfwWQ7HGQIsOHORCS2D7rjjrXSN2Lg5UGw6p86dtG58PuuMXsR81FgkZM8vmpathxDiMyTn6PL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bh6kI93o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7256FC4CEF1;
+	Fri, 12 Sep 2025 13:41:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757684470;
+	bh=E4eP4rC4TDnQOL6fwlL/6K6S0ylH6QAGXdXkuNjGzVU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bh6kI93oPfsrTQ1CXlbsfS4cqtLBYuTircmQ69NF0dDvcOHku2jxpyscw7pn7RHRB
+	 t3GeYwVbAdxXJIWGItuZHiiVG6AgVuuzRM9s08NQ9UJKRYwe/SUJrI3ygdANEpMbYP
+	 cflb7I7229EkZDpckDVkJs/eVVbvIU/ujSnDXcyqsPD+Y5ytoLap7vjD80+oiP0Vo3
+	 g0y/KlGmSyQnIl1mkAsZ8vlYAGBTBMwDUZAxJnYkLK4KbcJtbpzDVCurdXjJuQmedW
+	 euWtOnet9eu2Hdl/trzPhB3/56tC9O4NR1RoPXwGHbymNKNuPssiSlUmB0bMgqfL+n
+	 QOZxRit3i8i1w==
+Message-ID: <d40011bb-8e03-402e-b343-7331d51e2427@kernel.org>
+Date: Fri, 12 Sep 2025 15:41:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250908104122.2062653-1-quic_sartgarg@quicinc.com>
-In-Reply-To: <20250908104122.2062653-1-quic_sartgarg@quicinc.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 12 Sep 2025 15:34:31 +0200
-X-Gm-Features: AS18NWCooWdb8G6qEjRwFzci8cfjJRbJFJ2Ea7ro1afYf_iz88sxBWUweu1ZDLI
-Message-ID: <CAPDyKFptA06Khx-9HFf9Vt+OUXRtVqmb++HQ3ZbZD0rjRkOsPg@mail.gmail.com>
-Subject: Re: [PATCH V6 0/4] Add level shifter support for qualcomm SOC's.
-To: Sarthak Garg <quic_sartgarg@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com, 
-	quic_pragalla@quicinc.com, quic_sayalil@quicinc.com, 
-	quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
+ documentation for the PCIe IP on Renesas RZ/G3S
+To: Claudiu <claudiu.beznea@tuxon.dev>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, p.zabel@pengutronix.de
+Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250912122444.3870284-2-claudiu.beznea.uj@bp.renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250912122444.3870284-2-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 8 Sept 2025 at 12:41, Sarthak Garg <quic_sartgarg@quicinc.com> wrote:
->
-> Add level shifter support for qualcomm SOC's.
->
-> - Changed from v5
->     - As suggested by Krzysztof Kozlowski reintroduced minimum/maximum
->     in dt bindings and avoid repeating constraints in free form
->     text.
->     - As suggested by Krzysztof Kozlowski/Konrad Dybcio update commit
->     message reflecting discussions and previous disagreements.
->
-> - Changed from v4
->     - As suggested by Krzysztof Kozlowski Renamed the property from
->     `max-sd-hs-frequency` to `max-sd-hs-hz` for clarity.
->     - As suggested by Krzysztof Kozlowski remove min/max constraints
->     and add default: 50000000 in dt-bindings.
->     - As suggested by Konrad Dybcio moved max-sd-hs-hz property in the
->     SoC dtsi.
->     - Retained sdhci-caps-mask in sm8550.dtsi for now and will revisit
->     its removal for future targets after thorough validation and testing
->     from the beginning.
->
-> - Changed from v3
->     - As suggested by Krzysztof Kozlowski moved the property from the
->     SoC-level DTS to the board-level DTS.
->     - Revised the commit messages to clearly explain its board-specific.
->
-> - Changed from v2
->     - As suggested by Konrad Dybcio and Ulf Hansson redesigned logic
->       to introduce a new DT property max-sd-hs-frequency and override
->       the hs_max_dtr accordingly in sd.c file.
->
-> - Changed from v1
->     - As suggested by Krzysztof Kozlowski redesigned logic to use
->     compatible property for adding this level shifter support.
->     - Addressed Adrian Hunter comments on V1 with resepect to
->       checkpatch.
->     - Cleared the bits first and then set bits in
->       sdhci_msm_execute_tuning as suggested by Adrian Hunter.
->     - Upated the if condition logic in msm_set_clock_rate_for_bus_mode
->       as suggested by Adrian Hunter.
->
-> Sarthak Garg (4):
->   mmc: sdhci-msm: Enable tuning for SDR50 mode for SD card
->   dt-bindings: mmc: controller: Add max-sd-hs-hz property
->   mmc: core: Introduce a new flag max-sd-hs-hz
->   arm64: dts: qcom: sm8550: Limit max SD HS mode frequency by default
->
->  .../bindings/mmc/mmc-controller-common.yaml       |  8 ++++++++
->  arch/arm64/boot/dts/qcom/sm8550.dtsi              |  1 +
->  drivers/mmc/core/host.c                           |  2 ++
->  drivers/mmc/core/sd.c                             |  2 +-
->  drivers/mmc/host/sdhci-msm.c                      | 15 +++++++++++++++
->  include/linux/mmc/host.h                          |  1 +
->  6 files changed, 28 insertions(+), 1 deletion(-)
->
-> --
-> 2.34.1
->
+On 12/09/2025 14:24, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
+> Base Specification 4.0. It is designed for root complex applications and
+> features a single-lane (x1) implementation. Add documentation for it.
+> 
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Patch 1 -> 3, applied for next, thanks!
+You cannot really test bindings in that meaning and build tools don't
+count as testing, just like building C code is not testing, running
+sparse is not testing, checking with coccinelle is not testing.
 
-Note that, I took the liberty of amending patch3 to change the
-declaration of "max_sd_hs_hz" to an u32, rather than an unsigned int.
+And it cannot be tested even in the meaning of building, because:
 
-Kind regards
-Uffe
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+
+
+...
+
+> +            interrupt-controller;
+> +            interrupt-map-mask = <0 0 0 7>;
+> +            interrupt-map = <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
+> +                            <0 0 0 2 &pcie 0 0 0 1>, /* INTB */
+> +                            <0 0 0 3 &pcie 0 0 0 2>, /* INTC */
+> +                            <0 0 0 4 &pcie 0 0 0 3>; /* INTD */
+> +            clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
+> +                     <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
+> +            clock-names = "aclk", "pm";
+> +            resets = <&cpg R9A08G045_PCI_ARESETN>,
+> +                     <&cpg R9A08G045_PCI_RST_B>,
+> +                     <&cpg R9A08G045_PCI_RST_GP_B>,
+> +                     <&cpg R9A08G045_PCI_RST_PS_B>,
+> +                     <&cpg R9A08G045_PCI_RST_RSM_B>,
+> +                     <&cpg R9A08G045_PCI_RST_CFG_B>,
+> +                     <&cpg R9A08G045_PCI_RST_LOAD_B>;
+> +            reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
+> +                          "rst_rsm_b", "rst_cfg_b", "rst_load_b";
+> +            power-domains = <&cpg>;
+> +            device_type = "pci";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            max-link-speed = <2>;
+> +            renesas,sysc = <&sysc>;
+> +            status = "disabled";
+
+...you disabled the example.
+
+I don't understand what happened here - why this got now disabled.
+
+Code was correct before, but you made so many changes including this one.
+
+Best regards,
+Krzysztof
 
