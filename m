@@ -1,217 +1,132 @@
-Return-Path: <devicetree+bounces-216630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D397B55692
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 20:52:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 495FCB556A8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 20:57:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C3F9567508
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 18:52:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98EED5C3724
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 18:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058C733436A;
-	Fri, 12 Sep 2025 18:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C0F3375A7;
+	Fri, 12 Sep 2025 18:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iC3G+Okv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U62kabUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013055.outbound.protection.outlook.com [52.101.83.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8633009F0;
-	Fri, 12 Sep 2025 18:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757703146; cv=fail; b=D339RFWzq+cdlhu5fcPSd1qiFAr4epwrJwg3arOoyoT3C64niHPug9qMwf6z7a7mCESNU9wNeiKLuHCJ0pT+WLa7qDEBi94ACgzQ2/4LPg7553wUeqVQqUdrhtxElADjPWEHuUgb3Y4RBTN12JZxwjTjiKFrNwFrpGmd4LahSDo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757703146; c=relaxed/simple;
-	bh=weJfRV1xaEe4LYUcpVC+UELBt01hayB6uBqTotpkFGA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=rcG0t1euaUuXH7VGmluW2QwSGOwm8sLf7jPe9Ua8Y/LJ1s2jTFCQcfa4tc3d6j20PqY6wk7rcAYuf7reBxIIVJy+BvcDweMh7sjS1w1WH526t5fRX2uXY95EVPX6RLU0uWLun+MpSAJu0rGJudTa68C3XQXG+N9GEPlhLav+bSc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iC3G+Okv; arc=fail smtp.client-ip=52.101.83.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rTANrkJNYSEzF/p4agd56ub5g50sANNDHegBtbf50FBkOiAOHmAMSOO/hW0mpIneo1sa2cToTWnyrqz3/QM5Zkoi7R2Z9AywV4pgX6Nk3jKMf8an87NuurTOUK5YAjOrHtcGDBD+DxJEiB8x/U8bFudH5/w2753F/TUkHYXzbYOvEUETj5inXFK4971GfM32DIDuQngHAsYZv4ViAdWEuA404NIQ0gKM1jWCY/IxzLSggshtqDogAkiz4xd49QZpcFkogK5GoJqZArMdplIaL6A7IbxxXl6NSsSOU9iU1Olw6qAwQSekFrfM70Yp80Nn4zVfKwm23ftjCZq9JIuGfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zO1nMwuha9pKDdyR0lzZUSPos0IX/rXy+1KeQ5BbQdc=;
- b=DfBRIYg+kPqlsZuW1/ihyQtpgndLU599XFAxiK0o1v988RGlWwHkyWDEqGWfgG5J9RLSdxiZqGrdz+Ii9iWiARMSrczJROhoas8QMp0kXbSj9JZVOSV8/Kd1zomK9m4yM5yygIf02LpwY9VuNnJ9hDTz6pqMEm8Kc9gVtRXC2PTbKrkw8achH3rnNRHrQd6P+ZMoX1nmq7SemR2LdTSmpDatUixqo7KR8huAxzmYOt5phTvONRcIlsQbI6L5NKuzth2wsBsFhLsPIXXL+QebTUUA4bzuAMMMYtxOqNGImODZQza/6ZHb/qOZf9bBqcrMygXDQASQ2XccxyTrtV6cuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zO1nMwuha9pKDdyR0lzZUSPos0IX/rXy+1KeQ5BbQdc=;
- b=iC3G+OkvMp1h7FKgUsgvilEMnN8O6/W7o9uT2nkDF0f/+nFuUsnBoTQMKbsmXl+nSywXgs3ImsccOXF6VhcYb7JsY9tzkNGHyrs9WioqhWWOp9FhuaagQ4TdVWrVdxBfE0M/3Bt1rbdSwjlh/kauhKeKabWzhCTGeh2r/H6wAPKFJfm3/w7g3KvTCLXdElJGfFIlB4371EIInsRlVQr5B7UYVToLvbQ2JgMaAooNcPvSJBTQXvuvFAm7n1Zv0II9OVn7PoBEkNjtA0Aiz0vINsSxVXW6kZBqm89aF48bMqwQb1DTOfvIVd5R1kpTY3NfYX73faQfasf/7j0PL4sa5w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by AM8PR04MB8033.eurprd04.prod.outlook.com (2603:10a6:20b:234::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.19; Fri, 12 Sep
- 2025 18:52:17 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9115.015; Fri, 12 Sep 2025
- 18:52:17 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	dri-devel@lists.freedesktop.org (open list:DRM PANEL DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: display: simple: Add innolux,n133hse-ea1 and nlt,nl12880bc20-spwg-24
-Date: Fri, 12 Sep 2025 14:51:59 -0400
-Message-Id: <20250912185159.1118209-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0229.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::24) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0402334375
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 18:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757703403; cv=none; b=t0FXuYt6KWKYudj6HHcl0srwuJCpE4m4klHYq/+nIaMb1iI2C57iCE1y+uPYwoPPZHkFt9n5pJmxthlNQAfPfxJusGwDZ2aNFAUdnUmTJku2NbP5B7e5V/FiWN9ETF3TPYXeRp9mbjnfRWbS7Nk213K7DtSxw+Sda3fPvRUFOLc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757703403; c=relaxed/simple;
+	bh=He1pvX0XTycz95hAhF51zPdEOZXmBoTL3G+g8UJcZTE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cMjGbf9hoT2tQdCPuqt16kNow08x3tJ8/Z79rHOSIBp2bvwytn/XezkidKpfmDBKaY3O/Udtfd546dN0Kv/ett1p51btcCYT0wJ+h8v90FK2J5UfS185eZd+SpdQGPqHZugXK10jtHVqrQcqLRcgQ9CnYt1Lg4ttT/oXmN4jo4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U62kabUv; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b079c13240eso372141566b.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:56:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757703400; x=1758308200; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=654+40ONPazsA6Sg7ViU5q8Gy7dAoujJn1HW6HC1QyM=;
+        b=U62kabUv91QQunti0iYyXMOLzz4K0dFj+xesH0rhfbBXjp5VyaIPYCqN1FuHqjBOpP
+         iqPsNTowr5Sp9paAKjH6FHqcLeKaDoog9nIP+1eHIwD9lUg93alvkByoCfDiXKaE9a4i
+         nE/8Gd97iWey0a2hYSYuOT7xSXiKdkelbWgq7TSmLlV8yEaDNC4GfbAee1ivmM6Lt4qS
+         0VZL+YxN+NdMNvPpPnvas8WwCnNiU5bjDIG8V1O5DcF664/fUeH+6LqgmrNxw14OYlLf
+         IcF8WAv2PBacC1nqn79JCN3X2e+5yDY+ovMZ04N509R8CTcdBFB4Qfsh4N7aIQiFv31C
+         MMug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757703400; x=1758308200;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=654+40ONPazsA6Sg7ViU5q8Gy7dAoujJn1HW6HC1QyM=;
+        b=PgjlzM5JOkfnCdBcK1F4JU5hem62dEYS8llI00t084mZTe1Fi+7yPXao0MjqxerdBD
+         b73wpt2II3B9pDstte6fjGyakaW09nDCCsSvNOpi2suigRlsNJJE+gnYPpoPj4KmQ3Jn
+         CaAOCSD3ZnQoYIFaSJ9a7cxxgsqHbUNjBeWafgvJAn9af6nlDYXR+trGr66lyNq2K77m
+         5W817b9rx+PkNoO2d7yy5xBOCxYhmFluKA12Q0xnMI3o/+EdDHgvYh06tmCc4ACy5Uq4
+         h9lGGnnxaoMa2i0I1dy29/oA5OfB6LGmXkv15xoyQ6f0Zva6siOK/EAs1aXrGxzMXEEf
+         shcw==
+X-Forwarded-Encrypted: i=1; AJvYcCXIvR2V1QtCd3aadMYGyS4aRlwMNzTzpingtL6YlooIM+m4plotTZiFGufe7lJRaEwczDj3KkxgaN6j@vger.kernel.org
+X-Gm-Message-State: AOJu0YyilUa+lnmGy3RL92iB8DEiO0j432VCUYhWFqnYW7Qy0km3hory
+	2dMKn0muaL3ihlhRVtqgJn6kxlZMfsSqc3/IHTSNrVrci0tR/GSCxq1zGPInYQ==
+X-Gm-Gg: ASbGncvfQ+T3RhL/1yB2C+1Xoraj2p4y08t6F7YIDpFlFBOytYbo/a59A/8V06aoopr
+	t2BHJcttDRK+SLTyJ/ChlnfDIV9jeiPxdEmGvO03mnWQly0wfrtjM34baJJtZBT0pkXMxtysz1S
+	oLlsNrobQKGZW/85MBH1g8C2KlIqjcke0P4++oIhezUSX6k3KWendvj9CW0J4SHCvHMP+j0QxSh
+	U0IUFIB+n85bLcQpYEWvMb9yIArZJipAThoGVCp1JewPvhv9SfsE6cM+PLS3KWWrhx4QX0Hlkce
+	kMkEEo5fVZFDKuoTRGRd6Tw0O9krk3WrKe4zjfoo57RMRCRYxSnVjNWEGJrBxLmjsmcIaEAFu9W
+	CutyuseRLFHxFvG5KeUaHBtUnsTc06TE=
+X-Google-Smtp-Source: AGHT+IEYJZdStGiv/SbB9JGf4FKCbsts94xXGgPL4PEiVPcfXhw4phJXCET7IR/3PmJ1CAyUCWApFA==
+X-Received: by 2002:a17:907:3f23:b0:b07:c290:6d64 with SMTP id a640c23a62f3a-b07c35bb321mr385941066b.22.1757703399891;
+        Fri, 12 Sep 2025 11:56:39 -0700 (PDT)
+Received: from [127.0.1.1] ([46.53.240.27])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b07b30da310sm418184566b.20.2025.09.12.11.56.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Sep 2025 11:56:39 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: sdm845-starqltechn: add support
+ for slpi
+Date: Fri, 12 Sep 2025 21:56:34 +0300
+Message-Id: <20250912-starqltechn_slpi-v2-0-5ca5ddbbe7b4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|AM8PR04MB8033:EE_
-X-MS-Office365-Filtering-Correlation-Id: 340e33b9-3314-4ffa-75f7-08ddf22d7ec6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|19092799006|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZUYrWmVnOW5mTkdsS1N4MHZsUmg3QWI1TVRRTVNKNjMwSlVxdEJWcWlNbGFS?=
- =?utf-8?B?d05HMmhZKzJZRWNEaEpjemtwdG9hek5DQ0FBcDRyeW9XSWZKeWxhLzl0Nk8w?=
- =?utf-8?B?cGxENTZNSmdma01MN1hGbEhJSjk5RFJ6ckdhVlkxeVVhR04vdCtIcDVsdGRq?=
- =?utf-8?B?KzhZT0hFUThvbGdDZGVyTE1RYnl4NVRsWktOb1RxVlVKUTNYbk4rZkxnUzA4?=
- =?utf-8?B?Y1lYTzVmbzNqeGdCNUhqZzdyNmJienpISjZlWXV3UUhuRlZEbkMrM0J0RWU2?=
- =?utf-8?B?UWNJRy9GRDdUS1ozZnY2bDQ2dzduNUpQLzR5LzVteEF0a00zSXMxT004ZzdX?=
- =?utf-8?B?eGs4NDcyV1hibGdrYVFUTnFJSXdtNEd2WTErYmhGam5uYXJsOVpIQ1dkMUF3?=
- =?utf-8?B?OFp6RGlPMnduNHBIMEJnZ0ZCUGJIWkZ5OXFWZXNzSHR4bXBhRmU1WUh0WmFJ?=
- =?utf-8?B?RmNSM0FmVENtazdIdUE5YThjVnRjeDIva0ZFb3B3c1dCcWM1N2J0a3JUVVc3?=
- =?utf-8?B?WnlFWllwOGduWGtTSzdDOUF0N09LRkpBVmcxelh0Y1N5Y2xrWmRyRzRtWHNp?=
- =?utf-8?B?blZsaGpaZmFmNGxDNnFtYWJMVy9oL3QvUERFNUh3dDJDQkgyN2dTd2U3RWpQ?=
- =?utf-8?B?RDgwRkZneTNkUlpvanl0Uy81cGpHbnU1UDErZWw2ci9wMXBCaEp0bkxreGdX?=
- =?utf-8?B?c2U1alI4OXJSUm9KYjhuazdqMzJROUhldDFHb2VwUm5KRmo1TGdNc1dNeTdB?=
- =?utf-8?B?MkNEeUZBNEdBUWdqTlVyMHFybk9HbkU5emJ1S25HUGcwM3JKMTV0MzY2T1pq?=
- =?utf-8?B?SW1uQ3lNemY1T0gzRnJSMGkxOTd3c2VkU29YV1RYZ292QmJneVp4emhLUWdW?=
- =?utf-8?B?U0RFSzRRa1B3S2pmdk81MkpVc0ZrY1NIblhpaWJmNXFaVWd4SmxLYkVuVDdt?=
- =?utf-8?B?dEFVMnJOc0x3cW9PdmFBRU9LNTcvTjhHdnB3VUtvOWw0S3E4RkhTOWFicE5N?=
- =?utf-8?B?U0hoNjUwV1puaFpUVUFBd2pOMEp2OFZkb1lpdUk2SGViOC9malE0cWZnNjRZ?=
- =?utf-8?B?M1lVVVFybUY2UHpENGVjZTdENW1VLzlpT3N2eXQ4MmU4aHpUeWVrQlh5Q1lO?=
- =?utf-8?B?cExCRDVJV0xzMW93NmhHYjRCdCs1ZnR0U2VSN25RSkZJN0hHdFlRZXBYRUUy?=
- =?utf-8?B?N0ROT01ISm1KdGxxd3Q1Z1ViRVExR0g2SDhQTkdNRDNTMFJVcmpQVXp6Yk5T?=
- =?utf-8?B?bDNhdVEyNlJhOHp5SGJIUy9EY3VpRWZJOHk5cDFxbW9xaG91V2h1djN2c1lK?=
- =?utf-8?B?d1NNelNJTWtMZEJ2Rmd6QndrN2c2RVBUZklOMXRyakEvckdDS0NJL01rdkRV?=
- =?utf-8?B?ZGhRaGE5S1VQZUJadG5xUVRQQlgwcmlNNk5EZk5GQkRzTGJtMVNQQmxCbWw5?=
- =?utf-8?B?Q01sSjBqdU5nRzJvTVBqRDg1MGdGS1piMTJibkg4YmNMQ3UyVkwzWHRnY0Zj?=
- =?utf-8?B?ZG00TE1lbWd6VzhLK1B6djJ0d3pRSU1UbXAwYTVyZC8wek1peE1kUVNvekI3?=
- =?utf-8?B?aVFQYUJmRFFBT0xia0hMcExBV1pKVnFZeElDUCsrZGVUZm1PdWJ5RzZwSlVF?=
- =?utf-8?B?cVRGQS8xMG9NaWpMMGN4QytnaEtvUmM3L09GOURIVk5FODAzbkN4U29ZaHcv?=
- =?utf-8?B?M0l4MWFSZ0k2K25wQjdMcCs2ZXZyaHFUcVBxQUZVNlk0STlpcWI5OStpOVVT?=
- =?utf-8?B?eCtKZ1NmR1BodjFVSHFIK2hITmQzaVNaN1FrMGlMUDdQbDRKNFJNcFNleWl1?=
- =?utf-8?B?R0hUajk4TFU5WjBZN2xINDkwWVkzL1QxaEZMR3lvRVhNQ3JtT1hJLzc5aCtL?=
- =?utf-8?B?c25kMml6N3ZtWjdhRlVMTDRVU1Z1bE16QTJiTW5XSWpIQ3NGQVNXMkdpM1Jl?=
- =?utf-8?B?NXNuaEJ6eUw2WlZ0ZUs0RnA0ZUxlbmZ0ZVUyRk8rTGN6ZGtibjRmUXoyUGxy?=
- =?utf-8?Q?TE9jWsh66RF5pIw4IgUJcvUgFHRUPA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(19092799006)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?KzBleW9Zb2RrRGVZMU41RjAzenFxeWRBVDVKRS9FWXI0OXNRUld6alpxUXpr?=
- =?utf-8?B?MksxRGIwL09pUi9TbjcyZFNCZkFxalptMG5iSDZFSERFTlI4dytlaDY0aHdr?=
- =?utf-8?B?VTZyYUM2QURDUW12QXNmQXJaaURHL3lKR0p5dEVyaitIKzc1T2w1b3hLaVpO?=
- =?utf-8?B?MUViMWgzdk4xOWNheVZmYUxCL2wxdDN0TDZpUnNKdVFEdllSQlBoUUlvU2F3?=
- =?utf-8?B?ZGhFZVViRUQ4YXhXWXl3M2pNaHJTeVlmemZaQXF3UnlydlBRclFndUNxS2lr?=
- =?utf-8?B?VER2T2JRM1RvNUtKRTBzajU5ZjkvWThhUVJ0NXp5Z0pFZ203Q1ZkT2d6UTVu?=
- =?utf-8?B?aW5XVVJCMi9XclJ5a014MU5EMFRyUis3TWtSSHIzNWtHbncyUC9RNU1oRERj?=
- =?utf-8?B?a2pIZS9LbmF5N3NSdkdjUUNGMzcvQmkxNHJsUG44R0dqeUFtQjdLc3hoWGZz?=
- =?utf-8?B?TDlucUZMMG5XMnE3ZFhqNVZ6RE1yTy9qSys3c0s2Q1JyUjRRdDl3ZW9zUHNn?=
- =?utf-8?B?aG5XSDZtbC9wTTdrV2VHTDMyMUM1UytSVCt6TzlIZ1dnRDNNY1M0cU5CNVN5?=
- =?utf-8?B?czNCMGdsWGdUVDdBSE0wZHlhallkZ3NkK2cyVjJVTHJzdkhjZXFoZkMyMkpE?=
- =?utf-8?B?QmRjK1ZGMHk0bXYwNkphTHFON3lMeEZUMzh5bk5id1pNUE55eTZERlV4SzBa?=
- =?utf-8?B?Uk5hMGVJR095eG1ZZkg4SldPK2tUZSt2NlNvaEZzUGZlSEQ1WW81NTl2bXhi?=
- =?utf-8?B?L0U0R21YRnRrek42S2RLWFhNcXJGL0xwVmJ5V3d1N2FDK3JPMVl5OHZqREMw?=
- =?utf-8?B?VGNHUXNQRElvNGIwMWJUMll2RHlkYUpMYXJVR3BPbDNwSDNVaXJVODVocnlq?=
- =?utf-8?B?TVk1RUppUktrbGdSdTBjWlRENlhIME1xU0Vrd0xvLzhuOVJ2WHI3SEFMWE0z?=
- =?utf-8?B?RWwrSU5Ib2lKdlRhV0hTdnpUN1NCRVVLR0o5NEdNbm94dVBHTzJqZEI2T1Bz?=
- =?utf-8?B?UFhOd0xkU2ZQTWpSODZoQU93NE5mUWREQzRuZ0JhWEpZYXVteEpOb1pReVpP?=
- =?utf-8?B?UVRXK0w2NE5qdUNxMkppb291VTBzcHpacGNsOGYrM1ZnNFdVeHYweFlBclBT?=
- =?utf-8?B?Q24xZUVLR0JXYjg5R0RrdzRVR3dBMjhkbnpiUUo4OGV3UVE0WitaQ1FUYy9y?=
- =?utf-8?B?RTMycEk2YkZQZGptb0hOQmFVbnhEMm9mV2k1azdoSmVxTldKZHBzK3l5UmE4?=
- =?utf-8?B?T05ub0RneVlrRzB4bG1WMWlGWklPeW0wUkFIZE9NcE1udWV0elhWeUs5dWp4?=
- =?utf-8?B?YjdaV2JQS25Qa0dqdUhzQjhMTTF6Z3NnSVRWSnZQYkNwK0hrNGZoZllDL1VO?=
- =?utf-8?B?U2wyRUpLYTRIcUpiY0hEMm52UUVsNllLN3B4djZweU9ybE9pRWFBcTlqSmt5?=
- =?utf-8?B?Z05zL09WeDNaWkxRcUt4U3RpOTBCNlRkVGY5UCtPZmJSeWdmdDhpY0tTSlRJ?=
- =?utf-8?B?cVNZLzFsMlYwVmt0bjB2c3Q4RnpJSk9Rc0xNU0xNdWhnME4yT2ZnbHdBMGFj?=
- =?utf-8?B?ekpobStodThlZU5HeVRNOVJWVlBmeXhiZkJKcXhJeHgvclhxY056VnNaTmFj?=
- =?utf-8?B?YktUMjJwT2FKZUlWNElxUDFQb3lNZVpVcjFQZlRGS3NGK012OHJqaEhXKzhP?=
- =?utf-8?B?aTJPTnZXdi9uUXZUeWt2OEZ1SWZMWnNZeXdNZXY2c1Q5b2x0QkVORFF3NmJx?=
- =?utf-8?B?cWxYVWZ2RzB5dndIV3EyTzBpY2hEY3dzeVh1YXp4OGt3dDdLOTdsS1pTL255?=
- =?utf-8?B?ZVVhU21WRVJ3T3RTd0dHcDFiNHZGUGpra0xhQUhaUXR6bmVweTJ2SU81OFFq?=
- =?utf-8?B?ZmlaRDhCSnR1cTJFTHA1WmlUMXBoZ3Y4ekZwV2xCTW5jL1VLRVBpcVBKQ0NY?=
- =?utf-8?B?ZkYrNHNpaXUyOVgybDhMVEZFRERTQ1NCWFFhM09qaVVZMUpKZXRtVUFCa3FB?=
- =?utf-8?B?anJpSG5sOG1aS0lHYmtLMlI1UVhxaDQ3NTNtam1DOVYxMzVEMzRkZ0NpOFJX?=
- =?utf-8?B?dkViMmdqZU4zRU12ZFpodHI0eUsvbFJwcEhKeGtiS2NGWnYySTRYcFovU0xt?=
- =?utf-8?Q?/ukJrYQsQoGNMteOGWCGR+6x9?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 340e33b9-3314-4ffa-75f7-08ddf22d7ec6
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 18:52:17.2384
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kuF5371iCX49XEopxvB8BZrj8Dsum3s1vIPOoVXObPzXCVXy9SUWRO5L+5dLo6pYwo/PTkWqUsHOvjpgOXzulA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8033
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOJsxGgC/32NQQ7CIBBFr9LMWgxQ24or72Eagzi0k7RQoSGah
+ ruLPYDL95L//gYRA2GES7VBwESRvCsgDxWYUbsBGT0Lg+Sy4UoIFlcdXtOKZnT3OC3E2q7j/Gx
+ PyFsLZbYEtPTek7e+8Ehx9eGzPyTxs39iSTDOVI0PqxqhVS2vw6xpOho/Q59z/gLkyX2dsAAAA
+ A==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757703398; l=849;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=He1pvX0XTycz95hAhF51zPdEOZXmBoTL3G+g8UJcZTE=;
+ b=s6RcrOx7dZpLE5BIbPGcN7pve802nwpf4rz56FH0qS6xBTs8yu/eHa0MHR2z6eFtgsNz0fRY0
+ x/ZzLHMBRQwDstGUxyevqtLNAmPSMCMpWdastsmcigUgmDZBGdWzIDn
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-Add innolux,n133hse-ea1 13.3" TFT LCD panel and nlt,nl12880bc20-spwg-24
-12.1" WXGA (1280 x 800) LVDS TFT LCD panel.
+This series add support for Qualcomm sensor low power island for Galaxy
+S9 (starqltechn).
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 ---
- .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v2:
+- fix commit messages to be more clear
+- use fixed regulator with gpio to enable slpi power
+- formatting fixes
+- Link to v1: https://lore.kernel.org/r/20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 48344ce74a6e7..742ec6033b724 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -180,6 +180,8 @@ properties:
-       - innolux,g121xce-l01
-         # InnoLux 15.6" FHD (1920x1080) TFT LCD panel
-       - innolux,g156hce-l01
-+        # InnoLux 13.3" FHD (1920x1080) TFT LCD panel
-+      - innolux,n133hse-ea1
-         # InnoLux 15.6" WXGA TFT LCD panel
-       - innolux,n156bge-l21
-         # Innolux Corporation 7.0" WSVGA (1024x600) TFT LCD panel
-@@ -230,6 +232,8 @@ properties:
-       - netron-dy,e231732
-         # Newhaven Display International 480 x 272 TFT LCD panel
-       - newhaven,nhd-4.3-480272ef-atxl
-+        # NLT Technologies, Ltd. 12.1" WXGA (1280 x 800O LVDS TFT LCD panel
-+      - nlt,nl12880bc20-spwg-24
-         # NLT Technologies, Ltd. 15.6" WXGA (1366×768) LVDS TFT LCD panel
-       - nlt,nl13676bc25-03f
-         # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
+---
+Dzmitry Sankouski (2):
+      arm64: dts: qcom: sdm845-starqltechn: fix slpi reserved mem
+      arm64: dts: qcom: sdm845-starqltechn: add slpi support
+
+ .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 31 +++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+---
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+change-id: 20250911-starqltechn_slpi-677008f4e06f
+
+Best regards,
 -- 
-2.34.1
+Dzmitry Sankouski <dsankouski@gmail.com>
 
 
