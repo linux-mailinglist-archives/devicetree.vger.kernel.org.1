@@ -1,196 +1,192 @@
-Return-Path: <devicetree+bounces-216565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A164AB552C3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 17:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCFDB55315
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 17:20:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C43C21D61F01
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:12:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B1031D6050C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C33431B10A;
-	Fri, 12 Sep 2025 15:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A94321578D;
+	Fri, 12 Sep 2025 15:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJPtWhqb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fwReBDT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C151311C2D
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 15:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76617155A4E;
+	Fri, 12 Sep 2025 15:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757689818; cv=none; b=Vk63HQtopmdx4OEw/jh880uSNF+66mDcu2yBqsLnO0f0RtNjZY2WpY+q4qt9wbZGch0uE+R/53+pODkEL2nb2SNN3K8HZ3ZM6QWsrU+35Cy2y7XARFkJ5wpHlFnP3oaSCA8KMXbh1waqTaE4BW+sF/p6FFHIOzG59t2jiNzTJOc=
+	t=1757690445; cv=none; b=OO8gSy/VJ4NfqnS4xj0uYAZ0waA3cC/Q4TPBIpz4MAZFw4b+hHtuMIaR4zjsKvPpMOU+s4akRyQgqeJsakL3p87TXNN8WTWWlf7yaqPo+JHt+57ItX/rEoBhjt28zBxtp09qno3cXKRvXROTo/2OX8hjFQCh2hKb5LmOcoOMisE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757689818; c=relaxed/simple;
-	bh=EH8Jpbjf3tVpIiReCk8fmBnFNlqArmOcU2ajNR0GzrM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=m6oyQ0LnYqIfCdOMdzIcZpQVo+oxaAJSOZFHuFmpJYo/O3+uy4RVFBrRwlkeHBtJ5g3erJ92kqOy64WtM4lG6/8Y8SVSjBxpSc8J3U3I9ztFnfDLb0XN08ea5wKDsfUkNNHAs9Orudknw87g+VIW0sRWV2yBfRCWHtxENsaB7HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJPtWhqb; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3e46fac8421so1656398f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 08:10:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757689815; x=1758294615; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=EH8Jpbjf3tVpIiReCk8fmBnFNlqArmOcU2ajNR0GzrM=;
-        b=nJPtWhqbjPPD2Nx3MHiLul2qrJQN5Qwvj3VTNUd5tioRXJfFREvUMol/uoBAbJqikN
-         1lSx3mOGYDVRV5NQZQVvlPMN+XbhbA4hlx9R/P/6p3K/DfglKaQ/5uCv7hiTAnTVyNi9
-         nKgOJMLRqej6muFKUYfT7yYDxOsmVXUqBMcpogty94Yt/QiyOpwCmM0meF0fdFVIpmg/
-         8ssCUC2Wu0yVP5PgTeVGwPTGxmgQL5aaTcgJEozMY76Y6MRCucmWUimvhuCydARkwNEQ
-         G743Spty4rI/xHLqCbsTkFygsxxNgx7orYw/nYhYEjLi2hwec4J1H1y38E6aggzotUA5
-         9i1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757689815; x=1758294615;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EH8Jpbjf3tVpIiReCk8fmBnFNlqArmOcU2ajNR0GzrM=;
-        b=pFYEMuXlF+UBzjMqddjOdCU+H/dCulM26XOiD81Oxlv7Hg/V3DeE5e7v9Ga+EwDOJf
-         Iy46PRaxGt+RABDaUWTCA2WGadr6hg4Yon9oNpWU+xRs5Ey1JPHzw2I2w4LkOfAhCEBG
-         IQaIcmdGoHO4gxMlGR1oT5c8PThHJQfw5swMTtmZpsNpjuienWJ2cHBR6t5BTvKdIIVn
-         ycFv+h4aRUi7t2OPiAhiBPWjclbxPn/Oxk7H2pYI1CKtZ7+RafgyXU1ZIdy1rBSgWhao
-         WK2bodT9NiCqHJTxOiioMFDjqZoOrZAxF41u+qctcuvRZSqxdh3StXf9V+PmmqMJhoac
-         7h6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXerHT06km5fLvMv6NJiheIXQSDoN4xPCNoaw6gXwVsVUtoymW6AIOdI2Ezh8DFFBaH7IKkdVyFY+jc@vger.kernel.org
-X-Gm-Message-State: AOJu0YztYdWki/cvQHsfAQ6Hxo5u8C240oxY75vPglYLO0kFFr+GYLkj
-	TAfc8G0+lFEg46snXlCZbY10pgSxvg3AiwMszSUvbNDm7bPTxaO07Z2H
-X-Gm-Gg: ASbGncu2bG0R9G2zPvfDPvo4dPh+QgMScJUXrElZhTsjm7a5cBxWQBSa09ZqAwHXd5g
-	0gv80hMgII9+7QBFJnR4Je7TpFEBxoQgOtds+3N4bxrpdYODByPNf2RmBs+tlvEw5n97oWnFOWd
-	41IsQ49jTJx4t5lv63GXfwwShoSgC85jxoFnwsYaVb2O4nCMzhQqpJ5vdhKyUjxJEbE+Ccbk+GQ
-	GFVk/Y47vHWdh6YeRWnWgfnudPaEOlDuCDgOYrwyi5zL2ARkT5ACqKeALrpH96KYXFVv9DlVk85
-	/sM/pHAJ5yPPih/BsGNPVZnmEf8bQMu6ZPfd3H1Lt14IYHJswBx2KJj1nLoHCyUU4pyG2p2LkZZ
-	gbsBJhd5XC48qzN7C3IzCjg==
-X-Google-Smtp-Source: AGHT+IFBZ7ayZR6As5TqBDPX+xL1vq+uJ+g/MEFjF5Qhn9/NpX91L+SlvU7V18reC2hiHLdmFxq/pg==
-X-Received: by 2002:a05:6000:60f:b0:3e7:4835:8ea7 with SMTP id ffacd0b85a97d-3e765780af8mr2560033f8f.8.1757689813723;
-        Fri, 12 Sep 2025 08:10:13 -0700 (PDT)
-Received: from [10.5.0.2] ([185.128.9.25])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e760775b13sm7063783f8f.10.2025.09.12.08.10.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 08:10:13 -0700 (PDT)
-Message-ID: <6bf6a282ee8a4e55ebba21d89ec6dcf3fa499188.camel@gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jonathan.cameron@huawei.com>, David Lechner
-	 <dlechner@baylibre.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Jonathan Cameron	
- <jic23@kernel.org>, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, krzk+dt@kernel.org, linux-iio@vger.kernel.org,
- s32@nxp.com, 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- chester62515@gmail.com, 	mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com
-Date: Fri, 12 Sep 2025 16:10:38 +0100
-In-Reply-To: <20250912151718.00004cf1@huawei.com>
-References: <20250910155759.75380-1-daniel.lezcano@linaro.org>
-		<20250910155759.75380-3-daniel.lezcano@linaro.org>
-		<20250910183212.6640e662@jic23-huawei>
-		<b4d2ad54-54d5-4c26-be49-b6ac671683d2@linaro.org>
-		<c746e72c-dbd9-4afb-9da4-5d13733fd561@baylibre.com>
-	 <20250912151718.00004cf1@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 
+	s=arc-20240116; t=1757690445; c=relaxed/simple;
+	bh=xZzYJkY5+BPu8nhsq2Vxr8JsTXsHcdiu4vz2GCkN4is=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SqGUAO5LQuRjyjyPvlFLyOXYnS9Z42+yiqKm2607AZXq3qq6FsnokfLfsLDpxq8CHfOC87awvn1MBj5dxC47xC1cpUCIawV6MKtMSQfOYvnWcNkK5AT585J/AwNVSE9VuiFocw6yTYAYnuJKGjh4W/kj1j/v8eNkxjzpsMrO69Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fwReBDT3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fK26009098;
+	Fri, 12 Sep 2025 15:20:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=sHKPPnSvH1F6TrTCK+xv/K
+	7fVY8XrcbcHghJwh4o31I=; b=fwReBDT3jTkYtn4P30zTdCIGGSDIzefhdwb/p+
+	X2HrqDGV8EdcoeNuJh21+No8Ao+AgGqDgPBD4tFgCCjPN8kpp/3Xm+oAppvzGnpa
+	zv9Z+cJOcO+qbqIutsEXk4M+oioroTt7WcZ+VhrJqs+HM8bxxtCLyNaiL6s2qn8H
+	T870m22L5XuLHNWE9evHVGyaJPMFpS9t+x8ZlIVRPZZQczPBqvvgHdCUPgJ504C3
+	lwup0K5QleNEjZPIprO5zufA8rutUncYwfLGu7HsQTzn17pKVn1ULb44ZGe7kaaU
+	NqIyIGOwssedcDg2WeplpcNswU+4vyD40jNEZle6eIYd25Fw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490cj140eu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Sep 2025 15:20:39 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58CFKcTY026177
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Sep 2025 15:20:38 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Fri, 12 Sep 2025 08:20:33 -0700
+From: Wenmeng Liu <quic_wenmliu@quicinc.com>
+Subject: [PATCH v6 0/3] Add CCI and imx577 sensor support for LeMans EVK
+Date: Fri, 12 Sep 2025 23:19:24 +0800
+Message-ID: <20250912-camss_rb8-v6-0-c9a6c3d67392@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP05xGgC/3XO0Q6CIBSA4VdxXIcDBD101Xu01hQh2VIKitWc7
+ x56xYXdnO0/O/t2ZhS0tzqgYzEjr6MN1k0p6kOB1NBON41tnxoxwgSRRGLVjiFcfQe4b2RVE9M
+ YKgCl+4fXxn4263xJPdjwcv670bFat3tKrDDBqlHQmwqEke3JhVA+3+1duXEs00ArFnkGUJIDP
+ AEMDOeaApAO/gAiB2gOiPUD0oDmmrFe0h1gWZYfhM4swCsBAAA=
+X-Change-ID: 20250909-camss_rb8-d79360f7f158
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+	<rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>
+CC: <linux-i2c@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, Wenmeng Liu <quic_wenmliu@qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757690432; l=2891;
+ i=wenmeng.liu@oss.qualcomm.com; s=20250211; h=from:subject:message-id;
+ bh=xZzYJkY5+BPu8nhsq2Vxr8JsTXsHcdiu4vz2GCkN4is=;
+ b=M32M4vEJdNfNDjWK6XRcxOwMjXpJXWTEX4Au+5JSgJ9HmTJuHtE6cEiFJ2TutrcjcAtLd44kN
+ RHZOM5pdbSMAWnCwESpVrKR+15LFGCCFnp5adJAb9cOuXGa2/0p/DeH
+X-Developer-Key: i=wenmeng.liu@oss.qualcomm.com; a=ed25519;
+ pk=PTegr3w0f1C9dOSL6CUdJR5+u+X/4vsW7VMfwIMeMXQ=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iyoXx6VxzO9tlra2WgF-jCdDgQh-qbiX
+X-Proofpoint-GUID: iyoXx6VxzO9tlra2WgF-jCdDgQh-qbiX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyNCBTYWx0ZWRfX06/YUA0IWe3U
+ IZzth2vis6cLA+rqnWPz6wYAgVfJ67AJquVGGBcRsGGjP0nnP0tB8t5znZ4F3PKQ30n0x5ijLG8
+ atPbHlJZjcCq1CjutNrTdEgVlP9LVlN0Bqy0VJTxtZ7sS0HSmiZ853/PR1hZqQVlTEhfZOC4Z+a
+ UnuhFWKN7gQuoya2hBJMu6WC17GUa0IYSAGQCAkJ/R2DUcHQljK+LVzTXaJz9GW0rvQ1mAZUM8p
+ JMS135Rnz1j8cBvjBGEP9e3pPxCh7BkpjZgwt0JuyIpFViu0LHyDXSpqEJ/5WKB2dIsIPGnoX/j
+ skBGfteZCIfKxZRw6vln40lDqTh0o5jtv/dHoF7+/GJJqZnRyK48sdZg52Bu7LVqm5eOIw2Uevo
+ YQEoa2P/
+X-Authority-Analysis: v=2.4 cv=QeFmvtbv c=1 sm=1 tr=0 ts=68c43a47 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=_y94VVro8kQIZxOYGiEA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_05,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0 impostorscore=0
+ bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509060024
 
-On Fri, 2025-09-12 at 15:17 +0100, Jonathan Cameron wrote:
-> On Thu, 11 Sep 2025 08:26:06 -0500
-> David Lechner <dlechner@baylibre.com> wrote:
->=20
-> > On 9/11/25 7:55 AM, Daniel Lezcano wrote:
-> > >=20
-> > > Hi Jonathan,
-> > >=20
-> > > thanks for the review
-> > >=20
-> > > On 10/09/2025 19:32, Jonathan Cameron wrote:=C2=A0=20
-> > > > On Wed, 10 Sep 2025 17:57:56 +0200
-> > > > Daniel Lezcano <daniel.lezcano@linaro.org> wrote:=C2=A0=20
-> > >=20
-> > > [ ... ]
-> > > =C2=A0=20
-> >=20
-> > ...
-> >=20
-> > > =C2=A0=20
-> > > > > +=C2=A0=C2=A0=C2=A0 indio_dev->name =3D dev_name(dev);=C2=A0=20
-> > > >=20
-> > > > This should be the 'part number'.=C2=A0 That is a little ill define=
-d
-> > > > for a SoC integrated ADC, but generally not what we get from dev_na=
-me()
-> > > > on the platform_device.=C2=A0=20
-> > >=20
-> > > Sorry, I don't get the comment. If I refer to the different drivers t=
-here
-> > > is not consistency with the iio_dev->name.=C2=A0=20
-> >=20
-> > dev_name() will be something like adc@12345678 from the devicetree,
-> > so not the "part number".
-> >=20
-> > >=20
-> > > rtq6056.c:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 indio_dev->name =3D "rtq6056=
-";=C2=A0=20
-> >=20
-> > This style is preferred if there is only one supported part.
-> >=20
-> > > rzg2l_adc.c:=C2=A0=C2=A0=C2=A0 indio_dev->name =3D DRIVER_NAME;=C2=A0=
-=20
-> >=20
-> > We try to avoid using a macro for the driver name like this.
-> >=20
-> > > sc27xx_adc.c:=C2=A0=C2=A0 indio_dev->name =3D dev_name(dev);=C2=A0=
-=20
-> >=20
-> > Looks like we missed catching this one in review.
->=20
-> There are a bunch of historical drivers (and maybe some more recent
-> ones that snuck in). The risk of changing that ABI seemed too high to fix=
- them
-> up.=C2=A0 I guess this happens often enough I should add a comment to the=
- ones
-> that still do this about it being wrong but left alone as the ABI was in =
-use.
->=20
+This series adds cci definition and imx577 sensor enablement
+via cci1 on LeMans EVK.
 
-Yeah, we (at ADI) also had the highly questionable practise of using the OF=
- node
-name until we the label property got in. So I would not be surprised if som=
-e of
-those are still around.
+An example media-ctl pipeline for the imx577 is:
 
-- Nuno S=C3=A1=20
+media-ctl -d /dev/media0 --reset
+media-ctl -d /dev/media0 -V '"imx577 0-001a":0[fmt:SRGGB10/4056x3040 field:none]'
+media-ctl -d /dev/media0 -V '"msm_csiphy1":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -d /dev/media0 -l '"msm_csiphy1":1->"msm_csid0":0[1]'
+media-ctl -d /dev/media0 -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
 
->=20
-> >=20
-> > > mt6359-auxadc.c:=C2=A0 indio_dev->name =3D adc_dev->chip_info->model_=
-name;=C2=A0=20
-> >=20
-> > This is preferred if there is more than one part supported in the drive=
-r.
-> >=20
-> > > mcp3911.c:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 indio_dev->name =3D spi_get_=
-device_id(spi)->name;=C2=A0=20
-> >=20
-> > This is fine too in cases where there isn't chip_info.
-> >=20
-> > >=20
-> > > Are you suggesting to use the compatible part number ?
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0indio->name =3D "s32g2-sar-adc";
-> > > =C2=A0=20
-> >=20
-> > That works.
-> >=20
-> >=20
-> >=20
+yavta -B capture-mplane  -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0 --capture=5
+
+Changes in v6:
+- Modify the DTSO name to make its meaning more explicit.
+- Link to v5: https://lore.kernel.org/r/20250911-camss_rb8-v5-0-c078e4e22d91@oss.qualcomm.com
+
+Changes in v5:
+- Update the commit message to add a description for the newly added file.
+- Standardize the naming of the regulator.
+- Remove the comment declarations from the file.
+- Change to yearless copyright.
+- Link to v4: https://lore.kernel.org/r/20250910-camss_rb8-v4-0-28f44e1880b8@oss.qualcomm.com
+
+Changes in v4:
+- Correct the formatting issue by replacing the spaces with tabs.
+- Link to v3: https://lore.kernel.org/r/20250909-camss_rb8-v3-0-c7c8df385f9a@oss.qualcomm.com
+
+Changes in v3:
+- Revise the annotations according to Konrad's suggestions.
+- Remove the enable of camcc, camcc default to being enabled.
+- Link to v2:
+  https://lore.kernel.org/r/20250815-rb8_camera-v2-0-6806242913ed@quicinc.com/
+
+Changes in v2:
+- Remove the patch that adds PHY supply documentation in the sa8775p CAMSS
+  bindings. This change should be submitted together with the sa8775p bindings patch.
+- Fix the string ordering in the DTS file.
+- Remove the source clock from the CCI node.
+- Move the sensor enable configuration from lemans-evk.dts to lemans-evk-camera.dtso.
+- Remove the definitions for CCI and regulators that are not enabled.
+- Link to v1:
+  https://lore.kernel.org/all/20250514-rb8_camera-v1-0-bf4a39e304e9@quicinc.com/
+
+Dependencies:
+https://lore.kernel.org/all/20250814101615.1102795-1-quic_vikramsa@quicinc.com/
+
+---
+Wenmeng Liu (3):
+      dt-bindings: i2c: qcom-cci: Document sa8775p compatible
+      arm64: dts: qcom: sa8775p: Add CCI definitions
+      arm64: dts: qcom: lemans-evk-camera: Add DT overlay
+
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   4 +
+ .../dts/qcom/lemans-evk-camera-csi1-imx577.dtso    |  97 ++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi               | 268 +++++++++++++++++++++
+ 4 files changed, 371 insertions(+)
+---
+base-commit: 0292e5668a417d680b48901c0185bc191693c05c
+change-id: 20250909-camss_rb8-d79360f7f158
+
+Best regards,
+-- 
+Wenmeng <wenmeng.liu@oss.qualcomm.com>
+
 
