@@ -1,189 +1,153 @@
-Return-Path: <devicetree+bounces-216437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96785B54CE9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:15:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EBA1B54CB6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0DE33AD003
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:10:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C77C9B62733
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934E030DD2F;
-	Fri, 12 Sep 2025 12:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8909A30F546;
+	Fri, 12 Sep 2025 12:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AlvPbLkw"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="cnJoxNks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26074306D5F
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:03:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F153081B8;
+	Fri, 12 Sep 2025 12:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757678621; cv=none; b=s//kVTeeOWRhVzqChWk3uZLnpX8im0GBvg/bP9YQtYxBVzpGSO1xJ0NIIqjo/H10IXb02lbVpkY++P7eckOS6SFTABb5KinH56L9ObxM+1vZde3463QmwHjKb6rdrNq4+tvznfxQGHj5d6swTS5sOhoFfWuqBG5JtRbq8l5PncM=
+	t=1757678731; cv=none; b=RRdJ0bM3WambT+47cJcSEHF5OAQbTHcGf1uylOruIRW1P83f56PT/TeD4DOKViamYh02RkfuNLSOYOeBXxk1ESn0VglwTZkJ9WLYmOrCELgdhtgOdZ6GUWzrvOhfk0H/xZPXdB3mwQ0Ui/PSaMlfsQNocSqCNoXN9Bvr62JNWa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757678621; c=relaxed/simple;
-	bh=zz8o30m9RMDywni5m0nG378AjKh7Tlr5V0xeoanNaAQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f2Cy4iAFuzG/EQfaGUdcVk0HLwJ2NOjv/WEQoI3nR1zVi3+yqLGqLFg9UEH1EBkvG/YhQ3PScDZ8n0iEEuxVd+S6udY+C+jfP9HvygdkqOY3L0pU6LC+RQxAeUIzkbebhy77w3va/cJZ/ddBlTatYNgCk+1tlUGue6icIz2LpaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AlvPbLkw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fKa8017561
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:03:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OC306+JLRzCtQu+HZoUMCL3Oa/U1/T4cictyJ1c0fJU=; b=AlvPbLkwvvsKmqNm
-	f6Y2S2TTjOVpZGfIGtO8m6/ajO2w8M79nskwbh+1y6U1BmaWpYPIhsEplNPCUy/m
-	Y+qYCkgf/yRC0tNSp4uFEinRpX4c7Mna3R0cYelOJx16RnTOAUZV9++6zpfviV0H
-	12NNz+qZqZJGrNUzKpdgttXqJIp1TOrxaPCINyMRcNZrLXLTogG2WYJNt1W1i93P
-	iRQHAh25vUwksHjRX8E6DR42yQ+eROeGx9kNbYTua3AmD1S/pDcWJvSE7zxCaCSV
-	ekNLDJ5cxAfNgmw4fCn9hGw9yVu60KbDODPCM/1VTOcTW5SkiKFs0qUoRDDzJRsJ
-	+9D/5w==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwskprm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:03:39 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b522934761fso140623a12.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:03:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757678618; x=1758283418;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OC306+JLRzCtQu+HZoUMCL3Oa/U1/T4cictyJ1c0fJU=;
-        b=nAP4OjGDwSL8qQH9ZzPzZo5+wE7iarBagmq5VVmN4iLevPyQwtzxa3qh9wlq6CRwje
-         tnUa9IAyQUT2edPZd3McDmsKQEwDF35VecIxDYrHHh1gvQ7viDPZ1sIGBEZFFNWOp+u0
-         IjzmVPKKZnZPbzMWamj+WuPAVSvGAFxx1sMsYSYnLVk7HxH5+ltCsVD4RYH5t41ghGaj
-         6bKbSPbj77tSwVi4QM5OaNaaIRICu4lrsJBWLQ2GihAiTk6oDRw99/Ic1ddPFQGpy6dp
-         AcIkgJr0DeS6m6ATnI5Yzg2GojU0hT7yUAQvmmFsc/vhZ7BEjstHdNg1ykv7vNiFBQDp
-         xWKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVogQFmMmkK59+8MpGSBU8k7jaDDO86AeOBgRJ2LOqiQOIeM0uAKm12rVq8SKX/koAd+77OiwNbZV9q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYbf51z5pCO+D9MpTXifK7Ewgmw2m5mR91gYLQpQ2KTLfh2xVc
-	OLEBknmfskv/la4Rvrkf/t2FzvJZK754WI5YITc3iUW6EFMm2rcdt5niTyWugvhxRaiIpGSAyRb
-	/6fy3Xpu3n2xtgqp9R7YUoZCQ5zpFJPZUytaYsGdqJDlmM5Bxs+IvF78AGjFrkzs7
-X-Gm-Gg: ASbGncuZ+QBPy0CjHMLhzzawJ5FCPG1HIL1t1ZdmNXaFdCWMmUTNN1yWov2HDkqhe+f
-	XOnh+Iowq++kvWtEFKKwasL3GDZvaf/7swn/8i3cg3Tvd/AYK8Na+wC0azZhB2Hm894vUDuKLTP
-	04LGC+v3vp+SBXPWoUr6ut5+ySo8+LnwNE2eX9usz0VY3yB4gKdYwyVwNqjYo23RR0nIUVs0bRV
-	EJvkgIw+KZWFIJYmtj9fl75X2iJickfQKgQi1XWvRDokOOKn70PBP9HV2ioku/+PcGMCm0Rn43U
-	bbUpgODP7Euka/wFFnGJXwMgsLleqzmCLUuQEWnsQgcBLo9UWthBdp9LYZsG5ikfzz6yqarjhPc
-	ouzeYmd2+/swuN4BcWWbpk/wVh+tCcA==
-X-Received: by 2002:a17:903:1245:b0:248:dd61:46e8 with SMTP id d9443c01a7336-25d25a7294bmr16547815ad.5.1757678617843;
-        Fri, 12 Sep 2025 05:03:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF0bcpdWZ5JtOcYfmEEQBTJNc9tzJlPspC8jR11YZhBs8DDVX3VE8+HBzzj6SRFPVGJrjwKeg==
-X-Received: by 2002:a17:903:1245:b0:248:dd61:46e8 with SMTP id d9443c01a7336-25d25a7294bmr16547335ad.5.1757678617295;
-        Fri, 12 Sep 2025 05:03:37 -0700 (PDT)
-Received: from [10.133.33.174] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c3a84957bsm47241905ad.80.2025.09.12.05.03.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 05:03:36 -0700 (PDT)
-Message-ID: <70e9d5a3-53b7-4e2a-9a2f-19e3be1e197d@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 20:03:29 +0800
+	s=arc-20240116; t=1757678731; c=relaxed/simple;
+	bh=+knrYgvIRzYhx6NMYWRI3CQllCLkTMhw9DP6cthmIao=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CQ9KdzABkUp1GtSdNHPoDHhBKAFnpFsVm0CbTjphR0djn64wfMSfrDotIlkfhZUgnNV1XdO+74ZKznum/UpgSIuY2GrNZvZaUMa0FXzQqW3hG8iD+JYyymkLZhZzT/ZJx0lU0Vt8lq/4DxCslvEVqe4IdoRxm4qYPTapJya+Tls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=cnJoxNks; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: bde4d0e48fd011f0bd5779446731db89-20250912
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=zguUP/rKI41td6Qd1x37NGTIr2eKo9bTe8UKCbXqKyg=;
+	b=cnJoxNkso4sJcnDHy7hcZraIxd8IQJa0aJruIqq2aYMm2D48aZAzFN52D9ab3wbToTFM3GOuQF6iKKqzky+e/2WngK0K5Ma3XljX5UQCSVIDL/nFYeOC3oieLA4O5tEFmholJE6ThsQTKRwNwaGAZvr2dVi7p30x/eUQFV7auso=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.4,REQID:a9f2bb8b-f07c-4ec4-b9a5-7f177d9ee2fe,IP:0,UR
+	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:-5
+X-CID-META: VersionHash:1ca6b93,CLOUDID:c4c9b884-5317-4626-9d82-238d715c253f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
+	nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: bde4d0e48fd011f0bd5779446731db89-20250912
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <irving-ch.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 981950334; Fri, 12 Sep 2025 20:05:15 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 12 Sep 2025 20:05:13 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 12 Sep 2025 20:05:13 +0800
+From: irving.ch.lin <irving-ch.lin@mediatek.com>
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Ulf Hansson
+	<ulf.hansson@linaro.org>, Richard Cochran <richardcochran@gmail.com>
+CC: Qiqi Wang <qiqi.wang@mediatek.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
+	<jh.hsu@mediatek.com>, <irving-ch.lin@mediatek.com>
+Subject: [PATCH v2 0/4] Add support for MT8189 clock/power controller
+Date: Fri, 12 Sep 2025 20:04:49 +0800
+Message-ID: <20250912120508.3180067-1-irving-ch.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 12/13] drm/msm/dp: move link-specific parsing from
- dp_panel to dp_link
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
- <20250911-add-displayport-support-for-qcs615-platform-v4-12-2702bdda14ed@oss.qualcomm.com>
- <4kajb4imv4mvpf4bdzoqfw7f4qoqxsu3ca4pbgsunhxnortfig@kmsqgsj547hi>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <4kajb4imv4mvpf4bdzoqfw7f4qoqxsu3ca4pbgsunhxnortfig@kmsqgsj547hi>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: PbmikUZ89oE_sQpVVRPxsz7DuKp6-xDe
-X-Proofpoint-GUID: PbmikUZ89oE_sQpVVRPxsz7DuKp6-xDe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfXxsR1W32RyvfL
- AkASEFuqHbdoNBT0lrErQnhb0UGhyv+WHJb0+TwZix7z/p7JGGDUe4qwOxZ0KATp8IuUHgfsh2e
- 4LeEGf0PVDCO+58I5ZyXmrnKteLrl5fmPTiLDv1rnvXXH8Kzor6o/Af+QwVX89Lo+3/b4Y0tnB2
- EMbN+rxQo6qhgD5z70lG9UcjaH+vFCDjPiJY+y4k2lGDWjCClqW3hvUg2OUcnhtVhjT45OmUN57
- DMQRekYTjIMclZMQZbLqN4k+V8HmbQudyYknawKBGieWQ/bJz2XhMKE9f6nlAdqq51rfuRiZhiU
- snUp8DxTVWmVW2rnFONylnLEy5W1S/OauTf6qtqZRri7Qyhzv7aPc5pJefKa2ArrY8gC0giSENm
- Xyb7FHhy
-X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c40c1b cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=3J_imRUleR0CZ10obY8A:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+These patches add support for the clock and power controllers
+of MediaTek's new SoC, MT8189. With these changes,
+other modules can easily manage clock and power resources
+using standard Linux APIs, such as the Common Clock Framework (CCF)
+and pm_runtime on MT8189 platform.
 
-On 9/12/2025 6:39 PM, Dmitry Baryshkov wrote:
-> On Thu, Sep 11, 2025 at 10:55:09PM +0800, Xiangxu Yin wrote:
->> Since max_dp_lanes and max_dp_link_rate are link-specific parameters, move
->> their parsing from dp_panel to dp_link for better separation of concerns.
->>
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> I thought that you've split all DP patches...
->
->> ---
->>  drivers/gpu/drm/msm/dp/dp_link.c  | 63 +++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/msm/dp/dp_link.h  |  4 ++
->>  drivers/gpu/drm/msm/dp/dp_panel.c | 78 +++++----------------------------------
->>  drivers/gpu/drm/msm/dp/dp_panel.h |  3 --
->>  4 files changed, 76 insertions(+), 72 deletions(-)
->>
->> @@ -1225,9 +1283,14 @@ struct msm_dp_link *msm_dp_link_get(struct device *dev, struct drm_dp_aux *aux)
->>  		return ERR_PTR(-ENOMEM);
->>  
->>  	link->aux   = aux;
->> +	link->dev   = dev;
-> It is only used during parsing of DT data. There is no need to store it
-> inside the struct.
->
-> With that fixed:
->
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->
+Irving-ch Lin (4):
+  dt-bindings: clock: mediatek: Add MT8189 clock definitions
+  dt-bindings: power: mediatek: Add MT8189 power domain definitions
+  clk: mediatek: Add clock drivers for MT8189 SoC
+  pmdomain: mediatek: Add power domain driver for MT8189 SoC
 
-Ack.
+ .../bindings/clock/mediatek,mt8189-clock.yaml |   89 ++
+ .../clock/mediatek,mt8189-sys-clock.yaml      |   58 +
+ .../mediatek,mt8189-power-controller.yaml     |   88 ++
+ drivers/clk/mediatek/Kconfig                  |  146 +++
+ drivers/clk/mediatek/Makefile                 |   14 +
+ drivers/clk/mediatek/clk-mt8189-apmixedsys.c  |  135 +++
+ drivers/clk/mediatek/clk-mt8189-bus.c         |  289 +++++
+ drivers/clk/mediatek/clk-mt8189-cam.c         |  131 ++
+ drivers/clk/mediatek/clk-mt8189-dbgao.c       |  115 ++
+ drivers/clk/mediatek/clk-mt8189-dvfsrc.c      |   61 +
+ drivers/clk/mediatek/clk-mt8189-iic.c         |  149 +++
+ drivers/clk/mediatek/clk-mt8189-img.c         |  122 ++
+ drivers/clk/mediatek/clk-mt8189-mdpsys.c      |  100 ++
+ drivers/clk/mediatek/clk-mt8189-mfg.c         |   56 +
+ drivers/clk/mediatek/clk-mt8189-mmsys.c       |  233 ++++
+ drivers/clk/mediatek/clk-mt8189-scp.c         |   92 ++
+ drivers/clk/mediatek/clk-mt8189-topckgen.c    | 1057 +++++++++++++++++
+ drivers/clk/mediatek/clk-mt8189-ufs.c         |  106 ++
+ drivers/clk/mediatek/clk-mt8189-vcodec.c      |  119 ++
+ drivers/clk/mediatek/clk-mt8189-vlpcfg.c      |  145 +++
+ drivers/clk/mediatek/clk-mt8189-vlpckgen.c    |  280 +++++
+ drivers/clk/mediatek/clk-mux.c                |    4 +
+ drivers/pmdomain/mediatek/mt8189-scpsys.h     |   75 ++
+ drivers/pmdomain/mediatek/mtk-scpsys.c        |  967 ++++++++++++++-
+ .../dt-bindings/clock/mediatek,mt8189-clk.h   |  580 +++++++++
+ .../dt-bindings/power/mediatek,mt8189-power.h |   38 +
+ 26 files changed, 5206 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-sys-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/mediatek,mt8189-power-controller.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-bus.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-dbgao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-dvfsrc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-iic.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-img.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-mdpsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-mmsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-scp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-ufs.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vcodec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vlpcfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vlpckgen.c
+ create mode 100644 drivers/pmdomain/mediatek/mt8189-scpsys.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8189-clk.h
+ create mode 100644 include/dt-bindings/power/mediatek,mt8189-power.h
 
+-- 
+2.45.2
 
->>  
->>  	mutex_init(&link->psm_mutex);
->>  	msm_dp_link = &link->msm_dp_link;
->>  
->> +	ret = msm_dp_link_parse_dt(msm_dp_link);
->> +	if (ret)
->> +		return ERR_PTR(ret);
->> +
->>  	return msm_dp_link;
->>  }
 
