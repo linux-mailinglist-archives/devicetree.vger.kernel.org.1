@@ -1,1144 +1,700 @@
-Return-Path: <devicetree+bounces-216609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FD5B5556D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 19:19:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE41EB5557D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 19:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96AAA7B7292
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 17:18:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B56CAC6F13
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 17:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB1731352E;
-	Fri, 12 Sep 2025 17:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46765324B23;
+	Fri, 12 Sep 2025 17:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eElYfTQe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h6vG1CXJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC74417BA1;
-	Fri, 12 Sep 2025 17:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB1C1D7E4A
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 17:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757697584; cv=none; b=FvMT+on3n618LbpZpNLYqd5+VZltdXz1zBMUafRdhe0PXfCbFWO5CzHAFKNud/KR+M+l3oczCU//4bM5CLm7LDCEApZLwSwFItMlufPmGPzzOxcTLLUyCYc2QY+uG0sf/PDz214nqHUQhFr6RQC2NkaWiW2tqn7Jk6h84bd2SDA=
+	t=1757698255; cv=none; b=H3/O2gAMMLRN7WDikpDzstZWZ6f0Au2s+VJfscV+Q6EZ3jXhRGskNx2RMLlT/YJqjdRz7GwmmQsEIhTddyAU9KRT6LM+6zO2aoO8PAojnjZfb2yTmlqv3aptOATdO1ZPbc4v904WqgODGnXpc8zdfh43nKxGmbE0mX/Hcmu05sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757697584; c=relaxed/simple;
-	bh=uTFmZxUvSA257nt7H4fAPzKuZw4Nk9+zt7iqGxlArfk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NeIA/77I7AtBDTz8bOOek9YkgTr+CmCI9R9mwNVDGjqMZg7gP75NtgZHNx4CisZWQ4u6fCapXNe8n7W0w8N/3Pqy71STAEMX+o5aZ6nINderKI6CN5q61UhVL87REr2D+CiW8VgJa4Owey3P6/WXOaqmNLf9sx/6CONT4pzwwdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eElYfTQe; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58CHJIx5649855;
-	Fri, 12 Sep 2025 12:19:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757697558;
-	bh=P3bLQnVjxpz/gdzyww6nf0dL14uizcZSpFDZxNQ3zDE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=eElYfTQeZwO44ZpYooJ7now9yCAJj1cuj5d8q7N0b5CO2zghcobPUiarIojgQKq9y
-	 26duOeCM6SWK4q7eFbq6IhNd3mPLI73gLcAFj8OzPps7oAV9Zy6kKKfs64WPio7w1b
-	 O3Q9sLQHi8N82jWBQ8CxIj46X6hU9MVzQVmKpmFQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58CHJIVI2927575
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 12 Sep 2025 12:19:18 -0500
-Received: from DLEE206.ent.ti.com (157.170.170.90) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 12
- Sep 2025 12:19:18 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE206.ent.ti.com
- (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 12 Sep 2025 12:19:18 -0500
-Received: from [10.250.32.255] ([10.250.32.255])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58CHJH5J3935436;
-	Fri, 12 Sep 2025 12:19:17 -0500
-Message-ID: <0153912f-04a5-4118-a286-4e9c0293aae6@ti.com>
-Date: Fri, 12 Sep 2025 12:19:17 -0500
+	s=arc-20240116; t=1757698255; c=relaxed/simple;
+	bh=cidTMhiSt13JIcsablIwkX+2tpP9KBEHSyO59DfIG9I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z9bLNrTwIB0qqgrJTa0BFhE0wjB6leLN8B5eybXuxtwXQO/z2To+unOdkc0o+FvOsMp3jhkxaTYisMvTn/CJEs0LpBXubRn31GNFOmwnhrMO4x86MjtU5lD46kGEdIuOIc32uSxU5R1NwSCcTkqtl2dpsJWUQCZIUe/0nw34cZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h6vG1CXJ; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-71d60504bf8so20861627b3.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:30:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757698252; x=1758303052; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=auNBcvl3SEsbJHPnjRRhDj6Gi+NyPWlHhGeNvhbSGjI=;
+        b=h6vG1CXJBcbFddEv7sdKZh4hKXQEyqSic+DECnABygA4fdcqKWU1cHrIR3EmGb/YUc
+         0rHK4PlNdgYG+JkP986/J7DQqF3KJE75xzUTxa/fB7RiXHOlh3hxz0uOvhTBYoK74NSx
+         fA4vASAiZTpk87fU3KBDwve1QfIXuYvrAxVlflQo+RMNz6HPhqVUxIciXx4CG98/5pDh
+         ZdjHf+ThKnW6cGgAZYxWVclzRAkkJH+IyeMrFqQMslTWqUIB/zPIItg11fHzBi0PHJtV
+         2Jadez78ma7drQOGEDlkgq6deT4rJDbL2UumtKPvROKMfKDKN803QhUV90OyxEhdcgbg
+         mxlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757698252; x=1758303052;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=auNBcvl3SEsbJHPnjRRhDj6Gi+NyPWlHhGeNvhbSGjI=;
+        b=nO1uHF6ia/waBKwtWLdomXN1ifEj7ZPRN7YIOSasy0J0G5J58A5Sq/iMMYFrfKMvvS
+         XiXM28oMIpPXNi1AIQ853s1XiGsy22LeHXDN4Bx+joaGU/ky1Mit7JuuX9mhPuaKROtw
+         FQNBlSqeiez0rw+LZr7YAqF6043CcfEi+1L/gYU+AevS44tJdRwN9MMXzjjwYa14cA2y
+         HOF9WufqQXNpOc6374FqxSr6AYJu1NKowwO9mtkuzrYwXqeB2uy7UugQ18eOJBTTGrN/
+         Swzno0H92nBPUq3NdJAvZrtrmeZ82i9Qat/via5/wFu9wIxQ6fKzWnL28ow7CkLRpda+
+         uwtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXN1D6X1mIYEKCFc7p8m9rZ/twqMTE7Si1NcYl0XrhHT5CHp6vmOkerbZOnyg4auYmoa35KICUAof0B@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbxVP7/WPvKMUkBmmwxYw2jXxR0/f6+gYOR5I1cCVl6bwkL/+e
+	6O6D+uEwmJcPsV70klzWIkJ3fBVZf8uVncRT5sccxLYLTnaeVCgsgMEx+njjD2E5JntRDzPrNw0
+	qkLMRbw5shkf9KTBVsiiQZ5I96NGVMmk=
+X-Gm-Gg: ASbGncvKXQ27unIdZpGfBDASgHkfn6fTvrri2U0QhxH6jrzgVJgVTWSzbduGJuZy+el
+	ob3KQN/cpJ4BL0o89hnPwz5M+5yCWvuRDPVjlPftN5Yp3O/dBLZ6uxBYj/YRdT5rIz8fUPZvFQx
+	h0xGYUCjld/Y8t9RLWYlbPHOglTl0Oel01bFS/MXZTsbu+O5yxKOesm9TB1gxGaAJhIWafA3d3R
+	s+vvypEi+/CNSaZzHSBoIqNfWGm61ElocBW4WlaL36wnSRKel5I1s5h1en2nz6DuTCZ
+X-Google-Smtp-Source: AGHT+IGITU3lo0Nc85OeLoKMyjH9+RFM86LRFnrm71Cg8EK1RTjnVlzcFez7i+udct1W4V2JM5TERjHI8MgSCWBrz5o=
+X-Received: by 2002:a05:690c:7092:b0:71f:efa8:587a with SMTP id
+ 00721157ae682-730659c09c0mr38811187b3.44.1757698250349; Fri, 12 Sep 2025
+ 10:30:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-To: Bryan Brattlof <bb@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tony
- Lindgren <tony@atomide.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        <linux-gpio@vger.kernel.org>
-References: <20250912-am62lx-v6-0-29d5a6c60512@ti.com>
- <20250912-am62lx-v6-3-29d5a6c60512@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250912-am62lx-v6-3-29d5a6c60512@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com>
+ <20250905-mt8196-gpufreq-v1-5-7b6c2d6be221@collabora.com> <CAPaKu7RUx6KHyvdvrfX3u-7Lk=Wa3nmTh6-tD3CbReNAwNtgoQ@mail.gmail.com>
+ <4506669.X9hSmTKtgW@workhorse>
+In-Reply-To: <4506669.X9hSmTKtgW@workhorse>
+From: Chia-I Wu <olvaffe@gmail.com>
+Date: Fri, 12 Sep 2025 10:30:39 -0700
+X-Gm-Features: AS18NWA3g27VWsDg6RRczXJZXbzk7vegWWvE1nw-YT0mXkpVh9cJ-UmAELnMQuY
+Message-ID: <CAPaKu7R_VUnX0TibokX0edQPVjritJgABEVZ-Sy=6EiVt7GrAw@mail.gmail.com>
+Subject: Re: [PATCH RFC 05/10] mailbox: add MediaTek GPUEB IPI mailbox
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/12/25 10:40 AM, Bryan Brattlof wrote:
-> From: Vignesh Raghavendra <vigneshr@ti.com>
-> 
-> Add the initial infrastructure needed for the AM62L. ALl of which can be
-> found in the Technical Reference Manual (TRM) located here:
-> 
->      https://www.ti.com/lit/pdf/sprujb4
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
-> Changes in v4:
->   - Corrected Copyright year
->   - Used 'ranges' property in the fss{} node
-> 
-> Changes in v3:
->   - Added more nodes now that the SCMI interface is ready
-> 
-> Changes in v1:
->   - switched to non-direct links to TRM updates are automatic
->   - fixed white space indent issues with a few nodes
->   - separated out device tree bindings
-> ---
->   arch/arm64/boot/dts/ti/k3-am62l-main.dtsi    | 603 +++++++++++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-am62l-thermal.dtsi |  25 ++
->   arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi  | 141 +++++++
->   arch/arm64/boot/dts/ti/k3-am62l.dtsi         | 120 ++++++
->   arch/arm64/boot/dts/ti/k3-am62l3.dtsi        |  67 +++
->   arch/arm64/boot/dts/ti/k3-pinctrl.h          |   2 +
->   6 files changed, 958 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..229c34f23d1625e9c38bcf6db962c86eb17b16c1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-> @@ -0,0 +1,603 @@
-> +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> +/*
-> + * Device Tree file for the AM62L main domain peripherals
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> + */
-> +
-> +&cbass_main {
-> +	gic500: interrupt-controller@1800000 {
-> +		compatible = "arm,gic-v3";
-> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
-> +		      <0x00 0x01840000 0x00 0xc0000>,	/* GICR */
-> +		      <0x01 0x00000000 0x00 0x2000>,    /* GICC */
-> +		      <0x01 0x00010000 0x00 0x1000>,    /* GICH */
-> +		      <0x01 0x00020000 0x00 0x2000>;    /* GICV */
-> +		ranges;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		#interrupt-cells = <3>;
-> +		interrupt-controller;
-> +		/*
-> +		 * vcpumntirq:
-> +		 * virtual CPU interface maintenance interrupt
-> +		 */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		gic_its: msi-controller@1820000 {
-> +			compatible = "arm,gic-v3-its";
-> +			reg = <0x00 0x01820000 0x00 0x10000>;
-> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
-> +			msi-controller;
-> +			#msi-cells = <1>;
-> +		};
-> +	};
-> +
-> +	gpio0: gpio@600000 {
-> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
-> +		reg = <0x00 0x00600000 0x00 0x100>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 260 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 261 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 267 IRQ_TYPE_EDGE_RISING>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		power-domains = <&scmi_pds 34>;
-> +		clocks = <&scmi_clk 140>;
-> +		clock-names = "gpio";
-> +		ti,ngpio = <126>;
-> +		ti,davinci-gpio-unbanked = <0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	gpio2: gpio@610000 {
-> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
-> +		reg = <0x00 0x00610000 0x00 0x100>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 280 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 281 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 282 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 283 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 284 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 285 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 286 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 287 IRQ_TYPE_EDGE_RISING>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		power-domains = <&scmi_pds 35>;
-> +		clocks = <&scmi_clk 141>;
-> +		clock-names = "gpio";
-> +		ti,ngpio = <79>;
-> +		ti,davinci-gpio-unbanked = <0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	timer0: timer@2400000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2400000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 58>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 15>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	timer1: timer@2410000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2410000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 63>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 16>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	timer2: timer@2420000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2420000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 77>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 17>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	timer3: timer@2430000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2430000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 82>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 18>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	uart0: serial@2800000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02800000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 89>;
-> +		clocks = <&scmi_clk 358>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart1: serial@2810000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02810000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 77>;
-> +		clocks = <&scmi_clk 312>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart2: serial@2820000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02820000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 78>;
-> +		clocks = <&scmi_clk 314>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart3: serial@2830000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02830000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 79>;
-> +		clocks = <&scmi_clk 316>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart4: serial@2840000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02840000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 80>;
-> +		clocks = <&scmi_clk 318>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart5: serial@2850000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02850000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 81>;
-> +		clocks = <&scmi_clk 320>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	uart6: serial@2860000 {
-> +		compatible = "ti,am64-uart", "ti,am654-uart";
-> +		reg = <0x00 0x02860000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 82>;
-> +		clocks = <&scmi_clk 322>;
-> +		clock-names = "fclk";
-> +		status = "disabled";
-> +	};
-> +
-> +	conf: bus@9000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x00 0x00 0x09000000 0x380000>;
-> +
-> +		phy_gmii_sel: phy@1be000 {
-> +			compatible = "ti,am654-phy-gmii-sel";
-> +			reg = <0x1be000 0x8>;
-> +			#phy-cells = <1>;
-> +		};
-> +
-> +		epwm_tbclk: clock-controller@1e9100 {
-> +			compatible = "ti,am62-epwm-tbclk";
-> +			reg = <0x1e9100 0x4>;
-> +			#clock-cells = <1>;
-> +		};
-> +	};
-> +
-> +	usbss0: dwc3-usb@f900000 {
-> +		compatible = "ti,am62-usb";
-> +		reg = <0x00 0x0f900000 0x00 0x800>,
-> +		      <0x00 0x0f908000 0x00 0x400>;
-> +		clocks = <&scmi_clk 331>;
-> +		clock-names = "ref";
-> +		ti,syscon-phy-pll-refclk = <&usb_phy_ctrl 0x0>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		power-domains = <&scmi_pds 95>;
-> +		ranges;
-> +		status = "disabled";
-> +
-> +		usb0: usb@31000000 {
-> +			compatible = "snps,dwc3";
-> +			reg = <0x00 0x31000000 0x00 0x50000>;
-> +			interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> +			interrupt-names = "host", "peripheral";
-> +			maximum-speed = "high-speed";
-> +			dr_mode = "otg";
-> +			snps,usb2-gadget-lpm-disable;
-> +			snps,usb2-lpm-disable;
-> +		};
-> +	};
-> +
-> +	usbss1: dwc3-usb@f910000 {
-> +		compatible = "ti,am62-usb";
-> +		reg = <0x00 0x0f910000 0x00 0x800>,
-> +		      <0x00 0x0f918000 0x00 0x400>;
-> +		clocks = <&scmi_clk 338>;
-> +		clock-names = "ref";
-> +		ti,syscon-phy-pll-refclk = <&usb_phy_ctrl 0x4>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		power-domains = <&scmi_pds 96>;
-> +		ranges;
-> +		status = "disabled";
-> +
-> +		usb1: usb@31100000 {
-> +			compatible = "snps,dwc3";
-> +			reg = <0x00 0x31100000 0x00 0x50000>;
-> +			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +			<GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> +			interrupt-names = "host", "peripheral";
-> +			maximum-speed = "high-speed";
-> +			dr_mode = "otg";
-> +			snps,usb2-gadget-lpm-disable;
-> +			snps,usb2-lpm-disable;
-> +		};
-> +	};
-> +
-> +	sdhci1: mmc@fa00000 {
-> +		compatible = "ti,j721e-sdhci-4bit";
-> +		reg = <0x00 0x0fa00000 0x00 0x1000>,
-> +		      <0x00 0x0fa08000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 26>;
-> +		clocks = <&scmi_clk 106>, <&scmi_clk 109>;
-> +		clock-names = "clk_ahb", "clk_xin";
-> +		assigned-clocks = <&scmi_clk 109>;
-> +		bus-width = <4>;
-> +		ti,clkbuf-sel = <0x7>;
-> +		ti,otap-del-sel-legacy = <0x0>;
-> +		ti,itap-del-sel-legacy = <0x0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	sdhci0: mmc@fa10000 {
-> +		compatible = "ti,am62-sdhci";
-> +		reg = <0x00 0xfa10000 0x00 0x1000>,
-> +		      <0x00 0xfa18000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 28>;
-> +		clocks = <&scmi_clk 122>, <&scmi_clk 125>;
-> +		clock-names = "clk_ahb", "clk_xin";
-> +		assigned-clocks = <&scmi_clk 125>;
-> +		bus-width = <8>;
-> +		ti,clkbuf-sel = <0x7>;
-> +		ti,otap-del-sel-legacy = <0x0>;
-> +		ti,otap-del-sel-mmc-hs = <0x0>;
-> +		ti,otap-del-sel-hs200 = <0x6>;
-> +		status = "disabled";
-> +	};
-> +
-> +	sdhci2: mmc@fa20000 {
-> +		compatible = "ti,am62-sdhci";
-> +		reg = <0x00 0x0fa20000 0x00 0x1000>,
-> +		      <0x00 0x0fa28000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 27>;
-> +		clocks = <&scmi_clk 114>, <&scmi_clk 117>;
-> +		clock-names = "clk_ahb", "clk_xin";
-> +		assigned-clocks = <&scmi_clk 117>;
-> +		bus-width = <4>;
-> +		ti,clkbuf-sel = <0x7>;
-> +		ti,otap-del-sel-legacy = <0x0>;
-> +		ti,itap-del-sel-legacy = <0x0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	i2c0: i2c@20000000 {
-> +		compatible = "ti,am64-i2c", "ti,omap4-i2c";
-> +		reg = <0x00 0x20000000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 53>;
-> +		clocks = <&scmi_clk 246>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	i2c1: i2c@20010000 {
-> +		compatible = "ti,am64-i2c", "ti,omap4-i2c";
-> +		reg = <0x00 0x20010000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 54>;
-> +		clocks = <&scmi_clk 250>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	i2c2: i2c@20020000 {
-> +		compatible = "ti,am64-i2c", "ti,omap4-i2c";
-> +		reg = <0x00 0x20020000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 55>;
-> +		clocks = <&scmi_clk 254>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	i2c3: i2c@20030000 {
-> +		compatible = "ti,am64-i2c", "ti,omap4-i2c";
-> +		reg = <0x00 0x20030000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 56>;
-> +		clocks = <&scmi_clk 258>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	mcan0: can@20701000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x00 0x20701000 0x00 0x200>,
-> +		      <0x00 0x20708000 0x00 0x8000>;
-> +		reg-names = "m_can", "message_ram";
-> +		power-domains = <&scmi_pds 47>;
-> +		clocks = <&scmi_clk 179>, <&scmi_clk 178>;
-> +		clock-names = "hclk", "cclk";
-> +		interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "int0", "int1";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +		status = "disabled";
-> +	};
-> +
-> +	mcan1: can@20711000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x00 0x20711000 0x00 0x200>,
-> +		      <0x00 0x20718000 0x00 0x8000>;
-> +		reg-names = "m_can", "message_ram";
-> +		power-domains = <&scmi_pds 48>;
-> +		clocks = <&scmi_clk 185>, <&scmi_clk 184>;
-> +		clock-names = "hclk", "cclk";
-> +		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "int0", "int1";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +		status = "disabled";
-> +	};
-> +
-> +	mcan2: can@20721000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x00 0x20721000 0x00 0x200>,
-> +		      <0x00 0x20728000 0x00 0x8000>;
-> +		reg-names = "m_can", "message_ram";
-> +		power-domains = <&scmi_pds 49>;
-> +		clocks = <&scmi_clk 191>, <&scmi_clk 190>;
-> +		clock-names = "hclk", "cclk";
-> +		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "int0", "int1";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +		status = "disabled";
-> +	};
-> +
-> +	spi0: spi@20100000 {
-> +		compatible = "ti,am654-mcspi", "ti,omap4-mcspi";
-> +		reg = <0x00 0x20100000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 72>;
-> +		clocks = <&scmi_clk 299>;
-> +		status = "disabled";
-> +	};
-> +
-> +	spi1: spi@20110000 {
-> +		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-> +		reg = <0x00 0x20110000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 73>;
-> +		clocks = <&scmi_clk 302>;
-> +		status = "disabled";
-> +	};
-> +
-> +	spi2: spi@20120000 {
-> +		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-> +		reg = <0x00 0x20120000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 74>;
-> +		clocks = <&scmi_clk 305>;
-> +		status = "disabled";
-> +	};
-> +
-> +	spi3: spi@20130000 {
-> +		compatible = "ti,am654-mcspi","ti,omap4-mcspi";
-> +		reg = <0x00 0x20130000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 75>;
-> +		clocks = <&scmi_clk 308>;
-> +		status = "disabled";
-> +	};
-> +
-> +	epwm0: pwm@23000000 {
-> +		compatible = "ti,am64-epwm", "ti,am3352-ehrpwm";
-> +		reg = <0x00 0x23000000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 40>;
-> +		clocks = <&epwm_tbclk 0>, <&scmi_clk 164>;
-> +		clock-names = "tbclk", "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	epwm1: pwm@23010000 {
-> +		compatible = "ti,am64-epwm", "ti,am3352-ehrpwm";
-> +		reg = <0x00 0x23010000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 41>;
-> +		clocks = <&epwm_tbclk 1>, <&scmi_clk 165>;
-> +		clock-names = "tbclk", "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	epwm2: pwm@23020000 {
-> +		compatible = "ti,am64-epwm", "ti,am3352-ehrpwm";
-> +		reg = <0x00 0x23020000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 42>;
-> +		clocks = <&epwm_tbclk 2>, <&scmi_clk 166>;
-> +		clock-names = "tbclk", "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	ecap0: pwm@23100000 {
-> +		compatible = "ti,am3352-ecap";
-> +		reg = <0x00 0x23100000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 23>;
-> +		clocks = <&scmi_clk 99>;
-> +		clock-names = "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	ecap1: pwm@23110000 {
-> +		compatible = "ti,am3352-ecap";
-> +		reg = <0x00 0x23110000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 24>;
-> +		clocks = <&scmi_clk 100>;
-> +		clock-names = "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	ecap2: pwm@23120000 {
-> +		compatible = "ti,am3352-ecap";
-> +		reg = <0x00 0x23120000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 25>;
-> +		clocks = <&scmi_clk 101>;
-> +		clock-names = "fck";
-> +		#pwm-cells = <3>;
-> +		status = "disabled";
-> +	};
-> +
-> +	eqep0: counter@23200000 {
-> +		compatible = "ti,am62-eqep";
-> +		reg = <0x00 0x23200000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 29>;
-> +		clocks = <&scmi_clk 127>;
-> +		interrupts = <GIC_SPI 162 IRQ_TYPE_EDGE_RISING>;
-> +		status = "disabled";
-> +	};
-> +
-> +	eqep1: counter@23210000 {
-> +		compatible = "ti,am62-eqep";
-> +		reg = <0x00 0x23210000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 30>;
-> +		clocks = <&scmi_clk 128>;
-> +		interrupts = <GIC_SPI 163 IRQ_TYPE_EDGE_RISING>;
-> +		status = "disabled";
-> +	};
-> +
-> +	eqep2: counter@23220000 {
-> +		compatible = "ti,am62-eqep";
-> +		reg = <0x00 0x23220000 0x00 0x100>;
-> +		power-domains = <&scmi_pds 31>;
-> +		clocks = <&scmi_clk 129>;
-> +		interrupts = <GIC_SPI 164 IRQ_TYPE_EDGE_RISING>;
-> +		status = "disabled";
-> +	};
-> +
-> +	elm0: ecc@25010000 {
-> +		compatible = "ti,am64-elm";
-> +		reg = <0x00 0x25010000 0x00 0x2000>;
-> +		interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&scmi_pds 25>;
-> +		clocks = <&scmi_clk 102>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	dss: display@30200000 {
-> +		compatible = "ti,am62l-dss";
-> +		reg = <0x00 0x30200000 0x00 0x1000>, /* common */
-> +		      <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
-> +		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
-> +		      <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
-> +		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
-> +		reg-names = "common", "vidl1", "ovr1", "vp1", "common1";
-> +		power-domains = <&scmi_pds 39>;
-> +		clocks = <&scmi_clk 162>,
-> +			 <&scmi_clk 161>;
-> +		clock-names = "fck", "vp1";
-> +		interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-> +		status = "disabled";
-> +
-> +		dss_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +
-> +	gpmc0: memory-controller@3b000000 {
-> +		compatible = "ti,am64-gpmc";
-> +		power-domains = <&scmi_pds 37>;
-> +		clocks = <&scmi_clk 149>;
-> +		clock-names = "fck";
-> +		reg = <0x00 0x3b000000 0x00 0x400>,
-> +		      <0x00 0x50000000 0x00 0x8000000>;
-> +		reg-names = "cfg", "data";
-> +		interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>;
-> +		gpmc,num-cs = <3>;
-> +		gpmc,num-waitpins = <2>;
-> +		#address-cells = <2>;
-> +		#size-cells = <1>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		status = "disabled";
-> +	};
-> +
-> +	oc_sram: sram@70800000 {
-> +		compatible = "mmio-sram";
-> +		reg = <0x00 0x70800000 0x00 0x10000>;
-> +		ranges = <0x00 0x00 0x70800000 0x10000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		scmi_shmem: sram@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x00 0x100>;
-> +			bootph-all;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-thermal.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..4804c24d56748067ff27acbc8259e6d4306109a6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l-thermal.dtsi
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for the AM62L Bangap Sensors
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> + */
-> +
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +thermal_zones: thermal-zones {
-> +	thermal0: thermal0 {
-> +		polling-delay-passive = <250>;  /* milliSeconds */
-> +		polling-delay = <500>;          /* milliSeconds */
-> +		thermal-sensors = <&vtm0 0>;
-> +
-> +		trips {
-> +			crit0: crit0 {
-> +				temperature = <125000>; /* milliCelsius */
-> +				hysteresis = <2000>;    /* milliCelsius */
-> +				type = "critical";
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..a0ab21a378e48da4b28a8dbb9a10e98b74b89614
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi
-> @@ -0,0 +1,141 @@
-> +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> +/*
-> + * Device Tree file for the AM62L wakeup domain peripherals
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> + */
-> +
-> +#include <dt-bindings/bus/ti-sysc.h>
-> +
-> +&cbass_wakeup {
-> +	vtm0: temperature-sensor@b00000 {
-> +		compatible = "ti,j7200-vtm";
-> +		reg = <0x00 0xb00000 0x00 0x400>,
-> +		      <0x00 0xb01000 0x00 0x400>;
-> +		power-domains = <&scmi_pds 46>;
-> +		#thermal-sensor-cells = <1>;
-> +	};
-> +
-> +	pmx0: pinctrl@4084000 {
-> +		compatible = "ti,am62l-padconf", "pinctrl-single";
-> +		reg = <0x00 0x4084000 0x00 0x24c>;
-> +		pinctrl-single,register-width = <32>;
-> +		pinctrl-single,function-mask = <0xffffffff>;
-> +		#pinctrl-cells = <1>;
-> +	};
-> +
-> +	wkup_gpio0: gpio@4201000 {
-> +		compatible = "ti,am64-gpio", "ti,keystone-gpio";
-> +		reg = <0x00 0x04201000 0x00 0x100>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 704 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 705 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 706 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 707 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 708 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 709 IRQ_TYPE_EDGE_RISING>,
-> +			     <GIC_SPI 710 IRQ_TYPE_EDGE_RISING>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		power-domains = <&scmi_pds 36>;
-> +		clocks = <&scmi_clk 146>;
-> +		clock-names = "gpio";
-> +		ti,ngpio = <7>;
-> +		ti,davinci-gpio-unbanked = <0>;
-> +		status = "disabled";
-> +	};
-> +
-> +	wkup_timer0: timer@2b100000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2b100000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 93>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 19>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	wkup_timer1: timer@2b110000 {
-> +		compatible = "ti,am654-timer";
-> +		reg = <0x00 0x2b110000 0x00 0x400>;
-> +		interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&scmi_clk 98>;
-> +		clock-names = "fck";
-> +		power-domains = <&scmi_pds 20>;
-> +		ti,timer-pwm;
-> +	};
-> +
-> +	wkup_i2c0: i2c@2b200000 {
-> +		compatible = "ti,am64-i2c", "ti,omap4-i2c";
-> +		reg = <0x00 0x2b200000 0x00 0x100>;
-> +		interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		power-domains = <&scmi_pds 57>;
-> +		clocks = <&scmi_clk 262>;
-> +		clock-names = "fck";
-> +		status = "disabled";
-> +	};
-> +
-> +	target-module@2b300050 {
-> +		compatible = "ti,sysc-omap2", "ti,sysc";
-> +		reg = <0x00 0x2b300050 0x00 0x4>,
-> +		      <0x00 0x2b300054 0x00 0x4>,
-> +		      <0x00 0x2b300058 0x00 0x4>;
-> +		reg-names = "rev", "sysc", "syss";
-> +		ranges = <0x00 0x00 0x2b300000 0x100000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&scmi_pds 83>;
-> +		clocks = <&scmi_clk 324>;
-> +		clock-names = "fck";
-> +		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-> +				 SYSC_OMAP2_SOFTRESET |
-> +				 SYSC_OMAP2_AUTOIDLE)>;
-> +		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-> +				<SYSC_IDLE_NO>,
-> +				<SYSC_IDLE_SMART>,
-> +				<SYSC_IDLE_SMART_WKUP>;
-> +		ti,syss-mask = <1>;
-> +		ti,no-reset-on-init;
-> +		status = "disabled";
-> +
-> +		wkup_uart0: serial@0 {
-> +			compatible = "ti,am64-uart", "ti,am654-uart";
-> +			reg = <0x00 0x100>;
-> +			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&scmi_clk 324>;
-> +			assigned-clocks = <&scmi_clk 324>;
-> +			clock-names = "fck";
-> +			status = "disabled";
-> +		};
-> +	};
-> +
-> +	wkup_conf: bus@43000000 {
-> +		compatible = "simple-bus";
-> +		ranges = <0x00 0x00 0x43000000 0x80000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		chipid: chipid@14 {
-> +			compatible = "ti,am654-chipid";
-> +			reg = <0x14 0x8>;
-> +			bootph-all;
-> +		};
-> +
-> +		cpsw_mac_syscon: ethernet-mac-syscon@2000 {
-> +			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
-> +			reg = <0x2000 0x8>;
-> +		};
-> +
-> +		usb_phy_ctrl: syscon@45000 {
-> +			compatible = "ti,am62-usb-phy-ctrl", "syscon";
-> +			reg = <0x45000 0x8>;
-> +			bootph-all;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l.dtsi b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..d058394a8d19d16f100cd87cf293c67bc189b475
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-> @@ -0,0 +1,120 @@
-> +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> +/*
-> + * Device Tree Source for AM62L SoC Family
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +#include "k3-pinctrl.h"
-> +
-> +/ {
-> +	model = "Texas Instruments K3 AM62L3 SoC";
-> +	compatible = "ti,am62l3";
-> +	interrupt-parent = <&gic500>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	firmware {
-> +		optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +
-> +		psci: psci {
-> +			compatible = "arm,psci-1.0";
-> +			method = "smc";
-> +		};
-> +
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x82004000>;
-> +			shmem = <&scmi_shmem>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +				bootph-all;
-> +			};
-> +
-> +			scmi_pds: protocol@11 {
-> +				reg = <0x11>;
-> +				#power-domain-cells = <1>;
-> +				bootph-all;
-> +			};
-> +		};
-> +	};
-> +
-> +	a53_timer0: timer-cl0-cpu0 {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* cntpsirq */
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* cntpnsirq */
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* cntvirq */
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* cnthpirq */
-> +	};
-> +
-> +	pmu: pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	cbass_main: bus@f0000 {
-> +		compatible = "simple-bus";
-> +		ranges = <0x00 0x00600000 0x00 0x00600000 0x00 0x00010100>, /* GPIO */
-> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x01b28400>, /* First Peripheral Window */
-> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000400>, /* Timesync Router */
-> +			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* CPSW */
-> +			 <0x00 0x09000000 0x00 0x09000000 0x00 0x00400000>, /* CTRL MMRs */
-> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x1a001400>, /* Second Peripheral Window */
-> +			 <0x00 0x301c0000 0x00 0x301c0000 0x00 0x00001000>, /* DPHY-TX */
-> +			 <0x00 0x30200000 0x00 0x30200000 0x00 0x0000b000>, /* DSS */
-> +			 <0x00 0x30270000 0x00 0x30270000 0x00 0x00390000>, /* DSI Wrapper */
-> +			 <0x00 0x30500000 0x00 0x30500000 0x00 0x00100000>, /* DSI Config */
-> +			 <0x00 0x31000000 0x00 0x31000000 0x00 0x00050000>, /* USB0 DWC3 Core Window */
-> +			 <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, /* USB1 DWC3 Core Window */
-> +			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0 */
-> +			 <0x00 0x45810000 0x00 0x45810000 0x00 0x03170000>, /* DMSS */
-> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC DATA */
-> +			 <0x00 0x60000000 0x00 0x60000000 0x00 0x08000000>, /* FSS DAT1 */
-> +			 <0x00 0x70800000 0x00 0x70800000 0x00 0x00018000>, /* OCSRAM */
-> +			 <0x01 0x00000000 0x01 0x00000000 0x00 0x00310000>, /* A53 PERIPHBASE */
-> +			 <0x04 0x00000000 0x04 0x00000000 0x01 0x00000000>, /* FSS DAT0 */
-> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS DAT3 */
-> +
-> +			 /* Wakeup Domain Range */
-> +			 <0x00 0x00a80000 0x00 0x00a80000 0x00 0x00034000>, /* GTC */
-> +			 <0x00 0x00b00000 0x00 0x00b00000 0x00 0x00001400>, /* VTM */
-> +			 <0x00 0x04080000 0x00 0x04080000 0x00 0x00008000>, /* PDCFG */
-> +			 <0x00 0x04201000 0x00 0x04201000 0x00 0x00000100>, /* GPIO */
-> +			 <0x00 0x2b100000 0x00 0x2b100000 0x00 0x00100100>, /* Wakeup Peripheral Window */
-> +			 <0x00 0x40800000 0x00 0x40800000 0x00 0x00014000>, /* DMA */
-> +			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00080000>; /* CTRL MMRs */
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		cbass_wakeup:  bus@43000000 {
-> +			compatible = "simple-bus";
-> +			ranges = <0x00 0x00a80000 0x00 0x00a80000 0x00 0x00034000>, /* GTC */
-> +				 <0x00 0x00b00000 0x00 0x00b00000 0x00 0x00001400>, /* VTM */
-> +				 <0x00 0x04080000 0x00 0x04080000 0x00 0x00008000>, /* PDCFG */
-> +				 <0x00 0x04201000 0x00 0x04201000 0x00 0x00000100>, /* GPIO */
-> +				 <0x00 0x2b100000 0x00 0x2b100000 0x00 0x00100100>, /* Wakeup Peripheral Window */
-> +				 <0x00 0x40800000 0x00 0x40800000 0x00 0x00014000>, /* DMA */
-> +				 <0x00 0x43000000 0x00 0x43000000 0x00 0x00080000>; /* CTRL MMRs */
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +		};
-> +	};
-> +
-> +	#include "k3-am62l-thermal.dtsi"
+On Fri, Sep 12, 2025 at 3:59=E2=80=AFAM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Friday, 12 September 2025 06:48:17 Central European Summer Time Chia-I=
+ Wu wrote:
+> > On Fri, Sep 5, 2025 at 3:24=E2=80=AFAM Nicolas Frattaroli
+> > <nicolas.frattaroli@collabora.com> wrote:
+> > >
+> > > The MT8196 SoC uses an embedded MCU to control frequencies and power =
+of
+> > > the GPU. This controller is referred to as "GPUEB".
+> > >
+> > > It communicates to the application processor, among other ways, throu=
+gh
+> > > a mailbox.
+> > >
+> > > The mailbox exposes one interrupt, which appears to only be fired whe=
+n a
+> > > response is received, rather than a transaction is completed. For us,
+> > > this means we unfortunately need to poll for txdone.
+> > >
+> > > The mailbox also requires the EB clock to be on when touching any of =
+the
+> > > mailbox registers.
+> > >
+> > > Add a simple driver for it based on the common mailbox framework.
+> > >
+> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > ---
+> > >  drivers/mailbox/Kconfig             |  10 ++
+> > >  drivers/mailbox/Makefile            |   2 +
+> > >  drivers/mailbox/mtk-gpueb-mailbox.c | 330 ++++++++++++++++++++++++++=
+++++++++++
+> > >  3 files changed, 342 insertions(+)
+> > >
+> > > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> > > index 02432d4a5ccd46a16156a09c7f277fb03e4013f5..2016defda1fabb5c0fcc8=
+078f84a52d4e4e00167 100644
+> > > --- a/drivers/mailbox/Kconfig
+> > > +++ b/drivers/mailbox/Kconfig
+> > > @@ -294,6 +294,16 @@ config MTK_CMDQ_MBOX
+> > >           critical time limitation, such as updating display configur=
+ation
+> > >           during the vblank.
+> > >
+> > > +config MTK_GPUEB_MBOX
+> > > +       tristate "MediaTek GPUEB Mailbox Support"
+> > > +       depends on ARCH_MEDIATEK || COMPILE_TEST
+> > > +       help
+> > > +         The MediaTek GPUEB mailbox is used to communicate with the =
+embedded
+> > > +         controller in charge of GPU frequency and power management =
+on some
+> > > +         MediaTek SoCs, such as the MT8196.
+> > > +         Say Y or m here if you want to support the MT8196 SoC in yo=
+ur kernel
+> > > +         build.
+> > > +
+> > >  config ZYNQMP_IPI_MBOX
+> > >         tristate "Xilinx ZynqMP IPI Mailbox"
+> > >         depends on ARCH_ZYNQMP && OF
+> > > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> > > index 98a68f838486eed117d24296138bf59fda3f92e4..564d06e71313e6d1972e4=
+a6036e1e78c8c7ec450 100644
+> > > --- a/drivers/mailbox/Makefile
+> > > +++ b/drivers/mailbox/Makefile
+> > > @@ -63,6 +63,8 @@ obj-$(CONFIG_MTK_ADSP_MBOX)   +=3D mtk-adsp-mailbox=
+.o
+> > >
+> > >  obj-$(CONFIG_MTK_CMDQ_MBOX)    +=3D mtk-cmdq-mailbox.o
+> > >
+> > > +obj-$(CONFIG_MTK_GPUEB_MBOX)   +=3D mtk-gpueb-mailbox.o
+> > > +
+> > >  obj-$(CONFIG_ZYNQMP_IPI_MBOX)  +=3D zynqmp-ipi-mailbox.o
+> > >
+> > >  obj-$(CONFIG_SUN6I_MSGBOX)     +=3D sun6i-msgbox.o
+> > > diff --git a/drivers/mailbox/mtk-gpueb-mailbox.c b/drivers/mailbox/mt=
+k-gpueb-mailbox.c
+> > > new file mode 100644
+> > > index 0000000000000000000000000000000000000000..0236fb358136e434a09a2=
+1ef293fe949ced94123
+> > > --- /dev/null
+> > > +++ b/drivers/mailbox/mtk-gpueb-mailbox.c
+> > > @@ -0,0 +1,330 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * MediaTek GPUEB mailbox driver for SoCs such as the MT8196
+> > > + *
+> > > + * Copyright (C) 2025, Collabora Ltd.
+> > > + *
+> > > + * Developers harmed in the making of this driver:
+> > > + *  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > + */
+> > > +
+> > > +#include <linux/atomic.h>
+> > > +#include <linux/clk.h>
+> > > +#include <linux/device.h>
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/mailbox_controller.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#define MBOX_CTL_TX_STS 0x0000
+> > > +#define MBOX_CTL_IRQ_SET 0x0004
+> > > +#define MBOX_CTL_IRQ_CLR 0x0074
+> > > +#define MBOX_CTL_RX_STS 0x0078
+> > > +
+> > > +#define MBOX_FULL BIT(0) /* i.e. we've received data */
+> > > +#define MBOX_CLOGGED BIT(1) /* i.e. the channel is shutdown */
+> > > +
+> > > +struct mtk_gpueb_mbox {
+> > > +       struct device *dev;
+> > > +       struct clk *clk;
+> > > +       void __iomem *mbox_mmio;
+> > > +       void __iomem *mbox_ctl;
+> > > +       void **rx_buf;
+> > > +       atomic_t *rx_status;
+> > > +       struct mbox_controller mbox;
+> > > +       unsigned int *chn;
+> > > +       int irq;
+> > > +       const struct mtk_gpueb_mbox_variant *v;
+> > > +};
+> > > +
+> > > +struct mtk_gpueb_mbox_ch {
+> > > +       const char *name;
+> > > +       const int num;
+> > > +       const unsigned int tx_offset;
+> > > +       const unsigned int tx_len;
+> > > +       const unsigned int rx_offset;
+> > > +       const unsigned int rx_len;
+> > > +       const bool no_response;
+> > > +};
+> > > +
+> > > +struct mtk_gpueb_mbox_variant {
+> > > +       unsigned int num_channels;
+> > > +       const struct mtk_gpueb_mbox_ch channels[] __counted_by(num_ch=
+annels);
+> > > +};
+> > > +
+> > > +/**
+> > > + * mtk_gpueb_mbox_read_rx - read RX buffer from MMIO into ebm's RX b=
+uffer
+> > > + * @ebm: pointer to &struct mtk_gpueb_mbox instance
+> > > + * @channel: number of channel to read
+> > > + */
+> > > +static void mtk_gpueb_mbox_read_rx(struct mtk_gpueb_mbox *ebm,
+> > > +                                  unsigned int channel)
+> > > +{
+> > > +       const struct mtk_gpueb_mbox_ch *ch;
+> > > +
+> > > +       ch =3D &ebm->v->channels[channel];
+> > > +
+> > > +       memcpy_fromio(ebm->rx_buf[channel], ebm->mbox_mmio + ch->rx_o=
+ffset,
+> > > +                     ch->rx_len);
+> > > +
+> > > +}
+> > > +
+> > > +static irqreturn_t mtk_gpueb_mbox_isr(int irq, void *data)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D data;
+> > > +       u32 rx_handled =3D 0;
+> > > +       u32 rx_sts;
+> > > +       int i;
+> > > +
+> > > +       rx_sts =3D readl(ebm->mbox_ctl + MBOX_CTL_RX_STS);
+> > > +
+> > > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
+> > > +               if (rx_sts & BIT(i)) {
+> > > +                       if (!atomic_cmpxchg(&ebm->rx_status[i], 0,
+> > > +                                           MBOX_FULL | MBOX_CLOGGED)=
+)
+> > > +                               rx_handled |=3D BIT(i);
+> > > +               }
+> > > +       }
+> > We can loop over bits that are set in rx_sts, if we expect that only a
+> > few bits are set most of the time.
+>
+> Could you elaborate on your preferred approach? num_channels will be
+> smaller than the bit width of rx_sts. I could loop from __fls down to
+> 0 checking for (!rx_sts ^ rx_handled) for an early exit, but I'm not
+> sure if this microoptimisation is what you meant or if that even makes
+> much sense instruction cost wise.
+>
+> Alternatively, I could loop from __fss to num_channels.
+>
+> Is there some commonly used hyper-optimised "loop over set bits" macro
+> that I'm unfamiliar with?
+Not sure if there is a macro, but panthor open-codes something like
 
-Not a fan of how this is included (yes I know it is done like this in
-a couple other places, those need fixed too), as we have better/standard
-ways to add nodes to nodes other than directly including a file with the
-node. The other issue is now the content of the file, including its #include
-lines are now inside this parent node.
+  while (rx_sts) {
+    int chan =3D ffs(rx_sts) - 1;
+    rx_sts &=3D ~BIT(chan);
+    // do away with chan
+  }
 
-This dtsi file should just start with "/ {" and add the extra node.
+>
+> > > +
+> > > +       writel(rx_handled, ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
+> > > +
+> > > +       if (!(rx_sts ^ rx_handled))
+> > "rx_sts =3D=3D rx_handled" should be more direct.
+>
+> Good point, will change.
+>
+> > > +               return IRQ_WAKE_THREAD;
+> > > +
+> > > +       dev_warn_ratelimited(ebm->dev, "spurious interrupts on 0x%04X=
+\n",
+> > > +                            rx_sts ^ rx_handled);
+> > > +       return IRQ_NONE;
+> > It seems a bit too punishing when there are spurious interrupts. I
+> > wonder if we should warn, but return IRQ_WAKE_THREAD as long as
+> > rx_handled !=3D 0.
+> >
+> > Also, if another interrupt can fire before mtk_gpueb_mbox_thread runs,
+> > that's data dropping rather than spurious interrupts.
+> >
+>
+> Yeah, I agree that this is bad. As wens pointed out, my IRQ clearing
+> earlier would most certainly open us up to losing data. I'll
+> definitely look into changing this; iirc the current code resulted
+> from me being unsure whether partially handled IRQs should still
+> be counted as a handled IRQ or not.
+If we only get rx data (response) as a result of tx data (request),
+this would be fine. But if there can be unsolicited tx data (looking
+at fast_dvfs_event), yeah, we are clearing irq too early.
 
-Also, isn't this broken out into a dtsi so we can handle versions of
-this device qualified for other thermal ranges without having to use
-a different parent device dtsi? If so then adding it directly to the
-base dtsi prevents that. Either all AM62L have this one thermal situation
-and then it doesn't need to be a dtsi, or this include should go into the
-board level as it is up to the given board what specific variant was chosen
-to be populated on that board type.
+>
+> > > +}
+> > > +
+> > > +static irqreturn_t mtk_gpueb_mbox_thread(int irq, void *data)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D data;
+> > > +       irqreturn_t ret =3D IRQ_NONE;
+> > > +       int status;
+> > > +       int i;
+> > > +
+> > > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
+> > > +               status =3D atomic_cmpxchg(&ebm->rx_status[i],
+> > > +                                       MBOX_FULL | MBOX_CLOGGED, MBO=
+X_FULL);
+> > > +               if (status =3D=3D (MBOX_FULL | MBOX_CLOGGED)) {
+> > We could also save rx_handled from mtk_gpueb_mbox_isr and loop over
+> > bits that are set.  If we do that, ebm->rx_status[i] is guaranteed to
+> > be MBOX_FULL | MBOX_CLOGGED.
+> >
+>
+> Wouldn't storing rx_handled open us up to data races with unpleasant
+> code to try and prevent them? As far as I understand, the ISR is allowed
+> to fire again before the thread has completed. Having the rx_status bits
+> as individual atomics gives us finer granularity than needing to protect
+> the entire set of bits.
+>
+> If there is some way to pass data from the ISR to the awoken thread
+> directly as a per-invocation parameter rather than a squirreled away
+> member of the driver private struct, then I agree doing it your way
+> seems better.
+>
+> > > +                       mtk_gpueb_mbox_read_rx(ebm, i);
+> > > +                       mbox_chan_received_data(&ebm->mbox.chans[i],
+> > > +                                               ebm->rx_buf[i]);
+> > It looks like we read the data and pass it on to the client
+> > immediately. Does each channel need its own rx_buf?
+> >
+>
+> Yeah, common mailbox framework does not do a copy here, it just passes
+> the pointer. Which is good, because nobody likes copies, and it
+> prevents the mailbox core from needing to know the size of received
+> data.
+>
+> So the individual rx_bufs are needed to prevent channel cross-talk.
+I checked a few other mailbox drivers. The data pointer could even
+point to local variables in some cases. It seems, in general,
+mbox_client cannot expect the data to be valid after
+mbox_chan_received_data returns.
 
-Andrew
+>
+> > > +                       /* FIXME: When does MBOX_FULL get cleared? He=
+re? */
+> > > +                       atomic_set(&ebm->rx_status[i], 0);
+> > > +                       ret =3D IRQ_HANDLED;
+> > > +               }
+> > > +       }
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int mtk_gpueb_mbox_send_data(struct mbox_chan *chan, void *da=
+ta)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->de=
+v);
+> > > +       unsigned int *num =3D chan->con_priv;
+> > > +       int i;
+> > > +       u32 *values =3D data;
+> > > +
+> > > +       if (*num >=3D ebm->v->num_channels)
+> > > +               return -ECHRNG;
+> > Can this ever happen? (I am not familiar with the mbox subsystem)
+>
+> Only if someone with a pointer to chan modifies con_priv outside of
+> what the mailbox driver set. It's an unlikely scenario, so I do think
+> I can remove this check, but the downside is that if someone ever does
+> manage to do this then the next line is a convenient read primitive.
+That should be an invalid usage that we hopefully don't need to worry
+about. Otherwise, as things are, *num can also be modified after the
+check so the check is not sufficient.
 
-> +};
-> +
-> +/* Now include peripherals for each bus segment */
-> +#include "k3-am62l-main.dtsi"
-> +#include "k3-am62l-wakeup.dtsi"
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62l3.dtsi b/arch/arm64/boot/dts/ti/k3-am62l3.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..da220b85151227c63f59b2b8ec48ae2ebb37e7bf
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62l3.dtsi
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> +/*
-> + * Device Tree file for the AM62L3 SoC family (Dual Core A53)
-> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am62l.dtsi"
-> +
-> +/ {
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0: cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x000>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			i-cache-size = <0x8000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <256>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x001>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			i-cache-size = <0x8000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <256>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +	};
-> +
-> +	l2_0: l2-cache0 {
-> +		compatible = "cache";
-> +		cache-unified;
-> +		cache-level = <2>;
-> +		cache-size = <0x40000>;
-> +		cache-line-size = <64>;
-> +		cache-sets = <256>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> index c0f09be8d3f94a70812b66c3f91626aac35f4026..fad0fd3fc656eecf97273143a0e530d4b745dd8a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> @@ -78,6 +78,8 @@
->   #define AM62PX_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
->   #define AM62PX_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
->   
-> +#define AM62LX_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
-> +
->   #define AM62X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
->   #define AM62X_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
->   
-> 
-
+>
+> > > +
+> > > +       if (!ebm->v->channels[*num].no_response &&
+> > > +           atomic_read(&ebm->rx_status[*num]))
+> > > +               return -EBUSY;
+> > When no_response is true, rx_status is 0. We probably don't need to
+> > check no_response.
+>
+> Now that I'm thinking about it, I can probably get rid of no_response
+> altogether. It was originally added because I conflated txdone with
+> response received, and one particular command on the sleep channel,
+> namely powering off the MFG, is unable to ever cause a response
+> interrupt to fire.
+>
+> Since we now poll for txdone anyway using the TX status register, I
+> don't think this is needed at all anymore, so I'll try and get
+> rid of it.
+>
+> > > +
+> > > +       writel(BIT(*num), ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
+> > > +
+> > > +       /*
+> > > +        * We don't want any fancy nonsense, just write the 32-bit va=
+lues in
+> > > +        * order. memcpy_toio/__iowrite32_copy don't work here, becau=
+se fancy.
+> > > +        */
+> > > +       for (i =3D 0; i < ebm->v->channels[*num].tx_len; i +=3D 4) {
+> > > +               writel(values[i / 4],
+> > > +                      ebm->mbox_mmio + ebm->v->channels[*num].tx_off=
+set + i);
+> > > +       }
+> > > +
+> > > +       writel(BIT(*num), ebm->mbox_ctl + MBOX_CTL_IRQ_SET);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static int mtk_gpueb_mbox_startup(struct mbox_chan *chan)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->de=
+v);
+> > > +       unsigned int *num =3D chan->con_priv;
+> > > +
+> > > +       if (*num >=3D ebm->v->num_channels)
+> > > +               return -ECHRNG;
+> > > +
+> > > +       atomic_set(&ebm->rx_status[*num], 0);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static void mtk_gpueb_mbox_shutdown(struct mbox_chan *chan)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->de=
+v);
+> > > +       unsigned int *num =3D chan->con_priv;
+> > > +
+> > > +       atomic_set(&ebm->rx_status[*num], MBOX_CLOGGED);
+> > > +}
+> > > +
+> > > +static bool mtk_gpueb_mbox_last_tx_done(struct mbox_chan *chan)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->de=
+v);
+> > > +       unsigned int *num =3D chan->con_priv;
+> > > +
+> > > +       return !(readl(ebm->mbox_ctl + MBOX_CTL_TX_STS) & BIT(*num));
+> > > +}
+> > > +
+> > > +const struct mbox_chan_ops mtk_gpueb_mbox_ops =3D {
+> > > +       .send_data =3D mtk_gpueb_mbox_send_data,
+> > > +       .startup =3D mtk_gpueb_mbox_startup,
+> > > +       .shutdown =3D mtk_gpueb_mbox_shutdown,
+> > > +       .last_tx_done =3D mtk_gpueb_mbox_last_tx_done,
+> > > +};
+> > > +
+> > > +static struct mbox_chan *
+> > > +mtk_gpueb_mbox_of_xlate(struct mbox_controller *mbox,
+> > > +                       const struct of_phandle_args *sp)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(mbox->dev);
+> > > +
+> > > +       if (!sp->args_count)
+> > > +               return ERR_PTR(-EINVAL);
+> > > +
+> > > +       if (sp->args[0] >=3D ebm->v->num_channels)
+> > > +               return ERR_PTR(-ECHRNG);
+> > > +
+> > > +       return &mbox->chans[sp->args[0]];
+> > > +}
+> > > +
+> > > +static int mtk_gpueb_mbox_probe(struct platform_device *pdev)
+> > > +{
+> > > +       struct mtk_gpueb_mbox *ebm;
+> > > +       unsigned int rx_buf_sz;
+> > > +       void *buf;
+> > > +       unsigned int i;
+> > > +       int ret;
+> > > +
+> > > +       ebm =3D devm_kzalloc(&pdev->dev, sizeof(*ebm), GFP_KERNEL);
+> > > +       if (!ebm)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ebm->dev =3D &pdev->dev;
+> > > +       ebm->v =3D of_device_get_match_data(ebm->dev);
+> > > +
+> > > +       dev_set_drvdata(ebm->dev, ebm);
+> > > +
+> > > +       ebm->clk =3D devm_clk_get_enabled(ebm->dev, NULL);
+> > > +       if (IS_ERR(ebm->clk))
+> > > +               return dev_err_probe(ebm->dev, PTR_ERR(ebm->clk),
+> > > +                                    "Failed to get 'eb' clock\n");
+> > > +
+> > > +       ebm->mbox_mmio =3D devm_platform_ioremap_resource_byname(pdev=
+, "mbox");
+> > > +       if (IS_ERR(ebm->mbox_mmio))
+> > > +               return dev_err_probe(ebm->dev, PTR_ERR(ebm->mbox_mmio=
+),
+> > > +                                    "Couldn't map mailbox registers\=
+n");
+> > > +
+> > > +       ebm->mbox_ctl =3D devm_platform_ioremap_resource_byname(pdev,=
+ "mbox_ctl");
+> > > +       if (IS_ERR(ebm->mbox_ctl))
+> > > +               return dev_err_probe(
+> > > +                       ebm->dev, PTR_ERR(ebm->mbox_ctl),
+> > > +                       "Couldn't map mailbox control registers\n");
+> > > +
+> > > +       rx_buf_sz =3D (ebm->v->channels[ebm->v->num_channels - 1].rx_=
+offset +
+> > > +                    ebm->v->channels[ebm->v->num_channels - 1].rx_le=
+n);
+> > rx is after tx in mmio. The first half of the space is wasted.
+> >
+> > We follow mtk_gpueb_mbox_read_rx by mbox_chan_received_data. It seems
+> > we only need max of rx_len's.
+>
+> We do need the sum of all rx_len's but you're correct that the current co=
+de
+> allocates too much memory. What I think it should do is
+>
+> last rx_offset + last rx_len - first rx_offset
+>
+> to get the total amount of MMIO occupied by RX.
+>
+> > > +
+> > > +       buf =3D devm_kzalloc(ebm->dev, rx_buf_sz, GFP_KERNEL);
+> > > +       if (!buf)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ebm->rx_buf =3D devm_kmalloc_array(ebm->dev, ebm->v->num_chan=
+nels,
+> > > +                                        sizeof(*ebm->rx_buf), GFP_KE=
+RNEL);
+> > > +       if (!ebm->rx_buf)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ebm->mbox.chans =3D devm_kcalloc(ebm->dev, ebm->v->num_channe=
+ls,
+> > > +                                      sizeof(struct mbox_chan), GFP_=
+KERNEL);
+> > > +       if (!ebm->mbox.chans)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ebm->rx_status =3D devm_kcalloc(ebm->dev, ebm->v->num_channel=
+s,
+> > > +                                     sizeof(atomic_t), GFP_KERNEL);
+> > > +       if (!ebm->rx_status)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       ebm->chn =3D devm_kcalloc(ebm->dev, ebm->v->num_channels,
+> > > +                               sizeof(*ebm->chn), GFP_KERNEL);
+> > > +
+> > > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
+> > > +               ebm->rx_buf[i] =3D buf + ebm->v->channels[i].rx_offse=
+t;
+> > > +               spin_lock_init(&ebm->mbox.chans[i].lock);
+> > > +               /* the things you do to avoid explicit casting void* =
+*/
+> > I actually prefer an inline helper that casts chan->con_priv to the
+> > channel number. Another option is "chan - ebm->mox.chans".
+>
+> Hmmm, yeah. Though, I don't enjoy chan - ebm->mbox.chans because now we'r=
+e
+> in the woods regarding pointer arithmetics.
+>
+> I think the inline helper makes more sense, even if explicitly using a
+> pointer as an integer gives me the heebie-jeebies.
+>
+> > > +               ebm->chn[i] =3D i;
+> > > +               ebm->mbox.chans[i].con_priv =3D &ebm->chn[i];
+> > > +               atomic_set(&ebm->rx_status[i], MBOX_CLOGGED);
+> > > +       }
+> > > +
+> > > +       ebm->mbox.dev =3D ebm->dev;
+> > > +       ebm->mbox.num_chans =3D ebm->v->num_channels;
+> > > +       ebm->mbox.txdone_poll =3D true;
+> > > +       ebm->mbox.txpoll_period =3D 0; /* minimum hrtimer interval */
+> > > +       ebm->mbox.of_xlate =3D mtk_gpueb_mbox_of_xlate;
+> > > +       ebm->mbox.ops =3D &mtk_gpueb_mbox_ops;
+> > > +
+> > > +       ebm->irq =3D platform_get_irq(pdev, 0);
+> > > +       if (ebm->irq < 0)
+> > > +               return ebm->irq;
+> > > +
+> > > +       ret =3D devm_request_threaded_irq(ebm->dev, ebm->irq, mtk_gpu=
+eb_mbox_isr,
+> > > +                                       mtk_gpueb_mbox_thread, 0, NUL=
+L, ebm);
+> > > +       if (ret)
+> > > +               return dev_err_probe(ebm->dev, ret, "failed to reques=
+t IRQ\n");
+> > > +
+> > > +       ret =3D devm_mbox_controller_register(ebm->dev, &ebm->mbox);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static const struct mtk_gpueb_mbox_variant mtk_gpueb_mbox_mt8196 =3D=
+ {
+> > > +       .num_channels =3D 12,
+> > > +       .channels =3D {
+> > > +               { "fast_dvfs_event", 0, 0x0000, 16, 0x00e0, 16, false=
+ },
+> > > +               { "gpufreq",         1, 0x0010, 32, 0x00f0, 32, false=
+ },
+> > > +               { "sleep",           2, 0x0030, 12, 0x0110,  4, true =
+ },
+> > > +               { "timer",           3, 0x003c, 24, 0x0114,  4, false=
+ },
+> > > +               { "fhctl",           4, 0x0054, 36, 0x0118,  4, false=
+ },
+> > > +               { "ccf",             5, 0x0078, 16, 0x011c, 16, false=
+ },
+> > > +               { "gpumpu",          6, 0x0088, 24, 0x012c,  4, false=
+ },
+> > > +               { "fast_dvfs",       7, 0x00a0, 24, 0x0130, 24, false=
+ },
+> > > +               { "ipir_c_met",      8, 0x00b8,  4, 0x0148, 16, false=
+ },
+> > > +               { "ipis_c_met",      9, 0x00bc, 16, 0x0158,  4, false=
+ },
+> > > +               { "brisket",        10, 0x00cc, 16, 0x015c, 16, false=
+ },
+> > > +               { "ppb",            11, 0x00dc,  4, 0x016c,  4, false=
+ },
+> > > +       },
+> > > +};
+> > > +
+> > > +static const struct of_device_id mtk_gpueb_mbox_of_ids[] =3D {
+> > > +       { .compatible =3D "mediatek,mt8196-gpueb-mbox",
+> > > +         .data =3D &mtk_gpueb_mbox_mt8196 },
+> > > +       { /* Sentinel */ }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, mtk_gpueb_mbox_of_ids);
+> > > +
+> > > +static struct platform_driver mtk_gpueb_mbox_drv =3D {
+> > > +       .probe =3D mtk_gpueb_mbox_probe,
+> > > +       .driver =3D {
+> > > +               .name =3D "mtk-gpueb-mbox",
+> > > +               .of_match_table =3D mtk_gpueb_mbox_of_ids,
+> > > +       }
+> > > +};
+> > > +module_platform_driver(mtk_gpueb_mbox_drv);
+> > > +
+> > > +MODULE_AUTHOR("Nicolas Frattaroli <nicolas.frattaroli@collabora.com>=
+");
+> > > +MODULE_DESCRIPTION("MediaTek GPUEB mailbox driver for SoCs such as t=
+he MT8196");
+> > > +MODULE_LICENSE("GPL");
+> > >
+> > > --
+> > > 2.51.0
+> > >
+> >
+>
+> Thank you for your review!
+>
+> Kind regards,
+> Nicolas Frattaroli
+>
+>
 
