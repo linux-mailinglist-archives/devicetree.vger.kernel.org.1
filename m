@@ -1,172 +1,376 @@
-Return-Path: <devicetree+bounces-216259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20C2CB542BE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48153B542CF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B042D5A19E7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:23:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD355A1515
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7A9280CF1;
-	Fri, 12 Sep 2025 06:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8A7284884;
+	Fri, 12 Sep 2025 06:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IM+db7CH"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eAE+Tka1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1FF280CF6
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370F228030E
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:24:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757658182; cv=none; b=tgWbRctMoEKq9aPCWwSlyc9U3tSyuOOVR/9EFwFYtn4qWaDAnTKetsQ652iSFC1HpburS2nL2yD9I23Sf7P8FUXdHd6F3ZS0ggx8tzRSBmixu8fQ2TIBMz0RZZ5lgVM4yngAwL2a+Cb1DdbRmEIE4rfQyIsXFUyTd+SXBrkpQpw=
+	t=1757658252; cv=none; b=NfDtOrm1LVHW+h3sVeYvwdrj65/e9RNPiHI4LxMQLxVDpDiHaSNd1PC2RzsdSG8e8OQQUf0we6ZFQg9mpr6ainjIxTCaIYrFOLORTlXaVvPFKbTmrfgw3v5FQrG80rRslqmf3tDaEEXjPZW8FjKI9XkOX2l5A5M6nnhkBivLTn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757658182; c=relaxed/simple;
-	bh=zWY++i830LvVnaKNwrHxNlZ8d9VBtxLHBranm7dk29s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BIl558+Ar4xD+pl59g1KebUkowlI+PIFOMll1Jt1Pn2gAFYg+RPLsY+Kezdtqy3a8z8UK8GrBbKL9mo4S3XuOEcZJ1QhgZol1nfY+KHEvyn0HaIFSxVRxTtp9j/EkjZQwk2+X+0Yvp1NvuzEtWIgdcWAe3utcdmMGpn/I476JQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IM+db7CH; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-62ee43b5e5bso357109a12.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 23:23:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757658179; x=1758262979; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2vd3FO0uowfrzzTtnd+6o2GR4OoJtCyfIGsohefrxVg=;
-        b=IM+db7CHN18P1UBOaxdqnMTeejy92JTiNIUu6s89/WenD/VlO40yh9Yqj7a8foCA/K
-         dyrsrjHCcSlImdsReK66MOtBbpvOU/tFyuRTUybvpxMqA8mRRShUUSVgzCvZtQr0H6PB
-         ZD8KFPnEq+DoFjOLk/dpyhEsrErxKfa89rK0I17EAvcKTfMVgk9btEfqnixxSrDIsF3Q
-         E5SIiuvgMe81M1RGTyTBFi6Biq2udcCLDyjHBB0kz7UUgEQgk9nRwM7hU8EIqrezD6oI
-         Gda4DpKW2JM/u/YPokZeeAA1kudnXxXmrwvGVBQlo86CRxx/8G58tcpNgF1SbMoG6gwM
-         usMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757658179; x=1758262979;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2vd3FO0uowfrzzTtnd+6o2GR4OoJtCyfIGsohefrxVg=;
-        b=AzgxBSij6Fw5queMsnKq0qHVgvQwBIgbcmr9nnrzVD2DqvhC4KgO6iNbMuylkwM6gV
-         kZ+wciQBAQuuIAshZ61GdoF5Ps5NrScv4vAu36Vxm98F7Yc3Pg+Z8ts6kd/xknepiuaa
-         nuLD38vFlN+LF9dsvutP5tNnhkDVaku/lYUFKUog1GSlcCw3rVAcYwhamJcqD/ANoKYG
-         BAFJmvuaYtJi+KIXCtNk+WoPaOddcoVg1lQ2F649rod3+nW5ZlNg6TWvTi+WHX1+5ZYA
-         5vIjfA2eBAfCUaXX5qZgYNFpmRwUxxkwEN/d2M1TW7tUXJtnjWgutY4CcL67nxHd+16O
-         QxAw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/5u2b13D9uesHVUttxu6EBEZyU/BwOq6d/5x21cH36ntPprQj4cagraSqe2MFjn9Shl+6m6TfNVPo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU9b+94fdpaSotOxCcBtYFLlSDZuw2kLSfWPf8oOgj7KCAUlz4
-	hhseyk+ANqAFfSxkd/iNrwwkpJdvHSHpWr2nXZswFciWZwiqFAtx+7huQaoaVytO+24iXG/RNvu
-	ECq0LV/zwZkPlejo/dEmae97ziLyTwRREX8IBKbX8ng==
-X-Gm-Gg: ASbGncv6nXT3bDHn3rthUImZaIe+4hXfXfg5Mmj0LHshYLi52UijAFM+AVeAQU2ElRt
-	3ki+tkTfENvFEuHtXFjI6xu2oYDCA1//z4CxZYVmsBaPiLRlSDJr9hg59SxmhXa1YuUXuPDTQQQ
-	XSq5n8qmwe+roLho6ZnTLg3Ep4mo3XXqz1/mrcEnMh5mnuA/2ZCG5lkHwV5U1MV6JBccuwNdxSw
-	OAWVdA=
-X-Google-Smtp-Source: AGHT+IGdp3hwfo5Kwg99zLqhk776/MuEzEwF5dvS3N2lEAqhArzZMDnQD2cE/bqWuyKoeqbqUDyopoXkkgYUTvQ3O3k=
-X-Received: by 2002:a05:6402:438f:b0:615:a7f4:da26 with SMTP id
- 4fb4d7f45d1cf-62ed8240ff2mr1847667a12.12.1757658178563; Thu, 11 Sep 2025
- 23:22:58 -0700 (PDT)
+	s=arc-20240116; t=1757658252; c=relaxed/simple;
+	bh=7ifweptQB82L2fvWYkjraRwW321Ua213iGlPWa7zjsk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
+	 References:In-Reply-To; b=jRICyI3jnvyA/+TELqWkca7rZN+YNQQ9L0/0hi01ptiGnof+RBkeTJ4lLkbK/ElNVfn0/N9vQxq40hMShziX/nJsjqgqIEaHLnT9L6Nlp0dViTnnrCGN536ySAjgk8mTw8WOPDn3peImbsH7YutwnFeQrNU7CWy+JjyBGtyYXDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eAE+Tka1; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 809D34E40C9B;
+	Fri, 12 Sep 2025 06:24:07 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 46F0360638;
+	Fri, 12 Sep 2025 06:24:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 03705102F29D8;
+	Fri, 12 Sep 2025 08:23:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757658246; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=5owq+y5TmSlW6EKLN0YJ4cOpLUP+7KPBn1QVcPQ/Stk=;
+	b=eAE+Tka1pUnbJaGLXfPStw22RvgK+i0hE2uVw8hJmvOMgHK6PyfcfvBoDZTSwBM0NePU0J
+	ExVmezdkjPIst+QZFPuYArE+X4rRcXwjtkGIxMHXy5FY45dzGr3Wa9QFGzx80cwGQ3IQlY
+	hMY4y+Zyd3CDUlW2o2crO8dDTZGnucoTCtRSvf4WWmxfN2PWSu0YDQvthgHxy+PzvCxBD9
+	04n/wTMnnuuGvnxi554ibnlKZI79PtMwYh7wMS6TdkTAb2+Su94bcyaIpKakPZk2vgi6R/
+	nyUMJ9Z9iHi/9t42mkdlNvz7duzjwC3hsHeghArI2edfVrkQhAANYyBCCUr00g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <cover.1757318368.git.zhoubinbin@loongson.cn> <2f93b8f20c6e93a15258888998e926814bfd0adf.1757318368.git.zhoubinbin@loongson.cn>
- <20250910-fast-seahorse-of-valor-bf6c86@kuoka> <CAMpQs4K-6Re=-gELPEg8kP_NKR5_1U=BD6fnXM3wgUF+eMtpGg@mail.gmail.com>
- <58fd8506-678e-409d-8283-1dc44c9aa8e2@kernel.org>
-In-Reply-To: <58fd8506-678e-409d-8283-1dc44c9aa8e2@kernel.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Fri, 12 Sep 2025 14:22:45 +0800
-X-Gm-Features: AS18NWAFsm3MIrwnLZoEVJYwuVnBuLzeoBSPe2_MKDz4Fo1FlK2hatZH2ik4P8s
-Message-ID: <CAMpQs4LjYPmZh2O5L8V9uKNspjMMq9w3cKCS9iSEStCHVGkg_g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] LoongArch: dts: Add uart new compatible string
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
-	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 12 Sep 2025 08:23:48 +0200
+Message-Id: <DCQLUB80GU6Y.18U540Q0R3YFP@bootlin.com>
+To: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v14 04/10] pwm: max7360: Add MAX7360 PWM support
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Andy Shevchenko"
+ <andriy.shevchenko@linux.intel.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
+ <20250824-mdb-max7360-support-v14-4-435cfda2b1ea@bootlin.com>
+In-Reply-To: <20250824-mdb-max7360-support-v14-4-435cfda2b1ea@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof:
+On Sun Aug 24, 2025 at 1:57 PM CEST, Mathieu Dubois-Briand wrote:
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+>
+> Add driver for Maxim Integrated MAX7360 PWM controller, supporting up to
+> 8 independent PWM outputs.
+>
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Co-developed-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
+>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/pwm/Kconfig       |  10 +++
+>  drivers/pwm/Makefile      |   1 +
+>  drivers/pwm/pwm-max7360.c | 209 ++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 220 insertions(+)
+>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index f00ce973dddf..f2b1ce47de7f 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -432,6 +432,16 @@ config PWM_LPSS_PLATFORM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-lpss-platform.
+> =20
+> +config PWM_MAX7360
+> +	tristate "MAX7360 PWMs"
+> +	depends on MFD_MAX7360
+> +	help
+> +	  PWM driver for Maxim Integrated MAX7360 multifunction device, with
+> +	  support for up to 8 PWM outputs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-max7360.
+> +
+>  config PWM_MC33XS2410
+>  	tristate "MC33XS2410 PWM support"
+>  	depends on OF
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index ff4f47e5fb7a..dfa8b4966ee1 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -38,6 +38,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+=3D pwm-lpc32xx.o
+>  obj-$(CONFIG_PWM_LPSS)		+=3D pwm-lpss.o
+>  obj-$(CONFIG_PWM_LPSS_PCI)	+=3D pwm-lpss-pci.o
+>  obj-$(CONFIG_PWM_LPSS_PLATFORM)	+=3D pwm-lpss-platform.o
+> +obj-$(CONFIG_PWM_MAX7360)	+=3D pwm-max7360.o
+>  obj-$(CONFIG_PWM_MC33XS2410)	+=3D pwm-mc33xs2410.o
+>  obj-$(CONFIG_PWM_MEDIATEK)	+=3D pwm-mediatek.o
+>  obj-$(CONFIG_PWM_MESON)		+=3D pwm-meson.o
+> diff --git a/drivers/pwm/pwm-max7360.c b/drivers/pwm/pwm-max7360.c
+> new file mode 100644
+> index 000000000000..ebf93a7aee5b
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-max7360.c
+> @@ -0,0 +1,209 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright 2025 Bootlin
+> + *
+> + * Author: Kamel BOUHARA <kamel.bouhara@bootlin.com>
+> + * Author: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> + *
+> + * PWM functionality of the MAX7360 multi-function device.
+> + * https://www.analog.com/media/en/technical-documentation/data-sheets/M=
+AX7360.pdf
+> + *
+> + * Limitations:
+> + * - Only supports normal polarity.
+> + * - The period is fixed to 2 ms.
+> + * - Only the duty cycle can be changed, new values are applied at the b=
+eginning
+> + *   of the next cycle.
+> + * - When disabled, the output is put in Hi-Z immediately.
+> + */
+> +#include <linux/bits.h>
+> +#include <linux/dev_printk.h>
+> +#include <linux/err.h>
+> +#include <linux/math64.h>
+> +#include <linux/mfd/max7360.h>
+> +#include <linux/minmax.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +
+> +#define MAX7360_NUM_PWMS			8
+> +#define MAX7360_PWM_MAX				255
+> +#define MAX7360_PWM_STEPS			256
+> +#define MAX7360_PWM_PERIOD_NS			(2 * NSEC_PER_MSEC)
+> +
+> +struct max7360_pwm_waveform {
+> +	u8 duty_steps;
+> +	bool enabled;
+> +};
+> +
+> +static int max7360_pwm_request(struct pwm_chip *chip, struct pwm_device =
+*pwm)
+> +{
+> +	struct regmap *regmap =3D pwmchip_get_drvdata(chip);
+> +
+> +	/*
+> +	 * Make sure we use the individual PWM configuration register and not
+> +	 * the global one.
+> +	 * We never need to use the global one, so there is no need to revert
+> +	 * that in the .free() callback.
+> +	 */
+> +	return regmap_write_bits(regmap, MAX7360_REG_PWMCFG(pwm->hwpwm),
+> +				 MAX7360_PORT_CFG_COMMON_PWM, 0);
+> +}
+> +
+> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
+> +					   struct pwm_device *pwm,
+> +					   const struct pwm_waveform *wf,
+> +					   void *_wfhw)
+> +{
+> +	struct max7360_pwm_waveform *wfhw =3D _wfhw;
+> +	u64 duty_steps;
+> +
+> +	/*
+> +	 * Ignore user provided values for period_length_ns and duty_offset_ns:
+> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of =
+0.
+> +	 * Values from 0 to 254 as duty_steps will provide duty cycles of 0/256
+> +	 * to 254/256, while value 255 will provide a duty cycle of 100%.
+> +	 */
+> +	if (wf->duty_length_ns >=3D MAX7360_PWM_PERIOD_NS) {
+> +		duty_steps =3D MAX7360_PWM_MAX;
+> +	} else {
+> +		duty_steps =3D (u32)wf->duty_length_ns * MAX7360_PWM_STEPS / MAX7360_P=
+WM_PERIOD_NS;
+> +		if (duty_steps =3D=3D MAX7360_PWM_MAX)
+> +			duty_steps =3D MAX7360_PWM_MAX - 1;
+> +	}
+> +
+> +	wfhw->duty_steps =3D min(MAX7360_PWM_MAX, duty_steps);
+> +	wfhw->enabled =3D !!wf->period_length_ns;
+> +
+> +	if (wf->period_length_ns && wf->period_length_ns < MAX7360_PWM_PERIOD_N=
+S)
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+> +
+> +static int max7360_pwm_round_waveform_fromhw(struct pwm_chip *chip, stru=
+ct pwm_device *pwm,
+> +					     const void *_wfhw, struct pwm_waveform *wf)
+> +{
+> +	const struct max7360_pwm_waveform *wfhw =3D _wfhw;
+> +
+> +	wf->period_length_ns =3D wfhw->enabled ? MAX7360_PWM_PERIOD_NS : 0;
+> +	wf->duty_offset_ns =3D 0;
+> +
+> +	if (wfhw->enabled) {
+> +		if (wfhw->duty_steps =3D=3D MAX7360_PWM_MAX)
+> +			wf->duty_length_ns =3D MAX7360_PWM_PERIOD_NS;
+> +		else
+> +			wf->duty_length_ns =3D DIV_ROUND_UP(wfhw->duty_steps * MAX7360_PWM_PE=
+RIOD_NS,
+> +							  MAX7360_PWM_STEPS);
+> +	} else {
+> +		wf->duty_length_ns =3D 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_pwm_write_waveform(struct pwm_chip *chip,
+> +				      struct pwm_device *pwm,
+> +				      const void *_wfhw)
+> +{
+> +	struct regmap *regmap =3D pwmchip_get_drvdata(chip);
+> +	const struct max7360_pwm_waveform *wfhw =3D _wfhw;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	if (wfhw->enabled) {
+> +		ret =3D regmap_write(regmap, MAX7360_REG_PWM(pwm->hwpwm), wfhw->duty_s=
+teps);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	val =3D wfhw->enabled ? BIT(pwm->hwpwm) : 0;
+> +	return regmap_write_bits(regmap, MAX7360_REG_GPIOCTRL, BIT(pwm->hwpwm),=
+ val);
+> +}
+> +
+> +static int max7360_pwm_read_waveform(struct pwm_chip *chip,
+> +				     struct pwm_device *pwm,
+> +				     void *_wfhw)
+> +{
+> +	struct regmap *regmap =3D pwmchip_get_drvdata(chip);
+> +	struct max7360_pwm_waveform *wfhw =3D _wfhw;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(regmap, MAX7360_REG_GPIOCTRL, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val & BIT(pwm->hwpwm)) {
+> +		wfhw->enabled =3D true;
+> +		ret =3D regmap_read(regmap, MAX7360_REG_PWM(pwm->hwpwm), &val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		wfhw->duty_steps =3D val;
+> +	} else {
+> +		wfhw->enabled =3D false;
+> +		wfhw->duty_steps =3D 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops max7360_pwm_ops =3D {
+> +	.request =3D max7360_pwm_request,
+> +	.round_waveform_tohw =3D max7360_pwm_round_waveform_tohw,
+> +	.round_waveform_fromhw =3D max7360_pwm_round_waveform_fromhw,
+> +	.read_waveform =3D max7360_pwm_read_waveform,
+> +	.write_waveform =3D max7360_pwm_write_waveform,
+> +};
+> +
+> +static int max7360_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct pwm_chip *chip;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap =3D dev_get_regmap(dev->parent, NULL);
+> +	if (!regmap)
+> +		return dev_err_probe(dev, -ENODEV, "Could not get parent regmap\n");
+> +
+> +	/*
+> +	 * This MFD sub-device does not have any associated device tree node:
+> +	 * properties are stored in the device node of the parent (MFD) device
+> +	 * and this same node is used in phandles of client devices.
+> +	 * Reuse this device tree node here, as otherwise the PWM subsystem
+> +	 * would be confused by this topology.
+> +	 */
+> +	device_set_of_node_from_dev(dev, dev->parent);
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, MAX7360_NUM_PWMS, 0);
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	chip->ops =3D &max7360_pwm_ops;
+> +
+> +	pwmchip_set_drvdata(chip, regmap);
+> +
+> +	ret =3D devm_pwmchip_add(dev, chip);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to add PWM chip\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver max7360_pwm_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "max7360-pwm",
+> +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
+> +	},
+> +	.probe =3D max7360_pwm_probe,
+> +};
+> +module_platform_driver(max7360_pwm_driver);
+> +
+> +MODULE_DESCRIPTION("MAX7360 PWM driver");
+> +MODULE_AUTHOR("Kamel BOUHARA <kamel.bouhara@bootlin.com>");
+> +MODULE_AUTHOR("Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>=
+");
+> +MODULE_LICENSE("GPL");
 
-On Thu, Sep 11, 2025 at 5:00=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 11/09/2025 09:55, Binbin Zhou wrote:
-> > Hi Krzysztof:
-> >
-> > Thanks for your reply.
-> >
-> > On Wed, Sep 10, 2025 at 4:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On Tue, Sep 09, 2025 at 08:11:20PM +0800, Binbin Zhou wrote:
-> >>> Add loongson,ls2k*-uart compatible string on uarts.
-> >>>
-> >>> Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
-> >>> Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
-> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> >>> ---
-> >>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi | 2 +-
-> >>>  arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
-> >>>  arch/loongarch/boot/dts/loongson-2k2000.dtsi | 2 +-
-> >>>  3 files changed, 3 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loon=
-garch/boot/dts/loongson-2k0500.dtsi
-> >>> index 588ebc3bded4..357de4ca7555 100644
-> >>> --- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-> >>> +++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-> >>> @@ -380,7 +380,7 @@ tsensor: thermal-sensor@1fe11500 {
-> >>>               };
-> >>>
-> >>>               uart0: serial@1ff40800 {
-> >>> -                     compatible =3D "ns16550a";
-> >>> +                     compatible =3D "loongson,ls2k0500-uart", "ns165=
-50a";
-> >>
-> >> You clearly never bothered to actually test this against own code.
-> >
-> > Sorry, perhaps I should have included more detailed descriptions in
-> > the binding file.
-> >
-> > As per Chapter 15 of the Loongson-3A5000 manual[1], the Loongson UART
-> > registers and functionality are compatible with the NS16550A. However,
-> > generic 16550A drivers cannot support full serial port capabilities,
-> > such as hardware flow control.
-> >
-> > Based on your feedback in the V3 patchset[2], I attempted to use
-> > compatible fallbacks to avoid API breakage.
-> >
-> > These fallbacks match according to the Makefile's compilation
->
-> DT bindings and fallbacks in DTS cannot match Makefile. You are mixing
-> concepts.
->
-> I said, this was not tested. I am 100% sure. Instead of replying with
-> irrelevant build related stuff, please come with actual arguments, e.g.
-> output (on some pastebin.com) of entire dtbs_check proving no new
-> warnings are there.
->
-> But even without warnings, I see with my own eyes that DTS is just
-> wrong. Or bindings.
 
-Please disregard my previous email. I apologize for wasting your time;
-this was indeed my mistake.
-I'm attempting to correct the issue by changing the binding file.
+Hi Uwe,
 
->
-> Best regards,
-> Krzysztof
+Any thought about this new version? I believe I fixed all the points we
+have been discussing previously.
 
---
-Thanks.
-Binbin
+Thanks,
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
