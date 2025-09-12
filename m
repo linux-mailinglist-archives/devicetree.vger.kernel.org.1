@@ -1,184 +1,107 @@
-Return-Path: <devicetree+bounces-216391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57930B54A0F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:39:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A7B4B54A13
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:40:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C76E5851A7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:39:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 896FD188CF6D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADD22EB5DC;
-	Fri, 12 Sep 2025 10:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4603E2EBB8C;
+	Fri, 12 Sep 2025 10:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CWrtb5M8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wpec/RD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F48A41
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D802EA14A
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757673584; cv=none; b=S2kMCnsce7gFLlchSHjrzuk1EJ6CQJy10zpGGMXFWPFzj0qNpftHsS1zrXafO9F2M1jMsuNArOxqA7m11AxHR1EPKaDJxnof8SaFFQSUPBMvjGS8zQneWn51C+rH+w3PUpqOdHPYZ9sjXb3kVyoB4oGXErPAM6ZMwKo//fjDHnY=
+	t=1757673627; cv=none; b=Ji1uKPF05PIjAid4i4CHqle19JwxW2a3oqS927O5V9s5/GkDBKQSsYXiC/+Gj+hzkgQ7xGN2hcV60+YHYrSoo67ugNDEctGI5Z3Qf90oywmJbrJTEkpyrjnpeMfcNSKe3xWWLEGnHmdt+6Iy81Xkpl0oPuK8hXJEdp3g0CcVHyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757673584; c=relaxed/simple;
-	bh=EPRqwnvVq7RFG6+168lPn3q1JyblPKu+9pU2ZTAP/d4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UCZUGMC6ghmCveJQu/C0TOkFQq/g5/0uXnSgomlPnlyWJ42Cs2ZITRUWlMZIQN63pFTQkaq1VTGA1VySIgGvm1dt27g1rNIv3cvZ6NMfYTiBSepEeTNGLVeEdH7dJBek7EZbG2QUgktFUvEcVR+kjN6IMFInj/UUhC8VxgfPTDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CWrtb5M8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fOGa023392
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:39:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=JZO37LOsBsf5QkQB3SdvehHO
-	fE6O/aUfSqad1UHXEXY=; b=CWrtb5M8zWyJSZV0/SCddrssbyxp3WZ1WDxot9Vg
-	96inzXhFYQOhvwakMdUZGf4q+RGMpVo7jrokQVN28Bd6Pj4++FlJOsPI/v6TIjYt
-	y3VcRTNY/d+4FI8e/A0duerWbuBDAluaxBSNPVUTmSnoTFbcYkR0gX77Hig1Busq
-	uEbHxm6i+l6yaBF38szdLXWwaBMKXxZDVslxqxwHRzVNzSFCpC/EluaZdWFETvcy
-	R2yW+EYjq1d3sphNTXfe8e7Dyz8KGVc/W61OCSHI6h22VdHTifat51MXBQ8bJfJ+
-	hNtxjJj5WrImWUPVWIrPcnogCkToZa/z9hLDmuLUy36HHw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc2f9p2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:39:42 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5f31ef7dfso54867791cf.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:39:42 -0700 (PDT)
+	s=arc-20240116; t=1757673627; c=relaxed/simple;
+	bh=3e0QDJ5KbEQSENJLgEWoOKXZbyZ1RrVyN7WOTZvbwFo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lt9QlSPhpCLvNSh2DjVSS7OPBBKJ5nyCqyxrYc+ABj1sZySXUIKUW2Md53jNxav+DXGd8fc5Sr6b6dVYbNC87fGyZFAU7OABcrmRKjE3EyFG+yDM2XWNelmSphHr48j4RDGMw8sWOuYiUZP4ch2jRsoBmmKHGFDC/4t1CIAtCWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wpec/RD9; arc=none smtp.client-ip=209.85.161.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-621b965a114so997110eaf.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:40:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757673624; x=1758278424; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3e0QDJ5KbEQSENJLgEWoOKXZbyZ1RrVyN7WOTZvbwFo=;
+        b=Wpec/RD9qi4TbGQy3FJL1NA95+USMHmuMtbEHsw7oAhhUEYMS4urGz5OrcIxeEIrAn
+         2a/BibT7iJtbHbxMYqn2i5IlUC2aXIVx7OaMabZzZw6kEil0SMpXoXfSX+H3iw0JJzL+
+         9luibtddZn9SwB4f3Poqzhvh6pgbGlvOzwfG9iF2d38mqL4vw5sdnX6yFrQYXz5bBDD4
+         hF33YdF64eDbjEF0ly0m+Zd5tl3NtDbkzpCAYlDyURiyrfnBG5bFo1Jv6/vrCqvvBMSH
+         IdKT40H4Zwg5ynbNmByiOm0tuA0354YVoHkt/mHI2Lg0eIxoOD91uulP9i881j+EXp9M
+         3SdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757673582; x=1758278382;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JZO37LOsBsf5QkQB3SdvehHOfE6O/aUfSqad1UHXEXY=;
-        b=d4CasQjG37stV6Uko0SUbn1iX2ZdzrpR4lxCzIhj4ZnRcoJ824NyYIf+miSnyHAoc2
-         9i/4j331QPtp3JEmSzOvN1ajwuEjswTVB8gFzyUIz4++WygCAUvKmRgTHYFxCgbKf+FK
-         G+4jzRSoPXB3yDQHrENh9pSU5egDNye/mXoOlv0kmJ1MmharwiwJs3AHMLNJPa34eSMH
-         lRFj/Lg4UebVlzyvPmXjWeE4hlW5/GinFCHjJ5BQbanr7lL1kvC6xZqfSmTePSwjtDid
-         cffy/1lIadmCiT26w9//LDVV+CcIEuQuLm8dhdREEmp0iuBxT5kPi331f/YPyGgrkGCq
-         mljg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVbQ1CrO5QXqFR6fzfNGed1MgqMU8RpYzz3v7eDMx6jlJQMYCaV4/X7m/4Xc/Ij6FTSeLwVTJJtYMM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIt6Z9n4NyslDgwurP3aYxoCim2ezD45bLhkjtlfC8Qkelle5t
-	r2V4BwOQPlFaR0XOPLkpxjDFpIb1wEP8CiBuUQc+zgd4vXHvxci/GNtwArFHU3c8YdOyl+ZM7DV
-	l7+iLCNy8p7J4tOu3lBXK+HzJIYQKvtLm+BykKZyqNQke7E0AlMaZePGjZ8fW0TSz
-X-Gm-Gg: ASbGncs7qUd68iyFrSzMfZy7Tzv9a3T+lDTNyaD/4Zdr0eSP1OXKYUISXpPc7eq1O6x
-	z+qK55sK7YIC0lWagFxVq6mNzLNqt/tN2NkZVofAxOQyDf9ncg5TfYzQqD2dpMJ59CDevYvjj4a
-	HUaUqXGKM08nFu4yoaQKsYiyBGs6F0w9j0Zotr5ZSYmqn7IWKRbNeOG54b9rugC11b5D7M2iS8Y
-	RYy4oTE+4a5UmNz6tuosxMHfezm1WsvDIRHEQkDMVwgwZKYPb/O09hZwY/x/vv7KGLd47t1Obtm
-	5xjMyGfTfztgKSu1vmY6ERFKA7/URFxX9IfIIUhcR7DTM88W2XE1/18jvhkRyrOXZO9fymI+jLo
-	FxchPf0ILLrUESRiwyb2RO43ieEn5p7u5C6hk/B4+3NFWfxJSL93z
-X-Received: by 2002:a05:622a:590c:b0:4b3:4fa9:4cd2 with SMTP id d75a77b69052e-4b77cca8d4emr39186051cf.33.1757673581466;
-        Fri, 12 Sep 2025 03:39:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElx+sIo2TyNNDSZKhdIXfRdT6OrkK5agLSxJeNhZFAzJExqCsm6/N6pZpW9c9ZnhxyWSL7dw==
-X-Received: by 2002:a05:622a:590c:b0:4b3:4fa9:4cd2 with SMTP id d75a77b69052e-4b77cca8d4emr39185691cf.33.1757673581028;
-        Fri, 12 Sep 2025 03:39:41 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e646135b0sm1042248e87.110.2025.09.12.03.39.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 03:39:40 -0700 (PDT)
-Date: Fri, 12 Sep 2025 13:39:38 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v4 12/13] drm/msm/dp: move link-specific parsing from
- dp_panel to dp_link
-Message-ID: <4kajb4imv4mvpf4bdzoqfw7f4qoqxsu3ca4pbgsunhxnortfig@kmsqgsj547hi>
-References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
- <20250911-add-displayport-support-for-qcs615-platform-v4-12-2702bdda14ed@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1757673624; x=1758278424;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3e0QDJ5KbEQSENJLgEWoOKXZbyZ1RrVyN7WOTZvbwFo=;
+        b=Pgit4R7ZItBCo1CVAvhNz7pZ81waUEqmdi5bYOJHJhOPnmu38Qk940cF7Mj8MMfO4i
+         rTa1w+Djr8UZt5WyZdwUbnXG4KTLZepA0izWje+UfyeJi1f8noAzCe7a2fIqFxJfdBLW
+         xBBb8z6uU0ZYub24zYAJZT3RGwYqD4WpkOirk0qmVoWrY2Sj+YMfNauHP9tUYIo1SoXq
+         x08757j/5zW0Yrcr5OGivH2nSuYrJQgQ4DwAQKC+Mpg0PBC4siPGkE0hjVRExLG3ewWP
+         Gkp/mCJ8rJer6HEgAdH+6Rr9EcTvLs09lImCIYLUKlZ6ZjYQEoojeiIveGboC4/i43da
+         Divw==
+X-Forwarded-Encrypted: i=1; AJvYcCW8Xn/9v+bAa+WThhkGg0oQ6JCiZFluzbmx/kakkWtZmKdPWkW5yhdumEGMKLBRjSVwmKoCTCVUTFhL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJLXLcZejNZlLe6yTcw095kGXqhk+ZzhPYvnq3Gts8jjw+Q8KR
+	5fKUEZ9nXXTB1ML2j4arnOsSbhNr/ddtx9RBc1dMuGjpLqKPqPD8pKLTXod8H+PN0N/DsN+SlzM
+	fOG81goJmStaSVRf+ZsssTwci+hY+jkLd4Jz8AFgAKw==
+X-Gm-Gg: ASbGnctIV/2nFFgEJyofBsAYOTlp95pdaYxhYlgbPqJHQkqgRVU6lg83oiOkTNicX3k
+	ylHIJIhOBPTDqcobua0sG0XDhhPwgMsIAW+It/QIhTrvfDrn/1AAUg02jH9V90BL25ERKHDEwSc
+	R4QWRMaIKKXgnSxVBPZ94wmCLQAs8D/BY3lBIRMfNa3fuC6G/+Ulrgj+3/RICikCZ6yk/ldDykx
+	8N/XVWu+Q7lWUQdrA==
+X-Google-Smtp-Source: AGHT+IF6PYieNgXpIa6hYHoBPz39MBN51Z0tSk5VpF01b/bxMjrI+5a5IB+fKLhWJ9leyknO44l7JDgMdXYIXbH0W9U=
+X-Received: by 2002:a05:6820:553:b0:61e:154c:5b01 with SMTP id
+ 006d021491bc7-621bedb8f94mr1279631eaf.6.1757673624624; Fri, 12 Sep 2025
+ 03:40:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250911-add-displayport-support-for-qcs615-platform-v4-12-2702bdda14ed@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c3f86e cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=qgWfkWmIk_iXozLJbygA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-ORIG-GUID: OAG-Osaiy3rxU-YQxAiYTzjWUKZ-SD63
-X-Proofpoint-GUID: OAG-Osaiy3rxU-YQxAiYTzjWUKZ-SD63
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfXw89gpHtXyc0S
- W6hnUtmySSBPwndcfZunsb/MTYgGzeXxfKpLC1vQzFnvgQWG7lSHyCURiOcrRsEsAo3Y6B3PMOZ
- JwznV+rFOHhmzHa2aBbnKNGZmBl+mTzQXJbMSxx1eFnLUcUeQKzwmVv+OuFt/CNgeI3OuUoguXx
- PU98MUgKqQjcVOKfQBUVTfpCyvpWJMRX/+QQ32wCHhcX9tQP8PIKz9nEHoZnotZdXxkKrvXRZZQ
- T9oHucViFL5UMwmFYLt2SXWZ7TS59AkvOFisqvJNR/61m/voZ6mUL7Y0IIYjTiCwvxQ75cuoXdl
- UTTvxalSttv0tYM3Qr1cBigdz+iSglG/AszZjQ8E1nfZoawFTfzbR6+gMvsJGu3w8A4VRmfsSYZ
- /kp7j9Sh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080094
+References: <20250804-b4-gs101_max77759_fg-v5-0-03a40e6c0e3d@uclouvain.be> <20250804-b4-gs101_max77759_fg-v5-3-03a40e6c0e3d@uclouvain.be>
+In-Reply-To: <20250804-b4-gs101_max77759_fg-v5-3-03a40e6c0e3d@uclouvain.be>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 12 Sep 2025 11:40:13 +0100
+X-Gm-Features: Ac12FXyvumHdbJffBuyBixni6c5DHFCVdSez0KdSftksCT_bGFTh8Q4itCgi8Pg
+Message-ID: <CADrjBPoA939OwErqjV4OT04hgAfDNgmG2o582Q_P6CN6iWQgCw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/4] arm64: defconfig: enable Maxim MAX77759 fuel-gauge driver
+To: t.antoine@uclouvain.be
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Sep 11, 2025 at 10:55:09PM +0800, Xiangxu Yin wrote:
-> Since max_dp_lanes and max_dp_link_rate are link-specific parameters, move
-> their parsing from dp_panel to dp_link for better separation of concerns.
-> 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-
-I thought that you've split all DP patches...
-
+On Mon, 4 Aug 2025 at 15:25, Thomas Antoine via B4 Relay
+<devnull+t.antoine.uclouvain.be@kernel.org> wrote:
+>
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>
+> Enable the Maxim MAX77759 fuel gauge as it is used by the gs101-oriole
+> (Google Pixel 6) and gs101-raven (Google Pixe 6 Pro) boards.
+>
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
 > ---
->  drivers/gpu/drm/msm/dp/dp_link.c  | 63 +++++++++++++++++++++++++++++++
->  drivers/gpu/drm/msm/dp/dp_link.h  |  4 ++
->  drivers/gpu/drm/msm/dp/dp_panel.c | 78 +++++----------------------------------
->  drivers/gpu/drm/msm/dp/dp_panel.h |  3 --
->  4 files changed, 76 insertions(+), 72 deletions(-)
-> 
-> @@ -1225,9 +1283,14 @@ struct msm_dp_link *msm_dp_link_get(struct device *dev, struct drm_dp_aux *aux)
->  		return ERR_PTR(-ENOMEM);
->  
->  	link->aux   = aux;
-> +	link->dev   = dev;
 
-It is only used during parsing of DT data. There is no need to store it
-inside the struct.
-
-With that fixed:
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
->  
->  	mutex_init(&link->psm_mutex);
->  	msm_dp_link = &link->msm_dp_link;
->  
-> +	ret = msm_dp_link_parse_dt(msm_dp_link);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
->  	return msm_dp_link;
->  }
-
--- 
-With best wishes
-Dmitry
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
