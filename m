@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-216204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A4AB54068
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 04:35:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A3BB5406C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 04:36:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFE157B44F5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 02:34:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A76E5A395C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 02:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7440F1EE7DC;
-	Fri, 12 Sep 2025 02:35:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1BD21F0991;
+	Fri, 12 Sep 2025 02:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mRNW4smC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a0fDsEYz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD221E3DDB
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FA81D5146
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757644545; cv=none; b=s9CLx2rJ97ODZdXZjVcSiP8o35YnbH7n759t8a9n1+ZiO2lhLJBkXjHxoocIldGTN6gln2d2LxesieEYY8bl1m4G1soxHcRR5SmhxoPdIYCk0aYKUcsp0Akk4UHzVOpAGu4xrSBZzRuqkGId634YdPWiUUUxpTwJKswIYX1SAtA=
+	t=1757644574; cv=none; b=fN/tpV+IZllmw7BmGYOvH788Ix73YAnGuyfuyAZCK/GyKHh09IeUcej/KFAfqcSenhvvO6c/ZjUgMwTiXyskb/P8KU0PCOVz7GfztGojBlYff5oMdgbrtJ67L1Y1rsfiz5+HzmQGEKAzmeZxumzHtsMDUzOjxD1D2Nt45aX4dyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757644545; c=relaxed/simple;
-	bh=ne/AJ08EINCLHq1YL8QOv01wvisw6A7Ct54Qvu1CzBE=;
+	s=arc-20240116; t=1757644574; c=relaxed/simple;
+	bh=OS9j70HJBgJdnu++cmJduNYkDHIWHGvyM1VZ0y15w7w=;
 	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FS0VKLQw4E7oBPaATvmI9Gj1MdCv0ilWQgNbUZS7BrNMe9i43iJwVEjr1ZowfxCHsOoI5E3kXBtaB23Cm2J2w2TcV1J5XVoZw1vH9sMp+wimCKi38ZddzPOeEk30iQjG2/tV1q0qgZiiz7cAi7Ed6h3cFpWj3HIVnDcPtf7RRF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mRNW4smC; arc=none smtp.client-ip=209.85.210.47
+	 MIME-Version; b=bZ0EXrc+1rRU/kBuoG4mzjktapoLSB8rD+DElalGESvFpFDk4PJByYA7YTaLV4Vsus2vjOCddetf8ho8HuUTd0Qu77ISj3R8t47uee00KVJJaYOSc9NLHVsEVtzj2yIHkAIdZwBoq1DgpZdOiFNT61i1EKv2cs/qYT/E9q5G6O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a0fDsEYz; arc=none smtp.client-ip=209.85.210.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-74381e2079fso1511609a34.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 19:35:43 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-753b6703f89so133890a34.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 19:36:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757644543; x=1758249343; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757644572; x=1758249372; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0XFM07Z5n/PQZ1U15JfmMTCdL390KHJnWHFIuZFK96s=;
-        b=mRNW4smCIN18Aar/uf+ApBp7CgTwGDU/VmpytkYxLux4yNKAEV96XBfM17rI7W3FfI
-         tb1Y6Qc8WEH6XWAb5VnLYnBZhZ6AoKpa25FkQX7OSPNUTXooOYoaegTIrhq0nykQR7HI
-         hIjJSgLDY+dLhEo6htcfE7lFwrJQALrkAebfC2bVaEgnwBSM1u/KXYmDbk4wNOrqiCe/
-         STNOJQ7GOC0ldoqfHZ5kvbeBA8SsB5Bpudw8CFvqzJ0+0GgV/SUNrPFnVIZGk3I79kO4
-         0AtRVFa4SOfHnSpmGVYLgWjZGvTwoyPlcZ+Mm5K0bP2isPN+TLY6YtTMHuZOU/UF/03H
-         dpbg==
+        bh=ufI02VTMyX7sTfBD7Jn/jEH2YUmO7DVAO0QyMj+WG88=;
+        b=a0fDsEYzjupumHzUEZX7w3gdCKWt69cQyHCAPnru5K36PjhBZYq21FVU5NGRA1sgUG
+         OsOIZXy15FtaOfp/KaFkCFSgFeolS2LjSjpUXIInxa882LRS720yjZKMtEjUA8bhrv0f
+         uRsvz560d57iBFzvELShVo6NR7fZ8dk8Cd0PqnRE9OpU2tdo5Mrv7b5vU2FXxw6kfYJi
+         Jb0Hn2lUNPoSZGg5lzA4AyYI+Hu8RokejcfBYj/o7+X0E7sLJ4wGOvXvLsL+c2IiUNTK
+         N+rk9LKYdK7Dd1lfvMaL6ftCzol3qh7cRt4EoFDcXx7nnrmaQRNqzh1K6c6g0zt+h6XS
+         25JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757644543; x=1758249343;
+        d=1e100.net; s=20230601; t=1757644572; x=1758249372;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0XFM07Z5n/PQZ1U15JfmMTCdL390KHJnWHFIuZFK96s=;
-        b=w2TCgbB3RT6hXLfwIDVBNeADf8V6m7yztgzD11hGOV3911+USN7vnV2NtYAZJWioA1
-         9JhFpjN435itFP4DBfVNORVv1T7RtDag7Eh9qEfHUBF/ll5yKlJ5VUun9lXbDNkX0vwH
-         RJUZ6NxzwIg9LVfmkw6dGuZ2MI8UL3t4inmNsKCBKwjlkIEVKDpbRwS4uAruI+Q/N3cU
-         1GoQ8I70qoege/Mt7dILSrorB1ogLInhKjxGV8lKvF2/ojsROgkWDbBY26F0EXXaHHoY
-         K4ZNbSi4DMrM5e4e1ASr2WS5su7yTDU4Q9EeZdsrUw9AETvlfkmzQXupExY5pYIrL7nr
-         ET6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXAYwWhkJuZlcd9HJnAJcq+dk9s8BMObdGdP8WXKssbgkBG+ql2/fM1JcefSlbNtZAe3b9N5KE5FbAL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJ5F+hL65f8A6h11J7yRRzFLRKsDgYNJ26rjdgRQScaikSnV9M
-	8Xzfe/CXCR+h6g3wvRhHXU5Mc0V87NPORR24yUwkgTKqrEnEIbcUKXD0
-X-Gm-Gg: ASbGncswNTnRAn7pWdkXozLo54aRd6S5dRir9A2Z28H+ZJQQGPdjPdrE1/3NAtcsSuu
-	7smvI8esh9ffZ91DOFB5bs+JEuBL0K9EUAZJ0Rm2nxaHofGKdk5Iw+9vqKK5JXmOY9ezpFKVEhV
-	iXx+eULnfZxhKnH0fm/KqUx1fxFAa0vI1pWjjSyuCQTzQVm/DdZDx1vLIfiPbYyqS+dOfuZHYsA
-	zuCfIfHuUZvyNQbYAy9a/Mzr5FUS06z7+FQzwI85L6JUSIKXIm+akhnnXlv9NyJ6LD2UvSjN7nV
-	jC4rr7MiyzP88gQGuhHcxUQuk9HT1RbgEofizVAw6Ug1yOGqagjvkACnBgSnT1t9V1lIlwZOzy1
-	ZEjkhVAogOftFhsVUSobVnYlTwdlrXSLN
-X-Google-Smtp-Source: AGHT+IHQMNFCh86X7WUtfRMJW33oGIfkq7JFshCaD1qyzjsyBvpS3iS1S6F89Dx5xJzPUg1mM6pJVA==
-X-Received: by 2002:a05:6830:67d5:b0:744:f0db:a199 with SMTP id 46e09a7af769-75355abff0emr852539a34.29.1757644542764;
-        Thu, 11 Sep 2025 19:35:42 -0700 (PDT)
+        bh=ufI02VTMyX7sTfBD7Jn/jEH2YUmO7DVAO0QyMj+WG88=;
+        b=OC9H7GzUxoBIMe2U7zrsNnDyBmNHEn6DjZbHwccyWU/+49H3bkBUnkf4dm63sKsKmb
+         QAS9QedCsib+V1YS7r52UVig8zpfzY/tYNuhpQuF8KV77QeKsO41uOjf9PCxJ5Bb3m/t
+         04b9HDB8H8n4433+ULZmuGRAAaOMyD2eV8eWqdy67JfKaVRf1ZhWAsSgf56CfDKMwu6W
+         aoxhkyg4/vPKhWSXSONijhZIVeH+Xoul3nL+YIAK4PqHUfte4A/Nf5b9K+M2b2o2SFop
+         sl6SmISG72+imLQTfjmMULalG0OwdhhSmaYmXSUE3j6FUVHc3woeMYARf00glaBiXxSF
+         dN9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWz2hjtBXLNHm8qc8DyYAq+d3fKY6TyK7oWHnex6lrTNhUtsTMqZ6RXhCkk9gCdgkNEfECzYyMsAexb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yywv7WxSFHshpLT4Ov8AsPOKZMDoVm33YcTzycXtgHLxdRX88r1
+	1zezIcDsiVxl/QRZFYeIeidNE9FUgT9HLOxXDFmZ0VbfA3ofnZqXhjOM
+X-Gm-Gg: ASbGncvfAfmQL2iV1Jyzfv7rJw3Y1FXPzXHr6dBKrLx8ChmlFl6K+DBL5ESt+twiK4i
+	2uAmjvLMOF9NzknctAXPrmjSrE/I2KswZqBUeMgxPtr0jlJynSc5kR53Mk0tQeuoa7Y2WqBs1mF
+	PsRjSJpTtVnVHRI8UBRxoHYqkeQn0hpyY3I4C4l/8clR2GVpvnuUcwMa0tXLZbfvxkZrydgZS57
+	ARP7KFCQjGWFNmDGrBXvM2vXWGQiMVwZzlSL6yl0yeV2maAvxMNqBbsawDIy0A3lK8mMskBR569
+	qKlFAabiMlaxRkka64lPe9Xh4UbsKpdCAlOZHGTHgQ+QXCGSMVLfiwVwsL9Jlayx1l55ZKeWtTS
+	eOp/Isa5k3MTPEkODzUn2ws6LqAOZmkye
+X-Google-Smtp-Source: AGHT+IHP2whgLxUbkCPCNG1W78sKOKWUGbVdpP/qwDmDJygd12n8LXTyx57fCwWzBECssKtsoYm6OA==
+X-Received: by 2002:a05:6830:d10:b0:745:3cea:c705 with SMTP id 46e09a7af769-75353875ddamr997804a34.14.1757644571861;
+        Thu, 11 Sep 2025 19:36:11 -0700 (PDT)
 Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7524be797e6sm739170a34.29.2025.09.11.19.35.39
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7524986a7cesm752506a34.11.2025.09.11.19.36.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 19:35:41 -0700 (PDT)
+        Thu, 11 Sep 2025 19:36:11 -0700 (PDT)
 From: Chen Wang <unicornxw@gmail.com>
 To: kwilczynski@kernel.org,
 	u.kleine-koenig@baylibre.com,
@@ -106,9 +106,9 @@ To: kwilczynski@kernel.org,
 	xiaoguang.xing@sophgo.com,
 	fengchun.li@sophgo.com,
 	jeffbai@aosc.io
-Subject: [PATCH v3 1/7] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-Date: Fri, 12 Sep 2025 10:35:32 +0800
-Message-Id: <2755f145755b6096247c26852b63671a6fea4dbf.1757643388.git.unicorn_wang@outlook.com>
+Subject: [PATCH v3 2/7] PCI: cadence: Check pcie-ops before using it
+Date: Fri, 12 Sep 2025 10:36:01 +0800
+Message-Id: <35182ee1d972dfcd093a964e11205efcebbdc044.1757643388.git.unicorn_wang@outlook.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1757643388.git.unicorn_wang@outlook.com>
 References: <cover.1757643388.git.unicorn_wang@outlook.com>
@@ -122,85 +122,83 @@ Content-Transfer-Encoding: 8bit
 
 From: Chen Wang <unicorn_wang@outlook.com>
 
-Add binding for Sophgo SG2042 PCIe host controller.
+ops of struct cdns_pcie may be NULL, direct use
+will result in a null pointer error.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Add checking of pcie->ops before using it for new
+driver that may not supply pcie->ops.
+
 Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 ---
- .../bindings/pci/sophgo,sg2042-pcie-host.yaml | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+ drivers/pci/controller/cadence/pcie-cadence-host.c | 2 +-
+ drivers/pci/controller/cadence/pcie-cadence.c      | 4 ++--
+ drivers/pci/controller/cadence/pcie-cadence.h      | 6 +++---
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
-new file mode 100644
-index 000000000000..f8b7ca57fff1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/sophgo,sg2042-pcie-host.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sophgo SG2042 PCIe Host (Cadence PCIe Wrapper)
-+
-+description:
-+  Sophgo SG2042 PCIe host controller is based on the Cadence PCIe core.
-+
-+maintainers:
-+  - Chen Wang <unicorn_wang@outlook.com>
-+
-+properties:
-+  compatible:
-+    const: sophgo,sg2042-pcie-host
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: cfg
-+
-+  vendor-id:
-+    const: 0x1f1c
-+
-+  device-id:
-+    const: 0x2042
-+
-+  msi-parent: true
-+
-+allOf:
-+  - $ref: cdns-pcie-host.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pcie@62000000 {
-+      compatible = "sophgo,sg2042-pcie-host";
-+      device_type = "pci";
-+      reg = <0x62000000  0x00800000>,
-+            <0x48000000  0x00001000>;
-+      reg-names = "reg", "cfg";
-+      #address-cells = <3>;
-+      #size-cells = <2>;
-+      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-+               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-+      bus-range = <0x00 0xff>;
-+      vendor-id = <0x1f1c>;
-+      device-id = <0x2042>;
-+      cdns,no-bar-match-nbits = <48>;
-+      msi-parent = <&msi>;
-+    };
+diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+index 59a4631de79f..fffd63d6665e 100644
+--- a/drivers/pci/controller/cadence/pcie-cadence-host.c
++++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+@@ -531,7 +531,7 @@ static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
+ 	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_PCI_ADDR1(0), addr1);
+ 	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(0), desc1);
+ 
+-	if (pcie->ops->cpu_addr_fixup)
++	if (pcie->ops && pcie->ops->cpu_addr_fixup)
+ 		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+ 
+ 	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(12) |
+diff --git a/drivers/pci/controller/cadence/pcie-cadence.c b/drivers/pci/controller/cadence/pcie-cadence.c
+index 70a19573440e..61806bbd8aa3 100644
+--- a/drivers/pci/controller/cadence/pcie-cadence.c
++++ b/drivers/pci/controller/cadence/pcie-cadence.c
+@@ -92,7 +92,7 @@ void cdns_pcie_set_outbound_region(struct cdns_pcie *pcie, u8 busnr, u8 fn,
+ 	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(r), desc1);
+ 
+ 	/* Set the CPU address */
+-	if (pcie->ops->cpu_addr_fixup)
++	if (pcie->ops && pcie->ops->cpu_addr_fixup)
+ 		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+ 
+ 	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(nbits) |
+@@ -123,7 +123,7 @@ void cdns_pcie_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie,
+ 	}
+ 
+ 	/* Set the CPU address */
+-	if (pcie->ops->cpu_addr_fixup)
++	if (pcie->ops && pcie->ops->cpu_addr_fixup)
+ 		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+ 
+ 	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(17) |
+diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+index 1d81c4bf6c6d..2f07ba661bda 100644
+--- a/drivers/pci/controller/cadence/pcie-cadence.h
++++ b/drivers/pci/controller/cadence/pcie-cadence.h
+@@ -468,7 +468,7 @@ static inline u32 cdns_pcie_ep_fn_readl(struct cdns_pcie *pcie, u8 fn, u32 reg)
+ 
+ static inline int cdns_pcie_start_link(struct cdns_pcie *pcie)
+ {
+-	if (pcie->ops->start_link)
++	if (pcie->ops && pcie->ops->start_link)
+ 		return pcie->ops->start_link(pcie);
+ 
+ 	return 0;
+@@ -476,13 +476,13 @@ static inline int cdns_pcie_start_link(struct cdns_pcie *pcie)
+ 
+ static inline void cdns_pcie_stop_link(struct cdns_pcie *pcie)
+ {
+-	if (pcie->ops->stop_link)
++	if (pcie->ops && pcie->ops->stop_link)
+ 		pcie->ops->stop_link(pcie);
+ }
+ 
+ static inline bool cdns_pcie_link_up(struct cdns_pcie *pcie)
+ {
+-	if (pcie->ops->link_up)
++	if (pcie->ops && pcie->ops->link_up)
+ 		return pcie->ops->link_up(pcie);
+ 
+ 	return true;
 -- 
 2.34.1
 
