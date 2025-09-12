@@ -1,203 +1,174 @@
-Return-Path: <devicetree+bounces-216462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9094FB54D90
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:28:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4964BB54DB1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:30:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21F9617A4D4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:24:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 831B818902B1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80E92DF13A;
-	Fri, 12 Sep 2025 12:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D784305E19;
+	Fri, 12 Sep 2025 12:24:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZWL+0u1X"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="LYXxq3oC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51026287248
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365A2303A13
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757679866; cv=none; b=T50ki6/S8lnCOsy0oLQwyXR2518XvYVGr9c89ivsw31UcNVKT94NzkSIwb/sG0nnEJE00XlkNjUjCvIZAwFv3kXKFmFerbws/dO9peOwNWUYlGjzwypAJ9PhhM5xlPa6TkPRD19xkC+0UIItEoFxniprqQzarvphVeXrwdGlwEQ=
+	t=1757679893; cv=none; b=HW9YL2F5Wp99IDnFTws2gvS5fhDqn4yQvVox3HxPj9ER2q0TevBOlhxm73SGEgniP0SECYtkQ8teMrZvY2EU2C+bgmdnXrFqQDCGGmB2gcyYE5r/TO1mKZyyIHcPkP6rmI38eQ+cN+RPED7gv6SIACYhIjEyMjfOeCpPRgQTDsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757679866; c=relaxed/simple;
-	bh=L/Kp0ZpCQjnQzViZ58decDE1KZjP+nvqlfKbSHwyGL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b5MpUDyVcglG+jK6NuYymPhEaqt/WQTlnMIj4I21+IBoTX27TNrVulNmzNc5GBxxV+Mn6HXSVOQ2WeK6mEe5pcGhRRbz6e1S9feSK2ruqcu5QXzsp//NIAnoZ90k3SS6LmBdLG8V+9yGG5A0C5KKpqV+7Se28G0JJDVbvMA/w+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZWL+0u1X; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fNpg010880
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	k/00Zp88Pc7XaLrl9L+7J4tNKaqmsJpoZiLQwxfLj78=; b=ZWL+0u1X+U9Y+wc3
-	gAIxqphUxtjWT3NeaoMeTueozCEAzTrgRpIkBv+lmfURRgF5vGKgqY59/fV+JWM0
-	PkOiH0pnQfe5ol4XaVf6fFGHX8LT2NTOYNnCZgbhyjwlEjYYL6v9mRNN3rsbtNKh
-	rz+pzRvRDKpNkmcIerqOgm/TLfWAO07tcmWkqu1lMBGuw0yTERFbIx1lHAHwT8Tj
-	7WTM6c/C40RMQPv1PR51EHo48erMM28JCbNP7xhiH1zEy888yeIs9K1DeU/yFPKR
-	zWStsn37NS8/Y3qYcUGYx/WabDSqKef32mb8s6bibgOvFNdY/ehd3BWfF1zkn7l5
-	19pi2A==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e4mbdmj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:24 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso5292031cf.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:24:24 -0700 (PDT)
+	s=arc-20240116; t=1757679893; c=relaxed/simple;
+	bh=1X+it+zTAdvHtkVDC9ptPSL7qX6EXCsJqZ3em9dxcto=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ovkYlhs5pRdkRqpWhCzmxfNCLjnEPc9inxyNiqiUPcnwxcMivPOMcalgRvyBwqdyTXu6Awlmji/u63T+rOUQ7UuxNZDmAg1g3ecWngQxA2SBDrroa9x4Rpur5//TQUHAxbCLtfsO5RTchK2NiWW09LwMkhoNMfzlCShhknNiD5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=LYXxq3oC; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3e7636aa65fso1259153f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:24:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1757679889; x=1758284689; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ljjbIvIvj2Q1tUtMUPNsqGBDwVAciETje0nuBmAVX84=;
+        b=LYXxq3oC0dEWpu9X74BmLte1MieUYonva1ud5qIXeCaQhUbbMMdy0y5Do5AxXSQfLR
+         i9fvviVaY225e5Q5DzhdIrdq57neIT45rAcATb/DxvPa3KETSmsbQ4ZSrgvmQYAoEDVV
+         fNeLLQ5c7C4MVcf4uxU6KvAuyTZOZvXJ3fwZDy8kaMXZNCEgjskZ+hAeRC47b43W7y3C
+         XBcwZ3NiKCO3VeMmIFAk8er1UiMKxXSVQs36rt4ls7tT7RvWq8eG1Lt5SLIp7/hIbcm+
+         rHDDvoO5SDezZS7OLAloLt3eaMwh/xOCTgqcyJMtvyyCx+UbL2gsELIo065We11pQQJL
+         uZ8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757679863; x=1758284663;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k/00Zp88Pc7XaLrl9L+7J4tNKaqmsJpoZiLQwxfLj78=;
-        b=Efi61NYo9ghzqd46U9phAZub+r5yEKpUhKjS5TvZMC0ad+YYvI4j14lEiqvuMSBy43
-         +nKGse8onzGPkHDjwK8Xgiv6z3CXYjP+22GIVcM85PVqtla3Qa3/ppEU8Ky34hyFF3KA
-         bgxasyWmg7xMkdOKggz86D89WfBx0nl1Gik+RjzyOOit8abxYCa5119tHJ46IjoEhWQW
-         kQccj691urTuP8xHN7inHp1Dq5IWGhbuN4B4R0azzrG+OGkuc8mS7WTxo2iSFqlfFFeR
-         7I5bQDMrSI1fuVpd1ClU1ks6D6xjDwMhTgLHqgxFPvqPNpHOJ4KLqz6UKVbPJ9P/hYBp
-         D9+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWPAcuFBtK3TfyKnbcNLIwiSrlK6m+Lwo73wrS+Ta6qmoknLkwPFoHkpJs0HnZIBRuAIdrgPcEPXtqh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8Bw4Em/ZBZXkpY+mUNq1NsfpKCnQ72kf4YAv3vFf3IRjy4ABG
-	I4YsGEF3ZdqnbwKVQ8yWi5DDgDv9i/2DFfagTUkGWAJi0fGPiKjYFQiqydBc5UGfaoQvWG60rtm
-	6mWWAZQ7aP2tQib/wI9bTsIeBu86gY4SDOSidnxHMHeCGLVnfMprBgQ6oGxOi9NqB
-X-Gm-Gg: ASbGncs/WHYOpXSQYvLdMs88dH+FnrYqzHfqEl8iu1B0Hh+Qrp00PfbUYDm14PQk3X2
-	+2KWjdM+JsFtRTQSIkVVWUu8WLeMjpKVguKaTm8IxuxiummXBsrSi5Y3OufP3GJZ4WVMFQ7aWVB
-	JxFCe0/9WSM9xvHm5lSQEz6ncDtYiwGoyQhjGWu8QjyPNnlsdmKeC/8tSDtPQAgJwFWgdDXpPl4
-	gV/8ggDkg/cBBjMWXk/ZPPJ5iHc8nsK2wxnBTq7iugORX8hiQd2T9xuPFzFf2p9o/w9sy91iaQy
-	sMePXgd3hcH1DitFukiXbPBzyVQeNRgsy8Ygr4BFIlnnDCKYKVsVetkED7Gsy0QTGEq0zIWbiCK
-	VUYC6buKu8uM6l0JgypWIYg==
-X-Received: by 2002:a05:622a:247:b0:4b5:d5d7:ffc7 with SMTP id d75a77b69052e-4b77d070bc6mr23459571cf.13.1757679862775;
-        Fri, 12 Sep 2025 05:24:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGLglj50v0H8yUFfCJsItJZI1D/YYI2k2rFfxjbH7ntfNZM9kwa4/Tn1xpP4EMHdoniu7v9QQ==
-X-Received: by 2002:a05:622a:247:b0:4b5:d5d7:ffc7 with SMTP id d75a77b69052e-4b77d070bc6mr23459161cf.13.1757679862090;
-        Fri, 12 Sep 2025 05:24:22 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e016b5cbcsm64664835e9.11.2025.09.12.05.24.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 05:24:21 -0700 (PDT)
-Message-ID: <f00cb00d-1e0b-4968-9f5a-df3ce0d8c8db@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 14:24:19 +0200
+        d=1e100.net; s=20230601; t=1757679889; x=1758284689;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ljjbIvIvj2Q1tUtMUPNsqGBDwVAciETje0nuBmAVX84=;
+        b=EO0kjAFw3WDwXLfhoY/qRbbS0d4T78Mo40L5dMY7EOTOKJOpfg1CMSitsrE7a3/Tp6
+         cz8DhT3Ibc+Fh81GVZRRrim5egkVZNXYGJqqtWdCN/0dsqtZ9W+12507QEZn5n6FBhRU
+         fCTYXhb5obrlJUnm6bIdLZCNg8FSHgg8wP34A0eU80RQMYfQVClxfSrPGEO58NqpIutk
+         DpfrfCbz0JCJ6SifJBXx8b2CG9ZA4R7OuSRyPTN7S2t33SqxloNnASgqNlMb4POEzYYT
+         dgetRqUCA95xUpxAcaXRTKiKqw1NUd3uvN8LRW3bbDV+tMs8TS+iKbIKkHpUoBH197nQ
+         AADA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKhaQ++5f8Z4bm/ymWBN35+1GoCbeI+IJx55wwo3dJkvyJ/G5xB3S+XpTY6B1jD1S1OcRdx1C7n61B@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXfosTrT5Hb1LreW9woFZPSbLVjycP6a0Ss9Y3gcF5Ky/JVhjy
+	XnGpYzqz1Ci2kUodQXVIzVW3qF9R2IFx3uzmDAjfwkXUB/IaDBDaMH0VNORVH7rzs+w=
+X-Gm-Gg: ASbGncuGh64aHoumYSzDXlSuOh4tEPwWj+q59Jwi14JM8hh0DEGsYt3JgBYIh3SOBfd
+	xxdS0dKkW/ohr7WLiT/JWi+bjub3ZYsQsiH0phVhKzwdDApz9NbhDG1vx+xjLSt6i34c8OjkgMC
+	Ns7CNL5N2aM66Ib06xr4G/UOXBaoNQxCVtmyXxLH8xtlTb2TS+wF3sfP8dWlyF/8gwWRihxRO6C
+	6yc7YGcG4d1GzZ8/1TC983nbpmqTgzPnbrOsGO6Wl9T5oWAoXSZRkvBXRV0BRRqzohIM6yXb8WN
+	UI/3JvIfIH0kV5QQV6strmlDMIhJRCL/izRIypmvIZsJDB7tOsyS1Z3uWq1CCTQGZTjKjN+tgpv
+	NB3PTup0R71o3kd9ulL70Qv9WthGEKTrPD5vhkKaW5e66eVEW6FMP
+X-Google-Smtp-Source: AGHT+IEYppUYO/8aAZsKn0b0DcJjcfxTnMO/idgXekJXbeD6ctIiByRvNUh0evCMuK6Sg67U0omW4A==
+X-Received: by 2002:a05:6000:2086:b0:3e0:152a:87a9 with SMTP id ffacd0b85a97d-3e7659e20bemr2983464f8f.28.1757679889474;
+        Fri, 12 Sep 2025 05:24:49 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.153])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607770c2sm6320091f8f.8.2025.09.12.05.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Sep 2025 05:24:49 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	p.zabel@pengutronix.de
+Cc: claudiu.beznea@tuxon.dev,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v4 0/6] PCI: rzg3s-host: Add PCIe driver for Renesas RZ/G3S SoC
+Date: Fri, 12 Sep 2025 15:24:38 +0300
+Message-ID: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845-starqltechn: add slpi
- support
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com>
- <20250911-starqltechn_slpi-v1-2-93ebf951a932@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250911-starqltechn_slpi-v1-2-93ebf951a932@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOCBTYWx0ZWRfX37fssxyI9Gz0
- AtcT2OAe/uy7tnjJ+Bv8DdAwhfQo5N0ykB9WCkgN2yuX6UnBxSYkEa+aVBF0SDxk5dfiHfZt6jW
- VYRH4tKQS6VZsMQGB2BlRTa5BLBJ9XzjOM7nbfP6rFeEk+8+9uldHh1AK/4y6Nf5mgBjttch8Bw
- zJZSF+AndoVjvTnQE/PnDjZQw/hJjo7NULHu2FJqNm0gNnpz+mwb8jSV9GqLA9Xgt2iNLWFkJyD
- RbnYF42V26RmMQzOlIxE7qx88RIc4gMwoeCLX5SLov1RZYTw6bslRTpe9f4Dn5paMbERmm/RKD/
- Mt674Cry/k+iSf9A6K6ylDeSPyWq0tOD93OMFVb0YEEx5QED1jS+EaudRNPC31AdMbR77MZj+O5
- OwCxAEiD
-X-Authority-Analysis: v=2.4 cv=J66q7BnS c=1 sm=1 tr=0 ts=68c410f8 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=ixb8Hu8vVRuwzE1ANvwA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: YsaEAwKTh-QflgbgpmuLna307NRYENKs
-X-Proofpoint-ORIG-GUID: YsaEAwKTh-QflgbgpmuLna307NRYENKs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 phishscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060038
+Content-Transfer-Encoding: 8bit
 
-On 9/11/25 10:56 PM, Dzmitry Sankouski wrote:
-> Add support for Qualcomm sensor low power island.
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
->  .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> index 32ce666fc57e..2c1157ee7b2d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> @@ -902,6 +902,14 @@ &ipa {
->  	status = "okay";
->  };
->  
-> +&slpi_pas {
-> +	firmware-name = "qcom/sdm845/starqltechn/slpi.mbn";
-> +	pinctrl-0 = <&slpi_ldo_active_state>;
-> +	pinctrl-1 = <&slpi_ldo_sleep_state>;
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-It would perhaps make sense to model it as a GPIO regulator..
+Hi,
 
-I found a downstream kernel for this device and it seems like
-this is indeed a Samsung addition
+Series adds a PCIe driver for the Renesas RZ/G3S SoC.
+It is split as follows:
+- patches 1-2/6:	add PCIe support for the RZ/G3S SoC
+- patches 3-6/6:	add device tree support and defconfig flag
 
-The vendor kernel gates the regulator when the SLPI is shut
-off, but I think it would be reasonable to keep it always-on
-given you don't really want that to happen, and if you need
-to restart the subsystem, not pulsing the regulator should
-also likely work
-> +	pinctrl-names = "default", "sleep";
-> +	status = "okay";
+Please provide your feedback.
 
-a newline before status is customary
+Merge strategy, if any:
+- patches 1-2/6 can go through the PCI tree
+- patches 3-6/6 can go through the Renesas tree
 
-> +};
-> +
->  &usb_1 {
->  	status = "okay";
->  };
-> @@ -1028,6 +1036,22 @@ sd_card_det_n_state: sd-card-det-n-state {
->  		bias-pull-up;
->  	};
->  
-> +	slpi_ldo_active_state: slpi-ldo-active-state {
-> +		pins = "gpio8";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		output-high;
+Thank you,
+Claudiu Beznea
 
-Modeling the gpio-regulator will let you get rid of output-
-properties here, which are discouraged in favor of gpiod_ APIs
-in drivers
+Changes in v4:
+- dropped v3 patches:
+  - "clk: renesas: r9a08g045: Add clocks and resets support for PCIe"
+  - "soc: renesas: rz-sysc: Add syscon/regmap support"
+  as they are already integrated
+- dropped v3 patch "PCI: of_property: Restore the arguments of the
+  next level parent" as it is not needed anymore in this version due
+  port being added in device tree
+- addressed review comments
+- per-patch changes are described in each individual patch
 
-Konrad
+Changes in v3:
+- added patch "PCI: of_property: Restore the arguments of the next level parent"
+  to fix the legacy interrupt request
+- addressed review comments
+- per-patch changes are described in each individual patch
 
-> +	};
-> +
-> +	slpi_ldo_sleep_state: slpi-ldo-sleep-state {
-> +		pins = "gpio8";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +		output-low;
-> +	};
-> +
->  	touch_irq_state: touch-irq-state {
->  		pins = "gpio120";
->  		function = "gpio";
-> 
+Changes in v2:
+- dropped "of/irq: Export of_irq_count()" as it is not needed anymore
+  in this version
+- added "arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe"
+  to reflect the board specific memory constraints
+- addressed review comments
+- updated patch "soc: renesas: rz-sysc: Add syscon/regmap support"
+- per-patch changes are described in each individual patch
+
+
+Claudiu Beznea (6):
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add documentation for the
+    PCIe IP on Renesas RZ/G3S
+  PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
+  arm64: dts: renesas: r9a08g045: Add PCIe node
+  arm64: dts: renesas: rzg3s-smarc-som: Update dma-ranges for PCIe
+  arm64: dts: renesas: rzg3s-smarc: Enable PCIe
+  arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
+
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  |  240 +++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |   66 +
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |   10 +
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |   11 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/pci/controller/Kconfig                |    8 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-rzg3s-host.c      | 1792 +++++++++++++++++
+ 9 files changed, 2137 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
+ create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+
+-- 
+2.43.0
+
 
