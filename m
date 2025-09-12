@@ -1,365 +1,331 @@
-Return-Path: <devicetree+bounces-216432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5158FB54CCC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E37CB54CD3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:13:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7246A015C3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:08:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 926A1AA65AE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA9301470;
-	Fri, 12 Sep 2025 11:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F19D304BDF;
+	Fri, 12 Sep 2025 12:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wlzrzEMQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Keedpf5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A74A272E5E
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9943F2F49F1
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757678359; cv=none; b=saKY0xZg42il0s9qiyLjkaXA37q+GvRe9ZJK62644jp272gupXG8bRzBre0IjA6bALNlyAso4ALQ8j9AWHglyLcEITN68MG+5ZSJ6gjVvNb6Tr751K1uJHh6Yh+wYXDB2lbvp74kvJRca7YP5z+CSPMDPKmdvShuZqRexKapxQo=
+	t=1757678427; cv=none; b=ZQsuacxsbGOvmLtWAYiErsSrP+1KY9vhsHlinlq7fMEqsQUamdKuyqxbcBTJUZBtygnCuP2UNkSPR+qIGib7YJags5wWqRDGXg7Deoo2NdYMivqAr7VOqhDcKuu3t3DPeIezi/n/usnS6jBh5+R+aMlNBG1mWpjXtC42AbRWc3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757678359; c=relaxed/simple;
-	bh=8/a/qJABGQQsO7MWth/gWIdU5R1QGpf9oLF4k9j7v3M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cCwSFb98/BHipUIzBapQFhY8cZqwi+Q4Ww7tGTFo1RTWO3bfEoV+TMg/DF/jFmWiavhfSf2/3NESRaZq1iToAbg8bxXkvenZyxnHdD/A7NbR5JH2oD9mYXGtoZD9swilpleYSLzF4T1510YTK0cuqSm5hcleFpUBFJXCbxFUTyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wlzrzEMQ; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-55f6017004dso1974734e87.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:59:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757678354; x=1758283154; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lg7qWRUKABPmJe9YUV85wwqlEXsnIyAFDE3XX1No4O4=;
-        b=wlzrzEMQNu6ErC/7l/p84M6LxoXED0PH473liusmpqhVyBDBYUfvFd8lskx9wwz5op
-         CwMeXSjcBVlABWh6A3ek/oFYCtIk2y28CMXwPtTNrpuXfa3kz3nWk8ZOyo6EtyGSZv7P
-         g1Y+1fh8LdAP7PDLi9tMkZGkvZ7CVcTI5tgkzTlAB/OA8zwnadl6p2IDnOrVERk0X0EC
-         3uvaOT8TKviuDZ+njDtoGzhZDaWVS8xpGjYfw/uFTHnvnUEru4FLaZR8Fyksr6JzUnth
-         Vg9mztynBQHCPcHTXh7Sz2Gebfy4XBlUWzFumQYozSIcGoUSZ+2h/OXjylI2Ee3nTvye
-         y2aA==
+	s=arc-20240116; t=1757678427; c=relaxed/simple;
+	bh=x48duY0HtOBWyVtixUaU6TSnH3Lqf5Obhl9P+O5fyfI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MdsttFpeROU0oC5TkJ6dOvRgNy45igJ8JcVDhpa1QScNECl8h8qfDCQtv6Vm1cN+kZbG8UEd4tfsg8P0J5FtBE+1tDFVhfPGZGGt2breEHrnej04mWCTVqs4mlPZdKb6cTCzwjDm6TtwnaceNdKC7qHovhE3X8xTKzsGrRELQWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Keedpf5m; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CBBb2n017871
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:00:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fbBQL65dyCJpo/jAgC2RKL4WsdEtpLaJgdDVpNQP4NA=; b=Keedpf5mlpgcIkD+
+	kDlz7ZTUS/GMyUZP4hTjgU1J7kEYbELo33PxmI1qoIOOIuqZ274iKcjMbiED3y9a
+	cXheoqcb9eGFgzDqict5bl1Iz04QbYssVvyrkxVGFfqc+jivMGXo24UXSgeT4RMP
+	tXw34l04FRXvKFKRTLnrN6UD1AWaxI2Yc1rTnBhFdG9g7v6Aqfqs3hYlRfT4Jk13
+	+zWPoZSB5BOuw3uxvIXF7o+tZOJqO6JEpSNJIzNEkf02hT8M3xLmZpEZusf6rX86
+	U5EiOS5PHGqz4sqmIcIYHhI2hTEYm+BczH8n2KohTs/Dnj2cJH4CK/In8qTRQ3vZ
+	285ZVg==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494jdx0427-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:00:24 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b54aa407bc7so255179a12.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:00:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757678354; x=1758283154;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lg7qWRUKABPmJe9YUV85wwqlEXsnIyAFDE3XX1No4O4=;
-        b=Ml3u5unjFGuavKFoK0y7W7HUOE9VY2MRIYL0sDQtaa8LIUBfl2WSsZPXME25ZVQop7
-         mKsooF96IL0yz0IlMPtfDUdb4gZ7QtOuJqX5hXSwbpV5G8TpyDVOoBeNNV+/D3dPcyTh
-         1EFXVJtnwVwEgSiHxwMUZYug9hhGHYWtDTVfLnUpmh3xDpfqBA6dtIXBpmlwhsc4yGv/
-         7TmMCvPsMsjQrIVq4LalC7b9v5PSf9rW5J0bz4GQV4l61lknRXsk665lAUpVYirJ/wZV
-         /v2uGlvb7KHJWDRQr3GcZrT66rjYaLSD/oDrfpg/7Atbf9yozUdqGz996k0LK/JpTxK7
-         7qlw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/x6zKc1PKmWbYcQ6X5G9+ZLqKh89kwEYoAt3NTwYd1SNm1Oe4qW2MP6hIuvtQjz0BWmzOuVBHHGaT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdyOiBpVPffoS8asUryRRpsLG627gxkO6i/IfOcXvMjQaHuunG
-	sjqs4U0Ybih6+9oH+Nckp9CI5uqBhUlYItMGjWf4SjlOZrub6dyfT1UfTVOqZcFfz8twWHm6X+T
-	ls/fnW0VmX7Kkt3LOck5hLuFe6rMiI9hEk56gZgZkiZRw2uBfwe4gWWIqsw==
-X-Gm-Gg: ASbGncvZPncVXeY3V7uXASOqqKvxrfoY3YAtIaVggoxfLZip0cfo7X1q8nxpWcQgfCQ
-	ZJKCKL2u5fa+YQn1O09tqxfK8HiWAbOY+fkL64EykU9Jbe30UQ/lwJprP+eQEzQqDb9VDjg8HfH
-	Nz/g8njhl775Xg4XJKBITrQzmxg8Ixbz9wD/ivE0njKpPdvvJGxbPsaW9ZYvjoxnI0gZQrbJLT3
-	VfCJDE=
-X-Google-Smtp-Source: AGHT+IGeZRJRiB/LmqkbexVvmZJ7WX/3/khEzl2E2teMJl+0sV9Tw4l6WBQajDk3wJg2rzu7bsPpdTU3lciwtrFDvjM=
-X-Received: by 2002:a05:6512:234b:b0:55f:3faa:7c02 with SMTP id
- 2adb3069b0e04-5704e7223e3mr905200e87.40.1757678353719; Fri, 12 Sep 2025
- 04:59:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757678423; x=1758283223;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fbBQL65dyCJpo/jAgC2RKL4WsdEtpLaJgdDVpNQP4NA=;
+        b=qqXc3wjjlakwmto4UQtNrjTpmSpWy32plj+fpW28hEW0uzoFFFzogFC1WBOS9yKO8t
+         FIRgrojzQFJ/DBUU8WJjXynTqT5/OY+7qk7w8+Dmzk5pYYT+WR7RLzkQJD7LnPe6ktub
+         70BBzFgHm0j/1ESDLcox3xXUw1xjR1C9YTVSkZMenzLvniEWraDhnMY9lQE1likJR8I3
+         krylkliZDjgeBbL1xnqU5k39HZVTGNxAK4p5YkUqwFD3v8OGFo51urqgnwK/QurtDKty
+         /IY0Htlotmo0/TjJsEO+X7/nJvDFvOHtJJEHGCosdKWHCZxTuGMjeDnoBWiIN8/CyIVV
+         QLHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXpqVGsvL1GMK8zy6glnYWS5wyCMangu1ODk86QxRvMQxa8LzbxdzgEgnwUjt67k1ebMg6TfcbTz8eW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMYOdv3OBSVc5mndarGF85DAIJziO+/wYH045evhhkRJ8HX/iC
+	/Oa/9vqvWSjyc5UIS1LwWG0PHZE0DqjnHFIyyjAA/Tb8elzcnUu2fWMOaj552W/OhisLkg5TM99
+	5m3+G85LPoQU9GAxVRhOjxs1LT+XAgIQ+DhQQMq7hho0MsQQgfeM34KDBta09k1HM
+X-Gm-Gg: ASbGncvVhoOQo+HG6BWVumj/wuiGDKlYbNYbUUeI7z+0SiUTTOmisu4UAUqSJLF0DtY
+	TQ4j4sbsZsRbswCZPds/f87dCOFIKqTJdTLrxKQvL8JPFrIkQQgJOLcSxkRVgGWCgTjj70gfNcW
+	o3XRbHiZcLvV5KOUXG/8Jqla1nPIFD0eNo02hcNS6D2Pyd/s8gAKLgEKIyATneRpQ9aaS/jrDZi
+	lQUUZ3oq2bViytkuMEErbqgfaGN1dbk6Kkbrt+21QHir2z+HcKc3988eBhrv5Dgxi5sgRxLAV48
+	MLr3JSiBk5DuU5UlLxJZexbrW3hA8+BQXTisMNNy59ajeAWfJd4uDdumcTmGJe+DTA9PMRCgNDo
+	HjCXPoCN1VvdvnXSQPYDkbXCGvyKVlQ==
+X-Received: by 2002:a05:6a20:914c:b0:251:31a0:9e70 with SMTP id adf61e73a8af0-2602cb012a7mr2002347637.7.1757678422926;
+        Fri, 12 Sep 2025 05:00:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHa0BAZWf24zn+3+8j1WAhgOyGQF6J2BOIlcR+w56DOk0y+/cmniHka/roP1NPgCXMPeqLmCw==
+X-Received: by 2002:a05:6a20:914c:b0:251:31a0:9e70 with SMTP id adf61e73a8af0-2602cb012a7mr2002298637.7.1757678422247;
+        Fri, 12 Sep 2025 05:00:22 -0700 (PDT)
+Received: from [10.133.33.174] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a47601sm5176550b3a.28.2025.09.12.05.00.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Sep 2025 05:00:21 -0700 (PDT)
+Message-ID: <335ffce5-19c6-409d-8386-686fe9e5dea5@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 20:00:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912060650.2180691-1-gary.yang@cixtech.com> <20250912060650.2180691-2-gary.yang@cixtech.com>
-In-Reply-To: <20250912060650.2180691-2-gary.yang@cixtech.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 12 Sep 2025 13:59:00 +0200
-X-Gm-Features: Ac12FXxgQqTM_v6IlK5tuOK400vNP5lgdVRrVI1BjBu-zlzI4VXvJPt0wi-IxX4
-Message-ID: <CACRpkdYgTjerG5mks_+3sjhKKYtCsFY=1NWhgw_YEuib7gZm3g@mail.gmail.com>
-Subject: Re: [v2 1/3] pinctrl: cix: Add pin-controller support for sky1
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	cix-kernel-upstream@cixtech.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/13] phy: qcom: qmp-usbc: Add USB/DP switchable PHY
+ clk register
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
+        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
+ <20250911-add-displayport-support-for-qcs615-platform-v4-8-2702bdda14ed@oss.qualcomm.com>
+ <6p43oxn57kke5eotoqtt5gqtmhmgeteoymewqm3ko5q5veyegs@krkh4dwdno5i>
+From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+In-Reply-To: <6p43oxn57kke5eotoqtt5gqtmhmgeteoymewqm3ko5q5veyegs@krkh4dwdno5i>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEyMDEwNiBTYWx0ZWRfX6vBUlBNnhGz/
+ GGGNHWJ46DNmBYn0dNZunZbVmyCVtvMifT5nDqCZVizGr0tUbKEdHGKwLr4Mb4DJL1N94lfGy6u
+ eUGbrsfzVGM3qvnBNTlqDx6JWqX1ySIhGts91vpymEZq4ajg+MJ/vCDzgcXA06yveSW2PHARNCE
+ wGA+BlghcO8OqY/6H6heAQmHz+uR3qmYv0FogESv83onXKCYFE4vP2PQneQcrah7Ed0aXyE7w26
+ X2F4Dy6IzFRgfijKK//FcxMHnVoy6Jo8qL6uOHQjkpW896E6SLLbRkoxk3tqy3veTcuMRWv25n7
+ FbMm8Mi0ZA/ukgdvrKo8c7XLt+rt84U5eCt/ce+gvVHwxjJw1BRSJwIZJ9zQHMK2LHx64MLCBub
+ tt5p6iA0
+X-Proofpoint-GUID: s_lJHJv_8r7ZwZMd6LrFV_cwn_zARQj_
+X-Authority-Analysis: v=2.4 cv=JMM7s9Kb c=1 sm=1 tr=0 ts=68c40b58 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=kyIpQUSdGz_7SAUQDtwA:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-ORIG-GUID: s_lJHJv_8r7ZwZMd6LrFV_cwn_zARQj_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509120106
 
-Hi Gary,
 
-thanks for your patch!
+On 9/12/2025 6:19 PM, Dmitry Baryshkov wrote:
+> On Thu, Sep 11, 2025 at 10:55:05PM +0800, Xiangxu Yin wrote:
+>> Add USB/DP switchable PHY clock registration and DT parsing for DP offsets.
+>> Extend qmp_usbc_register_clocks and clock provider logic to support both
+>> USB and DP instances.
+>>
+>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+>> ---
+>>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 208 +++++++++++++++++++++++++++++--
+>>  1 file changed, 195 insertions(+), 13 deletions(-)
+>>
+>> @@ -1276,8 +1291,11 @@ static int phy_pipe_clk_register(struct qmp_usbc *qmp, struct device_node *np)
+>>  
+>>  	ret = of_property_read_string(np, "clock-output-names", &init.name);
+>>  	if (ret) {
+>> -		dev_err(qmp->dev, "%pOFn: No clock-output-names\n", np);
+>> -		return ret;
+>> +		char name[64];
+>> +
+>> +		/* Clock name is not mandatory. */
+>> +		snprintf(name, sizeof(name), "%s::pipe_clk", dev_name(qmp->dev));
+>> +		init.name = name;
+>>  	}
+> Do we have any guarantees that memory for 'name' exists beyond this point?
 
-On Fri, Sep 12, 2025 at 8:06=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
-rote:
 
-> Add the pin-controller driver for Sky1 platform
+If the previous of_property_read_string() call succeeded, could 'name'
+still be empty? or you means 'char name[64]' will be release after '}'?
+
+From local verification, I can see 88e8000.phy::pipe_clk node from clk_summary.
+
+
+>>  
+>>  	init.ops = &clk_fixed_rate_ops;
+>> @@ -1286,19 +1304,176 @@ static int phy_pipe_clk_register(struct qmp_usbc *qmp, struct device_node *np)
+>>  	fixed->fixed_rate = 125000000;
+>>  	fixed->hw.init = &init;
+>>  
+>> -	ret = devm_clk_hw_register(qmp->dev, &fixed->hw);
+>> -	if (ret)
+>> +	return devm_clk_hw_register(qmp->dev, &fixed->hw);
+>> +}
+>> +
+>> +
+>> +/*
+>> + * Display Port PLL driver block diagram for branch clocks
+>> + *
+>> + *              +------------------------------+
+>> + *              |         DP_VCO_CLK           |
+>> + *              |                              |
+>> + *              |    +-------------------+     |
+>> + *              |    |   (DP PLL/VCO)    |     |
+>> + *              |    +---------+---------+     |
+>> + *              |              v               |
+>> + *              |   +----------+-----------+   |
+>> + *              |   | hsclk_divsel_clk_src |   |
+>> + *              |   +----------+-----------+   |
+>> + *              +------------------------------+
+>> + *                              |
+>> + *          +---------<---------v------------>----------+
+>> + *          |                                           |
+>> + * +--------v----------------+                          |
+>> + * |    dp_phy_pll_link_clk  |                          |
+>> + * |     link_clk            |                          |
+>> + * +--------+----------------+                          |
+>> + *          |                                           |
+>> + *          |                                           |
+>> + *          v                                           v
+>> + * Input to DISPCC block                                |
+>> + * for link clk, crypto clk                             |
+>> + * and interface clock                                  |
+>> + *                                                      |
+>> + *                                                      |
+>> + *      +--------<------------+-----------------+---<---+
+>> + *      |                     |                 |
+>> + * +----v---------+  +--------v-----+  +--------v------+
+>> + * | vco_divided  |  | vco_divided  |  | vco_divided   |
+>> + * |    _clk_src  |  |    _clk_src  |  |    _clk_src   |
+>> + * |              |  |              |  |               |
+>> + * |divsel_six    |  |  divsel_two  |  |  divsel_four  |
+>> + * +-------+------+  +-----+--------+  +--------+------+
+>> + *         |                 |                  |
+>> + *         v---->----------v-------------<------v
+>> + *                         |
+>> + *              +----------+-----------------+
+>> + *              |   dp_phy_pll_vco_div_clk   |
+>> + *              +---------+------------------+
+>> + *                        |
+>> + *                        v
+>> + *              Input to DISPCC block
+>> + *              for DP pixel clock
+>> + *
+>> + */
+>> +static int qmp_dp_pixel_clk_determine_rate(struct clk_hw *hw, struct clk_rate_request *req)
+>> +{
+>> +	switch (req->rate) {
+>> +	case 1620000000UL / 2:
+>> +	case 2700000000UL / 2:
+>> +	/* 5.4 and 8.1 GHz are same link rate as 2.7GHz, i.e. div 4 and div 6 */
+>> +		return 0;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static unsigned long qmp_dp_pixel_clk_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+>> +{
+>> +	const struct qmp_usbc *qmp;
+>> +	const struct phy_configure_opts_dp *dp_opts;
+>> +
+>> +	qmp = container_of(hw, struct qmp_usbc, dp_pixel_hw);
+>> +
+>> +	dp_opts = &qmp->dp_opts;
+>> +
+>> +	switch (dp_opts->link_rate) {
+>> +	case 1620:
+>> +		return 1620000000UL / 2;
+>> +	case 2700:
+>> +		return 2700000000UL / 2;
+>> +	case 5400:
+>> +		return 5400000000UL / 4;
+> No HBR3 support? Then why was it mentioned few lines above?
 >
-
-Add some more description of the pin control on the SoC here please.
-
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
-(...)
-
-Config structure in Kconfig looks good!
-
-> +++ b/drivers/pinctrl/cix/pinctrl-sky1-base.c
-> @@ -0,0 +1,581 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Author: Jerry Zhu <Jerry.Zhu@cixtech.com>
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_address.h>
-> +#include <linux/pinctrl/machine.h>
-> +#include <linux/pinctrl/pinconf.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinmux.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/slab.h>
-> +
-> +#include "../core.h"
-> +#include "../pinconf.h"
-> +#include "../pinctrl-utils.h"
-> +#include "../pinmux.h"
-> +#include "pinctrl-sky1.h"
-> +
-> +#define SKY1_PIN_SIZE          (0x4)
-> +#define SKY1_MUX_MASK          (0x180)
-
-For masks do this:
-
-#include <linux/bits.h>
-
-#define SKY1_MUX_MASK GENMASK(8, 7)
-
-GENMASK generates a bitmask from bit 7 to 8, 0x180.
-
-If its a 32bit register you can use GENMASK_U32() to be
-even clearer, etc.
-
-> +#define SKY1_MUX_SHIFT         (0x7)
-> +#define SKY1_PULLCONF_MASK     (0x60)
-
-Same idea here.
-
-> +#define SKY1_PULLUP_SHIFT      (0x6)
-> +#define SKY1_PULLDN_SHIFT      (0x5)
-
-I would probably do this:
-
-#include <linus/bits.h>
-
-#define SKY1_PULLDN BIT(5)
-#define SKY1_PULLUP BIT(6)
-
-Using simple bit references to define what each bit
-is for.
-
-> +#define SKY1_DS_MASK           (0x0f)
-
-Use GENMASK()
-
-> +#define CIX_GET_PIN_NO(x) ((x) >> 8)
-> +#define CIX_GET_PIN_FUNC(x) ((x) & 0xf)
-
-Maybe define 8 and 0xf as shifts?
-
-> +static const struct sky1_function_desc *sky1_pctrl_find_function_by_pin(
-> +               struct sky1_pinctrl *spctl, u32 pin_num, u32 fnum)
-> +{
-> +       const struct sky1_pin_desc *pin =3D spctl->info->pins + pin_num;
-> +       const struct sky1_function_desc *func =3D pin->functions;
-> +
-> +       while (func && func->name) {
-> +               if (func->muxval =3D=3D fnum)
-> +                       return func;
-> +               func++;
-> +       }
-
-Using a NULL func->name to terminate the array looks a bit dangerous.
-
-What about adding:
-
-> +struct sky1_function_desc {
-> +       unsigned char muxval;
-> +       const char *name;
-
-const char * const *functions;
-size_t nfuncs;
-
-> +};
-
-Then you can use nfuncs to iterate over the array of
-function names, and define a macro like this:
-
-#define SKY_PINFUNCTION(_muxval, _functions, _nfunctions)   \
-(struct sky1_function_desc) {                                  \
-                .muxval =3D (muxval),                        \
-                .functions =3D (_functions),                    \
-                .nfuncs =3D (_nfunctions),                  \
-        }
-
-And then this:
-
-+static const struct sky1_pin_desc sky1_pinctrl_s5_pads[] =3D {
-> +       {
-> +               .pin =3D PINCTRL_PIN(0, "GPIO1"),
-> +               .functions =3D {
-> +                       [0] =3D {0, "GPIO1"},
-> +               },
-> +       },
-> +       {
-> +               .pin =3D PINCTRL_PIN(1, "GPIO2"),
-> +               .functions =3D {
-> +                       [0] =3D {0, "GPIO2"},
-> +               },
-
-> +       },
-
-becomes
-
-static const struct sky1_pin_desc sky1_pinctrl_s5_pads[] =3D {
-    SKY_PINFUNCTION(PINCTRL_PIN(0, "GPIO1"),  "GPIO1", 1),
-    SKY_PINFUNCTION(PINCTRL_PIN(1, "GPIO2"),  "GPIO2", 1),
-
-I don't know about using the PINCTRL_PIN() macro here though,
-can't you just put in 0, 1...?
-
-Anyway I think you get the idea.
-
-> +static bool sky1_pctrl_is_function_valid(struct sky1_pinctrl *spctl,
-> +               u32 pin_num, u32 fnum)
-> +{
-> +       int i;
-> +
-> +       for (i =3D 0; i < spctl->info->npins; i++) {
-> +               const struct sky1_pin_desc *pin =3D spctl->info->pins + i=
-;
-> +
-> +               if (pin->pin.number =3D=3D pin_num) {
-> +                       const struct sky1_function_desc *func =3D
-> +                                       pin->functions;
-> +
-> +                       while (func && func->name) {
-
-So here you could just for (i =3D 0; i++; i < func->nfuncs)
-
-(etc everywhere)
-
-> +static int sky1_pctrl_dt_node_to_map_func(struct sky1_pinctrl *spctl,
-> +               u32 pin, u32 fnum, struct sky1_pinctrl_group *grp,
-> +               struct pinctrl_map **map, unsigned int *reserved_maps,
-> +               unsigned int *num_maps)
-> +{
-> +       bool ret;
-> +
-> +       if (*num_maps =3D=3D *reserved_maps)
-> +               return -ENOSPC;
-> +
-> +       (*map)[*num_maps].type =3D PIN_MAP_TYPE_MUX_GROUP;
-> +       (*map)[*num_maps].data.mux.group =3D grp->name;
-> +
-> +       ret =3D sky1_pctrl_is_function_valid(spctl, pin, fnum);
-> +       if (!ret) {
-> +               dev_err(spctl->dev, "invalid function %d on pin %d .\n",
-> +                               fnum, pin);
-> +               return -EINVAL;
-> +       }
-> +
-> +       (*map)[*num_maps].data.mux.function =3D sky1_gpio_functions[fnum]=
-;
-> +       (*num_maps)++;
-> +
-> +       return 0;
-> +}
-> +
-> +static struct sky1_pinctrl_group *
-> +sky1_pctrl_find_group_by_pin(struct sky1_pinctrl *spctl, u32 pin)
-> +{
-> +       int i;
-> +
-> +       for (i =3D 0; i < spctl->info->npins; i++) {
-> +               struct sky1_pinctrl_group *grp =3D
-> +                       (struct sky1_pinctrl_group *)spctl->groups + i;
-> +
-> +               if (grp->pin =3D=3D pin)
-> +                       return grp;
-> +       }
-> +
-> +       return NULL;
-> +}
-
-And this:
-
-> +struct sky1_pinctrl_group {
-> +       const char *name;
-> +       unsigned long config;
-> +       unsigned int pin;
-> +};
-
-it's a bit conceptually weird.
-
-Usually a pin can be member of many groups.
-
-The only time this works is when the pin controller is of the type
-where every pin is placed in a single group with only that pin in it.
-
-And that seems to be the case, because:
-
-> +static int sky1_pctrl_get_groups_count(struct pinctrl_dev *pctldev)
-> +{
-> +       struct sky1_pinctrl *spctl =3D pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return spctl->info->npins;
-> +}
-
-If this is the implied pattern for this driver, write as a comment to
-the above function that this pin controller place all pins into a
-single group with one pin and that this is why this works.
-
-The normal (as can be seen from the pin control documentation
-https://docs.kernel.org/driver-api/pin-control.html )
-is to group pins, so e.g.
-
-uart0_rx_tx_grp =3D { pin1, pin2 };
-i2c0_sda_scl_grp =3D { pin1, pin2 };
-
-Then this is combined with functions such as uart0 and i2c0:
-
-function, group
-("uart0", uart0_rx_tx_grp)
-("i2c0", i2c0_sda_scl_grp)
-
-Here you see the two pins are used for uart in the first case
-and for i2c in the second case, it's the same pins, but members
-of two different groups, and these groups are then used with
-a function.
-
-The possible functions for a group are then defined somewhere
-so these settings can be applied.
-
-Maybe this pattern is something you have in your driver
-because the code was copied from some other driver
-which use one group per pin, it's not certain that this is the
-best layout for the cix SoC so look it over!
-
-The pinconf part of the driver looks very good to me.
-
-Look over these things, and keep posting updates!
-
-Yours,
-Linus Walleij
+>> +	default:
+>> +		return 0;
+>> +	}
+>> +}
+>> +
+>
+>> +static int qmp_usbc_register_clocks(struct qmp_usbc *qmp, struct device_node *np)
+>> +{
+>> +	int ret;
+>>  
+>> -	ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &fixed->hw);
+>> +	ret = phy_pipe_clk_register(qmp, np);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	/*
+>> -	 * Roll a devm action because the clock provider is the child node, but
+>> -	 * the child node is not actually a device.
+>> -	 */
+>> -	return devm_add_action_or_reset(qmp->dev, phy_clk_release_provider, np);
+>> +	if (qmp->dp_serdes != 0) {
+>> +		ret = phy_dp_clks_register(qmp, np);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	return devm_of_clk_add_hw_provider(qmp->dev, qmp_usbc_clks_hw_get, qmp);
+> Do you understand what did the comment (that you've removed) say? And
+> why?
+>
+>>  }
+>>  
+>>  #if IS_ENABLED(CONFIG_TYPEC)
+>> @@ -1429,6 +1604,13 @@ static int qmp_usbc_parse_dt(struct qmp_usbc *qmp)
+>>  	if (IS_ERR(base))
+>>  		return PTR_ERR(base);
+>>  
+>> +	if (offs->dp_serdes != 0) {
+>> +		qmp->dp_serdes = base + offs->dp_serdes;
+>> +		qmp->dp_tx = base + offs->dp_txa;
+>> +		qmp->dp_tx2 = base + offs->dp_txb;
+>> +		qmp->dp_dp_phy = base + offs->dp_dp_phy;
+>> +	}
+>> +
+>>  	qmp->serdes = base + offs->serdes;
+>>  	qmp->pcs = base + offs->pcs;
+>>  	if (offs->pcs_misc)
+>> @@ -1537,7 +1719,7 @@ static int qmp_usbc_probe(struct platform_device *pdev)
+>>  	 */
+>>  	pm_runtime_forbid(dev);
+>>  
+>> -	ret = phy_pipe_clk_register(qmp, np);
+>> +	ret = qmp_usbc_register_clocks(qmp, np);
+>>  	if (ret)
+>>  		goto err_node_put;
+>>  
+>>
+>> -- 
+>> 2.34.1
+>>
 
