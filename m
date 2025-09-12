@@ -1,187 +1,177 @@
-Return-Path: <devicetree+bounces-216283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1FC0B54410
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:38:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C23B4B5440C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:38:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0F617B58C6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:36:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0715A687484
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:38:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7062D1931;
-	Fri, 12 Sep 2025 07:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0012D0C8C;
+	Fri, 12 Sep 2025 07:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z3YDGEpv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671EB2D0C7B
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 951762C11C2
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757662664; cv=none; b=h7aQ5HXoJpVlzC2Y5oFB7yO1BzkdFFEmVtd7U1dStZ3ohXJVWWUgjQRezzFWJ+Oc+3yQ2h3mwVry0PMHx/vflUGyGpIiQiZJf7yEGEf2aP+s8pyegRV/mv2Iyqcehx6r/MimXG2uUoEoFILuc0rMrXoq8Y5ItyWjYjKA5/wupog=
+	t=1757662697; cv=none; b=SFnaZfArDKGHAiddg1A3IJMlLMdC++9vhv0UDMOdKtHH72d/Q2ee6BiKLGsAJRYU9ELsXKzK5AFjc0cVxMnQBLYJ0mgCpkz3HO+3udUi0H5pEZsXX3Rbic1ICJccTnn3nHHf4AR9WwBeIps/vjKXl8LAGASIM9xqJES//fsu7ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757662664; c=relaxed/simple;
-	bh=PiktLEImYkgXUvH87G3NyjdiYfU4aHi90F2MtNsUp3k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V67MDifGntMmhqTKaWiAZrYc+Mm3I9L0s6VpVzHlB7kIz75RaWLZ6z3168mlOrAQUBjhlLCKZsYAt9eplfQunbvymmgc16KHKESW9K53+SRllxbC8yatLay9G9wxvje4a1oo+x63oOhN49oJwF6xn61Dzr74BapmXxVAiT7zcEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-544a2339775so530074e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:37:43 -0700 (PDT)
+	s=arc-20240116; t=1757662697; c=relaxed/simple;
+	bh=PxSU16uE+Ej2HzCtdrXRq8+sKeMpJU7IORy3bAXH488=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kBmgbFhm/1MBZZFb22XOiwBZWKUReivOwNnl4AMNbeMYiqW8ejIRqDgIFD81vFB8o6f0jr6wnawJT3Z6zLe61i17iMLqHZ791rVIACW05AT4LPGuxKEuKK8vrADpGcaTbioVMKFgk6a2pPVqyytJKJ7/ncv7jnXVKsYyK08Mlww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z3YDGEpv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58BMl4KN018851
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:38:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6LFu0Fh4zfdsz13Tuo1my+OP1x2vo1Q+dpLEWcRgmcg=; b=Z3YDGEpve9wTTVnP
+	3c1zqQnKAXKzqGNZXSnJ693OYIyrVZp8NPFtvdrcKyuPALjtGKxx5tBPCkVrMswT
+	SzEevKd08SRnmGYzjsP4APYJ1JpbEn03YSQugATr/BB3Dg4K4P0PkzEOLwnrPNXK
+	KeHmKQR3pGalKL/a3xA1gADA0CQqQ8MkWDc/XUQ2O1hUuwoBTzRKzlJe3hzCTaM9
+	BazOSeb+tChzsZWuDUkW79RPBo97/3T2djMJROXX4EYpHvUmMJzv/qy8YOhxnnpp
+	DSFb/bEDvPT4Vhu5HMdmWm6wS9dloeGzGpU+o2MsAaC1GLYjq0TLqyFpageF2cEm
+	6bh+Ww==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 493qphvd3y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:38:14 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-24458345f5dso20624015ad.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:38:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757662662; x=1758267462;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xRW2V83MklnBniZBmB0Qehe2sLfJWCfmncqnDf+8mVQ=;
-        b=VS8U6EVzPJyDVq7/AC7857XxDSNxyqvlbP6c5JdtlBXs8vTFub9KemoxrUPmris7Qc
-         C6obJU+bLSkPNbojAZomNM/Ob+SFYk1nniHsJSweEgyApYzkewusLGdn28s0qgeuEwI0
-         OvWvH8mciwRyQVxfAD0RIVUoSexKnnUBAC1wHTmJyR7ibO8woijYhXuyPNsn9gNeVUOQ
-         vLX/mY5iXdpJY0k3TNTX377M+PEPcO3UxY5uASzqAviY6QrCyokC3kE7XEqacSF6nByr
-         ec77+7g9gupWeGdpcVBI+nRJmp1hghkRQ8RsHQMAAto/HuTmhL4whY/Qmk627VvF03dV
-         bX1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVP8F6fMstC0+x/MRcFPuNkSWHfA7mOwM/pr97L03Jwecn70F5y2fte4asro6I5zNQtpH9ZeSP+V3ZC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP+2+waiK/TcjuNFsATVdmkxtlf6/zSv1vgCIoa05ZcJf3yEOD
-	jluNrExVfmndQRu98Nbr7dRx0wOH93l+61aGuAm/5FGURdR2io9xvfE87djsfJ+P
-X-Gm-Gg: ASbGncuXf8ZL7Cp9Vexzx87W+yKIHWJVGl7vPlEm0f+cfzu+prs7UorjY2zJyZ6kgNx
-	iIdNWBJFv17xMMx/9JvZJVPQlBvoN1fdHMnOplcjb7Rz7URhJcng1dDfd4rXZoAxKHYzkEmGNsu
-	0tgQciTi/h4sRkNeaPXMayiF9abeRnnLgsoFWDzZDrxkrmpGaPkUMaOk+HT4R/CtwxZPg7h5rrm
-	JKQ/KQold0lZCBvLtw21o+KhLrZI5niIysal+Hyxybq3jM0+CeopxhAYnOauy9RQd0DXJPK3W3E
-	5ICN/WDRJ6pTKDzxh26vIYCEDjz47mRVBfdP+pnXXZ64PURP5syFyEbIZGh5GfQQexlCeE9CkRQ
-	jLM0Zcixj6nXseumgBS7/hBx4V5eE2gqWZcAMrUvHNTenULK8xx0qi+ndFHXS2GvO1ngNU3BkBw
-	0=
-X-Google-Smtp-Source: AGHT+IELf8oeIl7x36puSNMzRN8LQleWxL5xOm9Ckw72soAYctruU4y7LyLtHlPFQWaH4btJtpzFZQ==
-X-Received: by 2002:a05:6122:2193:b0:545:df94:e5cf with SMTP id 71dfb90a1353d-54a16b310b2mr595677e0c.3.1757662661872;
-        Fri, 12 Sep 2025 00:37:41 -0700 (PDT)
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com. [209.85.221.172])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d3f050esm749385e0c.14.2025.09.12.00.37.41
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1757662693; x=1758267493;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6LFu0Fh4zfdsz13Tuo1my+OP1x2vo1Q+dpLEWcRgmcg=;
+        b=pzwqYnpORAoqK2YxvRphZC1nhEWMDaVXhKVaTfDuo48QZt+igxIqWwsEixK4OPOvd4
+         Hts9buKyhiUSnqiw3i3y6vQ2s+xDil5hKkcotLQrhukb45aUnFFuqCGAo3rzZh/PJ/V9
+         seZgDDP7wGLOef2CjwMsVJ46lfctTPxcaE5wKTp8w19ABu7xKHEeYjqeSpJDYmE0Y55g
+         p4P2o73M++tur8CTiuY8E9AyCxynxHDrsFNG7AiKaEXK+vmX51Sbf1U2wSChP4u3aliq
+         Guca1cIcLdlGg+g1A4E4MCKGV8CKiLWQNVxtzkJ6jpns7Wu+EWF1DtTiea7Y3e11mzGN
+         bg7g==
+X-Forwarded-Encrypted: i=1; AJvYcCX78xi3z/q1v4BDqIvuMxeYq5UGd0FwahYOl7Htb279q+6aFvgAisgC25Bq9pBXB56Bdz5VwyPcfYEE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx+IhqMmHF1OiDc1rbWNp7sviDZdUCsaLGTNXv4deRlV3/osz+
+	TWibdfB99NsqoQvpRyRzX3qmEEaRX50rwZ2WAimleObPrPpqN0Bi6Z6hhI2y2MiRtOs4iKgsQLy
+	QHqnPskRBhNDoJ820bJPVbk4KAUA176zhaE2rTZbsJDaXGIXQjZEDmoFmr73e01hn
+X-Gm-Gg: ASbGnctcn1j3/uHv5QNAIpV967vP/0B2Cn06jrSvs1mcliZ2hsoHQMn13DiFmyR7obA
+	kOhviUP8pcBq/MK37j4IumiELtIYxLCSh+g3pabMGrA2vhp+2ikuaUfSk932Yz9GxhmY324cKfx
+	Vj6a/Zc0IOMPi6YL6v+oLKp8aGesc4qqvhVlc6OxxWEBzhvJfMWvYMXJAgrk8FaY1HwFK032fR3
+	Y82v6oAiRTKHKqznxw5zhRi/7+LYSGhPgJuAt9zxPOrpCfA905KBYlkPBTUMJ1z5/DbfJBzecDI
+	Py4dAMZ4Ct4t1f5Vg71GoOPcK89pUu9WsrWK/wG35LgNgdOgLpaGYQGIrM30XuYAiXh0cTsnuPk
+	opQ==
+X-Received: by 2002:a17:902:cece:b0:248:f653:538f with SMTP id d9443c01a7336-25d25193c98mr24576175ad.27.1757662692857;
+        Fri, 12 Sep 2025 00:38:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8mnmJxdmy5GnWW3mwOkJg1f+1p4sXZ2EfwMYb/qI4p3TOyTx6eLJBt84nq1qMYnMbR5hhtQ==
+X-Received: by 2002:a17:902:cece:b0:248:f653:538f with SMTP id d9443c01a7336-25d25193c98mr24575825ad.27.1757662692288;
+        Fri, 12 Sep 2025 00:38:12 -0700 (PDT)
+Received: from [10.218.21.68] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c36cc5890sm41341715ad.4.2025.09.12.00.38.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 00:37:41 -0700 (PDT)
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-54488e51c37so564275e0c.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:37:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVHmKNpwjyBHHnvl4jSq4FzlhJlF1PYMxcC5san2qeygB6DgVPqoGT7bXwQE3ZPIUgf+l6hl1nRCPR5@vger.kernel.org
-X-Received: by 2002:a05:6102:4411:b0:523:863d:ecd1 with SMTP id
- ada2fe7eead31-5560a301b3amr693876137.9.1757662661033; Fri, 12 Sep 2025
- 00:37:41 -0700 (PDT)
+        Fri, 12 Sep 2025 00:38:11 -0700 (PDT)
+Message-ID: <b8a3211b-6d85-4949-9de1-54614dd8d769@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 13:08:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com>
- <87jz27vzec.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdVVV5tY_iwb=Xn6XVY-Ai6spBY70yXhc5VRxwDva8BGng@mail.gmail.com>
- <87jz24fqrg.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87jz24fqrg.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 12 Sep 2025 09:37:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX3cviP6xHnGP01kRDwuHRrHg0ZpNLV8Mf29MFS1B7S8g@mail.gmail.com>
-X-Gm-Features: AS18NWD8o29J0vt7DW3b5lRRM8FrDoQH_WWuzAAAh--HlMV8yj9Iqvo9Z9bUafc
-Message-ID: <CAMuHMdX3cviP6xHnGP01kRDwuHRrHg0ZpNLV8Mf29MFS1B7S8g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS8300 sound
+ card
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@oss.qualcomm.com, prasad.kumpatla@oss.qualcomm.com,
+        ajay.nandam@oss.qualcomm.com
+References: <20250905142647.2566951-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250905142647.2566951-2-mohammad.rafi.shaik@oss.qualcomm.com>
+ <43090acb-ea36-4015-b14f-78d44d789d42@kernel.org>
+ <a9507045-b900-49ee-8841-0f8fd30816ba@kernel.org>
+ <abc66798-dc91-4860-b0b4-de39a58b5745@oss.qualcomm.com>
+ <a8dcffa4-c578-46d7-8fdf-cd4f5a29a2a6@kernel.org>
+ <4c6e7e6b-2ef4-4ea8-8bf2-26c7aa8c94b8@oss.qualcomm.com>
+ <ad8fbd0c-4e94-4edd-abb3-84ee9563fac3@kernel.org>
+Content-Language: en-US
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <ad8fbd0c-4e94-4edd-abb3-84ee9563fac3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=aPDwqa9m c=1 sm=1 tr=0 ts=68c3cde6 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=d966o2na1F7DTwhL2BsA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-GUID: yoH9HTPtHtniMpGYCIOiNtyWWV_WNEv4
+X-Proofpoint-ORIG-GUID: yoH9HTPtHtniMpGYCIOiNtyWWV_WNEv4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTExMDA0MCBTYWx0ZWRfX8Ij4OYS0Swxq
+ aJ++3lPSust4T442upyCcVYTjn2YFZXUmQ7VO23TeTmIZbmf8TA5hO2nk10MhL8TzkxS0piY+UG
+ +Fwh/DLp5PTa3p2tukEEM3JpFKDfvsrnLV/irUQ/9wcbvbVFcxP0Cgq5sV2Eih9e1vEKFQLqphy
+ HrSMhLjQqFDdlduy8kNaPhcnKbCyoQZtQB8mNg11xfIX07tv2DT/IGAEEIaAh7clf/Lmu/1IkYM
+ 8x93XKqd5X8s7Eoi1WigtHv76fsFIcICC5bhX4xIRmkfJBpncpkJb9J2y+nXG3FGQHq/YFRZvol
+ gXQwpuhr4MkKtLaqp/WEUvhO/0SKF0DDvsDtUElkGcgGc2emeLiCjcAFGaCONLVXZ21zaIwUVha
+ Js1PHyjx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_02,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 spamscore=0 suspectscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509110040
 
-Hi Morimoto-san,
 
-CC maz
 
-On Fri, 12 Sept 2025 at 02:39, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > > +               /* The Arm GIC-700AE - View 1 */
-> >
-> > s/700/720/
->
-> Oops, thanks. Will fix
->
-> > > +               gic: interrupt-controller@39000000 {
-> > > +                       compatible = "arm,gic-v3";
-> >
-> > The documentation states it is compliant with GICv4.1?
->
-> I'm not familiar with GIC. And I think there is no v4 support on Linux yet ?
-> If my understanding was correct, GICv4 have GICv3 compatible.
-> We can use v3 driver so far, and can be replaced to v4 driver if it was
-> supported in Linux?
+On 9/10/2025 4:54 PM, Krzysztof Kozlowski wrote:
+> On 10/09/2025 13:17, Mohammad Rafi Shaik wrote:
+>>>
+>>> So this is the same hardware? Then no, we do not rename compatibles.
+>>>
+>>
+>> Agree, the existing compatible is discontinued naming convention,
+>> will remove existing qcs8275 and go with qcs8300.
+>>
+> 
+> That would be a rename, so again "no, we do not rename compatibles".
+> 
+> You are stuck with qcs8275.
+> 
+ACK,
 
-'git grep -i "\<gic.*v4.1"' does show support.
+will drop the Renaming compatible string change.
 
-Marc?
+Instead of renaming the compatible string, will go with the existing 
+compatible and fix the driver match data by updating the driver name. 
+This approach allows us to continue using the same compatible as 
+"qcs8275-sndcard".
 
-> > > +                       #interrupt-cells = <3>;
-> > > +                       #address-cells = <0>;
-> > > +                       interrupt-controller;
-> > > +                       redistributor-stride = <0x0 0x40000>;
-> > > +                       #redistributor-regions = <32>;
-> > > +                       reg = <0 0x39000000 0 0x20000>, // GICD
-> >
-> > The base address is 0x38000000, according to the docs?
->
-> It is indicated in very deep place in datasheet. I will indicate
-> detail in v2.
->
-> > > +                             <0 0x397C0000 0 0x40000>, // GICR Core29
-> > > +                             <0 0x39800000 0 0x40000>, // GICR Core30
-> > > +                             <0 0x39840000 0 0x40000>; // GICR Core31
-> >
-> > No GICC, GICH, and GICV?
->
-> will be added later ?
+will update the driver match data name to QCS8300 to load the correct 
+sound topology and ALSA UCM configuration files, which are added under 
+the actual SoC QCS8300 directory in linux-firmware.
 
-OK.
+Thanks & regards,
+Rafi.
 
-> > > +               scif0: serial@c0700000 {
-> > > +                       compatible = "renesas,rcar-gen5-scif", "renesas,scif";
-> >
-> > Missing "renesas,scif-r8a78000" (everywhere)
-> > ("make dtbs_check" would have told you).
->
-> Grr, thank you for pointing it. will fix
->
-> > > +                       reg = <0 0xc0700000 0 0x40>;
-> > > +                       interrupts = <GIC_SPI 4074 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                       clocks = <&dummy_clk_sgasyncd4>, <&dummy_clk_sgasyncd4>, <&scif_clk>;
-> > > +                       clock-names = "fck", "brg_int", "scif_clk";
-> >
-> > "fck" on SCIF should be (derived from) SGASYNCD16 (66.666 MHz).
-> (snip)
-> > "fck" on HSCIF should be (derived from) SGASYNCD8 (133.33 MHz).
->
-> In the early phase, there is no clock control support, so assume that
-> the clocks are enabled by default. Therefore, dummy clocks are used.
-> But indeed the naming seems strange. Will use just "dummy-clk".
+> Best regards,
+> Krzysztof
 
-I know.  But currently the clock rate for the dummy "fck" clocks does
-not match reality.  As the SCIF driver tries hard to find the best
-clock and divider for the requested transfer rate, it might pick "fck",
-breaking serial communication.
-So please add dummy clocks for SGASYNCD16 and SGASYNCD8, and use them as
-"fck" clocks for SCIF resp. HSCIF.
-
-> > According to the DT bindings, "power-domains" and "resets" are missing.
->
-> Unfortunately, can't use for now. It needs SCP support but is under
-> development. How should I do in this case ? Maybe use dummy device,
-> but can we use it ??
-
-Just leave them out for now, but be prepared to receive complaints
-from the dtbs_check bots ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
