@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-216413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA0ACB54B18
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:37:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EDA0B54B1B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:37:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02F5B189DA9F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 533B21B24987
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7DF30103D;
-	Fri, 12 Sep 2025 11:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C063019A4;
+	Fri, 12 Sep 2025 11:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EO+SzWsv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pb4x58F7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DF1301013
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC710301027
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757677027; cv=none; b=tQWNsdbIlMvvqNRL7+yX3KXU+ssbz/A5jE8USbzciN2AV0eUdVPfnkyDpJ2/1HKHwOtzFwUCvKCDCClTsBYdrRmTUH9+Pe7ETGZqRa/JLPmCY/e9Rt2+O4IUuLW3/s74g4UMwGWAQGUQ7fO9iJUtk2usGX1HWTAj6V01CyRiXcI=
+	t=1757677029; cv=none; b=V+ZJFDNI7TZAL8UFMzOM7l9xEAxdkSwLNxKTngKnff6O22AVPi3QSQfDyhxpLmAngsYHys7zwta8nLKQ6scw18836XRrsE4xReCDm/yRM5inIIMk2ipOCv337dO6BiTPFluXTDEn1lVVgmH4MqNbTQ9wRJuzHIfXk1LoZ2QxgBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757677027; c=relaxed/simple;
-	bh=ujDEv08XqW7rfLhPYFByABK56QwgaG48UU/oBf6Umk4=;
+	s=arc-20240116; t=1757677029; c=relaxed/simple;
+	bh=XF1bRpc0ObWyS+cD2Ghn6MZhsvCJLu5t2zWEmdPQhM8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=g81wJFd4xv/y6gu550vyOhtGIFC/a+GJwnbe+7pg15a24N5toXBN8+amDMxEaBlo/1mTWRkoxaX1sJM2kUKQhxF5mAcFoSA94jsVfdKjZK5ZHW5pFwsmFIRxcT03nRUUl/h/wzygrhO1DqJ4rLa0nbG/VKoXIenlP6z/qlWmRcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EO+SzWsv; arc=none smtp.client-ip=209.85.221.50
+	 In-Reply-To:To:Cc; b=MxGVtvHdyH7soQzxiPWQeSXjlrDnY9MKwYvcoOwmDUmQmwS+/mcY5eFjbKcuDFz99D3TphjYhPdIXvJHCMniaLevos7A2HSWJwkIReDuCrJjQ0VtoieRQ3RjU2E0zfj9sCtDAlsTV+AHPKtZjb2bOrylawn8Ijyz047A9yGT4uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pb4x58F7; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3dad6252eacso765308f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:37:05 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3dae49b1293so964428f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:37:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757677024; x=1758281824; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757677025; x=1758281825; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=agTs24kXpvfK2NjZ1FaOGupYKSjo+weNDR5D/xFPjyE=;
-        b=EO+SzWsvQUUhOK2jsNK9eUvYhtAfRngmFU+w/lalkCbyqML/fR2/NxU2CJiTLa4p5B
-         NBc7V8hloO8WaNYi2C9CXggUhjpz0Ye3BTSF4WSnjk+bdqTmfBr2iciTKzIq9U9M712R
-         izqWeqRdnkBgkUSlr1FDKgNAqM7uceTvFzSk9ZR6E0qOBIFiHYvHRqsvTA7zadyf56t2
-         hrZdBCnDr2rIyik9+HMuSzHcm1/1ae/OEUCCDr5AHIwquS2a9n7JhhKg5Y2DxyaXfuqu
-         sJ75qsS61AQ8T+owPXTI64e32UmYGQPVX0hVhDViDAeC4gN2591txZAlLTrLIMT5PpOH
-         7h0Q==
+        bh=m/EEUIoM/1Dg6RSe9h1HVQ97ZszxaYd8mFPaG1MGvUo=;
+        b=Pb4x58F7mHJTVc+aZa3VOsXC9SsATGUBb80D1Q1IdW9ixkAf1IIxHL8bQzQnXnn+3/
+         WSPlUDc7yUpg68eCjI6rS0RPW6g7CL6KnLjIj1m4TvPwvvs9Js2YUzHNfsq1KADTUgwx
+         pVhaBFKyqkiKy75WZCCEg968EdpEnb2XoE0x1ovRmDds7MpP8rQ0pAwCoMNbGoSY78fV
+         GdNe7auO/21wdYKWeBDD5+F9mNNQvwqsjRJbUeuycvRqQJw5d7lcjOxiWH6xaUWUOL8T
+         AMiVpjwxMqKMGRZ6DTs8fjId6bpUX077wcoqNnVa3VLFRdfwNs6ioKuvuL6S0WI4StQC
+         81zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757677024; x=1758281824;
+        d=1e100.net; s=20230601; t=1757677025; x=1758281825;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=agTs24kXpvfK2NjZ1FaOGupYKSjo+weNDR5D/xFPjyE=;
-        b=rdJk2nBTX5VVSnFuODxT33TlnB3SNu1XkwH74dSWO2LiS/Z7rbnMg2fD9fBMt8dh97
-         uSNc/bQHkr02pnegz/ORYbMTs40jWq2BPuSyQ9zMevyaG6dTKefzuH+v+vteziY9Ip7x
-         ilVDbIVu7Kpx33bszQekCWZG0/wruaUPdYSOO242s8lOEZjV+9+/QLKIuKA56rx41mpi
-         szAOcESsLfBNdsJg66IAz4hejs8zZRJJsjS7DCtkf43T4iXnWDlThIjrkvcXFicLXDsh
-         GLKbuarMBTbb1MwaSeLXxfNhMPtU4F9XpGrQIFbkKj0Bf5priZN5CvOOBM5XcO4LaAAb
-         W8VA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3ioEcy8ZzZ+PTZ2DNDzyKfZlgHvCHBdLV2cN5QiZRgy/zbtAw+sldIslXBFJoDMJw3yJ86bL6Siyw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRvNHVi7yu64syXGNPyuyQwJbFEZR9DxBl3IXrYoCINd1pWncL
-	Ja9FPF0tCpFg4nmc/3yRPFKaF5fj91eounvUQbTub7ragYmwewXU+0V9
-X-Gm-Gg: ASbGncs7cCKZWE3x/jLKuUI+DoaDK4vvbrPBC6tHk2vgZNdsVMpUGPm4+NV3b9kM86e
-	4LlXtamMyeqrgkl/xQr5RnKeymZ9HruOd/+pgqoM4TL/9HoS9lZ34mLuQ1YUPMjkJW7nYTpwJuL
-	O0duwG4HZ8KfzHMNdawGS8IBQfBlNOV5hA4aKvfZpcvpYk26RlvvFHALBWS3F9Dcu7QQ8z0vHSa
-	vdonqFhXi8SrCSGDGebIqUob1yR9+HTCqY+hc8q2pqcilX5bWo9XM1UsyBtI5vxRUh4wT5CP0Fl
-	EXM2OiH3Ql90jEcBSGpJYjIt63UIkHMA2VgqHaVecw/DqX54sBWGy+gY5IRYVs8yCgSu2lU9dTo
-	DfhH3d6dJy4qWBOkBhyxr+nMyvS58R7nw1w==
-X-Google-Smtp-Source: AGHT+IHOXut1I/Z15yQu3rGyIZEgCBIGbBt3BHVc1SqSraXZwCae3IepHS8Czi07Y3I58t3FyF/w4Q==
-X-Received: by 2002:a05:6000:22c6:b0:3d5:4967:1886 with SMTP id ffacd0b85a97d-3e7657811ecmr2096629f8f.9.1757677023763;
-        Fri, 12 Sep 2025 04:37:03 -0700 (PDT)
+        bh=m/EEUIoM/1Dg6RSe9h1HVQ97ZszxaYd8mFPaG1MGvUo=;
+        b=W+UHxiPPyPldCQZ4jAKQf2oYYSx9ExmecuJN1wjbOhiMxDJceei7n0L88uAQDrAoWX
+         Sj4zDPksNorPL0CCiXDjHHLYrQnoAqmhoWHJTUk+B3JgErS0nfmb7df6B3fiOwzZwlVL
+         AfRwOnxUfL1vlzy1TzhuOaIc0IxfatIEU5jx+jIon//86ZNWsTP1RsFT+fiva4lrK3M0
+         IDLZLSz4eGuXSNuLykF7gogNkbjCRLQNWFbXlJtLHt4Fjvc3dVn4DNYV1ZUwa2I2h/+C
+         7Z27YCFwZsSw2qeUoqym4XqgKbty7gwM5rp1hmbjUE0SoJKFfhT6HEzIUtkmTI08nO6C
+         6brg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGFmeMhWNBi7tlNodyH2R2ki91hYSAnb4SdR/EeuHBKgqtErh/XSmJ2LNTWn7jPE1XIZOPohkOzIMo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM9TUw/OyRU0yslYBPRpcirk8u/K8y5H1pv6sPUKBMKCOBpLmO
+	HRiaNVFamJ0JC1slCqa48ZFh6bABJ8J7lpGa4nSCeGS7vNB6ZCvCRivJ
+X-Gm-Gg: ASbGncuWnaA4ibj2lJ2gu4MXnrO9K0AbeL5ns4QhMHH/yJwcMVLwxf0TEK0l+R1IaZv
+	Lg5YHSo4GyD+rZ8AUgqTqiaMgEmFSDqlUI4LZJIOZMIA60+Bl5K3Mg+IovpTkLDAgH837z/+WLw
+	dhtlh+dKSDIUk5/vYSO9kQSX6UNfb4iW2fyaPLobcYjRY4fmMoovIjmK4Nrf48Du6cw9dk8NDX3
+	tz8A0pKFWTDwI53REiVXD0P8x0cHuNZrEOb5+eq5rK6s4Nh6uGJHq4Aqzu17hGZ4kq1nTq0/j/l
+	olIlqcWpTk8noj7Mgcq0IQ8tIipbluKPzLNtiqWIt9bletectsaNxIONdwWwdpLShiLVDdfhLnK
+	5XEN3QA7UXhDzLH5WSwmVBwgrR+90GV/HffHqguSJPeBM
+X-Google-Smtp-Source: AGHT+IGXH4lqI39nCU0zSwguEl4sL5D7Id34fCpD/KDFlB3EXwld0Rm4kgJwdsT+lGfI6UTzewn3KA==
+X-Received: by 2002:a05:6000:2384:b0:3e7:484a:7428 with SMTP id ffacd0b85a97d-3e765a3dee2mr2289020f8f.60.1757677025106;
+        Fri, 12 Sep 2025 04:37:05 -0700 (PDT)
 Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3e7607d77b2sm6491829f8f.45.2025.09.12.04.37.03
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3e760775880sm6350620f8f.2.2025.09.12.04.37.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 04:37:03 -0700 (PDT)
+        Fri, 12 Sep 2025 04:37:04 -0700 (PDT)
 From: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Date: Fri, 12 Sep 2025 13:36:09 +0200
-Subject: [PATCH v2 2/5] media: include: remove c8sectpfe header
+Date: Fri, 12 Sep 2025 13:36:10 +0200
+Subject: [PATCH v2 3/5] dt-bindings: media: remove support of
+ stih407-c8sectpfe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250912-master-v2-2-2c0b1b891c20@gmail.com>
+Message-Id: <20250912-master-v2-3-2c0b1b891c20@gmail.com>
 References: <20250912-master-v2-0-2c0b1b891c20@gmail.com>
 In-Reply-To: <20250912-master-v2-0-2c0b1b891c20@gmail.com>
 To: Patrice Chotard <patrice.chotard@foss.st.com>, 
@@ -96,49 +97,138 @@ To: Patrice Chotard <patrice.chotard@foss.st.com>,
 Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-clk@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=865; i=rgallaispou@gmail.com;
- h=from:subject:message-id; bh=ujDEv08XqW7rfLhPYFByABK56QwgaG48UU/oBf6Umk4=;
- b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBoxAXbbHsyzdy44VlXwGhO6OZBx2i22mfaSN4x7
- cadnfNuO8eJAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaMQF2wAKCRDnIYpo1BLC
- tRcVD/9nFbywKwcQcdzW5NDPLqob8jPfoJ9m7ujpVDr3PyQE+T5FVIrcEmk4/bqxHw4ticlM4T4
- NrqTTLxdBlLMprrBWIoJGP+hOHZzUchcn+bIBsjGQJU5mD8uPBYNOR4sWGOCMRrWB/q/Jl8h1cf
- bHbfaEgEPAZZpoYgAStYq6g7nfdvh/UjXZRC5y1Pl5IN5UtHNLWxXWqQZxXmNBHBJtLfr9p0w0y
- x0RxbvnPWydU3JXQpDODyBkbLyyOcAazoBLyWEe/uzb1OW0pjnuMYjdVSwfL2iNCQatG9YWuxNc
- 64Fj8AgKA3qIVWD3aqbb8qEE4MiEpxbY3vCmHFLaNalh7pO8agSXQainf0aOlzuOEq54Cg2+Mfm
- roXQfRybIa6XPZsqJrCRJHtwzLwyMH8inDRdx/gwIJlEpWqFgn5wRvU93dWCPf1puhx1T50Lf9F
- YhY8aGfrr/7vVUXRf2zE794A69xHzxEaz/7BZXKL6m9J5Hc0IbsXjESeQBbso/DpMTr0iAd+HsV
- Cg6sXBnL/Iq3RojEWpjZuczYT9helpbhXkX0ighKcf4AKZQNGeuxpMj9FmEduIsasg4oenfBMA/
- wjNBXGCgd1CL1ATztFuRN6O/l+w6fbLfA9andVHKAd6lDgdSn02XIbSuqVJHZ4q/DFb+ML+dJDp
- D+RHMnDP9W2ofdg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4940; i=rgallaispou@gmail.com;
+ h=from:subject:message-id; bh=XF1bRpc0ObWyS+cD2Ghn6MZhsvCJLu5t2zWEmdPQhM8=;
+ b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBoxAXb1svCIRowE1g1QQat4UmFM71bQvXe2rD2+
+ KGnQsQyQoWJAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaMQF2wAKCRDnIYpo1BLC
+ tf9jD/99nXzgsJvUgyHGXoUSh9VtOb++l1XyokxLYZyOPTjK/t8F7yNgTE5+yGXrXU6ijRF6czt
+ 1eg3RfPWzUE+6Ze3+SSWwkU9Qjg8ciVueA45rXmHKsXLYhsrXsMRmpaYFI6YHBi12Ua5N9vmBMN
+ cNcM5DGxej4+im0bPQXaqA9+YavT0sqq3PbbJGcVKeOtjzCR4C82KsztCxwqVcZVx5aeu/0ZMkL
+ A9q77NMlzD7IcuEFxCk9gRoy/HFZf0nPjVu1rFWVGrGZmDrKbNkgF1J69AL7MXnYnGuStvjnJn3
+ zpkdWfcd0VSIK/imbwY+uHqwzCaR85OWLwKhXf2i1zZUH6CWJ1A2FOAFSW8c8+zyC2gh1lgVc90
+ HN+csTeU381e1/unlSBPNSf5kRinTin7r0xwiRBk/7HvKegf6CwUPX3gkNzn/rVtpaaBNwm1nAh
+ R9Ectu0AMLYx3SNnGRxaGRUj2JlFRYX68GUzED1FZzIZqKCVCch0U2vocPS0RhBtc7/6f8pbOpA
+ X8sqMom7EqZ3Wqr5Cnibb5Zu1z5vAERKrB0BybfEw8mh//W8j8xTckKFEP4ZQ/rcME2D/EM3i8N
+ xMyClDsV3lfKBFqjrAhH3HZZzfUKrz9qEwk4iTaaF9sGZpu9ibnJSk+0J0nHAc/f8UVIcOAZ7Tj
+ IjMLxYFYIiWADeQ==
 X-Developer-Key: i=rgallaispou@gmail.com; a=openpgp;
  fpr=20997BF613E7EF6D5FFDBA2FE7218A68D412C2B5
 
-Driver is not used anymore.  Remove header file.
+Remove files documentation from stih407-c8sectpfe driver.
 
 Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 ---
- include/dt-bindings/media/c8sectpfe.h | 13 -------------
- 1 file changed, 13 deletions(-)
+ .../admin-guide/media/platform-cardlist.rst        |  2 -
+ .../bindings/media/stih407-c8sectpfe.txt           | 88 ----------------------
+ 2 files changed, 90 deletions(-)
 
-diff --git a/include/dt-bindings/media/c8sectpfe.h b/include/dt-bindings/media/c8sectpfe.h
+diff --git a/Documentation/admin-guide/media/platform-cardlist.rst b/Documentation/admin-guide/media/platform-cardlist.rst
+index 1230ae4037ad551087d4cddc8a02eab5eac2be71..63f4b19c3628f3488fd2ccd1a6dab385d46b2503 100644
+--- a/Documentation/admin-guide/media/platform-cardlist.rst
++++ b/Documentation/admin-guide/media/platform-cardlist.rst
+@@ -18,8 +18,6 @@ am437x-vpfe        TI AM437x VPFE
+ aspeed-video       Aspeed AST2400 and AST2500
+ atmel-isc          ATMEL Image Sensor Controller (ISC)
+ atmel-isi          ATMEL Image Sensor Interface (ISI)
+-c8sectpfe          SDR platform devices
+-c8sectpfe          SDR platform devices
+ cafe_ccic          Marvell 88ALP01 (Cafe) CMOS Camera Controller
+ cdns-csi2rx        Cadence MIPI-CSI2 RX Controller
+ cdns-csi2tx        Cadence MIPI-CSI2 TX Controller
+diff --git a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt b/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
 deleted file mode 100644
-index 6b1fb6f5413b8c5fbcf7dc2d786468ee3428caaf..0000000000000000000000000000000000000000
---- a/include/dt-bindings/media/c8sectpfe.h
+index 880d4d70c9fd741ac13101721ced18f04336c373..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
 +++ /dev/null
-@@ -1,13 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0 */
--#ifndef __DT_C8SECTPFE_H
--#define __DT_C8SECTPFE_H
+@@ -1,88 +0,0 @@
+-STMicroelectronics STi c8sectpfe binding
+-============================================
 -
--#define STV0367_TDA18212_NIMA_1	0
--#define STV0367_TDA18212_NIMA_2	1
--#define STV0367_TDA18212_NIMB_1	2
--#define STV0367_TDA18212_NIMB_2	3
+-This document describes the c8sectpfe device bindings that is used to get transport
+-stream data into the SoC on the TS pins, and into DDR for further processing.
 -
--#define STV0903_6110_LNB24_NIMA	4
--#define STV0903_6110_LNB24_NIMB	5
+-It is typically used in conjunction with one or more demodulator and tuner devices
+-which converts from the RF to digital domain. Demodulators and tuners are usually
+-located on an external DVB frontend card connected to SoC TS input pins.
 -
--#endif /* __DT_C8SECTPFE_H */
+-Currently 7 TS input (tsin) channels are supported on the stih407 family SoC.
+-
+-Required properties (controller (parent) node):
+-- compatible	: Should be "stih407-c8sectpfe"
+-
+-- reg		: Address and length of register sets for each device in
+-		  "reg-names"
+-
+-- reg-names	: The names of the register addresses corresponding to the
+-		  registers filled in "reg":
+-			- c8sectpfe: c8sectpfe registers
+-			- c8sectpfe-ram: c8sectpfe internal sram
+-
+-- clocks	: phandle list of c8sectpfe clocks
+-- clock-names	: should be "c8sectpfe"
+-See: Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-- pinctrl-names	: a pinctrl state named tsin%d-serial or tsin%d-parallel (where %d is tsin-num)
+-		   must be defined for each tsin child node.
+-- pinctrl-0	: phandle referencing pin configuration for this tsin configuration
+-See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-
+-
+-Required properties (tsin (child) node):
+-
+-- tsin-num	: tsin id of the InputBlock (must be between 0 to 6)
+-- i2c-bus	: phandle to the I2C bus DT node which the demodulators & tuners on this tsin channel are connected.
+-- reset-gpios	: reset gpio for this tsin channel.
+-
+-Optional properties (tsin (child) node):
+-
+-- invert-ts-clk		: Bool property to control sense of ts input clock (data stored on falling edge of clk).
+-- serial-not-parallel	: Bool property to configure input bus width (serial on ts_data<7>).
+-- async-not-sync	: Bool property to control if data is received in asynchronous mode
+-			   (all bits/bytes with ts_valid or ts_packet asserted are valid).
+-
+-- dvb-card		: Describes the NIM card connected to this tsin channel.
+-
+-Example:
+-
+-/* stih410 SoC b2120 + b2004a + stv0367-pll(NIMB) + stv0367-tda18212 (NIMA) DT example) */
+-
+-	c8sectpfe@8a20000 {
+-		compatible = "st,stih407-c8sectpfe";
+-		reg = <0x08a20000 0x10000>, <0x08a00000 0x4000>;
+-		reg-names = "stfe", "stfe-ram";
+-		interrupts = <GIC_SPI 34 IRQ_TYPE_NONE>, <GIC_SPI 35 IRQ_TYPE_NONE>;
+-		interrupt-names = "stfe-error-irq", "stfe-idle-irq";
+-		pinctrl-0	= <&pinctrl_tsin0_serial>;
+-		pinctrl-1	= <&pinctrl_tsin0_parallel>;
+-		pinctrl-2	= <&pinctrl_tsin3_serial>;
+-		pinctrl-3	= <&pinctrl_tsin4_serial_alt3>;
+-		pinctrl-4	= <&pinctrl_tsin5_serial_alt1>;
+-		pinctrl-names	= "tsin0-serial",
+-				  "tsin0-parallel",
+-				  "tsin3-serial",
+-				  "tsin4-serial",
+-				  "tsin5-serial";
+-		clocks = <&clk_s_c0_flexgen CLK_PROC_STFE>;
+-		clock-names = "c8sectpfe";
+-
+-		/* tsin0 is TSA on NIMA */
+-		tsin0: port@0 {
+-			tsin-num		= <0>;
+-			serial-not-parallel;
+-			i2c-bus			= <&ssc2>;
+-			reset-gpios		= <&pio15 4 GPIO_ACTIVE_HIGH>;
+-			dvb-card		= <STV0367_TDA18212_NIMA_1>;
+-		};
+-
+-		tsin3: port@3 {
+-			tsin-num		= <3>;
+-			serial-not-parallel;
+-			i2c-bus			= <&ssc3>;
+-			reset-gpios		= <&pio15 7 GPIO_ACTIVE_HIGH>;
+-			dvb-card		= <STV0367_TDA18212_NIMB_1>;
+-		};
+-	};
 
 -- 
 2.51.0
