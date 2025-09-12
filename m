@@ -1,171 +1,121 @@
-Return-Path: <devicetree+bounces-216356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94037B547BB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:34:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58ED6B547ED
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82078162F2A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:34:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1079B16B9CD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3072728507B;
-	Fri, 12 Sep 2025 09:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDl2A0LO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1548528135B;
+	Fri, 12 Sep 2025 09:35:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F9E2848B4;
-	Fri, 12 Sep 2025 09:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C1D27280F;
+	Fri, 12 Sep 2025 09:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757669507; cv=none; b=UKZIA24I3cgOiR5xHITFq3td6ODh/lt5xPLFJQ++49ANkIiaOES2EGOgDtfIJxTJriAkU6LLZwARKPefdt67vDKXDrhTqxPpY3ugHqeflgWfPnZKe7FmJvt82CstGHTy22fUV5daefjy7tqFoncbF+Tl8qDLxo7JYYFNN1KR/fc=
+	t=1757669742; cv=none; b=mceI9YHR3fT71lyprm2ZELgT74rWJo46HBZI7HTIi6YD8pLIhsZAlxB6CeOs58aDUDX2yU1YbRadUXK6agOGGheIasSegvkZUwOz40/NkHCXz0QS97SRglAn2OzeJ50JY9AhPUfYPrj5Gqb171imttXuGNLytGVtA0Nj1AsC0Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757669507; c=relaxed/simple;
-	bh=cZZSj/PLAmvPikniIesMdJfhqh3VOpUH71TpGrecZ8M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tIUScZ6Gzx9bxdDLH7qle5FByA8HOy260Awo0S7Oxp4PHfo+Ao6tQmigQBbIokDw0n6b0hp6GeL5M5lk5HzJ2BvuStC1kygrHoCX5vof//FsXAzmY+OrKjvhDBl4NyqVaa0zCR/EMPEbydokKZyLJO15Mdm+U2v+NSDoqSEsKsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDl2A0LO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB683C4CEF1;
-	Fri, 12 Sep 2025 09:31:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757669506;
-	bh=cZZSj/PLAmvPikniIesMdJfhqh3VOpUH71TpGrecZ8M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oDl2A0LOXO/1X2zNKv7aRnP0NHdkbAsbDDgwtZzvwmo12fpeFM2E3/tK2+Vtp6jDf
-	 LtHjqH3FhqX9XCd49ZEoi9d2wFua1A1xl2NpXDXII2TJgNe2FaEGcY3H9R3K+d/kSk
-	 i5GbpzjLt0Me2HD69Wbc5uGIc3TwgDS6JZFlUf4XXoZCI/2uPJn9w8cEPAn3NjkatI
-	 mrNqigkcd6DbPU1UEsK3MA+M2bqLjMfjb8ArXgRSIyAq3CjGnxkE8s7LGICh/mIf7j
-	 5pUu4Qe144CAGGymifmDXQ3yvwNpleByOIrvrEZ2XoQVUNyLe8+LbR96tJeBNXKw/y
-	 Se8H2lBXfymbQ==
-Date: Fri, 12 Sep 2025 11:31:43 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hector Martin <marcan@marcan.st>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Mark Kettenis <kettenis@openbsd.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sasha Finkelstein <fnkl.kernel@gmail.com>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	van Spriel <arend@broadcom.com>, Lee Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Michael Turquette <mturquette@baylibre.com>, Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>, 
-	Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, 
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev, linux-gpio@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-bluetooth@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	linux-clk@vger.kernel.org, dmaengine@vger.kernel.org, linux-sound@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 20/37] dt-bindings: pwm: apple,s5l-fpwm: Add t6020-fpwm
- compatible
-Message-ID: <ahxdf3l6zvmjp2nlgklg3go7biaimuz7qh5upnhohrrbrg62e6@gmi3pmbccwwe>
-References: <20250828-dt-apple-t6020-v1-0-507ba4c4b98e@jannau.net>
- <20250828-dt-apple-t6020-v1-20-507ba4c4b98e@jannau.net>
+	s=arc-20240116; t=1757669742; c=relaxed/simple;
+	bh=xYeK3h6MGi3CXQpHgY6UYQw/twkgBe+IwSqxaTRTghw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rU+GeaPnZ5ihGl1Hd7ggtk6rQfixkzFM4GnnuFYKX9OQEuLQtTdtDdbkhR+wg3YlOenBhtdGjrHtm02sMPCRPJJn/v3XkA5MlRhi07yzwF5eq1j406cLourwozeseFiJRsorf43a7lHnRr/WdYVNw0SPWINIy8YX5/OiN5Kj85w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
+	by app2 (Coremail) with SMTP id TQJkCgAHppQ+6cNoQsjOAA--.23710S2;
+	Fri, 12 Sep 2025 17:34:57 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: ulf.hansson@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jszhang@kernel.org,
+	adrian.hunter@intel.com,
+	p.zabel@pengutronix.de,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	xuxiang@eswincomputing.com,
+	luyulin@eswincomputing.com,
+	dongxuyang@eswincomputing.com,
+	zhangsenchuan@eswincomputing.com,
+	weishangjuan@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	caohang@eswincomputing.com,
+	hehuan1@eswincomputing.com
+Subject: [PATCH v2 0/2] Add support for Eswin EIC7700 SD/eMMC controller
+Date: Fri, 12 Sep 2025 17:34:50 +0800
+Message-ID: <20250912093451.125-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hd4ybrkt7tr5jevb"
-Content-Disposition: inline
-In-Reply-To: <20250828-dt-apple-t6020-v1-20-507ba4c4b98e@jannau.net>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgAHppQ+6cNoQsjOAA--.23710S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZF45Jr1xurWDXrWkuF17Jrb_yoW8Xr4xpF
+	W5KryfGrs8CryxZFs3G34v9a4fXw4xWry5Kr43J3W8X3yDZF1jqrWIka4YqFW3Jr4xXws8
+	Z3y0gF1fCa1Yv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 
+From: Huan He <hehuan1@eswincomputing.com>
 
---hd4ybrkt7tr5jevb
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 20/37] dt-bindings: pwm: apple,s5l-fpwm: Add t6020-fpwm
- compatible
-MIME-Version: 1.0
+Updates:
 
-Hello,
+  Changes in v2:
+  - Delete the previous separate driver and yaml binding file
+  - Update snps,dwcmshc-sdhci.yaml to add support for Eswin EIC7700
+    - Add the new compautible string: "eswin,eic7700-dwcmshc"
+    - Add new properties: clock-output-names, '#clock-cells',
+      drive-impedance-ohm, eswin,hsp-sp-csr and eswin,syscrg-csr
+    - Add customized reset-names for EIC7700 platform
+  - Update sdhci-of-dwcmshc.c to add support for Eswin EIC7700
+    - Add a new struct eic7700_priv to hold Eswin-specific data,
+      including clock phases, register mappings, and drive
+      impedance configuration
+    - Implement EIC7700-specific sdhci_ops
+      - set_clock: support core clock configuration with phase delay
+      - reset: add PHY reset and configuration
+      - set_uhs_signaling: support HS400 DLL lock
+      - platform_execute_tuning: implement delay line tuning and phase
+        code adjustment
+    - Add initialization routine (eic7700_init)
+    - Integrate the new platform data and ops into the driver's match table
 
-On Thu, Aug 28, 2025 at 04:01:39PM +0200, Janne Grunau wrote:
-> The PWM controller on Apple's M2 Pro/Max SoCs behaves in the same way as
-> on previous M1 and M2 SoCs. Add its per SoC compatible.
->=20
-> At the same time fix the order of existing entries. The sort order logic
-> is having SoC numeric code families in release order, and SoCs within
-> each family in release order:
->=20
-> - t8xxx (Apple HxxP/G series, "phone"/"tablet" chips)
->   - t8103 (Apple H13G/M1)
->   - t8112 (Apple H14G/M2)
-> - t6xxx (Apple HxxJ series, "desktop" chips)
->   - t6000/t6001/t6002 (Apple H13J(S/C/D) / M1 Pro/Max/Ultra)
->   - t6020/t6021/t6022 (Apple H14J(S/C/D) / M2 Pro/Max/Ultra)
->=20
-> Note that SoCs of the t600[0-2] / t602[0-2] family share the
-> t6000 / t6020 compatible where the hardware is 100% compatible, which is
-> usually the case in this highly related set of SoCs.
->=20
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
->  Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml b/=
-Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> index 142157bff0cd851c85fbf0132d734d470c5a0761..04519b0c581d0e9fb1ae6aa21=
-9a4e850027de6a2 100644
-> --- a/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
-> @@ -17,8 +17,9 @@ properties:
->      items:
->        - enum:
->            - apple,t8103-fpwm
-> -          - apple,t6000-fpwm
->            - apple,t8112-fpwm
-> +          - apple,t6000-fpwm
-> +          - apple,t6020-fpwm
->        - const: apple,s5l-fpwm
-> =20
->    reg:
+  - Link to v1: https://lore.kernel.org/all/20250516091259.774-1-dongxuyang@eswincomputing.com/
 
-The patch is fine for me. There was no merge plan sketched out in the
-cover letter and I don't spot any dependencies this patch is a part of.
-So I applied this patch to
+Huan He (2):
+  dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin EIC7700
+  mmc: sdhci-of-dwcmshc: Add support for Eswin EIC7700
 
-	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for=
--next
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  81 +-
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 770 ++++++++++++++++++
+ 2 files changed, 845 insertions(+), 6 deletions(-)
 
-as 6.18-rc1 material.
+-- 
+2.25.1
 
-Best regards
-Uwe
-
---hd4ybrkt7tr5jevb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmjD6HwACgkQj4D7WH0S
-/k5dDwf/ZhdoZ04wcFscsQjfQPV9sY5Kzs8OxPgL+m4AV85SDwzSuZybeACCfsL2
-U+r2uMlK/Q21DJwXbTJjmnyAe19XWYtcvtUfKd50OAsoPnpijd6XN/VzkpPwSI1v
-MM1rZmYLCNhucLOPo87uqSwtHmOGOiHGefUgolr3pa9kl2VjNfe2U9byQTQegxaK
-CxeDN6bZEPo8n7PoU1mmnwFDouEZD1xzQt3FdvPpL2XORk2Ye5r89n1q02uTLbkj
-EsQ7IOSbpp2UDyIkxF0ESV6nWtpLn7AIB0rNABUH7JZA9FQ29vzAc9a3FRiLJsUa
-2cvxXsdWOdhpncFiR4L1mRq39BoLAQ==
-=7x/6
------END PGP SIGNATURE-----
-
---hd4ybrkt7tr5jevb--
 
