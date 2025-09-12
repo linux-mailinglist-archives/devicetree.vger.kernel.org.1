@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-216519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2539B550F1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF591B550F7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:21:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1149F7C7796
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:21:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A76E57C6D61
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A60F3112D3;
-	Fri, 12 Sep 2025 14:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E42731354B;
+	Fri, 12 Sep 2025 14:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GlX1wHAd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2Q/sAge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 120813128A3
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DDB3115AC
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757686828; cv=none; b=F8AL84WT0GrE2ODwIng3LK6Cunkqu0LNWzyuPeOmg4gnI4STc5L2zHrrr2BoC/pJNFJkCUQr9xGMGkg9kyDYLEoBygM+RL1Oz0WqOHIDFSY9APNhMHLwDw5Kz8qsIxyKaKlARIWWyGXrMLm+wQAKirtq8ht992ggcbc/KEhegdw=
+	t=1757686836; cv=none; b=NycbSNQ0Bbh7RzMZkI3jALgeAMap+4QJrYuuWUERwOxs2R9f37oget1Fo63Yrl5RIMNOU21epmYpsVKnPOl0SxonSHc7Cz//Zr5lR85ynRFKvvuK2chHrbvJl6yZB5J4+SltW0ZGH3Kzvd/G+C3SlcwX2/YDPzNjm9So4MWuS20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757686828; c=relaxed/simple;
-	bh=ywoSao/pIMcsJJINwYGsAstaDWlkDRlAqJDHcceNgM0=;
+	s=arc-20240116; t=1757686836; c=relaxed/simple;
+	bh=2w0FFD+KJCS9EuSPd15eTcwD4ELNwuxCIigJRl2uqjo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G0GSEaVYn5QqlJGjg36mv6qfY9LL3j6vmsM4A5vcfKHa2fMOK6N62NRSp+bmqkO8L7/4YjKNq5nbn0uEy2unGP5LlOJi4Tn8lZjasSDjLWRdtRWSiy1O78sSLa+0QJFOpZYXlQXrF8khHtD5OPPYAUP4etkRoHkI1+lvun3CITU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GlX1wHAd; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=agr9PWTSPvOUOHIKyG7HtDpY8NtZCu6hKyPRhIM+RC1TyWqT9ZQfLel9fd7zVWtKj3Cu7r5YdgDH1w1AF97XuQptAdV9abgBuzEiR862uBexo5mTODhfG+IMpgYpEndbV1/72b/sC+pUN5Y2nR1deyIEkOFZtM6v2q+CEo2p+Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g2Q/sAge; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45de60d39b7so14626905e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:20:25 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45dd513f4ecso13166945e9.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:20:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757686824; x=1758291624; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757686833; x=1758291633; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ehDN8c0/F5eZ831IVZll96+NWY7i1QcRKUtRMZjXuP0=;
-        b=GlX1wHAd+V2nAZ/nKC/Dmj3NhNoYGsNIHbZMVGgp237l9/UyomdS6d/SKxsEeAYQ/j
-         3ghdKGOmb5wMpfeokUnmM6JVf/ncMdoGj5duRf81taphxVXUt3UWLdQIhLueldyx5TvJ
-         uSiDGqRP8B16sLIQdf77sH2M2PPcglKpWFr21h7Bnzk0Z1G4BgAbeSMRW67VjVrg30A6
-         Y9E3217mZVcWzkmZO2UuVxwkCzf7HdXl4K4OeOtTK0JQnw9B9xFyzMdvWhmw/fA/PwZv
-         W8MHinFYlNDyRQEfyzKbu9unvRITL7ExlO24AiZ7eX9J9U/ZX7fykQfV54mEVHmuLGKf
-         X1pQ==
+        bh=tdtO58sGe5Xc/wBa6IQvluyE3D0fIIRJts8BH3BBGAI=;
+        b=g2Q/sAgeX/npTzDfUj9TbfuFC2yQ1zZ+ZgmI1dpq8xP8e3O2FzekiAH+bOXeivWvR9
+         nXUrs4bPe9KBSXM1XpCcsBV7RU6+9mOYmIFepibvjkJkVZfaY2gEGmEDRmABABaFonqg
+         RVWXzNWRcJpUljg/MiNHIOzmlZVAmX9mIrtMH3x6TI5A9STjj14DC1aSE7Jlp4GjwloZ
+         7TtInFbwlXxoEqucvu6t2Wzex6xSwaW8YApqosCvM577758ooeD8m6VTOkH0ZitKH6RR
+         6drxdX5MwaTh6MZ8w60FFlgJXCohwBoqdzNOIiZVK+dr3JL0OwRAi1841lzf9XzKrxQR
+         9XiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757686824; x=1758291624;
+        d=1e100.net; s=20230601; t=1757686833; x=1758291633;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ehDN8c0/F5eZ831IVZll96+NWY7i1QcRKUtRMZjXuP0=;
-        b=OCYHbs/5b9ec5oQXefWP0l6NtfhvBGl40nGS/GoD/AS7D3isxY+4jW+k0S9Q2f4Eig
-         qNgYllMZkYNCA89htTI7KBYeUGpF4d1zPUYWQZqa+WC8YCkTl0/cUSc2aGfnR5UdBpWN
-         TzNW2CFg7Uumh4OUGbepAB85SFaYHG/I+yIEii7viSZLZoE+q/sTNzTWrY8ce75aLFFQ
-         5ZJL9OE5X1Rx882X8oCdOOBIIaWr6t6utJHkkbZhO+87KrggJ2BoWIzm6f5ZoD4HEHVA
-         4HgWgunKAlJAuR7psQFV6/2aT+50NwJq419tDwQXDlSahkPs9ldECVjw2wJ8fS8Tf9f4
-         OeFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFYyQpHNLdJUfVLbM+gO+P+OnRivrZytjQlFvXnmlP6d36kpH2EVqQG9z4tFhPrh5TtxfCBv3SnTiE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgiThJbc+vZeE4RGel/IWllysrUynNfRf8epWPhB7stXvcDUke
-	bCdtJg4dQ0LLY9rRoCfZc4pf1E6Wntpg5cQWmBrxJrVF+GPDF2I1SqA7
-X-Gm-Gg: ASbGnct4ltWJOjh2rdhPLrmskCaQ9rImfFuv4cINHrCMy9Cs+/PXNP51Ph3gbg1feyY
-	G/2DtgMx4jx0qEV71fVW41zsuZXiaZuscldk1hSF8ulr1ov8IlyP0WFifDjiOe0qKnh9At/sWvP
-	8H2W71xaOWz2jKOoQIiy80JKHH6aU3mjxoFIxAIk/SNJPb4kh5GCnEYl4uesg6YwO4z0vE1gA+R
-	wG96f33g3HONCPktln4JiLfZIHr8HbXTdKeYu6I+/144/UX3BdBC3GssEOGk7WznN1jXx2btYTO
-	XRWto9b9GtAfE2TCjsp/d/qcJlW7m/+a8eBWE5wBAgJAGyDK0Cp9oAfrZt2Wp5PWMTZDIeFLh1l
-	fxxqrOU6qIq78+VzneSHn3NlLvbpC808=
-X-Google-Smtp-Source: AGHT+IHtSSdiDkUB898paY6KoQvNDE3OgBxVTaH21P4AnZRGobWI8BJOt5uErOIC2i3WhKinxdthWA==
-X-Received: by 2002:a05:600c:4585:b0:45c:8e6d:a45f with SMTP id 5b1f17b1804b1-45f211caa28mr37824695e9.5.1757686823899;
-        Fri, 12 Sep 2025 07:20:23 -0700 (PDT)
+        bh=tdtO58sGe5Xc/wBa6IQvluyE3D0fIIRJts8BH3BBGAI=;
+        b=gtpUY7a/+YLD78XXP/fUREzpa/kaGFbZ/O8XnZV/2XuHDa+Kvxs6K9u46Y++Jkhkki
+         QHIzT8B/cdR0ikdI4y7GBtSyfIj4J/BRpKS6DRHqd6UJ6v3eNd/uLuEm/isfDx9lFABN
+         ZFymCjxxIJJhnzGYr+kuk8Jl5FJNK52sy4l/5YVdjninx/LzDInQrNeWkK6pce/Pq6B8
+         2pXRY0avAU6/lklGasIk5x4HuctCbY2lndkzAZIUWz+RDk6FO23kYL6/dGRg4/hulGYD
+         4CJe+b+MjzVjJEwHHIqA3ibgrtwNQKVvQpibbE7Pbi0rxEKgggonU1Y0Xgm7uYlrOwA2
+         w8Tw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/OelcikrKpmdtEW6Iiv5MVD+ujZQUvGcx+np/WEhZdI+3M/+2w5e1XgGmIsKR79+9YDiTCCQvUjEO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfSZdt53MscfagYApsvUpyldXohNq+np90aXZ1qKRAunR2m8P5
+	Ij/bJiqQ/T6PH2N7gA9ttTC+VgAIoGKfB6+cK1LN6vEuwjVnGXpULxph
+X-Gm-Gg: ASbGncshQCNgLx/sbfomrYoRc7cZ5kH1bFmn9U0G+Q2CRUFL/WLRMAfBGEGUTZnT33y
+	uJEDb78EotcmVsekYavjmH+AjpxA1jehYMrAaFpq35n10i77066kqOkvafisst98Vpmbf7CzHf0
+	eP7MPYnZu6u+wOgP7uabClao/uBfzz/wxNN5HJTHtOY2PqPJdURh2MW2XnXbt1B8MrfFusXGxLm
+	jNWtuxmnr7FYP6EnKRXGfg8Kb/Ns8PWHeL5nZ0/q93KvkT9BaFD6fd8mzkxkU0PJtvUqKxmSJFe
+	Qj/gI8xwB/kPU6WHhj/+STS+BTVdW/2v3eX6IsCUDOaooJmRB63b9W/JMYyDhQzAjyILAElauhe
+	bonG95KEr7ZaDvUenWSYo66tKBvOlLisDzjhNbhhQXA==
+X-Google-Smtp-Source: AGHT+IFyYXkkR4g3z3IADJ2sI1GciXV959gj5Co89s2pEoz3DeE+MIgrxhl6XFjG4+ecyKdiYbDvCw==
+X-Received: by 2002:a05:600c:4454:b0:45b:97d9:4127 with SMTP id 5b1f17b1804b1-45f211e53femr32589265e9.1.1757686832393;
+        Fri, 12 Sep 2025 07:20:32 -0700 (PDT)
 Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e03729c76sm64384065e9.6.2025.09.12.07.20.19
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e03729c76sm64384065e9.6.2025.09.12.07.20.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 07:20:21 -0700 (PDT)
-Message-ID: <e06e9568-1129-4262-83a9-ab652101831a@gmail.com>
-Date: Fri, 12 Sep 2025 16:12:40 +0200
+        Fri, 12 Sep 2025 07:20:31 -0700 (PDT)
+Message-ID: <947b1c19-e218-4478-bb9e-8b6174815f05@gmail.com>
+Date: Fri, 12 Sep 2025 16:12:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/38] arm64: dts: mediatek: Fix node name for SYSIRQ
- controller on all SoCs
+Subject: Re: [PATCH 23/38] arm64: dts: mediatek: mt7986a: Fix PCI-Express
+ T-PHY node address
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  linux-mediatek@lists.infradead.org, robh@kernel.org
 Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
@@ -108,7 +108,7 @@ Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
  linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  linux-sound@vger.kernel.org
 References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-23-angelogioacchino.delregno@collabora.com>
+ <20250724083914.61351-24-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -154,82 +154,57 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20250724083914.61351-23-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250724083914.61351-24-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 24/07/2025 10:38, AngeloGioacchino Del Regno wrote:
-> The sysirq has "intpol-controller" as node name, but being this an
-> interrupt controller, it needs to be named "interrupt-controller"
-> as per what the bindings (correctly) expect.
+> The PCIe TPHY is under the soc bus, which provides MMIO, and all
+> nodes under that must use the bus, otherwise those would clearly
+> be out of place.
 > 
-> This commit brings no functional changes, but fixes a dtbs_check
-> warning.
+> Add ranges to the PCIe tphy and assign the address to the main
+> node to silence a dtbs_check warning, and fix the children to
+> use the MMIO range of t-phy.
 > 
+> Fixes: 963c3b0c47ec ("arm64: dts: mediatek: fix t-phy unit name")
+> Fixes: 918aed7abd2d ("arm64: dts: mt7986: add pcie related device nodes")
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 Applied, thanks
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt6755.dtsi | 2 +-
->   arch/arm64/boot/dts/mediatek/mt6779.dtsi | 2 +-
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 2 +-
->   arch/arm64/boot/dts/mediatek/mt6797.dtsi | 2 +-
->   4 files changed, 4 insertions(+), 4 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6755.dtsi b/arch/arm64/boot/dts/mediatek/mt6755.dtsi
-> index b55d3fac9bd4..8da5c0a56a02 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6755.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6755.dtsi
-> @@ -98,7 +98,7 @@ timer {
->   			     (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
->   	};
->   
-> -	sysirq: intpol-controller@10200620 {
-> +	sysirq: interrupt-controller@10200620 {
->   		compatible = "mediatek,mt6755-sysirq",
->   			     "mediatek,mt6577-sysirq";
->   		interrupt-controller;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> index 5c579e88e749..70f3375916e8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-> @@ -138,7 +138,7 @@ ppi_cluster1: interrupt-partition-1 {
->   
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> index 559990dcd1d1..3211905b6f86 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> @@ -428,16 +428,16 @@ pcie_intc: interrupt-controller {
+>   			};
 >   		};
 >   
-> -		sysirq: intpol-controller@c53a650 {
-> +		sysirq: interrupt-controller@c53a650 {
->   			compatible = "mediatek,mt6779-sysirq",
->   				     "mediatek,mt6577-sysirq";
->   			interrupt-controller;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> index 38f65aad2802..58833e5135c8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-> @@ -404,7 +404,7 @@ pwrap: pwrap@1000d000 {
->   			clock-names = "spi", "wrap";
->   		};
+> -		pcie_phy: t-phy {
+> +		pcie_phy: t-phy@11c00000 {
+>   			compatible = "mediatek,mt7986-tphy",
+>   				     "mediatek,generic-tphy-v2";
+> -			ranges;
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> +			ranges = <0 0 0x11c00000 0x20000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+>   			status = "disabled";
 >   
-> -		sysirq: intpol-controller@10200620 {
-> +		sysirq: interrupt-controller@10200620 {
->   			compatible = "mediatek,mt6795-sysirq",
->   				     "mediatek,mt6577-sysirq";
->   			interrupt-controller;
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6797.dtsi b/arch/arm64/boot/dts/mediatek/mt6797.dtsi
-> index f2d93bf6a055..8ac98a378fd6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6797.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6797.dtsi
-> @@ -228,7 +228,7 @@ apmixedsys: apmixed@1000c000 {
->   		#clock-cells = <1>;
->   	};
->   
-> -	sysirq: intpol-controller@10200620 {
-> +	sysirq: interrupt-controller@10200620 {
->   		compatible = "mediatek,mt6797-sysirq",
->   			     "mediatek,mt6577-sysirq";
->   		interrupt-controller;
+> -			pcie_port: pcie-phy@11c00000 {
+> -				reg = <0 0x11c00000 0 0x20000>;
+> +			pcie_port: pcie-phy@0 {
+> +				reg = <0 0x20000>;
+>   				clocks = <&clk40m>;
+>   				clock-names = "ref";
+>   				#phy-cells = <1>;
 
 
