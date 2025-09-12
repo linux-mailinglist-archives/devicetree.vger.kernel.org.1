@@ -1,273 +1,136 @@
-Return-Path: <devicetree+bounces-216529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EFA7B55130
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:24:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A89C1B55123
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 947751CC222C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:24:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CE225A732E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549BB31DDB2;
-	Fri, 12 Sep 2025 14:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XLCKDDoI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB6131A576;
+	Fri, 12 Sep 2025 14:21:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF3A531DD87
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8A531A058;
+	Fri, 12 Sep 2025 14:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757686919; cv=none; b=LkP6Pk/8MbKA09omdV4ULjiW1D5RsjngWhah+woCIdslUBojvxUz2uP+imSiGE+fbBmvPBivQy3BtiUxtZuQQp+DrgTWGkSUjxj1fS/nB9DOUIkwh4dv0vpR86L0UyMwkwpHFzBr3JMwjUQCsozDgRvAIs+yYNysMSceOPQWv8A=
+	t=1757686894; cv=none; b=TuNasoTZ36y5GL3OSaiMNhOPYAv+fu5rlRJLdSbfQH2TbNi1CdDv3J80hJBdTAj5XMQESwkeah24LIed2p+Nlwt6sPiT7IZZpcLkCa3Fq4AXGs0+okGFTB/tIMl6V/8kF8muiuyQNLLbcTV2RCmhxngdIRl24OZl/KR/NfUmHZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757686919; c=relaxed/simple;
-	bh=siDtpOyPHlJogKpoK1uQHvD+1Dw/J9WYVT9JVE2rw54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FPulmoe3AXugcxfbVEROEuF93X4Kt9F0syjU12K/Aq2+raDYFSpS0BkHW3ZRGLoOqRSXDylmje4CvXVYib3XG8GyCokheQIDpWc1dXusf3QR5zboM4Dz7EduCbrkjCCHjoqrgX181SKRpnW5LcnhTsCuYx7xcQ9DFMHJ71wlZ7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XLCKDDoI; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3b9edf4cf6cso1548518f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:21:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757686915; x=1758291715; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zESS1ySkymLTPY0hw83hB8DWQtQJQL+KqOm/xeYktnM=;
-        b=XLCKDDoIa/CBBQnI483eoj+HaFcMyv4s5BjclVw20aOWf9TFWhm/qDv3QJF1+7/GAo
-         Tekvh2vDNARcV2ByjJ30Vnba1OiSxjbH2X0D5sHTJ8VdsQ/KCyfLCzu8FLUYWldRbGq5
-         YlO0ywhaFQ8AQWmR/n981kOBrX8LOtDy2LEdqdER70rXenWnswNdSC6L8SViG+FjSe6M
-         398t/hc2YQXWPvN5MBuv3hPMj8AIQGePEyICSIPn1CqkkxjjVE0EEr5sX9TqXZJPtEiU
-         t7Cq8HClqk+5zmURXZWb56mHvBj0/RZc6c9fi01I1+FUVfBNglZUwR+BXx0R5YtGAZtv
-         hM0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757686915; x=1758291715;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zESS1ySkymLTPY0hw83hB8DWQtQJQL+KqOm/xeYktnM=;
-        b=bJHq1Oqp4JG9SnnLF/lcG5uThrMFZcIo5AHfRABcbhkNCds3DFt2zMdeUBbLG8G3mn
-         X1Nu3RBMN8XJZ2dz8StrUqb8qt8q/V8flwroM/RubHDdLdnn3k+103FzdwF9sNEqbGan
-         rKBFKi3JQmFhOsRXu3RdkK9xkgjcFm7NaIZpVQLMj3Q5ioTCm68dF9i7ZwmrRWj3o/XE
-         2hJaNMBfsJ+V/hdhTHqWK7gNPHjfmjfvxOb2DdN6lhKMJE2RB1e5M8oUlsZWWLbkYTil
-         FLFhZYslCVCD0kmTv0JX7HD3vpKUwlrfndnWg2pNFf65yDPcpUp+gJUbK59EizxGe7sX
-         i4qg==
-X-Forwarded-Encrypted: i=1; AJvYcCXT5tcFQXVcC4du2QTquOH5FJo3Pc0KjHa72ZFulq2sueHeZLIlRW73jPcVuUDZDzU9MyzSYrKZGPuF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1z83zOAr6dRHGNX3CjrkI88C1IuuL8zu+AZfYRrCXIo81t2jk
-	vO3xmgjRo0VAUw7akhiipIon+uiemwTCOvUnp4sz5bUFkZoZ4bbBixa9
-X-Gm-Gg: ASbGncsN0DdssyiigYwC+GfA7Bt449AEZinbICZ9LZNi1ni9W6h6N2V26B+tTSWsQiy
-	C0SppJghbWnUDT6rc8yu2suXPorwH7Qzutr9w+ELDA/cRUioZ27j68xx1NbftgFQs8JRnCa20Wv
-	pzF64fUGKYhNC5GsYj9Hf5OZN80qc4SGo6wSqha3nax6ZL80PJ08gJNiWnbHuMlk4BEV9pBlLd3
-	e8Z8Qe0oRxvdJGWMM+7RMRIzg1FnDZxz3H08y7G/RHpZCypTKaLnANAd9sznXSL1oY1bD9yNXwS
-	31NyFuW10dwZ1k9uUfME4UTbCG7tRIT9LQ2xyVxAp/MDJyKfeNq/jV63z3MNYYVU94M9u2TUr3i
-	GsxfIARnu1H154i+wvQilKI4Liju4kR7lDXfju28kZw==
-X-Google-Smtp-Source: AGHT+IH9tJVloCbXIz91BDgTphPMX9koCByRsNlQtJ6Ob3jZPlH+RpEgqZOqPbkwhlkvGUM18ooTpQ==
-X-Received: by 2002:a05:6000:40cb:b0:3da:d015:bf84 with SMTP id ffacd0b85a97d-3e7659cc7e2mr3361179f8f.25.1757686915029;
-        Fri, 12 Sep 2025 07:21:55 -0700 (PDT)
-Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607878c9sm6750010f8f.26.2025.09.12.07.21.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 07:21:54 -0700 (PDT)
-Message-ID: <78130188-62b4-4206-abd7-7d50157a6b76@gmail.com>
-Date: Fri, 12 Sep 2025 16:19:35 +0200
+	s=arc-20240116; t=1757686894; c=relaxed/simple;
+	bh=qXqoxJcbp+qncwtNqhJPGBaUzokhKiJrHtbDDy4M3JM=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uWlFgqCZ6WRGPRDw8FGzTrIuMq+YWYMwHAlkzfLcWqQVwa3rW0inq5976nNCrWh5t3OOXUQ8l86ttjVuMwrbmavxBDIr0xzyzV4ASeycbfSnJuq/UTxFxfhPRedgMw9e7Wo8bcUN1+WCBLh7TUeiGaYMtlU+Mbu2VF8snGt1m/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cNc3r34N7z6M53c;
+	Fri, 12 Sep 2025 22:18:48 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id DCED51404D8;
+	Fri, 12 Sep 2025 22:21:29 +0800 (CST)
+Received: from localhost (10.203.177.15) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 12 Sep
+ 2025 16:21:28 +0200
+Date: Fri, 12 Sep 2025 15:21:27 +0100
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC: Andy Shevchenko <andy.shevchenko@gmail.com>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, David Lechner <dlechner@baylibre.com>,
+	<jic23@kernel.org>, <nuno.sa@analog.com>, <andy@kernel.org>,
+	<robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+	<linux-iio@vger.kernel.org>, <s32@nxp.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <chester62515@gmail.com>, <mbrugger@suse.com>,
+	<ghennadi.procopciuc@oss.nxp.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+Message-ID: <20250912152127.000039fe@huawei.com>
+In-Reply-To: <5e279cf72409504861c80bb4d2e4e5f6bc59d94c.camel@gmail.com>
+References: <20250910155759.75380-1-daniel.lezcano@linaro.org>
+	<20250910155759.75380-3-daniel.lezcano@linaro.org>
+	<d53b22d1-35d6-4fb8-ae56-3ba4953b64af@baylibre.com>
+	<ea57a466-97b3-49d4-8d1c-142fd49a0da2@linaro.org>
+	<CAHp75Vc8u2N2AHWtnPRmRXWKN3u8Qi=yvx5afbFh4NLNb8-y9A@mail.gmail.com>
+	<5e279cf72409504861c80bb4d2e4e5f6bc59d94c.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 34/38] arm64: dts: mediatek: mt8195: Fix ranges for jpeg
- enc/decoder nodes
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org, robh@kernel.org
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
- conor+dt@kernel.org, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, jassisinghbrar@gmail.com,
- mchehab@kernel.org, chunfeng.yun@mediatek.com, vkoul@kernel.org,
- kishon@kernel.org, sean.wang@kernel.org, linus.walleij@linaro.org,
- lgirdwood@gmail.com, broonie@kernel.org, andersson@kernel.org,
- mathieu.poirier@linaro.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
- atenart@kernel.org, jitao.shi@mediatek.com, ck.hu@mediatek.com,
- houlong.wei@mediatek.com, kyrie.wu@mediatek.corp-partner.google.com,
- andy.teng@mediatek.com, tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com,
- shane.chien@mediatek.com, olivia.wen@mediatek.com, granquet@baylibre.com,
- eugen.hristev@linaro.org, arnd@arndb.de, sam.shih@mediatek.com,
- jieyy.yang@mediatek.com, frank-w@public-files.de, mwalle@kernel.org,
- fparent@baylibre.com, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-sound@vger.kernel.org
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-35-angelogioacchino.delregno@collabora.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; keydata=
- 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
-In-Reply-To: <20250724083914.61351-35-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
+On Fri, 12 Sep 2025 09:19:43 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
+> On Fri, 2025-09-12 at 08:38 +0300, Andy Shevchenko wrote:
+> > On Fri, Sep 12, 2025 at 2:03=E2=80=AFAM Daniel Lezcano
+> > <daniel.lezcano@linaro.org> wrote: =20
+> > > On 11/09/2025 22:10, David Lechner wrote: =20
+> > > > On 9/10/25 10:57 AM, Daniel Lezcano wrote: =20
+> >=20
+> > [ ... ]
+> >  =20
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 /* iio_push_to_buffers_with_timestamp should not be called
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 * with dma_samples as parameter. The samples will be
+> > > > > smashed
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 * if timestamp is enabled.
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 */ =20
+> >=20
+> > /*
+> > =C2=A0* Btw, comment style for multi-line
+> > =C2=A0* comments is wrong for this subsystem.
+> > =C2=A0* Use this as an example, Also, refer to
+> > =C2=A0* the function as func(), i.e. mind the parentheses.
+> > =C2=A0*/
+> >  =20
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 timestamp =3D iio_get_time_ns(indio_dev);
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 ret =3D iio_push_to_buffers_with_timestamp(indio_dev,
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 info->buffer,
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 timestamp); =20
+> > > >=20
+> > > > Is it OK to call this with spinlock held? It looks like it can call
+> > > > devm_krealloc() which may sleep. =20
+> > >=20
+> > > It should be ok, devm_krealloc is in the code path of
+> > > iio_push_to_buffers_with_ts_unaligned(), not in
+> > > iio_push_to_buffers_with_timestamp() =20
+> >=20
+> > This is a good observation, can we document this in the respective
+> > kernel-doc:s please? Also add might_sleep().might_sleep_if() in the
+> > appropriate functions. =20
+>=20
+> That's a good idea!
 
-On 24/07/2025 10:39, AngeloGioacchino Del Regno wrote:
-> The jpeg decoder main node is under the soc bus but currently has
-> no ranges or reg specified, while the children do, and this is
-> wrong in multiple aspects.
-> 
-> The very same is also valid for the jpeg encoder node.
-> 
-> Rename the decoder and encoder nodes to "jpeg-decoder@1a040000"
-> and to "jpeg-encoder@1a030000" respectively, and change their
-> children to use the newly defined ranges.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Agreed. I'd forgotten that hidden allocation was there in the unaligned()
+variant.  A might_sleep() seems wise.
 
-Applied, thanks
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 30 +++++++++++++-----------
->   1 file changed, 16 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index dd065b1bf94a..35b10082bb89 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -3014,7 +3014,7 @@ venc: video-codec@1a020000 {
->   			#size-cells = <2>;
->   		};
->   
-> -		jpgdec-master {
-> +		jpeg-decoder@1a040000 {
->   			compatible = "mediatek,mt8195-jpgdec";
->   			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
->   			iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
-> @@ -3025,11 +3025,12 @@ jpgdec-master {
->   				 <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
->   			#address-cells = <2>;
->   			#size-cells = <2>;
-> -			ranges;
-> +			ranges = <0 0 0 0x1a040000 0 0x20000>,
-> +				 <1 0 0 0x1b040000 0 0x10000>;
->   
-> -			jpgdec@1a040000 {
-> +			jpgdec@0,0 {
->   				compatible = "mediatek,mt8195-jpgdec-hw";
-> -				reg = <0 0x1a040000 0 0x10000>;/* JPGDEC_C0 */
-> +				reg = <0 0 0 0x10000>;/* JPGDEC_C0 */
->   				iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
->   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
->   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
-> @@ -3042,9 +3043,9 @@ jpgdec@1a040000 {
->   				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
->   			};
->   
-> -			jpgdec@1a050000 {
-> +			jpgdec@0,10000 {
->   				compatible = "mediatek,mt8195-jpgdec-hw";
-> -				reg = <0 0x1a050000 0 0x10000>;/* JPGDEC_C1 */
-> +				reg = <0 0 0x10000 0x10000>;/* JPGDEC_C1 */
->   				iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
->   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
->   					 <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
-> @@ -3057,9 +3058,9 @@ jpgdec@1a050000 {
->   				power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
->   			};
->   
-> -			jpgdec@1b040000 {
-> +			jpgdec@1,0 {
->   				compatible = "mediatek,mt8195-jpgdec-hw";
-> -				reg = <0 0x1b040000 0 0x10000>;/* JPGDEC_C2 */
-> +				reg = <1 0 0 0x10000>;/* JPGDEC_C2 */
->   				iommus = <&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA0>,
->   					 <&iommu_vpp M4U_PORT_L20_JPGDEC_BSDMA0>,
->   					 <&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA1>,
-> @@ -3088,7 +3089,7 @@ vdosys0: syscon@1c01a000 {
->   		};
->   
->   
-> -		jpgenc-master {
-> +		jpeg-encoder@1a030000 {
->   			compatible = "mediatek,mt8195-jpgenc";
->   			power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
->   			iommus = <&iommu_vpp M4U_PORT_L20_JPGENC_Y_RDMA>,
-> @@ -3097,11 +3098,12 @@ jpgenc-master {
->   					<&iommu_vpp M4U_PORT_L20_JPGENC_BSDMA>;
->   			#address-cells = <2>;
->   			#size-cells = <2>;
-> -			ranges;
-> +			ranges = <0 0 0 0x1a030000 0 0x10000>,
-> +				 <1 0 0 0x1b030000 0 0x10000>;
->   
-> -			jpgenc@1a030000 {
-> +			jpgenc@0,0 {
->   				compatible = "mediatek,mt8195-jpgenc-hw";
-> -				reg = <0 0x1a030000 0 0x10000>;
-> +				reg = <0 0 0 0x10000>;
->   				iommus = <&iommu_vdo M4U_PORT_L19_JPGENC_Y_RDMA>,
->   						<&iommu_vdo M4U_PORT_L19_JPGENC_C_RDMA>,
->   						<&iommu_vdo M4U_PORT_L19_JPGENC_Q_TABLE>,
-> @@ -3112,9 +3114,9 @@ jpgenc@1a030000 {
->   				power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
->   			};
->   
-> -			jpgenc@1b030000 {
-> +			jpgenc@1,0 {
->   				compatible = "mediatek,mt8195-jpgenc-hw";
-> -				reg = <0 0x1b030000 0 0x10000>;
-> +				reg = <1 0 0 0x10000>;
->   				iommus = <&iommu_vpp M4U_PORT_L20_JPGENC_Y_RDMA>,
->   						<&iommu_vpp M4U_PORT_L20_JPGENC_C_RDMA>,
->   						<&iommu_vpp M4U_PORT_L20_JPGENC_Q_TABLE>,
+>=20
+> - Nuno S=C3=A1
 
 
