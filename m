@@ -1,169 +1,208 @@
-Return-Path: <devicetree+bounces-216386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FE6BB549CC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:28:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA8BB549DB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:31:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 866D91BC7A6E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:28:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C90BDAA7B60
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F072E8B89;
-	Fri, 12 Sep 2025 10:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1882D2390;
+	Fri, 12 Sep 2025 10:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i31HVHOG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ez1cDXbS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D092E8B6D
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0F22957C2
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757672906; cv=none; b=gFkVk5Q6Je0WmEH7EwiVHmglOwLIvdLvEzKJTBRLzd8iVEPHLJfuFPVjCu7IXulct0sdYYT2iAcM7Ut0rCwa3fT2kEaG71s+Wpx87XfmWyzPM+FaovLj2kc9yIZ8Tj535dOUWqFJyIdt2khwqjDVX7igw8S5P4MgkE+otMenzcg=
+	t=1757673078; cv=none; b=J2MDMMoG2/x7r20DMscDiz5JhEYMzOLxuwsW3qeVhC6V0dtmMFYO16jifPc2e9Iqut4ejRHCvYzLY60Rq74xZwOQrDDUS9JRzHHWcWhPnS4hsdZ4rftdK6ZAKL3o17H7bQqSM0bStC3LTcM9S3SQGeBC4hQr3eM6cILTvP0KV8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757672906; c=relaxed/simple;
-	bh=EBD8IpI6A0wAsbVRfB4i9rlCjO4G0tJXxd7ni7KvAx0=;
+	s=arc-20240116; t=1757673078; c=relaxed/simple;
+	bh=ru1yGOyd5Y3Fq7JTiCyy2tLRgTdN7eeDCsE0W0qKNIo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fg6ziUVvY1kaKN7rnWv8JMMqOxKrmk+0hvKRP6tA2kXAjhrI7Rwz5oM4XvV59n0LPAfOVaAxnNlmiV0MRWtNtVUDemIwpfphm4Q5WbrGv8FDzkpnDC7Yo8nWrE7pt+C4BWb4Efkcyxq7zH5IzkbpyZ/vAX18DIO94QnA9quGxuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i31HVHOG; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45df7cb7f6bso9111385e9.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757672902; x=1758277702; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JA1IUMCbOH/Rs2R4k6eNlR5l2tk1K0Ele5rCkcSibNU=;
-        b=i31HVHOG+qiCsjTxKfAtyKpyk1qeBGSRqDqMwmYqFDBa8ciMMR0or+gMPviXHF81pt
-         ZHSNk4CZM9J53PwdbJ1c7TkYTSCl/eQyt2CllOb8KMpWAB8KNy1eOWsrMOETj9x0ZcxH
-         3V6DtG1+EWUc7eKbJoEJqFNXbUUYWlDkaLI0MkNCfeKFX6wlMue8W6clzBjPLaJWBQOo
-         8cswCJm9MNqfMWP4i4C+FH488NOuBWyj9tiNa4k+SI3T/+JoYYsvIK+7IePor6FFkyqr
-         wU4cJUJUBlOYHevTy8p9HsL6QLu8OWvwnEhX5Y0N8gl6vM6/jtuzdNLO7EInFZxkNZge
-         opow==
+	 Content-Type:Content-Disposition:In-Reply-To; b=koX2umM+0CmM4Lu3ubCHykO2L7dGSzw8GMfxRduX+RRWaJFvutVrX8xse8aSA5QliKDA5Dj0r7LcKwzkLW5StspkNVZbWQwQ32/mdJ66ei1qbD8BeTF0KWWz1V0wzoL7WTsZBo5oSXQ/9sgYsiTn+JS+LaAAPkp0sk+mo7VNaCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ez1cDXbS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fE36001284
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:31:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=QYQVjSVGI7fSyP5NPLcxC0Gn
+	NWMprT3G/Z6o5y804gQ=; b=Ez1cDXbSvnGemg8472pZ8bhDQSW/4Ft8Q83R/893
+	2LMiB8BhNhqVTzcLqTFOdPPzOGEBduIjUcmertrhXjUEwFazZ8uDN72wdBV17WVQ
+	N1IP3xd4EzB6oLWkiiA0uY9D3WlGRnKQhXnOmECOHgeQFIT9qcKZ5aoBLm3xiFcK
+	D+d1nyaUn8T/SNIOoVZO6Dv7YJUi2wuXu+p8yn5Ui7LmKx7tNTArTDBp0+OfU3kj
+	emw5YhBiJ+Oo3Kqik7N5C5FR1Nvb/HHQFGiG2jJRmnOVbC5aTQJNh/VPpp7fJ2K5
+	3WK/a16Y6uK50vMN5E1UFSsc/z6PliVOMaryGGIDqb4UDA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 493f6h66us-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:31:16 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5fb1f057fso23881011cf.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:31:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757672902; x=1758277702;
+        d=1e100.net; s=20230601; t=1757673075; x=1758277875;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JA1IUMCbOH/Rs2R4k6eNlR5l2tk1K0Ele5rCkcSibNU=;
-        b=Mfon8SEy/RNW/eZR/jxv6BjnJZIGvHvNWLMr0kM+mrsFLr3Gm+iMIWJTztsNNIuHdY
-         IW9wzvHbSZOylJWQkEePkKJ1Rea4bd+q5xk9zUgq4pmgw5eBAhRhfNM/WBL6NKOeeZDS
-         M7RVWrywPk6sDbxxbFgQxCyVz7665njACN4jdX3mquRnWCoLgrzAfhjhj/dr/qW+okpl
-         1Fgpl1S6sXpaR3sbSrfnLg2HHaEGsEoSVtQg9lrhcQf0bY4nXnX/mgGc2WW285YUVpOl
-         owudF2qESTIKRgGs/815mhJ2/wptR7Q436iiorpCHszhrpdyrEBhxPGofisX4ezmqcSA
-         2Ljw==
-X-Forwarded-Encrypted: i=1; AJvYcCWkq2BV7iU+9mtYiUOc+RSAfryM3pAFaap0F6JoVLDXtGlkLWc4+zFMl/5nMVZ/qBrhS3WX+X5NX95Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzAqQK3ey/ruzjmLdsNvZWsBxVe+0AV/734WtAAfwaOYMcKOi6
-	WHCYPPV0URM3qPtPX9eil6GJi6z7+ukbSUz+SLNN11/3HT2S1aJE+iiJ
-X-Gm-Gg: ASbGnctoy8bPvC3TEICPyq8lrBQpyUpcqragDeZO+JKiOlYx2bzK+nNue4BMd41gH4V
-	j1H/A/Q6mG27kO9BW5jxOTAgLRLVFMp3Py5R0o++WqOr6Lq9/Zo/6MjwI+agU1KX0yMupP9+Swc
-	aosIRpCuTfdeaLiXnoSkzk++NToYWvsb7phhWmEWyWF3ffrk2UJkXabhnap4apdRnM1LNeT6vXs
-	sRCVK4KJL0q7rD4KAK+L5H2mfCvYwwk2v8AwRh/sqhpJinAUxaxymFwX5e0U7hFbGYe89YO97mF
-	zqG+KpOrzGjbQ9qVPJYN1S1g2C/D1+/cL798nl6Y83HI0iRc7XVG396X8Y/YxxlZIpW0cWqb3Xu
-	uS0ZaxTqbKP7Fm7wGC6DnJa6RYEODE+X1xt0Q2igbXNy0TT6NAQnuqB9RQNr1Pn7NYzUxzG1VE0
-	JmGuziXYQ6+G8R8pzvfE0=
-X-Google-Smtp-Source: AGHT+IF4AEGaMMn/CUIZmhYMMaPgBH8SYmjhY2GIRnf93okgdn9S+OTIILcyErnNpIWu0CDXM/Slfg==
-X-Received: by 2002:a05:6000:3109:b0:3e6:116a:8fe1 with SMTP id ffacd0b85a97d-3e765a16066mr2111938f8f.61.1757672902386;
-        Fri, 12 Sep 2025 03:28:22 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607d7b67sm6041450f8f.49.2025.09.12.03.28.20
+        bh=QYQVjSVGI7fSyP5NPLcxC0GnNWMprT3G/Z6o5y804gQ=;
+        b=i7jo0+TwaEnM9Cs3D8YaUDVGFH+5bUnosVBuOsUQNcjEQT/Lk+9w0ZHH57QX50qt+U
+         P1R2/tH7U/Cb0VqwTvOAMwfVNk6rLz+ko+NE2nY/r7mbs33y3+h6nbm19BgXxi8ABstY
+         bDqsGLqUMy4FDsO9vPVSzkCRcRnb9m3C99DT3cUkZtjl3UtNut4Fm+3v5/bYkZUaVuri
+         snJiB1u24LwqpElMg9HE+DgFmXzdb9X6b0FaGfzAMrnGnp1XoKwC/1FSitmyUT8zFoIm
+         rOoJEUQ/a3LyFZeS1KGIWZl9gethUyoelGXRyaEq8yiNsNoZ5AsRph6Y2kuHdNEl/Uig
+         iiJw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+YI0zaQppszB52e7ImI/BJ7/RR4dEBHEj7pjUYAsDzFk2Y8jwm1yZ6F0Fl1SKiu8FJyDvqXMNb+UP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8fznDvaJFaa0QTErFNWBzrUG+XfQtnWTBLpcjgFYjUCBBuvh9
+	+4q9ctkuGDlYVneqrpRVXnxqxnPBD4s6PovMZ7rPT6pHMajv6rE2Q1knsE6iief8zzSBVSWIZzL
+	bnLHaheYUKXOPSxOT+4ZqaskbfH6tvxE5y1+BDxesge28ohyi5N6odDGqt5y1u4Qn
+X-Gm-Gg: ASbGnctH3JuUpfnNk4rgWEqRFk/F6wizFfvAe9guqfVp5J4jie/1Jw9lsvB18/+YuFi
+	nhKqS+Gq1P82xilzs56a71VZ+KNJg90MowCWHmyHjsG9zjuGXFPBMR+3xt7tP6OZz2lwybY1bRm
+	1SsjnCAB0cwxFLgnU1et4AH4YL6XdJDB+VaGqand/lvjoSJDLIa7O6u2fJ9bhhAlSlLP05eKEOi
+	LrWj5VxflixfahB9DLTj9+zizYcj3wEHNns5G9S6OEng8CeK0LLajnUCKB5NFCB2O0skcSFj2NA
+	gURyVie981XKv+R8ovhyJxaO2XpNU2EMJa9OZA4C0jhmQGAOKT5PWzGCRfy+tAXQB+aD8wrDDz+
+	03lrN/pt8YmQ4hGybHLx1L+IvHyCoodMIDYlYAI9ZhsHUugPSGE9Y
+X-Received: by 2002:a05:622a:11:b0:4b4:9773:5866 with SMTP id d75a77b69052e-4b77d0c8726mr25974331cf.65.1757673074728;
+        Fri, 12 Sep 2025 03:31:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFlmYG3GvVCPpgbJA4niCY20ubvFQsgSIGszF/TZGTRPQ9P7ipXCexaQtPdOTizRtrNWqVY8g==
+X-Received: by 2002:a05:622a:11:b0:4b4:9773:5866 with SMTP id d75a77b69052e-4b77d0c8726mr25973891cf.65.1757673074110;
+        Fri, 12 Sep 2025 03:31:14 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e65a3464bsm1032362e87.139.2025.09.12.03.31.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 03:28:21 -0700 (PDT)
-Date: Fri, 12 Sep 2025 12:28:19 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ARM: tegra: add device-tree for Xiaomi Mi Pad
- (A0101)
-Message-ID: <cj5vagef2b6nga7vrfk5ulall3zbnlftekguqn4iydu6ow2zam@ucoqrk2e4pg7>
-References: <20250909074958.92704-1-clamor95@gmail.com>
- <20250909074958.92704-3-clamor95@gmail.com>
- <2tmlhaymx73frvv3qv7qvaagzwvh3cepringiyvhsmqrdgfy5i@fvspt74y6nj7>
- <CAPVz0n0WjOaBrn=stpwjhT-fZ-K7_YQHDUnuKUccZaqLJGXJ-A@mail.gmail.com>
+        Fri, 12 Sep 2025 03:31:13 -0700 (PDT)
+Date: Fri, 12 Sep 2025 13:31:11 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
+        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v4 10/13] phy: qcom: qmp-usbc: Add DP PHY ops for USB/DP
+ switchable Type-C PHYs
+Message-ID: <buob3axokndjfuwvv5j5zee4e66tf7t4ficz6fend5yadw4j6e@czus6n6zfor7>
+References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
+ <20250911-add-displayport-support-for-qcs615-platform-v4-10-2702bdda14ed@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mahnu5no6cnokx6g"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPVz0n0WjOaBrn=stpwjhT-fZ-K7_YQHDUnuKUccZaqLJGXJ-A@mail.gmail.com>
+In-Reply-To: <20250911-add-displayport-support-for-qcs615-platform-v4-10-2702bdda14ed@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: IFQH8scVlrgMoks71tLQ-Js8KeyBHgEA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEwMDE3NyBTYWx0ZWRfX9TkMGCdHKHEN
+ w/nqEfuCV1co1GFQqEEGTjjQyfiMzDLgSJt33uRZKTjnH7laX2GG+Er0nkTGTJ6uT6zfGdQabbE
+ +6QpbkZt7sB6j1vZQsKs0T3ybQOjMhhDiQyjlrUwBSjKQ6wXrblqeZfMMwHondV4ai344d6xxTb
+ 2JTnmNzvIoYc+Bo82+5uBQwZ0e6fO/FeP5PlT5TVqKJQF8G8D4juVtnvAOzRuF9lmQa+8O0RN9Y
+ mKT06HSvcmJIz/5kHSUv20GnIc8ufG4WlZw1phQIy6LyIlUDLMcVEOFxTJLJaL244MgEusvX0dj
+ ce/USDaf49lS4Tj0efr6YeSC1I8nLemHVfvEyqvNgpudc4+D6xsXWuT97lKQVWAOw8861uXPmNG
+ sX2lyu98
+X-Authority-Analysis: v=2.4 cv=WPB/XmsR c=1 sm=1 tr=0 ts=68c3f674 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=tOlg4r5JIpINhLxCU78A:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: IFQH8scVlrgMoks71tLQ-Js8KeyBHgEA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 clxscore=1015 priorityscore=1501 adultscore=0
+ bulkscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509100177
 
+On Thu, Sep 11, 2025 at 10:55:07PM +0800, Xiangxu Yin wrote:
+> Define qmp_usbc_dp_phy_ops struct to support DP mode on USB/DP
+> switchable PHYs.
+> 
+> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 192 ++++++++++++++++++++++++++++++-
+>  1 file changed, 191 insertions(+), 1 deletion(-)
+> 
+> @@ -1669,6 +1832,23 @@ static int qmp_usbc_parse_tcsr(struct qmp_usbc *qmp)
+>  	return 0;
+>  }
+>  
+> +static struct phy *qmp_usbc_phy_xlate(struct device *dev, const struct of_phandle_args *args)
+> +{
+> +	struct qmp_usbc *qmp = dev_get_drvdata(dev);
+> +
+> +	if (args->args_count == 0)
+> +		return qmp->usb_phy;
+> +
+> +	switch (args->args[0]) {
+> +	case QMP_USB43DP_USB3_PHY:
+> +		return qmp->usb_phy;
+> +	case QMP_USB43DP_DP_PHY:
+> +		return qmp->dp_phy;
 
---mahnu5no6cnokx6g
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 2/2] ARM: tegra: add device-tree for Xiaomi Mi Pad
- (A0101)
-MIME-Version: 1.0
+return qmp->dp_phy ?: ERR_PTR(-ENODEV);
 
-On Thu, Sep 11, 2025 at 07:20:51PM +0300, Svyatoslav Ryhel wrote:
-> =D1=87=D1=82, 11 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:00 Th=
-ierry Reding <thierry.reding@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Tue, Sep 09, 2025 at 10:49:58AM +0300, Svyatoslav Ryhel wrote:
-> > [...]
-> > > diff --git a/arch/arm/boot/dts/nvidia/tegra124-xiaomi-mocha.dts b/arc=
-h/arm/boot/dts/nvidia/tegra124-xiaomi-mocha.dts
-> > [...]
-> > > +     host1x@50000000 {
-> > > +             dsia: dsi@54300000 {
-> > > +                     status =3D "okay";
-> > > +
-> > > +                     avdd-dsi-csi-supply =3D <&avdd_dsi_csi>;
-> > > +                     nvidia,ganged-mode =3D <&dsib>;
-> > > +
-> > > +                     panel@0 {
-> > > +                             compatible =3D "sharp,lq079l1sx01";
-> > > +                             reg =3D <0>;
-> >
-> > Looks like there are no bindings for this panel and I don't see any
-> > patches anywhere that add them. Am I looking in the wrong places?
-> >
->=20
-> It seems that there are no archive yet with panel patch, this is a
-> schema part from patchwork
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2025090907=
-3831.91881-2-clamor95@gmail.com/
->=20
-> I would ask you to NOT pick the tree commit yet, I have a few
-> improvements for it and would like to send v2. Meanwhile, bindings
-> related with this tree should be approved.
+We are not expected to return NULL here (and dp_phy can be NULL).
 
-Alright, I'll just merge patch 1 for now.
+> +	}
+> +
+> +	return ERR_PTR(-EINVAL);
+> +}
+> +
+>  static int qmp_usbc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -1743,9 +1923,19 @@ static int qmp_usbc_probe(struct platform_device *pdev)
+>  
+>  	phy_set_drvdata(qmp->usb_phy, qmp);
+>  
+> +	if (qmp->dp_serdes != 0) {
+> +		qmp->dp_phy = devm_phy_create(dev, np, &qmp_usbc_dp_phy_ops);
+> +		if (IS_ERR(qmp->dp_phy)) {
+> +			ret = PTR_ERR(qmp->dp_phy);
+> +			dev_err(dev, "failed to create PHY: %d\n", ret);
+> +			goto err_node_put;
+> +		}
+> +		phy_set_drvdata(qmp->dp_phy, qmp);
+> +	}
+> +
+>  	of_node_put(np);
+>  
+> -	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	phy_provider = devm_of_phy_provider_register(dev, qmp_usbc_phy_xlate);
+>  
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
-Thierry
-
---mahnu5no6cnokx6g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmjD9cMACgkQ3SOs138+
-s6HcYA//fFhnevw+HejFG5AQMygj1lfdsYEaYVqqZpwPo/PmuwghOBAx/0p/8Hpf
-LwmLxnw+NL9pPsnMBxWEGLJ2GKKEaFhEhB/gxDc+yBHeFG9filV+Id7pWGqu9sgv
-j2J8Rff/m+b66oCYTcgniAoA9H7iX/qINpegc4PZW6Igi/Tcv7A9Az7kVT4ewJqv
-IB93bhzn7M1jVjeOvkNHwBcM3D9jv7Z58XWSt6hDGbvltAJmHw3YMZtIg+YeYo/a
-Ga76QVmuZw8RpX7qIEUTDojFSEyV7sQSlQ1nli53OhQGQAaEzTh0JH+L/OLN0LUK
-X/PjX2PbVkNMt2fPKiHGtclPyo7HVQ/WwLqrTXS41SkZ4hs2BcfV6C3zzjObxSvp
-9EQIOojvp88cDO4+ZwhOkhD5FgPl4TYX40XPsQwS9tWfJk+42FQG+Sw9mVTUkdwa
-uccs7o7NmSDhPwAfoab653BQ4b6540LIa48R+IKn5n49gvnlCG8NTsGLwyC6LeZZ
-doROR9LbaTectrXEzhvCLzS1yxv9Zg6zUwGXndVFfGrmA/0aTuf++hcX6WqQJM4t
-chCeOjVu/a4vQl4BCgoO+qUZxzthArITUq61buTMhv8n923TAvC/BkUrvad74ZqV
-t4avlQTng2WtWgKMjisM2jjiWUD24eGRSArTSEKfTZ05Yb3R2eg=
-=0NYn
------END PGP SIGNATURE-----
-
---mahnu5no6cnokx6g--
+-- 
+With best wishes
+Dmitry
 
