@@ -1,176 +1,120 @@
-Return-Path: <devicetree+bounces-216635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD09AB556E5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 21:27:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DB9B556FA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 21:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31F1F1D64083
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 19:27:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F651A01CEF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 19:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2914931A04D;
-	Fri, 12 Sep 2025 19:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80D832CF6C;
+	Fri, 12 Sep 2025 19:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZZ+EeJ/X"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kFpbx6+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7142C21E7;
-	Fri, 12 Sep 2025 19:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50260299A90
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 19:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757705247; cv=none; b=bPtrMiS96q8RuuIrCOnR+ROKqdtPHHHsf5H5j+ono40DsKES/MJ6rdtkcFQT4svDX/8StojOpQrlWE7fe/nxCRhc+9C2PoaFCw3lsm+4MFIny3Qdcs17qYQHND9F9QEM489NzSxkwQ/W9JVDakRYF9feTbnbx8B9UXgrf4KSuSo=
+	t=1757705851; cv=none; b=ctyNX4ingvQm3JPJ58oC8mHHkqlXsgRvJVTxdb78Tu5TrJfCEhqv6t5si154hER4vHewt17dQrQc6gsw76U9PcrCsrFhm24hHEa+esnIKO/2TW9tETanaT+9pcjCj24atafbvdKdnBgCVbrW7JcLmmgcMNaDhlKMWtx+P17PSuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757705247; c=relaxed/simple;
-	bh=EHXp00PvSV5BL2JzcicYuQ7QaA7Hb0E5dVZbhEWZgVU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4O3U5sGZdymDrGKi/M6R/t5jzcDdcAEGA74Bl/qbcFfFKeH9lpPldERV53bJv87+cNzY0woJFCARfqffOgTgCqgG8n8z5at+aqUvdEH2UoqiHoj2FOlRsp2UM4ezKvGJ9bf5qgw+eoo9HXcujcNEyZW1FI8XodyT2Rrb7of6HI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZZ+EeJ/X; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58CJOvCc668524;
-	Fri, 12 Sep 2025 14:24:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757705097;
-	bh=Q4NS2lGNDYPRFSd1ovtwkZb7OAAyExi6xlEfHJJUBmQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ZZ+EeJ/XiIL22njUd2gX5udls+1mAirxXEHksdBu0njlTzgvOx7WWptSXLbMNKltE
-	 M/O8RcnXHxUHFnpQZRP2Jp3wEK6u4t9k78rHVtuRrKQJsGpUduLu13T3ZpxEQGtEcC
-	 HwW/XN6U4cqMbAhoA7IxW84ZRc2IgDv4qXLAh1IU=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58CJOu6i2993241
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 12 Sep 2025 14:24:57 -0500
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 12
- Sep 2025 14:24:56 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 12 Sep 2025 14:24:56 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58CJOuXa187040;
-	Fri, 12 Sep 2025 14:24:56 -0500
-Date: Fri, 12 Sep 2025 14:24:56 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Andrew Davis <afd@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus
- Walleij <linus.walleij@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v6 3/4] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-Message-ID: <20250912192456.msnw64b62yr5ricw@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250912-am62lx-v6-0-29d5a6c60512@ti.com>
- <20250912-am62lx-v6-3-29d5a6c60512@ti.com>
- <0153912f-04a5-4118-a286-4e9c0293aae6@ti.com>
+	s=arc-20240116; t=1757705851; c=relaxed/simple;
+	bh=jA4wqu8GiEeHtdnCeD5CK5KRYYjCmySD2Ig7LvqbLvg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lt4o30jMd/MLVjRkV6ldCQezOFjPQUdQgHdQDQj7R67ndigerrch4KgtyjFJns/KX2hfKv5Ay0liARLjsfi1BLt5fszkCJsEQjAg2f30dT25sI4Zz0tQq1lRu8bMgZJPu7Ed9uQN5Hx0w4pozEfNDLqj7hjPXZrHcsgbFweQC4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kFpbx6+c; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-32326e8005bso2049205a91.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1757705849; x=1758310649; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MG8qheklqH90QoillqEWtKlvYUOtiPcMmtaoD7S73Y0=;
+        b=kFpbx6+cfRDl6zH/qqtuWqnqkT8z/4hnFljcCzE79tCabjdui23SUJLdYodCFlQSX2
+         kz9mIeAJCHRcU64pWFatcJDddWtC6z4b7uluZ3K9kfhSmxqgvHdEfTGrAyKPXKWk0qM2
+         yMg4450bEnmdaFAOAEl9/oh/icjMTKy+fpHzg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757705849; x=1758310649;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MG8qheklqH90QoillqEWtKlvYUOtiPcMmtaoD7S73Y0=;
+        b=Vee+TiwMYM/w2l3XGTNePUDuDcnBHUY+hlx+NvKSeklbrowUp1KF1Hm9vXT/PhegTN
+         IOZcMCWDRWnxKOCHiLjxO4mw33V4nZkNpSHT7RHhW2m912D4+izWckjipJh3r7dcDOwb
+         TpKAQeP9uAu/bGOHxWdGRjAJuYUlSTS91Qzb20EgbR4/0t9+7gI0Iye+QwuU6aGpfMcn
+         x/+U/r+pfF7yMRsyWuU+Gp88q2nRxrzGHlmH119vtFg4nRxL3eX8BgawjOjRc/cC9TH6
+         X2fABqG2Y6bvF9ff5gK03YbRlFgBwdAbRdb0df58pAzPkedQLKx8Je8dQKZLsGCPSkOW
+         DUHw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrxlg3emWKXod8Z+e6fo61pWipXDK+aAGdwZGALf+6O76uhweeDwtAjd474yHXc+LbxbkFrd1U4Yin@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywer1rAKvZKdKFaJcwn/KVjEDxHn2MihwZlYqYWoR619/pAKkgn
+	WAR483SDDj2G39publp5wwhcmZDWwo2jMkQjHxTSyPrdkNQ4k3cMn6/KQcrpqGXKptAimIUYg3g
+	PrmM=
+X-Gm-Gg: ASbGncsHoF4WuyAVcgwNdyf8CqthRgqFlpBcY6FXaX2ePsDXhrHvokUDMqnMBEn3ThB
+	KiHAciAfHdaOQgzM+iXoWW0AsJXPbBZVA9MUsZjT1+Spx+fjAFppbGEFgpAPU6x8d4+RorhQi9N
+	aU8vQXmHwnbrg1VzmWJYUl8w2d+2+ecXOrMpEAZw6SJf1jbiasB6XVAemvV/WkNVaGaiMHm7Coo
+	9Bo1wMhag1/EFDCiw4DjVkntouAlx5iM8cmzCwbtS/Lwrxw/RY+gkDEPegKohIlROjEM/iUY1gK
+	kgqC1x0bmQbL5jjdKnroayOSAZxg2JUktHNYUixcS/994v9vcbolI6TO2fGZ7S9rwhPOfBxahjc
+	7zdVjf5DPUEGwxCv+P1kn4nvIwInivX5b2ljzmRJAahg8kdPgbtPqWwjEMuzo1HnEqSwdUg==
+X-Google-Smtp-Source: AGHT+IEJWqu2QUfygF3YV1YBp/hXP59cBcFdW/VqJblCIvlUJMZ2WVhUCTFyXUdCNveV/J1mClgmeg==
+X-Received: by 2002:a17:90b:1c87:b0:32b:623d:ee91 with SMTP id 98e67ed59e1d1-32de4fa205bmr4591160a91.27.1757705849658;
+        Fri, 12 Sep 2025 12:37:29 -0700 (PDT)
+Received: from localhost ([2a00:79e0:2e14:7:e464:c3f:39d8:1bab])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-32dd61eaa27sm6985775a91.1.2025.09.12.12.37.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Sep 2025 12:37:28 -0700 (PDT)
+Date: Fri, 12 Sep 2025 12:37:26 -0700
+From: Brian Norris <briannorris@chromium.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Odelu Kukatla <quic_okukatla@quicinc.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS
+ clocks on Herobrine
+Message-ID: <aMR2diG8zwvPRSXR@google.com>
+References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
+ <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
+ <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
+ <aMMcNn82AmSavJYf@google.com>
+ <b51e1230-d366-4d0f-adc8-fac01b5de655@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0153912f-04a5-4118-a286-4e9c0293aae6@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <b51e1230-d366-4d0f-adc8-fac01b5de655@oss.qualcomm.com>
 
-On September 12, 2025 thus sayeth Andrew Davis:
-> On 9/12/25 10:40 AM, Bryan Brattlof wrote:
-> > From: Vignesh Raghavendra <vigneshr@ti.com>
-> > 
-> > Add the initial infrastructure needed for the AM62L. ALl of which can be
-> > found in the Technical Reference Manual (TRM) located here:
-> > 
-> >      https://www.ti.com/lit/pdf/sprujb4
-> > 
-> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> > Signed-off-by: Bryan Brattlof <bb@ti.com>
-> > ---
-> > Changes in v4:
-> >   - Corrected Copyright year
-> >   - Used 'ranges' property in the fss{} node
-> > 
-> > Changes in v3:
-> >   - Added more nodes now that the SCMI interface is ready
-> > 
-> > Changes in v1:
-> >   - switched to non-direct links to TRM updates are automatic
-> >   - fixed white space indent issues with a few nodes
-> >   - separated out device tree bindings
-> > ---
-> >   arch/arm64/boot/dts/ti/k3-am62l-main.dtsi    | 603 +++++++++++++++++++++++++++
-> >   arch/arm64/boot/dts/ti/k3-am62l-thermal.dtsi |  25 ++
-> >   arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi  | 141 +++++++
-> >   arch/arm64/boot/dts/ti/k3-am62l.dtsi         | 120 ++++++
-> >   arch/arm64/boot/dts/ti/k3-am62l3.dtsi        |  67 +++
-> >   arch/arm64/boot/dts/ti/k3-pinctrl.h          |   2 +
-> >   6 files changed, 958 insertions(+)
-> > 
-
-...
-
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62l.dtsi 
-> > b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..d058394a8d19d16f100cd87cf293c67bc189b475
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-> > @@ -0,0 +1,120 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> > +/*
-> > + * Device Tree Source for AM62L SoC Family
-> > + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-> > + *
-> > + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> > + */
-> > +
-
-...
-
-> > +		};
-> > +	};
-> > +
-> > +	#include "k3-am62l-thermal.dtsi"
+On Fri, Sep 12, 2025 at 03:10:16PM +0200, Konrad Dybcio wrote:
+> As I attempt to find a board that would boot with your sw stack,
+> could I ask you to check if commenting any of the three writes in
 > 
-> Not a fan of how this is included (yes I know it is done like this in
-> a couple other places, those need fixed too), as we have better/standard
-> ways to add nodes to nodes other than directly including a file with the
-> node. The other issue is now the content of the file, including its #include
-> lines are now inside this parent node.
+> drivers/interconnect/qcom/icc-rpmh.c : qcom_icc_set_qos()
 > 
-> This dtsi file should just start with "/ {" and add the extra node.
+> specifically causes the crash?
 > 
-> Also, isn't this broken out into a dtsi so we can handle versions of
-> this device qualified for other thermal ranges without having to use
-> a different parent device dtsi? If so then adding it directly to the
-> base dtsi prevents that. Either all AM62L have this one thermal situation
-> and then it doesn't need to be a dtsi, or this include should go into the
-> board level as it is up to the given board what specific variant was chosen
-> to be populated on that board type.
-> 
+> FWIW they're supposed to be independent so you don't have to test
+> all possible combinations
 
-Yeah I've noticed this as well. We have a few parts available in 
-different packaging that have different maximum temp ratings. Ideally we 
-should have some way to specify which package variant the board is using 
-and include these thermal trip points for that package.
+It seems as if any one of them will cause the crash. I had to comment
+out all 3 to avoid crashing.
 
-It does add more #includes into all of this but I guess if you've picked 
-up on this as well I should probably look into seeing what we can do.
-
-~Bryan
+Brian
 
