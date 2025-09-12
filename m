@@ -1,190 +1,316 @@
-Return-Path: <devicetree+bounces-216394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744D0B54A25
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:44:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AF7B54A4E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B13F1CC7826
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:44:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8305879EB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C852EE604;
-	Fri, 12 Sep 2025 10:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15312FD1D3;
+	Fri, 12 Sep 2025 10:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FpZLhtJE"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="H6oOFmft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBEA22ED843
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C712FD1D6;
+	Fri, 12 Sep 2025 10:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757673845; cv=none; b=eO4axgpEXS0IL9fJGOTH5euSI9E7JT480qnwY3xtNUZrTwJPQUdOUAtxEiBGBuD4tYsXp3ldkyzEc5ZOMNgwd396xKvAE+gRtXMzU770v2JTczKXJWE7vx58cOQMS1y/XL3OJdDe9MqSKQ34JtzKG6Fli8SOd1HQxrq5WmFbSRE=
+	t=1757674099; cv=none; b=aes7iiEadGwpy6sGcs0nBIaIcYMdX5fHpPbCrW85XdKgS320eRXHo2xJdedtoFu7oCRSCL7NH8xxtaHJ7phC8ePBKD2jUXE2czGkoi/1TvsdZC4GFYOXPeiqRh9NkGfaYoHFRo8oDg81h2D94AhqhjVlVtH5QcSsmgyZ0ZSz2xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757673845; c=relaxed/simple;
-	bh=1RhAAhWL14KKCCwjLjtFQQnHEgSFzReQkw1xUr24XvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nc/GOocNTTHo2n3xj8mccV5M9tuFNPf0hNmMCR3s24n8Z/17Iis/ew1V88P6ZU4tkabb7KYdaHcWpJ0443zyTrm2FMo0ZojXIr9pdZq9kiFY+qqfcaGm2KhmNNP8HHH9YoWaTVcJvRLqgGBoFRysnjwUb2brozfz3GGNilJJh2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FpZLhtJE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fNa4023229
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:44:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U6ixdakbQ5kVuK1Oh9RTq+mbKIlEiLNdgoJFQouUhYY=; b=FpZLhtJEUzFZSGt7
-	q43V341L7ZfsFjv4qk3jaCT6k/npPf4Us9JafjejZCvcBHGsi/kWmN9w41ixpi9F
-	7bdorMaHGnv5v9PQMNvLsUcnsMqk8Zljp5lPFOg06pt8m5rXWlIHS+KWsgbTv1om
-	g14V8fF5F7G9w50drTe+jQtTcdRsZ4n1GNiWWW1urhPe5KuJtB9pWRrR1D2qU0Rq
-	aw+nnCSYjrN9xvmrIxXGNKlaFlnvIAvPlf+EICRlcELOzDGr6t8EVWMpG9EzkkQf
-	c8129BIdf4u7Funx7B6aUvIPasQ1v4Q02UyVruLSVBRrvduBw8drgQrq75Phpfb1
-	0JlVxw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc2fab7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:44:02 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-721c6ffab9cso6798716d6.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:44:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757673842; x=1758278642;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U6ixdakbQ5kVuK1Oh9RTq+mbKIlEiLNdgoJFQouUhYY=;
-        b=MMTUnlE5dIbT6MrvuFQGkG3wnrbuvrkpB92Opvrj98ifgC7WlGNILKXWVPSzd81o1U
-         zHrB6ow5Nt/CmEeuDU5g/8dRGJDhu3/ffShbSYRoIteUqv5aoC1F2ysWfbMvNeUIDdEa
-         rLzQD06KK0qJaC0uFd/Ky5ya14ptMiOQoREkGteD2JEFNXF44QnPAfqegmF0poVN+LBR
-         KqIMdEgNFERxDQ5AU12Jp/onUGBODGg+9rwOzO4B8Ia58VHsF1y54lu5rJ86xddb43hz
-         /XLXq8RVLPIITxfMaM2D1bJlf7C1r73BRTdpBYgbZuGbpfM9+Kwh4j6uLcpC8carUhHj
-         7goQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAlEc5sCOtzNBgTpPynDel0OaWOoyMUXbHgJYgxmkV8o3gS9RG8ipR8thfKU6MMkuWOdb/hxN/rYuo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAMsWOTbc/H0xMPCw+oXGgTnxlzV9P64AzBbOGgO2vOlo9tRYP
-	iftjhxXDSjnnqpltz/sZ/GG0qob1NbF7udt4V55t4FnIxV0LimoM3fG9sgIo8UupQoPWgDtUwnN
-	+orPN3hCO80qzQ6q6IFGy1zb6xOJqIYKKSSdsH9hPnunq/3Wsch0JyHjHM9lgESSc
-X-Gm-Gg: ASbGnctkaLJiauGsMHem/ZyObosVq3JHXB0VP1pXwycZlWi7ajIORAWnPiGpeKBNqAS
-	CBYT8RuwqQ7+zw3xMzk+1PH1n6XayQwvLnnbKKwUdgYRZ7SPQYo+AcSdDySnbkNEexwdRH28OZl
-	+xERHo2NvPNtHQXaE++hnGI+bRyqhZ3gvo/RWGJg06pL5lAq5YPoHUq/eu7BCJM0MEjqFnAz9Vq
-	n+uv+gN13CkqhN6kLnIDYtoXrJfcCXvRsWWoFI73BkH6JYn3TMHxnKWda3f3t/6SIRTcYtHIIzX
-	3uXRBMS3nGYO5lixBMxAVEjTATrmr/y6xw4PISf8SH1osRf3WHzpV/l06n8ugs0lplWZLQ7VRNi
-	G3tYkunyPO6cRvrD8IPzS+A==
-X-Received: by 2002:a05:622a:1455:b0:4b5:e9b6:c9f with SMTP id d75a77b69052e-4b77cfb686dmr20878231cf.2.1757673841889;
-        Fri, 12 Sep 2025 03:44:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGZWNrezfUYTvVB+lGnpKpkT5LYRuL7bmjPVtk+17xLrpknyf/SfpAgAUionq66fQygxAEbJQ==
-X-Received: by 2002:a05:622a:1455:b0:4b5:e9b6:c9f with SMTP id d75a77b69052e-4b77cfb686dmr20878001cf.2.1757673841419;
-        Fri, 12 Sep 2025 03:44:01 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62ec33f3c01sm3111408a12.34.2025.09.12.03.43.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 03:44:00 -0700 (PDT)
-Message-ID: <e54daa39-ffb1-4f0e-82c6-42e45efe5044@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 12:43:58 +0200
+	s=arc-20240116; t=1757674099; c=relaxed/simple;
+	bh=Z7Pln5LTgZszALstLnj6rZvCravk6nhRRYnxGrHP58o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=u9E/WQm+4f1nw2rHxSJBUFHyZr360vTvkzWudE7KBuFjTvbviG/dC5ElqnYnHGqrrcbgeMs6dm2yTTGp5f412kSZSNEQd3U6NROxLsVvyJKCZasViQrFhx9KUmHENlN+Csh/twAFeiObpgCw7c6qQ9K0xYRZPEVU5hUSaUl1SkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=H6oOFmft; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=tHyObWRBc+w7/TZVsa/8EuymxPotwQp52ccIw8C968g=; b=H6oOFmft+OeJxNyEMHhcixJVS4
+	5yB3EW9C32Bcoue2aBmWIOAGegw6rYDHvlEEjVePiTPHvT7Z5/2ms6L7pEPj79EBZFgHHM0FkZb4t
+	+DKIdbnixNT7zft3VfjIRSPt05E06h7iJjplFSTwrX58D6xiYP2H4Q3OD/fbq3Whb74ThFWfWY+Xs
+	2AM5yVa74fUxugCEbqCTEKt3HDduIO40HnAnE5xx4TowejCPLmabDExSwxKm69cD5m1uyGtEWmrVT
+	AZPcnCuDPzHkiOCw3JTX7WqRXqLpAZWofUIYStbd/QZfW+Pgvftf87IM46AKAOHoHOLGcAOwYj2md
+	18qO/rGQ==;
+Received: from [122.175.9.182] (port=38569 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1ux1K0-000000022nY-0FId;
+	Fri, 12 Sep 2025 06:48:03 -0400
+From: Parvathi Pudi <parvathi@couthit.com>
+To: danishanwar@ti.com,
+	rogerq@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ssantosh@kernel.org,
+	richardcochran@gmail.com,
+	m-malladi@ti.com,
+	s.hauer@pengutronix.de,
+	afd@ti.com,
+	jacob.e.keller@intel.com,
+	kory.maincent@bootlin.com,
+	johan@kernel.org,
+	alok.a.tiwari@oracle.com,
+	m-karicheri2@ti.com,
+	s-anna@ti.com,
+	horms@kernel.org,
+	glaroque@baylibre.com,
+	saikrishnag@marvell.com,
+	diogo.ivo@siemens.com,
+	javier.carrasco.cruz@gmail.com,
+	basharath@couthit.com,
+	parvathi@couthit.com,
+	pmohan@couthit.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vadim.fedorenko@linux.dev,
+	bastien.curutchet@bootlin.com,
+	pratheesh@ti.com,
+	prajith@ti.com,
+	vigneshr@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	mohan@couthit.com
+Subject: [PATCH net-next v16 0/6] PRU-ICSSM Ethernet Driver
+Date: Fri, 12 Sep 2025 16:14:49 +0530
+Message-ID: <20250912104741.528721-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: Rework X1-based Asus Zenbook A14's
- displays
-To: Aleksandrs Vinarskis <alex@vinarskis.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-References: <20250908-zenbook-improvements-v1-0-43ecbbf39c60@vinarskis.com>
- <20250908-zenbook-improvements-v1-2-43ecbbf39c60@vinarskis.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250908-zenbook-improvements-v1-2-43ecbbf39c60@vinarskis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c3f972 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=I76Qk8w-AAAA:8 a=gxl3bz0cAAAA:8
- a=bDNgJRMZ7ET8QJXj1coA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
- a=vUPM0Wvl0xcrLs4nqPIT:22 a=kiRiLd-pWN9FGgpmzFdl:22
-X-Proofpoint-ORIG-GUID: _hMD4yEnVctjv03ZVQ4Ck1Ez1lqY1aS-
-X-Proofpoint-GUID: _hMD4yEnVctjv03ZVQ4Ck1Ez1lqY1aS-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfXwFJnpUKCmHPy
- 7AVv3P1SSC6FYNdpDAc9b35igbNgHQjJbsJMQeBPVwVmidjvWSzTu6+ndlMsvs3wcjMqj0dpyN3
- qW3RfdzmbKQKOwYtc6VHnKTEpyK4ly44n2yGVoWKoABFCtDIUIjuY6EXkDzcwDm3Lv+rjor0qiL
- uXS+cVyDWkELzpx9KTQATtBSyR5jRCiq5yajnrOQY7tAxtb+L2ieNe9EmDXHEuiIz6BVpi4HtOV
- FY/BZ2Q62Yc0U8+rnSApWauaw7RTQRJMVLlOyTnWMlVpMkqAUNlgrf8hcMcXRf/cJNMtK5wA8wS
- Q8UDNQn5mqZDDyLPPJ0Y3DgNFm10eeTF1uQxwTCZnmhlEp/E+LdY3rBApWf7Im3JgrcW9524MWF
- 15hSKWUg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080094
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 9/8/25 8:45 PM, Aleksandrs Vinarskis wrote:
-> The laptop comes in two variants:
-> 
-> * UX3407RA, higher end, FHD+ OLED or WOXGA+ OLED panels
-> * UX3407QA, lower end, FHD+ OLED or FHD+ LCD panels
-> 
-> Even though all three panels work with "edp-panel", unfortunately the
-> brightness adjustmenet of LCD panel is PWM based, requiring a dedicated
-> device-tree. Convert "x1p42100-asus-zenbook-a14.dts" into ".dtsi" to
-> allow for this split, introduce new LCD variant. Leave current variant
-> without postfix and with the unchanged model name, as some distros
-> (eg. Ubuntu) rely on this for automatic device-tree detection during
-> kernel installation/upgrade.
-> 
-> As dedicated device-tree is required, update compatibles of OLED
-> variants to correct ones. Keep "edp-panel" as fallback, since it is
-> enough to make the panels work.
-> 
-> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> Co-developed-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
+Hi,
 
-[...]
+The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
+is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
+Megabit ICSS (ICSSM).
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtsi
-> @@ -0,0 +1,141 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2025 Aleksandrs Vinarskis <alex@vinarskis.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "x1p42100.dtsi"
-> +#include "x1-asus-zenbook-a14.dtsi"
-> +
-> +/delete-node/ &pmc8380_6;
-> +/delete-node/ &pmc8380_6_thermal;
-> +
-> +/ {
-> +	model = "ASUS Zenbook A14 (UX3407QA)";
+Support for ICSSG Dual-EMAC mode has already been mainlined [1] and the
+fundamental components/drivers such as PRUSS driver, Remoteproc driver,
+PRU-ICSS INTC, and PRU-ICSS IEP drivers are already available in the mainline
+Linux kernel. The current set of patch series builds on top of these components
+and introduces changes to support the Dual-EMAC using ICSSM on the TI AM57xx,
+AM437x and AM335x devices.
 
-'model' in .dtsi is 'eeeeh'
+AM335x, AM437x and AM57xx devices may have either one or two PRU-ICSS instances
+with two 32-bit RISC PRU cores. Each PRU core has (a) dedicated Ethernet interface
+(MII, MDIO), timers, capture modules, and serial communication interfaces, and
+(b) dedicated data and instruction RAM as well as shared RAM for inter PRU
+communication within the PRU-ICSS.
 
-[...]
+These patches add support for basic RX and TX  functionality over PRU Ethernet
+ports in Dual-EMAC mode.
 
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/x1p42100/ASUSTeK/zenbook-a14/qcadsp8380.mbn",
-> +			"qcom/x1p42100/ASUSTeK/zenbook-a14/adsp_dtbs.elf";
-> +
+Further, note that these are the initial set of patches for a single instance of
+PRU-ICSS Ethernet.  Additional features such as Ethtool support, VLAN Filtering,
+Multicast Filtering, Promiscuous mode, Storm prevention, Interrupt coalescing,
+Linux PTP (ptp4l) Ordinary clock and Switch mode support for AM335x, AM437x
+and AM57x along with support for a second instance of  PRU-ICSS on AM57x
+will be posted subsequently.
 
-are both of the aforementioned variants' firmwares the same?
+The patches presented in this series have gone through the patch verification
+tools and no warnings or errors are reported. Sample test logs obtained from AM33x,
+AM43x and AM57x verifying the functionality on Linux next kernel are available here:
 
-Konrad
+[Interface up Testing](https://gist.github.com/ParvathiPudi/59ca0087dc7bed0f83a3b0e6db27d39c)
+
+[Ping Testing](https://gist.github.com/ParvathiPudi/bcd39aa7006f6176d8c5b71a23d0928b)
+
+[Iperf Testing](https://gist.github.com/ParvathiPudi/9bb4fa42410fbc757a93f65ecb45e4f3)
+
+[1] https://lore.kernel.org/all/20230106121046.886863-1-danishanwar@ti.com/
+[2] https://lore.kernel.org/all/20250108125937.10604-1-basharath@couthit.com/
+
+This is the v16 of the patch series [v1]. This version of the patchset
+addresses the comments made on [v15] of the series.
+
+Changes from v15 to v16 :
+
+*) Added a patch to update the MAINTAINERS entries as per Jakub Kicinski's
+review comment.
+*) Rebased the series on latest net-next.
+
+Changes from v14 to v15 :
+
+*) Addressed Jakub Kicinski's comments on patch 4 of the series.
+*) Addressed MD Danish Anwar comments on patch 2 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v13 to v14 :
+
+*) Addressed Jakub Kicinski's comments on patch 4 of the series.
+*) Addressed MD Danish Anwar comments on cover letter of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v12 to v13 :
+
+*) Addressed Alok Tiwari comments on patch 2, 3 and 5 of the series.
+*) Addressed Bastien Curutchet comment on patch 2 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v11 to v12 :
+
+*) Addressed Jakub Kicinski's comments on patch 2 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v10 to v11 :
+
+*) Reduced patch series size by removing features such as Ethtool support,
+VLAN filtering, Multicast filtering, Promiscuous mode handling, Storm Prevention,
+Interrupt coalescing, and Linux PTP (ptp4l) ordinary clock support. This was done
+based on Jakub Kicinski's feedback regarding the large patch size (~5kLoC).
+Excluded features will be resubmitted.
+*) Addressed Jakub Kicinski comments on patch 2, and 3 of the series.
+*) Addressed Jakub Kicinski's comment on patch 4 of the series by implementing
+hrtimer based TX resume logic to notify upper layers in case of TX busy.
+*) Rebased the series on latest net-next.
+
+Changes from v9 to v10 :
+
+*) Addressed Vadim Fedorenko comments on patch 6 and 11 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v8 to v9 :
+
+*) Addressed Vadim Fedorenko comments on patch 6 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v7 to v8 :
+
+*) Addressed Paolo Abeni comments on patch 3 and 4 of the series.
+*) Replaced threaded IRQ logic with NAPI logic based on feedback from Paolo Abeni.
+*) Added Reviewed-by: tag from Rob Herring for patch 1.
+*) Rebased the series on latest net-next.
+
+Changes from v6 to v7 :
+
+*) Addressed Rob Herring comments on patch 1 of the series.
+*) Addressed Jakub Kicinski comments on patch 4, 5 and 6 of the series.
+*) Addressed Alok Tiwari comments on Patch 1, 4 and 5 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v5 to v6 :
+
+*) Addressed Simon Horman comments on patch 2, 7 and 11 of the series.
+*) Addressed Andrew Lunn comments on patch 5 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v4 to v5 :
+
+*) Addressed Andrew Lunn and Keller, Jacob E comments on patch 5 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v3 to v4 :
+
+*) Added support for AM33x and AM43x platforms.
+*) Removed SOC patch [2] and its dependencies.
+*) Addressed Jakub Kicinski, MD Danish Anwar and Nishanth Menon comments on cover
+   letter of the series.
+*) Addressed Rob Herring comments on patch 1 of the series.
+*) Addressed Ratheesh Kannoth comments on patch 2 of the series.
+*) Addressed Maxime Chevallier comments on patch 4 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v2 to v3 :
+
+*) Addressed Conor Dooley comments on patch 1 of the series.
+*) Addressed Simon Horman comments on patch 2, 3, 4, 5 and 6 of the series.
+*) Addressed Joe Damato comments on patch 4 of the series.
+*) Rebased the series on latest net-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn, Rob Herring comments on patch 1 of the series.
+*) Addressed Andrew Lunn comments on patch 2, 3, and 4 of the series.
+*) Addressed Richard Cochran, Jason Xing comments on patch 6 of the series.
+*) Rebased patchset on next-202401xx linux-next.
+
+[v1] https://lore.kernel.org/all/20250109105600.41297-1-basharath@couthit.com/
+[v2] https://lore.kernel.org/all/20250124122353.1457174-1-basharath@couthit.com/
+[v3] https://lore.kernel.org/all/20250214054702.1073139-1-parvathi@couthit.com/
+[v4] https://lore.kernel.org/all/20250407102528.1048589-1-parvathi@couthit.com/
+[v5] https://lore.kernel.org/all/20250414113458.1913823-1-parvathi@couthit.com/
+[v6] https://lore.kernel.org/all/20250423060707.145166-1-parvathi@couthit.com/
+[v7] https://lore.kernel.org/all/20250503121107.1973888-1-parvathi@couthit.com/
+[v8] https://lore.kernel.org/all/20250610105721.3063503-1-parvathi@couthit.com/
+[v9] https://lore.kernel.org/all/20250623135949.254674-1-parvathi@couthit.com/
+[v10] https://lore.kernel.org/all/20250702140633.1612269-1-parvathi@couthit.com/
+[v11] https://lore.kernel.org/all/20250722132700.2655208-1-parvathi@couthit.com/
+[v12] https://lore.kernel.org/all/20250724072535.3062604-1-parvathi@couthit.com/
+[v13] https://lore.kernel.org/all/20250812110723.4116929-1-parvathi@couthit.com/
+[v14] https://lore.kernel.org/all/20250822132758.2771308-1-parvathi@couthit.com/
+[v15] https://lore.kernel.org/all/20250904101729.693330-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi.
+
+Parvathi Pudi (3):
+  dt-bindings: net: ti: Adds DUAL-EMAC mode support on PRU-ICSS2 for
+    AM57xx, AM43xx and AM33xx SOCs
+  net: ti: icssm-prueth: Adds IEP support for PRUETH on AM33x, AM43x and
+    AM57x SOCs
+  MAINTAINERS: Add entries for ICSSM Ethernet driver
+
+Roger Quadros (3):
+  net: ti: icssm-prueth: Adds ICSSM Ethernet driver
+  net: ti: icssm-prueth: Adds PRUETH HW and SW configuration
+  net: ti: icssm-prueth: Adds link detection, RX and TX support.
+
+ .../devicetree/bindings/net/ti,icss-iep.yaml  |   10 +-
+ .../bindings/net/ti,icssm-prueth.yaml         |  233 +++
+ .../bindings/net/ti,pruss-ecap.yaml           |   32 +
+ .../devicetree/bindings/soc/ti/ti,pruss.yaml  |    9 +
+ MAINTAINERS                                   |   12 +
+ drivers/net/ethernet/ti/Kconfig               |   12 +
+ drivers/net/ethernet/ti/Makefile              |    3 +
+ drivers/net/ethernet/ti/icssg/icss_iep.c      |  101 +
+ drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 1748 +++++++++++++++++
+ drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  262 +++
+ .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |   85 +
+ drivers/net/ethernet/ti/icssm/icssm_switch.h  |  257 +++
+ 12 files changed, 2761 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/ti,pruss-ecap.yaml
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.c
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+ create mode 100644 drivers/net/ethernet/ti/icssm/icssm_switch.h
+
+-- 
+2.43.0
+
 
