@@ -1,54 +1,62 @@
-Return-Path: <devicetree+bounces-216270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB966B54382
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:08:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07100B54388
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:09:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93BEC3B15B3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:08:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AFB71C81F66
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADFA29E0F8;
-	Fri, 12 Sep 2025 07:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BE129B79B;
+	Fri, 12 Sep 2025 07:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E2uUG2di"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF01D29AB12;
-	Fri, 12 Sep 2025 07:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7533C199FB2;
+	Fri, 12 Sep 2025 07:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757660900; cv=none; b=qhKgLzTmY9PdQkAhYZsZ38BchpDH7stnqibf7evE6kPxf3oR89mqm5VbeBJS0j23DMND63c3DJPofEaZNXohfIJIPrAFFQBJETXyOZWLa9mCSLoK3RyaHQVVoUJODsLkJ2cbsgn7b/krkY7uWqbSyYdnvTE5gqUQRVTtIy5fxk4=
+	t=1757660985; cv=none; b=ZfBVGFLbfm4JS2SVtikJXYp7lAhaLwWS6TDGfTOuA7xN0Mq5Ma2cfO9u0Noqgvb5cz2LhT2lMJQC4iL+pj29FES/0xU1B7C5otPItsNwoYmMCmi8qV9l5kVbneZNvos3Dno2Mm82IIYgPnzhjH9x1VGLdAeAjAdwVnu6HqRKSCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757660900; c=relaxed/simple;
-	bh=RRtUOZThdqYvD2gGCk5TTsXRXY57iVZQgC/XXqZA+jA=;
+	s=arc-20240116; t=1757660985; c=relaxed/simple;
+	bh=4AlYbUZqbeoGnHZ92DdTmZ5FEV+tYiDs7FOZ8YpY29U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e8JxdViJ6fo10PBJgpAf8TURO+w/Fhv8YR/EpXHmkNX2wMi0fEYjpwEXMuLsRfsWjJgr8/vSa2KDIikfdaXMkWy+VtS5eLgeT6N0QnXghQFh/w123UfcGDG2LDFeU9U1tttNs4iacHjsqUzs0oKAMywBfCaGg8xGzfrgfdUbR38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12BAAC4CEF4;
-	Fri, 12 Sep 2025 07:08:20 +0000 (UTC)
-Date: Fri, 12 Sep 2025 09:08:18 +0200
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Varadarajan Narayanan <quic_varada@quicinc.com>, Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=GGjpXbn8kivCM7L1izf44e1yMJgO4M27CQnCGtSeW2dUrWuKSHJ/WyejDfwAFDBb7ftyyPm7c1hlUHZWA3caAfD6mkKa3gdsELDOKXz59npLIWBO4ulM1lTvQjFo+T/J0ggdKju7qPVd6n+812SEuaJBu0I3LaAJyWWf/gGRF2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E2uUG2di; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DBEC4CEF4;
+	Fri, 12 Sep 2025 07:09:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757660984;
+	bh=4AlYbUZqbeoGnHZ92DdTmZ5FEV+tYiDs7FOZ8YpY29U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E2uUG2diI3Zm5h84JEAUPN/VYN+T1o384EdT5mjkNcnGKKElEiA+X75BxRaieiVLH
+	 nzXpIAK0bfxjhBqku0zTNcL4s9mf07zhnV4dlawdAkmcueJKwOu4ql/yW+f08huXjd
+	 YSJyc/43tlOEORw99ZXvBsitrmzxArTfvGWxCXh7XQOrTBDPlcwZa0EbDEvpS+udRx
+	 lBevJk/fJQcgLlpk5jYmzHK9zn9Y6xUtL29OHgrj1ZWEixm238y/kh0jz7psdpf0bW
+	 OSvCwXcoLUjV3FZLE0gC+KkWgQBWN7wfNbgFxJIEF/YIQ4N375yKrwibeGXbWe+Paf
+	 PMCzca9hZg2kQ==
+Date: Fri, 12 Sep 2025 09:09:42 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Cc: imx@lists.linux.dev, Philipp Zabel <p.zabel@pengutronix.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anusha Rao <quic_anusha@quicinc.com>, Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, 
-	Devi Priya <quic_devipriy@quicinc.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Richard Cochran <richardcochran@gmail.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
-	quic_pavir@quicinc.com, quic_suruchia@quicinc.com
-Subject: Re: [PATCH v5 07/10] dt-bindings: clock: qcom: Add NSS clock
- controller for IPQ5424 SoC
-Message-ID: <20250912-chowchow-of-famous-art-8fcd7e@kuoka>
-References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
- <20250909-qcom_ipq5424_nsscc-v5-7-332c49a8512b@quicinc.com>
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/9] dt-bindings: display: imx: Add i.MX94 DCIF
+Message-ID: <20250912-astonishing-bipedal-raccoon-4a9c67@kuoka>
+References: <20250911-dcif-upstreaming-v5-0-a1e8dab8ae40@oss.nxp.com>
+ <20250911-dcif-upstreaming-v5-4-a1e8dab8ae40@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,25 +65,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250909-qcom_ipq5424_nsscc-v5-7-332c49a8512b@quicinc.com>
+In-Reply-To: <20250911-dcif-upstreaming-v5-4-a1e8dab8ae40@oss.nxp.com>
 
-On Tue, Sep 09, 2025 at 09:39:16PM +0800, Luo Jie wrote:
-> NSS clock controller provides the clocks and resets to the networking
-> blocks such as PPE (Packet Process Engine) and UNIPHY (PCS) on IPQ5424
-> devices.
+On Thu, Sep 11, 2025 at 02:37:04PM +0300, Laurentiu Palcu wrote:
+> DCIF is the i.MX94 Display Controller Interface which is used to
+> drive a TFT LCD panel or connects to a display interface depending
+> on the chip configuration.
 > 
-> Add support for the compatible string "qcom,ipq5424-nsscc" based on the
-> existing IPQ9574 NSS clock controller Device Tree binding. Additionally,
-> update the clock names for PPE and NSS for newer SoC additions like
-> IPQ5424 to use generic and reusable identifiers "nss" and "ppe" without
-> the clock rate suffix.
-> 
-> Also add master/slave ids for IPQ5424 networking interfaces, which is
-> used by nss-ipq5424 driver for providing interconnect services using
-> icc-clk framework.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
 > ---
+>  .../bindings/display/imx/nxp,imx94-dcif.yaml       | 82 ++++++++++++++++++++++
+>  1 file changed, 82 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
