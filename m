@@ -1,291 +1,127 @@
-Return-Path: <devicetree+bounces-216286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A91B54417
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5D4B5441D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0551D584DA8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:43:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E87B584E32
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F202D063A;
-	Fri, 12 Sep 2025 07:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AE42D23B9;
+	Fri, 12 Sep 2025 07:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gDdotHWi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ou01/gYm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECEE2472B0
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDB52BE646
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757663013; cv=none; b=WNGeBG/XsRSmh/fuyD2TAauGX8tSGF23s7095EjfgbothN1wwdwwHrQRgTswPnyRjvPk974bwKm4rrbDNT8tIxJpzmOAsWtHNP9bgIrRklxCzQj0l17cCc6NH5zceEXslpbT88SaaZPuWblQhGRiazz0gZ17EGYCOCA1CjzPSfA=
+	t=1757663134; cv=none; b=cGhtvGW3fgGJDPj4ViggcTvTiAz3PfUhQGHy2JnwqBKQwBcBaxZzq75knlEvOPEYQ80t5DtZWVniw/m0qozZtl6ob/0j44/kiH6bafwr3OfcIVymHLK/lVGetj6gm8/NmhI47N0XFlqSIPuEsCABjeRn0fPsMr/Y1PQ9FHGCemk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757663013; c=relaxed/simple;
-	bh=QbQ+D0lj0zyGSWQXCzBrA6FK9SMcdNAf9ABEcq+D/4E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yi8B6f04FJVyugbQ2anhQdh+7E9ieyTXWS+Sl+wWa20jQ0IDfNsJoGW55Z6zxC2UT9oepTGO9CdCdCzuAgiaAEKYx6E5yz+IDsAjD2yf/wjNaYMH84RO2YBnn1lUcR5NNNjf9MS20jgd15oVfhv819ExRc1Y/p3v/pWbFlYU5e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gDdotHWi; arc=none smtp.client-ip=209.85.221.46
+	s=arc-20240116; t=1757663134; c=relaxed/simple;
+	bh=6FZzZpXKOXHzhJ2wnkOGqaqwmyZ8ymDmUm9n/R7xppU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T/y2Apv07JDbLKOzhDh77rCNcs2jQZw2INVGe9IurTpaMYPQTmvJAoD/V8Yf9/XGODLnmfMrMphDar54p2JsOSYt2+HUpYLTMK18hiFZXERBjz0FvF5/m5hOv/01urM8oHMUdzQST9XKwVwn8KHCcbYtK5TSpzzeEE7GDiJLITQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ou01/gYm; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3d44d734cabso1306585f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:43:31 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-336b88c5362so15277321fa.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757663010; x=1758267810; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/tlrqWaDX6PzrBsN1xgSiYWgH8yIXX+vr7eFeQ9eV+s=;
-        b=gDdotHWiXd59YjG9AmILsyGVbq1w0Tq/Orl6/qeqqKAg3MKv8iKkGviUGNl/p2+05K
-         ls0oBIonrkoVu7i4Gnzv5GhBdJZBn+JXiuZctSAYbqiXLyfjqrMWYwtsfuaZqefaPEhr
-         y1loyZzRDD/1t+q1+DUlaPpE7Fw/0o9DsZUPlakU8XsXVBmrKfohRdfnNdMsDhDwP6Oq
-         bRjEpoW24guhWwi7E0kzavb1JHWHBxxyWd/cVjBpAsPytfjl4YmYaoiuRsKuUUQPJ+3C
-         TgRfzgd2rUZB3CJevrHYQxti5Uit6d2Z1ZWQG7rTei1Ox4sH1M/WDZYeFtZ//Q5vnz6A
-         t0QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757663010; x=1758267810;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1757663131; x=1758267931; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/tlrqWaDX6PzrBsN1xgSiYWgH8yIXX+vr7eFeQ9eV+s=;
-        b=ZMxTnkPBwfFnfXahsNrzeLCcV+Z77An1lvY/d7V1O7VC2trOu9WRoMu8lmBPA7ulF1
-         XDnPPqgcFoDl/WHK7LNlHn1Gp+cR2tGSAwkkk/l0Bb5W2aW27eOUkib+YHzsVLEAFQtE
-         WFw8mHR1YL74WNTk1X/41tSuMyg5yTSMEV5CDNjHyQRbuOqTJDHmOsOnDtwvJsIMGptB
-         Xp+FtOaeXjcT6y6Ec1JZ2l3EkqU3i+JYRVEcc4NO/HVIKaPeTSnn17IxCBZ13bOyd20l
-         A7Fa5N20Fbf0R768UgEOG3T4LAI8xWSju1izFLK/gL/8WEvCTgJuyrQJizYMqzNnJXBG
-         d+qA==
-X-Forwarded-Encrypted: i=1; AJvYcCXgAHboLn7AmZRxdUHmVwTAYRHvQzJXi+PgEuYfDKMcvlhEZF9NIRga8MmaLBlzL1sbXDa4IzG2MYxG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwxpM2ZG51OYFG4wngHU1CfDHU1ozKnCyGgu/MnWeSwFcLG7Hv
-	VP01aeU1cml+Lr23L4KDVnch38PAraXMVohbxeWs+TZbyX7otoUkD0DZ4Og6hWRlcHk=
-X-Gm-Gg: ASbGnctMlsZnLsx/fTAeqhJQHsoQUSwcXBlOxk1F5iZVyqxMZU41+uxxiWNP0HCSZ8U
-	TH33tFb9lWsG21AqCaK98RPTOeXz1rNCDtQN7NtBjHDUXSTaNUGLMBM2b7zOo2dYoBFNUAeP+I9
-	b2OGun8jgF+ImjmI1HsHw3z+IFXZI2Ggo/oscuHpCYtgZ1SWCb74Nnk/dQG9mW+yNHuVDkhDW5Q
-	QZ+R57NBIX41Ate0oGmsSg46VgYZ64TYROpy8GCk9R2+bUVe8UOVZYRUNvcGmdpA3jPzkNqCsmN
-	q8+YyC7XnwQRvAEz17vImOXHlmedetgMkq8UJOUrflLabmjjClgjUyvV+TWTpmd+Ac9nnqyLFVV
-	EZ2UINudUgveJQiuAQqBkgQ==
-X-Google-Smtp-Source: AGHT+IEZAiE1f9boxOUWUwCm6QWtzQinPI/QYY7rsGgyorpzn3871kCxtIjCpGOMwKr6zoccKgtOdA==
-X-Received: by 2002:a05:6000:230f:b0:3e7:4071:188c with SMTP id ffacd0b85a97d-3e765a04970mr1862367f8f.60.1757663010049;
-        Fri, 12 Sep 2025 00:43:30 -0700 (PDT)
-Received: from linaro.org ([86.121.170.194])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e760786cddsm5695898f8f.14.2025.09.12.00.43.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 00:43:29 -0700 (PDT)
-Date: Fri, 12 Sep 2025 10:43:27 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] phy: qcom: edp: Add Glymur platform support
-Message-ID: <4a5brcec3knsjtowyju33drs2twq72mtpiwo54dtshsvs22d6v@e7rztm64nmlo>
-References: <20250911-phy-qcom-edp-add-glymur-support-v3-0-1c8514313a16@linaro.org>
- <20250911-phy-qcom-edp-add-glymur-support-v3-4-1c8514313a16@linaro.org>
- <DCQAGDC63M8X.3DVH6I9FA0IZD@linaro.org>
+        bh=6FZzZpXKOXHzhJ2wnkOGqaqwmyZ8ymDmUm9n/R7xppU=;
+        b=ou01/gYmHWzmRqiHYqhf+HrV5cImsTJB6CuCDvjdCPRBFGWdlWsyYwKoFUiacRx5qP
+         gnepZNDoq9grfoKdcfF934UjQu9o/nAC/SPg/NeCpQAD5nYiHbSbZ5co3xX62Y8Y/2nD
+         RJJbFB13Ik4LFgjmE4UJYoaRxcRC7UFpfi4WgIckO62d1R66WiwlFEslMmub9jXojb+6
+         XzLhbXC2ESDJwnQNom5cbdfCw8S9lEWv0KLnEKK32FCjTgi1zJ/y1/9JNly5UBxLNqZV
+         PP8lb4Tzp1hWXoKXvjVu7l5Kv0pWdc0qZEx3sZ/zioQbOI0/Km9adp4KuwXATiJ05hWb
+         9Y+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757663131; x=1758267931;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6FZzZpXKOXHzhJ2wnkOGqaqwmyZ8ymDmUm9n/R7xppU=;
+        b=oQjHLZ5PAZpHy2BNzkPJBXVR0ZjIHBYfxYgqhQhc0myX9024+jVGu2Yz8y7XF8Dzbv
+         FN++VDkTcwI+GDDqMk4BHcEu2Ss6RNXd+iN+asf4TALzR/LH3+rsA4d0SwJ9Se6Fe/Ej
+         3Ta4PqLDoh/2xuxwvvEBPDyYXTiasuxnP0EousJ/AZOOUyteRpi7iuOki8WiUBgNzj5V
+         HR2ygG5INYmpp/X+RIJ7rQu5O80P/T83yTrZgU/lkDaMU0FsTVtfbAiEmrppFVN1VoI9
+         sHQomEEqKha6K00Z2ll8ktag0ccwunxTeaPEjaeEKKqkjxhaWqAhRkhqmXYBe0Bg/dPQ
+         HemA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVziiwYKXnA1xqBuMjSMV1lajTFxgah2mTGvl2X+7zTEUJyA9Gtuz/DHEYpBZIlyjZjkQHaimvjL3V@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaZszdpvRYTPEOxeCWG1dTdsmfFbKVfrvK8JbuoQTNZNRByc8e
+	aj4eubFVKcZ0YlpWgda5sVFz7qfZ32ZXDzeBSs8cbjB0rbmCo0/VVCzifRTs+hy26agG9cC2Mid
+	HlKcv5A6uUHegZzMYaCqeQQkfrU3vspP6MT66DKxXRzQVxJskhw3oKzOXgA==
+X-Gm-Gg: ASbGncspK/A6yMmrai4RbzYgM75ZdSC+qC4sJwSORm5ZHzpbgRP+ByEAkFIsGPbz0v7
+	wxJ1vlcViE/meYFe+41kMRJCAq4VFIbpdMtLrm/qgjPWTj5NNTYvB9BgV51gXQ8fTzLKfnAd+dz
+	Zq7vctGickz/RxCOf9Oj0Q9UTHqVO9dSRpnEHYjcQH9VdCCX0GOGF+2rtz3VDvHT4A3qKNOwy88
+	44SUvE=
+X-Google-Smtp-Source: AGHT+IHlmRAHKqSdot79mnaN0SJhfcVcwXH1gxvx+jUHEDO9IZALMIrMYqfVCaNGxNsDXGYCgXZm+lDZA6bq0RfiLP8=
+X-Received: by 2002:a05:651c:2359:20b0:336:c290:b321 with SMTP id
+ 38308e7fff4ca-3513a8f1a35mr3890011fa.13.1757663130915; Fri, 12 Sep 2025
+ 00:45:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DCQAGDC63M8X.3DVH6I9FA0IZD@linaro.org>
+References: <20250912060650.2180691-1-gary.yang@cixtech.com>
+In-Reply-To: <20250912060650.2180691-1-gary.yang@cixtech.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 12 Sep 2025 09:45:19 +0200
+X-Gm-Features: Ac12FXzUbHER-mkVUjmDr0R7CXpg398gO_vKvZUgNOQ1exRFoKJFGV6d7epl9gM
+Message-ID: <CACRpkdbsJ75Th5=K65_teYXv34ECB9yx7hWeHG4QBao3wbCDvA@mail.gmail.com>
+Subject: Re: [v2 0/3] Add pinctrl support for sky1
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	cix-kernel-upstream@cixtech.com, 
+	Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25-09-11 22:28:24, Alexey Klimov wrote:
-> On Thu Sep 11, 2025 at 3:45 PM BST, Abel Vesa wrote:
-> > The Qualcomm Glymur platform has the new v8 version
-> > of the eDP/DP PHY. So rework the driver to support this
-> > new version and add the platform specific configuration data.
-> 
-> It is a bit confusing. Subject suggests that it is an addition
-> of a new platform but patch itself and description looks more like a
-> rework rather than new platform addition.
+Hi Gary,
 
-The larger part of this patch is actually the addition of v8 specific bits,
-which is only used on Glymur, AFAICT. So here, new platform means new init
-sequence (at least), but new init sequence requires addition of v8 bits.
-The rework is rather minor in comparison with the v8 addition.
+On Fri, Sep 12, 2025 at 8:06=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
+rote:
 
-> 
-> The ->aux_cfg_size() rework here reminds me
-> 913463587d52 phy: qcom: edp: Introduce aux_cfg array for version specific aux settings
-> 
-> Ideally this should be split into rework and adding support for a
-> new platform. Or please update the commit desc and subject to explain
-> why this is the way.
+> Patch 1: add Cix pinctrl driver to support pinmux and pinconfigs
+> Patch 2: add Cix pinctrl nodes and header file
+> Patch 3: add yaml doc
+>
+> Changes for v2:
+> - restructure the pinctrl driver to support pinmux=3D<..>
+> - redefine pinmux macros
+> - move header file from dt-bindings to dts
+> - fix the code-style issues
 
-Splitting out the rework could be an option, however, it would not add
-any value. Seeing the changes needed by the new v8 version alongside
-with the addition of the v8 version makes the patch more intuitive to
-read, IMO, specially since, again, the rework pretty is minor.
+If you want help for managing the different revisions of a patch series,
+you can use the "b4" tool, here is a tutorial:
 
-If anything, maybe I could add to the existing commit what exactly needs
-to be reworked for the v8 version addition, but IMHO the rework code is
-quite self-explanatory, and we should only describe in the commit
-message what the patch does not how the code works.
+https://people.kernel.org/monsieuricon/sending-a-kernel-patch-with-b4-part-=
+1
 
-> 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-edp.c | 240 +++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 234 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > index 7b642742412e63149442e4befeb095307ec38173..b670cda0fa066d3ff45c66b73cc67e165e55b79a 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-> 
-> [..]
-> 
-> >  static int qcom_edp_phy_init(struct phy *phy)
-> >  {
-> >  	struct qcom_edp *edp = phy_get_drvdata(phy);
-> > @@ -224,7 +241,11 @@ static int qcom_edp_phy_init(struct phy *phy)
-> >  	if (ret)
-> >  		goto out_disable_supplies;
-> >  
-> > -	memcpy(aux_cfg, edp->cfg->aux_cfg, sizeof(aux_cfg));
-> > +	memcpy(aux_cfg, edp->cfg->aux_cfg, edp->cfg->aux_cfg_size);
-> 
-> So, if I understand this correctly, when or if init sequence will
-> span beyond DP_PHY_AUX_CFG9 and DP_AUX_CFG_SIZE won't be updated,
-> then we might end up doing something fishy here?
+[Konstantin: the doc link on the bottom of the article is wrong
+and needs to be augmented to point to latest!]
 
-So, usually you get an init sequence that gives you register names and
-registers value. This means will never get anything beyond the AUX_CFG12
-as part of the AUX_CFG array. At least not on the currently available
-platforms. In case a new platform will come around with AUX_CFG13 and
-beyond, then this whole thing will need to be reworked heavily due to
-variation in size of the AUX_CFG register layout, not because of the
-variation in size of the AUX CFG init sequence, as it is the case now.
-But this fits into the 'future problem' bucket.
+It's a bit tricky to switch to v3 since you already started without it,
+but it can be done with
 
-> 
-> Maybe add an if-check or even
-> BUILD_BUG_ON(edp->cfg->aux_cfg_size > sizeof(aux_cfg))
-> or something like this? Or kmalloc aux_cfg eventually at least,
-> however it seems to overcomplicate things.
+b4 prep --force-revision 3
+(see full docs https://b4.docs.kernel.org/en/latest/ )
 
-Definitely not BUILD_BUG_ON !
 
-And adding a check for the size it's pretty pointless since we currently
-hardcode the size of the array when defining it.
-
-But maybe I'll outvoted here ...
-
-> 
-> [..]
-> 
-> > +static int qcom_edp_com_configure_ssc_v8(const struct qcom_edp *edp)
-> > +{
-> > +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-> > +	u32 step1;
-> > +	u32 step2;
-> > +
-> > +	switch (dp_opts->link_rate) {
-> > +	case 1620:
-> > +	case 2700:
-> > +	case 8100:
-> > +		step1 = 0x5b;
-> > +		step2 = 0x02;
-> > +		break;
-> > +
-> > +	case 5400:
-> > +		step1 = 0x5b;
-> > +		step2 = 0x02;
-> > +		break;
-> > +
-> > +	default:
-> > +		/* Other link rates aren't supported */
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	writel(0x01, edp->pll + DP_QSERDES_V8_COM_SSC_EN_CENTER);
-> > +	writel(0x00, edp->pll + DP_QSERDES_V8_COM_SSC_ADJ_PER1);
-> > +	writel(0x6b, edp->pll + DP_QSERDES_V8_COM_SSC_PER1);
-> > +	writel(0x02, edp->pll + DP_QSERDES_V8_COM_SSC_PER2);
-> > +	writel(step1, edp->pll + DP_QSERDES_V8_COM_SSC_STEP_SIZE1_MODE0);
-> > +	writel(step2, edp->pll + DP_QSERDES_V8_COM_SSC_STEP_SIZE2_MODE0);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int qcom_edp_com_configure_pll_v8(const struct qcom_edp *edp)
-> > +{
-> > +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-> > +	u32 div_frac_start2_mode0;
-> > +	u32 div_frac_start3_mode0;
-> > +	u32 dec_start_mode0;
-> > +	u32 lock_cmp1_mode0;
-> > +	u32 lock_cmp2_mode0;
-> > +	u32 code1_mode0;
-> > +	u32 code2_mode0;
-> > +	u32 hsclk_sel;
-> > +
-> > +	switch (dp_opts->link_rate) {
-> > +	case 1620:
-> > +		hsclk_sel = 0x5;
-> > +		dec_start_mode0 = 0x34;
-> > +		div_frac_start2_mode0 = 0xc0;
-> > +		div_frac_start3_mode0 = 0x0b;
-> > +		lock_cmp1_mode0 = 0x37;
-> > +		lock_cmp2_mode0 = 0x04;
-> > +		code1_mode0 = 0x71;
-> > +		code2_mode0 = 0x0c;
-> > +		break;
-> > +
-> > +	case 2700:
-> > +		hsclk_sel = 0x3;
-> > +		dec_start_mode0 = 0x34;
-> > +		div_frac_start2_mode0 = 0xc0;
-> > +		div_frac_start3_mode0 = 0x0b;
-> > +		lock_cmp1_mode0 = 0x07;
-> > +		lock_cmp2_mode0 = 0x07;
-> > +		code1_mode0 = 0x71;
-> > +		code2_mode0 = 0x0c;
-> > +		break;
-> > +
-> > +	case 5400:
-> > +		hsclk_sel = 0x2;
-> > +		dec_start_mode0 = 0x4f;
-> > +		div_frac_start2_mode0 = 0xa0;
-> > +		div_frac_start3_mode0 = 0x01;
-> > +		lock_cmp1_mode0 = 0x18;
-> > +		lock_cmp2_mode0 = 0x15;
-> > +		code1_mode0 = 0x14;
-> > +		code2_mode0 = 0x25;
-> > +		break;
-> > +
-> > +	case 8100:
-> > +		hsclk_sel = 0x2;
-> > +		dec_start_mode0 = 0x4f;
-> > +		div_frac_start2_mode0 = 0xa0;
-> > +		div_frac_start3_mode0 = 0x01;
-> > +		lock_cmp1_mode0 = 0x18;
-> > +		lock_cmp2_mode0 = 0x15;
-> > +		code1_mode0 = 0x14;
-> > +		code2_mode0 = 0x25;
-> > +		break;
-> 
-> These sections for 5400 and 8100 rates seem to be the same. Is it correct?
-> If yes, then maybe join them together and drop duplicating lines?
-> 
-> There is probably similar thingy in qcom_edp_com_configure_ssc_v8() above.
-
-I agree. This is a good point. I'll do fallthrough instead. In the
-_configure_ssc_v8() above as well.
-
-> 
-> Best regards,
-> Alexey
-> 
-
-Thanks for reviewing.
-
+Yours,
+Linus Walleij
 
