@@ -1,325 +1,208 @@
-Return-Path: <devicetree+bounces-216360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31026B54817
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:41:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA41B5481F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:42:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48566189BC1C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:41:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB9A11883184
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE93127FD76;
-	Fri, 12 Sep 2025 09:41:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B889D280308;
+	Fri, 12 Sep 2025 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GEk1kG1U"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="frl1N9yB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF0127B332;
-	Fri, 12 Sep 2025 09:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225CF27E1B1
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757670062; cv=none; b=frs8ReiSwbVCAQWtlXIQCPxY+C6AFiuaYFlg0C8YsEgl1c9VyaI3Gh+qtuh8hiZO6NHqXV8ToKNuGLkQpQOtMfV5BeLQkv/OxSmaOxMbMIH1SwEXiyA4j+EzlaQgigpUKcJ4Kj3Utr2IRsxrhT8V20mlTfT0kb74QXzbopv0vl4=
+	t=1757670118; cv=none; b=TfbE0hgP+u/GbmOpkACexBtag4IQCNw7BuO7TBAqssTkQnIJDSU3XTowH3VS6WLCaavKS7dIjLyWh6xHsom7AqbI0KzL6V3UjVXIqsoI6LR6mKpTsYe+WYpJIKB8pnA4NhiZtImCYEk4JxoKcsFpKRxgJkSdYXCMys98+Fzquyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757670062; c=relaxed/simple;
-	bh=BH7CqmsvHPPdGqoLyzJXfhl7pz0d6jIqPw0TUeR/8Hw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TZqbRBnltPu/damsggth+dBr6sLjnHleG1r4VW+BthxClFx60QS+DAEhx8/di4tPDG1Tqx9wqI2xDHb1SNYaDwvsTKV9kj4Q2ZuldijcfOxX37kCMO3ADcLib3DmLecmDyyTrL0z0PrVAv2VnSpFZ0rDYgRY2ZEo4WItdkE8Z7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GEk1kG1U; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 1CFCDC6B386;
-	Fri, 12 Sep 2025 09:40:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 144C760638;
-	Fri, 12 Sep 2025 09:40:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B400F102F28FD;
-	Fri, 12 Sep 2025 11:40:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757670057; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=aGohR6ZwN7IVvK/xkjACU4BzL/wpsxEBY2zURHYAXvg=;
-	b=GEk1kG1UYxRFqOQ4qCeE/ExtZytcac5jN4GY28dN/Smu7ejEQTsarl5B8M7MpBzvv5AD12
-	/4n4PAnVIvVIOp3HM96w0duxv6OJVpWD0gSiAR7g5X0COlTERYA9/B9L5SfvZFRSEX7Ph1
-	qChjUJRaYQIAZN/UPO4PUqyOZSFIqKSXNSWPxb/k3M5WOfu7a907k6ZC/24o00ZykvPGTv
-	VwG91NzZ2uqE4K/XByPiiNDTBaIncHHagf2oZBA5rZQ7H05RJIH4DAOIO8xd4MKngvSn8X
-	EWvofgdpXJ5nFv2AidIa0MK9QRcYy4zdFmkcfcBPDVMtMPuqkD4s43LHKMhB1g==
-Date: Fri, 12 Sep 2025 11:40:39 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Ayush Singh <ayush@beagleboard.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob Herring
- <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <20250912114039.30e8422f@booty>
-In-Reply-To: <20250911121103.40ccb112@bootlin.com>
-References: <20250902105710.00512c6d@booty>
-	<aLkiNdGIXsogC6Rr@zatzit>
-	<337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
-	<aL5dNtzwiinq_geg@zatzit>
-	<20250908145155.4f130aec@bootlin.com>
-	<aL-2fmYsbexEtpNp@zatzit>
-	<20250909114126.219c57b8@bootlin.com>
-	<CAMuHMdVarhTFEhQoYHWCnJp0iWRCjm0wh_ryP73aOdUwVa0X4Q@mail.gmail.com>
-	<aMEAXrAC0uEW2sCc@zatzit>
-	<20250911121103.40ccb112@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1757670118; c=relaxed/simple;
+	bh=aHZH4YS5dVoOj6kl4jXgDRDoWhg+l0J0dv5TXRxoBzo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YPBq+9387PsAGyeni6kJYzIh/Djsmd14CB2Li6EKhPWEJuG+OGACAsrMtC+955Ee0xzd+tf2vPylYcsBxmTYPq2HVcEzjWaXOg7HYzmeBKp1UUIbeY72aSCoUXDqG6LMUypzZROCivgdaYsjJwvl4TGIBqqIAggX/n5ecp2q8+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=frl1N9yB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fPsg012864
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ubdZE+2MGy4tFDpQKrzviatnp7P+PiPFBJ3kNogasGs=; b=frl1N9yBvDBrBz+g
+	vYpk/y637iCILK5KDEzRuFB1WIT4wlp3iA7Ak3xcVXtckYYSF94Zme5MDaBuQXn2
+	91njJBp2xEcqFGcBQUSHSCBnCBuYDkDiHbsoiQ8yGQmexU7bb7Ntfmp0WyCqOTE2
+	uGBhM20XnimXZfWw4fPpeDIuzI/fN9Fzes9TkxsPQT4QCeCepqUAKEdHfQ9GoQe4
+	yyubFKuDfYboEzIEUsyPMdiDwshIPMZ43ycg4ycI1BYoYRnv3T+sAr8dN6p5Ydok
+	7pBYoiTgxjeMZhxFiYq4EkyTupvgEh5gDNuWZbvNu3+AaZD0zNVjIQzDOtn6lQYg
+	w+PA8g==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490dqgat6b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:41:56 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-80d884c99e2so37306785a.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:41:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757670115; x=1758274915;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ubdZE+2MGy4tFDpQKrzviatnp7P+PiPFBJ3kNogasGs=;
+        b=fSVcZrLBTORv4V7EEXp1pgaYKhA/7UXivRwXaQvBOTKjqhzZFMDxmgk/wd5d+G05EZ
+         2nf75k+j9y1mdExGVzuHwFtg9qAsroD7ggDyixqM2UqhbhqF6e6eeNB3ajXbGM8HtvOL
+         /a692PR1/IdlIoiXIgpWfS8pzszUbG81yQ8LC9cV2Ia5x3EEznJPvQKKHhXfKAoIQ6p/
+         cxQ2HJSQvKhAFMUDQWn3yoDkEYeZMbhwjXQFgEYtWuPT2ivGdlUN6KxW8fLkZIIBbCp9
+         3/udET+V34qIS0NrybF6viMOKsQ0Gv1UH9v1BQ+ANLg39HwZWxM2238ioQtelgSckph7
+         z3yA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfmR2pvIfdwXjCLTr/xnSABTP1I5rWzXeh6R2VT0GhpjmKBPSeGlPiUtFRE0XluaplBR7oVmzNedVs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvQJLWgF8waQP9AOj++fjI51RFHs3e384fVo610r5oSbJaFM4Q
+	BKJeL8zMDwTso1DvP05lGPABeO5fP/OKubWXTrP8C2k3LKsqgboL2CIu89hWipsl0CfkZLzWvi/
+	9XcpG4Lz+Vt6pevtoa0BUSgvZdWvHjHNNA1nNwywSju6Tl1j0am+wlQ8RFC1nAGR9
+X-Gm-Gg: ASbGnctwncpDidL9JC5yZBcfcPVCIoFzueTI4Fpjdb3wuNga6iBUvgK5MgY7KChthOI
+	akiq/YW+aSvXxRCiA75u74PC2y+qUhYkXnrzd/vFv1Q1LG0JHtVqDgLv/dJt3L0gvc93QxFB0Ry
+	TE0gXTyDm8mjMtg61q+gcOi3aSkCzduPEBOX7XrnRJ5Z/VcGMCl+PjX+6wqNCxXMh3hz1OKDKFA
+	BhGZDVK1wWqgttNHHnag3aRAJ2WnaBUayC5j1yGbW2wQYcYKqdZpV0wgGLBFmqr3Q3y3dpRvtFz
+	TSmLG8Zta8W5Iq1ZpVfkL+nYEIvfUyELtgrCMUEHaY8GA79hqefawUD1enWDqTMvEXdoKwhtuLQ
+	8svJpnrynpWUqGapCfMX3vw==
+X-Received: by 2002:a05:6214:f05:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-767c1c8fd01mr17754236d6.3.1757670114661;
+        Fri, 12 Sep 2025 02:41:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEW19WjSadyXUxnUE5X6AqSmTHftlhz5SicnK4cbK2PU6jUKPiXVwSAYDJJeeQH+UMau1p6vw==
+X-Received: by 2002:a05:6214:f05:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-767c1c8fd01mr17753866d6.3.1757670114134;
+        Fri, 12 Sep 2025 02:41:54 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62eed9aec1asm131613a12.3.2025.09.12.02.41.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Sep 2025 02:41:53 -0700 (PDT)
+Message-ID: <0f9d55a4-83a1-48f6-aa19-e3117192bebb@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 11:41:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 02/10] dt-bindings: clock: Add required
+ "interconnect-cells" property
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Luo Jie <quic_luoj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>,
+        Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Anusha Rao <quic_anusha@quicinc.com>,
+        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        Devi Priya <quic_devipriy@quicinc.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
+        quic_suruchia@quicinc.com
+References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
+ <20250909-qcom_ipq5424_nsscc-v5-2-332c49a8512b@quicinc.com>
+ <20250912-nocturnal-horse-of-acumen-5b2cbd@kuoka>
+ <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
+ <2951b362-c3c1-4608-8534-4d25b089f927@oss.qualcomm.com>
+ <52714c33-5bd7-4ca5-bf1d-c89318c77746@linaro.org>
+ <d293a11b-155d-45d3-bafc-00c2f90e8c43@oss.qualcomm.com>
+ <1cd6a0f9-2955-4189-8d1e-85fa8ad8dddd@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <1cd6a0f9-2955-4189-8d1e-85fa8ad8dddd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-Proofpoint-ORIG-GUID: P7HjoCos8PwMz6-CVr3EJR3OioI4qtf_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzNSBTYWx0ZWRfX7zGFYXGO6qgv
+ ri53iqXJr3KCtxgHmzsNaVxo3TQRSeXu6jnEvka0fxB30CFDLE1V5upku3s/7dxUuoMzU24yn+u
+ 1kwfN7zBpVae6E/OxivU8k5r8S8fP8VrrGHflZmKPZL6cKrHsAbsf8/BCFOLo+vgjvckBkPrG9C
+ x0tfMikNIf7uZlnXzotp2KFJj5ZHFlmaPNYpkUPnV6amd5OrB2+OcAk+EbTaFenyweZ83L11dAZ
+ XLAhBurSePGKlvHg/XOeO8nCT/syBcfOIyYp7mMiLbAOVx+RY4KOlAOpnLWwi1OFIeas8ut+Kg4
+ wg3lGtN5uAy9+14N0vgy8ReuBjyhZKiV5sD1Xz2Bhh8sHL6/qF8kuSS9ewM4Y43KKw+xE5UP/ZH
+ VHLmlPkd
+X-Proofpoint-GUID: P7HjoCos8PwMz6-CVr3EJR3OioI4qtf_
+X-Authority-Analysis: v=2.4 cv=N8UpF39B c=1 sm=1 tr=0 ts=68c3eae4 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=r2WM0BnHFFIPBb0dDCkA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 spamscore=0 malwarescore=0 clxscore=1015 bulkscore=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060035
 
-Hello,
+On 9/12/25 11:27 AM, Krzysztof Kozlowski wrote:
+> On 12/09/2025 11:21, Konrad Dybcio wrote:
+>> On 9/12/25 11:17 AM, Krzysztof Kozlowski wrote:
+>>> On 12/09/2025 11:13, Konrad Dybcio wrote:
+>>>> On 9/12/25 11:13 AM, Konrad Dybcio wrote:
+>>>>> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
+>>>>>> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
+>>>>>>> The Networking Subsystem (NSS) clock controller acts as both a clock
+>>>>>>> provider and an interconnect provider. The #interconnect-cells property
+>>>>>>> is mandatory in the Device Tree Source (DTS) to ensure that client
+>>>>>>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
+>>>>>>> the NSS ICC provider.
+>>>>>>>
+>>>>>>> Although this property is already present in the NSS CC node of the DTS
+>>>>>>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
+>>>>>>> omitted from the list of required properties in the bindings documentation.
+>>>>>>> Adding this as a required property is not expected to break the ABI for
+>>>>>>> currently supported SoC.
+>>>>>>>
+>>>>>>> Marking #interconnect-cells as required to comply with Device Tree (DT)
+>>>>>>> binding requirements for interconnect providers.
+>>>>>>
+>>>>>> DT bindings do not require interconnect-cells, so that's not a correct
+>>>>>> reason. Drop them from required properties.
+>>>>>
+>>>>> "Mark #interconnect-cells as required to allow consuming the provided
+>>>>> interconnect endpoints"?
+>>>>
+>>>> "which are in turn necessary for the SoC to function"
+>>>
+>>> If this never worked and code was buggy, never booted, was sent
+>>> incomplete and in junk state, then sure. Say like that. :)
+>>>
+>>> But I have a feeling code was working okayish...
+>>
+>> If Linux is unaware of resources, it can't turn them off/on, so it was
+>> only working courtesy of the previous boot stages messing with them.
+> 
+> 
+> Which is fine and present in all other cases/drivers/devices. Entire
+> Linux in many places relies on bootloader and that is not a "work by
+> coincidence".
+> 
+> Another thing is if you keep backwards compatibility in the driver but
+> want to enforce DTS to care about these resources, but that is not
+> explained here, I think.
 
-On Thu, 11 Sep 2025 12:11:03 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
+I don't feel like arguing axiology today ;) But I see your point and I
+won't object to either outcome, so long as the property is *allowed*
 
-> Hi David, Geert,
-> 
-> On Wed, 10 Sep 2025 14:36:46 +1000
-> David Gibson <david@gibson.dropbear.id.au> wrote:
-> 
-> ...
-> > > 
-> > > A PMOD Type 2A (expanded SPI) connector provides SPI and 4 GPIOS.
-> > > A PMOD Type 6A (expanded I2C) connector provides I2C and 4 GPIOS.
-> > > Hence a plug-in board that needs SPI, I2C, and a few GPIOs, would need
-> > > to plug into two PMOD connectors.
-> > > 
-> > > Or:
-> > > A PMOD Type 1A (expanded GPIO) connector provides 8 GPIOS.
-> > > Hence a non-multiplexed dual 7-segment LED display plug-in board needs
-> > > 14 or 16 GPIOS, and thus would plug into two PMOD connectors.
-> > > 
-> > > To plug into two connectors, a mapping needs to provided between two
-> > > connectors on base and add-on board.
-> > >   
-> 
-> Base on this, let me draft some ideas to have some basis to move forward.
-> 
-> Suppose:
-> - A base board with:
->   2x PMOD Type 2A (SPI + 4 GPIOS)
->   1x PMOD Type 6A (I2C + 4 GPIOS)
->   3x PMOD Type 1A ( 8 GPIOS)
-> 
-> - An addon board which needs:
->   - 1x PMOD type 2A
->   - 2x PMOD type 1A
-> 
-> Hardware connection:
->   base board               addon board
->     PMOD 2A #0    +------+ PMOD 2A
->     PMOD 2A #1
->     PMOD 6A
->     PMOD 1A #0 
->     PMOD 1A #1    +------+ PMOD 1A I
->     PMOD 1A #2    +------+ PMOD 1A II
-> 
-> The base board 'PMOD 1A #0' is not connected to the addon board.
-> The addon board uses the base board PMOD 1A #1 and #2.
-> 
-> 
-> The base board DT:
->     pmods {
-> 	compatible = "pmods";
-> 
->         pmod_2a_0: pmod-2a-0 {
-> 	    compatible = "pmod-2a"
-> 
->             /* Describe 4 gpios connected to this connector */
->             gpio-map = < 0 &gpio 10>,
->                        ...
->                        < 3 &gpio 43>;
-> 
->             /* Describe the bus connected to this connector */
->             spi_bus_2a_0: spi-bus {
->                 compatible = "spi-bus-extension";
->                 spi-parent = <&spi2>;
->             };
-> 		
->             /* Export symbols related to this connector */
->             export-symbols {
->                 pmod-2a = <&pmod_2a_0>;
->                 spi = <&spi_bus_2a_0>;
-> 	        ...
->             };
-> 	};
-> 
-> 	pmod_2a_1: pmod-2a-1 {
-> 	    compatible = "pmod-2a"
-> 
->             /* Describe 4 gpios connected to this connector */
->             gpio-map = ...
-> 
->             /* Describe the bus connected to this connector */
->             spi_bus_2a_1: spi-bus { ... };
-> 		
-> 	    /* Export symbols related to this connector */
->             export-symbols {
->                 pmod_2a = <&pmod_2a_1>;
->                 spi = <&spi_bus_2a_1>;
->                 ...
->             };
-> 	};
-> 
-> 	pmod_6a: pmod-6a {
->             compatible = "pmod-6a";
->             ...
->             export-symbols {
->                pmod_6a = <&pmod_6a>;
-> 			...
-> 		};
-> 	};
-> 
-> 	pmod_1a_0: pmod-1a-0 {
->             compatible = "pmod-1a"
-> 
->             /* Describe 8 gpios connected to this connector */
->             gpio-map = < 0 &gpio 16>,
->                        ...
->                        < 7 &gpio 33>;
-> 
->             export-symbols {
->                 pmod_1a = <&pmod_1a_0>;
->                 gpio0_muxed_as_gpio = <&pin_mux_xxxx>;
->                 gpio1_muxed_as_gpio = <&pin_mux_yyyy>;
-> 		gpio2_muxed_as_gpio = <&pin_mux_zzzz>;
->             };
->         };
-> 
->         pmod_1a_1: pmod-1a-1 {
->             compatible = "pmod-1a"
-> 
->             /* Describe 8 gpios connected to this connector */
->             ...
-> 
->             export-symbols {
->                 pmod_1a = <&pmod_1a_1>;
->             };
->         };
-> 
->         pmod_1a_2: pmod-1a-2 {
->             compatible = "pmod-1a"
-> 
->             /* Describe 8 gpios connected to this connector */
->             ...
-> 
->             export-symbols {
->                 pmod_1a = <&pmod_1a_2>;
->             };
->         };
->     };
-> 
-> 
-> -- Question 1: How to describe resources needed by the addon
-> 
-> On the addon side, we need to tell that we need 1 PMOD 2A and 2
-> PMODs 1A (named i and ii).
-> 
-> Proposal supposing that this description will be applied at
-> base board pmods node (the one grouping pmod connectors):
-> 
-> \{ or ??? corresponding to the entry point of the addon
->    import-symbols {
->       pmod_2a = "pmod_2a";
->       pmod_1a_i = "pmod_1a";
->       pmod_1a_ii = "pmod_1a";
->    };
-> 
->    &pmod_2a {
->       spi-bus {
->         regulator@0 {
->            compatible "gpio-regulator";
-> 	   pinctrl-0 = <&pmod_1a_i.gpio2_muxed_as_gpio>;
->            enable-gpios = <&pmod_1a_i 2>; /* Use GPIO #2 available on PMOD 1A I */
->         };
-> 
->         ...
->    };
-> };
-> 
-> Import-symbols asked for symbols with local name and type (compatible string ?).
-> for instance 'pmod_1a_i = "pmod_2a";' means:
->   Hey I refernce localy 'pmod_1a_i' but I don't define it and so 'pmod_1a_i' should
->   be remapped to a symbol, probably a node of my expected type "pmod_2a".
-> 
-> Also, we can node the syntax:
->   &pmod_1a_i.gpio2_muxed_as_gpio
-> 
-> meaning I use the symbols gpio2_muxed_as_gpio provided by pmod_1a_i (namespace).
-> In other word, to have the addon DT successfully applied,
-> the node remapped to 'pmod_1a_i' has to export the symbol 'gpio2_muxed_as_gpio'.
+As a sidenote the IPQ SoCs have a rather thin layer of fw
 
-Thanks for taking time to prepare a complete example. I think this
-example is very effective as it exposes perhaps all the features we are
-discussing.
-
-I consider it pseudocode, i.e. the syntax may not be OK, but that's not
-too relevant at this point of the discussion. But as far as I can say
-it has the right information at the right place, and IMO that's what we
-need to iron out in the first place.
-
-> --- Question 2: how to perform the mapping between pmods available on the
->     base board and pmods needed by the addon board.
-> 
-> The addon board describes what it is expected:
->   import-symbols {
->       pmod_2a = "pmod_2a";
->       pmod_1a_i = "pmod_1a";
->       pmod_1a_ii = "pmod_1a";
->    };
-> 
-> Based on compatible string:
->   pmod_2a expected by the addon can be remapped to the node
->   pmod-2a-0 or pmod-2a-1 described in the base board.
-> 
->   pmod_1a_i and pmod_1a_ii expected by the addon can be remapped
->   to pmod-1a-0, pmod-1a-1, pmod-1a-2.  
-> 
->   We need some more information to set correct mapping
->     pmod_2a <---> pmod-2a-0
->     pmod_1a_i <---> pmod-1a-1
->     pmod_1a_ii <---> pmod-1a-2
-> 
->   Can we imagine that this mapping is set by the compatible "pmods"
->   driver base on some specific external information.
->    - Read info from addon to have some more hardware connection
->      details (not sure it is relavant with PMODs connector)
-> 
->    - Expect this information from user-space ?
-> 
->    - Any other ideas ?
-
-I'd say the only possible answer to question 2 is "this is specific to
-each connector type and thus to each connector driver".
-
-As you just described in [0], some connector types have model discovery
-capabilities so the driver can do on its own. In principle this might
-apply to addons using multiple connectors.
-
-However for PMODs AFAIK there is no discovery at all, so the driver must
-be instructed by the user.
-
-[0] https://lore.kernel.org/all/20250911122333.2e25e208@bootlin.com/
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Konrad
 
