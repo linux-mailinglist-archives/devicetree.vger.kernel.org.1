@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-216501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D4BB55047
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:03:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9094FB54D90
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6D5F4E22B1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:03:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21F9617A4D4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F0B30E858;
-	Fri, 12 Sep 2025 14:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80E92DF13A;
+	Fri, 12 Sep 2025 12:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BypA0bHt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZWL+0u1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678E530DD30
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:03:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51026287248
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757685819; cv=none; b=eR4TreHHlW/lJk9GE6AUEGFh1lOgTJZ4kapI8pq5wt9qHyvgfro3Gpr9g3BP0SgykEqSxZxs3+4FJM0vq5iARelYl+FY8dc3cbrZ3cX+Vz0w3RL6kV2Dm4pKkrHBEwrM51lUN0zwPGXOz40NheGt9JZzLAD2hentF865XuPLHk4=
+	t=1757679866; cv=none; b=T50ki6/S8lnCOsy0oLQwyXR2518XvYVGr9c89ivsw31UcNVKT94NzkSIwb/sG0nnEJE00XlkNjUjCvIZAwFv3kXKFmFerbws/dO9peOwNWUYlGjzwypAJ9PhhM5xlPa6TkPRD19xkC+0UIItEoFxniprqQzarvphVeXrwdGlwEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757685819; c=relaxed/simple;
-	bh=I9n2pVmu6LmPD6zvLHRAM5ekmJJV3HNaSaih80Ri9aQ=;
+	s=arc-20240116; t=1757679866; c=relaxed/simple;
+	bh=L/Kp0ZpCQjnQzViZ58decDE1KZjP+nvqlfKbSHwyGL0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=StJ5sXjaPzSnHkzB3laN+Uu5t75fe3Cbzm9+XdRvDwuMCqbpwdVDlPYEoyXicBDBBUedQAMUvUNkTn3xoaQraXtye2k22XU5IBEwmS9IxXxV8FdUmaBmsQJVtxlGQoFtyVxuHu+uE7A4I5pCOjtTX7gDhlmH5qNcoP0+xHAnBZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BypA0bHt; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45dd5e24d16so18731665e9.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757685816; x=1758290616; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/awESVZkJ9K+JfRYd9Rjr/yLS5bHXWrAEyFkBSavtRk=;
-        b=BypA0bHtW8dc/9jFOduQ+R25ll0YATGAEaWEVnPnqn7pWbwrmTbEVvtGUj3ynHfroY
-         s2PSNRHk2yNthP/TF1iOjTqEwoxDVOAghcPZ3vjw1FWt9hMoAnl+5lfMRMpxuy/EXJWO
-         YhdsLY0KSNR626866tS4QUcTkkJpj6xiywYTSX7VZ3jt0VnCFg8U0pjZNhVNiA/8TbTv
-         hBAdGcw03C0DJkYipsJsoMP7HjjVbjBQ+g5EXZJHQCu7WYjNpJdTB70hiVt7mW1yrdpd
-         7nubU2A9S0bZfSTfEXoDrLOegDyhwcQrhclEMFmg0jvKFJC7OIXm78GDYb1aj/eEzhud
-         40Tw==
+	 In-Reply-To:Content-Type; b=b5MpUDyVcglG+jK6NuYymPhEaqt/WQTlnMIj4I21+IBoTX27TNrVulNmzNc5GBxxV+Mn6HXSVOQ2WeK6mEe5pcGhRRbz6e1S9feSK2ruqcu5QXzsp//NIAnoZ90k3SS6LmBdLG8V+9yGG5A0C5KKpqV+7Se28G0JJDVbvMA/w+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZWL+0u1X; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fNpg010880
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	k/00Zp88Pc7XaLrl9L+7J4tNKaqmsJpoZiLQwxfLj78=; b=ZWL+0u1X+U9Y+wc3
+	gAIxqphUxtjWT3NeaoMeTueozCEAzTrgRpIkBv+lmfURRgF5vGKgqY59/fV+JWM0
+	PkOiH0pnQfe5ol4XaVf6fFGHX8LT2NTOYNnCZgbhyjwlEjYYL6v9mRNN3rsbtNKh
+	rz+pzRvRDKpNkmcIerqOgm/TLfWAO07tcmWkqu1lMBGuw0yTERFbIx1lHAHwT8Tj
+	7WTM6c/C40RMQPv1PR51EHo48erMM28JCbNP7xhiH1zEy888yeIs9K1DeU/yFPKR
+	zWStsn37NS8/Y3qYcUGYx/WabDSqKef32mb8s6bibgOvFNdY/ehd3BWfF1zkn7l5
+	19pi2A==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e4mbdmj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:24:24 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso5292031cf.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:24:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757685816; x=1758290616;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/awESVZkJ9K+JfRYd9Rjr/yLS5bHXWrAEyFkBSavtRk=;
-        b=jt6uN4gZH1ta1xyLzfKpjzPuNQ7lWqo1k+vHEqHPAWM21eh2EewH5A9FRohaD6+QQH
-         wFBRhG+zB6TsuGkCvY71+HYu7sz0qR2BF6a2Pgv3RwovK6ejWY8INKWoGiELac6LtgdR
-         z7aS9Jl53TN5kgARV3nah9En2NbzSiyJCUZxmkzTrcSio25Er65CMa7oGlufbntkULdP
-         HBFu6+EPmajc1UpZu8XG0zuHf3k7qWa8o/tn9Dq+mGrKwbSzkDomv+LMNQwfEVcY4W30
-         x39PmuiSueGYXNR8DMS4BbsORzi/aehMwEn3Jhdrb4fZK214I+76Kv3CfZkDqcgzS/NT
-         GA/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU7N8+JlxIdRVF1xJ06Q2K5xwoMj1mUKl5A4js5aY8h3CNLcdZ9KmoHTKtUPcolHCCTgcsnzV7+pMvy@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywooz1qBYh5c68SesjS3cJDRHA9FJuwyCAIZhdwB+r9WMJvliQx
-	Zfi8SBI085xBj54OyHbuAliQpSWBwdPsFFIrI2wv5O3hFivdFau1sJmb
-X-Gm-Gg: ASbGncudYTEFlrPpYRVm1kHjLcvLCc8WRywxk9a53okaQnRjovpcyHf0i3u7uFeZbld
-	F4jus1FMSl0pmFYZQjvnFFAP2AcvPoxV4VC6mutlVxL/LtBdCgpH+6wnNqxb1w+iGzao5BaKMNd
-	8Qg8bCSThC9aSBT2bQc7t34M/aCkVuffSPpLNNQhX5W8xQPBuz7Uibxtt6tLU13GvumhFQNzwn2
-	HJ3NM0OHxmoFz30p12aXpslbWfqvR4e5V0n75woVf1ZwWgz+9VoB0IdK2VYtdLuCCjyzEKSuXl5
-	pTsGGcSJAa14Ja0PI43lzJS619oyfOTEML3fScwFzK20e8RKMIRIKKfO0rm3S1bZG2l2N5FJ0Gk
-	WLsPQJLZ1+V8jG/eIxMivEU2y4SIlF2X9q8pyCh7IUQ==
-X-Google-Smtp-Source: AGHT+IFrFziaROE6t7OvfnHw1fSxmStjyRsw0iDsiUclaiLc+LNP4gi88MN0nbdrnjXQvf8i78gTdw==
-X-Received: by 2002:a7b:cd0b:0:b0:45d:dbf4:8880 with SMTP id 5b1f17b1804b1-45f211efda6mr20357825e9.27.1757685815284;
-        Fri, 12 Sep 2025 07:03:35 -0700 (PDT)
-Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e01832af1sm35682985e9.3.2025.09.12.07.03.30
+        d=1e100.net; s=20230601; t=1757679863; x=1758284663;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k/00Zp88Pc7XaLrl9L+7J4tNKaqmsJpoZiLQwxfLj78=;
+        b=Efi61NYo9ghzqd46U9phAZub+r5yEKpUhKjS5TvZMC0ad+YYvI4j14lEiqvuMSBy43
+         +nKGse8onzGPkHDjwK8Xgiv6z3CXYjP+22GIVcM85PVqtla3Qa3/ppEU8Ky34hyFF3KA
+         bgxasyWmg7xMkdOKggz86D89WfBx0nl1Gik+RjzyOOit8abxYCa5119tHJ46IjoEhWQW
+         kQccj691urTuP8xHN7inHp1Dq5IWGhbuN4B4R0azzrG+OGkuc8mS7WTxo2iSFqlfFFeR
+         7I5bQDMrSI1fuVpd1ClU1ks6D6xjDwMhTgLHqgxFPvqPNpHOJ4KLqz6UKVbPJ9P/hYBp
+         D9+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWPAcuFBtK3TfyKnbcNLIwiSrlK6m+Lwo73wrS+Ta6qmoknLkwPFoHkpJs0HnZIBRuAIdrgPcEPXtqh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8Bw4Em/ZBZXkpY+mUNq1NsfpKCnQ72kf4YAv3vFf3IRjy4ABG
+	I4YsGEF3ZdqnbwKVQ8yWi5DDgDv9i/2DFfagTUkGWAJi0fGPiKjYFQiqydBc5UGfaoQvWG60rtm
+	6mWWAZQ7aP2tQib/wI9bTsIeBu86gY4SDOSidnxHMHeCGLVnfMprBgQ6oGxOi9NqB
+X-Gm-Gg: ASbGncs/WHYOpXSQYvLdMs88dH+FnrYqzHfqEl8iu1B0Hh+Qrp00PfbUYDm14PQk3X2
+	+2KWjdM+JsFtRTQSIkVVWUu8WLeMjpKVguKaTm8IxuxiummXBsrSi5Y3OufP3GJZ4WVMFQ7aWVB
+	JxFCe0/9WSM9xvHm5lSQEz6ncDtYiwGoyQhjGWu8QjyPNnlsdmKeC/8tSDtPQAgJwFWgdDXpPl4
+	gV/8ggDkg/cBBjMWXk/ZPPJ5iHc8nsK2wxnBTq7iugORX8hiQd2T9xuPFzFf2p9o/w9sy91iaQy
+	sMePXgd3hcH1DitFukiXbPBzyVQeNRgsy8Ygr4BFIlnnDCKYKVsVetkED7Gsy0QTGEq0zIWbiCK
+	VUYC6buKu8uM6l0JgypWIYg==
+X-Received: by 2002:a05:622a:247:b0:4b5:d5d7:ffc7 with SMTP id d75a77b69052e-4b77d070bc6mr23459571cf.13.1757679862775;
+        Fri, 12 Sep 2025 05:24:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGLglj50v0H8yUFfCJsItJZI1D/YYI2k2rFfxjbH7ntfNZM9kwa4/Tn1xpP4EMHdoniu7v9QQ==
+X-Received: by 2002:a05:622a:247:b0:4b5:d5d7:ffc7 with SMTP id d75a77b69052e-4b77d070bc6mr23459161cf.13.1757679862090;
+        Fri, 12 Sep 2025 05:24:22 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e016b5cbcsm64664835e9.11.2025.09.12.05.24.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 07:03:34 -0700 (PDT)
-Message-ID: <0c088460-da7e-4443-92e3-23f160415ce8@gmail.com>
-Date: Fri, 12 Sep 2025 14:16:34 +0200
+        Fri, 12 Sep 2025 05:24:21 -0700 (PDT)
+Message-ID: <f00cb00d-1e0b-4968-9f5a-df3ce0d8c8db@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 14:24:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,201 +90,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/38] arm64: dts: mediatek: mt6797: Fix pinctrl node
- names
-To: Fei Shao <fshao@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org,
- daniel.lezcano@linaro.org, mwalle@kernel.org, devicetree@vger.kernel.org,
- linus.walleij@linaro.org, linux-remoteproc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- olivia.wen@mediatek.com, shane.chien@mediatek.com,
- linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org,
- airlied@gmail.com, simona@ffwll.ch, herbert@gondor.apana.org.au,
- jassisinghbrar@gmail.com, jiaxin.yu@mediatek.com, andy.teng@mediatek.com,
- chunfeng.yun@mediatek.com, jieyy.yang@mediatek.com, chunkuang.hu@kernel.org,
- conor+dt@kernel.org, jitao.shi@mediatek.com, p.zabel@pengutronix.de,
- arnd@arndb.de, kishon@kernel.org, kyrie.wu@mediatek.corp-partner.google.com,
- maarten.lankhorst@linux.intel.com, tinghan.shen@mediatek.com,
- mripard@kernel.org, ck.hu@mediatek.com, broonie@kernel.org,
- eugen.hristev@linaro.org, houlong.wei@mediatek.com, tglx@linutronix.de,
- mchehab@kernel.org, linux-arm-kernel@lists.infradead.org,
- granquet@baylibre.com, sam.shih@mediatek.com, mathieu.poirier@linaro.org,
- fparent@baylibre.com, andersson@kernel.org, sean.wang@kernel.org,
- linux-sound@vger.kernel.org, lgirdwood@gmail.com, vkoul@kernel.org,
- linux-crypto@vger.kernel.org, tzimmermann@suse.de, atenart@kernel.org,
- krzk+dt@kernel.org, linux-media@vger.kernel.org, davem@davemloft.net
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-18-angelogioacchino.delregno@collabora.com>
- <CAC=S1nh5bF6kZe7TFA_EGPGt8Xp_rfuc-rkeXgjRCU=QEtZQiw@mail.gmail.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; keydata=
- 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
-In-Reply-To: <CAC=S1nh5bF6kZe7TFA_EGPGt8Xp_rfuc-rkeXgjRCU=QEtZQiw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845-starqltechn: add slpi
+ support
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com>
+ <20250911-starqltechn_slpi-v1-2-93ebf951a932@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250911-starqltechn_slpi-v1-2-93ebf951a932@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOCBTYWx0ZWRfX37fssxyI9Gz0
+ AtcT2OAe/uy7tnjJ+Bv8DdAwhfQo5N0ykB9WCkgN2yuX6UnBxSYkEa+aVBF0SDxk5dfiHfZt6jW
+ VYRH4tKQS6VZsMQGB2BlRTa5BLBJ9XzjOM7nbfP6rFeEk+8+9uldHh1AK/4y6Nf5mgBjttch8Bw
+ zJZSF+AndoVjvTnQE/PnDjZQw/hJjo7NULHu2FJqNm0gNnpz+mwb8jSV9GqLA9Xgt2iNLWFkJyD
+ RbnYF42V26RmMQzOlIxE7qx88RIc4gMwoeCLX5SLov1RZYTw6bslRTpe9f4Dn5paMbERmm/RKD/
+ Mt674Cry/k+iSf9A6K6ylDeSPyWq0tOD93OMFVb0YEEx5QED1jS+EaudRNPC31AdMbR77MZj+O5
+ OwCxAEiD
+X-Authority-Analysis: v=2.4 cv=J66q7BnS c=1 sm=1 tr=0 ts=68c410f8 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=ixb8Hu8vVRuwzE1ANvwA:9
+ a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: YsaEAwKTh-QflgbgpmuLna307NRYENKs
+X-Proofpoint-ORIG-GUID: YsaEAwKTh-QflgbgpmuLna307NRYENKs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 phishscore=0
+ adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060038
 
-
-
-On 25/07/2025 12:56, Fei Shao wrote:
-> On Thu, Jul 24, 2025 at 5:48 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Change the pinctrl node names to adhere to the binding: the main
->> nodes are now named like "uart0-pins" and the children "pins-bus".
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 9/11/25 10:56 PM, Dzmitry Sankouski wrote:
+> Add support for Qualcomm sensor low power island.
 > 
-> Reviewed-by: Fei Shao <fshao@chromium.org>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> ---
+>  .../boot/dts/qcom/sdm845-samsung-starqltechn.dts   | 24 ++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> index 32ce666fc57e..2c1157ee7b2d 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
+> @@ -902,6 +902,14 @@ &ipa {
+>  	status = "okay";
+>  };
+>  
+> +&slpi_pas {
+> +	firmware-name = "qcom/sdm845/starqltechn/slpi.mbn";
+> +	pinctrl-0 = <&slpi_ldo_active_state>;
+> +	pinctrl-1 = <&slpi_ldo_sleep_state>;
 
-Applied, thanks
+It would perhaps make sense to model it as a GPIO regulator..
 
->> ---
->>   arch/arm64/boot/dts/mediatek/mt6797.dtsi | 40 ++++++++++++------------
->>   1 file changed, 20 insertions(+), 20 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt6797.dtsi b/arch/arm64/boot/dts/mediatek/mt6797.dtsi
->> index 0e9d11b4585b..be401617dfd8 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt6797.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt6797.dtsi
->> @@ -135,71 +135,71 @@ pio: pinctrl@10005000 {
->>                  gpio-controller;
->>                  #gpio-cells = <2>;
->>
->> -               uart0_pins_a: uart0 {
->> -                       pins0 {
->> +               uart0_pins_a: uart0-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO234__FUNC_UTXD0>,
->>                                           <MT6797_GPIO235__FUNC_URXD0>;
->>                          };
->>                  };
->>
->> -               uart1_pins_a: uart1 {
->> -                       pins1 {
->> +               uart1_pins_a: uart1-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO232__FUNC_URXD1>,
->>                                           <MT6797_GPIO233__FUNC_UTXD1>;
->>                          };
->>                  };
->>
->> -               i2c0_pins_a: i2c0 {
->> -                       pins0 {
->> +               i2c0_pins_a: i2c0-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO37__FUNC_SCL0_0>,
->>                                           <MT6797_GPIO38__FUNC_SDA0_0>;
->>                          };
->>                  };
->>
->> -               i2c1_pins_a: i2c1 {
->> -                       pins1 {
->> +               i2c1_pins_a: i2c1-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO55__FUNC_SCL1_0>,
->>                                           <MT6797_GPIO56__FUNC_SDA1_0>;
->>                          };
->>                  };
->>
->> -               i2c2_pins_a: i2c2 {
->> -                       pins2 {
->> +               i2c2_pins_a: i2c2-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO96__FUNC_SCL2_0>,
->>                                           <MT6797_GPIO95__FUNC_SDA2_0>;
->>                          };
->>                  };
->>
->> -               i2c3_pins_a: i2c3 {
->> -                       pins3 {
->> +               i2c3_pins_a: i2c3-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO75__FUNC_SDA3_0>,
->>                                           <MT6797_GPIO74__FUNC_SCL3_0>;
->>                          };
->>                  };
->>
->> -               i2c4_pins_a: i2c4 {
->> -                       pins4 {
->> +               i2c4_pins_a: i2c4-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO238__FUNC_SDA4_0>,
->>                                           <MT6797_GPIO239__FUNC_SCL4_0>;
->>                          };
->>                  };
->>
->> -               i2c5_pins_a: i2c5 {
->> -                       pins5 {
->> +               i2c5_pins_a: i2c5-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO240__FUNC_SDA5_0>,
->>                                           <MT6797_GPIO241__FUNC_SCL5_0>;
->>                          };
->>                  };
->>
->> -               i2c6_pins_a: i2c6 {
->> -                       pins6 {
->> +               i2c6_pins_a: i2c6-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO152__FUNC_SDA6_0>,
->>                                           <MT6797_GPIO151__FUNC_SCL6_0>;
->>                          };
->>                  };
->>
->> -               i2c7_pins_a: i2c7 {
->> -                       pins7 {
->> +               i2c7_pins_a: i2c7-pins {
->> +                       pins-bus {
->>                                  pinmux = <MT6797_GPIO154__FUNC_SDA7_0>,
->>                                           <MT6797_GPIO153__FUNC_SCL7_0>;
->>                          };
->> --
->> 2.50.1
->>
->>
+I found a downstream kernel for this device and it seems like
+this is indeed a Samsung addition
 
+The vendor kernel gates the regulator when the SLPI is shut
+off, but I think it would be reasonable to keep it always-on
+given you don't really want that to happen, and if you need
+to restart the subsystem, not pulsing the regulator should
+also likely work
+> +	pinctrl-names = "default", "sleep";
+> +	status = "okay";
+
+a newline before status is customary
+
+> +};
+> +
+>  &usb_1 {
+>  	status = "okay";
+>  };
+> @@ -1028,6 +1036,22 @@ sd_card_det_n_state: sd-card-det-n-state {
+>  		bias-pull-up;
+>  	};
+>  
+> +	slpi_ldo_active_state: slpi-ldo-active-state {
+> +		pins = "gpio8";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-high;
+
+Modeling the gpio-regulator will let you get rid of output-
+properties here, which are discouraged in favor of gpiod_ APIs
+in drivers
+
+Konrad
+
+> +	};
+> +
+> +	slpi_ldo_sleep_state: slpi-ldo-sleep-state {
+> +		pins = "gpio8";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +
+>  	touch_irq_state: touch-irq-state {
+>  		pins = "gpio120";
+>  		function = "gpio";
+> 
 
