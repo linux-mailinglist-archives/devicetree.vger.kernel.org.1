@@ -1,223 +1,342 @@
-Return-Path: <devicetree+bounces-216408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9DCB54ABB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:13:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C9FB54ACE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D664D163E89
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:13:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C69B68350E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426042FF16F;
-	Fri, 12 Sep 2025 11:13:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8063009C4;
+	Fri, 12 Sep 2025 11:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cGl4kyBQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CHQnELay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49872FF142
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80A5261B96
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757675604; cv=none; b=VwMljRcUjBugb5oD+Ykv1SVBUL6QaQZTlH9ybsTjvJpOP/E145IegB9eP39rsaYpJazh9H9TrwqEiJW55SpXtuBxKr/ogr62x0HiGXVbU/OreKtdkQ5kLHZowvg6dmlhgqjgvg2zep8eHyCkgwcSJpBX3/Q0nNfFNC1eRFkQNLE=
+	t=1757675793; cv=none; b=l7xd886bQhriz5lSkf/72r6NQEBBLSb5jQ5PnJE63AVpi/zvPLf8FnXM/2gqn8o7m8zzty5bDczuQn5+U0dW5uIbjuXKxYZvtDHtMUY1pwQrGq5gMFFIKV32YYQ5dmV8R2ENmECjFE5DFr1Wp4DufKCk29Xlm7Y4g2M2hwoDxpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757675604; c=relaxed/simple;
-	bh=lszRYL+Ecrj6hfbLW3rI/V8o+x71pST7A4pgIK7ORtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KcQYd9P31GWvL1VYb/TThBkCSU1dJocHK+rf4drys/V3qKGIxOkyxWekZh5eu+/p5u8vgOniwkR7YmwPWOCMDdMK7IX4Xp4ttT7l0rly8lAWWLHrnIpJ7z22nuG7N76drQKtvCGGl/FBCU4Yb9k8qtktNBzFwqaO3M+YRGwwDwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cGl4kyBQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CBB6sF017140
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:13:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qxXLgShVqwLGUck55r1aiE1BCAAIyCD2UObsyto7kis=; b=cGl4kyBQUadgXMKN
-	r/Kpk7zQoOLgT6yLqdil6OEl+Uj67NiXb64AzHo+RUkoeY/fSohHUEpOaAI683Fd
-	y6WtlhUCyhQiD1RMdbNC6D4RL79bqXSWMfEkJXXl1NzlGK6GUDLMpIZyx7aFfqHM
-	IPx/aUFqtkzwB2+jnldQ+QnsjlUPs9vvXy7WHb/XHtd/lb5QQBdVqDUuiK7oIFiv
-	YfdnUaLM8b8YbC5NJctqtmBej6nvJoEBCbJUTUR1+9mja1MnOMKEoXSQB+KD+zfQ
-	4PCjb3m5ukcObS+KZihMYHaCLBfgvBHIJbnaxhtZMAEXTzCpiAvVL65rrCgnuC7F
-	8MDN7Q==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494jdx0052-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:13:21 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b33e296278so392921cf.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:13:21 -0700 (PDT)
+	s=arc-20240116; t=1757675793; c=relaxed/simple;
+	bh=pS2ACXCvk66dWOzSh2+WcS1GHKgHXyHyhM1OWcHLpkw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lfbu/UWjeSS7fg6UFd6euWCwKyOjubwdEE16q03rcpOpKilx7f+FAUU+FdlLzPogun1ChpO4REoltPhQBBkLO+UDWXeCxXlpbo6pwxUgzNU/ZAzwa75u2/eu57dHE98fcvHm+C+Cs6tHJH9lwIhsCMfnh6AxG27GAAkBqWEWZ+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CHQnELay; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-746dae5ff93so1917383a34.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757675791; x=1758280591; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s9raa4UnWp7S98pmKgOEBKVBBsQu0EJl6gJVzoGdYgQ=;
+        b=CHQnELaytbomx29pg30RljJeItXpI3oXPRKeRVdEEj18mR2GY8MaQIXu4Ub8KB3X3S
+         M8QPkyHaeaHaTpRzu00Xp3VawWZAxoGykXbT/AGvIh3q3JX+W21ATw7sREVlcfeLTF1c
+         aSqTWpCYZLV/cR0HGR9Dh+Dd9U/44jBTixkmPmNpmw+3u76IVYCsijLjaDompkGb2Rbf
+         q6BG+PRg7O1yT4OuGra4sQuNsAf7easyLwfmbHm3x02YyJ0ybpdj8Vn6jJAvDklHU53W
+         mi0lpiCcnUSFUt4+LBfrqlv2qNWCSVNpxhBdGwzC7c057mM3T/vD+POTJo65IZCdonz8
+         CbSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757675601; x=1758280401;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qxXLgShVqwLGUck55r1aiE1BCAAIyCD2UObsyto7kis=;
-        b=YacdML5bFth5l2EKE/eRf0X25503P5mcbnXxc/5DLhLOSIw0/IkfSj5/UJVLYt6lEZ
-         3mzZttZc/bSOU6+b82mJwgHMRo9YGjKTpKCiNK5SUp7hgnzokvbDK8BN5OkppTr1IJAI
-         fnuej2H9bVVf9Oe8rTPs0R/FEVq5uM4/RM3dO0Uw6uSAit+DDVf1P4NP/S1/DIjQW2/M
-         dORRvhmdp/Or3EyqMNA1SkPmdLxJAJxpzrNgIiroJaAj0ATJhUlfQNJ1DztFPVqp9Rq1
-         o7BaR9siVV6d0079k5lxvXRCK08McDqRYz7/C/LTZYULaEyQV9ReAfyw3SnKqU8xOGgr
-         82eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXil9vEQfBxvyFtcqV1+yBWWumr71cDXNQ+lBRI/DP37kWgiSjzjZPGTLtW8WHpfmPtHkLu6EdXGKCw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhBHAEFCvvf4WmYFn7u6JZnewZlgIy7tPVymjq2rcdc1Vd2rLW
-	+xhHfsZyqQ3vGfRPbRpo76ArJ1yPxUbQyPtKuBQ6HQs5/sWTYHkPwfw+pN0wRS8DisWRo+f0Qha
-	BbOt1HXicHexhTEq2ZCr+QfzgRojJQ1g1I146yeMm9BtXu07jmdM+48+sskD0IfK4
-X-Gm-Gg: ASbGnctEV1iLPvewyxqI4o2cyBgWpbDmRQRGz8BHUNl+aCVEl9p3YQRrBYmU9xNpvw7
-	XQm2DWe8lrnyzFdGV88TXxbJntNH9U/moNq5qR8P28Qz7rPZmDs/tO6qPlVaVcilkSueqEqmcRj
-	4qfQrIhmFcGGeAgNhyn2h3RTEfgDyAZ0ObI10fi52QUNayMPPeXLEAnATf05l4OC5hfF4h2mlJx
-	6fE7z2qLyC0pwLaGjGpPbJYfkNAx8fsNCF+dqR/jNIkB5QXbCMUw2VhUyAwrOuwkrq7VMvO4R7C
-	RY9L6qMhJ6iWTXGGX3/3X+YSSONx6ur3Be9vMjEJXpx54cWrQ0foOurI7ka7uBSOfxQAWBSJ4y5
-	yLfkIE79E4ND1rVe7Xn0KCA==
-X-Received: by 2002:a05:622a:216:b0:4b5:a0fb:59a6 with SMTP id d75a77b69052e-4b77cfb714fmr19387131cf.1.1757675600681;
-        Fri, 12 Sep 2025 04:13:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHd/y9V7JIR0J7uzETTEsfcWKwZ60LOjy/zwNmRMp4881XwtyUxBdsIb+OOjUIc/XxzrjG+Qg==
-X-Received: by 2002:a05:622a:216:b0:4b5:a0fb:59a6 with SMTP id d75a77b69052e-4b77cfb714fmr19386931cf.1.1757675599937;
-        Fri, 12 Sep 2025 04:13:19 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07d09e5414sm38020366b.18.2025.09.12.04.13.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 04:13:19 -0700 (PDT)
-Message-ID: <ec31257b-fe10-4de7-8fb6-d649677f680e@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 13:13:17 +0200
+        d=1e100.net; s=20230601; t=1757675791; x=1758280591;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s9raa4UnWp7S98pmKgOEBKVBBsQu0EJl6gJVzoGdYgQ=;
+        b=s/vC0vbswH++1irAdFtoCpBlUKL++Yd83Jll5hI7UCA5C6YXGgLNHcE7Nw4yHz9/rt
+         FcMFqHIaVinOrydosudA8LP8RYGjxMi6pzW5RJ3vZKArpgxJGieP5CaRbcyLOcSnsd70
+         madrsrTRmW5PpLV7YcVL5nlsFfzXFxbCeuPST1ldk+1XfMlW0oCMOZCOxCKIuF8Wbo8l
+         /Q2qHp8L6cy8/6ezQgVuCxJxx1x168Nu3nCDdnNVKlNkjPSjISvxgeUXTOwX08ktxZ3L
+         hw5O58fZK1g92u4w0JFl5/bycb+dbDRjMouSbocfi76Jxrq9PTacsr74Q+ze8N8zMkYK
+         yGgA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0vWvo3BRvRT6HRuyJ+990kujS0XJTpGHRGHTzpAsXgHvNWCWJU/S5poIrFimzhnBeRFew/uMx+b1j@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx96gAhFvbeiswANLkwda5czmRYV+/wY8qRb/Y/O0LW3HK+HVj/
+	FMug9nDQFC/3UZR4AOr5JV2PL6x04vbbhnGoCkN4h2QLNgYjXPVgihGSvkByhsCePfpvnNkp5Ln
+	jDpOcB3XLZOw8GYTkb5RltkYhMo5numT+4lI99bjwFA==
+X-Gm-Gg: ASbGncv0lHCYSogXKZAFBKmo+PPbBFRZI8btb42MhzcsdUaoXR+3PriPUv3z68kB8p2
+	vtn6uzf9ozhK72roY+75xmwwlxxFUAYTVkTbQLp6TWiFsDFduCl3CdCZQx/lNTxqWij2TMVV5/F
+	2fZA4DZRB8jVnnWo2IJGk/DSdEbtxNzNhQiS1JAOzad2k7i1u5RVSImqkepiNYTZa+P3ZoLMAC1
+	OLvCaheQWG+AcKD9uLPmbPPfV6a
+X-Google-Smtp-Source: AGHT+IF+6KDhxF/Nv9wIPe93Lse4duQguZZlNPVnH8YGAzn5f8KKXL2caupjcfX/resj9T72psSu60bapr4zRsCqOX4=
+X-Received: by 2002:a05:6808:1a1e:b0:439:40ed:1927 with SMTP id
+ 5614622812f47-43b8da9120amr1190971b6e.51.1757675790664; Fri, 12 Sep 2025
+ 04:16:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcm6490: Introduce the Particle
- Tachyon
-To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250910-tachyon-v1-0-5090bfd133e0@oss.qualcomm.com>
- <20250910-tachyon-v1-3-5090bfd133e0@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250910-tachyon-v1-3-5090bfd133e0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEyMDEwNiBTYWx0ZWRfX/lkuZnX+R4hr
- fP8FuUCqXcnSxP2uj/vR97xFZLjWJMBgCJfQH2AkyKO0DT6ZhPnIphRkguDQF650RaAPGKiHAeD
- m6jNbD8A41V1tGXfr9ovWBy3RG8dzflYZsWJlr9xy5Od8pOdkJMEw3TVR1E8wdtphdfRSfDNCcz
- JSYjysCq7NoVTlSe08J/sBEHz2ZgStBN4rFxkoh1xXskUEcdvP4nXXf/yRoJLTAxx66gBpwGmgG
- 0DSu7LetgBEKW8nlcIb68Z59agG8rz7R5HflLmnIJGs24PErYbEnMXY9IUatxTQMNQpqmznqjss
- AKDUvYfji3CGxmNUIeQp4g2vsk9z1pPSRosTTJHn+4ikqUhReJCcwQZBA4zVwC++kvGMMvcg6x+
- ix33IBcr
-X-Proofpoint-GUID: Be0TZFiXh_quBgASaypZBRJDmlEXWR8k
-X-Authority-Analysis: v=2.4 cv=JMM7s9Kb c=1 sm=1 tr=0 ts=68c40051 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=_Hxo6uU0jCpJE4KgPD8A:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-ORIG-GUID: Be0TZFiXh_quBgASaypZBRJDmlEXWR8k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509120106
+References: <20250804-b4-gs101_max77759_fg-v5-0-03a40e6c0e3d@uclouvain.be> <20250804-b4-gs101_max77759_fg-v5-1-03a40e6c0e3d@uclouvain.be>
+In-Reply-To: <20250804-b4-gs101_max77759_fg-v5-1-03a40e6c0e3d@uclouvain.be>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 12 Sep 2025 12:16:19 +0100
+X-Gm-Features: Ac12FXyOFnYMp2b4OuaR1npoXk0x3GKafYhZlOCgGWPVm0PFMJpZl8toEpgiLuo
+Message-ID: <CADrjBPqe6JsT_yKTazRn-Ro2V4ZHQ1=6LX304CyVxgzLBqXrew@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] power: supply: add support for MAX77759 fuel gauge
+To: t.antoine@uclouvain.be
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/11/25 1:05 AM, Bjorn Andersson wrote:
-> The Particle Tachyon is a single board computer with 5G connectivity
-> with AI accelerator, based on the Qualcomm QCM6490 platform.
-> 
-> Introduce the board, with support for UFS, USB, USB Type-C PD and
-> altmode (DisplayPort), GPU, charger/battery status, PCIe shield,
-> SD-card, and remoteprocs.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+Hi Thomas,
+
+Thanks for your patch, and working on this!
+
+On Mon, 4 Aug 2025 at 15:25, Thomas Antoine via B4 Relay
+<devnull+t.antoine.uclouvain.be@kernel.org> wrote:
+>
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>
+> The Maxim MAX77759 is a PMIC used in gs101-oriole and gs101-raven
+> (Google Pixel 6 and 6 Pro). It contains a fuel gauge on a separate
+> I2C address. Add basic support for this fuel gauge. The driver is
+> based on the driver for the MAX17201 and MAX17205 which also use
+> the MAX M5 fuel gauge. There is a lot of common between the two
+
+small nit: "in common"                             ^^^^^^
+
+> devices with some key differences. The main one is the lack of nvmem
+> in the fuel gauge of the MAX77759.
+>
+> The initialization of the chip is very basic and mostly hardcoded.
+> Loading the model of the fuel gauge is not implemented here.
+>
+> On both gs101-oriole and gs101-raven, the same EEPROM as for the
+> battery id is used to backup some of the state of the fuel gauge.
+> Use a standard nvmem binding to access this data. The CRC8 is
+> computed to allow to go from linux to a stock android without
+> apparent data corruption. If other devices using the MAX77759 are
+> found/created, a similar nvmem layout should be made or the driver
+> should be extended to support those devices.
+>
+> The current, capacity, temperature and charge have all been tested.
+> The charge full design and capacity equal the ones seen on android,
+> the ratio between average charge and average current does predict
+> pretty accurately the time to empty under a constant workload and
+> temperature is coherent with the dynamic state of the device.
+>
+> Health is not enabled as it always reports overheating. The time to
+> empty is wrong by about a factor 2. The voltage reporting is
+> correct when using VCELL (which reports the lowest voltage of all
+> cells) when considering that the device is connected to a single
+> cell. It could be enabled by either confirming that the device is
+> connected to a single cell or finding an alternative reporting mean.
+>
+> Modifications have been made to it since but the regmap was
+> originally proposed by Andr=C3=A9 Draszik in
+>
+> Link: https://lore.kernel.org/all/d1bade77b5281c1de6b2ddcb4dbbd033e455a11=
+6.camel@linaro.org/
+>
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
 > ---
-
-[...]
-
-> +	leds {
-> +		compatible = "gpio-leds";
+>  drivers/power/supply/Kconfig            |  14 +
+>  drivers/power/supply/Makefile           |   1 +
+>  drivers/power/supply/max77759_battery.c | 649 ++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 664 insertions(+)
+>
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index 79ddb006e2dad6bf96b71ed570a37c006b5f9433..147d049b836c3fbb24b762dba=
+f31eebb8ba041f7 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -458,6 +458,20 @@ config BATTERY_MAX1721X
+>           Say Y here to enable support for the MAX17211/MAX17215 standalo=
+ne
+>           battery gas-gauge.
+>
+> +config BATTERY_MAX77759
+> +       tristate "Maxim Integrated MAX77759 Fuel Gauge"
+> +       depends on I2C
+> +       select REGMAP_I2C
+> +       help
+> +         Say yes to enable support for the Fuel gauge of the Maxim Integ=
+rated
+> +         MAX77759. It is a companion Power Management IC for USB Type-C
+> +         applications with Battery Charger, Fuel Gauge, temperature sens=
+ors,
+> +         USB Type-C Port Controller (TCPC), NVMEM, and additional GPIO
+> +         interfaces.
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&activity_led_state>;
-
-property-n
-property-names
-
-is preferred, file-wide (you currently have a mixture)
-
-[...]
-
+> +         To compile this driver as module, choose M here: the
+> +         module will be called max77759_fg.
 > +
-> +&i2c1 {
-> +	status = "okay";
-
-This likely results in a "falling back to 100 KHz" warning/notice,
-please specify the bus speed explicitly
-
-[...]
-
-> +&mdss_dp_out {
-> +	data-lanes = <0 1>;
-
-Is 2 lanes a hw limitation?
-
-[...]
-
-> +&pmk8350_rtc {
-
-I see no reason for RTC not to be enabled by default
-
-[...]
-
-> +&pon_pwrkey {
-
-Same here> +	status = "okay";
-> +};
-
-
-> +&uart7 {
-> +	/delete-property/interrupts;
-
-/delete-property/(space)interrupts, please
-
-(yes we desperately need a formatter)
-
-[...]
-
-> +&usb_1_qmpphy {
-> +	vdda-phy-supply = <&vreg_l6b_1p2>;
-> +	vdda-pll-supply = <&vreg_l1b_0p912>;
+>  config BATTERY_TWL4030_MADC
+>         tristate "TWL4030 MADC battery driver"
+>         depends on TWL4030_MADC
+> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefil=
+e
+> index 4f5f8e3507f80da02812f0d08c2d81ddff0a272f..114578fa4fd08356822f13ce1=
+fbad29923defad8 100644
+> --- a/drivers/power/supply/Makefile
+> +++ b/drivers/power/supply/Makefile
+> @@ -57,6 +57,7 @@ obj-$(CONFIG_BATTERY_MAX17040)        +=3D max17040_bat=
+tery.o
+>  obj-$(CONFIG_BATTERY_MAX17042) +=3D max17042_battery.o
+>  obj-$(CONFIG_BATTERY_MAX1720X) +=3D max1720x_battery.o
+>  obj-$(CONFIG_BATTERY_MAX1721X) +=3D max1721x_battery.o
+> +obj-$(CONFIG_BATTERY_MAX77759) +=3D max77759_battery.o
+>  obj-$(CONFIG_BATTERY_RT5033)   +=3D rt5033_battery.o
+>  obj-$(CONFIG_CHARGER_RT5033)   +=3D rt5033_charger.o
+>  obj-$(CONFIG_CHARGER_RT9455)   +=3D rt9455_charger.o
+> diff --git a/drivers/power/supply/max77759_battery.c b/drivers/power/supp=
+ly/max77759_battery.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d8d702af607211e391733cd14=
+323698b54be734c
+> --- /dev/null
+> +++ b/drivers/power/supply/max77759_battery.c
+> @@ -0,0 +1,649 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Fuel gauge driver for Maxim 777759
+> + *
+> + * based on max1720x_battery.c
+> + *
+> + * Copyright (C) 2024 Liebherr-Electronics and Drives GmbH
+> + */
 > +
-> +	orientation-switch;
 
-This is specified in the SoC DTSI
+[..]
 
-[...]
+> +       switch (psp) {
+> +       case POWER_SUPPLY_PROP_PRESENT:
+> +               /*
+> +                * POWER_SUPPLY_PROP_PRESENT will always readable via
+> +                * sysfs interface. Value return 0 if battery not
+> +                * present or unaccesable via I2c.
 
-> +&usb_dp_qmpphy_dp_in {
-> +	remote-endpoint = <&mdss_dp_out>;
-> +};
+small nit: inaccessible      ^^^^^^
 
-And so is this link
-
+> +                */
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_STATUS, &re=
+g_val);
+> +               if (ret < 0) {
+> +                       val->intval =3D 0;
+> +                       return 0;
+> +               }
 > +
-> +&usb_dp_qmpphy_out {
-> +	remote-endpoint = <&pmic_glink_ss_in>;
-> +};
+> +               val->intval =3D !FIELD_GET(MAX77759_FG_STATUS_BAT_ABSENT,=
+ reg_val);
+> +               break;
+> +       case POWER_SUPPLY_PROP_CAPACITY:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_REPSOC, &re=
+g_val);
+> +               val->intval =3D max77759_fg_percent_to_ps(reg_val);
+> +               break;
+> +       case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_DESIGN_CAP,=
+ &reg_val);
+> +               if (ret < 0)
+> +                       return ret;
 > +
-> +&usb_dp_qmpphy_usb_ss_in {
-> +	remote-endpoint = <&usb_1_dwc3_ss>;
-> +};
+> +               val->intval =3D max77759_fg_capacity_to_ps(reg_val, info)=
+;
+> +               ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +               val->intval *=3D reg_val;
+> +               break;
+> +       case POWER_SUPPLY_PROP_CHARGE_AVG:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_REPCAP, &re=
+g_val);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               val->intval =3D max77759_fg_capacity_to_ps(reg_val, info)=
+;
+> +               ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +               val->intval *=3D reg_val;
+> +               break;
+> +       case POWER_SUPPLY_PROP_TEMP:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_TEMP, &reg_=
+val);
+> +               val->intval =3D max77759_fg_temperature_to_ps(reg_val);
+> +               break;
+> +       case POWER_SUPPLY_PROP_CURRENT_NOW:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_CURRENT, &r=
+eg_val);
+> +               val->intval =3D max77759_fg_current_to_voltage(reg_val) /=
+ info->rsense;
+> +               break;
+> +       case POWER_SUPPLY_PROP_CURRENT_AVG:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_AVG_CURRENT=
+, &reg_val);
+> +               val->intval =3D max77759_fg_current_to_voltage(reg_val) /=
+ info->rsense;
+> +               break;
+> +       case POWER_SUPPLY_PROP_CHARGE_FULL:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_FULL_CAP, &=
+reg_val);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               val->intval =3D max77759_fg_capacity_to_ps(reg_val, info)=
+;
+> +               ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +               val->intval *=3D reg_val;
+> +               break;
+> +       case POWER_SUPPLY_PROP_MODEL_NAME:
+> +               ret =3D regmap_read(info->regmap, MAX77759_FG_DEV_NAME, &=
+reg_val);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               reg_val =3D FIELD_GET(MAX77759_FG_DEV_NAME_TYPE_MASK, reg=
+_val);
+> +               if (reg_val =3D=3D MAX77759_FG_DEV_NAME_TYPE)
+> +                       val->strval =3D max77759_fg_model;
+> +               else
+> +                       return -ENODEV;
+> +               break;
+> +       case POWER_SUPPLY_PROP_MANUFACTURER:
+> +               val->strval =3D max77759_fg_manufacturer;
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       return ret;
+> +}
+> +
+> +static int max77759_fg_init(struct device *dev,
+> +                           struct max77759_fg_device_info *info,
+> +                           struct power_supply *bat_psy)
+> +{
+> +       struct max77759_fg_state_save *state;
+> +       struct power_supply_battery_info *bat_info;
+> +       struct nvmem_cell *cell;
+> +       unsigned int val;
+> +       int ret;
+> +       size_t len;
+> +
+> +       power_supply_get_battery_info(bat_psy, &bat_info);
 
-And this one
+Should check the return code here and exit if not present as if the
+battery info is missing in DT it will crash in max77759_fg_init().
 
-Konrad
+With that addressed:
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+
+I think there was also some feedback from Krysztof on the binding, but
+aside from that I think Sebastian was ready to queue this.
+
+regards,
+
+Peter
 
