@@ -1,630 +1,773 @@
-Return-Path: <devicetree+bounces-216403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF58FB54A7D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:59:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A62B54A89
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:02:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4B1B3B2968
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:59:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7009B163F70
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55EB62FD7D6;
-	Fri, 12 Sep 2025 10:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26394136672;
+	Fri, 12 Sep 2025 11:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="SWunbdIX"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="uNt/o3Pp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCB41EA7DD;
-	Fri, 12 Sep 2025 10:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58002DC778;
+	Fri, 12 Sep 2025 11:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.70
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757674788; cv=pass; b=D4s1yKfMIKLOizEiPt/ZUN/2qQRVviVHDeL6kdSyqkmXzgltTySRD8Qp5cqlK1nlLOH+rRoQe34VgzFLKgqbj/WCwnjW4PkPhLJsLewKVzQcEGKROPJrgjkqQtgozbC/x/NBpPkASSWE4tr55mTGMQlDdMqpVtN16lsF7GBhVMc=
+	t=1757674955; cv=fail; b=TacAlyY3sjxYiDgXCzy2aH8ByZLF2T1WdNXyzVWxH70F34Kfy53/rtjsNsDAJ8eIeLA/VDTdKc8UWEoSYLVXY3pARMxjPXqFTkwgJaOgYg6GnO4pzusbNkCbCvh9XkaC5rvHGe1dPxaCCAsGDYWOmtYR4HPywC6fMTLKv2lNDz4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757674788; c=relaxed/simple;
-	bh=dfqv03NeK6sZvQ5PcSGW6oPy7w+hVO5V+pWRUbS6FVM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GByG+9XHyyHvuyUYVNzw9EkrLnxYsOHkuuX9dCMZmlcqdJFO+PPKnB7EZeYJv26mejZ++mFmYsDwJf/oV5Uf0+WZbLNSBV6IQTY9SaQat/z8cf2Njf75a06bEQ2SsVa8qpKuqp6wslJewkiuLKGBoOPGVdYD9jUwa5F435s0kD8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=SWunbdIX; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757674755; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=E6/1DG8WrAY75UakpxDmhKbrxrf5zSJePUut+IxSO+QVSKzsML34iXZUQ+m6j/eVTrvCFj6qQEW5YAHN7KzZO+pWwC4mWyAMqmcmMWIDVnIzGMr1uQbOTaV+Ll3+Q9rDxSL8pwhM5k94opYrSrqz2rJeWCLcBdpfzCL/Y0jWYW4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757674755; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Kuus9WkOzKNAJUiWF7HiS3jmu57cJ6ZFPn774V4O+ow=; 
-	b=iq/hdzpBi45qBfvpZCSjt23TIPcWqzk6lLBl2cl47gTDQmN1OY5U9p5+JhmGVWAVxTJR3CjwuDhF3SCVqc4oRS0VRvB83AWEotDBJx83ggIGJ3shRjaMY2wxVDo5M2XRO9/OcZSSz/AzsZ5E1zETkf1/nDLa4Ry3C/vBqmNx5zo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757674755;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=Kuus9WkOzKNAJUiWF7HiS3jmu57cJ6ZFPn774V4O+ow=;
-	b=SWunbdIXnqksvknSPQ7Nd6CbWlKumM8UkQDE4huCokATci7Xqgmnrgr2bh8qeVpo
-	5AEy0PZdAf+P6SqEUe8wwOIwIJ0A7NgjJQdBxpK6JfYL1uPkgG8XY3foIpajmQX9OMD
-	SiCN+OrL+hLNarfJw4pJU7XnV7tC+PElz4LQfPJk=
-Received: by mx.zohomail.com with SMTPS id 175767475236216.54884001202231;
-	Fri, 12 Sep 2025 03:59:12 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Chia-I Wu <olvaffe@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: Re: [PATCH RFC 05/10] mailbox: add MediaTek GPUEB IPI mailbox
-Date: Fri, 12 Sep 2025 12:59:03 +0200
-Message-ID: <4506669.X9hSmTKtgW@workhorse>
-In-Reply-To:
- <CAPaKu7RUx6KHyvdvrfX3u-7Lk=Wa3nmTh6-tD3CbReNAwNtgoQ@mail.gmail.com>
-References:
- <20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com>
- <20250905-mt8196-gpufreq-v1-5-7b6c2d6be221@collabora.com>
- <CAPaKu7RUx6KHyvdvrfX3u-7Lk=Wa3nmTh6-tD3CbReNAwNtgoQ@mail.gmail.com>
+	s=arc-20240116; t=1757674955; c=relaxed/simple;
+	bh=tH6+HIjC0oI/bMJMJSYe9cdUTuZ/qTSFMCmT581TCCc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=WZVyVz3QYCoA0wsegqHdyWHIMHK4wbRh01N2unkBSHLjoK2DRQsZYY3Ggj/lx/HB3kMlN0Lfk1gOBRjyKFb4aRhIbfsbNVsu0cw/lHuNbvqFVU1XsjYrAthGKYXK74e8nMwKgK8z5yc3CD0iYk6X16YXgiE4cJNQ2rGJOiIRsLM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=uNt/o3Pp; arc=fail smtp.client-ip=40.107.93.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g9Npmqf84m3NljmUwlAuZ9E/mGJyix1bby/nJyRI6dh8xVPQDakFn56tLtEeJIXrAnjKooTxv70QT8jgDfL0/RcWvHfWH/cT9hFCTajAqVSUHMOJDFvSdy1QQlsIa4LFUH3ajII8Ls+vPJHnbagfLe+6fz8IOC/UPSckUYbeVHrg0xs8B8Ms1tFkndA9CXWlJjUHiO1IXknfZcnnp1yAlVxi9F4yjcYkvSxHsS9Y1mcHsJCCqy96hr3goZJkgPLGaJ3X3/iAwY0QBHkZ1sONtVBi4H28rFYr1aOvXR/eaE/AvyLZDLxsG2FUd0fa+joN+q8Cn0uisqjFNJsc9rShTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TDUTAsvETg2c38LLcbw9mPZUA8Z524WXPaR4agWpAwc=;
+ b=Yl4ZX3JCOPUTkt5dY/PFwBWPciY4GqBjw4ntawzUYB89oGawimhAIbWvjodKgFXeuR2/y375GDzdWjOze61P9FLtdIUzpejkIFIOOvyFgKsP5/NvMZBVjSuzxxwtwOoNxJKCzpxQkRMn8yFVvc5WraxuJoQ6PQCi7rMwbp01s74J6cld09TmNbp7agl6tljre58C8nHH3SXsChRT1YrHJa9isyCfUFHSakp6EqYNKHLaHi7EJPzbOV/wlmiHmq2H9MmZjivf2bXOBLUoHqiM1ud/sUM/u7KkPId2VDp0/uHOg0PPzTqYjRYYQsddYXWs3BUQq367SUyFTqJq6wFoaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TDUTAsvETg2c38LLcbw9mPZUA8Z524WXPaR4agWpAwc=;
+ b=uNt/o3Ppr60HTgswq4PM89LUF7qCklM567DiQyVvGT5H0gBWzqmi4ayFrz+luQEvwXzfXn4um7l6/7ywEuiZj8kfynA6wXydEZN/7zq8GKZ7tq2FWiyXr19PzpQlphWXGo7gLXi3V9N9JKDmo262hVWa3ZhQ8ke/bL68Ut/oes8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
+ by DS7PR12MB6118.namprd12.prod.outlook.com (2603:10b6:8:9a::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9094.22; Fri, 12 Sep 2025 11:02:29 +0000
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9094.021; Fri, 12 Sep 2025
+ 11:02:29 +0000
+Message-ID: <985955d7-bc77-4483-86e1-0e3382e1f4b5@amd.com>
+Date: Fri, 12 Sep 2025 13:02:16 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: versal-net: Describe L1/L2/L3/LLC caches
+To: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+References: <f740bf2d0af1e7e50d76196ec050c0fdbeceb049.1757338426.git.michal.simek@amd.com>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ mpwx1d8=
+In-Reply-To: <f740bf2d0af1e7e50d76196ec050c0fdbeceb049.1757338426.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P195CA0054.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:802:5a::43) To SJ2PR12MB8109.namprd12.prod.outlook.com
+ (2603:10b6:a03:4f5::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-On Friday, 12 September 2025 06:48:17 Central European Summer Time Chia-I W=
-u wrote:
-> On Fri, Sep 5, 2025 at 3:24=E2=80=AFAM Nicolas Frattaroli
-> <nicolas.frattaroli@collabora.com> wrote:
-> >
-> > The MT8196 SoC uses an embedded MCU to control frequencies and power of
-> > the GPU. This controller is referred to as "GPUEB".
-> >
-> > It communicates to the application processor, among other ways, through
-> > a mailbox.
-> >
-> > The mailbox exposes one interrupt, which appears to only be fired when a
-> > response is received, rather than a transaction is completed. For us,
-> > this means we unfortunately need to poll for txdone.
-> >
-> > The mailbox also requires the EB clock to be on when touching any of the
-> > mailbox registers.
-> >
-> > Add a simple driver for it based on the common mailbox framework.
-> >
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/mailbox/Kconfig             |  10 ++
-> >  drivers/mailbox/Makefile            |   2 +
-> >  drivers/mailbox/mtk-gpueb-mailbox.c | 330 ++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 342 insertions(+)
-> >
-> > diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-> > index 02432d4a5ccd46a16156a09c7f277fb03e4013f5..2016defda1fabb5c0fcc807=
-8f84a52d4e4e00167 100644
-> > --- a/drivers/mailbox/Kconfig
-> > +++ b/drivers/mailbox/Kconfig
-> > @@ -294,6 +294,16 @@ config MTK_CMDQ_MBOX
-> >           critical time limitation, such as updating display configurat=
-ion
-> >           during the vblank.
-> >
-> > +config MTK_GPUEB_MBOX
-> > +       tristate "MediaTek GPUEB Mailbox Support"
-> > +       depends on ARCH_MEDIATEK || COMPILE_TEST
-> > +       help
-> > +         The MediaTek GPUEB mailbox is used to communicate with the em=
-bedded
-> > +         controller in charge of GPU frequency and power management on=
- some
-> > +         MediaTek SoCs, such as the MT8196.
-> > +         Say Y or m here if you want to support the MT8196 SoC in your=
- kernel
-> > +         build.
-> > +
-> >  config ZYNQMP_IPI_MBOX
-> >         tristate "Xilinx ZynqMP IPI Mailbox"
-> >         depends on ARCH_ZYNQMP && OF
-> > diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> > index 98a68f838486eed117d24296138bf59fda3f92e4..564d06e71313e6d1972e4a6=
-036e1e78c8c7ec450 100644
-> > --- a/drivers/mailbox/Makefile
-> > +++ b/drivers/mailbox/Makefile
-> > @@ -63,6 +63,8 @@ obj-$(CONFIG_MTK_ADSP_MBOX)   +=3D mtk-adsp-mailbox.o
-> >
-> >  obj-$(CONFIG_MTK_CMDQ_MBOX)    +=3D mtk-cmdq-mailbox.o
-> >
-> > +obj-$(CONFIG_MTK_GPUEB_MBOX)   +=3D mtk-gpueb-mailbox.o
-> > +
-> >  obj-$(CONFIG_ZYNQMP_IPI_MBOX)  +=3D zynqmp-ipi-mailbox.o
-> >
-> >  obj-$(CONFIG_SUN6I_MSGBOX)     +=3D sun6i-msgbox.o
-> > diff --git a/drivers/mailbox/mtk-gpueb-mailbox.c b/drivers/mailbox/mtk-=
-gpueb-mailbox.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..0236fb358136e434a09a21e=
-f293fe949ced94123
-> > --- /dev/null
-> > +++ b/drivers/mailbox/mtk-gpueb-mailbox.c
-> > @@ -0,0 +1,330 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * MediaTek GPUEB mailbox driver for SoCs such as the MT8196
-> > + *
-> > + * Copyright (C) 2025, Collabora Ltd.
-> > + *
-> > + * Developers harmed in the making of this driver:
-> > + *  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > + */
-> > +
-> > +#include <linux/atomic.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/device.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/mailbox_controller.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#define MBOX_CTL_TX_STS 0x0000
-> > +#define MBOX_CTL_IRQ_SET 0x0004
-> > +#define MBOX_CTL_IRQ_CLR 0x0074
-> > +#define MBOX_CTL_RX_STS 0x0078
-> > +
-> > +#define MBOX_FULL BIT(0) /* i.e. we've received data */
-> > +#define MBOX_CLOGGED BIT(1) /* i.e. the channel is shutdown */
-> > +
-> > +struct mtk_gpueb_mbox {
-> > +       struct device *dev;
-> > +       struct clk *clk;
-> > +       void __iomem *mbox_mmio;
-> > +       void __iomem *mbox_ctl;
-> > +       void **rx_buf;
-> > +       atomic_t *rx_status;
-> > +       struct mbox_controller mbox;
-> > +       unsigned int *chn;
-> > +       int irq;
-> > +       const struct mtk_gpueb_mbox_variant *v;
-> > +};
-> > +
-> > +struct mtk_gpueb_mbox_ch {
-> > +       const char *name;
-> > +       const int num;
-> > +       const unsigned int tx_offset;
-> > +       const unsigned int tx_len;
-> > +       const unsigned int rx_offset;
-> > +       const unsigned int rx_len;
-> > +       const bool no_response;
-> > +};
-> > +
-> > +struct mtk_gpueb_mbox_variant {
-> > +       unsigned int num_channels;
-> > +       const struct mtk_gpueb_mbox_ch channels[] __counted_by(num_chan=
-nels);
-> > +};
-> > +
-> > +/**
-> > + * mtk_gpueb_mbox_read_rx - read RX buffer from MMIO into ebm's RX buf=
-fer
-> > + * @ebm: pointer to &struct mtk_gpueb_mbox instance
-> > + * @channel: number of channel to read
-> > + */
-> > +static void mtk_gpueb_mbox_read_rx(struct mtk_gpueb_mbox *ebm,
-> > +                                  unsigned int channel)
-> > +{
-> > +       const struct mtk_gpueb_mbox_ch *ch;
-> > +
-> > +       ch =3D &ebm->v->channels[channel];
-> > +
-> > +       memcpy_fromio(ebm->rx_buf[channel], ebm->mbox_mmio + ch->rx_off=
-set,
-> > +                     ch->rx_len);
-> > +
-> > +}
-> > +
-> > +static irqreturn_t mtk_gpueb_mbox_isr(int irq, void *data)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D data;
-> > +       u32 rx_handled =3D 0;
-> > +       u32 rx_sts;
-> > +       int i;
-> > +
-> > +       rx_sts =3D readl(ebm->mbox_ctl + MBOX_CTL_RX_STS);
-> > +
-> > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
-> > +               if (rx_sts & BIT(i)) {
-> > +                       if (!atomic_cmpxchg(&ebm->rx_status[i], 0,
-> > +                                           MBOX_FULL | MBOX_CLOGGED))
-> > +                               rx_handled |=3D BIT(i);
-> > +               }
-> > +       }
-> We can loop over bits that are set in rx_sts, if we expect that only a
-> few bits are set most of the time.
-
-Could you elaborate on your preferred approach? num_channels will be
-smaller than the bit width of rx_sts. I could loop from __fls down to
-0 checking for (!rx_sts ^ rx_handled) for an early exit, but I'm not
-sure if this microoptimisation is what you meant or if that even makes
-much sense instruction cost wise.
-
-Alternatively, I could loop from __fss to num_channels.
-
-Is there some commonly used hyper-optimised "loop over set bits" macro
-that I'm unfamiliar with?
-
-> > +
-> > +       writel(rx_handled, ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
-> > +
-> > +       if (!(rx_sts ^ rx_handled))
-> "rx_sts =3D=3D rx_handled" should be more direct.
-
-Good point, will change.
-
-> > +               return IRQ_WAKE_THREAD;
-> > +
-> > +       dev_warn_ratelimited(ebm->dev, "spurious interrupts on 0x%04X\n=
-",
-> > +                            rx_sts ^ rx_handled);
-> > +       return IRQ_NONE;
-> It seems a bit too punishing when there are spurious interrupts. I
-> wonder if we should warn, but return IRQ_WAKE_THREAD as long as
-> rx_handled !=3D 0.
->=20
-> Also, if another interrupt can fire before mtk_gpueb_mbox_thread runs,
-> that's data dropping rather than spurious interrupts.
->=20
-
-Yeah, I agree that this is bad. As wens pointed out, my IRQ clearing
-earlier would most certainly open us up to losing data. I'll
-definitely look into changing this; iirc the current code resulted
-from me being unsure whether partially handled IRQs should still
-be counted as a handled IRQ or not.
-
-> > +}
-> > +
-> > +static irqreturn_t mtk_gpueb_mbox_thread(int irq, void *data)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D data;
-> > +       irqreturn_t ret =3D IRQ_NONE;
-> > +       int status;
-> > +       int i;
-> > +
-> > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
-> > +               status =3D atomic_cmpxchg(&ebm->rx_status[i],
-> > +                                       MBOX_FULL | MBOX_CLOGGED, MBOX_=
-=46ULL);
-> > +               if (status =3D=3D (MBOX_FULL | MBOX_CLOGGED)) {
-> We could also save rx_handled from mtk_gpueb_mbox_isr and loop over
-> bits that are set.  If we do that, ebm->rx_status[i] is guaranteed to
-> be MBOX_FULL | MBOX_CLOGGED.
->=20
-
-Wouldn't storing rx_handled open us up to data races with unpleasant
-code to try and prevent them? As far as I understand, the ISR is allowed
-to fire again before the thread has completed. Having the rx_status bits
-as individual atomics gives us finer granularity than needing to protect
-the entire set of bits.
-
-If there is some way to pass data from the ISR to the awoken thread
-directly as a per-invocation parameter rather than a squirreled away
-member of the driver private struct, then I agree doing it your way
-seems better.
-
-> > +                       mtk_gpueb_mbox_read_rx(ebm, i);
-> > +                       mbox_chan_received_data(&ebm->mbox.chans[i],
-> > +                                               ebm->rx_buf[i]);
-> It looks like we read the data and pass it on to the client
-> immediately. Does each channel need its own rx_buf?
->=20
-
-Yeah, common mailbox framework does not do a copy here, it just passes
-the pointer. Which is good, because nobody likes copies, and it
-prevents the mailbox core from needing to know the size of received
-data.
-
-So the individual rx_bufs are needed to prevent channel cross-talk.
-
-> > +                       /* FIXME: When does MBOX_FULL get cleared? Here=
-? */
-> > +                       atomic_set(&ebm->rx_status[i], 0);
-> > +                       ret =3D IRQ_HANDLED;
-> > +               }
-> > +       }
-> > +
-> > +       return ret;
-> > +}
-> > +
-> > +static int mtk_gpueb_mbox_send_data(struct mbox_chan *chan, void *data)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->dev);
-> > +       unsigned int *num =3D chan->con_priv;
-> > +       int i;
-> > +       u32 *values =3D data;
-> > +
-> > +       if (*num >=3D ebm->v->num_channels)
-> > +               return -ECHRNG;
-> Can this ever happen? (I am not familiar with the mbox subsystem)
-
-Only if someone with a pointer to chan modifies con_priv outside of
-what the mailbox driver set. It's an unlikely scenario, so I do think
-I can remove this check, but the downside is that if someone ever does
-manage to do this then the next line is a convenient read primitive.
-
-> > +
-> > +       if (!ebm->v->channels[*num].no_response &&
-> > +           atomic_read(&ebm->rx_status[*num]))
-> > +               return -EBUSY;
-> When no_response is true, rx_status is 0. We probably don't need to
-> check no_response.
-
-Now that I'm thinking about it, I can probably get rid of no_response
-altogether. It was originally added because I conflated txdone with
-response received, and one particular command on the sleep channel,
-namely powering off the MFG, is unable to ever cause a response
-interrupt to fire.
-
-Since we now poll for txdone anyway using the TX status register, I
-don't think this is needed at all anymore, so I'll try and get
-rid of it.
-
-> > +
-> > +       writel(BIT(*num), ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
-> > +
-> > +       /*
-> > +        * We don't want any fancy nonsense, just write the 32-bit valu=
-es in
-> > +        * order. memcpy_toio/__iowrite32_copy don't work here, because=
- fancy.
-> > +        */
-> > +       for (i =3D 0; i < ebm->v->channels[*num].tx_len; i +=3D 4) {
-> > +               writel(values[i / 4],
-> > +                      ebm->mbox_mmio + ebm->v->channels[*num].tx_offse=
-t + i);
-> > +       }
-> > +
-> > +       writel(BIT(*num), ebm->mbox_ctl + MBOX_CTL_IRQ_SET);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int mtk_gpueb_mbox_startup(struct mbox_chan *chan)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->dev);
-> > +       unsigned int *num =3D chan->con_priv;
-> > +
-> > +       if (*num >=3D ebm->v->num_channels)
-> > +               return -ECHRNG;
-> > +
-> > +       atomic_set(&ebm->rx_status[*num], 0);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static void mtk_gpueb_mbox_shutdown(struct mbox_chan *chan)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->dev);
-> > +       unsigned int *num =3D chan->con_priv;
-> > +
-> > +       atomic_set(&ebm->rx_status[*num], MBOX_CLOGGED);
-> > +}
-> > +
-> > +static bool mtk_gpueb_mbox_last_tx_done(struct mbox_chan *chan)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(chan->mbox->dev);
-> > +       unsigned int *num =3D chan->con_priv;
-> > +
-> > +       return !(readl(ebm->mbox_ctl + MBOX_CTL_TX_STS) & BIT(*num));
-> > +}
-> > +
-> > +const struct mbox_chan_ops mtk_gpueb_mbox_ops =3D {
-> > +       .send_data =3D mtk_gpueb_mbox_send_data,
-> > +       .startup =3D mtk_gpueb_mbox_startup,
-> > +       .shutdown =3D mtk_gpueb_mbox_shutdown,
-> > +       .last_tx_done =3D mtk_gpueb_mbox_last_tx_done,
-> > +};
-> > +
-> > +static struct mbox_chan *
-> > +mtk_gpueb_mbox_of_xlate(struct mbox_controller *mbox,
-> > +                       const struct of_phandle_args *sp)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm =3D dev_get_drvdata(mbox->dev);
-> > +
-> > +       if (!sp->args_count)
-> > +               return ERR_PTR(-EINVAL);
-> > +
-> > +       if (sp->args[0] >=3D ebm->v->num_channels)
-> > +               return ERR_PTR(-ECHRNG);
-> > +
-> > +       return &mbox->chans[sp->args[0]];
-> > +}
-> > +
-> > +static int mtk_gpueb_mbox_probe(struct platform_device *pdev)
-> > +{
-> > +       struct mtk_gpueb_mbox *ebm;
-> > +       unsigned int rx_buf_sz;
-> > +       void *buf;
-> > +       unsigned int i;
-> > +       int ret;
-> > +
-> > +       ebm =3D devm_kzalloc(&pdev->dev, sizeof(*ebm), GFP_KERNEL);
-> > +       if (!ebm)
-> > +               return -ENOMEM;
-> > +
-> > +       ebm->dev =3D &pdev->dev;
-> > +       ebm->v =3D of_device_get_match_data(ebm->dev);
-> > +
-> > +       dev_set_drvdata(ebm->dev, ebm);
-> > +
-> > +       ebm->clk =3D devm_clk_get_enabled(ebm->dev, NULL);
-> > +       if (IS_ERR(ebm->clk))
-> > +               return dev_err_probe(ebm->dev, PTR_ERR(ebm->clk),
-> > +                                    "Failed to get 'eb' clock\n");
-> > +
-> > +       ebm->mbox_mmio =3D devm_platform_ioremap_resource_byname(pdev, =
-"mbox");
-> > +       if (IS_ERR(ebm->mbox_mmio))
-> > +               return dev_err_probe(ebm->dev, PTR_ERR(ebm->mbox_mmio),
-> > +                                    "Couldn't map mailbox registers\n"=
-);
-> > +
-> > +       ebm->mbox_ctl =3D devm_platform_ioremap_resource_byname(pdev, "=
-mbox_ctl");
-> > +       if (IS_ERR(ebm->mbox_ctl))
-> > +               return dev_err_probe(
-> > +                       ebm->dev, PTR_ERR(ebm->mbox_ctl),
-> > +                       "Couldn't map mailbox control registers\n");
-> > +
-> > +       rx_buf_sz =3D (ebm->v->channels[ebm->v->num_channels - 1].rx_of=
-fset +
-> > +                    ebm->v->channels[ebm->v->num_channels - 1].rx_len);
-> rx is after tx in mmio. The first half of the space is wasted.
->=20
-> We follow mtk_gpueb_mbox_read_rx by mbox_chan_received_data. It seems
-> we only need max of rx_len's.
-
-We do need the sum of all rx_len's but you're correct that the current code
-allocates too much memory. What I think it should do is
-
-last rx_offset + last rx_len - first rx_offset
-
-to get the total amount of MMIO occupied by RX.
-
-> > +
-> > +       buf =3D devm_kzalloc(ebm->dev, rx_buf_sz, GFP_KERNEL);
-> > +       if (!buf)
-> > +               return -ENOMEM;
-> > +
-> > +       ebm->rx_buf =3D devm_kmalloc_array(ebm->dev, ebm->v->num_channe=
-ls,
-> > +                                        sizeof(*ebm->rx_buf), GFP_KERN=
-EL);
-> > +       if (!ebm->rx_buf)
-> > +               return -ENOMEM;
-> > +
-> > +       ebm->mbox.chans =3D devm_kcalloc(ebm->dev, ebm->v->num_channels,
-> > +                                      sizeof(struct mbox_chan), GFP_KE=
-RNEL);
-> > +       if (!ebm->mbox.chans)
-> > +               return -ENOMEM;
-> > +
-> > +       ebm->rx_status =3D devm_kcalloc(ebm->dev, ebm->v->num_channels,
-> > +                                     sizeof(atomic_t), GFP_KERNEL);
-> > +       if (!ebm->rx_status)
-> > +               return -ENOMEM;
-> > +
-> > +       ebm->chn =3D devm_kcalloc(ebm->dev, ebm->v->num_channels,
-> > +                               sizeof(*ebm->chn), GFP_KERNEL);
-> > +
-> > +       for (i =3D 0; i < ebm->v->num_channels; i++) {
-> > +               ebm->rx_buf[i] =3D buf + ebm->v->channels[i].rx_offset;
-> > +               spin_lock_init(&ebm->mbox.chans[i].lock);
-> > +               /* the things you do to avoid explicit casting void* */
-> I actually prefer an inline helper that casts chan->con_priv to the
-> channel number. Another option is "chan - ebm->mox.chans".
-
-Hmmm, yeah. Though, I don't enjoy chan - ebm->mbox.chans because now we're
-in the woods regarding pointer arithmetics.
-
-I think the inline helper makes more sense, even if explicitly using a
-pointer as an integer gives me the heebie-jeebies.
-
-> > +               ebm->chn[i] =3D i;
-> > +               ebm->mbox.chans[i].con_priv =3D &ebm->chn[i];
-> > +               atomic_set(&ebm->rx_status[i], MBOX_CLOGGED);
-> > +       }
-> > +
-> > +       ebm->mbox.dev =3D ebm->dev;
-> > +       ebm->mbox.num_chans =3D ebm->v->num_channels;
-> > +       ebm->mbox.txdone_poll =3D true;
-> > +       ebm->mbox.txpoll_period =3D 0; /* minimum hrtimer interval */
-> > +       ebm->mbox.of_xlate =3D mtk_gpueb_mbox_of_xlate;
-> > +       ebm->mbox.ops =3D &mtk_gpueb_mbox_ops;
-> > +
-> > +       ebm->irq =3D platform_get_irq(pdev, 0);
-> > +       if (ebm->irq < 0)
-> > +               return ebm->irq;
-> > +
-> > +       ret =3D devm_request_threaded_irq(ebm->dev, ebm->irq, mtk_gpueb=
-_mbox_isr,
-> > +                                       mtk_gpueb_mbox_thread, 0, NULL,=
- ebm);
-> > +       if (ret)
-> > +               return dev_err_probe(ebm->dev, ret, "failed to request =
-IRQ\n");
-> > +
-> > +       ret =3D devm_mbox_controller_register(ebm->dev, &ebm->mbox);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct mtk_gpueb_mbox_variant mtk_gpueb_mbox_mt8196 =3D {
-> > +       .num_channels =3D 12,
-> > +       .channels =3D {
-> > +               { "fast_dvfs_event", 0, 0x0000, 16, 0x00e0, 16, false },
-> > +               { "gpufreq",         1, 0x0010, 32, 0x00f0, 32, false },
-> > +               { "sleep",           2, 0x0030, 12, 0x0110,  4, true  },
-> > +               { "timer",           3, 0x003c, 24, 0x0114,  4, false },
-> > +               { "fhctl",           4, 0x0054, 36, 0x0118,  4, false },
-> > +               { "ccf",             5, 0x0078, 16, 0x011c, 16, false },
-> > +               { "gpumpu",          6, 0x0088, 24, 0x012c,  4, false },
-> > +               { "fast_dvfs",       7, 0x00a0, 24, 0x0130, 24, false },
-> > +               { "ipir_c_met",      8, 0x00b8,  4, 0x0148, 16, false },
-> > +               { "ipis_c_met",      9, 0x00bc, 16, 0x0158,  4, false },
-> > +               { "brisket",        10, 0x00cc, 16, 0x015c, 16, false },
-> > +               { "ppb",            11, 0x00dc,  4, 0x016c,  4, false },
-> > +       },
-> > +};
-> > +
-> > +static const struct of_device_id mtk_gpueb_mbox_of_ids[] =3D {
-> > +       { .compatible =3D "mediatek,mt8196-gpueb-mbox",
-> > +         .data =3D &mtk_gpueb_mbox_mt8196 },
-> > +       { /* Sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, mtk_gpueb_mbox_of_ids);
-> > +
-> > +static struct platform_driver mtk_gpueb_mbox_drv =3D {
-> > +       .probe =3D mtk_gpueb_mbox_probe,
-> > +       .driver =3D {
-> > +               .name =3D "mtk-gpueb-mbox",
-> > +               .of_match_table =3D mtk_gpueb_mbox_of_ids,
-> > +       }
-> > +};
-> > +module_platform_driver(mtk_gpueb_mbox_drv);
-> > +
-> > +MODULE_AUTHOR("Nicolas Frattaroli <nicolas.frattaroli@collabora.com>");
-> > +MODULE_DESCRIPTION("MediaTek GPUEB mailbox driver for SoCs such as the=
- MT8196");
-> > +MODULE_LICENSE("GPL");
-> >
-> > --
-> > 2.51.0
-> >
->=20
-
-Thank you for your review!
-
-Kind regards,
-Nicolas Frattaroli
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|DS7PR12MB6118:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09627442-bf30-4908-058e-08ddf1ebdda3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TW5tZ0xEbFFzWlFwaDhBV0ZVRCtsNjd2T3o5WTZvQmoxODBZZmRIK1Fxb3pM?=
+ =?utf-8?B?V2xsa0trY2w1RzRiQ21tZWt3UVJpTzNZaUY3OVJRYlBaT0wydFJ0eWp0YWlV?=
+ =?utf-8?B?VVFoOUlnNTlUU1E1eUUyYlFSaVVkeExRNWl4Z2xsYXZLdUszb1JlTTlkRlFx?=
+ =?utf-8?B?cDlodWVTU2NPOWZtNjAwYU5WWk9PUUNSUEtyMlE1UUR1am5UZ1JsN3AxbXpu?=
+ =?utf-8?B?OXdZbmRlcVU4bVdNUSs2V0doaEFSd3ArQnpRbmQ5SFptTS9LK2NwOTJHc3Y4?=
+ =?utf-8?B?UFp1emMxUzZsUHprcDh3U1lENzNKdmVNaUdTc05wNXYzbnFGUTlZcVdFZnRt?=
+ =?utf-8?B?YlU4dnJncW8vMFJ0L2VNSDVPZTg5cEdKT3k5Tkp5QjRSUWpNL1hWR0lNKzhD?=
+ =?utf-8?B?K1VqYlM2a210ZklrTmtWYVB1Yjg1Q2F3dG9Pdk9ydXhyUzdHUlFhdkpIclBi?=
+ =?utf-8?B?VVVBK0EzVnZGUFN4VnUraEpJcWxQWmJ4ZFJlT0ErRjlSZ29CZ3h1ODNhZ2sy?=
+ =?utf-8?B?a1NQNzJTcndBTWd3empzb3psS0djZ3pRYzEyekhyRDg2VU1hQ2dkTlluOXR1?=
+ =?utf-8?B?M2V2eTZYaHJ0eXkwa0VFN1JrYVQ3cGM5bGZYMzVETnpIUHZiZFhTN1FBZnJF?=
+ =?utf-8?B?UlVlei9iRHBiQ1ZKaDZzVnowRzRwRzBhR1MrZExac2VkTVlYL1dPeHk1cGpU?=
+ =?utf-8?B?NllUOS9JdngrQzdQTHNrVHRIbTJMTU9BS29zQjBOd3lrcnFjenVieEFvSlZ2?=
+ =?utf-8?B?cFQ3OXZVaW5yUWhSRnFKc3lFUkhwWTRuSkZyaEVkdHVqRDlQQ24zWGs4R0xp?=
+ =?utf-8?B?UG5PSlhNblB1aXB1SzJueEF5VFRvQ05QWkJTbExGaTJSODBvZFJQT2taNTJN?=
+ =?utf-8?B?dWNLb2I1clJPK2Joa0NPSzJ0eUVrMkh4MGpSRDNlUzU3eUFOenJ6dmwvVW9k?=
+ =?utf-8?B?SlVXRkNhTEN6QUVhd0Z4b2QxTDE1eHBNOXhIeitpVmhDTTdPNUJ4SGFZNDc3?=
+ =?utf-8?B?T0VuVmNEdWxqc1F3V2pxc3V1SXlvWVAwZTAxajhNNFJxVTB2eSsxaHdJWm9u?=
+ =?utf-8?B?eFowZDJOamdvV1Z2SWZmUEtTaHJqVFFyUjJMOHF5U1JEcm1BUytva01KaFZY?=
+ =?utf-8?B?cEhrbVhvMHpCeG91K0RWMCtBdWtZSlI3aFJhYUxZTjV1TGZjS09hUXM4L053?=
+ =?utf-8?B?VzZXZnFiT3YvRGt0cTArUUt1MGEzcEFldUFNWk9BTUZISWRpZC9COE5BL05S?=
+ =?utf-8?B?UFVZcm0zdXdFektVK2NXSndxN0l6QnRRTzRaQkxveUtFZ2UzQncyYkpOZ0c4?=
+ =?utf-8?B?Z21rYWdDR0plS3Rwc005VS85bi9vbkpPbUdlRlJDdTNTMlNBdVQwR2RVWTM0?=
+ =?utf-8?B?ZHMxUXZ4V0h3VVBlUzVnbzJSWDJOY2hGb0ZWbjgvZ3VJcWhZeUlSQVRtTGxv?=
+ =?utf-8?B?K1RGSnRQUWEvVFNlM3M2a0NrWTM3SnNIQjNWVVA4aGR6cW95ekQraHBoNzgw?=
+ =?utf-8?B?dWk2MEhZbTBJWm5aZ1J4V2MvQ3VtbEhYYXB4UG1RR21oYmFSQ3g3TDZtT0hQ?=
+ =?utf-8?B?SGxtalZMYnNpaEFaOFBUVEZwUC8vZmNSUWF0amVnY3FOc3FXOFFKKzF6UDlS?=
+ =?utf-8?B?SkpLUjZ2dm42VS9hZFhhVHF3WWtpaER4REhDMTVqYjFoU1Rmc1hzcmhZWWNQ?=
+ =?utf-8?B?VGRGMVA5aFArcVRPSlJ6cjNpYjkzWVpqNzYxZSs2aElHUVBCR09CN2xQNFFB?=
+ =?utf-8?B?WUZlWWs2Qll3dytaMGlvUHlGcGpWdHp5MWtuVTNwak92dE1UVVRvOFhqYksy?=
+ =?utf-8?Q?h8e82Dj7PWfiMFkk77dEAZ6TjZb6lH4lzVnoQ=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OTRTYSt1RzAwK1gwSE1qUTJOdmd6M2tDRGZRREFicXZUTzhTTFpTenEyZU16?=
+ =?utf-8?B?dEp3cllBR2loSU1DVDZFT3lEUnpyblpDbXgyOW5OWG9GbVpqWUdWVWlVQS9n?=
+ =?utf-8?B?dW8wSTQ1MVFmaFVadThYclJNd3JBQ2d4L01BdUpBemt2MlFFTHZsemFickhi?=
+ =?utf-8?B?MGxXS2dJbC9Cb2VwSG55Z01aVGFCQ3ZOb3JoaWhZV2Y4bXE4UU4wQm82ZXJj?=
+ =?utf-8?B?NzhjeXJEQVJaNk5IRFczRWk3WFBOM1JXYjMzU1I4OEs1YUVncFdRMnNvUkRF?=
+ =?utf-8?B?cVJlUldCbklrd1R0QnFFNW8yRWhYY3RyaFcrd2NZMUI2bFNpMDZ3WHVCUXht?=
+ =?utf-8?B?OG93Y2dDNW1tT2V0b3FMbldPU3FaeHk4ZjhKS1hoTytjV2lHZExJZzdYNlJU?=
+ =?utf-8?B?R3B5akh2ZUx1YVFlM3lKbXZGaEozcGFUcVlvTHJCTDZDVVhEOVN5NGtKcXF2?=
+ =?utf-8?B?RHhMa0h5dUI0YzBncUIzZjNvMEI4aGFTc2dTVWdySEppYTRsWTYyWnJJZ2J0?=
+ =?utf-8?B?ZkhkalZmT3VsaDBtMHUwOHBJQlJWY1NIaEJYZU5iQUNsUGdqTUhld1ZONVR2?=
+ =?utf-8?B?ZVdUZTM3THdJa3pvMUNKMWh5R0xIS3FDTmQ4SEJnN2V1enFlZSs2cW5XK1A3?=
+ =?utf-8?B?Qy9NVDAwd0F5Y2JvSUFGcjZCMmFUV1R0ZnlUaFk2aUZiSVNLWnBnSUFheUpF?=
+ =?utf-8?B?TG1lUS9oT0lqQzhQWDB1Y0ZaSU8wR25lY2pqUUdkTU1VTVpUZW5BcElia1pE?=
+ =?utf-8?B?TmhTOTgwRXl4dndBdnVGeExrV0pVNm0wZnpzQ2x4aWFyOGNWMWQ0NGlhT1I1?=
+ =?utf-8?B?YkgzSjk0R01BRWg4MEgra28yR1NrTS9rRWVxSEdpWEhqUmw5YThIamYxbUFF?=
+ =?utf-8?B?V0xTWnUzbzZDQVhMbytaZVMrUDBna0t2QmhlVkxwTUw1TU56eWF6S3c0MEdq?=
+ =?utf-8?B?clJud3BmeHhOZkV0ZXRta0haSnhHQ1pHeEtVcU1LT09ObWFqM0M2SWYrMW5U?=
+ =?utf-8?B?YWhZVCtJM3RBYkZ0Zk5JQ3daVFY2VnpBMVVoQ3VnNjVjQStreWNFWUNRMHUx?=
+ =?utf-8?B?UWFnY01adGMzQzNSY0VURVkzWU5TQmgzcUJSNHczcWwweEgxc01FcVd0cnBV?=
+ =?utf-8?B?SC9FQk5NN09uQSs2a0RUUFJUTC9xT0o4V3ZpbXRNSUh1TmIwQ0Z5b2NMY1E4?=
+ =?utf-8?B?TDBRaG1DMXRXTnI3VzkvcmJFRDdUN1ZvUVdpSm9HbmZyZDBSaFlVMkJVV2JZ?=
+ =?utf-8?B?WWZsK0h1aThZN1A5b2U1RUZucnY3NkRtU1dzdERNRHNpTmlQeENUbjVndFBX?=
+ =?utf-8?B?eFZxMHNCa2pIWElwYjYzYmhJdnJBUHJQaFZlR25zU29taXY4S2FZbXVsdUwx?=
+ =?utf-8?B?dXpzcGVxYUFqNGRqbGdoSnczNUpSTWtubjRVWDRqeS9yUkQ0cXd6NythalZm?=
+ =?utf-8?B?NEJnN1JDZzlDYkY0bE94VXhUdzQxbnhIUWVSUkZHSDVtTVlhUnJidHdvUWZU?=
+ =?utf-8?B?V2RKVnBFeTRScHMycGcvbVNpSk1VN2tLaVR3bjZvNkViMUwwYjlXT2diWWVD?=
+ =?utf-8?B?Y1NDLzBoTmhtL2NEd3prbkNRV2REdXJTYmJlaXNHMU9pN2M4WWxVWHMxOTNF?=
+ =?utf-8?B?S2dZR2FOWkhaN3Q5ZENMZDZWN3lSSW4wRldwZE1GTGJ3TE9Jc0xhUndoSjNZ?=
+ =?utf-8?B?R29uR1RtK2loWEpxSlNVaHBUQ2J1T0prOUdXNzkwb1NQcDdnNjhSQlh1VEFu?=
+ =?utf-8?B?R1Q5NTdWMVJ0Vk5DdWZhalFRTkJqd1pNQ2F5RGJuYzluNFJML3lnRzdJZlFs?=
+ =?utf-8?B?anJxWk1HS0dKZklQRmVBT2JvZ3lSZGtEYStUVys0S0J2Sm5BaUd6YXkrQWJJ?=
+ =?utf-8?B?N3pNeFZlbDZpOU5iVENPY1VCdkQyb2hCM09sN29nOXlmWU44SEhnd1BUZ2hF?=
+ =?utf-8?B?djArL1RqeDZENmRQbWhlVEhmTnV1OFJPbzQvQ1ZkQ1hiZ1dqd0lXQnVReS9q?=
+ =?utf-8?B?RnJSSUlCamluSWF3UWNKbmdtNlZFK1FqL3Nibi9Xam04UlBtVnhFNFdWVVg1?=
+ =?utf-8?B?TmExaWdieHF4YkduRkU2T1o5aXhVelFyODRGck9ZMEpUL3I4bXcvYXloMk0y?=
+ =?utf-8?Q?VKPZKDg5w8plTrsi+eh7cOxRV?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09627442-bf30-4908-058e-08ddf1ebdda3
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 11:02:29.7525
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tT3fRWvvEEghM2ge8Indv3hWFkyd2nSwL8/NJDovxzpEXcym8V+sF7Ro35HTZmnV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6118
 
 
+
+On 9/8/25 15:33, Michal Simek wrote:
+> Add missing cache layout description.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Changes in v2:
+> - Also describe L1 caches
+> - Add L1 to subject too
+> 
+> v1:
+> https://lore.kernel.org/r/f2ee23526349a0674149c969a2176c906e529402.1756825388.git.michal.simek@amd.com
+> 
+>> lscpu --cache
+> NAME ONE-SIZE ALL-SIZE WAYS TYPE        LEVEL SETS PHY-LINE COHERENCY-SIZE
+> L1d       64K       1M    4 Data            1  256                      64
+> L1i       64K       1M    4 Instruction     1  256                      64
+> L2       512K       8M    8 Unified         2 1024                      64
+> L3         2M       8M   16 Unified         3 2048                      64
+> L4        16M      16M      Unified         4
+> 
+> ---
+>   arch/arm64/boot/dts/xilinx/versal-net.dtsi | 408 +++++++++++++++++++++
+>   1 file changed, 408 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/versal-net.dtsi b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+> index c037a7819967..412af9a394aa 100644
+> --- a/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/versal-net.dtsi
+> @@ -104,6 +104,28 @@ cpu0: cpu@0 {
+>   			reg = <0>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_00>;
+> +			l2_00: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+>   		};
+>   		cpu100: cpu@100 {
+>   			compatible = "arm,cortex-a78";
+> @@ -112,6 +134,28 @@ cpu100: cpu@100 {
+>   			reg = <0x100>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_01>;
+> +			l2_01: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+>   		};
+>   		cpu200: cpu@200 {
+>   			compatible = "arm,cortex-a78";
+> @@ -120,6 +164,28 @@ cpu200: cpu@200 {
+>   			reg = <0x200>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_02>;
+> +			l2_02: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+>   		};
+>   		cpu300: cpu@300 {
+>   			compatible = "arm,cortex-a78";
+> @@ -128,6 +194,28 @@ cpu300: cpu@300 {
+>   			reg = <0x300>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_03>;
+> +			l2_03: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+>   		};
+>   		cpu10000: cpu@10000 {
+>   			compatible = "arm,cortex-a78";
+> @@ -136,6 +224,28 @@ cpu10000: cpu@10000 {
+>   			reg = <0x10000>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_10>;
+> +			l2_10: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_1>;
+> +			};
+>   		};
+>   		cpu10100: cpu@10100 {
+>   			compatible = "arm,cortex-a78";
+> @@ -144,6 +254,28 @@ cpu10100: cpu@10100 {
+>   			reg = <0x10100>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_11>;
+> +			l2_11: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_1>;
+> +			};
+>   		};
+>   		cpu10200: cpu@10200 {
+>   			compatible = "arm,cortex-a78";
+> @@ -152,6 +284,28 @@ cpu10200: cpu@10200 {
+>   			reg = <0x10200>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_12>;
+> +			l2_12: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_1>;
+> +			};
+>   		};
+>   		cpu10300: cpu@10300 {
+>   			compatible = "arm,cortex-a78";
+> @@ -160,6 +314,28 @@ cpu10300: cpu@10300 {
+>   			reg = <0x10300>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_13>;
+> +			l2_13: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_1>;
+> +			};
+>   		};
+>   		cpu20000: cpu@20000 {
+>   			compatible = "arm,cortex-a78";
+> @@ -168,6 +344,28 @@ cpu20000: cpu@20000 {
+>   			reg = <0x20000>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_20>;
+> +			l2_20: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_2>;
+> +			};
+>   		};
+>   		cpu20100: cpu@20100 {
+>   			compatible = "arm,cortex-a78";
+> @@ -176,6 +374,28 @@ cpu20100: cpu@20100 {
+>   			reg = <0x20100>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_21>;
+> +			l2_21: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_2>;
+> +			};
+>   		};
+>   		cpu20200: cpu@20200 {
+>   			compatible = "arm,cortex-a78";
+> @@ -184,6 +404,28 @@ cpu20200: cpu@20200 {
+>   			reg = <0x20200>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_22>;
+> +			l2_22: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_2>;
+> +			};
+>   		};
+>   		cpu20300: cpu@20300 {
+>   			compatible = "arm,cortex-a78";
+> @@ -192,6 +434,28 @@ cpu20300: cpu@20300 {
+>   			reg = <0x20300>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_23>;
+> +			l2_23: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_2>;
+> +			};
+>   		};
+>   		cpu30000: cpu@30000 {
+>   			compatible = "arm,cortex-a78";
+> @@ -200,6 +464,28 @@ cpu30000: cpu@30000 {
+>   			reg = <0x30000>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_30>;
+> +			l2_30: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_3>;
+> +			};
+>   		};
+>   		cpu30100: cpu@30100 {
+>   			compatible = "arm,cortex-a78";
+> @@ -208,6 +494,28 @@ cpu30100: cpu@30100 {
+>   			reg = <0x30100>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_31>;
+> +			l2_31: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_3>;
+> +			};
+>   		};
+>   		cpu30200: cpu@30200 {
+>   			compatible = "arm,cortex-a78";
+> @@ -216,6 +524,28 @@ cpu30200: cpu@30200 {
+>   			reg = <0x30200>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_32>;
+> +			l2_32: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_3>;
+> +			};
+>   		};
+>   		cpu30300: cpu@30300 {
+>   			compatible = "arm,cortex-a78";
+> @@ -224,7 +554,85 @@ cpu30300: cpu@30300 {
+>   			reg = <0x30300>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			d-cache-size = <0x10000>; /* 64kB */
+> +			d-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			d-cache-sets = <256>;
+> +			i-cache-size = <0x10000>; /* 64kB */
+> +			i-cache-line-size = <64>;
+> +			/* 4 ways set associativity */
+> +			/* cache_size / (line_size / associativity) */
+> +			i-cache-sets = <256>;
+> +			next-level-cache = <&l2_33>;
+> +			l2_33: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-size = <0x80000>; /* 512kB */
+> +				cache-line-size = <64>;
+> +				/* 8 ways set associativity */
+> +				/* cache_size / (line_size/associativity) */
+> +				cache-sets = <1024>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_3>;
+> +			};
+> +		};
+> +
+> +		l3_0: l3-0-cache { /* cluster private */
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-size = <0x200000>; /* 2MB */
+> +			cache-line-size = <64>;
+> +			/* 16 ways set associativity */
+> +			/* cache_size / (line_size/associativity) */
+> +			cache-sets = <2048>;
+> +			cache-unified;
+> +			next-level-cache = <&llc>;
+> +		};
+> +
+> +		l3_1: l3-1-cache { /* cluster private */
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-size = <0x200000>; /* 2MB */
+> +			cache-line-size = <64>;
+> +			/* 16 ways set associativity */
+> +			/* cache_size / (line_size/associativity) */
+> +			cache-sets = <2048>;
+> +			cache-unified;
+> +			next-level-cache = <&llc>;
+> +		};
+> +
+> +		l3_2: l3-2-cache { /* cluster private */
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-size = <0x200000>; /* 2MB */
+> +			cache-line-size = <64>;
+> +			/* 16 ways set associativity */
+> +			/* cache_size / (line_size/associativity) */
+> +			cache-sets = <2048>;
+> +			cache-unified;
+> +			next-level-cache = <&llc>;
+> +		};
+> +
+> +		l3_3: l3-3-cache { /* cluster private */
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-size = <0x200000>; /* 2MB */
+> +			cache-line-size = <64>;
+> +			/* 16 ways set associativity */
+> +			/* cache_size / (line_size/associativity) */
+> +			cache-sets = <2048>;
+> +			cache-unified;
+> +			next-level-cache = <&llc>;
+> +		};
+> +
+> +		llc: l4-cache { /* LLC inside CMN */
+> +			compatible = "cache";
+> +			cache-level = <4>;
+> +			cache-size = <0x1000000>; /* 16MB */
+> +			cache-unified;
+>   		};
+> +
+>   		idle-states {
+>   			entry-method = "psci";
+>   
+
+Applied.
+M
 
