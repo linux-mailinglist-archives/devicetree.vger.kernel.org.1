@@ -1,942 +1,325 @@
-Return-Path: <devicetree+bounces-216359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F51B54809
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:40:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31026B54817
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CFAB1888D25
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:38:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48566189BC1C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9293271462;
-	Fri, 12 Sep 2025 09:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE93127FD76;
+	Fri, 12 Sep 2025 09:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GEk1kG1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA0026057F;
-	Fri, 12 Sep 2025 09:38:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF0127B332;
+	Fri, 12 Sep 2025 09:40:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757669902; cv=none; b=ppgWtU3APux4VHuxHt/uy1kGL9eX6qCcUMyO89a4cUxyomXURcg9g18WJ8xjLga47DTmUjqEqZOkdcaJkOsoYhSiRbL+AlH1mMH0uVGe7pNvsy5ogPf8IuYkwscSEJhK6wc/izPUm4cWzkoiF1LtoCTW4g5xb2ZgJjpXgqx+0p4=
+	t=1757670062; cv=none; b=frs8ReiSwbVCAQWtlXIQCPxY+C6AFiuaYFlg0C8YsEgl1c9VyaI3Gh+qtuh8hiZO6NHqXV8ToKNuGLkQpQOtMfV5BeLQkv/OxSmaOxMbMIH1SwEXiyA4j+EzlaQgigpUKcJ4Kj3Utr2IRsxrhT8V20mlTfT0kb74QXzbopv0vl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757669902; c=relaxed/simple;
-	bh=6lgxMzhWeAabD9ywOkCxncjWr5+amPuAa6I4uovX2tQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=En/G3B8qnTHlAZo8GuiG5Z3J9xkyYspJ/1l+YCaiv39SeCwlBJO9Zs9fkXmo+80GDkSdU/RK+Bp1makPXdRtF5P7uj8NzviXw2mHxKmNujjOCElgS9jNzIBeI3ika5hUmqmvTzg3nkR2+Lkya+2ECQ0E6vqXgxjcKkHTxkD73SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
-	by app1 (Coremail) with SMTP id TAJkCgAXLg_+6cNoY87OAA--.52852S2;
-	Fri, 12 Sep 2025 17:38:08 +0800 (CST)
-From: hehuan1@eswincomputing.com
-To: ulf.hansson@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jszhang@kernel.org,
-	adrian.hunter@intel.com,
-	p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com,
-	luyulin@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	zhangsenchuan@eswincomputing.com,
-	weishangjuan@eswincomputing.com,
-	lizhi2@eswincomputing.com,
-	caohang@eswincomputing.com,
-	hehuan1@eswincomputing.com
-Subject: [PATCH v2 2/2] mmc: sdhci-of-dwcmshc: Add support for Eswin EIC7700
-Date: Fri, 12 Sep 2025 17:38:03 +0800
-Message-ID: <20250912093803.159-1-hehuan1@eswincomputing.com>
-X-Mailer: git-send-email 2.49.0.windows.1
-In-Reply-To: <20250912093451.125-1-hehuan1@eswincomputing.com>
-References: <20250912093451.125-1-hehuan1@eswincomputing.com>
+	s=arc-20240116; t=1757670062; c=relaxed/simple;
+	bh=BH7CqmsvHPPdGqoLyzJXfhl7pz0d6jIqPw0TUeR/8Hw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TZqbRBnltPu/damsggth+dBr6sLjnHleG1r4VW+BthxClFx60QS+DAEhx8/di4tPDG1Tqx9wqI2xDHb1SNYaDwvsTKV9kj4Q2ZuldijcfOxX37kCMO3ADcLib3DmLecmDyyTrL0z0PrVAv2VnSpFZ0rDYgRY2ZEo4WItdkE8Z7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GEk1kG1U; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 1CFCDC6B386;
+	Fri, 12 Sep 2025 09:40:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 144C760638;
+	Fri, 12 Sep 2025 09:40:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B400F102F28FD;
+	Fri, 12 Sep 2025 11:40:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757670057; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=aGohR6ZwN7IVvK/xkjACU4BzL/wpsxEBY2zURHYAXvg=;
+	b=GEk1kG1UYxRFqOQ4qCeE/ExtZytcac5jN4GY28dN/Smu7ejEQTsarl5B8M7MpBzvv5AD12
+	/4n4PAnVIvVIOp3HM96w0duxv6OJVpWD0gSiAR7g5X0COlTERYA9/B9L5SfvZFRSEX7Ph1
+	qChjUJRaYQIAZN/UPO4PUqyOZSFIqKSXNSWPxb/k3M5WOfu7a907k6ZC/24o00ZykvPGTv
+	VwG91NzZ2uqE4K/XByPiiNDTBaIncHHagf2oZBA5rZQ7H05RJIH4DAOIO8xd4MKngvSn8X
+	EWvofgdpXJ5nFv2AidIa0MK9QRcYy4zdFmkcfcBPDVMtMPuqkD4s43LHKMhB1g==
+Date: Fri, 12 Sep 2025 11:40:39 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Ayush Singh <ayush@beagleboard.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob Herring
+ <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <20250912114039.30e8422f@booty>
+In-Reply-To: <20250911121103.40ccb112@bootlin.com>
+References: <20250902105710.00512c6d@booty>
+	<aLkiNdGIXsogC6Rr@zatzit>
+	<337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
+	<aL5dNtzwiinq_geg@zatzit>
+	<20250908145155.4f130aec@bootlin.com>
+	<aL-2fmYsbexEtpNp@zatzit>
+	<20250909114126.219c57b8@bootlin.com>
+	<CAMuHMdVarhTFEhQoYHWCnJp0iWRCjm0wh_ryP73aOdUwVa0X4Q@mail.gmail.com>
+	<aMEAXrAC0uEW2sCc@zatzit>
+	<20250911121103.40ccb112@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgAXLg_+6cNoY87OAA--.52852S2
-X-Coremail-Antispam: 1UD129KBjvAXoWfZry7tryxXr13Ww1rXr1DKFg_yoW5GF43Zo
-	WfWFnxWw4rJ3yxWFWYkr97GF1Uuws7Aayagw4furnru3WkA3W5Wr4SkF43Jw1fXryFyrWk
-	XrZ7JrW3XrWfAFn5n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UjIYCTnIWjp_UUUYN7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
-	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
-	x7M28EF7xvwVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
-	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
-	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
-	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
-	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
-	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
-	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4U
-	JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcV
-	C2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRiBT5PUUUUU==
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Huan He <hehuan1@eswincomputing.com>
+Hello,
 
-Add support for the mmc controller in the Eswin EIC7700 with the new
-compatible "eswin,eic7700-dwcmshc". Implement custom sdhci_ops for
-set_clock, reset, set_uhs_signaling, platform_execute_tuning.
+On Thu, 11 Sep 2025 12:11:03 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-Signed-off-by: Huan He <hehuan1@eswincomputing.com>
----
- drivers/mmc/host/sdhci-of-dwcmshc.c | 770 ++++++++++++++++++++++++++++
- 1 file changed, 770 insertions(+)
+> Hi David, Geert,
+> 
+> On Wed, 10 Sep 2025 14:36:46 +1000
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+> 
+> ...
+> > > 
+> > > A PMOD Type 2A (expanded SPI) connector provides SPI and 4 GPIOS.
+> > > A PMOD Type 6A (expanded I2C) connector provides I2C and 4 GPIOS.
+> > > Hence a plug-in board that needs SPI, I2C, and a few GPIOs, would need
+> > > to plug into two PMOD connectors.
+> > > 
+> > > Or:
+> > > A PMOD Type 1A (expanded GPIO) connector provides 8 GPIOS.
+> > > Hence a non-multiplexed dual 7-segment LED display plug-in board needs
+> > > 14 or 16 GPIOS, and thus would plug into two PMOD connectors.
+> > > 
+> > > To plug into two connectors, a mapping needs to provided between two
+> > > connectors on base and add-on board.
+> > >   
+> 
+> Base on this, let me draft some ideas to have some basis to move forward.
+> 
+> Suppose:
+> - A base board with:
+>   2x PMOD Type 2A (SPI + 4 GPIOS)
+>   1x PMOD Type 6A (I2C + 4 GPIOS)
+>   3x PMOD Type 1A ( 8 GPIOS)
+> 
+> - An addon board which needs:
+>   - 1x PMOD type 2A
+>   - 2x PMOD type 1A
+> 
+> Hardware connection:
+>   base board               addon board
+>     PMOD 2A #0    +------+ PMOD 2A
+>     PMOD 2A #1
+>     PMOD 6A
+>     PMOD 1A #0 
+>     PMOD 1A #1    +------+ PMOD 1A I
+>     PMOD 1A #2    +------+ PMOD 1A II
+> 
+> The base board 'PMOD 1A #0' is not connected to the addon board.
+> The addon board uses the base board PMOD 1A #1 and #2.
+> 
+> 
+> The base board DT:
+>     pmods {
+> 	compatible = "pmods";
+> 
+>         pmod_2a_0: pmod-2a-0 {
+> 	    compatible = "pmod-2a"
+> 
+>             /* Describe 4 gpios connected to this connector */
+>             gpio-map = < 0 &gpio 10>,
+>                        ...
+>                        < 3 &gpio 43>;
+> 
+>             /* Describe the bus connected to this connector */
+>             spi_bus_2a_0: spi-bus {
+>                 compatible = "spi-bus-extension";
+>                 spi-parent = <&spi2>;
+>             };
+> 		
+>             /* Export symbols related to this connector */
+>             export-symbols {
+>                 pmod-2a = <&pmod_2a_0>;
+>                 spi = <&spi_bus_2a_0>;
+> 	        ...
+>             };
+> 	};
+> 
+> 	pmod_2a_1: pmod-2a-1 {
+> 	    compatible = "pmod-2a"
+> 
+>             /* Describe 4 gpios connected to this connector */
+>             gpio-map = ...
+> 
+>             /* Describe the bus connected to this connector */
+>             spi_bus_2a_1: spi-bus { ... };
+> 		
+> 	    /* Export symbols related to this connector */
+>             export-symbols {
+>                 pmod_2a = <&pmod_2a_1>;
+>                 spi = <&spi_bus_2a_1>;
+>                 ...
+>             };
+> 	};
+> 
+> 	pmod_6a: pmod-6a {
+>             compatible = "pmod-6a";
+>             ...
+>             export-symbols {
+>                pmod_6a = <&pmod_6a>;
+> 			...
+> 		};
+> 	};
+> 
+> 	pmod_1a_0: pmod-1a-0 {
+>             compatible = "pmod-1a"
+> 
+>             /* Describe 8 gpios connected to this connector */
+>             gpio-map = < 0 &gpio 16>,
+>                        ...
+>                        < 7 &gpio 33>;
+> 
+>             export-symbols {
+>                 pmod_1a = <&pmod_1a_0>;
+>                 gpio0_muxed_as_gpio = <&pin_mux_xxxx>;
+>                 gpio1_muxed_as_gpio = <&pin_mux_yyyy>;
+> 		gpio2_muxed_as_gpio = <&pin_mux_zzzz>;
+>             };
+>         };
+> 
+>         pmod_1a_1: pmod-1a-1 {
+>             compatible = "pmod-1a"
+> 
+>             /* Describe 8 gpios connected to this connector */
+>             ...
+> 
+>             export-symbols {
+>                 pmod_1a = <&pmod_1a_1>;
+>             };
+>         };
+> 
+>         pmod_1a_2: pmod-1a-2 {
+>             compatible = "pmod-1a"
+> 
+>             /* Describe 8 gpios connected to this connector */
+>             ...
+> 
+>             export-symbols {
+>                 pmod_1a = <&pmod_1a_2>;
+>             };
+>         };
+>     };
+> 
+> 
+> -- Question 1: How to describe resources needed by the addon
+> 
+> On the addon side, we need to tell that we need 1 PMOD 2A and 2
+> PMODs 1A (named i and ii).
+> 
+> Proposal supposing that this description will be applied at
+> base board pmods node (the one grouping pmod connectors):
+> 
+> \{ or ??? corresponding to the entry point of the addon
+>    import-symbols {
+>       pmod_2a = "pmod_2a";
+>       pmod_1a_i = "pmod_1a";
+>       pmod_1a_ii = "pmod_1a";
+>    };
+> 
+>    &pmod_2a {
+>       spi-bus {
+>         regulator@0 {
+>            compatible "gpio-regulator";
+> 	   pinctrl-0 = <&pmod_1a_i.gpio2_muxed_as_gpio>;
+>            enable-gpios = <&pmod_1a_i 2>; /* Use GPIO #2 available on PMOD 1A I */
+>         };
+> 
+>         ...
+>    };
+> };
+> 
+> Import-symbols asked for symbols with local name and type (compatible string ?).
+> for instance 'pmod_1a_i = "pmod_2a";' means:
+>   Hey I refernce localy 'pmod_1a_i' but I don't define it and so 'pmod_1a_i' should
+>   be remapped to a symbol, probably a node of my expected type "pmod_2a".
+> 
+> Also, we can node the syntax:
+>   &pmod_1a_i.gpio2_muxed_as_gpio
+> 
+> meaning I use the symbols gpio2_muxed_as_gpio provided by pmod_1a_i (namespace).
+> In other word, to have the addon DT successfully applied,
+> the node remapped to 'pmod_1a_i' has to export the symbol 'gpio2_muxed_as_gpio'.
 
-diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-index ee6b1096f709..dd16c7a3bda7 100644
---- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-+++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-@@ -11,6 +11,7 @@
- #include <linux/arm-smccc.h>
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/dma-mapping.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -19,8 +20,11 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/reset.h>
- #include <linux/sizes.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/units.h>
- 
- #include "sdhci-pltfm.h"
- #include "cqhci.h"
-@@ -194,6 +198,10 @@
- #define PHY_DLLDL_CNFG_SLV_INPSEL_MASK	GENMASK(6, 5) /* bits [6:5] */
- #define PHY_DLLDL_CNFG_SLV_INPSEL	0x3 /* clock source select for slave DL */
- 
-+#define PHY_DLL_OFFST_R			(DWC_MSHC_PTR_PHY_R + 0x29)
-+#define PHY_DLLBT_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x2c)
-+#define PHY_DLL_STATUS_R		(DWC_MSHC_PTR_PHY_R + 0x2e)
-+
- #define FLAG_IO_FIXED_1V8	BIT(0)
- 
- #define BOUNDARY_OK(addr, len) \
-@@ -206,6 +214,48 @@
- /* SMC call for BlueField-3 eMMC RST_N */
- #define BLUEFIELD_SMC_SET_EMMC_RST_N	0x82000007
- 
-+/* Eswin specific Registers */
-+#define EIC7700_CARD_CLK_STABLE		BIT(28)
-+#define EIC7700_INT_BCLK_STABLE		BIT(16)
-+#define EIC7700_INT_ACLK_STABLE		BIT(8)
-+#define EIC7700_INT_TMCLK_STABLE	BIT(0)
-+#define EIC7700_INT_CLK_STABLE		(EIC7700_CARD_CLK_STABLE | \
-+					 EIC7700_INT_ACLK_STABLE | \
-+					 EIC7700_INT_BCLK_STABLE | \
-+					 EIC7700_INT_TMCLK_STABLE)
-+#define EIC7700_HOST_VAL_STABLE		BIT(0)
-+#define EIC7700_CORE_CLK_ENABLE		BIT(16)
-+#define EIC7700_CORE_CLK_FREQ_SHIFT	4
-+#define EIC7700_CORE_CLK_FREQ_MASK	0xfffu
-+#define EIC7700_CORE_CLK_SEL_BIT	BIT(0)
-+
-+/* strength definition */
-+#define PHYCTRL_DR_33OHM		0xee
-+#define PHYCTRL_DR_40OHM		0xcc
-+#define PHYCTRL_DR_50OHM		0x88
-+#define PHYCTRL_DR_66OHM		0x44
-+#define PHYCTRL_DR_100OHM		0x00
-+
-+#define LATENCY_LT_BIT_OFFSET		19
-+#define LATENCY_LT_MASK			0x3
-+#define LATENCY_LT_3			0x2
-+#define VENDOR_AT_SATA_R		0x544
-+
-+#define MAX_PHASE_CODE			0xff
-+#define TUNING_RANGE_THRESHOLD		40
-+
-+#define PHY_CLK_MAX_DELAY_MASK		0x7f
-+#define PHY_PAD_SP_DRIVE_SHIF		16
-+
-+#define EIC7700_CORE_CLK_SRC_208MHZ	(208 * HZ_PER_MHZ)
-+#define EIC7700_CORE_CLK_SRC_200MHZ	(200 * HZ_PER_MHZ)
-+#define MAX_CORE_CLK_DIV		0xfff
-+#define DLL_LOCK_STS			BIT(0)
-+#define DLL_ERROR_STS			BIT(1)
-+#define PHY_DELAY_CODE_MAX		0x7f
-+#define PHY_DELAY_CODE_EMMC		0x17
-+#define PHY_DELAY_CODE_SD		0x55
-+
- enum dwcmshc_rk_type {
- 	DWCMSHC_RK3568,
- 	DWCMSHC_RK3588,
-@@ -217,6 +267,18 @@ struct rk35xx_priv {
- 	u8 txclk_tapnum;
- };
- 
-+struct eic7700_priv {
-+	struct sdhci_host *host;
-+	struct clk_hw sdcardclk_hw;
-+	struct clk *sdcardclk;
-+	int clk_phase_out[MMC_TIMING_MMC_HS400 + 1];
-+	void (*set_clk_delays)(struct sdhci_host *host);
-+	struct reset_control *reset;
-+	struct regmap *crg_regmap;
-+	unsigned int crg_core_clk;
-+	unsigned int drive_impedance;
-+};
-+
- #define DWCMSHC_MAX_OTHER_CLKS 3
- 
- struct dwcmshc_priv {
-@@ -238,6 +300,8 @@ struct dwcmshc_pltfm_data {
- 	void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
- };
- 
-+static void dwcmshc_disable_card_clk(struct sdhci_host *host);
-+
- static int dwcmshc_get_enable_other_clks(struct device *dev,
- 					 struct dwcmshc_priv *priv,
- 					 int num_clks,
-@@ -1095,6 +1159,685 @@ static int sg2042_init(struct device *dev, struct sdhci_host *host,
- 					     ARRAY_SIZE(clk_ids), clk_ids);
- }
- 
-+static void sdhci_eic7700_enable_card_clk(struct sdhci_host *host)
-+{
-+	u16 clk;
-+	int ret;
-+
-+	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	clk |= SDHCI_CLOCK_INT_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	/* Wait max 150 ms */
-+	ret = read_poll_timeout(sdhci_readw, clk, clk & SDHCI_CLOCK_INT_STABLE,
-+				10, 150000, false, host, SDHCI_CLOCK_CONTROL);
-+	if (ret) {
-+		pr_err("%s: Internal clock never stabilised.\n",
-+		       mmc_hostname(host->mmc));
-+		return;
-+	}
-+
-+	clk |= SDHCI_CLOCK_CARD_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+	usleep_range(1000, 2000);
-+}
-+
-+static void eic7700_mshc_coreclk_disable(struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+	u32 val;
-+
-+	regmap_read(priv->crg_regmap, priv->crg_core_clk, &val);
-+	val &= ~EIC7700_CORE_CLK_ENABLE;
-+	regmap_write(priv->crg_regmap, priv->crg_core_clk, val);
-+}
-+
-+static void eic7700_mshc_coreclk_config(struct sdhci_host *host,
-+					u16 divisor, unsigned int flag_sel)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+	u32 val;
-+
-+	regmap_read(priv->crg_regmap, priv->crg_core_clk, &val);
-+	val &= ~EIC7700_CORE_CLK_ENABLE;
-+	regmap_write(priv->crg_regmap, priv->crg_core_clk, val);
-+	usleep_range(10, 20);
-+
-+	val &= ~(EIC7700_CORE_CLK_FREQ_MASK << EIC7700_CORE_CLK_FREQ_SHIFT);
-+	val |= (divisor & EIC7700_CORE_CLK_FREQ_MASK) <<
-+		EIC7700_CORE_CLK_FREQ_SHIFT;
-+	val &= ~(EIC7700_CORE_CLK_SEL_BIT);
-+	val |= flag_sel;
-+	regmap_write(priv->crg_regmap, priv->crg_core_clk, val);
-+
-+	usleep_range(50, 60);
-+	val |= EIC7700_CORE_CLK_ENABLE;
-+	regmap_write(priv->crg_regmap, priv->crg_core_clk, val);
-+	usleep_range(1000, 1100);
-+}
-+
-+static void sdhci_eic7700_set_core_clock(struct sdhci_host *host,
-+					 unsigned int clock)
-+{
-+	unsigned int flag_sel, max_clk;
-+	unsigned int div, divide;
-+
-+	host->mmc->actual_clock = clock;
-+
-+	if (clock == 0) {
-+		eic7700_mshc_coreclk_disable(host);
-+		return;
-+	}
-+
-+	if (EIC7700_CORE_CLK_SRC_208MHZ % clock == 0) {
-+		flag_sel = 1;
-+		max_clk = EIC7700_CORE_CLK_SRC_208MHZ;
-+	} else {
-+		flag_sel = 0;
-+		max_clk = EIC7700_CORE_CLK_SRC_200MHZ;
-+	}
-+
-+	for (div = 1; div <= MAX_CORE_CLK_DIV; div++) {
-+		if ((max_clk / div) <= clock)
-+			break;
-+	}
-+	div--;
-+
-+	if (div == 0 || div == 1)
-+		divide = 2;
-+	else
-+		divide = (div + 1) * 2;
-+
-+	dwcmshc_disable_card_clk(host);
-+	eic7700_mshc_coreclk_config(host, divide, flag_sel);
-+	sdhci_eic7700_enable_card_clk(host);
-+	usleep_range(2000, 3000);
-+}
-+
-+static void sdhci_eic7700_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+
-+	/* Set the Input and Output Clock Phase Delays */
-+	if (priv->set_clk_delays)
-+		priv->set_clk_delays(host);
-+
-+	sdhci_eic7700_set_core_clock(host, clock);
-+}
-+
-+static void sdhci_eic7700_config_phy_delay(struct sdhci_host *host, int delay)
-+{
-+	delay &= PHY_CLK_MAX_DELAY_MASK;
-+
-+	/* phy clk delay line config */
-+	sdhci_writeb(host, PHY_SDCLKDL_CNFG_UPDATE, PHY_SDCLKDL_CNFG_R);
-+	sdhci_writeb(host, delay, PHY_SDCLKDL_DC_R);
-+	sdhci_writeb(host, 0x0, PHY_SDCLKDL_CNFG_R);
-+}
-+
-+static void sdhci_eic7700_config_phy(struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	u32 emmc_caps = MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO;
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+	unsigned int val, drv;
-+
-+	drv = priv->drive_impedance << PHY_PAD_SP_DRIVE_SHIF;
-+
-+	if ((host->mmc->caps2 & emmc_caps) == emmc_caps) {
-+		val = sdhci_readw(host, dwc_priv->vendor_specific_area1 +
-+				  DWCMSHC_EMMC_CONTROL);
-+		val |= DWCMSHC_CARD_IS_EMMC;
-+		sdhci_writew(host, val, dwc_priv->vendor_specific_area1 +
-+			     DWCMSHC_EMMC_CONTROL);
-+	}
-+
-+	dwcmshc_disable_card_clk(host);
-+
-+	/* reset phy, config phy's pad */
-+	sdhci_writel(host, drv | (~PHY_CNFG_RSTN_DEASSERT), PHY_CNFG_R);
-+
-+	/* configure phy pads */
-+	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK,
-+			 PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK,
-+			  PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK,
-+			  PHY_PAD_WEAKPULL_PULLUP);
-+	val |= PHY_PAD_RXSEL_1V8;
-+	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
-+	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
-+	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
-+
-+	/* Clock PAD Setting */
-+	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK,
-+			 PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK,
-+			  PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
-+
-+	/* PHY strobe PAD setting (EMMC only) */
-+	if ((host->mmc->caps2 & emmc_caps) == emmc_caps) {
-+		val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK,
-+				 PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+		val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK,
-+				  PHY_PAD_TXSLEW_CTRL_N_SG2042);
-+		val |= PHY_PAD_RXSEL_1V8;
-+		sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
-+	}
-+	usleep_range(2000, 3000);
-+	sdhci_writel(host, drv | PHY_CNFG_RSTN_DEASSERT, PHY_CNFG_R);
-+	sdhci_eic7700_config_phy_delay(host, dwc_priv->delay_line);
-+	sdhci_eic7700_enable_card_clk(host);
-+}
-+
-+static void sdhci_eic7700_reset(struct sdhci_host *host, u8 mask)
-+{
-+	sdhci_reset(host, mask);
-+
-+	/* after reset all, the phy's config will be clear */
-+	if (mask == SDHCI_RESET_ALL)
-+		sdhci_eic7700_config_phy(host);
-+}
-+
-+static unsigned long
-+sdhci_eic7700_sdcardclk_recalc_rate(struct clk_hw *hw,
-+				    unsigned long parent_rate)
-+{
-+	struct eic7700_priv *priv =
-+		 container_of(hw, struct eic7700_priv, sdcardclk_hw);
-+
-+	return priv->host->mmc->actual_clock;
-+}
-+
-+static const struct clk_ops eic7700_sdcardclk_ops = {
-+	.recalc_rate = sdhci_eic7700_sdcardclk_recalc_rate,
-+};
-+
-+static int sdhci_eic7700_register_sdcardclk(struct eic7700_priv *priv,
-+					    struct clk *clk, struct device *dev)
-+{
-+	struct device_node *np = dev->of_node;
-+	struct clk_init_data sdcardclk_init;
-+	const char *parent_clk_name;
-+	int ret;
-+
-+	ret = of_property_read_string_index(np, "clock-output-names", 0,
-+					    &sdcardclk_init.name);
-+	if (ret) {
-+		dev_err(dev, "DT has #clock-cells but no clock-output-names\n");
-+		return ret;
-+	}
-+
-+	parent_clk_name = __clk_get_name(clk);
-+	sdcardclk_init.parent_names = &parent_clk_name;
-+	sdcardclk_init.num_parents = 1;
-+	sdcardclk_init.flags = CLK_GET_RATE_NOCACHE;
-+	sdcardclk_init.ops = &eic7700_sdcardclk_ops;
-+
-+	priv->sdcardclk_hw.init = &sdcardclk_init;
-+	priv->sdcardclk = devm_clk_register(dev, &priv->sdcardclk_hw);
-+	if (IS_ERR(priv->sdcardclk))
-+		return PTR_ERR(priv->sdcardclk);
-+	priv->sdcardclk_hw.init = NULL;
-+
-+	ret = of_clk_add_provider(np, of_clk_src_simple_get,
-+				  priv->sdcardclk);
-+	if (ret)
-+		dev_err(dev, "Failed to add sdcard clock provider\n");
-+
-+	return ret;
-+}
-+
-+static int sdhci_eic7700_register_sdclk(struct dwcmshc_priv *dwc_priv,
-+					struct clk *clk, struct device *dev)
-+{
-+	struct device_node *np = dev->of_node;
-+	int ret;
-+
-+	/* Providing a clock to the PHY is optional; no error if missing */
-+	if (!of_property_present(np, "#clock-cells"))
-+		return 0;
-+
-+	ret = sdhci_eic7700_register_sdcardclk(dwc_priv->priv, clk, dev);
-+
-+	return ret;
-+}
-+
-+static int sdhci_eic7700_reset_init(struct device *dev,
-+				    struct eic7700_priv *priv)
-+{
-+	int ret;
-+
-+	priv->reset = devm_reset_control_array_get_optional_exclusive(dev);
-+	if (IS_ERR(priv->reset)) {
-+		ret = PTR_ERR(priv->reset);
-+		dev_err(dev, "failed to get reset control %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = reset_control_assert(priv->reset);
-+	if (ret) {
-+		dev_err(dev, "Failed to assert reset signals: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(2000, 2100);
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert reset signals: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static void sdhci_eic7700_set_clk_delays(struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+
-+	clk_set_phase(priv->sdcardclk,
-+		      priv->clk_phase_out[host->timing]);
-+}
-+
-+static void sdhci_eic7700_dt_read_clk_phase(struct device *dev,
-+					    struct eic7700_priv *priv,
-+					    unsigned int timing,
-+					    const char *prop)
-+{
-+	struct device_node *np = dev->of_node;
-+	int clk_phase[2] = {0};
-+
-+	/*
-+	 * Read Tap Delay values from DT, if the DT does not contain the Tap
-+	 * Values then use the pre-defined values.
-+	 */
-+	if (of_property_read_variable_u32_array(np, prop, &clk_phase[0], 2,
-+						0)) {
-+		dev_dbg(dev, "Using predefined clock phase for %s = %d\n",
-+			prop, priv->clk_phase_out[timing]);
-+		return;
-+	}
-+
-+	/* Only use the output clock delays in order */
-+	priv->clk_phase_out[timing] = clk_phase[1];
-+}
-+
-+static void sdhci_eic7700_dt_parse_clk_phases(struct device *dev,
-+					      struct dwcmshc_priv *dwc_priv)
-+{
-+	struct eic7700_priv *priv = dwc_priv->priv;
-+
-+	priv->set_clk_delays = sdhci_eic7700_set_clk_delays;
-+
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_LEGACY,
-+					"clk-phase-legacy");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_MMC_HS,
-+					"clk-phase-mmc-hs");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_SD_HS,
-+					"clk-phase-sd-hs");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_UHS_SDR12,
-+					"clk-phase-uhs-sdr12");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_UHS_SDR25,
-+					"clk-phase-uhs-sdr25");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_UHS_SDR50,
-+					"clk-phase-uhs-sdr50");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_UHS_SDR104,
-+					"clk-phase-uhs-sdr104");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_UHS_DDR50,
-+					"clk-phase-uhs-ddr50");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_MMC_DDR52,
-+					"clk-phase-mmc-ddr52");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_MMC_HS200,
-+					"clk-phase-mmc-hs200");
-+	sdhci_eic7700_dt_read_clk_phase(dev, priv, MMC_TIMING_MMC_HS400,
-+					"clk-phase-mmc-hs400");
-+}
-+
-+static unsigned int eic7700_convert_drive_impedance_ohm(struct device *dev,
-+							unsigned int dr_ohm)
-+{
-+	switch (dr_ohm) {
-+	case 100:
-+		return PHYCTRL_DR_100OHM;
-+	case 66:
-+		return PHYCTRL_DR_66OHM;
-+	case 50:
-+		return PHYCTRL_DR_50OHM;
-+	case 40:
-+		return PHYCTRL_DR_40OHM;
-+	case 33:
-+		return PHYCTRL_DR_33OHM;
-+	}
-+
-+	dev_warn(dev, "Invalid value %u for drive-impedance-ohm.\n", dr_ohm);
-+	return PHYCTRL_DR_50OHM;
-+}
-+
-+static int sdhci_eic7700_delay_tuning(struct sdhci_host *host, u32 opcode)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-+	int cmd_error, delay, ret, i;
-+	int delay_min = -1;
-+	int delay_max = -1;
-+
-+	for (i = 0; i <= PHY_DELAY_CODE_MAX; i++) {
-+		dwcmshc_disable_card_clk(host);
-+		sdhci_eic7700_config_phy_delay(host, i);
-+		sdhci_eic7700_enable_card_clk(host);
-+		ret = mmc_send_tuning(host->mmc, opcode, &cmd_error);
-+		if (ret) {
-+			host->ops->reset(host,
-+					 SDHCI_RESET_CMD | SDHCI_RESET_DATA);
-+			usleep_range(200, 210);
-+			if (delay_min != -1 && delay_max != -1)
-+				break;
-+		} else {
-+			if (delay_min == -1) {
-+				delay_min = i;
-+				continue;
-+			} else {
-+				delay_max = i;
-+				continue;
-+			}
-+		}
-+	}
-+	if (delay_min == -1 && delay_max == -1) {
-+		pr_err("%s: delay code tuning failed!\n",
-+		       mmc_hostname(host->mmc));
-+		dwcmshc_disable_card_clk(host);
-+		sdhci_eic7700_config_phy_delay(host, dwc_priv->delay_line);
-+		sdhci_eic7700_enable_card_clk(host);
-+
-+		return ret;
-+	}
-+
-+	delay = (delay_min + delay_max) / 2;
-+	dwcmshc_disable_card_clk(host);
-+	sdhci_eic7700_config_phy_delay(host, delay);
-+	sdhci_eic7700_enable_card_clk(host);
-+
-+	return 0;
-+}
-+
-+static int sdhci_eic7700_phase_code_tuning(struct sdhci_host *host, u32 opcode)
-+{
-+	u32 sd_caps = MMC_CAP2_NO_MMC | MMC_CAP2_NO_SDIO;
-+	int cmd_error, ret, i;
-+	bool is_sdio = false;
-+	int phase_code = -1;
-+	int code_range = -1;
-+	int code_min = -1;
-+	int code_max = -1;
-+
-+	if ((host->mmc->caps2 & sd_caps) == sd_caps)
-+		is_sdio = true;
-+
-+	for (i = 0; i <= MAX_PHASE_CODE; i++) {
-+		dwcmshc_disable_card_clk(host);
-+		sdhci_writew(host, i, VENDOR_AT_SATA_R);
-+		sdhci_eic7700_enable_card_clk(host);
-+
-+		ret = mmc_send_tuning(host->mmc, opcode, &cmd_error);
-+		host->ops->reset(host, SDHCI_RESET_CMD | SDHCI_RESET_DATA);
-+
-+		if (ret) {
-+			/* SDIO specific range tracking */
-+			if (is_sdio && code_min != -1 && code_max != -1) {
-+				if (code_max - code_min > code_range) {
-+					code_range = code_max - code_min;
-+					phase_code = (code_min + code_max) / 2;
-+					if (code_range > TUNING_RANGE_THRESHOLD)
-+						break;
-+				}
-+				code_min = -1;
-+				code_max = -1;
-+			}
-+			/* EMMC breaks after first valid range */
-+			if (!is_sdio && code_min != -1 && code_max != -1)
-+				break;
-+		} else {
-+			/* Track valid phase code range */
-+			if (code_min == -1) {
-+				code_min = i;
-+				if (!is_sdio)
-+					continue;
-+			}
-+			code_max = i;
-+			if (is_sdio && i == MAX_PHASE_CODE) {
-+				if (code_max - code_min > code_range) {
-+					code_range = code_max - code_min;
-+					phase_code = (code_min + code_max) / 2;
-+				}
-+			}
-+		}
-+	}
-+
-+	/* Handle tuning failure case */
-+	if ((is_sdio && phase_code == -1) ||
-+	    (!is_sdio && code_min == -1 && code_max == -1)) {
-+		pr_err("%s: phase code tuning failed!\n",
-+		       mmc_hostname(host->mmc));
-+		dwcmshc_disable_card_clk(host);
-+		sdhci_writew(host, 0, VENDOR_AT_SATA_R);
-+		sdhci_eic7700_enable_card_clk(host);
-+		return -EIO;
-+	}
-+	if (!is_sdio)
-+		phase_code = (code_min + code_max) / 2;
-+
-+	dwcmshc_disable_card_clk(host);
-+	sdhci_writew(host, phase_code, VENDOR_AT_SATA_R);
-+	sdhci_eic7700_enable_card_clk(host);
-+
-+	/* SDIO specific final verification */
-+	if (is_sdio) {
-+		ret = mmc_send_tuning(host->mmc, opcode, &cmd_error);
-+		host->ops->reset(host, SDHCI_RESET_CMD | SDHCI_RESET_DATA);
-+		if (ret) {
-+			pr_err("%s: Final phase code 0x%x verification failed!\n",
-+			       mmc_hostname(host->mmc), phase_code);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int sdhci_eic7700_executing_tuning(struct sdhci_host *host, u32 opcode)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	u32 emmc_caps = MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO;
-+	u16 ctrl;
-+	u32 val;
-+	int ret;
-+
-+	dwcmshc_disable_card_clk(host);
-+
-+	ctrl = sdhci_readw(host, SDHCI_HOST_CONTROL2);
-+	ctrl &= ~SDHCI_CTRL_TUNED_CLK;
-+	sdhci_writew(host, ctrl, SDHCI_HOST_CONTROL2);
-+
-+	val = sdhci_readl(host, priv->vendor_specific_area1 +
-+			  DWCMSHC_EMMC_ATCTRL);
-+	val |= AT_CTRL_SW_TUNE_EN;
-+	sdhci_writew(host, val, priv->vendor_specific_area1 +
-+		     DWCMSHC_EMMC_ATCTRL);
-+
-+	sdhci_writew(host, 0, VENDOR_AT_SATA_R);
-+
-+	sdhci_eic7700_enable_card_clk(host);
-+
-+	sdhci_writew(host, 0x0, SDHCI_CMD_DATA);
-+
-+	if ((host->mmc->caps2 & emmc_caps) == emmc_caps) {
-+		ret = sdhci_eic7700_delay_tuning(host, opcode);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = sdhci_eic7700_phase_code_tuning(host, opcode);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void sdhci_eic7700_set_uhs_signaling(struct sdhci_host *host,
-+					    unsigned int timing)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	u8 status;
-+	u32 val;
-+	int ret;
-+
-+	dwcmshc_set_uhs_signaling(host, timing);
-+
-+	/* here need make dll locked when in hs400 at 200MHz */
-+	if (timing == MMC_TIMING_MMC_HS400 && host->clock == 200000000) {
-+		dwcmshc_disable_card_clk(host);
-+
-+		val = sdhci_readl(host, priv->vendor_specific_area1 +
-+				  DWCMSHC_EMMC_ATCTRL);
-+		val &= ~(LATENCY_LT_MASK << LATENCY_LT_BIT_OFFSET);
-+		val |= (LATENCY_LT_3 << LATENCY_LT_MASK);
-+		sdhci_writew(host, val, priv->vendor_specific_area1 +
-+			     DWCMSHC_EMMC_ATCTRL);
-+
-+		sdhci_writeb(host, 0x23, PHY_DLL_CNFG1_R);
-+		sdhci_writeb(host, 0x02, PHY_DLL_CNFG2_R);
-+		sdhci_writeb(host, 0x60, PHY_DLLDL_CNFG_R);
-+		sdhci_writeb(host, 0x00, PHY_DLL_OFFST_R);
-+		sdhci_writew(host, 0xffff, PHY_DLLBT_CNFG_R);
-+
-+		sdhci_eic7700_enable_card_clk(host);
-+		sdhci_writeb(host, PHY_DLL_CTRL_ENABLE, PHY_DLL_CTRL_R);
-+		usleep_range(100, 110);
-+
-+		ret = read_poll_timeout(sdhci_readb, status,
-+					status & DLL_LOCK_STS, 100, 1000000,
-+					false, host, PHY_DLL_STATUS_R);
-+		if (ret) {
-+			pr_err("%s: DLL lock timeout! status: 0x%x\n",
-+			       mmc_hostname(host->mmc), status);
-+			return;
-+		}
-+
-+		status = sdhci_readb(host, PHY_DLL_STATUS_R);
-+		if (status & DLL_ERROR_STS) {
-+			pr_err("%s: DLL lock failed!err_status:0x%x\n",
-+			       mmc_hostname(host->mmc), status);
-+		}
-+	}
-+}
-+
-+static void sdhci_eic7700_set_uhs_wrapper(struct sdhci_host *host,
-+					  unsigned int timing)
-+{
-+	u32 sd_caps = MMC_CAP2_NO_MMC | MMC_CAP2_NO_SDIO;
-+
-+	if ((host->mmc->caps2 & sd_caps) == sd_caps)
-+		sdhci_set_uhs_signaling(host, timing);
-+	else
-+		sdhci_eic7700_set_uhs_signaling(host, timing);
-+}
-+
-+static int eic7700_init(struct device *dev, struct sdhci_host *host,
-+			struct dwcmshc_priv *dwc_priv)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	u32 emmc_caps = MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO;
-+	unsigned int val, hsp_int_status, hsp_pwr_ctrl;
-+	struct of_phandle_args args;
-+	struct eic7700_priv *priv;
-+	struct regmap *hsp_regmap;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(struct eic7700_priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->host = host;
-+	dwc_priv->priv = priv;
-+
-+	ret = sdhci_eic7700_register_sdclk(dwc_priv, pltfm_host->clk, dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = sdhci_eic7700_reset_init(dev, dwc_priv->priv);
-+	if (ret) {
-+		dev_err(dev, "failed to reset\n");
-+		return ret;
-+	}
-+
-+	ret = of_parse_phandle_with_fixed_args(dev->of_node,
-+					       "eswin,syscrg-csr", 1, 0, &args);
-+	if (ret) {
-+		dev_err(dev, "Fail to parse 'eswin,syscrg-csr' phandle (%d)\n",
-+			ret);
-+		return ret;
-+	}
-+	priv->crg_regmap = syscon_node_to_regmap(args.np);
-+	if (IS_ERR(priv->crg_regmap)) {
-+		dev_err(dev, "Failed to get regmap for 'eswin,syscrg-csr'\n");
-+		of_node_put(args.np);
-+		return ret;
-+	}
-+
-+	priv->crg_core_clk = args.args[0];
-+	of_node_put(args.np);
-+
-+	ret = of_parse_phandle_with_fixed_args(dev->of_node,
-+					       "eswin,hsp-sp-csr", 2, 0, &args);
-+	if (ret) {
-+		dev_err(dev, "Fail to parse 'eswin,hsp-sp-csr' phandle (%d)\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	hsp_regmap = syscon_node_to_regmap(args.np);
-+	if (IS_ERR(hsp_regmap)) {
-+		dev_err(dev, "Failed to get regmap for 'eswin,hsp-sp-csr'\n");
-+		of_node_put(args.np);
-+		return ret;
-+	}
-+	hsp_int_status = args.args[0];
-+	hsp_pwr_ctrl = args.args[1];
-+	of_node_put(args.np);
-+	regmap_write(hsp_regmap, hsp_int_status,
-+		     EIC7700_INT_CLK_STABLE);
-+	regmap_write(hsp_regmap, hsp_pwr_ctrl,
-+		     EIC7700_HOST_VAL_STABLE);
-+
-+	if ((host->mmc->caps2 & emmc_caps) == emmc_caps)
-+		dwc_priv->delay_line = PHY_DELAY_CODE_EMMC;
-+	else
-+		dwc_priv->delay_line = PHY_DELAY_CODE_SD;
-+
-+	if (!of_property_read_u32(dev->of_node, "drive-impedance-ohm", &val))
-+		priv->drive_impedance =
-+			eic7700_convert_drive_impedance_ohm(dev, val);
-+
-+	sdhci_eic7700_dt_parse_clk_phases(dev, dwc_priv);
-+	return 0;
-+}
-+
- static const struct sdhci_ops sdhci_dwcmshc_ops = {
- 	.set_clock		= sdhci_set_clock,
- 	.set_bus_width		= sdhci_set_bus_width,
-@@ -1169,6 +1912,18 @@ static const struct sdhci_ops sdhci_dwcmshc_sg2042_ops = {
- 	.platform_execute_tuning = th1520_execute_tuning,
- };
- 
-+static const struct sdhci_ops sdhci_dwcmshc_eic7700_ops = {
-+	.set_clock = sdhci_eic7700_set_clock,
-+	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-+	.get_timeout_clock = sdhci_pltfm_clk_get_max_clock,
-+	.set_bus_width = sdhci_set_bus_width,
-+	.reset = sdhci_eic7700_reset,
-+	.set_uhs_signaling = sdhci_eic7700_set_uhs_wrapper,
-+	.set_power = sdhci_set_power_and_bus_voltage,
-+	.irq = dwcmshc_cqe_irq_handler,
-+	.platform_execute_tuning = sdhci_eic7700_executing_tuning,
-+};
-+
- static const struct dwcmshc_pltfm_data sdhci_dwcmshc_pdata = {
- 	.pdata = {
- 		.ops = &sdhci_dwcmshc_ops,
-@@ -1238,6 +1993,17 @@ static const struct dwcmshc_pltfm_data sdhci_dwcmshc_sg2042_pdata = {
- 	.init = sg2042_init,
- };
- 
-+static const struct dwcmshc_pltfm_data sdhci_dwcmshc_eic7700_pdata = {
-+	.pdata = {
-+		.ops = &sdhci_dwcmshc_eic7700_ops,
-+		.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-+			  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
-+		.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN |
-+			   SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
-+	},
-+	.init = eic7700_init,
-+};
-+
- static const struct cqhci_host_ops dwcmshc_cqhci_ops = {
- 	.enable		= dwcmshc_sdhci_cqe_enable,
- 	.disable	= sdhci_cqe_disable,
-@@ -1338,6 +2104,10 @@ static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
- 		.compatible = "sophgo,sg2042-dwcmshc",
- 		.data = &sdhci_dwcmshc_sg2042_pdata,
- 	},
-+	{
-+		.compatible = "eswin,eic7700-dwcmshc",
-+		.data = &sdhci_dwcmshc_eic7700_pdata,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sdhci_dwcmshc_dt_ids);
+Thanks for taking time to prepare a complete example. I think this
+example is very effective as it exposes perhaps all the features we are
+discussing.
+
+I consider it pseudocode, i.e. the syntax may not be OK, but that's not
+too relevant at this point of the discussion. But as far as I can say
+it has the right information at the right place, and IMO that's what we
+need to iron out in the first place.
+
+> --- Question 2: how to perform the mapping between pmods available on the
+>     base board and pmods needed by the addon board.
+> 
+> The addon board describes what it is expected:
+>   import-symbols {
+>       pmod_2a = "pmod_2a";
+>       pmod_1a_i = "pmod_1a";
+>       pmod_1a_ii = "pmod_1a";
+>    };
+> 
+> Based on compatible string:
+>   pmod_2a expected by the addon can be remapped to the node
+>   pmod-2a-0 or pmod-2a-1 described in the base board.
+> 
+>   pmod_1a_i and pmod_1a_ii expected by the addon can be remapped
+>   to pmod-1a-0, pmod-1a-1, pmod-1a-2.  
+> 
+>   We need some more information to set correct mapping
+>     pmod_2a <---> pmod-2a-0
+>     pmod_1a_i <---> pmod-1a-1
+>     pmod_1a_ii <---> pmod-1a-2
+> 
+>   Can we imagine that this mapping is set by the compatible "pmods"
+>   driver base on some specific external information.
+>    - Read info from addon to have some more hardware connection
+>      details (not sure it is relavant with PMODs connector)
+> 
+>    - Expect this information from user-space ?
+> 
+>    - Any other ideas ?
+
+I'd say the only possible answer to question 2 is "this is specific to
+each connector type and thus to each connector driver".
+
+As you just described in [0], some connector types have model discovery
+capabilities so the driver can do on its own. In principle this might
+apply to addons using multiple connectors.
+
+However for PMODs AFAIK there is no discovery at all, so the driver must
+be instructed by the user.
+
+[0] https://lore.kernel.org/all/20250911122333.2e25e208@bootlin.com/
+
 -- 
-2.25.1
-
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
