@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-216521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D6EB550FD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:22:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0320FB55105
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67ABFAA6C6F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:21:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D34A1CC8561
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:22:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF9F314A62;
-	Fri, 12 Sep 2025 14:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8043B3128A6;
+	Fri, 12 Sep 2025 14:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJxTEXYv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b8bJWuWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE6F30AACB
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6253E30E0D1
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757686847; cv=none; b=ZzB0Hk0cI1pIz8+ireXPkXXGJ7gMola2vuwIG2JRom7YCWPhRy3GPsXMQ4Vg5u6xqD7hPyJ0M3M8KsJlGSt+yEvjcQgJhv3LdCSiPZSEgfEKMwTVTlKjGLE3Pxyk+pgTdy+kZ3LQoGMrK4kcycU4PcsIq2cdLezbGJx4xML7qqs=
+	t=1757686863; cv=none; b=NaBr9gCrStGPAoipgyEiX79e0nEpad3s5+TB/vZhctTlM5UgFdP98VO3AXPWY2cTMxhJ6yU941FmQU69ol8d3CiV3g9YoI3D798NDpH+Nbbl0AmTvBj7RJjotxJycqQvFltFpQHCoELZBEVDqDWvD90+ZW4B3LZBXvEgnynRdtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757686847; c=relaxed/simple;
-	bh=jr9vPW7mvkeyuX3NZoS0Z1cuJUAyUe184FUn8+qt+kA=;
+	s=arc-20240116; t=1757686863; c=relaxed/simple;
+	bh=LhFvZeUZESo+BqKcF+l1lftDAN8nJvGBnxH4OQlr4Sk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=feqSyUa35uPmt9qFqlFPd991Z3Xae5mCqbRimq73q9kJfr12/7uNUFoAf69wkdRi8JWXlKSWyEpGXqR59wKcpTpDO27aX9tYOvRUstAMeH00EU2lqiIkJVlbl8zKInqaNPf9eUARHoNsd80AGj+lkqNIIQtviUWLbtPBQyvTsJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJxTEXYv; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=iPyJA04lLyGE++SOM/f5JVKpHlJojqDpwziCl4m2QLQzDTPn0W/vuEHVNbgaHJudOQXdWw5dsKwXP5EQKjwjX+Sv1RbvTMW4givQpsSOtED6jLp49rEetdE/HwrdCw3/aALpA/VdEFm2kdpTBWfKZmecp//q48lDuJdTqwE/sDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b8bJWuWo; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45decc9e83dso12531915e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:20:45 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3df726ecff3so1152320f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757686844; x=1758291644; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757686860; x=1758291660; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lthXnEjSvsHbapckxRc04Ei+riXtEdUUKc9+Bt6m9I4=;
-        b=dJxTEXYv9qM45gz9E4H1eXJZh1H+7cmokkEtN25rupjfnViARND4C7m9jB1SGRSg8w
-         sPPM6aFtzdADEqEPOKsHRkI6F4Z/KLnMw+OYAQftQVNWoEDD3ks8ILT88tbuN4votYIh
-         ED2ICF1MCr09JjU7+fkd0/YrjwWC8Tn7d45ezt7NHPkwV0D7aPuXNrh+DK8XNaeYAjYl
-         5Nse31W9gFH9v6N+G+77+QTANe365aVZw7awvoFsOcPN2yN3V10L/HqQDK0hXvRuRkEA
-         cang+PoStY9SHwW4pAoQurdb7X8E9WkmvTWkyrnHY9JybvPHnc4NGc/PnlKhfbBDZXVJ
-         HADw==
+        bh=4cur4X75SOX+L9Hbv3cU7NjYIOtP0WJSnDy9zZzynTY=;
+        b=b8bJWuWoQT98KnHA+pT3gitJeCu0mmyBmd5H6yoIbZW/KT5S/VipU+HlTqGXT8cy/f
+         0dAKCJde9nepMrRilLmKKW1cZxI6pfTtEgPh5YhnwK/pRWTdXpgsYOAsxhosKwn/jRc1
+         OJsR9W8c5oSo2y+bqhvRMJqY+tLIC21elJhj1M+T064a3OLSzrDGETrMt2sbu/HTpGf0
+         SQt/scjPtpjY/YZNcBBuDEFQXgQlT9q7DhzPIcdNUJ7BnDVF+fkN6wbm2a3K7xjHrSwv
+         qFd7Pflb0ScCfELi7EkM8/BJFbF0FMKgib3sLr+VRTFisfP60ulqYfoFIWSNjVDEHkD9
+         dLTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757686844; x=1758291644;
+        d=1e100.net; s=20230601; t=1757686860; x=1758291660;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lthXnEjSvsHbapckxRc04Ei+riXtEdUUKc9+Bt6m9I4=;
-        b=e7O6VH1q6e6HspLS2XXYEHADkpOfmhYVh44zkrVlipIonNDy/7bCzz0U64apk3EpHB
-         YusYhrE6TFlH4vEU5G/Xe/PSvOQxOHLwKvlNKcNtQmMaZWwPKqBbz1ieedvfEM1Tq9/j
-         BPnksFX41liPGX7Ls2ByqC3xZfwFRnKpGZGeQJ18RD+atrtDXYppJLJxIynUJl+bk72Y
-         sL3Zds/LO9w0GxbTipQpAT2b6YQm0qioS0Mlj8IWBlbnN8brF38LnfBZ0Atl1jpJg6BJ
-         kc6JM1g4By7OCRKMFHWlC3y8hv3q//Yk9I+lCLwqSv3bhJCLORxoa5CZQoQIKQt47Mwv
-         tAFw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQpEtevoB38DDVUATvPIVb1rE4fyDdVizsEPOkrjdVBB82l0ulnGhWV40V1rURdojMl4zDx31bIsrr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxW4dFRGA0BDfxojzogXyouOS4nVsv8D2phsc0oRJikoaoK1i0u
-	xWzSgvJ60VlCvXlGY08u0bRthgkuxIhKTlbmqLauSbwJj7F4To67sVQ4
-X-Gm-Gg: ASbGncsXvNG4I1V1go+YnHzBHlULIqPh/tl+yHE2yQPLUrjS5wLFIpcV00MueOEno18
-	shlVylS5/56IhA3PD1gMFa+UDd/duZYUTpBG1KHEv9gJn1uDC/UhYgBIRWwuRjIm2su6VQ4pXt9
-	AwEjdcu3c1XZr/xrrl8SGFV9SPNKqwCCv3FzO4ZxnM7ew6NryNXsyhswHjr3rbIXnMuSRE+TG9I
-	PLzR5136uYCUVWy436oME5iIIjDGdeijnVO4ZcLsdOnHBSzhpiLahOtR78TeY9dGa9o297ED5rZ
-	4HzOCEgPMMTr3MRsmkAIx1rNTuDg0i3LXTcMnUmXUBzD4UQZYxDg+VrNTz/IGNqpQDsqAy5vABh
-	9uCnwsncYY6fiVX6FVqZEdqToRbnbyd2qLf6PzvNqkeP14cAtL1E0
-X-Google-Smtp-Source: AGHT+IFqrxlW5v3Vy46wYJ2sE/wtXVC2vb0Byrr7NgxSOjj9QTmCoTJsKTMUA+e1n+AH0Kve613Tyw==
-X-Received: by 2002:a05:600c:6b06:b0:43c:ec4c:25b4 with SMTP id 5b1f17b1804b1-45f211d0795mr28833695e9.10.1757686842371;
-        Fri, 12 Sep 2025 07:20:42 -0700 (PDT)
+        bh=4cur4X75SOX+L9Hbv3cU7NjYIOtP0WJSnDy9zZzynTY=;
+        b=ExS85ielm2Kw9s3p2SDBZ3joI/jpC/l9vhHeqJxCZTTAe4RiRv6FD2C2vy/zk3+OtW
+         jHLBm3eqkVPJewLd6C3+D6X4U9JRidQp6nvl5JExqEMArWj6BlYKdLvp6qJkwEXztGZn
+         eoQDg4Inw8Q3m03G6WdVNutbIS3+v1qDjC5SLHNq5U8KwdJJEcUST3ft4z5DADEd1b4P
+         Roors6Wiy3eAeNvus5vrsIkc6WUt1CXjeJ6+Ima2Pvrd7kw6udJwUc60zqYawG/Yjuxa
+         2pmUIOAeZEjPKlxxe3X8msrT5L2yKFJa6/FYazR+aWQPjfwgXzaHg+A/xe0kN39q+gqh
+         rpfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUa4OMvitCTD9GMsAfnncGao8htkayp6A24GnNQVYjsd/y2g1tb2shyMf5mgvI+ImJKqPTS9CfezanI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyyQ9TlJTApNZqY2T0k8/R0igIfEOQ6G0Ylzu2syPMATn6jxbk
+	dIKcS7/MSIIW2eAJKYUwrL5ihjAfr6J4mdwzuefM0/4qqPTrT0jLn5KZ
+X-Gm-Gg: ASbGncvGEEqBtDoslEdq998ktyQuVSyJgXZv7K40bxhb3pXrsXsLt5DoULXuG4ayfty
+	Y6oW8LzeIlOw7X9wp3vHwDSf9MMm9CY21dZ4dtLvBrrnHs25uQI4RGqrftT5Hs83OonzdzhoFhJ
+	Hc+NiIQO8sKhEu0v+7LnYO6x6I5aAzu8LMT1iwntq8+MPPGHCAEYrUM56kYCW+omMHvqtJ/KLks
+	dKi8bHAj7N6jeFIPn933gIk75RUfrmhGqdW3qGO0EjAmsObBPiuoiu7x2XUfxA9r6ghRu/m2/jZ
+	3h+dk1OT6D24ouBBHdoJkC9EEbQLdAmRqHKJkjmy3DQu3T6Lici88SEAyU0hw5HsuYmUdZHBcA2
+	YwCpFu+XqOjcOhxVMGudAFNTvf/AhYC+DgkYMTXXTl2LBXXezyO1p
+X-Google-Smtp-Source: AGHT+IETnSVaOaRKN/Bmr4IDnznOAwChZ2qQ4ywH5VxUBMfTXYJEq367ON+ECBnG0YBYE/RxZE/ipA==
+X-Received: by 2002:a05:6000:2012:b0:3e7:441e:c9e1 with SMTP id ffacd0b85a97d-3e765793127mr2932126f8f.18.1757686859589;
+        Fri, 12 Sep 2025 07:20:59 -0700 (PDT)
 Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e037d7595sm63116405e9.24.2025.09.12.07.20.38
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd415sm6697435f8f.30.2025.09.12.07.20.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 07:20:41 -0700 (PDT)
-Message-ID: <3b3197b7-3e60-4a1a-b6bb-3a0a0ef1fdd4@gmail.com>
-Date: Fri, 12 Sep 2025 16:13:14 +0200
+        Fri, 12 Sep 2025 07:20:58 -0700 (PDT)
+Message-ID: <cda40929-12d7-4206-a4d9-3a74314c6b2e@gmail.com>
+Date: Fri, 12 Sep 2025 16:13:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 24/38] arm64: dts: mediatek: mt7986a-bpi-r3: Fix SFP I2C
- node names
+Subject: Re: [PATCH 25/38] arm64: dts: mediatek: mt7986a-bpi-r3: Set
+ interrupt-parent to mdio switch
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  linux-mediatek@lists.infradead.org, robh@kernel.org
 Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
@@ -108,7 +108,7 @@ Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
  linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  linux-sound@vger.kernel.org
 References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-25-angelogioacchino.delregno@collabora.com>
+ <20250724083914.61351-26-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -154,56 +154,42 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20250724083914.61351-25-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250724083914.61351-26-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 24/07/2025 10:39, AngeloGioacchino Del Regno wrote:
-> The binding wants the node to be named "i2c-number", alternatively
-> "i2c@address", but those are named "i2c-gpio-number" instead.
+> Being this an interrupt controller, the binding forbids to use
+> interrupts-extended and wants an `interrupts` property instead.
 > 
-> Rename those to i2c-0, i2c-1 to adhere to the binding and suppress
-> dtbs_check warnings.
+> Since this interrupt controller's parent is on the GPIO controller
+> set it as interrupt-parent and change interrupts-extended to just
+> interrupts to silence a dtbs_check warning.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 Applied, thanks
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 8 ++------
->   1 file changed, 2 insertions(+), 6 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> index ed79ad1ae871..6d2762866a1a 100644
+> index 6d2762866a1a..e7654dc9a1c9 100644
 > --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
 > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> @@ -64,23 +64,19 @@ wps-key {
+> @@ -200,8 +200,9 @@ switch: switch@31 {
+>   		compatible = "mediatek,mt7531";
+>   		reg = <31>;
+>   		interrupt-controller;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
+>   		#interrupt-cells = <1>;
+> -		interrupts-extended = <&pio 66 IRQ_TYPE_LEVEL_HIGH>;
+>   		reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
 >   	};
->   
->   	/* i2c of the left SFP cage (wan) */
-> -	i2c_sfp1: i2c-gpio-0 {
-> +	i2c_sfp1: i2c-0 {
->   		compatible = "i2c-gpio";
->   		sda-gpios = <&pio 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   		scl-gpios = <&pio 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   		i2c-gpio,delay-us = <2>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
->   	};
->   
->   	/* i2c of the right SFP cage (lan) */
-> -	i2c_sfp2: i2c-gpio-1 {
-> +	i2c_sfp2: i2c-1 {
->   		compatible = "i2c-gpio";
->   		sda-gpios = <&pio 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   		scl-gpios = <&pio 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   		i2c-gpio,delay-us = <2>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
->   	};
->   
->   	leds {
+>   };
 
 
