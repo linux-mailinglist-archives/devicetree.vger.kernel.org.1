@@ -1,186 +1,365 @@
-Return-Path: <devicetree+bounces-216428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C1AB54C2C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:02:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5158FB54CCC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80487188C1E3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:00:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7246A015C3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86713314B7A;
-	Fri, 12 Sep 2025 11:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA9301470;
+	Fri, 12 Sep 2025 11:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="caipe07O"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wlzrzEMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009F3314A65
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A74A272E5E
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757678082; cv=none; b=U1lMqXHOP591VGeCYKLOwzAEWxyOIbiUdk5owOtSvakVdy/zHiBAQ7ZDbs4vihioFfsudJ1NdNy+AfKCQ55YYKHFZGQ73KXRRS7UoYvD+7pRuRyRKAtVyy4llHMs5WWCzSsgvxcSEXwATdQ/mV/z34rUiovvBWeNANYgNtZEP9s=
+	t=1757678359; cv=none; b=saKY0xZg42il0s9qiyLjkaXA37q+GvRe9ZJK62644jp272gupXG8bRzBre0IjA6bALNlyAso4ALQ8j9AWHglyLcEITN68MG+5ZSJ6gjVvNb6Tr751K1uJHh6Yh+wYXDB2lbvp74kvJRca7YP5z+CSPMDPKmdvShuZqRexKapxQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757678082; c=relaxed/simple;
-	bh=ZK8/4aNLllz7uk+iaLyWsRe0awdZ9X8BIaYRhatobqA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eqasRoCuA1XrkHLBoPmBdHdXrPz7RwFNnKH3sdRS7mnLd2tbkgBC7dhcrIWjjxOhzyuG1IxNampJ1Iy05UAGauxrZhjhdntFiVJICC/GS09eX4umUS8auZH2WdwXmjYnWBm96JFFSAmkAyggsmRasK+C3sxACr2jxNWA/y2yODM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=caipe07O; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fY7m011119
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:54:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CL+lI9VYcTxc1ylzMUGhgewY3tUhb2X7dvXH5IYD2tM=; b=caipe07OT38c4Ooj
-	i5GS6gjRDKPJxngB9qSRS3lGHGBzaJ23DY1OTTMbT9bFx42LgXJB1JMNi50SDOXX
-	CYaUzwoqLP6lDS91llXVumAo+FErbCJnBbN81ZdvAYdvP0AAQY7u/PwnCXh6YYq2
-	5zTjWuIP9tm9erikfJ2KkwjRRGCGYe4Kb8DDwy0M/DwY1qZNg+1NujGaHY57X94D
-	PW9oukioENMcRLyAm0X4EXawsB+GZNqRKLfBojab1Wy/LTBYcI0rHX5PWXp8g8Zv
-	CdhJNLcL0IsSP2ds/+7iSiRHYRtuFK7Ax80KpGgUPo3j5Pq95ANq5TAj+hHoInr1
-	ZiK/tQ==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e4mbb98-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:54:40 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b5205f75e9dso319507a12.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:54:40 -0700 (PDT)
+	s=arc-20240116; t=1757678359; c=relaxed/simple;
+	bh=8/a/qJABGQQsO7MWth/gWIdU5R1QGpf9oLF4k9j7v3M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cCwSFb98/BHipUIzBapQFhY8cZqwi+Q4Ww7tGTFo1RTWO3bfEoV+TMg/DF/jFmWiavhfSf2/3NESRaZq1iToAbg8bxXkvenZyxnHdD/A7NbR5JH2oD9mYXGtoZD9swilpleYSLzF4T1510YTK0cuqSm5hcleFpUBFJXCbxFUTyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wlzrzEMQ; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-55f6017004dso1974734e87.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 04:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757678354; x=1758283154; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lg7qWRUKABPmJe9YUV85wwqlEXsnIyAFDE3XX1No4O4=;
+        b=wlzrzEMQNu6ErC/7l/p84M6LxoXED0PH473liusmpqhVyBDBYUfvFd8lskx9wwz5op
+         CwMeXSjcBVlABWh6A3ek/oFYCtIk2y28CMXwPtTNrpuXfa3kz3nWk8ZOyo6EtyGSZv7P
+         g1Y+1fh8LdAP7PDLi9tMkZGkvZ7CVcTI5tgkzTlAB/OA8zwnadl6p2IDnOrVERk0X0EC
+         3uvaOT8TKviuDZ+njDtoGzhZDaWVS8xpGjYfw/uFTHnvnUEru4FLaZR8Fyksr6JzUnth
+         Vg9mztynBQHCPcHTXh7Sz2Gebfy4XBlUWzFumQYozSIcGoUSZ+2h/OXjylI2Ee3nTvye
+         y2aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757678079; x=1758282879;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CL+lI9VYcTxc1ylzMUGhgewY3tUhb2X7dvXH5IYD2tM=;
-        b=ripeAirr8331TaAkEZXILnN9zKTowRO65uZ22wyduzhIY7gvB1Dhx3ODp87t/15Dsz
-         324vSh/FwB7k6QjVzjuC31WKV20aCUl3FxpPtp2anm2Wfr+14LY9jJe/kNfIiEdO1niA
-         e5xbmtSWk4hzsSxClBmbbC0femc0raFr+hLH52ELPuXFrUVC2h1Q5haNB37oEdyEqiWT
-         NcbC4oobOqxqJ8lzw3kHbB5n93C2hxFj8ILh8hLxGvwxvTY9MsTMmeg68Nym254d+eV5
-         IO0/YudIUM2ja+6+NLLYYrODoHd+4pH66jLi8jh2QMplQAo86zEmJvvw5QA64FWDZo6m
-         BC6w==
-X-Forwarded-Encrypted: i=1; AJvYcCUT4dYyErdhYLQGPPOgpc03eEn0Wn4bwXGGlDKdm1XBWmIunJpMour/+bKLXe4q8p5in3wmsV4ZXitp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPwLXC5UH2Bh1uSSZeTdS0UAiNZxrV1AObu6E/KJffEmugBlE2
-	9sXvIwFdSVDP5lxHEd0Y9kCgFAYWwd1+FP5PzFnfat1qNyVRrx83k0RZJFDkqvhzbbWC5sWCQL6
-	XNpjv0e+G/j+HDBOprEyfQXCWPwQaj+s36ZOFChluYN3QXMJ9+KfIiqUmmyuxfddX
-X-Gm-Gg: ASbGncvZ9aL6YHylOj8p4ED/89p/UtTrWZC2NLBhClp/r3FsC9VhHgStBTfrmOKVMIn
-	XjrB8yJeXKw4dhd3Gg7JaZ6+Zdvbai3JU5RJ1tbgF2Iv7zGAtiw8VGs1MDYkt/WG6fxqa0pEOhC
-	Y06+uMUFNcpeeszABaRqILP9bQO1nnebq8jNPQYyjG63nPKvStB2B87rSDCiSY5pJbSklTPa/Sp
-	XJC7PeF1PtlM7trH3t+GQlA8XVXDwLk+3QAxMuYZQGAhjX7zslxaHMHdiS63tU0+x7jsHajfsrD
-	9GFSp88eiK5Wqp5a0SSsrQgKte4J+KeeX9evRjHVSiWkINSwCOKOa0D3RHwPkCxMQc6yorRT8j2
-	jaFS8RSj7PZidLzP++ef4UPDXWd4gtg==
-X-Received: by 2002:a05:6a00:181e:b0:755:2c5d:482c with SMTP id d2e1a72fcca58-776121ec346mr1687417b3a.4.1757678079352;
-        Fri, 12 Sep 2025 04:54:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGBzCCMI7c4SuCgUNoxpx0ryUhDrHgck7Ry4SOIXMr3U9+ASTVocgB9v5TDYgVMzzCnDhSBlA==
-X-Received: by 2002:a05:6a00:181e:b0:755:2c5d:482c with SMTP id d2e1a72fcca58-776121ec346mr1687392b3a.4.1757678078920;
-        Fri, 12 Sep 2025 04:54:38 -0700 (PDT)
-Received: from [10.133.33.174] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a46b7asm5251168b3a.22.2025.09.12.04.54.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 04:54:38 -0700 (PDT)
-Message-ID: <d3743c52-4e84-4729-9f64-af856419d504@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 19:54:31 +0800
+        d=1e100.net; s=20230601; t=1757678354; x=1758283154;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lg7qWRUKABPmJe9YUV85wwqlEXsnIyAFDE3XX1No4O4=;
+        b=Ml3u5unjFGuavKFoK0y7W7HUOE9VY2MRIYL0sDQtaa8LIUBfl2WSsZPXME25ZVQop7
+         mKsooF96IL0yz0IlMPtfDUdb4gZ7QtOuJqX5hXSwbpV5G8TpyDVOoBeNNV+/D3dPcyTh
+         1EFXVJtnwVwEgSiHxwMUZYug9hhGHYWtDTVfLnUpmh3xDpfqBA6dtIXBpmlwhsc4yGv/
+         7TmMCvPsMsjQrIVq4LalC7b9v5PSf9rW5J0bz4GQV4l61lknRXsk665lAUpVYirJ/wZV
+         /v2uGlvb7KHJWDRQr3GcZrT66rjYaLSD/oDrfpg/7Atbf9yozUdqGz996k0LK/JpTxK7
+         7qlw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/x6zKc1PKmWbYcQ6X5G9+ZLqKh89kwEYoAt3NTwYd1SNm1Oe4qW2MP6hIuvtQjz0BWmzOuVBHHGaT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdyOiBpVPffoS8asUryRRpsLG627gxkO6i/IfOcXvMjQaHuunG
+	sjqs4U0Ybih6+9oH+Nckp9CI5uqBhUlYItMGjWf4SjlOZrub6dyfT1UfTVOqZcFfz8twWHm6X+T
+	ls/fnW0VmX7Kkt3LOck5hLuFe6rMiI9hEk56gZgZkiZRw2uBfwe4gWWIqsw==
+X-Gm-Gg: ASbGncvZPncVXeY3V7uXASOqqKvxrfoY3YAtIaVggoxfLZip0cfo7X1q8nxpWcQgfCQ
+	ZJKCKL2u5fa+YQn1O09tqxfK8HiWAbOY+fkL64EykU9Jbe30UQ/lwJprP+eQEzQqDb9VDjg8HfH
+	Nz/g8njhl775Xg4XJKBITrQzmxg8Ixbz9wD/ivE0njKpPdvvJGxbPsaW9ZYvjoxnI0gZQrbJLT3
+	VfCJDE=
+X-Google-Smtp-Source: AGHT+IGeZRJRiB/LmqkbexVvmZJ7WX/3/khEzl2E2teMJl+0sV9Tw4l6WBQajDk3wJg2rzu7bsPpdTU3lciwtrFDvjM=
+X-Received: by 2002:a05:6512:234b:b0:55f:3faa:7c02 with SMTP id
+ 2adb3069b0e04-5704e7223e3mr905200e87.40.1757678353719; Fri, 12 Sep 2025
+ 04:59:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display/msm: dp-controller: Add SM6150
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com
-References: <20250912-add-dp-controller-support-for-sm6150-v1-0-02b34b7b719d@oss.qualcomm.com>
- <20250912-add-dp-controller-support-for-sm6150-v1-1-02b34b7b719d@oss.qualcomm.com>
- <sx64y6vfov4yag46erckpbl7avwmqlsqt3siebckn76m6jqxjh@f5lueyih6n3q>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <sx64y6vfov4yag46erckpbl7avwmqlsqt3siebckn76m6jqxjh@f5lueyih6n3q>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOCBTYWx0ZWRfX8i3t3E8A5gqM
- KILnakjrghlsQeWkzv3f6VP340Ju5ZKIWhl+R+cQZHH97BvrjWk95XSckfnR2XStVi1thqpCOmi
- /Vw1Xjou+ofuWgBvoKwXumXx9tvNRLWdaSneLrojZZzbXa0/exQ4b/UF5PdC6tqD7HHHYbnr+DN
- YyeYcUL6eJ6pm3wNK6L/eH9ZvKrNFIeaFmifRyLq5KglxKJdYbbSLAaSzslUDjXGXsTg9qmEZgo
- SEeap0RF0oEzJCQsBAkN6ZxwqyOz7myqUZqRI8l3narjIlzD0XfLGKTvR7shobNikDM2hbYnL/X
- RXz213yxjlR8mZzMxQfL0bvx6hCW6pW3hRaih4QUvFia8pD+yjxaimICaRAn8QKc3UhINXItKUu
- drHaxhWo
-X-Authority-Analysis: v=2.4 cv=J66q7BnS c=1 sm=1 tr=0 ts=68c40a00 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=1DKY8yufIZSdyzbmga8A:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: ZE7hNHzMNIZ394Q-rcfs-uoJthTjw8bR
-X-Proofpoint-ORIG-GUID: ZE7hNHzMNIZ394Q-rcfs-uoJthTjw8bR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 phishscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060038
+References: <20250912060650.2180691-1-gary.yang@cixtech.com> <20250912060650.2180691-2-gary.yang@cixtech.com>
+In-Reply-To: <20250912060650.2180691-2-gary.yang@cixtech.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 12 Sep 2025 13:59:00 +0200
+X-Gm-Features: Ac12FXxgQqTM_v6IlK5tuOK400vNP5lgdVRrVI1BjBu-zlzI4VXvJPt0wi-IxX4
+Message-ID: <CACRpkdYgTjerG5mks_+3sjhKKYtCsFY=1NWhgw_YEuib7gZm3g@mail.gmail.com>
+Subject: Re: [v2 1/3] pinctrl: cix: Add pin-controller support for sky1
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	cix-kernel-upstream@cixtech.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Gary,
 
-On 9/12/2025 7:46 PM, Dmitry Baryshkov wrote:
-> On Fri, Sep 12, 2025 at 07:39:16PM +0800, Xiangxu Yin wrote:
->> Add DisplayPort controller for Qualcomm SM6150 SoC.
->> SM6150 shares the same configuration as SM8350, its hardware capabilities
->> differ about HBR3. Explicitly listing it ensures clarity and avoids
->> potential issues if SM8350 support evolves in the future.
-> The controller is exactly the same as the one present on SM8150. HBR3 is
-> a property of the PHY.
+thanks for your patch!
 
+On Fri, Sep 12, 2025 at 8:06=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
+rote:
 
-Ok, will update commit msg.
-
-
+> Add the pin-controller driver for Sky1 platform
 >
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->> ---
->>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> index aeb4e4f36044a0ff1e78ad47b867e232b21df509..2bebc182ffe348fd37c215a6bf0becea11e5ac15 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> @@ -46,6 +46,7 @@ properties:
->>        - items:
->>            - enum:
->>                - qcom,sar2130p-dp
->> +              - qcom,sm6150-dp
->>                - qcom,sm7150-dp
->>                - qcom,sm8150-dp
->>                - qcom,sm8250-dp
->> @@ -261,6 +262,7 @@ allOf:
->>              enum:
->>                - qcom,sc8180x-dp
->>                - qcom,sdm845-dp
->> +              - qcom,sm6150-dp
->>                - qcom,sm8350-dp
->>                - qcom,sm8650-dp
->>      then:
->>
->> -- 
->> 2.34.1
->>
+
+Add some more description of the pin control on the SoC here please.
+
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+(...)
+
+Config structure in Kconfig looks good!
+
+> +++ b/drivers/pinctrl/cix/pinctrl-sky1-base.c
+> @@ -0,0 +1,581 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +//
+> +// Author: Jerry Zhu <Jerry.Zhu@cixtech.com>
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_address.h>
+> +#include <linux/pinctrl/machine.h>
+> +#include <linux/pinctrl/pinconf.h>
+> +#include <linux/pinctrl/pinconf-generic.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/pinctrl/pinmux.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/slab.h>
+> +
+> +#include "../core.h"
+> +#include "../pinconf.h"
+> +#include "../pinctrl-utils.h"
+> +#include "../pinmux.h"
+> +#include "pinctrl-sky1.h"
+> +
+> +#define SKY1_PIN_SIZE          (0x4)
+> +#define SKY1_MUX_MASK          (0x180)
+
+For masks do this:
+
+#include <linux/bits.h>
+
+#define SKY1_MUX_MASK GENMASK(8, 7)
+
+GENMASK generates a bitmask from bit 7 to 8, 0x180.
+
+If its a 32bit register you can use GENMASK_U32() to be
+even clearer, etc.
+
+> +#define SKY1_MUX_SHIFT         (0x7)
+> +#define SKY1_PULLCONF_MASK     (0x60)
+
+Same idea here.
+
+> +#define SKY1_PULLUP_SHIFT      (0x6)
+> +#define SKY1_PULLDN_SHIFT      (0x5)
+
+I would probably do this:
+
+#include <linus/bits.h>
+
+#define SKY1_PULLDN BIT(5)
+#define SKY1_PULLUP BIT(6)
+
+Using simple bit references to define what each bit
+is for.
+
+> +#define SKY1_DS_MASK           (0x0f)
+
+Use GENMASK()
+
+> +#define CIX_GET_PIN_NO(x) ((x) >> 8)
+> +#define CIX_GET_PIN_FUNC(x) ((x) & 0xf)
+
+Maybe define 8 and 0xf as shifts?
+
+> +static const struct sky1_function_desc *sky1_pctrl_find_function_by_pin(
+> +               struct sky1_pinctrl *spctl, u32 pin_num, u32 fnum)
+> +{
+> +       const struct sky1_pin_desc *pin =3D spctl->info->pins + pin_num;
+> +       const struct sky1_function_desc *func =3D pin->functions;
+> +
+> +       while (func && func->name) {
+> +               if (func->muxval =3D=3D fnum)
+> +                       return func;
+> +               func++;
+> +       }
+
+Using a NULL func->name to terminate the array looks a bit dangerous.
+
+What about adding:
+
+> +struct sky1_function_desc {
+> +       unsigned char muxval;
+> +       const char *name;
+
+const char * const *functions;
+size_t nfuncs;
+
+> +};
+
+Then you can use nfuncs to iterate over the array of
+function names, and define a macro like this:
+
+#define SKY_PINFUNCTION(_muxval, _functions, _nfunctions)   \
+(struct sky1_function_desc) {                                  \
+                .muxval =3D (muxval),                        \
+                .functions =3D (_functions),                    \
+                .nfuncs =3D (_nfunctions),                  \
+        }
+
+And then this:
+
++static const struct sky1_pin_desc sky1_pinctrl_s5_pads[] =3D {
+> +       {
+> +               .pin =3D PINCTRL_PIN(0, "GPIO1"),
+> +               .functions =3D {
+> +                       [0] =3D {0, "GPIO1"},
+> +               },
+> +       },
+> +       {
+> +               .pin =3D PINCTRL_PIN(1, "GPIO2"),
+> +               .functions =3D {
+> +                       [0] =3D {0, "GPIO2"},
+> +               },
+
+> +       },
+
+becomes
+
+static const struct sky1_pin_desc sky1_pinctrl_s5_pads[] =3D {
+    SKY_PINFUNCTION(PINCTRL_PIN(0, "GPIO1"),  "GPIO1", 1),
+    SKY_PINFUNCTION(PINCTRL_PIN(1, "GPIO2"),  "GPIO2", 1),
+
+I don't know about using the PINCTRL_PIN() macro here though,
+can't you just put in 0, 1...?
+
+Anyway I think you get the idea.
+
+> +static bool sky1_pctrl_is_function_valid(struct sky1_pinctrl *spctl,
+> +               u32 pin_num, u32 fnum)
+> +{
+> +       int i;
+> +
+> +       for (i =3D 0; i < spctl->info->npins; i++) {
+> +               const struct sky1_pin_desc *pin =3D spctl->info->pins + i=
+;
+> +
+> +               if (pin->pin.number =3D=3D pin_num) {
+> +                       const struct sky1_function_desc *func =3D
+> +                                       pin->functions;
+> +
+> +                       while (func && func->name) {
+
+So here you could just for (i =3D 0; i++; i < func->nfuncs)
+
+(etc everywhere)
+
+> +static int sky1_pctrl_dt_node_to_map_func(struct sky1_pinctrl *spctl,
+> +               u32 pin, u32 fnum, struct sky1_pinctrl_group *grp,
+> +               struct pinctrl_map **map, unsigned int *reserved_maps,
+> +               unsigned int *num_maps)
+> +{
+> +       bool ret;
+> +
+> +       if (*num_maps =3D=3D *reserved_maps)
+> +               return -ENOSPC;
+> +
+> +       (*map)[*num_maps].type =3D PIN_MAP_TYPE_MUX_GROUP;
+> +       (*map)[*num_maps].data.mux.group =3D grp->name;
+> +
+> +       ret =3D sky1_pctrl_is_function_valid(spctl, pin, fnum);
+> +       if (!ret) {
+> +               dev_err(spctl->dev, "invalid function %d on pin %d .\n",
+> +                               fnum, pin);
+> +               return -EINVAL;
+> +       }
+> +
+> +       (*map)[*num_maps].data.mux.function =3D sky1_gpio_functions[fnum]=
+;
+> +       (*num_maps)++;
+> +
+> +       return 0;
+> +}
+> +
+> +static struct sky1_pinctrl_group *
+> +sky1_pctrl_find_group_by_pin(struct sky1_pinctrl *spctl, u32 pin)
+> +{
+> +       int i;
+> +
+> +       for (i =3D 0; i < spctl->info->npins; i++) {
+> +               struct sky1_pinctrl_group *grp =3D
+> +                       (struct sky1_pinctrl_group *)spctl->groups + i;
+> +
+> +               if (grp->pin =3D=3D pin)
+> +                       return grp;
+> +       }
+> +
+> +       return NULL;
+> +}
+
+And this:
+
+> +struct sky1_pinctrl_group {
+> +       const char *name;
+> +       unsigned long config;
+> +       unsigned int pin;
+> +};
+
+it's a bit conceptually weird.
+
+Usually a pin can be member of many groups.
+
+The only time this works is when the pin controller is of the type
+where every pin is placed in a single group with only that pin in it.
+
+And that seems to be the case, because:
+
+> +static int sky1_pctrl_get_groups_count(struct pinctrl_dev *pctldev)
+> +{
+> +       struct sky1_pinctrl *spctl =3D pinctrl_dev_get_drvdata(pctldev);
+> +
+> +       return spctl->info->npins;
+> +}
+
+If this is the implied pattern for this driver, write as a comment to
+the above function that this pin controller place all pins into a
+single group with one pin and that this is why this works.
+
+The normal (as can be seen from the pin control documentation
+https://docs.kernel.org/driver-api/pin-control.html )
+is to group pins, so e.g.
+
+uart0_rx_tx_grp =3D { pin1, pin2 };
+i2c0_sda_scl_grp =3D { pin1, pin2 };
+
+Then this is combined with functions such as uart0 and i2c0:
+
+function, group
+("uart0", uart0_rx_tx_grp)
+("i2c0", i2c0_sda_scl_grp)
+
+Here you see the two pins are used for uart in the first case
+and for i2c in the second case, it's the same pins, but members
+of two different groups, and these groups are then used with
+a function.
+
+The possible functions for a group are then defined somewhere
+so these settings can be applied.
+
+Maybe this pattern is something you have in your driver
+because the code was copied from some other driver
+which use one group per pin, it's not certain that this is the
+best layout for the cix SoC so look it over!
+
+The pinconf part of the driver looks very good to me.
+
+Look over these things, and keep posting updates!
+
+Yours,
+Linus Walleij
 
