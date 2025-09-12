@@ -1,144 +1,159 @@
-Return-Path: <devicetree+bounces-216383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923F2B549A5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:24:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F2DB549AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46FC416FA6F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D56733AD195
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF89279DDD;
-	Fri, 12 Sep 2025 10:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4826C2E11B7;
+	Fri, 12 Sep 2025 10:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uGV6b3uS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WI1aJFIk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2421C2E0905
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 10:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1315A2036FE;
+	Fri, 12 Sep 2025 10:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757672668; cv=none; b=aCf10CvJJUmOxqaUf33hWk9WJA1XCSjekU+Prg8N8Ko4fgAtU1X553P0prWenMcW8ete+fJjQemDkMUarI0oFcYcAescd5GGKIWgVB750ErRl6efY9MjBazHkNx74bTQiC3YR9OdSTMk3+4bX7bxl6X/hIEoyoD3KMfoo6Nykok=
+	t=1757672718; cv=none; b=CHbL4yh5N78ERWndZAvlsJmlYKwh72vA4zptzU9Aio3rTU7peBkou1WiTKbnPQUprKV57yNDDpIKIQHsQYDwvECwvBuaylCSbiMhRs0EY/MrrplxigYeDOd+J0ZvPgLyGPNuQq0xO7gh/Fy8BuTl+s4Ib1gMEpB9AAnUkYs7uLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757672668; c=relaxed/simple;
-	bh=Cm8AGHoNs36CjaW+QUDCUcm8hiYODo7Px0m6IAy/mIQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tHQXeSR4l2VhFhunwD08of+IEOGDs58E+fBY1sUbtYax640FI05JmK0D1wFSMx0RD8x22unOBVAeNN7vztwA84lrA029kdSFXFpLZhEqwXiKcOQv18ISqiuRaMPSFcGU6N/fJM8PkPJb+pX8DxYSH9eNJTa5zz768US5Q+g3jkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uGV6b3uS; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45cb5492350so12990175e9.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 03:24:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757672665; x=1758277465; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EbUxpX3q5xMx08x814zZfnZ8avY034qyNif3tjChLWI=;
-        b=uGV6b3uSYjVsnktHEu/Z+m5lnDCML4npfK9sFg2e68L7YmU56GAu9eQnKC1PKiYMQR
-         tulHSZQBp225hwnkwepIiICXs2l5wgiFXLnB6hJ5exTERtYvMPWtLgnLLSjcFcWyEtgX
-         7N1NC2bSP7sqgnLy42157Y6TBDiFb9f8x3tAE2tVHoEVFXyVBnxEQD0NxLrqbUg3zbfs
-         jwYn3mq6TqVhoUJVijxyPWHSxlKtXKZMIjwucCa2XcIryn8hDuEq9JcDLvorWN9NtS6a
-         yuCHX8ZZYMq1iK4SY01Z2OY+T7cWCeEMYM9kZRwllqSDWAHAdBcF5AYbydh1D1HcgIl5
-         1pkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757672665; x=1758277465;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EbUxpX3q5xMx08x814zZfnZ8avY034qyNif3tjChLWI=;
-        b=GRj/cYgE+EFpFplUcMnHOBvXnioj3Rskl5UP6vR5Z9xb/jG9jX03T9BdQ+QYGdD/fM
-         gPBIIw5ctH/cLwGcksiGH/QcFqDsfPED2H+Bm/JOxC6eXPw9roIvlt8LfxW6mywqTdiJ
-         CF/a5ZOwZmpe7hh8/WRzsELxrpiXUTCOsyghkl12lUsdXJeaBVqxngOQCUukmlmUeT05
-         gSYJO+cv37yRw2xNoqnxlaXFa2QRueU37nM+nPteZ5m304JU6/nukwBWTQzzgj8deKDN
-         mRaBHniYzqAHO9YeQs86q5Rh3xDvSs8r0JC2zJRwD856Rh6fMMMr8mwvLJNjdT6ReGiL
-         hEew==
-X-Forwarded-Encrypted: i=1; AJvYcCWcm/tA4U3gDJ2Z0qUM2cdI1RlW17eamqqqEmj8/W5hoRwXSln3j92fWLVKgnuRReV+lsT6twOky3hL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFbDadsycECbWINi5haKhDFhGCc6/LgB2XIwqZksM0wiDgw3lv
-	uc++XDXLvxSf/6cIhd6jXbcUmnVGfmI9IgGLiWeXeqDVWOq21qXYJd+Qlg6seuX2X7A=
-X-Gm-Gg: ASbGncv/0dngJXgq/65Pwx+yTiAmfP3w5j7cNM9utuH/mk48rxw3eouU8b5i7KblbBZ
-	+7fy+2FdQDOfgu+Zvy7qQE7iMEBAe195Ww+N1Zo9M4JVQJuQJFNyZ3ohN/dyhB9md28XcamhiaP
-	qKTaU4PJQJymweVrJMGEuxNOIRoaF/Pi/kI9F7OdBBOFgdXDgCSAjBoeEKt+ULAcd0GFYyYlgoJ
-	p5Z4jp8UF+BrEgAaFTWWFqItpEEGNjp+X24lCGR83O8mFdAHOcTRZnk1RfDX5wwdhRphRYoqDuM
-	MvI+M5W0KteYyFGLKsxSXfKfLFb6XtMpOKz4LG4OxIJpJzHFsg++HDtrhvdXQbDP4fsUJMS/VSi
-	vFMQpoHzLLoOXUR7ZxZRuPghzFI5tPn85wMJ1+QTJ8oxWAUCO4jJ8iIPOJwBwrxbBZ1qvI0oUoQ
-	rzcvyjW1fpucx6eF8jFUjO5XIUpZAvzg==
-X-Google-Smtp-Source: AGHT+IEj7jfi5/gecFugEbT7EKtx3fH+ixZKBaAEuJdWl25+AesrKJ8jqjGjd6JOh+4mHUsSSjYdYg==
-X-Received: by 2002:a05:600c:19c9:b0:45d:d291:5dc1 with SMTP id 5b1f17b1804b1-45f211da6aamr23950765e9.15.1757672665252;
-        Fri, 12 Sep 2025 03:24:25 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607e1232sm6059022f8f.56.2025.09.12.03.24.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 03:24:24 -0700 (PDT)
-Message-ID: <980b7247-e8a5-40bd-ba20-c9c72c8a397a@linaro.org>
-Date: Fri, 12 Sep 2025 11:24:21 +0100
+	s=arc-20240116; t=1757672718; c=relaxed/simple;
+	bh=LaKjlcVNrqtOufIBgKRAJut80OnV0EvmeIHIAl4z6JY=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aAqjaOl+b3L+Vo7X4t5mvZ1owPsMgCA/bi1SHCIJvab6aK+bWh3QGkRdj1X/SjwwJD/Em4Rc1vZHvOGLMw7xVsZEs+erUFCb2kQ21HsX+qVT19gjXgqR5s/PUA+pFcfGgUz8ZeNOsky3jZQwvQtq4a/Zl+m1EmYTnJcNJk8Lvv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WI1aJFIk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A58C4CEF1;
+	Fri, 12 Sep 2025 10:25:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757672716;
+	bh=LaKjlcVNrqtOufIBgKRAJut80OnV0EvmeIHIAl4z6JY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WI1aJFIkpslo0fVzZRKWCoEfxLrbSPYTeL5p3VMPZHKiZuMjSbRBF9EwqTSgw0Ll3
+	 rQtMJN8c1KN3F3+xrOIMQ3qa2nOMOSyDaYGZAIcsFehQSqSc5jXaKr4aRf8FJj1MNn
+	 0o5gsRVGcJmQYmJ6/yLFm+6i7OS9UIkmbDANsdyvfrtwxF8cR00BQJjv8RDI0UReLv
+	 IXKyQlGbqoYf7ThxST1akIxs3npwfu3X1e2PN9MMNK6STcYEhbCYNI0le8QOb4T58n
+	 7CTzFYoqOcR+XxCl4XNo3GI05JRvUJDF7KoZW2bLqUSBY5fqqB37LBgjgOfnKuVmVU
+	 xkaKrChhIkQfg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1ux0xu-00000005eJd-14D6;
+	Fri, 12 Sep 2025 10:25:14 +0000
+Date: Fri, 12 Sep 2025 11:25:13 +0100
+Message-ID: <868qikc6ie.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
+In-Reply-To: <CAMuHMdX3cviP6xHnGP01kRDwuHRrHg0ZpNLV8Mf29MFS1B7S8g@mail.gmail.com>
+References: <87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com>
+	<87jz27vzec.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdVVV5tY_iwb=Xn6XVY-Ai6spBY70yXhc5VRxwDva8BGng@mail.gmail.com>
+	<87jz24fqrg.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdX3cviP6xHnGP01kRDwuHRrHg0ZpNLV8Mf29MFS1B7S8g@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] arm64: dts: qcom: x1e80100: Add IRIS video codec
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <rPv92n3EVkoRrO1v7nlw_tPMn-nHUhpYhQP_FjmQsESL752mly20FWQqPHLs8JHGC4mklm9wfPABc5kd-x4LYg==@protonmail.internalid>
- <20250911-x1e-iris-dt-v1-0-63caf0fd202c@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250911-x1e-iris-dt-v1-0-63caf0fd202c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: geert@linux-m68k.org, kuninori.morimoto.gx@renesas.com, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 11/09/2025 19:38, Stephan Gerhold wrote:
-> Add the necessary definitions to enable the IRIS video codec for
-> accelerated video decoding on the X1E CRD and Lenovo ThinkPad T14s. The
-> additions are largely copied as-is from sm8550.dtsi with some minor changes
-> necessary for X1E.
+On Fri, 12 Sep 2025 08:37:29 +0100,
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 > 
-> The PAS interface used to boot the IRIS firmware is not functional in EL2.
-> The code to start it without using PAS exists already in the Venus driver,
-> but was not ported over to IRIS yet. Discussions how to model the
-> video-firmware IOMMU are still ongoing, so disable IRIS in x1-el2.dtso for
-> now to avoid regressions when running in EL2.
+> Hi Morimoto-san,
 > 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
-> Stephan Gerhold (4):
->        arm64: dts: qcom: x1e80100: Add IRIS video codec
->        arm64: dts: qcom: x1-el2: Disable IRIS for now
->        arm64: dts: qcom: x1e80100-crd: Enable IRIS video codec
->        arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Enable IRIS
+> CC maz
 > 
->   arch/arm64/boot/dts/qcom/x1-el2.dtso               |  5 ++
->   .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  5 ++
->   arch/arm64/boot/dts/qcom/x1e80100-crd.dts          |  4 +
->   arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 87 ++++++++++++++++++++++
->   4 files changed, 101 insertions(+)
-> ---
-> base-commit: 8f21d9da46702c4d6951ba60ca8a05f42870fe8f
-> change-id: 20250909-x1e-iris-dt-eb0494a130ca
+> On Fri, 12 Sept 2025 at 02:39, Kuninori Morimoto
+> <kuninori.morimoto.gx@renesas.com> wrote:
+> > > > +               /* The Arm GIC-700AE - View 1 */
+> > >
+> > > s/700/720/
+> >
+> > Oops, thanks. Will fix
+> >
+> > > > +               gic: interrupt-controller@39000000 {
+> > > > +                       compatible = "arm,gic-v3";
+> > >
+> > > The documentation states it is compliant with GICv4.1?
+> >
+> > I'm not familiar with GIC. And I think there is no v4 support on Linux yet ?
+> > If my understanding was correct, GICv4 have GICv3 compatible.
+> > We can use v3 driver so far, and can be replaced to v4 driver if it was
+> > supported in Linux?
 > 
-> Best regards,
-> --
-> Stephan Gerhold <stephan.gerhold@linaro.org>
+> 'git grep -i "\<gic.*v4.1"' does show support.
 > 
-> 
+> Marc?
 
-Could you please include the Dell Thena variants in v2 ?
+We don't need to differentiate the various GICv3.{0,1,2,3} and
+GICv4.{0,1,2} in DT. GICv3 is enough, and everything is else can be
+probed.
 
----
-bod
+And yes, we support everything (but that's not relevant for DT).
+
+> 
+> > > > +                       #interrupt-cells = <3>;
+> > > > +                       #address-cells = <0>;
+> > > > +                       interrupt-controller;
+> > > > +                       redistributor-stride = <0x0 0x40000>;
+
+No. That's the architected value, and doesn't need to be described.
+This property is solely designed to support broken HW, and I really
+hope this is not the case here.
+
+> > > > +                       #redistributor-regions = <32>;
+> > > > +                       reg = <0 0x39000000 0 0x20000>, // GICD
+> > >
+> > > The base address is 0x38000000, according to the docs?
+> >
+> > It is indicated in very deep place in datasheet. I will indicate
+> > detail in v2.
+> >
+> > > > +                             <0 0x397C0000 0 0x40000>, // GICR Core29
+> > > > +                             <0 0x39800000 0 0x40000>, // GICR Core30
+> > > > +                             <0 0x39840000 0 0x40000>; // GICR Core31
+
+This really is silly. You have *one* RD region, not 32. This single
+region covers all the RDs that your system has.
+
+> > >
+> > > No GICC, GICH, and GICV?
+> >
+> > will be added later ?
+> 
+> OK.
+
+I seriously doubt you can have these regions, unless you have attached
+a GIC700 to an ancient core such as A53. Here, you seem to have a
+bunch of A720, which will *not* have the GICv2 compat regions.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
