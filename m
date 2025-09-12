@@ -1,461 +1,172 @@
-Return-Path: <devicetree+bounces-216290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B43B54445
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:56:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2EAB5446B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 10:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C17BE3B3C05
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:56:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 743C47B51C1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10B52D3A7E;
-	Fri, 12 Sep 2025 07:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ZI6pejUY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725B92D47F2;
+	Fri, 12 Sep 2025 08:04:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A31F2BD031
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04982D4816;
+	Fri, 12 Sep 2025 08:04:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757663799; cv=none; b=F7QMH+64d87fTfWm8De68fAHyZpdI74vb7Gp2F6imW9dV3h+L1Ed0AwbB6mL2h3mefsBktOekZputPzD1vmgdVTGIVB2WvvnSY/rEhghRjN6SmRbeQX6dNXdUKg4uBSvBDc07koBhQQWlgXgeeLi5jRZmjXDkz1JN69OFN00OJo=
+	t=1757664278; cv=none; b=P7PCSMirqpRHBvnHxs4E/ph/yQVXYnDm4xuzXBP4b+LwjjRym4n93RGnn9yY0K5kp+0SuNNNdSuwqBO5BIiXDKQ8bSUOaizcUfT059+5ew57BbgUi+5iuLRTlY8rkvifAGPlCH7/cyPQdtqMTiIfL71Jn4aUAoq8mxeKVLeXabg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757663799; c=relaxed/simple;
-	bh=yff1lEb0Hj/8LtQ5aT80YHOzSw96NDSLlsPx2olpFxo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OzYpxuporL0qYJsTYmqj/nqv6V7zt2jZoNnmOmWMh4ivnd/oldjWljGEupvNhJIE3AFWqZFjQpqYvt6y7nebezTTADoGEFQso3K/qPsN9pcir7OIe6D0Giz4uWGEgmBkkqRuC1acCdBkSNhi9FWQXwwWkeiqymUrbV8MemFejUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ZI6pejUY; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45ed646b656so8680105e9.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 00:56:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1757663795; x=1758268595; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EhTtKCHI6YyAxkelI6PQJ30LTFgikUoSCN8YWHn9tsM=;
-        b=ZI6pejUY1JWlQqVoUEuXighU8vLaOgX8qcRxhVMfV/9byG/DeLdsZAg/TnuMm9o0Ud
-         7dIpVZA81jp08gix+RZ8nwwi15TrwCTi3IGaEf0zRXKWRMFynasWRvWX1PuV8T8WaXv0
-         yBjc6O22soUadvCXp3X8Kdm6Q1Uw5ylY0dcbTVasEbATRhKz74aRxZfcyBwqaNYC88GW
-         08mNsJIU+Z7MnWgrmaOcYYXM1ASPPRAp8zNmqzb8htmtbKZfU4tALg6ihH6bUEu/SVJQ
-         kxZEuWT5LiRF8iaWwmrN75LDlpRuURrwGdjzyW8F09p0YWCpyzqVCGov46KnoLD590TK
-         LEqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757663795; x=1758268595;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EhTtKCHI6YyAxkelI6PQJ30LTFgikUoSCN8YWHn9tsM=;
-        b=pfVtB57QKCxWcGsM/wEtjPfSOXA+mody9HSDDNW7kjGx4u7nglnRdpf7Z0ehHb/99D
-         RnGTPnCvjynisJYChQdVKetbLauilbO7Qpt9kJkCOjKtdaSDgm5Q9VUm/+mLl0zoopI/
-         W6OhYNjQXKSc4IMHeg9yS1u1c2Ecduz4Z54sso3ZwSRw8eYgcC30GX31at0gpRIoCS9G
-         YE8kUsWgGRArAbh7GvLIDzlJD/9fOaAcwcRpm0P6r+K+yJSmrg/P3tGK2nbKotdjgth4
-         S1wBcDGC5EErktuXMO2LhnldOyuRwpizBGq7zXpeRruoWUffjXpbPaVxUH5ihBFOyuOx
-         KbQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgSATCJ/0zugepspgWVuUbLC5JYwiDFHNfcFkmZwDGPWboSjllyzOPSbzZsthpkOLfdVH9BrculWkH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/V6BHjQaYpcoRZkvM/2Tl5sRpY/S05SUE8P2zYV8iGXg5DExY
-	pOUWVnn1JY0yBUr6Pu7OCoQzZTB9yRYeihvZ2kxPmKF5Q7YKelFKcVnRWFKdAqb7gm0=
-X-Gm-Gg: ASbGncs18PdRfB3i4Xc/0rVU6yeqXmweS8UAQuZoboKaU6us14QIlX+/J4Qs6Q4+ZRJ
-	7nPr0G/LegTKopI57k0kxjNKRaqIEWRXOqgxJBTzTqbxsh/OmmhQTivy0kQONNE/1v8IIoukVp1
-	7zEC83vGjmq9TnbGgnGbHC6nY8VbFXLd6cYIgNQXwiXNqS1+4QPEByDvR9PfGSj83lE2fabb2wR
-	MhkOg2GlQhCXpraOju/Gow1ICTmm/3c01rGPbOKT8hSB8SIivLp9vUIngPW+PfCvO2iKDeVNnAa
-	lzQvATLKd3bKRw8QD9yaVJc4s4OI5E4FwXEUOu5DTRdBQdR0k6ZgLxWrYOshOXutR9iyfBgWZ3i
-	vvkoQG98mOPiSBlAzx4IXb8YgUTg92X0=
-X-Google-Smtp-Source: AGHT+IHvNFr+9BDB3c+dmlnBPiGPWWjRi8nyodPX84HW7Y/gePqXoEb3c14Vq+L9E5uMCyyhj67MPA==
-X-Received: by 2002:a05:600c:1c0c:b0:456:f1e:205c with SMTP id 5b1f17b1804b1-45f241b4ff2mr8152005e9.4.1757663795282;
-        Fri, 12 Sep 2025 00:56:35 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.153])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607d7bb1sm5540656f8f.50.2025.09.12.00.56.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 00:56:34 -0700 (PDT)
-Message-ID: <79ac9ba2-9928-4dfc-a9a1-a0af7704efc7@tuxon.dev>
-Date: Fri, 12 Sep 2025 10:56:33 +0300
+	s=arc-20240116; t=1757664278; c=relaxed/simple;
+	bh=gKHmOFdjteVQekqifxHYJRIaWWSXQL0vXGjMWK55q9w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jfLxO7BOH2Gm6eVBwAaTSszEbVaewztPH9fUIgwn5BTGoHsTqvwQCSIzhQB3LoQtFm7Rie12cECP7n1EbNQP/+3td2CJ+UDHY52fFzsQ8Kr09O3o+D5qtExfSYrSIzfKCZVfxouyAyBxpFtZaEqXgfSv5vm4golz81C4b7OAANI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1757664229tfcf1c9f8
+X-QQ-Originating-IP: MOVI41uRyW5p5cEv7SezyJeQOa4kceDau5hySL1MHYQ=
+Received: from [192.168.30.36] ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 12 Sep 2025 16:03:45 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9888739823542151369
+EX-QQ-RecipientCnt: 12
+From: Xilin Wu <sophon@radxa.com>
+Subject: [PATCH RFC 0/2] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
+ Q6A
+Date: Fri, 12 Sep 2025 16:03:28 +0800
+Message-Id: <20250912-radxa-dragon-q6a-v1-0-8ccdbf9cd19b@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-Subject: Re: [PATCH 2/4] ARM: at91: PM: implement selection of LPM
-To: Ryan.Wanner@microchip.com, sre@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, linux@armlinux.org.uk
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1757519351.git.Ryan.Wanner@microchip.com>
- <e72d9af1326cf44888059270263afde875ccc994.1757519351.git.Ryan.Wanner@microchip.com>
-Content-Language: en-US
-In-Reply-To: <e72d9af1326cf44888059270263afde875ccc994.1757519351.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANDTw2gC/23Q30rDMBQG8FcpuTYl/9MOkYHgA3grQ05zTraga
+ 7emm5OxdzfdVBC8Cl/C9zucnFmmMVFmi+rMRjqmnIa+BHlXsbCBfk08YclMCWVFKxUfAU/AcYT
+ 10PO9A06EAQmiJudYqe1Giul0JV/Y89MjW90uR9ofCj99v2wpZ7jyi+r+pgslnWmFqMvZWC55K
+ YTXET/SkTAt55T6UIdh+zAP+keQUhitrKu1VVpYX4xjeqO+RsCyTfqE5ZBzvT/Ae1G2v9QOprC
+ 5QqADWOygQYrWuzbGznStxahapxGcAK9dbN3flgkiUoPOe/QaIMrOdo1RJLxSxmFjvGpRBjO3O
+ sjE5+lpWlQ9nSb+87dsdbl8AWIuIX2RAQAA
+X-Change-ID: 20250912-radxa-dragon-q6a-eedcdeaf3e66
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+ Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Xilin Wu <sophon@radxa.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757664226; l=3260;
+ i=sophon@radxa.com; s=20240424; h=from:subject:message-id;
+ bh=gKHmOFdjteVQekqifxHYJRIaWWSXQL0vXGjMWK55q9w=;
+ b=CvTQMWVHz7kIwgpbp6habsPrzjCjPBZUDfuKuoNsSVkv8TYXKlPNmdVEKDkxiQDqhVbT5mE1Y
+ VsGkzNUvbqIDxDfXSMZ9VCzn1x46/SoMQYrdH4B+zuZ3v07e25zeHA/
+X-Developer-Key: i=sophon@radxa.com; a=ed25519;
+ pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: ODcDgdcDagQKlwOBbCUbkvgXqPT2NjbXmXF+0hZXoTzv51XOElcsRywO
+	Anpo1Vh2AutDVTyEqLJ1Pl9yfpTz3NBZhHwWgw27oBFPczsTWVb9kCNnbvj9Z6bSAwNpz2G
+	+/WFrYjQrnvLLqqci8xOrKjvQSn0q9ea3lT6ldsQ65vUzDIKYWziOMbfc34Qu/EmvhjfkBt
+	d2Br759ChXWzRX3hqcUDxOliC8bACmTKw8ODFI7RZQFe2c0zfVoscQcQfpvr8pnF0LTgyUV
+	0tELI7Y6YOoyACVjhB+M4e+nGEF5MKgRGdcHdWlwmSd+sIwPv5qTisLpvlXoKVMadMn26WR
+	DKq9pTvpYmQsu1lWRUsc+U4XCSfnJLvidDWxANu56RsDyyEVf84fKGyOOZ3Hj/I7bVfLn2Q
+	kTt/5Dfolv8EHhdSSPdJ57qeCrE4I5mTbOowtVna408R2LY2YYM60DQQzDZxW1cuJT7H/3y
+	U4ig068s0EJQt/wmEmQuwzonGLa1NSOE7P4WVGMvviA39eOmg2OOVuHwUEGowwATFwOGrPD
+	C7HGhzDVkvJKXP8gAF/5261T2sKsi/DZrhzcFrNziDbKNPNuc+96twPiVP9hZrTs0b7yQ3s
+	jawwTswCMh8xl02sRF4awY6jNe8WRGmWIwK2p1AaCmVA551JcGl/0lyIudnlnzQlgLFHoZR
+	/7QHwqFa4jUeobqcvA72W/j/Sv+3ZJiUMEFOMUdCTDcdNbNpWrbx6KfmujywbKEudJfQuSH
+	FNmBA7jFtaooJQBb7BdLGJE7+az4Ffjd1dni00m1xCaWf34CoKxOm/INrhbUv5L62UBacHW
+	cdb7LaAKY73EoLqRm8cW8Trs+IiwyzN5CEnNnHlzzKjd1lY7aVs0pn4oRaEHeU/hmLbXG8e
+	XYQTG7n6Nmsx4mwS2C/p1Q7+Hf8jSAs3FyT5ATDrcEOdbw6wkzz2LuJmNap9nCWSDD8WwU8
+	QQfjjiuaYEJabbXgqpTjCjAdzkaT5QDOv/+twa/R7PoG2ZDCM7r9Ft3VGjr4Qna981WIIuT
+	1N+dTm4EbxewOQ1fDx
+X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
+X-QQ-RECHKSPAM: 0
 
-Hi, Ryan,
+Radxa Dragon Q6A (https://docs.radxa.com/en/dragon/q6a) is a single board
+computer, based on the Qualcomm QCS6490 platform.
 
-On 9/10/25 19:20, Ryan.Wanner@microchip.com wrote:
-> From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+The board ships with a modified version of the Qualcomm Linux boot
+firmware, which is stored on the onboard SPI NOR flash. This allows
+booting standard EFI-based bootloaders from SD/eMMC/USB/UFS/NVMe. It
+supports replaceable UFS 3.1/eMMC modules for easy user upgrades.
 
-Actually, this was developed while I was with Microchip. I think this still
-belongs to Microchip, so I would use the old email address.
+The board schematic is available at [1].
 
-> 
-> The LPM shutdown controller output could signal the transition to PM
-> state for different devices connected on board. On different boards
-> LPM could be connected to different devices (e.g. on SAMA7G5-EK REV4
-> the LPM is connected to on main crystal oscillator, KSZ8081 PHY and
-> to MCP16502 PMIC). Toggling LPM on BSR PM mode is done unconditionally
-> and it helps PMIC to transition to a power saving mode. Toggling LPM
-> on ULP0 and ULP1 should be done conditionally based on user defined
-> wakeup sources, available wakeup source for PM mode and connections to
-> SHDWC's LPM pin. On ULP0 any device could act as wakeup sources. On ULP1
-> only some of the on SoC controllers could act as wakeup sources. For this
-> the architecture specific PM code parses board specific LPM devices,
-> check them against possible wakeup source (in case of ULP1) and tells
-> assembly code to act properly on SHDWC's LPM pin.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> [ryan.wanner@microchip.com: Fixed conflicts when applying.]
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
->   arch/arm/mach-at91/pm.c              | 98 +++++++++++++++++++++++++++-
->   arch/arm/mach-at91/pm.h              |  1 +
->   arch/arm/mach-at91/pm_data-offsets.c |  1 +
->   arch/arm/mach-at91/pm_suspend.S      | 50 ++++++++++++--
->   4 files changed, 141 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm/mach-at91/pm.c b/arch/arm/mach-at91/pm.c
-> index 35058b99069c..29348d6c852b 100644
-> --- a/arch/arm/mach-at91/pm.c
-> +++ b/arch/arm/mach-at91/pm.c
-> @@ -116,6 +116,7 @@ struct at91_pm_quirks {
->    * @config_shdwc_ws: wakeup sources configuration function for SHDWC
->    * @config_pmc_ws: wakeup srouces configuration function for PMC
->    * @ws_ids: wakup sources of_device_id array
-> + * @shdwc_np: pointer to shdwc node
->    * @bu: backup unit mapped data (for backup mode)
->    * @quirks: PM quirks
->    * @data: PM data to be used on last phase of suspend
-> @@ -126,6 +127,7 @@ struct at91_soc_pm {
->   	int (*config_shdwc_ws)(void __iomem *shdwc, u32 *mode, u32 *polarity);
->   	int (*config_pmc_ws)(void __iomem *pmc, u32 mode, u32 polarity);
->   	const struct of_device_id *ws_ids;
-> +	struct device_node *shdwc_np;
->   	struct at91_pm_bu *bu;
->   	struct at91_pm_quirks quirks;
->   	struct at91_pm_data data;
-> @@ -243,6 +245,84 @@ static const struct of_device_id sam9x7_ws_ids[] = {
->   	{ /* sentinel */ }
->   };
->   
-> +static int at91_pm_device_in_list(const struct platform_device *pdev,
-> +				  const struct of_device_id *ids)
+Features enabled and working:
 
-I think would be better to make it return bool
+- USB-A 3.0 port (depends on [2])
+- Three USB-A 2.0 ports
+- RTL8111K Ethernet connected to PCIe0
+- UFS 3.1 module (depends on [3])
+- eMMC module
+- SD card
+- M.2 M-Key 2230 PCIe 3.0 x2
+- HDMI 2.0 port including audio (depends on [2])
+- Configurable I2C/SPI/UART from 40-Pin GPIO (depends on [4])
+- Headphone jack
+- Onboard thermal sensors
+- QSPI controller for updating boot firmware
+- ADSP remoteproc (Type-C and charging features disabled in firmware)
+- CDSP remoteproc (for AI applications using QNN)
+- Venus video encode and decode accelerator
 
-> +{
-> +	struct platform_device *local_pdev;
-> +	const struct of_device_id *match;
-> +	struct device_node *np;
-> +	int in_list = 0;
-> +
-> +	for_each_matching_node_and_match(np, ids, &match) {
-> +		local_pdev = of_find_device_by_node(np);
-> +		if (!local_pdev)
-> +			continue;
-> +
-> +		if (pdev == local_pdev)
-> +			in_list = 1;
-> +
-> +		put_device(&local_pdev->dev);
-> +		if (in_list)
-> +			return in_list;
-> +	}
+Features available with additional DT overlays:
+- CSI cameras
+- DSI display
 
-And simplify this a bit as:
+ALSA UCM and Audioreach topology patches are available at [5] and [6].
 
-static bool at91_pm_device_in_list(const struct platform_device *pdev,
-				  const struct of_device_id *ids)
-{
-	struct platform_device *local_pdev;
-	const struct of_device_id *match;
-	struct device_node *np;
+This series is posted as an RFC because it depends on several other patch series.
 
-	for_each_matching_node_and_match(np, ids, &match) {
-		local_pdev = of_find_device_by_node(np);
-		if (!local_pdev)
-			continue;
+[1]: https://docs.radxa.com/en/dragon/q6a/download
+[2]: https://lore.kernel.org/all/20250908-topic-x1e80100-hdmi-v3-4-c53b0f2bc2fb@linaro.org/
+[3]: https://lore.kernel.org/all/20250902164900.21685-1-quic_rdwivedi@quicinc.com/
+[4]: https://lore.kernel.org/all/20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com/
+[5]: https://github.com/alsa-project/alsa-ucm-conf/pull/601
+[6]: https://github.com/linux-msm/audioreach-topology/pull/24
 
-		put_device(&local_pdev->dev);
-		if (pdev == local_pdev)
-			return true;
-	}
+Signed-off-by: Xilin Wu <sophon@radxa.com>
+---
+Xilin Wu (2):
+      dt-bindings: arm: qcom: Add Radxa Dragon Q6A
+      arm64: dts: qcom: qcs6490: Introduce Radxa Dragon Q6A
 
-	return false;
-}
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1208 ++++++++++++++++++++
+ 3 files changed, 1210 insertions(+)
+---
+base-commit: 51095600e8c19d53729a7fbd273abc4435a25e9b
+change-id: 20250912-radxa-dragon-q6a-eedcdeaf3e66
+prerequisite-message-id: <20250902164900.21685-1-quic_rdwivedi@quicinc.com>
+prerequisite-patch-id: 257564b609217fda19c9f3424fcd9f6e2ce3ef3c
+prerequisite-patch-id: a8f21781f3bff140260100b74041752000c06000
+prerequisite-patch-id: b46127e2433ede17cc5e1a012f58041c6ef97b13
+prerequisite-patch-id: e8978c5a30373c3ff312b2c8720f586c389f18f8
+prerequisite-message-id: <20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com>
+prerequisite-patch-id: c7a057030b78afbbb231280de3765294c006c6f8
+prerequisite-patch-id: 56011305aa35e4c64fc7d63950764807cb81cc4d
+prerequisite-patch-id: c3d3b313ac6abe4ec10fd820b6a9bbc63fdbdb82
+prerequisite-patch-id: 63ee94d0ccd40f60a98b0004d627ad2e7b440d25
+prerequisite-patch-id: 392e8f1902571e5035d5af72e40dc474b5f1b274
+prerequisite-patch-id: e38fba722bdabc02ba09d2dc51df7010dbe28168
+prerequisite-patch-id: a3ca5dba8def5769ffb4b95df2963da60a736f96
+prerequisite-patch-id: 4c0fe8d677d73aaf1b5b842e072246d84729d1c4
 
-
-> +
-> +	return in_list;
-> +}
-> +
-> +static int at91_pm_prepare_lpm(unsigned int pm_mode)
-> +{
-> +	struct platform_device *pdev;
-> +	int ndevices, i, ret;
-> +	struct of_phandle_args lpmspec;
-> +
-> +	if ((pm_mode != AT91_PM_ULP0 && pm_mode != AT91_PM_ULP1) ||
-> +	    !soc_pm.shdwc_np)
-> +		return 0;
-> +
-> +	ndevices = of_count_phandle_with_args(soc_pm.shdwc_np,
-> +					      "microchip,lpm-connection", 0);
-> +	if (ndevices < 0)
-> +		return 0;
-> +
-> +	soc_pm.data.lpm = 1;
-> +	for (i = 0; i < ndevices; i++) {
-> +		ret = of_parse_phandle_with_args(soc_pm.shdwc_np,
-> +						 "microchip,lpm-connection",
-> +						 NULL, i, &lpmspec);
-> +		if (ret < 0) {
-> +			if (ret == -ENOENT) {
-> +				continue;
-> +			} else {
-> +				soc_pm.data.lpm = 0;
-> +				return ret;
-> +			}
-> +		}
-> +
-> +		pdev = of_find_device_by_node(lpmspec.np);
-
-From the documentation of of_parse_phandle_with_args() this code would have
-to call of_node_put(lpmspec.np);
-
-Here would be the place to do it.
-
-> +		if (!pdev)
-> +			continue;
-> +
-> +		if (device_may_wakeup(&pdev->dev)) {
-> +			if (pm_mode == AT91_PM_ULP1) {
-> +				/*
-> +				 * ULP1 wake-up sources are limited. Ignore it if not
-> +				 * in soc_pm.ws_ids.
-> +				 */
-> +				if (at91_pm_device_in_list(pdev, soc_pm.ws_ids))
-> +					soc_pm.data.lpm = 0;
-> +			} else {
-> +				soc_pm.data.lpm = 0;
-> +			}
-> +		}
-> +
-> +		put_device(&pdev->dev);
-> +		if (!soc_pm.data.lpm)
-> +			break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static int at91_pm_config_ws(unsigned int pm_mode, bool set)
->   {
->   	const struct wakeup_source_info *wsi;
-> @@ -481,10 +561,17 @@ static int at91_pm_begin(suspend_state_t state)
->   		soc_pm.data.mode = -1;
->   	}
->   
-> -	ret = at91_pm_config_ws(soc_pm.data.mode, true);
-> +	ret = at91_pm_prepare_lpm(soc_pm.data.mode);
->   	if (ret)
->   		return ret;
->   
-> +	ret = at91_pm_config_ws(soc_pm.data.mode, true);
-> +	if (ret) {
-> +		/* Revert LPM if any. */
-> +		soc_pm.data.lpm = 0;
-> +		return ret;
-> +	}
-> +
->   	if (soc_pm.data.mode == AT91_PM_BACKUP)
->   		soc_pm.bu->suspended = 1;
->   	else if (soc_pm.bu)
-> @@ -1266,7 +1353,11 @@ static void __init at91_pm_modes_init(const u32 *maps, int len)
->   			AT91_PM_REPLACE_MODES(maps, SHDWC);
->   		} else {
->   			soc_pm.data.shdwc = of_iomap(np, 0);
-> -			of_node_put(np);
-> +			/*
-> +			 * np is used further on suspend/resume path so we skip the
-> +			 * of_node_put(np) here.
-> +			 */
-> +			soc_pm.shdwc_np = np;
->   		}
->   	}
->   
-> @@ -1669,7 +1760,8 @@ void __init sama7_pm_init(void)
->   		AT91_PM_STANDBY, AT91_PM_ULP0, AT91_PM_ULP1, AT91_PM_BACKUP,
->   	};
->   	static const u32 iomaps[] __initconst = {
-> -		[AT91_PM_ULP0]		= AT91_PM_IOMAP(SFRBU),
-> +		[AT91_PM_ULP0]		= AT91_PM_IOMAP(SFRBU) |
-> +					  AT91_PM_IOMAP(SHDWC),
->   		[AT91_PM_ULP1]		= AT91_PM_IOMAP(SFRBU) |
->   					  AT91_PM_IOMAP(SHDWC) |
->   					  AT91_PM_IOMAP(ETHC),
-> diff --git a/arch/arm/mach-at91/pm.h b/arch/arm/mach-at91/pm.h
-> index 50c3a425d140..5707ff6ff444 100644
-> --- a/arch/arm/mach-at91/pm.h
-> +++ b/arch/arm/mach-at91/pm.h
-> @@ -40,6 +40,7 @@ struct at91_pm_data {
->   	unsigned int pmc_mckr_offset;
->   	unsigned int pmc_version;
->   	unsigned int pmc_mcks;
-> +	unsigned int lpm;
->   };
->   #endif
->   
-> diff --git a/arch/arm/mach-at91/pm_data-offsets.c b/arch/arm/mach-at91/pm_data-offsets.c
-> index 0ca5da66dc26..fb9651abdfdf 100644
-> --- a/arch/arm/mach-at91/pm_data-offsets.c
-> +++ b/arch/arm/mach-at91/pm_data-offsets.c
-> @@ -20,6 +20,7 @@ int main(void)
->   						 pmc_version));
->   	DEFINE(PM_DATA_PMC_MCKS,	offsetof(struct at91_pm_data,
->   						 pmc_mcks));
-> +	DEFINE(PM_DATA_LPM,		offsetof(struct at91_pm_data, lpm));
->   
->   	return 0;
->   }
-> diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
-> index aad53ec9e957..198236bdbbb3 100644
-> --- a/arch/arm/mach-at91/pm_suspend.S
-> +++ b/arch/arm/mach-at91/pm_suspend.S
-> @@ -110,9 +110,30 @@ lp_done_\ena:
->   #endif
->   	.endm
->   
-> -	.macro at91_backup_set_lpm reg
-> +/*
-> + * Set LPM
-> + * @ena: 0 - disable LPM
-> + *	 1 - enable LPM
-> + *
-> + * Side effects: overwrites r7, r8, r9
-> + */
-> +	.macro at91_set_lpm ena
->   #ifdef CONFIG_SOC_SAMA7
-> -	orr	\reg, \reg, #0x200000
-> +	ldr	r7, .lpm
-> +	cmp	r7, #1
-> +	bne	21f
-> +	ldr	r7, .shdwc
-> +	cmp	r7, #0
-> +	beq	21f
-> +	mov	r8, #0xA5000000
-> +	add	r8, #0x200000
-> +	mov	r9, #\ena
-> +	cmp	r9, #1
-> +	beq	20f
-> +	add	r8, #0x200000
-> +20:
-> +	str	r8, [r7]
-> +21:
->   #endif
->   	.endm
->   
-> @@ -502,7 +523,7 @@ sr_dis_exit:
->   	ldr	tmp1, [pmc, #AT91_PMC_SR]
->   	str	tmp1, .saved_osc_status
->   	tst	tmp1, #AT91_PMC_MOSCRCS
-> -	bne	1f
-> +	bne	7f
->   
->   	/* Turn off RC oscillator */
->   	ldr	tmp1, [pmc, #AT91_CKGR_MOR]
-> @@ -516,6 +537,9 @@ sr_dis_exit:
->   	tst	tmp1, #AT91_PMC_MOSCRCS
->   	bne	2b
->   
-> +	/* Enable LPM. */
-> +7:	at91_set_lpm 1
-> +
->   	/* Wait for interrupt */
->   1:	at91_cpu_idle
->   
-> @@ -533,8 +557,10 @@ sr_dis_exit:
->   	wait_mckrdy tmp3
->   	b	6f
->   
-> -5:	/* Restore RC oscillator state */
-> -	ldr	tmp1, .saved_osc_status
-> +5:	at91_set_lpm 0
-> +
-> +	/* Restore RC oscillator state */
-> +8:	ldr	tmp1, .saved_osc_status
-
-"8:" in front of the line could be dropped
-
-Thank you,
-Claudiu
-
->   	tst	tmp1, #AT91_PMC_MOSCRCS
->   	beq	4f
->   
-> @@ -611,6 +637,9 @@ sr_dis_exit:
->   
->   	wait_mckrdy tmp3
->   
-> +	/* Enable LPM */
-> +	at91_set_lpm 1
-> +
->   	/* Enter the ULP1 mode by set WAITMODE bit in CKGR_MOR */
->   	ldr	tmp1, [pmc, #AT91_CKGR_MOR]
->   	orr	tmp1, tmp1, #AT91_PMC_WAITMODE
-> @@ -624,6 +653,9 @@ sr_dis_exit:
->   
->   	wait_mckrdy tmp3
->   
-> +	/* Disable LPM. */
-> +	at91_set_lpm 0
-> +
->   	/* Enable the crystal oscillator */
->   	ldr	tmp1, [pmc, #AT91_CKGR_MOR]
->   	orr	tmp1, tmp1, #AT91_PMC_MOSCEN
-> @@ -1083,7 +1115,9 @@ ulp_exit:
->   	ldr	r0, .shdwc
->   	mov	tmp1, #0xA5000000
->   	add	tmp1, tmp1, #0x1
-> -	at91_backup_set_lpm tmp1
-> +#ifdef CONFIG_SOC_SAMA7
-> +	orr	tmp1, tmp1, #0x200000
-> +#endif
->   	str	tmp1, [r0, #0]
->   .endm
->   
-> @@ -1117,6 +1151,8 @@ ENTRY(at91_pm_suspend_in_sram)
->   #ifdef CONFIG_SOC_SAMA7
->   	ldr	tmp1, [r0, #PM_DATA_PMC_MCKS]
->   	str	tmp1, .mcks
-> +	ldr	tmp1, [r0, #PM_DATA_LPM]
-> +	str	tmp1, .lpm
->   #endif
->   
->   	/*
-> @@ -1208,6 +1244,8 @@ ENDPROC(at91_pm_suspend_in_sram)
->   #ifdef CONFIG_SOC_SAMA7
->   .mcks:
->   	.word 0
-> +.lpm:
-> +	.word 0
->   #endif
->   .saved_mckr:
->   	.word 0
+Best regards,
+-- 
+Xilin Wu <sophon@radxa.com>
 
 
