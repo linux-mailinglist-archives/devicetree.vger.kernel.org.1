@@ -1,99 +1,133 @@
-Return-Path: <devicetree+bounces-216275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A371B543AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:19:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EF0B543C2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:23:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F6ED1C27BEA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:19:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A898716826B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68771299A8E;
-	Fri, 12 Sep 2025 07:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366AB2BFC60;
+	Fri, 12 Sep 2025 07:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tCVtXr58"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHzPOqEc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EDF28EA56
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076D02BEFE5;
+	Fri, 12 Sep 2025 07:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757661559; cv=none; b=OGCEQCU/K7RAsaZ8VtLqZPS1X0UgUVewJo7JLVltAKJ0iRV6TTyI46+5RdYIwFndl9ONpCOdYzIwR/Hwx9Zj7Pg+hKc4tMC5Htb1kId8wsQHdLmD87n7WFZDkVQx+nRSOC/2bixIM4v1FUAYMKYPF97hg58qB2fHRyTh4hlMk50=
+	t=1757661832; cv=none; b=gI+SeLsTxPq8f7NLCWoCkRMnwef5ihjJdT0pLrzabrvaNgNYHJKVxx3WPeNXi671zK2/u9CvneWcYCVyG/IHZx4Zl+FOgtJjPFpJwVzl9hJcoqHeVm2yGbo8TUvrilgUOw0NDU42BONroFFphmjbZpZfXwI+eGPM9/5srm5muG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757661559; c=relaxed/simple;
-	bh=JsOHwiJSPmaS75FxBuAeLwxiYVXTXheNezu0ilagf3s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I/C+w68/a0zfaiOIkXjIw4zCkWb6XFl5UMWHksxC+oh59rMsll/PqHgXTW8CiQIBCoviZwoPz/PpxKyy0+aUlr+d/YXTVC4AAm5sNEeNEEJqVJqWEKwpqKRXQDRrXRcrbLiqtZzc2zHHNqnTn34Rj9KaWBLPVzDujXELp9ulSmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tCVtXr58; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D4DC4CEF4;
-	Fri, 12 Sep 2025 07:19:16 +0000 (UTC)
+	s=arc-20240116; t=1757661832; c=relaxed/simple;
+	bh=lgswvGmaOM92orFcIk7ELFqc1CnpJ5duXFyCDPrJDro=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s3vetVyWBXKm4/IyeHwAzc3/ZIl+6k/lL+hHVbDPJKjTEDZpHl971xVXyFeLY80KvnpbEFRuR6lBhENBbgN2AdqVHHxjpfqmG5Mzqj3lJcTKBRSLdcv+WLu3EVTP1P7UtI/03J6elrQR2vghhtwTpnWaIoLUs+i5Jm+baWuhRDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHzPOqEc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DE16C4CEF4;
+	Fri, 12 Sep 2025 07:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757661556;
-	bh=JsOHwiJSPmaS75FxBuAeLwxiYVXTXheNezu0ilagf3s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tCVtXr583ui36A36/kU7OfncGeHpwI4L4hXHThlX2W+QZdTSrWr/ncaRppQxyrYI6
-	 vttgEQGobi2x0E1T+BekWRDMFYPLB33gXlOHa8dX6dMcstW8G6DV2wMiGGoOoMVlAv
-	 Forzk6SWTGhi8jaOnwYxLf+8N36f1sBjfJMthtCmJiP2yFiPrk2/xMksmrCDZwMI7s
-	 9MsaUbsNEgPhs2aB3KVvWB9V8SFIa97hgjaXasVXnDQu0YMizkb8XcfzwPxrScHoGH
-	 Mbs4Vx/AVYhJhvTtCU5wIPbPn7BF+xnNFw5qpTuXSZkEmhOkplUWHM1kG4THVj3DG1
-	 HzgwM1wtvozZw==
-Date: Fri, 12 Sep 2025 09:19:14 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?VG9tw6HFoQ==?= Macholda <tomas.macholda@nic.cz>
-Cc: gregory.clement@bootlin.com, devicetree@vger.kernel.org, 
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, robh@kernel.org, 
-	kabel@kernel.org, michal.hrusecky@nic.cz
-Subject: Re: [PATCH v3 1/2] dt-bindings: marvell: armada-37xx: add
- ripe,atlas-v5 compatible
-Message-ID: <20250912-convivial-kingfisher-of-serenity-8d4c46@kuoka>
-References: <20250911161308.52876-1-tomas.macholda@nic.cz>
- <20250911161308.52876-2-tomas.macholda@nic.cz>
+	s=k20201202; t=1757661829;
+	bh=lgswvGmaOM92orFcIk7ELFqc1CnpJ5duXFyCDPrJDro=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EHzPOqEcibhYmiN/YOzZJ5d6Vb4pEU/u1WpYCJGcx650Vrm/fSYfow6g2WPK9n2pK
+	 8f/IjkWDpt81Ts3sG7kK6kt6pQWNzJxyH58+j49WibGOQZJuzNSv/y+QzrjC5MN9vD
+	 8zT2FlX/wzqtuVX/v499iWFRr7zmVvPrKk6Fk8QwXvMWhvUEuniZgmRbecVs5oDY6E
+	 v6D25+SOBDnefPIEevDc7fpyyvZmnm9RRdia1v0RxUGiJBywGh25uZzotSkoujMCfx
+	 SIgHImpCbXMq66SLkuhQnOrb+lgAlgWYi1Ya9N97vG3/Vgw8Ore8R8Vj9EfHkIdiIA
+	 8rbrWuQxdxqQQ==
+Message-ID: <1beb1e15-cafd-408a-96bf-7f749b3499fd@kernel.org>
+Date: Fri, 12 Sep 2025 09:23:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250911161308.52876-2-tomas.macholda@nic.cz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: x1e80100: Add IRIS video codec
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20250911-x1e-iris-dt-v1-0-63caf0fd202c@linaro.org>
+ <20250911-x1e-iris-dt-v1-1-63caf0fd202c@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20250911-x1e-iris-dt-v1-1-63caf0fd202c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 11, 2025 at 06:13:07PM +0200, Tom=C3=A1=C5=A1 Macholda wrote:
-> Document compatible for RIPE Atlas Probe v5.
->=20
-> Signed-off-by: Tom=C3=A1=C5=A1 Macholda <tomas.macholda@nic.cz>
+On 11/09/2025 20:38, Stephan Gerhold wrote:
+> Add the IRIS video codec to accelerate video decoding/encoding. Copied
+> mostly from sm8550.dtsi, only the opp-table is slightly different for X1E.
+> For opp-240000000, we need to vote for a higher OPP on one of the power
+> domains, because the voltage requirements for the PLL and the derived
+> clocks differ (sm8550.dtsi has the same).
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/marvell/armada-37xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 87 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Feels like duplicating this:
 
-<form letter>
-This is an automated instruction, just in case, because many review
-tags are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
-However, there's no need to repost patches *only* to add the tags. The
-upstream maintainer will do that for tags received on the version they
-apply.
-
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitt=
-ing-patches.rst#L591
-</form letter>
+https://lore.kernel.org/all/20250910-hamoa_initial-v11-2-38ed7f2015f7@oss.qualcomm.com/
 
 Best regards,
 Krzysztof
-
 
