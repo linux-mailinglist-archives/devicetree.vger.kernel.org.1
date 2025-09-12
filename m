@@ -1,304 +1,198 @@
-Return-Path: <devicetree+bounces-216455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D933B54D56
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:23:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B57B54D58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:23:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DE6E1887BCE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:18:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E8C41D62B19
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B4C3054E3;
-	Fri, 12 Sep 2025 12:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AF630AACE;
+	Fri, 12 Sep 2025 12:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j9lcvkfw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N4qudoHJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5259D309DDF
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA88D30AD0D
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757678959; cv=none; b=rzsdbwXIwAzxNQ3Xudzjd/FIHMuuclgZutMQB5PQrzkZZrF333/KdFh+kXTcI6XqbRz++rXZ1iZdXU3EOnZ64iF8k2GHC2MHDZqO7Do6EEJSYFw47rYcnXkmWbSJfIP4Ljwrlx/+C5cCCUd8xXNgH3uYt/hWjJGPoDx76w5YHYU=
+	t=1757678964; cv=none; b=dKuZzvk20FRtbw0QfcJUAEAyLzpjBf1Ems/F7NmCr6HNyH86z7VcksldCjBYXyquqK3ANExk0on8EY/qFSmV6KQ4vorCxBu4wQgNc1PHWcRK14Hdf6uSlfdBR/w+fEC/yMwzcbMISP+k9lUl2E5cTTFHnid8iJu7mrtn8ZjG63Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757678959; c=relaxed/simple;
-	bh=BRA/+TiAa+jylYRMu0d0pEm4hwFsAV/e70+/iYUAFh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bM93uJGPdGdKSDacXul/Z7Kq4Nc9q2LYquea5I8TEfY7JMO2NJB+aaAyRRjl4DyDVmoNoN/aRYBqYkG3JDxi4fExQENEqx2WFIQHK4WIaAWqIGxCtgmWFsaoZ2rjfsBsxBJ4E15Eav/S88HIoas0UlqPfSOZM/kS4KxK//0Ihmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j9lcvkfw; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45deccb2c1eso13920595e9.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:09:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757678955; x=1758283755; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=luNlPT2x65V+KjVmCaFP6TTppyN73fwYQbrYbkkLiGU=;
-        b=j9lcvkfwnA3xW6xinlXY/hZbbVEEr2aTDossedSV22KKbr+sNqVbgZ9x3FlBdUSg1j
-         mtZy0GwA0Zz3wEMhPyUBN4i41oUqqC/zVrxWg1vAoZ0oOMS5V+3F+zY1fvBfBybF24lL
-         kURxQ4wmfhljf9NPsy59EBqD6ipchNIVKSnjD8I31u98il2iHio43sFiBYvLvEfP8DG+
-         hz8k7ZsXpXtLIRgb1S96PAS8HqmanhrLshsOQa3vgeZmFvNgRJaZ9fcMZr6JCHWpZwO9
-         9aJi7K/biT1DCznTl7pVaVEr/CetzBgbKXhfkZgVgOpLC5z09R0rSKwjorn/AQSEzfgS
-         k4rw==
+	s=arc-20240116; t=1757678964; c=relaxed/simple;
+	bh=fts+Hs5q4CqZXfPujRbJyGAxy42t96v29pQ9JjRsBII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d98qeq7bm252JJZkOQqAPbezGfK9dX/PZQk+ATgDcByAJq94hOXdKPjJPJMoqccTB4CzLYg4cwcDVXHt6MIVaprE9lCfKjvgLrIIA0E7z2N5HWqr7JrYZt1tBg22nrZGe8OYsd6zWLexGDmX+WdO9x0ikj7dRRqZWn22nNoc0gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N4qudoHJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C9fD7j017428
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:09:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=AWecxXQ1HoSKQokJLzYb6tbb
+	rzkT4uWaDcoy5VKKVeg=; b=N4qudoHJb3LgJAVQziaNCtZl0F7NfM5kABN0udgc
+	AwnPkhRGctPPhNtrEqLj1TzlUOG7nqOcWGSmqBVNjTg6DCl2lMUA2s0tfzfC0MZc
+	Fxi2T88hQ9TmuN2Ii1EiknR4CbDaDKab5CbHdp4w/UTqpA+DLbERlyEL6wN4Q68/
+	9mBcuHp2OYC0JTRzDzirqGh0PLA2h1x8mt2KCFlWij0Wi3AQPDBYO0lKID6iXfw+
+	BCDg27FiO+Fc+Uej1F+ZvbLM7+d8T92gEbNwOmwMQZ7uN2y8hE1PqR4BgFYIG/jP
+	qf9YitCAwwqbtQ4uQqbX3SL1vs7PQMsE2V1rqc6ePsawUg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db8un7n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:09:21 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5e9b60ce6so50618551cf.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:09:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757678955; x=1758283755;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1757678961; x=1758283761;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=luNlPT2x65V+KjVmCaFP6TTppyN73fwYQbrYbkkLiGU=;
-        b=plFKNYc3okRJ7DZ1ZS/K07nVTt8eKCfW90VWpxE8xjVbXq72L4NrdHurXQukt7Hvgr
-         qcTqjZDvL6n5ZdjqL6zGznuxdFeJunafvHY6qR4gQ8rcpKwmARcr3EIcrG4aOtJxa7Cy
-         J11YCBkQpK/PkMz9pA9jy/9q482EdSVWf47jZCm5KZbZYiiiBrscfFgoFcyrV9GV6IFn
-         yTYuywJsuYVOsNnmLE96awZF+4pxPCuPZ2GSDcWHBP9KEvtLyqyu2RKpcU36ek1+PfJj
-         iEEwMhE3v+IAaEbiRdkyHsUtbKQ64njkdFZ9CCbdFpXGsf6dv/hXKi001DjOJSwTO0EK
-         c0MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXRFyLFT0Mi+qB95awVh642gf1rCh3Fc8MYLCAGVQ8O+RlMy0krwYmY7YGuzcBBAXHWXIUoGulsTk/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj2hWnRDRLEJfCmzwCMzUz5JQo/1l8PLgb7t90RWwXFGDOXCR5
-	WG+fsxjIUioBxma/35Jgh3AZiCCL7LVzlv33vy4FZ2VYv1I6mw24KF1v
-X-Gm-Gg: ASbGncuRbYKEoAZtoEqM675CjCgO/HL6xiZt80kltXKaBljyNdSTuFnUYh/sVKd2yVx
-	NkurqB0/aKXXCY4RQPXV1AcDNjHJje+5bG/cuNwyjfpGdDmbMjJrTZv+dGj3+0wEEkVQbcv4+By
-	ISldGvy2UwGDW9pMu4jfOFHlCT7VTC3ArvokFf/T1E/XaPy60JCl4n9OysE3CrBymyCUuEYxVNW
-	x3XEdv4h0gBhtgFWQLWx4oK5kmpJzl4jnG7i7+lsQcSVnHA9opD2kUn0c7zCjxY9VTf05oJxcBM
-	46TQOnyMVF5xMVS8fWXHT7FiAjA/DmBRm7Oayb4v1y64uIcyq73nroFS06zL6yKPNh5w7UtbcaE
-	87kJf9xuSgoTN1MjQvf6Awnad+Xqma68=
-X-Google-Smtp-Source: AGHT+IEPx8/fQkGIVkJR+qz2UY7c6jEyUpO4Z9A3UsVNdqLYapE/RWg0OlQAjc/yFqkAVGNWgJ1CZQ==
-X-Received: by 2002:a05:600c:1c9d:b0:45b:6275:42cc with SMTP id 5b1f17b1804b1-45f211ffafbmr24614525e9.28.1757678955113;
-        Fri, 12 Sep 2025 05:09:15 -0700 (PDT)
-Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e017c1455sm62768935e9.24.2025.09.12.05.09.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 05:09:14 -0700 (PDT)
-Message-ID: <04e75c1a-7040-403a-84be-82ff2d9f2544@gmail.com>
-Date: Fri, 12 Sep 2025 14:09:10 +0200
+        bh=AWecxXQ1HoSKQokJLzYb6tbbrzkT4uWaDcoy5VKKVeg=;
+        b=cYL4/KpTOcXAvrj+yL8cQNfzYPQHV0p7TrV7lnBh4LaUH9TZMH5NZ1fLg6zWHrxg2t
+         QQAUCEHWno3rjnVMGWsolIVuBdZUtinF3Qc2a3MLHZYReyDbQdnA+sDesu1848u3lFh6
+         KjyW5nLS+wgqobcvBtHYY/mMtIofBQcXZNZHR1okIJg5To2t3naUdlpOL9n4ciPHjX9u
+         DLO2CJWkDzHXnkArHE6PW4w70WgJEM/eXroQ89qt9H+rEvvXRToqstousuBvxncHgoHG
+         g3Sd6Woh85tvSAtGuMeuClYyGfJD7XptAM2bsR0rLq80oQnacrXfZmRmcI6PDg/vo7e2
+         i3Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKfJ7cx4Jn9nfHOcAPiQDwFeW+kCPh6oWtZSn0Yj3wFRq/ErB9MbK+0hIvYXhfCjiypTJmCrrMb8Q7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQcvmE8eRxRynewNBC8H+/lMTme9sIxzhZtduZqidSzPRdgNI0
+	JxMtDCtNTfzr6kb36DSJWfEdggfw6EMKjfJ9hDITZPZxPHi4NslTe5gUFreCrn03o8h+M/AavL/
+	EpGaS7K4tTnRMEf2s9TGkgkg+e2HhhS/Ol0aSBQ9pdIMpRB1ctWAX9uagtMnFstms
+X-Gm-Gg: ASbGnctqPK00nBcaFx43RCzQfxcpF/5Q1TbIIt6mDb0j+5IxnKqhrFmAGSWLZaKrp+J
+	DMzLAbxzVeM15wgLbqBQnfzo565PR35zQFnY9Fun/gbhD9QEOgl4fTKh+aY9b4w1zJLRP89nl5+
+	MyILGNuguIzN7vFeNI9OUAnWZWfl6F06fN0lLMgB/Ud+CawtCAaKx/bxQa/QCwOLA+znXqnBUdQ
+	gUJk+TyuN0gW/7qb4Co7y2rxEaOVaSYWOwm6dizPDMAZ6WwM7Frtj5mb83/d5r1xrKUXXgYVx8D
+	3bGZhm4rqCv+C/5abXR0imeE9v5d5QNlNVFM1IqSBAwp4RsAuga2cgBgovp9PuExPX+6OglHEeu
+	Ca9fuNRIiXEesOY+fyHezimz2PiTW8A6OpvyDif462T7eyk1Wy2gv
+X-Received: by 2002:a05:622a:2b45:b0:4b3:12f7:8baa with SMTP id d75a77b69052e-4b77d044455mr32331441cf.51.1757678960510;
+        Fri, 12 Sep 2025 05:09:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHBlHDLz23zA5O+/vEKCN91ortJnwiUYeDorqJurL/VJ4hd/jMETJMt2eSQJiBv4Cvs1e54jQ==
+X-Received: by 2002:a05:622a:2b45:b0:4b3:12f7:8baa with SMTP id d75a77b69052e-4b77d044455mr32330571cf.51.1757678959880;
+        Fri, 12 Sep 2025 05:09:19 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-35062c8da78sm5874761fa.0.2025.09.12.05.09.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Sep 2025 05:09:19 -0700 (PDT)
+Date: Fri, 12 Sep 2025 15:09:17 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
+        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v4 11/13] phy: qcom: qmp-usbc: Add USB/DP mutex handling
+Message-ID: <q4dplt6fq3cneludcuhxevklaj6omeio3cjxw2owt4h3wistd6@arv23ri4cl75>
+References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
+ <20250911-add-displayport-support-for-qcs615-platform-v4-11-2702bdda14ed@oss.qualcomm.com>
+ <nfugwwknnlxls75yo5rex6ggu5nzpq6enyx6e6nfnfei3icxjg@t7dnzcfcjw4o>
+ <cf6c2c2f-9878-4181-a3c8-9692423308bd@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/38] ASoC: dt-bindings: mt8192-afe-pcm: Fix clocks and
- clock-names
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org, robh@kernel.org
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
- conor+dt@kernel.org, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, jassisinghbrar@gmail.com,
- mchehab@kernel.org, chunfeng.yun@mediatek.com, vkoul@kernel.org,
- kishon@kernel.org, sean.wang@kernel.org, linus.walleij@linaro.org,
- lgirdwood@gmail.com, broonie@kernel.org, andersson@kernel.org,
- mathieu.poirier@linaro.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
- atenart@kernel.org, jitao.shi@mediatek.com, ck.hu@mediatek.com,
- houlong.wei@mediatek.com, kyrie.wu@mediatek.corp-partner.google.com,
- andy.teng@mediatek.com, tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com,
- shane.chien@mediatek.com, olivia.wen@mediatek.com, granquet@baylibre.com,
- eugen.hristev@linaro.org, arnd@arndb.de, sam.shih@mediatek.com,
- jieyy.yang@mediatek.com, frank-w@public-files.de, mwalle@kernel.org,
- fparent@baylibre.com, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-sound@vger.kernel.org
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-5-angelogioacchino.delregno@collabora.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; keydata=
- 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
-In-Reply-To: <20250724083914.61351-5-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cf6c2c2f-9878-4181-a3c8-9692423308bd@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfX57p16VvB7YoB
+ 9iWOc8hH/NyasQGO4xJuP8aE6LHULn9foQb00CKS6I2rnT3ivcvijSHtd0zgdneLf59xieEEhDE
+ DYV6823VV0FaLEMDyj4XXTYIt5FLMzPDNR7/d9t6EzrqPKjbFFmg+wMRaJ/itQapDPd1mLbaX2W
+ UR6EB7jtvmJqEiWjSMvKFXJGrrhbWUZtHyr0BwNNwm1j3plHqmS9VxsVMyXc+HVmBVwRlKeXvZ0
+ 5oDcLOwSWu7l1jjl1FqAKKr6TKzOXfDe8hYxCzvH9EZh7LUNGG4tNUByT1HKi/iK07fuFflx/92
+ qeThecSBK6X7yQVSNMyQs2HLOyn4i0dMwf0JVsXiE4YFU0o8K7g8Txb9+KctHiUu1SuxZk9+LWY
+ wbDwlDZa
+X-Proofpoint-ORIG-GUID: JHXy8Ek_nU0ed-OPoxHWlL0ETvJTX7Ew
+X-Proofpoint-GUID: JHXy8Ek_nU0ed-OPoxHWlL0ETvJTX7Ew
+X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68c40d71 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=h6lld2rfrDIzuLPEmGQA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
+
+On Fri, Sep 12, 2025 at 08:03:01PM +0800, Xiangxu Yin wrote:
+> 
+> On 9/12/2025 6:32 PM, Dmitry Baryshkov wrote:
+> > On Thu, Sep 11, 2025 at 10:55:08PM +0800, Xiangxu Yin wrote:
+> >> Introduce mutual exclusion between USB and DP PHY modes to prevent
+> >> simultaneous activation.
+> > Describe the problem that you are trying to solve first.
+> 
+> 
+> Ok.
+> 
+> 
+> >> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+> >> ---
+> >>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 21 +++++++++++++++++++++
+> >>  1 file changed, 21 insertions(+)
+> >>
+> >> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+> >> index 613239d15a6a3bba47a647db4e663713f127c93e..866277036089c588cf0c63204efb91bbec5430ae 100644
+> >> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+> >> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
+> >> @@ -1061,6 +1061,19 @@ static int qmp_usbc_usb_power_off(struct phy *phy)
+> >>  	return 0;
+> >>  }
+> >>  
+> >> +static int qmp_check_mutex_phy(struct qmp_usbc *qmp, bool is_dp)
+> > mutex has a very well defined use case - a sleeping lock. Please find
+> > some ofther name.
+> 
+> 
+> Then how about 'qmp_check_exclude_phy'?
 
 
-
-On 24/07/2025 10:38, AngeloGioacchino Del Regno wrote:
-> Both clocks and clock-names are missing (a lot of) entries: add
-> all the used audio clocks and their description and also fix the
-> example node.
-
-You forgot to fix the example node.
-
-Matthias
+qmp_usbc_check_phy_status()?
 
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   .../bindings/sound/mt8192-afe-pcm.yaml        | 106 +++++++++++++++++-
->   1 file changed, 104 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> index 8ddf49b0040d..96ee0a47360d 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> @@ -47,16 +47,118 @@ properties:
->         - description: AFE clock
->         - description: ADDA DAC clock
->         - description: ADDA DAC pre-distortion clock
-> -      - description: audio infra sys clock
-> -      - description: audio infra 26M clock
-> +      - description: ADDA ADC clock
-> +      - description: ADDA6 ADC clock
-> +      - description: Audio low-jitter 22.5792m clock
-> +      - description: Audio low-jitter 24.576m clock
-> +      - description: Audio PLL1 tuner clock
-> +      - description: Audio PLL2 tuner clock
-> +      - description: Audio Time-Division Multiplexing interface clock
-> +      - description: ADDA ADC Sine Generator clock
-> +      - description: audio Non-LE clock
-> +      - description: Audio DAC High-Resolution clock
-> +      - description: Audio High-Resolution ADC clock
-> +      - description: Audio High-Resolution ADC SineGen clock
-> +      - description: Audio ADDA6 High-Resolution ADC clock
-> +      - description: Tertiary ADDA DAC clock
-> +      - description: Tertiary ADDA DAC pre-distortion clock
-> +      - description: Tertiary ADDA DAC Sine Generator clock
-> +      - description: Tertiary ADDA DAC High-Resolution clock
-> +      - description: Audio infra sys clock
-> +      - description: Audio infra 26M clock
-> +      - description: Mux for audio clock
-> +      - description: Mux for audio internal bus clock
-> +      - description: Mux main divider by 4
-> +      - description: Primary audio mux
-> +      - description: Primary audio PLL
-> +      - description: Secondary audio mux
-> +      - description: Secondary audio PLL
-> +      - description: Primary audio en-generator clock
-> +      - description: Primary PLL divider by 4 for IEC
-> +      - description: Secondary audio en-generator clock
-> +      - description: Secondary PLL divider by 4 for IEC
-> +      - description: Mux selector for I2S port 0
-> +      - description: Mux selector for I2S port 1
-> +      - description: Mux selector for I2S port 2
-> +      - description: Mux selector for I2S port 3
-> +      - description: Mux selector for I2S port 4
-> +      - description: Mux selector for I2S port 5
-> +      - description: Mux selector for I2S port 6
-> +      - description: Mux selector for I2S port 7
-> +      - description: Mux selector for I2S port 8
-> +      - description: Mux selector for I2S port 9
-> +      - description: APLL1 and APLL2 divider for I2S port 0
-> +      - description: APLL1 and APLL2 divider for I2S port 1
-> +      - description: APLL1 and APLL2 divider for I2S port 2
-> +      - description: APLL1 and APLL2 divider for I2S port 3
-> +      - description: APLL1 and APLL2 divider for I2S port 4
-> +      - description: APLL1 and APLL2 divider for IEC
-> +      - description: APLL1 and APLL2 divider for I2S port 5
-> +      - description: APLL1 and APLL2 divider for I2S port 6
-> +      - description: APLL1 and APLL2 divider for I2S port 7
-> +      - description: APLL1 and APLL2 divider for I2S port 8
-> +      - description: APLL1 and APLL2 divider for I2S port 9
-> +      - description: Top mux for audio subsystem
-> +      - description: 26MHz clock for audio subsystem
->   
->     clock-names:
->       items:
->         - const: aud_afe_clk
->         - const: aud_dac_clk
->         - const: aud_dac_predis_clk
-> +      - const: aud_adc_clk
-> +      - const: aud_adda6_adc_clk
-> +      - const: aud_apll22m_clk
-> +      - const: aud_apll24m_clk
-> +      - const: aud_apll1_tuner_clk
-> +      - const: aud_apll2_tuner_clk
-> +      - const: aud_tdm_clk
-> +      - const: aud_tml_clk
-> +      - const: aud_nle
-> +      - const: aud_dac_hires_clk
-> +      - const: aud_adc_hires_clk
-> +      - const: aud_adc_hires_tml
-> +      - const: aud_adda6_adc_hires_clk
-> +      - const: aud_3rd_dac_clk
-> +      - const: aud_3rd_dac_predis_clk
-> +      - const: aud_3rd_dac_tml
-> +      - const: aud_3rd_dac_hires_clk
->         - const: aud_infra_clk
->         - const: aud_infra_26m_clk
-> +      - const: top_mux_audio
-> +      - const: top_mux_audio_int
-> +      - const: top_mainpll_d4_d4
-> +      - const: top_mux_aud_1
-> +      - const: top_apll1_ck
-> +      - const: top_mux_aud_2
-> +      - const: top_apll2_ck
-> +      - const: top_mux_aud_eng1
-> +      - const: top_apll1_d4
-> +      - const: top_mux_aud_eng2
-> +      - const: top_apll2_d4
-> +      - const: top_i2s0_m_sel
-> +      - const: top_i2s1_m_sel
-> +      - const: top_i2s2_m_sel
-> +      - const: top_i2s3_m_sel
-> +      - const: top_i2s4_m_sel
-> +      - const: top_i2s5_m_sel
-> +      - const: top_i2s6_m_sel
-> +      - const: top_i2s7_m_sel
-> +      - const: top_i2s8_m_sel
-> +      - const: top_i2s9_m_sel
-> +      - const: top_apll12_div0
-> +      - const: top_apll12_div1
-> +      - const: top_apll12_div2
-> +      - const: top_apll12_div3
-> +      - const: top_apll12_div4
-> +      - const: top_apll12_divb
-> +      - const: top_apll12_div5
-> +      - const: top_apll12_div6
-> +      - const: top_apll12_div7
-> +      - const: top_apll12_div8
-> +      - const: top_apll12_div9
-> +      - const: top_mux_audio_h
-> +      - const: top_clk26m_clk
->   
->   required:
->     - compatible
+> >> +{
+> >> +	if ((is_dp && qmp->usb_init_count) ||
+> >> +	    (!is_dp && qmp->dp_init_count)) {
+> >> +		dev_err(qmp->dev,
+> >> +			"PHY is configured for %s, can not enable %s\n",
+> >> +			is_dp ? "USB" : "DP", is_dp ? "DP" : "USB");
+> >> +		return -EBUSY;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >>  static int qmp_usbc_usb_enable(struct phy *phy)
+> >>  {
+> >>  	struct qmp_usbc *qmp = phy_get_drvdata(phy);
 
+-- 
+With best wishes
+Dmitry
 
