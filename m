@@ -1,312 +1,565 @@
-Return-Path: <devicetree+bounces-216544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D908DB551DD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:39:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C47B551C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:36:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B31CC189C8A3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:35:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F8993B433C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B763B3176EF;
-	Fri, 12 Sep 2025 14:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEE530B534;
+	Fri, 12 Sep 2025 14:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Ef4sszBw"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wkEQarPt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B6A3115BE;
-	Fri, 12 Sep 2025 14:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63DB22FE06C;
+	Fri, 12 Sep 2025 14:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757687495; cv=fail; b=ot4qjczAeJEicq7Vu0mqU4BeMs77oqBpOvKqLRIFXP1/JjHTYQ5r0YUsmkNTziXsg5ai01+Ki3UMrxtZBlOFKts36ImmyroGH73ncWsoyraOH4iCfqWoQMLDARyij1GXbF/x0cQ9vlelLafTU94bXeWP4hKthN0HyW9pkqJIZNY=
+	t=1757687672; cv=fail; b=W3sKhr7TMjT91i01RfUAXR2LHTSr6YbK+K2/uMtcwDx3tuqEbbbdi/MKM2LcDjtf48b0z+Wr33R0AOVMR0gpIwtfNIFAOOev/KcwYv5zv3RAEXzTrqQXDwl4mniF3bZk0Dv6XyH+4/SqKcMctqqsltoALQEmSDGrdydwmqYuxP4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757687495; c=relaxed/simple;
-	bh=MRRsBoawj+N9I+YYkgI27hNcBRnQZZxLlPZ3oZ0aQYo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OAe4mz+NRnquMsNOe4b5Ub9ut83CA3SLMAQVQerUUlWUBateIRpx5tDOT60YNGFHDs68JsuHQiUxKr5748qQwmXsUARs5AI14cFDoKhcZCRMltLCLmcoxGWJeNdYRgjOcCk8uU5pd4i9WyT9ueIqSeNO6vu0AwZzDYHZlUo8t/E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Ef4sszBw; arc=fail smtp.client-ip=91.207.212.93
+	s=arc-20240116; t=1757687672; c=relaxed/simple;
+	bh=ZLydqTnufv1ZfCI7L35ybhGzfzNttlFWwEoBp+Degr0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M4LomYLDsm/XpaIabkYGsyV6lfbVyLI/HWJMaUTQkWpp5hrEu7ZcPZYiInzSQ33eRoE1iZuJHH8sDVIPyQNXNgW+Dmv7gGdyV3Ub8uykl8eRgSZ6Oo2EgyviwZMl/wuKt7URzwXE/w37STEraIMLKppy9t3HOFW2ng6bD7h8aoc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wkEQarPt; arc=fail smtp.client-ip=185.132.182.106
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CC9uqr021190;
-	Fri, 12 Sep 2025 16:31:28 +0200
-Received: from pa4pr04cu001.outbound.protection.outlook.com (mail-francecentralazon11013039.outbound.protection.outlook.com [40.107.162.39])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 490ywn01j9-1
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CDcVYO002119;
+	Fri, 12 Sep 2025 16:34:13 +0200
+Received: from am0pr02cu008.outbound.protection.outlook.com (mail-westeuropeazon11013042.outbound.protection.outlook.com [52.101.72.42])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4929f1a9rh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Sep 2025 16:31:27 +0200 (MEST)
+	Fri, 12 Sep 2025 16:34:12 +0200 (MEST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=faykxz36jc7B8CsnQeP870QzeUjqcJaAWnQDKLRi0adVGLUPd8zCqdrVX6b+RSKT9YO8xeLyLJAqKY2fP2BwY8HjzmF3TqPnF9jWZnJwUUoNljQYiBpT5iJZhjGNBgMANtei29PROl1/SGWXbukXsWtzP17HaNVtyTe0GzXIhTm6U8OvlArvvx9sDXT/eoDa/u0ZXENJ9kgcqOKPxt67qfqYI9fyEWj1a/vOiue/lEt8HBv47rq1PAIwLBi4llEB0nT3YYdDn7ZW+WMyqVqAtNyCzf0mNBaJh2Xwek5O69LMa4r4k7khsHR69GW0gXO7icGbzBf8qCeRZ/92kiSR/g==
+ b=snzfP1BWcX7HrmoSz4/pRVUNtRCpy6xq76XxNE0RHFrnRmG6Bw6gwvChS6mMak8jXaf0MBVzhvfv5nHksgaCrZJR4JNkAGVtQ1Rk8InAYi2Rr63CqVU0TiZoi7KWzeu5pTKAc8RDeionkRmwVlGBASArT0NsdT5se8l58iHYqeWKfq3urrzZU/ZZsVOJrG3YKQ6AHnXkcaS7FSNGt3crGAddxYd6XUhBAvXwxz9omUNQ9zeNNaExDKE2wP1llCMje90f74qZR4IkdoJc31p6PZJ9dYHgzzqcSXQNwd3Ag+S567saRlR49Qd+0yMgTAkq8LtvpEPOtgZcxVWYNWsH0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5hCP+oidmCsaG8Ey61QUWXT3qSvJr19ZSPvZq4hNLms=;
- b=Iq3GsIGHD+ebBwYlZPLYsjgOvYiKtcUD0MHMN3KwdWzKDIiSPx/v6VZX9I9Gr+Wg60QTP0v8qsYtvCCgRA+xrAbWwYLmkMeCjCLbc6+XWoTEidGYrTJLBfGUtwruk19F2IWx8pSwYHi84sJSj2B3BUscmWd4Y5+zJ25/AgczFBZpPv9sOdKDWmSKNbUIHjmhq1l1O9dI1m9+xtb63QJarrNISfZgdAojDbBQJ3+W/82C9/Ej96L47omWjAYuSYt0cfviH04P0NwgWHSzZzdWMPCXzNPxfuuxN7wsH+9FQhHCK2GyZiuwK6wpY5NYndT3yCQSCa4iLcoXJeaO/6PYuQ==
+ bh=Fx6tXzpfMb2aG/zaacB+2MT6L7ymxGlSdRapHuHDHy4=;
+ b=RjsN5Nzdiaw51gq0OQs2NOBZDmpjJxs6cN9FiCOxOUdG3vzb0KbFeVTI4nqjQodMmiv2NWJi4LeqnPsvTOk9xe9ErHhe0oJc3c3lct153MyqDG3//tUSrLg45EdcZiyIx+rErurjKGBgsWtScG36PvzkR00yXCDVbLfAqBQhZyPgUg0U5VZil/XTlU6cU8WL+hEtQi8fOPlfB3kWNierqTUjCHoEGactAK/KEm+Lkv8qTJqurVKhggjSAgSq1NZtZ61BzfIo9LyL20rLGELxPBvNSnn+xgImJ5CdAOMruWlnTZrZZNLpO8mUxp4NoZI6kXx/e0XPAjbo17cIzd921A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.44) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
+ 164.130.1.43) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
  dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5hCP+oidmCsaG8Ey61QUWXT3qSvJr19ZSPvZq4hNLms=;
- b=Ef4sszBwOeU9nRmf79UNKxae0TANFjibzyXQfR+zjOSkDm6d4xvbYWn+2SMppKj+6LKRkmsEIYZKqZD6LF7zNc2W8+rIhHJf6wthCTIY+64SD5lSplCUkK+18y5lrwBoOYedN8SzsKKaNvK2DjhXAkTIs9+uvfmqd+R6eRwUSmtE/Qg1GjqrGCW3BAZEg1zHgc/LwORLNnY7jQupkdf7PKqNe3hedUcUd3UFo+z78WB0gZU+Hs4C9HSEhioV1babWLTNIdsVZtNZ4kcp1c1RMDLezqLeSe/U+7UuC3MjcsASURjt3uRG4ZrcWTEeNHB0VXf5xvSoPMhLgeTGTpk5oQ==
-Received: from CWLP265CA0342.GBRP265.PROD.OUTLOOK.COM (2603:10a6:401:5a::18)
- by AS8PR10MB5879.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:527::14) with
+ bh=Fx6tXzpfMb2aG/zaacB+2MT6L7ymxGlSdRapHuHDHy4=;
+ b=wkEQarPtcIF8QHDHjmlw2mzaAGvDlTOfG8niAOGOStsKuh7tRthT/O/q5no8WnPaYXEphsBKQPfQ4pO+ywkiPezGUSxj1gjvQxmW5Fn7g5a4/RgfOAl8wnU9vOpys1g/RVRg3hx7SjkYJ99bhEP3zHf+4cb0X7LkORXvGhCy4RzmFfJnglzBQQArU72YiopzIVZglArusIybnnlfqHzr7Hvqz7yw2n5a7oHWDRfCO7p5viMrwHuGWWUqHsPHEcOW5yxn35q7ivkUTwR/09TqjIZ/pqUKU1iXpKDu2swNsjLo41WjDZJEXTJw4ngjoW0wR30X86EVLJATefVaqB3KPQ==
+Received: from AM0PR03CA0031.eurprd03.prod.outlook.com (2603:10a6:208:14::44)
+ by VI1PR10MB3663.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:133::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Fri, 12 Sep
- 2025 14:31:23 +0000
-Received: from AM2PEPF0001C70C.eurprd05.prod.outlook.com
- (2603:10a6:401:5a:cafe::72) by CWLP265CA0342.outlook.office365.com
- (2603:10a6:401:5a::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.17 via Frontend Transport; Fri,
- 12 Sep 2025 14:31:25 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.44)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Fri, 12 Sep
+ 2025 14:34:04 +0000
+Received: from AM2PEPF0001C708.eurprd05.prod.outlook.com
+ (2603:10a6:208:14:cafe::2) by AM0PR03CA0031.outlook.office365.com
+ (2603:10a6:208:14::44) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.18 via Frontend Transport; Fri,
+ 12 Sep 2025 14:34:04 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
  smtp.mailfrom=foss.st.com; dkim=none (message not signed)
  header.d=none;dmarc=fail action=none header.from=foss.st.com;
 Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.44 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.44; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.44) by
- AM2PEPF0001C70C.mail.protection.outlook.com (10.167.16.200) with Microsoft
+ designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.43; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.43) by
+ AM2PEPF0001C708.mail.protection.outlook.com (10.167.16.196) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Fri, 12 Sep 2025 14:31:23 +0000
+ 15.20.9115.13 via Frontend Transport; Fri, 12 Sep 2025 14:34:03 +0000
 Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
- (10.250.44.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Fri, 12 Sep
- 2025 16:24:15 +0200
-Received: from [10.252.28.204] (10.252.28.204) by SHFDAG1NODE1.st.com
+ 2025 16:31:41 +0200
+Received: from gnbcxd0016.gnb.st.com (10.130.77.119) by SHFDAG1NODE1.st.com
  (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Fri, 12 Sep
- 2025 16:31:22 +0200
-Message-ID: <777930bc-622f-4c2a-9cd7-51334b0ea79d@foss.st.com>
-Date: Fri, 12 Sep 2025 16:31:21 +0200
+ 2025 16:34:02 +0200
+Date: Fri, 12 Sep 2025 16:34:01 +0200
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Raphael Gallais-Pou <rgallaispou@gmail.com>
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Patrice Chotard
+	<patrice.chotard@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 3/4] ARM: dts: sti: extract display subsystem out of soc
+Message-ID: <20250912143401.GC51602@gnbcxd0016.gnb.st.com>
+References: <20250717-sti-rework-v1-0-46d516fb1ebb@gmail.com>
+ <20250717-sti-rework-v1-3-46d516fb1ebb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: media: remove support of
- stih407-c8sectpfe
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
-References: <20250912-master-v2-0-2c0b1b891c20@gmail.com>
- <20250912-master-v2-3-2c0b1b891c20@gmail.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250912-master-v2-3-2c0b1b891c20@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250717-sti-rework-v1-3-46d516fb1ebb@gmail.com>
+X-Disclaimer: ce message est personnel / this message is private
 X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
  (10.75.129.69)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF0001C70C:EE_|AS8PR10MB5879:EE_
-X-MS-Office365-Filtering-Correlation-Id: c263b415-4901-4eae-b0a8-08ddf2090c59
+X-MS-TrafficTypeDiagnostic: AM2PEPF0001C708:EE_|VI1PR10MB3663:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca917df6-f146-4b8a-63d7-08ddf2096c0c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|7416014|82310400026|7053199007;
+	BCL:0;ARA:13230040|376014|7416014|1800799024|82310400026|36860700013|7053199007;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cTVNUVFqaDBIc2NJaUxhVEVuN0swMlgzKytkak1QNUhWT29GbUJvdVptNkQ1?=
- =?utf-8?B?V2ZReFQ2Z0ZXekhCSDB4Wm13b09pWG53eVkwYTg0RU56NG9mVzFaTWhGano3?=
- =?utf-8?B?anZialBldHowWGY4WXJRMFkvYkhKMGlmSVlvd3VoY1d1QXkwL0t4bm1ZZm5Z?=
- =?utf-8?B?K01yNGlUalRYL0RWWkJaZE42NGp2Tjh3dmN6eU4xbktYaVVGTHppVEY0WTkv?=
- =?utf-8?B?MFdNaEl3TXE2eGMvSE1wMklSWGJXZExHR2gyeXJFRzlZZW5WN0o5MSt3OFpS?=
- =?utf-8?B?NFNlUm9YTUdDVEwraFJkQ0tVZ0crY1VPdGhBdjBiZEZHTldzellDU2ViYzYr?=
- =?utf-8?B?THJReGdDRDRPL0N0RGwxY210MXpKVnh4ZlJaRGVIQzl3N0ZvaHRkZStTRzBB?=
- =?utf-8?B?U1dpMFZYeWdHSmVkckd3cU5sRmhUT2RNbDlJUlcwU3BIN21KaUNQK1lCS0Vx?=
- =?utf-8?B?QVpCdHBWYUFMWmpzNCsrcHhaNGlaMXpUV3VvVHlXZmJPaHRpd01VWHhOcDlG?=
- =?utf-8?B?Y2tjRWdJaE5LS00wVGdXLy9yRGppeUtZSTJEY29QR3dOWU1yN014eTIxdHlt?=
- =?utf-8?B?djdqaEhDcXA5SGVMSCtEelpBelZhTElwRnZ4eFA1U2RWM2tORlNST2dRUlNs?=
- =?utf-8?B?SkxsYmFuUytKR0J2TFBMdzRROUhoTlY4RnNPZUQ2MFhuTndLa2xsUEJLOHll?=
- =?utf-8?B?OXN2VXQyZklhcWU2V0x2R0xlRmFQRE9Fc2VENUZ3eHRCTjFUbkR6R25VdE5W?=
- =?utf-8?B?Z0U5ZnZrMG5JbEJaa1RTbmt5YzhsN0tnZUkraE83d3l2YnVtV0tFbDVEcys0?=
- =?utf-8?B?RCtPK0tEZldPb0pJcXpqaElqRWliaVJrbHJvakcvVkJ0bUo4TEg0bWhOeWVo?=
- =?utf-8?B?azgwT2VqenNYS1kreFJraThQYlVIV2p3M1JaaWVDQU9pTUgxZmpyRzQwaEQ4?=
- =?utf-8?B?anV0Mkt2MXh2VHZaa2tXU09uREhpUjZQS3ZZTUYyb1NWM2pSdElvWlVtdFZZ?=
- =?utf-8?B?Yy9pL1I4dUJxT2c5TWNLZU1JU0syd29hOTJMakhVdG9wUVNqTnRWRG1NZFJs?=
- =?utf-8?B?ZEZJbkhTTHhwSit6cHJhOUF3UG5jQzhDcU5qaTVJd0M2VUU2NXZ3d1hwWFBK?=
- =?utf-8?B?M0h2ZTBUN1plem9KWlhaelRvazdXR0NySVlUUVdVQmtaNTV1dXJMditJMzFm?=
- =?utf-8?B?ZkJCVlllVE9kY0R5N3NBeDY4MTFZcnFSMytTOHlyYWJGU3JuMnFpSUp1bUxo?=
- =?utf-8?B?UERUL2Q4S2hHNmRVeGZVR0ZWYjNJUURGNmRETDVRSWtKdmRrd091VlAxK2w2?=
- =?utf-8?B?Z054Q0hnMHBjMUQza2FrUGpoRE03NFBTL3NJZUNGY096NFRiMUlsS3h6UWtq?=
- =?utf-8?B?M25XYVQ1U3BEZVZEbDRXckdxVm5Db1hZeW4rQmVsTUI0cGQ0cElKNmNLckZ5?=
- =?utf-8?B?QVdxaExkRU1Ec29VSVlRUDFTN0RrT21sVlVRbjI1NlgyRlpZUlJlaVZXY0I5?=
- =?utf-8?B?UUtqalFDdUptakdJblF1K0NMSkR2c0JNdWxIem1MQmE4VlduZFZ5emtoc0Vo?=
- =?utf-8?B?RGlBMHN1M0Vwc0l2ZHVYVnhUUnFXNXhpTHZIWTJrUnpzdFZoajNrYUg3dkhw?=
- =?utf-8?B?dkhBemY4UXE5TnNmVEI5OCtEQTVUbkEvVkJraVJjYmVQTC9iY3RFNnE1V3Jp?=
- =?utf-8?B?S3FlUVRkVzR4UWRyTlMra2l1SHFidDAzZlFiNy9RMG41c3cxelg3RG5jUWZH?=
- =?utf-8?B?SXNJWVJFZ1NOVStzWjdKQjZHMW1LcE42OXZlTUVmQUEzalhIMkxRMkdtOWM0?=
- =?utf-8?B?aGI5VkU0K2RPOE4vNGF0WFZXeVRDRDl5SHI5bEw3Y214L05GQko3RExvbE1m?=
- =?utf-8?B?Ri9qc2l4aHpaSGw1VW90dlphNkxkbnpIL0I1a2NjYU1kZjBKMFB5ODIyRER4?=
- =?utf-8?B?RlBVL0NkbjVUQklJZGFRZXZlVVJVK3R5Wmg5KzJ0VGltOGpOY1hnMS9naFJm?=
- =?utf-8?B?cEpHOTBxVjZiMFFPN0xNZDNrMzdmTHBDelMxeS94a1FNSzNwUnpjY3pIT2t2?=
- =?utf-8?Q?a+xYOI?=
+	=?us-ascii?Q?UTz0SGD1AwFgqCUiE12lZVkor53uRryQd/9Y11yIk8ezf3BLxinHDL0gIXTp?=
+ =?us-ascii?Q?kECtjI1AXovk4qrsAUQMCl6DTKzVjWM8ytTkniqHRZ2DMRiCozNIdNtinIO9?=
+ =?us-ascii?Q?Syp0O7VBQ0jAxga2piLLVO0YD9cxp37/ypUHb4Q8la+nOmhy8w97VX4DRApW?=
+ =?us-ascii?Q?4ePKnqRvIwPLoOEsFgS/FjyixG4hLjaQWRBSqWy9MKlcPPa7qToYWIWo6K2T?=
+ =?us-ascii?Q?mvTSIU1NZ1b9u7IEOpyDSCehj8kIAnlK4m30hot8uRyuEo/pvt9qtL+ub2Jq?=
+ =?us-ascii?Q?5G3q0D/rpppihlnJwOeHUxomOBPAiicWyHUdKbPqQHrrKbtxvHmbqFajipnw?=
+ =?us-ascii?Q?BtJ+YULcA7AeG/88Gz/BiBFKld5tVcQGktfAEnVTixenjLOvRBPre+gXzw+i?=
+ =?us-ascii?Q?+gWbBZ2Um0sH05IHzHPDVt9LSAcNdzZ/PPSebax6RxnU+Z4XOxmqmPJkWGde?=
+ =?us-ascii?Q?n1GRsPu9m/1dgtlkxIFsfZOKP1qGHmseqGhQr/QmpT2LD3EHeaPIj6Q338gk?=
+ =?us-ascii?Q?YmpK/StFgH0ztFQyX/eW894NnyVLQZOs8fXyH0bpIOhQqSFcc8tmBimMM+aH?=
+ =?us-ascii?Q?K4IgTcG0Ey5n78gUQfVSlG2cUh3HXdrpYjkX2BhSxbd/qEtTbF0UJxGZrztI?=
+ =?us-ascii?Q?VP+IFS40ka4PfRrZgIYiivAuXkew0zgCL6/qePvXkk5cPky1AaaImZ82oR0/?=
+ =?us-ascii?Q?JR99obF2qYXCfouB7IyWjlUPBHslnf9GWtvYbR9j0xa/BaoAjZLxjN1RnPHP?=
+ =?us-ascii?Q?vibd+FUXUzE4MWtuefvSxeoXAJXkifs2zSeIeiVbF/IDWJqILh8AC2yXvG0M?=
+ =?us-ascii?Q?IcSqrToc8J7al06qeiSasON2zxv338gHo9yAuQITjGVWYvzrG3cI3YfRq99+?=
+ =?us-ascii?Q?UQ0Bs7i1dQKrA6JpH9pboMJMA0M+SdgphNNMhRF0k2eWdLojH9tUJtbT+Rlj?=
+ =?us-ascii?Q?28BgdV99lMT5HkwSg4wnbaFSEH3nHe9Ok+peI4YZlB7Zic1PG1DUw8Z1V/D8?=
+ =?us-ascii?Q?l26/I7M4KQKRSzjj7t3CsRy3ve5PZSK1oxkoMq+I8zIpby8nwfOOCxXCViG5?=
+ =?us-ascii?Q?mN20BhHDIIz8K9zMEPRnmtD1gfbBIeR9ZLCAaGKZqJDYehWTKD1GHFDTyIE2?=
+ =?us-ascii?Q?1yDH6YX+sDVBhASaZwaibXz374tLbJgNUZLzi0DPyutr8LxVdX1rJ44L6+VL?=
+ =?us-ascii?Q?6+sJldzDdt2RQ28JcWdW05QtFpRmRfAijPZ5vTJBON5cNExjpycpN1EkWgRI?=
+ =?us-ascii?Q?zrYheSUAi1t6jY/ZfaFFpgRb7Fe83VH7nZJquevQTFl5hPd/8ErVFGh6xtAh?=
+ =?us-ascii?Q?NoUzfmwLOAq+2RjV+QtTiwS2hbSvGhO8oBhApjV8sdUl/ohHjl5ATDZBtGcb?=
+ =?us-ascii?Q?jEjA8Su7qojfagUQXLN3BGnPClJVJoT1kuW0Wa3zCnV7o3lKrIBpdJdE9x6L?=
+ =?us-ascii?Q?/rSlQ9f2Jf/mrPvyKZ6P0kATUVTsaL0f1fIXbVUXiILWna13+qcA8k13iann?=
+ =?us-ascii?Q?HtjBCSC3PxWByFB/7aQSAYMxqabXiFVQkyNi?=
 X-Forefront-Antispam-Report:
-	CIP:164.130.1.44;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(7416014)(82310400026)(7053199007);DIR:OUT;SFP:1101;
+	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(82310400026)(36860700013)(7053199007);DIR:OUT;SFP:1101;
 X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 14:31:23.1294
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 14:34:03.6970
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c263b415-4901-4eae-b0a8-08ddf2090c59
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca917df6-f146-4b8a-63d7-08ddf2096c0c
 X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.44];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	AM2PEPF0001C70C.eurprd05.prod.outlook.com
+	AM2PEPF0001C708.eurprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB5879
-X-Authority-Analysis: v=2.4 cv=OaqYDgTY c=1 sm=1 tr=0 ts=68c42ebf cx=c_pps a=6PCtUV3SjW4dSF/fw/j/Nw==:117 a=Tm9wYGWyy1fMlzdxM1lUeQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
- a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=d2j-ISUXm-8A:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=pGLkceISAAAA:8 a=8b9GpE9nAAAA:8 a=GtunNuG9RWfyo7yceo0A:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
-X-Proofpoint-ORIG-GUID: xxgHzvefGkAEb-o-O1EjgtAaPLdMqIj_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA3MDAwNiBTYWx0ZWRfXxcpuUuKO/9Kv /CfbVMXSsThbOMbAhq2wxW7rycxY4IiMW7BwN0y0udlc2rZ4VMU3DJPhAWMjC/UPcEoh5v7JusR GkZ/I3l7BE0WLjkcJO1uPP6zitWrGJk2TcaamC95lNeTRBqDgzl+eMaQEuFIawr3blj2d+K/wZg
- EHvOHF1LH7MFk989tjDNtE8E8QL3SaHjtGqXxZCGNDwja6YuHEwBSYWmLVsMwgSRY2vaxchHWmZ VhwlehJGUFmbR06cViuQjQEmAzUw/4sYm9cEiMUvqENi7buJjiiQ/vSenKYMKbz206P/GwwamF1 KajNjSkwB2AF12XYHuo6Lxp/SdYg9zLJmOX1b4XhGDleY+3XdIb0r0MGsrBdPl9tnqxI3PeHICJ wjykDe+k
-X-Proofpoint-GUID: xxgHzvefGkAEb-o-O1EjgtAaPLdMqIj_
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3663
+X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=68c42f64 cx=c_pps a=YRDmcPKYWw40vX7vQsDShQ==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=n5dE7JB0mAkA:10 a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=pGLkceISAAAA:8 a=8b9GpE9nAAAA:8 a=Fogd_9c_AqE0UklwBAkA:9 a=CjuIK1q_8ugA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-GUID: Wn1f48zhwVJ4E5pK1Y3jVgUTjFdQiNr1
+X-Proofpoint-ORIG-GUID: Wn1f48zhwVJ4E5pK1Y3jVgUTjFdQiNr1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA5MDAwMCBTYWx0ZWRfXzGJoDq7eXIyA 3h8cfbPMPPUrqnWR7DWLFzg1iiA4YQSdh0y89kBKB7WhdY75hsGoUVx/3fMRnaG6uChMH1YbDRo f2eWpRP5UkEcnEjeGIb98mCll0YuGq2S77ahrqpSjxftfWOFtxMJUzbI1wK+c9AVQml/AsSrFjy
+ KyREevPA6LsN8ooh+J0PPvbBOB7VxEbwYsnlHG+TjFfKmWZzWIkhHTQQ2q/WAleOlKIK0nySRFF YKCLn8Sc0687Krpy8Zg2U74dVdFhJrtYsDlg2/Mt6onnIcsPcKd7Rrbbj7Vgp+ylEj344KsHIbS bXNvMLA5gXysvQ/VJrXBAkZ0fcte0rJknWNxffhAAReWvB/AfgEamOD9a2wxu6Cx4gW0alRUS2Z u1v4yHs2
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-12_05,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 clxscore=1011
- suspectscore=0 bulkscore=0 adultscore=0 priorityscore=1501 malwarescore=0
- spamscore=0 impostorscore=0 classifier=typeunknown authscore=0 authtc=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 phishscore=0 classifier=typeunknown authscore=0 authtc=
  authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509070006
+ engine=8.19.0-2507300000 definitions=main-2509090000
 
+Hi Raphael,
 
+thanks for this patch.
 
-On 9/12/25 13:36, Raphael Gallais-Pou wrote:
-> Remove files documentation from stih407-c8sectpfe driver.
+On Thu, Jul 17, 2025 at 09:15:34PM +0200, Raphael Gallais-Pou wrote:
+> The display subsystem represent how IPs are interacting together and
+> have nothing to do within the SoC node.
+> 
+> Extract it from the SoC node and let IPs nodes in the Soc node.
+> 
+> Several nodes did not use conventional name:
+>  * sti-display-subsystem -> display-subsystem
+>  * sti-controller -> display-controller
+>  * sti-tvout -> encoder
+>  * sti-hda -> analog
+>  * sti-hqvdp -> plane
 > 
 > Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 > ---
->  .../admin-guide/media/platform-cardlist.rst        |  2 -
->  .../bindings/media/stih407-c8sectpfe.txt           | 88 ----------------------
->  2 files changed, 90 deletions(-)
+>  arch/arm/boot/dts/st/stih410.dtsi | 316 +++++++++++++++++++++++---------------
+>  1 file changed, 188 insertions(+), 128 deletions(-)
 > 
-> diff --git a/Documentation/admin-guide/media/platform-cardlist.rst b/Documentation/admin-guide/media/platform-cardlist.rst
-> index 1230ae4037ad551087d4cddc8a02eab5eac2be71..63f4b19c3628f3488fd2ccd1a6dab385d46b2503 100644
-> --- a/Documentation/admin-guide/media/platform-cardlist.rst
-> +++ b/Documentation/admin-guide/media/platform-cardlist.rst
-> @@ -18,8 +18,6 @@ am437x-vpfe        TI AM437x VPFE
->  aspeed-video       Aspeed AST2400 and AST2500
->  atmel-isc          ATMEL Image Sensor Controller (ISC)
->  atmel-isi          ATMEL Image Sensor Interface (ISI)
-> -c8sectpfe          SDR platform devices
-> -c8sectpfe          SDR platform devices
->  cafe_ccic          Marvell 88ALP01 (Cafe) CMOS Camera Controller
->  cdns-csi2rx        Cadence MIPI-CSI2 RX Controller
->  cdns-csi2tx        Cadence MIPI-CSI2 TX Controller
-> diff --git a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt b/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
-> deleted file mode 100644
-> index 880d4d70c9fd741ac13101721ced18f04336c373..0000000000000000000000000000000000000000
-> --- a/Documentation/devicetree/bindings/media/stih407-c8sectpfe.txt
-> +++ /dev/null
-> @@ -1,88 +0,0 @@
-> -STMicroelectronics STi c8sectpfe binding
-> -============================================
+> diff --git a/arch/arm/boot/dts/st/stih410.dtsi b/arch/arm/boot/dts/st/stih410.dtsi
+> index d56343f44fda4e9e1de2e5efc86e2d984bad14b4..47d66d7eb07a3d73d98b3e21d62b2253aa1171e4 100644
+> --- a/arch/arm/boot/dts/st/stih410.dtsi
+> +++ b/arch/arm/boot/dts/st/stih410.dtsi
+> @@ -34,6 +34,41 @@ usb2_picophy2: phy3 {
+>  		status = "disabled";
+>  	};
+>  
+> +	display-subsystem {
+> +		compatible = "st,sti-display-subsystem";
+> +		ports = <&compositor>, <&hqvdp>, <&tvout>, <&sti_hdmi>;
+> +
+> +		assigned-clocks = <&clk_s_d2_quadfs 0>,
+> +				  <&clk_s_d2_quadfs 1>,
+> +				  <&clk_s_c0_pll1 0>,
+> +				  <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +				  <&clk_s_c0_flexgen CLK_MAIN_DISP>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_GDP1>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_GDP2>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_GDP3>,
+> +				  <&clk_s_d2_flexgen CLK_PIX_GDP4>;
+> +
+> +		assigned-clock-parents = <0>,
+> +					 <0>,
+> +					 <0>,
+> +					 <&clk_s_c0_pll1 0>,
+> +					 <&clk_s_c0_pll1 0>,
+> +					 <&clk_s_d2_quadfs 0>,
+> +					 <&clk_s_d2_quadfs 1>,
+> +					 <&clk_s_d2_quadfs 0>,
+> +					 <&clk_s_d2_quadfs 0>,
+> +					 <&clk_s_d2_quadfs 0>,
+> +					 <&clk_s_d2_quadfs 0>;
+> +
+> +		assigned-clock-rates = <297000000>,
+> +				       <297000000>,
+> +				       <0>,
+> +				       <400000000>,
+> +				       <400000000>;
+> +	};
+> +
+>  	soc {
+>  		ohci0: usb@9a03c00 {
+>  			compatible = "st,st-ohci-300x";
+> @@ -99,153 +134,178 @@ ehci1: usb@9a83e00 {
+>  			status = "disabled";
+>  		};
+>  
+> -		sti-display-subsystem@0 {
+> -			compatible = "st,sti-display-subsystem";
+> +		compositor: display-controller@9d11000 {
+> +			compatible = "st,stih407-compositor";
+> +			reg = <0x9d11000 0x1000>;
+> +
+> +			clock-names = "compo_main",
+> +				      "compo_aux",
+> +				      "pix_main",
+> +				      "pix_aux",
+> +				      "pix_gdp1",
+> +				      "pix_gdp2",
+> +				      "pix_gdp3",
+> +				      "pix_gdp4",
+> +				      "main_parent",
+> +				      "aux_parent";
+> +
+> +			clocks = <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +				 <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_GDP1>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_GDP2>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_GDP3>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_GDP4>,
+> +				 <&clk_s_d2_quadfs 0>,
+> +				 <&clk_s_d2_quadfs 1>;
+> +
+> +			reset-names = "compo-main", "compo-aux";
+> +			resets = <&softreset STIH407_COMPO_SOFTRESET>,
+> +				 <&softreset STIH407_COMPO_SOFTRESET>;
+> +			st,vtg = <&vtg_main>, <&vtg_aux>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					compo_main_out: endpoint {
+> +						remote-endpoint = <&tvout_in0>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					compo_aux_out: endpoint {
+> +						remote-endpoint = <&tvout_in1>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		tvout: encoder@8d08000 {
+> +			compatible = "st,stih407-tvout";
+> +			reg = <0x8d08000 0x1000>;
+> +			reg-names = "tvout-reg";
+> +			reset-names = "tvout";
+> +			resets = <&softreset STIH407_HDTVOUT_SOFTRESET>;
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> +			assigned-clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> +					  <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> +					  <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> +					  <&clk_s_d0_flexgen CLK_PCM_0>,
+> +					  <&clk_s_d2_flexgen CLK_PIX_HDDAC>,
+> +					  <&clk_s_d2_flexgen CLK_HDDAC>;
+>  
+> -			reg = <0 0>;
+> -			assigned-clocks = <&clk_s_d2_quadfs 0>,
+> -					  <&clk_s_d2_quadfs 1>,
+> -					  <&clk_s_c0_pll1 0>,
+> -					  <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> -					  <&clk_s_c0_flexgen CLK_MAIN_DISP>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_GDP1>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_GDP2>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_GDP3>,
+> -					  <&clk_s_d2_flexgen CLK_PIX_GDP4>;
 > -
-> -This document describes the c8sectpfe device bindings that is used to get transport
-> -stream data into the SoC on the TS pins, and into DDR for further processing.
+> -			assigned-clock-parents = <0>,
+> -						 <0>,
+> -						 <0>,
+> -						 <&clk_s_c0_pll1 0>,
+> -						 <&clk_s_c0_pll1 0>,
+> -						 <&clk_s_d2_quadfs 0>,
+> -						 <&clk_s_d2_quadfs 1>,
+> -						 <&clk_s_d2_quadfs 0>,
+> +			assigned-clock-parents = <&clk_s_d2_quadfs 0>,
+> +						 <&clk_tmdsout_hdmi>,
+>  						 <&clk_s_d2_quadfs 0>,
+> +						 <&clk_s_d0_quadfs 0>,
+>  						 <&clk_s_d2_quadfs 0>,
+>  						 <&clk_s_d2_quadfs 0>;
+>  
+> -			assigned-clock-rates = <297000000>,
+> -					       <297000000>,
+> -					       <0>,
+> -					       <400000000>,
+> -					       <400000000>;
 > -
-> -It is typically used in conjunction with one or more demodulator and tuner devices
-> -which converts from the RF to digital domain. Demodulators and tuners are usually
-> -located on an external DVB frontend card connected to SoC TS input pins.
+> -			ranges;
 > -
-> -Currently 7 TS input (tsin) channels are supported on the stih407 family SoC.
+> -			sti-compositor@9d11000 {
+> -				compatible = "st,stih407-compositor";
+> -				reg = <0x9d11000 0x1000>;
 > -
-> -Required properties (controller (parent) node):
-> -- compatible	: Should be "stih407-c8sectpfe"
+> -				clock-names = "compo_main",
+> -					      "compo_aux",
+> -					      "pix_main",
+> -					      "pix_aux",
+> -					      "pix_gdp1",
+> -					      "pix_gdp2",
+> -					      "pix_gdp3",
+> -					      "pix_gdp4",
+> -					      "main_parent",
+> -					      "aux_parent";
 > -
-> -- reg		: Address and length of register sets for each device in
-> -		  "reg-names"
+> -				clocks = <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> -					 <&clk_s_c0_flexgen CLK_COMPO_DVP>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_AUX_DISP>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_GDP1>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_GDP2>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_GDP3>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_GDP4>,
+> -					 <&clk_s_d2_quadfs 0>,
+> -					 <&clk_s_d2_quadfs 1>;
 > -
-> -- reg-names	: The names of the register addresses corresponding to the
-> -		  registers filled in "reg":
-> -			- c8sectpfe: c8sectpfe registers
-> -			- c8sectpfe-ram: c8sectpfe internal sram
+> -				reset-names = "compo-main", "compo-aux";
+> -				resets = <&softreset STIH407_COMPO_SOFTRESET>,
+> -					 <&softreset STIH407_COMPO_SOFTRESET>;
+> -				st,vtg = <&vtg_main>, <&vtg_aux>;
+> -			};
 > -
-> -- clocks	: phandle list of c8sectpfe clocks
-> -- clock-names	: should be "c8sectpfe"
-> -See: Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -- pinctrl-names	: a pinctrl state named tsin%d-serial or tsin%d-parallel (where %d is tsin-num)
-> -		   must be defined for each tsin child node.
-> -- pinctrl-0	: phandle referencing pin configuration for this tsin configuration
-> -See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> -
-> -
-> -Required properties (tsin (child) node):
-> -
-> -- tsin-num	: tsin id of the InputBlock (must be between 0 to 6)
-> -- i2c-bus	: phandle to the I2C bus DT node which the demodulators & tuners on this tsin channel are connected.
-> -- reset-gpios	: reset gpio for this tsin channel.
-> -
-> -Optional properties (tsin (child) node):
-> -
-> -- invert-ts-clk		: Bool property to control sense of ts input clock (data stored on falling edge of clk).
-> -- serial-not-parallel	: Bool property to configure input bus width (serial on ts_data<7>).
-> -- async-not-sync	: Bool property to control if data is received in asynchronous mode
-> -			   (all bits/bytes with ts_valid or ts_packet asserted are valid).
-> -
-> -- dvb-card		: Describes the NIM card connected to this tsin channel.
-> -
-> -Example:
-> -
-> -/* stih410 SoC b2120 + b2004a + stv0367-pll(NIMB) + stv0367-tda18212 (NIMA) DT example) */
-> -
-> -	c8sectpfe@8a20000 {
-> -		compatible = "st,stih407-c8sectpfe";
-> -		reg = <0x08a20000 0x10000>, <0x08a00000 0x4000>;
-> -		reg-names = "stfe", "stfe-ram";
-> -		interrupts = <GIC_SPI 34 IRQ_TYPE_NONE>, <GIC_SPI 35 IRQ_TYPE_NONE>;
-> -		interrupt-names = "stfe-error-irq", "stfe-idle-irq";
-> -		pinctrl-0	= <&pinctrl_tsin0_serial>;
-> -		pinctrl-1	= <&pinctrl_tsin0_parallel>;
-> -		pinctrl-2	= <&pinctrl_tsin3_serial>;
-> -		pinctrl-3	= <&pinctrl_tsin4_serial_alt3>;
-> -		pinctrl-4	= <&pinctrl_tsin5_serial_alt1>;
-> -		pinctrl-names	= "tsin0-serial",
-> -				  "tsin0-parallel",
-> -				  "tsin3-serial",
-> -				  "tsin4-serial",
-> -				  "tsin5-serial";
-> -		clocks = <&clk_s_c0_flexgen CLK_PROC_STFE>;
-> -		clock-names = "c8sectpfe";
-> -
-> -		/* tsin0 is TSA on NIMA */
-> -		tsin0: port@0 {
-> -			tsin-num		= <0>;
-> -			serial-not-parallel;
-> -			i2c-bus			= <&ssc2>;
-> -			reset-gpios		= <&pio15 4 GPIO_ACTIVE_HIGH>;
-> -			dvb-card		= <STV0367_TDA18212_NIMA_1>;
-> -		};
-> -
-> -		tsin3: port@3 {
-> -			tsin-num		= <3>;
-> -			serial-not-parallel;
-> -			i2c-bus			= <&ssc3>;
-> -			reset-gpios		= <&pio15 7 GPIO_ACTIVE_HIGH>;
-> -			dvb-card		= <STV0367_TDA18212_NIMB_1>;
-> -		};
-> -	};
+> -			sti-tvout@8d08000 {
+> -				compatible = "st,stih407-tvout";
+> -				reg = <0x8d08000 0x1000>;
+> -				reg-names = "tvout-reg";
+> -				reset-names = "tvout";
+> -				resets = <&softreset STIH407_HDTVOUT_SOFTRESET>;
+> +			ports {
+>  				#address-cells = <1>;
+> -				#size-cells = <1>;
+> -				assigned-clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> -						  <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> -						  <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> -						  <&clk_s_d0_flexgen CLK_PCM_0>,
+> -						  <&clk_s_d2_flexgen CLK_PIX_HDDAC>,
+> -						  <&clk_s_d2_flexgen CLK_HDDAC>;
+> +				#size-cells = <0>;
+>  
+> -				assigned-clock-parents = <&clk_s_d2_quadfs 0>,
+> -							 <&clk_tmdsout_hdmi>,
+> -							 <&clk_s_d2_quadfs 0>,
+> -							 <&clk_s_d0_quadfs 0>,
+> -							 <&clk_s_d2_quadfs 0>,
+> -							 <&clk_s_d2_quadfs 0>;
+> +				port@0 {
+> +					reg = <0>;
+> +					tvout_in0: endpoint {
+> +						remote-endpoint = <&compo_main_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					tvout_in1: endpoint {
+> +						remote-endpoint = <&compo_aux_out>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					tvout_out0: endpoint {
+> +						remote-endpoint = <&hdmi_in>;
+> +					};
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					tvout_out1: endpoint {
+> +						remote-endpoint = <&hda_in>;
+> +					};
+> +				};
+>  			};
+> +		};
+>  
+> -			sti_hdmi: sti-hdmi@8d04000 {
+> -				compatible = "st,stih407-hdmi";
+> -				reg = <0x8d04000 0x1000>;
+> -				reg-names = "hdmi-reg";
+> -				#sound-dai-cells = <0>;
+> -				interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> -				interrupt-names = "irq";
+> -				clock-names = "pix",
+> -					      "tmds",
+> -					      "phy",
+> -					      "audio",
+> -					      "main_parent",
+> -					      "aux_parent";
+> +		sti_hdmi: hdmi@8d04000 {
+> +			compatible = "st,stih407-hdmi";
+> +			reg = <0x8d04000 0x1000>;
+> +			reg-names = "hdmi-reg";
+> +			#sound-dai-cells = <0>;
+> +			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "irq";
+> +			clock-names = "pix",
+> +				      "tmds",
+> +				      "phy",
+> +				      "audio",
+> +				      "main_parent",
+> +				      "aux_parent";
+>  
+> -				clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> -					 <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> -					 <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> -					 <&clk_s_d0_flexgen CLK_PCM_0>,
+> -					 <&clk_s_d2_quadfs 0>,
+> -					 <&clk_s_d2_quadfs 1>;
+> +			clocks = <&clk_s_d2_flexgen CLK_PIX_HDMI>,
+> +				 <&clk_s_d2_flexgen CLK_TMDS_HDMI>,
+> +				 <&clk_s_d2_flexgen CLK_REF_HDMIPHY>,
+> +				 <&clk_s_d0_flexgen CLK_PCM_0>,
+> +				 <&clk_s_d2_quadfs 0>,
+> +				 <&clk_s_d2_quadfs 1>;
+>  
+> -				hdmi,hpd-gpio = <&pio5 3 GPIO_ACTIVE_LOW>;
+> -				reset-names = "hdmi";
+> -				resets = <&softreset STIH407_HDMI_TX_PHY_SOFTRESET>;
+> -				ddc = <&hdmiddc>;
+> +			hdmi,hpd-gpio = <&pio5 3 GPIO_ACTIVE_LOW>;
+> +			reset-names = "hdmi";
+> +			resets = <&softreset STIH407_HDMI_TX_PHY_SOFTRESET>;
+> +			ddc = <&hdmiddc>;
+> +
+> +			port {
+> +				hdmi_in: endpoint {
+> +					remote-endpoint = <&tvout_out0>;
+> +				};
+>  			};
+> +		};
+>  
+> -			sti-hda@8d02000 {
+> -				compatible = "st,stih407-hda";
+> -				status = "disabled";
+> -				reg = <0x8d02000 0x400>, <0x92b0120 0x4>;
+> -				reg-names = "hda-reg", "video-dacs-ctrl";
+> -				clock-names = "pix",
+> -					      "hddac",
+> -					      "main_parent",
+> -					      "aux_parent";
+> -				clocks = <&clk_s_d2_flexgen CLK_PIX_HDDAC>,
+> -					 <&clk_s_d2_flexgen CLK_HDDAC>,
+> -					 <&clk_s_d2_quadfs 0>,
+> -					 <&clk_s_d2_quadfs 1>;
+> -			};
+> +		analog@8d02000 {
+> +			compatible = "st,stih407-hda";
+> +			status = "disabled";
+> +			reg = <0x8d02000 0x400>, <0x92b0120 0x4>;
+> +			reg-names = "hda-reg", "video-dacs-ctrl";
+> +			clock-names = "pix",
+> +				      "hddac",
+> +				      "main_parent",
+> +				      "aux_parent";
+> +			clocks = <&clk_s_d2_flexgen CLK_PIX_HDDAC>,
+> +				 <&clk_s_d2_flexgen CLK_HDDAC>,
+> +				 <&clk_s_d2_quadfs 0>,
+> +				 <&clk_s_d2_quadfs 1>;
+>  
+> -			sti-hqvdp@9c00000 {
+> -				compatible = "st,stih407-hqvdp";
+> -				reg = <0x9C00000 0x100000>;
+> -				clock-names = "hqvdp", "pix_main";
+> -				clocks = <&clk_s_c0_flexgen CLK_MAIN_DISP>,
+> -					 <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>;
+> -				reset-names = "hqvdp";
+> -				resets = <&softreset STIH407_HDQVDP_SOFTRESET>;
+> -				st,vtg = <&vtg_main>;
+> +			port {
+> +				hda_in: endpoint {
+> +					remote-endpoint = <&tvout_out1>;
+> +				};
+>  			};
+>  		};
+>  
+> +		hqvdp: plane@9c00000 {
+> +			compatible = "st,stih407-hqvdp";
+> +			reg = <0x9C00000 0x100000>;
+> +			clock-names = "hqvdp", "pix_main";
+> +			clocks = <&clk_s_c0_flexgen CLK_MAIN_DISP>,
+> +				 <&clk_s_d2_flexgen CLK_PIX_MAIN_DISP>;
+> +			reset-names = "hqvdp";
+> +			resets = <&softreset STIH407_HDQVDP_SOFTRESET>;
+> +			st,vtg = <&vtg_main>;
+> +		};
+> +
+>  		bdisp0:bdisp@9f10000 {
+>  			compatible = "st,stih407-bdisp";
+>  			reg = <0x9f10000 0x1000>;
 > 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> -- 
+> 2.50.1
+> 
 
-Thanks 
-Patrice
+Acked-by: Alain Volmat <alain.volmat@foss.st.com>
+
+Best regards
+Alain
 
