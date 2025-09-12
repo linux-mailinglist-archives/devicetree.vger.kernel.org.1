@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-216487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 250D4B54F36
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:18:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE23B54F56
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3EB45A2F52
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:18:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7B9D3AF367
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7776D3090D1;
-	Fri, 12 Sep 2025 13:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C05D30DD30;
+	Fri, 12 Sep 2025 13:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/cve73U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AvXyZIi8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E172E7BAE;
-	Fri, 12 Sep 2025 13:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227B0308F2D;
+	Fri, 12 Sep 2025 13:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757683106; cv=none; b=Seg9V+LKFL2VN4X+YZ48ked1RpRa6bpv1oI4fB1azhTE2R0A6WdRVi5HSRpdSfYDHWBsJ4dwlamrl4tEjl6jUjV8/U94dXjcgi33ZM+wazwfSUzU3Bxzz50ebfhbfohfw3EEWa1mV86HpofBAw5FaJ/jswyt74yaa06FbELYibM=
+	t=1757683388; cv=none; b=nW4tE1e8M2+f8RrT7jOqNktvU7w2Xypj9D1Izs5QUi0x9jXBN99p/TLb0r77MEOXscOSa/05x3WVgxAQLgV8gkpvSi7gJMKt2va81BoxvCA5BEWBUWZJpz5e/ycmlpcVcY70U9GJyTllHFIrBafkkMzsBQUGKANSucLzg8Xg/hE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757683106; c=relaxed/simple;
-	bh=0kMqkbeltdD0+hkiQDYxpMhQHrKg2khUuaUPs1Ep/hI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fujc8mg+jvS4sHk+Ef30Oc1LLq6jvBjYUr4Km6y13QnJtv3F/15pYQSVrSlpyTenUXAYULCGlufHpMJq8S+88/6zt2EM8X4/h/Im6x01Qb2KEwsnTpaXKPZVudYdbzZfMSH02aKUjs72W/Evzr8Cf3UWQc5weI17jq3Jvp5PrrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/cve73U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3DDFC4CEF1;
-	Fri, 12 Sep 2025 13:18:18 +0000 (UTC)
+	s=arc-20240116; t=1757683388; c=relaxed/simple;
+	bh=c9p9bPrxSi+sJWVsWiSYSAd6dX2DEW2af6xw4qih9Jw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J0ZtaX0/CCLBY5XK09EqTi1Htg4tzPkVt3d41g+lUhNb8rUF7Xxb58gXp784CXsOTX8p87mrtrQP3v8zlBRObnsKvKi3yAZ6xMBF/lGl6i2VkfVL9OA0PqDvp6efs4eqd6/IFle5af+RGMHKz1GFFLcs7ZXG2a/mjMbXjIQOvak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AvXyZIi8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D6B4C4CEF1;
+	Fri, 12 Sep 2025 13:22:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757683106;
-	bh=0kMqkbeltdD0+hkiQDYxpMhQHrKg2khUuaUPs1Ep/hI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=S/cve73U+Bw437os2DmOTcDcAxGgeMMGJW70XQxJfg5ffPkgfjlSBiQ8huULc5d+5
-	 zvkaNiaPM03OGirJzboN9rT62iO/WmT7v2ToCve0tUc6y7B++Rs4hioHbFWRbX2nq9
-	 hPx/7JC4p0KuOSgaxI8rAMzGqY/ctvSdQTYpvSq2OYZH59uZjPG9VzLsGCn4TZvU9d
-	 z5WBAC2HxY/NVfFDZiDy22+CM5WFVEflj9rjB9slCD6mCsUQwB63/XpNOxFJiUre2l
-	 x5a0OFES0jcxTY4qIQLbn1OqG6/QsAz7w5slxE+g1qBRRYE2wZC4+7lQYgV+JasYen
-	 gGninWye9fkVg==
-Message-ID: <228603d0-c7fc-48b7-9589-c897ff805808@kernel.org>
-Date: Fri, 12 Sep 2025 15:18:17 +0200
+	s=k20201202; t=1757683387;
+	bh=c9p9bPrxSi+sJWVsWiSYSAd6dX2DEW2af6xw4qih9Jw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AvXyZIi8lDfAalXgF1WdETnPgZZ8RM/3fqPD7soAGpkwubprAipGOV6yOoTY3OHSk
+	 yLXY4Sb2YO/3+SqgiF7wj7VGLz9j0uKOmb/GGgy4yndBEsWYvpN5dZma3c60ozNQjC
+	 zG6jkUFWEpkmUpJsBq3cIF3+Hkmtat4QYo+4SuWmEgfIpTAhP/EdrRrE7+MW6ktgiP
+	 sfM2z8ccxdfOJDSOxatKj3UU3+RNd90XT8NCn4Pmwy2G9TD8BXnb2X5PFl8d+ef8oP
+	 MS/OfpRkXMSwF9yOSsOYwPTssnDsx74nkFfSmqUcMqNSlQrdT9mzuIu9ED/Is4y8wJ
+	 KD26QXnW1JVXw==
+Message-ID: <bcad01be-fd00-4789-ae83-b855e495fab9@kernel.org>
+Date: Fri, 12 Sep 2025 15:22:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: ethernet: eswin: Document for EIC7700
- SoC
+Subject: Re: [PATCH 14/38] dt-bindings: media: mediatek,mt8195-jpeg: Allow
+ range number in node address
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-mediatek@lists.infradead.org, robh@kernel.org
+Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, jassisinghbrar@gmail.com,
+ mchehab@kernel.org, matthias.bgg@gmail.com, chunfeng.yun@mediatek.com,
+ vkoul@kernel.org, kishon@kernel.org, sean.wang@kernel.org,
+ linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org,
+ andersson@kernel.org, mathieu.poirier@linaro.org, daniel.lezcano@linaro.org,
+ tglx@linutronix.de, atenart@kernel.org, jitao.shi@mediatek.com,
+ ck.hu@mediatek.com, houlong.wei@mediatek.com,
+ kyrie.wu@mediatek.corp-partner.google.com, andy.teng@mediatek.com,
+ tinghan.shen@mediatek.com, jiaxin.yu@mediatek.com, shane.chien@mediatek.com,
+ olivia.wen@mediatek.com, granquet@baylibre.com, eugen.hristev@linaro.org,
+ arnd@arndb.de, sam.shih@mediatek.com, jieyy.yang@mediatek.com,
+ frank-w@public-files.de, mwalle@kernel.org, fparent@baylibre.com,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
+ <20250724083914.61351-15-angelogioacchino.delregno@collabora.com>
+ <70ae6787-ee0b-43a0-851e-1fb6c82f6c31@kernel.org>
+ <72934f23-08eb-4214-a946-7aa7a432352e@collabora.com>
+ <56380fe5-8358-4341-9478-ba4ce52daeed@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: weishangjuan@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- yong.liang.choong@linux.intel.com, vladimir.oltean@nxp.com,
- rmk+kernel@armlinux.org.uk, faizal.abdul.rahim@linux.intel.com,
- prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
- jan.petrous@oss.nxp.com, jszhang@kernel.org, p.zabel@pengutronix.de,
- boon.khai.ng@altera.com, 0x1207@gmail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- emil.renner.berthing@canonical.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- lizhi2@eswincomputing.com, pinkesh.vaghela@einfochips.com
-References: <20250912055352.2832-1-weishangjuan@eswincomputing.com>
- <20250912055612.2884-1-weishangjuan@eswincomputing.com>
- <50496bf2-1d10-4d89-addb-f4fe774497d9@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -114,45 +124,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <50496bf2-1d10-4d89-addb-f4fe774497d9@kernel.org>
+In-Reply-To: <56380fe5-8358-4341-9478-ba4ce52daeed@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2025 15:14, Krzysztof Kozlowski wrote:
-> On 12/09/2025 07:56, weishangjuan@eswincomputing.com wrote:
->> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
+On 12/09/2025 11:00, AngeloGioacchino Del Regno wrote:
+> Il 04/08/25 11:02, AngeloGioacchino Del Regno ha scritto:
+>> Il 24/07/25 11:14, Krzysztof Kozlowski ha scritto:
+>>> On 24/07/2025 10:38, AngeloGioacchino Del Regno wrote:
+>>>> The dual and triple core jpeg encoder and decoder (respectively)
+>>>> on MT8195 are far apart: the only way to have this to make sense
+>>>> is to split those in multiple address ranges in device trees as
+>>>> one big range would overlap with other IP in at least the MT8195
+>>>> SoC.
+>>>>
+>>>> Change both the jpegdec and jpegenc bindings to allow specifying
+>>>> children nodes such as "jpegdec@0,10000", "jpegdec@1,0" or for
+>>>> encoder "jpegenc@0,0", "jpegenc@1,0" to resolve dtbs_check issues.
+>>>
+>>>
+>>> This should not be needed for standard MMIO/simple-bus nodes. I think
+>>> DTS is wrong here.
+>>>
+>>> Which cases really need the ','?
+>>>
 >>
->> Add ESWIN EIC7700 Ethernet controller, supporting clock
->> configuration, delay adjustment and speed adaptive functions.
+>> All of the multi-core JPEG enc/decoders on MT8195 (and newer).
 >>
->> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
->> Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
+>> The DT changes are included in the same series as this commit; check:
+>>
+>> 20250724083914.61351-35-angelogioacchino.delregno@collabora.com
+>>
+>> Cheers,
+>> Angelo
+>>
 > 
-> There is no explanation of dropping the tag. Please read CAREFULLY
-> submitting patches.
-> 
-> Comparing also fails:
-> 
-> b4 diff '<20250912055352.2832-1-weishangjuan@eswincomputing.com>'
-> Using cached copy of the lookup
-> ---
-> Analyzing 55 messages in the thread
-> Preparing fake-am for v6: dt-bindings: ethernet: eswin: Document for
-> EIC7700 SoC
-> ERROR: Could not fake-am version v6
-> ---
-> Could not create fake-am range for upper series v6
+> Any further comments on this?
 
+Well yeah, that's still wrong. These are simple MMIO, so comma is not
+correct. Rob already commented on this at v1 of Ariel's patchset. It was
+BTW the same device - mt8195 jpeg!
 
-Ah, that because your patchset is broken.
-
-Please start using b4, which would solve such problems. Otherwise you
-just waste your own and ours time, because this cannot be applied and
-cannot be tested.
-
-> 
-> I am not going to review twice, so you can drop my tag again without
-> explanation.
 
 Best regards,
 Krzysztof
