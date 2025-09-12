@@ -1,114 +1,255 @@
-Return-Path: <devicetree+bounces-216473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93EAB54E24
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:38:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD63B54E4C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:45:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B9633B802C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:34:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F11651886087
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF2C3054E3;
-	Fri, 12 Sep 2025 12:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0713303A15;
+	Fri, 12 Sep 2025 12:44:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="boIpsGXg"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GnDuceut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD21B2E8B90;
-	Fri, 12 Sep 2025 12:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757680424; cv=pass; b=GBCSoq7eP+ZDMrYneeoGSlglhEQerU3MQ9dNPHVYrJSfHhZXfsZ9u753vDl6uKqeiEEkFLEwW8AJ3/3ZIXlcs2lmrBC6ws8zSBPXP4OHXqzFLAkvNrFurhUisNS1TOJ2XC4w+OMa4viHjUXMdd+ikLPSwYvZVydZQGwUpXDdzjs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757680424; c=relaxed/simple;
-	bh=gI2KfzM2aq/K9OsV2HIY4vUHjQHbykZZH3svP1jSZJ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J+lD3FR+TGR85Jl0SrBkr796xCiexOnoR8HqRDzH0jJ15W6cxhxvoN66BKB5uPlqdkeAGO6EeM8raRAAbJGH9Pz9690UK809FAZehi9DR+6AgJ694GBurcX52K1/82XQudd5I87oygRtiN1QupuzSC5xp821oYB29Lly2aA1xBE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=boIpsGXg; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757680393; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=d9lx73cJ+3kbqYZ8pdZisBn1TYdH/TuEI9qHtLZVc0HiotwsWQwMUsygScWa/QCSnQDxrDWQdgrowkEpvxEVaPRwtGqoGt90P7eFUTt0rBxR43B8tFk0DCP02yq0s7o3S/xFBsV5yAQF0Cvj0KV6LCtV3pp487ju/iQaIqFu9uw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757680393; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=6MSZWnj1jgR4thBvdLu3JU3z1ibbPCoj24oKf6RqCjE=; 
-	b=CZLu6l3WO3PVuVjT/emEIylG9WJMo1+3F5CVysgk2x0zUx4eg4yvgKaZ3Szj1/W1vw2HUB92pdwaWEAQh70huS3eG3J7Gtade47mBZhzAHyZhBZ9neuWrOXSd1E+y7GEy4J+eNf+FJ4nXlF0kizicGGXFdegPR8vkp8z83ePE9o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757680392;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=6MSZWnj1jgR4thBvdLu3JU3z1ibbPCoj24oKf6RqCjE=;
-	b=boIpsGXg6Oa36fHp704E35jAK+/U3XDz+CH4pbWZVUmBTzTFmmki+CCbcz/VW4Go
-	/n3BtmkKJ5ZK9idA/tLZt43qcGWqzTZNVdpT6bplhRwhDf8RfCLubg5clkZEM7d8ie7
-	eMXFLXVoWMeae2oo/2RUAV7YmGRWqFr1y97mOI+g=
-Received: by mx.zohomail.com with SMTPS id 1757680390786230.58638870729078;
-	Fri, 12 Sep 2025 05:33:10 -0700 (PDT)
-Message-ID: <f009ff62-abbe-4305-91ca-9cc762ca4fb1@collabora.com>
-Date: Fri, 12 Sep 2025 14:33:06 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50100301031
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:44:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757681083; cv=none; b=Fjtc0OoIrn6s2Pt5O0+VlVFqh052Z/5XlWTgEx8SVbUXbtCdjGYRHGESWaiL6FAMtts4JiCmGUHu/rUvCB8lNlu6XESK1uJLYWw+CTq5Lxd93qq4x4HUbETu6DQ7u7E59vnoh8c6vEPNulgCqwEFGridCxvwOV6MWnVU7I4G3v8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757681083; c=relaxed/simple;
+	bh=NXr6761UnhNuatR0gAI5tVaJNfUBA797kNPb6NrQOPk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=mXA/C0ZneQiSPhY5oiZAWxSQIwZP60WDswE3mRXEIPpaR1Gj76lZI2kmswJcJRpvpBhV1KJoAIb7hUFMnsjNM5OkC0yik6XnAqBn7inLe0gp7meZBizXScXOhWDU2gaKiCZajjcHUNKONtaWggkoEOu3Lupt3oHSKNETCy5ejuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GnDuceut; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 8E3304E40C97
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:44:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 614D760638;
+	Fri, 12 Sep 2025 12:44:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C0B03102F29BF;
+	Fri, 12 Sep 2025 14:44:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757681077; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=2b6HqIAwNVuz6HRHHTPZk9huV16GAiHxG1lpPMSNBlI=;
+	b=GnDuceutqH80p8LWOeAakA2FLIXSNBXHGWu/zEJp6N6tBXCPD/mv94P/sjigfLv1q4Qwh+
+	ZfqvlXpf3D3MsBxq1ed6GOWBN6zUG0aUvyIi4hUTxONP7ztiDddSsq2bE+K/XX6kLbJyuI
+	cBxe+S/bpNpLgGRZl9ZyejtrH24TXRiEFroO+4GIp/EE9LfviWCRcQs2Vi2E6IflEvc75k
+	/YCrPXzGcfJCmjtrCs3PLU1q+Bk4GP/zW7QlHQy+zMTNOviHdIqWbMvvBNa3SBTYejBQPa
+	Hc74fvQjOMsmOK7MqS7C5wPvtU+j7qJQQCrM3NcKLHI0HaWqu5Wncf5/dFIihg==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: marvell: Convert
+ marvell,armada-370-xp boards to DT schema
+In-Reply-To: <20250805232502.2827725-1-robh@kernel.org>
+References: <20250805232502.2827725-1-robh@kernel.org>
+Date: Fri, 12 Sep 2025 14:44:25 +0200
+Message-ID: <87wm63on6e.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
-To: =?UTF-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
-Cc: robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, nicolas.dufresne@collabora.com,
- jgg@ziepe.ca, p.zabel@pengutronix.de, mchehab@kernel.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- linux-media@vger.kernel.org
-References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
- <20250911155720.180465-4-benjamin.gaignard@collabora.com>
- <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
+"Rob Herring (Arm)" <robh@kernel.org> writes:
 
-Le 12/09/2025 à 13:47, Jörg Rödel a écrit :
-> On Thu, Sep 11, 2025 at 05:57:13PM +0200, Benjamin Gaignard wrote:
->> The Verisilicon IOMMU hardware block can be found in combination
->> with Verisilicon hardware video codecs (encoders or decoders) on
->> different SoCs.
->> Enable it will allow us to use non contiguous memory allocators
->> for Verisilicon video codecs.
->>
->> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->> ---
->>   drivers/iommu/Kconfig     |  11 +
->>   drivers/iommu/Makefile    |   1 +
->>   drivers/iommu/vsi-iommu.c | 808 ++++++++++++++++++++++++++++++++++++++
->>   include/linux/vsi-iommu.h |  21 +
->>   4 files changed, 841 insertions(+)
->>   create mode 100644 drivers/iommu/vsi-iommu.c
->>   create mode 100644 include/linux/vsi-iommu.h
-> This will not go in before Will Deacons comment about code duplication with the
-> Rockchip driver is addressed.
-
-It isn't the same hardware block, not from the same IP vendor and the bits set aren't the same.
-pm_runtime, clock, spin_lock aren't managed differently.
-The common point is they both use 2-level page table.
-
-VSI iommu need an additional function to restore iommu context before decoding
-each frame, rockchip doesn't need it.
-
-Regards,
-Benjamin
-
+> Convert Marvell Armada 370/XP based boards to DT schema format.
 >
-> 	Joerg
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+
+
+Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+
+Thanks,
+
+Gregory
+
+> ---
+>  .../bindings/arm/marvell/98dx3236.txt         | 23 ------
+>  .../bindings/arm/marvell/armada-370-xp.txt    | 24 ------
+>  .../arm/marvell/marvell,armada-370-xp.yaml    | 78 +++++++++++++++++++
+>  3 files changed, 78 insertions(+), 47 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/98dx323=
+6.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-=
+370-xp.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/marvell=
+,armada-370-xp.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt b=
+/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
+> deleted file mode 100644
+> index 64e8c73fc5ab..000000000000
+> --- a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -Marvell 98DX3236, 98DX3336 and 98DX4251 Platforms Device Tree Bindings
+> -----------------------------------------------------------------------
+> -
+> -Boards with a SoC of the Marvell 98DX3236, 98DX3336 and 98DX4251 families
+> -shall have the following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp-98dx3236"
+> -
+> -In addition, boards using the Marvell 98DX3336 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp-98dx3336"
+> -
+> -In addition, boards using the Marvell 98DX4251 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp-98dx4251"
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.=
+txt b/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
+> deleted file mode 100644
+> index c6ed90ea6e17..000000000000
+> --- a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
+> +++ /dev/null
+> @@ -1,24 +0,0 @@
+> -Marvell Armada 370 and Armada XP Platforms Device Tree Bindings
+> ----------------------------------------------------------------
+> -
+> -Boards with a SoC of the Marvell Armada 370 and Armada XP families
+> -shall have the following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armada-370-xp"
+> -
+> -In addition, boards using the Marvell Armada 370 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armada370"
+> -
+> -In addition, boards using the Marvell Armada XP SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp"
+> -
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
+-370-xp.yaml b/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
+-370-xp.yaml
+> new file mode 100644
+> index 000000000000..e65eadfbd097
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/marvell/marvell,armada-370-xp=
+.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +---
+> +$id: http://devicetree.org/schemas/arm/marvell/marvell,armada-370-xp.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Armada 370 and Armada XP platforms
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Gregory Clement <gregory.clement@bootlin.com>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ctera,c200-v2
+> +              - dlink,dns327l
+> +              - globalscale,mirabox
+> +              - netgear,readynas-102
+> +              - netgear,readynas-104
+> +              - marvell,a370-db
+> +              - marvell,a370-rd
+> +              - seagate,dart-2
+> +              - seagate,dart-4
+> +              - seagate,cumulus-max
+> +              - seagate,cumulus
+> +              - synology,ds213j
+> +          - const: marvell,armada370
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - mikrotik,crs305-1g-4s
+> +              - mikrotik,crs326-24g-2s
+> +              - mikrotik,crs328-4c-20s-4s
+> +          - const: marvell,armadaxp-98dx3236
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: marvell,db-xc3-24g4xg
+> +          - const: marvell,armadaxp-98dx3336
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: marvell,db-dxbc2
+> +          - const: marvell,armadaxp-98dx4251
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - lenovo,ix4-300d
+> +              - linksys,mamba
+> +              - marvell,rd-axpwifiap
+> +              - netgear,readynas-2120
+> +              - synology,ds414
+> +          - const: marvell,armadaxp-mv78230
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: plathome,openblocks-ax3-4
+> +          - const: marvell,armadaxp-mv78260
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - marvell,axp-db
+> +              - marvell,axp-gp
+> +              - marvell,axp-matrix
+> +          - const: marvell,armadaxp-mv78460
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +additionalProperties: true
+> --=20
+> 2.47.2
+>
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
