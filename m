@@ -1,293 +1,190 @@
-Return-Path: <devicetree+bounces-216606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2009BB55521
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 18:54:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965BEB5553D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 18:59:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8FE95C55B6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:54:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE16DB60EE5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F041E32779E;
-	Fri, 12 Sep 2025 16:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2FE321F40;
+	Fri, 12 Sep 2025 16:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="O/k3tQ4+"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="O1v/nwz0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012029.outbound.protection.outlook.com [52.101.66.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83F3324B23
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 16:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757696057; cv=none; b=hFZhtMAii7X/Zgdi4DfNnlr0AB7prPIXBUK7fcIBmytzgQjm2GnMYRRPoxEMbiYv82fSxuLeCMfQKTuqtwD8B2kFOALRLQmz5u/iag4iIqTYIhFSGbwEBRHGZ/KtDGbVdz7U1fFzBR2Ap1oGS0pcIf+jlCiSNE+/7eU3bjSeca0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757696057; c=relaxed/simple;
-	bh=FfgkdU6etZrYAfvJBDW3eVcqdsFZWMjbz1Dd8LUWRgw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BuutS0HEsSE6JgzQ1Pcv51DEqREVwQ561VB2XzL6UGLQdcRMNy4SRFr5DekK6Zfwpm0t9Z7/ELzwQQp4aqhkTWnjHXy519Z6oSpea2ofhiG3trdJ/pS71+0kcGGUMSsvv2/amCNXfaJ1BNhP+E/KErGn0ALPCHzONZktvkr9Zas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=O/k3tQ4+; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1757696054;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zZNri8xN5U7Vx0F01Sp7vJZsX4j0K/IC1lKGnDrBvpw=;
-	b=O/k3tQ4+g/0+rpbSpw7sbARdvoMR1xVwthpuB9MxRtifJRLY61qimQXiWWpoxP8WWyvEZf
-	zODN95PTl4WqF5lWFdYrs8fKPp/2YMK2yuC6mzmzoqN2SOQHCwT+UykUzfYHLSF4qUjTEF
-	m2AgvKDFbRyRsAbvbWbcOeBOk69wsbQ=
-From: Ze Huang <huang.ze@linux.dev>
-Date: Sat, 13 Sep 2025 00:53:48 +0800
-Subject: [PATCH v8 2/2] usb: dwc3: add generic driver to support flattened
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F1732274C;
+	Fri, 12 Sep 2025 16:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757696384; cv=fail; b=eLrY3Z8Dp+rhTmYw4d2H9pfBLrXFYiBsNii7UpZ0wlNGJpSseM7eyRedY18jRtbeZcp0p3rUsFqM615N1sVXKWMm1f5/2ZuIPgadDqDaGNsnbZ96PtQQKVvFOVVpcbh27MMMkc3yD4dJMtyoKTnxDJgVfuBFo/pSx2Lj0tt29uo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757696384; c=relaxed/simple;
+	bh=ko23iXVaHZkbtBHfvtDMtrd6W1dIPx/lyjF+xoqvFP8=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=PysI9nc0CkJFL2dy79DoKjK9+YPEmBtpl+VrA2nkUNsmubxff3cZtaYCs03rlMhqfoYTNVNkBY47+AJX46/od7cIZ4fKaaH54pFI3OFbFIERANj7LiHDMt/Sny6KoQcoiuUI5mzHObjlqQDMYrnelXHSdQV3A8g7RIFm+byDaxE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=O1v/nwz0; arc=fail smtp.client-ip=52.101.66.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fa4lzz3485pRiFY7SEH04LMc5WZ2b4beyCmEAFPOJjt6FTkBJcw/WlGlDmDOlcJBzHgSA/DWLqywnvdEHbSjk/uUMCZp2r6MvJkJ/3oGp7ah3mQ4xQo22eK9L+5sO0KUvW8utssGg7wxnvrdN7VyMf/yOUry5afRg60DyaEDZqnpHfJCvdLAnUn5Ww851o12WUh5xNRg9PhJSYrfRKObIsSKbpmLz64TYLqOCqpDokS+fNYFlavzTZypZ3OuHboKjbchtOSMuOrB3jXhMbdjBisiHNI8NdfZiEk6x0J+b3nyJSFYCeqFx98G6oyvpWADbfYeTgavzyVCXpe6YX9wxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5qgP9WM8gwT2RRg9snwHy6Xlq7rctu8sbcssGB7qrlw=;
+ b=nAYgln0de5NflpaSs3GLmaq0rA3IxtXC21SmPg/Q4F0fpk3S39eaiQltTTPJrfkY9iclm4fOJwxFkQX+UQglYCS12WMNyghluvzFr/Yph3+qujHdeBy99tScht/YusethwdNEuKfOprtmTAYN2zBidqq/c0sGBkOn0+d5eT9h+eJ9jxCbHsRYa2qP79iI63K8LX2dqiN70nZGUANQNUDjkvnxG0dEeksQAzlvYL532+16ajJYUIls+7UcQOxqElEfw7X912nLPnUr/WqNyPBkVhifKULguR+UYCIlnXjnsQffjWYbcT474b7PTrPUmdxpIbKSIj0CQoGKT9Xyezffw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5qgP9WM8gwT2RRg9snwHy6Xlq7rctu8sbcssGB7qrlw=;
+ b=O1v/nwz0iRExHEwxKhLAb0vO1g5M6XWPWSqRyObLvA1QJMmRA5aL6XxBQSmDr3GSAxD7s+Tkewuhnu+EpcqOqtEyF33ww4UuWPg2IVHdtqoS+rvkksOvMR+xfLZw330QkRXQ7dT9WxiFt5aY+wD36YzFEi+wmS1K0zdYhA2P5VPNKqaWYlrZsjTZATShvTbTP6QBy6wE9zsjwyytuTfj+Prw3fZr+tZwxNkY1JSu7UucUuNISVpXrmqVuVOSB3W4PkEmEpCGEm3gZzqY5DSF1teCiBDGbSGs06HPYCuFlg0LZNvgQqQkf1rM+wJoaltZ6ILfMW2r2DYykdWsdtWcRw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
+ by GV1PR04MB11488.eurprd04.prod.outlook.com (2603:10a6:150:282::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.18; Fri, 12 Sep
+ 2025 16:59:35 +0000
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b7fe:6ce2:5e14:27dc]) by AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b7fe:6ce2:5e14:27dc%4]) with mapi id 15.20.9115.017; Fri, 12 Sep 2025
+ 16:59:34 +0000
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: fix trivial-gpio's schema id
+Date: Fri, 12 Sep 2025 19:59:16 +0300
+Message-Id: <20250912165916.3098215-1-ioana.ciornei@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR4P281CA0023.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c9::9) To AS8PR04MB8868.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42f::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250913-dwc3_generic-v8-2-b50f81f05f95@linux.dev>
-References: <20250913-dwc3_generic-v8-0-b50f81f05f95@linux.dev>
-In-Reply-To: <20250913-dwc3_generic-v8-0-b50f81f05f95@linux.dev>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Ze Huang <huang.ze@linux.dev>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757696039; l=6552;
- i=huang.ze@linux.dev; s=20250705; h=from:subject:message-id;
- bh=FfgkdU6etZrYAfvJBDW3eVcqdsFZWMjbz1Dd8LUWRgw=;
- b=gH7DEKhPnuHMv4E13jQV6dT1Uy5BuV//pCHGR5nlTXxk3OMFYtgL4ZmcEhzK4VR+dp5gosxZt
- QAg2fT6J5Z1B1k24+gPbQHA4mirhrdw1jLpVk8XVaxsOQi0kJx6bIHY
-X-Developer-Key: i=huang.ze@linux.dev; a=ed25519;
- pk=Kzc4PMu5PTo8eZZQ5xmTNL9jeXcQ9Wml0cs+vlQpBkg=
-X-Migadu-Flow: FLOW_OUT
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|GV1PR04MB11488:EE_
+X-MS-Office365-Filtering-Correlation-Id: 431cddc3-70a1-4abe-5710-08ddf21dc020
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|19092799006|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HojVPpMRnkv9kYQ9LWHLBLPXJZxdI4HTMXbFWXCQjFfz4HJ7Ww57UgV7wDar?=
+ =?us-ascii?Q?G2omAcHQEWK9Net6p6M/RbLINYfjyyeynoTIMmVEXEF6BqTW6BrpZTxoeFYo?=
+ =?us-ascii?Q?ruq5OATQD5EJWWIDmEfv8+A+ddGcRdyM15l9z/ZXACJEahh35BXP8PmXFK8W?=
+ =?us-ascii?Q?uX/GC9w4dKZurWGdI7wfnoB0ncAU5Fy1go9Dc3jnJ70g4BccqhC24ZFQxc/5?=
+ =?us-ascii?Q?RY5euMf3XuUgr+GTTQDLfcCDChFVflI/DRrlsh0OjA2vPC29ZM7uvPKYZZ//?=
+ =?us-ascii?Q?Y/L/5PYR8hSsEMU4mFvWPTl9KXNHPMTY9m9pk12NKxV+nTCevqa5yGUvxyav?=
+ =?us-ascii?Q?Ol5gM+jYLd5V6ImXNS2Iy0NqSXwISAvEeTPYyRyzgB4ARkjUFlBzrPte1xUd?=
+ =?us-ascii?Q?eBfHd/+QuJmUUcbnOPCqQcgW0xjZL33mreD6zvFKu4Gpt1vQCTrc3ayGtW1S?=
+ =?us-ascii?Q?ZKPCLMoCUILsQ0kU2NOHvmBtZogJUqyDVwLy3Rp8RlIA7AEeomLsp2AaN3EH?=
+ =?us-ascii?Q?hqEq1SVTMSQN389UOXkoze5JgRIG4oicd7SDrcSckxpLgarh9/100qXK2yNY?=
+ =?us-ascii?Q?lo0StrHacBeY9tVB5txMirfDzK+z7TktpnT2NTPSqPqSCQeqQw0H+uFaCQuz?=
+ =?us-ascii?Q?RR3KSSP7jup5LoF4cWlZyRaYUkm0lC3gBqwXsvpGNUBks+31fty69rLrkAKG?=
+ =?us-ascii?Q?0zaUAoMVoo/E6BHqtc5EZPNuZQHmcwonLKiH7dgAwqgQHWxsxna10v+GcXb4?=
+ =?us-ascii?Q?Mb58Ay9AQ1zgZ27CQrtXxZMCn1+bOfFD3JESPzOfc7AxkS4MFdbzbJW2QsMA?=
+ =?us-ascii?Q?pz9Zu5ebGZFLM8Dr1pDNhrOnFNjqWaE4LYD+p/vq4HGJjXWNolSHZWGhEHGV?=
+ =?us-ascii?Q?cpMxcp5ofJ9HgPk6XjzbNJGx6w7F8jui0nb3OIWeSSoweQZjBnAc3gjVQ5U/?=
+ =?us-ascii?Q?BHWEBZsPQ399haQxMsjliQomdu57EvDDubyXrQykB1lpXn01CBDOGWKZYkas?=
+ =?us-ascii?Q?D/p5DohUDHfVNm5P+kU4tbGxyI3jlpEOf/6hm6Bs5YBwqr176pHE55x3sR80?=
+ =?us-ascii?Q?end/zCdph1VrTuIj//Ndh8vE8P8onfykDXNN++LKHNmPChN9VLt79j6re6L9?=
+ =?us-ascii?Q?09jBj7kbbnonZKt2cb73Rt9gRa3xQw7PplppUit5egjc+vqdpPVa64rAmmSF?=
+ =?us-ascii?Q?CPQ0U5RAxKvJ7rYqxAbfmwckyga4eKL78TrcKio0I7I8N646dMv8fDyYKRhq?=
+ =?us-ascii?Q?Aqt12k52Asvja11H+FC7loj0tEsWQ11VCPvVPQlPuk8sZA8L1GjQce+sPUHJ?=
+ =?us-ascii?Q?09IT6Ml6ccrQwcv8Fqb5G6N++uuyy5gXYCxb9J+pUsonP8AHJQVxj/T1NaQR?=
+ =?us-ascii?Q?4ziRXs1yA4RyLYB3s+ZLV1Y2PW/a?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(19092799006)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?9CW0wbrKBuf8ZpPQREH0MhkqRQwHE91kSVwpjBKV0Hvca/K1F4iZxUq7hBDm?=
+ =?us-ascii?Q?hzROcB60MwFCFjubKyVFVouzgygpvf+A0ZNV12JtzQLouS9FC7syvBOKeYSR?=
+ =?us-ascii?Q?DgR6cfY2WbkV4tDr7E3XeK8Y8RpQ1xDVgWdDYi0u9vVpllzEtw+3K89G6NU2?=
+ =?us-ascii?Q?01wej9DhUSbNsUjan8ZZ0SylzT4yGUrPESkJAxq49QcW0Fe5czYs4AM8Om1+?=
+ =?us-ascii?Q?nAm3bfDel+IhxBULf5wWDb7UPErmIwAo0vv5TQ9IUsbmUgoE9E+W5dcZKapJ?=
+ =?us-ascii?Q?a+wEn4AVEuFl4gTpq77NcEW2Bjscxnt38LtFz2Io9MQolzgqKKy/m/llEyaO?=
+ =?us-ascii?Q?+sF/uL3qn46Yhm9Chsi399ZK+VCHwJYwGAXeGT81TD1Ti0yYCJzEvBN4CB6W?=
+ =?us-ascii?Q?maSRyA6MUfVha7IMLNGH9NMXK2tVX5XaEgSG5zxrwKiB7m1CjVLNs1nLQCSq?=
+ =?us-ascii?Q?sh/954obvpnam1WLVeMe5UETHKg662HxLse3HtKpXQZhJl87JDp+Zw+vZn9r?=
+ =?us-ascii?Q?MjT5s82dtEzlO4M74VQLGA9GnkptfFfvrcfX8OiYcs2xuw1kDMs66k4Q5YHe?=
+ =?us-ascii?Q?ZBVzGKZ2B2rNVbAYQkCrN5LNiSQwn/2najs8Z72y7cJ0HVpHNfcx9Xua9q/M?=
+ =?us-ascii?Q?dIJvL3XEX4mLUc6lQisVvwqnLT5UOmta3s1x3PHVMlAntftPDKjbIQT+MM4j?=
+ =?us-ascii?Q?JXygzb1/M7jLGj92iA200Eo7l2GZcy+nEZKNhvy+4FSfluDPUoaq7Rhze9tC?=
+ =?us-ascii?Q?pITjHvNKmyDXmqMjGlWzkbufjHoupi0cuZq/2C84h9u+qTgC1Xv94hQrnvE2?=
+ =?us-ascii?Q?ED3rZHfgpSakFom+KqU9oCgAu8vPTCoe5Dz+3ef3foLYrzh3MJIil3LB/m0d?=
+ =?us-ascii?Q?NwUw5WfNbpswU3ZhjY9AIVnQtfyqgpyvRlIdEln8ZQFl8GkoJ1GtJn+OHJqz?=
+ =?us-ascii?Q?ualXbwfnvJl215vwXJv4MNNlxTMXFMmZSIJrPqq4qQBoILRyxFi4YWcWbhYh?=
+ =?us-ascii?Q?JOWlKMOXZtLVr5Vd+Iz6Np4VjerufN1suEvDYV4Y5rvfMoVyPMro6qQWbDvE?=
+ =?us-ascii?Q?5wpMcoVDD0bYuGV5oiLAEd2UP2SIvh5BvBupX7qUBs0ThaG304ZZpiCO1GLX?=
+ =?us-ascii?Q?PU/Zm+j+cfZABMImlDEkWtiUo/FdEHsohaa1EwJlG35xkxrSOuw+HbRxYdG+?=
+ =?us-ascii?Q?EPM1hobDEdxICFyPgy7T+c8iS0J3/WktRgcBhGv2V1ga3QAG+Ekey/99Zw6g?=
+ =?us-ascii?Q?j5gG5YV5SHZ5bprWkUJEDqsSjvc+8uC+jpHjb8GuldfRR/D9+0ySjcGEu/IX?=
+ =?us-ascii?Q?1DnIYBrsmh7JsSd8vwfsXkHuEVyFWCTp7ZfH+Snm4i7iJhwpUOxIOp5mfO3g?=
+ =?us-ascii?Q?fIphtKUHBb/jHjxJaaYvRnHo9u/z0TmesMonIX5n1bvRaUyL4DKWRcE8/jg0?=
+ =?us-ascii?Q?sUHy31rjeuE4bw6MM/rkl3ndnq32WBxHFiDwP5VE788RjGbAzQEJzuaHER6a?=
+ =?us-ascii?Q?Wvhg0HFS/b/WK7qn3206fxZcjmbI4yNC59YEjMD6oUAqpITqz1vtwRS8R15T?=
+ =?us-ascii?Q?qNVwQer62/Dz6ys98+X9N36DlEK/BP+Or4qgBFku?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 431cddc3-70a1-4abe-5710-08ddf21dc020
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 16:59:34.9103
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Aah1OjaWGn7DWAllDszCNt44pCCcqi3GqEqGZ1rdHRPbWokCWjUg6ZwDTnDf/akTdCFbyJBrxYcplK/NayXUgw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11488
 
-To support flattened dwc3 dt model and drop the glue layer, introduce the
-`dwc3-generic` driver. This enables direct binding of the DWC3 core driver
-and offers an alternative to the existing glue driver `dwc3-of-simple`.
+In case the trivial-gpio schema is referenced through a $ref like
+/schemas/trivial-gpio.yaml to match its current schema ID, the following
+error message is displayed:
 
-Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Signed-off-by: Ze Huang <huang.ze@linux.dev>
+Error in referenced schema matching $id: http://devicetree.org/schemas/trivial-gpio.yaml
+Tried these paths (check schema $id if path is wrong):
+/path/to/linux/Documentation/devicetree/bindings/trivial-gpio.yaml
+/path/to/dtchema/schemas/trivial-gpio.yaml
+
+Fix this by adding the 'gpio' folder to the schema's ID to match its
+file path.
+
+Fixes: f03a7f20b23c ("dt-bindings: gpio: Create a trivial GPIO schema")
+Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 ---
- drivers/usb/dwc3/Kconfig             |  11 +++
- drivers/usb/dwc3/Makefile            |   1 +
- drivers/usb/dwc3/dwc3-generic-plat.c | 166 +++++++++++++++++++++++++++++++++++
- 3 files changed, 178 insertions(+)
+ Documentation/devicetree/bindings/gpio/trivial-gpio.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-index 310d182e10b50b253d7e5a51674806e6ec442a2a..4925d15084f816d3ff92059b476ebcc799b56b51 100644
---- a/drivers/usb/dwc3/Kconfig
-+++ b/drivers/usb/dwc3/Kconfig
-@@ -189,4 +189,15 @@ config USB_DWC3_RTK
- 	  or dual-role mode.
- 	  Say 'Y' or 'M' if you have such device.
+diff --git a/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml b/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
+index aa3f88adf91a..3f4bbd57fc52 100644
+--- a/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/trivial-gpio.yaml#
++$id: http://devicetree.org/schemas/gpio/trivial-gpio.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+config USB_DWC3_GENERIC_PLAT
-+	tristate "DWC3 Generic Platform Driver"
-+	depends on OF && COMMON_CLK
-+	default USB_DWC3
-+	help
-+	  Support USB3 functionality in simple SoC integrations.
-+	  Currently supports SpacemiT DWC USB3. Platforms using
-+	  dwc3-of-simple can easily switch to dwc3-generic by flattening
-+	  the dwc3 child node in the device tree.
-+	  Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
-+
- endif
-diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..96469e48ff9d189cc8d0b65e65424eae2158bcfe 100644
---- a/drivers/usb/dwc3/Makefile
-+++ b/drivers/usb/dwc3/Makefile
-@@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
- obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
- obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
- obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
-+obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)	+= dwc3-generic-plat.o
-diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..d96b20570002dc619ea813f4d6a8013636a0f346
---- /dev/null
-+++ b/drivers/usb/dwc3/dwc3-generic-plat.c
-@@ -0,0 +1,166 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * dwc3-generic-plat.c - DesignWare USB3 generic platform driver
-+ *
-+ * Copyright (C) 2025 Ze Huang <huang.ze@linux.dev>
-+ *
-+ * Inspired by dwc3-qcom.c and dwc3-of-simple.c
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include "glue.h"
-+
-+struct dwc3_generic {
-+	struct device		*dev;
-+	struct dwc3		dwc;
-+	struct clk_bulk_data	*clks;
-+	int			num_clocks;
-+	struct reset_control	*resets;
-+};
-+
-+#define to_dwc3_generic(d) container_of((d), struct dwc3_generic, dwc)
-+
-+static void dwc3_generic_reset_control_assert(void *data)
-+{
-+	reset_control_assert(data);
-+}
-+
-+static int dwc3_generic_probe(struct platform_device *pdev)
-+{
-+	struct dwc3_probe_data probe_data = {};
-+	struct device *dev = &pdev->dev;
-+	struct dwc3_generic *dwc3g;
-+	struct resource *res;
-+	int ret;
-+
-+	dwc3g = devm_kzalloc(dev, sizeof(*dwc3g), GFP_KERNEL);
-+	if (!dwc3g)
-+		return -ENOMEM;
-+
-+	dwc3g->dev = dev;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		dev_err(&pdev->dev, "missing memory resource\n");
-+		return -ENODEV;
-+	}
-+
-+	dwc3g->resets = devm_reset_control_array_get_optional_exclusive(dev);
-+	if (IS_ERR(dwc3g->resets))
-+		return dev_err_probe(dev, PTR_ERR(dwc3g->resets), "failed to get resets\n");
-+
-+	ret = reset_control_assert(dwc3g->resets);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to assert resets\n");
-+
-+	/* Not strict timing, just for safety */
-+	udelay(2);
-+
-+	ret = reset_control_deassert(dwc3g->resets);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to deassert resets\n");
-+
-+	ret = devm_add_action_or_reset(dev, dwc3_generic_reset_control_assert, dwc3g->resets);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_clk_bulk_get_all_enabled(dwc3g->dev, &dwc3g->clks);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to get clocks\n");
-+
-+	dwc3g->num_clocks = ret;
-+	dwc3g->dwc.dev = dev;
-+	probe_data.dwc = &dwc3g->dwc;
-+	probe_data.res = res;
-+	probe_data.ignore_clocks_and_resets = true;
-+	ret = dwc3_core_probe(&probe_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
-+
-+	return 0;
-+}
-+
-+static void dwc3_generic_remove(struct platform_device *pdev)
-+{
-+	struct dwc3 *dwc = platform_get_drvdata(pdev);
-+	struct dwc3_generic *dwc3g = to_dwc3_generic(dwc);
-+
-+	dwc3_core_remove(dwc);
-+
-+	clk_bulk_disable_unprepare(dwc3g->num_clocks, dwc3g->clks);
-+}
-+
-+static int dwc3_generic_suspend(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_generic *dwc3g = to_dwc3_generic(dwc);
-+	int ret;
-+
-+	ret = dwc3_pm_suspend(dwc);
-+	if (ret)
-+		return ret;
-+
-+	clk_bulk_disable_unprepare(dwc3g->num_clocks, dwc3g->clks);
-+
-+	return 0;
-+}
-+
-+static int dwc3_generic_resume(struct device *dev)
-+{
-+	struct dwc3 *dwc = dev_get_drvdata(dev);
-+	struct dwc3_generic *dwc3g = to_dwc3_generic(dwc);
-+	int ret;
-+
-+	ret = clk_bulk_prepare_enable(dwc3g->num_clocks, dwc3g->clks);
-+	if (ret)
-+		return ret;
-+
-+	ret = dwc3_pm_resume(dwc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int dwc3_generic_runtime_suspend(struct device *dev)
-+{
-+	return dwc3_runtime_suspend(dev_get_drvdata(dev));
-+}
-+
-+static int dwc3_generic_runtime_resume(struct device *dev)
-+{
-+	return dwc3_runtime_resume(dev_get_drvdata(dev));
-+}
-+
-+static int dwc3_generic_runtime_idle(struct device *dev)
-+{
-+	return dwc3_runtime_idle(dev_get_drvdata(dev));
-+}
-+
-+static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
-+	SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
-+	RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
-+		       dwc3_generic_runtime_idle)
-+};
-+
-+static const struct of_device_id dwc3_generic_of_match[] = {
-+	{ .compatible = "spacemit,k1-dwc3", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
-+
-+static struct platform_driver dwc3_generic_driver = {
-+	.probe		= dwc3_generic_probe,
-+	.remove		= dwc3_generic_remove,
-+	.driver		= {
-+		.name	= "dwc3-generic-plat",
-+		.of_match_table = dwc3_generic_of_match,
-+		.pm	= pm_ptr(&dwc3_generic_dev_pm_ops),
-+	},
-+};
-+module_platform_driver(dwc3_generic_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("DesignWare USB3 generic platform driver");
-
+ title: Trivial 2-cell GPIO controllers
 -- 
-2.34.1
+2.25.1
 
 
