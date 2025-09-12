@@ -1,190 +1,172 @@
-Return-Path: <devicetree+bounces-216258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E87B542AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:20:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C2CB542BE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:23:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27B25188DF46
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:21:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B042D5A19E7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:23:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEF4274FDF;
-	Fri, 12 Sep 2025 06:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7A9280CF1;
+	Fri, 12 Sep 2025 06:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XkeTqY9h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IM+db7CH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD09D1DF270;
-	Fri, 12 Sep 2025 06:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1FF280CF6
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:23:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757658038; cv=none; b=eelwjdyNr+Irh57ttZJWuYDg7aZsx+TLbvOKWHszEg8YnQZkZgRVg5BdS9XMbo/0mLQ3iF/Y//LYIXN8qqswhr1QDlCEB85MOXZ/acgny0jNYj41leBGEMvNfeTBrTj3zG+cG5U1puRrbn+wK7pwlWjVQ4bGGxBOCSZVMRd2LCw=
+	t=1757658182; cv=none; b=tgWbRctMoEKq9aPCWwSlyc9U3tSyuOOVR/9EFwFYtn4qWaDAnTKetsQ652iSFC1HpburS2nL2yD9I23Sf7P8FUXdHd6F3ZS0ggx8tzRSBmixu8fQ2TIBMz0RZZ5lgVM4yngAwL2a+Cb1DdbRmEIE4rfQyIsXFUyTd+SXBrkpQpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757658038; c=relaxed/simple;
-	bh=FkxNUGfHipRH/jeWIQdpx9jQo9D+wQJJne799VoKjns=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WUTP+k1Uh9Tm1qLHGdTvjF1lfWqx3ceH7xO8z5tyTWpEDIfiNHJsttNzphasFZy4i6td3zq5rwpqsSbshakmCQhRyBCii5By7eg2JiIPAFARL0xXHdNAY4b1IuReSywBDIHjC93npgnFVFVNG77Nmc/aYcgeE8+Rz6HJ9Jk52hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XkeTqY9h; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58C6KRt8458365;
-	Fri, 12 Sep 2025 01:20:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757658027;
-	bh=6LH87+1IiY/lYyLvbTQW2dEczZuDxUoWtu5AqiVG26Q=;
-	h=From:To:CC:Subject:Date;
-	b=XkeTqY9h7X5uhDfwbJRyfbtlmdQdsmsrsJAFT+BH0J8YpP26KHDZtqAuOV+jiloN5
-	 DBXgEAZhWLIWivijHykP0065sHLJl35ulcEyVXouR4vx1egIJn6O3bGX4YOmrSCt6B
-	 eXWVtVn62g/KpzIIsPEHBBThEM40Hr9Smec4RZU0=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58C6KR8t2560140
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 12 Sep 2025 01:20:27 -0500
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 12
- Sep 2025 01:20:26 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 12 Sep 2025 01:20:26 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.231.84])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58C6KM8v3143558;
-	Fri, 12 Sep 2025 01:20:23 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721s2-evm: Add overlay to enable USB0 Type-A
-Date: Fri, 12 Sep 2025 11:50:14 +0530
-Message-ID: <20250912062021.2906034-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1757658182; c=relaxed/simple;
+	bh=zWY++i830LvVnaKNwrHxNlZ8d9VBtxLHBranm7dk29s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BIl558+Ar4xD+pl59g1KebUkowlI+PIFOMll1Jt1Pn2gAFYg+RPLsY+Kezdtqy3a8z8UK8GrBbKL9mo4S3XuOEcZJ1QhgZol1nfY+KHEvyn0HaIFSxVRxTtp9j/EkjZQwk2+X+0Yvp1NvuzEtWIgdcWAe3utcdmMGpn/I476JQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IM+db7CH; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-62ee43b5e5bso357109a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 23:23:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757658179; x=1758262979; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2vd3FO0uowfrzzTtnd+6o2GR4OoJtCyfIGsohefrxVg=;
+        b=IM+db7CHN18P1UBOaxdqnMTeejy92JTiNIUu6s89/WenD/VlO40yh9Yqj7a8foCA/K
+         dyrsrjHCcSlImdsReK66MOtBbpvOU/tFyuRTUybvpxMqA8mRRShUUSVgzCvZtQr0H6PB
+         ZD8KFPnEq+DoFjOLk/dpyhEsrErxKfa89rK0I17EAvcKTfMVgk9btEfqnixxSrDIsF3Q
+         E5SIiuvgMe81M1RGTyTBFi6Biq2udcCLDyjHBB0kz7UUgEQgk9nRwM7hU8EIqrezD6oI
+         Gda4DpKW2JM/u/YPokZeeAA1kudnXxXmrwvGVBQlo86CRxx/8G58tcpNgF1SbMoG6gwM
+         usMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757658179; x=1758262979;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2vd3FO0uowfrzzTtnd+6o2GR4OoJtCyfIGsohefrxVg=;
+        b=AzgxBSij6Fw5queMsnKq0qHVgvQwBIgbcmr9nnrzVD2DqvhC4KgO6iNbMuylkwM6gV
+         kZ+wciQBAQuuIAshZ61GdoF5Ps5NrScv4vAu36Vxm98F7Yc3Pg+Z8ts6kd/xknepiuaa
+         nuLD38vFlN+LF9dsvutP5tNnhkDVaku/lYUFKUog1GSlcCw3rVAcYwhamJcqD/ANoKYG
+         BAFJmvuaYtJi+KIXCtNk+WoPaOddcoVg1lQ2F649rod3+nW5ZlNg6TWvTi+WHX1+5ZYA
+         5vIjfA2eBAfCUaXX5qZgYNFpmRwUxxkwEN/d2M1TW7tUXJtnjWgutY4CcL67nxHd+16O
+         QxAw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/5u2b13D9uesHVUttxu6EBEZyU/BwOq6d/5x21cH36ntPprQj4cagraSqe2MFjn9Shl+6m6TfNVPo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU9b+94fdpaSotOxCcBtYFLlSDZuw2kLSfWPf8oOgj7KCAUlz4
+	hhseyk+ANqAFfSxkd/iNrwwkpJdvHSHpWr2nXZswFciWZwiqFAtx+7huQaoaVytO+24iXG/RNvu
+	ECq0LV/zwZkPlejo/dEmae97ziLyTwRREX8IBKbX8ng==
+X-Gm-Gg: ASbGncv6nXT3bDHn3rthUImZaIe+4hXfXfg5Mmj0LHshYLi52UijAFM+AVeAQU2ElRt
+	3ki+tkTfENvFEuHtXFjI6xu2oYDCA1//z4CxZYVmsBaPiLRlSDJr9hg59SxmhXa1YuUXuPDTQQQ
+	XSq5n8qmwe+roLho6ZnTLg3Ep4mo3XXqz1/mrcEnMh5mnuA/2ZCG5lkHwV5U1MV6JBccuwNdxSw
+	OAWVdA=
+X-Google-Smtp-Source: AGHT+IGdp3hwfo5Kwg99zLqhk776/MuEzEwF5dvS3N2lEAqhArzZMDnQD2cE/bqWuyKoeqbqUDyopoXkkgYUTvQ3O3k=
+X-Received: by 2002:a05:6402:438f:b0:615:a7f4:da26 with SMTP id
+ 4fb4d7f45d1cf-62ed8240ff2mr1847667a12.12.1757658178563; Thu, 11 Sep 2025
+ 23:22:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <cover.1757318368.git.zhoubinbin@loongson.cn> <2f93b8f20c6e93a15258888998e926814bfd0adf.1757318368.git.zhoubinbin@loongson.cn>
+ <20250910-fast-seahorse-of-valor-bf6c86@kuoka> <CAMpQs4K-6Re=-gELPEg8kP_NKR5_1U=BD6fnXM3wgUF+eMtpGg@mail.gmail.com>
+ <58fd8506-678e-409d-8283-1dc44c9aa8e2@kernel.org>
+In-Reply-To: <58fd8506-678e-409d-8283-1dc44c9aa8e2@kernel.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Fri, 12 Sep 2025 14:22:45 +0800
+X-Gm-Features: AS18NWAFsm3MIrwnLZoEVJYwuVnBuLzeoBSPe2_MKDz4Fo1FlK2hatZH2ik4P8s
+Message-ID: <CAMpQs4LjYPmZh2O5L8V9uKNspjMMq9w3cKCS9iSEStCHVGkg_g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] LoongArch: dts: Add uart new compatible string
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The J721S2-EVM (J721S2-SOM mounted on the J7 Common Processor Board) has
-a single instance of USB namely USB0. On the board, USB0 can be enabled
-using a single USB interface at a time among the following:
-1. USB3.1 Gen1 Type C interface
-2. Two USB2.0 Type A interfaces via an on-board USB Hub
+Hi Krzysztof:
 
-By default, USB0 is enabled using the USB3.1 Gen1 Type C interface. Hence,
-add a device-tree overlay to allow using USB0 with the USB2.0 Type A
-interfaces by configuring the "USB2.0_MUX_SEL" mux. Also, since the Type A
-interfaces only connect to USB Devices with USB0 acting as the USB Host,
-set the Dual-Role mode for USB0 to Host.
+On Thu, Sep 11, 2025 at 5:00=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 11/09/2025 09:55, Binbin Zhou wrote:
+> > Hi Krzysztof:
+> >
+> > Thanks for your reply.
+> >
+> > On Wed, Sep 10, 2025 at 4:27=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On Tue, Sep 09, 2025 at 08:11:20PM +0800, Binbin Zhou wrote:
+> >>> Add loongson,ls2k*-uart compatible string on uarts.
+> >>>
+> >>> Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> >>> Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> >>> ---
+> >>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi | 2 +-
+> >>>  arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
+> >>>  arch/loongarch/boot/dts/loongson-2k2000.dtsi | 2 +-
+> >>>  3 files changed, 3 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loon=
+garch/boot/dts/loongson-2k0500.dtsi
+> >>> index 588ebc3bded4..357de4ca7555 100644
+> >>> --- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+> >>> +++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+> >>> @@ -380,7 +380,7 @@ tsensor: thermal-sensor@1fe11500 {
+> >>>               };
+> >>>
+> >>>               uart0: serial@1ff40800 {
+> >>> -                     compatible =3D "ns16550a";
+> >>> +                     compatible =3D "loongson,ls2k0500-uart", "ns165=
+50a";
+> >>
+> >> You clearly never bothered to actually test this against own code.
+> >
+> > Sorry, perhaps I should have included more detailed descriptions in
+> > the binding file.
+> >
+> > As per Chapter 15 of the Loongson-3A5000 manual[1], the Loongson UART
+> > registers and functionality are compatible with the NS16550A. However,
+> > generic 16550A drivers cannot support full serial port capabilities,
+> > such as hardware flow control.
+> >
+> > Based on your feedback in the V3 patchset[2], I attempted to use
+> > compatible fallbacks to avoid API breakage.
+> >
+> > These fallbacks match according to the Makefile's compilation
+>
+> DT bindings and fallbacks in DTS cannot match Makefile. You are mixing
+> concepts.
+>
+> I said, this was not tested. I am 100% sure. Instead of replying with
+> irrelevant build related stuff, please come with actual arguments, e.g.
+> output (on some pastebin.com) of entire dtbs_check proving no new
+> warnings are there.
+>
+> But even without warnings, I see with my own eyes that DTS is just
+> wrong. Or bindings.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+Please disregard my previous email. I apologize for wasting your time;
+this was indeed my mistake.
+I'm attempting to correct the issue by changing the binding file.
 
-Hello,
+>
+> Best regards,
+> Krzysztof
 
-This patch is based on linux-next tagged next-20250911.
-Patch has been validated on J721S2-EVM. Test logs have been provided
-below for the default case without the DT overlay (Type C Interface)
-and with the DT overlay applied (Type A Interface).
-
-Without the DT overlay, USB0 is configured with 'dr_mode' set to "otg"
-due to which the 'lsusb' output does not contain any output initially
-as the USB Mass Storage device is not yet connected to the Type C
-Interface on the EVM. After connecting the USB Mass Storage device to
-the Type C Interface, USB0 assumes the Host role and enumerates the Mass
-Storage device. Following this, 'lsusb' output shows the USB Root Hub
-and the USB Mass Storage Device. Test Logs for this are:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/6bc1434b7d949a2f2c43d55811aee661
-
-With the DT overlay applied, USB0 assumes the Host role by default, due
-to which the 'lsusb' output contains the Root Hub even without the USB
-Mass Storage device connected to the Type A Interface on the EVM. After
-the USB Mass Storage device is connected to the Type A Interface, it is
-enumerated and shows up in the 'lsusb' output. Test Logs for this are:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/dc3443be624b61d920833f1a66ab356a
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/Makefile               |  4 +++
- .../dts/ti/k3-j721s2-evm-usb0-type-a.dtso     | 28 +++++++++++++++++++
- 2 files changed, 32 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index aad9177930e6..1e4829801e49 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -131,6 +131,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-usb0-type-a.dtbo
- 
- # Boards with J722s SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
-@@ -230,6 +231,8 @@ k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
-+k3-j721s2-evm-usb0-type-a-dtbs := k3-j721s2-common-proc-board.dtb \
-+	k3-j721s2-evm-usb0-type-a.dtbo
- k3-j722s-evm-csi2-quad-rpi-cam-imx219-dtbs := k3-j722s-evm.dtb \
- 	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
- k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs := k3-j722s-evm.dtb \
-@@ -272,6 +275,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721e-evm-pcie1-ep.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb \
-+	k3-j721s2-evm-usb0-type-a.dtb \
- 	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
- 	k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
- 	k3-j742s2-evm-usb0-type-a.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso
-new file mode 100644
-index 000000000000..fe4a23efe708
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for enabling USB0 instance of USB in the Host Mode of operation
-+ * with the Type-A Connector on the J7 common processor board.
-+ *
-+ * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&exp_som {
-+	p0-hog {
-+		/* P0 - USB2.0_MUX_SEL */
-+		gpio-hog;
-+		gpios = <0 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "USB2.0_MUX_SEL";
-+	};
-+};
-+
-+&usb0 {
-+	dr_mode = "host";
-+};
--- 
-2.43.0
-
+--
+Thanks.
+Binbin
 
