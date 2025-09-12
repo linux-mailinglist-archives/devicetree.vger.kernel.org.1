@@ -1,119 +1,237 @@
-Return-Path: <devicetree+bounces-216482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5CAB54EB2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F71B54EE4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 15:10:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BDF2172501
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:59:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 314B75808AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 13:10:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87691306480;
-	Fri, 12 Sep 2025 12:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C27309DC6;
+	Fri, 12 Sep 2025 13:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZveLJ4RB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZTgoGUyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45253019BD
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6EB306480
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 13:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757681949; cv=none; b=dgx/QuM7M6U1kXgATlC5ysuQaikNahmO5+ufDUINIgdrG8iBTVOuy3Ts0Izz8YzqN6O9VqdXEbkMFXxmIKR9pVoRIx+wLHxelXuk3Lp7Z69lSiWhVvpWH2PVT6U0zQ7478UK75f/gFIR88qR3o0Ma7yb4r9XBUcpSeQWhEoIYAo=
+	t=1757682624; cv=none; b=ZQJOKrZBjpEOmQf0hnbHFKhWmaqqeOLXeR/ub0rW4IZEGdQvSKnUwnXdiHT0S+edjPaBhS31F4r5fD1nKJscKoerd3fgWC9itTfJMEIvRdU2bxkjWgI0bUHDT7UczKGFaE1ABFgNlhITruCLSeDHI0BePB0r+u3yD2AVhSHQhG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757681949; c=relaxed/simple;
-	bh=95wdMfSSKI6BJ1wqXZqHKTXbF3BOZq8S5e5dnGxML0U=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=dfWwU7/sodIL6LqA3XZ0QygELvYcrwJMI6soZbH6SM0wBcfzkfFrsJjcDlppc48yX7jL5tlcT+x7NkPSHsLc7McDyWWc+tmBOGM67LMSNZbLqQXJKAxYqQbmt9pakOqqy+8jZOyHVBNlqDJJDyvr/AGlBG5p5V+VgZycX1sUwLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZveLJ4RB; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 2A296C8EC49;
-	Fri, 12 Sep 2025 12:58:50 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2729660638;
-	Fri, 12 Sep 2025 12:59:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 06B31102F2917;
-	Fri, 12 Sep 2025 14:59:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757681945; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=uoHUgNG9WFK5tEtf5uuz+0UQZUlRc0I+gT4+ZBrhy8w=;
-	b=ZveLJ4RBhUtqzF96HXkM+O5wLKip5ngyZJXe4iaQQFtCMo4FAQNjw5aow394Vvhu/SbKGN
-	SmMVPBOReDj+IERGLmk8c8kd89JeA0rUa/ltr1nahdIQNWAWgymVCjCbu8Kb/3EwO8VsHw
-	wbTGQwnODdz32i4oL7kMWw9mDZDYMtVgRcbUMdHrN+oZG2k8pLRobG3iD7d/P3c+RoT2ZO
-	TF0gA1QNMNWYRlRMuvyraRp6U3vsuwhS0+I9pLqTxFS16j1FfhHwzXdhzvPhhwTYZ2runo
-	ngQP8Q+ZJ96nOSTkxEII6XHRMQMPmbIKHM348gWGX193JH+poSCtgs4dbrJIZQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Wunderlich <frank-w@public-files.de>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: marvell: cn9130-sr-som: add missing
- properties to emmc
-In-Reply-To: <20250911-cn913x-sr-fix-sata-v2-4-0d79319105f8@solid-run.com>
-References: <20250911-cn913x-sr-fix-sata-v2-0-0d79319105f8@solid-run.com>
- <20250911-cn913x-sr-fix-sata-v2-4-0d79319105f8@solid-run.com>
-Date: Fri, 12 Sep 2025 14:59:02 +0200
-Message-ID: <87frcromi1.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1757682624; c=relaxed/simple;
+	bh=XxEsZ9QOT0wQkWJJQFHlMg2enGMiE5WFQwRa1OzgxBc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NZ9iuSmwdLDclrGPNZDJn/Xj+79lblsIOOEJgV3uPh1XrHN/+6Tc74BtE82QMh6kTT39MvNpage7Ps0Gcb1hTATqgLvibyV6b4I1a2tpXAV1bWG0DB353pBIeL/CKvBneI4ekeOg98oruN/nxBJ9ldVIG+nBqOefbE6ecXSF/QI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZTgoGUyB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58CBBBPf017151
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 13:10:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3ZuuUGQBOUzotJ0AURfxJazlW1Inl9eU+TFGm3oovUI=; b=ZTgoGUyBjEMZFNQS
+	/v1ug3l5ayfZ1NUAmXaqbuY/xD8fsKCCWQ0bT1IeV2x72MHekl0IE9wgfbMOQfYu
+	PKmfc1OXQ5Dy3Tfq3lcU+c+aeCX5BZ5kz9fHrcU1MPBRC/QIwylIufxCD7WdDoRg
+	NIKnojqdjmx22J22MjbE61ihhSA28a021AMeMIlDQ3PnVInDAwsudSQ77O+rdiFZ
+	bk7Q5OIkJ4QXOn4YELmUyaTppAUmL1gj+6oNSmPI4w1r24tKj4h4bI3BYARzbn9a
+	7d+PxUh6qcwpH1CDKXLBsMznRjTfQl+woNoZyoPH3E7hZGQiKhSxGfgZWVz4n1Pw
+	GBfN9Q==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494jdx09wr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 13:10:21 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso5386831cf.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:10:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757682621; x=1758287421;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3ZuuUGQBOUzotJ0AURfxJazlW1Inl9eU+TFGm3oovUI=;
+        b=Sflx4FEP/7OE18xZLvdNeidG8MNLDAFfwRTpm6ugcBGJZN40/Uxn3dixKAQhfDXXLb
+         AuQC8HFkrtLozPHbO8MtNHvcP66BtGs1+Summfvm+78vfFLftjjJi+mfIZhwF1YQl7YK
+         yFoMY9mYtPR8c4xPM0tUSZJGcPEGvxqJgRhjNuOQClBJIWYsg1nI80h7bPsrznBoChRW
+         blaO5RJ3JeLnQHxbyKCpXotmzw83hx7hgpanvlEcjSK+BTErthrKy4Wb54d9qPyb79oj
+         8AQZNXM6a2jKvSvxIK9C0mz1Con9BMP6qkdPeXofDLuv5CdUvbMdlLIVt98UNu3n2cAE
+         VqXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIqFGZ0lv/ifPvApgrK7ss8XSn02xn9V7lLB8OLTLBhbwksp/LGc8q4rBPgCAANCGBQLs94UyKmDt7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8ohf5FkvwyT3azvOQ32tGiYvrL9Kc1wyQwYgZppupQj+m4LHs
+	QhgIQZ4ZUc4W79vZY9VpTluWxJm1a+Geb4lwjRXN/qZw8OesxVZ4R0S05nmC5/eLPOb9NwTf4ht
+	o37qR/9wIXNZS/wlQ08lJM+pxZlf+O4XPDguThMuEFRtaisoznTfIgS0wycyCI5Ad
+X-Gm-Gg: ASbGncupgyLXKmJUUvwtGhXR26QyPKE3OfhzDBn7L7atbV92MX3r2Rurg25jqxFcaTt
+	xT6DEe14LfLzj1HT9tK01dVgbKd7tVGN6MzydnjFiEdbzeDreUjMAR4l5CQngwBEwOv7neXSRwm
+	OiowiQabv2GFcy93uuDFBZ9n5Dvmy+3xLLslIZ2Zd6BMgJNs4ztJVR2uqQIrqzjUBiq8cGHfJ48
+	L68RJFjw0EAjaOrYET2i9vM0DUI9yikzvdFUlk5VmlzFgOLJSiNadrFIfO3Tc9HqOKBhcXFaOcD
+	C1GCn5x6SoIIdYrvaDSh1N779qd7Eb033BIA+mwW0Hiss2hcM2QM64iLmgrcOvNFYg5EQpxawXI
+	6PirUQbC9DYCTDDdtDJjZmQ==
+X-Received: by 2002:ac8:5806:0:b0:4b5:d74e:d938 with SMTP id d75a77b69052e-4b77cfe5dadmr25023791cf.7.1757682619561;
+        Fri, 12 Sep 2025 06:10:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGtUQ0IdF43jy/a13JRBEqJFoXoR7rc4LuhuJEDHtu/h6Dyxy/yIzIQdCwYyyFQseAWi/7u1Q==
+X-Received: by 2002:ac8:5806:0:b0:4b5:d74e:d938 with SMTP id d75a77b69052e-4b77cfe5dadmr25023131cf.7.1757682618785;
+        Fri, 12 Sep 2025 06:10:18 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b334ed29sm364920566b.107.2025.09.12.06.10.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Sep 2025 06:10:18 -0700 (PDT)
+Message-ID: <b51e1230-d366-4d0f-adc8-fac01b5de655@oss.qualcomm.com>
+Date: Fri, 12 Sep 2025 15:10:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS
+ clocks on Herobrine
+To: Brian Norris <briannorris@chromium.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <quic_okukatla@quicinc.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>, devicetree@vger.kernel.org
+References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
+ <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
+ <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
+ <aMMcNn82AmSavJYf@google.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aMMcNn82AmSavJYf@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEyMDEwNiBTYWx0ZWRfX1kNfYSbeIUXI
+ C1Rj6+1gqVQPaPkB5JQOfbzHDKgjOy0NRpWA4OjqEUfbX4yPiMUW8P4TxW4D1/Og2x7bokZPOHg
+ 39D6TVjCXhzmjP3pmEYJRxbOSn12grQYq43wrTsaaysv6XRYEvwJgK4or7i16dXo+d9m7UmloJE
+ N39ffZvm4dPnUd/G+7PbdnY9mxhvAVqy7p2nF6wysNEZZ+S3Je65MN5tcFPW36qSAfbOecAODX/
+ G6G2i5XS7rd5/Qg1a+5US6ZIl0dZI19+SiNgOK7yuaLYi/84jnwYr3pPLCAyJbg8AUibvIgzLYT
+ DLSJA9eM/f3Fi1pkdXzuG1nrpgeI5XkUcy0QZ6ZslzTl/gBAIVdwzWzxQ87JSnTka8sqrX+PsXB
+ cadRAnjW
+X-Proofpoint-GUID: zlu_cVkQ_v5mYPO3BCMfYCUOnRktX4No
+X-Authority-Analysis: v=2.4 cv=JMM7s9Kb c=1 sm=1 tr=0 ts=68c41bbe cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=JMB2q793TmbAW5wj82IA:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-ORIG-GUID: zlu_cVkQ_v5mYPO3BCMfYCUOnRktX4No
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-12_04,2025-09-11_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509120106
 
-Josua Mayer <josua@solid-run.com> writes:
-
-> CN9130 System on Module connects an eMMC to ap_sdhci0, but the common
-> properties indicating eMMC were not added to device-tree.
->
-> Add no-sdio and non-removable as applicable to eMMC.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-
-Applied on mvebu/dt64
-
-Thanks,
-
-Gregory
-
-> ---
->  arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi b/arch/arm64/=
-boot/dts/marvell/cn9130-sr-som.dtsi
-> index a997bbabedd8a9679e9d209225666d7696dd7da2..f95202decfceb5cc9dc777ddd=
-1870d5972a1bc54 100644
-> --- a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
-> @@ -61,6 +61,8 @@ &ap_sdhci0 {
->  	pinctrl-0 =3D <&ap_mmc0_pins>;
->  	pinctrl-names =3D "default";
->  	vqmmc-supply =3D <&v_1_8>;
-> +	no-sdio;
-> +	non-removable;
->  	status =3D "okay";
+On 9/11/25 9:00 PM, Brian Norris wrote:
+> Hi Konrad,
+> 
+> On Tue, Sep 02, 2025 at 02:02:15PM +0200, Konrad Dybcio wrote:
+>> On 8/26/25 12:55 AM, Brian Norris wrote:
+>>> Ever since these two commits
+>>>
+>>>   fbd908bb8bc0 ("interconnect: qcom: sc7280: enable QoS configuration")
+>>>   2b5004956aff ("arm64: dts: qcom: sc7280: Add clocks for QOS configuration")
+>>>
+>>> Herobrine systems fail to boot due to crashes like the following:
+>>>
+>>> [    0.243171] Kernel panic - not syncing: Asynchronous SError Interrupt
+>>> [    0.243173] CPU: 7 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.11.0 #1 c5464041cff584ced692726af2c4400fa2bde1db
+>>> [    0.243178] Hardware name: Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+) (DT)
+>>> [    0.243180] Call trace:
+>>> [    0.243182]  dump_backtrace+0x104/0x128
+>>> [    0.243194]  show_stack+0x24/0x38
+>>> [    0.243202]  __dump_stack+0x28/0x38
+>>> [    0.243208]  dump_stack_lvl+0x28/0xb8
+>>> [    0.243211]  dump_stack+0x18/0x30
+>>> [    0.243215]  panic+0x134/0x340
+>>> [    0.243219]  nmi_panic+0x48/0x98
+>>> [    0.243227]  arm64_serror_panic+0x6c/0x80
+>>> [    0.243245]  arm64_is_fatal_ras_serror+0xd8/0xe0
+>>> [    0.243261]  do_serror+0x5c/0xa8
+>>> [    0.243265]  el1h_64_error_handler+0x34/0x48
+>>> [    0.243272]  el1h_64_error+0x7c/0x80
+>>> [    0.243285]  regmap_mmio_read+0x5c/0xc0
+>>> [    0.243289]  _regmap_bus_reg_read+0x78/0xf8
+>>> [    0.243296]  regmap_update_bits_base+0xec/0x3a8
+>>> [    0.243300]  qcom_icc_rpmh_probe+0x2d4/0x490
+>>> [    0.243308]  platform_probe+0xb4/0xe0
+>>> [...]
+>>>
+>>> Specifically, they fail in qcom_icc_set_qos() when trying to write the
+>>> QoS settings for qhm_qup1. Several of the previous nodes (qhm_qspi,
+>>> qhm_qup0, ...) seem to configure without crashing.
+>>>
+>>> We suspect that the TZ firmware on these devices does not expose QoS
+>>> regions to Linux. The right solution here might involve deleting both
+>>> 'clocks' and 'reg', but 'reg' would cause more problems. Linux is
+>>> already OK with a missing 'clocks', since pre-2b5004956aff DTBs need to
+>>> be supported, so we go with an easier solution.
+>>
+>> Just to make sure I'm reading this right - the clocks enable just fine,
+>> but it's the writes to the QoS settings that trigger the hang?
+> 
+> Yes.
+> 
+>> Any chance skipping qhm_qup1 specifically makes things better?
+> 
+> Yes, it seems so. Or specifically, this diff:
+> 
+> --- a/drivers/interconnect/qcom/sc7280.c
+> +++ b/drivers/interconnect/qcom/sc7280.c
+> @@ -52,12 +52,6 @@ static struct qcom_icc_node qhm_qup1 = {
+>  	.id = SC7280_MASTER_QUP_1,
+>  	.channels = 1,
+>  	.buswidth = 4,
+> -	.qosbox = &(const struct qcom_icc_qosbox) {
+> -		.num_ports = 1,
+> -		.port_offsets = { 0x8000 },
+> -		.prio = 2,
+> -		.urg_fwd = 0,
+> -	},
+>  	.num_links = 1,
+>  	.links = { SC7280_SLAVE_A1NOC_SNOC },
 >  };
->=20=20
->
-> --=20
-> 2.51.0
->
->
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+As I attempt to find a board that would boot with your sw stack,
+could I ask you to check if commenting any of the three writes in
+
+drivers/interconnect/qcom/icc-rpmh.c : qcom_icc_set_qos()
+
+specifically causes the crash?
+
+FWIW they're supposed to be independent so you don't have to test
+all possible combinations
+
+Konrad
+
+> 
+>> Could you please share your exact software version (which I assume is really
+>> just the version of TF-A in this case) so I can try and reproduce it?
+> 
+> I'm not much of an expert on the makeup of QCOM firmware, but reading my
+> firmware logs, that'd be:
+> 
+>   coreboot-v1.9308_26_0.0.22-32067-g641732a20a
+> 
+> and
+> 
+>   BL31: v2.8(debug):v2.8-776-g0223d1576
+> 
+> IIUC, the latter points to TF-A hash:
+> 
+>   0223d15764ed Merge "feat(docs): allow verbose build" into integration
+> 
+> Brian
 
