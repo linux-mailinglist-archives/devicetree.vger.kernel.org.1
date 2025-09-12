@@ -1,176 +1,163 @@
-Return-Path: <devicetree+bounces-216247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C0D8B54271
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:07:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21469B5427F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 08:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7319D4E2229
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:07:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5C3DA06721
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 06:08:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2711227B4E5;
-	Fri, 12 Sep 2025 06:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE7928BAA6;
+	Fri, 12 Sep 2025 06:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a9BuF4HD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022106.outbound.protection.outlook.com [52.101.126.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36237846F;
-	Fri, 12 Sep 2025 06:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757657218; cv=fail; b=fWI8L7DugxL3szOIcs1VOesjRQE9kY0NWJA2crrl8W1H328YlU4z6CZY2LuNx9Nih/WRbMvutBDm+z8mNsAiZlPzRMpg3VHpB2h67+aAeCt+RHtqgl/HoupcbWYrB1+nm4nSydlEx0jglqDCd4QF/ame8dqbaGYuuEarUM0SLIo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757657218; c=relaxed/simple;
-	bh=Ai9btz1quGArzXJliY8lt27C/OnkkfcCDTz7QiG3ihU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F5i7zFTAnCN6aMlQCdhXpEyiMeSknPSaUDFrI6hKLQikBGTH0geX+qZ7jI5vpL+Mp9Tms5/Ovo06iV5CWEUYu7iBnlY4kTsLSPBl/ovHHAgjPBUmaRDx31D+fmBfYMlnk4gFbuIGfgh1PkRYFIrdsjOM8FwOsjtHT49PEozKUi8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Q81hFw+KuTmPPkjY9IKxd7AwrW8BFtRNhNiNwSntOMOIsK3br8i6+YVH+kN6znaD0J4hkWIjOaSED+rjDKzkKeXaNf7MT23WPlOlspvH/Xpr9rooA5jfuB92c9RkiHnzSNyGQnoRKNWAOV/VkRU2f9cyBX1cpckZ3P/qw+523KfiCmeOHcXW+/8WZlIBrTq3ytyABN2DEXNfUM1VbwiQgSIz2mTxlsUBjssf/TIempjbbD7vj0a5RYcIEoD5fhaFmxwGchX9ybAXE4rMmNH1He6mzBAS6sTHcwE6xUhJZSmtNHPJWE4UF2hesMV4In7xAyGgQQzGvPAAc+Yv7Y90kQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gLs3bBN2UGIELnav4B4+GwA6oh3fAE8c+1IGQsP9Zpk=;
- b=Z0/U7uj16bKML+D3XhyFT7oPOQiLLhgnDMkjrq1bXIFR/5H2MQOpyql/k/D4XKMQMbjlpETqrj+4lHnko/t1FT3NBRtBbPvEIB+gH5a8uRiZowfmEzX9ywPHwzZ7jBnOBZVdBS6n0k19aB1mdcIkon0/jv0O1HQQaSGCZl2hFR0c0z7dQiJrB3z3hjejF8N10WeeYoo3CLIDl+JO1JtQbMNbDxEOmeW1Ccpmo9UyNPS3+A3vjwoShrL9ZOmXbM7/kuAvhSvJAGFl7fa7Ota620t/g4yhgFXDREVyWft/tElfKFmoPpz1mbTywUoFfHO+8cRLkAwIM370frI1IqGHeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2P153CA0048.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::17) by
- KUXPR06MB8032.apcprd06.prod.outlook.com (2603:1096:d10:4e::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9094.22; Fri, 12 Sep 2025 06:06:52 +0000
-Received: from SG2PEPF000B66CD.apcprd03.prod.outlook.com
- (2603:1096:4:c6:cafe::38) by SG2P153CA0048.outlook.office365.com
- (2603:1096:4:c6::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.6 via Frontend Transport; Fri,
- 12 Sep 2025 06:06:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CD.mail.protection.outlook.com (10.167.240.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Fri, 12 Sep 2025 06:06:51 +0000
-Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id AD4EA41C0144;
-	Fri, 12 Sep 2025 14:06:50 +0800 (CST)
-From: Gary Yang <gary.yang@cixtech.com>
-To: linus.walleij@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: [v2 0/3] Add pinctrl support for sky1
-Date: Fri, 12 Sep 2025 14:06:47 +0800
-Message-ID: <20250912060650.2180691-1-gary.yang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13672877F4
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 06:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757657223; cv=none; b=SyfVz1ghXSGCeINLxpFNridfi4B3GYNLuPDwpggtIVGW8MG78clCWyKiEApW3P/bZkFVrIbc0LT32yDmof155uSgsrDbYDbsZtnVQicIwmQ9Bho2XTaj+F59rB8MoLZzWatvRqgRq/MMq0L0HmiO3bEJDRw671HRgfiZNe4/NbI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757657223; c=relaxed/simple;
+	bh=xhNUv4r15tNXSlEeRfAfsJoZ1YS+9y9Hm87zeZ8pVCg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fDbl2QIpD8RUvPABuVfj1TGzgqiabRDlVtmFSw39zt+UGdMmT/U2Qo4WszA3qkmPB4iKXFmVkNWxc3f3LX5XgtMLb4GIaS1CdWWrFnYs6RE7Iz+YMpccDMT6IeI54qhm2d5WVx6nKMWG9XuwPeagDBJaB1c4Jugy1X1ycnswKoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a9BuF4HD; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b07c38680b3so68850066b.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 23:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757657220; x=1758262020; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TOVssAlVzuybD/LJbI3Y9xOJ1MXiBDYcVtpUt3l7gBI=;
+        b=a9BuF4HDwTEpkoIjFNsvhzg0TwrGqAFD7uHRDwY1Jb/G8o6eKu+v8SWrTTvNwFgW7b
+         R9evenz/cn1H/O2xwjavr/4swv6ah+na6Ki58Wjf2/Txd2JcBdx3skqcMkRG9NwaQgNU
+         4zSQnLvpcxzZpaGHjZ7NJD7ctjLn8p1HbI5kZKCJq5vPdU89onyP9gpXhoOOEwGLVJlg
+         F9rTDIjtKzRgJ6P4R5W4wShJWvRu3WWhX/dCmNMxr3JjakT3VnkdcwMmzo0sbpgYx93C
+         DK14xReJ1n8OXXQCErJD5piN2HWbwcAoXyp/df+eM6EkpKHUv5hRzb/kf86fvYTweImX
+         LGlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757657220; x=1758262020;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TOVssAlVzuybD/LJbI3Y9xOJ1MXiBDYcVtpUt3l7gBI=;
+        b=Y/cookjXpfC9cAgXPrgt0LJmSAndRiZSZYp8YIX5YIA1lgUjRUxnKoDMTd1UEc5B4n
+         m3fMdIBtY7yq38Z8b7iVOpovyh7ojZTeI6icWJlghNzlXOmJwWWFaT4TpLoaSe1+kp7V
+         I8tQM6yFIIW99XGE9nH7EbDtMUTtRBxsAD3zIAW0gxVP4988NqzrWs6stWZd0guv3wKe
+         1RJ1HlhWC5M9vDoQdTrjdzVQQEpUpkW6oj3Pw37x+FeWQcinM4v2RvB1UR/3IuozC8M7
+         BHPFSzF3bmUMd2He+5J+QTuV6+42ywmqAA3Tmle5YVuN1EduLn3kIaYDu3DVR/4GPZlP
+         Uxcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWpx5FCXYavuIcdzu0Mu8oU5gDi/93LtMUgd2bhyvJXgebrQOqVtS5rl2sqUvviYyDGqDujAkz+4xMd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqnx+3vAlMjPqbFxfsQp1N3IcC4cYbeMrpvp4Bsu1vSZmp9Grj
+	FFovqB2TzK3V1EEj5UUHUv7FBGHYMCPubINnzXmI8Fpc/nbOFizG+V9xqRmse5r5ej03cxO4rxx
+	Ajj1s5omj9I0poAqDUJCZyxhZm9J8O/TuNNUzi0D6NA==
+X-Gm-Gg: ASbGnctMpLhQC1xL3omw5KTBE5XmNM8r/Cl3oQbUOXoep7bUPSP+bORJT//jJiHG5mr
+	6KyEJ4NqrSeE4pUzM8lnJmIl5K37N9ENVRQXJXplj9rixIbNWdqrw6SL6M7G6rqE0mX0ywtjP16
+	y2w14MlcqbMz6WRSuXbZSvxupCtgEsn3Al8wRiPhDedCPIomQu3dexZkCMtbF1LoGadm6ix1B0J
+	EK4+WTUxIrjlfoWvg==
+X-Google-Smtp-Source: AGHT+IGbUmIoLVqRxKuVQ8ZiqtWYSSth8aq/nfPm70faiRBEOfXVPN4NALZRbJpq4jayZtv4bcHIGewkEuMmT769r/8=
+X-Received: by 2002:a17:907:3f07:b0:b04:7ad5:b567 with SMTP id
+ a640c23a62f3a-b07c35be704mr164366766b.16.1757657219928; Thu, 11 Sep 2025
+ 23:06:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CD:EE_|KUXPR06MB8032:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: e63a0d50-c03e-426c-8721-08ddf1c29147
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Oo9xG0sCwNOiLaklhgxtt4hHejY+ph1IzXRVC4h7LzYXPfrvL/i6h3z3syeo?=
- =?us-ascii?Q?LDddV3eDwXXtfM2dxoFBStFoxmKnqHVVuDlgcVzbGB/YczkIMIOnnJwSSMqK?=
- =?us-ascii?Q?iuG3rcYgAKrLZYtWVpWGRZImSMZ1BbFNU1upPCKwl57RDgZzTB8UeQ20hFoY?=
- =?us-ascii?Q?orpviw3habaPk3l3K/qAEzQqqdzxG+fQk2n1CElUTxCOYkmcupZio9Z4PlmO?=
- =?us-ascii?Q?AL0+Nol7vH65PmWdy6CUB3hWFUZ5ltHUQWUi9/NQlfpbL0ISOorkAtPmcj50?=
- =?us-ascii?Q?SYetiXJ7/NjRS+XwGVDQkD1z5wMGo9JFzd5XIxBkpls7kqw5uWL/5+GGTCmi?=
- =?us-ascii?Q?pNQtI1Tx2aWVFak4BZeCFG2xocikmRCU+ARGWbLZjqXlhEtc/5+O6kQ5ezUG?=
- =?us-ascii?Q?hStkoUcBqBx4g3gh91UEa+ShDuT7uTlHzAW2U/BNVp0zdw24FyTTKFsJaQ3Y?=
- =?us-ascii?Q?66ii+An1xzqVHnyYxGniJXUvcfqEHOsaIbbfjipZGJ0jgl0nbUbkNfntvOYJ?=
- =?us-ascii?Q?WPtJYCkF16hbeB0ZKqCZZOqVWujaGvtckxkmBej5mNNo9r9trt+XvfG8KKG0?=
- =?us-ascii?Q?oHz1RyYnWPB2b46R9Rj2Bl7atKljc2HFTsqw3L9DgU8dnXaoaX/NP6WYh2tv?=
- =?us-ascii?Q?/bPNNHjrstkxJ6YUZPCjwMw2Nev2RMdrbB7/P5O4HyKKQxVgjbKxC1NMowFc?=
- =?us-ascii?Q?VIjUx7oaH87EXlurcyC6HXGI/v39gXONpB2Y0kVR43F65TV4BRElwjBPzb0R?=
- =?us-ascii?Q?Lfaf53IsgSPaV8PEb9M9dhb8zzJ/CB50EqVyFkpxIT3jhRGFqnY8SsfLY2m+?=
- =?us-ascii?Q?/EJ3LQc6VvaVfxh6AwhqwwjCtHWRK7UhrvEFN371LIx+Vje2TZho9xzwrlRp?=
- =?us-ascii?Q?pxFdmlHn+ZDva8CkaNbxUXHxxpamX4p1yFEarJsZWK8hiYxDPWcvek+UZqnj?=
- =?us-ascii?Q?k+FRqVB0gYw3V2W9GkcAmnJEZT4M0MSdubQnKn7A0gWGGtwqstPsMLRLdtW6?=
- =?us-ascii?Q?8G300osaaDzFhDYRO6CEn8IKUhX2sCB/5XHULQZZU4Ay+GsS77UVuPgnsJlf?=
- =?us-ascii?Q?rGPr/G8nRiijXSq1eP8d5hSfbTbQ3GKxUPdyydoQqpsBlpilevkdjspUjhUv?=
- =?us-ascii?Q?eodfhba4h9nbqSX+jsLwYpTSyuxlCzy9dlWPY1btYSwuXtYU/l9pJnzpfHVL?=
- =?us-ascii?Q?Y1b+tYdcDS1b/ydlLyns7Z6SmXnFG3mdN8+b4qHvbHO0pZEyRCEYRcJ8X+eA?=
- =?us-ascii?Q?Z4BQANzktm9whWJp2sMJejxt3MYbaArPGe0qRZwFom6PE/Ukm/Y46f8kVj9S?=
- =?us-ascii?Q?UzOXNliQRXHTJ3Tkd3P9REWRKR4Yb2PO41WwcyR4gg5rV9E0g3eYfN7xFmgG?=
- =?us-ascii?Q?FpTveXevLiFRpsspC7ATfiBmXFJN9riJIpU2Dx5kN+H7UjlBB+4C3AdIdQuY?=
- =?us-ascii?Q?KiKEVc9LWh9Z4uirqmN00mpfTxWKsyuyL8z4KcSi0w9d2a/WNVlyTeNDpqNW?=
- =?us-ascii?Q?YqNsz+8Np7tsq1EtDcsyZXK4up9fKtn4kPgJ?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2025 06:06:51.3038
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e63a0d50-c03e-426c-8721-08ddf1c29147
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CD.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUXPR06MB8032
+References: <cover.1757318368.git.zhoubinbin@loongson.cn> <8575ff2d46b701950b1b0da3d3c181db331f79db.1757318368.git.zhoubinbin@loongson.cn>
+ <20250910-knowing-labradoodle-of-protection-d37884@kuoka>
+In-Reply-To: <20250910-knowing-labradoodle-of-protection-d37884@kuoka>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Fri, 12 Sep 2025 14:06:47 +0800
+X-Gm-Features: AS18NWCgzeCmKpxIiPEQ4y-Le_Edm7fm5KZRjhTlMd28XiZokJFtKz-8hZ5wN2U
+Message-ID: <CAMpQs4+9DwkELn3xyi+PqOGNabGC2vvYiujjTa0Q1wH6mSacRg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: serial: Add Loongson UART controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Patch 1: add Cix pinctrl driver to support pinmux and pinconfigs
-Patch 2: add Cix pinctrl nodes and header file
-Patch 3: add yaml doc
+Hi Krzysztof:
 
-Changes for v2:
-- restructure the pinctrl driver to support pinmux=<..>
-- redefine pinmux macros
-- move header file from dt-bindings to dts
-- fix the code-style issues
+Thanks for your reply.
 
+On Wed, Sep 10, 2025 at 4:28=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Tue, Sep 09, 2025 at 08:11:18PM +0800, Binbin Zhou wrote:
+> > Add Loongson UART controller binding with DT schema format using
+> > json-schema.
+>
+> Why? Your DTS claims this is 8250 / ns16550a.
+>
+> This is just incomplete commit msg. You must explain the bigger picture
+> here, not repeat what the patch does. We see what the patch does from
+> the patch.
 
+According to the chip manual[1], the Loongson UART controller's
+registers and functions are compatible with the NS16550A.
 
-Gary Yang (3):
-  pinctrl: cix: Add pin-controller support for sky1
-  dt-bindings: pinctrl: Add cix,sky1-pinctrl
-  arm64: dts: cix: Add pinctrl nodes for sky1
+Would adding Loongson UART compatible to the 8250.yaml file be a
+better choice, as shown below:
 
- .../bindings/pinctrl/cix,sky1-pinctrl.yaml    |   85 +
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |   32 +
- arch/arm64/boot/dts/cix/sky1-pinfunc.h        |  417 +++++
- arch/arm64/boot/dts/cix/sky1.dtsi             |   10 +
- drivers/pinctrl/Kconfig                       |    1 +
- drivers/pinctrl/Makefile                      |    1 +
- drivers/pinctrl/cix/Kconfig                   |   14 +
- drivers/pinctrl/cix/Makefile                  |    4 +
- drivers/pinctrl/cix/pinctrl-sky1-base.c       |  581 +++++++
- drivers/pinctrl/cix/pinctrl-sky1.c            | 1435 +++++++++++++++++
- drivers/pinctrl/cix/pinctrl-sky1.h            |   46 +
- 11 files changed, 2626 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
- create mode 100644 arch/arm64/boot/dts/cix/sky1-pinfunc.h
- create mode 100644 drivers/pinctrl/cix/Kconfig
- create mode 100644 drivers/pinctrl/cix/Makefile
- create mode 100644 drivers/pinctrl/cix/pinctrl-sky1-base.c
- create mode 100644 drivers/pinctrl/cix/pinctrl-sky1.c
- create mode 100644 drivers/pinctrl/cix/pinctrl-sky1.h
+diff --git a/Documentation/devicetree/bindings/serial/8250.yaml
+b/Documentation/devicetree/bindings/serial/8250.yaml
+index e46bee8d25bf..abd41e996e68 100644
+--- a/Documentation/devicetree/bindings/serial/8250.yaml
++++ b/Documentation/devicetree/bindings/serial/8250.yaml
+@@ -99,6 +99,8 @@ properties:
+               - nxp,lpc1850-uart
+               - opencores,uart16550-rtlsvn105
+               - ti,da830-uart
++              - loongson,ls2k0500-uart
++              - loongson,ls2k1500-uart
+           - const: ns16550a
+       - items:
+           - enum:
+@@ -143,6 +145,18 @@ properties:
+               - nvidia,tegra194-uart
+               - nvidia,tegra234-uart
+           - const: nvidia,tegra20-uart
++      - items:
++          - enum:
++              - loongson,ls2k1000-uart
++          - const: loongson,ls2k0500-uart
++          - const: ns16550a
++      - items:
++          - enum:
++              - loongson,ls3a5000-uart
++              - loongson,ls3a6000-uart
++              - loongson,ls2k2000-uart
++          - const: loongson,ls2k1500-uart
++          - const: ns16550a
 
--- 
-2.49.0
+   reg:
+     maxItems: 1
 
+[1]: https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-use=
+rmanual-EN.pdf
+>
+> Best regards,
+> Krzysztof
+>
+
+--
+Thanks.
+Binbin
 
