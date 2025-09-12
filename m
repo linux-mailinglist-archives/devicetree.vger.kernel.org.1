@@ -1,70 +1,53 @@
-Return-Path: <devicetree+bounces-216279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F27FB54401
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:37:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CB4CB54403
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:37:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44DF67B4CC1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:35:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9C1D1C8732E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E09A2D0278;
-	Fri, 12 Sep 2025 07:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEF42D063A;
+	Fri, 12 Sep 2025 07:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="t0BOt3Qy"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="ZqUQ6Wr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672BB2C324D;
-	Fri, 12 Sep 2025 07:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E00B2D0275;
+	Fri, 12 Sep 2025 07:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757662616; cv=none; b=NEoO2NaBh5dtmrZE1MNDBoUKymZ47rwURMqjG1xa1ftGZBBCVq360ShRTcWgi7983GLnNdVTCQ2HlQf4D4LVvd3NyDsik5lxHfeyPgxAJOR9LK5Kqcs8X0gcDqB48pJJz7mx7I8OAAGdzXgnULqG6IXM0SNXi1a17Dw9VSUz7yI=
+	t=1757662652; cv=none; b=h79SlE7de/K5pNYDJn69L0sRowZxw33nR40ovb5F0+5PwzkNbaX0D9epXQ0/SoATMxNsObjfXYelbk3EypXPU1+6hiO+BvSN7M8ktAwyJT0j8EzdxzCSS1HeLEMDmHYY/KgIcCMIJ0C7zZ3S1R+W2ltM2tkH9kGjvBi0EH9SaeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757662616; c=relaxed/simple;
-	bh=GWhgaIJNcX5gJ7ylYTfAO0G7hC/dPv5MnjLr/ldEdkE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gB3uX3LFcE+A8fwcfy99sgcMWIEm15JkNIxYZiwRkg/2MLBOLjek+vlAabaRbYZfAZvRQDS/TinMXrixi9Ro4h5XrhEHtEZW5nqF5QvxjfHa4ibXO5e/0wIj+wwBuTF6zJyP5Kbmkm7mH7DD/nbTRR1yHZgwcxRte1/UH+UFgEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=t0BOt3Qy; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=iQePpiySKBUe3OfKkAmoPumu7+44E19hPRb0KlPpFxY=; b=t0BOt3Qy+23zPozlFwGCraLr/E
-	FK80ST+EDMKRX47D1X8qtqiWYZK9unYaxhxMy2WzG38G2o6LBNfw2xsg5iWA+DCSdF+Z4xkrT6K8L
-	7qxtZVz0+7fidgX+xbQeDCEciaegFFMCpqTnnLSvBGhi5y4I7KSjNOsn2vAMbhdAuvtpffvrISGyV
-	9G2+OoYOhxlee5FNCZ1hLO55TpPzdnYc4bBX07xL6sDOIdh/Ag9NnrYwoY1tJzwEr0JHmRAl8IQO1
-	8yC7/CJiNmCcx5CjBgPpJtMCx8nSruu4j1RVuxE104S7dyJW3J4Hv6o2K5+n9o2BgBSQ+dHi1J6ku
-	DmCipxhg==;
-Received: from i53875a48.versanet.de ([83.135.90.72] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uwyKr-00085j-5d; Fri, 12 Sep 2025 09:36:45 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	broonie@kernel.org,
-	lee@kernel.org,
-	lgirdwood@gmail.com,
-	sre@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH v8 0/5] Add Texas Instruments BQ25703A Charger
-Date: Fri, 12 Sep 2025 09:36:30 +0200
-Message-ID: <175766258325.683160.13363723166042765380.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250904160530.66178-1-macroalpha82@gmail.com>
-References: <20250904160530.66178-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1757662652; c=relaxed/simple;
+	bh=otXdfEFmhEWFvHLmENWq/LeGqYVbbqtvKgbHLa+LImI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m3fGNekVggQWvrbQ8qaLXPugvsHC92RQd5+pn3g1p0CAdqGPWT8zaCRH1MEKCcETGSL6s03jZHDrX9XwtCgJiiERWozZoL6OkcWWTvMDVcs6UzqZusBdauf0esBEivfrAERxaDB1BQYOWUGU2CfaPW+zEkTil3bg2T3j/5MEeE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=ZqUQ6Wr1; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=OJRKg/kA9AqnWia5YCVq3lzJGRkUdrtoW6qzbaRQ3sU=; b=ZqUQ6Wr1icPUU5Tte4ibl4YJ2H
+	sy979HyfPINsHLnTBYVg/eLciZW2oCI2EiDvmXVqlgppbpJi3yvtLbLPD9AnpIiDCBUiikUncrA9I
+	TNGhFtbujjdDR/2PU2BftrpW6BBSpSMv2592Mu+FONLVOuKObkHE5F3AqtdgN3Ws8aoc=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:49496 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1uwyLE-008rCR-IO; Fri, 12 Sep 2025 09:37:10 +0200
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v3 0/2] media: add Himax HM1246 image sensor
+Date: Fri, 12 Sep 2025 09:37:05 +0200
+Message-Id: <20250912-hm1246-v3-0-3b89f47dfa43@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,25 +55,174 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKHNw2gC/2WMyw6CMBBFf4XM2prpFFpw5X8YF30hXYCmJY2G8
+ O8WFmri8tzccxZIPgaf4FQtEH0OKdynAuJQgR30dPMsuMJASA3WKNgwcqol66RB67RRSlgo50f
+ 0fXjuocu18BDSfI+vvZv5tv4lMmfIBHYdOsWNrensx95P7qhn2BKZvlpD8qNR0aRpW2pJaaGbX
+ 21d1zcwuelv0wAAAA==
+X-Change-ID: 20250403-hm1246-96b0cdab773c
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Hans de Goede <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Tarang Raval <tarang.raval@siliconsignals.io>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+ Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+ Dongcheng Yan <dongcheng.yan@intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Alan Stern <stern@rowland.harvard.edu>, 
+ Jingjing Xiong <jingjing.xiong@intel.com>, 
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>, 
+ Matthias Fend <matthias.fend@emfend.at>, 
+ bsp-development.geo@leica-geosystems.com
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
+Hello,
 
-On Thu, 04 Sep 2025 11:05:25 -0500, Chris Morgan wrote:
-> Add support for the Texas Instruments BQ25703A charger manager. The
-> device integrates a boost converter with the charger manager. This
-> series adds the device as an MFD with separate regulator and power
-> supply drivers. This allows us to manage a circular dependency with
-> a type-c port manager which depends on the regulator for usb-otg
-> but supplies power to the BQ25703A charger.
-> 
-> [...]
+this series adds support for the Himax HM1246 image sensor.
+The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+array size of 1296 x 976.
+Currently, only the native RAW mode is supported. Other modes and the
+internal image signal processing pipeline are not currently supported.
+The data sheet is available on the manufacturer's website [1].
+Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+the sensor's parallel video output into MIPI signals for the i.MX8MP.
 
-Applied, thanks!
+Best regards
+ ~Matthias
+ 
+[1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
 
-[5/5] arm64: dts: rockchip: Add USB and charger to Gameforce Ace
-      commit: 36d05f21da4d1879f7e81f18eae85f34e9c64aa5
+v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+
+Compliance test for device /dev/v4l-subdev4:
+
+Driver Info:
+        Driver version   : 6.12.0
+        Capabilities     : 0x00000000
+        Client Capabilities: 0x0000000000000003
+streams interval-uses-which
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev4 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 15 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v3:
+- Bindings: Remove bus-type and add default polarity values
+- Select V4L2_CCI_I2C
+- Convert additional macros to use HZ_PER_*
+- Replace cur_mode with v4l2_find_nearest_size()
+- Remove duplicates in the register init sequence
+- Use container_of_const
+- Check return of hm1246_update_controls()
+- Correct multi-line comments
+- Replace hm1246_cci_write_cmu()
+- Consistently use hm1246->dev
+- Use pm_runtime_put_autosuspend()
+- Remove v4l2 event handling
+- Convert to devm_v4l2_sensor_clk_get()
+- Configure PM before registering subdev
+- Link to v2: https://lore.kernel.org/r/20250526-hm1246-v2-0-6b882827a3a5@emfend.at
+- Depends-on: https://lore.kernel.org/all/20250707143253.167910-1-mehdi.djait@linux.intel.com/
+
+Changes in v2:
+- Use macros for 64-bit division
+- Avoid compiler warnings about potentially uninitialized variables
+- Fix two uses of dev_err_probe
+- Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
+
+---
+Matthias Fend (2):
+      media: dt-bindings: i2c: add Himax HM1246 image sensor
+      media: i2c: add Himax HM1246 image sensor driver
+
+ .../bindings/media/i2c/himax,hm1246.yaml           |  113 ++
+ MAINTAINERS                                        |    8 +
+ drivers/media/i2c/Kconfig                          |   10 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/hm1246.c                         | 1427 ++++++++++++++++++++
+ 5 files changed, 1559 insertions(+)
+---
+base-commit: 7aac71907bdea16e2754a782b9d9155449a9d49d
+change-id: 20250403-hm1246-96b0cdab773c
 
 Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Matthias Fend <matthias.fend@emfend.at>
+
 
