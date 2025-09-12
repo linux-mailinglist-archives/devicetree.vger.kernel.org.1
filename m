@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-216522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0320FB55105
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:22:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251E6B551A0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 16:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D34A1CC8561
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:22:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E60EB63497
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8043B3128A6;
-	Fri, 12 Sep 2025 14:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A3A324B1D;
+	Fri, 12 Sep 2025 14:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b8bJWuWo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MaTESpGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6253E30E0D1
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8048F324B05
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 14:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757686863; cv=none; b=NaBr9gCrStGPAoipgyEiX79e0nEpad3s5+TB/vZhctTlM5UgFdP98VO3AXPWY2cTMxhJ6yU941FmQU69ol8d3CiV3g9YoI3D798NDpH+Nbbl0AmTvBj7RJjotxJycqQvFltFpQHCoELZBEVDqDWvD90+ZW4B3LZBXvEgnynRdtA=
+	t=1757687291; cv=none; b=PmRk2qG1YPu0SWc0N6xLaz7c9TcT2Rd6xGhDVhgQTUwhSAz63pU0+9t/IfEc/G6RkMDKDrWqwxw0wLNWPR7mpTaCPNxuaQEe3QoYMnQ8Ur3OuxqfArNYDhfg5ubElgwTzD+28I24aDmBM5Zt20+pGwbgoQNEwVlCm/rEGHeIRTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757686863; c=relaxed/simple;
-	bh=LhFvZeUZESo+BqKcF+l1lftDAN8nJvGBnxH4OQlr4Sk=;
+	s=arc-20240116; t=1757687291; c=relaxed/simple;
+	bh=JFOg5p1iJ5KxXp0KyBvJj/giFbvKAa15YFCa02d2BZ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iPyJA04lLyGE++SOM/f5JVKpHlJojqDpwziCl4m2QLQzDTPn0W/vuEHVNbgaHJudOQXdWw5dsKwXP5EQKjwjX+Sv1RbvTMW4givQpsSOtED6jLp49rEetdE/HwrdCw3/aALpA/VdEFm2kdpTBWfKZmecp//q48lDuJdTqwE/sDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b8bJWuWo; arc=none smtp.client-ip=209.85.221.45
+	 In-Reply-To:Content-Type; b=dKTAPnga+qOkaa5MPlDeaKr1kDB4IFbvnkYQmsoBiEZhwf+8CrAZsU7+zNp8olijZnhUzdC6lQoonKlFdQ9S4ICyV0ceje0gJOnpKtYbH1uuQRAWhhljg8HTCbeahmX0KHQNNmMLoIxw5nUzBwsH/ssMj/ask5q75cmIepg5HYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MaTESpGq; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3df726ecff3so1152320f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:21:01 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45df09c7128so16421995e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 07:28:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757686860; x=1758291660; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757687288; x=1758292088; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cur4X75SOX+L9Hbv3cU7NjYIOtP0WJSnDy9zZzynTY=;
-        b=b8bJWuWoQT98KnHA+pT3gitJeCu0mmyBmd5H6yoIbZW/KT5S/VipU+HlTqGXT8cy/f
-         0dAKCJde9nepMrRilLmKKW1cZxI6pfTtEgPh5YhnwK/pRWTdXpgsYOAsxhosKwn/jRc1
-         OJsR9W8c5oSo2y+bqhvRMJqY+tLIC21elJhj1M+T064a3OLSzrDGETrMt2sbu/HTpGf0
-         SQt/scjPtpjY/YZNcBBuDEFQXgQlT9q7DhzPIcdNUJ7BnDVF+fkN6wbm2a3K7xjHrSwv
-         qFd7Pflb0ScCfELi7EkM8/BJFbF0FMKgib3sLr+VRTFisfP60ulqYfoFIWSNjVDEHkD9
-         dLTg==
+        bh=jnkM+AnZyhps3qygpz2dIT80TKNeLfoU88kbfoaXJwA=;
+        b=MaTESpGqpTMpTxS5eQvECHwzZqQxvguH81IoIjAdnY6Iuon/s97rA4MgR7ETN4ig4W
+         ZB4kYLAIl5NCHpNeQhKXG2zUbFj4D2hD2Gr8oZV5LTseZWBSFCjCwfxSwTtS87WAwzPa
+         vDF2+G3vWpzq8FbfUpruZSNWV2Nr5Yw4vuEhmyeC4C6qPwjRXq+892caanXthJfzsT5I
+         ofNQi44GhPK9gBRN2TikmfEwn9zuQ1w/6iDiKIn43duVCQJMDlP9fO3qXW6WJBh+w/AR
+         FmItq8OgX7XQln6LAuxWFtzcuITtmn0IsoDUsVwJ3inhv7zLTKjaamm4hsDU2sNgDLTY
+         YTiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757686860; x=1758291660;
+        d=1e100.net; s=20230601; t=1757687288; x=1758292088;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4cur4X75SOX+L9Hbv3cU7NjYIOtP0WJSnDy9zZzynTY=;
-        b=ExS85ielm2Kw9s3p2SDBZ3joI/jpC/l9vhHeqJxCZTTAe4RiRv6FD2C2vy/zk3+OtW
-         jHLBm3eqkVPJewLd6C3+D6X4U9JRidQp6nvl5JExqEMArWj6BlYKdLvp6qJkwEXztGZn
-         eoQDg4Inw8Q3m03G6WdVNutbIS3+v1qDjC5SLHNq5U8KwdJJEcUST3ft4z5DADEd1b4P
-         Roors6Wiy3eAeNvus5vrsIkc6WUt1CXjeJ6+Ima2Pvrd7kw6udJwUc60zqYawG/Yjuxa
-         2pmUIOAeZEjPKlxxe3X8msrT5L2yKFJa6/FYazR+aWQPjfwgXzaHg+A/xe0kN39q+gqh
-         rpfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUa4OMvitCTD9GMsAfnncGao8htkayp6A24GnNQVYjsd/y2g1tb2shyMf5mgvI+ImJKqPTS9CfezanI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyyQ9TlJTApNZqY2T0k8/R0igIfEOQ6G0Ylzu2syPMATn6jxbk
-	dIKcS7/MSIIW2eAJKYUwrL5ihjAfr6J4mdwzuefM0/4qqPTrT0jLn5KZ
-X-Gm-Gg: ASbGncvGEEqBtDoslEdq998ktyQuVSyJgXZv7K40bxhb3pXrsXsLt5DoULXuG4ayfty
-	Y6oW8LzeIlOw7X9wp3vHwDSf9MMm9CY21dZ4dtLvBrrnHs25uQI4RGqrftT5Hs83OonzdzhoFhJ
-	Hc+NiIQO8sKhEu0v+7LnYO6x6I5aAzu8LMT1iwntq8+MPPGHCAEYrUM56kYCW+omMHvqtJ/KLks
-	dKi8bHAj7N6jeFIPn933gIk75RUfrmhGqdW3qGO0EjAmsObBPiuoiu7x2XUfxA9r6ghRu/m2/jZ
-	3h+dk1OT6D24ouBBHdoJkC9EEbQLdAmRqHKJkjmy3DQu3T6Lici88SEAyU0hw5HsuYmUdZHBcA2
-	YwCpFu+XqOjcOhxVMGudAFNTvf/AhYC+DgkYMTXXTl2LBXXezyO1p
-X-Google-Smtp-Source: AGHT+IETnSVaOaRKN/Bmr4IDnznOAwChZ2qQ4ywH5VxUBMfTXYJEq367ON+ECBnG0YBYE/RxZE/ipA==
-X-Received: by 2002:a05:6000:2012:b0:3e7:441e:c9e1 with SMTP id ffacd0b85a97d-3e765793127mr2932126f8f.18.1757686859589;
-        Fri, 12 Sep 2025 07:20:59 -0700 (PDT)
+        bh=jnkM+AnZyhps3qygpz2dIT80TKNeLfoU88kbfoaXJwA=;
+        b=sZJECGL1TQyp6XygYw3NMiro6OUTqkSQTdAsPcTcdQTU2aV7/r0UwwFvRD83vqCE1K
+         c8KiggC6bYEYndV+kDRrY3lPXDNky/d1ZSSbR1HtcNldmOu11ANd2b1LnI1Aci6Tg18a
+         aF7kFpDZNF4VUwotgt/JCtTf/oLYtn9C18y3pEtES8FyOnvens1V/pQfxg3ccd6MwyEH
+         VYARCiA0uiFQsc2f090lpIja0LrtmcYktLvZ6BPCyAUfjtHv58P4EPXvdhbNu/IL8iAv
+         2yCOOgQuPtlnMc9OUh1G4VjAwTDvXm5W/mCBwePsb7u3z2IdnzXaKxzldm2H1/lJHvnO
+         t8gQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYPQ1th/LSuS7X0aRXF5RgUqZIUZdmg8evV+FVJOLrLIuxU2r2kdfN643lel1IILgXDd2ebr3MBjUx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRra5CIaBSyYljF/lNcvluXGnlhtlxFHfpO155xhptjo65+MP+
+	DXNHin8Q++4/93PwUygoPW5zpMWK9mAnGAjBsMj9sZx9d/JIAGxERg8g
+X-Gm-Gg: ASbGncuPFcl6cioavg5P4D40FRYYmfSDKa+Y4bzYTRY5xNsXKLGAGTCxqTyOOw0j2zk
+	FXekOJ2xXNViJ6/QVrzaRknunz3P+RRnrvPu7bie2bXtrje5Niy2x8IseVyks4WBLHRaQUnAoXp
+	20++eJiJTS1eWW9at739X5lVLjWPom17PJq/66dkiVBAcMA98+8t+COozg2SLc+JnZkxa23UaY2
+	xnCCsH5RYRSRPVxi/iiq/sctEZ1Nn9xg7+dXwfSa8s1zE0nT9M3aWMsKQAfVHDpeKEDG0mpJAst
+	Zce2N4RN9CcoXQ4rYv11vyFaOJZH+vE7kyAnmTKiSJHPfNYom0xjjA07qLp6m93EU6dO+r4tJgN
+	PeafqZzoqqGShBHhwCG4K8lcYdlvVd4p8m2aguI2fWQ==
+X-Google-Smtp-Source: AGHT+IGDvV53/LNE/OpdCCjsAZPEbICrc+wJ2bgnqrFTzigP/wpDBOWh7QRU2BBuWo1pqbgZm/YfGQ==
+X-Received: by 2002:a05:600c:1c19:b0:45d:d259:9a48 with SMTP id 5b1f17b1804b1-45f2128cba7mr31759255e9.9.1757687287618;
+        Fri, 12 Sep 2025 07:28:07 -0700 (PDT)
 Received: from [192.168.2.177] ([91.116.220.47])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd415sm6697435f8f.30.2025.09.12.07.20.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e017b27b6sm67769045e9.16.2025.09.12.07.27.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 07:20:58 -0700 (PDT)
-Message-ID: <cda40929-12d7-4206-a4d9-3a74314c6b2e@gmail.com>
-Date: Fri, 12 Sep 2025 16:13:30 +0200
+        Fri, 12 Sep 2025 07:28:06 -0700 (PDT)
+Message-ID: <3de4b03d-4940-4d96-bf20-5bb45f1cc5a5@gmail.com>
+Date: Fri, 12 Sep 2025 16:13:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 25/38] arm64: dts: mediatek: mt7986a-bpi-r3: Set
- interrupt-parent to mdio switch
+Subject: Re: [PATCH 26/38] arm64: dts: mediatek: acelink-ew-7886cax: Remove
+ unnecessary cells in spi-nand
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  linux-mediatek@lists.infradead.org, robh@kernel.org
 Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
@@ -108,7 +108,7 @@ Cc: herbert@gondor.apana.org.au, davem@davemloft.net, krzk+dt@kernel.org,
  linux-gpio@vger.kernel.org, linux-remoteproc@vger.kernel.org,
  linux-sound@vger.kernel.org
 References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com>
- <20250724083914.61351-26-angelogioacchino.delregno@collabora.com>
+ <20250724083914.61351-27-angelogioacchino.delregno@collabora.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -154,42 +154,40 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20250724083914.61351-26-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250724083914.61351-27-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 24/07/2025 10:39, AngeloGioacchino Del Regno wrote:
-> Being this an interrupt controller, the binding forbids to use
-> interrupts-extended and wants an `interrupts` property instead.
+> There is no need to specify #address-cells and #size-cells in a
+> node that has only one non-addressable subnode, and this is the
+> case of the flash@0 node in this devicetree, as it has only one
+> "partitions" subnode.
 > 
-> Since this interrupt controller's parent is on the GPIO controller
-> set it as interrupt-parent and change interrupts-extended to just
-> interrupts to silence a dtbs_check warning.
+> Remove those to suppress an avoid_unnecessary_addr_size warning.
 > 
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 Applied, thanks
 
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts | 2 --
+>   1 file changed, 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> index 6d2762866a1a..e7654dc9a1c9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> @@ -200,8 +200,9 @@ switch: switch@31 {
->   		compatible = "mediatek,mt7531";
->   		reg = <31>;
->   		interrupt-controller;
-> +		interrupt-parent = <&pio>;
-> +		interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
->   		#interrupt-cells = <1>;
-> -		interrupts-extended = <&pio 66 IRQ_TYPE_LEVEL_HIGH>;
->   		reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
->   	};
->   };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts b/arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts
+> index 08b3b0827436..30805a610262 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts
+> @@ -98,8 +98,6 @@ &spi0 {
+>   	flash@0 {
+>   		compatible = "spi-nand";
+>   		reg = <0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+>   		spi-max-frequency = <52000000>;
+>   		spi-rx-bus-width = <4>;
+>   		spi-tx-bus-width = <4>;
 
 
