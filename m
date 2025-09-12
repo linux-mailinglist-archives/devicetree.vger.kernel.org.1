@@ -1,156 +1,131 @@
-Return-Path: <devicetree+bounces-216613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1453B555C4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 19:59:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57137B555D4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 20:07:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B1147C329B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 17:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4A391CC3C58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 18:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9FE311C20;
-	Fri, 12 Sep 2025 17:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFFA329F31;
+	Fri, 12 Sep 2025 18:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ge59Wiow"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nVeSEIT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC70424BCF5;
-	Fri, 12 Sep 2025 17:59:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F9D326D4A
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 18:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757699954; cv=none; b=M9JUaIchhSnDvBfojxj7kZkH5la0CsRnnT/5eew7wLIy5um7YPuL+Haf3An2fMKRDcFOFhb0QYuCHwkFMONgQeC4tn5jckIprxZr3CntoZDGobkOehMXX8qh+MasNwj6Gt6Lz3nMuyMM/atHm2PDsqKSFpgIG5o/iIqvlNH51vw=
+	t=1757700447; cv=none; b=uKF5YAGqzhhAxgddsN9UDTtCUIjKvLOjjim5G95IarH6JQgBjpbeik3Tn2nBhcHOAfgjGpIBVit1+QdCF8i8C8uFcNSu3EJXgcFuNJ7gCoO1xxPjkXuV2vT0voGHEsxLyC2/44IKiPKq7RDGmKreSNjliiAUkS/XU2j/kxnrFVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757699954; c=relaxed/simple;
-	bh=NAZECHrYbl8mxswXcbpWQ0UVEYqlvkhivcyRhkS4tyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=brmQuz0VrpoH/tFauPd0TBhpYlY+NNXCIcqTvN1eqzh5xQu4XTps6zdlP9SQb++SNaKJGMm1Wg4NzNJTj5LrRdrfJWIpS/+s4cznwRlZZ0lzqMakIFx4v350e+JHo7K38TfmeRX+UrVT78SSNU7yesPOe3qilfFQNMlSX7zDVT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ge59Wiow; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 951C1C4CEF1;
-	Fri, 12 Sep 2025 17:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757699953;
-	bh=NAZECHrYbl8mxswXcbpWQ0UVEYqlvkhivcyRhkS4tyo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ge59Wiowz9H3gLLSBo+dahVii80E4/vECJFWZRQtbtJuN3j362S/DYM+Ud0xxogdZ
-	 ioX3k4fSM4b4azMmh0t5h3FGFQqSfZoa4lN5bokDbvlL0c0ZBU1fLzG+iQ30SasfjF
-	 SFvYpABBc/aam/TRXxq9hTzO9kDkHnFSDWf5Ydq9mU8yJLsmIUo0XxwOjouN8p6XYh
-	 3dfjmZhHG1iECE2MxRKFaHwu1n86HehG1gQ3GRSYoZEW+ZMrHclf04H7w9F67fX97P
-	 lNJNZYd2A5ugopVoAcoT2QzVg/XQOU+xa7Y0TG8U8sPnxJAwc28nQIUHjsLYBTYIVO
-	 7VILswe79csvw==
-Date: Fri, 12 Sep 2025 18:59:08 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Han Gao <rabenda.cn@gmail.com>
-Cc: devicetree@vger.kernel.org, Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Han Gao <gaohan@iscas.ac.cn>
-Subject: Re: [PATCH 3/3] riscv: dts: thead: add zfh for th1520
-Message-ID: <20250912-verdict-croon-81ac20e5b621@spud>
-References: <20250911184528.1512543-1-rabenda.cn@gmail.com>
- <20250911184528.1512543-4-rabenda.cn@gmail.com>
+	s=arc-20240116; t=1757700447; c=relaxed/simple;
+	bh=91UL/ulcV/GEAp0C9VF8AE7Y05XM25NDQ/r3vu0cb3k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iGNqh7Is5D5/UzYNoPcGBD7AWqwjj7mtgMmhgfIshSz/xN4CsgudLISP7FnvfCXVly2v2nvahTBdN4wt0jWeoGPkTXZ/Xo2u2WPMdaZkFyOigoAbeJwnDziOSP6UlYKu8duA2mhlUyMUoy25tXeEQ+KAsX268gWuMTLpNy7YzVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nVeSEIT2; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-51d14932f27so958522137.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 11:07:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757700444; x=1758305244; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/cBY+4I9kDYtnwV9v/6I6ZDitcQUFaZn0asAaZVvZ68=;
+        b=nVeSEIT2KoQ0Y0YA266Ke+/OUN74tNGk6x1QMOPi7vyhVFu7l3E5L18M9McO/VW7oV
+         Qv4uJbzrx225Z2+dXCWAvCnI7xSodWAxU4q+ExCbsKSy6tW2sloRWKWzDeOX+vesm0u1
+         D83C9sVybj3SrkSSKrD8Mz3uZbZuWeBfv4siFDYiDCQzGZjbpLc8dB0agNUwExLv8L5p
+         b9aRQgbA9o7XYi3J/arO6NsOS0ZanMiA/MYEG83tZfdxnz20mTlAbGPpDUL63dpObt3o
+         1tp78rCZsXi+jW5tygCqukL07uvbntYnVANpfW34UJiUQVu/qM0sbeT2f9McjKOWzSvp
+         61JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757700444; x=1758305244;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/cBY+4I9kDYtnwV9v/6I6ZDitcQUFaZn0asAaZVvZ68=;
+        b=PMIG7UgU8IpKoR7lfgRN1Mg9gN/oHKkopIOBvD7tIpB/QMCWSg9pzU8ee0z0PdRmgw
+         lQRT+/0td+5VeFursmBYaVYFLtHLi/78ecd9wcq95fMNiZHnEw2rUiBxtvUB4odYTpec
+         +MoPZvk1CRNb5iLm9HFIRneoKKTI9hw/Dt+L27O0mkYxtIjokxm8EQAqiYTQe4t9qbkK
+         7bxV16EPW7g7tPCxV3THy2FiQquTqaUKD4+b9ZUA4tx377HI7Omx27KTEG9FLu0B3cRj
+         XfOoxOPRexd5g6B9vTlr1WNLg/WJqbttzh6hdu3hH8NIOLuQR5Y90VBF8yeDu7CbDQE1
+         E1RQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWagBK8fvgrczImC3gnHB7yC0yeLQG5e3rz08JyYMDbL2if/xgrEj1gYVVj/It+4SEXw1Y4UNGFqH96@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywf/BcVU4gLV4/rK9Kfbtpe/M1QZm8OK8ARwYzvp30YqZ7flT/7
+	QU5E0hGQAGFoqhREvaOMhmC6jpsa1DIqdSwbdBuTB/o+eg31dvYvLvHusky4ZvttuJiQ/aEqv5I
+	GfnQueE70oO69/jFEZOGRbTXxlA8jIU8=
+X-Gm-Gg: ASbGnctXLJ7n3RVpLfKi2uH2/gokIBz6rdRXNazTYbrM5GEJMoW/mcvAe527v+ORp4W
+	llUm15esC8n0k/DCWmNx5xZiKFec+xuMxohGRLeQxXuz0iO8FqUkOWQflemlxFEP59mneKVZw6q
+	dVI5TjrG7s30mBTtK8PDLHY+xvFPY+h/KBY1E1p8uGI4bJGuXIE/AGEk5YZHLcCGcVEkHkkRU8T
+	ql0bquBnSY82XmJ
+X-Google-Smtp-Source: AGHT+IHA+4YE8uxdOY8mjzHAWOze6g0jysCAnLhY2/U0gcZe9QhNxJxuu1yw+kCWxTzyKi9VvCfDucHKBNGgGt12ZKw=
+X-Received: by 2002:a05:6102:808f:b0:525:9f17:9e6e with SMTP id
+ ada2fe7eead31-55611a64c15mr1928096137.23.1757700444451; Fri, 12 Sep 2025
+ 11:07:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b5pIc3q2NffjnH9i"
-Content-Disposition: inline
-In-Reply-To: <20250911184528.1512543-4-rabenda.cn@gmail.com>
-
-
---b5pIc3q2NffjnH9i
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250911-starqltechn_slpi-v1-0-93ebf951a932@gmail.com>
+ <20250911-starqltechn_slpi-v1-1-93ebf951a932@gmail.com> <d95fc175-359f-4559-b680-36de87d75a40@oss.qualcomm.com>
+In-Reply-To: <d95fc175-359f-4559-b680-36de87d75a40@oss.qualcomm.com>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Fri, 12 Sep 2025 21:07:13 +0300
+X-Gm-Features: AS18NWCeZSM2Dpl4Jrn5JvaZJYtLfchyR4mokH5Ss7_O4FfKDP8nLezjBHbSzhQ
+Message-ID: <CABTCjFCaOOJUOp-Cr+OifNTGFe7KUgoftLAhPzCQxuGACrsLmg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-starqltechn: fix slpi
+ reserved mem
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 12, 2025 at 02:45:28AM +0800, Han Gao wrote:
-> th1520 support Zfh ISA extension [1].
->=20
-> Link: https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1737721=
-869472/%E7%8E%84%E9%93%81C910%E4%B8%8EC920R1S6%E7%94%A8%E6%88%B7%E6%89%8B%E=
-5%86%8C%28xrvm%29_20250124.pdf [1]
+=D0=BF=D1=82, 12 =D1=81=D0=B5=D0=BD=D1=82. 2025=E2=80=AF=D0=B3. =D0=B2 1-3:=
+58, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>:
+>
+> >
+> > However, kernel refuses to boot firmware with 15MiB reserved region.
+>
+> Why so?
+>
 
-Could you please cite the section that this is detailed in?
+It fails with load firmware with:
+```
+[   22.452709] qcom_q6v5_pas 5c00000.remoteproc: segment outside memory ran=
+ge
+[   22.453163] remoteproc remoteproc1: can't start rproc slpi: -22
+```
 
->=20
-> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
-> Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
-thead/th1520.dtsi
-> index 7f07688aa964..2075bb969c2f 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -26,7 +26,7 @@ c910_0: cpu@0 {
->  			riscv,isa-base =3D "rv64i";
->  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c",
->  					       "ziccrse", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm",
-> +					       "zifencei", "zihpm", "zfh",
->  					       "xtheadvector";
->  			thead,vlenb =3D <16>;
->  			reg =3D <0>;
-> @@ -53,7 +53,7 @@ c910_1: cpu@1 {
->  			riscv,isa-base =3D "rv64i";
->  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c",
->  					       "ziccrse", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm",
-> +					       "zifencei", "zihpm", "zfh",
->  					       "xtheadvector";
->  			thead,vlenb =3D <16>;
->  			reg =3D <1>;
-> @@ -80,7 +80,7 @@ c910_2: cpu@2 {
->  			riscv,isa-base =3D "rv64i";
->  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c",
->  					       "ziccrse", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm",
-> +					       "zifencei", "zihpm", "zfh",
->  					       "xtheadvector";
->  			thead,vlenb =3D <16>;
->  			reg =3D <2>;
-> @@ -107,7 +107,7 @@ c910_3: cpu@3 {
->  			riscv,isa-base =3D "rv64i";
->  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c",
->  					       "ziccrse", "zicntr", "zicsr",
-> -					       "zifencei", "zihpm",
-> +					       "zifencei", "zihpm", "zfh",
->  					       "xtheadvector";
->  			thead,vlenb =3D <16>;
->  			reg =3D <3>;
-> --=20
-> 2.47.3
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+I tried to debug print addresses, but those numbers didn't make sense for m=
+e.
+I updated the commit message to be more clear.
 
---b5pIc3q2NffjnH9i
-Content-Type: application/pgp-signature; name="signature.asc"
+> > Increase slpi reserved region to 16MiB.
+>
+> It would make sense, given the PIL reserved range is now almost
+> contiguous (bar the hole between spss_mem and adsp_mem.. you might
+> want to check that one out as well)
+>
 
------BEGIN PGP SIGNATURE-----
+Actually there's no gap between spss_mem and adsp_mem, adsp starts from
+0x97800000, while spss starts from 0x97700000 and occupies 0x100000, so
+0x97700000 + 0x100000 =3D 0x97800000.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMRfbAAKCRB4tDGHoIJi
-0gr1AQDn94lY15gXhvjAqX086W8aphAAVGa73ZrLqmyznyWS9QD/a6zFwVSlSV+C
-TDWMts0ppc63CwGlT0Ixd1N2hyU89AI=
-=Vc25
------END PGP SIGNATURE-----
+Also, I noticed, spss_mem is not referenced anywhere.
 
---b5pIc3q2NffjnH9i--
+--=20
+Best regards and thanks for review,
+Dzmitry
 
