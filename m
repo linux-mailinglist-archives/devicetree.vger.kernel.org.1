@@ -1,98 +1,99 @@
-Return-Path: <devicetree+bounces-216198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424CDB54016
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 04:01:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413D1B5403B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 04:15:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 001AB486FF7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 02:01:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1C59587A41
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 02:15:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4BB1E1DFC;
-	Fri, 12 Sep 2025 02:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F56A1C8626;
+	Fri, 12 Sep 2025 02:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YoDv3bZG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r5VgAFzc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF331DEFE9;
-	Fri, 12 Sep 2025 02:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32ADB1B043F;
+	Fri, 12 Sep 2025 02:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757642433; cv=none; b=eXWkZ3dsDyyNVY2mmh/P47Nt5B5qiU1Fp6+NyhPTM5f5AKVPvea/SySuIH0TefmaJTdfizqshj//n/xviWaq00s2l0TXsFj/lb1t3C0OhxZ+edPJW0ZJKKN1VQ/GqNeWY4HskjV5qVHeyzNrpLI1WL7jHsrpG/ENHsxOJPthmoU=
+	t=1757643303; cv=none; b=Dn8VwmoSeHEqOLAu4tg0BvXVGh39Y9aZdz/F/xIp20bMjmFSIu7Kv5fgYKwstPdHbqLsP1AkK3Tq07NesiO1HtCZRKmLQ+AY33Jl4KLJ9mPht61r6eqhR7oWyclqjLsYF2iIBx/YzQ86NPFJqhItb2s4Qw2Fk8u0aK65pJfvls0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757642433; c=relaxed/simple;
-	bh=gGvFxaMqyFyGHZn/o/+L3+laFcesPAjWvEOC2O7DL9U=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=QhF1o4zTP9Qdel9zqG6eZ1hhBacKw4jo3gEEmWdTWnuxgRCWDj+YrU6KXbcaSfVCppZzUmN6KYoPbScJezn0WDMRmfSV2eZAfJiQzLuHGtqM2/uYkfxT3RJWJTVgMzHg0kNmJBAjmAdmn4qomB2yXOkJRn5KPinkz+HM64TT0dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YoDv3bZG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C429C4CEF0;
-	Fri, 12 Sep 2025 02:00:33 +0000 (UTC)
+	s=arc-20240116; t=1757643303; c=relaxed/simple;
+	bh=9y+Y1O7cHz+1ou12wkFRsbWoP440AHhTEUJXXVByc8g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=XIO7XFF1LCQBhuqQZbRXrPWV9wB8alyulVJumAl825a3L3HUsDGlLuYWfsyvnBsHxzPDXLwYwmyoLkzo1v1BQajnyrEraCsv0rtjq1uDuSM+zW0qSdJfWKJlYC2Y8SzH5StCxz47RXgYbH+6WtLzzALg26R5GymHqbJZtVbhyJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r5VgAFzc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 688FAC4CEF0;
+	Fri, 12 Sep 2025 02:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757642433;
-	bh=gGvFxaMqyFyGHZn/o/+L3+laFcesPAjWvEOC2O7DL9U=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=YoDv3bZGToj7JfOnv4sQim7ZPQwkLCyfeVRPqCmNkvSQawGvmaSwcygpJuWuBsax/
-	 j5Zv+4f5/eE/i76zEy+YlpOdznWp71ogOYfoj0+HBX4X6LPe+7iD0TJlBEzc9OT1VO
-	 Lv9YnV1f/3pRXT8Ni5fcpc7qlHyZKYRETgnPmqNoXPWacjCIRZ6oMonJlULu9OzMDu
-	 0o+NUop9FxBKdzfle+BUxSe0Wv8Gb9aAEc9pt6jFBMBmafJsk1iSj8dgm47NO13Z85
-	 GMxVMW23CHO0D0IDU1Qp6aV+pJC0rkvAsvnBZfV0XfdvuRKZ1Pshw7pen8SPgyOT+G
-	 g0zzHkqmFNinQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAF00383BF69;
-	Fri, 12 Sep 2025 02:00:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1757643301;
+	bh=9y+Y1O7cHz+1ou12wkFRsbWoP440AHhTEUJXXVByc8g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=r5VgAFzcL4SRgF+N8CjGCcf9b22yPlb2g1j8/1UG4t7aKsjPIwyMdXUlOhQ4GrvAm
+	 NcLCSfJJnv0ETl+fHQ7+LEHBPay6Ofk2VRqMgIPRJV0axanjkBqDiaDqk2MdIqFJBg
+	 ZCf3QAdX+d9zPtAh0U46ujqhiwjM7zPsRtaWxT2m8Kbse6vrF0GlUhYdakjZ+QQsGx
+	 e2NswzRFbUOAxYUhsNBgXx2O8avzCOkqgU7fTGqaYbmYEP6PVk8pI3q9QVAfJejPp2
+	 nA045JzCSFspv1lBddd98z1R+yV4XMh8+KXD+edI6Ti/BTNT3+wXV3INC9Nqwcd3O2
+	 RfiFzubsbqsgQ==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250910233615.775397-2-robh@kernel.org>
+References: <20250910233615.775397-2-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: linux,spdif: Add "port" node
+Message-Id: <175764330004.255307.4320327456204417338.b4-ty@kernel.org>
+Date: Fri, 12 Sep 2025 03:15:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: Convert apm,xgene-enet to DT
- schema
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175764243549.2373516.4669532326019334550.git-patchwork-notify@kernel.org>
-Date: Fri, 12 Sep 2025 02:00:35 +0000
-References: <20250908231016.2070305-1-robh@kernel.org>
-In-Reply-To: <20250908231016.2070305-1-robh@kernel.org>
-To: Rob Herring (Arm) <robh@kernel.org>
-Cc: iyappan@os.amperecomputing.com, keyur@os.amperecomputing.com,
- quan@os.amperecomputing.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, jacob.e.keller@intel.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-56183
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon,  8 Sep 2025 18:10:13 -0500 you wrote:
-> Convert the APM XGene Ethernet binding to DT schema format.
+On Wed, 10 Sep 2025 18:36:15 -0500, Rob Herring (Arm) wrote:
+> The SPDIF receiver/transmitter can be connected to a DAI device via OF
+> graph port. It is already in use and supported.
 > 
-> Add the missing apm,xgene2-sgenet and apm,xgene2-xgenet compatibles.
-> Drop "reg-names" as required. Add support for up to 16 interrupts.
 > 
-> Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> 
-> [...]
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: net: Convert apm,xgene-enet to DT schema
-    https://git.kernel.org/netdev/net-next/c/0b467f5a7f19
-  - [v2,2/2] dt-bindings: net: Convert APM XGene MDIO to DT schema
-    https://git.kernel.org/netdev/net-next/c/e663ad6e06a7
+Applied to
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] ASoC: dt-bindings: linux,spdif: Add "port" node
+      commit: 59ba108806516adeaed51a536d55d4f5e9645881
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
