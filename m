@@ -1,359 +1,132 @@
-Return-Path: <devicetree+bounces-216479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBC7B54EA8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:58:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C262CB54EAC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 14:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF9E9583BD7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:57:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98D747C35E2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 12:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946EF30E0FC;
-	Fri, 12 Sep 2025 12:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B0A305068;
+	Fri, 12 Sep 2025 12:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nEJY4alO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HxtNRvlX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A60D30DEB1;
-	Fri, 12 Sep 2025 12:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4642DC78A
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 12:57:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757681820; cv=none; b=dFQ6snYqGZeKP/8FPLspSr/GgYbcm5Ah8rh4J+T81IdmZFbjBK558b2XvXZUjGKADrI8tvcVPMSYED0YUl2NsMDhtG/wiK3NglesTe82XZO1zq6iRfK9oozULthL5p8nz4BY7q6hdSGWr+QUCFQa4SoK5kD7U5TrVq6kBVm23uw=
+	t=1757681857; cv=none; b=JLtHhlzoVwh17AE0+et6G7DMrA/JAx8WkbbuBCoXLAS0DCBc7KhjR80BLJA94MGBSK39RqtcGX35+2VqnOR5xJY6psxsnqUgEGbHN6vM5lPW/wwWWUJhmwEH5EEPMqrnCOla2fDV7cuuQ+a/0RlMvFQXd9cT2p7NdtbLD4ZDilA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757681820; c=relaxed/simple;
-	bh=isdneW0AQMXzchNHlRx5M+1r0f48Vgl2dv/b+Q9CID4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GcYJfNWWhv1DWaIZEwuc27GspR02oQh6I2GeSgVkhlUbAuGbw2868WW9swm17RcBRhkJ9CQ5jADEvTh9F7aArNLWJKMefUpAZLp17YqMrSylOEtKO9h7LoRMqOcfZTLKetCD6XJqCTFphT+dBzy8JudTjMOYWKrd41HUocgre+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nEJY4alO; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=rUkbo4gs9EL6YjDDNBllsKMR1qK9GCz5ZHIWIO83/I0=; b=nEJY4alO1BTuBTDh/ZSyG2pxCU
-	Okaqs4ynK0JVqI0eSkVv5lmIN/JrRbn4n1aWYywBmUkcl2OWWRXI3RJYpgO5KDFwRdfQrrN8EJMrM
-	K34R4sxa3ToAGvplZJC4OO4kzj5G1xfG4iTflWBQfzTQ0OSMCpy8zUlif0Jwkj4YkCNc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ux3KX-008D1Y-9j; Fri, 12 Sep 2025 14:56:45 +0200
-Date: Fri, 12 Sep 2025 14:56:45 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v8 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <ae9f7bb0-aef3-4c53-91a3-6631fea6c734@lunn.ch>
-References: <20250912024620.4032846-1-mmyangfl@gmail.com>
- <20250912024620.4032846-4-mmyangfl@gmail.com>
+	s=arc-20240116; t=1757681857; c=relaxed/simple;
+	bh=doZrhra+WoKnWL3GeWYIh7XwtgJmI0AYgvJj95PavT0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=pdUtl+qnEnGbmNqRP9lP46VlQ9+2XHznGBYE/N6Vx2rYvVfy0+nw6sRilrkhwsbIfbCRZNTadb2Nd0qDajd6nUFvarItOpySy22jwUp7b0lHrbM0wjv9J4Xohes7kZziSLwnbBJIYeUCD7+jBmgFgJ08oLPDsKb/S3Ps8/lfbm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HxtNRvlX; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 122BFC8EC49;
+	Fri, 12 Sep 2025 12:57:18 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0127260638;
+	Fri, 12 Sep 2025 12:57:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 422FC102F2A70;
+	Fri, 12 Sep 2025 14:57:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757681852; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=AKTqAHrzTqK2etFjJsAwB8b24D1cRMcQiVtfJ6wvNcQ=;
+	b=HxtNRvlXl7AgpEYwX4jV3sGSiMtCIrbcAJTzAaXRgI3+WvwtmJsxO65WY788GJnNyEYEsw
+	uez+I/TI+as1jTGZhed28C/VnvTrMr63d5RWvmwRcQwbs5MLhNSFmab/LAyM4bfJ7gDD4j
+	MPCdipnIWXWqhitAMHSjYDsaVuIxOZ/UMEjD63X2yUuxoO9yRqUGon+86cJ+2lqRIPZL4b
+	9C1E5nf7cg0pO/qQzEr+NYNYCpg8EthAZ/eqYuiJh+gzvPIiiKVndlTyf4bUnWsDa1xTZB
+	mjGf+MVTvdZharqWHgGztfa7cRPlMNzPjd4QFTia43/1HKImzdjhPF5oehP+cg==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Wunderlich <frank-w@public-files.de>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] arm64: dts: marvell: cn9132-clearfog: disable
+ eMMC high-speed modes
+In-Reply-To: <20250911-cn913x-sr-fix-sata-v2-2-0d79319105f8@solid-run.com>
+References: <20250911-cn913x-sr-fix-sata-v2-0-0d79319105f8@solid-run.com>
+ <20250911-cn913x-sr-fix-sata-v2-2-0d79319105f8@solid-run.com>
+Date: Fri, 12 Sep 2025 14:57:28 +0200
+Message-ID: <87ldmjomkn.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250912024620.4032846-4-mmyangfl@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-> +static void yt921x_reg_mdio_verify(u32 reg, u16 val, bool lo)
-> +{
-> +	const char *desc;
-> +
-> +	switch (val) {
-> +	case 0xfade:
-> +		desc = "which is likely from a non-existent register";
-> +		break;
-> +	case 0xdead:
-> +		desc = "which is likely a data race condition";
-> +		break;
+Josua Mayer <josua@solid-run.com> writes:
 
-Where did these two values come from? Are they documented in the datasheet?
+> Similar to MacchiatoBIN the high-speed modes are unstable on the CN9132
+> CEX-7 module, leading to failed transactions under normal use.
+>
+> Disable all high-speed modes including UHS.
+>
+> Additionally add no-sdio and non-removable properties as appropriate for
+> eMMC.
+>
+> Fixes: e9ff907f4076 ("arm64: dts: add description for solidrun cn9132 cex=
+7 module and clearfog board")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-> +	default:
-> +		return;
-> +	}
-> +
-> +	/* Skip registers which are likely to have any valid values */
-> +	switch (reg) {
-> +	case YT921X_MAC_ADDR_HI2:
-> +	case YT921X_MAC_ADDR_LO4:
-> +	case YT921X_FDB_OUT0:
-> +	case YT921X_FDB_OUT1:
-> +		return;
-> +	}
-> +
-> +	pr_warn("%s: Read 0x%x at 0x%x %s32, %s; "
-> +		"consider reporting a bug if this happens again\n",
-> +		__func__, val, reg, lo ? "lo" : "hi", desc);
+Applied on mvebu/fixes
 
-You probably have a warning from checkpatch about pr_warn. Ideally you
-want to give an indication which device has triggered this, making use
-of a struct device. You might want to include that in context.
+Thanks,
 
-> +static int
-> +yt921x_intif_read(struct yt921x_priv *priv, int port, int reg, u16 *valp)
-> +{
-> +	if ((u16)val != val)
-> +		dev_err(dev,
-> +			"%s: port %d, reg 0x%x: Expected u16, got 0x%08x\n",
-> +			__func__, port, reg, val);
-> +	*valp = (u16)val;
-> +	return 0;
+Gregory
 
-You don't treat this as an error, you don't return -EIO or -EPROTO etc.
-So maybe this should be dev_info() or dev_dbg().
-
-> +static int
-> +yt921x_mbus_int_write(struct mii_bus *mbus, int port, int reg, u16 data)
-> +{
-> +	struct yt921x_priv *priv = mbus->priv;
-> +	int res;
-> +
-> +	if (port >= YT921X_PORT_NUM)
-> +		return 0;
-
--ENODEV.
-
-> +yt921x_mbus_int_init(struct yt921x_priv *priv, struct device_node *mnp)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	struct mii_bus *mbus;
-> +	int res;
-> +
-> +	if (!mnp)
-> +		res = devm_mdiobus_register(dev, mbus);
-> +	else
-> +		res = devm_of_mdiobus_register(dev, mbus, mnp);
-
-You can call devm_of_mdiobus_register() with a NULL pointer for the
-OF, and it will do the correct thing.
-
-> +static int yt921x_extif_wait(struct yt921x_priv *priv)
-> +{
-> +	u32 val;
-> +	int res;
-> +
-> +	res = yt921x_reg_read(priv, YT921X_EXT_MBUS_OP, &val);
-> +	if (res)
-> +		return res;
-> +	if ((val & YT921X_MBUS_OP_START) != 0) {
-> +		res = read_poll_timeout(yt921x_reg_read, res,
-> +					(val & YT921X_MBUS_OP_START) == 0,
-> +					YT921X_POLL_SLEEP_US,
-> +					YT921X_POLL_TIMEOUT_US,
-> +					true, priv, YT921X_EXT_MBUS_OP, &val);
-> +		if (res)
-> +			return res;
-> +	}
-> +
-> +	return 0;
-
-In mv88e6xxx, we have the generic mv88e6xxx_wait_mask() and on top of
-that mv88e6xxx_wait_bit(). That allows us to have register specific
-wait functions as one liners. Please consider something similar.
-
-> +static int yt921x_mib_read(struct yt921x_priv *priv, int port, void *data)
-> +{
-
-As far as i can see, data is always a pointer to struct
-yt921x_mib_raw. I would be better to not have the void in the middle.
-It also makes it clearer what assumption you are making about the
-layout of that structure.
-
-> +	unsigned char *buf = data;
-> +	int res = 0;
-> +
-> +	for (size_t i = 0; i < sizeof(struct yt921x_mib_raw);
-> +	     i += sizeof(u32)) {
-> +		res = yt921x_reg_read(priv, YT921X_MIBn_DATA0(port) + i,
-> +				      (u32 *)&buf[i]);
-> +		if (res)
-> +			break;
-> +	}
-> +	return res;
-> +}
-> +
-> +static void yt921x_poll_mib(struct work_struct *work)
-> +{
-> +	struct yt921x_port *pp = container_of_const(work, struct yt921x_port,
-> +						    mib_read.work);
-> +	struct yt921x_priv *priv = (void *)(pp - pp->index) -
-> +				   offsetof(struct yt921x_priv, ports);
-
-Can you make container_of() work for this?
-
-> +	unsigned long delay = YT921X_STATS_INTERVAL_JIFFIES;
-> +	struct device *dev = to_device(priv);
-> +	struct yt921x_mib *mib = &pp->mib;
-> +	struct yt921x_mib_raw raw;
-> +	int port = pp->index;
-> +	int res;
-> +
-> +	yt921x_reg_lock(priv);
-> +	res = yt921x_mib_read(priv, port, &raw);
-> +	yt921x_reg_unlock(priv);
-> +
-> +	if (res) {
-> +		dev_err(dev, "Failed to %s port %d: %i\n", "read stats for",
-> +			port, res);
-> +		delay *= 4;
-> +		goto end;
-> +	}
-> +
-> +	spin_lock(&pp->stats_lock);
-> +
-> +	/* Handle overflow of 32bit MIBs */
-> +	for (size_t i = 0; i < ARRAY_SIZE(yt921x_mib_descs); i++) {
-> +		const struct yt921x_mib_desc *desc = &yt921x_mib_descs[i];
-> +		u32 *rawp = (u32 *)((u8 *)&raw + desc->offset);
-> +		u64 *valp = &((u64 *)mib)[i];
-> +		u64 newval;
-> +
-> +		if (desc->size > 1) {
-> +			newval = ((u64)rawp[0] << 32) | rawp[1];
-> +		} else {
-> +			newval = (*valp & ~(u64)U32_MAX) | *rawp;
-> +			if (*rawp < (u32)*valp)
-> +				newval += (u64)1 << 32;
-> +		}
-
-There are way too many casts here. Think about your types, and how you
-can remove some of these casts. In general, casts are bad, and should
-be avoided where possible.
-
-> +static void
-> +yt921x_dsa_get_ethtool_stats(struct dsa_switch *ds, int port, uint64_t *data)
-> +{
-> +	struct yt921x_priv *priv = to_yt921x_priv(ds);
-> +	struct yt921x_port *pp = &priv->ports[port];
-> +	struct yt921x_mib *mib = &pp->mib;
-> +	size_t j;
-> +
-> +	spin_lock(&pp->stats_lock);
-> +
-> +	j = 0;
-> +	for (size_t i = 0; i < ARRAY_SIZE(yt921x_mib_descs); i++) {
-> +		const struct yt921x_mib_desc *desc = &yt921x_mib_descs[i];
-> +
-> +		if (!desc->unstructured)
-> +			continue;
-> +
-> +		data[j] = ((u64 *)mib)[i];
-> +		j++;
-> +	}
+> ---
+>  arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi b/arch/arm64=
+/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> index afc041c1c448c3e49e1c35d817e91e75db6cfad6..bb2bb47fd77c12f1461b5b9f6=
+ef5567a32cc0153 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/cn9132-sr-cex7.dtsi
+> @@ -137,6 +137,14 @@ &ap_sdhci0 {
+>  	pinctrl-0 =3D <&ap_mmc0_pins>;
+>  	pinctrl-names =3D "default";
+>  	vqmmc-supply =3D <&v_1_8>;
+> +	/*
+> +	 * Not stable in HS modes - phy needs "more calibration", so disable
+> +	 * UHS (by preventing voltage switch), SDR104, SDR50 and DDR50 modes.
+> +	 */
+> +	no-1-8-v;
+> +	no-sd;
+> +	no-sdio;
+> +	non-removable;
+>  	status =3D "okay";
+>  };
+>=20=20
+>
+> --=20
+> 2.51.0
+>
 >
 
-ethtool APIs are called in a context where you can block. So it would
-be good to updated the statistics first before copying them. You just
-need to think about your locking in case the worker is running.
-
-> +static int yt921x_dsa_get_sset_count(struct dsa_switch *ds, int port, int sset)
-> +{
-> +	int cnt;
-> +
-> +	if (sset != ETH_SS_STATS)
-> +		return 0;
-> +
-> +	cnt = 0;
-
-Please do the zeroing above when you declare the local variable.
-
-> +	for (size_t i = 0; i < ARRAY_SIZE(yt921x_mib_descs); i++) {
-> +		const struct yt921x_mib_desc *desc = &yt921x_mib_descs[i];
-> +
-> +		if (desc->unstructured)
-> +			cnt++;
-> +	}
-> +
-> +	return cnt;
-> +}
-
-> +static int
-> +yt921x_set_eee(struct yt921x_priv *priv, int port, struct ethtool_keee *e)
-> +{
-
-> +	/* Enable / disable port EEE */
-> +	res = yt921x_reg_toggle_bits(priv, YT921X_EEE_CTRL,
-> +				     YT921X_EEE_CTRL_ENn(port), enable);
-> +	if (res)
-> +		return res;
-> +	res = yt921x_reg_toggle_bits(priv, YT921X_EEEn_VAL(port),
-> +				     YT921X_EEE_VAL_DATA, enable);
-
-How do these two different registers differ? Why are there two of
-them? Maybe add a comment to explain this.
-
-> +static bool yt921x_dsa_support_eee(struct dsa_switch *ds, int port)
-> +{
-> +	struct yt921x_priv *priv = to_yt921x_priv(ds);
-> +
-> +	return (priv->pon_strap_cap & YT921X_PON_STRAP_EEE) != 0;
-
-What does the strapping actually tell you?
-
-> +static int
-> +yt921x_dsa_port_mirror_add(struct dsa_switch *ds, int port,
-> +			   struct dsa_mall_mirror_tc_entry *mirror,
-> +			   bool ingress, struct netlink_ext_ack *extack)
-> +{
-> +	struct yt921x_priv *priv = to_yt921x_priv(ds);
-> +	u32 ctrl;
-> +	u32 val;
-> +	int res;
-> +
-> +	yt921x_reg_lock(priv);
-> +	do {
-> +		u32 srcs;
-> +		u32 dst;
-> +
-> +		if (ingress)
-> +			srcs = YT921X_MIRROR_IGR_PORTn(port);
-> +		else
-> +			srcs = YT921X_MIRROR_EGR_PORTn(port);
-> +		dst = YT921X_MIRROR_PORT(mirror->to_local_port);
-> +
-> +		res = yt921x_reg_read(priv, YT921X_MIRROR, &val);
-> +		if (res)
-> +			break;
-> +
-> +		/* other mirror tasks & different dst port -> conflict */
-> +		if ((val & ~srcs & (YT921X_MIRROR_EGR_PORTS_M |
-> +				    YT921X_MIRROR_IGR_PORTS_M)) != 0 &&
-> +		    (val & YT921X_MIRROR_PORT_M) != dst) {
-> +			NL_SET_ERR_MSG_MOD(extack,
-> +					   "Sniffer port is already configured,"
-> +					   " delete existing rules & retry");
-> +			res = -EBUSY;
-> +			break;
-> +		}
-> +
-> +		ctrl = val & ~YT921X_MIRROR_PORT_M;
-> +		ctrl |= srcs;
-> +		ctrl |= dst;
-> +
-> +		if (ctrl != val)
-> +			res = yt921x_reg_write(priv, YT921X_MIRROR, ctrl);
-> +	} while (0);
-
-What does a while (0) loop bring you here?
-
-
-    Andrew
-
----
-pw-bot: cr
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
