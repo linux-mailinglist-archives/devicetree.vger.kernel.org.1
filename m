@@ -1,88 +1,81 @@
-Return-Path: <devicetree+bounces-216351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2842EB54791
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:31:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A466B547C2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 11:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20A153B9A05
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:28:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9695E4812E9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 09:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6592D0C9B;
-	Fri, 12 Sep 2025 09:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC6028D8F1;
+	Fri, 12 Sep 2025 09:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="psmAV4uh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m7dEpU53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B3A285C9E
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C4E28C87C
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757668922; cv=none; b=DNYE7fEBPWyrzRYZ2HgQBAkrJUJjGGAOQUI+slyhgUqBnpIUGSt31PbHxbPIXgDK7j+rtUjosm6qXhjqg4tCNEcuyR8z+iaKuezf1/Rf+f5a0yI5Zv0F9lbYkc+jTDzr7COEDlFcXWdFrixZ4YnWyZ/0FpJpNq48t1usVzmLSeU=
+	t=1757669255; cv=none; b=E688W5vslZxq5nfNhLztn4WKunyD9EqdjejS9Fu1zKAY1CGTjP1RmRgmmVpURKgmoyIJ7zrBy34jPRMfKzzi69Id108mpAE8Lg6lRTA3wJVtPE91Ghrxt8bHKAb2C6UH/S5NDln67eIFqIG2Hpp/mH2OOojk7IMpF2i1D4JnYmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757668922; c=relaxed/simple;
-	bh=A1c0vcXgcruE0vFqM/raPLs69yF0uaISuMGxTvyDAyE=;
+	s=arc-20240116; t=1757669255; c=relaxed/simple;
+	bh=gfb3JWg2h2wLQhK4UM6/FHhhzCI5uALXsimWBNV6NQg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MweB8Bm0y2Iqyrau+EecDM7HUXF343m0dSlahsBxEKNLO3Ol1fss1gsg/jmYLCU8L3lA3XGlfZIgdHUm2VLv8oNSoBx6nfWDvzoHVKa9ANRCCxtieNXo0AUkit/bxqYg37UUNTu+9KX0VBjfjCf4QF/rXSLzJJZODJ+h13MUuOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=psmAV4uh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58C7AMpH002273
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:22:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	211TaafuVdmwmFpTWX2T7r+JSbXlFt0Mtw+hMPa5lqU=; b=psmAV4uhJDui1mD2
-	TpCjvU8MQQJRkxDuw3yqKkng4nptAa5x/7xUSHj6EX1X6oUbpT8FF28zsrmre7yu
-	6p/Fp2rav/iYRUYCqDi++eNdmU0cYLSY3LSWJ+tX3FS0MmKDSL8p4IePtThsrg/z
-	Ac7+4k4XpROaSNMzt9ybKtn3X8B783KyfS5kAUKtMZPEDpMpPdotPDoiRuFREgPa
-	pg9//ykOut1X5Rjq7PwNqZFRjrYipChc66NfW+GoX/UZm+8We35j13Jt+hH62Gtl
-	F6u0m5V5mD8j29L+7+62Pb1B5wvt2owSxXuoK0JQQiSo9icMMzJ7VUQ0QyT0iZD5
-	YEREwA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db8u1q0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 09:21:59 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b77fa6d91dso295851cf.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:21:59 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=UT7lx/7TEi+GBaXLPwYl9xTGpLrC9JDWoKa8EmHRtkmKqd45D7srAn122mMsP095RR9mXEw85F0lz3L5XBNpqS5U0qlLw9K+njM5ZL22pFzeveaJhMTj0Aaq2M7rVfuRxvnrDGW/rAM6ogKx0eYqSRImYuizLRkI9gedd02Vujk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m7dEpU53; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3e4aeaa57b9so1536018f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 02:27:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757669252; x=1758274052; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kXTEITSzQJNG4FjEV+hS6a+GXTf9khmRm1tSXLrtGVY=;
+        b=m7dEpU539YkuMk+HjGAlAb2g9NHmyecjpnoR1tGRljWMsSvfcURCKp6bS6eEvh16jf
+         IEo0JpqDwLhKNlY1KrZO2yyu/3GbPKKrwioFjogbcnrgWa32jbswKy2llxEnaHpbLsXC
+         3ctMFzst0L+btHshvkQ19p0L9aRU5F46X/MaTZ39AmRHl8Ow8p5edj/XFNCqzql5yOUY
+         4OS6xCfAeg53yoil07rl5yk15vdoX/c1kO7Ri8JCmzfb0S+ZUeDcYZ5OiJlx1nggZEx0
+         EhLaj4yNq3xO2YRrws2isUwKxUXw0Hu06BiejtC5OHp0uknlggiCZkywg0hNb0/CUPkF
+         0AMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757668919; x=1758273719;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1757669252; x=1758274052;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=211TaafuVdmwmFpTWX2T7r+JSbXlFt0Mtw+hMPa5lqU=;
-        b=l9Bs8Pfu+qXKDw8W94M31sQMlcSUMTW47wMCzKl7jxjMbYLGVDILg3ZEiOnxD8Si7t
-         5XUhJyc3Ry7+uyJDtYhiKHHnoOSDDDL/3S9Z2Z95TARcjVJgimBB1KZPaOlBuz9Dgga+
-         7sKxKsdF1rfChnur7fkeNvHZodrwQQ9cTTccykm4NIklRklH7L8dG/SdIfByJBghyNGu
-         7K/Uebn6igBVHcd6szXwcPOJLGDm0OXJ8jBu+uQzhaKLiwzSL+Vu+H18OzE5G2kH+C0J
-         R+HVPza1rIMSkdAsKqWj3RIjD0B4CBZ+Ux+CjyaGDMlK7sZercQojip7xXq+i/n9omN+
-         9PLw==
-X-Forwarded-Encrypted: i=1; AJvYcCVscCxw+c5pO80aFWXpGQ7bztOQ+iSzpAw+qVRL2Zx2dOoGUz4+s1u9K1BSuFS85mwtL5wCHtDP23jL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVaZWQpGSck2rQqnosrdWPqc6nA4MdnHAM/pj0tJk5bXyW/Jd4
-	dP6gOKbmS+XvQgXEKCegdkgQN0nin4CYFD7Xn26JWr668aB8JVTJnJnATe3DvcguvbPivxXsO9T
-	EFOsRF2g/NQ5m/7Cz1Oyv2UAtwFJ+qyUwZH7KrF0tB8neoosFMVfs9N+Bz7GqFiKD
-X-Gm-Gg: ASbGncunb9pRg8yTanFF/EzydX2X3HjT9R7vm+sptObQFRYxtGH2TfXU6kmp3zuh2b5
-	CCiU8fWkKzHLI2GGlPTifDsr4ri7KSZUCju9taTnhAvPKrJDSVhYI8YaFIfMhTyv2Y+EG5ZMpkt
-	jSm85FI1Zsai9rQp+rCbpH8vsnohCWnkG5DtNfWeEwXylVwT1VoHsgvXrGFcWdioYE8ceQleO0i
-	WwCTzI5cOBfG+Sh8wtX7fbyf22N8QT3c7RoGMrwk1oJnmntNJgxM99QjV5GYgR+8+9C42ziI7VP
-	swH4kFB2nWuRn7kl4g8sLwt6iROOvjudLol6hz+tCJ5orV4jU1Vx7PZYko5p873jO3Hn687bX4P
-	DjSAFRcz9j296FbISIegljw==
-X-Received: by 2002:a05:622a:91:b0:4b5:a0fb:599e with SMTP id d75a77b69052e-4b77cfcdec6mr20253991cf.2.1757668919130;
-        Fri, 12 Sep 2025 02:21:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHt3j5cbbw2xXdC7Iuoclxovs03WKjCh8mVblR4EhINwYFg0atoGoM3n750wMhgvxAjL7lHSQ==
-X-Received: by 2002:a05:622a:91:b0:4b5:a0fb:599e with SMTP id d75a77b69052e-4b77cfcdec6mr20253621cf.2.1757668918594;
-        Fri, 12 Sep 2025 02:21:58 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b32f2098sm337290866b.74.2025.09.12.02.21.56
+        bh=kXTEITSzQJNG4FjEV+hS6a+GXTf9khmRm1tSXLrtGVY=;
+        b=bPxQVJj1Nbisu6gJ9DE8vk04096qg4gcP/g6BIaElRpkP9gf77c+oq5w/avAVFo3L8
+         BUUQ3rrp9iffoyQ5n7SilPmUNZW4WamBnkiEZwU0sJ3Za67XKxZrB4cUDJEJaotgd0+t
+         bLkyM0KvFFCgvfksns7ohiPx/1zvD8fYvbIG+Ky6kTfG9li9oe1EXUtaAkCOI+F46LKy
+         YQhS0ujgkDLaNUk3Md48GqaObgGneK3/83tjATVSKpn1qvkCiDHLBwy0p35Qhp6GmXl7
+         7tSUKGfXwusnT+/ES19iw/031XE836FxjFQMaWgxJYJ7IlgIhHQwe1rJci6gfo30bcX8
+         +Fxg==
+X-Forwarded-Encrypted: i=1; AJvYcCW6TbiqHAfvg34xyhnnqzYYCW8ZXOnIFNMQhuMigTZ0HKTFPDYFvS/88MNhIcRlZTYsT3d/iIfTGYD1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQiEBgCYfXS9fixDxzC4eJI2qyVLByDnjvwQXY2bavpu7N5czR
+	B6ehqZk+ag7axRJF5GZ1wdQ1tvZzk3NkUtWO0Ka7SJu/XPJFb3zLtC75U7zYkm4Vj2M=
+X-Gm-Gg: ASbGncvKsiaHfdNsFCWB/05X+aUaIaqc9nuHqZ5A7xFemOpsPl6IgHmeeAuoxPd45d7
+	QoBWNp7exT/lliweIe85Vv3QsFxlJSXwo/Y9oQuEueWsNOZ0xCe3InUCOp1ZKPM2byFXliDkg4q
+	vYK29US1n00KTEcuuyy2R+hAYHwCvgOGESGlnKlhABaztzVCIkbWwmrYhjOvE82h4oXm6XKAnSK
+	Y8XAaFvCunM9RuvXK88u6eYgBM3wOtqU4PdH000nH3l4soyneRLQ9O6ZK0gUjQcm/i35DLVq68a
+	JKmgQpu6M+IplG/sNXTXq8wjYf5r/FV4RxgFdgRlf9fn/Wg6cYVFOK7k2Xns/7igLbznUlH8DqH
+	scc8g5224DUHpgCQUNnShO6Vr6us7v4uWeb609mkQbTS/CiExjyQvlK2erpkPbC/twj3m59WNU9
+	yPERe2jv1BOF1SWY5QqnTo0hdgZk8bwQ==
+X-Google-Smtp-Source: AGHT+IHRwP5h9u64faaN9sgkAgvq6Wk5wiLsJZGVMHzOBMSe2Z0sqeUItiFW4+Kj3CxqqJN1+tBQMQ==
+X-Received: by 2002:a05:6000:1846:b0:3da:37de:a3c2 with SMTP id ffacd0b85a97d-3e765796575mr2314314f8f.24.1757669251882;
+        Fri, 12 Sep 2025 02:27:31 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e760775868sm5886336f8f.1.2025.09.12.02.27.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Sep 2025 02:21:58 -0700 (PDT)
-Message-ID: <d293a11b-155d-45d3-bafc-00c2f90e8c43@oss.qualcomm.com>
-Date: Fri, 12 Sep 2025 11:21:55 +0200
+        Fri, 12 Sep 2025 02:27:31 -0700 (PDT)
+Message-ID: <2a96dfd9-a5d3-479a-a60d-698e0c235d2a@linaro.org>
+Date: Fri, 12 Sep 2025 10:27:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,101 +83,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/10] dt-bindings: clock: Add required
- "interconnect-cells" property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Luo Jie <quic_luoj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
- <20250909-qcom_ipq5424_nsscc-v5-2-332c49a8512b@quicinc.com>
- <20250912-nocturnal-horse-of-acumen-5b2cbd@kuoka>
- <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
- <2951b362-c3c1-4608-8534-4d25b089f927@oss.qualcomm.com>
- <52714c33-5bd7-4ca5-bf1d-c89318c77746@linaro.org>
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: lemans-evk-camera: Add DT
+ overlay
+To: Wenmeng Liu <quic_wenmliu@qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, vladimir.zapolskiy@linaro.org,
+ todor.too@gmail.com, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250911-camss_rb8-v5-0-c078e4e22d91@oss.qualcomm.com>
+ <20250911-camss_rb8-v5-3-c078e4e22d91@oss.qualcomm.com>
+ <ex5oojf6lqti45joyjxpyi2ev4mjcitw4lz6cszu6lustrby4j@zzigwnu4pbxo>
+ <39cb76ef-3f51-438d-b740-827a4c70035a@qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <52714c33-5bd7-4ca5-bf1d-c89318c77746@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <39cb76ef-3f51-438d-b740-827a4c70035a@qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfX5RqBKdFtFCH+
- WXqpdoq2HmqcivsJIBFqG0sCDR63U76NcducT1nT9FjqIBOKQlQP2mhPz02CFUPwzMI5fbZx2Yh
- Na0kj1Jhd4PwiIPbj3rU9n/vYMNHLwcJYyu/8X19SoJu3OimuUuDHRaVm0WCD8LCPZVz4y7zoxN
- 44nCu8pN3sLIcsSPuTUfPl3erq/w56t8HQ4UWcuxwM0NMI5Sw55QMtKhdGWqn9dbOHY3WnTiZbc
- ul2+mczpb6zcL58smSzb26AhDAw/NGBqyGB4mG9Mi8aLOz6BqRbem/unAhKCo0EdHFAplhI+Gso
- g67QAzL7E1VebGHqbCajuXkx6o168Z4fHX2p0TsXpbJJSdCemJYht6Sm38VWF4UlGx3mb7uUBBl
- 0HsLmhkr
-X-Proofpoint-ORIG-GUID: w2l8SI6SPDnBNre_LpJan7AJVpDob02w
-X-Proofpoint-GUID: w2l8SI6SPDnBNre_LpJan7AJVpDob02w
-X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68c3e637 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=UDPjpuflI1CVcGcpNKsA:9
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-12_03,2025-09-11_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
- phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
 
-On 9/12/25 11:17 AM, Krzysztof Kozlowski wrote:
-> On 12/09/2025 11:13, Konrad Dybcio wrote:
->> On 9/12/25 11:13 AM, Konrad Dybcio wrote:
->>> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
->>>> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
->>>>> The Networking Subsystem (NSS) clock controller acts as both a clock
->>>>> provider and an interconnect provider. The #interconnect-cells property
->>>>> is mandatory in the Device Tree Source (DTS) to ensure that client
->>>>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
->>>>> the NSS ICC provider.
->>>>>
->>>>> Although this property is already present in the NSS CC node of the DTS
->>>>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
->>>>> omitted from the list of required properties in the bindings documentation.
->>>>> Adding this as a required property is not expected to break the ABI for
->>>>> currently supported SoC.
->>>>>
->>>>> Marking #interconnect-cells as required to comply with Device Tree (DT)
->>>>> binding requirements for interconnect providers.
->>>>
->>>> DT bindings do not require interconnect-cells, so that's not a correct
->>>> reason. Drop them from required properties.
->>>
->>> "Mark #interconnect-cells as required to allow consuming the provided
->>> interconnect endpoints"?
->>
->> "which are in turn necessary for the SoC to function"
+On 12/09/2025 03:23, Wenmeng Liu wrote:
 > 
-> If this never worked and code was buggy, never booted, was sent
-> incomplete and in junk state, then sure. Say like that. :)
-> 
-> But I have a feeling code was working okayish...
+> Would lemans-evk-camera-csi1-imx577.dtso be a more appropriate name?
+> It more precisely describes the content of the dtso.
 
-If Linux is unaware of resources, it can't turn them off/on, so it was
-only working courtesy of the previous boot stages messing with them.
+I think that's a good idea.
 
-Konrad
+For example if you added another sensor to the mezzanine board on csi4 
+an ov9282 say
+
+lemans-evk-camera-csi4-ov9282.dtso
+
+The only problem with that is you can only enable the camera in one dtso
+
+But that feels like a problem to be solved only when someone upstreams 
+more than one sensor for this mezzanine.
+
+---
+bod
+
 
