@@ -1,122 +1,121 @@
-Return-Path: <devicetree+bounces-216192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85202B53FC5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 03:18:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4065B53FCC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 03:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1CC284E1247
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 01:18:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC421AA14C9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 01:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E721474CC;
-	Fri, 12 Sep 2025 01:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750961509A0;
+	Fri, 12 Sep 2025 01:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ML384WLP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fmzof5cE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEC3131E49
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E955214EC73
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757639905; cv=none; b=lb+sbomeWlC3ySDZmL8i4QBvcrjdbcv/3p1tdaskLPyrwT49nhVhpG0bqJ+UU4qp9MD34KQR0eL7OJ8JhJ+He7xzbqprYUacmD+F0j8713aBTsDXGtLhvTIdak5l+wDBxT+P8Ee3zEDsPXTDG2nuwkOC3jbcj7e+q5Ost18nhKY=
+	t=1757640147; cv=none; b=deHl8vlq4feVUva0XPehdwujjF+rykAMlQQ0Mbnpyu8S6M9Hy167OWrjKs3RA2hZGYhYZHXBZwNy6GfZP/MyVVKJAx3uaYi0ZDEFtIaEyu73/q+VAiPsK41eeVy+Wtq3V4a7LBgesZ8kwfUiksp2+UK3RNSnc7zVUEyMDpuDGh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757639905; c=relaxed/simple;
-	bh=h9qaaXSqvN9cBSTuj957sTTg4kjY5I2KZ2UivSEhI8Y=;
+	s=arc-20240116; t=1757640147; c=relaxed/simple;
+	bh=mBPv3yMMYQAv8SWn18U10xx/gHV/3T4mCcLgppUbHqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NsyVsJvNMuJx+6+eHA5QNVBLWbrxouMey+Th+bNR6M2Q7WsN9NNdzu2xdoiG9sJBQzKuy2fw2Dpo3uUpKCvZd5Gg7WrTCNBZB/YDXCNMNb/QDaQ7oHIRCCeTrvXSzr7JB5kB71BtONhkh5GvLxLvNO6erpXpcciEYFfYHo/WNTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ML384WLP; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=qfpP3UGN3DBgWJ5BFIs4v7P4y22xU1x30IVjqMPhp8ATO9HSFU3F21IOFs/PcTrsUvHFBhM4xW638/m+1+Jz39JgjAJw3kErTKZu7maWs5YdqLTt3QYKzutSRhQNKptaEFM0TH0iIDP5XT0lWucDrwcJcnUxXI4e31kQxE5ksFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fmzof5cE; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58BIIMrS002479
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:18:17 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58BLQKsR002361
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:22:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7MDT5wpotH29qgokGXIt19ncw6IhYm6XttDNFxIDNqI=; b=ML384WLPI0lO26Tj
-	lQZxrvI1G9I3++QNOnGlZ+fA15ERR9k2GoRmpZkq/B/lkw7aGXEeDDeOcCc4dPLf
-	15sVugOVbRg5sIuAl64tVghq+8GU4i3V26VXgjxiYLP/NkVLmQM+bUDvTI+AfCEF
-	4H8emOm6W0ZNDmGc/yYxUWBy/Aby/bqYH2ZUFSJaWZY0bqQHVFIwbBMjVgmLF3ZJ
-	RNcldacG/x0KGKSRgavKfQUalRkleLquSiVyJM/xGQ41R0BOOxLYKwfMK4kM2WuG
-	fSWGr3iHLTUWFhfyOE/5l7/Ul6syRO4YKwBqrPU+aktCTirMO1abuyQEyQejCNHg
-	ePlHxw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwshwy5-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=BzTMuuDjSttsP/lC8DaVWg4q
+	sEsoHITtFwASx4KsovY=; b=Fmzof5cE0h2EPMjPraJEqiGNDRktmxmJwEfTPGzD
+	jVTjtx+XTyCyni4b9+c0wTthD6OSw66uoCjXGWx7dw3GeylX5Tm0lcBw+RIW/C9k
+	hZchCguTrYBrRhcH/Mur1RSt1FH9++AiAihjKnnxsDo8zkXurTnypvV4NCQrNKr0
+	KAxBXudjKwKbs0RoLNXoYDBQEDKKaiCHMPkD1CL83htE+5Rtc0+tIPNuQJZcQNWz
+	ySGI3KyeqluX2CE5xgVuTWifItSnb22isUD4yYHvnhZsH5WTeRTkpOMAgHh5vg98
+	NbSZQ72NIkrKUSFfuf1QW4wZorixjik7+cDRIawdsDIvbA==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bwshx6c-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:18:17 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-807802c9c85so372282285a.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:18:17 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 01:22:25 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-768181ba081so6713706d6.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Sep 2025 18:22:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757639896; x=1758244696;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7MDT5wpotH29qgokGXIt19ncw6IhYm6XttDNFxIDNqI=;
-        b=uNVSeBZZsH/bM9zW26gQb4Qy1TPRJgv1ovRUHMvhyZ2Z9d8puoYLNHWOFUFCrvhalE
-         2vy+QedAJ7hEZw02NHx6Ab1Ofa1G7yr/J2s7LXLV6ooZcgEgpJK19Ma3PMVGvXsiyawT
-         hhRdGbGh+kY0z/szFDHhdjiTzw/ymYGtMtMeG7OBtgnhUAw5hbDOrETQ98/gds5XFz9q
-         tAnMEejRifZdTi8BM7Pe19W6Akyft3pW6BjIbD7p22/nWzvfYko5YfEyOIZQj7Gs+ODH
-         nXVEo6efzKYCS7KQWmqpzVmqNR5JAvge1pjn/64I8JbrdGm+Fq0BLTzHw5zVdnmZ8y0B
-         d7Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXAEsjCE7CtTg1+R9KIUsxE3uP5WkqQxTdQE9pcRZyAJB64NHhxH/3d99WYm0Jh0lWT2+bk9zR39nck@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLthamk3Q9u/feBBT/gJTCVuW1IvPvh5B5peznRqXn9Z3lRA8U
-	rfcVawnZKSJ+DqUoqJTKEgvVQYTogzX5j7f1FacuDDb6zGZIGcrylr2Fv33L7v4SIMNKGGeIW19
-	3sY24u+hvR5SF6qs7v8d2F7vF8a7QM4gxf/bCP5g7EEP3fmd5Sg7+g0320QX0oMOj
-X-Gm-Gg: ASbGnctp0kDkLhwqZB10c3DnLhIFIRnFBASpVmwl0CrEOs57FSXowK4htgmEoitiaJF
-	XOhRSCWHUe0x/ijFBNUXnvigB3YeYcrEgFnqLzd6X4ju7+XUfbhvTeikUnN761CO0/9e24CGKw/
-	INeqWFqH0PbuJ0kClQiVJIpjww7h1/F33Gc51st4mhdwBpn1ckR5xHMSqGgxeRsxhW+yCWtYKMP
-	unIigkuwQS0qYe/Mj6VLxlAbFG4sauTRnad8NePNN+obUNMeIIhKZRP0GlQPtnMUBCYYYl7GvMT
-	kZo51EQoGro5crhmVMjyL5CPCdLRW3WrmyXSxy00IXW73bOBKXElGZUrfpOi3aawcC220yFpbF5
-	3IzK0XlZTE0HWsY3m1t4W6rHkIEI4rSZrGBQaTnLbc7GD+aYUMJf3
-X-Received: by 2002:a05:620a:ab06:b0:816:461c:f9bd with SMTP id af79cd13be357-8240084e246mr159508085a.44.1757639895663;
-        Thu, 11 Sep 2025 18:18:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFZHSKnYlZZHqZR6Hj9n+C0UmRrNSc/yTGeOKw7+RBx03laoFH6xZ7XxJqWCd7NVxlWZWClAg==
-X-Received: by 2002:a05:620a:ab06:b0:816:461c:f9bd with SMTP id af79cd13be357-8240084e246mr159506485a.44.1757639895218;
-        Thu, 11 Sep 2025 18:18:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757640144; x=1758244944;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BzTMuuDjSttsP/lC8DaVWg4qsEsoHITtFwASx4KsovY=;
+        b=fJQxUD8Ui9p+hhmi+82/I96mTii2fqI8XiZK9cHo7AsuXkZka1xc26C5vGPd/wZHyo
+         aqmQ5QqLhIfauHtqIu+hnlPc9j/4V/XKxVP+eYIrYEyUdEAPr+6i0/3ikHhWyJJfyQCc
+         deOstEXLmPMFYE+0wzducwHY1yNB32LPgyQFjQYgJivGHjCLD+XpBuFvCygZKjPsy3OP
+         iCmW81Kemf1mmYlDTHhzV41IT9J5dEEF9N5yDz7ulrZzyMlvaD00Q8aTun3iqhmHp2Xo
+         ICn2yHOS+VttD7Kc3SiRxRe9QGxnD/8KVhPe6MICqLLFku139qB473mwkpeu06imemdI
+         FcOw==
+X-Forwarded-Encrypted: i=1; AJvYcCU0VYPjRPWnc3DZ7T0taAKq7nBemMdhxUjABcXQvbcwRj7b54D/YcW9dpPUFti7w+x5JfEEczxaZXs2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcXLpvmA85tUGzT6yhFI4Dsu+aJhooA6Z/Q11X+gH6hN/iUk/p
+	/MF4N1qTQM2Ac/ql3vA3ukJ3rRiy6ZI8CsZ0+b/n82oVjo63DNchbGRB9AuKhUCzcH21z7Hegnx
+	Qe9kp4jpLjoJmVLzr5KG9GhGu910NGMrR4R4WCcAaSwXmEJaOyn7ucg3SkVKrPbgE
+X-Gm-Gg: ASbGncuI2FVnAZHV3SyMY9O2bxyPifrrlukjWc65FUL94QiHshlDg0tPxNoPJyRW1aW
+	oOBArk00dLOnjcGDWGuFzOoHWt0Isu26M0M4q+ZfeMGCLmzB8YXPHRN22japJ698RsV/uc4iikc
+	cI6fYr9u4xxKhuDNLOs47FserxvMOwNJAQY6a7/VyNhxHHHdVoqqVReaWDa6cqyzkBt5hIZMerf
+	vCtvabURpFOpy+8J5jopgOM88WaXd0+X5Y+R+Ppl1RnpenbxuPsQYB/Fwr7+VJT6ccrAOfXVd1J
+	NfXQ2+BG5OXRsYsNN477R/8kkcHqvr6kdPzaSKc8Vkd9VoKUn18dUVoAOWg0tmCEl0FN4Ud6DtZ
+	v7A3IZTXlVrdmn9caaafrRsezDueL7enWDbPR9d/wUen91uIqH21+
+X-Received: by 2002:ad4:4ea3:0:b0:70d:f55f:ef97 with SMTP id 6a1803df08f44-7621c32efaemr64971616d6.1.1757640143672;
+        Thu, 11 Sep 2025 18:22:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGa3DVgCbahRQBJw1LnRpwbmCl3+J/uxTrOa/Dcg3ZkKhfb7sCMmlslgoZeHS5Wv7jGebaung==
+X-Received: by 2002:ad4:4ea3:0:b0:70d:f55f:ef97 with SMTP id 6a1803df08f44-7621c32efaemr64971436d6.1.1757640143246;
+        Thu, 11 Sep 2025 18:22:23 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f1c6cabedsm5830451fa.69.2025.09.11.18.18.11
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f1b4920acsm5476141fa.58.2025.09.11.18.22.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Sep 2025 18:18:13 -0700 (PDT)
-Date: Fri, 12 Sep 2025 04:18:10 +0300
+        Thu, 11 Sep 2025 18:22:21 -0700 (PDT)
+Date: Fri, 12 Sep 2025 04:22:18 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Eric =?utf-8?Q?Gon=C3=A7alves?= <ghatto404@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v8 1/1] arm64: dts: qcom: add initial support for
- Samsung Galaxy S22
-Message-ID: <l3c4hjgcjmc3fsxcyanskvy2rotewk6hdj7wbvcs7gcdfcpfoq@f3rgc2zak33n>
-References: <20250911224734.51415-1-ghatto404@gmail.com>
- <20250911224734.51415-2-ghatto404@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: qcm6490: Introduce Particle Tachyon
+Message-ID: <2bc767td7gw4bxts4k4xwhdiv5tgxmpyjwwv6nqeatvncdov6c@u7gfilzxgomp>
+References: <20250910-tachyon-v1-0-5090bfd133e0@oss.qualcomm.com>
+ <2tnzsjw3xy5jct4bcmahcwhjbzlmyxgcx6fzlz5qrzxume2uoy@phpcz6mnydlt>
+ <nweaxuma3dkhzcc46ztfhmxxrchgidxjprc2tz5eahle6sxsuy@qvczmexs4qnn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250911224734.51415-2-ghatto404@gmail.com>
-X-Proofpoint-ORIG-GUID: 9M9EqhcUnK_xeHX5oxAhxYny3CeBQXjO
-X-Proofpoint-GUID: 9M9EqhcUnK_xeHX5oxAhxYny3CeBQXjO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX+eTuHi3LunO3
- uVg35L0th5FrPrKFgqatAYJ5RW9yOcOk4IEJip5O6psLglU2sLuKXGg6P90W43yEJjxk8UabT31
- JnQ2ogxX7IHJ6WVEtuIFo3VT6LHsZycWewwPmhNbHfx9ELSu2FcrhW2ypHiRLSp48DoxvoClvPu
- CDBZDxvD0WCqSqA5B3NVr0t0Hnt/hMxWPbn7OqjDpQ+WnarjeMjUzqMchdZR/8Mc0zdFjpXdB0M
- 3NJcaEbJ/OY5Ix0vuKlMUMpuS3hbnQzqKgu1+LMzJvVCoof+ZjdydmmuXY69y/OzcNOMwUnDqkN
- fYSB9h2iqM/1p+n0aWpzCWfIjJUNFo7yelUoQeAzV24SbaX1z3ceJnEaBemVXl5cgvQ0YfQ6bXE
- U7FPOvM0
-X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c374d9 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=QWxc95z4xnr1JtQ8ubcA:9 a=3ZKOabzyN94A:10
- a=wPNLvfGTeEIA:10 a=PEH46H7Ffwr30OY-TuGO:22
+In-Reply-To: <nweaxuma3dkhzcc46ztfhmxxrchgidxjprc2tz5eahle6sxsuy@qvczmexs4qnn>
+X-Proofpoint-ORIG-GUID: zF-Onj6t-Bl_BlOXGELB1U4BR-hDLYOZ
+X-Proofpoint-GUID: zF-Onj6t-Bl_BlOXGELB1U4BR-hDLYOZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX7oGF2Bm9vUXU
+ 7GZ9asUyiAfvsBirxT0o0YLBsGRD7bXDeBDzdb6z7jLhhCJkFs06T7NKT0x3F64a41XOcwvSbiX
+ OF1dYwhGuVTr4RhcmxfeNwylbDaqNlUkVuakPufCeQjWx1yZUZcU7eM9zpHp/rFKZWjmWhJgbuu
+ GA+RKAt8zQ+EkGD8SJG8VcDI+LTsjDDoP1X52JSb0cQ56cZUOzeZEjuIrkzDHQTOe1eErQ17mhl
+ yrJ/E44jYRGr9Uc/Mo1dbozpFE80vzvITiUrl0pzaZxoToMyJm9qY5LlfRP8HWIe8gOz3ubOUHs
+ WEgXy4ERZK+d5walGYSzrGOXhS9iIEPa3lvDQ15dNxBKPJ2BQC42xnaWhFxO3rljJCv/LB+ysI7
+ XEnfhEb0
+X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68c375d1 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=7AODkVuKAAAA:8 a=K4zJXCh-jB-3kEFs_x4A:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=sRHRY8H3vKB1GfNvUtpx:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-11_04,2025-09-11_02,2025-03-28_01
@@ -126,83 +125,42 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
 
-On Thu, Sep 11, 2025 at 10:47:29PM +0000, Eric Gonçalves wrote:
-> Add new device support for the Samsung Galaxy S22 (SM-S901E) phone
+On Thu, Sep 11, 2025 at 02:19:39PM -0500, Bjorn Andersson wrote:
+> On Thu, Sep 11, 2025 at 03:01:35AM +0300, Dmitry Baryshkov wrote:
+> > On Wed, Sep 10, 2025 at 06:05:36PM -0500, Bjorn Andersson wrote:
+> > > Introduce the Particle Tachyon board (https://www.particle.io/tachyon/),
+> > > a single board compute with 5G connectivity and AI accelerator.
+> > > 
+> > > The boards currently ships with the Android Boot Loader, but replacing
+> > > this with abl2esp allows writing a EFI System Parition and OS partitions
+> > > to all of LUN0, and a more UEFI boot experience. A prebuilt version of
+> > > abl2esp is provided at [1], as abl2esp-v6.elf.
+> > > 
+> > > With a (very) recent version of QDL, a flash programmer from a Tachyon
+> > > software release, and a full distro image, this can be achieved with:
+> > > 
+> > >   qdl prog_firehose_ddr.elf write abl_a abl2esp-v6.elf write abl_b abl2esp-v6.elf write 0 image.raw
+> > > 
+> > > The following firmware files are currently used, on top of what's in
+> > > linux-firmware already:
+> > >   qcom/qcm6490/particle/tachyon/a660_zap.mbn
+> > >   qcom/qcm6490/particle/tachyon/adsp.mbn
+> > >   qcom/qcm6490/particle/tachyon/cdsp.mbn
+> > >   qcom/qcm6490/particle/tachyon/ipa_fws.mbn
+> > >   qcom/qcm6490/particle/tachyon/modem.mbn
+> > 
+> > Is it locked?
 > 
-> What works:
-> - SimpleFB
-> - USB
+> It doesn't look that way.
+
+Then anything preventing us from using the default, non-signed FW?
+
 > 
-> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 145 ++++++++++++++++++
->  2 files changed, 146 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+> > Would it be possible to Particle-signed firmware into linux-firmware?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 94a84770b080..d311e637327e 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -285,6 +285,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-sony-xperia-sagami-pdx214.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-sony-xperia-sagami-pdx215.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-qrd.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-samsung-r0q.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx223.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
-> new file mode 100644
-> index 000000000000..b7533c2287b7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "sm8450.dtsi"
-> +#include "pm8350.dtsi"
-> +#include "pm8350c.dtsi"
-> +
-> +/ {
-> +	model = "Samsung Galaxy S22 5G";
-> +	compatible = "samsung,r0q", "qcom,sm8450";
-> +	chassis-type = "handset";
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer: framebuffer@b8000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0x0 0xb8000000 0x0 0x2b00000>;
-> +			width = <1080>;
-> +			height = <2340>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
+> That is something that would have to be discussed...
 
-Could you please change this to regulator-vph-pwr? This keeps all
-regulator nodes together.
-
-LGTM otherwise
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
+It would be really nice...
 
 -- 
 With best wishes
