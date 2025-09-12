@@ -1,166 +1,123 @@
-Return-Path: <devicetree+bounces-216227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D93B541E6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:20:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D9AB541EF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 07:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38E8D3A4709
-	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 05:20:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95FF27B621E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Sep 2025 05:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D2126F297;
-	Fri, 12 Sep 2025 05:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44BD2765FB;
+	Fri, 12 Sep 2025 05:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oc7Hunzf"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n9AW/3mx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17734270EC1
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F43273FD
+	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757654406; cv=none; b=CgHa9yOduCdyFqnnJldVqUJfW0y4fSHNEhiHX1cfv7y/sMhuIXhQ4QnikiAVjOzJVI7UlJOsG0y+/FKr/LYHOmJbviwH+qpSY5i1RmzTSAhM4b3NsnRyjCcovGvlx41hWj4Ai2lXrcPeOZJ4wVLsSALk+WHf9ElsH4WGwXap4ac=
+	t=1757654497; cv=none; b=BJngucy0pwT7AWktu/C9r66oRw+4uFzG38PEYVxAx/oepHM4MXJHxZkeWrA8vPjN/J9wNm3G9oXp5DZUa4rdjmA9iS05um0JKLoZIIFPr8Jn33UazHL4vDL6GAsNscn6u/g6jwVmhElXJXQ6dOSKbFegAuV3RMylQseWGmJe6JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757654406; c=relaxed/simple;
-	bh=VrjLSNdOTbhfhMA2Qi4JPge+zYweXAE91XHVxOYG2dw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=Hvnqv7JepDpDmZkQWw/TtQMUe9SDhOixxrfEdLOMjMRacc7ay54XcrquqR2lAFLiZoPas2Odt0u3swvDyBu8NASkIC/zwrXCw7WtpGPgaGz98M2gUdKT7sJVPfK8FB4sUuJHoCVwfYJ7UnzOnooNMWc9UCU/Nhgs9f5+4OGO6dM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oc7Hunzf; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250912052002epoutp0384ecf38f57e2df760e5f5afbcbb3475c~kcV2_aZIR0236302363epoutp03l
-	for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 05:20:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250912052002epoutp0384ecf38f57e2df760e5f5afbcbb3475c~kcV2_aZIR0236302363epoutp03l
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1757654402;
-	bh=SBl1cCA3xHTcpiIdbq4ZV4glfFTpYxnU35Smjtoz8C4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=oc7Hunzf6UFQCt4xaZ7hYqWXb32NZXpcnP/b02Dj0YpjMWc/CB/hhH2gxTENBqJFY
-	 FeqCfKDr6nKG9IzWUnaPkI+9LNLnIIEPyif2sNeXTCX6ANJGDEcJixFtWq4FV5/awf
-	 uzBwcSAe2cPf3+k9N4R0ST4RWcJaWrLFA9eeMYJE=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250912052001epcas5p245dd958eda4e47543eca23ea52c48340~kcV2IUOzm0647606476epcas5p2d;
-	Fri, 12 Sep 2025 05:20:01 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cNN6825DYz6B9m6; Fri, 12 Sep
-	2025 05:20:00 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250912051959epcas5p17511cbcad9f9a50495677bc3bf44b8e2~kcV0tAR4b0582905829epcas5p1M;
-	Fri, 12 Sep 2025 05:19:59 +0000 (GMT)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250912051955epsmtip25fe3af81aa42f9f80904ec2a9c2d8bda~kcVxFhMUc0678906789epsmtip2S;
-	Fri, 12 Sep 2025 05:19:55 +0000 (GMT)
-From: "Ravi Patel" <ravi.patel@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Geert Uytterhoeven'"
-	<geert@linux-m68k.org>
-Cc: <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jesper.nilsson@axis.com>,
-	<lars.persson@axis.com>, <alim.akhtar@samsung.com>, <arnd@kernel.org>,
-	<andriy.shevchenko@linux.intel.com>, <geert+renesas@glider.be>,
-	<thierry.bultel.yh@bp.renesas.com>, <dianders@chromium.org>,
-	<robert.marko@sartura.hr>, <schnelle@linux.ibm.com>, <kkartik@nvidia.com>,
-	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-arm-kernel@axis.com>,
-	<ksk4725@coasia.com>, <kenkim@coasia.com>, <smn1196@coasia.com>,
-	<pjsin865@coasia.com>, <shradha.t@samsung.com>
-In-Reply-To: <abfaef6f-dd40-441d-86ec-7cd37c1e06b5@kernel.org>
-Subject: RE: [PATCH 3/3] tty: serial: samsung: Remove unused artpec-8
- specific code
-Date: Fri, 12 Sep 2025 10:49:54 +0530
-Message-ID: <002201dc23a4$e27e29c0$a77a7d40$@samsung.com>
+	s=arc-20240116; t=1757654497; c=relaxed/simple;
+	bh=656GJfgb8aBr2uTtMlqW8Adi3bn7ZXAwUt3Y4IWspOg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=fGN4aZuWXPCSCuduUjhgBjC1BapRJZaSz6pwBAIBqa9Ykxw0ptpphKoPJc1KgV+SRDlIOUytZuSn4sDVFclLgaCvwDo9i5xYQgQHAqmFdnNxuTN2+J+fr6PeqoHpEyGUR7eaq3Pp0PvPn2lP+VPju87lwB/+qrm68/fPNdCp0Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n9AW/3mx; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 92A43C8EC44;
+	Fri, 12 Sep 2025 05:21:14 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7785E60638;
+	Fri, 12 Sep 2025 05:21:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 70BA2102F28D9;
+	Fri, 12 Sep 2025 07:21:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757654489; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=APu9S9jKtXjA5Jz8k+e3HEGpTkPAFSTLP7w4tQTscqc=;
+	b=n9AW/3mxopzj9nvZ+4u2+qjJ9ibJdvPGWWMbXsKoyHDrkziEg1UD0nVyN2Np26/pGuquyI
+	q2M/vrGw9crj8dgoldDkmWU5mBP5M6lTKeLSKbMWzPDn9vjz4STmnXwX0Hie9i/i6lf21X
+	Y2TsEJR9XmQ9gMtmC2XFsaSZ+1uv11jG19+LDd7EP14tUpPN6pIFZoXI9Tp3YAd9N5IoM0
+	D918rSERM+Ge6CrNTs9aLIE1PYjL/0zkWTspmH7G5ufR4rhGaVtdl/jO82N1JHhnY/OXct
+	a6/2ezBvbyJazpfaG/h+emBqis9wnrjJaC1zEbI9sH/P3k56rlTorVQeVksEoA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn
+ <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] arm64: dts: marvell: armada-37xx: Add default PCI
+ interrup controller address cells
+In-Reply-To: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
+References: <20250822133329.312326-3-krzysztof.kozlowski@linaro.org>
+Date: Fri, 12 Sep 2025 07:21:08 +0200
+Message-ID: <878qikp7p7.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJu8uqH6fYxQzG+hnF7rWV1C9oliQHCvJCeAevVl18Bulx3hgI90RbxAdnEKbQB9/8vTwGziL2EswACVSA=
-Content-Language: en-in
-X-CMS-MailID: 20250912051959epcas5p17511cbcad9f9a50495677bc3bf44b8e2
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250911141714epcas5p29f591a1d645c9c69dc5b7d2c2d12af50
-References: <CGME20250911141714epcas5p29f591a1d645c9c69dc5b7d2c2d12af50@epcas5p2.samsung.com>
-	<20250911141605.13034-1-ravi.patel@samsung.com>
-	<20250911141605.13034-4-ravi.patel@samsung.com>
-	<CAMuHMdVe-FULHWk3QCBENG7TsbEZyxj0N5shhESxWBWd49JmOw@mail.gmail.com>
-	<6df0e227-896b-438a-913e-95b637aa2b14@kernel.org>
-	<8aeda67e-404e-4deb-ac90-015f2325ef64@kernel.org>
-	<000101dc2335$ccd62f60$66828e20$@samsung.com>
-	<abfaef6f-dd40-441d-86ec-7cd37c1e06b5@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
+> Add missing address-cells 0 to the PCI interrupt node to silence W=3D1
+> warning:
+>
+>   armada-37xx.dtsi:518.4-521.29: Warning (interrupt_map): /soc/pcie@d0070=
+000:interrupt-map:
+>     Missing property '#address-cells' in node /soc/pcie@d0070000/interrup=
+t-controller, using 0 as fallback
+>
+> Value '0' is correct because:
+> 1. GIC interrupt controller does not have children,
+> 2. interrupt-map property (in PCI node) consists of five components and
+>    the fourth component "parent unit address", which size is defined by
+>    '#address-cells' of the node pointed to by the interrupt-parent
+>    component, is not used (=3D0)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 11 September 2025 22:52
-> To: Ravi Patel <ravi.patel@samsung.com>; 'Geert Uytterhoeven' <geert@linux-m68k.org>
-> Cc: gregkh@linuxfoundation.org; jirislaby@kernel.org; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> jesper.nilsson@axis.com; lars.persson@axis.com; alim.akhtar@samsung.com; arnd@kernel.org; andriy.shevchenko@linux.intel.com;
-> geert+renesas@glider.be; thierry.bultel.yh@bp.renesas.com; dianders@chromium.org; robert.marko@sartura.hr; schnelle@linux.ibm.com;
-> kkartik@nvidia.com; linux-kernel@vger.kernel.org; linux-serial@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-arm-kernel@axis.com; ksk4725@coasia.com; kenkim@coasia.com;
-> smn1196@coasia.com; pjsin865@coasia.com; shradha.t@samsung.com
-> Subject: Re: [PATCH 3/3] tty: serial: samsung: Remove unused artpec-8 specific code
-> 
-> On 11/09/2025 18:04, Ravi Patel wrote:
-> >>>>> -OF_EARLYCON_DECLARE(artpec8, "axis,artpec8-uart",
-> >>>>> -                       s5pv210_early_console_setup);
-> >>>>>
-> >>>>>  static int __init gs101_early_console_setup(struct earlycon_device *device,
-> >>>>>                                             const char *opt)
-> >>>>
-> >>>> Removing these breaks backwards-compatibility with existing DTBs,
-> >>>> which lack the new "samsung,exynos8895-uart" fallback compatible value.
-> >>>
-> >>> This was just applied, so ABI break would be fine. It should be however
-> >>> clearly expressed in the commit msg.
-> >>>
-> >>> I have a feeling that not much testing was happening in Samsung around
-> >>> this patchset and only now - after I applied it - some things happen.
-> >>> But it is damn too late, my tree is already closed which means this is
-> >>> going to be the ABI.
-> >>
-> >> Ah, no, I mixed up patches with recent DTS for Artpec-8. This serial ABI
-> >> was accepted three years ago (!!!), so you are Geert absolutely right -
-> >> that's ABI break.
-> >
-> > Thank you for your review.
-> >
-> > The DTS patches for ARTPEC-8 is added recently (https://lore.kernel.org/linux-samsung-soc/20250901051926.59970-1-
-> ravi.patel@samsung.com/)
-> > Before that, there was no user (in DT) of "axis,artpec8-uart" compatible.
-> > So I am not convinced of ABI break (considering patch #1 and #2 goes first with review comment fixes)
-> 
-> 
-> ABI is defined by bindings and implemented by kernel. Having DTS user is
-> irrelevant to fact whether ABI is or is not broken.
-> 
-> Having DTS user determines the known impact of known ABI breakage.
-
-OK. So does that mean if someone adds the ABI then it cannot be reverted,
-because of it breaks backword compatibility (users are using ABI in their local DTB) ?
-
-Please suggest what should be the proper way.
+Applied on mvebu/dt64
 
 Thanks,
-Ravi
 
-> 
-> Best regards,
-> Krzysztof
+Gregory
+> ---
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
+ot/dts/marvell/armada-37xx.dtsi
+> index 75b0fdc3efb2..c612317043ea 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> @@ -524,6 +524,7 @@ pcie0: pcie@d0070000 {
+>  			pcie_intc: interrupt-controller {
+>  				interrupt-controller;
+>  				#interrupt-cells =3D <1>;
+> +				#address-cells =3D <0>;
+>  			};
+>  		};
+>  	};
+> --=20
+> 2.48.1
+>
 
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
