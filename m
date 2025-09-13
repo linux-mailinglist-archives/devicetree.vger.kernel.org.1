@@ -1,132 +1,128 @@
-Return-Path: <devicetree+bounces-216783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC2BB5613B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 15:47:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838ABB56144
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 15:48:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB64582AF9
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 13:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 157311B279A7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 13:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FABE2512EE;
-	Sat, 13 Sep 2025 13:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0625F2EC54F;
+	Sat, 13 Sep 2025 13:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPRR6+5Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j+2VFjXs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50BF12C1A2;
-	Sat, 13 Sep 2025 13:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C39F72EA468;
+	Sat, 13 Sep 2025 13:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757771229; cv=none; b=qD/imG5HTga1Ug0kYWKRsLw5ZNCytm6f8r/HKx8yqrF6LA/A3QCYjTO/iAckbzOw6L4I0hIT12/pcdfs1kH9Ra0TbCIccFEN/piOYYUThf+mqIAJHiqoeBPpO8mU3nqaV6TAvYVosPO3YoPVu4DqQ2tion/rXNdzMFXPLsnJVII=
+	t=1757771288; cv=none; b=afHJJSuDbLS5Ful+00MGz6IN8rU1e5X/CHCroQVgJZ9VCRuxT4GduYvxgGNYV9a1HbahAQ4zc7zO3oSnMQnAWwkzgyJaiMYn5sK13Txfd1q+ZNzmZ3kMgN22FCHembyYLYNjSP/8eh5wv3IrHfvjA98NIVXU7vyt16J50LqAsEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757771229; c=relaxed/simple;
-	bh=vC+SlisH/7uUE1FcoOydJ82FPk9QehMgbA8eGxm+8bk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=r6fM96B9lSj0oFWfkxUQW17znAUJagsu3mspgL2pgJICAtvrHFB05h/uFLifPg7eSZEnTJWnVHLYyQYiLnqbEu1id1y8FrGFP3tS//r6JEuc6TGRSy5D3nA4/m+jFtcdTYAXhX+WF5Tu2p+/V+dq7uAUyw1xfvjuTWYwJ8nYFAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPRR6+5Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD136C4CEEB;
-	Sat, 13 Sep 2025 13:47:06 +0000 (UTC)
+	s=arc-20240116; t=1757771288; c=relaxed/simple;
+	bh=kAb/6Q3HAUctmHWVedyL+l7FRRMhD0STnVCd1l+573o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rBeS5jbGOtLzOjH4AdLQalSvytfxNh63LoVjCL6c/MGRU4xGwky7wnlQKNXgo5TEK7OlYDwme3Z6OHkWRibRnwsPieBpPdKUAEMyhV8oQb3/t/2OrxYefnKlb/guOzytIEwZ0HcCOADAvEfaZ5e9drJ975WDBDcIxUEWYE1wQ9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j+2VFjXs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67C87C4CEEB;
+	Sat, 13 Sep 2025 13:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757771228;
-	bh=vC+SlisH/7uUE1FcoOydJ82FPk9QehMgbA8eGxm+8bk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=XPRR6+5Zw0dVEcCmZUUX9o06CBTH02i16Us/aCc54y9MpPPkMosZxPvflT7Krjw1N
-	 XbdjOwVQhBVW7dYaXs0gNCWUAIO0i0BD8KeH/YgLyqDc5KRfoZ0ApN/b+xs7YS9djA
-	 UG+0FyTxskzFDtFr+vK6rX/62ZvL/pbxCytX5yB/Aph+f+RrQdGuaMR+6b6nfmgicr
-	 djsv2ODNT7t1Ps6WsnGEXYgkw1NOKFD3nv28gKEenB1O2O3tz0DRyaHJK/PWQIRKqc
-	 iIMh9NcbIotDr4WVHpK4LGuUpu/IBhFNMUG15XqjcM/vGNgQ8jZS3Y1uQwWJtH/ieV
-	 LdWmSf+KMwwUw==
-Message-ID: <1203c1a6-616c-432b-9cd2-12795faac649@kernel.org>
-Date: Sat, 13 Sep 2025 15:47:04 +0200
+	s=k20201202; t=1757771288;
+	bh=kAb/6Q3HAUctmHWVedyL+l7FRRMhD0STnVCd1l+573o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=j+2VFjXsDTIF3DKC4SqTxcxbvMJIFJITs9ZvWPmOcZrkY30AFypLg53BaVBso8k/j
+	 QkvN2VEo0UuU0OdszGVr/KNAwQMopvKHshdLhHMMD3mgJrK/qfeAeqsLllOzsC45Gv
+	 IDwHjK4i2EiKonx9qJQT9NWtde41aHl4gMM0eMhqBbyNzxeUfufSJVVBTwhqf1htyJ
+	 9VjhYCfH6/uBm6UiCpNbJFU5fs4tBQ8oQJXGmJanXOOySjps8HxkLPo1wRvhWJnLvg
+	 Yqned5wlFc3WT2gKdyfQsNvyyyt332Lj5K7czTcDEbgdXJ8jrClg98tjWorEyVH6RE
+	 ygLZNFVPs3O7w==
+Date: Sat, 13 Sep 2025 14:47:57 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <dujemihanovic32@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Karel Balej
+ <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Wronek <david@mainlining.org>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Duje =?UTF-8?B?TWloYW5vdmnEhw==?=
+ <duje@dujemihanovic.xyz>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 0/3] Marvell 88PM886 PMIC GPADC driver
+Message-ID: <20250913144757.4c8cf0b5@jic23-huawei>
+In-Reply-To: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
+References: <20250911-88pm886-gpadc-v4-0-60452710d3a0@dujemihanovic.xyz>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: gpio: fix trivial-gpio's schema id
-To: Ioana Ciornei <ioana.ciornei@nxp.com>, linus.walleij@linaro.org,
- brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250912165916.3098215-1-ioana.ciornei@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250912165916.3098215-1-ioana.ciornei@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 12/09/2025 18:59, Ioana Ciornei wrote:
-> In case the trivial-gpio schema is referenced through a $ref like
-> /schemas/trivial-gpio.yaml to match its current schema ID, the following
-> error message is displayed:
-> 
-> Error in referenced schema matching $id: http://devicetree.org/schemas/trivial-gpio.yaml
-> Tried these paths (check schema $id if path is wrong):
-> /path/to/linux/Documentation/devicetree/bindings/trivial-gpio.yaml
-> /path/to/dtchema/schemas/trivial-gpio.yaml
-> 
-> Fix this by adding the 'gpio' folder to the schema's ID to match its
-> file path.
-> 
-> Fixes: f03a7f20b23c ("dt-bindings: gpio: Create a trivial GPIO schema")
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+On Thu, 11 Sep 2025 14:43:43 +0200
+Duje Mihanovi=C4=87 <dujemihanovic32@gmail.com> wrote:
 
-I swear I saw this fix somewhere already, but now I cannot find it...
-well, looks correct:
+> This series adds a driver for the GPADC found on the Marvell 88PM886
+> PMIC. The GPADC monitors various system voltages and is a prerequisite
+> for battery monitoring on boards using the PMIC.
+>=20
+> Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+Applied patches 1 and 2. I'm assuming the mfd cell will
+patch (3) will go through MFD.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
 
+Jonathan
 
-Best regards,
-Krzysztof
+> ---
+> Changes in v4:
+> - More refactoring
+> - Update trailers
+> - Rebase on v6.17-rc5
+> - Link to v3: https://lore.kernel.org/r/20250905-88pm886-gpadc-v3-0-4601a=
+d9ccb51@dujemihanovic.xyz
+>=20
+> Changes in v3:
+> - Refactor driver according to comments
+> - Update trailers
+> - Rebase on v6.17-rc4
+> - Link to v2: https://lore.kernel.org/r/20250831-88pm886-gpadc-v2-0-759c1=
+e14d95f@dujemihanovic.xyz
+>=20
+> Changes in v2:
+> - Refactor driver according to comments
+> - Add binding patch
+> - Link to v1: https://lore.kernel.org/r/20250829-88pm886-gpadc-v1-0-f6026=
+2266fea@dujemihanovic.xyz
+>=20
+> ---
+> Duje Mihanovi=C4=87 (3):
+>       dt-bindings: mfd: 88pm886: Add #io-channel-cells
+>       iio: adc: Add driver for Marvell 88PM886 PMIC ADC
+>       mfd: 88pm886: Add GPADC cell
+>=20
+>  .../bindings/mfd/marvell,88pm886-a1.yaml           |   4 +
+>  MAINTAINERS                                        |   5 +
+>  drivers/iio/adc/88pm886-gpadc.c                    | 393 +++++++++++++++=
+++++++
+>  drivers/iio/adc/Kconfig                            |  13 +
+>  drivers/iio/adc/Makefile                           |   1 +
+>  drivers/mfd/88pm886.c                              |   1 +
+>  include/linux/mfd/88pm886.h                        |  58 +++
+>  7 files changed, 475 insertions(+)
+> ---
+> base-commit: 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
+> change-id: 20250827-88pm886-gpadc-81e2ca1d52ce
+>=20
+> Best regards,
+
 
