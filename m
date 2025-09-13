@@ -1,134 +1,100 @@
-Return-Path: <devicetree+bounces-216734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44151B55ECC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 08:01:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B47B55EE1
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 08:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E81AA5F6B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 06:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9C861B23A6B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 06:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33AEA2E6CB4;
-	Sat, 13 Sep 2025 06:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="M+CzmzEW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24CD2E6CD6;
+	Sat, 13 Sep 2025 06:16:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C61327511F;
-	Sat, 13 Sep 2025 06:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D03F1CEAC2;
+	Sat, 13 Sep 2025 06:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757743255; cv=none; b=LiJMQO3OHsBFC913OoE4llKU2EjdStKZFZK7ACHZVuZx87VawJeseN1SZwJcVd3v0jzkqdf6NY2YY/9sIztAUyOiePJnqXv0DebvpNfJdqz4SjBbom64IdUfPWeu+W3TOLC1NcTOD5uQL5EoNCildrFb0NkSpPq11ik0zh9Ojac=
+	t=1757744176; cv=none; b=RbziXZmyJqJdV1UprVuXiOZZCQmbowcRXbXxr6riMvC3NCirGaZtyWhWtdA0Vscmx06M3qVmFTbW936V0BabiUZU0Sq7TmLb1k3+Lh4i5xG2RvxDSxW3eTB4lxz63Mu6/sr3/q0tFNyCB1sjhUsfTknWqf+KDmmL3UweZVomV0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757743255; c=relaxed/simple;
-	bh=h28c5TxWJadqL6YGponxQMPWMGVBYvFV1IomrQJZdOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cAvVHH2gm8X8uywSxlAH/jssMtHJDEUOuQ6O3dySejcjv2QwnWQhgJ17dZk43G1O4etfq2CDYmg6u5m9PEiZ4zMP/YNtpwTGnVXGBZ4gy4S0BCmOVcPSDH/97PcdseDgW1PuOB1nYaf4rl6YpYrZHbp/nboQAkCGssOSjlHymj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=M+CzmzEW; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id A0B8040E016D;
-	Sat, 13 Sep 2025 06:00:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id 5iEw13_6N0hx; Sat, 13 Sep 2025 06:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1757743247; bh=ukCkckAuGMje9cA2p4fcL/eu4iSUrEgrcmTG6KbdR1M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M+CzmzEWar56cJJ17KOTR6P8eSnXvk4pSviym3bg7uW6BkqS0j+mtX3BQDzmjsLKN
-	 cBfUjtOzG0dtMWCm8gmhsUa3Xxo4FILO/a/EoDcNG+tlw8kR4uStWeJwPdhqSPG8vi
-	 dptoTCZKzdi0Lb7IKesUGcadI0V7LIgtuqv7+ljIAgi+MxFM4i8iy5ZzhN+eNcVDkT
-	 2U5qJFAQwTYKNKjXv/HnQbujbbxSSpVXj5bVy2aRYmWxFocdRZ21hDbVAksBWj/ayB
-	 IyVl/MGqAXPtO85g0YsubzV7s6ahQw9h0Csu9TVUFWQlf+WnPcHv5LpdW2BLaZTSLx
-	 MMPWrLyToEYejhS/laszKvXwNVgYIRKtn46zcfAmgWcVrksJjmgrxaFWOjZaf7IcIu
-	 69gMcfJR5mcDILFbprN0LrSSpnH27j6cHrFVqj50Pgarn5Z+5kEA74Cuh7F+wkwKag
-	 IgiVg9veF2ZWXTokCLUb6KziC0viJ3MFRPeERhFpkN9McnxLf/Lom5CWCUO/GLLsrO
-	 Ik0vYi9bLtv3NWaKGrZ5U38zUX6p3F6aTmchXQOEPOWj3S4lIPOayyV2rrbopxaE+l
-	 7bAPj5LxiMGFgfJow+wWYdkCpmcS3w+RlVWftduP1hFNqKDXn6mv7Glb2r+ccLg5uk
-	 Ktt/rgo0zlxIwboDscbgVlBU=
-Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 3961D40E015C;
-	Sat, 13 Sep 2025 05:59:52 +0000 (UTC)
-Date: Sat, 13 Sep 2025 07:59:45 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Askar Safin <safinaskar@gmail.com>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Linus Torvalds <torvalds@linux-foundation.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>,
-	Christoph Hellwig <hch@lst.de>, Jens Axboe <axboe@kernel.dk>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Aleksa Sarai <cyphar@cyphar.com>,
-	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
-	Julian Stecklina <julian.stecklina@cyberus-technology.de>,
-	Gao Xiang <hsiangkao@linux.alibaba.com>,
-	Art Nikpal <email2tema@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Alexander Graf <graf@amazon.com>, Rob Landley <rob@landley.net>,
-	Lennart Poettering <mzxreary@0pointer.de>,
-	linux-arch@vger.kernel.org, linux-alpha@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
-	linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
-	x86@kernel.org, Ingo Molnar <mingo@redhat.com>,
-	linux-block@vger.kernel.org, initramfs@vger.kernel.org,
-	linux-api@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org,
-	"Theodore Y . Ts'o" <tytso@mit.edu>, linux-acpi@vger.kernel.org,
-	Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
-	Luis Chamberlain <mcgrof@kernel.org>, Kees Cook <kees@kernel.org>,
-	Thorsten Blum <thorsten.blum@linux.dev>,
-	Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-Subject: Re: [PATCH RESEND 28/62] init: alpha, arc, arm, arm64, csky, m68k,
- microblaze, mips, nios2, openrisc, parisc, powerpc, s390, sh, sparc, um,
- x86, xtensa: rename initrd_{start,end} to
- virt_external_initramfs_{start,end}
-Message-ID: <20250913055851.GBaMUIGyF8VhpUsOZg@fat_crate.local>
-References: <20250913003842.41944-1-safinaskar@gmail.com>
- <20250913003842.41944-29-safinaskar@gmail.com>
- <20250913054837.GAaMUFtd4YlaPqL2Ov@fat_crate.local>
+	s=arc-20240116; t=1757744176; c=relaxed/simple;
+	bh=rYv4Fr76t3a44M/s2LvUW75/HndXzjF+VNPnxzZh54s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=j3Xl8ReqnmEvuCkq/JOR62Ryj+mnKEPYyxiK9+ekTXnsaC9zxYC2gfJwO2NCieCoBPtuqT73f0foI+fAmI/ngRZxnjaDP9Q8A1/bBCDXVxWhaGx1FBxcOShf5D5CFgxaMB33bTifMKkYsbHkqiWBwaSYkujd99mO5N5XpGO9xd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE707C4CEEB;
+	Sat, 13 Sep 2025 06:16:14 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 344A95FBD7;
+	Sat, 13 Sep 2025 14:16:12 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Stephen Boyd <sboyd@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev, 
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250911174710.3149589-1-wens@kernel.org>
+References: <20250911174710.3149589-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/7] arm64: allwinner: a523: Enable MCU
+ PRCM and NPU
+Message-Id: <175774417218.3827849.2965288836170499623.b4-ty@csie.org>
+Date: Sat, 13 Sep 2025 14:16:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250913054837.GAaMUFtd4YlaPqL2Ov@fat_crate.local>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Sat, Sep 13, 2025 at 07:48:37AM +0200, Borislav Petkov wrote:
-> On Sat, Sep 13, 2025 at 12:38:07AM +0000, Askar Safin wrote:
-> > Rename initrd_start to virt_external_initramfs_start and
-> > initrd_end to virt_external_initramfs_end.
+On Fri, 12 Sep 2025 01:47:03 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> "virt" as in "virtualization"?
+> Hi folks,
+> 
+> This is v2 of my A523 MCU PRCM and NPU support series.
+> 
+> Changes since v1:
+> - Dropped dual divider clock rate read-back fix that is already merged
+> - DT binding
+>   - Moved "r-ahb" clock to the end of the list and added "r-apb0" clock
+> - Add NPU clk
+>   - Move .num to after list of clks
+> - MCU CCU clk driver
+>   - Added comment for "fixed" dividers in audio PLL clock
+>   - Corrected variable names for audio PLL divider clocks
+>   - Added comment for the reversed order of some of the DSP clock's
+>     parents when compared to the manual
+>   - Added comments for clocks and resets only found in the BSP driver
+>   - Corrected register offset for i2s3-asrc and bus-mcu-pwm0 clocks
+>   - Made "r-ahb" and new "r-apb0" external bus clocks the parents of the
+>     bus gate clocks, with comments if guessed which one applies
+>   - Moved .num_clks to after the list of clocks, making it obvious that
+>     the value needs to be added if more clocks are added to the list
+> - MCU CCU DT node
+>   - Enlarged MCU PRCM register range to 0x200
+>   - Moved "r-ahb" clock to the end of the list and added "r-apb0" clock
+> - Link to v1
+>   https://lore.kernel.org/all/20250830170901.1996227-1-wens@kernel.org/
+> 
+> [...]
 
-Ooh, now I see it - you have virtual and physical initramfs address things. We
-usually call those "va" and "pa". So
+Applied to sunxi/dt-for-6.18 in local tree, thanks!
 
-initramfs_{va,pa}_{start,end}
+[6/7] arm64: dts: allwinner: a523: Add MCU PRCM CCU node
+      commit: edd63e54e516b54c0b7071463d6e839445efab68
+[7/7] arm64: dts: allwinner: a523: Add NPU device node
+      commit: a1845487afd06899502714a3500b60f815d98203
 
-perhaps...
-
+Best regards,
 -- 
-Regards/Gruss,
-    Boris.
+Chen-Yu Tsai <wens@csie.org>
 
-https://people.kernel.org/tglx/notes-about-netiquette
 
