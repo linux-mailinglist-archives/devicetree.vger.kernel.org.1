@@ -1,207 +1,114 @@
-Return-Path: <devicetree+bounces-216752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44823B55FED
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 11:29:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C7AB55FEF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 11:30:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A21D1C85350
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 09:29:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71F033BDE21
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 09:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FB12D5946;
-	Sat, 13 Sep 2025 09:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895F925A640;
+	Sat, 13 Sep 2025 09:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ivrUq5tj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjvqPnzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512C73B186
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 09:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB353B186;
+	Sat, 13 Sep 2025 09:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757755760; cv=none; b=djka1fefZxc2KCFct9CBY+FJvIaiEnd50ZSDx7NrkxoX6ckdUev3C5lEmQkmGdVx+k9CzdtequICx6oQC+Geog7SBgSC3yQw26yjC8WASvDVfxVDRNwpXf8r3XM2mozUrs9vuB3FDi02+DLtygNnixA36iUYEgJhjIxpv/JzHpk=
+	t=1757755820; cv=none; b=F3Scj5xZEMTENqoi/oio0jnoEQV2lxdR3hiI2rap64n/sxyLDNfvTZuQA84uH3/g5GoJ6CLY3FGe6UwSpsxMAoH4/D6WjwzQu6PQtjC84lgclXFPMHV6xXwr+7lP3ibCA9yNPHmwmSqreolqIek9pd3lu/5pJn0FEFbUtlkDnJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757755760; c=relaxed/simple;
-	bh=8KECooiguoFsg53E7rkhnQcrb+WVUBu+SlwPVT+sY7c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mnrATMwYEEQOzVsOIHinGfwh9wrrnjVBkeLefEx1UfB8GvcboSaIhGQ2p9aUB9S7JMWceMWBZ5upb4HxiN1vkSGn74XZmB7WJNfpbSm2+nrxWFYkX42YvvhTrdhmLD8NJCqBZzAAFLcG6Ma2IR3Rq9sFQ4yXeS42DIvvYlQtX3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ivrUq5tj; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-89e5b87f406so722899241.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 02:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757755757; x=1758360557; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3hpXAGaVCNI8VKWlBxzDF3/2pMhCFKKzKfanUfijSGo=;
-        b=ivrUq5tjk0dPjBxbzwCO35vyETBNaAMO5Yi0Y9QEsUNQKeQflt+OGhroGJdKgDeNhW
-         1yY2WIcQnhUfJZAVse4Ih7pR2Dv/hC+2exXD0x70OUfm0TdqBbAqOIwBRri15R61d/+H
-         W2zwG7n+gXeZIth9EzDOvm9m1P9bfl++Ruqcj+lgh+yhEP9FhycWOud+M3RqkCnoUg5E
-         eVG5Z2+yk/NCASJELfHoiANvekLt1SEXB+xY4EMPp1znPbJRvAbut0fiLpPC8lbsx9rw
-         K98IpXAGLd8Df04qbGkDdN1nefv4w3tz2ASZkPYeY2ZfujMfU+AleNZPotOVXLox4hpt
-         lZmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757755757; x=1758360557;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3hpXAGaVCNI8VKWlBxzDF3/2pMhCFKKzKfanUfijSGo=;
-        b=cBrqSR2xv4uiU/2VkMh7pt4asvdDWmp17TFyGLOHtNy9UzuhwpBfjQKAgw+dNeTNMB
-         gSDKBzrB+8mnaW7f0AIJcsKbDHPR+82lwe2slGmOOf7279DPd8yNunbZCmMzSrcwhRV/
-         eo9cdisVVd37PSm0MtzVj/tcrZV6SQBWStrN15p2cgM1H9AreC5SOs+AbNApg0S3/7YO
-         A9SkX3Ol5CdG6J22zKz9JC0Jo7+XfH2LwZ4EfLDRkG6HnYzEd5VHFFipViBhS7tIq1t/
-         /w0Fp/E8C0YYM5JPHoUdmIFI+yGuQNc4dGZlcDAbmR0F8jITpbTAHf1ADdTi3ljetfHj
-         8tkQ==
-X-Gm-Message-State: AOJu0YxCNWbpa4OGTAPxtSuiv7vXFtMOhNhI9gaXTEDzrF8Pg3HZLhMk
-	3o+LtmdDSOPCvO64oyXs02U8cpRIiJwvhUgalw2qbxQfsl6f1gmnWnwIQbFfvsY3hcqLjRupmWg
-	mLkW2lfB63M1fSz6TCVndOmMlp35UXSE=
-X-Gm-Gg: ASbGncuNCSl4fo6Ou8O9lnmzc45bd8FZrVm6kU7WjRl5DQcn9ic1VqzI0hPWXPf/Acw
-	KLVPhhjfbJ/ieAipDyORWX+n5WAkq+bGRMrBZMwmyL31VN/mxJK1H53x10FS0HvAKTUtTxms2pf
-	x+P2kMuDMMJnq282wjSRU3skjYs3FI5pqzkconR7Wj3hp3F4ZBlaI+FZHDC2Nvkcom0UQES2QNa
-	DquMeY=
-X-Google-Smtp-Source: AGHT+IF1tpIgRKc0Kjd90cmIEFUZM2Fe4ziJOCTrd+iiCXW/77FmQOzrFrTYzgnyYA+0/gkm3WFMSyhFsQeg+Kodd1o=
-X-Received: by 2002:a05:6102:d8d:b0:555:56e0:f372 with SMTP id
- ada2fe7eead31-5560908d470mr2397200137.2.1757755757060; Sat, 13 Sep 2025
- 02:29:17 -0700 (PDT)
+	s=arc-20240116; t=1757755820; c=relaxed/simple;
+	bh=c12/xNUXslNQin2axApjPv7ljtSkh0GTCsEFL44BFio=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BZMX51F+BFoNOYGtPokYFCo2e5jvKi3v/OtpEBsDUE0/X8xWiH9PxI3sl2mTGPPA74zlyQQSGLLXurq6drttFHiZVkfoj8cVm6xCc5+u4XEmbqKrMiDP9kBlINcweXXib1BZpj6XixA6V8lhSgN+AEbKvy+OYmxerwMC1MGxxlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjvqPnzq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3766C4CEEB;
+	Sat, 13 Sep 2025 09:30:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757755820;
+	bh=c12/xNUXslNQin2axApjPv7ljtSkh0GTCsEFL44BFio=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=sjvqPnzqsYnWNxyxRDIBh+NQRy7Qf3VKRmVD4aWDVkjjK3X2qgB0ociCTcXT7rRE6
+	 KfyVY9CT/R53w5AbTPrvFD6V+X7BNzx6nA8630xM3lyo8BOak1vIoZ7am0QF8RKhOs
+	 YcRJqaB/bFH3UuSVFOUszO9gxEu6jkHslv5dqfv0khkLOnOaSQlAHXStkj0rNlV1wq
+	 rA2ezBsW7mDqHW1IPxDgNFl9oqv6vAp+GhPcd+HnrE3KU/CpvrvJZjkj57WajF+u01
+	 iA95YWsidRyYVZrbjeQ3EGCSG1VJKBgAdFMQJxUtrJQ+unTyhnye6JG0AaPKbqlKrF
+	 b0eH7QGVeY3OA==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 7C2145FC8D; Sat, 13 Sep 2025 17:30:17 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Maxime Ripard <mripard@kernel.org>,
+	Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] Add support for NetCube Systems Nagami SoM and its carrier boards
+Date: Sat, 13 Sep 2025 17:30:16 +0800
+Message-Id: <175775572870.3891284.1456456718289976149.b4-ty@csie.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250831162536.2380589-1-lukas.schmid@netcube.li>
+References: <20250831162536.2380589-1-lukas.schmid@netcube.li>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250911184528.1512543-1-rabenda.cn@gmail.com>
- <20250911184528.1512543-3-rabenda.cn@gmail.com> <20250912-gander-fox-d20c2e431816@spud>
-In-Reply-To: <20250912-gander-fox-d20c2e431816@spud>
-From: Han Gao <rabenda.cn@gmail.com>
-Date: Sat, 13 Sep 2025 17:29:06 +0800
-X-Gm-Features: AS18NWD-tBqk49KioxOmXqHDB8mXESNI-lFCAKSwfVB70oRBqo6Nz_fXy22ttJU
-Message-ID: <CAAT7Ki_WD+X64oTPro=yn2de+Y_W9B2iDVE2cmRhV=TnQiUmPQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] riscv: dts: thead: add ziccrse for th1520
-To: Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, Drew Fustini <fustini@kernel.org>, 
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Han Gao <gaohan@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sat, Sep 13, 2025 at 1:57=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Fri, Sep 12, 2025 at 02:45:27AM +0800, Han Gao wrote:
-> > th1520 support Ziccrse ISA extension [1].
-> >
-> > Link: https://lore.kernel.org/all/20241103145153.105097-12-alexghiti@ri=
-vosinc.com/ [1]
->
-> I don't see what this link has to do with th1520 supporting the
-> extension. The kernel supporting it has nothing to do with whether it
-> should be in the dts or not. A useful link would substantiate your
-> claim.
+From: Chen-Yu Tsai <wens@csie.org>
 
-Existing rv64 hardware conforms to the rva20 profile.
+On Sun, 31 Aug 2025 18:25:29 +0200, Lukas Schmid wrote:
+> This series adds support for the NetCube Systems Nagami SoM and its
+> associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
+> Carrier.
+> 
+> Changes in v8:
+>   - Use a gpio-mux instead of the gpio-hog for the USB0_SEC_EN signal
+>   - Fix the dt-schema issues
+> 
+> [...]
 
-Ziccrse is an additional extension required by the rva20 profile, so
-th1520 has this extension.
+Applied to sunxi/dt-for-6.18 in local tree, thanks!
 
-Link: https://github.com/riscv/riscv-profiles/blob/main/src/profiles.adoc#5=
-11-rva20u64-mandatory-base
-[1]
+[1/5] dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier board bindings
+      commit: db5796c5c5c6db72339e818b54e6a2e043f7032c
+[2/5] riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube Systems Nagami SoM
+      commit: cbce6d5326b116f55dc29f7fc0a7d56a9a03d9e5
+[3/5] ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
+      commit: cba2febbd6465aabdff157fb95b1c07d090af1f0
+[4/5] ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
+      commit: e36d4d54eefb60144666b27754007e1c0dd0a581
+[5/5] ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
+      commit: caffed0800ef4dd29cc29ee17a89d015e867e03a
 
->
-> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
-> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
->
-> You only need to sign this off once.
->
-> Cheers,
-> Conor.
->
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 24 ++++++++++++++++--------
-> >  1 file changed, 16 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dt=
-s/thead/th1520.dtsi
-> > index 59d1927764a6..7f07688aa964 100644
-> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > @@ -24,8 +24,10 @@ c910_0: cpu@0 {
-> >                       device_type =3D "cpu";
-> >                       riscv,isa =3D "rv64imafdc";
-> >                       riscv,isa-base =3D "rv64i";
-> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "zicntr", "zicsr",
-> > -                                            "zifencei", "zihpm", "xthe=
-advector";
-> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c",
-> > +                                            "ziccrse", "zicntr", "zics=
-r",
-> > +                                            "zifencei", "zihpm",
-> > +                                            "xtheadvector";
-> >                       thead,vlenb =3D <16>;
-> >                       reg =3D <0>;
-> >                       i-cache-block-size =3D <64>;
-> > @@ -49,8 +51,10 @@ c910_1: cpu@1 {
-> >                       device_type =3D "cpu";
-> >                       riscv,isa =3D "rv64imafdc";
-> >                       riscv,isa-base =3D "rv64i";
-> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "zicntr", "zicsr",
-> > -                                            "zifencei", "zihpm", "xthe=
-advector";
-> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c",
-> > +                                            "ziccrse", "zicntr", "zics=
-r",
-> > +                                            "zifencei", "zihpm",
-> > +                                            "xtheadvector";
-> >                       thead,vlenb =3D <16>;
-> >                       reg =3D <1>;
-> >                       i-cache-block-size =3D <64>;
-> > @@ -74,8 +78,10 @@ c910_2: cpu@2 {
-> >                       device_type =3D "cpu";
-> >                       riscv,isa =3D "rv64imafdc";
-> >                       riscv,isa-base =3D "rv64i";
-> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "zicntr", "zicsr",
-> > -                                            "zifencei", "zihpm", "xthe=
-advector";
-> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c",
-> > +                                            "ziccrse", "zicntr", "zics=
-r",
-> > +                                            "zifencei", "zihpm",
-> > +                                            "xtheadvector";
-> >                       thead,vlenb =3D <16>;
-> >                       reg =3D <2>;
-> >                       i-cache-block-size =3D <64>;
-> > @@ -99,8 +105,10 @@ c910_3: cpu@3 {
-> >                       device_type =3D "cpu";
-> >                       riscv,isa =3D "rv64imafdc";
-> >                       riscv,isa-base =3D "rv64i";
-> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c", "zicntr", "zicsr",
-> > -                                            "zifencei", "zihpm", "xthe=
-advector";
-> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
- "c",
-> > +                                            "ziccrse", "zicntr", "zics=
-r",
-> > +                                            "zifencei", "zihpm",
-> > +                                            "xtheadvector";
-> >                       thead,vlenb =3D <16>;
-> >                       reg =3D <3>;
-> >                       i-cache-block-size =3D <64>;
-> > --
-> > 2.47.3
-> >
+Note that there were some cases in the device tree files where lines were
+indented more than necessary, like for gpio-line-names and the board level
+fallback compatible string. Wrapped lines for lists of items should align
+with the first item on the first line.
+
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
