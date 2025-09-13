@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-216841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68D6B5634F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:32:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D10B563CD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 01:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6BFD17C183
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 21:31:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CD1A189D737
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2791F287256;
-	Sat, 13 Sep 2025 21:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A9F2C2353;
+	Sat, 13 Sep 2025 23:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zwei8rxL"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="F1ZWOoN7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B0A286D50;
-	Sat, 13 Sep 2025 21:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF322C178D
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 23:57:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757799068; cv=none; b=O/wUkFuGJsCJVakO4E4bAq/oT81sh0bcFl9XWR98O62CiS+btJ9fV3JlwiXsKMLJvjpuhkZWPd2nF41FVuOplErf3sKNEmPlbxeqmI2PW2yYHRf1vEQWjyKMF6f1rMDZWXq6KhOwb2zhpeZd+WgyDu3rRbVoCImJvpsmm08bJwc=
+	t=1757807856; cv=none; b=AmZTJRAO/bnNcoXDgZ+2lgsI/YKCTKh3eiTXG0zX6pXNBogj95+rCjC4wQCP3oRtbBAY+jMfQZcjGC+Pt2klt7vew8mq2KSQ3bWLbeeJds6+HScrVTrDywvnTIG3MhwblQ5AeEJ7UldBSGKDBC2YpFT02/V5IXCT4GY79xHgd20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757799068; c=relaxed/simple;
-	bh=C8WWgCrN+wbiLl32X59QvMva79V13DrPaEv4X3Biqs0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VskrdARW5rHi+4m80g2J3sz4A/CNg9Y6PUWi2JCseW6bwebibCp0kK7lD+AVrWLAHKuO7rxebu0rSE6pph/Z0xlVDl9fI35pERMt8k1NIePWTkHRGH1uygvkfyKEIPmqkU/jwAes1ex8O5jfpCvZLlghxTZ+hSHe+oUs/iF7lGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zwei8rxL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51889C4CEEB;
-	Sat, 13 Sep 2025 21:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757799067;
-	bh=C8WWgCrN+wbiLl32X59QvMva79V13DrPaEv4X3Biqs0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Zwei8rxL/qA5np37Xrd9v/dFZLa5DZRG/NaH3fYR6FxvgcQRWku2IjSK4v4aj9All
-	 x1xwtcI0egOfPvHbLrDD/TLnEmYkaEHibp4mKoXQgIMe2/+Cf9/RalVylukELm0R8+
-	 fBJ5C/b1fagOUtdHUpluZ/T+Uh+sNonpxDtu0ELhjaPaVnZ0GwsGU6Y1a+b374YCYT
-	 U0rmxe58yO/NO3qeod7oYSj9NEl7Nner2SBL8Xoe54xDL3H4IAvlGXqn3U29iPkcY+
-	 M2owLIuVadvDQgQJyIzxbn/v54sZdWxgJ6tczuokvt/3xk7SZIvHAAOslRzCefOGxE
-	 oj7W2LRt+pIoA==
-From: Drew Fustini <fustini@kernel.org>
-Date: Sat, 13 Sep 2025 14:31:06 -0700
-Subject: [PATCH 7/7] riscv: Kconfig.socs: Add ARCH_TENSTORRENT for
- Tenstorrent SoCs
+	s=arc-20240116; t=1757807856; c=relaxed/simple;
+	bh=U9L7Av1dGipaVCMuUJ1WoAF4Zwc+C5x5D0BSxA1MpYM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=X/6jvRoaURy/l5wR3aGwb6Anu0THuoHGHaoVo/Dazw3wZJwVf1wIoKsUt/PtLo+4N7MbPwYYGKn7dk6krpuKjUgs0Sn3UXG/eVgBngo9wDbvOT7aoDI4M1+r/J/t0alo3aafu1d+JVuNzjI+Gblm1vKEUvFtN5tbLM8tHEWW9tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=F1ZWOoN7; arc=none smtp.client-ip=95.215.58.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1757807842;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=IMss5r+w/R/pRKm1q2pYvSfr5zbK/SNjjO1apqATu/M=;
+	b=F1ZWOoN7PtnQH+7UnHB97+XMgBv/AMZn05aypOMEahLqXMhcOqT8MwTjfUvVYKMDcpbc+0
+	3ayO5FT4kkyb5PaLz9QQg0Xa76x+7RW/XMwusRJz8jn3gV+9fv877YncsLIpJbufJRJTVX
+	faVSuOVnKK0nNSZBzRUnOgzfT2j1/CzMg0TB3niqYtL60Hw7gA6X+2X5tjU8tfuiaOobBI
+	v1TF/fg+VsQFou5tqPmOqWpleMrm3RrFoBWxDYL+8cSs/QUL4Gea4bF5Icn4P+c7VDCdbp
+	2tgHXSk4XLJcDCTdyNbQhHj19u6oKczlwm4GNT/UmOXvPsu44X//HuQzo7TqIw==
+From: Paul Sajna <sajattack@postmarketos.org>
+Subject: [PATCH 00/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Improve HW support in dts
+Date: Sat, 13 Sep 2025 16:56:33 -0700
+Message-Id: <20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,56 +55,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250913-tt-bh-dts-v1-7-ddb0d6860fe5@tenstorrent.com>
-References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
-In-Reply-To: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
-To: Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>, 
- Arnd Bergmann <arnd@arndb.de>, Joel Stanley <jms@tenstorrent.com>, 
- Joel Stanley <joel@jms.id.au>, Michael Neuling <mikey@neuling.org>, 
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@kernel.org>, 
- Andy Gross <agross@kernel.org>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Conor Dooley <conor@kernel.org>, 
- Drew Fustini <dfustini@tenstorrent.com>
-X-Mailer: b4 0.14.2
+X-B4-Tracking: v=1; b=H4sIALEExmgC/zXMQQ6CMBCF4auQWVvTIgQxxngPw6K0A1ahxU4hG
+ sLdbUCX/0veNwOhN0hwSmbwOBkyzsYQuwTUXdoWmdGxIeVpzksh2GPUn84yHYiJQmUC81Ir3kA
+ 8DB4b816xW7W1x9cYzbCN0CORXM1Tcv6R/E8O0mLHJsEEO6a5KrKMH+q6vg6OQi/9E4OjvfPtB
+ apl+QKSbrYAuQAAAA==
+X-Change-ID: 20250911-judyln-dts-17c41e59dc0f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Amir Dahan <system64fumo@protonmail.com>, 
+ Christopher Brown <crispybrown@gmail.com>, 
+ Paul Sajna <sajattack@postmarketos.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757807839; l=2159;
+ i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
+ bh=U9L7Av1dGipaVCMuUJ1WoAF4Zwc+C5x5D0BSxA1MpYM=;
+ b=f3ltBSJCuc/JcucUM6NJApPNipOb8NWLsJ8xH65H/8hs0Vn/Re3PIyL7L0EdewouxQ2XnMADk
+ cUbhjfxgEpGBY2dYNS+Ps+oUeFt+7kDAWzoIkW6DLlZAOMPrJGVwXfa
+X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
+ pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
+X-Migadu-Flow: FLOW_OUT
 
-From: Drew Fustini <dfustini@tenstorrent.com>
+Rollup of improved hardware support via devicetree for LG G7 ThinQ 
+(judyln) from sdm845-mainline kernel fork
 
-Add Kconfig option ARCH_TENSTORRENT to enable support for SoCs like the
-Blackhole A0.
+Notably, this patch-series enables full DRM acceleration and wifi,
+among other small improvements in individual commits
 
-Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+after this patch-series the main things that remain to be worked
+on include touchscreen, audio, and modem.
+
+Depends upon panel driver patch-series https://lore.kernel.org/all/20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org/T/#r9a976ca01e309b6c03100e984a26a0ffc2fe2002
+
+Co-authored-by: Amir Dahan <system64fumo@protonmail.com>
+Co-authored-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/riscv/Kconfig.socs | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Paul Sajna (11):
+      arm64: dts: qcom: sdm845-lg-common: Add uarts and Bluetooth
+      arm64: dts: qcom sdm845-lg-judyln: Add battery and charger
+      arm64: dts: qcom: sdm845-lg-common: Add leds
+      arm64: dts: qcom: sdm845-lg-common: Add camera flash
+      arm64: dts: qcom: sdm845-lg-judyln: Add display panel
+      arm64: dts: qcom: sdm845-lg-common: Add wifi node
+      arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes
+      arm64: dts: qcom: sdm845-lg-common: Add qcom id
+      arm64: dts: qcom: sdm845-lg-common: Add chassis-type
+      arm64: dts: qcom: sdm845-lg-judyln: Sort and cleanup nodes
+      arm64: dts: qcom: sdm845-lg-common: Sort and cleanup nodes
 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index 61ceae0aa27a6fa3a91da6a46becfd96da99fd09..ff733a998612d429e7b1e00276eb86290d8331a3 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -57,6 +57,14 @@ config ARCH_SUNXI
- 	  This enables support for Allwinner sun20i platform hardware,
- 	  including boards based on the D1 and D1s SoCs.
- 
-+config ARCH_TENSTORRENT
-+	bool "Tenstorrent SoCs"
-+	help
-+	  This enables support for Tenstorrent SoC platforms.
-+	  Current support is for Blackhole P100 and P150 PCIe cards.
-+	  The Blackhole A0 SoC contains four RISC-V CPU tiles each
-+	  consisting of 4x SiFive X280 cores.
-+
- config ARCH_THEAD
- 	bool "T-HEAD RISC-V SoCs"
- 	depends on MMU && !XIP_KERNEL
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 238 ++++++++++++++++++-------
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 134 ++++++++++++++
+ 2 files changed, 310 insertions(+), 62 deletions(-)
+---
+base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
+change-id: 20250911-judyln-dts-17c41e59dc0f
+prerequisite-message-id: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
+prerequisite-patch-id: e51151ea7f8fdad6ad7d90713febc5c6b6fc4f9c
+prerequisite-patch-id: b3dd44250da9cd12bc5b2d0d7e865dbe19ceed92
+prerequisite-patch-id: fd6c8077806cb03fcf37d0e0d730314c2760e334
 
+Best regards,
 -- 
-2.34.1
+Paul Sajna <sajattack@postmarketos.org>
 
 
