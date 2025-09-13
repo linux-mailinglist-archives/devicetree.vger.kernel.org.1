@@ -1,96 +1,74 @@
-Return-Path: <devicetree+bounces-216736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95EA2B55EF9
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 08:41:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E31B55EFF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 08:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59CBDAC73B6
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 06:41:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E2FB1C88303
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 06:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1272E7BD5;
-	Sat, 13 Sep 2025 06:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F892E7BD5;
+	Sat, 13 Sep 2025 06:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YJQZunZz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lTVQc5XA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42952E7BA8
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 06:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82ED2E7BA0;
+	Sat, 13 Sep 2025 06:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757745695; cv=none; b=fxiwUIHrTg1dAnqHmg3A/GoWX2zdOKztzGv75HRxDlYB7OJHp+thc1ysoBuaMHwqkMTHufhyTjKBqrZZ7flJ9C4BvxcfWKJNHzfrT8eHUGOdNWlb7TzbarKO12tEI6al28Bu5Lgrm0zOlp4CnAMU68JipPJMOjrMFudAslU896Q=
+	t=1757745773; cv=none; b=pc3oi7z31WXzZdN2KiWkut0J1x1rnT3GGQFWbR/i6BrKKSMwnmkPhWaMCs7VuRcJO2gfwDdZXPksba5mzCrsq+XWm73vvC1iiwvM38UlslZzCwW85ssGDiqiB76jhU1DwJXCJs1XDTY2hWvke4aRfY0WbjvHZMTdH1SEnhv6rJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757745695; c=relaxed/simple;
-	bh=b4u/3r8EbbEWIWFxBt9+YcYVVzC+/qin113CQAU/g5A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Xgb5uMUlm+VprgCX4s+sYkJhaf4Gz7x6PkyiTegrgEbb792FOi0fnWMugyfLzWH/LuZ7hbCyVCS6AkXEHF1m+eLcaOk15mCb/0HEvyCXdU5nkJrVWQJ2F6Ax1QsAolL47Jl974sOigg0Dc+d5CLK7/r6NYYbgz0bxNQ+4WZjCfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YJQZunZz; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-244580523a0so26730745ad.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 23:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757745693; x=1758350493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I+9gSbQhTkyUKu4oc46FN0yP83tgnQ9EveENpBOiA0w=;
-        b=YJQZunZz+Z3KjLKM913jEadZLnOuK6XkCvNGtjDKJYuQvXCeWyAKlRceC/SYVcLBTC
-         ha4La7ce1PBvnhIYrt0puzT97DoAIE0VSdpsiXCH9swN+4qjCAseUl0boKlUPfZakSvT
-         6eD+cVH5PJQANKcq/55jWe4zGvhC5RwAisRKw/CcGt6YHkLmyFcrT03JGiPEsonvSS00
-         IqH7RnBkeua2QRM9ZElQ99/o6BOEj8joeMqL1zzeuCWY/qw5vQ1nTLVPnGPFqO6Dx8vX
-         7b1NQmlrqXQwDvNIa+3E8Gsyf/mC7jGn7FSdCipkLjyzJJJtxiRR16UIpANndrLHJBhC
-         vQGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757745693; x=1758350493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I+9gSbQhTkyUKu4oc46FN0yP83tgnQ9EveENpBOiA0w=;
-        b=Dur9YfMDRMKcdE7ZQn2YLIsSoeY0tcvXmHtfbUBE8RnarPbT/P6tCvmCDOpitpI9IP
-         AtRW1mm6ZnKs0RtJonbRu5Lk9B6sEcuQ94HvqZ/g3v872zCzabyU6fTYMIZeuq1X8Z2C
-         wY+e5iqKW4fR5f1ZXj9In47ESK/9n34zX1poxQjDFUo2c8p4vdSRuRHgFpfdzIZhJ6EY
-         fb1h1sAy6s1BdVC+SWx4eqqrG+902Gph3Ast5HCDssfu3fNIhUdhRkg1xXrIymvJxkG1
-         ZTHhBSQy/VEnp31ObpITNuQ1aibq7QdkCgfOfbv/WIEDQtXyEa2pKzgWk1dbinE1Nqg9
-         lZiw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ3ka9swlhh2+PLQvOODzTn45Y09DmvEk1A/6OzvWJ63TNEBwB8Jde/2+Ks4fahgYHtv2Uf78Tdttp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYHRrMUTV6OoasAsOkOeLk4USM5rjikmSamOnOOXkB61vXEJIk
-	g8sUQPdC3WOLbtl36OTKuK6HrlqBipYZZo6KhNy4Rpdc/b+xiYJLh2ae
-X-Gm-Gg: ASbGncuv64TqwDvWANenr/Q9jz/GiLepDVd9HTCgqBUAdawIa/a0HX0RA2YCKPMYYM5
-	uInU9yIFLNoZjuw8auQscF9VBGm/pIuJW1+vpObbDAfD5XPzBSBgbbdb2ABx6teT4hBizonu9u5
-	u/aGjRgKy+ZAahMsL6f3jz6gS3gLdr/TWEWjvbBWDUBhfDuBQl4epMu1Jt7q7UO0omDc0z8I4nP
-	M+k1Kni53rKkYB+TpwA+mLtLbrzlTDFJDHsc63V8dJcSJ2RtBU8/QXqg+Yb6ylOmuGefnvygwBQ
-	muBp8vxs216JrZ6xh8NNk79Mvhv1kHuCF+ta5uNRf1sI/tUbjD00AbIrm4SN7dQICfwOpHuhdqH
-	NIvSCSMv7Nv2BIAWm2rODeTQvugbyUU/+Zl1IJP9J8EyQTercPEN5v70l57qh72/0DQ==
-X-Google-Smtp-Source: AGHT+IEPMOXqhtSRG3ommkdDyK73YAd9aNroh5EmvYiCkuWeEel+Gu02hYUJwz3pnEOvbev7iIXNag==
-X-Received: by 2002:a17:903:1666:b0:261:cb35:5a0e with SMTP id d9443c01a7336-261cb355f8dmr13755645ad.57.1757745692902;
-        Fri, 12 Sep 2025 23:41:32 -0700 (PDT)
-Received: from fb990434ae75 (ai200241.d.west.v6connect.net. [138.64.200.241])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c341aabafsm69525245ad.0.2025.09.12.23.41.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 23:41:32 -0700 (PDT)
-From: Tamura Dai <kirinode0@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tamura Dai <kirinode0@gmail.com>,
-	stable@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] arm64: dts: qcom: sdm845-shift-axolotl: Fix typo of compatible
-Date: Sat, 13 Sep 2025 06:39:59 +0000
-Message-Id: <20250913063958.149-1-kirinode0@gmail.com>
+	s=arc-20240116; t=1757745773; c=relaxed/simple;
+	bh=99vNy5PDPTWA4oW6Oa12RA2++f17bRBwUE5j36/8OSY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c9SBRp/79OjvGB9CwbuO8xyGT9K6iNdpjmfDdEGzY3loqO2b3mSLG5QXKdlOpGSTZcTt/uvL0NS6Hl4J2xBc26fJFQ7dwFaRafyouoCgmSqeG3z5Ns0hbncmogdIyx4OHk6k4ILqRPcXDyyEmau9s1qy6933p7EEGVV2AuBsNrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lTVQc5XA; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58D6gDnc664120;
+	Sat, 13 Sep 2025 01:42:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757745733;
+	bh=3OZQiGNMXfE/ACLETEfEQUWdCU873vCZ6upELcnL4J0=;
+	h=From:To:CC:Subject:Date;
+	b=lTVQc5XAWzgdG3o6NtWPFM1v9sK6VgozTzX2U2qLMgwJYTqtswUw39nO0TGKrXsPd
+	 VzN8/4V5TQSZC/IQ50D6vRtggPX2CRbR4KXWS5z5J4yFdIAb+Ncjw/tazdsrlBj3EL
+	 BHPXlLTyEpRJBSguH8Kz+eY//H8QwMB7wkAQh1uQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58D6gDXY1841141
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Sat, 13 Sep 2025 01:42:13 -0500
+Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Sat, 13
+ Sep 2025 01:42:12 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sat, 13 Sep 2025 01:42:12 -0500
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58D6g5uw543875;
+	Sat, 13 Sep 2025 01:42:06 -0500
+From: Swamil Jain <s-jain1@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jyri.sarha@iki.fi>,
+        <tomi.valkeinen@ideasonboard.com>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+        <simona@ffwll.ch>, <aradhya.bhatia@linux.dev>
+CC: <h-shenoy@ti.com>, <devarsht@ti.com>, <praneeth@ti.com>, <u-kumar1@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <s-jain1@ti.com>
+Subject: [PATCH 0/2] Enable OLDI support on AM62X
+Date: Sat, 13 Sep 2025 12:12:03 +0530
+Message-ID: <20250913064205.4152249-1-s-jain1@ti.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <Message-ID: <2d41c617-b7c7-43ae-aa90-7368e960e8a5@kernel.org>
-References: <Message-ID: <2d41c617-b7c7-43ae-aa90-7368e960e8a5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,34 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Fix typo in the compatible string for the touchscreen node. According to
-Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml,
-the correct compatible is "focaltech,ft8719", but the device tree used
-"focaltech,fts8719".
+The AM62x SoC features 2 OLDI TXes each, which makes it possible to
+connect them in dual-link or cloned single-link OLDI display modes. This
+series enables OLDI support on AM62X[1].
 
-Fixes: 45882459159d ("arm64: dts: qcom: sdm845: add device tree for SHIFT6mq")
-Cc: stable@vger.kernel.org
-Signed-off-by: Tamura Dai <kirinode0@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1]: https://www.ti.com/product/AM625
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-index 2cf7b5e1243c..a0b288d6162f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-@@ -432,7 +432,7 @@ &i2c5 {
- 	status = "okay";
- 
- 	touchscreen@38 {
--		compatible = "focaltech,fts8719";
-+		compatible = "focaltech,ft8719";
- 		reg = <0x38>;
- 		wakeup-source;
- 		interrupt-parent = <&tlmm>;
--- 
-2.34.1
+Aradhya Bhatia (2):
+  arm64: dts: ti: k3-am62: Add support for AM625 OLDI IO Control
+  arm64: dts: ti: k3-am625: Add OLDI support
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 52 ++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
 
