@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-216843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E96BB563C6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 01:57:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE03B563CA
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 01:57:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F20BF7AEA69
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:56:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4452617BEC0
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4F52C11D5;
-	Sat, 13 Sep 2025 23:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643B92C15BA;
+	Sat, 13 Sep 2025 23:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="iRw3nseq"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="qvqTBgBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F193E2C028C
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 23:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806642C11C4
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 23:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757807851; cv=none; b=ZSMpt9KoySDQzC7zGx/3ZEWaFn+95ELodbzIbTV+cG5clE1XRi6XvK7of2x5Djcqg/VDEkMAgMAbX+XtTdkBsDi31JhJQQ9tthiaIT4dgwXEjHpv4mQdN7/QTvXQo0GfFu20UqPLYclBiDgdpVRbSasoIU+2E0KV+TjolQ1q/Lk=
+	t=1757807854; cv=none; b=u5vKc9Hpswq/GYpyBLDf3YuLw+ym+k27tTLbYHyc7YfIu8w67s7cs0r8ib5n7nDuLA1Mma5z9q/33rLBzjC/uRpvSsPgjbBJ1Vd2gTllsBWqQs3GmX2cIBHgErV3O3wb6pnioLuT2o0brCdgb3LpGKpqZykRCmxhJiGiPwRvQGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757807851; c=relaxed/simple;
-	bh=6bLD46X8x3E4I079hgaoowVPtod3Ucq7fkS0dDlZ5ew=;
+	s=arc-20240116; t=1757807854; c=relaxed/simple;
+	bh=YWNQKW2mY/mX40rk96UP4xcATRuNm/HModDfkRFKZnU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=icBfC3mKgRtXt2sigwXxQsKmHqEmBiExMjb2Mcvq/bGmTlxEaZx0n0xW0GCX+9neeZMOYinghOaiZYjQsu/uhIY6Q97EH4gcq0sMZ6pdofBPj8ZICXqTDm/q/aO5Zl1EE9D/RAQ/INq4EuRsy4IvCcLArW4cejxesR/FJcDgUGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=iRw3nseq; arc=none smtp.client-ip=95.215.58.181
+	 In-Reply-To:To:Cc; b=ppPgWvOkXQ1QrGTBFws+Lf2idElSpMlxjWrvVA1wlCEZDKf5XrpT0uG2ozg5yjOPHPfo7P3MHCmpG9pEbmE2W5910uWXmdq46wL6GhD1rwRodpafTIv+5pDq6I0BnipMYMD7itdYVxwmpsBAafIi52J07elSut14tBBLzeZGwrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=qvqTBgBE; arc=none smtp.client-ip=95.215.58.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1757807848;
+	s=key1; t=1757807850;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=IjNANYA80cq3QQ6vvc6d6KFOYvlKwEVwLjYWlqlgLfQ=;
-	b=iRw3nseqtQ+0QHHRnWZQ0usiZeMaSRgB0ewacqq2jsNsRZJ75QUqCpyloHdjo6zdXn6IGn
-	dZneJjt+svsz3McO4pwH2h5wsXx6gz/tu6yA3YHiEWwOsHS/5s+Zk2jeGxeoJNAyaSAu3j
-	0M9xeLrSDhDnG2ImIiOajxthdj/d1WEXXRWMqnarxoDC6WOfD+adx7wbW/SD0g3G31iNan
-	v+TnlwLhxAeQIjlkZkV1ZEtnrHjO31VfZgpw6dNSPCo731VsEMgxqrWvr9om+VVqH4aAdH
-	97evpgTY7lgbn1jIv9qtpNcWo0cCru/7lhyTV2ClMeIJVwV5NhYrL9lFjSOPbA==
+	bh=G/pfxdAxGC8INtUKmqJWgCIiLBL8/PfLqbkGQkptiog=;
+	b=qvqTBgBEBqNXlE5zjREFpUaMuSrfANPZ3sZQEb81G3mVSjTSiBIlcqhpfw19RL+D8gI2Id
+	/zpcIUYKyK33m6STdiYCn6kro8IIzFEwbLjzPGSKo0dlGwlpwPeMQLKFtqcxM2FMySbMil
+	6L7BHSEcsUEn+ykRFdXXnpRUkCgJyggkGLLBYY//XSVUuw3SK5eM7KketRuhZeY56oujBn
+	cn6z3LWncU+UrEQYDr9XWNjC8uVKz7pu28VtG237vkpnkDYuC++9V14xnoSVT5ItjFpHuG
+	60lnb/6wYA9PeDcLUfujfqwGk2LHX/QKnXCdZRlCtGqVxsT4aPtUKxiiQ/Ry0g==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Sat, 13 Sep 2025 16:56:35 -0700
-Subject: [PATCH 02/11] arm64: dts: qcom sdm845-lg-judyln: Add battery and
- charger
+Date: Sat, 13 Sep 2025 16:56:36 -0700
+Subject: [PATCH 03/11] arm64: dts: qcom: sdm845-lg-common: Add leds
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250913-judyln-dts-v1-2-23b4b7790dce@postmarketos.org>
+Message-Id: <20250913-judyln-dts-v1-3-23b4b7790dce@postmarketos.org>
 References: <20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org>
 In-Reply-To: <20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -67,57 +66,68 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Amir Dahan <system64fumo@protonmail.com>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757807839; l=1275;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757807839; l=1393;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=6bLD46X8x3E4I079hgaoowVPtod3Ucq7fkS0dDlZ5ew=;
- b=7kkgyBz8AvdzvqULgwqsUYveQdsEUOi9t/otwbzIO0ZJvUbb8EfPvyIw+5F9L84y7FoIETjnL
- puWUFnYwDFWCieKIvRR4EFpySvU5AJCfSiOIGokDpkXExG1TBb42sng
+ bh=YWNQKW2mY/mX40rk96UP4xcATRuNm/HModDfkRFKZnU=;
+ b=3jze1obXBG/8AFnh6OZXb/TaZTbxsmYBzPf1Uxb9/aPb4f0PtXWMPfPjRw3oDk9PddScchJ2D
+ 5sVrJvOPU6GCv+Keh5wqlogEll0t41+xsuJuMyEREzcp5J89tRR6TPh
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
 
-Values based on lineageos kernel
+Add the multicolor status led in the phone's notch
 
-Co-authored-by: Christopher Brown <crispybrown@gmail.com>
-Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Co-authored-by: Amir Dahan <system64fumo@protonmail.com>
+Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-index 49225e4fa80e5f45a36964d5d733dc238e4413f8..da093b581c857c5acc9f0e72c9d3519977e13eab 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-@@ -37,6 +37,16 @@ key-thinq {
- 			interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+index 1acc418b943443f3ba4f8a8a1cfe2c575da11876..d6129ce03f537f0c8c78c2ae5f39be6146cab7dc 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+@@ -6,6 +6,7 @@
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+@@ -603,6 +604,31 @@ vol_up_pin_a: vol-up-active-state {
  	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		status = "okay";
-+
-+		charge-full-design-microamp-hours = <3000000>;
-+		voltage-min-design-microvolt = <3200000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
  };
  
- &adsp_pas {
-@@ -57,6 +67,11 @@ &mss_pil {
- 	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
- };
- 
-+&pmi8998_charger {
++&pmi8998_lpg {
 +	status = "okay";
-+	monitored-battery = <&battery>;
++
++	led@0 {
++		label = "blue";
++		reg = <3>;
++		color = <LED_COLOR_ID_BLUE>;
++		default-state = "off";
++	};
++
++	led@1 {
++		label = "green";
++		reg = <4>;
++		color = <LED_COLOR_ID_GREEN>;
++		default-state = "off";
++	};
++
++	led@2 {
++		label = "red";
++		reg = <5>;
++		color = <LED_COLOR_ID_RED>;
++		default-state = "off";
++	};
 +};
 +
- &tlmm {
- 	thinq_key_default: thinq-key-default-state {
- 		pins = "gpio89";
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
 
 -- 
 2.51.0
