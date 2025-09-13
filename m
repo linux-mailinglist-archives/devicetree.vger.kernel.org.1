@@ -1,105 +1,88 @@
-Return-Path: <devicetree+bounces-216732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234E7B55EB5
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 07:56:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57B2B55EBB
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 07:58:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E50E1C870DB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 05:56:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A41E564317
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 05:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813842E2EF5;
-	Sat, 13 Sep 2025 05:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E2B2E2F1F;
+	Sat, 13 Sep 2025 05:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="XqK1+UPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD092E2DEF;
-	Sat, 13 Sep 2025 05:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8DE2E2DD8;
+	Sat, 13 Sep 2025 05:58:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757742958; cv=none; b=PafsX5efSyNPmN3RIwjx4iNcNcVqvAznb9UXg5uGd4Pchvl8zq/R5YEyulHjPjOPFV8spfMeRXpiktrAkTHfNlKlQVjQ/Sk9ZFKJmC7FNQBf00/czG6pQLFzWfwoV70mkF+X+BCyMlgct0Rk8IB2FfJRoPIj7DfCYFkh5p3ZnF4=
+	t=1757743094; cv=none; b=WbJyoul8CydymhHHowqIz3sqC1NhUzaMU0+c2V59TohJvHc6/e77gtEHkLj1bkmhNomO7A6iQAHcqZwgLySzKdhGdPTB0brKgSl/6XvuI6a+zsnLIhlMO6WqFdOhgpRb2HU8u6YREqV/KeAwyydLZPntjbQD1rXpejOAjYGQdf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757742958; c=relaxed/simple;
-	bh=JWb8Zyg/NhVu758uzLscAQXH0MAEqOEfj0DXL1VqHak=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NECIgE/jZjXnVpwCrfMzBr747BZ22BJSpc0elPgw6WH6WLjxTd7UpcXJXJV5mWUkVqYqF/VfAS2yxOMTdLOBVQdv7eRD9JEqD+Ts7aQg9ASXCjrOvCAMnbtzBhougdksvlYWZmn8ES/coXep5rk+ld14xlBcxOsjD5uLpBNzYqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6CA9C4CEEB;
-	Sat, 13 Sep 2025 05:55:57 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id 830EC5FBEB;
-	Sat, 13 Sep 2025 13:55:55 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Stephen Boyd <sboyd@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, linux-sunxi@lists.linux.dev, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250911174710.3149589-1-wens@kernel.org>
-References: <20250911174710.3149589-1-wens@kernel.org>
-Subject: Re: [PATCH v2 0/7] arm64: allwinner: a523: Enable MCU PRCM and NPU
-Message-Id: <175774295553.3795925.6792417362455816621.b4-ty@csie.org>
-Date: Sat, 13 Sep 2025 13:55:55 +0800
+	s=arc-20240116; t=1757743094; c=relaxed/simple;
+	bh=TdTQRlOgkFFp121tWctGOE7zJMN8424tRrjVZduIikg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bjZx5IacdQeWA4N8YYg743B/n/yiOFhb7R5IVQ2SI4ANhvh+D/NIR3wiJQIhFT1UraFg8IpYpYj5YEfsOoehg0jmI2L82oj53vgI+XbDfvBdjHTGmIsEyts4ud0PE2+3mii2fqtQCxexVwzvUpu98uuNoEl+3PrXAXeBnBRxJ5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=XqK1+UPu; arc=none smtp.client-ip=85.214.250.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
+Received: from 8bytes.org (p54921b16.dip0.t-ipconnect.de [84.146.27.22])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 20DBB4FD40;
+	Sat, 13 Sep 2025 07:58:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1757743086;
+	bh=TdTQRlOgkFFp121tWctGOE7zJMN8424tRrjVZduIikg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XqK1+UPuImxMQZCxA6SMPJbtwsVcWCAEAh20urbbjeTj7wMT+Sv/Pfi6Luy1xLiJB
+	 K4wYK1jOR9pgBY4L/Z+Hifkxw4YopSYDUrHwlrgPTBeytduGK1/BEJG1rVUjO46x/m
+	 It4hn6eb/zBK1bX/ddQEjFCD0xWQqbohk+ZnuCQgdtSsZyaEGznKDVbS2Nv3uVqLls
+	 6T3cqm32KoGrl6CT1weUyJ2Gl1KkhRgNGuJd0gERBjHseLnsxapr/baWqBostSLSxR
+	 G45QWT5TqIuGRW/J7eTwrH0PUeDSj+ENwVNo36DdZK7uHzSx4Xrkh1XJdLQwC5xlqD
+	 T0WyvAhR7p0WQ==
+Date: Sat, 13 Sep 2025 07:58:04 +0200
+From: =?utf-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	heiko@sntech.de, jgg@ziepe.ca, p.zabel@pengutronix.de, mchehab@kernel.org, 
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, kernel@collabora.com, 
+	linux-media@vger.kernel.org, Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
+References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
+ <20250911155720.180465-4-benjamin.gaignard@collabora.com>
+ <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
+ <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
 
-On Fri, 12 Sep 2025 01:47:03 +0800, Chen-Yu Tsai wrote:
-> This is v2 of my A523 MCU PRCM and NPU support series.
-> 
-> Changes since v1:
-> - Dropped dual divider clock rate read-back fix that is already merged
-> - DT binding
->   - Moved "r-ahb" clock to the end of the list and added "r-apb0" clock
-> - Add NPU clk
->   - Move .num to after list of clks
-> - MCU CCU clk driver
->   - Added comment for "fixed" dividers in audio PLL clock
->   - Corrected variable names for audio PLL divider clocks
->   - Added comment for the reversed order of some of the DSP clock's
->     parents when compared to the manual
->   - Added comments for clocks and resets only found in the BSP driver
->   - Corrected register offset for i2s3-asrc and bus-mcu-pwm0 clocks
->   - Made "r-ahb" and new "r-apb0" external bus clocks the parents of the
->     bus gate clocks, with comments if guessed which one applies
->   - Moved .num_clks to after the list of clocks, making it obvious that
->     the value needs to be added if more clocks are added to the list
-> - MCU CCU DT node
->   - Enlarged MCU PRCM register range to 0x200
->   - Moved "r-ahb" clock to the end of the list and added "r-apb0" clock
-> - Link to v1
->   https://lore.kernel.org/all/20250830170901.1996227-1-wens@kernel.org/
-> 
-> [...]
+[Adding Will back to Cc]
 
-Applied to sunxi/clk-for-6.18 in local tree, thanks!
+On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
+> To me this rejection isn't about Benjamin's driver, all iommu seems to look
+> alike, so anyone else that would have sent new driver would have face the same
+> issue.
 
-[1/7] dt-bindings: clock: sun55i-a523-ccu: Add missing NPU module clock
-      commit: e9671ddd82eee96146a7359431a4e1f04ac2b076
-[2/7] dt-bindings: clock: sun55i-a523-ccu: Add A523 MCU CCU clock controller
-      commit: 0f610e650d4e979490ccfa4c22ca29ca547f41e7
-[3/7] clk: sunxi-ng: sun55i-a523-ccu: Add missing NPU module clock
-      commit: 828dea389683d8e1df687fbd4521d391df369437
-[4/7] clk: sunxi-ng: div: support power-of-two dividers
-      commit: 44293edd013e5ed48060e6a8848c215fd3bf8ce3
-[5/7] clk: sunxi-ng: add support for the A523/T527 MCU CCU
-      commit: 598e4b6713b54267acc257b3c66a269079ee4d8f
-[6/7] arm64: dts: allwinner: a523: Add MCU PRCM CCU node
-      (no commit info)
-[7/7] arm64: dts: allwinner: a523: Add NPU device node
-      (no commit info)
+This is about ignoring comments from one of the IOMMU maintainers. I am not
+going to merge a driver with open comments/objections[1] from Will (and a few
+others), so resolve this with him and get his Ack.
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
 
+	Joerg
+
+[1] https://lore.kernel.org/all/aMAno-DkDJumcAtj@willie-the-truck/
 
