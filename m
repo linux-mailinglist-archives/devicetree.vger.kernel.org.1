@@ -1,126 +1,127 @@
-Return-Path: <devicetree+bounces-216812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C76B5628D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 20:30:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F37CB56298
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 20:49:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E74564DBB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 18:30:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 683361B27D6D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 18:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7180C81ACA;
-	Sat, 13 Sep 2025 18:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB6D22DFA7;
+	Sat, 13 Sep 2025 18:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="YDu11OzL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bLn3vU3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1D5347DD;
-	Sat, 13 Sep 2025 18:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D018F125A9
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 18:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757788228; cv=none; b=AzQqrro8jwQ8YFMDyO9ukXLOsZwLvwAsP3mKFAsYxYHETbNE+nNj6gMiHMV+AzVm5MnxZBqk0qIvIOYb6TeV9tMunOFbeqVNEF94ZADvNgN+JpE8I02HEz/4huWb71zaY9ksi1AAhK2GlEalGckr1d2DijGwsi1QQywZqLjSFNo=
+	t=1757789364; cv=none; b=bo0ckl+Jo6aZujGintF7Qokrmr1F1IsZmh5sW+3TSwQ0pHAD4PT3Ucu9Chmrqk0/l5cpdPbP0tfatCYaGTQIoEnIcWAD1VeLGlGT0KRz/mD9f7g2bboEKY6wJNd1YV6YyXNThObqRLHD9yd1zNNTvl982/wKt60OG+rAeVA3hq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757788228; c=relaxed/simple;
-	bh=wuvzFCkqli/0xf0TVmA/w1KTuF9CpGNz+KMcjEPOXnw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Hk/u+n1/SxK9QVEtKIDeeYprC49gn0A6QPavqTUEZxbVmr+r4I4WPLGOBVngu2b4CPlUJS8JiPzjAaSok5CaoM9O7eCl9Ccf8M2X2p+VKEZqMNJPf6R5XgWJM9g+XPMXB4ka4zv+M5sBd2x0qHpTn1WgTK9o6n+gDjsXnBErx+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=YDu11OzL; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58DHC3BM015943;
-	Sat, 13 Sep 2025 18:30:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=corp-2025-04-25; bh=LKTzAdk2Stdh7zQ6jdVXsotbXpiw0
-	+yczyvNwKCQj6Y=; b=YDu11OzLi8tPRZyl0XxtKsdYpeMNl8DPOq8M+58ZGri4f
-	YGGc1oAFENakITtdB6RvayeuVkm+a0NFENrLVor3GYrsg9D32Ihywk4JSXLMYlt5
-	R8fQSdHK/qx+9zPgKLD1A0XuqRbI4qcEqaXSxxA7wBllIinS0+pF6o0umCoe+Bq5
-	+dU3BQcTgU/GY8aIE8AQ7Jo1Xu/jmP6uQZiA/YcTAgdOmNFZd+p6mKAYWi7s5x9g
-	5i2tCekZz0FgDY0zS0CSu1BiOnQJOlm4QfZCxVrguC/6L4eWyQesK4ivSRg6GlMm
-	79RaYryWovNOt2cdZJYj3GoVfzaGAIaHpkchLs48Q==
-Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 494y1fgfgm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 13 Sep 2025 18:30:22 +0000 (GMT)
-Received: from pps.filterd (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 58DDEZSh019162;
-	Sat, 13 Sep 2025 18:30:21 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 494y29x687-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 13 Sep 2025 18:30:21 +0000
-Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 58DIULld012055;
-	Sat, 13 Sep 2025 18:30:21 GMT
-Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com [10.129.136.47])
-	by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 494y29x67y-1;
-	Sat, 13 Sep 2025 18:30:21 +0000
-From: Alok Tiwari <alok.a.tiwari@oracle.com>
-To: konrad.dybcio@oss.qualcomm.com, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: alok.a.tiwari@oracle.com, linux-arm-msm@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8150: Fix frame@17c27000 unit address
-Date: Sat, 13 Sep 2025 11:30:11 -0700
-Message-ID: <20250913183018.4017208-1-alok.a.tiwari@oracle.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1757789364; c=relaxed/simple;
+	bh=If4Dx8GnGsI9EAn+Csky6KF5QogT6E3JWcOUF8Exyug=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T9nAsHFe3xR5gBNQnstQMrlNIBy6oxAj9QeqepnJ8+HUz5HhFSoPGPxBiqkZ2Ck8XqpH1c9gOazySV20XPhT+7s2c9j/l3s/Yr3ggrQ0qQU0t5NpHCn+mPUqMuVesnWmhzUw3ZNd3IUisKioGtv20v5/DvRPx+jA4o/xxKeAuHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bLn3vU3e; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7726c7ff7e5so2561577b3a.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 11:49:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757789362; x=1758394162; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rF3GBCGcRqV69CZBLaKsXGjUvkwSYhGDg0qUaj1ycYE=;
+        b=bLn3vU3e8T50AEZHqvp91RBvtEh7tO2VWyN4zSS1BsInQyQho0KLVaPw4gtwgkT5O5
+         IpNJ1A6lkpgBOgTP5JYiGZzjnIJNPWhzE5IzW+WtiRmR20AqB5IH83CuoX1KKRvTCCGc
+         FLrMqSArEmXsge8MoS2c3VcGiop0OoCpEDuHlyKfgCgK+E87YH1o+L3isZzVDqWyB3x/
+         uXcrXZaHhFacnJs1DbdzFI2FZoEMcbzHp7MksLrjbOj0Y0CjjJckObUAkRr+2hq2BaZg
+         fIGzShRt+rUUc9//cn8goyALhqAXbwQoLh5sQ3pqd1Dt59nlKj7AivgjS2XMgqTsCLQg
+         sLhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757789362; x=1758394162;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rF3GBCGcRqV69CZBLaKsXGjUvkwSYhGDg0qUaj1ycYE=;
+        b=AotGD1iW8c4/PnoLKTsIn6jxA28R9QlzXj5SVZoDkTPyaHnYMNKEA9a0iTlf8MWrTJ
+         PG83guYVltuTcrr8oRUY4cO2Jvz3nvBpmUQhACQA7IrqKw5ZKJlsyY1MQWEBUb7GYNIz
+         E4U0fJfTrZ/7DEQVbiMT2isZ18hBbJiwTUkIcpYlqoob4jhL/VXj6z9g4bjXIdwPccTs
+         TjOydNfC6/77lb4BipLXqllBQuNEHT/DGryfn9cJox8jBtLCoMFWXbz9S9ZFLqqNx3fe
+         NYPv4ipoHYnU8rSz+Z1JNZVbXcUwAXSxvk2fR7L0MdI6qXlr/oIiB5+s7iDwkfct43Vf
+         0RfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOycmw1wiHJxaAzTv6RYoLj6wJN25NHNMLpg3hNeQp6IB0IHUfU9Pz5uwp3u6Y4ugRXlyFdbBgoZ5m@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzNScOvjft6jchEuyqZyROw2BbNuvDg/koFOvoi33CLOXTtxD7
+	jQ5F4zl05WuwbncI/EPZKM8GKACS5hzZcszzmVpZU5lJYM+fi2R9fTNX
+X-Gm-Gg: ASbGncs2xJmHd65r8Leg6sYALjPFoRKhXGyCpo0OjXjyytbYjFhsN/fu0p4xnR+MZqX
+	ZLDTeidtc6m4qRrAzjax5w4JY67CzE+SExnEkXFnb/uWCk3KvkBDJBiRTRNkdWKjIuUs3N2dUDA
+	KLe/aIwPO4SacYsQpLnORw8k+7vqQA2Z3mThDkVQ54YttbUw9UryM4E5bamB/EdpzDG8g3c3WSy
+	YaXwX2XOKtb5k7JadFflz10ctwdNx6Afqs9rzKDEVkR4IZAFw4b1oDPjodJq+I3yyHnC1arzySo
+	NfCqZyaVP2ah/vC1bEgpbW1RnBeeqL5/d9ti0zAO5Ar31bbDpeJsqf9MSn/QwqW/MoHB6ncXmpz
+	RU1c1w9wwOGVJ9XYu59/fjMTScEIrr6t3BiVtC9eXLIDk+mGIPHX4p4ME6Q==
+X-Google-Smtp-Source: AGHT+IER3H6K6+0dTJYxwoJBwqd4juH0cQSJgRMY2gXd9jT2iPi/p7I16dBYJ0ZSS5sqJlCrdMRqag==
+X-Received: by 2002:a05:6a20:2449:b0:252:f0b6:be9 with SMTP id adf61e73a8af0-26027c23f4fmr9459029637.0.1757789362176;
+        Sat, 13 Sep 2025 11:49:22 -0700 (PDT)
+Received: from [192.168.1.6] ([223.181.119.30])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54b03cf65csm4920585a12.16.2025.09.13.11.49.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Sep 2025 11:49:21 -0700 (PDT)
+Message-ID: <501a4e0a-2d6e-4a57-9006-91413bd2ebb4@gmail.com>
+Date: Sun, 14 Sep 2025 00:19:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-13_06,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 phishscore=0
- suspectscore=0 spamscore=0 mlxscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2508110000 definitions=main-2509130177
-X-Proofpoint-ORIG-GUID: 9_uryYb1bhtW642eVHMZcrn8qktzit15
-X-Authority-Analysis: v=2.4 cv=KNpaDEFo c=1 sm=1 tr=0 ts=68c5b83e cx=c_pps
- a=XiAAW1AwiKB2Y8Wsi+sD2Q==:117 a=XiAAW1AwiKB2Y8Wsi+sD2Q==:17
- a=yJojWOMRYYMA:10 a=yPCof4ZbAAAA:8 a=bWo_ig8JLHCbm4XOoeEA:9
-X-Proofpoint-GUID: 9_uryYb1bhtW642eVHMZcrn8qktzit15
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxMiBTYWx0ZWRfX4uEd2+Xt6r7q
- hJyjKxiXEYItnW/f9cw3bLkvlBlA5k7QNyJhlDKK5+cMaqGqEcp49GDNxJ0wDO5TPpc8KvKEpnE
- xtZ3RQiaTNpAgWQ5vTNQk2XuIW2HqjJ/LfUOQH4LiyEdIS+atJeS098/OQHW/ckB8QXZu+IvugF
- hNIGDd6D9rkuxctIkp4UH/vLOzveKcvh/LAy9qmQf6QbFnNfxk+LDDrLl8c+9HkTd7GPsBSoiMY
- Y9NRNhJmFT6wx28febjsD0ofGUgPC8QEmOdKG3gmWyqQA27JhvGPhk/zL/+G3AbakSomPHWZ9nI
- pE5qyzinjbvN7ekpfivAJzmzPA1BXkWUjxCrYr4+SWBEcA+tzxGtXxzktmUDX57b9yQp0X2swa6
- mNY5/bNy
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm: dts: ti: omap: Drop unnecessary or unused
+ properties
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>,
+ Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20250908-ti-sdhci-omap-v2-0-72927890482f@gmail.com>
+ <20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
+ <20250909-uptight-fluorescent-markhor-4639db@kuoka>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20250909-uptight-fluorescent-markhor-4639db@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The frame@17c27000 node has a reg property of <0x17c26000 0x1000>.
-According to Devicetree binding rules, the unit address in the node
-name must match the base address in reg property.
 
-Update the node name to frame@17c26000 to match the reg property and
-align with other frame nodes.
 
-Signed-off-by: Alok Tiwari <alok.a.tiwari@oracle.com>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 09-09-2025 12:50, Krzysztof Kozlowski wrote:
+> On Mon, Sep 08, 2025 at 04:17:12PM +0000, Charan Pedumuru wrote:
+>> Remove unnecessary properties like ti,needs-special-reset,
+>> ti,needs-special-hs-handling and cap-mmc-dual-data-rate from the DTS
+>> files as there is no user of them.
+> 
+> No user? That's not true:
+> 
+> git grep ti,needs-special-reset
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index abf12e10d33f..166326830cdb 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -4416,7 +4416,7 @@ frame@17c25000 {
- 				status = "disabled";
- 			};
- 
--			frame@17c27000 {
-+			frame@17c26000 {
- 				frame-number = <3>;
- 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17c26000 0x1000>;
+Should I remove ti,needs-special-reset property for the compatibles "ti,am335-sdhci" and "ti,am437-sdhci" instead of removing for all mmc nodes? ti,needs-special-hs-handling and cap-mmc-dual-data-rate were defined for board specific, so these two properties should be defined in the YAML file to resolve dtb_check errors or can I remove those properties for those boards too?
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.50.1
+Best Regards,
+Charan.
 
 
