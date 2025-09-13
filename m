@@ -1,141 +1,185 @@
-Return-Path: <devicetree+bounces-216785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8496AB56145
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 15:48:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2829DB561A8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 16:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 401CB483D59
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 13:48:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B7947AFADF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 14:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 511872EFDA5;
-	Sat, 13 Sep 2025 13:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377682F0C52;
+	Sat, 13 Sep 2025 14:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lt7W/eFA"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="xGd16U1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D212EFD8F;
-	Sat, 13 Sep 2025 13:48:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E051B299A90
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:52:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757771297; cv=none; b=CiIDD+R8OwR3GRjCco+xJpJnC2XZBmmnOhexqBu4IuhLkw6r5IcVk7QrMyjytujgUT2rcWjMcrf0cfOSkGiVFuTq3m+kVPHXIierurKzOW3mmwZMwLDF+RXenIpatvifgNuvlnHor3lzJ87k3H8uE1EIcuDQ5O4geatKTh466aQ=
+	t=1757775147; cv=none; b=d7Et4p0bmeDben9PqjdHt8yET6zqGth0DKeK3rYgvspHlozkzUtXn7SJdEXu+Vok78FwpaTwh9bK5pWAhG1G6F/GpDeCsbs2yp95qvMqmaEJ1eLA4qY/FeeuNgy5H9EWuaznZne+1qXQmSLLarDbQSgbt7xKpZDfHxXfyUloqdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757771297; c=relaxed/simple;
-	bh=/oCGpltAdao6wLpQsgZHv8K//UEGgTFV+udT4sKbVsI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TWQGZOuQ4MkpsaPIUSkcF/AMso9eyrAVU/WFtgoyWxGCqsWLV1XAyeBlC+ErzywEOh6X4HYezE6ZSKEV0O1hRYF3+dk/QMuOn8dmkUqjNSDAWVwKez+eAVp/OOjq34em0ZzQjIywEcQaG1y77FZRDkSJvLfalwq9r6/0PCymSY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lt7W/eFA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5237CC4CEEB;
-	Sat, 13 Sep 2025 13:48:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757771296;
-	bh=/oCGpltAdao6wLpQsgZHv8K//UEGgTFV+udT4sKbVsI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lt7W/eFAxt2hlDqIBxfKBot0QNEPUq6qXDjrozo62u4hDBo2mTmbmV2KMJlMzxGEE
-	 igL/aietAZZfp8u9Q75WFcWQyV36gkx5ey5nK0jgKGGAs4ZA7snNFzk7VO+rFUplVg
-	 CjyCMV0MSP5KPxEXVi60qNGHtc6g7Wq98VuzlYsJEZB40dsbMrAwMC+itetHJwWuL3
-	 HtY0i6oAa2cVGvwCecDj3XxG5mh2Q2RpVdFk1yMyp5V5H6zefPOFp4q0tG18lvUSiR
-	 VeAruGCEJHA4hL0e3EQvKfiRVQxVKqNzgmMACjIMXFPqunvt93eN5ruHIaRTEBwZXO
-	 QK+KQgfQvP6og==
-Message-ID: <d6a70fc3-eec2-4de4-a107-d687fc0a31aa@kernel.org>
-Date: Sat, 13 Sep 2025 15:48:12 +0200
+	s=arc-20240116; t=1757775147; c=relaxed/simple;
+	bh=qYAa3CbWlOG/7QISC3eEE2X9dL1UQvAmMJ/HtZXAARo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=CqM0GVDimzIJJOKLTBvivwGaMI25yvT/mB4F9MpGLVI/5Sso1OhhcihNFDF9/Ssm/I/YPQ7DB1REuptJIsUHPTkpwsNEMDzQpidL7hEn1HQR1oVfd+OLD/wcx/sogrWI/MhmJQAsF4lXxhkMyERwDnKWkf7tn0Ki67FG5yJn4tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=xGd16U1/; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: cirrus,cs35l41: Document the
- cirrus,subsystem-id property
-To: Stefan Binding <sbinding@opensource.cirrus.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-References: <20250912154759.279661-1-sbinding@opensource.cirrus.com>
- <20250912154759.279661-2-sbinding@opensource.cirrus.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250912154759.279661-2-sbinding@opensource.cirrus.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1757775131;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=u9ePjJ+3Yd0yus3dXLpNzr9sgV/Y9hlh3yRlAMIYJAI=;
+	b=xGd16U1/xe2ZbKz1tU1pFxVGBXvR7c1+zH1KwDgLwKzjXW4090gcDxzsrDfeKvh2fSNFB9
+	/d3VU98n6oNWbo8B/ueJEGsiZqiH05SGJV92h0IkHSKnhg8YRUlXO+lj1Tq2tfn2aurNTI
+	14QFTVRJ2sphVtlrVcBPRQwor1jQ5x4qjY4wOXI+UnzdY4gG1UnJSe4GIowqu8liNW2tSW
+	1YwWBNHuD6t9WGsIVfWcR52pA/xKXCfDt4Csoc3jsQX2uZD+KVdHPzQjnUgBsy/Nsvz6fq
+	Q6x5vyTzTFNaCy5P6kLHhumTVyyef+vNurKFpqoxWwylj8lbBFeukue0TFhdUQ==
+Content-Type: multipart/signed;
+ boundary=1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Sat, 13 Sep 2025 16:51:59 +0200
+Message-Id: <DCRR9XY9MT2L.3JSK4SYGMT57R@cknow.org>
+Cc: "Alex Bee" <knaerzche@gmail.com>, "Nicolas Dufresne"
+ <nicolas.dufresne@collabora.com>, <linux-media@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Christian Hewitt" <christianshewitt@gmail.com>
+Subject: Re: [PATCH v3 0/7] media: rkvdec: Add HEVC backend
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Jonas Karlman" <jonas@kwiboo.se>, "Ezequiel Garcia"
+ <ezequiel@vanguardiasur.com.ar>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, "Mauro Carvalho Chehab"
+ <mchehab@kernel.org>
+References: <20250905161942.3759717-1-jonas@kwiboo.se>
+In-Reply-To: <20250905161942.3759717-1-jonas@kwiboo.se>
+X-Migadu-Flow: FLOW_OUT
+
+--1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 12/09/2025 17:47, Stefan Binding wrote:
-> Add new property: cirrus,subsystem-id
-> This new property is used to uniquely identify the system if device
-> tree is used, to allow the driver to select the correct firmware and
-> tuning for the system.
-> 
-> Signed-off-by: Stefan Binding <sbinding@opensource.cirrus.com>
-> ---
->  Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> index 14dea1feefc5..e6cf2ebcd777 100644
-> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> @@ -151,6 +151,12 @@ properties:
->      minimum: 0
->      maximum: 5
->  
-> +  cirrus,subsystem-id:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Subsystem ID. If this property is present, it sets the system name,
-> +      used to identify the firmware and tuning to load.
+On Fri Sep 5, 2025 at 6:19 PM CEST, Jonas Karlman wrote:
+> This series add a HEVC backend to the Rockchip Video Decoder driver.
 
-Please do not send new version immediately, but allow people to actually
-review your code. You received the review on v1.
+I did some testing and the TL;DR version is:
 
-Best regards,
-Krzysztof
+Tested-by: Diederik de Haas <didi.debian@cknow.org>  # Rock64, RockPro64, Q=
+uartz64-B, NanoPi R5S
+
+Now for the long version ;-P
+
+I built a 5.17-rc5 kernel with this patch set [1], which was based upon
+linuxtv's next branch, so I just took all their commits on 2025-09-07.
+Then rebased Detlev's rkvdec patch set on top of that.
+As I have quite a few rk356x based devices and there wasn't a DT patch
+to enable rkvdec2, I 'assembled' my own one. (And some more patches)
+
+I have a patched ffmpeg [2] and with its -dev libraries built a patched
+mpv [3]. Installed that onto (mostly) Debian Forky systems with mesa
+25.2.2 and sway 1.11. I have a number of test files which are provided
+via NFS so storage device wouldn't matter and it's also what I use with
+LibreELEC (both 12.2 as 12.90.1 provided by 'chewitt').
+And then I went on to perform the same tests on these devices:
+
+1) Pine64 Rock64 (rk3328)
+2) Pine64 RockPro64 (rk3399)
+3) Pine64 Quartz64 Model B (rk3566) *
+4) FriendlyELEC NanoPi R5S (rk3568) *
+
+*) I blacklisted the hantro driver
+
+My testing showed that the 'classical' Big Buck Bunny video worked the
+best for testing ... meaning it caused the most 'problems'.
+I used the 'Standard 2D' 'Full HD (1920x1080)' '60 fps' version which
+you can download from [4]. That'll give you an 8-bit encoded x264
+version of that video. I have converted that video to x265 with a script
+I wrote (quite) a while ago [5]; instructions near the end of that
+script (no hdr no resize 'branch' about $TENBIT_PARAMS).
+That resulted in 2 test files:
+a) bbb_sunflower_1080p_60fps_normal.x265.cf24.slow.8bit.mp4
+b) bbb_sunflower_1080p_60fps_normal.x265.cf24.medium.10bit.mp4
+
+Testing went as follows:
+I logged into the device, started sway and opened a 'foot' terminal and
+navigated to my NFS share with the test files. Then I used
+
+  mpv --hwdec=3Dv4l2request <video-file> [--fullscreen=3Dyes]
+
+Without the 'fullscreen' param it shows the video in the right part of
+the screen (1080p monitor), while the left part shows mpv's output.
+This made it easy to see 'dropped frames' and any audio delay.
+I played each file twice, one using half the screen and one fullscreen.
+
+This had less of an effect then I expected; only in a few cases it
+'pushed it over the edge' and the only real effect was with Rock64 ...
+which being the least powerful is (kinda) expected.
+
+The results of the 10-bit x265 files was uniform: only a blue screen was
+visible and OSD (with 'I' or 'O' in mpv) didn't work. Interestingly it
+also had no frame drops ... except when doing 'I' (with no visible
+effect), then it dropped a couple of frames (one time quite a few).
+Mpv showed this error message each time:
+[vo/gpu] Initializing texture for hardware decoding failed
+
+For the 8-bit x265 file, the results were more varied:
+- On Rock64 HW accel worked, but the videos had a red 'glare' over them.
+  None of the other devices had that, so maybe related to 'lima'?
+  On LE it did NOT have the red glare. It did seem to have quite a bit
+  of trouble starting it
+- On Rock64 it dropped 970 frames in 60 secs and 2480 in fullscreen.
+  This resulted in quite a shockery display and noticeable artifacts.
+  That was not (or at least a whole lot less) the case with LE.
+- On the other devices there was not much difference in dropped frames
+  when it came to windowed vs full-screen, but the frame drops were
+  quite high ~2000 when HW accelerated and up to ~3000 when not
+  I got the impression that ~3Mbps bitrate was a tipping point.
+- The original BBB file (thus x264) had a similar high frame drop rate,
+  so the problem seems unrelated to this patch set
+- Audio delay was sometimes huge (>60 secs after 60 secs :-O), and HW
+  acceleration fixed that (due to free 'CPU' capacity?)
+
+The 'scores' for my other test files were actually quite good \o/
+All my video were HW accelerated; 8-bit with nv12 worked good while
+10-bit with nv15 was very blue. But all were corrected detected.
+
+So IMO this is a massive improvement! Thanks a LOT :-D
+
+Cheers,
+  Diederik
+
+[1] https://salsa.debian.org/diederik/linux/-/tree/cknow/media-next
+(Salsa CI fails as it can't deal with the ~ in 6.17~rc5)
+[2] https://salsa.debian.org/diederik/ffmpeg/-/tree/v4l2request-2025-v3-rkv=
+dec-n7.1
+[3] https://salsa.debian.org/diederik/mpv/-/tree/v4l2request-support
+[4] http://bbb3d.renderfarming.net/download.html
+[5] https://paste.sr.ht/~diederik/52b81ebc4c14b5146eb9b687bb1e8c1d62787991
+
+--1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaMWFEwAKCRDXblvOeH7b
+bgaMAQDSV7WBRzhLckmCR13bF/J2ijaueIDTC+eBIfrBN6GE+gD9G+PoK+5Pfngy
+Vo3RPYc+L8VodVWniGaQmL1sOUOZuwo=
+=A6/3
+-----END PGP SIGNATURE-----
+
+--1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9--
 
