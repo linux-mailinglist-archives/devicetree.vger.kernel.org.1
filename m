@@ -1,185 +1,127 @@
-Return-Path: <devicetree+bounces-216786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2829DB561A8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 16:52:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59123B561B7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 17:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B7947AFADF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 14:50:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B89281BC2363
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 15:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377682F0C52;
-	Sat, 13 Sep 2025 14:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5679C2EF677;
+	Sat, 13 Sep 2025 15:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="xGd16U1/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GkowNWwM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E051B299A90
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6130347C7
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 15:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757775147; cv=none; b=d7Et4p0bmeDben9PqjdHt8yET6zqGth0DKeK3rYgvspHlozkzUtXn7SJdEXu+Vok78FwpaTwh9bK5pWAhG1G6F/GpDeCsbs2yp95qvMqmaEJ1eLA4qY/FeeuNgy5H9EWuaznZne+1qXQmSLLarDbQSgbt7xKpZDfHxXfyUloqdc=
+	t=1757776210; cv=none; b=W7XcSBMPouTAafEQYoq+Y28t1cSn5RcHaRtW4WJeAcRXRbKdPHiRyL3LDSp4S2k47/cxogGodYw0XR/BMQlBFGycMeFgWPKIZGbHpIJQ7XK+ZQP9jnljOlDVsd7CiKLOiUD5Nu45WfiB2Xll6BxxbYjfnUbyYC38edf1tpspsC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757775147; c=relaxed/simple;
-	bh=qYAa3CbWlOG/7QISC3eEE2X9dL1UQvAmMJ/HtZXAARo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=CqM0GVDimzIJJOKLTBvivwGaMI25yvT/mB4F9MpGLVI/5Sso1OhhcihNFDF9/Ssm/I/YPQ7DB1REuptJIsUHPTkpwsNEMDzQpidL7hEn1HQR1oVfd+OLD/wcx/sogrWI/MhmJQAsF4lXxhkMyERwDnKWkf7tn0Ki67FG5yJn4tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=xGd16U1/; arc=none smtp.client-ip=91.218.175.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1757776210; c=relaxed/simple;
+	bh=MJf+OC3maX2ZmdUOw7mY7bTSxAiXKJBHLm8Y1+eYoXY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sZIgAo6w4AamJ0vyIiNh1+UaloHWk9btXJINdP4AGittxPchsHv4CJgnfzY8GBLMin1IXfqmgrlcurIDgOtWdLIr7u8KJYYGKGrI2BfWEOThABCe+jMEtCFGBYIkRF4mLBUagk6KbbCpS1yTM1hCe5m+2YPUmyg2hvIgtItNYMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GkowNWwM; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-32df1321879so981343a91.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 08:10:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757776208; x=1758381008; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XzdPa1s2Ytoialc1u1fhJTSVdVzF4hVkQANScdjlGlw=;
+        b=GkowNWwM2UO5IGbP9o7MyYDkosSehC5DC28O7ahrgker2plf4x5tUJ1yzHTBTZDqEF
+         Nb15GfEvJGsN+nLWtx6cz/uHFmWLYI+SZt2v62RSK5HSQkTki0CFRQFKEIlnYiG4SRax
+         UOUCRYH6x+7tw0pv5xGhFGgS1dBVCKuEelKvclzqbYr6bPz1tKfGw8FljajcLvYqM6Gu
+         JcQLtCGpbc758pTtkju8sweD6VQC9vxGvu5lMrR50w4TQpc35YPUKFuq+8MdgpJrAzbu
+         pZCYB1I8GJf2/29i1uap9+DUJgLd0OvZ8eA4FarrOu5uCPF0OPTb/+sxrIRYGJfMYc5D
+         Sxeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757776208; x=1758381008;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XzdPa1s2Ytoialc1u1fhJTSVdVzF4hVkQANScdjlGlw=;
+        b=kaXhw18UVl9tWgM6XlPT6yCPTY/RJmkAGhltpY9Xgkh+frJsnOQHsx71DMtdWwnTNO
+         +06Iw25TMfr38XdqbcNfhKo5INVRpBeIWDIUHBtUgP2PSPkhezHtIpaw2VsyqVqOpqEj
+         wnbuZ7Aq+fOHiKAB5YTD7TfOkhlGXXbcyOgmmfDZSjzsj34VHdxZRZMNn0CUZa0dpxE4
+         RxD8hMlsBFQZewqMP3UFqXd+LA6/MJhEYHBAyyowJzfDvjsH6qgM7HX0CqXdvy9APkDH
+         cDqBPzurBa74WtuQDpxeiYGDryB6+uZQaDnMElMWughaoV5G5OXywPvdI7sdY3ayldC9
+         ezqg==
+X-Forwarded-Encrypted: i=1; AJvYcCW30qsPxfOUXJFcGTdcQi/2PRVxBxpp3VzS5Dhn1p0FdwCNIZrZkq3Q0hjqCVAZVoYjCscVFeH0sXzq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHC+6Ock3oghPOol+4wVNcV8RG3pf8wz+YS3lPmS9jm21OPoV3
+	t6+dlMXqXc2ao2OdzvgC7IaMSxL54GRCt2K7/vsMJwwKz9utUx4Z6y2C
+X-Gm-Gg: ASbGncu92WiU4vp9WPRcfs6kZ+TkiRFZynKa7UPL8FFvL/7kJAIcVPIBbmTTuMQd1PD
+	lWcnFa3Ufkifea6/3ebotElRUN3AtTghJ2UEwWLdRZVQJmI3Dzg94IAhh7NziyD+OMmYFvuqQbU
+	dglevvPkM3rHcbW/jtoLnegBl5eIjOVouwEhsHuKEh8PN0K6TTAa/bj9OJfDU6t6WHF+sMi4nXS
+	JwVcv6uoLnMNFzWz+sLyalhzgWTI3TOF1ThuUxX+Ds4XPMkEFXJiRY6dUGcNqyPjDfJtqiJ8fTJ
+	HP9kBUQhgrIErO8zaSnkExKKt3yRl6cC2ygQtIpBNKdHTvlJTTkrrOPT4EUuHamYXWEVko7eSEg
+	WPKr0ltMqg5BwhnKME+6tLPXWwekzAtlSBKX85SuWJphgu8YILsCI4m7npQ==
+X-Google-Smtp-Source: AGHT+IFQLwKW78Eyf3cNt54Zk3w44x+XzWX4t92z77pE9LBL04QN3MjfIphxRI6bKsbhdofevXIVfA==
+X-Received: by 2002:a17:90b:5750:b0:32b:cba3:6361 with SMTP id 98e67ed59e1d1-32de4f982bdmr7023218a91.26.1757776208005;
+        Sat, 13 Sep 2025 08:10:08 -0700 (PDT)
+Received: from [192.168.1.6] ([223.181.119.30])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a4781dsm8798357b3a.33.2025.09.13.08.10.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Sep 2025 08:10:07 -0700 (PDT)
+Message-ID: <3081647a-a4dd-486c-8a3f-c196580a9ee5@gmail.com>
+Date: Sat, 13 Sep 2025 20:40:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1757775131;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=u9ePjJ+3Yd0yus3dXLpNzr9sgV/Y9hlh3yRlAMIYJAI=;
-	b=xGd16U1/xe2ZbKz1tU1pFxVGBXvR7c1+zH1KwDgLwKzjXW4090gcDxzsrDfeKvh2fSNFB9
-	/d3VU98n6oNWbo8B/ueJEGsiZqiH05SGJV92h0IkHSKnhg8YRUlXO+lj1Tq2tfn2aurNTI
-	14QFTVRJ2sphVtlrVcBPRQwor1jQ5x4qjY4wOXI+UnzdY4gG1UnJSe4GIowqu8liNW2tSW
-	1YwWBNHuD6t9WGsIVfWcR52pA/xKXCfDt4Csoc3jsQX2uZD+KVdHPzQjnUgBsy/Nsvz6fq
-	Q6x5vyTzTFNaCy5P6kLHhumTVyyef+vNurKFpqoxWwylj8lbBFeukue0TFhdUQ==
-Content-Type: multipart/signed;
- boundary=1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Sat, 13 Sep 2025 16:51:59 +0200
-Message-Id: <DCRR9XY9MT2L.3JSK4SYGMT57R@cknow.org>
-Cc: "Alex Bee" <knaerzche@gmail.com>, "Nicolas Dufresne"
- <nicolas.dufresne@collabora.com>, <linux-media@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Christian Hewitt" <christianshewitt@gmail.com>
-Subject: Re: [PATCH v3 0/7] media: rkvdec: Add HEVC backend
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Jonas Karlman" <jonas@kwiboo.se>, "Ezequiel Garcia"
- <ezequiel@vanguardiasur.com.ar>, "Detlev Casanova"
- <detlev.casanova@collabora.com>, "Mauro Carvalho Chehab"
- <mchehab@kernel.org>
-References: <20250905161942.3759717-1-jonas@kwiboo.se>
-In-Reply-To: <20250905161942.3759717-1-jonas@kwiboo.se>
-X-Migadu-Flow: FLOW_OUT
-
---1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm: dts: ti: omap: Drop unnecessary or unused
+ properties
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>,
+ Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20250908-ti-sdhci-omap-v2-0-72927890482f@gmail.com>
+ <20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
+ <20250909-uptight-fluorescent-markhor-4639db@kuoka>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20250909-uptight-fluorescent-markhor-4639db@kuoka>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri Sep 5, 2025 at 6:19 PM CEST, Jonas Karlman wrote:
-> This series add a HEVC backend to the Rockchip Video Decoder driver.
 
-I did some testing and the TL;DR version is:
 
-Tested-by: Diederik de Haas <didi.debian@cknow.org>  # Rock64, RockPro64, Q=
-uartz64-B, NanoPi R5S
+On 09-09-2025 12:50, Krzysztof Kozlowski wrote:
+> On Mon, Sep 08, 2025 at 04:17:12PM +0000, Charan Pedumuru wrote:
+>> Remove unnecessary properties like ti,needs-special-reset,
+>> ti,needs-special-hs-handling and cap-mmc-dual-data-rate from the DTS
+>> files as there is no user of them.
+> 
+> No user? That's not true:
+> 
+> git grep ti,needs-special-reset
 
-Now for the long version ;-P
+Yes, my bad, I removed them from the whole node. I will revert these changes for the next revision.
 
-I built a 5.17-rc5 kernel with this patch set [1], which was based upon
-linuxtv's next branch, so I just took all their commits on 2025-09-07.
-Then rebased Detlev's rkvdec patch set on top of that.
-As I have quite a few rk356x based devices and there wasn't a DT patch
-to enable rkvdec2, I 'assembled' my own one. (And some more patches)
+> 
+> Best regards,
+> Krzysztof
+> 
 
-I have a patched ffmpeg [2] and with its -dev libraries built a patched
-mpv [3]. Installed that onto (mostly) Debian Forky systems with mesa
-25.2.2 and sway 1.11. I have a number of test files which are provided
-via NFS so storage device wouldn't matter and it's also what I use with
-LibreELEC (both 12.2 as 12.90.1 provided by 'chewitt').
-And then I went on to perform the same tests on these devices:
+-- 
+Best Regards,
+Charan.
 
-1) Pine64 Rock64 (rk3328)
-2) Pine64 RockPro64 (rk3399)
-3) Pine64 Quartz64 Model B (rk3566) *
-4) FriendlyELEC NanoPi R5S (rk3568) *
-
-*) I blacklisted the hantro driver
-
-My testing showed that the 'classical' Big Buck Bunny video worked the
-best for testing ... meaning it caused the most 'problems'.
-I used the 'Standard 2D' 'Full HD (1920x1080)' '60 fps' version which
-you can download from [4]. That'll give you an 8-bit encoded x264
-version of that video. I have converted that video to x265 with a script
-I wrote (quite) a while ago [5]; instructions near the end of that
-script (no hdr no resize 'branch' about $TENBIT_PARAMS).
-That resulted in 2 test files:
-a) bbb_sunflower_1080p_60fps_normal.x265.cf24.slow.8bit.mp4
-b) bbb_sunflower_1080p_60fps_normal.x265.cf24.medium.10bit.mp4
-
-Testing went as follows:
-I logged into the device, started sway and opened a 'foot' terminal and
-navigated to my NFS share with the test files. Then I used
-
-  mpv --hwdec=3Dv4l2request <video-file> [--fullscreen=3Dyes]
-
-Without the 'fullscreen' param it shows the video in the right part of
-the screen (1080p monitor), while the left part shows mpv's output.
-This made it easy to see 'dropped frames' and any audio delay.
-I played each file twice, one using half the screen and one fullscreen.
-
-This had less of an effect then I expected; only in a few cases it
-'pushed it over the edge' and the only real effect was with Rock64 ...
-which being the least powerful is (kinda) expected.
-
-The results of the 10-bit x265 files was uniform: only a blue screen was
-visible and OSD (with 'I' or 'O' in mpv) didn't work. Interestingly it
-also had no frame drops ... except when doing 'I' (with no visible
-effect), then it dropped a couple of frames (one time quite a few).
-Mpv showed this error message each time:
-[vo/gpu] Initializing texture for hardware decoding failed
-
-For the 8-bit x265 file, the results were more varied:
-- On Rock64 HW accel worked, but the videos had a red 'glare' over them.
-  None of the other devices had that, so maybe related to 'lima'?
-  On LE it did NOT have the red glare. It did seem to have quite a bit
-  of trouble starting it
-- On Rock64 it dropped 970 frames in 60 secs and 2480 in fullscreen.
-  This resulted in quite a shockery display and noticeable artifacts.
-  That was not (or at least a whole lot less) the case with LE.
-- On the other devices there was not much difference in dropped frames
-  when it came to windowed vs full-screen, but the frame drops were
-  quite high ~2000 when HW accelerated and up to ~3000 when not
-  I got the impression that ~3Mbps bitrate was a tipping point.
-- The original BBB file (thus x264) had a similar high frame drop rate,
-  so the problem seems unrelated to this patch set
-- Audio delay was sometimes huge (>60 secs after 60 secs :-O), and HW
-  acceleration fixed that (due to free 'CPU' capacity?)
-
-The 'scores' for my other test files were actually quite good \o/
-All my video were HW accelerated; 8-bit with nv12 worked good while
-10-bit with nv15 was very blue. But all were corrected detected.
-
-So IMO this is a massive improvement! Thanks a LOT :-D
-
-Cheers,
-  Diederik
-
-[1] https://salsa.debian.org/diederik/linux/-/tree/cknow/media-next
-(Salsa CI fails as it can't deal with the ~ in 6.17~rc5)
-[2] https://salsa.debian.org/diederik/ffmpeg/-/tree/v4l2request-2025-v3-rkv=
-dec-n7.1
-[3] https://salsa.debian.org/diederik/mpv/-/tree/v4l2request-support
-[4] http://bbb3d.renderfarming.net/download.html
-[5] https://paste.sr.ht/~diederik/52b81ebc4c14b5146eb9b687bb1e8c1d62787991
-
---1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaMWFEwAKCRDXblvOeH7b
-bgaMAQDSV7WBRzhLckmCR13bF/J2ijaueIDTC+eBIfrBN6GE+gD9G+PoK+5Pfngy
-Vo3RPYc+L8VodVWniGaQmL1sOUOZuwo=
-=A6/3
------END PGP SIGNATURE-----
-
---1977ff6ca28b4e071a2b6e2b88836eddf7e93d59c95b5f0edf7cdc5cadb9--
 
