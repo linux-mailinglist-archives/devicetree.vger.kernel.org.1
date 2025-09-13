@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-216823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D501B56322
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:21:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF61B56324
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:21:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F8B1A0746F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 21:21:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33B2AAA0124
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 21:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A1A281370;
-	Sat, 13 Sep 2025 21:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406A1283CAF;
+	Sat, 13 Sep 2025 21:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eCixbt7L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N7mZP4sR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FEF23A9BE
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 21:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B305280CC9
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 21:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757798488; cv=none; b=SYc0quYn/kzHSXOdZRMzCoerG9wIhEIiUvtPTj7QgrMWsiM8nHsakdBAUnzkPq6fXgMZDI7ZRZoNbD+pCbbSeytV146X5D8DW7nGoY4dDap4baCjODBDpkZ4ST4pGC32pSl+s7fjiWUP1NCdl4fg74V/mp39+piG2GSO95HApCo=
+	t=1757798490; cv=none; b=Pt3m3jQ8ZHG6rsmO5qxp3m8C+iMuuNsrZN3I9Ek5w4Szleau/V6F/J2jx4ohrNCTv8pPUcBx1EYr8jXyCYbl0WxIllUcNFfBTc6pI+7sa40KDOgoTH3bZU3L/7yKmF5PS+a1Ojj5I90WiDStqibh7XW90Wi+dor5BPb3dMGPJSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757798488; c=relaxed/simple;
-	bh=TYNRK4+bphtWM7te51Y2NO2PW29CFLfANZF+pOwh/qQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=S5yzEoY69vWHdZJQ4zXJ8P8NC7Echt1pb4zxTBU1fiiA1pcefqXVc7ZkzKhfbqp2axCagmhSOiOTnWFKiFcx+RHoqvQxtesPYvyDqSV/YjAIimtaeYWAmkGfgr9bvgbXgiQywcTCbn1RZNcdcDJxowlRgTp+bZyhbsMX8dV3/lQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eCixbt7L; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1757798490; c=relaxed/simple;
+	bh=oaJUaCOYqaH1L8LbASqlVhMT0XivPLTV80hCIDJAMDY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=oR+pQC2XKVuR5YmP0PTBJza7GemNBcs5FOQZhHHbNgUMr0LM7mks7agBnQOPmGP7ZSNmVcomdVUCqoBgEsyamidIkl52h7aZEMRXLLp4tLmdExbGm1J8boml4HGUI2LLUpebZmflAQhXmckAAiDpblQ05oBtZ81gaAeoRBaeG9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N7mZP4sR; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45f29d2357aso2302275e9.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:21:25 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3d118d8fa91so978944f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:21:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757798484; x=1758403284; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UUfEoumCbzIEx8AGvj96Z7JPRJbPQvAkGwx1CilBgwE=;
-        b=eCixbt7LOfEiH+E5nkfZgb4/8nLdEDQTSesLwxt0ZVhx8Ng9bPN9Py8eC4Ej5DLt29
-         UeJdh5Gfc/foh5++YOHuousrgQOWpnO9eyPuo0uKs4aZKdAS8oZhRB7ySaQvN5tAcH3T
-         HP1x427+quB6qwnpkqdAn9WgF179YfFELVdFLFZ+gDutnSA67i/3+jZCVcY+F+f3fsTk
-         KbV7kFwFvzZYX8DyIKk485iXapkza9+1OHysvXLyUCedSPs8yOyf0yMG5IFLwtZ8cdNS
-         1wEzHME5gUgPL6N+f9FzsQiNwdTKnJpUKr7VFrAKnOXTfZD5fLBvhXTnR5VPK+L9qRdG
-         oB+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757798484; x=1758403284;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1757798485; x=1758403285; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UUfEoumCbzIEx8AGvj96Z7JPRJbPQvAkGwx1CilBgwE=;
-        b=TsL6mDk2rHNzVvUzGhPUO8iM+PmGH7KKWGnKYLpr8335dLkTlmStDyUbjpjmFyDHId
-         j8ME8H8SSvKbF/rn4EwtTdN4gwrzjCL6fB2M0jIyu43hNTnoYtF8RoWkm9ADVNrrcxF8
-         UGRraTRAnTYgs9OS6GLYrGk1gv/y4YZPf32g4a5CSF139Jg9+vnUT/sb3LoTqNkEs99y
-         uTNnCOxpAII86/GVxSrvys8rsU3K+v0hXscKVEOSoW6q5nQ8ZxpjioZCu4F2Fb8RCy1f
-         g7Og5mymmFeLTYXPw4v1xCLFPU4EW73UXsWACiNmpw8aLuJ56eQFyWx5MXzzJ7shXsRQ
-         ZQxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWbyk2Ns55GR4hElfKI5E/18nRbVlJs3AiInEXnb+IYbe70qnRemEpGWiZumDy5A0x9sQCUoOLgfpbn@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywfa3Y4Lhl0qfUPTnN0G2WlzNFsHwb39/kQwGgup20gNVrAJCne
-	vgSnmQBo+u/030GTuZbN2ldG8eo3H+ZCSClzjW59nWizoKRJxe4+u3HG
-X-Gm-Gg: ASbGnctGfKbtLI/CLprKq1AR8dnqEm+Dfte69BHoIHbJjjqaShjVopdGRvRGCycCosc
-	ROwcFwRd1D3yqLE1gpr65J3NK7a9ZmotC2wW9l4vIm3Lm6irLy0dz9Fip48BFT10hMSUNac/MNl
-	2l2xo39OPSFAcDyo+v79WZAoP0r3Ro/NbEL8KbYXp7oOGgPc1WtbRYBiHWPP6e20K+KnFTSZLtY
-	mfB3W3uuFsqazpFuh2kZ9YPmSnnJ0EKqpb9T+ZIj+QbR66UrIQNsB9C8rzpredqnkxU1aM0a6wb
-	niIcGARcZvhfri12TKU9cUyqIuQRe7qikz7cnLaxD37O7BMZBw1f+YOq2sYF2hX3ZCHtRoGqkK3
-	URlqMGQ/2JEOq7NmGfoBUDOFxNGA+xR524tgIrLEgV99SgJALqH+N
-X-Google-Smtp-Source: AGHT+IG1Lbyz/LuhSCMvFaFvWIQA+e+oeS+V5WfPI22yr5MxxdIQ2TC5LggKVWnkSIrVed1aQHOliw==
-X-Received: by 2002:a7b:ca5a:0:b0:45d:e0cf:41c9 with SMTP id 5b1f17b1804b1-45f211f89d6mr50232345e9.22.1757798483764;
-        Sat, 13 Sep 2025 14:21:23 -0700 (PDT)
+        bh=sWd2b4T+HmUToKXe+DhMe4fckX1fCVdutnchyiOuReA=;
+        b=N7mZP4sRjyoAI4dZJI5PYtRdnvW2yj4yqf+bR3/sglvKusKfggZdoA6If1kNCi1JOd
+         dLfu3BR+v9xfoRYy3QDM1ivm1Yr3Ci6CxjnC/SD3RDaopXjg+7/16I1rYDw2/+25lLUm
+         anmffZXMBuiHf17B551yB6j+8XXVAd9sKeZi6nFApGNOKGyRkJY8d9Z1tANTKwbESSXt
+         jG7EP/1QWiUwOvSq/vU4KJyrhdArJ7R1dX8sBPmPddgY9qrFKIOWEVnljmemLGxeF0WD
+         puF7TNgAwSZV/DMSJQK1T40BD/NEmQNrALODOOHEVR2yqKkGO33+R4bv1I2HHV5qFdDy
+         vU5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757798485; x=1758403285;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sWd2b4T+HmUToKXe+DhMe4fckX1fCVdutnchyiOuReA=;
+        b=A3J4RQgWAtm2bNrG1qkX54LGJCDNVEpTFf+UP9yi5VH8KmCcR3PqT5lXOccdHTXfU5
+         HFvZDMnRJaJpJQLehnoVIwkd1sxv4OXT0VGwZ7/vPIUZOxiIwNz0oM2uvLmfPmERzWF0
+         s87Jc3bH2SVn8ZvCwQ2VrbwSKgEwMGewrNNJNfgSpcIYGPo9eVO/0iosajjGWByGF0Wm
+         tZhtB6WkSW7LuOj5tQ1I4dVFxI/cRmlIzkmbIUuuBZMhi3YNqOfqdKQY+dDAwz/jZq/B
+         cl1CJrOARZuGL6vrJekBxSrUzarY316d+bKW1phbk3Czr9DHiDbMNMRVJJmBBQ7iaU2j
+         Ujow==
+X-Forwarded-Encrypted: i=1; AJvYcCVozKuOduSbMIotQMU7dsx/O9MgeB2PhRCyP2+PaIHITOIDpbQK3hxiFhgzyW2yZYHD/tImdZ8ZLfxE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjtRIdyhYj8z301PvJiI91wbjMYYnPmpNThkQ8NMn70VtFxpUO
+	GHRyxi8snjVbSJRSKS9kqDGGzGFjlbu0U5HwHQCQbMbRnY+DvodnsX57
+X-Gm-Gg: ASbGncvv0YfpSYSspGCyjW/KwsNbApxQhq8GNKaPEFF0+yFb8tmva+2Tuo/MtyhHdml
+	dOMQArb6YEKL15zl7zZH7LBkIH7lPvgEo06Sdh8C58XR+cro3XEW5eNSiZlla1ZVum82xSe3g5+
+	yZSuErHlSasukIkz6pU+F+x3y9wip1J0qYodtWfd/yRjhSzvgGxdqGQmouWald/solqMirkbbkv
+	NVU8IwqQazQpdQ4GoxBecTIxEHx7N0iLku5IusvpoBSt3V80WpZRhfQb9hkZh9Fu23646V0DFK5
+	zJ0fhRrZ+xLnI7ShGGVitX9HtcLvzqW88tu9vIqYwQ2hnhjzDCYkQuHm8/SevYpjVK6eBxw0GUe
+	h3abfEpzEGDiu36QUL+wB4LvYKtZoy3oyXpWiwI1rFg==
+X-Google-Smtp-Source: AGHT+IEGJzSKpd6zREOPWaWs/h+7A671p7jcXu2As5oGpHICFBcGGlWQqYtS0ly1bNsIo7cSV/bMuA==
+X-Received: by 2002:a5d:5f42:0:b0:3e8:6b2b:25e0 with SMTP id ffacd0b85a97d-3e86b2b278bmr2411238f8f.25.1757798485438;
+        Sat, 13 Sep 2025 14:21:25 -0700 (PDT)
 Received: from Radijator.localdomain ([93.140.65.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd6absm11576842f8f.34.2025.09.13.14.21.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd6absm11576842f8f.34.2025.09.13.14.21.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Sep 2025 14:21:22 -0700 (PDT)
+        Sat, 13 Sep 2025 14:21:24 -0700 (PDT)
 From: =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
-Subject: [PATCH RESEND 0/9] samsung,coreprimevelte DTS additions
-Date: Sat, 13 Sep 2025 23:21:02 +0200
-Message-Id: <20250913-pxa1908-dts-v1-0-8120cdc969b8@dujemihanovic.xyz>
+Date: Sat, 13 Sep 2025 23:21:03 +0200
+Subject: [PATCH RESEND 1/9] arm64: dts: marvell: samsung,coreprimevelte:
+ Add backlight
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,6 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20250913-pxa1908-dts-v1-1-8120cdc969b8@dujemihanovic.xyz>
+References: <20250913-pxa1908-dts-v1-0-8120cdc969b8@dujemihanovic.xyz>
+In-Reply-To: <20250913-pxa1908-dts-v1-0-8120cdc969b8@dujemihanovic.xyz>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
  Tony Luck <tony.luck@intel.com>, 
@@ -93,42 +98,44 @@ Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>,
  linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
  =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1213;
- i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=TYNRK4+bphtWM7te51Y2NO2PW29CFLfANZF+pOwh/qQ=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBlHH/jV+J233T/1YRr7LA/+q+zzuV2uNy35qlfiltS9f
- 7PmHwmdjlIWBjEuBlkxRZbc/47XeD+LbN2evcwAZg4rE8gQBi5OAZgIexPDXzGZg+FHP2t9rNgW
- nql9ZntQ4APjT2v3POL9smtm9o0HgUwMf2Wkwv6F2M472b7v/66Tv1cwKEc9YfYV6PBy/Faiyt6
- 1kBUA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=895; i=duje@dujemihanovic.xyz;
+ s=20240706; h=from:subject:message-id;
+ bh=3n1cVAjfm4iMd5ytnRCe0bLiwYBnKiHaKl8qPthmrxY=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBlHH/hXRhoe8Uv9obNo0ed8oRy98/4WF0LNYuP3zt/In
+ WfmFnK1o5SFQYyLQVZMkSX3v+M13s8iW7dnLzOAmcPKBDKEgYtTACayai3DX7ni9SVTgjLbf5mH
+ etXa+kVFmPX1CnXJdps82B1ZJK7izvA/2tDK/nTfb2vDI2slt2+/LPXgmW4+rxfXapNP3yXbUjV
+ 5AQ==
 X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
  fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
-This series adds some hardware support for the PXA1908 SoC and
-samsung,coreprimevelte board which has accumulated before the initial
-support series was merged.
+From: Duje Mihanović <duje@dujemihanovic.xyz>
+
+Add a node for the KTD2801 backlight chip found on the board.
 
 Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 ---
-Duje Mihanović (9):
-      arm64: dts: marvell: samsung,coreprimevelte: Add backlight
-      arm64: dts: marvell: samsung,coreprimevelte: Correct CD GPIO
-      arm64: dts: marvell: samsung,coreprimevelte: Enable eMMC
-      arm64: dts: marvell: pxa1908: Add PWMs
-      arm64: dts: marvell: samsung,coreprimevelte: Add vibrator
-      arm64: dts: marvell: pxa1908: Move ramoops to SoC dtsi
-      arm64: dts: marvell: samsung,coreprimevelte: Drop some reserved memory
-      arm64: dts: marvell: samsung,coreprimevelte: Fill in memory node
-      arm64: dts: marvell: samsung,coreprimevelte: Add USB connector
+ arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- .../marvell/mmp/pxa1908-samsung-coreprimevelte.dts | 157 ++++++++++++++++-----
- arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi       |  46 ++++++
- 2 files changed, 169 insertions(+), 34 deletions(-)
----
-base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
-change-id: 20250902-pxa1908-dts-65d86a5d2d85
+diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
+index 47a4f01a7077bfafe2cc50d0e59c37685ec9c2e9..b9628b1f59f2f749804799e3d9faa48e3036e81a 100644
+--- a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
++++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
+@@ -115,6 +115,12 @@ key-voldown {
+ 			gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
++
++	backlight {
++		compatible = "kinetic,ktd2801";
++		ctrl-gpios = <&gpio 97 GPIO_ACTIVE_HIGH>;
++		max-brightness = <210>;
++	};
+ };
+ 
+ &smmu {
 
-Best regards,
 -- 
-Duje Mihanović <duje@dujemihanovic.xyz>
+2.51.0
 
 
