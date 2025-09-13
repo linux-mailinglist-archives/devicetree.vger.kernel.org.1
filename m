@@ -1,134 +1,207 @@
-Return-Path: <devicetree+bounces-216751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6CEB55FE7
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 11:27:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44823B55FED
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 11:29:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26F915885AE
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 09:27:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A21D1C85350
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 09:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88D22EB5C6;
-	Sat, 13 Sep 2025 09:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FB12D5946;
+	Sat, 13 Sep 2025 09:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="lzeFdCuD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ivrUq5tj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCAA2EAB6E
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 09:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512C73B186
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 09:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757755638; cv=none; b=b1uHFGMEzbzKcqRPqntDAW2ARmte1yfSFJbdhMIi7gVvX80isFwKe51FgMqxrX6zXHLttxWGJYn+69z4NFDscfh81OePUvq28ksP+jpV3xwqhMWC//YFc8UKHkM9m3a0AiksWYYn74kuBGlpnNwr0a7EpRz115kCErpSrjFhCtA=
+	t=1757755760; cv=none; b=djka1fefZxc2KCFct9CBY+FJvIaiEnd50ZSDx7NrkxoX6ckdUev3C5lEmQkmGdVx+k9CzdtequICx6oQC+Geog7SBgSC3yQw26yjC8WASvDVfxVDRNwpXf8r3XM2mozUrs9vuB3FDi02+DLtygNnixA36iUYEgJhjIxpv/JzHpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757755638; c=relaxed/simple;
-	bh=yrpiAloBhI4p4ZhNenjc/ytnMmXyltlftqvFi3+CYcA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TOmgQE86aTtTyOy2Ip6Nar3MYh3xoUVMEg1wGBp1e3kr2ZBLdjkO6jWKqOnxicdP4UQ+QpH3bQKKaYGoSv9wkzXJQtI1wNbBQD9FE2UqaLFVb8b0XR3/sxXBrSIG4GqMsEXaLDnY3SwgfaKWOBDkoytKLBDgcV4tTwXXx4Ch2vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=lzeFdCuD; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-62f1987d493so220727a12.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 02:27:16 -0700 (PDT)
+	s=arc-20240116; t=1757755760; c=relaxed/simple;
+	bh=8KECooiguoFsg53E7rkhnQcrb+WVUBu+SlwPVT+sY7c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mnrATMwYEEQOzVsOIHinGfwh9wrrnjVBkeLefEx1UfB8GvcboSaIhGQ2p9aUB9S7JMWceMWBZ5upb4HxiN1vkSGn74XZmB7WJNfpbSm2+nrxWFYkX42YvvhTrdhmLD8NJCqBZzAAFLcG6Ma2IR3Rq9sFQ4yXeS42DIvvYlQtX3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ivrUq5tj; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-89e5b87f406so722899241.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 02:29:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757755635; x=1758360435; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1757755757; x=1758360557; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZN4beYZHw/m6widRTHsuro02Y0QudB0qsvA1rFXjFHs=;
-        b=lzeFdCuDsgEbKjIVR98zhARXXwYK/iplkNXgoRMed4pemjP2Gh04mmEdpMgHxlR1Jp
-         A4uKxckus2VcJ+iwaqOMNv3/37VWQ9GrooWr2q8ijihdM+ar8kI6rrsdrkdsM55B2014
-         aoHvkos6C8PT21/tx1O/d/8TJcNOI+CaqltLc=
+        bh=3hpXAGaVCNI8VKWlBxzDF3/2pMhCFKKzKfanUfijSGo=;
+        b=ivrUq5tjk0dPjBxbzwCO35vyETBNaAMO5Yi0Y9QEsUNQKeQflt+OGhroGJdKgDeNhW
+         1yY2WIcQnhUfJZAVse4Ih7pR2Dv/hC+2exXD0x70OUfm0TdqBbAqOIwBRri15R61d/+H
+         W2zwG7n+gXeZIth9EzDOvm9m1P9bfl++Ruqcj+lgh+yhEP9FhycWOud+M3RqkCnoUg5E
+         eVG5Z2+yk/NCASJELfHoiANvekLt1SEXB+xY4EMPp1znPbJRvAbut0fiLpPC8lbsx9rw
+         K98IpXAGLd8Df04qbGkDdN1nefv4w3tz2ASZkPYeY2ZfujMfU+AleNZPotOVXLox4hpt
+         lZmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757755635; x=1758360435;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1757755757; x=1758360557;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZN4beYZHw/m6widRTHsuro02Y0QudB0qsvA1rFXjFHs=;
-        b=I9MaxXiB5P6NepKiUqWlPKTebSL17Z42RgcEzKRKeTKe7eTrP1EausvMK9c9FKnWAC
-         /tG/C6u0WkKMCixDx3K65bcWDc5JfY9cXVKDZ9oeN8CKRreNfFzNEbUG+NtmdlQhOQuY
-         5mSoTH3eq4FWEl2O6vUfoTLlRyCgZuLLFUJWb6EJEvvQaP3/2xqbnC2v7Qx9MsMFns67
-         XfCZIjjUK/mNlwHkUyxJ0qBITtAcIFlwOlKjM7+97klRrR+TlxJ0UZyuwPHjah5YYz3l
-         dLuTe5Qmlz3YKNa+g+AVc7z/jjSpu3fBu6Ykqg8ZE2KrYxK0JSxSwhs8xl424K1nMjVe
-         +y1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUylNL6jOIHBMKaIKH4vbc3A1GwODW9D8h4xza3aJCqIHjZx1isag9bahMk6KZTs10mtox/mg1Jl4sY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD3bEwLxgk5kQQ+NkOREq3NuMG7AN2AhanppgMgIqoTggkMRJi
-	1FC8SnTZex0OBhwnpuOewdzo3lHxeG6acied4Nru9+eb2EL0VTpG2yioUJt9uC/GWdU=
-X-Gm-Gg: ASbGncuH+Vo7XimwH1Q+scilAzDSHZ/+k/J7mt/mtQLY1UCSKW2yCSRIs1dEzI6h/Km
-	p8ybn1WWKlvNnJuEh2OJWKNu/oVCL6U4TiaMyuw3i84JX6e3pwMQv3lsOupnYytpBMJsGD9NeCO
-	jrW4T1sXUCWW2cQIQ7yHGPvnw5b9PI3JD/5F/dEHOQopKPIYFuVJUaLL15duPHKLQg0O3HbmxvA
-	Ax3qBDNbKW1XyyYMBBOgZh9OuOcMyUJkTsz6mGQzolMyr/zsg61McYPGeX7sAUnQZ6i0sQjcq5P
-	70hLrHxnAwCFCkSiBmcXptjpOGPRVqI4tmwwY/y7+mb0yvLwEB8x6X2VKnfpLWBGsiNcxsDq9pX
-	IA7hPaLETRk2MLbEL7UoYcXg1FIQN5gwway0F/P/9Jef9PoIyR/hMbJ4ZHK9wIYE02T8ct2n51A
-	ZohQb5Y6NIMXQiO2VngqXqw8ofq9hiy8wcF80HsTs07CyfnhYZYUNY0WGZWgZYUFNuwzGqyl0YM
-	Q4=
-X-Google-Smtp-Source: AGHT+IHv7bNkL/Bm3DVHJJzKvLokKqToRNVyhlC2S70s85D3t3Bilce6lDaE7bZNFEYk4zHC7lh/yg==
-X-Received: by 2002:a17:907:2d2c:b0:b07:9c13:153e with SMTP id a640c23a62f3a-b07c353e3f8mr586848266b.2.1757755635504;
-        Sat, 13 Sep 2025 02:27:15 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b33478besm551705766b.99.2025.09.13.02.27.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Sep 2025 02:27:15 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH v2 5/5] dt-bindings: touchscreen: remove touchscreen.txt
-Date: Sat, 13 Sep 2025 11:26:55 +0200
-Message-ID: <20250913092707.1005616-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250913092707.1005616-1-dario.binacchi@amarulasolutions.com>
-References: <20250913092707.1005616-1-dario.binacchi@amarulasolutions.com>
+        bh=3hpXAGaVCNI8VKWlBxzDF3/2pMhCFKKzKfanUfijSGo=;
+        b=cBrqSR2xv4uiU/2VkMh7pt4asvdDWmp17TFyGLOHtNy9UzuhwpBfjQKAgw+dNeTNMB
+         gSDKBzrB+8mnaW7f0AIJcsKbDHPR+82lwe2slGmOOf7279DPd8yNunbZCmMzSrcwhRV/
+         eo9cdisVVd37PSm0MtzVj/tcrZV6SQBWStrN15p2cgM1H9AreC5SOs+AbNApg0S3/7YO
+         A9SkX3Ol5CdG6J22zKz9JC0Jo7+XfH2LwZ4EfLDRkG6HnYzEd5VHFFipViBhS7tIq1t/
+         /w0Fp/E8C0YYM5JPHoUdmIFI+yGuQNc4dGZlcDAbmR0F8jITpbTAHf1ADdTi3ljetfHj
+         8tkQ==
+X-Gm-Message-State: AOJu0YxCNWbpa4OGTAPxtSuiv7vXFtMOhNhI9gaXTEDzrF8Pg3HZLhMk
+	3o+LtmdDSOPCvO64oyXs02U8cpRIiJwvhUgalw2qbxQfsl6f1gmnWnwIQbFfvsY3hcqLjRupmWg
+	mLkW2lfB63M1fSz6TCVndOmMlp35UXSE=
+X-Gm-Gg: ASbGncuNCSl4fo6Ou8O9lnmzc45bd8FZrVm6kU7WjRl5DQcn9ic1VqzI0hPWXPf/Acw
+	KLVPhhjfbJ/ieAipDyORWX+n5WAkq+bGRMrBZMwmyL31VN/mxJK1H53x10FS0HvAKTUtTxms2pf
+	x+P2kMuDMMJnq282wjSRU3skjYs3FI5pqzkconR7Wj3hp3F4ZBlaI+FZHDC2Nvkcom0UQES2QNa
+	DquMeY=
+X-Google-Smtp-Source: AGHT+IF1tpIgRKc0Kjd90cmIEFUZM2Fe4ziJOCTrd+iiCXW/77FmQOzrFrTYzgnyYA+0/gkm3WFMSyhFsQeg+Kodd1o=
+X-Received: by 2002:a05:6102:d8d:b0:555:56e0:f372 with SMTP id
+ ada2fe7eead31-5560908d470mr2397200137.2.1757755757060; Sat, 13 Sep 2025
+ 02:29:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250911184528.1512543-1-rabenda.cn@gmail.com>
+ <20250911184528.1512543-3-rabenda.cn@gmail.com> <20250912-gander-fox-d20c2e431816@spud>
+In-Reply-To: <20250912-gander-fox-d20c2e431816@spud>
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Sat, 13 Sep 2025 17:29:06 +0800
+X-Gm-Features: AS18NWD-tBqk49KioxOmXqHDB8mXESNI-lFCAKSwfVB70oRBqo6Nz_fXy22ttJU
+Message-ID: <CAAT7Ki_WD+X64oTPro=yn2de+Y_W9B2iDVE2cmRhV=TnQiUmPQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] riscv: dts: thead: add ziccrse for th1520
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, Drew Fustini <fustini@kernel.org>, 
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Han Gao <gaohan@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-With commit 1d6204e2f51f ("dt-bindings: touchscreen: Add touchscreen
-schema") touchscreen.txt is no longer needed, and since no other file
-refers to it, it can be safely removed.
+On Sat, Sep 13, 2025 at 1:57=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Fri, Sep 12, 2025 at 02:45:27AM +0800, Han Gao wrote:
+> > th1520 support Ziccrse ISA extension [1].
+> >
+> > Link: https://lore.kernel.org/all/20241103145153.105097-12-alexghiti@ri=
+vosinc.com/ [1]
+>
+> I don't see what this link has to do with th1520 supporting the
+> extension. The kernel supporting it has nothing to do with whether it
+> should be in the dts or not. A useful link would substantiate your
+> claim.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Existing rv64 hardware conforms to the rva20 profile.
 
----
+Ziccrse is an additional extension required by the rva20 profile, so
+th1520 has this extension.
 
-Changes in v2:
-- Update the commit message
-- Add Acked-by tag of Rob Herring
-- Add patches:
-  - 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
-  - 2/5 dt-bindings: touchscreen: convert eeti bindings to json schema
-  - 3/5 dt-bindings: touchscreen: convert raspberrypi,firmware-ts bindings
-    to json schema
-  - 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
+Link: https://github.com/riscv/riscv-profiles/blob/main/src/profiles.adoc#5=
+11-rva20u64-mandatory-base
+[1]
 
- .../devicetree/bindings/input/touchscreen/touchscreen.txt        | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-deleted file mode 100644
-index e1adb902d503..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-+++ /dev/null
-@@ -1 +0,0 @@
--See touchscreen.yaml
--- 
-2.43.0
-
-base-commit: 22f20375f5b71f30c0d6896583b93b6e4bba7279
-branch: drop-touchscreen.txt
+>
+> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+>
+> You only need to sign this off once.
+>
+> Cheers,
+> Conor.
+>
+> > ---
+> >  arch/riscv/boot/dts/thead/th1520.dtsi | 24 ++++++++++++++++--------
+> >  1 file changed, 16 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dt=
+s/thead/th1520.dtsi
+> > index 59d1927764a6..7f07688aa964 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -24,8 +24,10 @@ c910_0: cpu@0 {
+> >                       device_type =3D "cpu";
+> >                       riscv,isa =3D "rv64imafdc";
+> >                       riscv,isa-base =3D "rv64i";
+> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> > -                                            "zifencei", "zihpm", "xthe=
+advector";
+> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c",
+> > +                                            "ziccrse", "zicntr", "zics=
+r",
+> > +                                            "zifencei", "zihpm",
+> > +                                            "xtheadvector";
+> >                       thead,vlenb =3D <16>;
+> >                       reg =3D <0>;
+> >                       i-cache-block-size =3D <64>;
+> > @@ -49,8 +51,10 @@ c910_1: cpu@1 {
+> >                       device_type =3D "cpu";
+> >                       riscv,isa =3D "rv64imafdc";
+> >                       riscv,isa-base =3D "rv64i";
+> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> > -                                            "zifencei", "zihpm", "xthe=
+advector";
+> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c",
+> > +                                            "ziccrse", "zicntr", "zics=
+r",
+> > +                                            "zifencei", "zihpm",
+> > +                                            "xtheadvector";
+> >                       thead,vlenb =3D <16>;
+> >                       reg =3D <1>;
+> >                       i-cache-block-size =3D <64>;
+> > @@ -74,8 +78,10 @@ c910_2: cpu@2 {
+> >                       device_type =3D "cpu";
+> >                       riscv,isa =3D "rv64imafdc";
+> >                       riscv,isa-base =3D "rv64i";
+> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> > -                                            "zifencei", "zihpm", "xthe=
+advector";
+> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c",
+> > +                                            "ziccrse", "zicntr", "zics=
+r",
+> > +                                            "zifencei", "zihpm",
+> > +                                            "xtheadvector";
+> >                       thead,vlenb =3D <16>;
+> >                       reg =3D <2>;
+> >                       i-cache-block-size =3D <64>;
+> > @@ -99,8 +105,10 @@ c910_3: cpu@3 {
+> >                       device_type =3D "cpu";
+> >                       riscv,isa =3D "rv64imafdc";
+> >                       riscv,isa-base =3D "rv64i";
+> > -                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c", "zicntr", "zicsr",
+> > -                                            "zifencei", "zihpm", "xthe=
+advector";
+> > +                     riscv,isa-extensions =3D "i", "m", "a", "f", "d",=
+ "c",
+> > +                                            "ziccrse", "zicntr", "zics=
+r",
+> > +                                            "zifencei", "zihpm",
+> > +                                            "xtheadvector";
+> >                       thead,vlenb =3D <16>;
+> >                       reg =3D <3>;
+> >                       i-cache-block-size =3D <64>;
+> > --
+> > 2.47.3
+> >
 
