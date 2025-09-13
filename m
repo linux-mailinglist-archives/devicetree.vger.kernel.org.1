@@ -1,165 +1,253 @@
-Return-Path: <devicetree+bounces-216776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE67B560F4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 14:57:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2CBB560F7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 15:00:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF4E0487F98
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 12:57:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F6C93B0DE3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 13:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F832ED14E;
-	Sat, 13 Sep 2025 12:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D9D2EC573;
+	Sat, 13 Sep 2025 13:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N4r9yMcT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PxDOg9UN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2862EC546
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 12:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDC12EBB81;
+	Sat, 13 Sep 2025 13:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757768239; cv=none; b=G9vzSti234xlfEh4S29z0JcI7KLB1piQh9uy4MuO/YPo23n+dLIjrD/8WdZPhlBEJ2AGHHiLwJ8DEUV3fWD6nnnNoqU+WJA77+B770IpwvDxEejpWM7qxUag/ewnniAYZfSNbeas7+X9eZc+FyQ7566pqp7z+ULHccX9mgpqKIs=
+	t=1757768416; cv=none; b=C7/J46aLphOp0ZuMo0dDHeqDAm3SV0bh8+br+7Fh2xbwOdHVu1E95Kb/pkZIDltaxFJM7FxjYcrhcuPejYRGq1tASZ3juHw2y5w7dExj/xdEYcdYNAQQWJoNVg17HGjl11Sa2SoeZ3my1E3LiOmv4VlsCABdr3WChyXpT5qpjOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757768239; c=relaxed/simple;
-	bh=tUiYl0q8nzJqURhBlH50zoLRaS/z9qcITQokKmLz2p4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jMWv86k4FhEZWqa9V98Y2DjZdtjnYGVWVdgkHuZYfNTlUaOgv2/QInqp4Yc892uBqK2UZhsHRx/ruHTL/hwEz3IWQ6xPy1pTK4KpIx9YP6mvwg9iaxtwwUj6jlpEY0pxeefr+YN4zmPPelzi0e4bYqFS2zamaCtbFQyi/G+ma0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N4r9yMcT; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45de185c04aso1990555e9.3
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 05:57:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757768235; x=1758373035; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ajlX5M9D9raPkoDC7DsJaAjqkrSXNAPNl1i9qyNoGCQ=;
-        b=N4r9yMcTiT923AivOuOCM817JOx+o1P7JP5CiW2QiASdtJisi42/0ogxnA9EjRlhIl
-         jmwraHq38BRr1uWL7elN5gv5Ro74atRIUZtf7rKArDgedYF8xxgTRe4Cx6FY1gmdXjvg
-         KkizoZiKm7IczgC7TSl4b/C9Te9r9A4ZyDjGPs33Y+qDpzwPuPJxqt0eDU7IXw9J7quk
-         PJFjJ0b1FXM9abTW4W5VxBhS+hGPFVpcxeVZVXs0fQ/qZyP1NSP4K3RrE/n/xXM4cxTD
-         qq+3svhUQr8L5q7LKR8bVUqutIvTVDQhiSvp2JmyezhVALkSFQGZwLOgrNJQ0ku+90Ef
-         FRjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757768235; x=1758373035;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ajlX5M9D9raPkoDC7DsJaAjqkrSXNAPNl1i9qyNoGCQ=;
-        b=Zef9Wiiy6Yem3zka0jPL02GpkhhEOTMPNKO1xYFhYG7e+uA7qQt+yng4P2KGhrP+We
-         iYO9keK+sOYJZFlZrawq54c4vxP5LE/vs7tqyEpiXxKJbDjdAQUuJ7DTZXvJPjVkw1P1
-         H67i/diMYdz9ebj/VAeCzzbuD2oE8bStjdD/EMlr5gvAcm6Yc2x1VtHu7tmE2YtEaWnm
-         mEsBtURM5XiPrj/xl8c46C9y9chGXDY/LN9ilYsWMGLNsjeHUigOrCCUwFcTbkxjOAwC
-         IVsqYRXg0u9rgNUKtWSf5RvkhCkusNXTEMXEHSiEV4I217yPRvOXWPPcIviCvtELe0Nb
-         ulsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVczptkh+jgaEtNiYH1XQf4wIWdAITrdOHMKpK4Z63Xe4z6JZ10QBCdtGepLXAvvew3drgz3Dd1evy+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzepdErG7BRks+FuohLq16i1ot056bZm6PBSimk1GNQnf5DoNu
-	i7S8/XtoTO8cQ88Hx0eg/MIpl/K+sLSYQWN1Jk+TTadzCHrbI+yLeVqOgu4YuArsXw4=
-X-Gm-Gg: ASbGncsl81vhU5ubey5tYQPGmEAw33ik7Z82optFWJ+ZtMSrzK0Jl7/6uKIbHSwHcNF
-	+6w/cdQn26AVHjC+DDFDNnpAcxwcPZ4X5bPEfeeH42OdDfPDj0aGa/vtBxuxTJ3qS5gibvMsues
-	zNFnAjNtlVnQOSSi7XCHrR8Ex7pxsUNucbGMcqqMilvImwj8ywvTk+0JYewatw9RE9InZjg7z7w
-	ckK6FiWV3tQLNBGnZnctbM83wqxxHUONtMBJ8LH8n1R1RgY+tiC82VXege7ueMFfPpr1VHSr0OL
-	TcqnoQ96Pr0wTHkeKHINXB6ixyCXLnGWfatnZbKduknH7Wr/LvKucEAyMeE6h3urI0PicrNmON5
-	SLYSai7VXuBFlR5y3+tQJ1g7/B7AFhuOPhaQMhckBDZo=
-X-Google-Smtp-Source: AGHT+IGn5sCzsoqc2MaMoViDVBdvECXXkAco+Eu+Io81V2kX6oTtmJINauxexWPqK3aRnlW4W1Kmug==
-X-Received: by 2002:a05:600c:6090:b0:45d:d289:f505 with SMTP id 5b1f17b1804b1-45f211f859dmr32547895e9.4.1757768235253;
-        Sat, 13 Sep 2025 05:57:15 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7e645d1fcsm4235977f8f.48.2025.09.13.05.57.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Sep 2025 05:57:14 -0700 (PDT)
-Message-ID: <0ac9fe53-8f0c-4729-82a9-3358eec19892@linaro.org>
-Date: Sat, 13 Sep 2025 14:57:12 +0200
+	s=arc-20240116; t=1757768416; c=relaxed/simple;
+	bh=X3tVUZP55kWuMIOu1Vz3p03KRrrhWN+I6yX2nUWctE4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OTi9A6e0ZPFK77g1O4vp/GVsU6KKrq8BDmcSB3aHqO141MvjJTWh5izP4JPdKSCqkqlkQBn1ORljQdDtVaYTovSsO780VVWA35h3HBOinoXEy1exkxoWOI9cAhFwQ7pbvFsaJSnn1w1KbnW4raw1DJ1Hk5Sc0TRyW83b7gR787w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PxDOg9UN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D27A8C4CEEB;
+	Sat, 13 Sep 2025 13:00:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757768416;
+	bh=X3tVUZP55kWuMIOu1Vz3p03KRrrhWN+I6yX2nUWctE4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PxDOg9UNhG8D7ekDepACM+vk2ViONC49BebZ/Eq8NQKIHG7V3/VdJI2YaTCmZIBFN
+	 fV2MuZ8WjEK9QxjTuN39reN6wYLifaea2yJYSXuvzqNB+vVRUL0hoQguYWcHcJ4mdp
+	 irmHZMJiBDx8P7BgTMjYHbWzxGC5OLgVofuVAaLdpjfZtlSARTjeqnQ4aajKhdYsUE
+	 1ymc4JI5zocMc3pOZQVlAoWk1oQEuwN4T/gjEXpissiS+yPQ8twLzl92xzPyw0SSY/
+	 RGMJjp336sIjijFt7Vn1Ol9T+jjk5seSZu48Zu5uvSAKMVaitO2qvw77CCfGkQa4XJ
+	 R66pb30nkDPnA==
+Date: Sat, 13 Sep 2025 14:00:08 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v7 4/6] iio: adc: add ade9000 support
+Message-ID: <20250913140008.512a0168@jic23-huawei>
+In-Reply-To: <20250908073531.3639-5-antoniu.miclaus@analog.com>
+References: <20250908073531.3639-1-antoniu.miclaus@analog.com>
+	<20250908073531.3639-5-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-shift-axolotl: Fix typo of
- compatible
-To: Tamura Dai <kirinode0@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <Message-ID: <2d41c617-b7c7-43ae-aa90-7368e960e8a5@kernel.org>
- <20250913063958.149-1-kirinode0@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250913063958.149-1-kirinode0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2025 08:39, Tamura Dai wrote:
-> Fix typo in the compatible string for the touchscreen node. According to
-> Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml,
-> the correct compatible is "focaltech,ft8719", but the device tree used
-> "focaltech,fts8719".
+On Mon, 8 Sep 2025 07:35:24 +0000
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-I am sorry, but why are you sending this? You were told this is wrong.
-
+> Add driver support for the ade9000. highly accurate,
+> fully integrated, multiphase energy and power quality
+> monitoring device.
 > 
-> Fixes: 45882459159d ("arm64: dts: qcom: sdm845: add device tree for SHIFT6mq")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Tamura Dai <kirinode0@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-Missing changelog. What is the reason of this v3? Why are you sending it?
+> +static int ade9000_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val,
+> +			    int *val2,
+> +			    long mask)
+> +{
+
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (chan->type == IIO_ENERGY) {
+> +			u16 lo_reg = chan->address;
+> +
+> +			ret = regmap_bulk_read(st->regmap, lo_reg,
+> +					       st->bulk_read_buf, 2);
+> +			if (ret)
+> +				return ret;
+> +
+> +			*val = st->bulk_read_buf[0];  /* Lower 32 bits */
+> +			*val2 = st->bulk_read_buf[1]; /* Upper 32 bits */
+> +			return IIO_VAL_INT_64;
+> +		}
+> +
+> +		ret = iio_device_claim_direct(indio_dev);
+
+Sparse wins.  The sense of this is backwards.
+
+One other case of that an access to the private masklength element of iio_dev.
+Makes me thing you forwards ported this from an older kernel and didn't
+test it.
+
+Anyhow, I have the following diff - some long and short line tweaks in here
+along with the real code changes. Please check the result which I'll push
+out as testing shortly.
+
+diff --git a/drivers/iio/adc/ade9000.c b/drivers/iio/adc/ade9000.c
+index 9aea09180d62..94e05e11abd9 100644
+--- a/drivers/iio/adc/ade9000.c
++++ b/drivers/iio/adc/ade9000.c
+@@ -790,8 +790,7 @@ static int ade9000_iio_push_streaming(struct iio_dev *indio_dev)
+                        return IRQ_HANDLED;
+                }
+ 
+-               ade9000_configure_scan(indio_dev,
+-                                      ADE9000_REG_WF_BUFF);
++               ade9000_configure_scan(indio_dev, ADE9000_REG_WF_BUFF);
+        }
+ 
+        return 0;
+@@ -807,7 +806,8 @@ static int ade9000_iio_push_buffer(struct iio_dev *indio_dev)
+ 
+        ret = spi_sync(st->spi, &st->spi_msg);
+        if (ret) {
+-               dev_err_ratelimited(&st->spi->dev, "SPI fail in trigger handler\n");
++               dev_err_ratelimited(&st->spi->dev,
++                                   "SPI fail in trigger handler\n");
+                return ret;
+        }
+ 
+@@ -862,7 +862,8 @@ static irqreturn_t ade9000_irq0_thread(int irq, void *data)
+                if (iio_buffer_enabled(indio_dev)) {
+                        ret = ade9000_iio_push_buffer(indio_dev);
+                        if (ret) {
+-                               dev_err_ratelimited(dev, "IRQ0 IIO push fail @ WFB TRIG\n");
++                               dev_err_ratelimited(dev,
++                                                   "IRQ0 IIO push fail @ WFB TRIG\n");
+                                return IRQ_HANDLED;
+                        }
+                }
+@@ -901,9 +902,11 @@ static irqreturn_t ade9000_irq1_thread(int irq, void *data)
+                        /* Clear the reset done status bit */
+                        ret = regmap_write(st->regmap, ADE9000_REG_STATUS1, ADE9000_ST1_RSTDONE_BIT);
+                        if (ret)
+-                               dev_err_ratelimited(&st->spi->dev, "IRQ1 clear reset status fail\n");
++                               dev_err_ratelimited(&st->spi->dev,
++                                                   "IRQ1 clear reset status fail\n");
+                } else {
+-                       dev_err_ratelimited(&st->spi->dev, "Error testing reset done\n");
++                       dev_err_ratelimited(&st->spi->dev,
++                                           "Error testing reset done\n");
+                }
+ 
+                return IRQ_HANDLED;
+@@ -1026,9 +1029,8 @@ static int ade9000_read_raw(struct iio_dev *indio_dev,
+                        return IIO_VAL_INT_64;
+                }
+ 
+-               ret = iio_device_claim_direct(indio_dev);
+-               if (ret)
+-                       return ret;
++               if (!iio_device_claim_direct(indio_dev))
++                       return -EBUSY;
+ 
+                ret = regmap_read(st->regmap, chan->address, &measured);
+                iio_device_release_direct(indio_dev);
+@@ -1040,9 +1042,8 @@ static int ade9000_read_raw(struct iio_dev *indio_dev,
+                return IIO_VAL_INT;
+ 
+        case IIO_CHAN_INFO_POWERFACTOR:
+-               ret = iio_device_claim_direct(indio_dev);
+-               if (ret)
+-                       return ret;
++               if (!iio_device_claim_direct(indio_dev))
++                       return -EBUSY;
+ 
+                ret = regmap_read(st->regmap, chan->address, &measured);
+                iio_device_release_direct(indio_dev);
+@@ -1206,7 +1207,8 @@ static int ade9000_read_event_config(struct iio_dev *indio_dev,
+                        return !!(interrupts1 & ADE9000_ST1_SWELLA_BIT);
+                else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+                        return !!(interrupts1 & ADE9000_ST1_DIPA_BIT);
+-               dev_err_ratelimited(&indio_dev->dev, "Invalid channel type %d or direction %d for phase A\n", chan->type, dir);
++               dev_err_ratelimited(&indio_dev->dev,
++                                   "Invalid channel type %d or direction %d for phase A\n", chan->type, dir);
+                return -EINVAL;
+        case ADE9000_PHASE_B_NR:
+                if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER)
+@@ -1217,7 +1219,8 @@ static int ade9000_read_event_config(struct iio_dev *indio_dev,
+                        return !!(interrupts1 & ADE9000_ST1_SWELLB_BIT);
+                else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+                        return !!(interrupts1 & ADE9000_ST1_DIPB_BIT);
+-               dev_err_ratelimited(&indio_dev->dev, "Invalid channel type %d or direction %d for phase B\n", chan->type, dir);
++               dev_err_ratelimited(&indio_dev->dev,
++                                   "Invalid channel type %d or direction %d for phase B\n", chan->type, dir);
+                return -EINVAL;
+        case ADE9000_PHASE_C_NR:
+                if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER)
+@@ -1228,7 +1231,8 @@ static int ade9000_read_event_config(struct iio_dev *indio_dev,
+                        return !!(interrupts1 & ADE9000_ST1_SWELLC_BIT);
+                else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+                        return !!(interrupts1 & ADE9000_ST1_DIPC_BIT);
+-               dev_err_ratelimited(&indio_dev->dev, "Invalid channel type %d or direction %d for phase C\n", chan->type, dir);
++               dev_err_ratelimited(&indio_dev->dev,
++                                   "Invalid channel type %d or direction %d for phase C\n", chan->type, dir);
+                return -EINVAL;
+        default:
+                return -EINVAL;
+@@ -1309,7 +1313,8 @@ static int ade9000_write_event_config(struct iio_dev *indio_dev,
+                        else
+                                st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+                } else {
+-                       dev_err_ratelimited(&indio_dev->dev, "Invalid channel type %d or direction %d for phase B\n",
++                       dev_err_ratelimited(&indio_dev->dev,
++                                           "Invalid channel type %d or direction %d for phase B\n",
+                                            chan->type, dir);
+                        return -EINVAL;
+                }
+@@ -1340,7 +1345,8 @@ static int ade9000_write_event_config(struct iio_dev *indio_dev,
+                        else
+                                st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+                } else {
+-                       dev_err_ratelimited(&indio_dev->dev, "Invalid channel type %d or direction %d for phase C\n",
++                       dev_err_ratelimited(&indio_dev->dev,
++                                           "Invalid channel type %d or direction %d for phase C\n",
+                                            chan->type, dir);
+                        return -EINVAL;
+                }
+@@ -1418,7 +1424,7 @@ static int ade9000_waveform_buffer_config(struct iio_dev *indio_dev)
+        u32 active_scans;
+ 
+        bitmap_to_arr32(&active_scans, indio_dev->active_scan_mask,
+-                       indio_dev->masklength);
++                       iio_get_masklength(indio_dev));
+ 
+        switch (active_scans) {
+        case ADE9000_SCAN_POS_IA | ADE9000_SCAN_POS_VA:
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regmap_read(st->regmap, chan->address, &measured);
+> +		iio_device_release_direct(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = measured;
+> +
+> +		return IIO_VAL_INT;
+> +
+
+Jonathan
 
 
-Best regards,
-Krzysztof
 
