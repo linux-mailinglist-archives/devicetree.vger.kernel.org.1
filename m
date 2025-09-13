@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-216826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EB7B56327
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDB2B5632B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 23:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62E02AA0985
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 21:22:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DCBAA072B8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 21:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A60284B36;
-	Sat, 13 Sep 2025 21:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7918A285C8A;
+	Sat, 13 Sep 2025 21:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WISYPIM8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Drz5Xxv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86A7284884
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 21:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60283284B25
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 21:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757798494; cv=none; b=Tk4H7EHyHDqCoRnl3tACS5o5WPS+qmFimH/lzjWeiEu1wTOTXHh/VPOQe9RCX2PGLSiaKrjeFlCNuVFHzKMZrt/RVt9oYr+Acj1inVmNxaDbjmgMetikBCnxMie18rwT7/qWiDgcw2FAWu2HvAHMXDYmOd0WmTfkwGvnpcuqqaw=
+	t=1757798497; cv=none; b=dD3mWXmGZQ0Qobud+Pq/gPLhVCvBWwQaeYuc9J6uIfUQMIcwp3LLhc+IRoPyL7JJyEtFkBDCICpuJGOKXPenHHf5RVbL0MBTXJ0PWYJm/+63HmJhZ1G/BidK+Uo0PELQbH0DRJ9w9zlAysqKDfB+jwgR5TJ7OC0lSPq5jHU4KGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757798494; c=relaxed/simple;
-	bh=igZli3gJlHsl2PQpYXr93eQBHQb74b0WC5i0KG6a+VA=;
+	s=arc-20240116; t=1757798497; c=relaxed/simple;
+	bh=xJIw1bAGNCKENGyl7Smzyc8MsigWND1otejzP0Dgs0g=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QP/oSuCrBmMUrGliCK2dmIZpX7dzKoMVnfrZMCdA/MDO5N8+cfF4FhuLerDbBZeSPGR1l+TfnE4TdcM82cQ9rvJ1ebk/S080kElf56lCMDxvzy/IlK/h613sVAYaCUdQI9q/KcZMaOYEzDoy1tWi3wGkcSqNl4V0C4wCnqQV1Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WISYPIM8; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:To:Cc; b=ELWFQwNGa7GyJFjjXkZbltit2ZoiSXiAVAR4/q0h7id4LUk/FjDlZdDFlrBTjKkKmvf0nelY5HN68ic9gIG7fG0pJNTjoxRWdMm9ElMWgUgSOA8PKhZeRgHHMCo9ov3bpyEIJxZ15UzUVhcs1H8MWk51LpJHyjMS8JMg9lIbXxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Drz5Xxv/; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45b4d89217aso20960705e9.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:21:32 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45dd505a1dfso24397125e9.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 14:21:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757798491; x=1758403291; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757798493; x=1758403293; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oxWfkQz90C9L6MSNr2+XH/iEJ/4hSdL7W7krVSxEuE0=;
-        b=WISYPIM8mjaQ7/B15WUWZ4dcQzMDqFFYp2yyof9DSjPkItZ3IrjgxWsGmk60KrjGNU
-         2uNMNwF+Bfhh/shqswTN6ihMacTzhMbc7zQ2UiESkyZRNlVnN152r8PLRT6ai+lAv7ph
-         jc2EDIufFVWk3NzHHgyTifKT6N42uRGTlxv6f5tD9ADvLABsE9AlpjNrjBv+USa051uV
-         MXeiWco4c/EB10kfREiiCloov1zgo44j8d86v7GylhDZf4PspY71DColscl+5Lkzs+8H
-         FfOH0m6FLYDEXxWQweUYcJC3gNnZapbpaT8Vnc3ZV6qOOyGHOxPZXcDM7hoduN7vbeY6
-         SVHw==
+        bh=V3eQWTLa8qf+9saHeA5hbj7RQD5lII0deY9ii6lAlos=;
+        b=Drz5Xxv/BnnMv3jLlTbBuSXPKfOokiDmndSmHCSTk8jIFRUD++SuYGrhzB7gwZ0AJ8
+         s0g9uY8kHpoM6xTsR6K5etO/bueVFHMExpXkU4fuFCEcKlz9Uqi6aDP7JjotO+oBxn/a
+         u/tb+b2a8I+z+COf8iKqlHjpo2vwe2Pt1e45WFtLR2WCpu7elYF+ZXlw+OXL/n30Dzkl
+         4rNm1mDx1piXImQpVDqKfsFmoKsgDd1imIYnrdryUAG6+443U/WckibvYwqzCoPL5Wqd
+         VM9NdQpGAlbxeyANVCboLvq2y1NPespdttxkJTvvvBygWCWolAROSIcd9L18TCnb/YWV
+         aNCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757798491; x=1758403291;
+        d=1e100.net; s=20230601; t=1757798493; x=1758403293;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oxWfkQz90C9L6MSNr2+XH/iEJ/4hSdL7W7krVSxEuE0=;
-        b=sXDpIih+F8dyo1uZYr1Jm0y/g8HJpYK8iJJKaPVAK+vvpLltvJnQl4LIQJutEnGjJk
-         LDh9sp9mSccT7CvOR8nXhzKVqKbWvDGdn+jWVXg8CcwqYS9BOOYtCnbY0lC5pgPtItxS
-         zOh49kBoavWnRjdsNxDnUCZfrPE/e2+Xx0ULI2p4cVjyjZjm5OwKhHgD+yKkSYAnLFqb
-         HeGpt56RDYHqUq3S+MNVFstgGsF4CTwWFN26pVJ+Az0sWVDf/oF3aSGd1OUTQT0k2blw
-         luh8GGMcKbncNbVlo5YpRwQ+e+ACBT2LejslGiu/9Vp+CdiZCtkFYIYhPsBCvJVvINBW
-         jcQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRsmeUrN4R0i6JO1rNI8oSMbpljz8MwrygO6SVs6ob3AOuxgaHRUB2w3IHBkssVjIbHd+9vRQ3O76+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0TVv8SWKD4TIkwuJ2WHK8IWh0pEabqlrlN6vypUKl9LlosdjG
-	84YyY7qa09HwgRJm7WBzJCGjlBp808li2/6XFyj1Zf3F5TpvBwqslDhk
-X-Gm-Gg: ASbGnctYtt7AaxrQaKQJRCNMZRxxSA9V4IcXQveaO+oLp+fwTanI5FDfXujUgg6HAzh
-	YySqcFzkht2KUpqz4ap8hwJmO75dTNmlYuchuWWngRdFg4XTJs6utHXCMvm2ktJmqrtSKfJwn22
-	/q2BmSveEmjfmT7srMSYnvp+5NW0l2wjvMvHefqK1/+RGjkhrVJMgzjf8Lhm//fXJA1MIuruwi1
-	7D9YMJtQiu5oMO+zPex2wiSZ7KOpvi5uBq67fQ73iWfbq1TWQjab/xKn20l60/a4b4OjZ1SZhkx
-	C5vP5kgRFynYgVeFqCCE7XSmSz1J2/3GBakDLp3WxUYDKPJ4bo/68XJN6yd2HFeQ5ItWLBT9Vwf
-	ibJiX9z/JWGBYPDF9GpeUcASbaGOlvUiq+AYuMXLJKw2y460M/Szt
-X-Google-Smtp-Source: AGHT+IEs/fk+jCkMcX17PxuJzAl3BMnHRPZjZ8PBJFXUcfnuVJskMnNC5koV2QxLjtd7wZEjTRjvpQ==
-X-Received: by 2002:a05:600c:45c5:b0:453:66f:b96e with SMTP id 5b1f17b1804b1-45f211ef88dmr66556345e9.11.1757798490854;
-        Sat, 13 Sep 2025 14:21:30 -0700 (PDT)
+        bh=V3eQWTLa8qf+9saHeA5hbj7RQD5lII0deY9ii6lAlos=;
+        b=Livwmjw8Xrn45MeDw0esaMSrJLXxTbcYhcpNgyKS27qj6qxSMs8GBwiiAJ5Lb3GQHD
+         ExEvTHHSgXGESeTbLCbazjeBcW5SKVzb1fttj0smgR/nrZsxPvP1g4a+nbKKNG/kXV1Q
+         npdECtM5IEWzs3FDJ6Ylj7InjsSy0kLbXvRBzLL41ontJ5m/AqOZssq5KFT5fru5OeHd
+         4kWLbY5DIbmxANK73dByT+o0kftxQqKHfk1CLKTuzjrzRaNVTIhs2AiuukEp5hKW4lZj
+         /7EbraGk/6s/u0Lnr8sD6I6q7FIPxJes+q/T1X51NegEIloxLo08j7CBjnNborvglE2+
+         dOFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkLBRc/1DXfTSppCCaXN0yTXX3oPXaKpoxQL8VZ4eBb23iu79QXTq0Se6wohdgxdkgDw/RPfY01crg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz01iOY+QJ5zMI2dUMfxycHIYIFjsSrloAK/q9o0AL63lNfAN5
+	wy3dLYY46KVLdoRwzGHF0Atv3AViLX1hsCV4CqhYLsv456yP4j7s6O62
+X-Gm-Gg: ASbGncsTsgPgz5QWml3cDs+F9u7c9E5bcw+dDTPUk+OxbJ+9R+x1gGyUWpyjD6qXhya
+	PiMD7VvVmp/4pMIJds5Q8dkly+NyjzMD2zXuYN1OGV9sV3Qcos8vD4VUAb8UoUD+h+sS6zU2PEW
+	LMpQwLa/uVZnhH+CWpDRVM54zmq47e/36V1Az5/4GbGHdGUpygXL2A7QuRabKaCaKDt0sfDTcDr
+	rPCgZNyjPjZoApiF6R9+uLFpsUwZDJ6ZFU7U04h3PiUrsA8LONgFxkvV2A1RfzHRufqf7iTqO9g
+	wzecJi4tdYavSwmp+okwMKfiMf9Aogjd0Tr3/No8QoDtIwdEuhROns5QTReKzDoliUb5gaDc6KG
+	7nwHw9WMm2nCKFCpVqgCdf7M5PQksrKBwaGsrCsDym0Qg5ddG/v8V
+X-Google-Smtp-Source: AGHT+IHr8CiMYGUEeTiKYHRRsxQhLO6JbPn2EeOKGS5jqS2eJuGZcBJj8fDG+9B8XtOlMfD63jhKQA==
+X-Received: by 2002:a05:6000:250f:b0:3da:936b:95cf with SMTP id ffacd0b85a97d-3e7657a93b4mr7806706f8f.28.1757798492558;
+        Sat, 13 Sep 2025 14:21:32 -0700 (PDT)
 Received: from Radijator.localdomain ([93.140.65.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd6absm11576842f8f.34.2025.09.13.14.21.28
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7607cd6absm11576842f8f.34.2025.09.13.14.21.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Sep 2025 14:21:30 -0700 (PDT)
+        Sat, 13 Sep 2025 14:21:31 -0700 (PDT)
 From: =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
-Date: Sat, 13 Sep 2025 23:21:05 +0200
-Subject: [PATCH RESEND 3/9] arm64: dts: marvell: samsung,coreprimevelte:
- Enable eMMC
+Date: Sat, 13 Sep 2025 23:21:06 +0200
+Subject: [PATCH RESEND 4/9] arm64: dts: marvell: pxa1908: Add PWMs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250913-pxa1908-dts-v1-3-8120cdc969b8@dujemihanovic.xyz>
+Message-Id: <20250913-pxa1908-dts-v1-4-8120cdc969b8@dujemihanovic.xyz>
 References: <20250913-pxa1908-dts-v1-0-8120cdc969b8@dujemihanovic.xyz>
 In-Reply-To: <20250913-pxa1908-dts-v1-0-8120cdc969b8@dujemihanovic.xyz>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -98,126 +97,68 @@ Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>,
  linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
  =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3698;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1513;
  i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=8/peqm48tCTiEczHfDYZk/YBJQovtzWt9KQ0JhK9ewc=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBlHH/iXbxO44VcrF9qzRXLzgmz7d28d/yQ4fUguaD247
- amSxPXTHaUsDGJcDLJiiiy5/x2v8X4W2bo9e5kBzBxWJpAhDFycAjCR8B2MDPvn8IomPP5QfVl3
- 86QD/VOXm555zJEWyxtWvVnu/v1z8v8YGT4wz157xuv64fv66QyrH351u68YtHFzhVT8g1maq78
- 8O8oIAA==
+ bh=6njTuJu0UcIU1bHrsjDWk5PZ/WvBeIzNhePT57xOd78=;
+ b=owGbwMvMwCW21nBykGv/WmbG02pJDBlHH/j/9Wlu0tA/HS04WXhf9ekl35iYE3dVPO9++9LNc
+ NlCRpaKjlIWBjEuBlkxRZbc/47XeD+LbN2evcwAZg4rE8gQBi5OAZjIgxOMDEs7c44qKm/1nBH6
+ 4K9KyWyzKecW3JK8+My2/cC297a8Z18x/BXezh6Wsd3N7UmozX/JKU4zAhUM+Qoyj+vnp7ZzeUs
+ sZAAA
 X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
  fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
 
 From: Duje Mihanović <duje@dujemihanovic.xyz>
 
-Commit a41fcca4b342 ("mmc: sdhci-pxav3: set NEED_RSP_BUSY capability")
-fixed eMMC probing on this board. Enable the eMMC and add its pinctrl.
+The SoC has 4 onboard PWMs. Add a node for each of them.
 
 Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
 ---
- .../marvell/mmp/pxa1908-samsung-coreprimevelte.dts | 79 +++++++++++++++++++++-
- 1 file changed, 77 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi | 32 ++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-index aa161982ca43844287d212e8a24884d2b8440fed..78b7bccfc5f299889d1b9a8fd2c08554f17eb147 100644
---- a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-+++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-@@ -292,6 +292,79 @@ sdh0_pins_2: sdh0-pins-2 {
- 		pinctrl-single,input-schmitt-enable = <0x40 0 0x40 0x40>;
- 		pinctrl-single,low-power-mode = <0x208 0x388>;
- 	};
-+
-+	sdh2_pins_0: sdh2-pins-0 {
-+		pinctrl-single,pins = <
-+			0x24 1
-+			0x28 1
-+			0x2c 1
-+			0x30 1
-+			0x34 1
-+			0x38 1
-+			0x3c 1
-+			0x40 1
-+		>;
-+		pinctrl-single,drive-strength = <0x1000 0x1800>;
-+		pinctrl-single,bias-pullup = <0 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0 0xa000 0 0xa000>;
-+		pinctrl-single,input-schmitt = <0 0x30>;
-+		pinctrl-single,input-schmitt-enable = <0x40 0 0x40 0x40>;
-+		pinctrl-single,low-power-mode = <0 0x388>;
-+	};
-+
-+	sdh2_pins_1: sdh2-pins-1 {
-+		pinctrl-single,pins = <0x64 1>;
-+		pinctrl-single,drive-strength = <0x1000 0x1800>;
-+		pinctrl-single,bias-pullup = <0 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0 0xa000 0 0xa000>;
-+		pinctrl-single,input-schmitt = <0 0x30>;
-+		pinctrl-single,input-schmitt-enable = <0x40 0 0x40 0x40>;
-+		pinctrl-single,low-power-mode = <0x208 0x388>;
-+	};
-+
-+	sdh2_pins_2: sdh2-pins-2 {
-+		pinctrl-single,pins = <0x5c 1>;
-+		pinctrl-single,bias-pullup = <0xc000 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0x8000 0xa000 0x8000 0xa000>;
-+		pinctrl-single,low-power-mode = <0x288 0x388>;
-+	};
-+
-+	sdh2_fast_pins_0: sdh2-fast-pins-0 {
-+		pinctrl-single,pins = <
-+			0x24 1
-+			0x28 1
-+			0x2c 1
-+			0x30 1
-+			0x34 1
-+			0x38 1
-+			0x3c 1
-+			0x40 1
-+		>;
-+		pinctrl-single,drive-strength = <0x1800 0x1800>;
-+		pinctrl-single,bias-pullup = <0 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0 0xa000 0 0xa000>;
-+		pinctrl-single,input-schmitt = <0 0x30>;
-+		pinctrl-single,input-schmitt-enable = <0x40 0 0x40 0x40>;
-+		pinctrl-single,low-power-mode = <0 0x388>;
-+	};
-+
-+	sdh2_fast_pins_1: sdh2-fast-pins-1 {
-+		pinctrl-single,pins = <0x64 1>;
-+		pinctrl-single,drive-strength = <0x1800 0x1800>;
-+		pinctrl-single,bias-pullup = <0 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0 0xa000 0 0xa000>;
-+		pinctrl-single,input-schmitt = <0 0x30>;
-+		pinctrl-single,input-schmitt-enable = <0x40 0 0x40 0x40>;
-+		pinctrl-single,low-power-mode = <0x208 0x388>;
-+	};
-+
-+	sdh2_fast_pins_2: sdh2-fast-pins-2 {
-+		pinctrl-single,pins = <0x5c 1>;
-+		pinctrl-single,drive-strength = <0x1800 0x1800>;
-+		pinctrl-single,bias-pullup = <0xc000 0xc000 0 0xc000>;
-+		pinctrl-single,bias-pulldown = <0x8000 0xa000 0x8000 0xa000>;
-+		pinctrl-single,low-power-mode = <0x288 0x388>;
-+	};
- };
+diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
+index cf2b9109688ce560eec8a1397251ead68d78a239..61498fd75d1dcaf0d068943c1ac14d3e5a7ca9ae 100644
+--- a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
++++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
+@@ -195,6 +195,38 @@ gpio@100 {
+ 				};
+ 			};
  
- &uart0 {
-@@ -320,11 +393,13 @@ &usb {
- };
- 
- &sdh2 {
--	/* Disabled for now because initialization fails with -ETIMEDOUT. */
--	status = "disabled";
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&sdh2_pins_0 &sdh2_pins_1 &sdh2_pins_2>;
-+	pinctrl-1 = <&sdh2_fast_pins_0 &sdh2_fast_pins_1 &sdh2_fast_pins_2>;
- 	bus-width = <8>;
- 	non-removable;
- 	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
- };
- 
- &sdh0 {
++			pwm0: pwm@1a000 {
++				compatible = "marvell,pxa250-pwm";
++				reg = <0x1a000 0x10>;
++				clocks = <&apbc PXA1908_CLK_PWM0>;
++				#pwm-cells = <1>;
++				status = "disabled";
++			};
++
++			pwm1: pwm@1a400 {
++				compatible = "marvell,pxa250-pwm";
++				reg = <0x1a400 0x10>;
++				clocks = <&apbc PXA1908_CLK_PWM1>;
++				#pwm-cells = <1>;
++				status = "disabled";
++			};
++
++			pwm2: pwm@1a800 {
++				compatible = "marvell,pxa250-pwm";
++				reg = <0x1a800 0x10>;
++				clocks = <&apbc PXA1908_CLK_PWM2>;
++				#pwm-cells = <1>;
++				status = "disabled";
++			};
++
++			pwm3: pwm@1ac00 {
++				compatible = "marvell,pxa250-pwm";
++				reg = <0x1ac00 0x10>;
++				clocks = <&apbc PXA1908_CLK_PWM3>;
++				#pwm-cells = <1>;
++				status = "disabled";
++			};
++
+ 			pmx: pinmux@1e000 {
+ 				compatible = "marvell,pxa1908-padconf", "pinconf-single";
+ 				reg = <0x1e000 0x330>;
 
 -- 
 2.51.0
