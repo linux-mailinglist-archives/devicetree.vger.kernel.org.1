@@ -1,281 +1,119 @@
-Return-Path: <devicetree+bounces-216686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3CAB55AA4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 02:22:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED30B55AA9
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 02:24:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02C261D61307
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 00:22:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA4991D607B0
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 00:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EEF57C9F;
-	Sat, 13 Sep 2025 00:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AB41BC3F;
+	Sat, 13 Sep 2025 00:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YSMm4sCx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IKq+su/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326382BCFB
-	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 00:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3289B11CA9
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 00:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757722923; cv=none; b=Aj5N588fmVBKhYgUxtES4C8Uq5mzvbuAeHCuhrESHnhe6vpvY4xQpxEhcz2Hj0RJJBeIA8KGWBWrXKxUIDqd2zJJcqX7h9vOYV4+X9Ky8SGDBnEilZZyK27AX5aPRk0WfrOMqL5eB0kIvw0gets+787GzNjt0e11KVKP6sHuM/k=
+	t=1757723043; cv=none; b=mbZ6JCX9Z1FRHsCDqU62WeWAxsJwYM5GYkbm4OwLH1DYTeWJiJDiW/XVoZZ8ZK5XaNyY7x8dIentgGfaY1ZjXgWsFcmMiJp07PaPaICxVhU/PbZYoLNuZ47Je0GxKOE8CvPOBSy4I9/yiaGTYuiA8d5ku6NKMZ2rVEHP+EQ08cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757722923; c=relaxed/simple;
-	bh=Urdc6JYzrx0Y4755OqlZETPwrtx1Qgss7o6E9SXe/14=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mDgjnBrP358Cqi/5iOMY4yNhHWeKo5dfuYwtzxwBiNR2bSt0xVpi2JgwTV4sL9Bg1OrvQBZVRakDKhJA58smca//q4BkkMQ7+e7HRfMdov1asoUOdH7IZbRxihJXpS4M9LBgzcOlRH4GGmJXMmrqOyYVZ+SyKYTbVw+l4nGa0uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YSMm4sCx; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-327f87275d4so2481792a91.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Sep 2025 17:22:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757722921; x=1758327721; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Cm80ilLfnfK0GbUTGqohDWQAf4X+K0zsGOxjXBgYar0=;
-        b=YSMm4sCxxZ4bHVx3PHKTIPKX6Uc3RUq1w3QDjEoeJwbaTaCatGU7jTPAV36Lni9SV5
-         9+WIwX0uIQBAvB/GFIM7E1PhUlM65oJDQhnMMXWnTRkJ7mkDLa3OFXxDnk5tjDPMbOjp
-         fpY9UmaZxVELpUD33ft50Cl4rGD17IFAdh8A7l2XnQjWrvN14n5r+/AchK1mr+ebal6f
-         JWIZCNKsLs9aFW3Ph05sQwaQdPe5FX9KaxNrEDv4X7N2kQ8ZckQifa5tc53Adjvg9cWp
-         kM9jwPUivPcrEe2rQr+tCX3A1MDWRrZUY5sAKOXHmq+QWFOpOxdikWteGlInQysjuyTf
-         aLZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757722921; x=1758327721;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cm80ilLfnfK0GbUTGqohDWQAf4X+K0zsGOxjXBgYar0=;
-        b=dmenosx83jqByly1CJRP+IgQk4pychDNzziteRd6G3iKqYmqs7ckNAm18QwmEkZRtC
-         o4wklX52pX00sdSwyKCPKqsG3ewPTYMtlN9Viu1G9/IzsX3MO7wLGhm/rtlooUPXpHkP
-         UKYZq5xOkE21Epgj7eSNdNGA3R0JhxnfX1uWK4ewIIzmhIB+r5wCH258gA1XuA94NfP2
-         5L151Rbw0GxD00P+frWdIbaXz30iznVD5gsJ9bddFPumCuo3GF1ekZVVukA4FoRa/JTX
-         1TarN+H2MbYMIhzovdJP8y8VrbOzRl2EY2kF07t4LQ93fNU93j0zKCY+Wrriwiuu+bUC
-         7cLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJv+P26++gzxNoaljM/ye259KBXZn0B5LbUmrgHU6C31LbsIYQ7eJUi5e2aS6uvjA0L+/lqEz4om9a@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSFdzNyXov6GBsRJG6rWpW1sbUl4pIa2kqFeNtP5k+dNlOmiTQ
-	esSbYZAXUTM6FWIhvcbGhhEsUya4iBZItbRV+mmwVeH+Tm6L1A3gfzUR
-X-Gm-Gg: ASbGnctk2hzJ1I4Z0hyUIPdUMyyPLPZDXzqENiSMD5yfK6P+iPKBcmpHRzweHGnCuHh
-	ypFx5xrk/PUe6C6d64rGkb44HN2vqvXLAfMQmZpUXViWtg1/I42ozGZzm42WwhvV9PhDuwJSPww
-	bgJWPP1LJto6YDK1Jmx7400WNf8S4XtStfqUcTkuJ1rEwqc2ClWENQ6y6KqGsZXC3C9XnaPADdk
-	8P8AttzFUYGsN4kbNLrIcEqEtpSGzeHcRWwXHcm8eGXAwc+Bu9MiZ7jQCYzcbyXLh4hpkXBNgXk
-	8FUoCwu7W7U6/LpTscmlilLoQQG+lOYKnBF3qZthRUXVrtV9tLQN3yeD7NczyCK6KpssZy8sevd
-	YxT+J4FIrkTHOqa+WBHzKdYnG4Bi5sIL1aoM1bAFEIlPKqtU3avpLF0gur8G9HjgPHt6izcMd01
-	quDRopntzx3axT0TH8Wtcr
-X-Google-Smtp-Source: AGHT+IEcaqlanLAm9mIqOADYJZgjkBS/hD0ZIdrP7idMoPzA/i4SQfFiZafptr/j8gwT/hhYw6DsOw==
-X-Received: by 2002:a17:90b:1b50:b0:32d:d4c8:b658 with SMTP id 98e67ed59e1d1-32de4e5cb68mr5073830a91.7.1757722921338;
-        Fri, 12 Sep 2025 17:22:01 -0700 (PDT)
-Received: from localhost (185.3.125.34.bc.googleusercontent.com. [34.125.3.185])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-32dd620a64dsm7604593a91.8.2025.09.12.17.22.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Sep 2025 17:22:00 -0700 (PDT)
-From: Chia-I Wu <olvaffe@gmail.com>
-To: Boris Brezillon <boris.brezillon@collabora.com>,
-	Steven Price <steven.price@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 2/2] drm/panthor: add custom ASN_HASH support for mt8196
-Date: Fri, 12 Sep 2025 17:21:55 -0700
-Message-ID: <20250913002155.1163908-3-olvaffe@gmail.com>
-X-Mailer: git-send-email 2.51.0.384.g4c02a37b29-goog
-In-Reply-To: <20250913002155.1163908-1-olvaffe@gmail.com>
-References: <20250913002155.1163908-1-olvaffe@gmail.com>
+	s=arc-20240116; t=1757723043; c=relaxed/simple;
+	bh=LcYX22alJBWBcVaGqP0BLEghs+L/k9ZQqKP706ZqU8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XwdsWX/4Vchakk2+DXQPXuHlOdhS/5K58848RA+JAYreoCr+/ei03E3FFATlCRVz24Wko8GmKGzJrNVVUrD6EJymPQGgFDQCIGEBDOaie6+NEz7viADmjOiJUbeTXuG1XpZ+gfnc3P5K6gHMHAy1RpRpjYqhcAGTICP/dB3I62o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IKq+su/0; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757723042; x=1789259042;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LcYX22alJBWBcVaGqP0BLEghs+L/k9ZQqKP706ZqU8Q=;
+  b=IKq+su/0RGtEf7fv0vI/12Gs1pE51YQHU3sgcGB/2DudkcYGAYOoyN1d
+   uop67yXMGsq7Nl8E0QTXBMBjdRxycxhjQWiUJSD9QgdEyapMk96EC2ona
+   KDVpIWlHOMepnYxjt/11MW3E8M0gPtmzAyCNPVNunMgyJHqwPLMy8i3V5
+   ts+jFWHaKcKK7LIOCNIt16jGwlWGv6XI3QdSzbzm7jnJF4MqWw+44UDOg
+   S2eCG73Wk7nToN/dj8DFUDYUzU2D2quOTR3SLgNzFlg13qMC88eY36s6c
+   AHCxs5gr8iHqbgn75qyq73mPXErGEloKzfFCI1oT0gAksC+TM5gQntah7
+   A==;
+X-CSE-ConnectionGUID: 5VKiBbjWTYqVNJmbMKgT6A==
+X-CSE-MsgGUID: URsPoqqSTneN66aXV09mkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11551"; a="77683415"
+X-IronPort-AV: E=Sophos;i="6.18,260,1751266800"; 
+   d="scan'208";a="77683415"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Sep 2025 17:24:01 -0700
+X-CSE-ConnectionGUID: ROkWgZtmSS2R4fjBU22Qww==
+X-CSE-MsgGUID: MAL35EIDS72UkFilz2BhNg==
+X-ExtLoop1: 1
+Received: from lkp-server02.sh.intel.com (HELO eb5fdfb2a9b7) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 12 Sep 2025 17:23:57 -0700
+Received: from kbuild by eb5fdfb2a9b7 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uxE3W-0001H6-2F;
+	Sat, 13 Sep 2025 00:23:54 +0000
+Date: Sat, 13 Sep 2025 08:23:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>, thierry.reding@gmail.com,
+	robin.murphy@arm.com, robh@kernel.org, joro@8bytes.org,
+	jgg@ziepe.ca
+Cc: oe-kbuild-all@lists.linux.dev, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev, will@kernel.org,
+	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
+	code@tyhicks.com, eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com, bboscaccy@linux.microsoft.com,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v4 4/4] drivers: iommu: refactor arm_smmu_get_resv_regions
+Message-ID: <202509130836.idXoj3z8-lkp@intel.com>
+References: <20250909154600.910110-5-shyamsaini@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909154600.910110-5-shyamsaini@linux.microsoft.com>
 
-Add panthor_soc_data to control custom ASN_HASH. Add compatible string
-for "mediatek,mt8196-mali" and enable custom ASN_HASH for the soc.
+Hi Shyam,
 
-Without custom ASN_HASH, FW fails to boot
+kernel test robot noticed the following build errors:
 
-  panthor 48000000.gpu: [drm] *ERROR* Unhandled Page fault in AS0 at VA 0x0000000000000000
-  panthor 48000000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
-  panthor 48000000.gpu: probe with driver panthor failed with error -110
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.17-rc5 next-20250912]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-With custom ASN_HASH, panthor probes fine and userspace boots to ui just
-fine as well
+url:    https://github.com/intel-lab-lkp/linux/commits/Shyam-Saini/arm-smmu-move-MSI_IOVA-macro-definitions/20250909-235141
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250909154600.910110-5-shyamsaini%40linux.microsoft.com
+patch subject: [PATCH v4 4/4] drivers: iommu: refactor arm_smmu_get_resv_regions
+config: arm64-randconfig-002-20250913 (https://download.01.org/0day-ci/archive/20250913/202509130836.idXoj3z8-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250913/202509130836.idXoj3z8-lkp@intel.com/reproduce)
 
-  panthor 48000000.gpu: [drm] clock rate = 0
-  panthor 48000000.gpu: EM: created perf domain
-  panthor 48000000.gpu: [drm] Mali-G925-Immortalis id 0xd830 major 0x0 minor 0x1 status 0x5
-  panthor 48000000.gpu: [drm] Features: L2:0x8130306 Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
-  panthor 48000000.gpu: [drm] shader_present=0xee0077 l2_present=0x1 tiler_present=0x1
-  panthor 48000000.gpu: [drm] Firmware protected mode entry not be supported, ignoring
-  panthor 48000000.gpu: [drm] Firmware git sha: 27713280172c742d467a4b7d11180930094092ec
-  panthor 48000000.gpu: [drm] CSF FW using interface v3.13.0, Features 0x10 Instrumentation features 0x71
-  [drm] Initialized panthor 1.5.0 for 48000000.gpu on minor 1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509130836.idXoj3z8-lkp@intel.com/
 
-Note that the clock and the regulator drivers are not upstreamed yet.
-They might as well take a different form when upstreamed.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
+>> ERROR: modpost: "iommu_set_sw_msi" [drivers/iommu/arm/arm-smmu/arm_smmu.ko] undefined!
 
----
-v2:
- - remove CONFIG_DRM_PANTHOR_SOC_MT8196 and panthor_soc*.[ch]
- - update commit message
----
- drivers/gpu/drm/panthor/panthor_device.c |  2 ++
- drivers/gpu/drm/panthor/panthor_device.h | 14 +++++++++++++
- drivers/gpu/drm/panthor/panthor_drv.c    |  6 ++++++
- drivers/gpu/drm/panthor/panthor_gpu.c    | 25 +++++++++++++++++++++++-
- drivers/gpu/drm/panthor/panthor_regs.h   |  4 ++++
- 5 files changed, 50 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
-index 81df49880bd87..c7033d82cef55 100644
---- a/drivers/gpu/drm/panthor/panthor_device.c
-+++ b/drivers/gpu/drm/panthor/panthor_device.c
-@@ -172,6 +172,8 @@ int panthor_device_init(struct panthor_device *ptdev)
- 	struct page *p;
- 	int ret;
- 
-+	ptdev->soc_data = of_device_get_match_data(ptdev->base.dev);
-+
- 	init_completion(&ptdev->unplug.done);
- 	ret = drmm_mutex_init(&ptdev->base, &ptdev->unplug.lock);
- 	if (ret)
-diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
-index 4fc7cf2aeed57..9f0649ecfc4fc 100644
---- a/drivers/gpu/drm/panthor/panthor_device.h
-+++ b/drivers/gpu/drm/panthor/panthor_device.h
-@@ -31,6 +31,17 @@ struct panthor_perfcnt;
- struct panthor_vm;
- struct panthor_vm_pool;
- 
-+/**
-+ * struct panthor_soc_data - Panthor SoC Data
-+ */
-+struct panthor_soc_data {
-+	/** @asn_hash_enable: True if GPU_L2_CONFIG_ASN_HASH_ENABLE must be set. */
-+	bool asn_hash_enable;
-+
-+	/** @asn_hash: ASN_HASH values when asn_hash_enable is true. */
-+	u32 asn_hash[3];
-+};
-+
- /**
-  * enum panthor_device_pm_state - PM state
-  */
-@@ -93,6 +104,9 @@ struct panthor_device {
- 	/** @base: Base drm_device. */
- 	struct drm_device base;
- 
-+	/** @soc_data: Optional SoC data. */
-+	const struct panthor_soc_data *soc_data;
-+
- 	/** @phys_addr: Physical address of the iomem region. */
- 	phys_addr_t phys_addr;
- 
-diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
-index be962b1387f03..9dd90754865ac 100644
---- a/drivers/gpu/drm/panthor/panthor_drv.c
-+++ b/drivers/gpu/drm/panthor/panthor_drv.c
-@@ -1682,7 +1682,13 @@ static struct attribute *panthor_attrs[] = {
- 
- ATTRIBUTE_GROUPS(panthor);
- 
-+static const struct panthor_soc_data soc_data_mediatek_mt8196 = {
-+	.asn_hash_enable = true,
-+	.asn_hash = { 0xb, 0xe, 0x0, },
-+};
-+
- static const struct of_device_id dt_match[] = {
-+	{ .compatible = "mediatek,mt8196-mali", .data = &soc_data_mediatek_mt8196, },
- 	{ .compatible = "rockchip,rk3588-mali" },
- 	{ .compatible = "arm,mali-valhall-csf" },
- 	{}
-diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
-index db69449a5be09..9d98720ce03fd 100644
---- a/drivers/gpu/drm/panthor/panthor_gpu.c
-+++ b/drivers/gpu/drm/panthor/panthor_gpu.c
-@@ -52,6 +52,28 @@ static void panthor_gpu_coherency_set(struct panthor_device *ptdev)
- 		ptdev->coherent ? GPU_COHERENCY_PROT_BIT(ACE_LITE) : GPU_COHERENCY_NONE);
- }
- 
-+static void panthor_gpu_l2_config_set(struct panthor_device *ptdev)
-+{
-+	const struct panthor_soc_data *data = ptdev->soc_data;
-+	u32 l2_config;
-+	u32 i;
-+
-+	if (!data || !data->asn_hash_enable)
-+		return;
-+
-+	if (GPU_ARCH_MAJOR(ptdev->gpu_info.gpu_id) < 11) {
-+		drm_err(&ptdev->base, "Custom ASN hash not supported by the device");
-+		return;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(data->asn_hash); i++)
-+		gpu_write(ptdev, GPU_ASN_HASH(i), data->asn_hash[i]);
-+
-+	l2_config = gpu_read(ptdev, GPU_L2_CONFIG);
-+	l2_config |= GPU_L2_CONFIG_ASN_HASH_ENABLE;
-+	gpu_write(ptdev, GPU_L2_CONFIG, l2_config);
-+}
-+
- static void panthor_gpu_irq_handler(struct panthor_device *ptdev, u32 status)
- {
- 	gpu_write(ptdev, GPU_INT_CLEAR, status);
-@@ -241,8 +263,9 @@ int panthor_gpu_l2_power_on(struct panthor_device *ptdev)
- 			      hweight64(ptdev->gpu_info.shader_present));
- 	}
- 
--	/* Set the desired coherency mode before the power up of L2 */
-+	/* Set the desired coherency mode and L2 config before the power up of L2 */
- 	panthor_gpu_coherency_set(ptdev);
-+	panthor_gpu_l2_config_set(ptdev);
- 
- 	return panthor_gpu_power_on(ptdev, L2, 1, 20000);
- }
-diff --git a/drivers/gpu/drm/panthor/panthor_regs.h b/drivers/gpu/drm/panthor/panthor_regs.h
-index 8bee76d01bf83..8fa69f33e911e 100644
---- a/drivers/gpu/drm/panthor/panthor_regs.h
-+++ b/drivers/gpu/drm/panthor/panthor_regs.h
-@@ -64,6 +64,8 @@
- 
- #define GPU_FAULT_STATUS				0x3C
- #define GPU_FAULT_ADDR					0x40
-+#define GPU_L2_CONFIG					0x48
-+#define   GPU_L2_CONFIG_ASN_HASH_ENABLE			BIT(24)
- 
- #define GPU_PWR_KEY					0x50
- #define  GPU_PWR_KEY_UNLOCK				0x2968A819
-@@ -110,6 +112,8 @@
- 
- #define GPU_REVID					0x280
- 
-+#define GPU_ASN_HASH(n)					(0x2C0 + ((n) * 4))
-+
- #define GPU_COHERENCY_FEATURES				0x300
- #define GPU_COHERENCY_PROT_BIT(name)			BIT(GPU_COHERENCY_  ## name)
- 
 -- 
-2.51.0.384.g4c02a37b29-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
