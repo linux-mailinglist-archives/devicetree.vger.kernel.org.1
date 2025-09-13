@@ -1,494 +1,165 @@
-Return-Path: <devicetree+bounces-216775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32779B560E9
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 14:47:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE67B560F4
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 14:57:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4AFF3AD8DA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 12:47:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF4E0487F98
+	for <lists+devicetree@lfdr.de>; Sat, 13 Sep 2025 12:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495AC2EC0AB;
-	Sat, 13 Sep 2025 12:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F832ED14E;
+	Sat, 13 Sep 2025 12:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLpxjKC9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N4r9yMcT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B87C199FB2;
-	Sat, 13 Sep 2025 12:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2862EC546
+	for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 12:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757767625; cv=none; b=IxP8pwgILPaM4Vn/mmA6H/Y34bceOUUBh/vhNFY2/ynGQoywqSOy66B0FMLvlfLecHtpBdGl0mWou8Oa4TiSqNYVUzSx6K7XZQu/cfeZ4tKdC8gS3YK3E9dVd4WP3dLBmHifvIjBaYLREobxszoitFbvYbn3zj/g1cdprM6GBx8=
+	t=1757768239; cv=none; b=G9vzSti234xlfEh4S29z0JcI7KLB1piQh9uy4MuO/YPo23n+dLIjrD/8WdZPhlBEJ2AGHHiLwJ8DEUV3fWD6nnnNoqU+WJA77+B770IpwvDxEejpWM7qxUag/ewnniAYZfSNbeas7+X9eZc+FyQ7566pqp7z+ULHccX9mgpqKIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757767625; c=relaxed/simple;
-	bh=PSWk/YPtYfCAy1iGrsLsCNE9yRRwE7OZS1ECWztHIeI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GrIm6S/JXglcpR7wBrSZYvPOR9P6l6Ug0Qsh+mPeCBSrkbCFdhnE3vj7hPJ/yyWhc90cShCOxzP2GWQEgu7AA2aLcSbSrg7bKSiAESLBzcbW1DlH8DwRbNxg3mxaAxSJ0MmoL7rAlQFIzEs9RV+2MDdUwvel8ThrBj1hPPqw+jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLpxjKC9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F27D6C4CEEB;
-	Sat, 13 Sep 2025 12:47:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757767624;
-	bh=PSWk/YPtYfCAy1iGrsLsCNE9yRRwE7OZS1ECWztHIeI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=YLpxjKC9yc+Op18Rhgh9F3FkXRq/mAurYZlBWqaMwuI/QiL1lmJxFBpsUsdllHO83
-	 87/63GbNcLXJZ+UL2Aw9U/bcxL0Cmg+9yW31nfd9ats+3MvG5AwpzDCpsOGNaJRWcC
-	 rJfO0JBuqtYG/TXq/OzyEnEp5ZTDgpfmO7pxz0zTWwOn/QEoxTGsGrGw4KKjAy0e13
-	 0kQ9NVJ+134oBU2G3FKDi1evv84WQUfZumGervOCucVdOwTlvFVnBjDYUZAzY4s0TM
-	 fJ2F+b9ViEkzY+U5xqxgVwjLhDnRtLHfZ05eS+Pe8FGS9Nt6+F132kC+nIyUvcMH+n
-	 w7iHboN72gmsQ==
-Date: Sat, 13 Sep 2025 13:46:56 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v7 5/6] docs: iio: add documentation for ade9000 driver
-Message-ID: <20250913134656.44964f5f@jic23-huawei>
-In-Reply-To: <20250908073531.3639-6-antoniu.miclaus@analog.com>
-References: <20250908073531.3639-1-antoniu.miclaus@analog.com>
-	<20250908073531.3639-6-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1757768239; c=relaxed/simple;
+	bh=tUiYl0q8nzJqURhBlH50zoLRaS/z9qcITQokKmLz2p4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jMWv86k4FhEZWqa9V98Y2DjZdtjnYGVWVdgkHuZYfNTlUaOgv2/QInqp4Yc892uBqK2UZhsHRx/ruHTL/hwEz3IWQ6xPy1pTK4KpIx9YP6mvwg9iaxtwwUj6jlpEY0pxeefr+YN4zmPPelzi0e4bYqFS2zamaCtbFQyi/G+ma0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N4r9yMcT; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45de185c04aso1990555e9.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 05:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757768235; x=1758373035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ajlX5M9D9raPkoDC7DsJaAjqkrSXNAPNl1i9qyNoGCQ=;
+        b=N4r9yMcTiT923AivOuOCM817JOx+o1P7JP5CiW2QiASdtJisi42/0ogxnA9EjRlhIl
+         jmwraHq38BRr1uWL7elN5gv5Ro74atRIUZtf7rKArDgedYF8xxgTRe4Cx6FY1gmdXjvg
+         KkizoZiKm7IczgC7TSl4b/C9Te9r9A4ZyDjGPs33Y+qDpzwPuPJxqt0eDU7IXw9J7quk
+         PJFjJ0b1FXM9abTW4W5VxBhS+hGPFVpcxeVZVXs0fQ/qZyP1NSP4K3RrE/n/xXM4cxTD
+         qq+3svhUQr8L5q7LKR8bVUqutIvTVDQhiSvp2JmyezhVALkSFQGZwLOgrNJQ0ku+90Ef
+         FRjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757768235; x=1758373035;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ajlX5M9D9raPkoDC7DsJaAjqkrSXNAPNl1i9qyNoGCQ=;
+        b=Zef9Wiiy6Yem3zka0jPL02GpkhhEOTMPNKO1xYFhYG7e+uA7qQt+yng4P2KGhrP+We
+         iYO9keK+sOYJZFlZrawq54c4vxP5LE/vs7tqyEpiXxKJbDjdAQUuJ7DTZXvJPjVkw1P1
+         H67i/diMYdz9ebj/VAeCzzbuD2oE8bStjdD/EMlr5gvAcm6Yc2x1VtHu7tmE2YtEaWnm
+         mEsBtURM5XiPrj/xl8c46C9y9chGXDY/LN9ilYsWMGLNsjeHUigOrCCUwFcTbkxjOAwC
+         IVsqYRXg0u9rgNUKtWSf5RvkhCkusNXTEMXEHSiEV4I217yPRvOXWPPcIviCvtELe0Nb
+         ulsw==
+X-Forwarded-Encrypted: i=1; AJvYcCVczptkh+jgaEtNiYH1XQf4wIWdAITrdOHMKpK4Z63Xe4z6JZ10QBCdtGepLXAvvew3drgz3Dd1evy+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzepdErG7BRks+FuohLq16i1ot056bZm6PBSimk1GNQnf5DoNu
+	i7S8/XtoTO8cQ88Hx0eg/MIpl/K+sLSYQWN1Jk+TTadzCHrbI+yLeVqOgu4YuArsXw4=
+X-Gm-Gg: ASbGncsl81vhU5ubey5tYQPGmEAw33ik7Z82optFWJ+ZtMSrzK0Jl7/6uKIbHSwHcNF
+	+6w/cdQn26AVHjC+DDFDNnpAcxwcPZ4X5bPEfeeH42OdDfPDj0aGa/vtBxuxTJ3qS5gibvMsues
+	zNFnAjNtlVnQOSSi7XCHrR8Ex7pxsUNucbGMcqqMilvImwj8ywvTk+0JYewatw9RE9InZjg7z7w
+	ckK6FiWV3tQLNBGnZnctbM83wqxxHUONtMBJ8LH8n1R1RgY+tiC82VXege7ueMFfPpr1VHSr0OL
+	TcqnoQ96Pr0wTHkeKHINXB6ixyCXLnGWfatnZbKduknH7Wr/LvKucEAyMeE6h3urI0PicrNmON5
+	SLYSai7VXuBFlR5y3+tQJ1g7/B7AFhuOPhaQMhckBDZo=
+X-Google-Smtp-Source: AGHT+IGn5sCzsoqc2MaMoViDVBdvECXXkAco+Eu+Io81V2kX6oTtmJINauxexWPqK3aRnlW4W1Kmug==
+X-Received: by 2002:a05:600c:6090:b0:45d:d289:f505 with SMTP id 5b1f17b1804b1-45f211f859dmr32547895e9.4.1757768235253;
+        Sat, 13 Sep 2025 05:57:15 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7e645d1fcsm4235977f8f.48.2025.09.13.05.57.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Sep 2025 05:57:14 -0700 (PDT)
+Message-ID: <0ac9fe53-8f0c-4729-82a9-3358eec19892@linaro.org>
+Date: Sat, 13 Sep 2025 14:57:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: qcom: sdm845-shift-axolotl: Fix typo of
+ compatible
+To: Tamura Dai <kirinode0@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <Message-ID: <2d41c617-b7c7-43ae-aa90-7368e960e8a5@kernel.org>
+ <20250913063958.149-1-kirinode0@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+AhsD
+ BQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmgXUEoF
+ CRaWdJoACgkQG5NDfTtBYpudig/+Inb3Kjx1B7w2IpPKmpCT20QQQstx14Wi+rh2FcnV6+/9
+ tyHtYwdirraBGGerrNY1c14MX0Tsmzqu9NyZ43heQB2uJuQb35rmI4dn1G+ZH0BD7cwR+M9m
+ lSV9YlF7z3Ycz2zHjxL1QXBVvwJRyE0sCIoe+0O9AW9Xj8L/dmvmRfDdtRhYVGyU7fze+lsH
+ 1pXaq9fdef8QsAETCg5q0zxD+VS+OoZFx4ZtFqvzmhCs0eFvM7gNqiyczeVGUciVlO3+1ZUn
+ eqQnxTXnqfJHptZTtK05uXGBwxjTHJrlSKnDslhZNkzv4JfTQhmERyx8BPHDkzpuPjfZ5Jp3
+ INcYsxgttyeDS4prv+XWlT7DUjIzcKih0tFDoW5/k6OZeFPba5PATHO78rcWFcduN8xB23B4
+ WFQAt5jpsP7/ngKQR9drMXfQGcEmqBq+aoVHobwOfEJTErdku05zjFmm1VnD55CzFJvG7Ll9
+ OsRfZD/1MKbl0k39NiRuf8IYFOxVCKrMSgnqED1eacLgj3AWnmfPlyB3Xka0FimVu5Q7r1H/
+ 9CCfHiOjjPsTAjE+Woh+/8Q0IyHzr+2sCe4g9w2tlsMQJhixykXC1KvzqMdUYKuE00CT+wdK
+ nXj0hlNnThRfcA9VPYzKlx3W6GLlyB6umd6WBGGKyiOmOcPqUK3GIvnLzfTXR5DOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCaBdQXwUJFpZbKgAKCRAbk0N9O0Fim07TD/92Vcmzn/jaEBcq
+ yT48ODfDIQVvg2nIDW+qbHtJ8DOT0d/qVbBTU7oBuo0xuHo+MTBp0pSTWbThLsSN1AuyP8wF
+ KChC0JPcwOZZRS0dl3lFgg+c+rdZUHjsa247r+7fvm2zGG1/u+33lBJgnAIH5lSCjhP4VXiG
+ q5ngCxGRuBq+0jNCKyAOC/vq2cS/dgdXwmf2aL8G7QVREX7mSl0x+CjWyrpFc1D/9NV/zIWB
+ G1NR1fFb+oeOVhRGubYfiS62htUQjGLK7qbTmrd715kH9Noww1U5HH7WQzePt/SvC0RhQXNj
+ XKBB+lwwM+XulFigmMF1KybRm7MNoLBrGDa3yGpAkHMkJ7NM4iSMdSxYAr60RtThnhKc2kLI
+ zd8GqyBh0nGPIL+1ZVMBDXw1Eu0/Du0rWt1zAKXQYVAfBLCTmkOnPU0fjR7qVT41xdJ6KqQM
+ NGQeV+0o9X91X6VBeK6Na3zt5y4eWkve65DRlk1aoeBmhAteioLZlXkqu0pZv+PKIVf+zFKu
+ h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
+ vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250913063958.149-1-kirinode0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Mon, 8 Sep 2025 07:35:25 +0000
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On 13/09/2025 08:39, Tamura Dai wrote:
+> Fix typo in the compatible string for the touchscreen node. According to
+> Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml,
+> the correct compatible is "focaltech,ft8719", but the device tree used
+> "focaltech,fts8719".
 
-> Add documentation for ade9000 driver which describes the driver
-> device files and shows how the user may use the ABI for various
-> scenarios (configuration, measurement, etc.).
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+I am sorry, but why are you sending this? You were told this is wrong.
+
+> 
+> Fixes: 45882459159d ("arm64: dts: qcom: sdm845: add device tree for SHIFT6mq")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Tamura Dai <kirinode0@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> changes in v7:
->  - remove PGA gain documentation section
->  - remove frequency configuration section
->  - remove scale and frequency attributes from device-level attributes tab=
-le
->  - update examples to remove PGA gain and frequency configuration
->  Documentation/iio/ade9000.rst | 265 ++++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst   |   1 +
->  2 files changed, 266 insertions(+)
->  create mode 100644 Documentation/iio/ade9000.rst
->=20
-> diff --git a/Documentation/iio/ade9000.rst b/Documentation/iio/ade9000.rst
-> new file mode 100644
-> index 000000000000..163d36a56be3
-> --- /dev/null
-> +++ b/Documentation/iio/ade9000.rst
-> @@ -0,0 +1,265 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +ADE9000 driver
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +This driver supports Analog Device's ADE9000 energy measurement IC on SP=
-I bus.
-> +
-> +1. Supported devices
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +* `ADE9000 <https://www.analog.com/media/en/technical-documentation/data=
--sheets/ADE9000.pdf>`_
-> +
-> +The ADE9000 is a highly accurate, fully integrated, multiphase energy an=
-d power
-> +quality monitoring device. Superior analog performance and a digital sig=
-nal
-> +processing (DSP) core enable accurate energy monitoring over a wide dyna=
-mic
-> +range. An integrated high end reference ensures low drift over temperatu=
-re
-> +with a combined drift of less than =C2=B125 ppm/=C2=B0C maximum for the =
-entire channel
-> +including a programmable gain amplifier (PGA) and an analog-to-digital
-> +converter (ADC).
-> +
-> +2. Device attributes
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +Power and energy measurements are provided for voltage, current, active =
-power,
-> +reactive power, apparent power, and power factor across three phases.
-> +
-> +Each IIO device has a device folder under ``/sys/bus/iio/devices/iio:dev=
-iceX``,
-> +where X is the IIO index of the device. Under these folders reside a set=
- of
-> +device files, depending on the characteristics and features of the hardw=
-are
-> +device in question. These files are consistently generalized and documen=
-ted in
-> +the IIO ABI documentation.
-> +
-> +The following tables show the ADE9000 related device files, found in the
-> +specific device folder path ``/sys/bus/iio/devices/iio:deviceX``.
-> +
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| Current measurement related device files          | Description       =
-                                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_current[0-2]_raw                               | Raw current measur=
-ement for phases A, B, C.              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_current[0-2]_scale                             | Scale for current =
-channels.                              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_current[0-2]_calibscale                        | Calibration gain f=
-or current channels (AIGAIN reg).      |
-I thought someone raised this on the previous version, but perhaps I imagin=
-ed it.
-Missing line break here.
 
-> +| in_altcurrent[0-2]_rms_raw                        | RMS current measur=
-ement for phases A, B, C.              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altcurrent[0-2]_rms_scale                      | Scale for RMS curr=
-ent channels.                          |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altcurrent[0-2]_rms_calibbias                  | RMS offset correct=
-ion for current channels (IRMSOS reg). |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| Voltage measurement related device files          | Description       =
-                                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_voltage[0-2]_raw                               | Raw voltage measur=
-ement for phases A, B, C.              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_voltage[0-2]_scale                             | Scale for voltage =
-channels.                              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_voltage[0-2]_calibscale                        | Calibration gain f=
-or voltage channels (AVGAIN reg).      |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_voltage[0-2]_frequency                         | Measured line freq=
-uency from instantaneous voltage.      |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_raw                        | RMS voltage measur=
-ement for phases A, B, C.              |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_scale                      | Scale for RMS volt=
-age channels.                          |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_calibbias                  | RMS offset correct=
-ion for voltage channels (VRMSOS reg). |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| Power measurement related device files            | Description       =
-                                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_active_raw                          | Active power measu=
-rement for phases A, B, C.             |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_active_scale                        | Scale for active p=
-ower channels.                         |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_active_calibbias                    | Calibration offset=
- for active power (xWATTOS regs).      |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_active_calibscale                   | Calibration gain f=
-or active power (APGAIN reg).          |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_reactive_raw                        | Reactive power mea=
-surement for phases A, B, C.           |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_reactive_scale                      | Scale for reactive=
- power channels.                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_reactive_calibbias                  | Calibration offset=
- for reactive power (xVAROS regs).     |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_apparent_raw                        | Apparent power mea=
-surement for phases A, B, C.           |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_apparent_scale                      | Scale for apparent=
- power channels.                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_power[0-2]_powerfactor                         | Power factor for p=
-hases A, B, C.                         |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| Energy measurement related device files           | Description       =
-                                       |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_energy[0-2]_active_raw                         | Active energy meas=
-urement for phases A, B, C.            |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_energy[0-2]_reactive_raw                       | Reactive energy me=
-asurement for phases A, B, C.          |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_energy[0-2]_apparent_raw                       | Apparent energy me=
-asurement for phases A, B, C.          |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +
-> ++------------------------------+----------------------------------------=
---------------------------+
-> +| Shared device attributes     | Description                            =
-                          |
-> ++------------------------------+----------------------------------------=
---------------------------+
-> +| name                         | Name of the IIO device.                =
-                          |
-> ++------------------------------+----------------------------------------=
---------------------------+
-> +| filter_type                  | Waveform buffer filter type (sinc4, sin=
-c4+lp).                   |
-> ++------------------------------+----------------------------------------=
---------------------------+
-> +| filter_type_available        | Available filter types for waveform buf=
-fer.                      |
-> ++------------------------------+----------------------------------------=
---------------------------+
-> +
-> +3. Calibration and scaling
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> +
-> +The ADE9000 provides multiple levels of gain and offset correction:
-> +
-> +**Calibration Gain (per-channel)**
-> +  Fine-tuning calibration gains applied in the digital domain for each c=
-hannel type.
-> +  Controlled via ``calibscale`` attributes (AIGAIN, AVGAIN, APGAIN regis=
-ters).
-> +
-> +**Calibration Bias (per-channel)**
-> +  Hardware calibration offsets applied by the device internally:
-> +
-> +  - Power measurements: Controlled via ``calibbias`` attributes for powe=
-r channels (xWATTOS, xVAROS registers).
-> +  - RMS measurements: Controlled via ``calibbias`` attributes for RMS ch=
-annels (IRMSOS, VRMSOS registers).
-> +
-> +  These are internal chip calibrations, not userspace-applied offsets.
-> +
-> +4. Event attributes
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +The ADE9000 provides various interrupts that are mapped to IIO events.
-> +Event functionality is only available if the corresponding interrupts are
-> +connected in the device tree.
-> +
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| IIO Event Attribute                               | ADE9000 Datasheet =
-Equivalent                             |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_voltage[0-2]_thresh_either_en                  | Zero crossing dete=
-ction interrupt (ZXVx)                 |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_thresh_rising_en           | RMS swell detectio=
-n interrupt (SWELLx)                   |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_thresh_rising_value        | RMS swell threshol=
-d (SWELL_LVL register)                 |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_thresh_falling_en          | RMS sag/dip detect=
-ion interrupt (DIPx)                   |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_altvoltage[0-2]_rms_thresh_falling_value       | RMS sag/dip thresh=
-old (DIP_LVL register)                 |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +| in_current[0-2]_thresh_either_en                  | Current zero cross=
-ing detection interrupt (ZXIx)         |
-> ++---------------------------------------------------+-------------------=
----------------------------------------+
-> +
-> +Event directions:
-> +- ``rising``: Upper threshold crossing (swell detection)
-> +- ``falling``: Lower threshold crossing (sag/dip detection)
-> +- ``either``: Any threshold crossing (zero crossing detection)
-> +- ``none``: Timeout or non-directional events
-> +
-> +**Note**: Event attributes are only available if the corresponding inter=
-rupts
-> +(irq0, irq1, dready) are specified in the device tree. The driver works =
-without
-> +interrupts but with reduced functionality.
-> +
-> +5. Device buffers
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +This driver supports IIO buffers for waveform capture. Buffer functional=
-ity
-> +requires the dready interrupt to be connected.
-> +
-> +The device supports capturing voltage and current waveforms for power qu=
-ality
-> +analysis. The waveform buffer can be configured to capture data from dif=
-ferent
-> +channel combinations.
-> +
-> +Supported channel combinations for buffered capture:
-> +- Phase A: voltage and current (IA + VA)
-> +- Phase B: voltage and current (IB + VB)
-> +- Phase C: voltage and current (IC + VC)
-> +- All phases: all voltage and current channels
-> +- Individual channels: IA, VA, IB, VB, IC, VC
-> +
-> +Usage examples
-> +--------------
-> +
-> +Enable waveform capture for Phase A:
-> +
-> +.. code-block:: bash
-> +
-> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > scan_elements/in=
-_current0_en
-> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > scan_elements/in=
-_voltage0_en
-> +
-> +Set buffer length and enable:
-> +
-> +.. code-block:: bash
-> +
-> +        root:/sys/bus/iio/devices/iio:device0> echo 100 > buffer/length
-> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > buffer/enable
-> +
-> +6. Clock output
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +The ADE9000 can provide a clock output via the CLKOUT pin when using an =
-external
-> +crystal/clock source. This feature is enabled by specifying ``#clock-cel=
-ls =3D <0>``
-> +in the device tree. The output clock will be registered as "clkout" and =
-can be
-> +referenced by other devices.
-> +
-> +7. Usage examples
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +Show device name:
-> +
-> +.. code-block:: bash
-> +
-> +	root:/sys/bus/iio/devices/iio:device0> cat name
-> +        ade9000
-> +
-> +Read voltage measurements:
-> +
-> +.. code-block:: bash
-> +
-> +        root:/sys/bus/iio/devices/iio:device0> cat in_voltage0_raw
-> +        12345
-> +        root:/sys/bus/iio/devices/iio:device0> cat in_voltage0_scale
-> +        0.000030517
-> +
-> +- Phase A voltage =3D in_voltage0_raw * in_voltage0_scale =3D 0.3769 V
-> +
-> +Read power measurements:
-> +
-> +.. code-block:: bash
-> +
-> +        root:/sys/bus/iio/devices/iio:device0> cat in_power0_active_raw
-> +        5678
-> +        root:/sys/bus/iio/devices/iio:device0> cat in_power0_scale
-> +        0.000244140
-> +
-> +- Phase A active power =3D in_power0_active_raw * in_power0_scale =3D 1.=
-386 W
-> +
-> +Configure calibration gains:
-> +
-> +.. code-block:: bash
-> +
-> +        # Set current channel 0 calibration gain
-> +        root:/sys/bus/iio/devices/iio:device0> echo 0x800000 > in_curren=
-t0_calibscale
-> +        # Set voltage channel 0 calibration gain
-> +        root:/sys/bus/iio/devices/iio:device0> echo 0x7FFFFF > in_voltag=
-e0_calibscale
-> +
-> +Configure RMS voltage event thresholds (requires interrupts):
-> +
-> +.. code-block:: bash
-> +
-> +        # Set RMS sag detection threshold
-> +        root:/sys/bus/iio/devices/iio:device0> echo 180000 > events/in_a=
-ltvoltage0_rms_thresh_falling_value
-> +        # Enable RMS sag detection
-> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > events/in_altvol=
-tage0_rms_thresh_falling_en
-> +
-> +        # Set RMS swell detection threshold
-> +        root:/sys/bus/iio/devices/iio:device0> echo 260000 > events/in_a=
-ltvoltage0_rms_thresh_rising_value
-> +        # Enable RMS swell detection
-> +        root:/sys/bus/iio/devices/iio:device0> echo 1 > events/in_altvol=
-tage0_rms_thresh_rising_en
-> +
-> +8. IIO Interfacing Tools
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +See ``Documentation/iio/iio_tools.rst`` for the description of the avail=
-able IIO
-> +interfacing tools.
-> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-> index c106402a91f7..792c815286f4 100644
-> --- a/Documentation/iio/index.rst
-> +++ b/Documentation/iio/index.rst
-> @@ -28,6 +28,7 @@ Industrial I/O Kernel Drivers
->     ad7606
->     ad7625
->     ad7944
-> +   ade9000
->     adis16475
->     adis16480
->     adis16550
+Missing changelog. What is the reason of this v3? Why are you sending it?
 
+
+Best regards,
+Krzysztof
 
