@@ -1,130 +1,133 @@
-Return-Path: <devicetree+bounces-217014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B311AB56AD4
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 19:17:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F146EB56ADC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 19:36:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC2273BF5A1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:17:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1BF13B8C63
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624322DF15A;
-	Sun, 14 Sep 2025 17:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C37728C006;
+	Sun, 14 Sep 2025 17:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="CZNKGi/I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pQaheMG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BC22DECDF
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 17:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203992627EC;
+	Sun, 14 Sep 2025 17:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757870186; cv=none; b=YbaZSgDXkcG8gNcBGcMRJmAGMxEpNmuqe2GGxJ18sS8TqNuuYviSqYRwv/fY1DFxxmgLcLjytSUJNmK+DddA5UDun/Ol2qJZYkUagXLusfPeXMiqKfowkgihjSIBhyTtjbuW0uQkGcJub43kc055QXejyi+hcE+4cX/eVPq4l8k=
+	t=1757871404; cv=none; b=OGuCujpjRxomxGctmoEVJ8PqxQ4YxvgdREZaekHeVmqQg5wXnMgwB8e+DXSJ0eIHQRV5vgB0ShuyILSm9EdcfbDeYxrjwGfr8lkGuVrdy0GmTF+aIUsxjLLVfxUzo154+W6GE7pkijBa1DWQx4WhI7FgcH0v8E89X+6RHJUBB4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757870186; c=relaxed/simple;
-	bh=7R8rcOL3f1HwsUpPHaL0+BUAREAOiXb98Mm1tlgtyCA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nbUcrB6IYxY9VSxl78L4tsQEpaWkOFsM4TIPdPdA+7ArW+Z3hnORO7nLu+YeSFT1K4N5rXGlxe62NdvZwtdiOMcjCbnS3L6wVe7t6VHP+G/W6a5dZE4Xx2iGwYq68UftrrhjK1HxzJ10xD3vV3q1wnKs3K1/fIGRrZiunBtjH7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=CZNKGi/I; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-62f277546abso1380263a12.3
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 10:16:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757870183; x=1758474983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AJ9ovkCr6DqOwPekQL9mbbfb8pXGwCeM0TnyH7IdLxU=;
-        b=CZNKGi/IHBMBaVws9rL4ax1ta6pLgauB7OVRZScLOr7GMmxwpF6Mn1vRQs0Y4e3wRZ
-         BVnds2dTwTS6sB0cLZy0mZaUx1HvPMy+x+yVf/W9lifjneFWy3Wbo3E2tGVNdVrZcq4j
-         PGJ2xZPqqs1iE7AD30ofJv2M3m1VmSVqQAGoM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757870183; x=1758474983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AJ9ovkCr6DqOwPekQL9mbbfb8pXGwCeM0TnyH7IdLxU=;
-        b=JCzkDQ+2WlD6cM6lJ9RfdZngTfTmdZonWN/w/JyahLZ6KH3VGAhGElL3IdQPHJgpPG
-         IvZDjWKAosTsSbf42r8Lx+a8Ro9N23g/QQfwIWbCpo8XZsoXHMDEtryevbt4IZzvjf2r
-         UZb7E+6tewmbqfBFubC7AMzCLLVIuOHQ7+mg/WfSUVsLoLrZBeoe0fXjX2Nw3nOD1oq8
-         3oKrRbo0eRNC9gjmt9VAW/hzSSNNrnoasqjO3hVf1RPDzqvEw8njfTtjG0m5ii/TJbCr
-         G5df70pvJy3dMwcilYr4vwD8if5cmSZiB+33XpUE9hkejffOYeyFZ5s7R6BxGKIQLsLv
-         EVpA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtAVVpOR4LrbH3r6DC18MoEKpGeg7D8PSwWJSgnM5qrvlhx+9mOsJVVkv/7seENHI+bLm2VxVZV7c4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMFsB6ubykULIBz/J7BvsNR+2O6pGQzt9C3J2Be41j+53xAnVM
-	i5fqEuepIu0LkosGnCJ5dd0WxubG2zRYpa+xoKo8VNko2wN+WjMixLU9pCnnQkmwozM=
-X-Gm-Gg: ASbGnctLYN1GAKvmEKWDXLDwADkyHdW49zDVtLaouglnGYSJM0fXQwn/AV4pXrO7xX2
-	nHzMGTBxOsyxp3Q9g3jRvZp+7sHwzWmCm0xDUvEq0+gpf+3qMw2UQVHbEdLhK4N0SkgJF/srkfb
-	2thXIc4h8kZm087qiuraU37aN76nIsve4zsL+p6AbjIQ8nkMVHIo8kCpgLklCs6wPkl6yunwADx
-	RgT3P2TrBbI/WCl4iOKf+ri1xCnxiQoiXbF6I7C9K+/MujjouQCD3BrgRDZBbz37TWi4OpFKnUE
-	e1iRihsoFMaWisZoGYC3ZzrOvDDLaXPdXt6mp8n9154EYciF7pFYB6m31i+ZU1XFgr8Fiei8v7d
-	TPGXwVnq18V6lf/ja494T3suRtt9RY4pAPa3M3UzDBlt26JVzDX3wcpdjKBybj63/24CPRGgLtj
-	a+/GIl0FOpZRcZplNQUMbE5RsNdJXbodZD4hY+qgRpy3IBipZg4sLNBiFgGpp/+7hw
-X-Google-Smtp-Source: AGHT+IGvSuqYu1iID/ihliDiP5cWiNfNXKYVhuVRH/gmTXAOtDLlKa3rm5WJL/vzrHXGf7HRci4VUQ==
-X-Received: by 2002:a05:6402:1d51:b0:628:62d0:fdaa with SMTP id 4fb4d7f45d1cf-62ed82c5a2dmr9785589a12.23.1757870182851;
-        Sun, 14 Sep 2025 10:16:22 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b334e76dsm776980466b.102.2025.09.14.10.16.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 10:16:22 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 5/6] ARM: dts: imx6ull-engicam-microgea-bmm: set touchscreen glitch threshold
-Date: Sun, 14 Sep 2025 19:16:02 +0200
-Message-ID: <20250914171608.1050401-6-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250914171608.1050401-1-dario.binacchi@amarulasolutions.com>
-References: <20250914171608.1050401-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1757871404; c=relaxed/simple;
+	bh=chLCHQAK8H+A5xuSK39+4gpfILucvs7oZSFREWWB9aI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GEXc9VNhNcIbKqu/RptV92FtRHE+n/OF3c1emZiqjamDpYAxVBtHC2prUWKV26zGjIAbbN+wH9D6yI5PEDXNhdK0PFRzVXX3KkCrAy4tphR7vg7YWG+japUPLkbc1EJoDphVbUR5FatWloQYNmbXMs59PcPgMouHI4wGOWuUBqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pQaheMG3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9066C4CEF0;
+	Sun, 14 Sep 2025 17:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757871403;
+	bh=chLCHQAK8H+A5xuSK39+4gpfILucvs7oZSFREWWB9aI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pQaheMG3266kOd8YFxZIObzVsUPj7U4LWaFW/Z8iY2PPsmOCa+8xv/PMCfg9X0uma
+	 Ba/h3G17+pW4CiYK91kdUhaMMLzR58fVCH46MMFm2T8nkXFQH4xyHOxJlEdDkp06GW
+	 euwlg9pR+UP2CnFmFQQ7xOTVbBPi0oujAbgtnxwchVcZ6dsMfmsQSE1f2D0mn7bmN0
+	 wKgZVoYmG2vqENONhC9PM2RDdL5rbZqodKR+sENuajrgtOTn+bGTOLgLue2R1CDa8b
+	 28fA78TlfIq17crTMAnVPzNFZ1I8zrefghwyyVIJ2zCI1zWazRRuwTcj19K7QXbJy3
+	 4woO+ZT+QwtEA==
+Message-ID: <0a766f8d-657d-42bc-b3b4-33997b919d7f@kernel.org>
+Date: Sun, 14 Sep 2025 19:36:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH DNM v2 3/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
+ Enable all available QUP SEs
+To: Xilin Wu <sophon@radxa.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+ Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+ Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+ <20250914-radxa-dragon-q6a-v2-3-045f7e92b3bb@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250914-radxa-dragon-q6a-v2-3-045f7e92b3bb@radxa.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-This way the detected signal is valid only if it lasts longer than
-62 µs, otherwise it is not sampled.
+On 14/09/2025 17:57, Xilin Wu wrote:
+> Add and enable all available QUP SEs on this board, allowing I2C, SPI and
+> UART functions from the 40-Pin GPIO header to work.
+> 
+> Signed-off-by: Xilin Wu <sophon@radxa.com>
+> 
+> ---
+> 
+> This change depends on the following patch series:
+> https://lore.kernel.org/all/20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com/
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
 
-(no changes since v1)
+No, why? It does not. If your DTS depends on drivers it's a mistake to fix.
 
- arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts | 1 +
- 1 file changed, 1 insertion(+)
+Fix dependency or squash the patches.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-index 279d46c22cd7..f12084d8f2a0 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-@@ -154,6 +154,7 @@ &tsc {
- 	pinctrl-0 = <&pinctrl_tsc>;
- 	measure-delay-time = <0x9ffff>;
- 	pre-charge-time = <0xfff>;
-+	touchscreen-glitch-threshold-ns = <62000>;
- 	xnur-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
--- 
-2.43.0
 
+
+Best regards,
+Krzysztof
 
