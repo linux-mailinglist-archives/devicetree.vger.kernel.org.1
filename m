@@ -1,162 +1,165 @@
-Return-Path: <devicetree+bounces-216996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11D0B56A4C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:44:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A1FB56A61
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:59:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 033E2189B410
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:44:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 874B97A31C7
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499142DA743;
-	Sun, 14 Sep 2025 15:44:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="gE/5JzCX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2476B2DF155;
+	Sun, 14 Sep 2025 15:57:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5502D9EF3
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:44:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6192DF152
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757864642; cv=none; b=q43g7YtB/WT3Jx04JWO5GszYH5mRxd4KBDEkiL376RyMR9p7vOOxnzkGy2gYjUK2Axdp15l67I14Q03OQzZU4kBxWlgjcRbJzmo1IctKzBv7VXtnl0M0okP+mQkkyYKEzGTqISyIxKipAuvGS++rKuWUUF+kYVFczdyeuQEhVbo=
+	t=1757865478; cv=none; b=OZfjbiwxB4SktfUDn8AriBeDBL/wmEnWlnMoVD1S2mAO8+BVOubszI+J/0xPYU9ukoY4lLuUOlNq7KyUMOytwRSo7YLatU4bsfgL8htKtz+jLrbBRsl15nyTQEevab6uczUA674RVQnOwsT9m9BtQtl6uKU1FExpXUvkl2ZZO9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757864642; c=relaxed/simple;
-	bh=cP0K/fO+03hivuzCPBr9UJRxnuVoSdNkA2qEl1wBq1U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=T49zs/b7pG43R3HAllGAYUTwo6uPRXEEPUVuYw0AAiaP1zgoeTRT9RV6dBZnmwNp7V+GtAfYnfV1utNC5adMlwgOrX6omzipv3ZbPsGF6+VVChuZGmecq/rgv3Pv78PBjVFv6VSmFxo+i/dx7zWmJqX8P7vRENrwsvGG5pVhGwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=gE/5JzCX; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3e8ef75b146so577059f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 08:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1757864639; x=1758469439; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=17ifI2mYE1NgbBTyTNuir4pDtVCiq8BMt8N76nRgoes=;
-        b=gE/5JzCXB0cQCDXvC2d5bHqmJsCwY9zPhYQo57k5htoP4NMh9+LOujN586e3uQldMf
-         0OVMQo336R+S0rokscRux8+rUTUw2CXHdoGzQEdJ7+xkg2aLFNEhbEYahIw9OfzZqAX6
-         pdkDoE1G7hcIJQUSyR+pm9rMxe2Xih2VbaRsBFArSVl1W02BobUS1vToWSM0/HMbtH+z
-         QUscixrb3yO0cMpeVjIFG10x9nLGGCV6VnmJOZySfVDcfCGKGXzCaNYDyq9SuYgwGBX7
-         mkBIvzzxJ8Ufq1j4I7KCUH8SWdi0RcU6o9d/0B0ZaF8epkdcsUMOdpaOuU0qQEQB4l43
-         Lhig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757864639; x=1758469439;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=17ifI2mYE1NgbBTyTNuir4pDtVCiq8BMt8N76nRgoes=;
-        b=hae38y1v8/Fbq/KU29VO+Emv22BJ3dq4us65SnO9SWA0mIXejasc3wnDKVpZiMO0HV
-         +nuUswMIkTz61+bPbMEKOTTDu8prnPx8+2h2PZ+vhNXcYJfPZYOJYoFD7AYFwy48KDKn
-         jSUtc9u8MvMqHqnozeJRIuc6UbLExeE6RPdxVWzVFB8XHo/vDmwXcp39FD4I3Hs1Yxn3
-         43cEkA1b6X0QOixxbX3yHRWL08PYklPlwHMs09O98+GI/qJMaXLLoyH+XOj650RIXHC/
-         Hpy+hqMNfByjT1fKW3eAxeZtbFMdkLYsV6cWuXDgQ0Tot+ceCZBi48Ng4DLzL8hvkvgI
-         F21A==
-X-Forwarded-Encrypted: i=1; AJvYcCWYhajOZDnsS+zHl/jhS+zllr7M8+ouYxsWfPD2VN59VAiNoyE2vQEodQw+LSfWeMjCNdpTxKPetKtM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWGED50QbjyYh5GUSW3bXbL/WVcwe2VL/7E5X3t7+70K+LaUzJ
-	IuVF6YExXjRu7QnMJKEg1Tw+7ENc9tukyCYm0SvF2GjTnWApde8vwlmT93yrDH0Emf4=
-X-Gm-Gg: ASbGnctGKt48wg0bfMYdbQZfdwtoVCwvt8OS1UMkFyuuYg0SV5Me006/COS4BxqwDX9
-	LwYcZWFG6vZhvyC+6LWGRYJVwFwsUrC8U5Xi8vdYjPg79UPpv7IaR2B8wydtT570mI0qvGwlfNn
-	Rrr4vee4WdSAmyqy4Ybs9xBF1UZpQdV21TPuBTMQKOhzQaobc2/6M2T5+114xmFdB2yLSiqcI/s
-	GM4jOPMlmtPgi/5zLcj2LDMLuI5OIfxzbjxRzXasGT+N/my17GuKmSoV+R4EN5kLe7Uk2HhzDYQ
-	T9PhZvZ2kycGnyCxCP6T3LC3LNGsMcsdbfMtUwmbvCyYRedwNHeSK419xGz/YCdGIIPwRE9UYKM
-	qysOOE7v2Hm+0eFyrLPJgAnAARXVXcTpHeWkXj/RHiQ==
-X-Google-Smtp-Source: AGHT+IHL6egG0n/SaYA5xvNQA+X+v1J8Dbx8go0tlT2XCBBZEzMIXumDBUCMKSubOS2pVf3FdBCGfA==
-X-Received: by 2002:a05:6000:2510:b0:3e4:ea11:f7df with SMTP id ffacd0b85a97d-3e7659db441mr8532807f8f.40.1757864638550;
-        Sun, 14 Sep 2025 08:43:58 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.153])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e0153fbd5sm74655275e9.5.2025.09.14.08.43.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Sep 2025 08:43:57 -0700 (PDT)
-Message-ID: <038ea3e7-53d5-4e49-ad35-cc2a58e4d808@tuxon.dev>
-Date: Sun, 14 Sep 2025 18:43:55 +0300
+	s=arc-20240116; t=1757865478; c=relaxed/simple;
+	bh=g+j9G1JMFQCaEoE45GeD1Bv7WIV+89CDkBoMBn+Pu+8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NpT3zoc2bVLXTntqd+ANX4vXXednDrwq1Klh9R9S16p3FUoDuo4fQXXILH6V5NkuNk9/TC04gvBb9w9Y+wsVy7lx5m6/xMh/XryqgbSL++1tpGzpuk8hVIgGktokJzMKLkhgpbfnfwX/oUxbaN3R72nRiUeg+Yx4BCJBUSUowVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1757865428tf0424ebf
+X-QQ-Originating-IP: LpRcLqKqEQW4gJd0Jj2vgVXF0NfCzSUTf3ehn9L04pI=
+Received: from [192.168.30.36] ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sun, 14 Sep 2025 23:57:06 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16197753940588448195
+EX-QQ-RecipientCnt: 13
+From: Xilin Wu <sophon@radxa.com>
+Subject: [PATCH v2 0/5] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
+ Q6A
+Date: Sun, 14 Sep 2025 23:57:03 +0800
+Message-Id: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/15] iio: adc: at91-sama5d2_adc: update calibration
- index, validation condition
-To: Varshini Rajendran <varshini.rajendran@microchip.com>,
- eugen.hristev@linaro.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, srini@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250804100219.63325-1-varshini.rajendran@microchip.com>
- <20250804100219.63325-5-varshini.rajendran@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250804100219.63325-5-varshini.rajendran@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM/lxmgC/32NTQ6CMBBGr0Jm7RhaIxFX3oOwKJ0pdCGVKRIM4
+ e7WunDn8r18PxtEFs8RrsUGwouPPowJ9KEAO5ixZ/SUGHSpz2WtNIqh1SCJ6cOIU2WQmSyxcSe
+ uKki1h7Dza55s2i8LT8+0PP/k4OMc5JVvF/Wxfx4WhSVerKXO1ZZU3d1y5GjDHdp9399d5WTMx
+ QAAAA==
+X-Change-ID: 20250912-radxa-dragon-q6a-eedcdeaf3e66
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+ Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Xilin Wu <sophon@radxa.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757865427; l=2489;
+ i=sophon@radxa.com; s=20240424; h=from:subject:message-id;
+ bh=g+j9G1JMFQCaEoE45GeD1Bv7WIV+89CDkBoMBn+Pu+8=;
+ b=7zH0Wwjb3cig4yRvdk+es+6VSXRwI4Nntabwg8cndC6aAPDHUgzyyv2ZBGIetezr8UXoCL+Rf
+ 4mPRPiUilZjCAq6+8TkoH8KMcOf5V7y1+K/w2Ejl5HrYkiYfjppBK2C
+X-Developer-Key: i=sophon@radxa.com; a=ed25519;
+ pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: MSyoPQEuxKCu1bqJlXMgn8OI27+njOCZqOZsprdfGdF8I8H5Yo5yl/GQ
+	VWGOgk0YfwHkSYk9hXzxbrdwVG72qEGsG9RJMP6wmAbVxpxJBxmHOuKIIYwj9eYyrXTWWm8
+	poEaVnnqF5DKp2g3zL+y066AQLiJwXqSFFRJ8DR6xL4qyL5mZm5UaKJoxsPpSGRIN0reF3j
+	xD0JPG6gK9Mvs+UVECR3fEBeQ5a7IJcO1Rydkc06MLxFZpN4M+I/46bWmfKTwpyfuV5fYpR
+	pg4Mo0to1XZfV+SS836yXTCweOcYJb/GFgs3x1srw0lBMUtbbkqJwu9bwTqrOW3ZiGG6sHr
+	gjrcMmcLDafnRaHgjYTDrK76llBRaCVhMOivURmXM9khm/99BENr6Q97gYpZYsK7P8PmVgt
+	VYXQL09GtCr+KZqy4Qhzwa4kmGqp0yORDKUwYwuK4RZXKCg6XarXdfQy+56EjdK0aphcTLK
+	zB2N8MYXQjgppKovuTUIBSff4tF4QSdfolnF3a4VD78s9qgEP/VJNBNyXcO1+Zbxl8W/6zB
+	XbT0ztPitKBai27WZ7BAcx30Nd9YHxyHQN/x5Dougu/dRfkTiG7qeR4A5J/WtDE6N6AyHu7
+	3SI7Mcnw53/ELWK3Mw6q7t8JkiMdsb/HcI22LDQFKlHjz7XAa2CR+i7v0Cu8WgA0pmkMphU
+	1HKw5PO1RINOHUA9EysJk0H+TwtxUDladJP9RpOGmR9SzMzbM6/AmqR0xvCCU8Wf8qUUz3E
+	w7CBVBPlkLeW3LXDsiQqnZxrOkgsCoxTqdkk4VAvuQBTStsRW7NNB9NnnhkKuOX7YNdyrs2
+	uYPLlzmOysPNEWTnl5Q4bWHbMOfENtKh0yy48ta0aMyv55OEUdi1cX1ffoMQRiPefqEv39H
+	Pgkhuc6epaVic7eYK+evLMpnwLd5SOPT5BvMZSoCAJkEuxVm02pd0NeeyEJPr05wnFLlOcv
+	ATNfhgfGXI6iuWtTLEQmgo2xuytRyBg+84c9803j5zwEr+psbZuQNvwx5on6L1DGqm+QeO/
+	fkuT+0yg==
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
-Hi, Varshini,
+Radxa Dragon Q6A (https://docs.radxa.com/en/dragon/q6a) is a single board
+computer, based on the Qualcomm QCS6490 platform.
 
-On 8/4/25 13:02, Varshini Rajendran wrote:
-> Add additional condition for validating the calibration data read from
-> the OTP through nvmem device interface. Adjust the calibration indexes
-> of sama7g5 according to the buffer received from the OTP memory.
-> 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-> ---
->  drivers/iio/adc/at91-sama5d2_adc.c | 18 +++++++++++++-----
->  1 file changed, 13 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/at91-sama5d2_adc.c b/drivers/iio/adc/at91-sama5d2_adc.c
-> index c3450246730e..d952109a64a9 100644
-> --- a/drivers/iio/adc/at91-sama5d2_adc.c
-> +++ b/drivers/iio/adc/at91-sama5d2_adc.c
-> @@ -445,6 +445,14 @@ static const struct at91_adc_reg_layout sama7g5_layout = {
->  #define at91_adc_writel(st, reg, val)					\
->  	writel_relaxed(val, (st)->base + (st)->soc_info.platform->layout->reg)
->  
-> +/*
-> + * The calibration data has a TAG to recognize the packet
-> + * The tag has a constant value "ACST" with the ASCII
-> + * equivalent 0x41435354. This is used to validate the
-> + * calibration data obtained from the OTP.
-> + */
-> +#define AT91_TEMP_CALIB_TAG	0x41435354
-> +
->  /**
->   * struct at91_adc_platform - at91-sama5d2 platform information struct
->   * @layout:		pointer to the reg layout struct
-> @@ -504,10 +512,10 @@ struct at91_adc_temp_sensor_clb {
->   * @AT91_ADC_TS_CLB_IDX_MAX: max index for temperature calibration packet in OTP
->   */
->  enum at91_adc_ts_clb_idx {
-> -	AT91_ADC_TS_CLB_IDX_P1 = 2,
-> -	AT91_ADC_TS_CLB_IDX_P4 = 5,
-> -	AT91_ADC_TS_CLB_IDX_P6 = 7,
-> -	AT91_ADC_TS_CLB_IDX_MAX = 19,
-> +	AT91_ADC_TS_CLB_IDX_P1 = 1,
-> +	AT91_ADC_TS_CLB_IDX_P4 = 4,
-> +	AT91_ADC_TS_CLB_IDX_P6 = 6,
-> +	AT91_ADC_TS_CLB_IDX_MAX = 18,
->  };
->  
->  /* Temperature sensor calibration - Vtemp voltage sensitivity to temperature. */
-> @@ -2281,7 +2289,7 @@ static int at91_adc_temp_sensor_init(struct at91_adc_state *st,
->  		dev_err(dev, "Failed to read calibration data!\n");
->  		return PTR_ERR(buf);
->  	}
-> -	if (len < AT91_ADC_TS_CLB_IDX_MAX * 4) {
-> +	if (len < AT91_ADC_TS_CLB_IDX_MAX * 4  || buf[0] != AT91_TEMP_CALIB_TAG) {
+The board ships with a modified version of the Qualcomm Linux boot
+firmware, which is stored on the onboard SPI NOR flash. This allows
+booting standard EFI-based bootloaders from SD/eMMC/USB/UFS/NVMe. It
+supports replaceable UFS 3.1/eMMC modules for easy user upgrades.
 
-Can buf[0] != AT91_TEMP_CALIB_TAG with the new code?
+The board schematic is available at [1].
 
+Features enabled and working:
 
->  		dev_err(dev, "Invalid calibration data!\n");
->  		ret = -EINVAL;
->  		goto free_buf;
+- Three USB-A 2.0 ports
+- RTL8111K Ethernet connected to PCIe0
+- eMMC module
+- SD card
+- M.2 M-Key 2230 PCIe 3.0 x2
+- Headphone jack
+- Onboard thermal sensors
+- QSPI controller for updating boot firmware
+- ADSP remoteproc (Type-C and charging features disabled in firmware)
+- CDSP remoteproc (for AI applications using QNN)
+- Venus video encode and decode accelerator
+
+Features available with additional DT overlays:
+- CSI cameras
+- DSI display
+
+Features that require unmet patch dependencies:
+
+- USB-A 3.0 port
+- UFS 3.1 module
+- HDMI 2.0 port including audio
+- Configurable I2C/SPI/UART from 40-Pin GPIO
+
+ALSA UCM and Audioreach topology patches are available at [2] and [3].
+
+[1]: https://docs.radxa.com/en/dragon/q6a/download
+[2]: https://github.com/alsa-project/alsa-ucm-conf/pull/601
+[3]: https://github.com/linux-msm/audioreach-topology/pull/24
+
+Signed-off-by: Xilin Wu <sophon@radxa.com>
+---
+Changes in v2:
+- Move codec before cpu in sound node to get sorted.
+- Drop patch dependencies in cover letter
+- Separate the changes that have unmet dependencies, and mark them as DNM
+- Link to v1: https://lore.kernel.org/r/20250912-radxa-dragon-q6a-v1-0-8ccdbf9cd19b@radxa.com
+
+---
+Xilin Wu (5):
+      dt-bindings: arm: qcom: Add Radxa Dragon Q6A
+      arm64: dts: qcom: qcs6490: Introduce Radxa Dragon Q6A
+      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable all available QUP SEs
+      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable UFS controller
+      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB 3.0 and HDMI ports
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1208 ++++++++++++++++++++
+ 3 files changed, 1210 insertions(+)
+---
+base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
+change-id: 20250912-radxa-dragon-q6a-eedcdeaf3e66
+
+Best regards,
+-- 
+Xilin Wu <sophon@radxa.com>
 
 
