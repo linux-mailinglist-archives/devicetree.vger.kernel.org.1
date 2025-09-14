@@ -1,169 +1,127 @@
-Return-Path: <devicetree+bounces-216861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54772B5651A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 05:54:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BEA0B56560
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 05:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA8F07A445C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 03:52:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F0277A5F73
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 03:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B20326F2AB;
-	Sun, 14 Sep 2025 03:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m7q9EjnF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15F42749EC;
+	Sun, 14 Sep 2025 03:56:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EB32571DE
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 03:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D32272E71;
+	Sun, 14 Sep 2025 03:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757822052; cv=none; b=CfkVlZiFN8hrVRjRJIFLaXYOxoaT8wbIfMBhHs+p2gUcHJ8GvyzlurtQitmKMi2Rbu+2JDvUZzCCUgLFxX4f8xY8bZFs4NDFpQXKgoPI9Rz5XbUhHqtLBlgwIuCQffHEu6/A9AtK8mugWrYqb9oOZv8PMueizaJo9dwDjRGFj0U=
+	t=1757822165; cv=none; b=BKwKGgIr0+N4t23FZm61eqjZnbBAURSbsRlr/0Q1jk7XNne0JROAnrpDYEshMUbD4Y3ct0reDfXrGjjslNQy+r2eRdUJuh6rhnSKRvD5s57FTkmqRDVRrS7JyWo2VsGNlhkGhkBLhbjWyDcMzhV7oZeQsv+wgge5GI5ObAmQi0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757822052; c=relaxed/simple;
-	bh=E3G8T/3zLMm3x5kad8USEbJCkxfjt487WTCm3NfxUQM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Xfxj5nwo0ieU4X9yw0BBbBLm62/97S3r35DT1ol9IQxLRIJDvngmg2sK3i8sFqdn6TVUODlUpvSKpXdVV37aH3MNtfnqxEPLsQL0ZzSO1ihV9esJoj8kjjl1n+t0QDCnARmiZJ1jau5K3VvxWi/28cZ/2Chg/mnsg1VHwAecFbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m7q9EjnF; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b0411b83aafso460805466b.1
-        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 20:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757822048; x=1758426848; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U0YiDU4Bzw7IKNW2/fgCfvKW6iRx1DQ4l7Ssn455PQA=;
-        b=m7q9EjnFFJXZKnnJWAuHewuPVuFM6vjLTLUvGfzyzdImBQ++EznbIWQrk7ZI2edCxN
-         ABVvHSn4RknXX5w6azOwuYHGkiavtI++cDhw2VB+z9yMG4LKQot3louLK0jFpgqq1FWv
-         Q78TRjdvR0Cw/rFvCF6EeApx0C0A+QEIwW3wsoRz53U0346Ms0IAbOFiBo7TQKjy2D0H
-         6fAS2QfZ95SJNv8tL8ibrMA8/T7EUfTK9KZRsSZi0NwfZi/1IKHCtEKzDysYdoxQDCFa
-         Jvp3JCGDTMjnFlQzVxYRvv7qTI5TjZp2QRR+sCsbevZnJUnSRA7koomaDueq5ksTsrH3
-         uUqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757822048; x=1758426848;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U0YiDU4Bzw7IKNW2/fgCfvKW6iRx1DQ4l7Ssn455PQA=;
-        b=hV131oRmb9TnlRS/6UNjQbQ2WUsECuQZYilMj1qg6BLEbNpQvrHG1Nh/0XAMm1EDRL
-         Nj+2Ki49VvLLPcCmumuYfCYIU7U81xl0+nsOWq9IN0sOuJVAnoDv3B3eh/+7HyZsuS2z
-         wZcn+ZHRutcBpOvZ3bgaSqmlSFKeCzlPkz3fb+q9Jpsm/kMNTYj5Bqwm8jHQJdlaxm6c
-         lJR30ZR2m+4hmhqoAx/KkfsbTgEdnCiQ2oKUROwoHQfcEqu/nndwp4tCH1HrIgxudZQa
-         3zezHZFXAdMfqQwPLosMK7NXJ2YND4n3/3CqcIgrtKm23iZ+F4RbQqpkuYoGrKA3FiKc
-         jpuw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7XuT3KGpc9SJ/lgP5MqQYl73Q56N4aZfTTufuXau19rhfI/XjY8ynLCW4vp08f7j3sKwrb9WQtroK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT2F5rOEIhrWkpTu8VvZFaSFSYOdsKPiht6edxPdYbhlAstREU
-	nE1c6LfvUIe0gEHTRiqC3Po+79e6HV41+ZkrT+AuFoWVwn0si+m7hbqF
-X-Gm-Gg: ASbGncsYk2X4LueR53UbhzsGsio3MeN2UguPFpnlQY6Di+UuRnxSt6Wrd6CXEsU/2/h
-	9I0sj62WtLLdAs8bKctihG5azdqkpXEloKlrFBzpR+ihlbTPyOr5RmSlAxVXqN3sPZiHGyPYqq/
-	9WRvn/MlaOeISWPceu3ZgYx4trhXyOKcVqHzFgRGZtqn3ErDgN2zAF2lM1hZHiRakf4pfx+T960
-	NknCUWTV/1nA4Tx+3JDDuiBGr6w4D7y2CtDhOkJfd6d4p3DQ1OTAjeJpnyahxw6tklxi1BNum9H
-	jk1gMWhPMUfjS1nbzlZetMC7agEDyg+lv16wx/qgYKTHt1lRGRFwZUbWAmzLj23bqBcuaeIrlvu
-	2LTbti9HFZY0V99bWD7l9OohR58h4/g==
-X-Google-Smtp-Source: AGHT+IEVLkeZlLSkzoTpPLzlBRvNTQ9m/bl133jXYp2zZldNvB+tlYKH8pXYzZ5ISfOO2+UjGM6RFg==
-X-Received: by 2002:a17:907:e8d:b0:b0e:3d88:27fd with SMTP id a640c23a62f3a-b0e3d97e027mr75192266b.8.1757822048020;
-        Sat, 13 Sep 2025 20:54:08 -0700 (PDT)
-Received: from localhost ([212.73.77.104])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-b07da7a8918sm303079766b.56.2025.09.13.20.54.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Sep 2025 20:54:07 -0700 (PDT)
-From: Askar Safin <safinaskar@gmail.com>
-To: linux-fsdevel@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Jan Kara <jack@suse.cz>,
-	Christoph Hellwig <hch@lst.de>,
-	Jens Axboe <axboe@kernel.dk>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Aleksa Sarai <cyphar@cyphar.com>,
-	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
-	Julian Stecklina <julian.stecklina@cyberus-technology.de>,
-	Gao Xiang <hsiangkao@linux.alibaba.com>,
-	Art Nikpal <email2tema@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Eric Curtin <ecurtin@redhat.com>,
-	Alexander Graf <graf@amazon.com>,
-	Rob Landley <rob@landley.net>,
-	Lennart Poettering <mzxreary@0pointer.de>,
-	linux-arch@vger.kernel.org,
-	linux-alpha@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-csky@vger.kernel.org,
-	linux-hexagon@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	linux-m68k@lists.linux-m68k.org,
-	linux-mips@vger.kernel.org,
-	linux-openrisc@vger.kernel.org,
-	linux-parisc@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-riscv@lists.infradead.org,
-	linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org,
-	sparclinux@vger.kernel.org,
-	linux-um@lists.infradead.org,
-	x86@kernel.org,
-	Ingo Molnar <mingo@redhat.com>,
-	linux-block@vger.kernel.org,
-	initramfs@vger.kernel.org,
-	linux-api@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-efi@vger.kernel.org,
-	linux-ext4@vger.kernel.org,
-	"Theodore Y . Ts'o" <tytso@mit.edu>,
-	linux-acpi@vger.kernel.org,
-	Michal Simek <monstr@monstr.eu>,
-	devicetree@vger.kernel.org,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Thorsten Blum <thorsten.blum@linux.dev>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	patches@lists.linux.dev
-Subject: [PATCH RESEND 44/62] doc: kernel-parameters: remove [RAM] from reserve_mem=
-Date: Sun, 14 Sep 2025 06:54:02 +0300
-Message-ID: <20250914035402.3670906-1-safinaskar@gmail.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250913003842.41944-1-safinaskar@gmail.com>
-References: <20250913003842.41944-1-safinaskar@gmail.com>
+	s=arc-20240116; t=1757822165; c=relaxed/simple;
+	bh=u02mMUaIVtvdrURtSKHtzwR4LI8cy7hQrvFjwPb8eKU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iClVXYA8uff8cucqlSDeYQvF7FohjskD3CcsvSfGS9isr8MYdnKwjwR7r5yhQY+0HFWw4HCExiqIcK94aAfh2s/vBxhFOTcb4BHj7lzNRbuUg4lEDE7TK1Fg/fDUl57msyV2Fqe6MzZSAHHDyQHkTfNkIWJUAWZ5AHVmScLPe6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.109] (unknown [114.241.87.235])
+	by APP-03 (Coremail) with SMTP id rQCowADX64V+PMZoDyHBAg--.5992S2;
+	Sun, 14 Sep 2025 11:54:39 +0800 (CST)
+Message-ID: <850e769c-ea03-4777-b91b-c7a8b0ad6455@iscas.ac.cn>
+Date: Sun, 14 Sep 2025 11:54:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v11 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <uwu@dram.page>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>
+References: <20250912-net-k1-emac-v11-0-aa3e84f8043b@iscas.ac.cn>
+ <20250912-net-k1-emac-v11-2-aa3e84f8043b@iscas.ac.cn>
+ <1f2887e4-2644-48a4-8171-98bd310d190f@lunn.ch>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <1f2887e4-2644-48a4-8171-98bd310d190f@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:rQCowADX64V+PMZoDyHBAg--.5992S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Jr1UArWkXr4kCw1DZrWDurg_yoWktFgE9r
+	1DXwnrGwnxArsrCw4akr1UJa9Y9rZrZFnrZ3WfG39xZa9FvFWkZrW8Ar1Sgr97Ar4fGryS
+	kr9xuF4xCa48ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbV8YjsxI4VWkCwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
+	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+	W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+	1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
+	IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
+	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07jDKsUUUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-This parameter has nothing to do with ramdisk
 
-Signed-off-by: Askar Safin <safinaskar@gmail.com>
----
- Documentation/admin-guide/kernel-parameters.txt | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On 9/13/25 05:10, Andrew Lunn wrote:
+>> +static u32 emac_rd(struct emac_priv *priv, u32 reg)
+>> +{
+>> +	return readl(priv->iobase + reg);
+>> +}
+>> +static int emac_mii_read(struct mii_bus *bus, int phy_addr, int regnum)
+>> +{
+>> +	struct emac_priv *priv = bus->priv;
+>> +	u32 cmd = 0, val;
+>> +	int ret;
+>> +
+>> +	cmd |= FIELD_PREP(MREGBIT_PHY_ADDRESS, phy_addr);
+>> +	cmd |= FIELD_PREP(MREGBIT_REGISTER_ADDRESS, regnum);
+>> +	cmd |= MREGBIT_START_MDIO_TRANS | MREGBIT_MDIO_READ_WRITE;
+>> +
+>> +	emac_wr(priv, MAC_MDIO_DATA, 0x0);
+>> +	emac_wr(priv, MAC_MDIO_CONTROL, cmd);
+>> +
+>> +	ret = readl_poll_timeout(priv->iobase + MAC_MDIO_CONTROL, val,
+>> +				 !(val & MREGBIT_START_MDIO_TRANS), 100, 10000);
+>> +
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	val = emac_rd(priv, MAC_MDIO_DATA);
+>> +	return val;
+> emac_rd() returns a u32. Is it guaranteed by the hardware that the
+> upper word is 0? Maybe this needs to be masked?
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index a259f2bdba0f..0805d3ebc75a 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -6277,8 +6277,7 @@
- 			them.  If <base> is less than 0x10000, the region
- 			is assumed to be I/O ports; otherwise it is memory.
- 
--	reserve_mem=	[RAM]
--			Format: nn[KMG]:<align>:<label>
-+	reserve_mem=	Format: nn[KMG]:<align>:<label>
- 			Reserve physical memory and label it with a name that
- 			other subsystems can use to access it. This is typically
- 			used for systems that do not wipe the RAM, and this command
--- 
-2.47.2
+This should be fine, since most of the registers only have lower 16
+bits, and the upper 16 bits ignores writes and read as zeros. But I'll
+change it to a FIELD_GET for v12 just so there's no question on whether
+this is safe.
+
+Thanks,
+Vivian "dramforever" Wang
+
+> 	Andrew
 
 
