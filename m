@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-216986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E7AB569F8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:03:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7674BB569FD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:03:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A36C0170FE8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:03:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9BAB3A3D20
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BA62C3255;
-	Sun, 14 Sep 2025 15:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEB62D061B;
+	Sun, 14 Sep 2025 15:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hFseE28g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d03RQbXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DDF195808
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:03:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9DA2C327D
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757862219; cv=none; b=X2kjl+ObxjYsQXvWb6po3iOu6pt3pP//9Lwq4w0a47A5iqNIwdOe0mNMKRVc1U2VgIS+oaEjIfpGcaCsQic9xU9F8hddP8f/TgPmCCX92owS8jymQwd5edT9Q+63cnpm6g2MBKD8mN4/l2wE1CXGISkOD8FoPKc1ebUOO/YBFQ0=
+	t=1757862221; cv=none; b=PZGboH9XK8gx2pS6u+7zTNEgTa0pDvFzdzaaeMN91SRRo6vJzdqMRhjyTUc59iFYdONt5kAxFBI06yW7Vmt/w28x9dLRTW2M1wPpdAQ4pTaJyrNhE7h7qeH+BOYVLup91h2Rq1t/NeuQxA83z9oHcFfWJq+MRFhK3VO95a+WH6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757862219; c=relaxed/simple;
-	bh=xs6LqiBmgxIFnHypoqe7nG87ntLyreVaFYrZoS66JuA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kzzF5AcgYNBpxqqCu+et+LJ7cwExFC8BUp9HjC+/ZEG8NOYZCBcr9/2kfVTEbDzuwZts36fYipQbC9sG/ui9uxJXnJSZfeaUjhJwy017hAzIFOfyR/6k2PoyPud+6lLEkIofDmPDTGvLbEBDnpFN7t/e0QwFt058c0KUAy80AZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hFseE28g; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1757862221; c=relaxed/simple;
+	bh=t8tzZ/2f7RCQSjiip8NSX/rfbTT3f/6gXgGGXz+AV6U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mnUybpk5bTp9AYh/tL3lSHMTBt8/RxKw1zIh0IUiZiokxDwkbjo9xGefaQVv5h0+dEqtVGuoQZSWEEq4bsIjIdi0PRefA4NroHI3pd8UiFPpPyLZoBW7DtmZwoR5YIDyisl0PL+kr4N+hNwuMgBY2wZhSZoT8mPlLJ5q9nmR3XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d03RQbXI; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45cb5e5e71eso21023875e9.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 08:03:37 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45dd505a1dfso27730505e9.2
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 08:03:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757862216; x=1758467016; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1lIRCb0Ss5Rfvrp/H0UgF1zFEFWzkJIihax3RDmNWDM=;
-        b=hFseE28gfiaz8Z80hrHQ89F1TldD0T1aRIaEbmPWo8YnLnKqBMj+CK7C/IGJ4Kc+nP
-         iNFpNOv/9rvtfMLU9sTCPs8JcEaaOHDVTvF+14mScxUz2LMqCBNnfjzH9g7UDnd/dK+b
-         xhMmpwG5J33MFXKD1Q0GD/4mG+MvVtlwZ8OaaSz4haOIDL7dzWscn/AawtjzbTkRBcw2
-         OZ2Ot5SgCD679WZ/fyltev+oFVcrQY1z/kybhrf4wGhBFO4SnKhOa2bKYff68NCiy20K
-         q1lUYDAX6EEN5nPWhk7QJW/fv20kQzYyw/zEGuosGQpX7YdhHPEvcI6fSUDlIiQwlG9k
-         veGg==
+        d=gmail.com; s=20230601; t=1757862217; x=1758467017; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wyg3bozHzgmdRL161LYvLfYk983lEGFQ9huQuS5QQKo=;
+        b=d03RQbXI010PuwEvDZPjmuK1qQqg8avahsAfSGLDc/0i8DwejuU7GfWfC7CZSumyyK
+         n9K9PhhSJJO95Y/aJrF1SnnUKR5RB5ezcvuGIW5Zzex6nBqzScaDD5vHOzoP+8lFLF25
+         T94rLaKumyUnF6pCjUPqUrZasZfJ/K0GBojcJmAFkm/98o4Deyq4I38Naw9dQr1ATOCd
+         jvyol3kbWZgpV7mUQtUROyu1y7JVM1G0jPiRau3qpw1ohwOPvq+166SkH7DQ2MlVhWgu
+         MkrDunR+wqldW1gNMUKhvr+2W1lAcjOTagCLBOTFarkOjh/MFjLb6tvvvSu+qd8Y1iZW
+         p+zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757862216; x=1758467016;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1lIRCb0Ss5Rfvrp/H0UgF1zFEFWzkJIihax3RDmNWDM=;
-        b=CAHZFd4COQOf+hNdB1+s1eiUixe4IgC+81z1v37JbrdkS/risskToE1zSfurI6ARAm
-         wKUxmS2QNl9e6hkIYvW8mbvNSZWZeaiZk7RQwsKBxPIzv3HGG+/AkACZLBGqx1ehC6kP
-         MAF05mjq+9vEWdy6V0w2gCfXl/efYNz7zkQzKxPxkTwkc5IXDFuBl4GaXpOJ6xWQs4vd
-         9DKwxs7VLw9JKQCAfD9L78CaIz0YKXhOR6XUOOfLqw9h6vTv8ax+e9FHPOk5NvEV43fN
-         aPNLeGplofxUMN7wTD7qX39ukhiDaZdNf4VBKYSMUoDRypcerIKVrHYwgRFJbO1eDljN
-         I6cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXk8bheJG+2Ti+aClsLsaSAp4la+pumTjn7ns8rjJTIejgR0QTuGHE9OBDE+vbNiGeksO6Kwvt8N6uD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+YGUdg4/DGMvQGAJl+5M2U41SOZ8yxG3zqtc2WkF1d5tRVKX9
-	LdeaBUstgpWZhpzjp3bL8EP+B9uSjT2OnVs5z6FpDGYdKPqAJMmi/p+m
-X-Gm-Gg: ASbGncv6y1oBfTH5OkWnZV7XKq9daDXwLoEBRHrb/kZUripfuyrSaeKUqFRKFCOq/Xh
-	NJSX2ZWU/C/D+XXzFF/K6xsqa56aslMSh5eJAoH8VPRJbpTrVBsnCn3Dc8+Z5yeBKxNGwVpSsli
-	9ercpWHTK2ma6/6x2HrZig3F8TWF3Vax01UAYv3Sj58AHk2AebROsL36KlOkTYovRjIo+2P2OyL
-	uU9glZlxh2m6nxTtqavL0VmmxplGfZGTDABOY/9maIBqkCHZerBsBJcMfKF9V50kCH7TgkkezXJ
-	KuaaN4CV69vOQDB9uX1lwU/kn9fG6FBojp6B89/HDzQiumzyMFz4AecUNH89uQJKZKxZm1SJM51
-	K/yeXmqOdErvB35A/OW0c2Mi+usR9xbtVR9OaPhvEdeB2n7x8cVUupV0WoFpGr3wHi3e/8zU2NP
-	yYf5tnw5Ws
-X-Google-Smtp-Source: AGHT+IGX+t8bHaJsVFUW55Nu1/GECO/8bMja6DNHy/GlXV5xfnZ/WFPTaKZBY0dv6uJ4UMHLFZgm8Q==
-X-Received: by 2002:a05:600c:6d45:b0:45b:47e1:ef6a with SMTP id 5b1f17b1804b1-45f21208baemr59109745e9.37.1757862216245;
-        Sun, 14 Sep 2025 08:03:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757862217; x=1758467017;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wyg3bozHzgmdRL161LYvLfYk983lEGFQ9huQuS5QQKo=;
+        b=PAKAj8D2PMp3bZlkOxYhU2zt9dURt9uoJ8UIrFJPKMhZn76SXsER4plRvYVVyOZk6I
+         cdNB6AALCbbC34WB/Xvg3YkWyWBkWCBJ1wHywrrGX4qXwUOJbv8uF0H/BXzhRASnv769
+         sDVxEFLVWMcHfIHmCSJnyD4AYnfhc9BY+z94GPDKvGWq03hkcEctb6U+RYYvVGliW7EW
+         C5Bfr6HqB9f0+gfKGehnYwd1YN9Hze4EYIpetNRwPb4m9mrCJlSuynTaKV900OtjRNma
+         pytzZzAmvYn2qpVOgnKbXpN3T4ogf5u3ehAS8w/yWC9CaVDzXMzVX440tlkMOSCo4OlM
+         kDOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXnDhwUnlG8MQCrMmnKxjNmfNbmU5Z0Ozzxihu64v7OdTPCsdvRlm89zlD46MRLL5FItw+WWKHW9c+k@vger.kernel.org
+X-Gm-Message-State: AOJu0YybuKSTfuincVJl4t+XU8uDW0ZUZYOwp9wP6dN+DMF0UIkqYwa1
+	uANj+GsW5aYFVZK/2jxm4ISiGnMvl9909U/jp7BbujskGkOqdUpmpCh1
+X-Gm-Gg: ASbGnctmqH84mqXIhCxayWJTX+9Uf4qdRD54YpTBKyUThYXlZ2ZZuwnIZ3uBkRHu9C2
+	0P6GBPnU8XlpwOoI63F5HhujQKqMDjEG9JGxO55aeKYb7gHy44xtctpD2YByWika8izIufi782V
+	cSCwLDKmP5zScl0WImuP/BrjG1e+jn45jFUlr1OdZ7LfczQHrRspexHY+FAvDwoalpDU8JxpmsM
+	0dBcHUsniqsTfYMHVviG1Qo4hUNQyHCdW1TxQ3LgUXxdCClhdC4L6ddQ8Hf76NfzhelChpXC0L7
+	7mnl8sa5cC2LpIRYUuAyqWqBOUhoFSAAazRaq/K7Z9Ku8L2gBqfNsDIs4oiUhhVxTwm7sDz/ySU
+	xO2lnyDXfL2CgweBeGnO8RyeU9u2WOPggifJyDmHi712Uk9Kgb4tZZFLfi2njzcW5+cbwlmbHig
+	==
+X-Google-Smtp-Source: AGHT+IE3h45OZpMAY6SiSVCXJQptcZFERabg2hn7u3d3tNKA8ghZYuzRtUbXRk0u5MeYisU4RNY5bA==
+X-Received: by 2002:a05:600c:1c0b:b0:45c:4470:271c with SMTP id 5b1f17b1804b1-45f212f9888mr85615375e9.18.1757862217348;
+        Sun, 14 Sep 2025 08:03:37 -0700 (PDT)
 Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f2acbeee0sm32780385e9.0.2025.09.14.08.03.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f2acbeee0sm32780385e9.0.2025.09.14.08.03.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 08:03:35 -0700 (PDT)
+        Sun, 14 Sep 2025 08:03:36 -0700 (PDT)
 From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -81,10 +83,12 @@ Cc: linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 0/3] arm64: dts: exynos: add initial support for exynos8890
-Date: Sun, 14 Sep 2025 18:03:18 +0300
-Message-ID: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
+Subject: [PATCH v1 1/3] dt-bindings: arm: samsung: document herolte board binding
+Date: Sun, 14 Sep 2025 18:03:19 +0300
+Message-ID: <20250914150321.2632019-2-ivo.ivanov.ivanov1@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
+References: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,48 +97,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hey folks,
+Add binding for the Samsung Galaxy S7 (SM-G930F) board, codenamed
+herolte, which is based on the Samsung exynos8890 SoC.
 
-Before anything, this patchset depends on the following ones being merged,
-either for dt-bindings for compatibles, and/or device drivers:
-[1] https://lore.kernel.org/all/20250914112942.2604194-2-ivo.ivanov.ivanov1@gmail.com/
-[2] https://lore.kernel.org/all/20250914114457.2610013-2-ivo.ivanov.ivanov1@gmail.com/
-[3] https://lore.kernel.org/all/20250914122116.2616801-2-ivo.ivanov.ivanov1@gmail.com/
-[4] https://lore.kernel.org/all/20250914124227.2619925-2-ivo.ivanov.ivanov1@gmail.com/
-[11] https://lore.kernel.org/all/20250914134458.2624176-2-ivo.ivanov.ivanov1@gmail.com/
-[13] https://lore.kernel.org/all/20250914145555.2631595-2-ivo.ivanov.ivanov1@gmail.com/
-bindings only:
-[5] https://lore.kernel.org/all/20250914131452.2622609-1-ivo.ivanov.ivanov1@gmail.com/
-[6] https://lore.kernel.org/all/20250914131620.2622667-1-ivo.ivanov.ivanov1@gmail.com/
-[7] https://lore.kernel.org/all/20250914131848.2622817-1-ivo.ivanov.ivanov1@gmail.com/
-[8] https://lore.kernel.org/all/20250914132033.2622886-1-ivo.ivanov.ivanov1@gmail.com/
-[9] https://lore.kernel.org/all/20250914132201.2622955-1-ivo.ivanov.ivanov1@gmail.com/
-[10] https://lore.kernel.org/all/20250914132339.2623006-1-ivo.ivanov.ivanov1@gmail.com/
-[12] https://lore.kernel.org/all/20250914135652.2626066-1-ivo.ivanov.ivanov1@gmail.com/
+Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+---
+ .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-This patchset adds device trees for exynos8890 and Galaxy S7. The primary
-method to boot mainline is via uniLoader (at github.com/ivoszbg/uniLoader),
-however support for using Barebox as a bootloader after s-boot will be
-available soon.
-
-Best regards,
-Ivaylo
-
-Ivaylo Ivanov (3):
-  dt-bindings: arm: samsung: document herolte board binding
-  arm64: dts: exynos: add initial support for exynos8890 SoC
-  arm64: dts: exynos: add initial support for Samsung Galaxy S7
-
- .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
- arch/arm64/boot/dts/exynos/Makefile           |    1 +
- .../boot/dts/exynos/exynos8890-herolte.dts    |  573 ++++++++++
- .../boot/dts/exynos/exynos8890-pinctrl.dtsi   |  703 ++++++++++++
- arch/arm64/boot/dts/exynos/exynos8890.dtsi    | 1009 +++++++++++++++++
- 5 files changed, 2292 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8890-herolte.dts
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8890-pinctrl.dtsi
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8890.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+index 26fe899ba..cb921c741 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+@@ -238,6 +238,12 @@ properties:
+               - winlink,e850-96                 # WinLink E850-96
+           - const: samsung,exynos850
+ 
++      - description: Exynos8890 based boards
++        items:
++          - enum:
++              - samsung,herolte                 # Samsung Galaxy S7 (SM-G930F)
++          - const: samsung,exynos8890
++
+       - description: Exynos8895 based boards
+         items:
+           - enum:
 -- 
 2.43.0
 
