@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-216890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA915B5675F
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 11:25:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBA5EB5676F
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:06:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DF8C17A7EE
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 09:25:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BCA3189F1DC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21833238C39;
-	Sun, 14 Sep 2025 09:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F69423A984;
+	Sun, 14 Sep 2025 10:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ou2ulugE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGhVWy4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343841D63C5
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 09:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF7D2367CE;
+	Sun, 14 Sep 2025 10:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757841912; cv=none; b=sK7JlHGXtlZpCYdtZJo+yfobMnD7wFMdeEFLNc+uUkdq1X4oc3TFZ/C7Tz2MQB+R3pkoIfjod2486EmWkQ6In3HW4DgpnJjtsMmAc1UOU9hF/2bkMoyLq3ihfO/+3r4rPkFSJ3Pw6UjCQojU1WnQBT9ecrNtFK1Y96xQ2Aiaqxw=
+	t=1757844399; cv=none; b=U10IkLk32jlXqGWB8kIeTkJlaEUiZOW7Hm6YjLIut3Oi8j3V/X5Kq+pWh+2LDMPqq3+/mcepabrqZBPhvJq727vxmBtYku0K8XrgK8Th7K4BFD9Nc1RGMFP2SLNTqLppaD6XNmpCcbcC7FS0UZKAfKv2M7peq8wWdEhRo7qBGhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757841912; c=relaxed/simple;
-	bh=+4rCll//JnoBBbuxAXcj/sXjckzLz0gNp0tqg1XIkys=;
+	s=arc-20240116; t=1757844399; c=relaxed/simple;
+	bh=sAkxjJJfEShLrXBVvUbe5Nbuot2UFPkdNXybwJxcBYY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hu4hxgvgqwLviBGzuFrBJgmLtv3wzdOQJeZS84vPed/6fKN7qn6s9VtfW2ilUeNPQQH4umlHUj8JUL8CL4s4vN7GNuYJo0K021oaYPIXUGD8EKtrafSblYJ5QwQ9ThKhpinLofxIi+tCdYa3nEur1jBrEq6SYH52IeAfafJZZAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ou2ulugE; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55f6b0049fbso3650491e87.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 02:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757841908; x=1758446708; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ho58j4q8V+4E8zb9CufZ62itbJsz3Kolr/iP45Pw0Rc=;
-        b=Ou2ulugEbuNt8gwKSxoQkbh5M4n34ZRR3/ZDIZ5cHlHNRYeQBYHALfXK9DRrBY4iMz
-         H38ZWIiQg4U61NU2YFwIADh86IdCr27GD4JJXwOOf9WlHT6OKgwjJKKmaa4G9ehHWUvf
-         ePMGvobZWCp6JNqfjvUpXGDQvP2J2pVFdZzwqL78nudqx82gBKOvNvldXLpnbBUXWeqJ
-         pbD8rpXsXXRtfOGn9PBpvwGCHH8hLoMJnwuSCDSbspHRW74dgJMEJ39gH+QD8poYtEfG
-         v2vSYpOjobnF31Njp2cBVmP80vMxnJ/gVDq6v9LFu+/shNgPHNyOO42sSTjdS585T6ah
-         p3Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757841908; x=1758446708;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ho58j4q8V+4E8zb9CufZ62itbJsz3Kolr/iP45Pw0Rc=;
-        b=gE+JcbDty84l9/Y5yPEk9K3fgU1eJe2U4qBbj88iMtzisNo0bjMPfRd1coBkmjWg2G
-         TBPHQLtTVP2nkSdb6eWfR3BIa1emxUSFcs3ujG5fRDbFtwTOvT+/OoA4jriF2k0LKjrx
-         ZHAkqNrYcYv/65l0zDlDOPaqmg4FqKYysQyeiYPY8jBy4lEUMecq1kThbZwPrH5+KzU6
-         V4sjRpmVehB5jbEGKgOjvJUtgc7nwnSOQlCOkugjOL1kCqKt1Z9lkRijCOYGgo31Sj35
-         DPqXqOSiwULXbbnRV9d6hqFpZCSV57aIrOFreTt+c4iTIt5IaMpbk46D7AJf4Hd/2T9K
-         VopQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVhlUSdRSx5nPXostBa6AcJwj9dFal/gjtdy7djL7reti50QW4R5tf5AL48nHUsXphzJe62RmUWS4dS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIMR0hbrc1dK8YjHOyiGMyu/lbihXDyzh74L2LCQ12383mr/RB
-	0loyrBp8edEMGXEzipAhPSTloSZq/ZliS+qALq6Zjfo9yN0R0AjywDjj
-X-Gm-Gg: ASbGnct/aPUMf18OKmaCCXm2LlwiV3Ytm6HLXxz1ScGawnfXxrHVz6hkcftSx+TFhBG
-	8Kf0BgtnUYkqYqIfDr6Zq6kDWkURgDaN1zvOBcNxeTtwUmCOlHQ/m/RLkw46j6jjp6X7XrIHxAO
-	xMD8pHCtfkEdT5g4o2KPpLnuEsr53CpMRDRQpvQ0enot1VnVSV7i4CmljNrgO7v78cb8LKZRYsC
-	v1dPMxbT0oMeRCcQYRIl2R2v6cY4QY5eVO/qMyxfRWXalo0XcsD9UR8CLdxod8q822o8ES9+gII
-	rOlcYnPwYDkp1rvQVwEGh6IOg3miZM23NHr8OHAldye2OOZsiTO7U29+13fCnAaAmuJj9ERpNUN
-	LCKlP4CKs84JOVI/oI3l7A0qSs0670+8OI4B0K590UbNOb6Gqs0b90b1GTZeEIblZN+BYsKkPNW
-	6OQv1P06ZT1XRokX8=
-X-Google-Smtp-Source: AGHT+IGAdpstb81hppchzd4Q1HxoZsk6kfcEpq+JyA9XWnS84y0k2oKP6wonMMCI2UNWVAsmaWZNPQ==
-X-Received: by 2002:a05:6512:140d:b0:55f:7050:9550 with SMTP id 2adb3069b0e04-57050440100mr2502409e87.38.1757841908140;
-        Sun, 14 Sep 2025 02:25:08 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e5c3b6167sm2721362e87.25.2025.09.14.02.25.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Sep 2025 02:25:07 -0700 (PDT)
-Message-ID: <7c1cd888-539e-42f9-8333-a68044257531@gmail.com>
-Date: Sun, 14 Sep 2025 12:25:06 +0300
+	 In-Reply-To:Content-Type; b=nWq5ftAsqD07HZlujyPjUwHrWIpZLZzINE3spy5tybyUwAbONLL0o3N1oCGfB+G3FgcxT9fiNa7vTkbE01/T45MSlHOd1RJqcgldkPhqSE9PRud1lIiXd2cLQQ6/8na09PAtQEQc8+59MhMSIOzht2LCHlhXo96BfzKA9tnWJbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGhVWy4h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4082AC4CEF0;
+	Sun, 14 Sep 2025 10:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757844399;
+	bh=sAkxjJJfEShLrXBVvUbe5Nbuot2UFPkdNXybwJxcBYY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hGhVWy4h/gu84b8AUY5CAxhBjA4oE+f4FI8q2AbORfRl5Mzbjbj6lhOkyStQ0oi9M
+	 W8QoYlTDAMmDvzc22PRN4vIf6UvnWIEgHfPK3nbIaO6+Bgc4ot987GJoAgiZ4Qoss+
+	 dxJ+3IkBSVZOwu+N2Z4n4dxeuzzil+8fSxn4vpD6k3VBKvJUfWYkKTYv+ULvYtpxSe
+	 ARcPnImrypfujumW2c+Tkx9maY07yERhC6rWJz/fkMGgSqGvpdn/rBYS9IbwIOKyKB
+	 hvuk4ypNdLPnSksQeCF7GqwSkxro5/n9s5UJO1kqWTpzV4Z4DDYeQc9CzvLJ70Fc+A
+	 sMyziae1DQ/+A==
+Message-ID: <a079375f-38c2-4f38-b2be-57737084fde8@kernel.org>
+Date: Sun, 14 Sep 2025 12:06:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,109 +50,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250910-bd79112-v4-0-f82f43746a8c@gmail.com>
- <20250910-bd79112-v4-2-f82f43746a8c@gmail.com>
- <20250910184619.0303163d@jic23-huawei>
- <d586b4a3-8fb8-45b5-a5a6-5bee8d366879@gmail.com>
- <20250913132438.11d14416@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250913132438.11d14416@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH RESEND 21/62] init: remove all mentions of root=/dev/ram*
+To: Askar Safin <safinaskar@gmail.com>, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>,
+ Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>,
+ Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Aleksa Sarai <cyphar@cyphar.com>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+ Julian Stecklina <julian.stecklina@cyberus-technology.de>,
+ Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Eric Curtin <ecurtin@redhat.com>,
+ Alexander Graf <graf@amazon.com>, Rob Landley <rob@landley.net>,
+ Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org,
+ linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org,
+ Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org,
+ initramfs@vger.kernel.org, linux-api@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-ext4@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
+ linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+ devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>,
+ Kees Cook <kees@kernel.org>, Thorsten Blum <thorsten.blum@linux.dev>,
+ Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
+References: <20250913003842.41944-1-safinaskar@gmail.com>
+ <20250913003842.41944-22-safinaskar@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250913003842.41944-22-safinaskar@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2025 15:24, Jonathan Cameron wrote:
-> On Thu, 11 Sep 2025 08:13:03 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> Morning Jonathan,
->>
->> On 10/09/2025 20:46, Jonathan Cameron wrote:
->>> On Wed, 10 Sep 2025 14:24:35 +0300
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>    
->>>> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
->>>> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
->>>>
->>>> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
->>>> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
->>>> daisy-chain configuration) and maximum sampling rate is 1MSPS.
->>>>
->>>> The IC does also support CRC but it is not implemented in the driver.
->>>>
->>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>
->>> Hi Matti,
->>>
->>> A few trivial things that I'll tidy up if nothing else comes up (I might not
->>> bother given how trivial they are!)
->>
->> Thanks again!
->>
->>> Also one question. I couldn't immediately follow why any random register
->>> read is sanity checking if an ADC pin is configured as GPIO.
->>>    
->>
->> Ah. Valid question! I see my comment below is partially wrong.
->>
->>
->>>> +/*
->>>> + * Read transaction consists of two 16-bit sequences separated by CSB.
->>>> + * For register read, 'IOSET' bit must be set. For ADC read, IOSET is cleared
->>>> + * and ADDR equals the channel number (0 ... 31).
->>>> + *
->>>> + * First 16-bit sequence, MOSI as below, MISO data ignored:
->>>> + * - SCK: | 1 | 2 |   3   |    4   | 5 .. 8 | 9 .. 16 |
->>>> + * - MOSI:| 0 | 0 | IOSET | RW (1) |  ADDR  |  8'b0   |
->>>> + *
->>>> + * CSB released and re-acquired between these sequences
->>>> + *
->>>> + * Second 16-bit sequence, MISO as below, MOSI data ignored:
->>>> + *   For Register read data is 8 bits:
->>>> + *   - SCK: | 1 .. 8 |   9 .. 16   |
->>>> + *   - MISO:|  8'b0  | 8-bit data  |
->>>> + *
->>>> + *   For ADC read data is 12 bits:
->>>> + *   - SCK: | 1 .. 4 |   4 .. 16   |
->>>> + *   - MISO:|  4'b0  | 12-bit data |
->>
->> This is not 100% true. I overlooked the ADC read "status flag" when
->> adding this comment for the ADC data reading.
->>
->> This should be:
->>
->>    *   For ADC, read data is 12 bits prepended with a status flag:
->>    *   - SCK: | 1 |      2      | 3  4 |   4 .. 16   |
->>    *   - MISO:| 0 | STATUS_FLAG | 2'b0 | 12-bit data |
->>
->> The 'STATUS_FLAG' is set if the input pin is configured as a GPIO.
-> 
-> That's good additional info, but I'm still struggling on why
-> we are effectively providing a 'debug' check in ever register
-> read. My assumption is that it should never fire unless you have
-> a driver bug?
+On 13/09/2025 02:38, Askar Safin wrote:
+> Initrd support is removed, so root=/dev/ram* is never correct
 
-Yes, a driver bug or someone accessing the ADC outside the driver.
+For all your other patches (here is correct):
 
-I kind of agree the check shouldn't be needed - but I've seen quite a 
-few driver bugs during my career. XD The check is _very_ light weight 
-compared to the SPI access time - but you're right that it is done at 
-every ADC data read - which is 'hot path'. As a result, I am not sure 
-whether to leave or drop it.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-Yours,
-	-- Matti
 
 > 
-> Jonathan
+> Signed-off-by: Askar Safin <safinaskar@gmail.com>
+> ---
+>  Documentation/admin-guide/kernel-parameters.txt          | 3 +--
+>  Documentation/arch/m68k/kernel-options.rst               | 9 ++-------
+>  arch/arm/boot/dts/arm/integratorap.dts                   | 2 +-
+>  arch/arm/boot/dts/arm/integratorcp.dts                   | 2 +-
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cmm.dts     | 2 +-
+>  .../boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dts    | 2 +-
+>  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-minipack.dts | 2 +-
+>  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge100.dts | 2 +-
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge40.dts | 2 +-
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yamp.dts    | 2 +-
+>  .../boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi  | 2 +-
 
+No, don't do that. DTS is always separate. Don't mix DTS into such huge
+patchbom, either.
+
+>  arch/arm/boot/dts/hisilicon/hi3620-hi4511.dts            | 2 +-
+>  .../boot/dts/intel/ixp/intel-ixp42x-welltech-epbx100.dts | 2 +-
+>  arch/arm/boot/dts/nspire/nspire-classic.dtsi             | 2 +-
+>  arch/arm/boot/dts/nspire/nspire-cx.dts                   | 2 +-
+>  arch/arm/boot/dts/samsung/exynos4210-origen.dts          | 2 +-
+>  arch/arm/boot/dts/samsung/exynos4210-smdkv310.dts        | 2 +-
+>  arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts        | 2 +-
+>  arch/arm/boot/dts/samsung/exynos5250-smdk5250.dts        | 2 +-
+>  arch/arm/boot/dts/st/ste-nomadik-nhk15.dts               | 2 +-
+>  arch/arm/boot/dts/st/ste-nomadik-s8815.dts               | 2 +-
+>  arch/arm/boot/dts/st/stm32429i-eval.dts                  | 2 +-
+>  arch/arm/boot/dts/st/stm32746g-eval.dts                  | 2 +-
+>  arch/arm/boot/dts/st/stm32f429-disco.dts                 | 2 +-
+>  arch/arm/boot/dts/st/stm32f469-disco.dts                 | 2 +-
+>  arch/arm/boot/dts/st/stm32f746-disco.dts                 | 2 +-
+>  arch/arm/boot/dts/st/stm32f769-disco.dts                 | 2 +-
+>  arch/arm/boot/dts/st/stm32h743i-disco.dts                | 2 +-
+>  arch/arm/boot/dts/st/stm32h743i-eval.dts                 | 2 +-
+>  arch/arm/boot/dts/st/stm32h747i-disco.dts                | 2 +-
+>  arch/arm/boot/dts/st/stm32h750i-art-pi.dts               | 2 +-
+>  arch/arm/configs/assabet_defconfig                       | 2 +-
+>  arch/arm/configs/at91_dt_defconfig                       | 2 +-
+>  arch/arm/configs/exynos_defconfig                        | 2 +-
+
+To me your patchset is way too big bomb, too difficult to review. You
+touch too many subsystems in the same commits. In few cases I saw
+dependency, in other cases like here - there is no dependency! So why
+grouping independent things together? It only makes it difficult to review.
+
+Anyway, combining here DTS is a no-go for me.
+
+Best regards,
+Krzysztof
 
