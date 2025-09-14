@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-216893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF955B567B1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5C59B567BD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:21:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835D73A5216
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:15:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9969C3B1080
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D96C2405FD;
-	Sun, 14 Sep 2025 10:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E247243371;
+	Sun, 14 Sep 2025 10:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1owBbbb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IlSTxUtC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C7650276;
-	Sun, 14 Sep 2025 10:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEF821019C;
+	Sun, 14 Sep 2025 10:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757844919; cv=none; b=KCBj1mWHeK1hcYn2Id/TPY5dRbsNk2zZ3ixSgSb2NHdUiNg79Ir6zv5vPnDp64QSyUwmlhrUo7dhMCqkvBhvRth8+54jOplE31zR6NVnBsSqhp93n+h3xKvACIrqhT9QjyV/esZ3uZFgBi/+1DbH4JrhV2YEz1ci/T7jAu87tsU=
+	t=1757845258; cv=none; b=dO0SHhByPplrBED3R0UUPZ+HTqiaScaiAPe/4CaM9vr/84hO5HwJmGgEJ30xjsFtUk21VnLtJJPOxdHGx4TqHjmVSfVsXHbWza1R85b9O/EZeXrUjRQIpgYW++Z95s9fQXgd3l71kg/tasOd0nU1pQAB0TUx/NVH+wvTPVlKvxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757844919; c=relaxed/simple;
-	bh=YOiXMP4qhqUVJERQ/wa0Y3qAWcdtKSQrh1JK66PXogI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OwLf5D2AyL8nr05gZW8a+IrxWxdXIqHELKvHTknG1AWt4xYjV8TZYsC2EPylhp63MMQzMbiXpaiXNSxuRvuEVJy5wvJww51D/2Wq9/eVAbGNvjrb4DUVx2hVwzA8MLiiOcTPV6CGWXhVx+vHMssSLJIzCJ7Wo6ZFAqEcWJRoWCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1owBbbb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D24FC4CEF0;
-	Sun, 14 Sep 2025 10:15:13 +0000 (UTC)
+	s=arc-20240116; t=1757845258; c=relaxed/simple;
+	bh=C2KL9fuDZE/PTluiVzqA+d0pWqPv4rSgdbyLnFt7NaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUsZ/GpLiPqawxxso630WHjSP27J5UqHGPxeRJP5BIGhq0CexQVaJtR3TUv+tV5wOgxFcRV9e4gw+x6LDiKEr44Lzk+BKYwXdRCNK2GWE3NEPC6tHHogIV2eTlCqPI6LvFQPLV49Sf/GVC3td7R45cmkw79t1meD5zM6MckyCb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IlSTxUtC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08AFAC4CEF0;
+	Sun, 14 Sep 2025 10:20:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757844918;
-	bh=YOiXMP4qhqUVJERQ/wa0Y3qAWcdtKSQrh1JK66PXogI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=F1owBbbbhYucUaUlIBBEwPmqcVtK7Zc3gW5J8+Enx/4u2I1ZETbqAFqQw3jQd5kyX
-	 ogB3FnBjL/RyAvsjBFluEhBLbqTzNkBAWQ6b/ChaigtXNh2MgmMkBMmGQVdg2c/Ka9
-	 bQFLZ/GwI+QrZC9al7OqZwIvALZJDg+3XFiyKGh8FjkZz+DPZ7YMzWdu36Tnx6Pbai
-	 +mec63x4FyxGwgfpg00xhT3cvKK93olSoXjDe87QSDuSakrzxH4r9gmBcFaTJJQvdP
-	 2VjPt+vCen31tYbXWIj9552tr1EJdTM9v2ROeP2dfO0vEHS8S6F/FJUBoU54xWhhcb
-	 OZcNHN7b6aToA==
-Message-ID: <c3449621-546d-4911-9692-a465c6fa9697@kernel.org>
-Date: Sun, 14 Sep 2025 12:15:12 +0200
+	s=k20201202; t=1757845257;
+	bh=C2KL9fuDZE/PTluiVzqA+d0pWqPv4rSgdbyLnFt7NaA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IlSTxUtC2VBk1afgwlCQTln5MCrw//8N2kNE4t8p0vJWzB4rYCA4/qQBrGA/YsPrQ
+	 bHSb9637Sto1GRQgVEtkGLMl1Y5lZaoHVoiuDpP4E4GhEeqMPvY7lkmi8EnzLup0Xb
+	 7i2ugqz8W42g3fgitHPAHSlQErAr2IF3kl/Y/sVDQdYb50BsYso4gxZ0RqkOd8nx0+
+	 aI9k8AdXrL9JeaucOzJ8PCb2EfbmmG3hPgKDvyh12ljJxFgy47tJFhFSsayDw2YD8v
+	 KSXUu/shOL7Eey45mYcGzDnMZ0AyTeBSX5RDkn3H5gvXAE3hNnh+/klB9VznJfuLLn
+	 AO1f+de3UXPQA==
+Message-ID: <0cebc7f0-0dce-4ce3-aa1a-9b4076150592@kernel.org>
+Date: Sun, 14 Sep 2025 12:20:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] pcie: s32g: Add initial PCIe support (RC)
-To: Vincent Guittot <vincent.guittot@linaro.org>, chester62515@gmail.com,
- mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, s32@nxp.com,
- lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com,
- ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250912141436.2347852-1-vincent.guittot@linaro.org>
- <20250912141436.2347852-4-vincent.guittot@linaro.org>
+Subject: Re: [PATCH 02/11] arm64: dts: qcom sdm845-lg-judyln: Add battery and
+ charger
+To: Paul Sajna <sajattack@postmarketos.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Amir Dahan <system64fumo@protonmail.com>,
+ Christopher Brown <crispybrown@gmail.com>
+References: <20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org>
+ <20250913-judyln-dts-v1-2-23b4b7790dce@postmarketos.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,48 +107,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250912141436.2347852-4-vincent.guittot@linaro.org>
+In-Reply-To: <20250913-judyln-dts-v1-2-23b4b7790dce@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2025 16:14, Vincent Guittot wrote:
+On 14/09/2025 01:56, Paul Sajna wrote:
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> index 49225e4fa80e5f45a36964d5d733dc238e4413f8..da093b581c857c5acc9f0e72c9d3519977e13eab 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> @@ -37,6 +37,16 @@ key-thinq {
+>  			interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
+>  		};
+>  	};
 > +
-> +static u64 s32g_get_coherency_boundary(struct device *dev)
-> +{
-> +	struct device_node *np;
-> +	struct resource res;
+> +	battery: battery {
+> +		compatible = "simple-battery";
 > +
-> +	np = of_find_node_by_type(NULL, "memory");
+> +		status = "okay";
 
-You leak OF node.
-
-> +
-> +	if (of_address_to_resource(np, 0, &res)) {
-> +		dev_warn(dev, "Fail to get coherency boundary\n");
-> +		return 0;
-> +	}
-> +
-> +	return res.start;
-> +}
-
-
-
-...
-
+Drop.
 
 > +
-> +static struct platform_driver s32g_pcie_driver = {
-> +	.driver = {
-> +		.name	= "s32g-pcie",
-> +		.owner	= THIS_MODULE,
-
-That 12-yo code. My litmus test from last talk...
-
-Please clean it up from such old coding style. BTW, tools are reporting
-this since years (in this case coccinelle), so be sure that you actually
-run standard static checks on new driver code (smatch, sparse, coccinelle).
-
-
+> +		charge-full-design-microamp-hours = <3000000>;
 Best regards,
 Krzysztof
 
