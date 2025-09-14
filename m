@@ -1,66 +1,71 @@
-Return-Path: <devicetree+bounces-217070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E11B56C49
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:53:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66FCB56C4D
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:54:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 786113BF44E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:53:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADDCC17B725
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9681F279324;
-	Sun, 14 Sep 2025 20:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55E82DCC06;
+	Sun, 14 Sep 2025 20:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fEdHXYk9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QeyRXE6G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650B51F3BA9
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 20:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A188E2DCF69;
+	Sun, 14 Sep 2025 20:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757883204; cv=none; b=atW8yXR1AYG1BBrsdqSYJl/a4Lsd/lo3Bz101JtOsCwAkkBQK38xWT7JnGIGMq9PDJZDt67VxzpJVQdiBoe5EBhtIqLCIcmQKYE4zYHeLKZMQVzi3iPLBH5LVxn5n6NM0IFwDaqB8Oihj1CLMTdvLNdtEVSBmE3YeTwcBHzPLoI=
+	t=1757883237; cv=none; b=h5BuUlbzWLUx2QkSb31HjgUG9xsLPFzZDkv5pptqpbuk1veMP4fOrrRjTRM87/OWQ/0b3RETd9+wjgqUxcOFuXPa6V+aMUU4sRD7Ws0wa+ZnbLfb2nYRLewb1Kb0SotpUgmE/fAs8g+7s3XZYvDSK7Q79GQ4BfGG4Bfw4iz2zEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757883204; c=relaxed/simple;
-	bh=xMtyFKIcpinnUryn4EKaEXMJ+emW0yEgzYvM2cw4cKo=;
+	s=arc-20240116; t=1757883237; c=relaxed/simple;
+	bh=JDdCHIxDfQ3AJnTMXc0VF5Q2RCCsvH4MDbxZQYKi8EE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FiR/n3lKhaYF9QlVoMLtHaMh/R/SCbH7Mwl+8UvT9h4dp5JeOhixQR+A79qQ+IALDZ/bqjpAqWFoBIeuG8JTc4RZ/N05FfZ99g1r5iwGTYvhvKZsWKqKvJ3rlrmmgOx19ARpgvkEACbQJzgsC0U3cPRROsIfIsI5pEcPuWlcE5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fEdHXYk9; arc=none smtp.client-ip=185.246.85.4
+	 Content-Type:Content-Disposition:In-Reply-To; b=IlsRfmUmmPq9f3PsILMICW1MYw4Z36zpyZrI3EMY9nuu7EZIXpzd9vzqi3WkuhN953cnjLgHMSsEhIsY942jWkxx0SVAnMYBIuNNOp0Jbj1Cfdk2AvhpJ3amMWwS/IRK6H6T+2HNh9QqyBpMBVzyQLjRIM/ToCeII/fLRNYImtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QeyRXE6G; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 557834E401F3;
-	Sun, 14 Sep 2025 20:53:19 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id EAF5A4E40BD1;
+	Sun, 14 Sep 2025 20:53:53 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 163506063F;
-	Sun, 14 Sep 2025 20:53:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BCCBC102F2A78;
-	Sun, 14 Sep 2025 22:53:12 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BEB056063F;
+	Sun, 14 Sep 2025 20:53:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 694A4102F2A7F;
+	Sun, 14 Sep 2025 22:53:46 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757883198; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=iYzXZ3Wfu3kuz+opj/Qn7fQ4dEnCR2b0EnW78bmdoVg=;
-	b=fEdHXYk9/shQBBHSAcAU5UL56PKn4RwI53fRAxvx9FTkaiMzizZJ+xZuueBrHCUV0+xFNk
-	w9hAIIUK0XgzIJt8VKLiJzWg8tGp057ag1Z2RebXjnG9gjv0xVZku/FSVT4NmPd1Vxye4A
-	80Zrpv1NzhtGEfHWXYmgILI715PDbQkVhPaghzuCnlAeg/ZQuyPZxOOEtTuOKY0vUopznZ
-	Qnip/lEUVi6VeuGJJWHfQiy3DzTVYdnxK1wbtatabWDEUgbjOQ7St8wsVxMM1Cmbt9cVab
-	9w5uO5J2Sy1Z+RSRM6/stzE7NoFwqsgpYNiWg12eytxBA3RF35PALnIYM8BGnQ==
-Date: Sun, 14 Sep 2025 22:53:12 +0200
+	t=1757883233; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=7xQaSzl/TxXQwIRozChDy9Tm+5Lzv6IuUtQ4mWGkAgY=;
+	b=QeyRXE6GcF8lBbDkyGWh9+amy8cLIw7ntDBnRdyEXuiNgbP/aYoh6ADxf6vNCPzUiLbz0F
+	pqaiy+sbbdG2o9oKZktxDx1dDI4uxN0/sBFrVxSnvD83SBEysQ0avybyiKOjr5sYTE9tPe
+	b/1oKLTWKDHonJo0H/Wd3K/QCeRRn/80eSjNCN5V1/Kd0F2XnNaWyabckJAKCr6WVPxrpa
+	sUKz/kGVXdZ683iF5BVJ14YiLuBUNjUEmCYxgNMh9spHX+pvpKCxk8MOB+iMMJF08n7oEw
+	HybkFAX8QwxSbaRFsKk6frbQdI0zK8I0ijJ3jv9xtp6ONwqVKKvRmp8aYnVPcw==
+Date: Sun, 14 Sep 2025 22:53:46 +0200
 From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Jorge Marques <jorge.marques@analog.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Prabhakar <prabhakar.csengg@gmail.com>
 Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, gastmaier@gmail.com,
-	linux-hardening@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v9 0/2] Add ADI I3C Controller
-Message-ID: <175788312841.382502.16653824321627644225.b4-ty@bootlin.com>
-References: <20250827-adi-i3c-master-v9-0-04413925abe1@analog.com>
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and
+ RZ/V2N support
+Message-ID: <175788312845.382502.12492963502213477306.b4-ty@bootlin.com>
+References: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,27 +74,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250827-adi-i3c-master-v9-0-04413925abe1@analog.com>
+In-Reply-To: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, 27 Aug 2025 15:51:57 +0200, Jorge Marques wrote:
-> I3C Controller is subset of the I3C-basic specification to interface
-> peripherals through I3C and I2C. The controller RTL is FPGA
-> synthesizable and documentation is provided at
-> https://analogdevicesinc.github.io/hdl/library/i3c_controller
+On Mon, 08 Sep 2025 10:39:30 +0100, Prabhakar wrote:
+> Add device tree binding support for the I3C Bus Interface on Renesas
+> RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
+> that found on the RZ/G3E SoC.
 > 
-> The main target for the I3C Controller IP is low-cost FPGAs.
-> In this version the driver supports IBI (only the MDB), I3C and I2C
-> transfers.
+> Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
+> "renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
+> "renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
+> compatibility with the RZ/G3E implementation.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: i3c: Add adi-i3c-master
-      https://git.kernel.org/i3c/c/646bc816e071
-[2/2] i3c: master: Add driver for Analog Devices I3C Controller IP
-      https://git.kernel.org/i3c/c/63cae74bea7c
+[1/1] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and RZ/V2N support
+      https://git.kernel.org/i3c/c/12ba31828681
 
 Best regards,
 
