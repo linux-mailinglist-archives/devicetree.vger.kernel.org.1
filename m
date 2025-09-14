@@ -1,92 +1,119 @@
-Return-Path: <devicetree+bounces-217058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA4BB56BEA
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 21:51:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EA1B56C03
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C237D1892CAF
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 19:51:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5589F7A7447
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3852E62CF;
-	Sun, 14 Sep 2025 19:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6455A2E2665;
+	Sun, 14 Sep 2025 20:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="K3wGXptB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ioa37xFK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24422.protonmail.ch (mail-24422.protonmail.ch [109.224.244.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42792E62C3;
-	Sun, 14 Sep 2025 19:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C922DCF55;
+	Sun, 14 Sep 2025 20:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757879446; cv=none; b=QMfutjiLlK2LErrzATAUrjmMkYRYghjeL4CFYfefsSW+oJ26k6vQrRR5oJH0YYUnBFOelui1PiNHJDyWBoBW9LxI6PftYng/oNoiLu5ksYbfy0cNpaAH2lO+UMhtRSS2PZ6+1tJoqY8XhqZGvIux++VbICRUrJgVowDFhh+cZiM=
+	t=1757880621; cv=none; b=bIYBH9WR0MzhuzbQMZKhv2vOjhj3k5menRtQpV5xHzVw8yAa5nQtkZUjUu/VS14+B06c/rL8+PBir+JbhyancDzXXMpFiaLMP03D6BJBH4kov1NDg8uyBLp/V0E6xSan7n2Aw5dK6IoR+tL+JsNoWoa8ZAiDGlPKuQcqvNV7IR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757879446; c=relaxed/simple;
-	bh=XlOCRdQpg4y/WfDOvcboU58+3w8eZWJ1gkNu4mFoDA4=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RGmnxFIQVMFgwrCgW4wnmuepskNMo4pQ7+u7PsRxH8EgSHkJ55eikIWWmogS0jAOCJ2EQn7Hp2vHujZgZ954LNVJ75Dsra9I8wvfyUckiESOPHfl1oSnVcLqDnPgnyJtu+xU8MZVs9b4tuSjY5TtghusMTKwdFhRi6/q00TTE4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=pass smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=K3wGXptB; arc=none smtp.client-ip=109.224.244.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chimac.ro
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chimac.ro;
-	s=protonmail; t=1757879442; x=1758138642;
-	bh=XlOCRdQpg4y/WfDOvcboU58+3w8eZWJ1gkNu4mFoDA4=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=K3wGXptBWtMzFp/UbUC16n1uVm1afU8VGDDs9saBSXUOU8T4L5Ixczr/8jLW2CWEZ
-	 puzjxiww8Lr5EHULvC38QUZOERJ4DxPZlMwL/nMbaY/QYS/TWpRCMreDvl6FFF0iiw
-	 3M3iqOXzmbWbfYTKm8b1gD5mwnpD6NBCuWo1wE6A/DC8JiJcaPPt14saxiWWw0SkmN
-	 17i+f8KZwCsNV47yXulfQrUxoCpymBSZYfFgTC58zsX8qjLOrZUjrj0n/GdX4/x7EJ
-	 Ny46TmlUL37WwUbEXBDAk30GoWTWG+xwadQ0Bzc00j0PyRz6P02Yd1MuwfoBbY27G0
-	 YwcnjfDpp1ISw==
-Date: Sun, 14 Sep 2025 19:50:38 +0000
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-From: Alexandru Chimac <alex@chimac.ro>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, Alexandru Chimac <alex@chimac.ro>
-Subject: [PATCH 2/2] soc: samsung: exynos-chipid: Add exynos9610 SoC support
-Message-ID: <20250914-exynos9610-chipid-v1-2-ade99e09a23c@chimac.ro>
-In-Reply-To: <20250914-exynos9610-chipid-v1-0-ade99e09a23c@chimac.ro>
-References: <20250914-exynos9610-chipid-v1-0-ade99e09a23c@chimac.ro>
-Feedback-ID: 139133584:user:proton
-X-Pm-Message-ID: 4c5e4e61f8d64a8418c7619da4b6ed8a851907ad
+	s=arc-20240116; t=1757880621; c=relaxed/simple;
+	bh=jaRrPAgWKjDQlUKhFim10dcggCFExzmEAeZ51T9N4xM=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=g1osSENyMGIHtHuGtvvggMqt4dqQOXxxjYoDhNXxcPid8gF47RvVYPXXVCOXIbQ8mTRO4cc5ITLhIM88HkKspLd46AyXJL7gnk9OITXHTTaOEghuWDIk+Hw053hE98CNLN9A/7+cKUFCHYtrjd/ITuwU5Py4duNroj+COUZj/24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ioa37xFK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA54AC4CEF0;
+	Sun, 14 Sep 2025 20:10:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757880620;
+	bh=jaRrPAgWKjDQlUKhFim10dcggCFExzmEAeZ51T9N4xM=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Ioa37xFKekcZtgaxszIXsoLrlcf9VeQ4jiJy8Ujo7j9mZK9elQuYamTRAX+Xg+Nt6
+	 FM6t88R56qJrsRyJaa5fCYjLvE71WMNyJ/8CS5hYvq/NSLxibnMEXHB6Z3WFuesxPC
+	 B+X2ihYTNHfUpLmGIz18GnKsPl4mOvn7OykGZytzokHDD13pYqCXs/AqkIal0EGt7e
+	 8PTUUzTT0G8DbhvedE9cjJ56BoLeLTg0qwH6OzqtosUmBmfb1Q80fSqG/XmqscJv14
+	 1PR+08FPb7cCMfiH032SMQJIWeu6+HTrnwuOIS61yTc0cEuZBgeqIbldtEfZzcp/qp
+	 nToUB4GK0VytA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE83339B167D;
+	Sun, 14 Sep 2025 20:10:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v16 0/6] PRU-ICSSM Ethernet Driver
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175788062248.3540305.3507616475736965699.git-patchwork-notify@kernel.org>
+Date: Sun, 14 Sep 2025 20:10:22 +0000
+References: <20250912104741.528721-1-parvathi@couthit.com>
+In-Reply-To: <20250912104741.528721-1-parvathi@couthit.com>
+To: Parvathi Pudi <parvathi@couthit.com>
+Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ ssantosh@kernel.org, richardcochran@gmail.com, m-malladi@ti.com,
+ s.hauer@pengutronix.de, afd@ti.com, jacob.e.keller@intel.com,
+ kory.maincent@bootlin.com, johan@kernel.org, alok.a.tiwari@oracle.com,
+ m-karicheri2@ti.com, s-anna@ti.com, horms@kernel.org, glaroque@baylibre.com,
+ saikrishnag@marvell.com, diogo.ivo@siemens.com,
+ javier.carrasco.cruz@gmail.com, basharath@couthit.com, pmohan@couthit.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ vadim.fedorenko@linux.dev, bastien.curutchet@bootlin.com, pratheesh@ti.com,
+ prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
+ krishna@couthit.com, mohan@couthit.com
 
-Exynos9610's product ID is "0xE9610000". Add this ID to the IDs
-table along with the name of the SoC.
+Hello:
 
-Signed-off-by: Alexandru Chimac <alex@chimac.ro>
----
- drivers/soc/samsung/exynos-chipid.c | 1 +
- 1 file changed, 1 insertion(+)
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exyn=
-os-chipid.c
-index c86f1058ceed7c40f89cf65cb7027382cae38829..a5ed1c105b8f5d08c7ea71515e0=
-778ea17bec75f 100644
---- a/drivers/soc/samsung/exynos-chipid.c
-+++ b/drivers/soc/samsung/exynos-chipid.c
-@@ -62,6 +62,7 @@ static const struct exynos_soc_id {
- =09{ "EXYNOS7885", 0xE7885000 },
- =09{ "EXYNOS850", 0xE3830000 },
- =09{ "EXYNOS8895", 0xE8895000 },
-+=09{ "EXYNOS9610", 0xE9610000 },
- =09{ "EXYNOS9810", 0xE9810000 },
- =09{ "EXYNOS990", 0xE9830000 },
- =09{ "EXYNOSAUTOV9", 0xAAA80000 },
+On Fri, 12 Sep 2025 16:14:49 +0530 you wrote:
+> Hi,
+> 
+> The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
+> is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
+> Megabit ICSS (ICSSM).
+> 
+> Support for ICSSG Dual-EMAC mode has already been mainlined [1] and the
+> fundamental components/drivers such as PRUSS driver, Remoteproc driver,
+> PRU-ICSS INTC, and PRU-ICSS IEP drivers are already available in the mainline
+> Linux kernel. The current set of patch series builds on top of these components
+> and introduces changes to support the Dual-EMAC using ICSSM on the TI AM57xx,
+> AM437x and AM335x devices.
+> 
+> [...]
 
---=20
-2.47.3
+Here is the summary with links:
+  - [net-next,v16,1/6] dt-bindings: net: ti: Adds DUAL-EMAC mode support on PRU-ICSS2 for AM57xx, AM43xx and AM33xx SOCs
+    https://git.kernel.org/netdev/net-next/c/eb391228ae08
+  - [net-next,v16,2/6] net: ti: icssm-prueth: Adds ICSSM Ethernet driver
+    https://git.kernel.org/netdev/net-next/c/511f6c1ae093
+  - [net-next,v16,3/6] net: ti: icssm-prueth: Adds PRUETH HW and SW configuration
+    https://git.kernel.org/netdev/net-next/c/a99b56577da4
+  - [net-next,v16,4/6] net: ti: icssm-prueth: Adds link detection, RX and TX support.
+    https://git.kernel.org/netdev/net-next/c/e15472e8f2e7
+  - [net-next,v16,5/6] net: ti: icssm-prueth: Adds IEP support for PRUETH on AM33x, AM43x and AM57x SOCs
+    https://git.kernel.org/netdev/net-next/c/1853367b76cd
+  - [net-next,v16,6/6] MAINTAINERS: Add entries for ICSSM Ethernet driver
+    https://git.kernel.org/netdev/net-next/c/7d4b52174dac
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
