@@ -1,105 +1,118 @@
-Return-Path: <devicetree+bounces-216897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488F6B567C8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:31:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C433B567E5
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 003453BC955
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:31:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152253BF1D8
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 11:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7701E0DD9;
-	Sun, 14 Sep 2025 10:31:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CF8254855;
+	Sun, 14 Sep 2025 11:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MSMsimik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEF4487BE;
-	Sun, 14 Sep 2025 10:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0F8248F5A
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 11:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757845861; cv=none; b=nMPn+OE2za/+PeaV1faFupfnj9e93RSBEK16zU+7X2iYEWMxfWeLM4h6pIbJzvAfD955KfSywzWGQMqpuhbSAh+YG8JUeqLKnsRKMn2MNT4PaEAhqUcZlRnG9QRWIiNNH/i+X1Iyl05cE3LjLwqhA8dzOA4ReVcoNezepGnu8EA=
+	t=1757849390; cv=none; b=ni+FtVj0ZbFMDtr3ARUhFRURZSiXAHaPbkOxNYd0BTg47FhL6rK2U/E6OOaSEC6psXOJSGh15mijtkAf/FZrf5MeT9PCK8vINKF2boMuq3XIfd0y8mrTJIiRPqUH31o/PfOe2yzj7d7Dns1iRWnxsQzihllirTqDwNfOAzudAXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757845861; c=relaxed/simple;
-	bh=YFMVFVKRndRZpMY+xLg+MtDUEnvjTsFhtHdbGuHbBTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yz4peapzkV8qMsta0nZEgf2M+vdr2UugqeWYilwHn04reb5gqPS7MKmmjoDV6Io/LjbWXRkNQ6oQVWUa9d9Jd+wNthu6T81tb8GFGgrIt5B9ktTheYc14Ucvl3Q8GJGYp5sBVqwRsbHjbIqKhGdPbFWvApR9djFhnd8yiyCBlDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.158.240.90])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id E745F340EE4;
-	Sun, 14 Sep 2025 10:30:58 +0000 (UTC)
-Date: Sun, 14 Sep 2025 18:30:49 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	s=arc-20240116; t=1757849390; c=relaxed/simple;
+	bh=xuFUrF1BkPaf8V6YIQBV/bE6ge9X1wiG25AtdgcH77w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BT4400vpiB+S7dsFBiUAY4cU4bxUmVpLPXdMcoGKDNPEaC2ryYl4kmS9IvpdCBW0w4IRdfZE/2gyElLEMwSd9ZUOelTwCsaVVRmvPnWnM7Pw+JefmKQNd3o1l4uTbectH3VgWBw5kKAbnYVJ0azEOeIkZI99dtEIYy4rCjzuU4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MSMsimik; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so2298087f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 04:29:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757849386; x=1758454186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xJlWH2NF0uAVXDd2hOjwwBf+YceXcdwvPtJB2tgstmQ=;
+        b=MSMsimik3nAQbfJi3WCobT1zr7ptWR9ato7h0yPAy5yQQZuXiwAje9HtkIMbyVrebF
+         LtSzDIOQFpB+LrIrxtQI3K9PsRKw9KfJJxI6jAspQjiDIOlCIGWAJXVo1nbgEFyMe1y6
+         Ww4CUOJKJa/oCyixGsWfb9wr75yftsgtDr0oBzESdJeIDl5i4DhSGBVw2EPkp9+vcxR1
+         hvyWfPdDrQb+pU5ppwaYSLJDQ9rn0fTajq82MpqSuL1qqG3KKKCUoBuYOQs103FhWadu
+         y8w0JWMrB8Z/ao1mvMfmINZH4yF+OARw9TowkUX5njWkAVJlovTiD3T+CmSvYbwOLuj4
+         y5pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757849386; x=1758454186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xJlWH2NF0uAVXDd2hOjwwBf+YceXcdwvPtJB2tgstmQ=;
+        b=ghh4WNPwL9HFzLi+AxljKdZE/56uQoTiemCjF+gSMD/D/f/RAiBWqh/KdZ/mFdHcbH
+         YV3pIY2HNpssDnuM9dJ9x5ArrIIZdqlTzQUwEoYLu/XE710rGmKxouXTem24G3Fos94l
+         FGns4r5/KSIBF0WiVsJ0TZZwqfYUP2qyUE/ezZHnUH7GPdTg8d79Ol+Egb6MHuwhLDLd
+         YfGBdV2YZaUYMNKAcR37/SQ5Y43HpEPjp6ZZaehy+FvPqu/MFrcZ3ptNL9waAo3/W5cH
+         8wmAEQs6ssEpGQt7UQHkrsbwY9RpwKTDmC6UtWVuKRbRlBEBhdZijgUx/BN9GgEIWVB7
+         Y4Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCXiC8PpFR5fi7FKtRo5dI58TFIq1/ZT38moudJ8eYTxaoBjR5nOY9WZQBsHdlUdSeyQBmgZVvl/T32E@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLF/ZRIZXzKapWLYpAw3krhU4N8/0HV+OudDeWd+Mr4i5H135O
+	Mm84kgACxgMdOFu4tsW649F77Fmpi79Wfj1RBpiuwAe4absh+jFGQgc4
+X-Gm-Gg: ASbGncvhHq/MB/613kxu4D4QG+ZhULdt2D/4AXbd7Og4mD5ibsalK+w1JRpv2iXQOhZ
+	7fNo512j3rtE/NpRdZFzioMrJWTGRDCTiLx0XWf0vYazlERLv48TPq8pWTI1aqgEOaZn2B3xlBK
+	O1Uh1D7ezIKM9XgQy3+HgPY8FCnXfN6AhyZBx//Yf2vjZdKMk/XmwBg474wxa+JyMuhz9QFG/4o
+	U1LO0szlVRxfV5wjvtvbTTO1A/nwK2NbcxTaYEQySqtAhN91pcEylTEJUj49JSS8+V1uVwcU6m9
+	/U+wjGruW3rlG9WiAJwQt8acuaT7tOpb0/+KbV9a/+AifybaD6aNPX/bUgRJ+hc0+bLGCTCf7Ie
+	qo9YRXQIGLdwdicIsANfq95nL5FdoHnd0ABoMhRrFz66VD/r117k4PzNopHVlPlHjs08WjD+Z3Q
+	==
+X-Google-Smtp-Source: AGHT+IHKyE6+dfEzUKtwMYtSktS2t1k/dj5Sb6gy+vyqw/6+wKWpZmtEJ/3gYkOAFEAedDqhzO7M7g==
+X-Received: by 2002:a05:6000:2210:b0:3c7:308e:4dff with SMTP id ffacd0b85a97d-3e765a3e492mr6682868f8f.57.1757849386158;
+        Sun, 14 Sep 2025 04:29:46 -0700 (PDT)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e8346defd3sm6591268f8f.1.2025.09.14.04.29.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Sep 2025 04:29:45 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Vivian Wang <uwu@dram.page>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Simon Horman <horms@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v12 0/5] Add Ethernet MAC support for SpacemiT K1
-Message-ID: <20250914103049-GYA1238190@gentoo.org>
-References: <20250914-net-k1-emac-v12-0-65b31b398f44@iscas.ac.cn>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] soc: samsung: add chipid and pmu support for exynos8890
+Date: Sun, 14 Sep 2025 14:29:39 +0300
+Message-ID: <20250914112942.2604194-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250914-net-k1-emac-v12-0-65b31b398f44@iscas.ac.cn>
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew, Jakub
+Hey folks,
 
-On 12:23 Sun 14 Sep     , Vivian Wang wrote:
-> SpacemiT K1 has two gigabit Ethernet MACs with RGMII and RMII support.
-> Add devicetree bindings, driver, and DTS for it.
-> 
-> Tested primarily on BananaPi BPI-F3. Basic TX/RX functionality also
-> tested on Milk-V Jupiter.
-> 
-> I would like to note that even though some bit field names superficially
-> resemble that of DesignWare MAC, all other differences point to it in
-> fact being a custom design.
-> 
-> Based on SpacemiT drivers [1]. These patches are also available at:
-> 
+This patchset documents the pmu and chipid and adds support for chipid on
+exynos8890.
 
-I know this series has been iterated several versions, and Vivian is working
-hard on this.. but since it's quite close to rc6, I'd like to query if
-there is any chance to take it in for v6.18? don't want to be pushy, so I'm
-totally fine if it's too late and have to postpone to next merge window..
+Best regards,
+Ivaylo
 
-P.S. I'd just want to see emac/ethernet accepted since it's last bit for
-a minimal headless system..
+Ivaylo Ivanov (3):
+  dt-bindings: soc: samsung: exynos-pmu: add exynos8890 compatible
+  dt-bindings: hwinfo: samsung,exynos-chipid: add exynos8890-chipid
+    compatible
+  soc: samsung: exynos-chipid: add exynos8890 SoC support
 
-Thanks
+ .../devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml        | 1 +
+ Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml    | 1 +
+ drivers/soc/samsung/exynos-chipid.c                              | 1 +
+ 3 files changed, 3 insertions(+)
 
 -- 
-Yixun Lan (dlan)
+2.43.0
+
 
