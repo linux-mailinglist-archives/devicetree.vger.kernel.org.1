@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-216934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D80B568C8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA1EB568CC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E130118952B5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:43:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D66E41895A33
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC89B272E41;
-	Sun, 14 Sep 2025 12:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97CE2741C6;
+	Sun, 14 Sep 2025 12:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fNtQtBnG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PuxeCqBj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5D326F2AA
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 12:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCD3271476
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 12:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757853766; cv=none; b=TtJYr8uedlu8zNshPL2CNR4AC5+o9Wk985NP+zaKEmhz04xPPWfMk5qWGPSy63nawUeBmxcptp4RFauh8qhoJ6BRptN/j7fRh8t6WFCMAQHOY+JkUnliaWUtvNKPnfcG6w9BJuE4v0wbU//NHIH2puVpd/hAi1JwqWWix0hO6Aw=
+	t=1757853767; cv=none; b=tF7KVwSNizKuz6KKPoCixosYCBB93CogrLy3p7T1IBXkjIu34l8gqev092p15ZhEnyAoKzxeWHUuxdfeGxzhNJ+ib6KP92wqWhkXbXSPI8BU58h3wcye+HrrYs/Nq3EgrSm6iYDzbbJx7jaaNQkP74OrKXD4Ezn1wAfds4OjVCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757853766; c=relaxed/simple;
-	bh=dKQqnhIWFdrKicbr+8oW/yxrn+Yu6xMAJ0gurlV7IOg=;
+	s=arc-20240116; t=1757853767; c=relaxed/simple;
+	bh=D22DQEAI7GUdY0C98ZI2lUt2RWXEbX1YdkY+EOaEysY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DdxQXjlPOTLwGgGJZNZy2ioYuJN1Oy6KmKa1aoCint6s1c9eZ9E1KtomsmzCjhytgeIlqlHP/gvvsx4z5C/EShpwbZOMVap7nPh5H1Sso/bgPULXHpLG+oCCXD18AFpOZBe0POB+M+yzoboGzENnFhcaeGUdNZDdq0wHz+eWVAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fNtQtBnG; arc=none smtp.client-ip=209.85.221.47
+	 MIME-Version; b=Ba35+vQKPOAU2VqPsCrMNOZ9RKL9ARiEYtcqpN7KniuuRfcrYCKSZuTPtAArptUZyIxhBJbHlyiLPQc+qJrxezpBHX+GPwmpMZS/vjrsXm51KTheboyGsZu2mLF89zTJGFu1vjmk3nPqLep0qpGLWFvDDVUpk/p8o9N7MKf2FCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PuxeCqBj; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3ea3d3ae48fso166532f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 05:42:44 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3e8ea11a325so1103948f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 05:42:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757853762; x=1758458562; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757853764; x=1758458564; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=U5y29YsQR0a3S2vDTFMSXyL29PIH6dS+uIhJsTA3ewk=;
-        b=fNtQtBnGccezcdOE0+E89bn5wugPCGJC3SirWR24f6C7sLGr/Wic+RD23sBAIVPfnY
-         5AKqDHYgDHTeEds0EsOUeiNMz6mQmOSwrsPrzgmFIcCNcOk1354J7dLyj7h/Wf7NPI2p
-         Vums0HFRXSBbyPevxkHxoJuUBna2K7z+RYJVEx92dT0QqzEuMUHDZ25X7y3W2ezNawRk
-         SKL91kQwbPR4qZJAXL54Mnzx3p3p8u3+T2zOT7Ii4d0cYwZPLsHUJi1nw2zzLh0GBk9O
-         0oYifj3LmNxdywCbsK4SD8GEBgPv2lLZWmNUHST+O9QJuKoTNy1V2vjMN3wYKvoflmvK
-         xWkw==
+        bh=Z5IkwHpWT3vjOUxYuXQio/Ms33Sg58fY2czp9a5UdkM=;
+        b=PuxeCqBjJ3HDaqIFS8HzlHkBE6W6j7uxWv8VYHtczVwYtuUrdp+Ayn1AwxJq85OcFJ
+         6pProTdwI7L11VVqbh52KND6ElxLC2osvR+wUYLfiHN0ut48bXBC4moItQfkG88e771f
+         W5lssByHXe5oGdCMHFUeSZPngRQxFBELBAJXllrNIXOptLCvpV8iSDz3Bvm+4OfGTVbc
+         iVn/Vw+jQ0xfd8b9yoig9/PoPdIBHQuHkUTQFMFpz7sn/iT3xu3diMCCb6BeFql+jyWf
+         62XmTSQCaQAbfYXu+RKkS6bT82EfpWeVSlBz2uh75TvMDTyCNBFSSFvJOUtDiiOn3Jkv
+         b03w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757853762; x=1758458562;
+        d=1e100.net; s=20230601; t=1757853764; x=1758458564;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U5y29YsQR0a3S2vDTFMSXyL29PIH6dS+uIhJsTA3ewk=;
-        b=WFFf6Ht1Nv/Aehofi839jCi2MVYGC1eK91LTNsN+jTAFZ77/h7WmgBP+ew3wve/i3n
-         e8MhqlGFm6s0ISFBeXX+Dfp5Czc5DZrV5lWh+1RhGoN4W0ajsVxecKkIewiaYldNyNdL
-         8YFnuw+m+P7w8xla8IYoS0DZUy837WRTNzKBp7CmoTtZPPEtKjdEYwUC5TbJCwTzZcie
-         yae+M7hkezT48cHlovsEy6q0yfLgNCMpKdVaBI6eVKY4NbUO54wYtx6jFyP40x/olssx
-         OXlEf9QxXdCLkhBRuMUcKCjF8g6yLyEf4Bru60okofxR+1TsUEQNtRn8OIBqhQxjxw0M
-         qoWA==
-X-Forwarded-Encrypted: i=1; AJvYcCV05FOuFtrXnJp/d6xZ9WN1H+ORWex1c3pIOiySmjT5IsaPawx23f2BgSxdFrqCqG7FUPQNEbH6xkYa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXzlSicTDh58PxdJCdiCJE5gK83oJQCE3WrfVdu5s9C4fhvfha
-	qSbj5SCegxWBmQWrDWGo/y+DZPPClxEf24WxRs8ILejQPNqvwigIDkEq
-X-Gm-Gg: ASbGncs2ABj8y6VCokIQxRBaxHOSDRl6+Q2PeGICG7sPV865QRn7meSTfB7owP8xOP1
-	37oNKDUEFxOCst7UOizj95Zu5i+NVRyP/HOYxRJ4EtcMZa735gP1p8pNIl0/ctJQJtEII0cBljd
-	TtDtaFjrxpLS5VeHp5S/0ORh7iZKZYqKU+3FYlhQl5X9jjej70uJQanHLl+AHmpHTSQnXG10l+B
-	L92P9BhA5adu38JSYCxTAh+GvkwyxnW/6itsDp7+sUrrR/94QthB6FogFHPh3QY5P11FvRnsO9d
-	zmQawYmJGhxqDC8H9xt6zCSAcMXlZqfhG54cBXX5tgefmCeV4eBDysz0qdHomdxI7dIlnRbqkOA
-	WRJfAxizOENuCzlEWYypQjaUh3flAkgigFRMYc+fmQQEQIEp2/uGDudkxWknitEmstBHC0X0B+H
-	mgX13T5236
-X-Google-Smtp-Source: AGHT+IFPLneFeBWoWeASue/P+y46u0tViNBhr13nDHYaPRoOL4Mw73LLpOUwQyl0q2cx0U/uBXZKig==
-X-Received: by 2002:a05:6000:1884:b0:3ea:80ec:8543 with SMTP id ffacd0b85a97d-3ea80ec8823mr552221f8f.5.1757853762463;
-        Sun, 14 Sep 2025 05:42:42 -0700 (PDT)
+        bh=Z5IkwHpWT3vjOUxYuXQio/Ms33Sg58fY2czp9a5UdkM=;
+        b=u32ny4nmOylmCNM1rfFM7OvkIxa00Bzm2Y2TlGCgnU7swbcbs7F1lKcIwMqYYo9s9x
+         bj6nyl1yvatAb2Gnj1KzYBVna08MdTX9JQcgI63CtEYXRtXfr/mR3HQdnl0rvzCR3czl
+         oKE0tFvaTc4QYwQ7N6UJk/oFaFcglPzf5ooDPOxpZDINDeL4ZS8e71hbtpGlfg9pB8TF
+         obfmOdhQe8X2zoOBwlJfG5dtxnhxor1DgJtXglaYVL3Cy1DhwR/X+l5V+627yD3CkFh5
+         5edjBBcvmp47kqceFHyHk8pyYzEujC4LmHM9v3dIMVMMz5ODa00V+0+MbDRreemMTqf3
+         3LTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyDvHc7xphv9NQ3RJwfis13ZieT8rEzr6I/znjYFne+rGiMgA21sNYArSIdO6SHgTBuggvTcU5KlpR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjndbmmAx4mf+LnjY5TWYM/4xaJQ3pfJmgHZisSKnFERTWeJjr
+	mVVDFmmpURA20q1ecgDWxSyzzRvaA5Hv8ueeKnte0yPJvecfG4lzGUDv
+X-Gm-Gg: ASbGncvWtXya3JhNvRINP+jdm0WPYed0CdxZp639s5mbZD/+zNWLpoyhvo1tH4Xj9Vj
+	vpG0AEVepP1Wg+nCXSlgo7FZKjUeL5NLdMfDtibo1doGQf/5w9vcaJJa3xbX1HB6xqf5H/dqgZJ
+	dwr+mvcKFbdEvdX8PGtFUVuRXF4p6JLvDh84bMR3+eooKeLuusqquyY8P7SJY9FAD4E8TlJgMvA
+	q+K2ilj//e9vUIom98EgQifmI9a1IgUPnq+f/c00jEuoyPbUQvTdwf2EuRxhH+LoPvk3KBTdOW+
+	+34nEBe1gHWHKWmN570Y3eJ3HRvCJw6vIejFKlUgrsByWWLvS1xMl98aj16mTkrgbo7F/Tl7wgh
+	iaZoqRL/+BoXSIOQa/p8t0fsFld3Ms46bqmP3uhl5w9oKhWpyQw0y3QfQmIyVHZmO9c1Iv4C4zZ
+	/c70AT6fqD
+X-Google-Smtp-Source: AGHT+IFJplQxPa+oOwiL3HwRMbWnzwzx1xcdaJkdmZixyb1ZQ45I0gzLQ3rbeFTRhbx5TQ6AuRvPjQ==
+X-Received: by 2002:a05:6000:2dc8:b0:3e3:921b:659f with SMTP id ffacd0b85a97d-3e765780a76mr8171220f8f.2.1757853763840;
+        Sun, 14 Sep 2025 05:42:43 -0700 (PDT)
 Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e9511abbccsm3727773f8f.9.2025.09.14.05.42.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e9511abbccsm3727773f8f.9.2025.09.14.05.42.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 05:42:42 -0700 (PDT)
+        Sun, 14 Sep 2025 05:42:43 -0700 (PDT)
 From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
@@ -93,9 +93,9 @@ Cc: linux-samsung-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-rtc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/7] mfd: sec: add support for s2mps16 pmic
-Date: Sun, 14 Sep 2025 15:42:24 +0300
-Message-ID: <20250914124227.2619925-5-ivo.ivanov.ivanov1@gmail.com>
+Subject: [PATCH v1 5/7] clk: s2mps11: add the support for S2MPS16 PMIC clock
+Date: Sun, 14 Sep 2025 15:42:25 +0300
+Message-ID: <20250914124227.2619925-6-ivo.ivanov.ivanov1@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250914124227.2619925-1-ivo.ivanov.ivanov1@gmail.com>
 References: <20250914124227.2619925-1-ivo.ivanov.ivanov1@gmail.com>
@@ -107,458 +107,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for Samsung's s2mps16 pmic. It's the primary PMIC used by
-exynos8890 devices. It houses regulators (38 LDOs and 11 BUCKs), three
-32.768KHz clock outputs and an RTC device.
+Add the support for S2MPS16 PMIC clock, which is functionally the same
+as the currently supported ones, with the exception of a different
+register.
 
 Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 ---
- drivers/mfd/sec-common.c            |  10 ++
- drivers/mfd/sec-i2c.c               |  16 +++
- drivers/mfd/sec-irq.c               |  46 +++++++
- include/linux/mfd/samsung/core.h    |   1 +
- include/linux/mfd/samsung/irq.h     |  66 ++++++++++
- include/linux/mfd/samsung/s2mps16.h | 195 ++++++++++++++++++++++++++++
- 6 files changed, 334 insertions(+)
- create mode 100644 include/linux/mfd/samsung/s2mps16.h
+ drivers/clk/clk-s2mps11.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/mfd/sec-common.c b/drivers/mfd/sec-common.c
-index 42d55e70e..1f21d0d26 100644
---- a/drivers/mfd/sec-common.c
-+++ b/drivers/mfd/sec-common.c
-@@ -65,6 +65,12 @@ static const struct mfd_cell s2mps15_devs[] = {
- 	MFD_CELL_OF("s2mps13-clk", NULL, NULL, 0, 0, "samsung,s2mps13-clk"),
- };
- 
-+static const struct mfd_cell s2mps16_devs[] = {
-+	MFD_CELL_NAME("s2mps16-regulator"),
-+	MFD_CELL_NAME("s2mps16-rtc"),
-+	MFD_CELL_OF("s2mps16-clk", NULL, NULL, 0, 0, "samsung,s2mps16-clk"),
-+};
-+
- static const struct mfd_cell s2mpa01_devs[] = {
- 	MFD_CELL_NAME("s2mpa01-pmic"),
- 	MFD_CELL_NAME("s2mps14-rtc"),
-@@ -206,6 +212,10 @@ int sec_pmic_probe(struct device *dev, int device_type, unsigned int irq,
- 		sec_devs = s2mps15_devs;
- 		num_sec_devs = ARRAY_SIZE(s2mps15_devs);
- 		break;
-+	case S2MPS16X:
-+		sec_devs = s2mps16_devs;
-+		num_sec_devs = ARRAY_SIZE(s2mps16_devs);
-+		break;
- 	case S2MPU02:
- 		sec_devs = s2mpu02_devs;
- 		num_sec_devs = ARRAY_SIZE(s2mpu02_devs);
-diff --git a/drivers/mfd/sec-i2c.c b/drivers/mfd/sec-i2c.c
-index 3132b849b..6b0a8e927 100644
---- a/drivers/mfd/sec-i2c.c
-+++ b/drivers/mfd/sec-i2c.c
-@@ -16,6 +16,7 @@
+diff --git a/drivers/clk/clk-s2mps11.c b/drivers/clk/clk-s2mps11.c
+index d4e9c3577..7c766d05d 100644
+--- a/drivers/clk/clk-s2mps11.c
++++ b/drivers/clk/clk-s2mps11.c
+@@ -14,6 +14,7 @@
+ #include <linux/mfd/samsung/s2mps11.h>
  #include <linux/mfd/samsung/s2mps13.h>
  #include <linux/mfd/samsung/s2mps14.h>
- #include <linux/mfd/samsung/s2mps15.h>
 +#include <linux/mfd/samsung/s2mps16.h>
- #include <linux/mfd/samsung/s2mpu02.h>
  #include <linux/mfd/samsung/s5m8767.h>
- #include <linux/mod_devicetable.h>
-@@ -116,6 +117,15 @@ static const struct regmap_config s2mps15_regmap_config = {
- 	.cache_type = REGCACHE_FLAT,
- };
+ #include <linux/mfd/samsung/core.h>
  
-+static const struct regmap_config s2mps16_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+
-+	.max_register = S2MPS16_REG_VTH_OFFSET,
-+	.volatile_reg = s2mps11_volatile,
-+	.cache_type = REGCACHE_FLAT,
-+};
-+
- static const struct regmap_config s2mpu02_regmap_config = {
- 	.reg_bits = 8,
- 	.val_bits = 8,
-@@ -193,6 +203,11 @@ static const struct sec_pmic_i2c_platform_data s2mps15_data = {
- 	.device_type = S2MPS15X,
- };
- 
-+static const struct sec_pmic_i2c_platform_data s2mps16_data = {
-+	.regmap_cfg = &s2mps16_regmap_config,
-+	.device_type = S2MPS16X,
-+};
-+
- static const struct sec_pmic_i2c_platform_data s2mpu02_data = {
- 	.regmap_cfg = &s2mpu02_regmap_config,
- 	.device_type = S2MPU02,
-@@ -215,6 +230,7 @@ static const struct of_device_id sec_pmic_i2c_of_match[] = {
- 	{ .compatible = "samsung,s2mps13-pmic", .data = &s2mps13_data, },
- 	{ .compatible = "samsung,s2mps14-pmic", .data = &s2mps14_data, },
- 	{ .compatible = "samsung,s2mps15-pmic", .data = &s2mps15_data, },
-+	{ .compatible = "samsung,s2mps16-pmic", .data = &s2mps16_data, },
- 	{ .compatible = "samsung,s2mpu02-pmic", .data = &s2mpu02_data, },
- 	{ .compatible = "samsung,s2mpu05-pmic", .data = &s2mpu05_data, },
- 	{ .compatible = "samsung,s5m8767-pmic", .data = &s5m8767_data, },
-diff --git a/drivers/mfd/sec-irq.c b/drivers/mfd/sec-irq.c
-index c5c80b1ba..c0bdc4314 100644
---- a/drivers/mfd/sec-irq.c
-+++ b/drivers/mfd/sec-irq.c
-@@ -116,6 +116,39 @@ static const struct regmap_irq s2mps14_irqs[] = {
- 	REGMAP_IRQ_REG(S2MPS14_IRQ_TSD, 2, S2MPS14_IRQ_TSD_MASK),
- };
- 
-+static const struct regmap_irq s2mps16_irqs[] = {
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_PWRONF, 0, S2MPS16_IRQ_PWRONF_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_PWRONR, 0, S2MPS16_IRQ_PWRONR_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_JIGONBF, 0, S2MPS16_IRQ_JIGONBF_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_JIGONBR, 0, S2MPS16_IRQ_JIGONBR_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_ACOKBF, 0, S2MPS16_IRQ_ACOKBF_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_ACOKBR, 0, S2MPS16_IRQ_ACOKBR_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_PWRON1S, 0, S2MPS16_IRQ_PWRON1S_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_MRB, 0, S2MPS16_IRQ_MRB_MASK),
-+
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_RTC60S, 1, S2MPS16_IRQ_RTC60S_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_RTCA1, 1, S2MPS16_IRQ_RTCA1_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_RTCA0, 1, S2MPS16_IRQ_RTCA0_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_SMPL, 1, S2MPS16_IRQ_SMPL_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_RTC1S, 1, S2MPS16_IRQ_RTC1S_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_WTSR, 1, S2MPS16_IRQ_WTSR_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_WRSTB, 1, S2MPS16_IRQ_WRSTB_MASK),
-+
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_INT120C, 2, S2MPS16_IRQ_INT120C_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_INT140C, 2, S2MPS16_IRQ_INT140C_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_TSD, 2, S2MPS16_IRQ_TSD_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_ADCDONE, 2, S2MPS16_IRQ_ADCDONE_MASK),
-+
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC0, 3, S2MPS16_IRQ_OC0_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC1, 3, S2MPS16_IRQ_OC1_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC2, 3, S2MPS16_IRQ_OC2_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC3, 3, S2MPS16_IRQ_OC3_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC4, 3, S2MPS16_IRQ_OC4_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC5, 3, S2MPS16_IRQ_OC5_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC6, 3, S2MPS16_IRQ_OC6_MASK),
-+	REGMAP_IRQ_REG(S2MPS16_IRQ_OC7, 3, S2MPS16_IRQ_OC7_MASK),
-+};
-+
- static const struct regmap_irq s2mpu02_irqs[] = {
- 	REGMAP_IRQ_REG(S2MPU02_IRQ_PWRONF, 0, S2MPS11_IRQ_PWRONF_MASK),
- 	REGMAP_IRQ_REG(S2MPU02_IRQ_PWRONR, 0, S2MPS11_IRQ_PWRONR_MASK),
-@@ -223,6 +256,16 @@ static const struct regmap_irq_chip s2mps15_irq_chip = {
- 	S2MPS1X_IRQ_CHIP_COMMON_DATA,
- };
- 
-+static const struct regmap_irq_chip s2mps16_irq_chip = {
-+	.name = "s2mps16",
-+	.irqs = s2mps16_irqs,
-+	.num_irqs = ARRAY_SIZE(s2mps16_irqs),
-+	.num_regs = 4,
-+	.status_base = S2MPS14_REG_INT1,
-+	.mask_base = S2MPS11_REG_INT1M,
-+	.ack_base = S2MPS11_REG_INT1,
-+};
-+
- static const struct regmap_irq_chip s2mpu02_irq_chip = {
- 	.name = "s2mpu02",
- 	.irqs = s2mpu02_irqs,
-@@ -282,6 +325,9 @@ int sec_irq_init(struct sec_pmic_dev *sec_pmic)
- 	case S2MPS15X:
- 		sec_irq_chip = &s2mps15_irq_chip;
+@@ -149,6 +150,9 @@ static int s2mps11_clk_probe(struct platform_device *pdev)
+ 	case S2MPS14X:
+ 		s2mps11_reg = S2MPS14_REG_RTCCTRL;
  		break;
 +	case S2MPS16X:
-+		sec_irq_chip = &s2mps16_irq_chip;
++		s2mps11_reg = S2MPS16_REG_RTC_BUF;
 +		break;
- 	case S2MPU02:
- 		sec_irq_chip = &s2mpu02_irq_chip;
+ 	case S5M8767X:
+ 		s2mps11_reg = S5M8767_REG_CTRL1;
  		break;
-diff --git a/include/linux/mfd/samsung/core.h b/include/linux/mfd/samsung/core.h
-index d785e101f..d99fa609f 100644
---- a/include/linux/mfd/samsung/core.h
-+++ b/include/linux/mfd/samsung/core.h
-@@ -44,6 +44,7 @@ enum sec_device_type {
- 	S2MPS13X,
- 	S2MPS14X,
- 	S2MPS15X,
-+	S2MPS16X,
- 	S2MPU02,
- 	S2MPU05,
+@@ -224,6 +228,7 @@ static const struct platform_device_id s2mps11_clk_id[] = {
+ 	{ "s2mps11-clk", S2MPS11X},
+ 	{ "s2mps13-clk", S2MPS13X},
+ 	{ "s2mps14-clk", S2MPS14X},
++	{ "s2mps16-clk", S2MPS16X},
+ 	{ "s5m8767-clk", S5M8767X},
+ 	{ },
  };
-diff --git a/include/linux/mfd/samsung/irq.h b/include/linux/mfd/samsung/irq.h
-index b4805cbd9..e62d00188 100644
---- a/include/linux/mfd/samsung/irq.h
-+++ b/include/linux/mfd/samsung/irq.h
-@@ -226,6 +226,72 @@ enum s2mps14_irq {
- 	S2MPS14_IRQ_NR,
- };
- 
-+enum s2mps16_irq {
-+	S2MPS16_IRQ_PWRONF,
-+	S2MPS16_IRQ_PWRONR,
-+	S2MPS16_IRQ_JIGONBF,
-+	S2MPS16_IRQ_JIGONBR,
-+	S2MPS16_IRQ_ACOKBF,
-+	S2MPS16_IRQ_ACOKBR,
-+	S2MPS16_IRQ_PWRON1S,
-+	S2MPS16_IRQ_MRB,
-+
-+	S2MPS16_IRQ_RTC60S,
-+	S2MPS16_IRQ_RTCA1,
-+	S2MPS16_IRQ_RTCA0,
-+	S2MPS16_IRQ_SMPL,
-+	S2MPS16_IRQ_RTC1S,
-+	S2MPS16_IRQ_WTSR,
-+	S2MPS16_IRQ_WRSTB,
-+
-+	S2MPS16_IRQ_INT120C,
-+	S2MPS16_IRQ_INT140C,
-+	S2MPS16_IRQ_TSD,
-+	S2MPS16_IRQ_ADCDONE,
-+
-+	S2MPS16_IRQ_OC0,
-+	S2MPS16_IRQ_OC1,
-+	S2MPS16_IRQ_OC2,
-+	S2MPS16_IRQ_OC3,
-+	S2MPS16_IRQ_OC4,
-+	S2MPS16_IRQ_OC5,
-+	S2MPS16_IRQ_OC6,
-+	S2MPS16_IRQ_OC7,
-+
-+	S2MPS16_IRQ_NR,
-+};
-+
-+#define S2MPS16_IRQ_PWRONF_MASK		BIT(0)
-+#define S2MPS16_IRQ_PWRONR_MASK		BIT(1)
-+#define S2MPS16_IRQ_JIGONBF_MASK	BIT(2)
-+#define S2MPS16_IRQ_JIGONBR_MASK	BIT(3)
-+#define S2MPS16_IRQ_ACOKBF_MASK		BIT(4)
-+#define S2MPS16_IRQ_ACOKBR_MASK		BIT(5)
-+#define S2MPS16_IRQ_PWRON1S_MASK	BIT(6)
-+#define S2MPS16_IRQ_MRB_MASK		BIT(7)
-+
-+#define S2MPS16_IRQ_RTC60S_MASK		BIT(0)
-+#define S2MPS16_IRQ_RTCA1_MASK		BIT(1)
-+#define S2MPS16_IRQ_RTCA0_MASK		BIT(2)
-+#define S2MPS16_IRQ_SMPL_MASK		BIT(3)
-+#define S2MPS16_IRQ_RTC1S_MASK		BIT(4)
-+#define S2MPS16_IRQ_WTSR_MASK		BIT(5)
-+#define S2MPS16_IRQ_WRSTB_MASK		BIT(7)
-+
-+#define S2MPS16_IRQ_INT120C_MASK	BIT(0)
-+#define S2MPS16_IRQ_INT140C_MASK	BIT(1)
-+#define S2MPS16_IRQ_TSD_MASK		BIT(2)
-+#define S2MPS16_IRQ_ADCDONE_MASK	BIT(7)
-+
-+#define S2MPS16_IRQ_OC0_MASK		BIT(0)
-+#define S2MPS16_IRQ_OC1_MASK		BIT(1)
-+#define S2MPS16_IRQ_OC2_MASK		BIT(2)
-+#define S2MPS16_IRQ_OC3_MASK		BIT(3)
-+#define S2MPS16_IRQ_OC4_MASK		BIT(4)
-+#define S2MPS16_IRQ_OC5_MASK		BIT(5)
-+#define S2MPS16_IRQ_OC6_MASK		BIT(6)
-+#define S2MPS16_IRQ_OC7_MASK		BIT(7)
-+
- enum s2mpu02_irq {
- 	S2MPU02_IRQ_PWRONF,
- 	S2MPU02_IRQ_PWRONR,
-diff --git a/include/linux/mfd/samsung/s2mps16.h b/include/linux/mfd/samsung/s2mps16.h
-new file mode 100644
-index 000000000..d4394b054
---- /dev/null
-+++ b/include/linux/mfd/samsung/s2mps16.h
-@@ -0,0 +1,195 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright (c) 2012 Samsung Electronics Co., Ltd
-+ * Copyright (c) 2025 Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-+ */
-+
-+#ifndef __LINUX_MFD_S2MPS16_H
-+#define __LINUX_MFD_S2MPS16_H
-+
-+/* S2MPS16 registers */
-+enum S2MPS16_reg {
-+	S2MPS16_REG_ID,
-+	S2MPS16_REG_INT1,
-+	S2MPS16_REG_INT2,
-+	S2MPS16_REG_INT3,
-+	S2MPS16_REG_INT4,
-+	S2MPS16_REG_INT1M,
-+	S2MPS16_REG_INT2M,
-+	S2MPS16_REG_INT3M,
-+	S2MPS16_REG_INT4M,
-+	S2MPS16_REG_ST1,
-+	S2MPS16_REG_ST2,
-+	S2MPS16_REG_PWRONSRC,
-+	S2MPS16_REG_OFFSRC,
-+	S2MPS16_REG_BU_CHG,
-+	S2MPS16_REG_RTC_BUF,
-+	S2MPS16_REG_CTRL1,
-+	S2MPS16_REG_CTRL2,
-+	S2MPS16_REG_ETC_TEST,
-+	S2MPS16_REG_OTP_ADRL,
-+	S2MPS16_REG_OTP_ADRH,
-+	S2MPS16_REG_OTP_DATA,
-+	S2MPS16_REG_CTRL3,
-+	S2MPS16_REG_ETC_OTP,
-+	S2MPS16_REG_UVLO_OTP,
-+	S2MPS16_REG_CFG1,
-+	S2MPS16_REG_CFG2,
-+	S2MPS16_REG_B1CTRL1,
-+	S2MPS16_REG_B1CTRL2,
-+	S2MPS16_REG_B2CTRL1,
-+	S2MPS16_REG_B2CTRL2,
-+	S2MPS16_REG_B3CTRL1,
-+	S2MPS16_REG_B3CTRL2,
-+	S2MPS16_REG_B4CTRL1,
-+	S2MPS16_REG_B4CTRL2,
-+	S2MPS16_REG_B5CTRL1,
-+	S2MPS16_REG_B5CTRL2,
-+	S2MPS16_REG_B6CTRL1,
-+	S2MPS16_REG_B6CTRL2,
-+	S2MPS16_REG_B6CTRL3,
-+	S2MPS16_REG_B7CTRL1,
-+	S2MPS16_REG_B7CTRL2,
-+	S2MPS16_REG_B8CTRL1,
-+	S2MPS16_REG_B8CTRL2,
-+	S2MPS16_REG_B9CTRL1,
-+	S2MPS16_REG_B9CTRL2,
-+	/* buck10 is used for CP */
-+	S2MPS16_REG_B11CTRL1 = 0x30,
-+	S2MPS16_REG_B11CTRL2,
-+	S2MPS16_REG_BB1CTRL1,
-+	S2MPS16_REG_BB1CTRL2,
-+	S2MPS16_REG_BUCK_RAMP,
-+	S2MPS16_REG_LDO7_DVS,
-+	S2MPS16_REG_LDO8_DVS,
-+	S2MPS16_REG_LDO9_DVS,
-+	S2MPS16_REG_LDO10_DVS,
-+	S2MPS16_REG_LDO11_DVS,
-+	S2MPS16_REG_L1CTRL,
-+	S2MPS16_REG_L2CTRL,
-+	S2MPS16_REG_L3CTRL,
-+	S2MPS16_REG_L4CTRL,
-+	S2MPS16_REG_L5CTRL,
-+	S2MPS16_REG_L6CTRL,
-+	S2MPS16_REG_L7CTRL,
-+	S2MPS16_REG_L8CTRL,
-+	S2MPS16_REG_L9CTRL,
-+	S2MPS16_REG_L10CTRL,
-+	S2MPS16_REG_L11CTRL,
-+	S2MPS16_REG_L12CTRL,
-+	S2MPS16_REG_L13CTRL,
-+	/* ldo14 to 24 are used for CP */
-+	S2MPS16_REG_L25CTRL = 0x55,
-+	S2MPS16_REG_L26CTRL,
-+	S2MPS16_REG_L27CTRL,
-+	S2MPS16_REG_L28CTRL,
-+	S2MPS16_REG_L29CTRL,
-+	S2MPS16_REG_L30CTRL,
-+	S2MPS16_REG_L31CTRL,
-+	S2MPS16_REG_L32CTRL,
-+	S2MPS16_REG_L33CTRL,
-+	S2MPS16_REG_L34CTRL,
-+	S2MPS16_REG_L35CTRL,
-+	S2MPS16_REG_L36CTRL,
-+	S2MPS16_REG_L37CTRL,
-+	S2MPS16_REG_L38CTRL,
-+	S2MPS16_REG_LDO_DSCH,
-+	S2MPS16_REG_LDO_CTRL0,
-+	S2MPS16_REG_LDO_CTRL1,
-+	S2MPS16_REG_LDO_CTRL2,
-+	S2MPS16_REG_LDO_OCP,
-+	S2MPS16_REG_IOCONF,
-+	S2MPS16_REG_AVP,
-+	S2MPS16_REG_ADC_CTRL1,
-+	S2MPS16_REG_ADC_CTRL2,
-+	S2MPS16_REG_ADC_DATA,
-+	S2MPS16_REG_TCXO_CTRL,
-+	S2MPS16_REG_SELMIF,
-+	S2MPS16_REG_SQE_CTRL,
-+	S2MPS16_REG_VTH_OFFSET = 0xFF,
-+};
-+
-+/* S2MPS16 regulator ids */
-+enum S2MPS16_regulators {
-+	S2MPS16_LDO1,
-+	S2MPS16_LDO2,
-+	S2MPS16_LDO3,
-+	S2MPS16_LDO4,
-+	S2MPS16_LDO5,
-+	S2MPS16_LDO6,
-+	S2MPS16_LDO7,
-+	S2MPS16_LDO8,
-+	S2MPS16_LDO9,
-+	S2MPS16_LDO10,
-+	S2MPS16_LDO11,
-+	S2MPS16_LDO12,
-+	S2MPS16_LDO13,
-+	/* ldo14 to 24 are used for CP */
-+	S2MPS16_LDO25,
-+	S2MPS16_LDO26,
-+	S2MPS16_LDO27,
-+	S2MPS16_LDO28,
-+	S2MPS16_LDO29,
-+	S2MPS16_LDO30,
-+	S2MPS16_LDO31,
-+	S2MPS16_LDO32,
-+	S2MPS16_LDO33,
-+	S2MPS16_LDO34,
-+	S2MPS16_LDO35,
-+	S2MPS16_LDO36,
-+	S2MPS16_LDO37,
-+	S2MPS16_LDO38,
-+	S2MPS16_BUCK1,
-+	S2MPS16_BUCK2,
-+	S2MPS16_BUCK3,
-+	S2MPS16_BUCK4,
-+	S2MPS16_BUCK5,
-+	S2MPS16_BUCK6,
-+	S2MPS16_BUCK7,
-+	S2MPS16_BUCK8,
-+	S2MPS16_BUCK9,
-+	/* buck10 is used for CP */
-+	S2MPS16_BUCK11,
-+	S2MPS16_REG_MAX,
-+};
-+
-+#define S2MPS16_BUCK_MIN1		300000
-+#define S2MPS16_BUCK_MIN2		600000
-+#define S2MPS16_BUCK_MIN3		2600000
-+#define S2MPS16_BUCK_STEP1		6250
-+#define S2MPS16_BUCK_STEP2		12500
-+
-+#define S2MPS16_LDO_MIN1		300000
-+#define S2MPS16_LDO_MIN2		500000
-+#define S2MPS16_LDO_MIN3		700000
-+#define S2MPS16_LDO_MIN4		1800000
-+#define S2MPS16_LDO_STEP1		12500
-+#define S2MPS16_LDO_STEP2		25000
-+
-+#define S2MPS16_ENABLE_SHIFT		0x06
-+#define S2MPS16_LDO_VSEL_MASK		0x3F
-+#define S2MPS16_BUCK_VSEL_MASK		0xFF
-+#define S2MPS16_ENABLE_MASK		(0x03 << S2MPS16_ENABLE_SHIFT)
-+#define S2MPS16_LDO_N_VOLTAGES		(S2MPS16_LDO_VSEL_MASK + 1)
-+#define S2MPS16_BUCK_N_VOLTAGES		(S2MPS16_BUCK_VSEL_MASK + 1)
-+
-+#define S2MPS16_BUCK_RAMP_SHIFT1	6
-+#define S2MPS16_BUCK_RAMP_SHIFT2	4
-+#define S2MPS16_BUCK_RAMP_SHIFT3	2
-+#define S2MPS16_BUCK_RAMP_SHIFT4	0
-+#define S2MPS16_BUCK_RAMP_MASK		0x3
-+
-+#define S2MPS16_ENABLE_TIME_LDO		128
-+#define S2MPS16_ENABLE_TIME_BUCK1	95
-+#define S2MPS16_ENABLE_TIME_BUCK2	95
-+#define S2MPS16_ENABLE_TIME_BUCK3	95
-+#define S2MPS16_ENABLE_TIME_BUCK4	95
-+#define S2MPS16_ENABLE_TIME_BUCK5	95
-+#define S2MPS16_ENABLE_TIME_BUCK6	128
-+#define S2MPS16_ENABLE_TIME_BUCK7	95
-+#define S2MPS16_ENABLE_TIME_BUCK8	106
-+#define S2MPS16_ENABLE_TIME_BUCK9	150
-+#define S2MPS16_ENABLE_TIME_BUCK10	95
-+#define S2MPS16_ENABLE_TIME_BUCK11	95
-+
-+#endif /*  __LINUX_MFD_S2MPS16_H */
+@@ -249,6 +254,9 @@ static const struct of_device_id s2mps11_dt_match[] __used = {
+ 	}, {
+ 		.compatible = "samsung,s2mps14-clk",
+ 		.data = (void *)S2MPS14X,
++	}, {
++		.compatible = "samsung,s2mps16-clk",
++		.data = (void *)S2MPS16X,
+ 	}, {
+ 		.compatible = "samsung,s5m8767-clk",
+ 		.data = (void *)S5M8767X,
 -- 
 2.43.0
 
