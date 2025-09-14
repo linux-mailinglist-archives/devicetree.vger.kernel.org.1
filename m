@@ -1,537 +1,368 @@
-Return-Path: <devicetree+bounces-216926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19B7B5689E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:31:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB982B568A3
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:35:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAEDD42007A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:31:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6555B165F11
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64BD265623;
-	Sun, 14 Sep 2025 12:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED90825F99F;
+	Sun, 14 Sep 2025 12:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="DlZ5DIbe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dO4mM1Z7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1442A25FA34;
-	Sun, 14 Sep 2025 12:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4D924E00F
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 12:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757853055; cv=none; b=o3dzEWEtQ3SN5Vl/7uitAfV3LyVeZV6wXasUNPfM2B/0spW7FrPs3M7gQleV3P3tHMSevh7AsLe87FC9Zci6EHvaZkX8cpkcRoKGIUbijPODDHDZtU8WPIvyyRKQ4pNMatMyPdSBo11B2Dj/A70FRtrqDH0pzikTkuizSdyKDkM=
+	t=1757853300; cv=none; b=naox8VirXv10KPTTZR6gl0iieLTyFI7vkbdT6M+phKGrfrZ+UWS67eoa0kQnHcEE5ZQkZPKZVb8aha8wFdaESw9VvsE5+/R5SOS66c61rZ1AWm2Dag64lXSPjnsQ6uWm1fAX10OeOTYKRmKdnG8M7V0KgYWcb/IiWhCOLXO8sJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757853055; c=relaxed/simple;
-	bh=+eyaWRZwnJ/LVXTl6E2ao/7V6h9VuFubdUcN+SBNyoc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EGLPbtSZZyhSrbYFKpEdFP3drNE0/Ibjm8vPRdA2UPvIeDkkhL4lNqcEji3VA3tIGwm77DVGEcD4nYFi1avx4LaMXLbCWFQECoiWXq6p9tbdrRhEwpa7EwobRHhaUO3a2vRKSgTYzD/iWUUCUKVxNoLeuWKdfnfh1Q2pmOs8nW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=DlZ5DIbe; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: a2a7a9ae916611f0bd5779446731db89-20250914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Kn7FPyCoQ97bS+YMe8FzRImsW3BTm2Hf2FJ79qnWQGQ=;
-	b=DlZ5DIbeOeNXCdRcp3/6YgMs4moTadQrdMLs6rwQANK2MKIJM8+8T+731Rr2JMlaEg/x0ZXou5/Dt/4qjRLGC6gmHyiPdTsZQPRwBaM2FwQnOhj5aVGPViMG9Z90yovQbpLx66mHEILqWpVzJGEhKmSHK0sHyT4CPoQT0I1M2a4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.4,REQID:9b6e5afa-a045-488a-9465-19c90b4c0c60,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:1ca6b93,CLOUDID:c31b886c-8443-424b-b119-dc42e68239b0,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
-	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: a2a7a9ae916611f0bd5779446731db89-20250914
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <xiangzhi.tang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 13609182; Sun, 14 Sep 2025 20:30:45 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Sun, 14 Sep 2025 20:30:38 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Sun, 14 Sep 2025 20:30:37 +0800
-From: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
-To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Xiangzhi Tang
-	<Xiangzhi.Tang@mediatek.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Jjian Zhou <Jjian.Zhou@mediatek.com>,
-	Hailong Fan <Hailong.Fan@mediatek.com>, Xiangzhi Tang
-	<xiangzhi.tang@mediatek.com>
-Subject: [PATCH v2 4/4] remoterpoc: mediatek: vcp: Add vcp suspned and resume feature
-Date: Sun, 14 Sep 2025 20:29:27 +0800
-Message-ID: <20250914122943.10412-5-xiangzhi.tang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250914122943.10412-1-xiangzhi.tang@mediatek.com>
-References: <20250914122943.10412-1-xiangzhi.tang@mediatek.com>
+	s=arc-20240116; t=1757853300; c=relaxed/simple;
+	bh=fRxf354j9p5dLkCyRRpVnIzv7RmHa2wj/7G8YB2Kzos=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JIsk1juAsuqKBcmKKGClCKGOUQfQNzR105LxC6ivSYEfNcRm7EOFi91YP1kQQphh5PkW4DWknjZG5lfb/cHqrhQqFuukkvfeumMOZIs8VpZ8goDamfKZeElRrhQxaNZ1G1mhyDlP7AaUc1Ciiq+N0ObaVUHRZ2vf5Qn3WWA0muY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dO4mM1Z7; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-625e1dfc43dso5717826a12.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 05:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757853297; x=1758458097; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6My8g8ijlC6ggM3Nx6OmXgJVfqUSxwxL444mCRnJ11g=;
+        b=dO4mM1Z7bieQEVV9pvJtiYB1n2s3M0sxuhEiKCi0QlhfFt6rOlNCbu1upgPSxukMyt
+         00ZEN6lV6ryAfyb30zprRNm/OwvDldlBEcNfCtj4BWvoE0J3/xB+C9S+sp9i1dWYEgTx
+         VdLgVaDbQYSuT/lQ//Hj15xByBHE/070bIskFk3z757O68AbtbmZuUbnui+VncOEm911
+         7yeWSQzI7TdNEH5zKev5RS7RDQRzs/9A6Rvw0lo4m/8F++54wChp62Wa2AdTa6qjhdVE
+         ZzahHFCd5IqzeSVACdZPSasIE609mg8wpHUIBhBiFYr+EKYNhmyu3FlLvyhNbJXyM8Cf
+         EJ2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757853297; x=1758458097;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6My8g8ijlC6ggM3Nx6OmXgJVfqUSxwxL444mCRnJ11g=;
+        b=ML2rku6bNbU2MbapuB2wsajy4iyKH+zt8MB3VJs6KSUXjnZBR4aAKLHFmRsrzrSThr
+         mui0SYCMU1gNFUi+l0d7zlFdN9C4oCUsnRPqYEjbodNf/LAGGJX0oORzpfIZZre7GZpx
+         2GP7vE2W1+2J0g9H2pOWMqFOzaQeQs5IbVl/5OASHLD9RukqIPq7YmgJZ9fJBi3MsMLU
+         DD9QxdFxCNHhwnnF6LxvC9rYEoPTTKN6AH28winkHhcm+I/+fGjTLQM5pUA0nEgQYk6+
+         xTFwUMXXLQsixqL7KN0J0oZvJkUK4KNZ6O2En05OvUH+68z+W4y8iFgjwguWfboz2GFA
+         FbeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXmYVHG+eqpYj1flKNHhdz3NJ4wXIlv2Hf16+3b2cpSBIAVidI6mS7KNYyMwH4P81zSLVoP72cg5vUb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3Lh/yeReJR3e8uH6qWnj9MdASicbbdFxAGNvAA59m1+sCZo7I
+	UawPViRTShaXwgXCywt1fyV+aquT1+F2TvhOHvWiUGvbC0ozFl8I12hsJhDY/gMWkfcR9DnKnVf
+	lFGhckVR6w0ov5Xs4a7WFDHy0hNVTW7K5kjv9Q/Fvsw==
+X-Gm-Gg: ASbGncuYGEjzs0yMoVFx+N2BsYLLH5MlU4k3WGsN7gjJgifL4ip8T1nD35zgmWtFm7S
+	mE/96n7QmiFsOIU4ThwP1Ujrh6r8hWZiOflUQTDHts8e+9LdIVUKDdAWJkTiuYq2R38BzEEJQ9Y
+	dEcRg40H3fWbwkvBYvJfLbEEs2yahqjMB5kOp3+vJp7+vxM68iHDRQmcQPIN5Ix/lW/S4MTS6SK
+	nFjQ+WxWa/RSL9fSWX6tdym+WxJtFGZPlnFzbDM+9ueBlA=
+X-Google-Smtp-Source: AGHT+IE9iMZLipi8SbmYOlVHFkjWHvFeGW1GqsUB94IHXcDFtD/+YhZqBpHxrpl4wzzT0r2J3Pq8q72gpM+PxQoXhrE=
+X-Received: by 2002:a17:907:7f87:b0:b0e:d477:4961 with SMTP id
+ a640c23a62f3a-b0ed477740fmr113747966b.23.1757853296988; Sun, 14 Sep 2025
+ 05:34:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20250912141436.2347852-1-vincent.guittot@linaro.org>
+ <20250912141436.2347852-2-vincent.guittot@linaro.org> <aMSHsoLHGUBoWX8e@lizhi-Precision-Tower-5810>
+In-Reply-To: <aMSHsoLHGUBoWX8e@lizhi-Precision-Tower-5810>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Sun, 14 Sep 2025 14:34:44 +0200
+X-Gm-Features: Ac12FXyj3Q4Ir_GGRHAULDx1O8xgannDkGizhiAuLvket8uRGtmjSHnXquF9Gho
+Message-ID: <CAKfTPtBh3jvEQF09sL8g7Zeru+WvtQO31UFZEZDx1DYJ8RCK3w@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: pcie: Add the NXP PCIe controller
+To: Frank Li <Frank.li@nxp.com>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
+	ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-1.Add vcp suspend and resume callback
-2.Add sleep lock ipi cmd flow for lock vcp status while
-  feature using VCP
+On Fri, 12 Sept 2025 at 22:51, Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Fri, Sep 12, 2025 at 04:14:33PM +0200, Vincent Guittot wrote:
+> > Describe the PCIe controller available on the S32G platforms.
+>
+> can you cc imx@lists.linux.dev next time? suppose most part is similar with
+> imx and layerscape chips.
 
-Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
----
- drivers/remoteproc/mtk_vcp_common.c       | 175 ++++++++++++++++++++++
- drivers/remoteproc/mtk_vcp_common.h       |  29 ++++
- drivers/remoteproc/mtk_vcp_rproc.c        |  66 ++++++++
- drivers/remoteproc/mtk_vcp_rproc.h        |   4 +
- include/linux/remoteproc/mtk_vcp_public.h |   1 +
- 5 files changed, 275 insertions(+)
+Ok will do
 
-diff --git a/drivers/remoteproc/mtk_vcp_common.c b/drivers/remoteproc/mtk_vcp_common.c
-index 9767f5ff15a0..0bd071f73b23 100644
---- a/drivers/remoteproc/mtk_vcp_common.c
-+++ b/drivers/remoteproc/mtk_vcp_common.c
-@@ -364,6 +364,127 @@ u32 wait_core_hart_shutdown(struct mtk_vcp_device *vcp,
- 	return retry;
- }
- 
-+bool is_vcp_suspending(struct mtk_vcp_device *vcp)
-+{
-+	return vcp->vcp_cluster->is_suspending ? true : false;
-+}
-+
-+void vcp_wait_core_stop(struct mtk_vcp_device *vcp, enum vcp_core_id core_id)
-+{
-+	u32 core_halt;
-+	u32 core_axi;
-+	u32 core_status;
-+	u32 status;
-+
-+	/* make sure vcp is in idle state */
-+	int timeout = SUSPEND_WAIT_TIMEOUT_MS;
-+
-+	while (--timeout) {
-+		switch (core_id) {
-+		case VCP_ID:
-+			core_status = readl(vcp->vcp_cluster->cfg + R_CORE0_STATUS);
-+			status = (vcp->vcp_cluster->twohart[VCP_ID] ?
-+				 (B_CORE_GATED | B_HART0_HALT | B_HART1_HALT) :
-+				 (B_CORE_GATED | B_HART0_HALT));
-+			break;
-+		case MMUP_ID:
-+			core_status = readl(vcp->vcp_cluster->cfg + R_CORE1_STATUS);
-+			status = (vcp->vcp_cluster->twohart[MMUP_ID] ?
-+				 (B_CORE_GATED | B_HART0_HALT | B_HART1_HALT) :
-+				 (B_CORE_GATED | B_HART0_HALT));
-+			break;
-+		case VCP_CORE_TOTAL:
-+		default:
-+			break;
-+		}
-+
-+		core_halt = ((core_status & status) == status);
-+		core_axi = core_status & (B_CORE_AXIS_BUSY);
-+
-+		if (core_halt && !core_axi) {
-+			dev_err(vcp->dev, "[%s] core status 0x%x, GPIC 0x%x flag 0x%x\n",
-+				core_id ? "MMUP_ID" : "VCP_ID", core_status,
-+				readl(vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET),
-+				readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC));
-+			break;
-+		}
-+		usleep_range(USDELAY_RANGE_MIN, USDELAY_RANGE_MAX);
-+	}
-+
-+	if (timeout == 0) {
-+		dev_err(vcp->dev, "wait [%s] core stop timeout, current status 0x%x\n",
-+			core_id ? "MMUP_ID" : "VCP_ID", core_status);
-+	}
-+}
-+
-+void vcp_wait_rdy_signal(struct mtk_vcp_device *vcp, bool rdy)
-+{
-+	u32 rdy_signal;
-+	int ret;
-+
-+	if (!IS_ERR((void const *)vcp->vcp_cluster->vcp_rdy)) {
-+		if (rdy)
-+			ret = read_poll_timeout_atomic(readl, rdy_signal, rdy_signal & READY_BIT,
-+						       USEC_PER_MSEC,
-+						       VCP_SYNC_TIMEOUT_MS * USEC_PER_MSEC,
-+						       false,
-+						       vcp->vcp_cluster->vcp_rdy + VLP_AO_RSVD7);
-+		else
-+			ret = read_poll_timeout_atomic(readl, rdy_signal, !(rdy_signal & READY_BIT),
-+						       USEC_PER_MSEC,
-+						       VCP_SYNC_TIMEOUT_MS * USEC_PER_MSEC,
-+						       false,
-+						       vcp->vcp_cluster->vcp_rdy + VLP_AO_RSVD7);
-+		if (ret < 0)
-+			dev_err(vcp->dev, "wait vcp %s timeout 0x%x\n",
-+				rdy ? "set rdy bit" : "clr rdy bit",
-+				readl(vcp->vcp_cluster->vcp_rdy + VLP_AO_RSVD7));
-+	} else {
-+		dev_err(vcp->dev, "illegal vcp rdy signal\n");
-+	}
-+}
-+
-+void vcp_wait_suspend_resume(struct mtk_vcp_device *vcp, bool suspend)
-+{
-+	int timeout = SUSPEND_WAIT_TIMEOUT_MS;
-+
-+	if (suspend) {
-+		writel(B_CORE0_SUSPEND, vcp->vcp_cluster->cfg_core + AP_R_GPR2);
-+		writel(B_CORE1_SUSPEND, vcp->vcp_cluster->cfg_core + AP_R_GPR3);
-+		writel(SUSPEND_IPI_MAGIC, vcp->vcp_cluster->cfg + VCP_C0_GPR0_SUSPEND_RESUME_FLAG);
-+		writel(SUSPEND_IPI_MAGIC, vcp->vcp_cluster->cfg + VCP_C1_GPR0_SUSPEND_RESUME_FLAG);
-+		writel(B_GIPC4_SETCLR_3, vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET);
-+	} else {
-+		writel(B_CORE0_RESUME, vcp->vcp_cluster->cfg_core + AP_R_GPR2);
-+		writel(B_CORE1_RESUME, vcp->vcp_cluster->cfg_core + AP_R_GPR3);
-+		writel(RESUME_IPI_MAGIC, vcp->vcp_cluster->cfg + VCP_C0_GPR0_SUSPEND_RESUME_FLAG);
-+		writel(RESUME_IPI_MAGIC, vcp->vcp_cluster->cfg + VCP_C1_GPR0_SUSPEND_RESUME_FLAG);
-+		writel(B_GIPC4_SETCLR_3, vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET);
-+	}
-+
-+	while (--timeout) {
-+		if (suspend &&
-+		    (readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC) & (VCP_AP_SUSPEND)) &&
-+		    (readl(vcp->vcp_cluster->cfg_sec + R_GPR2_SEC) & (MMUP_AP_SUSPEND)))
-+			break;
-+		else if (!suspend &&
-+			 !(readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC) & (VCP_AP_SUSPEND)) &&
-+			 !(readl(vcp->vcp_cluster->cfg_sec + R_GPR2_SEC) & (MMUP_AP_SUSPEND)))
-+			break;
-+		usleep_range(USDELAY_RANGE_MIN, USDELAY_RANGE_MAX);
-+	}
-+	if (timeout <= 0) {
-+		dev_err(vcp->dev, "vcp %s timeout GPIC 0x%x 0x%x 0x%x 0x%x flag 0x%x 0x%x\n",
-+			suspend ? "suspend" : "resume",
-+			readl(vcp->vcp_cluster->cfg_core + R_GIPC_IN_SET),
-+			readl(vcp->vcp_cluster->cfg_core + R_GIPC_IN_CLR),
-+			readl(vcp->vcp_cluster->cfg_core + AP_R_GPR2),
-+			readl(vcp->vcp_cluster->cfg_core + AP_R_GPR3),
-+			readl(vcp->vcp_cluster->cfg_sec + R_GPR2_SEC),
-+			readl(vcp->vcp_cluster->cfg_sec + R_GPR3_SEC));
-+	}
-+}
-+
- void vcp_A_register_notify(enum feature_id id,
- 			   struct notifier_block *nb)
- {
-@@ -524,7 +645,23 @@ static int reset_vcp(struct mtk_vcp_device *vcp)
- 
- static int vcp_enable_pm_clk(struct mtk_vcp_device *vcp, enum feature_id id)
- {
-+	int ret;
-+	bool suspend_status;
-+	struct slp_ctrl_data ipi_data;
-+
- 	mutex_lock(&vcp->vcp_cluster->vcp_pw_clk_mutex);
-+	read_poll_timeout_atomic(is_vcp_suspending,
-+				 suspend_status, !suspend_status,
-+				 USEC_PER_MSEC,
-+				 SUSPEND_WAIT_TIMEOUT_MS * USEC_PER_MSEC,
-+				 false, vcp);
-+	if (suspend_status) {
-+		dev_warn(vcp->dev, "%s blocked by vcp suspend, pwclkcnt(%d)\n",
-+			 __func__,
-+			 vcp->vcp_cluster->pwclkcnt);
-+		return -ETIMEDOUT;
-+	}
-+
- 	if (vcp->vcp_cluster->pwclkcnt == 0) {
- 		if (!is_vcp_ready_by_coreid(VCP_CORE_TOTAL)) {
- 			if (reset_vcp(vcp)) {
-@@ -534,6 +671,17 @@ static int vcp_enable_pm_clk(struct mtk_vcp_device *vcp, enum feature_id id)
- 		}
- 	}
- 	vcp->vcp_cluster->pwclkcnt++;
-+	if (id != RTOS_FEATURE_ID) {
-+		ipi_data.cmd = SLP_WAKE_LOCK;
-+		ipi_data.feature = id;
-+		ret = vcp->ipi_ops->ipi_send_compl(vcp->ipi_dev, IPI_OUT_C_SLEEP_0,
-+					     &ipi_data, PIN_OUT_C_SIZE_SLEEP_0, 500);
-+		if (ret < 0) {
-+			dev_warn(vcp->dev, "%s ipc_send_compl failed. ret %d\n",
-+				 __func__, ret);
-+			return ret;
-+		}
-+	}
- 	mutex_unlock(&vcp->vcp_cluster->vcp_pw_clk_mutex);
- 
- 	return 0;
-@@ -541,7 +689,34 @@ static int vcp_enable_pm_clk(struct mtk_vcp_device *vcp, enum feature_id id)
- 
- static int vcp_disable_pm_clk(struct mtk_vcp_device *vcp, enum feature_id id)
- {
-+	int ret;
-+	bool suspend_status;
-+	struct slp_ctrl_data ipi_data;
-+
- 	mutex_lock(&vcp->vcp_cluster->vcp_pw_clk_mutex);
-+	read_poll_timeout_atomic(is_vcp_suspending,
-+				 suspend_status, !suspend_status,
-+				 USEC_PER_MSEC,
-+				 SUSPEND_WAIT_TIMEOUT_MS * USEC_PER_MSEC,
-+				 false, vcp);
-+	if (suspend_status) {
-+		dev_warn(vcp->dev, "%s blocked by vcp suspend, pwclkcnt(%d)\n",
-+			 __func__,
-+			 vcp->vcp_cluster->pwclkcnt);
-+		return -ETIMEDOUT;
-+	}
-+
-+	if (id != RTOS_FEATURE_ID) {
-+		ipi_data.cmd = SLP_WAKE_UNLOCK;
-+		ipi_data.feature = id;
-+		ret = vcp->ipi_ops->ipi_send_compl(vcp->ipi_dev, IPI_OUT_C_SLEEP_0,
-+					 &ipi_data, PIN_OUT_C_SIZE_SLEEP_0, 500);
-+		if (ret < 0) {
-+			dev_err(vcp->dev, "%s ipc_send_compl failed. ret %d\n",
-+				__func__, ret);
-+			return ret;
-+		}
-+	}
- 	vcp->vcp_cluster->pwclkcnt--;
- 	if (vcp->vcp_cluster->pwclkcnt < 0) {
- 		for (u32 i = 0; i < NUM_FEATURE_ID; i++)
-diff --git a/drivers/remoteproc/mtk_vcp_common.h b/drivers/remoteproc/mtk_vcp_common.h
-index 4a4393b2ae1f..42deda362b6c 100644
---- a/drivers/remoteproc/mtk_vcp_common.h
-+++ b/drivers/remoteproc/mtk_vcp_common.h
-@@ -18,9 +18,13 @@
- #define VCP_IPI_DEV_READY_TIMEOUT 1000
- #define USDELAY_RANGE_MIN 1000
- #define USDELAY_RANGE_MAX 2000
-+#define SUSPEND_WAIT_TIMEOUT_MS 100
- 
- /* vcp platform define */
- #define DMA_MAX_MASK_BIT 33
-+#define RESUME_IPI_MAGIC 0x12345678
-+#define SUSPEND_IPI_MAGIC 0x87654321
-+#define PIN_OUT_C_SIZE_SLEEP_0 2
- 
- /* vcp load image define */
- #define VCM_IMAGE_MAGIC             (0x58881688)
-@@ -98,6 +102,15 @@ enum vcp_core_id {
- 	VCP_CORE_TOTAL  = 2,
- };
- 
-+/* vcp sleep cmd flag sync with VCP FW */
-+enum {
-+	SLP_WAKE_LOCK = 0,
-+	SLP_WAKE_UNLOCK,
-+	SLP_STATUS_DBG,
-+	SLP_SUSPEND,
-+	SLP_RESUME,
-+};
-+
- /* vcp kernel smc server id */
- enum mtk_tinysys_vcp_kernel_op {
- 	MTK_TINYSYS_VCP_KERNEL_OP_RESET_SET = 0,
-@@ -155,6 +168,17 @@ struct vcp_reserve_mblock {
- 	size_t size;
- };
- 
-+/**
-+ * struct slp_ctrl_data - sleep ctrl data sync with AP and VCP
-+ *
-+ * @feature: Feature id
-+ * @cmd: sleep cmd flag.
-+ */
-+struct slp_ctrl_data {
-+	u32 feature;
-+	u32 cmd;
-+};
-+
- /**
-  * struct vcp_work_struct - vcp notify work structure.
-  *
-@@ -230,6 +254,8 @@ void vcp_A_register_notify(enum feature_id id,
- 			   struct notifier_block *nb);
- void vcp_A_unregister_notify(enum feature_id id,
- 			     struct notifier_block *nb);
-+bool is_vcp_suspending(struct mtk_vcp_device *vcp);
-+
- /* vcp common reserved memory APIs */
- int vcp_reserve_memory_ioremap(struct mtk_vcp_device *vcp);
- phys_addr_t vcp_get_reserve_mem_phys(enum vcp_reserve_mem_id_t id);
-@@ -252,4 +278,7 @@ int vcp_A_deregister_feature(struct mtk_vcp_device *vcp,
- 
- /* vcp common core hart shutdown API */
- u32 wait_core_hart_shutdown(struct mtk_vcp_device *vcp, enum vcp_core_id core_id);
-+void vcp_wait_core_stop(struct mtk_vcp_device *vcp, enum vcp_core_id core_id);
-+void vcp_wait_rdy_signal(struct mtk_vcp_device *vcp, bool rdy);
-+void vcp_wait_suspend_resume(struct mtk_vcp_device *vcp, bool suspend);
- #endif
-diff --git a/drivers/remoteproc/mtk_vcp_rproc.c b/drivers/remoteproc/mtk_vcp_rproc.c
-index 4aa0ed47abd7..133518bedd76 100644
---- a/drivers/remoteproc/mtk_vcp_rproc.c
-+++ b/drivers/remoteproc/mtk_vcp_rproc.c
-@@ -11,6 +11,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/suspend.h>
- #include <linux/remoteproc.h>
- 
- #include "mtk_vcp_common.h"
-@@ -73,12 +74,68 @@ struct mtk_ipi_device *vcp_get_ipidev(struct mtk_vcp_device *vcp)
- }
- EXPORT_SYMBOL_GPL(vcp_get_ipidev);
- 
-+static int mtk_vcp_suspend(struct device *dev)
-+{
-+	struct mtk_vcp_device *vcp = platform_get_drvdata(to_platform_device(dev));
-+
-+	vcp_extern_notify(VCP_ID, VCP_EVENT_SUSPEND);
-+	vcp_extern_notify(MMUP_ID, VCP_EVENT_SUSPEND);
-+
-+	if (!vcp->vcp_cluster->is_suspending &&
-+	    vcp->vcp_cluster->pwclkcnt) {
-+		vcp->vcp_cluster->is_suspending = true;
-+		vcp->vcp_cluster->vcp_ready[VCP_ID] = false;
-+		vcp->vcp_cluster->vcp_ready[MMUP_ID] = false;
-+
-+		flush_workqueue(vcp->vcp_cluster->vcp_workqueue);
-+
-+		vcp_wait_suspend_resume(vcp, true);
-+		vcp_wait_core_stop(vcp, VCP_ID);
-+		vcp_wait_core_stop(vcp, MMUP_ID);
-+
-+		pm_runtime_put_sync(dev);
-+
-+		/* wait vcp clr rdy bit */
-+		vcp_wait_rdy_signal(vcp, false);
-+	}
-+	vcp->vcp_cluster->is_suspending = true;
-+
-+	return 0;
-+}
-+
-+static int mtk_vcp_resume(struct device *dev)
-+{
-+	struct mtk_vcp_device *vcp = platform_get_drvdata(to_platform_device(dev));
-+
-+	if (vcp->vcp_cluster->is_suspending &&
-+	    vcp->vcp_cluster->pwclkcnt) {
-+		pm_runtime_get_sync(dev);
-+
-+		/* wait vcp set rdy bit */
-+		vcp_wait_rdy_signal(vcp, true);
-+		vcp_wait_suspend_resume(vcp, false);
-+	}
-+	vcp->vcp_cluster->is_suspending = false;
-+
-+	vcp_extern_notify(MMUP_ID, VCP_EVENT_RESUME);
-+	vcp_extern_notify(VCP_ID, VCP_EVENT_RESUME);
-+
-+	return 0;
-+}
-+
- static int mtk_vcp_start(struct rproc *rproc)
- {
- 	struct mtk_vcp_device *vcp = (struct mtk_vcp_device *)rproc->priv;
- 	struct arm_smccc_res res;
- 	int ret;
- 
-+	ret = vcp->ipi_ops->ipi_register(vcp->ipi_dev, IPI_OUT_C_SLEEP_0,
-+					 NULL, NULL, &vcp->vcp_cluster->slp_ipi_ack_data);
-+	if (ret) {
-+		dev_err(vcp->dev, "Failed to register IPI_OUT_C_SLEEP_0\n");
-+		goto slp_ipi_unregister;
-+	}
-+
- 	ret = vcp->ipi_ops->ipi_register(vcp->ipi_dev, IPI_IN_VCP_READY_0,
- 					 (void *)vcp_A_ready_ipi_handler,
- 					 vcp, &vcp->vcp_cluster->msg_vcp_ready0);
-@@ -118,6 +175,8 @@ static int mtk_vcp_start(struct rproc *rproc)
- 	vcp->ipi_ops->ipi_unregister(vcp->ipi_dev, IPI_IN_VCP_READY_1);
- vcp0_ready_ipi_unregister:
- 	vcp->ipi_ops->ipi_unregister(vcp->ipi_dev, IPI_IN_VCP_READY_0);
-+slp_ipi_unregister:
-+	vcp->ipi_ops->ipi_unregister(vcp->ipi_dev, IPI_OUT_C_SLEEP_0);
- 
- 	return ret;
- }
-@@ -435,6 +494,7 @@ static struct mtk_vcp_ipi_ops mt8196_vcp_ipi_ops = {
- static const struct mtk_vcp_of_data mt8196_of_data = {
- 	.ops = {
- 		.vcp_is_ready = is_vcp_ready,
-+		.vcp_is_suspending = is_vcp_suspending,
- 		.vcp_register_notify = vcp_A_register_notify,
- 		.vcp_unregister_notify = vcp_A_unregister_notify,
- 		.vcp_register_feature = vcp_A_register_feature,
-@@ -455,6 +515,11 @@ static const struct mtk_vcp_of_data mt8196_of_data = {
- 	},
- };
- 
-+static const struct dev_pm_ops mtk_vcp_rproc_pm_ops = {
-+	.suspend_noirq = mtk_vcp_suspend,
-+	.resume_noirq = mtk_vcp_resume,
-+};
-+
- static const struct of_device_id mtk_vcp_of_match[] = {
- 	{ .compatible = "mediatek,mt8196-vcp", .data = &mt8196_of_data},
- 	{}
-@@ -468,6 +533,7 @@ static struct platform_driver mtk_vcp_device = {
- 	.driver = {
- 		.name = "mtk-vcp",
- 		.of_match_table = mtk_vcp_of_match,
-+		.pm = pm_ptr(&mtk_vcp_rproc_pm_ops),
- 	},
- };
- 
-diff --git a/drivers/remoteproc/mtk_vcp_rproc.h b/drivers/remoteproc/mtk_vcp_rproc.h
-index e36612256b63..3713977e4171 100644
---- a/drivers/remoteproc/mtk_vcp_rproc.h
-+++ b/drivers/remoteproc/mtk_vcp_rproc.h
-@@ -22,7 +22,9 @@
-  * @sram_offset: core sram memory layout
-  * @msg_vcp_ready0: core0 ready ipi msg data
-  * @msg_vcp_ready1: core1 ready ipi msg data
-+ * @slp_ipi_ack_data: sleep ipi msg data
-  * @pwclkcnt: power and clock config count data
-+ * @is_suspending: suspend status flag
-  * @vcp_ready: vcp core status flag
-  * @share_mem_iova: shared memory iova base
-  * @share_mem_size: shared memory size
-@@ -45,7 +47,9 @@ struct mtk_vcp_of_cluster {
- 	u32 sram_offset[VCP_CORE_TOTAL];
- 	u32 msg_vcp_ready0;
- 	u32 msg_vcp_ready1;
-+	u32 slp_ipi_ack_data;
- 	int pwclkcnt;
-+	bool is_suspending;
- 	bool vcp_ready[VCP_CORE_TOTAL];
- 	dma_addr_t share_mem_iova;
- 	size_t share_mem_size;
-diff --git a/include/linux/remoteproc/mtk_vcp_public.h b/include/linux/remoteproc/mtk_vcp_public.h
-index 5bd562d1ae62..5a859a3bc1eb 100644
---- a/include/linux/remoteproc/mtk_vcp_public.h
-+++ b/include/linux/remoteproc/mtk_vcp_public.h
-@@ -107,6 +107,7 @@ struct mtk_vcp_ipi_ops {
- 
- struct mtk_vcp_ops {
- 	bool (*vcp_is_ready)(enum feature_id id);
-+	bool (*vcp_is_suspending)(struct mtk_vcp_device *vcp);
- 	void (*vcp_register_notify)(enum feature_id id, struct notifier_block *nb);
- 	void (*vcp_unregister_notify)(enum feature_id id, struct notifier_block *nb);
- 	int (*vcp_register_feature)(struct mtk_vcp_device *vcp, enum feature_id id);
--- 
-2.46.0
+>
+> >
+> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> > ---
+> >  .../devicetree/bindings/pci/nxp,s32-pcie.yaml | 169 ++++++++++++++++++
+> >  1 file changed, 169 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..287596d7162d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
+> > @@ -0,0 +1,169 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nxp,s32-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP S32G2xx/S32G3xx PCIe controller
+> > +
+> > +maintainers:
+> > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > +  - Ionut Vicovan <ionut.vicovan@nxp.com>
+> > +
+> > +description:
+> > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
+> > +  The S32G SoC family has two PCIe controllers, which can be configured as
+> > +  either Root Complex or End Point.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nxp,s32g2-pcie     # S32G2 SoCs RC mode
+> > +      - items:
+> > +          - const: nxp,s32g3-pcie
+> > +          - const: nxp,s32g2-pcie
+> > +
+> > +  reg:
+> > +    minItems: 7
+>
+> If minItems is the same maxItems, needn't minItems.
 
+Ok, I didn't know that
+
+>
+> > +    maxItems: 7
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dbi
+> > +      - const: dbi2
+> > +      - const: atu
+> > +      - const: dma
+> > +      - const: ctrl
+> > +      - const: config
+> > +      - const: addr_space
+> > +
+> > +  interrupts:
+> > +    minItems: 8
+> > +    maxItems: 8
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: link_req_stat
+> > +      - const: dma
+> > +      - const: msi
+> > +      - const: phy_link_down
+> > +      - const: phy_link_up
+> > +      - const: misc
+> > +      - const: pcs
+> > +      - const: tlp_req_no_comp
+>
+> use - for names
+
+Yes, I forgot to change this
+
+>
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      Use this option to reference the GIC controller node which will
+> > +      handle the MSIs. This property can be used only in Root Complex mode.
+> > +      The msi-parent node must be declared as "msi-controller" and the list of
+> > +      available SPIs that can be used must be declared using "mbi-ranges".
+> > +      If "msi-parent" is not present in the PCIe node, MSIs will be handled
+> > +      by iMSI-RX -Integrated MSI Receiver [AXI Bridge]-, an integrated
+> > +      MSI reception module in the PCIe controller's AXI Bridge which
+> > +      detects and terminates inbound MSI requests (received on the RX wire).
+> > +      These MSIs no longer appear on the AXI bus, instead a hard-wired
+> > +      interrupt is raised, documented as "DSP AXI MSI Interrupt" in the SoC
+> > +      Reference Manual.
+>
+> Don't need description for this common property.
+>
+> msi-parent for pcie devices is most likely wrong. It should use msi-map.
+
+Ok, I'm going to have a look.
+
+>
+> > +
+> > +  nxp,phy-mode:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: Select PHY mode for PCIe controller
+> > +    enum:
+> > +      - crns  # Common Reference Clock, No Spread Spectrum
+> > +      - crss  # Common Reference Clock, Spread Spectrum
+> > +      - srns  # Separate reference Clock, No Spread Spectrum
+> > +      - sris  # Separate Reference Clock, Independent Spread Spectrum
+> > +
+> > +  max-link-speed:
+> > +    description:
+> > +      The max link speed is normaly Gen3, but can be enforced to a lower value
+> > +      in case of special limitations.
+>
+> needn't description here.
+
+ok
+
+>
+> > +    maximum: 3
+> > +
+> > +  num-lanes:
+> > +    description:
+> > +      Max bus width (1 or 2); it is the number of physical lanes
+>
+> needn't description here.
+
+ok
+
+>
+> > +    minimum: 1
+> > +    maximum: 2
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - ranges
+> > +  - nxp,phy-mode
+> > +  - num-lanes
+> > +  - phys
+> > +
+> > +additionalProperties: true
+>
+> unevaluatedProperties: false
+>
+> because you refs to /schemas/pci/snps,dw-pcie-common.yaml
+>
+> You can send to me do internal review before you post to upstream.
+
+ok, thanks
+
+>
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/phy/phy.h>
+> > +
+> > +    bus {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        pcie0: pcie@40400000 {
+>
+> Needn't label "pcie0"
+
+ok
+
+>
+> > +            compatible = "nxp,s32g3-pcie",
+> > +                         "nxp,s32g2-pcie";
+> > +            dma-coherent;
+> > +            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
+> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
+> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
+> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
+> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
+> > +                  /* RC configuration space, 4KB each for cfg0 and cfg1
+> > +                   * at the end of the outbound memory map
+> > +                   */
+> > +                  <0x5f 0xffffe000 0x0 0x00002000>,
+> > +                  <0x58 0x00000000 0x0 0x40000000>; /* 1GB EP addr space */
+> > +                  reg-names = "dbi", "dbi2", "atu", "dma", "ctrl",
+> > +                              "config", "addr_space";
+> > +                  #address-cells = <3>;
+> > +                  #size-cells = <2>;
+> > +                  device_type = "pci";
+> > +                  ranges =
+> > +                  /* downstream I/O, 64KB and aligned naturally just
+> > +                   * before the config space to minimize fragmentation
+> > +                   */
+> > +                  <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x00010000>,
+> > +                  /* non-prefetchable memory, with best case size and
+> > +                  * alignment
+> > +                   */
+> > +                  <0x82000000 0x0 0x00000000 0x58 0x00000000 0x7 0xfffe0000>;
+> > +
+> > +                  nxp,phy-mode = "crns";
+> > +                  bus-range = <0x0 0xff>;
+> > +                  interrupts =  <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> > +                  interrupt-names = "link_req_stat", "dma", "msi",
+> > +                                    "phy_link_down", "phy_link_up", "misc",
+> > +                                    "pcs", "tlp_req_no_comp";
+> > +                  #interrupt-cells = <1>;
+> > +                  interrupt-map-mask = <0 0 0 0x7>;
+> > +                  interrupt-map = <0 0 0 1 &gic 0 0 0 128 4>,
+> > +                                  <0 0 0 2 &gic 0 0 0 129 4>,
+> > +                                  <0 0 0 3 &gic 0 0 0 130 4>,
+> > +                                  <0 0 0 4 &gic 0 0 0 131 4>;
+>
+> use pre define macro
+>
+> <0 0 0 1 &gic GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
+
+yes
+
+>
+> > +                  msi-parent = <&gic>;
+>
+> Suppose it is wrong for pcie
+
+
+
+>
+> you should use msi-map
+>
+> Frank
+> > +
+> > +                  num-lanes = <2>;
+> > +                  phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
+> > +        };
+> > +    };
+> > --
+> > 2.43.0
+> >
 
