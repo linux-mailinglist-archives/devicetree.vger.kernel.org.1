@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-216892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21597B56795
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:08:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF955B567B1
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:15:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C678B7AE9E1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:06:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835D73A5216
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 10:15:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E0C323B63C;
-	Sun, 14 Sep 2025 10:08:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D96C2405FD;
+	Sun, 14 Sep 2025 10:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kF0Bsr1h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1owBbbb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EF538FA3;
-	Sun, 14 Sep 2025 10:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C7650276;
+	Sun, 14 Sep 2025 10:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757844498; cv=none; b=SCNNwQZm60mq5CoMYRhNyp0oIDwHVWUDBLaaqK0TA52+QWtWi3bE1XkSq07YkO/eY7djrhalyzU5hVsCeqE+vSIH6SZCjE87fFHKblK5F8klY3KE1y1TkJPfsZDg3sAjL9aJLC848S71EzAHQE/s3+CuK+aP/cPtNtSdzgqqbXk=
+	t=1757844919; cv=none; b=KCBj1mWHeK1hcYn2Id/TPY5dRbsNk2zZ3ixSgSb2NHdUiNg79Ir6zv5vPnDp64QSyUwmlhrUo7dhMCqkvBhvRth8+54jOplE31zR6NVnBsSqhp93n+h3xKvACIrqhT9QjyV/esZ3uZFgBi/+1DbH4JrhV2YEz1ci/T7jAu87tsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757844498; c=relaxed/simple;
-	bh=iNB9S+KHoIuq835pSCI5j/XxSaZfePuersbV73tiLAU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VKeFPg45RPOU2nmAooyON6LYZKnujmRTMHr558ZZyZpIECEOeTSaWMVYPJlk9CDjy5QKH7gMb0CqUJTox8t34QsS25pXKH38W8h39iw6AHFXMqzZInYCo23UfJwc7zhu7+eMp0gyCks5jwG/0G5U0d/Ngo5zlk0UhIqISNomAPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kF0Bsr1h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE8DC4CEF0;
-	Sun, 14 Sep 2025 10:08:05 +0000 (UTC)
+	s=arc-20240116; t=1757844919; c=relaxed/simple;
+	bh=YOiXMP4qhqUVJERQ/wa0Y3qAWcdtKSQrh1JK66PXogI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=OwLf5D2AyL8nr05gZW8a+IrxWxdXIqHELKvHTknG1AWt4xYjV8TZYsC2EPylhp63MMQzMbiXpaiXNSxuRvuEVJy5wvJww51D/2Wq9/eVAbGNvjrb4DUVx2hVwzA8MLiiOcTPV6CGWXhVx+vHMssSLJIzCJ7Wo6ZFAqEcWJRoWCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1owBbbb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D24FC4CEF0;
+	Sun, 14 Sep 2025 10:15:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757844497;
-	bh=iNB9S+KHoIuq835pSCI5j/XxSaZfePuersbV73tiLAU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kF0Bsr1hS+INlgWKUO6WCGyowP6ofFz2gqsARdxwuHftxvqC15WRlIWIa1tcEEH0K
-	 zRONu8p005T8NOrRtrjiiMalx+5b5MmPeMCAC5WdySUXZpk5JFX9dAbFJC1pw2yTgR
-	 06izr0rhiwuQO1ROmsE5JCYQGQfbnRh7QRk3VsTJgPq93a82jDXI9DKM6BIvv5OiQI
-	 5yzdfVSOOxqoJ6mxXXi9LTUhuhUqq7CCY3/qkrpdXGztkJRGyoQH9nXtJiv5BDqtzQ
-	 EPdsVgvrN29VxLhSj5JAZBu4eGvycDX9Zt+Rn7eTIWDL7MTRVmoei3LDM3ObceBYUh
-	 L2YmShMnLBakw==
-Message-ID: <01631ab6-1dfb-4b43-af50-444c471d35f5@kernel.org>
-Date: Sun, 14 Sep 2025 12:08:04 +0200
+	s=k20201202; t=1757844918;
+	bh=YOiXMP4qhqUVJERQ/wa0Y3qAWcdtKSQrh1JK66PXogI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=F1owBbbbhYucUaUlIBBEwPmqcVtK7Zc3gW5J8+Enx/4u2I1ZETbqAFqQw3jQd5kyX
+	 ogB3FnBjL/RyAvsjBFluEhBLbqTzNkBAWQ6b/ChaigtXNh2MgmMkBMmGQVdg2c/Ka9
+	 bQFLZ/GwI+QrZC9al7OqZwIvALZJDg+3XFiyKGh8FjkZz+DPZ7YMzWdu36Tnx6Pbai
+	 +mec63x4FyxGwgfpg00xhT3cvKK93olSoXjDe87QSDuSakrzxH4r9gmBcFaTJJQvdP
+	 2VjPt+vCen31tYbXWIj9552tr1EJdTM9v2ROeP2dfO0vEHS8S6F/FJUBoU54xWhhcb
+	 OZcNHN7b6aToA==
+Message-ID: <c3449621-546d-4911-9692-a465c6fa9697@kernel.org>
+Date: Sun, 14 Sep 2025 12:15:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,38 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 00/62] initrd: remove classic initrd support
-To: Askar Safin <safinaskar@gmail.com>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>,
- Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>,
- Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Aleksa Sarai <cyphar@cyphar.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Julian Stecklina <julian.stecklina@cyberus-technology.de>,
- Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>, Eric Curtin <ecurtin@redhat.com>,
- Alexander Graf <graf@amazon.com>, Rob Landley <rob@landley.net>,
- Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
- linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
- linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org,
- Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org,
- initramfs@vger.kernel.org, linux-api@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-efi@vger.kernel.org,
- linux-ext4@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
- linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
- devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>,
- Kees Cook <kees@kernel.org>, Thorsten Blum <thorsten.blum@linux.dev>,
- Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-References: <20250913003842.41944-1-safinaskar@gmail.com>
+Subject: Re: [PATCH 3/4] pcie: s32g: Add initial PCIe support (RC)
+To: Vincent Guittot <vincent.guittot@linaro.org>, chester62515@gmail.com,
+ mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, s32@nxp.com,
+ lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com,
+ ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com,
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250912141436.2347852-1-vincent.guittot@linaro.org>
+ <20250912141436.2347852-4-vincent.guittot@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,33 +106,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250913003842.41944-1-safinaskar@gmail.com>
+In-Reply-To: <20250912141436.2347852-4-vincent.guittot@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/09/2025 02:37, Askar Safin wrote:
-> Intro
-> ====
-> This patchset removes classic initrd (initial RAM disk) support,
-> which was deprecated in 2020.
-> Initramfs still stays, and RAM disk itself (brd) still stays, too.
-> init/do_mounts* and init/*initramfs* are listed in VFS entry in
-> MAINTAINERS, so I think this patchset should go through VFS tree.
+On 12/09/2025 16:14, Vincent Guittot wrote:
+> +
+> +static u64 s32g_get_coherency_boundary(struct device *dev)
+> +{
+> +	struct device_node *np;
+> +	struct resource res;
+> +
+> +	np = of_find_node_by_type(NULL, "memory");
+
+You leak OF node.
+
+> +
+> +	if (of_address_to_resource(np, 0, &res)) {
+> +		dev_warn(dev, "Fail to get coherency boundary\n");
+> +		return 0;
+> +	}
+> +
+> +	return res.start;
+> +}
 
 
-No, DTS cannot go via VFS directory, that's a clear NAK.
 
-For all other arch changes, are you sure you have everywhere actual
-dependency so it has to be combined together? Rather please look how to
-split it into logical bisectsble chunks, where some cleanups could be
-made independent.
+...
 
-> This patchset touchs every subdirectory in arch/, so I tested it
-> on 8 (!!!) archs in Qemu (see details below).
-> Warning: this patchset renames CONFIG_BLK_DEV_INITRD (!!!) to CONFIG_INITRAMFS
-> and CONFIG_RD_* to CONFIG_INITRAMFS_DECOMPRESS_* (for example,
-> CONFIG_RD_GZIP to CONFIG_INITRAMFS_DECOMPRESS_GZIP).
-> If you still use initrd, see below for workaround.
+
+> +
+> +static struct platform_driver s32g_pcie_driver = {
+> +	.driver = {
+> +		.name	= "s32g-pcie",
+> +		.owner	= THIS_MODULE,
+
+That 12-yo code. My litmus test from last talk...
+
+Please clean it up from such old coding style. BTW, tools are reporting
+this since years (in this case coccinelle), so be sure that you actually
+run standard static checks on new driver code (smatch, sparse, coccinelle).
+
 
 Best regards,
 Krzysztof
