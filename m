@@ -1,58 +1,54 @@
-Return-Path: <devicetree+bounces-217055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7AF2B56BE0
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 21:47:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 704ECB56BE5
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 21:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 670B53A5EBD
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 19:47:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1BCC7A4383
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 19:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B1E2E1C6B;
-	Sun, 14 Sep 2025 19:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6C22E62AD;
+	Sun, 14 Sep 2025 19:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="K0v43KNh"
+	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="DHTV36n1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
+Received: from mail-4323.protonmail.ch (mail-4323.protonmail.ch [185.70.43.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75FA2DBF73
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 19:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F131D618A;
+	Sun, 14 Sep 2025 19:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757879246; cv=none; b=tPx80PLl8TgiFhRTLWdpPB3DHf3EzwXjcmO5id04jG8mXAqAStd3r6gW7jH4eiYNhJa8CsFDZK+mBZnyOaAeT0R9u7pgyddMcTXyaRznZGDJdnY31mbxuLOXUqkofm0W54WNBlLM1EvqBq5zjcmTjabMLe8mI0Lxwwynwx/uo8o=
+	t=1757879429; cv=none; b=t4OUUZ9FwSwGAocuKb0JzH7rpgpvEc9QHt2EOVHWqfFzD46BBBfIemULchTmkW7l+0CJJJjwFS86T+AUDH8Ka9KtlThZ6GYkyJoqOcMoRPIuwy0kgNvZRbQ/8Fxn1otjXpDmiyn35UoDDeYB7skeZOhIu9J4pdmvHt3c5kXh2Rw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757879246; c=relaxed/simple;
-	bh=/4oORWxT3GCiIj7It7+nD1OxVv4/w6v87vfNkdvuwPc=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DLTZkWCuKAPeU2gcIh2o6SnS6o81RcNb+sjWT3VRJjj18qfOaXwrjCe6f8IlCcz1xCK/6N+SUCk6U2DFbS4LFI+xor3U5ERRd/kl8XSE9zAs2jmRPZYOSD5bb3p9iyrCZvJBzxMCViq7Y1xlt9I8HQYkrHpebKH2esKrf73V8qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=pass smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=K0v43KNh; arc=none smtp.client-ip=185.70.43.17
+	s=arc-20240116; t=1757879429; c=relaxed/simple;
+	bh=e4oglKln/kWGzC5OImc77IVRWYQwfmmm2LcQCSQRHgE=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=uctZQ8rWxHmkmZ6I9BU2EjGMFB+jnobacBpFsftju1PHvGwFy1PACec4MRTHGugPB1RRT0aWsEVpYA8vr5ooMtk4v0UjOHoK4C9RgtY1aXjT9qcady+U0NFEzLdXFXfGNk1aKOmpEMYWVs8u2BxLywBNCloFJs97UeLmL4kR85E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=pass smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=DHTV36n1; arc=none smtp.client-ip=185.70.43.23
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chimac.ro
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chimac.ro;
-	s=protonmail; t=1757879243; x=1758138443;
-	bh=/4oORWxT3GCiIj7It7+nD1OxVv4/w6v87vfNkdvuwPc=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=K0v43KNhYt5MYQxTsxPaQAjVy2zOoEvAAgyz7JPJo+0mctK3gNE0V4ziHxxhRDMuv
-	 5dj9GF9iVr3UZDFE9aql7/YeciylFCV0Qn3bdN/cKPTvdr0hTNh8UZ6nEeqxHgL56+
-	 6CXsV/Bsupu2PazGVUnAiEf8IcZxLZwQPg3qgi7fskx0h8Q/ZrWx6fEHlAahUrVrhn
-	 ++TdTPv7fAMA1WtHWOBfh0y3PuXywrCA1OmFyUNg0boDfzcuEcPKvQAOnSIYGy/NQM
-	 krEV8UTngLUG8OqaY01+XzubykuVApVSNM+ILYOiTJFkXiLFbP80wz9voIJQG7ud/D
-	 oYuzeBYzeB5+g==
-Date: Sun, 14 Sep 2025 19:47:18 +0000
-To: Alexandru Chimac <alex@chimac.ro>
+	s=protonmail; t=1757879426; x=1758138626;
+	bh=djy6pEV1flbGKyTc0C6a/T2ViewaGMlSKIVHBckmb3w=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=DHTV36n14DZl4xsfsOTb+RlOmen3czE2qa+1w/OwN0yI6tPyDRwPQIn15rSu3p014
+	 TJ64u5yGCTKxVOa/uOGRUquba4m1y3FXcIllagNpMnViIQctoIqBqwhqJKcEpSHz/p
+	 GK+4v7E8MJhdMUdfCzKbjEEo+GSbkQsImh1iN6XeBxzgNGhzkgagvJrozcahJlvrr8
+	 SWeyqLzod90GsGXSTuNyTO3Ssaz6wjvYkW+LOUERjiLIpoBtS9e1MfyIQ+d4CXsBDz
+	 ayohp43tk8DfJ2z2CPEB1sG95gFyxBdmC/VyqRADZlaXfoN2PrOT3zcCykgJVR1yzs
+	 ESYOGmZUEZtJA==
+Date: Sun, 14 Sep 2025 19:50:18 +0000
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
 From: Alexandru Chimac <alex@chimac.ro>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>, Rob Herring <robh@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Tomasz Figa <tomasz.figa@gmail.com>
-Subject: Re: [PATCH 0/3] pinctrl: samsung: add Exynos9610 pinctrl support
-Message-ID: <jK4UF0gSnN6odWToPcqZBg0JpcmWN2xotlc7Sw5J8r4ZSrvtTD0GUATPou5d1WMWq8OcrYXR-O4jjjwZh2RwWw8UgFGykoWSuCxEdoeJWrU=@chimac.ro>
-In-Reply-To: <20250914-exynos9610-pinctrl-v1-0-5b877e9bc982@chimac.ro>
-References: <20250914-exynos9610-pinctrl-v1-0-5b877e9bc982@chimac.ro>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, Alexandru Chimac <alex@chimac.ro>
+Subject: [PATCH 0/2] soc: samsung: Add chipid support for Exynos9610
+Message-ID: <20250914-exynos9610-chipid-v1-0-ade99e09a23c@chimac.ro>
 Feedback-ID: 139133584:user:proton
-X-Pm-Message-ID: 7f4286e46f67aa9e926ed1afa0bd894d887ee469
+X-Pm-Message-ID: 39594e83b55310b1a79ccd91510238da2d85c4b4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,6 +58,24 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Sorry for the duplicate patchset, I have used b4 send --reflect on this one=
-, thinking it would only send it to me for previewing.
+This patchset enables support for chipid on Exynos9610.
+
+Signed-off-by: Alexandru Chimac <alex@chimac.ro>
+---
+Alexandru Chimac (2):
+      dt-bindings: hwinfo: samsung,exynos-chipid: add exynos9610 compatible
+      soc: samsung: exynos-chipid: Add exynos9610 SoC support
+
+ Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml | 1 +
+ drivers/soc/samsung/exynos-chipid.c                                 | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: 48c4c0b684f394721b7db809e1cc282fccdb33da
+change-id: 20250914-exynos9610-chipid-b7c1600dbb92
+
+Best regards,
+--=20
+Alexandru Chimac <alex@chimac.ro>
+
+
 
