@@ -1,90 +1,90 @@
-Return-Path: <devicetree+bounces-217064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EC46B56C36
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:39:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C377EB56C39
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C25AA3BBC65
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:39:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27935189BEDE
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED502E7F1E;
-	Sun, 14 Sep 2025 20:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1374A2E8B6A;
+	Sun, 14 Sep 2025 20:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="qxkFo656"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="AUEv+5RM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862D52E7646
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 20:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1D72E8887
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 20:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757882313; cv=none; b=jbhhfYQi+NS4omMKo2tu4VMJes8J+20bGRVQ8AqaxHyxd+FqQ0aqCg/NTg7TKa1p+XPPZoxSditCJ6V3kDmeaSrWedj6zUzP4syr/Pct6qo/iqcNDb5RWo6esvCYp5BS34pBrs6TB+2QPMkAYBsUN9ZEvRJPEudmtIU6m0UVGXk=
+	t=1757882316; cv=none; b=QtjQzrHMJ6JpxTkbhEYg6JUJ8HPkQL7yKtJdMZ3b1rsPA9qB3oOoF8GrukJv04Lkh2Mrnwj4LeRlOPIShX57hbtB1RDZLAGXvLo9blDPoPp6suklh9KF5D9D3likPFpKU1M2xKHHtKYNAeS/oZswtztp+Y2yiit/WvoS4U6qfXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757882313; c=relaxed/simple;
-	bh=2aP7ZNnKsj64rUeEHduOQ/Z8EfbTpQ+D4oav9/vzXhQ=;
+	s=arc-20240116; t=1757882316; c=relaxed/simple;
+	bh=/oqsdERk1dOnIz7pgCq78P2/eMnzdLETqpsc7c8e0Qc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=scyt5aP6sp7mz5ZeNo0r0f864kW2A0m4rO0iNTZ2HGAXgJBZ96Q1EQJpvIoiCDABxFaw5tpxFOQV4IHJzqo9+g7SSiwAEwA32Ja5e2qod9k9sMV9EOV2PTyEDCMg+rkGzeD4xOhy58ufIxgO5uolkcyoLCn0B8pu9aZmMmRRVQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=qxkFo656; arc=none smtp.client-ip=209.85.208.54
+	 MIME-Version; b=dbslFGAPiU4BUuhdkJRMu/ue/uCwPcSywaRFmMccQcjdpAQxWRzH6BT0XdIBY06ZarTwVzPhir9egDDhAuXzitO0wVNAUKiOC4FmpVUGVJNafLP3XIBnsZUNfAo0vxHpjzQ7AxyS352Q8lSSgm3TNw7pk+CssCG17mTe3PQTWyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=AUEv+5RM; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-62f1987d446so1547982a12.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 13:38:31 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso6153676a12.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 13:38:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757882310; x=1758487110; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1757882313; x=1758487113; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zogDSCC9sjp5/MJLHL2D4fuF8U7ldK3mZBr4RRBDP2s=;
-        b=qxkFo656nmoip8tRKVEIFQRUCXack2OlPywg6uQEelgG7F78ePL52trzdQF7tPGzp7
-         EK9extH3ah0kqndU10nvm7m9CNVc2qz6W8CiZh1znSnmONJBdBBZRieAj6Jm94qQ0pAe
-         EfytXOsRClrfY7Oo7j8vNx/QLxy4qdguufcN4=
+        bh=WRNP/ea+IMU+WtlCpH1FQlK5+aG3ehZbfYI0GGMGE9E=;
+        b=AUEv+5RMQRhL0H3Xl4vvaCxpsYA97T0AUZxLK2E3rtq/Vmz+qWJ5G3w6mBAalpePcx
+         3mOozxtcmp71efraIK1sebaI1Xb6GeMQV8Ra6b0h+ZYJycIE+bNGiHyCNMtf1wWCek5c
+         utnz3Znd8hOSnx8/jnmC1g04rC/ow/YgPKHHQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757882310; x=1758487110;
+        d=1e100.net; s=20230601; t=1757882313; x=1758487113;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zogDSCC9sjp5/MJLHL2D4fuF8U7ldK3mZBr4RRBDP2s=;
-        b=gNlB8cD17DZFpdUhQ5pXloIJ9cZ5QSS2a9vKgqAZC980GUu6Rww1IVFo+TVs6Ew9KZ
-         cBt5K2HXC5VrRpKcAN5wGzmu4z7sqZf50kuZrgplbtD1mcScmzk5rVAtm5rQNeGjKDvJ
-         HVUkRV6nu35lntWPAlBs7clLAlHzU4yApayci9K/KyzpYteD1kz8lvjKbGmzzLgWBAPT
-         lNfShrJSx7dkVAPbUJupFYq2liSOjJnE5A49/IMUEqhJnTWz2WhaF9MAfzRdjutwF4Zp
-         2gXaXXE4u02CT0SmK/Wp4lSI+1X9gRX3+4PnHoFY2OOdwUtFyXigANf5VVo0BBNTAfYB
-         A6KA==
-X-Forwarded-Encrypted: i=1; AJvYcCUahKmZJDUSxepDauy1Unupqxslw04AEV/fI/SttzxWqmZ8ioqnTJ9kZVZCOjFgu1jOAIhpy7cVTB8e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp6eyjHD3+nMIrjAM1SLV3SXAzNmfdJCrnPqjZN9j/vI7Wjk1m
-	EOFDt5Y8i17LQkKCT10bfw9CT8oeu9v1hre0nVOduUSEhzu/bmnifWj1Bme3Kca/QqM=
-X-Gm-Gg: ASbGncvCcS5ev//3y1szpMWtSiTlQuRsXepnObpdSzaQHVEB+4oBcX9MKhhZ7/Rzewj
-	k4Gc4RKfqImmYc5w2tR2/AAcO9x2w1MArqAOnu663AHW5pKnuavwzeN/WH6zaJ9XRPjMCr9M5Og
-	VDslLOtSJpCJzp28n3Lx8AzOI1EyUsEDSkpIZgAtXaSUm9Sm/EOLP/7W72pVBIm/yEx33hzvANg
-	lSRC3qN23+/4MID4+48ITpePR1q1pGxXuigvhHewPTLwqwtaDPy7M2me0LOuZJ2CkXtOAb6johX
-	Uf1rjVYX65TG2qUSqv/PaRRMAangHZO2HEgbAFVRWrcc3+vkaO9JkvR/c+VKtmL9/6J1YBcf5wU
-	R2Ddoh+t+BAj03OP4eAOF4MSetYKXBc7SCRy+oLdP/74mf4eeXUJC+JPa9Vjh1B/rXJm4Fz0wDa
-	fDsrvE77iHsHnS9a9bgYAHKvwMWKDWxzTKDLPw7jU6gfYqlohEoXM0SSXU5w8gjpD6K7zmHGLPR
-	0I=
-X-Google-Smtp-Source: AGHT+IHZRqeG8YCJqWhmCcxUblf7Z56+CmrQsZREuQzXIH47fTIg3gZSrOqr8GCfaea14PdW5W858A==
-X-Received: by 2002:a05:6402:46d9:b0:628:f072:2f18 with SMTP id 4fb4d7f45d1cf-62ed81ff6fdmr10494542a12.3.1757882309960;
-        Sun, 14 Sep 2025 13:38:29 -0700 (PDT)
+        bh=WRNP/ea+IMU+WtlCpH1FQlK5+aG3ehZbfYI0GGMGE9E=;
+        b=kKq7ddWrpj28y5lunaUy/cIO9Iz1z/xnQUdqEMbM7E9tGxVq/NiTXEB6yla7vCSC/u
+         CRqihH4CrFlQ6fUI+tb2B9Ej5gtFtKcXrx/PZYW3RHN2uEriOUFAnsiGFy8Kba3pb/gH
+         gZOZCfJ68f7uBQZ7Efso59JfCxj7DXGDi56hRliDlCcwCM5I9Wk1mU6ewkEnW9gCZGTy
+         BZ8ULxM1yvWgM5eYwDrLh/LmSLacAm6ilNzffX57st1yFuUJVuXJGDSTo5NKocnpzD/W
+         7Osq/t16AKpEx8ULavHNIHHfF+r01SFcNkk2DAUMYfEmd1QYxSAVyHDN2A0quaELuZlF
+         44jw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZip02O2gwMO0GdC/oIlAxrv1t6ZwcSXdak2wi7Ul0fJkM84/8YcMSwwfTuENirOzPIoA8n5jgiUPw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS0gCEe0a6r+tbPtAyhxJH41tjphsiSWnHvSHFjSuRD+8tGode
+	8NyaPbw0DPwblK6BUzt7qW2LoPYxyDKMos/o0CJdkb4bqBAusZsCj0zhqsmFTPJ9J0M=
+X-Gm-Gg: ASbGncumHxNNK1olIUC7upsAdZioE8Yanr4heOrr3Iql3kfjtRU2q8BKdY5XVykwxXa
+	7mEnM7Sxfx8H+Y11LT2moxidORVYk5Zg3KRCSGl7E25DDEQEgKXLIDN31L0uyBqaTwVfV5dW+Vf
+	AcaUpiu8HDoYWtyg/lJ8BzlKZU2tLUmw17lI0977AfGO1rs3irRe7AcjdPvJl7a22g0U8ZGMNno
+	/79jszmn+R2enm4iYcof9rlnGcGAJm8EAl1QRw/QXBsRr8NHBZfZb1m9iI1BsCw89NPMKLnC24k
+	6+bbeRp9FB1U6tskC77BzjGJNHxMXx8sPWk+wvuf0zg67kFgG6Hd+DMxHQ6/sV/bBJOi2pD/jVu
+	HWIP7zU62yRZueLZsKCMn1RxqidFWQTMhZ1hGhQqk9RpZFaVSuPKQV49KI63pj/SqKqz+A8ELLA
+	uSjEa+y19mZO68YE0hOTBaCJRee2R6SIKlSg4Vzxrv/6pmuFNdT8XVC7CjvPOC2r4dRKc8CCmcF
+	94=
+X-Google-Smtp-Source: AGHT+IFmx1iKDCMnVdGgKnBLwcjUK2UHcFgx/Uomcucd/BtDSvIuEp4t1zmwRoy2VyM0EaarmQA9Uw==
+X-Received: by 2002:a05:6402:2348:b0:620:d826:b4c9 with SMTP id 4fb4d7f45d1cf-62ed69ab473mr9494870a12.0.1757882312803;
+        Sun, 14 Sep 2025 13:38:32 -0700 (PDT)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62ec33ad242sm7803739a12.17.2025.09.14.13.38.28
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62ec33ad242sm7803739a12.17.2025.09.14.13.38.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 13:38:29 -0700 (PDT)
+        Sun, 14 Sep 2025 13:38:31 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-input@vger.kernel.org
-Subject: [PATCH v3 4/5] dt-bindings: touchscreen: convert zet6223 bindings to json schema
-Date: Sun, 14 Sep 2025 22:37:55 +0200
-Message-ID: <20250914203812.1055696-4-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v3 5/5] dt-bindings: touchscreen: remove touchscreen.txt
+Date: Sun, 14 Sep 2025 22:37:56 +0200
+Message-ID: <20250914203812.1055696-5-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
 References: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
@@ -96,128 +96,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert Zeitec ZET6223 touchscreen controller device tree binding to
-json-schema.
+With commit 1d6204e2f51f ("dt-bindings: touchscreen: Add touchscreen
+schema") touchscreen.txt is no longer needed, and since no other file
+refers to it, it can be safely removed.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 ---
 
 (no changes since v2)
 
 Changes in v2:
-- Added in v2
+- Update the commit message
+- Add Acked-by tag of Rob Herring
+- Add patches:
+  - 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
+  - 2/5 dt-bindings: touchscreen: convert eeti bindings to json schema
+  - 3/5 dt-bindings: touchscreen: convert raspberrypi,firmware-ts bindings
+    to json schema
+  - 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
 
- .../bindings/input/touchscreen/zet6223.txt    | 30 ---------
- .../bindings/input/touchscreen/zet6223.yaml   | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/zet6223.txt
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zet6223.yaml
+ .../devicetree/bindings/input/touchscreen/touchscreen.txt        | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/zet6223.txt b/Documentation/devicetree/bindings/input/touchscreen/zet6223.txt
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
 deleted file mode 100644
-index 27d55a506f18..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/zet6223.txt
+index e1adb902d503..000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
 +++ /dev/null
-@@ -1,30 +0,0 @@
--Zeitec ZET6223 I2C touchscreen controller
--
--Required properties:
--- compatible		  : "zeitec,zet6223"
--- reg			  : I2C slave address of the chip (0x76)
--- interrupts		  : interrupt specification for the zet6223 interrupt
--
--Optional properties:
--
--- vio-supply		  : Specification for VIO supply (1.8V or 3.3V,
--			    depending on system interface needs).
--- vcc-supply		  : Specification for 3.3V VCC supply.
--- touchscreen-size-x	  : See touchscreen.txt
--- touchscreen-size-y	  : See touchscreen.txt
--- touchscreen-inverted-x  : See touchscreen.txt
--- touchscreen-inverted-y  : See touchscreen.txt
--- touchscreen-swapped-x-y : See touchscreen.txt
--
--Example:
--
--i2c@00000000 {
--
--	zet6223: touchscreen@76 {
--		compatible = "zeitec,zet6223";
--		reg = <0x76>;
--		interrupt-parent = <&pio>;
--		interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/zet6223.yaml b/Documentation/devicetree/bindings/input/touchscreen/zet6223.yaml
-new file mode 100644
-index 000000000000..a126f3f369ea
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/zet6223.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/zet6223.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Zeitec ZET6223 touchscreen controller
-+
-+description:
-+  Zeitec ZET6223 I2C driven touchscreen controller.
-+
-+maintainers:
-+  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - zeitec,zet6223
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vio-supply:
-+    description: Phandle to the 1.8V or 3.3V VIO supply.
-+
-+  vcc-supply:
-+    description: Phandle to the 3.3V VCC supply.
-+
-+  touchscreen-inverted-x: true
-+  touchscreen-inverted-y: true
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-swapped-x-y: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        touchscreen@76 {
-+            compatible = "zeitec,zet6223";
-+            reg = <0x76>;
-+            interrupt-parent = <&pio>;
-+            interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
+@@ -1 +0,0 @@
+-See touchscreen.yaml
 -- 
 2.43.0
 
