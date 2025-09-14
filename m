@@ -1,305 +1,149 @@
-Return-Path: <devicetree+bounces-217002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77278B56A6C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 18:00:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF79B56A73
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 18:17:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B793188E21D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 16:00:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259D3189304F
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 16:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CF42E0917;
-	Sun, 14 Sep 2025 15:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6CF2773FA;
+	Sun, 14 Sep 2025 16:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OnfRgQvG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EE42DE6F7;
-	Sun, 14 Sep 2025 15:58:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1997192B84
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 16:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757865488; cv=none; b=NCByngDoCRdYhKC7C3P0Yqb0jI75NFW7L9FS/2spHcXcwx+WUM28AeZfLp0b47+7bKU0qq9RiapYkNWkU6TMiz68rBpkbgpw25caaB5xzXEocjupaePMN44nxku1jJhDsuIOjIpEHqwQeHXeI9iRF64wAVB7dKdPgfTIvwJ1HSA=
+	t=1757866625; cv=none; b=pqZIg+RHg1Bkz2YHlIQVqA8X2JCMuTDpNhA7p97YZjPmCRfFyWjVqgC8UEFI5c2s4SZwS1YEO7dcL7Mz2BJy9cAeohu7y7BAtIH+IAVW1EUoU1KpLQ4x40MZhdpyGtkWDf5x7uoYc1tU10KK5kMaxbZFost0nj2stLRhHj5uJUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757865488; c=relaxed/simple;
-	bh=+hcwblRIBuQ+J9Yk8H60awXsSZXJkpOUptbXJftZtOQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z9PMoqqKN9lBEp5zIZxMkw1Y1q7UyEx93gTDBYycQhOGzONY/Ael9B8rvQjxunPmz1q4MSDVHRV5uoIwNgb6QKVInWsEv8SognTJ8mDKUc9Mn+xx82a7ZXI5c3BvDrGxMW0Z9Oaq1wvfMkjUp9k8vprkfpAr2EpkZLd7VaIZRUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1757865441tc039d1b4
-X-QQ-Originating-IP: 8I3arhshC7WQ0J2PtaSXvrAMOpGU1NDEy3L0KufdMqk=
-Received: from [192.168.30.36] ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 14 Sep 2025 23:57:20 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11909047073940114166
-EX-QQ-RecipientCnt: 12
-From: Xilin Wu <sophon@radxa.com>
-Date: Sun, 14 Sep 2025 23:57:08 +0800
-Subject: [PATCH DNM v2 5/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
- Enable USB 3.0 and HDMI ports
+	s=arc-20240116; t=1757866625; c=relaxed/simple;
+	bh=jWbdC2pvgh9ssiqZWTBrNl6uNVTE68yxw5S35v3pW8Q=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=oX0q2k1Tl+eMgMBeijLNSOv1trjVeCgB7l+O0FrsjrlX5M8mpxwAOEJ2iI+JFimuwGIjJXqb5AUKOXTDmOiQNOZnPuKRYanzXn3H7hyXVmaAAILrxeTY2r6wWUGrzcKjJxMg2swFDHQNMhRuEqjmi20xG9Gv7H/gCh98JMbOq9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OnfRgQvG; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7762021c574so1297769b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 09:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757866623; x=1758471423; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IHfQfaNhE376CkNmiYZYTQUu0TvMLQbCRNkJjZT7v68=;
+        b=OnfRgQvG8sxsY/NS5VsLqjSXJrNDneKrv6LaKt8qqJweaBbHbkicSxg0Kfhxou+Opk
+         rGnOaqMJeDPUkPobL09OwGme4JhFecn8brVi9VptbuuFUhV4Vyuhib3FQY41pjO1Nf/V
+         CCw07EEHswVBxyxJZ4gVgirDss1QINF+ODkf+Le+KMRuXfnV2sL6zH7c3v8Ld+SD/LjP
+         LkwiwhYjVKYQEE+aj3gQT9mQVEkgcFSNI1ivR+aob7/gxxyM+rdqht75HkCneSzQExqp
+         dkgiZZ5zTkt/3ZyfEpp/U9K5bvK3n7ey7z3bb8hBShH3ChWwwNcN1xabLLyTL30Hw8I7
+         hqIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757866623; x=1758471423;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IHfQfaNhE376CkNmiYZYTQUu0TvMLQbCRNkJjZT7v68=;
+        b=wNfJv8N93OEiO+dtE2c9D7+VKDuQ7Dzr97+/WPshPq48Sf1/qhPAWAERF1k24i2ikC
+         EQsONMiuH2joIwMPRfV4Nsm/xbfwG9bzcB+q/g2fmb2GjlgwZJZJIfv2GB+JVmADl2cB
+         0ozark/f2j3fhgRHWSCO9QRj8n7jPAMvWgXU1yd/GHBTJdLc595P6CIuM/wM+W5hLdWV
+         4v83nJgJvycyNTwxXYmLzKoEPJhR8kt7+XMFQKiOnD9y71hnBxH1ZCKHQXoOii93PY9k
+         WcM2pP35brUCAlS3DO92ELDWhHMhXOzP5UqkVCTq+fz0bs/WFPgugSJ+L+E5TXeHtKRS
+         dNnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWDHxtI+BnXRhqVvKY+rS/UQ/KcOMq5FfpF9XN46T1ZfhGCDJSxtVc+VYTdLZk0QJccYqAjD8oIybxY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTL1G/uWL4N4LwLUvMu/aeXpKraU1TDn3R6w+1mkNUHDWGmDIm
+	SbhVbiFx4+ttGJR+ffe2kTVJSKYcCpEF+BnfCs2Ck77xX7/q+UGGc/oG
+X-Gm-Gg: ASbGncurB+AyBrNeNSYv2mi3Iuj5oOy9f9JIiMI3nCx/eyimAVKZ5enBxrdv+EqZkDX
+	bAYefrdRB8eCT9MzqzkCG3aAoyy87hbSx+/9ENBK2Y5Y3VoNWIz4euZM4DM5cqFl38RRNwETKjO
+	eH8mv4hhP5uoR7xcT67for7IKHU4uiqVr0IVlFsnHziKYriDNysqoCIccTSIUWsAjR3JnbcSem8
+	MV/U/kb6w4m0hdVMwtQ4OPi/abDFBqV9c2uDQ68FR3tQ5Z2NxGo5ArIpzewCu8nc4Q7bgiAuPKC
+	KuA2hdhsFw1xaNTAQh+TJS0WU7yMQlzh7ZrpwGltIDpGprS4bmx9i+tiKH7heBTI9YyWpgScBfr
+	PUsLrnJ6ORMZZsaHqaCdVU71oWxFdoB5nYlQyMAx8vFU=
+X-Google-Smtp-Source: AGHT+IFBdVQ5WdHk8mTH1q+OPlFBftcvNPg40I/u2Qs2j0u22IjgQh7Xfs6CdY7txX411Mjc7ZKVbA==
+X-Received: by 2002:a05:6a00:809:b0:772:6235:7038 with SMTP id d2e1a72fcca58-7761208c93amr9813558b3a.10.1757866623058;
+        Sun, 14 Sep 2025 09:17:03 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([2804:7f0:9240:8534:6a:af3e:787a:d2c8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a48c19sm10912022b3a.36.2025.09.14.09.17.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Sep 2025 09:17:02 -0700 (PDT)
+Date: Sun, 14 Sep 2025 13:16:54 -0300
+From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Henrik Rydberg <rydberg@bitmath.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_1/2=5D_dt-bindings=3A_input=3A_add_ST?=
+ =?US-ASCII?Q?-Microelectronics_FTS2BA61Y_touchscreen_binding?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <716da762-3aa8-4c39-b9fe-8e923b20a0d5@kernel.org>
+References: <20250911211910.45903-1-ghatto404@gmail.com> <20250911211910.45903-2-ghatto404@gmail.com> <716da762-3aa8-4c39-b9fe-8e923b20a0d5@kernel.org>
+Message-ID: <CF4D01CD-5C96-44A1-B7E0-BF3D77EFE5F5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250914-radxa-dragon-q6a-v2-5-045f7e92b3bb@radxa.com>
-References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
-In-Reply-To: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
- Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Xilin Wu <sophon@radxa.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757865427; l=4169;
- i=sophon@radxa.com; s=20240424; h=from:subject:message-id;
- bh=+hcwblRIBuQ+J9Yk8H60awXsSZXJkpOUptbXJftZtOQ=;
- b=siCeStVnL8gXcVL0AicvXdoc3c1XwFNtfzOSwSc0lPIEUMPgA/NGguQeVNQ7DrsV/pCn06Sx8
- pDlq35z4XUYCNhI9SToIbpmQdj/4wxBeCRBFX8Hp7bI8F+ngLAy3Jjn
-X-Developer-Key: i=sophon@radxa.com; a=ed25519;
- pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OA34ehyuJLv3B/b1yloRGcb0+2xLYZFhICOqCK/4yUh4VpVVyJJt8MZ2
-	nj4cjqxtjd3XyexeeHNqtNekJLFyosywuO2PWCFVlAmb9zr50C0puu0ukH2qpuxyYvyqojK
-	5Zl3Cfy/hnN9+H+BlGg6CqpQlWH3t43Y92j86pDPpQ0uC8uamhIt378bFBGXexUuSBTKwSz
-	l/lNrFD4UwKKaQUeqhCCRhwIESUd/g8sh5S1ysVE+Hp0krySDPOuVamhaQnLondLdg1ZOv3
-	X8MBZfQAKl6ZPQ3Game6V9dQyQMMFHb7ECR2eqjlj/FSOj+eWKpxBRm2/OO9mZtg/Vycl7v
-	vBAS+JE8gSSl7VKLd91m0LBC0k5RDKwj/zS/OeIhdtSToOiySZ7XsfWmzlPUHPBnNufVEV0
-	cAwMWJFOIYDG33pGgsgso/vWk6Q7xBQR2lSPO38yzkZJrJFWdAk0IctK0mjBlPyHnbQ2GJt
-	wKirAA3hYiS3IWZENynQvJeKqR6ODPMNKQEUhHbK+fpqANAbTtYl6PmFdCaAPJa8dtD7w07
-	ujlBbEpaiG8A2Be5iG/DgjEdQoDe7OnBk5VBat6XY1zBIz0JtxSNakVrA3+6l1JHZzp1ixE
-	AdkO4W4QEBSGJX7P0bjAQjej9PXayiRUBMAgg/xOSb3aFAxVaBb5H6PWaJ/lSzsl8o12EYG
-	oMtZUkMPZeEv88jdhj0TRg6cZpFVJ+ITTI6joHnxHFK5rPkEItFq1/tcVE0EgtH0dhYJJ47
-	aoPUoHjb+1B9kXA+i76qYafNB9BJn8SaDr0ZakLMLS5vgjCe8rKZCxzOwISTQ357oLnGxsO
-	Kd9SCnnYCStKaDPdJoqMfX0DctDHIFE0sJdEhMDvXq4oO1XAQAa9sRxZmta2OlJtIw3NtCk
-	7vi4JEpMpIMlSpZtoTSqif76s9gzVSIsLydx8lGgcZ7thuTDVOUzTLNL00n+CHeXTrYjztC
-	J6l98fRfHLFSFMEW6phADoayiJXH3gSZtOEA8QWxq5mckmsZbRqHHE1rnYDtdniUO5u/6zu
-	hHtCn8/4eyiC2o3z1gP+jzxdBy8nS2av33qOPShPSu/zBM2KyhKnmdpm54dRtJVWOB4TZ6I
-	Q==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-This board doesn't feature a regular Type-C port. The usb_1_qmpphy's
-RX1/TX1 pair is statically connected to the USB-A port, while its RX0/TX0
-pair is connected to the RA620 DP-to-HDMI bridge.
 
-Add and enable the nodes for the features to work.
 
-Signed-off-by: Xilin Wu <sophon@radxa.com>
-
----
-
-This change depends on the following patch series:
-https://lore.kernel.org/all/20250908-topic-x1e80100-hdmi-v3-4-c53b0f2bc2fb@linaro.org/
----
- .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 152 +++++++++++++++++++++
- 1 file changed, 152 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-index 3bf85d68c97891db1f1f0b84fb5649803948e06f..12bc9a0fcfbfeaabf6ede351f96c61193a8261c0 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
-@@ -78,6 +78,71 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	usb3_con: connector {
-+		compatible = "usb-a-connector";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				usb3_con_hs_in: endpoint {
-+					remote-endpoint = <&usb_1_dwc3_hs>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				usb3_con_ss_in: endpoint {
-+					remote-endpoint = <&usb_dp_qmpphy_out_usb>;
-+				};
-+			};
-+		};
-+	};
-+
-+	hdmi-bridge {
-+		compatible = "radxa,ra620";
-+
-+		pinctrl-0 = <&dp_hot_plug_det>;
-+		pinctrl-names = "default";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_bridge_in: endpoint {
-+					remote-endpoint = <&usb_dp_qmpphy_out_dp>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hdmi_bridge_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_bridge_out>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -504,6 +569,21 @@ &lpass_va_macro {
- 	status = "okay";
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp {
-+	sound-name-prefix = "Display Port0";
-+
-+	status = "okay";
-+};
-+
-+&mdss_dp_out {
-+	data-lanes = <0 1>;
-+	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-+};
-+
- &pcie0 {
- 	perst-gpios = <&tlmm 87 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 89 GPIO_ACTIVE_HIGH>;
-@@ -753,6 +833,22 @@ platform {
- 			sound-dai = <&q6apm>;
- 		};
- 	};
-+
-+	dp0-dai-link {
-+		link-name = "DP0 Playback";
-+
-+		codec {
-+			sound-dai = <&mdss_dp>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6apmbedai DISPLAY_PORT_RX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
- };
- 
- /* Pin 11, 29, 31, 32 in GPIO header */
-@@ -967,6 +1063,58 @@ &ufs_mem_phy {
- 	status = "okay";
- };
- 
-+&usb_1 {
-+	dr_mode = "host";
-+
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&usb3_con_hs_in>;
-+};
-+
-+&usb_1_hsphy {
-+	vdda-pll-supply = <&vreg_l10c_0p88>;
-+	vdda33-supply = <&vreg_l2b_3p072>;
-+	vdda18-supply = <&vreg_l1c_1p8>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vreg_l6b_1p2>;
-+	vdda-pll-supply = <&vreg_l1b_0p912>;
-+
-+	/delete-property/ orientation-switch;
-+
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/delete-node/ endpoint;
-+
-+			/* RX1/TX1 is statically connected to USB-A port */
-+			usb_dp_qmpphy_out_usb: endpoint@0 {
-+				reg = <0>;
-+
-+				data-lanes = <2 3>;
-+				remote-endpoint = <&usb3_con_ss_in>;
-+			};
-+
-+			/* RX0/TX0 is statically connected to RA620 bridge */
-+			usb_dp_qmpphy_out_dp: endpoint@1 {
-+				reg = <1>;
-+
-+				data-lanes = <3 2>;
-+				remote-endpoint = <&hdmi_bridge_in>;
-+			};
-+		};
-+	};
-+};
-+
- &usb_2 {
- 	dr_mode = "host";
- 
-@@ -986,6 +1134,10 @@ &venus {
- };
- 
- /* PINCTRL - additions to nodes defined in sc7280.dtsi */
-+&dp_hot_plug_det {
-+	bias-disable;
-+};
-+
- &pcie0_clkreq_n {
- 	bias-pull-up;
- 	drive-strength = <2>;
-
--- 
-2.51.0
-
+On September 14, 2025 11:48:49 AM GMT-03:00, Krzysztof Kozlowski <krzk@ker=
+nel=2Eorg> wrote:
+>On 11/09/2025 23:19, Eric Gon=C3=A7alves wrote:
+>> Add the bindings for ST-Microelectronics FTS2BA61Y capacitive touchscre=
+en=2E
+>
+>Please wrap commit message according to Linux coding style / submission
+>process (neither too early nor over the limit):
+>https://elixir=2Ebootlin=2Ecom/linux/v6=2E4-rc1/source/Documentation/proc=
+ess/submitting-patches=2Erst#L597
+The commit description is 74 characters
+long, and the name is 73?
+>
+>A nit, subject: drop second/last, redundant "bindings"=2E The
+>"dt-bindings" prefix is already stating that these are bindings=2E
+>See also:
+>https://elixir=2Ebootlin=2Ecom/linux/v6=2E17-rc3/source/Documentation/dev=
+icetree/bindings/submitting-patches=2Erst#L18
+Thanks, will do!
+>>=20
+>> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
+>
+>
+>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,fts2ba61y
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  avdd-supply: true
+>> +  vdd-supply: true
+>> +
+>> +unevaluatedProperties: false
+>
+>This goes after required: field=2E
+>
+>Other than that - why isn't this finished (non RFC)? Code looks ok, but
+>I also did not look that thorough=2E
+>
+>Best regards,
+>Krzysztof
 
