@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-217089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700AAB56CF1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 01:18:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A0BB56D03
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 01:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDFC27A2C10
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 23:17:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBB467ABB84
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 23:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18BA423A9B3;
-	Sun, 14 Sep 2025 23:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47504231A41;
+	Sun, 14 Sep 2025 23:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RZ9cWh74"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbY0Dsm1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA80238D54
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 23:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132EB2101AE;
+	Sun, 14 Sep 2025 23:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757891924; cv=none; b=tv7YbOjEsaiEael4h8i4vQHWa7sW608pMNyNfvSwAXrcWU9wOz3XOD25o1+3lhr0hOmUMiXnUY+MqynzivtOYPnS4odsjl01pkon8MEYmneqCkwAcMs3zxQCM5UwTiN+7VUxW21UyejhqLaQvMYyw+yn1Bt/D7/FjiA/ueQzfrs=
+	t=1757893533; cv=none; b=d7UvxBrU4jArQzGsQda+KMEZm+V8Hnf3a+LpNI/4EQf56bVi/UJ8nnDdobk4/fSIKYxB71jcPo1Q8YfwFHfJI06zCa408mV3hKlo3ppVA0FdrNLJnBxkB5rayMszHDMNiPSbPHn0r3+8kIbE47WRxTV+C7JynqmRax+VhX0ps+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757891924; c=relaxed/simple;
-	bh=owoiE2+a0fU7T7scY+nSlS9EWC8wWpLinLlp5irhkjU=;
+	s=arc-20240116; t=1757893533; c=relaxed/simple;
+	bh=EtcNLf6b+VeOq3VY58DGr/jltFde/1cmlo9BtZ5d+VY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JfXpvc4TeYpKB69a34PqbqGZv0MrMYDOiG2ZafIgpQ5fWe854imIEOMX/+dOizBtU6sQVDs3P8a5cS2VYFCp1HtpzYZPSeY7Y7ziimP6v/lfYJ6XogctshUohq70N8nPBAq7SrYpZGOdarbuLIipSKoDOtNG9SLu1to95wPN47o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RZ9cWh74; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id C526E1A0DFE
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 23:18:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9C57A6063F;
-	Sun, 14 Sep 2025 23:18:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8D2C2102F2A7F;
-	Mon, 15 Sep 2025 01:18:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757891920; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=InLhKcpHVNtmYglLzf2fc/rNJemJ2rA9lGwWtAsypig=;
-	b=RZ9cWh743rTTOxfOLdk+PNt2Of0Clc1T79o8UcLKlrv6BLHnVsrns9prVgwCGTz8vmN5XQ
-	I4YQtlNiMyGwX+7PO715nxQoJ5oCnlgiyF8aMykNLwmO0aMuddqQ/JJ9JJxflWH4v6zjrT
-	JyYKBV6ko25K2wOXiS7wOViZH1HiOWukEKmjR1HOQvnZebgGZAP9RuLKMLB5k7moC+DyNF
-	diAnolqfFV1LDlJ2mifyh+GICgK/LCBl9Q/QgbuTjvoFoi8065TtqavbXL5IfH0/C6QNmC
-	23/ZrU9CdspcRlkFBSbxD7UnO0bREq8NbIXVxOFr8Pb0PJnu3Kd25XHzykqL9w==
-Date: Mon, 15 Sep 2025 01:18:39 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cNFwY6aT8rSMzO2SDPYbD6OUxbThBggWBJBYTV5b4Q05+lIwfZJBnsiXitptU7s9pAwvbBsqksIwdHvMpnGu2ZydkYhr/y/h/RXrmtxSBPL8wm4Eoab1XlrnH6qx28n9bNaYTpNIbRZi388R1d9VqrdNon1c26C287o4f2TT73k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbY0Dsm1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF12C4CEF0;
+	Sun, 14 Sep 2025 23:45:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757893531;
+	bh=EtcNLf6b+VeOq3VY58DGr/jltFde/1cmlo9BtZ5d+VY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YbY0Dsm1wbXp4m9MjjJsCVC9YC+X3KN4JQgs3wQeU4bCOZAP+S+w700Bw/OI/xE3M
+	 Ku2VuwzCvBd+5HEnavvOQ1Y2lnbmgPnKwkJelnG4VNz4QeRVtpE8t1fcAWOACMvY+6
+	 GRjlGymazfoOiydkVvMpKairo+vBsyhStWW5LBS+R3qlDLc+j4g+0/Qa44QX+HUpkh
+	 kiI6ph7tdJX06zXe59/Otn813m+4sEuwoqHy2t3mG9sObS7UtjUCOtO+5CZ1qzlFbY
+	 6xDetuZa13KKmy1qdT2ZDWfGFrY35URJ32XW2vXHP0IM+qKWtz8tmJ9miHap7Mq4aP
+	 H9HDwMDTnHiNg==
+Date: Sun, 14 Sep 2025 18:45:30 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Biju <biju.das.au@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: Drop isil,isl12057.txt
-Message-ID: <175789183738.411954.733036125801814924.b4-ty@bootlin.com>
-References: <20250807214414.4172910-1-robh@kernel.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>
+Subject: Re: [PATCH v2 06/11] dt-bindings: usb: Document Renesas RZ/G3E
+ USB3HOST
+Message-ID: <175789353005.2252414.10762360255516722224.robh@kernel.org>
+References: <20250909180803.140939-1-biju.das.jz@bp.renesas.com>
+ <20250909180803.140939-7-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,24 +66,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250807214414.4172910-1-robh@kernel.org>
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <20250909180803.140939-7-biju.das.jz@bp.renesas.com>
 
-On Thu, 07 Aug 2025 16:44:13 -0500, Rob Herring (Arm) wrote:
-> The "isil,isl12057" compatible is already supported by rtc-ds1307.yaml,
-> so remove the old text binding.
+
+On Tue, 09 Sep 2025 19:07:51 +0100, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
+> Document the Renesas RZ/G3E USB3.2 Gen2 Host Controller (a.k.a USB3HOST).
+> The USB3HOST is compliant with the Universal Serial Bus 3.2 Specification
+> Revision 1.0.
+>  - Supports 1 downstream USB receptacles
+>      - Number of SSP Gen2 or SS ports: 1
+>      - Number of HS or FS or LS ports: 1
+>  - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+>    High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps).
+>  - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous, and
+>    these split-transactions.
+>  - Supports Power Control and Over Current Detection.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Added ref to usb-xhci.yaml
+>  * Dropped Rb tag
+> ---
+>  .../bindings/usb/renesas,rzg3e-xhci.yaml      | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-[1/1] dt-bindings: rtc: Drop isil,isl12057.txt
-      https://git.kernel.org/abelloni/c/5eabddff9168
-
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
