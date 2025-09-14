@@ -1,79 +1,106 @@
-Return-Path: <devicetree+bounces-216993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8199B56A3D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:31:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE2FB56A43
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:38:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 735063A3783
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:31:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DE5B189AABD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73A52D0629;
-	Sun, 14 Sep 2025 15:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55942D12F1;
+	Sun, 14 Sep 2025 15:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="sZ1mCNjc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UGrCk1KX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F5C2C3274
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46C819DF8D;
+	Sun, 14 Sep 2025 15:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757863868; cv=none; b=b0hMPopYH6sr/zwS409yy8+psIN/4FrMOPNIn6BwFZRX+Ruwko1HoBudMleau+XxAZsIzCyisIGYS8hFntUQI9xP5lQMsXJjdOpCi15RlEwQN2YB5E6ryf0aeKpe8VyTn0I+fcHNOtWoLUc9qHJIKDZGHJlvc25vnYjhHgZCKo4=
+	t=1757864317; cv=none; b=nYGAkomMr6EHoVHA9Qs4FBJB68d+ggNAV/OPqoXmytJB6O5/yEx7/yv5X0SueU2d0JE136luv0ThxeoRcK2LKj3zwJG+LHO9Xt618Mv7GQ85/q2lXl85D+vNdoG6Lggx/sWoxS7wR1xTbmZhOAAEWeqK1bTdBt2toZG44DiYUUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757863868; c=relaxed/simple;
-	bh=dTHczNh5onmLp5g+RNC4zwxe20ZSdQUfIQ2nnv/nAR8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=rp/GX8eyRSd2cpdkmd/QvHGBiyp3IVkLnl9+ojL8yso6BorPWgYqbPG+82wCQ7vFQgBkk3llK1N95y/rvd55QAR3nJHKH7Dn9cVowH2uZZwZ8sczGOsdBY1GxlRfnHbNtapjyqXcetF+fbSCDAcR7quZCn7sxYTva4vFby7cY5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=sZ1mCNjc; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-DKIM-Signature: a=rsa-sha256; b=sZ1mCNjcLb8O2Qs59Cgdi8XQmIr2zW8QpF5CXjJPHyYByVdvUfVvzRgrihuKmNY/gYoA2JmFMg8M2T0Gv6U1KFyAZ0s4dZndid+uGX9lC2dFypRRiVGVjYUD1q5TufnXjjR8VqDjBv7+pAEzmdDyPcAGLFDgfEv6l6VyP0XnaQXE72u/OQZtPky2wo2sgEiCdiJxiZawzx3cULzGA6tWhR+UpwjV9hiFnO7djPIvlqPohg7VuWhRn0jFcbHOuYciEkzTolCo4EZehlDWnNG/nGiSrTH9lfnKfo19qKNP7kVOZ2Ol5igXH9o3zt4qib2829ZjTFgJ0HHDgw8jMp6uvQ==; s=purelymail3; d=purelymail.com; v=1; bh=dTHczNh5onmLp5g+RNC4zwxe20ZSdQUfIQ2nnv/nAR8=; h=Feedback-ID:Received:Date:From:To:Subject;
-Feedback-ID: 68247:10037:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1797260638;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Sun, 14 Sep 2025 15:30:46 +0000 (UTC)
+	s=arc-20240116; t=1757864317; c=relaxed/simple;
+	bh=ihW47HHuEW0kivT0LtQDfndFpj4gQlPyOZ8ChekheGs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dcnklD3PtabUIE05b8UDdmZINdY3xrjsPI+kLq/7n4SNU7/Hkhvn33rOCUs0odoJ9kB9iCgOcHlwWO3JKCSMMtrTyolSrV+l4xoPZLM52dAqKArDrFTxsYTky+Bv2bcEVUGebNdUIMLnRQdPqoEG5IP8MvU1fxQf4vQIBuVD+8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UGrCk1KX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D7FC4CEF0;
+	Sun, 14 Sep 2025 15:38:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757864317;
+	bh=ihW47HHuEW0kivT0LtQDfndFpj4gQlPyOZ8ChekheGs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=UGrCk1KXR+kac/5OvXpvMS9DC7fpHqSkremvp3fzsvyb6prDigqDylpNSPElqidS8
+	 2otZXTknq+IJzTf5PFAMGbUSxGzxhWpaKhkmOQrn+AgAeY7zJtG5GJBBx5b2ZgfLA4
+	 KHWVBm/EMps/giN+yPji/JWLF5ESMN0zLZgjtT8uX25haYBS7eQRy2q0QTZeuR1AgC
+	 U0QhhxpiJ0NovZt8fUsZNnErPb477tzXnicb3fCOaGxLE/DO7Y4OBBMQ82TvQyR7yW
+	 /xsM67WgIOTtNXCzlJNRFq7IXj7X4QlJmgiq7XSOq4oXJtHlf94QGVuz1QHRwydKOM
+	 D0pF/zMF4y4QQ==
+From: Conor Dooley <conor@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	duje@dujemihanovic.xyz,
+	Guodong Xu <guodong@riscstar.com>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Alex Elder <elder@riscstar.com>,
+	Vivian Wang <wangruikang@iscas.ac.cn>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>
+Subject: Re: (subset) [PATCH v5 0/8] dmaengine: mmp_pdma: Add SpacemiT K1 SoC support with 64-bit addressing
+Date: Sun, 14 Sep 2025 16:38:27 +0100
+Message-ID: <20250914-crushed-blinker-9827464897d2@spud>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250822-working_dma_0701_v2-v5-0-f5c0eda734cc@riscstar.com>
+References: <20250822-working_dma_0701_v2-v5-0-f5c0eda734cc@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 14 Sep 2025 17:30:43 +0200
-Message-Id: <DCSMQ58API63.34STG82T6E4N6@mentallysanemainliners.org>
-From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
-To: "Ivaylo Ivanov" <ivo.ivanov.ivanov1@gmail.com>, "Krzysztof Kozlowski"
- <krzk@kernel.org>, "Sylwester Nawrocki" <s.nawrocki@samsung.com>, "Alim
- Akhtar" <alim.akhtar@samsung.com>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Rob Herring" <robh@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Tomasz Figa" <tomasz.figa@gmail.com>
-Cc: <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 3/3] pinctrl: samsung: add exynos8890 SoC pinctrl
- configuration
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250914114457.2610013-1-ivo.ivanov.ivanov1@gmail.com>
- <20250914114457.2610013-4-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20250914114457.2610013-4-ivo.ivanov.ivanov1@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=682; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=W90YfP75Cf8fElnrlN+vBYi5av5KHOKCWFABavcr0+U=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBnHHpaICZuwn2a+79lfyGly/JXfDkGVa9m7o3VK/p+2c DvWUc/WUcrCIMbFICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIlMtWT4Z5bI8PIWX4pvgvcz yYkPbJi33Tc82/TjbO4tBf0I34nNcxkZXvoc+cP8oOHAIyPPU222uyv9jMTe6ik9fPelq8PqQ7E ECwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hi Ivaylo,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Sun Sep 14, 2025 at 1:44 PM CEST, Ivaylo Ivanov wrote:
-> Add support for the pin-controller found on the exynos8890 SoC, used in
-> Samsung Galaxy S7.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
+On Fri, 22 Aug 2025 11:06:26 +0800, Guodong Xu wrote:
+> This patchset adds support for SpacemiT K1 PDMA controller to the existing
+> mmp_pdma driver. The K1 PDMA controller is compatible with Marvell MMP PDMA
+> but extends it with 64-bit addressing capabilities through LPAE (Long
+> Physical Address Extension) bit and higher 32-bit address registers (DDADRH,
+> DSADRH and DTADRH).
+> 
+> In v5, two smatch warnings reported by kernel test bot and Dan Carpenter were
+> fixed.
+> 
+> [...]
 
-Reviewed-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Applied to riscv-config-for-next, thanks!
 
-Kind regards,
-Igor
+[8/8] riscv: defconfig: Enable MMP_PDMA support for SpacemiT K1 SoC
+      https://git.kernel.org/conor/c/3df7ce0e43ad
+
+Thanks,
+Conor.
 
