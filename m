@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-216906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF94B5682A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:56:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFADDB5683A
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12CC1178AD9
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 11:56:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E0C5189C6F5
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE22B25A2C6;
-	Sun, 14 Sep 2025 11:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56CF8226D1D;
+	Sun, 14 Sep 2025 12:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ol+Jb1WD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YcDojBRQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FBF2580ED;
-	Sun, 14 Sep 2025 11:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE2211CBA;
+	Sun, 14 Sep 2025 12:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757850989; cv=none; b=gmwVRJY2oqz99KMgtB/7ErvrwcDjqBYYfYCeO87m37dOoVtMzZlhcO0+L5HeXu5HgujCExP4lZgRF4x02FAPP9TdyGQAhmVNL1gESh8kNtr9xRZA3Meh9CEIC9z+hXB/l7xPPTOty62EiuLtQwbrRf+OD8O0hHH5Y8qE+CppbHA=
+	t=1757851444; cv=none; b=DEmJfyWfJFmLsxw7SXNl8M15br15Ua5o4BhB99ViPieMJIOGwu44Of2UhbN2aXJX8cJ9i7ih+2fQIeiclTxrT324LN6eg7ebksPEN3c47gSdruQhK3BKhE79ptLS3Tz3zSeApNlX0e2SlUThVx33f/m7FTU5XW26ELmq/vMT6BQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757850989; c=relaxed/simple;
-	bh=72P1XeE7gCDZuUaE9HGq0KcOlPy2jCWwmfe+8Bijb1Y=;
+	s=arc-20240116; t=1757851444; c=relaxed/simple;
+	bh=4myotyVuRITMouHUJMNVZ2fFIw98mFgLtin3s3hcLD0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LcJ8QnyiipowvZ9epvNovAmKiy4CKq5SBO3oOsQbPBB8Qda8zorIOqyo5yA1pUb6QbZLLiRhuNw+fMXoBCBtEGHVK7zk3IzV733CoO7ZpM7+XqjDSE3yuneusEc0zLzXIs1OiY7wSKGcrNtQysH3a2dHBn6A85S6Tsp4MdnxJYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ol+Jb1WD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DCCDC4CEF0;
-	Sun, 14 Sep 2025 11:56:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HXyStNppPEYaRo6K2+MKXduvoNFF3O0b2M6kJM2rh6OegHlNLr1TOGu+9hWZLASgsE9c70d+8oFIy53mbLGkEq+rbzb/o4L8Iz8xrueG3+gvxyc5SDcf6ogYcw5dYUhCNfmhafGQY6vDno6OB5QpmoWH3BfvNrdqKdY/gdVLUTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YcDojBRQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF78C4CEF0;
+	Sun, 14 Sep 2025 12:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757850989;
-	bh=72P1XeE7gCDZuUaE9HGq0KcOlPy2jCWwmfe+8Bijb1Y=;
+	s=k20201202; t=1757851443;
+	bh=4myotyVuRITMouHUJMNVZ2fFIw98mFgLtin3s3hcLD0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ol+Jb1WDabHGqEYRRuzYJnuUlxI0TPcRedF4LOzhRwy8qt4x/RgCwK7skMLAwSCSh
-	 kZUkFrMXD36Md5U34jeUcfO8IsPsChQea4GO3wSj6dgx8rn0TDd0HQoUGmVtT5Jm7w
-	 4vbO2KEvBayBBL0avTBS1NNFdxwC06aRJ3zBRaFGXdgg59vBDvifFKbvWJV/W8zhJs
-	 h3JFikHNdItKWRo559a/vTFqgiVliY+2fJdgzM8XEPmEB2JiOHbpvs3YlcflCt+R/7
-	 XiqGeb2dS0XeZBx7XaJNdBDxXpg6OqUGJCvXInpFKLUIh1gsjUw2C7plVitmtAaXSt
-	 EMbSMqiD9WL/w==
-Message-ID: <21e78a0c-f1fd-4476-9553-c3890d05b635@kernel.org>
-Date: Sun, 14 Sep 2025 13:56:23 +0200
+	b=YcDojBRQTdMOypQlP05lDD9/Z5sxn5W5ajRF+PBxaR0JC+tXGWEWph7Hbtl8qOiXX
+	 aDqy9ryvaUl74Xekih0iBqlD3hHqBJaikuF4eu0hECD9qCQJbivNQe/ZoTMC3xMp2Y
+	 L1fXAY92/vPUVBRZn2bTRjNUkHjmjC5zSu58OxAcs7JtSIxf6A/ODevGbAHFf+iDVu
+	 1m8jc0mU2rBblkvykdplhFB6kuufOOZStbGuF4rhxOL0dUHXYx5UcOhxOyw1Kju0Je
+	 GbEirzAK+4ylNYLTAsTAcsqkXz69dyJNWfQUNfQl9NUdu6FieO01C4/7xnIYbpr7Ik
+	 DlkxL7KUSWb4A==
+Message-ID: <82391eba-263d-42d8-9335-6b4bab6a3412@kernel.org>
+Date: Sun, 14 Sep 2025 14:03:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC][PATCH v3 16/16] dt-bindings: Add Google Kinfo
-To: Eugen Hristev <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org, tglx@linutronix.de,
- andersson@kernel.org, pmladek@suse.com, rdunlap@infradead.org,
- corbet@lwn.net, david@redhat.com, mhocko@suse.com
-Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
- <20250912150855.2901211-17-eugen.hristev@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: mediatek: Add MT8189 clock
+ definitions
+To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Richard Cochran <richardcochran@gmail.com>
+Cc: Qiqi Wang <qiqi.wang@mediatek.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org, netdev@vger.kernel.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+References: <20250912120508.3180067-1-irving-ch.lin@mediatek.com>
+ <20250912120508.3180067-2-irving-ch.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,46 +113,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250912150855.2901211-17-eugen.hristev@linaro.org>
+In-Reply-To: <20250912120508.3180067-2-irving-ch.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/09/2025 17:08, Eugen Hristev wrote:
-> Add documentation for Google Kinfo kmemdump backend driver.
+On 12/09/2025 14:04, irving.ch.lin wrote:
+> From: Irving-ch Lin <irving-ch.lin@mediatek.com>
 > 
-> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> Add device tree bindings for the clock of MediaTek MT8189 SoC.
+> These definitions will be used to describe the clock topology in
+> device tree sources.
+
+Drop last sentence, completely redundant. It cannot be anything else...
+
+> 
+> Signed-off-by: Irving-ch Lin <irving-ch.lin@mediatek.com>
 > ---
->  .../bindings/misc/google,kinfo.yaml           | 36 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/google,kinfo.yaml
+
+That's a v2, so where is any changelog? Nothing here nor in cover
+letter. No changes, so you did not fix any of the bugs you had last time?
+
+Why aren't you using b4 to submit patches which would handle this? If
+you prefer to use older method, then fine but do it right.
+
+
+>  .../bindings/clock/mediatek,mt8189-clock.yaml |  89 +++
+>  .../clock/mediatek,mt8189-sys-clock.yaml      |  58 ++
+>  .../dt-bindings/clock/mediatek,mt8189-clk.h   | 580 ++++++++++++++++++
+>  3 files changed, 727 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-sys-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/mediatek,mt8189-clk.h
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/google,kinfo.yaml b/Documentation/devicetree/bindings/misc/google,kinfo.yaml
-> new file mode 100644
-> index 000000000000..b1e4fac43586
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/google,kinfo.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/google,kinfo.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Google Pixel Kinfo debug driver
-> +
-> +maintainers:
-> +  - Eugen Hristev <eugen.hristev@linaro.org>
-> +
-> +description:
-> +  The Google Pixel Kinfo debug driver uses a supplied reserved memory area
-> +  to save debugging information on the running kernel.
-
-
-Bindings should be for hardware, not drivers, so this does not belong to
-DT. It might be a dedicated reserved memory node, though.
-
-
 Best regards,
 Krzysztof
 
