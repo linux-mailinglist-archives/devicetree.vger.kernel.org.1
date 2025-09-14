@@ -1,136 +1,103 @@
-Return-Path: <devicetree+bounces-217065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C377EB56C39
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:39:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91572B56C3D
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:44:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27935189BEDE
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:39:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF1E47A27D9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1374A2E8B6A;
-	Sun, 14 Sep 2025 20:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6372DC32B;
+	Sun, 14 Sep 2025 20:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="AUEv+5RM"
+	dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b="PRuwwEqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1D72E8887
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 20:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47EE91D8E10
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 20:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757882316; cv=none; b=QtjQzrHMJ6JpxTkbhEYg6JUJ8HPkQL7yKtJdMZ3b1rsPA9qB3oOoF8GrukJv04Lkh2Mrnwj4LeRlOPIShX57hbtB1RDZLAGXvLo9blDPoPp6suklh9KF5D9D3likPFpKU1M2xKHHtKYNAeS/oZswtztp+Y2yiit/WvoS4U6qfXw=
+	t=1757882638; cv=none; b=pewcSx26Ds5I2ex6SDM39jFrCit6hclQDuynFA+ElQmcoINEKmL+neth7i1a6OGk8Z1r4uSdxiIBjTzHj9iUPgTUEMTps08DKFGkb2wUBbl1GRWKUAhouP2gTd0JFy9dAotVsseOx4B9woOx6sU3yQIqtZSCTOs6kXIYOdeKCAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757882316; c=relaxed/simple;
-	bh=/oqsdERk1dOnIz7pgCq78P2/eMnzdLETqpsc7c8e0Qc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dbslFGAPiU4BUuhdkJRMu/ue/uCwPcSywaRFmMccQcjdpAQxWRzH6BT0XdIBY06ZarTwVzPhir9egDDhAuXzitO0wVNAUKiOC4FmpVUGVJNafLP3XIBnsZUNfAo0vxHpjzQ7AxyS352Q8lSSgm3TNw7pk+CssCG17mTe3PQTWyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=AUEv+5RM; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso6153676a12.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 13:38:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757882313; x=1758487113; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WRNP/ea+IMU+WtlCpH1FQlK5+aG3ehZbfYI0GGMGE9E=;
-        b=AUEv+5RMQRhL0H3Xl4vvaCxpsYA97T0AUZxLK2E3rtq/Vmz+qWJ5G3w6mBAalpePcx
-         3mOozxtcmp71efraIK1sebaI1Xb6GeMQV8Ra6b0h+ZYJycIE+bNGiHyCNMtf1wWCek5c
-         utnz3Znd8hOSnx8/jnmC1g04rC/ow/YgPKHHQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757882313; x=1758487113;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WRNP/ea+IMU+WtlCpH1FQlK5+aG3ehZbfYI0GGMGE9E=;
-        b=kKq7ddWrpj28y5lunaUy/cIO9Iz1z/xnQUdqEMbM7E9tGxVq/NiTXEB6yla7vCSC/u
-         CRqihH4CrFlQ6fUI+tb2B9Ej5gtFtKcXrx/PZYW3RHN2uEriOUFAnsiGFy8Kba3pb/gH
-         gZOZCfJ68f7uBQZ7Efso59JfCxj7DXGDi56hRliDlCcwCM5I9Wk1mU6ewkEnW9gCZGTy
-         BZ8ULxM1yvWgM5eYwDrLh/LmSLacAm6ilNzffX57st1yFuUJVuXJGDSTo5NKocnpzD/W
-         7Osq/t16AKpEx8ULavHNIHHfF+r01SFcNkk2DAUMYfEmd1QYxSAVyHDN2A0quaELuZlF
-         44jw==
-X-Forwarded-Encrypted: i=1; AJvYcCWZip02O2gwMO0GdC/oIlAxrv1t6ZwcSXdak2wi7Ul0fJkM84/8YcMSwwfTuENirOzPIoA8n5jgiUPw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS0gCEe0a6r+tbPtAyhxJH41tjphsiSWnHvSHFjSuRD+8tGode
-	8NyaPbw0DPwblK6BUzt7qW2LoPYxyDKMos/o0CJdkb4bqBAusZsCj0zhqsmFTPJ9J0M=
-X-Gm-Gg: ASbGncumHxNNK1olIUC7upsAdZioE8Yanr4heOrr3Iql3kfjtRU2q8BKdY5XVykwxXa
-	7mEnM7Sxfx8H+Y11LT2moxidORVYk5Zg3KRCSGl7E25DDEQEgKXLIDN31L0uyBqaTwVfV5dW+Vf
-	AcaUpiu8HDoYWtyg/lJ8BzlKZU2tLUmw17lI0977AfGO1rs3irRe7AcjdPvJl7a22g0U8ZGMNno
-	/79jszmn+R2enm4iYcof9rlnGcGAJm8EAl1QRw/QXBsRr8NHBZfZb1m9iI1BsCw89NPMKLnC24k
-	6+bbeRp9FB1U6tskC77BzjGJNHxMXx8sPWk+wvuf0zg67kFgG6Hd+DMxHQ6/sV/bBJOi2pD/jVu
-	HWIP7zU62yRZueLZsKCMn1RxqidFWQTMhZ1hGhQqk9RpZFaVSuPKQV49KI63pj/SqKqz+A8ELLA
-	uSjEa+y19mZO68YE0hOTBaCJRee2R6SIKlSg4Vzxrv/6pmuFNdT8XVC7CjvPOC2r4dRKc8CCmcF
-	94=
-X-Google-Smtp-Source: AGHT+IFmx1iKDCMnVdGgKnBLwcjUK2UHcFgx/Uomcucd/BtDSvIuEp4t1zmwRoy2VyM0EaarmQA9Uw==
-X-Received: by 2002:a05:6402:2348:b0:620:d826:b4c9 with SMTP id 4fb4d7f45d1cf-62ed69ab473mr9494870a12.0.1757882312803;
-        Sun, 14 Sep 2025 13:38:32 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62ec33ad242sm7803739a12.17.2025.09.14.13.38.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 13:38:31 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH v3 5/5] dt-bindings: touchscreen: remove touchscreen.txt
-Date: Sun, 14 Sep 2025 22:37:56 +0200
-Message-ID: <20250914203812.1055696-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
-References: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1757882638; c=relaxed/simple;
+	bh=TAnyXWlU5WvJC9PvLxVyk4gln6IzUe8585A85zP4Ykc=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=rIwU6qBBADv8A/lRmgBlpAzl+6AovqpavFAlSzSVYwdrftFkqvULsBQjkaw4gNp2qnbMqyiIt95K/38eCIJxcFHu0fZ7RxHcmqdRVhFwBZAfbcvcVBl/wSC5J7EESJe2Jk1Lxjy6MoMPOfkw3STDBBC1/DQOgvO6TE7q6SqUpWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro; spf=pass smtp.mailfrom=chimac.ro; dkim=pass (2048-bit key) header.d=chimac.ro header.i=@chimac.ro header.b=PRuwwEqa; arc=none smtp.client-ip=185.70.43.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=chimac.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chimac.ro
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chimac.ro;
+	s=protonmail; t=1757882633; x=1758141833;
+	bh=48IVj5CqlyL/NG9D8QI6HlBHg921K6RZAXGHFBjc8Ec=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=PRuwwEqat2/bq4H/qR19mTbOp2JpcbAyiNXaeyACK4uBTDamAJzizfLCscIL3l8pV
+	 Kj/1qUGyu5RHw/9rDv6TU1Q3Fdtx6ZpX92iXIvDqkBzHY7RBnoE6aAXRRRbcv0+V40
+	 Kpw6GRaOX1nTsCbsIcJS0xARegl0P07a8JopJCP0E+JQdq/IHKDLLxOjly4EY6eLRc
+	 3wS+SmJsx/gDQE7wyhhqS5jgEahnWC2HcemkLPr0N4aeYJBYAHaiviwSHH/emaZzMw
+	 r268HycMr5wZwR1JfXFC94rutAQ/ve3Ouoowb7Vqo3nzPARTTp2w4COj4jjeeIrlS4
+	 1WrFPEiR5Q11g==
+Date: Sun, 14 Sep 2025 20:43:47 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+From: Alexandru Chimac <alex@chimac.ro>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, Alexandru Chimac <alex@chimac.ro>
+Subject: [PATCH 0/3] arm64: dts: exynos: Add initial support for Exynos9610
+Message-ID: <20250914-exynos9610-devicetree-v1-0-2000fc3bbe0b@chimac.ro>
+Feedback-ID: 139133584:user:proton
+X-Pm-Message-ID: c4ef3fb25bbc20795872882f29db89dd9add1fbf
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-With commit 1d6204e2f51f ("dt-bindings: touchscreen: Add touchscreen
-schema") touchscreen.txt is no longer needed, and since no other file
-refers to it, it can be safely removed.
+This patchset adds device trees for Exynos9610 and Galaxy Tab S6 Lite (2020=
+).
+The primary method to boot mainline is currently via uniLoader (at github.c=
+om/ivoszbg/uniLoader).
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+This patchset depends on the following ones being merged:
+ - 20250914-exynos9610-pinctrl-b44cdfaeeed1
+ - 20250914-exynos9610-chipid-b7c1600dbb92
 
+Signed-off-by: Alexandru Chimac <alex@chimac.ro>
 ---
+Alexandru Chimac (3):
+      dt-bindings: arm: samsung: Document gta4xl board binding
+      arm64: dts: exynos: Add initial support for the Exynos9610 SoC
+      arm64: dts: exynos: Add initial support for Samsung Galaxy Tab S6 Lit=
+e (gta4xl)
 
-(no changes since v2)
+ .../bindings/arm/samsung/samsung-boards.yaml       |    6 +
+ arch/arm64/boot/dts/exynos/Makefile                |    1 +
+ arch/arm64/boot/dts/exynos/exynos9610-gta4xl.dts   |   97 ++
+ arch/arm64/boot/dts/exynos/exynos9610-pinctrl.dtsi | 1180 ++++++++++++++++=
+++++
+ arch/arm64/boot/dts/exynos/exynos9610.dtsi         |  263 +++++
+ 5 files changed, 1547 insertions(+)
+---
+base-commit: 48c4c0b684f394721b7db809e1cc282fccdb33da
+change-id: 20250914-exynos9610-devicetree-221da550773a
+prerequisite-message-id: <20250914-exynos9610-chipid-v1-0-ade99e09a23c@chim=
+ac.ro>
+prerequisite-patch-id: eb6590750a81953810a2f29d48131b5da055a2ed
+prerequisite-patch-id: 11416958919ddfe096ba3a7c866173ee0b288fe3
+prerequisite-message-id: <20250914-exynos9610-pinctrl-v1-0-90eda0c8fa03@chi=
+mac.ro>
+prerequisite-patch-id: 27e949ada132a43ba3dbf880af3e6168ec94eaf9
+prerequisite-patch-id: f446d396d0258709db47aef69e68821eb72582dc
+prerequisite-patch-id: e3bf016be9509ee79beb3d51907ef6cd58fb98b1
 
-Changes in v2:
-- Update the commit message
-- Add Acked-by tag of Rob Herring
-- Add patches:
-  - 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
-  - 2/5 dt-bindings: touchscreen: convert eeti bindings to json schema
-  - 3/5 dt-bindings: touchscreen: convert raspberrypi,firmware-ts bindings
-    to json schema
-  - 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
+Best regards,
+--=20
+Alexandru Chimac <alex@chimac.ro>
 
- .../devicetree/bindings/input/touchscreen/touchscreen.txt        | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-deleted file mode 100644
-index e1adb902d503..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-+++ /dev/null
-@@ -1 +0,0 @@
--See touchscreen.yaml
--- 
-2.43.0
-
-base-commit: df86f912b45c20e236060321c85fe35437e9325d
-branch: drop-touchscreen.txt
 
