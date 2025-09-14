@@ -1,71 +1,64 @@
-Return-Path: <devicetree+bounces-217071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66FCB56C4D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 22:54:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848B0B56C5D
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 23:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADDCC17B725
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 20:54:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40CA63B3F22
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 21:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55E82DCC06;
-	Sun, 14 Sep 2025 20:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9659A2DEA75;
+	Sun, 14 Sep 2025 21:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QeyRXE6G"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2MxMQQlc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A188E2DCF69;
-	Sun, 14 Sep 2025 20:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C355224AF7;
+	Sun, 14 Sep 2025 21:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757883237; cv=none; b=h5BuUlbzWLUx2QkSb31HjgUG9xsLPFzZDkv5pptqpbuk1veMP4fOrrRjTRM87/OWQ/0b3RETd9+wjgqUxcOFuXPa6V+aMUU4sRD7Ws0wa+ZnbLfb2nYRLewb1Kb0SotpUgmE/fAs8g+7s3XZYvDSK7Q79GQ4BfGG4Bfw4iz2zEg=
+	t=1757884624; cv=none; b=pD8Z2pMyRSIhV95Ik/i2KIBQBR4Er0oy1rcfXbJD+lw2mRCIODjQOm8GSZ0YYAxOlT2RmaEPtHkSHhaCUzHLbAasPM7GJ2JbBIve4dFJCq8zZsP03AJbevQRvk1JwfPEqMcHS/78p5LgsMHPpf6MWok8FhCmjLLQQ4tN57vOAGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757883237; c=relaxed/simple;
-	bh=JDdCHIxDfQ3AJnTMXc0VF5Q2RCCsvH4MDbxZQYKi8EE=;
+	s=arc-20240116; t=1757884624; c=relaxed/simple;
+	bh=tr89oCiMhO5571iF0ExMJ9MkihS2atdpGkwlqvhso5U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IlsRfmUmmPq9f3PsILMICW1MYw4Z36zpyZrI3EMY9nuu7EZIXpzd9vzqi3WkuhN953cnjLgHMSsEhIsY942jWkxx0SVAnMYBIuNNOp0Jbj1Cfdk2AvhpJ3amMWwS/IRK6H6T+2HNh9QqyBpMBVzyQLjRIM/ToCeII/fLRNYImtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QeyRXE6G; arc=none smtp.client-ip=185.246.85.4
+	 Content-Type:Content-Disposition:In-Reply-To; b=mjCCn7fDRW6S1mb7mC8kVIc6N6Xjfg+Q2/cQ4fbtKpKWMAsef60aWs8J3Trkm2CS0eAoL4Vyp3V1mBA1KeFmt5w3nFQc9ReRadN91b0tiYxNiL/PlPRp9rW3z+iREc5pkKUCf6B75tndwRAlyjQ8prwXfCEK69e85SnxuaDUUl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2MxMQQlc; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id EAF5A4E40BD1;
-	Sun, 14 Sep 2025 20:53:53 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A0313C8EC7C;
+	Sun, 14 Sep 2025 21:16:43 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BEB056063F;
-	Sun, 14 Sep 2025 20:53:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 694A4102F2A7F;
-	Sun, 14 Sep 2025 22:53:46 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D72636063F;
+	Sun, 14 Sep 2025 21:16:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC42E102F2A78;
+	Sun, 14 Sep 2025 23:16:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757883233; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=7xQaSzl/TxXQwIRozChDy9Tm+5Lzv6IuUtQ4mWGkAgY=;
-	b=QeyRXE6GcF8lBbDkyGWh9+amy8cLIw7ntDBnRdyEXuiNgbP/aYoh6ADxf6vNCPzUiLbz0F
-	pqaiy+sbbdG2o9oKZktxDx1dDI4uxN0/sBFrVxSnvD83SBEysQ0avybyiKOjr5sYTE9tPe
-	b/1oKLTWKDHonJo0H/Wd3K/QCeRRn/80eSjNCN5V1/Kd0F2XnNaWyabckJAKCr6WVPxrpa
-	sUKz/kGVXdZ683iF5BVJ14YiLuBUNjUEmCYxgNMh9spHX+pvpKCxk8MOB+iMMJF08n7oEw
-	HybkFAX8QwxSbaRFsKk6frbQdI0zK8I0ijJ3jv9xtp6ONwqVKKvRmp8aYnVPcw==
-Date: Sun, 14 Sep 2025 22:53:46 +0200
+	t=1757884619; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=hGMElI/WGlDZApqBGkLsN2d0Bdu0tJazMj/fn9s0+XY=;
+	b=2MxMQQlczm/sCdygcuRbZnSgDNqahJL2DA0Qsx4oSMi/k9lP2LReNOxMDduAjRHwIysi6B
+	mfY0F62uZ77NfDXLZpt/0sfmHYz77wfiHCzdKPxfaChKftjc9eUQFAczJUCijyMxXIaLSH
+	AbeHtgJk+2MPBKCaf36xsubnLaIti8tP43I3DaMmwoPfR8MwCFRs/ssVz9pEL9FNhfytNs
+	jiyyq/dUeSHTdrK1qLAV7P1g/+GRfx2aQOkEcJCqe1nFknuKVmvWhwJto0dMligU1pEis0
+	9anemYCSfSqORbAWw8W3qY0QKER0hGXKxAkI0dST49O6h26wzXOaNsDBkJMBlw==
+Date: Sun, 14 Sep 2025 23:16:53 +0200
 From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>
-Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and
- RZ/V2N support
-Message-ID: <175788312845.382502.12492963502213477306.b4-ty@bootlin.com>
-References: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: rtc: pcf85063: remove
+ quartz-load-femtofarads restriction for nxp,pcf85063
+Message-ID: <175788449951.388732.4064789472878878966.b4-ty@bootlin.com>
+References: <20250903191128.439164-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,25 +67,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250903191128.439164-1-Frank.Li@nxp.com>
 X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 08 Sep 2025 10:39:30 +0100, Prabhakar wrote:
-> Add device tree binding support for the I3C Bus Interface on Renesas
-> RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
-> that found on the RZ/G3E SoC.
+On Wed, 03 Sep 2025 15:11:27 -0400, Frank Li wrote:
+> Original TXT binding doc have not limitition about quartz-load-femtofarads,
+> which only allow 7000 for nxp,pcf85063.
 > 
-> Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
-> "renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
-> "renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
-> compatibility with the RZ/G3E implementation.
+> So remove it to fix below CHECK_DTBS warnings:
+> arch/arm/boot/dts/nxp/imx/imx6dl-skov-revc-lt2.dtb: rtc@51 (nxp,pcf85063): quartz-load-femtofarads:0: 7000 was expected
+>         from schema $id: http://devicetree.org/schemas/rtc/nxp,pcf85063.yaml#
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and RZ/V2N support
-      https://git.kernel.org/i3c/c/12ba31828681
+[1/1] dt-bindings: rtc: pcf85063: remove quartz-load-femtofarads restriction for nxp,pcf85063
+      https://git.kernel.org/abelloni/c/b4bcfbfb1f0f
 
 Best regards,
 
