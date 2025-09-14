@@ -1,88 +1,87 @@
-Return-Path: <devicetree+bounces-216927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB982B568A3
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:35:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7819FB568AD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 14:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6555B165F11
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:35:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60D111884141
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 12:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED90825F99F;
-	Sun, 14 Sep 2025 12:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7DB25F99F;
+	Sun, 14 Sep 2025 12:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dO4mM1Z7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VOgSdU8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC4D924E00F
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 12:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50EDDF71
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 12:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757853300; cv=none; b=naox8VirXv10KPTTZR6gl0iieLTyFI7vkbdT6M+phKGrfrZ+UWS67eoa0kQnHcEE5ZQkZPKZVb8aha8wFdaESw9VvsE5+/R5SOS66c61rZ1AWm2Dag64lXSPjnsQ6uWm1fAX10OeOTYKRmKdnG8M7V0KgYWcb/IiWhCOLXO8sJI=
+	t=1757853330; cv=none; b=jNyZcxD2W4ydt38knKFTIX8LC1rZOdHEbiNd4CltkANK2xcsVzM+V67/bBrAGeYyU+4kPUMS29Jsm1/qw2KNavK574c3HGjYJGdvS68lAyglOuDReWprFE84opOYiHWsMpzRLP71gpAh08RRmouOq0fcrXZ7LLAIMC1k29vIth4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757853300; c=relaxed/simple;
-	bh=fRxf354j9p5dLkCyRRpVnIzv7RmHa2wj/7G8YB2Kzos=;
+	s=arc-20240116; t=1757853330; c=relaxed/simple;
+	bh=0l6e2uz7dqK5Bhp1JeqeKMsK5CGH7BCCZfsnejEoWKU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JIsk1juAsuqKBcmKKGClCKGOUQfQNzR105LxC6ivSYEfNcRm7EOFi91YP1kQQphh5PkW4DWknjZG5lfb/cHqrhQqFuukkvfeumMOZIs8VpZ8goDamfKZeElRrhQxaNZ1G1mhyDlP7AaUc1Ciiq+N0ObaVUHRZ2vf5Qn3WWA0muY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dO4mM1Z7; arc=none smtp.client-ip=209.85.208.41
+	 To:Cc:Content-Type; b=CEbzT6r8OOwb5biIZ5ibmsCbZjbR5Xv/8Cz86jVa4yyIQCTFVoEcUpGrSugoQmuEpHHmJDidMWE5rqHeDt0hsAM8ieWUWa4hapN2rFsOP++Z+O5KvhTFBR2AhFOsxdq2RQagLv9dAzyw4+jFIK80q1a6Y7qBl9nYdWOEPRFJHAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VOgSdU8A; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-625e1dfc43dso5717826a12.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 05:34:58 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-61a8c134533so6320157a12.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 05:35:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757853297; x=1758458097; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1757853326; x=1758458126; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6My8g8ijlC6ggM3Nx6OmXgJVfqUSxwxL444mCRnJ11g=;
-        b=dO4mM1Z7bieQEVV9pvJtiYB1n2s3M0sxuhEiKCi0QlhfFt6rOlNCbu1upgPSxukMyt
-         00ZEN6lV6ryAfyb30zprRNm/OwvDldlBEcNfCtj4BWvoE0J3/xB+C9S+sp9i1dWYEgTx
-         VdLgVaDbQYSuT/lQ//Hj15xByBHE/070bIskFk3z757O68AbtbmZuUbnui+VncOEm911
-         7yeWSQzI7TdNEH5zKev5RS7RDQRzs/9A6Rvw0lo4m/8F++54wChp62Wa2AdTa6qjhdVE
-         ZzahHFCd5IqzeSVACdZPSasIE609mg8wpHUIBhBiFYr+EKYNhmyu3FlLvyhNbJXyM8Cf
-         EJ2w==
+        bh=kZRPj8VFGD82gxi1pIqE3YbUy5FZEodVqHSWuZV8rz0=;
+        b=VOgSdU8ACJX8+GwT8wweNQs4EZmPaW0/l89tUleAVU9mrfsZIxaXat1IGUNeM1cyW1
+         YAZu7c8tabOyxQMFPLq4nqJeelRoMAyvKA7Q4xa7A5LUMOZ7HyIVPzK5mhm7lKMiaGgp
+         mZrsQbsK1KJIlCIug1oIgF/BltVBY9DnyNv5UY/SvcHfQ8ZPJaArtSxB2uWTfI/S6Kji
+         rPU0nA4lKr8z7IsyXgxjWNQP3VIixvyIkRiWO36eOq5GRh9f4gpmhpsE2jeQgTtiKaSj
+         axsIoRaiwMQwnmguX6JEX2Yd+hkLSVy6hhiwvgp3jLP5qmc+918Jsd+aNZ7zVD/LpyYm
+         HijA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757853297; x=1758458097;
+        d=1e100.net; s=20230601; t=1757853326; x=1758458126;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6My8g8ijlC6ggM3Nx6OmXgJVfqUSxwxL444mCRnJ11g=;
-        b=ML2rku6bNbU2MbapuB2wsajy4iyKH+zt8MB3VJs6KSUXjnZBR4aAKLHFmRsrzrSThr
-         mui0SYCMU1gNFUi+l0d7zlFdN9C4oCUsnRPqYEjbodNf/LAGGJX0oORzpfIZZre7GZpx
-         2GP7vE2W1+2J0g9H2pOWMqFOzaQeQs5IbVl/5OASHLD9RukqIPq7YmgJZ9fJBi3MsMLU
-         DD9QxdFxCNHhwnnF6LxvC9rYEoPTTKN6AH28winkHhcm+I/+fGjTLQM5pUA0nEgQYk6+
-         xTFwUMXXLQsixqL7KN0J0oZvJkUK4KNZ6O2En05OvUH+68z+W4y8iFgjwguWfboz2GFA
-         FbeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXmYVHG+eqpYj1flKNHhdz3NJ4wXIlv2Hf16+3b2cpSBIAVidI6mS7KNYyMwH4P81zSLVoP72cg5vUb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3Lh/yeReJR3e8uH6qWnj9MdASicbbdFxAGNvAA59m1+sCZo7I
-	UawPViRTShaXwgXCywt1fyV+aquT1+F2TvhOHvWiUGvbC0ozFl8I12hsJhDY/gMWkfcR9DnKnVf
-	lFGhckVR6w0ov5Xs4a7WFDHy0hNVTW7K5kjv9Q/Fvsw==
-X-Gm-Gg: ASbGncuYGEjzs0yMoVFx+N2BsYLLH5MlU4k3WGsN7gjJgifL4ip8T1nD35zgmWtFm7S
-	mE/96n7QmiFsOIU4ThwP1Ujrh6r8hWZiOflUQTDHts8e+9LdIVUKDdAWJkTiuYq2R38BzEEJQ9Y
-	dEcRg40H3fWbwkvBYvJfLbEEs2yahqjMB5kOp3+vJp7+vxM68iHDRQmcQPIN5Ix/lW/S4MTS6SK
-	nFjQ+WxWa/RSL9fSWX6tdym+WxJtFGZPlnFzbDM+9ueBlA=
-X-Google-Smtp-Source: AGHT+IE9iMZLipi8SbmYOlVHFkjWHvFeGW1GqsUB94IHXcDFtD/+YhZqBpHxrpl4wzzT0r2J3Pq8q72gpM+PxQoXhrE=
-X-Received: by 2002:a17:907:7f87:b0:b0e:d477:4961 with SMTP id
- a640c23a62f3a-b0ed477740fmr113747966b.23.1757853296988; Sun, 14 Sep 2025
- 05:34:56 -0700 (PDT)
+        bh=kZRPj8VFGD82gxi1pIqE3YbUy5FZEodVqHSWuZV8rz0=;
+        b=PIS62IPC0PKubQKuaox2Ho7+gDT7wV+KMhEWzDiKB4DzT42/0r/d9hTF21ykHKsA7I
+         ReYSdAJWW6O3KEYKBKN0BUkC/xKbj42X/psXyAX3Y3hlgS9TSRuoIPD/IfPyMEcQdOL2
+         5yQB2EYsMK343CWNMjvSvQifMAVtLIA5pQsyDUctX0Edtsuh8Tt2DTvQAKBDs1KOiYYK
+         hhbJJFE0AHKNKahT4Sy5w1oVffrsmeZIOl9RWdk10okF7sR6hSYzZM64DwySZjROThJG
+         ovubXnD8+5OYLtG/Vzq3Cl5o1MAz8xd0AQwT8RVhfitU3B1o0c6kguqxgHJd0j1CbaBU
+         sbCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9j8SDsDo20rOouaXLz2V3mrZj8Kzarogn0cb8J9/A+XCsQ6iaTYWtioT1wcO2rpS0VzOO0QUegg+n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy19wTZ8KWm/boICJoSXDXkNevGXP4cAA+UrQAlrguIhfTpXLiE
+	beZbNtQe4UESPEBtI315iovkA1HkP1lRjdHH3hINSJHbQTXdKEG35Pm1CZPSZ18+pmvZkX/DNo6
+	f95ODezsefnPEgKjfBsBWGQHmXlNBO7HuiJWiMu3DCw==
+X-Gm-Gg: ASbGncsltPgMRKTgqBYD9w3BgcvAAPvZ2JvAZgG/wvYTp+QFHsM0nz2RjDkWWTwCu2f
+	gjXMwvHLTuyBWRQd8SH5MlQ0WWlLyj9FKgbNHF+YPAQmVxhP5moeh+26ER9Hjo7vy8PInr0Jh+K
+	g/QEYCl1cGstjGDthmKA14Aa6Dl7kUd0P5CFl0KhOnw2t7QZzH8FcVL3yvjYEbH/7UVZfrb4O/j
+	ahKK56S+TDPZ+1v8PSgiRL+UqrLizQdtPt3WIALKYrAWug=
+X-Google-Smtp-Source: AGHT+IGC5U6e2Dn1tMsLyF18gYUHRa22VodbP73NxQ0EqXqogritItpRUDjrhDJduFW7Qc87Fq6Zc0iIgGpKneFSjR0=
+X-Received: by 2002:a05:6402:390c:b0:628:6af4:595 with SMTP id
+ 4fb4d7f45d1cf-62ed82fc9f7mr8593311a12.20.1757853326146; Sun, 14 Sep 2025
+ 05:35:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912141436.2347852-1-vincent.guittot@linaro.org>
- <20250912141436.2347852-2-vincent.guittot@linaro.org> <aMSHsoLHGUBoWX8e@lizhi-Precision-Tower-5810>
-In-Reply-To: <aMSHsoLHGUBoWX8e@lizhi-Precision-Tower-5810>
+References: <20250912141436.2347852-2-vincent.guittot@linaro.org> <20250912225004.GA1651547@bhelgaas>
+In-Reply-To: <20250912225004.GA1651547@bhelgaas>
 From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Sun, 14 Sep 2025 14:34:44 +0200
-X-Gm-Features: Ac12FXyj3Q4Ir_GGRHAULDx1O8xgannDkGizhiAuLvket8uRGtmjSHnXquF9Gho
-Message-ID: <CAKfTPtBh3jvEQF09sL8g7Zeru+WvtQO31UFZEZDx1DYJ8RCK3w@mail.gmail.com>
+Date: Sun, 14 Sep 2025 14:35:14 +0200
+X-Gm-Features: Ac12FXzoBnTdY1zYFeG3eA1G823XRIjgcnE5BClULnG3hfvuq5oVWCbfskuc7HM
+Message-ID: <CAKfTPtCfjJ8-30aAeEyigeLyuKtTq+k6PQg+5w4-0Wa7pduZvg@mail.gmail.com>
 Subject: Re: [PATCH 1/4] dt-bindings: pcie: Add the NXP PCIe controller
-To: Frank Li <Frank.li@nxp.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
 Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
 	s32@nxp.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
@@ -92,17 +91,10 @@ Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 12 Sept 2025 at 22:51, Frank Li <Frank.li@nxp.com> wrote:
+On Sat, 13 Sept 2025 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
 >
 > On Fri, Sep 12, 2025 at 04:14:33PM +0200, Vincent Guittot wrote:
 > > Describe the PCIe controller available on the S32G platforms.
->
-> can you cc imx@lists.linux.dev next time? suppose most part is similar with
-> imx and layerscape chips.
-
-Ok will do
-
->
 > >
 > > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
 > > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
@@ -144,7 +136,12 @@ Ok will do
 > > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
 > > +  The S32G SoC family has two PCIe controllers, which can be configured as
 > > +  either Root Complex or End Point.
-> > +
+>
+> s/End Point/Endpoint/ to match spec usage.
+
+Ok
+
+>
 > > +properties:
 > > +  compatible:
 > > +    oneOf:
@@ -156,12 +153,6 @@ Ok will do
 > > +
 > > +  reg:
 > > +    minItems: 7
->
-> If minItems is the same maxItems, needn't minItems.
-
-Ok, I didn't know that
-
->
 > > +    maxItems: 7
 > > +
 > > +  reg-names:
@@ -188,12 +179,6 @@ Ok, I didn't know that
 > > +      - const: misc
 > > +      - const: pcs
 > > +      - const: tlp_req_no_comp
->
-> use - for names
-
-Yes, I forgot to change this
-
->
 > > +
 > > +  msi-parent:
 > > +    description:
@@ -208,14 +193,6 @@ Yes, I forgot to change this
 > > +      These MSIs no longer appear on the AXI bus, instead a hard-wired
 > > +      interrupt is raised, documented as "DSP AXI MSI Interrupt" in the SoC
 > > +      Reference Manual.
->
-> Don't need description for this common property.
->
-> msi-parent for pcie devices is most likely wrong. It should use msi-map.
-
-Ok, I'm going to have a look.
-
->
 > > +
 > > +  nxp,phy-mode:
 > > +    $ref: /schemas/types.yaml#/definitions/string
@@ -231,9 +208,11 @@ Ok, I'm going to have a look.
 > > +      The max link speed is normaly Gen3, but can be enforced to a lower value
 > > +      in case of special limitations.
 >
-> needn't description here.
+> s/normaly/normally/
+>
+> But I doubt you need this here at all.
 
-ok
+I'm going to remove the description
 
 >
 > > +    maximum: 3
@@ -241,12 +220,6 @@ ok
 > > +  num-lanes:
 > > +    description:
 > > +      Max bus width (1 or 2); it is the number of physical lanes
->
-> needn't description here.
-
-ok
-
->
 > > +    minimum: 1
 > > +    maximum: 2
 > > +
@@ -265,16 +238,6 @@ ok
 > > +  - phys
 > > +
 > > +additionalProperties: true
->
-> unevaluatedProperties: false
->
-> because you refs to /schemas/pci/snps,dw-pcie-common.yaml
->
-> You can send to me do internal review before you post to upstream.
-
-ok, thanks
-
->
 > > +
 > > +examples:
 > > +  - |
@@ -286,12 +249,6 @@ ok, thanks
 > > +        #size-cells = <2>;
 > > +
 > > +        pcie0: pcie@40400000 {
->
-> Needn't label "pcie0"
-
-ok
-
->
 > > +            compatible = "nxp,s32g3-pcie",
 > > +                         "nxp,s32g2-pcie";
 > > +            dma-coherent;
@@ -339,27 +296,20 @@ ok
 > > +                                  <0 0 0 2 &gic 0 0 0 129 4>,
 > > +                                  <0 0 0 3 &gic 0 0 0 130 4>,
 > > +                                  <0 0 0 4 &gic 0 0 0 131 4>;
->
-> use pre define macro
->
-> <0 0 0 1 &gic GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
-
-yes
-
->
 > > +                  msi-parent = <&gic>;
->
-> Suppose it is wrong for pcie
-
-
-
->
-> you should use msi-map
->
-> Frank
 > > +
 > > +                  num-lanes = <2>;
 > > +                  phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
+>
+> num-lanes and phys are properties of a Root Port, not the host bridge.
+> Please put them in a separate stanza.  See this for details and
+> examples:
+>
+>   https://lore.kernel.org/linux-pci/20250625221653.GA1590146@bhelgaas/
+
+Ok, I'm going to have a look
+
+>
 > > +        };
 > > +    };
 > > --
