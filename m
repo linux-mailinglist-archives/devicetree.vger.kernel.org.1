@@ -1,712 +1,76 @@
-Return-Path: <devicetree+bounces-216989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7113B56A01
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A29A2B56A0B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:11:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD4DE172727
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:04:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F7B51753BD
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F16D2D12E2;
-	Sun, 14 Sep 2025 15:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329462C375E;
+	Sun, 14 Sep 2025 15:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EJymhXqv"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="L4WDnHCv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845E42D060E
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B433212574
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757862225; cv=none; b=RGBEH+U16Yx12iDNvRNk2BWd4eQxrVzY+hCUVm3Ns24vdWCM/A8Rs2VVxu9eNTrFef7IjfALcKWPfO0gbLpDKgPVWcu4EMkFEUb/SetlqOJv+BLU/FNSO41a78sQ0EdgjvzqEOVNqJCY/mcEB7deNWvJDtnPnB8xomzeN1pCOXg=
+	t=1757862660; cv=none; b=B8GwGaDGXnpGOW7vXJkojEyy1IFHr9X/OUAqVSp8BcyDUmDEUawXMHmlS1p4LVBvifnmqvdhCgtN4UwE253TAYn4bHHgpp6BPtDnSIzJPWYHAot4Qvo0lYlVnoskqR9W4zQS5JVJ5JQ/XyAMySyVsU/B8LR/EvXHbT3UUk8svmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757862225; c=relaxed/simple;
-	bh=M6ZMSsxK4+YAPKl8s8J80KaNHxqid7sV7Hyqrg12pec=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qoz7rYP3GzO2gWGJq66xOR0pNiX1TNf2KWUyOwdfxH+sRuQSzWzMUOTjUlmVF9yPKe8Kb6lBXe0k2FYZp116RZUoP4XHKKnH4jbAovcx/qOUEyZIylZEizfIhNmRKd3W0qxB34BuJulAzD7/l1MWjSbthBtBg3COz2BX2SQLCjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EJymhXqv; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3df3be0e098so2027959f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 08:03:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757862220; x=1758467020; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5KDhUOmRpPma708zXeoi8+mVcbu/SNTTJAjK5XHafPk=;
-        b=EJymhXqvMQA5kczFtMIy6QHgZkupkqUiYsSFWDukQEXnd6ETaY28jpS0dHmvR6DUKo
-         MfGgrjorhpFa9YtQo4Qy+jXZX2EiOzQCmdq4ymX7mgxyuGtJK8Ezh/guo4ZNRpJmmVdl
-         vn+V//Iz4vQLK30aQG4Yqk0Oxmlg7aA33qVr9KZ18f0QLKgEhvzg9wpkLPeRzxnjpM3o
-         4T9bCu2ZVxgx5iWWqNmWw3a6FdavREAL7oly9w2PbE6yfFxPKLppqJ9Yiy5sFy1gQfTl
-         lwhubJp9ISRaQQGipaJL6nWPCX0mhMuDreDkBUw2R01XN5GQtGM7Hr5amQE6FwFMgc57
-         3ycA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757862220; x=1758467020;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5KDhUOmRpPma708zXeoi8+mVcbu/SNTTJAjK5XHafPk=;
-        b=KcGAsyMxdfHDt0jhUXQpIRR9A+kgMmYah1l21WpGE7xvPBpvmzVUuePzlpVQUD9tVI
-         e2RxCqvQjNm95nJ/BVU4EnCo6O2v1953Z5h4BxpE2IauMQmXgRrYy/16GYt5MQfGzDH0
-         +LbDXLNpimYlKEJwOHIF2DCoKW6xObtrS4MhQd3GmEKKMNaMWS0jsd9UUlB3ZalQLfPi
-         wk9lYY4IJ899WX49lBPRip/aFBhib6WZMYcqisIj8Z6CzHu++SbRVJwMmGUx83BUuion
-         tBmUe6//Rk3Ac4o6oU7HCWAQUBUYUVOPy5YhppNyTF9499EAnepVzaUpaJP2qvfTA2fF
-         QXPA==
-X-Forwarded-Encrypted: i=1; AJvYcCXYue0gEVbZ/c1ziMxiCw+12XjFxA0zTxTbJJ0Kh7wJ9y0+tYwWJ8q7sbYevvsspCyA8ZHvHOAivx83@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPxJW0xvTHCuoTHscW8wO6elGKfZm2ycKU1cBzcHnPVCI4qSZR
-	uoNREmdGx/qoPsrEIcRoAg51T9aiMNSVGtKh11AmNM3AMZojsKRSJ7Tw
-X-Gm-Gg: ASbGnctQy6w7W30Exiiy3pzBYry0EqVNiag/lxcwMWIeQAsjPZYu/AE5OCAdeq77jXz
-	34QGbT72NOZBxyebpOrx299YbtP2BXzhTIG6owypOncBNM9Y6JDQ0H4IS/Mbeqrml99PxpK9exJ
-	0gcGXTrFA+Sr9q54TI/Ac7urxN0tGQM789/7/ZkHLyhcp6Qw1VlmYLrk6DrSinNqDDI+MwD6jtL
-	gog/yuzcD854W3foqmpgoFdy2Uogf6ZubheidXtr5by3hhpqPRKUhjszTojCsMwhmjIGBIk8DgU
-	bhOp6jGItP1Q3ihzCz1tIZOTzqnM8gPxTD8hvQ5TrpDwL3cJQa+F5G0W1QLqNPvg7YraVswfX59
-	VJdyaoWUlTSazpYvWgwrKQ8fivUwQnXXx0jlB6Kn36k2P3p0GK01mvKUSbxn5fCRclzvKk6IhLg
-	==
-X-Google-Smtp-Source: AGHT+IHRJ/8AOJVZsii76GUZ0HhcxqLkQ5DDL2gMAC1KKsMtOo84S/mslUv0y+ZEmI3HI/gKPPIbFA==
-X-Received: by 2002:a5d:5885:0:b0:3ea:dd2b:5d3 with SMTP id ffacd0b85a97d-3eadd2b07cemr66292f8f.17.1757862219613;
-        Sun, 14 Sep 2025 08:03:39 -0700 (PDT)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f2acbeee0sm32780385e9.0.2025.09.14.08.03.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 08:03:39 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] arm64: dts: exynos: add initial support for Samsung Galaxy S7
-Date: Sun, 14 Sep 2025 18:03:21 +0300
-Message-ID: <20250914150321.2632019-4-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1757862660; c=relaxed/simple;
+	bh=Kaf1vFQl07mrX87cDZrFLNzQLYHTzKo/KND7wsprVr0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=gcWsOPKZSrSiopnj9UU6R2z0K1bMb+jBtft3VDu6Rp+fxxITKjcCzxTTfuFrckUeoIHInccfWg2Er4VqyGiHwBBPZvQWotIM440H2p6U4mDPGLTnkydkZhnlQcj5N94U7h3EXpveUiJ+dIjLGeGL20qzoVuu82jAsMipHZWEOq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=L4WDnHCv; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+DKIM-Signature: a=rsa-sha256; b=L4WDnHCvWEfmG/9j1Vq7V3uSroHxRUgM8oYKb1PtlnZXCjsaiQXideBK2e9dAU+0AEUNENM3FqzGDtQDfcoxzdA1oZgj2N3AqWTG8wpmsllqW+Mw/7ZpcngrWpgP6smunf8WPIdaQNjBEzqijMnzHmRukUNhbKnl3zqYNt+SUfp0qmKxy9jlqkPMs0GqsrGHLIr/JGLjmwQZDc8F66xIsbfFKHb30v2cb9K0AUueJDlhToDoVUmMj+3RGN72vDY1L+IjU1zQmkb2+4RDHDiJSVcMD5x5c6CfJ+5na60WPE+GR5cOexGikJYdNvSn4x2v172SPRSymlt+dc9cl0tnGA==; s=purelymail3; d=purelymail.com; v=1; bh=Kaf1vFQl07mrX87cDZrFLNzQLYHTzKo/KND7wsprVr0=; h=Feedback-ID:Received:Date:Subject:From:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1079693920;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Sun, 14 Sep 2025 15:10:46 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 14 Sep 2025 17:10:44 +0200
+Message-Id: <DCSMAUJKRPOU.3RGWV9GNN97ZX@mentallysanemainliners.org>
+Cc: <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: regulator: document max77838 pmic
+From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
+To: "Ivaylo Ivanov" <ivo.ivanov.ivanov1@gmail.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Rob Herring" <robh@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250914130230.2622030-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250914130230.2622030-2-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250914130230.2622030-2-ivo.ivanov.ivanov1@gmail.com>
 
-Samsung Galaxy S7 (SM-G930F), codenamed herolte, is a mobile phone from
-2016. It features 4GB RAM, 32/64GB UFS 2.0, Exynos 8890 SoC and a
-1440x2960 Super AMOLED display.
+On Sun Sep 14, 2025 at 3:02 PM CEST, Ivaylo Ivanov wrote:
+> The max77838 is a pmic, containing a BUCK regulator and 4 LDOs. It's
+> primarily used in the Samsung Galaxy S7 lineup and is accessed over I2C.
+> Document it.
+>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
 
-Implement initial support for this device, including:
-- simple-framebuffer
-- gpio-keys
-- s2mps16 and max77838
-- mmc
-- usb, configured to be in peripheral mode
+Hi Ivaylo,
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- arch/arm64/boot/dts/exynos/Makefile           |   1 +
- .../boot/dts/exynos/exynos8890-herolte.dts    | 573 ++++++++++++++++++
- 2 files changed, 574 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8890-herolte.dts
+Reviewed-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index bdb9e9813..80e9901af 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos7870-on7xelte.dtb		\
- 	exynos7885-jackpotlte.dtb	\
- 	exynos850-e850-96.dtb		\
-+	exynos8890-herolte.dtb		\
- 	exynos8895-dreamlte.dtb		\
- 	exynos9810-starlte.dtb		\
- 	exynos990-c1s.dtb		\
-diff --git a/arch/arm64/boot/dts/exynos/exynos8890-herolte.dts b/arch/arm64/boot/dts/exynos/exynos8890-herolte.dts
-new file mode 100644
-index 000000000..461fa256d
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynos8890-herolte.dts
-@@ -0,0 +1,573 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-+/*
-+ * Samsung Galaxy S7 (herolte/SM-G930F) device tree source
-+ *
-+ * Copyright (c) 2025 Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "exynos8890.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Samsung Galaxy S7 (SM-G930F)";
-+	compatible = "samsung,herolte", "samsung,exynos8890";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &mmc;
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer@e2a00000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0xe2a00000 (1440 * 2560 * 4)>;
-+
-+			width = <1440>;
-+			height = <2560>;
-+			stride = <(1440 * 4)>;
-+			format = "a8r8g8b8";
-+
-+			/* these are required until there's a display driver */
-+			vci-supply = <&max77838_ldo1>;
-+			vdd3-supply = <&max77838_ldo3>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&key_power &key_voldown &key_volup>;
-+		pinctrl-names = "default";
-+
-+		power-key {
-+			label = "Power";
-+			gpios = <&gpa2 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+			linux,code = <KEY_POWER>;
-+		};
-+
-+		voldown-key {
-+			label = "Volume Down";
-+			gpios = <&gpa0 4 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+		};
-+
-+		volup-key {
-+			label = "Volume Up";
-+			gpios = <&gpa0 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x7e400000>,
-+		      <0x8 0x80000000 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		ramoops@92000000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0x92000000 0x8000>;
-+			console-size = <0x4000>;
-+			record-size = <0x4000>;
-+		};
-+
-+		cont_splash_mem: framebuffer@e2a00000 {
-+			reg = <0x0 0xe2a00000 (1440 * 2560 * 4)>;
-+			no-map;
-+		};
-+	};
-+
-+	vdd_fixed_mmc: regulator-fixed-mmc {
-+		compatible = "regulator-fixed";
-+
-+		enable-active-high;
-+		gpio = <&gpa3 7 GPIO_ACTIVE_HIGH>;
-+
-+		regulator-max-microvolt = <2800000>;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-name = "vdd_fixed_mmc";
-+	};
-+};
-+
-+&gpu {
-+	/* we can only afford a slightly higher rate till there's dvfs */
-+	assigned-clocks = <&cmu_top CLK_FOUT_G3D_PLL>;
-+	assigned-clock-rates = <455000000>;
-+
-+	mali-supply = <&s2mps16_buck6>;
-+
-+	status = "okay";
-+};
-+
-+&hsi2c_7 {
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "samsung,s6sa552";
-+		reg = <0x48>;
-+
-+		avdd-supply = <&s2mps16_ldo33>;
-+		vdd-supply = <&s2mps16_ldo32>;
-+
-+		interrupt-parent = <&gpa1>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ts_int>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&hsi2c_10 {
-+	status = "okay";
-+
-+	pmic@60 {
-+		compatible = "maxim,max77838";
-+		reg = <0x60>;
-+
-+		regulators {
-+			max77838_ldo1: ldo1 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "max77838_ldo1";
-+			};
-+
-+			max77838_ldo2: ldo2 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "max77838_ldo2";
-+			};
-+
-+			max77838_ldo3: ldo3 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-name = "max77838_ldo3";
-+			};
-+
-+			max77838_ldo4: ldo4 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "max77838_ldo4";
-+			};
-+
-+			max77838_buck: buck {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1600000>;
-+				regulator-name = "max77838_buck";
-+			};
-+		};
-+	};
-+};
-+
-+&hsi2c_15 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	pmic@66 {
-+		compatible = "samsung,s2mps16-pmic";
-+		reg = <0x66>;
-+		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpa0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq>;
-+		wakeup-source;
-+
-+		s2mps16_osc: clocks {
-+			compatible = "samsung,s2mps16-clk";
-+			#clock-cells = <1>;
-+			clock-output-names = "s2mps16_ap", "s2mps16_cp",
-+					     "s2mps16_bt";
-+		};
-+
-+		regulators {
-+			s2mps16_buck1: buck1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_buck1";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck2: buck2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1575000>;
-+				regulator-name = "vdd_buck2";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck3: buck3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1475000>;
-+				regulator-name = "vdd_buck3";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck4: buck4 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_buck4";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck5: buck5 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_buck5";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck6: buck6 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_buck6";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck7: buck7 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-name = "vdd_buck7";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_buck8: buck8 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vdd_buck8";
-+				regulator-ramp-delay = <2000>;
-+			};
-+
-+			s2mps16_buck9: buck9 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2100000>;
-+				regulator-name = "vdd_buck9";
-+				regulator-ramp-delay = <2700>;
-+			};
-+
-+			/* buck10 is used for CP but lacks documentation */
-+
-+			s2mps16_buck11: buck11 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-name = "vdd_buck11";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo1: ldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-name = "vdd_ldo1";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo2: ldo2 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-name = "vdd_ldo2";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo3: ldo3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1620000>;
-+				regulator-max-microvolt = <1980000>;
-+				regulator-name = "vdd_ldo3";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo4: ldo4 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1110000>;
-+				regulator-name = "vdd_ldo4";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo5: ldo5 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1625000>;
-+				regulator-max-microvolt = <1975000>;
-+				regulator-ramp-delay = <12000>;
-+				regulator-name = "vdd_ldo5";
-+			};
-+
-+			s2mps16_ldo6: ldo6 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <2250000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12000>;
-+				regulator-name = "vdd_ldo6";
-+			};
-+
-+			s2mps16_ldo7: ldo7 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1250000>;
-+				regulator-ramp-delay = <12000>;
-+				regulator-name = "vdd_ldo7";
-+			};
-+
-+			s2mps16_ldo8: ldo8 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_ldo8";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo9: ldo9 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_ldo9";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo10: ldo10 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd_ldo10";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo11: ldo11 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_ldo11";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo12: ldo12 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-name = "vdd_ldo12";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo13: ldo13 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-name = "vdd_ldo13";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			/* ldo14-24 are used for CP but lack documentation */
-+
-+			s2mps16_ldo25: ldo25 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-name = "vdd_ldo25";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo26: ldo26 {
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd_ldo26";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo27: ldo27 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd_ldo27";
-+				regulator-ramp-delay = <12000>;
-+			};
-+
-+			s2mps16_ldo28: ldo28 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-name = "vdd_ldo28";
-+			};
-+
-+			s2mps16_ldo29: ldo29 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vdd_ldo29";
-+			};
-+
-+			s2mps16_ldo30: ldo30 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vdd_ldo30";
-+			};
-+
-+			s2mps16_ldo31: ldo31 {
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vdd_ldo31";
-+			};
-+
-+			s2mps16_ldo32: ldo32 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vdd_ldo32";
-+			};
-+
-+			s2mps16_ldo33: ldo33 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vdd_ldo33";
-+			};
-+
-+			s2mps16_ldo34: ldo34 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vdd_ldo34";
-+			};
-+
-+			s2mps16_ldo35: ldo35 {
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-name = "vdd_ldo35";
-+			};
-+
-+			s2mps16_ldo36: ldo36 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vdd_ldo36";
-+			};
-+
-+			s2mps16_ldo37: ldo37 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vdd_ldo37";
-+			};
-+		};
-+	};
-+};
-+
-+&mmc {
-+	bus-width = <4>;
-+
-+	card-detect-delay = <200>;
-+	cd-gpios = <&gpa1 5 GPIO_ACTIVE_LOW>;
-+
-+	clock-frequency = <800000000>;
-+
-+	disable-wp;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sd2_clk &sd2_cmd &sd2_bus1 &sd2_bus4 &sd2_cd>;
-+
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+
-+	vmmc-supply = <&vdd_fixed_mmc>;
-+	vqmmc-supply = <&s2mps16_ldo2>;
-+
-+	samsung,dw-mshc-ciu-div = <3>;
-+	samsung,dw-mshc-sdr-timing = <0 2>;
-+	samsung,dw-mshc-ddr-timing = <1 2>;
-+
-+	status = "okay";
-+};
-+
-+&oscclk {
-+	clock-frequency = <26000000>;
-+};
-+
-+&pinctrl_alive {
-+	key_power: key-power-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pins = "gpa2-4";
-+	};
-+
-+	key_voldown: key-voldown-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pins = "gpa0-4";
-+	};
-+
-+	key_volup: key-volup-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pins = "gpa0-3";
-+	};
-+
-+	pmic_irq: pmic-irq-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV4>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-+		samsung,pins = "gpa0-3";
-+	};
-+
-+	sd2_cd: sd2-cd-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pins = "gpa1-5";
-+	};
-+
-+	ts_int: ts-int-pins {
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pins = "gpa1-0";
-+	};
-+};
-+
-+&usbdrd30 {
-+	vdd10-supply = <&s2mps16_ldo4>;
-+	vdd33-supply = <&s2mps16_ldo6>;
-+	status = "okay";
-+};
-+
-+&usbdrd30_dwc3 {
-+	dr_mode = "otg";
-+	maximum-speed = "high-speed";
-+	role-switch-default-mode = "peripheral";
-+	usb-role-switch;
-+	status = "okay";
-+};
-+
-+&usbdrd30_phy {
-+	/* TODO: connect with muic, add regulators */
-+	status = "okay";
-+};
-+
-+&serial_4 {
-+	/* multiplexed over muic */
-+	status = "okay";
-+};
--- 
-2.43.0
-
+Kind regards,
+Igor
 
