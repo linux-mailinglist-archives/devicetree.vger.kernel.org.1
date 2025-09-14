@@ -1,310 +1,151 @@
-Return-Path: <devicetree+bounces-216905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05C2B56807
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:45:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF94B5682A
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 768AE3AF7F8
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 11:45:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12CC1178AD9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 11:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E3222AE65;
-	Sun, 14 Sep 2025 11:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE22B25A2C6;
+	Sun, 14 Sep 2025 11:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cTArlidS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ol+Jb1WD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0DA25F96B
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 11:45:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FBF2580ED;
+	Sun, 14 Sep 2025 11:56:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757850309; cv=none; b=YN+ueoHtxqQyeZep3AIjOHojJ2nnzD/I5qWX4a+GdFY97N/lv8FKxuf+Ucj5D59uBWJaJWz/LVzbNN7VbHdbrb1QriIORZOufyitzOam/hA9Hlm7FZFS5ziWTraxNsh0vMFta7E6BY2y5SJBcK0SsY9/Y4coyMRoL/DyBZ/8tTo=
+	t=1757850989; cv=none; b=gmwVRJY2oqz99KMgtB/7ErvrwcDjqBYYfYCeO87m37dOoVtMzZlhcO0+L5HeXu5HgujCExP4lZgRF4x02FAPP9TdyGQAhmVNL1gESh8kNtr9xRZA3Meh9CEIC9z+hXB/l7xPPTOty62EiuLtQwbrRf+OD8O0hHH5Y8qE+CppbHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757850309; c=relaxed/simple;
-	bh=CvNdA1Lq3oTIIeItRHs3AN0gLyQF68rz0iGWHshqQmM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ljuub5E8CHYiVk4tI+ext5d1pQk65Qa4YN7CwhgCJqyoXIpMOm5R98nbr7q87I48L4UgaYHdcDDXS8BSmK+tSJLZBhTXP4+vgQ119vjFt7at5snmHJCye9C20kTEK13exlC+pVYG+NpAxpejHeLnRGak99JYeot/OUzqqoMrQx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cTArlidS; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ea3e223ba2so247530f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 04:45:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757850305; x=1758455105; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XOBGx5UfQF1cbSUEX3Z3Fdo9tcNmtD8DWDihqQ0/EZc=;
-        b=cTArlidSXa0f3fRGBkOQtkB/G8JLDNbEp0qTEHsmHE4MD8MDxPn2ebdVeU66NVTeeg
-         hkLTCLeaI0TJx5Ge+ATpE1KiAjayibHpudWhnLQyMBSiYXN+gaSJV8Ien2sYPQRP61cd
-         5ITSQUYwFTC6yzweIVGcccP9CbSlOisNZgX9YoNTn8iYRACpz4Tn84l3VDY4CdiB85um
-         vCoF2J79i1Txn/QxOa2cTeVzQc9uAJC96y0euM+yzVXFXTYVOj+vZbio4mojYFxG42kh
-         yJEbOr6p9hoxlaBHH9kaYsih7CtHb+L8HwTxK+gFa/igZaAr/TxFE8i/VDcM9CXZRiq4
-         gHjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757850305; x=1758455105;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XOBGx5UfQF1cbSUEX3Z3Fdo9tcNmtD8DWDihqQ0/EZc=;
-        b=Ke+4IM5qcXHpcK0Ul1dD6IrAQ7TZdmcFQxN6VZjYTEW4tbXTw+gG7Fw2vxT0S8aI1p
-         33zA0LnL+LR46hYoopUjh5gVFVLcuWgHy6WFEAGID85mfhXMv6jekBZMyJLRa7rtBNEj
-         ndoBDgR941rpyUmAIIHzU9b8iHU9LBd+fteP8y3sNV4EePlS9vNe95h/zojtBBMsrQhc
-         u779Ifb5JdfU7F4BNuFZzRPOwh69a0rjPPCmv4qKRKXnq3mTkez8k92HkN09xPTxPyxM
-         tw86K1MF63i0Ecan+xoozsM3kJhBXMvL8HrWWMhoCrs6TfA6OZ/g9xQBtR/vct4hX0xy
-         MEZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWg8Iatn8KeyypR7psZtQgtGxgrno68oa/YtK6dRYdMf4FOZJCco4kPSf3lgE5AV4hz471lK8Uz6nHQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzr+LoEDakbhphMDRjbaab2LCWvgJnWYhaFIm2nhGKl+v+CshPo
-	JgvLcFqYdyhfHiLp3zsEUQzz94yhQOf+FEvCblhIiuYBt9WBFYOhU2AX
-X-Gm-Gg: ASbGncuJ7CkZgHVEhXFDHKq1cgSjJMVyVPf2DkSoUvh4FOa9xoeRxzGrTJQF0LgVOlF
-	fLZr7ZrB8RJRfKOQMTsBi5lDjK0qhfZuK8W8cs7Si5+ULmf4AK72B6gFQmFXlpvIFmmcBurr+L+
-	1eCV6qQVyX6sQ9wOMgMJmpbcFAPS72A33l48QDc8lt+Ztv9Ff8xf3h9VuNDP9iuprtXbFkSnXYL
-	d5o8qhSULBhggjDzFpdTtYt1Zl5WBbRtHjGZVAvViIY/bra8kkLfGxHdpccjKbq2FajXeW77THK
-	5dzGhnGEN8PyI9a2IzUmblcswX8jR9ZP59iCsjQPIlyoqB93UE3ZsrC96D1wwzV0baPFfAFt+ZS
-	LEYmnDneQgRqkRHOr913V6pfaYDQ3cBEwNDl3MIxM25JepN095sa7ZELV9fpGNhj/YIrITB1eR+
-	RexBe0QBOjFIvRhhlzkPo=
-X-Google-Smtp-Source: AGHT+IH1kZMIQbcvz/AkhF5xVxViOePUrcgSUXzqMg2mlEpuTjv12GDP+FNhK68LyJiGfMQXmrywGA==
-X-Received: by 2002:a05:6000:2584:b0:3e7:5edd:ce07 with SMTP id ffacd0b85a97d-3e7659f3bc0mr9211873f8f.40.1757850305268;
-        Sun, 14 Sep 2025 04:45:05 -0700 (PDT)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ea21a6e4basm1503252f8f.11.2025.09.14.04.45.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 04:45:04 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] pinctrl: samsung: add exynos8890 SoC pinctrl configuration
-Date: Sun, 14 Sep 2025 14:44:57 +0300
-Message-ID: <20250914114457.2610013-4-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250914114457.2610013-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250914114457.2610013-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1757850989; c=relaxed/simple;
+	bh=72P1XeE7gCDZuUaE9HGq0KcOlPy2jCWwmfe+8Bijb1Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LcJ8QnyiipowvZ9epvNovAmKiy4CKq5SBO3oOsQbPBB8Qda8zorIOqyo5yA1pUb6QbZLLiRhuNw+fMXoBCBtEGHVK7zk3IzV733CoO7ZpM7+XqjDSE3yuneusEc0zLzXIs1OiY7wSKGcrNtQysH3a2dHBn6A85S6Tsp4MdnxJYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ol+Jb1WD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DCCDC4CEF0;
+	Sun, 14 Sep 2025 11:56:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757850989;
+	bh=72P1XeE7gCDZuUaE9HGq0KcOlPy2jCWwmfe+8Bijb1Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ol+Jb1WDabHGqEYRRuzYJnuUlxI0TPcRedF4LOzhRwy8qt4x/RgCwK7skMLAwSCSh
+	 kZUkFrMXD36Md5U34jeUcfO8IsPsChQea4GO3wSj6dgx8rn0TDd0HQoUGmVtT5Jm7w
+	 4vbO2KEvBayBBL0avTBS1NNFdxwC06aRJ3zBRaFGXdgg59vBDvifFKbvWJV/W8zhJs
+	 h3JFikHNdItKWRo559a/vTFqgiVliY+2fJdgzM8XEPmEB2JiOHbpvs3YlcflCt+R/7
+	 XiqGeb2dS0XeZBx7XaJNdBDxXpg6OqUGJCvXInpFKLUIh1gsjUw2C7plVitmtAaXSt
+	 EMbSMqiD9WL/w==
+Message-ID: <21e78a0c-f1fd-4476-9553-c3890d05b635@kernel.org>
+Date: Sun, 14 Sep 2025 13:56:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 16/16] dt-bindings: Add Google Kinfo
+To: Eugen Hristev <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, tglx@linutronix.de,
+ andersson@kernel.org, pmladek@suse.com, rdunlap@infradead.org,
+ corbet@lwn.net, david@redhat.com, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-17-eugen.hristev@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250912150855.2901211-17-eugen.hristev@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for the pin-controller found on the exynos8890 SoC, used in
-Samsung Galaxy S7.
+On 12/09/2025 17:08, Eugen Hristev wrote:
+> Add documentation for Google Kinfo kmemdump backend driver.
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> ---
+>  .../bindings/misc/google,kinfo.yaml           | 36 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/google,kinfo.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/google,kinfo.yaml b/Documentation/devicetree/bindings/misc/google,kinfo.yaml
+> new file mode 100644
+> index 000000000000..b1e4fac43586
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/google,kinfo.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/google,kinfo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google Pixel Kinfo debug driver
+> +
+> +maintainers:
+> +  - Eugen Hristev <eugen.hristev@linaro.org>
+> +
+> +description:
+> +  The Google Pixel Kinfo debug driver uses a supplied reserved memory area
+> +  to save debugging information on the running kernel.
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 157 ++++++++++++++++++
- drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
- drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
- 3 files changed, 160 insertions(+)
 
-diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-index 5fe7c4b9f..901047a72 100644
---- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-+++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-@@ -1476,6 +1476,163 @@ const struct samsung_pinctrl_of_match_data exynosautov920_of_data __initconst =
- 	.num_ctrl	= ARRAY_SIZE(exynosautov920_pin_ctrl),
- };
- 
-+/* pin banks of exynos8890 pin-controller 0 (ALIVE) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks0[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS7870_PIN_BANK_EINTW(8, 0x000, "gpa0", 0x00),
-+	EXYNOS7870_PIN_BANK_EINTW(8, 0x020, "gpa1", 0x04),
-+	EXYNOS7870_PIN_BANK_EINTW(8, 0x040, "gpa2", 0x08),
-+	EXYNOS7870_PIN_BANK_EINTW(8, 0x060, "gpa3", 0x0c),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 1 (AUD) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks1[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(7, 0x000, "gph0", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 2 (CCORE) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks2[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(2, 0x000, "etc0", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 3 (ESE) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks3[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(5, 0x000, "gpf3", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 4 (FP) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks4[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x000, "gpf2", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 5 (FSYS0) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks5[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x000, "gpi1", 0x00),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x020, "gpi2", 0x04),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 6 (FSYS1) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks6[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(7, 0x000, "gpj0", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 7 (NFC) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks7[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(3, 0x000, "gpf0", 0x00),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 8 (PERIC0) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks8[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(6, 0x000, "gpi0", 0x00),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x020, "gpd0", 0x04),
-+	EXYNOS8895_PIN_BANK_EINTG(6, 0x040, "gpd1", 0x08),
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x060, "gpd2", 0x0c),
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x080, "gpd3", 0x10),
-+	EXYNOS8895_PIN_BANK_EINTG(2, 0x0A0, "gpb1", 0x14),
-+	EXYNOS8895_PIN_BANK_EINTG(2, 0x0C0, "gpb2", 0x18),
-+	EXYNOS8895_PIN_BANK_EINTG(3, 0x0E0, "gpb0", 0x1c),
-+	EXYNOS8895_PIN_BANK_EINTG(5, 0x100, "gpc0", 0x20),
-+	EXYNOS8895_PIN_BANK_EINTG(5, 0x120, "gpc1", 0x24),
-+	EXYNOS8895_PIN_BANK_EINTG(6, 0x140, "gpc2", 0x28),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x160, "gpc3", 0x2c),
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x180, "gpk0", 0x30),
-+	EXYNOS8895_PIN_BANK_EINTG(7, 0x1A0, "etc1", 0x34),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 9 (PERIC1) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks9[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x000, "gpe0", 0x00),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x020, "gpe5", 0x04),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x040, "gpe6", 0x08),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x060, "gpj1", 0x0c),
-+	EXYNOS8895_PIN_BANK_EINTG(2, 0x080, "gpj2", 0x10),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x0A0, "gpe2", 0x14),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x0C0, "gpe3", 0x18),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x0E0, "gpe4", 0x1c),
-+	EXYNOS8895_PIN_BANK_EINTG(8, 0x100, "gpe1", 0x20),
-+	EXYNOS8895_PIN_BANK_EINTG(4, 0x120, "gpe7", 0x24),
-+	EXYNOS8895_PIN_BANK_EINTG(3, 0x140, "gpg0", 0x28),
-+};
-+
-+/* pin banks of exynos8890 pin-controller 10 (TOUCH) */
-+static const struct samsung_pin_bank_data exynos8890_pin_banks10[] __initconst = {
-+	/* Must start with EINTG banks, ordered by EINT group number. */
-+	EXYNOS8895_PIN_BANK_EINTG(3, 0x000, "gpf1", 0x00),
-+};
-+
-+static const struct samsung_pin_ctrl exynos8890_pin_ctrl[] __initconst = {
-+	{
-+		/* pin-controller instance 0 Alive data */
-+		.pin_banks	= exynos8890_pin_banks0,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks0),
-+		.eint_wkup_init = exynos_eint_wkup_init,
-+	}, {
-+		/* pin-controller instance 1 AUD data */
-+		.pin_banks	= exynos8890_pin_banks1,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks1),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 2 CCORE data */
-+		.pin_banks	= exynos8890_pin_banks2,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks2),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 3 ESE data */
-+		.pin_banks	= exynos8890_pin_banks3,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks3),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 4 FP data */
-+		.pin_banks	= exynos8890_pin_banks4,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks4),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 5 FSYS0 data */
-+		.pin_banks	= exynos8890_pin_banks5,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks5),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 6 FSYS1 data */
-+		.pin_banks	= exynos8890_pin_banks6,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks6),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 7 NFC data */
-+		.pin_banks	= exynos8890_pin_banks7,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks7),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 8 PERIC0 data */
-+		.pin_banks	= exynos8890_pin_banks8,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks8),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 9 PERIC1 data */
-+		.pin_banks	= exynos8890_pin_banks9,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks9),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	}, {
-+		/* pin-controller instance 10 TOUCH data */
-+		.pin_banks	= exynos8890_pin_banks10,
-+		.nr_banks	= ARRAY_SIZE(exynos8890_pin_banks10),
-+		.eint_gpio_init = exynos_eint_gpio_init,
-+	},
-+};
-+
-+const struct samsung_pinctrl_of_match_data exynos8890_of_data __initconst = {
-+	.ctrl		= exynos8890_pin_ctrl,
-+	.num_ctrl	= ARRAY_SIZE(exynos8890_pin_ctrl),
-+};
-+
- /* pin banks of exynos8895 pin-controller 0 (ALIVE) */
- static const struct samsung_pin_bank_data exynos8895_pin_banks0[] __initconst = {
- 	EXYNOS_PIN_BANK_EINTW(8, 0x020, "gpa0", 0x00),
-diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
-index 24745e1d7..f58b7b10f 100644
---- a/drivers/pinctrl/samsung/pinctrl-samsung.c
-+++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
-@@ -1496,6 +1496,8 @@ static const struct of_device_id samsung_pinctrl_dt_match[] = {
- 		.data = &exynos7885_of_data },
- 	{ .compatible = "samsung,exynos850-pinctrl",
- 		.data = &exynos850_of_data },
-+	{ .compatible = "samsung,exynos8890-pinctrl",
-+		.data = &exynos8890_of_data },
- 	{ .compatible = "samsung,exynos8895-pinctrl",
- 		.data = &exynos8895_of_data },
- 	{ .compatible = "samsung,exynos9810-pinctrl",
-diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctrl/samsung/pinctrl-samsung.h
-index 1cabcbe14..4236d7ad8 100644
---- a/drivers/pinctrl/samsung/pinctrl-samsung.h
-+++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
-@@ -394,6 +394,7 @@ extern const struct samsung_pinctrl_of_match_data exynos7_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos7870_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos7885_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos850_of_data;
-+extern const struct samsung_pinctrl_of_match_data exynos8890_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos8895_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos9810_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos990_of_data;
--- 
-2.43.0
+Bindings should be for hardware, not drivers, so this does not belong to
+DT. It might be a dedicated reserved memory node, though.
 
+
+Best regards,
+Krzysztof
 
