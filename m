@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-216960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C45CB5696D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:45:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65575B56971
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA25318846C2
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:45:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 003D217B82C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 13:45:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038EA1F2361;
-	Sun, 14 Sep 2025 13:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA84202976;
+	Sun, 14 Sep 2025 13:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TITA8mok"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ERUlvflY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 087151DF755
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 13:45:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610991E9B0D
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 13:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757857526; cv=none; b=TNZbVmIfM3FioKq/okyFzppOh7yrkzLsu1MuZVEg86zOGhy34P6tEI5yn5x11eoaKRTl0f07kH9thTlJzz9lgsTNHhurfnWWzBhpzGyI0UJeLye4rsygC1p1FxSEe5WczdX6vXewNXpQt02IPMSuWajzpu8/aSctRVyaG6pGMO4=
+	t=1757857528; cv=none; b=Yl2Bs0FPobgQZClppNbTEe5Bkob84f+1BnxaWrqYvMSf5QVrOLcWI3IMQOmJCVq9htFHIR8tgEB57mowIi4tlf+P6B8R8dcTq3EYSnl2NO98QZPp740hRIP59aKIh5aE1GpeJIpK+X3qXc9p8kzhFYeISyQ/YHPtfgChZzMS2JY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757857526; c=relaxed/simple;
-	bh=ZyIwDRc1karmnPZqugX4+B0QPTIr0vD/Nuuu4fYp4xo=;
+	s=arc-20240116; t=1757857528; c=relaxed/simple;
+	bh=mhlqPe+rYAdqQ2489lVPW8Nz3WhM6I/OuGV4Y0trFXw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QSuoHW82npcvHrdm/FIsNaG3e22s6ZVFp/5jNA/WxgaxfiI5ng2MCMpc3fjo61T9rGClpiJHx7VGytjyQAGi2VY/07AhI5O/d8A1RdOkx4eHb3Cvp8y79tDKxCbAW6VghOAnQj/rlXzC27DGabfd0AeZFHQqF7QU0LvaBiBIVqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TITA8mok; arc=none smtp.client-ip=209.85.128.41
+	 MIME-Version; b=S4lD2NGx4vf5xjOcQFFJdbk3FGpwshoxFo/psHyxcBg+rwUYwRRoa6MpGTnIA/cyDImhscE3tgDHNmH0dYmMqZSUCW1BPWC/56Id9NZhR8KH8VeOXQD4s6fVUVXDf/lEEBiUM1rcV05tFKcWcOXj99vzKLX8+v0FUfjcAHdWJhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ERUlvflY; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45f2c9799a3so1365075e9.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 06:45:24 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3e98c5adbbeso235093f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 06:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757857523; x=1758462323; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757857525; x=1758462325; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PV3zHUbx1e+LhTjQHrHCchQZpY4e/gFltYNW4sD9Hjk=;
-        b=TITA8mokEpQ+xw1RuF9qNrXl6uFUthDmKm4Ef0GjSZNpOkGDeaiaf869+vs0h4kO6N
-         VbeQ4U2VH+JlCsfbIdplbgh+6pcvdIUI8EwxFpYTQ+VeinTdUivwAUzRwYi6UMsf8fj1
-         K1MBFMPwHfvF61SLBvn1JdbeqqDHfIFsT7U3zvGGx+iDOdchPu9sjvNACg/S3RY756Sg
-         iOWc15//SWy0b0U9Un8PRaWvUaZ+hhc4lzzKY34yiFImJs+o+cTd74cCdXql+WdKLAae
-         T7/6UnCrzAoq0DBYjX36T4rUKtyYcUlGB2F2FpX2KHmTa6M7HGhVRLS+8xA0fQAxuEBL
-         y6nw==
+        bh=z1C66At/iPHB+YbOfF0ahn3G5fgbhry39+iH3jn1wwY=;
+        b=ERUlvflYYGBSummwCm8InAPQRET0dtwD/5uN0cuclq8KZ3CLDl4+sTxsmUbflhnPMV
+         9/4vYIWQqDSPg1rxk8v+o5x/pZqIhdKJrM/WePAIg5SlbiuwRLM4P+sgB0QQ5c5T5nAs
+         J8ftvydhVckkrs3/0wGldr0jJc31gEJc/frwyA3F0ypmPVPPSWp+2BN58tu2gT4WzQtq
+         /AcAl9m+IcduahL+q3/Im+atrB/9/YJO2r8PLK/3trK0YxHK8Ff29ctZWpgEpcGTPbJu
+         EtNVqpIk/m6HuScJ8Wchfa9CxW2RqFiyAfTMtVlY9lqsukdsp8Goj8kNtGhaH8Q4BjzS
+         I5ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757857523; x=1758462323;
+        d=1e100.net; s=20230601; t=1757857525; x=1758462325;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PV3zHUbx1e+LhTjQHrHCchQZpY4e/gFltYNW4sD9Hjk=;
-        b=IsxHCNnLqC5kW2icr4KBQMiiRjq+2Mw2z4pY4HI3YpA1Lf7PyPg7RfH0kiVHcVc+He
-         q9Car+ojrEebFETtHuXgNn430VpFCOg556DVwSSvL8PGRMUFc2nmIEf8U5oxDKg0jXFz
-         Qk638yvPwjZ1zfJQR4TBKp9SymuNUSI9F6u7hUctp3bx4YvG4560Rg8h8JipyT4QI2v+
-         Ie8IzH++Xa8j3Ys+LBkvn6V/DFWTjRX3CMH3nScq2oRBhGa5FoGGVNCCXHdgS4DJP1+x
-         9iUkOgyime6yZYB5qVDE+4JLW+gjQcd3vbcFHUI/GfEKnJ6aXxEEdjW4PFQHRsN2U38B
-         +hUg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9dGc3lTfVKMzVeBkSBcNwtsQfoxTceVTeJ/e9Q+GAlb6zbeqyIvkOnjOxEMWGGE68S/6xlc/NOdK2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGa6fsKKJ9/TpcIFefVVCIe9y1SUauiWai340r0u6mU5jXos6l
-	mCcDHpQbDkUVblGaoecTvZOBIVksxqhYnCDZTTOt8FSPDuMroU/ugB0q
-X-Gm-Gg: ASbGncuMvf3c65bnSpi1BJ6EZIO4LTcPoHwsOP9/S30K6Vv1zkgzcvdc+fD208wOSTD
-	HzUJOq6Vw3ekNeBJKvTrQPSIJKT7Ic0T8dH6xveMoPToZHntDAzmFtUcxY1twVIUmWxm/UmiruD
-	vohee6F8Q8mtV8kfxPEAFkmbmVDjzFFSDyy+Ej/0hqApR5nDUlcEWVgFI58c36VsOYQS6eb2FuT
-	Sl4b/pGGeBFB3qlNwx0kpx9Ft8l0Or2zWEDGJcaQMJoJ/Zwt39w1ky5cqox8Er4SdBhuxPTgmwU
-	TjJ9iEt7+niYAqKvWn9333PvgabrZrbTS9jDAAaABAyV1QryiMdkOeFfVxxeNS93XR/TI8WVefp
-	JGdhC9BbsFxzACFbNeTKJLDCrGcz8db5T9Ziuu/tXHQ68G3zgSdZGxamXWAVyrJr7B1r+tbzpzG
-	mlewpVoI5U
-X-Google-Smtp-Source: AGHT+IH4PxlS+eMu4I7zsqkF333IE4ZBIXWlFwsih4mbbMUXY1y5US4lIdGFnDdmKTKa+deYcjSRTg==
-X-Received: by 2002:a05:6000:2408:b0:3b8:d360:336f with SMTP id ffacd0b85a97d-3e7658c1c6emr8490202f8f.28.1757857523258;
-        Sun, 14 Sep 2025 06:45:23 -0700 (PDT)
+        bh=z1C66At/iPHB+YbOfF0ahn3G5fgbhry39+iH3jn1wwY=;
+        b=t2TR7RL+iEUAHEG38f7D78UoT2Fp+iqGiwsLMB5IiZlUPC8r5wfK3jYBZT3tjX2YSI
+         ZtrNWEPNxMbnPUQmMsXBaReVimzR6LNqRYhg0dNqZJN1rKxA6MlUAmJnkTi6fxz83sYl
+         0oNct+zss9w+BC13e/1KCsO12bwYRsVnAUqBQGNlcoLYP/W6Nzdui83Uz3C9529AXa9h
+         NLvDXO6W+btIV6tWQq52ouKZa+RFDSsFYeCtZXv5bjUf8Kx6hhMwjHAiZuWYO0rPVYA2
+         VOuLocRD9d7BvCRGZONPwT+sDPtqUwY5VE3yY5nHmyoCjo9/tIxeu8vNnHz0dytFGOf9
+         vXBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUt/ZafL8VrMFqT50u+fXEhLMMfiAlz7klDjRtE1z2bBcD46DdtUKjHgtYxr+NLBWtibXGEY51AS194@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxou58dESRr4RBFH22VYPRmXGoiK4nXYRS5QWSbk07rmx+eXxEP
+	nWQso5/OkRMFeuIJ9vEHmcanTv1q8qgtJXDc4EYVhu2WZJp1GjGUGa3X8lkXlg==
+X-Gm-Gg: ASbGnctuxtjWz1ynQJZdUbVjnw2ufA0AIM3QvY440OrKAytaNLALS1EMfYO1rR8RIqV
+	0i/o7RaLfnkhf50ajDCZWJWLYFYhQgHWPwaQnrDm0dr0o5JXslglzcjgbL2XbnNl58lepAalYHL
+	HCQtXjm3wkCT4qwRh7fjwH9KjnqP0Jeun/LY2ijNPbppMelQ78LPWL36hGruWrntobjrfvKdbBK
+	zRpwUD6S20EetwDMRqzoYH86a305fjNLXVE0JQfCettuyC2jpTWqmUs+GGpsKGmV8tXqjPF96RJ
+	T0W5pCAoU/za0yHNYcZlfK/em2AGiu8hPb1/fR9z60/UrmrVhGc9rXraVcSIL2PeMaHgyxt7r2D
+	pw/aJ9Th1YH3JNzuepATdsdbHfdA38qvZ7A22NCLqKWwsKStse7cOimkYHFCx0tIk6q4iLE9m62
+	TQ+cynuVk2
+X-Google-Smtp-Source: AGHT+IGY5Y2KTdaZaAd3HnAGXpedRNw4b12KEMkqN57ZikiQBKfKGS5CdY+ghvCof9iN933uImvqEQ==
+X-Received: by 2002:a05:6000:22ca:b0:3e9:2fea:6795 with SMTP id ffacd0b85a97d-3e92fea6b35mr2699385f8f.53.1757857524471;
+        Sun, 14 Sep 2025 06:45:24 -0700 (PDT)
 Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ea4b52b7fcsm1467591f8f.33.2025.09.14.06.45.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ea4b52b7fcsm1467591f8f.33.2025.09.14.06.45.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 06:45:22 -0700 (PDT)
+        Sun, 14 Sep 2025 06:45:24 -0700 (PDT)
 From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -85,9 +85,9 @@ Cc: linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: input: document Samsung A552 touchscreen controller
-Date: Sun, 14 Sep 2025 16:44:56 +0300
-Message-ID: <20250914134458.2624176-2-ivo.ivanov.ivanov1@gmail.com>
+Subject: [PATCH v1 2/2] Input: s6sa552 - add a driver for the Samsung A552 touchscreen controller
+Date: Sun, 14 Sep 2025 16:44:57 +0300
+Message-ID: <20250914134458.2624176-3-ivo.ivanov.ivanov1@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250914134458.2624176-1-ivo.ivanov.ivanov1@gmail.com>
 References: <20250914134458.2624176-1-ivo.ivanov.ivanov1@gmail.com>
@@ -99,75 +99,516 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document the Samsung A552 touchscreen controller, present in devices like
-the Samsung Galaxy S7.
+The S6SA552 touchscreen is a capacitive multi-touch controller for
+mobile use. It connects via i2c at the address 0x48.
+
+Introduce a basic driver, which can handle initialization, touch events
+and power states.
+
+At least the firmware for this IC on Galaxy S7 differs from S6SY761
+in register layout and bits, as well as some missing registers/functions,
+for example for retrieving the max X/Y coordinates and the amount
+of TX/RX channels.
 
 Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- .../input/touchscreen/samsung,s6sa552.yaml    | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/samsung,s6sa552.yaml
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sa552.yaml b/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sa552.yaml
+---
+Samsung almost completely didn't mention the IC name in the vendor
+drivers.. I retrieved it from a fw-update function that checks a
+firmware bit and matches it with an IC model string. Otherwise
+everywhere else it's called sec_ts. I believe the main difference
+between samsung touchscreen controllers is the firmware they're
+running on, but this one is a bit different from s6sy761, featuring
+different registers and bits, as well as some missing features. I
+went with calling it s6sa552 to follow the "s6s" convention, because
+as far as I know, s6sy661 also exists, and the important part is after
+"s6s".
+---
+ drivers/input/touchscreen/Kconfig   |  11 +
+ drivers/input/touchscreen/Makefile  |   1 +
+ drivers/input/touchscreen/s6sa552.c | 439 ++++++++++++++++++++++++++++
+ 3 files changed, 451 insertions(+)
+ create mode 100644 drivers/input/touchscreen/s6sa552.c
+
+diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+index 196905162..2d65dd13e 100644
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -505,6 +505,17 @@ config TOUCHSCREEN_IPROC
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called bcm_iproc_tsc.
+ 
++config TOUCHSCREEN_S6SA552
++	tristate "Samsung S6SA552 Touchscreen driver"
++	depends on I2C
++	help
++	  Say Y if you have the Samsung S6SA552 driver
++
++	  If unsure, say N
++
++	  To compile this driver as module, choose M here: the
++	  module will be called s6sa552.
++
+ config TOUCHSCREEN_S6SY761
+ 	tristate "Samsung S6SY761 Touchscreen driver"
+ 	depends on I2C
+diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+index 97a025c6a..d3be3e21a 100644
+--- a/drivers/input/touchscreen/Makefile
++++ b/drivers/input/touchscreen/Makefile
+@@ -77,6 +77,7 @@ obj-$(CONFIG_TOUCHSCREEN_PCAP)		+= pcap_ts.o
+ obj-$(CONFIG_TOUCHSCREEN_PENMOUNT)	+= penmount.o
+ obj-$(CONFIG_TOUCHSCREEN_PIXCIR)	+= pixcir_i2c_ts.o
+ obj-$(CONFIG_TOUCHSCREEN_RM_TS)		+= raydium_i2c_ts.o
++obj-$(CONFIG_TOUCHSCREEN_S6SA552)	+= s6sa552.o
+ obj-$(CONFIG_TOUCHSCREEN_S6SY761)	+= s6sy761.o
+ obj-$(CONFIG_TOUCHSCREEN_SILEAD)	+= silead.o
+ obj-$(CONFIG_TOUCHSCREEN_SIS_I2C)	+= sis_i2c.o
+diff --git a/drivers/input/touchscreen/s6sa552.c b/drivers/input/touchscreen/s6sa552.c
 new file mode 100644
-index 000000000..af151e245
+index 000000000..32ef338de
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sa552.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/samsung,s6sa552.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/input/touchscreen/s6sa552.c
+@@ -0,0 +1,439 @@
++// SPDX-License-Identifier: GPL-2.0
++// Samsung S6SA552 Touchscreen device driver
++//
++// Copyright (c) 2025 Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
++//
++// Based on the s6sy761 driver:
++//   Copyright (c) 2017 Samsung Electronics Co., Ltd.
++//   Copyright (c) 2017 Andi Shyti <andi@etezian.org>
 +
-+title: Samsung S6SA552 touchscreen controller
++#include <linux/unaligned.h>
++#include <linux/delay.h>
++#include <linux/i2c.h>
++#include <linux/input/mt.h>
++#include <linux/input/touchscreen.h>
++#include <linux/interrupt.h>
++#include <linux/irq.h>
++#include <linux/module.h>
++#include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
 +
-+maintainers:
-+  - Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
++/* commands */
++#define S6SA552_SENSE_ON		0x40
++#define S6SA552_SENSE_OFF		0x41
++#define S6SA552_TOUCH_FUNCTION		0x63
++#define S6SA552_DEVICE_ID		0x52
++#define S6SA552_BOOT_STATUS		0x55
++#define S6SA552_READ_ONE_EVENT		0x71
++#define S6SA552_CLEAR_EVENT_STACK	0x60
++#define S6SA552_PANEL_INFO		0x23
 +
-+allOf:
-+  - $ref: touchscreen.yaml#
++/* acknowledge events */
++#define S6SA552_EVENT_ACK_BOOT		0x0c
 +
-+properties:
-+  compatible:
-+    const: samsung,s6sa552
++/* status event types */
++#define S6SA552_EVENT_TYPE_ACK		0x01
++#define S6SA552_EVENT_TYPE_ERR		0x02
++#define S6SA552_EVENT_TYPE_INFO		0x03
++#define S6SA552_EVENT_TYPE_GEST		0x06
++#define S6SA552_EVENT_TYPE_SPONGE	0x5a
 +
-+  reg:
-+    maxItems: 1
++/* boot status (BS) */
++#define S6SA552_BS_APPLICATION		0x20
 +
-+  interrupts:
-+    maxItems: 1
++/* event id */
++#define S6SA552_EVENT_ID_COORDINATE	0x01
++#define S6SA552_EVENT_ID_STATUS		0x00
 +
-+  avdd-supply: true
-+  vdd-supply: true
++/* event register masks */
++#define S6SA552_MASK_TID		0x0f  /* byte 1, lower 4 bits */
++#define S6SA552_MASK_NT			0xf0  /* byte 1, upper 4 bits */
++#define S6SA552_MASK_EID		0xc0  /* byte 0, bits 6-7 */
++#define S6SA552_MASK_TOUCH_STATE	0x07  /* byte 0, bits 0-2 */
++#define S6SA552_MASK_TOUCH_TYPE		0x38  /* byte 0, bits 3-5 */
 +
-+unevaluatedProperties: false
++/* touch states */
++#define S6SA552_TS_NONE			0x00
++#define S6SA552_TS_PRESS		0x01
++#define S6SA552_TS_MOVE			0x02
++#define S6SA552_TS_RELEASE		0x03
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - avdd-supply
-+  - vdd-supply
++#define S6SA552_EVENT_SIZE		8
++#define S6SA552_DEVID_SIZE		3
++#define S6SA552_PANEL_ID_SIZE		11
++#define S6SA552_MAX_FINGERS		10
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++/*
++ * Hardcoded values, since at least on herolte, the subid register doesn't
++ * read/exist.
++ */
++#define S6SA552_MAX_X			4095
++#define S6SA552_MAX_Y			4095
++#define S6SA552_TX_CHANNELS		16
 +
-+        touchscreen@48 {
-+            compatible = "samsung,s6sa552";
-+            reg = <0x48>;
-+            interrupt-parent = <&gpa1>;
-+            interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
-+            avdd-supply = <&ldo30_reg>;
-+            vdd-supply = <&ldo31_reg>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+        };
-+    };
++#define S6SA552_DEV_NAME		"s6sa552"
++
++enum s6sa552_regulators {
++	S6SA552_REGULATOR_VDD,
++	S6SA552_REGULATOR_AVDD,
++};
++
++struct s6sa552_data {
++	struct i2c_client *client;
++	struct regulator_bulk_data regulators[2];
++	struct input_dev *input;
++	struct touchscreen_properties prop;
++
++	u8 data[S6SA552_EVENT_SIZE];
++
++	u16 devid;
++	u8 tx_channel;
++};
++
++static void s6sa552_report_coordinates(struct s6sa552_data *sdata,
++				       u8 *event, u8 tid)
++{
++	u8 major = event[6];
++	u8 minor = event[7];
++	u8 z = event[5];
++	u16 x = (event[2] << 4) | ((event[4] >> 4) & 0x0F);
++	u16 y = (event[3] << 4) | (event[4] & 0x0F);
++
++	input_mt_slot(sdata->input, tid);
++
++	input_mt_report_slot_state(sdata->input, MT_TOOL_FINGER, true);
++	input_report_abs(sdata->input, ABS_MT_POSITION_X, x);
++	input_report_abs(sdata->input, ABS_MT_POSITION_Y, y);
++	input_report_abs(sdata->input, ABS_MT_TOUCH_MAJOR, major);
++	input_report_abs(sdata->input, ABS_MT_TOUCH_MINOR, minor);
++	input_report_abs(sdata->input, ABS_MT_PRESSURE, z);
++
++	input_sync(sdata->input);
++}
++
++static void s6sa552_report_release(struct s6sa552_data *sdata, u8 tid)
++{
++	input_mt_slot(sdata->input, tid);
++	input_mt_report_slot_state(sdata->input, MT_TOOL_FINGER, false);
++
++	input_sync(sdata->input);
++}
++
++static void s6sa552_handle_coordinates(struct s6sa552_data *sdata, u8 *event)
++{
++	u8 tid;
++	u8 touch_state;
++
++	if (unlikely(!(event[1] & S6SA552_MASK_TID)))
++		return;
++
++	tid = (event[1] & S6SA552_MASK_TID) - 1;
++	touch_state = event[0] & S6SA552_MASK_TOUCH_STATE;
++
++	switch (touch_state) {
++	case S6SA552_TS_PRESS:
++	case S6SA552_TS_MOVE:
++		s6sa552_report_coordinates(sdata, event, tid);
++		break;
++	case S6SA552_TS_RELEASE:
++		s6sa552_report_release(sdata, tid);
++		break;
++	case S6SA552_TS_NONE:
++	default:
++		break;
++	}
++}
++
++static irqreturn_t s6sa552_irq_handler(int irq, void *dev)
++{
++	struct s6sa552_data *sdata = dev;
++	int ret;
++	u8 event_id;
++
++	ret = i2c_smbus_read_i2c_block_data(sdata->client,
++					    S6SA552_READ_ONE_EVENT,
++					    S6SA552_EVENT_SIZE,
++					    sdata->data);
++	if (ret < 0) {
++		dev_err(&sdata->client->dev, "failed to read event\n");
++		return IRQ_HANDLED;
++	}
++
++	if (!sdata->data[0])
++		return IRQ_HANDLED;
++
++	event_id = sdata->data[0] >> 6;
++
++	switch (event_id) {
++	case S6SA552_EVENT_ID_COORDINATE:
++		s6sa552_handle_coordinates(sdata, sdata->data);
++		break;
++	case S6SA552_EVENT_ID_STATUS:
++		break;
++	default:
++		break;
++	}
++
++	return IRQ_HANDLED;
++}
++
++static int s6sa552_input_open(struct input_dev *dev)
++{
++	struct s6sa552_data *sdata = input_get_drvdata(dev);
++
++	return i2c_smbus_write_byte(sdata->client, S6SA552_SENSE_ON);
++}
++
++static void s6sa552_input_close(struct input_dev *dev)
++{
++	struct s6sa552_data *sdata = input_get_drvdata(dev);
++	int ret;
++
++	ret = i2c_smbus_write_byte(sdata->client, S6SA552_SENSE_OFF);
++	if (ret)
++		dev_err(&sdata->client->dev, "failed to turn off sensing\n");
++}
++
++static ssize_t s6sa552_sysfs_devid(struct device *dev,
++				   struct device_attribute *attr, char *buf)
++{
++	struct s6sa552_data *sdata = dev_get_drvdata(dev);
++
++	return sprintf(buf, "%#x\n", sdata->devid);
++}
++
++static DEVICE_ATTR(devid, 0444, s6sa552_sysfs_devid, NULL);
++
++static struct attribute *s6sa552_sysfs_attrs[] = {
++	&dev_attr_devid.attr,
++	NULL
++};
++ATTRIBUTE_GROUPS(s6sa552_sysfs);
++
++static int s6sa552_power_on(struct s6sa552_data *sdata)
++{
++	u8 buffer[S6SA552_EVENT_SIZE];
++	int ret;
++
++	ret = regulator_bulk_enable(ARRAY_SIZE(sdata->regulators),
++				    sdata->regulators);
++	if (ret)
++		return ret;
++
++	msleep(140);
++
++	/* double check whether the touch is functional */
++	ret = i2c_smbus_read_i2c_block_data(sdata->client,
++					    S6SA552_READ_ONE_EVENT,
++					    S6SA552_EVENT_SIZE,
++					    buffer);
++	if (ret < 0)
++		return ret;
++
++	if (buffer[0] != S6SA552_EVENT_TYPE_ACK ||
++	    buffer[1] != S6SA552_EVENT_ACK_BOOT) {
++		return -ENODEV;
++	}
++
++	ret = i2c_smbus_read_byte_data(sdata->client, S6SA552_BOOT_STATUS);
++	if (ret < 0)
++		return ret;
++
++	/* for some reasons the device might be stuck in the bootloader */
++	if (ret != S6SA552_BS_APPLICATION)
++		return -ENODEV;
++
++	/* enable touch functionality */
++	ret = i2c_smbus_write_byte_data(sdata->client,
++					S6SA552_TOUCH_FUNCTION, 0x01);
++	if (ret)
++		return ret;
++
++	mdelay(20); /* make sure everything is up */
++
++	return 0;
++}
++
++static int s6sa552_hw_init(struct s6sa552_data *sdata)
++{
++	u8 buffer[S6SA552_DEVID_SIZE];
++	int ret;
++
++	ret = s6sa552_power_on(sdata);
++	if (ret)
++		return ret;
++
++	ret = i2c_smbus_read_i2c_block_data(sdata->client,
++					    S6SA552_DEVICE_ID,
++					    S6SA552_DEVID_SIZE,
++					    buffer);
++	if (ret < 0)
++		return ret;
++
++	sdata->devid = get_unaligned_be16(buffer + 1);
++
++	return 0;
++}
++
++static void s6sa552_power_off(void *data)
++{
++	struct s6sa552_data *sdata = data;
++
++	disable_irq(sdata->client->irq);
++	regulator_bulk_disable(ARRAY_SIZE(sdata->regulators),
++			       sdata->regulators);
++}
++
++static int s6sa552_probe(struct i2c_client *client)
++{
++	struct s6sa552_data *sdata;
++	int err;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
++						I2C_FUNC_SMBUS_BYTE_DATA |
++						I2C_FUNC_SMBUS_I2C_BLOCK))
++		return -ENODEV;
++
++	sdata = devm_kzalloc(&client->dev, sizeof(*sdata), GFP_KERNEL);
++	if (!sdata)
++		return -ENOMEM;
++
++	i2c_set_clientdata(client, sdata);
++	sdata->client = client;
++
++	sdata->regulators[S6SA552_REGULATOR_VDD].supply = "vdd";
++	sdata->regulators[S6SA552_REGULATOR_AVDD].supply = "avdd";
++	err = devm_regulator_bulk_get(&client->dev,
++				      ARRAY_SIZE(sdata->regulators),
++				      sdata->regulators);
++	if (err)
++		return err;
++
++	err = devm_add_action_or_reset(&client->dev, s6sa552_power_off, sdata);
++	if (err)
++		return err;
++
++	err = s6sa552_hw_init(sdata);
++	if (err)
++		return err;
++
++	sdata->input = devm_input_allocate_device(&client->dev);
++	if (!sdata->input)
++		return -ENOMEM;
++
++	sdata->input->name = S6SA552_DEV_NAME;
++	sdata->input->id.bustype = BUS_I2C;
++	sdata->input->open = s6sa552_input_open;
++	sdata->input->close = s6sa552_input_close;
++
++	input_set_abs_params(sdata->input, ABS_MT_POSITION_X, 0, S6SA552_MAX_X,
++			     0, 0);
++	input_set_abs_params(sdata->input, ABS_MT_POSITION_Y, 0, S6SA552_MAX_Y,
++			     0, 0);
++	input_set_abs_params(sdata->input, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
++	input_set_abs_params(sdata->input, ABS_MT_TOUCH_MINOR, 0, 255, 0, 0);
++	input_set_abs_params(sdata->input, ABS_MT_PRESSURE, 0, 255, 0, 0);
++
++	touchscreen_parse_properties(sdata->input, true, &sdata->prop);
++
++	if (!input_abs_get_max(sdata->input, ABS_X) ||
++	    !input_abs_get_max(sdata->input, ABS_Y)) {
++		dev_warn(&client->dev, "the axis have not been set\n");
++	}
++
++	err = input_mt_init_slots(sdata->input, S6SA552_TX_CHANNELS,
++				  INPUT_MT_DIRECT);
++	if (err)
++		return err;
++
++	input_set_drvdata(sdata->input, sdata);
++
++	err = input_register_device(sdata->input);
++	if (err)
++		return err;
++
++	err = devm_request_threaded_irq(&client->dev, client->irq, NULL,
++					s6sa552_irq_handler,
++					IRQF_TRIGGER_LOW | IRQF_ONESHOT,
++					"s6sa552_irq", sdata);
++	if (err)
++		return err;
++
++	pm_runtime_enable(&client->dev);
++
++	return 0;
++}
++
++static void s6sa552_remove(struct i2c_client *client)
++{
++	pm_runtime_disable(&client->dev);
++}
++
++static int s6sa552_runtime_suspend(struct device *dev)
++{
++	struct s6sa552_data *sdata = dev_get_drvdata(dev);
++
++	return i2c_smbus_write_byte(sdata->client, S6SA552_SENSE_OFF);
++}
++
++static int s6sa552_runtime_resume(struct device *dev)
++{
++	struct s6sa552_data *sdata = dev_get_drvdata(dev);
++
++	return i2c_smbus_write_byte(sdata->client, S6SA552_SENSE_ON);
++}
++
++static int s6sa552_suspend(struct device *dev)
++{
++	struct s6sa552_data *sdata = dev_get_drvdata(dev);
++
++	s6sa552_power_off(sdata);
++
++	return 0;
++}
++
++static int s6sa552_resume(struct device *dev)
++{
++	struct s6sa552_data *sdata = dev_get_drvdata(dev);
++
++	enable_irq(sdata->client->irq);
++
++	return s6sa552_power_on(sdata);
++}
++
++static const struct dev_pm_ops s6sa552_pm_ops = {
++	SYSTEM_SLEEP_PM_OPS(s6sa552_suspend, s6sa552_resume)
++	RUNTIME_PM_OPS(s6sa552_runtime_suspend, s6sa552_runtime_resume, NULL)
++};
++
++#ifdef CONFIG_OF
++static const struct of_device_id s6sa552_of_match[] = {
++	{ .compatible = "samsung,s6sa552", },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, s6sa552_of_match);
++#endif
++
++static const struct i2c_device_id s6sa552_id[] = {
++	{ "s6sa552" },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, s6sa552_id);
++
++static struct i2c_driver s6sa552_driver = {
++	.driver = {
++		.name = S6SA552_DEV_NAME,
++		.dev_groups = s6sa552_sysfs_groups,
++		.of_match_table = of_match_ptr(s6sa552_of_match),
++		.pm = pm_ptr(&s6sa552_pm_ops),
++	},
++	.probe = s6sa552_probe,
++	.remove = s6sa552_remove,
++	.id_table = s6sa552_id,
++};
++
++module_i2c_driver(s6sa552_driver);
++
++MODULE_AUTHOR("Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>");
++MODULE_DESCRIPTION("Samsung S6SA552 Touch Screen");
++MODULE_LICENSE("GPL");
 -- 
 2.43.0
 
