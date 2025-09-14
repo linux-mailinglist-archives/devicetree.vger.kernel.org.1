@@ -1,47 +1,46 @@
-Return-Path: <devicetree+bounces-216998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A1FB56A61
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:59:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C4FB56A66
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 17:59:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 874B97A31C7
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:57:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A00084212A8
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 15:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2476B2DF155;
-	Sun, 14 Sep 2025 15:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88112DFA2D;
+	Sun, 14 Sep 2025 15:58:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6192DF152
-	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99EBB2DE1E4
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 15:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757865478; cv=none; b=OZfjbiwxB4SktfUDn8AriBeDBL/wmEnWlnMoVD1S2mAO8+BVOubszI+J/0xPYU9ukoY4lLuUOlNq7KyUMOytwRSo7YLatU4bsfgL8htKtz+jLrbBRsl15nyTQEevab6uczUA674RVQnOwsT9m9BtQtl6uKU1FExpXUvkl2ZZO9U=
+	t=1757865482; cv=none; b=nGm66iCoOjiDcW4XMcbku7dbJlfNySlh4WZR3S7triiFKyrFhj9raak+Tviz9T3wXonsYoZLtERRLigSDXOQPm3TAgoru4hMu600D/t+YuDFEfU6hvrwxVQrQUyy269Rxi+lzIj86oXcUNGTz5io4AMFOQQb1Fx+Gldt9OzV2ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757865478; c=relaxed/simple;
-	bh=g+j9G1JMFQCaEoE45GeD1Bv7WIV+89CDkBoMBn+Pu+8=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NpT3zoc2bVLXTntqd+ANX4vXXednDrwq1Klh9R9S16p3FUoDuo4fQXXILH6V5NkuNk9/TC04gvBb9w9Y+wsVy7lx5m6/xMh/XryqgbSL++1tpGzpuk8hVIgGktokJzMKLkhgpbfnfwX/oUxbaN3R72nRiUeg+Yx4BCJBUSUowVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+	s=arc-20240116; t=1757865482; c=relaxed/simple;
+	bh=+iv5zRGMLQo5WENFMbbcB6yHAuv5xbx2teATjhd7cMM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=JCEzjWiwKBYV4g3jRPrn5makrUMlpH1dukGcfanBP0TvO41jnHnb+J98nffW/b3NtGvDTGURUkOSqCNfdWcYPCStu8i5s68Idt60n38umNYnrlCTSsTtxLo3kYFkDTOETv28BRfWfvNDq9qkcs5xixOQVNgIJmyvjJIjSTD30/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip2t1757865428tf0424ebf
-X-QQ-Originating-IP: LpRcLqKqEQW4gJd0Jj2vgVXF0NfCzSUTf3ehn9L04pI=
+X-QQ-mid: zesmtpip2t1757865431t0c66b8ab
+X-QQ-Originating-IP: S7nT+GMUYRpDXn7Z8+1Fwd49cQqEch6LdR1e2x1FIPg=
 Received: from [192.168.30.36] ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 14 Sep 2025 23:57:06 +0800 (CST)
+	id ; Sun, 14 Sep 2025 23:57:10 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16197753940588448195
+X-BIZMAIL-ID: 2342445468012948641
 EX-QQ-RecipientCnt: 13
 From: Xilin Wu <sophon@radxa.com>
-Subject: [PATCH v2 0/5] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
- Q6A
-Date: Sun, 14 Sep 2025 23:57:03 +0800
-Message-Id: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+Date: Sun, 14 Sep 2025 23:57:04 +0800
+Subject: [PATCH v2 1/5] dt-bindings: arm: qcom: Add Radxa Dragon Q6A
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +49,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAM/lxmgC/32NTQ6CMBBGr0Jm7RhaIxFX3oOwKJ0pdCGVKRIM4
- e7WunDn8r18PxtEFs8RrsUGwouPPowJ9KEAO5ixZ/SUGHSpz2WtNIqh1SCJ6cOIU2WQmSyxcSe
- uKki1h7Dza55s2i8LT8+0PP/k4OMc5JVvF/Wxfx4WhSVerKXO1ZZU3d1y5GjDHdp9399d5WTMx
- QAAAA==
-X-Change-ID: 20250912-radxa-dragon-q6a-eedcdeaf3e66
+Message-Id: <20250914-radxa-dragon-q6a-v2-1-045f7e92b3bb@radxa.com>
+References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+In-Reply-To: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -65,101 +62,58 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, Xilin Wu <sophon@radxa.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757865427; l=2489;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757865427; l=921;
  i=sophon@radxa.com; s=20240424; h=from:subject:message-id;
- bh=g+j9G1JMFQCaEoE45GeD1Bv7WIV+89CDkBoMBn+Pu+8=;
- b=7zH0Wwjb3cig4yRvdk+es+6VSXRwI4Nntabwg8cndC6aAPDHUgzyyv2ZBGIetezr8UXoCL+Rf
- 4mPRPiUilZjCAq6+8TkoH8KMcOf5V7y1+K/w2Ejl5HrYkiYfjppBK2C
+ bh=+iv5zRGMLQo5WENFMbbcB6yHAuv5xbx2teATjhd7cMM=;
+ b=lIBliRBEifCegCHHvAD3Ro5Lo7s+VC/wQ3Xd/SUpe+Yz2/Go5nVIGWfUbpC3sVa6K8cY9J4Nm
+ onNzwi2QWyNDWBX2+bOY+GKV5rs6ZmEaOjODsQCuIqCBHS8zWlD6LKT
 X-Developer-Key: i=sophon@radxa.com; a=ed25519;
  pk=vPnxeJnlD/PfEbyQPZzaay5ezxI/lMrke7qXy31lSM8=
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MSyoPQEuxKCu1bqJlXMgn8OI27+njOCZqOZsprdfGdF8I8H5Yo5yl/GQ
-	VWGOgk0YfwHkSYk9hXzxbrdwVG72qEGsG9RJMP6wmAbVxpxJBxmHOuKIIYwj9eYyrXTWWm8
-	poEaVnnqF5DKp2g3zL+y066AQLiJwXqSFFRJ8DR6xL4qyL5mZm5UaKJoxsPpSGRIN0reF3j
-	xD0JPG6gK9Mvs+UVECR3fEBeQ5a7IJcO1Rydkc06MLxFZpN4M+I/46bWmfKTwpyfuV5fYpR
-	pg4Mo0to1XZfV+SS836yXTCweOcYJb/GFgs3x1srw0lBMUtbbkqJwu9bwTqrOW3ZiGG6sHr
-	gjrcMmcLDafnRaHgjYTDrK76llBRaCVhMOivURmXM9khm/99BENr6Q97gYpZYsK7P8PmVgt
-	VYXQL09GtCr+KZqy4Qhzwa4kmGqp0yORDKUwYwuK4RZXKCg6XarXdfQy+56EjdK0aphcTLK
-	zB2N8MYXQjgppKovuTUIBSff4tF4QSdfolnF3a4VD78s9qgEP/VJNBNyXcO1+Zbxl8W/6zB
-	XbT0ztPitKBai27WZ7BAcx30Nd9YHxyHQN/x5Dougu/dRfkTiG7qeR4A5J/WtDE6N6AyHu7
-	3SI7Mcnw53/ELWK3Mw6q7t8JkiMdsb/HcI22LDQFKlHjz7XAa2CR+i7v0Cu8WgA0pmkMphU
-	1HKw5PO1RINOHUA9EysJk0H+TwtxUDladJP9RpOGmR9SzMzbM6/AmqR0xvCCU8Wf8qUUz3E
-	w7CBVBPlkLeW3LXDsiQqnZxrOkgsCoxTqdkk4VAvuQBTStsRW7NNB9NnnhkKuOX7YNdyrs2
-	uYPLlzmOysPNEWTnl5Q4bWHbMOfENtKh0yy48ta0aMyv55OEUdi1cX1ffoMQRiPefqEv39H
-	Pgkhuc6epaVic7eYK+evLMpnwLd5SOPT5BvMZSoCAJkEuxVm02pd0NeeyEJPr05wnFLlOcv
-	ATNfhgfGXI6iuWtTLEQmgo2xuytRyBg+84c9803j5zwEr+psbZuQNvwx5on6L1DGqm+QeO/
-	fkuT+0yg==
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-XMAILINFO: MNbA5mkmBXEJbStYpILaPBz0Qu9jji5IMP5Dg3e6odWwYAEXp+urTvGG
+	4SioFWxRjeeHawC5JsXoTIJj7sx8jX7KYTMBQGeirzcWYHiRpK9irzm8AAagOh/PKANCl1t
+	26dBZByebAXjnWlgVewz+VR4Wh2PZSwzidVLw+HRoHSvtU7NRCUEKTpwc9emPcS0ts+Rk7W
+	+78TUJp24jkxAe9Jlza7PZrjAdNH8BqZmBOsCmOi270yyiMsN/QvoILVqGtDxWzvMH2I/PO
+	BtUDa7Q/bEa3y5RXrKwry5ac54wlUjFg7jIUL+Yeoa98Wm1fJz4xdi5+fwNNMvR5JfEX1Ij
+	AbIUkigS4Lz63tgsOLOOC9pfIghTNbGa1EXZT6Z42p+4g/lh3eyUC06vbT9i2uiUaYi86iy
+	iQEsRURSaJ8GtpKzcmw0+rogCko0GVFDuk0SgLBD1GYOs2CC87+egI7uq6d474VSr/w3z1J
+	7BI3Jme7ryAz9WwfZBi9xF/OGL/uSfiEtEFxHRI3E9i7mCgzbnCvxTx/zahoYdbmLg+B/mO
+	SW4w9+YYpnuiW/0suPxVG5xyx8eOqrQLSn9R18MPLCNlmyBeO6MuH74ELuqHbw++cOD/c4A
+	bsixUor4q4EtwNScR+K46GHhzqXSDPiVJFN6LD9lbsG3j3d4d7CZJNTXjBjIfp4KlM5lt14
+	KY6PLNaccC6B2xvN655xNbrAT8wVU0iVcVGACEdRLb6Bd++uzzRUwsbQSXZX86sRecpyUpe
+	Gj2o8P5L0rvXHSUUlOmY0jPEWh9Wm8lQ8xnSsyEjpD7LKjeybhVEqpZDF6CtXzGVAzdt2bE
+	ROeo7dVrfxcJ42AqptQXqcbrC5rOV433tlzz+M/hTwiJwyyDlaQMWkSrIHhnoSRQ9hUKEnO
+	6gJyJnwk0ojBZ2myEGXtLw3+Uby3PL/AtKkJ7Xr5YHvo95pJnL6piW3igV6jUfyHpCqa9KJ
+	9VeR+5SrZESlwsNRx6vY2dSZGdI2Ec0WODLHjk3qLkmAJgvDb1gOemGER
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
 X-QQ-RECHKSPAM: 0
 
-Radxa Dragon Q6A (https://docs.radxa.com/en/dragon/q6a) is a single board
-computer, based on the Qualcomm QCS6490 platform.
+Radxa Dragon Q6A is a single board computer, based on the Qualcomm
+QCS6490 platform.
 
-The board ships with a modified version of the Qualcomm Linux boot
-firmware, which is stored on the onboard SPI NOR flash. This allows
-booting standard EFI-based bootloaders from SD/eMMC/USB/UFS/NVMe. It
-supports replaceable UFS 3.1/eMMC modules for easy user upgrades.
+Document the top-level compatible for this board.
 
-The board schematic is available at [1].
-
-Features enabled and working:
-
-- Three USB-A 2.0 ports
-- RTL8111K Ethernet connected to PCIe0
-- eMMC module
-- SD card
-- M.2 M-Key 2230 PCIe 3.0 x2
-- Headphone jack
-- Onboard thermal sensors
-- QSPI controller for updating boot firmware
-- ADSP remoteproc (Type-C and charging features disabled in firmware)
-- CDSP remoteproc (for AI applications using QNN)
-- Venus video encode and decode accelerator
-
-Features available with additional DT overlays:
-- CSI cameras
-- DSI display
-
-Features that require unmet patch dependencies:
-
-- USB-A 3.0 port
-- UFS 3.1 module
-- HDMI 2.0 port including audio
-- Configurable I2C/SPI/UART from 40-Pin GPIO
-
-ALSA UCM and Audioreach topology patches are available at [2] and [3].
-
-[1]: https://docs.radxa.com/en/dragon/q6a/download
-[2]: https://github.com/alsa-project/alsa-ucm-conf/pull/601
-[3]: https://github.com/linux-msm/audioreach-topology/pull/24
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Xilin Wu <sophon@radxa.com>
 ---
-Changes in v2:
-- Move codec before cpu in sound node to get sorted.
-- Drop patch dependencies in cover letter
-- Separate the changes that have unmet dependencies, and mark them as DNM
-- Link to v1: https://lore.kernel.org/r/20250912-radxa-dragon-q6a-v1-0-8ccdbf9cd19b@radxa.com
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Xilin Wu (5):
-      dt-bindings: arm: qcom: Add Radxa Dragon Q6A
-      arm64: dts: qcom: qcs6490: Introduce Radxa Dragon Q6A
-      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable all available QUP SEs
-      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable UFS controller
-      [DNM] arm64: dts: qcom: qcs6490-radxa-dragon-q6a: Enable USB 3.0 and HDMI ports
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 0a3222d6f3686f1647b9e2ea192c175b0b96d48a..a7469a51adf0d6ebc1bf25acce8f125a844dcdbf 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -339,6 +339,7 @@ properties:
+               - fairphone,fp5
+               - qcom,qcm6490-idp
+               - qcom,qcs6490-rb3gen2
++              - radxa,dragon-q6a
+               - shift,otter
+           - const: qcom,qcm6490
+ 
 
- Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
- arch/arm64/boot/dts/qcom/Makefile                  |    1 +
- .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1208 ++++++++++++++++++++
- 3 files changed, 1210 insertions(+)
----
-base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
-change-id: 20250912-radxa-dragon-q6a-eedcdeaf3e66
-
-Best regards,
 -- 
-Xilin Wu <sophon@radxa.com>
+2.51.0
 
 
