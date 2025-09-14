@@ -1,120 +1,118 @@
-Return-Path: <devicetree+bounces-216888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-216889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADEBBB566C6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 06:31:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B19AB5670E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 08:26:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BB1B177F65
-	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 04:31:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 495174214C0
+	for <lists+devicetree@lfdr.de>; Sun, 14 Sep 2025 06:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C39226CE2D;
-	Sun, 14 Sep 2025 04:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD9526A0AD;
+	Sun, 14 Sep 2025 06:26:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HYQf7AAb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FB41EEE6;
-	Sun, 14 Sep 2025 04:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5971F9F51
+	for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 06:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757824310; cv=none; b=UKWM0R9QoATmV+k0G+EsDtOGvLwwkL96pdDlulKzPKwTFlw4VZXNGvIhB97D9r/RXkQZINHQU8fUsbZQm5fAGEYdHg2J2ZNDcrzkDjXxQkgRIVto3hrifE9DAkDitAVnAIleO9CzNrsURmzWxBsB66T6/2TSBZ+mfDU5B0T0BFI=
+	t=1757831202; cv=none; b=GW87cVfShdWWXj+Rd0epUCfECVkYsb11yzPFGjwQ9FcdSo6m51TV3p5z7kiPnrjDjPzd4ad+d+jnt7OG8zaQwftQg9jTYbbQOzvLIney/ut4WDWDl3fw5S+ojXnoq2ktt4OmveeF9Zn2oQaDmZ52FlKTIqcfypxwxZ5fDFVC590=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757824310; c=relaxed/simple;
-	bh=lzkC6hsqY0cN0BnhaYYUseeH+o3sfSLh9lERclKfni4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XP6pblpgvlSPFdBypRmKwj4Bg6OeJVSWZwQc1linr6E9ON0xH/jcUVq5aFs/BHZCBt0cjfkeuPLtIljJBGJ6Cd2mG5XqYi1uHpT7E27lHRmFqFwkNr9epUQGB86ifDvWqCRSqBB6S6t+w0h6nqxuXoQsGXPasdTYiw9gXaMiWFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.109] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowABXqIIIRcZoMBfCAg--.61041S2;
-	Sun, 14 Sep 2025 12:31:04 +0800 (CST)
-Message-ID: <007c08ab-b432-463f-abd8-215371e117c4@iscas.ac.cn>
-Date: Sun, 14 Sep 2025 12:31:04 +0800
+	s=arc-20240116; t=1757831202; c=relaxed/simple;
+	bh=YpuAcY5BhVGhX+vCzPkKqiO0eWSE/MtMicMqARPCFKg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z5dbeELaRAAWiu1sO1B55SUYZ1lScOyf4qSZIrBelDIL/f2Jknu7JoVWsMinV46GUjTySs9EDxVRiieHKaTOJW0afWX09MSbbiuJBnIihi3jOt/8nALkliAe8zerUOGHD3o7Ny3+uo49/1RBe6mPyaPTB9JBgPQuPEr0o+X7ybI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HYQf7AAb; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b07dac96d1eso220344166b.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Sep 2025 23:26:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757831198; x=1758435998; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YpuAcY5BhVGhX+vCzPkKqiO0eWSE/MtMicMqARPCFKg=;
+        b=HYQf7AAb2VdLSAhRPfFCkuW+fJDww4LE9zGBUOVdhsQ+H2ZXNPygNMgKhwFEt0ImVC
+         9eJ9eqQ/rfCY7D8arV3l2b+bVbGxl8mpiA8ranw9ZLY57gXJgCtuszfRgv+DbhwyJS/2
+         yib3Iozuvd0a5QoovnYo0CgS4v9fW928pAZmReDZEVWPXw1WzcCeUhvBnIP9JkfsgTLm
+         rrgP73e+oBTs+7WWujv+ATL6eAIfzBTCMHdIk6vGKXydV1jzj5tanw3NR1Up3nrd7C0Q
+         Via2Q5H8xxsUuWkoArjNQb0uyL/ifxJIiCFcfjV/DYGgE4vxLtauhnsrh52gdiYMRoQi
+         5XBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757831198; x=1758435998;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YpuAcY5BhVGhX+vCzPkKqiO0eWSE/MtMicMqARPCFKg=;
+        b=LOO917bYwstoxekE+ithhmM1doQWrCjS/hIgFkCBL6bXf7NnpNH+Dgn2J0HvoAQ3Hx
+         Y/MtZ1uQnQqlWohdvpzfY8opAgpQ270QfOIXhRY87NNYf3cCgSbs0BdpY5uc8mYr6BsU
+         U2JpmCa3bs9Gm2P2yJqpM1XvVj+Tlh3rkOewubNP3g8hzsQ6T+MrGShCL5CGQMIVpFs8
+         GrpE5wh9IPpktnptPDWZ59/rFph18/PAiuzschg34eeMxgtI1DMhZNLrfKKt8cbo4MKd
+         qNWG+i/mU8ZPMGF0hyPn3mBrYtR99ywVU1GP25AyVgYqXJgUZmelgN6B9fTMTuq2yKMz
+         VxFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTMUy/DS/7B2e9MNzsv8TpDTfWs5Q9rPb3UIn3Kq7gx/uwh5XCcu0gIsMIaW94HI93BntZ/1OtICig@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwvEG2CVTDa5x6NWEZav6poYLxiVGqA8FODIY8CWCiNCurQi2Y
+	4IlSNcae6HCqBDYZO1ab1JTSP9KjR85bcjDjIe7Xq+PNatL01npVsuFo
+X-Gm-Gg: ASbGncsswLyxLfrpW439TbCeHYo61ENAGeoSpt7USa2aBxJDxRatvkk+vjolovOXpEk
+	HRCyktVtBP/8w3Lj7aHgYn3ar4zK8ZX/t669AXd/+/3uqCCuWlmi0v6h/RyzvqVtvVV5ADxMqmO
+	FkXyeub7kktCpmmbSCdFOoaCOi23yVZYop9ahsONXi7yw0+h8LISDMUbtjJYi46EbZzIFCZKBtL
+	JEVvDaiKunuCYUXInIatZJTb9YohngkO8zZM3243UGZ7i8RExkbbKLqz3FGmSM38OmtIHiG1z3B
+	88fqmphPE6IR7GyONns2HXYxqznwicaMM4KzlsUwkLMioKjkVfh/3X/dDcLIuVKDVRH/SWayZh2
+	wl+lvNQX4GFp0yDwCHA/uH2RsKdcaHU9m3fbQohqQEmjH1DFjs+FhFkk=
+X-Google-Smtp-Source: AGHT+IFgeECwBC/iiy6U4djD4RbKGuu6VUzMWKgjTe6SxUwypL1QszvVkCmMnx5qTasPZMrBF3ONRQ==
+X-Received: by 2002:a17:907:7f94:b0:ae1:a69c:ea76 with SMTP id a640c23a62f3a-b07a68b646amr1170055866b.23.1757831198374;
+        Sat, 13 Sep 2025 23:26:38 -0700 (PDT)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b30da427sm699505566b.7.2025.09.13.23.26.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Sep 2025 23:26:37 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@kernel.org>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: allwinner: sun55i: Complete AXP717A sub-functions
+Date: Sun, 14 Sep 2025 08:26:36 +0200
+Message-ID: <2235173.irdbgypaU6@jernej-laptop>
+In-Reply-To: <20250913173511.4064176-1-wens@kernel.org>
+References: <20250913173511.4064176-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 4/5] riscv: dts: spacemit: Add Ethernet
- support for BPI-F3
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-References: <20250914-net-k1-emac-v12-0-65b31b398f44@iscas.ac.cn>
- <20250914-net-k1-emac-v12-4-65b31b398f44@iscas.ac.cn>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250914-net-k1-emac-v12-4-65b31b398f44@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:rQCowABXqIIIRcZoMBfCAg--.61041S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7XF4kJF48GF13JF1DuFyUWrg_yoWkCFc_Wa
-	n7ua4I9FWkGFWxGF9ag3WfGayxuws5Ar1jv3Z8JryUGwn8XrZrJFyUta1ktry5G34avr95
-	GrWxJr4fCr1DtjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb38YjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
-	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
-	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0
-	cI8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
-	vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
-	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJV
-	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-	wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
-	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-	17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcV
-	C0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF
-	0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWI
-	evJa73UjIFyTuYvjxUsuWlDUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 9/14/25 12:23, Vivian Wang wrote:
-> Banana Pi BPI-F3 uses an RGMII PHY for each port and uses GPIO for PHY
-> reset.
->
-> Tested-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> Reviewed-by: Yixun Lan <dlan@gentoo.org>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> ---
->  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 48 +++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index fe22c747c5012fe56d42ac8a7efdbbdb694f31b6..33e223cefd4bd3a12fae176ac6cddd8276cb53dc 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -11,6 +11,8 @@ / {
->  	compatible = "bananapi,bpi-f3", "spacemit,k1";
->  
->  	aliases {
-> +		ethernet0 = &eth0;
-> +		ethernet1 = &eth1;
+Dne sobota, 13. september 2025 ob 19:35:11 Srednjeevropski poletni =C4=8Das=
+ je Chen-Yu Tsai napisal(a):
+> From: Chen-Yu Tsai <wens@csie.org>
+>=20
+> When the AXP717A PMIC is missing nodes for the sub-functions, the kernel
+> complains about not found nodes.
+>=20
+> Add all the remaining nodes corresponding to the defined functions for
+> the dev boards, which have publicly available schematics to base this
+> change on. The battery charger on all of them are disabled. Also add
+> an "iio-hwmon" node to express some of the ADC channels as hwmon
+> sensors.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-Hi Andrew,
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-I added these two aliases in v12, but kept your Reviewed-by for v11
-because this is fairly trivial. Same for patch 5.
+Best regards,
+Jernej
 
-Is this okay?
-
-Thanks,
-Vivian "dramforever" Wang
 
 
