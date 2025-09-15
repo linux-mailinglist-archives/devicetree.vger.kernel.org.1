@@ -1,216 +1,179 @@
-Return-Path: <devicetree+bounces-217284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8F51B5739C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:53:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B26BB573A6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79CE13BBF15
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:53:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D49283BF21C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A462F28F4;
-	Mon, 15 Sep 2025 08:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7F12F3C25;
+	Mon, 15 Sep 2025 08:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="MedraKfH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J1Fvc3C6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF972D7805
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D902F3C14
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757926305; cv=none; b=M1KHg2XBWMsIe92G6Ij4+cJfj/nkOfHtsfTOSMj8CYzG5tWWqhuUu8HvK9pbkoj1neWG3C8rbwR236Vb9hLMvZR/2FL6uOh+1PCJiw6mZhiIysqhu6J/aa5ZSffFiVJRQ1JjdOSxcKgJF0G/hlX4Z26EeGpf1kKramOT2BNQQ94=
+	t=1757926368; cv=none; b=hRFUc0wInmAD4O/2ZOmzH3yTb2g9RrFEbt9l3k0xQ7vCqd9IQWUuxeK6g5BbvUcPtWsIckwfGWP2iIE2dyl75YwF66pAoJn7jCjRwILd60kkBSlKjuqxDTkCM+s7ll7wERkgyADnRBpI94sLIluTJ5F/FasRNC8d6I4ETahbHio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757926305; c=relaxed/simple;
-	bh=V3y54E2BdymNuc5NY8vOwonPsgJIAekAN7zO4zsTLCU=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=JNtolulLmLdUR7WR6Gn+cqwkeimWdGanKmrfQGSB3eC4jZWiCYkPCUpN7m3SYrJC7p0Xn0x2S8b6Np6C8QXcPH/hlcxgF/i6CH9Qw71QhvgkFtUPMMq5BJhq+/iw0c0xpf8m205Vf4qPF8+0tfqTbSQ1gvLd93CMByVhh7j7NIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=MedraKfH; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250915085140epoutp0318d60a477fd218e385c6035ed3dcf3d5~laKgQ6JDE2487624876epoutp03e
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:51:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250915085140epoutp0318d60a477fd218e385c6035ed3dcf3d5~laKgQ6JDE2487624876epoutp03e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1757926300;
-	bh=QBZQ2T2IZb9DQ5IKJhfncUR/bMicrgAtY+dpr/zeHT0=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=MedraKfHUyaAHFSN+Kx1D0w1PiBwWeuUJtEb0nhh2T26ar+2y1uoeFj6p8U0/biIU
-	 67PCxuds34yT2r7l0oXQGFmV/MliMedPiKUKLqO7iAW/kSmSIABnfzWS6sWkHqTMXn
-	 Gk2xM46Z91lriMnGEsMpMYImXq0X6JRrOIcsSjzc=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250915085140epcas2p264ea28075622118bb8178354436c2cfc~laKfzCsiN1521415214epcas2p2M;
-	Mon, 15 Sep 2025 08:51:40 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.36.92]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cQJfz3k27z6B9mK; Mon, 15 Sep
-	2025 08:51:39 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250915085138epcas2p4b3b2f8058172efd14ca4438ccb232a7c~laKefpnwd1110011100epcas2p46;
-	Mon, 15 Sep 2025 08:51:38 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.80.207.128]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250915085138epsmtip19453fc15026e8e8a191121d4eb7d3f4f~laKeaRwwd1433914339epsmtip1J;
-	Mon, 15 Sep 2025 08:51:38 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Bartlomiej Zolnierkiewicz'"
-	<bzolnier@gmail.com>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
- Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>, "'Henrik Grimler'" <henrik@grimler.se>
-Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <b453e64b-b3db-4b8f-ba9d-0da7e55fe057@kernel.org>
-Subject: RE: [PATCH v3 1/3] dt-bindings: thermal: samsung: Add a
- hw-sensor-indices property
-Date: Mon, 15 Sep 2025 17:51:38 +0900
-Message-ID: <060601dc261d$f2f2d5a0$d8d880e0$@samsung.com>
+	s=arc-20240116; t=1757926368; c=relaxed/simple;
+	bh=m/pZ6y54K3kx+mHExY4bRLVvKw6fj4rniWw50UqeCxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bZ/NAm+W4ywgp2rU2IixrSYui8e+c+0gAW1Iebcv1G0fv9r8L9+mtEwWR3+nHU6SIDkCV15nssGX2mX4CnaRmJuJF+ZJCYgq2QSdWCC+iBa1FWm9qAjNI2V/bA5TvbF1dk4qmiht5nbTZnBWxoMthSywe6r3xEgBZglErrBoyKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J1Fvc3C6; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45f29e5e89bso15413115e9.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:52:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757926363; x=1758531163; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=N6kxZ21z2ge9LAXdq4SO1toYg+8pc4aXj9MUKAvpBaA=;
+        b=J1Fvc3C6hXgnsns+UnVqBAD+6a1Fr2DGrSjtIDwkHiG/ZnUmLAh7ot3JK2sC8iyhbt
+         cFhcTtYyd5K6+HY8OWAIjb+B4WjnoRnRdRaKIYZApf6VW/MeAZvbumQzJ0Xmi/S3w8Do
+         XrChzRMCMA1eT773rJBiCTpU+Zab9mkdOqEXjgF4scA9vChYG9E1NFIm9VmrMfiKOJa4
+         kXHDzat9WbMmipRgMwW7G9H8Nzv/m2fa34B6FH3/MhU7c33VigEIb2zB190kSy0DNw+N
+         KYNVl/En9eW6M6Wd3GYbD+XBa8kFZgxt89dch3ql+9he8LVCatcNUDd6N215Y4VVBy89
+         tqiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757926363; x=1758531163;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N6kxZ21z2ge9LAXdq4SO1toYg+8pc4aXj9MUKAvpBaA=;
+        b=F79JY/e47bwg7G72kywmvfKm+5NQ5/PV2gV8lDgGixvKBeUqDXy3md/JpDOIg4hi8Z
+         /6u582onTEPo/6Nab2aMfbaijLtTY9qFUlf41ZckuIroxwgeOr6uhD++AyGmglzfYZix
+         KMBI5m7sJZnlvtKBngwz9SXZT05MwBMJ6PTZ6gYywAuCBR8H3EEe8JofqnBExIrMjACT
+         BQxNoGP10bnfw/T9f+UlXVSSk5LFhiRB1nQo+BKWybNA3C1gzZxxZSl0zGqoj+154SAG
+         xRf3V66KHmvwSo9HD3omZdMYc1A5BVWliwBqv/jR9FKr/X+NxNTdekQO+rk1QO8OBdoz
+         AtWg==
+X-Forwarded-Encrypted: i=1; AJvYcCWFG1mYsyXhhTstQf6nalA3LSydXxVgiPJfYrGFN61oNOBzcfof/9Eu1yxi3Llbsi8+IkCtaEOKcgi5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcOwON9IziO3hpDOTNuOBQ7U0xeY4CKwYscDpchfc3YVENXh6u
+	t/Vc280Qc9D51jipxZpph3LKr2Yvgx246CrzNF60B3LHUV86AvgHT7vhJumI2XChVHQ=
+X-Gm-Gg: ASbGncsg4BDMlgMaz0ergc2khJJMHLuYAhHqht3OdXFkQOO7xeEo5T/KQ3UQqFf2mMP
+	CStKxucPpOBKuh3tenoTwpoI7qcAoDb7vIFSQK/nf3YFUZzsqWOjfk8t+iFPAcaOBfjGZM03s/k
+	NUG39ebrP3CdgMYsQGKQRKzEbDD8RyjeW5daFF2xrvkZ6fltQIzgeKHnbmvRkaFHL6ptHZuQC5F
+	ClKYxEvkMASTEN6OHIYb9Gcde0Y1yUwlHAuB+iux/RzKvO7eskGvXRuApFsQ3poUTc/czy+AxEm
+	R8ch1sPlfY2/o4Dz3pHYncDnC3ZHDCiYTlLPxL6YB1viLuzGjNK9X9piLtt8EsQPyxq1tRa8SqZ
+	ffM3HWg//G8ANGZ9I7Mio+jgSmMLWtGlU
+X-Google-Smtp-Source: AGHT+IFzSjYN5GyjYoEpwSlYOMCz/spbxZZSVT6DCL0Ah2R68rwc3IWvf7dvYMLqkqc3FdlOFRSbIg==
+X-Received: by 2002:a05:600c:314c:b0:45f:28ba:e17f with SMTP id 5b1f17b1804b1-45f28bae1a5mr60704615e9.31.1757926363306;
+        Mon, 15 Sep 2025 01:52:43 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:30:ab20:75dc:ab3e:bbb9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f27f44093sm96526395e9.24.2025.09.15.01.52.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Sep 2025 01:52:42 -0700 (PDT)
+Date: Mon, 15 Sep 2025 10:52:39 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v11 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
+Message-ID: <aMfT1_uyZETUEBYk@linaro.org>
+References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
+ <20250910-hamoa_initial-v11-3-38ed7f2015f7@oss.qualcomm.com>
+ <aMPee9wEOrrW-KMU@linaro.org>
+ <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQI2gN6OiEY8j6d92YCX64Q86w41mAJQEA6QAjvruSIB3AjCg7Or+Kxw
-Content-Language: ko
-X-CMS-MailID: 20250915085138epcas2p4b3b2f8058172efd14ca4438ccb232a7c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250915040742epcas2p4ddc37eb56eb9d96313a5c3fac8befe5d
-References: <20250915040715.486733-1-shin.son@samsung.com>
-	<CGME20250915040742epcas2p4ddc37eb56eb9d96313a5c3fac8befe5d@epcas2p4.samsung.com>
-	<20250915040715.486733-2-shin.son@samsung.com>
-	<b453e64b-b3db-4b8f-ba9d-0da7e55fe057@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
 
-Hello, Krzysztof Kozlowski.
+On Mon, Sep 15, 2025 at 10:12:15AM +0800, Yijie Yang wrote:
+> 
+> 
+> On 2025-09-12 16:48, Stephan Gerhold wrote:
+> > On Wed, Sep 10, 2025 at 05:02:11PM +0800, Yijie Yang wrote:
+> > > The HAMOA-IOT-SOM is a compact computing module that integrates a System
+> > > on Chip (SoC) — specifically the x1e80100 — along with essential
+> > > components optimized for IoT applications. It is designed to be mounted on
+> > > carrier boards, enabling the development of complete embedded systems.
+> > > 
+> > > Make the following peripherals on the SOM enabled:
+> > > - Regulators on the SOM
+> > > - Reserved memory regions
+> > > - PCIe6a and its PHY
+> > > - PCIe4 and its PHY
+> > > - USB0 through USB6 and their PHYs
+> > > - ADSP, CDSP
+> > > - Graphic
+> > > - Video
+> > > 
+> > > Written in collaboration with Yingying Tang (PCIe4)
+> > > <quic_yintang@quicinc.com> and Wangao Wang (Video)
+> > > <quic_wangaow@quicinc.com>.
+> > 
+> > This looks like you should have Co-developed-by: tags together with
+> > their Signed-off-by: tags.
+> 
+> We’ve agreed on this as the preferred method for marking collaboration, as
+> discussed earlier in this thread.
+> 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
-> Sent: Monday, September 15, 2025 1:29 PM
-> To: Shin Son <shin.son=40samsung.com>; Bartlomiej Zolnierkiewicz
-> <bzolnier=40gmail.com>; Rafael J . Wysocki <rafael=40kernel.org>; Daniel
-> Lezcano <daniel.lezcano=40linaro.org>; Zhang Rui <rui.zhang=40intel.com>;
-> Lukasz Luba <lukasz.luba=40arm.com>; Rob Herring <robh=40kernel.org>; Con=
-or
-> Dooley <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>;
-> Henrik Grimler <henrik=40grimler.se>
-> Cc: linux-pm=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH v3 1/3=5D dt-bindings: thermal: samsung: Add a hw-
-> sensor-indices property
->=20
-> On 15/09/2025 06:07, Shin Son wrote:
-> > The exynosautov920 TMU requires per-sensor interrupt enablement for
-> > its critical trip points.
-> >
-> > - **samsung,hw-sensor-indices**: List of sensor indices physically
-> >                                  monitored by this TMU block.
-> > 				 Indicies not listed exist in the SoC
-> > 				 register map but are not part of
-> > 				 this TMU instance
->=20
-> Not much improved here. Same comment as before. That's not even correct
-> syntax but some oddly formatted code. I asked to drop it and instead
-> describe hardware. This is not a place to write some **code** or whatever
-> this paragraph is about to represent.
+I can't say I agree with Bjorn there, but ok, he's the maintainer. :-)
 
-Understood=E2=80=94sorry=20for=20the=20confusion.=20I'll=20remove=20the=20c=
-ode-like=20formatting=20and=20replace=20it=20with=20a=20plain,=20hardware-f=
-ocused=0D=0ADescription=20as=20requested.=0D=0A=0D=0A>=20=0D=0A>=20>=0D=0A>=
-=20>=20Additionally,=20add=20myself=20to=20the=20bindings'=20maintainers=20=
-list,=20as=20I=20plan=0D=0A>=20>=20to=20actively=20work=20on=20the=20exynos=
-autov920=20TMU=20support=20and=20handle=20further=0D=0A>=20>=20updates=20in=
-=20this=20area.=0D=0A>=20>=20I=20also=20restrict=20'samsung,hw-sensor-indic=
-es'=20to=20the=20V920=20variant.=20To=0D=0A>=20>=20ensure=20properties=20in=
-troduced=20in=20'if/then'=20blocks=20are=20recognized,=20I=0D=0A>=20>=20rep=
-lace=20'addtionalProperties:=20false'=20with=20'unevaluatedProperties:=20fa=
-lse'.=0D=0A>=20=0D=0A>=20No,=20don't=20do=20that.=0D=0A=0D=0AUnderstood.=20=
-I'll=20keep=20'addtionalProperties:=20false'=20as=20is=20and=20promote=20's=
-amsung,hw-sensor-indices'=20to=20the=20common=20sections.=0D=0A=0D=0A>=20=
-=0D=0A>=20>=0D=0A>=20>=20Signed-off-by:=20Shin=20Son=20<shin.son=40samsung.=
-com>=0D=0A>=20>=20---=0D=0A>=20>=20=20.../thermal/samsung,exynos-thermal.ya=
-ml=20=20=20=20=20=20=20=7C=2040=20++++++++++++++++++-=0D=0A>=20>=20=201=20f=
-ile=20changed,=2038=20insertions(+),=202=20deletions(-)=0D=0A>=20>=0D=0A>=
-=20>=20diff=20--git=0D=0A>=20>=20a/Documentation/devicetree/bindings/therma=
-l/samsung,exynos-thermal.yam=0D=0A>=20>=20l=0D=0A>=20>=20b/Documentation/de=
-vicetree/bindings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=20l=20index=
-=2029a08b0729ee..448c68986b10=20100644=0D=0A>=20>=20---=0D=0A>=20>=20a/Docu=
-mentation/devicetree/bindings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=
-=20l=0D=0A>=20>=20+++=20b/Documentation/devicetree/bindings/thermal/samsung=
-,exynos-thermal=0D=0A>=20>=20+++=20.yaml=0D=0A>=20>=20=40=40=20-8,6=20+8,7=
-=20=40=40=20title:=20Samsung=20Exynos=20SoC=20Thermal=20Management=20Unit=
-=0D=0A>=20>=20(TMU)=0D=0A>=20>=0D=0A>=20>=20=20maintainers:=0D=0A>=20>=20=
-=20=20=20-=20Krzysztof=20Kozlowski=20<krzk=40kernel.org>=0D=0A>=20>=20+=20=
-=20-=20Shin=20Son=20<shin.son=40samsung.com>=0D=0A>=20>=0D=0A>=20>=20=20des=
-cription:=20=7C=0D=0A>=20>=20=20=20=20For=20multi-instance=20tmu=20each=20i=
-nstance=20should=20have=20an=20alias=20correctly=0D=0A>=20>=20numbered=20=
-=40=40=20-27,6=20+28,7=20=40=40=20properties:=0D=0A>=20>=20=20=20=20=20=20=
-=20=20-=20samsung,exynos5420-tmu-ext-triminfo=0D=0A>=20>=20=20=20=20=20=20=
-=20=20-=20samsung,exynos5433-tmu=0D=0A>=20>=20=20=20=20=20=20=20=20-=20sams=
-ung,exynos7-tmu=0D=0A>=20>=20+=20=20=20=20=20=20-=20samsung,exynosautov920-=
-tmu=0D=0A>=20>=0D=0A>=20>=20=20=20=20clocks:=0D=0A>=20>=20=20=20=20=20=20mi=
-nItems:=201=0D=0A>=20>=20=40=40=20-62,7=20+64,7=20=40=40=20properties:=0D=
-=0A>=20>=20=20=20=20=20=20minItems:=201=0D=0A>=20>=0D=0A>=20>=20=20=20=20'=
-=23thermal-sensor-cells':=0D=0A>=20>=20-=20=20=20=20const:=200=0D=0A>=20>=
-=20+=20=20=20=20enum:=20=5B0,=201=5D=0D=0A>=20>=0D=0A>=20>=20=20=20=20vtmu-=
-supply:=0D=0A>=20>=20=20=20=20=20=20description:=20The=20regulator=20node=
-=20supplying=20voltage=20to=20TMU.=0D=0A>=20>=20=40=40=20-97,6=20+99,8=20=
-=40=40=20allOf:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20reg:=0D=0A>=20>=20=
-=20=20=20=20=20=20=20=20=20=20=20minItems:=202=0D=0A>=20>=20=20=20=20=20=20=
-=20=20=20=20=20=20maxItems:=202=0D=0A>=20>=20+=20=20=20=20=20=20=20=20'=23t=
-hermal-sensor-cells':=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20const:=20=
-0=0D=0A>=20>=20=20=20=20-=20if:=0D=0A>=20>=20=20=20=20=20=20=20=20propertie=
-s:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20compatible:=0D=0A>=20>=20=40=40=
-=20-119,6=20+123,8=20=40=40=20allOf:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=
-=20reg:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20=20=20minItems:=201=0D=0A>=
-=20>=20=20=20=20=20=20=20=20=20=20=20=20maxItems:=201=0D=0A>=20>=20+=20=20=
-=20=20=20=20=20=20'=23thermal-sensor-cells':=0D=0A>=20>=20+=20=20=20=20=20=
-=20=20=20=20=20const:=200=0D=0A>=20>=0D=0A>=20>=20=20=20=20-=20if:=0D=0A>=
-=20>=20=20=20=20=20=20=20=20properties:=0D=0A>=20>=20=40=40=20-139,8=20+145=
-,38=20=40=40=20allOf:=0D=0A>=20>=20=20=20=20=20=20=20=20=20=20reg:=0D=0A>=
-=20>=20=20=20=20=20=20=20=20=20=20=20=20minItems:=201=0D=0A>=20>=20=20=20=
-=20=20=20=20=20=20=20=20=20maxItems:=201=0D=0A>=20>=20+=20=20=20=20=20=20=
-=20=20'=23thermal-sensor-cells':=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=
-=20const:=200=0D=0A>=20>=0D=0A>=20>=20-additionalProperties:=20false=0D=0A>=
-=20>=20+=20=20-=20if:=0D=0A>=20>=20+=20=20=20=20=20=20properties:=0D=0A>=20=
->=20+=20=20=20=20=20=20=20=20compatible:=0D=0A>=20>=20+=20=20=20=20=20=20=
-=20=20=20=20contains:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20=20=20con=
-st:=20samsung,exynosautov920-tmu=0D=0A>=20>=20+=20=20=20=20then:=0D=0A>=20>=
-=20+=20=20=20=20=20=20properties:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20clo=
-cks:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20minItems:=201=0D=0A>=20>=
-=20+=20=20=20=20=20=20=20=20=20=20maxItems:=201=0D=0A>=20>=20+=20=20=20=20=
-=20=20=20=20reg:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20minItems:=201=
-=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20maxItems:=201=0D=0A>=20>=20+=
-=20=20=20=20=20=20=20=20'=23thermal-sensor-cells':=0D=0A>=20>=20+=20=20=20=
-=20=20=20=20=20=20=20const:=201=0D=0A>=20>=20+=20=20=20=20=20=20=20=20samsu=
-ng,hw-sensor-indices:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20descripti=
-on:=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20=20=20List=20of=20thermal=
-=20sensor=20indices=20physically=20monitored=20by=20this=0D=0A>=20TMU=20ins=
-tance.=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20=20=20Indices=20not=20li=
-sted=20correspond=20to=20registers=20that=20exist=20in=20the=0D=0A>=20SoC=
-=0D=0A>=20>=20+=20=20=20=20=20=20=20=20=20=20=20=20but=20are=20not=20connec=
-ted=20to=20this=20TMU=20hardware=20block.=0D=0A>=20>=20+=20=20=20=20=20=20=
-=20=20=20=20=24ref:=20/schemas/types.yaml=23/definitions/uint32-array=0D=0A=
->=20=0D=0A>=20I=20don't=20understand=20what=20is=20happening=20here=20with=
-=20this=20binding.=20See=20writing=0D=0A>=20schema=20and=20example-schema.=
-=0D=0A>=20=0D=0A>=20=0D=0A>=20=0D=0A>=20Best=20regards,=0D=0A>=20Krzysztof=
-=0D=0A=0D=0AUnderstood.=20I'll=20rework=20the=20binding=20to=20follow=20the=
-=20'writing=20schema'=20and=20'example-schema'=20guidance=0D=0Aand=20includ=
-e=20these=20changes=20in=20v4.=0D=0A=0D=0AThanks.=0D=0ABest=20regards,=0D=
-=0AShin=20Son=0D=0A=0D=0A
+> > 
+> > > 
+> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 621 ++++++++++++++++++++++++++++
+> > >   1 file changed, 621 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+> > > new file mode 100644
+> > > index 000000000000..c7c3a167eb6a
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+> > > @@ -0,0 +1,621 @@
+> > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > +/*
+> > > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> > > + */
+> > > +
+> > > +#include "x1e80100.dtsi"
+> > > +#include "x1e80100-pmics.dtsi"
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > > +
+> > > +/ {
+> > > +	compatible = "hamoa-iot-som", "qcom,x1e80100";
+> > 
+> > Undocumented compatible (without "qcom," prefix). I think you can just
+> > drop this?
+> 
+> This compatible string was also discussed previously and is the preferred
+> choice. I’ll add the missing 'qcom,' prefix.
+> 
+
+Even compatible = "qcom,hamoa-iot-som", "qcom,x1e80100"; is not
+documented. And it doesn't make much sense to document it either, each
+of the boards using the SoM should have a more specific compatible and
+therefore needs to override this property. I think you can really just
+drop this line.
+
+Thanks,
+Stephan
+
 
