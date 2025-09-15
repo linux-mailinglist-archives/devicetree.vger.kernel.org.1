@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-217226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BFE9B5714E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:24:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4B4B57158
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:25:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63C71179732
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:24:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E8EC1881DE5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5722D661C;
-	Mon, 15 Sep 2025 07:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C167D2D5436;
+	Mon, 15 Sep 2025 07:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AkWEemFe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xteqf3u4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3042D540D;
-	Mon, 15 Sep 2025 07:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931272D4B66;
+	Mon, 15 Sep 2025 07:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757921002; cv=none; b=NKVdWhPfxTu2xF9Zh0JGOyGTC16Ty3OdLxgvKNtzSXsi5tRuG2DDokQZWraIzqh3ZZOop79XP0C/bYm0dZh7BO4MdGNdJB1P/EP6C9HycgpGW8K80s0EG/TJd1xk7jqtN10HnlSscb1/2H2eOijEmzwOiXlTXwH5M83j2+1dLQk=
+	t=1757921070; cv=none; b=j5ecjH5e8XeqJ0dKtTtYwvm80CziOqaZ7+sP3fDuLwjPmo4q4jnx4WhWCdy3KS8V9RKGBlViS5/0wTL/L9F7mQwqCtjzIbbROE+st+zg/NpXbCv6DXvdPq3k0N5KAZ5SxCL5vEvDnRjWVluqWpiDAywZ2xBhJU7QxhCeIOcpz44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757921002; c=relaxed/simple;
-	bh=cufLykIMT587rDQCeOZsTdp/E8+fwZQQcSrOERBQTps=;
+	s=arc-20240116; t=1757921070; c=relaxed/simple;
+	bh=zuvzgkYNweR5jUGWIKB6w4d1SpfzDuqMu95Rq8yDKww=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ny42EpwDYSZXdlPWL7vsdchNQFUAVfLH7CrQ8YM373LLQUitj868MEOhjZJbJIjTMRxAy7kKKOsf6cYO1avhUSCHIApkFkLdg1mIX6q+gxCPsKXe/ggRhtImPamRQs4uQv/HIaWwiweL1qUtTew2MUmFbttUuVenEROLFOeDyRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AkWEemFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D3EDC4CEF9;
-	Mon, 15 Sep 2025 07:23:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m8J/oX+n1SBjLC245LwSYnpxyMVmN7fHc+s3LQzrIyNWt/2pSvpkC1lRtkb1QRQZkHDETXstDT0KhlO5oCI25QEHpRieHLaevmUSuWkWxJLhrCrNG/N+pQWA7ojsAgBglyfUX8LlH22g8K6C+m4ju6kAzJG3iy26SjIXaA/7+5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xteqf3u4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ECE7C4CEF1;
+	Mon, 15 Sep 2025 07:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757921000;
-	bh=cufLykIMT587rDQCeOZsTdp/E8+fwZQQcSrOERBQTps=;
+	s=k20201202; t=1757921070;
+	bh=zuvzgkYNweR5jUGWIKB6w4d1SpfzDuqMu95Rq8yDKww=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AkWEemFeUSQ+65h+hZVOaPPHEd9ve4CQcO9Yl+ZecOC8n5kYDufuGL1UQfhRpYbH9
-	 RqgJE5WLsDTd3mZKT5yUCUCfGFz08flxjzS5hBMZmfiAnZuUjzeKTCbe59SCxKhQK5
-	 Ybt4w1UhkfUYQX/3kI2cdWtQnWeJ0yn8BZAz6cQd/uotb7gfiwcgYjCTN/GMHnxuxg
-	 K+QXju4/SFH6BCQNvEYxNjGQGhfSjGQCHbpZ97SYFhoW2nj56d+mfR4GgW5bY4q2qC
-	 XAP2+BZznYaqP4E7NDvlUVA5K31xqw4UL0w96H6covTOhj//who00gh7nG00Mv8yfP
-	 z0hmm2vEMImKw==
-Message-ID: <3e45f28f-bab5-4e3d-b78f-0586cca8363e@kernel.org>
-Date: Mon, 15 Sep 2025 09:23:16 +0200
+	b=Xteqf3u4yVaLwOZJ0BXR7kC/Jt/PyJsGYCmrarQHTWKLUEz5rRWhaBE8yUUX0P4nm
+	 8m74kye43GqYAwaQbvCOu0X88doZl5p2O2DQMrcUYoUTBCt3Xz03J/kkooUwz6Apux
+	 9iroOkqwIUfmm1jSqxqZMD08MvOfsBK4qSxA4ftj+XAb12196UaxL3gMoT4t/SkEZ1
+	 1haSA9i5uShXwqZg88SQUH7f18Zpza/v/uK6Sw9Sav67/gvtxFi79Z+yD10a+xiN2k
+	 ALMVIT0Htu1qWJ2pEToCliPaUutC56p+nSA86U33eQL2hLqJyhTRyOCxFOqFeHHymZ
+	 J4cnSI57efjog==
+Message-ID: <bf72ff58-f149-4f99-9d74-abd4ec314774@kernel.org>
+Date: Mon, 15 Sep 2025 09:24:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: counter: Add binding for NXP
- PCF85263/PCF85363 stopwatch
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, wbg@kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com
-References: <20250915071415.1956219-1-lakshay.piplani@nxp.com>
+Subject: Re: [PATCH v3 5/9] memory: tegra210: Support interconnect framework
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Dmitry Osipenko <digetx@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
+ <20250906-t210-actmon-v3-5-1403365d571e@gmail.com>
+ <29ec10fa-1ca4-43eb-a865-7219d39c7140@kernel.org>
+ <c1b0bffe-f5d4-4d71-bfb6-b047d3d2866e@kernel.org>
+ <CALHNRZ9G_OA0+quNP=NwnwX43iaV1JWxjJFM0Aoect9Y8jGjWw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,83 +111,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250915071415.1956219-1-lakshay.piplani@nxp.com>
+In-Reply-To: <CALHNRZ9G_OA0+quNP=NwnwX43iaV1JWxjJFM0Aoect9Y8jGjWw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/09/2025 09:14, Lakshay Piplani wrote:
-> Add a devicetree binding schema for the NXP PCF8263/PCF85363 devices when used in
-> stopwatch (counter) mode.
+On 15/09/2025 08:08, Aaron Kling wrote:
+> On Wed, Sep 10, 2025 at 5:07 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>> +    icc_provider_init(&emc->icc_provider);
+>>>> +
+>>>> +    /* create External Memory Controller node */
+>>>> +    node = icc_node_create(TEGRA_ICC_EMC);
+>>>> +    if (IS_ERR(node)) {
+>>>> +            err = PTR_ERR(node);
+>>>> +            goto err_msg;
+>>>
+>>> return dev_err_probe
+>>
+>>
+>> I will send patches to fix existing code. I also found some more issues
+>> which I would like to implement here.
+>>
+>> I apologize for coming with all this at v3. I should point out things a
+>> bit earlier, although how this patchset was organized also affected review.
+>>
+>> Anyway my comments are mostly non-critical things, so v3 is late to
+>> bring these, I understand. That's on me. I appreciate your work and
+>> please do not get discouraged with my comments.
 > 
-> In this configuration, the device operates as a high resolution stopwatch over I2C,
-> counting in centiseconds (1/100th of a second) up to 999,999 hours.
-
-
-A nit, subject: drop second/last, redundant "binding for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
+> I understand and that's fine. Get it done right the first time so it
+> doesn't have to be redone later. I will try to get a new revision out
+> this week once I cycle back around to the relevant devices here.
 > 
-> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-> ---
->  .../counter/nxp,pcf85363-stopwatch.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/counter/nxp,pcf85363-stopwatch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/counter/nxp,pcf85363-stopwatch.yaml b/Documentation/devicetree/bindings/counter/nxp,pcf85363-stopwatch.yaml
-> new file mode 100644
-> index 000000000000..5fbb3f22ace4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/counter/nxp,pcf85363-stopwatch.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/counter/nxp,pcf85363-stopwatch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP PCF85263ATL/PCF85363ATL Stopwatch (counter) mode
-> +
-> +maintainers:
-> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
-> +
-> +description: |
 
-
-Drop |
-
-> +  Binding for NXP PCF82563ATL/PCF85363ATL devices when used in the
-
-
-Drop "Binding for", but describe here hardware.
-
-With these three fixes:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here ('b4 trailers -u ...'). However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
-
-
-
+Just FYI, I closed my tree already so I will take anything after merge
+window earliest.
 
 Best regards,
 Krzysztof
