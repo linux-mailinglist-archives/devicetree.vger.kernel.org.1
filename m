@@ -1,239 +1,163 @@
-Return-Path: <devicetree+bounces-217352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7FEB57642
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D62F7B5764B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49D02441779
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 321523BC266
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0852FB63B;
-	Mon, 15 Sep 2025 10:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD582FCBF1;
+	Mon, 15 Sep 2025 10:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="REVdteII"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FusBt2vO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E950E2FB094;
-	Mon, 15 Sep 2025 10:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FCCA2FCBE3;
+	Mon, 15 Sep 2025 10:30:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757932123; cv=none; b=T9I4S7ByyIwDplXd7dq+DNctMm1PX2kLwXjtx8cbX8QC1bCp6DX3O/GVoCOvzz1OL0dYhLdEEBkmQr7ZPLOHnpwU2d5NVRrJCKwRknCnq6l7OcihTgFiHI31vT1R9g7/jLDYFekeRBtAU5vKDjnlfavnDBNlmXMJRcoRPLQa+JY=
+	t=1757932225; cv=none; b=buae4y0wgKl78FI2pii4ld9dKf592uiykNMsFd4sIyR7LbqWt8gE2+CUdRLUVxlHtCynGWunMVI6EW5fuMkVfhoOGx/xj3e4UqZgzZUyubKL/OFY2HACWY0ZJ1FPfU9IC2jzS25ghQOgbRV5n5Q2TWDeZycAFRzPgdq5tUFwfvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757932123; c=relaxed/simple;
-	bh=8n9FqdKAgrwmYf0BHJUpaUHH3bU99zzrrCZ0GEcFdS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=afegPMGcKu+L1ovlVY8E68sL8HNTAo+Mk2KAzwW0nRCFwA/ROnBvp2VIVlPE1EX0ZqFBuCbEIn+H4dKMcyx1N8tmelp9ibCIZ8l716jZUbYo4MI90okdvqfnHF5KzIyyd9nvOHWRYCmtAYjvG0UMZc0RmVXsW9bxfChDiZNQcsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=REVdteII; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757932119;
-	bh=8n9FqdKAgrwmYf0BHJUpaUHH3bU99zzrrCZ0GEcFdS0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=REVdteIIvx54Df7GqfJTCin3R50a91VyELGvPhw7tHe6qWEzrveD6LJlN4JqltnjJ
-	 KYPhBfIS17eOPbR8E9V/89V18k82k2kz5z4evGXrAbdmXbc5ljH4fViuxVLZozxaF2
-	 c7ZzaCLGY1FrK74cxC/d3z5kVGW0wBO+IbjobV3thkWm1pOY3+EtUdzadbGPlWqGaj
-	 Xy4LrJvB7JYnK5CPyRsi/Py9rN67cASTnB8k7GtXS+7vpo49HNXooVCsmwUa4xh+ZV
-	 N5qC3H+gg7BIoZ0GwG4OOFELmf3T1IHdhsG/HuzPWRDB54cWVflbqPxxa5myrtC+hm
-	 GSqV0RFH/ml5Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 411EA17E0109;
-	Mon, 15 Sep 2025 12:28:38 +0200 (CEST)
-Message-ID: <4deaa48e-adbf-4072-93a2-499a065965da@collabora.com>
-Date: Mon, 15 Sep 2025 12:28:37 +0200
+	s=arc-20240116; t=1757932225; c=relaxed/simple;
+	bh=77dwZU3PIqsBuoVq1y+3yB+skASgC8Rn9oVnn2I8Biw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eu5DzoEpxPxQrNWZsrYGj6NJ5C4RdLdcZv5MP3p0xqVSc+DjMLmeMzhmtp3gP38a5/0l3pIMXc2Ixr0fUNXm4Zo+cCPry48olJOhihZqm924/PzhBH16Dk+YVZxFUh7KQoqCbcU623eGJLmXT1gKOcrWdUtzt9UjYNIQBWWIRE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FusBt2vO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FAAC4CEF7;
+	Mon, 15 Sep 2025 10:30:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757932225;
+	bh=77dwZU3PIqsBuoVq1y+3yB+skASgC8Rn9oVnn2I8Biw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FusBt2vO6eOMuxurwssBaYr+uujX5QvRO0zN0JJZq8EAZItTiiphjkM31c5VkXP2T
+	 w8tS6kMFVVtmreLeXsQbJbyIdk2HUGPkYSCVJvVgWuFrOO9kYYyKGtsl9YncOXK1Tn
+	 SC9fdKnznGrcHdsOaKh0l5xiQeikQBnKb4XZUEwnE9tPbeXy4VkooXdRStgu6zlDW0
+	 AYFyLKvNwy8xxji85cXDWF6ew+Db2Yl2veFyz5bZremnxoQiZieBsNR+k6+eiqolsy
+	 5azau1Wtf/oYJXt7OwRN/YMvaTfDL7Ub+RSY+2EyfGWBNlSNt/HV2kAbzftS1w2vaV
+	 0TaR9xlFBB/PA==
+Date: Mon, 15 Sep 2025 11:30:19 +0100
+From: Simon Horman <horms@kernel.org>
+To: David Yang <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v9 3/3] net: dsa: yt921x: Add support for
+ Motorcomm YT921x
+Message-ID: <20250915103019.GP224143@horms.kernel.org>
+References: <20250913044404.63641-1-mmyangfl@gmail.com>
+ <20250913044404.63641-4-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/10] dt-bindings: devfreq: add mt8196-gpufreq binding
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com>
- <20250912-mt8196-gpufreq-v2-2-779a8a3729d9@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250912-mt8196-gpufreq-v2-2-779a8a3729d9@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250913044404.63641-4-mmyangfl@gmail.com>
 
-Il 12/09/25 20:37, Nicolas Frattaroli ha scritto:
-> On the MediaTek MT8196 SoC, the GPU has its power and frequency
-> dynamically controlled by an embedded special-purpose MCU. This MCU is
-> in charge of powering up the GPU silicon. It also provides us with a
-> list of available OPPs at runtime, and is fully in control of all the
-> regulator and clock fiddling it takes to reach a certain level of
-> performance. It's also in charge of enforcing limits on power draw or
-> temperature.
+On Sat, Sep 13, 2025 at 12:44:01PM +0800, David Yang wrote:
+> Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+> Motorcomm Electronic Technology, including:
 > 
-> Add a binding for this device in the devfreq subdirectory, where it
-> seems to fit in best considering its tasks.
+>   - YT9215S / YT9215RB / YT9215SC: 5 GbE PHYs
+>   - YT9213NB / YT9214NB: 2 GbE PHYs
+>   - YT9218N / YT9218MB: 8 GbE PHYs
 > 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   .../bindings/devfreq/mediatek,mt8196-gpufreq.yaml  | 113 +++++++++++++++++++++
->   1 file changed, 113 insertions(+)
+> and up to 2 GMACs.
 > 
-> diff --git a/Documentation/devicetree/bindings/devfreq/mediatek,mt8196-gpufreq.yaml b/Documentation/devicetree/bindings/devfreq/mediatek,mt8196-gpufreq.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9d9efd4e70f1ef7ae446c833c15144beb9641b16
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/devfreq/mediatek,mt8196-gpufreq.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/devfreq/mediatek,mt8196-gpufreq.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MFlexGraphics Performance Controller
-> +
-> +maintainers:
-> +  - Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> +
-> +description: |
-> +  A special-purpose embedded MCU to control power and frequency of GPU devices
-> +  using MediaTek Flexible Graphics integration hardware.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^performance-controller@[a-f0-9]+$'
-> +
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8196-gpufreq
-> +
-> +  reg:
-> +    items:
-> +      - description: GPR memory area
-> +      - description: RPC memory area
-> +      - description: SoC variant ID register
-> +
-> +  reg-names:
-> +    items:
-> +      - const: gpr
-> +      - const: rpc
-> +      - const: hw_revision
-
-hw-revision
-
-> +
-> +  clocks:
-> +    items:
-> +      - description: main clock of the embedded controller (EB)
-> +      - description: core PLL
-> +      - description: stack 0 PLL
-> +      - description: stack 1 PLL
-> +
-> +  clock-names:
-> +    items:
-> +      - const: eb
-> +      - const: mfgpll
-> +      - const: mfgpll_sc0
-
-What about using a bit more generic clock names?
-
-main, gpu-core, gpu-stack0, gpu-stack1
-
-...or something along that line :-)
-
-> +      - const: mfgpll_sc1
-> +
-> +  mboxes:
-> +    items:
-> +      - description: FastDVFS events
-> +      - description: frequency control
-> +      - description: sleep control
-> +      - description: timer control
-> +      - description: frequency hopping control
-> +      - description: hardware voter control
-> +      - description: FastDVFS control
-> +
-> +  mbox-names:
-> +    items:
-> +      - const: fast-dvfs-event
-> +      - const: gpufreq
-> +      - const: sleep
-> +      - const: timer
-> +      - const: fhctl
-> +      - const: ccf
-> +      - const: fast-dvfs
-> +
-> +  shmem:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to the shared memory region of the GPUEB MCU
-> +
-> +  "#performance-domain-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - mboxes
-> +  - mbox-names
-> +  - shmem
-> +  - "#performance-domain-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> +
-> +    gpufreq: performance-controller@4b09fd00 {
-
-You're not using any phandle to gpufreq in this example, are you?
-
-Drop that `gpufreq: ` :-)
-
-> +        compatible = "mediatek,mt8196-gpufreq";
-> +        reg = <0x4b09fd00 0x80>,
-> +              <0x4b800000 0x1000>,
-> +              <0x4b860128 0x4>;
-> +        reg-names = "gpr", "rpc", "hw_revision";
-> +        clocks = <&topckgen CLK_TOP_MFG_EB>,
-> +                 <&mfgpll CLK_MFG_AO_MFGPLL>,
-> +                 <&mfgpll_sc0 CLK_MFGSC0_AO_MFGPLL_SC0>,
-> +                 <&mfgpll_sc1 CLK_MFGSC1_AO_MFGPLL_SC1>;
-> +        clock-names = "eb", "mfgpll", "mfgpll_sc0",
-> +                      "mfgpll_sc1";
-> +        mboxes = <&gpueb_mbox 0>, <&gpueb_mbox 1>, <&gpueb_mbox 2>,
-> +                 <&gpueb_mbox 3>, <&gpueb_mbox 4>, <&gpueb_mbox 5>,
-> +                 <&gpueb_mbox 7>;
-> +        mbox-names = "fast-dvfs-event", "gpufreq", "sleep", "timer", "fhctl",
-> +                     "ccf", "fast-dvfs";
-> +        shmem = <&gpufreq_shmem>;
-> +        #performance-domain-cells = <0>;
-> +    };
+> Driver verified on a stock wireless router with IPQ5018 + YT9215S.
 > 
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
 
+...
+
+> +static int
+> +yt921x_port_config(struct yt921x_priv *priv, int port, unsigned int mode,
+> +		   phy_interface_t interface)
+> +{
+> +	struct device *dev = to_device(priv);
+> +	u32 mask;
+> +	u32 ctrl;
+> +	int res;
+> +
+> +	if (!yt921x_port_is_external(port)) {
+> +		if (interface != PHY_INTERFACE_MODE_INTERNAL) {
+> +			dev_err(dev, "Wrong mode %d on port %d\n",
+> +				interface, port);
+> +			return -EINVAL;
+> +		}
+> +		return 0;
+> +	}
+> +
+> +	switch (interface) {
+> +	/* SGMII */
+> +	case PHY_INTERFACE_MODE_SGMII:
+> +	case PHY_INTERFACE_MODE_100BASEX:
+> +	case PHY_INTERFACE_MODE_1000BASEX:
+> +	case PHY_INTERFACE_MODE_2500BASEX:
+> +		mask = YT921X_SGMII_CTRL_PORTn(port);
+> +		res = yt921x_reg_set_bits(priv, YT921X_SGMII_CTRL, mask);
+> +		if (res)
+> +			return res;
+> +
+> +		mask = YT921X_XMII_CTRL_PORTn(port);
+> +		res = yt921x_reg_clear_bits(priv, YT921X_XMII_CTRL, mask);
+> +		if (res)
+> +			return res;
+> +
+> +		mask = YT921X_SGMII_MODE_M;
+> +		switch (interface) {
+> +		case PHY_INTERFACE_MODE_SGMII:
+> +			ctrl = YT921X_SGMII_MODE_SGMII_PHY;
+> +			break;
+> +		case PHY_INTERFACE_MODE_100BASEX:
+> +			ctrl = YT921X_SGMII_MODE_100BASEX;
+> +			break;
+> +		case PHY_INTERFACE_MODE_1000BASEX:
+> +			ctrl = YT921X_SGMII_MODE_1000BASEX;
+> +			break;
+> +		case PHY_INTERFACE_MODE_2500BASEX:
+> +			ctrl = YT921X_SGMII_MODE_2500BASEX;
+> +			break;
+> +		default:
+> +			WARN_ON(1);
+> +			break;
+> +		}
+
+Hi David,
+
+If the default case is reached above then ctrl is used uninitialised below.
+
+Flagged by Clang 21.2.1
+
+> +		res = yt921x_reg_update_bits(priv, YT921X_SGMIIn(port),
+> +					     mask, ctrl);
+> +		if (res)
+> +			return res;
+> +
+> +		break;
+> +	/* add XMII support here */
+> +	default:
+> +		WARN_ON(1);
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
 
