@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-217592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89CD9B5863C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:57:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC7EB58640
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:58:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07ADA1B22A1C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:57:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C31AF2A2052
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEB52882D6;
-	Mon, 15 Sep 2025 20:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB34291C11;
+	Mon, 15 Sep 2025 20:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LDg19uYk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZeXzPDG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC4326E16A;
-	Mon, 15 Sep 2025 20:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2033772610;
+	Mon, 15 Sep 2025 20:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757969848; cv=none; b=GxQLQHjt+MvACXUSen5V7EUotwU90p3rzD/kz1OBpTxnAqvOKBN5pUMPPN4u4fYRYKc5VnQk3TphaYU3r1769DeHyhc8rwOr2jM8Wr5ry6Cjcc8iGG7ECLcblDGZ7qqOgOZrtPTpHhiJp4SV+NL6TVnL9fX1Ft2ShNzwmmwllwU=
+	t=1757969931; cv=none; b=WXe2c2GbmzXRmxEyW1Ab7jNpI9hrAU5nbkrmZDLVnj4cvyrIrkob8GMQAwrRh5Jy7W2iymxm5b8Ox3nCE96GDo6AHKax9lEhVvM03oV8pUsAcIsukmA6QlT/gDO5+mxjI1qFPqTCXuXwDT8aUPL5AGft0iFdY0zHyZjma7fx1+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757969848; c=relaxed/simple;
-	bh=FAhsTruNsmWXJBgpWX4neFlt6ZUZBvbVYrNSsZrP9Qc=;
+	s=arc-20240116; t=1757969931; c=relaxed/simple;
+	bh=t9q3ouWsJp0hUNsNL8ForeCLdz8chqTcTMColwepR+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JznsQZLtvwEiZLqP0q0v2J15rWAHsIFmx29k3uPkrkfN8JODsgl/G311GvobZ+D+BknZLw9DnqRa2yvTUUAehq/JUyygVlvYWTV8wlROBruG0EAXiAjmBIOOlXp6tR59h2q8QkkBIubGHgAGh/2m1rANtMw+HRJJprPLVNGnVIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDg19uYk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D0BC4CEF1;
-	Mon, 15 Sep 2025 20:57:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O1RO9THAUZG2Oq7kvlMC9nJ/LP/xAFJASnFF1qfRme+SL/gLIbs1b5YtJ1b1HBP4aD2qchNWCrzNDr+mB1F5gnQr8ga0e3FIgTVho+PlrxzK1pE4sNKOyluPdy+9BOEVyLRVFJ/9lrHx20h+fxwOiR+JPdjyTyXelRasc9ZiRpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZeXzPDG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84527C4CEF1;
+	Mon, 15 Sep 2025 20:58:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757969847;
-	bh=FAhsTruNsmWXJBgpWX4neFlt6ZUZBvbVYrNSsZrP9Qc=;
+	s=k20201202; t=1757969930;
+	bh=t9q3ouWsJp0hUNsNL8ForeCLdz8chqTcTMColwepR+I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LDg19uYkgT3SYKYudfHms/thXSN1PJVhS6DNjX/ydUkyipksa9MUbbyu67Vy5MDde
-	 HN0rfRbZgXVFQnA4OuN1sK63G/q/ydnVclilBLVFna0ZzKI/UHzEICbx8oyEcHmx0a
-	 NieG0Au7lFxj2Rlppk7m3j2XHuGH5CIJGdHPhjubOTrKriheI9LPVqRmn2vIRC5l2l
-	 T2F2r3a/O860Qy+dR/Whz3WTUIKQX/j7481LEYgZMq2ukKh7LmBsvpOwl2/gL37PRK
-	 HXECH5Xp//gJ+77E1otT9Uzy2U9DAcl5Wz7ZdDrS1do8NN2lH8jv/Qykj0CUcZVfjv
-	 5OFEh3p4q6duw==
-Date: Mon, 15 Sep 2025 15:57:26 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>, imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
+	b=bZeXzPDGOjtQmsgL6BNUGp11/XFVSj8f0i3/LRMiyfD8MEe8UesDcuoM3C3dkBFJ7
+	 nxZhoZVjUuOquQ3Fx/Pj2/HhMGg/asr3PHst9jXU23roHPb5t4Q6XGTsQg4+P6NLsz
+	 gB3RHDugh1TqeIXQ6IYU9YLmLCoKYZb+XEfxnMdAEUhP+2R69G1EH26XJUmHwtq6fN
+	 0VJCPCdZra5sWkYKF0vKqUtrMzHRkXUY2J1MNwBxIyRpIX/z2hS7xqBpAU5tti/TJS
+	 ty06y5cPs6on3u4SCYqe9/fWcvstjskIqglYue9N0XX9wvfI4ZGiE2NQ3NRs6Zhddq
+	 6cRt08SVesvig==
+Date: Mon, 15 Sep 2025 15:58:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Andy Shevchenko <andy@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: auxdisplay: change to
- unevaluatedProperties
-Message-ID: <175796984570.3379405.7210704746413204244.robh@kernel.org>
-References: <20250911180641.1031346-1-Frank.Li@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v4 3/5] dt-bindings: usb: usb-device: add usb hub port
+ vbus-supply suppport
+Message-ID: <20250915205849.GA3379566-robh@kernel.org>
+References: <20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de>
+ <20250911-v6-16-topic-usb-onboard-dev-v4-3-1af288125d74@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +66,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250911180641.1031346-1-Frank.Li@nxp.com>
+In-Reply-To: <20250911-v6-16-topic-usb-onboard-dev-v4-3-1af288125d74@pengutronix.de>
 
-
-On Thu, 11 Sep 2025 14:06:41 -0400, Frank Li wrote:
-> Change additionalProperties to unevaluatedProperties because it refs to
-> /schemas/input/matrix-keymap.yaml.
+On Thu, Sep 11, 2025 at 10:22:44PM +0200, Marco Felsch wrote:
+> Some PCB designs don't use the dedicated USB hub port power control GPIO
+> to control the port VBUS supply. Instead host managed GPIOs are used to
+> control the VBUS supply.
 > 
-> Fix below CHECK_DTBS warnings:
-> arch/arm/boot/dts/nxp/imx/imx6dl-victgo.dtb: keypad@70 (holtek,ht16k33): 'keypad,num-columns', 'keypad,num-rows' do not match any of the regexes: '^pinctrl-[0-9]+$'
->         from schema $id: http://devicetree.org/schemas/auxdisplay/holtek,ht16k33.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
->  .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> index 09fceb469f10525e9dcdb91435b142b0d21964b8..2f891a05ab9bca095eb881c5f601ac27ac63b542 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> @@ -53,6 +53,12 @@ properties:
+>    "#size-cells":
+>      const: 0
+>  
+> +  vbus-supply:
+> +    description: USB hub port VBUS supply.
+> +      The host managed regulator which controlls the USB hub port VBUS. This
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+controls
 
+With that,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+> +      regulator is only required if the hub internal control signals aren't
+> +      used to control the VBUS regulators.
+> +
+>  patternProperties:
+>    "^interface@[0-9a-f]{1,2}(,[0-9a-f]{1,2})$":
+>      type: object
+> 
+> -- 
+> 2.47.3
+> 
 
