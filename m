@@ -1,103 +1,78 @@
-Return-Path: <devicetree+bounces-217098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B68B56D29
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 02:08:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5DEB56D25
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 02:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BCEA3BD6D8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 00:08:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0395E165668
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 00:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954FF7E0E4;
-	Mon, 15 Sep 2025 00:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CE57464;
+	Mon, 15 Sep 2025 00:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dS5O9eWp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jG7Up0pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1467B533D6
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1FC4A35;
+	Mon, 15 Sep 2025 00:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757894909; cv=none; b=cHLCNQbaEdrdlsCfKXDy8+Wffp5fqUarRJ5482sb+9v1s8s0mhtmgrmOOv4OaOmzsSus0MHeHCsXKV8kJH9hQHQto18gbnlA0XlRKWpCQpZtixXqvb8+vmPioQwJxSwsazLUpTU6pCpOqGW5pIuNNUruim5IFlV11WRwatCI0aU=
+	t=1757894905; cv=none; b=p8qTxorfsNsywTLmcQXio9zllc+XSIwCdVI73pG0jOo40jD97kwSVsDYcx46HN1JpqGe+oz4HdLl4xs+QEtoHWSlT2ZPIgGI+4I9+3YlMCTctwECrcktEdm2jIo8cHzbtApef4pjgxEcdhvCPeUP4pswRQuqzN9gBqV1fN/UGk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757894909; c=relaxed/simple;
-	bh=w5+8AtP73tAF4f80M4jzv+Fd3m1mwSzu1c5/Mxog6IU=;
+	s=arc-20240116; t=1757894905; c=relaxed/simple;
+	bh=6W35ED/5B6DMe6+JEfViwGJLMbiEsNhy58ZClSAv1W0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AMMIb20KXb0hPTVHBtjJVnM//d+cmsXToswHDVm/yRTU5qbn5MRfa/EjqjSsxT3wR4Nt0EvvCLHdUPmMCsNF2Wo+BIANmxFAjkIFDuGPSkMu81uz8xuvrORIWxNCaAvpbNpHsida7hwDokQI9nVp7D8KDWAklMnr6+pyAcbPDhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dS5O9eWp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58EKxXii023725
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:08:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=jhHQJ2FaZhjbHowvbcKpjMEF
-	Vjk3jYUMJhk+fRucFz0=; b=dS5O9eWpq95Bj7YN2/hf0NUR+QUi9prvfH+97CGM
-	wGLciooned986w5e0IsJ9fbTgJwG/pNgegL8JTzuY6TIwMjBB2uGTKJt4HpD+ipd
-	M73z7oF4ydGllcKJYHhxh1qbSax51CwmOYo61HvMOx2Z2XB034BntzdilBy5Osk/
-	ILstF1kthGk8yJAhRRgbyTR7Bb8b3q9bHTJ/xtojxzJBoZ7SlAi6orW6lVrAbtvr
-	os3JHoV/nwZJuaTlA4Ehe0ZPxS++rfrrppvwq938nqzYXQGEuy7zwIR7XKVzqtPe
-	VG9dLEK6vw6LQ7Z6lE5+8rWGL1No9WO+7sZxWOcE18oTaw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4950pv2xnv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:08:26 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5e91fb101so108504551cf.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 17:08:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757894906; x=1758499706;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jhHQJ2FaZhjbHowvbcKpjMEFVjk3jYUMJhk+fRucFz0=;
-        b=YbFIpJY4KsRioug1OqqGYhhPGcqMsaK7hV03Zg92o0qBTuAUtiSWZx6wVdUjQ/0Owk
-         mEm72X+bph709mh1K4HuIiDb7WdEfSDg256QX7U+clv7bEzjsrvf/iEHak2Uky9bz2Ac
-         UuWaIkFaE+15xYd1cgem4tUl9G4U97qzBJRh429WcLqjcc4cyFnz923fcTdgEyh/BZYy
-         ceHlZAaO4gt3cLl2yLukwMOphQJXBRxss+LnZY3bWb78V2vp8cEIKf/9Q4r7uydGpKzQ
-         r/w1ZBrepE/Gb1SllmXEeG7KcZl7wAG954pEJrmRpxh0vODJdYH5Mw2JVezimfrThc5j
-         ky7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXWP2GX4ZIwZurhR1SYnb9RiakqivDElphbLD0nVi0wOBcL188YSdlXDVHB0//4sOmsu7PbW3eqDWHM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1HGu7w4b31l7OGG7ENaJ+y3ya2+3Q0Sy+UQdFywqDL5o5sTFb
-	emy+vIzEEYVp+j0uZcqU1UoIgu4lv05tcLwCtH8PCEXsCgb1p6ZOnj8/NJQNYxylHaH6oEYx4UZ
-	NorhS8mZnbu/m5S08d07f2OzZ2bbmvo6kCgoYIjZjsNy6nL+9ShmhJl60Kp7nRsSLHD9sEHAm
-X-Gm-Gg: ASbGncujHEVTet+EAHQKnWWvGKzvEx2OTwWWC5Q/KcAnvt8XYlHmRmhjujAZB6kb8ZW
-	arbBDYKnUYKIMKW1etM+Awemrg/L0XT4J9rFzWKP1K+m1wMr65RaPZVzNiriE3j/yONdoIgYoHR
-	ld7SHgpV6wC6ogqTvedL4dOmD4RQE7eSRcBMnarXuOafDvMmFjUJuKYWyaww6JlJbM+gbq3KPgw
-	J/47gqCUJTbYzWOjWGicGcnW3cH9WzPY3552IR8YWaza1pP5d8owle9d24qE225Bmmb9eVbxKRA
-	RgWcMK/DuUR12ymW6y71Yu7+kxXmh1TkNQFOyiWGdsvqqal2SRiA/M8aFVLTY6pE/rviC4TGuNk
-	Om3OPZJ7nCPxHOSByfCTWWkO0Dkcd+nbn+W/dewsVjw+vMmhQe/8v
-X-Received: by 2002:ac8:7dc7:0:b0:4b5:eec2:fa with SMTP id d75a77b69052e-4b77d05c20fmr145396171cf.62.1757894905777;
-        Sun, 14 Sep 2025 17:08:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFlzWL1Pn7gtuuEpIlHBZn+SrnRj7NK/IECY8KYfOg+8dAVUiEVUigMgQ3DRWqq0FAo6LUpYA==
-X-Received: by 2002:ac8:7dc7:0:b0:4b5:eec2:fa with SMTP id d75a77b69052e-4b77d05c20fmr145395871cf.62.1757894905336;
-        Sun, 14 Sep 2025 17:08:25 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e6460ded0sm3264619e87.105.2025.09.14.17.08.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 17:08:24 -0700 (PDT)
-Date: Mon, 15 Sep 2025 03:08:21 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-gpio@vger.kernel.org, David Heidelberg <david@ixit.cz>,
-        Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>,
-        Shinjo Park <peremen@gmail.com>
-Subject: Re: [PATCH 6/6] ARM: dts: qcom: msm8960: rename msmgpio node to tlmm
-Message-ID: <nudo46pgp2uaegztcpvp7iu6fuotkp4hjhpl3qo57jpkjr7dph@5ypen25l4xnc>
-References: <20250915-msm8960-reorder-v1-0-84cadcd7c6e3@smankusors.com>
- <20250915-msm8960-reorder-v1-6-84cadcd7c6e3@smankusors.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cZ2XuPEQ/hR8egDR375kMypE743gznZp60xRjzYR8k1YexKtv9ZLI/oODgHT9oj/R0nzV49/g0DDGfx8jfK+S5KWwjZMl+aKBhtTOVTyMVIesFIrkrAWtwaJFzTMp89PqD8F5s2xJYYSFBgNoJMOpkLEepUB7yYF9aMcNHs0vHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jG7Up0pu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7AA0C4CEF0;
+	Mon, 15 Sep 2025 00:08:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757894904;
+	bh=6W35ED/5B6DMe6+JEfViwGJLMbiEsNhy58ZClSAv1W0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jG7Up0puetanBV5R16T9Mr5YOcJLCgaxlDxjZBjU+M0rn926h86BboU2D7lC0/4S6
+	 5LCgjt++UOgh1/WThZ8Q4LAQU4yjViY8zK1f9Fgm2jxbL2Rj59LNHwbjwqLssHC39/
+	 dLxezNIv5NX6PfJDyd6Xj+baN3I3Tpx7VG3FXUgXlOLG1MiVwonH5wl1FE/rrzvVLL
+	 E8bmf3j4k1b4jsIYIXvyUPwxF3I8hSmfOIOR2tb0C5srcGVfHI2ta2YBQVumVp9Z0r
+	 AdHPjLMT17JeVft4fvJGJzfK3fT0EQMaI/rMvoi9mnuJFUxTWlwnZWR9MrdLZXnhKi
+	 BTg7oKM3lhJgQ==
+Date: Sun, 14 Sep 2025 19:08:23 -0500
+From: Rob Herring <robh@kernel.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Mark Brown <broonie@kernel.org>, Jonas Rebmann <jre@pengutronix.de>,
+	Andrew Lunn <andrew@lunn.ch>, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios
+ property
+Message-ID: <20250915000823.GA2282513-robh@kernel.org>
+References: <20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de>
+ <20250910-imx8mp-prt8ml-v1-1-fd04aed15670@pengutronix.de>
+ <20250910125611.wmyw2b4jjtxlhsqw@skbuf>
+ <20250910143044.jfq5fsv2rlsrr5ku@pengutronix.de>
+ <20250910144328.do6t5ilfeclm2xa4@skbuf>
+ <693c3d1e-a65b-47ea-9b21-ce1d4a772066@sirena.org.uk>
+ <20250910153454.ibh6w7ntxraqvftb@skbuf>
+ <20250910155359.tqole7726sapvgzr@pengutronix.de>
+ <20250910164231.cnrexx4ds3cdg6lu@skbuf>
+ <20250910165518.bzpz5to5dtwe2z6x@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,48 +81,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250915-msm8960-reorder-v1-6-84cadcd7c6e3@smankusors.com>
-X-Proofpoint-ORIG-GUID: Hw2CZXoqf9kQwDAeKUenzIKWJa6PKdqH
-X-Authority-Analysis: v=2.4 cv=PsWTbxM3 c=1 sm=1 tr=0 ts=68c758fa cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=wxLWbCv9AAAA:8 a=EUspDBNiAAAA:8
- a=WfKvcdoTxDYLXQoqPjMA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
- a=QJY96suAAestDpCc5Gi9:22
-X-Proofpoint-GUID: Hw2CZXoqf9kQwDAeKUenzIKWJa6PKdqH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAyOSBTYWx0ZWRfX+2nCeUXr05Fy
- lcMiG5E7I6qPDhM2Ck2kLfjX24D45DPQ9inS4vhxUCwQBbno2OQTnXuggLT1fegoVxh1ORAz/07
- 26cuDCl81Kt9801KLzMUwb68vXEYOb/0HhAcj6pt1BJrdeELn66bPRz1CVDFElqKlQYkz9eGeVC
- PYyFQSn8pX4/No9ysJ0owIvm2t0yAzVvDmbL/oOnt+i0LHsA/okANpMpmSBP+0CeCbYLtRgXOoz
- IaGfaJWb1Sx2CKSUvj0B+qopCM5rVXWF2mJJaLoBBYfSVdUwoEl4EGtQD27KlppH2wT0ybbXPzl
- BK4OxKMpK+x7vtP8X9UlGY2bfVb88TpYfTKHs62zX37ZqHYHTKEEBnEQ+zUs5FMyiYJdrKr8KUm
- EFrsnmeJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-14_08,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- spamscore=0 bulkscore=0 adultscore=0 impostorscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130029
+In-Reply-To: <20250910165518.bzpz5to5dtwe2z6x@pengutronix.de>
 
-On Sun, Sep 14, 2025 at 06:35:03PM +0000, Antony Kurniawan Soemardi wrote:
-> Rename the GPIO controller node from "msmgpio" to "tlmm" to match the
-> convention used by other Qualcomm SoCs.
+On Wed, Sep 10, 2025 at 06:55:18PM +0200, Marco Felsch wrote:
+> On 25-09-10, Vladimir Oltean wrote:
+> > On Wed, Sep 10, 2025 at 05:53:59PM +0200, Marco Felsch wrote:
+> > > IMHO silently removing the support will break designs for sure and
+> > > should never be done. As said, imagine that the firmware will handle the
+> > > supplies and the driver only needs to release the reset. If you silently
+> > > remove the support, the device will be kept in reset-state. In field
+> > > firmware updates are seldom, so you break your device by updating to a
+> > > new kernel.
+> > > 
+> > > One could argue that the driver supported it but there was no dt-binding
+> > > yet, so it was a hidden/unstable feature but I don't know the policy.
+> > 
+> > Ok, I didn't think about, or meet, the case where Linux is required by
+> > previous boot stages to deassert the reset. It is the first time you are
+> > explicitly saying this, though.
+> > 
+> > So we can keep and document the 'reset-gpios' support, but we need to
+> > explicitly point out that if present, it does not supplant the need to
+> > ensure the proper POR sequence as per AH1704.
 > 
-> Suggested-by: Shinjo Park <peremen@gmail.com>
-> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
-> ---
->  arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts                | 10 +++++-----
->  arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts | 12 ++++++------
->  arch/arm/boot/dts/qcom/qcom-msm8960-sony-huashan.dts       |  2 +-
->  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi                   |  6 +++---
->  4 files changed, 15 insertions(+), 15 deletions(-)
-> 
+> We could do that but I think that no one should assume that the driver
+> ensures this due to the missing power-supply and clock support. But this
+> goes to the DT maintainers. IMHO we shouldn't mention any document
+> within the binding, maybe within the commit message, since those
+> documents may get removed.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+We probably have lots of dead links... So what's one more possible one. 
+If the information is useful, then I'd put the link there.
 
-
--- 
-With best wishes
-Dmitry
+Rob
 
