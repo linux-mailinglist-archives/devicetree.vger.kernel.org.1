@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-217121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D47B56DA9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 02:52:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C98B56DB2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 03:00:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C40991755FE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 00:52:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6159F18977B8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 01:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10101D86FF;
-	Mon, 15 Sep 2025 00:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E5D1D86FF;
+	Mon, 15 Sep 2025 01:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cA0AaN9B"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OxpcoiT4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBF11BD4F7
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214917260A
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757897565; cv=none; b=FCJYRQ5OqjvB3s3oPb3CSR27imNg7xpbtZHGc8S5XfHu3x0ZrlxTftgUDXuVLyuRAz4D4yhHgjDYMNFQRmuS0za84J/kEPAiVBwOaEaQU99CEPjezM1c8goS5NTlqHHzY/wYgxths7pMBWdDc1eX/q9pbl+RXzRkL9aGqmZPinA=
+	t=1757898032; cv=none; b=PsqeTbaAlaSrBxev4ayNewdKbj/jn0/RraMr2/SqpdqIpeEAfEJ+XCYksnNyrs1M85HTWzWyIP41aUCMQO7moQ6jtyHm8JbYYOgxRFYOw1+fNpmce7Pg7fCkBUcoWnbT6/1RHcsVWEZk0OIehW8LfaV27JchSbRMlhx85H14u3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757897565; c=relaxed/simple;
-	bh=6EHrV53FNeLkPVh8mg6xrFCbEKRJyfLGxetsjj5P5wQ=;
+	s=arc-20240116; t=1757898032; c=relaxed/simple;
+	bh=0s5pIJRj2Ly706SK/vH8OJ7sZK45JIuAC7nedl4x0/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Em16/ukTix8AC0OGj0A01OsD/YeFKD1Hx8RGdq2jtH23n0wHyUHplczWzUJWhDESGhqXZwRvP0OLUiR5oFBYxk9ZgmgGvSb/fg9aM15SZ/8/PqzXJUM0PY0RGfOW7bLn4nmZ8YShP5eXCAYmGOliTw0ig5A+Je+9nL7z0k8Zy7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cA0AaN9B; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=ERXwDEhbySGvVGfecuSFE5MwH3GYBvAWmwImGrMai35iTv5Qa8um/inaYsAC1E34TyP211vp0o6+7/FV3EInN4oAaaTba+IvN9aprYPh2wrxCcw2fPpw96GYeKd6dkQEiYZw1xABZoTZ9Mx6B0xrHYAgkQkbfHkytyxkQsT5lWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OxpcoiT4; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ENI92g026462
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:52:43 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ENSBts012501
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:00:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xGD01IAG8EgiNoSNBgigNyCq
-	I9uoRjgAYy7dh2aPLpg=; b=cA0AaN9BcqNT4vuekkirm+8JldCOKOonsyr0WXvd
-	824h9qQMKE3xROJI5HdgmFWvleZTyjLaH/LNk+WXuQ3N2rICLY5LBouWOruq2lL9
-	iPN9ym4R97Nqj5WQzIu2kY9gb5XcsP9NBHLbriZ1/MiHZUYzbIz33nU+BpQDnSu7
-	XF53BH2lwNqtTSwhyiTkmNc922PYo8EKAhmhgIanQTl6ORO62R3b7LncLt6VWuuQ
-	luDywLsuutsP26H/2n+dYMP2IeNaKbSW7K/jTyhYC8uv8kBft9zte2ofcSZnzfFv
-	2ThC6fCUHM/h/AxLXhlH6kuSooeecbFv9/6s89s2qXZ31Q==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 495eqpstuj-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yqfHnDEOnUdvEnKTky9oFQEnKcCdVMPVRKAhxqjE5l8=; b=OxpcoiT4hM+IRFi7
+	bb6Fi9SXD6Seu0hGf8gqbpPvTbnhR54ccyNBLgEsGN2kWQ5TGy0FycY9D6j72HiT
+	XaUYOypQsYYOd6GGFeOwSA7FOKDquOE7AlC9hsIIya92+yHZeXpDQ8uT9xvP835g
+	1DQZFTx3qYU3qgZ+c71zKGHp5zXX+W1EhpDQiRzyGZryZPO6HCE8NccvHxD5HUL0
+	b1/dnyyekBkzFiz8cPfdR36xJnJl3x50U/l/25TrGIJLOB4DqFGk8zP92G90DgwV
+	LgIMd/vvxCrmokP/GpyYtKjezPwJbVq2k4yh6FUK60WxUAXp5kCN6ohpZMqlBaPQ
+	mfCJ2g==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 495eqpsu69-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:52:43 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5e5f80723so76932271cf.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 17:52:42 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:00:29 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5fb1f057fso53100031cf.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 18:00:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757897562; x=1758502362;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xGD01IAG8EgiNoSNBgigNyCqI9uoRjgAYy7dh2aPLpg=;
-        b=EzkHe9pLteI2i7JGYAd9QGr53lTmrl+heLLTSI7zzpM0Fv+kFbP36Kf4oiUJWGp4Xw
-         4aKGljwMbl1lVnRpBsdFDu5Sw9qGfbKkyRAisDEBqtAg6Liaw1MXHxSAIVS1SU7usCQf
-         2emp1x/NoUPjNJ0UxMdun0C0eZjxuLCpityoPg40TQp887IqR8xgd9Qs6thwfLudCzkq
-         X1p6XGgNPsA03eizzZq3cIc1EPHTyy+cnPxs07ziEj7xBwQ/Cd7e00P5eS5oDkHlFmSC
-         /nbUqRnZTIh+a/+UdmPY6FeqFK9E4ipAyYsEqgTetNZ4b4+mk+oVTfe4Ya1zvMWLO9p5
-         cXgA==
-X-Forwarded-Encrypted: i=1; AJvYcCXM4HEDUGEtQrFYGQrX9qQrxVSV1d5Bj6/H8+L1ShEDzqxTpvK6666YAIJtnyduDDJleGkzL4zg8uOa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXi/5TLhKHcv4RNoMaBbFJiZzwpH/LLlXV2wc0NrMegKlqZXVF
-	Hxwh7WNRFGPYo6luJRJf2zAhgQ3ShwXdlpKehK3JVHqpRDMUob3soLcX4wpQM5XPZkkSIlCAs31
-	706zZjYRiqsoyfKXDAjorvQ4LHOfRp47h51XNX30pI1eVtYJCZ+j5YlDHB9ZLba9A
-X-Gm-Gg: ASbGncsHK2SZAsEYq8IQVtXzWb8RWc6ZGrvvgS+LI3RlcRiHbaB29eEfMmqZeMm0sO3
-	OdKrjlOcmshh3M2gGCA3jagkMQhWzSvqxMt0ZnGR2vPpbZSQa6GiKMiRPOO1LMJV4rTudSF7/qn
-	mczh7L/HwNl0xc60ZIOvTO4Lm1mtJUwMoJ0zyp/40Wx1Dgldc73LbuFtcWLdTfMgAtMgugnGCwc
-	+YjRtTAyxwZR0yRLLwVp7Ew3kQp9BzfS3MKNSvUfMzm3Ns9AtWtXBfQ6RnK3p0i1Q0SYOydhBfQ
-	N7Z4b4gK6EZ1M8DFgVpWI+8Zi//X7Fmj5VhnDLD5siN7WlEBg512YBNLXIaa8or802S95g1GjTa
-	9RBl28c97o9afn5dkQig9gJz2PDQX5eHfXf46L3w/d34un7bgIUci
-X-Received: by 2002:a05:622a:118b:b0:4b5:f27c:85f7 with SMTP id d75a77b69052e-4b77d1be2ccmr131463551cf.83.1757897561591;
-        Sun, 14 Sep 2025 17:52:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFiGMEuGK2fMfFM34phtPtyHS2iG9N9oi8+i6v0OXyNy6+2Ly3OhQQUrROvts0Wj6aG5FZabQ==
-X-Received: by 2002:a05:622a:118b:b0:4b5:f27c:85f7 with SMTP id d75a77b69052e-4b77d1be2ccmr131463361cf.83.1757897561109;
-        Sun, 14 Sep 2025 17:52:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757898028; x=1758502828;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yqfHnDEOnUdvEnKTky9oFQEnKcCdVMPVRKAhxqjE5l8=;
+        b=J6veLOJoLo3Ob/OTkBLoacKctD5O2Fpnvh69/xhcaKkYwHxL80wapMVBs4JGkiSXsN
+         8oSvW5Le1DRakMBZPFhNpc2XkOoTtLcaxqSd3DAZ110RUIQkirdYm5bSM4MX3jw5/P7t
+         UPMS8nq4qPK1sE7mkJUdHXracj2yFLGRMcnQoJt8fsznQSiwzgVOb+6XQD30PMRYjUt1
+         dH33+EURs8ld6wVnHZeZz+mA+oPGUAmxhioy/2y2w7c57ftqPVxbz9wEjRhFuT328UpA
+         PlcM1IzZPkBerh0tsn61XXSX8F8TfGCBWcV8m90lYeTe3Ylod1D35ZmvNjOm89Cs4AI6
+         dhhw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3/2wfvFkSbHfUEeE8AHC0P90kERwH5k/Zx5XZvpISLt1cEFIw6NxapzwJBVjLAOF0lDWQUvziEFP9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlGNsk3BRBYo9xI31zSEwaEcAuquRSBeTZ+1Q5sta0iIwKzhi4
+	+yrmMLmglXpEIiPcZF2GwPUp6vFB+zscO+MH8O9J2JANDR7SO5hLR9N4GdYyeAw/+yS8rHxj1tH
+	40lJIaAEPy/Za/iKyOBMeL4tV82eshBQYcr3SLDBo9gwGescEdbWu0PVDj0jM5wyE
+X-Gm-Gg: ASbGncvmEO8rCZpeHkWqRUCZCtk93YRZx5oNH4GSqOC9UxZv9XzN5OT77Dlzf4HUSQt
+	4qiLgpbfLw7qM6RfZz9m14/KLN9WZKdgVPKo8q/zjlMI+mA2nh4lNRJtzjEtPoMmEpBZB01Sqvs
+	OIre5/JJmBPMPZP+zcPzsTTkk1WVLGBJCf/nw+pDLvB15nA02+Aid4C3Abws5159qGjKTJYrviD
+	IA1S6PxmQskAoIYRf/Kz0rWjlAvEO/PpylR6cAsYnTNohuSSrnDie3TMcYplxWBP0aNXTkpi8hj
+	cCruR5emdmgHS3qWGhUzRlSG8iK4l5vSc3vB0FKMIoh1Hp5cur0sTwNrG3rPfVwWvKBKrLdQbau
+	bt2OIgHJl6fvEUDwflIvkqr+/iL0UzdOVTIdW7iaBi1hE8KRBa7RU
+X-Received: by 2002:a05:622a:15d4:b0:4b4:9062:69a4 with SMTP id d75a77b69052e-4b77d018f7cmr125417781cf.35.1757898027823;
+        Sun, 14 Sep 2025 18:00:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEQoKXTfHUZm4ewMDtxrD3cLgoJBG5H4zVtX42N1as3HFiF8AaH1mekFLSfDZC/KfKVIHKxMQ==
+X-Received: by 2002:a05:622a:15d4:b0:4b4:9062:69a4 with SMTP id d75a77b69052e-4b77d018f7cmr125417221cf.35.1757898027212;
+        Sun, 14 Sep 2025 18:00:27 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e5c3b5fbdsm3179435e87.30.2025.09.14.17.52.38
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e5c3b628bsm3230962e87.15.2025.09.14.18.00.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Sep 2025 17:52:39 -0700 (PDT)
-Date: Mon, 15 Sep 2025 03:52:37 +0300
+        Sun, 14 Sep 2025 18:00:25 -0700 (PDT)
+Date: Mon, 15 Sep 2025 04:00:22 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Paul Sajna <sajattack@postmarketos.org>
+To: Frank Li <Frank.Li@nxp.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>,
-        Amir Dahan <system64fumo@protonmail.com>
-Subject: Re: [PATCH 1/3] drm/panel: Add LG SW49410 Panel
-Message-ID: <nhmlgiyde2xlevrpsvtjjqmewv3q3ifbyerdzxhdaalv7oysyq@yhlnddkudwwn>
-References: <20250910-judyln-panel-v1-0-825c74403bbb@postmarketos.org>
- <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: display: simple: Add innolux,
+ n133hse-ea1 and nlt, nl12880bc20-spwg-24
+Message-ID: <ufmwjrlnaq6tucfpqishzvdpgsxartxgohjrgyr4eccahb5jrc@5ausrm3osivb>
+References: <20250912185159.1118209-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
-X-Proofpoint-GUID: 5tUsaY30eAJ6XQhAzYvxDJSnzpPQ4eBu
-X-Proofpoint-ORIG-GUID: 5tUsaY30eAJ6XQhAzYvxDJSnzpPQ4eBu
-X-Authority-Analysis: v=2.4 cv=XJIwSRhE c=1 sm=1 tr=0 ts=68c7635b cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=sfOm8-O8AAAA:8 a=Gbw9aFdXAAAA:8 a=d-sDLFr6_VOwSKI_PXAA:9
- a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TvTJqdcANYtsRzA46cdi:22
- a=9vIz8raoGPyDa4jBFAYH:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDE4NiBTYWx0ZWRfX98b4amsg5Y4Q
- x11Pz2OxgSYfjTlpHs2Id+JA/wjnTYqabEkm7h4OBeyHsz8ae2lg5xOWtv10eu7Z//X1OpO0J2S
- FxwAuWR0LmUZjyWYU6AEZ+4FxHPq44/WvvIIWKinNzpzSh8pPoKQkxBG4ViVE9DPwBRsUcvNujV
- ufSfYcdOYDQ75FeveT7tCmVXOLYemycMMPc4zVlwwYoFm6SBlfcUcz6X1cmn7VmrsfxID2QVV7c
- Jb9qRCgh1vmQxBZChujSQu/v584vGkIAcdiq43grCmDDVPQx5BcCVOQgQm+9bfz8s0f/y8Uk/DT
- /uRLEHu63iE6WdEVaedimUN6TCYbpAGLbXb0ak0trXsqjk6/bElSQ9d0b75aPrCdin5NT1mTI7y
- EGo62qol
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250912185159.1118209-1-Frank.Li@nxp.com>
+X-Proofpoint-GUID: bht6iqBs3797_UYW_TuRbW-gqCY4aX0F
+X-Proofpoint-ORIG-GUID: bht6iqBs3797_UYW_TuRbW-gqCY4aX0F
+X-Authority-Analysis: v=2.4 cv=XJIwSRhE c=1 sm=1 tr=0 ts=68c7652d cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=yJojWOMRYYMA:10 a=8AirrxEcAAAA:8 a=CqteVLWsAxVuTjZik0AA:9 a=3ZKOabzyN94A:10
+ a=wPNLvfGTeEIA:10 a=kacYvNCVWA4VmyqE58fU:22 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDE4NiBTYWx0ZWRfX6N+9TehnSXBL
+ NcvpMDUSiYuvhh3F8g2cJTuo9vctVs90o4Q1nMb710nxs3sK6BswhDwhdoVNQq5Tdab9Vv0egEs
+ fa8swQKP6DkkPXhMjgnOGBpbaU+KDwRrAebZEjq0/WCMoLHuI2BP32R9/zwk4Q59igwEmM7qiVZ
+ CBKce/ygMbMYN2gkQ+1LNxy+XM/MznIizMTKH/AP7YOjWS0ITE83rykobFBz/oaQ46CnA6qWx23
+ P9wCUaBws/E9PcjeRrpk5ogt8QuAxgBdKjbdt9toKBshyTr3/EuyQDVMt8su5vEE9h0l3CetG8g
+ g5TBEANmPL9BK/xDumLewsHdiD0CUFPryQ4KSx/i+YnXVxiMk8w7GjXE9xIFqcevaTujBzZHAj2
+ wCkjsVHy
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-14_08,2025-09-12_01,2025-03-28_01
@@ -131,173 +133,43 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2507300000 definitions=main-2509130186
 
-On Wed, Sep 10, 2025 at 08:08:20PM -0700, Paul Sajna wrote:
-> From: Amir Dahan <system64fumo@protonmail.com>
+On Fri, Sep 12, 2025 at 02:51:59PM -0400, Frank Li wrote:
+> Add innolux,n133hse-ea1 13.3" TFT LCD panel and nlt,nl12880bc20-spwg-24
+> 12.1" WXGA (1280 x 800) LVDS TFT LCD panel.
 > 
-> Added panel driver used by LG G7 ThinQ (judyln)
-> 
-> Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
-> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> Co-authored-by: Paul Sajna <sajattack@postmarketos.org>
+
+And no driver bits?
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/gpu/drm/panel/Kconfig            |  14 +
->  drivers/gpu/drm/panel/Makefile           |   1 +
->  drivers/gpu/drm/panel/panel-lg-sw49410.c | 513 +++++++++++++++++++++++++++++++
->  3 files changed, 528 insertions(+)
+>  .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index cfebb08e8a62680a14a500d28decfafc2daf743a..48144848c8d3282d231d7495d694381456dde63b 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -406,6 +406,20 @@ config DRM_PANEL_LG_SW43408
->  	  pixel. It provides a MIPI DSI interface to the host and has a
->  	  built-in LED backlight.
->  
-> +config DRM_PANEL_LG_SW49410
-> +	tristate "LG SW49410 panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	select DRM_DISPLAY_DSC_HELPER
-> +	select DRM_DISPLAY_DP_HELPER
-
-You should not need DP helper for DSI panel
-
-> +	select DRM_DISPLAY_HELPER
-> +	help
-> +	  Say Y here if you want to enable support for LG sw49410 panel.
-> +	  The panel has a 1440x3120@60Hz resolution and uses 24 bit RGB per
-> +	  pixel. It provides a MIPI DSI interface to the host and has a
-> +	  built-in LED backlight.
-> +
->  config DRM_PANEL_MAGNACHIP_D53E6EA8966
->  	tristate "Magnachip D53E6EA8966 DSI panel"
->  	depends on OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index 714cbac830e3f0be3659f1907c5dbacef863bbd8..f7f6d232ad9c7163f328d94f4461fcb3379f998b 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -41,6 +41,7 @@ obj-$(CONFIG_DRM_PANEL_LINCOLNTECH_LCD197) += panel-lincolntech-lcd197.o
->  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
->  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
->  obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
-> +obj-$(CONFIG_DRM_PANEL_LG_SW49410) += panel-lg-sw49410.o
->  obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
->  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
->  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
-> diff --git a/drivers/gpu/drm/panel/panel-lg-sw49410.c b/drivers/gpu/drm/panel/panel-lg-sw49410.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1243577f9280ecf3e906d2ad001c6c313b3af495
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-lg-sw49410.c
-> @@ -0,0 +1,513 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-> +// Copyright (c) 2025, The Linux Foundation. All rights reserved.
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/display/drm_dsc.h>
-> +#include <drm/display/drm_dsc_helper.h>
-> +
-> +struct sw49410_panel {
-> +	struct drm_panel panel;
-> +	struct mipi_dsi_device *dsi;
-> +	struct drm_dsc_config dsc;
-> +	struct gpio_desc *reset_gpio;
-> +};
-> +
-> +static inline
-> +struct sw49410_panel *to_sw49410_panel(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct sw49410_panel, panel);
-> +}
-> +
-> +static void sw49410_panel_reset(struct sw49410_panel *ctx)
-> +{
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 11000);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +	usleep_range(10000, 11000);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 11000);
-> +}
-> +
-> +static int sw49410_panel_on(struct sw49410_panel *ctx)
-> +{
-> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-> +
-> +	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> +	mipi_dsi_dcs_set_page_address(ctx->dsi, 0x0000, 0x0c2f);
-
-Please rewrite this function to only use _multi() functions. Don't use
-functions that take mipi_dsi_device directly. If anything is missing,
-please add new wrappers.
-
-> +	mipi_dsi_dcs_set_display_brightness(ctx->dsi, 0x00ff);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
-> +				     0x2c);
-
-[..]
-
-> +
-> +static int sw49410_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct sw49410_panel *ctx = to_sw49410_panel(panel);
-> +	struct device *dev = &ctx->dsi->dev;
-> +	struct drm_dsc_picture_parameter_set pps;
-> +	int ret;
-> +
-> +	sw49410_panel_reset(ctx);
-> +
-> +	ret = sw49410_panel_on(ctx);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +		return ret;
-> +	}
-> +
-> +	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-> +
-> +	ret = mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
-
-mipi_dsi_picture_parameter_set_multi(), move this call and the next ones
-to sw49410_panel_on().
-
-> +	if (ret < 0) {
-> +		dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mipi_dsi_compression_mode(ctx->dsi, true);
-
-mipi_dsi_compression_mode_multi
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to enable compression mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	msleep(28);
-
-mipi_dsi_msleep
-
-> +
-> +	return 0;
-> +}
-> +
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 48344ce74a6e7..742ec6033b724 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -180,6 +180,8 @@ properties:
+>        - innolux,g121xce-l01
+>          # InnoLux 15.6" FHD (1920x1080) TFT LCD panel
+>        - innolux,g156hce-l01
+> +        # InnoLux 13.3" FHD (1920x1080) TFT LCD panel
+> +      - innolux,n133hse-ea1
+>          # InnoLux 15.6" WXGA TFT LCD panel
+>        - innolux,n156bge-l21
+>          # Innolux Corporation 7.0" WSVGA (1024x600) TFT LCD panel
+> @@ -230,6 +232,8 @@ properties:
+>        - netron-dy,e231732
+>          # Newhaven Display International 480 x 272 TFT LCD panel
+>        - newhaven,nhd-4.3-480272ef-atxl
+> +        # NLT Technologies, Ltd. 12.1" WXGA (1280 x 800O LVDS TFT LCD panel
+> +      - nlt,nl12880bc20-spwg-24
+>          # NLT Technologies, Ltd. 15.6" WXGA (1366×768) LVDS TFT LCD panel
+>        - nlt,nl13676bc25-03f
+>          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
+> -- 
+> 2.34.1
+> 
 
 -- 
 With best wishes
