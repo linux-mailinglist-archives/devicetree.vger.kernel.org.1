@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-217401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2332CB57892
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:38:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC29AB578BB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE62516D600
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:37:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0170188CBA4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD4A2FE59C;
-	Mon, 15 Sep 2025 11:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB552FF14E;
+	Mon, 15 Sep 2025 11:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ero2N126"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f1rIBLGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3632EC54B
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 11:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 850D12FDC52;
+	Mon, 15 Sep 2025 11:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757936148; cv=none; b=U8w32QSMq84O2ilLA8ee8bZH4MIDpbC6V2g/ABgsI09fvhwKoJpz6ab/+oBlBwcLqNMi80kmgN4trs40bgQoxSh0nFD1ViER7V4muqEy+aglA5YKBXkJm1A516B6ivdHOXI4dEqEBdZ08kyhXEiR0eJ7ueTETKG3oVWtYeMvuvg=
+	t=1757936551; cv=none; b=AO9ADskXC+Nib4+G6DhDu5Cea8seUhyuWOZjcVDv/D/rfXbZVcO/J9jwWkmZsuEp5+SwUBhB1CmCRaS7kr7qP1yMZpLKfsDvV+djeQ54eLOdEUK2dziCUd5AhBi0Rw3ESM068Res48eYAAv7aDz7yT0F47tUF3vm3lgYLhsZZQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757936148; c=relaxed/simple;
-	bh=YbyCcDqWw6FcXwd7+WDRZZ7cNwSItb6V3Z+Dbpw0JLc=;
+	s=arc-20240116; t=1757936551; c=relaxed/simple;
+	bh=ajbPUytumu0CYluhZI1VFCY6fxojox7Qh/NgvsPboFA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tPfhDkdJ03B19hvEcYkiXuDWHgkT0gu3P/ca2m+gqo6MTuhQrs1m1TLgkLzqb9nEz+9eWQPWKZdS57NDl1liexTKoGrIGnXyrxO/hWUtMNGBtGPiIt+7Yg2mmJ1SyvUhaYIzKTCQn5cGpnXcQ/2RmSF3WWmGg0JHZp0xhc/uYeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ero2N126; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=w8OW
-	2uDi6ErI3MM6zAfiPSI+Mt41RJCxxGd5LE7WsSU=; b=ero2N126KwHBQ+en+uOA
-	9KGVdnzdMnPPGVTe1WCVVjYAJysCVA3rmrKCdvuxx4lbA7UqVxSEkodnWI4A5Yh3
-	wM8t5bwe2xWsH51kpq/rhq1v1GD1LLyoMlEuL2k3iCnMkok//rm0/eYAD+f1Cf9q
-	BthISTz2ydq6UWplrek22zYlyXtuolDg8MJxc+Dy78y1S4rubX/mp8ZPfUSocPc6
-	QR4O4fWltYGT0k4y+Jz6K1RyLGYEEcXkjM5vcxegu2Zx6fHNrM2giy4/wXiYnwZU
-	buM7ceNUvgGr3KWQuXR0Tu3doIhYZIuMZT4TYyiKxFFEzvQPuvBu+Ex7g0MkfW3A
-	ww==
-Received: (qmail 2345910 invoked from network); 15 Sep 2025 13:35:40 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Sep 2025 13:35:40 +0200
-X-UD-Smtp-Session: l3s3148p1@8aotZ9U+AowgAwDPXxLYAMR913XberYj
-Date: Mon, 15 Sep 2025 13:35:40 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca@lucaceresoli.net>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-	Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=DL3pvXG+8WmA3t8uljAm0Cqnx4Bsp5IVEqN5NI6FZXCagenZn3EPoBukI4qAM2yvAZso66dtSd4yuDsWnQ/VI68B1OyjyA0FvwQljzzKDJgSl9mlrpIouYn2Fe3HX51vQe2wh6kt8zYAJM+wa//3r1QJLE5Au9pcxM6Ub0t8+u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f1rIBLGq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF12BC4CEF1;
+	Mon, 15 Sep 2025 11:42:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757936551;
+	bh=ajbPUytumu0CYluhZI1VFCY6fxojox7Qh/NgvsPboFA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f1rIBLGq1tBvYdIR7PEsmaY8uolPSNmShYsgQhMCF8ydQUZc/pI+e09ACURJ6WnoW
+	 LpTkgnLXc+7f6IjlP2nIi0eFhimGYfO42x1B9yVVUcXNqK4phQdN/9KsBOjA8TWeNO
+	 cTnK59Ht/M2WnqL1kR4OE2mXVc2n6NHl+mx4B9xq07KGZJXC9s/GX6lSkl7hPBVInj
+	 V9rC6eJsCyck4qtIwyJ0YCD8n+Kw5RQ6A6SNi1db9ECX+Gl7rBFkfvwogOZc0u/E/3
+	 IyH/cVLWtCfFtVkJvDVUbLW3UtlZrl8H1gOVGliWC0BlUYsAB7ixZv3BHTqwLw6Fw8
+	 QAe75IVc63u3g==
+Date: Mon, 15 Sep 2025 12:42:25 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] i2c: muxes: Add GPIO-detected hotplug I2C
-Message-ID: <aMf6DLr8pTCP8tKn@shikoro>
-References: <20250915060141.12540-1-clamor95@gmail.com>
+Subject: Re: [PATCH v1 7/7] regulator: s2mps11: add support for S2MPS16
+ regulators
+Message-ID: <f1944f1f-334a-4194-90a3-946c57528927@sirena.org.uk>
+References: <20250914124227.2619925-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250914124227.2619925-8-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,65 +69,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="MkrhhPs+peK3vGck"
+	protocol="application/pgp-signature"; boundary="xI+eyQ6kVMST17yA"
 Content-Disposition: inline
-In-Reply-To: <20250915060141.12540-1-clamor95@gmail.com>
+In-Reply-To: <20250914124227.2619925-8-ivo.ivanov.ivanov1@gmail.com>
+X-Cookie: Use a pun, go to jail.
 
 
---MkrhhPs+peK3vGck
-Content-Type: text/plain; charset=utf-8
+--xI+eyQ6kVMST17yA
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 15, 2025 at 09:01:36AM +0300, Svyatoslav Ryhel wrote:
-> Implement driver for hot-plugged I2C busses, where some devices on
-> a bus are hot-pluggable and their presence is indicated by GPIO line.
-> This feature is used by the ASUS Transformers family, by the  Microsoft
-> Surface RT/2 and maybe more.
->=20
-> ASUS Transformers expose i2c line via proprietary 40 pin plug and wire
-> that line through optional dock accessory. Devices in the dock are
-> connected to this i2c line and docks presence is detected by a dedicted
-> GPIO.
->=20
-> Micha=C5=82 Miros=C5=82aw (1):
->   i2c: muxes: Add GPIO-detected hotplug I2C
->=20
-> Svyatoslav Ryhel (1):
->   dt-bindings: i2c: Document GPIO detected hot-plugged I2C bus
->=20
->  .../bindings/i2c/i2c-hotplug-gpio.yaml        |  65 +++++
->  drivers/i2c/muxes/Kconfig                     |  11 +
->  drivers/i2c/muxes/Makefile                    |   1 +
->  drivers/i2c/muxes/i2c-hotplug-gpio.c          | 263 ++++++++++++++++++
->  4 files changed, 340 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpi=
-o.yaml
->  create mode 100644 drivers/i2c/muxes/i2c-hotplug-gpio.c
+On Sun, Sep 14, 2025 at 03:42:27PM +0300, Ivaylo Ivanov wrote:
 
-Adding Herve and Luca to CC because they want to achieve the same with
-their I2C bus extensions, no?
+> +static int s2mps16_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
+> +{
+> +	unsigned int ramp_val, ramp_shift, ramp_reg;
+> +	int rdev_id = rdev_get_id(rdev);
+> +
+> +	switch (rdev_id) {
 
+..
 
---MkrhhPs+peK3vGck
+> +		ramp_shift = S2MPS16_BUCK_RAMP_SHIFT4;
+> +		break;
+> +	default:
+> +		return 0;
+> +	}
+
+The operation should not be present if it's not supported, and should
+error out if mistakenly called on an invalid regulator.
+
+--xI+eyQ6kVMST17yA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjH+ggACgkQFA3kzBSg
-KbaZGw/+J0rqDvCN0mzbRK4/L2rPwJ40Oqr9vwGBCvSQO17CpsszXK6scxjjmjzo
-FAhqL2+/9vCX08INJ/SoW3J4SwUcN+7pGmtrwYe8dI4VtJi9x9OxWsqkfNH/gif2
-sG9OOwVmmLSGy+OqWBqRd0WxoutA9Wb2BUV7UhbbmwEaA/yWjxyCi94zeABiHSKp
-rZw7oHPinOAB4nTEL2C01mGH7LnvJNZGqcO5DYK1W+d1PhBJAaDHD7bI3bIprVVK
-9oJpFUnT8EB3eik4NSveiiwm9cciUInBHGfNhZEtVepNNw3B2zJRQ2zz4RTdqVBa
-vEGWa5GoQcJqyTbmpezCP/MbA3ucGLEQ4X2JAB04fHYgQnCfiVRyrRe7KN/A8ygF
-fbQg/XbC0LIKxIhSUC1d1qUe/aqEHHMCUmNow0zniV6uDLkJ8jD5/OW3r/i59Fmu
-nbmjpOnbNa8fi2Pkp6xXLqMqu/+HkPdleCwbe4zdenxHRAEhv5hj7HR15WjZi89K
-SoTOcub5KhyajMspmDEHFL3DvxPv/8eCc1WngoLHIFJcRoyCKNENq+yX2LJ3VC1i
-gWfrvcY8mElmbi2JXVsSnhD19FztnbRY0AYJgx1qn4o+ikuY/39BmVdqoH0oFuwz
-3HqRCkjki5E07ZfHm0hTAtWvZQHfBhZNXcGLbW8TrB+ps4bDlgg=
-=W0qL
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjH+6AACgkQJNaLcl1U
+h9D0JAf/USq3/KVRC+2grlWD9G3VRW4/Ag3cmNm3nycXs410YXU+fDOeD6mjUe4g
+RRReRKHAZ/BUNq7ZdxhTuRHZpuRFL7lSgMNVqoPZUS4kOLkapl7qD7F8RRXW3kKV
+mtQX+kOas8wEuZZEs6eX0idaRl4R2tIS9sWFqIyezfXBJjGijXoiPYR12BF9NWfx
+itl9wA72GUDyhAJQNf/KMNqOVSFm+3aj+NWg/K3c8Y56J7yMW2+EOfpFGuB+1R0r
+ZcIihamxSp1LvrsIOo4cwWvFrJUmWEpLaiN91JyaboAAdF8pEJXyilEfKXVhESuj
+vj3ZwStB1FZaMP+m2NlXql8O4F3pHw==
+=WpDM
 -----END PGP SIGNATURE-----
 
---MkrhhPs+peK3vGck--
+--xI+eyQ6kVMST17yA--
 
