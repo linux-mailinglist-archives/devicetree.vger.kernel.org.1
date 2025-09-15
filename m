@@ -1,101 +1,161 @@
-Return-Path: <devicetree+bounces-217477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF064B57E3E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:02:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56408B57E4F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB7927AAC0D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:00:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D57B11885CD3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B5F307AF4;
-	Mon, 15 Sep 2025 14:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EED229D289;
+	Mon, 15 Sep 2025 14:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqEXiorW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CfB0xS4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2434D20CCCA;
-	Mon, 15 Sep 2025 14:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07BE1D555;
+	Mon, 15 Sep 2025 14:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757944916; cv=none; b=tTXC30niyup5vxndiR3D9gJYOGjE/m3j+f7bkla+Ae1XWLyN9CcPMytFhPCcXm5cfWrgWOWt4WWs7ToZ7VlkeHenFuuSHhd/cqZqAhNadvC4F78skynX5Vlb/eu7BFMdZZ3nF+rArxWqmXRHUfZaXaW0yjqj7WWcJ21nc45sxjc=
+	t=1757945046; cv=none; b=dEKdKI9BHSrnH69T3wsEoYdconauB5uYB44l3tMn8gtryHa6SczKAayz8qlisyIzurAmX+qnJCDG4129u8RZCnJwkaW8Den28s8IrKrCnNi1ESygRTRhy7Aor6xwH4mgWs/67b3GOtzsLdSawg9VGNxYXT8Fdyhp/U/QaK0hOBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757944916; c=relaxed/simple;
-	bh=KXhpX+I9cqFa8/Brd3t1pN6QW8/ieopeH5GV9QGl6+c=;
-	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
-	 In-Reply-To; b=ZSZ6Q5KLpBC4fTrmXLQf9OJ3PDvz+RzJXKG5t9Jia06zFPoNVKD662n5mJ9ooL+z2Qlyow2qkJYjslxhr4aLvleGkeUqL3QfiiFUS0R4aLwfa3V1MF4qLRyCkP/Xic0LdPp2M3Vygi81EMmbh0Zh1F+zX+j2gmrpOqlRhbN/XsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqEXiorW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F789C4CEF7;
-	Mon, 15 Sep 2025 14:01:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757944915;
-	bh=KXhpX+I9cqFa8/Brd3t1pN6QW8/ieopeH5GV9QGl6+c=;
-	h=Date:From:To:Subject:Cc:References:In-Reply-To:From;
-	b=YqEXiorWXIlgYi6mGicFLw+n3pYi5983wdej1RWRLNNoTKmoRo7BL/knJC7s2srsx
-	 ividi6kdGvcz7Jh/TqWOQ++BySawnRjLPViUhzhkwA2+fEFk47sLu9+d8MboSx4L6w
-	 BTk/ynlY1a1GLKBfCOLzTZPlQ2RMv9Z0JW/nzlMy+KR2KBOSsqANDu+3sZmGlETGdz
-	 pCV5+lhgf5neMGpPFre+on+VDdUQuUQ4ydsR28CC50O6UhQ1+P0/hHNtyW+paZLyq+
-	 Dn9XGF1mD2HRH/lVQmgig8WiGl2LjZUUC4o9Zr27ZWDOf8dr1/vGw1UbOcGsnDc1M0
-	 TFfBLUFg7ytjQ==
-Content-Type: multipart/signed;
- boundary=7d5ad4a4091b191b6d2051c27ab850068be519bdfceb7bbf813ae88a9b68;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 15 Sep 2025 16:01:50 +0200
-Message-Id: <DCTFGN6IH4MM.2UXRHE7M6O9TS@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Ioana Ciornei" <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v2 4/9] gpio: regmap: add the .fixed_direction_output
- configuration parameter
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Shawn
- Guo" <shawnguo@kernel.org>, "Lee Jones" <lee@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Frank Li" <Frank.Li@nxp.com>
-X-Mailer: aerc 0.16.0
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-5-ioana.ciornei@nxp.com>
- <DCTDUJO0PS8B.1LD03WTEMNRVP@kernel.org>
- <4awrlgj33bg33gg4ianqk5ypchrygppkqyyojfliznitbtzu5h@xsgnk25syvqq>
-In-Reply-To: <4awrlgj33bg33gg4ianqk5ypchrygppkqyyojfliznitbtzu5h@xsgnk25syvqq>
+	s=arc-20240116; t=1757945046; c=relaxed/simple;
+	bh=eWz6u+OLFMwxAjalHj6xAB1GU9qKMA/quAvqpVCVvms=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BTvS+uqEm8woqwNin/qwXLC7hB7eXXDxMwwfFUHAGua89wrHtlKMR+bb0Ioucip6q7wWOlrA4dFi6xcmYd4k3sV1WNQxUroVQtnuXI/CkoVWfRaZKyD5b+Pyga/QF92WLY14TXIjDcwJ43Wn0aJ/sxHoCaSGwy31Pcyn2C1IJrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CfB0xS4N; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58FE3qSi1571392;
+	Mon, 15 Sep 2025 09:03:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757945032;
+	bh=WUMySgV2UJ4R7LmsT8uOJ9FTH+QR5Hdqf3nlHKsvkFs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=CfB0xS4NliV+IyRK04dpZeEDA08/QbK00on9GoEVIwTDyE3/ebGKFbwxXdPJxOBL6
+	 QQr+5Xp9J4L73FD0eSA/UoSLPopdBvbOxCpddXQrbQps8Fgge+yB6HNK08p0SJyJBR
+	 pZjwAqYVZy66UD0R4Zk46BfYJXgxSx6JGvL95xDg=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58FE3qBs788298
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 15 Sep 2025 09:03:52 -0500
+Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 15
+ Sep 2025 09:03:51 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 15 Sep 2025 09:03:52 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58FE3plK3911393;
+	Mon, 15 Sep 2025 09:03:51 -0500
+Date: Mon, 15 Sep 2025 09:03:51 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, David Airlie
+	<airlied@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
+        <tomi.valkeinen@ideasonboard.com>, <devarsht@ti.com>,
+        <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH V5 0/5] drm/bridge: it66121: Add initial it66122 support
+Message-ID: <20250915140351.cjegerbuvhezeapt@screen>
+References: <20250827202354.2017972-1-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250827202354.2017972-1-nm@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
---7d5ad4a4091b191b6d2051c27ab850068be519bdfceb7bbf813ae88a9b68
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 15:23-20250827, Nishanth Menon wrote:
+> Hi,
+> 
+> Add initial support for IT66122, which seems to be compatible to it66121
+> but probably has additional functionality.
+> 
+> BeagleY-AI uses this it66122 as the old part is no longer in production
+> as far as I understand.
+> 
+> Now, BeaglePlay uses it66121 at the moment, but at some point, it might
+> end up flipping over to the new part. Additionally, it also looks like
+> Revision D of BeagleBone Black switched over to it66122 as well.
+> 
+> Series is based on next-20250827
+> 
+> Bootlog: BeaglePlay: https://gist.github.com/nmenon/65afb917ee1818979d338cf25732a920
+> 
+> Changes in V5:
+> * Switched over to ARRAY_SIZE
+> * Picked up Andrew's Reviewed-by
+> 
+> Changes in V4:
+> * Added patch to sort the compatibles alpha-numerically
+> * vid/pid lookup is done without using the match_data.
+> * picked reviews
+> 
+> Changes in V3:
+> Based on Tomi's and Devarsh's reviews, and searching online (and failing
+> to find) for a public data sheet, I have refactored the series to:
+> a) Detect the ID by matching vid/pid
+> b) Introduce it66122 basic support which seems to work based on
+>    empirical testing evidence on BeagleY-AI. This allows incremental
+>    patches in the future by someone who might have access to the data
+>    sheet to add additional features for the chip.
+> c) Irritated by checkpatch --strict warnings, added a patch to fix
+>    existing warnings as part of this series, but it could probably go
+>    in independent of everything else.
+> d) Stopped claiming it66122 is drop in replacement of it66121 :)
+> 
+> Changes in V2:
+> * Picked up Krystoff's binding ack
+> * Switched over to a vid/pid list
+> 
+> V4: https://lore.kernel.org/all/20250819130807.3322536-1-nm@ti.com/
+> V3: https://lore.kernel.org/all/20250815034105.1276548-1-nm@ti.com/
+> V2: https://lore.kernel.org/all/20250813204106.580141-1-nm@ti.com/
+> V1: https://lore.kernel.org/all/20250813190835.344563-1-nm@ti.com/
+> 
+> Nishanth Menon (5):
+>   dt-bindings: display: bridge: it66121: Add compatible string for
+>     IT66122
+>   drm/bridge: it66121: Drop ftrace like dev_dbg() prints
+>   drm/bridge: it66121: Sort the compatibles
+>   drm/bridge: it66121: Use vid/pid to detect the type of chip
+>   drm/bridge: it66121: Add minimal it66122 support
+> 
+>  .../bindings/display/bridge/ite,it66121.yaml  |  1 +
+>  drivers/gpu/drm/bridge/ite-it66121.c          | 68 +++++++++----------
+>  2 files changed, 34 insertions(+), 35 deletions(-)
 
-Hi Ioana,
+Since it has been a while,
 
-> So you are suggesting gpio-regmap to allocate the bitmap using
-> devm_bitmap_alloc() and base its size on config->ngpio, then copy into
-> it the bitmap passed by the caller, right?  Yes, that does seem more
-> error proof in terms of memory handling. Will change it in the next
-> version.
+DRM maintainers: gentle ping. Hope we can roll this to drm-misc-next if
+there are no further comments?
 
-Yes exactly.
-
--michael
-
---7d5ad4a4091b191b6d2051c27ab850068be519bdfceb7bbf813ae88a9b68
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaMgcTxIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/i5SwGAmEBY61tAUoDus3BsCNkojKBx5G5zhyBA
-wWcea5fgeTWEeDKURrAxtI+kko4Vpkw7AX4vL1ZdiV0IbxzW7vL1yu62fJcxqs1R
-jmys1Q1+92kQ9kEedU4DsMD2klPQlJGPUE8=
-=UCzZ
------END PGP SIGNATURE-----
-
---7d5ad4a4091b191b6d2051c27ab850068be519bdfceb7bbf813ae88a9b68--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
