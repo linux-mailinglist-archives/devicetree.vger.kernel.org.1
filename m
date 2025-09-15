@@ -1,433 +1,227 @@
-Return-Path: <devicetree+bounces-217529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9E7B580DC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 17:36:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C367B58101
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 17:41:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D62B3A5A18
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 15:34:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24816167102
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 15:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9315A21D585;
-	Mon, 15 Sep 2025 15:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1103A1E8322;
+	Mon, 15 Sep 2025 15:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sRw248T3"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="M+0WyrYh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0CB2163B2;
-	Mon, 15 Sep 2025 15:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757950289; cv=none; b=JARMgi0jsd6Bw2sM5N27syO1UUL/wvPwzHL2yylemLnrcb4gG7S5F3vsJFJrtrLflpPABr+qAXPWiMWduXAGU7O7v7ecPTFiY5sjsFIspxsfGXlAD5ja4uPIq6p4+F05rG61z/3Lwh042Kw8YtAqysx0Je6PCj8kQydXakgltlw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757950289; c=relaxed/simple;
-	bh=/6SecB83u1v8w/NbyVqyqydDInMYYCThfcOa2FnQ6dk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OSeEndVjYfg7oAnPOlm5a02hHievicrO0BAVBYG+fGxudxCvJyvo8uc9FaXwHFRQxBaJeVn0dAvNDvKLpcOuGh4mxDzK43gp3eGZUlUB6qM84kfMb8juHoYXUxR/lR22A3sVLgljRJY0x+HKWgYf57iegNtj+1ZYeiuuEqfnfk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sRw248T3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4703FC4CEF1;
-	Mon, 15 Sep 2025 15:31:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757950288;
-	bh=/6SecB83u1v8w/NbyVqyqydDInMYYCThfcOa2FnQ6dk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sRw248T3ndMFtl9dkaIozkjq9+OmsUtoXeVS/2ViJJiXXInmF5mPwvsyRfaVouLcj
-	 f1X4JoOzw7bIrGbtMpjh5nBEPQsIsEpwmymSBr3Qm9czUkA/15sgX2t/EggAHq04QX
-	 9AxYPUCYnKwFfcldSgS/czdTR6YAWPs6vao5OxpzHVnkt9KLOpd/DQp+RSHUDwXJOY
-	 ZeKGjhT+agUSQftAsF1U4MMkuCAx2d/e8F3oyiqf6JKv1M/FFALi8/BP77h+/Fwnz2
-	 u7U6Im+cXlrJ6glAFs8lfFcG1NO6UVhKHO6crDZ5LQ2qCn6Nzax30/Lj4fOlIjyhcd
-	 3sPyjKuu/cqPg==
-Date: Mon, 15 Sep 2025 16:31:22 +0100
-From: Daniel Thompson <danielt@kernel.org>
-To: maudspierings@gocontroll.com
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	MaudSpieringsmaudspierings@gocontroll.com
-Subject: Re: [PATCH v3 2/4] backlight: add max25014atg backlight
-Message-ID: <aMgxSokzn9Y9tyAs@aspen.lan>
-References: <20250911-max25014-v3-0-d03f4eba375e@gocontroll.com>
- <20250911-max25014-v3-2-d03f4eba375e@gocontroll.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB94922258E;
+	Mon, 15 Sep 2025 15:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757950566; cv=fail; b=NP6KBqMjH/kk85F1r83x4O5ZCAtMRGuHwUU21S5n5svxV7IHUaz2gVWsBnruB/KlpsM63KnfM4ajJ/FI+AWo7bTF2Du1HiFyCymXH23L1RU5ZFS8CqskiaOMUeZJOiMe1s1sJUinzJ8YZtj7z1Cf+AbEJjVHtRid73XJ23XY60E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757950566; c=relaxed/simple;
+	bh=HJ2Mi0/1AS8PfOJuIuaBrQbsT7YShMGIMYznkpL5S3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CXax2+HVayH9y/Su/IYOdRXMLJ0qZPi8tjP6dw2QLnm/Aj6Gdd/Ovyl7OjtIl75CljMAV7pTJSVUM3AkNrYscZabd4LvrUnSqUOdJ39D6jh9BxYEAdczM6XeFuu5Kv2N+A6rjuChzgDf1MWXdcHi2OK65SZidkYlnhuH2qHIyU0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=M+0WyrYh; arc=fail smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58FEimYe032663;
+	Mon, 15 Sep 2025 17:35:49 +0200
+Received: from duzpr83cu001.outbound.protection.outlook.com (mail-northeuropeazon11012050.outbound.protection.outlook.com [52.101.66.50])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 495kjnn8x5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Sep 2025 17:35:49 +0200 (MEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tZFuU8w8p2JFazfDwp1lFXRQAbnYzaJnFPUO7DMROcIAfla4pPc4GV2/Odu0Z4xh76DdMtrttbIOlqyutUZh8SkRQHDsF/9oXf4Stx1ZRXDvgud7eTCnBvD+Xitv05MneY5tH0y/3Iv6PaT5AgazByRB0pV5uUbynsAPIXhB1BuaULZ9ohjv6FxVlOSro8qE+C32O+RCK+lHxCi2RiTaeZINhHd51ouQRPu25TfVhR7WqYzuy90tvYQTCyD2B7/SltU2j5aDpdhh814t6rNnaPQdIJCzYxZFrMzusV98/mI0g0j8lsfXxMk4caUQtvK0q/eO3gjbAkbtajujP/mE2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9IeUyxnmukjcnyCuB446526rY+tGjvpX9Akzz1rrT7w=;
+ b=E/xAFXEo5sbj7/RnhX4Lwbs3xBKWlcfCsqBdtcLTODLxaJAB7yW6YJgygYoVrzdf5CWpQy7RbpvebhdqcZUhxw7oAHZCuQTBDuJJkzVzEMRZ7R+RbyxM4fDfWrgE+XUEA1t2P0HEHwwCZPAnR92Is7l5UdQDQusJ+72nkxckAs81/211SC6W7ITtBa7b3KirCBf06veB0yQJduZmeqwpqiJZQrFUZw9b5a3cIHjcOXUR3Xubf2UbgG230yEShqSnIPwnb+izF8n+DPzoGqK94bsqSIPxy2LEewy+PeZzw3ZTxpOvdrelw3OnIAF1tC+mRPuymAOs+hsdmCVidS0cfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.43) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9IeUyxnmukjcnyCuB446526rY+tGjvpX9Akzz1rrT7w=;
+ b=M+0WyrYhSiRPhGrFy3kI8yaqbp0w+hg6G3qMGq/9MmTPtt9PIHm8y57H5NEDkCMdm9dpN5G2aWhRJOIm2dDpRgMxir/Qb/b9vNjt8WVdHQOfeSXb9U/0zC24BZzCaohweHZ1RO8tZIKorVnBK/qIqK2xs5A4ws6x0KNTcJNV7kVSgkVKHUY8lrrftveHCWjVU9JtoFGzqRnXMAlDyE20AsWBL9yFuU4iXvBp5n3WgsALHaV6I/A77TcSbyrGrE/L8v8Q/e6aHSNM7vHn/3jDoeiAg+AZlTu5T9XSQAWLvfeR0nqDt88fihKYjVTAhSSV/eORqDQ45rYO3DlEuF1X4Q==
+Received: from DB7PR05CA0071.eurprd05.prod.outlook.com (2603:10a6:10:2e::48)
+ by GV2PR10MB7990.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:b9::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.21; Mon, 15 Sep
+ 2025 15:35:43 +0000
+Received: from DB5PEPF00014B9B.eurprd02.prod.outlook.com
+ (2603:10a6:10:2e:cafe::72) by DB7PR05CA0071.outlook.office365.com
+ (2603:10a6:10:2e::48) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.21 via Frontend Transport; Mon,
+ 15 Sep 2025 15:35:42 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.43; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.43) by
+ DB5PEPF00014B9B.mail.protection.outlook.com (10.167.8.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9115.13 via Frontend Transport; Mon, 15 Sep 2025 15:35:42 +0000
+Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
+ (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Mon, 15 Sep
+ 2025 17:33:12 +0200
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Mon, 15 Sep
+ 2025 17:35:35 +0200
+Message-ID: <3a1403d3-5cd5-49bf-8b21-692497a26b6a@foss.st.com>
+Date: Mon, 15 Sep 2025 17:35:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250911-max25014-v3-2-d03f4eba375e@gocontroll.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] arm64: dts: st: add ethernet1 controller support
+ on stm32mp23/25 boards
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250904-mp2_ethernet-v2-0-05a060157fb7@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250904-mp2_ethernet-v2-0-05a060157fb7@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B9B:EE_|GV2PR10MB7990:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1b125b3c-2a81-4d9f-a786-08ddf46d87ed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YlhmK3AvZHJkMWI2OVVvcUIwRytFWFNFS0I0Vk40OHRVSWJaWnlDWjZONUd5?=
+ =?utf-8?B?Z0VCK2ppd3hYVU9zU3MxaXN6SG5GeVFYVmI4dkdOSTJacjZkTmZjdEtNTzI3?=
+ =?utf-8?B?NnRNUHQ4WXJKRnVGak13a2lldk9IR2JleHlhR1FIcmMvV2krQlgza21jOUpt?=
+ =?utf-8?B?bCt1UStORHJzTWxVVFk1WTdkVnRSUElMdDFyZlBFMGtUcW9iajBocndWL0Fh?=
+ =?utf-8?B?STJ6UmRYOTZmMkt2emwyaC9RUFJ4WWhBSzgwY09FT0J5UVptblNsWnlLTkpC?=
+ =?utf-8?B?b2wrL1ZDRnJBbjhLYkhaeUxCQzdvZDdGTUdWT28wdlg5RG9OU1I3TCtWa2lj?=
+ =?utf-8?B?NS9VRWc2dStPTHdTY1NKTkFJcmpXZFF6Mkc1Z2NFb0Ivbm1qYk0zTzB3RFhW?=
+ =?utf-8?B?bmVaazNwYXl3QTJwTTBpZlBzc3prMDN0SnA1WUlUVldoWnBENUhMc1d3M1Vn?=
+ =?utf-8?B?YnR4TE5NbHVjVFE3RGlOYXJhdzBoMm5DNTFKcnZMQXVIcFlrMEVEa3dzaUFG?=
+ =?utf-8?B?OHJNdm9DSm1SQlk0dWFSL2o1TlVVRktJNzZBUWJ5TWxKaU0zMWFZWjZwaVNQ?=
+ =?utf-8?B?dTRWVlhvdU9NNHBLejU1RHlpTmFSamxvQXNmRHFLMjhteDNCT0JXdTZycjZQ?=
+ =?utf-8?B?aWgwZ01pYXlyOGRuamd2Ui9qakJjZzRoMzA0NFYxUEU4ZTJ3SE8zZXQveFV6?=
+ =?utf-8?B?c1RzQXB1bFo5WnJzSmNrQzlZWnp3bnI3TlpwN011aDJrNU54eGljYVpxU25t?=
+ =?utf-8?B?cWZXWTVkWUIvQUltcnQyVWxwNmFuU1g3d3QrT2o4ZUdpbE9HQ01ya1pLUCtB?=
+ =?utf-8?B?L3Z0RTgyMFZocEM5TXZhb1RhODRvYmtHN0hhQTNPaDg1cmhCZ3ZLdTA0UzFl?=
+ =?utf-8?B?WjVJbjV6ai92bWZjSUE0ZjVYeER3V21HVWxFcUtTSFp4MzYzS25sUzhXWENC?=
+ =?utf-8?B?ckRmWUhJNEtmZkhOTldZeXFZN2hkdlZyTHVIdXhYZm5PVVR5L0dxRi9HZm9D?=
+ =?utf-8?B?bXRlUFJoY1ZKTWVBT1pyTkEzQlNBeVk3QjVPVU9UZFlVa2xpUE9KM2RHcTAv?=
+ =?utf-8?B?b2J1bC9ueFF6Z29DNVFhSWFlT3VaQm8ySnNsd1FEOERwTUJnSUhCaGxqREdI?=
+ =?utf-8?B?eDl2UjBrM1FBbDFrakoxejFtNUl1OFQ5T2hEODE2dGJZejkwNExYRVExbnJN?=
+ =?utf-8?B?UzNIT0VBNkE2NXJPTGRSdEkzaFR1dUQ2dmY1cmp0SGZSK0kyTXZ5d1V6Rkkv?=
+ =?utf-8?B?U1IxMDdZQ0c4NTg3SHB3TjF3NUlEamc0N3NFdVBXQjV5bTQxMjNrM0NkcXY1?=
+ =?utf-8?B?VEMvM2dmUldMWUtvUXl3Y3RheTVpV3BiZFZlMm42SFJLa3dSSlpDNVNXTnRk?=
+ =?utf-8?B?eTNrZEZoTksxOXZ4UnNhcHdtczFSKzN0QllYdnIyd0kzNDNwRU1rN1AzdVRV?=
+ =?utf-8?B?aU5DYTZ0ZHZRRG0xNlBXUGxIcSt4VElBWmFHQWRxYTQ3bHo1QndoaEt3TVg3?=
+ =?utf-8?B?OGxHWU85S01zanNyRHFyQ09odmJuelNldWdIZ0NjMmM0Z2pCOUhRMld5cnFI?=
+ =?utf-8?B?M2RPb0Nyb1B2VmE3WHR5ZW1FbWozaUhTTnFzNnltNk9RM1B1elk3UC9zNEwz?=
+ =?utf-8?B?ZlRWS2pteSsyclh0QkxXcFpWa1F3dEVyWlFRR0JxRGJRbGRldXJDVy9FYlVs?=
+ =?utf-8?B?dnhIeFQxNW9ldHhUYVVxMDUrVitsa1A1eXp5cWE4eHVnMzQyalRaRVJxalpR?=
+ =?utf-8?B?UG96WWJKZWEvTWtWOUFiVlBpeWt5M0tUVlJsOXdPTWxkdk82TUpaTkJQRVdr?=
+ =?utf-8?B?ZVQxMXVKTlNQclUyYXhmbndvQ3pqMFdlSEY4V0NwZURudXN1QWtCbE9yVEtK?=
+ =?utf-8?B?Wko3NjExZ1pTK3lYazY2SW95QkZ5TTdPQW1xWG5aSEJIUmJ6L3owdHdJa2Nj?=
+ =?utf-8?B?MjFaL1dNZTNlQU5jRmo3NXptcHQ4VTF1Sm9wQXNOOVR0bTNjV3lvUEFrOHdC?=
+ =?utf-8?B?ZjhlbGxjUDdBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2025 15:35:42.4398
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b125b3c-2a81-4d9f-a786-08ddf46d87ed
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B9B.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR10MB7990
+X-Authority-Analysis: v=2.4 cv=ObaYDgTY c=1 sm=1 tr=0 ts=68c83255 cx=c_pps a=383bDpamuXABF3/M3Waz+A==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=TP8aPCUxYTYA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8 a=PfGPvkhpduPlouAW6xgA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-GUID: sUANwz1SOAeOSzzVCknZbQuUw7mrjE66
+X-Proofpoint-ORIG-GUID: sUANwz1SOAeOSzzVCknZbQuUw7mrjE66
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE0MDAwNSBTYWx0ZWRfX0IZwwK5oYYvh BYhpMXYB74+5pJnkJqT4kqzWKeVzARuOxwFrj1ZPRCBJNVQNEcvi2gzA1nUDRkVQTGz2vk+RCHc tzriei81xce4jTfdEuSHgpEF8YkjjJSn9paNuhAYukEOzJ0pje+JEcJ+Lb5evxLvU0Q3BZgTlLE
+ MifwUK1xummXbxhnGNI447WX0xwKTcdZnxKgYO3k36mWzPKeIOyD/3nRivkifvGWE/0SnAlS6j7 UnOewsJ2Pf9Sx4JRgDxn8MGyRMsbyDji2e82n1gO0Pe/Qc2xTDpe2nFw4+UZ+CA30bqD9maURwr 0RTpFnQZ3osbKHb9t+7ESZFBOUu3sweKHSfscn6dOAsu6gJSBlfz7jvSUFafDBOftgInrkCEh5f f8Ai6sZI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-15_06,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 phishscore=0
+ suspectscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
+ definitions=main-2509140005
 
-On Thu, Sep 11, 2025 at 09:53:19AM +0200, Maud Spierings via B4 Relay wrote:
-> diff --git a/drivers/video/backlight/max25014.c b/drivers/video/backlight/max25014.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f4ca79dfc39ccb04702e6114c35a5863f80b8853
-> --- /dev/null
-> +++ b/drivers/video/backlight/max25014.c
-> @@ -0,0 +1,394 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Backlight driver for Maxim MAX25014
-> + *
-> + * Copyright (C) 2025 GOcontroll B.V.
-> + * Author: Maud Spierings <maudspierings@gocontroll.com>
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +
-> +#define MAX25014_ISET_DEFAULT_100 11
-> +#define MAX_BRIGHTNESS            100
-> +#define MIN_BRIGHTNESS            0
-> +#define TON_MAX                   130720 /* @153Hz */
-> +#define TON_STEP                  1307 /* @153Hz */
-> +#define TON_MIN                   0
-> +
-> +#define MAX25014_DEV_ID           0x00
-> +#define MAX25014_REV_ID           0x01
-> +#define MAX25014_ISET             0x02
-> +#define MAX25014_IMODE            0x03
-> +#define MAX25014_TON1H            0x04
-> +#define MAX25014_TON1L            0x05
-> +#define MAX25014_TON2H            0x06
-> +#define MAX25014_TON2L            0x07
-> +#define MAX25014_TON3H            0x08
-> +#define MAX25014_TON3L            0x09
-> +#define MAX25014_TON4H            0x0A
-> +#define MAX25014_TON4L            0x0B
-> +#define MAX25014_TON_1_4_LSB      0x0C
-> +#define MAX25014_SETTING          0x12
-> +#define MAX25014_DISABLE          0x13
-> +#define MAX25014_BSTMON           0x14
-> +#define MAX25014_IOUT1            0x15
-> +#define MAX25014_IOUT2            0x16
-> +#define MAX25014_IOUT3            0x17
-> +#define MAX25014_IOUT4            0x18
-> +#define MAX25014_OPEN             0x1B
-> +#define MAX25014_SHORT_GND        0x1C
-> +#define MAX25014_SHORT_LED        0x1D
-> +#define MAX25014_MASK             0x1E
-> +#define MAX25014_DIAG             0x1F
-> +
-> +#define MAX25014_IMODE_HDIM       BIT(2)
-> +#define MAX25014_ISET_ENABLE      BIT(5)
-> +#define MAX25014_ISET_PSEN        BIT(4)
-> +#define MAX25014_DIAG_HW_RST      BIT(2)
-> +#define MAX25014_SETTING_FPWM     GENMASK(6, 4)
-> +
-> +struct max25014 {
-> +	struct i2c_client *client;
-> +	struct backlight_device *bl;
-> +	struct regmap *regmap;
-> +	struct gpio_desc *enable;
-> +	struct regulator *vin; /* regulator for boost converter Vin rail */
-> +	uint32_t iset;
-> +	uint8_t strings_mask;
-> +};
-> +
-> +static const struct regmap_config max25014_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MAX25014_DIAG,
-> +};
-> +
-> +/**
-> + * @brief control the brightness with i2c registers
-> + *
-> + * @param regmap trivial
-> + * @param brt brightness
-> + * @return int
-> + */
-> +static int max25014_register_control(struct regmap *regmap, uint32_t brt)
-> +{
-> +	uint32_t reg = TON_STEP * brt;
-> +	int ret;
-> +	/*
-> +	 * 18 bit number lowest, 2 bits in first register,
-> +	 * next lowest 8 in the L register, next 8 in the H register
-> +	 * Seemingly setting the strength of only one string controls all of
-> +	 * them, individual settings don't affect the outcome.
-> +	 */
-> +
-> +	ret = regmap_write(regmap, MAX25014_TON_1_4_LSB, reg & 0b00000011);
-> +	if (ret != 0)
-> +		return ret;
-> +	ret = regmap_write(regmap, MAX25014_TON1L, (reg >> 2) & 0b11111111);
-> +	if (ret != 0)
-> +		return ret;
-> +	return regmap_write(regmap, MAX25014_TON1H, (reg >> 10) & 0b11111111);
-> +}
-> +
-> +static int max25014_check_errors(struct max25014 *maxim)
-> +{
-> +	uint8_t i;
-> +	int ret;
-> +	uint32_t val;
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_OPEN, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Open led strings detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Short to ground detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SHORT_GND, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	if (val > 0) {
-> +		dev_err(&maxim->client->dev, "Shorted led detected on:\n");
-> +		for (i = 0; i < 4; i++) {
-> +			if (val & 1 << i)
-> +				dev_err(&maxim->client->dev, "string %d\n", i + 1);
-> +		}
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_DIAG, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +	/*
-> +	 * The HW_RST bit always starts at 1 after power up.
-> +	 * It is reset on first read, does not indicate an error.
-> +	 */
-> +	if (val > 0 && val != MAX25014_DIAG_HW_RST) {
-> +		if (val & 0b1)
-> +			dev_err(&maxim->client->dev, "Overtemperature shutdown\n");
-> +		if (val & 0b10)
-> +			dev_warn(&maxim->client->dev,
-> +				 "Chip is getting too hot (>125C)\n");
+Hi Gatien
 
-The dev_warn() looks a bit odd here. Even through the hardware is alive
-the drive reacts to this warning by refusing to probe.
+On 9/4/25 09:40, Gatien Chevallier wrote:
+> All of the current stm32mp2x boards embed an ethernet1 SNPS GMAC5.x
+> controller.
+> 
+> Add the support for it on stm32mp235f-dk, stm32mp257f-dk and
+> stm32mp257f-ev1 boards and default enable it.
+> 
+> On the stm32mp257f-ev1 board, we choose to keep the ethernet1
+> controller as a standalone ethernet controller instead of using
+> the TSN capable switch.
+> 
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+> Changes in v2:
+> - Remove pointless max-speed properties
+> - Fix property ordering (reg after compatible) in the stm32mp257f-ev1
+> - Link to v1: https://lore.kernel.org/r/20250903-mp2_ethernet-v1-0-4105b0ad2344@foss.st.com
+> 
+> ---
+> Gatien Chevallier (4):
+>        arm64: dts: st: add eth1 pins for stm32mp2x platforms
+>        arm64: dts: st: enable ethernet1 controller on stm32mp257f-dk
+>        arm64: dts: st: enable ethernet1 controller on stm32mp257f-ev1
+>        arm64: dts: st: enable ethernet1 controller on stm32mp235f-dk
+> 
+>   arch/arm64/boot/dts/st/stm32mp235f-dk.dts     |  23 +++++
+>   arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 126 ++++++++++++++++++++++++++
+>   arch/arm64/boot/dts/st/stm32mp257f-dk.dts     |  23 +++++
+>   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  24 +++++
+>   4 files changed, 196 insertions(+)
+> ---
+> base-commit: 08a5d1b176ed503a5cef40991fc89549d85e8fe8
+> change-id: 20250902-mp2_ethernet-97ddde08f903
+> 
+> Best regards,
 
-That problem means this should be dev_err() like all the other issues
-here.
+Series applied on stm32-next.
 
+Thanks!!
 
-> +		if (val & 0b1000)
-> +			dev_err(&maxim->client->dev, "Boost converter overvoltage\n");
-> +		if (val & 0b10000)
-> +			dev_err(&maxim->client->dev, "Boost converter undervoltage\n");
-> +		if (val & 0b100000)
-> +			dev_err(&maxim->client->dev, "IREF out of range\n");
-> +		return -EIO;
-> +	}
-> +	return 0;
-> +}
-> +
-> +/*
-> + * 1. disable unused strings
-> + * 2. set dim mode
-> + * 3. set initial brightness
-> + * 4. set setting register
-> + * 5. enable the backlight
-> + */
-> +static int max25014_configure(struct max25014 *maxim, uint32_t initial_brightness)
-> +{
-> +	int ret;
-> +	uint32_t val;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_DISABLE,
-> +			   maxim->strings_mask);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_IMODE, MAX25014_IMODE_HDIM);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	max25014_register_control(maxim->regmap,
-> +				  initial_brightness);
-> +
-> +	ret = regmap_read(maxim->regmap, MAX25014_SETTING, &val);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(
-> +		maxim->regmap, MAX25014_SETTING,
-> +		val & ~MAX25014_SETTING_FPWM);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(maxim->regmap, MAX25014_ISET,
-> +			   maxim->iset | MAX25014_ISET_ENABLE | MAX25014_ISET_PSEN);
-> +	return ret;
-> +}
-> +
-> +static int max25014_update_status(struct backlight_device *bl_dev)
-> +{
-> +	struct max25014 *maxim = bl_get_data(bl_dev);
-> +
-> +	if (bl_dev->props.state & BL_CORE_SUSPENDED)
-> +		bl_dev->props.brightness = 0;
-
-This should be using the backlight_is_blank() helper rather than
-fiddling with the state variables.
-
-
-> +
-> +	return max25014_register_control(maxim->regmap, bl_dev->props.brightness);
-> +}
-> +
-> +static const struct backlight_ops max25014_bl_ops = {
-> +	.options = BL_CORE_SUSPENDRESUME,
-> +	.update_status = max25014_update_status,
-> +};
-> +
-> +static int max25014_parse_dt(struct max25014 *maxim, uint32_t *initial_brightness)
-> +{
-> +	struct device *dev = &maxim->client->dev;
-> +	struct device_node *node = dev->of_node;
-> +	uint32_t strings[4];
-> +	int res, i;
-> +
-> +	if (!node) {
-> +		dev_err(dev, "no platform data\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	res = of_property_count_u32_elems(node, "maxim,strings");
-> +	if (res == 4) {
-> +		of_property_read_u32_array(node, "maxim,strings", strings, 4);
-> +	} else {
-> +		dev_err(dev, "strings property not correctly defined\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < 4; i++) {
-> +		if (strings[i] == 0)
-> +			maxim->strings_mask |= 1 << i;
-> +	}
-> +
-> +	*initial_brightness = 50U;
-> +	of_property_read_u32(node, "default-brightness", initial_brightness);
-> +	maxim->iset = MAX25014_ISET_DEFAULT_100;
-> +	of_property_read_u32(node, "maxim,iset", &maxim->iset);
-> +
-> +	if (maxim->iset < 0 || maxim->iset > 15) {
-> +		dev_err(dev,
-> +			"Invalid iset, should be a value from 0-15, entered was %d\n",
-> +			maxim->iset);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (*initial_brightness < 0 || *initial_brightness > 100) {
-> +		dev_err(dev,
-> +			"Invalid initial brightness, should be a value from 0-100, entered was %d\n",
-> +			*initial_brightness);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int max25014_probe(struct i2c_client *cl)
-> +{
-> +	struct backlight_device *bl;
-> +	const struct i2c_device_id *id = i2c_client_get_device_id(cl);
-> +	struct max25014 *maxim;
-> +	struct backlight_properties props;
-> +	int ret;
-> +	uint32_t initial_brightness;
-> +
-> +	maxim = devm_kzalloc(&cl->dev, sizeof(struct max25014), GFP_KERNEL);
-> +	if (!maxim)
-> +		return -ENOMEM;
-> +
-> +	maxim->client = cl;
-> +
-> +	ret = max25014_parse_dt(maxim, &initial_brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	maxim->vin = devm_regulator_get(&maxim->client->dev, "power");
-> +	if (IS_ERR(maxim->vin)) {
-> +		if (PTR_ERR(maxim->vin) == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +		maxim->vin = NULL;
-> +	}
-> +
-> +	if (maxim->vin) {
-> +		ret = regulator_enable(maxim->vin);
-> +		if (ret < 0) {
-> +			dev_err(&maxim->client->dev, "failed to enable Vin: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	maxim->enable =
-> +		devm_gpiod_get_optional(&maxim->client->dev, "enable", GPIOD_ASIS);
-> +	if (IS_ERR(maxim->enable)) {
-> +		ret = PTR_ERR(maxim->enable);
-> +		dev_err(&maxim->client->dev, "failed to get enable gpio: %d\n", ret);
-> +		goto disable_vin;
-> +	}
-> +
-> +	if (maxim->enable) {
-> +		gpiod_set_value_cansleep(maxim->enable, 1);
-> +
-> +		/* Datasheet Electrical Characteristics tSTARTUP 2ms */
-> +		usleep_range(2000, 2500);
-> +	}
-> +
-> +	maxim->regmap = devm_regmap_init_i2c(cl, &max25014_regmap_config);
-> +	if (IS_ERR(maxim->regmap)) {
-> +		ret = PTR_ERR(maxim->regmap);
-> +		dev_err(&maxim->client->dev, "failed to initialize the i2c regmap: %d\n", ret);
-> +		goto disable_full;
-> +	}
-> +
-> +	i2c_set_clientdata(cl, maxim);
-> +
-> +	ret = max25014_check_errors(maxim);
-> +	if (ret) { /* error is already reported in the above function */
-> +		goto disable_full;
-> +	}
-> +
-> +	ret = max25014_configure(maxim, initial_brightness);
-> +	if (ret) {
-> +		dev_err(&maxim->client->dev, "device config err: %d", ret);
-> +		goto disable_full;
-> +	}
-> +
-> +	memset(&props, 0, sizeof(props));
-> +	props.type = BACKLIGHT_PLATFORM;
-> +	props.max_brightness = MAX_BRIGHTNESS;
-
-Please ensure that props.scale is set to something better than UNKNOWN.
-
-
-Daniel.
+Alex
 
