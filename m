@@ -1,235 +1,116 @@
-Return-Path: <devicetree+bounces-217587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E25B585BE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:13:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15640B585F6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A38332A16B5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:13:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6673BDAC9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6912882CF;
-	Mon, 15 Sep 2025 20:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74974287260;
+	Mon, 15 Sep 2025 20:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUtK8wJx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EZqHnVo/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7763F2747B;
-	Mon, 15 Sep 2025 20:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4501827C150;
+	Mon, 15 Sep 2025 20:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757967211; cv=none; b=hH8fui/SUslM7k4yrIAnGGUB8Ju4IhqDRFG74u0VDeNxUXA54NPqW174ab9FasLf2Zb8j23J23lHYYSn4doWvw/zYoENgqBGxNAybeGmPRnJXd7yfexcz8/zS3gP67jPaCapm/t+JyjsCwzCbGTkgAV4vpf2+MuHCF2Dw2DkquQ=
+	t=1757967580; cv=none; b=G2LVCdZ0NCYoai7uqChPqKQXQstHwK0Y4IIgPzAO3pdxxAzwNhnNWGn9XepM1PO8sReFXuFdJUX6TLyt0de7t/L7ZWCoBNU34vJxnvZ45tnL6Ys/80CdAZMSqDKXOgXXgvdfBEJVH97oc4LKZljsFSNwLVtH6zEZslGXlwEXmd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757967211; c=relaxed/simple;
-	bh=sCG6ETdfTXdU2pnnMtozox8YjbeWgsBQMnCaCblSvgk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CDPZlT6PL4Xsj64vicIFoGSEWEe/v9slMDZFrvsG213Z9Trfus9zNbnBwZKb4nXN2/YyUsxuWrOuaWZFHy8hZBQAuhWH673Ykqhkr7QQ830izU3Nwct/ZEe1exQCnDVGq838zn2KZNS5xWD1/Ob+Sy+AITwo92mKZZ2218DcrRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUtK8wJx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2474C4CEF1;
-	Mon, 15 Sep 2025 20:13:25 +0000 (UTC)
+	s=arc-20240116; t=1757967580; c=relaxed/simple;
+	bh=XdJ7z/q77YUFL/QosenW4NKVcYFIhAWClP3csrjOEHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ufkk81QepX1nG0hv5wCnulbMmisWblDOjE5bMYPVSukvtwcmCRSeUbQhmkspY9RfRsKDXsyppW16UmHrajwAOjYr3e7i2H+WSZ/I0qLVE9e2+Jdp80FMOyNtY+/WGa9iwVz37tsfkVJYQjGoOgrB0vk/NScgA/9ExymHqiOrido=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EZqHnVo/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 938B5C4CEF1;
+	Mon, 15 Sep 2025 20:19:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757967211;
-	bh=sCG6ETdfTXdU2pnnMtozox8YjbeWgsBQMnCaCblSvgk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hUtK8wJxUjCzDYLa5vedEHLvsx5Af0pWXUKHmFdth0E7Ds3tPKgFwXhFA2Dhw4YXP
-	 ga1bGxoH9FNInZ1/DbtTcIKMc2hLqL1Xa2jXs0fk52BlAA1IpcCqS1nbeYU5qzcyJ7
-	 G8z68f7IeRhPL2OTGyJC7cxWTxwyJ/gkV1ULq3YBv0tXx7J5Tv2C5ncBTXbVEAxACa
-	 YHMJ/IuoJKoE9ZWzsZhK6FEukKJZzMv8uQMlKfzvTsfp8G0KzSemAado53Uaa/LSHQ
-	 JnVJv9E7IiBlBffIwVI/b/owd/BaaKg2w5MvpgjmpIVoBnApXEJD7Pv0VbMTGCv14J
-	 rh23Z04Iet+wQ==
-Date: Mon, 15 Sep 2025 21:13:21 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
- Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-Message-ID: <20250915211321.47865d3d@jic23-huawei>
-In-Reply-To: <aMge0jYwYCiY72Yb@smile.fi.intel.com>
-References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
-	<20250915-bd79112-v5-2-a74e011a0560@gmail.com>
-	<aMge0jYwYCiY72Yb@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=k20201202; t=1757967579;
+	bh=XdJ7z/q77YUFL/QosenW4NKVcYFIhAWClP3csrjOEHE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EZqHnVo/0vRzL1QXtPlDyW6r5wT1/RXhbRcDV/QJDqD0XKxxh6MQ23H7OABUjt2mK
+	 Grlghu0fggLO5017FGMY4UIIxvlIlw2chH0Ewcql3s1kFY7kSsQF/Dok0LTC/Pn7Zf
+	 3sUgI+p7lztQaBlhl8AkNFbDPkkb0K81d14POIRd15kAeSGF1vrXFcIrZMs4mq9lC8
+	 EXdca9Wa7KqtgUoWWPR3OW8ms7veuUurvmEmkhaDlczzi35gKr1Auq82QGdyEWCW5y
+	 AL9iX3CsI1xr1ZxgQSD+eMF1SgbrDOh16/rSSIC/b67im/jRftRMPfjkeBERRhCUgl
+	 onhjUo0TpfT5Q==
+Date: Mon, 15 Sep 2025 15:19:38 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>, Jakub Kicinski <kuba@kernel.org>,
+	devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	DENG Qingfang <dqfext@gmail.com>, Lee Jones <lee@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Dumazet <edumazet@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Subject: Re: [net-next PATCH v18 3/8] dt-bindings: mfd: Document support for
+ Airoha AN8855 Switch SoC
+Message-ID: <20250915201938.GA3326233-robh@kernel.org>
+References: <20250915104545.1742-1-ansuelsmth@gmail.com>
+ <20250915104545.1742-4-ansuelsmth@gmail.com>
+ <175795551518.2905345.11331954231627495466.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <175795551518.2905345.11331954231627495466.robh@kernel.org>
 
-On Mon, 15 Sep 2025 17:12:34 +0300
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-
-> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
-> > The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> > be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+On Mon, Sep 15, 2025 at 12:01:47PM -0500, Rob Herring (Arm) wrote:
+> 
+> On Mon, 15 Sep 2025 12:45:39 +0200, Christian Marangi wrote:
+> > Document support for Airoha AN8855 Switch SoC. This SoC expose various
+> > peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
 > > 
-> > The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> > voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> > daisy-chain configuration) and maximum sampling rate is 1MSPS.
+> > It does also support i2c and timers but those are not currently
+> > supported/used.
 > > 
-> > The IC does also support CRC but it is not implemented in the driver.  
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  .../bindings/mfd/airoha,an8855.yaml           | 173 ++++++++++++++++++
+> >  1 file changed, 173 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> > 
 > 
-> ...
+> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> > +static int bd79112_probe(struct spi_device *spi)
-> > +{
-> > +	struct bd79112_data *data;
-> > +	struct iio_dev *iio_dev;
-> > +	struct iio_chan_spec *cs;
-> > +	struct device *dev = &spi->dev;
-> > +	unsigned long gpio_pins, pin;
-> > +	unsigned int i;
-> > +	int ret;
-> > +
-> > +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> > +	if (!iio_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	data = iio_priv(iio_dev);
-> > +	data->spi = spi;
-> > +	data->dev = dev;
-> > +	data->map = devm_regmap_init(dev, NULL, data, &bd79112_regmap);
-> > +	if (IS_ERR(data->map))
-> > +		return dev_err_probe(dev, PTR_ERR(data->map),
-> > +				     "Failed to initialize Regmap\n");
-> > +
-> > +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");  
+> yamllint warnings/errors:
 > 
-> > +	data->vref_mv = ret / 1000;  
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml:
+> 	Error in referenced schema matching $id: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml
+> 	Tried these paths (check schema $id if path is wrong):
+> 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
+> 	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/nvmem/airoha,an8855-efuse.yaml
 > 
-> I still think moving to _mV is the right thing to do.
-> There is no 'mv' in the physics for Volts.
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: soc@1 (airoha,an8855): efuse: {'compatible': ['airoha,an8855-efuse'], '#nvmem-cell-cells': 0, 'nvmem-layout': {'compatible': ['fixed-layout'], '#address-cells': 1, '#size-cells': 1, 'shift-sel-port0-tx-a@c': {'reg': [[12, 4]], 'phandle': 3}, 'shift-sel-port0-tx-b@10': {'reg': [[16, 4]], 'phandle': 4}, 'shift-sel-port0-tx-c@14': {'reg': [[20, 4]], 'phandle': 5}, 'shift-sel-port0-tx-d@18': {'reg': [[24, 4]], 'phandle': 6}, 'shift-sel-port1-tx-a@1c': {'reg': [[28, 4]], 'phandle': 7}, 'shift-sel-port1-tx-b@20': {'reg': [[32, 4]], 'phandle': 8}, 'shift-sel-port1-tx-c@24': {'reg': [[36, 4]], 'phandle': 9}, 'shift-sel-port1-tx-d@28': {'reg': [[40, 4]], 'phandle': 10}}} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml#"}
+> 	from schema $id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
+> Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: /example-0/mdio/soc@1/efuse: failed to match any schema with compatible: ['airoha,an8855-efuse']
 
-I'm not disagreeing with this review but I'm also not going to hold a
-driver back for that given timing is pretty much such that I merge it
-today or it sits a cycle and this one is very near...
-I'll get fussier on this once we have written up some guidance and may
-well send a patch to modify existing recent cases like this one!
+Why are we on v18 and still getting errors? I only review patches 
+without errors.
 
-> 
-> > +	ret = devm_regulator_get_enable(dev, "iovdd");
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
-> > +
-> > +	data->read_xfer[0].tx_buf = &data->read_tx[0];
-> > +	data->read_xfer[0].len = sizeof(data->read_tx);
-> > +	data->read_xfer[0].cs_change = 1;
-> > +	data->read_xfer[1].rx_buf = &data->read_rx;
-> > +	data->read_xfer[1].len = sizeof(data->read_rx);
-> > +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);  
-> 
-> > +	devm_spi_optimize_message(dev, spi, &data->read_msg);  
-> 
-> And if it fails?..
-I've added the following and applied the series.
-
-Note I'm cutting this fine so if we get any build issues or similar
-it might well get pushed back to next cycle yet!
-
-diff --git a/drivers/iio/adc/rohm-bd79112.c b/drivers/iio/adc/rohm-bd79112.c
-index b406d4ee5411..d15e06c8b94d 100644
---- a/drivers/iio/adc/rohm-bd79112.c
-+++ b/drivers/iio/adc/rohm-bd79112.c
-@@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
-        data->read_xfer[1].rx_buf = &data->read_rx;
-        data->read_xfer[1].len = sizeof(data->read_rx);
-        spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
--       devm_spi_optimize_message(dev, spi, &data->read_msg);
-+       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
-+       if (ret < 0)
-+               return dev_err_probe(dev, ret,
-+                                    "Failed to optimize SPI read message\n");
- 
-        data->write_xfer.tx_buf = &data->reg_write_tx[0];
-        data->write_xfer.len = sizeof(data->reg_write_tx);
-        spi_message_init_with_transfers(&data->write_msg, &data->write_xfer, 1);
--       devm_spi_optimize_message(dev, spi, &data->write_msg);
-+       ret = devm_spi_optimize_message(dev, spi, &data->write_msg);
-+       if (ret < 0)
-+               return dev_err_probe(dev, ret,
-+                                    "Failed to optimize SPI write message\n");
- 
-        ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
-                                                    BD79112_MAX_NUM_CHANNELS - 1,
-> 
-> > +	data->write_xfer.tx_buf = &data->reg_write_tx[0];
-> > +	data->write_xfer.len = sizeof(data->reg_write_tx);
-> > +	spi_message_init_with_transfers(&data->write_msg, &data->write_xfer, 1);
-> > +	devm_spi_optimize_message(dev, spi, &data->write_msg);
-> > +
-> > +	ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
-> > +						    BD79112_MAX_NUM_CHANNELS - 1,
-> > +						    &cs);
-> > +
-> > +	/* Register all pins as GPIOs if there are no ADC channels */
-> > +	if (ret == -ENOENT)
-> > +		goto register_gpios;
-> > +
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	iio_dev->num_channels = ret;
-> > +	iio_dev->channels = cs;
-> > +
-> > +	for (i = 0; i < iio_dev->num_channels; i++)
-> > +		cs[i].datasheet_name = bd79112_chan_names[cs[i].channel];
-> > +
-> > +	iio_dev->info = &bd79112_info;
-> > +	iio_dev->name = "bd79112";
-> > +	iio_dev->modes = INDIO_DIRECT_MODE;
-> > +
-> > +	/*
-> > +	 * Ensure all channels are ADCs. This allows us to register the IIO
-> > +	 * device early (before checking which pins are to be used for GPIO)
-> > +	 * without having to worry about some pins being initially used for
-> > +	 * GPIO.
-> > +	 */
-> > +	for (i = 0; i < BD79112_NUM_GPIO_EN_REGS; i++) {
-> > +		ret = regmap_write(data->map, BD79112_FIRST_GPIO_EN_REG + i, 0);
-> > +		if (ret)
-> > +			return dev_err_probe(dev, ret,
-> > +					     "Failed to initialize channels\n");
-> > +	}
-> > +
-> > +	ret = devm_iio_device_register(data->dev, iio_dev);
-> > +	if (ret)
-> > +		return dev_err_probe(data->dev, ret, "Failed to register ADC\n");
-> > +
-> > +register_gpios:
-> > +	gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
-> > +					  iio_dev->num_channels);
-> > +
-> > +	/* If all channels are reserved for ADC, then we're done. */
-> > +	if (!gpio_pins)
-> > +		return 0;
-> > +
-> > +	/* Default all the GPIO pins to GPI */
-> > +	for_each_set_bit(pin, &gpio_pins, BD79112_MAX_NUM_CHANNELS) {
-> > +		ret = bd79112_gpio_dir_set(data, pin, GPIO_LINE_DIRECTION_IN);
-> > +		if (ret)
-> > +			return dev_err_probe(dev, ret,
-> > +					     "Failed to mark pin as GPI\n");
-> > +	}
-> > +
-> > +	data->gpio_valid_mask = gpio_pins;
-> > +	data->gc = bd79112_gpio_chip;
-> > +	data->gc.parent = dev;
-> > +
-> > +	return devm_gpiochip_add_data(dev, &data->gc, data);
-> > +}  
-> 
-
+Rob
 
