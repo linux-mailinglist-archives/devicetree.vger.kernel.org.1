@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-217217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7585AB570F8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:14:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D06D5B570FE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A21B3B8BBD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:14:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 608797A6E2A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:12:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F8D1DE4F6;
-	Mon, 15 Sep 2025 07:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880412D374F;
+	Mon, 15 Sep 2025 07:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/Y1rC2R"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IlWe1GND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292973FBB3;
-	Mon, 15 Sep 2025 07:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83C82D29D9
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757920430; cv=none; b=S+kp2uJ+nuuOtwMPZvQW5dwJrgf+4ChJiGznVisRlIgw5eGUS2bkJcO/xw0KYMyJQOr3x7H2xBdgRo1e6GoRsSfLlvQo33LE9RdBdtQ8fTaTvoB05YJRwMYjCQjHOGYfP6x9dPWAmT4kGuN7B9RzNOzFGyLRJNLZEytX1uU51Jg=
+	t=1757920442; cv=none; b=SFp42aLRNGBV04MlXMeVROlyFpWIfklrvcK+U/G6CQn4+0unRv5uCEpB5w6dru1nL/r8PbX9FWh7NphIy93pmo5TZyO8ZPlQJ0kBl3AYSvxdgqupid2RQjx2M5k3FSoh0x0rYYSZWHLUiB9FrAbpHeR6dX874sjFZ517ZYWzj6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757920430; c=relaxed/simple;
-	bh=RBstruI8aqugkuKemrcCOfrfs1zaZlQtORPCGRJvYzc=;
+	s=arc-20240116; t=1757920442; c=relaxed/simple;
+	bh=+qi+uECUZ98pigQwnsb5bPSO1UgdPNw9iBM2lA3ss8M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kjnt4r5qD4VDmNwevo5T+2n117iE+aSzai9OMYQMLMIGv4yc+c7Mpg5Z/6HJncE5TiJhiMJ0K9fw4x2gSXSH7T1v4mdHI5dJirybaFfHcU7eqjl1Rj+JNrzJjALyI4ApR7EK5QIBZKONh4wmtYAEEa0t1413K1Bkha6dnHgPyrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/Y1rC2R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EF1C4CEF1;
-	Mon, 15 Sep 2025 07:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757920429;
-	bh=RBstruI8aqugkuKemrcCOfrfs1zaZlQtORPCGRJvYzc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c/Y1rC2RXw5SHanCMfXuzcRpXdyyZbTe3o+eCac2xnhgaJJhUHQahwsK4bjh6uurl
-	 xFwWBUJE5QxdUV/Y57+UZVXbOmaaaQcEUJvpgI9s8VzbGMhKrUSAPNcxvBCYq28Xrh
-	 wMzYcKrdQZ3HmVEtydAqCFL2v/pQ0q1l/4lSEtS3n+KxJXyEK0zsl9S+4vRpVHudEa
-	 mR+gT+ljkgnoHnoXnm6jq2NzZtAbJq0elpa5HeMOacW2JbJdMQk1y7gV+kB72yeHA7
-	 CQRs0e3Kvw9+NfjW7kfeJ7zcdBRgTKb4oXmN93oGtUnKRcOq5NqO4kOClDq1yaXP09
-	 9FLOT3xeB0Oqg==
-Message-ID: <1c16121a-36a6-4101-9a2c-d45547c6ea0a@kernel.org>
-Date: Mon, 15 Sep 2025 09:13:44 +0200
+	 In-Reply-To:Content-Type; b=VxxcUs+l8ziE4PfuxArGX50C3Z06QbEJuEtAi7dcVwT8Ill1SRXB8BO/yjOBARjblTq6daavV1Z7oojAg10gsftinlJSecuK2zxhti643QrR4Y4yrkh+obxQQFRYY/lP85SEi6qmct6UcZPl0Ce/ho5tJ6773ONeea6Rz7oY/iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IlWe1GND; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58EMO6T8020431
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:13:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	emyETxTvEXx2mZ3XPuIpV3lp2jjKDrPuyDEjXKQ/XZc=; b=IlWe1GNDLj9PHlzX
+	0NoO/JtNnK4kMpIJb0b53/nibupAAFIrAKaTWRY0L+GuJ1J8oTAlCl5WHG8o8gbJ
+	VoDc+jueQd2m542UD5v30+1lPd6oYEncJHffItnpxKxMdZaOwjHhWDPjWT0rBD5F
+	7GImqbvQ/Er/cH5rK8cpcFG8vQ9oDW4NwHm+rr7y6biXLFCPT1CRzTRoOJY6/zgR
+	5ll/hBZnFfAWaSVYWVQpU1S9YkVULmVbd9pe7BUqK4AnVnOu+mX+bJCRBpD8jws+
+	ejotWcadj837X2Y1PiE3DggxSKkChPO2CxYd/LhRE58FIKv9blnz5OZGIKThnbTM
+	SzTkBg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494yma3v5k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:13:58 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso14405061cf.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:13:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757920438; x=1758525238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=emyETxTvEXx2mZ3XPuIpV3lp2jjKDrPuyDEjXKQ/XZc=;
+        b=ep78Mx6jacVn5jcVsZFS2KUrayxBk24NsQYNubqhJWgBZbhN8DNZlsN5iHgiy8j28E
+         x828R4Q6rLjowAzC0TUazE1Uqli/pcxc0TsfdSavu4Dcqcwa7uWz0tob61mRzDj/qlrY
+         IzEQb1ApAuy7VqWQ9KBD1fFNc2dMaEv7BaLZd2HNid6UsL2s/3aAcfNW1LlypH0Sekm7
+         bnD/YSy7TyT9un+xmEcIvniaN99dnGfCE2HnAaqldphtUUZmzLJjAB7vkuuSaquhikEs
+         FOHXVdIoLPO53dY11Bcj9YmphY5uU6Oi7tL9mYQGnGWoH3znZM2kIlm7E0F5Egf2MNhN
+         1z1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUydvNVB8KkF3ryDftiLtxTBGfGyffcPMbBRMbzne4EkJhmJ8XWwM3qqE/yT1yyKw/wR+64mQBndTQE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEz5hXdaJudRmyALEzfQSc8y7vq0TR0HSB6Otv1gxPpZSQs93M
+	4djwSBHEPoZeLSA7h10RfZkkmclnKcAw8/uLdwhlF6ZX0W3J9keEKjhjWZt/BukpgQkVZgVptzI
+	H78iBnzCqPx3OK/OSXiBtg8eurBrrbHHC1ViCVZs5dGOMyH6T3AaOpesrls0DjAwq
+X-Gm-Gg: ASbGncsIJQkoIi4AYdq+jBQ+mMw60krUt2c9kWbKX3d2C44DpsHRvgqtjMUMduUZs/X
+	8WXvAY52Ib7lFPtbJDsbyTC/Cr1+rfFnZSh0Fwqo3saOzGwr/1ay0t3Px7hEzE3oabOzARr9tRj
+	w8ita99LsAVCIZ1UaL13N7wKbFTyz46D4KxX0AGM/V5WAxhZf/S4/tqJlo4YDQmnA1iZjJbeOTw
+	Bj6U13NV8ll0JdItnyXDbkwlJv8ul/k+EwklUOdoJs0aesUHQEhj8Fx8YBMw9iJQgOYBBSRvsIc
+	XtNkK5itm0L58d3ewwAggsVdfWstn/78Fr+K5gNrQJ6lfwXjYU/b81Q6lOiI4NubUgCMBn1sDlM
+	TVmIV5WbNMILyv67/RvXI/A==
+X-Received: by 2002:a05:622a:1649:b0:4b7:a71f:582e with SMTP id d75a77b69052e-4b7a71f5c59mr16755131cf.9.1757920437761;
+        Mon, 15 Sep 2025 00:13:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFXY+2EbGQYmMpg3d61biZVOZwP82Fg9wIo5OW+2n2MKk9HCpqgiBtHZ7vUG59dorC3yHP2LA==
+X-Received: by 2002:a05:622a:1649:b0:4b7:a71f:582e with SMTP id d75a77b69052e-4b7a71f5c59mr16754901cf.9.1757920437037;
+        Mon, 15 Sep 2025 00:13:57 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0bf0334ab0sm349700166b.31.2025.09.15.00.13.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Sep 2025 00:13:56 -0700 (PDT)
+Message-ID: <9557fba3-ad11-49f1-beb3-d23bcb87fa18@oss.qualcomm.com>
+Date: Mon, 15 Sep 2025 09:13:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,124 +90,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] iommu/exynos: Implement register set and fault
- handling on SysMMU v9
-To: "myunggeun.ji" <myunggeun.ji@samsung.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev
-Cc: Jongho Park <jongho0910.park@samsung.com>,
- kiisung lee <kiisung.lee@samsung.com>
-References: <20250915051320.3378957-1-myunggeun.ji@samsung.com>
- <CGME20250915051106epcas2p1c1bdb06ec2ec65aad8a96ffe155ed8b6@epcas2p1.samsung.com>
- <20250915051320.3378957-2-myunggeun.ji@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH DNM v2 3/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
+ Enable all available QUP SEs
+To: Krzysztof Kozlowski <krzk@kernel.org>, Xilin Wu <sophon@radxa.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+ <20250914-radxa-dragon-q6a-v2-3-045f7e92b3bb@radxa.com>
+ <0a766f8d-657d-42bc-b3b4-33997b919d7f@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250915051320.3378957-2-myunggeun.ji@samsung.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <0a766f8d-657d-42bc-b3b4-33997b919d7f@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxOSBTYWx0ZWRfX2nRnvBB75Wav
+ 7F6+mv+1kNEJS4Z4c6zy73pcFk7UeA+BIzjc46GDWsr4o8JA0V80YSAtU/60X4PRSIVt1xUGDYw
+ Gc/bYUF38XBj67EXe7X/fShWJbp/nBmWMV2qlr+g3ElulmzIvJHniirUS1ZFxM6sOIQGNgUIrGQ
+ K4O8eqJEC39lmeQxCHaP6GK98lrNtjiiN2rcsIPA+eTrgTSneLlo/OLzyesh/clQlnGub7nl28P
+ 5baX11EKf6zI0bi3UIqM7bA0onsMj8RJ8BpYJyWbHbfa7Bn+VC4NBvgUvapNH2bg5/Iht+Ov0EQ
+ uXSop8Ta7ET0XhZccufovxedwYBjhTBl75j6EXGJYb41tAXo2U5XkWbjDVzBwT2P/wXySvk5IvJ
+ zqa5jtkZ
+X-Authority-Analysis: v=2.4 cv=cdTSrmDM c=1 sm=1 tr=0 ts=68c7bcb6 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=ksxQWNrZAAAA:8 a=6z9ov410QEpJGwptJD4A:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22 a=l7WU34MJF0Z5EO9KEJC3:22
+X-Proofpoint-ORIG-GUID: O_jJP8vRoD-Iz8PSbCq39AicefaDONbO
+X-Proofpoint-GUID: O_jJP8vRoD-Iz8PSbCq39AicefaDONbO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-15_03,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130019
 
-On 15/09/2025 07:13, myunggeun.ji wrote:
-> +
->  static struct exynos_iommu_domain *to_exynos_domain(struct iommu_domain *dom)
->  {
->  	return container_of(dom, struct exynos_iommu_domain, domain);
-> @@ -522,19 +571,26 @@ static void __sysmmu_get_version(struct sysmmu_drvdata *data)
->  	ver = readl(data->sfrbase + REG_MMU_VERSION);
->  
->  	/* controllers on some SoCs don't report proper version */
-> +
+On 9/14/25 7:36 PM, Krzysztof Kozlowski wrote:
+> On 14/09/2025 17:57, Xilin Wu wrote:
+>> Add and enable all available QUP SEs on this board, allowing I2C, SPI and
+>> UART functions from the 40-Pin GPIO header to work.
+>>
+>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>>
+>> ---
+>>
+>> This change depends on the following patch series:
+>> https://lore.kernel.org/all/20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com/
+> 
+> 
+> No, why? It does not. If your DTS depends on drivers it's a mistake to fix.
+> 
+> Fix dependency or squash the patches.
 
-Please clean up your patch before posting.
+That series also includes bindings changes
 
->  	if (ver == 0x80000001u)
->  		data->version = MAKE_MMU_VER(1, 0);
->  	else
->  		data->version = MMU_RAW_VER(ver);
->  
-> -	dev_dbg(data->sysmmu, "hardware version: %d.%d\n",
-> -		MMU_MAJ_VER(data->version), MMU_MIN_VER(data->version));
-> +	if (data->version != 0x91)
-> +		dev_err(data->sysmmu, "hardware version: %d.%d\n",
-> +			MMU_MAJ_VER(data->version), MMU_MIN_VER(data->version));
-> +	else if (data->version == 0x91)
-> +		dev_err(data->sysmmu, "hardware version: %d.%d\n",
-> +			MMU_MAJ_VER_V9(data->version), MMU_MIN_VER_V9(data->version));
->  
-> -	if (MMU_MAJ_VER(data->version) < 5) {
-> +	if (data->version == 0x91) {
-> +		data->variant = &sysmmu_v9_vm_variant;
-> +	} else if (MMU_MAJ_VER(data->version) < 5) {
->  		data->variant = &sysmmu_v1_variant;
->  	} else if (MMU_MAJ_VER(data->version) < 7) {
->  		data->variant = &sysmmu_v5_variant;
-> -	} else {
-> +	} else if (MMU_MAJ_VER(data->version) < 9) {
->  		if (__sysmmu_has_capa1(data))
->  			__sysmmu_get_vcr(data);
->  		if (data->has_vcr)
-> @@ -763,10 +819,9 @@ static int exynos_sysmmu_probe(struct platform_device *pdev)
->  	if (IS_ERR(data->pclk))
->  		return PTR_ERR(data->pclk);
->  
-> -	if (!data->clk && (!data->aclk || !data->pclk)) {
-> -		dev_err(dev, "Failed to get device clock(s)!\n");
-> -		return -ENOSYS;
-> -	}
-> +	/* There is no clock information after v9 */
-
-There is, you just missed to implement it.
-
-> +	if (!data->clk && (!data->aclk || !data->pclk))
-> +		dev_warn(dev, "Failed to get device clock(s)!\n");
->  
-Best regards,
-Krzysztof
+Konrad
 
