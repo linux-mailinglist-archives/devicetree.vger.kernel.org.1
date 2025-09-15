@@ -1,173 +1,81 @@
-Return-Path: <devicetree+bounces-217239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15EDCB571A2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 251F7B571B0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:39:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEFED3AC6C9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:35:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4B8B3A7F2D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972F425A328;
-	Mon, 15 Sep 2025 07:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LqWAwL3t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F872D6E6E;
+	Mon, 15 Sep 2025 07:39:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D87C2D6629;
-	Mon, 15 Sep 2025 07:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222702D23BD;
+	Mon, 15 Sep 2025 07:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757921717; cv=none; b=h4I1HUzsE9KEMZiM1OGIABozpYWrUFHG67X8dvm2coHHkKP/PgbP+C9qGIny4+y6c7Fy5wHnmTatFhM4jq/RQu98VeL3kF+dezMAUuppOmRpadJqNsET30Kna1FDKnRhPbVV9gCuL/HzSO+nHxN9gull7sjPI8GPu8PTcqzKqdU=
+	t=1757921976; cv=none; b=Z4IpS7jPGiejmN1TgCMJNwXWtJGVca/Q9io7+Tn9FZvnVjZ77ZlL3rnJGgwZm+pBjiWg16ZT94Tiz8atuPBTH8bk/IoUR6+D84/Tj0SUjTQM54y4nui9RJ0CQE+aNX/tFl5rL3lu5QodLK/9MR2huWN9laqL+1mCKE7p77diqcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757921717; c=relaxed/simple;
-	bh=mEeucCA69rzn4qS6ndoLYMMFhSSaDsALtVNp52DpmNo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MR5aU3FO3ZJDy0AA7xBhr6QyQE43F8IfJlhxNja2Rhpgb3X4kMr6xDz0aNUjFs6gwU1B7XPMMNn1f689VzoETxWxUNIk17WKgbQvKAeNB4Ir5RBeVFlLOTMA71DrsIfTqTCjl2lfNblXgfiQNvyLSGKnumLuRQawK78rjrW+Y0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LqWAwL3t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E5719C4CEFD;
-	Mon, 15 Sep 2025 07:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757921716;
-	bh=mEeucCA69rzn4qS6ndoLYMMFhSSaDsALtVNp52DpmNo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=LqWAwL3tZMhJ3FpKRuA3XKUCGGQj1IkUxptAsFEdk5rHwL/SNwjxtlX9Z/RJxl9yi
-	 wJVGN7ZljIyRjJU50A0ysGhu12YqDpuKi2xzC+F0TizDi2hK/qmys1fwNVHl+JTII/
-	 6b4bhWqGUcdvvLX/GwM+S8tXJOOhaqNiJbrOved8+BlvXLW1KcTqnScz+/57iBIPaK
-	 kJwFbQP4NxnfidLf/Uy/qxyCw1x6dAq8cEFKHoXOC7P29vz+V8XuPXxR3V1qmQ81zy
-	 LUfv6vz8jq7ImMlD+ISAJdfCQIr47IBUT7CAgrGxn4H9EZzvAm8uRiiPr4quqxupwL
-	 GzbrZhIQ9BAfQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7A28CAC599;
-	Mon, 15 Sep 2025 07:35:16 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Mon, 15 Sep 2025 09:35:06 +0200
-Subject: [PATCH v9 3/3] arm64: dts: qcom: x1-hp-x14: Add support for
- X1P42100 HP Omnibook X14
+	s=arc-20240116; t=1757921976; c=relaxed/simple;
+	bh=pJUMi9CBgVizV0CeN3q/a16QPGTUOyQqDnvy4l24BTk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q5nekak6vzLb25qxPjs0inVp+vnVdqOfPfodM01PBR/u/AW9E3eN1Tdl18pGBQD9XjzyZEuj9B9ppD3XxnAhFB44H1OqBTaiCnG99Al4VS7HSylvL36COOpfnqJDD3vpptXWRlCM5LyyezdBWXCHQjXT8F//DxcFO6rxn56b15w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 15 Sep
+ 2025 15:39:26 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 15 Sep 2025 15:39:26 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Alan
+ Stern" <stern@rowland.harvard.edu>, Philipp Zabel <p.zabel@pengutronix.de>,
+	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] Add Aspeed AST2700 uhci support
+Date: Mon, 15 Sep 2025 15:39:22 +0800
+Message-ID: <20250915073926.3057368-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250915-hp-x14-x1p-v9-3-fa457ca30ffe@oldschoolsolutions.biz>
-References: <20250915-hp-x14-x1p-v9-0-fa457ca30ffe@oldschoolsolutions.biz>
-In-Reply-To: <20250915-hp-x14-x1p-v9-0-fa457ca30ffe@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757921715; l=3070;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=+BT4fsKiJVWxM7tmSzqIpmCAL57kITWb6Otasrz9a90=;
- b=CLSjXfOV6Yze+dg43nNL0rP0wYTQG4d4igf8FVp4yp+C/8W1E2l3e04G3fXSua53i3m/8N42S
- ALptVYLp3OCBy6dYu3YdU4/4uSuLXipSwPqX/6gGtcNpBsUc1UCsCw8
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+This patch series adds support for the UHCI controller found on the
+Aspeed AST2700 SoC.
 
-These laptops are the same as the already known 14-fe0xxx models, but
-with a Purwa SoC, SKU number 14-fe1xxx. [1]
+Compared to earlier SoCs (AST2400/2500/2600), AST2700 UHCI:
+ - requires a reset line to be deasserted before use
+ - supports 64-bit DMA addressing
 
-The supported features are the same as for the original Omnibook X14:
+This series updates the bindings and platform driver accordingly.
 
-- Keyboard (no function keys though)
-- Display
-- PWM brightness control
-- Touchpad
-- Touchscreen
-- PCIe ports (pcie4, pcie6a)
-- USB type-c, type-a
-- WCN6855 Wifi-6E
-- WCN6855 Bluetooth
-- ADSP and CDSP
-- X1 GPU
-- GPIO Keys (Lid switch)
-- Audio definition (works via USB and with internal speakers)
+Ryan Chen (4):
+  dt-bindings: usb: uhci: Add reset property
+  usb: uhci: Add reset control support
+  dt-bindings: usb: uhci: Add Aspeed AST2700 compatible
+  usb: uhci: Add Aspeed AST2700 support
 
-[1]: https://www.hp.com/us-en/shop/pdp/hp-omnibook-x-laptop-next-gen-ai-pc-14-fe100-14-a4nd1av-1#techSpecs
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  2 ++
- .../boot/dts/qcom/x1p42100-hp-omnibook-x14.dts     | 33 ++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 5b52f9e4e5f31ac5a398d0762337a0a31af1f4dd..0840ccf5c84795b5fdfe65db44bafc6984329847 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -339,5 +339,7 @@ x1p42100-asus-zenbook-a14-el2-dtbs	:= x1p42100-asus-zenbook-a14.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-asus-zenbook-a14.dtb x1p42100-asus-zenbook-a14-el2.dtb
- x1p42100-crd-el2-dtbs	:= x1p42100-crd.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-crd.dtb x1p42100-crd-el2.dtb
-+x1p42100-hp-omnibook-x14-el2-dtbs := x1p42100-hp-omnibook-x14.dtb x1-el2.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-hp-omnibook-x14.dtb x1p42100-hp-omnibook-x14-el2.dtb
- x1p42100-lenovo-thinkbook-16-el2-dtbs	:= x1p42100-lenovo-thinkbook-16.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-lenovo-thinkbook-16.dtb x1p42100-lenovo-thinkbook-16-el2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..6696cab2de3ec899d7ae5498f2f4b75e2131a19c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+
-+/dts-v1/;
-+
-+#include "x1p42100.dtsi"
-+#include "x1e80100-pmics.dtsi"
-+#include "x1-hp-omnibook-x14.dtsi"
-+/delete-node/ &pmc8380_6;
-+/delete-node/ &pmc8380_6_thermal;
-+
-+/ {
-+	model = "HP Omnibook X 14-fe1";
-+	compatible = "hp,omnibook-x14-fe1", "qcom,x1p42100";
-+	chassis-type = "laptop";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qcdxkmsucpurwa.mbn";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qcadsp8380.mbn",
-+			"qcom/x1p42100/hp/omnibook-x14/adsp_dtbs.elf";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1p42100/hp/omnibook-x14/qccdsp8380.mbn",
-+			"qcom/x1p42100/hp/omnibook-x14/cdsp_dtbs.elf";
-+
-+	status = "okay";
-+};
+ .../devicetree/bindings/usb/usb-uhci.yaml     |  4 +++
+ drivers/usb/host/uhci-hcd.h                   |  1 +
+ drivers/usb/host/uhci-platform.c              | 34 +++++++++++++++----
+ 3 files changed, 33 insertions(+), 6 deletions(-)
 
 -- 
-2.48.1
-
+2.34.1
 
 
