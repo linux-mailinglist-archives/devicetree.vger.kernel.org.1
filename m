@@ -1,209 +1,123 @@
-Return-Path: <devicetree+bounces-217318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8CFB57547
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:53:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 156CDB57549
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:55:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0522C3AF109
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:53:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A3E4188C21C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E142F8BE6;
-	Mon, 15 Sep 2025 09:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06CD82F39AE;
+	Mon, 15 Sep 2025 09:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I7rKGc2j"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="PgZoum/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D734C1FC0EA
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:53:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048392EA73C;
+	Mon, 15 Sep 2025 09:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757930000; cv=none; b=uJzsRRE0g7c4x+yrkOZVvpTcP3YqYlYKtdB6s66LzkW4Buhng7ZgagoHvuTjtHMGx2UNB+yILpS3FkTQ8lGbwZ/ySIgIkdhqAN7HySoYZmH0U/CWDH5T45tFUCk9qDKE3855yQwiOE0Kf0ECtvA6oLmn+MN/bS/+l4oGFKlEvJo=
+	t=1757930100; cv=none; b=WmdTf1wiM5bqN7q6xf/1il1RGKQvHqFUZJPxP6VyFlgh0wWWKXAyD0qYhJNkTAUplKwESXaDrfDmuyPvFZRWj00AUR3hHNQ8cQ2wGxJmjcf1eXciJ9OiaLcqKRliPjN0Lw/xszLI8XK7tfyDodKxgFOLwzkuYN6UQYnBnLpg/Wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757930000; c=relaxed/simple;
-	bh=fArXrU1ExA8BvNmApjYERc/9Abn1vtW4HuR2zhO6fy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g3QOsnixOkg/D6lpuV5vY26f94LynItwSCXVb7IZuFbFfnkRCTIf9jX6j1RzyVxf35wCRVFUL9sbg7dMMouoT9Vzi3H5OLsc/qpDN9pqS3RzeWMFRGyUeIjuKkDBvVY8r7gGjruOENfO0e+BCJIGvoXbNEnXGUvyt0EFC/2ObW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=I7rKGc2j; arc=none smtp.client-ip=209.85.218.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b07d01fd4fbso356981566b.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:53:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757929996; x=1758534796; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZnT8bygRKAPmGumVQ7/aWhdFKPhR563laFLFSTJnPg4=;
-        b=I7rKGc2jMJRyZF0EMswedZs1QtgPJMkG61JuWi3Ez/yy/1ZfBF7xRWmJ9Oa3lShmCN
-         HGbW273Q2QTIwS/MwGHr2SOaBYBX0xV/tTrJuKVg3AXHliyqt++EzO4+r3zF8CiaFJMs
-         hE7xxq2+fIdwOr9upCWJUVcS/Hy1XNhkF+BKkKdZWqLOQt9f+DBwQOfheGBxtapYwrx+
-         vkfIyXG3ApVgzhzlH26iaVMiQ53RxSIg/UJQDg0hXfbNu7jm98XxyXZY43qaDf9Jxzs+
-         yq1tejBkHRg68VibiVzW2h1mX2R3kkfgyaR40GEHlldoEfU+Hy0Jl6BV23meSJWTyP+9
-         YEaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757929996; x=1758534796;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZnT8bygRKAPmGumVQ7/aWhdFKPhR563laFLFSTJnPg4=;
-        b=aokm7+/KafAyqd8pzPkZf3Auf9cJYLx0Uo830laA2/TDUgK4WLWcwwOKyGGpd2LbOn
-         JUd3itA2NKL3vi9BGy7ZP0N6tIhbdL3mcfB+77HzGM/Z3U3TDxMJAoq7sr2A8C5CwIn8
-         Sc6cWSlCSQUIJKGSGgODYnqKQKr6y9ddqvlf403c2iZ4M6SlhBI80rI600KI9q8mM8yU
-         ERXV+nqpiewedkyZ8cFSAIOo67XTOlN7AmijCsS5FQ00b95+x6EbY4bjBR+Vg6NJ83ZD
-         slF3VYinfdcoGwKPUN8/ng2JvCiATGjDoKLA+WDsOdOX/HgXNAOMcsoRKRumB1St45Wr
-         6LUw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsnaE9Y517DQXRNPr9rfV2aN4CAvLO0xeyJozcC5I/Gls3oh/Ve3fUFaa1kxy5xn9zoKnwS4BdPuWz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUSQmWgaKzRBBYdINvE4WTGmaCoal/VTnBaerjgzIUCL0yRvgI
-	VEJXFeDqVDs4uCHoqaZi8kpnRTQCPuO30ruDlwIeQu042G8tJrPwLYYpR3xxlIqrvGo=
-X-Gm-Gg: ASbGncukAMQW5uf+U6b+uKp3hHY5dLNAWJ9EVb0w7npuheJlE2TRXfdcKuRe4VzxdzV
-	9utFkEoxZ/5mkkRXmjX3h9CGAeEXlKLnsI8F2FkcUMcmb0HjWBCEEJ4ccxZsqRqufvcu/I0g0fb
-	W4Y/IoYm6TIHDbHlvb4zmvggQGJVnZV7YnqrZiLwsdbLJDqzzkZQKd3pObSDR667YLVlFyWTLoz
-	K3ujT/Vey529CqncZ367w8yDgd8303K08xnMEGpk23INyRxV3QqC0qSQePgLEkVrClG1vJ6SBoq
-	SE+ApWbnCWcuBuKdB+okgMgZ4wNIAGXfQBxduIjSFs5ebEL1Y8/cUiEmkIemalXbkIRTf5Ec72F
-	GNf3Ff+x2GPfCKog8JrgxEET3+tRQ5wXaN2CPgknmARNiTF+dK6wOfg==
-X-Google-Smtp-Source: AGHT+IFIHlscBL0igR95cEAP9TJRcptLn3BqehB8VqKM3aaIOHUcYtaoyvHvFWqzo+O2sc6KFxPEsA==
-X-Received: by 2002:a17:907:1b08:b0:b04:5b0a:5850 with SMTP id a640c23a62f3a-b07c35fb999mr1200734266b.40.1757929996192;
-        Mon, 15 Sep 2025 02:53:16 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:ab20:75dc:ab3e:bbb9])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b33478besm924187466b.99.2025.09.15.02.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 02:53:15 -0700 (PDT)
-Date: Mon, 15 Sep 2025 11:53:14 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1757930100; c=relaxed/simple;
+	bh=d0VqZbpQ0JGwY8ajzJh1U/vak+EkkwD4uK2aJndcr8E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OM2LPva1FAfOqzRW5ZjBjNDQzSz9RLwkuQ2mQ+3seaB8OwFR3S0I9/6IEHpFdSNcpfkgXLV8TvuVQuSYRiIyWxwOQ/zG+Wqf5ClwBdUXVjvRlCKVd/lhjkWlpRDwd7fs5olnx9CT2nyAvGFgBWWgg0i5SZSewpsjfYC5TTErfQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=PgZoum/h; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 6928C25D81;
+	Mon, 15 Sep 2025 11:54:50 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id DKm59VjfPMPN; Mon, 15 Sep 2025 11:54:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757930089; bh=d0VqZbpQ0JGwY8ajzJh1U/vak+EkkwD4uK2aJndcr8E=;
+	h=From:To:Cc:Subject:Date;
+	b=PgZoum/hHcKkQqtSl3UBtjW23RnWMDzKiJCFBXKH8tu5b33wGdm80vG4QlxujSoK3
+	 CodbPTz8s60cg3td0TtnG9zlXD5vk+Ezq6O8Z1m7Ww1bc+ACnq6dUT386zCp5zHFhE
+	 aOWX+RmNunbz9jsM8i0gUY9ysZHyGe1eOIC9B2amrIycL2T8UO6Keu+ZolGynxHdfR
+	 smzfXbYsQdA0eEPrPRG4kJurSKk7KPGNl5f7jLKdLsOqiNiCGPkwUpR2wQB7j0J6oC
+	 u5a0FwOWAuNygw76T8mfzP5zBg0anCJoxwLxn/tcjjtcHoogyC/uMqgkjig+vlgp96
+	 wDzIyvbwzT0JA==
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v11 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-Message-ID: <aMfiCry1NDdd9AnX@linaro.org>
-References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
- <20250910-hamoa_initial-v11-3-38ed7f2015f7@oss.qualcomm.com>
- <aMPee9wEOrrW-KMU@linaro.org>
- <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
- <aMfT1_uyZETUEBYk@linaro.org>
- <3b81ea60-553a-48d8-b6c7-6b55673fe04d@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v2 0/5] Add reset controllers for other TH1520 subsystems
+Date: Mon, 15 Sep 2025 09:53:26 +0000
+Message-ID: <20250915095331.53350-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3b81ea60-553a-48d8-b6c7-6b55673fe04d@oss.qualcomm.com>
 
-yOn Mon, Sep 15, 2025 at 05:46:09PM +0800, Yijie Yang wrote:
-> 
-> 
-> On 2025-09-15 16:52, Stephan Gerhold wrote:
-> > On Mon, Sep 15, 2025 at 10:12:15AM +0800, Yijie Yang wrote:
-> > > 
-> > > 
-> > > On 2025-09-12 16:48, Stephan Gerhold wrote:
-> > > > On Wed, Sep 10, 2025 at 05:02:11PM +0800, Yijie Yang wrote:
-> > > > > The HAMOA-IOT-SOM is a compact computing module that integrates a System
-> > > > > on Chip (SoC) — specifically the x1e80100 — along with essential
-> > > > > components optimized for IoT applications. It is designed to be mounted on
-> > > > > carrier boards, enabling the development of complete embedded systems.
-> > > > > 
-> > > > > Make the following peripherals on the SOM enabled:
-> > > > > - Regulators on the SOM
-> > > > > - Reserved memory regions
-> > > > > - PCIe6a and its PHY
-> > > > > - PCIe4 and its PHY
-> > > > > - USB0 through USB6 and their PHYs
-> > > > > - ADSP, CDSP
-> > > > > - Graphic
-> > > > > - Video
-> > > > > 
-> > > > > Written in collaboration with Yingying Tang (PCIe4)
-> > > > > <quic_yintang@quicinc.com> and Wangao Wang (Video)
-> > > > > <quic_wangaow@quicinc.com>.
-> > > > 
-> > > > This looks like you should have Co-developed-by: tags together with
-> > > > their Signed-off-by: tags.
-> > > 
-> > > We’ve agreed on this as the preferred method for marking collaboration, as
-> > > discussed earlier in this thread.
-> > > 
-> > 
-> > I can't say I agree with Bjorn there, but ok, he's the maintainer. :-)
-> > 
-> > > > 
-> > > > > 
-> > > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > > > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> > > > > ---
-> > > > >    arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 621 ++++++++++++++++++++++++++++
-> > > > >    1 file changed, 621 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
-> > > > > new file mode 100644
-> > > > > index 000000000000..c7c3a167eb6a
-> > > > > --- /dev/null
-> > > > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
-> > > > > @@ -0,0 +1,621 @@
-> > > > > +// SPDX-License-Identifier: BSD-3-Clause
-> > > > > +/*
-> > > > > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> > > > > + */
-> > > > > +
-> > > > > +#include "x1e80100.dtsi"
-> > > > > +#include "x1e80100-pmics.dtsi"
-> > > > > +#include <dt-bindings/gpio/gpio.h>
-> > > > > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> > > > > +
-> > > > > +/ {
-> > > > > +	compatible = "hamoa-iot-som", "qcom,x1e80100";
-> > > > 
-> > > > Undocumented compatible (without "qcom," prefix). I think you can just
-> > > > drop this?
-> > > 
-> > > This compatible string was also discussed previously and is the preferred
-> > > choice. I’ll add the missing 'qcom,' prefix.
-> > > 
-> > 
-> > Even compatible = "qcom,hamoa-iot-som", "qcom,x1e80100"; is not
-> > documented. And it doesn't make much sense to document it either, each
-> > of the boards using the SoM should have a more specific compatible and
-> > therefore needs to override this property. I think you can really just
-> > drop this line.
-> 
-> Patch 1/4 documents this compatible. It’s another requirement that SoC/SoM
-> should follow, which Krzysztof pointed out in v2:
-> https://lore.kernel.org/all/aee74e0f-c957-437d-ab48-3977013c3116@kernel.org/
-> 
+TH1520 SoC is split into several subsystems, and each of them comes with
+distinct reset controllers. We've already had the one for VO subsystem
+documented as "thead,th1520-reset" and supported, and this series adds
+support for others, including AO, VI, MISC, AP, DSP and VO.
 
-I'm not saying you should drop the "qcom,hamoa-iot-som" compatible. My
-point is that only the compatible list you use in hamoa-iot-evk.dts is
-documented in PATCH 1/4:
+For TH1520_RESET_ID_{NPU,WDT0,WDT1}, these're reset signals that have
+been introduced along with support for the VO reset controller. However,
+registers in control of these resets don't stay in the VO reset region,
+instead they're AP-subsystem resets, thus the original ABI is
+problematic. I remove them in PATCH 1 and reintroduce them in PATCH 2.
 
-compatible = "qcom,hamoa-iot-evk", "qcom,hamoa-iot-som", "qcom,x1e80100";
+Note the reset controller for AO subsystem is marked as "reserved" in
+devicetree since AON firmware may make use of it and access in Linux
+side may cause races.
 
-The compatible list you are using in hamoa-iot-som.dtsi is *not*
-documented:
+This series is based on next-20250912, thanks for your time and review.
 
-compatible = "(qcom,)hamoa-iot-som", "qcom,x1e80100";
+Changed from v1
+- Make a separate patch for the ABI-breaking change of
+  TH1520_RESET_ID_{NPU,WDT0,WDT1}
+- Fix the duplicated dt-binding IDs
+- Sort compatibles/reset-signal definitions in alphabetical order in
+  the driver
+- Sort dt-binding IDs in alphabetical order by subsystem names
+- Link to v1: https://lore.kernel.org/all/20250901042320.22865-1-ziyao@disroot.org/
 
-because the board-specific compatible string (e.g. "qcom,hamoa-iot-evk")
-is missing.
+Yao Zi (5):
+  dt-bindings: reset: thead,th1520-reset: Remove non-VO-subsystem resets
+  dt-bindings: reset: thead,th1520-reset: Add controllers for more
+    subsys
+  reset: th1520: Prepare for supporting multiple controllers
+  reset: th1520: Support reset controllers in more subsystems
+  riscv: dts: thead: Add reset controllers of more subsystems for TH1520
 
-The compatible property you have in hamoa-iot-som.dtsi is redundant,
-because you override it with the valid one in hamoa-iot-evk.dts. And
-every other board using the SoM should do the same.
+ .../bindings/reset/thead,th1520-reset.yaml    |   8 +-
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  37 +
+ drivers/reset/reset-th1520.c                  | 835 +++++++++++++++++-
+ .../dt-bindings/reset/thead,th1520-reset.h    | 219 ++++-
+ 4 files changed, 1083 insertions(+), 16 deletions(-)
 
-I would expect that you can just drop this line in hamoa-iot-som.dtsi.
+-- 
+2.50.1
 
-Thanks,
-Stephan
 
