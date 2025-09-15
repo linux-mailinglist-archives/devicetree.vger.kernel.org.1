@@ -1,135 +1,133 @@
-Return-Path: <devicetree+bounces-217614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD303B587C3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 00:46:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4585B587E6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 00:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A85F1B25912
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:46:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E51F1AA7D81
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485B4286D60;
-	Mon, 15 Sep 2025 22:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545472D7DE2;
+	Mon, 15 Sep 2025 22:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lxy9qqDC"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="KEAGgYt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2BF27280E
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9EB2B2D7
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757976388; cv=none; b=BhmamGoqtixEDYTO3OxxvGVQD8WAfEY+bqtLgePR/uppuslnrEj+mRfIlBrpyNGdlZeIsqv2zgKCD6EZgeapJUen+L2mLAl98FxcB6XUml/4lGXwWz6Xnm6NbHyaG8til7gnZrAOZrjBcl6lO/MEAZD2ec4JTEAygFoPhvHqJuc=
+	t=1757977091; cv=none; b=noEzg2S5uZoLI6lry8eb6SRzQ9tsGpt03mj5e47WWHsn9I25Kotw2XEmb4slMJWJkvS/jVDExkoJ4wDKUDnH8pYF3Mat0laQSqnAb6kbgyE04FTe14o1UBMV7Rh5R8HIBBKRkK5Wo1cF5cVbMmq+HCxJUSdHnStYqMZyZ49hP20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757976388; c=relaxed/simple;
-	bh=dB1OztffTtPLQ8svUIE87jrVQ1xV6M40n11vNPdAgNg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e4MHLYwoO12TNXJho0neNx0hPAswHQgvy+8VI9KvQn6RVaeMCUo/94NEbI4Fpvf8HaLMAqU4MCV5FtQEcn7YuTCD7ntYlCvnhz4XxP/lBXoHI4pe1slPiTkYB74N4W6ExjNpojJPCIRH0T2sapcd8K2NZ0JMFDS/xnuLlcgX57A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lxy9qqDC; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b0418f6fc27so811430966b.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:46:26 -0700 (PDT)
+	s=arc-20240116; t=1757977091; c=relaxed/simple;
+	bh=wrK0nRI1OFbp71bXaT4X7O+VxQvKh8LBne/yxp6bWq8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lt6hAEHkwf35zbWZrZdHlxMTF4yDpQT9kKA5ejTM1kH0zFNLllNkuVBCWS0YjdEIkgCMwWMs+3nhh+OeWcjXiYGdrOVi8129F4wi64IIaNYVFGq1YlKfmhxKBHecT0sMye8hsL8wHrIdRWOUr432ipOMSFt0i7lPtWvIegCw08A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=KEAGgYt8; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-74595f3852cso3367923a34.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:58:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757976385; x=1758581185; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=13DnP3wRqU+zsSJbDDW+krsmHK5NNVJV3DHwW0NPTaE=;
-        b=lxy9qqDC3Wn1IY6PQvredi9lqe2f1ycqtbmq7+G8JRpP7X1w4oV74c4iKALqEZubZH
-         HvC4LTaSO/zia89FHOCR2XIrYzWqQgWIq67MiFa4LIb8RHK65V54160vxGXRvL1jF37c
-         GsgvKjZWxhdUYKzMwG49Thjjysr/IoElTjCiF3zn5KUHbp/zglbmT+PnUuPDyDiAzlWT
-         1z8Nm5qyjx8L4/JQv9EmOJaac+RkdzUSRDOS+mCMUtrdYfXE/vH/XfGVS4w6f4nUDq9h
-         r20oo9ha+vu26NTI83ZD1VqFgMa9j5xwROHAZi5MTSjOoWvpw+fzNrO2ztjMyus1ZI6f
-         dSWg==
+        d=ziepe.ca; s=google; t=1757977088; x=1758581888; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kB/Wi+cRe7K/Xl4jkmaNXOwfB7KCAKUI6vYOHIxWVl4=;
+        b=KEAGgYt8X10JnmMsTHB6p0wyqh8oaZfbiQj00LhEO/YlLPOcNvkEeV7a3tJbpObZSG
+         JL5R3qjyVo5pvdmRULzN3TdK50LwaDJQKBPePMEOPo0RoMoLiSrEPdyt5t85tkscY8ok
+         Z1YHhG9Av55bBimcNiCXwQFpyJHcpVp3QoCE2cIxFpy2c3IT8dHawYeR9SatdTcPhBmV
+         jcu34QTeZW4oRB0NBzdibGmiVHJzfiCFXkZFtNryO7y7IrPSefYFiQLpAKXYXErJrVQ6
+         H96vBhBvC8mu/PI4uoBUasTB4NFJdQQ2Xov1lyUmhDzN9gTCM6E4kM0C2fpo52dVXelJ
+         Dt+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757976385; x=1758581185;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=13DnP3wRqU+zsSJbDDW+krsmHK5NNVJV3DHwW0NPTaE=;
-        b=J/vSH8MDGV5dc5bQwLLEcvNyxeIAgcS1ijTfp6HnzVrguGs21JiZRrhkKp+h6qDAzj
-         l+zDDb6Oq+94ByuYdkE1Tmfv4fEuGrIwI/hVePTOVlRSPjS2ej30jdalu0zlvFZ+BeHk
-         ckSehennjj8uomptwEutQGhOGRF2pHSi7hslDNoex8QrT0Cz4PSttrgaz6Mh/k3KoAwh
-         yo9AbrB+a9hiFRMjvGXY4tYLMG/m9nmgMKj8dBlU7yaoQ8bBrgf4ceyKryVhQpoa2bW3
-         tQrhDbsrjKFtevTx9eYcx3MfWDaFHvtKLEfXHdW0PCW+ycWb5fuu1PkrQ1VgExzAJd11
-         Tghg==
-X-Forwarded-Encrypted: i=1; AJvYcCW3M0/jjNfwL/OUGA5qATP2IJt680CDFw6hTTXQhj0+e8v8E+Td/gzYRz0sHeJxbxhSfq7X/XcoNxcP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBULqt3Qc6TAoYAAAOai8RG2XL7PspfEYrrAHN4pREYCwvgLw6
-	td0V3aEOfzYh4yA3rN0ds7flWWhn98j3BSVPNHhtcv/96400Rojagwg=
-X-Gm-Gg: ASbGncs3lPjTf38okbK12VVb0nh4/FmmwxMQQ7RXC980tgH1DArZb36TYAm0mJ5m9rO
-	+itirmgk06qA/zEMZmdcV7KA9wcsoAMd0x99kxSNlDMGdx9mN6Bx1ltNtC7Awc4GzJ7pr4xnT+Y
-	+91hlk0EYR/DBtQiXUd3bz5ZGKJI+6U5RN768bgQzP13vB7ccMPTeuHk4Uqv/ZXLhZA/Hur7eBl
-	TrWkI9OZk+EhQEgMcvcrMjX10m3n5n8G31XE1vZJ9PN2/Q9OJSN3kMKlk6fKRK+OSPl6xeJDbbl
-	5taFSQ5s9tmgPNCOhRzV7Gjj72KnhSNHVLvhms5TLcEMaEZdYefRlxKA8w3kW3MsHrV7LkPR2Up
-	VfqMNlqllu9WHPmf1XiN8o3Sf6UMgXbdJ1PeYSVrqKooc9nw=
-X-Google-Smtp-Source: AGHT+IFC1RDAQdftftflM3IR9GIxbYxiAqxOMxHqEUoMHehF7YawNWtyqMfqbQIPOxJCVyY9vyzwnw==
-X-Received: by 2002:a17:907:1c9e:b0:b04:5385:e26 with SMTP id a640c23a62f3a-b07c37a7fcemr1575363166b.58.1757976384468;
-        Mon, 15 Sep 2025 15:46:24 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:214e:a6f2:7d6e:32b1:d615:2ff1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b32dd5bfsm1011153366b.63.2025.09.15.15.46.21
+        d=1e100.net; s=20230601; t=1757977088; x=1758581888;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kB/Wi+cRe7K/Xl4jkmaNXOwfB7KCAKUI6vYOHIxWVl4=;
+        b=tUM6tloWRgdKOhHLmg5dr4dDKPX6nFm5SOrNtxkCJDJ5VHlvS/7YQDRQ9K6j25OQkK
+         SWXg2tmRT2iHNO5NqmHTfShpwkueRKqBan/pE6H67l3kqrKl6uAOBVW41HvHRm4kSQyu
+         UjSWwuqQJqSjEA+aKNjSNcfgBOoev+MdO0tfCNewG4Sr1Qz3s9xopuc0E3KEXYCiBZfi
+         4p0H8qf9HOYPs+FO2sThCIiCueVsJnKW23gt3r/dzD2Q2hUj6q3sPoQCZIcz/ywWLdJk
+         b3VXP9GltTYqdv2WLm+odzs2O0q3VwOYtqD5oR1ZOBpE2O+O6nOGPAYg7sxQRwkMxNmg
+         yrnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVYc30temJ+2IyRf/CdDsNTFqLTOcfSrS8DBy0ngbLpfLZV/InQ3bkvc/K8hdkt2RLKd556MdMV3n8s@vger.kernel.org
+X-Gm-Message-State: AOJu0YweKkof2f2r157S+OvTwgePr/1rLUglo/ImeowX+8FRrVRasN+x
+	gLJOnDF5AjWPsDUyubHw2nu+E4JY24GZbZrxQ4mSb2704gXUTQml7bG7tfiiF8G2LTk=
+X-Gm-Gg: ASbGncvQoRx5XbKRVr/gCfb903Vv2xWy3sGCtpgVI0tR6IYfCp8kn/FPBFOcfK5Szhf
+	CLs7Mp+mJKUvVfEz0p42AcaJHq7mi3NrCnGP6CP0aI4oXK7qBX0sdAlfXzC24PIN7aIBn7yPUCs
+	zsVG4iKw6P+R4krdpXEIQWSk7OwUcQLQMIPpkj0AQRJsv4p9MmdDMhenZ2OhgHPhJEuzGzwMusK
+	FuJNm3qWcAjtb+Bj4/mpMlYH3QsIZ8Enl+KiTtYoqgUHHdZ6hLlOELwb2aImfIoTNhCPrgUrNOk
+	rmWAhat9ww53WQZx+ReuCF1p+FwtT7NuUPVDN1NTvpsmmHED+jL2D0YijMpNNA9abVfsrJyIfD+
+	h0h1oJjc=
+X-Google-Smtp-Source: AGHT+IGSUOqb+ed31/428rqH5N5OvGqFxlxhfX8elAayaMc3UDw7hqxF226u18IdPmrznlxbRNVzmA==
+X-Received: by 2002:a05:6830:6adf:b0:745:9dc8:8dfd with SMTP id 46e09a7af769-7535638abb1mr9759182a34.35.1757977088588;
+        Mon, 15 Sep 2025 15:58:08 -0700 (PDT)
+Received: from ziepe.ca ([130.41.10.202])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7524986c872sm3180269a34.15.2025.09.15.15.58.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 15:46:22 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com
-Cc: robh@kernel.org,
-	s.trumtrar@pengutronix.de,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
+        Mon, 15 Sep 2025 15:58:07 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1uyI98-00000004Yk1-1O1R;
+	Mon, 15 Sep 2025 19:58:06 -0300
+Date: Mon, 15 Sep 2025 19:58:06 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: =?utf-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
+	mchehab@kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH] ARM: dts: stm32: stm32mp157c-phycore: Fix STMPE811 touchscreen node properties
-Date: Tue, 16 Sep 2025 00:46:11 +0200
-Message-Id: <20250915224611.169980-1-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
+	linux-rockchip@lists.infradead.org, kernel@collabora.com,
+	linux-media@vger.kernel.org, Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <20250915225806.GM882933@ziepe.ca>
+References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
+ <20250911155720.180465-4-benjamin.gaignard@collabora.com>
+ <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
+ <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
+ <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
 
-Move st,adc-freq, st,mod-12b, st,ref-sel, and st,sample-time properties
-from the touchscreen subnode to the parent touch@44 node. These properties
-are defined in the st,stmpe.yaml schema for the parent node, not the
-touchscreen subnode, resolving the validation error about unevaluated
-properties.
+On Sat, Sep 13, 2025 at 07:58:04AM +0200, Jörg Rödel wrote:
+> [Adding Will back to Cc]
+> 
+> On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
+> > To me this rejection isn't about Benjamin's driver, all iommu seems to look
+> > alike, so anyone else that would have sent new driver would have face the same
+> > issue.
+> 
+> This is about ignoring comments from one of the IOMMU maintainers. I am not
+> going to merge a driver with open comments/objections[1] from Will (and a few
+> others), so resolve this with him and get his Ack.
 
-Fixes: 27538a18a4fcc ("ARM: dts: stm32: add STM32MP1-based Phytec SoM")
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
----
- .../boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi    | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+I would strongly object to trying to share map_pages, unmap_pages,
+iova_to_phys, free and other iommu pt related functions in some
+limited way instead of helping on the much more complete iommu pt
+work. Which is what I said to Will, but for some reason he suggested
+it anyhow.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi b/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
-index bf0c32027ba..370b2afbf15 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp157c-phycore-stm32mp15-som.dtsi
-@@ -185,13 +185,13 @@ touch@44 {
- 		interrupt-parent = <&gpioi>;
- 		vio-supply = <&v3v3>;
- 		vcc-supply = <&v3v3>;
-+		st,sample-time = <4>;
-+		st,mod-12b = <1>;
-+		st,ref-sel = <0>;
-+		st,adc-freq = <1>;
- 
- 		touchscreen {
- 			compatible = "st,stmpe-ts";
--			st,sample-time = <4>;
--			st,mod-12b = <1>;
--			st,ref-sel = <0>;
--			st,adc-freq = <1>;
- 			st,ave-ctrl = <1>;
- 			st,touch-det-delay = <2>;
- 			st,settling = <2>;
--- 
-2.39.5
+Sorry, but it doesn't make sense to complain about duplication in
+drivers and then not help advance one of the biggest projects to
+actually concretely and comprehensively address that duplication.
 
+Jason
 
