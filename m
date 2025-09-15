@@ -1,137 +1,129 @@
-Return-Path: <devicetree+bounces-217305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2809DB574C8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:24:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18260B574DB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4CD41A24DDA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:22:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85EDF442B41
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A122FABE2;
-	Mon, 15 Sep 2025 09:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F7F22F4A04;
+	Mon, 15 Sep 2025 09:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="u6mHfz4C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XbapCBXD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59BE2F9C47;
-	Mon, 15 Sep 2025 09:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4305E2F49FD;
+	Mon, 15 Sep 2025 09:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757928029; cv=none; b=a6QwUe8SpaRtzUOXJtGfnEqfl99dOyOn0qc+CzKpp+Yy+D2S2F6Tkd4Me9V7AHWkoq2X3a6tHBhmic6tB2IRmUaY9E5Fm6w1UVqGZQgiSY+b2pnPYW0hBUFNFAlAEG8gfino33ADVb22sT5ArZcdMQPs0X2KBRB0NrWACKB51pg=
+	t=1757928277; cv=none; b=W4yjWHon01Sh2gBzP90ni3A/PWbNfjtSydk9zppsDHx/BPbANANjeMu4rhkRDwshIs4GuAEKBYZmGwGg0SnK/9N3ricPefdvF3PMI1VApzNpkksjRBlVeyccUbjx/+Y2/Oe/8cA1Oz4jQtocecxzE3CGh9+Kk9vqgpHa635Ky4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757928029; c=relaxed/simple;
-	bh=BBV11Ho0tc+Utu8uS2EfLylS/m9H64nWp9VfpPNknAk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Lmz6UUZaWQ0+UUlbabk3S9euAGYxd94/aooLUTgc/Fu/giSy8P9yQNjKjVUYEGlSgQvJ1s7XZuQcOT7vs3l8aqsbXcwFp4CIrkuBiv40/nTp/xcy5wZCktiOAlM/mS7BXfj9T0H109VJSmOzrcb3OlImS4xGe3LbxYB6H+VRJMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=u6mHfz4C; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3384eeec921511f0b33aeb1e7f16c2b6-20250915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=LaNNoYa5Du7iCqkc2oPxcr71/D7vogeLUkEIi2fqLmY=;
-	b=u6mHfz4Cf7JJtwYtnM5JBa21swJExdqPeFVwOrmnNt3C9bu5IgZLki5zJuEZbcuWHbdlwARlUSR6V/K/rKSe0EN4fcAFvxgnsSYsI2EUjQEuZ/yRx5c0vdpQrrCgg7Qk2+VLigEedtZNXYdK+x7s3635X3PRFpSQzzyDgNJSug4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.4,REQID:0465c470-592b-4ce0-9052-50cef22c08c9,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:1ca6b93,CLOUDID:9ce1cc84-5317-4626-9d82-238d715c253f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
-	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 3384eeec921511f0b33aeb1e7f16c2b6-20250915
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1321633581; Mon, 15 Sep 2025 17:20:20 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 15 Sep 2025 17:20:18 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 15 Sep 2025 17:20:17 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
-	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>, Christophe JAILLET
-	<christophe.jaillet@wanadoo.fr>, Sebastian Fricke
-	<sebastian.fricke@collabora.com>, Nathan Hebert <nhebert@chromium.org>, Arnd
- Bergmann <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, George Sun
-	<george.sun@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	<andrzejtp2010@gmail.com>
-Subject: [PATCH v3 8/8] media: mediatek: encoder: Add MT8189 encoder compatible data
-Date: Mon, 15 Sep 2025 17:19:58 +0800
-Message-ID: <20250915091958.31509-9-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250915091958.31509-1-kyrie.wu@mediatek.com>
-References: <20250915091958.31509-1-kyrie.wu@mediatek.com>
+	s=arc-20240116; t=1757928277; c=relaxed/simple;
+	bh=RgkgrwRypdT/518CgEj/V8LfEbAO8YRYx2xOm90hzPk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YM1Wxrnb67eDy0s8cezNXKJuM/Asp9L23eC7xAHqaosCV6mlayQFLEkibiqPvm1MRaNc/e2kOWU2I2cQMi88qUSuzlgK/veTaDHx5oePOCR/dZrkkC/bciWsT6CSiTbAbE9WOK2cuxGHzk2PQxCJaBBtFxN3Lg+Kar6d1TWv3Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XbapCBXD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D1D1EC4CEF1;
+	Mon, 15 Sep 2025 09:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757928276;
+	bh=RgkgrwRypdT/518CgEj/V8LfEbAO8YRYx2xOm90hzPk=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=XbapCBXDF3N0JCGizjXEEnzD31MMXQC03i/+s2l2R0wZ8miOI4LMi5Gg4yH2GlKd+
+	 Q6p/IdLWuIk3O4m0FpZ5lI2pKF+5siZCyzECvT+Y9LHHb6fMbXp/FNJbrOak3mz8xy
+	 PVdw03eFO4Wj5bF3mCqyGd6HKakkfAR6ZDU9B05omFHE5FzakQMTWdHqjgi51gFOm9
+	 EMzWFnvH1U1qqsNEicMESHpGGGhWu6VHZugCgkGnOZtnELneHxFgJLjJbYkjfZNBUZ
+	 endu4HugvKFXwjcJFtv84yplTu3poxGqmKcC4DtURMjGwFa72IZgv6lJ1c/MXLajAx
+	 7/Y8KfWSDjnpQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C31A1CAC598;
+	Mon, 15 Sep 2025 09:24:36 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Date: Mon, 15 Sep 2025 13:24:18 +0400
+Subject: [PATCH] arm64: dts: qcom: ipq5018: add QUP3 I2C node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250915-ipq5018-i2c-v1-1-46bbf27396d6@outlook.com>
+X-B4-Tracking: v=1; b=H4sIAEHbx2gC/x3MQQqAIBBA0avIrBNmBMu6SrSQGms2ZQoRiHdPW
+ r7F/wUyJ+EMkyqQ+JEs19lAnYL18OfOWrZmMGgsjkRa4m2RnBazavQYPA29ceSgFTFxkPe/zUu
+ tH1sLzpNdAAAA
+X-Change-ID: 20250911-ipq5018-i2c-0a0fa1762818
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Vandhiadevan Karunamoorthy <vkarunam@codeaurora.org>, 
+ George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757928274; l=1420;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=5AMg7/oGtHNBWL+11z9Q/HGGQ9F6ll9nuoBPaZhI9aM=;
+ b=YRzjCtxRPYCTIZbfjE7Ch/iQgVk2FPQ2D3Z9XheAftOihKy/1/tmjGVVJNjCCP6dXt51fm4rq
+ wtSUjXqnECrAN3FPi6I7N+IBTc6A+E6Q/wpYazdNwaMdyxGBj0tyK4f
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-add compatible data to support MT8189 encoding.
+From: Vandhiadevan Karunamoorthy <vkarunam@codeaurora.org>
 
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Add node to support I2C bus inside of IPQ5018.
+
+Signed-off-by: Vandhiadevan Karunamoorthy <vkarunam@codeaurora.org>
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 ---
- .../mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c   | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-index c869c4245ebc..4f5c2d8d2855 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-@@ -468,6 +468,19 @@ static const struct mtk_vcodec_enc_pdata mt8196_pdata = {
- 	.set_dma_bit_mask = true,
- };
+diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+index e88b52006566fd39c0690e6fb53be743eb56d11b..5ba33255659e0a83562bd42048c7152bef04f1cd 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+@@ -504,6 +504,21 @@ blsp1_spi1: spi@78b5000 {
+ 			status = "disabled";
+ 		};
  
-+static const struct mtk_vcodec_enc_pdata mt8189_pdata = {
-+	.venc_model_num = 8189,
-+	.capture_formats = mtk_video_formats_capture_h264,
-+	.num_capture_formats = ARRAY_SIZE(mtk_video_formats_capture_h264),
-+	.output_formats = mtk_video_formats_output,
-+	.num_output_formats = ARRAY_SIZE(mtk_video_formats_output),
-+	.min_bitrate = 64,
-+	.max_bitrate = 100000000,
-+	.core_id = VENC_SYS,
-+	.uses_common_fw_iface = true,
-+	.set_dma_bit_mask = true,
-+};
++		blsp1_i2c3: i2c@78b7000 {
++			compatible = "qcom,i2c-qup-v2.2.1";
++			reg = <0x078b7000 0x600>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			clock-frequency = <400000>;
++			dmas = <&blsp_dma 9>, <&blsp_dma 8>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
 +
- static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8173-vcodec-enc",
- 			.data = &mt8173_avc_pdata},
-@@ -478,6 +491,7 @@ static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8192-vcodec-enc", .data = &mt8192_pdata},
- 	{.compatible = "mediatek,mt8195-vcodec-enc", .data = &mt8195_pdata},
- 	{.compatible = "mediatek,mt8196-vcodec-enc", .data = &mt8196_pdata},
-+	{.compatible = "mediatek,mt8189-vcodec-enc", .data = &mt8189_pdata},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_vcodec_enc_match);
+ 		qpic_bam: dma-controller@7984000 {
+ 			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+ 			reg = <0x07984000 0x1c000>;
+
+---
+base-commit: b0971d2008c644b9064d968d440fb9f44606d90c
+change-id: 20250911-ipq5018-i2c-0a0fa1762818
+
+Best regards,
 -- 
-2.45.2
+George Moussalem <george.moussalem@outlook.com>
+
 
 
