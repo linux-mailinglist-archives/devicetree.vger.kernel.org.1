@@ -1,189 +1,179 @@
-Return-Path: <devicetree+bounces-217339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C570B575B5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:10:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED34B5762F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00256200EDB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:10:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC9D61884505
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924072FAC15;
-	Mon, 15 Sep 2025 10:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060E32FB986;
+	Mon, 15 Sep 2025 10:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fN2akOMG"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="la2ZADbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A0D2FABED
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F4D2FB97A;
+	Mon, 15 Sep 2025 10:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757931051; cv=none; b=Vp2d5G/fYquVFSI7TQMd7CqRMurBuWYhsRWYwxxHVXanxzAAoaIihdQBnLDMu3IuOiWYv4PolJW+17UEJXDvOfjxZz8YQ9zyaczuGZRwKZdGnP8UrwdZcINHdnadVnBI0Toprw93J1FnfU+xev2qg/e3FWPKl59XVBWNZYRMNDA=
+	t=1757931578; cv=none; b=BXNUi++okcBw5w8HdzKyEOrvTnrEi0/GQM2LbEO4Ki1cHbllT0jGHAnCXsIxl82oQ7tJTXz2jhLVFtu4AJCGxkUgc8uIE2aigXLI3cB3MdWijzU6TXzIro68IWINqP+rvhPbdqQcA+u0HL71wvR97l+u6sZyov0HA4oMNLM16eE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757931051; c=relaxed/simple;
-	bh=up4j8h6jtDg54emdcGVDa0vg2kAOizu71L43Aw1KSoE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bIHHyGP2oTd1RmLlCHWymC/9qoGQXkg1pfmKTd1Ctg7p8LXKmgEGdiFVmo3srou2qqXlnIJ3N1NPtc3t8cTj4YLfVGj9M7JoHOiEUhF6Hdn8omLwFXvSTH+sE6ycZa1fF/wqDNy77DM+k8hfNYRpwswNuiYtu60K7l1MsECuAvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fN2akOMG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F8Fkak008398
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:10:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=bx8nSX7lM5/iTxOnkNxgDKcs
-	szwsRzC2orzdwRqCT30=; b=fN2akOMGKv80kJnux5Ac6gK2O+dLakTojpIkbfxt
-	8hCNe2HFtD/3CJOCDBOfLVWgQ0+zL0T70JDOYpAYRo3MyWF1RW+sFlLGSz/4YCHM
-	2mnhJZlBqaqCfuQLmWfh6lcI+zidiGJDEoYnBoCmVvMjrKu++9NRKXrpNx3CCP5f
-	+BJisTmF0KhQIGLwPjzy+pfkbKR5IYIYj7c8DZ/+lSRoYLgQiqtX7OhCnxR7x5XF
-	puOLmLdUwk39jedrb7IbfokpoHV4MzOoo9cI772TG9vF/2tvEY3NBA3Nf49+dTYr
-	YvTJ7vqaJhQGxBY7UNZxPpefzogEIcVRLWrQti1lrVjWbw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 495eqpuc45-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:10:49 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5d58d226cso106667541cf.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 03:10:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757931048; x=1758535848;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bx8nSX7lM5/iTxOnkNxgDKcsszwsRzC2orzdwRqCT30=;
-        b=HVPJnNXdLOVlAz2pM+Y+MxdGLUVrNzRZEdJo48HjRAGmS41UJKWBMwbW74zc/kBIoG
-         vc6GfJ2VSVvJMMtBWvjGoVaZySBcEw7Vgw0EOezpx/qaD2R+R5Riw/9Eim2b9YPMtivD
-         CrDgdXsJlKNG5PWSKlMMsgA4qPB8Gn7fx0TG6HUCem/ObT8uFL1yS+4OTCkeaPyE1vdg
-         vSGF5fQp+UT1wLc6Yg6HxX2Bcp5kdtKmLot+id6InfniyhK6/FDB6g/iRzJ/NAHDrw/Z
-         QpBFS4G/h15YzQY3119yzebdZafwDlXU2w13+HyYS9Cle3NC86Ob19mZSZKS3Fml1WqN
-         Ceqg==
-X-Forwarded-Encrypted: i=1; AJvYcCWmjYTmf4W/E6m4zst51msgi+wvHSPlopFlEhfCb46R3H9YrtOTO59rNfEilc7Ml/qUFQ+/1kH76g9S@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYhZO4w/Eucvrv0dYP0eqRhKyQ/DbpHcNUZpg7+4e1FKjptyhY
-	pX2WrFtoOtmTHHruTNpG60WrBejzgU8TBSgD9OpSr430jRVFN7KuI1XPWbbm7xF7+rzLBza+Y00
-	89oNv4i5sSTRu8xee0PP8zjmXuP4QbnBEcBtrQirHU3bV0w2pu0GD8Ihhy0Tw/mkb
-X-Gm-Gg: ASbGncsR8kse45UA+9+uq/bu7wNngd3llV2sy4WN9AsFjV20N+ZCfIlzNe9uuNl2a9I
-	RrjrGZQX0436WeUr7xzHMqnk1S/LFX+3KME3g79/7o6e8luCGJH5bSJkiqXFqWW6q6GtIcANN2h
-	jiW7Ir4nAo1TK9c+DSqQ9CsNCKLWQIqf1T/099uJDyCSPPytlXkkVaMnGHGz0HpxnRspbytYq4T
-	Yaeu5/eLoPyjrV8G3S9Cj3cWjX0mBzrWKyzg23bep6OE+4ANZEsujsU6WRo5oBDdzTp3SXV1wcG
-	TKhlmjpek+mP9XzCkH1mlTxiss5YaH5mioUWmadWw2Vdt00665wegZCg0+STIPKbD2RHSaan3Nt
-	dFur6pQTMBejGvS8Ti3Vi1R39es8iaevF2J8R9n8edhplLXwOZ9Ez
-X-Received: by 2002:a05:622a:90e:b0:4b7:a83a:e2a1 with SMTP id d75a77b69052e-4b7a83afb2amr25074081cf.46.1757931047875;
-        Mon, 15 Sep 2025 03:10:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG43syCijOLlrPYBW7Mul9l7sbVMRPIZS5uLeq5awhyyoTo/hiZcqkxUruOCeFa+VO5PZdiww==
-X-Received: by 2002:a05:622a:90e:b0:4b7:a83a:e2a1 with SMTP id d75a77b69052e-4b7a83afb2amr25073821cf.46.1757931047493;
-        Mon, 15 Sep 2025 03:10:47 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-572a5cde069sm1706782e87.13.2025.09.15.03.10.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 03:10:46 -0700 (PDT)
-Date: Mon, 15 Sep 2025 13:10:44 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xilin Wu <sophon@radxa.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
- Q6A
-Message-ID: <33vm6uzxqbs5bukswpzdkrn3ronl7mp2q5d3j772t7lqcnvqvg@5or7jxglcynf>
-References: <20250915-radxa-dragon-q6a-v3-0-a6c32d988ed7@radxa.com>
- <20250915-radxa-dragon-q6a-v3-2-a6c32d988ed7@radxa.com>
+	s=arc-20240116; t=1757931578; c=relaxed/simple;
+	bh=x3PxWtmRzAKIbZR++zL3XjAWgJRia04yClB1sSPbt/M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WBIsid6wlGiG4UbwJwx+3+aTUBoS4wCsvme9/3qvuHefCswbTQbbbiaCyZ10w1D55MEEoI9sixcVXEGnWyWmJ492ELLKZIeHmXABIeP9neQ0a6vgdx6LKu9/2gVbUoRCmbdJPKIhoBMKTeMlrW7BxukxYhGC+Xq66TvZN66tgro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=la2ZADbE; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 27A6D53400BE;
+	Mon, 15 Sep 2025 12:11:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1757931110;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=X5dPNaHHQz5bsNUwGNxFPwLQAT3/h+xAt87Z0yh/F3Q=;
+	b=la2ZADbEfr1yYdZ49CflCBoOmEvSLv47xLB8KoknT6OHsKzohAPTOnKRtKPQ4WgyOOEw83
+	HQYp+J4ily3oyacydhUQYqYQ3ceV6wI4L+W3pIWAz/z3YTea94LcaR+ZK4GfgK6Onhw2aI
+	/ZtcIiCjhxGrdMYG9hm3L6WErXSniBg=
+Message-ID: <ad1764a3-12b3-4c30-9b79-313d9c1d37eb@ixit.cz>
+Date: Mon, 15 Sep 2025 12:11:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915-radxa-dragon-q6a-v3-2-a6c32d988ed7@radxa.com>
-X-Proofpoint-GUID: 4EHljiOso4Jej11KgWTb5LnAHjd4Cou2
-X-Proofpoint-ORIG-GUID: 4EHljiOso4Jej11KgWTb5LnAHjd4Cou2
-X-Authority-Analysis: v=2.4 cv=XJIwSRhE c=1 sm=1 tr=0 ts=68c7e629 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=ksxQWNrZAAAA:8 a=ex1cviSggc2TnLhPxoUA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=l7WU34MJF0Z5EO9KEJC3:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDE4NiBTYWx0ZWRfXztmLBt+HQhiL
- i1RkpnnnE8B2mFWyzgSBNo8O3krOqbiRq/IViPDo5zABiiPjXA8fy/mTTkRrqKJ2YFuGoQlTnyz
- fmtE/J46YSyPPaxZfqqf3rjjWLfmZbLonmB0JtxnCVjuSpTfmp3ig2MkxlOl945zlrIGMDuU1YG
- Ys2MNefomaghPBxxD4Sd8gnpa6nqEbRO1u+8ufg8aVKD8RjufASBOJMtX6ZW6/7OdpNt/ku38V6
- qwz7jNhFnEtZab5DBI4KYp2wl8D/mxDvw0Nv5go/JA8fJeQvpeXxc7FtN0U5XMIyEkW6rmDlEBM
- NSNCroJ0Tdcr01BZLfUnAgqZC7LoaG/3DmoI1K7SonGsYkEdhKCjEpXtMlvzhE+kWSsEvL/1ZXG
- QSKeCVvZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-15_04,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 priorityscore=1501 phishscore=0 impostorscore=0
- malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130186
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] drm: panel: nt36672a: Add support for novatek
+ nt35596s panel
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Molly Sophia <mollysophia379@gmail.com>,
+ Arnaud Ferraris <arnaud.ferraris@collabora.com>
+References: <20250913-nt35596s-v6-0-b5deb05e04af@ixit.cz>
+ <20250913-nt35596s-v6-2-b5deb05e04af@ixit.cz>
+ <xi65tabv4sgblzmw52wxci5wsrdahshvos5we5wko4kfcfyozp@y3vw5gt3elwv>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <xi65tabv4sgblzmw52wxci5wsrdahshvos5we5wko4kfcfyozp@y3vw5gt3elwv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 15, 2025 at 09:31:44AM +0800, Xilin Wu wrote:
-> Radxa Dragon Q6A is a single board computer, based on the Qualcomm
-> QCS6490 platform.
+On 15/09/2025 03:29, Dmitry Baryshkov wrote:
+> On Sat, Sep 13, 2025 at 09:19:48PM +0200, David Heidelberg via B4 Relay wrote:
+>> From: Molly Sophia <mollysophia379@gmail.com>
+>>
+>> Novatek NT35596s is a generic DSI IC that drives command and video mode
+>> panels.
+>> Currently add support for the LCD panel from JDI connected with this IC,
+>> as found on Xiaomi Mi Mix 2S phones.
 > 
-> Features enabled and working:
+> Why are you adding it to the existing driver rather than adding a new
+> one?
+
+Hello, originally it started as a standalone driver (see v2 patchset), 
+but got merged due to similarities.
+
+v2 patchset:
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg404290.html
+
+If it's desired, I can switch it back to the standalone driver.
+
 > 
-> - Three USB-A 2.0 ports
-> - RTL8111K Ethernet connected to PCIe0
-> - eMMC module
-> - SD card
-> - M.2 M-Key 2230 PCIe 3.0 x2
-> - Headphone jack
-> - Onboard thermal sensors
-> - QSPI controller for updating boot firmware
-> - ADSP remoteproc (Type-C and charging features disabled in firmware)
-> - CDSP remoteproc (for AI applications using QNN)
-> - Venus video encode and decode accelerator
+>>
+>> Signed-off-by: Molly Sophia <mollysophia379@gmail.com>
+>> Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   drivers/gpu/drm/panel/Kconfig                  |   7 +-
+>>   drivers/gpu/drm/panel/panel-novatek-nt36672a.c | 225 ++++++++++++++++++++++++-
+>>   2 files changed, 222 insertions(+), 10 deletions(-)
+>>
+>>   
+>>   MODULE_AUTHOR("Sumit Semwal <sumit.semwal@linaro.org>");
+>> -MODULE_DESCRIPTION("NOVATEK NT36672A based MIPI-DSI LCD panel driver");
+>> +MODULE_AUTHOR("Molly Sophia <mollysophia379@gmail.com>");
 > 
-> Signed-off-by: Xilin Wu <sophon@radxa.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->  .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 961 +++++++++++++++++++++
->  2 files changed, 962 insertions(+)
+> ??
+
+What's wrong with it?
+
+David
+
 > 
-
-> +
-> +&gpu_zap_shader {
-> +	firmware-name = "qcom/qcs6490/a660_zap.mbn";
-
-Is the device fused to reject standard qcs6490 firmware? If not, can we
-point it to the existing files (maybe except the ADSP)? Anyway, could
-you please submit the required set of files to the linux-firmware repo?
-
-> +
-> +&usb_2 {
-> +	dr_mode = "host";
-
-As Konrad has asked, please describe the onboard hub and the USB ports.
-This will ensure that corresponding ports are correctly marked as
-hotplug in sysfs.
-
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_hsphy {
-> +	status = "okay";
-> +
-> +	vdda-pll-supply = <&vreg_l10c_0p88>;
-> +	vdda33-supply = <&vreg_l2b_3p072>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +};
-> +
-> +&venus {
-> +	status = "okay";
-
-No separate firmware?
-
+>> +MODULE_DESCRIPTION("NOVATEK NT36672A/NT35596S based MIPI-DSI LCD panel driver");
+>>   MODULE_LICENSE("GPL");
+>>
+>> -- 
+>> 2.51.0
+>>
+>>
+> 
 
 -- 
-With best wishes
-Dmitry
+David Heidelberg
+
 
