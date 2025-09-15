@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-217484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5DAB57EBB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:21:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34DEB57EC2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92EB01882FE3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:20:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6EA73A937C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E642B31D74B;
-	Mon, 15 Sep 2025 14:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E599631D726;
+	Mon, 15 Sep 2025 14:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m9cpByho"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R1EoUba4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16CD1BD9D0
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 14:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD11A31CA6B
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 14:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757946013; cv=none; b=C+XpgRd8OmhxEZjvkY4JGvb+/tCsX8UJyobEsFoQrqOlZUpD0wZhnTacI6J1d/f8OlzOMuPMyBRxnqwno/NXqhQdpMOXVmhOzpmOKqukkHoD22f5L3QuUs0ysUYbjT0DKppegdrzVcCuVscUIdFTTSoJEqIg7bROpTcO4S/YU+E=
+	t=1757946014; cv=none; b=hmiv7pY3l2YYM6s48wqJXESG/6EMcEBe2cSv+91kibQb5NwMbGu7BOUdhUxMMD4eWk0mx3Ak0zeRA8AiExd1DkiNI7Qzgq2Ne9AI0vjaIBJTxtIOpVMq1v/8akyfYnMUeSs262QiGHpnzIZ9t1XfJwR7/FXeAQpBgjJqmTtGerg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757946013; c=relaxed/simple;
-	bh=5uF2i1fMfFFk57weo06ZCL9ZwMoWY3wP4AjoMRcCSok=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o4zQXAyzN6YLqb0G9Yn1hio/ZQDHNrdWIgCaLSjtzk3oI23TL1E3H8DP3Gc2fwTYPA4zQHbFtBnw/LB34UxG9Q2JJrel3ONtj5JhWs7tSkiHQdZnPWK1ofH0luoTyOFCjV5LsHycshad9tkfiPe9EMSNkOP5lKbqG7Jpcc6CcY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m9cpByho; arc=none smtp.client-ip=209.85.221.67
+	s=arc-20240116; t=1757946014; c=relaxed/simple;
+	bh=8Qnm3ZHlu5D9iJRuLjIbduVppAN2k0oBQs6Ewj9hYZ4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=GmWDop3EHSBlNK60GdnRaVn0tu5/fo3JnolMIZgXXi2XYYw5wK3+SOdBlu1CYLq356fhsZ+kMb7JraT5nh1Pr8MgNvghyrvO9AO5JCganeRE0nLcEwypyMw4MdzGj/wv2UYT7g8k49jk53Zzxhxh9d5EWn/XE5GibiEZE6H/uJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R1EoUba4; arc=none smtp.client-ip=209.85.128.68
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-3dae49b117bso3302245f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:20:11 -0700 (PDT)
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-45b9c35bc0aso38385705e9.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757946010; x=1758550810; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zz7W2fHAKP9RNn810rrDm+4wFWDgNdWgturEviUI9n4=;
-        b=m9cpByhopjrv4OHjUI0MPSN0QxEhocyBYnzGVX/k6n3wbL1jw8RFFrPZ2ScHzEXIi9
-         2fQQPZKaRNqU/Yh6ZEL8M+IrYQSQHt1WYOCzIqZCBBEqp2ezgTt0+TJ1mCkgp2cUO9TF
-         0jkn1nxsKqC5Yq9iOPLxc9fQXOLsCC2IYAPoefCqYFQzurG6jFOQ3z4tXYsuwoDjGTU7
-         VZrRsZ7O/Rsb/w5Gxy2P6l+h8FPbwpKZjnWMFP5+Hx0Xw0eYzMXPAfXvM+8VqNERGXz2
-         Gn4NlSuiYoa5TAGWcbYL4NrBqZWpDb7syN9iDm503/v9EYMlz64DSyKEt5+cexe+y0pU
-         6uvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757946010; x=1758550810;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1757946011; x=1758550811; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zz7W2fHAKP9RNn810rrDm+4wFWDgNdWgturEviUI9n4=;
-        b=wacubyfQqIdkH0taUAmlOVuhgqILgcDeoiq7J3LjAMek+oSRo/i5/0v6AbP2cQNEDM
-         QsEaJUw866QV4kSweLLEAdaoUa+xVeVP4r92R7HXdW6Kpsuc4yJkZIYyQgfsLxCCvzxw
-         LJGvWuZKLTSrQuMIG/WHjrq4YcwR1wB60F3V7dZOAvWp3m8ppx4Z/b12ao+VxvTnf8zG
-         1XkeBlXR+f7RclE4WV4co+ChC0A52AEgLJcWdEZpBSqdlXaJaE36BGgplYa5/bWTkBV3
-         9CiSSAcEjOhGYDFtO67QYJ3LFGaFshNlcNx1SwqucC0bftsMqLwIv95ivIX9WnC6uOYU
-         lhmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUlfXGozZ0xBFFNfZjuv7dZC5wsQcZa9inniRT70/8ywxM7eNyMKZlDbRCd34fz6WCmpqmdlb11vEBE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFodFtNZB1qJBMGz9zyvTm0KLc4bFZB5bpqiZCeAh84EqWVnTD
-	WoZdMdiqr7kDFaNiaEch45RMSTAiiPoMi9TC9J22Y751PFCDV1mNYaSqCpMXllSHHVAN/VtntG4
-	N4tO5BZGJIQ==
-X-Gm-Gg: ASbGncurNiU2npYB7WPS8FKCQtZl3pXxWw8ZUkpCpVuT1DzVOwBcW6myijFQc76evwO
-	ONAg93S+W/jlSyV5EwOUkSELkfYGm+m6Q7lGmKQbtchR8Qh6YQjARqypH5oXG5xJPV48pAcM25M
-	WoOiUkLeu5bwbeDtprwV5WdKW7JitRxZLAsuhxdmlUalLziyUN6wTs37rzSxQETw1wYx3PsIS8N
-	hlkvOSK4PuMhxWDoVwpDXVION3RBmbrsrwgWbmXTOGIzTIHv9oaUsL6Do89J0x7QOAg2DSxWD0I
-	pknQoaY9RojHcukHYLA5vs15KdZ4bNUkzSEmZDl0iRPvpCL8MmM/gtimkuv+MvWrkv1zwKA8YvD
-	LNQqHf7n7JgGoIJk/sKLobmL0e1Lr/TV0ru0=
-X-Google-Smtp-Source: AGHT+IFSmQbTHF0YuHd9ONdZ3tdtKlFavLsHSPy1D//fCR+da9/Whp3rM1z+WJgImZ6na8pnBA1Zvw==
-X-Received: by 2002:a05:6000:4006:b0:3eb:bbd9:9c08 with SMTP id ffacd0b85a97d-3ebbbd9a3bbmr1863216f8f.46.1757946010074;
-        Mon, 15 Sep 2025 07:20:10 -0700 (PDT)
+        bh=6BaeP+u139pVz62zC0j4CWHyJGRFuQubU7wGhgVzl9I=;
+        b=R1EoUba4vyWzx//sQNU4jdYKU/y/xQSKScw5wRU6V8ZYJ+OSEpsVAogeWLCrnVRqM+
+         zthFjYbMiM9yTwN0oRtyJyNOb2XSrRxvLawJaoJ7sLUgn39WE9KwNPyrtyh3D5fiBWv0
+         y98VDyugUFBy7NACYJDfuTJ22FIK8XchhmLLXBF9QWzj54ISJJA7hcBQweXtKoii8Xof
+         VYTbDMYMai+WMS6KbV5getJNTdO0aqL2v01VaD21nfidscWTVpv5GuvI1NaVlEhiDiIZ
+         fxe3VnvmEyDBhj3sWEFZvwpC1wvRneSV445IIo0chbUTWPpPHBL/s9Nlr/obW3i+hVE0
+         +RKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757946011; x=1758550811;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6BaeP+u139pVz62zC0j4CWHyJGRFuQubU7wGhgVzl9I=;
+        b=neibDvatEtjan4rQfwHaLnvXhXUbn9XHCgyd6iSrOMHVwSDDP4MWTrIhh4AHo8tfMW
+         cce4Pk1CbmFyLydyNCq87qh3Xbf0Ir9P0EYWyjnRGFezKdjtRDQj3GlgQArje3FJgTcB
+         SvvqUad3BbuC7tEJ4lRmrC6OzvDOGg9Ig817Lv9uoQb58IBr7ynBnnNpf3A89F+Kxn0Y
+         ib0nu81Uu+YZuRoJ6FEwv1iqp2QMuYvrYtL7akWirc+V8e1YjiqMhdVQjt+iyPFoS/sP
+         Yq4ldRDuTztkcrhJJoLiTix5j1RAkv5/ES7CPlToXMLC5EH8V09QtvwQi1kwWNjWI2kt
+         sBww==
+X-Forwarded-Encrypted: i=1; AJvYcCU6zwY7yhkKD2NWdp0u7tIjLLARMI/OQuYVbO1+E1QcbOz8qtg0qe7gIXJpzqqXOg0cvRtSNnAiALIt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp9vIJ7PIwgUZOP6uMkaGsv0Z6NlT3L7u00ub1OlBUzqsukBLU
+	867Q5STin4Eu3EcCqpGBPztH8sJDAx0SKFDFA38EkjtGPSbvClc99iCdjN7cWfMlfRCKGtSn4WO
+	YlM2zwXF6BQ==
+X-Gm-Gg: ASbGncvURfETm6Qa619VA56+P8wz492ghhe3uQrCD0NzxYu5yc52JjNxgWW7jT3I3zO
+	Bh1JevE3mRWSjdVYH8hw4w3OST3tOg90D6z0RyR3J4XUTUfEwbX0BmvDLcmlMvwjb86fa41E40S
+	/6BnNUMS5+Hh5U+gYU6f+0bGem7IgucGaYWK7eaakAztylWDt76yh7YWJb1CaaZXQoib3AeDrwr
+	wabgZC2Q1mitN20LQWiWz+jUxwxL+QMhB6i9yK55o0i2srwnh0QS6IzNGSnaGRZH57MUYRaRlWN
+	WWycvOs2F3MmR7PIpEAZPnLFM+DQaWSVhyh7f0C9Y0KWPiJQJ76hYi/bqk2SU0Fh80wzqi6czQm
+	x4+xd8HbPYSoq5B0C5HK9EFe6cktyK/veL9I=
+X-Google-Smtp-Source: AGHT+IHX7I6b0UJWPq4ArFJRqvCVjzHn8Mc/xKDrgkX25TYBbgOR2ULGGsJQIolv1a5OJ2m+Eq3Qxg==
+X-Received: by 2002:a05:600c:1384:b0:458:b01c:8f with SMTP id 5b1f17b1804b1-45f211cc941mr129811515e9.8.1757946011048;
+        Mon, 15 Sep 2025 07:20:11 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff21:41:eee1:5042:e713:2e9a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7ff9f77c4sm11801928f8f.27.2025.09.15.07.20.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7ff9f77c4sm11801928f8f.27.2025.09.15.07.20.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 07:20:09 -0700 (PDT)
+        Mon, 15 Sep 2025 07:20:10 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Subject: [PATCH v5 0/2] Input: add Himax HX852x(ES) touchscreen driver
-Date: Mon, 15 Sep 2025 16:19:55 +0200
-Message-Id: <20250915-hx852x-v5-0-b938182f1056@linaro.org>
+Date: Mon, 15 Sep 2025 16:19:56 +0200
+Subject: [PATCH v5 1/2] dt-bindings: input: touchscreen: document Himax
+ HX852x(ES)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,11 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIwgyGgC/2XOTQ7CIBCG4asY1mKYGSjgynsYF/2ZWhLTGmqaG
- tO7S2usGpcf4XnhIXqOgXux3zxE5CH0oWvTMNuNKJu8PbMMVdoCFZJykMlmdAZHSdqrCq0lQhT
- p8jVyHcYldDyl3YT+1sX70h1gPn0lPNA7MYBU0pfARV0byrg4nDk23aXatXwTc2TAL0hqhZhga
- RyC17ZANP+QVggK9QopwRxc+jrlDtj/Q/2GGhR8XtQJWs5yVGCtJ/cLp2l6AkC8BUVJAQAA
-X-Change-ID: 20230816-hx852x-3490d2773322
+Message-Id: <20250915-hx852x-v5-1-b938182f1056@linaro.org>
+References: <20250915-hx852x-v5-0-b938182f1056@linaro.org>
+In-Reply-To: <20250915-hx852x-v5-0-b938182f1056@linaro.org>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
@@ -99,58 +99,117 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
 
-Add DT schema and driver for the Himax HX852x(ES) touch panel
-controller, with support for multi-touch and capacitive touch keys.
+From: Stephan Gerhold <stephan@gerhold.net>
 
+Himax HX852x(ES) is a touch panel controller with optional support
+for capacitive touch keys.
+
+Unfortunately, the model naming is quite unclear and confusing. There
+seems to be a distinction between models (e.g. HX8526) and the "series"
+suffix (e.g. -A, -B, -C, -D, -E, -ES). But this doesn't seem to be
+applied very consistently because e.g. HX8527-E(44) actually seems to
+belong to the -ES series.
+
+The compatible consists of the actual part number followed by the
+"series" as fallback compatible. Typically only the latter will be
+interesting for drivers as there is no relevant difference on the
+driver side.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
-Changes in v5:
-- Annual resend, any feedback would be much appreciated!
-- There were no replies last year and the initial submission was 2 years ago.
-- No changes, just rebased to latest input/next.
-- Link to v4: https://lore.kernel.org/r/20241010-hx852x-v4-0-7e6a20177938@gerhold.net
+ .../bindings/input/touchscreen/himax,hx852es.yaml  | 81 ++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-Changes in v4:
-- Fix asm/unaligned.h -> linux/unaligned.h include renamed in
-  commit 5f60d5f6bbc1 ("move asm/unaligned.h to linux/unaligned.h")
-- Slightly increase delay after reset to fix init issues on some devices
-- Link to v3: https://lore.kernel.org/r/20231024-hx852x-v3-0-a1890d3a81e9@gerhold.net
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..40a60880111de7f4994cd73457bb8a1d4bfd6a88
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/himax,hx852es.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Himax HX852x(ES) touch panel controller
++
++maintainers:
++  - Stephan Gerhold <stephan@gerhold.net>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - himax,hx8525e
++          - himax,hx8526e
++          - himax,hx8527e
++      - const: himax,hx852es
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: Touch Screen Interrupt (TSIX), active low
++
++  reset-gpios:
++    maxItems: 1
++    description: External Reset (XRES), active low
++
++  vcca-supply:
++    description: Analog power supply (VCCA)
++
++  vccd-supply:
++    description: Digital power supply (VCCD)
++
++  touchscreen-inverted-x: true
++  touchscreen-inverted-y: true
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-swapped-x-y: true
++
++  linux,keycodes:
++    minItems: 1
++    maxItems: 4
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/input/input.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      touchscreen@48 {
++        compatible = "himax,hx8527e", "himax,hx852es";
++        reg = <0x48>;
++        interrupt-parent = <&tlmm>;
++        interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
++        reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
++        vcca-supply = <&reg_ts_vcca>;
++        vccd-supply = <&pm8916_l6>;
++        linux,keycodes = <KEY_BACK KEY_HOMEPAGE KEY_APPSELECT>;
++      };
++    };
++
++...
 
-Changes in v3:
-- Fix device_property_count_u32() error handling (Jeff)
-- Properly handle errors in hx852x_suspend (Jeff)
-- Simplify error handling in hx852x_read_config() (Jeff)
-- Close i2c_msg array with trailing comma (Jeff)
-- Clean up error handling in hx852x_power_off()
-- Link to v2: https://lore.kernel.org/r/20230930-hx852x-v2-0-c5821947b225@gerhold.net
-
-Changes in v2:
-- dt-bindings: Swap required:/additionalProperties: (Krzysztof)
-- Use dev_err_ratelimited() for error in IRQ thread (Christophe)
-- Use dev_err_probe() consistently (Christophe)
-- Improve error handling of hx852x_power_off()/hx852x_stop() (Jeff)
-- Add linux/of.h and linux/mod_devicetable.h include (Jeff)
-- Fix %d -> %u in some format strings (Jeff)
-- Fix other small comments from Jeff
-- Link to v1: https://lore.kernel.org/r/20230913-hx852x-v1-0-9c1ebff536eb@gerhold.net
-
----
-Stephan Gerhold (2):
-      dt-bindings: input: touchscreen: document Himax HX852x(ES)
-      Input: add Himax HX852x(ES) touchscreen driver
-
- .../bindings/input/touchscreen/himax,hx852es.yaml  |  81 ++++
- MAINTAINERS                                        |   7 +
- drivers/input/touchscreen/Kconfig                  |  10 +
- drivers/input/touchscreen/Makefile                 |   1 +
- drivers/input/touchscreen/himax_hx852x.c           | 500 +++++++++++++++++++++
- 5 files changed, 599 insertions(+)
----
-base-commit: d5ad57fc428c1e44335d25c822eb89645f425f32
-change-id: 20230816-hx852x-3490d2773322
-
-Best regards,
 -- 
-Stephan Gerhold <stephan.gerhold@linaro.org>
+2.50.1
 
 
