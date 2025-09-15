@@ -1,125 +1,134 @@
-Return-Path: <devicetree+bounces-217242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CAC3B571B6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E321B571CE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C493C189D297
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:40:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C05E1885306
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653D62D837B;
-	Mon, 15 Sep 2025 07:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="Q6e9zPLp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018EF2D6E74;
+	Mon, 15 Sep 2025 07:43:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD9A2D7805;
-	Mon, 15 Sep 2025 07:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504C92D6E67
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757921981; cv=none; b=IMdA65+nyRzgvl/Vlafta5VNJwbaSdZ3OlUYdABkBzuQqv6xhSzcFE6DV8KUnvK84+PhqBJMs3l5YXAOm5QZ24DGT+xR2TSNUaumpRtC1ePcjZ8ceVXuMC1lt4c097arJ2Pn/yXai4T+m7dXrTHTKjumdK8hl6lLy1PFCsCkbaE=
+	t=1757922210; cv=none; b=Crkql57o70v5cm0Q3evA1c20Qz7ydnE/LzjqTKHcqR9qJfClKpzU6r8fEwuLxBwE1Srh2xM7ceGKVfWWn8qTFEnYrPcPyy97ogZJur+putaJu5rbX8cbtdmJ4vhMGJGhJc/0FH5uX5HFZj35r5oUnAGA2fooArdLawKGDjHhDCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757921981; c=relaxed/simple;
-	bh=4Pb/V0LrYWVwi0b+Il7zbDAYpXPAXnFwlg+4Rq+OFxc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OOq9kJTdi+epX8ji9oTj8OxWGSW8C9EZzG95Sy/XxT/bC04sUGmGKdl3ZgjiAIawowYuO2SjH65quaMlFCiFgV/yCl30owE6HNjKgp0jt/OsIbKpW9DV+1CVdkSY3qUOT6+j8V/EJ/T7ScPM/SN2Y8JF3vgvuaesB5fqFtOp5LE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=Q6e9zPLp; arc=none smtp.client-ip=212.227.126.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1757921973; x=1758526773;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=4Pb/V0LrYWVwi0b+Il7zbDAYpXPAXnFwlg+4Rq+OFxc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:From:To:
-	 Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Q6e9zPLpjiZIx/JAm9AftL+MtGTRZo1dw0B8sY9y5RTRJoJ2wV8Wwlcz0jdHsyDe
-	 GcmOWGEd/54aWrBNEGcqSWWoHdjGzPXOTrxTHuejhoQ6AGlnVnKFadS4FiMZCbUA1
-	 TTKDMxEMOjlSBAFmaFrAWy88aoLLfpTs1b4PXG5qpEc234PtSsgUNB/iHxUN1ioZL
-	 6UKS9/foJV7UV7/YmjgPpaXuosGBa3FK4WwwU6cBnwnOgRGottF/7b11Wygi8deAz
-	 c1MTwIAyzDmxYN8TTDOHcVhr5Fo6RkZ9X5Ka21t7mUgdRozwSK62cyL/RZpbCw7Gx
-	 Q+deIcibBGayILlwdA==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MryGj-1uabbs2Ahp-00fOp4; Mon, 15 Sep 2025 09:39:33 +0200
-Message-ID: <03c64dcf-f553-4918-ae1a-d4cd427da6cd@oldschoolsolutions.biz>
-Date: Mon, 15 Sep 2025 09:39:32 +0200
+	s=arc-20240116; t=1757922210; c=relaxed/simple;
+	bh=ggQUGLC8JTmMpWJqdkIhB62AvhBLfqcOms9LrrS7BiU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RoOtuQQX0BybpL2yqu19Jjcej+5cprX+keBeZKYqtGjmAB1jxJ79tkRyUM8aFhOr/q8nUnO75Q92puOLM12VfkDNJWR5CSvx3uPQRwHeLt9Znc6QxLQ+pehwPhZkCt2HiyX0rnF9wSJkvXn8uMS/7YTLOsafiAB+QU4n5vSu3V4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip3t1757922169ta20c0c63
+X-QQ-Originating-IP: QRDqi4pNaU/sJUftpijW7H04pC9TQ/4M0p4TfS49pf8=
+Received: from [127.0.0.1] ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 15 Sep 2025 15:42:47 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 17166322424909041935
+Message-ID: <CC5FA2116C20A69E+a2b123b5-1b78-444e-a886-3d3beb6e0ead@radxa.com>
+Date: Mon, 15 Sep 2025 15:42:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v8 2/3] arm64: dts: qcom: x1-hp-x14: Unify HP Omnibook X14
- device tree structure
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH DNM v2 5/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
+ Enable USB 3.0 and HDMI ports
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250909-hp-x14-x1p-v8-0-8082ab069911@oldschoolsolutions.biz>
- <20250909-hp-x14-x1p-v8-2-8082ab069911@oldschoolsolutions.biz>
- <aMbBOgNc-382vwMY@linaro.org>
- <cdd2ac5e-d02e-4dc8-a4b4-06baad5679e9@oldschoolsolutions.biz>
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+ Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+ Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+ <20250914-radxa-dragon-q6a-v2-5-045f7e92b3bb@radxa.com>
+ <b3c169b5-607c-40ae-9ca1-0977b6f526c2@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <cdd2ac5e-d02e-4dc8-a4b4-06baad5679e9@oldschoolsolutions.biz>
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <b3c169b5-607c-40ae-9ca1-0977b6f526c2@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:o5fwt2RQiXXHmYY4bZTNlnm8TFhVcDzkDZqwdLKhgHE2qPCVXwq
- r9pUeoOk+kvUCoON6g3FpNTtG8JT/AV0FyKwIkRrTrra18URDyWccfA/QR+lRtvd8Nl6LdF
- 8fWsIPSvu/gNAhKeQSmTGWbVEwiNiMXeLtXyeK70QHKy+eDPPSppXcC0HWGA6Ba43MvIgl0
- LTE5s00jFRAsgfV7fvFjQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:v3ApN73J6zg=;5+ms1KNwPHFVxSBESpGVSd6KCt5
- +cAF6Gghi2xY8BkUa9mKwl1SAGlZmCdH15sHsvIJcqntBkS+YD7tU3kBIrWQPMLSriOaDh4ka
- WROjD6k/bEDZI80e/erxN+aB+v2yeTk3VdlCNlyKOxVNBWQuOa1Ex+pKRMGcwPz7WSvH3Wrt7
- TqOFNotWAYeodsyw8KvKmqnmQBOWQ034bZcL1IZhxhILPK3ZY2ddMM4SxiP1D6DIvNfQfeo+s
- L5OFJI87/0PWIK7LVGDeF3pz8sWZcmrFvP+rgWNKbqYLCfs7vp0sYVmUo+wickWt979GFfn1l
- RpM+WJb7yohvkDtzgCjsbHLf2LuEeW5j3OCcVPYKl1LZoiDUP5thD2wnX9bBrlJlJOmqZavR9
- zy/plvtzN3rI31ZfbiC1R9VfWU+iTptlKKhgSypRHDu3u1iSFTPe05YtKzukUtLIFp+d+uv81
- giMUGvhXezCobFvYoSa/4dK0wdJFxLFliYfWMcNfWwgDKiJpzNSiQu2GlbsFJ+ONlldZmU+HU
- x/2HujKR1rZDmCVG0Wx2vsMw0qxfWefBRQcvWLB692eeVEISb0ShJKIFx5zM3MtjwkFH6JnB0
- 92IS6BumhxYlBky1Pzv2BuufLPgma68FKRbBcQ1bJ2Ps00XcZmqWtekrUQg/s7d0O/WBkUXyA
- I2XghwgQRhwWzOIKFJnIakrzMnybXhh03hZQb0pGtZLoaA6vYSCDTq43ChboC5qnzRp3LPb8S
- 5ihqjI90LGsXf7dIxwQ7SB8tcVCRGJvaSjWNrh9q/2n2ETVoI2gsEEFxw24anKffbggNJhG5L
- vzObP1iduMcNhx/JrDbQ2Jj539i/xi9ljCbgIv5r62HUvBZVLW9nknp43eEhhQuY4q80GLv/u
- iABh21YKt3W0asaB9+GeCBNyF/xxEv8viOyMWs1lhRADeAFU9VhvW9jJEfnzvxcAo1uAq07qB
- KfYmS+7x3kpS4MnUTrYGENtgO3lSaeZhqcr6XwkTE6y16Pk3Zsb0+BNk5MShLylVX1CwhzAJK
- T/wWFh5oWbB5mC/Hry0ZoCNtjOPtdWb6sqLdX1Qe0r4EZecK9P6Jdrqu6gDZR1I6UQfMz84Nz
- mJnXokvzSJZ4Pb44hOaWCXfpcFhwqT4ySGaKB/rX2FZiuwzkn+yVXWwwmPIR2AaRV+upgbwt4
- mUXtkCTiwFQVlffx763a7geb3XNOlHCGp2b0VA4PbGfUJe9WrdFE0tKAQNAYTHpNPiQy22gNL
- pKm2k5dy5C8dlnxppvWFLgacWdP57HV5nXAnWXmAErkceC8lJUH+iOigG8oIpE6OZNfmdk6yO
- WFZuYGhtOn8mD/eyEL7nLcH5MUiaDpHhCFQMS5qW0vBU5Git1OriK06FPSzmqBySBq9U6aKwi
- QS8Z7xnsHM1B1M11lM0lvrzPVLznRx7BMXxR8Q0yM+Dya4TSJ9niKV6yM/XxvBJdhAL+sofMe
- Fk9rbGQjz0El85/rVeOvIb68vGyzHLHMBSr/ZStCb0FP6vL69YgjpHwaAm6BCiLjEcXKyBJkX
- LebbM34gkxQZXWUB5tqFgAz1PH1lM8d2fAg95E4Zn77zLVmrhRGboKRp/uHZECpY+ekTE34Sr
- KicL4O+nm0YD+nvngFsoITt/GvQbBeyi7MJSdhCRt7v5PQRQkhm1e+b95I2C/fRdIyuf99o12
- uubWGhQglYrCg8BpkbweizvQLJOTR7N79xAJy2fT52rISBNrbUf5Wgst9PfGi+1FXbuUVunS6
- 1khN/8IN9a8wUrYgPO0my8/vcHr/UUiwB8w==
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: NRN3UPsLzYKVJIVdz3PuG+yYunbdHt7BxOwAl7XlyylfCayDL/bbpBg5
+	c1zp6UUQUiaORqcisAkHQep9xpFkz7cc7X5/hLC9vGSot2WTnV+53Odx3c5fsry8Sp90/hH
+	k/ouyDO6b5COy+5HVl+DxcljBjLJkjdgBJmJeIqTKvfZhAPM01J7HVkUzdRAI0hrlOzMyFu
+	oDJ9L8gYkr/MCJFSMy3mvx6SKxwbpz2KAm13/hgQrGzvlh9Wdd7nRWNe7EbGHQ5ILfvS1N4
+	vcjTMIOleH2/kbWsmjsNF/KRMxsnOXPG1do10hoTMozzDUz57QMpUcvSL1gLB23iqlPPIT3
+	+OJ9RZGCMeYttvYxLK7PRJ8C7mVd9Uj4GaBMiyAR9iZONuOOruwvXsaP++9XJdXou+oKrRp
+	N0MYmnV69dmNzXpEB2CY8P0I8AACo8lk+S9wLbC9lpLMgEq3HndfdE9P2yJSlOiG8ca/OrL
+	R5DrZKGiqGfe3p8+X7Ubv0hPtziDGRNsKDfHEqAZ5icpxa2GE6L4/UKE6rLmmHdlcpwqgxB
+	r/aqlr/Kj8mSl8bDkicie94XdEgksFvKQLe7vK2IsELYBMV/1UPjTWPDlKXehr5mffAN7qV
+	KdL596N8Y23jQWCXnuXq8OD8uJc7TUHbDgH/G7LJllUDEAfP9AP2KivKDqnSVtEFjmsp3je
+	Rajagw+xXTZMOtvdfdMd3OBKfJaYBcy3trjU3ZzqC2j9X0sawM6HtBe2mY3kQJKJuOlAwAX
+	OVOnNr0iDcsdPytYleDLMG4n8MQW24sGMkuVzw9D22ZYEBmpSQJvYyYsLCRL0//yknKmMbF
+	scN/6EzfxZFfnaw1dyqO0IeKoCTjcQ8Y68rbEQb5AwVGifTLH2xDKtenwxOd8JWp1BuQTXj
+	BQHa3zEfvbIFzlXyzn4YnIP8PBRE2obJ8v/kHOaIEa+i+SzFNIuWKah+NiaiJJDkTyynPnF
+	tjEa5+x5lqymlpLri37+Cpdq1I9glYmEZQmVtGiOQvHoLDl0wsH7FZMfDZckjKRPHa/EKEs
+	rlTMCcriUoZ1rH9UC9I2l2kdyqJvvXDEdF9z9ej86fKkJxo2bI
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-On 14.09.25 15:23, Jens Glathe wrote:
-> oof wow thanks for the hint. Will redo.
+On 9/15/2025 3:27 PM, Konrad Dybcio wrote:
+> On 9/14/25 5:57 PM, Xilin Wu wrote:
+>> This board doesn't feature a regular Type-C port. The usb_1_qmpphy's
+>> RX1/TX1 pair is statically connected to the USB-A port, while its RX0/TX0
+>> pair is connected to the RA620 DP-to-HDMI bridge.
+>>
+>> Add and enable the nodes for the features to work.
+>>
+>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>>
+>> ---
+>>
+>> This change depends on the following patch series:
+>> https://lore.kernel.org/all/20250908-topic-x1e80100-hdmi-v3-4-c53b0f2bc2fb@linaro.org/
+>> ---
+>>   .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 152 +++++++++++++++++++++
+>>   1 file changed, 152 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>> index 3bf85d68c97891db1f1f0b84fb5649803948e06f..12bc9a0fcfbfeaabf6ede351f96c61193a8261c0 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>> @@ -78,6 +78,71 @@ chosen {
+>>   		stdout-path = "serial0:115200n8";
+>>   	};
+>>   
+>> +	usb3_con: connector {
+>> +		compatible = "usb-a-connector";
+> 
+> Looking at https://docs.radxa.com/en/dragon/q6a, I see two of these.
+> 
+> I suppose there's a (dumb) hub inbetween - check sdm850-lenovo-yoga-c630
+> for reference if that's the case
+> 
+> Konrad
+> 
 
-It's now sent as v9. [1]
+There are actually four USB-A ports, but only one of them is USB 3.0, 
+and is directly connected to the SoC.
 
-with best regards
+The other three USB 2.0 ports are connected to an always-on USB hub, 
+which is then connected to the second USB controller.
 
-Jens
-
-[1]:=20
-https://lore.kernel.org/all/20250915-hp-x14-x1p-v9-0-fa457ca30ffe@oldschoo=
-lsolutions.biz/
-
+-- 
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
