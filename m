@@ -1,73 +1,62 @@
-Return-Path: <devicetree+bounces-217588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15640B585F6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:19:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F5AB58607
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA6673BDAC9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:19:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 806111B207F5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74974287260;
-	Mon, 15 Sep 2025 20:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE56291C1E;
+	Mon, 15 Sep 2025 20:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EZqHnVo/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mtnh1yaB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4501827C150;
-	Mon, 15 Sep 2025 20:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E5B27A92A;
+	Mon, 15 Sep 2025 20:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757967580; cv=none; b=G2LVCdZ0NCYoai7uqChPqKQXQstHwK0Y4IIgPzAO3pdxxAzwNhnNWGn9XepM1PO8sReFXuFdJUX6TLyt0de7t/L7ZWCoBNU34vJxnvZ45tnL6Ys/80CdAZMSqDKXOgXXgvdfBEJVH97oc4LKZljsFSNwLVtH6zEZslGXlwEXmd0=
+	t=1757968064; cv=none; b=NkNa9MBKSKHhgFe3wqlvBYtyOdt7tukV5f32sJIWO31GSGCDP1BdJd208t9S+YMp5vw7Ue8RcYYqUBpiALNUoAdXPLIxgC6lvHYNVDzkPFV1AEuI+8y5UyT+2IOkncKZ1kqBtAqdXRFffkQA0ybwkG4Ao/RaUPsLpzwRQXeVnhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757967580; c=relaxed/simple;
-	bh=XdJ7z/q77YUFL/QosenW4NKVcYFIhAWClP3csrjOEHE=;
+	s=arc-20240116; t=1757968064; c=relaxed/simple;
+	bh=jTddj2VxHgpjo0+pwvkgqGV3AHrtWJBjMyn3LYzKe4E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ufkk81QepX1nG0hv5wCnulbMmisWblDOjE5bMYPVSukvtwcmCRSeUbQhmkspY9RfRsKDXsyppW16UmHrajwAOjYr3e7i2H+WSZ/I0qLVE9e2+Jdp80FMOyNtY+/WGa9iwVz37tsfkVJYQjGoOgrB0vk/NScgA/9ExymHqiOrido=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EZqHnVo/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 938B5C4CEF1;
-	Mon, 15 Sep 2025 20:19:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FQTg9kVZz4XlETat+lUItdungCFenmg75AaNo5m8ZRkmn3wja5SdJZhH7AMsf3O9+/ulqd/Tj/hu0LNwgqg7l0C2r6OOrN9B28hSQ4jHxyPJ1K/6XOG2EpKYayn0aC4zyXGiLcrbVdVLRGe/g/27NaZGQCoGSNENncgtiVQv2Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mtnh1yaB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE2A5C4CEF1;
+	Mon, 15 Sep 2025 20:27:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757967579;
-	bh=XdJ7z/q77YUFL/QosenW4NKVcYFIhAWClP3csrjOEHE=;
+	s=k20201202; t=1757968064;
+	bh=jTddj2VxHgpjo0+pwvkgqGV3AHrtWJBjMyn3LYzKe4E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EZqHnVo/0vRzL1QXtPlDyW6r5wT1/RXhbRcDV/QJDqD0XKxxh6MQ23H7OABUjt2mK
-	 Grlghu0fggLO5017FGMY4UIIxvlIlw2chH0Ewcql3s1kFY7kSsQF/Dok0LTC/Pn7Zf
-	 3sUgI+p7lztQaBlhl8AkNFbDPkkb0K81d14POIRd15kAeSGF1vrXFcIrZMs4mq9lC8
-	 EXdca9Wa7KqtgUoWWPR3OW8ms7veuUurvmEmkhaDlczzi35gKr1Auq82QGdyEWCW5y
-	 AL9iX3CsI1xr1ZxgQSD+eMF1SgbrDOh16/rSSIC/b67im/jRftRMPfjkeBERRhCUgl
-	 onhjUo0TpfT5Q==
-Date: Mon, 15 Sep 2025 15:19:38 -0500
+	b=mtnh1yaBelalTJawkL1m4QJ3cq/7ujv13UkSzG+whN5UzhB5qxWHQxFBdAWbexFaT
+	 q+m2kmlmGE0VeiVoo1Kz8vzyQOV8GAGaXO4qOpkkMmiUaAWwQRzfo1zgnIdUPgeOmx
+	 atEsw/hYYA+EPSoyATQGGd0s4HWN9PBqIiXcf+t8iAaIAZb/xIeRm/BJ28mmFg4LkO
+	 vJO6L/p10PAdrCTR+91K7S/rqYSFYga4uBozSkJdSHpNpC1+Q1K8JH3l+g6cIIu1pt
+	 dk0X8ryIJcWDhG3KwEPYtv6XQx0jIifKa2d3GHNwRwGGD8jlTy/7PAT28vAoqykOO7
+	 7haq61p/2+3bg==
+Date: Mon, 15 Sep 2025 15:27:42 -0500
 From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Russell King <linux@armlinux.org.uk>, Jakub Kicinski <kuba@kernel.org>,
-	devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	DENG Qingfang <dqfext@gmail.com>, Lee Jones <lee@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eric Dumazet <edumazet@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>
-Subject: Re: [net-next PATCH v18 3/8] dt-bindings: mfd: Document support for
- Airoha AN8855 Switch SoC
-Message-ID: <20250915201938.GA3326233-robh@kernel.org>
-References: <20250915104545.1742-1-ansuelsmth@gmail.com>
- <20250915104545.1742-4-ansuelsmth@gmail.com>
- <175795551518.2905345.11331954231627495466.robh@kernel.org>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: fsl,fpga-qixis-i2c: extend support
+ to also cover the LX2160ARDB FPGA
+Message-ID: <20250915202742.GA3329659-robh@kernel.org>
+References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
+ <20250915122354.217720-3-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,41 +65,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <175795551518.2905345.11331954231627495466.robh@kernel.org>
+In-Reply-To: <20250915122354.217720-3-ioana.ciornei@nxp.com>
 
-On Mon, Sep 15, 2025 at 12:01:47PM -0500, Rob Herring (Arm) wrote:
+On Mon, Sep 15, 2025 at 03:23:47PM +0300, Ioana Ciornei wrote:
+> Extend the list of supported compatible strings with fsl,lx2160ardb-fpga.
 > 
-> On Mon, 15 Sep 2025 12:45:39 +0200, Christian Marangi wrote:
-> > Document support for Airoha AN8855 Switch SoC. This SoC expose various
-> > peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
-> > 
-> > It does also support i2c and timers but those are not currently
-> > supported/used.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../bindings/mfd/airoha,an8855.yaml           | 173 ++++++++++++++++++
-> >  1 file changed, 173 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
-> > 
+> Since the register map exposed by the LX2160ARDB's FPGA also contains
+> two GPIO controllers, accept the necessary GPIO pattern property.
+> At the same time, add the #address-cells and #size-cells properties as
+> valid ones so that the child nodes of the fsl,lx2160ardb-fpga node are
+> addressable.
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
+> This is needed because when defining child devices such as the GPIO
+> controller described in the added example, the child device needs a the
+> reg property to properly identify its register location.
+> Impose this restriction for the new compatible through an if-statement.
 > 
-> yamllint warnings/errors:
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+> Changes in v2:
+> - Enforce a unit address on the child gpios nodes (remove the ?)
+> - Enforce the use of unit addresses by having #address-size and
+>   #size-cells only for the newly added fsl,lx2160ardb-fpga compatible
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml:
-> 	Error in referenced schema matching $id: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml
-> 	Tried these paths (check schema $id if path is wrong):
-> 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
-> 	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/nvmem/airoha,an8855-efuse.yaml
+>  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 > 
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: soc@1 (airoha,an8855): efuse: {'compatible': ['airoha,an8855-efuse'], '#nvmem-cell-cells': 0, 'nvmem-layout': {'compatible': ['fixed-layout'], '#address-cells': 1, '#size-cells': 1, 'shift-sel-port0-tx-a@c': {'reg': [[12, 4]], 'phandle': 3}, 'shift-sel-port0-tx-b@10': {'reg': [[16, 4]], 'phandle': 4}, 'shift-sel-port0-tx-c@14': {'reg': [[20, 4]], 'phandle': 5}, 'shift-sel-port0-tx-d@18': {'reg': [[24, 4]], 'phandle': 6}, 'shift-sel-port1-tx-a@1c': {'reg': [[28, 4]], 'phandle': 7}, 'shift-sel-port1-tx-b@20': {'reg': [[32, 4]], 'phandle': 8}, 'shift-sel-port1-tx-c@24': {'reg': [[36, 4]], 'phandle': 9}, 'shift-sel-port1-tx-d@28': {'reg': [[40, 4]], 'phandle': 10}}} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml#"}
-> 	from schema $id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
-> Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: /example-0/mdio/soc@1/efuse: failed to match any schema with compatible: ['airoha,an8855-efuse']
+> diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> index 28b37772fb65..da21d0defa04 100644
+> --- a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> @@ -22,6 +22,13 @@ properties:
+>                - fsl,lx2160aqds-fpga
+>            - const: fsl,fpga-qixis-i2c
+>            - const: simple-mfd
+> +      - const: fsl,lx2160ardb-fpga
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -32,10 +39,26 @@ properties:
+>    mux-controller:
+>      $ref: /schemas/mux/reg-mux.yaml
+>  
+> +patternProperties:
+> +  "^gpio@[0-9a-f]+$":
+> +    $ref: /schemas/gpio/trivial-gpio.yaml
 
-Why are we on v18 and still getting errors? I only review patches 
-without errors.
+This results in this schema being applied twice and more 
+importantly allows any compatible listed in it to be allowed here. So I 
+would drop the $ref and do this instead:
 
-Rob
+       additionalProperties: true
+
+       properties:
+         compatible:
+           contains:
+             enum:
+               - fsl,lx2160ardb-fpga-gpio-sfp
+               ...
+
+
+> +
+>  required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,lx2160ardb-fpga
+> +    then:
+> +      required:
+> +        - "#address-cells"
+> +        - "#size-cells"
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -68,3 +91,27 @@ examples:
+>          };
+>      };
+>  
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        board-control@66 {
+> +            compatible = "fsl,lx2160ardb-fpga";
+> +            reg = <0x66>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            gpio@19 {
+> +                compatible = "fsl,lx2160ardb-fpga-gpio-sfp";
+> +                reg = <0x19>;
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +                gpio-line-names =
+> +                    "SFP2_TX_EN", "",
+> +                    "", "",
+> +                    "SFP2_RX_LOS", "SFP2_TX_FAULT",
+> +                    "", "SFP2_MOD_ABS";
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
 
