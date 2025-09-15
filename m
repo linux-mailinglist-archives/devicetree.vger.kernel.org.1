@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-217313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C650CB5752C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:46:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5D1B5755C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:58:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3203B9759
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:46:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD7647ACD09
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784122FB62E;
-	Mon, 15 Sep 2025 09:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADFA2F998B;
+	Mon, 15 Sep 2025 09:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cTJSmhRL"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iLtVAy5h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD1C2FB092
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC0D2FABF0;
+	Mon, 15 Sep 2025 09:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757929524; cv=none; b=m1CEof9cm9PxeYjYop/Kiv7NksdhCkpxEyNEaiKV4PNi1jLUzRfgWAPOtd5WnM3JJJ95B2hrKKPzlz4OMK0ylfE97MJa6CVS5PXACm4n06XEJqNCgGp3JUEBoD5dy0zBKEPdfx0D7aD9Ryq5LDF92SI56j5Y1vkOQDo8Zcb8wkA=
+	t=1757930280; cv=none; b=ON6XVOUFQnA6Bk7GHRsJC3owG91Ay+YqGJ9eqwZC78xzTXnRecO/JSjIZtwZFLLiR7eUgBVvZaPXkR73M1uk9hHbn2ji/cKhLfhmtMUqu19UbL1Aswdymb37hcD+MoE6ce9+OPzlovjS1u6wc1rXwcSePUvY7+FYoie0aoq7VtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757929524; c=relaxed/simple;
-	bh=+4atGC30te10VhjDx/SUYYrTyldTWCjSe4FbHda0HNU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=p71MfAZjlbelZQqUbzaMbDBCGHP15BiKZzuEYaz6oARKQsi66mo9GegUVdL4rqDsN12WsB5WkzIeeXIw1xMIF0d8ZfzDz72vOIVCLy8ZI+kNcwTFECa2nrteQx6cvsE4Y1uy4suKSHAxM6j/X8bY4//XpNbFqdIAixzZzh0xzl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cTJSmhRL; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250915094520epoutp011821883330aa68fde9b173f668670a40~la5WlgoS82529025290epoutp01J
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:45:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250915094520epoutp011821883330aa68fde9b173f668670a40~la5WlgoS82529025290epoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1757929520;
-	bh=h5Qx2f0DAcTaHN6YlDlV7lx8gsTEB7rVcts4fMiiACk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cTJSmhRLMtP8b8BOGBcMx2tZ2tOw+fUh35mjxm6zUAfliXjVXn+slfGJpNm9rpksG
-	 vxmAAoeqei4OVjFdq03/UvywCOsZmYg0FsMYw7SGJ4lZlbMHxNDDencsh2noerd3oE
-	 z7tXwGD7m0UyM01lKgeQ3Fy08ofnHfmY2gBnSc0A=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250915094519epcas5p49dcc9ee8e9c917923c7bcfd996043832~la5V97V5y1185011850epcas5p4F;
-	Mon, 15 Sep 2025 09:45:19 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.92]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cQKrt2nS9z6B9m8; Mon, 15 Sep
-	2025 09:45:18 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250915094517epcas5p2186fc92cca758b6fe610c0ec91ee51bc~la5UiVNol1637416374epcas5p2o;
-	Mon, 15 Sep 2025 09:45:17 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250915094515epsmtip24dc5a7988d4add454ce9185519ae6d2d~la5SLhp3X0834508345epsmtip2S;
-	Mon, 15 Sep 2025 09:45:15 +0000 (GMT)
-From: Raghav Sharma <raghav.s@samsung.com>
-To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
-	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, sunyeal.hong@samsung.com,
-	shin.son@samsung.com
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, chandan.vn@samsung.com,
-	dev.tailor@samsung.com, karthik.sun@samsung.com, Raghav Sharma
-	<raghav.s@samsung.com>
-Subject: [PATCH v2 3/3] arm64: dts: exynosautov920: add CMU_M2M clock DT
- nodes
-Date: Mon, 15 Sep 2025 15:24:01 +0530
-Message-Id: <20250915095401.3699849-4-raghav.s@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250915095401.3699849-1-raghav.s@samsung.com>
+	s=arc-20240116; t=1757930280; c=relaxed/simple;
+	bh=NkbKzHG706iJdJxu5vSJY3qj2jEFX8Hh23r4tuIRyO0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=sHCOWm51FKDC1AtyV+cKyCBXWtNNWL4iokjHbzd6Eq1rwAIKVFbGyvtrlte23T1oxiTKONI0195ECTg2R9rs85+tTHEcTdWrXkhfhNJZ+ywOsQ7MzcL13iWYTX3ixgLz3El+e0PuKdHIxb14pNn8uMYmmD/4kq7pe+OzHvtmLr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iLtVAy5h; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 1AA3F25EA4;
+	Mon, 15 Sep 2025 11:57:57 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id eWK9oPfQyWsU; Mon, 15 Sep 2025 11:57:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757930276; bh=NkbKzHG706iJdJxu5vSJY3qj2jEFX8Hh23r4tuIRyO0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=iLtVAy5hx2LIxlxXEcOje0/JIj0/WFQABySWR4w3lXWbavWHKrHJFcmuAaL7uuSeI
+	 NzArqKdkClnHnqSq9Mo1NDcgZSwAqpxgOtAzulYUW1rgfORO+AfgJRWQP3xM546PcA
+	 WT0ykAv0OOLgltXLXKL/TfgyGxXrGQLXv6myWWdzOqXc2pfkMFE/ct0vtHtGgnzOA8
+	 bKH53mj/7mohFflbz6u9AF0x49aJkly7TnNn+AoCo4NFE3H4Gq5vsjU6hkP+THbHzz
+	 /NmbNJEQRxgUa7B+frdJOj1dsehAX2tgmRbrKtMJJoxNB9EPcliemCZE2k2wYCVoT+
+	 YxdoUQbvzlkTg==
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v2 5/5] riscv: dts: thead: Add reset controllers of more subsystems for TH1520
+Date: Mon, 15 Sep 2025 09:57:34 +0000
+Message-ID: <20250915095734.53423-1-ziyao@disroot.org>
+In-Reply-To: <20250915095331.53350-1-ziyao@disroot.org>
+References: <20250915095331.53350-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,49 +79,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250915094517epcas5p2186fc92cca758b6fe610c0ec91ee51bc
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250915094517epcas5p2186fc92cca758b6fe610c0ec91ee51bc
-References: <20250915095401.3699849-1-raghav.s@samsung.com>
-	<CGME20250915094517epcas5p2186fc92cca758b6fe610c0ec91ee51bc@epcas5p2.samsung.com>
 
-Add required dt node for CMU_M2M block, which provides
-clocks for M2M IP
+Describe reset controllers for VI, MISC, AP, DSP and AO subsystems. The
+one for AO subsystem is marked as reserved, since it may be used by AON
+firmware.
 
-Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+Signed-off-by: Yao Zi <ziyao@disroot.org>
 ---
- arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/riscv/boot/dts/thead/th1520.dtsi | 37 +++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 0fdf2062930a..d19d71faa6f8 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1454,6 +1454,19 @@ pinctrl_aud: pinctrl@1a460000 {
- 			reg = <0x1a460000 0x10000>;
+diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+index e680d1a7c821..15d64eaea89f 100644
+--- a/arch/riscv/boot/dts/thead/th1520.dtsi
++++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+@@ -277,6 +277,12 @@ clint: timer@ffdc000000 {
+ 					      <&cpu3_intc 3>, <&cpu3_intc 7>;
  		};
  
-+		cmu_m2m: clock-controller@1a800000 {
-+			compatible = "samsung,exynosautov920-cmu-m2m";
-+			reg = <0x1a800000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_M2M_NOC>,
-+				 <&cmu_top DOUT_CLKCMU_M2M_JPEG>;
-+			clock-names = "oscclk",
-+				      "noc",
-+				      "jpeg";
++		rst_vi: reset-controller@ffe4040100 {
++			compatible = "thead,th1520-reset-vi";
++			reg = <0xff 0xe4040100 0x0 0x8>;
++			#reset-cells = <1>;
 +		};
 +
- 		cmu_cpucl0: clock-controller@1ec00000 {
- 			compatible = "samsung,exynosautov920-cmu-cpucl0";
- 			reg = <0x1ec00000 0x8000>;
+ 		spi0: spi@ffe700c000 {
+ 			compatible = "thead,th1520-spi", "snps,dw-apb-ssi";
+ 			reg = <0xff 0xe700c000 0x0 0x1000>;
+@@ -502,6 +508,18 @@ uart2: serial@ffec010000 {
+ 			status = "disabled";
+ 		};
+ 
++		rst_misc: reset-controller@ffec02c000 {
++			compatible = "thead,th1520-reset-misc";
++			reg = <0xff 0xec02c000 0x0 0x18>;
++			#reset-cells = <1>;
++		};
++
++		rst_vp: reset-controller@ffecc30000 {
++			compatible = "thead,th1520-reset-vp";
++			reg = <0xff 0xecc30000 0x0 0x14>;
++			#reset-cells = <1>;
++		};
++
+ 		clk: clock-controller@ffef010000 {
+ 			compatible = "thead,th1520-clk-ap";
+ 			reg = <0xff 0xef010000 0x0 0x1000>;
+@@ -509,6 +527,18 @@ clk: clock-controller@ffef010000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		rst_ap: reset-controller@ffef014000 {
++			compatible = "thead,th1520-reset-ap";
++			reg = <0xff 0xef014000 0x0 0x1000>;
++			#reset-cells = <1>;
++		};
++
++		rst_dsp: reset-controller@ffef040028 {
++			compatible = "thead,th1520-reset-dsp";
++			reg = <0xff 0xef040028 0x0 0x4>;
++			#reset-cells = <1>;
++		};
++
+ 		gpu: gpu@ffef400000 {
+ 			compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
+ 				     "img,img-rogue";
+@@ -681,6 +711,13 @@ aogpio: gpio-controller@0 {
+ 			};
+ 		};
+ 
++		rst_ao: reset-controller@fffff44000 {
++			compatible = "thead,th1520-reset-ao";
++			reg = <0xff 0xfff44000 0x0 0x2000>;
++			#reset-cells = <1>;
++			status = "reserved";
++		};
++
+ 		padctrl_aosys: pinctrl@fffff4a000 {
+ 			compatible = "thead,th1520-pinctrl";
+ 			reg = <0xff 0xfff4a000 0x0 0x2000>;
 -- 
-2.34.1
+2.50.1
 
 
