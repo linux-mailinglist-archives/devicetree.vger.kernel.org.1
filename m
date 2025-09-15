@@ -1,113 +1,298 @@
-Return-Path: <devicetree+bounces-217248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E39BB571D6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:46:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D8EB571DF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F30B1895BC0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:46:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73462440522
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42F02D663E;
-	Mon, 15 Sep 2025 07:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFF8C2E2DFE;
+	Mon, 15 Sep 2025 07:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V8n6zf7B"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eAdBbE/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4ED94502A
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5AF2D6E4B;
+	Mon, 15 Sep 2025 07:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757922388; cv=none; b=NEs+L2dr0LVY5j2jsnSdv9e8JpPToqgExB0YKlNyEMqK0//i/JlZ4OcxbHKAbupFfyMccjL3IH0SO0ONW5Ti2x03yJ7GX7EwEVpuBHsQHOXw+r1QxgY5EgFaH9m3KnZ21x21awowtXgjpMHF3Mb73ckHn+Ego7hOxi3disoXD9I=
+	t=1757922496; cv=none; b=SLl40gfmD0ZNNVsLyEU7zJ6WpsXQetd1x1pBi1sol0MH4A3TjsWHPuPD9WEXblWKtHWjzXxXBAlJiTKKym32yjprIeFAr26pmnz6HXFy03v7kMJI8RW0sPjkU7yeY00J2+HcuVUFtM0QkVoYWLqOHoZGH9DzkEMn76rf4cEOuAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757922388; c=relaxed/simple;
-	bh=rxgBGv2zMZRxz4TM397vl50YX+5rV/wH6l1JB5uVKT4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cdX7WAx31XlINhdO5F9wW6p7EJR96SfnnS1Hgmpz/5cPNnv5ePlAjMJanqVqgmFYWHPuzno5d3t422x7nM7+mqiUt4OMzTAmdULUt60ZXi9qnUsS0sE6mQ3BHOfgPqmqn0R/ay/UVbneONE3OFJIrDP5uy6Hj3cySC0+bJAUkng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V8n6zf7B; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45dde353b47so23116485e9.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 00:46:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757922385; x=1758527185; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=rxgBGv2zMZRxz4TM397vl50YX+5rV/wH6l1JB5uVKT4=;
-        b=V8n6zf7B2GCu6e2opOUBFBhGIpz5wG0nHLqtXHW2OD3gyMT+lEotEp5gupeb4Z5Wfr
-         gNojRbFUEzisxILvPenML4ZLC6QiuoSS1wjKzUd2ob85vpmuTmNmqlKhbOjrhnLZRl7I
-         9zSYiqXxh0X/r1kKhByZR4eLWGFP5XvWPbHn36MXcrftKeOTeSutuLTRk3Hw8FMOA840
-         gfiImqfIzJNeZJe4dGP7dZc6NpnCjRl5KiFoWq6hQSjqU8+n8xCoXPd1iMk9Fo0MCYHh
-         U6FqY6h7jPfRFV5sPasorwF6FL8mdB9hLYBeisVBWo6zA+0GJw12GohQKBTipHZSj9JJ
-         kBhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757922385; x=1758527185;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rxgBGv2zMZRxz4TM397vl50YX+5rV/wH6l1JB5uVKT4=;
-        b=Q0Rh+IhXkz/pfm0J5nhziJSg039aHY/s1bjX/+UnBYCTEMM1VcIRXDo85xAi6UweqQ
-         7igTXEGtVzZ+43tanIUBDnxgvlNMhjXjW9bJ1o+5gZxGC/8xqDHvfwm9wGVQehdKNMGg
-         w0RAl6DYLe9a5hsRrj0g7lFV9g363eFU6EvZeKRvAXyRyVeN1KUQ38lBMFseEJjA0cqB
-         Emj84f6iiAzPeJmg2JwZeA67Nhwjvpgb17Ohs3qUPcYFPZZAOhkybkBtEwriw5bW7gSR
-         SE4dqkhPnvExgDpTkGoxCXlyw9uesYSF4Ycp24+cy1aW9X0fI5EKTNXBs/ZywY/jIk3+
-         cciA==
-X-Forwarded-Encrypted: i=1; AJvYcCVG8OfzQIw/kMV4ppqxjpqXkxfgI2pt0rDYEt/geVBXMBrkn0PjyeLROtFYgZ8xSkT+q2PpuTXw98LI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsZ64NpgJeIqgo6Axi8rZF+NyAkufwx7ELeOGEQXPeX+SE8Tc9
-	Sakmz05JJGu/y1oeG8+PWivDSdUApnOy0rJdVLHhGgjou7Cwd8I5xw7Bq1N3khFiqfA=
-X-Gm-Gg: ASbGncuOMdZBbfIR8W00au6UJQJqy9wokXkYevU5KQ10N2Zs4IbiJuVeX5gIaX8Tfif
-	aMBdOs8YIm4Tj57bniUBxqfRKu5x1zYbYL1bJtkSxYTHFDHNd2nX5dCmTFffJLDnT3NRkWtuAMs
-	A0Xkj7noxAK4FCy19XcH4eSdJliSMrO3KXc+CIoidjPFcgboTUf6QyugVjCFo2SbpevUxgKhTu6
-	lQ20RDrA9lw2EEjzBtDV/3fFfRZS79BoXZgASMiAuMQjmPmMUtodhq0bmA89KFRlQ8jRd6ZwCpP
-	dj5qwjyqV/6cUniFzbZXXWYxbamNr/c5cHMbntpOu1tXf+guHSOSdO833bvKYhnMkT8WAlD7Pol
-	Z0ddOLnfbs67d9t7tS1b0MqyLgw==
-X-Google-Smtp-Source: AGHT+IHyyuLf6J5x2h8+77IB2PsvJAJV4Tes0P0hl/pG4jVOFAqE/MRdKs5G4GFgkNVlw9YzjUjKhg==
-X-Received: by 2002:a05:6000:26cc:b0:3e7:458e:f69 with SMTP id ffacd0b85a97d-3e765a08312mr11049943f8f.56.1757922385224;
-        Mon, 15 Sep 2025 00:46:25 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e9c2954b10sm5452113f8f.50.2025.09.15.00.46.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 00:46:24 -0700 (PDT)
-Message-ID: <62d7c5221b9598f390102f4db8db483af9f34289.camel@linaro.org>
-Subject: Re: [PATCH v1 5/7] clk: s2mps11: add the support for S2MPS16 PMIC
- clock
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, Krzysztof Kozlowski	
- <krzk@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo
- Choi	 <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Mon, 15 Sep 2025 08:46:22 +0100
-In-Reply-To: <20250914124227.2619925-6-ivo.ivanov.ivanov1@gmail.com>
-References: <20250914124227.2619925-1-ivo.ivanov.ivanov1@gmail.com>
-	 <20250914124227.2619925-6-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+build2 
+	s=arc-20240116; t=1757922496; c=relaxed/simple;
+	bh=vB9GcUmcfOQtoFZZDhDvPQi1G6RyCsjXZqj9XRwFDDg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iR8bdTtOrr+XNEl8lme0n1ucsCJnG3GGVYyd4TsUIx1NNLJvT0ZfI0rwR0ERQQ5zt8mniRxoe1T4f7/5224HhkonqBmdPXr45SxtukrjSPIFOOCsY2W87ABCM8pSN1Dajx4XIepuFDTSyrAzUh8xgRT1rpVD1YMWF0RH0Ih45NE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eAdBbE/F; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1757922492;
+	bh=vB9GcUmcfOQtoFZZDhDvPQi1G6RyCsjXZqj9XRwFDDg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eAdBbE/FYgw8uAuc6mgi4EXUTYPU+wCaeYzWmnTAU9LDniagsTtXnRYgKgslS3t5w
+	 Mb/Rpyrx3bfezOUOnz3+Az18Mf6d8LWOzqWFY/2ZWNzcuxZ+Lnf8/MhMsDLveLhbrS
+	 eu/iAySEqG+q8hHVBpSuFWBPxkZDNEKAAjouigISkJsmmLw5rqbwBhRd9hLnHNH1tP
+	 99bT8pEadDq5zdLkBu05NQD7MBaedKH0gNFtwMvZZ6iaKArjCoXZepCXEMOis+xhse
+	 81N6Et83WvkPh5Z/iMjqKnmcO4yaVOuJ3m5M9b/0dB+b2sXEUg30dpokq5+xawQqNN
+	 1k2ThEXkQfxcg==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EBEAF17E0F88;
+	Mon, 15 Sep 2025 09:48:11 +0200 (CEST)
+Message-ID: <a36c5bfe-be01-431b-9d4f-eb41a085bef7@collabora.com>
+Date: Mon, 15 Sep 2025 09:48:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: remoteproc: Add VCP support for
+ mt8196
+To: Xiangzhi Tang <xiangzhi.tang@mediatek.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Jjian Zhou <Jjian.Zhou@mediatek.com>,
+ Hailong Fan <Hailong.Fan@mediatek.com>
+References: <20250914122943.10412-1-xiangzhi.tang@mediatek.com>
+ <20250914122943.10412-2-xiangzhi.tang@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250914122943.10412-2-xiangzhi.tang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, 2025-09-14 at 15:42 +0300, Ivaylo Ivanov wrote:
-> Add the support for S2MPS16 PMIC clock, which is functionally the same
-> as the currently supported ones, with the exception of a different
-> register.
->=20
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Il 14/09/25 14:29, Xiangzhi Tang ha scritto:
+> Add the new binding document for MediaTek Video Companion
+> Processor(VCP) on MediaTek mt8196.
+> 
+> Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
+> ---
+>   .../remoteproc/mediatek,mt8196-vcp.yaml       | 165 ++++++++++++++++++
+>   1 file changed, 165 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml b/Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
+> new file mode 100644
+> index 000000000000..71a55943843b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
+> @@ -0,0 +1,165 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/mediatek,mt8196-vcp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Video Companion Processor (VCP)
+> +
+> +maintainers:
+> +  - Xiangzhi Tang <Xiangzhi.Tang@mediatek.com>
+> +
+> +description:
+> +  The MediaTek VCP enables the SoC control the MediaTek Video Companion Risc-V coprocessor.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8196-vcp
+> +
+> +  reg:
+> +    items:
+> +      - description: sram base
+> +      - description: cfg group IO
+> +      - description: cfg core group IO
+> +      - description: cfg sec group IO
+> +      - description: vcp rdy group IO
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sram
+> +      - const: cfg
+> +      - const: cfg_core
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+sram, cfg-global, cfg-core, cfg-sec, vcp-vlp-ao-ready
+
+> +      - const: cfg_sec
+> +      - const: vcp_vlp_ao_rsvd7
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  mboxes:
+> +    maxItems: 5
+> +
+> +  mbox-names:
+> +    maxItems: 5
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    description:
+> +      Using MediaTek iommu to apply larb ports for Multimedia Memory
+> +      Management Unit and address translation
+> +      Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^vcp@[a-f0-9]+$":
+> +    type: object
+> +    description:
+> +      The MediaTek VCP integrated to SoC might be a multi-core version.
+
+"may feature one or multiple cores"
+
+> +      The other cores are represented as child nodes of the boot core.
+> +      There are some integration differences for the IP like the usage of
+> +      address translator for translating SoC bus addresses into address
+> +      space for the processor.
+> +
+> +      The SRAM are shared by all cores, each VCP core only using a piece
+
+s/piece/portion of/g
+
+> +      SRAM memory. The power of SRAM should be enabled before booting VCP cores.
+
+How do you enable the SRAM power?
+
+Is there a regulator, a power domain, both, or what?
+
+> +      The size of SRAM are varied on differnt SoCs.
+> +
+> +      The VCP cores has differences on different SoCs to support for
+> +      Hart.
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - mediatek,vcp-core
+> +
+> +      reg:
+> +        description: The base address and size of SRAM.
+> +        maxItems: 1
+> +
+> +      reg-names:
+> +        const: sram
+> +
+> +      mtk,vcp-core-twohart:
+
+1. s/mtk,/mediatek,/g
+2. there's no description, what does "twohart" mean?
+
+> +        enum: [0, 1]
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      mtk,vcp-sram-offset:
+> +        description:
+> +          Allocated SRAM memory for each VCP core used.
+
+vcp-sram-offset is the same as the iostart in `reg`, so you don't need this
+property at all.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - reg-names
+> +      - mtk,vcp-core-twohart
+> +      - mtk,vcp-sram-offset
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - mboxes
+> +  - mbox-names
+> +  - power-domains
+> +  - iommus
+> +  - memory-region
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mt8196-power.h>
+> +
+> +    vcp: vcp@31800000 {
+> +        compatible = "mediatek,mt8196-vcp";
+> +        reg = <0x31800000 0x60000>,
+> +              <0x31a04000 0xa000>,
+> +              <0x31bd0000 0x1000>,
+> +              <0x31a70020 0x100>,
+> +              <0x1c00091c 0x4>;
+> +        reg-names = "sram",
+> +                    "cfg",
+> +                    "cfg_core",
+> +                    "cfg_sec",
+> +                    "vcp_vlp_ao_rsvd7";
+> +
+> +        interrupts = <GIC_SPI 787 IRQ_TYPE_LEVEL_HIGH 0>;
+> +
+> +        mboxes = <&vcp_mailbox0>,
+> +                 <&vcp_mailbox1>,
+> +                 <&vcp_mailbox2>,
+> +                 <&vcp_mailbox3>,
+> +                 <&vcp_mailbox4>;
+> +        mbox-names = "mbox0", "mbox1", "mbox2", "mbox3", "mbox4";
+
+Is there any descriptive name that can be used for mbox-names?
+
+As in, what is mbox0 used for? what is mbox1 used for? etc.
+
+> +
+> +        power-domains = <&scpsys MT8196_POWER_DOMAIN_MM_PROC_DORMANT>;
+> +        iommus = <&mm_smmu 160>;
+> +        memory-region = <&vcp_resv_mem>;
+> +
+> +        vcp@0 {
+> +            compatible = "mediatek,vcp-core";
+> +            reg = <0x0 0x31000>;
+> +            reg-names = "sram";
+> +            mtk,vcp-core-twohart = <1>;
+
+Is the first core always "twohart"?
+
+If it is, there's no need to even have this property, as you can add that to
+the driver, either in form of platform data (if this changes per-SoC) or just
+hardcoded.
+
+Regards,
+Angelo
+
+> +            mtk,vcp-sram-offset = <0x0>;
+> +        };
+> +
+> +        vcp@31000 {
+> +            compatible = "mediatek,vcp-core";
+> +            reg = <0x31000 0x60000>;
+> +            reg-names = "sram";
+> +            mtk,vcp-core-twohart = <0>;
+> +            mtk,vcp-sram-offset = <0x31000>;
+> +        };
+> +    };
+
 
