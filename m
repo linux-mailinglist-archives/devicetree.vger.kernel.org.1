@@ -1,171 +1,106 @@
-Return-Path: <devicetree+bounces-217182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D004B56F99
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:05:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C0BB56FA4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:11:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 950B3189AB1B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 05:06:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C71F917642E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 05:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E656261B70;
-	Mon, 15 Sep 2025 05:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1E1277007;
+	Mon, 15 Sep 2025 05:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="fsJyzRbp"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sTSJagWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F261E1F09AD;
-	Mon, 15 Sep 2025 05:05:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21807E571
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 05:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757912737; cv=none; b=fK/oOIZFG8QiWG3O2PWPox1I1Cs2aVlEXWrDW+U+OjkZS6q/xBuQtc8+eRUmmhpoHntgP+yUOk7hhS7x0u+VI64tgPxyM9i2k8zLjlO+1kSXg1BiRKCsoLIgMCbJOOshwVnXKbUCjtJnBO97EgGURmyjTDqJ77LuxqjA6PfFrYA=
+	t=1757913073; cv=none; b=TNbkEX1HZvufqRIsWH4AvQsCcL5nvr31IJJzlzwZou5toaHH7CfD2SerMLLI0ArqzN+tay00ULJWKEKpQj5JMclmWFOhM0APC2twL7AwH3vzjiPa/Tdk5QhcEX4TOlcC6+27FG+0/e7RwCsdUpIw7YlNd4Xc1ypgG6wq0LrjkTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757912737; c=relaxed/simple;
-	bh=DWWpw+cg6mg2cz5gFU9WV515EsQKDAs2Xzllkbaeojw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=catO1CRu/AwO/CeQZX40DZj41TP1gkrviYSCwGr90DRdnrosUQoOESfeN4Hw69zwXpTXIROY+sKX01uoxOyDyZvJ2tfIZKJtikUFSKGFQnjyWEBb8lXKeGyNjbjacz1d0i/uNIxPft8O6iZiwmWqmYCEmTiJch0wcnj/Pr3hv50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=fsJyzRbp; arc=none smtp.client-ip=172.105.74.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from lipo (unknown [IPv6:2a02:2f0e:3e0c:5b00:f1e0:3f4b:286c:9ddb])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 28E10173BE2;
-	Mon, 15 Sep 2025 08:05:25 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
-	s=mail; t=1757912725;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jmzzVjzWeJgCqh72+oLEB1rChBlbvqZeGde6QApGq7A=;
-	b=fsJyzRbpENi2ZRtC6ZhAah1td0vXzm01VG4yMzxseMfb0ZNMheOL2ylXOomPUqy5iQEuaB
-	fgL5RqFvhY82FVkLyFgSvEce3EL1Vya2MiyVEPGM2nq+9EwaVyNGU/2njxd7ZlPpcLh/hE
-	vQ92IPjlKZbZUhvsjeQ6k+PKdSHwO4KusVwa6bAtD8B0eZ3c3v4Xhp60c8g8w59fG+nWza
-	D6V5wnomlRIvXOzWMmi5O7oTcBUN9WdrAKxgTL6rDKFY5J7Eka9tuHhQUDwJphsADqkDg/
-	QbrcbPXgMbD66adeBvWazcu/KJshKaCH2RvuP50HHbnVzKn11PYd4e/SzaP4sg==
-Date: Mon, 15 Sep 2025 08:05:22 +0300
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno S?? <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/18] iio: accel: bma220: split original driver
-Message-ID: <aMeeku8OseSrTqW1@lipo>
-References: <20250913-b4-bma220_improvements-v3-0-0b97279b4e45@subdimension.ro>
- <20250913-b4-bma220_improvements-v3-4-0b97279b4e45@subdimension.ro>
- <CAHp75VdWQojOj2MLS4dOvMKjSGcAunc4ND9SPsGrZBBctPdQgQ@mail.gmail.com>
+	s=arc-20240116; t=1757913073; c=relaxed/simple;
+	bh=gQ4356ubTnt/7Svy5h8IRy0Tzj9khjjlW3Nl+PzwwKg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=dOZEYD1yCuZddLlmI8ikfMsmiMRJ25Vy4rSalvmUuxgWQYBSamv3hqdualxjmMpizhSe7yGCBgguupm/cK5ddHEA7zMUpRPWTLBCGRkappXf5x1WZSeNwKq1uJFqBWGo08Ex+pjWs/vimOR5zigCHg8ly2jkPL/9YwWZlzbYY9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sTSJagWL; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250915051108epoutp01b4ab4759d41bae9d514783b2f98456d1~lXJ8mFSdZ0759707597epoutp01D
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 05:11:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250915051108epoutp01b4ab4759d41bae9d514783b2f98456d1~lXJ8mFSdZ0759707597epoutp01D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1757913068;
+	bh=Qtqck/gpVB4ju4zZiFzaFJ+MV8r04EU/eAiQG9DA2kU=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=sTSJagWLuoMvhkRIfGldifYu9jDDkxC1rDeol/b51PkWJSkoL46xYVJH2iiZlDDCp
+	 eiGVsulECiPJMRcZ1BkHLDzFR5NHQ74m4+xPJQjWrp43bly0Dulc1HjYMqAaxK2y0y
+	 tNxp8g4pQ9gYLaoe8lOjZoO/16QwKLUlqfCaTMeM=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250915051107epcas2p1b2da98d21c1af3159b3be2e7cd1d33ab~lXJ76u2CS3200232002epcas2p1L;
+	Mon, 15 Sep 2025 05:11:07 +0000 (GMT)
+Received: from epcas2p4.samsung.com (unknown [182.195.36.102]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4cQCmW08qJz2SSKv; Mon, 15 Sep
+	2025 05:11:07 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250915051106epcas2p19c54f69c993621430aac622c6865919b~lXJ6xOlrR3117831178epcas2p1e;
+	Mon, 15 Sep 2025 05:11:06 +0000 (GMT)
+Received: from tayo (unknown [10.229.9.198]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250915051106epsmtip1ea10842bfde3976dc3dc3e1101d27762~lXJ6p1qNv0859208592epsmtip1G;
+	Mon, 15 Sep 2025 05:11:06 +0000 (GMT)
+From: "myunggeun.ji" <myunggeun.ji@samsung.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev
+Cc: Jongho Park <jongho0910.park@samsung.com>, kiisung lee
+	<kiisung.lee@samsung.com>, "myunggeun.ji" <myunggeun.ji@samsung.com>
+Subject: [PATCH 0/2] update exynos-iommu code and device tree for v9
+Date: Mon, 15 Sep 2025 14:13:18 +0900
+Message-ID: <20250915051320.3378957-1-myunggeun.ji@samsung.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n8fC/aannE58fX1E"
-Content-Disposition: inline
-In-Reply-To: <CAHp75VdWQojOj2MLS4dOvMKjSGcAunc4ND9SPsGrZBBctPdQgQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250915051106epcas2p19c54f69c993621430aac622c6865919b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250915051106epcas2p19c54f69c993621430aac622c6865919b
+References: <CGME20250915051106epcas2p19c54f69c993621430aac622c6865919b@epcas2p1.samsung.com>
 
+Series updates exynos-iommu code and device tree to support
+for ExynosAuto sysMMU version v9.
+It provides initial driver code and register information the sysMMU device.
 
---n8fC/aannE58fX1E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+myunggeun.ji (2):
+  iommu/exynos: Implement register set and fault handling on SysMMU v9
+  arm64: dts: exynosautov920: Add DT node for sysMMU
 
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 21 ++++++
+ drivers/iommu/exynos-iommu.c                  | 73 ++++++++++++++++---
+ 2 files changed, 85 insertions(+), 9 deletions(-)
 
-hi Andy,
+-- 
+2.50.1
 
-On Sun, Sep 14, 2025 at 03:45:07PM +0300, Andy Shevchenko wrote:
-> >           To compile this driver as a module, choose M here: the
-> > -         module will be called bma220_spi.
-> > +         module will be called bma220_core and you will also get
-> > +         bma220_spi if SPI is enabled.
->=20
-> I'm not sure the last part is practical, as one needs to list all
-> buses next time a new one will be added.
-
-it's just a friendly note to the user of how the modules are called.
-the sensor supports only spi and i2c, so the list is short.
-
-> > +++ b/drivers/iio/accel/bma220.h
->=20
-> > +#ifndef _BMA220_H
-> > +#define _BMA220_H
-> > +
-> > +#include <linux/pm.h>
-> > +
-> > +extern const struct dev_pm_ops bma220_pm_ops;
->=20
-> > +struct spi_device;
->=20
-> Besides the location of this (I would expect it to follow up include
-> linux/*) convert the existing driver to regmap first and remove this
-> unneeded churn.
-
-[..]
-
-> I haven't reviewed the rest as I believe it's just ~1:1 copy of the
-> existing code, but I still think that the result will be better if
-> this series starts from small fixes, like kernel doc, and other
-> things, followed by the regmap conversion and only _after_ the split
-> is made.
-
-either way you look at it it can be seen as churn.
-
-scenario 1
-    split is done early: ~300 lines from _spi.c have to move to _core.c.
-    I tried to do a 1:1 copy so it can be easily diffed, but small tweaks a=
-re needed here and there.
-
-scenario 2
-   split is done after regmap: much more than 300 lines need to be moved AN=
-D the code would diverge way too much from my target.
-
-as I see it scenario 2 is worse from a reviewer's perspective and a nightma=
-re from my pov.
-
-I prefer to stick with scenario 1, adding a few prerequisite patches if you=
- so prefer.
-It's much easier for me to cherry pick modifications and copy them from my =
-target code once the file structure in the patches have a _core.c, _spi.c, =
-etc.
-
-this is what I had in mind for v4:
-split prerequisites (2-4p) -> split -> regmap prerequisites (4p) -> regmap =
--> regmap cleanup (2p) -> i2c -> features (5p).
-
-best regards,
-petre rodan
-
---n8fC/aannE58fX1E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEE2Ap/wXYVGTXsPl+pzyaZmYROfzAFAmjHnpIACgkQzyaZmYRO
-fzCKmxAA0LLGgo96dzWN1yesI0dIDmPCtvwGCxqRhmWGylwUEmxJaS43cLBL5qb7
-ZZUUREp1G1j4D9NIplVhRJyW8uWG3DdxIt/D5lXOypMTzQc5sYMJQWNGtEhGGh3Q
-4guCywJ5qzQ/CI0onPcH+w8kLTI9O9hBb4pJ6OiXwaL1tUjY3marh05VoLD0Xl9r
-KaAOIplrtjmmzte4+r5NS64z+5mFifE/WtySoB6/LrdMSHjPvpXPsSqKDFL4nrj+
-Tm2AuXQGFaeEfJI3WJWJWjcvDkvbVdIjhaImM970/1mQy5Dp/aI1xFkalJUQPFUy
-AQ03TzGlRANlfDs0hZ3GZOPMGAba+aIx1+Q6PHqX8fYfOXoA2W5iYToo1Wyp+YVe
-1ris5cBHkfacowRvK6tzPFfhsi8XMdOZcd1ATTeQa/AQ2JZRSG/xrvPOLE7wj13V
-9kW+vlYcyUorodUrWXBzfHel0aE/pU9JBk4DwULDez0WI3jSQUY5MMl0GaGNXmzw
-1UOvDnGZf0nlpeqW6xKckshEyTY21+F4WxDIUeomCatL+UvwhIjfKtmNMpuyc0pn
-JyidyoEUyMhPmr0VhBXZNgO9DWj/sjaMscaWIE5s7/+if756Y9TBUE8OBmBlZgHJ
-X71Kd7Ni6JAnVIsNHX7g/ZjwKimOCeu/epWkQraAvLKEix2PzlE=
-=s737
------END PGP SIGNATURE-----
-
---n8fC/aannE58fX1E--
 
