@@ -1,55 +1,44 @@
-Return-Path: <devicetree+bounces-217366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF36B576C6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:41:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767D3B576DB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2906D1A232BA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:41:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D906162711
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50ED02FF177;
-	Mon, 15 Sep 2025 10:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YzdGMv13"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFA12FD7A0;
+	Mon, 15 Sep 2025 10:44:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E60E2FE589;
-	Mon, 15 Sep 2025 10:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597642ED846;
+	Mon, 15 Sep 2025 10:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757932811; cv=none; b=gLkohZz+xqIKWGk+jCPO4P8tJNzNMzUw5OXRcuLOkQP2gtejfeMO5NndQfjv+5WiHecg8zZ7S5IzAE41hqRI58B5h2AKO4mYDxUJ1bEhcWSMiXxZmbeBWQSAkZtuj9UrO2iuzREs1gF9pz/7HfWhdYCENOPPhYBa2PA0lpbjJOs=
+	t=1757933075; cv=none; b=Nn/WL/GwSB5SI2DMtCWQzI8vl9qQZW1g39LtrtYxpu8s8dG3YSWiVCoyDAXeLKeKNopTE+n+K8RLrVeeNCT3YjHY4uyH7QfF+waxyn58eqiTVJ2vmB/9Qx93c3qJaS+K1La3WCD4TXwefzLM/1or4pnz/7lUaNzUv0ZsDaH/lXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757932811; c=relaxed/simple;
-	bh=YfkNuWF0UuUzo2fQZWy8bT5EoNrUHLsiRs9VwUk1PVk=;
+	s=arc-20240116; t=1757933075; c=relaxed/simple;
+	bh=wa0cYI+ah+AvN0/sbzMdeoYPO/F+uIM6PMekhf9HdDo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HLf946bfF0lpFG5fMhWs7zPDWzYt2f0Io+eoF7UovI1oLg6aWz/uWx65MD0MNFKAEA4H2SnSSi9aVEXANQw75hkaBfrR/ZdgUOvKYlia8gTV2ipYcu4GDwE1mgl8WNhIzCvyqoUPo3d+fZj4Fsq3YMuXQWX0/2IEmBh8VmQ8Wxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=YzdGMv13; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757932807;
-	bh=YfkNuWF0UuUzo2fQZWy8bT5EoNrUHLsiRs9VwUk1PVk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YzdGMv13sKiTswHck44V3ric1FZYkJiJTvgve65QXha4jYGt9hur1sohBLvRw0Q6d
-	 E7cPUW2OgwYuNcBeu07dxzDV2GaAOyfn/VRwFehODtrjSA+LV0NsPkkUS9DwbjEh/v
-	 E1S2on0kSEQoKTsfXC+wSE3Hi8YMX3vu6d0TgLtGQ2qy4v0HAE7ggUtCJNj0pn4plC
-	 H9wDqYtuYxodOe475HwPK5i9n/s8J8vCLufyWZ3G6agnp27ToTtojhhO9Cohwo/HI4
-	 mdBXhLWLU5Ehpskiw/GsyB7n9ZxMlWSAWh98uFSKhFl+StoPtK1K2YAZhVdjGBx0Hz
-	 27qVpPuLEgLhg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DFB5517E124A;
-	Mon, 15 Sep 2025 12:40:06 +0200 (CEST)
-Message-ID: <dc4a1cc1-da1c-40d5-a873-ba041038de2a@collabora.com>
-Date: Mon, 15 Sep 2025 12:40:06 +0200
+	 In-Reply-To:Content-Type; b=R/AHqgBD742AKbznB3MlXIcXCg6dumZm2eIiH07of6CR7zq1RN6JeN55SAUsJzi9MKF2YEyMCUsM+6xXeuk4shaZWqNksQacq2YcK23Y2gjkB+UL/MJh/c7PWgB7tmsvqIOsXw1ZnqK0B05V0Ta+IzCCUjYCSGlte6OCFg736NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip2t1757933031t384558d8
+X-QQ-Originating-IP: ViO3qK2xPauEngfgGmycWiarTOARoV3EHoXmRla6+7M=
+Received: from [127.0.0.1] ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 15 Sep 2025 18:43:50 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15059840297681885872
+Message-ID: <B3EFC6A5E09F74FB+a67c9b82-a7c5-4dbb-9486-90a6df55ed13@radxa.com>
+Date: Mon, 15 Sep 2025 18:43:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,40 +46,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] media: mediatek: vcodec: add decoder compatible to
- support MT8189
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin <tiffany.lin@mediatek.com>,
- Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
+ Q6A
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Nathan Hebert <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- Irui Wang <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>
-References: <20250915091958.31509-1-kyrie.wu@mediatek.com>
- <20250915091958.31509-3-kyrie.wu@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250915-radxa-dragon-q6a-v3-0-a6c32d988ed7@radxa.com>
+ <20250915-radxa-dragon-q6a-v3-2-a6c32d988ed7@radxa.com>
+ <33vm6uzxqbs5bukswpzdkrn3ronl7mp2q5d3j772t7lqcnvqvg@5or7jxglcynf>
 Content-Language: en-US
-In-Reply-To: <20250915091958.31509-3-kyrie.wu@mediatek.com>
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <33vm6uzxqbs5bukswpzdkrn3ronl7mp2q5d3j772t7lqcnvqvg@5or7jxglcynf>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: N+/GyfuFbcLi9vKdZlDTi25HexHBa35Ey17B5e5fSmkMASF/2oUDfY7O
+	2ok6oEMt8Xvgh8u8QEb6qfdXS300sjPJuznCEQd+tSkmNZkrOQwjYeIN6NiaQwR4jw+1gnt
+	ziQIYlvo6pznesj1xctEl6MuA5C3jnPOXSkuF6s+IPEh8SlO/mKcBwHecd3nu0D1FHWR7MH
+	XWqsDR2OJ2rTI1aSbCbnB00OF/gy5SNnJ5hAi0r3m+9h/ye3eh4wMdF0P/2HbI2h+Un1ouI
+	maDAAjL6hVHSxTw9EBSHEESw+KAMdYJ1AyxiHH3h+QWxFu/MO9NyvtkgTjboxw8WTsFsSaM
+	t4R5fRzjz1Zn1jNR9fTPXJDkGIRjsIIPFuIyiRLCHOMNfbi5pOGAN3R4pNXcNjVery1gEAc
+	GfkB7882YnvnOdF0v/CNIw1km1H5BN8+U+98T/NguQoM2KkpUQmDrVUuVzJIhZLzLhdv4wB
+	NPT320CPzR9vqb8xVDlRpgaEaii3F7g9K1jvmmmOPj/nT9xs5gCY16yccz9XdDyAdSykDuC
+	uqV9JBf7yvzFp7M9skNrJhkv5/DsgJDeDx8PEDqMJdMdJEfQFie0voik1GvPJ6gBP9b2Zde
+	FlTuhMSWhZBvmZskGU8W+fmiZU7fTNT4J6hZscD01J0unLN+4qrQkrMH1sFIv65nyZazrw4
+	+mCt9rrFmyt+7Zue69Z2L6VFjfdyBAaOjmq3rErB4ZD9UsgcksNqYn9W8m+DZi5tM1PLq/Y
+	xjDomGPaWacNdlp1bOdyHx8Yfgcx1NyLRDjwIBd////gTrLxIczvyTZFkV8TA9bsHXRs4OE
+	nvxcbVhXEhzERTyxNpqinAAuEgkiaG5CTl90jX480YXaV8m17N3Nbt3PBt85kTWKhqgsf9G
+	r0dUKu2oY4LJ1frJMW+Ai8KBWzfDLfRh8vPVaM85y5ZHtZkwDyESvcnz0ZxTGVyRAkfHiM/
+	23PkuPrbfE3eRfyBMftGFroxH4U5A+aw2CoHot1Ss3m1BaxxGrnXY9iL6b9eXnb4xUMueSl
+	J3cGJ/03S3k/6KZDc7
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-RECHKSPAM: 0
 
-Il 15/09/25 11:19, Kyrie Wu ha scritto:
-> MT8189 is pure single core architecture. Support its compatible and
-> use `mtk_vdec_single_core_pdata` to initialize platform data.
+On 9/15/2025 6:10 PM, Dmitry Baryshkov wrote:
+> On Mon, Sep 15, 2025 at 09:31:44AM +0800, Xilin Wu wrote:
+>> Radxa Dragon Q6A is a single board computer, based on the Qualcomm
+>> QCS6490 platform.
+>>
+>> Features enabled and working:
+>>
+>> - Three USB-A 2.0 ports
+>> - RTL8111K Ethernet connected to PCIe0
+>> - eMMC module
+>> - SD card
+>> - M.2 M-Key 2230 PCIe 3.0 x2
+>> - Headphone jack
+>> - Onboard thermal sensors
+>> - QSPI controller for updating boot firmware
+>> - ADSP remoteproc (Type-C and charging features disabled in firmware)
+>> - CDSP remoteproc (for AI applications using QNN)
+>> - Venus video encode and decode accelerator
+>>
+>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>>   .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 961 +++++++++++++++++++++
+>>   2 files changed, 962 insertions(+)
+>>
 > 
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+>> +
+>> +&gpu_zap_shader {
+>> +	firmware-name = "qcom/qcs6490/a660_zap.mbn";
+> 
+> Is the device fused to reject standard qcs6490 firmware? If not, can we
+> point it to the existing files (maybe except the ADSP)? Anyway, could
+> you please submit the required set of files to the linux-firmware repo?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+No, the device is not fused. So it can use firmware from linux-firmware 
+repo, except ADSP and Audioreach topology.
 
+Sure, I can submit the ADSP firmware and Audioreach topology file to 
+linux-firmware.> >> +
+>> +&usb_2 {
+>> +	dr_mode = "host";
+> 
+> As Konrad has asked, please describe the onboard hub and the USB ports.
+> This will ensure that corresponding ports are correctly marked as
+> hotplug in sysfs.
+> 
+
+Sure, will describe them in v4.
+
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb_2_hsphy {
+>> +	status = "okay";
+>> +
+>> +	vdda-pll-supply = <&vreg_l10c_0p88>;
+>> +	vdda33-supply = <&vreg_l2b_3p072>;
+>> +	vdda18-supply = <&vreg_l1c_1p8>;
+>> +};
+>> +
+>> +&venus {
+>> +	status = "okay";
+> 
+> No separate firmware?
+> 
+
+The one from linux-firmware works.>
+
+
+-- 
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
 
