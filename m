@@ -1,101 +1,100 @@
-Return-Path: <devicetree+bounces-217615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4585B587E6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 00:58:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BEAB587F6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:00:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E51F1AA7D81
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:58:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BC001AA83D7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545472D7DE2;
-	Mon, 15 Sep 2025 22:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BC22DA769;
+	Mon, 15 Sep 2025 22:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="KEAGgYt8"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Da8S1gz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9EB2B2D7
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC9B2DC786
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757977091; cv=none; b=noEzg2S5uZoLI6lry8eb6SRzQ9tsGpt03mj5e47WWHsn9I25Kotw2XEmb4slMJWJkvS/jVDExkoJ4wDKUDnH8pYF3Mat0laQSqnAb6kbgyE04FTe14o1UBMV7Rh5R8HIBBKRkK5Wo1cF5cVbMmq+HCxJUSdHnStYqMZyZ49hP20=
+	t=1757977183; cv=none; b=D44DR1/kOTrxHp4vMe+dKx7tZxfAaWVDa6eNiIPMbOlWcure0Co5YG3gwVwxUIRpFD0bJ1vJW5o/WuNKKlRWol0oXM7r6LEwK0mI6h/dAwx6LN3E+y1mhB/ptAc9/l8fby9SCu6/esrl/F7Plvcaap00NdF76FwxnTWgE1tC7rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757977091; c=relaxed/simple;
-	bh=wrK0nRI1OFbp71bXaT4X7O+VxQvKh8LBne/yxp6bWq8=;
+	s=arc-20240116; t=1757977183; c=relaxed/simple;
+	bh=MK5JK3spo/EOu3EOGiWabvNo20/6TWA7kB8HJQJpF0w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lt6hAEHkwf35zbWZrZdHlxMTF4yDpQT9kKA5ejTM1kH0zFNLllNkuVBCWS0YjdEIkgCMwWMs+3nhh+OeWcjXiYGdrOVi8129F4wi64IIaNYVFGq1YlKfmhxKBHecT0sMye8hsL8wHrIdRWOUr432ipOMSFt0i7lPtWvIegCw08A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=KEAGgYt8; arc=none smtp.client-ip=209.85.210.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=p1ufWtHnr3/YRrZa2tw83e/GlmbYo/C5bcEwospTjzfRDhHQlu8adWNf7I2fO5l7EzS7dg0SALWup4RO7mEKZ23w//eQBOOTPtNiBuQ4/kkcyEzjA5qau6MfLZU8ECiKTqbYykp01WEIHT+9KtFLnT/nMfjS7giKFBNXloZrWNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Da8S1gz4; arc=none smtp.client-ip=209.85.160.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-74595f3852cso3367923a34.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:58:09 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-30ccea94438so3653729fac.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:59:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1757977088; x=1758581888; darn=vger.kernel.org;
+        d=ziepe.ca; s=google; t=1757977180; x=1758581980; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=kB/Wi+cRe7K/Xl4jkmaNXOwfB7KCAKUI6vYOHIxWVl4=;
-        b=KEAGgYt8X10JnmMsTHB6p0wyqh8oaZfbiQj00LhEO/YlLPOcNvkEeV7a3tJbpObZSG
-         JL5R3qjyVo5pvdmRULzN3TdK50LwaDJQKBPePMEOPo0RoMoLiSrEPdyt5t85tkscY8ok
-         Z1YHhG9Av55bBimcNiCXwQFpyJHcpVp3QoCE2cIxFpy2c3IT8dHawYeR9SatdTcPhBmV
-         jcu34QTeZW4oRB0NBzdibGmiVHJzfiCFXkZFtNryO7y7IrPSefYFiQLpAKXYXErJrVQ6
-         H96vBhBvC8mu/PI4uoBUasTB4NFJdQQ2Xov1lyUmhDzN9gTCM6E4kM0C2fpo52dVXelJ
-         Dt+Q==
+        bh=aTycPbHlQtDBtjOvMMJ3SZ6uhxSiX0nO4WaEP9DHCc4=;
+        b=Da8S1gz4iakIeaStzHB0xDZFXg7T7vcxTHVB6gXN6BMldbURN36gDQFLrIE4ttFtEp
+         R/HBDstAaFNDuHkVn0gOv5avorcEPXegCptwc3OL1BBiC/zZ1NmnTVlwKh4A8BBu6loN
+         eiXCrdVaBOiImi21dMuq/soQRB/3Xq03iDD1HyHjVg/81h45hvWXXJFWboA3qSosD6bC
+         HW9J/dDlQ6N3zcfEdmX+yBLnSz+sCrVC2O5Di+t762Wrcs2bEeb73W0Q2PKcXz/zJzoe
+         xPfzDPudbSxKJ9xepfRUzaXQf8wroAEfDFCAjXDRuTvjdH2YpIo84zx80T85UcdfZkz6
+         BDlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757977088; x=1758581888;
+        d=1e100.net; s=20230601; t=1757977180; x=1758581980;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kB/Wi+cRe7K/Xl4jkmaNXOwfB7KCAKUI6vYOHIxWVl4=;
-        b=tUM6tloWRgdKOhHLmg5dr4dDKPX6nFm5SOrNtxkCJDJ5VHlvS/7YQDRQ9K6j25OQkK
-         SWXg2tmRT2iHNO5NqmHTfShpwkueRKqBan/pE6H67l3kqrKl6uAOBVW41HvHRm4kSQyu
-         UjSWwuqQJqSjEA+aKNjSNcfgBOoev+MdO0tfCNewG4Sr1Qz3s9xopuc0E3KEXYCiBZfi
-         4p0H8qf9HOYPs+FO2sThCIiCueVsJnKW23gt3r/dzD2Q2hUj6q3sPoQCZIcz/ywWLdJk
-         b3VXP9GltTYqdv2WLm+odzs2O0q3VwOYtqD5oR1ZOBpE2O+O6nOGPAYg7sxQRwkMxNmg
-         yrnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYc30temJ+2IyRf/CdDsNTFqLTOcfSrS8DBy0ngbLpfLZV/InQ3bkvc/K8hdkt2RLKd556MdMV3n8s@vger.kernel.org
-X-Gm-Message-State: AOJu0YweKkof2f2r157S+OvTwgePr/1rLUglo/ImeowX+8FRrVRasN+x
-	gLJOnDF5AjWPsDUyubHw2nu+E4JY24GZbZrxQ4mSb2704gXUTQml7bG7tfiiF8G2LTk=
-X-Gm-Gg: ASbGncvQoRx5XbKRVr/gCfb903Vv2xWy3sGCtpgVI0tR6IYfCp8kn/FPBFOcfK5Szhf
-	CLs7Mp+mJKUvVfEz0p42AcaJHq7mi3NrCnGP6CP0aI4oXK7qBX0sdAlfXzC24PIN7aIBn7yPUCs
-	zsVG4iKw6P+R4krdpXEIQWSk7OwUcQLQMIPpkj0AQRJsv4p9MmdDMhenZ2OhgHPhJEuzGzwMusK
-	FuJNm3qWcAjtb+Bj4/mpMlYH3QsIZ8Enl+KiTtYoqgUHHdZ6hLlOELwb2aImfIoTNhCPrgUrNOk
-	rmWAhat9ww53WQZx+ReuCF1p+FwtT7NuUPVDN1NTvpsmmHED+jL2D0YijMpNNA9abVfsrJyIfD+
-	h0h1oJjc=
-X-Google-Smtp-Source: AGHT+IGSUOqb+ed31/428rqH5N5OvGqFxlxhfX8elAayaMc3UDw7hqxF226u18IdPmrznlxbRNVzmA==
-X-Received: by 2002:a05:6830:6adf:b0:745:9dc8:8dfd with SMTP id 46e09a7af769-7535638abb1mr9759182a34.35.1757977088588;
-        Mon, 15 Sep 2025 15:58:08 -0700 (PDT)
+        bh=aTycPbHlQtDBtjOvMMJ3SZ6uhxSiX0nO4WaEP9DHCc4=;
+        b=ncESe/H2y09Shui/ta+YvUPIISownlwPtaspVWdtSBry7Gff+F2C+nHlkIuXhRwPdg
+         NZDOTaWj77nEWeVvntl7URH1t9SgkPVJe+BwE8Ru4+1LDS5swW27jEFFUR+wCIy4wb8k
+         jckgIBBIcqeNDNC6En/q9fnN5nZPgFkJxh3iJzuGg89iPrQHKQ5/4yw/S6rRjWcUSUQ1
+         pCfxsFYWTVANWnwzL6VXmiSVMxxLqvHe0TMbv5TT90e31M/VwOTHNwVdpexlQz2uIejZ
+         T067kTn6YCGehfY6v9/6NzLLnVMBBBybhFQyfj9Z1K71s6zOJyYTOKu7F5BtOss0cx0H
+         IGlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHJsmqomIaEUx1WDBF+smSzFdA0KSqAujzP8632PCbL2XY5Ib19GLEc1XiJoWiDEU6lw0hRdvUdP/j@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBCjTyff0tUqeXigPkygraxCK8mZo+KHHFpDMlKvncPRpAkzAA
+	JqbJw3CoyiibsW0PHAQ3jhUIDXtOnjKE1D0gX18HcCRy5WiruxLxkaun1mp5EBpgdzw=
+X-Gm-Gg: ASbGnctujkrj0k9VXWbRdtT8byuVfiP8nMzjsiIT+vxPaS6hx+n7qzBv14L8fCm8Umv
+	FXbYXcjViGbxb4PLswzccSL3lOKfCy9pC9dGXTWVdK8OF0EhFCm/zuCFx6Xo8owCphFvCzMEIqM
+	AmyHdO26ObvNdErB8gfRdm8mFGACZcYbjhcE5GklOdj/dg7rxNxO52Y/L0RmHi+00TMu6m42ZmJ
+	F0FcHfllYamSArkOl61EoiZFbATemryeF9EDh5hL8IsgMupn6eb3E9Tp/j1TyYsPrsxhd1Pyx5w
+	VKK0fMYJMPhMvc9gWfJeJ8RvgV2hITgD4157rgRDj39t4ciK1jjVImnY3J9Zksbmq/n7S51eF/C
+	Biu+7w9I=
+X-Google-Smtp-Source: AGHT+IHaizr3a2V9CFBUtFDTvOTqaJTANyOfH5v0JTyHH5V9DAauzxISXWz+PQumMIbWbikwaEyCPw==
+X-Received: by 2002:a05:6870:82aa:b0:301:a704:ef1c with SMTP id 586e51a60fabf-32e56bc4018mr7508892fac.25.1757977180618;
+        Mon, 15 Sep 2025 15:59:40 -0700 (PDT)
 Received: from ziepe.ca ([130.41.10.202])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7524986c872sm3180269a34.15.2025.09.15.15.58.07
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3317d74fe33sm1565394fac.15.2025.09.15.15.59.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 15:58:07 -0700 (PDT)
+        Mon, 15 Sep 2025 15:59:40 -0700 (PDT)
 Received: from jgg by wakko with local (Exim 4.97)
 	(envelope-from <jgg@ziepe.ca>)
-	id 1uyI98-00000004Yk1-1O1R;
-	Mon, 15 Sep 2025 19:58:06 -0300
-Date: Mon, 15 Sep 2025 19:58:06 -0300
+	id 1uyIAd-00000004YkX-1MrY;
+	Mon, 15 Sep 2025 19:59:39 -0300
+Date: Mon, 15 Sep 2025 19:59:39 -0300
 From: Jason Gunthorpe <jgg@ziepe.ca>
-To: =?utf-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
-	mchehab@kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	linux-media@vger.kernel.org, Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
-Message-ID: <20250915225806.GM882933@ziepe.ca>
-References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
- <20250911155720.180465-4-benjamin.gaignard@collabora.com>
- <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
- <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
- <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>
+Cc: thierry.reding@gmail.com, robin.murphy@arm.com, robh@kernel.org,
+	joro@8bytes.org, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev, will@kernel.org,
+	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
+	code@tyhicks.com, eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com, bboscaccy@linux.microsoft.com,
+	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lizhi.hou@amd.com, clement.leger@bootlin.com
+Subject: Re: [PATCH v4 4/4] drivers: iommu: refactor arm_smmu_get_resv_regions
+Message-ID: <20250915225939.GN882933@ziepe.ca>
+References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
+ <20250909154600.910110-5-shyamsaini@linux.microsoft.com>
+ <20250909155847.GB882933@ziepe.ca>
+ <20250915162842.GA23954@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,29 +104,20 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
+In-Reply-To: <20250915162842.GA23954@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 
-On Sat, Sep 13, 2025 at 07:58:04AM +0200, Jörg Rödel wrote:
-> [Adding Will back to Cc]
+On Mon, Sep 15, 2025 at 09:28:42AM -0700, Shyam Saini wrote:
+> > I'm comfortable with this side from the iommu perspective once you get
+> > agreement on the DT representation.
 > 
-> On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
-> > To me this rejection isn't about Benjamin's driver, all iommu seems to look
-> > alike, so anyone else that would have sent new driver would have face the same
-> > issue.
-> 
-> This is about ignoring comments from one of the IOMMU maintainers. I am not
-> going to merge a driver with open comments/objections[1] from Will (and a few
-> others), so resolve this with him and get his Ack.
+> We haven’t heard back from the DT folks or Thierry. Do you think we
+> should wait a few more days for their feedback, or go ahead and send
+> v5 as an RFC instead?
 
-I would strongly object to trying to share map_pages, unmap_pages,
-iova_to_phys, free and other iommu pt related functions in some
-limited way instead of helping on the much more complete iommu pt
-work. Which is what I said to Will, but for some reason he suggested
-it anyhow.
+It is about normal to wait about another week and then ping them for
+feedback.
 
-Sorry, but it doesn't make sense to complain about duplication in
-drivers and then not help advance one of the biggest projects to
-actually concretely and comprehensively address that duplication.
+Don't send a RFC, you intend your work to be merged.
 
 Jason
 
