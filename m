@@ -1,166 +1,122 @@
-Return-Path: <devicetree+bounces-217396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42215B577D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:16:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6FFB577DE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:16:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF43217737F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:16:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F31137AA2E9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154892FFDE0;
-	Mon, 15 Sep 2025 11:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D843B2550CA;
+	Mon, 15 Sep 2025 11:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="MWK5OpOa"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="D2h/Heah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABF82FE599
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 11:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E46222127D
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 11:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757934942; cv=none; b=mfyghc5NaCY9dlmX/J1W7/G/Sbf+wMQvJf+J/4tzbsFqY4WnvJ+EHbYFkzNX5uyBs9Uz/wY9X0FFo7Ow8MrYp1hBtSL8sN1hR6FYdRh3IaQofuBi56aaDWNmKSMO20CugwYsiayIXzg6AxFsrW7vpP3GIl+YJXnApWTBcGGnobk=
+	t=1757934983; cv=none; b=D8Y8rY3bm0v+KrhyrBbPpLNX1dg8xupTqCdmIx1Gfnx9+uZ7UQezvJnqBiM8vxMY2TNVBLwJDGs0kPsQ3T2ujD9FKKzomiEeKabJF1yUXEx0GvH6VX/s4UTp/Pjg7ScWTC/i8T18QiWfUfUCmVfvgupkprw7nTiifgxxq8vwXXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757934942; c=relaxed/simple;
-	bh=+N860jjILz9WjHBmzobR6cwMMc5hddgDbocup4wZWZU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p85fFVayt5SFjHR1P2P5lM2TpPB+hn2IOO8vi5ePLHPIREzJ9LDw5WQU9uHpfR+M3VSx8G6NylpoeYCaMoOUh/LGsDZeTIUDQW1b2c8AX+ySTe57+Fxc3GFFI7/QOKKaiu+yiTPAS54kRfuN4HCcYqwZepn9azS55l7hkZSSK+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=MWK5OpOa; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b07883a5feeso694371066b.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 04:15:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1757934936; x=1758539736; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0bwrK+W/kVJgy2ql0Fi6gGVV6KZbMNKdsTPaoo3b7DQ=;
-        b=MWK5OpOaIlc1OEADg7O9mJxX2UG99rpTo5ip+3avrMeahnidtn6WmAdYPmNRQRSwqq
-         zlwBwS5Yz38B6ragbRRG33mNEAXvOg6C+lmpeoK4qhscaqzezgITxvZ4uRe+zbUBfmPi
-         9HJR1o4FOuFEoRMVM1CB0qmbUBc7ZjWa7DuBcX+M1ClRYQEP0r5d7CIEB5lyel+NFtA/
-         4n5uGaAPSN73J8zR8uQp0vsiwKfQA++wcsa0LvohFmOuNiTd47Qoo5NCEnZ7+OpUwd2M
-         MM1nJ+LNljPBlyaoR/j8MwGf4wZT1xnHnrwlskI5idfdGELMoAlmbeQr8AIjS4drUx6H
-         q2xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757934936; x=1758539736;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0bwrK+W/kVJgy2ql0Fi6gGVV6KZbMNKdsTPaoo3b7DQ=;
-        b=KAlj70jYTwtdBT5DaWlgT3AWKI6CA91FHrksD8YuwiA02vXPwBIuujO937o1B1GPU7
-         YW/WY1Psc/Fx4qU4AQjrydTq5R9tEnxE8/vEFlLIUhd+/3OR4WJ+TqB2AHCqDtyvCwe2
-         KoKstFugaaUeXeSzEEDrJJDUJ/X1+MN7zHoaryp14l2vruL2t+P9yjYHMsF/vstNyFhU
-         2uzSyxs4AeR8xh4Rl0Q0XYJMudGWmuNTu8mRj7LV3SIpmS4/ksO+Fz5VgWKbXkZTvkcV
-         9gpNUW90Gdt1kFCeluPwUUf4NfpLq1bElpuX2QhkISlx0vea6C9rl3b7OM9YPFMOthE8
-         ZFYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUis1z3UtbHc2k7JiL3BJwCvSfzNl0enaH8ANAJOWMaIDo/KwmNSyy/utJGgH9Tz4Crq8G/8OZOaHDV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyhx9JEZSkrfA3aTGkWPpIowIcVNQTsCJW66SSkbZfCWQhGyVCi
-	x+fbPAURdUi99doFevH1eRLimxEGgPMG9kBUxls7D5o/GNLwKuI2/KyvAFWaAsK1zPI=
-X-Gm-Gg: ASbGnctUhVLew9PkO4o04W6A2Fzv2kQqRM4A869NeQWqEAmzb1OytdEyoL/9LOE5S1/
-	QFquDSAlwOxi3qYXVmy/KpdOkZl/MYZ3n/Mh5ZbvUsNO9xtLqLayG8CiFCjOtjUeZZRJdGWePdQ
-	coSqkqYWbZN9HUUmhXCTTdzn0nRldyGRRwB/74I53r7iAqna9Bm2sHkKc6DD29mMg4FPNGdhmuJ
-	wX5mwc4V7ueWghfpljChK0YcdPwODmUQFOxsKZiOmqDHppj1ln7K2mKomhHqJR45haY2ojMxB76
-	iKLh+4CKirf+Y8GuIonODxJ11PsQb1f2iNXnKWf/GNCHAL/DCRy9Q0FXOmq6cs1AQ5iATrT+OCs
-	CtXTbsxOolFtJXdydTmuIt/uPlsEnYEQGhUX/deLjRbQBC5GOI5Kub0kMyZogYme4E9J0fZurt3
-	1tJVes
-X-Google-Smtp-Source: AGHT+IEmXxvaJJ9Thsbd/yEZn6zSBCmcT2cqQGQCUUMD42XZdQIGQ90LE23Fm93l8b7j1T6PqUPG3g==
-X-Received: by 2002:a17:907:983:b0:b0c:a265:c02c with SMTP id a640c23a62f3a-b0ca265c314mr699765966b.12.1757934936083;
-        Mon, 15 Sep 2025 04:15:36 -0700 (PDT)
-Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07d9e18c24sm561851366b.61.2025.09.15.04.15.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 04:15:35 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 15 Sep 2025 13:15:19 +0200
-Subject: [PATCH v5 2/2] remoteproc: qcom: pas: Add Milos remoteproc support
+	s=arc-20240116; t=1757934983; c=relaxed/simple;
+	bh=F9mIgF95+g7qxIu51oprAqeiRAaBYGZLzrOrNew79ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ERTu0/eTtHpe7LU1GuC+gOTJWavIYWmezDUkgEUrRlEw0BDZilc2dTaONBbbo3Ag3QFlLHGNiFNrWGWfRW3evPkhOz9G43sgitcoL/VxAdFYgUPbOh5+wGbk0RoOuKArHyxe1PSXaTRnKVxgYVHs+OnnCI4a/wNEa3jma9Efo7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=D2h/Heah; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 47947240101
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 13:16:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.net; s=2017;
+	t=1757934980; bh=ohvDP8osKuunTpp4VuXEGFMj1lvZubJde5NjZIldsbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=D2h/HeahBUJoV9e7i6ZjabjYV9YkJLUI08L7wunHCU2gdYWjIqt3KOCaUQeaNq6vB
+	 MwUjSY21HeZorgKxCuL0LZI1SCq1BOBF5xefM+Orkpx0WbFT9pj3D4bfoUEmgXkZgo
+	 1afrMT2ZEJcIYnEZjuzDCzFB5InUp3VxIuIQik1gpVPVbeOIbK77XCvK2ekY286TTp
+	 TtzGzoQA3bE0GhPXRl9BTlgRnqXvMglZ+19AzlTtUXeJ30MVQhWdO/mSeM0HkLcESG
+	 wHtr1BBG71epZ61Kk0pH50jXl4vh2z4R2U9spFYrM6hLUTuylUtmtkbiN/wuhbQsb1
+	 lobUgdruberiA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4cQMst0r15z6twB;
+	Mon, 15 Sep 2025 13:16:17 +0200 (CEST)
+Date: Mon, 15 Sep 2025 11:16:19 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h313: Add Amediatech X96Q
+Message-ID: <aMf1gYbEfWerO7_J@probook>
+References: <20250912-x96q-v1-0-8471daaf39db@posteo.net>
+ <20250912-x96q-v1-2-8471daaf39db@posteo.net>
+ <aMPftsaf4x61-bGY@probook>
+ <CAGb2v66khAeP5pCq6RCrPUwQr=tDqJ6O6cs0gokbMNjpTejuvw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250915-sm7635-remoteprocs-v5-2-96526cac59c6@fairphone.com>
-References: <20250915-sm7635-remoteprocs-v5-0-96526cac59c6@fairphone.com>
-In-Reply-To: <20250915-sm7635-remoteprocs-v5-0-96526cac59c6@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757934933; l=2001;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=+N860jjILz9WjHBmzobR6cwMMc5hddgDbocup4wZWZU=;
- b=wAZfi6x3+OqVADm1Ao+uS/Jrnveeo2PlNBkQppNDqF9qOMZo9JF1bMv9l3fr+CP7PWOz1RDX1
- PXsvGtR/STLDD+3hxmpvTuZpyv1TDlU4uNIyCwOSNjyvtA+yloZOjtS
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGb2v66khAeP5pCq6RCrPUwQr=tDqJ6O6cs0gokbMNjpTejuvw@mail.gmail.com>
 
-Add the different remoteprocs found on the Milos SoC: ADSP, CDSP, MPSS
-and WPSS.
+On Fri, Sep 12, 2025 at 04:56:36PM +0800, Chen-Yu Tsai wrote:
+> On Fri, Sep 12, 2025 at 4:54 PM J. Neuschäfer <j.ne@posteo.net> wrote:
+> >
+> > On Fri, Sep 12, 2025 at 01:52:10AM +0200, J. Neuschäfer via B4 Relay wrote:
+> > > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > >
+> > > The X96Q is a set-top box with an H313 SoC, AXP305 PMIC, 1 or 2 GiB RAM,
+> > > 8 or 16 GiB eMMC flash, 2x USB A, Micro-SD, HDMI, Ethernet, audio/video
+> > > output, and infrared input.
+> > >
+> > >   https://x96mini.com/products/x96q-tv-box-android-10-set-top-box
+> > [...]
+> > > +&gpu {
+> > > +     mali-supply = <&reg_dcdcc>;
+> > > +     status = "okay";
+> > > +};
+> >
+> > Note for v2: The GPU gets stuck in probe deferral, and I forgot to
+> > investigate why.
+> 
+> You are probably missing the GPU power domain driver?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Indeed, with CONFIG_SUN50I_H6_PRCM_PPU=y the GPU probes successfully:
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index 55a7da801183d54569452dbb48041fdc52bf9234..be4edd0c3eeefb80d3b25a48f6dfe0b7590bc624 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1255,6 +1255,26 @@ static const struct qcom_pas_data sdx55_mpss_resource = {
- 	.ssctl_id = 0x22,
- };
- 
-+static const struct qcom_pas_data milos_cdsp_resource = {
-+	.crash_reason_smem = 601,
-+	.firmware_name = "cdsp.mbn",
-+	.dtb_firmware_name = "cdsp_dtb.mbn",
-+	.pas_id = 18,
-+	.dtb_pas_id = 0x25,
-+	.minidump_id = 7,
-+	.auto_boot = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mx",
-+		NULL
-+	},
-+	.load_state = "cdsp",
-+	.ssr_name = "cdsp",
-+	.sysmon_name = "cdsp",
-+	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
-+};
-+
- static const struct qcom_pas_data sm8450_mpss_resource = {
- 	.crash_reason_smem = 421,
- 	.firmware_name = "modem.mdt",
-@@ -1429,6 +1449,10 @@ static const struct qcom_pas_data sm8750_mpss_resource = {
- };
- 
- static const struct of_device_id qcom_pas_of_match[] = {
-+	{ .compatible = "qcom,milos-adsp-pas", .data = &sm8550_adsp_resource},
-+	{ .compatible = "qcom,milos-cdsp-pas", .data = &milos_cdsp_resource},
-+	{ .compatible = "qcom,milos-mpss-pas", .data = &sm8450_mpss_resource},
-+	{ .compatible = "qcom,milos-wpss-pas", .data = &sc7280_wpss_resource},
- 	{ .compatible = "qcom,msm8226-adsp-pil", .data = &msm8996_adsp_resource},
- 	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
- 	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
+[    1.396826] panfrost 1800000.gpu: clock rate = 432000000
+[    1.396859] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    1.400125] panfrost 1800000.gpu: clock rate = 432000000
+[    1.400158] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    1.403263] panfrost 1800000.gpu: clock rate = 432000000
+[    1.403297] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    1.406582] panfrost 1800000.gpu: clock rate = 432000000
+[    1.428046] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    1.442411] panfrost 1800000.gpu: clock rate = 432000000
+[    1.455175] panfrost 1800000.gpu: bus_clock rate = 200000000
+[    1.466484] panfrost 1800000.gpu: mali-g31 id 0x7093 major 0x0 minor 0x0 status 0x0
+[    1.476828] panfrost 1800000.gpu: features: 00000000,000027f7, issues: 00000000,00000400
+[    1.493284] panfrost 1800000.gpu: Features: L2:0x07100206 Shader:0x00000000 Tiler:0x00000209 Mem:0x1 MMU:0x00002821 AS:0xff JS:0x7
+[    1.493297] panfrost 1800000.gpu: shader_present=0x1 l2_present=0x1
+[    1.506114] [drm] Initialized panfrost 1.4.0 for 1800000.gpu on minor 0
 
--- 
-2.51.0
 
+Thanks,
+J. Neuschäfer
 
