@@ -1,201 +1,128 @@
-Return-Path: <devicetree+bounces-217340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D77B575BF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:12:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 360BDB575CF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:13:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EC203A57D1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:12:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C94893A8BA5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA0A2FB0B5;
-	Mon, 15 Sep 2025 10:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF6F2FB62A;
+	Mon, 15 Sep 2025 10:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZBc6wlxT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOwoYI0p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA41F2FB09A
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9E42FB627;
+	Mon, 15 Sep 2025 10:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757931143; cv=none; b=Rz96AD3wAtrbm3wA2YFz5LcaUvouOadFCOcTS1sI/HBSMP+maxjicGO4A7pJqBkzH1prLWV8wozigf3nOo+TS0Rtmum7LjezEAFLfZ/HMvszeuMUApnH9Mis4t3gxPMy9azkz9RKowmi++t1NOxVCklgU2OKuGyQZuKL+Q4RUgU=
+	t=1757931185; cv=none; b=PWxpu+NHoUlqvGtLgwG5WTVKK1+ZJx04kU9Mj8jrjhafwwua+guKpyCTOqixia7nexpcX3F+qnOJYHkSROMiShqljzeNmSoO/OOqeJzwWfYpclpRh3bFaczcI/SJ8Mj2DS9O/qQeuW+04XdzLnJTXqd6SHMfABYMmz/BM6WnxPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757931143; c=relaxed/simple;
-	bh=jG342V/c+j5CoBX7FP4+dyAJiibjxkiQ+yvM5FWlx9c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dhKSqRT/wbbHBowAdxtgENZ6uYsJNa4AElb8G6KPBPsJjbxgo3k/Nh93ZeJmfy8kk5aSAXIa9TVM8GHhjfBgIVkFa2Y0vsr7doi/vNzuO3D2ZUBQUMIsiWDJgn4VriaES2ZMaFYH+AB3e8qrhIIWMRaV82Gc7Vr78H63gEgx880=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZBc6wlxT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F8Fh5i031757
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:12:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sKD/3kPWUFAIEKI0UmpKQAcxh9lP5Wru5KsNYI2Yxfo=; b=ZBc6wlxTY2NrEsig
-	4fQSCUgYY0661833ZRKf3dhutGaTAzFuHKLF3C1rfXISL2/jQUDk9D013zPWen2u
-	wZIPk1j2YBJ/R2kQl07dACQ8jGwRzyItehxgwlk9Edh24ZmWGBY6yc0NnX3mcafn
-	0HNtDPxk0fs1714LQ6pRoeqkF0tzHWRE4bSyy6Qwq2eP4gNuu37lfyKUwfMoHrVE
-	QTYIw+5pNEaUPbC9mwZ436p61Q2YDL6KYHHsKtmRQiCjQnjU/soVB0yVci1F8tab
-	OV68RFIxLx7hl3P/HKZr13Nn2vxowr3nXiMCJpb/wjfLKTnd2EgynxizCnhZNmG4
-	B0N/Yg==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494yma4j1c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:12:20 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b54b301d623so663642a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 03:12:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757931139; x=1758535939;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sKD/3kPWUFAIEKI0UmpKQAcxh9lP5Wru5KsNYI2Yxfo=;
-        b=H3vhkAIn6Jz5aZi48ZmBMTgZm1yDc2D7gSye5mHcTBXF/Cn58+/TNtoH82KWV5GQl/
-         zkuSOuq4DrAD+AndCN1/IxwZbsnhCXkVwFJwURtR5zhyY2x5cVP0QlIwpWTJlJhDKygF
-         6DpMAGt3CPXLCAyrSF7dHFJCcK9noGdu8UK+DWU4I11C919LfuUTiV55I/tT7wF66+FE
-         Gx7IDbpC/c6nf4lPMa3sxHcadGY9kYMJckcC9rMVJ+rVgWvIL6D7PlFqfJGpx43KGFz5
-         ZcMZrXjk00hvLrpl8VqebH67Gt0hJzyGHl+KBQgrAdZEr7K0v/sSyK6fgUpJGSXljMXG
-         rI8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXWXb9m5nt5lCVjtqv+vhM5BnUfY33rHBHLd9Y0hsqoL/kNXOYTF0PShGI8/U8zTn/1q2O4NuW1mklF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2iE1mfGTycTGJwlstla2qXEf+jqRo61Tz0If3TzDpXC5MXGYe
-	9cMKhvoIW29V8R/uREIvc5f0TJW/qhKz5XBHBzaPH6ZnoWW7KFtH1MBC7B+Iwi9oSpgGvl4E9MX
-	D5PCiGXiY2y2eh65A1TaUHDFt7XJTH4+O3ktAzlmpAzPN6xbcLUH0QTf097EBR5rh
-X-Gm-Gg: ASbGncsiS8CPWRJPfzKcau/WNvroFiLxULfBeSoJjIZK9VCK2fVM0DfavO6+hhE6tl3
-	71/3WMuQkIuqpTVsNvIPq9HgDY65tNIEWFjRhgJ6UenKojuHUSXmbh/MsuglKjbG+NqoR8Zxnqo
-	4p6J6mSjyTkLJ+p5W07tmKUwGBrR3Wz4mewbqxsAQW7DbcqAFOUPC1dSWRtTfGjE9aamNixa8Ln
-	SwBUJXxIQ9LS4AhkIu/k66SKJiRagKODR8VvUnykRuh81ZeyAW2d8I43Ae1tApJZe//vcu4BlDl
-	Itrz7BTCW/N3wjhehNIqkyWzygcctU9Rw2w/rV/JxUR0v1iVdbSj4/aE0BOQyc3DzgP2CPS7jDK
-	NRcCVV6nJYlYTG7uqGzKv8TxEftPTqJ6sWWU=
-X-Received: by 2002:a05:6a21:328d:b0:264:10e4:f87 with SMTP id adf61e73a8af0-26410e411fbmr1664448637.4.1757931139313;
-        Mon, 15 Sep 2025 03:12:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHxZXxZBGVcbThhG/IvVDI3mpTgc5wznmZnjs66RxbpQzCycjFMO9w4+/RnbJr+43MLjBFNnw==
-X-Received: by 2002:a05:6a21:328d:b0:264:10e4:f87 with SMTP id adf61e73a8af0-26410e411fbmr1664402637.4.1757931138808;
-        Mon, 15 Sep 2025 03:12:18 -0700 (PDT)
-Received: from [10.133.33.231] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54b03cf65csm8329380a12.16.2025.09.15.03.12.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 03:12:18 -0700 (PDT)
-Message-ID: <f030649a-9505-4bda-9ce9-00eeee8d3b06@oss.qualcomm.com>
-Date: Mon, 15 Sep 2025 18:12:10 +0800
+	s=arc-20240116; t=1757931185; c=relaxed/simple;
+	bh=bb9Mg/D/jEHiaHsLAgrg6OSUxGwRv1ubjnV9xw/kiW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eZBz5YQgCfQfZNU0qaaXuR6rpSDQMfXqjN/HtaFDGesqI3+coM+ji0yRnqXNPLDecdwt8HM3LCyclLrTe4RN3juJufoh3b8Bh1T/lB8E/lRuZIqZ8St/9nmABUP99W7UJVYktfNol237Nqj9kCkiJMnfHLMK8D/dHRf7UslPLbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOwoYI0p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD41C4CEF7;
+	Mon, 15 Sep 2025 10:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757931184;
+	bh=bb9Mg/D/jEHiaHsLAgrg6OSUxGwRv1ubjnV9xw/kiW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MOwoYI0pzlw7L57/NjzW0kWEOhTeYrPAPpgYGQ+Sb3S7oWReSYYhzrBAzW3yCFmVw
+	 LkIGEggrjiW//byAc4Lh9OmKKssKd0v1WGASy9HhwnxwDB5net5ZNWuNGdx5zoZZeA
+	 lozqdOKVq/gKDD2zfdHOzTI8oRZzwkA6kHqAGpqHPFzFaJf11ITrsE3SksLByb4KTV
+	 UxRvvTVEjyjaeZMTpAWKqWH2CG12frOfhQCJye9XpSxfRpDOIiBKEwiRDVRwwVfpWS
+	 tRQfQsGQm032z0j7fhruWg7hFL4rQApVCUicVG9YGIUy7PoHjnJH6v8sz9X6WsR49M
+	 hkbTjspEj/ZLw==
+Date: Mon, 15 Sep 2025 12:13:02 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Drew Fustini <fustini@kernel.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 2/7] rust: pwm: Add Kconfig and basic data structures
+Message-ID: <upgthwp3cyohhe2gkzsramzshmvz3icjbhro6hgk2drbbqczi4@ygaanetydgjv>
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+ <CGME20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04@eucas1p2.samsung.com>
+ <20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/13] phy: qcom: qmp-usbc: Add USB/DP mutex handling
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20250911-add-displayport-support-for-qcs615-platform-v4-0-2702bdda14ed@oss.qualcomm.com>
- <20250911-add-displayport-support-for-qcs615-platform-v4-11-2702bdda14ed@oss.qualcomm.com>
- <nfugwwknnlxls75yo5rex6ggu5nzpq6enyx6e6nfnfei3icxjg@t7dnzcfcjw4o>
- <cf6c2c2f-9878-4181-a3c8-9692423308bd@oss.qualcomm.com>
- <q4dplt6fq3cneludcuhxevklaj6omeio3cjxw2owt4h3wistd6@arv23ri4cl75>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <q4dplt6fq3cneludcuhxevklaj6omeio3cjxw2owt4h3wistd6@arv23ri4cl75>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxOSBTYWx0ZWRfX4vb1AalqlZ2W
- PMf4N7oBawgL0vW9McgAx5BPZvPt8O05fHlEwAepl+e8xEjUeDPp3JJ8Dtjqw0WdWNCMuRVACxt
- yPgu6p/lLJ+Y15Ddg8R1ufNqsiXe3nLGwx2auEwd1uKGf3/GBLOQ+7OKmgbJHmEF6YEtnhnbhEH
- XZSNe023xgKxGZrElRGcyeU8S7VHSJI1vpj2apRR21teDJnC8rxmwUvtTi0Ey+BjC0IIEUttVVV
- C3KkhetePfQXvhYltScI6C7I4C9oIQplKZFiH1Shh1J38eLufYZ8PMO3KJEnAKo9FscsFw1WHM6
- 4W3Ht2qJpTacrdJJLoqboxMAXt+7/t3fRCLcNc/4wBsEpML2cSn2/H+K24Ljo4aQX6yKIzStiub
- Jh9yv7mG
-X-Authority-Analysis: v=2.4 cv=cdTSrmDM c=1 sm=1 tr=0 ts=68c7e684 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=CZmHqXGeirO8O24YQhMA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-ORIG-GUID: nPeCVukHTR3oDdWMwI6Jf-86bLD7HEkb
-X-Proofpoint-GUID: nPeCVukHTR3oDdWMwI6Jf-86bLD7HEkb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-15_04,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130019
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zryfvf6d45dfcezd"
+Content-Disposition: inline
+In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
 
 
-On 9/12/2025 8:09 PM, Dmitry Baryshkov wrote:
-> On Fri, Sep 12, 2025 at 08:03:01PM +0800, Xiangxu Yin wrote:
->> On 9/12/2025 6:32 PM, Dmitry Baryshkov wrote:
->>> On Thu, Sep 11, 2025 at 10:55:08PM +0800, Xiangxu Yin wrote:
->>>> Introduce mutual exclusion between USB and DP PHY modes to prevent
->>>> simultaneous activation.
->>> Describe the problem that you are trying to solve first.
->>
->> Ok.
->>
->>
->>>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>>> ---
->>>>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 21 +++++++++++++++++++++
->>>>  1 file changed, 21 insertions(+)
->>>>
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
->>>> index 613239d15a6a3bba47a647db4e663713f127c93e..866277036089c588cf0c63204efb91bbec5430ae 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
->>>> @@ -1061,6 +1061,19 @@ static int qmp_usbc_usb_power_off(struct phy *phy)
->>>>  	return 0;
->>>>  }
->>>>  
->>>> +static int qmp_check_mutex_phy(struct qmp_usbc *qmp, bool is_dp)
->>> mutex has a very well defined use case - a sleeping lock. Please find
->>> some ofther name.
->>
->> Then how about 'qmp_check_exclude_phy'?
->
-> qmp_usbc_check_phy_status()?
+--zryfvf6d45dfcezd
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v14 2/7] rust: pwm: Add Kconfig and basic data structures
+MIME-Version: 1.0
 
+Hello Michal,
 
-Ok.
+On Wed, Aug 20, 2025 at 10:35:37AM +0200, Michal Wilczynski wrote:
+> Introduce the foundational support for PWM abstractions in Rust.
+>=20
+> This commit adds the `RUST_PWM_ABSTRACTIONS` Kconfig option to enable
+> the feature, along with the necessary build-system support and C
+> helpers.
+>=20
+> It also introduces the first set of safe wrappers for the PWM
+> subsystem, covering the basic data carrying C structs and enums:
+> - `Polarity`: A safe wrapper for `enum pwm_polarity`.
+> - `Waveform`: A wrapper for `struct pwm_waveform`.
+> - `Args`: A wrapper for `struct pwm_args`.
+> - `State`: A wrapper for `struct pwm_state`.
 
+Args, State and Polarity are only needed for the consumer side of the
+PWM API in Rust, right?
 
->>
->>>> +{
->>>> +	if ((is_dp && qmp->usb_init_count) ||
->>>> +	    (!is_dp && qmp->dp_init_count)) {
->>>> +		dev_err(qmp->dev,
->>>> +			"PHY is configured for %s, can not enable %s\n",
->>>> +			is_dp ? "USB" : "DP", is_dp ? "DP" : "USB");
->>>> +		return -EBUSY;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>>  static int qmp_usbc_usb_enable(struct phy *phy)
->>>>  {
->>>>  	struct qmp_usbc *qmp = phy_get_drvdata(phy);
+I don't particularily like like pwm_args and wonder if this really has
+to be exposed to Rust.
+
+I think for State (and thus Polarity) we have to have it for the
+forseeable future.
+
+Best regards
+Uwe
+
+--zryfvf6d45dfcezd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmjH5qsACgkQj4D7WH0S
+/k4H1QgApRy8liAOZrzb3w50HXnIjFUP1zT9oN5uSbu1nwLFcoyPu1JvjbpxW7g1
+aMBxeARi3PXREgQ6tZSbrWcb9+PiqySUS8tXIEawBr6Kskazxjtiz1LPYt0sLsuF
+z+IRMCWg4pPm8g3t47tYvNOFaBnd49AjzrbPJrrlsDV13eisMsbVfYdr+7ZdPQPC
+Evo9Pjzeg6jpKVWmp3OgFN6Mf83dFDB2XJKiZsDYRWuBjM6uJb3roiinPQfzKOAF
+zAF32eplMf+6CcGLoBgdVJlkG2hVh/5xBgjYw7Zk9I2zcwuDJ13wvM2umgbtBCVI
+aCZYiiFaLX1WA4w+SH6oQNi+C2WebQ==
+=pc6O
+-----END PGP SIGNATURE-----
+
+--zryfvf6d45dfcezd--
 
