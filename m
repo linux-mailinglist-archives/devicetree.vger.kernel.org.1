@@ -1,179 +1,245 @@
-Return-Path: <devicetree+bounces-217285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B26BB573A6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC34B573A9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:55:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D49283BF21C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:54:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A25303ADB9F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7F12F3C25;
-	Mon, 15 Sep 2025 08:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC042F0693;
+	Mon, 15 Sep 2025 08:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J1Fvc3C6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OjDW9m28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D902F3C14
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5332D8387
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757926368; cv=none; b=hRFUc0wInmAD4O/2ZOmzH3yTb2g9RrFEbt9l3k0xQ7vCqd9IQWUuxeK6g5BbvUcPtWsIckwfGWP2iIE2dyl75YwF66pAoJn7jCjRwILd60kkBSlKjuqxDTkCM+s7ll7wERkgyADnRBpI94sLIluTJ5F/FasRNC8d6I4ETahbHio=
+	t=1757926414; cv=none; b=nMozvfqOylclqeSbmNNitL/6xhdtH+TaKIhBr7HP7UUsrNTls/k6I+62gzw2nAMUq5Ls7snFEpWjd6JkR4zXmeCRE6b+hHwWk8SXrncZLF7HlM/PwB/gka0eVKN8z1ezD+rGe2DWQY1XpwNh8C9CZpF/mWKIH1xavki83ArYCsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757926368; c=relaxed/simple;
-	bh=m/pZ6y54K3kx+mHExY4bRLVvKw6fj4rniWw50UqeCxo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bZ/NAm+W4ywgp2rU2IixrSYui8e+c+0gAW1Iebcv1G0fv9r8L9+mtEwWR3+nHU6SIDkCV15nssGX2mX4CnaRmJuJF+ZJCYgq2QSdWCC+iBa1FWm9qAjNI2V/bA5TvbF1dk4qmiht5nbTZnBWxoMthSywe6r3xEgBZglErrBoyKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J1Fvc3C6; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45f29e5e89bso15413115e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:52:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757926363; x=1758531163; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=N6kxZ21z2ge9LAXdq4SO1toYg+8pc4aXj9MUKAvpBaA=;
-        b=J1Fvc3C6hXgnsns+UnVqBAD+6a1Fr2DGrSjtIDwkHiG/ZnUmLAh7ot3JK2sC8iyhbt
-         cFhcTtYyd5K6+HY8OWAIjb+B4WjnoRnRdRaKIYZApf6VW/MeAZvbumQzJ0Xmi/S3w8Do
-         XrChzRMCMA1eT773rJBiCTpU+Zab9mkdOqEXjgF4scA9vChYG9E1NFIm9VmrMfiKOJa4
-         kXHDzat9WbMmipRgMwW7G9H8Nzv/m2fa34B6FH3/MhU7c33VigEIb2zB190kSy0DNw+N
-         KYNVl/En9eW6M6Wd3GYbD+XBa8kFZgxt89dch3ql+9he8LVCatcNUDd6N215Y4VVBy89
-         tqiA==
+	s=arc-20240116; t=1757926414; c=relaxed/simple;
+	bh=S45awvN3cTWhpX5IDC+70SRwYupcAKA+kaIquVzT3Ss=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qmHOECfA2ZMGe9XvXybvqLcMd0a64eaDeevP4u3iH1Kb2dix5cfNY8oLXqdw4/ivc0mfBr88j+X39n8kaaC7T++KIIqbmLJb7CY25DE9gFGQNdicqhtxo6OSFYeVZQ1dLNsocAqqmEdytFIjDGL3jvEOV9yz9l4hJwTVx9MdFo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OjDW9m28; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F8Fsp6018204
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:53:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4r+niUOvJYA1UJcr4thXBmObSCAsqKRkY4krHVU3u4A=; b=OjDW9m28GwytyRU+
+	+frj56qkSewdYLjfyBbcECnbRTIrTJz7dure5ZZsuqECBxj+cgzesUYht6K1wNma
+	9U1ZsOIuQhARfVC8Wo6s2updMH9g5zOK6DvRiiYUwtgKm80hiqM11HxLTMTSHA7V
+	mQ8Yd2IBu+s6T+Lqm7FfkhY9LTUukWnN4RFLEsgIWoxTRKtFsbhCw6zxCbBQ/EQy
+	KEfO0WljHFaF/Cu/b4IdAKvJnqyledhNUbHes6z1cBpFlpXCzPzrvG+84mZW9NKz
+	4qIQUbVZKtsi3vUHaJGNP2Iu/FSVNDXbpiujpuVg49e4a6q8/G+TL67wf5pOnaq+
+	KJ1NaQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4950u543ts-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:53:31 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2665e11e120so7178235ad.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:53:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757926363; x=1758531163;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1757926411; x=1758531211;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N6kxZ21z2ge9LAXdq4SO1toYg+8pc4aXj9MUKAvpBaA=;
-        b=F79JY/e47bwg7G72kywmvfKm+5NQ5/PV2gV8lDgGixvKBeUqDXy3md/JpDOIg4hi8Z
-         /6u582onTEPo/6Nab2aMfbaijLtTY9qFUlf41ZckuIroxwgeOr6uhD++AyGmglzfYZix
-         KMBI5m7sJZnlvtKBngwz9SXZT05MwBMJ6PTZ6gYywAuCBR8H3EEe8JofqnBExIrMjACT
-         BQxNoGP10bnfw/T9f+UlXVSSk5LFhiRB1nQo+BKWybNA3C1gzZxxZSl0zGqoj+154SAG
-         xRf3V66KHmvwSo9HD3omZdMYc1A5BVWliwBqv/jR9FKr/X+NxNTdekQO+rk1QO8OBdoz
-         AtWg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFG1mYsyXhhTstQf6nalA3LSydXxVgiPJfYrGFN61oNOBzcfof/9Eu1yxi3Llbsi8+IkCtaEOKcgi5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcOwON9IziO3hpDOTNuOBQ7U0xeY4CKwYscDpchfc3YVENXh6u
-	t/Vc280Qc9D51jipxZpph3LKr2Yvgx246CrzNF60B3LHUV86AvgHT7vhJumI2XChVHQ=
-X-Gm-Gg: ASbGncsg4BDMlgMaz0ergc2khJJMHLuYAhHqht3OdXFkQOO7xeEo5T/KQ3UQqFf2mMP
-	CStKxucPpOBKuh3tenoTwpoI7qcAoDb7vIFSQK/nf3YFUZzsqWOjfk8t+iFPAcaOBfjGZM03s/k
-	NUG39ebrP3CdgMYsQGKQRKzEbDD8RyjeW5daFF2xrvkZ6fltQIzgeKHnbmvRkaFHL6ptHZuQC5F
-	ClKYxEvkMASTEN6OHIYb9Gcde0Y1yUwlHAuB+iux/RzKvO7eskGvXRuApFsQ3poUTc/czy+AxEm
-	R8ch1sPlfY2/o4Dz3pHYncDnC3ZHDCiYTlLPxL6YB1viLuzGjNK9X9piLtt8EsQPyxq1tRa8SqZ
-	ffM3HWg//G8ANGZ9I7Mio+jgSmMLWtGlU
-X-Google-Smtp-Source: AGHT+IFzSjYN5GyjYoEpwSlYOMCz/spbxZZSVT6DCL0Ah2R68rwc3IWvf7dvYMLqkqc3FdlOFRSbIg==
-X-Received: by 2002:a05:600c:314c:b0:45f:28ba:e17f with SMTP id 5b1f17b1804b1-45f28bae1a5mr60704615e9.31.1757926363306;
-        Mon, 15 Sep 2025 01:52:43 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:ab20:75dc:ab3e:bbb9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f27f44093sm96526395e9.24.2025.09.15.01.52.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 01:52:42 -0700 (PDT)
-Date: Mon, 15 Sep 2025 10:52:39 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v11 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-Message-ID: <aMfT1_uyZETUEBYk@linaro.org>
-References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
- <20250910-hamoa_initial-v11-3-38ed7f2015f7@oss.qualcomm.com>
- <aMPee9wEOrrW-KMU@linaro.org>
- <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
+        bh=4r+niUOvJYA1UJcr4thXBmObSCAsqKRkY4krHVU3u4A=;
+        b=l6uyJQT2XMJ6WFUltmDchmDQQUdnUAnNLAZjn3oV4HkxxM/+IMCB9nXG/0/JNeHd0Z
+         gGlr1J4FSHd91acscu9FB5g+I90AfbLCgT91mT/58fOv+XHweKuMKhNHhAzta+OX69Ve
+         RKm97aDD1NZCxw7IknkO++xOjB6o2fBMlZVY5yQlnkde0kvcC95flcfxAhmNgar04g5G
+         6pYAa5yb5gik8JrYYYgkTgsDldIIvF/qSGL6V9EUYCWMkkkv9KmUwPGqd9Ckq0GjaOOw
+         T6YZ3EKxGTdw08Ho30QZIw6bVGgEcicYxcE4i19ElZb9fXBDricTQ7qWdWfQgEucggFW
+         Ga9A==
+X-Forwarded-Encrypted: i=1; AJvYcCXxq1/Uc669l69iHQz18dIVgonSgyYJziNC6oXNH3pe3HYN2KdM4k1FYKOHy00X/tTDWhF2CWMmdo05@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuIoBPY08fkCy37cJDwhWFoWAXzWjm6YYh63uR8Ms8hTiz+LjP
+	2jXEYJ0SjFmM7dVCplEUVeyADQ7FtYB6mcFLjp8bsVjgA2E7fJ9Q+Z6dL1r0xq1O68bvaijMrti
+	OqZAMtBs6GdlsBvJQW60ifjPwINPZJ9IHfTuqUP3WDbRZBVOJbNpK50lwdO0Vlg2D
+X-Gm-Gg: ASbGnctwylOAvsRuIVJv7LRb1Nd6rBdAmI/kYxp4benTPxxNVtYYXull5DUKWNiFeIq
+	W3HbWXE4xQtgSRJHuZFT9KPLVKL2lYOdkfMnVwSKsfxnzbm2aSRdjzD04ctLTVTDX08aTETBvaE
+	CzWHFbAAqUMVRow3OYIFyBhVdnsfh3MzLQoFuh6sJ0sGzlL6McL5zWQCW5RjdoGXpoh5ryDDL8j
+	kn6NQr5kdUaIXgnVSnDkuBj0ogbY8C2WvZOQ8Bs2ey2Z2JfiwQHd5jT5dyB6hEZOB9r/0vVU+PI
+	s44f4Nf1BvAR7/a8V6vhMURfP9G0OryQQnObf66ibMSvxxEFMMhatnzURmdwWOLo3kgN0McyidL
+	ib+9aw6XAqutmbdbnQrIqvMG+PEWuhSt5NA==
+X-Received: by 2002:a17:903:1b10:b0:252:50ad:4e6f with SMTP id d9443c01a7336-25d27038fcdmr157648195ad.54.1757926410987;
+        Mon, 15 Sep 2025 01:53:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IENt7QnFAil5iZOk4qDkCOqaK4rvUzqvImltsyILTqsN/ETeoEWfmXbCYerWe4mkBUy5D/vIA==
+X-Received: by 2002:a17:903:1b10:b0:252:50ad:4e6f with SMTP id d9443c01a7336-25d27038fcdmr157647825ad.54.1757926410508;
+        Mon, 15 Sep 2025 01:53:30 -0700 (PDT)
+Received: from [10.133.33.238] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-262ce653f1asm53418595ad.63.2025.09.15.01.53.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Sep 2025 01:53:30 -0700 (PDT)
+Message-ID: <9d46a3de-77e5-4f21-a2c8-85f25d15f079@oss.qualcomm.com>
+Date: Mon, 15 Sep 2025 16:53:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 2/4] arm64: dts: qcom: x1e80100: add video node
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Wangao Wang <quic_wangaow@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
+ <20250910-hamoa_initial-v11-2-38ed7f2015f7@oss.qualcomm.com>
+ <aMPdoa6wVEW9q9Sn@linaro.org>
+Content-Language: en-US
+From: Yijie Yang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <aMPdoa6wVEW9q9Sn@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
+X-Proofpoint-GUID: GjKELpeIMAXzV7Ya7b51c5tXLULzWtIq
+X-Proofpoint-ORIG-GUID: GjKELpeIMAXzV7Ya7b51c5tXLULzWtIq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAzMSBTYWx0ZWRfX1i2k099Nng3s
+ rIT6KJ0w+5df0DYDQbNM5ZMeLDpEgKAQzBQVr7Vf6lNDRwL7kp7D1fTwkwCfjiq7oNNivzTlpho
+ ghU/FTJoHA92n4VnWFN60/MzTzeJmNKToo1n2NwCesyeUsJKln/7h65OSTqjccXjosWAqwp3bAx
+ 6vZgGYg+xYcEsdVLbYPS1gRoqUu9ZDDjqWczY+Zdr13Yi0rrCHgP7ctd6mRFjsKyaxcTHUiJyAy
+ R6wmgS2UO0pb1uzxZHvIaqhXtJWLGZK/Z8DKiLr4Kljl9+8U8bLFIHnT24TkCsp6YlIiXoCwCJN
+ ha5yIaqZvc22vMtQ58+ENBBuc7ZmPsbDEd0Xa4bRD1LFKFkodogDK76ECuo9bIkzz1r54qHhON7
+ oi8J9Xfe
+X-Authority-Analysis: v=2.4 cv=JvzxrN4C c=1 sm=1 tr=0 ts=68c7d40b cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=Tt4CGEpwzN_lfr499RoA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-15_03,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0
+ spamscore=0 adultscore=0 malwarescore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130031
 
-On Mon, Sep 15, 2025 at 10:12:15AM +0800, Yijie Yang wrote:
-> 
-> 
-> On 2025-09-12 16:48, Stephan Gerhold wrote:
-> > On Wed, Sep 10, 2025 at 05:02:11PM +0800, Yijie Yang wrote:
-> > > The HAMOA-IOT-SOM is a compact computing module that integrates a System
-> > > on Chip (SoC) — specifically the x1e80100 — along with essential
-> > > components optimized for IoT applications. It is designed to be mounted on
-> > > carrier boards, enabling the development of complete embedded systems.
-> > > 
-> > > Make the following peripherals on the SOM enabled:
-> > > - Regulators on the SOM
-> > > - Reserved memory regions
-> > > - PCIe6a and its PHY
-> > > - PCIe4 and its PHY
-> > > - USB0 through USB6 and their PHYs
-> > > - ADSP, CDSP
-> > > - Graphic
-> > > - Video
-> > > 
-> > > Written in collaboration with Yingying Tang (PCIe4)
-> > > <quic_yintang@quicinc.com> and Wangao Wang (Video)
-> > > <quic_wangaow@quicinc.com>.
-> > 
-> > This looks like you should have Co-developed-by: tags together with
-> > their Signed-off-by: tags.
-> 
-> We’ve agreed on this as the preferred method for marking collaboration, as
-> discussed earlier in this thread.
-> 
 
-I can't say I agree with Bjorn there, but ok, he's the maintainer. :-)
 
-> > 
-> > > 
-> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > > Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 621 ++++++++++++++++++++++++++++
-> > >   1 file changed, 621 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
-> > > new file mode 100644
-> > > index 000000000000..c7c3a167eb6a
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
-> > > @@ -0,0 +1,621 @@
-> > > +// SPDX-License-Identifier: BSD-3-Clause
-> > > +/*
-> > > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> > > + */
-> > > +
-> > > +#include "x1e80100.dtsi"
-> > > +#include "x1e80100-pmics.dtsi"
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> > > +
-> > > +/ {
-> > > +	compatible = "hamoa-iot-som", "qcom,x1e80100";
-> > 
-> > Undocumented compatible (without "qcom," prefix). I think you can just
-> > drop this?
+On 2025-09-12 16:45, Stephan Gerhold wrote:
+> On Wed, Sep 10, 2025 at 05:02:10PM +0800, YijieYang wrote:
+>> From: Wangao Wang <quic_wangaow@quicinc.com>
+>>
+>> Add the IRIS video-codec node on X1E80100 platform to support video
+>> functionality.
+>>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Wangao Wang <quic_wangaow@quicinc.com>
+>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 82 ++++++++++++++++++++++++++++++++++
+>>   1 file changed, 82 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> index 737c5dbd1c80..4a450738b695 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> @@ -5186,6 +5186,88 @@ usb_1_ss1_dwc3_ss: endpoint {
+>>   			};
+>>   		};
+>>   
+>> +		iris: video-codec@aa00000 {
+>> +			compatible = "qcom,x1e80100-iris", "qcom,sm8550-iris";
+>> +
+>> +			reg = <0x0 0x0aa00000 0x0 0xf0000>;
+>> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+>> +					<&videocc VIDEO_CC_MVS0_GDSC>,
+>> +					<&rpmhpd RPMHPD_MXC>,
+>> +					<&rpmhpd RPMHPD_MMCX>;
+>> +			power-domain-names = "venus",
+>> +					     "vcodec0",
+>> +					     "mxc",
+>> +					     "mmcx";
+>> +			operating-points-v2 = <&iris_opp_table>;
+>> +
+>> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+>> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
+>> +				 <&videocc VIDEO_CC_MVS0_CLK>;
+>> +			clock-names = "iface",
+>> +				      "core",
+>> +				      "vcodec0_core";
+>> +
+>> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>> +					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+>> +					<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>> +			interconnect-names = "cpu-cfg",
+>> +					     "video-mem";
+>> +
+>> +			memory-region = <&video_mem>;
+>> +
+>> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+>> +			reset-names = "bus";
+>> +
+>> +			iommus = <&apps_smmu 0x1940 0x0>,
+>> +				 <&apps_smmu 0x1947 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			iris_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-192000000 {
+>> +					opp-hz = /bits/ 64 <192000000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs_d1>,
+>> +							<&rpmhpd_opp_low_svs_d1>;
+>> +				};
+>> +
+>> +				opp-240000000 {
+>> +					opp-hz = /bits/ 64 <240000000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>,
+>> +							<&rpmhpd_opp_low_svs>;
 > 
-> This compatible string was also discussed previously and is the preferred
-> choice. I’ll add the missing 'qcom,' prefix.
+> You need &rpmhpd_opp_svs here for one of the OPPs, because this
+> describes not just the requirements for the derived clocks but also the
+> requirements for the PLL itself. sm8550.dtsi has the same.
 > 
+> I didn't realize that you sent a DT patch for qcom,x1e80100-iris, so
+> I sent my own patch yesterday [1] that was just waiting for the
+> dt-bindings to land in linux-next.
+> 
+> Have you talked to your colleagues in the video team before submitting
+> this patch? I'm pretty sure they could have pointed that out during
+> internal review. They also have access to my patch (which has been
+> shared in a public branch for over a year now) and knew I was going to
+> send it as soon as the binding lands in linux-next. I just wish we could
+> have coordinated this better to avoid the duplicate work. :/
+> 
+> I suggest that you add a dependency on my patch series or postpone
+> enabling IRIS support for a follow up patch, it's better to have it
+> separate from a new board addition.
+> 
+> Thanks,
+> Stephan
+> 
+> [1]: https://lore.kernel.org/linux-arm-msm/20250911-x1e-iris-dt-v1-1-63caf0fd202c@linaro.org/
 
-Even compatible = "qcom,hamoa-iot-som", "qcom,x1e80100"; is not
-documented. And it doesn't make much sense to document it either, each
-of the boards using the SoM should have a more specific compatible and
-therefore needs to override this property. I think you can really just
-drop this line.
+You're right. I checked with my colleagues, and I’ll remove it from my 
+patch series and list yours as a dependency.
 
-Thanks,
-Stephan
+-- 
+Best Regards,
+Yijie
 
 
