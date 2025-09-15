@@ -1,123 +1,136 @@
-Return-Path: <devicetree+bounces-217616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BEAB587F6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:00:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D4DB5881D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BC001AA83D7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:00:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 780373B1AE5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BC22DA769;
-	Mon, 15 Sep 2025 22:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4F7214236;
+	Mon, 15 Sep 2025 23:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="Da8S1gz4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hP9MZOes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC9B2DC786
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15E64207F
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 23:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757977183; cv=none; b=D44DR1/kOTrxHp4vMe+dKx7tZxfAaWVDa6eNiIPMbOlWcure0Co5YG3gwVwxUIRpFD0bJ1vJW5o/WuNKKlRWol0oXM7r6LEwK0mI6h/dAwx6LN3E+y1mhB/ptAc9/l8fby9SCu6/esrl/F7Plvcaap00NdF76FwxnTWgE1tC7rE=
+	t=1757978307; cv=none; b=a7xX1EsBEXNiFYppOn2LFwtTXGsQLnMKg5o6yTnwIJUI2DX5ZgYf4m/+AlSb4fvN0S4ms10TmCZ2L9HQ5uwz2ZD1IZKBo3omF8yukohLnaxlDoPnNjyXcmaDYc9gylc51JVgNfoP6JBZ/Zgi2LrgLaHhYs9nNI+GWbsOXJvrW5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757977183; c=relaxed/simple;
-	bh=MK5JK3spo/EOu3EOGiWabvNo20/6TWA7kB8HJQJpF0w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1ufWtHnr3/YRrZa2tw83e/GlmbYo/C5bcEwospTjzfRDhHQlu8adWNf7I2fO5l7EzS7dg0SALWup4RO7mEKZ23w//eQBOOTPtNiBuQ4/kkcyEzjA5qau6MfLZU8ECiKTqbYykp01WEIHT+9KtFLnT/nMfjS7giKFBNXloZrWNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=Da8S1gz4; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-30ccea94438so3653729fac.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:59:41 -0700 (PDT)
+	s=arc-20240116; t=1757978307; c=relaxed/simple;
+	bh=DhCA90u7D3AwaG1VR64HFW/35fMpdcE6pkDbJ0hCWDU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WWzy6bULaqJ+ZDvORgThKM5doBcXz0ZXlggasBPoNu6WFKVi4n4gY65BBpi94+KR1DDgtmRnC8Q5hZx9yuIub1j03toJERIU5aiTq9sNice5QXW7y4vCE3V964VuPjfXH340JxWCZjqvpWSWj4rgfUq0XpdPiMjjMquXshuZT7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hP9MZOes; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-777ea9fa8fdso1314861b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 16:18:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1757977180; x=1758581980; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aTycPbHlQtDBtjOvMMJ3SZ6uhxSiX0nO4WaEP9DHCc4=;
-        b=Da8S1gz4iakIeaStzHB0xDZFXg7T7vcxTHVB6gXN6BMldbURN36gDQFLrIE4ttFtEp
-         R/HBDstAaFNDuHkVn0gOv5avorcEPXegCptwc3OL1BBiC/zZ1NmnTVlwKh4A8BBu6loN
-         eiXCrdVaBOiImi21dMuq/soQRB/3Xq03iDD1HyHjVg/81h45hvWXXJFWboA3qSosD6bC
-         HW9J/dDlQ6N3zcfEdmX+yBLnSz+sCrVC2O5Di+t762Wrcs2bEeb73W0Q2PKcXz/zJzoe
-         xPfzDPudbSxKJ9xepfRUzaXQf8wroAEfDFCAjXDRuTvjdH2YpIo84zx80T85UcdfZkz6
-         BDlw==
+        d=gmail.com; s=20230601; t=1757978305; x=1758583105; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+l7LUQcajOsjM5wGJwbkfQJik4Yq7alB7BOereQy2VE=;
+        b=hP9MZOesqVvCVezhPhW3eMWmJllPXapGKkz2N+X23kqhxqXDKHfGDtRJhYH4w2EXV8
+         3lZz3SUodUVeNzWL2OuDZWAzV0k5xyzgFVRv0mXdkrCe7FXcoGdnoH3A+ag8W6om0+V3
+         prmqmpelS1du8gqO5t2mrb+TPxHJEwTQjch7g+z6pGaAxLIAA4RSk4vjYzxgyM/A7GjC
+         /eP6ApjUnlRJNRD+4EX/TFt4M7n0p3AzsGdbravfb8g2Gs8rfRQrZNERvLLSLMZPZ5IK
+         sjwRErA10Y4IXn7OxqfWuefUV/tkYJRRL6cCctxpRAI+zYNel0JYNuksoVuef0d1kbKQ
+         j4Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757977180; x=1758581980;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1757978305; x=1758583105;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aTycPbHlQtDBtjOvMMJ3SZ6uhxSiX0nO4WaEP9DHCc4=;
-        b=ncESe/H2y09Shui/ta+YvUPIISownlwPtaspVWdtSBry7Gff+F2C+nHlkIuXhRwPdg
-         NZDOTaWj77nEWeVvntl7URH1t9SgkPVJe+BwE8Ru4+1LDS5swW27jEFFUR+wCIy4wb8k
-         jckgIBBIcqeNDNC6En/q9fnN5nZPgFkJxh3iJzuGg89iPrQHKQ5/4yw/S6rRjWcUSUQ1
-         pCfxsFYWTVANWnwzL6VXmiSVMxxLqvHe0TMbv5TT90e31M/VwOTHNwVdpexlQz2uIejZ
-         T067kTn6YCGehfY6v9/6NzLLnVMBBBybhFQyfj9Z1K71s6zOJyYTOKu7F5BtOss0cx0H
-         IGlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUHJsmqomIaEUx1WDBF+smSzFdA0KSqAujzP8632PCbL2XY5Ib19GLEc1XiJoWiDEU6lw0hRdvUdP/j@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBCjTyff0tUqeXigPkygraxCK8mZo+KHHFpDMlKvncPRpAkzAA
-	JqbJw3CoyiibsW0PHAQ3jhUIDXtOnjKE1D0gX18HcCRy5WiruxLxkaun1mp5EBpgdzw=
-X-Gm-Gg: ASbGnctujkrj0k9VXWbRdtT8byuVfiP8nMzjsiIT+vxPaS6hx+n7qzBv14L8fCm8Umv
-	FXbYXcjViGbxb4PLswzccSL3lOKfCy9pC9dGXTWVdK8OF0EhFCm/zuCFx6Xo8owCphFvCzMEIqM
-	AmyHdO26ObvNdErB8gfRdm8mFGACZcYbjhcE5GklOdj/dg7rxNxO52Y/L0RmHi+00TMu6m42ZmJ
-	F0FcHfllYamSArkOl61EoiZFbATemryeF9EDh5hL8IsgMupn6eb3E9Tp/j1TyYsPrsxhd1Pyx5w
-	VKK0fMYJMPhMvc9gWfJeJ8RvgV2hITgD4157rgRDj39t4ciK1jjVImnY3J9Zksbmq/n7S51eF/C
-	Biu+7w9I=
-X-Google-Smtp-Source: AGHT+IHaizr3a2V9CFBUtFDTvOTqaJTANyOfH5v0JTyHH5V9DAauzxISXWz+PQumMIbWbikwaEyCPw==
-X-Received: by 2002:a05:6870:82aa:b0:301:a704:ef1c with SMTP id 586e51a60fabf-32e56bc4018mr7508892fac.25.1757977180618;
-        Mon, 15 Sep 2025 15:59:40 -0700 (PDT)
-Received: from ziepe.ca ([130.41.10.202])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3317d74fe33sm1565394fac.15.2025.09.15.15.59.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 15:59:40 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1uyIAd-00000004YkX-1MrY;
-	Mon, 15 Sep 2025 19:59:39 -0300
-Date: Mon, 15 Sep 2025 19:59:39 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Shyam Saini <shyamsaini@linux.microsoft.com>
-Cc: thierry.reding@gmail.com, robin.murphy@arm.com, robh@kernel.org,
-	joro@8bytes.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev, will@kernel.org,
-	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
-	code@tyhicks.com, eahariha@linux.microsoft.com,
-	vijayb@linux.microsoft.com, bboscaccy@linux.microsoft.com,
-	saravanak@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lizhi.hou@amd.com, clement.leger@bootlin.com
-Subject: Re: [PATCH v4 4/4] drivers: iommu: refactor arm_smmu_get_resv_regions
-Message-ID: <20250915225939.GN882933@ziepe.ca>
-References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
- <20250909154600.910110-5-shyamsaini@linux.microsoft.com>
- <20250909155847.GB882933@ziepe.ca>
- <20250915162842.GA23954@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+        bh=+l7LUQcajOsjM5wGJwbkfQJik4Yq7alB7BOereQy2VE=;
+        b=oFe+vIkEpvf7FF4ihMKoKTkywL1aFMqOkBviwriAC8rMNjOidU45e+QrREK0P2lgAF
+         XUGmZcQTQ49F32YWo7J4+JBuoX7bFlSuJiSdFUyWKABSf/R2bKQPn5567lmnT2X1FTXJ
+         izr2O5An0kpDsPQGv0ROrIglTSwEtcpQFuoSeHCe7zr2jVJInbdTFiHDhu5Xz4rv3jx1
+         pKEZezKdVVF87vLOCUTRbDFv2m8KgcWhJrMbthh5I1voSl4v0Ol1SC9s1vkC+Kt2NgVb
+         rZj9AVOZ2+kc2EhuT6NoV4qLS0D88QaWyUpoVhtvO5l+veMInhpVaSSYUoHJczkle4yl
+         VpTA==
+X-Forwarded-Encrypted: i=1; AJvYcCX7eL7do20yKUeOL1ZQS9v47BpOcgnQbygN7bHnVJ1cZghUzQ9oyv/Avf6GAlWTRHa3kRVMsR6cFgl5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKB1MbCWD5SSNvLKK/Z44qAKRF28YjvjeJVBCOoI2qxSosrIOA
+	OGtq7zYQyeoCOqZ3GmGUKJHrgQxokaRXbhMKDxvT0LXHUtX4SfdMVRG0
+X-Gm-Gg: ASbGncvcm3n/8VlBs4pCOuBL258lA1DlJHyecGlAT6aMG8geyClXFDOAVoTRkQyc5Wc
+	1V2cddsEsCBhhnfr2SVLHboDejoL4gFfth8iHeetM/S38CRoq6Aos73EZ8h4TEmwszlH9S6Zv/A
+	1OU8C4he29gJpSYcUZTMw/Dq4n26vjMrtk2LbQtdDCSrlKoxxVgfaVoZaEUI+jYS55hXY08NxIt
+	tDwSNgUl9OhjIDpe/naZMs2pkoA5ghK0s4mecjYPsS2lW5BbvnvbbeomXTMUiZXrNHCJjtvnIcN
+	TMi2NvZICYF3fAOQLX/Q8nhzCQpRjsTimdomEXE+hpjytGZYHPj36RdfIb99Ih1nIeWztTW9Mr3
+	kMPmBqubbDKwFnOxRzddWEl8ANg+d6n2dGqCsezW2VG5dbQ4/NolarxMin/Fe
+X-Google-Smtp-Source: AGHT+IEeWggDjh2aRCpx1suFPoqcxzvxrWOO8w9b7MPKM4IOfFG1MlxM/2ym7uq0iEUOJ01ZQNukyQ==
+X-Received: by 2002:a05:6a20:6a25:b0:247:55a7:695a with SMTP id adf61e73a8af0-266ed65b2b6mr265970637.15.1757978305237;
+        Mon, 15 Sep 2025 16:18:25 -0700 (PDT)
+Received: from [192.168.1.105] ([59.188.211.98])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32ea0859e20sm324333a91.0.2025.09.15.16.18.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Sep 2025 16:18:24 -0700 (PDT)
+Message-ID: <2fb684e0-449b-4377-81a5-5be03cdf3e6c@gmail.com>
+Date: Tue, 16 Sep 2025 07:18:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: spmi: Add Apple A11 and T2 compatible
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Sasha Finkelstein <fnkl.kernel@gmail.com>,
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ Sven Peter <sven@kernel.org>, linux-kernel@vger.kernel.org,
+ Janne Grunau <j@jannau.net>, Stephen Boyd <sboyd@kernel.org>,
+ Neal Gompa <neal@gompa.dev>, devicetree@vger.kernel.org,
+ asahi@lists.linux.dev
+References: <20250915-t8015-spmi-v4-0-758620b5f2ae@gmail.com>
+ <20250915-t8015-spmi-v4-1-758620b5f2ae@gmail.com>
+ <175794440092.2724212.9818605948916059174.robh@kernel.org>
+Content-Language: en-US
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <175794440092.2724212.9818605948916059174.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250915162842.GA23954@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 
-On Mon, Sep 15, 2025 at 09:28:42AM -0700, Shyam Saini wrote:
-> > I'm comfortable with this side from the iommu perspective once you get
-> > agreement on the DT representation.
-> 
-> We haven’t heard back from the DT folks or Thierry. Do you think we
-> should wait a few more days for their feedback, or go ahead and send
-> v5 as an RFC instead?
 
-It is about normal to wait about another week and then ping them for
-feedback.
+Rob Herring (Arm) 於 2025/9/15 晚上9:53 寫道:
+> On Mon, 15 Sep 2025 09:52:24 +0800, Nick Chan wrote:
+>> The SPMI bus found on Apple A11 and T2 SoCs are compatible with the
+>> existing driver for t8103's spmi so add their compatibles.
+>>
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/spmi/apple,spmi.yaml | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>
+> If a tag was not added on purpose, please state why and what changed.
 
-Don't send a RFC, you intend your work to be merged.
+As stated in cover letter, the tags are dropped in v4 because the dt-binding patch has changed
+significantly from v2. (really should be dropped in v3 though but that did not happen). And this
+is actually a different patch from v3, the only difference is a newline is no longer removed.
 
-Jason
+
+>
+> Missing tags:
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>
+>
+>
+>
+Best,
+Nick Chan
 
