@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-217603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763D9B586C6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:28:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8386EB586D2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A9A820487E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 21:28:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1B897A209D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 21:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A544A2C033C;
-	Mon, 15 Sep 2025 21:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F072C0291;
+	Mon, 15 Sep 2025 21:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wb5kIjFc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="coWvyVeC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733732DC78E;
-	Mon, 15 Sep 2025 21:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD210EACE;
+	Mon, 15 Sep 2025 21:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757971724; cv=none; b=Y3819E9Mj7Wy4rq/QWNoabxk0lSDXzM8K+ka/uvOWhFfDI3E8s7L3H48NBPH4arzHjE+CGdL3uQQfqXBpz1Cy2Dvk61hbI35lybLUZKIWN4QRmtMvRG0/eAfJAlkDbk397tjSE2sV8a5oahQnPnGRkao5p1+o0LK0iDh534pfMQ=
+	t=1757972063; cv=none; b=DEB2S+PdRv3lkZxpgnPEEiZJBsRICoMwwMkDOHiJUczPNc2rvxnM7OV/H7sTTh0O6cTy27M3i/WiO5QXkT9PsxBZmCm/mYL90GkJMSxG8ire7aLqXcQG4iq6uALfxvJ0zvGIorCvVkd+vkhsoCcGSr1AKQVGChEGAJYh0J6B3Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757971724; c=relaxed/simple;
-	bh=J7w5Uv588seucAZc5qK6ZM10e3QMlvHhql5IgBepXTU=;
+	s=arc-20240116; t=1757972063; c=relaxed/simple;
+	bh=EQ9er1liAcJ0+LgMZjQy4CDVJThm9UrjoRfFH7qfXIo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ILNWQDUtoi+KG5+DS0qihL5DXCC4ChKQLLbEyRrff+og3lA528OZtDlL4uJa50gvdQ8CdZ2OQRNNEPFjn1QyKuXbA1UvJ1ue8L12oJIXgbwqT0LFz9e7gW3IypQGJCamJwRDO6M9Ok8d3yjqraD2bvetaMfR9030le4OxaqQUQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wb5kIjFc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D42DCC4CEF1;
-	Mon, 15 Sep 2025 21:28:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ae3Tj+Eo/na54DxsNR6gwMNgd1rX+dPupywl2ahOkA/qn9N42KyKGAWYjMsg5mOmRNz0/56qMQcSZYC/tZFNds22FODDojs+ajleV3VCyJ8CTonoj64tCY3eXdUmlquJOdfqi27z/Aiec4rMA4E6s4t7T3zyKvQF58ionsDlCTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=coWvyVeC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B327C4CEF1;
+	Mon, 15 Sep 2025 21:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757971724;
-	bh=J7w5Uv588seucAZc5qK6ZM10e3QMlvHhql5IgBepXTU=;
+	s=k20201202; t=1757972062;
+	bh=EQ9er1liAcJ0+LgMZjQy4CDVJThm9UrjoRfFH7qfXIo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wb5kIjFcTfPKvpc15/hdnRAwaV/ZVHS3ezGLGY27czT0B1oOghzLiddhMedOllcwK
-	 rOomRU56t3LbDhVWi70Ni1/Sc9OCFayutU1bZHcIa5EkxqJ44X+WRLD7oewFuZlMbN
-	 lDIs3IVw3S3ztGBiiMKcvkQxEQX77QFI90PGPE9yVYmTU79mEntjai9sCo+nSFFdmI
-	 XExePHm6sTfjB0W+uSN8uiaQs+xW73LIxS/F/ceGkwsrDvahUmBKFRnmy6jejOyoPM
-	 9SW1T7m7QG6sFYN5XYChvY30gDUiRKJsEHrZxMlYbIuSoYoiOI7TcN2erOS46dZqxj
-	 ZuBIa2oo+fKhw==
-Date: Mon, 15 Sep 2025 16:28:43 -0500
+	b=coWvyVeCz1LjDVyYAu06PP1m/8FpKwRYQqc8+hGy/A+U9tNUwRQ4jN2a/JppPCaDF
+	 iNBlXJN6If8azp/Oa3mMmC2Slbx20pHDJgNk8lHZhyBndkClSsI8H8NOOAuF4fVH6z
+	 kH4HMrL4ceSFP/bhVgP66HW7evVSh2XXCpa88pD89GQVKabsQInk5339ALT+V3ImV5
+	 hb2BvGTTl7Wh82KVNVJU5GNY6jpFM6SBV6xr7OLMl4oijIUP8pt1XEk5TiYfIRh7lK
+	 MxcjWW08uOuMBPPVMvw7smbSgK69p0+nhjCpQX8y+QC7X20Ltplc5VWJNwp2lSNjSK
+	 xOkdBBD7Us75A==
+Date: Mon, 15 Sep 2025 16:34:21 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Michael Walle <mwalle@kernel.org>
+Cc: linux-watchdog@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+	linux-kernel@vger.kernel.org,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 5/5] dt-bindings: clock: st: flexgen: remove
- deprecated compatibles
-Message-ID: <175797172248.3553148.3537450919982755696.robh@kernel.org>
-References: <20250912-master-v2-0-2c0b1b891c20@gmail.com>
- <20250912-master-v2-5-2c0b1b891c20@gmail.com>
+	Jean Delvare <jdelvare@suse.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>, Lee Jones <lee@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, Andrew Davis <afd@ti.com>,
+	linux-hwmon@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>, Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: mfd: tps6594: allow gpio-line-names
+Message-ID: <175797205997.3572376.2459188333826155892.robh@kernel.org>
+References: <20250912120745.2295115-1-mwalle@kernel.org>
+ <20250912120745.2295115-3-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +66,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250912-master-v2-5-2c0b1b891c20@gmail.com>
+In-Reply-To: <20250912120745.2295115-3-mwalle@kernel.org>
 
 
-On Fri, 12 Sep 2025 13:36:12 +0200, Raphael Gallais-Pou wrote:
-> st/stih407-clock.dtsi file has been removed in commit 65322c1daf51
-> ("clk: st: flexgen: remove unused compatible").  This file has three
-> compatibles which are now dangling.  Remove them from documentation.
+On Fri, 12 Sep 2025 14:07:40 +0200, Michael Walle wrote:
+> Setting the signal names in the device tree was already possible, but
+> it will lead to a warning. Allow the gpio-line-names property to fix
+> that.
 > 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 > ---
->  Documentation/devicetree/bindings/clock/st/st,flexgen.txt | 3 ---
->  1 file changed, 3 deletions(-)
+>  Documentation/devicetree/bindings/mfd/ti,tps6594.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
