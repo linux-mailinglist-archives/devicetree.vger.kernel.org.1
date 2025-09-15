@@ -1,331 +1,166 @@
-Return-Path: <devicetree+bounces-217288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7FDB573FB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:04:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC60DB57411
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:07:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89349172C33
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:04:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39C84173C4C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD2D2EFD80;
-	Mon, 15 Sep 2025 08:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859AF2F5468;
+	Mon, 15 Sep 2025 09:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DRoAESXq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eg1VOmR7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212F62550CA
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 08:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1DF2F5462
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757926793; cv=none; b=LGfg4FHsyOwKGdJvSXEqfKb9Zs6WmW7Tyot0mYIK+ChDu+aZJfNvQLyaUCZmuXiIrfbN8jHTriMadXXYnYr4AEyhHOXSDJ282zpwXrXQg/9rotmcCE5Akyh2uG5cXJucs9WwjSuppy6QG20envKQZ8GTfEcxvVV6aJ6OwHgCZEU=
+	t=1757926970; cv=none; b=Az3VNYmnf+ZPdc+KplIz7M8TggmEHXFIEIL7hi36606Y74OxLeNrPNkivF4OQaegvAL0SxeVNMhLwbTiLja+rn3yjdWqo7qd7Dx//BSwNijVc3ugtRoocXHi0b9ZanFxM6cFM0FTrMFXLR05NHuGSoSe/Ss0bYkbcs6y27zdN5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757926793; c=relaxed/simple;
-	bh=yVJ/zB7Za/xFJEFjpbiTAxy/vw2oveYhHxBNm1AwRBI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hbjBFf3/JbH/3zZrEdp4AD92o/7wVLUD8Uyv3o1HU09EG0j3NCqCwxSnffIScv3ADSMoLcxdW54+5PVGPu6uaOioG8vnlxa25fhGS26+JPUjMuKka6jkUgEk3Y6PjSj6DaixuXbHgkbhVaLQrDkABB21lSuB648b50s9ghk+PdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DRoAESXq; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45dd505a1dfso31868735e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 01:59:50 -0700 (PDT)
+	s=arc-20240116; t=1757926970; c=relaxed/simple;
+	bh=C0YkUmrHajMk+TIUliZWVchR3y+Q8yUcd/+iydBLkn4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R/bHwc109DtheuPJeFY5JKDWqhiXCZ+40gnmjdHeTR3TaT6FDoTKiy4G9UsaZkuzZEjncU5ToPg+xLcFzvXKczYzlsbgReJwZrDMiEAokphafa5M6pJXCOJ8kjQwOd4xSrjTO8VKmXE0e8eG3pI31jtGNfE3kiYzijqyQ1ETaag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eg1VOmR7; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b042cc39551so658672066b.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:02:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757926789; x=1758531589; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6LuFJVSHeAQHDn0+XSdf5A7eQdiJjAJ7onpQpF2BurQ=;
-        b=DRoAESXqLoTt3GcqQY8DByh196cLEpm25YnHEOAaBWzrL0x5EXWekGVhOlEIf0XM5p
-         6JtgeSn8gQ10ENaZf4mdHne1JPceqEtspVZACHmlSCkHFlWjW868WVDhcXKQ3sv1FLRC
-         UQvJpOOblG301SvJXzUbDHO9R0T1D7atdJeESFPwp/LMB503gK7FwHBhbeObihQoZC8b
-         hz06Uu9FJ1XOyLk6vrHUMcFEDA4+CyapcrG0vnal4ejZSHo44ESwWUSzNKQs/KYg2Qf+
-         kg19wTByFfRFCXJWFuddFBbF/Ex2GNUsTXWrIReTsB3LBr4sxS9cOUZG3hcP6N3XeRRA
-         hqeg==
+        d=linaro.org; s=google; t=1757926966; x=1758531766; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4ApShfXQF2Oi6G8dmAOghgnsvmVSLzQLwz5wXFZQiKw=;
+        b=eg1VOmR7zShmn+hHiqoCSBy9ccujENIgSGAfLe204EOGU+XnJDTA3uYY8umymARXlN
+         mJiY1n1EO+fP2t/Yv9+0vIPcSgNHdjRCF0a9bbhCFjuDH4rhR1sWlo30kRcfOH/R0OOI
+         ICqhmxH2Vt+03zkTpaeq9H2WkOO2S4PO2l3Y0MrGiBlSLkqn74zgfRTD9/M6DEXBNfmT
+         wEkZQ5AVpYlW77o1vaZxEo6SDDGHcAmb6wQ4JQ3BbUiWbFWqLJi7+KX48YYXrFQ8KKNL
+         xEM3y9sv2DBW6OBq+2WGpC8ujzyJuGSMaN7LbOZ5S+PgKMdbuFfsqbIVQZS5XOptyuG3
+         g7qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757926789; x=1758531589;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6LuFJVSHeAQHDn0+XSdf5A7eQdiJjAJ7onpQpF2BurQ=;
-        b=rkOw5NhhJZ078vL7wGGGWtMaAU3Rn1IGZo8nwuMAUl1WNMjXC3Ne4AogI4vybGeNrL
-         n22B+nsIxgOPrGrZZJYhgYlSltLJvT/3A3X6i5Hwca08F/VRqBllh4cKayEXVxnRkkmR
-         e+2BtY36yeJ2nq0RLbe6l+WlQDXE4pe9lCzLlOAlkd3rl7dklNQKBC0wzoQcmnaIae92
-         Zd6+MQ7jhPWWijiNq+v1wbKt+8pRELTMAoBfkIXV54tUkL0a5igjmUPunUAnZ5nQFS+7
-         RwKu6Z84OcR226mzuzgDqkFyZ2XU0n83fkSFU6M2xLDKayc/E4H3zwEvgN0QMtmCUMr4
-         Qjeg==
-X-Forwarded-Encrypted: i=1; AJvYcCXShTUjiGKH8ej1dow/lXus8Lq/OnqVhenrlZLS2qDc+ri+LHGC4MEaMqb+0tiI/vJXBdkRAolGDO9O@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKwpLPAmI3xlhAWxZGo1a5ysCDoJ0Y/sIBdjjYsO3JqZdVjRmE
-	ofUeLKy5+sTFYmdyD7R5lyCawj5qvizSB2Ge4oC9h+wcKvSJbi8THSou
-X-Gm-Gg: ASbGnctKHbw7cRnJApjmARv/O956ChpkTFVOHVzVY/a25pZ/fxAxuKaT3zII6esRSHi
-	kXiv9dbeKynWsRyGi6EmxwIldzF4j/jcxn1oun9c9VqjurNb/e1tTaLbEg6MUzIhh0Y3384Zsdc
-	Kbk1HVPZE+C5XhHxx2CqF0YvFD4zRtXdfsARNe2CUXJqUr1HkIlqnDvYUMLxEg+wgx/ZFHhlgUG
-	eNw/DsauoGmsMb388xwE3SboPhnpUDkD/9FEv/NpXxGA25vlrfj2fOpq1ZY+e2hA/A4yFmEIjb3
-	k546hnHY98POlDOBwruK7C9EyXNnvO1I1ZfV3j8lSyfv9Kev8r5wK2kO6/QKm7/dm2FbG37r2Vy
-	ux2EKpjdp5czh1HWCTLDy8cDTtNTxb1sPZp7Bu98Ww6RGLEe71EnkdQKf5AvKFhKzL5/P6X2juu
-	VkrvSyAZr8Pe8=
-X-Google-Smtp-Source: AGHT+IHPNlJyMCNv0p6hi8FUDXyC4LeGZ9hyO1d/g54G8GsV8O86kurfDHc3Bpeny255lVmyLx7p/w==
-X-Received: by 2002:a05:6000:4021:b0:3b9:148b:e78 with SMTP id ffacd0b85a97d-3e7659f46f8mr9388551f8f.53.1757926789143;
-        Mon, 15 Sep 2025 01:59:49 -0700 (PDT)
-Received: from [192.168.1.106] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e86602a7d5sm9370472f8f.62.2025.09.15.01.59.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 01:59:48 -0700 (PDT)
-Message-ID: <d23885a5-6d42-443a-bf19-eb6747e8ec47@gmail.com>
-Date: Mon, 15 Sep 2025 11:59:47 +0300
+        d=1e100.net; s=20230601; t=1757926966; x=1758531766;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4ApShfXQF2Oi6G8dmAOghgnsvmVSLzQLwz5wXFZQiKw=;
+        b=EH9pW00AY0dq1dLpa7ppk2EMPYnwUSGmY6GbNLLpPyInFFhEZKC8O/6QO0pMLEhX+N
+         ahbTmKXWTPTdIdWBYtRH1dppKVTThDpjt3Hn+P6vOimGJTaleq/klVCuMhONaNQ5FUhq
+         LXd3LxTPvC7iTt48ih+z9trX0Mbb9Mqz3+WWZOkS4E+TKgmQW8zNx/b0dZYaUQom+Ysa
+         NWJvDPbwqp4/kqPZL8mkIkogLo7BtppJ8JCWrJud0tJICt7F3ZttHwguNMTVinmGmXaO
+         1hPD/V3fRJDITwINwJsB3sPh6PlR4AJagGHgXyoYKF7TL6+nFw5Ctvcpfj/UmOcMW7sZ
+         R/qA==
+X-Forwarded-Encrypted: i=1; AJvYcCUItTZDwgEKR2ZQiol5trp+9VWL5MKgmkaLDsN6N2LbWRpbip118EOB1NXvAptyGv4FWh4Z2d+IsxCh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfui4fP5LAaAoP0NNJuBL5xo6X4kwaFFPiif8wbKTaN4ONhXXj
+	/kyJSWKuCsRnOa3qvPvcvAlwGHcbGiVW5Iy8hKEo2WDbZEmA4tHSJls2fyX/fRxduNM=
+X-Gm-Gg: ASbGncvxfTEGW7PeYJhzHRP62bnMdPJdn1lYRDB9ti1qoKiBcsgX3dfCXOeSfu9qjx6
+	ee6uZf1MjJvLji+LAGRkU1otoERxjbIwASnYScPiPGPVpTV3RQUGhVYMilY51MH+gL/jKfQsvgq
+	1RUdOsa82dtMArvUG5W/HmYjMH7nXhKy4IVXP7+1lDrPs5ul3LPceZxmATUuTudoxMueEdJ/oa+
+	eyuI1T1Y/eVP0vYNq5V6ndNrYipqtIYFdWm38+6tyRmYUdH/XajXfUcQ+pyS+LXkNQttPl4cCrB
+	JUnsnH/B8ng6N1cTYe9StOSA0G7CZ9rcfBvyAHbd+Jk97DitFhEE25i2+0RgB+8LCgdpKCc/mit
+	2r9asJUWojg9Strq/POSdrosnzvqvPo/gdNIJkSVa/e0=
+X-Google-Smtp-Source: AGHT+IFJqW4ATs8hpOqhKur7nNuySu2I9qWO2KqW58kjbzZTek7UpaV471VVvj9InZNl3XX07WRoUQ==
+X-Received: by 2002:a17:907:86a0:b0:afc:a190:848a with SMTP id a640c23a62f3a-b07c3a78fb9mr1146716866b.60.1757926965242;
+        Mon, 15 Sep 2025 02:02:45 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:30:ab20:75dc:ab3e:bbb9])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07d2870da1sm574403366b.13.2025.09.15.02.02.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Sep 2025 02:02:44 -0700 (PDT)
+Date: Mon, 15 Sep 2025 11:02:34 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: fenglin.wu@oss.qualcomm.com
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+	David Collins <david.collins@oss.qualcomm.com>,
+	=?iso-8859-1?Q?Gy=F6rgy?= Kurucz <me@kuruczgy.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 5/8] power: supply: qcom_battmgr: update compats for
+ SM8550 and X1E80100
+Message-ID: <aMfWKobwM5bhJEAd@linaro.org>
+References: <20250915-qcom_battmgr_update-v4-0-6f6464a41afe@oss.qualcomm.com>
+ <20250915-qcom_battmgr_update-v4-5-6f6464a41afe@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/5] clk: samsung: introduce exynos8890 clock driver
-Content-Language: en-US
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250914122116.2616801-1-ivo.ivanov.ivanov1@gmail.com>
- <20250914122116.2616801-6-ivo.ivanov.ivanov1@gmail.com>
- <20250915074931.GD8224@nxa18884-linux.ap.freescale.net>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20250915074931.GD8224@nxa18884-linux.ap.freescale.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250915-qcom_battmgr_update-v4-5-6f6464a41afe@oss.qualcomm.com>
 
-On 9/15/25 10:49, Peng Fan wrote:
-> On Sun, Sep 14, 2025 at 03:21:16PM +0300, Ivaylo Ivanov wrote:
->> Introduce a clocks management driver for exynos8890, providing clocks
->> for the peripherals of that SoC.
->>
->> As exynos8890 is the first SoC to have HWACG, it differs a bit from the
-> Hardware Auto Clock Gating(HWACG), if I understand correctly.
->
->> newer SoCs. Q-channel and Q-state bits are separate registers, unlike
->> the CLK_CON_GAT_* ones that feature HWACG bits in the same register
->> that controls manual gating. Hence, don't use the clk-exynos-arm64
->> helper, but implement logic that enforces manual gating according to
->> how HWACG is implemented here.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> ---
->> drivers/clk/samsung/Makefile         |    1 +
->> drivers/clk/samsung/clk-exynos8890.c | 8695 ++++++++++++++++++++++++++
->> 2 files changed, 8696 insertions(+)
->> create mode 100644 drivers/clk/samsung/clk-exynos8890.c
->>
->> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
->> index b77fe288e..982dc7c64 100644
->> --- a/drivers/clk/samsung/Makefile
->> +++ b/drivers/clk/samsung/Makefile
->> @@ -22,6 +22,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7870.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7885.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
->> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos8890.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos8895.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos990.o
->> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynosautov9.o
->> diff --git a/drivers/clk/samsung/clk-exynos8890.c b/drivers/clk/samsung/clk-exynos8890.c
->> new file mode 100644
->> index 000000000..670587bae
->> --- /dev/null
->> +++ b/drivers/clk/samsung/clk-exynos8890.c
->> @@ -0,0 +1,8695 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (C) 2025 Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> + * Author: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> + *
->> + * Common Clock Framework support for Exynos8890 SoC.
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/of_address.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +
->> +#include <dt-bindings/clock/samsung,exynos8890-cmu.h>
->> +
->> +#include "clk.h"
->> +
->> +/* NOTE: Must be equal to the last clock ID increased by one */
->> +#define TOP_NR_CLK	(CLK_GOUT_TOP_SCLK_PROMISE_DISP + 1)
->> +#define PERIS_NR_CLK	(CLK_GOUT_PERIS_SCLK_PROMISE_PERIS + 1)
->> +#define APOLLO_NR_CLK	(CLK_GOUT_APOLLO_SCLK_PROMISE_APOLLO + 1)
->> +#define AUD_NR_CLK	(CLK_GOUT_AUD_SCLK_I2S_BCLK + 1)
->> +#define BUS0_NR_CLK	(CLK_GOUT_BUS0_ACLK_TREX_P_BUS0 + 1)
->> +#define BUS1_NR_CLK	(CLK_GOUT_BUS1_ACLK_TREX_P_BUS1 + 1)
->> +#define CCORE_NR_CLK	(CLK_GOUT_CCORE_SCLK_PROMISE + 1)
->> +#define DISP0_NR_CLK	(CLK_GOUT_DISP0_OSCCLK_DP_I_CLK_24M + 1)
->> +#define DISP1_NR_CLK	(CLK_GOUT_DISP1_SCLK_PROMISE_DISP1 + 1)
->> +#define FSYS0_NR_CLK	(CLK_GOUT_FSYS0_SCLK_USBHOST20_REF_CLK + 1)
->> +#define FSYS1_NR_CLK	(CLK_GOUT_FSYS1_SCLK_PROMISE_FSYS1 + 1)
->> +#define G3D_NR_CLK	(CLK_GOUT_G3D_SCLK_ASYNCAXI_G3D + 1)
->> +#define MIF0_NR_CLK	(CLK_GOUT_MIF0_RCLK_DREX + 1)
->> +#define MIF1_NR_CLK	(CLK_GOUT_MIF1_RCLK_DREX + 1)
->> +#define MIF2_NR_CLK	(CLK_GOUT_MIF2_RCLK_DREX + 1)
->> +#define MIF3_NR_CLK	(CLK_GOUT_MIF3_RCLK_DREX + 1)
->> +#define MNGS_NR_CLK	(CLK_GOUT_MNGS_SCLK_PROMISE0_MNGS + 1)
->> +#define PERIC0_NR_CLK	(CLK_GOUT_PERIC0_SCLK_PWM + 1)
->> +#define PERIC1_NR_CLK	(CLK_GOUT_PERIC1_SCLK_UART5 + 1)
->> +
->> +/*
->> + * As exynos8890 first introduced hwacg, cmu registers are mapped similarly
->> + * to exynos7, with the exception of the new q-state and q-ch registers that
->> + * can set the behavior of automatic gates.
->> + */
->> +
->> +/* decoded magic number from downstream */
->> +#define QCH_EN_MASK		BIT(0)
->> +#define QCH_MASK		(GENMASK(19, 16) | BIT(12))
->> +#define QCH_DIS			(QCH_MASK | FIELD_PREP(QCH_EN_MASK, 0))
-> Nit: align code.
+On Mon, Sep 15, 2025 at 04:49:57PM +0800, Fenglin Wu via B4 Relay wrote:
+> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> 
+> Add variant definitions for SM8550 and X1E80100 platforms. Add a compat
+> for SM8550 and update match data for X1E80100 specifically so that they
+> could be handled differently in supporting charge control functionality.
+> 
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
+> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> ---
+>  drivers/power/supply/qcom_battmgr.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
+> index 008e241e3eac3574a78459a2256e006e48c9f508..174d3f83ac2b070bb90c21a498686e91cc629ebe 100644
+> --- a/drivers/power/supply/qcom_battmgr.c
+> +++ b/drivers/power/supply/qcom_battmgr.c
+> @@ -19,8 +19,10 @@
+>  #define BATTMGR_STRING_LEN	128
+>  
+>  enum qcom_battmgr_variant {
+> -	QCOM_BATTMGR_SM8350,
+>  	QCOM_BATTMGR_SC8280XP,
+> +	QCOM_BATTMGR_SM8350,
+> +	QCOM_BATTMGR_SM8550,
+> +	QCOM_BATTMGR_X1E80100,
+>  };
+>  
+>  #define BATTMGR_BAT_STATUS		0x1
+> @@ -1333,7 +1335,8 @@ static void qcom_battmgr_pdr_notify(void *priv, int state)
+>  static const struct of_device_id qcom_battmgr_of_variants[] = {
+>  	{ .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+>  	{ .compatible = "qcom,sc8280xp-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> -	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> +	{ .compatible = "qcom,sm8550-pmic-glink", .data = (void *)QCOM_BATTMGR_SM8550 },
+> +	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_X1E80100 },
+>  	/* Unmatched devices falls back to QCOM_BATTMGR_SM8350 */
+>  	{}
+>  };
 
-Aligned in my editor, patch files offset each line with a single symbol
-so formatting gets broken...
+I think you need to squash this with "[PATCH 7/8] power: supply:
+qcom_battmgr: Add charge control support", or move the modified checks
+for
 
->
->> +
->> +/* q-channel registers offsets range */
->> +#define QCH_OFF_START		0x2000
->> +#define QCH_OFF_END		0x23ff
->> +
->> +/* q-state registers offsets range */
->> +#define QSTATE_OFF_START	0x2400
->> +#define QSTATE_OFF_END		0x2fff
-> Nit: Align.
+	if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
+	    battmgr->variant == QCOM_BATTMGR_X1E80100) {
 
-What?
+into this patch.
 
->
->> +
->> +/* check if the register offset is a QCH register */
->> +static bool is_qch_reg(unsigned long off)
->> +{
->> +	return off >= QCH_OFF_START && off <= QCH_OFF_END;
->> +}
->> +
->> +/* check if the register offset is a QSTATE register */
->> +static bool is_qstate_reg(unsigned long off)
->> +{
->> +	return off >= QSTATE_OFF_START && off <= QSTATE_OFF_END;
->> +}
->> +
->> +static void __init exynos8890_init_clocks(struct device_node *np,
->> +					  const struct samsung_cmu_info *cmu)
->> +{
->> +	const unsigned long *reg_offs = cmu->clk_regs;
->> +	size_t reg_offs_len = cmu->nr_clk_regs;
->> +	void __iomem *reg_base;
->> +	size_t i;
->> +
->> +	reg_base = of_iomap(np, 0);
->> +	if (!reg_base)
->> +		panic("%s: failed to map registers\n", __func__);
->> +
->> +	for (i = 0; i < reg_offs_len; ++i) {
->> +		void __iomem *reg = reg_base + reg_offs[i];
->> +		u32 val;
->> +
->> +		if (is_qch_reg(reg_offs[i])) {
->> +			val = QCH_DIS;
->> +			writel(val, reg);
->> +		} else if (is_qstate_reg(reg_offs[i])) {
->> +			val = 0;
->> +			writel(val, reg);
->> +		}
-> This seems to disable qchannel and set qstate to 0 for disable HWACG.
-> If this is true, a comment is preferred.
+With this patch right now, I would expect that your series is not
+bisectable: The wrong code paths are chosen if you only apply this patch
+because e.g. X1E doesn't use the QCOM_BATTMGR_SC8280XP code anymore.
 
-I believe the "DIS" part is pretty self explanatory, no?
-
->
->> +	}
->> +
->> +	iounmap(reg_base);
->> +}
->> +
->> +/* ---- CMU_TOP ------------------------------------------------------------- */
->> +
->> +#define MIF_CLK_CTRL1						0x1084
->> +#define MIF_CLK_CTRL2						0x1088
->> +#define MIF_CLK_CTRL3						0x108C
->> +#define MIF_CLK_CTRL4						0x1090
->> +#define ACD_PSCDC_CTRL_0					0x1094
->> +#define ACD_PSCDC_CTRL_1					0x1098
->> +#define ACD_PSCDC_STAT						0x109C
->> +#define CMU_TOP_SPARE0						0x1100
->> +#define CMU_TOP_SPARE1						0x1104
->> +#define CMU_TOP_SPARE2						0x1108
->> +#define CMU_TOP_SPARE3						0x110C
-> Some of the registers not aligned.
-
-How are they not, they're aligned both in editors and the patch. Please elaborate.
-
->
->> +
-> [...]
->> +static void __init exynos8890_cmu_top_init(struct device_node *np)
->> +{
->> +	exynos8890_init_clocks(np, &top_cmu_info);
->> +	samsung_cmu_register_one(np, &top_cmu_info);
->> +}
->> +
->> +/* Register CMU_TOP early, as it's a dependency for other early domains */
->> +CLK_OF_DECLARE(exynos8890_cmu_top, "samsung,exynos8890-cmu-top",
->> +	       exynos8890_cmu_top_init);
-> Not sure you need to run Android GKI, without module built, this platform
-> will not able to support GKI.
->
-> It would be better to update to use platform drivers.
-
-Same as what Krzysztof said, design choice accross all samsung clock drivers.
-
->
->> +
->> +/* ---- CMU_PERIS ---------------------------------------------------------- */
->> +
->> +#define QSTATE_CTRL_TMU				0x2474
->> +#define QSTATE_CTRL_CHIPID			0x2484
->> +#define QSTATE_CTRL_PROMISE_PERIS		0x2488
-> Not aligned.
->
->> +
->> +
->> +/* Register CMU_PERIS early, as it's needed for MCT timer */
->> +CLK_OF_DECLARE(exynos8890_cmu_peris, "samsung,exynos8890-cmu-peris",
->> +	       exynos8890_cmu_peris_init);
-> Same as above.
->
->> +
->> +/* ---- CMU_APOLLO --------------------------------------------------------- */
->> +
->> +/* Register Offset definitions for CMU_APOLLO (0x11900000) */
->> +#define APOLLO_PLL_LOCK				0x0000
->> +#define APOLLO_PLL_CON0				0x0100
->> +#define APOLLO_PLL_CON1				0x0104
->> +#define APOLLO_PLL_FREQ_DET			0x010C
-> Not align.
-
-Same as the other comments about alignment.
-
-Best regards,
-Ivaylo
-
->
-> Regards
-> Peng
->
-
+Thanks,
+Stephan
 
