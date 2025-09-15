@@ -1,143 +1,190 @@
-Return-Path: <devicetree+bounces-217315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4A9B57530
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5689B57539
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31B7F18889EF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:48:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070771888AB4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE022E6127;
-	Mon, 15 Sep 2025 09:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136612FABE6;
+	Mon, 15 Sep 2025 09:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dRs4a/94"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f4LuR0YO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BB8242D66
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:47:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084312857E6
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757929661; cv=none; b=bHAWXDgZqimA3mdf3DiG+IT29Gjfect286kf07LIbeLDWcpz1NYitIlBH/Y8rgFlPFqfQHXGWjD+sLT4DYH3NUdMrtrn0kBWf9oyFTh2Y6kIsqSwyr7tPTitWSG8uLJLISUBVw4jp/F3IigbTWKLDaBmtv1UMk0+713cNBSXTD8=
+	t=1757929718; cv=none; b=IekkKxBoohjSnHGmlWt9PCaAiaf7mNolt9k99yW/3Lw+a4K7OSWyPJVxD0jipE0Fqem7NPhzzbTzxDEKxFn+mwzUXuAK0waPT+mV0S2UrQhtAmi3kcbNizUOoBtHBpLjksSq9mRl9pFlrUCW43SQfDG9LpJ2AG1c+yJR2Nc93jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757929661; c=relaxed/simple;
-	bh=cxAqupFOX5uFq92Avu8qu3m3xhpolK/5U494g4n1Fko=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZDcpUz5tvQxovkQMOiSTctD8i86DEUDTgihvtkUuLRjZ8yMP9gTpUZjZsb6JIZmRobSA4M1id9i+ZxpA9gZi/nTW+eb/qO8w0/0vvqrPq+LSqBn9LnNonQ21JK9YzaWE6ks0TVbkcJC3UzOH7Ncy+T9VGzX6cqnifnaKILFiNBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dRs4a/94; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7726c7ff7e5so3155951b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:47:39 -0700 (PDT)
+	s=arc-20240116; t=1757929718; c=relaxed/simple;
+	bh=/LYSOpOOPqvNcXEEZn5XwCOqw0wWb07v6/+f7MdgBos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rCji6fHi8sExSL6k8Gn5c0LmLprLmh6DolI2DMzLeKE+LAMbYGTFUtJJQ295Tz3v69dqY5oZP30Tv7PCtsTxyNIhTjx12msz9lf9rauO3bZoteILc5YnVWkfmpAI8LJZVLvRKtqVM89oDyPNiVaDiTHqkpGGHzzCs5ms/9M3d+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f4LuR0YO; arc=none smtp.client-ip=209.85.218.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-afcb7322da8so28614966b.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:48:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757929659; x=1758534459; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=puq/QVPjJHJaaP1wqvS4Jd4MbGPB7yk1PKVylU/wUU8=;
-        b=dRs4a/94Ab97T+2n9/ZsN+jqVRZVhyQnyMdM3/IYNwqHeSs7oqOd6Xq0MMcqLaT+g8
-         CjAMk0zgtbP2lbqvUWuuUwLmjq2knQgwtmg1gx9oBX5P9w0dctwpjf9a6nszajtUl/0t
-         ycnIGPJ1D0vTlC+4PTgnJu8+3mA7fjl7Cx61/DQTx2zFdOcBsyOJoO5BT27d4F+XFAI0
-         /QVe1W59lOPhUU+d9j+krsQtacqBaSkB9fCZtUpZ+bjOo7j6ZueT1t8nHokm5En5xnBf
-         d1C3R+c0VIJDtdf93+53Rv29dQgrtmc/jQZI8FlPYLI9avY+7vwfigZUJYge9MmUE437
-         CoWg==
+        d=linaro.org; s=google; t=1757929713; x=1758534513; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fGusVWyXCqe6ZR64zsDRe9g6dv6szqe6e9/gXZqBwGw=;
+        b=f4LuR0YO7vpmUv708BOaG0ruD191kjv3oOC9g7Zqr+w7AOuwrbBhxohMys+MjIP9ok
+         TRfGr/sOvanku/o7em1flBmtgpfoWNqY5sOTy/dNVapCsu0Hr+Ph0LNh7gJJaNa9Xrzk
+         ZM5ioFO1kl/auUYaJGV+l+KJHl7Ost1cozUJnHhRcpSwUIQsdLZbtRH/4H70BFq4oWff
+         v7u6RJen4atF8wIz/Yh1UIoKXARzT+xZ/dEfZfTv1QNbeweavsFqjhBV4r6KuLO2VaFl
+         iunXrMgXAzFQ+wqnabUsHL4w0oynz0tfEEaoEF99131Gmh913EGkHjRknykKVWErJ7xW
+         3Tdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757929659; x=1758534459;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=puq/QVPjJHJaaP1wqvS4Jd4MbGPB7yk1PKVylU/wUU8=;
-        b=Nh3wM6Sy76Fj0eai06Nqjhs0RgFrI3zYGr+IYfL0q8PTOnDfayxgAD29O6rMJBOB10
-         rv/zUjbHLhreSet3DliMq6N796fqg+NfAoJ7s84c0J0GsIemrRANlIL7D28dGOqpnPc8
-         jfc4KjTz/QnuNFwH28QoU9EOnGMr/l439EI+zuSooS98vd0gRgICZOI2fiM6JmmfYbSm
-         /lw4/Cfz6Yb+J1oNt2e/aO0BEynCOxWZgsEp0pDPbNW+0VVcQpa19hfWddh+b5XXvYE1
-         7TssF7dyDwWMEmd/w2JT0xJ9LstNNURWIFXD2MbJ6tSZGA+TIoc6QfN2Qlx4o3jhRrUf
-         mnqA==
-X-Gm-Message-State: AOJu0Yy/kf8eMnWQ4c7gYKhWr9apNkcSo99VJjlXbfaOtJzeot/dmxyC
-	Yz7d5fZsgtOO7A4NNA2WP+OBtPUMrh47iwlB21ShJWQdMP2qvsP1Kff/
-X-Gm-Gg: ASbGncvw0JvL/AKl3HceHI1x2d57D+icZjz9c84A5ZYSRGFsZJgK6LPsI6WsRcYyo0X
-	iMUIBHeQnRSxr2cgCRjhJnK54XmXfdE+80aLDTCtw1s6QXO3QWP2uQ2jiXK7iBpLRT9lMVGO1FS
-	tXKLZEP7LtCtLxCpUOXaJqvqDoWwp2zIRWGmw+RMc3APU2mt3owshb5kULF6EJ/gUAGaYPRolm/
-	TCOYaUWHqejWAWvay0DYIkr4KMylil407GwcWCHoBPu9HL4XND3D7bwefUAkM3KJb4UXZqr6A0E
-	nYju1pwOEFJLZOVMfqhTy7P8cA9GphLxoG+J+Td3AsbgLMXMr6x8U7sFxk3FpdbShcb4AUOsfcQ
-	t0C+MURXEkENk0pLURPo6iVHaRBUP0MFaaR/bRnE1rbe1+9pJox/5p/IVjNg=
-X-Google-Smtp-Source: AGHT+IGkXts2jRdzrIsnTzuf0gryCyKv7pwYxHT8stwUeB3vyz3wWYX7tzBsHMaYizcHXmUk5+6mwA==
-X-Received: by 2002:a05:6a20:432b:b0:245:fb85:ef58 with SMTP id adf61e73a8af0-2602c90cbe2mr16311805637.40.1757929659394;
-        Mon, 15 Sep 2025 02:47:39 -0700 (PDT)
-Received: from [172.17.0.3] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607b184f4sm12997210b3a.62.2025.09.15.02.47.36
+        d=1e100.net; s=20230601; t=1757929713; x=1758534513;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fGusVWyXCqe6ZR64zsDRe9g6dv6szqe6e9/gXZqBwGw=;
+        b=NPe0JZDo45B+jw+nD/8tzArx44lBtnZi7w285PYZIdVs8mKsu/Hy2E0wO7BSJRqSqb
+         JqYl0hIXXfyD/34O+02Yhwpi2VQ5lO83iD5MbG0bbWq5E3sHs4v6dKWKY8NJqnQHRS0J
+         VksLxEfk1JfrUc+sOivGTegGnJwWXiK6yKatHo9YA/E3gT8XnzloiS6aP588pyjzRb7x
+         glTTVKKfeq0jNITmQEbz2BlZU/fSe143rNsRsQBuwP/7CiA38GpqQQFwgAKjZOnNuT1B
+         x6izPVSu4NrnTfeFaYJFsk7Ml5C6YiyC0/eCbjL9H2SGvZzdy1e937A1thuENS3A59pL
+         Xv3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXXlnSoRQ7Vqinehf74QND7bdYSMryQ0n+UCPNO1aOuUAUomF8oY5t8fHOqQ35DEohmJQy/5Hpvae9G@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7VLgACwOWhsrzLhuF2Lw5kHfkvvPGehMtjJrHDnp59XjB5WuC
+	G05gvBKKfqwaSFbGQbKx8d9riTAAM4xNVxsaWIn5NRBs6Q7Oy6IUmMFjngwSjIsL+fY=
+X-Gm-Gg: ASbGncvpbfEcx9rAPEoAIhpuWQsS/Q1HA6mVn9DHExitbjHw/NBMMN82DdDxhgz2xuY
+	IOSNuQQNdGaEjjDcjELxkooXybaY0tNpyWxEBXFiomXAafjJ/wBQrtzI4Onw1Ni5tZE7GvwyBkI
+	ylpLO0iBq02LCrKnids8fEPR1Pe1eVusRcQ1Fzbr7sa2+tltX27CpLc+GKZ10XFSEDykMhle4kI
+	8IDa9mErGrGkSfmvoHd4tb5mJ1Qvn3kI103biuliPpAfGoa8O8/ViNCYBscqdU0Xe0QDAJdstxI
+	LXj/TlqD5/85+lYnbsnxWSCDuRS/9+g/YY3FMl2Z8B3YkXcgrpAFlcLiXAkTSxYj/3SNLB5UmCg
+	dpc2HfumQnitRWkZTnjdnOvzd+fLmxE01PYIdMySXQf0=
+X-Google-Smtp-Source: AGHT+IF+NlznyOGggwQj3KyFsitg1+o/PgvLt2K+8mej1rfCe1KkaHTdY/LMOod7hUMEDatMyfUGkw==
+X-Received: by 2002:a17:907:3c8e:b0:b04:6412:95ec with SMTP id a640c23a62f3a-b07c3554da5mr1217317266b.10.1757929713359;
+        Mon, 15 Sep 2025 02:48:33 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:30:ab20:75dc:ab3e:bbb9])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b3333e81sm915322866b.94.2025.09.15.02.48.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 02:47:38 -0700 (PDT)
-From: Leo Wang <leo.jt.wang@gmail.com>
-Date: Mon, 15 Sep 2025 17:47:23 +0800
-Subject: [PATCH] ARM: dts: aspeed: clemente: add shunt-resistor-micro-ohms
- for LM5066i
+        Mon, 15 Sep 2025 02:48:32 -0700 (PDT)
+Date: Mon, 15 Sep 2025 11:48:28 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+	David Collins <david.collins@oss.qualcomm.com>,
+	=?iso-8859-1?Q?Gy=F6rgy?= Kurucz <me@kuruczgy.com>,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 5/8] power: supply: qcom_battmgr: update compats for
+ SM8550 and X1E80100
+Message-ID: <aMfg7O2qmpKCiq18@linaro.org>
+References: <20250915-qcom_battmgr_update-v4-0-6f6464a41afe@oss.qualcomm.com>
+ <20250915-qcom_battmgr_update-v4-5-6f6464a41afe@oss.qualcomm.com>
+ <aMfWKobwM5bhJEAd@linaro.org>
+ <3559cbe4-b2e2-42d4-85ad-554258fc9dec@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250915-leo-dts-add-shunt-resistor-v1-1-d65389148a3d@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAKrgx2gC/x3MwQrDIAwA0F8pOTfQylpmf2X0IBprYGhJXBlI/
- 32y47u8BkrCpLANDYQuVi65Yx4H8Mnlg5BDN5jJLJOdF3xTwVAVXQio6ZMrCilrLYLPaFdvHz4
- aZ6EHp1Dk7z9/7ff9A4VGMn5sAAAA
-X-Change-ID: 20250915-leo-dts-add-shunt-resistor-8f96c94cf2a9
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
- leo.jt.wang@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757929656; l=1194;
- i=leo.jt.wang@gmail.com; s=20250618; h=from:subject:message-id;
- bh=cxAqupFOX5uFq92Avu8qu3m3xhpolK/5U494g4n1Fko=;
- b=GRx+rMoPC+Ks8u7cyFLnZgiZtR2njjInKSWufNm641lfB01ZSutgDpAepPQNVYxa1v3HucGVm
- CXu/0vJgogXDF0XZGPSB2GXDvlJT6dGy7IwENtdjSa5g1twGsK3oMQP
-X-Developer-Key: i=leo.jt.wang@gmail.com; a=ed25519;
- pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3559cbe4-b2e2-42d4-85ad-554258fc9dec@oss.qualcomm.com>
 
-Add the 'shunt-resistor-micro-ohms' property to the LM5066i power
-monitors on I2C1 for the Meta Clemente BMC board. This accurately
-describes the hardware and is required for proper power monitoring.
+On Mon, Sep 15, 2025 at 05:44:40PM +0800, Fenglin Wu wrote:
+> 
+> On 9/15/2025 5:02 PM, Stephan Gerhold wrote:
+> > On Mon, Sep 15, 2025 at 04:49:57PM +0800, Fenglin Wu via B4 Relay wrote:
+> > > From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> > > 
+> > > Add variant definitions for SM8550 and X1E80100 platforms. Add a compat
+> > > for SM8550 and update match data for X1E80100 specifically so that they
+> > > could be handled differently in supporting charge control functionality.
+> > > 
+> > > Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
+> > > Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+> > > ---
+> > >   drivers/power/supply/qcom_battmgr.c | 7 +++++--
+> > >   1 file changed, 5 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
+> > > index 008e241e3eac3574a78459a2256e006e48c9f508..174d3f83ac2b070bb90c21a498686e91cc629ebe 100644
+> > > --- a/drivers/power/supply/qcom_battmgr.c
+> > > +++ b/drivers/power/supply/qcom_battmgr.c
+> > > @@ -19,8 +19,10 @@
+> > >   #define BATTMGR_STRING_LEN	128
+> > >   enum qcom_battmgr_variant {
+> > > -	QCOM_BATTMGR_SM8350,
+> > >   	QCOM_BATTMGR_SC8280XP,
+> > > +	QCOM_BATTMGR_SM8350,
+> > > +	QCOM_BATTMGR_SM8550,
+> > > +	QCOM_BATTMGR_X1E80100,
+> > >   };
+> > >   #define BATTMGR_BAT_STATUS		0x1
+> > > @@ -1333,7 +1335,8 @@ static void qcom_battmgr_pdr_notify(void *priv, int state)
+> > >   static const struct of_device_id qcom_battmgr_of_variants[] = {
+> > >   	{ .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> > >   	{ .compatible = "qcom,sc8280xp-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> > > -	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> > > +	{ .compatible = "qcom,sm8550-pmic-glink", .data = (void *)QCOM_BATTMGR_SM8550 },
+> > > +	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_X1E80100 },
+> > >   	/* Unmatched devices falls back to QCOM_BATTMGR_SM8350 */
+> > >   	{}
+> > >   };
+> > I think you need to squash this with "[PATCH 7/8] power: supply:
+> > qcom_battmgr: Add charge control support", or move the modified checks
+> > for
+> > 
+> > 	if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
+> > 	    battmgr->variant == QCOM_BATTMGR_X1E80100) {
+> > 
+> > into this patch.
+> > 
+> > With this patch right now, I would expect that your series is not
+> > bisectable: The wrong code paths are chosen if you only apply this patch
+> > because e.g. X1E doesn't use the QCOM_BATTMGR_SC8280XP code anymore.
+> > 
+> > Thanks,
+> > Stephan
+> 
+> I see.
+> 
+> I was making it this way to address the review comment from Bryan in patch
+> v2 about separating the compats change. See here:
+> https://lore.kernel.org/all/7f001134-e099-492d-8ce5-4122d83a3de3@linaro.org/
+> 
+> If I revise it according to your 2nd suggestion, would it conflict with
+> Bryan's feedback?
+> 
 
-Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 2 ++
- 1 file changed, 2 insertions(+)
+I would expect that Bryan had my second suggestion in mind - separating
+the refactoring (without functional change) from the new feature
+addition.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index ecef44d8997775b26cac10353b42b03dc644f033..a614f947dafc9a6628c3f3d45b62ff3ca9d2b618 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -642,12 +642,14 @@ &i2c1 {
- 	power-monitor@12 {
- 		compatible = "ti,lm5066i";
- 		reg = <0x12>;
-+		shunt-resistor-micro-ohms = <183>;
- 	};
- 
- 	// PDB
- 	power-monitor@14 {
- 		compatible = "ti,lm5066i";
- 		reg = <0x14>;
-+		shunt-resistor-micro-ohms = <183>;
- 	};
- 
- 	// Module 0
+You need to add the new cases to the if statements in this patch, or you
+will (temporarily) change and break functionality.
 
----
-base-commit: 3708a165a98c23cc83216deda88bc7d64ba85527
-change-id: 20250915-leo-dts-add-shunt-resistor-8f96c94cf2a9
-
-Best regards,
--- 
-Leo Wang <leo.jt.wang@gmail.com>
-
+Thanks,
+Stephan
 
