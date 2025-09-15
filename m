@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-217193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D410B56FED
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:53:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4405B56FF1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 07:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC1267A055B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 05:51:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C7A664E10EC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 05:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 585BB277011;
-	Mon, 15 Sep 2025 05:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14EF27702A;
+	Mon, 15 Sep 2025 05:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fLgMo64b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TFLfLC91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9E4275B1B
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 05:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61D322749DA
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 05:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757915613; cv=none; b=gwKA8GTghpAZJMzMM5fMSE9GNbGtdQcmlVa/gAkyxtFJmXcTp8DaByOCpl+AW/OFIuG6F0Me+qwW0BZgq3F6SnYCBJPhaaQhvJtPbyg7e/up60R8Cw4ED7oFTpqD/PbfFm/GOZbZbaNxKrgqLUNopu4tTi3bzBk0rOkORLNmlQ0=
+	t=1757915652; cv=none; b=sf6oNZb7la5H8SxJ/TM5JinfkEpdNWJKLSu8M7aubBafsbZV+OL3idP7Ggecdj7ev0w7vkXQpe62RQcQcPXlCtBmgn6D3OPP5siU+KN5lRkz1cBpqflY+Un9e1dKQqic+/Je7nAmEdTGAnbVcYKr6DgcnZtPfNjfDIlKPgh1uSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757915613; c=relaxed/simple;
-	bh=JIF7wtlPlo7ensEBWZTrh6HhFvaUaAowbOa05FbDUnk=;
+	s=arc-20240116; t=1757915652; c=relaxed/simple;
+	bh=kB9Xgjc7sC2n0PUcqqjH03i7/90qjI7OVjgcV04vYa8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZuO3qgHCCA8/Kwn766oS/xz4KByHA+0vLvs2gs7t7ByCTACFE3KAMuohI8QL1Ui0jzx4xC97BGfL+pn4HmwyQU6bXt+jR3AA84wip1eddrcidQm9hd6ZoYL5eubnYYEG12vtU6l6SkS9naAGeTff6zFrXxJODaYlDasE35Goybw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fLgMo64b; arc=none smtp.client-ip=209.85.210.177
+	 In-Reply-To:Content-Type; b=sYwhtz5qEgrZCZJFERXAH2n/ESGqp0vaJtHOoSks+2opzuuA/ZSooPVoTtr3FLdMcNMmJbZXTJaz/IMThF38B8O92jq6UmL2Kfn8v6017tZ1QgOXLdjgpHlFLEWngG8N/MOSNZBFNRmz1bssohr0vOTj7lpwvUuHk6W5+ab+Apc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TFLfLC91; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7761e1fc3faso1613263b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 22:53:31 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2647bf5cb51so7312425ad.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 22:54:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757915611; x=1758520411; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757915651; x=1758520451; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lXozmDJ3HnlGu75CLn9cmOAS5UrsjMSL6Ugc5vl8nJE=;
-        b=fLgMo64bjJDN8aDInzKl2wmL7bTzRvamykzapDgnZQ67SltrVl1GioYK4ezgeU5abg
-         fSKDzlBIMisipcz3VML7KINz2/swhyhMQlNBO5F3ch7i+39vhqYG9MbIw9uYNDOoutFZ
-         FZ4WT+sSYxCI9H4k7vtRfpLDdjkluwc1cQbvmcOTqv93oo61Rc9xXn6BI2lcMSJj50g7
-         wt3g0nFVa5jhwJliMiwBMzkjiQJ5YRuEcw5guCDFtdM+O6C9b54tbhCTAPJRGiHtzKyp
-         7/+dsiPb5f4l2G2yNg0wKMsIiPjU8bQXZPESTSFCh373/duukHWDPtnVsxSbE8h6609T
-         8D5Q==
+        bh=0xJriz50pVJxCGFehied0kNKF8rdeYvm/MI+kjVAGO0=;
+        b=TFLfLC91Nb2w0ASEJe8nX4/7TRx5S7a1oarIFgdCvrouWzojV/7VuzWBOB7K72Xmro
+         BJNKXyw8DiJpe9Q6B8GGLAAzlzt63RFQjOV/ZNKRQL9J7CmJJQHI45TyW2/M9n/Dv/jQ
+         9PUf1M2S9u5K7F+N14lIYP7CPF4FCAHTEfyW+T7qQNr0CQS4RRNgGPVFu2vw0UzBY5Qs
+         FDaZE5eFD2c7XIQN//ULhErfyrApE1iEu1bbJZ+4tNX2unbupZZCyAWGZu2O1M2JGy3C
+         mZVvvaUvA6A0QhXSzhR5vGz7MM6V9urrEcRqHQBo+ojqzTNXBgk33u+fhJYxSO/N1B8F
+         rpEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757915611; x=1758520411;
+        d=1e100.net; s=20230601; t=1757915651; x=1758520451;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lXozmDJ3HnlGu75CLn9cmOAS5UrsjMSL6Ugc5vl8nJE=;
-        b=Tnn/UWzxjK+ToHxsbKFb1le7jTqWiLpFsVOHkRpVF45thwg3/BIBfkTFZnpG0ufQbi
-         zTZzjBdGi78AffXqfm2SdVdv5u98ZGdnYd1uCM6rgJv74UuG3SALjoIOQoSkSOJc2mBW
-         wZyow00Bv9BffMkYjt2gHmrDizM/rAxhBZOTCdLmLVW4479KwyUHAFgD7zBrgWYNztWa
-         q2ysc/pX5crjEYuUdq9P3o+7vffS2maMO0I27qn+8xp5G77KvvlJ6aAFipRWCqIpIkqI
-         HyEEma+HLpA7jgej1iL4gM9KgVHAj2FeL7G1Ru8RB7FR2a4KoBxRu5cobcwgwvT5DCqM
-         VKag==
-X-Forwarded-Encrypted: i=1; AJvYcCW9SeN3xw32jQMDfJ21LyhtgYa1ygRzx/lLCCM2v+ZCbw53eXkR0SNSCJnhHndMf24DgJhhbOmrNGWx@vger.kernel.org
-X-Gm-Message-State: AOJu0YywCzXJ6WVF7X1ZWf0GPL607N12rC0H7P9WhLepWQ+bAWGwjEx2
-	WVwKeLyOr/w0VGVaayaqzZJKHjIJ78VRtFNvDBr/6/HvPX7XGDFRkCYI
-X-Gm-Gg: ASbGncsTnCioFYC5pek71lmjgeiToOw4aZWmALtW6L0F7NKv+dF8G1Gi1shFFS9v7B3
-	C47OmWc0ZehaSCVW6v5hAU25Jcs/VK4Ynghllo7wSpMOaK5qbqILp8jjSDMRufy3x8EP4YIbjqC
-	3bwwU9pr6af7jH2P+AtQ33ZWQGIokNFGNAtg8WTHfRKRUyDM75WRpc2ixj4IEUH3ruZcYIR1jRV
-	cdqyWLcXL1tEUWvyugXeGkYHm2jwlxlvSYR1Ai8XYS1Gq7y9/W7wUoPU9VQ9kEpNCBBwW7LoAgk
-	ycNETSIPSWTCUYqDpVjkvDrRW2KhZJUsKKDvQJs9ZDDlVnO8V+liqJa86rZnVrv3OSOvp5UN977
-	EfvY38q3CSCEx0utWmKPSj2H56y74cI3AvGtzChlg9iE=
-X-Google-Smtp-Source: AGHT+IG9GD83InwBhFOW3NGAg67t2y+nz21UMxqm/mpb0uOARyNxtHSYfMypATTlZLh+C+BHHF2zLg==
-X-Received: by 2002:a05:6a21:998e:b0:24c:f8f:2b95 with SMTP id adf61e73a8af0-2602ca0782bmr13719523637.40.1757915610927;
-        Sun, 14 Sep 2025 22:53:30 -0700 (PDT)
+        bh=0xJriz50pVJxCGFehied0kNKF8rdeYvm/MI+kjVAGO0=;
+        b=rKz3Yzgtt/5uqfCl82OFDB2gc6aNDQfoeffRwa4HWxZ/tb/JvvomlJa5Pz9EFnBMVb
+         9N1pbf6FfRbPsxc+tNykoeLxcV6EzYRdZ94493M9cmIG7tPkjn+0F9qlsN8xOlkYaeOH
+         cQohU/DTcl+XwXmVvZim7qxtTT+ZhZJl5RWF8WBn/KqUlkYC0QHe0Sd4zZOmw6cdoWUW
+         mL+9oIkas4ZikH/mwWyyPsJ1GOuudc7xHehkpeUfjp7D0ZrUqoLe2nQGkc4ixXO67UE3
+         flqO748Vl7geBjSAZYPvLSbtY/7WZx8z8AxOkwM+yGbt+BdbCHFLoWy9VL8K5dSq+FWv
+         MHaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXD0EGd7atKirxSMmtZq237U/RKVEIX6QvR+YG6NRr+qCvpP/wNUQXwDPlaJEn9EID8WjvAz5NumrUo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwM7l6Hg2xvxWXj4KAH82sa213o7ivhIgvUbb5XTxYFbscQ6dm
+	mkW1CM9dlAiR/EQa48WVNbWF8RxpT7QUF6jImWNouPcUl4EnY2GtQEsf
+X-Gm-Gg: ASbGncuK3z0z88GuaNMNygb8AYh0T1+H3gSyPhRuYAfu8unK9/s+J3k7SdH0fj4qOda
+	dFAzOwSMQwPSkqfOIHg5gdMzTAiUJ4hNQxI/oM5dAe17vknCi4W23OekHNhflTbl2IE0U1THHb8
+	F/SMXlfnqPZq8WDbao41h3JCB+ioPPWVhQKtJwEG9Jw3YndOQB4bOgU6PwTQwXQ8saCw+hacn2V
+	gBJfiBUze/H0YCMTGu92mzZTawRqUwXXVjryyjQ9RVCC1mss3yEWXnXQ92ZEXptBhbWKZ2HeQww
+	+v3MVyUhdi5vnADfb0Alu1mJZP9zXCNItXydt+mBzdJ8Z5yVFB/ryPm9aasOBf8oFmxmU7vscmH
+	3H9097HtEb8kqzu54Oa9EgEvNRhgdKbxDYTrkj66KUXE=
+X-Google-Smtp-Source: AGHT+IEJVYaEmuUexNhRqGO7tkehxpSdx8qtkzbg9zsJFEDr0LSZYoc24Ea58IdB11ffQysDsreYOg==
+X-Received: by 2002:a17:902:e78b:b0:249:33db:34b with SMTP id d9443c01a7336-25d267641bfmr127285115ad.42.1757915650523;
+        Sun, 14 Sep 2025 22:54:10 -0700 (PDT)
 Received: from [172.17.44.75] ([49.249.92.90])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607b3603asm11755559b3a.84.2025.09.14.22.53.27
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c3ae283fdsm116165945ad.107.2025.09.14.22.54.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Sep 2025 22:53:30 -0700 (PDT)
-Message-ID: <8fa9b725-5490-4ab2-ba0c-9923bd30c677@gmail.com>
-Date: Mon, 15 Sep 2025 11:23:26 +0530
+        Sun, 14 Sep 2025 22:54:10 -0700 (PDT)
+Message-ID: <ea15d474-dc40-4a58-948d-e8311ca9e2a3@gmail.com>
+Date: Mon, 15 Sep 2025 11:24:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,37 +84,24 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: add bindings for QCS615 talos
  evk board
-To: Krzysztof Kozlowski <krzk@kernel.org>, konradybcio@kernel.org
-Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  tingweiz@qti.qualcomm.com
 References: <20250909125255.1124824-1-tessolveupstream@gmail.com>
- <4869bf32-7a0c-4db3-b3ee-4a237f20f81a@kernel.org>
+ <qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr>
 Content-Language: en-US
 From: Tessolve Upstream <tessolveupstream@gmail.com>
-In-Reply-To: <4869bf32-7a0c-4db3-b3ee-4a237f20f81a@kernel.org>
+In-Reply-To: <qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 
 
-On 09/09/25 19:27, Krzysztof Kozlowski wrote:
-> On 09/09/2025 14:52, Sudarshan Shetty wrote:
+On 09/09/25 19:57, Bjorn Andersson wrote:
+> On Tue, Sep 09, 2025 at 06:22:54PM +0530, Sudarshan Shetty wrote:
 >> This adds binding support for the QCS615-based talos evk SMARC platform.
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-> 
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> So simple patch and so many trivial mistakes which are already covered
-> in documentation. Did you read the docs?
-> 
 >>
 >> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
 >> ---
@@ -133,10 +120,11 @@ On 09/09/25 19:27, Krzysztof Kozlowski wrote:
 >> +          - enum:
 >> +              - qcom,qcs615-iq-615-evk
 > 
-> That's enum with previous entry.
-Ack, I’ll fix the commit message style, drop the redundant "bindings"
-from the subject, and correct the enum placement in v2.
-Thanks for pointing it out.
+> Can't we make that qcom,talos-evk?
+Yes, I’ll rename the board compatible to "qcom,talos-evk" in v2
+> 
+> Regards,
+> Bjorn
 > 
 >> +          - const: qcom,qcs615
 >> +          - const: qcom,sm6150
@@ -144,9 +132,8 @@ Thanks for pointing it out.
 >>        - items:
 >>            - enum:
 >>                - qcom,sa8155p-adp
-> 
-> 
-> Best regards,
-> Krzysztof
+>> -- 
+>> 2.34.1
+>>
 
 
