@@ -1,125 +1,166 @@
-Return-Path: <devicetree+bounces-217608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4FB9B5873E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 00:14:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F69B58744
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 00:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A7CA2A355D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:14:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E1D1B240E6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CC22C028E;
-	Mon, 15 Sep 2025 22:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669A3290DBB;
+	Mon, 15 Sep 2025 22:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a2K+xsvY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="POPGjKy/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360BF2BF3DB;
-	Mon, 15 Sep 2025 22:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22A71C6FF6
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:16:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757974470; cv=none; b=s6OQG1gEPU6YuD4GYIlJirbNmxYThRntX1xsByJ3RZXNKVrU41CafopLDwkY7JRGCKDLgJCbbIuv2Lgay9ZvOwUO2J6qPHl9Zrv5Tj3Ko6C0ODIRJ1MXZNBZypcXyO9KygQQC0+IukgbFmbUWk/6pCJxmZZPhNIaZHh0srfC+j8=
+	t=1757974566; cv=none; b=QNtnmK43/5GLtLkyYBmdJ1BlCf65i0rMw6bd4o9Vqpkax3f5ZJSBDEK0DvEGVO2U2kkx+szsT60bKFXbPiJV3gDe70pop9jHk7iicYHuD3Nr/xcO1gOJGFLKNujeXxlWMAf1PbKsbwEHcb4GAy5GPfOfvJiWHmGDHvT5viWxels=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757974470; c=relaxed/simple;
-	bh=G9QFydMno78vIMuERvD1vHylGlQknikWMWrdzEAvphE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Y43bVGbTZBDCRfpbgvT3n8UgduJV/prK6z/qXHNzUdPPnqRkaeeDoQHBcJDUXrPKDPkhMWjxhKFpw0/F5fen/Q4mMfdKDXM1uTbhNvngGZxtsI5EBRQjqdh65p1XIXt1K6USNDZKglFsCpQqCFJNZLFj7jJi3fD1lKP2bLQ0JR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a2K+xsvY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93ED6C4CEF1;
-	Mon, 15 Sep 2025 22:14:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757974468;
-	bh=G9QFydMno78vIMuERvD1vHylGlQknikWMWrdzEAvphE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=a2K+xsvYt99GxNvx53oREW2flSS5B/oWnhlSedBBqkQyNkOpOYUkijS8Ac7J/wxFa
-	 0RpNRK4zJ8dco2MUj5VkftPYJ1gHub4wycRv9eV24wEKk5HQC2I3dpJuN3eO8VxMzd
-	 +H9d94pJFqcUxiU02aJKR0aBSwFVu1HtXKWFWez2QwAIcqvsoY+mAqnoa9hfWCHNtS
-	 UnIcuB8Qb+9Gkvtm+wKrh1rK7AmOHGcdVPXLm8oteWfmxlJR/DXGhpBKrvb+quUOdt
-	 wWVxc9Dsl5s0RYfO04P7RlCNB10LhIgMNYwQMOsyOW+5opWq02mjM0Loep7StkjUTv
-	 ol5P4Rdn03PsQ==
-Date: Mon, 15 Sep 2025 17:14:27 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1757974566; c=relaxed/simple;
+	bh=2TwRQ7Odl35bnTVmkNbaQpjTJrpwNpSaEORP0ZdqABY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=bvBi/37KV07QzcRupypekkEax+eawIVakqd93e12SFqqECfrYNEHBoqONxcgqHvyozJ8M6wxsoe6u95sP6xi5LXm82BZoP6tRQnPzkQm2X8le+E4nRPzlACSPbnvXEOv49h0gS8KsCytYXUC8ean0/xYsMDfyK0Os4qwIfO6rEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=POPGjKy/; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7761a8a1dbcso2734736b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 15:16:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757974564; x=1758579364; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0EANtiW8Fhtl5LLMmH+RNqU0cOM8cX8a+UX3kfhq2t0=;
+        b=POPGjKy/82FA8/nOaDwBMi/sWkxXVtUJMrxWz6tLgqLJXDMA35IJ9QJyd8yDAE6xV4
+         4d68AR88U/3cIdWaXWKBitcJKSh/P3scD1s9NA75wcLcn7nS2aGKXN9MBKvWcYMLXZs1
+         /A1Go8oZwgQxTS0E+y8nilHUB/xo/QHwlwMNJGD+7SviBHNvZj53nNMgrZYrEaSh5IlZ
+         THRerBG0hDqq/0PdkhSdkqHo/H2AvNgUY18hOyyrCxNg2pm+uLejMLI5aVWqukWcmGrk
+         7IKffJ0Zr3XZAUrQXKQf+m3cOiw0Mm08odYi/ObdwWH5HbCfU5SG1UdSFS/h1kvbKfgE
+         ut8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757974564; x=1758579364;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0EANtiW8Fhtl5LLMmH+RNqU0cOM8cX8a+UX3kfhq2t0=;
+        b=U1HzsrIje+aohjc8d8NHu4WlsYpiVEih8BjMhBl0Ghgx0CXornrpfFQYNWd7YGO4Dy
+         +34QtliO1n4gujWoNypz3IbcGPVxX583t2FpoCfGAc1Vf17EM5Y/yzt1lzmp6E3PEjMb
+         dchzbdBiiT8u+Hkbs/oSUEN/gJ5CHYu1v4HpmJ1EijmTlXKyY2zUF4NYNpFa1Y4vTRrX
+         /g68t3+l/svGzwxRRqxmJ/GCEqFsgAbuOuPu1VRxaXrRekN6VJyKez7fpB3E5VZZXLR0
+         n7FbjNwDV5CGZ7GJvj9ChtwYKQ1ohiFoGadUR0N3/ZZOXEmPfm9gBzH7rZROeky2q/PD
+         ksTA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKopYsRidh2HgnfDFENjITJpo2chQOsC3YaCvpzYkFQ76abqUVOw2MXZNfxYw3lfSdeRzPlgAaME8J@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeR2YEvRtCKpxX4t0v2HG79fRSCcBa0S5Kn9/0eONqXlWezGoC
+	HXSBXbt4cNAQrbyC0qHto0CnP/ITZ189qtNPpLsZEc+tBRSjWKL1GeiD
+X-Gm-Gg: ASbGncsSTSreRcMp+bXqNqcHNQvbMB6ikGc2wIOC5gCndLnCPWvHhEcySZyC3H/1d/O
+	PjlGFFwlKCbhv3DFU+VUGuaWhSL2SspgunpJ8LASRVrdlAgS0L1wT+NVUc3sxSUPib347miYItP
+	unZjATpPjswC7onR7LnMQaai/mAiNqvBLf0FN+k9zSsv4jxWIQCZxdCzqZd0a65QMM1WM/IxMjU
+	375gSqj12IN5iZIW7W3foZe8d0mzukBMIMrH/fOlPco1LftJjKLxlMRu1wrNYfg6x/nJ3aMvKW5
+	82r+PmJyI4dWELuh4brJLJAk9GgSV83Tq/llP8I+yh4L0iecZKuqZMK86UMRtUpsNdnyhvY7ek3
+	ONa+h4w1RrgMUGALVBh8UCnsRnLHUGpfyHE5OPVTcPoPLbw==
+X-Google-Smtp-Source: AGHT+IFh76HLO/YT0qIt7A0bFAgD4JcYWE6WuL5ntYDbwnY3Rk2Yc7swyytB/kjQnM8Lx4/O+5VEeA==
+X-Received: by 2002:a05:6a20:ea0:b0:262:66d2:825f with SMTP id adf61e73a8af0-26266d28b6emr9412871637.16.1757974564051;
+        Mon, 15 Sep 2025 15:16:04 -0700 (PDT)
+Received: from localhost.localdomain ([2804:7f5:b08b:d43e:6485:d878:c0c4:abbd])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607c472ccsm14573518b3a.98.2025.09.15.15.15.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Sep 2025 15:16:03 -0700 (PDT)
+From: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+To: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
-	mmareddy@quicinc.com
-Subject: Re: [PATCH v8 5/5] PCI: qcom: Add support for ECAM feature
-Message-ID: <20250915221427.GA1765361@bhelgaas>
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: [PATCH v11 0/3] Add MAX14001/MAX14002 support
+Date: Mon, 15 Sep 2025 19:14:39 -0300
+Message-Id: <cover.1757971454.git.marilene.agarcia@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d12e002b-e99e-4963-a732-4873e13c5419@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 15, 2025 at 12:48:06PM +0530, Krishna Chaitanya Chundru wrote:
-> On 9/13/2025 2:37 AM, Bjorn Helgaas wrote:
-> > On Wed, Sep 03, 2025 at 02:57:21PM -0500, Bjorn Helgaas wrote:
-> > > On Thu, Aug 28, 2025 at 01:04:26PM +0530, Krishna Chaitanya Chundru wrote:
+Hello maintainers,
 
-> > And IIUC, this series adds support for ECAM whenever the DT 'config'
-> > range is sufficiently aligned.  In this new ECAM support, it looks
-> > like we look for and pay attention to 'bus-range' in this path:
-> > 
-> >    qcom_pcie_probe
-> >      dw_pcie_host_init
-> >        devm_pci_alloc_host_bridge
-> >          devm_of_pci_bridge_init
-> >            pci_parse_request_of_pci_ranges
-> >              devm_of_pci_get_host_bridge_resources
-> >                of_pci_parse_bus_range
-> >                  of_property_read_u32_array(node, "bus-range", ...)
-> >        dw_pcie_host_get_resources
-> >          res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config")
-> >          pp->ecam_enabled = dw_pcie_ecam_enabled(pp, res)
-> > 
-> > Since qcom_pci_config_ecam() doesn't look at the root bus number at
-> > all, is this also an implicit restriction that the root bus must be
-> > bus 0?  Does qcom support root buses other than 0?
-> > 
-> QCOM supports only bus 0.
+Thank you for reviewing v10, for your suggestions, and for answering
+my questions.
 
-Since of_pci_parse_bus_range() reads the bus range from DT, is there a
-place that validates that the root bus is 0?
+I believe I’ve addressed most of the requested code changes. There was only
+one that I haven’t fixed, I’ve included the reasons in the patch message.
 
-> > > >   static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > > >   {
-> > > >   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > > @@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > > >   		qcom_pcie_common_set_16gt_lane_margining(pci);
-> > > >   	}
-> > > > +	if (pci->pp.ecam_enabled)
-> > > > +		qcom_pci_config_ecam(&pci->pp);
-> > 
-> > qcom_pcie_start_link() seems like a strange place to do this
-> > ECAM-related iATU configuration.  ECAM is a function of the host
-> > bridge, not of any particular Root Port or link.
-> > 
-> There is no API in pci-qcom.c related to the host bridge configuration
-> currently, as we want to configure before enumeration starts we added
-> it here, we can move this to qcom_pcie_host_init() if you are ok with
-> it.
+I’d also like to use this cover letter to address some of the remaining
+questions from previous cover letters.
 
-Sounds like a better place to me.
+Regarding regmap: thank you, David, for your response. I’ve implemented it,
+and the code seems to be working fine. I tested it on the Raspberry Pi
+modified kernel version rpi-6.12 with Raspberry Pi 5 hardware, using the 
+MAX14001PMB evaluation board.
 
-Bjorn
+As for in_Y_mean_raw, the issue is that I don’t have the file
+/sys/bus/iio/devices/iio:device0/in_0_mean_raw; instead, I have
+/sys/bus/iio/devices/iio:device0/in_voltage0_mean_raw. I was thinking of 
+adding in_voltageY_mean_raw to the documentation, so I am submitting a
+patch with this change in the current patch set.
+
+Thank you also for the explanations about the extra analog frontend
+circuitry. I plan to study this further and send a dedicated patch to cover
+it in the future.
+
+Thank you Jonathan for the two possible solutions to set the number of ADC
+readings used in the mean calculation. I’ll study both approaches and send
+a dedicated patch to implement one of them in the next steps.
+
+I intend to continue sending patches to implement all the features of the
+MAX14001/MAX14002. Since I mostly work on weekends, I’ll be submitting
+patches at a low frequency, but consistently.
+
+Thank you for your time.
+Best regards,
+Marilene Andrade Garcia
+
+
+Marilene Andrade Garcia (3):
+  dt-bindings: iio: adc: add max14001
+  iio: adc: max14001: New driver
+  iio: ABI: Add voltage mean raw attribute
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   1 +
+ .../bindings/iio/adc/adi,max14001.yaml        |  87 +++++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max14001.c                    | 356 ++++++++++++++++++
+ 6 files changed, 464 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+ create mode 100644 drivers/iio/adc/max14001.c
+
+
+base-commit: 671b9b6d7f4fe17a174c410397e72253877ca64e
+-- 
+2.34.1
+
 
