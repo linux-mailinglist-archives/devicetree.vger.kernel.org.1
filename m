@@ -1,248 +1,183 @@
-Return-Path: <devicetree+bounces-217461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB54B57D7F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 15:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FCECB57BAD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FEA418825D6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:36:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ECE3189A3B0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D7B31B839;
-	Mon, 15 Sep 2025 13:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D29F30E839;
+	Mon, 15 Sep 2025 12:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="gWNKxYT3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5MQNHjd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FBF3191BA;
-	Mon, 15 Sep 2025 13:34:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757943296; cv=pass; b=Q1WYH9yQDGKQek84qimoDWHHYXInLT1OXAzKZPI6HSE/3R6GUOAMoTo7YHXGxiI7cefhPY+0URUdJ0uRzFnhpHzYQg83x3GoEHiOLDBs4X3i0DJnCUPN7Ylp4FzkJV/6VcUP3lOQVYGP1GpFXP8EVcr+PtLd5ULwt23fDHIifoI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757943296; c=relaxed/simple;
-	bh=ao7uagQdF+wiUXAvY/n129ohD/vzWpXbHOuTR787tLg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qfi9wfcmLfiiPs82A3Y3hji5JCBRFFameOeQOyQ85q1NduR/JYzloMYZ/B0FpwEoHJxVhtGlt8SRP0DS/7K8d6eicKtf4pabu13IVeY0Bk3OixuethvZmw9lIJUYIlCHbhCDxeGd5Do6EGfbM8camotmOEwZ4IG6SpacwSTMFSk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=gWNKxYT3; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757943268; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=c1F1G4DYgw5XKvAkAjRv2+e5pa6Kb4MHPVcAp86w2aDjx1S3PNpV+R4d2PE20vWnXdshV38JE96eMy9QpPWqUIcPAiYyrGl3S0rg/1+1kjcrHt/VPmFrD5CyzpPEEb0uebAGBlaFShFMz/8CxMh72Ajip+F05G1vwir9hp7GL80=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757943268; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=H9W8rcPrnhuT1ZCnz7GuLg7KS6O8tdbb1kw7ng7b4Ro=; 
-	b=fh7Mxm5/miP8QtX8RWjc/ndyuvcb9GFt5WPMxKhDvC75f91FJkisG0607fl8TNS0C9BpZA+YFW5y3jhfMRuY25eKwXsJw/Yd0YnTNgiwJklqUCkkhsT9l8HVJ2RSygKSrZt1U3g03OiHPGLPQiUY3kfVDgRaSiroZpns/8k2m6E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757943268;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=H9W8rcPrnhuT1ZCnz7GuLg7KS6O8tdbb1kw7ng7b4Ro=;
-	b=gWNKxYT3iacQ5bX9zFR8huYqQ2axP5nqfG6MKE6J9ibXD4ixDM4UhqL4WDyWCtfH
-	al312FY4BZubd/KRtEuOxsKXYi0jc0D1X6jaDnfeF3PwrPDRKLO2oykImMrec6F1VLd
-	H2GbJCrY8iLvjsGNSl8AF+GQiMNOX6JXhYalw8K0=
-Received: by mx.zohomail.com with SMTPS id 1757943266394997.9637917932183;
-	Mon, 15 Sep 2025 06:34:26 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Chia-I Wu <olvaffe@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 05/10] mailbox: add MediaTek GPUEB IPI mailbox
-Date: Mon, 15 Sep 2025 14:38:02 +0200
-Message-ID: <8577914.T7Z3S40VBb@workhorse>
-In-Reply-To:
- <CAPaKu7Q+KAzEtKBWy8KO2Kp+H4y-Mqo34uo=jgH1_iooaDq3hA@mail.gmail.com>
-References:
- <20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com>
- <20250912-mt8196-gpufreq-v2-5-779a8a3729d9@collabora.com>
- <CAPaKu7Q+KAzEtKBWy8KO2Kp+H4y-Mqo34uo=jgH1_iooaDq3hA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A0030BF53;
+	Mon, 15 Sep 2025 12:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757940362; cv=none; b=DOznAL3x8Qqn4bn0TAG4qgFh5aDhOpCZ/8HJnqB3oiRrei2omokkUePB4Vmx3MW8QyvDyUk6o9oqbHa5HS2WySnTexKRabzFnmOjzo7/2qqBiTZyQXl0vO76gGdrNnA/2KtCTdceH1uOMsLpEADrgJLZqSUGPRXEPFtY+2+H2Xk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757940362; c=relaxed/simple;
+	bh=BNNYoYpkBHTO9cpmUyT6nQRRrUm5Of6d7v3BDEpFFU4=;
+	h=Content-Type:Date:Message-Id:From:To:Subject:Cc:References:
+	 In-Reply-To; b=bQ7rB4WZGgXa0SYDWjvzGNY3pGZ9MCEfGb2Azjm4bCrIiqLPJVwbkSM9GEvFvMC3I2+MXk3YrBmNTxf0UorNh1FavxOv3mutflDFjpI8OnKXljw//RYD+s2QDlOwIqsIa1gXQrJwe1x2vAeb9faHvA3cTtrxitne7UM7aGlgMYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5MQNHjd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A7B9C4CEF1;
+	Mon, 15 Sep 2025 12:46:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757940362;
+	bh=BNNYoYpkBHTO9cpmUyT6nQRRrUm5Of6d7v3BDEpFFU4=;
+	h=Date:From:To:Subject:Cc:References:In-Reply-To:From;
+	b=P5MQNHjdJOR5OvJ2seL9fNaXLlcWGaiKyZi6zDxypyw2W59qIZyeDLkNYYkRcwAfx
+	 YVfCzRNxSYdK9dRclEKMCbWxHfe5vM9u4Phd8LR6GeD0LQ9mRSyHLbD812YZ+EUalj
+	 a+f4aAP5uEn0IQs46QKp5fQ9/IP3U2JKi6i34zTB++GhmJd7z0NkCu5YQapAbH6eev
+	 vgfsiT0TR8NJcy94zbNNStasbKd+28YOJtnR0ZQ42KEZSzDPVqzSNVrfRqgE/cejaZ
+	 FsPmE4okkwbYujW8ISwyubXxYnp+Da7R7oto/toJ+Ir+krtFNPP1/s7B7b9EH5BvVk
+	 S/jkQ3yHVBvyA==
+Content-Type: multipart/signed;
+ boundary=b738722ffd0679501c74392f15a62318d558d5578d88a795dfcc1186f5e5;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Mon, 15 Sep 2025 14:45:58 +0200
+Message-Id: <DCTDUJO0PS8B.1LD03WTEMNRVP@kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Ioana Ciornei" <ioana.ciornei@nxp.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Shawn Guo" <shawnguo@kernel.org>,
+ "Lee Jones" <lee@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/9] gpio: regmap: add the .fixed_direction_output
+ configuration parameter
+Cc: "Frank Li" <Frank.Li@nxp.com>
+X-Mailer: aerc 0.16.0
+References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
+ <20250915122354.217720-5-ioana.ciornei@nxp.com>
+In-Reply-To: <20250915122354.217720-5-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+
+--b738722ffd0679501c74392f15a62318d558d5578d88a795dfcc1186f5e5
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 
-On Saturday, 13 September 2025 00:11:10 Central European Summer Time Chia-I=
- Wu wrote:
-> On Fri, Sep 12, 2025 at 11:38=E2=80=AFAM Nicolas Frattaroli
-> <nicolas.frattaroli@collabora.com> wrote:
-> <snipped>
-> > +static irqreturn_t mtk_gpueb_mbox_thread(int irq, void *data)
-> > +{
-> > +       struct mtk_gpueb_mbox_chan *ch =3D data;
-> > +       int status;
-> > +
-> > +       status =3D atomic_cmpxchg(&ch->rx_status,
-> > +                               MBOX_FULL | MBOX_CLOGGED, MBOX_FULL);
-> > +       if (status =3D=3D (MBOX_FULL | MBOX_CLOGGED)) {
-> > +               mtk_gpueb_mbox_read_rx(ch);
-> > +               writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ_C=
-LR);
-> > +               mbox_chan_received_data(&ch->ebm->mbox.chans[ch->num],
-> > +                                       ch->rx_buf);
-> Given what other drivers do, and how mtk_mfg consumes the data, we should
->=20
->   char buf[MAX_OF_RX_LEN]; //  MAX_OF_RX_LEN is 32; we can also
-> allocate it during probe
->   mtk_gpueb_mbox_read_rx(ch);
->   mbox_chan_received_data(..., buf);
->=20
-> mtx_mfg makes a copy eventually anyway.
+Hi Ioana,
 
-We don't right now, at least not until after the callback returns.
-So we need to have the copy in the mtk_mfg callback, not after the
-completion. That's fine and I do want to do this as this is what
-the mailbox framework seems to expect clients to do.
+On Mon Sep 15, 2025 at 2:23 PM CEST, Ioana Ciornei wrote:
+> There are GPIO controllers such as the one present in the LX2160ARDB
+> QIXIS FPGA which have fixed-direction input and output GPIO lines mixed
+> together in a single register. This cannot be modeled using the
+> gpio-regmap as-is since there is no way to present the true direction of
+> a GPIO line.
+>
+> In order to make this use case possible, add a new configuration
+> parameter - fixed_direction_output - into the gpio_regmap_config
+> structure. This will enable user drivers to provide a bitmap that
+> represents the fixed direction of the GPIO lines.
 
-> We don't need to maintain any
-> extra copy.
->=20
-> Then we might not need rx_status.
+I wonder about the ownership of that allocated memory in the config
+structure (and btw, I guess you leak the memory in your driver) and
+if it's not better and more error proof to allocate and copy the
+bitmap in gpio-regmap too (and maybe use devm_bitmap_alloc()) and
+leave it to the caller to handle the passed bitmap. I.e. it could
+also be on the stack.
 
-We can probably get rid of it if we keep the per-channel
-interrupt handler. Otherwise, we may still need clogged,
-as we don't want to process interrupts on channels we have
-no user for.
+Otherwise, this looks good.
 
->=20
-> > +               atomic_set(&ch->rx_status, 0);
-> > +               return IRQ_HANDLED;
-> > +       }
-> > +
-> > +       return IRQ_NONE;
-> > +}
-> > +
-> > +static int mtk_gpueb_mbox_send_data(struct mbox_chan *chan, void *data)
-> > +{
-> > +       struct mtk_gpueb_mbox_chan *ch =3D chan->con_priv;
-> > +       int i;
-> > +       u32 *values =3D data;
-> > +
-> > +       if (atomic_read(&ch->rx_status))
-> > +               return -EBUSY;
-> > +
-> > +       /*
-> > +        * We don't want any fancy nonsense, just write the 32-bit valu=
-es in
-> > +        * order. memcpy_toio/__iowrite32_copy don't work here, because=
- fancy.
-> > +        */
-> > +       for (i =3D 0; i < ch->c->tx_len; i +=3D 4)
-> > +               writel(values[i / 4], ch->ebm->mbox_mmio + ch->c->tx_of=
-fset + i);
-> > +
-> > +       writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ_SET);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int mtk_gpueb_mbox_startup(struct mbox_chan *chan)
-> > +{
-> > +       struct mtk_gpueb_mbox_chan *ch =3D chan->con_priv;
-> > +       int ret;
-> > +
-> > +       atomic_set(&ch->rx_status, 0);
-> > +
-> > +       ret =3D clk_enable(ch->ebm->clk);
-> > +       if (ret) {
-> > +               dev_err(ch->ebm->dev, "Failed to enable EB clock: %pe\n=
-",
-> > +                       ERR_PTR(ret));
-> > +               goto err_clog;
-> > +       }
-> > +
-> > +       writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
-> > +
-> > +       ret =3D devm_request_threaded_irq(ch->ebm->dev, ch->ebm->irq, m=
-tk_gpueb_mbox_isr,
-> > +                                       mtk_gpueb_mbox_thread, IRQF_SHA=
-RED | IRQF_ONESHOT,
-> > +                                       ch->full_name, ch);
-> I don't think this warrants a per-channel irq thread.
->=20
-> mbox_chan_received_data is atomic. I think wecan start simple with
-> just a devm_request_irq for all channels. mtk_gpueb_mbox_isr can
->=20
->   read bits from MBOX_CTL_RX_STS
->   for each bit set:
->     read data from rx
->     mbox_chan_received_data
->   write bits to MBOX_CTL_IRQ_CLR
->=20
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+> Changes in v2:
+> - Add the fixed_direction_output bitmap to the gpio_regmap_config
+>
+>  drivers/gpio/gpio-regmap.c  | 12 ++++++++++++
+>  include/linux/gpio/regmap.h |  2 ++
+>  2 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
+> index e8a32dfebdcb..2489768686d3 100644
+> --- a/drivers/gpio/gpio-regmap.c
+> +++ b/drivers/gpio/gpio-regmap.c
+> @@ -31,6 +31,7 @@ struct gpio_regmap {
+>  	unsigned int reg_clr_base;
+>  	unsigned int reg_dir_in_base;
+>  	unsigned int reg_dir_out_base;
+> +	unsigned long *fixed_direction_output;
+> =20
+>  	int (*reg_mask_xlate)(struct gpio_regmap *gpio, unsigned int base,
+>  			      unsigned int offset, unsigned int *reg,
+> @@ -129,6 +130,16 @@ static int gpio_regmap_get_direction(struct gpio_chi=
+p *chip,
+>  	unsigned int base, val, reg, mask;
+>  	int invert, ret;
+> =20
+> +	if (offset >=3D chip->ngpio)
+> +		return -EINVAL;
 
-I don't like this approach. It brings us back to having to process
-multiple channels per ISR, keep track of when the interrupt should
-be enabled and disabled based on how many channels are in use, and
-also is not in line with what e.g. omap-mailbox.c does.
+Not sure this can happen. I tried to look into gpiolib.c but
+couldn't find anything obvious that it can't happen. Maybe Linus or
+Bartosz can comment on that.
 
-Remember that `mbox_chan_received_data` synchronously calls the
-mailbox client's rx_callback. In mediatek_mfg's case, this is
-fairly small, though with the request to not make the rx buffer
-persist beyond the rx_callback it will gain an additional memory
-copy. But we can't guarantee that someone isn't going to put a
-slow operation in the path. Sure, it's going to be atomic, but
-waiting for a spinlock is atomic and not something an ISR would
-enjoy. I don't think mailbox clients would expect that if they
-take their time they'll stall the interrupt handler for every
-other channel.
+> +
+> +	if (gpio->fixed_direction_output) {
+> +		if (test_bit(offset, gpio->fixed_direction_output))
+> +			return GPIO_LINE_DIRECTION_OUT;
+> +		else
+> +			return GPIO_LINE_DIRECTION_IN;
+> +	}
+> +
+>  	if (gpio->reg_dat_base && !gpio->reg_set_base)
+>  		return GPIO_LINE_DIRECTION_IN;
+>  	if (gpio->reg_set_base && !gpio->reg_dat_base)
+> @@ -247,6 +258,7 @@ struct gpio_regmap *gpio_regmap_register(const struct=
+ gpio_regmap_config *config
+>  	gpio->reg_clr_base =3D config->reg_clr_base;
+>  	gpio->reg_dir_in_base =3D config->reg_dir_in_base;
+>  	gpio->reg_dir_out_base =3D config->reg_dir_out_base;
+> +	gpio->fixed_direction_output =3D config->fixed_direction_output;
+> =20
+>  	chip =3D &gpio->gpio_chip;
+>  	chip->parent =3D config->parent;
+> diff --git a/include/linux/gpio/regmap.h b/include/linux/gpio/regmap.h
+> index c722c67668c6..34c143aca42d 100644
+> --- a/include/linux/gpio/regmap.h
+> +++ b/include/linux/gpio/regmap.h
+> @@ -78,6 +78,8 @@ struct gpio_regmap_config {
+>  	int ngpio_per_reg;
+>  	struct irq_domain *irq_domain;
+> =20
+> +	unsigned long *fixed_direction_output;
 
-So we'd keep the interrupt disabled for all channels until the
-client that received a message has processed it.
+Please add some documentation.
 
-I can see myself getting rid of the handler and just having the
-thread function as the bottom half, but I'd really like to keep
-the one-IRQ-request-per-channel thing I've got going now as it
-made the code a lot easier to reason about. However, doing this
-would mean the interrupt is re-enabled after the generic upper
-half, when all the business logic that needs to not run
-concurrently for an individual channel is in the bottom half.
+-michael
 
-As far as I can tell, this would then mean we'd have to add
-some concurrency exclusion mechanism to the bottom half.
-
-Moving all the logic into the upper half handler function
-would make that handler somewhat longer, and I don't know
-if IRQF_ONESHOT masks the interrupt for all users of that
-IRQ number or just for those with that dev_id. If it's per
-dev_id, then I'm fine with moving stuff up there. But from
-my reading of the core IRQ handling code, that does not
-appear to be the case; one channel getting a reply would
-mask *all* channels of the mailbox until the upper half is
-completed, and if the upper half calls into a driver
-callback synchronously, that may take a hot minute.
-
-Put differently: Is there a problem with one thread per used
-channel, or are we going off vibes here? The way it currently
-works uses the shared interrupt to mark just that one channel
-as busy with rx_status before letting the IRQ for all channels
-be unmasked again, which seems ideal to me.
+> +
+>  	int (*reg_mask_xlate)(struct gpio_regmap *gpio, unsigned int base,
+>  			      unsigned int offset, unsigned int *reg,
+>  			      unsigned int *mask);
 
 
+--b738722ffd0679501c74392f15a62318d558d5578d88a795dfcc1186f5e5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaMgKhhIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/g/OQGApkK4RyQeR27/lOz7UgmjxXWviLT24rk7
+HomZpRwCI1WRHKWuke8PKCKR4WSGZcYjAYDBPXI1xnHdn8m/n1TIQChwQTK5HsFI
+3TxEofLzFPbcaU5PkHKQoroE+2VZNlrfg8A=
+=QdL8
+-----END PGP SIGNATURE-----
+
+--b738722ffd0679501c74392f15a62318d558d5578d88a795dfcc1186f5e5--
 
