@@ -1,174 +1,538 @@
-Return-Path: <devicetree+bounces-217178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E6EB56F73
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 06:42:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881F5B56F8C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 06:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 322A47A6C54
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 04:40:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 327D83B9A8E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 04:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8262D2737E0;
-	Mon, 15 Sep 2025 04:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2FB26C3A4;
+	Mon, 15 Sep 2025 04:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKGQ7ztD"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="LPfJFKjz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128C714F121;
-	Mon, 15 Sep 2025 04:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E461F2361;
+	Mon, 15 Sep 2025 04:54:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757911319; cv=none; b=Q/WyXhuCSwKS7zk3hIQXfH8/3mKviloSSl7cnu/kZHZUgp38YWQv5wyqJmv1GYrd0ukFild5w2G1w8sz1K8LuJBFjVY3Bwq9KgtdBu8XeJmfeSnxnpdB/qf+SvxKohYgLd0PuOVN/j322vQCa+87WrP2xQ3AKPZVhu+sHDXRdLc=
+	t=1757912077; cv=none; b=Glf4+wYlCzpmP0J2NUuf5RszDCB1ctrk8ir6BYOju9447tWeNxqvk1Oxc/uDaOO2rlmRMhwxe42O1Wm6z2RN7tWHlTD0hDZ8WR+1e5DfuD76qR3gxyhfqJFJMy+pJAj9sOWxbMLgNX02soB8FVmqB2V4ojBb/rFfc1dF0pZqn6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757911319; c=relaxed/simple;
-	bh=b/qNKcp4cR4Py7I6Jmk+kD30432fdQwu0TjuOKJbeyo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B/27kH7tlhdwa+zLOA23+1NbUQxPvP1sQ+VzwbbRXIrgo60nb9eOvvPStXzQ3hW+kNgjXpTTj57d5FD7YgxkJ+DAmCBY2MJgXNNrAM0yPicts2zKkflyw6Le+b7fPXJ5LoN/VafhgDWh7v7hgWQbTjkggUFWCn2hbFg5Bq3OZsk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKGQ7ztD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3122BC4CEF1;
-	Mon, 15 Sep 2025 04:41:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757911318;
-	bh=b/qNKcp4cR4Py7I6Jmk+kD30432fdQwu0TjuOKJbeyo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BKGQ7ztDCnDjfZJ0cK4jdzXAQlg5ER9a5S6mlLN1o2ImSD31RSh7Lwze8SuHF0TkX
-	 rfYJllK7y5wqOF93+DWlDBGMbmuup4Xlc3cqmEwbBku+pHZv5LLLt4z0G5b/4h1Jmq
-	 tOvtOzEZGHAKZql6rfhAGE8Hlr5P+fKpGYuacg5DmAiwH+/6KnsntmV30MxFoQF/e6
-	 7KB/uFRVxkdhQVFx+hr+PdjvWpl5gYmxr/jt7jldbt6xV9avUOPDdv8XdP7TlPbQEh
-	 w1yrB6rfYNAO6IjSoEt1bL+fK4LlE/db6uK0ux8c5Sfz62bLPnEdXBc1TD6rAq6wQE
-	 8k9Zh2ZA8ao3g==
-Message-ID: <1b39712b-86c1-4eff-83ea-eb8b180db48c@kernel.org>
-Date: Mon, 15 Sep 2025 06:41:45 +0200
+	s=arc-20240116; t=1757912077; c=relaxed/simple;
+	bh=4khJECPiAoY6Ov3urQvBXzjMh8GUEyC5qrHNvw0C5OI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hwYLfIv4Ke/vkWYQZ/wbm+MNtmdnXj9MY0m973kJatj3VhdbM7rDvxwtC12RhGPqdKLejri+jWEoq4GXEiU/VH1FL/iuB2rXTK64FW8ZxAwWNLCf/3gIp3pelGhfdsmiwnhsBDLbWc2e8IS65mneA+kDfZANGuY/oG1UE3WuX7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=LPfJFKjz; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202508; t=1757912063;
+	bh=meXJkml2lM7Fzx0kZ4z63MG7HQRV8c+V9RLrobfZFcM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LPfJFKjzB4mT/Jmr4GodbRCWlL+tqnh9zzLi4OV9FQ1iZ0RRuVfcwM8vQmhZIq+mg
+	 FgKdrDSKKMsROaJYqpNDRLQghW8r5zCy97aP3LiIk3f1Ywkn5NyPEdMDb7YB9MiIYm
+	 tav4s4shvIbh80J7Lsu+c2bu8/KrBeijctUAWzz1CGCHzxZF+mrAeaCwZybBBl8U7u
+	 EVzr5RgBOIYURG7f6P7Ut7irg7dnTJ4euivFY88zSLqr+9AqwQU2PFi+UA4HfXkMb4
+	 x6lxfe7PDgmq/ddrv1JEiJjjyLJ50Q1OohP/dOtJyQJ7k0yCOpSXlwxNyWsyQyiePQ
+	 pWHEblkTFzl1w==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4cQCPC1v7Gz4w9v; Mon, 15 Sep 2025 14:54:23 +1000 (AEST)
+Date: Mon, 15 Sep 2025 14:51:41 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Ayush Singh <ayush@beagleboard.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Davis <afd@ti.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <aMebXe-yJy34kST8@zatzit>
+References: <20250902105710.00512c6d@booty>
+ <aLkiNdGIXsogC6Rr@zatzit>
+ <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
+ <aL5dNtzwiinq_geg@zatzit>
+ <20250908145155.4f130aec@bootlin.com>
+ <aL-2fmYsbexEtpNp@zatzit>
+ <20250909114126.219c57b8@bootlin.com>
+ <aMD_qYx4ZEASD9A1@zatzit>
+ <20250911104828.48ef2c0e@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 21/62] init: remove all mentions of root=/dev/ram*
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Askar Safin <safinaskar@gmail.com>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org, Linus Torvalds
- <torvalds@linux-foundation.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>,
- Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>,
- Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Aleksa Sarai <cyphar@cyphar.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Julian Stecklina <julian.stecklina@cyberus-technology.de>,
- Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>,
- Eric Curtin <ecurtin@redhat.com>, Alexander Graf <graf@amazon.com>,
- Rob Landley <rob@landley.net>, Lennart Poettering <mzxreary@0pointer.de>,
- linux-arch@vger.kernel.org, linux-alpha@vger.kernel.org,
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
- linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
- linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-um@lists.infradead.org, x86@kernel.org, Ingo Molnar
- <mingo@redhat.com>, linux-block@vger.kernel.org, initramfs@vger.kernel.org,
- linux-api@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org,
- "Theodore Y . Ts'o" <tytso@mit.edu>, linux-acpi@vger.kernel.org,
- Michal Simek <monstr@monstr.eu>, devicetree@vger.kernel.org,
- Luis Chamberlain <mcgrof@kernel.org>, Kees Cook <kees@kernel.org>,
- Thorsten Blum <thorsten.blum@linux.dev>, Heiko Carstens <hca@linux.ibm.com>,
- patches@lists.linux.dev
-References: <20250913003842.41944-1-safinaskar@gmail.com>
- <20250913003842.41944-22-safinaskar@gmail.com>
- <a079375f-38c2-4f38-b2be-57737084fde8@kernel.org>
- <20250914131321.df00dfc835be48c10f4cce4b@linux-foundation.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250914131321.df00dfc835be48c10f4cce4b@linux-foundation.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 14/09/2025 22:13, Andrew Morton wrote:
-> On Sun, 14 Sep 2025 12:06:24 +0200 Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->>>  Documentation/admin-guide/kernel-parameters.txt          | 3 +--
->>>  Documentation/arch/m68k/kernel-options.rst               | 9 ++-------
->>>  arch/arm/boot/dts/arm/integratorap.dts                   | 2 +-
->>>  arch/arm/boot/dts/arm/integratorcp.dts                   | 2 +-
->>>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-cmm.dts     | 2 +-
->>>  .../boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dts    | 2 +-
->>>  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-minipack.dts | 2 +-
->>>  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge100.dts | 2 +-
->>>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge40.dts | 2 +-
->>>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yamp.dts    | 2 +-
->>>  .../boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi  | 2 +-
->>
->> No, don't do that. DTS is always separate.
-> 
-> Why can't DTS changes be carried in a different tree?
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3KKDU2GFxq0b2RoE"
+Content-Disposition: inline
+In-Reply-To: <20250911104828.48ef2c0e@bootlin.com>
 
 
-It must be carried in a different kernel tree and it must be ALWAYS a
-separate commit. Embedding it in the middle of this patchset and in the
-middle of some other commit breaks these two rules.
+--3KKDU2GFxq0b2RoE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If you asked why it cannot be carried by VFS (or by any non-SoC tree in
-general), it is because DTS is completely independent hardware
-description, so by keeping it on separate tree we enforce that rule of
-lack of dependency between DTS and any driver or core code.
+On Thu, Sep 11, 2025 at 10:48:28AM +0200, Herve Codina wrote:
+> Hi David,
+>=20
+> On Wed, 10 Sep 2025 14:33:45 +1000
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> > On Tue, Sep 09, 2025 at 11:41:26AM +0200, Herve Codina wrote:
+> > > Hi David,
+> > >=20
+> > > On Tue, 9 Sep 2025 15:09:18 +1000
+> > > David Gibson <david@gibson.dropbear.id.au> wrote:
+> > >=20
+> > > ...
+> > >  =20
+> > > > > I think that a connector is something with a bunch of resources p=
+rovided
+> > > > > by the board where the connector is soldered. Those resources are=
+ wired
+> > > > > to the connector and defined by the connector pinout.
+> > > > >=20
+> > > > >      3v3   ------- Pin 0
+> > > > >   i2c_scl  ------- Pin 1
+> > > > >   i2c_sda  ------- Pin 2
+> > > > >     gpio A ------- Pin 3
+> > > > >     gpio B ------- Pin 4
+> > > > >      gnd   ------- Pin 5
+> > > > >=20
+> > > > > IMHO, this need to be described and defined in the base board and=
+ an addon can
+> > > > > only reference resources wired and described by the connector nod=
+e.   =20
+> > > >=20
+> > > > Yes, that's exactly what I'm proposing too.
+> > > >  =20
+> > > > > Now, questions are:
+> > > > >   - 1) How to describe a connector?
+> > > > >   - 2) How to reference resources provided at connector level fro=
+m an add-on?   =20
+> > > >=20
+> > > > Right.
+> > > >  =20
+> > > > > Our current approach was:
+> > > > > ---- base board DT ----
+> > > > >   connector0 {
+> > > > > 	gpio-map =3D <0 &gpio0 12>, /* gpio A wired to gpio 12 of gpio0 =
+controller */
+> > > > >                    <1 &gpio2 10;  /* gpio B wired to gpio 10 of g=
+pio2 controller */
+> > > > >         i2c-one {
+> > > > > 		compatible =3D "i2c-bus-extension";
+> > > > > 		i2c-parent =3D <i2c5>; /* i2c-one wired to i2c5 controller */
+> > > > > 	};
+> > > > >=20
+> > > > > 	i2c-two {
+> > > > > 		compatible =3D "i2c-bus-extension";
+> > > > > 		i2c-parent =3D <i2c6>; /* i2c-two wired to i2c6 controller */
+> > > > > 	};
+> > > > >=20
+> > > > > 	/*
+> > > > >          * From the addon we need to reference:
+> > > > >          *    - The connector itself,
+> > > > >          *    - Maybe some pinctrl related to signals wired to th=
+e connector,
+> > > > >          *    - In some cases the i2c bus (HDMI, ddc-i2c-bus =3D =
+<&i2c-two>;)
+> > > > >          *=20
+> > > > >          * This was solved introducing the controversial export-s=
+ymbols node.
+> > > > >          */   =20
+> > > >=20
+> > > > I think the type of connector should also be named on both sides (w=
+ith
+> > > > 'compatible' or something like it). =20
+> > >=20
+> > > It makes sense.
+> > >  =20
+> > > >  =20
+> > > > >   };
+> > > > >=20
+> > > > > ---- addon board DT ----
+> > > > >    {
+> > > > > 	some-node {
+> > > > > 		compatible =3D "foo,bar";
+> > > > > 		reset-gpios =3D <&connector 0>; /* gpio A used as a reset gpio =
+*/
+> > > > > 		ddc-i2c-bus =3D <&i2c-two>;
+> > > > >         }
+> > > > >=20
+> > > > >         i2c-one {
+> > > > > 		eeprom@10 {
+> > > > > 			compatible =3D "baz,eeprom"
+> > > > > 			reg =3D 10;=20
+> > > > > 		};
+> > > > > 	};
+> > > > >    };
+> > > > >=20
+> > > > > The addon board DT can only be applied at a connector node.   =20
+> > > >=20
+> > > > Right.  This is not how overlays work now.  By the nature of how
+> > > > they're built they apply global updates to the base tree.  That mea=
+ns
+> > > > we need to spec a new way of describing addons that *is* restricted=
+ to
+> > > > a particular connector slot (or slots, as Geert points out).  Since=
+ we
+> > > > have that opportunity, we should _not_ try to make it a minimal
+> > > > extension to existing overlay format, but define a new and better
+> > > > encoding, designed to meet the problems you're looking to address. =
+=20
+> > >=20
+> > > On the kernel side, overlays can be applied at a specific node.
+> > > The node is chosen when the overlay is apply.
+> > >   https://elixir.bootlin.com/linux/v6.16/source/drivers/of/overlay.c#=
+L970 =20
+> >=20
+> > Huh, I wasn't aware that had already been merged.
+> >=20
+> > > This allows to apply an overlay to a specific node without any modifi=
+cation
+> > > of the overlay dtb (dtbo).
+> > >=20
+> > > Ajush proposed an update to support this feature in fdtoverlay
+> > >   https://lore.kernel.org/all/20250313-fdtoverlay-target-v1-0-dd5924e=
+12bd3@beagleboard.org/ =20
+> >=20
+> > Yes, and I've been disinclined to merge it because I think extending
+> > overlays in this way, without a more wide-ranging redesign, is not a
+> > great idea.
+> >=20
+> > > ... =20
+> > > >  =20
+> > > > > > > > 3) bus-reg / bus-ranges
+> > > > > > > >=20
+> > > > > > > > One thing that makes connector plugins a bit awkward is tha=
+t they
+> > > > > > > > often need to add things to multiple buses on the host syst=
+em (MMIO &
+> > > > > > > > i2c for a simple case).  This means that once resolved the =
+plugin
+> > > > > > > > isn't neatly a single subtree.  That's one factor making re=
+moval   =20
+> > > > >=20
+> > > > > It can be a single subtree if decoupling is present at connector =
+node available
+> > > > > in the base device tree.   =20
+> > > >=20
+> > > > Right - allowing that decoupling is exactly what I'm proposing bus-=
+reg
+> > > > for.  Note that the case of an addon that plugs into multiple
+> > > > connectors that Geert pointed out complicates this again. =20
+> > >=20
+> > > Geert's use case needs to be clarified.
+> > >=20
+> > > Suppose a base board with 2 connectors:
+> > >  - connA
+> > >  - connB
+> > >=20
+> > > Case 1: Addons are independant
+> > >                +--------+
+> > >   connA <----> | AddonA |
+> > >                +--------+
+> > >                           +--------+
+> > >   connB <---------------->| AddonB |
+> > >                           +--------+
+> > >=20
+> > > With addonA and B two addon board each connected at one connector wit=
+hout any
+> > > relationship between addon A and B
+> > >=20
+> > > Case 2: Only one Addons using ressources from both connector
+> > >=20
+> > >                 +------+
+> > >   connA <-----> |Addon |
+> > >                 |      |
+> > >   connB <-----> |      |
+> > >                 +------+ =20
+> >=20
+> > Case 2 is what I'm talking about.  Case 1 is the easy one.
+> >=20
+> > > The addon is connected to both connector and uses ressources from con=
+nA and
+> > > connB in a dependent manner.
+> > >=20
+> > >=20
+> > > The Case 2 can be solved using a connector that described both connA =
+and connB.
+> > > Having the split connA and connB is a mechanical point of view. =20
+> >=20
+> > I don't think that's a good solution, because it means you have to
+> > make that decision at the board layer.  If I understand his case
+> > correctly, you have a board where you could do either case 1 or case 2
+> > at runtime.  We'd want the differences between these cases to only be
+> > reflected on the addon device tree, not the base board device tree.
+>=20
+> Based on my understanding of Geer's use-case, I think decision at base
+> board level will be needed.
+>=20
+> base board        addon board
+>   connA +--------+conn1
+>   connB +--------+conn2
+>   connC +
+>=20
+> Or
+>=20
+> base board        addon board
+>   connA +--------+conn1
+>   connB +    ,---+conn2
+>   connC +---'
 
-If there is a dependency here, then it would be a NAK, because there
-cannot be such - it would be a breach of contract for outside users (DTS
-is shared with other, non-Linux projects).
+I'm not sure what you mean by a decision at the base board level.  I
+certainly don't think this should be in the base DT.  I'd see this as
+a runtime parameter needed when you apply/insert/activate the addon.
+That's not really any different from addons with a single connector.
+To allow for base boards with multiple instances of that connector
+you'd need to specify at insert time which instance you're attaching
+to.
+
+That information could be supplied by the user, or in the case of
+connectors that can be probed in some way (e.g. an EEPROM) the
+connector driver could supply the information.
 
 
-Best regards,
-Krzysztof
+Which does make me think, considering this case says to me that
+conceptualizing the choice of where to plug an addon as "subnode in
+the base tree it goes under" is not a good idea.  That's not really
+going to work for a multiple connector addon.
+
+So, we can specify where an addon goes by which "connector" it
+attaches to.  That connector would have an explicit entry in the base
+tree, but it could reference multiple places to add nodes within that
+base tree.  Which means thinking about it that way, we might not need
+'bus-reg' / 'bus-ranges' after all, and in some cases maybe not bus
+extensions either.
+
+Adding nodes in multiple places makes removal a bunch more complicated
+(although it's still much better than overlays being able to modify
+*anywhere*).
+
+> Or any other combination that would match.
+>=20
+> From the addon board point of view, the only think we can
+> say is "me, as an addon board, I need a connector of type 'foo' and a
+> connector of type 'bar'".
+
+Agreed.
+
+> Also, at base board level, statically defined in the DT
+> connA is described (type 'foo'), connB and connC are
+> described (type 'bar').
+>=20
+> The choice to map connA to the type 'foo' connector expected by the addon
+> and the choice to map connB or connC to the type 'bar' connector expected=
+ by
+> the addon can only be done at runtime and probably with the help of a dri=
+ver
+> that have the knowledge of the 3 connectors.
+
+Agreed.
+
+> I have the feeling that the choice of physical connectors to which the ad=
+don
+> board is connected to is a human choice when the board is connected.
+
+Yes.  Although if the addons have an EEPROM, or some other sort of ID
+register, it may be possible for some connector drivers to probe this.
+
+> > > Also adding and Addon on only one part (connA for instance) should no=
+t be an issue
+> > > if the connector describe both parts.
+> > >=20
+> > > but well, here again I can miss something.
+> > > Geert, can you provide details?
+> > >=20
+> > > ...
+> > >  =20
+> > > > > > >=20
+> > > > > > > There is an i2c-bus-extension [1] and spi-bus-extension propo=
+sal to do the
+> > > > > > > same. But, if we can figure out a common way for all buses, t=
+hat would be
+> > > > > > > great.   =20
+> > > > >=20
+> > > > > Exactly, this is the purpose of bus extensions.   =20
+> > > >=20
+> > > > Right, but redefining it for each bus type seems silly. =20
+> > >=20
+> > > Nexus node properties are re-defined for each kind of resources (inte=
+rrupt,
+> > > gpio, pwm, ...). =20
+> >=20
+> > Yes, for historical reasons.  In IEE1275 days, interrupts was
+> > basically the only thing that worked this way.  gpio and pwm were
+> > added much later using interrupts as a model.  If we were designing
+> > from scratch having a common way of defining a nexus would make sense
+> > too.
+> >=20
+> > > Why not for bus extensions. =20
+> >=20
+> > So that we don't need to keep defining new bindings for it.
+> >=20
+> > > Also I am pretty sure that some bus extension will need to define some
+> > > properties specific to the bus related to the extension. =20
+> >=20
+> > Maybe, but then only those buses that specifically need it need the
+> > extra binding.
+> >=20
+> > > > > Also, I don't thing that the 'ranges' property should be used for=
+ that purpose.
+> > > > > The 'ranges' property is used to translate addresses from child a=
+ddresses space
+> > > > > to parent addresses space.   =20
+> > > >=20
+> > > > The rationale for bus-ranges is that the add-on board could re-expo=
+se
+> > > > one of the buses on the connector (say MMIO for simplicity) to seve=
+ral
+> > > > chips physically included on the addon board.  We don't want those
+> > > > sub-chips to need different device nodes depending on whether they'=
+re
+> > > > on an addon board or wired directly onto a main board.  bus-ranges
+> > > > would allow the root of the connector to create a subtree in which
+> > > > regular MMIO (or whatever) devices can be described, and then routed
+> > > > via the connector onto the bus on the main board. =20
+> > >=20
+> > > bus extensions supports this feature without bus-regs nor bus-ranges.=
+ =20
+> >=20
+> > bus-reg & bus-ranges allow it for any bus without having to create a
+> > new binding.
+> >=20
+> > > A bus extension ended by a sub node in the connector node.
+> > > Applying the addon DT at the connector node allow the addon to had
+> > > subnode to the extension node. =20
+> >=20
+> > I don't really understand what point you're making here.
+>=20
+> Hardware:
+>  +------------------+    +----------------------+
+>  |   base board     |    |      addon board     |
+>  |  +------+        |    |                      |
+>  |  | i2c0 |    +-----------+    +------------+ |
+>  |  |      +----+ connector +----+ eeprom @10 | |
+>  |  |      |    +-----------+    +------------+ |
+>  |  +------+        |    |                      |
+>  +------------------+    +----------------------+
+>=20
+> base board DT:
+>     connector {
+> 	i2c-ctrl {
+> 		compatible =3D "i2c-bus-extension";
+> 		i2c-parent =3D <&i2c0>;
+>         };
+>     };
+>=20
+> addon board DT:
+>     i2c-ctrl {
+> 	eeprom@10 {
+>             compatible =3D "foo,eeprom";
+>             reg =3D <10>;
+>         };
+>     };
+>=20
+> Once addon board DT is applied at the base board connector node, the full
+> DT is:
+>     connector {
+> 	i2c-ctrl {
+> 	    compatible =3D "i2c-bus-extension";
+> 	    i2c-parent =3D <&i2c0>;
+>=20
+>             eeprom@10 {
+>                compatible =3D "foo,eeprom";
+>                reg =3D <10>;
+>             };
+>         };
+>     };
+>=20
+> I probably didn't understand the bus-reg and bus-range usage.
+> In order to clarify my understanding, using the same hardware example abo=
+ve,
+> can you provide an example of description using bus-reg &
+> bus-ranges?
+
+Thoughts above suggest a different direction, but here's what I was
+thinking before:
+
+base board:
+
+	connector {
+		/export/ "i2c" &i2c0;
+	};
+
+addon:
+	eeprom@10 {
+		compatible =3D "foo,eeprom";
+		bus-reg =3D <&i2c 0x10>;
+	}
+
+Or, if the addon had multiple i2c devices, maybe something like:
+
+	board-i2c {
+		compatible =3D "i2c-simple-bridge";
+		bus-ranges =3D <&i2c 0 0x3ff>; /* Whole addr space */
+		eeprom@10 {
+			compatible =3D "foo,eeprom";
+			reg =3D <0x10>;
+		}
+		widget@20 {
+			compatible =3D "vendor,widget";
+			reg =3D <0x20>;
+		}
+	}
+
+Writing that, I realise I2C introduces some complications for this.
+Because it has #size-cells =3D <0>, ranges doesn't really work (without
+listing every single address to be translated).  Likewise, because we
+always need the parent bus phandle, we can't use the trick of an empty
+'ranges' to mean an identity mapping.
+
+We could invent encodings to address those, but given the addon with
+multiple connectors case provides another incentive for a single
+connector to allow adding nodes in multiple (but strictly enumerated)
+places in the base device tree provides a better approach.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--3KKDU2GFxq0b2RoE
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjHm0sACgkQzQJF27ox
+2GeswA/+O9iSmQ9WVoVL4POxMhmYlKbTwWknYN/+AEUw/88Fz0lkCjPdt+ImIGEM
++LlBgI6kHo+rtGuYiQmYXagI4h2T6PBofpV4I8i+Y5Ep+y0RsDY81HjtiQDCzBh/
+7cQLGJZhEQIjcoWoUzrKq/vLTurV3AtOZG2hgf7iVNTTAkpcbLAuoY6qDGXVaFy+
+qwSx0ycZt+APuRiblCm38FJSgRRpmqCgBG3ynzjHfJzYNCBcfCZFLQ3x5eDtoNLW
+jxT8Sr3th1DrwP0d+AJnH5AurI/jCZ2K2uNMOeBiqH/Qf6ragNr5GskcxKH/aWZ8
+x0w5o1qCyfe+qp/6gr4D4bZMu0Rikiq6l4uUgPF6quOx1VjXYXrxSAyc4E3QaE7+
+1d7We9vj2t0QG9eGB0mCUoBSR1Wj2XC0FMkssbIIDzF6NBnXxvs9RjXjwBm8zjF4
+nvfkAAaM2mfRqLCu5EPLvRqM1ik5Ke4TM9kGWntGwMfVuYoi0x1EzpUEXJXLZdGu
+e7rzYoe/itBuwvHm0g0oHl79PKKzq2tjQXg//URrChwDuwOca5pqI6RIAbtDlU2u
+1cDxGOLsQmY26eZOPAZ3mGe42loVM3cHjF6/1QkvXKMnoOJy9ihHxOW3fDMQJRJP
+EGsjaI37AL6BqcOpo134PCcpoXlh1tZP+eZ+y+gBtmORxaPggvs=
+=1HnZ
+-----END PGP SIGNATURE-----
+
+--3KKDU2GFxq0b2RoE--
 
