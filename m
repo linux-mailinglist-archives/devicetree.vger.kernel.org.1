@@ -1,84 +1,76 @@
-Return-Path: <devicetree+bounces-217482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76845B57E80
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95731B57EBE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:21:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2214483EC8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:12:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C75153A2CAA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FDD31AF31;
-	Mon, 15 Sep 2025 14:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADAC31327A;
+	Mon, 15 Sep 2025 14:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ib744pOF"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="VE0El93U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB47D2D12E7;
-	Mon, 15 Sep 2025 14:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B227330F529
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 14:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757945563; cv=none; b=Rf7pD8gjznhYWwzVaZncvPd401MqrjLAePI91iLtqw1yVIg5A2314JJLLmFSTmy6wmPcQWOkuedruKJObzDGYMPnm8qbNY2hw/Qx0AxLkTr41qOwilVjULJnrAyc0Vsi8miM/MXo9AVOPmNhHnuaQbcFkxdf9XZ+uLsx89hpp4g=
+	t=1757946010; cv=none; b=ir7oeXOJvbmpgkqjJYamEtQKKZ4m44PC6rIHNJ2Vbx3IURFUlh6qOraZa4Kh/lyDP9+v4q32dLpjKTRJEQCPAQkL2Pz+avzEYDQFWNDgajKxpCgETG6ZSv5gBwQYOgZWsvkRNXOrLlUnrJur58cGj93dhuEbHgBBCJxhjWzows8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757945563; c=relaxed/simple;
-	bh=KgVjLVJIEGxaahBivf2jposmH0k5F1mKeUGKFxC40rU=;
+	s=arc-20240116; t=1757946010; c=relaxed/simple;
+	bh=BPcL3Wb4WH1fDufNFQk0dtPxzJEThxned/pKKXvWxAk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X7sg68+gcMdxdignmajnqTTW6bpkQYCb0zNpa9VFy5FxNYvevjmcPJROes8DPJwOnhQxzkIiXZmtSo4sSl0ibiWqz+ej1ayYDzVXjdl/iVlrY4wC0WPNiyl1Hq1ToMLIbLBEgje/se7rxyKkFGpYseJrgLqH6f4pTRRWwmN7ISc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ib744pOF; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757945562; x=1789481562;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KgVjLVJIEGxaahBivf2jposmH0k5F1mKeUGKFxC40rU=;
-  b=Ib744pOFSXOA4yk2Umv77oMD4dy7jZXXkSC6uAkMq3gvxo1Ejz1ljxNn
-   uniqacumbyKv3aw6rKOjjYn9eFXhHBR0yyGVwSnEqQ83lSe+UIDE0yJtT
-   zvaFFW2Wrx7ejy3+8foPrITFVpCuQnze5Kwky6pY9AR2AXMYSfVnP3Dji
-   videZ4QMQJEHwuXmmnTF7C2ZTvCL1dRqfL/4TUi22hDXfaWA7vMUGSuaY
-   44P7IclGqeqWKSUSX5Xd4nA2tVboBbQH0BD/e6tDS37YjsWeyxIkd8JdV
-   rB6BHgSzVFFt/mZgqfzAC7PU09H3bp5lBV7Y6JC5lttgOwxwOUFTRyL4w
-   g==;
-X-CSE-ConnectionGUID: 47WfFI+oT5y+jX+fb8MHyg==
-X-CSE-MsgGUID: GZVkfGJxQrafETJ604+l0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="71567912"
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; 
-   d="scan'208";a="71567912"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2025 07:12:41 -0700
-X-CSE-ConnectionGUID: 3inNKzA3TLKjz1f7vlblkg==
-X-CSE-MsgGUID: TtYywyn8Sx6i+0cfps0tpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; 
-   d="scan'208";a="179807537"
-Received: from smile.fi.intel.com ([10.237.72.51])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2025 07:12:37 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uy9wY-00000003GfO-1jDn;
-	Mon, 15 Sep 2025 17:12:34 +0300
-Date: Mon, 15 Sep 2025 17:12:34 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-Message-ID: <aMge0jYwYCiY72Yb@smile.fi.intel.com>
-References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
- <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLyjI4OJrqdS3zdTYUjrXvRMWnNQP/OhX9zPeuQfuoVQouU6ueXtk3wEuUphZkyQdlPKI5DE3GdUIKeqAmbJX6k00kBATF1tR21iEhopfGBuz1n7dUUA9HcYTRplZDaPls1dIvK0+Sn6OuNWwcfEOwrRyURvyHK+VRawW5LOzjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=VE0El93U; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id 99571101627A
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 19:50:01 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 99571101627A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1757946001; bh=BPcL3Wb4WH1fDufNFQk0dtPxzJEThxned/pKKXvWxAk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VE0El93UEepO0pPA0ZcNsEMoBgjn82yIhIOz7WSa4h0YMoFNOnEWxxjs4DZ10MaQI
+	 nrQ+Z7sMxxk+KVAK1aYmqEHzzhRhMHE+2yVha5O436BHMBR5GpgTP7B1ja1kAUkHTY
+	 Znt6p49d3MKM63rUleCdU3/wyDniin82rtCZUIjo=
+Received: (qmail 30157 invoked by uid 510); 15 Sep 2025 19:50:01 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 4.597341 secs; 15 Sep 2025 19:50:01 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
+  by ldns2.iitb.ac.in with SMTP; 15 Sep 2025 19:49:56 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns2.iitb.ac.in (Postfix) with ESMTP id 5E85D3414E9;
+	Mon, 15 Sep 2025 19:49:56 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 305D01E8134B;
+	Mon, 15 Sep 2025 19:49:56 +0530 (IST)
+Date: Mon, 15 Sep 2025 19:49:51 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, skhan@linuxfoundation.org,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH v2 1/6] dt-bindings: rtc: Add ST m41t93
+Message-ID: <20250915141951.GA3239298@bhairav-test.ee.iitb.ac.in>
+References: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
+ <3aed714163abc86a18a62f039b285643d9504e64.1757510157.git.akhilesh@ee.iitb.ac.in>
+ <20250911-resolute-translucent-koala-1707dd@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,137 +79,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20250911-resolute-translucent-koala-1707dd@kuoka>
 
-On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
-> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+On Thu, Sep 11, 2025 at 09:43:09AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, Sep 10, 2025 at 07:22:33PM +0530, Akhilesh Patil wrote:
+> > Document DT bindings for m41t93 rtc which supports time, date,
+> > alarm, watchdog, square wave clock output provider, user sram
+> > and 8 bit timer.
+> > 
+> > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+> > ---
+> >  .../devicetree/bindings/rtc/st,m41t93.yaml    | 50 +++++++++++++++++++
+> >  1 file changed, 50 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/st,m41t93.yaml b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+> > new file mode 100644
+> > index 000000000000..bd593669cfa2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/st,m41t93.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ST M41T93 RTC and compatible
+> > +
+> > +maintainers:
+> > +  - linux-rtc@vger.kernel.org
 > 
-> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+> Not much improved. This should be a person responsible/caring about this
+> hardware support in the kernel. Why would we want to take the binding if
+> no one cares about it?
+
+Okay. As per get_maintainer.pl, linux driver corresponding to this binding does not have a dedicated
+maintainer, hence it shows rtc subsystem maintainer (Alexandre Belloni).
+Looking forward for your suggestion here.
+What do you suggest to keep maintainer as Rob Herring or/and me ? as I see in
+such cases Rob is the maintainer.
+
 > 
-> The IC does also support CRC but it is not implemented in the driver.
+> > +
+> > +description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
 
-...
+Sure. I will remove this. Thanks for pointing it out.
 
-> +static int bd79112_probe(struct spi_device *spi)
-> +{
-> +	struct bd79112_data *data;
-> +	struct iio_dev *iio_dev;
-> +	struct iio_chan_spec *cs;
-> +	struct device *dev = &spi->dev;
-> +	unsigned long gpio_pins, pin;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!iio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(iio_dev);
-> +	data->spi = spi;
-> +	data->dev = dev;
-> +	data->map = devm_regmap_init(dev, NULL, data, &bd79112_regmap);
-> +	if (IS_ERR(data->map))
-> +		return dev_err_probe(dev, PTR_ERR(data->map),
-> +				     "Failed to initialize Regmap\n");
-> +
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
+> 
+> > +  ST M41T93 is spi based Real Time Clock (RTC) with time, date,
+> > +  alarm, watchdog, square wave clock output, 8 bit timer and
+> > +  7 bytes of user SRAM.
+> 
+> Best regards,
+> Krzysztof
 
-> +	data->vref_mv = ret / 1000;
-
-I still think moving to _mV is the right thing to do.
-There is no 'mv' in the physics for Volts.
-
-> +	ret = devm_regulator_get_enable(dev, "iovdd");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
-> +
-> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
-> +	data->read_xfer[0].len = sizeof(data->read_tx);
-> +	data->read_xfer[0].cs_change = 1;
-> +	data->read_xfer[1].rx_buf = &data->read_rx;
-> +	data->read_xfer[1].len = sizeof(data->read_rx);
-> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
-
-> +	devm_spi_optimize_message(dev, spi, &data->read_msg);
-
-And if it fails?..
-
-> +	data->write_xfer.tx_buf = &data->reg_write_tx[0];
-> +	data->write_xfer.len = sizeof(data->reg_write_tx);
-> +	spi_message_init_with_transfers(&data->write_msg, &data->write_xfer, 1);
-> +	devm_spi_optimize_message(dev, spi, &data->write_msg);
-> +
-> +	ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
-> +						    BD79112_MAX_NUM_CHANNELS - 1,
-> +						    &cs);
-> +
-> +	/* Register all pins as GPIOs if there are no ADC channels */
-> +	if (ret == -ENOENT)
-> +		goto register_gpios;
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	iio_dev->num_channels = ret;
-> +	iio_dev->channels = cs;
-> +
-> +	for (i = 0; i < iio_dev->num_channels; i++)
-> +		cs[i].datasheet_name = bd79112_chan_names[cs[i].channel];
-> +
-> +	iio_dev->info = &bd79112_info;
-> +	iio_dev->name = "bd79112";
-> +	iio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	/*
-> +	 * Ensure all channels are ADCs. This allows us to register the IIO
-> +	 * device early (before checking which pins are to be used for GPIO)
-> +	 * without having to worry about some pins being initially used for
-> +	 * GPIO.
-> +	 */
-> +	for (i = 0; i < BD79112_NUM_GPIO_EN_REGS; i++) {
-> +		ret = regmap_write(data->map, BD79112_FIRST_GPIO_EN_REG + i, 0);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to initialize channels\n");
-> +	}
-> +
-> +	ret = devm_iio_device_register(data->dev, iio_dev);
-> +	if (ret)
-> +		return dev_err_probe(data->dev, ret, "Failed to register ADC\n");
-> +
-> +register_gpios:
-> +	gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
-> +					  iio_dev->num_channels);
-> +
-> +	/* If all channels are reserved for ADC, then we're done. */
-> +	if (!gpio_pins)
-> +		return 0;
-> +
-> +	/* Default all the GPIO pins to GPI */
-> +	for_each_set_bit(pin, &gpio_pins, BD79112_MAX_NUM_CHANNELS) {
-> +		ret = bd79112_gpio_dir_set(data, pin, GPIO_LINE_DIRECTION_IN);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to mark pin as GPI\n");
-> +	}
-> +
-> +	data->gpio_valid_mask = gpio_pins;
-> +	data->gc = bd79112_gpio_chip;
-> +	data->gc.parent = dev;
-> +
-> +	return devm_gpiochip_add_data(dev, &data->gc, data);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Regards,
+Akhilesh
 
 
