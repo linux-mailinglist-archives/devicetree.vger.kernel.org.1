@@ -1,164 +1,128 @@
-Return-Path: <devicetree+bounces-217324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5D1B5755C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:58:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC20B57566
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD7647ACD09
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:56:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98E5018908D7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:00:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADFA2F998B;
-	Mon, 15 Sep 2025 09:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EE02FB087;
+	Mon, 15 Sep 2025 10:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iLtVAy5h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isaI4Le1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC0D2FABF0;
-	Mon, 15 Sep 2025 09:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F1B2F39B7;
+	Mon, 15 Sep 2025 10:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757930280; cv=none; b=ON6XVOUFQnA6Bk7GHRsJC3owG91Ay+YqGJ9eqwZC78xzTXnRecO/JSjIZtwZFLLiR7eUgBVvZaPXkR73M1uk9hHbn2ji/cKhLfhmtMUqu19UbL1Aswdymb37hcD+MoE6ce9+OPzlovjS1u6wc1rXwcSePUvY7+FYoie0aoq7VtM=
+	t=1757930416; cv=none; b=S+eRf3kmCEzs0GnF+X4C61fiUy97I26jz3rypy9ShCcsb7L/dbBGdBV1eDfkZb4kyfcOwkwc0ezDMxlEWwcrFxknlnA/5Du0eKoQ4suIU+Z3JG/2mIwoUPA4MdMEQNLb1+aaTGhn8AmXHYJNA3DYzes+QmxDDdA3Uk8ydL6V5ZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757930280; c=relaxed/simple;
-	bh=NkbKzHG706iJdJxu5vSJY3qj2jEFX8Hh23r4tuIRyO0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sHCOWm51FKDC1AtyV+cKyCBXWtNNWL4iokjHbzd6Eq1rwAIKVFbGyvtrlte23T1oxiTKONI0195ECTg2R9rs85+tTHEcTdWrXkhfhNJZ+ywOsQ7MzcL13iWYTX3ixgLz3El+e0PuKdHIxb14pNn8uMYmmD/4kq7pe+OzHvtmLr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iLtVAy5h; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 1AA3F25EA4;
-	Mon, 15 Sep 2025 11:57:57 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id eWK9oPfQyWsU; Mon, 15 Sep 2025 11:57:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1757930276; bh=NkbKzHG706iJdJxu5vSJY3qj2jEFX8Hh23r4tuIRyO0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=iLtVAy5hx2LIxlxXEcOje0/JIj0/WFQABySWR4w3lXWbavWHKrHJFcmuAaL7uuSeI
-	 NzArqKdkClnHnqSq9Mo1NDcgZSwAqpxgOtAzulYUW1rgfORO+AfgJRWQP3xM546PcA
-	 WT0ykAv0OOLgltXLXKL/TfgyGxXrGQLXv6myWWdzOqXc2pfkMFE/ct0vtHtGgnzOA8
-	 bKH53mj/7mohFflbz6u9AF0x49aJkly7TnNn+AoCo4NFE3H4Gq5vsjU6hkP+THbHzz
-	 /NmbNJEQRxgUa7B+frdJOj1dsehAX2tgmRbrKtMJJoxNB9EPcliemCZE2k2wYCVoT+
-	 YxdoUQbvzlkTg==
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH v2 5/5] riscv: dts: thead: Add reset controllers of more subsystems for TH1520
-Date: Mon, 15 Sep 2025 09:57:34 +0000
-Message-ID: <20250915095734.53423-1-ziyao@disroot.org>
-In-Reply-To: <20250915095331.53350-1-ziyao@disroot.org>
-References: <20250915095331.53350-1-ziyao@disroot.org>
+	s=arc-20240116; t=1757930416; c=relaxed/simple;
+	bh=Pcd9ZToXPQQxmubV3rR5Zi6CoH4Kg5mSLyV/LY5hX/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pUtBxLazMXgaMnb2WfTfI4+TpKzifUseIRUKrMxStFRVO5qZJaVkLNAEMSkKyB+ED9mf6nPqTGUG763KLMCW7yk7mZkYxLLTKbsn3LbId0m54s5hg1t0HdcgNKREmchsYqlVEf7MKWpwl99/+cxuunM+nOq4mRSUqE0lmZYNxHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isaI4Le1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2424C4CEF1;
+	Mon, 15 Sep 2025 10:00:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757930416;
+	bh=Pcd9ZToXPQQxmubV3rR5Zi6CoH4Kg5mSLyV/LY5hX/8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=isaI4Le1IUPm5WO/FkjugGY5TihhnnOPPWBqXZATkJqCFu8K+uagSHjhYXaYdBJVO
+	 pYj6cFzEwtrwxAkVKFerFQexukNRw9y3ZypQUnHgd14TkKkjUXhKvKhl5pOiCDXE/C
+	 //8cMCshz8VQP2Btbaa2ZCG8IX/xMZ5RGNglwqHa4qDfgOFNww4g5zb3zUfsP8m8r+
+	 /sRQBTMnpLAtOI52ZR96b0Hu5xrIvRTyXKf3bGrUuDQH5vLvtrFQD5FkhxEK0JCzvP
+	 UxJCRydMKaMLvXso4KD37LJgVE2f1+Jy7+fwWUlHR+yofF0VS8dJqXl6YkCDTi/8HB
+	 orORk55ceYQQQ==
+Date: Mon, 15 Sep 2025 12:00:14 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Drew Fustini <fustini@kernel.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 1/7] pwm: Export `pwmchip_release` for external use
+Message-ID: <3jxl6gpxwv376ooyny7qkeokeh7nzafttbyoehmwqzrccn5oip@747v6zdnogso>
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+ <CGME20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9@eucas1p2.samsung.com>
+ <20250820-rust-next-pwm-working-fan-for-sending-v14-1-df2191621429@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ieqpilfwwfgxf4dc"
+Content-Disposition: inline
+In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-1-df2191621429@samsung.com>
 
-Describe reset controllers for VI, MISC, AP, DSP and AO subsystems. The
-one for AO subsystem is marked as reserved, since it may be used by AON
-firmware.
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 37 +++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+--ieqpilfwwfgxf4dc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v14 1/7] pwm: Export `pwmchip_release` for external use
+MIME-Version: 1.0
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index e680d1a7c821..15d64eaea89f 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -277,6 +277,12 @@ clint: timer@ffdc000000 {
- 					      <&cpu3_intc 3>, <&cpu3_intc 7>;
- 		};
- 
-+		rst_vi: reset-controller@ffe4040100 {
-+			compatible = "thead,th1520-reset-vi";
-+			reg = <0xff 0xe4040100 0x0 0x8>;
-+			#reset-cells = <1>;
-+		};
-+
- 		spi0: spi@ffe700c000 {
- 			compatible = "thead,th1520-spi", "snps,dw-apb-ssi";
- 			reg = <0xff 0xe700c000 0x0 0x1000>;
-@@ -502,6 +508,18 @@ uart2: serial@ffec010000 {
- 			status = "disabled";
- 		};
- 
-+		rst_misc: reset-controller@ffec02c000 {
-+			compatible = "thead,th1520-reset-misc";
-+			reg = <0xff 0xec02c000 0x0 0x18>;
-+			#reset-cells = <1>;
-+		};
-+
-+		rst_vp: reset-controller@ffecc30000 {
-+			compatible = "thead,th1520-reset-vp";
-+			reg = <0xff 0xecc30000 0x0 0x14>;
-+			#reset-cells = <1>;
-+		};
-+
- 		clk: clock-controller@ffef010000 {
- 			compatible = "thead,th1520-clk-ap";
- 			reg = <0xff 0xef010000 0x0 0x1000>;
-@@ -509,6 +527,18 @@ clk: clock-controller@ffef010000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		rst_ap: reset-controller@ffef014000 {
-+			compatible = "thead,th1520-reset-ap";
-+			reg = <0xff 0xef014000 0x0 0x1000>;
-+			#reset-cells = <1>;
-+		};
-+
-+		rst_dsp: reset-controller@ffef040028 {
-+			compatible = "thead,th1520-reset-dsp";
-+			reg = <0xff 0xef040028 0x0 0x4>;
-+			#reset-cells = <1>;
-+		};
-+
- 		gpu: gpu@ffef400000 {
- 			compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
- 				     "img,img-rogue";
-@@ -681,6 +711,13 @@ aogpio: gpio-controller@0 {
- 			};
- 		};
- 
-+		rst_ao: reset-controller@fffff44000 {
-+			compatible = "thead,th1520-reset-ao";
-+			reg = <0xff 0xfff44000 0x0 0x2000>;
-+			#reset-cells = <1>;
-+			status = "reserved";
-+		};
-+
- 		padctrl_aosys: pinctrl@fffff4a000 {
- 			compatible = "thead,th1520-pinctrl";
- 			reg = <0xff 0xfff4a000 0x0 0x2000>;
--- 
-2.50.1
+Hello,
 
+On Wed, Aug 20, 2025 at 10:35:36AM +0200, Michal Wilczynski wrote:
+> The upcoming Rust abstraction layer for the PWM subsystem uses a custom
+> `dev->release` handler to safely manage the lifetime of its driver
+> data.
+>=20
+> To prevent leaking the memory of the `struct pwm_chip` (allocated by
+> `pwmchip_alloc`), this custom handler must also call the original
+> `pwmchip_release` function to complete the cleanup.
+>=20
+> Make `pwmchip_release` a global, exported function so that it can be
+> called from the Rust FFI bridge. This involves removing the `static`
+> keyword, adding a prototype to the public header, and exporting the
+> symbol.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+
+I still somewhat dislike this patch. Isn't it possible to make the rust
+abstraction use the pointer that .release is set to when it calls
+pwmchip_alloc()?
+
+(I wouldn't further delay this series for this discussion, this can be
+handled just fine at a later point in time.)
+
+Best regards
+Uwe
+
+--ieqpilfwwfgxf4dc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmjH46sACgkQj4D7WH0S
+/k5CPgf/d9VpIxfV66LPQ8LcyKGHr/z6WLe8e0mXCQBgmb+2uCpwZuAcfd87eAge
+Gj0+iGdFuUvqg9fRbzhyd91BvVk/yCcPrg4kWxrECTxVq3ZqoMivnw7cngrXg1k5
+gFdHV1Hd294DQHqM8cw4m2CpbS3Uo+2i17f2+hlQcIbGfrChb5Ge3HlZKsaMvd2k
+QRw8M4TQVIzt/CUSPAwDgjB22tASqGcyOSczpasXB7XdPI2T8IdUF795FzZrvNvg
+VKdgOVk2s82h9mVAImKZOCHPwE/N9Qbe25AaJAFDMkBLjebGEI2hkwFFjt406aNo
+edMadB5H+bBdQwPhBaDbH4qsWO1paw==
+=yBiS
+-----END PGP SIGNATURE-----
+
+--ieqpilfwwfgxf4dc--
 
