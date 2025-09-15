@@ -1,163 +1,143 @@
-Return-Path: <devicetree+bounces-217199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23DC9B5700B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:07:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0204B5700F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 08:08:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF61A1626E4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 06:07:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91FD3163F58
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 06:08:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95379221DA5;
-	Mon, 15 Sep 2025 06:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC612773C3;
+	Mon, 15 Sep 2025 06:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OaYUMthy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S2thQLtu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A087B10FD;
-	Mon, 15 Sep 2025 06:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD6926980B
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 06:08:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757916439; cv=none; b=egBUmmnlRBVpvhyz8SSW9VBQEDuDYuq1eBpu0DYI8iUeKTOrhYuacEM7vKIrY/dufyRNfUh0KwE7C5Ozz+mXa6dWAJJf7J20opmHlgyELPmGpAM5w1bENNDH0LKTx/LjJj0KI8YOFAbYh1etwpbZqvqlPX6/pJu6uF8OW50Ddwg=
+	t=1757916511; cv=none; b=QVt8DLTFb2zBMe1wYmKZ+xy5Zi1OvnZCzlb+sV5m1AUOjL+BJ9wsXXUEqvGTV6RQUb5p7kjFwLtvu006ZNiTNpzsfZvNwe2gMekzT1bjyptQpunODfURJKKpL2GOx/+wbo01viGwC9pPcRvD5ZXL+UmBrvfZwcfQ8a1uENfniwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757916439; c=relaxed/simple;
-	bh=8+E5bGhOGanoj/s2tPgbXX41PSMqQdILndN3yJRRz5s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Y9zIXI/Pf3LKXQqT9BgW4Cn0AqAJjLIgTLwkmnlJPhGhJc3kPwbJofe+hyoOCCEUAo8xOvEAkQDJySkfxZzxrd98/SMb1HO+ZYRa73bGFQEvjE5MoENGjfds0gNwUOUYWQDqFlBeCDZOH8of+0D0ly45XC37jCaq1GcaxyNptZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OaYUMthy; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58F66qpD979199;
-	Mon, 15 Sep 2025 01:06:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757916412;
-	bh=cPfd07ZOdvUhzODlvHhJl75jq74vTGl43U5ZELEC+hQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OaYUMthyr33aAC7dzCX+PEMhliUlbpvZGq0mAsf11GEWYWfILThL2tt8dE3t9qx7D
-	 eszInXNJSlZMdht14Kv0TvAkopuGwLqdcKm4TRA4Tb3ff50rxa+5S+yy+1VoYogtei
-	 6Kkv7lcwH1cfiCJNndoR+v7v0Qr22OqtqFuIR9q0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58F66qGX3184091
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 15 Sep 2025 01:06:52 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 15
- Sep 2025 01:06:52 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 15 Sep 2025 01:06:52 -0500
-Received: from [172.24.233.62] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.233.62])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58F66jEK3245914;
-	Mon, 15 Sep 2025 01:06:46 -0500
-Message-ID: <cc5a5e12-4e71-4662-9a0d-f925c5bc50ed@ti.com>
-Date: Mon, 15 Sep 2025 11:36:45 +0530
+	s=arc-20240116; t=1757916511; c=relaxed/simple;
+	bh=7VzbklctKdIrn6OpeqjjDqcdvSxO6Lzp/1BHbgsjrIA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BL5q2z5nNjtUX4KozYWrKNYUyjM+HsOE8yKzymfrMsP5lWSAqIPf+rVX9Mt52iCSUMoENNpOxF5Y1FLSUX+xJylKDS2/F9gliJjVV6sktuJrjX8gtsmg4u7/ebw6VFWE54m/YQ0QtPydlQ3sDpR2uH7wU3o9OU7riY8OXry/hQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S2thQLtu; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-55f6507bd53so3992812e87.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Sep 2025 23:08:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757916508; x=1758521308; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6+bAX19gw/9gH1ginZH4Z7Vwie8QhvssmibHNzq3eoY=;
+        b=S2thQLtuERHfqEu0cb8GSvjx7+x4W/aCl8/6dLJ7M3I4XNCmH8TX61DwiUUtAS89zr
+         ST7R1t/wsrIGYRMC/Jd6PSqD5BXrUSG8V9V0PM1rcCR8l8XB5yIdYdLEOnT9dAsW8FBp
+         QV87jKxEm1oPhGqS7GQlUbCjL1gZNLmQ30qnYv+mUlD8xjYJVgvcxoOOWKv44ND8/bQg
+         HBFAFL5Kk8GtPjzArG2N69yp+n3MAlt3uZTXSWFsrs5htbs+/XhTborrjqc/NFz9AsB3
+         gdN+QzCNLpMUgrgvieUFMK5it8uon2nem7iT+Uht+Nq1FpVaMmLjm4AMErjUiZ97sMGJ
+         ZidQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757916508; x=1758521308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6+bAX19gw/9gH1ginZH4Z7Vwie8QhvssmibHNzq3eoY=;
+        b=gNMuXZGPg4UQ03UC4aOmpHPcKxrz6bIduVkI8um64twdLPkKxF7OZmXU35h+YIfzDf
+         7h+TJhx02ASkq5TQe8DsbGr9zg6jvTsojzsf2Qlq/APmYk6lZTL4JmGjau5OJ/8TGXxk
+         dnuuMqWJW/CtR6KJ4OvrD9g824C4Svn7W/8LAbJhp6k3Rzo0iu6Lb/QY06ghxNnAnkmk
+         vR5nPHiY9xzGSP5R8VH+ik7fQ7RwX+lxWeE7nnKipGkC2pqwepFu32O4OoVtsSGKp2sK
+         7anXJFnYIWyirDSIO//p4ZpmmWWRyEtdWulikdqHm1hJaLJfsb3cFshAizNS3Wq18uXf
+         yIcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUjkF8iY2FbWs4sU25/OVo4M/wG8OorAhnLGjAPOLxH6/BptN4DZiDksZs4/qrcqKjmfKYO/PE0M+oe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzz+x9umtESNy/uj2b+bxWSu9k1pxa1rT5xVfZCRKgimlns+IuJ
+	ikL8EWxJXGG0E2vSK+5DROb5yzzQMxDgwed0t4RS3/Q0tC8khelv5hX8t5YAvwYzS3UCAyyFD3s
+	oKYpSPMWYRN5XL/Kxgr8jspkjV6OdgZ4=
+X-Gm-Gg: ASbGncu2EJe52vtJOTF2MoCeTbxRAtqBD7cauF6R0FJf19JnfXH4th9Zvf9KyFZUS6I
+	BC9LOcbO5o/x99VcFtrvthRGFlJ6iU/u+px57xquNZPvsRG5R6y8uXvT3JpJZQSDsEesnLSUQUn
+	dnW/WzPn8p2rNcOUea0dbnPWRUROh7bB7NdPxZZ2ZVqWvSPj+FEH/T6QcOwHt17DbGRFekw879E
+	kJlwopxiU5g92uZ0g==
+X-Google-Smtp-Source: AGHT+IGFGnkhckMa356Nxb0PE7sy4MulP40ZRRHJNJXJXO8vi8UJyukObUTHuMngTBbku9KLRFQWU0gFKtiEEN2v7mM=
+X-Received: by 2002:ac2:4bcd:0:b0:571:3afa:33dc with SMTP id
+ 2adb3069b0e04-5713afa35f7mr3565655e87.16.1757916507877; Sun, 14 Sep 2025
+ 23:08:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am625: Add OLDI support
-To: Swamil Jain <s-jain1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <jyri.sarha@iki.fi>,
-        <tomi.valkeinen@ideasonboard.com>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-        <simona@ffwll.ch>, <aradhya.bhatia@linux.dev>
-CC: <h-shenoy@ti.com>, <praneeth@ti.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-References: <20250913064205.4152249-1-s-jain1@ti.com>
- <20250913064205.4152249-3-s-jain1@ti.com>
-Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20250913064205.4152249-3-s-jain1@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
+ <20250906-t210-actmon-v3-5-1403365d571e@gmail.com> <29ec10fa-1ca4-43eb-a865-7219d39c7140@kernel.org>
+ <c1b0bffe-f5d4-4d71-bfb6-b047d3d2866e@kernel.org>
+In-Reply-To: <c1b0bffe-f5d4-4d71-bfb6-b047d3d2866e@kernel.org>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 15 Sep 2025 01:08:15 -0500
+X-Gm-Features: Ac12FXxfBqN3bMySguM87nRxs_1fzm1bjR4kMnBwk53fxGN6c3-9HEkbRgJ-OG4
+Message-ID: <CALHNRZ9G_OA0+quNP=NwnwX43iaV1JWxjJFM0Aoect9Y8jGjWw@mail.gmail.com>
+Subject: Re: [PATCH v3 5/9] memory: tegra210: Support interconnect framework
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 13/09/25 12:12, Swamil Jain wrote:
-> From: Aradhya Bhatia <a-bhatia1@ti.com>
-> 
-> The AM625 SoC has 2 OLDI TXes under the DSS. Add their support.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+On Wed, Sep 10, 2025 at 5:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 10/09/2025 11:39, Krzysztof Kozlowski wrote:
+> > On 06/09/2025 22:16, Aaron Kling via B4 Relay wrote:
+> >> +
+> >> +static int tegra_emc_interconnect_init(struct tegra210_emc *emc)
+> >> +{
+> >> +    const struct tegra_mc_soc *soc =3D emc->mc->soc;
+> >> +    struct icc_node *node;
+> >> +    int err;
+> >> +
+> >> +    emc->icc_provider.dev =3D emc->dev;
+> >> +    emc->icc_provider.set =3D emc_icc_set;
+> >> +    emc->icc_provider.data =3D &emc->icc_provider;
+> >> +    emc->icc_provider.aggregate =3D soc->icc_ops->aggregate;
+> >> +    emc->icc_provider.xlate_extended =3D emc_of_icc_xlate_extended;
+> >> +    emc->icc_provider.get_bw =3D tegra_emc_icc_get_init_bw;
+> >> +
+> >> +    icc_provider_init(&emc->icc_provider);
+> >> +
+> >> +    /* create External Memory Controller node */
+> >> +    node =3D icc_node_create(TEGRA_ICC_EMC);
+> >> +    if (IS_ERR(node)) {
+> >> +            err =3D PTR_ERR(node);
+> >> +            goto err_msg;
+> >
+> > return dev_err_probe
+>
+>
+> I will send patches to fix existing code. I also found some more issues
+> which I would like to implement here.
+>
+> I apologize for coming with all this at v3. I should point out things a
+> bit earlier, although how this patchset was organized also affected revie=
+w.
+>
+> Anyway my comments are mostly non-critical things, so v3 is late to
+> bring these, I understand. That's on me. I appreciate your work and
+> please do not get discouraged with my comments.
 
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+I understand and that's fine. Get it done right the first time so it
+doesn't have to be redone later. I will try to get a new revision out
+this week once I cycle back around to the relevant devices here.
 
-Regards
-Devarsh
-
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 47 ++++++++++++++++++++++++
->   1 file changed, 47 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index dcc71db8afd4..d240c157d819 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -793,6 +793,53 @@ dss: dss@30200000 {
->   		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->   		status = "disabled";
->   
-> +		oldi-transmitters {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			oldi0: oldi@0 {
-> +				reg = <0>;
-> +				clocks = <&k3_clks 186 0>;
-> +				clock-names = "serial";
-> +				ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					oldi0_port0: port@0 {
-> +						reg = <0>;
-> +					};
-> +
-> +					oldi0_port1: port@1 {
-> +						reg = <1>;
-> +					};
-> +				};
-> +			};
-> +
-> +			oldi1: oldi@1 {
-> +				reg = <1>;
-> +				clocks = <&k3_clks 186 0>;
-> +				clock-names = "serial";
-> +				ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					oldi1_port0: port@0 {
-> +						reg = <0>;
-> +					};
-> +
-> +					oldi1_port1: port@1 {
-> +						reg = <1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		dss_ports: ports {
->   			#address-cells = <1>;
->   			#size-cells = <0>;
-
+Aaron
 
