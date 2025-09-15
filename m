@@ -1,111 +1,71 @@
-Return-Path: <devicetree+bounces-217575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235D5B5847F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:23:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3659CB584B2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77D5A1AA774C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 18:23:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5AA73AF299
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 18:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D2E2773F2;
-	Mon, 15 Sep 2025 18:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB9E27A92A;
+	Mon, 15 Sep 2025 18:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hct3YM5V"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="fwQCF83w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440E11E411C
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 18:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4680FE573
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 18:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757960573; cv=none; b=e7+mVmsyefQ869XSz5rAMWUsEkCF+45TbTyOSYuV+RgBC76F6m0Jx+A0vYJWm4IE8yAkXA/NMX4iB12ZBx4Dlrh+E/sT8CstENYPtIAd4fUp2yaG1FI/sjW4BsjJ/ybhDDHovqxGRpceB/ik+Jdo78XA8GIaGQHbF9gi5wQMtqc=
+	t=1757961422; cv=none; b=mNoRMPhcmnEEiyncZqKIrK+ThtQS0oRKcX57CbE0tF2+x587xG5NPH32ldvdohA4NkQx/F68gczSrhQKTNDaLXGEabwvlYMPhqxpLEXwfsskk9njFXtzuJTS/gZIJKAQriQII88bS8Gr/X9qmLxlURR6wxP77KpOYcZQYDU3lxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757960573; c=relaxed/simple;
-	bh=gKyS5sTdyjU2bT+xqX3t7C5k8OZgyBBrIG5tqYiW1p0=;
+	s=arc-20240116; t=1757961422; c=relaxed/simple;
+	bh=209eci6aRzHWIwRyX/rgh7c2i1XYNBnkzbEzYmFDqlQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cVNTa8T8UIDpU6TXLTDf/AOXBAA3RiCtXcm86doCqikQLbbxmpqaz7dOLcXIdYBQhfihpEJlbjKRhOGK/w3QVFjyyZixLroKur5uM59/Lpb88EoJBTrHAunSv0zT3DLEJEABHIuXaUDD0qAi/46tmj5yXsJMW5wglJrPPK2zDIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hct3YM5V; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58FFwwPJ022055
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 18:22:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	F1LjIqAwbyBFY61E2h7fViEwka8RdZtiySWmXgTI3a8=; b=hct3YM5VCcVXNXsm
-	JNY1lgpvsscIGnVixGxMLCvDrkhKt9qGRTGAM9LmAP7OU0I6uH9BKx/svAepFs4x
-	gk3TQWQFnHaFKeMZw6i29fMtTmBummUwei5QiW1UpabMCTTKzcUNRels/Q56xoYI
-	88+6YHTa7s7+RhjG5fbBSLK6fVzkU0oj5Ktvn12BdJfAb70MWQQsFd7W3Z+i646E
-	aqeDuItCY7OXWCjW7RjFhZxlgYlvN92LtMzWuRRw9I/f6y0jDvUJNDKUFHZK6QH+
-	XQv+NptwYm4OgjT5VD226EtbH3U/N6v3K++W+VMvg5iUdh9CjhfvU90Oga6RZZae
-	BDJxRw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n1q25-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 18:22:51 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5ee6cd9a3so95774791cf.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 11:22:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757960570; x=1758565370;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F1LjIqAwbyBFY61E2h7fViEwka8RdZtiySWmXgTI3a8=;
-        b=IFkq1D2Ivq4xq4KMx9VjUfCH8N4c5VWU+3d0H+c1y23TiqKEvWHZxqGkbya0QIgM4i
-         14RUup24PgDB7hhuua7d94tVV7CLU+z7JL7+JslcUHbu2jAPghWgXytbyjuC9K0nY5i3
-         Rdz3bhvPKtXI5/ua2TW9YNHDVUYl7u+6MGvtHW0IPP7ChvSkcofVRxQ0mvU6ovuNJblJ
-         ijVsLGp/2w+gqcBGeIEn3d01rcI/BGixYECEpHtslZkwXpqx0DEEwuVE7J4yYsknZ67s
-         z9prd/gBzK9z1eJAH6HY6FrldF4g2xlZ/a8RFrx+V3N5yssLJwVBYaocZrlfIYTJ3vOk
-         MkBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVdbFKM16VSB1I7KgvkA5HmA/1F9QynACnHEJbdEnPGEIk09y9EthEU0tCYbckmzYpiaizlWV//gZKk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5817cQ+cWxpb+fuLPRtXBHBW9vdXpr0q3mHo0iurGCl4+QdSV
-	+euWFkHW9xfHAKpdeKilW2CbCOFztEFMgLuxwZNReXMu0SOdHdTk6ULuAW8kqGRu6AVGyN2aFDh
-	7CU+Rn7GNtHB6FxiFBu6CsdXwKCu13klASDibyKBN7mV8JF8DiXZm0pBo8iweo6ob
-X-Gm-Gg: ASbGncvyVl7WxYLbPZDPFj1QFS2bM71jh0AftNaNZJlbv8waOFHLcjgmA4GMP69oabc
-	hI0lSk0XdnITa8HnppSiRtGgZzywY6xAuCmGNgB1LUpOCIY8ynrvQVxUGeZ6zuL2rUvka/5xFt7
-	52z6F5LvkeTL8RQmRAlkpaZ7YDLYAbSrCgi3hNalQ9ff1Ho6zZn4tduZyCCbu5h95f3JuxwkvFs
-	05uHGm5oLgRqnogIQ99vj645STaQlBxoWna8d+CDKa4cDObG4oBt1kdaDGoAzRtKHvMHZKlN7zc
-	QG47SaZ7ckOSOQOoO8tEAVsp/H4EC8r+dRGurRjCTJ2KMSd2fxSzAOCAFGNkUieBvkp1i9kgJqd
-	vzAfgAo27hK+F4/V/Ub4bpR5mNV7JmycL/OEfXK64dYQahIRpl9SH
-X-Received: by 2002:a05:622a:2448:b0:4b5:ea1f:77ec with SMTP id d75a77b69052e-4b77cf3fd63mr188715001cf.0.1757960569961;
-        Mon, 15 Sep 2025 11:22:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHAuVVuM0n9l3Cg1YMA/er5S/o95KrZuuWZTRloeO1lERKI/EYVWxGvd6dsy0z2sc5Sm5CG7w==
-X-Received: by 2002:a05:622a:2448:b0:4b5:ea1f:77ec with SMTP id d75a77b69052e-4b77cf3fd63mr188714401cf.0.1757960569240;
-        Mon, 15 Sep 2025 11:22:49 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-573c8330d2csm1333852e87.58.2025.09.15.11.22.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 11:22:48 -0700 (PDT)
-Date: Mon, 15 Sep 2025 21:22:46 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: David Heidelberg <david@ixit.cz>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Molly Sophia <mollysophia379@gmail.com>,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Subject: Re: [PATCH v6 2/3] drm: panel: nt36672a: Add support for novatek
- nt35596s panel
-Message-ID: <ylo6kh6wqzpedoibc52qjbb3fbmiofclfjj2zog7sufn4rqyvf@jxcxjft56czl>
-References: <20250913-nt35596s-v6-0-b5deb05e04af@ixit.cz>
- <20250913-nt35596s-v6-2-b5deb05e04af@ixit.cz>
- <xi65tabv4sgblzmw52wxci5wsrdahshvos5we5wko4kfcfyozp@y3vw5gt3elwv>
- <ad1764a3-12b3-4c30-9b79-313d9c1d37eb@ixit.cz>
- <a5zz3piadpmi4atnnafa5bfz32da4nioob7xsmqtyhgpjpqz5c@zzoa72rgwaet>
- <4a718ca8-cc40-4642-9f88-b654a90045cf@ixit.cz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CDBnba6uuJcTU6Ni1fqh8SR9yVczFBLTLeglYwZtYFzRETzEXAGNsHWrZcBOQKGmJ2DjQynlFURaCW1+O34tZ6Hm5SihHebeUaQYYBZbOjPNhnGgXE7tH4d4NErZvMFzkV/fpUhLgEcTKsRNEWHMIgMe7nqGj+E4Vpr7DHGFMhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=fwQCF83w; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 14639240104
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 20:36:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.net; s=2017;
+	t=1757961417; bh=8N8kahmaMK5yIdd2qUvMT4zY2+pJHodS9IL0e9aOgwo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=fwQCF83wJdr+KUbeDi1nA2IBUEJZ2khcpIGdfBDrGAGplQOaYAFZnvyZb0C2gAsNV
+	 BReyAS17iwws8P4467xM+TM77Vju1guBecU4sCiz8bqxiWJg0A27/nS6I8AkWzBIJz
+	 fBYMffyhzX7Tz8f2zz8y/xVphU3l22mB8uPiLKuqQKPl9doktBxkXiKBWLSqTe+N1k
+	 mPFnkcyrIZAusw1BgBSlDrH0sqIrbgxreTy72c4AaTv9aqCsCHmAW2PtpOrrXbvt0z
+	 1m02e60KVwdA4byZbFlX3bBtICD1aODJkOTPYPsNpEtmv0oQ4zHGgkx8bDC8QH41Zj
+	 vmV81v5YCsJvw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4cQYfF5ngLz6tvm;
+	Mon, 15 Sep 2025 20:36:53 +0200 (CEST)
+Date: Mon, 15 Sep 2025 18:36:56 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= via B4 Relay <devnull+j.ne.posteo.net@kernel.org>,
+	j.ne@posteo.net, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h313: Add Amediatech X96Q
+Message-ID: <aMhcxcBYF2vMjd5g@probook>
+References: <20250912-x96q-v1-0-8471daaf39db@posteo.net>
+ <20250912-x96q-v1-2-8471daaf39db@posteo.net>
+ <20250912105449.70717d80@donnerap>
+ <CAGb2v67dp8V4A86yyaixN9oOgBzMpLJ0ZxnDLng8mO2tkEqYUg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,119 +75,199 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4a718ca8-cc40-4642-9f88-b654a90045cf@ixit.cz>
-X-Proofpoint-GUID: KzMErdjEbiDzYhg1_zdRwkEP28Qo-qKj
-X-Proofpoint-ORIG-GUID: KzMErdjEbiDzYhg1_zdRwkEP28Qo-qKj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfXwtBLEUthdO3H
- 38W70gj3zxEm8QOTxQvd3GSJWlQgzB18vKif/GKcnEJcYcbbxfcj/R50pEX2skWTw0P5UQUg3AX
- DFvie67snYTkJzYl695JWWGfMeX3cCSmoREHL0EQizMo0mb9/xPw3h/E8n2nN1w/AypcN/LHwsj
- EqIQPoOPYbTwKT652EZGH9cAI8ObAKce1fuOq9OoutL5LYvt8hSCH+S4zaSOUSxiSAmGwcmjISQ
- FRVY59oapgzzpkK4YzcqJQbo4j1c7lVKYDtr/Ucn/ZRxN0AlvBHDilUC1BAizOF1NVrKqLraMZx
- J+XbrDAj3GtyrkgOW1cV6ONJcz+4IKv9KWNNHdnpA57YkakAGcE/rfSRxOrOdwdyaM5gbgpS0RX
- qPSuNdkS
-X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c8597b cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=NEAV23lmAAAA:8 a=Vt2AcnKqAAAA:8 a=e5mUnYsNAAAA:8
- a=pGLkceISAAAA:8 a=QX4gbG5DAAAA:8 a=KKAkSRfTAAAA:8 a=wCpFDx9_YxCViFKvQc0A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
- a=v10HlyRyNeVhbzM4Lqgd:22 a=Vxmtnl_E_bksehYqCbjh:22 a=AbAUZ8qAyYyZVLSsDulk:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-15_07,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
+In-Reply-To: <CAGb2v67dp8V4A86yyaixN9oOgBzMpLJ0ZxnDLng8mO2tkEqYUg@mail.gmail.com>
 
-On Mon, Sep 15, 2025 at 05:06:51PM +0200, David Heidelberg wrote:
+On Sat, Sep 13, 2025 at 05:36:12PM +0800, Chen-Yu Tsai wrote:
+> On Fri, Sep 12, 2025 at 5:54 PM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > On Fri, 12 Sep 2025 01:52:10 +0200
+> > J. Neuschäfer via B4 Relay <devnull+j.ne.posteo.net@kernel.org> wrote:
+> >
+> > Hi,
+> >
+> > many thanks for posting the DT, I really wish more people would do that!
+> >
+> > > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > >
+> > > The X96Q is a set-top box with an H313 SoC, AXP305 PMIC, 1 or 2 GiB RAM,
+> > > 8 or 16 GiB eMMC flash, 2x USB A, Micro-SD, HDMI, Ethernet, audio/video
+> > > output, and infrared input.
+> > >
+> > >   https://x96mini.com/products/x96q-tv-box-android-10-set-top-box
+> > >
+> > > Tested, works:
+> > > - debug UART
+> > > - status LED
+> > > - USB ports in host mode
+> > > - MicroSD
+> > > - eMMC
+> > > - recovery button hidden behind audio/video port
+> > > - analog audio (line out)
+> > >
+> > > Does not work:
+> > > - Ethernet (requires AC200 MFD/EPHY driver)
+> > > - analog video output (requires AC200 driver)
+> > > - HDMI audio/video output
+> > >
+> > > Untested:
+> > > - "OTG" USB port in device mode
+> > > - built-in IR receiver
+> > > - external IR receiver
+> > > - WLAN (requires out-of-tree XRadio driver)
+> > >
+> > > Table of regulators on the downstream kernel, for reference:
+> > >
+> > >  vcc-5v      1   15      0 unknown  5000mV     0mA  5000mV  5000mV
+> > >     dcdca    0    0      0 unknown   900mV     0mA     0mV     0mV
+> > >     dcdcb    0    0      0 unknown  1350mV     0mA     0mV     0mV
+> > >     dcdcc    0    0      0 unknown   900mV     0mA     0mV     0mV
+> > >     dcdcd    0    0      0 unknown  1500mV     0mA     0mV     0mV
+> > >     dcdce    0    0      0 unknown  3300mV     0mA     0mV     0mV
+> > >     aldo1    0    0      0 unknown  3300mV     0mA     0mV     0mV
+> > >     aldo2    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >     aldo3    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >     bldo1    0    0      0 unknown  1800mV     0mA     0mV     0mV
+> > >     bldo2    0    0      0 unknown  1800mV     0mA     0mV     0mV
+> > >     bldo3    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >     bldo4    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >     cldo1    0    0      0 unknown  2500mV     0mA     0mV     0mV
+> > >     cldo2    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >     cldo3    0    0      0 unknown   700mV     0mA     0mV     0mV
+> > >
+> > > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > > ---
+[...]
+> > > +&mmc0 {
+> > > +     vmmc-supply = <&reg_aldo1>;
+> > > +     cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;  /* PF6 */
+> > > +     disable-wp;
+> > > +     bus-width = <4>;
+> > > +     max-frequency = <150000000>;
+> >
+> > That line is already in the .dtsi file, so redundant.
+> >
+> > > +     status = "okay";
+> > > +     /* µSD */
+> >
+> > If we really need this comment, it should be above, right after the
+> > "&mmc0 {". And I wonder if it should be "microSD" instead.
 > 
-> On 15/09/2025 13:11, Dmitry Baryshkov wrote:
-> > On Mon, Sep 15, 2025 at 12:11:49PM +0200, David Heidelberg wrote:
-> > > On 15/09/2025 03:29, Dmitry Baryshkov wrote:
-> > > > On Sat, Sep 13, 2025 at 09:19:48PM +0200, David Heidelberg via B4 Relay wrote:
-> > > > > From: Molly Sophia <mollysophia379@gmail.com>
-> > > > > 
-> > > > > Novatek NT35596s is a generic DSI IC that drives command and video mode
-> > > > > panels.
-> > > > > Currently add support for the LCD panel from JDI connected with this IC,
-> > > > > as found on Xiaomi Mi Mix 2S phones.
-> > > > 
-> > > > Why are you adding it to the existing driver rather than adding a new
-> > > > one?
-> > > 
-> > > Hello, originally it started as a standalone driver (see v2 patchset), but
-> > > got merged due to similarities.
-> > 
-> > I'm not sure, you had to get rid of the two command sets. On the other
-> > hand, adding a new module will add a lot of boilerplate. Let's keep it
-> > as is. Please add some notes to the commit message.
-> 
-> Ok, I found out in the meantime that Alexey is working on refactoring
-> nt36672a, so we’ll coordinate. I’ll likely need to rebase this changeset on
-> top of the refactored nt36672a, or possibly move it into a separate driver.
-> 
-> See https://github.com/sdm660-mainline/linux/pull/114/commits
+> Yes. Please use ASCII in the code if possible, since some of us have
+> setups that don't quite work well with extended character sets.
 
-I think it fits even more after refactoring. I hope Alexey will post the
-refacrorings soon.
+ACK
 
 > 
-> > 
-> > > 
-> > > v2 patchset:
-> > > https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg404290.html
-> > > 
-> > > If it's desired, I can switch it back to the standalone driver.
-> > > 
-> > > > 
-> > > > > 
-> > > > > Signed-off-by: Molly Sophia <mollysophia379@gmail.com>
-> > > > > Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
-> > > > > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > > > > ---
-> > > > >    drivers/gpu/drm/panel/Kconfig                  |   7 +-
-> > > > >    drivers/gpu/drm/panel/panel-novatek-nt36672a.c | 225 ++++++++++++++++++++++++-
-> > > > >    2 files changed, 222 insertions(+), 10 deletions(-)
-> > > > > 
-> > > > >    MODULE_AUTHOR("Sumit Semwal <sumit.semwal@linaro.org>");
-> > > > > -MODULE_DESCRIPTION("NOVATEK NT36672A based MIPI-DSI LCD panel driver");
-> > > > > +MODULE_AUTHOR("Molly Sophia <mollysophia379@gmail.com>");
-> > > > 
-> > > > ??
-> > > 
-> > > What's wrong with it?
-> > 
-> > I thought that the module can have only one MODULE_AUTHOR declaration, I
-> > was wrong. This is fine.
+> > > +};
+> > > +
+> > > +&mmc1 {
+> > > +     /* TODO: XRadio XR819 WLAN */
+> >
+> > Either you just keep the comment, an mention mmc1, but don't reference the
+> > node, or you add the properties that you know of already, like
+> > vmmc-supply, vqmmc-supply, mmc-pwrseq, bus-width, non-removable.
+> > But this "empty reference with a comment" is somewhat odd.
 > 
-> Yeah, it's not usual to have more than one.
-> 
-> > 
-> > > 
-> > > David
-> > > 
-> > > > 
-> > > > > +MODULE_DESCRIPTION("NOVATEK NT36672A/NT35596S based MIPI-DSI LCD panel driver");
-> > > > >    MODULE_LICENSE("GPL");
-> > > > > 
-> > > > > -- 
-> > > > > 2.51.0
-> > > > > 
-> > > > > 
-> > > > 
-> > > 
-> > > -- 
-> > > David Heidelberg
-> > > 
-> > 
-> 
-> -- 
-> David Heidelberg
-> 
+> I'd say just fill it in completely so that the mmc host is enabled and
+> the SDIO card is detected. Missing driver support for the chip is a
+> different issue, but since this is an enumerable bus it shouldn't prevent
+> you from describing everything already.
 
--- 
-With best wishes
-Dmitry
+I gave it a try just now, but I wasn't successful with enumeration:
+
+	&mmc1 {
+		/* XRadio XR819 WLAN */
+		vmmc-supply = <&reg_aldo1>;
+		vqmmc-supply = <&reg_bldo1>;
+		mmc-pwrseq = <&wifi_pwrseq>;
+		bus-width = <4>;
+		non-removable;
+		mmc-ddr-1_8v;
+		status = "okay";
+	};
+
+The result is unsuccessful (with or without the questionable mmc-ddr-1_8v):
+
+	[    1.607511] mmc1: Failed to initialize a non-removable card
+
+The downstream DT mentions a few relevant properties:
+
+	/wlan {
+		wlan_regon = <&pio 6 18 GPIO_ACTIVE_LOW>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&losc>;
+	};
+	...
+	losc: clk_losc@0 {
+		linux,phandle = <0xd3>;
+		phandle = <0xd3>;
+		allwinner,drive = <0x02>;
+		allwinner,function = "x32kfout";
+		allwinner,muxsel = <0x03>;
+		allwinner,pins = "PG10";
+		allwinner,pull = <0x01>;
+	};
+
+Translating this (roughly) into mainline bindings:
+
+	mmc-pwrseq = <&wifi_pwrseq>;
+	...
+
+	wifi_pwrseq: pwrseq {
+		compatible = "mmc-pwrseq-emmc";
+		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>;
+		clocks = <&rtc CLK_OSC32K_FANOUT>;
+		clock-names = "ext_clock";
+		pinctrl-names = "default";
+		pinctrl-0 = <&x32clk_fanout_pin>;
+	};
+
+... it fails in drivers/reset/core.c, because __reset_add_reset_gpio_device
+doesn't handle #gpio-cells = <3>, which is the case for &pio:
+
+	/*
+	 * Currently only #gpio-cells=2 is supported with the meaning of:
+	 * args[0]: GPIO number
+	 * args[1]: GPIO flags
+	 * TODO: Handle other cases.
+	 */
+	if (args->args_count != 2)
+		return -ENOENT;
+
+Relatedly, I'd expect this limitation to break WiFi on sun50i-h313-tanix-tx1.dts
+(upstreamed by Andre) as well.
+
+> > > +};
+> > > +
+> > > +&mmc2 {
+> > > +     vmmc-supply = <&reg_aldo1>;
+> > > +     vqmmc-supply = <&reg_bldo1>;
+> > > +     non-removable;
+> > > +     cap-mmc-hw-reset;
+> > > +     mmc-ddr-1_8v;
+> > > +     mmc-hs200-1_8v;
+> > > +     bus-width = <8>;
+> > > +     max-frequency = <100000000>;
+> >
+> > Are you sure you need that?
+
+After some more testing, it turns out that I do need to limit the
+frequency to 100 MHz. At the default of 150 MHz, stable operation of
+the eMMC isn't possible (all other properties being as they are).
+
+> >
+> > > +     status = "okay";
+> > > +     /* eMMC */
+> >
+> > Please move that comment up.
+> 
+> I don't think it's necessary though. hs200 and 8-bit width would make
+> it obvious that it's an eMMC.
+
+Not necessary, but perhaps still useful for someone having a quick
+glance at the devicetree, so I'd prefer to keep it in.
+
+
+Best regards,
+J. Neuschäfer
 
