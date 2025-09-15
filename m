@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-217585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74442B5859D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 21:56:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521CFB585AC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 22:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30CB11B246C2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 19:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DD8A3BFB91
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 20:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD0E296BDA;
-	Mon, 15 Sep 2025 19:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935151BE871;
+	Mon, 15 Sep 2025 20:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BdQMIcQM"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="KuvG4uVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE6A28DF2D
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 19:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04B62F2E;
+	Mon, 15 Sep 2025 20:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757966041; cv=none; b=RdckkP19hYWDFXtfkPvAhDTLOM55gRrMsEFHn/kO/HiB2SXc+lv0vJqbD9H3qfxs4k2SYgT3vQewV7+HQfaSMirldHePtj378DuzdK417xEe/+VD+B9GiIvTUaIpp9GjzBqZODEhgFRXmjtkkc6zShC56YZnnG6WXBxOUhLXeXc=
+	t=1757966503; cv=none; b=jjYnNENj/WMRw6V5neA2B7VS8I6o6LZs2lmFMv3AZ3V/AhNDktfY5NAce/YagUnK55Md8lTHPn7/9g0e4OUP1nMLK6izGjeR+BewvgAH8GP0wcWmzo/aOh4rHw2vxcNtr2J+XRMwiAJ6vmvTVuqOaVunSujT9pcJJw0tTb0kPdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757966041; c=relaxed/simple;
-	bh=7R8rcOL3f1HwsUpPHaL0+BUAREAOiXb98Mm1tlgtyCA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MdK7J87jfOr87OtNmtGAYOZC8GtOit4Jl+jS24f3ndT6j+4qrcW3ONlofg5JE2Ui0TKjzncOB9xL/l78RJay0tXRrGpxQ7c7WJ2svQo91WA8zEUO0leU8gOpWNrcjl4ptBEJTcWybxz4N1RX7yTXmY8ibs1uW1Jix4DaFb54qWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=BdQMIcQM; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45dec1ae562so42205885e9.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 12:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1757966038; x=1758570838; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AJ9ovkCr6DqOwPekQL9mbbfb8pXGwCeM0TnyH7IdLxU=;
-        b=BdQMIcQM3C1ZUH8eqXcOCVq1rTJXq2L/71mDnR4i86VjxoDtEYdPDl9LYJT2t/KlxP
-         0AF/4qH8J98MknbzreSQ0Wgxj+jJDXiAIXlcq6B0lDhf3qNJgaulUJCYe0ux5dWvBQb5
-         xdq/zFLh/BakheuUx3M6nl5r9TE8ObYPHlUqo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757966038; x=1758570838;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AJ9ovkCr6DqOwPekQL9mbbfb8pXGwCeM0TnyH7IdLxU=;
-        b=XhM3cLN+8XOIBb+pbJf+NgfQEIsUtSv7pB9IRXUDtCW2QmFqKFp+C0aeqmUkVEL31X
-         JCyY/+NIBe0bZ+2KnH6mmBmTbl7i59ajEFx1Tgv0oBhRPS+b8VM/qsb2Y41kBDpi2Dkn
-         OZ7zNFxye5Fkkx1MSk79lGTtgf6+lgj6l8HK0HlPn4b5YUxUTAWSrM5rrcKvobLdYWAA
-         Qzp0hI1BCLWLwtJZhA3l2VIUdjX5JFgHkBRlLf1qGgxAaPu5IDq7Ztc+A7YmdcmsC1kj
-         r0/yezyB9y0AW/0a30L5rVNvv7Yzt0ebRt6yXW5SqPauso7pIbz2oAbeyFSFBePqu18h
-         eXrg==
-X-Forwarded-Encrypted: i=1; AJvYcCUD9lUjHphcPGtnyU7Tl9HB2V0DYipcTqXrHt203J2RRBY60adq4xRqw7zvbtW6+tCXDLBlEL+m+2CY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLZvX3GtuEHQiWfVesjbB28wVa0oZmxMZA0toSTfp874nAPC+t
-	GAB6wOnU2MX6YfjWVNJ9aCrJFNWSdvEoDU42a6AGpK+t2B5GYAfOvRsAKwIvc/QmB9g=
-X-Gm-Gg: ASbGncs/Mqs+8U6F0/e+yGzPgr2+NAO9Zhq4cn0++Yse60cN471WkAmcMX8oAFRAVr/
-	hPxuHrNMDkJFfVHTzdWB3lizsMGPaoGZYaG9mWYn/cg1Q1ne7rb6A6MSnzVo15YAdLpPIWZ0rzs
-	PbNN4fjRB+Iv+g/J7LFsnw/9Nx94gRKmiy3esCrifgFKw939n7eHs6TXp+UaHDKOp3FcImHkTVG
-	o7JSNsdFNcm6BG0k3nvHPckyK1TNhUZ0tSXfQGnIz6y8ADxnEQyfCLz5Ggap80j8/PDbcEub5mu
-	BE7TUGRZDj9I9q6oMdU1ZOvmEjYJ7qcsvjgIljH4AIMKe6xh1Ynd8BW0PpDLYOOL5CxWB+7ZjhT
-	CGmc6LMv9ugQPa6rB5teTqPdbxiXjL8/m2ZkI12sxu2WaSnjCSnupIo0EPPx4imfFZk6qigiRlw
-	==
-X-Google-Smtp-Source: AGHT+IFndz1AmdXVeKfJS9fz0y2h9S+/Rc1JyiVoAbeqVDR+ayQsA7o4g+R8GMH0hF64MGhaZdupYg==
-X-Received: by 2002:a05:600c:6a06:b0:45b:8f5e:529a with SMTP id 5b1f17b1804b1-45f211d660bmr96982405e9.14.1757966038162;
-        Mon, 15 Sep 2025 12:53:58 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.40.230])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f32640f49sm530985e9.9.2025.09.15.12.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 12:53:57 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 5/6] ARM: dts: imx6ull-engicam-microgea-bmm: set touchscreen glitch threshold
-Date: Mon, 15 Sep 2025 21:53:07 +0200
-Message-ID: <20250915195335.1710780-6-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250915195335.1710780-1-dario.binacchi@amarulasolutions.com>
-References: <20250915195335.1710780-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1757966503; c=relaxed/simple;
+	bh=Z/rSIlwt03MqpM2HePi9v3L6cqhCSx4gNA1OuldO3fU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dRzfm5B3cS+VAvIbuaPn/6C5L8z1GdVfOED6KQjd0xNrN4rqfRai2A/a5kBtGLg9z3nIdOnAlpg7oBvI5jx7AicJKiEVhhjtQQvvFp5z6Nexn7jHOh5f40YaCrSwzOFFUV8T5aq2ckbKga9WzVkXvy6ncdNe5CUjHOhNehRzSUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=KuvG4uVU; arc=none smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58FFSnxX010526;
+	Mon, 15 Sep 2025 20:01:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=corp-2025-04-25; bh=zt5R6u3J/J0sjOgpNUoyHVFiGzyUc
+	L3NVtFMbUosQqQ=; b=KuvG4uVUuPiIgGlfrXzZhEgaj8MpFMt7HMYaMumXAqgCu
+	UfTEW/dtNSpladA2cH+ejzCDeJRrMu5YSNECkMa8HmSQwgkTWfDXovglU+oB5QQG
+	PIEknKG0oygFzqA2dw11F27a/BdgyYolu+AbpVd/b8onoT9oIbfgjywyuTpcxfH1
+	TluPBR89b61pQor+edtWL46Wm/TjeZKm3cZ1x5pxB5GOOyVMLbYBP/Guy21GDgv3
+	Z73phdexD61i+mW5wFwaGLbu7FZuHpjqJ31PBYvFjvUD/Bg+WaxkKoJA1TT19Brp
+	9CGjZjDw9EZFdPxK84BnojqpoAu88iE9/SGLLWgNw==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 494yd8k7rf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 15 Sep 2025 20:01:37 +0000 (GMT)
+Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 58FJpGM4037323;
+	Mon, 15 Sep 2025 20:01:36 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 494y2hrmq3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 15 Sep 2025 20:01:36 +0000
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 58FK1a9m008155;
+	Mon, 15 Sep 2025 20:01:36 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com [10.129.136.47])
+	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 494y2hrmn1-1;
+	Mon, 15 Sep 2025 20:01:35 +0000
+From: Alok Tiwari <alok.a.tiwari@oracle.com>
+To: dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: alok.a.tiwari@oracle.com, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sm8150: Fix reg base of frame@17c27000
+Date: Mon, 15 Sep 2025 13:01:26 -0700
+Message-ID: <20250915200132.774377-1-alok.a.tiwari@oracle.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-15_07,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0
+ mlxlogscore=888 suspectscore=0 malwarescore=0 spamscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2508110000 definitions=main-2509150188
+X-Proofpoint-GUID: juADmj3c_Vdvibp9Unw2LvKM-ot_bfzm
+X-Authority-Analysis: v=2.4 cv=M5RNKzws c=1 sm=1 tr=0 ts=68c870a1 b=1 cx=c_pps
+ a=zPCbziy225d3KhSqZt3L1A==:117 a=zPCbziy225d3KhSqZt3L1A==:17
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=yPCof4ZbAAAA:8 a=rwT5y5aj_odyEoujqpkA:9
+ cc=ntf awl=host:12083
+X-Proofpoint-ORIG-GUID: juADmj3c_Vdvibp9Unw2LvKM-ot_bfzm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxNiBTYWx0ZWRfX/sp7tHww0Es3
+ 5Lm7DrDg1Y1TLFclBQTUVHtqdTYli0a64le5L/Mymda1a/0A81tOXKN/f3Blt+YK9akDkJJpwms
+ 1Rrsn32ogHvW6z0LaFLNlmn9zLKNXgJaLQ5tJGVIKVGEYWqRBvM85KlAlLEUuxxlf7I17YIonP5
+ XvLlKZQttMk+OxxCnydLE2CJV127fEgQYe6hKZEFnQMN+SdoWdaNfuGZEnZXGHfv+f3vec/Zm+5
+ 4vdVUsIt9KvTSWa8fMqUtc5SAzjs1hGeAC4Wlwr2xFiudpFyEaY3p6+ltCk1DMeAVJrbuD7LGuL
+ /zMlDkW/v3RMkrKgeFVFSCk4ai351NkFjjNNbcISv6JBX/BqWgo2xfiBTzrafS5RNgIEopESGic
+ PRu3YizRStSA39lx+e3VstoyjaecNA==
 
-This way the detected signal is valid only if it lasts longer than
-62 µs, otherwise it is not sampled.
+The frame@17c27000 node uses the wrong base address 0x17c26000.
+This does not match the node name.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Update the reg property to use the correct base address 0x17c27000,
+which matches the node name and avoids the overlap.
+
+Fixes: e13c6d144fa0 ("arm64: dts: qcom: sm8150: Add base dts file")
+Signed-off-by: Alok Tiwari <alok.a.tiwari@oracle.com>
+Link: https://lore.kernel.org/all/20250913183018.4017208-1-alok.a.tiwari@oracle.com/
 ---
+v1 -> v2
+fixed reg property as frame@17c27000 is correct.
+as suggested by Dmitry.
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-(no changes since v1)
-
- arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-index 279d46c22cd7..f12084d8f2a0 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea-bmm.dts
-@@ -154,6 +154,7 @@ &tsc {
- 	pinctrl-0 = <&pinctrl_tsc>;
- 	measure-delay-time = <0x9ffff>;
- 	pre-charge-time = <0xfff>;
-+	touchscreen-glitch-threshold-ns = <62000>;
- 	xnur-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index abf12e10d33f..6f55931f7805 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -4419,7 +4419,7 @@ frame@17c25000 {
+ 			frame@17c27000 {
+ 				frame-number = <3>;
+ 				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+-				reg = <0x17c26000 0x1000>;
++				reg = <0x17c27000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
 -- 
-2.43.0
+2.50.1
 
 
