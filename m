@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-217346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E94EB57617
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:19:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A611B5761A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 309B7200F6A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:18:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7527B3A42FE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C665B2FB089;
-	Mon, 15 Sep 2025 10:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8CE62FB62C;
+	Mon, 15 Sep 2025 10:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="da0JSbhu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K+s1jNkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8C82FB96C
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5944A278170
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:19:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757931528; cv=none; b=qYm07wgudQ0wbKkx2qTM/LQNj43NhVrYqq5BUODBicKS2/gzlVQBnhJm8uFDwxCMBj4peJ1+lgs2ygMRt8DGPg0uehg/Mv2OgUS/HmPijXoICL7vUGx6HvpAeq4iK4oNdKvmhzGFY79U3cnE9sU8Ug5zeNJLHemM/UqNnuelfXU=
+	t=1757931565; cv=none; b=CIZ1rm+MwrFlIOp5RziPhu4ygMIDyTBGYV/+lrUZEj7VS4jEGApDgPoIwUF0JbDDp0qGPbeLgXqodGP3ot4nO+ESkj108grc0KCZCYmsEfUiUeCWxWIAXFeDkAHjh22QNowOt7Xf6TzhgtipX+wCFsG95xRzFZIGb79T8iZm+6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757931528; c=relaxed/simple;
-	bh=2DFmeklvao42pHIQMNAwiexVB+Ti6nsJ0npJbl0Lig0=;
+	s=arc-20240116; t=1757931565; c=relaxed/simple;
+	bh=GAvNiOwNLiOuGEpGEUrLWK+3lyHdXQJWYPvsInpu3LM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/8vaCaRYYiWb/RnmvL+UQoB8oNVl36gJVi4m/OWZCF/+L92TEsF4wQrNn+y2QeJTVFyL+x0e97vAVlRU+wozfmRSpfH5q7lNJBB9FWqNE8kykvc1day2RA24hRV0CNSp+4GOSLFo1NnPaGAe/owcRun+7zhQfq+xXdZkWOMXyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=da0JSbhu; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=ds8evZnBbh9SHaZt0n8A5lMgW7fJ4eC6Dl6jnBq0HILTTj8Wfaaja50GDYlPXj0UywAU2hhXXznVpQKWTLkCb2XNyOohxjgVz379yutF5Gb1q03/6MxoH+nafHCoVjnAlAJlEkIS3s+TFqVqfkM7hGr6mDHYBn5Q1mSM321eYu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K+s1jNkw; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F8FfBJ027143
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:18:46 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F9QjHL022055
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:19:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=55rSt8hh8LRp7D+XRwZ3HRX8
-	gaT2aSzDULCuVkcpLrk=; b=da0JSbhutHhuvYdOrnSuP3WVs/M7F7kPfyjnQgg8
-	pGmMsFBJ1B6++4IUsdS5u0rAH1qJCmgt/9L7GTWsypoNDJ5ghen9JKUfmwCecSRN
-	RL/CHtmjZ1USdZIJldVUyXcUUF7gMRDV3GIIeCOg+CL1I8kIkSqxubPw/cLH6uJd
-	d167DALSOkivr9vX+Ujk7RL4Aw8Qre8/GSR8uzswGZslhIsfZ/ALBRp4sFfqsFts
-	OzAWz11rMTzHiwz7CQQiEuxI3A/k2PvAywkZnSu4b2zrc/Onbx1Srj3s/EqXFLIN
-	rtTdZGoM/9/Hua8N6fIulSDP9q8akZKmL/6pFZ7VPLXcgQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 495072mhk2-1
+	:references:subject:to; s=qcppdkim1; bh=Ge/q8lJD6Zf1XgGE/wTrOzdR
+	wImk+MA4Q8tIDE6bFjc=; b=K+s1jNkwlUVxTPUGExGvCnuguYqROv5q6NYchZ5A
+	zFWQdyrpLqSJn9SA/OVxSPSBXVXo3YMQJDI5sGDZULn6rxPZlMAgqW1achPvd7ac
+	VSmeXyNK4V7NjemehnIFmyBlqmfLmgkP5fyVsokav7s3jKXo6DrRmw5rtCgQE/cy
+	9xTKJ+1oaIz7rOV0KNUIOc4jrvKyR7pGRbf1tvAKxqknRx2zDHPkaO2AG8oDJlQv
+	z5WAykYlZ6XxLWJ4oSSf6tQN3CWD6KSuJUXBxGhMwcPY1jpE/NBIWcX2WFBVH8C0
+	Rl1jvkLS/BRRDcGyiS2vf9r7oFzOHqb6GpB7Tdg/JflUmg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n05p6-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:18:45 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7721c5d86e7so41158596d6.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 03:18:45 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 10:19:23 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5e303fe1cso87811451cf.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 03:19:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757931525; x=1758536325;
+        d=1e100.net; s=20230601; t=1757931562; x=1758536362;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=55rSt8hh8LRp7D+XRwZ3HRX8gaT2aSzDULCuVkcpLrk=;
-        b=ciAFWtak+q/IPdFFtUIB6P7eJXb3qvU4c+9o3bijOF50A0wm4SRd73Rmmob3wPFG37
-         SYsaEfviqIyWW6N2GfKTwab35kM3I+da0abgfnUtKgKMHDk3pFxTBAwDpX9vPhfjC12V
-         mvY3SOJiMkS6lUrej7Nphb88Yl6EE2xoYKXDGH7y0NS/CV5HUD1g6aH/XttNVi5juZ7+
-         ZedbL0x2WL3BrRemdtP8UAgOSVrvz98kDMGtIu0aZxrMn0GdGZpeiWJTNnHtFaTmn0d/
-         IdRDDsxhrLLHlHZ82Ml8zal2rIs+sNwTcIGNh3UnBMNYQzcxQzoBu3xHE/bJgpcW3kMo
-         84cA==
-X-Forwarded-Encrypted: i=1; AJvYcCWuH/xvTMdvKMQZdLLJU6GkEGGQx5iL3heRLJOzASH8QFY7ZXiNaxxNr5BaxtYUzkEUKhZhpGmb6FYm@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIiV7bAf7zB/MyP2NuLfxsL3Vua2FQLkVis9qFzWo9/CJGBiRh
-	C//mY0IDlGYRb96phmAJOZx3tH0+wqavhayFHxza5+B5RAReILZ1+hhF2ccVQCvcE/I9j+Pg3AI
-	+j0rFlxsmWdcPNj37qEXZCDXRtqApAU+fm49TfhVIRTVVq665znXo5RMNFClCnVaH
-X-Gm-Gg: ASbGncvEy6w557jXnxAKPtYjNiTtsX9Fib5nkU9GjyFv5p3005aAHXdXj+C5p/tX0Jy
-	PG+ue0imy5NAxL177c/QtTcA1SLn3JDcKNE9aAt2Z18pdAlQ3pK6dapGcPeUnXBkldjufiV2QaL
-	QWXOZytuEHEHyw6iuiJniI/usKV0eqJq9e5gDEKSnlXGza2MtL/RW9XwpJHHJCmB5cSRfyFdSUW
-	l4pzHGxyMmzzgeV4vlcBUmZZPbop3lgS+nWHmnCPfFRjRU2x4GymSvdliplC8e3H86+/6DF8+2q
-	OUIgEwUX+c2DFw1NK1t3HpoxhvHZtB+50W5MQjyC2/UIRRXvVlorMYVC0YsmRHQhN0faLug2/o4
-	9ypNoWZLBuKZ/fiwYIAfyNjKdpjfBijXXeLeW7byKi8ZmD/ZIkdY8
-X-Received: by 2002:a05:6214:260b:b0:767:a99:9652 with SMTP id 6a1803df08f44-767bc5e5489mr113847406d6.21.1757931524582;
-        Mon, 15 Sep 2025 03:18:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGb0rsGhFRkV1wcbwpZkUhSb0Y79dOKiqbr59bDkqCwcyia5wF996ysW8fqVZME6pG5L6Q2OA==
-X-Received: by 2002:a05:6214:260b:b0:767:a99:9652 with SMTP id 6a1803df08f44-767bc5e5489mr113847086d6.21.1757931524032;
-        Mon, 15 Sep 2025 03:18:44 -0700 (PDT)
+        bh=Ge/q8lJD6Zf1XgGE/wTrOzdRwImk+MA4Q8tIDE6bFjc=;
+        b=VHdAASEunEubjs8WYn0wAWQT7DNoXhcsZICiWTEmKd8DD6z0KLrv11G7Bfx7QDWMRI
+         NIhP76Zuu10+yOEFTZItvRneZDnILFgj8LJj/38WpiGlxdAxk4h8DpyI0rI27OvHVcRt
+         B90jhkg7GrbeTsJ31pBW8JDBdN64Y25+oyGr/ugDvsNFHFUuDtQWO+jZlhQrDSnCZfVY
+         atIOyDef2Ead7B4uJP3ZXEEDcaIrbnnrHFilUz6SIFmW7OElKl5o0cXVg/zwK8g0AqeY
+         3NZlmnu011OhnVQDw5Q3K0TzO3jxcn5DxJB/jeMThH+UDL1wS6pw7qO4rUobXayamArc
+         Civw==
+X-Forwarded-Encrypted: i=1; AJvYcCX84v0d5Ogb51c20L95gaKW3h0JZkaXprTTjo1Suwll1t5uocSRDCqCD5WdYkrk+LYYdULgagDaYWBb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEhwSvLJRdJMOfFmiR11dIRRuf2wU200YHEYCpzhtH02FsUf2M
+	ACZx0OP/mZ3Yz8zHgnGERcJLDiJtku8NxKGF/5OzyUHDDz42eao0fT6Whwy0FKWPNVNLmWI0RBT
+	TFKzKihIk6cKNZKkM0j111AVU58r+YGdB7OPJRyhPRQ7I7vnqErF2HO/xtyjGIK2S
+X-Gm-Gg: ASbGncth+1BQGyJbL8HMeKbL8hstFeq6Cg3U3AY2tu9/N4C7Ry5vRhChZSwJ1t8Bzfb
+	Z3foFNvOOFU/kSB79XJRMwYXXfg+cvqHsCCwZioivsaQBkN5e6O86JkKQEQvoYv8sTktEYhv5Mo
+	D93f4Hz3yw4eZZOmYda6gdAdZs4lCkXdlOoG8xuTH4TH8YdWKjLal5UIw3kCS13wue7djDuRVRA
+	bJw8pLlQbFZ9unZBLjuB5EOimIArJGN/VjAsEFxjLbfw5j091Q+mLqn7w6Lc0XYALw01eLDeeJp
+	0IDHKbHvHY4WjeQLnHwe1vLQIgPIeYcC/dq6SWIAbl7GYwFThLdOYuJ0CkqH4GXb+hCkeIk39+p
+	wgMiiHv1wTdPpTDLovWky07qxG5EiHphShcR1vmnkTxID0xdmQPeY
+X-Received: by 2002:a05:6214:f0f:b0:780:24d7:fd35 with SMTP id 6a1803df08f44-78024d80119mr41691706d6.43.1757931561991;
+        Mon, 15 Sep 2025 03:19:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF1FfXw0j6mkQjJ9r007AeakGY/pEvt0j/darfeawFeiMBnS9aGTLYNeE5U7vTUK75m0TpsgA==
+X-Received: by 2002:a05:6214:f0f:b0:780:24d7:fd35 with SMTP id 6a1803df08f44-78024d80119mr41691366d6.43.1757931561502;
+        Mon, 15 Sep 2025 03:19:21 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f163f400esm27540601fa.23.2025.09.15.03.18.42
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e6460f21asm3476750e87.106.2025.09.15.03.19.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Sep 2025 03:18:43 -0700 (PDT)
-Date: Mon, 15 Sep 2025 13:18:41 +0300
+        Mon, 15 Sep 2025 03:19:20 -0700 (PDT)
+Date: Mon, 15 Sep 2025 13:19:18 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: fenglin.wu@oss.qualcomm.com
 Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -98,11 +98,11 @@ Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
         linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
         devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 3/8] power: supply: qcom_battmgr: Add resistance power
- supply property
-Message-ID: <gk2ho7ugp35kb4x65meqsm3aufnry6srr4p7jspf6xyn7ywzkh@vd5ca7txjdk6>
+Subject: Re: [PATCH v4 5/8] power: supply: qcom_battmgr: update compats for
+ SM8550 and X1E80100
+Message-ID: <f3s2srlmvuj7wmh4rndffmbfrzylbuq4rsu7pqqrnqa5fgsmch@t5f4dgmqtgys>
 References: <20250915-qcom_battmgr_update-v4-0-6f6464a41afe@oss.qualcomm.com>
- <20250915-qcom_battmgr_update-v4-3-6f6464a41afe@oss.qualcomm.com>
+ <20250915-qcom_battmgr_update-v4-5-6f6464a41afe@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,104 +111,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250915-qcom_battmgr_update-v4-3-6f6464a41afe@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAyNSBTYWx0ZWRfX4PSi+i4dhHjR
- 6SDuqjD4vrGuxRpip0WblWBdTlhhptqAbW2J/LPTrJzoDSAeru/WnnV8wgNFY9i5EhJtRSKk9Xy
- HAxOit61S9yi8nNfZLaSfSTyURQA5rM3ICfRX4OeaIeg9anVQBtsA36//ffxrCXdGs6s2Xw8oZA
- 9VL2QK4WLFzozL9fsE+9YsYLAEnAcJd9a118h+GHdco9fBpZ6u1DidT5MD81lkfzJo+G+wpW1gO
- Z0BBQ8GRmDWoRQp4djUHOR0py7r9W1LIl5//j7mtcgAthBAwO5Mkcn0/RzmZp0d5YU+J3CtBxbH
- JEVjWq0otRlZpV9JYTqn5+h5D1OJur8g5RXJWtH4sKrF2sNqF9NO3g25D5b6H3WYqOz/0NdiPoE
- 58jMRfZS
-X-Proofpoint-GUID: cldTxlUl_-P7vG_-Rrqunp9HJpgEirZ1
-X-Authority-Analysis: v=2.4 cv=WcsMa1hX c=1 sm=1 tr=0 ts=68c7e805 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=4KYCil5nhH5hbAJYY60A:9
- a=CjuIK1q_8ugA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: cldTxlUl_-P7vG_-Rrqunp9HJpgEirZ1
+In-Reply-To: <20250915-qcom_battmgr_update-v4-5-6f6464a41afe@oss.qualcomm.com>
+X-Proofpoint-GUID: 0C63WQ4h-GEbuMvxaax6I4gr_aKWhJs3
+X-Proofpoint-ORIG-GUID: 0C63WQ4h-GEbuMvxaax6I4gr_aKWhJs3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfX3S52dQqk75DX
+ zB4y+nikoBrE5Q8alFTbniuMIlnRhqhpvpEN0U/JWHUVOt+UKksZDwRm47O3XPP8O5DA2m8zer4
+ 6Tk9WJnm/KBYRfkmeajnXaroxFPKxLk6w9jKoTEwpLIsoeNntYeQQ6r7ehuCyoZpYWEdEpgOXL5
+ ZA8DoXoezGcgGknyRzRi06HD0slCD17+e2qY3gV66B6AYzb7Dv8rYXKQ0/K5nlpFLJ4rb3idkQ/
+ KgRG2CPgXWDE6n9z3MGVqY9v6OCbdePVk/Lwvvb5ebHGcuuEruYLraKlqRg/WqUpASNdV009eQv
+ 3K3Wmo4pJaIHJKZO5Ayhkj5dbwjHw5UOHfR2oiR8smBFkWlNFlNy58kozNG28zlnMMoY1weR87t
+ pucBVLyA
+X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c7e82b cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=q0q343tyEA3zizLlqU8A:9
+ a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-15_04,2025-09-12_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0 spamscore=0
- suspectscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509130025
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
 
-On Mon, Sep 15, 2025 at 04:49:55PM +0800, Fenglin Wu via B4 Relay wrote:
+On Mon, Sep 15, 2025 at 04:49:57PM +0800, Fenglin Wu via B4 Relay wrote:
 > From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 > 
-> Add power supply property to get battery internal resistance from
-> the battery management firmware.
+> Add variant definitions for SM8550 and X1E80100 platforms. Add a compat
+> for SM8550 and update match data for X1E80100 specifically so that they
+> could be handled differently in supporting charge control functionality.
+
+Why?
+
 > 
 > Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
-
-T14S is X1E80100, which uses SC8280XP-specific sets of properties. This
-patch changes only SM8350-related data. How was it tested?
-
 > Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 > ---
->  drivers/power/supply/qcom_battmgr.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  drivers/power/supply/qcom_battmgr.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
-> index fe27676fbc7cd12292caa6fb3b5b46a18c426e6d..55477ae92fd56ede465b32d6f7ed9da78ebd869c 100644
+> index 008e241e3eac3574a78459a2256e006e48c9f508..174d3f83ac2b070bb90c21a498686e91cc629ebe 100644
 > --- a/drivers/power/supply/qcom_battmgr.c
 > +++ b/drivers/power/supply/qcom_battmgr.c
-> @@ -2,6 +2,7 @@
->  /*
->   * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
->   * Copyright (c) 2022, Linaro Ltd
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-
-Please follow marketing guidelines here.
-
->   */
->  #include <linux/auxiliary_bus.h>
->  #include <linux/module.h>
-> @@ -254,6 +255,7 @@ struct qcom_battmgr_status {
->  	unsigned int voltage_now;
->  	unsigned int voltage_ocv;
->  	unsigned int temperature;
-> +	unsigned int resistance;
+> @@ -19,8 +19,10 @@
+>  #define BATTMGR_STRING_LEN	128
 >  
->  	unsigned int discharge_time;
->  	unsigned int charge_time;
-> @@ -418,6 +420,7 @@ static const u8 sm8350_bat_prop_map[] = {
->  	[POWER_SUPPLY_PROP_MODEL_NAME] = BATT_MODEL_NAME,
->  	[POWER_SUPPLY_PROP_TIME_TO_FULL_AVG] = BATT_TTF_AVG,
->  	[POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG] = BATT_TTE_AVG,
-> +	[POWER_SUPPLY_PROP_INTERNAL_RESISTANCE] = BATT_RESISTANCE,
->  	[POWER_SUPPLY_PROP_POWER_NOW] = BATT_POWER_NOW,
+>  enum qcom_battmgr_variant {
+> -	QCOM_BATTMGR_SM8350,
+>  	QCOM_BATTMGR_SC8280XP,
+> +	QCOM_BATTMGR_SM8350,
+> +	QCOM_BATTMGR_SM8550,
+> +	QCOM_BATTMGR_X1E80100,
 >  };
 >  
-> @@ -582,6 +585,9 @@ static int qcom_battmgr_bat_get_property(struct power_supply *psy,
->  	case POWER_SUPPLY_PROP_TEMP:
->  		val->intval = battmgr->status.temperature;
->  		break;
-> +	case POWER_SUPPLY_PROP_INTERNAL_RESISTANCE:
-> +		val->intval = battmgr->status.resistance;
-> +		break;
->  	case POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG:
->  		val->intval = battmgr->status.discharge_time;
->  		break;
-> @@ -665,6 +671,7 @@ static const enum power_supply_property sm8350_bat_props[] = {
->  	POWER_SUPPLY_PROP_MODEL_NAME,
->  	POWER_SUPPLY_PROP_TIME_TO_FULL_AVG,
->  	POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG,
-> +	POWER_SUPPLY_PROP_INTERNAL_RESISTANCE,
->  	POWER_SUPPLY_PROP_POWER_NOW,
+>  #define BATTMGR_BAT_STATUS		0x1
+> @@ -1333,7 +1335,8 @@ static void qcom_battmgr_pdr_notify(void *priv, int state)
+>  static const struct of_device_id qcom_battmgr_of_variants[] = {
+>  	{ .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+>  	{ .compatible = "qcom,sc8280xp-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> -	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
+> +	{ .compatible = "qcom,sm8550-pmic-glink", .data = (void *)QCOM_BATTMGR_SM8550 },
+> +	{ .compatible = "qcom,x1e80100-pmic-glink", .data = (void *)QCOM_BATTMGR_X1E80100 },
+>  	/* Unmatched devices falls back to QCOM_BATTMGR_SM8350 */
+>  	{}
 >  };
->  
-> @@ -1174,6 +1181,9 @@ static void qcom_battmgr_sm8350_callback(struct qcom_battmgr *battmgr,
->  		case BATT_TTE_AVG:
->  			battmgr->status.discharge_time = le32_to_cpu(resp->intval.value);
->  			break;
-> +		case BATT_RESISTANCE:
-> +			battmgr->status.resistance = le32_to_cpu(resp->intval.value);
-> +			break;
->  		case BATT_POWER_NOW:
->  			battmgr->status.power_now = le32_to_cpu(resp->intval.value);
->  			break;
 > 
 > -- 
 > 2.34.1
