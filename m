@@ -1,156 +1,146 @@
-Return-Path: <devicetree+bounces-217489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5DCB57EE6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:28:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846FAB57EF8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 16:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04B693A8041
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:27:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 589927AA8DB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 14:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67142327790;
-	Mon, 15 Sep 2025 14:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3701FE44B;
+	Mon, 15 Sep 2025 14:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="0GppKSxx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFt57mQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83FE322DCE
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 14:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5442217A2E8;
+	Mon, 15 Sep 2025 14:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757946421; cv=none; b=dnCEhgwIJmQ5KNBpGlelZGKsdbKX6HbeJrppBV7gQ9fWScq4axca0dkjqyka7YEBLUAZPU9LtHwvtJ1KvRht9feXosFo0uUDZGIrfY2iUmSBIXNCGUUkrFVudNkEpEAPl8qzDhDoZGMPlZ7goIYRu2PFbirkPfReCSTyuuLQ6ow=
+	t=1757946630; cv=none; b=e+iCKTq3ZJsWdENvSuR5h6tluaVXjB1I7wwrm8rwbRRqKZ+lzCc3xdDHTGPaRdPw3Ub4oN84H+LSJ0jc1cgvx/WaHTJVOHbJtY4VwV7bJO1NiFwF6brdbmwh+spsQVpjs1p5sjhjr/X2eBILzzSIK2YMw/O8YyJaZK/ANsbD5Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757946421; c=relaxed/simple;
-	bh=B9iBG3o70JLtS2vZWkvI2+9FPF/4l8skzLqAxOuWZ18=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DTN5MDnQl/3E07PWwlX3K8ukIL/ChAPzoiUCwNLJmHujnEzeTEYrJWdRbvvlYY4DYy4BF3KaDCUP77om+l/9xclmYUjw1Tt9GaUwnDndp6GYvq+oJIR6BqNGBEud562Lwb0khFZWbAhB695whfZYqq3+U853zcK7spipCo46D4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=0GppKSxx; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3eb3f05c35bso666452f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 07:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1757946417; x=1758551217; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v5icuTPC0s/pPOE2ESDNXoDhKzwTzNxmTUDIIwZXJok=;
-        b=0GppKSxxzJYwb8q6mkmnwVu86uXNXxZyx4BKvawAqjt9w08K+RGFIrH0C4Plqc4xeO
-         dg3OOj5NLeFRIXqonyyPBW4bFxJiPSsFDn8vYbRB6YdnSq6j2Z/i5A3mxPDBiUb3I5S7
-         ohmYvrKahg2fsfx6f20+Lfg6w7f+W0fxcBhuWRSM9wyJjlS+YwhzOoGViUOP+6pjRHHn
-         VqMVS/ZUfLBJNvqm3cpcH1O7fHKYPRbKD2XK5IRZR2vIsM7p4H0oRrux0KDf1DlFC+0/
-         Sl9hRZ/UzTgMwo7eoqDjkxhm9Rp61nMjPe4cBMHr/BrXINnceOx/n+0suhlZH68dEap9
-         tYuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757946417; x=1758551217;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v5icuTPC0s/pPOE2ESDNXoDhKzwTzNxmTUDIIwZXJok=;
-        b=HbdQnGG8X+G9KOxqfiKvZ3XbZ/nrEOAme3le+7IkQAaSp9Gpx3yRHe82r8QSbGNafD
-         Lak1BRXY61/muf4yikSvNkjot1Bv/Wf2aq6flykELP1HtVA5yVZVxUURytszPUf+i6zs
-         13mjpulN9tWcp8u3hkGuTemnxML01QqTBi5AJv8dCqdJD0/PO7/MqOZ05s2wBR3FKJdo
-         vf6mlMEVHeSuZxHaK/rZlG/2IuSgQQ6JZio/XUGO5v/DJXpCw+S1KrCwJ/NmLxkzr/wS
-         iwiN/dmHDJK2Ja3zXxWHoKdBYUXV/StVOI/CuMK1IgQMLv9DHmgO3EznHdo0ulmZrC5r
-         r5sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBUobj9tlICNaDbA/hCj+q//McTmNSwgAH6DP42Jq4E3X5RKF9eXxBpFthvMBbutNI9FdGCO4LCOpv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFCR1WDgLJLVLscKYfO3Z+tsYnWCjA4rIKshx9o5UBOJx4Itgx
-	Xt777ZHeCk6VoOgiglWhMYZRRslbcZJR4DO/8COmP01DPTfGF3XPn/OrScaxgELjmgg=
-X-Gm-Gg: ASbGnctcb/7sVaxzvcPuWgwYz0Nuqidn2DfCIMJsOHRJwymo3vXIRKBdkBFklIITz1m
-	Vq0Y3hZKBRIJ0e8BoKXMUl5QmvKzIlA+DFZu4b1/HnnAoDIplJun7nK3yAZe9Gp3NQXKvdOaOUO
-	JyYwsLhHHcjnyfKpgHNxF/xTslWZeiApYch6Q+sHfjLz+QlSvOdOWIp+ZtPYjN6fKDqLlE6F/v/
-	sKyWZH9+912rmXn1nRNwVyKAvuMwUCHl+VzoQWkEICkByA1HsuFKFdAoAZEady1glfaMplYejTr
-	EugdXgZqNfAroPKSPIdfV90Hw/2qVKs79QDUcoBtt5IERfjglAHrqa2pek9lIQIL9Crh0F1kkPz
-	8Blnc4MV+L//nM3G2EH2i+6ZwvA6JtP06b5cFoTLaHSf2U2zjYxZhNCHsdSYlGS5nmApBdc8NiF
-	zNNtYjcldDmCOzLIjX2/0/Ff6QX1Hcgqfn
-X-Google-Smtp-Source: AGHT+IFs0mXefHor0OfcKtJiaLRNa2umUlSV0hyShyz1KhSiw3PD6NcKqHt+Ht1UUfx+184BUZwpHw==
-X-Received: by 2002:a05:6000:1841:b0:3ea:6680:8f97 with SMTP id ffacd0b85a97d-3ea6680924dmr3500151f8f.2.1757946416790;
-        Mon, 15 Sep 2025 07:26:56 -0700 (PDT)
-Received: from ?IPV6:2a02:1807:2a00:3400:8a33:a6aa:d0e:30e9? ([2a02:1807:2a00:3400:8a33:a6aa:d0e:30e9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e01baa70dsm187561225e9.15.2025.09.15.07.26.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 07:26:56 -0700 (PDT)
-Message-ID: <aff80932-861c-4527-93a1-9fc2c1eb8d8c@hammernet.be>
-Date: Mon, 15 Sep 2025 16:26:55 +0200
+	s=arc-20240116; t=1757946630; c=relaxed/simple;
+	bh=apPcCqsC8a6v7Kjyoy9pw3XOQ7f+yRGI8jPksoqPdkk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=htIQEmjWVH1qfNp3AbLrhoBZzVKN15RkhzIPQloWU4nIcGa9T1xr8sbIxX+4eNmv/KoYoIHXe+BOfwTMmK62B/NSyJj6qpw3y0SrUKmGMwlBpJyR5TTk0vkXrFjb8Bvjf8a6+DXOZtf4zksOREsMJpNGJxTo/iZ122JfL/P2lwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFt57mQz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF8F5C4CEF1;
+	Mon, 15 Sep 2025 14:30:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757946629;
+	bh=apPcCqsC8a6v7Kjyoy9pw3XOQ7f+yRGI8jPksoqPdkk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MFt57mQz/v2JY1RBdOkAHsCBt/JhVM6K/IfIadF5CMVc7qLDvu4ODHS4fLhs2wqDJ
+	 8BGNFsvIJWxwPUaEpeim4emSs/5o2hh/tD0hcNYw6RuAzNnhLCTMVAkz94KvtPIi6l
+	 9ehKfhFUdY1AbEU/Z8f78KlBqbOVQIt10/tGnyHxKkLhJJUkGF9X8PsTdTwigkdQgz
+	 mE7K8k2JqeHVwyxOJovchUFObbp/IiT4rTJfn378MMk7eQe13S5aF450zYKytNQEwr
+	 7NiwwNPk5VtUNvTA1+9601OsvFf/MckI8gLZ4vU3WDQi9b+LvKWkvSS01P1tiHDnCB
+	 Lp6vkRYteVvIg==
+Date: Mon, 15 Sep 2025 15:30:25 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Vladimir Moravcevic <vmoravcevic@axiado.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+	Tzu-Hao Wei <twei@axiado.com>,
+	Axiado Reviewers <linux-maintainer@axiado.com>,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] spi: axiado: Add driver for Axiado SPI DB controller
+Message-ID: <9b6aaad6-3dca-49e3-9a59-8e8a0179a517@sirena.org.uk>
+References: <20250915-axiado-ax3000-soc-spi-db-controller-driver-v1-0-814a1fa2a83e@axiado.com>
+ <20250915-axiado-ax3000-soc-spi-db-controller-driver-v1-2-814a1fa2a83e@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] riscv: dts: spacemit: add UART pinctrl combinations
-To: Yixun Lan <dlan@gentoo.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, skhan@linuxfoundation.org,
- linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250915112845.58134-1-hendrik.hamerlinck@hammernet.be>
- <20250915120031-GYA1251948@gentoo.org>
-Content-Language: en-US
-From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-In-Reply-To: <20250915120031-GYA1251948@gentoo.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6o3ytfShT2K67AjJ"
+Content-Disposition: inline
+In-Reply-To: <20250915-axiado-ax3000-soc-spi-db-controller-driver-v1-2-814a1fa2a83e@axiado.com>
+X-Cookie: Use a pun, go to jail.
 
-Hello Yixun,
 
-Thank you for the quick review.
+--6o3ytfShT2K67AjJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 9/15/25 14:00, Yixun Lan wrote:
-> Hi Hendrik,
->
-> On 13:28 Mon 15 Sep     , Hendrik Hamerlinck wrote:
->> Add UART pinctrl configurations based on the SoC datasheet and the
->> downstream Bianbu Linux tree. The drive strength values were taken from
->> the downstream implementation, which uses medium drive strength.
->> CTS/RTS are moved to separate *-cts-rts-cfg states so boards can enable
->> hardware flow control conditionally.
->>
->> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
->> ---
->> Changes in v2:
->> - Split cts/rts into separate pinctrl configs as suggested
->> - Removed options from board DTS files to keep them cleaner
->> ---
->>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 389 ++++++++++++++++++-
->>  1 file changed, 386 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
->> index 381055737422..8f87f8baaf77 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
->> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
->> @@ -11,12 +11,395 @@
->>  #define K1_GPIO(x)	(x / 32) (x % 32)
->>  
->>  &pinctrl {
-> Generally I'm good with this version, only have one minor comment
->
-> How about adding a "/omit-if-no-ref/" before each pin cfg?
-> This will shrink the final blob size if no referece to the node
-That sounds like a good idea.
-I will send a next version with the change.
->
->> +	uart0_0_cfg: uart0-0-cfg {
->> +		uart0-0-pins {
->> +			pinmux = <K1_PADCONF(104, 3)>,	/* uart0_txd */
->> +				 <K1_PADCONF(105, 3)>;	/* uart0_rxd */
->> +			power-source = <3300>;
->> +			bias-pull-up;
->> +			drive-strength = <19>;
->> +		};
->> +	};
-...
->> -- 
->> 2.43.0
->>
+On Mon, Sep 15, 2025 at 06:11:56AM -0700, Vladimir Moravcevic wrote:
 
-Kind regards,
-Hendrik
+> +	/*Calculate the maximum data payload that can fit into the FIFO. */
+> +	if (fifo_total_bytes <= protocol_overhead_bytes) {
+> +		max_transfer_payload_bytes = 0;
+> +		dev_warn(&spi->dev, "SPI FIFO (%zu bytes) is too small for protocol overhead (%zu bytes)! Max data size forced to 0.\n",
+> +			 fifo_total_bytes, protocol_overhead_bytes);
+
+This might be a good fit for dev_warn_once(), I imagine if gets
+triggered lots of whatever operation triggers it will happen and the
+current code would spam the logs.
+
+> +	ret = devm_request_irq(&pdev->dev, irq, ax_spi_irq,
+> +			       0, pdev->name, ctlr);
+> +	if (ret != 0) {
+> +		ret = -ENXIO;
+> +		dev_err(&pdev->dev, "request_irq failed\n");
+> +		goto clk_dis_all;
+> +	}
+
+None of the other allocations are managed using devm, you most likely
+have unsafe race conditions especially if the interrupt line is shared.
+
+> +static void ax_spi_remove(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *ctlr = platform_get_drvdata(pdev);
+> +	struct ax_spi *xspi = spi_controller_get_devdata(ctlr);
+> +
+> +	clk_disable_unprepare(xspi->ref_clk);
+> +	clk_disable_unprepare(xspi->pclk);
+> +	pm_runtime_set_suspended(&pdev->dev);
+> +	pm_runtime_disable(&pdev->dev);
+> +
+> +	spi_unregister_controller(ctlr);
+> +}
+
+This will do a bunch of teardown before unregistering the controller
+meaning that new operations might be submitted after the clocks are
+disabled which I imagine won't go well.  You should unregister from the
+subsystem first, then tear down the other resources.
+
+> +
+> +static struct platform_driver ax_spi_driver = {
+> +	.probe	= ax_spi_probe,
+> +	.remove	= ax_spi_remove,
+> +	.driver = {
+> +		.name = AX_SPI_NAME,
+> +		.of_match_table = ax_spi_of_match,
+> +	},
+> +};
+
+There were a bunch of runtime PM calls but there are no PM operations
+here at all.  That's not specifically a problem, for example power
+domain level PM with full state retention would work here, but it seems
+like at least stopping and starting the clocks would be a good idea.
+
+--6o3ytfShT2K67AjJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjIIwAACgkQJNaLcl1U
+h9CPLwf/RhrIkexh1/aNsOJYJL1gMHWTqKfNxLZYYXlBw8Nz2ZLtKKwNdPENxr/Z
++6dnY8StmyTSKkUOHjzsLH7xqN4gGvxf9RIBWHp529LSu+LkTxcGgaAHkfWcftvF
+RbnW46hMV/aq4A48M7xL8OlK2FXopDGmyicThrkm6T6XgfKcgMExMlxyDCVEt+0E
+YBO2phalHJCkPltNmzJrSbJzf6o0nGEf6Bxl7r/WXadmTRuF2hLZ5cYMJ5G8JC+G
+UYfRYZMuVhMh6E0KC55r2JEoYZy+YBYFC+7mkmi2SDxVh2moz9GRkveGp/7L2r82
+VajNVG7ozKcYcYpsx5VuwhvpK8r8jg==
+=W84H
+-----END PGP SIGNATURE-----
+
+--6o3ytfShT2K67AjJ--
 
