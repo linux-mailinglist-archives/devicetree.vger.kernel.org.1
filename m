@@ -1,224 +1,143 @@
-Return-Path: <devicetree+bounces-217314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B675EB5752D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:46:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4A9B57530
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:47:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C9393B4BDC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:46:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31B7F18889EF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 09:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFFF2F0C63;
-	Mon, 15 Sep 2025 09:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE022E6127;
+	Mon, 15 Sep 2025 09:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IovRb94M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dRs4a/94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F6C211460
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BB8242D66
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757929579; cv=none; b=aT5FL7ki2ICKKX9fhunFYUXWTXoIjI0rnGIjkm/0wD3G6ENF1GnzAlqYOM0SEU8NnDw+YE/ZXDmg2sJripSGyozwB1Wlae8KtLjnBauE3s6rhO449i6/+dEpX+sglWJf8D2pT0DJ21w7WbisQYpPEDcf+Tw/q4MGkznNFzp9Ohk=
+	t=1757929661; cv=none; b=bHAWXDgZqimA3mdf3DiG+IT29Gjfect286kf07LIbeLDWcpz1NYitIlBH/Y8rgFlPFqfQHXGWjD+sLT4DYH3NUdMrtrn0kBWf9oyFTh2Y6kIsqSwyr7tPTitWSG8uLJLISUBVw4jp/F3IigbTWKLDaBmtv1UMk0+713cNBSXTD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757929579; c=relaxed/simple;
-	bh=M8e2y27K3A6dpsBSo9MEi4W0aa6bQrCDhahqiCtj7eI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NKEedP/7BL8aOw8R7FHMIHNyk4c4KwFlAHYSjzTPWk9ZZ24DCx5COpYPL5sofVSDyHKe+jR3/WVC+J6W/8ZqCe8h+QE5+n5dqLi5WYH5+tLxazZ+6PoxGzNK+HviQ/a4Ez0M1zWWVV8SpX8QhYMOpyFSVjPDLQm8oU1QkY4aLe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IovRb94M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58F8FfRI014026
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:46:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XKYBpf/YuTgi1/R2heAtYg9SuIoT+bGQO1rttRChYWM=; b=IovRb94MHriGQZXU
-	DQR8Y7pY7IeSfAOCKiKpCMkWWPuay301yCzM1dQgf3UmSJQvPozLVJ/Ko8TvM0qS
-	SVhGp3vaOb1cvUUaMsdmB395sMr8z+ecOKjpbe6vho4QCt9fr1y0QSe7p+isYS2h
-	zfLUswMwfIS5f27E+pAlG5PRnSKPhZQdxqMvsSJchRokVznu4WwipHuKttbJ/jc5
-	1MwPe6NxBHX+9iUUjI2IlylvQ3qhQzpjE+2k1b1YmhWlkaB1S4rBzLO1FLONQuNy
-	QBCg4/xyXVxXXHVh+1YjWKK75eHfpI3AfddO/NHpCa25jjGLFAxaBo2Gaa2j2YvZ
-	oQ8rBg==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494wyr4n6f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 09:46:16 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77260707951so5941515b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:46:16 -0700 (PDT)
+	s=arc-20240116; t=1757929661; c=relaxed/simple;
+	bh=cxAqupFOX5uFq92Avu8qu3m3xhpolK/5U494g4n1Fko=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZDcpUz5tvQxovkQMOiSTctD8i86DEUDTgihvtkUuLRjZ8yMP9gTpUZjZsb6JIZmRobSA4M1id9i+ZxpA9gZi/nTW+eb/qO8w0/0vvqrPq+LSqBn9LnNonQ21JK9YzaWE6ks0TVbkcJC3UzOH7Ncy+T9VGzX6cqnifnaKILFiNBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dRs4a/94; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7726c7ff7e5so3155951b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 02:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757929659; x=1758534459; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=puq/QVPjJHJaaP1wqvS4Jd4MbGPB7yk1PKVylU/wUU8=;
+        b=dRs4a/94Ab97T+2n9/ZsN+jqVRZVhyQnyMdM3/IYNwqHeSs7oqOd6Xq0MMcqLaT+g8
+         CjAMk0zgtbP2lbqvUWuuUwLmjq2knQgwtmg1gx9oBX5P9w0dctwpjf9a6nszajtUl/0t
+         ycnIGPJ1D0vTlC+4PTgnJu8+3mA7fjl7Cx61/DQTx2zFdOcBsyOJoO5BT27d4F+XFAI0
+         /QVe1W59lOPhUU+d9j+krsQtacqBaSkB9fCZtUpZ+bjOo7j6ZueT1t8nHokm5En5xnBf
+         d1C3R+c0VIJDtdf93+53Rv29dQgrtmc/jQZI8FlPYLI9avY+7vwfigZUJYge9MmUE437
+         CoWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757929575; x=1758534375;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XKYBpf/YuTgi1/R2heAtYg9SuIoT+bGQO1rttRChYWM=;
-        b=lK/TmGM/1Nf3yYeYNklMyibjxcZQriR2rFjzQXKJXAERtXOScq40yWdeL5DGEWYk5b
-         NkVrZIDaw8ZzkrS+cjWbYxOZvten3PGKtXzFPIfxdsxL4sIoborJxJseBhQF+YMFIpOt
-         9jLzhQqtI7m283cZdmLyFIS/bZ2pwK9Md06f/h2GbaogkfiM1jdaiuRvNc7xgjDeonn+
-         j9+ANoyzBKoWJTP3zBp801CjtbCUbaoK/xuNkvUj07/2eTIVF/+z4/sN1B6I5ekWSNCA
-         f3wAQgu9PgWnk+s+lvr6Rbv0ynj/ewRLTigoLo492fWts44dsYiq1quMpffQWw4scgi3
-         JpKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXcGLa0UQzm5qRNX+L1NlGYn2Rnr6eqIwWFSENMZ+Vsl0Qydb4doPaJvBtAc75i9TXKJaX+B9CVhIp8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZs7Tagh5fchCBD0bJ1OSGbXoPRyTNfr0We4HKq3CiVVmxxtDq
-	5KEY2GEmh6h6L99DKXhdqT7woB0892R850HWKdNfrZO2NRTrdK3iQR2N7Mys6xMwmqMmSug0JGc
-	3jEgXJsUBMDovsPEW0O4YFcNuOyg3bS9kw1Do0CSZFwRkm+1r7NWnrbFQKIju84tI
-X-Gm-Gg: ASbGncv9yZ+AdemO9pQiK6qxo2i/8DBPV6sA28aN0IvrOA7v/ShFtS6VxK0VLO6Kt1B
-	xBH63n9S/opIAwKBLS/dOnMobM5ETMPCuuwAehE3zGR2qnQ1+qWIRWZcBpkJZF/qwqZBs2sSPeU
-	N96YcoWc6Cgc1oyNtfXq/cUqm9/eBlILMLnYc8IBdSMPdasyNI3Qp25WhveQ+51EiOx8GKqcUxb
-	032AF+kOa91Ef7Go6oYjv2K7HzVm8LUJ0H3Fc+EOdLya3PkOSnPJPbl2lyT7ul3XBavVXvIMh+0
-	zh+fc4IzZbaP4+obQvc2UnkiCaBnG6sZ2YLcGWGacfpVKe6//Ut7Tx4vA7qfpUTf9619ZheyN85
-	FRRYBYtjcKOLWv9IwLyZqzgvG2AWNW3LRBQ==
-X-Received: by 2002:a05:6a20:1586:b0:240:328c:1225 with SMTP id adf61e73a8af0-2602a49d995mr14316729637.12.1757929575006;
-        Mon, 15 Sep 2025 02:46:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHa4BidIfDh3AtMcW/itG57vXFSTbsRdVvF4+01fyHzNCi0wK6V3NSVHYYncqWgx10dq0+bFw==
-X-Received: by 2002:a05:6a20:1586:b0:240:328c:1225 with SMTP id adf61e73a8af0-2602a49d995mr14316695637.12.1757929574550;
-        Mon, 15 Sep 2025 02:46:14 -0700 (PDT)
-Received: from [10.133.33.238] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-777d3ca57e2sm3503834b3a.33.2025.09.15.02.46.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 02:46:14 -0700 (PDT)
-Message-ID: <3b81ea60-553a-48d8-b6c7-6b55673fe04d@oss.qualcomm.com>
-Date: Mon, 15 Sep 2025 17:46:09 +0800
+        d=1e100.net; s=20230601; t=1757929659; x=1758534459;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=puq/QVPjJHJaaP1wqvS4Jd4MbGPB7yk1PKVylU/wUU8=;
+        b=Nh3wM6Sy76Fj0eai06Nqjhs0RgFrI3zYGr+IYfL0q8PTOnDfayxgAD29O6rMJBOB10
+         rv/zUjbHLhreSet3DliMq6N796fqg+NfAoJ7s84c0J0GsIemrRANlIL7D28dGOqpnPc8
+         jfc4KjTz/QnuNFwH28QoU9EOnGMr/l439EI+zuSooS98vd0gRgICZOI2fiM6JmmfYbSm
+         /lw4/Cfz6Yb+J1oNt2e/aO0BEynCOxWZgsEp0pDPbNW+0VVcQpa19hfWddh+b5XXvYE1
+         7TssF7dyDwWMEmd/w2JT0xJ9LstNNURWIFXD2MbJ6tSZGA+TIoc6QfN2Qlx4o3jhRrUf
+         mnqA==
+X-Gm-Message-State: AOJu0Yy/kf8eMnWQ4c7gYKhWr9apNkcSo99VJjlXbfaOtJzeot/dmxyC
+	Yz7d5fZsgtOO7A4NNA2WP+OBtPUMrh47iwlB21ShJWQdMP2qvsP1Kff/
+X-Gm-Gg: ASbGncvw0JvL/AKl3HceHI1x2d57D+icZjz9c84A5ZYSRGFsZJgK6LPsI6WsRcYyo0X
+	iMUIBHeQnRSxr2cgCRjhJnK54XmXfdE+80aLDTCtw1s6QXO3QWP2uQ2jiXK7iBpLRT9lMVGO1FS
+	tXKLZEP7LtCtLxCpUOXaJqvqDoWwp2zIRWGmw+RMc3APU2mt3owshb5kULF6EJ/gUAGaYPRolm/
+	TCOYaUWHqejWAWvay0DYIkr4KMylil407GwcWCHoBPu9HL4XND3D7bwefUAkM3KJb4UXZqr6A0E
+	nYju1pwOEFJLZOVMfqhTy7P8cA9GphLxoG+J+Td3AsbgLMXMr6x8U7sFxk3FpdbShcb4AUOsfcQ
+	t0C+MURXEkENk0pLURPo6iVHaRBUP0MFaaR/bRnE1rbe1+9pJox/5p/IVjNg=
+X-Google-Smtp-Source: AGHT+IGkXts2jRdzrIsnTzuf0gryCyKv7pwYxHT8stwUeB3vyz3wWYX7tzBsHMaYizcHXmUk5+6mwA==
+X-Received: by 2002:a05:6a20:432b:b0:245:fb85:ef58 with SMTP id adf61e73a8af0-2602c90cbe2mr16311805637.40.1757929659394;
+        Mon, 15 Sep 2025 02:47:39 -0700 (PDT)
+Received: from [172.17.0.3] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607b184f4sm12997210b3a.62.2025.09.15.02.47.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Sep 2025 02:47:38 -0700 (PDT)
+From: Leo Wang <leo.jt.wang@gmail.com>
+Date: Mon, 15 Sep 2025 17:47:23 +0800
+Subject: [PATCH] ARM: dts: aspeed: clemente: add shunt-resistor-micro-ohms
+ for LM5066i
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
- <20250910-hamoa_initial-v11-3-38ed7f2015f7@oss.qualcomm.com>
- <aMPee9wEOrrW-KMU@linaro.org>
- <90dcca12-1a68-4049-bcbe-c333aed07a07@oss.qualcomm.com>
- <aMfT1_uyZETUEBYk@linaro.org>
-Content-Language: en-US
-From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <aMfT1_uyZETUEBYk@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: I9o6bYSslUH1pCm8bnEDDBCqAHppG9Mu
-X-Authority-Analysis: v=2.4 cv=SouQ6OO0 c=1 sm=1 tr=0 ts=68c7e068 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=HIKkmpGtg5vrm0Pab0QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAwMCBTYWx0ZWRfX1kHpX0aA2+qZ
- QzeQ0XN+O5xgyoCfs4RMpY3yM0l1NIsLeqy9kPqVObw68LtL/SNM8GQ2mB2OBRnPll3lIE894+0
- JsNCv7S4KRN502R7Zm2T6KZJDi5qS8uOmm2MPwYoZtnhGbnenqA15rg/iLX5ArjWYhzaKURuYv4
- qfy0USJbP9H+pmUF0l26YMJr0N5g5RFQsyds+HTINbYT0NaeowJ2zgQLCbvKKAkSPa7OCdGw0SV
- 8jlwNibqHH2aMGjKTPvnmkykMhX8zeQbRMkO8a8CxGDQMlzDhbOytVeTC1mRFFnvXkRUr1gRwpJ
- MC9a0HXg+/TQ8YP0jtpKDpwtujwWf4rIKBsxu+M1kASZRiSVDzxErC8OaSGhvbEeSq6DpXSkanz
- bkf29xAS
-X-Proofpoint-GUID: I9o6bYSslUH1pCm8bnEDDBCqAHppG9Mu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-15_04,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 phishscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509130000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250915-leo-dts-add-shunt-resistor-v1-1-d65389148a3d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKrgx2gC/x3MwQrDIAwA0F8pOTfQylpmf2X0IBprYGhJXBlI/
+ 32y47u8BkrCpLANDYQuVi65Yx4H8Mnlg5BDN5jJLJOdF3xTwVAVXQio6ZMrCilrLYLPaFdvHz4
+ aZ6EHp1Dk7z9/7ff9A4VGMn5sAAAA
+X-Change-ID: 20250915-leo-dts-add-shunt-resistor-8f96c94cf2a9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
+ leo.jt.wang@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757929656; l=1194;
+ i=leo.jt.wang@gmail.com; s=20250618; h=from:subject:message-id;
+ bh=cxAqupFOX5uFq92Avu8qu3m3xhpolK/5U494g4n1Fko=;
+ b=GRx+rMoPC+Ks8u7cyFLnZgiZtR2njjInKSWufNm641lfB01ZSutgDpAepPQNVYxa1v3HucGVm
+ CXu/0vJgogXDF0XZGPSB2GXDvlJT6dGy7IwENtdjSa5g1twGsK3oMQP
+X-Developer-Key: i=leo.jt.wang@gmail.com; a=ed25519;
+ pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
 
+Add the 'shunt-resistor-micro-ohms' property to the LM5066i power
+monitors on I2C1 for the Meta Clemente BMC board. This accurately
+describes the hardware and is required for proper power monitoring.
 
+Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On 2025-09-15 16:52, Stephan Gerhold wrote:
-> On Mon, Sep 15, 2025 at 10:12:15AM +0800, Yijie Yang wrote:
->>
->>
->> On 2025-09-12 16:48, Stephan Gerhold wrote:
->>> On Wed, Sep 10, 2025 at 05:02:11PM +0800, Yijie Yang wrote:
->>>> The HAMOA-IOT-SOM is a compact computing module that integrates a System
->>>> on Chip (SoC) — specifically the x1e80100 — along with essential
->>>> components optimized for IoT applications. It is designed to be mounted on
->>>> carrier boards, enabling the development of complete embedded systems.
->>>>
->>>> Make the following peripherals on the SOM enabled:
->>>> - Regulators on the SOM
->>>> - Reserved memory regions
->>>> - PCIe6a and its PHY
->>>> - PCIe4 and its PHY
->>>> - USB0 through USB6 and their PHYs
->>>> - ADSP, CDSP
->>>> - Graphic
->>>> - Video
->>>>
->>>> Written in collaboration with Yingying Tang (PCIe4)
->>>> <quic_yintang@quicinc.com> and Wangao Wang (Video)
->>>> <quic_wangaow@quicinc.com>.
->>>
->>> This looks like you should have Co-developed-by: tags together with
->>> their Signed-off-by: tags.
->>
->> We’ve agreed on this as the preferred method for marking collaboration, as
->> discussed earlier in this thread.
->>
-> 
-> I can't say I agree with Bjorn there, but ok, he's the maintainer. :-)
-> 
->>>
->>>>
->>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 621 ++++++++++++++++++++++++++++
->>>>    1 file changed, 621 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
->>>> new file mode 100644
->>>> index 000000000000..c7c3a167eb6a
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
->>>> @@ -0,0 +1,621 @@
->>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>> +/*
->>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->>>> + */
->>>> +
->>>> +#include "x1e80100.dtsi"
->>>> +#include "x1e80100-pmics.dtsi"
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>>> +
->>>> +/ {
->>>> +	compatible = "hamoa-iot-som", "qcom,x1e80100";
->>>
->>> Undocumented compatible (without "qcom," prefix). I think you can just
->>> drop this?
->>
->> This compatible string was also discussed previously and is the preferred
->> choice. I’ll add the missing 'qcom,' prefix.
->>
-> 
-> Even compatible = "qcom,hamoa-iot-som", "qcom,x1e80100"; is not
-> documented. And it doesn't make much sense to document it either, each
-> of the boards using the SoM should have a more specific compatible and
-> therefore needs to override this property. I think you can really just
-> drop this line.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+index ecef44d8997775b26cac10353b42b03dc644f033..a614f947dafc9a6628c3f3d45b62ff3ca9d2b618 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+@@ -642,12 +642,14 @@ &i2c1 {
+ 	power-monitor@12 {
+ 		compatible = "ti,lm5066i";
+ 		reg = <0x12>;
++		shunt-resistor-micro-ohms = <183>;
+ 	};
+ 
+ 	// PDB
+ 	power-monitor@14 {
+ 		compatible = "ti,lm5066i";
+ 		reg = <0x14>;
++		shunt-resistor-micro-ohms = <183>;
+ 	};
+ 
+ 	// Module 0
 
-Patch 1/4 documents this compatible. It’s another requirement that 
-SoC/SoM should follow, which Krzysztof pointed out in v2:
-https://lore.kernel.org/all/aee74e0f-c957-437d-ab48-3977013c3116@kernel.org/
+---
+base-commit: 3708a165a98c23cc83216deda88bc7d64ba85527
+change-id: 20250915-leo-dts-add-shunt-resistor-8f96c94cf2a9
 
-> 
-> Thanks,
-> Stephan
-> 
-
+Best regards,
 -- 
-Best Regards,
-Yijie
+Leo Wang <leo.jt.wang@gmail.com>
 
 
