@@ -1,488 +1,277 @@
-Return-Path: <devicetree+bounces-217403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F757B57919
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:51:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B46FB57663
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:32:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE531A22718
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 11:51:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F18EC1644C4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2E1302159;
-	Mon, 15 Sep 2025 11:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14F502FABF0;
+	Mon, 15 Sep 2025 10:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="EBS9dQpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBFE3009E7;
-	Mon, 15 Sep 2025 11:50:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757937038; cv=none; b=RhgpmOtNIKVUIkJfFmZxPMZHW/SFHybs+cqzOTVw8EnsSwSjOtqHda0idhnSE4TqTSa8FcrcbltZpVkdnWHmma2cLpFnR+3/YE0E9QL8aDy7ZHuBHncR2smb2pkSarF3JSCUUiQtoyw129jgjEtL8t+N9aeRDiEKndRh+Dpl6v0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757937038; c=relaxed/simple;
-	bh=a0VRXbta8K9gtk+IGHOwOU6MaIwzucwt5cPvZhkP+xE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qHbQsrk3JqQEy7tJ5SvGf8UVLyLSqDHQl/YKRK3b6NUFnQaS3lAtif9EkhF6RelfSez/7oB5LWNM+qe+ju9bq9pLtl2qtEfG6s+SYrEInN8d8TKksNY77Lxo4ZV0z6SJ2WXi8ISFApobG5jUEyDa9Ax/4ZB7LSKFVj7T4PA69fA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4cQNTb42Jgz9syc;
-	Mon, 15 Sep 2025 13:43:47 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id cfGBSkOtiCmq; Mon, 15 Sep 2025 13:43:47 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4cQNTZ1TZpz9syZ;
-	Mon, 15 Sep 2025 13:43:46 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id E29168B766;
-	Mon, 15 Sep 2025 13:43:45 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id bAFn8JW7pVEL; Mon, 15 Sep 2025 13:43:45 +0200 (CEST)
-Received: from [10.25.207.160] (unknown [10.25.207.160])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 5E4998B763;
-	Mon, 15 Sep 2025 13:43:44 +0200 (CEST)
-Message-ID: <ba78173a-9312-40fc-a88a-d94764ed6010@csgroup.eu>
-Date: Mon, 15 Sep 2025 13:43:43 +0200
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011057.outbound.protection.outlook.com [40.107.130.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6AF51A239A;
+	Mon, 15 Sep 2025 10:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757932367; cv=fail; b=Enc+7EmSxbipOPcdNmoHoRo+LQQwSgZnokoh2Lk3TCqeAIXxOmKiysQisRjX9aQ7gHNIgmACJtPlPhNbz8yNoijSoZ4DhLDsbYvbZuAjSrESyhX7TCANWPhcAjtGV8LjHSEOu7RI0mjHclDZIW13mNst7ydyOYwRGsXU7J/L978=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757932367; c=relaxed/simple;
+	bh=R7yKAhuiP+KACZKrgqDgj1aq6/P7yw7zupEPTbg/W6k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=AN0lBFQN7Ds/aA1nYZMz1RmANvlk4pFeEYwekEpmxulFnPuCgDvotmWeVpcgxQS0Ua9oszDDO7IADGiS7WcMNwRn8J4ajBiyc5wQ1b6usjlpshVt9KMzkxspku93xIz3ivgpf/5iuunijs4+lHItSlRTm/FWAG0EkayfZIN7sBs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=EBS9dQpy; arc=fail smtp.client-ip=40.107.130.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nRThh8Y1Lx1IArr+UbYn+DgPwg1pcXBkLOvM9TJYowF2gpMOBTH/teOpdqcQiJXYFnJMMT4DK9ZyXEpsxVclMwwXB9t0SYTnTGVSF0ZasoT4lYetJoKkHpqnfQ+mCadcISfOGNCjkXB5kbTugF+RfmKCNlT3xutKk5pEl14UqxQSytdWC+fQ+TZi9msad69qeuMS4UAYQGMPf0+qiBg33gbhnIi+1md73YRU0EUv1W92D9em3e/kR0n0VE8hdPYb7PnUrSYE/VnZOX9HyMVQs7+3K0ZVJ29dEq5EXd65EscCxDQUjrt4l2ds8LciaInBwsX8tBGCcTzGb0tUS/hPxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GlJfCaS6ynJMJa4hzwSk6DrJC9H/lR33r3nsnMiLmxI=;
+ b=kfhccqF3+CrVIY1EKQr86B2DeO0I3aY1P++k/iX5CCHNRIuz2H7GFMBzn24jzH+t5j9oDciJuYgcAfHo+tu6c9PwFxo8cVeghZCBdnzN0AZKofgO7faXtuPV2u3hLBh5FPBTtKzHclYGem99O53IlLGfg+cRIg3X9MmOMXkomOeBfLhFeVMcxuEEPJLSEVx/b5fNVqKOMH/jBNe7D5ivS8ZA1S0gP4zf3FoE8FmdAQ5XuycNym5rP0uudwB51htktkWcDPnEhjz8xm0E9S1DXZD0Y3UUbX0Hozzyeq+o2ceCLrBeHj29TyaBGmH3yjo6lARjcP+Bz5IIxrWUcGB22A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GlJfCaS6ynJMJa4hzwSk6DrJC9H/lR33r3nsnMiLmxI=;
+ b=EBS9dQpykhtTVo6lVHO3MlUO3uXD36/kdixERU8v24VUuCnj9wc/PdNnWXQb0VyqHkBp+x4odH6NOIQoF3wFSHd4otgTlwvttP/bj55dH5deKxztN+7a/mxlsvXUsu23/S0RJqDGUBQDlT93U0y90nCQvhaZNTIafwGx1fMDEGjv1djPhav7rSUoUYrKmrYH8z8uV+eVpz0gWqrA6+tOOobEgdLSErUuXugjB6jO+skUybWiDZgRkz+OgtyUYoKLnaOGmMwzT0iOLRgJxavE8B+XUhNwZjo+gcj827f3F1d+r0HGrwf7wg1b3xMGH5RVPC7SYW4IAAeTE3Z/G4xlTQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by PAXPR04MB9304.eurprd04.prod.outlook.com (2603:10a6:102:2b6::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.11; Mon, 15 Sep
+ 2025 10:32:39 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9137.010; Mon, 15 Sep 2025
+ 10:32:39 +0000
+Date: Mon, 15 Sep 2025 19:44:09 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 5/5] clk: samsung: introduce exynos8890 clock driver
+Message-ID: <20250915114409.GA14804@nxa18884-linux.ap.freescale.net>
+References: <20250914122116.2616801-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250914122116.2616801-6-ivo.ivanov.ivanov1@gmail.com>
+ <20250915074931.GD8224@nxa18884-linux.ap.freescale.net>
+ <d23885a5-6d42-443a-bf19-eb6747e8ec47@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d23885a5-6d42-443a-bf19-eb6747e8ec47@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI2P153CA0017.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::10) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 04/62] init: x86, arm, sh, sparc: remove variable
- rd_image_start, which controls starting block number of initrd
-To: Askar Safin <safinaskar@gmail.com>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Linus Torvalds <torvalds@linux-foundation.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>,
- Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>,
- Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Aleksa Sarai <cyphar@cyphar.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Julian Stecklina <julian.stecklina@cyberus-technology.de>,
- Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>, Eric Curtin <ecurtin@redhat.com>,
- Alexander Graf <graf@amazon.com>, Rob Landley <rob@landley.net>,
- Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
- linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
- linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org,
- Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org,
- initramfs@vger.kernel.org, linux-api@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-efi@vger.kernel.org,
- linux-ext4@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
- linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
- devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>,
- Kees Cook <kees@kernel.org>, Thorsten Blum <thorsten.blum@linux.dev>,
- Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-References: <20250913003842.41944-1-safinaskar@gmail.com>
- <20250913003842.41944-5-safinaskar@gmail.com>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-Content-Language: fr-FR
-In-Reply-To: <20250913003842.41944-5-safinaskar@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PAXPR04MB9304:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95cea46f-25e5-4710-1c07-08ddf44331b3
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|19092799006|52116014|376014|7416014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?d2gF2H9s5Q85gu3QWKPQzzLQXsl+rWATni9PgIQfsPH3elq05trKw4wrs75v?=
+ =?us-ascii?Q?UlEwo849mo5P8fFT4x5KrNrrMWR+BLLRoauefXPG+/bfVk4+ZWm6QkhpI4TR?=
+ =?us-ascii?Q?zw1ayopLvf3m5kJHtm+Pt8AzUNH+5EflsqXn4BSB+BsxiaR1R6Gq2qRMSCe6?=
+ =?us-ascii?Q?viT+Y/xkXAjKn1eT5htE9RhYXvyBn5YOmZpAjaMlsn2TSxRUEZAhBV77hWUR?=
+ =?us-ascii?Q?ixkadPfu+S7Rc+udWjURQ02XBTY7oqzsDZCpOq43dMLsPg86qaB4jXiO4dxA?=
+ =?us-ascii?Q?eg7ycQlI8X7XPOhic1V8tHJIF7qrhG0F0keCUpYhy+cPc73MJtW7OFhgQF2J?=
+ =?us-ascii?Q?YNjOF04UCcHWFpKHLHle7uE2s+dcYXwJvXmHYi9lcUnPX5Z9d0sHhDG/RwR6?=
+ =?us-ascii?Q?4HdaEBHqFRHzTt+r8xqa3GxdsVLONUV+atPBjxJJZNtzNcWNHrW4oKnEWff3?=
+ =?us-ascii?Q?hKhodzltgR87zTUHFv+y+5vYNLkFHJWku5nvdN0GGr3FwZEd9WuNr7+FNTfY?=
+ =?us-ascii?Q?i1rxUjCJWXdWl1WfLTMx2gsuPrVc7QXGELDcXu8BrrmRarF0ReU9o6+VR6mW?=
+ =?us-ascii?Q?jSns18jT7yefZOabz5bBw6IvmO6D5aWU5r1snEtHL+YF0BqUhhhPtDZsJGxs?=
+ =?us-ascii?Q?eQLM+KhinLjunuV6kCG8oeDAj+tFCAvCHsP9GOB+SS8N1rGs8fiaXHuUGDW9?=
+ =?us-ascii?Q?Env1uvBfQUtrBWlAd5EY1s+YncUBqx8Fn9zrzm2pVpe6tOmuO0OB/mqlS6Co?=
+ =?us-ascii?Q?h5LnUcWCuRATjVpgqxpv7RLXfat4bjMekWZK7KmhJwmdhVJrauo0GyBAoM2k?=
+ =?us-ascii?Q?7ZCtFsLxIkRvuQb56ADM1zC6MjU5Jv//YgOdFwsNDoGFU5JjNLAg7BLHphIF?=
+ =?us-ascii?Q?gXMbMwTOVWjwEfkrMqsmOU8H5FGNUgQStd5YIePIzjFZen4J3nPgOIiVpmNf?=
+ =?us-ascii?Q?wxvuUHJMmQeNIuRh0LVQq7XL6t6h0BRSNECnb+Mhi5rMMN0hJm/pc8dM3eGp?=
+ =?us-ascii?Q?CVYNgjlCTUqob3r06YDuRe1fP9LpO44m52kibWCl0lLQ54rYUOl8299rp2E/?=
+ =?us-ascii?Q?ahKuIop/BTv2a2hMf+iJCiA7arKL7D/hLHflietHvYzTanaan3yGTxGf9c+/?=
+ =?us-ascii?Q?y6zQMCQKCFu8q5Bk+SLS/TskCLPESxw935PS3F/nOMtihZqPpvURj0gX6MmJ?=
+ =?us-ascii?Q?1HA8kG+b/64013VqmRu5tNzJ2DYaWtcnIS415jrr9Kti2j1X3cq4Soel43+s?=
+ =?us-ascii?Q?RQncBdrvFP5LgvP2oFpEyLl8d8HyVCuHlgBMrLG+Bmbrzvwv+/KzjeAqKkSC?=
+ =?us-ascii?Q?kG/tdfMIJ/optXZPB1I0s7Wz0m41xK8SflqECQx8l+RZZIlCwiqREDb2WUj9?=
+ =?us-ascii?Q?iZgkeL5pc+jDHool4/oI2/IfXxuGa1W2ndkmW3kxRjH29m5BtCEUGrx/tNIA?=
+ =?us-ascii?Q?9si/Bjs8lOYuXGhBr5clMjISagTaLQUPbFitrl+TSqCs8c+a5wz8rw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(52116014)(376014)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hQA3hCI2NL8wSQe7faLV4XhyxFufCA2diJjBJKBF1V3AJIqNkfO4D21rVaHN?=
+ =?us-ascii?Q?LPr3WueeW/z/KCdc7fWUI0qrf1anFBM7Ym5J7Icuo3pI9MlnpvLVzJca20OM?=
+ =?us-ascii?Q?984lFlB+4BQDFyyHVOlDzE79B8mrlCky7FmJcpPcVYtBoKoKzPznhf/NEaVm?=
+ =?us-ascii?Q?JaKL4S7ir+t72+nMM+3Vsja/ko6VibmLFSUmzeH6GERHrUpM/CW3R77ckaIw?=
+ =?us-ascii?Q?k5SavpSSJueQr/18gOOYpN1LftM2Ia4AS7SxADh+pSH17fsnAgPSbGQStKEc?=
+ =?us-ascii?Q?u4plgKpeDS1FaLfSHbPrDv1l4Kv8ceZ3+0PiwsPmnwxOmEJW/JoKo9obiEbD?=
+ =?us-ascii?Q?SP0hPnUbOFEjMjqgMJWDB7GwvgcOS/HaEm/fVSsYLWbYFYds8Xik78OQwxfv?=
+ =?us-ascii?Q?OHs+LqYBCZl30ZByyFi1U3XtH2OJcKX6HzSdXD9WMrQsSbFsUib0BjDLmnWz?=
+ =?us-ascii?Q?DLRm9hjkeL2Fa584VjUiiwuu21atW4L0lWPf0PUrovVXdybcJ3qyeHwgNPVa?=
+ =?us-ascii?Q?AJqAXkz76MkcUOlXAS1fYBYX9Rp0TjAin6ew1bwhCl/cEIItrst/zenup6x6?=
+ =?us-ascii?Q?tUl7i5uZw2LtOLHwG/dBjDIgJRQTaLEKGuGiMqw5brN+fb7AdEsVT6hA/MXY?=
+ =?us-ascii?Q?7ceUJzWyCP1pX8mWz1nDEtc7GgG42vgOmQ4jTuBt3QsPfJ4MfPrfZDpe8Ioe?=
+ =?us-ascii?Q?rDWkO0k3M0b2BHXS+7qCZW7H9+s2qneMWC1eOvKP0bLb+tbnzecEbO8wJaHE?=
+ =?us-ascii?Q?YyNg5FViIckfmc8TNb+BsvPJqWOmX8PBBBqs0ItL+B5lzmT8clhJjL5iErdm?=
+ =?us-ascii?Q?Kb/OBXj8mrc/KBjhLpK2WxosJDL3LQQzelPFXc9+5dq+H36C/YCjO0+QR7y4?=
+ =?us-ascii?Q?yavdNMFNEQ8UtjjlDvHqQuHsAb+CjlaR7KLsMBTJlXX+HpUtZ9W8QPg3zJW1?=
+ =?us-ascii?Q?WxSwPqhz7Ykj3XI1Y7NnrqUU0tSKL02rG2ILo189n6MksmjEhGJKl8d3B1ys?=
+ =?us-ascii?Q?2HxmsfAX2HwU93NAXZZWAV3ZsHnCER2Hvp3zhc8QB2uGRf8cEjldySLZxK6a?=
+ =?us-ascii?Q?9WJgVbxKdp32u1ia3jCb9rgepHR4bJsk9ENkuNBhvf2AvkHfoKVKxlinw1zt?=
+ =?us-ascii?Q?8HZPL5Wa743Sfh3uMxJjf/XXsoL48Tmjy0nguE5ud4OlIdWQc2TxTqIJUAZD?=
+ =?us-ascii?Q?957OF4/osNOzTBx+x4Wze9UBeCc3p5l9AaZsMSEiFxtDIJAc6mbX7dA9X+PL?=
+ =?us-ascii?Q?3TSH+/atf6OuiDn5nH1YQAqIalKfEsa+BggWpHRuZaSYORJpR7jZBJHfsCCc?=
+ =?us-ascii?Q?zK0uZ1DqZKwJlcwCQh3QiWEG27piwbpIBNQHBizSkqY0VOtLkXW2wsiPy2mQ?=
+ =?us-ascii?Q?dpH9yL2dGX+MmK60V7i5kqr20yk2ajfee3V0kkUOqOi62oJGdV7XbzeuYn/A?=
+ =?us-ascii?Q?Rs/PdxtP4aTzoN3ib4I1Qrc+Izfn9zgPijelzn55UVe2EUs+l9IhjNCyaAF4?=
+ =?us-ascii?Q?SZi5xXNxcQQFGcDMtC+jn2OKLAUKGuRQmg/gPEpvdJuZxUg5/cNgLlMscJol?=
+ =?us-ascii?Q?MexG1b1+QWZwpQT6TRGddFp4N8E1f7GKbcqNhbc0?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95cea46f-25e5-4710-1c07-08ddf44331b3
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2025 10:32:39.1660
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4wZDpPEeZ0NA5fI5iaWs5JKvP0ubRTyMD4Dd2v7lTHy+9oEqu2PjOfiiHSlZk4qxRXnjkBIbdwhX+4T1Uoq4qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9304
 
+On Mon, Sep 15, 2025 at 11:59:47AM +0300, Ivaylo Ivanov wrote:
+>On 9/15/25 10:49, Peng Fan wrote:
+>> On Sun, Sep 14, 2025 at 03:21:16PM +0300, Ivaylo Ivanov wrote:
+>>> Introduce a clocks management driver for exynos8890, providing clocks
+>>> for the peripherals of that SoC.
+>>>
+>>> As exynos8890 is the first SoC to have HWACG, it differs a bit from the
+>> Hardware Auto Clock Gating(HWACG), if I understand correctly.
+>>
+>>> newer SoCs. Q-channel and Q-state bits are separate registers, unlike
+>>> the CLK_CON_GAT_* ones that feature HWACG bits in the same register
+>>> that controls manual gating. Hence, don't use the clk-exynos-arm64
+>>> helper, but implement logic that enforces manual gating according to
+>>> how HWACG is implemented here.
+>>>
+>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>> ---
+>>> drivers/clk/samsung/Makefile         |    1 +
+>>> drivers/clk/samsung/clk-exynos8890.c | 8695 ++++++++++++++++++++++++++
+>>> 2 files changed, 8696 insertions(+)
+>>> create mode 100644 drivers/clk/samsung/clk-exynos8890.c
+>>>
+>>> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+>>> index b77fe288e..982dc7c64 100644
+>>> --- a/drivers/clk/samsung/Makefile
+>>> +++ b/drivers/clk/samsung/Makefile
+>>> @@ -22,6 +22,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7870.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7885.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
+>>> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos8890.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos8895.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos990.o
+>>> obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynosautov9.o
+>>> diff --git a/drivers/clk/samsung/clk-exynos8890.c b/drivers/clk/samsung/clk-exynos8890.c
+>>> new file mode 100644
+>>> index 000000000..670587bae
+>>> --- /dev/null
+>>> +++ b/drivers/clk/samsung/clk-exynos8890.c
+>>> @@ -0,0 +1,8695 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Copyright (C) 2025 Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>> + * Author: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>> + *
+>>> + * Common Clock Framework support for Exynos8890 SoC.
+>>> + */
+>>> +
+>>> +#include <linux/clk-provider.h>
+>>> +#include <linux/mod_devicetable.h>
+>>> +#include <linux/of_address.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/platform_device.h>
+>>> +
+>>> +#include <dt-bindings/clock/samsung,exynos8890-cmu.h>
+>>> +
+>>> +#include "clk.h"
+>>> +
+>>> +/* NOTE: Must be equal to the last clock ID increased by one */
+>>> +#define TOP_NR_CLK	(CLK_GOUT_TOP_SCLK_PROMISE_DISP + 1)
+>>> +#define PERIS_NR_CLK	(CLK_GOUT_PERIS_SCLK_PROMISE_PERIS + 1)
+>>> +#define APOLLO_NR_CLK	(CLK_GOUT_APOLLO_SCLK_PROMISE_APOLLO + 1)
+>>> +#define AUD_NR_CLK	(CLK_GOUT_AUD_SCLK_I2S_BCLK + 1)
+>>> +#define BUS0_NR_CLK	(CLK_GOUT_BUS0_ACLK_TREX_P_BUS0 + 1)
+>>> +#define BUS1_NR_CLK	(CLK_GOUT_BUS1_ACLK_TREX_P_BUS1 + 1)
+>>> +#define CCORE_NR_CLK	(CLK_GOUT_CCORE_SCLK_PROMISE + 1)
+>>> +#define DISP0_NR_CLK	(CLK_GOUT_DISP0_OSCCLK_DP_I_CLK_24M + 1)
+>>> +#define DISP1_NR_CLK	(CLK_GOUT_DISP1_SCLK_PROMISE_DISP1 + 1)
+>>> +#define FSYS0_NR_CLK	(CLK_GOUT_FSYS0_SCLK_USBHOST20_REF_CLK + 1)
+>>> +#define FSYS1_NR_CLK	(CLK_GOUT_FSYS1_SCLK_PROMISE_FSYS1 + 1)
+>>> +#define G3D_NR_CLK	(CLK_GOUT_G3D_SCLK_ASYNCAXI_G3D + 1)
+>>> +#define MIF0_NR_CLK	(CLK_GOUT_MIF0_RCLK_DREX + 1)
+>>> +#define MIF1_NR_CLK	(CLK_GOUT_MIF1_RCLK_DREX + 1)
+>>> +#define MIF2_NR_CLK	(CLK_GOUT_MIF2_RCLK_DREX + 1)
+>>> +#define MIF3_NR_CLK	(CLK_GOUT_MIF3_RCLK_DREX + 1)
+>>> +#define MNGS_NR_CLK	(CLK_GOUT_MNGS_SCLK_PROMISE0_MNGS + 1)
+>>> +#define PERIC0_NR_CLK	(CLK_GOUT_PERIC0_SCLK_PWM + 1)
+>>> +#define PERIC1_NR_CLK	(CLK_GOUT_PERIC1_SCLK_UART5 + 1)
+>>> +
+>>> +/*
+>>> + * As exynos8890 first introduced hwacg, cmu registers are mapped similarly
+>>> + * to exynos7, with the exception of the new q-state and q-ch registers that
+>>> + * can set the behavior of automatic gates.
+>>> + */
+>>> +
+>>> +/* decoded magic number from downstream */
+>>> +#define QCH_EN_MASK		BIT(0)
+>>> +#define QCH_MASK		(GENMASK(19, 16) | BIT(12))
+>>> +#define QCH_DIS			(QCH_MASK | FIELD_PREP(QCH_EN_MASK, 0))
+>> Nit: align code.
+>
+>Aligned in my editor, patch files offset each line with a single symbol
+>so formatting gets broken...
 
+seems something broken in my mutt. Sorry for false alarm.
 
-Le 13/09/2025 à 02:37, Askar Safin a écrit :
-> [Vous ne recevez pas souvent de courriers de safinaskar@gmail.com. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
-> 
-> This is preparation for initrd removal
-> 
-> Signed-off-by: Askar Safin <safinaskar@gmail.com>
-> ---
->   Documentation/arch/x86/boot.rst       | 4 ++--
->   arch/arm/kernel/atags_parse.c         | 2 --
->   arch/sh/include/asm/setup.h           | 1 -
->   arch/sh/kernel/head_32.S              | 2 +-
->   arch/sh/kernel/setup.c                | 9 +--------
->   arch/sparc/boot/piggyback.c           | 4 ++--
->   arch/sparc/kernel/head_32.S           | 4 ++--
->   arch/sparc/kernel/head_64.S           | 6 ++++--
->   arch/sparc/kernel/setup_32.c          | 5 -----
->   arch/sparc/kernel/setup_64.c          | 5 -----
->   arch/x86/boot/header.S                | 2 +-
->   arch/x86/include/uapi/asm/bootparam.h | 5 +----
->   arch/x86/kernel/setup.c               | 5 -----
->   include/linux/initrd.h                | 3 ---
->   init/do_mounts_rd.c                   | 8 +++-----
->   15 files changed, 17 insertions(+), 48 deletions(-)
-> 
-> diff --git a/Documentation/arch/x86/boot.rst b/Documentation/arch/x86/boot.rst
-> index 77e6163288db..118aa7b69667 100644
-> --- a/Documentation/arch/x86/boot.rst
-> +++ b/Documentation/arch/x86/boot.rst
-> @@ -189,7 +189,7 @@ Offset/Size Proto           Name                    Meaning
->   01F1/1         ALL(1)          setup_sects             The size of the setup in sectors
->   01F2/2         ALL             root_flags              If set, the root is mounted readonly
->   01F4/4         2.04+(2)        syssize                 The size of the 32-bit code in 16-byte paras
-> -01F8/2         ALL             ram_size                DO NOT USE - for bootsect.S use only
-> +01F8/2         ALL             ram_size                DO NOT USE - for bootsect.S use only - used to control initrd, which was removed from Linux in 2025
+>> will not able to support GKI.
+>>
+>> It would be better to update to use platform drivers.
+>
+>Same as what Krzysztof said, design choice accross all samsung clock drivers.
 
-Is this change really needed/usefull. Here people can think it shall not 
-be used because it is removed in 2025. But it reality it was already 
-DO-NOT-USE 20 years old.
+Sure. No problem.
 
->   01FA/2         ALL             vid_mode                Video mode control
->   01FC/2         ALL             root_dev                Default root device number
->   01FE/2         ALL             boot_flag               0xAA55 magic number
-> @@ -308,7 +308,7 @@ Offset/size:        0x1f8/2
->   Protocol:      ALL
->   ============   ===============
-> 
-> -  This field is obsolete.
-> +  This field is obsolete. Used to control initrd, which was removed from Linux in 2025.
-
-Same comment, this field has been obsolete long before the removal of 
-initrd in 2025 so that new comment bring confusion.
-
-> 
->   ============   ===================
->   Field name:    vid_mode
-> diff --git a/arch/arm/kernel/atags_parse.c b/arch/arm/kernel/atags_parse.c
-> index 4ec591bde3df..a3f0a4f84e04 100644
-> --- a/arch/arm/kernel/atags_parse.c
-> +++ b/arch/arm/kernel/atags_parse.c
-> @@ -90,8 +90,6 @@ __tagtable(ATAG_VIDEOTEXT, parse_tag_videotext);
->   #ifdef CONFIG_BLK_DEV_RAM
->   static int __init parse_tag_ramdisk(const struct tag *tag)
->   {
-> -       rd_image_start = tag->u.ramdisk.start;
-> -
->          if (tag->u.ramdisk.size)
->                  rd_size = tag->u.ramdisk.size;
-> 
-> diff --git a/arch/sh/include/asm/setup.h b/arch/sh/include/asm/setup.h
-> index 84bb23a771f3..d1b97c5726e4 100644
-> --- a/arch/sh/include/asm/setup.h
-> +++ b/arch/sh/include/asm/setup.h
-> @@ -10,7 +10,6 @@
->   #define PARAM  ((unsigned char *)empty_zero_page)
-> 
->   #define MOUNT_ROOT_RDONLY (*(unsigned long *) (PARAM+0x000))
-> -#define RAMDISK_FLAGS (*(unsigned long *) (PARAM+0x004))
->   #define ORIG_ROOT_DEV (*(unsigned long *) (PARAM+0x008))
->   #define LOADER_TYPE (*(unsigned long *) (PARAM+0x00c))
->   #define INITRD_START (*(unsigned long *) (PARAM+0x010))
-> diff --git a/arch/sh/kernel/head_32.S b/arch/sh/kernel/head_32.S
-> index b603b7968b38..4382c0f058c8 100644
-> --- a/arch/sh/kernel/head_32.S
-> +++ b/arch/sh/kernel/head_32.S
-> @@ -28,7 +28,7 @@
->          .section        .empty_zero_page, "aw"
->   ENTRY(empty_zero_page)
->          .long   1               /* MOUNT_ROOT_RDONLY */
-> -       .long   0               /* RAMDISK_FLAGS */
-> +       .long   0               /* RAMDISK_FLAGS - used to control initrd, which was removed from Linux in 2025 */
->          .long   0x0200          /* ORIG_ROOT_DEV */
->          .long   1               /* LOADER_TYPE */
->          .long   0x00000000      /* INITRD_START */
-> diff --git a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
-> index d66f098e9e9f..50f1d39fe34f 100644
-> --- a/arch/sh/kernel/setup.c
-> +++ b/arch/sh/kernel/setup.c
-> @@ -70,8 +70,6 @@ EXPORT_SYMBOL(sh_mv);
-> 
->   extern int root_mountflags;
-> 
-> -#define RAMDISK_IMAGE_START_MASK       0x07FF
-> -
->   static char __initdata command_line[COMMAND_LINE_SIZE] = { 0, };
-> 
->   static struct resource code_resource = {
-> @@ -273,19 +271,14 @@ void __init setup_arch(char **cmdline_p)
-> 
->          printk(KERN_NOTICE "Boot params:\n"
->                             "... MOUNT_ROOT_RDONLY - %08lx\n"
-> -                          "... RAMDISK_FLAGS     - %08lx\n"
->                             "... ORIG_ROOT_DEV     - %08lx\n"
->                             "... LOADER_TYPE       - %08lx\n"
->                             "... INITRD_START      - %08lx\n"
->                             "... INITRD_SIZE       - %08lx\n",
-> -                          MOUNT_ROOT_RDONLY, RAMDISK_FLAGS,
-> +                          MOUNT_ROOT_RDONLY,
->                             ORIG_ROOT_DEV, LOADER_TYPE,
->                             INITRD_START, INITRD_SIZE);
-> 
-> -#ifdef CONFIG_BLK_DEV_RAM
-> -       rd_image_start = RAMDISK_FLAGS & RAMDISK_IMAGE_START_MASK;
-> -#endif
-> -
->          if (!MOUNT_ROOT_RDONLY)
->                  root_mountflags &= ~MS_RDONLY;
->          setup_initial_init_mm(_text, _etext, _edata, _end);
-> diff --git a/arch/sparc/boot/piggyback.c b/arch/sparc/boot/piggyback.c
-> index 6d74064add0a..a9cc55254ff8 100644
-> --- a/arch/sparc/boot/piggyback.c
-> +++ b/arch/sparc/boot/piggyback.c
-> @@ -220,8 +220,8 @@ int main(int argc,char **argv)
-> 
->          /*
->           * root_flags = 0
-> -        * root_dev = 1 (RAMDISK_MAJOR)
-> -        * ram_flags = 0
-> +        * root_dev = 1 (1 used to mean RAMDISK_MAJOR, i. e. initrd, which was removed from Linux)
-
-At the end of your series RAMDISK_MAJOR still exists so this comment is 
-wrong.
-
-> +        * ram_flags = 0 (used to control initrd, which was removed from Linux in 2025)
->           * sparc_ramdisk_image = "PAGE aligned address after _end")
->           * sparc_ramdisk_size = size of image
->           */
-
-Shouldn't this block be droped entirely ?
-
-> diff --git a/arch/sparc/kernel/head_32.S b/arch/sparc/kernel/head_32.S
-> index 38345460d542..46f0e39b9037 100644
-> --- a/arch/sparc/kernel/head_32.S
-> +++ b/arch/sparc/kernel/head_32.S
-> @@ -65,7 +65,7 @@ empty_zero_page:      .skip PAGE_SIZE
->   EXPORT_SYMBOL(empty_zero_page)
-> 
->          .global root_flags
-> -       .global ram_flags
-> +       .global ram_flags /* used to control initrd, which was removed from Linux in 2025 */
-
-Can we remove this line completely instead of adding a comment ?
-
->          .global root_dev
->          .global sparc_ramdisk_image
->          .global sparc_ramdisk_size
-> @@ -81,7 +81,7 @@ root_flags:
->          .half   1
->   root_dev:
->          .half   0
-> -ram_flags:
-> +ram_flags: /* used to control initrd, which was removed from Linux in 2025 */
-
-Same, why not remove this object completely ?
-
->          .half   0
->   sparc_ramdisk_image:
->          .word   0
-> diff --git a/arch/sparc/kernel/head_64.S b/arch/sparc/kernel/head_64.S
-> index cf0549134234..4480c0532fe9 100644
-> --- a/arch/sparc/kernel/head_64.S
-> +++ b/arch/sparc/kernel/head_64.S
-> @@ -52,7 +52,9 @@ stext:
->    * Fields should be kept upward compatible and whenever any change is made,
->    * HdrS version should be incremented.
->    */
-> -        .global root_flags, ram_flags, root_dev
-> +        .global root_flags
-> +        .global ram_flags /* used to control initrd, which was removed from Linux in 2025 */
-
-Same, can you remove them ?
-Such comments in the code are generaly pointless, you can recover 
-history with 'git log'.
-
-> +        .global root_dev
->           .global sparc_ramdisk_image, sparc_ramdisk_size
->          .global sparc_ramdisk_image64
-> 
-> @@ -71,7 +73,7 @@ root_flags:
->           .half   1
->   root_dev:
->           .half   0
-> -ram_flags:
-> +ram_flags: /* used to control initrd, which was removed from Linux in 2025 */
-
-Same, remove.
-
->           .half   0
->   sparc_ramdisk_image:
->           .word   0
-> diff --git a/arch/sparc/kernel/setup_32.c b/arch/sparc/kernel/setup_32.c
-> index eb60be31127f..fb46fb3acf54 100644
-> --- a/arch/sparc/kernel/setup_32.c
-> +++ b/arch/sparc/kernel/setup_32.c
-> @@ -170,8 +170,6 @@ static void __init boot_flags_init(char *commands)
-> 
->   extern unsigned short root_flags;
->   extern unsigned short root_dev;
-> -extern unsigned short ram_flags;
-> -#define RAMDISK_IMAGE_START_MASK       0x07FF
-> 
->   extern int root_mountflags;
-> 
-> @@ -335,9 +333,6 @@ void __init setup_arch(char **cmdline_p)
->          if (!root_flags)
->                  root_mountflags &= ~MS_RDONLY;
->          ROOT_DEV = old_decode_dev(root_dev);
-> -#ifdef CONFIG_BLK_DEV_RAM
-> -       rd_image_start = ram_flags & RAMDISK_IMAGE_START_MASK;
-> -#endif
-> 
->          prom_setsync(prom_sync_me);
-> 
-> diff --git a/arch/sparc/kernel/setup_64.c b/arch/sparc/kernel/setup_64.c
-> index f728f1b00aca..79b56613c6d8 100644
-> --- a/arch/sparc/kernel/setup_64.c
-> +++ b/arch/sparc/kernel/setup_64.c
-> @@ -143,8 +143,6 @@ static void __init boot_flags_init(char *commands)
-> 
->   extern unsigned short root_flags;
->   extern unsigned short root_dev;
-> -extern unsigned short ram_flags;
-> -#define RAMDISK_IMAGE_START_MASK       0x07FF
-> 
->   extern int root_mountflags;
-> 
-> @@ -640,9 +638,6 @@ void __init setup_arch(char **cmdline_p)
->          if (!root_flags)
->                  root_mountflags &= ~MS_RDONLY;
->          ROOT_DEV = old_decode_dev(root_dev);
-> -#ifdef CONFIG_BLK_DEV_RAM
-> -       rd_image_start = ram_flags & RAMDISK_IMAGE_START_MASK;
-> -#endif
-> 
->   #ifdef CONFIG_IP_PNP
->          if (!ic_set_manually) {
-> diff --git a/arch/x86/boot/header.S b/arch/x86/boot/header.S
-> index 9bea5a1e2c52..0ced2e9f100e 100644
-> --- a/arch/x86/boot/header.S
-> +++ b/arch/x86/boot/header.S
-> @@ -235,7 +235,7 @@ hdr:
->                  .byte setup_sects - 1
->   root_flags:    .word ROOT_RDONLY
->   syssize:       .long ZO__edata / 16
-> -ram_size:      .word 0                 /* Obsolete */
-> +ram_size:      .word 0                 /* Used to control initrd, which was removed from Linux in 2025 */
-
-Same, just remove, or make 'reserved' if you need to keep the space.
-
->   vid_mode:      .word SVGA_MODE
->   root_dev:      .word 0                 /* Default to major/minor 0/0 */
->   boot_flag:     .word 0xAA55
-> diff --git a/arch/x86/include/uapi/asm/bootparam.h b/arch/x86/include/uapi/asm/bootparam.h
-> index f53dd3f319ba..bf56549f79bb 100644
-> --- a/arch/x86/include/uapi/asm/bootparam.h
-> +++ b/arch/x86/include/uapi/asm/bootparam.h
-> @@ -4,9 +4,6 @@
-> 
->   #include <asm/setup_data.h>
-> 
-> -/* ram_size flags */
-> -#define RAMDISK_IMAGE_START_MASK       0x07FF
-> -
->   /* loadflags */
->   #define LOADED_HIGH    (1<<0)
->   #define KASLR_FLAG     (1<<1)
-> @@ -37,7 +34,7 @@ struct setup_header {
->          __u8    setup_sects;
->          __u16   root_flags;
->          __u32   syssize;
-> -       __u16   ram_size;
-> +       __u16   ram_size; /* used to control initrd, which was removed from Linux in 2025 */
-
-Rename it to 'reserved'.
-
->          __u16   vid_mode;
->          __u16   root_dev;
->          __u16   boot_flag;
-> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-> index 6409e766fb17..797c3c9fc75e 100644
-> --- a/arch/x86/kernel/setup.c
-> +++ b/arch/x86/kernel/setup.c
-> @@ -222,8 +222,6 @@ extern int root_mountflags;
-> 
->   unsigned long saved_video_mode;
-> 
-> -#define RAMDISK_IMAGE_START_MASK       0x07FF
-> -
->   static char __initdata command_line[COMMAND_LINE_SIZE];
->   #ifdef CONFIG_CMDLINE_BOOL
->   char builtin_cmdline[COMMAND_LINE_SIZE] = CONFIG_CMDLINE;
-> @@ -541,9 +539,6 @@ static void __init parse_boot_params(void)
->          bootloader_version  = bootloader_type & 0xf;
->          bootloader_version |= boot_params.hdr.ext_loader_ver << 4;
-> 
-> -#ifdef CONFIG_BLK_DEV_RAM
-> -       rd_image_start = boot_params.hdr.ram_size & RAMDISK_IMAGE_START_MASK;
-> -#endif
->   #ifdef CONFIG_EFI
->          if (!strncmp((char *)&boot_params.efi_info.efi_loader_signature,
->                       EFI32_LOADER_SIGNATURE, 4)) {
-> diff --git a/include/linux/initrd.h b/include/linux/initrd.h
-> index f1a1f4c92ded..6320a9cb6686 100644
-> --- a/include/linux/initrd.h
-> +++ b/include/linux/initrd.h
-> @@ -5,9 +5,6 @@
-> 
->   #define INITRD_MINOR 250 /* shouldn't collide with /dev/ram* too soon ... */
-> 
-> -/* starting block # of image */
-> -extern int rd_image_start;
-> -
->   /* size of a single RAM disk */
->   extern unsigned long rd_size;
-> 
-> diff --git a/init/do_mounts_rd.c b/init/do_mounts_rd.c
-> index f7d53bc21e41..8e0a774a9c6f 100644
-> --- a/init/do_mounts_rd.c
-> +++ b/init/do_mounts_rd.c
-> @@ -17,11 +17,9 @@
->   static struct file *in_file, *out_file;
->   static loff_t in_pos, out_pos;
-> 
-> -int __initdata rd_image_start;         /* starting block # of image */
-
-Why do you need to change this really ? In any case this entire file 
-goes away in a later patch so you shouldn't bother to update that.
-
-> -
->   static int __init ramdisk_start_setup(char *str)
->   {
-> -       rd_image_start = simple_strtol(str,NULL,0);
-> +       /* will be removed in next commit */
-
-Useless comment, don't add such burden.
-
->          return 1;
->   }
->   __setup("ramdisk_start=", ramdisk_start_setup);
-> @@ -60,7 +58,7 @@ identify_ramdisk_image(struct file *file, loff_t pos,
->          unsigned char *buf;
->          const char *compress_name;
->          unsigned long n;
-> -       int start_block = rd_image_start;
-> +       int start_block = 0;
-
-Don't change, it is removed later.
-
-> 
->          buf = kmalloc(size, GFP_KERNEL);
->          if (!buf)
-> @@ -196,7 +194,7 @@ int __init rd_load_image(char *from)
->          if (IS_ERR(in_file))
->                  goto noclose_input;
-> 
-> -       in_pos = rd_image_start * BLOCK_SIZE;
-> +       in_pos = 0;
-
-Same
-
->          nblocks = identify_ramdisk_image(in_file, in_pos, &decompressor);
->          if (nblocks < 0)
->                  goto done;
-> --
-> 2.47.2
-> 
-> 
-
+Regards
+Peng
+>
 
