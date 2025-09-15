@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-217474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3959BB57E1E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 15:56:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36AF2B57E2A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 15:57:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9609A1633D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:54:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A7574C0CD8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 13:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB3B1FCF7C;
-	Mon, 15 Sep 2025 13:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E575F2FE597;
+	Mon, 15 Sep 2025 13:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwBL+zFt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DB4AXQGE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348DC15E5DC;
-	Mon, 15 Sep 2025 13:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0582F618F;
+	Mon, 15 Sep 2025 13:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757944453; cv=none; b=IFiv9LbR8FlhaRwKEZkJi6u6Z75Tm+vYa6RZxKZDx97kBQ3W61GV5sGdbZsuLndsNELNwvlUk2UU9zyodd7k6Rz5M+TybHkPO693h/l5oyXIq2B53LkuakSzu/b5yKWmMxHC9FHkSLQ6Mg1kiRc3WDcYH3hFoJRU6nhE38fn0Fk=
+	t=1757944481; cv=none; b=OqE0whzb0h6NkQ7Czt/zTxx5OMgMoUjI/LE5Ii1tpqn0NWdcfnoVC0AUPIEAp7hNdw7x7e1drZB5uNWovntIociXLhKQtSazz36mG+NxcPS998JmXH2wJOoN54dbv0ETm+3zw1e6W9V3WcbdTke163eF7EXckSGQx4WpUc/+NaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757944453; c=relaxed/simple;
-	bh=qOUJV9eBECePq2CQHjVZBgTwlguw2q8KASxctp0pE/c=;
+	s=arc-20240116; t=1757944481; c=relaxed/simple;
+	bh=XQja+r9pWH1pmAvJ3yoJnUXUELpdjU5crLCGTl4MGZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pJxUCKh9THotjstWlx+22iPm0xAmxhUy/H3gVcr9jsGZwGEE4y48LWTVGDP1gagJ3LVO0uCsLBMgLL1e8y2HMAQ7Lxu7hiPu3CHelF53z2u6Fayu2V8VQSCqlSWavbR+39GpmxJDOAEH2/nWIRFVx0QFF3laisRBelL1UAqKPlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwBL+zFt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E921DC4CEF1;
-	Mon, 15 Sep 2025 13:54:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NNGjlRWo6xDx/Xqxl6CgbkevC6FZVGP3KL5pk29RkMeSoTHIf3Ob+3daPubwAw1wY3MG2uqHs/e/sgLSXDnSyLMftitAHj3kSPT9wc4Nlh3BTC2vLP+exzHvyZusCwCVFzF3daYFbyHyk4CHlw+hOgkt3MEohRfukQychQqfwgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DB4AXQGE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299A5C4CEF1;
+	Mon, 15 Sep 2025 13:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757944453;
-	bh=qOUJV9eBECePq2CQHjVZBgTwlguw2q8KASxctp0pE/c=;
+	s=k20201202; t=1757944481;
+	bh=XQja+r9pWH1pmAvJ3yoJnUXUELpdjU5crLCGTl4MGZE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QwBL+zFt9/f633HO1XvfxtV3zZGajB/mazzvHBBT+HNRk7H6V2AHiirGzGJYff8IU
-	 EqKEddf5besxFLMvhtubsDGeaAX/AD2rTKm+KXnbMvomGvXzlBd40G6wcF04ILWJwZ
-	 9snEGSV+HlmU9hX00Ec0076BqM1+imXQs/zMBbY7hi14QuMNhbpcfxpootp58Unv0U
-	 CAR3VUlQRsA+cuNrJ08oqBCWMVPdgQCJZeLOxEn71CmcdclUut+70veJUF3c74wO1O
-	 b7Hub8rymrT4v+rMFtHgKdhIzXnbjAdhwKpb44fTULws+g1rMPdHmfwedhMpfpB8/a
-	 bL4LV+xWUmaSw==
-Date: Mon, 15 Sep 2025 08:54:12 -0500
+	b=DB4AXQGESnInq9+Li1c4fKtX0IIAElBJuqjrRMEytH635Ne1ZA2UwbpExDWwjdZLW
+	 ksjeLGhYYo0gVn+laB8i4CPnTBnMIzb8KDq+JEjAL82YYD/R731cDOSVnQXuF7bhIa
+	 mDvse77MvpW6648ht5DwHLPmIqY5eWnm7MVFNOrnzbaHQ2ZSDPEz9mt/L07TzrxlHH
+	 ijvCl6LRLjOICQ1v1Q0dYat2HGWFuchgQGKArmPp5SV/GH3WWhztQFSXEutK3oBOq0
+	 T63Qaj2LMtoWifXQ/zKOieeohG0tMP+ijPcBxB6xDIFXcD8Ov/1wKKifqgBqdulYL/
+	 e4+FlaylOs4Ig==
+Date: Mon, 15 Sep 2025 08:54:40 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Neal Gompa <neal@gompa.dev>, devicetree@vger.kernel.org,
-	Janne Grunau <j@jannau.net>,
-	Sasha Finkelstein <fnkl.kernel@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sven Peter <sven@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: spmi: Add Apple A11 and T2 compatible
-Message-ID: <175794445094.2731798.8298770564144793280.robh@kernel.org>
-References: <20250915-t8015-spmi-v4-0-758620b5f2ae@gmail.com>
- <20250915-t8015-spmi-v4-1-758620b5f2ae@gmail.com>
+To: Kaison Deng <dkx@t-chip.com.cn>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Jimmy Hon <honyuenkwun@gmail.com>, linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Jonas Karlman <jonas@kwiboo.se>, linux-rockchip@lists.infradead.org,
+	Andrew Lunn <andrew@lunn.ch>, Dragan Simic <dsimic@manjaro.org>,
+	Wayne Chou <zxf@t-chip.com.cn>, FUKAUMI Naoki <naoki@radxa.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Firefly
+ ROC-RK3588-RT
+Message-ID: <175794446144.2732898.9504412064423841025.robh@kernel.org>
+References: <cover.1757902513.git.dkx@t-chip.com.cn>
+ <27b2ce7950fdbf28c6c8404c3f8be3c1c35d6b3c.1757902513.git.dkx@t-chip.com.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +67,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250915-t8015-spmi-v4-1-758620b5f2ae@gmail.com>
+In-Reply-To: <27b2ce7950fdbf28c6c8404c3f8be3c1c35d6b3c.1757902513.git.dkx@t-chip.com.cn>
 
 
-On Mon, 15 Sep 2025 09:52:24 +0800, Nick Chan wrote:
-> The SPMI bus found on Apple A11 and T2 SoCs are compatible with the
-> existing driver for t8103's spmi so add their compatibles.
+On Mon, 15 Sep 2025 10:22:04 +0800, Kaison Deng wrote:
+> This documents Firefly ROC-RK3588-RT which is a SBC based on RK3588 SoC.
 > 
-> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> Link: https://en.t-firefly.com/product/industry/rocrk3588rt
+> 
+> Signed-off-by: Kaison Deng <dkx@t-chip.com.cn>
 > ---
->  Documentation/devicetree/bindings/spmi/apple,spmi.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
 
 
