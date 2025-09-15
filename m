@@ -1,163 +1,132 @@
-Return-Path: <devicetree+bounces-217353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62F7B5764B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F9DB5765A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 12:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 321523BC266
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:30:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97AB9440756
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 10:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD582FCBF1;
-	Mon, 15 Sep 2025 10:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F642FABEF;
+	Mon, 15 Sep 2025 10:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FusBt2vO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fv5zLu5D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FCCA2FCBE3;
-	Mon, 15 Sep 2025 10:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069862FB63B;
+	Mon, 15 Sep 2025 10:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757932225; cv=none; b=buae4y0wgKl78FI2pii4ld9dKf592uiykNMsFd4sIyR7LbqWt8gE2+CUdRLUVxlHtCynGWunMVI6EW5fuMkVfhoOGx/xj3e4UqZgzZUyubKL/OFY2HACWY0ZJ1FPfU9IC2jzS25ghQOgbRV5n5Q2TWDeZycAFRzPgdq5tUFwfvE=
+	t=1757932284; cv=none; b=rkTTEt2Wc08ia6h+KedhvZR5YJz6PoZhPfXuMmZBn1AsBhvVE9DPjvGad+ARPXE9XAX6XH3EkA0B87s3qAwcpxdAIz2gFjh7Fok0fScqTBO9up5woe4LhLiA7hCUVYyhEThjpiumzgHHEbgOmQCyOb1f/hFR7YxvJQXUyvyChXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757932225; c=relaxed/simple;
-	bh=77dwZU3PIqsBuoVq1y+3yB+skASgC8Rn9oVnn2I8Biw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eu5DzoEpxPxQrNWZsrYGj6NJ5C4RdLdcZv5MP3p0xqVSc+DjMLmeMzhmtp3gP38a5/0l3pIMXc2Ixr0fUNXm4Zo+cCPry48olJOhihZqm924/PzhBH16Dk+YVZxFUh7KQoqCbcU623eGJLmXT1gKOcrWdUtzt9UjYNIQBWWIRE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FusBt2vO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FAAC4CEF7;
-	Mon, 15 Sep 2025 10:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757932225;
-	bh=77dwZU3PIqsBuoVq1y+3yB+skASgC8Rn9oVnn2I8Biw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FusBt2vO6eOMuxurwssBaYr+uujX5QvRO0zN0JJZq8EAZItTiiphjkM31c5VkXP2T
-	 w8tS6kMFVVtmreLeXsQbJbyIdk2HUGPkYSCVJvVgWuFrOO9kYYyKGtsl9YncOXK1Tn
-	 SC9fdKnznGrcHdsOaKh0l5xiQeikQBnKb4XZUEwnE9tPbeXy4VkooXdRStgu6zlDW0
-	 AYFyLKvNwy8xxji85cXDWF6ew+Db2Yl2veFyz5bZremnxoQiZieBsNR+k6+eiqolsy
-	 5azau1Wtf/oYJXt7OwRN/YMvaTfDL7Ub+RSY+2EyfGWBNlSNt/HV2kAbzftS1w2vaV
-	 0TaR9xlFBB/PA==
-Date: Mon, 15 Sep 2025 11:30:19 +0100
-From: Simon Horman <horms@kernel.org>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v9 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <20250915103019.GP224143@horms.kernel.org>
-References: <20250913044404.63641-1-mmyangfl@gmail.com>
- <20250913044404.63641-4-mmyangfl@gmail.com>
+	s=arc-20240116; t=1757932284; c=relaxed/simple;
+	bh=aew4ADXH0mryTgiraNHSkot0HAUTrj7/IBT+K1xKTio=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VCWnmjwswlVFXS+BYyRQqwgRJFqxpi5lvuH4KDolwmX2e4G31UvHeX3sPZ0sZGNNKTz6kgOnxSUcKNi39nzgyAETd0/NXjprrKTmyvEL6P22UwJYFLvNfEWXr9tM0cV/J6w6kAKanocI/pefIiuJ9Omub57auFlLgzDNI0Ot0Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fv5zLu5D; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58FAUpuR1475186;
+	Mon, 15 Sep 2025 05:30:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757932251;
+	bh=TxCEGkPcqU0f/GCFbh3VHVF++0uz4F0w16GZ6D91CRo=;
+	h=From:To:CC:Subject:Date;
+	b=fv5zLu5DtLlgvtJC1SrHCnvX1LXAB/p3OQZY9ACrtWl210dJfsjvRT1T+Bozq952m
+	 0TjgDMmpJylYFbddgYTpQFJmvieZM+BjkNC2fLUts807gzA6hFdM0dUMRt93ndEDWW
+	 VjjfpdxwlrXjYlZq3TQ+UF0lVVCez2J9Uxmc0+bY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58FAUo333894146
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 15 Sep 2025 05:30:50 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 15
+ Sep 2025 05:30:50 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 15 Sep 2025 05:30:50 -0500
+Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208] (may be forged))
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58FAUfRd3600864;
+	Mon, 15 Sep 2025 05:30:42 -0500
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        <lumag@kernel.org>, <dianders@chromium.org>, <jani.nikula@intel.com>,
+        <luca.ceresoli@bootlin.com>, <andy.yan@rock-chips.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
+        <s-jain1@ti.com>, <tomi.valkeinen@ideasonboard.com>
+CC: <h-shenoy@ti.com>
+Subject: [PATCH v5 0/2] Add support for DSC and FEC for cadence MHDP8546 bridge
+Date: Mon, 15 Sep 2025 16:00:39 +0530
+Message-ID: <20250915103041.3891448-1-h-shenoy@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250913044404.63641-4-mmyangfl@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Sat, Sep 13, 2025 at 12:44:01PM +0800, David Yang wrote:
-> Motorcomm YT921x is a series of ethernet switches developed by Shanghai
-> Motorcomm Electronic Technology, including:
-> 
->   - YT9215S / YT9215RB / YT9215SC: 5 GbE PHYs
->   - YT9213NB / YT9214NB: 2 GbE PHYs
->   - YT9218N / YT9218MB: 8 GbE PHYs
-> 
-> and up to 2 GMACs.
-> 
-> Driver verified on a stock wireless router with IPQ5018 + YT9215S.
-> 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
+Hi all,
 
-...
+This patch series extends the Cadence MHDP8546 DisplayPort bridge
+driver to support Display Stream Compression (DSC) and Forward Error
+Correction (FEC).
 
-> +static int
-> +yt921x_port_config(struct yt921x_priv *priv, int port, unsigned int mode,
-> +		   phy_interface_t interface)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	u32 mask;
-> +	u32 ctrl;
-> +	int res;
-> +
-> +	if (!yt921x_port_is_external(port)) {
-> +		if (interface != PHY_INTERFACE_MODE_INTERNAL) {
-> +			dev_err(dev, "Wrong mode %d on port %d\n",
-> +				interface, port);
-> +			return -EINVAL;
-> +		}
-> +		return 0;
-> +	}
-> +
-> +	switch (interface) {
-> +	/* SGMII */
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +	case PHY_INTERFACE_MODE_100BASEX:
-> +	case PHY_INTERFACE_MODE_1000BASEX:
-> +	case PHY_INTERFACE_MODE_2500BASEX:
-> +		mask = YT921X_SGMII_CTRL_PORTn(port);
-> +		res = yt921x_reg_set_bits(priv, YT921X_SGMII_CTRL, mask);
-> +		if (res)
-> +			return res;
-> +
-> +		mask = YT921X_XMII_CTRL_PORTn(port);
-> +		res = yt921x_reg_clear_bits(priv, YT921X_XMII_CTRL, mask);
-> +		if (res)
-> +			return res;
-> +
-> +		mask = YT921X_SGMII_MODE_M;
-> +		switch (interface) {
-> +		case PHY_INTERFACE_MODE_SGMII:
-> +			ctrl = YT921X_SGMII_MODE_SGMII_PHY;
-> +			break;
-> +		case PHY_INTERFACE_MODE_100BASEX:
-> +			ctrl = YT921X_SGMII_MODE_100BASEX;
-> +			break;
-> +		case PHY_INTERFACE_MODE_1000BASEX:
-> +			ctrl = YT921X_SGMII_MODE_1000BASEX;
-> +			break;
-> +		case PHY_INTERFACE_MODE_2500BASEX:
-> +			ctrl = YT921X_SGMII_MODE_2500BASEX;
-> +			break;
-> +		default:
-> +			WARN_ON(1);
-> +			break;
-> +		}
+DSC acts as an encoder block: when the sink reports DSC capability,
+the DPI input stream to the MHDP8546 TX is compressed, and the sink
+decodes the stream for display.
 
-Hi David,
+The first patch updates the DT binding to add register-space for DSC.
+The second patch implements the corresponding driver changes to enable
+DSC and FEC when advertised by the sink and configured via DT.
 
-If the default case is reached above then ctrl is used uninitialised below.
+Link: https://www.ti.com/lit/zip/spruil1
+TRM File: SPRUIL_DRA829_TDA4VM_Technical Reference Manual.pdf 
+(Figure 12-1115 and DSC related sections) 
 
-Flagged by Clang 21.2.1
 
-> +		res = yt921x_reg_update_bits(priv, YT921X_SGMIIn(port),
-> +					     mask, ctrl);
-> +		if (res)
-> +			return res;
-> +
-> +		break;
-> +	/* add XMII support here */
-> +	default:
-> +		WARN_ON(1);
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
+Changelog v4 -> v5:
+-Defining reg-names item list in iF conditional, added 
+description for reg-names.
+-Verified the bindings with cdns,mhdp8546 compatible.
+-Add code for enabling DSC in bridge driver.
+Log link-
+<https://gist.github.com/h-shenoy/0318e2c6e7df539e6bdd39b77e5a8f05> 
+Link to v4: 
+<https://lore.kernel.org/all/20250909054622.1439487-1-h-shenoy@ti.com>
 
-...
+
+Swapnil Jakhade (2):
+  dt-bindings: drm/bridge: MHDP8546 bridge binding changes for DSC
+  drm: bridge: cdns-mhdp8546: Add support for DSC and FEC
+
+ .../display/bridge/cdns,mhdp8546.yaml         |  24 +-
+ drivers/gpu/drm/bridge/cadence/Makefile       |   2 +-
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   | 367 ++++++++-
+ .../drm/bridge/cadence/cdns-mhdp8546-core.h   |  68 ++
+ .../drm/bridge/cadence/cdns-mhdp8546-dsc.c    | 695 ++++++++++++++++++
+ .../drm/bridge/cadence/cdns-mhdp8546-dsc.h    | 285 +++++++
+ 6 files changed, 1406 insertions(+), 35 deletions(-)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-dsc.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-dsc.h
+
+-- 
+2.34.1
+
 
