@@ -1,136 +1,161 @@
-Return-Path: <devicetree+bounces-217617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2D4DB5881D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:18:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7A1B588A0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:53:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 780373B1AE5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:18:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32DA13A750C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Sep 2025 23:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4F7214236;
-	Mon, 15 Sep 2025 23:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36EAD2DBF48;
+	Mon, 15 Sep 2025 23:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hP9MZOes"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I7y3POZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15E64207F
-	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 23:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C944450FE
+	for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 23:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757978307; cv=none; b=a7xX1EsBEXNiFYppOn2LFwtTXGsQLnMKg5o6yTnwIJUI2DX5ZgYf4m/+AlSb4fvN0S4ms10TmCZ2L9HQ5uwz2ZD1IZKBo3omF8yukohLnaxlDoPnNjyXcmaDYc9gylc51JVgNfoP6JBZ/Zgi2LrgLaHhYs9nNI+GWbsOXJvrW5M=
+	t=1757980417; cv=none; b=FsDohXcP2E41jzjQyIvirMOItzkHeTIT86UxYPOm1Tg0bzk/oNTRh+uTLtrlJoTPBU523cDJpbVgLR3JoKNg8UR6IyxF8mQfqKjpnyvqhVnUzRFnPSv1nqymtfFEXJxphkpBBvEQDnWuxcjv2GD2UFhDZhD0znbHs9cgqtr+IEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757978307; c=relaxed/simple;
-	bh=DhCA90u7D3AwaG1VR64HFW/35fMpdcE6pkDbJ0hCWDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WWzy6bULaqJ+ZDvORgThKM5doBcXz0ZXlggasBPoNu6WFKVi4n4gY65BBpi94+KR1DDgtmRnC8Q5hZx9yuIub1j03toJERIU5aiTq9sNice5QXW7y4vCE3V964VuPjfXH340JxWCZjqvpWSWj4rgfUq0XpdPiMjjMquXshuZT7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hP9MZOes; arc=none smtp.client-ip=209.85.210.170
+	s=arc-20240116; t=1757980417; c=relaxed/simple;
+	bh=Xk1ngxkS5zRj3gU0t0gxFp8yUi5KZTETEFQeV3IwLsM=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mo12a55c0cnA19zPyXLAB3a7OJc1zPNE+ANuOjvrdfVKSLzOtelD4z8qZh3Uhg8xyAmZeo0KG4WMT+QL5oWE04uPCqMhshNMlF0y139+yqV5Ax5M0jC9bHN7T0wldi5oGxcHc8qSZHMKQlwd/eVyRs+m9v/L8P1tonmEY9OCReY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I7y3POZQ; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-777ea9fa8fdso1314861b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 16:18:25 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45dec026c78so48991245e9.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 16:53:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757978305; x=1758583105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+l7LUQcajOsjM5wGJwbkfQJik4Yq7alB7BOereQy2VE=;
-        b=hP9MZOesqVvCVezhPhW3eMWmJllPXapGKkz2N+X23kqhxqXDKHfGDtRJhYH4w2EXV8
-         3lZz3SUodUVeNzWL2OuDZWAzV0k5xyzgFVRv0mXdkrCe7FXcoGdnoH3A+ag8W6om0+V3
-         prmqmpelS1du8gqO5t2mrb+TPxHJEwTQjch7g+z6pGaAxLIAA4RSk4vjYzxgyM/A7GjC
-         /eP6ApjUnlRJNRD+4EX/TFt4M7n0p3AzsGdbravfb8g2Gs8rfRQrZNERvLLSLMZPZ5IK
-         sjwRErA10Y4IXn7OxqfWuefUV/tkYJRRL6cCctxpRAI+zYNel0JYNuksoVuef0d1kbKQ
-         j4Nw==
+        d=gmail.com; s=20230601; t=1757980414; x=1758585214; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=BmfG0W1IgkOwpfZLkT8EPqhqG/KPrr8NPJycy9t8jkY=;
+        b=I7y3POZQAZUXa6pzctMvGfeKcyYv84iYeqG9hfPsvAgzv62AyIiNUTw8t9SDQeFjBM
+         30pwsS+0/ojqgEsDiqRrlvU7hAzPTPaPrnWo/BjmPOJqkrLcM58844mSIHtGTyosQ2Cm
+         MW09QjXI8AEyHxKeWwm7p+FoNNBQ9/+rfDYRIo6ntcgN9/cnQAY7iTuoVNMlA0Qi6njc
+         50BWnRqFyXckcr3t0KG1BdgEVP1XX/UvOvElEdvcuggbc9//dStDAiUmyiFUt/jrbibr
+         QJMQ2irEhgN4r2BIuOSmfywdTtyCWHiUVcoMzj+oEEYCG39IDqFnIJkQw4XugPzVQKRf
+         YB2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757978305; x=1758583105;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+l7LUQcajOsjM5wGJwbkfQJik4Yq7alB7BOereQy2VE=;
-        b=oFe+vIkEpvf7FF4ihMKoKTkywL1aFMqOkBviwriAC8rMNjOidU45e+QrREK0P2lgAF
-         XUGmZcQTQ49F32YWo7J4+JBuoX7bFlSuJiSdFUyWKABSf/R2bKQPn5567lmnT2X1FTXJ
-         izr2O5An0kpDsPQGv0ROrIglTSwEtcpQFuoSeHCe7zr2jVJInbdTFiHDhu5Xz4rv3jx1
-         pKEZezKdVVF87vLOCUTRbDFv2m8KgcWhJrMbthh5I1voSl4v0Ol1SC9s1vkC+Kt2NgVb
-         rZj9AVOZ2+kc2EhuT6NoV4qLS0D88QaWyUpoVhtvO5l+veMInhpVaSSYUoHJczkle4yl
-         VpTA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7eL7do20yKUeOL1ZQS9v47BpOcgnQbygN7bHnVJ1cZghUzQ9oyv/Avf6GAlWTRHa3kRVMsR6cFgl5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKB1MbCWD5SSNvLKK/Z44qAKRF28YjvjeJVBCOoI2qxSosrIOA
-	OGtq7zYQyeoCOqZ3GmGUKJHrgQxokaRXbhMKDxvT0LXHUtX4SfdMVRG0
-X-Gm-Gg: ASbGncvcm3n/8VlBs4pCOuBL258lA1DlJHyecGlAT6aMG8geyClXFDOAVoTRkQyc5Wc
-	1V2cddsEsCBhhnfr2SVLHboDejoL4gFfth8iHeetM/S38CRoq6Aos73EZ8h4TEmwszlH9S6Zv/A
-	1OU8C4he29gJpSYcUZTMw/Dq4n26vjMrtk2LbQtdDCSrlKoxxVgfaVoZaEUI+jYS55hXY08NxIt
-	tDwSNgUl9OhjIDpe/naZMs2pkoA5ghK0s4mecjYPsS2lW5BbvnvbbeomXTMUiZXrNHCJjtvnIcN
-	TMi2NvZICYF3fAOQLX/Q8nhzCQpRjsTimdomEXE+hpjytGZYHPj36RdfIb99Ih1nIeWztTW9Mr3
-	kMPmBqubbDKwFnOxRzddWEl8ANg+d6n2dGqCsezW2VG5dbQ4/NolarxMin/Fe
-X-Google-Smtp-Source: AGHT+IEeWggDjh2aRCpx1suFPoqcxzvxrWOO8w9b7MPKM4IOfFG1MlxM/2ym7uq0iEUOJ01ZQNukyQ==
-X-Received: by 2002:a05:6a20:6a25:b0:247:55a7:695a with SMTP id adf61e73a8af0-266ed65b2b6mr265970637.15.1757978305237;
-        Mon, 15 Sep 2025 16:18:25 -0700 (PDT)
-Received: from [192.168.1.105] ([59.188.211.98])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32ea0859e20sm324333a91.0.2025.09.15.16.18.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 16:18:24 -0700 (PDT)
-Message-ID: <2fb684e0-449b-4377-81a5-5be03cdf3e6c@gmail.com>
-Date: Tue, 16 Sep 2025 07:18:20 +0800
+        d=1e100.net; s=20230601; t=1757980414; x=1758585214;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BmfG0W1IgkOwpfZLkT8EPqhqG/KPrr8NPJycy9t8jkY=;
+        b=Aa96c9tRyn29c27zWQhtR+fPi2Izl1BIuIysk1I94j6pUTp/g0rMSfax4Xh0obavqc
+         DBgtgW4Cy7IE8h/t/oJaQKXoZZFZsGlwlUwlQIwaSwL8//M9gjIX/PcIO0moRe6dhigm
+         KLmihszi3TGeXAwJaHjE+bHdzEgKxMY75TVXU17Lgl0Pkpj5ckkz5HU7DJfICsmTeAdL
+         2uzcArfXHjq4mnauD2JhQgXUlZCpH8q5inh5RA0ubmTT3mvBSa8Lz+7DBcsN7H2heDgc
+         VytKNzeo6227z4RbX09g8xXzY2Vt08oj2w9WgO5XDKC6J57QyQC4zyNGaY3xBbAIlt8H
+         DTuw==
+X-Forwarded-Encrypted: i=1; AJvYcCXOwvKDOBDdEE1/OYZjKsMIJkazhnA6uMCpDeIlBYuSczGD6JKyn5d60CEuj+06Eh9BDlzhvMU7trkK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsNyx4jBK+6ye3+nSbXyQ/9XhvVRivd92er1SOrmYz//9H5QaI
+	EDjLmq+jVBdKpaTMsTnN7M7tbY89rAvllHnwNV90H45wn6Bs1URpj+6Q
+X-Gm-Gg: ASbGnctzb0VS9NyU5hNbk6fpYB9iAogXehX1g9sA0pDq+bOPY+VxpQMQTnkyK6rw7NG
+	dUuPGGuX0fb6QtbcNEPlJG/B3dTyqfez++XeVwdSAuCc6KgY2TZRlY6BThWOUgMtQ42lbSlE2nH
+	GL6Q+2iNTa8SJg1JOIiKeUbjmpC18Xeew8nSx+UbVSw2D8uZXQzY6kosLaKas9z1fFZL8LUiXBJ
+	DNOacNF64QoKgrwivW6VBuh9t+PfHy4jc4/lhEV6QXVWBknlUE5MM+XwI0xeJw0jJaD99fpEcba
+	Lbeq7R67kPz3IkUXtim5pXjCY4EXvUsnj9kBle1CusdFSqrwJ+Iba2/mWjMZYjRMbkDAvm0wurs
+	yvBugjQF1hc04Wua0Qz3SivwZKcBiU1Og9oyuWcCWCODaM0lqT/MOMGMCDt2BD9R9hiCp7g==
+X-Google-Smtp-Source: AGHT+IHLVAgIWoi+HRjIu3glVhna2GE9VgX3EjwtlAMYebMBvwok+xVV62qMLLci45mipK73hQudIA==
+X-Received: by 2002:a05:600c:4f83:b0:458:bf0a:6061 with SMTP id 5b1f17b1804b1-45f211f87c8mr150676285e9.24.1757980413716;
+        Mon, 15 Sep 2025 16:53:33 -0700 (PDT)
+Received: from Ansuel-XPS. (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f28c193f9sm118455135e9.2.2025.09.15.16.53.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Sep 2025 16:53:33 -0700 (PDT)
+Message-ID: <68c8a6fd.050a0220.26bdf7.871a@mx.google.com>
+X-Google-Original-Message-ID: <aMim97cvziXHysYI@Ansuel-XPS.>
+Date: Tue, 16 Sep 2025 01:53:27 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>, Jakub Kicinski <kuba@kernel.org>,
+	devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	DENG Qingfang <dqfext@gmail.com>, Lee Jones <lee@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Dumazet <edumazet@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Subject: Re: [net-next PATCH v18 3/8] dt-bindings: mfd: Document support for
+ Airoha AN8855 Switch SoC
+References: <20250915104545.1742-1-ansuelsmth@gmail.com>
+ <20250915104545.1742-4-ansuelsmth@gmail.com>
+ <175795551518.2905345.11331954231627495466.robh@kernel.org>
+ <20250915201938.GA3326233-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: spmi: Add Apple A11 and T2 compatible
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Sasha Finkelstein <fnkl.kernel@gmail.com>,
- linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Sven Peter <sven@kernel.org>, linux-kernel@vger.kernel.org,
- Janne Grunau <j@jannau.net>, Stephen Boyd <sboyd@kernel.org>,
- Neal Gompa <neal@gompa.dev>, devicetree@vger.kernel.org,
- asahi@lists.linux.dev
-References: <20250915-t8015-spmi-v4-0-758620b5f2ae@gmail.com>
- <20250915-t8015-spmi-v4-1-758620b5f2ae@gmail.com>
- <175794440092.2724212.9818605948916059174.robh@kernel.org>
-Content-Language: en-US
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <175794440092.2724212.9818605948916059174.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250915201938.GA3326233-robh@kernel.org>
 
+On Mon, Sep 15, 2025 at 03:19:38PM -0500, Rob Herring wrote:
+> On Mon, Sep 15, 2025 at 12:01:47PM -0500, Rob Herring (Arm) wrote:
+> > 
+> > On Mon, 15 Sep 2025 12:45:39 +0200, Christian Marangi wrote:
+> > > Document support for Airoha AN8855 Switch SoC. This SoC expose various
+> > > peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
+> > > 
+> > > It does also support i2c and timers but those are not currently
+> > > supported/used.
+> > > 
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../bindings/mfd/airoha,an8855.yaml           | 173 ++++++++++++++++++
+> > >  1 file changed, 173 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> > > 
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml:
+> > 	Error in referenced schema matching $id: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml
+> > 	Tried these paths (check schema $id if path is wrong):
+> > 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
+> > 	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/nvmem/airoha,an8855-efuse.yaml
+> > 
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: soc@1 (airoha,an8855): efuse: {'compatible': ['airoha,an8855-efuse'], '#nvmem-cell-cells': 0, 'nvmem-layout': {'compatible': ['fixed-layout'], '#address-cells': 1, '#size-cells': 1, 'shift-sel-port0-tx-a@c': {'reg': [[12, 4]], 'phandle': 3}, 'shift-sel-port0-tx-b@10': {'reg': [[16, 4]], 'phandle': 4}, 'shift-sel-port0-tx-c@14': {'reg': [[20, 4]], 'phandle': 5}, 'shift-sel-port0-tx-d@18': {'reg': [[24, 4]], 'phandle': 6}, 'shift-sel-port1-tx-a@1c': {'reg': [[28, 4]], 'phandle': 7}, 'shift-sel-port1-tx-b@20': {'reg': [[32, 4]], 'phandle': 8}, 'shift-sel-port1-tx-c@24': {'reg': [[36, 4]], 'phandle': 9}, 'shift-sel-port1-tx-d@28': {'reg': [[40, 4]], 'phandle': 10}}} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml#"}
+> > 	from schema $id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
+> > Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: /example-0/mdio/soc@1/efuse: failed to match any schema with compatible: ['airoha,an8855-efuse']
+> 
+> Why are we on v18 and still getting errors? I only review patches 
+> without errors.
 
-Rob Herring (Arm) 於 2025/9/15 晚上9:53 寫道:
-> On Mon, 15 Sep 2025 09:52:24 +0800, Nick Chan wrote:
->> The SPMI bus found on Apple A11 and T2 SoCs are compatible with the
->> existing driver for t8103's spmi so add their compatibles.
->>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/spmi/apple,spmi.yaml | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
->>
->
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->
-> If a tag was not added on purpose, please state why and what changed.
+Hi Rob,
 
-As stated in cover letter, the tags are dropped in v4 because the dt-binding patch has changed
-significantly from v2. (really should be dropped in v3 though but that did not happen). And this
-is actually a different patch from v3, the only difference is a newline is no longer removed.
+the problem is that the MFD driver and the schema patch subset of this
+series has been picked separately and are now in linux-next.
 
+I tried to make the bot happy by using base-commit but it doesn't seem
+to work. Any hint for this? 
 
->
-> Missing tags:
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->
->
->
->
-Best,
-Nick Chan
+The errors comes from the missing efuse schema.
+
+-- 
+	Ansuel
 
