@@ -1,157 +1,127 @@
-Return-Path: <devicetree+bounces-217716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B896FB59022
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:14:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75795B59036
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:18:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70DE13BB0EE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:14:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0416D1B23E79
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26C12E5430;
-	Tue, 16 Sep 2025 08:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AAE24886F;
+	Tue, 16 Sep 2025 08:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QjNyl9ex"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="t0CSi7sK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7439824A3
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859DA1D61A3;
+	Tue, 16 Sep 2025 08:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758010450; cv=none; b=COaM42AFQLbRloct8bGEW5WpgFRhbZZyd+1PCrKGPTv3uKA6Codx9bty1I2WPPaqJPg5j5uDrElKNgTrm1q5xqZGE0/3gNngj00L2XDKtehhyS3Cb4thjwSR2iQT7Kv55iHNHk9+C62pA7eABKzOxe2+HM1zlepbWK+lkmQwp0M=
+	t=1758010702; cv=none; b=Nov5Lil5Bm/mwSstTI4kr3PWso+aOaNoDmKbZ5RjareU3/Bn5WDaFq/YiMeLtcy1/6oir1QysneS2/+d9TQKDP99z8CoNyhBuji8WCr5qXD0t2v4o3ZWMz1pF1yMH0Tk/BCWuYZZVnOA/lf6z5DL1X+uIIAMMF+n6tr8CY2tB3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758010450; c=relaxed/simple;
-	bh=OkRn3wi3vVLwlm/wDKzvfBew8i5CbraIcmJaOETj/3s=;
+	s=arc-20240116; t=1758010702; c=relaxed/simple;
+	bh=k30uoh2add8WC8hx0lDIfBpOwQ1OXG69JhEGP1lfLP4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PCp9AWoFge+feH02dSOfH2vTqaw4HPiEXzMQaZon/4qQ4XV60qs8pjYCrpfDyLA6ffp8UbwSdhgEYLIGuJtsESjPfH9o/nbBKDnfUF61ee7Gl0dqTsIlT/4XRUxW+EFX1YftdcDy3cUzIsgQYErdcjYqmaaeW52tsax4fhRPUqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QjNyl9ex; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-336b88c5362so52071551fa.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 01:14:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758010447; x=1758615247; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jM7l65ARIgofwE06qZfm8EVMSCpb/5Bo5xaYN803ql8=;
-        b=QjNyl9exinOXW2DeNKK2qEYSQo658maKc2gFnzV5hAynCMuw//y5r1Yp2TBHvlxmwn
-         V1znYPL5cITxV1yJFBq5G8ZyVgKgXk5AI8JgYjCcdpyH2YinFjDx2XI+/W7ise6W6BOx
-         KWz/+MevUNH02LbBC2mM5dXIM+C9eAIbh+Hg7rScT6z31a2vWgZLSvo6Eip2hO4Nwdux
-         TE68w30keWAB2cFkrAjUkf2CRmPZJJ+FUDbHhCryO3OZn+0Kq7Ompg07WC3I3Br2oLPT
-         fmyOY5Og15HbYur3DirQsNhvYRovbPj1YVAHUF5qEGU79+3C9yG/eixc0pWANoLJRNrY
-         7hUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758010447; x=1758615247;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jM7l65ARIgofwE06qZfm8EVMSCpb/5Bo5xaYN803ql8=;
-        b=I+aZIptNTgMUW2MtFp+cTRRVNhKlzK9ODmMBr1wh4nSrTaJ7sz6QIWVPpqYk9IHsRk
-         4/nMZi8bjGfLwMfhuFxFNSl4ybCyu3YaDpppR4zCjebBR+TZt/bP0PSKLE63uoC4Ndt9
-         +YcfNKRXfM9awfZ1OIL+8t3O+RBGCw9e8UN1cJ6nGAyv9qMf3rwS9aKyMmDl0W+vNqP2
-         vAWseql0P+hlM06puP8n81ytGgTUKe31TaJnCxWBVClrBW+DVMBm3fYksdiFOG68WEDL
-         JfYf4hct83iJbZhcPl5j9E3HbwMVtAoU8UxmKUbIsNTpF+HYmV+GKI4AQRwwvYTvzPFs
-         Sg0g==
-X-Forwarded-Encrypted: i=1; AJvYcCXetktGheK+dPEeUid/Z2zhIfBI0PfTHPUUbYWjA9YsLfcpIjc6k1VF/BlIoEd2+35VDtMc4cBJ+XXq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTjtODHyIYGzivrkpStQVqFZyBYbO73k4FpOgi2MApHjsWowek
-	zTa0rpcGEzqdnMCu3ERQaUFMg0nZCATJCWNiqmOXnt33T0RAQJoZHmQ9
-X-Gm-Gg: ASbGncvV052T5kJyvC8S2pDrfCEgfjIZlUTj76JRt4C+U3gFp2svi1jn+eC9WeGO0+i
-	8HF9ms78CfdNTV3Lz3mbXs5rWMjCF7/GVDMink5GtsGYB7ule2FmdjM8PO+i1hNSwJYkFw7oZCx
-	8KUcInBJioTCoejDGNJj77ViI1Ou2rzkClCVduc3tb4Ewx3rvcM84W3HHb11J3PgDG0fBa+hzQN
-	p07dTzupc/ba0SSVy4tQPsSQHGSrQKYYaK0zTeGSr8mSHnN+NF8/WraGWyqSrfAwk0MOBONE440
-	U1sKYRUvY3eDQqICyYtkraGS3l8rJe2jYtBgzqFOCHETO661WZ0oO2WhEUPoUrK9ZmNA296x4Vn
-	MLpDe0cpthhzZ4VGJAvVgDSBNW2T3b5BIzOXUK0Pxwq/1/KmLx2UXUebSTV7tJGH9/fwr+Y5NtF
-	z9TrCo
-X-Google-Smtp-Source: AGHT+IEJVE0MZfILx6PWce4nwraMO2Nm8lxid/SAnbgN3RqRMuFMYn2p9OaYKJPnb6fEuEss67LUxw==
-X-Received: by 2002:a2e:a016:0:20b0:336:7e31:6708 with SMTP id 38308e7fff4ca-351403eccb1mr36499181fa.37.1758010446711;
-        Tue, 16 Sep 2025 01:14:06 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f163f495esm31002351fa.24.2025.09.16.01.14.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 01:14:06 -0700 (PDT)
-Message-ID: <14d3dc56-c6cf-464a-9a57-2a7a6afe8af9@gmail.com>
-Date: Tue, 16 Sep 2025 11:14:05 +0300
+	 In-Reply-To:Content-Type; b=Oy1sVa9uDfq5eDinBkCDoG3tMCkqca6JY3lyoNwNsi6CdQI1LQdIUhtZjVRAHTPjaJII/pyxnQERpxunNcmQ9b2gFPFLZuTAA6J9KXWW/wVjBuz7oZ0Qy3+3ZeedXqkfHyArl9TX5h85dCypBwXlhx6wUk9V4VCGpkOTFihUl2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=t0CSi7sK; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cQvt04SNgz9v0s;
+	Tue, 16 Sep 2025 10:18:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1758010696;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=N/vF9UevhN6ZN5SGz1v+nHr1RKJ6dgc+bwkrlLnvagw=;
+	b=t0CSi7sKDbYEv/8E/fYWlpoeQhtYkjgg15cupEZz1ZelEuN/+K++lgwpYrhM2eEMnrM0aB
+	jDIDxDgeF6whui0P/JMjnOWFwTz6C6+WVD5fcJbvICH8ZublcO44VYkn3y0Mr93AbaNmqC
+	Y4KQ9Bsq1sjVH3+iPjH20pmCgdHy68z/1jglFAI3GaAU7VuxfViNLLtGYTxCWzxTCMDFtp
+	W+m8I+fAtbompRrDvSKNL/fJ+mGKByEJF5GUmOf+NLWIDuvl47D+hOR4SnEq0Ezvk/0lw7
+	k618WFUwhYzomjqJACwML/2Qo9DQE85oRJ3yo2TLkq2rbgoBBfL4fod5cxeIMQ==
+Message-ID: <5b152739-6b1d-4742-8163-bb6e6b39822a@mailbox.org>
+Date: Tue, 16 Sep 2025 10:15:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
- <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
- <aMge0jYwYCiY72Yb@smile.fi.intel.com> <20250915211321.47865d3d@jic23-huawei>
- <c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
- <20250916090206.02f601be@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250916090206.02f601be@jic23-huawei>
+Subject: Re: [PATCH] dt-bindings: ili9881c: Allow port subnode
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Airlie <airlied@gmail.com>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250904200130.168263-1-marek.vasut+renesas@mailbox.org>
+ <a0d85f06-a87b-40f6-a74a-27b148f309fd@linaro.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <a0d85f06-a87b-40f6-a74a-27b148f309fd@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 9b32751bbdc6a1c7e7c
+X-MBO-RS-META: fjk88fwxmddi989pozr1d4cfss6c996q
 
-On 16/09/2025 11:02, Jonathan Cameron wrote:
-> On Tue, 16 Sep 2025 07:52:07 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> On 15/09/2025 23:13, Jonathan Cameron wrote:
->>> On Mon, 15 Sep 2025 17:12:34 +0300
->>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
->>>    
->>>> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
-
->>> --- a/drivers/iio/adc/rohm-bd79112.c
->>> +++ b/drivers/iio/adc/rohm-bd79112.c
->>> @@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
->>>           data->read_xfer[1].rx_buf = &data->read_rx;
->>>           data->read_xfer[1].len = sizeof(data->read_rx);
->>>           spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
->>> -       devm_spi_optimize_message(dev, spi, &data->read_msg);
->>> +       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
->>> +       if (ret < 0)
->>> +               return dev_err_probe(dev, ret,
->>> +                                    "Failed to optimize SPI read message\n");
->>>      
+On 9/5/25 9:51 AM, Neil Armstrong wrote:
+> On 04/09/2025 22:01, Marek Vasut wrote:
+>> The ILI9881C is a DSI panel, which can be tied to a DSI controller
+>> using OF graph port/endpoint. Allow the port subnode in the binding.
 >>
->> I am not really sure under what conditions the
->> devm_spi_optimize_message() could fail. It might be enough to print a
->> warning and proceed, but I don't think returning is a problem either.
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>> ---
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Maxime Ripard <mripard@kernel.org>
+>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Simona Vetter <simona@ffwll.ch>
+>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: dri-devel@lists.freedesktop.org
+>> Cc: linux-renesas-soc@vger.kernel.org
+>> ---
+>>   .../devicetree/bindings/display/panel/ilitek,ili9881c.yaml       | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/ 
+>> ilitek,ili9881c.yaml b/Documentation/devicetree/bindings/display/ 
+>> panel/ilitek,ili9881c.yaml
+>> index 434cc6af9c954..cf0aa996e072d 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/ 
+>> ilitek,ili9881c.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/ 
+>> ilitek,ili9881c.yaml
+>> @@ -30,6 +30,7 @@ properties:
+>>       maxItems: 1
+>>     backlight: true
+>> +  port: true
+>>     power-supply: true
+>>     reset-gpios: true
+>>     rotation: true
 > 
-> No. Don't proceed on an unexpected failure whatever it is.  That's
-> storing up problems that may surface in a weird way later that is much
-> harder to debug.
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Just a generic note, not disagreeing in this case.
-
-I have had similar discussions before - and I have been on the both 
-sides of the table. Hence, I don't have as strong stance on this as you. 
-On some situations it is better to just try proceeding as aborting the 
-operation brings no sane corrective actions but just reduces a device 
-unusable.
-
-On the other hand, as you say, usually bailing out loud and early is the 
-best way to pinpoint the problem and get things fixed.
-
-I still think that logging a warning should be a decent hint for someone 
-doing the debugging.
-
-Well, as I said, returning here is Ok for me - thanks for taking care of 
-it! :)
-
-Yours,
-	-- Matti
+Would it be OK to pick this one up via drm-misc (and possibly also the 
+other ili9881c RPi 5" Display 2 patches), or shall I wait a bit longer ?
 
