@@ -1,183 +1,128 @@
-Return-Path: <devicetree+bounces-218075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6796B5A35F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:40:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3188FB5A373
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1509218887E9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:37:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84BB3320AAD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFA831BCB7;
-	Tue, 16 Sep 2025 20:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C66727A11E;
+	Tue, 16 Sep 2025 20:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="QYC890Jq";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="5LVDcZRo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A5r05xWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDA131BC9F;
-	Tue, 16 Sep 2025 20:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DEB278156;
+	Tue, 16 Sep 2025 20:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758054992; cv=none; b=j1qRxH6qwhWAKjdUh3HcQ+KF3SyX1ZzDLJb8n43qsFS8pzVdRfJkKayiiE5SCTvoo8ItXpNku9/Nlyfp9WeEtasQWX7AuKGdd6KFLjPM5wagI4ELGJSAeaIugHqzJTTg2qP9bfrFbfBO1Ajd7AR0vPyrudWp2uh049dTZRFoj2M=
+	t=1758055693; cv=none; b=eSczvmpZpRZnM6k/UZrZDZ6VTPzcIvzGRQuEwBZgbI7RERt0maA0Mu0uRJLAahLP5HtwseFplEngq/WjqzlEK+MKpQh4w28SwS0jzwSc5vbwjzvWkUPJAe1+NYGpNHTusWz1qdFOGzpkGqwQErEHYZ3LrympZOnKnvNfX/hSR4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758054992; c=relaxed/simple;
-	bh=bvBuTVi6aDRmqQt6s8gCawcYt5/NLCH3CkL+959SCAk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TXk+Negwn1DDUq0LC3PAqSojlmJcx8DSfzVCEvyz5hJYs6bioGPOSi9Yoajyewp7NahB0gcEG1BpRT7YcH6H7b9pGs2MLMRTggsVYU8AYHxd0YbiaqlIGuVfgmSMFpooVC97GW05foSkSCU4t+QA6ec9VyRY2wKe0hdv8UYiNCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=QYC890Jq; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=5LVDcZRo; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Date:Subject:To:From; t=1758054802; bh=wx0QdjxydDmrBFDNOoQQ5/u
-	IBMbJD/oNitoYkWZcuC0=; b=QYC890JqZyfvPL4vqX1iuAz85TSGvZNs5qAS35MYC+22MBvW7W
-	iskQ/WenBh0sSTeuVw2g4lZHoYPoiv2GGsiFUWUKFSkU2zjwAoKIfhh6KCfgHkaD/kzS8GS68rS
-	5QxPQHc77pqj7NtCJnL98hSHNC/QK6suWUKMCY1iS34BYG6fYsZQ/3dpcvNdRz6I2AV2MVmHjwu
-	YuaU6JaX/xZbIKJ6+kGLuBOfuRai4gyokobGwnVBSAZFlMDcIGJhjDWqDCzz5y0qkraPWvzgro4
-	KM9+tBTzW+WGrtu1sDguiqrnfvt9vS5JK5S2VnGn8CNEa8jaBdqwZu+SFboo2ClciJw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Date:Subject:To:From; t=1758054802; bh=wx0QdjxydDmrBFDNOoQQ5/u
-	IBMbJD/oNitoYkWZcuC0=; b=5LVDcZRoMcSN9ktKl9Pg4tEUVZHPmNTbYq67qVDbHUTddPsvdm
-	Jrh1Ji00j9vzj2yndXJA43uiUpoeW80faoDg==;
-From: Dang Huynh <dang.huynh@mainlining.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, linux-arm-kernel@lists.infradead.org,
- linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 00/25] RDA8810PL Clock, RTC and MMC driver
-Date: Tue, 16 Sep 2025 20:33:16 +0000
-Message-ID: <14470724.O9o76ZdvQC@melttower>
-In-Reply-To: <2025091620264900a32db6@mail.local>
-References:
- <20250917-rda8810pl-drivers-v1-0-74866def1fe3@mainlining.org>
- <2025091620264900a32db6@mail.local>
+	s=arc-20240116; t=1758055693; c=relaxed/simple;
+	bh=Y1IqRfSmlcIgYAclgwowutMBZed1+nhjdRTcYcMbupo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=MLBVMQAb67jfS+UIbuXIiaxwEIGWqZvSyHp6pKEeJZ5XAHJX8kvi7mJ3mxl4yemFjX197iixkFOkvCYA+K5HVxBR9/xAFmobnbngBAgS/RmbXeeIg/jivH6cK5tCX6vrEVqDSIOLGImIRNffojqOGfLIbBUOmO8GWkrYN52NpXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A5r05xWm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52273C4CEEB;
+	Tue, 16 Sep 2025 20:48:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758055692;
+	bh=Y1IqRfSmlcIgYAclgwowutMBZed1+nhjdRTcYcMbupo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=A5r05xWmYvjRRzvE92m3mH2/SmzKfmpjZuLwjCsCDgkybVbpSojkwZKz7L4frT/Rb
+	 PFFZM2QFsby8HiInnpUv4UwGzS02ekBSEuSEXajuzPhoqgHOvaqCBQOmvwO5RT7Eid
+	 s0zI9vRyZeJSmj1LYOL6HZEdDn82HExVNPCvgrMdnBzKbNisSvS/Xj5iDFpm4Pix5x
+	 yFu6APZisS6AYcgAVeFP7KUp8AO0xxLrR6io9vUZIuC6yqSiRvt5Xz81ODSCBN2TM2
+	 J6+XawPw3xi8uaY56TfHIyX4+yaDwaP2I9e242ffc9QDZcsQTR7WOscNFlDeAx4kfU
+	 U6G/IW1hDA9rw==
+Date: Tue, 16 Sep 2025 15:48:10 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH v3 4/4] PCI: qcom: Allow pwrctrl core to control PERST#
+ if 'reset-gpios' property is available
+Message-ID: <20250916204810.GA1814032@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250912-pci-pwrctrl-perst-v3-4-3c0ac62b032c@oss.qualcomm.com>
 
-Hi,
+On Fri, Sep 12, 2025 at 02:05:04PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> 
+> For historic reasons, the pcie-qcom driver was controlling the power supply
+> and PERST# GPIO of the PCIe slot.
 
-On Tuesday, September 16, 2025 8:26:49=E2=80=AFPM Coordinated Universal Tim=
-e Alexandre=20
-Belloni wrote:
-> Hello,
->=20
-> On 17/09/2025 03:07:17+0700, Dang Huynh wrote:
-> > This patch series aims to add support for Clock/Reset, Real-Time Clock =
-and
-> > SDMMC on the RDA Micro RDA8810PL platform.
->=20
-> What are the dependencies between the various drivers? Ho< do you expect
-> the patches to be merged?
-The MMC driver depends on the clock controller (for getting APB2 rates) and=
-=20
-IFC for transferring data.
->=20
-> If the RTC patches are independent, please send them separately.
-They're independent. Noted.
->=20
-> > It also adds Intelligent Flow Controller (IOW, a DMA controller) which =
-is
-> > important for working with this MMC IP.
-> >=20
-> > Tested on the Orange Pi 2G-IOT.
-> >=20
-> > Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
-> > ---
-> >=20
-> > Dang Huynh (25):
-> >       ARM: dts: unisoc: rda8810pl: Add label to GPIO nodes
-> >       drivers: gpio: rda: Make IRQ optional
-> >       dt-bindings: gpio: rda: Make interrupts optional
-> >       rtc: Add timestamp for the end of 2127
-> >       dt-bindings: rtc: Add RDA Micro RDA8810PL RTC
-> >       rtc: Add driver for RDA Micro SoC
-> >       ARM: dts: unisoc: rda8810pl: Enable Real-Time Clock
-> >       ARM: dts: unisoc: rda8810pl: Enable ARM PMU
-> >       dt-bindings: clock: Add RDA Micro RDA8810PL clock/reset controller
-> >       drivers: clk: Add Clock and Reset Driver for RDA Micro RDA8810PL =
-SoC
-> >       dts: unisoc: rda8810pl: Enable clock/reset driver
-> >       dts: unisoc: rda8810pl: Add OPP for CPU and define L2 cache
-> >       dts: unisoc: orangepi: Disable UART with no users
-> >       dt-bindings: power: reset: Add RDA Micro Modem Reset
-> >       power: reset: Add basic power reset driver for RDA8810PL
-> >       dts: unisoc: rda8810pl: Enable modem reset
-> >       drivers: gpio: rda: Make direction register unreadable
-> >       dt-bindings: dma: Add RDA IFC DMA
-> >       dmaengine: Add RDA IFC driver
-> >       dts: unisoc: rda8810pl: Enable IFC
-> >       dt-bindings: mmc: Add RDA SDMMC controller
-> >       mmc: host: Add RDA Micro SD/MMC driver
-> >       dts: unisoc: rda8810pl: Add SDMMC controllers
-> >       dts: unisoc: orangepi-2g: Enable SD Card
-> >       dts: unisoc: orangepi-i96: Enable SD Card
-> > =20
-> >  .../bindings/clock/rda,8810pl-apsyscon.yaml        |  44 ++
-> >  Documentation/devicetree/bindings/dma/rda,ifc.yaml |  42 +
-> >  .../devicetree/bindings/gpio/gpio-rda.yaml         |   3 -
-> >  Documentation/devicetree/bindings/mmc/rda,mmc.yaml |  91 +++
-> >  .../bindings/power/reset/rda,md-reset.yaml         |  36 +
-> >  .../devicetree/bindings/rtc/rda,8810pl-rtc.yaml    |  30 +
-> >  MAINTAINERS                                        |  30 +
-> >  .../boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts  |  24 +-
-> >  .../arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts |  24 +-
-> >  arch/arm/boot/dts/unisoc/rda8810pl.dtsi            | 115 ++-
-> >  drivers/clk/Kconfig                                |   1 +
-> >  drivers/clk/Makefile                               |   1 +
-> >  drivers/clk/rda/Kconfig                            |  14 +
-> >  drivers/clk/rda/Makefile                           |   2 +
-> >  drivers/clk/rda/clk-rda8810.c                      | 770
-> >  +++++++++++++++++++ drivers/dma/Kconfig                               =
- |
-> >   10 +
-> >  drivers/dma/Makefile                               |   1 +
-> >  drivers/dma/rda-ifc.c                              | 450 +++++++++++
-> >  drivers/gpio/gpio-rda.c                            |   4 +-
-> >  drivers/mmc/host/Kconfig                           |  12 +
-> >  drivers/mmc/host/Makefile                          |   1 +
-> >  drivers/mmc/host/rda-mmc.c                         | 853
-> >  +++++++++++++++++++++ drivers/power/reset/Kconfig                     =
- =20
-> >  |   9 +
-> >  drivers/power/reset/Makefile                       |   1 +
-> >  drivers/power/reset/rda-reboot.c                   |  58 ++
-> >  drivers/rtc/Kconfig                                |  11 +
-> >  drivers/rtc/Makefile                               |   1 +
-> >  drivers/rtc/rtc-rda.c                              | 356 +++++++++
-> >  include/dt-bindings/clock/rda,8810pl-apclk.h       |  79 ++
-> >  include/dt-bindings/dma/rda-ifc.h                  |  28 +
-> >  include/linux/rtc.h                                |   1 +
-> >  31 files changed, 3079 insertions(+), 23 deletions(-)
-> >=20
-> > ---
-> > base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
-> > change-id: 20250916-rda8810pl-drivers-9a5271452635
-> >=20
-> > Best regards,
+> This turned out to be an issue as the power supply requirements
+> differ between components. For instance, some of the WLAN chipsets
+> used in Qualcomm systems were connected to the Root Port in a
+> non-standard way using their own connectors.
 
-Best regards,
-Dang
+This is kind of hand-wavy.  I don't know what a non-standard connector
+has to do with this.  I assume there's still a PCIe link from Root
+Port to WLAN, and there's still a PERST# signal to the WLAN device and
+a Root Port GPIO that asserts/deasserts it.
 
-
+> This requires specific power sequencing mechanisms for controlling
+> the WLAN chipsets. So the pwrctrl framework (CONFIG_PWRCTRL) was
+> introduced to handle these custom and complex power supply
+> requirements for components.
+> 
+> Sooner, we realized that it would be best to let the pwrctrl driver control
+> the supplies to the PCIe slots also. As it will allow us to consolidate all
+> the power supply handling in one place instead of doing it in two. So the
+> CONFIG_PWRCTRL_SLOT driver was introduced, that just parses the Root Port
+> nodes representing slots and controls the standard power supplies like
+> 3.3v, 3.3VAux etc...
+> 
+> However, the control of the PERST# GPIOs was still within the controller
+> drivers like pcie-qcom. So the controller drivers continued to assert/
+> deassert PERST# GPIOs independent of the power supplies to the components.
+> This mostly went unnoticed as the components tolerated this non-standard
+> PERST# assertion/deassertion. But this behavior completely goes against the
+> PCIe Electromechanical specs like CEM, M.2, as these specs enforce strict
+> control of PERST# signal together with the power supplies.
+> 
+> So conform to these specs, allow the pwrctrl core to control PERST# for the
+> slots if the 'reset-gpios' property is specified in the DT bridge nodes.
+> This is achieved by populating the 'pci_host_bridge::perst_assert' callback
+> with qcom_pcie_perst_assert() function, so that the pwrctrl core can
+> control PERST# through this callback.
+> 
+> qcom_pcie_perst_assert() will find the PERST# GPIO descriptor associated
+> with the supplied 'device_node' of the component and asserts/deasserts
+> PERST# as requested by the 'assert' parameter. If PERST# is not found in
+> the supplied node of the component, the function will look for PERST# in
+> the parent node as a fallback. This is needed since PERST# won't be
+> available in the endpoint node as per the DT binding.
+> 
+> Note that the driver still asserts PERST# during the controller
+> initialization as it is needed as per the hardware documentation.
+> 
+> For preserving the backward compatibility with older DTs that still
+> specifies the Root Port resources in the host bridge DT node, the
+> controller driver still controls power supplies and PERST# for them. For
+> those cases, the 'qcom_pcie::legacy_binding' flag will be set and the
+> driver will continue to control PERST# exclusively. If this flag is not
+> set, then the pwrctrl driver will control PERST# through the callback.
 
