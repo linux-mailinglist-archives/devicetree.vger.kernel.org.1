@@ -1,170 +1,125 @@
-Return-Path: <devicetree+bounces-217679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2B5B58E15
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:49:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1ACB58E1A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91E5F1BC498D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 05:49:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796C81B24645
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 05:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C2C2DE704;
-	Tue, 16 Sep 2025 05:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091D62DE6FB;
+	Tue, 16 Sep 2025 05:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vyE6eyT0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="VVj2sbGN";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AG+nWoDZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4360E2D6E49
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF882DCF62;
+	Tue, 16 Sep 2025 05:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758001744; cv=none; b=YrPBqQizyMjmq6HCk8YbX+JFi6wvjzotHSyda8ekpT8Wb6GNqQ2Lbq0HoqfOMvLN54XYxBNcbBph712p8v2ljYT0cWD0G0e4TT+vr+e7bfDJrG8y9yRBe97gaYcLTbyPXKYkkJ9rXUjkXCRF7C2IN+C0u0owU4mcCym6quYAFOs=
+	t=1758001906; cv=none; b=AR8becQnYkKoJzcOiEHUOKZGP6NSaLz03cuM5tXcYzr3y2POK0kXKN+BkevlILl5CBMDox5uEuB5dybSW8LkUo8BMvFeNzdNAptidHoQozwO1yy7AkSy5rmJRpT6MIwFrnmlVbWkCCqNnETpydmBxDH0ieffDQ9BAQ4IyU7qbVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758001744; c=relaxed/simple;
-	bh=aablpwZgkDY2HF/H36K+OQMk4Kq3szZsC1rhL0md7XU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=KsrVtpFqu0OAPmZSl1WMENBZ6mRw4GbdJpAnY0m4kqKR4uOvTVcPN+aMnNJejeNlBhzlyPMx+p9fak8yhNflfxda9ebCuTLvNNYQ2io68w127VGMf6RzqhSbU59UTHP2fcVYngV5QD79EMmeK0UE96T4Qxq5vQIhBmn4PSv7Oo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vyE6eyT0; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45dd513f4ecso29860115e9.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 22:49:02 -0700 (PDT)
+	s=arc-20240116; t=1758001906; c=relaxed/simple;
+	bh=WUGAi70PXBeJRCBddUZ0SRPuJjxG5ZxaG5bUha55cnw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eH3r1ILqtTbLkihruXZRFsaLe+IS2LKFUn8O2CBzxSzC7wnwtKizMfVhIF3vv45XQXkZjnHGY+9iF6adsZlTfuGq4uoB1C/XSuW7ASqWONUpVxDyFQPJbjstFT3h5FP2VbkLn52K7oEMV3hrkAoEKo2aGmyqYnhyPlu8J7iGC5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=VVj2sbGN; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AG+nWoDZ reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758001740; x=1758606540; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2+Ij4gEe2LcS6vPzM/CR57NuWgzn7Jx8huZwedt8Tqc=;
-        b=vyE6eyT0MwN2srMR7la91gruLAHsfDKkC/uqT2y7dnzmpxT4aBrJvFBUXFuRjrlkhg
-         BJMlS1SEf/CJiuAYvoagzi0bw1l+08ehlBDgdoabYAvuN1iRY2J89XjLcEsNGDN9k0ac
-         aOjZLNk1nYz+PjPOearTnT8jGsO9sWDnccM5RosHcGGE4ns9SCCi+jtQ9uqyS6IjwXRQ
-         kXgTpCZ7C8UbjDFqTDMIU4WYwJNH2K4wzKvVh/FMpDu56Bloqs0h6jObhVfoUPcDQBJ0
-         KI8LDEN3FYm5wE6p822OY7ocAFzSOHDGxrmu7nsNAA2pA6lnpeVond2gJ0vTGVm/MMaI
-         ak/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758001740; x=1758606540;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2+Ij4gEe2LcS6vPzM/CR57NuWgzn7Jx8huZwedt8Tqc=;
-        b=ZHc1axBGgzVxIYXaCa1cfJRFfCVz5kuC4hKIwskwXff35ZmjO3EmLpjQ5ctwRbRJ4+
-         eKlwtsqOQvUCoy+pwVydqf7UhdTPKHYnOH+hqFRhVWBvlXYt0T0Buj0PuqElVAQaGv89
-         TCk1fkQy6cVpF5DxHbvek5Jl1EeH2CE6qnfBiUTnDAbEYs/5GIqbHgsMwkLvnPp8qGAJ
-         sSO9SNVD+3RofrnXOgJ3kBagGQVft2q8CJ7xt0jrVEENIAljPR6Y/2xVsKlnhLJiqjKn
-         DZwqScCz5YSgPqpWPHGUYgZ7KdFi+QvY2E1CKOwynIysKH6durnCrpN9gVTwvrSnl0hc
-         wU3A==
-X-Forwarded-Encrypted: i=1; AJvYcCWewDpVb/nv03eyDp89bF/WOZK0NBlIu6NHgcNtpEjILswz4w7xEwefoGnHJTu8tJTlC+dZN9/4o49c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSgdgA9hKAI+gMpBJ94Vb3FC8uZqUAxb2t5cklm/0LVBBmG8CQ
-	cXWNga4S7ySvEPZte4MqI0COjgNw8hCtbqQlnEJyvLCftF8aizgY/o4vcXgK6AbxjMA=
-X-Gm-Gg: ASbGncs+tj0u9Ui1VBFjlmY8tcsv6ifGmzrShSbaubnXbxLvk91/855C/OfDFZ+aPlK
-	9ROwXr0rQG+A2VEJFBa9r2FU9DVd9Y/dRqHw7okxQ3jyS5nB22pfXfmR1HzuBUJaLdupi6MG3Aj
-	AWA9K0XECjMUgAPhqEnqbDdEMDPDorJb/cIJxngaU25CXDVovpcr2B+7j5X4pPeIqHKBDwjER39
-	OW3GsUtXzZx40BBTHXUn0EteCi/MnPS7Ma/n/sds+iAOxgDWc7hZlqew2++4ftYhgGTHfyuIyt8
-	F5kx0FSDS2FsDL3DbHoGzOGCEUb3BTTFrUnTFv0zIEdjQ+A1EQ6+/341u02GqV2CTFLpnf3W7rr
-	0sIny6p7FXzObcA2dFEWCrfrAG1uGwJIJznbiwVAe+0eQTA2pbg5B23nMwm2i+DCySKhi
-X-Google-Smtp-Source: AGHT+IF7x+pGpXf85Vy38ChqF7Pkim2OKEyjFcqs8YYGtgVmrGA1ZIZ90uccF0N4NZf54XR53W2Dfw==
-X-Received: by 2002:a05:6000:3113:b0:3e2:ac0:8c55 with SMTP id ffacd0b85a97d-3e765a3e423mr13059397f8f.55.1758001740531;
-        Mon, 15 Sep 2025 22:49:00 -0700 (PDT)
-Received: from localhost (054722ac.skybroadband.com. [5.71.34.172])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e760786ceasm20896593f8f.16.2025.09.15.22.48.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 22:48:59 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1758001904; x=1789537904;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Zf0rlUPIS9TkW6EtEY94PGkcqdgP6qxZVUo3leDvhyo=;
+  b=VVj2sbGNazim4jDJDR2637cVTKfCoCraMAHg6DDRVajLuURlOexdb2s9
+   vilmtYjugIkE5iSgCmuBlqchEtwUhp3nYNeFhhqdiQ03rEN/5Zi4EOB4j
+   4rKiDh6yNvarc+H460anVx26Iy4ENxhUUWbu+lSAPTTpHdYtQyHOw1EqM
+   0a5LsMYNSfAuRWH4YWJPV/cKpQmINLihit9WTaBdPrNYuBHtS3bca2Soq
+   hz55ayNwaarkYc+vlmopolipmKgTJMcXL/M3uF0TbErHIQNJeTNWimyDV
+   GDp6MAJsjCHaRrLxA2II94eSgOl2QsxtP19Wct4Mm7/lwZXKO/ymW8JLr
+   A==;
+X-CSE-ConnectionGUID: GqKwsJ/FSj2dNT/lNi7LJw==
+X-CSE-MsgGUID: j/DEDTUjTNW4Hmviq9tODw==
+X-IronPort-AV: E=Sophos;i="6.18,268,1751234400"; 
+   d="scan'208";a="46161273"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 16 Sep 2025 07:51:35 +0200
+X-CheckPoint: {68C8FAE6-59-C678C473-E36DAEF9}
+X-MAIL-CPID: DCEDB426389384B9BB85DC10A71F1436_5
+X-Control-Analysis: str=0001.0A2D035C.68C8FAE7.0083,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BB3F4166CD5;
+	Tue, 16 Sep 2025 07:51:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1758001890; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=Zf0rlUPIS9TkW6EtEY94PGkcqdgP6qxZVUo3leDvhyo=;
+	b=AG+nWoDZtUHcldDs2EaC7re+Y5WymxigPUzfof2xilIK7b7VtyoBCTJM6vzrLJTFuGmG1j
+	f3TvgG0BZABcRmP6vRphn9u3knvBmifL1FIVJkqBfbEHKQysW8uxagI7E9GqDCj9pYWzs8
+	AecoUa+/QjoM/apFDbQbxZUVUhgnI98ZxvTgXuUJXLp+S6L3mlxA5ZM1mRVD49BHFI78VJ
+	vYoMfVKYLanruLB7s3m2OeQGhCpDqTqPvZ1xeP8OmuTn/ToIT8mpxJdYvix8gqRdxxIgOP
+	Qcqv0PVJYhSbYOODS1di7CG4OO6ndVtXhsiI9XgD0tLi39lqrI3RignDAu16Ww==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/1] arm64: dts: tqma8mpql-mba8mpxl: Add MicIn routing
+Date: Tue, 16 Sep 2025 07:51:18 +0200
+Message-ID: <20250916055119.135637-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 16 Sep 2025 06:48:59 +0100
-Message-Id: <DCTZLTRX455M.95MSJULLX6VC@linaro.org>
-Cc: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mm@kvack.org>, <tglx@linutronix.de>, <andersson@kernel.org>,
- <pmladek@suse.com>, <rdunlap@infradead.org>, <corbet@lwn.net>,
- <david@redhat.com>, <mhocko@suse.com>, <tudor.ambarus@linaro.org>,
- <mukesh.ojha@oss.qualcomm.com>, <linux-arm-kernel@lists.infradead.org>,
- <linux-hardening@vger.kernel.org>, <jonechou@google.com>,
- <rostedt@goodmis.org>, <linux-doc@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [RFC][PATCH v3 15/16] kmemdump: Add Kinfo backend driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Eugen Hristev" <eugen.hristev@linaro.org>
-X-Mailer: aerc 0.20.0
-References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
- <20250912150855.2901211-16-eugen.hristev@linaro.org>
-In-Reply-To: <20250912150855.2901211-16-eugen.hristev@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri Sep 12, 2025 at 4:08 PM BST, Eugen Hristev wrote:
+MicIn is connected to IN3_L. Add routing including the Mic Bias.
 
-[..]
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v2:
+* Rebased to next-20250912
+* Removed dependency from local patches
 
-> --- /dev/null
-> +++ b/mm/kmemdump/kinfo.c
-> @@ -0,0 +1,293 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *
-> + * Copyright 2002 Rusty Russell <rusty@rustcorp.com.au> IBM Corporation
-> + * Copyright 2021 Google LLC
-> + * Copyright 2025 Linaro Ltd. Eugen Hristev <eugen.hristev@linaro.org>
-> + */
-> +#include <linux/platform_device.h>
-> +#include <linux/kallsyms.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/kmemdump.h>
-> +#include <linux/module.h>
-> +#include <linux/utsname.h>
+ .../arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Could you please check if the headers are sorted here
-and in all other patches in this series?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+index 4eedd00d83b9f..59642a8a2c445 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+@@ -238,6 +238,13 @@ sound {
+ 		audio-asrc = <&easrc>;
+ 		audio-cpu = <&sai3>;
+ 		audio-codec = <&tlv320aic3x04>;
++		audio-routing =
++			"IN3_L", "Mic Jack",
++			"Mic Jack", "Mic Bias",
++			"IN1_L", "Line In Jack",
++			"IN1_R", "Line In Jack",
++			"Line Out Jack", "LOL",
++			"Line Out Jack", "LOR";
+ 	};
+ 
+ 	thermal-zones {
+-- 
+2.43.0
 
-Also module.h is duplicated.
-
-[..]
-
-> +static int build_info_set(const char *str, const struct kernel_param *kp=
-)
-> +{
-> +	struct kernel_all_info *all_info =3D kinfo->all_info_addr;
-
-here ^^
-
-> +	size_t build_info_size;
-> +
-> +	if (kinfo->all_info_addr =3D=3D 0 || kinfo->all_info_size =3D=3D 0)
-> +		return -ENAVAIL;
-> +
-> +	all_info =3D (struct kernel_all_info *)kinfo->all_info_addr;
-
-Maybe assignment of all_info on declaration in the beginning of this functi=
-on
-is not needed then?
-
-> +	build_info_size =3D sizeof(all_info->info.build_info);
-> +
-> +	memcpy(&all_info->info.build_info, str, min(build_info_size - 1,
-> +						    strlen(str)));
-> +	update_kernel_all_info(all_info);
-> +
-> +	if (strlen(str) > build_info_size) {
-> +		pr_warn("%s: Build info buffer (len: %zd) can't hold entire string '%s=
-'\n",
-> +			__func__, build_info_size, str);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	return 0;
-> +}
-
-[...]
-
-Best regards,
-Alexey
 
