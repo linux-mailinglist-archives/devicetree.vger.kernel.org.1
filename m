@@ -1,210 +1,193 @@
-Return-Path: <devicetree+bounces-217854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B79CB596E2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:04:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BA8B596EF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:05:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1CDC3256CA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:03:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7841885893
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43152C327C;
-	Tue, 16 Sep 2025 13:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EB430BF62;
+	Tue, 16 Sep 2025 13:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R1n2IU22"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fos5Uf5H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013E43597C;
-	Tue, 16 Sep 2025 13:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D126A216E1B
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 13:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758027793; cv=none; b=G6YqfrWAJx82feuVIFRpJHRvbKoJz0CNq/sqVQTa0N62bwjywEOW061b4uhuSNBUe6snI+QTQPTFOrmGhDaSxsUrbYwCFQ8hvQBjGh2MleXO90ykMyteF4Hz03gCGmjtPbhIZ6PWKhOqVNYUKVAg3qCC1RcsdVFUHlC6ihhnCDo=
+	t=1758027917; cv=none; b=cYuySoK6umVGJ+dnYwGQRZJcVr7rxw37Kj0PCnv4TcgoTeTD3FD+vK8WhMlQTXzK4ua5gIJNmuY1o0jLdd5dAOY+fwAfsagEP8MXodDExmmHvXVy1OES+sPZ0axnSEnQlAnm3EtyiW3fQk1s751abJpLf4XSca/bHhrBR5zwhuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758027793; c=relaxed/simple;
-	bh=9v4NFlbHr1BaFDauYKssUwXgCx6Fm6j15tX7wigDxTg=;
+	s=arc-20240116; t=1758027917; c=relaxed/simple;
+	bh=A3J/tFGOFdBX0jXW1C50S6raOvMVBUSgWZvi7Kanhlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P9BTSdCdAiLBaTHzwXQ0k17jOKDxYIXexQw7GOPI41G9X4qW1FpppKjkmHlHfLoy3L6q28aru/hQs9bhxcp1LxFaJKGcth9OyXi5FBVA55yE5us54x31UzAKfQhbH+6WeBaIuCrEw8uY6nv7cIEnm8h9RVmM0unbNd6dI4jRk6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R1n2IU22; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758027792; x=1789563792;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9v4NFlbHr1BaFDauYKssUwXgCx6Fm6j15tX7wigDxTg=;
-  b=R1n2IU224tDxvXrpnBz0jXLhm8arCPGhgJ8ovHf5xd13ACxShAUkN//r
-   jMbHmeudUMqOT3cdWdNWNU+HLS5EN338429EKzr28NWmgkFTKWUpOswiP
-   cJYdUIPokBEwEL9Zb5bW8clNRSkuvwxCZNQ1ZCI5Y5OkRa7St5wthElEU
-   jd+axcvA1W14mptI42VKatcb70CdYbTWDRibJB55sqhQL6Z6Xu7/qJefn
-   Kp7NavmDHTTNVR97lCNpEXjwdaT82HknPz3yr1uYnU2s7KcfDlNMKtkxv
-   VHRS5xT/KBxKkpHw95tLfBAy2LYz49M2EeoTTBgetQnXQId9ngdpfqjRI
-   Q==;
-X-CSE-ConnectionGUID: r6TK7nddQqa2GUj5tAnqNg==
-X-CSE-MsgGUID: ZvxE5QZqSPe245oHXzXSVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="70555925"
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; 
-   d="scan'208";a="70555925"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2025 06:03:12 -0700
-X-CSE-ConnectionGUID: YuEMw8IqT/GSKKZdrNwsMQ==
-X-CSE-MsgGUID: rsK8Mvp/TVuHnrBh5uPEsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; 
-   d="scan'208";a="178934417"
-Received: from smile.fi.intel.com ([10.237.72.51])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2025 06:03:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uyVKr-00000003Wzg-0xbI;
-	Tue, 16 Sep 2025 16:03:05 +0300
-Date: Tue, 16 Sep 2025 16:03:05 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=rePLF3aA70keZCTVrVDjOrJQfRayrkfhgw+vshzNdP9NvX1frHOAM6vUVFWK5Efq8cevYb7gTinaOjBwXBw2S2qrbVEXZI9BpAQc7Djpvt31zxpzLPXHaCwDNibWjBu1ZiJAFJIVYJI9P0wnL6i53FnxFG32dPZ5y7UxqK1rP7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fos5Uf5H; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5632630dd04so878001e87.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 06:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758027913; x=1758632713; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7/8TL00Hlar3x8JkbaIO/sy+q7FGgNPnwJ9JADaoRL4=;
+        b=fos5Uf5HmtyHtL+lmjA3a2H9HrHhg8P/6Oolr9AJUDGP9OMkPBwjrxX4OljDwPgr6d
+         EGU3mAK2k3oxuwsvYOcV9dbWMOzECSpFh5rGQAoVPBdCYGIzcxU1qmZg5zk4kcKy1o8m
+         ObLceXCuhryPZVREmWltfaDyU3ZSF1AB8tcM7qcx3s+Gz+c2nfs8LaVe1SpP50rIkaBH
+         5kjixBwE/ipFb5iKq7VUmS/Jj4sUhCRs8m+4ruHcLezKuG1xEXn3RG6EeIVEcmOnGCUs
+         3gWXyvDwyTqCB2iiTAz4a69UtfssPH55UjmP+s5EQSAjGrj7AA9BVG9u3gT7Ox6W1DjG
+         Y+8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758027913; x=1758632713;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7/8TL00Hlar3x8JkbaIO/sy+q7FGgNPnwJ9JADaoRL4=;
+        b=Hmz1ABrlZaLqHe67rlt/2PwS8t2IJRsHAUimDf69IxY0Hl1Cjs1UXYDUctWtpIF/wF
+         BTqzHwYs18tKVfQUN21LWIILoqK7+wQ7ZmMQaXuIgH84mez3lFV/oGOijQw1RLSiYc/j
+         d2f90nP2iSolo3uSUyL+syN0DxpeQSaA4JwlPi2tQEnu3lUUgfwkNDAjrUTE5qRhmHrT
+         gRtgp0XPrGXvGYHBcFCpUmuPAb/sYzDEeMBUnRRkKc1PKzuOrPqTLKAVove4PYnV5Sp8
+         MfKI4x10x2/KFBTSQNZxifZz9SocAcMzGrtDLSL38dAeopFr9SYy4wG7/lJcj6idQKIC
+         eOlw==
+X-Forwarded-Encrypted: i=1; AJvYcCVP6fAmQQscm1WxfKcs568hh3yTaiQYVJlRXRVC8opkzF0VX739//30JK9c5HGITeWxbX3yPeGjTzxl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1eSXm81XIhVHDYmKOBK18e1k+XPQiwuYFGC/ApSEZk+KSwDsn
+	E9X2wQD6/dXJ9uLXWoTv2Nf50DvOX4LFJ3B9BKrox61LMcgyYypBg3OUrOAgu75IJv0=
+X-Gm-Gg: ASbGncs7FzJDx8xoGGO9w+LrCv8vSZVylMJY/0XsYdY7hpissEcsiBn8Psr2qzhSq8H
+	fsb8qN1BfU3Uldh7gDOLYlRz30W0liUngk5PssBqqHDURW+ILytOpbs+9hvTuCXZf8vPqIDHPs+
+	0Yz6HrnybHw2ch4PoHSSxRIIWebp5tBK6HHhLEKiqFGHTwZ0c2s1Zni5lGn735i22pvX2IgzxwU
+	Zvn/Uu/faf8gGrsrr9RAqGKDnz9BxUU0vuvSiZkK+rQTPKKIqVJ74t3df/8c3331BKjaeIuQ64t
+	Ml5R08b92IOaa7uaO4cVEQn5axMJBeS2pZNrV3GArrnxblPoYDhLdA1/vJ2NvREex5qP6oaITaz
+	izBYtOCEahqBPR6fo3Ul4cag3VtN9HbUY+CwQWDgN1ga9qlYn9hRBBz+XAhmrIb0z1A==
+X-Google-Smtp-Source: AGHT+IENshuIe1ZzBTlZI8ErHAIWfYofEIxwEqD/DxJUwphDcoj5NYeMYiaSJpT5gnIx28eNAX2rmA==
+X-Received: by 2002:a2e:bea2:0:b0:336:e445:92c5 with SMTP id 38308e7fff4ca-3513dd54c2amr23580931fa.3.1758027912735;
+        Tue, 16 Sep 2025 06:05:12 -0700 (PDT)
+Received: from monster (c-85-229-7-191.bbcust.telenor.se. [85.229.7.191])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f1b2a931fsm33599691fa.47.2025.09.16.06.05.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 06:05:10 -0700 (PDT)
+Date: Tue, 16 Sep 2025 15:05:07 +0200
+From: Anders Roxell <anders.roxell@linaro.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/4] iio: add processed write API
-Message-ID: <aMlgCZkP0723mWyO@smile.fi.intel.com>
-References: <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <20250916-ltm8054-driver-v1-2-fd4e781d33b9@bootlin.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next v3 3/3] net: stmmac: dwmac-renesas-gbeth: Add
+ support for RZ/T2H SoC
+Message-ID: <aMlgg_QpJOEDGcEA@monster>
+References: <20250908105901.3198975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250908105901.3198975-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250916-ltm8054-driver-v1-2-fd4e781d33b9@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20250908105901.3198975-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, Sep 16, 2025 at 12:24:07PM +0200, Romain Gantois wrote:
-> Add a function to allow IIO consumers to write a processed value to a
-> channel.
+On 2025-09-08 11:59, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Extend the Renesas GBETH stmmac glue driver to support the RZ/T2H SoC,
+> where the GMAC is connected through a MIIC PCS. Introduce a new
+> `has_pcs` flag in `struct renesas_gbeth_of_data` to indicate when PCS
+> handling is required.
+> 
+> When enabled, the driver parses the `pcs-handle` phandle, creates a PCS
+> instance with `miic_create()`, and wires it into phylink. Proper cleanup
+> is done with `miic_destroy()`. New init/exit/select hooks are added to
+> `plat_stmmacenet_data` for PCS integration.
+> 
+> Update Kconfig to select `PCS_RZN1_MIIC` when building the Renesas GBETH
+> driver so the PCS support is always available.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3:
+> - Dropped passing STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP flag in stmmac_flags
+>   as it is always set for all the SoCs.
+> - Updated Kconfig to include RZ/T2H and RZ/N2H.
+> 
+> v1->v2:
+> - No changes.
 
-...
+The following warning is seen when doing a defconfig build (make
+defconfig) for arm64 on the Linux next-20250915 tag.
 
-> +static int iio_convert_processed_to_raw_unlocked(struct iio_channel *chan,
-> +						 int processed, int *raw,
-> +						 unsigned int scale)
-> +{
-> +	int scale_type, scale_val, scale_val2;
-> +	int offset_type, offset_val, offset_val2;
-> +	s64 tmp_num, tmp_den;
-> +
-> +	scale_type = iio_channel_read(chan, &scale_val, &scale_val2,
-> +				      IIO_CHAN_INFO_SCALE);
-> +	if (scale_type >= 0) {
-> +		switch (scale_type) {
-> +		case IIO_VAL_INT:
-> +			tmp_num = processed;
-> +			tmp_den = scale_val;
-> +			break;
-> +		case IIO_VAL_INT_PLUS_MICRO:
-> +			tmp_num = (s64)processed * 1000000LL;
+First seen on next-20250915
+Good: next-20250912
+Bad: next-20250915
 
-If you go with this, in IIO we heavily use units.h and here something like
-(s64)MICRO would be appropriate. Similar to the rest of the code where one
-or another constant may be used.
+Regression Analysis:
+- New regression? yes
+- Reproducibility? yes
 
-> +			if (scale_val2 < 0) {
-> +				tmp_den = (s64)scale_val * 1000000LL - (s64)scale_val2;
-> +				tmp_den *= -1;
-> +			} else {
-> +				tmp_den = (s64)scale_val * 1000000LL + (s64)scale_val2;
-> +			}
-> +
-> +			break;
-> +		case IIO_VAL_INT_PLUS_NANO:
-> +			tmp_num = (s64)processed * 1000000000LL;
-> +
-> +			if (scale_val2 < 0) {
-> +				tmp_den = (s64)scale_val * 1000000000LL - (s64)scale_val2;
-> +				tmp_den *= -1;
-> +			} else {
-> +				tmp_den = (s64)scale_val * 1000000000LL + (s64)scale_val2;
-> +			}
-> +
-> +			break;
-> +		case IIO_VAL_FRACTIONAL:
-> +			tmp_num = (s64)processed * (s64)scale_val2;
-> +			tmp_den = scale_val;
-> +			break;
-> +		case IIO_VAL_FRACTIONAL_LOG2:
-> +			tmp_num = (s64)processed << scale_val2;
-> +			tmp_den = scale_val;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +
-> +		tmp_den *= scale;
-> +
-> +		*raw = div64_s64(tmp_num, tmp_den);
-> +	}
-> +
-> +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
-> +				       IIO_CHAN_INFO_OFFSET);
-> +	if (offset_type >= 0) {
-> +		switch (offset_type) {
-> +		case IIO_VAL_INT:
-> +		case IIO_VAL_INT_PLUS_MICRO:
-> +		case IIO_VAL_INT_PLUS_NANO:
-> +			break;
-> +		case IIO_VAL_FRACTIONAL:
-> +			offset_val /= offset_val2;
-> +			break;
-> +		case IIO_VAL_FRACTIONAL_LOG2:
-> +			offset_val >>= offset_val2;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +
-> +		*raw -= offset_val;
-> +	}
-> +
-> +	return 0;
-> +}
+Build regression: WARNING: unmet direct dependencies detected for PCS_RZN1_MIIC
 
-...
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
-> +/**
-> + * iio_write_channel_processed_scale() - scale and write processed value to a given channel
-> + * @chan:		The channel being queried.
-> + * @val:		Value to write.
-> + * @scale:		Scale factor to apply during the conversion
-> + *
-> + * Returns an error code or 0.
-> + *
-> + * This function writes a processed value to a channel. A processed value means
-> + * that this value will have the correct unit and not some device internal
-> + * representation. If the device does not support writing a processed value, the
-> + * function will query the channel's scale and offset and write an appropriately
-> + * transformed raw value.
-> + */
+This is the build warning:
+WARNING: unmet direct dependencies detected for PCS_RZN1_MIIC
+  Depends on [n]: NETDEVICES [=y] && OF [=y] && (ARCH_RZN1 [=n] || COMPILE_TEST [=n])
+  Selected by [m]:
+  - DWMAC_RENESAS_GBETH [=m] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_STMICRO [=y] && STMMAC_ETH [=m] && STMMAC_PLATFORM [=m] && OF [=y] && (ARCH_RENESAS [=y] || COMPILE_TEST [=n])
 
-This needs a run via kernel-doc validator (warning: Missing Return section).
-Also note, in accordance with kernel-doc documentation the Return section must
-be last in the big description.
-
--- 
-With Best Regards,
-Andy Shevchenko
+WARNING: unmet direct dependencies detected for PCS_RZN1_MIIC
+  Depends on [n]: NETDEVICES [=y] && OF [=y] && (ARCH_RZN1 [=n] || COMPILE_TEST [=n])
+  Selected by [m]:
+  - DWMAC_RENESAS_GBETH [=m] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_STMICRO [=y] && STMMAC_ETH [=m] && STMMAC_PLATFORM [=m] && OF [=y] && (ARCH_RENESAS [=y] || COMPILE_TEST [=n])
+I: config: PASS in 0:00:01.592356
 
 
+By reverting this patch the warning disapears.
+
+
+## Source
+* Kernel version: 6.17.0-rc6
+* Git tree:
+* https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next.git
+* Git describe: next-20250915
+* Git commit: c3067c2c38316c3ef013636c93daa285ee6aaa2e
+* Architectures: arm64
+* Toolchains: gcc and clang
+* Kconfigs: lkftconfigs
+
+## Build
+* Build log: https://storage.tuxsuite.com/public/linaro/lkft/builds/32l4UF8KltAzu6kUpW3hXaYRWjZ/build.log
+* Test details: https://regressions.linaro.org/lkft/linux-next-master/next-20250915/log-parser-build-clang/general-unmet-dependencies-warning-unmet-direct-dependencies-detected-for-pcs_rzn_miic/
+* Build link: https://storage.tuxsuite.com/public/linaro/lkft/builds/32l4UF8KltAzu6kUpW3hXaYRWjZ/
+* Kernel config: https://storage.tuxsuite.com/public/linaro/lkft/builds/32l4UF8KltAzu6kUpW3hXaYRWjZ/config
+
+
+--
+Linaro LKFT
 
