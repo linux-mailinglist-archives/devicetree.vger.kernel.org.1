@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-218083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC17B5A41A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 23:42:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 942E4B5A454
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 23:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98AE47B4DFB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 21:40:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 186F15831DC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 21:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6A42DC34D;
-	Tue, 16 Sep 2025 21:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CCF323F5E;
+	Tue, 16 Sep 2025 21:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RiKilsRb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1auR8Pt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893F12820B9;
-	Tue, 16 Sep 2025 21:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BCF31FECA;
+	Tue, 16 Sep 2025 21:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758058920; cv=none; b=Rl1ayH5HnHZtwaMpTzQZdZQ+OMJIsHIczrumY3+bhFf3QZaYRsHea3fQw+B6eu97974Xi2bLdjSk1W25GhqAk++HmYu9ysE0Yy/m0hghn9NrpbOSU2VaUAJMATyrEXQmaB0tdMv+qGdx5LoPdsAWUCuJtVA88Mex6+qhbJLcu0g=
+	t=1758059656; cv=none; b=hxcJ9AVHAVgFILMRKMIaV8fA7WGkyKrY3KowrnxRT2xRk7iwE3DOyxW34q8P+V85wPGn36cPHHIU2/KmY3dEve2Im5P8GGKxh9+qOnmyDpKYkoe6Bq9SLwVi5WdiJ6vVNUC+nGRi8RYWmyslRkejdUbfx9tospuCZ9Af2ZLfXWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758058920; c=relaxed/simple;
-	bh=tRIfdhsAJMME1a45JIICOi38lqR6oYNtURxnDEmjumg=;
+	s=arc-20240116; t=1758059656; c=relaxed/simple;
+	bh=uD2qX1Uel1p/YrCYZ0w2oIREUJEihLSaGL7baU3SX04=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZCxleXv/YpG6imYdnln+24v0YGazAw/fQuwmXZcgckAws3NHj8NAygd3f4S9LG6K++cF5bWZvfM1WG4NGq8gv7G3TEF8pMPnt0nr+ZQqr1iZC2WjW/QvnoIJYi2oT+1Qdu8dLeD/5la0DYp0yvki4N05P6mjVx5T1mCbThFJ240=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RiKilsRb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60407C4CEEB;
-	Tue, 16 Sep 2025 21:41:55 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SAwbJ9zL8ae+HMMU9tG/DNxyJyRtJ6fJt9h3b963tNJ1Gcq5Q6mYC1VorVRgy/mAxuzu5htO4V+TUbNWyk+BYVbxVYW/345xnZwFwrCWYup+A0j38i6+kuEaDwetnKmdd3yeDcsKeM4s/4mUCeMyS7yFY3il/PnZq/lGoCHALo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1auR8Pt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61614C4CEF9;
+	Tue, 16 Sep 2025 21:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758058920;
-	bh=tRIfdhsAJMME1a45JIICOi38lqR6oYNtURxnDEmjumg=;
+	s=k20201202; t=1758059656;
+	bh=uD2qX1Uel1p/YrCYZ0w2oIREUJEihLSaGL7baU3SX04=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=RiKilsRb4kpDl0//LUuc+uz2OTTgEllKymx7sarK7K5V2gLsr1ROtovFW0kOsUepf
-	 CVUdEQwwFLuSUlqYhn6YaIEwVcdS85CEUrDgYJ/g/48X7rp29GP9CNn6aMIQ33PIx6
-	 qMTtsWRCJkxlISgeK+B5r9gsmYQwYK6nqqaFNCyItywRMPpokt8mtHhDOYHRiXCGLD
-	 KWtBypRC0GLgKb/k4OKDQX3TcZQszrX6kdAAB5qWE85+zq27Y2ISZzvlf2onQxOUXP
-	 eVaTIJcnLNpTPwq+FD10s0x7LBVntsCuIxjWMtNZ14xDhjF+mKr+hGMh5HIGCYjgHd
-	 JlE06EhPv51FA==
+	b=p1auR8Pt42Tym0qXlywjGsGpI7yOQUKBihw+ZbyLwgwqRAcacfgBwNuNLc4IpdXkB
+	 j//1lYuA63R42y7IpOA3LzEJhiOVRxeijucpj8mpDLBqBRmEflGhUZQwrQ+hamHwzO
+	 LBPqBYA2gNOACgVcGrhRZ20m32MvlhFAIis83zXBz6nzuaqglL/TUD3q5lea0tY3AQ
+	 OUEPZs4Gazbn5xpjYCQm7oVQyrkPNE/ZdbxeZYwSjJu+SnFJUduaSRhfoFtDusmlmt
+	 zLUszYZeaxYao3yCC/7bl1Wa7I2TVFXYI6mvpPuFFM86yyUNRhcnKzrahsoAD9MejF
+	 J2vy1PjVIKDqA==
 From: Mark Brown <broonie@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Shengjiu Wang <shengjiu.wang@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Jonas Rebmann <jre@pengutronix.de>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, Lucas Stach <l.stach@pengutronix.de>, 
- David Jander <david@protonic.nl>, Oleksij Rempel <o.rempel@pengutronix.de>
-In-Reply-To: <20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de>
-References: <20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de>
-Subject: Re: (subset) [PATCH 0/4] Mainline Protonic PRT8ML board
-Message-Id: <175805891512.247117.14108545633571750279.b4-ty@kernel.org>
-Date: Tue, 16 Sep 2025 22:41:55 +0100
+To: lee@kernel.org, lgirdwood@gmail.com, alexandre.belloni@bootlin.com, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ Alex Elder <elder@riscstar.com>
+Cc: mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com, 
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+ linux.amoon@gmail.com, troymitchell988@gmail.com, guodong@riscstar.com, 
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250825172057.163883-1-elder@riscstar.com>
+References: <20250825172057.163883-1-elder@riscstar.com>
+Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
+Message-Id: <175805965212.251163.14858159964329617503.b4-ty@kernel.org>
+Date: Tue, 16 Sep 2025 22:54:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,20 +66,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-56183
 
-On Wed, 10 Sep 2025 14:35:20 +0200, Jonas Rebmann wrote:
-> This series adds the Protonic PRT8ML device tree as well as some minor
-> corrections to the devicetree bindings used.
+On Mon, 25 Aug 2025 12:20:49 -0500, Alex Elder wrote:
+> The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
+> converters and 12 LDOs.  It contains a load switch, ADC channels,
+> GPIOs, a real-time clock, and a watchdog timer.
 > 
+> This series introduces a multifunction driver for the P1 PMIC as
+> well as drivers for its regulators and RTC.
 > 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[2/4] ASoC: dt-bindings: asahi-kasei,ak4458: Reference common DAI properties
-      commit: 8d7de4a014f589c1776959f7fdadbf7b12045aac
+[3/7] regulator: spacemit: support SpacemiT P1 regulators
+      commit: 8b84d712ad849172f6bbcad57534b284d942b0b5
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
