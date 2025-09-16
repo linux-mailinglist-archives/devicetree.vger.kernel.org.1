@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-217843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2994B59632
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:28:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61840B59635
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:29:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF774E6911
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:27:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 737041623F4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2B030BF7F;
-	Tue, 16 Sep 2025 12:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F693043AC;
+	Tue, 16 Sep 2025 12:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1jzHQiJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="arr8eIEG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7116D296BA9;
-	Tue, 16 Sep 2025 12:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1BF2C1591;
+	Tue, 16 Sep 2025 12:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758025651; cv=none; b=HD5GEFTnVULoIHw1SJXeDtLIFYaqXHmmiC2qy9q87aOrdKWi8ddilMcLCNIeT2hth7xEKPAt63aJ5HQNBtttfY3Z3m5ny7F+ssNi4f1SNpruWkeDc6BcoGFtReJRVgv89NgAWCvxb5+r5yOt1J5B8sK/MtZMPFK+84zxAyW+THI=
+	t=1758025739; cv=none; b=siHtcQHzOSIeXFYogQi7Vw0iH5SNgHCX5g+P0wlXUdlWNsCqnxR+EcDGa9ySHqF9a+6XG9Wpws/nnqXY5FMGuMcQQaJ0jMz8NGy2RWsc1s7sH1TCdEO2wauXpv5LCpBPoHV9BA8FmvSVaeaqtpvhVr/+VJ2dd5AxfUEXB4GSWZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758025651; c=relaxed/simple;
-	bh=PNIloqRamoe/Ge+tqcsD4qceDuD9HPaHcfIdp82zej4=;
+	s=arc-20240116; t=1758025739; c=relaxed/simple;
+	bh=ufbpKFGMaPkQFTeuXMfQuM5xPh9Pyrq3kfj35C9mwaU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WCYCnSfgx1Z603HVyWIBIYrjxOAnwKnJfSI/tq3Ngq2rSiL8aWvuNeKBEANRRBbU8yYGVHF5tFFnjVbLxRRG89NEv1pEueurfaTSS9Ms5kzgxq2e83wLJ7Svq5eiYVx9kxsqVd4xsmBS8XsXw3sdXcqdppXOfyOnPti97YU+w50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1jzHQiJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 107E0C4CEEB;
-	Tue, 16 Sep 2025 12:27:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tEKdyUirlQu0BNmKBQf9hITX2THyQc3UlYcNoq8BI1M1uwRFc/leZNcvmlRUvk3PIvyqoATd+g/YF6+OzfAmt8sKJGLzqlTttwzNB3SidkvuK3cU3j2aN2RY4Pk31SpoaLSZKBf+YtaMDaYDqeEB/rNzUKG8p9CVKbIH+Hf56Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=arr8eIEG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A45BC4CEEB;
+	Tue, 16 Sep 2025 12:28:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758025651;
-	bh=PNIloqRamoe/Ge+tqcsD4qceDuD9HPaHcfIdp82zej4=;
+	s=k20201202; t=1758025738;
+	bh=ufbpKFGMaPkQFTeuXMfQuM5xPh9Pyrq3kfj35C9mwaU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D1jzHQiJiKYPH1CgVKK4Ty4Hg5VhVK3z3t8zMDGq+GocyFcKU8bBAH4mz6zJmkSR/
-	 GLv+WQIGKQ3jW8dhfqFqd+vDQ2KBAMYz8Vs6ZgyqBdPvuhLtKrxqO8hGlYTL/QFmJa
-	 umaOAcoPFzYfyEtZxsvOugzqJm6O5OV3sHftIJv5AgTL/fm6mg1I0dIgKRsJkzblc0
-	 PtUOqM+6PVr21bfBYZSmujcMX4qsoABOWuZwiQUyVEyAM9WbmxaiqhBBf36Y1u+9j4
-	 sejSITCPRgzLOORWc+5hzCuQgWQ9AHnc9Mro0NmLJAgzoHnYUZbOONCyEgpp9cat9j
-	 zZowNpBu2FqGA==
-Date: Tue, 16 Sep 2025 13:27:24 +0100
+	b=arr8eIEGWBmy0530jOL7/rJYFrqihIngrPOATRcP+4zTOTu9510+s0GCfToHHcuLG
+	 1NcMzlSvH6HlZIDQiv4kRK5LV0XLHeOJxYQYVyf1GMdY4KXXQfdQrpIg8kf9iQ/AfZ
+	 r//fniNFsZ55idmg+K8So9uzXrndpsksZ/rEhSeRF/JPhlDbCv6nVHk2CdzMCjsGOy
+	 rIv9GMOJjEKMbFA5d8xuza1E8mP2RXMihkSuihVFnxH5CnH7TQHDF5jpAK1IGCX5lt
+	 QSsEQMzKCV11z3AW90Z5gGjzX7KekyVC/l2wtDFLa5oowcTZIJAKnWp4wPLZ2kbl4h
+	 O2LX1TJfm+nig==
+Date: Tue, 16 Sep 2025 13:28:53 +0100
 From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Alex Elder <elder@riscstar.com>, lgirdwood@gmail.com,
-	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mat.jonczyk@o2.pl, dlan@gentoo.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, linux.amoon@gmail.com, troymitchell988@gmail.com,
-	guodong@riscstar.com, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
-Message-ID: <20250916122724.GB3585920@google.com>
-References: <20250825172057.163883-1-elder@riscstar.com>
- <175690199980.2656286.5459018179105557107.b4-ty@kernel.org>
- <ec882a78-9604-45b1-9405-8f2f958f307c@riscstar.com>
- <7aba368e-709b-49b0-b62c-f2f8250c8628@sirena.org.uk>
- <20250916084229.GG1637058@google.com>
- <c8bcfff9-9d2a-426d-9df8-100efd2af64f@sirena.org.uk>
+To: Jonathan Brophy <professorjonny98@gmail.com>
+Cc: Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 2/5] leds: rgb: Add Virtual Color LED Group driver to Make
+Message-ID: <20250916122853.GC3585920@google.com>
+References: <20250916110217.45894-1-professorjonny98@gmail.com>
+ <20250916110217.45894-2-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,31 +65,62 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c8bcfff9-9d2a-426d-9df8-100efd2af64f@sirena.org.uk>
+In-Reply-To: <20250916110217.45894-2-professorjonny98@gmail.com>
 
-On Tue, 16 Sep 2025, Mark Brown wrote:
+On Tue, 16 Sep 2025, Jonathan Brophy wrote:
 
-> On Tue, Sep 16, 2025 at 09:42:29AM +0100, Lee Jones wrote:
-> > On Thu, 11 Sep 2025, Mark Brown wrote:
-> > > On Thu, Sep 11, 2025 at 11:36:41AM -0500, Alex Elder wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
 > 
-> > > > How should these two patches be merged?  Mark has reviewed the
-> > > > regulator patch 3 and Alexandre has acked the RTC patch 4.
+> This commit adds the Virtual Color driver to led/rgb Make and Kconfig.
 > 
-> > > We'd both have been expecting them to go via MFD.
-> 
-> > Why?  I don't see any dependencies between them (usually a shared MFD
-> > header-file).  If there are no deps, it should be taken through its own
-> > repo, no?
-> 
-> I used to just apply things but at some point Linus complained about
-> cases where the MFD ended up not getting merged (missing the merge
-> window or whatever) so I've been treating them like they had an actual
-> dependency.
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  drivers/leds/rgb/Kconfig  | 17 +++++++++++++++++
+>  drivers/leds/rgb/Makefile |  1 +
 
-Not sure I've seen any of that from Linus, but I don't doubt you.  The
-MFD part has been merged now, so it's save to go ahead and apply the
-Regulator part.
+This should be squashed into the patch that introduces the driver.
+
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 222d943d8..70a80fd46 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -75,4 +75,21 @@ config LEDS_MT6370_RGB
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called "leds-mt6370-rgb".
+>  
+> +config LEDS_GROUP_VIRTUALCOLOR
+> +	tristate "Virtual LED Group Driver with Priority Control"
+> +	depends on OF || COMPILE_TEST
+> +	help
+> +	  This option enables support for virtual LED groups that aggregate
+> +	  multiple monochromatic LEDs with priority-based control. It allows
+> +	  managing concurrent LED activation requests by ensuring only the
+> +	  highest-priority LED state is active at any given time.
+> +
+> +	  Multiple LEDs can be grouped together and controlled as a single
+> +	  virtual LED with priority levels and blinking support. This is
+> +	  useful for systems that need to manage multiple LED indicators
+> +	  with different priority levels.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called leds-group-virtualcolor.
+> +
+>  endif # LEDS_CLASS_MULTICOLOR
+> diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
+> index a501fd27f..693fd300b 100644
+> --- a/drivers/leds/rgb/Makefile
+> +++ b/drivers/leds/rgb/Makefile
+> @@ -6,3 +6,4 @@ obj-$(CONFIG_LEDS_NCP5623)		+= leds-ncp5623.o
+>  obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
+>  obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
+>  obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
+> +obj-$(CONFIG_LEDS_GROUP_VIRTUALCOLOR)	+= leds-group-virtualcolor.o
+> -- 
+> 2.43.0
+> 
 
 -- 
 Lee Jones [李琼斯]
