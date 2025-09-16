@@ -1,156 +1,136 @@
-Return-Path: <devicetree+bounces-217781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D76B5934E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A937B593BA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:31:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A44B81BC5380
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:21:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A4991881723
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BFF30274A;
-	Tue, 16 Sep 2025 10:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GnSbv5g/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0816D306B16;
+	Tue, 16 Sep 2025 10:26:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD6429A326
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:20:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760163043B3
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758018039; cv=none; b=EQiHv9IxkGN6Y5+uYgkH9pUG0Yvv2TCBYWarhH3AYdp7B2eKuEtzq2kepn3dCnQJ6Bmjdr7U8BsSZQy4R3oehBR8D1luiAG/AQANNxGSMd6LRsfJEr80tjA9HQNK53/+kmahq0Lsl6j067QNJi972a6YhQyWWcH+sFYMKFD+lL4=
+	t=1758018409; cv=none; b=sGwmznR91RChkXLD7/Ml+WkysdrepfzD0ZOhvh9+66WKDACGQSfEtXt+3mr/7Jeqw88XAEGER3vg30nem7mQOYXPCq2AqDop8OJsfU8e2I/wcCyEUg/QVVTnuAd4K7c51DqzUI++Ua1qv74JoB3T7V8JivqCRyfj4wSXAjDzMZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758018039; c=relaxed/simple;
-	bh=Z79MuAHqLmnfhIXPhPe1WTgGzRY3sqQwPS+B2AZHKGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q7RRIdJkE6nzdEb7Y+8uB8E0LGbtg2C3iwyu9iQwyLpOXXJ89Q7wMCsxZ4EbOEu/cS5i3ZtBm3mIWkrhyvbULa/IrghggPyFYE5z5bTZ6keN48OKgtB6DnMIUxATTitu7Zsh9J+x/EU/ouu9WSi1v+F8+eJ2AMZ7YGkeq+B4VTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GnSbv5g/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA4kOA019791
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:20:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=fX0Y/gtR++vND/LuB2Nc1fsO
-	EUd47UfUpCZUEjof6Zk=; b=GnSbv5g/5O3hW81nWJ7ffFKFtbH9IDf6UXsaINIf
-	SVCUblUcW/qjJdYivWkOQe5zw7uZxPqnBiTqoB4SqZRsoWGJFH+sHFgSxs/vNlAG
-	Lu4e+AiGiqK6CzA/QGQFteHdh00+C906yXsYkVuvsAxbQspaRpyHsyFloSqbgVv0
-	Z9vYFcglIbaoYgUb2qvYygdfDMKTJQILB0YktwMLKwmTL8wPbC09UV8UVcATpDiU
-	oOdBCD9KRgDv8RUWuX56xPHtpbe5/2r7yS88nGLpC1Jcwcq2XHbjP43+2T1rQaeX
-	sIYf42LSBb33dU2ByJU1S+iVzTy+fZSYIpytDI+qXjhuQQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494yma8g4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:20:36 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b5f818eea9so101799101cf.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:20:36 -0700 (PDT)
+	s=arc-20240116; t=1758018409; c=relaxed/simple;
+	bh=M5TSTKdOE7KOvxaTBZ6x7dRz7TvGD4id6ZsQA8rgfRk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EiMWsyMTGJxLRMjPAHTG/gDb7vBP+h29rFIhU20yIllWLT4vXssw7EySwYTzyPZhj02t6nkvy8K9w220o42Q/ug1+p15UnnB6U/ShXq+5CDPPmUNXsVWzKYdH4blHQCIOahoMfHaFRK0sXs73HZqTb6jerrkMGSrtmY2/QR1Ugs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-751415c488cso4593953a34.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:26:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758018036; x=1758622836;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fX0Y/gtR++vND/LuB2Nc1fsOEUd47UfUpCZUEjof6Zk=;
-        b=cONnrzf+qLcJM6kY7wAN4Yq5Qg1n/rDASGD5x4C8tlIQbT4RKQVcndj+bteYeXL+B+
-         8xixaeW8XAI9XoeNkrBY7WmKSZo59vWM8AtOY7JbQ1PaJSxFTI1gRQl/JQM9ciwBEca9
-         o8n06GPuTDhKmO2trXI+SSE/r+lu49Jl20DDqhHYcJCTUvurCSMtFn47X/AzG8R993uB
-         T9pxKchIwhFvRaJkiwLJC/j00kNU9jcqwQ7qcdpjYGMMNMuBmYVNYYtUNaYmgqfMeD3Z
-         Y5hlUOYLBZ311D5nmpEw3kyHYaj+N671TAnVq0i5Sw2VBkci1JsshiNaNwjpEnPKlGI7
-         qYgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFt/WCBLh5E6T2LI/AfE94QdqYLrcZ49g/LhOkczy749oMdwaa937rdd+ipObI/nL0PKJLcU2PuC5P@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsunLFgxH1Bpnh3bDaSsBWhF8E3KrRmCLHQakvrZDrwdHlEK0r
-	TENNPzxE0YN0PKrRcxDGFZNs6MXf5H3SQS9Udu3UOTRPFse+syQlKpIOuygCj2ow8tipYvYHdB8
-	GNOWCbOg1fvzptjlVAWD/A7JqaHPBviF714bTlUQHTKtuC96Zo2xg1XNlNBciLrrF
-X-Gm-Gg: ASbGncsdW5mNDeB6eeXPieTb7dLWc5ozFKad3lrdzWJGWbzIWXTynUUJpBUlwZqyKk0
-	mhA1xzzklJWTInofVLCu9NqVUMVxYQI6gH7wQDjsN//uBHHHtRImSAUMvOOWoh7OzK1BMRMWN5S
-	QJCURLGRFuVktRuZupnpeKR+ZT83ntyH/0uiH+EmAX9mcKBBC2zvBzDV8lTKQ8g2jJwVmLhNcv1
-	D9L6RT0zzUjE3UcFn2pLG2ZLRFsNzqHqxhfB+IeUuqlUyZcjRvQT99tcPn+2p2ECz/0n9cKX2GG
-	xarS4ZpblPK5giLd+QU3pedp3nfwLu+shmHw2Q/TibGQ2Cl3Yxj8fm/bFZcnf++NwJTWbMTIKJh
-	CmTPanUkCTp3scCMR6LZXOAL7MY+WF7YkZhWW1LQJMADDsoO8mxk1
-X-Received: by 2002:a05:622a:4d45:b0:4b5:e644:67e with SMTP id d75a77b69052e-4b77cf982a8mr262930391cf.16.1758018035902;
-        Tue, 16 Sep 2025 03:20:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFwQ1pTniGU4JXGr/sMdK5biZOWU0CLhI+tTtSwMj7eFmqrGcBZ1WkDskr95Pi8m+6q+eazYQ==
-X-Received: by 2002:a05:622a:4d45:b0:4b5:e644:67e with SMTP id d75a77b69052e-4b77cf982a8mr262929951cf.16.1758018035258;
-        Tue, 16 Sep 2025 03:20:35 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f1a8211d6sm34724701fa.43.2025.09.16.03.20.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 03:20:34 -0700 (PDT)
-Date: Tue, 16 Sep 2025 13:20:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Subject: Re: [PATCH 4/4] regulator: rpmh-regulator: Add RPMH regulator
- support for Glymur
-Message-ID: <gsnmpdxnuihagle276sagfcxpblxvwtjztb34r53f3nub7be5m@twj5lizpevpd>
-References: <20250916-glymur-rpmh-regulator-driver-v1-0-bb9b00e93a61@oss.qualcomm.com>
- <20250916-glymur-rpmh-regulator-driver-v1-4-bb9b00e93a61@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1758018407; x=1758623207;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D1FWUIy12ESADGq4B/o282N3x/QgWaUFK1UozSJnDAM=;
+        b=FoteXbJWi0P7M/WzUoSB+wf66OUxmjFD7PpyhJHytkGMZuttkDSn8etEZ/AK7XlCMG
+         4YopNLB7ygMovci+Isnofa+jzbxIVUq0bXC1sLSdoOS5H4J5fjQ7kreI7Wh5emeHb5FG
+         /M552DMeeo/CmCdMkf4dv87n02euQejJ/AgN/mYnwGymY1sBCvz9JQBDoxbhCRmDwIaY
+         ATKcUQiXCZXbQ3nT+gmngke7/msO3h0qvdCcwXIcvz8bhfeUi7cik6E5zvBfS8jPc548
+         fxHtJb2bVJHqqEuAN/1LtMPGg/ajWNZX586C+EVScJe1YkK16DL92/6FNHpHt5PLM+AD
+         NTzw==
+X-Forwarded-Encrypted: i=1; AJvYcCVhnV3PzZf+eygOtXtW1YdoTsorHofBmjDKd+Svn0ZBFAvxDTXyfDbNX1OhnF3wKXLDnZLFglTFyzXX@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywk4eb1jfHdroDytYD50dVzkXLhmbmB6gtLtehYIR/HnjDEaOVU
+	1hnZK3JyREQKs/agW6ugeGUeHgvdWyxbM3fWsbF4tuYrq9Z2iQqpnR57+d0olO+E
+X-Gm-Gg: ASbGncsBXjxcq3Zr4KE5IfC6klXAzr2qlcD6GZKpihPh8003OYMUEVF/kYggeNuMfGp
+	KRxeJHbklrkXcOWByl4bBVNRYS34irXGDyXOcJ9vMc2QFIDpzgSI42FohD1hVs7a35SBQZHCW4D
+	cvnGfrkMWXULqjBVAiGsoNJEYB9zjBRpRdAyECqzT+WAvy4Zbi2oBcuRo3BL2lnYtaMRgaOa4Td
+	vFcAGwdDfRpD3rUVzT77ByvpajHqXH+kozmHPhIJAJqX4otuDpSOt7xpa7FeEfDOsh100KZGAf2
+	65PvC9Gb+mV0fMgIdofzc/BkPmdEJZfEw14VmlPzUwch0DlsY6uqe24ziJv4RU3rmXEqiLr2Xq7
+	Sq8pBbyxO3tp53ungCFomnzG6Mp1z7GwIvH9QrA7Q0EVWf3rxVNPA+unZo/wO
+X-Google-Smtp-Source: AGHT+IE7/1Nx09pz1tgjLGfwMXCTCwnDolSIJBKS8ybsxfF9VPjT3l1ki1/aF4AMChvFK7hsoDwD5g==
+X-Received: by 2002:a05:6808:1881:b0:438:3a20:786f with SMTP id 5614622812f47-43b8da86fe3mr6663913b6e.49.1758018407041;
+        Tue, 16 Sep 2025 03:26:47 -0700 (PDT)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com. [209.85.210.46])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-43b828d370esm3165750b6e.3.2025.09.16.03.26.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 03:26:46 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-74381e2079fso6282817a34.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:26:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV2B8O0q3xAq0j8zmCbzrmzif89IIQpbOa9oTTyl20tl6KnBShFqj5/dUUyMgNU22PE6zb30sadQ+Bs@vger.kernel.org
+X-Received: by 2002:a05:6102:3ec6:b0:529:ee6c:6760 with SMTP id
+ ada2fe7eead31-556091886d7mr5576842137.7.1758018092612; Tue, 16 Sep 2025
+ 03:21:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916-glymur-rpmh-regulator-driver-v1-4-bb9b00e93a61@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxOSBTYWx0ZWRfX8AB90otCaE3p
- q6BmU/F7cG7nHfjXhDKaclQwq0H9J7QH9HJEjwyvC/ilFy0pX07Ua7TLEV+OMrI7QaH0EQ3mpRu
- TbP4WzggXdwMMWJkf/N8DUbskYhT+nhhCXuQsWyrSCYpksXjbNCHkc3HbdU8X9HiFh2uZboBzZm
- Ip6ArRiq6Ir9zE4rGZnv37sJeOkxsXPh008CYXVOJnd/0NxOcImvR6XtzsI0B0WjEZEDBXTPtyU
- HZep4qjelcfb++fH1fXLpIiPLBvr/5sWZ8QNL0+pSZkyo+0zEuLONfFcxqH50zPFCW1jVk8z/UQ
- 3qsfpTStRifTZ8gZ1PZjchlxLrHAAqc7hgXd0N+RViTf2Vjk8ASutkYps66oL3gDZ/LkYOSGjpq
- HYT1Dt0u
-X-Authority-Analysis: v=2.4 cv=cdTSrmDM c=1 sm=1 tr=0 ts=68c939f4 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=A_yzNFqrIlXfnZhuJ7gA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-ORIG-GUID: 4x4f2yqY_OzfwqIDKiXT3_vJs7D6NPZZ
-X-Proofpoint-GUID: 4x4f2yqY_OzfwqIDKiXT3_vJs7D6NPZZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130019
+References: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com> <87o6rbi0jy.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87o6rbi0jy.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 16 Sep 2025 12:21:21 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVKhw3t6oJhWrdFCkpaXKL5EXxBAPtqiYSDPv5aDNiFkA@mail.gmail.com>
+X-Gm-Features: AS18NWA-CCVGKbHBzPrL9HA4tPoq9LGRxBm1encbDpHU-DmGUfLkgrDyZx8KuHI
+Message-ID: <CAMuHMdVKhw3t6oJhWrdFCkpaXKL5EXxBAPtqiYSDPv5aDNiFkA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] dt-bindings: arm: cpus: Add Cortex-A720AE
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: "Liang, Kan" <kan.liang@linux.intel.com>, Adrian Hunter <adrian.hunter@intel.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Ian Rogers <irogers@google.com>, 
+	Ingo Molnar <mingo@redhat.com>, James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>, 
+	John Garry <john.g.garry@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Leo Yan <leo.yan@linux.dev>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Mike Leach <mike.leach@linaro.org>, 
+	Namhyung Kim <namhyung@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Rob Herring <robh@kernel.org>, 
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>, Will Deacon <will@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Sep 16, 2025 at 01:28:18PM +0530, Kamal Wadhwa wrote:
-> Add support for PMH0101/PMCX0102/PMH0110/PMH0104 PMIC voltage
-> regulators which are present on Glymur boards.
-> 
-> Introduce new LDOs & SMPSs under them (PMIC5 subtype 530 for
-> both).
-> 
-> For these new LDOs support a new optimum power mode(OPM). In
-> this mode LDO will automatically switch between high power mode
-> (HPM) and low power mode (LPM) based on the real-time LDO load
-> current. Its operation is analogous to SMPS AUTO mode.
-> 
-> Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> ---
->  drivers/regulator/qcom-rpmh-regulator.c | 188 +++++++++++++++++++++++++++++++-
->  1 file changed, 187 insertions(+), 1 deletion(-)
-> 
+Hi Morimoto-san,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On Tue, 16 Sept 2025 at 04:38, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Renesas R-Car Gen5 X5H uses Cortex-A720AE. Add compatibility for it.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -148,6 +148,7 @@ properties:
+>        - arm,cortex-a710
+>        - arm,cortex-a715
+>        - arm,cortex-a720
+> +      - arm,cortex-a720ae
+>        - arm,cortex-a725
+>        - arm,cortex-m0
+>        - arm,cortex-m0+
+
+Already added in commit 0f356eb097c31471 ("dt-bindings: arm:
+Add Cortex-A320/A520AE/A720AE cores and PMU") in dt-rh/for-next
+(next-20250905 and later).
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-With best wishes
-Dmitry
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
