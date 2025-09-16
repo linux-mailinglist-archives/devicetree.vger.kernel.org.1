@@ -1,481 +1,184 @@
-Return-Path: <devicetree+bounces-217669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998A4B58D18
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 06:49:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EC4B58D08
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 06:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA8681BC4F19
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:50:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FD92321943
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40002882CC;
-	Tue, 16 Sep 2025 04:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C88E23D7DA;
+	Tue, 16 Sep 2025 04:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mOkH/q82"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0287B26F44D;
-	Tue, 16 Sep 2025 04:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED7D223DFF
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 04:48:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757998096; cv=none; b=Lc50Zxpn4ln6Ja1UmUWpMzT3tFHEMqLeHBft83mausAeJhB+GBhFOqFQwWzH2t6rj3ix829xMs5yiTdqENzlplOd6HBDwrzY8HDNdevFORrIOWx+9SW7cQ2jg3lNmvk+BTp2nEOx/0cONpkUOqaBGnEn4zZsNtzVzmjrTwS9B5Q=
+	t=1757998089; cv=none; b=UPOyGtvsft+11ixWjnz834NlVCnky3XPaDHHRQbzTlfthsV1p8KIRHfbL4ojpIKVB7ERRvw5iDTP3k2SkF5QpfV+A7z69TAxm4tk+ZPWB3agHg/vt5Nqrn8qkkGbLP1ojuTdlorNyzeNObFjnbqm1avymdHyZP16dVMaEWCS0WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757998096; c=relaxed/simple;
-	bh=7FDqBSaTIQeD+SFepk7Hdjlt0ELUWd6BXAOtSvnioD8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HCLqd8pu8hOKWYcGvaY1jMN8wpkGoRGtETDqknAYiOzz2S+O5I8RZtZ26WwF9zuElf33xK4gO/Pvldfl/yPdVpnxGCWYk+vJl0dtmGwrNhR+FHaDv51Es7svvDwYlsjNje+MOUq4YVonRIf+M4uQb7vt80eg+lzbC2wzxerT7cA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.dev; spf=none smtp.mailfrom=linux.spacemit.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-X-QQ-mid: zesmtpsz5t1757998030t6825d8c1
-X-QQ-Originating-IP: 8obtxEN3v62iVw9MhWHQXA+LCnEzzcs+8h5TiqCGOfo=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 16 Sep 2025 12:47:08 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15935625225466872420
-X-QQ-CSender: troy.mitchell@linux.spacemit.com
-Sender: troy.mitchell@linux.spacemit.com
-From: Troy Mitchell <troy.mitchell@linux.dev>
-Date: Tue, 16 Sep 2025 12:46:46 +0800
-Subject: [PATCH 3/3] hwmon: (ctf2301) Add support for CTF2301
+	s=arc-20240116; t=1757998089; c=relaxed/simple;
+	bh=4lljxmCPotEpCOZhE7upKppTMYl9dHu/d2b81w17SEg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d/GXTtLfuJ/Ye5nYMiB8gyStdvS+3LtzP6C78oviLB+ma0pD/OzTbMEtzIM1bOpMYkE/caEWY4EfhT8Ovby3SM9R0S/PPOoNXmUoyzx0Uw+EWY7661wD1KIUhMo2SLHSonzaHLJb5U8/eUEYjalqJj86NcwsqXK5HVy80mM0vr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mOkH/q82; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5725e554ec1so1716231e87.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 21:48:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757998085; x=1758602885; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nva31CQb9RnyQWaIyMrnWR4lvFSnR44SZz1OrBIg3bw=;
+        b=mOkH/q82NRjqy6+0jm7e27z0/deUYJZHoFFGa6b7ewSKl1beyBCmJEPj3besC2vufb
+         IPV0XQuV+XyRnjatgOwReU0Xu4dTvRJiiXRgw/LlIoSlFmbt+TMTksTbzMlWGcGtJB/Y
+         tktH2rSyfAKIcVVDxTL4mwCOHXV7WvNtGTFahChQa4R11qiMego+ljmD6d7IiDTnpBnV
+         05Ae+x8goyOyQvdFjIJjhjVQc6dF2F8bmEHEDn3nMhwMvidhB04oF1w40OiZehJwrLcj
+         ew+M1slSleRkpF0tUOk12llcpm0s7sjzdY0gnpFg4uM4ndmfQ1iU8vQCI1MLHvo78RrH
+         7nnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757998085; x=1758602885;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nva31CQb9RnyQWaIyMrnWR4lvFSnR44SZz1OrBIg3bw=;
+        b=jr8FVsFEKMH3uKVWqPs4DOqf/EZhDghkqAkWvuQvwuvr1m9et9VQCFrHuxsFDsgdBK
+         +IrvhsqmeFhFpaDV6ukYcLcIzLzRImDQEEBvi3GYQu3fPhuDeSOC1sQN8wgUiztQMm0Q
+         D7bNHqDYzMj+xtcKmlIAAj/nisKb86kbBw57LTDmSCU8Wq6Uzg4kyx6vC/KZckrj2iY0
+         0LQYZMj6mGTJbn/+RzS83G2YLlOdqDQy2SQfZRiVgXblhQuVdE1gymgIH17jzwBLb5zk
+         x0yi04d6Yw7vgPYCYTc2h1k0o1LJjrMGJSP6dl3n/NKPchm3r9qA7LJ8cKHATqJNlt9z
+         89ww==
+X-Forwarded-Encrypted: i=1; AJvYcCVQY61dhYQPyZbiRW/RGC+4Kp+O1npMcJgKRpZb8XLv3ZEcPPtuxldusfk/GYWetyFVIQZl49shVcLX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgfUvFq5p10fyOzC2+lB8DbDiA3LLwB6C6OVWSY39hd0af4Mn3
+	HnuendVllcKTM8lcCqGqxm8V8tfSQQegUseYx3wgaifvY05hN0nz/CBj
+X-Gm-Gg: ASbGncsjwsjUVH9R5MDPMOW+69h/F/CkhgBij3vx+wf/8F11HTCA0D0ccpTEo7E6I8u
+	uOwigcIBX4PKDtxUWPDUD8s1UujG+XHJfW/92IRkTSuvFjXjMLZmuEKhZc+Qvl2ljLd/wcTmdTl
+	/Snng73uQS8Yx3f9XyacfB+A/17FX3VOY/WlSlwREqc6hDdCrkw0upgFFQUjRyoNuu1JgI6SM4+
+	HN8qyiIHvRVBrKwBJLFndkawiBFvfUniUVGCQGluz5er0iCE3q/7wJQICIQ3b2XNUN+xKXtgIC9
+	Ouak2eMonDF4X6+Qx9f/CKvuGUr+gRzfveAbmV5CEVgFiSPSCoLIbtSEwkMAWs3XlW7P1Bwt5+3
+	Hs6cTLf7XKV4I2v/b5loHxfb7nVpb4LMDE08Jb8bSiX8/NBUHlAHoiOKNjJPejFOynMtgJidMlI
+	tI/IBC
+X-Google-Smtp-Source: AGHT+IHo4ALErq+Xx1bjNqpiiFLemDYjjyezLrlBYACjFEDZuKcuTSOA/KJFI2YP161fK5ZvVyw5EA==
+X-Received: by 2002:a19:6a13:0:b0:56a:4f7:6756 with SMTP id 2adb3069b0e04-5704a3e6c5cmr3236714e87.9.1757998085119;
+        Mon, 15 Sep 2025 21:48:05 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e6460d4b5sm4179446e87.97.2025.09.15.21.48.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Sep 2025 21:48:04 -0700 (PDT)
+Message-ID: <0b97adc3-4d77-480f-ace9-a53403c62216@gmail.com>
+Date: Tue, 16 Sep 2025 07:48:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
+ <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
+ <aMge0jYwYCiY72Yb@smile.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <aMge0jYwYCiY72Yb@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
-References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
-In-Reply-To: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, Troy Mitchell <troy.mitchell@linux.dev>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757998019; l=11048;
- i=troy.mitchell@linux.dev; s=20250710; h=from:subject:message-id;
- bh=7FDqBSaTIQeD+SFepk7Hdjlt0ELUWd6BXAOtSvnioD8=;
- b=NzmlPaZHs9es9lVF0lCU2u+sFsLBUp0dyCac9c7mbRuN5dGGdzMDw1R5M6+Td3KD6wtPAQpdT
- YVxIpZGjIjxB8EWGWny/VQ5SuVAS4PtD8hOfKWSh0e+uK+89BAT0S/A
-X-Developer-Key: i=troy.mitchell@linux.dev; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NeKth1cv365lAvVTDN8Emr6kOga+Lg6SVlRiquYq96tcX/cy3nXI57W0
-	tXXR9ileETaUdmYR16QqOfmrCVSgR0Ji6KdovssIW4wHuiK6mR+kNtrUpzRowlFMwxKoz3Z
-	meelBVs4OgFqffjiDq9Xmg1YKEbn2nHzCzPQF5mFRHQT2EtWZpk/GebnPobdbOHL/45IwZh
-	DPUkvzz+Ea16jJBi6Jp7u3FSib18ZYCzQ2t8tax2rIBU1JbT4xSmCbyPoU74crNv1EF2cH8
-	kaf7ZbZbOVD3ncNdCr0JuTw7rVj33WR3GutKh8CrBa0uy8Ctv0j9ZWrC5j86Iwq/ZJPiZnr
-	9x9hiQsZkBAsz5xhja1zfG52peU+1FxZE7U/L1c28rJHWmGwMItiSvlXea48EQgdf0o+5Wy
-	VrLUqw5nQ1JvJx01Fl3cLMsFBXl7dvaH5sT14js+OCtFjCiTZMHuUbCWtBCFlYeZR+TrG4O
-	JT0LCVAoLjDqzvMqhJR3U5151pCVkEMEZbS3oVPg6tYw4LVka92McNTxYwVk1/bFKltJsHW
-	u9vd14qS8Y/i33I49MNAvJtMpf1BNZp6Knk4gcLZRtC1c1LcPL61S2Fp2XQ8kBDYP/hpgnI
-	9J36d+Kq9GGQecdvpQINiQkpdW85eA5yw1JHZEU0cOBk/v+R/At1XIDr+4w5C81wi4Xb8jy
-	uR+aEOvJoIVjGa7hO86kLQZGGPTV9cAjLz4wS2Ip5FEhecsGITc8a7qoxa+H5HzKnPXApuz
-	BeUd1b2yWYr1bs4EWhb4M1HI84AV7ZSuSvNZ1CMbGbErbr7aqhEFVWNo5HP5J28ERVcQ/pT
-	OgnUC4kJcCnjnHNvm5/lms7wrMaays02X2ODMY9Ej9BbQvuRBKv5/WhIUh4dRJ+TgfZYuu/
-	spTWTmId7NKf75YoyzzMyCW6FKss2DIzIMwD+z2iRn6L+yvzoehYgrm59v1GW/QWbyaDfZi
-	58Sl87XqhVPA80MfmfKQ2TPBrhSsHdvPrkAh/tiibHkmN6Z2R7SmzeCRpZMM/vNJjTUroJs
-	Tb4szk2Hz9gOLMbeua+6/AORbmTQgeTFjbPXdY4VuaO7/1v6WjwHsUHsrELCDDhzzeOoWhK
-	Wz3yP1uw2Jud9DqGm45LHYUlDN61Rt84Rk0lLbkizwD
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
 
-This commit introduces driver for the Sensylink CTF2301
-system-level thermal management solution chip.
+On 15/09/2025 17:12, Andy Shevchenko wrote:
+> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
+>> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
+>> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+>>
+>> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
+>> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
+>> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+>>
+>> The IC does also support CRC but it is not implemented in the driver.
+> 
+> ...
+> 
+>> +static int bd79112_probe(struct spi_device *spi)
+>> +{
+>> +	struct bd79112_data *data;
+>> +	struct iio_dev *iio_dev;
+>> +	struct iio_chan_spec *cs;
+>> +	struct device *dev = &spi->dev;
+>> +	unsigned long gpio_pins, pin;
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+>> +	if (!iio_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	data = iio_priv(iio_dev);
+>> +	data->spi = spi;
+>> +	data->dev = dev;
+>> +	data->map = devm_regmap_init(dev, NULL, data, &bd79112_regmap);
+>> +	if (IS_ERR(data->map))
+>> +		return dev_err_probe(dev, PTR_ERR(data->map),
+>> +				     "Failed to initialize Regmap\n");
+>> +
+>> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
+> 
+>> +	data->vref_mv = ret / 1000;
+> 
+> I still think moving to _mV is the right thing to do.
+> There is no 'mv' in the physics for Volts.
 
-Currently, the driver does NOT support the Auto-Temp mode of the PWM
-fan controller, which provides closed-loop automatic fan speed control
-based on temperature.
+I can see you think so :) For me it doesn't look good. This is in-kernel 
+C-code not physics textbook. For the kernel C it has been convention to 
+_not_ use capital letters (or CamelCase) for variables. This convention 
+is strong enough reason for me to avoid mV in a variable name because 
+the capital letter instantly requires my attention and makes me need to 
+consider if this is "just a variable". What comes to the vref_mv, there 
+really are no true downside. It is clear what the _mv suffix denotes and 
+"there is no 'mv' in physics" is really an artificial problem.
 
-Now this driver supports:
-  - Reading local temperature.
-  - Reading remote temperature.
-  - Controlling the PWM fan output in Direct-DCY mode (direct duty cycle control).
-  - Monitoring fan speed via the TACH input (RPM measurement).
+>> +	ret = devm_regulator_get_enable(dev, "iovdd");
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
+>> +
+>> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
+>> +	data->read_xfer[0].len = sizeof(data->read_tx);
+>> +	data->read_xfer[0].cs_change = 1;
+>> +	data->read_xfer[1].rx_buf = &data->read_rx;
+>> +	data->read_xfer[1].len = sizeof(data->read_rx);
+>> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
+> 
+>> +	devm_spi_optimize_message(dev, spi, &data->read_msg);
+> 
+> And if it fails?..
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.dev>
----
- drivers/hwmon/Kconfig   |  11 ++
- drivers/hwmon/Makefile  |   1 +
- drivers/hwmon/ctf2301.c | 326 ++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 338 insertions(+)
+I am not really sure under what conditions this would fail. Without 
+taking a further look at that - then we just use unoptimized SPI 
+transfers(?). Could warrant a warning print though.
 
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 9d28fcf7cd2a6f9e2f54694a717bd85ff4047b46..2120d891e549795c3f3416d08f71916af714f6b6 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -537,6 +537,17 @@ config SENSORS_CROS_EC
- 	  This driver can also be built as a module. If so, the module
- 	  will be called cros_ec_hwmon.
- 
-+config SENSORS_CTF2301
-+	tristate "Sensylink CTF2301"
-+	depends on I2C
-+	select REGMAP
-+	help
-+	  If you say yes here you get support for Sensylink CTF2301
-+	  sensor chip.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called ctf2301.
-+
- config SENSORS_DRIVETEMP
- 	tristate "Hard disk drives with temperature sensors"
- 	depends on SCSI && ATA
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index cd8bc4752b4dbf015c6eb46157626f4e8f87dfae..12f2894ce8d5fbfd942409f6c43d78fbdece57b4 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -65,6 +65,7 @@ obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
- obj-$(CONFIG_SENSORS_CORSAIR_CPRO) += corsair-cpro.o
- obj-$(CONFIG_SENSORS_CORSAIR_PSU) += corsair-psu.o
- obj-$(CONFIG_SENSORS_CROS_EC)	+= cros_ec_hwmon.o
-+obj-$(CONFIG_SENSORS_CTF2301)	+= ctf2301.o
- obj-$(CONFIG_SENSORS_DA9052_ADC)+= da9052-hwmon.o
- obj-$(CONFIG_SENSORS_DA9055)+= da9055-hwmon.o
- obj-$(CONFIG_SENSORS_DELL_SMM)	+= dell-smm-hwmon.o
-diff --git a/drivers/hwmon/ctf2301.c b/drivers/hwmon/ctf2301.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..2fea4d195519ea34c1d4bf67456098b225d4d13c
---- /dev/null
-+++ b/drivers/hwmon/ctf2301.c
-@@ -0,0 +1,326 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Driver for CTF2301 system-level thermal management solution chip
-+ * Datasheet: https://www.sensylink.com/upload/1/net.sensylink.portal/1689557281035.pdf
-+ *
-+ * Copyright (C) 2025 Troy Mitchell <troy.mitchell@linux.dev>
-+ */
-+
-+#include <linux/hwmon.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+
-+#define PWM_PARENT_CLOCK			360000
-+
-+#define CTF2301_LOCAL_TEMP_MSB			0x00
-+#define CTF2301_RMT_TEMP_MSB			0x01
-+#define CTF2301_ALERT_STATUS			0x02
-+#define CTF2301_GLOBAL_CFG			0x03
-+#define CTF2301_RMT_TEMP_LSB			0x10
-+#define CTF2301_LOCAL_TEMP_LSB			0x15
-+#define CTF2301_ALERT_MASK			0x16
-+#define	CTF2301_ENHANCED_CFG			0x45
-+#define CTF2301_TACH_COUNT_LSB			0x46
-+#define CTF2301_TACH_COUNT_MSB			0x47
-+#define CTF2301_PWM_AND_TACH_CFG		0x4a
-+#define CTF2301_PWM_VALUE			0x4c
-+#define CTF2301_PWM_FREQ			0x4d
-+#define CTF2301_RMT_DIODE_TEMP_FILTER		0xbf
-+
-+/* remote diode fault alarm */
-+#define ALERT_STATUS_RDFA			BIT(2)
-+
-+/* alert interrupts enable  */
-+#define GLOBAL_CFG_ALERT_MASK			BIT(7)
-+/* tach input enable  */
-+#define GLOBAL_CFG_TACH_SEL			BIT(2)
-+
-+/* local high temperature alarm mask */
-+#define ALERT_MASK_LHAM				BIT(6)
-+/* remote high temperature alarm mask */
-+#define ALERT_MASK_RHAM				BIT(4)
-+/* remote low temperature alarm mask */
-+#define ALERT_MASK_RLAM				BIT(3)
-+/* remote t_crit alarm mask */
-+#define ALERT_MASK_RCAM				BIT(1)
-+/* tachometer alarm mask */
-+#define ALERT_MASK_TCHAM			BIT(0)
-+
-+#define ALERT_MASK_ALL				(ALERT_MASK_LHAM | ALERT_MASK_RHAM | \
-+						ALERT_MASK_RLAM | ALERT_MASK_RCAM | \
-+						ALERT_MASK_TCHAM)
-+
-+/* enables signed format for high and t_crit setpoints */
-+#define ENHANGCED_CFG_USF			BIT(3)
-+
-+/* PWM Programming enable */
-+#define PWM_AND_TACH_CFG_PWPGM			BIT(5)
-+
-+#define PWM_DEFAULT_FREQ_CODE			0x17
-+
-+
-+struct ctf2301 {
-+	struct i2c_client *client;
-+
-+	struct regmap *regmap;
-+
-+	unsigned int pwm_freq_code;
-+};
-+
-+static int ctf2301_read_temp(struct device *dev, u32 attr, int channel, long *val)
-+{
-+	int regval[2], raw, err, flag = 1, shift = 4, scale = 625;
-+	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-+	unsigned int reg_msb = CTF2301_LOCAL_TEMP_MSB,
-+		     reg_lsb = CTF2301_LOCAL_TEMP_LSB;
-+
-+	switch (attr) {
-+	case hwmon_temp_input:
-+		if (channel != 0 && channel != 1)
-+			return -EOPNOTSUPP;
-+
-+		if (channel == 1) {
-+			err = regmap_read(ctf2301->regmap, CTF2301_ALERT_STATUS, regval);
-+			if (err)
-+				return err;
-+
-+			if (regval[0] & ALERT_STATUS_RDFA)
-+				return -ENODEV;
-+
-+			shift = 5;
-+			scale = 1250;
-+			reg_msb = CTF2301_RMT_TEMP_MSB;
-+			reg_lsb = CTF2301_RMT_TEMP_LSB;
-+		}
-+
-+		err = regmap_read(ctf2301->regmap, reg_msb, regval);
-+		if (err)
-+			return err;
-+
-+		err = regmap_read(ctf2301->regmap, reg_lsb, regval + 1);
-+		if (err)
-+			return err;
-+
-+		dev_err(dev, "local temp: lsb->0x%x, msb->0x%x", regval[1], regval[0]);
-+
-+		raw = (s16)((regval[0] << 8) | regval[1]);
-+
-+		raw >>= shift;
-+
-+		*val = raw * scale * flag;
-+
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ctf2301_read_fan(struct device *dev, u32 attr, long *val)
-+{
-+	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-+	int regval[2], err, speed;
-+
-+	switch (attr) {
-+	case hwmon_fan_input:
-+		err = regmap_read(ctf2301->regmap, CTF2301_TACH_COUNT_MSB, regval);
-+		if (err)
-+			return err;
-+
-+		err = regmap_read(ctf2301->regmap, CTF2301_TACH_COUNT_LSB, regval + 1);
-+		if (err)
-+			return err;
-+
-+		speed = (regval[0] << 8) | regval[1];
-+
-+		*val = (unsigned int)(1 * (5400000 / speed));
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ctf2301_write_pwm(struct device *dev, u32 attr, long val)
-+{
-+	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-+	int err, map_val;
-+
-+	dev_err(dev, "write pwm: %d", attr);
-+
-+	switch (attr) {
-+	case hwmon_pwm_input:
-+		map_val = (val * ctf2301->pwm_freq_code * 2) / 255;
-+		dev_err(dev, "val:%ld, map_val: %d", val, map_val);
-+		err = regmap_write(ctf2301->regmap, CTF2301_PWM_VALUE, map_val);
-+		if (err)
-+			return err;
-+		break;
-+	case hwmon_pwm_freq:
-+		ctf2301->pwm_freq_code = DIV_ROUND_UP(PWM_PARENT_CLOCK, val) / 2;
-+		dev_err(dev, "pwm_freq_code: %d", ctf2301->pwm_freq_code);
-+		err = regmap_write(ctf2301->regmap, CTF2301_PWM_FREQ, ctf2301->pwm_freq_code);
-+		if (err)
-+			return err;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static umode_t ctf2301_is_visible(const void *drvdata,
-+				 enum hwmon_sensor_types type,
-+				 u32 attr, int channel)
-+{
-+	switch (type) {
-+	case hwmon_temp:
-+		switch (attr) {
-+		case hwmon_temp_input:
-+			return 0444;
-+		default:
-+			return 0;
-+		}
-+	case hwmon_fan:
-+		switch (attr) {
-+		case hwmon_fan_input:
-+			return 0444;
-+		default:
-+			return 0;
-+		}
-+	case hwmon_pwm:
-+		switch (attr) {
-+		case hwmon_pwm_input:
-+		case hwmon_pwm_freq:
-+			return 0644;
-+		default:
-+			return 0;
-+		}
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static int ctf2301_read(struct device *dev, enum hwmon_sensor_types type,
-+		       u32 attr, int channel, long *val)
-+{
-+	switch (type) {
-+	case hwmon_temp:
-+		return ctf2301_read_temp(dev, attr, channel, val);
-+	case hwmon_fan:
-+		return ctf2301_read_fan(dev, attr, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static int ctf2301_write(struct device *dev, enum hwmon_sensor_types type,
-+			 u32 attr, int channel, long val)
-+{
-+	switch (type) {
-+	case hwmon_pwm:
-+		return ctf2301_write_pwm(dev, attr, val);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static const struct hwmon_channel_info * const ctf2301_info[] = {
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT, HWMON_T_INPUT),
-+	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_FREQ),
-+	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops ctf2301_hwmon_ops = {
-+	.is_visible = ctf2301_is_visible,
-+	.read = ctf2301_read,
-+	.write = ctf2301_write
-+};
-+
-+static const struct hwmon_chip_info ctf2301_chip_info = {
-+	.ops = &ctf2301_hwmon_ops,
-+	.info = ctf2301_info,
-+};
-+
-+static const struct regmap_config ctf2301_regmap_config = {
-+	.max_register = CTF2301_RMT_DIODE_TEMP_FILTER,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static int ctf2301_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct device *hwmon_dev;
-+	struct ctf2301 *ctf2301;
-+	int err;
-+
-+	ctf2301 = devm_kzalloc(dev, sizeof(*ctf2301), GFP_KERNEL);
-+	if (!ctf2301)
-+		return -ENOMEM;
-+	ctf2301->client = client;
-+
-+	ctf2301->regmap = devm_regmap_init_i2c(client, &ctf2301_regmap_config);
-+	if (IS_ERR(ctf2301->regmap))
-+		return dev_err_probe(dev, PTR_ERR(ctf2301->regmap),
-+				     "failed to allocate register map");
-+
-+	err = regmap_write(ctf2301->regmap, CTF2301_GLOBAL_CFG,
-+			   GLOBAL_CFG_ALERT_MASK | GLOBAL_CFG_TACH_SEL);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "failed to write CTF2301_GLOBAL_CFG register");
-+
-+	/*err = regmap_write(ctf2301->regmap, CTF2301_ALERT_MASK, ALERT_MASK_ALL);*/
-+	/*if (err)*/
-+		/*return dev_err_probe(dev, err,*/
-+				     /*"failed to write CTF2301_ALERT_MASK");*/
-+
-+	err = regmap_write(ctf2301->regmap, CTF2301_ENHANCED_CFG, ENHANGCED_CFG_USF);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "failed to write CTF2301_ENHANCED_CFG");
-+
-+	err = regmap_write(ctf2301->regmap, CTF2301_PWM_AND_TACH_CFG, PWM_AND_TACH_CFG_PWPGM);
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "failed to write CTF2301_PWM_AND_TACH_CFG");
-+
-+	ctf2301->pwm_freq_code = PWM_DEFAULT_FREQ_CODE;
-+
-+	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name, ctf2301,
-+							 &ctf2301_chip_info,
-+							 NULL);
-+	if (IS_ERR(hwmon_dev))
-+		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-+				     "failed to register hwmon device");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ctf2301_of_match[] = {
-+	{ .compatible = "sensylink,ctf2301", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ctf2301_of_match);
-+
-+static struct i2c_driver ctf2301_driver = {
-+	.driver = {
-+		.name	= "ctf2301",
-+		.of_match_table = of_match_ptr(ctf2301_of_match),
-+	},
-+	.probe		= ctf2301_probe,
-+};
-+module_i2c_driver(ctf2301_driver);
-+
-+MODULE_AUTHOR("Troy Mitchell <troy.mitchell@linux.dev>");
-+MODULE_DESCRIPTION("ctf2301 driver");
-+MODULE_LICENSE("GPL");
+Thanks for taking a look at this again :)
 
--- 
-2.51.0
+Yours,
+	-- Matti
+
+
 
 
