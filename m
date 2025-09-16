@@ -1,226 +1,253 @@
-Return-Path: <devicetree+bounces-217958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8749B59DDD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:40:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA57B59DDF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 960F87A8230
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:39:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4FFC322E52
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6C531E8A8;
-	Tue, 16 Sep 2025 16:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108DD31E8B3;
+	Tue, 16 Sep 2025 16:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Pt/n8COv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MK6tTGwL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010009.outbound.protection.outlook.com [52.101.69.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE3431E893;
-	Tue, 16 Sep 2025 16:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758040841; cv=fail; b=FgkXyaUVwwopa3W8HekfTe00ExkN1UAtcLlUaIDyJsi4YJKN/RcTElVvasAfT2iPLpqktbCSeY10dcIqkYaIy1ddfBNlCJO6fYtQTXkJoElsIo04cbZMi1ebvgUTLQYXg3F/JSCDadT//jJ++IAPMYt5OqVJU5Lalpzski6cN1g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758040841; c=relaxed/simple;
-	bh=Fh4hAXgX5jGy2I2RsC3goxBJ796cVwmIYpBv2nmn0SA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=NOO8sGvcpXyhYnQDIy+7Wdphr4Qdj+6yJ7OJG9V4wGIYaPJR1h0y5tFvGctbipPDiUfPp2rs8+cl5ejgOPDext61v1kYXQHtuNT7SMv4AlrHuR+84Szmw87PBSHr3ICU+/q2y595Jqb381hNgjd75Cot54vqRxurpcp9G0DO0AE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Pt/n8COv; arc=fail smtp.client-ip=52.101.69.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q3jA+i2dXPjYbVJdIaB6EA4Xg1bcLiBee2XnDw5b3W0U4cc/gLzvKu9PiQkKC56K9y52aqWCikPkFCXHo1hmKADye0uffsH4Jou5/F3g2LPFVCfxZja4fVXGG7NDKkpxUD3yIk150jF3ONDgaTzCM3Q7pxJFcspLVMO3wjY9Kqu/xNCsreS/xY3tSJAt8GTZ954d+LAPbbcYydPZXIIszIgr76eqsvr2vD8oLrtnGnR1+HtXG7ZxXA+Njv6My6cuxJMtaL4l05Sr52613eCPm1iQyXdJe1wpGEXGSQdmiSUvjbAPkvWA6TAKWzWcB2VDGDy0ovBcLWExcsbGRDh8fQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MO/jpbqPilFHviq+otejEmqI407C0fcmKaJkimMMvr0=;
- b=Q6YSnu6fTmYTqNINupMYjzvt+nHWq9xn5GA+p7J+F+3px/3Ycb5Mj/IoxavoKT9BDO91KoJg4J+jXT9N9sdTMu34kUbVGsHlcUlaaKgmao5hm5snod4eX0c4Bn7RLCnyxjIQfl8ZnWvCwHfXK9PKvVvBcZvcsqGih6/hkyFAMXloGgIPgvlHaOC8a7SSU+yqOxb5E/8mrhbSx0PF1YTABx1cDIqNQyzNNkCdApRn/05iq0XL2ztHTM4KOxz1ZrrLiTKXJHWEDJf9CLfTPUPRsQfwzW4fmsEudJ34oBlh0M5WC0f53mh+dLelQxWnlU8VPsLwSmhOvTvBFFzNrMdGIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MO/jpbqPilFHviq+otejEmqI407C0fcmKaJkimMMvr0=;
- b=Pt/n8COvXkU3Nae+6ssjelqwvfL9O1yRk47YWpI6w81pSM09d3y1HZJfP5DQZEXo/vKM25yFWv+8TlGfWnniXlA7E1MeWxGshHJX5tiLPQIlaCtShiP74jFKNapQKWiYQm0aqrTdbJdT7IfEK9UP1U05R+gXDkmzxlFbeuos/khjQtZ5gvhakFB+z93xiqcfEu0fl3M7gKTVcavNc1zzHyf8Caxy7aa4BcitzkMZl1meRjVVfv/7woA05ZgQYLBw/EMFu0bhiC4zrxvAiEilPgd396RU4QVesnVLUeUPfvc2wtP8v5vQvcuynPZgkgFRwkVuUZaUnjuXh9X1W8W6ng==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by DU4PR04MB10936.eurprd04.prod.outlook.com (2603:10a6:10:588::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.12; Tue, 16 Sep
- 2025 16:40:35 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9137.010; Tue, 16 Sep 2025
- 16:40:35 +0000
-Date: Tue, 16 Sep 2025 12:40:28 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] arm64: dts: lx2160a-rdb: describe the QIXIS FPGA
- and two child GPIO controllers
-Message-ID: <aMmS/Bfc6hQLgpDQ@lizhi-Precision-Tower-5810>
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-7-ioana.ciornei@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915122354.217720-7-ioana.ciornei@nxp.com>
-X-ClientProxiedBy: PH8P222CA0030.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:2d7::11) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9D731E8A8
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 16:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758040853; cv=none; b=G8RELjh7IaK3tx8nfkvHS37EbByA2OrszufJL8GJLqa9FvswYR/oksSUtFv0gsfyI4n1/1NUI0ZYR2r1cKkvB5YKefiqpXWwOPezEpzON/TYXQeF1oA33EiYYL4TveKdvXWb2Q63Kyulnj7cxMShxXTYKXcJLjjstNXzkdaFHAc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758040853; c=relaxed/simple;
+	bh=DSmVQSHhOos2PKtH8mYX9XMol+4AxC1wakS95WHvgtI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jlb9RfbVU7umwS1+xN1Z9L1gy7E3NcC8/NZLvzX6lsr+tKFTvp5c5Vg2oE9oInGvhtBWS4gOwe9qzduU0nCIoTsPKNRSK+TQg0iHU1OfnJdZS6mMQw6FxaGDh08c7Ss7M6IOPtQat6eeKKjbpwWi4OjBEcxPPL3nbCHhX2DZY/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MK6tTGwL; arc=none smtp.client-ip=209.85.167.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-43b40cc73f3so33899b6e.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:40:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758040849; x=1758645649; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IRpNM2/xCih59eBZEAbu4g3iE4/D/L64LgWMt1ePFPk=;
+        b=MK6tTGwLI0rmWuk+E/GK7DPlGDssqHY5Oj5l/oPC7RMC4mYknQcWTifKQt8/FlNtjG
+         o7wxo40oAuhEG8Vq5oiqgqBUEsTE42F6Lten6xFTuOCGtKzRYByKQHo2AajrRxJLC0y4
+         9ikojLrD8XEprAMZV//m9/Jow2MtNOYbsER6PSwWNU2MK69xlpYWv6DxLuXf5Me1cZJ/
+         7Po0fLKnpu6nSyi1HIr+sODA7qrjapcWe+REnJIhB0AQ7Qc8vJvFK86TgWdwGZkBZgmR
+         rdEzWVV2tTNHuir2UiGV23IMkT6gaImsNooG+5vUzOSpje3ajB+q9RyeMTcVDyviNCCg
+         aZ/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758040849; x=1758645649;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IRpNM2/xCih59eBZEAbu4g3iE4/D/L64LgWMt1ePFPk=;
+        b=l1Mct4GXum/Mg4HlOHEgOjL1ubBTCWCpNgoQ2PC8z93etRPfTfJ4QSICJWyP0sMBK4
+         woP9BmjJV68RXSDDPZ/W5U2MgMuBzUrpU3Qx9/4vo4lYu69PDoTJXHFePQNaa19bmptd
+         Npd5JVTjjiFBlLbLqKARN3cZE6cMUv+T6jR2dWU4ewY0m0mjLwJGIxD/OPiufPwtOkRh
+         RPLPSlD+c98wP8UiChsgKuIZjf762UTs4RarEYBlFauvEBy5L2YijFBi8l2YjgO/GqRU
+         vBDUVLz9S2ky/5Yn1CyL+LXc+aD/zP86Wp3QQXimPH/i29GLDKaS0kP0wYySdR6eObAD
+         ONCA==
+X-Forwarded-Encrypted: i=1; AJvYcCWXemx40VFAucNO685LNzM/Z5Fyf1A2CWE3PvttCZU4WfwPAc5wNnnZATTwhQnEsVAXNpyMICoCffxH@vger.kernel.org
+X-Gm-Message-State: AOJu0YztJdrZ5g+ctYvLDZGS8xvhfuII02+Rs3xYP4Q/DzQBOmGo453k
+	gUAmbGy70R5J5FOo1mnh54s+dYYi92i/ZoNmPhb49qHC3AKXpzhItOF41DjGHgju/l82YSuQwIb
+	zmRH4VZM=
+X-Gm-Gg: ASbGncvjHb0t8XZvjypjlBMHXb8F7XWCan7t1/16JimcruZfcB9s4mgqRsRcfm0/gM4
+	+Hbh7gMcAHhQYHc9SYwq3YFHvspVY6/Y9dE6wIjmZnZ2Tc8GCmLkEHB3bPuFFB0F5VmpuHQlQ5E
+	x/NFcd5bgYZGwRPAi8p+E62jsTx6JXu+y+Qj/WbA62kLaKeV63GvB8zWBj7JHdmLI33+3dhItNT
+	KKQlILk0cg8a7CjBTgGsTddivVkdIypbssz8wL6HwT7QPe1/kj8mUYLL0eOb8HEfGYSmrMGdxYm
+	lD9PlKjXcYwHkxydWZWEXfJiXfqz84Xyn1PGA4yfikdnWhNzCrnhjLXBxRmQjFQk/uRR1tk7nDk
+	d6TFOGrGf3gTFAJr6WNO+KK8uFCFdE6YCQ5+SmRCH6Q0kOaydRSxypMgiYnLCF/+ckQxbh83gef
+	0=
+X-Google-Smtp-Source: AGHT+IGcltY2eODvqYysqxpgvPqREuroqKSUaoNzZhYArRNaV4gU6OV6VkN+Z5JtCrPDyUnvVfBJrQ==
+X-Received: by 2002:a05:6808:198f:b0:438:228e:ccc0 with SMTP id 5614622812f47-43d3f3ab4b9mr1377157b6e.16.1758040849051;
+        Tue, 16 Sep 2025 09:40:49 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:70a1:e065:6248:ef8b? ([2600:8803:e7e4:1d00:70a1:e065:6248:ef8b])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-43b82ae6c1fsm3333747b6e.27.2025.09.16.09.40.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 09:40:48 -0700 (PDT)
+Message-ID: <8e88b601-1329-4cdb-bbd7-feb998c552e8@baylibre.com>
+Date: Tue, 16 Sep 2025 11:40:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|DU4PR04MB10936:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2fb92329-acd9-4d31-aece-08ddf53fc29e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|376014|1800799024|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?K+BFuY/4n9E99gCr4Mmlf4Aa41kPiZWm0cWJFtbPbxoB7hTCOAaB0DyBe7Rm?=
- =?us-ascii?Q?oCIeVgsaF/7jmbHkwUGW1ZI8znQxJfm0QRvSgn0A8+YroCskTN9oUPiqXmWC?=
- =?us-ascii?Q?YCYq+Bq9ZE5fkGkWouT7zeGVkNma3MsuXwq68jODzG3dJOJvv++Kf9kGnBqu?=
- =?us-ascii?Q?ZbJCJh/MU06s/nCLEqZqP8YDiCnpfk2hWXDbhLDXsmk14QPICorklMqhuLWx?=
- =?us-ascii?Q?eUD9u6ucRs9nFF26MDQYEAnM7Wu8uiZrokhQGkD0mZSfTNeFq3X/3zGHMvRE?=
- =?us-ascii?Q?E9xEMfJTY4G10wlwwJFio68YGBBCHPDwL8syzvB86/bmgdXVpM4uKqHc+r8s?=
- =?us-ascii?Q?j0YG19K8xt9fdFmGy05OO7ujvY+bdiikH/BvRBCIjNt1oeuOHQnzxw2Myyg9?=
- =?us-ascii?Q?zOiXFrHIO1225O+awQE4v9ZBzT83wojWb1Eat0PtcJUDv4TZeH3FyX4Bqd7q?=
- =?us-ascii?Q?NOeDC+2KyU4JxggxaQRlnT1srK3RsH9G2OfkikfCT1FMHFQRCfBXQ0ERk7uu?=
- =?us-ascii?Q?tlxen85yenGU0io0yXzZIz0cGzwHwAHhRZf39Vp9dOOWAmvnX+3FQ9s07VbS?=
- =?us-ascii?Q?YA1TaX0rxJAEGL3RL1lkI7qxD1Bwv0F0FbaDQNx/U5XYNmHylySno4621aPl?=
- =?us-ascii?Q?G4e9v929sEjd6W8CEu6gKiD5j9E4mjfSOHpoMJa16E6I0wrfFlK6yupZfQ+o?=
- =?us-ascii?Q?FC1WZi9nE+J9DjXGzc0R/pa6qVm4Xs7LW/FmuglKMq9lsZu+ThjiQbE1tRe9?=
- =?us-ascii?Q?YiYoidR6luebegNqTRfUjnJJVeOXDTHg/XV4U7JD5HmIpz1m48n1AXvXxptx?=
- =?us-ascii?Q?3fyvkdo4Eh+3JbmxITum/l00PHdKiTI+ur2uWJM84oWz9IOt0zgoTeh5rRPH?=
- =?us-ascii?Q?0huJinqRDHCE0Lh/DAN4Hy5ZirkwPDYztN/N6RFxdgR4wLtyaO2AXn3y9Tje?=
- =?us-ascii?Q?yIJXYISnMHXJhTClH+JQV3AoI1AGnc6MqI1es9AbQCTicj8FTVHBhiBiMQmt?=
- =?us-ascii?Q?MLjwE2cL+OGfqG/oXX7SqS8IkiDpqKS1av0DRqQ7O5likY7d87GQIsZQUSjq?=
- =?us-ascii?Q?D694FDBo4AvA+FvI0QvWFbjQ58xh9fAz7jd02c/tslEf6bjEgOh7cY8CV+Gt?=
- =?us-ascii?Q?TK5hI+asPj8MdKFZ7JaoWqUl6IorvyLBTo1xy5zuLwPEhLjOLteoMIpqflxY?=
- =?us-ascii?Q?ykFVXYYctPFKtYGUCo/XaBDQSldS5xEtOBhRmfD6FtCvhRNRn7J1ph/5SFwd?=
- =?us-ascii?Q?D18RjEmTSbmZM57ZFcdwjoMtbxyu8WE0VoYYdptzAxyCqx8AUWJ9sWW67iUj?=
- =?us-ascii?Q?W4M3OcvOl7jdqWeGInpTNXlS8cBV65gu3adSUXRui5F+CLHf1LKh74KgqPkS?=
- =?us-ascii?Q?IIpEkqG4Fh5XpfM1/ArGCkeVwLevIZPqVd2+e736nyr+vPZzH4sKYUbAPOlr?=
- =?us-ascii?Q?MXIw79Ba5MWdgQ4JTn5kyoSaK8hxXc7tbWbNjidM5hT56bl9riUoPA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(1800799024)(7416014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9j2ZpfEk3kBiYpGLCeFmTCVNnmNASnDWLJbdlBAzZA967mDk3RzJvPKvlak4?=
- =?us-ascii?Q?Cna/Q3F8KN2OIbErE/0SXFPCij2S2kv5cStLaz9PLeX5ln4Qyo4u1vl/kdFR?=
- =?us-ascii?Q?ojz2wrDoNWPmoEEnQwd0cVXPf+PNFJ+0lO82jhsXMkPsKmGSYSO+K3/0F0d2?=
- =?us-ascii?Q?xXnJT7+o1t5xpixlTd79AcU2tor9TExdHaeys1bRDsgAkFgiStxfFxPzrfYw?=
- =?us-ascii?Q?WYxPeJDvy0PdFeePC5crOrInhawYaOK9jhgwe/oL8E/CIsP+n/Itw8ojMFMP?=
- =?us-ascii?Q?bayX4rlCaPPy7NZON5SKSTS5cddBbibEMGwNeeXvPPLXzlO7WepfqPNyjFLO?=
- =?us-ascii?Q?4fHnxQJfmw3S1aABHM2HDuXgshK02BFln0/qIbryCxWAYdP37VzaVRfvQsXH?=
- =?us-ascii?Q?6SBK7f1GwG+NE84QMN+1KQ2DpDOFMmAjiF7rDfwbUSnyKiRpqoS2CcFBGNnr?=
- =?us-ascii?Q?O5ssWcW9IxC24zq7WRSZLOz7vFjKFCzJy0LP4ymHwUd8+MjtiGyxiy4+jrBh?=
- =?us-ascii?Q?GnzLRvNyn29/nFPeIokpB5ulT+15p7zzzQVtriiJRCc/Mp4i5ezKEGbC73PE?=
- =?us-ascii?Q?V2W6uh9UHKGDEkRLdZHN8V7TDkrsOaFhBK8UvNcqBpJ3wkxX4Az2WfChmC9M?=
- =?us-ascii?Q?dyUjdKrpeee2zNiur7yatAV0u3DWGiuJ6ZOY9mCpJ2jMPxtzv2mOMm0GoEbQ?=
- =?us-ascii?Q?VS4L0ENHXo+2v+mnzrrdAySeuqgN5/SBvV5uh7xR26Z88QX424hYSF+zbjFp?=
- =?us-ascii?Q?v/iAoH+4WggiM8Fh/PEPm0GG7udK2B3Ye0DvPBXmFOfwutDK8jFMNsaWk05V?=
- =?us-ascii?Q?ExdS2jyGprc+PqyWbQrP8bZPZh1IxATL09CbEKWTLhMF5/Hrva8LNgKzp0yr?=
- =?us-ascii?Q?5uiH0VsT51bs7fyComuCA+iQJriLS1cZMs7w45REnoqrjMLWS2z6287SxCrq?=
- =?us-ascii?Q?VdmUHvf2geTzJlfcvWQaUxJqxtnamsG+ECtoOjIAdhrCGFHjz1sOJG2pg+FE?=
- =?us-ascii?Q?d34LGrWHf73f9HNHzV/5vAUnLUe5srdY5ZQz97HV3X1lqwDlvJQzEFuwUtyz?=
- =?us-ascii?Q?wXEwjEk/YEIrap6VVUhccUixF3zD1OsIqT/YsxYEQf0RLpb4o+Q/11TFKL/9?=
- =?us-ascii?Q?Bww/NR5tzhiYflTzrNh2j7ib4cPs7luZ9rRuy4LiGpnLB3+CKZVmkn/yWYD7?=
- =?us-ascii?Q?uQPv2L2fmOGICBxzq266uQsG+BqquFVo9LzUMSTBdR8d6nk3iBrTrKdM/PYJ?=
- =?us-ascii?Q?ytbqSnbcjEM75x6yFPelLIcNXeqT4dZg7FxYnTR2xEfx6FyzV6weUOeKLtfo?=
- =?us-ascii?Q?eH7Tp4w5lmHn0mFLL2MgKdZxHDr7fuHdp0yg/qngtws7merHWKr3WY3rVrsI?=
- =?us-ascii?Q?mhjHzYXCSt9u5Tm420QhkBJ99M/QP9imRMsusg7agkd6ZGqdnO5DMzqkKlqN?=
- =?us-ascii?Q?h29oJ3jdZBDgVYJI7iTA063+9m90I4mNEw9LArnJaybZfZubwNkR4fyz6Ra3?=
- =?us-ascii?Q?IXQEvJ87l4sscqN2TUDwGcQ6EXCJszne/ZQtINf6UNWP8liT+HRcfeGmzRI8?=
- =?us-ascii?Q?dH71otCaWvM7INAuCNenXiSZZ/cHU/sMiwcQnhln?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fb92329-acd9-4d31-aece-08ddf53fc29e
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 16:40:35.5290
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EvvFhYlMR5SZNp4htjt2DxXoYUTSGd3J+foWAvVrjum1lAO+iojcfJJc1Uke0/iGU7fOj9hQFOHfMB5AnL76Lg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10936
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 1/3] dt-bindings: iio: adc: add max14001
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Kim Seer Paller <kimseer.paller@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <cover.1757971454.git.marilene.agarcia@gmail.com>
+ <30f33a64da0339eccc1474406afb2b1d02a0cd6b.1757971454.git.marilene.agarcia@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <30f33a64da0339eccc1474406afb2b1d02a0cd6b.1757971454.git.marilene.agarcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 15, 2025 at 03:23:51PM +0300, Ioana Ciornei wrote:
-> Describe the FPGA present on the LX2160ARDB board as a simple-mfd I2C
-> device. The FPGA presents registers that deal with power-on-reset
-> timing, muxing, SFP cage monitoring and control etc.
->
-> Also add the two GPIO controllers responsible for monitoring and
-> controlling the SFP+ cages used for MAC5 and MAC6.
->
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+On 9/15/25 5:16 PM, Marilene Andrade Garcia wrote:
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+...
 
-> ---
-> Changes in v2:
-> - Use the same compatible string for both GPIO controller nodes.
->
->  .../boot/dts/freescale/fsl-lx2160a-rdb.dts    | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-> index 0c44b3cbef77..4ede1295f29d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-> @@ -170,6 +170,37 @@ mt35xu512aba1: flash@1 {
->  &i2c0 {
->  	status = "okay";
->
-> +	cpld@66 {
-> +		compatible = "fsl,lx2160ardb-fpga";
-> +		reg = <0x66>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> Notes:
+> Since v10, I have not used exactly the same approach as Kim did in v9, nor 
+> the same approach as in my v1. Instead, I merged both implementations, and 
+> this v11 is quite different from both. Therefore, I have dropped the review 
+> by Krzysztof Kozlowski. I am not very familiar with the kernel’s review 
+> process, should I add it back? Should I list your names as Reviewed-by? 
+> Thanks.
+
+I think you made the right judgement call here. The changes are significant
+enough to deserve another look. And you did the right thing by explaining why
+you dropped the review tags.
+
+> 
+> The MAX14001 and MAX14002 both have the COUT output pin and the FAULT
+> output pin, and work the same. I have decided to declare them as interrupts
+> because I think some action should be done when they are hit. However, the
+> implementation of these features is not present in the v11 driver code, as
+> it was not in v9. But I plan to submit it in the next steps.
+
+The devicetree bindings should be as complete as possible and not care
+if the driver doesn't use everything. So adding them now is the right
+thing to do.
+
+> 
+> 
+>  .../bindings/iio/adc/adi,max14001.yaml        | 87 +++++++++++++++++++
+>  MAINTAINERS                                   |  8 ++
+>  2 files changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> new file mode 100644
+> index 000000000000..c61119b16cf5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023-2025 Analog Devices Inc.
+> +# Copyright 2023 Kim Seer Paller
+> +# Copyright 2025 Marilene Andrade Garcia
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		sfp2_csr: gpio@19 {
-> +			compatible = "fsl,lx2160ardb-fpga-gpio-sfp";
-> +			reg = <0x19>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-line-names =
-> +				"SFP2_TX_EN", "",
-> +				"", "",
-> +				"SFP2_RX_LOS", "SFP2_TX_FAULT",
-> +				"", "SFP2_MOD_ABS";
-> +		};
+> +title: Analog Devices MAX14001-MAX14002 ADC
 > +
-> +		sfp3_csr: gpio@1a {
-> +			compatible = "fsl,lx2160ardb-fpga-gpio-sfp";
-> +			reg = <0x1a>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-line-names =
-> +				"SFP3_TX_EN", "",
-> +				"", "",
-> +				"SFP3_RX_LOS", "SFP3_TX_FAULT",
-> +				"", "SFP3_MOD_ABS";
-> +		};
-> +	};
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
 > +
->  	i2c-mux@77 {
->  		compatible = "nxp,pca9547";
->  		reg = <0x77>;
-> --
-> 2.25.1
->
+> +description: |
+> +    Single channel 10 bit ADC with SPI interface.
+> +    Datasheet can be found here
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: adi,max14002
+> +      - items:
+> +          - const: adi,max14001
+> +          - const: adi,max14002
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 5000000
+> +
+> +  vdd-supply:
+> +    description:
+> +      Isolated DC-DC power supply input voltage.
+> +
+> +  vddl-supply:
+> +    description:
+> +      Logic power supply.
+> +
+> +  refin-supply:
+> +    description:
+> +      ADC voltage reference supply.
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: |
+> +          Asserts high when ADC readings exceed the upper threshold and low
+> +          when below the lower threshold. Must be connected to the COUT pin.
+> +      - description: |
+> +          Alert output that asserts low during a number of different error
+> +          conditions. The interrupt source must be attached to FAULT pin.
+> +
+
+I don't think the `|` is needed here. It is only needed when formatting
+should be preserved, e.g. you have paragraphs or a list. Or when there
+are certain characters like `:` in the text. But neither are the case here.
+
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: cout
+> +      - const: fault
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddl-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      max14001: adc@0 {
+> +        compatible = "adi,max14001", "adi,max14002";
+> +        reg = <0>;
+> +        spi-max-frequency = <5000000>;
+
+I would add:
+
+           spi-lsb-first;
+
+to this example so that people know it is a possibility.
+
+I don't think we need to list it in the properties though since
+it is included by $ref: /schemas/spi/spi-peripheral-props.yaml#.
+
+> +        vdd-supply = <&vdd>;
+> +        vddl-supply = <&vddl>;
+> +      };
+> +    };
+> +...
 
