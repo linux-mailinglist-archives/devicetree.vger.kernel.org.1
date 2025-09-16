@@ -1,137 +1,118 @@
-Return-Path: <devicetree+bounces-217879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC84B59833
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:52:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40653B59A3D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797E3168418
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:52:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F8274A2A2D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD84431DDBC;
-	Tue, 16 Sep 2025 13:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361B034321C;
+	Tue, 16 Sep 2025 14:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZzwLIuCW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="jQayv1VV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08C631D75F;
-	Tue, 16 Sep 2025 13:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3393634F47B;
+	Tue, 16 Sep 2025 14:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.40.148.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758030738; cv=none; b=stxiMDyGV3mcs1iO5HH1HVoF5YUB9BYY/58LnNQhZgC9UZKjolY1Pc/gz6YM7UfOheAr72BLervhIdzx3+r+fNrzxRqWp1phTVIPev+9GpLUlkWVSIqK/VFvLvpFeKrTks1a4faY/lFl8txYqDnavu+ZR5XiEi8iM6XE//FXi3s=
+	t=1758032537; cv=none; b=Ch9jYNuGCxbkt8JP+vt5N5Fkkq0c15EmF9HT9OGZ8HafAnRLkdie0S5yNhbNhJvx571TvafwIN4a8ryxX6DOOX5YRJ+TFLHNOH9ndws1hIrNySruzGJPEFv2PVLhnr0wLnMWRklzG9EbW38QEtlga8bGvTzFmk+eaACdZ7oqncM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758030738; c=relaxed/simple;
-	bh=ai1oXYeVOfINUAOzqKrno3a6vcH5X8osrVp0OAwCDSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pxDGBcxCENTk6pYtgduxY0mqZGcj8dnItGTxINTnbzi2uPT6+Vl9qs9PzqkEkJRzjP9mo7pagDc7Qam8YzpaWBHiK+gN2rsG5EabsMAAxKlnukJq0Kky7Bl32L0WXeB3moCF2x/S94SqicYqsgOTHpghcPKL7NjCSs0tWDabSdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZzwLIuCW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E57A5C4CEEB;
-	Tue, 16 Sep 2025 13:52:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758030737;
-	bh=ai1oXYeVOfINUAOzqKrno3a6vcH5X8osrVp0OAwCDSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZzwLIuCWYBfCMzOJEHWQkphHl5ZPnPFg8NAZmQ8lAPZZttfShcP0bZNh2WUYEqs6M
-	 IRPZFO3XEoeoRDWeOiu5oq19fx00aJEUe4k3PnO9112I+OynSPISmMf/zTnZBTRt2h
-	 Gp/Y+qmF1t3ytr3zX5ytGKj5xO9oEI5us/dwUpQ9StjHr4UOJse/Lxhw4lXlLcNINd
-	 TpGuu2F9i3RUcYWLuVku/k+eMPtIxwyf0z2Iu5JIyxkMWiL7HIct4EFH17BI/sHe23
-	 qkPACzA1VTcsq7gViuDlsiKDgdEQCepYJGKAlHgVC9b+F8de8s4BRpI+7CyRZE6+JL
-	 Zhdnmhf764OIA==
-Date: Tue, 16 Sep 2025 08:52:16 -0500
-From: Rob Herring <robh@kernel.org>
-To: Troy Mitchell <troy.mitchell@linux.dev>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: Add CTF2301 devicetree bindings
-Message-ID: <20250916135216.GA3674673-robh@kernel.org>
-References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
- <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
+	s=arc-20240116; t=1758032537; c=relaxed/simple;
+	bh=Ivoeh6jfB7yYBZUGzHGv/za9TYvXgujRjCQM9WcQ3lE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d1z3YOXCxQnbNSR1yoTCqYB+Krn5naJuDCbhCgEpp95T6E3GUrjEkNbNfOaweO6FFWdY3uySKBfglaC3CduJi5AEaL+5WGrcvQUINBFWEkG3XvzxrCCA2W1xKjs+Z9U1JTVXY/YxsweSt8YdlxkAsy/Xbjphh0GPgIOiJthuusU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk; spf=pass smtp.mailfrom=codethink.co.uk; dkim=pass (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b=jQayv1VV; arc=none smtp.client-ip=78.40.148.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codethink.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=codethink.co.uk; s=imap5-20230908; h=Sender:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=uNIYRj9GoFIgE0bx3nW1lY0HxQFaZbKTteY8eNBKQ4Q=; b=jQayv1VVFcnT5BAqM4uK/OlAZV
+	LYQJq1eiD3b8JQ6j5nfh6GhIW7kNsl830AW0BcyIre0+fpaQe5OovfHNcu2bdd3aXIx0cBUg26kOY
+	uCIV44iDgprzcHZycLPQATqNaZj4c6wlsX5K+lvNIKUkhafja4KfRzYxIiCdcsRjvvV45AchOqMdq
+	Zy0rQosUwpNiP7PGCpeUym+btRkzwd4P5R9HBEG3iHrS7Z+FMIgjvSHbw+vm2sl0QKuckPdN95Qd1
+	aCwXyD/6+9l/KENCZwlZD1iDLCaxI6GnBRjzJ5iPzIG7tjF8LWwpiFBQ+gI9QwICo1BS7yXE6TGWo
+	s5SoBbwQ==;
+Received: from [63.135.74.212] (helo=[192.168.1.249])
+	by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+	id 1uyWAA-00HS9q-OA; Tue, 16 Sep 2025 14:56:07 +0100
+Message-ID: <70241f44-2f8d-4945-9c84-71416776cefd@codethink.co.uk>
+Date: Tue, 16 Sep 2025 14:56:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] riscv: dts: Add Tenstorrent Blackhole A0 SoC PCIe
+ cards
+To: Drew Fustini <fustini@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
+ Arnd Bergmann <arnd@arndb.de>, Joel Stanley <jms@tenstorrent.com>,
+ Joel Stanley <joel@jms.id.au>, Michael Neuling <mikey@neuling.org>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@kernel.org>,
+ Andy Gross <agross@kernel.org>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Drew Fustini <dfustini@tenstorrent.com>
+References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
+ <20250913-tt-bh-dts-v1-6-ddb0d6860fe5@tenstorrent.com>
+ <20250915-mouth-banner-ddfb2e48bdb3@spud> <aMhSSka3gyIcND/L@x1>
+Content-Language: en-GB
+From: Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <aMhSSka3gyIcND/L@x1>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Sender: ben.dooks@codethink.co.uk
 
-On Tue, Sep 16, 2025 at 12:46:45PM +0800, Troy Mitchell wrote:
-> Add dt-binding for the hwmon driver of Sensylink's CTF2301 chip.
+On 15/09/2025 18:52, Drew Fustini wrote:
+> On Mon, Sep 15, 2025 at 05:47:08PM +0100, Conor Dooley wrote:
+>> On Sat, Sep 13, 2025 at 02:31:05PM -0700, Drew Fustini wrote:
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..b2b08023643a2cebd4f924579024290bb355c9b3
+>>> --- /dev/null
+>>> +++ b/arch/riscv/boot/dts/tenstorrent/blackhole-a0-card.dts
+>>> @@ -0,0 +1,14 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/dts-v1/;
+>>> +
+>>> +#include "blackhole-a0.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Tenstorrent Blackhole A0 SoC PCIe card";
+>>> +	compatible = "tenstorrent,blackhole-a0-card", "tenstorrent,blackhole-a0";
+>>> +
+>>> +	memory@0 {
+>>> +		device_type = "memory";
+>>> +		reg = <0x4000 0x30000000 0x1 0x00000000>;
+>>
+>> This isn't at address zero as the node address claims.
 > 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.dev>
-> ---
->  .../bindings/hwmon/sensylink,ctf2301.yaml          | 49 ++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml b/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fe98f5b578320bc1b43ff88f76667990821a88f7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/sensylink,ctf2301.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sensylink CTF2301 system-level thermal management solution chip
-> +
-> +maintainers:
-> +  - Troy Mitchell <troy.mitchell@linux.dev>
-> +
-> +allOf:
-> +  - $ref: hwmon-common.yaml#
-> +
-> +description: |
-> +  The CTF2301B is an I2C/SMBus compatible device featuring:
-> +    - One local temperature sensor with ±0.5°C accuracy and 0.0625°C resolution.
-> +    - One remote temperature sensor for external diode-connected transistors, offering ±1°C accuracy and 0.125°C resolution (temperature range: -40°C to +125°C).
+> Thanks, I'll fix the unit address.
 
-Wrap at 80 chars.
+Is it time to just assume any dtc can handle a 64bit number?
 
-> +    - An integrated PWM fan controller.
-> +    - A 1-channel fan speed monitor (TACH input) for RPM measurement.
-> +
-> +  Datasheets:
-> +    https://www.sensylink.com/upload/1/net.sensylink.portal/1689557281035.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const:
-> +      - sensylink,ctf2301
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ctf2301@4c {
-> +            compatible = "sensylink,ctf2301";
-> +            reg = <0x4c>;
-> +        };
-> +    };
-> 
-> -- 
-> 2.51.0
-> 
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
 
