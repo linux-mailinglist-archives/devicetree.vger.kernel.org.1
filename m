@@ -1,147 +1,178 @@
-Return-Path: <devicetree+bounces-217719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D81B590A6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:31:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF45B5900B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D70A7524A44
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:31:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24A001BC26D6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB99B2EBBA4;
-	Tue, 16 Sep 2025 08:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA52286422;
+	Tue, 16 Sep 2025 08:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="iyB2znBo"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="Yqx/j/r/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF5F292B2E;
-	Tue, 16 Sep 2025 08:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D6F215F5C;
+	Tue, 16 Sep 2025 08:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758011406; cv=none; b=XILfRekI7EqAEd7KmnY8U+L9T6phQpvNRiAACeevbyll7PyQOyd1FIGFsiSTrsDeB6nYrdug8R4+BEftmBnx3E5BJNHtFY71Bq5qP0anHh7uYpuA29JCPlgylU+sANaxWcgXJNa9p/eQ0+QQqxdYp1ICKvWJadrQkhPLZ11x5kk=
+	t=1758010167; cv=none; b=ALTiyPDyFsrlojqsZsgja8RO88/kGVuZ3xWAv3KFK9gE1iy6zWlK7CJjbARy9ozS49+GFblD2TgCylZMX9bV5+VuRyee5aRNtoK8tRlqwo1lLVlywgIN8ugd1IXEPWAQJnSkpm8pHAZBoL5wuHNhRc5U9YjKIazoWj37N4EZqrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758011406; c=relaxed/simple;
-	bh=HVbIzOcHZskHRf5SznhNV4wWnLjusxqzCBiv5nWH07s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=d0kt2CJ++qCbceVLUR9PXVCoTCaekeW2vOdMvlqQIv8ad5nQFUFm37pNAJW15Ku0vehllxtCShtc5phckuvRpxj0gWLyHan5OmLxNj4yrVdeHtGQavoSNzzvIytpeZoEmvkcp0JXEMYTQWrRfd/VDyNa8NrRHzkGq7uwCRTozVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=iyB2znBo; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=QFHkS1lPBT+AjGDdgvjYNAbwA9MZWw4SXPOZu4+lgPY=; b=iyB2znBoseHu0jTafvRYZ/tHV/
-	t5oRN4BqVkqtNdTEvc4n1LuRqOijddFTqW9JDVjvF2muCB93RM3lfr9dNBdBkWoQBWJf3A4dlVPos
-	EuvWnEJOS0GXzKpY4X0Q2tYTIBWbViPVWDI9CywpY2Kf0wVYmrs6E5Y/hUc8HxAOjN7Zm4qCefjla
-	yCCxMaJs2wzQX4ms7F1iciIqLo7ztBIzZ6A8exX61Cw0MfVap9OYjXYYEm8lyrJtKdsPMY/7Qr7yv
-	g91Nk6FXn1cT6eSzOUOiLbibVBtBSn8+WO59cxuONw4DP+P9yM6Dxw4/tjYeRpv5MAMSVh4NgXPKc
-	LhBvSq4Q==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:37984 helo=localhost.localdomain)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uyQhx-0000000DK9c-3gTH;
-	Tue, 16 Sep 2025 10:06:36 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1758010167; c=relaxed/simple;
+	bh=zCsQM74xxQ/YFa9HAgDC9C0C9+24BpvrEsptMKAGWtA=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=tdLqDuXMmqFBT709BMSWySIwQ0VDHE6kpmHNj7Hi59fgSqtkmnmSy7BDexKLOs1l+2SBvr8yn6p7+MfMDCDje2+Jj0t5wR7/okZWt503udAU5lfV7OPxCiBmNWrYcPp0931qKy9YxhizpA9c/Uc8pqpN0p1woTH8yq776iIUitg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=Yqx/j/r/; arc=none smtp.client-ip=54.206.34.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1758010089;
+	bh=hnz1bmTaV/5rTkG6fQYUXPwPMQpIN6l4+8uksyKRibc=;
+	h=From:To:Subject:Date:Message-Id;
+	b=Yqx/j/r/sywiY6HXX33Um5SkHpij9EiSfRnVjL0jzZOrY2k5YlP9a7MpDWWpSXBCB
+	 EpgcsOZ16fV4MN3cp9emjGUtUt5LAYeDsQjtc7FACM1CiCAjHdh2UNcPzwghmBCN/O
+	 x8DYrslNVj6/+mUbE7j2B6C9wvEJPX7RTcpJCNXI=
+X-QQ-mid: zesmtpsz3t1758010087t3fbefdff
+X-QQ-Originating-IP: /Rz0qBK4PaPleHiuURFFZblXxEBkxSyRKTOxW50+KgI=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 16 Sep 2025 16:08:05 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 1933021998724514567
+EX-QQ-RecipientCnt: 18
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 2/2] arm64: dts: freescale: imx93-phyboard-segin: Add USB vbus regulators
-Date: Tue, 16 Sep 2025 10:06:35 +0200
-Message-Id: <20250916080635.1520551-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250916080635.1520551-1-primoz.fiser@norik.com>
-References: <20250916080635.1520551-1-primoz.fiser@norik.com>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Enable DisplayPort for rk3588-evb2
+Date: Tue, 16 Sep 2025 16:08:02 +0800
+Message-Id: <20250916080802.125-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: OYM+rvgdyOKCfzKs2hBoZ41UqiVw1szp+Uvg0bdOZNWRXiTfIrvq65Ig
+	/ptJtjWX7z+PfjPWbYpLJySNp4qy9HTM/rHj0pV6WBWBvovoJ32LlpYITquyi4lNouCtZSA
+	b6NGWtbhEzmx3NrMuyjMwtx29lieFCBzmmZj/H6pmz46i8WgEBdE4tyXzUf+LjMFBls9Nbp
+	8ODzFrzdZ/ShMUFQvim1nUVEoU94FPjv02pXr3xiv+f9ZAuTEy273RwQVwju8savNdJaJK5
+	J6zL20sLestjtmxugzNRlKIGOhwgn6t0KjpVlWZxnbJmCFk0rGLm++rQzMXb6atWFE0DFjh
+	SE00FXOq3X0i9dhrSrUr7uw8k2K8QcyNRg5xYEkAu9ymjhvm6O/8kcS2+0mDncvUJFpyVy3
+	s02+M520kYKTMWI8/4e95d5XZOQhccDnUYvZUglwtrjUU3uVuioDTeR4vDDwNqAYSQ5xF2r
+	rrfubO20dborA39qadDADZ1btectN6eitSOti05GJneHVGvXHVB4Ro4DN6yFnmbY5W7EFI/
+	jbuOtWsgwG5c6hkPSPyOaZf7AncQP6PSsERT5rjEcnxofdHXEi30/IHJtSRHaEUogvmeLqx
+	gb/j1YPW8wMandPRp3FSO08mZVFzqGHOIVUohoqQ7vlRxvn9qD5zoQ8Q41taeUn7YUZxftj
+	8bsby9+HfLW8erpzpWz2JcG6ZMMVU/0g3hu1bdNumwgt85ztTX0Z8otsOJ+j1gBTCRoYC+a
+	n8j2lltEk1ZXaAwtfjjUfJTnz/pxZAsCMKrHU4YpyqX1O72z+THIo6nhIS21EsXXyGQ1nnT
+	8Hz53O2PEJBFOqZpSKkg3oXGTVfdZt4PmFVHlbLKy/puALErIxte1H8mX65rVbuphEjHvjq
+	+tpnpX3TFuLrKPOtcP8ZBTOYXgI6StCQQtmdoz+ey0IF5UQ8O1DELDRjGno/JDuyRw1mdkg
+	nPZDDqy9OZCeQ00bcFJuuX2A1GrWEPIzrz0jfMygR8cyaTuRcJzBDQPIMPHF/Dl3lyRo=
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Add USB vbus regulators to silence the following kernel warnings:
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-  usb_phy_generic usbphynop1: dummy supplies not allowed for exclusive requests (id=vbus)
-  usb_phy_generic usbphynop2: dummy supplies not allowed for exclusive requests (id=vbus)
+The rk3588 evb2 board has a full size DisplayPort connector, enable
+for it.
 
-Because generic USB PHY driver requires exclusive vbus regulators since
-commit 75fd6485ccce ("usb: phy: generic: Get the vbus supply").
-
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 ---
- .../dts/freescale/imx93-phyboard-segin.dts    | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ .../boot/dts/rockchip/rk3588-evb2-v10.dts     | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-index 802d96b19e4c..ac64abacc4a2 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-@@ -59,6 +59,22 @@ reg_sound_3v3: regulator-sound-3v3 {
- 		regulator-name = "VCC3V3_ANALOG";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+index 91fe810d38d8..0e5af61f66fe 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+@@ -25,6 +25,18 @@ chosen {
+ 		stdout-path = "serial2:1500000n8";
  	};
  
-+	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_OTG1_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
++	dp-con {
++		compatible = "dp-connector";
++		label = "DP OUT";
++		type = "full size";
++
++		port {
++			dp_con_in: endpoint {
++				remote-endpoint = <&dp0_out_con>;
++			};
++		};
 +	};
 +
-+	reg_usb_otg2_vbus: regulator-usb-otg2-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_OTG2_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -177,6 +193,14 @@ &sai1 {
+ 	hdmi-con {
+ 		compatible = "hdmi-connector";
+ 		type = "a";
+@@ -106,6 +118,24 @@ vcc5v0_usbdcin: regulator-vcc5v0-usbdcin {
+ 	};
  };
  
- /* USB  */
-+&usbphynop1 {
-+	vbus-supply = <&reg_usb_otg1_vbus>;
++&dp0 {
++	pinctrl-0 = <&dp0m0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
 +};
 +
-+&usbphynop2 {
-+	vbus-supply = <&reg_usb_otg2_vbus>;
++&dp0_in {
++	dp0_in_vp2: endpoint {
++		remote-endpoint = <&vp2_out_dp0>;
++	};
 +};
 +
- &usbotg1 {
- 	disable-over-current;
- 	dr_mode = "otg";
++&dp0_out {
++	dp0_out_con: endpoint {
++		remote-endpoint = <&dp_con_in>;
++	};
++};
++
+ &gpu {
+ 	mali-supply = <&vdd_gpu_s0>;
+ 	sram-supply = <&vdd_gpu_mem_s0>;
+@@ -916,6 +946,8 @@ &usb_host1_xhci {
+ };
+ 
+ &vop {
++	assigned-clocks = <&cru DCLK_VOP2_SRC>;
++	assigned-clock-parents = <&cru PLL_V0PLL>;
+ 	status = "okay";
+ };
+ 
+@@ -929,3 +961,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi0_in_vp0>;
+ 	};
+ };
++
++&vp2 {
++	vp2_out_dp0: endpoint@a {
++		reg = <ROCKCHIP_VOP2_EP_DP0>;
++		remote-endpoint = <&dp0_in_vp2>;
++	};
++};
 -- 
-2.34.1
+2.49.0
 
 
