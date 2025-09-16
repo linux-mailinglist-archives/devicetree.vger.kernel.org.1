@@ -1,54 +1,58 @@
-Return-Path: <devicetree+bounces-217744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83212B59232
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:29:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19BEB59238
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:31:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1513AC5F2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:29:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35E98188D73E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:31:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F34299AAA;
-	Tue, 16 Sep 2025 09:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F8829A9C3;
+	Tue, 16 Sep 2025 09:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="GzKxFp5r"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="iAkofwVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFEB28467B;
-	Tue, 16 Sep 2025 09:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758014992; cv=none; b=KBoHvTqkvq7Yg6Y8sc+m53Fbh+Mu4pCkbrAoP+ugqHfHlfPJXGFY+BJv3Kc598poCfvqT3AFyJUI6teMYeMI0pDww8nNbX2C2xPmEwz0R+jmKkpXCUfrq6CaR1zubgYrbv9+vDFhMcJiZI1Ft/4Fir1XI78bdYIOLTpbQG7QxBs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758014992; c=relaxed/simple;
-	bh=pN3BP6YuPc8dinCC142EZnQ6btd+OPo8nyHYWbARw3Y=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620391FC0ED;
+	Tue, 16 Sep 2025 09:31:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758015066; cv=pass; b=hR5e2geKHo70uEQOErSjLh6Rsw6IdCV7C+T1zRr26+VPn17RT5JbVTwmYtvJjCj/XDCgaoy1vhrqpCB8ymwyguRWGdFtI3TNEjMnBYAMjHuUV/Kl5JH+RhGy/NuPKK2Rbk52uxshS0kt+qJJjd+N08nJso2Uvx7S3sNRmfp8zeQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758015066; c=relaxed/simple;
+	bh=UkZWILK+JDAs4j04OIqHn/mytGnhx9VYR5zccLHHIAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fbZ8bNVB/+KDdytKvB4XKXbvBssvyA0DrfMlMHVlKLitSSua7Pj9RvcocKy2ikAKSHCARruMInilbisC7EI7813rt1qig6OKGCjU8clQpEkAo2pP0RQBW7h4VznPp7UTSWlXG/SbtdVWbpKC1B2eh/XdEjhCePiJxdncQ7aGcao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=GzKxFp5r; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id D5E15534076E;
-	Tue, 16 Sep 2025 11:29:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1758014985;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=nImdRmsvWqLFfWBLK4h18lVd6Gvsyn5jqNa6GLW2IIM=;
-	b=GzKxFp5rNVxZL6RFWLGzNiRy4EFM9lxYUOd4J2Z54J4m0bvmNcn2sPHXBi7MI/L6E/j6lC
-	Xvzaxr1XXlwj7W5GjzzTqeb2MU3lGSwol3sre/DbAI32ElGSgeu4qXTMfASvuqFaLT5tgW
-	ADpw/ohIh4dU5BL5beMY3CZv4BWzbRg=
-Message-ID: <b223a48e-952c-4825-bf82-e8922434e3c1@ixit.cz>
-Date: Tue, 16 Sep 2025 11:29:45 +0200
+	 In-Reply-To:Content-Type; b=iETmkA9BXRGLaMg5mOtDbK/pWxL0CBqIb6D5khf195gByPV7BWv0/u0634s7tdvTQHyZTe96hBLipr3Ed7BqCQI6fg/HOfLt0DgL9b65BHrswjYSJ8EMXX5BwRPsAp8Dxt1X0Xz3vHs0MkGyHLCKu3D+LqBRJclg9NHl/VFFESc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=iAkofwVw; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1758015027; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=g6fls8GpQFdJJPyn2BerMzHDaaltYp454eYLzT43Cl3hYaunv53ulpBxzd2zf8brKdIqfRJ18z3CNS7/uuslxP4w3OxLub0yh04coNNzQkt+UroO79VnUcDa0tLgS9JEpf+CzmEQX4tukcO5x+4poGC5xwHMdvXscmnCAHWCNns=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758015027; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=UkZWILK+JDAs4j04OIqHn/mytGnhx9VYR5zccLHHIAw=; 
+	b=NPqS+DC2xqz9tx6skzBnfs9/piXDoU5PraVJi9PGCcXDw5I1edab4aepZ2WnfO7Ig660pH1Ln/8n1JkhgcncrYc9cKT4sjSx7NQOQIlJbbP4i19hoOkH5AR8hwP6bk8F4SP9ZcJb0kmUwb4rwRnJ6Xq6W3rH7NLJX+Cq/IiruPY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
+	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758015027;
+	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=UkZWILK+JDAs4j04OIqHn/mytGnhx9VYR5zccLHHIAw=;
+	b=iAkofwVwvYWxN35eWDQYbLtMQHEW3Ayh0AdYskiOVW83Ky184bRoIjqvjkqDgmuB
+	c88TJFdUgtOQB0tIbKsVtwf7B0BE9uzfwxLNQXhBiLlhI6BRLNu0kDRmyk7XXSOZHX7
+	QFjd6wEm4ia9MCMkyq68jx3DYNwhJiTJmy/lj4js=
+Received: by mx.zohomail.com with SMTPS id 1758015025274111.17127971304149;
+	Tue, 16 Sep 2025 02:30:25 -0700 (PDT)
+Message-ID: <0eff8b1a-c45f-47b1-a871-59f4a0101f0f@collabora.com>
+Date: Tue, 16 Sep 2025 11:30:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,116 +60,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v5 0/7] Input: synaptics-rmi4 - add quirks for
- third party touchscreen controllers
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
+Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
+To: Will Deacon <will@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>
+Cc: =?UTF-8?B?SsO2cmcgUsO2ZGVs?= <joro@8bytes.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, robin.murphy@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ p.zabel@pengutronix.de, mchehab@kernel.org, iommu@lists.linux.dev,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Casey Connolly <casey.connolly@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250731-synaptics-rmi4-v5-0-cd0d87d34afa@ixit.cz>
- <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com, linux-media@vger.kernel.org
+References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
+ <20250911155720.180465-4-benjamin.gaignard@collabora.com>
+ <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
+ <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
+ <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
+ <20250915225806.GM882933@ziepe.ca> <aMkkYU-p2ouknnAc@willie-the-truck>
 Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+In-Reply-To: <aMkkYU-p2ouknnAc@willie-the-truck>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/08/2025 06:29, Dmitry Torokhov wrote:
-> Hi David,
-> 
-> On Thu, Jul 31, 2025 at 11:06:50PM +0200, David Heidelberg via B4 Relay wrote:
->> With the growing popularity of running upstream Linux on mobile devices,
->> we're beginning to run into more and more edgecases. The OnePlus 6 is a
->> fairly well supported 2018 era smartphone, selling over a million units
->> in it's first 22 days. With this level of popularity, it's almost
->> inevitable that we get third party replacement displays, and as a
->> result, replacement touchscreen controllers.
->>
->> The OnePlus 6 shipped with an extremely usecase specific touchscreen
->> driver, it implemented only the bare minimum parts of the highly generic
->> rmi4 protocol, instead hardcoding most of the register addresses.
->>
->> As a result, the third party touchscreen controllers that are often
->> found in replacement screens, implement only the registers that the
->> downstream driver reads from. They additionally have other restrictions
->> such as heavy penalties on unaligned reads.
->>
->> This series attempts to implement the necessary workaround to support
->> some of these chips with the rmi4 driver. Although it's worth noting
->> that at the time of writing there are other unofficial controllers in
->> the wild that don't work even with these patches.
->>
->> We have been shipping these patches in postmarketOS for the last several
->> years, and they are known to not cause any regressions on the OnePlus
->> 6/6T (with the official Synaptics controller), however I don't own any
->> other rmi4 hardware to further validate this.
-> 
-> Sorry for not handling the patches in the last few submissions. I am
-> planning on addressing them once merge window opens.
 
-Hello Dmitry, kind reminder about the patch series as the window is open.
+Le 16/09/2025 à 10:48, Will Deacon a écrit :
+> On Mon, Sep 15, 2025 at 07:58:06PM -0300, Jason Gunthorpe wrote:
+>> On Sat, Sep 13, 2025 at 07:58:04AM +0200, Jörg Rödel wrote:
+>>> [Adding Will back to Cc]
+>>>
+>>> On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
+>>>> To me this rejection isn't about Benjamin's driver, all iommu seems to look
+>>>> alike, so anyone else that would have sent new driver would have face the same
+>>>> issue.
+>>> This is about ignoring comments from one of the IOMMU maintainers. I am not
+>>> going to merge a driver with open comments/objections[1] from Will (and a few
+>>> others), so resolve this with him and get his Ack.
+>> I would strongly object to trying to share map_pages, unmap_pages,
+>> iova_to_phys, free and other iommu pt related functions in some
+>> limited way instead of helping on the much more complete iommu pt
+>> work. Which is what I said to Will, but for some reason he suggested
+>> it anyhow.
+> If the answer is to convert this to iommu pt, then so be it. My
+> understanding was that was still premature at this stage but you know
+> better than me.
+>
+> When I bothered to look at this driver side-by-side with the rockchip
+> driver which, despite apparently being totally different IP (honest!),
+> is *remarkably* similar, I summarised the similarity in the default
+> domain ops:
+>
+> https://lore.kernel.org/all/aH5yR9CkYSJ4PaZV@willie-the-truck/
+>
+> But rather than respond to that, Benjamin just sent a new version. I
+> was hoping for a bit more discussion...
 
-If you'll find a time, there is also one small, but important patchset 
-improving the Linux phones/tablets experience here:
+Sorry if that had offend, you it wasn't the purpose.
 
-https://patchwork.kernel.org/project/linux-input/list/?series=987495&state=*&archive=both
+Where you see similarities in the pattern I see lot of differences
+everywhere that will required to duplicate the functions for each
+hardware (locking schema, bit definition, power management, enable/disable).
 
-David
+Since the v6 I have fix lot of locking and pm_runtime issue and add a
+function, needed by the video decoder, to flush the TLB.
 
-> 
-> Thanks.
-> 
+My first attempt when writing Verisilicon driver was to add a variant
+(like for rk iommu v2 I had already done) to Rockchip driver but mixing or
+sharing structures or functions between Rockchip and Verisilicon is just a
+nightmare because it requires to add "if else" everywhere.
 
--- 
-David Heidelberg
+Benjamin
 
+>
+>> Sorry, but it doesn't make sense to complain about duplication in
+>> drivers and then not help advance one of the biggest projects to
+>> actually concretely and comprehensively address that duplication.
+> I don't think it needs to be one or the other. afaict, these drivers
+> should share the default domain ops and if the page-table code is using
+> iommu-pt then that's even better.
+>
+> Will
 
