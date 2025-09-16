@@ -1,151 +1,98 @@
-Return-Path: <devicetree+bounces-218069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82C1B5A304
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:28:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A8FB5A324
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:33:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC6B83281AD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:28:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C9301C06E4C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E806833250E;
-	Tue, 16 Sep 2025 20:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CC5338719;
+	Tue, 16 Sep 2025 20:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V20q9Xo0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XcSt/IWZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E613705BF;
-	Tue, 16 Sep 2025 20:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8132C338709;
+	Tue, 16 Sep 2025 20:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758054326; cv=none; b=MyCAsV6gUL+PIc3010s3xoDl8Qa+eRlZTVFjcxot1LrXKXH477LcfRycTJkh8A1ckg0N6O51wzJaKGC3ZXmFINWZPcj7aRoUpO4QA+wu/BGBIBHe8ZC3h65LtQxLaYjQBbkDBay6CIlvOQH4hDr3IPogNvPQaBIywCfHXOVQTxo=
+	t=1758054334; cv=none; b=bHo0/M5fkWEoNpKvATB5BOVfBI0gFV0FouOk8JIJryCL+EM5NCUP9XGdxPDhwKRzzxLaZ2UOwcn6qwweCUH3+mwE0hbMw3M4hl4gSzgMdAjuQVMxQPdAZXZ12H9y7ivvcW+kckdeMUdpzJY81lm0qwkJjCj0/4vhzA4zYO+Rtds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758054326; c=relaxed/simple;
-	bh=D+uWf9FTrNZ5XT1lEEynxKDh80jQlO2m6fXZN2h5Ado=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MSyw3juPPeGYt/yYZNAXNWfCH2cNBmsD2xp8U/MMtwslsCpbgTls0+zt6MGz/hyjMY+PWB/idZuQ0Vf4OmdYzHzPL/mMQCmNMy4keT8qmBbTweOsjqyDO5PhlaY7Ls7l8Id9ZFYczIedsetBtA52iUOg+fED8UoLtmtuGx6Qr7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V20q9Xo0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 83E3EC16AAE;
-	Tue, 16 Sep 2025 20:25:26 +0000 (UTC)
+	s=arc-20240116; t=1758054334; c=relaxed/simple;
+	bh=e7jzOkM+tM0itcBQdYH6jgZne7M3gryxqDyMPNdTG1U=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=avCRA3vumkB7gcvIzmlZkA9Po2EWgQnXq0Nmc4sr3T1lI1x+bl5qa4wLlDOTs250pmTsuMQ7VDCr5M4m2mGs36AZqrLNUrXOtp4WhXja1dEHB90f443mJU46pd+1hFud08TA+pAJW7fC725LaUYG/B3M5YbHBcha298+klQUGSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XcSt/IWZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA80C4CEF0;
+	Tue, 16 Sep 2025 20:25:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758054326;
-	bh=D+uWf9FTrNZ5XT1lEEynxKDh80jQlO2m6fXZN2h5Ado=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=V20q9Xo0lEzJgC99QAWvPWoDp0uogcKMcJnek1L79qqlUGGQ261tuwpDhAOgLsEHm
-	 +/tF95jnMFPm2QpOSoV67ZI5lFw8xviG0H5ygJTmY/jIc0ayFm4qy1Smb92PdWOs3o
-	 ugJ9YsmRmOHAua+SedbO9iv1k+pAu9lHK1bAuIuFvLrPn0i8Ksix1FFXfUpJTH7ZPD
-	 aMe21cQVNlTDpyTi9OT/pOOrdJ1zjAZ+7hhWfI/pJhnP8GcjDuS33zNyDIjA8tDN8N
-	 wZGfAIbRYlpZ26df4gGH5HWGXsJ+uF3r8TxCMPNtqr8VEUk3KspQoASsUrTCH2Xs3J
-	 c+Csr1N5RV1QA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72FF1CAC598;
-	Tue, 16 Sep 2025 20:25:26 +0000 (UTC)
-From: Dang Huynh via B4 Relay <devnull+dang.huynh.mainlining.org@kernel.org>
-Date: Wed, 17 Sep 2025 03:25:22 +0700
-Subject: [PATCH 25/25] dts: unisoc: orangepi-i96: Enable SD Card
+	s=k20201202; t=1758054333;
+	bh=e7jzOkM+tM0itcBQdYH6jgZne7M3gryxqDyMPNdTG1U=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=XcSt/IWZtWMmrpr0LojNprn+5hr3wMBdGIxCQS0PWfDRtgy0r4ipOX//G8d4DCyW4
+	 Z1T20rwCastliRwkNc5mv86xAXuhYXNJBsmHm3Rk6fHTsFA/091HmMqKVlx9FF0eJv
+	 /eHR2DcJWtshosUefi1Yr6CynXGUkbgZCcEU+4uEntptS+Z9zM5KGfirk5KmaXqKWB
+	 ias2UKe+b5rsI/b/FLV9vK4lT7POQhVI0kTzBJgMUiI7l2LuDEXQLP8GOQKjbyT9O/
+	 22lGoNakLiaGK22xKBKVnMdjaqok/xTedkCH8i0zXK+7VVMG2bR49OYsjuKsY/I6N/
+	 kbgoRvbwjWJZg==
+Date: Tue, 16 Sep 2025 15:25:31 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, Chia-Lin Kao <acelan.kao@canonical.com>
+Subject: Re: Question on generic PCI ACPI/DT device property wrt ASPM
+Message-ID: <20250916202531.GA1814806@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250917-rda8810pl-drivers-v1-25-9ca9184ca977@mainlining.org>
-References: <20250917-rda8810pl-drivers-v1-0-9ca9184ca977@mainlining.org>
-In-Reply-To: <20250917-rda8810pl-drivers-v1-0-9ca9184ca977@mainlining.org>
-To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-hardening@vger.kernel.org, 
- linux-mmc@vger.kernel.org, Dang Huynh <dang.huynh@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758054322; l=1432;
- i=dang.huynh@mainlining.org; s=20250917; h=from:subject:message-id;
- bh=qcvVxoXavmL/qbncOuYL4/AA9pp1j7YRntSv1snSw4A=;
- b=TmsiEoRuyNtRCinPmNRJPzsRLAOD+OfUVej7sM4TKuiv/lAlcCXOZO2yuj/YlaqpZKI2qoRoe
- gli9x6SUlcyCqeLBNQVNnFpfLrzGx9+fwjvYNgu+FokiMeRoJphyvZF
-X-Developer-Key: i=dang.huynh@mainlining.org; a=ed25519;
- pk=RyzH4CL4YU/ItXYUurA51EVBidfx4lIy8/E4EKRJCUk=
-X-Endpoint-Received: by B4 Relay for dang.huynh@mainlining.org/20250917
- with auth_id=526
-X-Original-From: Dang Huynh <dang.huynh@mainlining.org>
-Reply-To: dang.huynh@mainlining.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5b00870c-be1a-42d6-8857-48b89716d5e2@gmail.com>
 
-From: Dang Huynh <dang.huynh@mainlining.org>
+[+cc AceLan]
 
-Since we have a SDMMC controller, we can use the SD card slot on the
-Orange Pi i96.
+On Tue, Sep 16, 2025 at 09:48:06PM +0200, Heiner Kallweit wrote:
+> There are drivers (in my case r8169) disabling ASPM for a device per default
+> because there are known issues on a number of systems. However on other
+> systems ASPM works flawlessly, and vendors (especially of notebooks) would
+> like to (re-)enable ASPM for this device on such systems.
 
-Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
----
- arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+I would definitely love to be able to fully enable ASPM on these
+devices everywhere and rip the ASPM code out of r8169.
 
-diff --git a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-index a1d61ef138d12bb3ecb4b24513cc1a7dfbac3107..fbb7b5be62051627e80d940cb5e5ccff9047c13c 100644
---- a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-+++ b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rda8810pl.dtsi"
- 
- / {
-@@ -27,6 +28,13 @@ memory@80000000 {
- 		reg = <0x80000000 0x10000000>;
- 	};
- 
-+	vdd_sdmmc: regulator-fixed {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_sdmmc";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
- 	uart_clk: uart-clk {
- 		compatible = "fixed-clock";
- 		clock-frequency = <921600>;
-@@ -34,6 +42,18 @@ uart_clk: uart-clk {
- 	};
- };
- 
-+&mmc1 {
-+	status = "okay";
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	max-frequency = <30000000>;
-+	cd-gpios = <&gpiob 4 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vdd_sdmmc>;
-+	rda,mclk-adj = /bits/ 8 <1>;
-+	rda,mclk-inv;
-+};
-+
- &uart3 {
- 	status = "okay";
- 	clocks = <&uart_clk>;
+> Reference:
+> https://lore.kernel.org/netdev/20250912072939.2553835-1-acelan.kao@canonical.com/
+> 
+> Realtek NICs are used on more or less every consumer device, and maintaining
+> long DMI-based whitelists wouldn't be too nice.
+> 
+> Therefore idea is to use a device property (working title: aspm-is-safe), that
+> can be set via ACPI or DT. In my case it's a PCIe NIC, but in general the
+> property could be applicable on every PCIe device.
+> So question is to which schema such a property would belong. Here?
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/pci/pci-ep.yaml?h=next-20250916
 
--- 
-2.51.0
+I'm not super enthused about yet more knobs to control ASPM based on
+issues we don't completely understand.
 
+Quirks that say "X is broken on this device" are to be expected, but I
+have a hard time understanding a quirk that says "this feature works
+as it's supposed to."
 
+If ASPM works on some systems but not others, it's either because some
+Downstream Ports leading to the NIC have defects or Linux (or BIOS) is
+configuring ASPM incorrectly sometimes.
+
+I think we just need to figure this out.
 
