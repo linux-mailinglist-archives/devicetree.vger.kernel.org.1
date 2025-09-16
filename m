@@ -1,133 +1,338 @@
-Return-Path: <devicetree+bounces-217702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1A2B58FA9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:52:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F041B58FBA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2470318872E3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:52:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85D885206B9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFE827D782;
-	Tue, 16 Sep 2025 07:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A8C27F171;
+	Tue, 16 Sep 2025 07:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ID4R8V3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECC386344
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD90281368
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:58:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758009130; cv=none; b=oLwEy1EODVu95CRSwoAlVenAVA12y51WCfDLQQyh0Yi1M+k60rIBIQmP326I9YQfZqoN5iuR9XxlsH4FHyrgilDpjO+21CMCdqUM10og/L4vedDY/S5bJbIKQURRal15A4SRiyNrj2hQaEzYNS1dXzzL/LDaj85tGJoYZIT4420=
+	t=1758009500; cv=none; b=u6gxOyIQb9U2w5espnGnDVzkzHTnygPLM8naOneVQp0AZug9/H5Cn/0Hc8p9NOQX3z9WsHSFFKvPLBCLSMXlnpZQK5zRJlKJ6qyTE8uwFeMTeib3neoIqqUZZHs3nlr4Gric7zRoQgkEXLN9LQkiXKeza1eACmmSpMp1jYoU454=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758009130; c=relaxed/simple;
-	bh=6yWeRjTd3EigN4C7xJHdCPXEVBDs9X8oQniavBQDHtQ=;
+	s=arc-20240116; t=1758009500; c=relaxed/simple;
+	bh=DG0G0RV3AmR5fAsT4jCQ/z40LFy/AWJACOz2jnYDTbc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IxhTWgUKEDYAk8gQd9hK3Oe2uoBDksVk+2YLJUeba/mrb72xcLisCDTX6xz7TPq6iki+hvJlUcjvTDOM8h0Q+YF+jAJtvK7Hy6fPjlLZ5QxZ/xMaJkY6zk1wdFpVrNRbNBGYV18TAiewpRx3L7EFWUGXZql/jCxjrHBQzmIKLJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=nQAYXGu7iLVx+9BlYtLNvmtcwibWrm2XDjgXlPemtOrbYWOwBJnczDIfVJnOsGPVj1pUyCxTqL9Na3AtnJyO+0OkAPxLwSIgkGFfAAprzkTHBe5pjwBPqCTYc7DpFqvOqgzi0m0oq5cU1gybeVoCPkfzwCCTWoFik39yuS5JDAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ID4R8V3p; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-8dbfaf7d785so507494241.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:52:08 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b07dac96d1eso490221266b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758009497; x=1758614297; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CGkzswrycxBeHJVZMyHWQrwjX71uOJNEOBcuPlrAo5M=;
+        b=ID4R8V3pAq4jOaHMHfMUktWcwZBoqXfYMgLmtuWyyLtQxw2P/zXRpLEWu8BH1r3o9F
+         jNE4HvIsF6XyLyUhIrq5JP3VIWECAbjeHNuN1MGN5gTyPCu0n5XDNq/BzjRQ+11L6gI1
+         J34ohmxEYqCglbpQ3ybDgRJ5ewiYMKGnEurr4pOkOQns/ILlujqzaWuAGaaCGEnL/0uI
+         AoDQ+hJmw2Z36hnzHGZUOF0rOkANYBjujU686heBMM3Grawi/WK/pLzw9QAjTRZ2jooE
+         XVjogY4vO8C7EP0XMNgUGsUiK2VtS50mcX2h41VzdEpg/bXFjxv+Wmxe8VWnJ+sKeFH1
+         LVRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758009127; x=1758613927;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=K9F1be41AfAEhuegD+wVkRBLQQ7Qa3dUKKIwBvQcqqw=;
-        b=eMHqZnNu2l/BMiUOypGu2O5PhNHvUIFlGpcv8h6oV2YCSmf/NLLxPMNjVTS6GcfY6s
-         eq6GKZr5aAeSD4aVt2P2Me+06I/NhIEI4zH/QDV+D9eaBBhO6b/1qTLhiZzuUzqB3uyT
-         ugKa7PzRUmwSEdK3Eb+Yym+QQNy5II7yuwVsQnVGg81Wux0y3kiwlEuaWuHBNWbRJ+3T
-         Bs86cV1RR5Idw9VrOTXHW88QRdfTDhddFJQFRZzXeXgNY3yN48rQPmIyk4ym0T9zrlD0
-         dLWFxo9/P4QQzpLXObo4iWgOx6svKbq18w6eNocO6B2vyfZx5nAJZluYeb34mQT5xMJC
-         yyVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUd0y6A3e3zPbtQBvlk2hB52rb62/90JvOrwYVL8c+0vj13uT+WStwdh7wEtoJGoW8t6OfMFSM2TAAw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAjBeGV60spTwaX7ippYX6hRhBmlDSY57W1X4ea0PMrCx3y4Jb
-	AWNeUGvbpBdXBorTYxAtpOkNmRMIhMeTPG2OsCW4cMm67lySkWqiqc5BFzbfh3KJ
-X-Gm-Gg: ASbGnctjtXA57tNEA8bgGU7x9o2zbMcovMrcT4sX2E+1dThHIdwuqXoFHmnj5wMIjbE
-	UAJKS/fJa2V4m2ZyyZ4Vl3/4GHFtfyxkjrzgjwBnq86AV4iGQXzaBh+xVVZYZLa34IgHNj/PyFb
-	zQTc+FOh7as+yDCcME8+eMnEhbYF0E3/0aGZB+kUo9KTKE/dKPRPFs1hESvJJBFPWcT2yxz/OAE
-	4mJKeJ1pcXjVHIz4wOMrp5wFAl9fNu1A9SNLeVwiwRw4K98+U1JDkLSyQnLcMr5Cgc92LXEUPUP
-	DwffF4Y6yFNFwPi2HiTXAHgE+aUOW/VFxagaBKypCw+h9xr/HGkCe3a7/ZjU4M6JC2YMf2p/4fb
-	Cfvel6wRJBwAAaNWr1ftNmnF9T4h7FgJFIKiafNO1vAts9vtlPgbTTOQMOm/c
-X-Google-Smtp-Source: AGHT+IFJHKrbaczLRi8KrWnrPLnWTRx0Waxu7G1NKyD4N91+BPWBoWfP7Z6BawYleNP10OaOpx3aHQ==
-X-Received: by 2002:a05:6122:168a:b0:530:7747:80a7 with SMTP id 71dfb90a1353d-54a16cc2b12mr4468955e0c.9.1758009126888;
-        Tue, 16 Sep 2025 00:52:06 -0700 (PDT)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d1d91casm2666947e0c.8.2025.09.16.00.52.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 00:52:06 -0700 (PDT)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-8e11df47db5so73389241.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:52:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWVCeA1SstXsr6uulilHE+T8VEOXNu0dxPPxa2zc+8bw2Yi5du5CcTjnIqJaxKb08XxVzcO0TyssuIq@vger.kernel.org
-X-Received: by 2002:a05:6102:dca:b0:523:5bd4:f982 with SMTP id
- ada2fe7eead31-55612bda230mr4819073137.31.1758009126350; Tue, 16 Sep 2025
- 00:52:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758009497; x=1758614297;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CGkzswrycxBeHJVZMyHWQrwjX71uOJNEOBcuPlrAo5M=;
+        b=edqxQ7bX6m9DDjhAzOma9P8BwOGOg3nAfS0i00zhNoR3rRnKkjEITeLMA5PZV8NMN1
+         hJgjTaHdawraXAMTvs/1JudeGHNsOeEPspbGSibVyb75+v/+n8NrP1778of56u72MCbk
+         DFlrndNVNgODSTNJOBusUX4n+pVC1KUOaVVQ2Gpf9TwTvOnUdPAN9i5uJgzgconoCsAY
+         0/TyRmmd2euJEmovLWwlR+Tm31BpuuAvv3KHAwxrsWgU+COqTCDUlnAjujry3y64yUbu
+         7zJ34xkegheOuLmQIMgkwY3PMboZgI6r+s4JwcRhAOggIYMHHjvL/uCAoKx2XtYWTvIj
+         aFyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ2GpW8hlKEGfSWbhu7OQPqSO9uMJZfPafTDx4/3VyPfOqVoCd50ss9eSvCtTwDAS7lR2E64okJgu7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7WqxfbeTN88iN7dkttD1hK44xeAFbCzg+nL/p+KTuzk95BJpq
+	eIwsUz++ajK4yM9NfhE+Wkjs5HKWOgtfB8ZeAXhB0jv+IA42dnM3D+FnU4Kq/rDRvdK5J0NT3TB
+	EixnpjTDgHVpZXOiSd5ONuRSlqSrC2Eo=
+X-Gm-Gg: ASbGncuK9nuCaNt+od8UiWlOG9bd/S5YFWe+tYEhkqQcQJMphUVfNkTmqTTC+6PH9dU
+	7K7/tTDwW7SMdPw9lWd02LCtW3m0lM2qPL33bmZaV/vTprQfgOeWJWi3oCaQwxR0aMNWSRIKsrM
+	JKDLVM9IrO2vDjhp2jW6PhTdxyjDp6QbEi1EwOpW5CSzb9CLs/HZaPUmLObdRIMWc9o1y8eHR3K
+	LLJuok7jkawcBWoIiBYfnBRTA==
+X-Google-Smtp-Source: AGHT+IFral83PqRO0oFA0nwAADsLdem/Y6OwUTho938r+mc+rTRLW/zzW4TNdo8+cb6TZ7QmrlG/7/Mr5jmEGgUT/oQ=
+X-Received: by 2002:a17:907:74c:b0:b04:2697:9f60 with SMTP id
+ a640c23a62f3a-b167fcd9200mr187650666b.13.1758009497066; Tue, 16 Sep 2025
+ 00:58:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com>
- <87jz27vzec.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdVVV5tY_iwb=Xn6XVY-Ai6spBY70yXhc5VRxwDva8BGng@mail.gmail.com>
- <87jz24fqrg.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdX3cviP6xHnGP01kRDwuHRrHg0ZpNLV8Mf29MFS1B7S8g@mail.gmail.com>
- <87wm5zi5h0.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87wm5zi5h0.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 16 Sep 2025 09:51:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWsKj0s2LjGCOf8_Nm7AE3n4X30bxR6iUp8iCOofDUTww@mail.gmail.com>
-X-Gm-Features: AS18NWCq3KxiPfd0GUnp0oi4W3bn5nezjEinSQF5aftVVknOFW2KMtqQ51sfeFU
-Message-ID: <CAMuHMdWsKj0s2LjGCOf8_Nm7AE3n4X30bxR6iUp8iCOofDUTww@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Marc Zyngier <maz@kernel.org>
+References: <cover.1757971454.git.marilene.agarcia@gmail.com> <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
+In-Reply-To: <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 16 Sep 2025 10:57:40 +0300
+X-Gm-Features: AS18NWCljXfeEk1VNA27kohevOmouRYk8kIoC9zwMHwx8wKfR8g9z-Yuec4fG-Y
+Message-ID: <CAHp75Vc84_b5OdVjC+Vup9R5v=d+30vho7kwihYff-L3KO3JqQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/3] iio: adc: max14001: New driver
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Marcelo Schmitt <Marcelo.Schmitt@analog.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, Jonathan Santos <Jonathan.Santos@analog.com>, 
+	Dragos Bogdan <dragos.bogdan@analog.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Morimoto-san,
-
-On Tue, 16 Sept 2025 at 02:52, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > > > > +                       reg = <0 0xc0700000 0 0x40>;
-> > > > > +                       interrupts = <GIC_SPI 4074 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +                       clocks = <&dummy_clk_sgasyncd4>, <&dummy_clk_sgasyncd4>, <&scif_clk>;
-> > > > > +                       clock-names = "fck", "brg_int", "scif_clk";
-
-> > > > According to the DT bindings, "power-domains" and "resets" are missing.
-> > >
-> > > Unfortunately, can't use for now. It needs SCP support but is under
-> > > development. How should I do in this case ? Maybe use dummy device,
-> > > but can we use it ??
-> >
-> > Just leave them out for now, but be prepared to receive complaints
-> > from the dtbs_check bots ;-)
+On Tue, Sep 16, 2025 at 1:16=E2=80=AFAM Marilene Andrade Garcia
+<marilene.agarcia@gmail.com> wrote:
 >
-> OK, but I wonder does these really mandatory (= ) property ?
+> The MAX14001/MAX14002 is configurable, isolated 10-bit ADCs for multi-ran=
+ge
+> binary inputs. In addition to ADC readings, the MAX14001/MAX14002 offers
+> more features, like a binary comparator, a filtered reading that can
+> provide the average of the last 2, 4, or 8 ADC readings, and an inrush
+> comparator that triggers the inrush current. There is also a fault featur=
+e
+> that can diagnose seven possible fault conditions. And an option to selec=
+t
+> an external or internal ADC voltage reference.
+>
+> MAX14001/MAX14002 features implemented so far:
+> - Raw ADC reading.
+> - Filtered ADC average reading with the default configuration.
+> - MV fault disable.
+> - Selection of external or internal ADC voltage reference, depending on
+> whether it is declared in the device tree.
 
-DT describes hardware, and SCIF is part of the always-on Clock Domain.
-I am not so sure about the module reset, but you made it required
-in commit 6ac1d60473727931 ("dt-bindings: serial: sh-sci: Document
-r8a78000 bindings")?
+This version looks almost good to me, a few nit-picks below.
 
-> I'm asking because it works without these...
+...
 
-Sure it works: SCIF is in the always-on power area, all clocks are
-dummies (the real ones are enabled by the boot loader), and the Linux
-driver doesn't use resets...
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -87,6 +87,7 @@ obj-$(CONFIG_MAX11100) +=3D max11100.o
+>  obj-$(CONFIG_MAX1118) +=3D max1118.o
+>  obj-$(CONFIG_MAX11205) +=3D max11205.o
+>  obj-$(CONFIG_MAX11410) +=3D max11410.o
+> +obj-$(CONFIG_MAX14001) +=3D max14001.o
+>  obj-$(CONFIG_MAX1241) +=3D max1241.o
+>  obj-$(CONFIG_MAX1363) +=3D max1363.o
+>  obj-$(CONFIG_MAX34408) +=3D max34408.o
 
-Gr{oetje,eeting}s,
+Please, keep it ordered.
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+...
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bitrev.h>
+> +#include <linux/bits.h>
+
+> +#include <linux/byteorder/generic.h>
+
+This is wrong, should be asm/byteorder.h going after linux/* but
+before linux/iio/* ones...
+
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+
+...here
+
+asm/byteorder.h
+
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/types.h>
+
+...
+
+> +struct max14001_state {
+> +       const struct max14001_chip_info *chip_info;
+> +       struct spi_device *spi;
+> +       struct regmap *regmap;
+> +       int vref_mV;
+> +       /*
+> +        * lock protect against multiple concurrent accesses, RMW sequenc=
+e,
+
+Lock to protect...
+
+> +        * and SPI transfer.
+> +        */
+> +       struct mutex lock;
+> +       /*
+> +        * The following buffers will be bit-reversed during device
+> +        * communication, because the device transmits and receives data
+> +        * LSB-first.
+> +        * DMA (thus cache coherency maintenance) requires the transfer
+> +        * buffers to live in their own cache lines.
+> +        */
+> +       __be16 spi_tx_buffer __aligned(IIO_DMA_MINALIGN);
+> +       __be16 spi_rx_buffer;
+> +};
+
+...
+
+> +static struct max14001_chip_info max14001_chip_info =3D {
+> +       .name =3D "max14001",
+> +};
+> +
+> +static struct max14001_chip_info max14002_chip_info =3D {
+> +       .name =3D "max14002",
+> +};
+
+These can be moved closer to their first user (ID table?).
+
+...
+
+> +static int max14001_write(struct max14001_state *st, unsigned int reg, u=
+nsigned int val)
+> +{
+> +       /*
+> +        * Prepare SPI transmit buffer 16 bit-value big-endian format and
+> +        * reverses bit order to align with the LSB-first input on SDI po=
+rt
+
+reverse
+
+> +        * in order to meet the device communication requirements.
+> +        */
+> +       st->spi_tx_buffer =3D cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_MA=
+SK_ADDR, reg) |
+> +                                                FIELD_PREP(MAX14001_MASK=
+_WR, 1) |
+> +                                                FIELD_PREP(MAX14001_MASK=
+_DATA, val)));
+> +
+> +       return spi_write(st->spi, &st->spi_tx_buffer, sizeof(st->spi_tx_b=
+uffer));
+> +}
+
+...
+
+> +static int max14001_probe(struct spi_device *spi)
+> +{
+> +       struct device *dev =3D &spi->dev;
+> +       struct iio_dev *indio_dev;
+> +       struct max14001_state *st;
+> +       int ret, ext_vrefin =3D 0;
+
+bool use_ext_vrefin =3D false;
+
+> +       indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
+> +       if (!indio_dev)
+> +               return -ENOMEM;
+> +
+> +       st =3D iio_priv(indio_dev);
+> +       st->spi =3D spi;
+> +       st->chip_info =3D spi_get_device_match_data(spi);
+
+> +       if (!st->chip_info)
+> +               return dev_err_probe(dev, -ENODEV, "Failed to get match d=
+ata\n");
+
+Remove this check, it will be almost always a dead code. The developer
+implementing a new device support won't be able to test the driver
+anyway with properly given chip_info.
+
+> +       indio_dev->name =3D st->chip_info->name;
+> +       indio_dev->info =3D &max14001_info;
+> +       indio_dev->channels =3D max14001_channel;
+> +       indio_dev->num_channels =3D ARRAY_SIZE(max14001_channel);
+> +       indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +
+> +       st->regmap =3D devm_regmap_init(dev, NULL, st, &max14001_regmap_c=
+onfig);
+> +       if (IS_ERR(st->regmap))
+> +               return dev_err_probe(dev, PTR_ERR(st->regmap), "Failed to=
+ initialize regmap\n");
+> +
+> +       ret =3D devm_mutex_init(dev, &st->lock);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret =3D devm_regulator_get_enable(dev, "vdd");
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to enable Vdd supp=
+ly\n");
+> +
+> +       ret =3D devm_regulator_get_enable(dev, "vddl");
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to enable Vddl sup=
+ply\n");
+> +
+> +       ret =3D devm_regulator_get_enable_read_voltage(dev, "refin");
+> +       if (ret < 0 && ret !=3D -ENODEV)
+> +               return dev_err_probe(dev, ret, "Failed to get REFIN volta=
+ge\n");
+> +
+> +       if (ret < 0)
+
+if (ret =3D=3D -ENODEV) ?
+It would be interesting out of curiosity to see bloat-o-meter output
+for the original check and my proposal. I would choose one which gives
+less code, but in case of equality, I would rather go with a more
+explicit (my proposal) check.
+
+
+> +               ret =3D 1250000;
+> +       else
+> +               ext_vrefin =3D 1;
+
+use_ext_vrefin =3D true;
+
+> +       st->vref_mV =3D ret / (MICRO / MILLI);
+> +
+> +       if (ext_vrefin) {
+
+if (use_ext_vrefin) {
+
+> +               /*
+> +                * Configure the MAX14001/MAX14002 to use an external vol=
+tage reference source
+> +                * by setting the bit 5 of the configuration register
+
+Missing period.
+
+> +                */
+> +               ret =3D regmap_update_bits(st->regmap, MAX14001_REG_CFG, =
+MAX14001_REG_CFG_BIT_EXRF, MAX14001_REG_CFG_BIT_EXRF);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret, "Failed to set Ext=
+ernal REFIN in Configuration Register\n");
+> +       }
+> +
+> +       ret =3D max14001_disable_mv_fault(st);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to disable MV Faul=
+t\n");
+> +
+> +       return devm_iio_device_register(dev, indio_dev);
+> +}
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
