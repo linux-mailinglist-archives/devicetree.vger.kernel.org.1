@@ -1,90 +1,90 @@
-Return-Path: <devicetree+bounces-217847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57EB2B596C1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:59:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D18B596C4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B995A3A82B0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:59:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCBA232502B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D6E2D2494;
-	Tue, 16 Sep 2025 12:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637373054C5;
+	Tue, 16 Sep 2025 12:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iDGAgyp0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="peECV5IZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E112928641E
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48422E5415
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758027572; cv=none; b=as4ryFUx1WpVYJYdzxdu2EWz5Gvlxr3JsPRepxadepcLN/fRysZArEQ5/BHBLAVeHyBI6DcjcvosR05xZ0G52arLlLP5iO1NGHdta+bXJxK3uaWL9ii5Ww4DXcF3q+N7m/Bwr74NPU0qV9phBymIvREL68mynLX4SMOxekpqo70=
+	t=1758027576; cv=none; b=dJz8JiAZ7anrYj9/NawTg6+4K7OaydDZlzZX67aHbu+K0BeumHm39PVUP4TeSHk/QpI7LwoG8ymSo2ijAvD4NzOu+GAK8q+XHyN+/Jr8JgRn+aobwfkGEUl0y/jZjQEBsq9wJz1qx8DaqSqq8AYI1fCsyCcsDf5xq7ZWSZu5rOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758027572; c=relaxed/simple;
-	bh=ArXwDIA34+1WfUp8gIHMT40+a9JNYhOA/RMyYMWiy6U=;
+	s=arc-20240116; t=1758027576; c=relaxed/simple;
+	bh=DVbPWj2tzFTRpVphPskCm+T6kOu6ZEksP9RXF1CryGY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lWzVxBycdxSCKnLuX4pPtp4xtESdVPQYNsGJHUwEpi4tpWq4evqLg08ZEK0uHp/IvkE0DXihVTXrTA16/PqMiG6cBtTG13vnWVuBLSISXt3eqtuUsrqnu10T5ruxlNjGpg+LFmFtrOUPKKR1LPPf/ZMrhfeLmXCxgONSY6cuBxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iDGAgyp0; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=En67/183BPhYcKynFCv0Fhphzkpj8DP+MuX6/h8uqzrDzGvbc5CL7zo4yTgnQCkTaOhjE+et7xaEENGvDaIfHNXd3cFDsWRsfOP7S/xKbPAMWyvRqTI7xnKkOoTapCmi8SaFBcNhpP9irVsVXZ+wYgXGt+pHqccW/87MiYsj4pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=peECV5IZ; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA49Fj005233
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:30 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G9tOJ9012389
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3F+avBgCPtVijc/CXlYOC3xqwD3ll2D58Zhdko8e96g=; b=iDGAgyp0GaLspUGc
-	T1e+6zPtGvr+NOFiYfcFIHxFmy/8yZeLMrrLm1ZohXYSjQ1oRelqYSKegxqTe6JZ
-	IXZdDI+Wg4dpMNVJMbs3UjJ8NHQN3tZ5QJO4KgP+74OkEW4G+hz1VzmXRLn/GlYH
-	51MUYNRiTWB12dLMM7mINxWCbaEsYdWZyfdTs5JHoX0MrsNWavv7EB+w8ebJW0j/
-	oGjHcuo8h1j8v3AMeqONpDIc6VOy8LrVSAmyIcnqZVxV+4KNXImceow209bk3Vey
-	ItWmsuavpQ4DU0gCj1uEeDoFuckSnknFlUYEOUr0P1mrTIICrpYPehkgZSfMyKFD
-	aOvUQQ==
+	+mLsRe9kMqiLPQdcorklY1L1kTPL+tbykpHDs9LwmKs=; b=peECV5IZaAdzaBAl
+	NePZMMthewNi8kAkCB78FAjo/R6L1hohEQV/RFFax5dzPCKksvt37zWZkneTdKJ2
+	Kad9iAarbhSwkeAPgt+a8t80Lhf4AAhxC3L5PLCU5dlIt0WyZCyxQ+pexjaBm8Mc
+	AbHklPsNOfd4Kc30NVGOk4eiB64rbC1l3fB+m+3IGbTq5oWFfmLmdAcMpfaZUg/l
+	6Ojgxmw+b/1xjBIK33z2nsu74qmSE8cQJYxv/Ljf0FAZqvLd0vS4SM2+/NF/oI58
+	Kx8JFDaA6J7K6a4RKAcREKEHs+oZW/9bAXEQAXe7f2+WINdFCnVp2FvCgtIU0dIs
+	zUyfog==
 Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n4jhy-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g12mj3y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:30 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7722ef6c864so4418890b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:59:30 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:34 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77288e1ce43so4873506b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:59:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758027569; x=1758632369;
+        d=1e100.net; s=20230601; t=1758027573; x=1758632373;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3F+avBgCPtVijc/CXlYOC3xqwD3ll2D58Zhdko8e96g=;
-        b=S5Z8jsgWwhg80Z/8mRajtb6a9PhUe3T4s4zm5g++NCideNPTu0bzyYruBNQAmmWhJG
-         ckBHCvFpgK1QsPfSsMKglL5LgykctfzSxS8miVnYrum9R77ADJb7lZTIl9yoAQNQeV0V
-         s4qwkJSU/6E8yPDh0kkCNBw4gyrD7tvOXtYIg9M1OgEs0qg+QuQrjS5blPiUK58//lpT
-         jHZt9KCOd7svot4JeSgp19/rm/oMzN7KoMchljG90ZTmdTNwzc66KMsyAWcVYqa/aCM6
-         6SfhwGk75HH6fxwTKUJoDWd6yNO2a93IbZNu+fS/UvlpnMtcvJ30X7YL0DfqAHG3oTNM
-         l+zw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvspKULlcjtfXI2maCZXYTRXAOU9B2A1ib0RAMDCYXnpQqBDqy4uFcEATwuGxbVmLjrG75vb0wWA8+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeU6v1/BAdBu9SvzmXTKsBdS9waVSxBXFwTvrL1+oXdORWbGbR
-	03ubkGcO3LT8CdP0NCsb4/NESw+rLUnLkd7F2sKfxKnzElx2pZ3BCIBjQLx7xRjoLoVufrOrm6i
-	gm9z6Q88GvgkRb2dhV9/RsqkRM4CGHsIQyydjo1ptSMK3uH0zAajH2H/RTtWFlEB9
-X-Gm-Gg: ASbGncuUASTsgacDrOQW2hcWS4XIJQTGl3sjQmEMv3kRzM2IqwGS+Oyl75yokx5IX54
-	p6XVnIbDD3QDORGQzESbLcEGZ1N+pKD2WN2bwcFEM/NhiboS+EXV4Qsx5w6JNiHfL+XiYsPohz3
-	vwGZmZSDe21PYoHcY43hz04fKaSlihMKsSzk06vWnuwaNSSJkpejtdhU1DSqIP46wkE84Stkt3x
-	NEIFDrDjY0hqxOcxEEV57OoXa7N5siJ0++eHAO+DBJ5+jcuAH26n6zGUfOAa9klz7zqtCgckFW7
-	Dfbd7cqjGuSSLEOH68czOxcWjL1QE78AebK2hqJlsGN4evC4FVs/hn0iOYYc3zQyr5JU2CsE+EQ
-	5AnTBBgz6IPehmipeqi8duc90Rw==
-X-Received: by 2002:a05:6a00:4646:b0:770:4ede:a2e8 with SMTP id d2e1a72fcca58-77612163929mr16665918b3a.16.1758027569361;
-        Tue, 16 Sep 2025 05:59:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEmb71a7q47hpN//nq+ziR3OQx8TzsAwDsoM4rUQcl/VbXCJ5ovd9F+DFg/NB6YAIn4jpAoYg==
-X-Received: by 2002:a05:6a00:4646:b0:770:4ede:a2e8 with SMTP id d2e1a72fcca58-77612163929mr16665880b3a.16.1758027568835;
-        Tue, 16 Sep 2025 05:59:28 -0700 (PDT)
+        bh=+mLsRe9kMqiLPQdcorklY1L1kTPL+tbykpHDs9LwmKs=;
+        b=Mozz5EiSvkZ0KJqubDdmmAKbs2HBI5SmPAW/FfM2SZzYV1r3j0H8C70thU3WALKK3E
+         fH42zvhgiEy7WpsRnU4gMr67D0UXxHFPdrwNtFf40MKF5epBPtM+zV6TE6k1w11ho/M8
+         XMXIJh7gedk5yGooWU+wuD07joSAi583MNwXJ/5VqpEUymynO10AGqAHB65F4WPeB6U1
+         ZLRflcAHccsCMpRk7XLiFzIQ93CuFLi/pqU7A5rdWME9y4+ZkCgAUipk7MjLFjMO0KbL
+         7XpkEmj8fEYYvj4Tl4v1p36dM1uwf49qTg0uIekrlAWEDtS9K8BGbBbZfvuXFTSkS/P0
+         Jarw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7xR7Zl2vIbw5ZKHFUKlKiJAJurxw+zsBLgog4JpZvnLs66aW/ZsZahNTFRrElmgOflP3o0Tul0gbG@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywgnf0p7FKPp2dnCt81G/6UWrObSerRq1HhqLs+i/8+5EB8VWrv
+	YXUVLuXidCdNQ2M+hV+knN44bpmhSz14avQxJ3sJ0JuMwO37c8ImRFQ6bXE8cMGc5Ncat1fpqwK
+	9jcDTHpqLqP6cmq/X87azUIm4bkQ5ENzgMZdzKh5+Xc/XJ8zF6KkWQyCrmzQ/mnlr
+X-Gm-Gg: ASbGncunZfcKQi8dQg/mCPnKIEJXwAwdF5ul8/JHDLWyLziVV+qxL292Hcx9pe9uahd
+	Hj1uGcy2S3+mid1U5xDxdV590z0nJGyLxjnRn5SVH4QqTLOqGrTd2188OKa21Nvhz6FOiiONo8+
+	nD3D7fCMwK9DB/wvXnOYwICAxs/8nGMGr10o4Qp8g7MiegvYQWa5nWgQM/qh7qGvY7Wz3w/7m4H
+	RRuYlo836gNR0JIaFXFg6uYTPYjwOqfmKLPFmWhPrCkGpaLu1giq7DQ+6qjH588N9rMay7V/Q6J
+	AOu4iIHG+haQd+ziIbr5b/4e0yjoNTUjxFVcFtYm7WH+EZwaD/KPHvQ7lg5naplu1AcnGH59i55
+	UC4mCh9rA1gzFxnU2+iFzoUo7pA==
+X-Received: by 2002:a05:6a21:3391:b0:246:3a6:3e64 with SMTP id adf61e73a8af0-2602d00f0c6mr21846770637.58.1758027573365;
+        Tue, 16 Sep 2025 05:59:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG/RdLHaNL07xBwx94L8QfLO/pai//e4+r6maxtQ+HYFVzCNITHHJ7Kd42jZ06d5d8xZ8OrnQ==
+X-Received: by 2002:a05:6a21:3391:b0:246:3a6:3e64 with SMTP id adf61e73a8af0-2602d00f0c6mr21846717637.58.1758027572870;
+        Tue, 16 Sep 2025 05:59:32 -0700 (PDT)
 Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a46b7asm16057113b3a.22.2025.09.16.05.59.25
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a46b7asm16057113b3a.22.2025.09.16.05.59.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 05:59:28 -0700 (PDT)
+        Tue, 16 Sep 2025 05:59:32 -0700 (PDT)
 From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Date: Tue, 16 Sep 2025 18:28:52 +0530
-Subject: [PATCH v2 1/4] dt-bindings: rpmh-regulator : Add compatibles for
- PMH01XX & PMCX0102
+Date: Tue, 16 Sep 2025 18:28:53 +0530
+Subject: [PATCH v2 2/4] dt-bindings: rpmh-regulator: Update pmic-id
+ property description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +93,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-glymur-rpmh-regulator-driver-v2-1-c6593ff9b4be@oss.qualcomm.com>
+Message-Id: <20250916-glymur-rpmh-regulator-driver-v2-2-c6593ff9b4be@oss.qualcomm.com>
 References: <20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com>
 In-Reply-To: <20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -108,123 +108,64 @@ Cc: linux-arm-msm@vger.kernel.org,
         Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
         jishnu.prakash@oss.qualcomm.com
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758027560; l=3104;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758027561; l=1387;
  i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
- bh=ArXwDIA34+1WfUp8gIHMT40+a9JNYhOA/RMyYMWiy6U=;
- b=5S++N3b4m1dfuTL8iMCLcvTKf3bQiw6ME/YqNaXckgvIqnAJ16aBRLDv55tV4wftAV3FIn7su
- tBJtCieE1s1CZZ8rr+CyclA+U2uuI2I+vpwOZScZIYua2Au0JfInCMC
+ bh=DVbPWj2tzFTRpVphPskCm+T6kOu6ZEksP9RXF1CryGY=;
+ b=O6hVdlhzYecc+aTt0sQAbh5PALuldhyzASq8saxD9OyUXUPhZza9Vv+Zzub48ItT3RbxU0TZD
+ HNZmpf/lnvGDAVrOvlA39mfJO+2EoXMXtq0cEQzBz8QPuq8f1DUTyqG
 X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
  pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
-X-Proofpoint-GUID: rH8Ljw1X-BL9ydONHfrUajxplIsNUfGG
-X-Proofpoint-ORIG-GUID: rH8Ljw1X-BL9ydONHfrUajxplIsNUfGG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfXyb745QxsnsCf
- uUbr8RwTMNRt/OtICpkD9bTQqcsb6OwOHZIMbW4DflzJ06iSCbaJs1pjzAg38tx9k2YmaxZ4Uve
- nWLGaOgV+MAzYI9BNSUWijIBqpbu0gjl+JZIfn86O7nUPQGv+w/aeOv4kihelLya86qM1haeo3x
- sd6FKawokSWSbqv3QdrBbJVWaQKnxl+d83ymHP/8bkTjGhVLLNKG5JYdi802fiRaUMFrpLxeXuG
- j18giqWXE7yHMZ9KH+cHijzrpqubUC/2d4AjkLstcVum0yvtMckfC4FjB7zwBrvKV+YGhKF63ky
- BSkPpZbgS2w/GWTvYAhsy+Kg6dVYtpWMUVvnlq/rD7L9xtEqSIFb/kNS6qfSSwYdTvWkRV7XaPt
- +l1XxJIx
-X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c95f32 cx=c_pps
+X-Proofpoint-ORIG-GUID: kLEQ-04Z6xwqPdUhHFndbunubLoKpJ-k
+X-Proofpoint-GUID: kLEQ-04Z6xwqPdUhHFndbunubLoKpJ-k
+X-Authority-Analysis: v=2.4 cv=E5PNpbdl c=1 sm=1 tr=0 ts=68c95f36 cx=c_pps
  a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=lsy0SRZfEzWN0kW82SEA:9
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=kC17J5x1v2BUAMpV_zAA:9
  a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NiBTYWx0ZWRfX4j9z0iXaWLpz
+ KQi0XR110dJzVj8DNdChWaNe3bz+PwL9epKTwvM+SFO8iZm67Ydhrj7MaXQ3JwkQ43K044dHj5a
+ +z9WCcbyICYk4SlBKEpqDi0tCZ0UhvdhzXYPOdRv3qrpLHkqzHKrcooQ6Mg18qaQKEdS/T2HetV
+ xv3YC3e3CAIyGobqkFFssleBd7og2zAkSfa4BTExQZwclFwcaFlDSo9QJ+KMjMSpaRRA1r6J6c1
+ JbDEYXstvYNgoKaUpSmnFUwI9Fz5psdsctNcjUX8Avpi50KNJwzDriSEo2g2WsZPQ9kFs/tf1/e
+ TouzfWMYwQbDGumeGJ0/OnOPpnzh2V0W7hjzF+NI7xsTMiWug9lB+T24s30VCB2F+nH8edpzY2S
+ ZPC40C/D
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
+ spamscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150086
 
-Add rpmh-regulator driver compatibles strings for below PMICs:
-- PMH0101
-- PMH0104
-- PMH0110
-- PMCX0102
+The `pmic-id` property previously accepted a single lowercase alphabet
+in the range [a-n]. However, on new targets such as Glymur, the
+property uses a new format: `[A-N]_E[0-3]`, where `[A-N]` represents
+the PMIC ID and `[0-3]` represents the BUS ID.
 
-Also add the supply name properties for the regulators
-present on these PMICs.
+Update the property description to reflect this new pattern format,
+matching the updated driver implementation.
 
-Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Note - Old format [a-n] is still valid and will work for existing
+targets.
+
 Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 ---
- .../bindings/regulator/qcom,rpmh-regulator.yaml    | 37 ++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 4c5b0629aa3e622579b54a226785139a0b986079..40e57b10ebbebeff130871b6d978df64111b6f29 100644
+index 40e57b10ebbebeff130871b6d978df64111b6f29..40ddc64577e78b5c0dbb7b4e8893a08e8b37c92e 100644
 --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -51,8 +51,12 @@ description: |
-       For PM8450, smps1 - smps6, ldo1 - ldo4
-       For PM8550, smps1 - smps6, ldo1 - ldo17, bob1 - bob2
-       For PM8998, smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
-+      For PMH0101, ldo1 - ldo18, bob1 - bob2
-+      For PMH0104, smps1 - smps4
-+      For PMH0110, smps1 - smps10, ldo1 - ldo4
-       For PMI8998, bob
-       For PMC8380, smps1 - smps8, ldo1 - lodo3
-+      For PMCX0102, smps1 - smps10, ldo1 - ldo4
-       For PMR735A, smps1 - smps3, ldo1 - ldo7
-       For PMR735B, ldo1 - ldo12
-       For PMX55, smps1 - smps7, ldo1 - ldo16
-@@ -85,7 +89,11 @@ properties:
-       - qcom,pmc8180-rpmh-regulators
-       - qcom,pmc8180c-rpmh-regulators
-       - qcom,pmc8380-rpmh-regulators
-+      - qcom,pmcx0102-rpmh-regulators
-       - qcom,pmg1110-rpmh-regulators
-+      - qcom,pmh0101-rpmh-regulators
-+      - qcom,pmh0104-rpmh-regulators
-+      - qcom,pmh0110-rpmh-regulators
-       - qcom,pmi8998-rpmh-regulators
-       - qcom,pmm8155au-rpmh-regulators
-       - qcom,pmm8654au-rpmh-regulators
-@@ -246,6 +254,7 @@ allOf:
-         compatible:
-           enum:
-             - qcom,pm8005-rpmh-regulators
-+            - qcom,pmh0104-rpmh-regulators
-     then:
-       patternProperties:
-         "^vdd-s[1-4]-supply$": true
-@@ -422,6 +431,34 @@ allOf:
-       properties:
-         vdd-s1-supply: true
+@@ -108,7 +108,7 @@ properties:
+         RPMh resource name suffix used for the regulators found
+         on this PMIC.
+     $ref: /schemas/types.yaml#/definitions/string
+-    enum: [a, b, c, d, e, f, g, h, i, j, k, l, m, n]
++    pattern: "^[a-n]|[A-N]_E[0-3]+$"
  
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmh0101-rpmh-regulators
-+    then:
-+      properties:
-+        vdd-l1-l4-l10-supply: true
-+        vdd-l2-l13-l14-supply: true
-+        vdd-l3-l11-supply: true
-+        vdd-l5-l16-supply: true
-+        vdd-l6-l7-supply: true
-+        vdd-l8-l9-supply: true
-+      patternProperties:
-+        "^vdd-l(1[2578])-supply$": true
-+        "^vdd-bob[1-2]-supply$": true
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,pmcx0102-rpmh-regulators
-+            - qcom,pmh0110-rpmh-regulators
-+    then:
-+      patternProperties:
-+        "^vdd-l[1-4]-supply$": true
-+        "^vdd-s([1-9]|10)-supply$": true
-+
-   - if:
-       properties:
-         compatible:
+   qcom,always-wait-for-ack:
+     description: |
 
 -- 
 2.25.1
