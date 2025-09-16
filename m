@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-218086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19203B5A467
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 23:58:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0EBB5A953
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 00:03:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 008B84E111B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 21:58:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A420E3B0DF2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9C5320A38;
-	Tue, 16 Sep 2025 21:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2604274FDE;
+	Tue, 16 Sep 2025 22:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oYooj2CA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZEuvnzma"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72FE71F4174;
-	Tue, 16 Sep 2025 21:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331CD4A04
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 22:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758059916; cv=none; b=XAhGEVCBIEvKFgEMJpxYZ/NpItifviu7c+Dg8TVIOzey7V8dDSxHBsRv43himskdZXIg8owlwW9kSE37QODIUWevtyEuTvIJoWcGtRGGTviCEBBmqviQuSymczzUy94asU4skqT0iqie6qYV4ZCabSh+fQ9oEeoyByBRzP9lpfU=
+	t=1758060229; cv=none; b=VSkMvWCv3AvpfsmhDGrtJtzRCJQuQEBG+lTqbCfi3ociVPVSzr+SQ00yXHGMrE9VlFWxv3+2zGONVXRPWIHBOK6u6TSt/3RsEuFfzKVx2YJsN7PbRAMcxw+Z7LODOf36MoahN/sthWwp460RNewybhxyunAC78jB2TYjDNnYHZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758059916; c=relaxed/simple;
-	bh=p/sllpw7FUw3A5qT9X0lUWthNksKlG2vDd/iyZDgZ3I=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=MwQJlHAXCUw5YPQK5rgKlDP5jWPUclK7QuoHJOV0s1puhCEh4AQ3W80usqjZPNx23D5piAzx/0WQJu/SWNTR68ykywav6xQVcmLLC5E4GdZDl1PoFCuinRkj1nxM1dqdATD4VJbFiN8sP0qH1LAOHxAqTK1g9D3y4Usso2wXPEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oYooj2CA; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58GLwPTp103866;
-	Tue, 16 Sep 2025 16:58:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758059906;
-	bh=UJkGfDcwDqP60o/V3NViblQLFb9Y4GSuV/HkoATCsEg=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=oYooj2CAhGlg3wuLBOoaypdro2mgHKDAhTmAlZjjvU4IV4u/6gaCctGYKSqv0ywbn
-	 D/7uRLxFF7OT+eo1O2HJVVlJeQ+f34Z9biJwtfOhLHbczaWEl1GTy9dSi0gLCP6gmr
-	 e11f51mU/w45gAy0oYuLGlcV7iUh7FR2MPLhK9So=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58GLwPN91839800
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 16 Sep 2025 16:58:25 -0500
-Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 16
- Sep 2025 16:58:24 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 16 Sep 2025 16:58:25 -0500
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58GLwOGT1970510;
-	Tue, 16 Sep 2025 16:58:25 -0500
-Message-ID: <3e3de956-e071-461b-ada0-813daa3ef0c0@ti.com>
-Date: Tue, 16 Sep 2025 16:58:24 -0500
+	s=arc-20240116; t=1758060229; c=relaxed/simple;
+	bh=rngYmVobiGFs88K9afobninraV2yxLvnoogWo8W+5NM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DrFb3ycA55wLRguH923TI9ttq2NhPhuzCIcOKMlSVbHQj/Mjzt0xNVbDuFS5svjn1aAIeEBfu7Hc5BWuRizpBwaJinhoXUJg/nrgmSIwfuMd4RVrWtfX8JjbgqEH1/TxlYc82XJHgi0SbyzznLYJId07p1EXooHGZmHl4rNLrzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZEuvnzma; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b0787fdb137so901063966b.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:03:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758060225; x=1758665025; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=o0Ob/UE4RTVxiwS8RzGBBRyiZqvn0MV4NxGM4WOAL0E=;
+        b=ZEuvnzmaJG8e6mGdrfvaoP/Ij6kqyosv9K+1qvc8fjwX0nzYieBGdF4JxZPRaVklHN
+         67BDL/7QwUT0Xa9fgRqPsOwvONMbVsThIxrWeVpJI6B2hJvYA5TWnQRnYqWe6Dcxv7df
+         WDBVtwnfegrOWXNnKNXi+fuI8qAM3grgkYVHfRMCbNvF5ZRJGm5hyaNhh+X4X5q9a3Qk
+         arNpUbt5nJCxDl5s0UgduJqE41PHaVyk1QuhH8NalC4FDRT9M8bKuRAxDP3Uob0ypigz
+         DZPSPzW5dZ0fdG/GYGAC4GGGGg9m+eVV4lOQy9ETOJDjYIscerF3L+3WHOx5570VTM3Y
+         Xo4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758060225; x=1758665025;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o0Ob/UE4RTVxiwS8RzGBBRyiZqvn0MV4NxGM4WOAL0E=;
+        b=vyehGrZkt2bjWn4fnV6gwZJr3+mmE3Q+y1DyTqv2ufJBKlFEak8rkJ+vuTxkpBIv+H
+         XUXtMhQh54EZgbY8bX2dt/6rAle69m4mV55KtdRkCl7GcmvtN9ya2l3GtZkRPZlMWr8q
+         6BTsZrGwrX8jAORGMerNjNFFxOTzUTBuz/X3MPMXpb3w6ofFNUYdNC7DtJoD7gyZWibt
+         A1BBZJCIXjdOP4FtvkW8NTQHGTkOFtpPMcUC68hO3UbRsI1icGXf1UaSMc6Oa6C3DRu+
+         EJRvgaDSE9X6kOOWT80csmp7rixCF5czLKYAg28YK+ajypcwqwFmfaRgtysix0ZBg8k8
+         Egqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvU6jYPW3kazyyvGRnFwWu+zMM5lCrgfPcGdnEJdu2yEUUuVPomSdk98pMEcZTRO8tzVGfHcfbIi/3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuGY78fdOuPI0WbLqD4J4Ozwy3ODpGWonmXjCMV3J2vvCXi0tD
+	ho8N/u3i4nUl5NhrEAMb6CnWch3Zd8o5AQ+HQ9CHonattt67n/dAGgqJ
+X-Gm-Gg: ASbGncuMrFc54N6rgmndjPbKyBlDQdJad8+VhM4hqn1xw5zUxQcJPqgyf+Ej4oq7nbE
+	FT3scnN8hO/juyaw2I5xyLBvSj6BtMGQulMKJG8GBxtkoFtcFJtaPOT+92I5Nx9+hhyoI40ftdQ
+	63eLHCComznjGkfWcOwrIdm+SEg1/4zJ9X51GhInJL8ALJino9ULm6APf4eh3w/ctkawyxlazqR
+	7sB2daF8siWcKX9QEoYK0xmZJZZvZq+HpTB/trk3wwe+xgMqD/ri2NnrY78yP0njAiayYIcaKaa
+	iBgVgKvG2t3hNE0ClWyf9Za62SN8jADOTQN5PvZsURrdq01f+/WkKjhS44+NRPrbHhctDLoeDVd
+	9+eZXEW323h8MJM3ynV/n4oFCfw9I9z55ewIoFO7hvd/24q1UK7jKlQy9zxZmTzg0JIGS
+X-Google-Smtp-Source: AGHT+IEQodNvL7Edth6QjxYHTIysPZRAz+uUM7UuZtp4kejKP8E79m/qDu+L/TqlV6RUd269kcVcYg==
+X-Received: by 2002:a17:907:9713:b0:b04:8358:26fa with SMTP id a640c23a62f3a-b1bc02f66ecmr1410466b.33.1758060225245;
+        Tue, 16 Sep 2025 15:03:45 -0700 (PDT)
+Received: from ?IPV6:2001:861:3385:e20:6384:4cf:52c5:3194? ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b30da43esm1237094866b.14.2025.09.16.15.03.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 15:03:44 -0700 (PDT)
+Message-ID: <235312e0-b912-4e10-874a-e6364131aaee@gmail.com>
+Date: Wed, 17 Sep 2025 00:03:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,70 +82,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
-From: Kendall Willis <k-willis@ti.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
-        Kevin
- Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
-        Sebin Francis
-	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
-References: <20250812-topic-am62-dt-partialio-v6-15-v2-0-25352364a0ac@baylibre.com>
- <20250812-topic-am62-dt-partialio-v6-15-v2-1-25352364a0ac@baylibre.com>
- <18fb75ad-aab8-455c-91a7-f8741289191c@ti.com>
-Content-Language: en-US
-In-Reply-To: <18fb75ad-aab8-455c-91a7-f8741289191c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH 0/4] STi device-tree display subsystem rework
+From: =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Patrice Chotard <patrice.chotard@foss.st.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20250717-sti-rework-v1-0-46d516fb1ebb@gmail.com>
+Content-Language: en-US, fr
+In-Reply-To: <20250717-sti-rework-v1-0-46d516fb1ebb@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 8/27/25 14:14, Kendall Willis wrote:
-> On 8/12/25 04:15, Markus Schneider-Pargmann wrote:
->> WKUP_EN is a flag to enable pin wakeup. Any activity will wakeup the SoC
->> in that case.
->>
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-pinctrl.h | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/ 
->> dts/ti/k3-pinctrl.h
->> index 
->> c0f09be8d3f94a70812b66c3f91626aac35f4026..d3b0ecdf1a4a4de25ee6121ec9e62d1c7df26eb9 100644
->> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
->> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
->> @@ -19,6 +19,7 @@
->>   #define DS_OUT_VAL_SHIFT    (26)
->>   #define DS_PULLUD_EN_SHIFT    (27)
->>   #define DS_PULLTYPE_SEL_SHIFT    (28)
->> +#define WKUP_EN_SHIFT        (29)
->>   /* Schmitt trigger configuration */
->>   #define ST_DISABLE        (0 << ST_EN_SHIFT)
->> @@ -65,6 +66,7 @@
->>   #define PIN_DS_PULLUD_DISABLE        (1 << DS_PULLUD_EN_SHIFT)
->>   #define PIN_DS_PULL_DOWN        (0 << DS_PULLTYPE_SEL_SHIFT)
->>   #define PIN_DS_PULL_UP            (1 << DS_PULLTYPE_SEL_SHIFT)
->> +#define WKUP_EN                (1 << WKUP_EN_SHIFT)
->>   /* Default mux configuration for gpio-ranges to use with pinctrl */
->>   #define PIN_GPIO_RANGE_IOPAD    (PIN_INPUT | 7)
->>
+
+
+Le 17/07/2025 à 21:15, Raphael Gallais-Pou a écrit :
+> This serie aims to rework the display-subsystem node, which was
+> previously included directly within the SoC node.  This was wrong
+> because it is an abstraction and describes how IPs behave together, not
+> what the hardware is.  Instead, extract display-subsystem outside of the
+> SoC node, and let IPs describe their connections.  Doing so helps the
+> readability, and eases the understanding of the hardware.
 > 
-> Reviewed-by: Kendall Willis <k-willis@ti.com>
+> Several nodes have been renamed to stick to the generic names defined in
+> the device-tree specification.
+> 
+> This series depends on another sent a few days ago.  It is not critical
+> though, since not having it only triggers warnings when building
+> deprecated device-trees.  Please see link below.
+> 
+> Link: https://lore.kernel.org/lkml/20250714-sti-rework-v2-0-f4274920858b@gmail.com
+> 
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> ---
+> Raphael Gallais-Pou (4):
+>        drm/sti: check dma_set_coherent_mask return value
+>        drm/sti: make use of drm_of_component_probe
+>        ARM: dts: sti: extract display subsystem out of soc
+>        ARM: dts: sti: remove useless cells fields
+> 
+Hi,
 
-FYI: A series by Akash [1] has been picked in linux-next. It includes 
-the WKUP_EN macro but defined differently as PIN_WKUP_EN. The series 
-needs to be rebased to account for that macro.
+@Patrice
+Would you agree to make the device-tree patches go through drm-misc 
+instead of your tree ? So that the breaking change lands in -next in the 
+same time as the driver changes.
 
-[1] https://lore.kernel.org/all/20250909044108.2541534-1-a-kaur@ti.com/
+I will send another series to convert display subsystem bindings to DT 
+schema as soon as the series is merged.
 
-Best,
-Kendall Willis
+@Alain
+Do you prefer to merge it yourself or you rather let me do it ?
+
+Best regards,
+Raphaël>   arch/arm/boot/dts/st/stih410.dtsi | 316 
+++++++++++++++++++++++----------------
+>   drivers/gpu/drm/sti/sti_drv.c     |  18 +--
+>   2 files changed, 192 insertions(+), 142 deletions(-)
+> ---
+> base-commit: b9a572f471993d3e8bf874fcb57f331d66650440
+> change-id: 20250401-sti-rework-b009551a362c
+> 
+> Best regards,
+
 
