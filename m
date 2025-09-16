@@ -1,104 +1,137 @@
-Return-Path: <devicetree+bounces-217878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35DAAB59804
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:44:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC84B59833
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F793B0575
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:44:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797E3168418
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A271B313297;
-	Tue, 16 Sep 2025 13:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD84431DDBC;
+	Tue, 16 Sep 2025 13:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljdjCTkG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZzwLIuCW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F3A2F7AB1;
-	Tue, 16 Sep 2025 13:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08C631D75F;
+	Tue, 16 Sep 2025 13:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758030241; cv=none; b=oscjmMpf63qkcdryalQEyLLSebdu6oJCiE95NbZyGI7R48wCUQfh1jv2EQUXg6lWYTbjpxHDbP52ufu7owdrwqPEEuxr91nyOanyWKShiOGQxBUcodaUoKD/agmQuNgDLcdFT6GMn4ctMLUsrK2Y2R70SKp0oXcrIeRZMLOFmoY=
+	t=1758030738; cv=none; b=stxiMDyGV3mcs1iO5HH1HVoF5YUB9BYY/58LnNQhZgC9UZKjolY1Pc/gz6YM7UfOheAr72BLervhIdzx3+r+fNrzxRqWp1phTVIPev+9GpLUlkWVSIqK/VFvLvpFeKrTks1a4faY/lFl8txYqDnavu+ZR5XiEi8iM6XE//FXi3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758030241; c=relaxed/simple;
-	bh=PaMXEFXqCAuG12KEQ4djKfa6Cip7cabwIbwPaQn8wY0=;
+	s=arc-20240116; t=1758030738; c=relaxed/simple;
+	bh=ai1oXYeVOfINUAOzqKrno3a6vcH5X8osrVp0OAwCDSc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WCMQjLG39N0/ef/gExI31W7Zz6MWuCkOI4SvpM4M7y6q/McirfBV+8CTdPsmJtVDjtgfVyKytP+hyjK8t1WNOEsTp+oHB5j7WYs+9rr1zSC75ydP9k9eT+i/KIphkOi8venF928K5YE2fVYPPULt/gdnyS5JQFA7gVZiDltNHcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ljdjCTkG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3966C4CEEB;
-	Tue, 16 Sep 2025 13:44:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pxDGBcxCENTk6pYtgduxY0mqZGcj8dnItGTxINTnbzi2uPT6+Vl9qs9PzqkEkJRzjP9mo7pagDc7Qam8YzpaWBHiK+gN2rsG5EabsMAAxKlnukJq0Kky7Bl32L0WXeB3moCF2x/S94SqicYqsgOTHpghcPKL7NjCSs0tWDabSdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZzwLIuCW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E57A5C4CEEB;
+	Tue, 16 Sep 2025 13:52:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758030241;
-	bh=PaMXEFXqCAuG12KEQ4djKfa6Cip7cabwIbwPaQn8wY0=;
+	s=k20201202; t=1758030737;
+	bh=ai1oXYeVOfINUAOzqKrno3a6vcH5X8osrVp0OAwCDSc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ljdjCTkGxZRvb0F7FEBCvF8MQvB8OpQlHE+8U5+ljM2dNkPq/jtyw3AYlywCWUB1L
-	 GD4yIqOid2EWZ5zKmN/h7A5ulypmjpBgT8ztUSUR0m/bbJal5/a/xuReQRkTYGo3PE
-	 IhmdHuKSmAFKstZdjPFBsnbr2E6wqoUgl90AIRy6/CG4dm9+haJYr13LVSD61Snai3
-	 TZ0K6/J+qkwq7cY0pYSKZDJKQgn3zX/heNEEXzrFVj7J8mC2t2fRqS2ucj5VUw6cnH
-	 QBcWHDkMmHYirrBPbcz7Z9ca4cRZZU25bWgyzUXy9eBu2zc9C1E65PQ62MXxBkBvRU
-	 pBxHVu/xdGfzA==
-Date: Tue, 16 Sep 2025 08:44:00 -0500
+	b=ZzwLIuCWYBfCMzOJEHWQkphHl5ZPnPFg8NAZmQ8lAPZZttfShcP0bZNh2WUYEqs6M
+	 IRPZFO3XEoeoRDWeOiu5oq19fx00aJEUe4k3PnO9112I+OynSPISmMf/zTnZBTRt2h
+	 Gp/Y+qmF1t3ytr3zX5ytGKj5xO9oEI5us/dwUpQ9StjHr4UOJse/Lxhw4lXlLcNINd
+	 TpGuu2F9i3RUcYWLuVku/k+eMPtIxwyf0z2Iu5JIyxkMWiL7HIct4EFH17BI/sHe23
+	 qkPACzA1VTcsq7gViuDlsiKDgdEQCepYJGKAlHgVC9b+F8de8s4BRpI+7CyRZE6+JL
+	 Zhdnmhf764OIA==
+Date: Tue, 16 Sep 2025 08:52:16 -0500
 From: Rob Herring <robh@kernel.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Troy Mitchell <troy.mitchell@linux.dev>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>,
-	Joel Stanley <jms@tenstorrent.com>, Joel Stanley <joel@jms.id.au>,
-	Michael Neuling <mikey@neuling.org>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-	Drew Fustini <dfustini@tenstorrent.com>
-Subject: Re: [PATCH 4/7] dt-bindings: timers: Add Tenstorrent Blackhole
- compatible
-Message-ID: <20250916134400.GA3654122-robh@kernel.org>
-References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
- <20250913-tt-bh-dts-v1-4-ddb0d6860fe5@tenstorrent.com>
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: Add CTF2301 devicetree bindings
+Message-ID: <20250916135216.GA3674673-robh@kernel.org>
+References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
+ <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250913-tt-bh-dts-v1-4-ddb0d6860fe5@tenstorrent.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
 
-On Sat, Sep 13, 2025 at 02:31:03PM -0700, Drew Fustini wrote:
-> From: Drew Fustini <dfustini@tenstorrent.com>
+On Tue, Sep 16, 2025 at 12:46:45PM +0800, Troy Mitchell wrote:
+> Add dt-binding for the hwmon driver of Sensylink's CTF2301 chip.
 > 
-> Document clint compatible for the Tenstorrent Blackhole A0 SoC.
-> 
-> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.dev>
 > ---
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/hwmon/sensylink,ctf2301.yaml          | 49 ++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index d85a1a088b35dabc0aa202475b926302705c4cf1..198146c59de0c95a2ffa052c8d4d7aa3f91f8e92 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -36,6 +36,7 @@ properties:
->                - starfive,jh7100-clint   # StarFive JH7100
->                - starfive,jh7110-clint   # StarFive JH7110
->                - starfive,jh8100-clint   # StarFive JH8100
-> +              - tenstorrent,blackhole-a0-clint # Tenstorrent Blackhole
+> diff --git a/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml b/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..fe98f5b578320bc1b43ff88f76667990821a88f7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/sensylink,ctf2301.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sensylink CTF2301 system-level thermal management solution chip
+> +
+> +maintainers:
+> +  - Troy Mitchell <troy.mitchell@linux.dev>
+> +
+> +allOf:
+> +  - $ref: hwmon-common.yaml#
+> +
+> +description: |
+> +  The CTF2301B is an I2C/SMBus compatible device featuring:
+> +    - One local temperature sensor with ±0.5°C accuracy and 0.0625°C resolution.
+> +    - One remote temperature sensor for external diode-connected transistors, offering ±1°C accuracy and 0.125°C resolution (temperature range: -40°C to +125°C).
 
-We usually don't put Si versions (A0) in compatible strings unless later 
-versions changed in incompatible ways. Perhaps if you already knew that 
-B0 was different, then it would be appropriate. Or am I misunderstanding 
-what A0 means?
+Wrap at 80 chars.
 
-Rob
+> +    - An integrated PWM fan controller.
+> +    - A 1-channel fan speed monitor (TACH input) for RPM measurement.
+> +
+> +  Datasheets:
+> +    https://www.sensylink.com/upload/1/net.sensylink.portal/1689557281035.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const:
+> +      - sensylink,ctf2301
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ctf2301@4c {
+> +            compatible = "sensylink,ctf2301";
+> +            reg = <0x4c>;
+> +        };
+> +    };
+> 
+> -- 
+> 2.51.0
+> 
 
