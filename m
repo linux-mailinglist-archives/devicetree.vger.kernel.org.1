@@ -1,184 +1,144 @@
-Return-Path: <devicetree+bounces-217935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5940B59C5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:44:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D13FDB59C6F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75B6D173A2C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:44:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D4961C035CB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E4B35E4CF;
-	Tue, 16 Sep 2025 15:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E13A279DCA;
+	Tue, 16 Sep 2025 15:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HV6/UjgH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JIg06L8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D043345722;
-	Tue, 16 Sep 2025 15:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D78326F28C;
+	Tue, 16 Sep 2025 15:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758037435; cv=none; b=YXwfj8CnqNBfA137gRDjmEYdljxR2tBndjqjP1Ur1egexRWL0JSNPkE7DGeQ9tTnXh96Te5brB9dfonvzA9Ek/zMVFy5YfZO0oYOgK2c9zU0cJ+64v1t1H/YDPtMngJsD3s3coxZqfSMsR8BSicd1xyfEBt1rNjv9Am34l/uHaw=
+	t=1758037695; cv=none; b=YHCeOR/XmXW5WrT8oYGBOfhQCj+l/yH5TalZuPgGDJNJ28W0q76mRCMbsKjMDPv3fm4v1esTWtaz8f9hHIN1FKC1hwjKhfsMjZWh94PU3oE80hv8eyFA7DjY8e47CGXGq0oBI0EmuGEOIIKORy+CXieuQ2A2DEJRAaOoJK8YlmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758037435; c=relaxed/simple;
-	bh=ThdyO2GOJ3OKtV1hGeLo+a6nDDHSjZTwlZ81sERWzQA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P394UT0rtqEVt3wxgrWZUR2XwDQ2D9Gjzp/0XDkLf/4DkKL03EOf4PVeF9rhs9gDm9wMC/Axh9S/w2QibMEou4EzPt+xBWjXQ5DPzCTOLdunI/MS962Cf37Gyd2rObO/Uch68gDqMrpX3hUXBHbMLwoQSQe+DaYUUR0cAqcawDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HV6/UjgH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03401C4CEEB;
-	Tue, 16 Sep 2025 15:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758037434;
-	bh=ThdyO2GOJ3OKtV1hGeLo+a6nDDHSjZTwlZ81sERWzQA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HV6/UjgH3GqFwdkHUIOAHTGRemyh7AcFzMMXNgI28WUDuLEIJ0ut7XJnX7+6Qe/Ii
-	 L8RuCbebXPqPByYvvzvecHhb78flEcTWB8aoOYi6q0VNARrepfjD6tXLLHHxJKcNqI
-	 CjlJynsT3tGdv8CLgWBrAAYaEsDP8QavKjduiLiUczDM4Pv5XyNZsKUhCrQCefzTCg
-	 Rambd1no4dFQ3g4zahGnaOfRfjRi2veUnzP/tTXR1U/ied8GTmqdQzVgzoHxvTomyn
-	 34/FsJPi1IVxs0LGiYWXmjPTTBgYwF1bRJIF2tz4aUt4wZria1drDgP54sH9y8eFJs
-	 R7F/7Ix7/ocZw==
-Date: Tue, 16 Sep 2025 10:43:50 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Hans de Goede <hansg@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Aleksandrs Vinarskis <alex@vinarskis.com>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Jingoo Han <jingoohan1@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
-	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Daniel Thompson <danielt@kernel.org>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, threeway@gmail.com, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v5 3/4] leds: led-class: Add devicetree support to
- led_get()
-Message-ID: <g7xkdervsknmcwjg4qgloj643b4itjlfeyiipvsrborszgrhlg@zrp65nvfueqk>
-References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
- <20250910-leds-v5-3-bb90a0f897d5@vinarskis.com>
- <20250911081540.GD9224@google.com>
- <b875f811-6371-4ff4-9cc2-a0a2c82a569c@kernel.org>
+	s=arc-20240116; t=1758037695; c=relaxed/simple;
+	bh=7Seova7f1FdwTYEdl9A3x25173eB7Rgo+htFEANmtp8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gwWsMvTybL/HJPigXhD3JP13CTiEYOq/8mbeZBoxOUumIQZXlbGjwoy/+BpcWi3tR6iAcmUESylZyCzfG44SadytHh3GV9fe2LT/2jUOq3Q7yY1szXBM/Frl1up/ipYRCVgP8g7XnBcF5xdJjeyQKjhNyFxbF+yWSX3R3ZZRW1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JIg06L8A; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58GFm9mg1401955;
+	Tue, 16 Sep 2025 10:48:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758037689;
+	bh=AEu+dn/J3RK8yWZKjm7l+G1BmqZenbC5WbVfow5BK14=;
+	h=From:To:CC:Subject:Date;
+	b=JIg06L8A477IbFeL1o1Wlji/4MjK4nEDANNEdg5NWNCAB75POdqdq2saqRCUo5l3x
+	 9vx75+jC5/eBGOfc/8MbOpY1/nhuhWySjhp8xdbkxPQeLJAEUjcdiKlMoeSZFrtuP0
+	 t0PBRk4FoBbW87BB3AvfRiNobl+LDe/kmaoaB9rM=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58GFm9cI1639105
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 16 Sep 2025 10:48:09 -0500
+Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 16
+ Sep 2025 10:48:09 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 16 Sep 2025 10:48:09 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58GFm9FM1848594;
+	Tue, 16 Sep 2025 10:48:09 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Srinivas Kandagatla <srini@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bryan
+ Brattlof <bb@ti.com>, Andrew Davis <afd@ti.com>
+Subject: [RFC PATCH] dt-bindings: nvmem: Introduce nvmem efuse binding for TI K3 SoCs
+Date: Tue, 16 Sep 2025 10:48:09 -0500
+Message-ID: <20250916154809.545283-1-jm@ti.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b875f811-6371-4ff4-9cc2-a0a2c82a569c@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Sep 11, 2025 at 11:01:00AM +0200, Hans de Goede wrote:
-> Hi Lee,
-> 
-> On 11-Sep-25 10:15 AM, Lee Jones wrote:
-> > On Wed, 10 Sep 2025, Aleksandrs Vinarskis wrote:
-> > 
-> >> From: Hans de Goede <hansg@kernel.org>
-> >>
-> >> Add 'name' argument to of_led_get() such that it can lookup LEDs in
-> >> devicetree by either name or index.
-> >>
-> >> And use this modified function to add devicetree support to the generic
-> >> (non devicetree specific) [devm_]led_get() function.
-> >>
-> >> This uses the standard devicetree pattern of adding a -names string array
-> >> to map names to the indexes for an array of resources.
-> >>
-> >> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> >> Reviewed-by: Lee Jones <lee@kernel.org>
-> > 
-> > Remind me why this can't go in through LED again?
-> 
-> I don't think anyone has discussed how to merge this yet.
-> 
-> I believe that the LED tree is the correct tree to merge this
-> entire series through, once the DT bits have been reviewed.
-> 
+On K3 SoCs there are efuse registers scattered across the memory
+map. In order to reference these efuse registers like gp-sw which
+may store SW REV information or other general purpose information
+for drivers to consume, treat them appropriately as efuse devices
+with nvmem framework.
 
-Unless there are some strong reasons (that I'm failing to spot), we
-should merge the DeviceTree binding and implementation through the LED
-tree. Then I merge the DTS change through the Qualcomm DT tree once the
-bindings are available in linux-next.
+Signed-off-by: Judith Mendez <jm@ti.com>
+---
+This patch is not complete and is sent as an RFC to get some initial
+thoughts on this implementation to solve [0].
 
-Regards,
-Bjorn
+[0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
+---
+ .../devicetree/bindings/nvmem/ti,efuses.yaml  | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
 
-> Regards,
-> 
-> Hans
-> 
-> 
-> 
-> 
-> >> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> >> Signed-off-by: Hans de Goede <hansg@kernel.org>
-> >> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> >> ---
-> >>  drivers/leds/led-class.c | 17 +++++++++++++++--
-> >>  1 file changed, 15 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> >> index 15633fbf3c166aa4f521774d245f6399a642bced..f3faf37f9a08ac762ed87b91cb3cab5faa8eacb0 100644
-> >> --- a/drivers/leds/led-class.c
-> >> +++ b/drivers/leds/led-class.c
-> >> @@ -252,15 +252,23 @@ static const struct class leds_class = {
-> >>   * of_led_get() - request a LED device via the LED framework
-> >>   * @np: device node to get the LED device from
-> >>   * @index: the index of the LED
-> >> + * @name: the name of the LED used to map it to its function, if present
-> >>   *
-> >>   * Returns the LED device parsed from the phandle specified in the "leds"
-> >>   * property of a device tree node or a negative error-code on failure.
-> >>   */
-> >> -static struct led_classdev *of_led_get(struct device_node *np, int index)
-> >> +static struct led_classdev *of_led_get(struct device_node *np, int index,
-> >> +				       const char *name)
-> >>  {
-> >>  	struct device *led_dev;
-> >>  	struct device_node *led_node;
-> >>  
-> >> +	/*
-> >> +	 * For named LEDs, first look up the name in the "led-names" property.
-> >> +	 * If it cannot be found, then of_parse_phandle() will propagate the error.
-> >> +	 */
-> >> +	if (name)
-> >> +		index = of_property_match_string(np, "led-names", name);
-> >>  	led_node = of_parse_phandle(np, "leds", index);
-> >>  	if (!led_node)
-> >>  		return ERR_PTR(-ENOENT);
-> >> @@ -324,7 +332,7 @@ struct led_classdev *__must_check devm_of_led_get(struct device *dev,
-> >>  	if (!dev)
-> >>  		return ERR_PTR(-EINVAL);
-> >>  
-> >> -	led = of_led_get(dev->of_node, index);
-> >> +	led = of_led_get(dev->of_node, index, NULL);
-> >>  	if (IS_ERR(led))
-> >>  		return led;
-> >>  
-> >> @@ -342,9 +350,14 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
-> >>  struct led_classdev *led_get(struct device *dev, char *con_id)
-> >>  {
-> >>  	struct led_lookup_data *lookup;
-> >> +	struct led_classdev *led_cdev;
-> >>  	const char *provider = NULL;
-> >>  	struct device *led_dev;
-> >>  
-> >> +	led_cdev = of_led_get(dev->of_node, -1, con_id);
-> >> +	if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
-> >> +		return led_cdev;
-> >> +
-> >>  	mutex_lock(&leds_lookup_lock);
-> >>  	list_for_each_entry(lookup, &leds_lookup_list, list) {
-> >>  		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
-> >>
-> >> -- 
-> >> 2.48.1
-> >>
-> >>
-> > 
-> 
+diff --git a/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+new file mode 100644
+index 0000000000000..fffca65cdbfe0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/ti,efuses.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI SoC eFuse-based NVMEM
++
++maintainers:
++  - Judith Mendez <jm@ti.com>
++
++allOf:
++  - $ref: nvmem.yaml#
++  - $ref: nvmem-deprecated-cells.yaml#
++
++properties:
++  compatible:
++    - const: ti,am62p-efuse
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@43000230 {
++        compatible = "ti,am62p-efuse";
++        reg = <0x43000230 0x4>;
++    };
++
++...
+-- 
+2.51.0
+
 
