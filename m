@@ -1,125 +1,184 @@
-Return-Path: <devicetree+bounces-217756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967B2B592A8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:48:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 866FCB592E1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57EA417F3EA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2571D482BDB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B0F29A9E9;
-	Tue, 16 Sep 2025 09:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA41929ACF7;
+	Tue, 16 Sep 2025 10:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="bo7oKQF+"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="R9/jhyae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m15580.qiye.163.com (mail-m15580.qiye.163.com [101.71.155.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60B429898B
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:48:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E73224B01;
+	Tue, 16 Sep 2025 10:04:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.80
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758016085; cv=none; b=eSWs3BHwfi4d4YE04EiDvH0mGBHmQUUO8ZrYjLmE/qtaJ3DQF7JpCUMkDesDfHFqJvmTkPF97g/L15LI1uOJNBnvA0LNLQgDeeWqTeNr2LJmQkkgSPr0e62k+2wtksK/HRsxkmBaxPKnG9ztcq6bD0P2R3OShAb9r1VFmcdD1fA=
+	t=1758017054; cv=none; b=FeTp21qrBmKD2Qyc2JT+6J5vvbsdIWu8eZxdmTAyhV5SKwKiZGu9H79q5aySYYYmGt88PjfbA7h9jnyCYfsyY5gOKTzB5nSSQDPPDpJr0+gIfGiqoQ87wM0586PkRDUWyRJjf+diVQGEwKwuzNHVygkXFqvE3p1nm5ybiEv5wLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758016085; c=relaxed/simple;
-	bh=Xtp6rsv0we6loXr8KX7p8CjvjrdRQN0t60CzR4y0U7M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=izQvg880kBKa0kI0S9eLU/zq/GzfUkUpItbJrsuNCRooWx1C5pa39jR4AsGZbyN3kw5KXxm6fqUBmsFqm3QJM2XsSOenTVE+EAB9T/bo+j+70f7f2Z1hHTQlFmDe3GLtix6C0syoLgD8DApELUyBXDqbcUIttQtF934c8SI/4Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=bo7oKQF+; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so3610874f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758016081; x=1758620881; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZHjpXhjv6Uw0u0A/3vKysGefkTkoDLwlYIdI1qGXpMY=;
-        b=bo7oKQF+hMoLOeZ0xhUC8h3Vr1QmzZTSnGRzkAQqd+cqTnQABzLNDfnx6Z3JunihDW
-         JaYTkDfqPFYQeTh6+0KfENHjVAIJfwmwl2KWyivGLK5ewoudRBjiAXl+ytQ8ziFSOscq
-         zCMxCdwXGMbkORGA0vcmLVlqRbEfe2NpctoAp2lgrVkQ6RG2qF5j/iokKLwdjKmI5hLh
-         1RbnWfanIDYyCK8+I7pwfp9w72O4lLDHGsiEnV3iCSrqsbPVqrEEhOmidZ5FHVPr3Whe
-         kjmfhRQdA9hIM/e3VdgW6QYuGT69ll3b0w3/utrrZa789gOzcrGP/RGeTYx4HDVRMEiA
-         lQ0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758016081; x=1758620881;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZHjpXhjv6Uw0u0A/3vKysGefkTkoDLwlYIdI1qGXpMY=;
-        b=wE15YqrbRLULUoBfVjmNh9PaSHqHliS10kkdoYreUMY8LzHe3i95/bq/AM85xm8xsF
-         UWtQy2F/01mzl0NALTtIs2d3X8+I08TD4UqUlfDjJA1wvzU/e45if7CAfiSxzRJ2IavT
-         bDXShvlvbs6dC+FWLea+e6nAFWkMBTGsCSvO73YQNxxftuQnkI8YaW5JN3wRGdCI7423
-         WXbDvvWFnbisoVHvUXMSz5Rz1tr2JjXF0nzfOHCFjfhKOiAlg6nbaWeN4ZjTkqO/VbHu
-         hu42g0Bh87/UcM1b1sKmHMEWYU3b9klh2+FWqPBGAd3+oCdTXaXirWvQ/vFmUZjUaEQX
-         FhQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgQYb0LJ3YF41+szDP3HzEdFqcxTrGbk3mOAbVjuauopLktNg78SuRLAi8mUGjeaHXYhWMb1z5Fby1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxPu8PiSk29VR8XHSUZpc0kfbL0DOh/G+16PUL50jF1RHPNmDq
-	FYJkzZaPvB57iN4qqzx17D9PY5luzNmU95sB2ACkOpst09UPt6EzRxddER50PPasQEo=
-X-Gm-Gg: ASbGncttXjD+wFpOQiXSz+G3v1h50WkGw310t0dYBawGnKGHSqdJlpXWkq/UHz/in8z
-	0FUsjodzn4rRR2iJR0JLvaQ3YU28GFR2MAmG+bK+0BtQ8Kck+pNYM0gLUehbebXgLc0aaCWLhWZ
-	DTbYA4k0DlILHFECY+5ra4TWLclClXz0OG02K3wiIzV41FiPmonWPo0BOmKWxU4qSUcghXDul5k
-	AJe40XD/rqA78hNwTqTk3VIx5W0vexqRpAm7O96UN9EytyoCq3gSml8+EtRev2EsEZ+CGaKP9xH
-	ozNF7ANUhcPHa8Srrzp83EJNZDl5dMR5ycwlY5MWg88VsLqL4+KoVthPpHb856FwqJrHCAXw1fZ
-	4XyRlsVue9eafcbbTRN4ee4Sb29qPAhA4v6hP
-X-Google-Smtp-Source: AGHT+IH6+DN+2iC4Z4uhDEfr0LB6Z+tnW4YIIzn8sB9BkEp6enUX0B4DN8xSWO2nsBfkghB42HO8UQ==
-X-Received: by 2002:a05:6000:2586:b0:3e4:1e29:47db with SMTP id ffacd0b85a97d-3e765a25836mr15049192f8f.43.1758016080849;
-        Tue, 16 Sep 2025 02:48:00 -0700 (PDT)
-Received: from brgl-pocket.nice.aeroport.fr ([193.57.185.11])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e760786ceasm21733718f8f.16.2025.09.16.02.47.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 02:48:00 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: linus.walleij@linaro.org,
-	brgl@bgdev.pl,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: gpio: fix trivial-gpio's schema id
-Date: Tue, 16 Sep 2025 11:47:53 +0200
-Message-ID: <175801606720.9656.18120314835859405070.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250912165916.3098215-1-ioana.ciornei@nxp.com>
-References: <20250912165916.3098215-1-ioana.ciornei@nxp.com>
+	s=arc-20240116; t=1758017054; c=relaxed/simple;
+	bh=XF3T4nBs0sA1ZYhwUsQTaa5y0TGq1rpcYRNrh7Ts0IU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YU7LYbdhW1iQivVYM4aDIUSpOGyNBloYElNBUDtAKOGhvl8QJ9T9LnsdSWFMeC83MJbYz4YhvhWRGRoGzqk60DTXWD3U5CQott9fBx8XYI3pBqKtZKfPz8WzuZi9XHZrdkheSTPVAaZeecNC7SicCO3bgO3XEp6gQzXWcdDgH5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=R9/jhyae; arc=none smtp.client-ip=101.71.155.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.153] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 22fa8c585;
+	Tue, 16 Sep 2025 17:48:42 +0800 (GMT+08:00)
+Message-ID: <0884990e-f349-49d5-804a-932125aca1cf@rock-chips.com>
+Date: Tue, 16 Sep 2025 17:48:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable DisplayPort for rk3588-evb2
+To: Quentin Schulz <quentin.schulz@cherry.de>, Chaoyi Chen
+ <kernel@airkyi.com>, Heiko Stuebner <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
+ FUKAUMI Naoki <naoki@radxa.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Peter Robinson <pbrobinson@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250916080802.125-1-kernel@airkyi.com>
+ <50379c05-c8b7-4858-98ff-da7ebdc06863@cherry.de>
+ <352856bb-76b6-4861-8a3f-80f94f7c7375@rock-chips.com>
+ <72ddffd6-bd8f-418e-996d-70267d3ca7e4@cherry.de>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <72ddffd6-bd8f-418e-996d-70267d3ca7e4@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9951ed2ff003abkunm32f498e5d8bb91
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkNLTFZISUNDGh4eGUtLHxhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=R9/jhyaeiQNQfJtgCzehtt6RrRPLqn6tbG2q1oPYRF3wo6bnDdF36Zxb4k5z6khktrTZLIFBnpCb33wggPZkrqH7hg2ZckvlgacvyM9Silxk8STtUYD5H4b8htgOWTDhKQQPnEhufVsdA2F9Xfe9uApvqMsdKZwHSQN9WyGYt9w=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=XF3T4nBs0sA1ZYhwUsQTaa5y0TGq1rpcYRNrh7Ts0IU=;
+	h=date:mime-version:subject:message-id:from;
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 9/16/2025 5:24 PM, Quentin Schulz wrote:
+
+> On 9/16/25 11:18 AM, Chaoyi Chen wrote:
+>> Hi Quentin,
+>>
+>> On 9/16/2025 4:41 PM, Quentin Schulz wrote:
+>>> Hi Chaoyi Chen,
+>>>
+>>> On 9/16/25 10:08 AM, Chaoyi Chen wrote:
+>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>
+>>>> The rk3588 evb2 board has a full size DisplayPort connector, enable
+>>>> for it.
+>>>>
+>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>> ---
+>>>>   .../boot/dts/rockchip/rk3588-evb2-v10.dts     | 39 +++++++++++++++++++
+>>>>   1 file changed, 39 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts b/arch/ arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+>>>> index 91fe810d38d8..0e5af61f66fe 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb2-v10.dts
+>>>> @@ -25,6 +25,18 @@ chosen {
+>>>>           stdout-path = "serial2:1500000n8";
+>>>>       };
+>>>>   +    dp-con {
+>>>> +        compatible = "dp-connector";
+>>>> +        label = "DP OUT";
+>>>> +        type = "full size";
+>>>
+>>> This isn't valid according to the dt binding. It should be "full-size" instead.
+>>
+>> Will fix in v2.
+>>
+>>
+>>>
+>>>> +
+>>>> +        port {
+>>>> +            dp_con_in: endpoint {
+>>>> +                remote-endpoint = <&dp0_out_con>;
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>>       hdmi-con {
+>>>>           compatible = "hdmi-connector";
+>>>>           type = "a";
+>>>> @@ -106,6 +118,24 @@ vcc5v0_usbdcin: regulator-vcc5v0-usbdcin {
+>>>>       };
+>>>>   };
+>>>>   +&dp0 {
+>>>> +    pinctrl-0 = <&dp0m0_pins>;
+>>>> +    pinctrl-names = "default";
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>> +&dp0_in {
+>>>> +    dp0_in_vp2: endpoint {
+>>>> +        remote-endpoint = <&vp2_out_dp0>;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&dp0_out {
+>>>> +    dp0_out_con: endpoint {
+>>>> +        remote-endpoint = <&dp_con_in>;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>>   &gpu {
+>>>>       mali-supply = <&vdd_gpu_s0>;
+>>>>       sram-supply = <&vdd_gpu_mem_s0>;
+>>>> @@ -916,6 +946,8 @@ &usb_host1_xhci {
+>>>>   };
+>>>>     &vop {
+>>>> +    assigned-clocks = <&cru DCLK_VOP2_SRC>;
+>>>> +    assigned-clock-parents = <&cru PLL_V0PLL>;
+>>>
+>>> This is surprising, the only other board which has the DP0 enabled (the CoolPi 4B) doesn't set these two.
+>>>
+>>> Does HDMI still work as well as it used to with these new properties? Why are those needed? Some context in the commit log or as a comment in the DT would be most welcome!
+>>
+>> Yes, HDMI and DP can work normally whether these new properties removed or not.
+>>
+>> The key point is that when using V0PLL, we can get more usable resolution because DP requires a precise clock. If V0PLL is not explicitly specified here, then dclk_vop2 (VP2) may be divided down on GPLL, CPLL, etc. In this case, only a few frequency points are available. In my case, when V0PLL is not used, only resolutions such as 1024x768 and 640x480 are available.
+
+Oh! This is because GPLL was not initialized to the correct frequency during the U-Boot stage. It should support typical frequencies such as 1080P (148.5M), 4K (594M) .
 
 
-On Fri, 12 Sep 2025 19:59:16 +0300, Ioana Ciornei wrote:
-> In case the trivial-gpio schema is referenced through a $ref like
-> /schemas/trivial-gpio.yaml to match its current schema ID, the following
-> error message is displayed:
-> 
-> Error in referenced schema matching $id: http://devicetree.org/schemas/trivial-gpio.yaml
-> Tried these paths (check schema $id if path is wrong):
-> /path/to/linux/Documentation/devicetree/bindings/trivial-gpio.yaml
-> /path/to/dtchema/schemas/trivial-gpio.yaml
-> 
-> [...]
+>>
+>> For HDMI, I think it will use clk_hdmiphy_pixel0/1 as clock parent which is provided by the HDMI PHY when it work on TMDS mode so that we don't need to set it .
+>>
+>
+> Considering the clocks are all internal to the SoC, shouldn't all you have explained be applicable to the CoolPi 4B too (and other boards with DP)? I'm trying to understand if we should add something similar to CoolPi 4B DTS as well?
 
-Applied, thanks!
+Yes, I think this modification is necessary because some resolutions use special frequencies.
 
-[1/1] dt-bindings: gpio: fix trivial-gpio's schema id
-      https://git.kernel.org/brgl/linux/c/17628f1abbf4bd4162c655f3260d68bc1934ec73
 
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> @Andy, you're the one who added support for DP to CoolPi 4B, without these properties, is there something we need to do there as well?
+>
+> Thanks!
+> Quentin
+>
+>
 
