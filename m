@@ -1,152 +1,197 @@
-Return-Path: <devicetree+bounces-217776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A35B59320
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:15:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BFB1B5931D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D26947A6D0D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:13:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E8C72A6C30
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C6A2FA0D4;
-	Tue, 16 Sep 2025 10:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147182F83B0;
+	Tue, 16 Sep 2025 10:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bg+iBgdv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD9F2F83AB
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659562F83B3
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758017711; cv=none; b=WBEiZeEKme6auaYeRtdPdUdsZEr0POiu7MPPj+h6TJTYOIzoMCGUOPbe8wQSvWGMsqzMf5N68uaBuNJI1k/HGZ7v20Bl/1JMoFAuoDJlxhbkb2d/EqyE4EyPIpAtZrq+SYX+UA2oQDSkgjHrVVei/NvwtArz7r6AK5lNbkGJcO0=
+	t=1758017704; cv=none; b=dQrNCpWafpEST1aByokMWn0w5x+BrWbJW9T/88ENPh5XRLdCGqRFh5Yur+HH3NsI2J+a18HV/piIp54i+TOtzc5fK3qH9ZXI9OKVu77eBFoWhd8/eu64Ahj9SvUPEPtHmGoxKdS8CrZGbKdFHOgzsI8ILp37byPN+7vmmaiB97A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758017711; c=relaxed/simple;
-	bh=HROZpllWSaMccM/VLWuB0kpy0TJhHwHU9kTqwzxCWc0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PmPScHWDYZ+L84NKQae67b74so8EoR8S4eO5+sebnRJw3JmkSkK6YIJp19b6GysNz6d+jZDMhlJ3ScLxrtms+Gx+5aJYvwRDqkg6VT0sOkRp9dFcLoP8dXVdpye3F5XocKlUN9Avz95C0K/M8pr5DEN8Fu+O28aOfyH9mevX4b0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-545e265e2d0so3816961e0c.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:15:09 -0700 (PDT)
+	s=arc-20240116; t=1758017704; c=relaxed/simple;
+	bh=+EHE6h36GP4hqZxcdvHcymNoZdBzFbv7bXJmCFPI3jE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ucFUepeTBElCENL2XrEmM7dxUKjfz3+Qw99LLOt3UfLSkrmF7KVxrJC7EDpO/1AiR/bCCpWYa0Tg6nBT5XIR0fx7PnHCjfuJYDXBZw2icFuRXnLoO0y+NhHaDujsUgGUw2SziabcQkhavGjsS/5mSZfDpS9ncBNF2LsxmBvvc/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bg+iBgdv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G9wQgi020237
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:15:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=5Fwmjx7MBs4brMM/94CNwnzV
+	GXNy2F1qKzPpKtFQCHU=; b=Bg+iBgdvUIyXugJM+YPaO7kKCBNc/nZ7Wr3VCJyQ
+	vS2vC6F0mzGDcyuE+PAYKRIGTnKiSJS/PSn5doxNyYfWz/2RFBxrWAEfyO3YAA8W
+	zMHEzWbsWjMpeDFYjfzcjNG58IEnPHy2Lemd2zhYGcggzOoeHoexuBLFd5GujR7+
+	4pVmagcySGqQ2qor2NE9OmvzUo+z6SN9eFptJykoNxDku/2qTRE5vfA9tjkDSYCd
+	yPqYGtnuhlcrk/v887rRbMNksXY71LYgnWFd+wzLca0jgdA4D8H2O1HcUkS0Rh9s
+	iKPqFKfch+MRYOYiyyKjlZTS8xtFctML2ArXIv1aVLzmXA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496h1sm02h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 10:15:01 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-72023d1be83so160985506d6.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:15:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758017708; x=1758622508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/yxShZZXYgWMyGx047XJbFO5W2W4XcJcCx4gW4jVWvk=;
-        b=UMPrLkoRtRnHgMH9q+xk5sORk0R6tSxM18shl2lC7hD/zOuEPnSmMIlFcLi6MmqDTA
-         8AY4C/JWI8hKsliE2c4IzNvcNoc8EcyaJZzLazSmRg1W9n7lCqFhpCsdcU/arR3c6vWl
-         EKyDMkByraj9Frl2ikhlq4IITpYDwlBze2dHUTleVmy/4yJU/r9I9Mfs9TpGgYE2DbMd
-         83bQlxWndgXN4PrPwuf3kO/HFO3vnNbmUH5Wv7S/J+Cu00WcJG888z04UV+hrzytVadV
-         ybOiC9jvy+ySuG8vLt9yZgMXJJP8yoiFfwA6MUg7DL8fy/TDxnsR9HBVXbKpc63/hRC/
-         1HTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWXHSudCbKwdDBP9EZh6FPfpEcAjJ1IF1zzfvXQadwrc9P0+J2WI9PJ4wUkso+ca9atXEQ+v8IomM3d@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKikze4ITq+jtqMJ0/+vuSxwTaCag7O0aMvCp9zwc6khAa/8uY
-	n2H708EqZKATxFiNJz9SsS4NJXkyaHQB3GW91u+FISJoeXon83a5jIDtLebM7sJ/
-X-Gm-Gg: ASbGncvC/534fLGvvYCZfCSXTPnO+Ta4+cSBUWe/kBSMibOQiSBDowKtU6o8KD/Xwa4
-	dbxa793x/EHCwsR48fdoID8JN+0fo8Zu+ndmudjuoT/uKOUKBnOsyzJd8BPTiHWiehY+USvVaeV
-	F9uzzbRkazq5XgTEJc9JL6bz+HtijOkaVOibyvCUQEbbtyZQkeVBblfT84ytIQZmzrpvYq2rCXl
-	pFXJqoUbX+T7QuRIsyZv0JHv3feMyf4g8baivGipVs67OtIKdJ9Pv7W/5/dgK/VdPgwi4V5Aetl
-	o7jO7gxcGc67oOxTsG3KR/EQQGY7H6lflUg83Ld+0p/G+MMioRnDd6uGqAIKOHuzLPpf1Bac5Qf
-	SKJSvaajF+1BnU9TrsEl3V+7N95KsA24jBz4Ag5dXUigW7FBXLn39QPClsgrgmFlQQaRFbAg=
-X-Google-Smtp-Source: AGHT+IEBhIpQq36CDtE+eOMKjhJh30yye4T5BoS/FdZzc+F6jO5O89ileHrfU6vCYbp+GFD61U66fg==
-X-Received: by 2002:a05:6122:1d48:b0:545:eca2:1c63 with SMTP id 71dfb90a1353d-54a16c87ba5mr5584447e0c.9.1758017708497;
-        Tue, 16 Sep 2025 03:15:08 -0700 (PDT)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d1bc289sm2772876e0c.4.2025.09.16.03.15.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 03:15:07 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5357f3e2520so4010925137.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 03:15:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXRqHwJcNk8eYoFjPmkDgtpcbzAlqIiSzqyNwvLYk+Ki6Nntk10DzjDEIgSP8KWMXHxC0ApdtwH7j49@vger.kernel.org
-X-Received: by 2002:a67:ff90:0:b0:569:1c73:46c5 with SMTP id
- ada2fe7eead31-5691c735ffbmr267311137.2.1758017707282; Tue, 16 Sep 2025
- 03:15:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758017700; x=1758622500;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5Fwmjx7MBs4brMM/94CNwnzVGXNy2F1qKzPpKtFQCHU=;
+        b=PMlW8Pcbp/sOoHon/IQPR8GzGMeuCDbJcyeZPzPe7tMC1DgFoFGjECv2RXGtN8RT7d
+         RMZl9Sn6IR6g/82klZQr209jmdR+3gQ9lZ++cKzZaQlerFvQmpfAisUzc2K5Opd7LrkL
+         1IvkNBgEhVX5lykw9OR7A+5tykkF1lTHJCmZge9bytHAaaUSVXVs40yEIn/66Q3ZT7tZ
+         7oNi59iemD2n+1nnFZZWV0h9BMpc9N03mCsC/+xUX0Tx+xlr5gWHVOaQ5J7NZlcfAT9z
+         on5xz+cWx0LfqlgvtCOvy00vavtoqFYvyzqmxz4sHl5idXMxAx/Fat2Zo+EIl4+R/v/T
+         JXrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWTYzQGsVJ7EHS7vIFu7nPwAc4wpNynuitEyjW/vuV5FiG7z0/Ikigsc4zps3P6N4DVgwn8gHeREKfV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGiAK0yD1jGtJVpZd1kAzYU5r9OSEkoKJMAzL02uOyD44g8rOa
+	BIa2LGs4zgE0nOGi6LxOyX5hh3Y3y2GeoJJo45ad8dTtrvfBVHqLoOU+vqA1DLNTW3/64PtJyEm
+	H+OGq3xp4XZ+rW6QT3WBT6SJDF8g8K64hQpI6/kMrUtu/LHrT+HFWt/pPccKi1jV8
+X-Gm-Gg: ASbGncvvQ8OsV2/efPXWy4dWmJN0EomKHTwEVTnsEs/SHbhnd29w61cbN32c9Kx5mmU
+	27gT61yZn4oQAa0YV5tgpVNAmkhN7Tw2W4vN4ubm1zdMtBrUpVSEU7BH+N3+MdS+OIcJoGd6hH/
+	+7SfKPK5lGcCgEyXqMpwx8T7JNnwpqaNftegR+7u42adktmcLZEPt7fSw8TG1wwbk9KfdeR/cIh
+	frpOdD1uwY9DMAa/UTX4du4xmzq495IJomeR8DAE127QpsnRwyvIGLi0ESPehAQ8+ZxVY0c0OaD
+	q2HhRs7+aOummGaUrnbOHDq++CUi3ZtEka5Mn+IANRXagOhSLqbM5E8xNP4WQAkpcMuODt2V60G
+	wF1bUgGMh4nFK+aVgLIUPeoGDnIoQVepIXmvDE95TscldHHIR7tre
+X-Received: by 2002:a05:6214:19c6:b0:722:1db2:f8df with SMTP id 6a1803df08f44-767c5436ffcmr240450446d6.67.1758017700373;
+        Tue, 16 Sep 2025 03:15:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFuV0hRyMwLwqzjzHvISeECe7iq+Q18PhhLX7wE1emTPMhlHDwWguYFsLl5+dlfARKvcHfdXw==
+X-Received: by 2002:a05:6214:19c6:b0:722:1db2:f8df with SMTP id 6a1803df08f44-767c5436ffcmr240450106d6.67.1758017699863;
+        Tue, 16 Sep 2025 03:14:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f1c6cabedsm34708191fa.69.2025.09.16.03.14.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 03:14:59 -0700 (PDT)
+Date: Tue, 16 Sep 2025 13:14:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yingying Tang <quic_yintang@quicinc.com>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Yijie Yang <yijie.yang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+Message-ID: <jimz3qnjrcvemvgrqpwxq4zmywfo6psplsg4jefkvvpiwlffek@fwn3juynr4zx>
+References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
+ <20250910-hamoa_initial-v11-4-38ed7f2015f7@oss.qualcomm.com>
+ <aMPhEm8PuhEofHP7@linaro.org>
+ <317ffa87-060c-4f1b-a6bf-61bb27367477@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902105710.00512c6d@booty> <aLkiNdGIXsogC6Rr@zatzit>
- <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org> <aL5dNtzwiinq_geg@zatzit>
- <20250908145155.4f130aec@bootlin.com> <aL-2fmYsbexEtpNp@zatzit>
- <20250909114126.219c57b8@bootlin.com> <aMD_qYx4ZEASD9A1@zatzit>
- <20250911104828.48ef2c0e@bootlin.com> <aMebXe-yJy34kST8@zatzit> <20250916084631.77127e29@bootlin.com>
-In-Reply-To: <20250916084631.77127e29@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 16 Sep 2025 12:14:54 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXXi97HN-G_Ozbs7vc141GmbMTPD6Ew6U_0ERj5wh6gvg@mail.gmail.com>
-X-Gm-Features: AS18NWCbl1r2QYO00aPBgisYLqrkmJmQ3Y4JYZGczVS7GzKJm4yKut71Lemfvns
-Message-ID: <CAMuHMdXXi97HN-G_Ozbs7vc141GmbMTPD6Ew6U_0ERj5wh6gvg@mail.gmail.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion at ELCE
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Ayush Singh <ayush@beagleboard.org>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <317ffa87-060c-4f1b-a6bf-61bb27367477@quicinc.com>
+X-Proofpoint-ORIG-GUID: 7Xy4fJnJOICVJet0MvRBXt8_pMh9Co2X
+X-Authority-Analysis: v=2.4 cv=A/1sP7WG c=1 sm=1 tr=0 ts=68c938a5 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=J5uJnYprzHOJOAIlhSUA:9
+ a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 7Xy4fJnJOICVJet0MvRBXt8_pMh9Co2X
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA5OCBTYWx0ZWRfX6bOWZqZ0ciZm
+ urDph9pf/mA9DHPHIkeEQ5YB1pfcRJcuFJh8T5KSIk98p5DJOFHPCVJ8612JLY61ju7dDEPgtv9
+ 6XB1T2pT3y/t8ubM4bEFt2kiHmBBayHNupXyw1EX46AYHTuBgBFw1ANRrZVwJDfPzugdmYJQZOJ
+ fKzxnDPQw+W3z+v/3n0RSXZFVeqMiOQwLthQD4lFRrKYpQfhxwQRoZST/1ydA6OKbjZmCxWRkyA
+ 69jMQGwZbtLQ2wpA6X82+jJ9oDxoT0Pc153a0eeiQ95UJ4C+AoHWeCA3TdTwSYtG1N5Plm7+2uK
+ xd+y4JJvYqtC4zCA9wjqAC7bawrhrfmN7qE6ejAjo+gcONp6s/hnxQdXO/QCByXn4J9vknhfRyL
+ JmrxUmUB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 spamscore=0 suspectscore=0 bulkscore=0
+ impostorscore=0 clxscore=1015 adultscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150098
 
-Hi Herv=C3=A9,
+On Tue, Sep 16, 2025 at 09:42:26AM +0800, Yingying Tang wrote:
+> 
+> 
+> On 9/12/2025 5:00 PM, Stephan Gerhold wrote:
+> > On Wed, Sep 10, 2025 at 05:02:12PM +0800, Yijie Yang wrote:
+> >> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+> >> the Hamoa IoT SoM and a carrier board. Together, they form a complete
+> >> embedded system capable of booting to UART.
+> >>
+> >> Make the following peripherals on the carrier board enabled:
+> >> - UART
+> >> - On-board regulators
+> >> - USB Type-C mux
+> >> - Pinctrl
+> >> - Embedded USB (EUSB) repeaters
+> >> - NVMe
+> >> - pmic-glink
+> >> - USB DisplayPorts
+> >> - Bluetooth
+> >> - WLAN
+> >> - Audio
+> >>
+> >> Written in collaboration with Quill Qi (Audio) <le.qi@oss.qualcomm.com>,
+> >> Jie Zhang (Graphics) <quic_jiezh@quicinc.com>, Shuai Zhang (Bluetooth)
+> >> <quic_shuaz@quicinc.com>, Yingying Tang (WLAN) <quic_yintang@quicinc.com>,
+> >> and Yongxing Mou (USB DisplayPorts) <quic_yongmou@quicinc.com>.
+> > 
+> > This looks like you should have Co-developed-by: tags together with
+> > their Signed-off-by: tags.
+> > 
+> >>
+> >> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/Makefile          |    1 +
+> >>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 1221 ++++++++++++++++++++++++++++
+> >>  2 files changed, 1222 insertions(+)
+> >>
+> >> +
+> >> +	vreg_wcn_3p3: regulator-wcn-3p3 {
+> >> +		compatible = "regulator-fixed";
+> >> +
+> >> +		regulator-name = "VREG_WCN_3P3";
+> >> +		regulator-min-microvolt = <3300000>;
+> >> +		regulator-max-microvolt = <3300000>;
+> >> +
+> >> +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+> >> +		enable-active-high;
+> >> +
+> >> +		pinctrl-0 = <&wcn_sw_en>;
+> >> +		pinctrl-names = "default";
+> >> +
+> > 
+> > regulator-boot-on?
+> 
+> It shoulde be regulator-always-on
 
-On Tue, 16 Sept 2025 at 08:46, Herve Codina <herve.codina@bootlin.com> wrot=
-e:
-> On Mon, 15 Sep 2025 14:51:41 +1000
-> David Gibson <david@gibson.dropbear.id.au> wrote:
-> > On Thu, Sep 11, 2025 at 10:48:28AM +0200, Herve Codina wrote:
-> > > From the addon board point of view, the only think we can
-> > > say is "me, as an addon board, I need a connector of type 'foo' and a
-> > > connector of type 'bar'".
-> >
-> > Agreed.
-> >
-> > > Also, at base board level, statically defined in the DT
-> > > connA is described (type 'foo'), connB and connC are
-> > > described (type 'bar').
-> > >
-> > > The choice to map connA to the type 'foo' connector expected by the a=
-ddon
-> > > and the choice to map connB or connC to the type 'bar' connector expe=
-cted by
-> > > the addon can only be done at runtime and probably with the help of a=
- driver
-> > > that have the knowledge of the 3 connectors.
-> >
-> > Agreed.
-> >
-> > > I have the feeling that the choice of physical connectors to which th=
-e addon
-> > > board is connected to is a human choice when the board is connected.
-> >
-> > Yes.  Although if the addons have an EEPROM, or some other sort of ID
-> > register, it may be possible for some connector drivers to probe this.
->
-> Right, I think we agree that a driver is needed to help in the mapping at
-> least when multiple connectors are involved.
+Why it's not boot-on and always-on?
 
-I agree you need a driver to read an ID EEPROM.
-But why would you need a driver if no ID EEPROM is involved?
-If the connector types on base board and add-on match, it should work.
+> > 
+> >> +		regulator-always-on;
+> >> +	};
+> >> +
+> 
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
