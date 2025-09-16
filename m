@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-217831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF98B5954E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:35:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04288B59555
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 917633B1019
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A478189214A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F21305E29;
-	Tue, 16 Sep 2025 11:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC7B303CB7;
+	Tue, 16 Sep 2025 11:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CnwrSwMm"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MPJrI5P1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DAA2222BA
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:35:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883C32222BA;
+	Tue, 16 Sep 2025 11:36:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758022503; cv=none; b=fGr4OhXjGoAbQ0FNIEYEbwpEMq1UI4d3QRK+ZvFrrKFEu7siND4iikQvGbbgMC+2UTaSHw8Ob1dYCAEbZ/lsytzpfxRY0WycgeFa9NAoaU0G5NI1T0zq2/PZMGTPv72GVSeqmYhmoM0S7PmAeqmJM+VYb7I4osX4vP76ftjiF8I=
+	t=1758022601; cv=none; b=lZepG5+/RZpZKPUi8SmpZ6qnbfsRGMLNKBno76IdA2Z3t2lkHhtD5Y4qb9f1Hj2uVYsvdlfHs8b58hajR6290nAQXIwI92j+75c4ojrts6JlQbL4O4A6LQt/U1WUN0SrPVfXBhUz+mMeDUivvvh0OnIOgECOpJX5EgYjx8CUU4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758022503; c=relaxed/simple;
-	bh=mDUdAClhpngDylpZKamaU8L76ftWrz0ssjp5eVq6BYQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Xw9sHJhH6IN4zNBNV8d52D3ZlEzEreHMiWV7oasfwWxBYslVZxM8IqYWzlltxeTwOOKmyTKu9jXqKyof2/FqyGWQYLunbU8W8PmeT/FcoeBB1/JxEbX8oQpN4udhW+Xv+yLT9BbHMbUxcwDF2bohFJ6qqdoP5uiKs23zsmVGU3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CnwrSwMm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA7m5g012294
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:35:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PmwR9D+tvcvJlEb5/hczlmY/+kQv8mMLdqGi569sPyA=; b=CnwrSwMmSndg1RoR
-	psWTN+6pYKUIsJ6Fh1+b9Fd5xz0fYmy727XciC4m9Qgt7Mr3jPdMpMm4IaI+mf2B
-	X79Mga39k6pEelDcBoj2Tm6QaKe8JdUITkjbIIFUrvfWdLY7ft1mUge9gtNdy7AE
-	c53qAjeGAYzNbCZDIjDycFYa+rZrRadZlOg8VXHqVU5AXdC7B5Lee8FaTJGMlSiB
-	vTgWWbibB2j/EZTi9Hqpjdg2PCUU3MPckSgkRXK8HLbELSPcMr2DrdMfv9+rpms2
-	5mGvys8Ts2E60ka/w75O9wJ5a1w72r8wULZJvSzCddVhAK4mvnhGJV4nKwtmJMs0
-	zcjeQQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g12mbkt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:35:01 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-266f9434db8so4145425ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 04:35:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758022500; x=1758627300;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PmwR9D+tvcvJlEb5/hczlmY/+kQv8mMLdqGi569sPyA=;
-        b=sGMhU9uZyuvi2cp+zt0wFYgjyulXTnSS2rPZi9Cujan27sOV+VScybJQ35uVQTQVgu
-         b0wu2ui6E18v35mjyiTH0M7UwVImdYVPxbTrE79uRKyHmVH4dcePf7b0yVNPV1SXtX+P
-         e7HepZ3TjQmhMUwPdzagFa3JUQQ/ESqmdR0z7l/WWYnZeqXxvGy4mUgLYe/li7ENObI/
-         FQy5lRvaL0zo9SiFgoiQFMQ/vw03RjiXRG1oA5lgVrXb0/Gql9dcCp+n5gbr7fNHFz3R
-         zyBfLDDnBoYr+t3Xh8G9q5HRLKWcID0m2R/jhfkLbMCtbDUbcNXBHWnOQbC2s8k1pR8W
-         bSiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJALLJ8mham7q82yO7LX6bwkJkll7qmYfnQhZP3jKbgN9L/ss2EPfAoNZ5DjnDEnGtVHRNu7r23BO+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyablRO+7L/bmkPcLtKtXmhVUSBUHvUU9ECZZQQpWVoF3b1opO
-	1j0AyqYqI3w8ln4hQjJUT4CN0V5ahRIRcj/ix+YFd0cTdQgqPKRXfHK9gcSq1arjoBq/mTsqdq/
-	DZobMKp6tM+Um/IqnHIMKnUblpOngze1T0850+tnlyM1QeYzubxn3jYlw26xkQGOq
-X-Gm-Gg: ASbGncud0CzqOO4eBfXgPxxUcfrkahItY+nyen7DXkfbxgfUDPCvy+YEaG2U/zRZZJh
-	D+ChEttORoIui3BHCBzXAH6zZgFS1p4XxqC1BYsgkeBjDkM7VwzokfKMo400M3bW1AsFFI938an
-	gYO0OlwM3QCWlppmii1uvMPaKl8LdgdeXGZ4OGNIbm0OxIZfIsorLMTlo3LUAyN8/YbTMr3kw16
-	UJ0JhIFxk70gk/vNDuq7tfkO0bHKDDmyGAEYTvZhXJGHMsZgNuNyWjSRtGNRRKnlwXDDKuzp0zn
-	Pj59tZv1sDecJNbUqr8sYjqEure8ngevOd8VoY/Ma+H6Kba62ko8CwyDZwcWMUV7sX9OMzEhgJt
-	cSuH0BCMc6ud+jQD5u5Os0j9exe8y/COoYjc=
-X-Received: by 2002:a17:902:ea03:b0:267:8b4f:df10 with SMTP id d9443c01a7336-2678b4fe1eamr38673835ad.0.1758022500164;
-        Tue, 16 Sep 2025 04:35:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFUGBkOmp8SbmqyPrB/ux8BIh6J3rY072mZrg1gtge/X1eT2SGo/MRJMekisexbLCC9g2Zk5g==
-X-Received: by 2002:a17:902:ea03:b0:267:8b4f:df10 with SMTP id d9443c01a7336-2678b4fe1eamr38673655ad.0.1758022499633;
-        Tue, 16 Sep 2025 04:34:59 -0700 (PDT)
-Received: from [10.133.33.231] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-267e9372e86sm7196355ad.136.2025.09.16.04.34.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 04:34:59 -0700 (PDT)
-Message-ID: <67a06487-001a-4af7-83cd-e9d05d848479@oss.qualcomm.com>
-Date: Tue, 16 Sep 2025 19:34:52 +0800
+	s=arc-20240116; t=1758022601; c=relaxed/simple;
+	bh=QBf4lDkQAgPGcB0ozjQcxZ4fSOEoRzbOC2hLFFUgKIM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=frOaPuauagBnHNxXAIWyW9iY2Sw67Drb/JVtTHL7n+VNOIGkFiqzk96VwbapaLNvH7v8vI/dxqY08q4OXcdqZysSp6lB3E7loDEB7O/iryOJPpeFDuRyzdxkHvxqamTs9LYe6/MRQ3PY2L6z5DdFPKCHRCoi1eC6xfRVj6mUzrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MPJrI5P1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6AB536DF;
+	Tue, 16 Sep 2025 13:35:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1758022519;
+	bh=QBf4lDkQAgPGcB0ozjQcxZ4fSOEoRzbOC2hLFFUgKIM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MPJrI5P1h3d80i1pfqStVZ2nmdLsDrVRIZjnkM688cbf5NjhNt/WsstV1xvZXBPnH
+	 WZB8Ov+KZ0cndsrOFbRZUIml18MdvOSYsho6j51WOqwBDsGwFgKfeqm9udNvm8MxEI
+	 EYnoZZxKQF60+WSXSSsfXk9DdlS/PmxRKDHKMTX4=
+Message-ID: <79a81d96-eaed-4a63-8cd5-c25a3b0adefc@ideasonboard.com>
+Date: Tue, 16 Sep 2025 14:36:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,146 +50,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: display/msm: dp-controller: Add SM6150
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com
-References: <20250916-add-dp-controller-support-for-sm6150-v2-1-e466da9bb77d@oss.qualcomm.com>
- <5sg43rsun33i6bm3vz7io7yx2p4m7bmk5bnrnjg6u3zrulyofs@gyxtnfs4gvhz>
- <d302e71f-19bb-426f-a7df-c0d7854e97af@oss.qualcomm.com>
-In-Reply-To: <d302e71f-19bb-426f-a7df-c0d7854e97af@oss.qualcomm.com>
+Subject: Re: [PATCH V5 0/5] drm/bridge: it66121: Add initial it66122 support
+To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Robert Nelson <robertcnelson@gmail.com>,
+ Jason Kridner <jkridner@beagleboard.org>, afd@ti.com, devarsht@ti.com,
+ dmitry.baryshkov@oss.qualcomm.com
+References: <20250827202354.2017972-1-nm@ti.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20250827202354.2017972-1-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: B8oX9hjrDsH2iZkaawToqeaILvGLodw3
-X-Proofpoint-GUID: B8oX9hjrDsH2iZkaawToqeaILvGLodw3
-X-Authority-Analysis: v=2.4 cv=E5PNpbdl c=1 sm=1 tr=0 ts=68c94b65 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=ODrqbaRasvCVI81-ReQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NiBTYWx0ZWRfXwWmhp8ZBLUBU
- EiTRj8Q6viMC/eP5fsxdqO/sHYwlK4EgdAAYnIdDCcc39NtkhReMl38bmNeUkP0n3AIh19dGRDG
- xIGsffG6+jI0WGKbaycnunnLZlObhoAykxpoxmZNY2BzoagUQ7ByLD8hHVH/fsPN/aMpK746UQp
- ixOpRZrZyAaZj67rdlufhD0WFqU63bxOxX8ssKi8Vk3awCErPNU41lxG5Xeaehj5UkcA6LPBtaL
- 6h4YllhJ6UzDApCp1rGI74CiUlu4je+rGQR9hBiwPFxjgHKvM/lDHYkmD9f8kQKOLyE616vPupu
- 1wgB5TgnWRsHiOZa8g5Ztr4bS3wA+1jSBZu45IjtUuAMxRLx+lO7x/LQi7MUJrY3kFL/f/Xe5Jy
- Jkz1PwgI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150086
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-On 9/16/2025 7:25 PM, Xiangxu Yin wrote:
-> On 9/16/2025 6:22 PM, Dmitry Baryshkov wrote:
->> On Tue, Sep 16, 2025 at 03:31:35PM +0800, Xiangxu Yin wrote:
->>> Add DisplayPort controller binding for Qualcomm SM6150 SoC.
->>> 'qcom,sm6150-dp' uses the same controller IP as 'qcom,sm8150-dp'.
->>> Declare 'qcom,sm6150-dp' as a fallback compatible to 'qcom-sm8350-dp'
->>> for consistency with existing bindings and to ensure correct matching and
->>> future clarity.
->>>
->>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>> ---
->>> This series splits the SM6150 dp-controller definition from the
->>> '[v3] Add DisplayPort support for QCS615 platform' series and rebases
->>> 'dt-bindings: msm/dp: Add support for 4 pixel streams'.
->>>
->>> The devicetree modification for DisplayPort on SM6150 will be provided
->>> in a future patch.
->>> ---
->>> Changes in v2:
->>> - Update commit message and binding with fallback configuration. [Dmitry]
->>> - Drop driver patch since SM6150 is declared as a fallback to 'qcom-sm8350-dp'.
->>> - Link to v1: https://lore.kernel.org/r/20250912-add-dp-controller-support-for-sm6150-v1-0-02b34b7b719d@oss.qualcomm.com
->>> ---
->>>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> index aeb4e4f36044a0ff1e78ad47b867e232b21df509..82481519005a1b038a351aa358b9266239d0e8a9 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>> @@ -46,6 +46,7 @@ properties:
->>>        - items:
->>>            - enum:
->>>                - qcom,sar2130p-dp
->>> +              - qcom,sm6150-dp
->> In the review to the previos iteration I think I was a bit explicit:
->> "qcom,sm6150-dp", "qcom,sm8150-dp", "qcom-sm8350-dp". You seemed to
->> agree to it. Now you didn't implemet that. Why?
->
-> Sorry, I misunderstood your previous comment.
-> I thought the recommendation was only about the commit message, not the
-> binding structure.
->
-> Does the current implementation mean that qcom,sm6150-dp and qcom,sm8150-dp
-> fallback to "qcom,sm8350-dp"?
->     - items:
->         - enum:
->             - qcom,sar2130p-dp
->             - qcom,sm6150-dp
->             - qcom,sm7150-dp
->             - qcom,sm8150-dp
->             - qcom,sm8250-dp
->             - qcom,sm8450-dp
->             - qcom,sm8550-dp
->         - const: qcom,sm8350-dp
->
-> Do you mean modifying it as below?
->     - items:
->         - enum:
->             - qcom,sar2130p-dp
->             - qcom,sm6150-dp
->             - qcom,sm7150-dp
->             - qcom,sm8250-dp
->             - qcom,sm8450-dp
->             - qcom,sm8550-dp
->         - const: qcom,sm8150-dp
->         - const: qcom,sm8350-dp
->
+On 27/08/2025 23:23, Nishanth Menon wrote:
+> Hi,
+> 
+> Add initial support for IT66122, which seems to be compatible to it66121
+> but probably has additional functionality.
+> 
+> BeagleY-AI uses this it66122 as the old part is no longer in production
+> as far as I understand.
+> 
+> Now, BeaglePlay uses it66121 at the moment, but at some point, it might
+> end up flipping over to the new part. Additionally, it also looks like
+> Revision D of BeagleBone Black switched over to it66122 as well.
+> 
+> Series is based on next-20250827
+> 
+> Bootlog: BeaglePlay: https://gist.github.com/nmenon/65afb917ee1818979d338cf25732a920
+> 
+> Changes in V5:
+> * Switched over to ARRAY_SIZE
+> * Picked up Andrew's Reviewed-by
+> 
+> Changes in V4:
+> * Added patch to sort the compatibles alpha-numerically
+> * vid/pid lookup is done without using the match_data.
+> * picked reviews
+> 
+> Changes in V3:
+> Based on Tomi's and Devarsh's reviews, and searching online (and failing
+> to find) for a public data sheet, I have refactored the series to:
+> a) Detect the ID by matching vid/pid
+> b) Introduce it66122 basic support which seems to work based on
+>    empirical testing evidence on BeagleY-AI. This allows incremental
+>    patches in the future by someone who might have access to the data
+>    sheet to add additional features for the chip.
+> c) Irritated by checkpatch --strict warnings, added a patch to fix
+>    existing warnings as part of this series, but it could probably go
+>    in independent of everything else.
+> d) Stopped claiming it66122 is drop in replacement of it66121 :)
+> 
+> Changes in V2:
+> * Picked up Krystoff's binding ack
+> * Switched over to a vid/pid list
+> 
+> V4: https://lore.kernel.org/all/20250819130807.3322536-1-nm@ti.com/
+> V3: https://lore.kernel.org/all/20250815034105.1276548-1-nm@ti.com/
+> V2: https://lore.kernel.org/all/20250813204106.580141-1-nm@ti.com/
+> V1: https://lore.kernel.org/all/20250813190835.344563-1-nm@ti.com/
+> 
+> Nishanth Menon (5):
+>   dt-bindings: display: bridge: it66121: Add compatible string for
+>     IT66122
+>   drm/bridge: it66121: Drop ftrace like dev_dbg() prints
+>   drm/bridge: it66121: Sort the compatibles
+>   drm/bridge: it66121: Use vid/pid to detect the type of chip
+>   drm/bridge: it66121: Add minimal it66122 support
+> 
+>  .../bindings/display/bridge/ite,it66121.yaml  |  1 +
+>  drivers/gpu/drm/bridge/ite-it66121.c          | 68 +++++++++----------
+>  2 files changed, 34 insertions(+), 35 deletions(-)
+> 
 
-Or this?
+For the series:
 
-    - items:
-        - enum:
-            - qcom,sm6150-dp
-        - const: qcom,sm8150-dp
-        - const: qcom,sm8350-dp
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
+ Tomi
 
->>>                - qcom,sm7150-dp
->>>                - qcom,sm8150-dp
->>>                - qcom,sm8250-dp
->>>
->>> ---
->>> base-commit: c3067c2c38316c3ef013636c93daa285ee6aaa2e
->>> change-id: 20250916-add-dp-controller-support-for-sm6150-525ac2ed8c86
->>>
->>> Best regards,
->>> -- 
->>> Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>>
 
