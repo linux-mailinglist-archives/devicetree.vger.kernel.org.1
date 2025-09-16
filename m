@@ -1,243 +1,184 @@
-Return-Path: <devicetree+bounces-217746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F08CB5923B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:31:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5829B5923F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 326B77A9709
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:29:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35E9D520EF9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3BD29E113;
-	Tue, 16 Sep 2025 09:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445BD2BDC1E;
+	Tue, 16 Sep 2025 09:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="NSQnr0+g"
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="YZNuJBqu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023093.outbound.protection.outlook.com [52.101.127.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A432227FD52;
-	Tue, 16 Sep 2025 09:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.93
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758015071; cv=fail; b=bMf8dOfU6bLRG8pxduA7PgJzvHEPiSOKR2asMAtQcW2+4wu+uOn0FJMItEmr4gKTqdN+fLyqz5t0CkKbvkw+DaYZrS/nGdfcF18+iaiarNFn0f8RKk9EkJNALuDva0jXQ982J0Xa36W/fDOAyzALS18PA9gG4dhAGMN8GuUlpqk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758015071; c=relaxed/simple;
-	bh=NmyXbL0lgtqty+q+8PcXq9l97uGDhYb6c3cBQju+ivs=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=D/97cf8qQ4+8rR5nhtIg9MQLvpHcqO2NZfATfuQ+3/wxIQoxsVJ5xxE5GjRI5mQ0ohAP3bLe4GuYpHty1WaN+1lt0N6VlUtGOFZlGuLAIaHy7tB9DfdLhp37q+euxEh2R2p7aE9vMkBxu5RytPc2A6XuqPGZamFeYEO8+zmUaq0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=NSQnr0+g; arc=fail smtp.client-ip=52.101.127.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HucAqkxXqql+D/9oF7MOioNroIcBFmTU5Iz/5mu0/m9AGsRHsPD5sVhr0Nerf/c4cy2PFcXDS+6vPR3kGIyzM/SV337MOfUXriyYIWlItLx3ietOBS0z7YWTwebzr6TUd0YTrd/rmpJthy+BsgaM9RrGkahpKveNuYsaYdWOyun+ySQU47hf2Csl9UAFYx8mPP7rPWPxX7vqrDiHJvAN3U3UmHrQNCwu2QP8QMQ8g3XtyEZW5RHM5QyG7YSYfumwHnsjTduElloRnm37KngZFef/C6xhBX4xEX2bpJckyl5555K+d4mjmlPIWTfB33yK9oIoD3paMPr9oeDUZuivEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t+ev7Kx9eSs1nL/DW9IHJ73hxTfdGHpWC91SWZ+kC9M=;
- b=woglQNqqTm5x++/CDf46SWcYPeVAYO7i8OA0YTK81e5u7xVOu0A948h5qx4PTfV8U9G92TcUBAyuWOhZCpNEz61OolYKFRuQ3w0JoD6TvYbZeuA5WPRcjuphTwaoXbJ8tYCdMf/C/0HCBuUy4HcqtGqqb/K4QtZTrRn6z4oSTVF7CXVFC4eyFQkt4M6cR7eVbrFJ6XECmCVAX2/423Gkf1k7iY4leCyWvm3SoNwp+6UBLlSAEqqugwa5JQAAl/0P/EZGAScCk3mIT4LFJNoK1EJnHBXHcVNM3KIIN9a7w8d+5McIsnCwu9r8xyo+9WrbK492vgJPZaafmA0YFr/idA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t+ev7Kx9eSs1nL/DW9IHJ73hxTfdGHpWC91SWZ+kC9M=;
- b=NSQnr0+gyGJBKZM/iavNCGWRKVVbDptwPGN2RZYRkhUYeyQW2qq8BVk9egipz2LqRA210GlC4p2T8XquKUJzV0TMiOteR29Dg9ztAOhVu3+yge9FhqD1N4bedoGpvS6TC+cViuVmn9YIK1biaqrv/rPCHBLkHTfJKmcKmtwHoTImn8SviSHX0oQY5hyTbHAbBFpPjhy0g1JFFvcb/rnelCoQFEpXMdwVUt1Z+3+q3x1j3zHaPxL8sBwGza3C+6N6u8T3fgMpCA9fBXpfteDXYcZsx7s8py8sY0nGF8/T/nxkV2W1zeeXXJIjuX9ykMbng2zGywfqqWrtFCulMaeJRA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by SEYPR03MB8078.apcprd03.prod.outlook.com (2603:1096:101:16b::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Tue, 16 Sep
- 2025 09:31:01 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9115.018; Tue, 16 Sep 2025
- 09:31:01 +0000
-Message-ID: <66f130b4-88d7-46d2-9f66-9055896d445a@amlogic.com>
-Date: Tue, 16 Sep 2025 17:30:29 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/2] clk: amlogic: add video-related clocks for S4 SoC
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20250916-add_video_clk-v5-0-e25293589601@amlogic.com>
- <1j348mj0sw.fsf@starbuckisacylon.baylibre.com>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <1j348mj0sw.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR03CA0094.apcprd03.prod.outlook.com
- (2603:1096:4:7c::22) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1543A29BD9C
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758015075; cv=none; b=qRJge6DjM23vLTXTLGyTilSKXOCzzsYqBOmIEatWs9/aV2tOnpRCXJ5c8fHWuBwsmfjdKUfZ0OOQkM3XonDf59gThnzCBHWzD7/ow+4IEZ/7SoOIV0uyGQEdxO5KkE7i8i10wsgUuDyP9DXSf8OOuYMY7OtdpZpqR0b8LoBWjuE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758015075; c=relaxed/simple;
+	bh=G5DKJK3CELjgpndrNA/+eHqI1RVUDy7+NIgwgAlKssg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O4YR2W3O0vzTm9fw9kxSeVD8ow5SIlqiAet6cHxK/325lh3r+7nUloGVEIQb5QTH1rBnvLEIFc/W7tyICPqc8sjQN60ydBtaLGzW8JlLxDppk/vwoLxxtBUeR9RtRi4Rz+oZsnACs2Vmfh8W4KLfn5AL9RZB/uBwU/UgHRgY2ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=YZNuJBqu; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so32177695e9.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:31:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1758015071; x=1758619871; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ACpTvDk4rKkRfQ2RQ4sxr8j1UikIa22f7RQMKzB/pRg=;
+        b=YZNuJBquxbhPFirZrZK7NYrrhJrCjpOG0kGgAY47Lr7F0TXTMcCVUdtjFuhDb88l51
+         2BszKTLLZnttGF7JJCiX9urlimaYhq2mA3nRKB7P16jim67VSirJ1MSqOS/YCpxPpU3N
+         JMrSkC1yarTUQ6Iu0TEjD8qke4gl+zLXsSN9YxP3rNJPBDjnIn814v0ZPPysHE37iMyi
+         n47vbPjX8wjZ5es8QWIbrtA5v6DCXorVwW+lL6keMhUW9KufG3KkNbYLJx5kRGmFB4h0
+         XLpxdS2G9uxm1jUYIItn0FsRG00A7rIPQKfTFi9Mn6KXU+9FXoiRvyDhTRHGoUySTLgz
+         0s3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758015071; x=1758619871;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ACpTvDk4rKkRfQ2RQ4sxr8j1UikIa22f7RQMKzB/pRg=;
+        b=TDJmhU1dXcXeXf+WqZBZbhMYLWIotTPupUE/eJetyWsr2Ykmqnrjt+dA+Ju8jBfbrg
+         XowjxyW68OWIwuNRln/iNQ8waKG4rthGZ9sxrOXBr1jgvgVstRmRd8CQQcUdO3aUodrJ
+         JRvjIXsBAUYZ2WC8A0BzoZEobgkMcmfaaDP/9xjsDjrz400eTYWYlXAEvtUAVWGEY7Cf
+         wrykdNHuCUs8igPdWd0/Pi9Q7+WoF5BUTia6MTiN7BgesBa7HzB0c9ZEN2pnWb0g5Dx6
+         HlHXFznSTZ1Zxvtl2Kj6Hglw0aSKtU+NuKzaX0GRnhl8haH4W4YlYSF9offNXVRttFjl
+         SckQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9elYctNy3oV4MQet2ArtX1oVF5Ih5ckzdMJQdko4pvGToQsl4VFGcMh5ekXwymyHzmVu7o2yQxiKj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzvbvk6Ijf4TynQ3zmI2Rm24VzPQSkM/h7FdTtTCDnYIaakSKgU
+	PiyP1xZyQ9N69qVc4wJNQ5Nxp9PBCgoPytlyncz6t+0H8zld99HX/LCnvylfPKxFjqk=
+X-Gm-Gg: ASbGncuaDrgOOUsgHeggbXWrYXmkSsz2L4cXSW8d1FCFYxXrFcqD6A/Vz2GjwGeTKP9
+	oTZI3c8+5OTEdQDFcBgI3PrEFZggm2Jut4rAANbi8RfAoy8nhBR8XgS4hDD1OJ4w6OWU1ZLhOyg
+	JOVedlNg9cMXTYSbf1WuFApHmSLToFZJK+FRMYVsNZ1QW4ZvJnEbkG1Dr5fvpGnr3Y7dKw3ZWpm
+	pu6aTNYzJTxMD26ptvtHFR35DsrSPK0eY2WiCwaUcRk8ewlkjHx8/mnbpCL1qpkpIeDc3fIZbiU
+	Upg4YtSp5H3c3A1bpWr9EUJL6VyPhJHpco/ykRzq4LpV9K/v+r+RBeYoghPIgaIEZTdyTeDpP3V
+	dwyZecQ/Z5F/c4DtmeWVarShR
+X-Google-Smtp-Source: AGHT+IH8DCDGESmWObhYAAet3S0BhH1Fzzukf1zx3cCjpw50+fa6UzbNTX5giSJQmy/9uVP0YCa3Ow==
+X-Received: by 2002:a05:600c:828c:b0:45d:98be:ee95 with SMTP id 5b1f17b1804b1-45f211caa67mr130397715e9.3.1758015071252;
+        Tue, 16 Sep 2025 02:31:11 -0700 (PDT)
+Received: from jiri-mlt ([193.47.165.251])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f325a32f6sm13224245e9.2.2025.09.16.02.31.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 02:31:10 -0700 (PDT)
+Date: Tue, 16 Sep 2025 11:31:02 +0200
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
+	netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
+ reference property
+Message-ID: <nj6wipqud7gnaiuvj6cl4sum7zfyp7jdvjb63op6ff4ruz7rjx@5rtkshsuxojl>
+References: <20250815144736.1438060-1-ivecera@redhat.com>
+ <20250820211350.GA1072343-robh@kernel.org>
+ <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
+ <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
+ <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
+ <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
+ <4dc015f7-63ad-4b44-8565-795648332ada@redhat.com>
+ <350cecaf-9e41-4c34-8bc0-4b1c93b0ddfe@lunn.ch>
+ <dcca9d10-b2b7-4534-abe6-999a9013a8e9@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|SEYPR03MB8078:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f0072b6-8482-4934-c104-08ddf503bfc5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Mkhob2s2NW9uS2xVcUJ2dk1vRWFYZGZPRi8rRmF3Z2xNcjE5RmtBZjVoVWo0?=
- =?utf-8?B?UGFDZ1JmbFE2czZpR05QZUZsV2NzL0JERk9kMDdsM1pSK2c1TWpkd3JjcWpT?=
- =?utf-8?B?RmJoMjZqZXNFNldQTUdxOWN6S2R5T0c3OTE2ZGwwNStMNUd0YTIzcGY2a293?=
- =?utf-8?B?ckEvNlZJOVNVUmVxODg5R2xYMVE2TVJHcEtFekNTQy9IY20zUHNJc3BXOXJX?=
- =?utf-8?B?SVhKTnV6Mm9HVTVtQUNGUDBTZ3htYWU1bmFzQ0RZVFdDU2c3aUdhank3dktp?=
- =?utf-8?B?NHBUdmRRZDVTWTA3WFZnT21WSXhCNVVnOUUwRTJjZUJqY3ppcWd3YmxMNVd4?=
- =?utf-8?B?UVZPdFdHVG1hbFd2blphWldUNnc1b0V2YktlVnQ4YWxRdWdmZDNwM0IyTzBX?=
- =?utf-8?B?M1lnSWgvTWV6dUY4RDN1TUVkTVBrODFIZThadTFNRmNZNk9Ca0xUcHh1NHND?=
- =?utf-8?B?K1NEY0JWMUQ0ZFhWWS9wSGRqRncyOTNjYzEwOTBRd3paWVdNV0JSOExxMjl3?=
- =?utf-8?B?RkxxU1FrTlQ4NG5BOU16K1ZnQ09vblJHRDlyM1JXTGdHWlNPT0oxUmx5MzJm?=
- =?utf-8?B?YXB5L3l1OHFKVjJucGxFaU5iZ1dwOG5tRzIxZTNVVzNkNDI5aFNxTGhCRGtN?=
- =?utf-8?B?NEpnZzgvNUtCekVNNGlZU1RpdTZMTXBGbTdQaVdJK1NZSjBCTUlYUStCYVhn?=
- =?utf-8?B?MERXbnJrR3pqbms5VGxYMlZDZGtmQUpCc0NwMnI4eTd6aUhrQkZZcG44dFRu?=
- =?utf-8?B?djczenozOVpPQ01YbkpOald2cWZPM1NYL0RYNjBSQy9yVG5tbHlzSlZjRFBv?=
- =?utf-8?B?REZMZDlLL2hKTGdQRDFORExNdmxUZ3k2Zi8yQUVYNTBnRFp6Q29HMTRTdCt2?=
- =?utf-8?B?SFdSMmZOT1FBNFRraCtSeXdwODRqWldRYUN3cU1TYmVpZFZuSVlGTnBZU2Z4?=
- =?utf-8?B?NklROTNHbDc4WGFNNmxjdzVuNHQxMk92eGFRUmFZb2N3ZUFZTHV5bGh5REZq?=
- =?utf-8?B?bUVuMHV0c0hjdnRaMEdUemsvbzJ6YlFzZGNqT0dMMGFScFA3MmgyOGdyR2VG?=
- =?utf-8?B?bWs1bkRCcVhBUVRBNkcycjFOMEpqQkhuNndldWdCWXQ0OEhCUGhySU1tV3V1?=
- =?utf-8?B?aWR6SVM0NElJb05ENmlQSXJRam5KSUQrNWZMVjJjVDE3cEdmNTNCalgzMkxv?=
- =?utf-8?B?bTdlaHBRcktOcFN3MGJ1eFkxOEsrNitPakk2a2Fwa1QzcVB5eWpBcTA4UWlW?=
- =?utf-8?B?RGZld3JUMng0a1BjdG5FM3UrT3E0NUdlZXFEK0ZmRHZwWkYvMHpySkpVYXRJ?=
- =?utf-8?B?cStROUs3UWlmUGsxZHgwazhDc0kwYlFxdWtFME91QUF2dm5XODVGQ2hXTm8w?=
- =?utf-8?B?ejZYL1ZIeGVVVmtFZkY3Nk1mSkZCbGRkS2IxcFJ1R3l2YzdkSVN0UW5QZUlh?=
- =?utf-8?B?Tmt1UFVYOUpjSzR0WDRLNlF0RWlwbGJQVEhCbjg0dzRUVW5rM0N5QWVNbW5n?=
- =?utf-8?B?SDJuTlFWNXNBUng1SytBa2c2UGl5R0U3SGRhc2FVNHZuNHVlcUNRYUM4UEVD?=
- =?utf-8?B?N2NVVDVQT2VlT1hNQWtFZitFRnZRUStMeURReWdJUmlIVEtwdVFtY3A4LzJv?=
- =?utf-8?B?MDhQbTFvbWxoRkM3UjVMT3EzdlRZUXFIamZ6MWFwdVJUVUFsTDdHMngzc2JU?=
- =?utf-8?B?VExHeXArRDNSYUl0R0lzVlFLemZDQVBqRVJZOGV6aWhBdFVaWmNNdU83QzQ0?=
- =?utf-8?B?Y3duRWlMZ3IyNSsvRHFiODFTZFh5ZHI0ZVVhR0ZweWhRT2dtUDUxQ1VJUzFF?=
- =?utf-8?B?ckFTSlJYL3lPVk50YmthOFpLVHh5aXc5K3I5RGRaa0lnaTlFV3lhWVhDTVFC?=
- =?utf-8?B?ZVNDYmRYM2VKVEhnWlRNeUN2cHJMNGl4Ky9OUHRnM016a1o5N0VIYk5VeHlT?=
- =?utf-8?Q?EB8FQdLwFcY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?a0Y4OEF4VERvVDhIb3BCa3EvdW1ZSGlLblBmbGxkWTNXUFE3REh2RTZ2TkEw?=
- =?utf-8?B?aEEveDg0c3lXSlNYaDZEVkVSNjZxbitFQTBFbEZQRU41SlFaZW43VzdsNmps?=
- =?utf-8?B?VEx0OVh6V0FTVzd3WDVOV0xOa0VNOWJYbWFyNWZxNEpialFRb05ld3ZWRWlP?=
- =?utf-8?B?WjZjQlIzMHNqSmIzeUY1RnA0a0xwTnVYZDcwaDJ3dXA0MHVSNlBwUllnN0Yz?=
- =?utf-8?B?WU1uUFRtNi9SQmFsMUV4V3l3QldrY1gwT0ZNeHFLTjNHZ2NXSUdoS1dzZURV?=
- =?utf-8?B?c3ZkZDFzVm9RbGpZNTVnelZmRkRJRWR5VHdkNVpxVEpIK0lscmx6UDBWL292?=
- =?utf-8?B?YmY1TExzWmVTVjNrV2owL09rSmUyS24rRVBkakp6MTVnU3dTYXY0dy9NcndR?=
- =?utf-8?B?Q2FKL2JQZTNBb0JucnNVREVqWnJPcy9KMFFmSUt0bHJuZitYNTdnWlYzZ3Vw?=
- =?utf-8?B?ZHN0djVuY1JJSXNsODJqNzQyOTZhaDVCUVVpQUJzZkFDaklRNmxJYncwNytM?=
- =?utf-8?B?SFRjbFJyQW81RWI0aTk3ejJmYUUzNHlrWkFxWDQrdFY2NzV5bWVIMGFBVkZy?=
- =?utf-8?B?czlOZDNLVm16UFVJanBVZldwbVBTVldmQ1U2aGg3OTZISURFNkp6Um5XVmtK?=
- =?utf-8?B?WGY5Y21QNExhQVM1N1JzSnFrS3Y4YmlMUXk1dC9NMytTLy9vTlRwQ3BtdTZJ?=
- =?utf-8?B?VWhiWlJZbEF1V2o2clZpd2Y0U3JzZW9LNjJyZ25pVGhSbys1eDVLOW5rSkkv?=
- =?utf-8?B?Mm9tMjRWSjU5RkRzOHVacEtaWUZQbjlrS1NBYUFZU1p3bmlxM3JyWW5xL3N6?=
- =?utf-8?B?OTFJTlVGQUxFZDJjYUhTTnpoK2VZTHNDcXh4SUIybStGL21DODlKd3JzZytQ?=
- =?utf-8?B?VTdBelY4VlI5SHYvNWlQcDB0ZTYyeHZwMldRSDhLN1piRjFyWDFhcGxuam84?=
- =?utf-8?B?Rm0zUG1qVXVwT0FPWjhZRGNGZHlPWEd3V3BvUkpsL1pwNHcwNmp5SGlNUlhx?=
- =?utf-8?B?c1FHclJkcnUxaE1QUTZQc1JNdW5lMVpUbUQ0V21UM2xJWS8weC9Pa2hQRHJK?=
- =?utf-8?B?b3hTeXBuQ3hvZnE0S2hHT0F5eVg0a0g1Ry9oUm9ybW4yRDFQUk1zeDdCTVBs?=
- =?utf-8?B?dm5vWkxPczZ2QURVWDVmUnJ4Q084WnB3aER3Rm50eVFHU2c5akJiNS91UHk0?=
- =?utf-8?B?azR6ZDFUcGpNbGg0YW5UTmdUN2JJMG9aT3Q5cUZVcW1MYmhCT2J2TFFqU2lU?=
- =?utf-8?B?Y0dMNWRUSmV0YVN5Uy8yUWhxSGxuT1MweFFoYUdhd0lOb1JUSENPUlA3RGZZ?=
- =?utf-8?B?UnhQeWZNZFZCelJhZ0Rjb2p4RlJlSDhmK2RsVWtLeG1ZYU1Memw3M3R6YktI?=
- =?utf-8?B?Y3I4MTJINExQUTk1eGZHQUYvMkFWVXdpZ2hXR1g4Y29LcWJNZHdrbkhGREFC?=
- =?utf-8?B?cEFiRVBCWFFwbkRuOEllREowU3lwRGNvWElGOVZYa01XNjRhVkdmQ1FsbnFw?=
- =?utf-8?B?VzBNNUEyN09YdUpNSkhWSGFHWitXQ01lVmwwbG8wZVNBWGZIVXNScUJ5ckxD?=
- =?utf-8?B?UHRGVWpnU3RYNWpneWJZTlgxaXVGWjdjdHZvbVU0cEs5K3NFNTFUWlczNzRK?=
- =?utf-8?B?aXNod21KNUFKU092d1RnZjB0RkdrQThKU0RkOEpUaGRjVUpzQzFDbmFpbVhl?=
- =?utf-8?B?clJ3Y3M4ZGoxVFQ5ejhFYWRUeXFLQXJRMkZ3TWwwZkNtckVBUXVySXZsR08r?=
- =?utf-8?B?STI3amMvQitFejk4dnBhajRWRUFHYjZJOW5LMGNlc2M0VGxsdWdvdFhNOTMw?=
- =?utf-8?B?cWF5Lyt1d1E3RDNyVmxjL29oL0txRUhjOG0vakFPVnpVa0tva2ozdnNrbTdF?=
- =?utf-8?B?bTZQeVIxc2pibDBrYkFHOUQrcDZDMjBFUjdJS0EyOHNmaUM4TEtFTmdEL3ZW?=
- =?utf-8?B?cUlFSWRudkdWcXNGWXlMQzlmRVJXRW0vUWNDL0hlaGJsendjNytlZSswUVZn?=
- =?utf-8?B?RkphV1hZK25JU1l2dEV4alIyVW5MRGZaNVVxSEZpRUZTeUs5aHY1eWk1ckNX?=
- =?utf-8?B?SlFETU4yTGMrekdTakc2WW1yclRqbFA0V0RuUHRrZmhkVW5RcWc5MXVUTjVq?=
- =?utf-8?Q?Q/ldTG/NPXcqnf5SQq0RjiqFK?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f0072b6-8482-4934-c104-08ddf503bfc5
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 09:31:00.9809
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AlBeOg5FedQ1Edk18mLXGYlZkPzmbm612I4DJxD7Ohzfy/b0aSS4514kelxQ5YQ5DePquMbe7d/6nMs0qyv9Qg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB8078
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dcca9d10-b2b7-4534-abe6-999a9013a8e9@redhat.com>
 
-Hi Jerome:
-
-
-On 9/16/2025 3:47 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
+Wed, Sep 10, 2025 at 02:51:33PM +0200, ivecera@redhat.com wrote:
+>On 09. 09. 25 3:50 odp., Andrew Lunn wrote:
+>> > > > Yesterday I was considering the implementation from the DPLL driver's
+>> > > > perspective and encountered a problem when the relation is defined from
+>> > > > the Ethernet controller's perspective. In that case, it would be
+>> > > > necessary to enumerate all devices that contain a “dpll” property whose
+>> > > > value references this DPLL device.
+>> > > 
+>> > > Why is that?
+>> > 
+>> > Because the DPLL driver has to find a mac-address of the ethernet
+>> > controller to generate clock identity that is used for DPLL device
+>> > registration.
+>> 
+>> Maybe this API is the wrong way around? Maybe what you want is that
+>> the MAC driver says to the DPLL driver: hey, you are my clock
+>> provider, here is an ID to use, please start providing me a clock?
 >
-> On Tue 16 Sep 2025 at 10:06, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+>Yes, this could be fine but there is a problem because clock id is part
+>of DPLL device and pins registration and it is not possible to change
+>the clock id without full de-re-registration. I have provided in zl3073x
+>a user to change the clock id via devlink but it means that the driver
+>has to unregister all dpll devices and pins and register them under
+>different clock id.
 >
->> This patch introduces new clock support for video processing components
->> including the encoder, demodulator and CVBS interface modules.
->>
->> The related clocks have passed clk-measure verification.
->>
->> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
->> ---
->> Changes in v5:
->> - Add Acked-by tags from Conor.
->> - Remove unnecessary flags as suggested by Jerome.
-> The request was "in an another change" ? Why was this ignored ?
+>> So it is the MAC driver which will follow the phandle, and then make a
+>> call to bind the dpll to the MAC, and then provide it with the ID?
+>
+>In fact that would be enough to expose from the DPLL core a function
+>to change clock id of the existing DPLL devices.
+>
+>E.g.
+>
+>int dpll_clock_id_change(struct module *module, u64 clock_id,
+>			 u64 new_clock_id)
+>{
+>	struct dpll_device *dpll_pos;
+>	struct dpll_pin *pin_pos;
+>	unsigned long i;
+>
+>	mutex_lock(&dpll_lock);
+>	/* Change clock_id of all devices registered by given module
+>	 * with given clock_id.
+>	 */
+>	xa_for_each(&dpll_device_xa, i, dpll_pos) {
+>		if (dpll->clock_id == clock_id &&
+>		    dpll->module == module)
+>			dpll_pos->clock_id = new_clock_id;
+>		}
+>	}
+>	/* Change clock_id of all pins registered by given module
+>	 * with given clock_id.
+>	 */
+>	xa_for_each(&dpll_pin_xa, i, pos) {
+>		if (pin_pos->clock_id == clock_id &&
+>		    pin_pos->module == module) {
+>			pos->clock_id = new_clock_id;
+>		}
+>	}
+>	mutex_unlock(&dpll_lock);
+>}
+>
+>With this, the standalone DPLL driver can register devices and pins with
+>arbitrary clock_id and then the MAC driver can change it.
+>
+>Thoughts?
 
-
-Sorry to bother you. I'll drop the flags for 's4_cts_encl_sel' in this
-series and submit a separate patch later to remove CLK_SET_RATE_PARENT
-from enci/encp/cdac/hdmitx clk_muxes. Is that ok?
+The clock_id in dpll is basically a property. It is not used in uapi
+(other then for show and obtaining the device id). So if you introduce
+a mean the change this property, I don't see a problem with that.
 
 
 >
->> - Link to v4: https://lore.kernel.org/r/20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com
->>
->> Changes in v4:
->> - Add Acked-by tags from Rob and Krzysztof.
->> - Fix compilation errors.
->> - Link to v3: https://lore.kernel.org/r/20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com
->>
->> Changes in v3:
->> - Rebase with Jerome's latest code base.
->> - Link to v2: https://lore.kernel.org/r/20250814-add_video_clk-v2-0-bb2b5a5f2904@amlogic.com
->>
->> Changes in v2:
->> - Removed lcd_an clock tree (previously used in meson series but obsolete in
->> newer chips).
->> - Removed Rob's 'Acked-by' tag due to dt-binding changes (Is it necessary?).
->> - Link to v1: https://lore.kernel.org/r/20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com
->>
->> ---
->> Chuan Liu (2):
->>        dt-bindings: clock: add video clock indices for Amlogic S4 SoC
->>        clk: amlogic: add video-related clocks for S4 SoC
->>
->>   drivers/clk/meson/s4-peripherals.c                 | 206 ++++++++++++++++++++-
->>   .../clock/amlogic,s4-peripherals-clkc.h            |  11 ++
->>   2 files changed, 213 insertions(+), 4 deletions(-)
->> ---
->> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
->> change-id: 20250715-add_video_clk-dc38b5459018
->>
->> Best regards,
-> --
-> Jerome
+>Thanks,
+>Ivan
+>
 
