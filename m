@@ -1,239 +1,878 @@
-Return-Path: <devicetree+bounces-217962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEB4B59E2D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:48:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56205B59E59
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:51:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00FF8581D6E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:47:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43CC216EB31
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8DA261B76;
-	Tue, 16 Sep 2025 16:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9BE2F25FD;
+	Tue, 16 Sep 2025 16:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KAz0Zr9x"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="kBuER/fK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010022.outbound.protection.outlook.com [52.101.69.22])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C1C1C7009;
-	Tue, 16 Sep 2025 16:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D623016FB;
+	Tue, 16 Sep 2025 16:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758041262; cv=fail; b=cQWHPFcSyXnKQY7cJk29Q1GK2faBfZd0JeiWnDIdJ0uV77PsiyNAq6aZp/kYlL1LjJCPIqAiIHBLNNH+xeRURYjVkF5Nip0gyn0+gTDxp9Yp0FARbVFFMLHCJjKEW7CgkyaoqYCJD+NoNGmIyQNuTRlAh1oaJ1b+wUBLXY1n3Wc=
+	t=1758041494; cv=pass; b=bagjpgmxNf4HnDcwFfvu+aVGwlXsHQfcvnEUYusGJ7MQ46Go3V6Kgh/K9RUB74paxTy8nIATZlAPr1xVRpqN0O/ypYr7hOkjiaqQ9ZXMByjeeyazbszXGTptP0xNuTZCtMcDce1wTmrGiKhpektfRiZgpwDzcsdzVBBhSemikW4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758041262; c=relaxed/simple;
-	bh=Tn6+8Un9xBtQnlkqaEC2jQ28jKjFQAwk8oIVaq0itWI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=jKT+vClceTHvkj3IyFgJqcRbDGgQmnSQ4i1K/kG8tO2AwnV+p/HjQJRPsgEY/ARsCmquuJNvxR6KfiMwkFISjx1aXhL0STFLa2wLnnraNyEnf5p1XljFBBQDxxiE9N6krSA/lKnS8tWIynVs8nOrizB6L/1I57nKlQu8zdRdjyc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KAz0Zr9x; arc=fail smtp.client-ip=52.101.69.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GNyvUQV5I6yDKCUbd46a4260g9+ja7QnAGzveL6Rj61R8lCkBzF5O1HoriOfk2WPjEZbfPbLOx2nkbkpkp0/HQH51tG4GZGOfDNiXI1xB6H2jXSlslJEzvQzY1f/mxwkCbWtCLNaIL8u2kCfk8HaIFhiYCR+T3CUAUEgAX64kcV2jXOx4DftTdga9SUAtsm7fFSdadn2L3+Zrt6z7+yuDSlS+1ujjMcxsXnJ/BTIO76NxCDJk5sbEki2/ZO0Wu0NNGdCw8pdGiiOmaarNNyMpUJsY8l6WEwqu9AQEQapDf5EU6uugpBB60nqKCWTpu9uXCwV5poV6/6FN8TWnEv/1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LzblFypY5hBzoeIBwO/gFf+itVdCk0RSI+9shAZksYI=;
- b=jaBmzq8GuO04ButVf2yfTSifXyiD0c3oTIpHYns6HNtfv8qcbbvm4cMvpfYJd8QJGynhPFeSrwNoKZuYCP521LpUIUDhdfFDiejBfttKhvsbPu0XqbMxGFPL3r/FzU/QWjcArRr8VLQEEcrf7rYZ4kjcS88sXyn/7CafWiXws5JaMkwys7sgchFylpfRTAW7PSFnahJ+Hgb7985/D+EXaClZlTOXtU81cASPD9pkjVQ02BOvKwtnK1sstys2YeOTlE9CDP3s3d8jr1dKrrRqApXVn2maeDZIPVLvuCfmW7PdpCwCkKF1rvcXDxPt2l43GB6GRTcLurUgLzRuv8tazA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LzblFypY5hBzoeIBwO/gFf+itVdCk0RSI+9shAZksYI=;
- b=KAz0Zr9xtkhIuBDA1kNPxGZJ0GeHhKUlQzcpawvCmZzWrelerNawFsGdimUlbtImSNsgo4rutSYkDZCSyiEINDEp1X9s0d34a9EvAdd3wyQBA1IvIIkXArixLEjtpuVPfav8KA7al6MJHz1TuchksxcA8nxf6DhMMGoVsUDrvPag/5GIWVYlmpcZRULvBwjxXhx77u8hhoFVlDujlxyowFIQ6w2+DwcRHafOLKzg5t1NCBgbJRZQjrz7TwRQBuZfjdXLjVovFMuNhbFrZWn2hf0/BvCSAjqxWhqCI7QwvFOqNciK97VGNN3FxkASybVdvsf3WiydEGZjeneN9PqRlg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by AS8PR04MB8866.eurprd04.prod.outlook.com (2603:10a6:20b:42d::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.12; Tue, 16 Sep
- 2025 16:47:37 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9137.010; Tue, 16 Sep 2025
- 16:47:37 +0000
-Date: Tue, 16 Sep 2025 12:47:29 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] arm64: dts: ls1046a-qds: describe the two
- on-board SFP+ cages
-Message-ID: <aMmUoUUQYPGQQdRU@lizhi-Precision-Tower-5810>
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-10-ioana.ciornei@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915122354.217720-10-ioana.ciornei@nxp.com>
-X-ClientProxiedBy: SJ0PR05CA0005.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::10) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	s=arc-20240116; t=1758041494; c=relaxed/simple;
+	bh=aNcgnIqMlV2nLkN6hap+rk24qyY06m9MOU2lWa0W9jQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W2OJrgEUjrHAR+runGojP0spg63F0BY5pFfW+wipm8u7EiQq5F/YfTquAK7vhmzimaq035o5YwlbHoqQ9k9KNUzVcJKueE5udgV+YyMGuUkB6dIep4UOSxvRW5JUO1kiXhvKqr1HwoxmB93yAvPuMLtt2si3C7Ww1AbjpEyk8Bk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=kBuER/fK; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1758041482; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=EkPea2vbbeyMTyJndl2PIYXgijcTzDGl0ocFWDEK42cj1z7fStUAvg3Uwi3qPiDFXnNBvgMNHINAS03OQJ4t7eQ9zltX6B8fSx5F/7y/Wqo1HDozScGzSjSIYOU9BdOfBaN5NYOm9lbFPaSWXDc80iVVwEmgNYzWIHOiG4gYbvw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758041482; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=upcDOhCT1maEJJBWxFuPLB5Q6P1kiM+yC2KebKXeNKw=; 
+	b=iBQ+Ee9x4Vc0x9m4S3r9jSHMAXGs2vuvfJddGBXr62u6GEt8yK6fQH2FzXv2f3axI2KyHiO5CJbujsgWntl/4gMxOuG1Ch4HCH9Ycu3VkfdQ02aNjvhk6iaIU1vP8tiINavw81GnLNSu0Z1ympZ5XIOMWDj++S9+elq4NkLYg3U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758041482;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=upcDOhCT1maEJJBWxFuPLB5Q6P1kiM+yC2KebKXeNKw=;
+	b=kBuER/fKRneqMxTE1Nd5c1JZyAtCkU1WvuIULbr3cEE+wNjntvc8g8B3cQR6U+Mu
+	+kYy51kqQFWWQn3d0quUF1UtxP2Ura3es/jjV2PiB3RU1muo7IH3/QFx33frk/oq7wH
+	qOOtrGvVnWBYfqlrB+dU7PLGVQTHCNhtbvl6f4FE=
+Received: by mx.zohomail.com with SMTPS id 1758041478934468.0563315756556;
+	Tue, 16 Sep 2025 09:51:18 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 4063C180733; Tue, 16 Sep 2025 18:51:09 +0200 (CEST)
+Date: Tue, 16 Sep 2025 18:51:09 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: t.antoine@uclouvain.be
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] power: supply: add support for MAX77759 fuel gauge
+Message-ID: <or662kpry67je6cgwzttitsswbcfqwe33oqarq5zuq5ovj4elx@uysebfqkerq3>
+References: <20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be>
+ <20250915-b4-gs101_max77759_fg-v6-1-31d08581500f@uclouvain.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AS8PR04MB8866:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5fce3f78-8437-4fd8-2c6c-08ddf540be4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|1800799024|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zPAF9dSU7Fb8+tvnhcUskM+wq0JKgflA3i25hdPaOH6JVfm1kD6O2DzzQIyJ?=
- =?us-ascii?Q?Z4d9ruWMwtKgxXW6nxRYUrL1sT+oQ3/miuWqKdvciyy3mT60lyUx5yI7GMxw?=
- =?us-ascii?Q?Lfa2daRJUHAc2DScvOSjaF0zDgCs2sAlRVD4ap0IokqnR44YXkPJLEUtQu3J?=
- =?us-ascii?Q?+79T5j24PyVbOdfk04k1PjVkBk9LQ6B4VedfzcMnyO7doZnZt/6rXSU4BZ5e?=
- =?us-ascii?Q?QAgHU87E/Y+a4Q7RsRFs48Jnv809WHDUV2rKJxS/Gi/J9cb1EOw+qe1jBaG+?=
- =?us-ascii?Q?kGMM8KZvYT1Em5Z5qgGFwkeE+4cX3CTiZZwkPYzpi5KhzfvvRI5HgKLLAHSS?=
- =?us-ascii?Q?A+ACYxsvzjpiA1A3Qca5bKYMfYIlErNgBzPAu7zzEJPdnLCTa5OCj5FHxiL+?=
- =?us-ascii?Q?CJxmBrN3XMEXdMmgciZn12DKLws0BfYTUaVR2SG/cgjNeHHW8JF6Np/b7OA4?=
- =?us-ascii?Q?7ElWls5VGkTgws3MD2N/qRqxUdU5ii9ADxWUp0Imn2KobhJTb/9q5UTkpgbn?=
- =?us-ascii?Q?AYoR3F1tuhw0ewdQvpZ6BFeYttD5GAPAB311YBK+M7yEiN467NwDAyijM9GE?=
- =?us-ascii?Q?vDx8cYNHAu+fdDKrQPT8Nk+rRLHBmf/JzZTQPK96bFffd0JAB9iCmgByLbIi?=
- =?us-ascii?Q?GtewGaPvcFh765CiKJhuQTNWWs2It/Jrtt4BWz2DzyFbetU3Y1etxRw6+RtS?=
- =?us-ascii?Q?xY1UIOIfUID8CZ73UFZuKT8PXYQdD/Wk9gMvrmmF+ikoWgfKzaxCU20M/BwL?=
- =?us-ascii?Q?kYpQnxf9J9afrKhcBPtkKkMq/ms/T+xZ5KpVKC1fUYYZo0P9vhuOU/zS5J+Z?=
- =?us-ascii?Q?3wkX269UsXWQlddypP+ica+roDXjRBemOCmh7jENoDE0z1pnpE3n2Y2fdvVs?=
- =?us-ascii?Q?xdafr2wACsKa02ulRL02D/OR+dZFJMnsZKyDYpEdjvWHJn6/lk0OjCFwIyxz?=
- =?us-ascii?Q?mhYSVDD+9ygHNZCdBGwzJqCOqKlHJmUzjEAmQX669rocAwfYvUH7AHWrzv90?=
- =?us-ascii?Q?t+SfyYFb9r9XKo3NJ9oOlOw7Bm0bf8+j4L5cHAIRTdoptyCCwxsT2YkU/Fww?=
- =?us-ascii?Q?UidGPwZYiRwLyGcE8EAfpU7ChY+sG1cjavDtxUWFV61KUcAx645shXzjbx6y?=
- =?us-ascii?Q?RxkdNAYTKLEqMOV6+B2tnAUko7U6diZzhmo/cPaZVfWZPc+dY0bBhMHG06+S?=
- =?us-ascii?Q?HmDzUXyLsm/IEvcUSSdnL8JuoK5tGYfwQ4yjWcvgHbIm39dLAJlI0IxH+ER9?=
- =?us-ascii?Q?V47WDeAQPdJDvlHkhzsFNg1w1GyaZ1ZNrtesMpCPS2YXWay/GYXAQS7Bt7K2?=
- =?us-ascii?Q?MGFw3RQiBEWdunrfWgYWK6rNZMF8mYgEyNfwbn+9aBn4GixDepDFsTOxafX1?=
- =?us-ascii?Q?joWuYnEWJOyw71SKnOCjh+zLlLSpOTqoV2pJZ7jsaC1C8XRMfpZ8FqF63A+e?=
- =?us-ascii?Q?DtZbKtI6sgqCf98M1Jv7z5KZiRZJM/VkrnwuHNt3bbpApydG37rzuQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xY5Yog01JG+UeMEKY9+PP8N7Qq37q4M2bArmND0hzjexyhOWAmyg21ZFjoY+?=
- =?us-ascii?Q?noSG2QEgncYxtCsrU5U80ZhkI3vFv6/1pnR21xQtKczpe3Xke1MqA/q25BjG?=
- =?us-ascii?Q?Ye8cTjii/QUYwegz6jZye3y7qZm2m9p8Rr89r50Nui0981gQMUunx1ooNHBj?=
- =?us-ascii?Q?fue6Zs1Nni8345wkZyIhgfWiKvtViJwoIhoVfNuohzK3K0f2e8ALt5Op8WEu?=
- =?us-ascii?Q?v9OWEv5CQKLuNxnb9EAqUZXbD1lvfVHjM13C3IIZv9e8UtOfvmu26lD/1OqE?=
- =?us-ascii?Q?OJsMXnRf6dpyLvI4ITuq4DcIdc4P7XeCnuS2uU+H6tvxbuxVXzzXgSJwBRty?=
- =?us-ascii?Q?4x5YWbY6NCaBAOM6x5onvLBAw4N7oVei/ArSNXgFHK0UPToJaf2jXCJ888yT?=
- =?us-ascii?Q?K0jcunW/WsTHL959Aji2GT+Qt1R4JS0fm5CR6P25R7VetO2os1Aj1ViNjtAa?=
- =?us-ascii?Q?tS9zn25v5Dse1xGTMGd6NEWAbMNavFnkMkdsUSBC7Fb29mfKyQSTUVuOwQlz?=
- =?us-ascii?Q?u92cx4Mbvrb7+JaFbjMoV0wDt9BIQ2jji2Uugk6O3SBiIenPV8e4oov1tiwT?=
- =?us-ascii?Q?J94CYto9boZi7V/p2Vt/7sdPqrwJOpcsnfuB6spMqnsF0urhwvvhFNtIp/hY?=
- =?us-ascii?Q?l7ToK6TrwmMUSlzM8mGCAmbYJ71Kaq1TtOTsK4kti6YI9CC4AQeRCM5g1uWt?=
- =?us-ascii?Q?95pPeCW7xyg80GKLghyhxjCRUwlvBIpWrXivDVPMdWmhj+xY5x+j1e3oJgbc?=
- =?us-ascii?Q?1Ba96e4f9k7eCS3cd6JvEnFQBRiBYiC043SecAt0li2lhM+xTI/myKBNVb+o?=
- =?us-ascii?Q?iGOJdfVjWHQWHKJKOAhz+3Pc8v+u3pskfOJr4FTZHeRgxrGgxhMi+Wei3DxB?=
- =?us-ascii?Q?N5mxGPrqvt3x8B8k1lMLeoNKl62Dn33t7BMKaCGOEvfOoJF8Jx2x7zLg51xY?=
- =?us-ascii?Q?ga7UR+FIc5tBXzs+LBdy6I/EzjhklMSoaQvRRPPN+wzbdybNAzQAGt5OTkdZ?=
- =?us-ascii?Q?HyQIoWiL3kQ3YAJcGsYdXrWmx7aNWZP1N40pwudrL5r4zHQJbxJQs2d0JF2U?=
- =?us-ascii?Q?h7iR1j26A9ykRqngjE3rc29SBnLYtAVoY02gvK+/V0M8R5E33s3D2rENsxMl?=
- =?us-ascii?Q?nySzS1VEPdF8RAHPCMXGqvUJCzRuZHhE6cS9tqSbh6AJnMGNILDL05AOr7EI?=
- =?us-ascii?Q?O9Vl/aVFK3P/bzoNzMRK60fVUh8OHP30PuUlSBBhy336kOWPCfKyfRkzyzG+?=
- =?us-ascii?Q?iwzr97wnEy2PMBG67mQk45nxPo2Pr429AtsQdm0+r5QCwg9kP6oJCj9ybngz?=
- =?us-ascii?Q?f+wbReIouo/1OTcvIvM6Q/d87cqxfILNR9EFI3amM5I0wVNlqYkNfS9Sp3sN?=
- =?us-ascii?Q?B4GMazBEoALjQt8mFknKUcYoYVogRtj3ZedOWzhq+iBgdufMlZtQkHQ3PTC/?=
- =?us-ascii?Q?34M+Vmulx4Qmx48QNSgd9qnhTlDycfsVnrDuU5vaRunsknvN0Wlr6cfxk64F?=
- =?us-ascii?Q?6/qCBYu3vy3aPNQVkxfsv13ZcrcD46PqMm3wIa6lk5q2DD5iSrCLhQ1i1nOc?=
- =?us-ascii?Q?kXZ+qw+kxGmJhW/fkw7q27tGxqJiybg6KxMtfvCM?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5fce3f78-8437-4fd8-2c6c-08ddf540be4f
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 16:47:37.7575
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NbNld5aXABrmjky79Uh/EfBe7G+Pw+Y728/mK/lOe8OGzlPMotbG0c1NORggUPXQVLJb97JfaZZQcAbjnzXZlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8866
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vlmosdcyddltczxg"
+Content-Disposition: inline
+In-Reply-To: <20250915-b4-gs101_max77759_fg-v6-1-31d08581500f@uclouvain.be>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/258.4.7
+X-ZohoMailClient: External
 
-On Mon, Sep 15, 2025 at 03:23:54PM +0300, Ioana Ciornei wrote:
-> Describe the two SFP+ cages present on the LS1046AQDS board and their
-> associated I2C buses and GPIO lines.
->
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+
+--vlmosdcyddltczxg
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 1/2] power: supply: add support for MAX77759 fuel gauge
+MIME-Version: 1.0
+
+Hi,
+
+On Mon, Sep 15, 2025 at 12:14:10PM +0200, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>=20
+> The Maxim MAX77759 is a PMIC used in gs101-oriole and gs101-raven
+> (Google Pixel 6 and 6 Pro). It contains a fuel gauge on a separate
+> I2C address. Add basic support for this fuel gauge. The driver is
+> based on the driver for the MAX17201 and MAX17205 which also uses
+> the MAX M5 fuel gauge. There is a lot in common between the two
+> devices with some key differences. The main one is the lack of nvmem
+> in the fuel gauge of the MAX77759.
+>=20
+> The initialization of the chip is very basic and mostly hardcoded.
+> Loading the model of the fuel gauge is not implemented here.
+> Values are extracted from available devices.
+>=20
+> On both gs101-oriole and gs101-raven, the same EEPROM as for the
+> battery id is used to backup some of the state of the fuel gauge.
+> Use a standard nvmem binding to access this data. The CRC8 is
+> computed to allow to go from linux to a stock android without
+> apparent data corruption. If other devices using the MAX77759 are
+> found/created, a similar nvmem layout should be made or the driver
+> should be extended to support those devices.
+>=20
+> The current, capacity, temperature and charge have all been tested.
+> The charge full design and capacity equal the ones seen on android,
+> the ratio between average charge and average current does predict
+> pretty accurately the time to empty under a constant workload and
+> temperature is coherent with the dynamic state of the device.
+>=20
+> Health is not enabled as it always reports overheating. The time to
+> empty is wrong by about a factor 2. The voltage reporting is
+> correct when using VCELL (which reports the lowest voltage of all
+> cells) when considering that the device is connected to a single
+> cell. It could be enabled by either confirming that the device is
+> connected to a single cell or finding an alternative reporting mean.
+>=20
+> Modifications have been made to it since but the regmap was
+> originally proposed by Andr=E9 Draszik in
+>=20
+> Link: https://lore.kernel.org/all/d1bade77b5281c1de6b2ddcb4dbbd033e455a11=
+6.camel@linaro.org/
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
-> Changes in v2:
-> - none
->
->  .../boot/dts/freescale/fsl-ls1046a-qds.dts    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> index 64133e63da96..c188977a901e 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dts
-> @@ -42,6 +42,21 @@ aliases {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	sfp1: sfp-1 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp1_i2c>;
-> +		maximum-power-milliwatt = <2000>;
-> +		mod-def0-gpios = <&stat_pres2 6 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	sfp2: sfp-2 {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfp2_i2c>;
-> +		maximum-power-milliwatt = <2000>;
-> +		mod-def0-gpios = <&stat_pres2 7 GPIO_ACTIVE_LOW>;
-> +	};
-> +
->  };
->
->  &dspi {
-> @@ -139,6 +154,31 @@ temp-sensor@4c {
->  				reg = <0x4c>;
->  			};
->  		};
-> +
-> +		i2c@7 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x7>;
 
-reg should be before #address-cells
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Frank
+Greetings,
+
+-- Sebastian
+
+>  drivers/power/supply/Kconfig            |  14 +
+>  drivers/power/supply/Makefile           |   1 +
+>  drivers/power/supply/max77759_battery.c | 652 ++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 667 insertions(+)
+>=20
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index 72f3b2b4d346df354475274b1c6b4ed047fdca1d..2d024fd3a45644d9f6d4e7c48=
+ea98f4efe0c443d 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -473,6 +473,20 @@ config BATTERY_MAX1721X
+>  	  Say Y here to enable support for the MAX17211/MAX17215 standalone
+>  	  battery gas-gauge.
+> =20
+> +config BATTERY_MAX77759
+> +	tristate "Maxim Integrated MAX77759 Fuel Gauge"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  Say yes to enable support for the Fuel gauge of the Maxim Integrated
+> +	  MAX77759. It is a companion Power Management IC for USB Type-C
+> +	  applications with Battery Charger, Fuel Gauge, temperature sensors,
+> +	  USB Type-C Port Controller (TCPC), NVMEM, and additional GPIO
+> +	  interfaces.
 > +
-> +			i2c-mux@76 {
-> +				compatible = "nxp,pca9547";
-> +				reg = <0x76>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+> +	  To compile this driver as module, choose M here: the
+> +	  module will be called max77759_fg.
 > +
-> +				sfp1_i2c: i2c@6 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					reg = <0x6>;
-> +				};
+>  config BATTERY_TWL4030_MADC
+>  	tristate "TWL4030 MADC battery driver"
+>  	depends on TWL4030_MADC
+> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+> index 51e37e8bdeb35a5ee7a74cd86d4def9d900a542d..b96b5ce9c846c57ce71c23ede=
+949d0e89c06a65a 100644
+> --- a/drivers/power/supply/Makefile
+> +++ b/drivers/power/supply/Makefile
+> @@ -59,6 +59,7 @@ obj-$(CONFIG_BATTERY_MAX17040)	+=3D max17040_battery.o
+>  obj-$(CONFIG_BATTERY_MAX17042)	+=3D max17042_battery.o
+>  obj-$(CONFIG_BATTERY_MAX1720X)	+=3D max1720x_battery.o
+>  obj-$(CONFIG_BATTERY_MAX1721X)	+=3D max1721x_battery.o
+> +obj-$(CONFIG_BATTERY_MAX77759)	+=3D max77759_battery.o
+>  obj-$(CONFIG_BATTERY_RT5033)	+=3D rt5033_battery.o
+>  obj-$(CONFIG_CHARGER_RT5033)	+=3D rt5033_charger.o
+>  obj-$(CONFIG_CHARGER_RT9455)	+=3D rt9455_charger.o
+> diff --git a/drivers/power/supply/max77759_battery.c b/drivers/power/supp=
+ly/max77759_battery.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a49980241f8951705237d1f9c=
+4328d0ff516c344
+> --- /dev/null
+> +++ b/drivers/power/supply/max77759_battery.c
+> @@ -0,0 +1,652 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Fuel gauge driver for Maxim 777759
+> + *
+> + * based on max1720x_battery.c
+> + *
+> + * Copyright (C) 2024 Liebherr-Electronics and Drives GmbH
+> + */
 > +
-> +				sfp2_i2c: i2c@7 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					reg = <0x7>;
-> +				};
-> +			};
-> +		};
->  	};
->  };
->
-> --
-> 2.25.1
->
+> +#include <linux/bitfield.h>
+> +#include <linux/crc8.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/power_supply.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/unaligned.h>
+> +
+> +#define MAX77759_FG_CRC8_POLYNOMIAL  0x07
+> +DECLARE_CRC8_TABLE(max77759_fg_crc8_table);
+> +
+> +#define MAX77759_FG_STATUS		0x00	/* Status */
+> +#define MAX77759_FG_STATUS_POR		BIT(1)	/* Power-On Reset */
+> +#define MAX77759_FG_STATUS_BAT_ABSENT	BIT(3)	/* Battery absent */
+> +#define MAX77759_FG_REPCAP		0x05	/* Average capacity */
+> +#define MAX77759_FG_REPSOC		0x06	/* Percentage of charge */
+> +#define MAX77759_FG_TEMP		0x08	/* Temperature */
+> +#define MAX77759_FG_CURRENT		0x0A	/* Actual current */
+> +#define MAX77759_FG_AVG_CURRENT		0x0B	/* Average current */
+> +#define MAX77759_FG_FULL_CAP		0x10	/* Calculated full capacity */
+> +#define MAX77759_FG_QR_TABLE00		0x12
+> +#define MAX77759_FG_FULLSOCTHR		0x13
+> +#define MAX77759_FG_CYCLES		0x17
+> +#define MAX77759_FG_DESIGN_CAP		0x18	/* Design capacity */
+> +#define MAX77759_FG_CONFIG		0x1D
+> +#define MAX77759_FG_ICHGTERM		0x1E
+> +#define MAX77759_FG_DEV_NAME		0x21	/* Device name */
+> +#define MAX77759_FG_DEV_NAME_TYPE_MASK	GENMASK(15, 9)
+> +#define MAX77759_FG_DEV_NAME_TYPE	0x31
+> +#define MAX77759_FG_QR_TABLE10		0x22
+> +#define MAX77759_FG_FULLCAPNOM		0x23	/* Nominal full capacity */
+> +#define MAX77759_FG_LEARNCFG		0x28
+> +#define MAX77759_FG_FILTERCFG		0x29
+> +#define MAX77759_FG_RELAXCFG		0x2A
+> +#define MAX77759_FG_MISCCFG		0x2B
+> +#define MAX77759_FG_TGAIN		0x2C
+> +#define MAX77759_FG_TOFF		0x2D
+> +#define MAX77759_FG_CGAIN		0x2E
+> +#define MAX77759_FG_QR_TABLE20		0x32
+> +#define MAX77759_FG_FULLCAPREP		0x35	/* Reported full capacity */
+> +#define MAX77759_FG_RCOMP0		0x38
+> +#define MAX77759_FG_TEMPCO		0x39	/* Temperature Compensation*/
+> +#define MAX77759_FG_TASKPERIOD		0x3C
+> +#define MAX77759_FG_TASKPERIOD_175MS	0x1680
+> +#define MAX77759_FG_TASKPERIOD_351MS	0x2D00
+> +#define MAX77759_FG_QR_TABLE30		0x42
+> +#define MAX77759_FG_DQACC		0x45
+> +#define MAX77759_FG_DPACC		0x46
+> +#define MAX77759_FG_VFSOC0		0x48
+> +#define MAX77759_FG_CONVGCFG		0x49
+> +#define MAX77759_FG_COMMAND		0x60
+> +#define MAX77759_FG_COMMAND_LOCK_CONF	0x0000	/* Lock extra config */
+> +#define MAX77759_FG_COMMAND_UNLOCK_CONF	0x0080	/* Unlock extra config */
+> +#define MAX77759_FG_CV_MIXCAP		0xB6
+> +#define MAX77759_FG_CV_HALFTIME		0xB7
+> +#define MAX77759_FG_CURVE		0xB9
+> +#define MAX77759_FG_CONFIG2		0xBB
+> +#define MAX77759_FG_CONFIG2_OCVQEN	BIT(4)
+> +#define MAX77759_FG_CONFIG2_LDMDL	BIT(5)	/* Load model */
+> +#define MAX77759_FG_CONFIG2_DSOCEN	BIT(7)
+> +#define MAX77759_FG_VFSOC		0xFF
+> +
+> +static const char *const max77759_fg_manufacturer =3D "Maxim Integrated";
+> +static const char *const max77759_fg_model =3D "MAX77759";
+> +
+> +struct max77759_fg_device_info {
+> +	struct regmap *regmap;
+> +	int rsense;
+> +};
+> +
+> +/*
+> + * Registers 0x80 up to 0xaf which contain the model for the fuel gauge
+> + * algorithm are locked. They can be unlocked by writing 0x59 to 0x62
+> + * and 0xc4 to 0x63. They should be enabled in the regmap if the driver
+> + * is extended to manage the model.
+> + */
+> +static const struct regmap_range max77759_fg_registers[] =3D {
+> +	regmap_reg_range(0x00, 0x4f),
+> +	regmap_reg_range(0x60, 0x60),
+> +	regmap_reg_range(0xb0, 0xbf),
+> +	regmap_reg_range(0xd0, 0xd0),
+> +	regmap_reg_range(0xdc, 0xdf),
+> +	regmap_reg_range(0xfb, 0xfb),
+> +	regmap_reg_range(0xff, 0xff),
+> +};
+> +
+> +static const struct regmap_range max77759_fg_ro_registers[] =3D {
+> +	regmap_reg_range(0x3d, 0x3d),
+> +	regmap_reg_range(0xfb, 0xfb),
+> +	regmap_reg_range(0xff, 0xff),
+> +};
+> +
+> +static const struct regmap_access_table max77759_fg_write_table =3D {
+> +	.no_ranges =3D max77759_fg_ro_registers,
+> +	.n_no_ranges =3D ARRAY_SIZE(max77759_fg_ro_registers),
+> +};
+> +
+> +static const struct regmap_access_table max77759_fg_rd_table =3D {
+> +	.yes_ranges =3D max77759_fg_registers,
+> +	.n_yes_ranges =3D ARRAY_SIZE(max77759_fg_registers),
+> +};
+> +
+> +static const struct regmap_config max77759_fg_regmap_cfg =3D {
+> +	.reg_bits =3D 8,
+> +	.val_bits =3D 16,
+> +	.max_register =3D 0xff,
+> +	.wr_table =3D &max77759_fg_write_table,
+> +	.rd_table =3D &max77759_fg_rd_table,
+> +	.val_format_endian =3D REGMAP_ENDIAN_LITTLE,
+> +	.cache_type =3D REGCACHE_NONE,
+> +};
+> +
+> +static const enum power_supply_property max77759_fg_battery_props[] =3D {
+> +	POWER_SUPPLY_PROP_PRESENT,
+> +	POWER_SUPPLY_PROP_CAPACITY,
+> +	POWER_SUPPLY_PROP_CHARGE_FULL,
+> +	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
+> +	POWER_SUPPLY_PROP_CHARGE_AVG,
+> +	POWER_SUPPLY_PROP_TEMP,
+> +	POWER_SUPPLY_PROP_CURRENT_NOW,
+> +	POWER_SUPPLY_PROP_CURRENT_AVG,
+> +	POWER_SUPPLY_PROP_MODEL_NAME,
+> +	POWER_SUPPLY_PROP_MANUFACTURER,
+> +};
+> +
+> +struct max77759_fg_state_save {
+> +	u16 rcomp0;
+> +	u16 tempco;
+> +	u16 fullcaprep;
+> +	u16 cycles;
+> +	u16 fullcapnom;
+> +	u16 qrtable00;
+> +	u16 qrtable10;
+> +	u16 qrtable20;
+> +	u16 qrtable30;
+> +	u16 mixcap;
+> +	u16 halftime;
+> +	u8 crc;
+> +} __packed;
+> +
+> +/* Convert regs value to power_supply units */
+> +
+> +static int max77759_fg_percent_to_ps(unsigned int reg)
+> +{
+> +	return reg / 256;	/* in percent from 0 to 100 */
+> +}
+> +
+> +static int max77759_fg_capacity_to_ps(unsigned int reg,
+> +				      struct max77759_fg_device_info *info)
+> +{
+> +	return reg * (500000 / info->rsense);	/* in uAh */
+> +}
+> +
+> +static int max77759_fg_capacity_lsb(struct max77759_fg_device_info *info,
+> +				    unsigned int *lsb)
+> +{
+> +	unsigned int reg_task_period;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(info->regmap, MAX77759_FG_TASKPERIOD,
+> +			  &reg_task_period);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (reg_task_period) {
+> +	case MAX77759_FG_TASKPERIOD_175MS:
+> +		*lsb =3D 1;
+> +		break;
+> +	case MAX77759_FG_TASKPERIOD_351MS:
+> +		*lsb =3D 2;
+> +		break;
+> +	default:
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Current and temperature is signed values, so unsigned regs
+> + * value must be converted to signed type
+> + */
+> +
+> +static int max77759_fg_temperature_to_ps(unsigned int reg)
+> +{
+> +	int val =3D (int16_t)reg;
+> +
+> +	return val * 10 / 256; /* in tenths of deg. C */
+> +}
+> +
+> +/*
+> + * Calculating current registers resolution:
+> + *
+> + * RSense stored in 10^-5 Ohm, so measurement voltage must be
+> + * in 10^-11 Volts for get current in uA.
+> + * 16 bit current reg fullscale +/-51.2mV is 102400 uV.
+> + * So: 102400 / 65535 * 10^5 =3D 156252
+> + */
+> +static int max77759_fg_current_to_voltage(unsigned int reg)
+> +{
+> +	int val =3D (int16_t)reg;
+> +
+> +	return val * 156252;
+> +}
+> +
+> +static int max77759_fg_battery_get_property(struct power_supply *psy,
+> +					    enum power_supply_property psp,
+> +					    union power_supply_propval *val)
+> +{
+> +	struct max77759_fg_device_info *info =3D power_supply_get_drvdata(psy);
+> +	unsigned int reg_val;
+> +	int ret =3D 0;
+> +
+> +	switch (psp) {
+> +	case POWER_SUPPLY_PROP_PRESENT:
+> +		/*
+> +		 * POWER_SUPPLY_PROP_PRESENT will always readable via
+> +		 * sysfs interface. Value return 0 if battery not
+> +		 * present or inaccesable via I2C.
+> +		 */
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_STATUS, &reg_val);
+> +		if (ret < 0) {
+> +			val->intval =3D 0;
+> +			return 0;
+> +		}
+> +
+> +		val->intval =3D !FIELD_GET(MAX77759_FG_STATUS_BAT_ABSENT, reg_val);
+> +		break;
+> +	case POWER_SUPPLY_PROP_CAPACITY:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_REPSOC, &reg_val);
+> +		val->intval =3D max77759_fg_percent_to_ps(reg_val);
+> +		break;
+> +	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_DESIGN_CAP, &reg_val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		val->intval =3D max77759_fg_capacity_to_ps(reg_val, info);
+> +		ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +		val->intval *=3D reg_val;
+> +		break;
+> +	case POWER_SUPPLY_PROP_CHARGE_AVG:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_REPCAP, &reg_val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		val->intval =3D max77759_fg_capacity_to_ps(reg_val, info);
+> +		ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +		val->intval *=3D reg_val;
+> +		break;
+> +	case POWER_SUPPLY_PROP_TEMP:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_TEMP, &reg_val);
+> +		val->intval =3D max77759_fg_temperature_to_ps(reg_val);
+> +		break;
+> +	case POWER_SUPPLY_PROP_CURRENT_NOW:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_CURRENT, &reg_val);
+> +		val->intval =3D max77759_fg_current_to_voltage(reg_val) / info->rsense;
+> +		break;
+> +	case POWER_SUPPLY_PROP_CURRENT_AVG:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_AVG_CURRENT, &reg_val);
+> +		val->intval =3D max77759_fg_current_to_voltage(reg_val) / info->rsense;
+> +		break;
+> +	case POWER_SUPPLY_PROP_CHARGE_FULL:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_FULL_CAP, &reg_val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		val->intval =3D max77759_fg_capacity_to_ps(reg_val, info);
+> +		ret =3D max77759_fg_capacity_lsb(info, &reg_val);
+> +		val->intval *=3D reg_val;
+> +		break;
+> +	case POWER_SUPPLY_PROP_MODEL_NAME:
+> +		ret =3D regmap_read(info->regmap, MAX77759_FG_DEV_NAME, &reg_val);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		reg_val =3D FIELD_GET(MAX77759_FG_DEV_NAME_TYPE_MASK, reg_val);
+> +		if (reg_val =3D=3D MAX77759_FG_DEV_NAME_TYPE)
+> +			val->strval =3D max77759_fg_model;
+> +		else
+> +			return -ENODEV;
+> +		break;
+> +	case POWER_SUPPLY_PROP_MANUFACTURER:
+> +		val->strval =3D max77759_fg_manufacturer;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int max77759_fg_init(struct device *dev,
+> +			    struct max77759_fg_device_info *info,
+> +			    struct power_supply *bat_psy)
+> +{
+> +	struct max77759_fg_state_save *state;
+> +	struct power_supply_battery_info *bat_info;
+> +	struct nvmem_cell *cell;
+> +	unsigned int val;
+> +	int ret;
+> +	size_t len;
+> +
+> +	ret =3D power_supply_get_battery_info(bat_psy, &bat_info);
+> +	if (ret)
+> +		return ret;
+> +
+> +	cell =3D devm_nvmem_cell_get(dev, "fg_state");
+> +	if (IS_ERR(cell))
+> +		return PTR_ERR(cell);
+> +
+> +	state =3D (struct max77759_fg_state_save *)nvmem_cell_read(cell, &len);
+> +	if (IS_ERR(state))
+> +		return PTR_ERR(state);
+> +	if (len !=3D sizeof(struct max77759_fg_state_save)) {
+> +		ret =3D -EINVAL;
+> +		goto err_init;
+> +	}
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_REPCAP, 0x0000);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_RELAXCFG, 0x0839);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_COMMAND,
+> +			   MAX77759_FG_COMMAND_UNLOCK_CONF);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_read(info->regmap, MAX77759_FG_VFSOC, &val);
+> +	if (ret < 0)
+> +		goto err_init;
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_VFSOC0, val);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_LEARNCFG, 0x260E);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CONFIG, 0x4217);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	val =3D MAX77759_FG_CONFIG2_DSOCEN | MAX77759_FG_CONFIG2_OCVQEN;
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CONFIG2, val);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_FULLSOCTHR, 0x5F00);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_FULLCAPREP,
+> +			   state->fullcaprep);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	//Use an LSB of 2 because TASKPERIOD will be set to 351MS
+> +	val =3D bat_info->charge_full_design_uah * (info->rsense / 100) / 10000;
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_DESIGN_CAP, val);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_DPACC, 0x0C80);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_DQACC,
+> +			   state->fullcapnom >> 4);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_STATUS,
+> +			   MAX77759_FG_STATUS_POR);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_FULLCAPNOM,
+> +			   state->fullcapnom);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_QR_TABLE00,
+> +			   state->qrtable00);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_QR_TABLE10,
+> +			   state->qrtable10);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_QR_TABLE20,
+> +			   state->qrtable20);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_QR_TABLE30,
+> +			   state->qrtable30);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_RCOMP0, state->rcomp0);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_TEMPCO, state->tempco);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_TASKPERIOD,
+> +			   MAX77759_FG_TASKPERIOD_351MS);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_ICHGTERM,
+> +			   bat_info->charge_term_current_ua *
+> +			   info->rsense / 15625);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_TGAIN, 0xED51);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_TOFF, 0x1EBA);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_MISCCFG, 0x3870);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CV_MIXCAP, state->mixcap=
+);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CV_HALFTIME,
+> +			   state->halftime);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CONVGCFG, 0x2241);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_COMMAND,
+> +			   MAX77759_FG_COMMAND_LOCK_CONF);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CURVE, 0x0014);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_FILTERCFG, 0xc623);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CGAIN, 0x0400);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	val =3D MAX77759_FG_CONFIG2_DSOCEN | MAX77759_FG_CONFIG2_OCVQEN;
+> +	val |=3D MAX77759_FG_CONFIG2_LDMDL;
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CONFIG2, val);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_STATUS, 0x0000);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	ret =3D regmap_write(info->regmap, MAX77759_FG_CYCLES, state->cycles);
+> +	if (ret < 0)
+> +		goto err_init;
+> +
+> +	kfree(state);
+> +	return 0;
+> +
+> +err_init:
+> +	kfree(state);
+> +	return ret;
+> +}
+> +
+> +static const struct power_supply_desc max77759_fg_bat_desc =3D {
+> +	.name =3D "max77759-fg",
+> +	.type =3D POWER_SUPPLY_TYPE_BATTERY,
+> +	.properties =3D max77759_fg_battery_props,
+> +	.num_properties =3D ARRAY_SIZE(max77759_fg_battery_props),
+> +	.get_property =3D max77759_fg_battery_get_property,
+> +};
+> +
+> +static int max77759_fg_backup_fg_state(struct device *dev,
+> +				       struct regmap *regmap)
+> +{
+> +	struct max77759_fg_state_save state;
+> +	struct nvmem_cell *cell;
+> +	int val;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_RCOMP0, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.rcomp0 =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_TEMPCO, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.tempco =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_FULLCAPREP, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.fullcaprep =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_CYCLES, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.cycles =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_FULLCAPNOM, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.fullcapnom =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_QR_TABLE00, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.qrtable00 =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_QR_TABLE10, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.qrtable10 =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_QR_TABLE20, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.qrtable20 =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_QR_TABLE30, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.qrtable30 =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_CV_MIXCAP, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.mixcap =3D (u16)val;
+> +
+> +	ret =3D regmap_read(regmap, MAX77759_FG_CV_HALFTIME, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	state.halftime =3D (u16)val;
+> +
+> +	state.crc =3D crc8(max77759_fg_crc8_table, (u8 *)&state,
+> +			 sizeof(state) - sizeof(state.crc), CRC8_INIT_VALUE);
+> +
+> +	cell =3D devm_nvmem_cell_get(dev, "fg_state");
+> +	if (IS_ERR(cell))
+> +		return PTR_ERR(cell);
+> +	ret =3D nvmem_cell_write(cell, &state, sizeof(state));
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to write fg_state to NVMEM: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static void max77759_fg_remove(struct i2c_client *client)
+> +{
+> +	struct max77759_fg_device_info *info =3D i2c_get_clientdata(client);
+> +
+> +	max77759_fg_backup_fg_state(&client->dev, info->regmap);
+> +}
+> +
+> +static int max77759_fg_probe(struct i2c_client *client)
+> +{
+> +	struct power_supply_config psy_cfg =3D {};
+> +	struct device *dev =3D &client->dev;
+> +	struct max77759_fg_device_info *info;
+> +	struct power_supply *bat;
+> +	int ret, val;
+> +
+> +	info =3D devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
+> +	if (!info)
+> +		return -ENOMEM;
+> +
+> +	psy_cfg.drv_data =3D info;
+> +	psy_cfg.fwnode =3D dev_fwnode(dev);
+> +
+> +	crc8_populate_msb(max77759_fg_crc8_table, MAX77759_FG_CRC8_POLYNOMIAL);
+> +
+> +	i2c_set_clientdata(client, info);
+> +
+> +	info->regmap =3D devm_regmap_init_i2c(client, &max77759_fg_regmap_cfg);
+> +	if (IS_ERR(info->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(info->regmap),
+> +				     "regmap initialization failed\n");
+> +
+> +	ret =3D device_property_read_u32(dev, "shunt-resistor-micro-ohms", &val=
+);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to read RSense from devicetree\n");
+> +	info->rsense =3D val / 10;
+> +
+> +	bat =3D devm_power_supply_register(dev, &max77759_fg_bat_desc, &psy_cfg=
+);
+> +	if (IS_ERR(bat))
+> +		return dev_err_probe(dev, PTR_ERR(bat),
+> +				     "Failed to register power supply\n");
+> +
+> +	ret =3D max77759_fg_init(dev, info, bat);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to initialize chip\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id max77759_fg_of_match[] =3D {
+> +	{ .compatible =3D "maxim,max77759-fg" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, max77759_fg_of_match);
+> +
+> +static struct i2c_driver max77759_fg_i2c_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "max77759_fg",
+> +		.of_match_table =3D max77759_fg_of_match,
+> +	},
+> +	.probe =3D max77759_fg_probe,
+> +	.remove =3D max77759_fg_remove,
+> +};
+> +module_i2c_driver(max77759_fg_i2c_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Thomas Antoine <t.antoine@uclouvain.be>");
+> +MODULE_DESCRIPTION("Maxim MAX77759 Fuel Gauge IC driver");
+>=20
+> --=20
+> 2.51.0
+>=20
+>=20
+
+--vlmosdcyddltczxg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmjJlXkACgkQ2O7X88g7
++po7/Q//SaoLKwxdfMv2PpRPnRJw2M391Wh/K2N4U7uCyAvU995IbEb3iISG84TJ
+rbQkyGcQ1vmZKS5kbTjHNFMShuXWwKxhJ9/l4x5B2RVNGxxFsqBccI5twwsv94TQ
+hSqCb8JMXbeRQLKRZyMoXpC+XgzrgaZOBz4qj3jNQjgWkQWj83gc1CBU1r8e2cpQ
+nrW2v2ewlvLLyWLh2/+D9bzvuqBbmQ/GPg9/f1G9LUMydbrlsPOuiSWLSNOx7ugi
+p5mYCXP3n40Ker+pxq9stO7osjiAm/PjBeu5irMdXoz2dvs6WlET7BpeRcDmEupm
+MX6eo31RE4xod9qUdQMGs6XE/Vy/zl+pavwxG79eP8T7t8AoLwkcUOotvJGVJdmm
+yKT7U5OJfV61gRwX51sGJiT8MifxEQfOAf7qxOXn5mOSWpDk8dVqUDEGWI7MrEO0
+RAOY2QzgGXZd9HXDtoq/uGt6fI1nmNchyfwBpuAT78Lk+iuQbTNK6F0lQuItbH4W
+K0e63vSojDJ7Np61tbefkSXvl9QKN/h1m05eXmEV1nv5J/buQ/e180t37bY631gI
+zJtCWl+hRLcwg10Is/jTotUeMJ7MZyPqlHvLnBAaRJMzyXnB4MKujxG6Z444Xz0/
+SVVOJS2vrYWoNvG0Wyhfa+TmZ8K9DAJ8dfZJdQpQHzl4COSBB0Q=
+=/9lV
+-----END PGP SIGNATURE-----
+
+--vlmosdcyddltczxg--
 
