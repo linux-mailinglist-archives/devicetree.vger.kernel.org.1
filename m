@@ -1,209 +1,171 @@
-Return-Path: <devicetree+bounces-217826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00267B594D3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:11:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929EEB594D4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B85C47A1718
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:09:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B2461B27A51
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C190D2C2357;
-	Tue, 16 Sep 2025 11:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53A32D321A;
+	Tue, 16 Sep 2025 11:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ERQxo6t2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5202729DB61;
-	Tue, 16 Sep 2025 11:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644EF2D1F7E
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758021071; cv=none; b=fc6Y3/VxzxNY/78Nq2kopXyyLhCHDHPxRU1lgAsyNbAsop7j9mc75U+XZnJ/F5dHAMH/zppYSYNtXA3ULZXeYeUS65tMyXY410y6ut6PUz3+XbXUstEkNWtxLhVdbARorYbXIoMvy2I1Mbz18DzHW+Dmw9lk01aVIM/Sw7ayWXQ=
+	t=1758021101; cv=none; b=dYg9MCmRZzSeG2iGzPggvbhMFqZMYuOvwe6QmkifgmuF2gTnHM7LgbcecXNHwh8S45Pjy7SNHQH1zfmfCY/CViUczbMhPnnaaDFOn3MI1sVMDwtLiVJCM7m/mN1XOrJesdrQQKEg7H0/Z1ciYqwBHJZCUTUmTzCLV/QKe7Tl2+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758021071; c=relaxed/simple;
-	bh=h2ANOawFG3Nb0VwQxIt7cN6FoACcoMBsCLrk7iAjvzI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NnTvZW8V0YsbSMna7WLHCtfQVpxGDDjWasdvNRD+/E4GwbRv9FWBJm4dMh3g8Qc7oj3ceQj45ybQ4FiwwJznFEt4NnCpxeAykyQ6lCFofy6iQ2MUX6rp/CmOrIwTUaUyQUZRfUWkNr+ERKbD3Jn1j9LBMScX7EK8wRDXKNDHThA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3E17D12FC;
-	Tue, 16 Sep 2025 04:11:00 -0700 (PDT)
-Received: from J2N7QTR9R3.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B86883F66E;
-	Tue, 16 Sep 2025 04:11:03 -0700 (PDT)
-Date: Tue, 16 Sep 2025 12:10:57 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Will Deacon <will@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	"Liang,  Kan" <kan.liang@linux.intel.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Ian Rogers <irogers@google.com>, Ingo Molnar <mingo@redhat.com>,
-	James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>,
-	John Garry <john.g.garry@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Leo Yan <leo.yan@linux.dev>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mike Leach <mike.leach@linaro.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Rob Herring <robh@kernel.org>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH v3 3/6] arm64: cputype: Add Cortex-A720AE definitions
-Message-ID: <aMlFwbDjJ6yKuxTv@J2N7QTR9R3.cambridge.arm.com>
-References: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com>
- <87plbri0k3.wl-kuninori.morimoto.gx@renesas.com>
- <aMklbKwro2bSX76t@willie-the-truck>
+	s=arc-20240116; t=1758021101; c=relaxed/simple;
+	bh=275oPonI9MjWeJkyrUhmar7DMWxX8YBm5z0LrGXMLuE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m2ywa08F3YkIJKPEhsLEfhTwDVgtSd7E35hWiVvQ9EEbkvl2tmAhYePdjsCSUEthq6NW6hJBP5RRarWpQLN9UL34bR38HsTDbtzi4TpY/zkzp/IhUv5LVG6dK6ox88DLXAuA6NWV7lvSGwlGmeZfmpccYkpWVxJB6Sp0a0mKP3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ERQxo6t2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GAHecV005242
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:11:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OIclFIP+LOqTqDxbmvs6AySAEMGiS2FOLi7+K6YMV/0=; b=ERQxo6t2OMvGWd2C
+	Np11Rzcvp7p8epeQb2kAN3KDNiQcU+WtMF0pYiEIoeUJQWR4eZDHsqLroLzKitqy
+	8Jtu7m3399Fq6HXoUXvQi4SiaeFTVVedoI2BpFn0tjCKlwOePfX0LUmAqDdx5knp
+	k03qlq+oClSrMoogIUnKYu7ElFtG3C342E7xw2vGbdKKB3OQ3MU9AZBR1Xtev5eB
+	v7Nfg1Nf6WPlYxrtNGr5cWETshzlMsM8yHDcVQLJzQWjbqiecuXVUPiBuqlg4SPG
+	0A0Vw/ls/BkS4I15igj39/q9rXLNxBNOcqNHMOdsp8avn2vB6hVHIIHAY6gB+32G
+	e429/A==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n4a7g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 11:11:39 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5f92a6936so14509351cf.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 04:11:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758021098; x=1758625898;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OIclFIP+LOqTqDxbmvs6AySAEMGiS2FOLi7+K6YMV/0=;
+        b=l/I/P8Y+cAO2kBSfVMRdU4l6duRzviQtJJ3hhKJVu4KwiIJt3OeA3cLE/gXWKNg3DI
+         ypWQ6mwQXphpYCLaQ8RbAYeNSabk5yBCkupLqw9cNsB3ErLp/GdZral8NRzgVtz2a2Mj
+         SWTe2t/+gS2Obnk0AGVLlX58iQZ7YhPqZioc4bESAjPqe0/og/r2CmGiveq+s6uZs3aZ
+         nskfIOd8CuE2Git1aB7xrbmAsFMeXbMzP4B3d3ImZcrfG8q4YQRPTpARKjQJnfzDZdxX
+         PFwhGMkPNZWHsG6Nq3Igpgr2iwjzonBTQMvscKkEtMK60b/bfEvnTs1sGiU7Oxh3gSSr
+         pusA==
+X-Forwarded-Encrypted: i=1; AJvYcCXwAfxgKP7SJ7iAto7oZiQkHyjWz3Wyu18VSfQq6LWhwVDtyZVClNdwBtKjrMF8u9brI2tGyBWmG00L@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqYCcIVpR+SCkb28KZCHGh7bto7WvU7m4/0gFLofNhF1wndQfi
+	/b5e83UFZm/ToSksnTGEwAhnLfZOFi9ghdSvoeYMstVDWBTcPlYhm3YNToHWTZh6O47lHxk9G7k
+	+K4tiN02Hb26HxHvk9nRHkliu6uAeDQ3V3TVgFJBgTQXasjPp7zTa63scXqZwUlzW
+X-Gm-Gg: ASbGncs46NgUou14CqDeK5CYOeddlSHUAHwuCKv6mvF9gmmtYaJzCe3kQmOEDowxj9u
+	CzkEBwcf1a4rk/8VH4TGED5y4w3/49r4+4D3jsYhN2sYsH1kQcf2XQslNbGGyrWrQXSxIbS8mR5
+	YNfbj9CIW9722DyIAbAyWaYf6MDNnjIiCN508PcQVk0qmExNXYvj7z4wVPutHLmRMmJrmpItEiq
+	KhNo/7B/068jwpG61Zx1mgKJ8aoCKKA94vUGdm4MyS9yZ5RgeZ05uHuHSSLemZO+8VU/H5YHjbq
+	eJQktpVd3bgji0pr765m/exlPFewWJMwvf1EkEXybXFKZP2Rso3UQ5KKcfkTDPwLovVQv6zKYAw
+	G3/ilEqFNW8/18mohMPhRSw==
+X-Received: by 2002:ac8:5902:0:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b77d1158c7mr127005431cf.8.1758021097856;
+        Tue, 16 Sep 2025 04:11:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGnXuilj96k6BuqcLnJZYaYn30Rx4rGcsXCSnzBEldqk8rQYINLpEqXJPXep1f3KK1X9KhUTw==
+X-Received: by 2002:ac8:5902:0:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b77d1158c7mr127005221cf.8.1758021097349;
+        Tue, 16 Sep 2025 04:11:37 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62f416db508sm3834982a12.32.2025.09.16.04.11.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 04:11:36 -0700 (PDT)
+Message-ID: <49d6c554-e6ed-4c86-8946-be2cdba659d0@oss.qualcomm.com>
+Date: Tue, 16 Sep 2025 13:11:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aMklbKwro2bSX76t@willie-the-truck>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: qcom-cci: Document qcs8300
+ compatible
+To: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>,
+        Rob Herring <robh@kernel.org>,
+        Vikram Sharma <quic_vikramsa@quicinc.com>
+Cc: vladimir.zapolskiy@linaro.org, bryan.odonoghue@linaro.org,
+        mchehab@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_svankada@quicinc.com, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ravi Shankar <quic_rshankar@quicinc.com>
+References: <20250912141134.2799078-1-quic_vikramsa@quicinc.com>
+ <20250912141134.2799078-2-quic_vikramsa@quicinc.com>
+ <20250916024858.GA3574831-robh@kernel.org>
+ <373bbb78-2b0c-446c-be97-53b82edeed64@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <373bbb78-2b0c-446c-be97-53b82edeed64@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: RpmWAM-ayOCFzlcHNJ1N-_VQd9-LyUyi
+X-Proofpoint-ORIG-GUID: RpmWAM-ayOCFzlcHNJ1N-_VQd9-LyUyi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfX5vf9NkSvhjn3
+ z0KhO9Da3APzTyDVjnTATALUl4ipfbiD/VP1rYI97B3Z45jesUtRpdbCQ6X84QcJVs7uriZ8901
+ ukgjQtv0P3BqZ3e4Yx+Pwn8IW29YzBNVcF02RCvJb0PEZ7fQNKOkRgSFaJoFRMd3EeafDgO4Gwn
+ 52dJpkjZJfX6GmyGCsquIs7SOVbKIT/OVduroDCoeUunUa0CKV8Gf2UNASr/UnyvjL/LVyhnyIG
+ MH6WLPO4ftJsANQloW4SDujbR222zhQFAQD2rD5j2OwDzmliWYE46iW+dvEQb+g7hOhwmWBkLP+
+ 2J7K4IYy7baY2hmVHxDSzyEFiMxyzIfKNTIhN4+tsS1PJFgVdRNhE2XrjwAhslDT31IWoElo8ox
+ G6zdaBkF
+X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c945eb cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=-IwCPt7gIHNx5Q8nY1kA:9
+ a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
 
-On Tue, Sep 16, 2025 at 09:53:00AM +0100, Will Deacon wrote:
-> On Tue, Sep 16, 2025 at 02:38:36AM +0000, Kuninori Morimoto wrote:
-> > Add cputype definitions for Cortex-A720AE.
-> > This patch is assuming A720AE feature is same as A720.
-> > 
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > ---
-> >  arch/arm64/include/asm/cputype.h       | 2 ++
-> >  arch/arm64/kernel/cpu_errata.c         | 1 +
-> >  arch/arm64/kernel/proton-pack.c        | 1 +
-> >  tools/arch/arm64/include/asm/cputype.h | 2 ++
-> >  tools/perf/util/arm-spe.c              | 1 +
-> >  5 files changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm64/include/asm/cputype.h b/arch/arm64/include/asm/cputype.h
-> > index 661735616787e..b10eba7f52476 100644
-> > --- a/arch/arm64/include/asm/cputype.h
-> > +++ b/arch/arm64/include/asm/cputype.h
-> > @@ -96,6 +96,7 @@
-> >  #define ARM_CPU_PART_NEOVERSE_V3	0xD84
-> >  #define ARM_CPU_PART_CORTEX_X925	0xD85
-> >  #define ARM_CPU_PART_CORTEX_A725	0xD87
-> > +#define ARM_CPU_PART_CORTEX_A720AE	0xD89
-
-This MIDR is correct per Table A-187 in the Cortex-A720AE TRM, which can
-be found at:
-
-  https://developer.arm.com/documentation/102828/0001/
-
-It would be nice to spell that out in the commit message, e.g. as in
-commit:
-
-  9ef54a384526 ("arm64: cputype: Add Cortex-A725 definitions")
-
-> >  #define ARM_CPU_PART_NEOVERSE_N3	0xD8E
-> >  
-> >  #define APM_CPU_PART_XGENE		0x000
-> > @@ -185,6 +186,7 @@
-> >  #define MIDR_NEOVERSE_V3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_V3)
-> >  #define MIDR_CORTEX_X925 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_X925)
-> >  #define MIDR_CORTEX_A725 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A725)
-> > +#define MIDR_CORTEX_A720AE MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A720AE)
-> >  #define MIDR_NEOVERSE_N3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_N3)
-> >  #define MIDR_THUNDERX	MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX)
-> >  #define MIDR_THUNDERX_81XX MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX_81XX)
-> > diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
-> > index 59d723c9ab8f5..7ff6b49beaaff 100644
-> > --- a/arch/arm64/kernel/cpu_errata.c
-> > +++ b/arch/arm64/kernel/cpu_errata.c
-> > @@ -531,6 +531,7 @@ static const struct midr_range erratum_spec_ssbs_list[] = {
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A710),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
-> > +	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A725),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1C),
-> > diff --git a/arch/arm64/kernel/proton-pack.c b/arch/arm64/kernel/proton-pack.c
-> > index edf1783ffc817..f9a32dfde0067 100644
-> > --- a/arch/arm64/kernel/proton-pack.c
-> > +++ b/arch/arm64/kernel/proton-pack.c
-> > @@ -884,6 +884,7 @@ static u8 spectre_bhb_loop_affected(void)
-> >  	static const struct midr_range spectre_bhb_k38_list[] = {
-> >  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
-> >  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
-> > +		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
+On 9/16/25 1:07 PM, Nihal Kumar Gupta wrote:
 > 
-> This needs an Ack from somebody at Arm who can confirm that (a) k38 is
-> correct for A720AE and (b) that all versions of the CPU are affected.
-
-I can confirm both:
-
-(a) The k value for Cortex-A720AE is 38.
-(b) All versions of Cortex-A720AE are affected.
-
-The Cortex-A720 and Cortex-A720AE cores are identical in this regard.
-
-FWIW, that's described at:
-
-  https://developer.arm.com/documentation/110280/3-0/?lang=en
-
-... with the confusing caveat that the table describes this as 'No*",
-meaning that it's only vulnerable to same-context attacks (which we DO
-need to mitigate for BPF).
-
-Listing Cortex-A720AE in the k38 table is the right thing to do. That'll
-ensure the BPF mitigation is applied. Per the TRM linked above,
-ID_AA64MMFR1_EL1.ECBHB==0b001, so we won't redundantly apply the
-mitigation at exception entry.
-
 > 
-> > diff --git a/tools/arch/arm64/include/asm/cputype.h b/tools/arch/arm64/include/asm/cputype.h
-> > index 139d5e87dc959..0192dc7ec9ca9 100644
-> > --- a/tools/arch/arm64/include/asm/cputype.h
-> > +++ b/tools/arch/arm64/include/asm/cputype.h
-> > @@ -96,6 +96,7 @@
-> >  #define ARM_CPU_PART_NEOVERSE_V3	0xD84
-> >  #define ARM_CPU_PART_CORTEX_X925	0xD85
-> >  #define ARM_CPU_PART_CORTEX_A725	0xD87
-> > +#define ARM_CPU_PART_CORTEX_A720AE	0xD89
-> >  #define ARM_CPU_PART_NEOVERSE_N3	0xD8E
-> >  
-> >  #define APM_CPU_PART_XGENE		0x000
-> > @@ -185,6 +186,7 @@
-> >  #define MIDR_NEOVERSE_V3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_V3)
-> >  #define MIDR_CORTEX_X925 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_X925)
-> >  #define MIDR_CORTEX_A725 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A725)
-> > +#define MIDR_CORTEX_A720AE MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A720AE)
-> >  #define MIDR_NEOVERSE_N3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_N3)
-> >  #define MIDR_THUNDERX	MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX)
-> >  #define MIDR_THUNDERX_81XX MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX_81XX)
-> > diff --git a/tools/perf/util/arm-spe.c b/tools/perf/util/arm-spe.c
-> > index 8942fa598a84f..bda6f3554f7e6 100644
-> > --- a/tools/perf/util/arm-spe.c
-> > +++ b/tools/perf/util/arm-spe.c
-> > @@ -555,6 +555,7 @@ static int arm_spe__synth_instruction_sample(struct arm_spe_queue *speq,
-> >  
-> >  static const struct midr_range common_ds_encoding_cpus[] = {
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
-> > +	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A725),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1C),
-> >  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X3),
+> On 16-09-2025 08:18, Rob Herring wrote:
+>> On Fri, Sep 12, 2025 at 07:41:32PM +0530, Vikram Sharma wrote:
+>>> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>>>
+>>> Add device tree bindings for the CCI controller on the
+>>> Qualcomm QCS8300 SoC.
+>>> Introduce the "qcom,qcs8300-cci" compatible string.
+>> Wrap commit messages at 72 chars. And explain how it's the same or 
+>> different from existing SoCs in the commit message. Don't explain the 
+>> diff. We can read that ourselves.
+>>
 > 
-> Please post tools/ patches separately as they are merged independently
-> of the kernel changes.
+> SA8775P(Lemans) has 4 CCIs, while QCS8300 (Monaco) has 3 CCI, with the 
+> only difference being the GPIOs used for SDA/SCL pins.
+> 
+> Currently, the CCI driver probe happens through the "qcom,msm8996-cci" 
+> compatible string. Could we use the existing SA8775P compatible string
+> "qcom,sa8775p-cci" or we should remove it? 
+> 
+> Please advise on the preferred approach for upstream compliance.
 
-Also, please add the ID definitions separately from any usage. That
-makes them *much* easier to backport for handling errata, etc.
+Try:
 
-Mark.
+"""
+The three instances of CCI found on the QCS8300 are functionally
+the same as on a number of existing Qualcomm SoCs.
+
+Introduce a new SoC-specific compatible, with a common fallback.
+"""
+
+Konrad
 
