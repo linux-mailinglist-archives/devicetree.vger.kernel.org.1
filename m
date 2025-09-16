@@ -1,313 +1,250 @@
-Return-Path: <devicetree+bounces-217914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A9CB59B61
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F40BB59B6F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF5234863D5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:03:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 235C3580E6B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0792834DCEB;
-	Tue, 16 Sep 2025 15:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD24343215;
+	Tue, 16 Sep 2025 15:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RYXPikbr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fxIhjYTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE5136932A
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BA33043AB
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758034836; cv=none; b=L8mYdDle0k6d2o3Dg9GYQe4a/kSdgfEpP820JYGh1Qa0yHKUerDap7RnfMYvj8WnyDkybDV4W9oSjMabspJhnheyDwMG9g9HXZUSFOkdSeWiNBmEnxGEefuixGzV+pVaZvr6hanCZruiCLIhGyu7eFaxIh4g7/jIyzHNU8zl4uo=
+	t=1758034983; cv=none; b=AuvEZiREpFpLdgotBayYTG/8zJFgSUTPeHDLPt6Poa+aHgur+yegj+R0zFOEj3X2IMSGdmyWsTH4DaUqnGo9zdhC2L+8vnMHGjyc0Ye5nxb5vzVzugxyAcx1nZqGjz0PgUm/SX7CUMYQbnwnbVK5odKuAYGVFuJ/nTHQjKJDvQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758034836; c=relaxed/simple;
-	bh=EVxv7pTuTXtbJBbTq1cFIyCcb5+PnMhD77kH76TEvKM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JB0mOFy4ifriX5x8TJCjGAMXnptoxDYaJdu/EPouoUvj9lWnaHZh2IrGXQnRIa/wkz+VM2JezwZGZpOztqltEaYQ8qD/4vJW3vpUT0k9cwNlos8OInEHZjiDFyUkS1I/DSZejPtvNn3HaWJ3LqmExZj6c3c8c6qN4SL5aSKYZh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RYXPikbr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA56pu005286
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:00:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lP2WRzsTd7EkrIRJP7HeDDxQJ4fUG5rGQbk5fNbcD/c=; b=RYXPikbrLDGlEhvD
-	aVn9+vYOfZluHjfcYh7dop1N5HQXItlx7J6vIlux9taW3Ksr0o0IFBiwPtp04y8z
-	XdzMId+eKnYMG3w4fG5L9BkgFmq2ieC+YdcZsXVbqKDx2+pPxfgBULQ/Kci7hPSJ
-	5bKX6JulQfDINT3Pc0jSZ2wbjUOGdIjDiLGwoy6VmFP0tZiMTvJSwf0uNjrUyqns
-	0t8ftDLBb4VB4SC6OmsNgZeIXnAyrW/5t6G4x3aPLOl2ShEx+stZ8LbIru2iK39d
-	fRDf+wQ7W2CIfRQyvDzH5ple0UZIdf69lHFubwY8M+020xOX74m6pK/6R2UJDojP
-	7eCBEw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n4x45-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:00:34 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-265e92cc3aeso25971365ad.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:00:34 -0700 (PDT)
+	s=arc-20240116; t=1758034983; c=relaxed/simple;
+	bh=q+Pk+Q6rv6DpDXCQuOBOKOpK1ZLg4Cz5C74JWjudbjE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZW/qKgJwKuOkRHsncA2hLXj+fb9serknXQtCD2r8ol2h+C9w/h+xOopmsjdvcoH1381/jhrfLo/oovZERdgwSTZSSDy0SiAqQmgnN9JmKmkJCb9D5T3pu/UpniSun0AS7fJAp7YsHHIVyo46NqSEoC8sKhufcAGQ44WuzXxIANw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fxIhjYTM; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3d3ff4a4d6fso3820178f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758034979; x=1758639779; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PHTUiWhUtK8pTHI8ct46YFhk9JnDX+h/5/AhlzM+H8E=;
+        b=fxIhjYTMnEzi3zaqOj/t2TkrWOqdTnlbhAgO70U4xqIr5V19KAFbpGH93BWicGuk18
+         E00pEaf3QzHjvKsH7cjOYC3ZUMH2tWqBlijxrieAGeA50zHjfQS4jD9ZPouiblloGjja
+         DzKrdOYzNzU+i1c5vvrQpJJrfG/ZyJLWvzTuKnG22EUKsbgqFapO9AWxbEFoG7C5WDRe
+         Pd4JCZZ9qYhLW6UjU39wdhTlia1m7FHqwhWfDxFDoFKWLnzYR/rBoG+5TvgFcrKtTkLD
+         ToeTJr4T8KBwbXxDgIZ4VCn5vWcHKfhPdGfZWlkfAnyc7WsEjL7F1EImnAPen/RZUIBT
+         0sYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758034833; x=1758639633;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lP2WRzsTd7EkrIRJP7HeDDxQJ4fUG5rGQbk5fNbcD/c=;
-        b=bbgDD64i/oTBNMe/G8FGHsrQh5ZwY79U+LxvORpy0XGonAOSM3QWiwWzViZacPUpqx
-         uP8JQhq7rfakNAujeyuGE/93Ps1AqqVttVsa6tGtUiGSrlq0OUy8sjkNFAyBbs0UUsVO
-         sbA5oHQvK0L+qk6ej9PjjYgrYjrAEi82VOswjZkHl4b5PuYKRwPyiADUYmppRq+hJhod
-         yfPquHgrPyCrY+H7jSqxl2zYw7WEcxLaXd1EsSVuOY3CvKNljAnD3jfFGqJ62PVaV8/k
-         doNnZqTcCH5zIjPf1/kbSakJ4xALmG/dO2Arf2Ust/esD/7Q10F7/89z4uwsikkIVE5i
-         tsyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIT5PJWr3bmcBR4z0mANXoVXHi+Qozc+ijs8WyldR7PjrorRXLVdaoN/HzGScUuJMCCRVmAnKnRBZB@vger.kernel.org
-X-Gm-Message-State: AOJu0YznjdNphdfr8lQ6PikeQi4X73zJXrPL/yYOIq1oBHiaIuXULvsw
-	vPYYHxSGlyDPtdK3Cr1R74JMwQ4NJSuKHmCABvOqDPhi8PcVj1ZbinJB8M7kU2uPeu8XnpSbopS
-	hac1uhXwmkRCK+GUKc+J7blC6CQL9FHPW3paUKljmzt8xbO44iwNj9wdUpPsiklyl
-X-Gm-Gg: ASbGncs0yBsCnzb8HN4iS2E+CfZolRky0TreRhVxfqXTTNcpdv6UmaB+NDYg1hJUoFi
-	3+ejApchrGrHHCt+09P54JqvxnSEVQ/BuU1vC8mvWZgMJG86XGkBbdDRGOkWYVbZ7V0pEhv+Mbv
-	QeTLwB21+3269ja1hebiW2i8d32C+v7+JAkGuUPJqRBlbzykIxzfD5KFPXBfAVsKM6I+cbph9tc
-	CSNeV6JiPb4iXpMgf0djvW5c1OGgrvFcGtnjyNEIhZD3T5U3yEqEYqcMKypiwzOAb4U46iM9+Bd
-	gBr1fEPdaCek1eYvJ9JeqcMCpGn1AaLaybGeT+gcSoRTWTpLP+wPsiO0hAC2EWvUhPZE
-X-Received: by 2002:a17:903:2451:b0:267:b697:4ea with SMTP id d9443c01a7336-267b69714demr78103065ad.54.1758034832021;
-        Tue, 16 Sep 2025 08:00:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEPBKc4oG1+F9yCdpRJby4Lh3p3lSPbZUVoBQDNJrpw1NiMFGEm/RzOKKvH0qJ3DfP5gn/i5w==
-X-Received: by 2002:a17:903:2451:b0:267:b697:4ea with SMTP id d9443c01a7336-267b69714demr78101405ad.54.1758034831075;
-        Tue, 16 Sep 2025 08:00:31 -0700 (PDT)
-Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2651d2df15esm74232615ad.45.2025.09.16.08.00.25
+        d=1e100.net; s=20230601; t=1758034979; x=1758639779;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PHTUiWhUtK8pTHI8ct46YFhk9JnDX+h/5/AhlzM+H8E=;
+        b=HwKWFm2aLt2NL3Ut3LY35EqsugJ6NfXYgiCNnmP4rb26SwBm+IuxZS3AqRNvAE+Wxh
+         4ZADVaixHl2OnB7yB+5mOreWQNhkRWcE95Khp0QARmvYT3ICZrm9JCD9+KXMeBZMMWeT
+         1kXvIcYGzl+nF5kdnK9PI6F16dCbhHeTjFwzfmOxHHNYILdjeOmPnsqH2WAYxLB1poE6
+         9js/XkqQxFOt7Ru1Uv/qXBbA8NqyoifQZlKm3Mi+9D9rF3LI9L6667HlvuyGblPu5Rr4
+         njV0aTFYLJDJmnLOSizkg/FyqwbZ/VNIUDZw+fogOuKBQ8UwaAjee3eApKnK35abWjSF
+         mmag==
+X-Forwarded-Encrypted: i=1; AJvYcCWrhrzdGgYw03MatrMo6agNiKFaJv6GoBMEK2ASyiLas4q7vMJNl8kpcwb9wBCUAnGLP7aaKKmdPyWS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaJrPgO9RgDGa3YMaxUiBsFB8ZNpkMNLvz6g5Vldr7f/ssnYHq
+	a0/HoFL2UABT8Gs/M/U8GVcNrKD7pkvyME+NQLzY7ecly2hxUXHkX4fp
+X-Gm-Gg: ASbGnct3G/RD8Dbk0+sV8CkjX4dCRpO6l7wdJ+XdxfxDGm73XOby4YHMzJZ8ucJvT7z
+	Yoo8DhNLt1ALpaVKWuimxhAi42n8TNUY7W4HM4TM4QAjGLxcdIEVwU+06osXvB6zjA2xWfjhf85
+	/9w/u0hyFS0CzhgcmiZ0+Wq1ObY3HnWEEI4FCg9v6QN+qHzBlo98zhw9Y6q47sT6gQ0zPEikzeg
+	tVsNr4uSFifrs9ekgO+dBqHKwOc5oCi+cXgxq44JasnLw9uLJX97/wjlVqZQ+WW7yJhAgNXXZoq
+	0csMQcDb/9HZbEH9vKZhttVEjjErw0nqElrCdT7McP7n546ZFQ3yg6ULX7ys5Jwbap1PKV7E6M1
+	HLbHGLug40ywMlva0WRyRok2z2Z7Kl8/oP0HbnI4Ee1QGRQxNI9Dzf+aTUdWumExJvJ59P2EzfB
+	vRXw==
+X-Google-Smtp-Source: AGHT+IHLQiq6Ya6CNscfFEjZEvD6KmKZnLRsoKqMm1MOtE4+rnBEKT0hP0h7Er+bVJT9S1ifCBeLwA==
+X-Received: by 2002:a05:6000:430e:b0:3e9:86f1:52f3 with SMTP id ffacd0b85a97d-3e986f1667dmr8919793f8f.35.1758034978493;
+        Tue, 16 Sep 2025 08:02:58 -0700 (PDT)
+Received: from biju.lan (host86-139-30-37.range86-139.btcentralplus.com. [86.139.30.37])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ecdc2deb20sm932154f8f.47.2025.09.16.08.02.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 08:00:30 -0700 (PDT)
-From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-Date: Tue, 16 Sep 2025 20:29:32 +0530
-Subject: [PATCH v6 10/10] arm64: dts: qcom: lemans-evk: Enable 2.5G
- Ethernet interface
+        Tue, 16 Sep 2025 08:02:58 -0700 (PDT)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-clk@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/9] Add RZ/G3E USB3.2 Gen1 Host Controller support
+Date: Tue, 16 Sep 2025 16:02:36 +0100
+Message-ID: <20250916150255.4231-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-lemans-evk-bu-v6-10-62e6a9018df4@oss.qualcomm.com>
-References: <20250916-lemans-evk-bu-v6-0-62e6a9018df4@oss.qualcomm.com>
-In-Reply-To: <20250916-lemans-evk-bu-v6-0-62e6a9018df4@oss.qualcomm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-e44bb
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758034770; l=3663;
- i=wasim.nazir@oss.qualcomm.com; s=20250807; h=from:subject:message-id;
- bh=d0901W5oS2IB+UAGgSU2EHYZ0jt+yeCd47Ja4xYspro=;
- b=ypJXIiKLDhluYwEsejhys+yKyfuxi1sg+qQaO1HJXdGZ4WTiJYwLq4HfkEfkd5s4xzJmLRF21
- UODc1p62681BMPylr/ac7aKK2O4W6/rrLTzhx/ct6Z0igfDR2CJ1oM1
-X-Developer-Key: i=wasim.nazir@oss.qualcomm.com; a=ed25519;
- pk=4ymqwKogZUOQnbcvSUHyO19kcEVTLEk3Qc4u795hiZM=
-X-Proofpoint-GUID: gh-kIlQxi7N1bcYul24qYNnbrDxCbVAK
-X-Proofpoint-ORIG-GUID: gh-kIlQxi7N1bcYul24qYNnbrDxCbVAK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfX8HeLTU4eoQBi
- pNWs6U75P/P09QnBF5kBZvsEYKXUIUri6jxCI82fw0zRvx6dM9GZAIunnpDTNruXBg+9MQkpCWW
- +chOlh28YZ3MAbv/3uJyYRTQJAxete69W5Xd9LYmySpjtRZO4Uezjw9qfzkpxWtf1B5GTdTNLO+
- G8/DV00A6WttMf1t8c4XsOitMyuOkSjx+udiE0rkkSc4/3cL7GBpuhN5kLQRX3cz0P9ChvOYfjQ
- eWNraCIbl7CQR0+VPYu6BnEdRtsXLW9OKwKhLBOMEQcwC8k/rJfB/oAETC5Mondl9pbCyBeh36B
- zChvKHdcvY9JUa4zESFIntvD856v3f0XRAlXakgl7W+XDiO2H2I95pk2nXf8UK/L8Y1zlmw5yrJ
- rVpM7CDA
-X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c97b92 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=z9nD9lg9_nmlpaFE3BIA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
+Content-Transfer-Encoding: 8bit
 
-From: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Enable the QCA8081 2.5G Ethernet PHY on port 0. Add MDC and MDIO pin
-functions for ethernet0, and enable the internal SGMII/SerDes PHY node.
-Additionally, support fetching the MAC address from EEPROM via an nvmem
-cell.
+Add RZ/G3E USB3.2 Gen1 Host Controller and PHY support. The USB3HOST
+is compliant with the Universal Serial Bus 3.2 Specification Revision 1.0.
+ - Supports 1 downstream USB receptacles
+     - Number of SSP Gen2 or SS ports: 1
+     - Number of HS or FS or LS ports: 1
+ - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+   High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps).
+ - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous, and
+   these split-transactions.
+ - Supports Power Control and Over Current Detection.
 
-Signed-off-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 115 ++++++++++++++++++++++++++++++++
- 1 file changed, 115 insertions(+)
+Merge strategy:
+ Patch #1-#2: PHY subsystem
+ Patch #3-#6: USB subsystem
+ Patch #7-#9: SoC/DT subsystem
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index 0170da9362ae..d5dbcbd86171 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -17,6 +17,7 @@ / {
- 	compatible = "qcom,lemans-evk", "qcom,qcs9100", "qcom,sa8775p";
- 
- 	aliases {
-+		ethernet0 = &ethernet0;
- 		mmc1 = &sdhc;
- 		serial0 = &uart10;
- 	};
-@@ -352,6 +353,94 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&ethernet0 {
-+	phy-handle = <&hsgmii_phy0>;
-+	phy-mode = "2500base-x";
-+
-+	pinctrl-0 = <&ethernet0_default>;
-+	pinctrl-names = "default";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+
-+	nvmem-cells = <&mac_addr0>;
-+	nvmem-cell-names = "mac-address";
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		hsgmii_phy0: ethernet-phy@1c {
-+			compatible = "ethernet-phy-id004d.d101";
-+			reg = <0x1c>;
-+			reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <11000>;
-+			reset-deassert-us = <70000>;
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &gpi_dma0 {
- 	status = "okay";
- };
-@@ -404,6 +493,10 @@ nvmem-layout {
- 			compatible = "fixed-layout";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			mac_addr0: mac-addr@0 {
-+				reg = <0x0 0x6>;
-+			};
- 		};
- 	};
- };
-@@ -552,11 +645,33 @@ &sdhc {
- 	status = "okay";
- };
- 
-+&serdes0 {
-+	phy-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
- &sleep_clk {
- 	clock-frequency = <32768>;
- };
- 
- &tlmm {
-+	ethernet0_default: ethernet0-default-state {
-+		ethernet0_mdc: ethernet0-mdc-pins {
-+			pins = "gpio8";
-+			function = "emac0_mdc";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		ethernet0_mdio: ethernet0-mdio-pins {
-+			pins = "gpio9";
-+			function = "emac0_mdio";
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	pcie0_default_state: pcie0-default-state {
- 		clkreq-pins {
- 			pins = "gpio1";
+v2->v3:
+ * Dropped clock patches #1 and #2 from this series as it is accepted.
+ * Replaced devm_reset_control_get_{shared}->{shared_deasserted} in phy
+   driver
+ * Dropped remove() callback from phy driver
+ * Added Rb tag from Rob for USB3 host binding patch
+
+v1->v2:
+ * Collected tags.
+ * Replaced usb30->usb3_0 for clocks and resets.
+ * Replaced magic numbers with macros iphy driver.
+ * Added ref to usb-xhci.yaml in USB3 binding patch.
+
+ Logs:
+root@smarc-rzg3e:~# cat /proc/interrupts | grep SLEEP
+131:          0          0          0          0 rzv2h-icu   0 Edge      SLEEP
+root@smarc-rzg3e:~# [   29.148305] PM: suspend entry (deep)
+[   29.152121] Filesystems sync: 0.000 seconds
+[   29.157698] Freezing user space processes
+[   29.163594] Freezing user space processes completed (elapsed 0.001 seconds)
+[   29.170591] OOM killer disabled.
+[   29.173827] Freezing remaining freezable tasks
+[   29.179559] Freezing remaining freezable tasks completed (elapsed 0.001 seconds)
+[   29.186946] printk: Suspending console(s) (use no_console_suspend to debug)
+NOTICE:  BL2: v2.10.5(release):2.10.5/rz_soc_dev-169-g1410189b0
+NOTICE:  BL2: Built : 12:53:12, Jul 15 2025
+NOTICE:  BL2: SYS_LSI_MODE: 0x13e06
+NOTICE:  BL2: SYS_LSI_DEVID: 0x8679447
+NOTICE:  BL2: SYS_LSI_PRR: 0x0
+NOTICE:  BL2: Booting BL31
+[   29.219734] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[   29.286013] renesas-gbeth 15c30000.ethernet end0: Link is Down
+[   29.299538] Disabling non-boot CPUs ...
+[   29.303577] psci: CPU3 killed (polled 4 ms)
+[   29.311334] psci: CPU2 killed (polled 0 ms)
+[   29.318406] psci: CPU1 killed (polled 0 ms)
+[   29.323605] Enabling non-boot CPUs ...
+[   29.323818] Detected VIPT I-cache on CPU1
+[   29.323865] GICv3: CPU1: found redistributor 100 region 0:0x0000000014960000
+[   29.323903] CPU1: Booted secondary processor 0x0000000100 [0x412fd050]
+[   29.324761] CPU1 is up
+[   29.324861] Detected VIPT I-cache on CPU2
+[   29.324883] GICv3: CPU2: found redistributor 200 region 0:0x0000000014980000
+[   29.324904] CPU2: Booted secondary processor 0x0000000200 [0x412fd050]
+[   29.325495] CPU2 is up
+[   29.325597] Detected VIPT I-cache on CPU3
+[   29.325620] GICv3: CPU3: found redistributor 300 region 0:0x00000000149a0000
+[   29.325641] CPU3: Booted secondary processor 0x0000000300 [0x412fd050]
+[   29.326324] CPU3 is up
+[   29.351355] dwmac4: Master AXI performs any burst length
+[   29.352252] renesas-gbeth 15c30000.ethernet end0: No Safety Features support found
+[   29.354015] renesas-gbeth 15c30000.ethernet end0: IEEE 1588-2008 Advanced Timestamp supported
+[   29.355802] renesas-gbeth 15c30000.ethernet end0: configuring for phy/rgmii-id link mode
+[   29.373186] dwmac4: Master AXI performs any burst length
+[   29.374076] renesas-gbeth 15c40000.ethernet end1: No Safety Features support found
+[   29.375796] renesas-gbeth 15c40000.ethernet end1: IEEE 1588-2008 Advanced Timestamp supported
+[   29.377581] renesas-gbeth 15c40000.ethernet end1: configuring for phy/rgmii-id link mode
+[   29.424034] usb usb1: root hub lost power or was reset
+[   29.424043] usb usb2: root hub lost power or was reset
+[   31.583523] usb 2-1: reset SuperSpeed Plus Gen 2x1 USB device number 2 using xhci-renesas-hcd
+[   31.770398] OOM killer enabled.
+[   31.773535] Restarting tasks: Starting
+
+[   31.778136] Restarting tasks: Done
+[   31.781617] random: crng reseeded on system resumption
+[   31.786887] PM: suspend exit
+root@smarc-rzg3e:~# [   32.135468] renesas-gbeth 15c30000.ethernet end0: Link is Up - 1Gbps/Full - flow control rx/tx
+
+root@smarc-rzg3e:~# cat /proc/interrupts | grep SLEEP
+131:          1          0          0          0 rzv2h-icu   0 Edge      SLEEP
+root@smarc-rzg3e:~# 
+root@smarc-rzg3e:~# cd /cip-test-scripts/py/
+root@smarc-rzg3e:/cip-test-scripts/py# ./run_pytests.sh tests/test_xhci.py -k test_xhci_005
+INFO     root:spl2_test_helpers.py:2261 DD performance with bs=32M count=32 is
+Write= 401 MB/s
+Read= 605 MB/s
+
+INFO     root:spl2_test_helpers.py:2301 fio performance with bs=32m for Sequential and bs=4m for random access are
+
+INFO     root:spl2_test_helpers.py:2306 b'   READ: bw=617MiB/s (647MB/s), 617MiB/s-617MiB/s (647MB/s-647MB/s), io=5024MiB (5268MB), run=8146-8146msec'
+INFO     root:spl2_test_helpers.py:2306 b'  WRITE: bw=575MiB/s (603MB/s), 575MiB/s-575MiB/s (603MB/s-603MB/s), io=5024MiB (5268MB), run=8743-8743msec'
+INFO     root:spl2_test_helpers.py:2306 b'   READ: bw=583MiB/s (612MB/s), 583MiB/s-583MiB/s (612MB/s-612MB/s), io=5000MiB (5243MB), run=8572-8572msec'
+INFO     root:spl2_test_helpers.py:2306 b'  WRITE: bw=525MiB/s (550MB/s), 525MiB/s-525MiB/s (550MB/s-550MB/s), io=5000MiB (5243MB), run=9528-9528msec'
+
+
+Biju Das (9):
+  dt-bindings: phy: renesas: Document Renesas RZ/G3E USB3.0 PHY
+  phy: renesas: Add Renesas RZ/G3E USB3.0 PHY driver
+  dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+  usb: host: xhci-rcar: Move R-Car reg definitions
+  usb: host: xhci-plat: Add .post_resume_quirk for struct xhci_plat_priv
+  usb: host: xhci-rcar: Add Renesas RZ/G3E USB3 Host driver support
+  arm64: dts: renesas: r9a09g047: Add USB3 PHY/Host nodes
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable USB3HOST
+  arm64: defconfig: Enable RZ/G3E USB3 PHY driver
+
+ .../bindings/phy/renesas,rzg3e-usb3-phy.yaml  |  63 +++++
+ .../bindings/usb/renesas,rzg3e-xhci.yaml      |  87 ++++++
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  30 ++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  10 +
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |   8 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/phy/renesas/Kconfig                   |   7 +
+ drivers/phy/renesas/Makefile                  |   1 +
+ drivers/phy/renesas/phy-rzg3e-usb3.c          | 259 ++++++++++++++++++
+ drivers/usb/host/Kconfig                      |   2 +-
+ drivers/usb/host/xhci-plat.c                  |  14 +
+ drivers/usb/host/xhci-plat.h                  |   1 +
+ drivers/usb/host/xhci-rcar-regs.h             |  49 ++++
+ drivers/usb/host/xhci-rcar.c                  | 100 ++++---
+ drivers/usb/host/xhci-rzg3e-regs.h            |  12 +
+ 15 files changed, 599 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/renesas,rzg3e-usb3-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+ create mode 100644 drivers/phy/renesas/phy-rzg3e-usb3.c
+ create mode 100644 drivers/usb/host/xhci-rcar-regs.h
+ create mode 100644 drivers/usb/host/xhci-rzg3e-regs.h
 
 -- 
-2.51.0
+2.43.0
 
 
