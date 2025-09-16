@@ -1,136 +1,85 @@
-Return-Path: <devicetree+bounces-217932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554F7B59C11
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:28:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84BC5B59D1C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:11:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC3427AFB09
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:26:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF1304E2314
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB223451AA;
-	Tue, 16 Sep 2025 15:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gYqivpUp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE2A393DC7;
+	Tue, 16 Sep 2025 16:05:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C3C630C357
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01AF4393DCD;
+	Tue, 16 Sep 2025 16:05:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758036471; cv=none; b=aUCGY5TTcr4gj1HcTIJ7Zro8EIlTT/aQKkkjj5Ou253GqW80mrjoImZOWQGI05uXeg987FmOz24+EIXg2DDJbW/P51E1j25P+WTsWO/GVSgGT1oPVRNugAhoIiZR6mm9LaP0rx+3ma4cS25hVAMYhhz4SpsBXy3ohvl2c8xqAFg=
+	t=1758038741; cv=none; b=Y/a7u00T5XYSzSNIbR3bJAXpy2Z98XQpEDEBMYhugF4v8Nu9PFr7qbBMlLhpav1Whh3z+bEDs+lbOBS7xsZEk7ucIblXFLZsX3bOYFNvhq+5OiUJxXc8iVH/MiL2QeloE8xm22uvcYyctpbpbNIpKvvmruC9yqCt2eKvOnlkO1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758036471; c=relaxed/simple;
-	bh=xsVGrDBuIpyS5tIu+vza30bL4Ph8oIfodBVdwJnIvlU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BkAuekVj36OjizOKxC8f51W5LFjfKucFAXazxcuMGLohdDzYCJfLU9/SW/wAgDHP8M5xDKQahTQcRkR+pgJYpPn7Qof+g/oPS1L1J1+e3NQVBtTUabUHukX4PFKJOqTzEgWNryQJxCz1GiugaibDYZrwwK7KDYRVwMFUfVLbeIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gYqivpUp; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3ebf23c0d27so1070430f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:27:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758036468; x=1758641268; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zBk3cgVrEpdZ+x59L+pHlmsugwnIS3miRhoSDYBnqO0=;
-        b=gYqivpUpYDejz9tee0YfCxZXKPOpYnf5qdnTts7a/FDqyo0mfuksoSiogh8Ow1AoMZ
-         CLMEpshVdIFCOH+Z48Br04CsPs6vYUGpoCo3iR6AA2qGz4bR4Rlm/yoe05LTPDYTAf3e
-         /tDTK3QO4tAjY1hlLiKl9ksb6t6YH77pJgdZ8SKFUynnZTQqoAVoK4UfsfD/WiAkVkf0
-         7VRJjKDHVodvCxqEBaaciiKPWhuNHJGUHBUCfz0ZBgXBFlGuze+3hAEVyT6Stm1vEhqJ
-         eR1u8bsr90GjSrhEww3LJuLfJ516Yox3IfWQ/EylgQyrIL8Nbom/Phr+i1CcVyblep7e
-         oqXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758036468; x=1758641268;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zBk3cgVrEpdZ+x59L+pHlmsugwnIS3miRhoSDYBnqO0=;
-        b=n2Pl7wMlbwb4QaCKg78Sh4Vt/yOOTh2NvDRkQSmQxK6/blHA3Rh3G+jvpZsJSp0qnF
-         xxwasPWU/ruJVZyhWLzlAbjkcqtiScAW0MMxvLh2OD3noJ7ul81jjioN2ALTeMvvNnyT
-         J/BdaoAoNtSU5Eqi/tFWpQxCHf5V4l6aXNolU/Cg/bGMHDe8yjK4gNhY250hHlWnD9Cq
-         1n2aY0PoOCzcnlmnEJv3vlArcU2dhGI5WjibCeXTniHw5VgacKC0NbNCkPpPocZCtvzV
-         x/ncPGdU7V00v9TGpcyrubeZmHw9uZS8TDXkAH60kkeIC7TReDc0sKTkwW3GmbSVtUPH
-         xT5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXJNFKcClRJ388LOXDbV6fQOerHv5vB+zaKgfAEcScwF2byfoo4AYt/Vr0n2a4mLbK+ZqdmqpYG7Zhl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxP806KmVn5c3MFTYO/jrp1v6S/+AQmVIux9aYxybriG/UYVcsD
-	T6RyWXPezyaS/pIbmv3wC5uTxaHgS2mK+NSU1dn2O3q/edgTtXcu2I+sbbFJy8xlKqw=
-X-Gm-Gg: ASbGncv+D6YnzaJS6lqy0cs+BgM7KEk86ARPy+hchX4LCZDiti61YkQRltkL848aqnG
-	zIPlBQ2xhlyYe5vvVMGR3AF751p7xTtvDYb052lMzVs3aHoplHXX1R2NJ50HnE1Pc7GW2t25Eql
-	wHoaCLsTf5sK06tqK0No3K5sGv/n8A0ykqFBE8aUaMd//nXkiYqcQheymanTMS6zy2F/3ht0Nrg
-	u5tDfvC9F8wsHBVVeVTb6+oBHAFqPyt+kWG/nlbsaaXM9EtdsZcciKQ7bX/qif7aYhUbv/Mt9Fs
-	dZLpvBUc4wrGFlP8t/ojDDVfc1Bk8nJkJRoftBcLpBUhO9lezor8ONKel7VfZoLQKpOtC6jdVgc
-	qmpEZNR57619YjQYZPs8yqGtKpOhntw==
-X-Google-Smtp-Source: AGHT+IHDwjfQuIQJuBkMmBQqFsxSOzTJndqBY6wuQhoBVd+d/7RL64/dV9lAVoQBQ7xySIf7p9k7wA==
-X-Received: by 2002:a5d:5d05:0:b0:3e2:c41c:bfe3 with SMTP id ffacd0b85a97d-3e7659d3a79mr16152029f8f.38.1758036467575;
-        Tue, 16 Sep 2025 08:27:47 -0700 (PDT)
-Received: from [192.168.0.24] ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f27f44624sm148981005e9.3.2025.09.16.08.27.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 08:27:47 -0700 (PDT)
-Message-ID: <f9e90d18-ead0-404a-937e-f5e2cf11c0f7@linaro.org>
-Date: Tue, 16 Sep 2025 18:27:45 +0300
+	s=arc-20240116; t=1758038741; c=relaxed/simple;
+	bh=iCo4VnLVscGYLtgAoZ58o0nbHqPDOhVNcQ4omhlwE1k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=j3bxFrFzvfb0twNF7hdCn3rXfP8s/BnsOKCFldOvbMCyzQSt+vo+Nd4s7pzTXoN0MfI1kUIrFcP6E8Snp0LlgGK3kRzq6PDY0pGALExv3/gxbgOhFnWrpYgBJmY8VVEcDzfPBuESljD7ZgzyONfd78xEX54LKagsB1YlfDypqXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1uyXfG-00Aysu-PP;
+	Tue, 16 Sep 2025 15:32:18 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 0/7] various imx8m*-venice dt fixupes
+Date: Tue, 16 Sep 2025 08:32:09 -0700
+Message-Id: <20250916153216.1042625-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC][PATCH v3 00/16] Introduce kmemdump
-To: "Luck, Tony" <tony.luck@intel.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: "kees@kernel.org" <kees@kernel.org>,
- "gpiccoli@igalia.com" <gpiccoli@igalia.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "pmladek@suse.com" <pmladek@suse.com>,
- "rdunlap@infradead.org" <rdunlap@infradead.org>,
- "corbet@lwn.net" <corbet@lwn.net>, "david@redhat.com" <david@redhat.com>,
- "mhocko@suse.com" <mhocko@suse.com>,
- "tudor.ambarus@linaro.org" <tudor.ambarus@linaro.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>,
- "jonechou@google.com" <jonechou@google.com>,
- "rostedt@goodmis.org" <rostedt@goodmis.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
- <20250916074929.xiait75tbnbyjt4c@hu-mojha-hyd.qualcomm.com>
- <SJ1PR11MB6083477193D9EF7CD10DE9EAFC14A@SJ1PR11MB6083.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Eugen Hristev <eugen.hristev@linaro.org>
-In-Reply-To: <SJ1PR11MB6083477193D9EF7CD10DE9EAFC14A@SJ1PR11MB6083.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+This series contains various imx8m*-venice board dt fixups.
 
+Tim Harvey (7):
+  arm64: dts: freescale: imx8mp-venice-gw7905-2x: remove duplicate
+    usdhc1 props
+  arm64: dts: imx8m{m,n,p}-venice: disable unused clk output for TI PHY
+  arm64: dts: imx8mp-venice-gw702x: reduce RGMII CLK drive strength
+  arm64: dts: imx8mm-venice-gw700x: reduce RGMII CLK drive strength
+  arm64: dts: imx8mm-venice-gw72xx: remove unused sdhc1 pinctrl
+  arm64: dts: imx8mp-venice-gw702x: remove off-board uart
+  arm64: dts: imx8mp-venice-gw702x: remove off-board sdhc1
 
-On 9/16/25 18:25, Luck, Tony wrote:
->> +Adding some pstore experts to bring this to their attention if this can
->> be followed and if they find it useful.
-> 
-> Depends on the capabilities of the pstore backend. Some of them
-> (ERST, EFI variables) have tiny capacity (just a few kilobytes) so
-> well suited for saving the tail of the console log, but if the user specified
-> more than a couple of pages to be dumped using this mechanism, that
-> would exceed the persistent store capacity.
-> 
-> -Tony
+ .../dts/freescale/imx8mm-venice-gw700x.dtsi   |  3 +-
+ .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 11 ----
+ .../dts/freescale/imx8mm-venice-gw7902.dts    |  1 +
+ .../dts/freescale/imx8mn-venice-gw7902.dts    |  1 +
+ .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 54 +------------------
+ .../dts/freescale/imx8mp-venice-gw72xx.dtsi   | 11 ----
+ .../dts/freescale/imx8mp-venice-gw74xx.dts    |  1 +
+ 7 files changed, 7 insertions(+), 75 deletions(-)
 
-The backend can fully decide what to select from all the regions.
-Some regions of interest are named (listed inside an enum with an ID),
-and some have an incremental ID that is being assigned.
-Either way, the backend can choose to ignore what is unwanted.
-E.g. patch 16/16 where the kinfo driver selects just a few of the
-regions which are of interest for Pixel debugging, the rest being ignored.
+-- 
+2.25.1
+
 
