@@ -1,161 +1,167 @@
-Return-Path: <devicetree+bounces-217922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7018DB59BA6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:13:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E789CB59B8D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B8F7526132
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:08:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35A357A7305
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5818D33EB0E;
-	Tue, 16 Sep 2025 15:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2C232F77B;
+	Tue, 16 Sep 2025 15:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Uf9uWLSm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bX1ydxqy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3D234166A
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31A630DD31
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758035300; cv=none; b=IcaTDbCVEBy7AWVCTWE/YRrSffv796n5+wXpwpEocBg/H+QCrpFI0ptNn/a55BS95IFcTtgqy8UR7b1rAu4K2a4wYQaxr6Et5RBQ0z8i3Na4bOkGb6z6e3yTSnLVuWcYLQS870AVTjsNRzb/YurNbRSi8+HmEEQRfB3fq57w3b4=
+	t=1758035425; cv=none; b=Wa5C9/mefHHRImaDChvzbEXkLvAB2NabsMsCDDWq86JfeJBjR98hMBlqiM/04/AyMRJrJerP8DYhi/TtI3MkuaOu7wZqjaQaH3vDTbdMyb/h7E7v29WehUByM+7tQhoI3QVxEWTCLr7SjatUxj143om8nBIInwoT64lkkLbDOdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758035300; c=relaxed/simple;
-	bh=yMmIPhxzCHiujCLC93yUulSj03dbgF3K8hp313sB11s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yvgl9hL7dF+rXSpYEBgZZ1ruZhmzzQQ/o+qiEUgHU3qBzwjgVZaU3xhyjJXCEpBufvuPNdBnnhJKVvqmnLcTKz3HowC5bURiHKgvFcWqkHjZdRCNUVLb7Vg+Fbb5yGkT0hMJc/xhzxZijVufcfuRLlRQ3gR9cbYol2tm9fO8Xhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Uf9uWLSm; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-43bf65ee528so129529b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758035297; x=1758640097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0VyxsRgwzT4WdBEZrPds7tFrERwbS24Tu8hrZOF5hOk=;
-        b=Uf9uWLSmKe5L7hqyoMxADwXupTmT/AA9LPc3Vp3GKVRw+vPO8lL6EEe735P06P9IiY
-         VfGffOEH9NGKytZZkPBFdeuZoWJzft+9VG93LeJ1QQWb8bsl0792YeMtQXpxRIVm98Ma
-         bxMYaXCHI3AGdxdnjWWcfFoD0g4L3A8HaylmGxvXDZCwBQ2RUpgcIqLJrmV99oH5fxAU
-         wN8QoGtZywGHpyyiArtDFUUcys6Df3dmmcSDUc160gr/CX2a7pyvV+9MiPOOReM1c8Tr
-         pLnWJ3L9tngf5rlah5XwyjOl42kw3hSjbhZYwlQ+gJwZkDGOtWH8eFgoPJQji+qQi1Rk
-         h2Wg==
+	s=arc-20240116; t=1758035425; c=relaxed/simple;
+	bh=jPuaeZTW6WYteNkW2J7/5OFdzopwcBsfgkccni30zHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JBR0sg9CGqGrb/w2QsmCiLu0hFvj0hv8IDQAsnJtNd5O25icBN0u7oxkpl07r8aBO8zI3L1fa2/KcsK4xdOriIbGl67JwTLOGyveC0yvFZRaGuWstifPTKWSZi8usFnxkTEsMrfExAmJHtWO/SBr2PYyUaFQQdY5tJX26v/djWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bX1ydxqy; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA6AcN004961
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=TcedMU3jn9IbGxGqJeuSafFA
+	3N2TJP3yv0Irk8eYIvI=; b=bX1ydxqyAvzTu2umm2rKUkg2ehgygbfhrQnIRcNn
+	mjyLCkfdrGd3wxo4Fg0SFXnLWogdcg0IvVVgUbbwXH83Ow88GPbOX8Y2TnPnU9O7
+	s8tbWlkexCg3Udj+5WJruUXGLhdCzqE2zq0j/qMv3rPYzFcw2q6BTWFfrui0ttLn
+	b+wdN/4O/vp0GU3KlIWt1P2b3xgZj5Krw1PobShUm4WtL8FQsoj38C+RiyBHFIzF
+	FN8NDZnc28eQuzHtIKMYzRBvaY++kyULF8JTyFrtDnUkItawMt00OUfMG9/doeM7
+	kXqbTv0DC3j1Mz+WdkEkBcQDInBrXWCrYDxXvqQluw7sYg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4950u597w2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:23 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7829c46b2e4so50610516d6.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:10:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758035297; x=1758640097;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0VyxsRgwzT4WdBEZrPds7tFrERwbS24Tu8hrZOF5hOk=;
-        b=rv6AeeXYqflMDdgyHsBOjXrlRM8kYMRgKsqZSfnLN+vHA1cTHfU1Zqvblr0gTo+K2S
-         Fq54uQH+VDIVkg1S9aGe0jx5qKYkXX6JLlrCfHXYFJTxB4Zydmn0MjthboC5q4MYBrt2
-         t2dhK52VqWQ7zuSP7NKsBvez6gaQMtCH7UbaycUenQmScKFhpvlyGSjKSyCPB6ylK4E/
-         z/uwBn7EghjPOoRQdZd2KWB87mhQQ/Va4XtrlcLr5sOPHuGJYx2ohY+Vei7HuuUQvbUI
-         64DQMAVirSRp5tngxapGmHfeHpiIMgE9odis9Uk/IJLgoBfzrggY8LzdyW61ZE9ezi7l
-         SrWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVi2DBu6yn4yeGvhOjzqLVpdUbyxJ/CkhFrCC5R1+TeMk/6sMghJlYnFuzGh6PuxrCDkHoOJzsZHMJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxauMVMJZ756p0V2w253Uk6w3yuyFfeciiifxOcbHHrZCB3YYgj
-	ovbfulbm4apcEJcX5t/EOuLdtCvcYZIwcjhJwzatT0iHQPA7KUC+WCPr6YRRTmxe55o=
-X-Gm-Gg: ASbGnctQ3s2yCSX/yOhQBfLvZGEVWEd0sR4yyb+DLAu0kXIN/Shn0iFmXAd0B+IlGgh
-	fxoUXlJeVKU/Y3cD5PVdfxmfURpOytYGfUqbvhLSiQrT5AVFFk1gTD/w+cgTVOHLXr2A2/gnham
-	9hsV+2/HaHR+wgYQrpT262VAH59UquM1QiMm0ZXzWsMGJ7UF2wKHRoQx4iqFIFHEm3yWlYi5fSE
-	FQRNpN/b/dst2BX408ihSvQbQGJaADLI1ucaCizwlDbGF2wT9q4Lckh7C0nDyhOoQN7iibqFLtz
-	uM5PyfZzEuJO23+k4oG4tE8nISO4POHawzcoRG/GdvJleF1sLbNk4jqmW5cWWS8geq+XeKptTQ1
-	KGazh/PxNgwAVeMrnnaapVNQKsDBPd2Biw5/ocbNnSTpnQRUC2UmTSAVKbd3Qg4ms4YrRu4szAF
-	k=
-X-Google-Smtp-Source: AGHT+IFbaLaefbFuTwBnBZB5B64hmkV14poQrqqnj/+jrHHe5Qend6k64W8dMu0a3pnSETsE0eaV5w==
-X-Received: by 2002:a05:6808:159b:b0:439:adcd:9e83 with SMTP id 5614622812f47-43b8d8a279emr7619487b6e.21.1758035296903;
-        Tue, 16 Sep 2025 08:08:16 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:70a1:e065:6248:ef8b? ([2600:8803:e7e4:1d00:70a1:e065:6248:ef8b])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-43b828d31c0sm3270184b6e.1.2025.09.16.08.08.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 08:08:16 -0700 (PDT)
-Message-ID: <6a1b7294-25b4-4363-87d7-2e91c9c1b157@baylibre.com>
-Date: Tue, 16 Sep 2025 10:08:14 -0500
+        d=1e100.net; s=20230601; t=1758035421; x=1758640221;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TcedMU3jn9IbGxGqJeuSafFA3N2TJP3yv0Irk8eYIvI=;
+        b=w488ECBkIHT1MoGa8KfIVD18ecxgI98U5nNfpd3vBZ8lhxTVwVwd7p/WhocgcLva88
+         Ig9sJMzaD/6JBklCcF9Dsu+wmNBbKtZ7AdOOFJZZN0nrI7QV4ycDOhhhRfURj3MXhSEq
+         9+p1CTErnhgQEzsvqMFmxFtsq9m0MAy6sezfg1SwoANABgrKMT4oJ6gbbdEsoGkPdhGq
+         +Ztx/1fgyZQOUxQqk/IcAIs9hO+si3OOGcDNUS0h7Bhvak6onjLPc+T6ygeySfgoxXcE
+         r2/SgbQ5xBGJwKmGToYuR/zrYh8OR+4IED1VOlwcz+WvewyZ/9leO5dgCllJXvkbr8wk
+         qgFA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/oX8sSHLsdMTmxd+iAEaWoHWImleRSG3hPp25JSL2UNg2AGWunrO0Ls2sj1ZJ2S9+O7ocq/rXdx4D@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmupBTyhbF0JrBgoIyj1On3JHr9uH4XA55rviK71+tljXNLBZV
+	q6EdXfZq6WIRTpSICxVbsYUd5spI+HF+rnzyGDVUw4RuT0SAxT4QCCCByMDQPSHIuIWs7GGK0sy
+	Rwygez+NRoUxpRZN8kC+jaLV7JGVVbn6mpsmDHWSzBlm91zDHRN2x0AXb+g4ahQ9M
+X-Gm-Gg: ASbGncuUUjl+wqMb/NPA0CmsJd+4FEMDOBrMGRGFTlvi6hn4IlKEyAy4uRgImaHlBd3
+	h3Lry/ngaB5IKEClzy7drPc03KXAOyR6kq7IUM3KJJ4NSCbj87y/Toiir6Mzbx/SUJe0tMl8XU9
+	JWiiFe4Jiag437uM1w2Cyn175NzKQe/tSRwDNEz9IAEaNuOqNt6l+KNxOhl0Up0QmIrbwetlLwa
+	W+xn/yOF9CgdsrvCX5VyVhrqk6DhY6GNse+GAaDMJOeQ/3zUFZaSBJlQk4Yqj0yMJsrJPzN+2Du
+	+xmPXnDlvXdGOA6vAwb7dxQ7JNQ86J3nuluonizsGE/1XYehSNExTfICsXEmWdkL8FSITrvYkaa
+	xvpjcbKm85GYupYNInHmtNYMngguhC5pfeMyoMVmyaxLNFyh/a9h7
+X-Received: by 2002:ad4:5aad:0:b0:789:2556:f984 with SMTP id 6a1803df08f44-7892556fbaamr73641436d6.18.1758035421353;
+        Tue, 16 Sep 2025 08:10:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEnX49z2cSD36W5CA4tXYLLTMMMKW63qRA/5PsrZgN1RV9C17RW84jLlEaeZ3RADW+1Km6vqg==
+X-Received: by 2002:ad4:5aad:0:b0:789:2556:f984 with SMTP id 6a1803df08f44-7892556fbaamr73640776d6.18.1758035420812;
+        Tue, 16 Sep 2025 08:10:20 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f163f4c52sm34087491fa.22.2025.09.16.08.10.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 08:10:19 -0700 (PDT)
+Date: Tue, 16 Sep 2025 18:10:18 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Subject: Re: [PATCH v5 02/10] arm64: dts: qcom: lemans-evk: Enable GPI DMA
+ and QUPv3 controllers
+Message-ID: <hgkc2ifabxcvzc3ngxnenav7mposnsk3u7kvwhmo3yxbm37fsw@wt6uu3g4dynl>
+References: <20250916-lemans-evk-bu-v5-0-53d7d206669d@oss.qualcomm.com>
+ <20250916-lemans-evk-bu-v5-2-53d7d206669d@oss.qualcomm.com>
+ <n4p4www37qz4hw75l6z2opeqks4g3u26brceyxi6golam7f5aw@raandspcihi6>
+ <aMlXIdgavXT6Ndt9@hu-wasimn-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
- <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
- <aMge0jYwYCiY72Yb@smile.fi.intel.com> <20250915211321.47865d3d@jic23-huawei>
- <c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
- <20250916090206.02f601be@jic23-huawei>
- <14d3dc56-c6cf-464a-9a57-2a7a6afe8af9@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <14d3dc56-c6cf-464a-9a57-2a7a6afe8af9@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aMlXIdgavXT6Ndt9@hu-wasimn-hyd.qualcomm.com>
+X-Proofpoint-GUID: 278l-GhPmjmysqiM6UtQe63O4tPqsafU
+X-Proofpoint-ORIG-GUID: 278l-GhPmjmysqiM6UtQe63O4tPqsafU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAzMSBTYWx0ZWRfX2EAYNv4a0gpz
+ yA0deZpXwlR4amoJE661at+qDwMIYN39erjvEbpI1jRTaHYtzkMp9KcuHmkXjFRV46NLpZTafR3
+ ofV/bvdMOWNdApFnvfRv1vLYqtQ0ly7zCKKslPAXNV4Sy5Q8ZcQJTQApxf/jmCRpmhko28/nhlF
+ p3ohUSMMNaD0Kl9G/BzS7+usNNES8Yz7Z2vsFM82VSyAPx4cypNjTZHmeWM+p8pL0EiStiyWfIS
+ 0kCj0+4iEL3QB8Vb6O1yyUpg/ZaKNMKylRnqpaih+uVdqIqHMjYLyAa+pr7wUrg0hjuD0yFRmcj
+ +/cVA79MkbgEKL4vkp5BqeImVqUP8e0vRCFGWeTs3/C+SpSI0v3x0nk+ruTsgavWzj853v8oflF
+ 8+v+91Yc
+X-Authority-Analysis: v=2.4 cv=JvzxrN4C c=1 sm=1 tr=0 ts=68c97ddf cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=hx3DdL32n9YRypj0U04A:9 a=CjuIK1q_8ugA:10
+ a=zZCYzV9kfG8A:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0
+ spamscore=0 adultscore=0 malwarescore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130031
 
-On 9/16/25 3:14 AM, Matti Vaittinen wrote:
-> On 16/09/2025 11:02, Jonathan Cameron wrote:
->> On Tue, 16 Sep 2025 07:52:07 +0300
->> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>
->>> On 15/09/2025 23:13, Jonathan Cameron wrote:
->>>> On Mon, 15 Sep 2025 17:12:34 +0300
->>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
->>>>   
->>>>> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
+On Tue, Sep 16, 2025 at 05:55:05PM +0530, Wasim Nazir wrote:
+> On Tue, Sep 16, 2025 at 01:59:20PM +0300, Dmitry Baryshkov wrote:
+> > On Tue, Sep 16, 2025 at 04:16:50PM +0530, Wasim Nazir wrote:
+> > > From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> > > 
+> > > Enable GPI DMA controllers (gpi_dma0, gpi_dma1, gpi_dma2) and QUPv3
+> > > interfaces (qupv3_id_0, qupv3_id_2) in the device tree to support
+> > > DMA and peripheral communication on the Lemans EVK platform.
+> > > 
+> > > qupv3_id_0 provides access to I2C/SPI/UART instances 0-5.
+> > 
+> > Nit: used for foo, bar, baz and slot ZYX.
 > 
->>>> --- a/drivers/iio/adc/rohm-bd79112.c
->>>> +++ b/drivers/iio/adc/rohm-bd79112.c
->>>> @@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
->>>>           data->read_xfer[1].rx_buf = &data->read_rx;
->>>>           data->read_xfer[1].len = sizeof(data->read_rx);
->>>>           spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
->>>> -       devm_spi_optimize_message(dev, spi, &data->read_msg);
->>>> +       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
->>>> +       if (ret < 0)
->>>> +               return dev_err_probe(dev, ret,
->>>> +                                    "Failed to optimize SPI read message\n");
->>>>      
->>>
->>> I am not really sure under what conditions the
->>> devm_spi_optimize_message() could fail. It might be enough to print a
->>> warning and proceed, but I don't think returning is a problem either.
->>
->> No. Don't proceed on an unexpected failure whatever it is.  That's
->> storing up problems that may surface in a weird way later that is much
->> harder to debug.
+> Ack.
 > 
-> Just a generic note, not disagreeing in this case.
+> I will change it to:
 > 
-> I have had similar discussions before - and I have been on the both sides of the table. Hence, I don't have as strong stance on this as you. On some situations it is better to just try proceeding as aborting the operation brings no sane corrective actions but just reduces a device unusable.
+> qupv3_id_0 is used for I2C, SPI, UART, and slots 0 to 5.
 > 
-> On the other hand, as you say, usually bailing out loud and early is the best way to pinpoint the problem and get things fixed.
+> > 
+> > > qupv3_id_2 provides access to I2C/SPI/UART instances 14-20.
+> > 
+> > Ditto
 > 
-> I still think that logging a warning should be a decent hint for someone doing the debugging.
-> 
-> Well, as I said, returning here is Ok for me - thanks for taking care of it! :)
-> 
-> Yours,
->     -- Matti
+> qupv3_id_2 is used for I2C, SPI, UART, and slots 14 to 20.
 
-For devm_spi_optimize_message() specifically, there is no
-point to continue after an error. The call of this will
-just be deferred until the first SPI transfer and the same
-error will happen again. If there is an error, it means there
-is a programmer error and the SPI message is malformed
-(or could be memory allocation failure). So better to fail
-early anyway.
+No. I meant something like 'GPIO expander on I2C 2, NFC reader on I2C 10
+and CAN controller on SPI 33'.
+
+-- 
+With best wishes
+Dmitry
 
