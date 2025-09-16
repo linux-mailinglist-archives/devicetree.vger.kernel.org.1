@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-217651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A6DB58C01
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:49:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1E4B58C09
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92113482AE8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 02:49:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9FB02A5C71
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 02:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BCA20E328;
-	Tue, 16 Sep 2025 02:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244A2221FBA;
+	Tue, 16 Sep 2025 02:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ogHSnETM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V34EYvJB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36071B7F4;
-	Tue, 16 Sep 2025 02:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7AB199935;
+	Tue, 16 Sep 2025 02:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757990940; cv=none; b=KAZMSVzV//2PP4c4o9r00urGrOZhjWS3LPbQVbAK+r/6fCgykYubVStFmwy3j+K5/Y7pBoM66eCFkvUizbbylbmRbYQpsz/LAIKLKJd2Bq3edc089uG/rAxUNqqAA0iT1hJw6j/6KnEu5O1sLLkZUzvlUM3R56lsrg3NzHXMuKE=
+	t=1757991218; cv=none; b=G6WUEiymdZtSDPVRmPB5xwIPe0InD+yheFchsme4vA8oiTIO5DAg3/JoDs7nHg9EyT10k62OJDCvYJJZiw8lEHhPyYmRI5bp7bCKOuISv3PDnP+sSDl5QAfeNJWmqeXqEQDR+BZG+DZR7RDrUAzH9OS4ZSSSUr9vMXn7E9TTyIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757990940; c=relaxed/simple;
-	bh=hJOD7/Gxus8N7T/NcIWI9aLJmKggbpx+22bjHzbhIMs=;
+	s=arc-20240116; t=1757991218; c=relaxed/simple;
+	bh=xx6069vxbPWWst0kLZZTmFi0B3ZWje2/BYqnoV1KdqE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=INj+ITlbiW9EIaPG8HOSM3aEAXqOX8ffT0MRzexs4gWrP8F2V8edde8omDRb7mAf4aMC9fUTNk23aHOEUITQpD1YijEwI3sgDNIsMIEN73pnHOPxccyEjbrEKG1REee1Iox07W+wbCR+vbpgWmtQ2bc4mxhdD4eNiH/DgMHKCWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ogHSnETM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 644FAC4CEF1;
-	Tue, 16 Sep 2025 02:48:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WQYeIUQfJlyyapBI0VSA7SCH2RQdc+3BLM2vLQLiOxAXZLExcplWbLYUxUXukwITcNh2w0ihUeQtCMGSytx3RIqYS7mFwgyAKzUdkmgwHbOYYiOlqGrTx9qLuTip24vcZYHc9baBcRICsqfg2X48aATZG1Dll1NVUg2hkD6rMAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V34EYvJB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47E83C4CEF1;
+	Tue, 16 Sep 2025 02:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757990939;
-	bh=hJOD7/Gxus8N7T/NcIWI9aLJmKggbpx+22bjHzbhIMs=;
+	s=k20201202; t=1757991217;
+	bh=xx6069vxbPWWst0kLZZTmFi0B3ZWje2/BYqnoV1KdqE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ogHSnETMdsDLnn8+t/s/0j0+1PwtHU+wjL2SkSHN5VLKbaTKgDy23lMiWuU15HQK+
-	 eyLydqI98LkI7qjq7bmexhtZuYxax/BgxLwFRs1bNkf2b46MTJVLBf3WobCAo0ZOw5
-	 OzQ5sYAqRbdNGPJzdW+dTC5B+Ud4is+2xZQQ4BJ3rDp7C5ffs4E0wBlQorDmDhZRsr
-	 RtYvTalyURMMmmaTr9E8OENKivW1PoQ5HV/AiCjvBd/X5MXvpepcj5qIPJThJLqiSg
-	 SfBO85uuPheejlvdxauWrPjTAh1VEM+uEA8iKjrtVeEQ+OWhKV6SurLAaeDnnfis25
-	 sc9VGnxqYteAg==
-Date: Mon, 15 Sep 2025 21:48:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Vikram Sharma <quic_vikramsa@quicinc.com>
-Cc: vladimir.zapolskiy@linaro.org, bryan.odonoghue@linaro.org,
-	mchehab@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org,
-	catalin.marinas@arm.com, will@kernel.org,
-	linux-arm-kernel@lists.infradead.org, quic_nihalkum@quicinc.com,
-	quic_svankada@quicinc.com, linux-media@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: qcom-cci: Document qcs8300
- compatible
-Message-ID: <20250916024858.GA3574831-robh@kernel.org>
-References: <20250912141134.2799078-1-quic_vikramsa@quicinc.com>
- <20250912141134.2799078-2-quic_vikramsa@quicinc.com>
+	b=V34EYvJBq4WNZpwD2nlhqLaSNRVFOPAymXcnoZD3mZBPYAlBzFQaTyy5huOkWptJD
+	 RKXlPtuaU9wtX7zbqoXAULqXO1r02Uq4GKDQcW2DD/rTjIrIWQBr5tYxTjbdCtLYy6
+	 hZgCgOxrm0FgzT4OC5LGHrs+628L1NssKVJzBLv6i+lohJAVqHVMwN3aoB242TM7mo
+	 qg9hwbglm5X12cRjKhez/OrIThGc4l41weobr5jMDVZj2qMfCaLfeWXsbxLkwmmHuh
+	 Q3G9vjzjH388JEco0AkC1lwJTJ6GrVd0vPavh7O4iUfapuT5OYxWTirzINUFGVHbUA
+	 4CwkP/M/jiBYg==
+Date: Mon, 15 Sep 2025 21:53:36 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Bryan Brattlof <bb@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+	Tony Lindgren <tony@atomide.com>, linux-gpio@vger.kernel.org,
+	Andrew Davis <afd@ti.com>, linux-arm-kernel@lists.infradead.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Tero Kristo <kristo@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/4] dt-bindings: pinctrl: pinctrl-single: add
+ ti,am62l-padconf compatible
+Message-ID: <175799121579.3582107.882281471207864281.robh@kernel.org>
+References: <20250912-am62lx-v6-0-29d5a6c60512@ti.com>
+ <20250912-am62lx-v6-2-29d5a6c60512@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,48 +66,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250912141134.2799078-2-quic_vikramsa@quicinc.com>
+In-Reply-To: <20250912-am62lx-v6-2-29d5a6c60512@ti.com>
 
-On Fri, Sep 12, 2025 at 07:41:32PM +0530, Vikram Sharma wrote:
-> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+
+On Fri, 12 Sep 2025 10:40:41 -0500, Bryan Brattlof wrote:
+> Add the "ti,am62l-padconf" compatible to allow for some changes in the
+> driver in the future when needed.
 > 
-> Add device tree bindings for the CCI controller on the
-> Qualcomm QCS8300 SoC.
-> Introduce the "qcom,qcs8300-cci" compatible string.
-
-Wrap commit messages at 72 chars. And explain how it's the same or 
-different from existing SoCs in the commit message. Don't explain the 
-diff. We can read that ourselves.
-
-> 
-> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
 > ---
->  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> index 1687b069e032..edd2e77d717b 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> @@ -25,6 +25,7 @@ properties:
->  
->        - items:
->            - enum:
-> +              - qcom,qcs8300-cci
->                - qcom,sc7280-cci
->                - qcom,sc8280xp-cci
->                - qcom,sdm670-cci
-> @@ -223,6 +224,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,qcs8300-cci
->                - qcom,sm8550-cci
->                - qcom,sm8650-cci
->                - qcom,x1e80100-cci
-> -- 
-> 2.25.1
-> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
