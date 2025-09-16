@@ -1,249 +1,119 @@
-Return-Path: <devicetree+bounces-217990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2234BB59F7B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:38:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988A2B59FA8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBDE416869E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:38:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34F85189BAB9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC582F5A15;
-	Tue, 16 Sep 2025 17:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD5C2F5A23;
+	Tue, 16 Sep 2025 17:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kOQcHlAj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sh5JdfZf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1CE32D5AA;
-	Tue, 16 Sep 2025 17:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480CE32D5D3;
+	Tue, 16 Sep 2025 17:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758044309; cv=none; b=vBKILesZ1LyQHxleKgrDv6dGMJaNDsBiuymkq0MkMaIfb9fI/URBg9z/3GcMOIg0UVEcTJTvdXG8DIKI7pCnHX2qk0MIvDVtRdVjsH++rl5Afy6NRKJfHZ9oG5dXdiAwXqXN/6YsIxJvnOXIBbrkhUu7lsQD9G5f2FOTT4HeD20=
+	t=1758044605; cv=none; b=Dm1k5p/qfxh/sA/iJW6KgWeMCHEmg3I580BlTdcZA45nR8sr2Enjifhk6vAF2sT3cB0WY/ow8GeDePrVYAWU/6IwAJHc+MQzbb/hO25jKpcqUNqC+gBEPWoC2k+EPyizyCTfU+T3h1p0TlHyqFpX+5pKGexoranzm80XGQkiolY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758044309; c=relaxed/simple;
-	bh=qsVdbGbYrw2ppGmD7AyATaEWzKfxfbFDoOHdJUVDbvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=b9SIqR0y727uRsWc4cpkP5AKg2nKwDIAFwdqkzv0VW6zbeFaXE1l2oTASO/K/qVM4RFVZDPNIhH9+fATTiiaVZk8+rrl/oh64BiTs0taQfjK7Lq4EyZ2uYUneGEZlnQ9iTtAR24N8zTt+WhdJ7GHgyWu2Dx/64M9HuyStXlgePE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kOQcHlAj; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1758044307; x=1789580307;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=qsVdbGbYrw2ppGmD7AyATaEWzKfxfbFDoOHdJUVDbvY=;
-  b=kOQcHlAjRgMbMOoxDATL5qrOpQun3vt+XoAOfKeCoTUBQsobFwpZ4n9j
-   gc0iyY2hE2v9RYn6hxoRTQ/2X9mjXcm4uEbU4yEO9NN92bIlTPXz/vnrY
-   XdgH0wgXpsrb7XsaGkaFQ6DHmWujYsLRCVBTdJ8WvouUtIGbvCMYXyICl
-   O0g+EEgKaL6sbmbb8lB6uNlDXuYC4wyaJMoBItI2C/Ru2gcG9//+w3ni8
-   khAwjD6aNCMA4m+VQn+rb10x2WnrOi9XWa/wNdE6OoV9dDCb9fmDbcRON
-   +zaKg/qcfsiAhpvmvIrfG9h7DsgV0Ab11/FmyFYiMvRhxCH7vL6VI/laj
-   g==;
-X-CSE-ConnectionGUID: JwgJaeFzQrm7UxwC39IelA==
-X-CSE-MsgGUID: gmVKfSQqTDuKOqe8EMcG/w==
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; 
-   d="scan'208";a="52418754"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Sep 2025 10:38:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 16 Sep 2025 10:38:08 -0700
-Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 16 Sep 2025 10:38:08 -0700
-Message-ID: <71d11cdb-345f-43c7-b764-5aa43cdf1e1c@microchip.com>
-Date: Tue, 16 Sep 2025 10:38:07 -0700
+	s=arc-20240116; t=1758044605; c=relaxed/simple;
+	bh=o3gS1VZdjRA3/5Nl9Domri53vUtP+1xplx+0LVfixOc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QYg1TEm8MaPYtkwIeuhNoaKS7dAOJuW7A4yskHaYxQtp03DgztQKl8If7/IXiCKxugd4O6NUeLpXGRa6Lu8acQvMjxEOmhT5j44zN56OWrVhwFMxEonLO3NrtWgpWlGcFOeHc+tubZiY80Vkr2RUhwUX1535vyhYos43Ra1uYoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sh5JdfZf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F753C4CEEB;
+	Tue, 16 Sep 2025 17:43:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758044604;
+	bh=o3gS1VZdjRA3/5Nl9Domri53vUtP+1xplx+0LVfixOc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Sh5JdfZf4uohwD4e74BHkhc0AsnbOwopGV9a/l8MPq55LZrNd43ccjyFhV5brrg/M
+	 zfOtpcpwRX/8J6GuVxdEZXt+XWyNycR5bstN1O0OGEEEYQyAdAenRuy8loIXwwngPB
+	 dE4oX+Rv1Qkh6egD67P8Q7oCi2x5OzRXStr4uIbw9SbvEyuP8EBYCZhCIkUPWP5I3q
+	 GWYRovpjAXy37PavLxaIuh/wandY995VWmVXtl3fFqPbHD9yndHETPb0N+SBYuCvGf
+	 yEiePaMI/X6TdKq5ZpQMBlRdwAWH9KuUMSvM+QKAFibAH5blKvU6haNhum+K0JGQnM
+	 /JDtSl/6ve/+w==
+Date: Tue, 16 Sep 2025 10:43:23 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>,
+	Joel Stanley <jms@tenstorrent.com>, Joel Stanley <joel@jms.id.au>,
+	Michael Neuling <mikey@neuling.org>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+	Drew Fustini <dfustini@tenstorrent.com>
+Subject: Re: [PATCH 4/7] dt-bindings: timers: Add Tenstorrent Blackhole
+ compatible
+Message-ID: <aMmhu9ZfNnW+Zh8a@x1>
+References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
+ <20250913-tt-bh-dts-v1-4-ddb0d6860fe5@tenstorrent.com>
+ <20250916134400.GA3654122-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: microchip: sama7d65: Add GPIO buttons and LEDs
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-leds@vger.kernel.org>
-References: <20250909160842.392075-1-Ryan.Wanner@microchip.com>
- <20250910-retake-attic-ac1fe3429a1e@thorsis.com>
- <20250910-alkalize-overtime-930a59a7d169@thorsis.com>
- <fa5d44ca-d1ea-4c72-a998-b10f098b25f8@microchip.com>
- <20250911-breeder-hardness-d3ffa4bfbb6d@thorsis.com>
-From: Ryan Wanner <ryan.wanner@microchip.com>
-Content-Language: en-US
-In-Reply-To: <20250911-breeder-hardness-d3ffa4bfbb6d@thorsis.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250916134400.GA3654122-robh@kernel.org>
 
-On 9/11/25 00:00, Alexander Dahl wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On Tue, Sep 16, 2025 at 08:44:00AM -0500, Rob Herring wrote:
+> On Sat, Sep 13, 2025 at 02:31:03PM -0700, Drew Fustini wrote:
+> > From: Drew Fustini <dfustini@tenstorrent.com>
+> > 
+> > Document clint compatible for the Tenstorrent Blackhole A0 SoC.
+> > 
+> > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> > ---
+> >  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > index d85a1a088b35dabc0aa202475b926302705c4cf1..198146c59de0c95a2ffa052c8d4d7aa3f91f8e92 100644
+> > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > @@ -36,6 +36,7 @@ properties:
+> >                - starfive,jh7100-clint   # StarFive JH7100
+> >                - starfive,jh7110-clint   # StarFive JH7110
+> >                - starfive,jh8100-clint   # StarFive JH8100
+> > +              - tenstorrent,blackhole-a0-clint # Tenstorrent Blackhole
 > 
-> Hello Ryan,
+> We usually don't put Si versions (A0) in compatible strings unless later 
+> versions changed in incompatible ways. Perhaps if you already knew that 
+> B0 was different, then it would be appropriate. Or am I misunderstanding 
+> what A0 means?
 > 
-> Am Wed, Sep 10, 2025 at 10:16:03AM -0700 schrieb Ryan Wanner:
->> On 9/9/25 23:25, Alexander Dahl wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> Hello Ryan,
->>>
->>> Am Wed, Sep 10, 2025 at 08:20:28AM +0200 schrieb Alexander Dahl:
->>>> Hello Ryan,
->>>>
->>>> Am Tue, Sep 09, 2025 at 09:08:38AM -0700 schrieb Ryan.Wanner@microchip.com:
->>>>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->>>>>
->>>>> Add the USER button as a GPIO input as well as add the LEDs and enable
->>>>> the blue LED as a heartbeat.
->>>>>
->>>>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
->>>>> ---
->>>>>  .../dts/microchip/at91-sama7d65_curiosity.dts | 49 +++++++++++++++++++
->>>>>  1 file changed, 49 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
->>>>> index f091cc40a9f0..2fe34c59d942 100644
->>>>> --- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
->>>>> +++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
->>>>> @@ -11,6 +11,7 @@
->>>>>  #include "sama7d65-pinfunc.h"
->>>>>  #include "sama7d65.dtsi"
->>>>>  #include <dt-bindings/mfd/atmel-flexcom.h>
->>>>> +#include <dt-bindings/input/input.h>
->>>>>  #include <dt-bindings/pinctrl/at91.h>
->>>>>
->>>>>  / {
->>>>> @@ -26,6 +27,42 @@ chosen {
->>>>>             stdout-path = "serial0:115200n8";
->>>>>     };
->>>>>
->>>>> +   gpio-keys {
->>>>> +           compatible = "gpio-keys";
->>>>> +
->>>>> +           pinctrl-names = "default";
->>>>> +           pinctrl-0 = <&pinctrl_key_gpio_default>;
->>>>> +
->>>>> +           button {
->>>>> +                   label = "PB_USER";
->>>>> +                   gpios = <&pioa PIN_PC10 GPIO_ACTIVE_LOW>;
->>>>> +                   linux,code = <KEY_PROG1>;
->>>>> +                   wakeup-source;
->>>>> +           };
->>>>> +   };
->>>>> +
->>>>> +   leds {
->>>>> +           compatible = "gpio-leds";
->>>>> +           pinctrl-names = "default";
->>>>> +           pinctrl-0 = <&pinctrl_led_gpio_default>;
->>>>> +
->>>>> +           led-red {
->>>>> +                   label = "red";
->>>>> +                   gpios = <&pioa PIN_PB17 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
->>>>> +           };
->>>>> +
->>>>> +           led-green {
->>>>> +                   label = "green";
->>>>> +                   gpios = <&pioa PIN_PB15 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
->>>>> +           };
->>>>> +
->>>>> +           led-blue {
->>>>> +                   label = "blue";
->>>>> +                   gpios = <&pioa PIN_PA21 GPIO_ACTIVE_HIGH>;
->>>>> +                   linux,default-trigger = "heartbeat";
->>>>> +           };
->>>>> +   };
->>>>
->>>> The label property is deprecated.  Please use the properties "color"
->>>> and "function" for new boards.  See devicetree binding documentation
->>>> for LEDs.
->>>
->>> From a quick glance, this seems to be an RGB-LED, so I would suggest
->>> to not model it as three distinct LEDs, but make use of the
->>> "leds-group-multicolor" feature, example:
->>>
->>>  59         multi-led {
->>>  60                 compatible = "leds-group-multicolor";
->>>  61                 color = <LED_COLOR_ID_RGB>;
->>>  62                 function = LED_FUNCTION_INDICATOR;
->>>  63                 leds = <&led_red>, <&led_green>, <&led_blue>;
->>>  64         };
->>
->> I see, I was not aware of this feature. This would combine all of the
->> LED pins into one RGB light correct, it seems from sysfs that this is
->> the case.
-> 
-> The group-multicolor feature was merged for kernel v6.6 so it's still
-> quite new.  I tried this some time ago, so this is from memory only.
-> The three single color gpio leds are still visible in sysfs, but you
-> can not control them independently anymore, only through the sysfs
-> interface of that one multicolor led.
-> 
->> Would having the default-trigger="heartbeat" still be allowed for the
->> led-blue node or should that be moved into the multi-led node? From the
->> bindings it seems that the default trigger is still in the gpio-led nodes.
-> 
-> Sorry, not sure here.  I put linux-leds in Cc, maybe someone over
-> there can answer.  If this does not fit how Microchip wants to handle
-> that LED on their boards I think that's fine, too.  Just wanted to
-> make people aware of the possibility.
+> Rob
 
-It does not fit very well how we want to handle the LEDs on this board
-as of right now. I am assuming it is fine for now to have these as
-individual LEDs?
+Okay, thanks for explaining. A0 is the silicon revision, and it is
+currently the only version that exists. I was just trying to be as
+specific as possible. I'm okay with dropping '-a0'.
 
-Best,
-Ryan>
-> Greets
-> Alex
-> 
->>
->> Best,
->> Ryan
->>>
->>> Greets
->>> Alex
->>>
->>>>
->>>> Thanks and greetings
->>>> Alex
->>>>
->>>>> +
->>>>>     memory@60000000 {
->>>>>             device_type = "memory";
->>>>>             reg = <0x60000000 0x40000000>;
->>>>> @@ -352,6 +389,18 @@ pinctrl_i2c10_default: i2c10-default {
->>>>>             bias-pull-up;
->>>>>     };
->>>>>
->>>>> +   pinctrl_key_gpio_default: key-gpio-default {
->>>>> +           pinmux = <PIN_PC10__GPIO>;
->>>>> +           bias-pull-up;
->>>>> +   };
->>>>> +
->>>>> +   pinctrl_led_gpio_default: led-gpio-default {
->>>>> +           pinmux = <PIN_PB15__GPIO>,
->>>>> +                    <PIN_PB17__GPIO>,
->>>>> +                    <PIN_PA21__GPIO>;
->>>>> +           bias-pull-up;
->>>>> +   };
->>>>> +
->>>>>     pinctrl_sdmmc1_default: sdmmc1-default {
->>>>>             cmd-data {
->>>>>                     pinmux = <PIN_PB22__SDMMC1_CMD>,
->>>>> --
->>>>> 2.43.0
->>>>>
->>>>>
->>>>
->>
->>
+Should I change the plic compatible to 'tenstorrent,blackhole-plic' too?
 
+I see you gave a Rb for riscv/tenstorrent.yaml but that does have
+'tenstorrent,blackhole-a0-card' and 'tenstorrent,blackhole-a0'. Should I
+drop '-a0' from those too or leave as-is?
+
+Thanks,
+Drew
 
