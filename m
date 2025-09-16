@@ -1,90 +1,104 @@
-Return-Path: <devicetree+bounces-217877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35A8B597D6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:38:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35DAAB59804
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EB4C7A4EC0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:36:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F793B0575
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7462A30DD05;
-	Tue, 16 Sep 2025 13:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A271B313297;
+	Tue, 16 Sep 2025 13:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="zSdubmII"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljdjCTkG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23EF62C3272;
-	Tue, 16 Sep 2025 13:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F3A2F7AB1;
+	Tue, 16 Sep 2025 13:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758029875; cv=none; b=UF9BPxkGcwrMQZiTdNIJFlv6LFR6Q0ir37SJjjBhEVFiObwxtAnvRwmM9GWkWncYBh+QUSmJoByRQ0sxtCZ4O+aC5LW5mMtOuuDxPXswIJoPgsL3iAWPTYNymTJsJEsAFzOuAEbLosHowg7MDL73/c8CYwWgxwysj8Rweak4rzk=
+	t=1758030241; cv=none; b=oscjmMpf63qkcdryalQEyLLSebdu6oJCiE95NbZyGI7R48wCUQfh1jv2EQUXg6lWYTbjpxHDbP52ufu7owdrwqPEEuxr91nyOanyWKShiOGQxBUcodaUoKD/agmQuNgDLcdFT6GMn4ctMLUsrK2Y2R70SKp0oXcrIeRZMLOFmoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758029875; c=relaxed/simple;
-	bh=JhruMMkhxbf2sV8h74+GEbHn8WmMzYkUeIJ+xJcevMo=;
+	s=arc-20240116; t=1758030241; c=relaxed/simple;
+	bh=PaMXEFXqCAuG12KEQ4djKfa6Cip7cabwIbwPaQn8wY0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljhXVqtVKHgbpig+XJWyTqbe3B65WIhjhPzsDv8Qx7G9qqyLeUGCzFwKs9BwZctQNKqWdt7vbbNZtJ+k6ktGt+dQDQQtgdb7GGBWn6G5IwzaKWjV35Gzp2kQ1Dhg3eIIX0MypEpWwRm5YYVtJJCV1o6s9jeJgTuCEmLTTHISbjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=zSdubmII; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EFEFC4CEEB;
-	Tue, 16 Sep 2025 13:37:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1758029873;
-	bh=JhruMMkhxbf2sV8h74+GEbHn8WmMzYkUeIJ+xJcevMo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=WCMQjLG39N0/ef/gExI31W7Zz6MWuCkOI4SvpM4M7y6q/McirfBV+8CTdPsmJtVDjtgfVyKytP+hyjK8t1WNOEsTp+oHB5j7WYs+9rr1zSC75ydP9k9eT+i/KIphkOi8venF928K5YE2fVYPPULt/gdnyS5JQFA7gVZiDltNHcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ljdjCTkG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3966C4CEEB;
+	Tue, 16 Sep 2025 13:44:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758030241;
+	bh=PaMXEFXqCAuG12KEQ4djKfa6Cip7cabwIbwPaQn8wY0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=zSdubmIIKTWNFvRPTJskcD/bR7Fu0oR09boW7zcv1TUvcjCEb5N2QEi7hl2644m1R
-	 r/md4onY9YR7+mzEmpM6KB3fx3yY6rAprnjDJRtgT93r9Hc9Td4WgsKzBwxreLNnAq
-	 BVFjH33d1XBUemurkGLb1NLwyOHNim40ZS0GIaJQ=
-Date: Tue, 16 Sep 2025 09:37:50 -0400
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Fenglin Wu <fenglin.wu@oss.qualcomm.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sebastian Reichel <sre@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, David Collins <david.collins@oss.qualcomm.com>, 
-	=?utf-8?Q?Gy=C3=B6rgy?= Kurucz <me@kuruczgy.com>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 3/8] power: supply: qcom_battmgr: Add resistance power
- supply property
-Message-ID: <20250916-almond-pelican-from-vega-a8d01d@lemur>
-References: <20250915-qcom_battmgr_update-v4-0-6f6464a41afe@oss.qualcomm.com>
- <20250915-qcom_battmgr_update-v4-3-6f6464a41afe@oss.qualcomm.com>
- <gk2ho7ugp35kb4x65meqsm3aufnry6srr4p7jspf6xyn7ywzkh@vd5ca7txjdk6>
- <0cf4b0fd-e468-4aab-9ec2-38da93435557@oss.qualcomm.com>
- <5736df73-c90e-4f11-b461-c38da4e811e1@oss.qualcomm.com>
+	b=ljdjCTkGxZRvb0F7FEBCvF8MQvB8OpQlHE+8U5+ljM2dNkPq/jtyw3AYlywCWUB1L
+	 GD4yIqOid2EWZ5zKmN/h7A5ulypmjpBgT8ztUSUR0m/bbJal5/a/xuReQRkTYGo3PE
+	 IhmdHuKSmAFKstZdjPFBsnbr2E6wqoUgl90AIRy6/CG4dm9+haJYr13LVSD61Snai3
+	 TZ0K6/J+qkwq7cY0pYSKZDJKQgn3zX/heNEEXzrFVj7J8mC2t2fRqS2ucj5VUw6cnH
+	 QBcWHDkMmHYirrBPbcz7Z9ca4cRZZU25bWgyzUXy9eBu2zc9C1E65PQ62MXxBkBvRU
+	 pBxHVu/xdGfzA==
+Date: Tue, 16 Sep 2025 08:44:00 -0500
+From: Rob Herring <robh@kernel.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>,
+	Joel Stanley <jms@tenstorrent.com>, Joel Stanley <joel@jms.id.au>,
+	Michael Neuling <mikey@neuling.org>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+	Drew Fustini <dfustini@tenstorrent.com>
+Subject: Re: [PATCH 4/7] dt-bindings: timers: Add Tenstorrent Blackhole
+ compatible
+Message-ID: <20250916134400.GA3654122-robh@kernel.org>
+References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
+ <20250913-tt-bh-dts-v1-4-ddb0d6860fe5@tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5736df73-c90e-4f11-b461-c38da4e811e1@oss.qualcomm.com>
+In-Reply-To: <20250913-tt-bh-dts-v1-4-ddb0d6860fe5@tenstorrent.com>
 
-On Tue, Sep 16, 2025 at 09:59:04AM +0200, Konrad Dybcio wrote:
-> + Konstantin
+On Sat, Sep 13, 2025 at 02:31:03PM -0700, Drew Fustini wrote:
+> From: Drew Fustini <dfustini@tenstorrent.com>
 > 
-> It's quite common to see someone leaving a T-b on the cover letter,
-> trying to say "I gave this series a spin" and then seeing the tag
-> appear on unrelated commits within the series (e.g. bindings or some
-> cosmetic fixes". Maybe some sort of an interactive (opt-in is fine)
-> dialog for "which patches to apply t-b/tags to" could be worth the
-> effort?
+> Document clint compatible for the Tenstorrent Blackhole A0 SoC.
+> 
+> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> ---
+>  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index d85a1a088b35dabc0aa202475b926302705c4cf1..198146c59de0c95a2ffa052c8d4d7aa3f91f8e92 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -36,6 +36,7 @@ properties:
+>                - starfive,jh7100-clint   # StarFive JH7100
+>                - starfive,jh7110-clint   # StarFive JH7110
+>                - starfive,jh8100-clint   # StarFive JH8100
+> +              - tenstorrent,blackhole-a0-clint # Tenstorrent Blackhole
 
-The plan is to add interactive mode to a few commands, including to the
-trailers command. This will open an interface similar to interactive rebase,
-where you can mark trailers as accept, skip, or ignore. That should do what
-you're asking for, I believe.
+We usually don't put Si versions (A0) in compatible strings unless later 
+versions changed in incompatible ways. Perhaps if you already knew that 
+B0 was different, then it would be appropriate. Or am I misunderstanding 
+what A0 means?
 
-Best regards,
--K
-
+Rob
 
