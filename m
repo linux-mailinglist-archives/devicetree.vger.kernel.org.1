@@ -1,135 +1,119 @@
-Return-Path: <devicetree+bounces-217742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500D2B59227
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:26:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C22AB5922D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:27:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 029EB1BC5F07
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:26:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B6A0161D04
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7772BE034;
-	Tue, 16 Sep 2025 09:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7955296BA4;
+	Tue, 16 Sep 2025 09:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y9GWTVhI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=flatlinemusic.co.za header.i=@flatlinemusic.co.za header.b="scMCVMlE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from seahorse.cherry.relay.mailchannels.net (seahorse.cherry.relay.mailchannels.net [23.83.223.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC2429C343
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758014754; cv=none; b=A7KFkqKgNtXNGHzfF5FHzCQKAbhoL5IWu2rE2V4Brd9ahvXVQ0svYX6LcT65szzMwzDrLlk7uMfc5clV3UsJ4wOmDHj9rc5sepJAcFKCKWMxfxmZEkrSfkKULdP7oN0m/K1cctAoRtm8UDC1eqLrVWIUKGSYpyVbBOmeZl61XGs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758014754; c=relaxed/simple;
-	bh=prkrcgQgpwPbi8Cfds13n7nM9MiR8JPZLk8prSDLM2M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qVTySKlpxJWCibiffXE9T+nwaWvvb97aFh6e1pVj29jedGXlqYgta1i+ezzfnpsASCK/gvfFB7oQ7URahIA9av4mA20EvHJHom7BtwXpjZxvse2+umR0xLhAmu8r3DCOiwnfcbSUmTAsAlLhYMIEZc9iahFgGXSHykiZCowR1y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y9GWTVhI; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2630354dd1aso6258305ad.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:25:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758014752; x=1758619552; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=prkrcgQgpwPbi8Cfds13n7nM9MiR8JPZLk8prSDLM2M=;
-        b=Y9GWTVhIJtRrGpeL0bZclzvTItu83iRH38oBrb2EcNhXc3csSEaIHLjxntN6vPRekG
-         U+fX+zMMyWvq4fU1tXc9j2glULsCsD3HDQtSdJDyCms7FAzij16kiCbq4ZFH4GfX1o2O
-         60bm9gvWo1/H68oAAxP9Bh2C3rYz1lxFDBZZr5Llaxr51bh/syGn3RGUDU4Wubvi7ara
-         /L0GnCtskb8YvQYVF0Cb8mRK/F3O+YZqvZLAJowHKwv2kqeo8uPRcyKtqEPj2z3PGkaP
-         rt4IM+0Zu60Px0mIEQ9DMA72XYDEi5sZQhNM4KrzJelebhotOVNfMemzPC3+X9ehK8+e
-         a/6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758014752; x=1758619552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=prkrcgQgpwPbi8Cfds13n7nM9MiR8JPZLk8prSDLM2M=;
-        b=e+zJeQ4tr/uYCUm6CtNO3Blnk5LQiR/cM9AwBuAu6Qfd99bKvDfj1RmgTYEAgdsoNA
-         MNZgmoNFH78wskkQtQw0PuclH2YtF5o+LLAb8fk+BVcgElfDR5mpV+eMvYaJjXOtn44k
-         TqjBXUOLvX6ipKFrRcYhAFjR93Un+vm7Jun5jaElqtVOFnt4YG/EWYuEj5AnLiFgTcnR
-         EJKJrfEzJvxfmICJbZX2NLG6JZztTbYGQhT6agz03eovyOYlJ7xykyniSWlbOQADbzlN
-         F5NOQiH203XAjp+/ZkA0WmG46cIS6N2npRNMHgiyzxNBN22VIybChtlUpqYYIjZvz58i
-         6/ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/jjw19Ol3DjBWc7ZIABRE0Lqe6PAQVIQMgoov9uiTjSnOFj2EQBY7GBarbVJiwrJiV+HqlDjOLwGg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTNJ1HGChklwGtlgpNCs2i7dbYyvHN03Tr98joNdEGvKttQ8i7
-	fRp8Pr7mpevbVVDLnIHA7XVvnpzxbwBPCLu0329dsVhrDazEiT4kVUZ0VFK+nfPlO1m/hKlQ8I6
-	SclSMSAo2Mdd5Y2hrgOavYbgaOklyDV4=
-X-Gm-Gg: ASbGncsSZve7VrXEKpyOm2EK/uSmpTB6kv64gGBZl64E4Qo+tUe5cifuVP00e50rt9U
-	AsmXjYwSclbRNO/AmjUUdcPwMYVPl/X8wKGafNcjihIDPbdrvj3VlyGD9y5qednczVdNixtKaMv
-	HT3grfTG11PCBZrXD226pMGX1kdzk6+1UBNHO6MmQEwkIeHWU2yfiiTzenG4O1c0ugQYkX7hN1a
-	4sSuzWrON8diA9PZIlGarCie/RR4+pupVBWluzEGDwIFRhkHzT2M83PeR5SKvcvFkUqhj6p/eQ1
-	LIDAFhP2UTJHHkD5ZrATxPhlqw==
-X-Google-Smtp-Source: AGHT+IFwc6Y1OseNifdIO5J0qDFbM+aOcV8Z7xSmon/0tVZxaKw/+AP4a1wI7bqiW8muI5j5MuELqcXm9FvbGpAicyA=
-X-Received: by 2002:a17:902:e5c8:b0:264:9287:3fc3 with SMTP id
- d9443c01a7336-2649287431dmr60170295ad.2.1758014751666; Tue, 16 Sep 2025
- 02:25:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2112A296BB8
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.161
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758014853; cv=pass; b=PTs4mk4dmtPt98ttt/tkR/uZvWJ2J1Ov8Tabc8qIYyUASKSoeX/zWQH6xuiZGo9oEMPYVE9tj2l5R+AQjKT6cQBGaN+BdjSe3XcUD+Yy9XzfOlDu+y82aU2wb4L3sMU9eoYyjKsiBRtVg49GXtQ8fHy1zEz5flGN+T5duLLuU8A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758014853; c=relaxed/simple;
+	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=;
+	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=A5Kj0wqGEsELknw+181fqKtuBdXdrSh04vIgcIMH7DhGOj/vAZ+oRUW78glgBW+4YfLlPA9nbAePnlCyOgebESbwkF8nb+cKNUPgUA/MbtrGu4IBpMRwmroYsq3Y8nJTR2NGcrXwKif241ARVgHpM6Jr/U5bRQdet0j+8VTOBDI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flatlinemusic.co.za; spf=none smtp.mailfrom=srv64.hostserv.co.za; dkim=pass (2048-bit key) header.d=flatlinemusic.co.za header.i=@flatlinemusic.co.za header.b=scMCVMlE; arc=pass smtp.client-ip=23.83.223.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flatlinemusic.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=srv64.hostserv.co.za
+X-Sender-Id: webafrica|x-authuser|flatlinemusicco
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 75BA86A0EC2;
+	Tue, 16 Sep 2025 09:27:22 +0000 (UTC)
+Received: from srv64.hostserv.co.za (100-107-16-248.trex-nlb.outbound.svc.cluster.local [100.107.16.248])
+	(Authenticated sender: webafrica)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 646366A10F1
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:27:21 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1758014842; a=rsa-sha256;
+	cv=none;
+	b=q1T1p63JN6Pvw0bQOMfVfIPc3chTscaYwbAxB6s4FB2GmlyDWsfRIBL27WC6HEAEWbEAWa
+	0qkpCoPsqcvCE/7CVDdvOoda7LB5/+Z/rlzvq8VYZ0xPVXA7H4k/LlcWHIlqD/gy2v42HF
+	8y+afGvlD/hJrJcyT5MBjyR6J6q7qwg90pe5fQEnuG9oXztFMoGhTgyc8ovakJqDQ9/2Kg
+	oO+EyqrokMgnh/8z/Pf0OXsBvIeoZvl4yc8nH8P+lyhTkdxfDhwn6EPry2so8v99uzaYRe
+	ZLqGxGFnF6ONkcSL3cMJAlBpMg65apCnUttxDf5Ah67EPKOljz4AGAqG6L40uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1758014842;
+	h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:mime-version:mime-version:
+	 content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=;
+	b=q7tR8EVz7y2oe34+PCoSS8XV9icNjbs8vYa9x2SvWAG8Yd/qXaHJn/EBgVRqpDAA2hkh0n
+	jE3dgROenCOtHWuJhCyp+uoaDSen0Yf3xLyUjPwiQjU795zlKRUoqZhqs3vj9TKxdTlHh5
+	BtIXPnClsLGsJHVWTUfUMlOmMkSkFOwh9037i7vZOhVCUdC9W4ftzipu0feMfp8og/9z1w
+	9pFAxEnsD2zn5I7Gd0c7DtnK45GBemNj9xRFpoHOSzwnRIepyeJgyI8O6EIvC5HLvuXb7E
+	xBJ4NPVEbUO93K+5BiHCQTKlDxpT+ve4YiqjYkN6GUNcE8xOHy0RLErctYX5zw==
+ARC-Authentication-Results: i=1;
+	rspamd-d4f76d97f-dwfls;
+	auth=pass smtp.auth=webafrica
+ smtp.mailfrom=flatlinemusicco@srv64.hostserv.co.za
+X-Sender-Id: webafrica|x-authuser|flatlinemusicco
+X-MC-Relay: Neutral
+X-MC-Copy: stored-urls
+X-MailChannels-SenderId: webafrica|x-authuser|flatlinemusicco
+X-MailChannels-Auth-Id: webafrica
+X-Zesty-Shrill: 24e90cf847df5306_1758014842361_937959508
+X-MC-Loop-Signature: 1758014842361:3629821683
+X-MC-Ingress-Time: 1758014842361
+Received: from srv64.hostserv.co.za (srv64.hostserv.co.za [41.185.8.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.107.16.248 (trex/7.1.3);
+	Tue, 16 Sep 2025 09:27:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=flatlinemusic.co.za; s=default; h=Sender:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Reply-To:Message-ID:From:Date:Subject:To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=; b=scMCVMlEcn7wcwhtVine+uke/D
+	aue/iAkwSphte/Bf5kYdvOx+acNMKas48pyXcq1UneGiqXzNHT90Ik5A6+HfJ1zsFixevzOrm59DB
+	Svpn0Y4qeEzGzJELCs7mOVvR1fF6bkKK6Ayy71QwXpf2oEBPYqgMeUMxtJOIXIfWn0rddE8Ymz4iU
+	VmKbrbo8ufvlSzlIZHiimljQrb7M3e5DoTFP6rmPpkltXGjQEZe9ChUqcMnQCLs1h/o9JI7p37361
+	w5ZRMAKsOmu3xp9D+3uiCKOEyKSoxqFkDCDVzFNvNA5gaxQfqGbXX7oVdkyaGi+9YCwkmAdKY+FSx
+	lwalSnQw==;
+Received: from flatlinemusicco by srv64.hostserv.co.za with local (Exim 4.98.1)
+	(envelope-from <flatlinemusicco@srv64.hostserv.co.za>)
+	id 1uyRy2-0000000BDXp-09vu
+	for devicetree@vger.kernel.org;
+	Tue, 16 Sep 2025 11:27:18 +0200
+To: devicetree@vger.kernel.org
+Subject: FLATLINE MUSIC "Welcome,  Join Now"
+Date: Tue, 16 Sep 2025 09:27:17 +0000
+From: FLATLINE MUSIC <info@flatlinemusic.co.za>
+Message-ID: <67503c66ac328e332f1008049d4d7fd9@www.flatlinemusic.co.za>
+X-Mailer: PHPMailer 5.2.14 (https://github.com/PHPMailer/PHPMailer)
+X-WPCF7-Content-Type: text/plain
+Reply-To: info@flatlinemusic.co.za
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
-In-Reply-To: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 16 Sep 2025 11:25:39 +0200
-X-Gm-Features: AS18NWCYvwyg0oQ7WKMGNn77retnSNUsfiN0nCmq9Ts2BvgM8ip_kHMckevDcv8
-Message-ID: <CANiq72kq4RWNO1pJtJuG8jBpARq5ft6pcn8dHuUWJx=nosweyQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/11] rust: use `core::ffi::CStr` method names
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
-	Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, FUJITA Tomonori <fujita.tomonori@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Jocelyn Falempe <jfalempe@redhat.com>, Javier Martinez Canillas <javierm@redhat.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Len Brown <lenb@kernel.org>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	kunit-dev@googlegroups.com, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender:  <flatlinemusicco@srv64.hostserv.co.za>
+X-AuthUser: flatlinemusicco
 
-On Wed, Aug 13, 2025 at 5:42=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
->
-> This is series 2b/5 of the migration to `core::ffi::CStr`[0].
-> 20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com.
->
-> This series depends on the prior series[0] and is intended to go through
-> the rust tree to reduce the number of release cycles required to
-> complete the work.
->
-> Subsystem maintainers: I would appreciate your `Acked-by`s so that this
-> can be taken through Miguel's tree (where the other series must go).
->
-> [0] https://lore.kernel.org/all/20250704-core-cstr-prepare-v1-0-a91524037=
-783@gmail.com/
->
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+Message Body:
+Hello, Congrats! You're invited to discover our exciting project. Confirm your account: https://tinyurl.com/mrf4dzfj#mZI34y activate. Note: Didn’t sign up? Ignore this.
 
-Applied to `rust-next` -- thanks everyone!
+--
+This e-mail was sent from a contact form on FLATLINE MUSIC (http://flatlinemusic.co.za)
 
-If any maintainer has a problem with this, please shout.
-
-Cheers,
-Miguel
 
