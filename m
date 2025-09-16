@@ -1,207 +1,157 @@
-Return-Path: <devicetree+bounces-217715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9252DB59016
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:11:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B896FB59022
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:14:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C9D1748E7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:11:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70DE13BB0EE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90F82868A1;
-	Tue, 16 Sep 2025 08:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26C12E5430;
+	Tue, 16 Sep 2025 08:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FyE619/e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QjNyl9ex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E05286881
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7439824A3
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758010293; cv=none; b=Ly8wDjyPP837ci7jRDmH38EubKKRrIXSkcHnOgBWDB+5dHpa9FxaDDnIKcapMxc9GiO8knI9qm2nlSf6kEfkQMKxZZwzfKrBl56Ofda8VXCku2XTDT9pzLhwr1+2ttoPaq+HOT1nGs4Jn6BAAhlwBrUEukgFD4s96zKyDMvViIM=
+	t=1758010450; cv=none; b=COaM42AFQLbRloct8bGEW5WpgFRhbZZyd+1PCrKGPTv3uKA6Codx9bty1I2WPPaqJPg5j5uDrElKNgTrm1q5xqZGE0/3gNngj00L2XDKtehhyS3Cb4thjwSR2iQT7Kv55iHNHk9+C62pA7eABKzOxe2+HM1zlepbWK+lkmQwp0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758010293; c=relaxed/simple;
-	bh=HyfOs7rbrqIWkqNzUpNMAaZLN/rofAij+yVLXi5+pCc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p/SKW7rQVQPXdSFObaBDT8bbjFgZkb9zDmJKxsOrbH1/IKuwj1iXm3cnIpo3ESLFRGngs4lrjU+/22y0RWeTllyLQ9H8QLBPpqsP2OS4zbRz/VHHp97M/tTdFFnm93ki18vzsiKMSSeKRygu7Ijf8BtRY0I3lLbkFCSAtHhTddI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FyE619/e; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1758010450; c=relaxed/simple;
+	bh=OkRn3wi3vVLwlm/wDKzvfBew8i5CbraIcmJaOETj/3s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PCp9AWoFge+feH02dSOfH2vTqaw4HPiEXzMQaZon/4qQ4XV60qs8pjYCrpfDyLA6ffp8UbwSdhgEYLIGuJtsESjPfH9o/nbBKDnfUF61ee7Gl0dqTsIlT/4XRUxW+EFX1YftdcDy3cUzIsgQYErdcjYqmaaeW52tsax4fhRPUqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QjNyl9ex; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45dec1ae562so46754945e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 01:11:31 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-336b88c5362so52071551fa.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 01:14:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758010290; x=1758615090; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gZZORlflm4LecF9/7KAxcGVbVXdKEFLgc7zSGL4QiDQ=;
-        b=FyE619/ekNoM2cBJJesnCrJFqk1gzaO5s+3bZDrODZx1VANC213nn/EDNtF4Q4/9cJ
-         saHAMyFT0wKV2dTG8J35qDVfvLfXEGYaWvVsISBaMU+nrPAnSnQyrj5ISGdnYRNEToEq
-         mBJYioqwU2I+AGfrsDBVqNVv/lxSQJIhhcd8Ec2LJ0AVHxNzCiORbeYoZg6dnOEi6B9L
-         VaUEE/gOYehHAhcs28VdzD5g6t0uZqGcz0EdRaCks5ME8V770gOemiQzUoFPV1a9YYej
-         DfvgcQoeXrIBEYM4uhnLQ6R6LNG0gmIdxQK6wCk3Gr60QdxAWqETNt4rpLOuiTisatuz
-         Qtzw==
+        d=gmail.com; s=20230601; t=1758010447; x=1758615247; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jM7l65ARIgofwE06qZfm8EVMSCpb/5Bo5xaYN803ql8=;
+        b=QjNyl9exinOXW2DeNKK2qEYSQo658maKc2gFnzV5hAynCMuw//y5r1Yp2TBHvlxmwn
+         V1znYPL5cITxV1yJFBq5G8ZyVgKgXk5AI8JgYjCcdpyH2YinFjDx2XI+/W7ise6W6BOx
+         KWz/+MevUNH02LbBC2mM5dXIM+C9eAIbh+Hg7rScT6z31a2vWgZLSvo6Eip2hO4Nwdux
+         TE68w30keWAB2cFkrAjUkf2CRmPZJJ+FUDbHhCryO3OZn+0Kq7Ompg07WC3I3Br2oLPT
+         fmyOY5Og15HbYur3DirQsNhvYRovbPj1YVAHUF5qEGU79+3C9yG/eixc0pWANoLJRNrY
+         7hUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758010290; x=1758615090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gZZORlflm4LecF9/7KAxcGVbVXdKEFLgc7zSGL4QiDQ=;
-        b=RQ0nTfOBnGMOLmo6vSIY72/L92J4A6mOgmFozIHYkAe+ljkpOqo7REUe3eZt4uWoLY
-         r2iSEI/3BxxMopk4QN5r5WsGO3iLkjkF0kOG+0JOfeLyLFk5hbAAuocZ4I78y8t3wfeo
-         at+GFGAukf+QbZsjR6C+jP/UaMynbooDm572wYks8WDlgx5diO3vyy//aq87o/C0jott
-         4RwBQplstik6zEf7cPFWRG2fPS5CzoUncTljqg53LXCUIGhb0NIKeap/omy1ddrLhrdX
-         9f/IjcSLFsJdAmFyBWd0fc43JRwlX9Y77vs1iLMOieMRuossCdHD0X+lre8BCXZLu0bQ
-         bI/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXzWDVRAm1Lx/hhXxZQ1t5+eKgeJqkuJE9LlkkYy8GHXQug6/3NdGHYCtI9D5qMHu69pMlDcM/VAbKG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJPgUkz8tPmBh9SJDmv2Uhwi27yN76Xv0IKi8FxxNa7TqHiMj0
-	Q4lZJUkdGDDOO4ZgEKdx9aVRVX8m7UlRr3X0JfJPtKExdQziG71fSmPGBSsKmQO4UMxsbU9Cr8L
-	BCvrnCZEe7DYFiVR0/8tjVyfDTZzh7Ug=
-X-Gm-Gg: ASbGncuqT1NgQfkz5GnB1vg4RMzBtCtWS5WoyZXkbVctPXoVHfbCWhlxGcML4dgTUlV
-	TeqcNGQQ8grTFz7Ly4e/G70LJpZ2OiPi8FRaui29Mt1j/FRUtKpeocrrMAEs4M83JBxsBXXf0VC
-	RqEEHCpsH4zBtwhQEBhEYi/gZIPnUThx0anju0sePu0Boh88ai1a2l5t7hgIXfyjb4YB7wmv+Vm
-	MbwqKrf
-X-Google-Smtp-Source: AGHT+IFqLEMM72PchwIu85GLmuVTTpcOHaMo1tyv7F4Po+jfn8jzAhB3sLa3AaeijxW03w2RP5MM6waIv1XXZtoBSHE=
-X-Received: by 2002:a5d:5886:0:b0:3e6:116a:8fdf with SMTP id
- ffacd0b85a97d-3e7658bcb87mr14615901f8f.13.1758010289683; Tue, 16 Sep 2025
- 01:11:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758010447; x=1758615247;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jM7l65ARIgofwE06qZfm8EVMSCpb/5Bo5xaYN803ql8=;
+        b=I+aZIptNTgMUW2MtFp+cTRRVNhKlzK9ODmMBr1wh4nSrTaJ7sz6QIWVPpqYk9IHsRk
+         4/nMZi8bjGfLwMfhuFxFNSl4ybCyu3YaDpppR4zCjebBR+TZt/bP0PSKLE63uoC4Ndt9
+         +YcfNKRXfM9awfZ1OIL+8t3O+RBGCw9e8UN1cJ6nGAyv9qMf3rwS9aKyMmDl0W+vNqP2
+         vAWseql0P+hlM06puP8n81ytGgTUKe31TaJnCxWBVClrBW+DVMBm3fYksdiFOG68WEDL
+         JfYf4hct83iJbZhcPl5j9E3HbwMVtAoU8UxmKUbIsNTpF+HYmV+GKI4AQRwwvYTvzPFs
+         Sg0g==
+X-Forwarded-Encrypted: i=1; AJvYcCXetktGheK+dPEeUid/Z2zhIfBI0PfTHPUUbYWjA9YsLfcpIjc6k1VF/BlIoEd2+35VDtMc4cBJ+XXq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTjtODHyIYGzivrkpStQVqFZyBYbO73k4FpOgi2MApHjsWowek
+	zTa0rpcGEzqdnMCu3ERQaUFMg0nZCATJCWNiqmOXnt33T0RAQJoZHmQ9
+X-Gm-Gg: ASbGncvV052T5kJyvC8S2pDrfCEgfjIZlUTj76JRt4C+U3gFp2svi1jn+eC9WeGO0+i
+	8HF9ms78CfdNTV3Lz3mbXs5rWMjCF7/GVDMink5GtsGYB7ule2FmdjM8PO+i1hNSwJYkFw7oZCx
+	8KUcInBJioTCoejDGNJj77ViI1Ou2rzkClCVduc3tb4Ewx3rvcM84W3HHb11J3PgDG0fBa+hzQN
+	p07dTzupc/ba0SSVy4tQPsSQHGSrQKYYaK0zTeGSr8mSHnN+NF8/WraGWyqSrfAwk0MOBONE440
+	U1sKYRUvY3eDQqICyYtkraGS3l8rJe2jYtBgzqFOCHETO661WZ0oO2WhEUPoUrK9ZmNA296x4Vn
+	MLpDe0cpthhzZ4VGJAvVgDSBNW2T3b5BIzOXUK0Pxwq/1/KmLx2UXUebSTV7tJGH9/fwr+Y5NtF
+	z9TrCo
+X-Google-Smtp-Source: AGHT+IEJVE0MZfILx6PWce4nwraMO2Nm8lxid/SAnbgN3RqRMuFMYn2p9OaYKJPnb6fEuEss67LUxw==
+X-Received: by 2002:a2e:a016:0:20b0:336:7e31:6708 with SMTP id 38308e7fff4ca-351403eccb1mr36499181fa.37.1758010446711;
+        Tue, 16 Sep 2025 01:14:06 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-34f163f495esm31002351fa.24.2025.09.16.01.14.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 01:14:06 -0700 (PDT)
+Message-ID: <14d3dc56-c6cf-464a-9a57-2a7a6afe8af9@gmail.com>
+Date: Tue, 16 Sep 2025 11:14:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250915060141.12540-1-clamor95@gmail.com> <aMf6DLr8pTCP8tKn@shikoro>
- <CAPVz0n3m9VOV5unVHhU67XQnk4jckA+zyJdCHXu2fFxCSht4JQ@mail.gmail.com>
- <aMgzzqhXeOi5cn3f@ninjato> <20250916081955.2826c6a8@bootlin.com> <ffa2a954-d161-45f1-a83f-509148be3b6f@lucaceresoli.net>
-In-Reply-To: <ffa2a954-d161-45f1-a83f-509148be3b6f@lucaceresoli.net>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 16 Sep 2025 11:11:18 +0300
-X-Gm-Features: AS18NWCT5GhXoRK8bMJ59n5EJHC15a_WloTpuyCeHJD_J5GBYxnxIFrz9tOt418
-Message-ID: <CAPVz0n1aPWZhmCAft_58-eVaynhxWJRodEzuLE8aqWqqGQHR=w@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] i2c: muxes: Add GPIO-detected hotplug I2C
-To: Luca Ceresoli <luca@lucaceresoli.net>
-Cc: Herve Codina <herve.codina@bootlin.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, luca.ceresoli@bootlin.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
+ <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
+ <aMge0jYwYCiY72Yb@smile.fi.intel.com> <20250915211321.47865d3d@jic23-huawei>
+ <c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
+ <20250916090206.02f601be@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250916090206.02f601be@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-=D0=B2=D1=82, 16 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 10:50 Luca=
- Ceresoli <luca@lucaceresoli.net> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hello,
->
-> thanks Wolfram for pulling Herv=C3=A9 and me in.
->
-> +Cc my Bootlin e-mail address
->
-> Il 16/09/25 08:19, Herve Codina ha scritto:
-> > Hi Wolfram,
-> >
-> > On Mon, 15 Sep 2025 17:42:06 +0200
-> > Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
-> >
-> >> On Mon, Sep 15, 2025 at 02:53:23PM +0300, Svyatoslav Ryhel wrote:
-> >>> =D0=BF=D0=BD, 15 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 14:3=
-5 Wolfram Sang
-> >>> <wsa+renesas@sang-engineering.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >>>>
-> >>>> On Mon, Sep 15, 2025 at 09:01:36AM +0300, Svyatoslav Ryhel wrote:
-> >>>>> Implement driver for hot-plugged I2C busses, where some devices on
-> >>>>> a bus are hot-pluggable and their presence is indicated by GPIO lin=
-e.
-> >>>>> This feature is used by the ASUS Transformers family, by the  Micro=
-soft
-> >>>>> Surface RT/2 and maybe more.
-> >>>>>
-> >>>>> ASUS Transformers expose i2c line via proprietary 40 pin plug and w=
-ire
-> >>>>> that line through optional dock accessory. Devices in the dock are
-> >>>>> connected to this i2c line and docks presence is detected by a dedi=
-cted
-> >>>>> GPIO.
-> >>>>>
-> >>>>> Micha=C5=82 Miros=C5=82aw (1):
-> >>>>>   i2c: muxes: Add GPIO-detected hotplug I2C
-> >>>>>
-> >>>>> Svyatoslav Ryhel (1):
-> >>>>>   dt-bindings: i2c: Document GPIO detected hot-plugged I2C bus
-> >>>>>
-> >>>>>  .../bindings/i2c/i2c-hotplug-gpio.yaml        |  65 +++++
-> >>>>>  drivers/i2c/muxes/Kconfig                     |  11 +
-> >>>>>  drivers/i2c/muxes/Makefile                    |   1 +
-> >>>>>  drivers/i2c/muxes/i2c-hotplug-gpio.c          | 263 ++++++++++++++=
-++++
-> >>>>>  4 files changed, 340 insertions(+)
-> >>>>>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotpl=
-ug-gpio.yaml
-> >>>>>  create mode 100644 drivers/i2c/muxes/i2c-hotplug-gpio.c
-> >>>>
-> >>>> Adding Herve and Luca to CC because they want to achieve the same wi=
-th
-> >>>> their I2C bus extensions, no?
-> >>
-> >> Sorry, a misunderstanding: the question was for Herve and Luca. I want=
-ed
-> >> to ask for a comment from them if this is the same problem (which I
-> >> think it is). The question was not meant for you.
-> >>
-> >
-> > Indeed, we try to handle the same use case.
-> >
-> > The i2c-hotplug-gpio.c driver handles only an connector with an I2C bus=
-.
-> >
-> > On our side, we try to have something more generic that can handle more
-> > than one I2C and some other busses and resources (gpio, pwm, ...) wired
-> > to a connector.
-> >
-> > To move this i2c-hotplug-gpio to our proposal direction, this should be=
-come
-> > a connector driver with a i2c bus extension and an addon DT describing =
-the
-> > i2c devices available on the addon board.
-> >
-> > The connector driver should monitor the gpio and apply the addon DT whe=
-n it
-> > detects the addon plugged.
-> >
-> > Also, I am waiting for conclusions in the export symbols discussion [1]=
- to
-> > re-spin the i2c bus extension series.
->
-> I just have one question to add to what Herv=C3=A9 wrote.
->
-> I guess in the big picture you have a device tree where all
-> hot-pluggable I2C devices are always described, but they won't probe
-> until i2c_hotplug_activate() adds an adapter for them. Is my
-> understanding correct?
->
+On 16/09/2025 11:02, Jonathan Cameron wrote:
+> On Tue, 16 Sep 2025 07:52:07 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 15/09/2025 23:13, Jonathan Cameron wrote:
+>>> On Mon, 15 Sep 2025 17:12:34 +0300
+>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+>>>    
+>>>> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
 
-Yes, your understanding is correct, i2c_hotplug creates a i2c mux from
-parent with a set of always described devices by GPIO signal.
+>>> --- a/drivers/iio/adc/rohm-bd79112.c
+>>> +++ b/drivers/iio/adc/rohm-bd79112.c
+>>> @@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
+>>>           data->read_xfer[1].rx_buf = &data->read_rx;
+>>>           data->read_xfer[1].len = sizeof(data->read_rx);
+>>>           spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
+>>> -       devm_spi_optimize_message(dev, spi, &data->read_msg);
+>>> +       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
+>>> +       if (ret < 0)
+>>> +               return dev_err_probe(dev, ret,
+>>> +                                    "Failed to optimize SPI read message\n");
+>>>      
+>>
+>> I am not really sure under what conditions the
+>> devm_spi_optimize_message() could fail. It might be enough to print a
+>> warning and proceed, but I don't think returning is a problem either.
+> 
+> No. Don't proceed on an unexpected failure whatever it is.  That's
+> storing up problems that may surface in a weird way later that is much
+> harder to debug.
 
-> If correct, this implies you can connect only one type of dock. Multple
-> dock models with different peripherals cannot be supported.
->
+Just a generic note, not disagreeing in this case.
 
-This configuration is used for ASUS Transformers and they don't have
-multiple docks, only one accessory is used and it is not swappable
-even between models by design, not even talking about different
-generations. SO configuration used by Transformers can be described
-just as title says "GPIO-detected hotplug I2C" devices are fixed just
-can be detached, but never swapped.
+I have had similar discussions before - and I have been on the both 
+sides of the table. Hence, I don't have as strong stance on this as you. 
+On some situations it is better to just try proceeding as aborting the 
+operation brings no sane corrective actions but just reduces a device 
+unusable.
 
-> Best regards,
-> Luca
->
+On the other hand, as you say, usually bailing out loud and early is the 
+best way to pinpoint the problem and get things fixed.
+
+I still think that logging a warning should be a decent hint for someone 
+doing the debugging.
+
+Well, as I said, returning here is Ok for me - thanks for taking care of 
+it! :)
+
+Yours,
+	-- Matti
 
