@@ -1,119 +1,171 @@
-Return-Path: <devicetree+bounces-217743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C22AB5922D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:27:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83212B59232
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B6A0161D04
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:27:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1513AC5F2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7955296BA4;
-	Tue, 16 Sep 2025 09:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F34299AAA;
+	Tue, 16 Sep 2025 09:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=flatlinemusic.co.za header.i=@flatlinemusic.co.za header.b="scMCVMlE"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="GzKxFp5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from seahorse.cherry.relay.mailchannels.net (seahorse.cherry.relay.mailchannels.net [23.83.223.161])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2112A296BB8
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.161
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758014853; cv=pass; b=PTs4mk4dmtPt98ttt/tkR/uZvWJ2J1Ov8Tabc8qIYyUASKSoeX/zWQH6xuiZGo9oEMPYVE9tj2l5R+AQjKT6cQBGaN+BdjSe3XcUD+Yy9XzfOlDu+y82aU2wb4L3sMU9eoYyjKsiBRtVg49GXtQ8fHy1zEz5flGN+T5duLLuU8A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758014853; c=relaxed/simple;
-	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=;
-	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=A5Kj0wqGEsELknw+181fqKtuBdXdrSh04vIgcIMH7DhGOj/vAZ+oRUW78glgBW+4YfLlPA9nbAePnlCyOgebESbwkF8nb+cKNUPgUA/MbtrGu4IBpMRwmroYsq3Y8nJTR2NGcrXwKif241ARVgHpM6Jr/U5bRQdet0j+8VTOBDI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flatlinemusic.co.za; spf=none smtp.mailfrom=srv64.hostserv.co.za; dkim=pass (2048-bit key) header.d=flatlinemusic.co.za header.i=@flatlinemusic.co.za header.b=scMCVMlE; arc=pass smtp.client-ip=23.83.223.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flatlinemusic.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=srv64.hostserv.co.za
-X-Sender-Id: webafrica|x-authuser|flatlinemusicco
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 75BA86A0EC2;
-	Tue, 16 Sep 2025 09:27:22 +0000 (UTC)
-Received: from srv64.hostserv.co.za (100-107-16-248.trex-nlb.outbound.svc.cluster.local [100.107.16.248])
-	(Authenticated sender: webafrica)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 646366A10F1
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:27:21 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1758014842; a=rsa-sha256;
-	cv=none;
-	b=q1T1p63JN6Pvw0bQOMfVfIPc3chTscaYwbAxB6s4FB2GmlyDWsfRIBL27WC6HEAEWbEAWa
-	0qkpCoPsqcvCE/7CVDdvOoda7LB5/+Z/rlzvq8VYZ0xPVXA7H4k/LlcWHIlqD/gy2v42HF
-	8y+afGvlD/hJrJcyT5MBjyR6J6q7qwg90pe5fQEnuG9oXztFMoGhTgyc8ovakJqDQ9/2Kg
-	oO+EyqrokMgnh/8z/Pf0OXsBvIeoZvl4yc8nH8P+lyhTkdxfDhwn6EPry2so8v99uzaYRe
-	ZLqGxGFnF6ONkcSL3cMJAlBpMg65apCnUttxDf5Ah67EPKOljz4AGAqG6L40uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1758014842;
-	h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:mime-version:mime-version:
-	 content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
-	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=;
-	b=q7tR8EVz7y2oe34+PCoSS8XV9icNjbs8vYa9x2SvWAG8Yd/qXaHJn/EBgVRqpDAA2hkh0n
-	jE3dgROenCOtHWuJhCyp+uoaDSen0Yf3xLyUjPwiQjU795zlKRUoqZhqs3vj9TKxdTlHh5
-	BtIXPnClsLGsJHVWTUfUMlOmMkSkFOwh9037i7vZOhVCUdC9W4ftzipu0feMfp8og/9z1w
-	9pFAxEnsD2zn5I7Gd0c7DtnK45GBemNj9xRFpoHOSzwnRIepyeJgyI8O6EIvC5HLvuXb7E
-	xBJ4NPVEbUO93K+5BiHCQTKlDxpT+ve4YiqjYkN6GUNcE8xOHy0RLErctYX5zw==
-ARC-Authentication-Results: i=1;
-	rspamd-d4f76d97f-dwfls;
-	auth=pass smtp.auth=webafrica
- smtp.mailfrom=flatlinemusicco@srv64.hostserv.co.za
-X-Sender-Id: webafrica|x-authuser|flatlinemusicco
-X-MC-Relay: Neutral
-X-MC-Copy: stored-urls
-X-MailChannels-SenderId: webafrica|x-authuser|flatlinemusicco
-X-MailChannels-Auth-Id: webafrica
-X-Zesty-Shrill: 24e90cf847df5306_1758014842361_937959508
-X-MC-Loop-Signature: 1758014842361:3629821683
-X-MC-Ingress-Time: 1758014842361
-Received: from srv64.hostserv.co.za (srv64.hostserv.co.za [41.185.8.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.107.16.248 (trex/7.1.3);
-	Tue, 16 Sep 2025 09:27:22 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=flatlinemusic.co.za; s=default; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Reply-To:Message-ID:From:Date:Subject:To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=gBiwBiK46kUW3HXBzZR6938yovtSIwNHBCA1YWpF3uc=; b=scMCVMlEcn7wcwhtVine+uke/D
-	aue/iAkwSphte/Bf5kYdvOx+acNMKas48pyXcq1UneGiqXzNHT90Ik5A6+HfJ1zsFixevzOrm59DB
-	Svpn0Y4qeEzGzJELCs7mOVvR1fF6bkKK6Ayy71QwXpf2oEBPYqgMeUMxtJOIXIfWn0rddE8Ymz4iU
-	VmKbrbo8ufvlSzlIZHiimljQrb7M3e5DoTFP6rmPpkltXGjQEZe9ChUqcMnQCLs1h/o9JI7p37361
-	w5ZRMAKsOmu3xp9D+3uiCKOEyKSoxqFkDCDVzFNvNA5gaxQfqGbXX7oVdkyaGi+9YCwkmAdKY+FSx
-	lwalSnQw==;
-Received: from flatlinemusicco by srv64.hostserv.co.za with local (Exim 4.98.1)
-	(envelope-from <flatlinemusicco@srv64.hostserv.co.za>)
-	id 1uyRy2-0000000BDXp-09vu
-	for devicetree@vger.kernel.org;
-	Tue, 16 Sep 2025 11:27:18 +0200
-To: devicetree@vger.kernel.org
-Subject: FLATLINE MUSIC "Welcome,  Join Now"
-Date: Tue, 16 Sep 2025 09:27:17 +0000
-From: FLATLINE MUSIC <info@flatlinemusic.co.za>
-Message-ID: <67503c66ac328e332f1008049d4d7fd9@www.flatlinemusic.co.za>
-X-Mailer: PHPMailer 5.2.14 (https://github.com/PHPMailer/PHPMailer)
-X-WPCF7-Content-Type: text/plain
-Reply-To: info@flatlinemusic.co.za
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFEB28467B;
+	Tue, 16 Sep 2025 09:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758014992; cv=none; b=KBoHvTqkvq7Yg6Y8sc+m53Fbh+Mu4pCkbrAoP+ugqHfHlfPJXGFY+BJv3Kc598poCfvqT3AFyJUI6teMYeMI0pDww8nNbX2C2xPmEwz0R+jmKkpXCUfrq6CaR1zubgYrbv9+vDFhMcJiZI1Ft/4Fir1XI78bdYIOLTpbQG7QxBs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758014992; c=relaxed/simple;
+	bh=pN3BP6YuPc8dinCC142EZnQ6btd+OPo8nyHYWbARw3Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fbZ8bNVB/+KDdytKvB4XKXbvBssvyA0DrfMlMHVlKLitSSua7Pj9RvcocKy2ikAKSHCARruMInilbisC7EI7813rt1qig6OKGCjU8clQpEkAo2pP0RQBW7h4VznPp7UTSWlXG/SbtdVWbpKC1B2eh/XdEjhCePiJxdncQ7aGcao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=GzKxFp5r; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id D5E15534076E;
+	Tue, 16 Sep 2025 11:29:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1758014985;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=nImdRmsvWqLFfWBLK4h18lVd6Gvsyn5jqNa6GLW2IIM=;
+	b=GzKxFp5rNVxZL6RFWLGzNiRy4EFM9lxYUOd4J2Z54J4m0bvmNcn2sPHXBi7MI/L6E/j6lC
+	Xvzaxr1XXlwj7W5GjzzTqeb2MU3lGSwol3sre/DbAI32ElGSgeu4qXTMfASvuqFaLT5tgW
+	ADpw/ohIh4dU5BL5beMY3CZv4BWzbRg=
+Message-ID: <b223a48e-952c-4825-bf82-e8922434e3c1@ixit.cz>
+Date: Tue, 16 Sep 2025 11:29:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Sender:  <flatlinemusicco@srv64.hostserv.co.za>
-X-AuthUser: flatlinemusicco
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v5 0/7] Input: synaptics-rmi4 - add quirks for
+ third party touchscreen controllers
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250731-synaptics-rmi4-v5-0-cd0d87d34afa@ixit.cz>
+ <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Message Body:
-Hello, Congrats! You're invited to discover our exciting project. Confirm your account: https://tinyurl.com/mrf4dzfj#mZI34y activate. Note: Didn’t sign up? Ignore this.
+On 07/08/2025 06:29, Dmitry Torokhov wrote:
+> Hi David,
+> 
+> On Thu, Jul 31, 2025 at 11:06:50PM +0200, David Heidelberg via B4 Relay wrote:
+>> With the growing popularity of running upstream Linux on mobile devices,
+>> we're beginning to run into more and more edgecases. The OnePlus 6 is a
+>> fairly well supported 2018 era smartphone, selling over a million units
+>> in it's first 22 days. With this level of popularity, it's almost
+>> inevitable that we get third party replacement displays, and as a
+>> result, replacement touchscreen controllers.
+>>
+>> The OnePlus 6 shipped with an extremely usecase specific touchscreen
+>> driver, it implemented only the bare minimum parts of the highly generic
+>> rmi4 protocol, instead hardcoding most of the register addresses.
+>>
+>> As a result, the third party touchscreen controllers that are often
+>> found in replacement screens, implement only the registers that the
+>> downstream driver reads from. They additionally have other restrictions
+>> such as heavy penalties on unaligned reads.
+>>
+>> This series attempts to implement the necessary workaround to support
+>> some of these chips with the rmi4 driver. Although it's worth noting
+>> that at the time of writing there are other unofficial controllers in
+>> the wild that don't work even with these patches.
+>>
+>> We have been shipping these patches in postmarketOS for the last several
+>> years, and they are known to not cause any regressions on the OnePlus
+>> 6/6T (with the official Synaptics controller), however I don't own any
+>> other rmi4 hardware to further validate this.
+> 
+> Sorry for not handling the patches in the last few submissions. I am
+> planning on addressing them once merge window opens.
 
---
-This e-mail was sent from a contact form on FLATLINE MUSIC (http://flatlinemusic.co.za)
+Hello Dmitry, kind reminder about the patch series as the window is open.
+
+If you'll find a time, there is also one small, but important patchset 
+improving the Linux phones/tablets experience here:
+
+https://patchwork.kernel.org/project/linux-input/list/?series=987495&state=*&archive=both
+
+David
+
+> 
+> Thanks.
+> 
+
+-- 
+David Heidelberg
 
 
