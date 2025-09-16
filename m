@@ -1,360 +1,126 @@
-Return-Path: <devicetree+bounces-217925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4865B59BC9
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7B9B59BC8
 	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E8C8188AAC3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:11:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AD5E188C918
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EDE305071;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D8433A01D;
 	Tue, 16 Sep 2025 15:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="Kwxqx+c9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="flAGKLeT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A750C30C624
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C343164D5
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758035472; cv=none; b=dDtvDBfw15YmuYItKFPUmAQbOrtgYzAJmxeYb74FcF5cJUvZS6E00uiACABlvN+kI0ilDa0BdCBzsu5VPW/8ZUHSmoFpiGmOdEgRfvE/WY9mnzMIw5mw6QlnDnapHaceje+PU3NldyS8GnCMRmgnJee7RL7xbMeBuhh4OlpUXx8=
+	t=1758035472; cv=none; b=OFYupWXRNclMFk8UtxWf57oWmBMhswbCb5rw80K4P0ChdYl2xsiid/qvsTDKxUwTOzItm3WE20HSAdg3Kj9oMJO34Lpy5yqryhVkU6N+6Y8mkdMePGXUM2RFMHq71pZeMJ1CcDVZuZle3nmOuiGu8JPc3GundEAd6D+6qniTzII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1758035472; c=relaxed/simple;
-	bh=xkmrgQrzuoinSGmLnFEEJ2AOTZir1zfdepMZ+yTs35I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UpqcdrF1rTd2WFEc2Uj9REnlucLRVWnk0E93sPgXYSQSJAp8aqYGTlbePJ077k7XWOxsuopMvTi73bW6qfNwCHl4/0ZKUHwirz0HzZXdsedHf4T+iZnEI5oknVqfCgSXePEq0RV/spc4PnL9E16btOpSbKsCLamvvTWjJLclkRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=Kwxqx+c9; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45cb6428c46so66898315e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:11:09 -0700 (PDT)
+	bh=L+u5QAY/g53mrNOSFhQziio6E/nTTNyYqNyfrjO4mGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HaimCwc1s1Exd91S2Nc1vDsMzUv6ItNXI3SaQnSRsGYO/I2PvrCT5kMEWPSwaVXwmkjMKSLuK6Vyoc/6LmncvJ+TvRYBMK99sTjnmboGtlWOag27aD/+M8MquwvodZ6EGngtbSmTDMdBfUzS2+2IyiuGWAFn6JE8Jsc4Zh38Htw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=flAGKLeT; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b0e7bc49263so400326566b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:11:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1758035468; x=1758640268; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bPk7Eye8VC0M0v+kNj0lPuEjCqs4U6Y0PjjlUqi87Gk=;
-        b=Kwxqx+c9xZ+R1Dg24p2JdxMfNYD0TB6u9cEOJg/8odcn41P4rNX8ARLyA1hTjEetz2
-         moAK6NQLNbEgqxlo8bRrRhcEWuRJxSXZPAJb6Ps4Ai2eRyqLXXJ5AXpax0PjZatXtVNn
-         vBcCtwQ0Y+HjVp8wg7TXmaVytkW1Ad7bFcNDDxgQCZJWiAUIwxY2AnP6TFmAL81Kbn1W
-         5Zbay31a07wIIGwB7JNAHUQyfSCDIeF9at8if6uAZn2ML2rzjyH2vP71f3aO2NSI/fMi
-         cDT4ChbEa22gh+9yLQ73YW0qZ/8W4fIikYgWeFj7Qavda0TtfGBQsh+/3IpdCEJ63yxN
-         TbXQ==
+        d=linaro.org; s=google; t=1758035469; x=1758640269; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WSIWZxM7MhxYYBISjP+LvVgOq0iQr9M2pD8SpX1vq/Y=;
+        b=flAGKLeT+J9p4d2hqYyuaWIPGT4YM1qjViT7ZexoZ/Dbeal6QF53Kpj2DTLu8wdt9N
+         4x1WDSeEywW72lLwprO3QlvsmFB70/yvuMxFa4/N5/nQw04FGkKULzwry0W8cDxgGab1
+         ahdXCaRPxhMB2f6CeKiSDqTewJMwqnF+c0BhOuFKqTcias8rV70P5nVkUdmqLPuYKUL5
+         S2+DZW5ntExtG6vDl3cT6XPqj3K4kuOYJ8RoBF8chTD0x4QaCMgg1lq86fMwis9Ar1zg
+         PY3+a5q91O7euFyecT2h1S1Hi+aan7ikGcH3yt4ROowR5OX5L11fMh0T3EviLy8XCAq6
+         aQoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758035468; x=1758640268;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bPk7Eye8VC0M0v+kNj0lPuEjCqs4U6Y0PjjlUqi87Gk=;
-        b=julqYBCMwbV1/jPfz7VBwRV664Jr7IjpPfcSywrKavlktuStp7EVen1YDMsmvVAtIf
-         VeLElO6NqCsmbFPgqySNr8d41PBgtgpVhlzaRD1gSu0HaC5pJTE4vjvoi3mNF+fJ24BA
-         REseqTDimAQAUoQHb3qCd0Ii8kC+E5ypneNt4P/AisxaJhjjvpinQbbW7bE4jCSgkiJw
-         RiLCLNP6aduAh563eglp7Kj/kZTiVCIhBJ7W43NwIQlDrlWWkaAu7jovPCmVA8eSb46B
-         5280RjIF6ZZIONkrwq8GfaS1YORMsnHLhpAiJy4HYbBYIUCVEfPRjiT8K0/Vs/stgj2U
-         gt7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUE7GF4ZU8IVrMOA18dfYU0na62+y/t9yB8G9rbC+q2ZuplozsNR0pS0lln4twKl1yC+EEe+3b8F6Qj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhTQtcdi/QQJj6TzY01zvfg4QjzGYaJDI/8LMe89tofyT2Pcb+
-	RajD0M6uuinErB8774C7Ycurs4n2X3lhcR/klUI+lNy6VlAWEnVjfGl+8SEFHiFATJQ=
-X-Gm-Gg: ASbGncscAIkz9stsqr4vTB1lgLeOEp3QEDCQnf89XH8GgQlg0JW+0JzudEvwNJVD+0l
-	sgjMY3QKb7TwwaYNWbd1mo/cfTLkOJsXg1mrSKr1F/uV50mU62D2fAHx9JZ7VZhSx8XjIkU/zrg
-	fvtCDYcBuDEkLs71mBq5v4fT9lI9/h/tGUi5n+ois9MW2ThgX7daPmaimZ8ntxqLOHMBcT7Q1GK
-	/Z8IvhT/bNTTAlFA7XaqCXlI5Q+s8M1AijGO1Y9deBS4QJ4pHCEuuWxvhOdnaDmZCpjgjFkILL3
-	HjbhpFxKv2uiYJnJTpXelRFKI/GuDv9avVLWWIKRqO+UbsaexyRJFjm1cGExd+fWRmekoC8s1Q+
-	u0u3b3MrsJAXq7MP4i0xRbjt+wfrJtydLCjdV
-X-Google-Smtp-Source: AGHT+IHbw6qxWvt5wbaMCmyumPYxGMAg1kB+B0i3NMY43imy1I5P/7lTqLPtuRpzSsTf960J7N+NIg==
-X-Received: by 2002:a05:600c:1c87:b0:45b:67e9:121e with SMTP id 5b1f17b1804b1-45f231e59f5mr159038485e9.14.1758035467495;
-        Tue, 16 Sep 2025 08:11:07 -0700 (PDT)
-Received: from [127.0.1.1] ([2a02:c7c:8a3e:8c00:9fef:1965:7419:ed5c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f325c3c29sm19772955e9.3.2025.09.16.08.11.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 08:11:06 -0700 (PDT)
-From: Harrison Carter <hcarter@thegoodpenguin.co.uk>
-Date: Tue, 16 Sep 2025 16:11:01 +0100
-Subject: [PATCH v2] dt-bindings: leds: as3645: Convert to DT schema
+        d=1e100.net; s=20230601; t=1758035469; x=1758640269;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WSIWZxM7MhxYYBISjP+LvVgOq0iQr9M2pD8SpX1vq/Y=;
+        b=ivsByjZQv5nPUMX9cHgTZNwFGo+XEA9mjiqUXo5tJRHQT5BTzOPR940H1FoGXSA7rb
+         otyfhJ3EoVSBCdvRZ8+bua5hUPUhshTQtdR85+kOKmzH/zKgIW2HPp2TtcknsvMYcq8K
+         Qlozm8CDi+g1hzOzaYHqBh9snjq8tevTK4HCeoSQusJ/S3Sz8hdreNd6Ew4vTtv1tGJm
+         9JHOOKN0CW4WBgK0rNmIrhaBDz3hJZdkd2KPiXDIO/O5oA9xEJfn1GCNzHCyzvdVUw87
+         oNtT99R57RWQWH1aZweD1/rxiW7+VXBdt7fNfaaE9iGhLgMh+2pvJjnAc1Ux0sKgP0Nz
+         Te3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXRrtUbJiCMptBOpwAE0gqHk/a8iWhZ/nQgG+JsTVW+t3zJ+jDp8MkeqeVxw5/MgpBFKQ3/+qyNBBsJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBSpaNN46Ef7JVhgpJvsSknGPf6VwG8WF63ogLYet0dpakt/BP
+	XvVL4FKv/cSqjV0HVISs5rW+uOQQC8L3dZ6zJpGuWeIU0PLkhE08tItaZAGwjuNeROc=
+X-Gm-Gg: ASbGncuFViRmceciQ+QT0eU7fzCVje7aQvnvSG5GSpSQex1YtO6Ndvog6mwAXYp1vKn
+	ymPChaZRaTfAylK5teHszxhlZGwvtPTsVP1NHcsaf0uAaXL8VDRb4eeRV+0V3QjhxoDGFIrzc5G
+	V4z6UYjBpJMRS43aULAX6dKmpXzVG5uxHir7MxKnwDS5kiJoG9jnDak9qOtEuIbdEuVHkqM2a+X
+	qsrPKSGhvBI+LZ3LPdozHZTLqfJ+reU3EDTdYNnpFxDAvsQjS904gyUsY2VzT/aafN9nhRzF7iv
+	rZqDBbPZffuSGkc5vl1Z5eF7uU0chTZEa5YqeD11RD2shB3YrrEsNlOUYmSkKz+EQxgfByfBntG
+	1OIiqrz3abO6ApvaEfv8OCOpcF9tszg==
+X-Google-Smtp-Source: AGHT+IGE38GAQpAlNcaY6PmQ2ym8i+fHkW59Dfqvwtzp8Gs5cBbakiisuLH5KtCDcSUCd890i3tcSA==
+X-Received: by 2002:a17:906:fe44:b0:b0d:5e0d:eaa4 with SMTP id a640c23a62f3a-b0d5e2c7bcbmr1075066466b.16.1758035468798;
+        Tue, 16 Sep 2025 08:11:08 -0700 (PDT)
+Received: from [192.168.0.24] ([82.76.24.202])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62f5da1c32esm1989288a12.38.2025.09.16.08.11.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 08:11:08 -0700 (PDT)
+Message-ID: <9d74713c-00fc-4a17-92ed-b3e3420160e1@linaro.org>
+Date: Tue, 16 Sep 2025 18:11:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: lemans: Remove unnecessary cells from
+ DSI nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250916141931.601957-1-eugen.hristev@linaro.org>
+ <kday4tlzjmycgfexiaxgwnan3a3nfxt7sgslncsktcyw5bmr7d@nmjtdm3gd2sk>
+Content-Language: en-US
+From: Eugen Hristev <eugen.hristev@linaro.org>
+In-Reply-To: <kday4tlzjmycgfexiaxgwnan3a3nfxt7sgslncsktcyw5bmr7d@nmjtdm3gd2sk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-ams-txt-to-dt-schema-v2-1-6a9db6fb7ea3@thegoodpenguin.co.uk>
-X-B4-Tracking: v=1; b=H4sIAAR+yWgC/22NQQqDMBBFryKz7kgSq2hXvUdxEeLUDMVEkigW8
- e5Nhe66fA/++ztECkwRbsUOgVaO7F0GdSnAWO1GQh4ygxKqFp1oUE8R05YweRwSRmNp0qhbJUm
- QqMy1gTydAz15O7OPPrPlmHx4ny+r/NpfsPsfXCVKbHUljKpNq7r6niyN3g8zuXFhVxpfLi/oj
- +P4AGbVpgfDAAAA
-X-Change-ID: 20250906-ams-txt-to-dt-schema-a821e0e03c46
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Harrison Carter <hcarter@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758035466; l=7070;
- i=hcarter@thegoodpenguin.co.uk; s=20250904; h=from:subject:message-id;
- bh=xkmrgQrzuoinSGmLnFEEJ2AOTZir1zfdepMZ+yTs35I=;
- b=T+hrbsjhuiEhtbX04hVENKpnyxlzf2ToED+98eAqkcnPzJJHixSsCzNM8wYKKDNbGjsRjjFyS
- bcZvHbqKkusChPF/5d5ezVbCmPg9/Em+PdbEzY2XrrCU/j5n0ehhwx7
-X-Developer-Key: i=hcarter@thegoodpenguin.co.uk; a=ed25519;
- pk=xn5ghTMMWQniDtZih4xwKCTAaBHDozflTmqNKtaKo6s=
 
-Convert the ams,as3645a.txt to DT Schema format.
 
-Signed-off-by: Harrison Carter <hcarter@thegoodpenguin.co.uk>
----
-Changes in v2:
-- removed unnecessary descriptions
-- cleaned up clear text
-- fixed syntax
-- fixed line length
-- Link to v1: https://lore.kernel.org/r/20250909-ams-txt-to-dt-schema-v1-1-8a30c25c8295@thegoodpenguin.co.uk
----
-maintainer: set to what I found in MAINTAINERS
----
- .../devicetree/bindings/leds/ams,as3645a.txt       |  85 --------------
- .../devicetree/bindings/leds/ams,as3645a.yaml      | 130 +++++++++++++++++++++
- 2 files changed, 130 insertions(+), 85 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.txt b/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-deleted file mode 100644
-index 4af2987b25e92394ebd46456e30002d3ae3a6101..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-+++ /dev/null
-@@ -1,85 +0,0 @@
--Analog devices AS3645A device tree bindings
--
--The AS3645A flash LED controller can drive two LEDs, one high current
--flash LED and one indicator LED. The high current flash LED can be
--used in torch mode as well.
--
--Ranges below noted as [a, b] are closed ranges between a and b, i.e. a
--and b are included in the range.
--
--Please also see common.txt in the same directory.
--
--
--Required properties
--===================
--
--compatible	: Must be "ams,as3645a".
--reg		: The I2C address of the device. Typically 0x30.
--#address-cells	: 1
--#size-cells	: 0
--
--
--Required properties of the flash child node (0)
--===============================================
--
--reg: 0
--flash-timeout-us: Flash timeout in microseconds. The value must be in
--		  the range [100000, 850000] and divisible by 50000.
--flash-max-microamp: Maximum flash current in microamperes. Has to be
--		    in the range between [200000, 500000] and
--		    divisible by 20000.
--led-max-microamp: Maximum torch (assist) current in microamperes. The
--		  value must be in the range between [20000, 160000] and
--		  divisible by 20000.
--ams,input-max-microamp: Maximum flash controller input current. The
--			value must be in the range [1250000, 2000000]
--			and divisible by 50000.
--
--
--Optional properties of the flash child node
--===========================================
--
--function	:  See Documentation/devicetree/bindings/leds/common.txt.
--color		:  See Documentation/devicetree/bindings/leds/common.txt.
--label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
--
--
--Required properties of the indicator child node (1)
--===================================================
--
--reg: 1
--led-max-microamp: Maximum indicator current. The allowed values are
--		  2500, 5000, 7500 and 10000.
--
--Optional properties of the indicator child node
--===============================================
--
--function	:  See Documentation/devicetree/bindings/leds/common.txt.
--color		:  See Documentation/devicetree/bindings/leds/common.txt.
--label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
--
--
--Example
--=======
--
--#include <dt-bindings/leds/common.h>
--
--	as3645a@30 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x30>;
--		compatible = "ams,as3645a";
--		led@0 {
--			reg = <0x0>;
--			flash-timeout-us = <150000>;
--			flash-max-microamp = <320000>;
--			led-max-microamp = <60000>;
--			ams,input-max-microamp = <1750000>;
--			function = LED_FUNCTION_FLASH;
--		};
--		led@1 {
--			reg = <0x1>;
--			led-max-microamp = <10000>;
--			function = LED_FUNCTION_INDICATOR;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.yaml b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..250a4b275d8a8af28c69d14a419587f7a3db6ef8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/ams,as3645a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AS3645A LED Controller
-+
-+maintainers:
-+  - Sakari Ailus <sakari.ailus@iki.fi>
-+
-+description:
-+  The AS3645A flash LED controller can drive two LEDs, one
-+  high current flash LED and one indicator LED. The high
-+  current flash LED can be used in torch mode as well.
-+
-+properties:
-+  compatible:
-+    const: ams,as3645a
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  led@0:
-+    description: led0 describes the 'flash' feature
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        const: 0
-+
-+      flash-timeout-us:
-+        minimum: 100000
-+        maximum: 850000
-+        multipleOf: 50000
-+
-+      flash-max-microamp:
-+        minimum: 200000
-+        maximum: 500000
-+        multipleOf: 20000
-+
-+      led-max-microamp:
-+        minimum: 20000
-+        maximum: 160000
-+        multipleOf: 20000
-+        description:
-+          Maximum current when in torch (assist) mode.
-+
-+      ams,input-max-microamp:
-+        minimum: 1250000
-+        maximum: 2000000
-+        multipleOf: 50000
-+
-+    required:
-+      - reg
-+      - flash-timeout-us
-+      - flash-max-microamp
-+      - led-max-microamp
-+      - ams,input-max-microamp
-+
-+  led@1:
-+    description: led1 describes the 'indicator' feature
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        const: 1
-+
-+      led-max-microamp:
-+        enum:
-+          - 2500
-+          - 5000
-+          - 7500
-+          - 10000
-+        description:
-+          Maximum indicator current.
-+
-+    required:
-+      - reg
-+      - led-max-microamp
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#size-cells"
-+  - "#address-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c{
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led-controller@30 {
-+            compatible = "ams,as3645a";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0x30>;
-+
-+            led@0 {
-+                reg = <0>;
-+                flash-timeout-us = <150000>;
-+                flash-max-microamp = <320000>;
-+                led-max-microamp = <60000>;
-+                ams,input-max-microamp = <1750000>;
-+                function = LED_FUNCTION_FLASH;
-+            };
-+
-+            led@1 {
-+                reg = <1>;
-+                led-max-microamp = <10000>;
-+                function = LED_FUNCTION_INDICATOR;
-+            };
-+        };
-+    };
-+...
+On 9/16/25 18:03, Dmitry Baryshkov wrote:
+> On Tue, Sep 16, 2025 at 05:19:31PM +0300, Eugen Hristev wrote:
+>> Fix warnings
+>> Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae94000:
+>> unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
+>>
+>> Fixes: 73db32b01c9f ("arm64: dts: qcom: sa8775p: add Display Serial Interface device nodes")
+>> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+>> ---
+>> I haven't found a pending patch for this, so here it goes, sorry if someone
+>> already sent.
+> 
+> Thanks, but no. The nodes are correct. I don't think we should be having
+> the -cells boilerplate each time somebody adds a panel under the DSI
+> node.
+> 
 
----
-base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-change-id: 20250906-ams-txt-to-dt-schema-a821e0e03c46
+I understand your point. But leaving out warnings for a possible future
+node is not ok from my point of view.
 
-Best regards,
--- 
-Harrison Carter <hcarter@thegoodpenguin.co.uk>
+>>
+>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 6 ------
+>>  1 file changed, 6 deletions(-)
+>>
+> 
 
 
