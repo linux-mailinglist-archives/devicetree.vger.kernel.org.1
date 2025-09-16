@@ -1,184 +1,113 @@
-Return-Path: <devicetree+bounces-217747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5829B5923F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:31:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E138AB59284
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:42:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35E9D520EF9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:31:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AFEE34E2B52
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445BD2BDC1E;
-	Tue, 16 Sep 2025 09:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EACC29B8FE;
+	Tue, 16 Sep 2025 09:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="YZNuJBqu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OMiwrYvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1543A29BD9C
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B86288C89
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758015075; cv=none; b=qRJge6DjM23vLTXTLGyTilSKXOCzzsYqBOmIEatWs9/aV2tOnpRCXJ5c8fHWuBwsmfjdKUfZ0OOQkM3XonDf59gThnzCBHWzD7/ow+4IEZ/7SoOIV0uyGQEdxO5KkE7i8i10wsgUuDyP9DXSf8OOuYMY7OtdpZpqR0b8LoBWjuE=
+	t=1758015738; cv=none; b=rk3x953GeOOk9H9AqKhoal7QXfJfoqnyHunWTX9JS43sbesOFlUzg5GpHCT/BCHo+/6ZHo/r4kTxfPogXcOq7wxjQevUm/3QqklJaiVCEjBsVXA8jPcbrrCVLTaY+0e7CITyIuWKlZ/gjTnQ75FNY2YGNdPmDa8oN5x9D+ljSAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758015075; c=relaxed/simple;
-	bh=G5DKJK3CELjgpndrNA/+eHqI1RVUDy7+NIgwgAlKssg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O4YR2W3O0vzTm9fw9kxSeVD8ow5SIlqiAet6cHxK/325lh3r+7nUloGVEIQb5QTH1rBnvLEIFc/W7tyICPqc8sjQN60ydBtaLGzW8JlLxDppk/vwoLxxtBUeR9RtRi4Rz+oZsnACs2Vmfh8W4KLfn5AL9RZB/uBwU/UgHRgY2ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=YZNuJBqu; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so32177695e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:31:12 -0700 (PDT)
+	s=arc-20240116; t=1758015738; c=relaxed/simple;
+	bh=yxrxMt/N4dpi/T9k6sahK9m+SYHc4ch9rBILVIoKVxU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rTUi0dwoaDymS4gRGk7aRMc3/qayr6hhkl7OthQNP/71MSGSHSPAyk8EpdPcK09eQztpfJqhjGrXsJRgweZ+DQDEXDkaYAzPN3DUHEswSQyhr/kUDC/0H3iwIZkU7Tn+SsI3iuwQYO7H4jk6EIQ3gEcVVJo/OmWBhQ3S9Rb4zkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OMiwrYvC; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-352671bef7fso33798201fa.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:42:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1758015071; x=1758619871; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ACpTvDk4rKkRfQ2RQ4sxr8j1UikIa22f7RQMKzB/pRg=;
-        b=YZNuJBquxbhPFirZrZK7NYrrhJrCjpOG0kGgAY47Lr7F0TXTMcCVUdtjFuhDb88l51
-         2BszKTLLZnttGF7JJCiX9urlimaYhq2mA3nRKB7P16jim67VSirJ1MSqOS/YCpxPpU3N
-         JMrSkC1yarTUQ6Iu0TEjD8qke4gl+zLXsSN9YxP3rNJPBDjnIn814v0ZPPysHE37iMyi
-         n47vbPjX8wjZ5es8QWIbrtA5v6DCXorVwW+lL6keMhUW9KufG3KkNbYLJx5kRGmFB4h0
-         XLpxdS2G9uxm1jUYIItn0FsRG00A7rIPQKfTFi9Mn6KXU+9FXoiRvyDhTRHGoUySTLgz
-         0s3A==
+        d=gmail.com; s=20230601; t=1758015735; x=1758620535; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yxrxMt/N4dpi/T9k6sahK9m+SYHc4ch9rBILVIoKVxU=;
+        b=OMiwrYvCrtBzaWemA9MJMbtodFHQDuTNtt9MCfawl6//0yQlO+6x5b2JCdx2HwDmak
+         bHbjEwkxNJFxdrL0s8SG/pwE+n9Mdl0cIM+pa5qS489jMEn1fO5w/Jvj+EU0b7A2rgcA
+         kOS7JhTrUYyzjoNQZvkTs8h0krrJ1/xTDksTHVY6M2xw63gH/nkRfmsp/NnTED6GtvX8
+         oIaDwRrUPdieE8vQ9GlTEhSEO+Bop5M1pGC0CgWRMnWq+3zw7YSMeOuzwCAzfsO9w61E
+         C21vRXn36tLAd5nyWNyUBZaheLWs43JNsAnkvqDqAjQnn7cBCFkmlEz6URFD/+9UdPC0
+         mQAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758015071; x=1758619871;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ACpTvDk4rKkRfQ2RQ4sxr8j1UikIa22f7RQMKzB/pRg=;
-        b=TDJmhU1dXcXeXf+WqZBZbhMYLWIotTPupUE/eJetyWsr2Ykmqnrjt+dA+Ju8jBfbrg
-         XowjxyW68OWIwuNRln/iNQ8waKG4rthGZ9sxrOXBr1jgvgVstRmRd8CQQcUdO3aUodrJ
-         JRvjIXsBAUYZ2WC8A0BzoZEobgkMcmfaaDP/9xjsDjrz400eTYWYlXAEvtUAVWGEY7Cf
-         wrykdNHuCUs8igPdWd0/Pi9Q7+WoF5BUTia6MTiN7BgesBa7HzB0c9ZEN2pnWb0g5Dx6
-         HlHXFznSTZ1Zxvtl2Kj6Hglw0aSKtU+NuKzaX0GRnhl8haH4W4YlYSF9offNXVRttFjl
-         SckQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9elYctNy3oV4MQet2ArtX1oVF5Ih5ckzdMJQdko4pvGToQsl4VFGcMh5ekXwymyHzmVu7o2yQxiKj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzvbvk6Ijf4TynQ3zmI2Rm24VzPQSkM/h7FdTtTCDnYIaakSKgU
-	PiyP1xZyQ9N69qVc4wJNQ5Nxp9PBCgoPytlyncz6t+0H8zld99HX/LCnvylfPKxFjqk=
-X-Gm-Gg: ASbGncuaDrgOOUsgHeggbXWrYXmkSsz2L4cXSW8d1FCFYxXrFcqD6A/Vz2GjwGeTKP9
-	oTZI3c8+5OTEdQDFcBgI3PrEFZggm2Jut4rAANbi8RfAoy8nhBR8XgS4hDD1OJ4w6OWU1ZLhOyg
-	JOVedlNg9cMXTYSbf1WuFApHmSLToFZJK+FRMYVsNZ1QW4ZvJnEbkG1Dr5fvpGnr3Y7dKw3ZWpm
-	pu6aTNYzJTxMD26ptvtHFR35DsrSPK0eY2WiCwaUcRk8ewlkjHx8/mnbpCL1qpkpIeDc3fIZbiU
-	Upg4YtSp5H3c3A1bpWr9EUJL6VyPhJHpco/ykRzq4LpV9K/v+r+RBeYoghPIgaIEZTdyTeDpP3V
-	dwyZecQ/Z5F/c4DtmeWVarShR
-X-Google-Smtp-Source: AGHT+IH8DCDGESmWObhYAAet3S0BhH1Fzzukf1zx3cCjpw50+fa6UzbNTX5giSJQmy/9uVP0YCa3Ow==
-X-Received: by 2002:a05:600c:828c:b0:45d:98be:ee95 with SMTP id 5b1f17b1804b1-45f211caa67mr130397715e9.3.1758015071252;
-        Tue, 16 Sep 2025 02:31:11 -0700 (PDT)
-Received: from jiri-mlt ([193.47.165.251])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f325a32f6sm13224245e9.2.2025.09.16.02.31.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 02:31:10 -0700 (PDT)
-Date: Tue, 16 Sep 2025 11:31:02 +0200
-From: Jiri Pirko <jiri@resnulli.us>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
-	netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-Message-ID: <nj6wipqud7gnaiuvj6cl4sum7zfyp7jdvjb63op6ff4ruz7rjx@5rtkshsuxojl>
-References: <20250815144736.1438060-1-ivecera@redhat.com>
- <20250820211350.GA1072343-robh@kernel.org>
- <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
- <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
- <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
- <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
- <4dc015f7-63ad-4b44-8565-795648332ada@redhat.com>
- <350cecaf-9e41-4c34-8bc0-4b1c93b0ddfe@lunn.ch>
- <dcca9d10-b2b7-4534-abe6-999a9013a8e9@redhat.com>
+        d=1e100.net; s=20230601; t=1758015735; x=1758620535;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yxrxMt/N4dpi/T9k6sahK9m+SYHc4ch9rBILVIoKVxU=;
+        b=S6YUMAkb5Q0pII0R92zwc1e38KQ8GNR1j+o59ZXkcX3Cs6c1btSv8/ACkzqsgkdpq4
+         x3OZieDP0XuqV3eDRww0amo5B4uNJ5IlVw3RB8g/okSYTpLezUsMOcS9+mHl9HFTVA0v
+         ct2l64SlJliEQ6aCFQD3ZsBLKWbbqbTwd2YvoTR2y1hqFXrfZ4viZpbaIg4cpefEY/gL
+         r5ZmAchm86ZNC7L9IcOdt5ZOhd8eJMVTGqjTM2uNWWZtxEIpcyX3J0rRfmJ17nBNx+mW
+         UzA5pF3isZ6LZ9Rf5TldJCOt7qJ5itNXm4pMOtes4/Oa9ZpKfOP1Bsgvlgdobykp7x8B
+         miKg==
+X-Forwarded-Encrypted: i=1; AJvYcCX9KbNQUJpUUPvNDT+C/tl6AJt0+FnWyVD8QeYfhuwh/t3oAzX3KQCBBbfQP48o5E2izASw1VTPLJan@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw66UqzQSfCsYmDaNv0lfcXnZgpWO5j4DSFAorF1StmYNBMH1qO
+	Lp0O25fTHhMP23oCLfRvxBs11t9D5z+0s8inpMfjQw+C6t44tYtS27BN4wG57GK6nmvA32bl5LB
+	UUYTUlNNIYFmYLHcgMqguPwTUJSNyXFTWiA==
+X-Gm-Gg: ASbGncskfV5upHILwMzIm2CuulymPZL4b3bm17wLDO3oK0zGzHA5K+4u2+tPQSh3ukS
+	wG2FuhmP+kQjw7qNdKnfRhibAjFghjcKRIEy187iSSxC31BLOZo8z5znnaHbXSH5ktUTb7/Q1z8
+	5Wb5Qv2mvTPHtKuSeD/Y93Pb0r71aZ1eilTjarMdcg4eCbRJcN4o8o5YPlciUHiFWLe6GyUegNK
+	YIUgehUEGGFPq/1Rq9h
+X-Google-Smtp-Source: AGHT+IHSzD/UXtsWQJdvEcDe5zgMaGL6TzhZJBGJKbCYfBRewNgR6XMtJmfU671bOH5GYMzsf1oInRq2RbM4os8qMC4=
+X-Received: by 2002:a05:651c:4393:20b0:354:4e91:5163 with SMTP id
+ 38308e7fff4ca-35cc1503303mr4719061fa.10.1758015735185; Tue, 16 Sep 2025
+ 02:42:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dcca9d10-b2b7-4534-abe6-999a9013a8e9@redhat.com>
+References: <20250916-flexspi-dts-v1-0-61567f969165@nxp.com> <20250916-flexspi-dts-v1-2-61567f969165@nxp.com>
+In-Reply-To: <20250916-flexspi-dts-v1-2-61567f969165@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 16 Sep 2025 06:42:03 -0300
+X-Gm-Features: AS18NWDVVl3vA9anWkY4oi_Wwrstjq0EwNsL75GDNd_C0krbxXIk6QAPlbESP7c
+Message-ID: <CAOMZO5DYWenp7fzrthWUiEyOHAVcL02wBqvzA3RyPqiQ8CzGUw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mm/mn/mp: limit the max frequency of
+ spi nor chip
+To: Haibo Chen <haibo.chen@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Wed, Sep 10, 2025 at 02:51:33PM +0200, ivecera@redhat.com wrote:
->On 09. 09. 25 3:50 odp., Andrew Lunn wrote:
->> > > > Yesterday I was considering the implementation from the DPLL driver's
->> > > > perspective and encountered a problem when the relation is defined from
->> > > > the Ethernet controller's perspective. In that case, it would be
->> > > > necessary to enumerate all devices that contain a “dpll” property whose
->> > > > value references this DPLL device.
->> > > 
->> > > Why is that?
->> > 
->> > Because the DPLL driver has to find a mac-address of the ethernet
->> > controller to generate clock identity that is used for DPLL device
->> > registration.
->> 
->> Maybe this API is the wrong way around? Maybe what you want is that
->> the MAC driver says to the DPLL driver: hey, you are my clock
->> provider, here is an ID to use, please start providing me a clock?
->
->Yes, this could be fine but there is a problem because clock id is part
->of DPLL device and pins registration and it is not possible to change
->the clock id without full de-re-registration. I have provided in zl3073x
->a user to change the clock id via devlink but it means that the driver
->has to unregister all dpll devices and pins and register them under
->different clock id.
->
->> So it is the MAC driver which will follow the phandle, and then make a
->> call to bind the dpll to the MAC, and then provide it with the ID?
->
->In fact that would be enough to expose from the DPLL core a function
->to change clock id of the existing DPLL devices.
->
->E.g.
->
->int dpll_clock_id_change(struct module *module, u64 clock_id,
->			 u64 new_clock_id)
->{
->	struct dpll_device *dpll_pos;
->	struct dpll_pin *pin_pos;
->	unsigned long i;
->
->	mutex_lock(&dpll_lock);
->	/* Change clock_id of all devices registered by given module
->	 * with given clock_id.
->	 */
->	xa_for_each(&dpll_device_xa, i, dpll_pos) {
->		if (dpll->clock_id == clock_id &&
->		    dpll->module == module)
->			dpll_pos->clock_id = new_clock_id;
->		}
->	}
->	/* Change clock_id of all pins registered by given module
->	 * with given clock_id.
->	 */
->	xa_for_each(&dpll_pin_xa, i, pos) {
->		if (pin_pos->clock_id == clock_id &&
->		    pin_pos->module == module) {
->			pos->clock_id = new_clock_id;
->		}
->	}
->	mutex_unlock(&dpll_lock);
->}
->
->With this, the standalone DPLL driver can register devices and pins with
->arbitrary clock_id and then the MAC driver can change it.
->
->Thoughts?
+Hi Haibo,
 
-The clock_id in dpll is basically a property. It is not used in uapi
-(other then for show and obtaining the device id). So if you introduce
-a mean the change this property, I don't see a problem with that.
-
-
+On Tue, Sep 16, 2025 at 5:57=E2=80=AFAM Haibo Chen <haibo.chen@nxp.com> wro=
+te:
 >
->Thanks,
->Ivan
+> The spi nor on imx8mm/mn/mp evk board works under SDR mode, and
+> driver use FlexSPIn_MCR0[RXCLKSRC] =3D 0x0 for SDR mode.
+> According to the datasheet, there is IO limitation on these chips,
+> the max frequency of such case is 66MHz, so add the limatation here
+
+Typo: limitation.
+
+> to align with datasheet.
 >
+> Refer to 3.9.9 FlexSPI timing parameters on page 65.
+> https://www.nxp.com/docs/en/data-sheet/IMX8MNCEC.pdf
+
+Fixes tag?
 
