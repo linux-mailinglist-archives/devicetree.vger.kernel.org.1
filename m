@@ -1,464 +1,176 @@
-Return-Path: <devicetree+bounces-217673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF157B58DB9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4589B58DBF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:16:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C57577A5941
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 05:01:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94F7A7AAD38
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 05:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35C52264CC;
-	Tue, 16 Sep 2025 05:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255A01EF39E;
+	Tue, 16 Sep 2025 05:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bGhrMo3q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vC8XY4ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903F725F98B
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:03:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB4817C91;
+	Tue, 16 Sep 2025 05:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757998985; cv=none; b=hcK1PT0m+9bPfGJi9jAQdqJKAL6Y7CiA/PAsQIqTKIPyKSjKJHu+MODvCtHqWMkPAyaAsemE1zRWvJBw4pvziQUn+7B6ez0iJCxlg5r7e+AhguHRk3N2osIBALJayWv51P0LNRel/NG+SCdUXfG0N40wrT6+hz28+Iy9D/COBRc=
+	t=1757999787; cv=none; b=PvipL4pipLct/iqQzmbDQuLy5L0vn94cRuIuv4sEAii/9qlokbMIIllgP7DdwCXiIfvqP5kVMVkPWIK49OZoD9hU9lAbRpo7bZk5vcunlOWcJrP8ClJREnAut3/FTt1FoX7vUK72AqI6uhrN6HqWVT5KL+AMUyuWtwPaXoglHkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757998985; c=relaxed/simple;
-	bh=7Ond/6XS/Qp7aJ1U5Qboqmdb13ttXet1eJuaYoicB7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iiiK9eOxWyJ/Lbe6tDpM1lKADtpedDi2y1dXbYmXE0sQKoMnA1xaJ9D7BiOKHhE6JedB7rTnzr8//pdvYMTR2xPrUYjABXGW6BrqObpFV63ADQeVialyesn2Wzwhp35qATCGVr2aH+4EgvQD4pvnOPfcrxwW1ciKGH9diQHLRdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bGhrMo3q; arc=none smtp.client-ip=95.215.58.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Tue, 16 Sep 2025 13:02:45 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1757998971;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=utxZJdq4SZsBiWUz44H+KI3zwoW+fq5Bdwpbp1UmMaM=;
-	b=bGhrMo3qD7K+HCnofyyIIrfk4PBklpsnn6mhm+nnnomjkuhNbl0aMLhDgOXLuQVZRjbGQh
-	zPuKa+I1UyTPucizOnKO7cvvz1qTlbMNVYeAvHAWXZIgfXv0Cp3NYBQqQf6jHBhIUND63T
-	nwHnPzMNNWdOvrV+MPAxAymAScWdD4M=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Troy Mitchell <troy.mitchell@linux.dev>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Troy Mitchell <troy.mitchell@linux.dev>
-Subject: Re: [PATCH 3/3] hwmon: (ctf2301) Add support for CTF2301
-Message-ID: <aMjvdWUNF6vXH65_@LT-Guozexi>
-References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
- <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
+	s=arc-20240116; t=1757999787; c=relaxed/simple;
+	bh=A18KZ9rlQr2JosW5W/tWPmxNteaChiuEhHIIR8hiA7U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dBYPYrlc0zktXZwtOVXCZjuF8Qtn34cH/eO2PalcrNsDjflAeXzrxrihMMU5fIy+03Y60E3L9NcjOqO9rTR/EGut0VUyGge+epck94HU4+no0SDTLnwlt7xdYqyyoHLSvffc8yqBdH9dkJg/pOEOvUiHr+BF8ejnIsqogFpjP40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vC8XY4ck; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6B6C4CEEB;
+	Tue, 16 Sep 2025 05:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757999786;
+	bh=A18KZ9rlQr2JosW5W/tWPmxNteaChiuEhHIIR8hiA7U=;
+	h=From:Subject:Date:To:Cc:From;
+	b=vC8XY4ck/xXyYfkSUnV+deexg3AOlbEc1uy2lkdElNLyr0axNlBv2jlPIYcn99BGs
+	 kKJaKnPN4td5YPax0g9T7Wq0Leh6bdTLxXkta4n5Cr8lOStYzcOIg5P/xCnLaGLu0+
+	 OBM5y8wjxQ29C6dtaxBaV0gxQS/sY7+/PFGqAjxmJemjgIEOSV5URD4Q2QVwn2qjBD
+	 syFHgY4gYtAy+7Gpk/7FR1JMQjQ8PDtIAswO1VP0jhmRbcKWESz0ogbosLfmD3q6si
+	 ZAgbNOV212Ltkqpj+u5CjtOmuLv+fYAAuGFl+fqLGVl90+RGCCxWnb4cIUjRrCBdxB
+	 HljXBnVyHtyWA==
+From: Drew Fustini <fustini@kernel.org>
+Subject: [PATCH v2 0/3] RISC-V: Detect Ssqosid extension and handle srmcfg
+ CSR
+Date: Mon, 15 Sep 2025 22:13:40 -0700
+Message-Id: <20250915-ssqosid-v6-17-rc5-v2-0-2d4b0254dfd6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAATyyGgC/x3MPQqAMAxA4auUzAZiof5dRRxqjZrFagNFEO9uc
+ fyG9x5QTsIKg3kgcRaVeBTYykDY/bExylIMlqyjnnpUvaLKgrnBusUUHK4h0Nx0viVvoXRn4lX
+ u/zlO7/sByF/0M2MAAAA=
+X-Change-ID: 20250909-ssqosid-v6-17-rc5-fcc0b68a70a2
+To: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: =?utf-8?q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
+ Adrien Ricciardi <aricciardi@baylibre.com>, 
+ James Morse <james.morse@arm.com>, Atish Kumar Patra <atishp@rivosinc.com>, 
+ Atish Patra <atish.patra@linux.dev>, 
+ Vasudevan Srinivasan <vasu@rivosinc.com>, guo.wenjia23@zte.com.cn, 
+ liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Drew Fustini <fustini@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4530; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=A18KZ9rlQr2JosW5W/tWPmxNteaChiuEhHIIR8hiA7U=;
+ b=owGbwMvMwCF2+43O4ZsaG3kYT6slMWSc+LQypff3T90NfmXewe4LzaPuG3z/Eu69uDg/ZuPdx
+ WpvdB95d5SyMIhxMMiKKbJs+pB3YYlX6NcF819sg5nDygQyhIGLUwAmssCPkWE/p52BSLXx+ZD8
+ vbs/if7c73xvdrjQk+RfrBuXX/7vOUuC4Td77O3b91J2C6yYKf9Zr2O7sGaKSNKjy/+6f73I6Y7
+ mf8kCAA==
+X-Developer-Key: i=fustini@kernel.org; a=openpgp;
+ fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-On Tue, Sep 16, 2025 at 12:46:46PM +0800, Troy Mitchell wrote:
-> This commit introduces driver for the Sensylink CTF2301
-> system-level thermal management solution chip.
-> 
-> Currently, the driver does NOT support the Auto-Temp mode of the PWM
-> fan controller, which provides closed-loop automatic fan speed control
-> based on temperature.
-> 
-> Now this driver supports:
->   - Reading local temperature.
->   - Reading remote temperature.
->   - Controlling the PWM fan output in Direct-DCY mode (direct duty cycle control).
->   - Monitoring fan speed via the TACH input (RPM measurement).
-> 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.dev>
-> ---
->  drivers/hwmon/Kconfig   |  11 ++
->  drivers/hwmon/Makefile  |   1 +
->  drivers/hwmon/ctf2301.c | 326 ++++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 338 insertions(+)
-> 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 9d28fcf7cd2a6f9e2f54694a717bd85ff4047b46..2120d891e549795c3f3416d08f71916af714f6b6 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -537,6 +537,17 @@ config SENSORS_CROS_EC
->  	  This driver can also be built as a module. If so, the module
->  	  will be called cros_ec_hwmon.
->  
-> +config SENSORS_CTF2301
-> +	tristate "Sensylink CTF2301"
-> +	depends on I2C
-> +	select REGMAP
-> +	help
-> +	  If you say yes here you get support for Sensylink CTF2301
-> +	  sensor chip.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called ctf2301.
-> +
->  config SENSORS_DRIVETEMP
->  	tristate "Hard disk drives with temperature sensors"
->  	depends on SCSI && ATA
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index cd8bc4752b4dbf015c6eb46157626f4e8f87dfae..12f2894ce8d5fbfd942409f6c43d78fbdece57b4 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -65,6 +65,7 @@ obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
->  obj-$(CONFIG_SENSORS_CORSAIR_CPRO) += corsair-cpro.o
->  obj-$(CONFIG_SENSORS_CORSAIR_PSU) += corsair-psu.o
->  obj-$(CONFIG_SENSORS_CROS_EC)	+= cros_ec_hwmon.o
-> +obj-$(CONFIG_SENSORS_CTF2301)	+= ctf2301.o
->  obj-$(CONFIG_SENSORS_DA9052_ADC)+= da9052-hwmon.o
->  obj-$(CONFIG_SENSORS_DA9055)+= da9055-hwmon.o
->  obj-$(CONFIG_SENSORS_DELL_SMM)	+= dell-smm-hwmon.o
-> diff --git a/drivers/hwmon/ctf2301.c b/drivers/hwmon/ctf2301.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2fea4d195519ea34c1d4bf67456098b225d4d13c
-> --- /dev/null
-> +++ b/drivers/hwmon/ctf2301.c
-> @@ -0,0 +1,326 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Driver for CTF2301 system-level thermal management solution chip
-> + * Datasheet: https://www.sensylink.com/upload/1/net.sensylink.portal/1689557281035.pdf
-> + *
-> + * Copyright (C) 2025 Troy Mitchell <troy.mitchell@linux.dev>
-> + */
-> +
-> +#include <linux/hwmon.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#define PWM_PARENT_CLOCK			360000
-> +
-> +#define CTF2301_LOCAL_TEMP_MSB			0x00
-> +#define CTF2301_RMT_TEMP_MSB			0x01
-> +#define CTF2301_ALERT_STATUS			0x02
-> +#define CTF2301_GLOBAL_CFG			0x03
-> +#define CTF2301_RMT_TEMP_LSB			0x10
-> +#define CTF2301_LOCAL_TEMP_LSB			0x15
-> +#define CTF2301_ALERT_MASK			0x16
-> +#define	CTF2301_ENHANCED_CFG			0x45
-> +#define CTF2301_TACH_COUNT_LSB			0x46
-> +#define CTF2301_TACH_COUNT_MSB			0x47
-> +#define CTF2301_PWM_AND_TACH_CFG		0x4a
-> +#define CTF2301_PWM_VALUE			0x4c
-> +#define CTF2301_PWM_FREQ			0x4d
-> +#define CTF2301_RMT_DIODE_TEMP_FILTER		0xbf
-> +
-> +/* remote diode fault alarm */
-> +#define ALERT_STATUS_RDFA			BIT(2)
-> +
-> +/* alert interrupts enable  */
-> +#define GLOBAL_CFG_ALERT_MASK			BIT(7)
-> +/* tach input enable  */
-> +#define GLOBAL_CFG_TACH_SEL			BIT(2)
-> +
-> +/* local high temperature alarm mask */
-> +#define ALERT_MASK_LHAM				BIT(6)
-> +/* remote high temperature alarm mask */
-> +#define ALERT_MASK_RHAM				BIT(4)
-> +/* remote low temperature alarm mask */
-> +#define ALERT_MASK_RLAM				BIT(3)
-> +/* remote t_crit alarm mask */
-> +#define ALERT_MASK_RCAM				BIT(1)
-> +/* tachometer alarm mask */
-> +#define ALERT_MASK_TCHAM			BIT(0)
-> +
-> +#define ALERT_MASK_ALL				(ALERT_MASK_LHAM | ALERT_MASK_RHAM | \
-> +						ALERT_MASK_RLAM | ALERT_MASK_RCAM | \
-> +						ALERT_MASK_TCHAM)
-> +
-> +/* enables signed format for high and t_crit setpoints */
-> +#define ENHANGCED_CFG_USF			BIT(3)
-> +
-> +/* PWM Programming enable */
-> +#define PWM_AND_TACH_CFG_PWPGM			BIT(5)
-> +
-> +#define PWM_DEFAULT_FREQ_CODE			0x17
-> +
-> +
-> +struct ctf2301 {
-> +	struct i2c_client *client;
-> +
-> +	struct regmap *regmap;
-> +
-> +	unsigned int pwm_freq_code;
-> +};
-> +
-> +static int ctf2301_read_temp(struct device *dev, u32 attr, int channel, long *val)
-> +{
-> +	int regval[2], raw, err, flag = 1, shift = 4, scale = 625;
-> +	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-> +	unsigned int reg_msb = CTF2301_LOCAL_TEMP_MSB,
-> +		     reg_lsb = CTF2301_LOCAL_TEMP_LSB;
-> +
-> +	switch (attr) {
-> +	case hwmon_temp_input:
-> +		if (channel != 0 && channel != 1)
-> +			return -EOPNOTSUPP;
-> +
-> +		if (channel == 1) {
-> +			err = regmap_read(ctf2301->regmap, CTF2301_ALERT_STATUS, regval);
-> +			if (err)
-> +				return err;
-> +
-> +			if (regval[0] & ALERT_STATUS_RDFA)
-> +				return -ENODEV;
-> +
-> +			shift = 5;
-> +			scale = 1250;
-> +			reg_msb = CTF2301_RMT_TEMP_MSB;
-> +			reg_lsb = CTF2301_RMT_TEMP_LSB;
-> +		}
-> +
-> +		err = regmap_read(ctf2301->regmap, reg_msb, regval);
-> +		if (err)
-> +			return err;
-> +
-> +		err = regmap_read(ctf2301->regmap, reg_lsb, regval + 1);
-> +		if (err)
-> +			return err;
-> +
-> +		dev_err(dev, "local temp: lsb->0x%x, msb->0x%x", regval[1], regval[0]);
-Sry I forget to remove debug info.
-I'll remove them in the next version.
-There are some more below, please ignore.
+This series adds support for the RISC-V Quality-of-Service Identifiers
+(Ssqosid) extension [1] which adds the srmcfg register. This CSR 
+configures a hart with two identifiers: a Resource Control ID (RCID)
+and a Monitoring Counter ID (MCID). These identifiers accompany each
+request issued by the hart to shared resource controllers.
 
-                    - Troy
-> +
-> +		raw = (s16)((regval[0] << 8) | regval[1]);
-> +
-> +		raw >>= shift;
-> +
-> +		*val = raw * scale * flag;
-> +
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ctf2301_read_fan(struct device *dev, u32 attr, long *val)
-> +{
-> +	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-> +	int regval[2], err, speed;
-> +
-> +	switch (attr) {
-> +	case hwmon_fan_input:
-> +		err = regmap_read(ctf2301->regmap, CTF2301_TACH_COUNT_MSB, regval);
-> +		if (err)
-> +			return err;
-> +
-> +		err = regmap_read(ctf2301->regmap, CTF2301_TACH_COUNT_LSB, regval + 1);
-> +		if (err)
-> +			return err;
-> +
-> +		speed = (regval[0] << 8) | regval[1];
-> +
-> +		*val = (unsigned int)(1 * (5400000 / speed));
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ctf2301_write_pwm(struct device *dev, u32 attr, long val)
-> +{
-> +	struct ctf2301 *ctf2301 = dev_get_drvdata(dev);
-> +	int err, map_val;
-> +
-> +	dev_err(dev, "write pwm: %d", attr);
-> +
-> +	switch (attr) {
-> +	case hwmon_pwm_input:
-> +		map_val = (val * ctf2301->pwm_freq_code * 2) / 255;
-> +		dev_err(dev, "val:%ld, map_val: %d", val, map_val);
-> +		err = regmap_write(ctf2301->regmap, CTF2301_PWM_VALUE, map_val);
-> +		if (err)
-> +			return err;
-> +		break;
-> +	case hwmon_pwm_freq:
-> +		ctf2301->pwm_freq_code = DIV_ROUND_UP(PWM_PARENT_CLOCK, val) / 2;
-> +		dev_err(dev, "pwm_freq_code: %d", ctf2301->pwm_freq_code);
-> +		err = regmap_write(ctf2301->regmap, CTF2301_PWM_FREQ, ctf2301->pwm_freq_code);
-> +		if (err)
-> +			return err;
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static umode_t ctf2301_is_visible(const void *drvdata,
-> +				 enum hwmon_sensor_types type,
-> +				 u32 attr, int channel)
-> +{
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		switch (attr) {
-> +		case hwmon_temp_input:
-> +			return 0444;
-> +		default:
-> +			return 0;
-> +		}
-> +	case hwmon_fan:
-> +		switch (attr) {
-> +		case hwmon_fan_input:
-> +			return 0444;
-> +		default:
-> +			return 0;
-> +		}
-> +	case hwmon_pwm:
-> +		switch (attr) {
-> +		case hwmon_pwm_input:
-> +		case hwmon_pwm_freq:
-> +			return 0644;
-> +		default:
-> +			return 0;
-> +		}
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static int ctf2301_read(struct device *dev, enum hwmon_sensor_types type,
-> +		       u32 attr, int channel, long *val)
-> +{
-> +	switch (type) {
-> +	case hwmon_temp:
-> +		return ctf2301_read_temp(dev, attr, channel, val);
-> +	case hwmon_fan:
-> +		return ctf2301_read_fan(dev, attr, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int ctf2301_write(struct device *dev, enum hwmon_sensor_types type,
-> +			 u32 attr, int channel, long val)
-> +{
-> +	switch (type) {
-> +	case hwmon_pwm:
-> +		return ctf2301_write_pwm(dev, attr, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static const struct hwmon_channel_info * const ctf2301_info[] = {
-> +	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT, HWMON_T_INPUT),
-> +	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_FREQ),
-> +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_ops ctf2301_hwmon_ops = {
-> +	.is_visible = ctf2301_is_visible,
-> +	.read = ctf2301_read,
-> +	.write = ctf2301_write
-> +};
-> +
-> +static const struct hwmon_chip_info ctf2301_chip_info = {
-> +	.ops = &ctf2301_hwmon_ops,
-> +	.info = ctf2301_info,
-> +};
-> +
-> +static const struct regmap_config ctf2301_regmap_config = {
-> +	.max_register = CTF2301_RMT_DIODE_TEMP_FILTER,
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +};
-> +
-> +static int ctf2301_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct device *hwmon_dev;
-> +	struct ctf2301 *ctf2301;
-> +	int err;
-> +
-> +	ctf2301 = devm_kzalloc(dev, sizeof(*ctf2301), GFP_KERNEL);
-> +	if (!ctf2301)
-> +		return -ENOMEM;
-> +	ctf2301->client = client;
-> +
-> +	ctf2301->regmap = devm_regmap_init_i2c(client, &ctf2301_regmap_config);
-> +	if (IS_ERR(ctf2301->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(ctf2301->regmap),
-> +				     "failed to allocate register map");
-> +
-> +	err = regmap_write(ctf2301->regmap, CTF2301_GLOBAL_CFG,
-> +			   GLOBAL_CFG_ALERT_MASK | GLOBAL_CFG_TACH_SEL);
-> +	if (err)
-> +		return dev_err_probe(dev, err,
-> +				     "failed to write CTF2301_GLOBAL_CFG register");
-> +
-> +	/*err = regmap_write(ctf2301->regmap, CTF2301_ALERT_MASK, ALERT_MASK_ALL);*/
-> +	/*if (err)*/
-> +		/*return dev_err_probe(dev, err,*/
-> +				     /*"failed to write CTF2301_ALERT_MASK");*/
-> +
-> +	err = regmap_write(ctf2301->regmap, CTF2301_ENHANCED_CFG, ENHANGCED_CFG_USF);
-> +	if (err)
-> +		return dev_err_probe(dev, err,
-> +				     "failed to write CTF2301_ENHANCED_CFG");
-> +
-> +	err = regmap_write(ctf2301->regmap, CTF2301_PWM_AND_TACH_CFG, PWM_AND_TACH_CFG_PWPGM);
-> +	if (err)
-> +		return dev_err_probe(dev, err,
-> +				     "failed to write CTF2301_PWM_AND_TACH_CFG");
-> +
-> +	ctf2301->pwm_freq_code = PWM_DEFAULT_FREQ_CODE;
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name, ctf2301,
-> +							 &ctf2301_chip_info,
-> +							 NULL);
-> +	if (IS_ERR(hwmon_dev))
-> +		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-> +				     "failed to register hwmon device");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id ctf2301_of_match[] = {
-> +	{ .compatible = "sensylink,ctf2301", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ctf2301_of_match);
-> +
-> +static struct i2c_driver ctf2301_driver = {
-> +	.driver = {
-> +		.name	= "ctf2301",
-> +		.of_match_table = of_match_ptr(ctf2301_of_match),
-> +	},
-> +	.probe		= ctf2301_probe,
-> +};
-> +module_i2c_driver(ctf2301_driver);
-> +
-> +MODULE_AUTHOR("Troy Mitchell <troy.mitchell@linux.dev>");
-> +MODULE_DESCRIPTION("ctf2301 driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.51.0
-> 
+Background on RISC-V QoS:
+
+The Ssqosid extension is used by the RISC-V Capacity and Bandwidth
+Controller QoS Register Interface (CBQRI) specification [2]. QoS in
+this context is concerned with shared resources on an SoC such as cache
+capacity and memory bandwidth. Intel and AMD already have QoS features
+on x86 and ARM has MPAM. There is an existing user interface in Linux:
+the resctrl virtual filesystem [3].
+
+The srmcfg CSR provides a mechanism by which a software workload (e.g.
+a process or a set of processes) can be associated with an RCID and an
+MCID. CBQRI defines operations to configure resource usage limits, in
+the form of capacity or bandwidth. CBQRI also defines operations to
+configure counters to track the resource utilization.
+
+Goal for this series:
+
+These two patches are taken from the implementation of resctrl support
+for RISC-V CBQRI. Please refer to the proof-of-concept RFC [4] for
+details on the resctrl implementation. More recently, I have rebased
+the CBQRI support on mainline [5]. Big thanks to James Morse for the
+tireless work to extract resctrl from arch/x86 and make it available
+to all archs.
+
+I think it makes sense to first focus on the detection of Ssqosid and
+handling of srmcfg when switching tasks. It has been tested against a
+QEMU branch that implements Ssqosid and CBQRI [6]. A test driver [7]
+was used to set srmcfg for the current process. This allows switch_to
+to be tested without resctrl.
+
+Changes in v2:
+ - Restore the per-cpu fix from RFC v2 that was missed in v1:
+   change DEFINE_PER_CPU to DECLARE_PER_CPU in qos.h and move
+   DEFINE_PER_CPU to qos.c
+ - Introduce a patch that adds Ssqosid to riscv/extensions.yaml
+ - Link to v1: https://lore.kernel.org/r/20250910-ssqosid-v6-17-rc5-v1-0-72cb8f144615@kernel.org
+
+Changes in v1:
+ - Rename all instances of the sqoscfg CSR to srmcfg to match the
+   ratified Ssqosid spec
+ - Link RFC v2: https://lore.kernel.org/linux-riscv/20230430-riscv-cbqri-rfc-v2-v2-0-8e3725c4a473@baylibre.com/
+
+Changes in RFC v2:
+ - change DEFINE_PER_CPU to DECLARE_PER_CPU for cpu_sqoscfg in qos.h to
+   prevent linking error about multiple definition. Move DEFINE_PER_CPU
+   for cpu_sqoscfg into qos.c
+ - renamed qos prefix in function names to sqoscfg to be less generic
+ - handle sqoscfg the same way has_vector and has_fpu are handled in the
+   vector patch series
+ - Link to RFC v1: https://lore.kernel.org/linux-riscv/20230410043646.3138446-1-dfustini@baylibre.com/
+
+[1] https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
+[2] https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+[3] https://docs.kernel.org/filesystems/resctrl.html
+[4] https://lore.kernel.org/linux-riscv/20230419111111.477118-1-dfustini@baylibre.com/
+[5] https://github.com/tt-fustini/linux/tree/b4/cbqri-v6-17-rc5
+[6] https://github.com/tt-fustini/qemu/tree/riscv-cbqri-rqsc-pptt
+[7] https://github.com/tt-fustini/linux/tree/ssqosid-v6-17-rc5-debug
+
+Signed-off-by: Drew Fustini <fustini@kernel.org>
+---
+Drew Fustini (3):
+      dt-bindings: riscv: Add Ssqosid extension description
+      RISC-V: Detect the Ssqosid extension
+      RISC-V: Add support for srmcfg CSR from Ssqosid ext
+
+ .../devicetree/bindings/riscv/extensions.yaml      |  6 ++++
+ MAINTAINERS                                        |  7 ++++
+ arch/riscv/Kconfig                                 | 17 +++++++++
+ arch/riscv/include/asm/csr.h                       |  8 +++++
+ arch/riscv/include/asm/hwcap.h                     |  1 +
+ arch/riscv/include/asm/processor.h                 |  3 ++
+ arch/riscv/include/asm/qos.h                       | 41 ++++++++++++++++++++++
+ arch/riscv/include/asm/switch_to.h                 |  3 ++
+ arch/riscv/kernel/Makefile                         |  2 ++
+ arch/riscv/kernel/cpufeature.c                     |  1 +
+ arch/riscv/kernel/qos/Makefile                     |  2 ++
+ arch/riscv/kernel/qos/qos.c                        |  5 +++
+ 12 files changed, 96 insertions(+)
+---
+base-commit: 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
+change-id: 20250909-ssqosid-v6-17-rc5-fcc0b68a70a2
+
+Best regards,
+-- 
+Drew Fustini <fustini@kernel.org>
+
 
