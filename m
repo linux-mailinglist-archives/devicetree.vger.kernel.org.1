@@ -1,298 +1,144 @@
-Return-Path: <devicetree+bounces-217760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A82B592C4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:53:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D20B592B7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 11:52:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CADC32194D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:53:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44276522DE9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27572BE043;
-	Tue, 16 Sep 2025 09:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7D52BD590;
+	Tue, 16 Sep 2025 09:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LzFZqaXm"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="jYyW69hS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99F629BD91
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41FE29BD8E
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 09:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758016372; cv=none; b=JKbs+TwyVS1siK+VMlYSjbPqJjT9mIXg30pbfK1SHDqXznL4guSl6QwfVbECTnPFLH3PB/820FMsj/NsM6juVn2JPHZ/UCLbfk0n2fOee5qfNCA3wugdfPLwv3j0z4dNG9EKSwyUFHG6KC1BLTH/rzJQIfz5IwQ6odQsLfi84x4=
+	t=1758016356; cv=none; b=hyLEFggMGNW2iKdRq4bXWitrl1aINBICNF+FZmBEUWgORthvuwpvxqNj31KjBueIN/Rwh+p/BUIzB++ajdJul6/ui1PllhQ0qZ5aWIOngZXv7BN1tcWpu5zMgD4uU127gktEBSHmtijY4RR+i2jyzw4H1gNXsD69QKVApFsOhbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758016372; c=relaxed/simple;
-	bh=GMzo4G/K64hUgE+aHnc+wOYatYFyjlLEAeAZYwZxris=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dEpCbgZhFv0y1tmZKzTExqBt5XTjm4Ss0qC37zA7CrhNlKHAccd8p46JNN7tlohxr87CYajiPdbBFbIC+X886RjTv3aPXiL0ALrCt+Vdiab6h/zHPUd6kZQwBpfMz+nU/mSwLp6eZsEn6qWUoZ/zjSlJiD80SQ+7EA9jvw7Ocig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LzFZqaXm; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b54b301d621so3305534a12.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:52:49 -0700 (PDT)
+	s=arc-20240116; t=1758016356; c=relaxed/simple;
+	bh=aMG5F7xpbshGg26N6ZjbwilfqXgobZd+0i4J8EC0NG0=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XfopCyzWpLYMYKrfPL77HiCvEgX1YZFk1dSAygATzQrK/ZFM5uwBKzumKgR7Ya8sXnvVlNnt2X83MJqC8OMc6/EFiNCywqDjpDMdPn26F5ReDmZY/yz8NWsjj/IKkpYTLcWkHTV/L+RA27yhwiXNHctE9qnG5FhiB9CoBVPBe3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=jYyW69hS; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-55f74c6d316so5225065e87.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 02:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758016369; x=1758621169; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=49QsBXiYXTpwW15ExZiEsCuxBVACiimdNLk2zhQ/sDM=;
-        b=LzFZqaXmRf5tFdb7bf0dtd/95SZiusiKCKTzeFHeiPz7NjorZOp1oCFpkSdqOSLkEd
-         EoC0nAMoVaxHLVwmCuINFABOdzCVMmWog1yfrHnXh3nJjUfi08PzAbxnNXY+uP4MYUHR
-         WlMi5o5mpCvJF53KrhU/dHNNfXjo0eLvjbKTu1YtxslmmJNB6hVwO8U0DbmsBRxpT3cD
-         G91J+artgkmdbisjLTykOOYX6sBHS/m+XnowLkR0kloByfJMbpGzLT9EEFsosxirVGYF
-         Psb2H7fuXaNw6Q/MGzNqpycuYXgCv5+98oWc8NQDlVWQHdNfZ216//VuAQyTYRK96FYC
-         0pZw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758016353; x=1758621153; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OiOC/M78bEv61Cna7PZSesU2fWMjqsEn6aaaGX6/V3E=;
+        b=jYyW69hSu6lcclYx4f+E5zsc/hvOWWAVgFXl5kyEiJAfEsIcqXKMCFfhR0LeaBFurk
+         4ZD0w29C8cAtgRDqApcVMCPcPUerjSD/uK0fF8/LHj5aao71Jcm4iXwqaW7cTiEfg613
+         9wnFM9fqUp8uAWDDBB+sMBRxvQB51Cxp2j7UUBnsyA3wAhGupvz7AjSIMCojApgrfblq
+         +gjgDZ0dS0IjjkHHSRuT7PK/7d16jZ8kfmkaOhVDsl+2mAU9NODyk0iqPAtns7Wk/QcA
+         Huj6waHkIVx++B4yJAtTzFOKSXwFQfeHJuSQAHapg/ocQYva7vePgiIETLBYMeq6mSCk
+         yVDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758016369; x=1758621169;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=49QsBXiYXTpwW15ExZiEsCuxBVACiimdNLk2zhQ/sDM=;
-        b=sAhap+k/81GVy7MKYJhO3zGg2o7gmdfu05W2xYGjChtT95eAKPqXxhc0JGgashu6oP
-         OXxtg5TXXHcfY3XsM1TwWcu0wFxyP1nKltddXuTboKQzStJ2MM5KWEsdb9n/wVYQaM3C
-         W11SulhrXwRtwLWxByZDrsSnb5/kACzcM9gZcVXTmJudJnGjOm3iV6q/F/jJc/kEDWDu
-         T20oOWXbApvFMm/8YgNMjevCgzFtikb36txNdPlwXHgVpo1isWkhA/JmzqHnuoeHVVX7
-         V/RXTFVNtl4HaY+kngWt59DNZay4ftBjRJy4XPQSwmFtT0IR2RY0UZcQz1hL5woOrMHT
-         V75A==
-X-Gm-Message-State: AOJu0YzjON6hUhmL2krNNAYFjXxpchfyiXg7cxgK9aATir3IWqLaErBV
-	0ON/+4vHuO55HJnXJ5EMDInROLq/IROEb2VKyVcVWuqBYkRDO0NO9tkN
-X-Gm-Gg: ASbGncuKIZjNXNd7MerbzcgKJ+EJnXHEbPvZWOnBPH8JpN+jCaRY7Uj/80U7UtkOksn
-	oh1wIKr4RAD4JoPCOcSy52qVivXMuZSrUgfpR5+5qmRucgoLGPH7lJ/EEsGkSyH3ofJSRSW7IOP
-	m8YZL45tk4sQUqs8vwxkYjVKmAGQpPqkpUkre/kpE5zTg0kqa/uS+5s8BBcJ1fmHDpYBWTz/caf
-	s++awNfyFBMOkWOE33RErCls0ArrpjEdngVh8c3srDWxGqaGG3Z3/o9w0EjZSI0MvMlOdvaOMij
-	JLKNPQ7Dg+BqpEWZA+SvtQa+1TCsjs7zaEvSxs6/KqEwDHSB+KW9bdANg+N3eKEiWqMrCTsVp+f
-	IVl1C+XP2SWCWA0m8T7NUKecS6KWl8xl9XYLsquunPG16veXmxYV4fKnw+kkZgp46VDCZcFsGBj
-	9hhGcuSyBmOjtVoWg4vizKFcI=
-X-Google-Smtp-Source: AGHT+IF9/+KWd45S6FYhiVJ8Q4f8Eu69CpQKUelHersC4ax5SQgbWHAEIysbDLfaY6JhGQ4DWDv1Vg==
-X-Received: by 2002:a17:902:c40a:b0:267:6754:8fd9 with SMTP id d9443c01a7336-26767549b82mr74458675ad.39.1758016369128;
-        Tue, 16 Sep 2025 02:52:49 -0700 (PDT)
-Received: from cosmo-ubuntu-2404.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2667b4d380csm53935775ad.71.2025.09.16.02.52.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 02:52:48 -0700 (PDT)
-From: Cosmo Chou <chou.cosmo@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	corbet@lwn.net,
-	cosmo.chou@quantatw.com,
-	Cosmo Chou <chou.cosmo@gmail.com>
-Subject: [PATCH 2/2] hwmon: (pmbus/mp5990) add support for MP5998
-Date: Tue, 16 Sep 2025 17:50:26 +0800
-Message-ID: <20250916095026.800164-2-chou.cosmo@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250916095026.800164-1-chou.cosmo@gmail.com>
-References: <20250916095026.800164-1-chou.cosmo@gmail.com>
+        d=1e100.net; s=20230601; t=1758016353; x=1758621153;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OiOC/M78bEv61Cna7PZSesU2fWMjqsEn6aaaGX6/V3E=;
+        b=tXcN7OKEGN9saHB50zuq7c/h61FeQIYXfike/Lq5P0vUtqUvLapXiu0ijkKXmnYD7Q
+         d2bY19N7A2EPYb4ZbSPuQQj6+aWPruO/8LXMKmte5nEl4J3L1juPIeRbyI08TKcTnvZU
+         diFqRCGWiipzw+EPC9bSAks2uatjzLvirLkv7qOIFO9VvJYYBM3kzn7TzTF4+mqzB98D
+         oiWdtT1Wf3iZfli+gu9581ERPNSBHnmOH2adVKK9Xxilghs7qVpWMfJX3si1xieyIgIA
+         VTuuhY67KeZ41IlEFSqDupaIn/XpLJ7qXkshExPeO9OaX/Tk2Pd36+OuIxy6fXCC0o5t
+         q7Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCUMrXIrJ8ks5aAZthpI9qOfGdtmBhsnQIvJR0Z/iCNMCQGtzQHj/o75mjxuvNw/QuEwYa1B9uPuuhr6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeQNwpM3n289FDnEhGMJ0U4IXVzpaNNVlUw6P3l8kcSHt1V+DE
+	TMF6QV2fqHVymndU2XTsqGEMvCStjYpDO0dMWps2Jom7ntT3+PEf8JQ0QIok5GQJkC/L0nwUdxe
+	ZCuXEaJIZDbHMb3ishh4bR7rAJ45/BG/wYy5xP1BOLo2omE5UGTS1CtI=
+X-Gm-Gg: ASbGncu0kyHqmhI96XDHaMY2cZojzQRvwGcRA6xNWlKJAjFgXU8YFmMMN5fjeQ/PpDt
+	asCjAYvSIomGY/kndBCwuvspIaauGTAe3tHTAABhMi/IlshQQ9K6W/FkzXFuyp2svvXDGeTYfM7
+	EyUry8XdZbmtoRg3qx0HwbQYRbZzBbhPpkANv4ozXwF6/p83xKslkYZbcArB2qhXDeYqccHW67h
+	JqTfWU=
+X-Google-Smtp-Source: AGHT+IHX/v2Sv4pNLDqBj2a0T8TLe+4AuuhJRQKT8EtfyDIe0B7CYhCKOOu4ksFfaiZpITJ9Ev2G8Po+8ZM3AqaIkKk=
+X-Received: by 2002:a05:6512:3f05:b0:55f:3e4d:fb3b with SMTP id
+ 2adb3069b0e04-5704d0071c6mr5659388e87.30.1758016352992; Tue, 16 Sep 2025
+ 02:52:32 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 16 Sep 2025 05:52:31 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 16 Sep 2025 05:52:31 -0400
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <DCTDUJO0PS8B.1LD03WTEMNRVP@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
+ <20250915122354.217720-5-ioana.ciornei@nxp.com> <DCTDUJO0PS8B.1LD03WTEMNRVP@kernel.org>
+Date: Tue, 16 Sep 2025 05:52:31 -0400
+X-Gm-Features: AS18NWAbYT5SIpslmbsM29_pX3ylDm2HlYwz1lrLiD9dqodJMb4U8hXy3-TvuOU
+Message-ID: <CAMRc=Mf7bnAM=-A4jWrqOvS8-ZetTHPfMaEpmQdbKMt6SWKtQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/9] gpio: regmap: add the .fixed_direction_output
+ configuration parameter
+To: Michael Walle <mwalle@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>, Ioana Ciornei <ioana.ciornei@nxp.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Shawn Guo <shawnguo@kernel.org>, Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add support for the MPS MP5998 hot-swap controller. Like MP5990, MP5998
-uses EFUSE_CFG (0xC4) bit 9 to indicate linear/direct data format.
+On Mon, 15 Sep 2025 14:45:58 +0200, Michael Walle <mwalle@kernel.org> said:
+> Hi Ioana,
+>
+> On Mon Sep 15, 2025 at 2:23 PM CEST, Ioana Ciornei wrote:
+>> There are GPIO controllers such as the one present in the LX2160ARDB
+>> QIXIS FPGA which have fixed-direction input and output GPIO lines mixed
+>> together in a single register. This cannot be modeled using the
+>> gpio-regmap as-is since there is no way to present the true direction of
+>> a GPIO line.
+>>
+>> In order to make this use case possible, add a new configuration
+>> parameter - fixed_direction_output - into the gpio_regmap_config
+>> structure. This will enable user drivers to provide a bitmap that
+>> represents the fixed direction of the GPIO lines.
+>
+> I wonder about the ownership of that allocated memory in the config
+> structure (and btw, I guess you leak the memory in your driver) and
+> if it's not better and more error proof to allocate and copy the
+> bitmap in gpio-regmap too (and maybe use devm_bitmap_alloc()) and
+> leave it to the caller to handle the passed bitmap. I.e. it could
+> also be on the stack.
+>
 
-Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
----
- Documentation/hwmon/mp5990.rst | 30 +++++++++++++--
- drivers/hwmon/pmbus/mp5990.c   | 67 ++++++++++++++++++++++++++++++----
- 2 files changed, 85 insertions(+), 12 deletions(-)
+I was under the impression that whatever is in the config structure for GPIO
+regmap init function is only required to stay alive until that call returns?
 
-diff --git a/Documentation/hwmon/mp5990.rst b/Documentation/hwmon/mp5990.rst
-index 6f2f0c099d44..7fd536757ff2 100644
---- a/Documentation/hwmon/mp5990.rst
-+++ b/Documentation/hwmon/mp5990.rst
-@@ -9,9 +9,13 @@ Supported chips:
- 
-     Prefix: 'mp5990'
- 
--  * Datasheet
-+    Datasheet: Publicly available at the MPS website: https://www.monolithicpower.com/en/mp5990.html
- 
--    Publicly available at the MPS website : https://www.monolithicpower.com/en/mp5990.html
-+  * MPS MP5998
-+
-+    Prefix: 'mp5998'
-+
-+    Datasheet: Not publicly available
- 
- Author:
- 
-@@ -21,7 +25,7 @@ Description
- -----------
- 
- This driver implements support for Monolithic Power Systems, Inc. (MPS)
--MP5990 Hot-Swap Controller.
-+MP5990 and MP5998 Hot-Swap Controller.
- 
- Device compliant with:
- 
-@@ -53,7 +57,7 @@ The driver provides the following attributes for output voltage:
- 
- **in2_alarm**
- 
--The driver provides the following attributes for output current:
-+The driver provides the following attributes for current:
- 
- **curr1_input**
- 
-@@ -63,6 +67,14 @@ The driver provides the following attributes for output current:
- 
- **curr1_max**
- 
-+**curr2_input**
-+
-+**curr2_label**
-+
-+**curr2_max**
-+
-+**curr2_max_alarm**
-+
- The driver provides the following attributes for input power:
- 
- **power1_input**
-@@ -71,6 +83,16 @@ The driver provides the following attributes for input power:
- 
- **power1_alarm**
- 
-+The driver provides the following attributes for output power:
-+
-+**power2_input**
-+
-+**power2_label**
-+
-+**power2_max**
-+
-+**power2_max_alarm**
-+
- The driver provides the following attributes for temperature:
- 
- **temp1_input**
-diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
-index 4ce381a39480..9a4ee79712cf 100644
---- a/drivers/hwmon/pmbus/mp5990.c
-+++ b/drivers/hwmon/pmbus/mp5990.c
-@@ -8,6 +8,8 @@
- #include <linux/of_device.h>
- #include "pmbus.h"
- 
-+enum chips { mp5990, mp5998 };
-+
- #define MP5990_EFUSE_CFG	(0xC4)
- #define MP5990_VOUT_FORMAT	BIT(9)
- 
-@@ -110,10 +112,53 @@ static struct pmbus_driver_info mp5990_info = {
- 	.read_word_data = mp5990_read_word_data,
- };
- 
-+static struct pmbus_driver_info mp5998_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_CURRENT_IN] = direct,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.format[PSC_POWER] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.m[PSC_VOLTAGE_IN] = 64,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = 0,
-+	.m[PSC_VOLTAGE_OUT] = 64,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+	.m[PSC_CURRENT_IN] = 16,
-+	.b[PSC_CURRENT_IN] = 0,
-+	.R[PSC_CURRENT_IN] = 0,
-+	.m[PSC_CURRENT_OUT] = 16,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = 0,
-+	.m[PSC_POWER] = 2,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = 0,
-+	.m[PSC_TEMPERATURE] = 1,
-+	.b[PSC_TEMPERATURE] = 0,
-+	.R[PSC_TEMPERATURE] = 0,
-+	.func[0] =
-+		PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-+		PMBUS_HAVE_IIN | PMBUS_HAVE_PIN | PMBUS_HAVE_POUT |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_IOUT |
-+		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
-+	.read_byte_data = mp5990_read_byte_data,
-+	.read_word_data = mp5990_read_word_data,
-+};
-+
-+static const struct i2c_device_id mp5990_id[] = {
-+	{"mp5990", mp5990},
-+	{"mp5998", mp5998},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mp5990_id);
-+
- static int mp5990_probe(struct i2c_client *client)
- {
- 	struct pmbus_driver_info *info;
- 	struct mp5990_data *data;
-+	enum chips chip;
- 	int ret;
- 
- 	data = devm_kzalloc(&client->dev, sizeof(struct mp5990_data),
-@@ -121,7 +166,15 @@ static int mp5990_probe(struct i2c_client *client)
- 	if (!data)
- 		return -ENOMEM;
- 
--	memcpy(&data->info, &mp5990_info, sizeof(*info));
-+	if (client->dev.of_node)
-+		chip = (uintptr_t)of_device_get_match_data(&client->dev);
-+	else
-+		chip = i2c_match_id(mp5990_id, client)->driver_data;
-+
-+	if (chip == mp5990)
-+		memcpy(&data->info, &mp5990_info, sizeof(*info));
-+	else
-+		memcpy(&data->info, &mp5998_info, sizeof(*info));
- 	info = &data->info;
- 
- 	/* Read Vout Config */
-@@ -140,6 +193,9 @@ static int mp5990_probe(struct i2c_client *client)
- 		data->info.format[PSC_VOLTAGE_OUT] = linear;
- 		data->info.format[PSC_CURRENT_OUT] = linear;
- 		data->info.format[PSC_POWER] = linear;
-+		if (chip == mp5998)
-+			data->info.format[PSC_CURRENT_IN] = linear;
-+
- 		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
- 		if (ret < 0) {
- 			dev_err(&client->dev, "Can't get vout exponent.");
-@@ -153,16 +209,11 @@ static int mp5990_probe(struct i2c_client *client)
- }
- 
- static const struct of_device_id mp5990_of_match[] = {
--	{ .compatible = "mps,mp5990" },
-+	{ .compatible = "mps,mp5990", .data = (void *)mp5990 },
-+	{ .compatible = "mps,mp5998", .data = (void *)mp5998 },
- 	{}
- };
- 
--static const struct i2c_device_id mp5990_id[] = {
--	{"mp5990"},
--	{ }
--};
--MODULE_DEVICE_TABLE(i2c, mp5990_id);
--
- static struct i2c_driver mp5990_driver = {
- 	.driver = {
- 		   .name = "mp5990",
--- 
-2.43.0
+If so, then yes, a deep copy of everything from this structure is required.
 
+> Otherwise, this looks good.
+>
+
+[snip]
+
+>>
+>> +	if (offset >= chip->ngpio)
+>> +		return -EINVAL;
+>
+> Not sure this can happen. I tried to look into gpiolib.c but
+> couldn't find anything obvious that it can't happen. Maybe Linus or
+> Bartosz can comment on that.
+>
+
+Indeed, this is handed by GPIO core, please drop it.
+
+[snip]
+
+Bartosz
 
