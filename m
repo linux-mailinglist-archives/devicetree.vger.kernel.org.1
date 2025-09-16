@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-217865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC38B59784
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:25:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34CBBB59783
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3472B7A92CE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:23:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC01B179AA5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5944307AEA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6342309DA8;
 	Tue, 16 Sep 2025 13:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lcxw3LjC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GpPPiMz4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7781D7E26;
-	Tue, 16 Sep 2025 13:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7FE1D7E41;
+	Tue, 16 Sep 2025 13:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758029116; cv=none; b=VfaYVL09wU5odNlNW8y6YRwrwjY8FtYoKxqVvRbMIK6MmnX0GEkDlbBFUtme/z7iNSHkur0S/L421v0zDaJtz6vzn1gZneZyi2daaGp7JfV+7d+0fF87z1qdsK6DTMqi+54wmU8H8BVyhiKC+M5NLwsF/13Fed96PzLjlrCCu8c=
+	t=1758029116; cv=none; b=pW1ydw5MuNFEAAUugrs1DPZ0qrWTyKWXJkR9Sgcx6DL6vjjm++CSzt2Gmx/3EhgRz4zkW+KML+8oCOun41i5MvxZjjhh81HGVX+tmkG+mc0sH6tzBNevX5wyUeDElaPU/SfbFm3/bu0vziGxUnRpj+Zmi/2UR3pCpbd+yfdCcZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1758029116; c=relaxed/simple;
-	bh=TnWVqJu7+bSzvUH6klH4pCKIBwlLZnLJ30RdHCvcXpI=;
+	bh=Gwdtq3KT3Skby34FHqWvNTPDYodseuItYXyKgLbVyOk=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=KzSXga2G0+jeLAv9ILSj86u0xRh0fXOO4xbNsxMomH9VamjMdRwsSNsgAdAZQyMkD5uo92GWkXkB7uwAUXSzmmqXFe8vBytVumzEcd/M+rhWclQiHL6IeZuJnhsTJTyPePOZEfdPCBMPEzkuzHBoZ/3aC9bes3lvywSH/5smZlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lcxw3LjC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A71FC4CEF0;
-	Tue, 16 Sep 2025 13:25:15 +0000 (UTC)
+	 Message-Id:Subject; b=t14qU/KLrxp0eUZ14Oe+xABQ+9IWcs4pE//qRfFcuuQPF4xrNXtpOvDFmbdHqXGsg23luWRl24A8dsnE8TDGcTo1OPQlgiPNdkEabrc5bKKr4aRl4QSRqZSnHVXcuI/DxhOE9IUiZOemrB8dOYPhlya9VyC01EcSSng1GXS7n2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GpPPiMz4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11D87C4CEFA;
+	Tue, 16 Sep 2025 13:25:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758029115;
-	bh=TnWVqJu7+bSzvUH6klH4pCKIBwlLZnLJ30RdHCvcXpI=;
+	s=k20201202; t=1758029116;
+	bh=Gwdtq3KT3Skby34FHqWvNTPDYodseuItYXyKgLbVyOk=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Lcxw3LjCuB4qNqHjRm2+ofuatX9CR3D1fdfUaY+ANH1VM+E6Jj8u+OoSCrSRO3/J8
-	 IMBUlCTYnlFQ0tZvKbUfUIHDfhCkYIak3x+XiSLbj48RW5ErX1bQjlKLcaOl7xwQ7b
-	 1zFYnysLUWaJarrgwbpxGYZ6EndgDWBzdfWRVtOhYZ03qKv0XuckObDb05F3uc8GEz
-	 DVouY/XqJT3pO2ACpmEYeOn0/ACJwmoQPsh9MswEtAY0WaiAbSFOlf3IQtqy1re8fQ
-	 0XWihOjUttpgpBZTdZtkWrVDwfvv6aU25+REfjk8YF6LtJw3x/dvMGfqu3a08aNbwY
-	 2+fYwKWNApwhQ==
-Date: Tue, 16 Sep 2025 08:25:14 -0500
+	b=GpPPiMz4wyZrApHDUFCob37XMpR/vuuYPGluQ2GKX0KCzW3AX9rthjNILfrQNmQ4k
+	 wFgaixJ2KbzbQKm5ZFFHavaGE4QrJDy6K40ZMslyB37OGdbxd9OuvJoTM2YMUJNwJq
+	 zstWZ2c890fwnk5bOjI2634zzNHR0HDcW9eyC8daUiCf73fGEQ0oH/2PMH/ypMSPp+
+	 r/7dWFXTPuPfxHADjukm5U7qRyK4O4x2HVGvUdPkM97o0Ziz9cszs1mw4dQQTnK0WN
+	 XzzjlgSp4OAtsCjuNmh1Z84arpLVuDHda6RsRteYteN1TAD/1HzyTUM3KEFY18Obd7
+	 uqpQGpeyRxCBw==
+Date: Tue, 16 Sep 2025 08:25:15 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,42 +51,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>
-To: Troy Mitchell <troy.mitchell@linux.dev>
-In-Reply-To: <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
-References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
- <20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev>
-Message-Id: <175802889714.3636283.16878564061648936522.robh@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: Add CTF2301 devicetree bindings
+Cc: devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Andy Shevchenko <andy@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+In-Reply-To: <20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com>
+References: <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com>
+Message-Id: <175802889806.3636334.5922063165326624339.robh@kernel.org>
+Subject: Re: [PATCH 1/4] regulator: dt-bindings: Add Linear Technology
+ LTM8054 regulator
 
 
-On Tue, 16 Sep 2025 12:46:45 +0800, Troy Mitchell wrote:
-> Add dt-binding for the hwmon driver of Sensylink's CTF2301 chip.
+On Tue, 16 Sep 2025 12:24:06 +0200, Romain Gantois wrote:
+> The Linear Technology LTM8054 is a Buck-Boost voltage regulator with an
+> input range of 5V to 36V and an output range of 1.2V to 36V.
 > 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.dev>
+> The LTM8054's output voltage level is typically set using a voltage divider
+> between the Vout and FB pins, the FB pin being constantly regulated to
+> 1.2V.
+> 
+> The output current limit of the LTM8054 may be statically set by placing a
+> sense resistor on a dedicated pin. This limit can then be lowered by
+> controlling the voltage level on the CTL pin.
+> 
+> Describe the LTM8054 voltage regulator.
+> 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 > ---
->  .../bindings/hwmon/sensylink,ctf2301.yaml          | 49 ++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
+>  .../bindings/regulator/lltc,ltm8054.yaml           | 77 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 82 insertions(+)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml:18:111: [warning] line too long (161 > 110 characters) (line-length)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml: properties:compatible:const: ['sensylink,ctf2301'] is not of type 'integer', 'string'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.yaml: properties:compatible:const: ['sensylink,ctf2301'] is not of type 'string'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-Documentation/devicetree/bindings/hwmon/sensylink,ctf2301.example.dtb: /example-0/i2c/ctf2301@4c: failed to match any schema with compatible: ['sensylink,ctf2301']
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/lltc,ltm8054.example.dtb: /: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/lltc,ltm8054.example.dtb: /: 'model' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/lltc,ltm8054.example.dtb: /: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/lltc,ltm8054.example.dtb: /: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250916-ctl2301-v1-2-97e7c84f2c47@linux.dev
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
