@@ -1,234 +1,158 @@
-Return-Path: <devicetree+bounces-218016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461D8B5A162
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 21:24:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE02B5A166
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 21:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E822B3206F0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:24:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79B473B1C3D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4AC30499C;
-	Tue, 16 Sep 2025 19:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9418331E88A;
+	Tue, 16 Sep 2025 19:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BgnpJeaD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FatPAe+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF53B2FFFB3
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 19:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF0F313D67;
+	Tue, 16 Sep 2025 19:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758050686; cv=none; b=PX2Y5qp2cYHcIZzSO6pwgZSo4FadV6dBeg6+tEGOHFo4TdmbahctggexaezAOFX0xvLNIklFSbFiacwGYmWsCwW2mFpBFkaZxAWTYk/rq0d3uI3zXXKEwf+mut4+v7/5Vv8ox6YIbXlG9+EYOkzziykumI5XLl416dau3TY7Mcw=
+	t=1758050759; cv=none; b=Kxh7+vZHMi7EJ9QBX1OpEjWOAkfcWzv45Mrs8GEVDj3XU/c0HGvzE8c5p+yXHc9swu83UJOgwBmGC9ZPp6Noebfo3oWPLn8huw2taiqy9+NbtD4v30D6yOVPwsWzTeONWqG2d4hIA9c86TYE/CEj8oDgGXSP5PS7YVyyIaAmkj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758050686; c=relaxed/simple;
-	bh=l/JZXCZBRgafRG8M0P+GmzXgWrc1HTLlApXUzUZ7I5Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QF/zZwBhu7p+jvsHtglpFS1ERFGAdloSpBsSRk7jlUc/ryadecwHwXt8yXX0O38bTZbT/rzb2qbRp3qUSHPEbZDF/kjsbAB6w9kKlB6+Pi73+PfX3bo+zIs59Hm6LU/C7apBfss9d/8/8ss0UkK4r4vnSZZYNII45xyO0+P4KfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BgnpJeaD; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-752f88e0b59so157627a34.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:24:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758050684; x=1758655484; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0vkm1lKUO/vYiWqDIzIiDHaOIfHKbifmxiy9YuFgZPQ=;
-        b=BgnpJeaDO1SvyYDgNPB6BKNso8jdpAUltM85Je81YK0bGU7tBwAv7cHlyaKyHeZHMH
-         yX/9efAdL4VMqIf6jsC7uP8BvkgX8vShUTNtu5pb7GMQakAmnzX6e/qzHNUdn5CJAQK5
-         8vfCf8qRfrj2uRu+tp2SvYY5HvFh9hnlkf4baTQbsaNVXSUp26M1L0CQGC5Eh3cWevh6
-         UG7XIdiCPfRu6HPYpthER5JyzDnmbiu+EsExq/xuxtp65awayu3xHfwswO3kvgmy3aPJ
-         NtJ2Uxz/J1R5Rr7pwUdxb198e+IxB5LOrdWIjgnpcqncITR8p/A9jwndmnwN/7xg8gMm
-         9D7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758050684; x=1758655484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0vkm1lKUO/vYiWqDIzIiDHaOIfHKbifmxiy9YuFgZPQ=;
-        b=Kb2A635/vxdvm2T/9Ba1XMDENFS/WZkpb4sR9vBF53T/fRf8So72AzYQPi0QUvGrTC
-         P+aB+kEhKnpqRyeE1cNXrVaJOHXpupRf5G+Zn5yCE4gMYGzLMBGv59Mf9xVChnObAKNM
-         DQROwnqAibcsz1I35PgMPg5EOcTx/Xt+PdHBiPj5UEwAKWf+FciOOd0EK5eCGgSQ10e0
-         v5h1CJdIkxEN/507wWvZcX3YC0I5YK/kaiV/H2VQMojAam6pXfbDHXeY6W60u8jXgSmM
-         U95un8RtiQ+X5UO0l+szy0XTK4QmKVeGs1PvzsQ/dMetKZMpgRt59jVN7+RVDVKBxzFn
-         1ouQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7ISZisIDiaWAznVwlSRII/4D2FVN39f7HmF8984lfTWSYElalzXNRJB+hJhSs5SNK7gcyhbUVW4rD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXpOYstCb7nnjIoItNsSQRfqfDXii6xBpJ7+3+H12mx5VFUWjZ
-	YK0GebSfXVeibe4HbryDNEZLFliAvFj/UWo11ocioG67aot6oc0sNpzoUexZHf8obec=
-X-Gm-Gg: ASbGncvHr3ZJXBbrEZPlem5DF9LaFfQtJlcRG2VRJxA+swXj/bD8uhvvepwVg83MEza
-	1rocljt+Bl5kIswVAEtawhqmU8rVImF+vxgWeNbYpfk3nfW9RHmY3yiP89K3wafwqCbwTcsgo7o
-	uX403sbcbVMm83EPENuU13MEFCitmxuCxMVd2xZrtZl9hvuWajnfvBpp+1RenN09LGunqsZG0Bc
-	BstCiWdSWyqjzi9VjQ0IbQZXtQmS6pOUSTi4euGM1i/LWkmNk+a29n6RYUZ0Zzi05Qvexvyap5z
-	9Hh+ESxcJbZz7QQ3FDr1E8IWo4RkKugL7rkZary1Px2KRQuqTeYTN/i3jwF1kcs3tIgZKyw6L3A
-	oZqaDTwJb/8nuMovWaRoncPi54QhSy91prAAwdl19ApLkMT8tYY241TDQAn0XQyrgufg4pW4skQ
-	c=
-X-Google-Smtp-Source: AGHT+IHNVfc46l96af2hwm84vsHZVNx+YJidQysneprrg+yCXxtsyfR4+pTIbrvZPACHeIwcoRauMg==
-X-Received: by 2002:a05:6830:4988:b0:746:d097:9342 with SMTP id 46e09a7af769-75a7dde5068mr2339458a34.7.1758050683842;
-        Tue, 16 Sep 2025 12:24:43 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:70a1:e065:6248:ef8b? ([2600:8803:e7e4:1d00:70a1:e065:6248:ef8b])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7598664d715sm1552442a34.0.2025.09.16.12.24.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 12:24:43 -0700 (PDT)
-Message-ID: <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
-Date: Tue, 16 Sep 2025 14:24:42 -0500
+	s=arc-20240116; t=1758050759; c=relaxed/simple;
+	bh=WbKVRAs3Wh+XR5dWt3YMr64WBRPzSYnPFa4jHASnGBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgsUbUXdBINaTMqiItkHpX1YQSh5g+d1LQfkMzgg+jEUUmWWJrocMhIjvOCBaylbGMpwJRREPINnMWYNvqB9lOMtj5Krx8AOTwvqNRUOBDsgyVZMgToxoAhBc2HBOpVE01oWLQISmkiy9BimLHevCKaTxz7Mz3owOIrIeqTnPSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FatPAe+N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E148DC4CEEB;
+	Tue, 16 Sep 2025 19:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758050759;
+	bh=WbKVRAs3Wh+XR5dWt3YMr64WBRPzSYnPFa4jHASnGBY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FatPAe+Nj2ETnFOEPGAs4h+A7TEzxfSsUORrtPQperTVyE+gb/CrFO/kzFh3Licr0
+	 UPrXS/5YENcxjnnAicEivE5CnZ1ejKoeaaIJvNcNcLnieQkfYhlK+opI0pzLeQP1Ix
+	 49qrP4lRMxbXXlFgZwB9WZmpsTS0dSzt6LB0wrTIjpG1cUrZKlH2ohdW711ASfHlzB
+	 OABD75atGxGM6lHrs0AdJOVhuvwp0hymPtzETeR9KsAtjD9kP6K/o70fSihY4etXQ2
+	 Bp3bH3HjbDy8GiORtNPUnjlWanFfhBlG0WRqCcgRGx7Dzj2hMMW2EaPbXV6IdWKFKI
+	 Du9nV0OkVR2kQ==
+Date: Tue, 16 Sep 2025 20:25:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 4/6] dt-bindings: touchscreen: fsl,imx6ul-tsc: support
+ glitch thresold
+Message-ID: <20250916-auction-angelfish-0239691a54e5@spud>
+References: <20250915195335.1710780-1-dario.binacchi@amarulasolutions.com>
+ <20250915195335.1710780-5-dario.binacchi@amarulasolutions.com>
+ <aMmIZTMqr0rtiP6z@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] regulator: dt-bindings: Add Linear Technology LTM8054
- regulator
-To: Romain Gantois <romain.gantois@bootlin.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Xdjz9h8Dzy3Z31w2"
+Content-Disposition: inline
+In-Reply-To: <aMmIZTMqr0rtiP6z@lizhi-Precision-Tower-5810>
 
-On 9/16/25 5:24 AM, Romain Gantois wrote:
-> The Linear Technology LTM8054 is a Buck-Boost voltage regulator with an
-> input range of 5V to 36V and an output range of 1.2V to 36V.
-> 
-> The LTM8054's output voltage level is typically set using a voltage divider
-> between the Vout and FB pins, the FB pin being constantly regulated to
-> 1.2V.
-> 
-> The output current limit of the LTM8054 may be statically set by placing a
-> sense resistor on a dedicated pin. This limit can then be lowered by
-> controlling the voltage level on the CTL pin.
-> 
-> Describe the LTM8054 voltage regulator.
-> 
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
-> ---
->  .../bindings/regulator/lltc,ltm8054.yaml           | 77 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 82 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/lltc,ltm8054.yaml b/Documentation/devicetree/bindings/regulator/lltc,ltm8054.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..4db11be178b0e662ec51f3d3d73202f8c32625d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/lltc,ltm8054.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/lltc,ltm8054.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Linear Technology LTM8054 buck-boost regulator
-> +
-> +maintainers:
-> +  - Romain Gantois <romain.gantois@bootlin.com>
-> +
-> +description:
-> +  This regulator operates over an input voltage range of 5V to 36V, and can
-> +  output from 1.2V to 36V. The output voltage level is typically set with a
-> +  voltage divider between the Vout pin and the FB pin which is internally
-> +  regulated to 1.2V.
-> +
-> +  The output current of the LTM8054 can be limited by tying the Iout pin to a
-> +  current sense resistor. This limit can be further lowered by applying a
-> +  voltage below 1.2V to the CTL pin.
-> +
-> +allOf:
-> +  - $ref: /schemas/regulator/regulator.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: lltc,ltm8054
 
-Looks like they got bought by Analog Devices Inc., so adi,ltm8054.
+--Xdjz9h8Dzy3Z31w2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  enable-gpios:
-> +    description: GPIO connected to the RUN pin.
-> +    maxItems: 1
-> +
-> +  lltc,fb-voltage-divider:
-> +    description:
-> +      An array of two integers containing the resistor values
-> +      R1 and R2 of the feedback voltage divider in Ohms.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  lltc,iout-rsense-micro-ohms:
-> +    description:
-> +      Value of the output current sense resistor, in micro Ohms.
-> +
-> +  io-channels:
-> +    items:
-> +      - description: DAC controlling the voltage level of the CTL pin.
-> +
-> +  io-channel-names:
-> +    items:
-> +      - const: ctl
-> +
-> +required:
-> +  - compatible
-> +  - lltc,fb-voltage-divider
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    / {
+On Tue, Sep 16, 2025 at 11:55:17AM -0400, Frank Li wrote:
+> On Mon, Sep 15, 2025 at 09:53:06PM +0200, Dario Binacchi wrote:
+> > Support the touchscreen-glitch-threshold-ns property. Unlike the
+> > generic description in touchscreen.yaml, this controller maps the
+> > provided value to one of four discrete thresholds internally.
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> > Changes in v3:
+> > - Remove the final part of the description that refers to
+> >   implementation details.
+> >
+> >  .../bindings/input/touchscreen/fsl,imx6ul-tsc.yaml   | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/fsl,im=
+x6ul-tsc.yaml b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx=
+6ul-tsc.yaml
+> > index 678756ad0f92..6214d8be5a99 100644
+> > --- a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-ts=
+c.yaml
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-ts=
+c.yaml
+> > @@ -62,6 +62,18 @@ properties:
+> >      description: Number of data samples which are averaged for each re=
+ad.
+> >      enum: [ 1, 4, 8, 16, 32 ]
+> >
+> > +  touchscreen-glitch-threshold-ns:
+> > +    description: |
+> > +      Unlike the generic property defined in touchscreen.yaml, this
+> > +      controller does not allow arbitrary values. Internally the value=
+ is
+> > +      converted to IPG clock cycles and mapped to one of four discrete
+> > +      thresholds exposed by the TSC_DEBUG_MODE2 register:
+> > +
+> > +        0: 8191 IPG cycles
+> > +        1: 4095 IPG cycles
+> > +        2: 2047 IPG cycles
+> > +        3: 1023 IPG cycles
+> > +
+>=20
+> You have to use ns here. You can caculate in driver to match to closed on=
+e.
 
-Examples usually don't have a root node. Probably explains
-the bot errors. (but you should have seen the same errors
-locally with make dt_binding_check.)
+That is what he is saying it is doing - "internally the value is
+converted to IPG clock cycles" and so on. Your repeated misunderstanding
+of this though points out that maybe the description is still lacking?
 
-> +
-> +        regulator {
-> +            compatible = "lltc,ltm8054";
-> +
-> +            enable-gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-> +
-> +            lltc,fb-voltage-divider = <1000000 68000>;
-> +
-> +            lltc,iout-rsense-micro-ohms = <20000>;
-> +
-> +            io-channels = <&dac 1>;
-> +            io-channel-names = "ctl";
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fe168477caa45799dfe07de2f54de6d6a1ce0615..7160179e6bf9d45a241582c1b6df8c0ebf6c3641 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14517,6 +14517,11 @@ W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/i2c/i2c-mux-ltc4306.txt
->  F:	drivers/i2c/muxes/i2c-mux-ltc4306.c
->  
-> +LTM8054 REGULATOR DRIVER
-> +M:	Romain Gantois <romain.gantois@bootlin.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/regulator/lltc,ltm8054.yaml
-> +
->  LTP (Linux Test Project)
->  M:	Andrea Cervesato <andrea.cervesato@suse.com>
->  M:	Cyril Hrubis <chrubis@suse.cz>
-> 
+Dario, how about:
+| The gitch threshold in nanoseconds. Drivers must convert this value to
+| IPG clock cycles and map it to one of the four discrete thresholds
+| exposed by the TSC_DEBUG_MODE2 register:
+|=20
+|         0: 8191 IPG cycles
+|         1: 4095 IPG cycles
+|         2: 2047 IPG cycles
+|         3: 1023 IPG cycles
+?=20
+I dropped the bit about arbitrary values, due to my comment on the other
+version a few mins ago.
 
+--Xdjz9h8Dzy3Z31w2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMm5wQAKCRB4tDGHoIJi
+0vFUAP4yvJ7JPgJWizlkXSyY13Kiampa5okOCrVuX+Hzqtd9jwD/W4hIs5K7jaew
+LxQ8Wc6U2dgRHKf+Px6HcnrGYoPcdwU=
+=7jYx
+-----END PGP SIGNATURE-----
+
+--Xdjz9h8Dzy3Z31w2--
 
