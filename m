@@ -1,338 +1,166 @@
-Return-Path: <devicetree+bounces-217703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F041B58FBA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:58:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7117EB58FBB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 09:58:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85D885206B9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:58:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 586274E1FDC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 07:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A8C27F171;
-	Tue, 16 Sep 2025 07:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720E52820B6;
+	Tue, 16 Sep 2025 07:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ID4R8V3p"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fYUckXNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD90281368
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBC186344
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758009500; cv=none; b=u6gxOyIQb9U2w5espnGnDVzkzHTnygPLM8naOneVQp0AZug9/H5Cn/0Hc8p9NOQX3z9WsHSFFKvPLBCLSMXlnpZQK5zRJlKJ6qyTE8uwFeMTeib3neoIqqUZZHs3nlr4Gric7zRoQgkEXLN9LQkiXKeza1eACmmSpMp1jYoU454=
+	t=1758009518; cv=none; b=OLkLe8CcB5MwsOXTzACQhkmo/yrJ/a65epyw3ZP/q3x9SLy1av0jSdpYqbzlYv2yjJAbU0+GlVRD6YE3w5TB+7HUjyIH/vSm6A2nS/RIOqFSZmUVa1eD6sLxKTVXsewoZE8GrFY7ynQ8QGz+MPNMfZKl26k6Lq0uV7UcY9+y3is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758009500; c=relaxed/simple;
-	bh=DG0G0RV3AmR5fAsT4jCQ/z40LFy/AWJACOz2jnYDTbc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nQAYXGu7iLVx+9BlYtLNvmtcwibWrm2XDjgXlPemtOrbYWOwBJnczDIfVJnOsGPVj1pUyCxTqL9Na3AtnJyO+0OkAPxLwSIgkGFfAAprzkTHBe5pjwBPqCTYc7DpFqvOqgzi0m0oq5cU1gybeVoCPkfzwCCTWoFik39yuS5JDAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ID4R8V3p; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b07dac96d1eso490221266b.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758009497; x=1758614297; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CGkzswrycxBeHJVZMyHWQrwjX71uOJNEOBcuPlrAo5M=;
-        b=ID4R8V3pAq4jOaHMHfMUktWcwZBoqXfYMgLmtuWyyLtQxw2P/zXRpLEWu8BH1r3o9F
-         jNE4HvIsF6XyLyUhIrq5JP3VIWECAbjeHNuN1MGN5gTyPCu0n5XDNq/BzjRQ+11L6gI1
-         J34ohmxEYqCglbpQ3ybDgRJ5ewiYMKGnEurr4pOkOQns/ILlujqzaWuAGaaCGEnL/0uI
-         AoDQ+hJmw2Z36hnzHGZUOF0rOkANYBjujU686heBMM3Grawi/WK/pLzw9QAjTRZ2jooE
-         XVjogY4vO8C7EP0XMNgUGsUiK2VtS50mcX2h41VzdEpg/bXFjxv+Wmxe8VWnJ+sKeFH1
-         LVRA==
+	s=arc-20240116; t=1758009518; c=relaxed/simple;
+	bh=BiL+OBvPwleymFUg266zEWHST/v/EWFTNg7dbQHSFNA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BSd7/FREKd2dNljumBgB1PLf9gSXLBFodsewIoKxNY9JaAUMCRBmOknN43Mj45NqUFUXtB0mRexhSc/i8SxxpCC2hyfRMY1jZ1If7uOxFvwxlw3KkO1bGqsKga9QA+1oH6xw7MrUhzMebck3n7u/42CIqA+fHPv2i7DeGvL0Am4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fYUckXNg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G3plP3005613
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:58:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Q0tLXPQAF6tLix1Ta3Oa+U
+	AIwisBAHhhdVTGTaT/RjM=; b=fYUckXNg+UBcvRLnzgp/41cmFOvolADy54vaJF
+	Htnl3wA4bHB78ROJmblk3gkvVGna6Hu2gKE/cqTV5k1dXxgw1XNRqxTgud/5tWTM
+	e7MaMWfU4KmUV4TEAc/QytuiFXBVZEf1Pjnmdu5y0G1kjMnM7TFxYHX+W2WBc/JB
+	XhFiv6x8tZN/Ao7rAg2djbjznKbbbY9SKcAyzB2Fd1jSsR+GBZitwimjSRelFIo4
+	ghHXFAQDYf3FS19YRlEUG/siWjPtFmaqtF7wAfzcnrVkTffr+Ix0imBa3a/MOvrK
+	2WwfkA5axFycBmLb6nbGqToONfBbEJ5+1CapidhbybX+jHGA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4950u57vy4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:58:35 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77288e1ce43so4619286b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:58:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758009497; x=1758614297;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CGkzswrycxBeHJVZMyHWQrwjX71uOJNEOBcuPlrAo5M=;
-        b=edqxQ7bX6m9DDjhAzOma9P8BwOGOg3nAfS0i00zhNoR3rRnKkjEITeLMA5PZV8NMN1
-         hJgjTaHdawraXAMTvs/1JudeGHNsOeEPspbGSibVyb75+v/+n8NrP1778of56u72MCbk
-         DFlrndNVNgODSTNJOBusUX4n+pVC1KUOaVVQ2Gpf9TwTvOnUdPAN9i5uJgzgconoCsAY
-         0/TyRmmd2euJEmovLWwlR+Tm31BpuuAvv3KHAwxrsWgU+COqTCDUlnAjujry3y64yUbu
-         7zJ34xkegheOuLmQIMgkwY3PMboZgI6r+s4JwcRhAOggIYMHHjvL/uCAoKx2XtYWTvIj
-         aFyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ2GpW8hlKEGfSWbhu7OQPqSO9uMJZfPafTDx4/3VyPfOqVoCd50ss9eSvCtTwDAS7lR2E64okJgu7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7WqxfbeTN88iN7dkttD1hK44xeAFbCzg+nL/p+KTuzk95BJpq
-	eIwsUz++ajK4yM9NfhE+Wkjs5HKWOgtfB8ZeAXhB0jv+IA42dnM3D+FnU4Kq/rDRvdK5J0NT3TB
-	EixnpjTDgHVpZXOiSd5ONuRSlqSrC2Eo=
-X-Gm-Gg: ASbGncuK9nuCaNt+od8UiWlOG9bd/S5YFWe+tYEhkqQcQJMphUVfNkTmqTTC+6PH9dU
-	7K7/tTDwW7SMdPw9lWd02LCtW3m0lM2qPL33bmZaV/vTprQfgOeWJWi3oCaQwxR0aMNWSRIKsrM
-	JKDLVM9IrO2vDjhp2jW6PhTdxyjDp6QbEi1EwOpW5CSzb9CLs/HZaPUmLObdRIMWc9o1y8eHR3K
-	LLJuok7jkawcBWoIiBYfnBRTA==
-X-Google-Smtp-Source: AGHT+IFral83PqRO0oFA0nwAADsLdem/Y6OwUTho938r+mc+rTRLW/zzW4TNdo8+cb6TZ7QmrlG/7/Mr5jmEGgUT/oQ=
-X-Received: by 2002:a17:907:74c:b0:b04:2697:9f60 with SMTP id
- a640c23a62f3a-b167fcd9200mr187650666b.13.1758009497066; Tue, 16 Sep 2025
- 00:58:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758009515; x=1758614315;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q0tLXPQAF6tLix1Ta3Oa+UAIwisBAHhhdVTGTaT/RjM=;
+        b=r0FOqyw8wLwYFdg/+EsaD8SPeuonyEbIZ/uTpZJpytZ7X/V3wXp0UU9cJqkhU2n7mG
+         JfEyi/Xqv7Hn8Oa94NwLa4M7YzO470U8lrYMwitdaDB82Wb44WoKiGS91LiAGVdFnAsR
+         WKeregiCCdGSPjj0BH3aonqm2kcmEzRjodvU7n9L+y9qY1oB4vnnJ5jiDZLMN8nL4fFM
+         AzSb3Z454W3jXHnRiacBDjjxJtC8YTYIhZV3N1tXzFhfDnk1Gy4dhPnGgMtmMOnHWeAe
+         4YXy0eOFTY2NH7F2YU2YIKyIu/JAiKM0qlhStNRtSIk0yKO5OqWDygb6V8vOJsvyLAVD
+         5k/A==
+X-Forwarded-Encrypted: i=1; AJvYcCURjqJhsakpKTX71YcS8720XksTs98gR7JsggSmePM4n0m/SfiiazEV7zg0ucK0rz+wDIkI4c1/rcZz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMe8jnogS6WGgu5RY8weLq8qr4h3cHLmBqJhqQCwkzRgkpbij+
+	mMDQS/j13IG0sAyl/VZBz5y4mzTK/mpLw7pTIOkif1zw4plk7DHL0Y/KSHK/akpfuxqfSVEoEPU
+	c9KWVSLd1LF2suSUzDA13Nj1jpxzg0nRfi6JMRYm3GvehPfZwjA0DP0AQW2rC2+bLiEff5V/z
+X-Gm-Gg: ASbGncsspPFcriN1YGU8zDLd3gW+O1OtH4GUeb4p76pKNfxfbgdxfCjzSwzBJ30yKe0
+	CI87NnQyp85Zsva8u9X3dRRqJlFkHzL6RXMF0qOuz2bcE2bbjYvS0B5DTe9oDYS3Nd2wQGpvUYs
+	tzcL3/KSoZ5qFPbkFxBbQRacRkkjrg58AjgB4HV/2zmxgywCQivHyVRlyjD74BgFxoWiO8RLs7a
+	0f9Ie4YGg6LitgZCi3jDCB5D5+CN8MKX2GT0gq4AQF6zYzwLxOs1m2uXtKsbpDNSPQHM2c6OEvC
+	Tt8JTyqg9pkyPyhZGuOm93mw3g1RcngEI4snwU0TcMpW9VTNrmpkyRw5nBBcOVmcfkfc6GFCD38
+	7oJUXgTII1i0xrV1SOrubifk58Q==
+X-Received: by 2002:a05:6a00:982:b0:76b:d869:43fd with SMTP id d2e1a72fcca58-7761216815amr21066995b3a.18.1758009514854;
+        Tue, 16 Sep 2025 00:58:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8Mw7Tpab5EgduaX9JXiImWjA12GetgNV6g7eSIsDmOtjjbFYy59QLratOGv/hg+mFDwd6aQ==
+X-Received: by 2002:a05:6a00:982:b0:76b:d869:43fd with SMTP id d2e1a72fcca58-7761216815amr21066953b3a.18.1758009514410;
+        Tue, 16 Sep 2025 00:58:34 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7761af2e09dsm11292222b3a.76.2025.09.16.00.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 00:58:33 -0700 (PDT)
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: [PATCH 0/4] rpmh-regulators: Update rpmh-regulator driver and
+ dt-bindings for Glymur
+Date: Tue, 16 Sep 2025 13:28:14 +0530
+Message-Id: <20250916-glymur-rpmh-regulator-driver-v1-0-bb9b00e93a61@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1757971454.git.marilene.agarcia@gmail.com> <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
-In-Reply-To: <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 16 Sep 2025 10:57:40 +0300
-X-Gm-Features: AS18NWCljXfeEk1VNA27kohevOmouRYk8kIoC9zwMHwx8wKfR8g9z-Yuec4fG-Y
-Message-ID: <CAHp75Vc84_b5OdVjC+Vup9R5v=d+30vho7kwihYff-L3KO3JqQ@mail.gmail.com>
-Subject: Re: [PATCH v11 2/3] iio: adc: max14001: New driver
-To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Marcelo Schmitt <Marcelo.Schmitt@analog.com>, 
-	Ceclan Dumitru <dumitru.ceclan@analog.com>, Jonathan Santos <Jonathan.Santos@analog.com>, 
-	Dragos Bogdan <dragos.bogdan@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJYYyWgC/x3MSQqEMBAF0KtIrS2II21fRVxIUh0LnPhRUcS7G
+ 3r5Nu+mIFAJ9E1ughwadJkjsjQhO/SzF1YXTbnJK9NkNfvxmnYw1mlgiN/HflvADnoI+GNsU5W
+ Fda4WisUK+en579vueV5AE/1hbgAAAA==
+X-Change-ID: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758009510; l=1091;
+ i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
+ bh=BiL+OBvPwleymFUg266zEWHST/v/EWFTNg7dbQHSFNA=;
+ b=ffBHPPZutmrccKpgs1c/bDh77Z41Pl4Z3A7hoGZOth9kAxx3eQ2px/mMcV7sgP4l5LqNb7+fy
+ +jit9FeQpv5CLZhXobmBpTE2GyvS77BJGxzNbVuffQiuiB1rRCNaxxC
+X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
+ pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
+X-Proofpoint-GUID: F-AHU1MXEjPd6pmBV0naKwi4eMZ0gld6
+X-Proofpoint-ORIG-GUID: F-AHU1MXEjPd6pmBV0naKwi4eMZ0gld6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAzMSBTYWx0ZWRfX3rq/ZYcT5DGh
+ OLoD5rwzHnK83wgiO60r4gBil/8RfIi7gtPTDP3oiw7N+oLSxGLdURpAzYXO1A+7Cg8iHuE86mW
+ qT4F4+nIT8WNxO9SSTvxEWI3sLIyEhOb2gY2sG3TLVdnqJ0RFr7Y1nMiiz5b8UEta/O/WP0RLSX
+ YTrrNRlLfe8RcUc+5wBAbyYjoa7bbiE2aan+9tT+9Cmc+6xHlKc45km9i4DJPTrFSeVbY4uJIog
+ NcBnrGplr8b2jBZEvNkrwWifgsyq3/I5bwnYoh9EvNyOQQZL+3U6pviTp0lOxErei/7phtHl7pS
+ A7d4zyJnO7OUMlf1i8oXrfnRy4/XgiqYmSTFTqKMdfTG1cYA8fjP5L2KCGYzKw583IRp/7znlXC
+ ErqoDJJT
+X-Authority-Analysis: v=2.4 cv=JvzxrN4C c=1 sm=1 tr=0 ts=68c918ac cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=rkQUlozyScZn5B7-rlcA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0
+ spamscore=0 adultscore=0 malwarescore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130031
 
-On Tue, Sep 16, 2025 at 1:16=E2=80=AFAM Marilene Andrade Garcia
-<marilene.agarcia@gmail.com> wrote:
->
-> The MAX14001/MAX14002 is configurable, isolated 10-bit ADCs for multi-ran=
-ge
-> binary inputs. In addition to ADC readings, the MAX14001/MAX14002 offers
-> more features, like a binary comparator, a filtered reading that can
-> provide the average of the last 2, 4, or 8 ADC readings, and an inrush
-> comparator that triggers the inrush current. There is also a fault featur=
-e
-> that can diagnose seven possible fault conditions. And an option to selec=
-t
-> an external or internal ADC voltage reference.
->
-> MAX14001/MAX14002 features implemented so far:
-> - Raw ADC reading.
-> - Filtered ADC average reading with the default configuration.
-> - MV fault disable.
-> - Selection of external or internal ADC voltage reference, depending on
-> whether it is declared in the device tree.
+This series contains patches to update rpmh-regulator driver and
+dt-bindings for supporting the PMIC voltage regulators present on the
+boards with Qualcomm's next gen compute SoC - Glymur.
 
-This version looks almost good to me, a few nit-picks below.
+Device tree changes aren't part of this series and will be posted
+separately after the official announcement of the Glymur SoC.
 
-...
+Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+---
+Kamal Wadhwa (4):
+      dt-bindings: rpmh-regulator : Add compatibles for PMH01XX & PMCX0102
+      dt-bindings: rpmh-regulator: Update pmic-id property info
+      regulator: rpmh-regulator: Add support for new resource name format
+      regulator: rpmh-regulator: Add RPMH regulator support for Glymur
 
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -87,6 +87,7 @@ obj-$(CONFIG_MAX11100) +=3D max11100.o
->  obj-$(CONFIG_MAX1118) +=3D max1118.o
->  obj-$(CONFIG_MAX11205) +=3D max11205.o
->  obj-$(CONFIG_MAX11410) +=3D max11410.o
-> +obj-$(CONFIG_MAX14001) +=3D max14001.o
->  obj-$(CONFIG_MAX1241) +=3D max1241.o
->  obj-$(CONFIG_MAX1363) +=3D max1363.o
->  obj-$(CONFIG_MAX34408) +=3D max34408.o
+ .../bindings/regulator/qcom,rpmh-regulator.yaml    |   39 +-
+ drivers/regulator/qcom-rpmh-regulator.c            | 1322 ++++++++++++--------
+ 2 files changed, 811 insertions(+), 550 deletions(-)
+---
+base-commit: c3067c2c38316c3ef013636c93daa285ee6aaa2e
+change-id: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
 
-Please, keep it ordered.
+Best regards,
+-- 
+Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/bitrev.h>
-> +#include <linux/bits.h>
-
-> +#include <linux/byteorder/generic.h>
-
-This is wrong, should be asm/byteorder.h going after linux/* but
-before linux/iio/* ones...
-
-> +#include <linux/cleanup.h>
-> +#include <linux/device.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/types.h>
-> +#include <linux/units.h>
-
-...here
-
-asm/byteorder.h
-
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/types.h>
-
-...
-
-> +struct max14001_state {
-> +       const struct max14001_chip_info *chip_info;
-> +       struct spi_device *spi;
-> +       struct regmap *regmap;
-> +       int vref_mV;
-> +       /*
-> +        * lock protect against multiple concurrent accesses, RMW sequenc=
-e,
-
-Lock to protect...
-
-> +        * and SPI transfer.
-> +        */
-> +       struct mutex lock;
-> +       /*
-> +        * The following buffers will be bit-reversed during device
-> +        * communication, because the device transmits and receives data
-> +        * LSB-first.
-> +        * DMA (thus cache coherency maintenance) requires the transfer
-> +        * buffers to live in their own cache lines.
-> +        */
-> +       __be16 spi_tx_buffer __aligned(IIO_DMA_MINALIGN);
-> +       __be16 spi_rx_buffer;
-> +};
-
-...
-
-> +static struct max14001_chip_info max14001_chip_info =3D {
-> +       .name =3D "max14001",
-> +};
-> +
-> +static struct max14001_chip_info max14002_chip_info =3D {
-> +       .name =3D "max14002",
-> +};
-
-These can be moved closer to their first user (ID table?).
-
-...
-
-> +static int max14001_write(struct max14001_state *st, unsigned int reg, u=
-nsigned int val)
-> +{
-> +       /*
-> +        * Prepare SPI transmit buffer 16 bit-value big-endian format and
-> +        * reverses bit order to align with the LSB-first input on SDI po=
-rt
-
-reverse
-
-> +        * in order to meet the device communication requirements.
-> +        */
-> +       st->spi_tx_buffer =3D cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_MA=
-SK_ADDR, reg) |
-> +                                                FIELD_PREP(MAX14001_MASK=
-_WR, 1) |
-> +                                                FIELD_PREP(MAX14001_MASK=
-_DATA, val)));
-> +
-> +       return spi_write(st->spi, &st->spi_tx_buffer, sizeof(st->spi_tx_b=
-uffer));
-> +}
-
-...
-
-> +static int max14001_probe(struct spi_device *spi)
-> +{
-> +       struct device *dev =3D &spi->dev;
-> +       struct iio_dev *indio_dev;
-> +       struct max14001_state *st;
-> +       int ret, ext_vrefin =3D 0;
-
-bool use_ext_vrefin =3D false;
-
-> +       indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
-> +       if (!indio_dev)
-> +               return -ENOMEM;
-> +
-> +       st =3D iio_priv(indio_dev);
-> +       st->spi =3D spi;
-> +       st->chip_info =3D spi_get_device_match_data(spi);
-
-> +       if (!st->chip_info)
-> +               return dev_err_probe(dev, -ENODEV, "Failed to get match d=
-ata\n");
-
-Remove this check, it will be almost always a dead code. The developer
-implementing a new device support won't be able to test the driver
-anyway with properly given chip_info.
-
-> +       indio_dev->name =3D st->chip_info->name;
-> +       indio_dev->info =3D &max14001_info;
-> +       indio_dev->channels =3D max14001_channel;
-> +       indio_dev->num_channels =3D ARRAY_SIZE(max14001_channel);
-> +       indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +
-> +       st->regmap =3D devm_regmap_init(dev, NULL, st, &max14001_regmap_c=
-onfig);
-> +       if (IS_ERR(st->regmap))
-> +               return dev_err_probe(dev, PTR_ERR(st->regmap), "Failed to=
- initialize regmap\n");
-> +
-> +       ret =3D devm_mutex_init(dev, &st->lock);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret =3D devm_regulator_get_enable(dev, "vdd");
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Failed to enable Vdd supp=
-ly\n");
-> +
-> +       ret =3D devm_regulator_get_enable(dev, "vddl");
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Failed to enable Vddl sup=
-ply\n");
-> +
-> +       ret =3D devm_regulator_get_enable_read_voltage(dev, "refin");
-> +       if (ret < 0 && ret !=3D -ENODEV)
-> +               return dev_err_probe(dev, ret, "Failed to get REFIN volta=
-ge\n");
-> +
-> +       if (ret < 0)
-
-if (ret =3D=3D -ENODEV) ?
-It would be interesting out of curiosity to see bloat-o-meter output
-for the original check and my proposal. I would choose one which gives
-less code, but in case of equality, I would rather go with a more
-explicit (my proposal) check.
-
-
-> +               ret =3D 1250000;
-> +       else
-> +               ext_vrefin =3D 1;
-
-use_ext_vrefin =3D true;
-
-> +       st->vref_mV =3D ret / (MICRO / MILLI);
-> +
-> +       if (ext_vrefin) {
-
-if (use_ext_vrefin) {
-
-> +               /*
-> +                * Configure the MAX14001/MAX14002 to use an external vol=
-tage reference source
-> +                * by setting the bit 5 of the configuration register
-
-Missing period.
-
-> +                */
-> +               ret =3D regmap_update_bits(st->regmap, MAX14001_REG_CFG, =
-MAX14001_REG_CFG_BIT_EXRF, MAX14001_REG_CFG_BIT_EXRF);
-> +               if (ret)
-> +                       return dev_err_probe(dev, ret, "Failed to set Ext=
-ernal REFIN in Configuration Register\n");
-> +       }
-> +
-> +       ret =3D max14001_disable_mv_fault(st);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Failed to disable MV Faul=
-t\n");
-> +
-> +       return devm_iio_device_register(dev, indio_dev);
-> +}
-
-
---=20
-With Best Regards,
-Andy Shevchenko
 
