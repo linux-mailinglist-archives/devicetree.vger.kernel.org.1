@@ -1,129 +1,127 @@
-Return-Path: <devicetree+bounces-217999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F080AB5A07C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:26:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110C6B5A080
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00051BC5FD4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:26:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E2857A1B3A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 18:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE892C3261;
-	Tue, 16 Sep 2025 18:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E2B2DE1E3;
+	Tue, 16 Sep 2025 18:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="0e3rb8TX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NcLZIk4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67102C0F84;
-	Tue, 16 Sep 2025 18:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.40.148.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EE62DBF45;
+	Tue, 16 Sep 2025 18:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758047181; cv=none; b=UPIPN8ZnmjA1zM7P0z2zyX/3/9A8C17a1+c6pihSpDryHT990Kjc6+fJ/1VSgV4RDTpu8wu1c/TDeAAuEEyHzGo8EOZfdyT4GOwx/C07C9vCqcD33TwdoffyDgiyuAoMKSbsWOp8jSKYsipb/HutJfTOMA5UN8hfw9dXKzb+0DM=
+	t=1758047413; cv=none; b=bxom1l9JVX8vgWL8xy3+016wQV5gkyTaV4d+HJ22jygP2hC2iUm0hpJCpz+Gng7MkcvOcnP11LxTWsa5VUbgvz4cXIoZH34H6+HbU2guryvcDWOGU5IgvbtcwTDrOTmfWHPOOyC7+gM1oU9PWcFFDZBA5Xy2r9RSGFX34EpvXYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758047181; c=relaxed/simple;
-	bh=cJ0ZgA9fSOYGQwYE2169cbLnicc73+0vXxPopTPOXv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5j2pdvrERTi7wsSC922XOGIMUR+Gz6t70C0pvF90uakUYot6fbuLrfWC9ex3SKtA5ow/KP5I/H/C1Bhj9FNkIGPHhr2zekHe78ShTV/i/cYavkyH2wia8fmaocdRGWsieA4+kuAcf2V0l+GUjS+N9TTQ4x2G53XSOM4yRbn+84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk; spf=pass smtp.mailfrom=codethink.co.uk; dkim=pass (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b=0e3rb8TX; arc=none smtp.client-ip=78.40.148.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codethink.co.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap5-20230908; h=Sender:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pfR7Xsy4BQPLEp1myu06IGK0gA6NnQf3jtJg3r/Xogg=; b=0e3rb8TXFHuItZMejDHEA/J4qr
-	Ncudvij/fFD65016h6R73EusavImCWVjmuJt4DcY6D3nT+YL9bjjqvc2nCt9Nseo2SDVC5xvhM4tS
-	JST+mGABW9nUmN5mL8hVq8BPVGB8yK2+yhi5kL1p+LoKrYjKEiaH8h9XmxU2BMevdJrMRC1y1yI3S
-	j1hMnf8mAT6yFgJCGcZ+A694Z1TU3R1TjFf31MOt6+6aTQuY6/SC2RFcoVNizOBVBUIg2TZMZkLbN
-	MbaJBP6xep/n+a/oEjuWFCwd2LdNFgt+d8xBqXT6CdKZUbnK+H26O6OiZdObrbf2UOf9o+mzZQw9o
-	kSQ7Gxzw==;
-Received: from [63.135.74.212] (helo=[192.168.1.249])
-	by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1uyaNM-0001Qd-FC; Tue, 16 Sep 2025 19:26:00 +0100
-Message-ID: <51960b81-d8df-423f-b24b-4b4ec1e7a245@codethink.co.uk>
-Date: Tue, 16 Sep 2025 19:25:59 +0100
+	s=arc-20240116; t=1758047413; c=relaxed/simple;
+	bh=/60SfQxaLsYIsKPNHgxsvyMnMI3qJ6/je9Dcc85USXU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YGnQL6XgDJ9I4Yrg8FZa3ZD9/055ZDpR185LMimzmUnbhNghU+qcyMFg5GHDyo+ZPYbzjiHIHBKczoKUmvWknN6YRySX7Kp+rd5P8euxoTAPT/id8dlvi/6E9u6L39GDXc7t0U2CS5Iqq4yuzc97SCrpw6e6IYUf17TpIb21SWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NcLZIk4Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA528C4CEEB;
+	Tue, 16 Sep 2025 18:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758047412;
+	bh=/60SfQxaLsYIsKPNHgxsvyMnMI3qJ6/je9Dcc85USXU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NcLZIk4QG8OaXaSJ6ufu602atIlGG4XngoCeveTzoBf0H5s4S/4ATiIAFhg+GsW2M
+	 fW/hAwaRfqoyUpisKvnIScAAkVvMzyym7vkGoVqnfq4bNlCkeksiZMxbdF1seehl8f
+	 +fHiL8pnW5UPKuMS9qDEAspXz5A8CV4zayuab9X1bYDHOGseWTZUr8IKZ4Reasb26w
+	 5gnDUNeJPxXAuwT1qYNUKvMT3J5yfBwTYW0jdPknCs20Ke5dYwTeEcsOxudBTuNMXX
+	 eypasJchs+QTE1Z4JxfppJNo5VzbVkjFFfbYNJ/ZMMlo2TLlLf/KSI5uIN92oluPSb
+	 RVH9i2BbTS1LA==
+Date: Tue, 16 Sep 2025 11:30:10 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	oe-kbuild-all@lists.linux.dev,
+	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
+	Adrien Ricciardi <aricciardi@baylibre.com>,
+	James Morse <james.morse@arm.com>,
+	Atish Kumar Patra <atishp@rivosinc.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Vasudevan Srinivasan <vasu@rivosinc.com>, guo.wenjia23@zte.com.cn,
+	liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] RISC-V: Add support for srmcfg CSR from Ssqosid
+ ext
+Message-ID: <aMmssvhxw+oH32OA@x1>
+References: <20250915-ssqosid-v6-17-rc5-v2-3-2d4b0254dfd6@kernel.org>
+ <202509162355.wByessnb-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] riscv: dts: Add Tenstorrent Blackhole A0 SoC PCIe
- cards
-To: Drew Fustini <fustini@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Samuel Holland <samuel.holland@sifive.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
- Arnd Bergmann <arnd@arndb.de>, Joel Stanley <jms@tenstorrent.com>,
- Joel Stanley <joel@jms.id.au>, Michael Neuling <mikey@neuling.org>,
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@kernel.org>,
- Andy Gross <agross@kernel.org>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Drew Fustini <dfustini@tenstorrent.com>
-References: <20250913-tt-bh-dts-v1-0-ddb0d6860fe5@tenstorrent.com>
- <20250913-tt-bh-dts-v1-6-ddb0d6860fe5@tenstorrent.com>
- <20250915-mouth-banner-ddfb2e48bdb3@spud> <aMhSSka3gyIcND/L@x1>
- <70241f44-2f8d-4945-9c84-71416776cefd@codethink.co.uk> <aMmd/JQAfPwKuYyB@x1>
-Content-Language: en-GB
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <aMmd/JQAfPwKuYyB@x1>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Sender: ben.dooks@codethink.co.uk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202509162355.wByessnb-lkp@intel.com>
 
-On 16/09/2025 18:27, Drew Fustini wrote:
-> On Tue, Sep 16, 2025 at 02:56:05PM +0100, Ben Dooks wrote:
->> On 15/09/2025 18:52, Drew Fustini wrote:
->>> On Mon, Sep 15, 2025 at 05:47:08PM +0100, Conor Dooley wrote:
->>>> On Sat, Sep 13, 2025 at 02:31:05PM -0700, Drew Fustini wrote:
->>>>> new file mode 100644
->>>>> index 0000000000000000000000000000000000000000..b2b08023643a2cebd4f924579024290bb355c9b3
->>>>> --- /dev/null
->>>>> +++ b/arch/riscv/boot/dts/tenstorrent/blackhole-a0-card.dts
->>>>> @@ -0,0 +1,14 @@
->>>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->>>>> +/dts-v1/;
->>>>> +
->>>>> +#include "blackhole-a0.dtsi"
->>>>> +
->>>>> +/ {
->>>>> +	model = "Tenstorrent Blackhole A0 SoC PCIe card";
->>>>> +	compatible = "tenstorrent,blackhole-a0-card", "tenstorrent,blackhole-a0";
->>>>> +
->>>>> +	memory@0 {
->>>>> +		device_type = "memory";
->>>>> +		reg = <0x4000 0x30000000 0x1 0x00000000>;
->>>>
->>>> This isn't at address zero as the node address claims.
->>>
->>> Thanks, I'll fix the unit address.
->>
->> Is it time to just assume any dtc can handle a 64bit number?
+On Tue, Sep 16, 2025 at 11:55:39PM +0800, kernel test robot wrote:
+> Hi Drew,
 > 
-> Is it not valid for me to use the 64 bit hex number in the unit address?
+> kernel test robot noticed the following build errors:
 > 
->
+> [auto build test ERROR on 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Drew-Fustini/dt-bindings-riscv-Add-Ssqosid-extension-description/20250916-131818
+> base:   76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
+> patch link:    https://lore.kernel.org/r/20250915-ssqosid-v6-17-rc5-v2-3-2d4b0254dfd6%40kernel.org
+> patch subject: [PATCH v2 3/3] RISC-V: Add support for srmcfg CSR from Ssqosid ext
+> config: riscv-allnoconfig (https://download.01.org/0day-ci/archive/20250916/202509162355.wByessnb-lkp@intel.com/config)
+> compiler: riscv64-linux-gcc (GCC) 15.1.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250916/202509162355.wByessnb-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202509162355.wByessnb-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    kernel/sched/core.c: In function 'context_switch':
+> >> kernel/sched/core.c:5357:35: error: macro '__switch_to_srmcfg' passed 1 arguments, but takes just 0
+>     5357 |         switch_to(prev, next, prev);
+>          |                                   ^
 
-No, the reg = < > contents. It is a right pain to read split 32bit
-numbers and I thought dtc had been updated to allow 64bit now?
+It seems I had incorrectly defined __switch_to_srmcfg() in the case
+where CONFIG_RISCV_ISA_SSQOSID is not defined. I was able to reproduce
+the error locally and this change seems to resolve it:
 
 
+diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
+index 7371e53e9e91..84830d7c6dc4 100644
+--- a/arch/riscv/include/asm/qos.h
++++ b/arch/riscv/include/asm/qos.h
+@@ -35,7 +35,7 @@ static __always_inline bool has_srmcfg(void)
+ #else /* ! CONFIG_RISCV_ISA_SSQOSID  */
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+ static __always_inline bool has_srmcfg(void) { return false; }
+-#define __switch_to_srmcfg() do { } while (0)
++#define __switch_to_srmcfg(__next) do { } while (0)
 
-https://www.codethink.co.uk/privacy.html
+ #endif /* CONFIG_RISCV_ISA_SSQOSID */
+ #endif /* _ASM_RISCV_QOS_H */
+
+
+I'll include this change in the next revision.
+
+Thanks,
+Drew
 
