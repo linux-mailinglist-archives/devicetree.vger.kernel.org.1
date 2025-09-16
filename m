@@ -1,233 +1,175 @@
-Return-Path: <devicetree+bounces-217845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9355B59676
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:45:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 484F8B596C0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CE361BC6E71
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C533A7B1E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA9B311953;
-	Tue, 16 Sep 2025 12:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F6523D7F4;
+	Tue, 16 Sep 2025 12:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GWJ17n3f"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ddYDXekm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010064.outbound.protection.outlook.com [52.101.84.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209FC3112D8;
-	Tue, 16 Sep 2025 12:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758026719; cv=fail; b=Zemh4QawhHdoCFyS8eiNThWwOdn3dllnAU7kYiVMFTc/85v+Q5OWR6ZvQ3pGcF18LX4yNR8yLH7fi7/ZDAijSBymG70biJcn2JDiZjCKLD2oqvhKTk508zc1gSNvhcFmoHITrcxTDnYUILqpSA57kwqlw/ppzAb9+Jqy3tpyMVc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758026719; c=relaxed/simple;
-	bh=rRbrcLuDSBhmcNsooDZTALbmvb+shngFlMhb4CoC3u8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=pjUnfkFPgsaisOWzNk4rrZRKZMTaJ6nMoXi/w1VyT2AETgvQxanebwsRFyJ2r9lTHRGB3fDxDvTOs1ty/MBctbzy4eJO2d9Y/S8GaFjzjqlPTrfBkipDls+ipNqBpRzdcswJ7xWyN0diDJ2TdhWVZV8vDtsLNhySSMsn+FWU+FM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GWJ17n3f; arc=fail smtp.client-ip=52.101.84.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b5URfMt5fozWQNCoAP7nBtKsxE6dgqtOorUx4XCc4NQV+0CaO9LpvkV2oSUNzhs+uLClWq7VfG4UgJpI61jYyvoHmm2Us2Dx5/W+bfQCh72yrNseGtm+335vVuGdsj8DNWvCleSvdSnI0H88WbenA7Li1La2z7fL3xcr2xkzLHCr53G5DESzlJ0EMeGbAyehjTWt6H0b2HzZjrnvb6Xxf44MPDEEqJIHNLb6WZLodvjTFYQfkEPxlxNyywo4uZAusRzUUwdf594ZFKz1t2OxsGWg5JNrVc386aJXDKb/5Wqauxp67fFnmdU+W1vdARdsHEzL9sOZD1miZsLKvmY13w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WsjNcuICqBIRwNdElUAbiISi/Zheu8wdt8c8qfSunbE=;
- b=yr68UNV9AmPfkp55nJKQZ8KX3c972Qx0j+44C0kz8zgtUnVp7LMUuqZOcHvn5juQnFHnGhdkYej/J+PKFpitAWlXHOn8ezC9njn/aIJyBRz3/R05NY0pwu4P8P84OGW5y5YXtow+3giHf35FISw4HdG/8prg7NAYHMsj2DV3s0RzL17Wp//HUTYKJ9F5Bi08MA2K/w8GJf0rgk3SAH1DxfxXNzRsnJwkDEMWhSGGZHqB3+YiFy7FiSUjawBsBdpdI2enARGvoW7ugTf9hsNxovuZHhWwC+lLh6mpq7NIEdnb+nQY91bPfrIZSyTwD01Gku9G4FSg9ld9bzJFm8JYmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WsjNcuICqBIRwNdElUAbiISi/Zheu8wdt8c8qfSunbE=;
- b=GWJ17n3foQ2sFxn8KlP22LnfoS3eu05TmNiCZryuXwH2VtiAmkqe82CClkO7LwPcEXmaafvNShb685HuOpwB99YwLrYst8ywlU+8dIGVvUf+ZXsDd0evqOiZTsV4NrffoyV1/k+E//DX9wPElTJGubUU8t+zw3qIOzQevrQSBNk4Uqf+vYjIbBkjzZVDLWQBr/Pn0zlUF1Jy8lKH6W/9xswRGZ0ZsRT6a8e1YN+UhHG8JyudZoZhmi9G3JV/geekvRp/CSyx0Ugj0uHf3VvbskP0QmfRGCqT0tGE4n6hu+H7SwYfawTMKn8tKzqL41S40wjWWKBZnihKlU1NGPhN2Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by DB9PR04MB8188.eurprd04.prod.outlook.com (2603:10a6:10:25e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.11; Tue, 16 Sep
- 2025 12:45:13 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b7fe:6ce2:5e14:27dc]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b7fe:6ce2:5e14:27dc%4]) with mapi id 15.20.9137.010; Tue, 16 Sep 2025
- 12:45:13 +0000
-Date: Tue, 16 Sep 2025 15:45:09 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Shawn Guo <shawnguo@kernel.org>, 
-	Michael Walle <mwalle@kernel.org>, Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 2/9] dt-bindings: fsl,fpga-qixis-i2c: extend support
- to also cover the LX2160ARDB FPGA
-Message-ID: <5a2x7m2vxbql67rxdjrionmzc6gjrebymahzdl7xc6fjlc3dxz@ykpgin225dg3>
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-3-ioana.ciornei@nxp.com>
- <20250915202742.GA3329659-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915202742.GA3329659-robh@kernel.org>
-X-ClientProxiedBy: AS4P190CA0001.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5de::7) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C6121CA0D
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758027569; cv=none; b=tA5obFYFSc21Cq8IWZV8v/bamoi2IHzQy2jHssSKmPTxLsQ1CYxtLhp4JV4+AkSD4vtFL9jpMv3AbTTbC85gLSy5SgfrmKNN4QoaS5pnFpBAfCgXxw/w8NcM7+jOXqyALQiFP7mDFrT3rBNF6gJrhPA0bXuN26J51SP2ADJfri8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758027569; c=relaxed/simple;
+	bh=P0qwYvA0hb3DcRu8UXrOaavNtZ/NhaQ2xXab7mtLRyc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=paX0/ndKQPWatZjDvPvZdUt5Qk/8k1o3suvYATSiZV2rpsvrSkz2poSbchz1ZgmwNECvtNfA//Hv+BTEFujMuJ1RmkNBZCW3eXSq+29XQ59XerI15snmqszhSdFFUPIovLI4/sal3cMAJhePRwERHlmyJmr3Wd8uenMxdY9mFuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ddYDXekm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G9sOKV001666
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=DDS7iQ2sUp2SmkYHHdOoYA
+	K+CHQVWqs2GBO+RrVwbH8=; b=ddYDXekmwC8EO2CA3hhIo7Vzt6ni0/AXWoUms3
+	y8mGTTelw8jGKE5wCo3NxL7ZRVHO1xOWCVfwrxz78LeTspwmA9d01QTsyWowDKI7
+	vk1zhVklMIn9FcqcD27eJIomMcrkenJ9G9/yp8YbfIvr8lCy/aVtkS2CBqx1mCv1
+	tORdW7Up1TDx0y0AfFHuJveyDnhW8OttlyZuiL4PydgdL3rA/RRAiFHCAW2GNc0m
+	S2axasTtPOfyK52Xjo0TB5TMAiplb74BBV46EydYcxIvM8PUKRdGR3HWKQxSns5T
+	wCbN2ZPQmVDzI9ccM5gq4f3S5v/NKqSZlZXjw4EEytZ33/tw==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 495eqpyvgx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:26 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7725a76dcb4so3830705b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:59:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758027565; x=1758632365;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DDS7iQ2sUp2SmkYHHdOoYAK+CHQVWqs2GBO+RrVwbH8=;
+        b=rj0t6QRdDYIYryHu0nSgp8e5pfdnpiUkjl09WkS5YztK8qnZbQ5YBPK5JNrL0Ai4l8
+         Iz/ACAZ8RHr9vGV35xY7fKoqa7mX65kvmHLyN5I4LgMWQx3VNbF7tjXOO1mz9y3YhDjy
+         vhH4RXB0DkNfDk31Pwj5CQXArAm4Kk6Obl8aPvZDkecRpzCL1seTKHtvtOmkqH76I+ls
+         Bqqi+pt0Y+ckQTEO15FzMhlRpwMLqOQYi5oTUPfuAse2TBlurUCrNpQYKzvakIzsFtqp
+         bpz+py4ZtJwjCYAc3fmp+hAujcDGm55cue9qeHAdJOmPGsctE3VwPxvjkMM/Mff2LMIZ
+         /7Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBedvc25n/o2lF+tiKcWEU+5pBUNp1d7hNCK7+udrkfRpL+H4Y3lIDoqZlycFFqRUJCnq2CaDzg4Y9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5/RbHSWqql7MTLsmoXKH5yAYAJhjD720y5MhvtE9ltb2yezxo
+	5ONZf7hUVrGgvsU5Hh/mSQVnMGyEuaFJRA8Kd/D+gYY3X0Bc8qsVeMza08TzNFnn1vRM7kN35oi
+	MvZqzQnN0YVmlQDdtuogsPBQBQy2VofoxE37g7fvZ0ODahLR/rLFFuriEMOOe0Hui
+X-Gm-Gg: ASbGncugZrB9rEMq0ITjNPrwjdcw9NLIv1W6L1+indSRDPDuNBaalM9pp9thXsJYYdA
+	3J+SiE7LXgeA/C2TZOLLl2lZUV0L45oQgYiz2L+nAwBNLbnL5YXZswLI0JX2GfHC1LdzBknAnu3
+	UzUXhvj4SwnlXnGzDXoz3S5HgAit+9MN3VnIopCZgc1aUflrbXyXLZBz/KuG/5QM2wdwQsOeDCS
+	wwbLmZhA3Iort1l3I26PNaZIQyB4f29J7EjTkMbWKS72ece6upZ7Qb6ZGsNOnh/V4F5F0bU0jkk
+	1tLQcYFVSZFrPVZoLasHLcRYq2CTIXW978dZalWtRB0Yu/hjDuTG05A+e5fIunJ68LLhVmH3fpr
+	gsgFHRONC6sjBWd1xhQRfMZ7wyw==
+X-Received: by 2002:a05:6a00:1915:b0:772:490f:e31e with SMTP id d2e1a72fcca58-77a8432bcc1mr2458540b3a.3.1758027565346;
+        Tue, 16 Sep 2025 05:59:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFNCEXypeYOzurtCkAx+/w7KzjXac9vn7A0jWvpleu1CWy7D2+PPFBYaKHUtFTpp8QbDgBXvg==
+X-Received: by 2002:a05:6a00:1915:b0:772:490f:e31e with SMTP id d2e1a72fcca58-77a8432bcc1mr2458507b3a.3.1758027564846;
+        Tue, 16 Sep 2025 05:59:24 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a46b7asm16057113b3a.22.2025.09.16.05.59.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 05:59:24 -0700 (PDT)
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: [PATCH v2 0/4] rpmh-regulators: Update rpmh-regulator driver and
+ dt-bindings for Glymur
+Date: Tue, 16 Sep 2025 18:28:51 +0530
+Message-Id: <20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|DB9PR04MB8188:EE_
-X-MS-Office365-Filtering-Correlation-Id: c29f7fb7-51d5-420a-72ea-08ddf51ee0c5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?RIcw8m8CMDJRTZJjoW5gigrejyDkIoG9nRmWkFYaB6SvqSg9jHh7p4KsNOje?=
- =?us-ascii?Q?hOWTtE1Wo8HoAuWYLcFLaMqPbEIFRCJtDMkWoUNm416CklXguX810ts9CYWj?=
- =?us-ascii?Q?mj2EakFm5pCCAPk3yTkcFVSQwBV49ccQkp3YCQb/6zw9EW8GM7lv44+mQVWA?=
- =?us-ascii?Q?+UebMgZPIWlokZU3T9u620YwnGFT9aRRIffTmk03ZJwcLkC33oxWKliQwQ6V?=
- =?us-ascii?Q?yr3BHjqVkHbu4zNtA1LV36Q0GTSRsGXXMlLMGHrjRFRM2Fvup1fyHuAXmq9x?=
- =?us-ascii?Q?CHi8vA2h3Nxtl4E8XXAHQ9MR7U2X2GOHntcK7pfXjnLi0zk5U/46uzrNR0o3?=
- =?us-ascii?Q?5pYpNINKIrPqGAF16Qejt/y6mXrM2NYm8P2u1F9r3i1aLMFUGhZlnLN4umfp?=
- =?us-ascii?Q?YlpnZodnY3YUWtyJ/4ohPyQTbEzvr2Rf8rVbLazloZ6vvGg3Qq17tud8Tt2n?=
- =?us-ascii?Q?de7JwKi8ljmupiURxOQByREUQlhT7brGbghJC0kDhjdpbk6z2LQX7KNtnzIU?=
- =?us-ascii?Q?uYR3vXdiKRne4K9+3QdIuCgVbusCmq5VuPJxD9twO2ygi90q1xCa0hdrKMkH?=
- =?us-ascii?Q?76KTp+nsnxstALMpYUYWF+dF8Hk8lrKgXbjB/i7cmOvzdxSru+W2DAYhRajZ?=
- =?us-ascii?Q?DyQfNTHuGndXWmIEdSac6IIx15HyWOI54XPIusTkGmriUfQlx+e9bljZU5qc?=
- =?us-ascii?Q?315aQjKvlCgXdKkUhZaHbGMsR3OK3eEucLU5V4bLF0iVwSx5m4aIg0kVZX9U?=
- =?us-ascii?Q?4SeUS4jGJv66EiRp8C2DEB8rbBJfNtO2E9oe4OG7XpewkLau913dSU2cpoXt?=
- =?us-ascii?Q?w/9dgUB/OEpfzIeL8Kdn7ZoLbB0DExJ+AKm8yrsX4WIiV//F+HrebllfqQ8c?=
- =?us-ascii?Q?cGbHClEukLof/wvwNNNWwgb4KEGfNujLQcoqzFAI1y92w/f36YNv2kl8AGtz?=
- =?us-ascii?Q?ZFet8YetHy653aaa8YHOecr7RP/uvK6gb9VoIAHqdjXJhTttnWtXTPXJOji/?=
- =?us-ascii?Q?7iR+CS3fkYb1H2YyytpxwbdsSNWaConjEfU7EWTcJ0jVvwLYNb2JBbpO/Y3Z?=
- =?us-ascii?Q?NPpaFEu35Gw6yGQMYrTfOSXrrVqcItGBH8a1UYJh/wlFLZICkpOCZ7huCFzB?=
- =?us-ascii?Q?oVS2sSJB4/+TNwvCY3NjlBqsKflLuoKjizstFXjORDmSKdkoiq49S6i0fooL?=
- =?us-ascii?Q?EDaA9BKFTlnFm/EhS1Fwj/WMsAdNugOGwTMaZPR3dOz3T1BmB+g9Hc+8kZgN?=
- =?us-ascii?Q?zcUwlEK+WSXuyHLjmsXur0Mkn4KADxJUv4I/pyIsXO+oT2jCxnFvCTWEuZ8e?=
- =?us-ascii?Q?9o4fATCreFJ+3FYVm2dKfl0Hs2/nS5aA6eAli+Boj//tnmb9vPdMKXMefTeL?=
- =?us-ascii?Q?sZAHlspkUyg4Gx+k1M7W76mgE+/XR6j6wo1JyBwSV4VnsmCop8qayrbGdPki?=
- =?us-ascii?Q?aSAqdZV8t0s=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ikFoyaDYvuXhzOWobpuPSLhGROYMIPlUQ81UpaoxkPp97nEYIO/sbzUA3ol0?=
- =?us-ascii?Q?hgIlvOxQMvnlOOorZ/4uRoLYLG6JBDLm2yKnEoebzxb9O2x5E9CCCpa0O5nt?=
- =?us-ascii?Q?ggbZsws5EnNtY2VVQT2W1T4CZNkzwOj/6cWSHZ39s4TK81SV3iNSR2YN9IvM?=
- =?us-ascii?Q?Cnk4bGwk77Kb4ild3NmqhNvS9CSrSOntPL2RH0waVGgoraue+vwTxNHp/JLi?=
- =?us-ascii?Q?eeck4oLueL8kHll3qRpOmUV6+mMs1QWnROJPAdvWJdluw/MAyDtnhnrpouCT?=
- =?us-ascii?Q?ozHwBzuJPf4BKI71jtSJlpoj0ogTEw5d0+IOJXPJRi1CKEwTBt/JhTZMaL9n?=
- =?us-ascii?Q?9k057uoBW2fb/6FjWjr1oGc+zfEFcp2DrIQjWRR8q9ppp3hATAvqv73ihYvn?=
- =?us-ascii?Q?LaPfwb8yEt/FHcnmzFMB7CIfDSnz+7zI05Bzda5HBNO3plD1xi4k9O/GBaMK?=
- =?us-ascii?Q?W9O7OH+XAoo/jga0hr+xYIGkZW/lJWNMTKdd+3Viau5sjduBDs+GeC7hGBV1?=
- =?us-ascii?Q?eznXSoabfWNqEx3RmY2jaODUgmrlybIVHDOZMa7vXYN2e80mDJuohrq7M9su?=
- =?us-ascii?Q?X4xEUNkN16+eXFB+tfmHt36zpTxmFPueiWYVxnQi4VYzkk/fgGfS+j6aQlYz?=
- =?us-ascii?Q?++z4w6ZKa9sPJsEWMaZYGJhxYBPh9EhoBUd4tZYGCCAxRK4f6UU4SHVvdSWw?=
- =?us-ascii?Q?/CrrQEIT7YMnqBT+n7rcTbvJruKmBX7YCnZ3s8tiS8HCn01vPBFLUMUXMZS8?=
- =?us-ascii?Q?zuMhU90CJp4davcONFMB6oW1Q8jPmjRco2whePAx5KpThMbsz04CPPL2Z9xt?=
- =?us-ascii?Q?xGgCZ+g6oOQC2XL9G8+qoZOcz1LF5CPL3baV828BRs15Jbz7sy3ZvE0NhJhM?=
- =?us-ascii?Q?tdKtGTT4ObR8SdMsY9IvLwCRvLli5B8F0P5LKCqbIAz+BTQeqtKquH98Q9/6?=
- =?us-ascii?Q?SDUmCDVVCeTnI1SoN2t6N2b5Ada/ATJQl2/gnKJJKIw21CkCsMHjSS9uvgD3?=
- =?us-ascii?Q?Rpbs1oomXab8i9YtoDBrG6EIABDAY27b2B5CbiImC3FMdqTi0qAdZMTeVMZq?=
- =?us-ascii?Q?ecjGAGkPq2zxHnICZ0Ay+81fUWY52130hQZmMwBUZYCKB8deqQ7AwJfu4k6p?=
- =?us-ascii?Q?OAkcmglTU8JSbwzC/W1GJxwZHygiy7SN0JdXafEiPidQl2D377OVrYfuC27y?=
- =?us-ascii?Q?mL0mdV+K6elQ3ckuG1r9wRz/Hxol9IFMrdJxssidQBfaBGuZJOwSJu67WS3X?=
- =?us-ascii?Q?AVewn0OhSeiGAHca7Zi47EyqP1nIe8tGDYJmYZo2o2k7HKvlxT4gFrUKQ93I?=
- =?us-ascii?Q?XS4ddtWi8KHBhReNIGWSSYPVxAebP5ApxL0Z4uJEZI2hZhI+tWy1dGg4Cwtq?=
- =?us-ascii?Q?0q/wuiXH4u+dbEQ07he6kjENHaSOwgVjYcVort7STZZXtQKtMFVGv20OfXEQ?=
- =?us-ascii?Q?K9YDb0l6o5S4bqVEiB6O1IaIStOCOAWPRyw6hD41mT35ffUZeChol23KoUcp?=
- =?us-ascii?Q?GQG5npJQNEclcdfmoZuNUueRePHa/6JAqNGktwa5kseF2USMkQIZQv4CUTrd?=
- =?us-ascii?Q?vW0A28YTVonp0ER7vltNO+aTW7AJdEw4b79hDeUE?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c29f7fb7-51d5-420a-72ea-08ddf51ee0c5
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 12:45:13.2852
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DTbMQF1TyRoWAfuUVgYz3mbrzU3MVgY3WpqtKN1aw5dfW0HLmYwgjU8aS21msNqG/CNArTMaHe1PUjPmHys92w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8188
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAtfyWgC/42NQQ6CMBBFr2Jm7ZAWhFhX3sOwKO0ITSjFqTQSw
+ t2tnMDNT97Pz/sbRGJHEW6nDZiSiy5MGcrzCcygp57Q2cxQirIWSjbYj6tfGHn2AzL1y6jfgdG
+ yS8R4FUbVl8pY2xBkxcz0dJ9D/2gzDy7m9Xq8Jflr/xQniQK7TnVCkKp0I+8hxuK16NEE74sc0
+ O77/gXgnYyTzwAAAA==
+X-Change-ID: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com
+Cc: linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        jishnu.prakash@oss.qualcomm.com
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758027560; l=1492;
+ i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
+ bh=P0qwYvA0hb3DcRu8UXrOaavNtZ/NhaQ2xXab7mtLRyc=;
+ b=kv9ZkeOg5ihX1LqJtdrpD7Q2u1Jlub9ilXCJrCJkeUmT9HkA+9Rj9nMiBZoV7m8b9n1nWWjVI
+ NICLs4WLD3bAt+rsM43/XIBufStIj7uzc1xJdZigGi08hq050AViRKd
+X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
+ pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
+X-Proofpoint-GUID: wP4xWPGR56DNPtBhg8VNwLhFYN3GR8Fo
+X-Proofpoint-ORIG-GUID: wP4xWPGR56DNPtBhg8VNwLhFYN3GR8Fo
+X-Authority-Analysis: v=2.4 cv=XJIwSRhE c=1 sm=1 tr=0 ts=68c95f2e cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=1jzprTmAGkQg8sxLlQ0A:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDE4NiBTYWx0ZWRfX9fe4iBeoPr+X
+ QcEn/6B8MvCkNEDxqje6HrXH+qvhnuGvBPbPbe2w2FBJ8ifhoywchiqB07peTUjdeDHMH9CdmrE
+ mwRtb7fDD1xWqkadMHqVyJGAPvZVQilALoahcX2rjGuy6r3WjIfT+91fkYaTa/E+y1gI6Au8u7w
+ WRRSAwmdjuBaMH7Nk6opefAREptXSonsm2VJe812HUdX4XPEpUynuYcMbbQ3am/mbIXPqJ13WOp
+ fBLGbqejtP/gwUjNeVFmLfQjihP8kX/HB/UG1rzcQ10xDC0b+4CLvH+qV0cqa7lPsfBrfVfjbre
+ Rk97i+sNzCUncBfZsrRX7qREl8ImeTrn5Jp9lR455UsUdgUQyACLOGwyjUMSzsvcP3ZOxAschN1
+ HWfIERuk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 phishscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130186
 
-On Mon, Sep 15, 2025 at 03:27:42PM -0500, Rob Herring wrote:
-> On Mon, Sep 15, 2025 at 03:23:47PM +0300, Ioana Ciornei wrote:
-> > Extend the list of supported compatible strings with fsl,lx2160ardb-fpga.
-> > 
-> > Since the register map exposed by the LX2160ARDB's FPGA also contains
-> > two GPIO controllers, accept the necessary GPIO pattern property.
-> > At the same time, add the #address-cells and #size-cells properties as
-> > valid ones so that the child nodes of the fsl,lx2160ardb-fpga node are
-> > addressable.
-> > 
-> > This is needed because when defining child devices such as the GPIO
-> > controller described in the added example, the child device needs a the
-> > reg property to properly identify its register location.
-> > Impose this restriction for the new compatible through an if-statement.
-> > 
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> > Changes in v2:
-> > - Enforce a unit address on the child gpios nodes (remove the ?)
-> > - Enforce the use of unit addresses by having #address-size and
-> >   #size-cells only for the newly added fsl,lx2160ardb-fpga compatible
-> > 
-> >  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 47 +++++++++++++++++++
-> >  1 file changed, 47 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > index 28b37772fb65..da21d0defa04 100644
-> > --- a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > @@ -22,6 +22,13 @@ properties:
-> >                - fsl,lx2160aqds-fpga
-> >            - const: fsl,fpga-qixis-i2c
-> >            - const: simple-mfd
-> > +      - const: fsl,lx2160ardb-fpga
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> >  
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -32,10 +39,26 @@ properties:
-> >    mux-controller:
-> >      $ref: /schemas/mux/reg-mux.yaml
-> >  
-> > +patternProperties:
-> > +  "^gpio@[0-9a-f]+$":
-> > +    $ref: /schemas/gpio/trivial-gpio.yaml
-> 
-> This results in this schema being applied twice and more 
-> importantly allows any compatible listed in it to be allowed here. So I 
-> would drop the $ref and do this instead:
-> 
->        additionalProperties: true
-> 
->        properties:
->          compatible:
->            contains:
->              enum:
->                - fsl,lx2160ardb-fpga-gpio-sfp
->                ...
+This series contains patches to update rpmh-regulator driver and
+dt-bindings for supporting the PMIC voltage regulators present on the
+boards with Qualcomm's next gen compute SoC - Glymur.
 
-Ok, sure. Will do this instead.
+Device tree changes aren't part of this series and will be posted
+separately after the official announcement of the Glymur SoC.
 
-I just realized that I didn't update the fsl,fpga-qixis.yaml which
-covers the LS1046AQDS board. I will use the same approach there as well
-for the gpio@ pattern property.
+Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+---
+Changes in v2:
+- Updated pmic-id dt binding's change commit message to elaborate `why` the
+  dt-binding change is needed
+- Updated commit message for driver change related to new resource name patch
+  to clarify that `resource name` refers to `cmd-db resource names`.
+- Link to v1: https://lore.kernel.org/r/20250916-glymur-rpmh-regulator-driver-v1-0-bb9b00e93a61@oss.qualcomm.com
 
-Thanks!
-Ioana
+---
+Kamal Wadhwa (4):
+      dt-bindings: rpmh-regulator : Add compatibles for PMH01XX & PMCX0102
+      dt-bindings: rpmh-regulator: Update pmic-id property description
+      regulator: rpmh-regulator: Add support for new resource name format
+      regulator: rpmh-regulator: Add RPMH regulator support for Glymur
+
+ .../bindings/regulator/qcom,rpmh-regulator.yaml    |   39 +-
+ drivers/regulator/qcom-rpmh-regulator.c            | 1322 ++++++++++++--------
+ 2 files changed, 811 insertions(+), 550 deletions(-)
+---
+base-commit: c3067c2c38316c3ef013636c93daa285ee6aaa2e
+change-id: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
+
+Best regards,
+-- 
+Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+
 
