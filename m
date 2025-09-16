@@ -1,333 +1,132 @@
-Return-Path: <devicetree+bounces-217885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16775B599C5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0410B599DA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:27:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1EE34845D6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:22:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E401E4E4E76
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214E0343D83;
-	Tue, 16 Sep 2025 14:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 105C632A822;
+	Tue, 16 Sep 2025 14:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CoZRBpV1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dSuZ369x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B35C32BF49;
-	Tue, 16 Sep 2025 14:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E94280A56
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 14:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758032293; cv=none; b=h5VpEIfTznLILgslURnra10OBcrFGbwugfrONAYwzKJj1inGSWakd+XhuNZL+ainYg91HvUDDfjB3QUhD2dXNZZFvHMahkMYFUu7ww264A6ggbkqkkepApHo0GrUff2X15pjY8BTBo8OVrfsBYPWg1kfI3+4p9LgKNb/Lip0Uwc=
+	t=1758032389; cv=none; b=MPBYi47Me2n0W5PXALCbiKT5Ab7i/2zBgczs8V/lqAlvRDVBbQfuhL+PtQ6f1HiZa5/Q4cNZBmVVsowl8QD4GeIxr3hD5qPJ6QL3EYODgZz5ZXJ4L48jl1eJEzRzWGj2j9sZ1hAmA2+yQnty7XHIlwQ+wsd8mi490iWtmJaNAjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758032293; c=relaxed/simple;
-	bh=H8Rb98E2rtPtyhu6K4jBPQ4alyqMOlOQbUmmuOscUTw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C8X6VDxGN6pGsTD/xjrN6NLE+SOrCNXKoEY+Zj4+BHUCtB/rqgC4Sf6cbf3EYHL6xBt0uuAof1cp2wdOqKpr7b1wTgtYJzgO/B4jIm9BqHn4Dfpj2a8R6ehhH97Nk4RDktAPC8K7TnWpz01hwiTikVK31juWnoq8brWyqHXd0uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CoZRBpV1; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DBE2A443A7;
-	Tue, 16 Sep 2025 14:18:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1758032282;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2j1hmxIGF4hO9/n/aWGAdFU9mRdFdKJE8K3RYi8PkRw=;
-	b=CoZRBpV1lE3fjDQ7wLif08cnDZ8bYy299JVw21zq2MqHR6aMV5RbDRFLiakgXh8QvJjsEy
-	1ajXmuoEECHgaLx3yDWBNX5r7rcVNdjMKqbQn6ODPUxaxsY43O89J+pOHBukUbfOkWLl0v
-	xJDvZNdj/k8rS7JxiKKVOCUfWR1jUBaU1UCVIzPgYshIyGbQgAj0VyhQzruACzMHj6KRRY
-	gzJLaJtvwRaMul1KUJfTvU7eNRDg+QaEGvARJfFl4McU3CCYUxBrvY6wUis3SV/SOcQHQy
-	AammSzjTyeHk1NC2O5XRwfX9awGuPPfMu/1T9Afz8ZxqOXRaUbW7NkIC5xPqCQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH 3/4] regulator: Support the LTM8054 voltage regulator
-Date: Tue, 16 Sep 2025 16:17:56 +0200
-Message-ID: <5205519.GXAFRqVoOG@fw-rgant>
-In-Reply-To: <aMliRTuUDNPkeM8C@smile.fi.intel.com>
-References:
- <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <20250916-ltm8054-driver-v1-3-fd4e781d33b9@bootlin.com>
- <aMliRTuUDNPkeM8C@smile.fi.intel.com>
+	s=arc-20240116; t=1758032389; c=relaxed/simple;
+	bh=IkW4nK/vinXYi2bfrKKAAwnIOc30dbD41Dd6dOR/Ldo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=u9nMvC7cbyQiPJLVZWYpS5KzvuHz5t0tLu/O9Gq7IY69Im69rjZ5cEH4iv4KncNBrbYmktHGrlHnL5KKMzLzr0L/J64t/OlSHtkSCjoIrf+lCj2GLTkVZRBWkp/YNZUAc1IY9YYZL2pnvRBQyRJZHKyGxb4Pl1Zuoe4BCPOw2E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dSuZ369x; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3e957ca53d1so2490160f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758032386; x=1758637186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EtjNvPki9FX33kkHGpqKgjuJyKPvLiypLHYyt3prAwM=;
+        b=dSuZ369x3at3HvOo1zi/P7neUerMH16IN8qEEjX/PgKSQp6+YOLK16HhHDMsCuCwvA
+         vdT32WSgailg55IEn4kbgpql03gu2tJ+bGlDZ6iBECv2RGbTYBnKio4s+lusm93A0mrf
+         dxnS9OCGdk1u6+H9a3bFve10aKB7Vf3U/YEjlyH26gfYQCsfoV3hXVCBB0eOr7P9TpbH
+         9+vDRmi9PoQHSY7IUGgA9rPsJoOPjTmiBsv+7hlO9AZWC8MUuX9PegxB0phvkcoOPawu
+         yokVmsQvr42UZCdMAwj9yulPaxWHaC93PHenkaF4RPYQ6rm63Rmqt9b4lz72bD4KhDgL
+         fG6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758032386; x=1758637186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EtjNvPki9FX33kkHGpqKgjuJyKPvLiypLHYyt3prAwM=;
+        b=MY+3Lszy3hTrh4STubPOCF5y6s+mbZPip9RzwR8JTSjSq/1FlXZnwE7UaLDYAplEeG
+         RXhDFYmP/cBAqGX9sAjgAeQEPdwpKREvWBOUboHfvPZJY7BjiJUMLYiQvlbGgSEDxBoK
+         J3WlH33EtnoPfNf7IJzo3p3OTe+4+JN7zo8wi8X/zwVfrZNg5T7xauzWZQSqf47Bejpv
+         tHQ25Ciz2fTKp1chdDayuIGbcbFD99dZvd1DwcSGerNij5m8JNU5MKFIOQ/VaMWmuw/Q
+         HnaiPX0DrrmvOsV0QtdVkyv1ybOONwv7WXt/Pr9Tn6b9CuzsHCV0xlzq0UmrZVu/Om19
+         3/Zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtWZiahLMyS0t9Yx5evHYkQK3TueDyWFrrmatvanCJwaFTB37yBwloNGxpT6CFmD5UpYRFElFcPsqz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqD4IkQUdID1X9eCa5D/Bj6Yizl+OSinCU5zAwxlnZA+RxxjwQ
+	6a4YbaEcR7M0sflWXDvp3k/BiXIw2AKb0pxNNUA/Z1cgCFi3rOqe1U09fsaeQfGolVc=
+X-Gm-Gg: ASbGncuX2BUWh3OLob7ZsWPeEYwjDvW11Sha+ey1FMewzi4YjoOf1rtTq7F71kwdfpF
+	9PgICMLH8SqcW+/8oER9J+bL5Ja0iB3v0YYGLJs6/sZnQaYh+Ap297JvtEtYooeHO+B29mAqPp4
+	7uhO2anyuWIqhehMmQZ4y4S62ZgJejYk0Z0DDMAu48juy14y5Td1EEG8/GLXJGeIj4stxFSwXZL
+	3yRrOWehiVatmD0KqH4+8S5jKN/o+Hes9U8SoloUiO26q02mQV/gJehObo3brc8j7GI3t3hTaAH
+	H6M0wSlvefUYSVahjPbz05OJTKE1aux/6np46N6ZCq1S3jT1Gq/yYpNG+ivK4Mdm9I3F5/hLLY4
+	b3zRX2u3oP/5wRPVcHhFt/J6oX7f1b84=
+X-Google-Smtp-Source: AGHT+IFdcw9hqpwZPogQtp5veCDSAw8ABo2+U1X+L5NI/DxNsiFcjHEYgUJ3E2vGvtEZVPnSECGu8w==
+X-Received: by 2002:a05:6000:18a7:b0:3d4:eac4:9db2 with SMTP id ffacd0b85a97d-3e765782b5fmr18609594f8f.5.1758032385579;
+        Tue, 16 Sep 2025 07:19:45 -0700 (PDT)
+Received: from eugen-station.. ([82.76.24.202])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45e037d7595sm220245015e9.24.2025.09.16.07.19.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 07:19:45 -0700 (PDT)
+From: Eugen Hristev <eugen.hristev@linaro.org>
+To: andersson@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Eugen Hristev <eugen.hristev@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: lemans: Remove unnecessary cells from DSI nodes
+Date: Tue, 16 Sep 2025 17:19:31 +0300
+Message-ID: <20250916141931.601957-1-eugen.hristev@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2126663.tdWV9SEqCh";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegtdejlecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
- ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Transfer-Encoding: 8bit
 
---nextPart2126663.tdWV9SEqCh
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Date: Tue, 16 Sep 2025 16:17:56 +0200
-Message-ID: <5205519.GXAFRqVoOG@fw-rgant>
-In-Reply-To: <aMliRTuUDNPkeM8C@smile.fi.intel.com>
-MIME-Version: 1.0
+Fix warnings
+Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae94000:
+unnecessary #address-cells/#size-cells without "ranges", "dma-ranges" or child "reg" property
 
-Hello Andy,
+Fixes: 73db32b01c9f ("arm64: dts: qcom: sa8775p: add Display Serial Interface device nodes")
+Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+---
+I haven't found a pending patch for this, so here it goes, sorry if someone
+already sent.
 
-On Tuesday, 16 September 2025 15:12:37 CEST Andy Shevchenko wrote:
-> On Tue, Sep 16, 2025 at 12:24:08PM +0200, Romain Gantois wrote:
-> > Add a stub driver for the  Linear Technology LTM8054 Buck-Boost voltage
-> > regulator. This version only supports enabling/disabling the regulator via
-> > a GPIO, and reporting the output voltage level from the resistor divider
-> > values given in the device tree.
-> 
-> ...
-> 
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> 
-> I think we have already something agnostic in regulator API to get a
-> regulator from a firmware node (rather than from specific OF/etc one).
-> 
+ arch/arm64/boot/dts/qcom/lemans.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-IIRC the "of_match" regulator descriptor property can be used for this, I'll 
-have a second look and see if I can use that instead.
-
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/regulator/driver.h>
-> > +#include <linux/regulator/of_regulator.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/gpio/consumer.h>
-> 
-> Can you keep it ordered? This way it's easy to maintain and avoid potential
-> duplication (note, there are also many headers are missing here, but Mark
-> usually not insisting in following IWYU principle [1])
-> 
-> ...
-
-I usually also try to follow IWYU for header inclusions so I'll look for those 
-that I missed.
-
-> 
-> > +/* The LTM8054 regulates its FB pin to 1.2V */
-> > +#define LTM8054_FB_V 1200000
-> 
-> It's actually _mV
-> 
-> #define LTM8054_FB_mV	1200000
-> 
-> ...
-> 
-> > +static int ltm8054_scale(unsigned int uV, u32 r1, u32 r2)
-> > +{
-> > +	u64 tmp;
-> > +
-> > +	tmp = (u64)uV * r1;
-> > +	do_div(tmp, r2);
-> > +
-> > +	return uV + (unsigned int)tmp;
-> 
-> Why one needs a casting here?
-> 
-
-Both of those are unsigned so the cast here is indeed unnecessary.
-
-> > +}
-> 
-> ...
-> 
-> > +static const struct regulator_ops ltm8054_regulator_ops = {
-> > +};
-> 
-> Why it can be simply as
-> 
-> static const struct regulator_ops ltm8054_regulator_ops;
-> 
-
-Yeah, this was mostly to have a clean diff on patch 4/4, I'll see if I can drop 
-this struct and introduce it in patch 4/4. I wouldn't want to use it 
-uninitialized though.
-
-> ...
-> 
-> > +static int ltm8054_of_parse(struct device *dev, struct ltm8054_priv
-> > *priv,
-> > +			    struct regulator_config *config)
-> > +{
-> > +	struct device_node *np = dev->of_node;
-> > +	u32 r[2];
-> > +	int ret;
-> > +
-> > +	config->of_node = np;
-> > +
-> > +	ret = of_property_read_u32_array(np, "lltc,fb-voltage-divider", r, 2);
-> 
-> device_property_read_u32_array() ?
-> 
-> ARRAY_SIZE() instead of 2
-> 
-
-Yes, indeed.
-
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to parse voltage divider\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	priv->rdesc.fixed_uV = ltm8054_scale(LTM8054_FB_V, r[0], r[1]);
-> > +	priv->rdesc.min_uV = priv->rdesc.fixed_uV;
-> > +	priv->rdesc.n_voltages = 1;
-> > +
-> > +	config->init_data = of_get_regulator_init_data(dev,
-> > +						       np,
-> > +						       &priv->rdesc);
-> > +	if (!config->init_data) {
-> > +		dev_err(dev, "failed to parse init data\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	config->ena_gpiod = devm_gpiod_get_optional(dev, "enable",
-> > GPIOD_OUT_LOW); +	if (IS_ERR(config->ena_gpiod)) {
-> > +		dev_err(dev, "unable to acquire enable gpio\n");
-> > +		return PTR_ERR(config->ena_gpiod);
-> 
-> All messages in cases of EPROBE_DEFER are problematic (for sure with GPIO),
-> as it may well flood the logs.
-> Solution: Use
-> 
-> 		return dev_err_probe(...);
-> 
-> pattern instead,
-> 
-
-Yes, I used that in the caller function but it doesn't solve the flooding 
-issue, so I'll move dev_err_probe() to this function instead.
-
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
-> ...
-> 
-> > +static int ltm8054_probe(struct platform_device *pdev)
-> > +{
-> > +	struct regulator_config config = { 0 };
-> 
-> '0' is not required. The { } will have the same effect.
-> 
-> > +	struct regulator_dev *rdev;
-> > +	struct ltm8054_priv *priv;
-> > +	int ret;
-> > +
-> > +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->rdesc.name = "ltm8054-regulator",
-> > +	priv->rdesc.ops = &ltm8054_regulator_ops,
-> > +	priv->rdesc.type = REGULATOR_VOLTAGE,
-> > +	priv->rdesc.owner = THIS_MODULE,
-> > +
-> > +	config.dev = &pdev->dev;
-> > +	config.driver_data = priv;
-> > +
-> > +	ret = ltm8054_of_parse(&pdev->dev, priv, &config);
-> > +	if (ret)
-> > +		return dev_err_probe(&pdev->dev, ret, "failed to parse device 
-tree\n");
-> > +
-> > +	rdev = devm_regulator_register(&pdev->dev, &priv->rdesc, &config);
-> > +	if (IS_ERR(rdev))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(rdev), "failed to 
-register
-> > regulator\n");
-> Using
-> 
-> 	struct device *dev = &pdev->dev;
-> 
-> at the top will allow to make a few lines shorter.
-> 
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct of_device_id __maybe_unused ltm8054_of_match[] = {
-> > +	{ .compatible = "lltc,ltm8054", },
-> 
-> Inner comma is not required.
-> 
-> > +	{},
-> 
-> Drop the trailing comma here as it's a terminator entry. The absence of it
-> will give a hint to the compiler as well.
-> 
-> > +};
-> 
-> ...
-> 
-> > +static struct platform_driver ltm8054_driver = {
-> > +	.probe = ltm8054_probe,
-> > +	.driver = {
-> > +		.name  = "ltm8054",
-> > +		.of_match_table = of_match_ptr(ltm8054_of_match),
-> 
-> Please, do not use of_match_ptr() and/or ACPI_PTR() in a new code.
-> 
-> > +	},
-> > +};
-> > 
-> > +
-> 
-> Unneeded blank line.
-> 
-> > +module_platform_driver(ltm8054_driver);
-
-Thanks for the review,
-
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index fd6eb6fbe29a..a551f2a274a2 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -4524,9 +4524,6 @@ mdss0_dsi0: dsi@ae94000 {
+ 				operating-points-v2 = <&mdss_dsi_opp_table>;
+ 				power-domains = <&rpmhpd SA8775P_MMCX>;
+ 
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+ 				status = "disabled";
+ 
+ 				ports {
+@@ -4606,9 +4603,6 @@ mdss0_dsi1: dsi@ae96000 {
+ 				operating-points-v2 = <&mdss_dsi_opp_table>;
+ 				power-domains = <&rpmhpd SA8775P_MMCX>;
+ 
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+ 				status = "disabled";
+ 
+ 				ports {
 -- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart2126663.tdWV9SEqCh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjJcZQACgkQKCYAIARz
-eA5Khw//c1k6fB3U502IZwnnjh78xj8uyZ1NRVUsbK+9HRE4tTIjvBb047bojlII
-frNF2+b4IBzZZqc5UiB2hT1rcwoyD9kn6K9O1MhyLj4XgL/IXdfpWS2D3H0vaLG0
-y1/33JkVf/zClnhQKOZ8et81MfnAhM0UCbDRDYXgS3TkwbBfvQaHWD/Ena+KzZRm
-WsNCRYGdRPRTIAheo2uJW8Ix1KzFcFcVxLoJY2gAIknT1JENZk9g8q503zQE9+og
-QU0t3wGFtggrG/pD4d9wYsE434dCSWxWfvDZw35590NSN4tCSZxwDeT1CmGnTNDU
-oIqPlefXvpTx3Y2oH3bg+fSVju6BFwsJ0jMo2AZR05YuEelPARUcp8EIStkxYKl4
-YS8B+hazn/FNb+GL1+CItBw/IHCB5ZHRu35O6315aZolC0kN2xG1w3pPUuGkXRR1
-vlHxvLe3dhLe8LoAkNzoBAVlUKyTb8VXeI0xMdCQsg2b+e2gQ/17w8jSjZhXAI9c
-tQrvSabh5flz/Rtth7RHxTDtdPvzu9S/+dzEYPzcoWAHpaKbrnF/oFjU5P6oVcxs
-OrGviRYz6TTr38lZFABJj25+X+ghsgqJdUThlRQwg7s7fndB2YrHSG2tpkwaYMBf
-8gz4F37Tw9ah1J/zELEhvTT+Xnrn3AUbTTjVKPx3MSGs1ZlUATM=
-=onhE
------END PGP SIGNATURE-----
-
---nextPart2126663.tdWV9SEqCh--
-
-
+2.43.0
 
 
