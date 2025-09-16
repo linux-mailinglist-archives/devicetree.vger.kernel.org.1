@@ -1,118 +1,180 @@
-Return-Path: <devicetree+bounces-217727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE56B59142
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:48:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D55FB59154
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:53:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26021BC3E08
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:49:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F009523B6E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F57028AAF9;
-	Tue, 16 Sep 2025 08:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6335A2877FA;
+	Tue, 16 Sep 2025 08:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m7LdLz0v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YwR15Hw5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEE0288C08;
-	Tue, 16 Sep 2025 08:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277792857F2;
+	Tue, 16 Sep 2025 08:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758012520; cv=none; b=rcNOtwuHPP3S0UMv56fiTC9zx+oiJUvIpmQJrTB5t520FjSki26tNENeNI5JGIuapfi6/1Zq+qxAXoiQMtm9uaC5M5JiwCpml+k8WQEsHcef2VURLht/riUVJxiG3QEUSxKpanAzx6/ToF8aFY2h07kTihCqOYn2Jmz8w6IYJk8=
+	t=1758012789; cv=none; b=nHCjF+DrcO2a/qItFu7KWny6UVEYArCd9cJy5Mk7i7Ouds+h/aeB0U4ChZ+7PMWHCV9SYTL3HSypHttGnwpbFqivmMGEiCudYigqNw87hV1QBXmiOsITcjqDeZ4NjFInBojdSdstAIm4BzAFiaLtHwOLtpIU7TTEePQR+tY+rxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758012520; c=relaxed/simple;
-	bh=gBC89acRt2ZWThI6GiBXUA4qAUTNm8vCd8qyDvzjiZE=;
+	s=arc-20240116; t=1758012789; c=relaxed/simple;
+	bh=x1vfpZMTu0dHJho+pMOfAAm3yf/Mhb06EGt/9k5KZqM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u5W+aFDMTUogwMSg58UBKNBUnxGI5STyoYkqqAPu8jiu+mwAiLod0UuISxxC/gFQqbdKw5yeEXtkQ82OSpI6/rtxlrxWF1shwYZMa78FVH9JEivDeXc/qIjPQUByQtrXw7Mt+aWlaib9g27j4lw95W9b5tm5Texi1CI/kmGi8lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m7LdLz0v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88BFC4CEEB;
-	Tue, 16 Sep 2025 08:48:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cBRFBe7mOKPwSsQarK4rDnqI1oAq1E0lnKEVkJGcFdTQen/vqtWR/OU5OqTCDfPxoseoKFcCaUm4xqU41grnfOyEO0ztLUYaTu+QCtCRkgOB/Rvg7aVKeXRbmUfKYWnrsZpqIWmo5QZzb/DNMOU7EuwtZIhEzgFtUaJadqoXl/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwR15Hw5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D768C4CEEB;
+	Tue, 16 Sep 2025 08:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758012519;
-	bh=gBC89acRt2ZWThI6GiBXUA4qAUTNm8vCd8qyDvzjiZE=;
+	s=k20201202; t=1758012788;
+	bh=x1vfpZMTu0dHJho+pMOfAAm3yf/Mhb06EGt/9k5KZqM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m7LdLz0vXRu1QDRO3ZuQvA3+jqh3JxhTQHX8IW4VHNOE6jLAJTC8Gk87eluIh4jMT
-	 bli4cXARt8ZQ6n6iqCiYQqtVy69DTegtOxc8LKakwQKUEqA2ZHBE2k+mYufiJ3o/h7
-	 qesqNhorL9QrNX78rRFFprSYoXlFml9tgAj1rkmlm6pyvZupIiXfDuOty7eTB9qDqo
-	 CouLVJhpNf8Pm+Q7rzYldmyitAeHqbukysVTR/mjP/u05hEnXKBbZCt/KRGpHXsHfJ
-	 +n8uUiWSVq10XIvunL3dTV/12Q4aEpBQsfBiiIxiFvqrecpRpSlZT0oZuc1Pk+VoTO
-	 +1DIAmhw7/dug==
-Date: Tue, 16 Sep 2025 09:48:33 +0100
+	b=YwR15Hw5jn3tFb4Mfe4A8rfByvNpFsa4+L4hIVpF8effWXB1RbJ6jp8ca77/XkJEi
+	 esAb/PiHMhyGHN8Ql1817x+/6PADODi1UGpNuwQwEFuexlS8y1PrWKTrKrXh7WYO4Q
+	 mWkau3c64o7aheV6n72emzl51Zr7T+3PGbjK6dJgbEJTF/GO7a+YKKjXxFgGhvhZkV
+	 CeJaXbT57laXYuNwKo7ZmoM368VqgT7EULizAf6Lpk/f9OiXvZFKAiFOe59YwKidp8
+	 50KCBZpAEnQacdlDqw0pIo2EDFnJi4Z3nr0ZMfE9ayZyus2d2VHj5xvdnLkLpx5krd
+	 V0oMxvmP8FNGQ==
+Date: Tue, 16 Sep 2025 09:53:00 +0100
 From: Will Deacon <will@kernel.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: =?iso-8859-1?Q?J=F6rg_R=F6del?= <joro@8bytes.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
-	mchehab@kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
-Message-ID: <aMkkYU-p2ouknnAc@willie-the-truck>
-References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
- <20250911155720.180465-4-benjamin.gaignard@collabora.com>
- <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
- <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
- <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
- <20250915225806.GM882933@ziepe.ca>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: "Liang,  Kan" <kan.liang@linux.intel.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ian Rogers <irogers@google.com>, Ingo Molnar <mingo@redhat.com>,
+	James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>,
+	John Garry <john.g.garry@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Leo Yan <leo.yan@linux.dev>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh@kernel.org>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v3 3/6] arm64: cputype: Add Cortex-A720AE definitions
+Message-ID: <aMklbKwro2bSX76t@willie-the-truck>
+References: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com>
+ <87plbri0k3.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250915225806.GM882933@ziepe.ca>
+In-Reply-To: <87plbri0k3.wl-kuninori.morimoto.gx@renesas.com>
 
-On Mon, Sep 15, 2025 at 07:58:06PM -0300, Jason Gunthorpe wrote:
-> On Sat, Sep 13, 2025 at 07:58:04AM +0200, Jörg Rödel wrote:
-> > [Adding Will back to Cc]
-> > 
-> > On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
-> > > To me this rejection isn't about Benjamin's driver, all iommu seems to look
-> > > alike, so anyone else that would have sent new driver would have face the same
-> > > issue.
-> > 
-> > This is about ignoring comments from one of the IOMMU maintainers. I am not
-> > going to merge a driver with open comments/objections[1] from Will (and a few
-> > others), so resolve this with him and get his Ack.
+On Tue, Sep 16, 2025 at 02:38:36AM +0000, Kuninori Morimoto wrote:
+> Add cputype definitions for Cortex-A720AE.
+> This patch is assuming A720AE feature is same as A720.
 > 
-> I would strongly object to trying to share map_pages, unmap_pages,
-> iova_to_phys, free and other iommu pt related functions in some
-> limited way instead of helping on the much more complete iommu pt
-> work. Which is what I said to Will, but for some reason he suggested
-> it anyhow.
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  arch/arm64/include/asm/cputype.h       | 2 ++
+>  arch/arm64/kernel/cpu_errata.c         | 1 +
+>  arch/arm64/kernel/proton-pack.c        | 1 +
+>  tools/arch/arm64/include/asm/cputype.h | 2 ++
+>  tools/perf/util/arm-spe.c              | 1 +
+>  5 files changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/include/asm/cputype.h b/arch/arm64/include/asm/cputype.h
+> index 661735616787e..b10eba7f52476 100644
+> --- a/arch/arm64/include/asm/cputype.h
+> +++ b/arch/arm64/include/asm/cputype.h
+> @@ -96,6 +96,7 @@
+>  #define ARM_CPU_PART_NEOVERSE_V3	0xD84
+>  #define ARM_CPU_PART_CORTEX_X925	0xD85
+>  #define ARM_CPU_PART_CORTEX_A725	0xD87
+> +#define ARM_CPU_PART_CORTEX_A720AE	0xD89
+>  #define ARM_CPU_PART_NEOVERSE_N3	0xD8E
+>  
+>  #define APM_CPU_PART_XGENE		0x000
+> @@ -185,6 +186,7 @@
+>  #define MIDR_NEOVERSE_V3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_V3)
+>  #define MIDR_CORTEX_X925 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_X925)
+>  #define MIDR_CORTEX_A725 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A725)
+> +#define MIDR_CORTEX_A720AE MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A720AE)
+>  #define MIDR_NEOVERSE_N3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_N3)
+>  #define MIDR_THUNDERX	MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX)
+>  #define MIDR_THUNDERX_81XX MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX_81XX)
+> diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
+> index 59d723c9ab8f5..7ff6b49beaaff 100644
+> --- a/arch/arm64/kernel/cpu_errata.c
+> +++ b/arch/arm64/kernel/cpu_errata.c
+> @@ -531,6 +531,7 @@ static const struct midr_range erratum_spec_ssbs_list[] = {
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A710),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
+> +	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A725),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1C),
+> diff --git a/arch/arm64/kernel/proton-pack.c b/arch/arm64/kernel/proton-pack.c
+> index edf1783ffc817..f9a32dfde0067 100644
+> --- a/arch/arm64/kernel/proton-pack.c
+> +++ b/arch/arm64/kernel/proton-pack.c
+> @@ -884,6 +884,7 @@ static u8 spectre_bhb_loop_affected(void)
+>  	static const struct midr_range spectre_bhb_k38_list[] = {
+>  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
+>  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
+> +		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
 
-If the answer is to convert this to iommu pt, then so be it. My
-understanding was that was still premature at this stage but you know
-better than me.
+This needs an Ack from somebody at Arm who can confirm that (a) k38 is
+correct for A720AE and (b) that all versions of the CPU are affected.
 
-When I bothered to look at this driver side-by-side with the rockchip
-driver which, despite apparently being totally different IP (honest!),
-is *remarkably* similar, I summarised the similarity in the default
-domain ops:
+> diff --git a/tools/arch/arm64/include/asm/cputype.h b/tools/arch/arm64/include/asm/cputype.h
+> index 139d5e87dc959..0192dc7ec9ca9 100644
+> --- a/tools/arch/arm64/include/asm/cputype.h
+> +++ b/tools/arch/arm64/include/asm/cputype.h
+> @@ -96,6 +96,7 @@
+>  #define ARM_CPU_PART_NEOVERSE_V3	0xD84
+>  #define ARM_CPU_PART_CORTEX_X925	0xD85
+>  #define ARM_CPU_PART_CORTEX_A725	0xD87
+> +#define ARM_CPU_PART_CORTEX_A720AE	0xD89
+>  #define ARM_CPU_PART_NEOVERSE_N3	0xD8E
+>  
+>  #define APM_CPU_PART_XGENE		0x000
+> @@ -185,6 +186,7 @@
+>  #define MIDR_NEOVERSE_V3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_V3)
+>  #define MIDR_CORTEX_X925 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_X925)
+>  #define MIDR_CORTEX_A725 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A725)
+> +#define MIDR_CORTEX_A720AE MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_CORTEX_A720AE)
+>  #define MIDR_NEOVERSE_N3 MIDR_CPU_MODEL(ARM_CPU_IMP_ARM, ARM_CPU_PART_NEOVERSE_N3)
+>  #define MIDR_THUNDERX	MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX)
+>  #define MIDR_THUNDERX_81XX MIDR_CPU_MODEL(ARM_CPU_IMP_CAVIUM, CAVIUM_CPU_PART_THUNDERX_81XX)
+> diff --git a/tools/perf/util/arm-spe.c b/tools/perf/util/arm-spe.c
+> index 8942fa598a84f..bda6f3554f7e6 100644
+> --- a/tools/perf/util/arm-spe.c
+> +++ b/tools/perf/util/arm-spe.c
+> @@ -555,6 +555,7 @@ static int arm_spe__synth_instruction_sample(struct arm_spe_queue *speq,
+>  
+>  static const struct midr_range common_ds_encoding_cpus[] = {
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
+> +	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A725),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1C),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X3),
 
-https://lore.kernel.org/all/aH5yR9CkYSJ4PaZV@willie-the-truck/
-
-But rather than respond to that, Benjamin just sent a new version. I
-was hoping for a bit more discussion...
-
-> Sorry, but it doesn't make sense to complain about duplication in
-> drivers and then not help advance one of the biggest projects to
-> actually concretely and comprehensively address that duplication.
-
-I don't think it needs to be one or the other. afaict, these drivers
-should share the default domain ops and if the page-table code is using
-iommu-pt then that's even better.
+Please post tools/ patches separately as they are merged independently
+of the kernel changes.
 
 Will
 
