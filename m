@@ -1,216 +1,197 @@
-Return-Path: <devicetree+bounces-217892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67B8B59A87
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:42:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0270B59A55
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2B544A0081
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:29:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67F1E52527A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64A331B808;
-	Tue, 16 Sep 2025 14:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3EDA33EB01;
+	Tue, 16 Sep 2025 14:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VMcZpzKY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g9+0IlNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93BC286890;
-	Tue, 16 Sep 2025 14:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D35286890
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 14:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758032856; cv=none; b=LJZbui2mANKFouq6fBZhB8W7OoP6D8/nnGjiJ4POMLUJkauP4/rPTKMHwmDtFfZFXkmm2Bz8tWiL2+rc0Mkr/kisF9oLnfHS4lza3NVnxFlPWVMEJE9XPgM7hBv4EmWmXQfkIMq4B7y4FZP03DdHr1zZ6a60/No0yPgx9C2BOqg=
+	t=1758032891; cv=none; b=fwFzRRaLCf74qWTCMIBRDkLe9Y3trlPHUJPd58J/Ru83UKUENuc5hKjBXQNhFm3leCzdTjIia60Ror69MB6Ml0m6tcsy91RN/9sBGfQ7kEVv6z3Be8I6QK2MAahqIgxOxiEgsZS0jrwG+fFISEowsXfmjBJJeNVolPkj+d7WuQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758032856; c=relaxed/simple;
-	bh=f8t73w3AtLY7hnhFS/dR1I/Uz6Yqv3oI3PWml5zdfPI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LW+AaafmgsdNjPSPp1LU28ukcY2R28c5P5Ns+pwDIJ6WKVbrzd7wotADj6pffi8cy6Wb+v1+FaXkznCNfWZ5kQliWu1iKZE6kiGEaTHu7bxhVg83E4aY9olv/Rl+PDjPVNanDkCQReHG6VGoNJjOgMtkyIKRMndsVIp+deGMrw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VMcZpzKY; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0112443B69;
-	Tue, 16 Sep 2025 14:27:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1758032846;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ATSeLNX+owPZ3aCBXlyQeAZTuD9FLYcDCEAlmuoDnYg=;
-	b=VMcZpzKYgJxyHzS9TlLOGlGOWZAuukPoVdElAz/IsHnkD28ri0z6Dl26f6yEcm03LoIXmc
-	0zQC8uhQcQaI/cV7DPVFX/wurMAqa84y+MWubHU1UbGR1oB+/hT/cMQQjXkdvBLtqLC7kK
-	SSiaJdrmQpgtN7fUNoDNzUDZEXV/VaXPktqIgDUlRv4pK8DMqxLpeQ/Y8QuiBsI93dvvs2
-	ZUf05fY1fUQFq/egHXBWK/ZT7InJ8j4Xl3ahtL7wgr17rmFCulWfvB3ULz3FWNUNtWVEpF
-	3R3BK3IxOzRI4i+J06yX0dBF4HYjUWwDBnidKqAorSphdBrqwgy7tQo0AH80Ig==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject:
- Re: [PATCH 4/4] regulator: ltm8054: Support output current limit control
-Date: Tue, 16 Sep 2025 16:27:25 +0200
-Message-ID: <8772650.T7Z3S40VBb@fw-rgant>
-In-Reply-To: <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
-References:
- <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <20250916-ltm8054-driver-v1-4-fd4e781d33b9@bootlin.com>
- <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
+	s=arc-20240116; t=1758032891; c=relaxed/simple;
+	bh=MvB5R+g1Y5UMwU5wpYAtG6LHzlXTMocT+4+xJ12AnMQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kAp5KYO8e6pA/cN/hZwlrSQhJ5/eriDb2rsVn7X7GsHMS+rtn5+s4U7k34FdxNG9a3lGLkrecwKAwVjcqjFIdMSlgGbFI6CBmjX2/CY5AO6CC+jpRhsTrcDaXeuegNyfoJ/xmSVhvyDF8oFdw2prxhl0epjcXQ9sy49MDACmLLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g9+0IlNU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA4knw019791
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 14:28:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wVazFxrBiaVWPr5/+h7Ed2VEmDRhLsCV8X1mrq96m1g=; b=g9+0IlNU/+nURk93
+	+Smop83hTIb4LZ97NCbh+1tie8EpaIF4IDvh0/p5O0SODYIsRATFQI7KUW52+p/N
+	tbO542Q9FrN7VZIN8t68Km2AEHM78lN278SVOoJoYtqFxT8KgH6e+mZOdHovzd3q
+	NzoQskBV8fAmlaEfJx6uehPSzxSxLMFLTO6GsKPP9EWM7o8vop72qC8Y5wQqwoxP
+	74eMuiFS6jgcj9y445GG3G1Pz++TvnZHWzaqMnX440zY23gNYjKm4/0xXS37jM59
+	LiahGidMhYElLZpMatS+RdpA4Uiy0wLPv7mhmLfPSZwOhzoiHo5zveeEzscTqfyr
+	0/OjrQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494yma9559-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 14:28:08 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b54abd7e048so2542370a12.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:28:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758032887; x=1758637687;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wVazFxrBiaVWPr5/+h7Ed2VEmDRhLsCV8X1mrq96m1g=;
+        b=Da5uwfZ15u4EZWFuP6VYtDQB1lyLqt+n7f5bbEoY5HFQZqAWyRYZ5Q4gLHndVsNhfK
+         JLFUBaR6+HVJWXrUx5HotjFkKI0Hek5cG61z3HOYmaMt1SR63vnCPQrK5xDAlAT+3aSD
+         Bqmr5bXUh4bfxmndkPV7A8ngy9IXqHsRYoDAAD/sqJcsYqkF7t5gOUkSYsWQiloGgOb0
+         Ou0P08cFl4W9nCuGbQs9IreQD45ldesz1gfwD2PgakVv8gCrJ7QMly5xBZEuuts1SNht
+         mIK9f/DJEpbAOeftQLxaxqa/waQ5+dmpzRh8y9L0Ho+eYPMAskTj1PCzD2EVMvODU1Zz
+         AYhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ3RL5YpfjR8fv8CU3kd8tui11211VMs1L/X6/ZP3tgfog6lOsjBP9w+OJQzEa2tvc6yuuivd2L8oN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhLOIrwlDBIkjpa7Ee3C25TRdKVv5HgYKsTTalJMYzmhO69HAH
+	4zJJQ8IavNqynTr2BgCm+WDrpAmr9pquoHGJ4TlnKBP5IF8owq8sONKcryGfvwSrJG9IGSmhwNf
+	HTJ9sSOycqWyUtwSn99MXo37HeHZr2ikIbuyJmypN4cGWfUkEsjt/xuB9WM7cdcJr
+X-Gm-Gg: ASbGncv7TKlp4/iGT7FbBsV5ZJaGJ9T0f45lYm0hDWfeZug5d+6dAps8MlPUZCPcf2M
+	HtZRWOHNm5JcXQjqLwk0+5poSxGnqRdXCzm/dBfLLUKqAbwHHCK8ASodRRXZVBX5SwkphGVPI+O
+	bFCNhT3E916q/sm/BC+Tqpk/mkkQGS/OAhoYncV3t3uqKjIZCo/+V6dSt/tBylCEfYWAiHnhxvP
+	U0hjjd6nZyoSlB48ntGpXtCouUVxYKHXbZ6LEBPPgaHTpHuTkokFmCU+Fr1NDUACsQ1dev8Kx+X
+	RS/uRS7tJV/baO1x2tLKxPAKJj4WrtlHcOBlVROOfdAOR140aiy7dNfPeb+tYLWlFhTB77LY
+X-Received: by 2002:a17:90b:4b02:b0:327:b2a1:2964 with SMTP id 98e67ed59e1d1-32de4edd5c0mr24271859a91.15.1758032887098;
+        Tue, 16 Sep 2025 07:28:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFaRdyreAXTN3R4VZO/4YJ07pyOClNXcalPfMJAt0v6xilHbu5B83Umf7EFNgBl+2P0ENNgmA==
+X-Received: by 2002:a17:90b:4b02:b0:327:b2a1:2964 with SMTP id 98e67ed59e1d1-32de4edd5c0mr24271789a91.15.1758032886468;
+        Tue, 16 Sep 2025 07:28:06 -0700 (PDT)
+Received: from [10.217.217.28] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54a387cc21sm14557763a12.28.2025.09.16.07.27.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 07:28:05 -0700 (PDT)
+Message-ID: <d662d014-5970-4d6a-b5c5-1722cb8a1a86@oss.qualcomm.com>
+Date: Tue, 16 Sep 2025 19:57:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart10916593.nUPlyArG6x";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegtdekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
- ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
-X-GND-Sasl: romain.gantois@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 0/5] Add support for QCOM SPMI PMIC5 Gen3 ADC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+        subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
+        lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+        neil.armstrong@linaro.org, stephan.gerhold@linaro.org
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250829-imaginary-dove-of-music-afdb36@kuoka>
+Content-Language: en-US
+From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <20250829-imaginary-dove-of-music-afdb36@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxOSBTYWx0ZWRfXyGpWzkKzffQT
+ bF0Yl4GTq8MlL6Me1SZZA59KDF5MLVeDX378SYc6Gh6ZW8urcAzRz8ZcAlPZ36pkSwRSm2cda/R
+ UAeMwmHjjo0H9S3v2hhpEDBun2fkfAkpCNu44TgvwdMMyWCJOum+FFHlwuMdbljvPnZVfNPLeAx
+ 2He+lbxYgX4vEodqGvlCFi+eI72GZB2wM2p3E3YGEDNx1HDNsYrRLx3sWKU0emvPXt0W/6LSx6P
+ NjI5l7t605DLXUe7G6qM/Rd+F51nYzyDV9afQNju+x1EaDqWfDbRMUwasedO8qNGE/SH4GiLS0g
+ GDuD0QbZkG3/Wo8fm+n4Pv6qze1TAO+bvG8yTDt2vmVMdiFWDj/byU/EgRdwQilJ5R6QDWyOm3W
+ 41W6k8ul
+X-Authority-Analysis: v=2.4 cv=cdTSrmDM c=1 sm=1 tr=0 ts=68c973f8 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=a0YOPMXbwBXd-ClgL4oA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-ORIG-GUID: S4239loyxBQMxvKFBCkLz8ZLSX2tVz80
+X-Proofpoint-GUID: S4239loyxBQMxvKFBCkLz8ZLSX2tVz80
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509130019
 
---nextPart10916593.nUPlyArG6x
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Date: Tue, 16 Sep 2025 16:27:25 +0200
-Message-ID: <8772650.T7Z3S40VBb@fw-rgant>
-In-Reply-To: <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
-MIME-Version: 1.0
+Hi Krzysztof,
 
-On Tuesday, 16 September 2025 15:19:16 CEST Andy Shevchenko wrote:
-> On Tue, Sep 16, 2025 at 12:24:09PM +0200, Romain Gantois wrote:
-> > The LTM8054 supports setting a fixed output current limit using a sense
-> > resistor connected to a dedicated pin. This limit can then be lowered
-> > dynamically by varying the voltage level of the CTL pin.
-> > 
-> > Support controlling the LTM8054's output current limit.
+On 8/29/2025 12:41 PM, Krzysztof Kozlowski wrote:
+> On Tue, Aug 26, 2025 at 02:06:52PM +0530, Jishnu Prakash wrote:
+>> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+>> with all SW communication to ADC going through PMK8550 which
+>> communicates with other PMICs through PBS. The major difference is
+>> that the register interface used here is that of an SDAM present on
+>> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+>> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+>> be used for either immediate reads (same functionality as previous PMIC5 and
+>> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+>> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+>> combined into the same driver.
+>>
+>> Patch 1 is a cleanup, to move the QCOM ADC dt-bindings files from
+>> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+>> specifically for ADC devices. It also fixes all compilation errors
+>> with this change in driver and devicetree files and similar errors
+>> in documentation for dtbinding check.
+>>
+>> Patch 2 splits out the common ADC channel properties used on older
+>> VADC devices, which would also be reused on ADC5 Gen3.
+>>
+>> Patch 3 adds bindings for ADC5 Gen3 peripheral.
+>>
+>> Patch 4 adds the main driver for ADC5 Gen3.
+>>
+>> Patch 5 adds the auxiliary thermal driver which supports the ADC_TM
+>> functionality of ADC5 Gen3.
+>>
+>> Changes since v6:
+>> - Updated auxiliary device cleanup handling to fix memory freeing issues
+>> - Updated copyright license in newly added files
 > 
-> ...
-> 
-> > in microvolts
-> 
-> Yeah, using _mV postfix will make it visible that those are in micro-Volts.
-> 
-> ...
-> 
-> > +static int ltm8054_set_current_limit(struct regulator_dev *rdev, int
-> > min_uA, int max_uA) +{
-> > +	struct ltm8054_priv *priv = rdev_get_drvdata(rdev);
-> > +	u64 vdac_uV;
-> > +
-> > +	min_uA = clamp_t(int, min_uA, priv->min_uA, priv->max_uA);
-> > +
-> > +	/* adjusted current limit = Rsense current limit * CTL pin voltage / 
-max
-> > CTL pin voltage */ +	vdac_uV = (u64)min_uA * LTM8054_MAX_CTL_V;
-> > +	do_div(vdac_uV, priv->max_uA);
-> > +
-> > +	dev_dbg(&rdev->dev,
-> > +		"Setting current limit to %duA, CTL pin to %duV\n", min_uA,
-> > (int)vdac_uV);
-> Why casting?
-> 
+> Eveyrthing is an update.... What did you change in copyright and
+> license? And why?
 
-This one is indeed unnecessary.
+I replaced the 2025 copyright with the new yearless one in newly added files,
+following our new internal guidelines. There was no change in the license, I'll
+fix this line.
 
-> > +	/* Standard IIO voltage unit is mV, scale accordingly. */
-> > +	return iio_write_channel_processed_scale(priv->ctl_dac, vdac_uV, 
-1000);
-> > +}
 > 
-> ...
+>> - Addressed some reviewer comments in documentation and driver patches.
 > 
-> > +	ret = of_property_read_u32(np, "lltc,iout-rsense-micro-ohms", 
-&rsense);
-> 
-> device_property_read_u32()
-> 
-> > +	if (ret < 0) {
-> 
-> Be consistent with a style, in the previous patch it was 'if (ret)'.
-> 
-> > +		dev_err(dev, "failed to get sense resistor value\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	if (rsense == 0) {
-> > +		dev_err(dev, "invalid value zero for sense resistor\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* The maximum output current limit is the one set by the Rsense
-> > resistor */ +	tmp = 1000000 * (u64)LTM8054_VOUT_IOUT_MAX;
-> 
-> Yo may use MICRO and drop the casting.
-> 
-> > +	do_div(tmp, rsense);
-> > +	priv->max_uA = tmp;
-> > +
-> > +	/* Applying a voltage below LTM8054_MAX_CTL_V on the CTL pin reduces
-> > +	 * the output current limit. If this level drops below
-> > +	 * LTM8054_MIN_CTL_V the regulator stops switching
-> > +	 */
-> 
-> /*
->  * Besides missing period at the end this is not correct multi-line style of
-> * the comments. Use this example.
->  */
-> 
-> > +	tmp = LTM8054_MIN_CTL_V * (u64)priv->max_uA;
+> What changed specifically?
 
-This cast avoids an overflow of the multiplication, since the result may 
-easily exceed 32 bytes in size.
-
-> > +	do_div(tmp, (u32)LTM8054_MAX_CTL_V);
-> 
-> Why casting?
-
-Since do_div() is a macro, I casted the second argument just to be safe, but 
-it seems that do_div() already does this internally, so I'll just drop the 
-cast.
+I'll update the changelog here and in other patches to
+list all the changes clearly when pushing the next patch series.
 
 Thanks,
+Jishnu
 
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart10916593.nUPlyArG6x
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjJc80ACgkQKCYAIARz
-eA61ExAAm6vav4r+FXBHUpKS9vLntfh3NIx00BPF8pPYQM4zEuaYCvc4VPq36Tja
-07CMt07iGbiwm1UwYvq2hh6CBsihK8ZhvmbfxPNx9ZnnFSPHFXOjctiYSIOg5uXK
-gStU0vgpTaxafCo6lL0fAJs0wy2655wECGHinA8wTRW5pfjv/JIy4DL8+8MVSjjF
-k4XLlJ37mlN9EF62UneaP9mifiwYS82nZa8odsz4H36nker8tUGWD+981hs0SvzV
-e/HKkETrnf7Zm+CPnNcQYMbxn9jRn0nAk+35IS0EBuIiS1ddqmp4EU9MFpBRCrQ5
-MPYX9ymanXy5TgoJxz0nA/f2V1vyd09+UPZ8nhGbrsWrkxwpc+5mhhrbPdBMoy6E
-YGMNnU1zdHnDCGYGQSb4ck+4Bv/isJxOfW07MrBGohlQNIF7JS6Nz4rlRQlF7LAi
-oBqZXHkoR4J46QTxguF2NEYe7BKiUyFaIzUjh6+LS2zw09ExCcHbCAhArrZ5FXx7
-XWXD9N18QFSB+67dl70HaLrjKQ4EYtL1iT5NYR2mrBal08g3ycFtVkn9o+TfvHjT
-gtIZzktI0gG1BK4+oyOFggIpXg3CgDgNvEgDDliyMnP1OLE5m7EMPs3Wyqknn1uQ
-Apw1euRSOig2b/kWCCaoBnIfDOrku1U9WjkNBHxy9nEhEJSziF8=
-=HfwT
------END PGP SIGNATURE-----
-
---nextPart10916593.nUPlyArG6x--
-
-
+> 
+>> - Link to v6: https://lore.kernel.org/all/20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com/
+>>
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
