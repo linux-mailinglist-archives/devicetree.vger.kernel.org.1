@@ -1,254 +1,216 @@
-Return-Path: <devicetree+bounces-217891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF27DB59A4F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D67B8B59A87
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:42:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 473A14650B3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:26:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2B544A0081
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB2731D731;
-	Tue, 16 Sep 2025 14:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64A331B808;
+	Tue, 16 Sep 2025 14:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Iaqxauxe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VMcZpzKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010066.outbound.protection.outlook.com [52.101.84.66])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF4D3081BB;
-	Tue, 16 Sep 2025 14:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758032781; cv=fail; b=XoPK9WVP2ky1g/IqxIcMKeyo2rSWPm2g0tMrcHdBm03btyja8Qu9hV+XtUTsk0xqdlGR9Jk5t+hBiyV4Oglb3sJEx7QAGira6+vs/j+ZlxVpvJfHMit8rPvvHm9ogNc5EIbMG2xmVrSOP1691h+BuLxuS3gzG2V4xnT5LlU0oWQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758032781; c=relaxed/simple;
-	bh=AFuToyTbzSkpuK2llj+sDqvjNQPLD0MHiniyfjGM+EM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=scqpA1bZVL8Ome4S9Pqb0i6iPdoctd5QtwtyksUsMfKNVm53C27KwY2fYbZFd25cy++yB7halR5YkAdSSHPwDN2TEos5R1VEApSgEN4+7Aw6N87vBM+VsLDhROcN5FCTrYeMWN+vKlqnp0r5pcibu+c5xwgV6CSkEGqrg13LxZ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Iaqxauxe; arc=fail smtp.client-ip=52.101.84.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lOScx/SwuJSl/zFFmdpkUA92b6sitpmFWRDZGjorUiJp9h0dxRsoKO2fa2NeLs77ILX0KV/4BsyVhbJ8yAVI+jTlTEIBFZS/+3lOY/fTMwmN2PFF3yQTYc9OB/y3Ri9gLUhjU4t5ttNRILmzmO/Pb9/oYDBm133vESR4x5nW8k5emHgr575/VULO5+RY8N44+yX9ZIPhdMvLRU3DNKIs9UoxWqnx4Zu9fOLt8VknAt2/3+1v1tEfIuGcVDuH/EEu5y2ZjVzLN3l+DFdyR5h2dpFYtCVlKqDw/tE1Soo8d1Ges2UOBka9qaDvOPkjbYvbQJowua7tyTRtbCFd+XC6zQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Behbrvo3ApvCvj+bC4n9hN44jfWkLLWqnrq/efyLMg=;
- b=lpQAxvbqYjUntum6FkOPYmNPD6p7w4KVYraw771d4sXM68WNz9UETpXdeOrQxecYD04XHr9b43QEWCUMgt6DwZ5Ue1+LKGMHta9zGWa1bjH1dlyGV+G1/7wrpWrnh3jLn8eRNs5anMOOwpGzNEptAs5vnit9DNkygy0fYDB47nKlh0MXIXx1gTgJuaq2QlblE0XlnG48gnbgASWM1GeURZtLo0sG5b9VUiV+4olqH+o3k2MK/66bM1NiZAhEF2aIlLRJRWuK2ZTJt5rZra3WzQnKFcP+TVZ96l+UsmqHoty46tbkk+zKLbDtvWEHNvmviKnMt2d8aYhdusdvsyGyxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Behbrvo3ApvCvj+bC4n9hN44jfWkLLWqnrq/efyLMg=;
- b=IaqxauxedeM4Nicw57TzK1HIMxQSn+GJpSu/Tw9Gos5y3qkOylF6vhJVUIBF6vtaZt+HOmKH0+JGzeL7fZhdP6ohkNHRxxzI2RXptlblqPR/2gnlmU9R1IrMLgxT8fTpvpXJOWdcmNmCta10StbgPmoCj2oPrh5sWC29y2lQrGM4Ex3r/ISUJcUFcXRuiC4Ld6fFg5ARuwI5oqYsSds2fEXVXLL1CPQ5hI6CBACv5NCxZwAdvwAIsx5guWgbZWTRMCJ00lbdlEOF22euFQJkYGHrnKviwFMv81bMqEubF88qFrdwkF8RJxqe8JoT2A5eHseQnV99aoKfIzamE/22qQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by PR3PR04MB7228.eurprd04.prod.outlook.com (2603:10a6:102:8c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.12; Tue, 16 Sep
- 2025 14:26:14 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9137.010; Tue, 16 Sep 2025
- 14:26:14 +0000
-Date: Tue, 16 Sep 2025 10:26:06 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Guoniu Zhou <guoniu.zhou@nxp.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v3 3/4] media: i2c: ds90ub953: use devm_mutex_init() to
- simplify code
-Message-ID: <aMlzfludCGR/zOzY@lizhi-Precision-Tower-5810>
-References: <20250916-ds90ub953-v3-0-bb7bc6545da7@nxp.com>
- <20250916-ds90ub953-v3-3-bb7bc6545da7@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916-ds90ub953-v3-3-bb7bc6545da7@nxp.com>
-X-ClientProxiedBy: BYAPR01CA0035.prod.exchangelabs.com (2603:10b6:a02:80::48)
- To AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C93BC286890;
+	Tue, 16 Sep 2025 14:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758032856; cv=none; b=LJZbui2mANKFouq6fBZhB8W7OoP6D8/nnGjiJ4POMLUJkauP4/rPTKMHwmDtFfZFXkmm2Bz8tWiL2+rc0Mkr/kisF9oLnfHS4lza3NVnxFlPWVMEJE9XPgM7hBv4EmWmXQfkIMq4B7y4FZP03DdHr1zZ6a60/No0yPgx9C2BOqg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758032856; c=relaxed/simple;
+	bh=f8t73w3AtLY7hnhFS/dR1I/Uz6Yqv3oI3PWml5zdfPI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LW+AaafmgsdNjPSPp1LU28ukcY2R28c5P5Ns+pwDIJ6WKVbrzd7wotADj6pffi8cy6Wb+v1+FaXkznCNfWZ5kQliWu1iKZE6kiGEaTHu7bxhVg83E4aY9olv/Rl+PDjPVNanDkCQReHG6VGoNJjOgMtkyIKRMndsVIp+deGMrw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VMcZpzKY; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0112443B69;
+	Tue, 16 Sep 2025 14:27:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1758032846;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ATSeLNX+owPZ3aCBXlyQeAZTuD9FLYcDCEAlmuoDnYg=;
+	b=VMcZpzKYgJxyHzS9TlLOGlGOWZAuukPoVdElAz/IsHnkD28ri0z6Dl26f6yEcm03LoIXmc
+	0zQC8uhQcQaI/cV7DPVFX/wurMAqa84y+MWubHU1UbGR1oB+/hT/cMQQjXkdvBLtqLC7kK
+	SSiaJdrmQpgtN7fUNoDNzUDZEXV/VaXPktqIgDUlRv4pK8DMqxLpeQ/Y8QuiBsI93dvvs2
+	ZUf05fY1fUQFq/egHXBWK/ZT7InJ8j4Xl3ahtL7wgr17rmFCulWfvB3ULz3FWNUNtWVEpF
+	3R3BK3IxOzRI4i+J06yX0dBF4HYjUWwDBnidKqAorSphdBrqwgy7tQo0AH80Ig==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH 4/4] regulator: ltm8054: Support output current limit control
+Date: Tue, 16 Sep 2025 16:27:25 +0200
+Message-ID: <8772650.T7Z3S40VBb@fw-rgant>
+In-Reply-To: <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
+References:
+ <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <20250916-ltm8054-driver-v1-4-fd4e781d33b9@bootlin.com>
+ <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|PR3PR04MB7228:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1e1135c-7981-4c20-4562-08ddf52cfdf1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|376014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XykC6yhvqujEgJbzPBHV3Xz8XvjKErnkIBtCJnyQtPMpQuA2OKefNhBNNJwV?=
- =?us-ascii?Q?iLl3jXmKSPGx7JGq1RMKW/j3Oy37KgvrRnApDDmtiNmvt2IY1ALqeEtZWQ9l?=
- =?us-ascii?Q?8WHFwIa5gRthE76UaX/fiEk99q1fF9fwDVfA2+BkiOMEAOY8er2IOwncxDIC?=
- =?us-ascii?Q?XeXUysmnwAjx92I3PMx9RnmZM1q+Udc42hjKKVqzvShfVLDhE5jtgMMIb0mx?=
- =?us-ascii?Q?m4BrVyxcO357lhCVzr/ftTNyLTziJ6H5eouzHG2NUSx/AibXW4WIxsGbsd57?=
- =?us-ascii?Q?orkZa/gVcU8nYC1bSMWv4ErjSjRzN+aJk5ZD9MtdP8dHjewEjEoM3YBjsbEV?=
- =?us-ascii?Q?wOpQot1jVjkh3JOmdOyhMP7+viiE0mTVWMLgbKuSK5QwW6Ku3yeQURrdgK2E?=
- =?us-ascii?Q?mH2sPZoXzvm+8bwoiv43rQS0gmgtvWe+kIQIu6IHQAdyFuZttGl2Osj+gpHC?=
- =?us-ascii?Q?sIiTlpVjO7opU/ixS7Q50n0PxYNaANHnYC8q5OUYQJeMIbOIqysl2rZ1VfkI?=
- =?us-ascii?Q?MarkMpEa2JetdPsPFNgl4Ug78d0gyZNPGpYzEoBC33qQIwpER2dAt1590Drm?=
- =?us-ascii?Q?/OyTE0hbOSNd5tGg6HgXI3f4dh3gCc9dZEOXeAtnDFha6JXq3ulfviGtzepG?=
- =?us-ascii?Q?W0Ui33+yMEzUcgVTtD7s+YRV2Jvr2Dz6BXj4s2Q4OGCk4zoi189NHL+5d1WN?=
- =?us-ascii?Q?gmW8k7Ns6PycglxuiXVZmsFsY4dpbq8Qj0JNeh9NYaFRWJBd9Yuygqy6GGNG?=
- =?us-ascii?Q?z1MZPOF1+Pq/DMq7JxbK/epkquThiJkeL7AwR+8TYgHhqtnw3mOGcCzlcd8r?=
- =?us-ascii?Q?Wtxow30Soc7sYFDKqUIKTKbrzaI5tP4xpx60wqNXR69Dr229oPWTHlQso+u+?=
- =?us-ascii?Q?tHfvFFSoH8iESTU0sQ5EgZsIPaBMYr7KvntflC2eRf3xuMcpeZsPQGiV3I7z?=
- =?us-ascii?Q?gPEy7mN10DKEX9eIy/abbkUgnhXyBjlWIBNbhktaIFnfvonEwV2tkBWx9jIe?=
- =?us-ascii?Q?8jpyqRWSJg3I1QrD0Wjohbh++oMxYrvHYZ9ANcok6XJ6iHIbjFfa6YZwE5nF?=
- =?us-ascii?Q?hy0ozM8wncri9e3fpUwQqh3zFOsI4nTNfh1fqT5n7W2hOt2AQEGZkx2bOgVE?=
- =?us-ascii?Q?2Zw+eRbZzgO6L8uGDh4Dx0kTT8p4Q41+YeBymfrHRAqnWy5V6MNUMIfgRW5a?=
- =?us-ascii?Q?ZBugxW/jn3eLdV/r6w4mlZbU69knF1w4pW42DHHiDsmTuctmkubzJLYAlWIT?=
- =?us-ascii?Q?9UESnQa/sakuBVBk+Iyr0rZOx09M0nqpUOH29RYvqmelWbinjvZDsWq9IG5N?=
- =?us-ascii?Q?lON7ok52bKfMUR9ElHRhKZKc9vEF072KTyxf6rNsmUXx0h8OgAbFHhnbUByP?=
- =?us-ascii?Q?I2t/BsiE9rNNfhmcxAZfZDXmVmsGktV+4g62acwcgyFjMM9RAlL8B8ewakba?=
- =?us-ascii?Q?ULs1XNF+gaY5FmBZGLf303UNiEXzm7G7JunzqS5VNR4sCnmQYeJiDg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?seB1LvamMADh7t0hyVqTGC01iTDSm2OEG9YfqijW5rbk/988cfpCIJV4j1wl?=
- =?us-ascii?Q?d2ks5JX8KLnQD6jhX7Qe0FY03yuIKv2x257v76niIfMdIAXtnTrLo1aqxh6X?=
- =?us-ascii?Q?0p8S1xBHDEFhgWtG1sTjtUSBoYwksTG0eSIq5lvYDnkbcziLaAMvhloWX/jk?=
- =?us-ascii?Q?clCc3fv1IhaPfsRi2jGQ47/T5qwFhJKZOp0FwD1lf1D5yTOm55uNnBwPGvTE?=
- =?us-ascii?Q?g3zsuQSDxsBIsrzsyF9aj4YF2bQaJ9bPYNGx1GeaLCKkcj6dS8oRHIK0uE/5?=
- =?us-ascii?Q?qNnTQTWt+1eyq1q5b9DiIQ4BlXKafXLsKpyRUwNGxOQ1kGab8QYHNNagljZt?=
- =?us-ascii?Q?v9CZDxVUHZNrkRbBd0BXa+wJ7VbT5TUWtZGDk9cWkYj0m1pYC5Ba5c4Szj2m?=
- =?us-ascii?Q?tKGoRtATHXpiwvUq139CZijYG9yE3QeYx3vsW4G8b+yx8LcxrigXjAbiCjPa?=
- =?us-ascii?Q?WYrnupPoujoslnPIOGl5E0beXaQtZVeMOlAAcT+eS81WpXtuMSFRH9PbZpi3?=
- =?us-ascii?Q?xtglCx7S3T5fTxE0GGZZLL/Ddr0yfxv5l1yEn2fyZelvhBsb38SYe04UNzjU?=
- =?us-ascii?Q?y9FeWs2y7QauXjg1kZEoTMbBOAUmVYCGmozXxSf4moJu+3Ingkd5GpYfF5bW?=
- =?us-ascii?Q?t5oVfM4omYQFi8jX9OLVqFoNPaqOF51u9RM55OU1Ub2OsdVHs13P3i1IqNZy?=
- =?us-ascii?Q?TIvaeiuoqs5bpbLn8FQvAAJsy7qGYQ46p5ofcHKLgKPgCzOSXeB/oMqDA+rE?=
- =?us-ascii?Q?WGSL8/8ghgM3NfhnlgiD9XC0/wVzcdh7De+hMnEAuicVU1fMHuMmGkBX9K2h?=
- =?us-ascii?Q?x09KPYXj0OaNF9lweFsn6by8BIuakHp8L0xF7t5Pe3lOBBZMULIHnMvlg//B?=
- =?us-ascii?Q?i68Kn+7xTHgnsDN/ZHNBn7RK8pPXImiL4SXL5pAHm/tYljYT2fElPqxjrF3v?=
- =?us-ascii?Q?bOYctVxvomnhW8qpCq1MCaWAzCRqANyhmSLBnjvdqcwhKi9DtRii8AcI6VTu?=
- =?us-ascii?Q?u6camoG7sDBwbRTbxuEx48M4ZDt8xxUCj0FR314fXD/YmsLByh7o4G2xJj/s?=
- =?us-ascii?Q?sV9KL1hlooxPXSEPnNvoJzls1M3jzCNkmmKrr5PiES/SW02Uz+0kL9ivA5Hh?=
- =?us-ascii?Q?Qdg1epP7Vk23nPvOY+iaJZDaI4oAmTiZeqvug7z1Tjycpcwg+K+bRSqnkOou?=
- =?us-ascii?Q?ZWkp0BilXcYqiQ85p+ZkAg9+oXGCEyM2SpVU+Zg3fyy9FNwDuIosrjJgx/lM?=
- =?us-ascii?Q?riG9VxwRjNHUipiJTCh6k/0CsnJQkMAOrGmbo0MHG2y8ptgimUAYLdHctpvL?=
- =?us-ascii?Q?stY1/3pzP76DRopjJu78tq9o5+e0IMbCjcxeIvir2YS2oLJpyTjnr7bIZus5?=
- =?us-ascii?Q?AosEbJqyU8wRnmn7mHwLf9hEipkIIJr0BpXvAklryfhoSkjTDXcnzvof5/hi?=
- =?us-ascii?Q?TXdsnCje9dybA7umQ8H+T9eAc8BTS3uIGh08hzayJ6NUlpoDvZYu1NQ+tg79?=
- =?us-ascii?Q?fZh6BVdJ0cVoAM70YoeOeUCiOGgVMdVwNGHthEmTRqHyHlFnNgacitXbkAEc?=
- =?us-ascii?Q?sBlRvz7WB66aiK0vZAk=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1e1135c-7981-4c20-4562-08ddf52cfdf1
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 14:26:14.5725
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FUROaidI2S7lgO2jAX2fR+PA4MH4J3fKKvRUslkBmgTKzcYkamZMpqdBP7mZDCPnHL70Kep3+0UrLsFEzCtqlw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7228
+Content-Type: multipart/signed; boundary="nextPart10916593.nUPlyArG6x";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegtdekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
+ ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Tue, Sep 16, 2025 at 05:43:45PM +0800, Guoniu Zhou wrote:
-> Use devm_mutex_init() to simplify the code. No functional change.
+--nextPart10916593.nUPlyArG6x
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Date: Tue, 16 Sep 2025 16:27:25 +0200
+Message-ID: <8772650.T7Z3S40VBb@fw-rgant>
+In-Reply-To: <aMlj1OcfH8r9Zz6x@smile.fi.intel.com>
+MIME-Version: 1.0
 
-Use devm_mutex_init() and dev_err_probe() to ...
+On Tuesday, 16 September 2025 15:19:16 CEST Andy Shevchenko wrote:
+> On Tue, Sep 16, 2025 at 12:24:09PM +0200, Romain Gantois wrote:
+> > The LTM8054 supports setting a fixed output current limit using a sense
+> > resistor connected to a dedicated pin. This limit can then be lowered
+> > dynamically by varying the voltage level of the CTL pin.
+> > 
+> > Support controlling the LTM8054's output current limit.
+> 
+> ...
+> 
+> > in microvolts
+> 
+> Yeah, using _mV postfix will make it visible that those are in micro-Volts.
+> 
+> ...
+> 
+> > +static int ltm8054_set_current_limit(struct regulator_dev *rdev, int
+> > min_uA, int max_uA) +{
+> > +	struct ltm8054_priv *priv = rdev_get_drvdata(rdev);
+> > +	u64 vdac_uV;
+> > +
+> > +	min_uA = clamp_t(int, min_uA, priv->min_uA, priv->max_uA);
+> > +
+> > +	/* adjusted current limit = Rsense current limit * CTL pin voltage / 
+max
+> > CTL pin voltage */ +	vdac_uV = (u64)min_uA * LTM8054_MAX_CTL_V;
+> > +	do_div(vdac_uV, priv->max_uA);
+> > +
+> > +	dev_dbg(&rdev->dev,
+> > +		"Setting current limit to %duA, CTL pin to %duV\n", min_uA,
+> > (int)vdac_uV);
+> Why casting?
+> 
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+This one is indeed unnecessary.
 
-Frank
->
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
->  drivers/media/i2c/ds90ub953.c | 33 +++++++++++++--------------------
->  1 file changed, 13 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/media/i2c/ds90ub953.c b/drivers/media/i2c/ds90ub953.c
-> index c6b77e4982a3449896e564a288ff1562cb1dcb79..47e7c0a5aae7737182e6a1f2797be01e7ecc8142 100644
-> --- a/drivers/media/i2c/ds90ub953.c
-> +++ b/drivers/media/i2c/ds90ub953.c
-> @@ -1342,7 +1342,9 @@ static int ub953_probe(struct i2c_client *client)
->  	if (!priv->plat_data)
->  		return dev_err_probe(dev, -ENODEV, "Platform data missing\n");
->
-> -	mutex_init(&priv->reg_lock);
-> +	ret = devm_mutex_init(dev, &priv->reg_lock);
-> +	if (ret)
-> +		return ret;
->
->  	/*
->  	 * Initialize to invalid values so that the first reg writes will
-> @@ -1351,32 +1353,26 @@ static int ub953_probe(struct i2c_client *client)
->  	priv->current_indirect_target = 0xff;
->
->  	priv->regmap = devm_regmap_init_i2c(client, &ub953_regmap_config);
-> -	if (IS_ERR(priv->regmap)) {
-> -		ret = PTR_ERR(priv->regmap);
-> -		dev_err_probe(dev, ret, "Failed to init regmap\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "Failed to init regmap\n");
->
->  	priv->clkin = devm_clk_get_optional(dev, "clkin");
-> -	if (IS_ERR(priv->clkin)) {
-> -		ret = PTR_ERR(priv->clkin);
-> -		dev_err_probe(dev, ret, "failed to parse 'clkin'\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (IS_ERR(priv->clkin))
-> +		return dev_err_probe(dev, PTR_ERR(priv->clkin),
-> +				     "Failed to parse 'clkin'\n");
->
->  	ret = ub953_parse_dt(priv);
->  	if (ret)
-> -		goto err_mutex_destroy;
-> +		return ret;
->
->  	ret = ub953_hw_init(priv);
->  	if (ret)
-> -		goto err_mutex_destroy;
-> +		return ret;
->
->  	ret = ub953_gpiochip_probe(priv);
-> -	if (ret) {
-> -		dev_err_probe(dev, ret, "Failed to init gpiochip\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to init gpiochip\n");
->
->  	ret = ub953_register_clkout(priv);
->  	if (ret) {
-> @@ -1400,8 +1396,6 @@ static int ub953_probe(struct i2c_client *client)
->  	ub953_subdev_uninit(priv);
->  err_gpiochip_remove:
->  	ub953_gpiochip_remove(priv);
-> -err_mutex_destroy:
-> -	mutex_destroy(&priv->reg_lock);
->
->  	return ret;
->  }
-> @@ -1416,7 +1410,6 @@ static void ub953_remove(struct i2c_client *client)
->  	ub953_subdev_uninit(priv);
->
->  	ub953_gpiochip_remove(priv);
-> -	mutex_destroy(&priv->reg_lock);
->  }
->
->  static const struct ub953_hw_data ds90ub953_hw = {
->
-> --
-> 2.34.1
->
+> > +	/* Standard IIO voltage unit is mV, scale accordingly. */
+> > +	return iio_write_channel_processed_scale(priv->ctl_dac, vdac_uV, 
+1000);
+> > +}
+> 
+> ...
+> 
+> > +	ret = of_property_read_u32(np, "lltc,iout-rsense-micro-ohms", 
+&rsense);
+> 
+> device_property_read_u32()
+> 
+> > +	if (ret < 0) {
+> 
+> Be consistent with a style, in the previous patch it was 'if (ret)'.
+> 
+> > +		dev_err(dev, "failed to get sense resistor value\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (rsense == 0) {
+> > +		dev_err(dev, "invalid value zero for sense resistor\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	/* The maximum output current limit is the one set by the Rsense
+> > resistor */ +	tmp = 1000000 * (u64)LTM8054_VOUT_IOUT_MAX;
+> 
+> Yo may use MICRO and drop the casting.
+> 
+> > +	do_div(tmp, rsense);
+> > +	priv->max_uA = tmp;
+> > +
+> > +	/* Applying a voltage below LTM8054_MAX_CTL_V on the CTL pin reduces
+> > +	 * the output current limit. If this level drops below
+> > +	 * LTM8054_MIN_CTL_V the regulator stops switching
+> > +	 */
+> 
+> /*
+>  * Besides missing period at the end this is not correct multi-line style of
+> * the comments. Use this example.
+>  */
+> 
+> > +	tmp = LTM8054_MIN_CTL_V * (u64)priv->max_uA;
+
+This cast avoids an overflow of the multiplication, since the result may 
+easily exceed 32 bytes in size.
+
+> > +	do_div(tmp, (u32)LTM8054_MAX_CTL_V);
+> 
+> Why casting?
+
+Since do_div() is a macro, I casted the second argument just to be safe, but 
+it seems that do_div() already does this internally, so I'll just drop the 
+cast.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart10916593.nUPlyArG6x
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjJc80ACgkQKCYAIARz
+eA61ExAAm6vav4r+FXBHUpKS9vLntfh3NIx00BPF8pPYQM4zEuaYCvc4VPq36Tja
+07CMt07iGbiwm1UwYvq2hh6CBsihK8ZhvmbfxPNx9ZnnFSPHFXOjctiYSIOg5uXK
+gStU0vgpTaxafCo6lL0fAJs0wy2655wECGHinA8wTRW5pfjv/JIy4DL8+8MVSjjF
+k4XLlJ37mlN9EF62UneaP9mifiwYS82nZa8odsz4H36nker8tUGWD+981hs0SvzV
+e/HKkETrnf7Zm+CPnNcQYMbxn9jRn0nAk+35IS0EBuIiS1ddqmp4EU9MFpBRCrQ5
+MPYX9ymanXy5TgoJxz0nA/f2V1vyd09+UPZ8nhGbrsWrkxwpc+5mhhrbPdBMoy6E
+YGMNnU1zdHnDCGYGQSb4ck+4Bv/isJxOfW07MrBGohlQNIF7JS6Nz4rlRQlF7LAi
+oBqZXHkoR4J46QTxguF2NEYe7BKiUyFaIzUjh6+LS2zw09ExCcHbCAhArrZ5FXx7
+XWXD9N18QFSB+67dl70HaLrjKQ4EYtL1iT5NYR2mrBal08g3ycFtVkn9o+TfvHjT
+gtIZzktI0gG1BK4+oyOFggIpXg3CgDgNvEgDDliyMnP1OLE5m7EMPs3Wyqknn1uQ
+Apw1euRSOig2b/kWCCaoBnIfDOrku1U9WjkNBHxy9nEhEJSziF8=
+=HfwT
+-----END PGP SIGNATURE-----
+
+--nextPart10916593.nUPlyArG6x--
+
+
+
 
