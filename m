@@ -1,114 +1,170 @@
-Return-Path: <devicetree+bounces-218038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8044AB5A20F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:12:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBB2B5A250
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12C2C3A88B2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:12:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05DFB3B2272
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F632E9EAD;
-	Tue, 16 Sep 2025 20:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36AE2F2614;
+	Tue, 16 Sep 2025 20:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2/WScE1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bc/QtC1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844DA2DD60F;
-	Tue, 16 Sep 2025 20:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7511418C03F;
+	Tue, 16 Sep 2025 20:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758053528; cv=none; b=Nvy56g1gmYNFRTNWnyZ4q1j3TTZlp3XOi8pNeKyNBuJ0f7cfKT0B/fFjQ/okIC3BQrEYZA2M3kgau+n+ycE3cg0jzHWRPJOz56DmWGBhLCiWD7vmYmo0yGmpam17wJNfryEzg+pGcESeThKnr5xqCeX5kaFmBcop6kKZwqQ3d8E=
+	t=1758054325; cv=none; b=fSHCzpq3KAZ32vpexzAoI5tsvJFN9p0HDZ6oM2uIlG1y4Z1/np8Y3529Flwst4/JYjHfR72IcFsYL3tA9vHorS0UYzOaEoiPUHeZ73AnW5RbYMdnqG8BtfTYvmcaiopQ8SUqwfxCDNZyesHPzm29yDhldQzwBRLPtCxfc9l3jS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758053528; c=relaxed/simple;
-	bh=8kayku5NBl2JfHdpwK5pr2SC0tbjz2aUQo+ZEPiSsHY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nhpXy2FTgFi/2sNgT6mdl+My9ejTtxZTHgPJcIo4M/nnOt5rL6kyKZemWOWl4U6EVppaO03qQgac1ht/Wwb5lq9RoFkUzKrck6mktJPBSPX1wQaMJdDGk4gIBKKrFGwJpqyi+7j3JPSj59YyBlGFjzLTD3OiG1BX/mUNEulopd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2/WScE1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3F5EC4CEF0;
-	Tue, 16 Sep 2025 20:12:07 +0000 (UTC)
+	s=arc-20240116; t=1758054325; c=relaxed/simple;
+	bh=QGD8kRGBo4syZf/wQP0MSt3nT94Hk5NSzVk+3pfI8QQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lYVj+CCEjJD7bX7fwSlpy1OHq9KdwZ4S8o89O2V1zBsZSYsRRQsbli6NId2RWKGRK+JS5lryes+9VqQlvFYY47JtU+hZ7sWCr5b17hvwcVLwvESKo6S4ksnbr0bQDoPvkNryp/WbfPUgFz/iaI2tM23VckwxSUlCaqwqZVcIKTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bc/QtC1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EC192C4CEF7;
+	Tue, 16 Sep 2025 20:25:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758053528;
-	bh=8kayku5NBl2JfHdpwK5pr2SC0tbjz2aUQo+ZEPiSsHY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=e2/WScE1msXXyzkubqEOkOf+NuRPtEUReD8DmdRMl6kA9jzxRcwj6602Pz+9v6Bzx
-	 c2yedcgVmRtUbbWbplk9xwy38bltHgJb1cNc0ahFZeNrU7n9ZYgik6M0tv5Jo0ulJV
-	 muFs3av4awKXqwFzGMjClyCHLwYpEtENhoosjG+usBphoiHygR8/tzgEWVq88zuO7q
-	 LR5nTv3ReXTMwvu3me+KtboND4YqAiwqmHGg2m90KzGpoxPRlR0iHxe68zjZifND01
-	 sz10SwN7eO4TaZapYjt32kCX7PmHv5onWLS4pKypuAEDkWiAvPQeFFeqC+mWdZWeUC
-	 VKhPHvBEKeJ8Q==
-Date: Tue, 16 Sep 2025 15:12:07 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1758054325;
+	bh=QGD8kRGBo4syZf/wQP0MSt3nT94Hk5NSzVk+3pfI8QQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Bc/QtC1jTVGH93BHR0pPdFgnDWDiNw3YTMnrSYbNo5hzlhrYakGO1MUHm7c9t+0So
+	 ztRNowvJb/dEQgN01xDy/8axTbgwBjY4MTcgvysVORMpR4pDfdBQNXAaZz5oO+QfqT
+	 QUCysrVApvuz7qQ94K+Wk8t+qg3iynCibdG+TwwGV30GlvczfNFpFObHGfbTr2nDKQ
+	 H6tcPcxlgloeSlIOqmQ5xdrKhKoEqnQiPLp+PQrXHwNEWT8MV3f+v0vxVk2kzJ5dyp
+	 XPpV8tnYMJr7sKnPvmKh0knnUuzMSmkSjD6bMGB2vBXOpN/UVSa6rU6X++NSHnQ8zP
+	 YByqX4+RF81tA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D56EBCAC598;
+	Tue, 16 Sep 2025 20:25:24 +0000 (UTC)
+From: Dang Huynh via B4 Relay <devnull+dang.huynh.mainlining.org@kernel.org>
+Subject: [PATCH 00/25] RDA8810PL Clock, RTC and MMC driver
+Date: Wed, 17 Sep 2025 03:24:57 +0700
+Message-Id: <20250917-rda8810pl-drivers-v1-0-9ca9184ca977@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Bryan Brattlof <bb@ti.com>
-To: Judith Mendez <jm@ti.com>
-In-Reply-To: <20250916154809.545283-1-jm@ti.com>
-References: <20250916154809.545283-1-jm@ti.com>
-Message-Id: <175805351357.4005718.6551892700473732333.robh@kernel.org>
-Subject: Re: [RFC PATCH] dt-bindings: nvmem: Introduce nvmem efuse binding
- for TI K3 SoCs
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJnHyWgC/x3MQQqAIBBA0avErBPUsrKrRAvJqQbCYgQJxLsnL
+ d/i/wwRmTDC3GRgTBTpDhWqbWA7XThQkK8GLbWRVg2CvZsmJZ9LeKaEHIV1Ro+qN3roDNTuYdz
+ p/Z/LWsoHMTLSk2MAAAA=
+X-Change-ID: 20250916-rda8810pl-drivers-9a5271452635
+To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, Dang Huynh <dang.huynh@mainlining.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758054322; l=3886;
+ i=dang.huynh@mainlining.org; s=20250917; h=from:subject:message-id;
+ bh=QGD8kRGBo4syZf/wQP0MSt3nT94Hk5NSzVk+3pfI8QQ=;
+ b=9zchpSAFwjr+IQK2dMLrZvsWvEJuMCoEzZv1nMsFWfTxwY7t6r94fNp29tagymUqPmbGLtAjS
+ obpQLZLCJPKAv4jwBuj4UgTE75ucWgSclNMjDGj95eHLrisstZxh3Pc
+X-Developer-Key: i=dang.huynh@mainlining.org; a=ed25519;
+ pk=RyzH4CL4YU/ItXYUurA51EVBidfx4lIy8/E4EKRJCUk=
+X-Endpoint-Received: by B4 Relay for dang.huynh@mainlining.org/20250917
+ with auth_id=526
+X-Original-From: Dang Huynh <dang.huynh@mainlining.org>
+Reply-To: dang.huynh@mainlining.org
 
+This patch series aims to add support for Clock/Reset, Real-Time Clock and
+SDMMC on the RDA Micro RDA8810PL platform.
 
-On Tue, 16 Sep 2025 10:48:09 -0500, Judith Mendez wrote:
-> On K3 SoCs there are efuse registers scattered across the memory
-> map. In order to reference these efuse registers like gp-sw which
-> may store SW REV information or other general purpose information
-> for drivers to consume, treat them appropriately as efuse devices
-> with nvmem framework.
-> 
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> This patch is not complete and is sent as an RFC to get some initial
-> thoughts on this implementation to solve [0].
-> 
-> [0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
-> ---
->  .../devicetree/bindings/nvmem/ti,efuses.yaml  | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
-> 
+It also adds Intelligent Flow Controller (IOW, a DMA controller) which is
+important for working with this MMC IP.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Tested on the Orange Pi 2G-IOT.
 
-yamllint warnings/errors:
+Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
+---
+Dang Huynh (25):
+      ARM: dts: unisoc: rda8810pl: Add label to GPIO nodes
+      drivers: gpio: rda: Make IRQ optional
+      dt-bindings: gpio: rda: Make interrupts optional
+      rtc: Add timestamp for the end of 2127
+      dt-bindings: rtc: Add RDA Micro RDA8810PL RTC
+      rtc: Add driver for RDA Micro SoC
+      ARM: dts: unisoc: rda8810pl: Enable Real-Time Clock
+      ARM: dts: unisoc: rda8810pl: Enable ARM PMU
+      dt-bindings: clock: Add RDA Micro RDA8810PL clock/reset controller
+      drivers: clk: Add Clock and Reset Driver for RDA Micro RDA8810PL SoC
+      dts: unisoc: rda8810pl: Enable clock/reset driver
+      dts: unisoc: rda8810pl: Add OPP for CPU and define L2 cache
+      dts: unisoc: orangepi: Disable UART with no users
+      dt-bindings: power: reset: Add RDA Micro Modem Reset
+      power: reset: Add basic power reset driver for RDA8810PL
+      dts: unisoc: rda8810pl: Enable modem reset
+      drivers: gpio: rda: Make direction register unreadable
+      dt-bindings: dma: Add RDA IFC DMA
+      dmaengine: Add RDA IFC driver
+      dts: unisoc: rda8810pl: Enable IFC
+      dt-bindings: mmc: Add RDA SDMMC controller
+      mmc: host: Add RDA Micro SD/MMC driver
+      dts: unisoc: rda8810pl: Add SDMMC controllers
+      dts: unisoc: orangepi-2g: Enable SD Card
+      dts: unisoc: orangepi-i96: Enable SD Card
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: ignoring, error in schema: properties: compatible
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: properties:compatible: [{'const': 'ti,am62p-efuse'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: properties:compatible: [{'const': 'ti,am62p-efuse'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-Documentation/devicetree/bindings/nvmem/ti,efuses.example.dtb: /example-0/efuse@43000230: failed to match any schema with compatible: ['ti,am62p-efuse']
+ .../bindings/clock/rda,8810pl-apsyscon.yaml        |  44 ++
+ Documentation/devicetree/bindings/dma/rda,ifc.yaml |  42 +
+ .../devicetree/bindings/gpio/gpio-rda.yaml         |   3 -
+ Documentation/devicetree/bindings/mmc/rda,mmc.yaml |  91 +++
+ .../bindings/power/reset/rda,md-reset.yaml         |  36 +
+ .../devicetree/bindings/rtc/rda,8810pl-rtc.yaml    |  30 +
+ MAINTAINERS                                        |  30 +
+ .../boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts  |  24 +-
+ .../arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts |  24 +-
+ arch/arm/boot/dts/unisoc/rda8810pl.dtsi            | 115 ++-
+ drivers/clk/Kconfig                                |   1 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/rda/Kconfig                            |  14 +
+ drivers/clk/rda/Makefile                           |   2 +
+ drivers/clk/rda/clk-rda8810.c                      | 770 +++++++++++++++++++
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/rda-ifc.c                              | 450 +++++++++++
+ drivers/gpio/gpio-rda.c                            |   4 +-
+ drivers/mmc/host/Kconfig                           |  12 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/rda-mmc.c                         | 853 +++++++++++++++++++++
+ drivers/power/reset/Kconfig                        |   9 +
+ drivers/power/reset/Makefile                       |   1 +
+ drivers/power/reset/rda-reboot.c                   |  58 ++
+ drivers/rtc/Kconfig                                |  11 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-rda.c                              | 356 +++++++++
+ include/dt-bindings/clock/rda,8810pl-apclk.h       |  79 ++
+ include/dt-bindings/dma/rda-ifc.h                  |  28 +
+ include/linux/rtc.h                                |   1 +
+ 31 files changed, 3079 insertions(+), 23 deletions(-)
+---
+base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
+change-id: 20250916-rda8810pl-drivers-9a5271452635
 
-doc reference errors (make refcheckdocs):
+Best regards,
+-- 
+Dang Huynh <dang.huynh@mainlining.org>
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250916154809.545283-1-jm@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
