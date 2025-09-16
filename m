@@ -1,127 +1,118 @@
-Return-Path: <devicetree+bounces-217726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFDDCB5913A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:48:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE56B59142
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:48:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 462E61BC3ABA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:48:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26021BC3E08
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0A523C51D;
-	Tue, 16 Sep 2025 08:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F57028AAF9;
+	Tue, 16 Sep 2025 08:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="ZQbHBJQ6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m7LdLz0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1237C1DED52;
-	Tue, 16 Sep 2025 08:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEE0288C08;
+	Tue, 16 Sep 2025 08:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758012493; cv=none; b=R3KhqrQQLKW+XKZLF0D73RvRclIGfIz1121LTmJXBs1XXOWGrNA9/CBK0rNAFxK5FOs2A4Y5yqfZ/vWrLy6Q7ttHvUsm+4Ba22PNMdPYrHnbo/Cb++eeAoKtpAE7zTPOCYEvlepkGrxo9ZhUtYIleKhqP3/JmCtiwW0eMAdBqtI=
+	t=1758012520; cv=none; b=rcNOtwuHPP3S0UMv56fiTC9zx+oiJUvIpmQJrTB5t520FjSki26tNENeNI5JGIuapfi6/1Zq+qxAXoiQMtm9uaC5M5JiwCpml+k8WQEsHcef2VURLht/riUVJxiG3QEUSxKpanAzx6/ToF8aFY2h07kTihCqOYn2Jmz8w6IYJk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758012493; c=relaxed/simple;
-	bh=vKbbtg7Na5iJInnZIagyOi1PcdqDXNi8cIhSiA8abQ0=;
+	s=arc-20240116; t=1758012520; c=relaxed/simple;
+	bh=gBC89acRt2ZWThI6GiBXUA4qAUTNm8vCd8qyDvzjiZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KiW1+O/lRLf62KTtRGcmQNHtPZLMzEgm1fL4BJ13Msc4y314RP0gOoXuvyjJJ0VBCihlmlAmZqZDncEtFdER2f0gGhv2yfRKitUsQfgQWV09ZV/YFaB/PCSzmMrcdYIV9yaOBv+pLOtna2Z4serDg6X1VHBKRBJHvLjDaxxGFeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=ZQbHBJQ6; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 2461940E01A3;
-	Tue, 16 Sep 2025 08:48:06 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id AmL-BIRRyneF; Tue, 16 Sep 2025 08:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1758012482; bh=45shmwAZiLqEtZxAd55jcbykeKkgRaUpjw+bIADDSgg=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=u5W+aFDMTUogwMSg58UBKNBUnxGI5STyoYkqqAPu8jiu+mwAiLod0UuISxxC/gFQqbdKw5yeEXtkQ82OSpI6/rtxlrxWF1shwYZMa78FVH9JEivDeXc/qIjPQUByQtrXw7Mt+aWlaib9g27j4lw95W9b5tm5Texi1CI/kmGi8lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m7LdLz0v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88BFC4CEEB;
+	Tue, 16 Sep 2025 08:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758012519;
+	bh=gBC89acRt2ZWThI6GiBXUA4qAUTNm8vCd8qyDvzjiZE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZQbHBJQ6sRAshMfaX60BXHq9gz4MMNvsTTEqV1b3KAE8UiUxm7/FgyJpeA6Y8V+64
-	 xSsOd3l8465PFvhiEI+zMEqyCUdSf8MY8R8LhUDHDWvqG1g20wFB4OCXTk/kLmnq+f
-	 NXf/CcHgT94RCDp+jgut+oJUSQXjYCkA67Rrbj8jRd8sm/c7jMjXDz/kOHzsCAJf9h
-	 NBIRmnjvaFgm2J7MIli9khoQ9SXO8LE5tR9pj6eUVxtG+2rIr0sSAGAVhVKWM9lPRW
-	 vXpjiiZMvzqDEyg4HMPvz6bJMOX2zKrrDntekyU1nbVM0m+0MCz20fu54vzB4LZQyd
-	 AQcnlOwO43gUkW4U5uhH17G3oci1gfK5OrwR1u2MYRSg9yNGls4FtZyU4Q9ig5Up/0
-	 Koz+iH3M0uLtQybIZTJ4n55sSJtfImPQlBKFdRWK6csNy8vqpFJ7Mga79UEx7qa5t8
-	 1RlLTKiVYkcJS1VLm1h1ZMlPPtqGcKyxwyp74OuIAeEoLOR6eREWpPrKsWA5A1vdaS
-	 s/pTE76Z+EpoN298+qAQFaoYtjWq8CrqPdIDhEFo1RiHreV8+wEfbQMw6rvciG0Azz
-	 mzEE3fa2P9shLvPqSuSWJqzgeoQQ5Zz6of0VGeWKAucQ5Nm7h7Px3LphoTiRJaYSvL
-	 NNFAQNjze2M5KvGPTemfzJeU=
-Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 034E940E00DD;
-	Tue, 16 Sep 2025 08:47:44 +0000 (UTC)
-Date: Tue, 16 Sep 2025 10:47:36 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-edac@vger.kernel.org, git@amd.com, ptsm@linux.microsoft.com,
-	srivatsa@csail.mit.edu, shubhrajyoti.datta@gmail.com,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>
-Subject: Re: [PATCH v9 0/5] EDAC/Versal NET: Add support for error
- notification
-Message-ID: <20250916084736.GBaMkkKB2jPmgltQgX@fat_crate.local>
-References: <20250908115649.22903-1-shubhrajyoti.datta@amd.com>
+	b=m7LdLz0vXRu1QDRO3ZuQvA3+jqh3JxhTQHX8IW4VHNOE6jLAJTC8Gk87eluIh4jMT
+	 bli4cXARt8ZQ6n6iqCiYQqtVy69DTegtOxc8LKakwQKUEqA2ZHBE2k+mYufiJ3o/h7
+	 qesqNhorL9QrNX78rRFFprSYoXlFml9tgAj1rkmlm6pyvZupIiXfDuOty7eTB9qDqo
+	 CouLVJhpNf8Pm+Q7rzYldmyitAeHqbukysVTR/mjP/u05hEnXKBbZCt/KRGpHXsHfJ
+	 +n8uUiWSVq10XIvunL3dTV/12Q4aEpBQsfBiiIxiFvqrecpRpSlZT0oZuc1Pk+VoTO
+	 +1DIAmhw7/dug==
+Date: Tue, 16 Sep 2025 09:48:33 +0100
+From: Will Deacon <will@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: =?iso-8859-1?Q?J=F6rg_R=F6del?= <joro@8bytes.org>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	robin.murphy@arm.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, heiko@sntech.de, p.zabel@pengutronix.de,
+	mchehab@kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, kernel@collabora.com,
+	linux-media@vger.kernel.org
+Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
+Message-ID: <aMkkYU-p2ouknnAc@willie-the-truck>
+References: <20250911155720.180465-1-benjamin.gaignard@collabora.com>
+ <20250911155720.180465-4-benjamin.gaignard@collabora.com>
+ <vrngq76nnms3jyl5hnxqnkimjc6kil66o6fdyqn5vm3fpovmja@cfynipjw7ktp>
+ <694b9ba15cd67f41a38f4a65a3811f035cf8e99d.camel@collabora.com>
+ <rt6nvgazcl6mvyy4iuut3n7irf72t7rex2iwabbkuxp7cdvez5@2nanenqgxjdy>
+ <20250915225806.GM882933@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250908115649.22903-1-shubhrajyoti.datta@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250915225806.GM882933@ziepe.ca>
 
-On Mon, Sep 08, 2025 at 05:26:44PM +0530, Shubhrajyoti Datta wrote:
-> Shubhrajyoti Datta (5):
->   cdx: Split mcdi.h and reorganize headers
->   cdx: Export Symbols for MCDI RPC and Initialization
->   ras: Export log_non_standard_event for External Usage
->   dt-bindings: memory-controllers: Add support for Versal NET EDAC
->   EDAC: Add a driver for the AMD Versal NET DDR controller
+On Mon, Sep 15, 2025 at 07:58:06PM -0300, Jason Gunthorpe wrote:
+> On Sat, Sep 13, 2025 at 07:58:04AM +0200, Jörg Rödel wrote:
+> > [Adding Will back to Cc]
+> > 
+> > On Fri, Sep 12, 2025 at 01:37:11PM -0400, Nicolas Dufresne wrote:
+> > > To me this rejection isn't about Benjamin's driver, all iommu seems to look
+> > > alike, so anyone else that would have sent new driver would have face the same
+> > > issue.
+> > 
+> > This is about ignoring comments from one of the IOMMU maintainers. I am not
+> > going to merge a driver with open comments/objections[1] from Will (and a few
+> > others), so resolve this with him and get his Ack.
 > 
->  .../xlnx,versal-net-ddrmc5.yaml               |  41 +
->  MAINTAINERS                                   |   7 +
->  drivers/cdx/controller/cdx_controller.c       |   2 +-
->  drivers/cdx/controller/cdx_rpmsg.c            |   2 +-
->  drivers/cdx/controller/mcdi.c                 |  43 +-
->  drivers/cdx/controller/mcdi_functions.c       |   1 -
->  drivers/cdx/controller/mcdi_functions.h       |   3 +-
->  drivers/cdx/controller/mcdid.h                |  63 ++
->  drivers/edac/Kconfig                          |   8 +
->  drivers/edac/Makefile                         |   1 +
->  drivers/edac/versalnet_edac.c                 | 958 ++++++++++++++++++
->  drivers/ras/ras.c                             |   1 +
->  .../linux/cdx}/bitfield.h                     |   0
->  include/linux/cdx/edac_cdx_pcol.h             |  28 +
->  .../controller => include/linux/cdx}/mcdi.h   |  47 +-
->  15 files changed, 1154 insertions(+), 51 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-net-ddrmc5.yaml
->  create mode 100644 drivers/cdx/controller/mcdid.h
->  create mode 100644 drivers/edac/versalnet_edac.c
->  rename {drivers/cdx/controller => include/linux/cdx}/bitfield.h (100%)
->  create mode 100644 include/linux/cdx/edac_cdx_pcol.h
-> rename {drivers/cdx/controller => include/linux/cdx}/mcdi.h (79%)
+> I would strongly object to trying to share map_pages, unmap_pages,
+> iova_to_phys, free and other iommu pt related functions in some
+> limited way instead of helping on the much more complete iommu pt
+> work. Which is what I said to Will, but for some reason he suggested
+> it anyhow.
 
-Applied, thanks.
+If the answer is to convert this to iommu pt, then so be it. My
+understanding was that was still premature at this stage but you know
+better than me.
 
--- 
-Regards/Gruss,
-    Boris.
+When I bothered to look at this driver side-by-side with the rockchip
+driver which, despite apparently being totally different IP (honest!),
+is *remarkably* similar, I summarised the similarity in the default
+domain ops:
 
-https://people.kernel.org/tglx/notes-about-netiquette
+https://lore.kernel.org/all/aH5yR9CkYSJ4PaZV@willie-the-truck/
+
+But rather than respond to that, Benjamin just sent a new version. I
+was hoping for a bit more discussion...
+
+> Sorry, but it doesn't make sense to complain about duplication in
+> drivers and then not help advance one of the biggest projects to
+> actually concretely and comprehensively address that duplication.
+
+I don't think it needs to be one or the other. afaict, these drivers
+should share the default domain ops and if the page-table code is using
+iommu-pt then that's even better.
+
+Will
 
