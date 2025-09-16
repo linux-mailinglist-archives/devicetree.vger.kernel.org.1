@@ -1,201 +1,186 @@
-Return-Path: <devicetree+bounces-217709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099E6B58FD2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:00:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AA5B58FEC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 10:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84C0520D67
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:00:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98D7C3A46FD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 08:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFCF2DEA98;
-	Tue, 16 Sep 2025 07:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A8228137A;
+	Tue, 16 Sep 2025 08:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aZqfDEOl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R0QVOMsq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EA1284681
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C813722A4E5;
+	Tue, 16 Sep 2025 08:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758009552; cv=none; b=HTK6pYrcB6gdh5AjP5LFiiaJ/AN8UwPFSeYcZcjvzGZDTnZMPh+7XYKJRcuwpxn/IMoGVffhOiwiV3w9EJi3Cs3Ln7jpxzY7yMLDeSMWuN2dUjElJfEE1TRcVTvEPfcDrs+G2lt1NTsHRKmD2lVFasB8Qftxm/AfddIfNgFk3SI=
+	t=1758009737; cv=none; b=b7To01SFECFZ8GrL4NsmiUJK8J4SfrtlOTO9+C6OGFzEQL7vTrEq1fq41f25el84hP62MdcA6JKdFLKihx0WBqxbk9cGiArzpwuWHW3gZbqi3vXxQNtKbky765RL6c+9/kNG1/1ADbAtkzSlUEcofHWKidh72r7RFx9HC7GTQCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758009552; c=relaxed/simple;
-	bh=luXA3BAxwfQykxsWgqlH1n5LzWlMt8n5hBlB3Owwr/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZX/0gYxpRV62emOiWIwZuIdiZo9IFfAtxkSMan0EqlsUQTlvbAvzFtoU1DnVP6V2OEldJeK8fZATISP+l/BRieLZv9tmKxHdhI1Vl1z+1R4H41CZetKJRf8EuAedBYjFY0JYPvGgUHoGYsD34q0zly5oNforRjeKTvLCUIiM0ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aZqfDEOl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58G3qCu4020146
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:59:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Bl6XIkWkFljciR/SPXMo9xgXQdmc9fkaHnQt4AwcHd8=; b=aZqfDEOlATWoThDM
-	ovnK8QdibZ7MoP6MD4xtyQjIMUXl5SGGabYbOV0MOFfRcCtNDw1M4lwluURmWhKm
-	iRLViQFxuKsDeTUoEFgpX4h6P0Qc4V+g4S16QTRdV4bozcGIXbbcNt8bNR0iOQ/n
-	KXurKArH5gI0jOf/XdBpKcVmvJV9dPPb3YChdbIrJBjRs9+rUT9Xre3Sjv7DQimj
-	11KucwtHUmvuDfIiZlVI3rRoBs7AaqThTRrwHVk4rrW/daJfMGJ+7DTBmG8r37us
-	yipYnAwNOOG+xRAvLiIFtQG3HWw3Ox/VKdnogaOKwe2ZLYuvm1do6iwXRFfuel2k
-	VGCn2Q==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 494yma7yq3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 07:59:08 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso16601401cf.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 00:59:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758009548; x=1758614348;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bl6XIkWkFljciR/SPXMo9xgXQdmc9fkaHnQt4AwcHd8=;
-        b=fza9aLS7a8b+nL9TuROdsKBQtDLzLxiS3dy+GMURAdL/I++02FG4XUQbY57ukWvp8T
-         ptaRBIOpRB6aN4E5pJA/mZvUGDm18AsxCUdYoEUVbj/dgvkzg6yufTek45GK6TxQZAPw
-         cMjKLC/qDAOuOQze3dxVCwsq2p9KekHRJskMHRCvBdPbYXwwbmhS2rt77ETDFF/XCZOK
-         lOt1YlD2s2DhRT04STTMc7+h5u3nzrKTyqHqQGq3RLjJZhXRO6z+dco6WnOdUSv6Qm8O
-         U91eVlnNoVf7zOxg0tZwCQ20Mz9LkKiErSQysAEvswnogint16WWtxZyPkMdMQwFhMPc
-         CvpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGwRafe+0HzUV0VGn3npovKB+UROybdYKo8jS0d7yeUI19hOSw4BiOUaFG+nNdtuQ9DAkFP38QBhGb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDQ90tbH9mLukBpFlglhadsyeuoaEs87QdBUpGGW2nCQ2M5X0F
-	jtZuFOYOaoY+BoGzVBCzt/iNZVYhJ0ToJDRN0Ob/fhNBJanssRH1TRHan4MUi0H4rThGFIh8rR+
-	NpjmX4JTrA2zTRdHpcCmlKYzIusD4rtJgf69g/CULqsL63cpIy9aYGHK2rRLH7yNC
-X-Gm-Gg: ASbGncv44Fj1WkxPcl+ParlohnaShd8VvBFAIeMp0sFPns/1P7E7cRwP6co6lCffWl9
-	taWmPnilYuyI4XLqOm7jAGYgRZOWVCODmf2zdXc+F0zOy+3cxKqLcEIVjSYEMCWNEmn+krgnL/Q
-	SeMPJc6PneB+X5Y7l/c9y5UiXTDf6n08FKd+Onvrvm4KY31XK8rBAxf01ZGcm70S0A+QShLi6R2
-	5qhTRn7Kx2+Ramlpe8nVgU2IPTiT6FbSoB5Fr4AByVSIBck5g/+SXpMKivhmoj5nRDv2ZxlHO+h
-	08Kwlpe5QR75J0YcLOADp9GROSQeP1zEbLzbXqyMs2nilKrQnKUQ5/PUfjXYj7mkwp389vRhM5d
-	7jFxzZaCk+ZjA2vPQuujlLw==
-X-Received: by 2002:a05:622a:1819:b0:4b7:9ae7:4cdd with SMTP id d75a77b69052e-4b79ae7518amr65238631cf.8.1758009547481;
-        Tue, 16 Sep 2025 00:59:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHmODftrEEwDnmk4gqtDucReWHiHbxT+KlMqX2icp9tsQ6afSGP7fT1h5VI8YPit50d0g7z1w==
-X-Received: by 2002:a05:622a:1819:b0:4b7:9ae7:4cdd with SMTP id d75a77b69052e-4b79ae7518amr65238401cf.8.1758009546833;
-        Tue, 16 Sep 2025 00:59:06 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62f416db508sm3528606a12.32.2025.09.16.00.59.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 00:59:06 -0700 (PDT)
-Message-ID: <5736df73-c90e-4f11-b461-c38da4e811e1@oss.qualcomm.com>
-Date: Tue, 16 Sep 2025 09:59:04 +0200
+	s=arc-20240116; t=1758009737; c=relaxed/simple;
+	bh=s9H96yzOvyDhrCT9H89TpRBnZBcfroxAOZERsxRauhk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uFDhNkVydxmzDgKMieY7xA0pLt05liNEQvswqaV97W7ue7eOZlRbJpAjGyIflPgGHBHFS26PSAMhdgbxWdx09xXKqXQSkOTFvEaQRF22OsbN97cHKZUE38ufqqEtotRuZ4/H0iJC/cySX8YqugKHY9sHS1FLUYJ33raJ7Cekqds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R0QVOMsq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11EA5C4CEEB;
+	Tue, 16 Sep 2025 08:02:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758009737;
+	bh=s9H96yzOvyDhrCT9H89TpRBnZBcfroxAOZERsxRauhk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=R0QVOMsqj8KA4c5DncyUHwMj20jefIUJOeFoUsgi/kembFr7xhduup9gUz4UJFlCa
+	 XbV5Gv9//DkqFOpjIpNB91noZR4Hg/p4C+KwnX8yLrjZ8YYXlFt3NrOpsn5ln8dV65
+	 DfjJD2oLIOs+RCk3R6Ihhe/GLYvqGjIMkzBMcohIE69eN+UdVECIj8ToUEujHT3CQM
+	 ipv2pHcgr1rSCy9nJyk4iuFMZN+CcNTv8X1jwKTSkW1GFDjnKeGhkIoTL9588N2igA
+	 N9XPJmQ9Sr89ex7FoDHobUNEYXm8/4kRtF/h5c4d+0BWxhQIqmoTo3I6ABR9dqH3GZ
+	 9RA6g/PteR6ig==
+Date: Tue, 16 Sep 2025 09:02:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+Message-ID: <20250916090206.02f601be@jic23-huawei>
+In-Reply-To: <c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
+References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
+	<20250915-bd79112-v5-2-a74e011a0560@gmail.com>
+	<aMge0jYwYCiY72Yb@smile.fi.intel.com>
+	<20250915211321.47865d3d@jic23-huawei>
+	<c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] power: supply: qcom_battmgr: Add resistance power
- supply property
-To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: Sebastian Reichel <sre@kernel.org>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
-        David Collins <david.collins@oss.qualcomm.com>,
-        =?UTF-8?Q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20250915-qcom_battmgr_update-v4-0-6f6464a41afe@oss.qualcomm.com>
- <20250915-qcom_battmgr_update-v4-3-6f6464a41afe@oss.qualcomm.com>
- <gk2ho7ugp35kb4x65meqsm3aufnry6srr4p7jspf6xyn7ywzkh@vd5ca7txjdk6>
- <0cf4b0fd-e468-4aab-9ec2-38da93435557@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <0cf4b0fd-e468-4aab-9ec2-38da93435557@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAxOSBTYWx0ZWRfX9STH/HAFO3op
- IH6AFak8+i1lM9WYKaZjoDW+yCxNJUa/fm09ngFj3ZRVvlpE8XgmiqlNzsXAvKkoAHCFxHpKnMz
- 9JZ8HOhV2yy3ZPNZE5HoNw/2UyYYdxpxEK5g6RoKHOu945uG6zw5npPuKHGAF11GD7pJTNojaWz
- 8tTDtfkVQIcUL1NVW3u3d11ZX3POK69RAMmWSfker3nvnTELNhWYwl6FjHdL4D/NMbi+7JBoz45
- gxerxqzjX3vD3kkecsoDoTPZEUCZTJOYd8KLgBTHy40XI59TgxfOD4wiOw02tHHXW2Ws3R7Kj5a
- 5GlYUx97bCAaCdLrTD1jfFoYWYiuMUTBWXStZl7K+TlSRdqmprhcUGtNmHN3VGAH7sXekSylIs2
- uIeBY5qw
-X-Authority-Analysis: v=2.4 cv=cdTSrmDM c=1 sm=1 tr=0 ts=68c918cc cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=mNYpJT6RAAAA:8 a=BliEHdnzWw9z4Hsov9QA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22 a=eybOJ6GWDyyBfQoUqdmp:22
-X-Proofpoint-ORIG-GUID: Hh0V1xcgCJkjiUFXanscdEmq6L7R8adT
-X-Proofpoint-GUID: Hh0V1xcgCJkjiUFXanscdEmq6L7R8adT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130019
 
-On 9/16/25 4:31 AM, Fenglin Wu wrote:
+On Tue, 16 Sep 2025 07:52:07 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> On 15/09/2025 23:13, Jonathan Cameron wrote:
+> > On Mon, 15 Sep 2025 17:12:34 +0300
+> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> >   
+> >> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:  
+> >>> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
+> >>> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+> >>>
+> >>> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
+> >>> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
+> >>> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+> >>>
+> >>> The IC does also support CRC but it is not implemented in the driver.  
+> >>
+> >> ...
+> >>  
+> >>> +static int bd79112_probe(struct spi_device *spi)
+> >>> +{
+> >>> +	struct bd79112_data *data;
+> >>> +	struct iio_dev *iio_dev;
+> >>> +	struct iio_chan_spec *cs;
+> >>> +	struct device *dev = &spi->dev;
+> >>> +	unsigned long gpio_pins, pin;
+> >>> +	unsigned int i;
+> >>> +	int ret;
+> >>> +
+> >>> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> >>> +	if (!iio_dev)
+> >>> +		return -ENOMEM;
+> >>> +
+> >>> +	data = iio_priv(iio_dev);
+> >>> +	data->spi = spi;
+> >>> +	data->dev = dev;
+> >>> +	data->map = devm_regmap_init(dev, NULL, data, &bd79112_regmap);
+> >>> +	if (IS_ERR(data->map))
+> >>> +		return dev_err_probe(dev, PTR_ERR(data->map),
+> >>> +				     "Failed to initialize Regmap\n");
+> >>> +
+> >>> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
+> >>> +	if (ret < 0)
+> >>> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");  
+> >>  
+> >>> +	data->vref_mv = ret / 1000;  
+> >>
+> >> I still think moving to _mV is the right thing to do.
+> >> There is no 'mv' in the physics for Volts.  
+> > 
+> > I'm not disagreeing with this review but I'm also not going to hold a
+> > driver back for that given timing is pretty much such that I merge it
+> > today or it sits a cycle and this one is very near...
+> > I'll get fussier on this once we have written up some guidance and may
+> > well send a patch to modify existing recent cases like this one!  
 > 
-> On 9/15/2025 6:18 PM, Dmitry Baryshkov wrote:
->> On Mon, Sep 15, 2025 at 04:49:55PM +0800, Fenglin Wu via B4 Relay wrote:
->>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
->>>
->>> Add power supply property to get battery internal resistance from
->>> the battery management firmware.
->>>
->>> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
->> T14S is X1E80100, which uses SC8280XP-specific sets of properties. This
->> patch changes only SM8350-related data. How was it tested?
+> As I replied to Andy, I am disagreeing with this. I hope we won't start 
+> renaming variables with capital letters :(
 > 
-> I assumed that Neil has picked the series of the changes and tested the charge control limit functionality on his T14S device.
+> >>  
+> >>> +	ret = devm_regulator_get_enable(dev, "iovdd");
+> >>> +	if (ret < 0)
+> >>> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
+> >>> +
+> >>> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
+> >>> +	data->read_xfer[0].len = sizeof(data->read_tx);
+> >>> +	data->read_xfer[0].cs_change = 1;
+> >>> +	data->read_xfer[1].rx_buf = &data->read_rx;
+> >>> +	data->read_xfer[1].len = sizeof(data->read_rx);
+> >>> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);  
+> >>  
+> >>> +	devm_spi_optimize_message(dev, spi, &data->read_msg);  
+> >>
+> >> And if it fails?..  
+> > I've added the following and applied the series.  
 > 
-> When I run "b4 trailers -u", the tag was added on all patches. I will remove the "Tested-by" trailer for the patches with functionality not applicable for X1E80100 platform.
+> Thanks!
+> 
+> > Note I'm cutting this fine so if we get any build issues or similar
+> > it might well get pushed back to next cycle yet!
+> > 
+> > diff --git a/drivers/iio/adc/rohm-bd79112.c b/drivers/iio/adc/rohm-bd79112.c
+> > index b406d4ee5411..d15e06c8b94d 100644
+> > --- a/drivers/iio/adc/rohm-bd79112.c
+> > +++ b/drivers/iio/adc/rohm-bd79112.c
+> > @@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
+> >          data->read_xfer[1].rx_buf = &data->read_rx;
+> >          data->read_xfer[1].len = sizeof(data->read_rx);
+> >          spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
+> > -       devm_spi_optimize_message(dev, spi, &data->read_msg);
+> > +       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
+> > +       if (ret < 0)
+> > +               return dev_err_probe(dev, ret,
+> > +                                    "Failed to optimize SPI read message\n");
+> >     
+> 
+> I am not really sure under what conditions the 
+> devm_spi_optimize_message() could fail. It might be enough to print a 
+> warning and proceed, but I don't think returning is a problem either.
 
-+ Konstantin
+No. Don't proceed on an unexpected failure whatever it is.  That's
+storing up problems that may surface in a weird way later that is much
+harder to debug.
 
-It's quite common to see someone leaving a T-b on the cover letter,
-trying to say "I gave this series a spin" and then seeing the tag
-appear on unrelated commits within the series (e.g. bindings or some
-cosmetic fixes". Maybe some sort of an interactive (opt-in is fine)
-dialog for "which patches to apply t-b/tags to" could be worth the
-effort?
+Jonathan
 
-I was imagining two options:
 
-$ b4 trailers -u --lalala
-> Grabbing tags..
-> Found:
-> [Patch 0/n] Very Nice Changeset
->   Tested-by: Foo Bar <foo@bar.com>
->
-> Which patches do you want the Tested-by tags to apply to? [all]: 2-5
-
-or:
-
-$ b4 trailers -u --lalala2
-> Grabbing tagsd..
-> Found:
-> [Patch 0/n] Very Nice Changeset
->   Apply to Patch 1 ("soc: qcom: Fix all bugs")? [Y/n/a] y
->   Apply to Patch 2 ("dt-bindings: foobarbaz")? [Y/n/a] n
->   Apply to Patch 3 ("clk: qcom: Fix ABCD")? [Y/n/a] a
->   Applying to Patch 4 ("clk: qcom: Fix DEFG")
->   . . .
->   Applying to Patch n ("clk: qcom: Fix XYZ")
-> Tags applied!
-
-As I'm writing this, I'm thinking option 2 offers much more
-fine-grained control, which is always nice to see..
-
-Konrad
+> 
+> Thanks a lot for going an extra mile and taking care of this!
+> 
+> Yours,
+> 	-- Matti
+> 
 
 
