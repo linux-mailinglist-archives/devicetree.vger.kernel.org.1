@@ -1,264 +1,124 @@
-Return-Path: <devicetree+bounces-218031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA2B6B5A1D9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:08:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB917B5A1E4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 22:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EF883BCAF6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:08:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7486E32741C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 20:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143D72D1F44;
-	Tue, 16 Sep 2025 20:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425D12DBF43;
+	Tue, 16 Sep 2025 20:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AmBLBF6K"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="ckISlrv+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7BED2C0268;
-	Tue, 16 Sep 2025 20:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AE02D9EE5
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 20:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758053303; cv=none; b=XWJGXE52SKPyNiMH8WMgVKSebkyju8m28WCw3ErfjOxvFV3lmIWY+NCj29pJQL098cpQjfFu/dslDhHMdYGlscXbwCSBJNBT3kbCdyQyWN9ZFxLFwGSnVqqpb9LNkUMflhbm/gQfHB0a5lHhXeepGvhehnWXueDeb8DLpBdg5Cs=
+	t=1758053337; cv=none; b=QHJnERjwT83FP+OnvDK0Ql3Zw93EX632KufC4I62vGJ6KWQI35T/EqtAut0CL58DYUEhz5hkmt+5wnvWskij6I8tles9oNO0p2a+YCitUR2LeGwxIfPX7uMEIky8ffPWgQE9TXzxDAqtMn+nEGrd7uWWv4CFdsoBHw+DFjxjM9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758053303; c=relaxed/simple;
-	bh=c07+nrBCBVI2N9HmL41m7c9WRz3jG1BDnxKK1KtQgvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=PtaLnrF97W5NfpCPRdNtEMTLwReIOQLyh7TIMewNdFV66AJIsKv+D13WibTlDqngp2pcbKyFb5VT3z19f3upRF+VpniBtasogU2h33e+wFF3Seni7zz0Bqofi1MxPoK3Ec8BFj31BKJ04KMcO+7YOspBoFCK9rSWHq/ku2REI5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AmBLBF6K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57474C4CEEB;
-	Tue, 16 Sep 2025 20:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758053299;
-	bh=c07+nrBCBVI2N9HmL41m7c9WRz3jG1BDnxKK1KtQgvM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=AmBLBF6K7tgJv4FVjr4LpxbcDNRkTbEBo3oEptCsjCUKFoYDjPH9vQIGjKpR8ViTR
-	 oTnjDhybQhFR8jn08e7GesLk5GzC9WtJ8f5D/f+2D9/FHkbD1yczEMbZL+4OuUBGIh
-	 +9GcE26FkX6ptHyCTQpgNzjQjqpSd8Y78KCuCWDRiJuVSmU6DQlmC4bCVTNNVsm6v7
-	 6U993AgnvxQjfx+k9Pkyix+cEazqUyVOrDiqs5qW0eFGa+YifPAI6oq1RxgvuJyr51
-	 Ovr13gUIPixChWR0lvXqFf5IFQGR4DG7Fg7lddrEZqiG1IjdCmESTzm8c/5GcS06sh
-	 eX4g9LAjJT4Kw==
-Date: Tue, 16 Sep 2025 15:08:17 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 2/4] PCI: qcom: Move host bridge 'phy' and 'reset'
- pointers to struct qcom_pcie_port
-Message-ID: <20250916200817.GA1814336@bhelgaas>
+	s=arc-20240116; t=1758053337; c=relaxed/simple;
+	bh=CV94P1G6PAbXUYBZXtbDVt4H7gF8ZfJUS0/eyqgvHFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JsN5Nx7lBNQ6YyDKDlnhGzkOlYFI90Z//y7R97mT8FDkUr07piNafC7+Wywy+hxSVwS7n2r12m+AEQXiMqz1JbCsokirrX4Z41hUCvlvL4SQnoEg/pTY/ypAV6hMrG+W0gUKTHYhH7bpujQ46VbKHCKzFKIW00KmDD8+7VeGJG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=ckISlrv+; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <fad5cb33-0e7c-499b-bad7-bbdacca8076a@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1758053331;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SHtwMr5+ZMiaqfj6m6kVuvNj2Y2evNdPg6uV1F0bJNA=;
+	b=ckISlrv+FoQ3Emync9HM87QOztyL5MLDKkY9+yDg5rpd1E6Ww3PwuRJm35Ehia4bkKowAd
+	RN0gXd09gfVm7wC+5FpJgFB+HgT28UfsW3g75d1QknnRK8+uns/q/PGJYyHQLmfKPq1vkq
+	87mSGmNshUirOiW4awpGJ+a/q5DVsBBqyiJMROJo1ksT0v8QHUPId4nzqd/V3UyLZh5u3p
+	5+E0wGCmSFFhfDIEltrosZZz+EQqVhAnDxVBLTWHpJu1hochZ4wlZDQ2MF1Y8KBnx2CGQf
+	TMZ5S6k0dNsy0MBDpEu2GcEMwxuV2wQpqtRzNNENGSA3HAy4PPma1btuMNbVVg==
+Date: Tue, 16 Sep 2025 17:08:44 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250912-pci-pwrctrl-perst-v3-2-3c0ac62b032c@oss.qualcomm.com>
+Subject: Re: [PATCH 7/7] media: i2c: dw9719: Fix power on/off sequence
+To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Daniel Scally <djrscally@gmail.com>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu>
+ <20250817-dw9719-v1-7-426f46c69a5a@apitzsch.eu>
+ <aKLZ39IzI_azrDIu@kekkonen.localdomain>
+ <550f28a9aa82a28beb35fd3490dbe08928ba9eed.camel@apitzsch.eu>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+In-Reply-To: <550f28a9aa82a28beb35fd3490dbe08928ba9eed.camel@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, Sep 12, 2025 at 02:05:02PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> DT binding allows specifying 'phy' and 'reset' properties in both host
-> bridge and Root Port nodes, though specifying in the host bridge node is
-> marked as deprecated. Still, the pcie-qcom driver should support both
-> combinations for maintaining the DT backwards compatibility. For this
-> purpose, the driver is holding the relevant pointers of these properties in
-> two structs: struct qcom_pcie_port and struct qcom_pcie.
-> 
-> However, this causes confusion and increases the driver complexity. Hence,
-> move the pointers from struct qcom_pcie to struct qcom_pcie_port. As a
-> result, even if these properties are specified in the host bridge node,
-> the pointers will be stored in struct qcom_pcie_port as if the properties
-> are specified in a single Root Port node. This logic simplifies the driver
-> a lot.
-> 
-> Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-Reviewed-by: Bjorn Helgaas <bhelgaas@google.com> 
+On 9/15/25 5:48 PM, André Apitzsch wrote:
+> Hi Sakari,
+>
+> @Val, please see below.
+>
+> Am Montag, dem 18.08.2025 um 07:44 +0000 schrieb Sakari Ailus:
+>> Hi André,
+>>
+>> On Sun, Aug 17, 2025 at 07:09:26PM +0200, André Apitzsch via B4 Relay
+>> wrote:
+>>>   	u64 val;
+>>>   	int ret;
+>>>   	int err;
+>>> @@ -109,13 +116,15 @@ static int dw9719_power_up(struct
+>>> dw9719_device *dw9719, bool detect)
+>>>   	if (ret)
+>>>   		return ret;
+>>>   
+>>> -	/* Jiggle SCL pin to wake up device */
+>>> -	reg_pwr = (dw9719->model == DW9718S) ? DW9718S_PD :
+>>> DW9719_CONTROL;
+>>> -	cci_write(dw9719->regmap, reg_pwr, DW9719_SHUTDOWN, &ret);
+>>> -	fsleep(100);
+>>> +	/*
+>>> +	 * Need 100us to transition from SHUTDOWN to STANDBY.
+>>> +	 * Jiggle the SCL pin to wake up the device (even when the
+>>> regulator
+>>> +	 * is shared) and wait double the time to be sure, then
+>>> retry the write.
+>> Why double? Isn't the datasheet correct when it comes to the power-on
+>> sequence?
+>>
+> I haven't noticed any problems during power-up of DW9761. However,
+> according to the commit message, there seems be an issue with DW9718S.
+> But I don't own the device and cannot test it.
+>
+> Maybe Val can provided some additional information.
 
-I would put this patch by itself on pci/controller/qcom immediately
-because it's not related to the rest of the series, and we should make
-sure it's in v6.18 regardless of the rest.
+I haven't had access to the datasheet for the DW9718S, so this was all 
+deduced experimentally. By "to be sure" I meant that I literally raised 
+the timeout "just in case", not based on actual issues.
 
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 87 ++++++++++++++--------------------
->  1 file changed, 36 insertions(+), 51 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..6170c86f465f43f980f5b2f88bd8799c3c152e68 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -279,8 +279,6 @@ struct qcom_pcie {
->  	void __iomem *elbi;			/* DT elbi */
->  	void __iomem *mhi;
->  	union qcom_pcie_resources res;
-> -	struct phy *phy;
-> -	struct gpio_desc *reset;
->  	struct icc_path *icc_mem;
->  	struct icc_path *icc_cpu;
->  	const struct qcom_pcie_cfg *cfg;
-> @@ -297,11 +295,8 @@ static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
->  	struct qcom_pcie_port *port;
->  	int val = assert ? 1 : 0;
->  
-> -	if (list_empty(&pcie->ports))
-> -		gpiod_set_value_cansleep(pcie->reset, val);
-> -	else
-> -		list_for_each_entry(port, &pcie->ports, list)
-> -			gpiod_set_value_cansleep(port->reset, val);
-> +	list_for_each_entry(port, &pcie->ports, list)
-> +		gpiod_set_value_cansleep(port->reset, val);
->  
->  	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
->  }
-> @@ -1253,57 +1248,32 @@ static bool qcom_pcie_link_up(struct dw_pcie *pci)
->  	return val & PCI_EXP_LNKSTA_DLLLA;
->  }
->  
-> -static void qcom_pcie_phy_exit(struct qcom_pcie *pcie)
-> -{
-> -	struct qcom_pcie_port *port;
-> -
-> -	if (list_empty(&pcie->ports))
-> -		phy_exit(pcie->phy);
-> -	else
-> -		list_for_each_entry(port, &pcie->ports, list)
-> -			phy_exit(port->phy);
-> -}
-> -
->  static void qcom_pcie_phy_power_off(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_port *port;
->  
-> -	if (list_empty(&pcie->ports)) {
-> -		phy_power_off(pcie->phy);
-> -	} else {
-> -		list_for_each_entry(port, &pcie->ports, list)
-> -			phy_power_off(port->phy);
-> -	}
-> +	list_for_each_entry(port, &pcie->ports, list)
-> +		phy_power_off(port->phy);
->  }
->  
->  static int qcom_pcie_phy_power_on(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_port *port;
-> -	int ret = 0;
-> +	int ret;
->  
-> -	if (list_empty(&pcie->ports)) {
-> -		ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> +	list_for_each_entry(port, &pcie->ports, list) {
-> +		ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
->  		if (ret)
->  			return ret;
->  
-> -		ret = phy_power_on(pcie->phy);
-> -		if (ret)
-> +		ret = phy_power_on(port->phy);
-> +		if (ret) {
-> +			qcom_pcie_phy_power_off(pcie);
->  			return ret;
-> -	} else {
-> -		list_for_each_entry(port, &pcie->ports, list) {
-> -			ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> -			if (ret)
-> -				return ret;
-> -
-> -			ret = phy_power_on(port->phy);
-> -			if (ret) {
-> -				qcom_pcie_phy_power_off(pcie);
-> -				return ret;
-> -			}
->  		}
->  	}
->  
-> -	return ret;
-> +	return 0;
->  }
->  
->  static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> @@ -1748,8 +1718,10 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
->  	return ret;
->  
->  err_port_del:
-> -	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-> +		phy_exit(port->phy);
->  		list_del(&port->list);
-> +	}
->  
->  	return ret;
->  }
-> @@ -1757,20 +1729,32 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
->  static int qcom_pcie_parse_legacy_binding(struct qcom_pcie *pcie)
->  {
->  	struct device *dev = pcie->pci->dev;
-> +	struct qcom_pcie_port *port;
-> +	struct gpio_desc *reset;
-> +	struct phy *phy;
->  	int ret;
->  
-> -	pcie->phy = devm_phy_optional_get(dev, "pciephy");
-> -	if (IS_ERR(pcie->phy))
-> -		return PTR_ERR(pcie->phy);
-> +	phy = devm_phy_optional_get(dev, "pciephy");
-> +	if (IS_ERR(phy))
-> +		return PTR_ERR(phy);
->  
-> -	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-> -	if (IS_ERR(pcie->reset))
-> -		return PTR_ERR(pcie->reset);
-> +	reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset))
-> +		return PTR_ERR(reset);
->  
-> -	ret = phy_init(pcie->phy);
-> +	ret = phy_init(phy);
->  	if (ret)
->  		return ret;
->  
-> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> +	if (!port)
-> +		return -ENOMEM;
-> +
-> +	port->reset = reset;
-> +	port->phy = phy;
-> +	INIT_LIST_HEAD(&port->list);
-> +	list_add_tail(&port->list, &pcie->ports);
-> +
->  	return 0;
->  }
->  
-> @@ -1984,9 +1968,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  err_host_deinit:
->  	dw_pcie_host_deinit(pp);
->  err_phy_exit:
-> -	qcom_pcie_phy_exit(pcie);
-> -	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-> +		phy_exit(port->phy);
->  		list_del(&port->list);
-> +	}
->  err_pm_runtime_put:
->  	pm_runtime_put(dev);
->  	pm_runtime_disable(dev);
-> 
-> -- 
-> 2.45.2
-> 
-> 
+The actually important change was expecting the failure on the write and 
+not erroring out.
+
+Thanks,
+~val
+
 
