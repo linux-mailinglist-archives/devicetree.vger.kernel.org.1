@@ -1,178 +1,105 @@
-Return-Path: <devicetree+bounces-217901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47BBB59ACD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:50:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42847B59AEA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 16:54:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31B1E3BAC7B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:50:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B12701BC4273
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433D233EB1C;
-	Tue, 16 Sep 2025 14:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E522F341AA1;
+	Tue, 16 Sep 2025 14:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zQ/kbCpE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UE5/zGQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1F63191B9;
-	Tue, 16 Sep 2025 14:48:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CF01F5434;
+	Tue, 16 Sep 2025 14:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758034117; cv=none; b=WT4NtzzclJkW2RSwWwDKGUJJcIodBmf8+ZF6wEEX5sdmLqOthS1cVan+8Hm8aP1EABNINPhGf+wUloO89RDEaoePM5Mj8zCAgW92DkTJtBjOBVTi2teFObiQG07SYKohU/UV8jV5EPJQkLfi+MHiNMNe1CRuVHop1g+9+kr/fU8=
+	t=1758034347; cv=none; b=kJykvgnQ6+vXZliniCJGvnw7oNHhkrLlAjmuFiZe3rUew+gjtbnqNIj3YbU1QybyA4W++5BkjF5Qc2g5T6PHRFpexpBinaxTiFcio7dR3zsEqvCEDg1bKYi+6RzHZTFJM7ggzCifSoqBXZQ6hQsknni1zy/QndVBQ/tYpxoFl+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758034117; c=relaxed/simple;
-	bh=ylED2QmG4z5jpT44UfsD5KLLNSkZmNlT7OtJh7WiFqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cOwPPGjj3jPNYvciF4lAXaZur+CTqztfgJWcl7E8tYQUKPor4vzUc4Ytgew729HhfSNFZUIX7jyq82DenDigcQn/lDHE357WVXQgzellScd2/h2g51P7zw2KH5/G3oNQamZTKJzKyQHGAuphQQEQAQqcc7tNU2s5wsVBCzCv+4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=zQ/kbCpE; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1758034115; x=1789570115;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ylED2QmG4z5jpT44UfsD5KLLNSkZmNlT7OtJh7WiFqk=;
-  b=zQ/kbCpEKOowzR5ozKzBG55LBklc5fStxYgnrGMxP2QWuy+6lADsbBI0
-   FMbKhF9wq88RdywT9Bgl9pUtXDbqrSNzL+txmpYjyLaAWjgVsM7HXioOq
-   j4WsP5FVVOv7RtqSbaVBxjcegLhG4vBcu2Un+BMixAyPnCyN1upBGveY7
-   uMUZ/FXcJlkrZ6DNwGD4eBCf84f8/WSzwahbACe8qB+H7i3kdYYNCv1u0
-   gRmJypEvQJpWSW3KCHjcom1ShMMBCbAchwZbk2YmGttzXq/NmEg1ET6oD
-   hyaCdjfSZIQwwxtOm8qLVrUnTK+HHEo8D0ZbE16IphLRiIwjcWtzwha6r
-   A==;
-X-CSE-ConnectionGUID: L6xQAWeqQP+7SzlmY7FqJQ==
-X-CSE-MsgGUID: Y8D2Qpz/SHG2ASa0mfu+2w==
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; 
-   d="scan'208";a="213953799"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Sep 2025 07:48:33 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 16 Sep 2025 07:48:21 -0700
-Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 16 Sep 2025 07:48:18 -0700
-Message-ID: <36a37379-2ad1-40c5-9c7d-6e05ea74bf84@microchip.com>
-Date: Tue, 16 Sep 2025 16:48:18 +0200
+	s=arc-20240116; t=1758034347; c=relaxed/simple;
+	bh=iedr2VF4WgKF4s8fT143kxHZWTFhY70Xv/8PokaAkjM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fc3uEfQVYmYipoJoSgwt25C7h7T9mtrbRz/R1kv1gYiyDbuwN7g3sR9SllYqi91RWO36peslBPKD7Tu/TK0yUFTkjjiegSAdwjvsCqGAs3EX+nHLX89kQUDdKjFQMDuLReujpvdSsE4CezjiU9EkrokPcuD6roIHWVTU15QUpHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UE5/zGQT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D2C6C4CEEB;
+	Tue, 16 Sep 2025 14:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758034347;
+	bh=iedr2VF4WgKF4s8fT143kxHZWTFhY70Xv/8PokaAkjM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=UE5/zGQTZZmVI3HZg0CHcKyR+srReuHLDD5D/r9xJkSt6uFbDSYCrAlhdX7e4/kFF
+	 1MNH/L2NlS8UlbS/YpPkGEskH6oUuIny12R1KJRjHHoOXkTbGxUyvixkIRZWz5zIPc
+	 uCYiT7+30nu1m8ReixOEERloAY66tL4klRtg3M6bE7Uc2mWMxkYUdlGxOTgs+rs+f1
+	 nmZVI5ak/PXPNzpG2dHbnSEZomIvu2C4BbBMIfSQIiKgDhJZC4MhxLUXEfjFY8SMFO
+	 cJDA2MgoQ5XdWumJGwW8x2flHhN5pgI63KlSLPQhUGNXeTpA1fp44InrIm/RqWbsng
+	 oBXOJJRvZKwNQ==
+From: Lee Jones <lee@kernel.org>
+To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
+ Jacopo Mondi <jacopo@jmondi.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Daniel Thompson <danielt@kernel.org>, 
+ Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ threeway@gmail.com, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
+References: <20250910-leds-v5-0-bb90a0f897d5@vinarskis.com>
+Subject: Re: (subset) [PATCH v5 0/4] leds: privacy-led support for
+ devicetree
+Message-Id: <175803434216.3847280.5284437769175227452.b4-ty@kernel.org>
+Date: Tue, 16 Sep 2025 15:52:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] ARM: at91: pm: Remove 2.5V regulator
-To: <Ryan.Wanner@microchip.com>, <claudiu.beznea@tuxon.dev>, <sre@kernel.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<alexandre.belloni@bootlin.com>, <linux@armlinux.org.uk>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <cover.1757519351.git.Ryan.Wanner@microchip.com>
- <a6785a40648b315a07152bca261a42bbf0f356af.1757519351.git.Ryan.Wanner@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <a6785a40648b315a07152bca261a42bbf0f356af.1757519351.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-c81fc
 
-On 10/09/2025 at 18:20, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On Wed, 10 Sep 2025 14:01:07 +0200, Aleksandrs Vinarskis wrote:
+> Re-spin of RFC patch from ~2.5 years ago [1]. v4l2 controls for privacy
+> LEDs has landed, but the DT part was left out. Introduce missing
+> dt-bindings, and commonize 'leds' parameter. Finally, add a patch to
+> enable privacy-led on Lenovo Thinkpad x13s.
 > 
-> Remove 2.5V regulator since enabling and disabling this regulator is no
-> longer supported.
+> With recent inflow of arm64-power laptops (Snapdragon X1E/X1P) which
+> mostly use MIPI cameras, this feature becomes more desired. Original
+> rebased patch is still working as expected (with respective DT changes)
+> on Dell XPS 9345.
 > 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> [...]
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Applied, thanks!
 
-I take this one for at91-soc now. We will come back for the rest.
+[1/4] dt-bindings: leds: add generic LED consumer documentation
+      commit: 3f5df63955756fbe253a2a26043accf7318fa53a
+[2/4] dt-bindings: leds: commonize leds property
+      commit: 22420da3662a69d8894ee624494213a5888a1e87
+[3/4] leds: led-class: Add devicetree support to led_get()
+      commit: 7010cc08a6fd4ae4e68b05ec4f52c36cc0122f4c
 
-Regards,
-   Nicolas
-
-> ---
->   arch/arm/mach-at91/pm_suspend.S | 29 -----------------------------
->   include/soc/at91/sama7-sfrbu.h  |  7 -------
->   2 files changed, 36 deletions(-)
-> 
-> diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
-> index 198236bdbbb3..36cae7b1a490 100644
-> --- a/arch/arm/mach-at91/pm_suspend.S
-> +++ b/arch/arm/mach-at91/pm_suspend.S
-> @@ -87,29 +87,6 @@ tmp3	.req	r6
->   
->   	.endm
->   
-> -/**
-> - * Set state for 2.5V low power regulator
-> - * @ena: 0 - disable regulator
-> - *	 1 - enable regulator
-> - *
-> - * Side effects: overwrites r7, r8, r9, r10
-> - */
-> -	.macro at91_2_5V_reg_set_low_power ena
-> -#ifdef CONFIG_SOC_SAMA7
-> -	ldr	r7, .sfrbu
-> -	mov	r8, #\ena
-> -	ldr	r9, [r7, #AT91_SFRBU_25LDOCR]
-> -	orr	r9, r9, #AT91_SFRBU_25LDOCR_LP
-> -	cmp	r8, #1
-> -	beq	lp_done_\ena
-> -	bic	r9, r9, #AT91_SFRBU_25LDOCR_LP
-> -lp_done_\ena:
-> -	ldr	r10, =AT91_SFRBU_25LDOCR_LDOANAKEY
-> -	orr	r9, r9, r10
-> -	str	r9, [r7, #AT91_SFRBU_25LDOCR]
-> -#endif
-> -	.endm
-> -
->   /*
->    * Set LPM
->    * @ena: 0 - disable LPM
-> @@ -1055,9 +1032,6 @@ save_mck:
->   
->   	at91_plla_disable
->   
-> -	/* Enable low power mode for 2.5V regulator. */
-> -	at91_2_5V_reg_set_low_power 1
-> -
->   	ldr	tmp3, .pm_mode
->   	cmp	tmp3, #AT91_PM_ULP1
->   	beq	ulp1_mode
-> @@ -1070,9 +1044,6 @@ ulp1_mode:
->   	b	ulp_exit
->   
->   ulp_exit:
-> -	/* Disable low power mode for 2.5V regulator. */
-> -	at91_2_5V_reg_set_low_power 0
-> -
->   	ldr	pmc, .pmc_base
->   
->   	at91_plla_enable
-> diff --git a/include/soc/at91/sama7-sfrbu.h b/include/soc/at91/sama7-sfrbu.h
-> index 76b740810d34..8cee48d1ae2c 100644
-> --- a/include/soc/at91/sama7-sfrbu.h
-> +++ b/include/soc/at91/sama7-sfrbu.h
-> @@ -18,13 +18,6 @@
->   #define		AT91_SFRBU_PSWBU_SOFTSWITCH	(1 << 1)	/* Power switch BU source selection */
->   #define		AT91_SFRBU_PSWBU_CTRL		(1 << 0)	/* Power switch BU control */
->   
-> -#define AT91_SFRBU_25LDOCR			(0x0C)		/* SFRBU 2.5V LDO Control Register */
-> -#define		AT91_SFRBU_25LDOCR_LDOANAKEY	(0x3B6E18 << 8)	/* Specific value mandatory to allow writing of other register bits. */
-> -#define		AT91_SFRBU_25LDOCR_STATE	(1 << 3)	/* LDOANA Switch On/Off Control */
-> -#define		AT91_SFRBU_25LDOCR_LP		(1 << 2)	/* LDOANA Low-Power Mode Control */
-> -#define		AT91_SFRBU_PD_VALUE_MSK		(0x3)
-> -#define		AT91_SFRBU_25LDOCR_PD_VALUE(v)	((v) & AT91_SFRBU_PD_VALUE_MSK)	/* LDOANA Pull-down value */
-> -
->   #define AT91_FRBU_DDRPWR			(0x10)		/* SFRBU DDR Power Control Register */
->   #define		AT91_FRBU_DDRPWR_STATE		(1 << 0)	/* DDR Power Mode State */
->   
+--
+Lee Jones [李琼斯]
 
 
