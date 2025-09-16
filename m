@@ -1,162 +1,100 @@
-Return-Path: <devicetree+bounces-217842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3848B59619
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:26:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2994B59632
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 14:28:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29F77323227
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF774E6911
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 12:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A329730DD31;
-	Tue, 16 Sep 2025 12:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2B030BF7F;
+	Tue, 16 Sep 2025 12:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iTr63tg6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1jzHQiJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD79E2DA776
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7116D296BA9;
+	Tue, 16 Sep 2025 12:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758025515; cv=none; b=WhSqPRySxe9oaYHbfyeBfIMoiezJ24n2f/a/w6H2ixg9Gu3MGvh0huopGX+3z/wkti6oa5Metg78mDFvBdOm4111ldOVnXxDewEtc8GSBu/XOq9A59/OjVeWOaZJtme2s0w0mAK7AaXJfsy1NIleSgwEJFxDF0yHgqmw27qS4YE=
+	t=1758025651; cv=none; b=HD5GEFTnVULoIHw1SJXeDtLIFYaqXHmmiC2qy9q87aOrdKWi8ddilMcLCNIeT2hth7xEKPAt63aJ5HQNBtttfY3Z3m5ny7F+ssNi4f1SNpruWkeDc6BcoGFtReJRVgv89NgAWCvxb5+r5yOt1J5B8sK/MtZMPFK+84zxAyW+THI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758025515; c=relaxed/simple;
-	bh=pYVRyG3Ofnpb0L1Y2+cXoG7kxZMxzvU+i1cFXSKD3ck=;
+	s=arc-20240116; t=1758025651; c=relaxed/simple;
+	bh=PNIloqRamoe/Ge+tqcsD4qceDuD9HPaHcfIdp82zej4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ttTiEYJYItUjYWfYcioAnpdulzJZV6NdpV+jh5Vtqrom3kxgFUSjyz3ZvoEI5X/VuxttFy5f9WLK18AnJ7BwNfY3F5lLQ1IErKw6PqEmmgsV9lg1kwgGnLonlpNssBhq+1ayPLj2GLVoYGrXLrvfw+0l0fdYQepm/AnPp18n/Ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iTr63tg6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA2o7R005547
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:25:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rUHJ99Nhm6wc+crxDOeKRLBG
-	ZdaCl2Lm6idkXPgbi40=; b=iTr63tg6bMh/8ofkmItHfBDoTgbgkxSsxeqAobW8
-	RqPWU8Y+xuPemF9vlVaLLIJ480fs1yz1skKfhGckN0oN2LwYZXNizIaGotZJeLXM
-	GV6E/+zuLBGKqjalpqqNanWrZDMWqz6pcjwzQVZpCIyvPyTWree1pcH8gPVrnbTL
-	zspHCchPYTwaX/N/8OC9gfZGJXbhELE8htESKG1DEDJBWYNEyxcp+WgEirNU8N71
-	ogIHxk9eHPC4QwDPhslpzqhBY914vcrJYiCuLjlLn83DnZsArXtkpS5D6nwZ0E4I
-	whX++uOYCNM0LpldlBfCXLHAWrJXwzjuhT2tCt4tc4y0cw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4950u58r0j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:25:13 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-244582bc5e4so66335545ad.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:25:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758025512; x=1758630312;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rUHJ99Nhm6wc+crxDOeKRLBGZdaCl2Lm6idkXPgbi40=;
-        b=qJ1FGY9u13V2WTUXaI3SBluCgUrkUZwhU+PH9uyDQe9DAKdpIM2loUHnT5AbCQr5Mr
-         cKVTJs9+ysLaLgTp/CAfx72UCnfv3dnjrTN3Bq5EjTtorK+lpP5y+KpUCK0Jb2rb3kVJ
-         gxC8X5CnhNaDFxegN+qGQYTMLb9/BfwtN2ZNEf417XHeq1+4AvfRweZFQT+F2R6yCpMH
-         Sy7aZnk2XOKJuc6XJ/yFrM3uX39jU7THN6qThlnJCDV4fZ3wvQyarOjtACMEj6s5VhJL
-         /bLe/g1UR2Tgn2IdisFQBqcLHejifzSeE78UAc/as7VirMP3p6DYPq8rAv6VAmLSMSHW
-         /1IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeWvPpjZHZXej0GV5rpOH3TNKp32lylcRFOBwQGYQPHCzuen6Ml9IILP9Plr2+0EJI+ZuTbBtu3dQk@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq+xrD8RraliezCQKNbpmpY12oZvvXsRJZUx7WbbIqwNbWipK7
-	iQ5QyTuh+SYfSbVRTff5FR2NvOBE3yI25E+0TglxIsas7PkJVqdOzhqa7Z7KY++Er8LMVNzOSUB
-	mKOMcgvlQaQGgDQGSTTdHgUm1f830708k9HJQoFGKE9YLnX3nLo6O5m7t9QcnDngz
-X-Gm-Gg: ASbGncvwgU1TAdKk4WhqF2ZremaEExRTYxOg03zZyTjYdNAYT8aeL2fJSQ3clGSWbC6
-	ctG2HRK9o5QNQ1VtU+AjHbCa46mWSgZlC6CqPHuwnGsb53O0iB+S1T7Y33k1QdkZ59FXHSPpB5w
-	sFQt/stLtmH0MkwA1KnGHU0AXj778nbqBX68JK8XlQesuFsaTope/++i7haXsPsQpMpAvFFJ6rW
-	jpzMuXb4va2FGsVK/gxFtoB6HwtrLI+BtYdLDFn44qtjnk7NnZrrOaRZUVyjiKBwDzrM9c69or/
-	rlzDkBTGhhtaPCZn81cq1NToRLjvYrtiGLFtyzAR2ryFbEcMk63SXUt/IUq/UZ7fpES3
-X-Received: by 2002:a17:903:b0b:b0:249:1156:31f3 with SMTP id d9443c01a7336-25d243e7fd8mr146599025ad.8.1758025512281;
-        Tue, 16 Sep 2025 05:25:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGfC+HYU/Gm0Yu1cZZREqssXTo+RveyP0dKwPWuRl4HJg2G55Yk2LtJ6nUVxaGFtw1OspyhKw==
-X-Received: by 2002:a17:903:b0b:b0:249:1156:31f3 with SMTP id d9443c01a7336-25d243e7fd8mr146598795ad.8.1758025511851;
-        Tue, 16 Sep 2025 05:25:11 -0700 (PDT)
-Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2676a14c514sm51154825ad.103.2025.09.16.05.25.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 05:25:11 -0700 (PDT)
-Date: Tue, 16 Sep 2025 17:55:05 +0530
-From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, kernel@oss.qualcomm.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Subject: Re: [PATCH v5 02/10] arm64: dts: qcom: lemans-evk: Enable GPI DMA
- and QUPv3 controllers
-Message-ID: <aMlXIdgavXT6Ndt9@hu-wasimn-hyd.qualcomm.com>
-References: <20250916-lemans-evk-bu-v5-0-53d7d206669d@oss.qualcomm.com>
- <20250916-lemans-evk-bu-v5-2-53d7d206669d@oss.qualcomm.com>
- <n4p4www37qz4hw75l6z2opeqks4g3u26brceyxi6golam7f5aw@raandspcihi6>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WCYCnSfgx1Z603HVyWIBIYrjxOAnwKnJfSI/tq3Ngq2rSiL8aWvuNeKBEANRRBbU8yYGVHF5tFFnjVbLxRRG89NEv1pEueurfaTSS9Ms5kzgxq2e83wLJ7Svq5eiYVx9kxsqVd4xsmBS8XsXw3sdXcqdppXOfyOnPti97YU+w50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1jzHQiJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 107E0C4CEEB;
+	Tue, 16 Sep 2025 12:27:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758025651;
+	bh=PNIloqRamoe/Ge+tqcsD4qceDuD9HPaHcfIdp82zej4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D1jzHQiJiKYPH1CgVKK4Ty4Hg5VhVK3z3t8zMDGq+GocyFcKU8bBAH4mz6zJmkSR/
+	 GLv+WQIGKQ3jW8dhfqFqd+vDQ2KBAMYz8Vs6ZgyqBdPvuhLtKrxqO8hGlYTL/QFmJa
+	 umaOAcoPFzYfyEtZxsvOugzqJm6O5OV3sHftIJv5AgTL/fm6mg1I0dIgKRsJkzblc0
+	 PtUOqM+6PVr21bfBYZSmujcMX4qsoABOWuZwiQUyVEyAM9WbmxaiqhBBf36Y1u+9j4
+	 sejSITCPRgzLOORWc+5hzCuQgWQ9AHnc9Mro0NmLJAgzoHnYUZbOONCyEgpp9cat9j
+	 zZowNpBu2FqGA==
+Date: Tue, 16 Sep 2025 13:27:24 +0100
+From: Lee Jones <lee@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Alex Elder <elder@riscstar.com>, lgirdwood@gmail.com,
+	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mat.jonczyk@o2.pl, dlan@gentoo.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, linux.amoon@gmail.com, troymitchell988@gmail.com,
+	guodong@riscstar.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
+Message-ID: <20250916122724.GB3585920@google.com>
+References: <20250825172057.163883-1-elder@riscstar.com>
+ <175690199980.2656286.5459018179105557107.b4-ty@kernel.org>
+ <ec882a78-9604-45b1-9405-8f2f958f307c@riscstar.com>
+ <7aba368e-709b-49b0-b62c-f2f8250c8628@sirena.org.uk>
+ <20250916084229.GG1637058@google.com>
+ <c8bcfff9-9d2a-426d-9df8-100efd2af64f@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <n4p4www37qz4hw75l6z2opeqks4g3u26brceyxi6golam7f5aw@raandspcihi6>
-X-Proofpoint-GUID: 6qePc3Wdc1NTB0i_ZfHT1oFTvOZJXJzZ
-X-Proofpoint-ORIG-GUID: 6qePc3Wdc1NTB0i_ZfHT1oFTvOZJXJzZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTEzMDAzMSBTYWx0ZWRfX2E3GbWCsnzAR
- PCtp1dvx98rFcrw0YGjTOq9C+vjJfzxhN6Hwr61zEU4YYGEppYYVb5fzVYLH+BwOfYrZJhXZFu8
- ML8pw0/Byk6Pfk31eRnvxWKEH9aFgfiY3SwOPlp9kwA6o15G2dBbqs5cNZTzMssVUIC9vRLGdbI
- aiPF4dzQp76xjHVLNrOy8IXFx0pNGNI5rskTv5QZ3FO7tKDUgR5nywhgGtkcw/tTNFTs8+BtY33
- roKh6pk41eGIegaxbHuDFz0voNyzHuyRP6dTRxZkFXFcchi6nrpgYcrc6FkQh1TDkA15MV/oC+X
- 5PLtpHjA8cGk+Zb54Drclm20OMaVKiIYiyxLVq0uDaT7l2KU1VNenpzord7jsArXAdUvy2jrrKy
- K8x7lgoU
-X-Authority-Analysis: v=2.4 cv=JvzxrN4C c=1 sm=1 tr=0 ts=68c95729 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=jsWzJFLPBp6GKZhRWDUA:9
- a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0
- spamscore=0 adultscore=0 malwarescore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509130031
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c8bcfff9-9d2a-426d-9df8-100efd2af64f@sirena.org.uk>
 
-On Tue, Sep 16, 2025 at 01:59:20PM +0300, Dmitry Baryshkov wrote:
-> On Tue, Sep 16, 2025 at 04:16:50PM +0530, Wasim Nazir wrote:
-> > From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> > 
-> > Enable GPI DMA controllers (gpi_dma0, gpi_dma1, gpi_dma2) and QUPv3
-> > interfaces (qupv3_id_0, qupv3_id_2) in the device tree to support
-> > DMA and peripheral communication on the Lemans EVK platform.
-> > 
-> > qupv3_id_0 provides access to I2C/SPI/UART instances 0-5.
+On Tue, 16 Sep 2025, Mark Brown wrote:
+
+> On Tue, Sep 16, 2025 at 09:42:29AM +0100, Lee Jones wrote:
+> > On Thu, 11 Sep 2025, Mark Brown wrote:
+> > > On Thu, Sep 11, 2025 at 11:36:41AM -0500, Alex Elder wrote:
 > 
-> Nit: used for foo, bar, baz and slot ZYX.
-
-Ack.
-
-I will change it to:
-
-qupv3_id_0 is used for I2C, SPI, UART, and slots 0 to 5.
-
+> > > > How should these two patches be merged?  Mark has reviewed the
+> > > > regulator patch 3 and Alexandre has acked the RTC patch 4.
 > 
-> > qupv3_id_2 provides access to I2C/SPI/UART instances 14-20.
+> > > We'd both have been expecting them to go via MFD.
 > 
-> Ditto
+> > Why?  I don't see any dependencies between them (usually a shared MFD
+> > header-file).  If there are no deps, it should be taken through its own
+> > repo, no?
+> 
+> I used to just apply things but at some point Linus complained about
+> cases where the MFD ended up not getting merged (missing the merge
+> window or whatever) so I've been treating them like they had an actual
+> dependency.
 
-qupv3_id_2 is used for I2C, SPI, UART, and slots 14 to 20.
-
+Not sure I've seen any of that from Linus, but I don't doubt you.  The
+MFD part has been merged now, so it's save to go ahead and apply the
+Regulator part.
 
 -- 
-Regards,
-Wasim
+Lee Jones [李琼斯]
 
