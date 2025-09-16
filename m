@@ -1,403 +1,173 @@
-Return-Path: <devicetree+bounces-217850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98BC1B596C9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:00:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE828B596CE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B35413A86C1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:00:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9105A3B47A6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 13:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754892BE05F;
-	Tue, 16 Sep 2025 12:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C3630CD9B;
+	Tue, 16 Sep 2025 13:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L9Ok/tn9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DCKrlMsK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E09D2874F1
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3CB3112DF
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 13:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758027586; cv=none; b=Sf43Iffg+BCG+V7eKC6Jra5LBk3WDk7IQJkJQpPSU7Mycr1gTLRoOm+3n/B82fpfDORZAWH/PJ8+jgOVHHrbFCfEh2uj4xbBWY738X3tdwLJ5M7HHP01+HxN2hN4puQOyEYco6hkCVme6OGDOdWLIed2/kSOQQFub2/L9V3RWA4=
+	t=1758027618; cv=none; b=L7iG7FfMpV7o7FkFam506w3K1dJcKQXD6T3CdV4gxwc3ARHmXdhc92q6+LSrkr0Ypmpsupdr6t7vQNneKAgVMOTnisFkUDTgqHcdfGI1Y9B6O//9pcXscgYXem0efxeMNZuMuYYsVTNCcZ12VQ+Mul4C5B51z8jLf6/xLg1qsXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758027586; c=relaxed/simple;
-	bh=8DjiqF9dsirZN8Wj8tPx56+m+sxSZo9peHaaF1KXOOo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ucxvCAOBVWKE9D1QbuFl4uSJE/bdK3a2CQrW6/osEUIZyzF01BzDh2c2KFipqH+yhl5CNqqDn83rfhhgCgCEeQNRN6/GWkJcZTXS2rHrLzx9eqhKlDl1uGw5n6AVFCNNfATJCnSsD3NRWee+0xl0uTxnQrbaetQ3bSBTmyAs4do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L9Ok/tn9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA9LgJ012285
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xI6mJO0WSpiUbkh3Fk6DlwuwlKEmE4hv9DpqkjAEEq4=; b=L9Ok/tn9VHvrO8H7
-	U6zPJ7ZcwNrKLXJcmg57z5q/2fmI+ei3gFfnk7UfkVhG1PnlecQDiCH0lyOxe7tI
-	zw2urHqp/GcrJNSXtKXAABxavlYWdNRDdPw6mnUaZEXNWu5bPFkEHlTqvT8AjTUV
-	YoO+iQ/olCTZinYmJOwfjHVrUffgO94xf6fVnPRGnAUC3mD7oboOwDgE0ZVaCodO
-	Pae/FlaP1Wizo6yp47eQ1oHLGgBvoy/gTenZX1CYR/mTxOtUe6qDI5uGtjKURsCX
-	X7RxFHYRIxU3m02+xGFk1lu2sZHisNn7DkPGtHPriZs6WCp5hsL/xjvc85OHReF6
-	/Zm42g==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g12mj4f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 12:59:42 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7725b77b795so4896035b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 05:59:42 -0700 (PDT)
+	s=arc-20240116; t=1758027618; c=relaxed/simple;
+	bh=oURn0Fx+wSdAWTFWUBDWKfggMfG/xWAXZ0heza4f4z8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZJnmhfaPkTjnLDCn3JuqciAkXfYcvUkydlkiMY8F6oWEaA7MwAPUvGRodvXNczxi6FdqSTb8KlUPeQU7zd8VHu8s5oegzEyf9gY7+jfKUSD3mjKoOMrlGf7s3VYodvNjJkVbroYyM8Nn1y4BNFXypaP1ImrAkS9EfxTQHlVco3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DCKrlMsK; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-32e34f472d9so1440097a91.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 06:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758027615; x=1758632415; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=enWPnFF9uqlsgFFLjvBI4bv4xem3PSExDu33Ls8l+7g=;
+        b=DCKrlMsKWaRXnRTZJ53Gef6kxh5bs9RWW7pSjQhchoa/P1O1Lb9YieXragGIGCbbv2
+         PGOb6trVnLHgPNjoW+TwmCrRe18kRSA7iI1joFre8EXgNwxvOo2rTbiLeSflrrSC9afL
+         Bx1rdkpGisyVK4Cn96hmolDQVF1eXUVrZiOKlb91rmYeVdkmhwKaYZUNiSvM78/li3oV
+         xJR9Y1vUsKPcfsmXUtZZfS4mPfAvlPMDcyqDu1HmPdV0KpqY7ndr2tkef2cs6XKgn2cf
+         guXDMnwDl0PJngbHFN2UqeCOZ1L7wGgEP1o8dQ1uW1v9osN5FS5wnIVtlDdu7T6c8rNS
+         Ls8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758027582; x=1758632382;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xI6mJO0WSpiUbkh3Fk6DlwuwlKEmE4hv9DpqkjAEEq4=;
-        b=ixz6BBfN3ONLiHudiOggrI8MQjydMUL7whhC2+fdgKaeNgLq44ezHg51WWihlReqs/
-         YUHqPdeWmDowph1pXPQjQ5Oxto9birmB7JdkTKQQDNGFOEVRAWqjs/G35lVavKtV87Pb
-         9BMr3EMjlekkdzVYf/gpccg2L14TcE5AalytXUB4+schWdyRBsxAeeI9mZTHpOXtaDQu
-         S+LtvwAMYp8+e5ZJYnACtMeLvSDTN6mybmJhVQgJOkX/Sii/vNwzFkZIPIzlrmn4f22n
-         GvrL9SpTq9WiVD/1u1s6PruVRXSlUpovGsTXrgXYCfhq3mqbDUavvLK6rzKTFN2Ctlhd
-         LHzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVG7XPb5Y1sPcFrE8l81fpHJWYA2GiYljoGNNF61P6RnN+scvEbnUhUSpwfN6CicgT6zIwfLZj/NKrJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQEEtf8TwdJzCm2lgjJhqwde1Zemjey4BQovvryafgWAeYxCNU
-	pkHKMgLg+CEUeoe6E7jL/jrregJqONCGsKklE1uBfOxB31UaHbFuYH0K+BRGPJ7t+FK3qB/KR1H
-	Syl1OUDuIyrUTCYAy50K/IoaF7FaG8Z6dFT6hQ5DL0s5YP40xLNl4ZQ1rHewE2TA7
-X-Gm-Gg: ASbGnctrU/b/k1sHjZcpbRQJo+T5LSyRMApTC8JZ83rk1aarD56UzqYLZt02U5+M12c
-	s/uyhif4bQucKOp9Nr9hwb5IgSdgEVmLWfKg3pgOIeZ8wplM9V4vRXZgFM2NoQyZT3++PMfVGyV
-	chtBGlOQ2ef1RNpLiSnrLpQFn2h+WC2SIdfaLHkxFoJH2a3TqARLJN/glXJ/GoKOwrTu2n3Ratx
-	DrP50srY6e5u6k/RJUMwRiLHHAgKewf43Xzegam0jPKcgV+H6JWz1RNRl1lI1YQueyXVWykwd7R
-	W7hiwEOVwrbJFeSerOXJD0emOCCUMvmfD4BRVhAP5s3dFFHYIase1RERxAr6ulKOtiMjQHqxyeH
-	5YPukdvGWLv1AcIT5bqIyemR6FQ==
-X-Received: by 2002:a05:6a00:198f:b0:777:b207:47b2 with SMTP id d2e1a72fcca58-777b2074ad9mr9441674b3a.2.1758027581738;
-        Tue, 16 Sep 2025 05:59:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGhN4Xzzrl+1mDMnm/2AZgUf02oPH6Ty5Luf35YfHuhuk676H+GKWavY6ePU8C2eVYv8/mpfw==
-X-Received: by 2002:a05:6a00:198f:b0:777:b207:47b2 with SMTP id d2e1a72fcca58-777b2074ad9mr9441648b3a.2.1758027581257;
-        Tue, 16 Sep 2025 05:59:41 -0700 (PDT)
-Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77607a46b7asm16057113b3a.22.2025.09.16.05.59.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 05:59:40 -0700 (PDT)
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Date: Tue, 16 Sep 2025 18:28:55 +0530
-Subject: [PATCH v2 4/4] regulator: rpmh-regulator: Add RPMH regulator
- support for Glymur
+        d=1e100.net; s=20230601; t=1758027615; x=1758632415;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=enWPnFF9uqlsgFFLjvBI4bv4xem3PSExDu33Ls8l+7g=;
+        b=dBOzDcCD026HUmKvKmA/mlrhBk2qqKzR9bPIawZgEhc00CoFmwUNf57c5zNpBwFJV+
+         T5KZNLhib6LgGNdLfjg/5DhcZXYARpD5nCuvYpSnuaBHMsJOn6N9qQ2BrKDWuckO8bL/
+         CSoH4CsYQYpeMfP/A3m9owPjA4XCIfjn8D3NYsh0yZy6tr5cvTrUDhpNV8PcE/dBbw9a
+         pFE8kJn2eC5HNWGhGjeP2Pv7WVwheolbhVAaHZe/IuwEmfutMBGG4PhdMY664G0wnSTD
+         6hWM9frx+0t1J5+iIk5cHI5f4DIZCwLFKGuIgDyI8WDk3rJkPjVRsfr9pLpP2qVPBrHY
+         dYCg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMRGQs3bUy2FV6LKda+xIo6bzgHDTwIbRd6o2p1HDFG9tEHb/m/rR3GPItanIWqJySFMgHUHd0eWsC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzv5b1E2XUbRsqjXnEZ8PzCLi7LiOoKykY0RLzRqEPoCVQD5vWz
+	xtLxJnLksRLqFIQCeth2Y5O4GIMtXvbaIsYYRaTsNMLRc2KwKaoCX/fX2N8Vq+pL8psKZpStEMK
+	LXJO17a78Rsu8D+oZ/J1tSB4otG4bH2Q2CCOfdYy3Mw==
+X-Gm-Gg: ASbGncvg/xc31e+BoHTDZ7hCLP297YDFBklIJqeex8wZ2J0Cp16FBM9PheKhasyOXhV
+	SOaGWnS0zJ869MjTytYuQCxV5P5aOqZaVH+tr/OQ07QE3Cl49DqPLinuPHoTk3WAqOrd1WYLqpd
+	nBaLfV+5MnkCQetjBPS+LRSAc24oA/tA7x5V/g6cGMZV4Wtr3RxYS5c46m1DYo7G9A6/l3MwSXH
+	b+a5CDZ
+X-Google-Smtp-Source: AGHT+IGuQ/ohyWphuBlOtHx2+flX1KQCvCuCmbUoGGofMYdbPyzMKkQ4xeZzDRKvWShPxbaO2iXYgl4CZlPA5sTwbe0=
+X-Received: by 2002:a17:90b:2681:b0:32e:b87e:a961 with SMTP id
+ 98e67ed59e1d1-32eb87eb05amr1186270a91.5.1758027615318; Tue, 16 Sep 2025
+ 06:00:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-glymur-rpmh-regulator-driver-v2-4-c6593ff9b4be@oss.qualcomm.com>
-References: <20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com>
-In-Reply-To: <20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com
-Cc: linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        jishnu.prakash@oss.qualcomm.com
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758027561; l=10504;
- i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
- bh=8DjiqF9dsirZN8Wj8tPx56+m+sxSZo9peHaaF1KXOOo=;
- b=8YG5ki8tMtB1zV4wZ78LeW34v3Znai26VsfAPDX65i2h9ZJb/wdHh/Mm2tYcQS1s53XO1V2fF
- ZuXQoDGIfS5ARb7oSSeQQg+Dh0CMUD/YsjBwk4YdsBM6izYsfjMcCMh
-X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
- pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
-X-Proofpoint-ORIG-GUID: fg0MOWBAs1oSvlfUkmpGmtSvxBEJPqFk
-X-Proofpoint-GUID: fg0MOWBAs1oSvlfUkmpGmtSvxBEJPqFk
-X-Authority-Analysis: v=2.4 cv=E5PNpbdl c=1 sm=1 tr=0 ts=68c95f3e cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=dDmaFaQidGiDpGwu2EkA:9
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NiBTYWx0ZWRfX8LZFIs+Udy/T
- kqZbtUU5uk5YKPOAT7V3455iHWz4Nm+iezc/gp5UcqYecE3Xlqs7LYE5SG2/JEWlOm6shMuJHxN
- 7XWrhgsaUqSRAySxPBSs6jaldTHW2fMwOFwSbU6HdFrEbZlNUPaIbqHEy7bijx4gO1WERwXFMTz
- IaqMpdZqRQJZLY0Gf9dnr+xWK2qTvO+t1GXvC6o1JbtVRDkTBoi1/HPKYs8BU77E1IwA75kzRoQ
- rq+BXqPq7xOpFfYXo/dmK0J9Zz7/Nobe7Z471sO+jwAzj6Pa8i1SAfS0nEABje+C0cxqGPMYHeB
- Ga//TpWFOzkqQLKducs8IGfCGZNTS/3QgfaCGEKEBrIpyRvSiPlhBwOinCci9b6yR9SZokYXXSu
- MM5isg/8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150086
+References: <20250831-itnoc-v4-0-f0fb0ef822a5@oss.qualcomm.com> <f9d3b3ec-dcf1-42ce-b925-70e5543771ed@oss.qualcomm.com>
+In-Reply-To: <f9d3b3ec-dcf1-42ce-b925-70e5543771ed@oss.qualcomm.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Tue, 16 Sep 2025 14:00:04 +0100
+X-Gm-Features: AS18NWBql9OifdFvQHUMyc5To4QvLJzN5-WAsAMzlnEGRTrG8ZguYOFhnqgDcCM
+Message-ID: <CAJ9a7Vivhrx2zss_8Ti+QS1dzakp+4CrAsDj00RKojUaL_t7Sg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/3] coresight-tnoc: Add support for Interconnect TNOC
+To: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, kernel@oss.qualcomm.com, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Leo Yan <leo.yan@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add support for PMH0101/PMCX0102/PMH0110/PMH0104 PMIC voltage
-regulators which are present on Glymur boards.
+Hi,
 
-Introduce new LDOs & SMPSs under them (PMIC5 subtype 530 for
-both).
+I'm a little confused as to precisely what this component is.
 
-For these new LDOs support a new optimum power mode(OPM). In
-this mode LDO will automatically switch between high power mode
-(HPM) and low power mode (LPM) based on the real-time LDO load
-current. Its operation is analogous to SMPS AUTO mode.
+From the description in the DT - it appears to be very much like a
+static trace funnel - multiple inputs, and a single output.
+The DT describes the inputs as "Coresight Trace". What is meant here?
+- if this is ATB trace then this component is identical to the
+coresight trace funnel in functionality so should probably use the
+normal CS static funnel driver.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Co-developed-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
----
- drivers/regulator/qcom-rpmh-regulator.c | 188 +++++++++++++++++++++++++++++++-
- 1 file changed, 187 insertions(+), 1 deletion(-)
+However - if it does not appear on the AMBA bus - how are the
+coresight management registers read - these are a mandatory
+requirement in the CoreSight specification for any coresight
+compatible component?
 
-diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-index 525904956705cbb94a5abb63fb050eb967de4109..52e5499453b6931b6ab2e7aaa4bdba1978c4d69d 100644
---- a/drivers/regulator/qcom-rpmh-regulator.c
-+++ b/drivers/regulator/qcom-rpmh-regulator.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
--// Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+// Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- 
- #define pr_fmt(fmt) "%s: " fmt, __func__
- 
-@@ -91,6 +91,11 @@ static const struct resource_name_formats vreg_rsc_name_lookup[NUM_REGULATOR_TYP
- #define PMIC5_BOB_MODE_AUTO			6
- #define PMIC5_BOB_MODE_PWM			7
- 
-+#define PMIC530_LDO_MODE_RETENTION		3
-+#define PMIC530_LDO_MODE_LPM			4
-+#define PMIC530_LDO_MODE_OPM			5
-+#define PMIC530_LDO_MODE_HPM			7
-+
- #define PMIC_ID_LEN				4
- /**
-  * struct rpmh_vreg_hw_data - RPMh regulator hardware configurations
-@@ -556,6 +561,14 @@ static const int pmic_mode_map_pmic5_ldo_hpm[REGULATOR_MODE_STANDBY + 1] = {
- 	[REGULATOR_MODE_FAST]    = -EINVAL,
- };
- 
-+static const int pmic_mode_map_pmic530_ldo[REGULATOR_MODE_STANDBY + 1] = {
-+	[REGULATOR_MODE_INVALID] = -EINVAL,
-+	[REGULATOR_MODE_STANDBY] = PMIC530_LDO_MODE_RETENTION,
-+	[REGULATOR_MODE_IDLE]    = PMIC530_LDO_MODE_LPM,
-+	[REGULATOR_MODE_NORMAL]  = PMIC530_LDO_MODE_OPM,
-+	[REGULATOR_MODE_FAST]    = PMIC530_LDO_MODE_HPM,
-+};
-+
- static unsigned int rpmh_regulator_pmic4_ldo_of_map_mode(unsigned int rpmh_mode)
- {
- 	unsigned int mode;
-@@ -578,6 +591,30 @@ static unsigned int rpmh_regulator_pmic4_ldo_of_map_mode(unsigned int rpmh_mode)
- 	return mode;
- }
- 
-+static unsigned int rpmh_regulator_pmic530_ldo_of_map_mode(unsigned int rpmh_mode)
-+{
-+	unsigned int mode;
-+
-+	switch (rpmh_mode) {
-+	case RPMH_REGULATOR_MODE_HPM:
-+		mode = REGULATOR_MODE_FAST;
-+		break;
-+	case RPMH_REGULATOR_MODE_AUTO:
-+		mode = REGULATOR_MODE_NORMAL;
-+		break;
-+	case RPMH_REGULATOR_MODE_LPM:
-+		mode = REGULATOR_MODE_IDLE;
-+		break;
-+	case RPMH_REGULATOR_MODE_RET:
-+		mode = REGULATOR_MODE_STANDBY;
-+		break;
-+	default:
-+		mode = REGULATOR_MODE_INVALID;
-+		break;
-+	}
-+	return mode;
-+}
-+
- static const int pmic_mode_map_pmic4_smps[REGULATOR_MODE_STANDBY + 1] = {
- 	[REGULATOR_MODE_INVALID] = -EINVAL,
- 	[REGULATOR_MODE_STANDBY] = PMIC4_SMPS_MODE_RETENTION,
-@@ -941,6 +978,71 @@ static const struct rpmh_vreg_hw_data pmic5_bob = {
- 	.of_map_mode = rpmh_regulator_pmic4_bob_of_map_mode,
- };
- 
-+static const struct rpmh_vreg_hw_data pmic5_nldo530 = {
-+	.regulator_type = VRM,
-+	.ops = &rpmh_regulator_vrm_drms_ops,
-+	.voltage_ranges = (struct linear_range[]) {
-+		REGULATOR_LINEAR_RANGE(320000, 0, 210, 8000),
-+	},
-+	.n_linear_ranges = 1,
-+	.n_voltages = 211,
-+	.hpm_min_load_uA = 30000,
-+	.pmic_mode_map = pmic_mode_map_pmic530_ldo,
-+	.of_map_mode = rpmh_regulator_pmic530_ldo_of_map_mode,
-+};
-+
-+static const struct rpmh_vreg_hw_data pmic5_pldo530_mvp150 = {
-+	.regulator_type = VRM,
-+	.ops = &rpmh_regulator_vrm_drms_ops,
-+	.voltage_ranges = (struct linear_range[]) {
-+		REGULATOR_LINEAR_RANGE(1504000, 0, 255, 8000),
-+	},
-+	.n_linear_ranges = 1,
-+	.n_voltages = 256,
-+	.hpm_min_load_uA = 10000,
-+	.pmic_mode_map = pmic_mode_map_pmic530_ldo,
-+	.of_map_mode = rpmh_regulator_pmic530_ldo_of_map_mode,
-+};
-+
-+static const struct rpmh_vreg_hw_data pmic5_pldo530_mvp300 = {
-+	.regulator_type = VRM,
-+	.ops = &rpmh_regulator_vrm_drms_ops,
-+	.voltage_ranges = (struct linear_range[]) {
-+		REGULATOR_LINEAR_RANGE(1504000, 0, 255, 8000),
-+	},
-+	.n_linear_ranges = 1,
-+	.n_voltages = 256,
-+	.hpm_min_load_uA = 20000,
-+	.pmic_mode_map = pmic_mode_map_pmic530_ldo,
-+	.of_map_mode = rpmh_regulator_pmic530_ldo_of_map_mode,
-+};
-+
-+static const struct rpmh_vreg_hw_data pmic5_pldo530_mvp600 = {
-+	.regulator_type = VRM,
-+	.ops = &rpmh_regulator_vrm_drms_ops,
-+	.voltage_ranges = (struct linear_range[]) {
-+		REGULATOR_LINEAR_RANGE(1504000, 0, 255, 8000),
-+	},
-+	.n_linear_ranges = 1,
-+	.n_voltages = 256,
-+	.hpm_min_load_uA = 40000,
-+	.pmic_mode_map = pmic_mode_map_pmic530_ldo,
-+	.of_map_mode = rpmh_regulator_pmic530_ldo_of_map_mode,
-+};
-+
-+static const struct rpmh_vreg_hw_data pmic5_ftsmps530 = {
-+	.regulator_type = VRM,
-+	.ops = &rpmh_regulator_vrm_ops,
-+	.voltage_ranges = (struct linear_range[]) {
-+		REGULATOR_LINEAR_RANGE(252000, 0, 305, 4000),
-+		REGULATOR_LINEAR_RANGE(1480000, 306, 464, 8000),
-+	},
-+	.n_linear_ranges = 2,
-+	.n_voltages = 465,
-+	.pmic_mode_map = pmic_mode_map_pmic5_smps,
-+	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
-+};
-+
- #define RPMH_VREG(_name, _vreg_hw_type, _index, _hw_data, _supply_name) \
- { \
- 	.name		= _name, \
-@@ -1375,6 +1477,74 @@ static const struct rpmh_vreg_init_data pm6350_vreg_data[] = {
- 	RPMH_VREG("ldo22",  LDO,  22, &pmic5_nldo,      NULL),
- };
- 
-+static const struct rpmh_vreg_init_data pmcx0102_vreg_data[] = {
-+	RPMH_VREG("smps1",   SMPS, 1,    &pmic5_ftsmps530, "vdd-s1"),
-+	RPMH_VREG("smps2",   SMPS, 2,    &pmic5_ftsmps530, "vdd-s2"),
-+	RPMH_VREG("smps3",   SMPS, 3,    &pmic5_ftsmps530, "vdd-s3"),
-+	RPMH_VREG("smps4",   SMPS, 4,    &pmic5_ftsmps530, "vdd-s4"),
-+	RPMH_VREG("smps5",   SMPS, 5,    &pmic5_ftsmps530, "vdd-s5"),
-+	RPMH_VREG("smps6",   SMPS, 6,    &pmic5_ftsmps530, "vdd-s6"),
-+	RPMH_VREG("smps7",   SMPS, 7,    &pmic5_ftsmps530, "vdd-s7"),
-+	RPMH_VREG("smps8",   SMPS, 8,    &pmic5_ftsmps530, "vdd-s8"),
-+	RPMH_VREG("smps9",   SMPS, 9,    &pmic5_ftsmps530, "vdd-s9"),
-+	RPMH_VREG("smps10",  SMPS, 10,   &pmic5_ftsmps530, "vdd-s10"),
-+	RPMH_VREG("ldo1",   LDO,  1,    &pmic5_nldo530,      "vdd-l1"),
-+	RPMH_VREG("ldo2",   LDO,  2,    &pmic5_nldo530,      "vdd-l2"),
-+	RPMH_VREG("ldo3",   LDO,  3,    &pmic5_nldo530,      "vdd-l3"),
-+	RPMH_VREG("ldo4",   LDO,  4,    &pmic5_nldo530,      "vdd-l4"),
-+	{}
-+};
-+
-+static const struct rpmh_vreg_init_data pmh0101_vreg_data[] = {
-+	RPMH_VREG("ldo1",   LDO, 1,  &pmic5_nldo530,      "vdd-l1-l4-l10"),
-+	RPMH_VREG("ldo2",   LDO, 2,  &pmic5_pldo530_mvp300,      "vdd-l2-l13-l14"),
-+	RPMH_VREG("ldo3",   LDO, 3,  &pmic5_nldo530,      "vdd-l3-l11"),
-+	RPMH_VREG("ldo4",   LDO, 4,  &pmic5_nldo530,      "vdd-l1-l4-l10"),
-+	RPMH_VREG("ldo5",   LDO, 5,  &pmic5_pldo530_mvp150,      "vdd-l5-l16"),
-+	RPMH_VREG("ldo6",   LDO, 6,  &pmic5_pldo530_mvp300,      "vdd-l6-l7"),
-+	RPMH_VREG("ldo7",   LDO, 7,  &pmic5_pldo530_mvp300,      "vdd-l6-l7"),
-+	RPMH_VREG("ldo8",   LDO, 8,  &pmic5_pldo530_mvp150,      "vdd-l8-l9"),
-+	RPMH_VREG("ldo9",   LDO, 9,  &pmic5_pldo515_mv,      "vdd-l8-l9"),
-+	RPMH_VREG("ldo10",  LDO, 10, &pmic5_nldo530,      "vdd-l1-l4-l10"),
-+	RPMH_VREG("ldo11",  LDO, 11, &pmic5_nldo530,      "vdd-l3-l11"),
-+	RPMH_VREG("ldo12",  LDO, 12, &pmic5_nldo530,      "vdd-l12"),
-+	RPMH_VREG("ldo13",  LDO, 13, &pmic5_pldo530_mvp150,     "vdd-l2-l13-l14"),
-+	RPMH_VREG("ldo14",  LDO, 14, &pmic5_pldo530_mvp150,     "vdd-l2-l13-l14"),
-+	RPMH_VREG("ldo15",  LDO, 15, &pmic5_nldo530,      "vdd-l15"),
-+	RPMH_VREG("ldo16",  LDO, 15, &pmic5_pldo530_mvp600,      "vdd-l5-l16"),
-+	RPMH_VREG("ldo17",  LDO, 17, &pmic5_pldo515_mv,   "vdd-l17"),
-+	RPMH_VREG("ldo18",  LDO, 18, &pmic5_nldo530,      "vdd-l18"),
-+	RPMH_VREG("bob1",   BOB, 1,  &pmic5_bob,          "vdd-bob1"),
-+	RPMH_VREG("bob2",   BOB, 2,  &pmic5_bob,          "vdd-bob2"),
-+	{}
-+};
-+
-+static const struct rpmh_vreg_init_data pmh0104_vreg_data[] = {
-+	RPMH_VREG("smps1",   SMPS, 1,    &pmic5_ftsmps530, "vdd-s1"),
-+	RPMH_VREG("smps2",   SMPS, 2,    &pmic5_ftsmps530, "vdd-s2"),
-+	RPMH_VREG("smps3",   SMPS, 3,    &pmic5_ftsmps530, "vdd-s3"),
-+	RPMH_VREG("smps4",   SMPS, 4,    &pmic5_ftsmps530, "vdd-s4"),
-+	{}
-+};
-+
-+static const struct rpmh_vreg_init_data pmh0110_vreg_data[] = {
-+	RPMH_VREG("smps1",   SMPS, 1,    &pmic5_ftsmps530, "vdd-s1"),
-+	RPMH_VREG("smps2",   SMPS, 2,    &pmic5_ftsmps530, "vdd-s2"),
-+	RPMH_VREG("smps3",   SMPS, 3,    &pmic5_ftsmps530, "vdd-s3"),
-+	RPMH_VREG("smps4",   SMPS, 4,    &pmic5_ftsmps530, "vdd-s4"),
-+	RPMH_VREG("smps5",   SMPS, 5,    &pmic5_ftsmps530, "vdd-s5"),
-+	RPMH_VREG("smps6",   SMPS, 6,    &pmic5_ftsmps530, "vdd-s6"),
-+	RPMH_VREG("smps7",   SMPS, 7,    &pmic5_ftsmps530, "vdd-s7"),
-+	RPMH_VREG("smps8",   SMPS, 8,    &pmic5_ftsmps530, "vdd-s8"),
-+	RPMH_VREG("smps9",   SMPS, 9,    &pmic5_ftsmps530, "vdd-s9"),
-+	RPMH_VREG("smps10",  SMPS, 10,   &pmic5_ftsmps530, "vdd-s10"),
-+	RPMH_VREG("ldo1",   LDO,  1,    &pmic5_nldo530,      "vdd-l1"),
-+	RPMH_VREG("ldo2",   LDO,  2,    &pmic5_nldo530,      "vdd-l2"),
-+	RPMH_VREG("ldo3",   LDO,  3,    &pmic5_nldo530,      "vdd-l3"),
-+	RPMH_VREG("ldo4",   LDO,  4,    &pmic5_nldo530,      "vdd-l4"),
-+	{}
-+};
-+
- static const struct rpmh_vreg_init_data pmx55_vreg_data[] = {
- 	RPMH_VREG("smps1",  SMPS, 1,  &pmic5_ftsmps510, "vdd-s1"),
- 	RPMH_VREG("smps2",  SMPS, 2,  &pmic5_hfsmps510, "vdd-s2"),
-@@ -1727,6 +1897,22 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
- 		.compatible = "qcom,pmc8380-rpmh-regulators",
- 		.data = pmc8380_vreg_data,
- 	},
-+	{
-+		.compatible = "qcom,pmcx0102-rpmh-regulators",
-+		.data = pmcx0102_vreg_data,
-+	},
-+	{
-+		.compatible = "qcom,pmh0101-rpmh-regulators",
-+		.data = pmh0101_vreg_data,
-+	},
-+	{
-+		.compatible = "qcom,pmh0104-rpmh-regulators",
-+		.data = pmh0104_vreg_data,
-+	},
-+	{
-+		.compatible = "qcom,pmh0110-rpmh-regulators",
-+		.data = pmh0110_vreg_data,
-+	},
- 	{
- 		.compatible = "qcom,pmm8155au-rpmh-regulators",
- 		.data = pmm8155au_vreg_data,
+Thanks
+
+Mike
+
+On Tue, 16 Sept 2025 at 03:35, yuanfang zhang
+<yuanfang.zhang@oss.qualcomm.com> wrote:
+>
+> Hi Suzuki,
+>
+> Could this patch series be applied? Is there anything I need to update?
+>
+> thanks,
+> yuanfang.
+>
+> On 9/1/2025 2:58 PM, Yuanfang Zhang wrote:
+> > This patch series adds support for the Qualcomm CoreSight Interconnect TNOC
+> > (Trace Network On Chip) block, which acts as a CoreSight graph link forwarding
+> > trace data from subsystems to the Aggregator TNOC. Unlike the Aggregator TNOC,
+> > this block does not support aggregation or ATID assignment.
+> >
+> > Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> > ---
+> > Changes in v4:
+> > - Fix unintended blank line removals in trace_noc_enable_hw.
+> > - Link to v3: https://lore.kernel.org/r/20250828-itnoc-v3-0-f1b55dea7a27@oss.qualcomm.com
+> >
+> > Changes in v3:
+> > - Add detail for changes in V2.
+> > - Remove '#address-cells' and '#size-cells' properties from in-ports field.
+> > - Fix comment indentation for packet description.
+> > - Link to v2: https://lore.kernel.org/r/20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com
+> >
+> > Changes in v2:
+> > - Removed the trailing '|' after the description in qcom,coresight-itnoc.yaml.
+> > - Dropped the 'select' section from the YAML file.
+> > - Updated node name to use a more generic naming convention.
+> > - Removed the 'items' property from the compatible field.
+> > - Deleted the description for the reg property.
+> > - Dropped clock-names and adjusted the order of clock-names and clocks.
+> > - Moved additionalProperties to follow the $ref of out-ports.
+> > - Change "atid" type from u32 to int, set it as "-EOPNOTSUPP" for non-AMBA device.
+> > - Link to v1: https://lore.kernel.org/r/20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com
+> >
+> > ---
+> > Yuanfang Zhang (3):
+> >       dt-bindings: arm: qcom: Add Coresight Interconnect TNOC
+> >       coresight-tnoc: add platform driver to support Interconnect TNOC
+> >       coresight-tnoc: Add runtime PM support for Interconnect TNOC
+> >
+> >  .../bindings/arm/qcom,coresight-itnoc.yaml         |  90 ++++++++++++++
+> >  drivers/hwtracing/coresight/coresight-tnoc.c       | 136 +++++++++++++++++++--
+> >  2 files changed, 215 insertions(+), 11 deletions(-)
+> > ---
+> > base-commit: 2b52cf338d39d684a1c6af298e8204902c026aca
+> > change-id: 20250815-itnoc-460273d1b80c
+> >
+> > Best regards,
+>
+
 
 -- 
-2.25.1
-
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
