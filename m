@@ -1,172 +1,360 @@
-Return-Path: <devicetree+bounces-217924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E35EB59BBF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:15:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4865B59BC9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 368E63B1682
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:10:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E8C8188AAC3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 15:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E0B32F772;
-	Tue, 16 Sep 2025 15:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EDE305071;
+	Tue, 16 Sep 2025 15:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d3oPnFiD"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="Kwxqx+c9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860EA3191B9
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A750C30C624
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758035453; cv=none; b=cw8dHCTUJ4TVr1kZZNFmv/l2dFpH8sD3KrzneGlm2Ifx4nzWaOM88s4WbLJP2mYM1n4iYijQF66rMG9rXaqPzV6qHWYoa+/Nm1iNqfnavMSjsMd5ntGFACB+u6TzlOtakuhZD63QzoaJP9rbpCOtj8KSDdO/MG9iO4/WiLnVoD0=
+	t=1758035472; cv=none; b=dDtvDBfw15YmuYItKFPUmAQbOrtgYzAJmxeYb74FcF5cJUvZS6E00uiACABlvN+kI0ilDa0BdCBzsu5VPW/8ZUHSmoFpiGmOdEgRfvE/WY9mnzMIw5mw6QlnDnapHaceje+PU3NldyS8GnCMRmgnJee7RL7xbMeBuhh4OlpUXx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758035453; c=relaxed/simple;
-	bh=EQkMGw7chdf4s/ipZleWGh73O0Ryq0/JBuSJdDHibm0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BGLd5pZyEaX7acAjK+/jS+yFC2L02O1deKYqxXawLe3B+wfOP5CKWbcGilnunJ3fr8k3ok5bHLIkqmACMdGXmlRI8x8QskKXgmWzyq0iaWJtag9+NZ9QHlhTmk1lwxfAeHWEpxhXF+UWYuGmzpF2mUBLkRjeCCQYA1SYw4ss/xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d3oPnFiD; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GA49VN005233
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=g1Z+oPGXQpLxnAZpBbOZ/u5c
-	mt3wM5YUAcTV6PLokuA=; b=d3oPnFiDYbzgsQw8vdiCpR76ns9JcYMBKPVaX3jd
-	gApfGla58qI5RqlUdRsrwP7l4h38RQrOVWEJBaA7Bjpw152xxSpJgj6FM4j/pAdW
-	E0rO56RTTKFDdrN4AJMSCnu3d6XIFwbmp0drBaztN2DdcT02u7WDNv0uGcySfcBV
-	C45I9SLbYWWwgJornlsCEjUPpLm4PuJCUHjWE4cn3sIfqehMouKdlJz+68Q5G+M4
-	UeZ1GIOQYwZjTl8ojT7PumN5QELIeu0C55hbDAbR5tKe+AHUkkCIJrYjy0kdXXDe
-	Q2OlISo6BuWzYQ9jrBBNohaTST6pNEEygFxBgv/5BASWjA==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496g5n4yq3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 15:10:50 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-54a1ea646e9so1532558e0c.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:10:50 -0700 (PDT)
+	s=arc-20240116; t=1758035472; c=relaxed/simple;
+	bh=xkmrgQrzuoinSGmLnFEEJ2AOTZir1zfdepMZ+yTs35I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UpqcdrF1rTd2WFEc2Uj9REnlucLRVWnk0E93sPgXYSQSJAp8aqYGTlbePJ077k7XWOxsuopMvTi73bW6qfNwCHl4/0ZKUHwirz0HzZXdsedHf4T+iZnEI5oknVqfCgSXePEq0RV/spc4PnL9E16btOpSbKsCLamvvTWjJLclkRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=Kwxqx+c9; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45cb6428c46so66898315e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 08:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1758035468; x=1758640268; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bPk7Eye8VC0M0v+kNj0lPuEjCqs4U6Y0PjjlUqi87Gk=;
+        b=Kwxqx+c9xZ+R1Dg24p2JdxMfNYD0TB6u9cEOJg/8odcn41P4rNX8ARLyA1hTjEetz2
+         moAK6NQLNbEgqxlo8bRrRhcEWuRJxSXZPAJb6Ps4Ai2eRyqLXXJ5AXpax0PjZatXtVNn
+         vBcCtwQ0Y+HjVp8wg7TXmaVytkW1Ad7bFcNDDxgQCZJWiAUIwxY2AnP6TFmAL81Kbn1W
+         5Zbay31a07wIIGwB7JNAHUQyfSCDIeF9at8if6uAZn2ML2rzjyH2vP71f3aO2NSI/fMi
+         cDT4ChbEa22gh+9yLQ73YW0qZ/8W4fIikYgWeFj7Qavda0TtfGBQsh+/3IpdCEJ63yxN
+         TbXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758035449; x=1758640249;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g1Z+oPGXQpLxnAZpBbOZ/u5cmt3wM5YUAcTV6PLokuA=;
-        b=jzafTsHiS1px6eysAS0Txh64f6oAoIDydEgCaPsozhW20KbA3w3vSN2pprHK1tKVJf
-         EcM8MQirO0mNs6b4PNRctGriIxInEpgEL9XELmohaBvwGyrRIoklyXvqvO6ndgBngRmu
-         hx2IbMAsYCCLrQ7bx56bZhPYBqWbmi8RW1bIALH/f37KeogkyDXpI2EYBErVG33ZlH0O
-         M6abJY0h1oilFhaP0nwD0T2z4L7q6CexD89gNyWXd6U3pnvtv0PXNjzDj+kde3E5dTOo
-         24762EkAqKP4iGD7pEE37OWsgPPHwq76SBJYdBzHbxDk7uC1pQ5UqHF4CGDl/o3HemiR
-         kVMg==
-X-Forwarded-Encrypted: i=1; AJvYcCUgHiRXLT29p8m98hfFns38E78aS3MUvuLg5F5qW3+U33kHg+DJUj1aJInKyH+6N5su08ohQIqHWaKE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDEbnOjvUVuUA/UbiccN4wCmkhaimFJAPjVwxEa9Afw70g15Mw
-	rs3I2wtW8r0MTezQRbblxVBxn42HW3QBnWRlcBIHnr2vCNwy8ldzzaz+MxHvTYMNIjEwFsCkMx6
-	M2ADNHuLs7VEcd/VOFj9xTmsnFJ4SG2QlVNCWjbXCaQl2bw70iWevDsy2cLVmOYQv
-X-Gm-Gg: ASbGncstEwCBeiu4nnc/P56kNRdUku1VMRKeYZbgouw+6yiZOLtU6wlD4Nyfgfa5a3P
-	PKKBlqgZd/7OGlDSAbt14YLKXv6ABgl6JjWx9qJLBluxSuwXySxi0GgY4yliH57ze1KOeyKYnDu
-	iQS316IZt9aa6rvyYDDhZb/pnVq/0AWvGV6sF/ndqqgFMDYCysvdJf2gAjfOM0a3cu1n58Uiuhj
-	BT+gqi+Y00O22NUZKp9HlLjZ/sla76nn2H5rXYgyB6BwhfWqoBxXXOfjoLshhdz9z+s/6HMX0NT
-	hCK5hK+65PDg9RLnQdhg+/XJ/uShn4KOhDbnZ66WEddB3Hlvzt8SIgvQe3ZO/ZNL05r1H38Yi2D
-	bG0W7jmCJ62isJqcLT8dPiltm02jIdtUlyU2ZcGaai8ebnDwBCfsz
-X-Received: by 2002:a05:6122:8c1e:b0:545:f023:ac1d with SMTP id 71dfb90a1353d-54a1699578cmr4957831e0c.0.1758035448986;
-        Tue, 16 Sep 2025 08:10:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGOjBcIPt0evZtEawDOU4ceL65KWW429XS23INAGRqTzAWor5/oJYp5i4nvKOrZ/npWDeBcWA==
-X-Received: by 2002:a05:6122:8c1e:b0:545:f023:ac1d with SMTP id 71dfb90a1353d-54a1699578cmr4957779e0c.0.1758035448483;
-        Tue, 16 Sep 2025 08:10:48 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-35e8957bc07sm411231fa.18.2025.09.16.08.10.47
+        d=1e100.net; s=20230601; t=1758035468; x=1758640268;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bPk7Eye8VC0M0v+kNj0lPuEjCqs4U6Y0PjjlUqi87Gk=;
+        b=julqYBCMwbV1/jPfz7VBwRV664Jr7IjpPfcSywrKavlktuStp7EVen1YDMsmvVAtIf
+         VeLElO6NqCsmbFPgqySNr8d41PBgtgpVhlzaRD1gSu0HaC5pJTE4vjvoi3mNF+fJ24BA
+         REseqTDimAQAUoQHb3qCd0Ii8kC+E5ypneNt4P/AisxaJhjjvpinQbbW7bE4jCSgkiJw
+         RiLCLNP6aduAh563eglp7Kj/kZTiVCIhBJ7W43NwIQlDrlWWkaAu7jovPCmVA8eSb46B
+         5280RjIF6ZZIONkrwq8GfaS1YORMsnHLhpAiJy4HYbBYIUCVEfPRjiT8K0/Vs/stgj2U
+         gt7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUE7GF4ZU8IVrMOA18dfYU0na62+y/t9yB8G9rbC+q2ZuplozsNR0pS0lln4twKl1yC+EEe+3b8F6Qj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhTQtcdi/QQJj6TzY01zvfg4QjzGYaJDI/8LMe89tofyT2Pcb+
+	RajD0M6uuinErB8774C7Ycurs4n2X3lhcR/klUI+lNy6VlAWEnVjfGl+8SEFHiFATJQ=
+X-Gm-Gg: ASbGncscAIkz9stsqr4vTB1lgLeOEp3QEDCQnf89XH8GgQlg0JW+0JzudEvwNJVD+0l
+	sgjMY3QKb7TwwaYNWbd1mo/cfTLkOJsXg1mrSKr1F/uV50mU62D2fAHx9JZ7VZhSx8XjIkU/zrg
+	fvtCDYcBuDEkLs71mBq5v4fT9lI9/h/tGUi5n+ois9MW2ThgX7daPmaimZ8ntxqLOHMBcT7Q1GK
+	/Z8IvhT/bNTTAlFA7XaqCXlI5Q+s8M1AijGO1Y9deBS4QJ4pHCEuuWxvhOdnaDmZCpjgjFkILL3
+	HjbhpFxKv2uiYJnJTpXelRFKI/GuDv9avVLWWIKRqO+UbsaexyRJFjm1cGExd+fWRmekoC8s1Q+
+	u0u3b3MrsJAXq7MP4i0xRbjt+wfrJtydLCjdV
+X-Google-Smtp-Source: AGHT+IHbw6qxWvt5wbaMCmyumPYxGMAg1kB+B0i3NMY43imy1I5P/7lTqLPtuRpzSsTf960J7N+NIg==
+X-Received: by 2002:a05:600c:1c87:b0:45b:67e9:121e with SMTP id 5b1f17b1804b1-45f231e59f5mr159038485e9.14.1758035467495;
+        Tue, 16 Sep 2025 08:11:07 -0700 (PDT)
+Received: from [127.0.1.1] ([2a02:c7c:8a3e:8c00:9fef:1965:7419:ed5c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f325c3c29sm19772955e9.3.2025.09.16.08.11.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Sep 2025 08:10:47 -0700 (PDT)
-Date: Tue, 16 Sep 2025 18:10:45 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com
-Subject: Re: [PATCH v3] dt-bindings: display/msm: dp-controller: Add SM6150
-Message-ID: <av6zvj7civjycnj7vsdfufdlnpcq4mlpz5cwpamtapzkdqoe6h@rqfea46xs2r6>
-References: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+        Tue, 16 Sep 2025 08:11:06 -0700 (PDT)
+From: Harrison Carter <hcarter@thegoodpenguin.co.uk>
+Date: Tue, 16 Sep 2025 16:11:01 +0100
+Subject: [PATCH v2] dt-bindings: leds: as3645: Convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
-X-Proofpoint-GUID: U8DU3C7nbqHMDok36OHLbKn1D6Qs3qir
-X-Proofpoint-ORIG-GUID: U8DU3C7nbqHMDok36OHLbKn1D6Qs3qir
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA4NyBTYWx0ZWRfX/B9lDzDzR/vf
- vmbK8QzZtCUUnUDvs4JRBQmp22U0syOcmnKeuRISyhrjNT50nbKmKV20Wlpg0q0+nl+zJyAvt8t
- g6cvYMfa04ln+Dm7uhCBMtuEddDuy3cfuWOzjLFrkGGj58jhmMqEa7Qb8q1S5X58SlTPpZazXu0
- n+bh3D4V8HezR8X91OWpS214pz9wQZ0VCwmlC9UCgQgggw6xpsr54ldPvfLnFZkjuucIMugAF9V
- 2uMT2yX9YZyaEfraxxQMdA+hX3pMMEcTzzB08jJo82/zii8vtCxC7nOmxISgwnXvRocI/sKlkAA
- DCp83pzByKrkfLPhRM6ceqPJMScawjEWU/KK7F7urG6/Fv4Y+VM4c1hI9FA1Cki9d9/P8xqjSwV
- RzXVoMjQ
-X-Authority-Analysis: v=2.4 cv=SaD3duRu c=1 sm=1 tr=0 ts=68c97dfa cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=kjV3pKRppw1HhCH-an0A:9
- a=CjuIK1q_8ugA:10 a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-12_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 malwarescore=0 phishscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509150087
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250916-ams-txt-to-dt-schema-v2-1-6a9db6fb7ea3@thegoodpenguin.co.uk>
+X-B4-Tracking: v=1; b=H4sIAAR+yWgC/22NQQqDMBBFryKz7kgSq2hXvUdxEeLUDMVEkigW8
+ e5Nhe66fA/++ztECkwRbsUOgVaO7F0GdSnAWO1GQh4ygxKqFp1oUE8R05YweRwSRmNp0qhbJUm
+ QqMy1gTydAz15O7OPPrPlmHx4ny+r/NpfsPsfXCVKbHUljKpNq7r6niyN3g8zuXFhVxpfLi/oj
+ +P4AGbVpgfDAAAA
+X-Change-ID: 20250906-ams-txt-to-dt-schema-a821e0e03c46
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Harrison Carter <hcarter@thegoodpenguin.co.uk>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758035466; l=7070;
+ i=hcarter@thegoodpenguin.co.uk; s=20250904; h=from:subject:message-id;
+ bh=xkmrgQrzuoinSGmLnFEEJ2AOTZir1zfdepMZ+yTs35I=;
+ b=T+hrbsjhuiEhtbX04hVENKpnyxlzf2ToED+98eAqkcnPzJJHixSsCzNM8wYKKDNbGjsRjjFyS
+ bcZvHbqKkusChPF/5d5ezVbCmPg9/Em+PdbEzY2XrrCU/j5n0ehhwx7
+X-Developer-Key: i=hcarter@thegoodpenguin.co.uk; a=ed25519;
+ pk=xn5ghTMMWQniDtZih4xwKCTAaBHDozflTmqNKtaKo6s=
 
-On Tue, Sep 16, 2025 at 08:11:03PM +0800, Xiangxu Yin wrote:
-> Add DisplayPort controller binding for Qualcomm SM6150 SoC.
-> SM6150 uses the same controller IP as SM8150.
-> Declare 'qcom,sm6150-dp' as a fallback compatible to
-> 'qcom,sm8150-dp' and 'qcom,sm8350-dp' for consistency with existing
-> bindings and to ensure correct matching and future clarity.
-> 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> ---
-> This series splits the SM6150 dp-controller definition from the
-> '[v3] Add DisplayPort support for QCS615 platform' series and rebases
-> 'dt-bindings: msm/dp: Add support for 4 pixel streams'.
-> 
-> The devicetree modification for DisplayPort on SM6150 will be provided
-> in a future patch.
-> ---
-> Changes in v3:
-> - Update binding fallback chain to "qcom,sm6150-dp", "qcom,sm8150-dp", "qcom,sm8350-dp". [Dmitry]
-> - Link to v2: https://lore.kernel.org/r/20250916-add-dp-controller-support-for-sm6150-v2-1-e466da9bb77d@oss.qualcomm.com
-> 
-> Changes in v2:
-> - Update commit message and binding with fallback configuration. [Dmitry]
-> - Drop driver patch since SM6150 is declared as a fallback to 'qcom-sm8350-dp'.
-> - Link to v1: https://lore.kernel.org/r/20250912-add-dp-controller-support-for-sm6150-v1-0-02b34b7b719d@oss.qualcomm.com
-> ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+Convert the ams,as3645a.txt to DT Schema format.
 
-LGTM
+Signed-off-by: Harrison Carter <hcarter@thegoodpenguin.co.uk>
+---
+Changes in v2:
+- removed unnecessary descriptions
+- cleaned up clear text
+- fixed syntax
+- fixed line length
+- Link to v1: https://lore.kernel.org/r/20250909-ams-txt-to-dt-schema-v1-1-8a30c25c8295@thegoodpenguin.co.uk
+---
+maintainer: set to what I found in MAINTAINERS
+---
+ .../devicetree/bindings/leds/ams,as3645a.txt       |  85 --------------
+ .../devicetree/bindings/leds/ams,as3645a.yaml      | 130 +++++++++++++++++++++
+ 2 files changed, 130 insertions(+), 85 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.txt b/Documentation/devicetree/bindings/leds/ams,as3645a.txt
+deleted file mode 100644
+index 4af2987b25e92394ebd46456e30002d3ae3a6101..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/leds/ams,as3645a.txt
++++ /dev/null
+@@ -1,85 +0,0 @@
+-Analog devices AS3645A device tree bindings
+-
+-The AS3645A flash LED controller can drive two LEDs, one high current
+-flash LED and one indicator LED. The high current flash LED can be
+-used in torch mode as well.
+-
+-Ranges below noted as [a, b] are closed ranges between a and b, i.e. a
+-and b are included in the range.
+-
+-Please also see common.txt in the same directory.
+-
+-
+-Required properties
+-===================
+-
+-compatible	: Must be "ams,as3645a".
+-reg		: The I2C address of the device. Typically 0x30.
+-#address-cells	: 1
+-#size-cells	: 0
+-
+-
+-Required properties of the flash child node (0)
+-===============================================
+-
+-reg: 0
+-flash-timeout-us: Flash timeout in microseconds. The value must be in
+-		  the range [100000, 850000] and divisible by 50000.
+-flash-max-microamp: Maximum flash current in microamperes. Has to be
+-		    in the range between [200000, 500000] and
+-		    divisible by 20000.
+-led-max-microamp: Maximum torch (assist) current in microamperes. The
+-		  value must be in the range between [20000, 160000] and
+-		  divisible by 20000.
+-ams,input-max-microamp: Maximum flash controller input current. The
+-			value must be in the range [1250000, 2000000]
+-			and divisible by 50000.
+-
+-
+-Optional properties of the flash child node
+-===========================================
+-
+-function	:  See Documentation/devicetree/bindings/leds/common.txt.
+-color		:  See Documentation/devicetree/bindings/leds/common.txt.
+-label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
+-
+-
+-Required properties of the indicator child node (1)
+-===================================================
+-
+-reg: 1
+-led-max-microamp: Maximum indicator current. The allowed values are
+-		  2500, 5000, 7500 and 10000.
+-
+-Optional properties of the indicator child node
+-===============================================
+-
+-function	:  See Documentation/devicetree/bindings/leds/common.txt.
+-color		:  See Documentation/devicetree/bindings/leds/common.txt.
+-label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
+-
+-
+-Example
+-=======
+-
+-#include <dt-bindings/leds/common.h>
+-
+-	as3645a@30 {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x30>;
+-		compatible = "ams,as3645a";
+-		led@0 {
+-			reg = <0x0>;
+-			flash-timeout-us = <150000>;
+-			flash-max-microamp = <320000>;
+-			led-max-microamp = <60000>;
+-			ams,input-max-microamp = <1750000>;
+-			function = LED_FUNCTION_FLASH;
+-		};
+-		led@1 {
+-			reg = <0x1>;
+-			led-max-microamp = <10000>;
+-			function = LED_FUNCTION_INDICATOR;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.yaml b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..250a4b275d8a8af28c69d14a419587f7a3db6ef8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
+@@ -0,0 +1,130 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/ams,as3645a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AS3645A LED Controller
++
++maintainers:
++  - Sakari Ailus <sakari.ailus@iki.fi>
++
++description:
++  The AS3645A flash LED controller can drive two LEDs, one
++  high current flash LED and one indicator LED. The high
++  current flash LED can be used in torch mode as well.
++
++properties:
++  compatible:
++    const: ams,as3645a
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  reg:
++    maxItems: 1
++
++  led@0:
++    description: led0 describes the 'flash' feature
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        const: 0
++
++      flash-timeout-us:
++        minimum: 100000
++        maximum: 850000
++        multipleOf: 50000
++
++      flash-max-microamp:
++        minimum: 200000
++        maximum: 500000
++        multipleOf: 20000
++
++      led-max-microamp:
++        minimum: 20000
++        maximum: 160000
++        multipleOf: 20000
++        description:
++          Maximum current when in torch (assist) mode.
++
++      ams,input-max-microamp:
++        minimum: 1250000
++        maximum: 2000000
++        multipleOf: 50000
++
++    required:
++      - reg
++      - flash-timeout-us
++      - flash-max-microamp
++      - led-max-microamp
++      - ams,input-max-microamp
++
++  led@1:
++    description: led1 describes the 'indicator' feature
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        const: 1
++
++      led-max-microamp:
++        enum:
++          - 2500
++          - 5000
++          - 7500
++          - 10000
++        description:
++          Maximum indicator current.
++
++    required:
++      - reg
++      - led-max-microamp
++
++required:
++  - compatible
++  - reg
++  - "#size-cells"
++  - "#address-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    i2c{
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@30 {
++            compatible = "ams,as3645a";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0x30>;
++
++            led@0 {
++                reg = <0>;
++                flash-timeout-us = <150000>;
++                flash-max-microamp = <320000>;
++                led-max-microamp = <60000>;
++                ams,input-max-microamp = <1750000>;
++                function = LED_FUNCTION_FLASH;
++            };
++
++            led@1 {
++                reg = <1>;
++                led-max-microamp = <10000>;
++                function = LED_FUNCTION_INDICATOR;
++            };
++        };
++    };
++...
+
+---
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+change-id: 20250906-ams-txt-to-dt-schema-a821e0e03c46
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Harrison Carter <hcarter@thegoodpenguin.co.uk>
+
 
