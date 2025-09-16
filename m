@@ -1,206 +1,267 @@
-Return-Path: <devicetree+bounces-217671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B00B58D9A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 06:57:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DCCB58DAE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 06:59:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B83E7189F23D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:56:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB274486896
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 04:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693CD23BD1A;
-	Tue, 16 Sep 2025 04:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9B726B764;
+	Tue, 16 Sep 2025 04:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IzKeQ/k2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LtsrrG2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B66B22E3F0
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 04:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB75423D7DA
+	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 04:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757998333; cv=none; b=QVwPlOliYRhjOA3ujJGb8CcTUUE2kh5Shv7CML4Peq6rAi+FtgplYWSLnofh7hEm3d9UhZCfr6DTqSnUg+PfxxtgrrIB3C/EHPSgoP7M5+lAXGvJDVmTwaQoAznub5ucMQgpamNCjGvJlcwu4kUZHWcXCV1xkmRWtkxG5CZSBpw=
+	t=1757998545; cv=none; b=dNrRF6JbB64lE8gTjgTePlt5knaXNZQRfIv+rf7RHYZnV/DTEqWDKlJR14cliCNZbZReuKia7GSGE8/CbK4glDOb88seJeZ9kKEXEWBQ7SMotAtXWlx5BQPnYg+a8+8IrkKeaWKTLkGEW/mykOaWguuxK7NX9LHUz2R+Wi7fSuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757998333; c=relaxed/simple;
-	bh=Bw+sVaY8CU+7cwV8moDBL+RfHtg4QBDwi2G8Pe/+Mq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gCtMyxerSxCKK2+WLuSTcqm/0KFUilZ/7koZvrYYmbHo3qLrf7i9gYrjGbQRKLyXONrO1FB+r7B5lUesmLEhmKkz7DvS5YGj0PuYikcs4XIG5tmubixHpO5ilUIozM7RA3P0i6oapJltjadCNycG2hUJcxhmx1ftU47XPqcy86Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IzKeQ/k2; arc=none smtp.client-ip=209.85.167.53
+	s=arc-20240116; t=1757998545; c=relaxed/simple;
+	bh=5rE76gQgJQKBWzXKcgUF0aME2xKJUWOEZnpj27dj58s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oO7Pvm9SKDgUiGGFJNLceHlnT78m5dqOPZid9xXVoY3hYDT8H4HBBGk8jv3gmU8az+g8ZuC6wdZTheBHqGC3aCulpUmpXWtlezYgNaSMP5rOBLTJyABiquvD1sJxWvlQesK2L2UH2eIlzNz0DM4bfql6O4PujyX2TIeS4VMSQEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LtsrrG2k; arc=none smtp.client-ip=209.85.219.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f720ffe34so5606445e87.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 21:52:11 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e94d678e116so5158489276.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Sep 2025 21:55:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757998330; x=1758603130; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qV2j4il5ZuIOQndYht3+Fbfog1BTCL9gr5IXcnrc4fE=;
-        b=IzKeQ/k2r5BHYZ0OSV41tsDv/xA32nXuK5adQlQWVPDVvIIeCFIKGfXUHRO0psPDQP
-         BRO6zcgjInmtyEv2iICubrx3hHivufsB+Y4ufdVBUeDa6Co13472zElGfI4F9V6Ru73z
-         X+44FRdFsUo5cUKTX5sVOMmaK5XzIGsQbiL3CDd/vFoLOQqbo+oUHeirdfhVTKa6qD+n
-         sqhMLaq008C2tFnUERmB2+qiBSE4vYVQfYsx0kYzaCYK2maRCotqYywG+geRjYXd8kwe
-         fK1Lcl73eZm85T2j+fmQp/d6ZY7M0A4LsYcvxlv0YMCy+ac7MCtvjSkD/zJEL3hS66Ka
-         pasw==
+        d=gmail.com; s=20230601; t=1757998543; x=1758603343; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GBcjRbm3FVwYUlOZdbgLY3RSHrk0clAp1Nkb0I9SPZU=;
+        b=LtsrrG2kPLIwwR71JmQyCe02cf4X+I8llghjpAOPsRFd+h62zT3iDIyz0ravAftmCo
+         cFXlr5+JvP/6sfBg8IgjHtLNQx7wufqxyjtsnZb9kRq6xPMVRagc2UnVNJNZgoFxuLkO
+         zm4F2IgBryMCEupRBBW0FYNW5ngtfpZ6hpnm8pGXCuDMjUohc/RPZ5r4bv9Fxhe/DRID
+         Bv95sldw4iQE0cwmtUodxEpfpRqvaWW4yugQ+I2fERAtUYyGVhShMs01dUkemLBXZrSQ
+         QXprEfM7HpqNKZTC3pZDmxJy9/d65zKOBTRyOkW5jgCAO9BYn2uKCBmcO/pv+xiGrcOG
+         LiFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757998330; x=1758603130;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qV2j4il5ZuIOQndYht3+Fbfog1BTCL9gr5IXcnrc4fE=;
-        b=GwfuCbGRwywI4TW/y7U9jAGOGCsiVaPf2QyrHLh2mLibx6FB2svRB1ofx5WUpzsMpG
-         /bBzzgVZK37zxFdESHBJGNIeR4ie8z0Z0rWbQFW5x1Soo16jaVn5hKfwG48NDNE7uT4R
-         EkhJURZP+fZ/hhtinWuoTaozcXflOxWmOGNN97pMQnTwrZuFjNAGxLoJ1PoAGtO5JeHi
-         2V+ARTSDjWTb/dp8Sf10Z94mj3e30A+NvU8q27HqHErdHqJPT6DHgluq8ZjSHWDip8lm
-         rmwNvh/tuf4JirK7umSy9B2FrpaPwc/WwAwUI+noeDdegV/kxX1M148fq62yYvt5GSGg
-         nOPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUioGbMS1fLwIsFMhg4qfKJVbz67OFayNc58/ERnyQsHAU59a7GVTFKu821MYfq5udji3KF5E3ZiwTq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRdMgescJhCyVEJSdcv2zUGAFm000cSJ/4m661712xBElKljvE
-	3WQpY7HKGk9imQ6Pg3xtBtPfGDWbXx/E9MMhjofIlgthYdJSLhc7IFSa
-X-Gm-Gg: ASbGncvfTDhlihmEo836kANFxk754fHyHFSCaQd++WBbledu+Q1bOiuG7FrHXl04uW7
-	4LG2JL160MTIL10+V9y1TLpBe5JUuTCrncuGOMFHJbP3wbqdJZbRsMNSSJrPFGgBakHxK6DLENU
-	Rci3j9PREnQf5bk4kQfmCmjC5VFSgzFm1oU/iREu37ID1IjhpcmK67pstTOK5Ir+GDmWhZMDSNU
-	pIOwECFXjVdru/15A4SJbxoHUtlIoMyME1wGpx3mi2654jooSgw4crSq80c4zflFf23OwxEEhnK
-	Onfm/7ulOTb6nZyknbYWXoBDCt2MPnS51etKnigBjbVBV2ue5GeuMPVo/cF63F1JOkT4/6J6zgw
-	VRjEEsZ5eMeV1doYdM43/NZCD+wpZWz1YZCmryaUevLpGimfOfQYjzg/KAN/1rYtXz9oQ16vopI
-	ANu9GU
-X-Google-Smtp-Source: AGHT+IHDfoXUWHL+1d3NPjZRBAKkpSzJMJ4TN4AtBJ3uD/xkbljqRSjaJ2aPZxMrn4mjvSIHt7VAQw==
-X-Received: by 2002:a05:6512:acd:b0:55f:400b:1144 with SMTP id 2adb3069b0e04-5763ff929ffmr308937e87.27.1757998329275;
-        Mon, 15 Sep 2025 21:52:09 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56e5c3b6188sm4168144e87.3.2025.09.15.21.52.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 21:52:08 -0700 (PDT)
-Message-ID: <c1d21e3c-b0a3-40a5-b693-a38673f8bf53@gmail.com>
-Date: Tue, 16 Sep 2025 07:52:07 +0300
+        d=1e100.net; s=20230601; t=1757998543; x=1758603343;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GBcjRbm3FVwYUlOZdbgLY3RSHrk0clAp1Nkb0I9SPZU=;
+        b=E690+K1Jk2D3Uf0DdX6jafy5AhF8Ip2JRVcM7BqOveJ5gt+/VYwJ65IvAqdsJ86KAI
+         0G8nPfE2DRiPer1ymaesOvo06465i3cfqc3RLGwe7CmYFKcQ+nIVDVs59Yy6y7ov9K7r
+         wR0+FrCNwtbsYD9wMp2KlF1sdxVl7C7pDJNfog5dMHU4GW69jGeRUH6vRCbhQ7DjgdTK
+         EF0ncW8rzxXp5dRQPmitt7l+2CLwHa6HnAL4Ux4StI9rd4wgpZmo2698KtvVniv2lQsd
+         w3BHiX+CXA2osV3AaDIB98o9tFrMA/2zRlNuc+FugVjtAfISh+JwJsgzEgjmKJ8QO/la
+         psLw==
+X-Forwarded-Encrypted: i=1; AJvYcCXNfB8wFG0MJT5VGZAsxSLCDVlCXqKfPqJuSN5pLfzWhD67bhMW5jt0jOkOVBAijrd1ZWRBbBSBwGMF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpXyVevb1f6D1413UHsY19XtFBc5wq3F3nt4nbhhGOcHntzk9c
+	H6TvizHwcoQNx5WZrW82+tyPXgKyQhA8DbIMAOZWl9bNDMjJ2EGLPsKSo6JsiW1u2RCuZtPQzBI
+	SK/5mZWYM6g98Gx4dXGWzJCMLYW+e2rE=
+X-Gm-Gg: ASbGncvVXS1M0IqGTCztAbttngMUrANniGNx93sy7pe1ZNIjN1k7nmw7oqV2weKmA7V
+	fSCU53NACSamsjCsVtBO0vnnE4IKcJtJzvEo0NDsysLzIZM98/IwebkpNpyX47U598i/xWY93xo
+	KDcpK7PBi/xHZMpwzD3/gG18T5p8rhdPCk1C//5gDndblZAPpDbdLiGtJY2wA+yL0NZqiCAhPtk
+	jzVcpFe5xNdGFH86+Mxxddj7yaaayzYv4V5qjZQKncLBtXnw9lwwm838qGe7h5zAGueDD6E
+X-Google-Smtp-Source: AGHT+IFXVrlkAw4hIUMkjDUsgYvyK7EgpmYsPWpx/dWgsCW+cokg9VHakZyQIrCx9AHlixfNXCZ76u+Wtg35mXq2D/U=
+X-Received: by 2002:a53:cb41:0:b0:612:891a:9ecc with SMTP id
+ 956f58d0204a3-627202230a3mr10138013d50.9.1757998542602; Mon, 15 Sep 2025
+ 21:55:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Jonathan Cameron <jic23@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250915-bd79112-v5-0-a74e011a0560@gmail.com>
- <20250915-bd79112-v5-2-a74e011a0560@gmail.com>
- <aMge0jYwYCiY72Yb@smile.fi.intel.com> <20250915211321.47865d3d@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250915211321.47865d3d@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com>
+ <20250912-mt8196-gpufreq-v2-5-779a8a3729d9@collabora.com> <CAPaKu7Q+KAzEtKBWy8KO2Kp+H4y-Mqo34uo=jgH1_iooaDq3hA@mail.gmail.com>
+ <8577914.T7Z3S40VBb@workhorse>
+In-Reply-To: <8577914.T7Z3S40VBb@workhorse>
+From: Chia-I Wu <olvaffe@gmail.com>
+Date: Mon, 15 Sep 2025 21:55:30 -0700
+X-Gm-Features: AS18NWCUMIgi23a5SaUlUvMdo-ihykJDXaO9mGCW6rE2ZLrI7uXsuBJkrMkP79E
+Message-ID: <CAPaKu7STDDp6D_fDGVfAKFrb5aWcxtwsT3nYtYDQQYCs7G9upA@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] mailbox: add MediaTek GPUEB IPI mailbox
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/09/2025 23:13, Jonathan Cameron wrote:
-> On Mon, 15 Sep 2025 17:12:34 +0300
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> 
->> On Mon, Sep 15, 2025 at 10:12:43AM +0300, Matti Vaittinen wrote:
->>> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
->>> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
->>>
->>> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
->>> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
->>> daisy-chain configuration) and maximum sampling rate is 1MSPS.
->>>
->>> The IC does also support CRC but it is not implemented in the driver.
->>
->> ...
->>
->>> +static int bd79112_probe(struct spi_device *spi)
->>> +{
->>> +	struct bd79112_data *data;
->>> +	struct iio_dev *iio_dev;
->>> +	struct iio_chan_spec *cs;
->>> +	struct device *dev = &spi->dev;
->>> +	unsigned long gpio_pins, pin;
->>> +	unsigned int i;
->>> +	int ret;
->>> +
->>> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
->>> +	if (!iio_dev)
->>> +		return -ENOMEM;
->>> +
->>> +	data = iio_priv(iio_dev);
->>> +	data->spi = spi;
->>> +	data->dev = dev;
->>> +	data->map = devm_regmap_init(dev, NULL, data, &bd79112_regmap);
->>> +	if (IS_ERR(data->map))
->>> +		return dev_err_probe(dev, PTR_ERR(data->map),
->>> +				     "Failed to initialize Regmap\n");
->>> +
->>> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
->>> +	if (ret < 0)
->>> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
->>
->>> +	data->vref_mv = ret / 1000;
->>
->> I still think moving to _mV is the right thing to do.
->> There is no 'mv' in the physics for Volts.
-> 
-> I'm not disagreeing with this review but I'm also not going to hold a
-> driver back for that given timing is pretty much such that I merge it
-> today or it sits a cycle and this one is very near...
-> I'll get fussier on this once we have written up some guidance and may
-> well send a patch to modify existing recent cases like this one!
-
-As I replied to Andy, I am disagreeing with this. I hope we won't start 
-renaming variables with capital letters :(
-
->>
->>> +	ret = devm_regulator_get_enable(dev, "iovdd");
->>> +	if (ret < 0)
->>> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
->>> +
->>> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
->>> +	data->read_xfer[0].len = sizeof(data->read_tx);
->>> +	data->read_xfer[0].cs_change = 1;
->>> +	data->read_xfer[1].rx_buf = &data->read_rx;
->>> +	data->read_xfer[1].len = sizeof(data->read_rx);
->>> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
->>
->>> +	devm_spi_optimize_message(dev, spi, &data->read_msg);
->>
->> And if it fails?..
-> I've added the following and applied the series.
-
-Thanks!
-
-> Note I'm cutting this fine so if we get any build issues or similar
-> it might well get pushed back to next cycle yet!
-> 
-> diff --git a/drivers/iio/adc/rohm-bd79112.c b/drivers/iio/adc/rohm-bd79112.c
-> index b406d4ee5411..d15e06c8b94d 100644
-> --- a/drivers/iio/adc/rohm-bd79112.c
-> +++ b/drivers/iio/adc/rohm-bd79112.c
-> @@ -454,12 +454,18 @@ static int bd79112_probe(struct spi_device *spi)
->          data->read_xfer[1].rx_buf = &data->read_rx;
->          data->read_xfer[1].len = sizeof(data->read_rx);
->          spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
-> -       devm_spi_optimize_message(dev, spi, &data->read_msg);
-> +       ret = devm_spi_optimize_message(dev, spi, &data->read_msg);
-> +       if (ret < 0)
-> +               return dev_err_probe(dev, ret,
-> +                                    "Failed to optimize SPI read message\n");
->   
-
-I am not really sure under what conditions the 
-devm_spi_optimize_message() could fail. It might be enough to print a 
-warning and proceed, but I don't think returning is a problem either.
-
-Thanks a lot for going an extra mile and taking care of this!
-
-Yours,
-	-- Matti
+On Mon, Sep 15, 2025 at 6:34=E2=80=AFAM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Saturday, 13 September 2025 00:11:10 Central European Summer Time Chia=
+-I Wu wrote:
+> > On Fri, Sep 12, 2025 at 11:38=E2=80=AFAM Nicolas Frattaroli
+> > <nicolas.frattaroli@collabora.com> wrote:
+> > <snipped>
+> > > +static irqreturn_t mtk_gpueb_mbox_thread(int irq, void *data)
+> > > +{
+> > > +       struct mtk_gpueb_mbox_chan *ch =3D data;
+> > > +       int status;
+> > > +
+> > > +       status =3D atomic_cmpxchg(&ch->rx_status,
+> > > +                               MBOX_FULL | MBOX_CLOGGED, MBOX_FULL);
+> > > +       if (status =3D=3D (MBOX_FULL | MBOX_CLOGGED)) {
+> > > +               mtk_gpueb_mbox_read_rx(ch);
+> > > +               writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ=
+_CLR);
+> > > +               mbox_chan_received_data(&ch->ebm->mbox.chans[ch->num]=
+,
+> > > +                                       ch->rx_buf);
+> > Given what other drivers do, and how mtk_mfg consumes the data, we shou=
+ld
+> >
+> >   char buf[MAX_OF_RX_LEN]; //  MAX_OF_RX_LEN is 32; we can also
+> > allocate it during probe
+> >   mtk_gpueb_mbox_read_rx(ch);
+> >   mbox_chan_received_data(..., buf);
+> >
+> > mtx_mfg makes a copy eventually anyway.
+>
+> We don't right now, at least not until after the callback returns.
+> So we need to have the copy in the mtk_mfg callback, not after the
+> completion. That's fine and I do want to do this as this is what
+> the mailbox framework seems to expect clients to do.
+>
+> > We don't need to maintain any
+> > extra copy.
+> >
+> > Then we might not need rx_status.
+>
+> We can probably get rid of it if we keep the per-channel
+> interrupt handler. Otherwise, we may still need clogged,
+> as we don't want to process interrupts on channels we have
+> no user for.
+>
+> >
+> > > +               atomic_set(&ch->rx_status, 0);
+> > > +               return IRQ_HANDLED;
+> > > +       }
+> > > +
+> > > +       return IRQ_NONE;
+> > > +}
+> > > +
+> > > +static int mtk_gpueb_mbox_send_data(struct mbox_chan *chan, void *da=
+ta)
+> > > +{
+> > > +       struct mtk_gpueb_mbox_chan *ch =3D chan->con_priv;
+> > > +       int i;
+> > > +       u32 *values =3D data;
+> > > +
+> > > +       if (atomic_read(&ch->rx_status))
+> > > +               return -EBUSY;
+> > > +
+> > > +       /*
+> > > +        * We don't want any fancy nonsense, just write the 32-bit va=
+lues in
+> > > +        * order. memcpy_toio/__iowrite32_copy don't work here, becau=
+se fancy.
+> > > +        */
+> > > +       for (i =3D 0; i < ch->c->tx_len; i +=3D 4)
+> > > +               writel(values[i / 4], ch->ebm->mbox_mmio + ch->c->tx_=
+offset + i);
+> > > +
+> > > +       writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ_SET);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static int mtk_gpueb_mbox_startup(struct mbox_chan *chan)
+> > > +{
+> > > +       struct mtk_gpueb_mbox_chan *ch =3D chan->con_priv;
+> > > +       int ret;
+> > > +
+> > > +       atomic_set(&ch->rx_status, 0);
+> > > +
+> > > +       ret =3D clk_enable(ch->ebm->clk);
+> > > +       if (ret) {
+> > > +               dev_err(ch->ebm->dev, "Failed to enable EB clock: %pe=
+\n",
+> > > +                       ERR_PTR(ret));
+> > > +               goto err_clog;
+> > > +       }
+> > > +
+> > > +       writel(BIT(ch->num), ch->ebm->mbox_ctl + MBOX_CTL_IRQ_CLR);
+> > > +
+> > > +       ret =3D devm_request_threaded_irq(ch->ebm->dev, ch->ebm->irq,=
+ mtk_gpueb_mbox_isr,
+> > > +                                       mtk_gpueb_mbox_thread, IRQF_S=
+HARED | IRQF_ONESHOT,
+> > > +                                       ch->full_name, ch);
+> > I don't think this warrants a per-channel irq thread.
+> >
+> > mbox_chan_received_data is atomic. I think wecan start simple with
+> > just a devm_request_irq for all channels. mtk_gpueb_mbox_isr can
+> >
+> >   read bits from MBOX_CTL_RX_STS
+> >   for each bit set:
+> >     read data from rx
+> >     mbox_chan_received_data
+> >   write bits to MBOX_CTL_IRQ_CLR
+> >
+>
+> I don't like this approach. It brings us back to having to process
+> multiple channels per ISR, keep track of when the interrupt should
+> be enabled and disabled based on how many channels are in use, and
+> also is not in line with what e.g. omap-mailbox.c does.
+>
+> Remember that `mbox_chan_received_data` synchronously calls the
+> mailbox client's rx_callback. In mediatek_mfg's case, this is
+> fairly small, though with the request to not make the rx buffer
+> persist beyond the rx_callback it will gain an additional memory
+> copy. But we can't guarantee that someone isn't going to put a
+> slow operation in the path. Sure, it's going to be atomic, but
+> waiting for a spinlock is atomic and not something an ISR would
+> enjoy. I don't think mailbox clients would expect that if they
+> take their time they'll stall the interrupt handler for every
+> other channel.
+>
+> So we'd keep the interrupt disabled for all channels until the
+> client that received a message has processed it.
+>
+> I can see myself getting rid of the handler and just having the
+> thread function as the bottom half, but I'd really like to keep
+> the one-IRQ-request-per-channel thing I've got going now as it
+> made the code a lot easier to reason about. However, doing this
+> would mean the interrupt is re-enabled after the generic upper
+> half, when all the business logic that needs to not run
+> concurrently for an individual channel is in the bottom half.
+>
+> As far as I can tell, this would then mean we'd have to add
+> some concurrency exclusion mechanism to the bottom half.
+>
+> Moving all the logic into the upper half handler function
+> would make that handler somewhat longer, and I don't know
+> if IRQF_ONESHOT masks the interrupt for all users of that
+> IRQ number or just for those with that dev_id. If it's per
+> dev_id, then I'm fine with moving stuff up there. But from
+> my reading of the core IRQ handling code, that does not
+> appear to be the case; one channel getting a reply would
+> mask *all* channels of the mailbox until the upper half is
+> completed, and if the upper half calls into a driver
+> callback synchronously, that may take a hot minute.
+>
+> Put differently: Is there a problem with one thread per used
+> channel, or are we going off vibes here? The way it currently
+> works uses the shared interrupt to mark just that one channel
+> as busy with rx_status before letting the IRQ for all channels
+> be unmasked again, which seems ideal to me.
+No, one thread per used channel can work. I can't say I like it, but I
+also don't know the hw as well as you do.
 
