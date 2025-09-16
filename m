@@ -1,335 +1,274 @@
-Return-Path: <devicetree+bounces-217628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C746B58B43
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 03:32:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9342B58B5F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 03:43:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CBB63AA920
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:32:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FC3B7B33A5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 01:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936D71E379B;
-	Tue, 16 Sep 2025 01:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9365221DAC;
+	Tue, 16 Sep 2025 01:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FQtlvW6b"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PFqYzgmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0E7A926;
-	Tue, 16 Sep 2025 01:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9441221DAE;
+	Tue, 16 Sep 2025 01:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757986367; cv=none; b=sziu1UBvcXvWe66GQlF+leD+ycoeGPiHqJtv1lw6PVqHTmfIeRA8bpXJPTVAdulLvKryQSu5VgIEu/n5C+ekDkCjFW3vkEZJy0zNAfOPfMZbwQz768nL8xw2ozA7pOlryQIZX0rk5rysaSR4tdJl/kg3ibv6XAlsSKlmhNta/sU=
+	t=1757986958; cv=none; b=thPRa6XVucYCqPofYpN6U9APNa4Xm3GrTyqZnVauomy5cpWQ9rlyUdmmLcHp7/eESv3j5JMKwEq66x1C/S3qvJHgOmpEv8NA8Woh221koa7vS51MtRDUab57o49/bNNT7dUobgaxx/L2c0LcPM0BIhypqfpcJ+Jld3ngT+1ZXWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757986367; c=relaxed/simple;
-	bh=G1WqzWtXUB4zxrQCn6edtkHVKrL8Cb+GbqttULeM1Wc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GNLoF4pqg8ECU5z3zaAddMGWlR50MBU+qjcXL6KQYmd+Gn9UhUKVBTYaxQBOmuD2cSJEL5iPtR1HuNjVM+RpAFave0dla86i97WepkWq3FL0zFTJm+72mUdOZNg8x4nKCqYd/BsEw6vADex1DRSI3Hdo1y6K4CxFNu14haE9oaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FQtlvW6b; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=oY14XZ2Z7z++1I8o6fF7rrev0IZz53dJj48DzfI0j2E=; b=FQtlvW6bR59oA8scA/LGP+uw3x
-	KUJAaEcCAxxK0vUyS7ygP1a331P0rRqvA1+/+ixseo4QTwNZPhHtWCVuprBdawyfVpdLy51YuEhu2
-	wAlbAYevJOnL0KvxGtEwv5vsXTMiD8Nsl9qWuYRo9JuaUIKBMNX0zkUzNnzEVxONqefE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uyKYc-008VSo-HB; Tue, 16 Sep 2025 03:32:34 +0200
-Date: Tue, 16 Sep 2025 03:32:34 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Yang <mmyangfl@gmail.com>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v9 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-Message-ID: <daccdb60-1503-4fcc-87dc-754fb8bf9109@lunn.ch>
-References: <20250913044404.63641-1-mmyangfl@gmail.com>
- <20250913044404.63641-4-mmyangfl@gmail.com>
+	s=arc-20240116; t=1757986958; c=relaxed/simple;
+	bh=wQUzAqVEeXkuBbdQlS59ZJEef76CWtcFW2TBoR9gBvU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IBaZG1H9ktqhY/5ExOkoZQRhifn64cyx2ntJG6BNoAPZtRQhYUoWVP/hqdCikUx1HPUfVuZDrWQHX2v8br2I21eLHxM6njCJRC5qQNHlg1nRdD3GUcC6Om0o0uSjL/5RVtKXCCDWnmGK4d2XJ9cjlDhC/H1aCRevcQPAj/JwkpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PFqYzgmb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58FEAh5D002382;
+	Tue, 16 Sep 2025 01:42:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	u0DgAO7WtJOgWlLICy5tTYCxSJaESuTmIoNwm+65vN0=; b=PFqYzgmbMgYC3pyF
+	Vj1atfLgKjY2ft3gODN5HVj7p3BGbNsQ60U2T5ODrLpNZmhdmoaV7npNaDBxLiVh
+	vgqZQ1gyIlN91Nm4lBNvslfhAWNSUoyy0+gbMBaRsjSqvANOBXFmUGQ2XMyfbMzr
+	CujfgyXaHVtHTvUio5N8lbyT6z1UeK+Hnkvu8t0R/uYx2+XPBvvtWra8GVK54pww
+	F7/KX20P6JdezH9zjG+cwqSdIPein4+LwoamqwkYZAJkLzT7IYesjgVnE3w3xMhC
+	RxIZKqmB03Mx3VG0pzZOZ7I9QFk10tML/yoju7gb3nNNkJJe9bWiPfpNaTgYpmWw
+	4+eMyA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 496da9b943-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Sep 2025 01:42:32 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58G1gVlC009520
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Sep 2025 01:42:31 GMT
+Received: from [10.231.195.155] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Mon, 15 Sep
+ 2025 18:42:29 -0700
+Message-ID: <317ffa87-060c-4f1b-a6bf-61bb27367477@quicinc.com>
+Date: Tue, 16 Sep 2025 09:42:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250913044404.63641-4-mmyangfl@gmail.com>
-
-> +static int
-> +yt921x_port_up(struct yt921x_priv *priv, int port, unsigned int mode,
-> +	       phy_interface_t interface, int speed, int duplex,
-> +	       bool tx_pause, bool rx_pause)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	u32 mask;
-> +	u32 ctrl;
-> +	int res;
-> +
-> +	switch (speed) {
-> +	case SPEED_10:
-> +		ctrl = YT921X_PORT_SPEED_10;
-> +		break;
-> +	case SPEED_100:
-> +		ctrl = YT921X_PORT_SPEED_100;
-> +		break;
-> +	case SPEED_1000:
-> +		ctrl = YT921X_PORT_SPEED_1000;
-> +		break;
-> +	case SPEED_10000:
-> +		ctrl = YT921X_PORT_SPEED_10000;
-> +		break;
-> +	case SPEED_2500:
-> +		ctrl = YT921X_PORT_SPEED_2500;
-> +		break;
-> +	default:
-> +		dev_err(dev, "Unsupported speed %d\n", speed);
-> +		/* compile complains about uninitialized variable */
-> +		ctrl = 0;
-> +		break;
-
-If this should not happen, it is better to return -EINVAL.
-
-I would also suggest sorting these numerically. 10G after 2.5G.
-
-> +	}
-> +	if (duplex == DUPLEX_FULL)
-> +		ctrl |= YT921X_PORT_DUPLEX_FULL;
-> +	if (tx_pause)
-> +		ctrl |= YT921X_PORT_TX_PAUSE;
-> +	if (rx_pause)
-> +		ctrl |= YT921X_PORT_RX_PAUSE;
-> +	ctrl |= YT921X_PORT_RX_MAC_EN | YT921X_PORT_TX_MAC_EN;
-> +	res = yt921x_reg_write(priv, YT921X_PORTn_CTRL(port), ctrl);
-> +	if (res)
-> +		return res;
-> +
-> +	if (yt921x_port_is_external(port)) {
-> +		mask = YT921X_SGMII_SPEED_M;
-> +		switch (speed) {
-> +		case SPEED_10:
-> +			ctrl = YT921X_SGMII_SPEED_10;
-> +			break;
-> +		case SPEED_100:
-> +			ctrl = YT921X_SGMII_SPEED_100;
-> +			break;
-> +		case SPEED_1000:
-> +			ctrl = YT921X_SGMII_SPEED_1000;
-> +			break;
-> +		case SPEED_10000:
-> +			ctrl = YT921X_SGMII_SPEED_10000;
-> +			break;
-> +		case SPEED_2500:
-> +			ctrl = YT921X_SGMII_SPEED_2500;
-> +			break;
-> +		default:
-> +			ctrl = 0;
-> +			break;
-
-Same here.
-
-> +		}
-> +		mask |= YT921X_SGMII_DUPLEX_FULL;
-> +		if (duplex == DUPLEX_FULL)
-> +			ctrl |= YT921X_SGMII_DUPLEX_FULL;
-> +		mask |= YT921X_SGMII_TX_PAUSE;
-> +		if (tx_pause)
-> +			ctrl |= YT921X_SGMII_TX_PAUSE;
-> +		mask |= YT921X_SGMII_RX_PAUSE;
-> +		if (rx_pause)
-> +			ctrl |= YT921X_SGMII_RX_PAUSE;
-> +		mask |= YT921X_SGMII_LINK;
-> +		ctrl |= YT921X_SGMII_LINK;
-> +		res = yt921x_reg_update_bits(priv, YT921X_SGMIIn(port),
-> +					     mask, ctrl);
-> +		if (res)
-> +			return res;
-> +
-> +		mask = YT921X_XMII_LINK;
-> +		res = yt921x_reg_set_bits(priv, YT921X_XMIIn(port), mask);
-> +		if (res)
-> +			return res;
-> +
-> +		switch (speed) {
-> +		case SPEED_10:
-> +			ctrl = YT921X_MDIO_POLLING_SPEED_10;
-> +			break;
-> +		case SPEED_100:
-> +			ctrl = YT921X_MDIO_POLLING_SPEED_100;
-> +			break;
-> +		case SPEED_1000:
-> +			ctrl = YT921X_MDIO_POLLING_SPEED_1000;
-> +			break;
-> +		case SPEED_10000:
-> +			ctrl = YT921X_MDIO_POLLING_SPEED_10000;
-> +			break;
-> +		case SPEED_2500:
-> +			ctrl = YT921X_MDIO_POLLING_SPEED_2500;
-> +			break;
-> +		default:
-> +			ctrl = 0;
-> +			break;
-
-and again.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Yijie Yang
+	<yijie.yang@oss.qualcomm.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250910-hamoa_initial-v11-0-38ed7f2015f7@oss.qualcomm.com>
+ <20250910-hamoa_initial-v11-4-38ed7f2015f7@oss.qualcomm.com>
+ <aMPhEm8PuhEofHP7@linaro.org>
+From: Yingying Tang <quic_yintang@quicinc.com>
+In-Reply-To: <aMPhEm8PuhEofHP7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=M+5NKzws c=1 sm=1 tr=0 ts=68c8c088 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=BKfv3jXuzfWu8byZeJgA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: YTSvcZ3zbg-c4tTPvllNglaz9GfO0_L6
+X-Proofpoint-ORIG-GUID: YTSvcZ3zbg-c4tTPvllNglaz9GfO0_L6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE1MDA1NiBTYWx0ZWRfXwslaY2RrDsAm
+ TxDz92Cg1qXNY9qDlegSsZNX5PoNB3/rcN2GKsuXCgo0hWZFRILzmIUO0s3evBwybeCFi48vETO
+ 32jJS8lh621+8IfFg9pYb7CtqaB7x8TP7OgrU32d4sa3y1lVW/6kxlY0BXSgNRY1SpMrt8wpf6t
+ sjN/VFGiQ3m2TaNIEeI6RYBNgJhppvFcz9LR+LD3RoZe8420welJlv3NRVZZr+BRWvi1oIXaIvq
+ bzS+z+7LW3HMJaa+IdU1KLEcQT32H3sbRKP3Sxv7vdX7+NpXoszFYDWsGnfjGtKUouBs19kpVhW
+ G1jHIfVnxpKpRBo7ELxw37ihXRqfHO66kL2l9Pxt2O0TG2afjhZxNqjHhNq+aXfw0ZorQ1fOHl6
+ wRsQO6zu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-16_01,2025-09-12_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 clxscore=1011 suspectscore=0 priorityscore=1501
+ phishscore=0 adultscore=0 bulkscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509150056
 
 
-> +static int
-> +yt921x_port_config(struct yt921x_priv *priv, int port, unsigned int mode,
-> +		   phy_interface_t interface)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	u32 mask;
-> +	u32 ctrl;
-> +	int res;
-> +
-> +	if (!yt921x_port_is_external(port)) {
-> +		if (interface != PHY_INTERFACE_MODE_INTERNAL) {
-> +			dev_err(dev, "Wrong mode %d on port %d\n",
-> +				interface, port);
-> +			return -EINVAL;
-> +		}
-> +		return 0;
-> +	}
-> +
-> +	switch (interface) {
-> +	/* SGMII */
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +	case PHY_INTERFACE_MODE_100BASEX:
-> +	case PHY_INTERFACE_MODE_1000BASEX:
-> +	case PHY_INTERFACE_MODE_2500BASEX:
 
-This comment is wrong. Only the first is SGMII.
+On 9/12/2025 5:00 PM, Stephan Gerhold wrote:
+> On Wed, Sep 10, 2025 at 05:02:12PM +0800, Yijie Yang wrote:
+>> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
+>> the Hamoa IoT SoM and a carrier board. Together, they form a complete
+>> embedded system capable of booting to UART.
+>>
+>> Make the following peripherals on the carrier board enabled:
+>> - UART
+>> - On-board regulators
+>> - USB Type-C mux
+>> - Pinctrl
+>> - Embedded USB (EUSB) repeaters
+>> - NVMe
+>> - pmic-glink
+>> - USB DisplayPorts
+>> - Bluetooth
+>> - WLAN
+>> - Audio
+>>
+>> Written in collaboration with Quill Qi (Audio) <le.qi@oss.qualcomm.com>,
+>> Jie Zhang (Graphics) <quic_jiezh@quicinc.com>, Shuai Zhang (Bluetooth)
+>> <quic_shuaz@quicinc.com>, Yingying Tang (WLAN) <quic_yintang@quicinc.com>,
+>> and Yongxing Mou (USB DisplayPorts) <quic_yongmou@quicinc.com>.
+> 
+> This looks like you should have Co-developed-by: tags together with
+> their Signed-off-by: tags.
+> 
+>>
+>> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile          |    1 +
+>>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 1221 ++++++++++++++++++++++++++++
+>>  2 files changed, 1222 insertions(+)
+>>
+>> [...]
+>> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+>> new file mode 100644
+>> index 000000000000..6eedad7e858a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+>> @@ -0,0 +1,1221 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "hamoa-iot-som.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. Hamoa IoT EVK";
+>> +	compatible = "qcom,hamoa-iot-evk", "qcom,hamoa-iot-som", "qcom,x1e80100";
+>> +	chassis-type = "embedded";
+>> +
+>> [...]
+>> +	/*
+>> +	 * TODO: These two regulators are actually part of the removable M.2
+>> +	 * card and not the CRD mainboard. Need to describe this differently.
+> 
+> This is not a CRD, I think?
+> 
+>> +	 * Functionally it works correctly, because all we need to do is to
+>> +	 * turn on the actual 3.3V supply above.
+>> +	 */
+>> +	vreg_wcn_0p95: regulator-wcn-0p95 {
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "VREG_WCN_0P95";
+>> +		regulator-min-microvolt = <950000>;
+>> +		regulator-max-microvolt = <950000>;
+>> +
+>> +		vin-supply = <&vreg_wcn_3p3>;
+>> +	};
+>> +
+>> +	vreg_wcn_1p9: regulator-wcn-1p9 {
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "VREG_WCN_1P9";
+>> +		regulator-min-microvolt = <1900000>;
+>> +		regulator-max-microvolt = <1900000>;
+>> +
+>> +		vin-supply = <&vreg_wcn_3p3>;
+>> +	};
+>> +
+>> +	vreg_wcn_3p3: regulator-wcn-3p3 {
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "VREG_WCN_3P3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +
+>> +		pinctrl-0 = <&wcn_sw_en>;
+>> +		pinctrl-names = "default";
+>> +
+> 
+> regulator-boot-on?
 
-> +static void
-> +yt921x_phylink_mac_link_down(struct phylink_config *config, unsigned int mode,
-> +			     phy_interface_t interface)
-> +{
-> +	struct dsa_port *dp = dsa_phylink_to_port(config);
-> +	struct dsa_switch *ds = dp->ds;
-> +	struct yt921x_priv *priv = to_yt921x_priv(ds);
-> +	struct device *dev = to_device(priv);
-> +	int port = dp->index;
-> +	int res;
-> +
-> +	cancel_delayed_work(&priv->ports[port].mib_read);
+It shoulde be regulator-always-on
+> 
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> [...]
+>> +};
+>> +
+>> [...]
+>> +&mdss {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dp0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dp0_out {
+>> +	data-lanes = <0 1>;
+> 
+> This is unneeded unless you really want to limit this to just 2 lanes.
+> x1e80100.dtsi specifies 4 lanes by default.
+> 
+>> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>> +};
+>> +
+>> +&mdss_dp1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dp1_out {
+>> +	data-lanes = <0 1>;
+> 
+> Same here.
+> 
+>> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>> +};
+>> +
+>> +&mdss_dp2 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dp2_out {
+>> +	data-lanes = <0 1>;
+> 
+> And here.
+> 
+>> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>> +};
+>> +
+>> +&mdss_dp3 {
+>> +	/delete-property/ #sound-dai-cells;
+> 
+> You need to define pinctrl for the HPD pin here.
+> 
+> Thanks,
+> Stephan
 
-Should that be cancel_delayed_work_sync() ? Does it matter if the work
-is running on a different CPU?
-
-> +static void
-> +yt921x_dsa_phylink_get_caps(struct dsa_switch *ds, int port,
-> +			    struct phylink_config *config)
-> +{
-> +	struct yt921x_priv *priv = to_yt921x_priv(ds);
-> +	const struct yt921x_info *info = priv->info;
-> +
-> +	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-> +				   MAC_10 | MAC_100 | MAC_1000;
-> +
-> +	if ((info->internal_mask & BIT(port)) != 0) {
-> +		/* Port 10 for MCU should probably go here too. But since that
-> +		 * is untested yet, turn it down for the moment by letting it
-> +		 * fall to the default branch.
-> +		 */
-> +		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-> +			  config->supported_interfaces);
-> +	} else if ((info->external_mask & BIT(port)) != 0) {
-> +		/* TODO: external ports may support SGMII only, XMII only, or
-> +		 * SGMII + XMII depending on the chip. However, we can't get
-> +		 * the accurate config table due to lack of document, thus
-> +		 * we simply declare SGMII + XMII and rely on the correctness
-> +		 * of devicetree for now.
-> +		 */
-> +
-> +		/* SGMII */
-> +		__set_bit(PHY_INTERFACE_MODE_SGMII,
-> +			  config->supported_interfaces);
-> +		__set_bit(PHY_INTERFACE_MODE_100BASEX,
-> +			  config->supported_interfaces);
-> +		__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-> +			  config->supported_interfaces);
-> +		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-> +			  config->supported_interfaces);
-> +		config->mac_capabilities |= MAC_2500FD;
-
-And again
-
-> +static int yt921x_chip_detect(struct yt921x_priv *priv)
-> +{
-> +	struct device *dev = to_device(priv);
-> +	const struct yt921x_info *info;
-> +	u8 extmode;
-> +	u32 chipid;
-> +	u32 major;
-> +	u32 mode;
-> +	int res;
-> +
-> +	res = yt921x_reg_read(priv, YT921X_CHIP_ID, &chipid);
-> +	if (res)
-> +		return res;
-> +
-> +	major = FIELD_GET(YT921X_CHIP_ID_MAJOR, chipid);
-> +
-> +	for (info = yt921x_infos; info->name; info++)
-> +		if (info->major == major)
-> +			goto found_major;
-> +
-> +	dev_err(dev, "Unexpected chipid 0x%x\n", chipid);
-> +	return -ENODEV;
-> +
-> +found_major:
-> +	res = yt921x_reg_read(priv, YT921X_CHIP_MODE, &mode);
-> +	if (res)
-> +		return res;
-> +	res = yt921x_edata_read(priv, YT921X_EDATA_EXTMODE, &extmode);
-> +	if (res)
-> +		return res;
-> +
-> +	for (; info->name; info++)
-> +		if (info->major == major && info->mode == mode &&
-> +		    info->extmode == extmode)
-> +			goto found_chip;
-> +
-> +	dev_err(dev, "Unsupported chipid 0x%x with chipmode 0x%x 0x%x\n",
-> +		chipid, mode, extmode);
-> +	return -ENODEV;
-> +
-> +found_chip:
-> +	/* Print chipid here since we are interested in lower 16 bits */
-> +	dev_info(dev,
-> +		 "Motorcomm %s ethernet switch, chipid: 0x%x, "
-> +		 "chipmode: 0x%x 0x%x\n",
-> +		 info->name, chipid, mode, extmode);
-> +
-> +	priv->info = info;
-> +	return 0;
-
-The use of gotos here is backwards to normal. They are pretty much
-only used in Linux to jump to the end to do cleanup on error. I don't
-know of any other driver which uses goto on success. Please change
-this.
-
-> +	/* Register the internal mdio bus. Nodes for internal ports should have
-> +	 * proper phy-handle pointing to their PHYs. Not enabling the internal
-> +	 * bus is possible, though pretty wired, if internal ports are not used.
-
-weird, not wired. 
-
-    Andrew
-
----
-pw-bot: cr
 
