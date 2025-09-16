@@ -1,176 +1,249 @@
-Return-Path: <devicetree+bounces-217991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B62B59FA4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2234BB59F7B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADD932A5BE6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:42:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBDE416869E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A3D2F5A29;
-	Tue, 16 Sep 2025 17:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC582F5A15;
+	Tue, 16 Sep 2025 17:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="jqm2YX50"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kOQcHlAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EF5253359
-	for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 17:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1CE32D5AA;
+	Tue, 16 Sep 2025 17:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758044528; cv=none; b=sLDPlyCL8s9hQTqYAKYt+EpbVr5fNHRAsFn3nSb+nb1cFqvDSi2yWkA8RlX6RoR6GH5MZQ5Ed0URpX/24CaSAeMHtuhrtn+o3vMeBFM2z97xFF1HbM0sd4tjwXfH/uhl3jDOKeN1P/GJmekeGEe4uXXejkMiYrHEvUL0xKVMJTU=
+	t=1758044309; cv=none; b=vBKILesZ1LyQHxleKgrDv6dGMJaNDsBiuymkq0MkMaIfb9fI/URBg9z/3GcMOIg0UVEcTJTvdXG8DIKI7pCnHX2qk0MIvDVtRdVjsH++rl5Afy6NRKJfHZ9oG5dXdiAwXqXN/6YsIxJvnOXIBbrkhUu7lsQD9G5f2FOTT4HeD20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758044528; c=relaxed/simple;
-	bh=kXvxNpxTNPnZlJLOBBRMOvLBdnefe8KLJAlM2MSxPrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KB978YdHZnN4rLIFJfYeDhga1dqissbM2naIx5+NL488FBWmph5RRtR50hxyZ5WIzyY+XtrrD3K3MmKjlIUMIaqVrtLzPiE9T8bpN3lAIk+mq68+e3dNO6Auw0tWKMuXTFpmj9KNAuyNsaDrjOq2KEJp6BSX0K6mSMtomHZDQLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=jqm2YX50; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cR8D9282Wz9tSQ;
-	Tue, 16 Sep 2025 19:34:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1758044089;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SbZA5ejotqw68mTNh34KYL6GNeLbdM9s9dCD+1x1S5c=;
-	b=jqm2YX50DAmH42cCu3Dm4pk0e/4TCsANo9ubKawkQA6ebZbjVL6LAOI3ABl3lGU016EesK
-	A6f0N+ycb03D1u+60nFA7/860yAygYO/taBOTAM6lz1uvCaMMXi0XJJ7Fv+YfJJi14kl7V
-	2DGHrnLCxWoQOwg8Xh5aJRQKxrEdCOesoZs3itZKXcLXF6A2hUSN8ZYESUrBwEGRaOUW7g
-	xIj2osBuO//P2wYFP4aQ00Dup1UwIuKaKBXuFhuAkLrIsRS5eFMeeGT3O16YIH9zX/iPOo
-	+HTkVo5lKeVsFclOctD9GxJeMRTZpXib1Jp8KRyHyLtKwVHH22nBCwvVjGOo/w==
-Message-ID: <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
-Date: Tue, 16 Sep 2025 19:34:42 +0200
+	s=arc-20240116; t=1758044309; c=relaxed/simple;
+	bh=qsVdbGbYrw2ppGmD7AyATaEWzKfxfbFDoOHdJUVDbvY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=b9SIqR0y727uRsWc4cpkP5AKg2nKwDIAFwdqkzv0VW6zbeFaXE1l2oTASO/K/qVM4RFVZDPNIhH9+fATTiiaVZk8+rrl/oh64BiTs0taQfjK7Lq4EyZ2uYUneGEZlnQ9iTtAR24N8zTt+WhdJ7GHgyWu2Dx/64M9HuyStXlgePE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kOQcHlAj; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1758044307; x=1789580307;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=qsVdbGbYrw2ppGmD7AyATaEWzKfxfbFDoOHdJUVDbvY=;
+  b=kOQcHlAjRgMbMOoxDATL5qrOpQun3vt+XoAOfKeCoTUBQsobFwpZ4n9j
+   gc0iyY2hE2v9RYn6hxoRTQ/2X9mjXcm4uEbU4yEO9NN92bIlTPXz/vnrY
+   XdgH0wgXpsrb7XsaGkaFQ6DHmWujYsLRCVBTdJ8WvouUtIGbvCMYXyICl
+   O0g+EEgKaL6sbmbb8lB6uNlDXuYC4wyaJMoBItI2C/Ru2gcG9//+w3ni8
+   khAwjD6aNCMA4m+VQn+rb10x2WnrOi9XWa/wNdE6OoV9dDCb9fmDbcRON
+   +zaKg/qcfsiAhpvmvIrfG9h7DsgV0Ab11/FmyFYiMvRhxCH7vL6VI/laj
+   g==;
+X-CSE-ConnectionGUID: JwgJaeFzQrm7UxwC39IelA==
+X-CSE-MsgGUID: gmVKfSQqTDuKOqe8EMcG/w==
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; 
+   d="scan'208";a="52418754"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Sep 2025 10:38:26 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 16 Sep 2025 10:38:08 -0700
+Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 16 Sep 2025 10:38:08 -0700
+Message-ID: <71d11cdb-345f-43c7-b764-5aa43cdf1e1c@microchip.com>
+Date: Tue, 16 Sep 2025 10:38:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Rain Yang <jiyu.yang@oss.nxp.com>, boris.brezillon@collabora.com
-Cc: airlied@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, festevam@gmail.com, imx@lists.linux.dev,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, liviu.dudau@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- p.zabel@pengutronix.de, peng.fan@nxp.com, robh@kernel.org,
- s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch,
- sre@kernel.org, steven.price@arm.com, tzimmermann@suse.de
-References: <20250325153507.61d82e39@collabora.com>
- <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
- <20250325155231.0d1b1000@collabora.com>
- <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
- <20250904082224.113d0cd1@fedora>
- <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
- <20250904160445.1671f140@fedora>
- <36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
- <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: microchip: sama7d65: Add GPIO buttons and LEDs
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>
+References: <20250909160842.392075-1-Ryan.Wanner@microchip.com>
+ <20250910-retake-attic-ac1fe3429a1e@thorsis.com>
+ <20250910-alkalize-overtime-930a59a7d169@thorsis.com>
+ <fa5d44ca-d1ea-4c72-a998-b10f098b25f8@microchip.com>
+ <20250911-breeder-hardness-d3ffa4bfbb6d@thorsis.com>
+From: Ryan Wanner <ryan.wanner@microchip.com>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aMk1CISrn2_p0qzJ@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20250911-breeder-hardness-d3ffa4bfbb6d@thorsis.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 55b373c7a525aab004c
-X-MBO-RS-META: nmx8tqfcxgafify9h3ojna5p9h68zpi5
 
-On 9/16/25 12:06 PM, Rain Yang wrote:
-
-Hello everyone,
-
-> you're right.
-> *0x4d810008=1, this register is a write-once register, so it was moved into SM
-> since imx 6.12.3 release, and latest 6.6.52 release. some document work is still
-> needed in the future.
+On 9/11/25 00:00, Alexander Dahl wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 > 
-> Hi Marek,
-> thanks for your effort to make the i.MX95 GPU upstreamed.
-> I created one PR to support i.MX95 GPU expcept the multi power domain[1],
-> but it seemed to be placed in the wrong location. No one responded to it,
-> so I closed it.
+> Hello Ryan,
 > 
-> for the suspend/resume issue, the panthor driver works well with 6.12.34
-> patched with pm_domains operation like you did.
-> run vkmark->suspend 10min in the 4th console->wakeup in the 4th console.
+> Am Wed, Sep 10, 2025 at 10:16:03AM -0700 schrieb Ryan Wanner:
+>> On 9/9/25 23:25, Alexander Dahl wrote:
+>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>
+>>> Hello Ryan,
+>>>
+>>> Am Wed, Sep 10, 2025 at 08:20:28AM +0200 schrieb Alexander Dahl:
+>>>> Hello Ryan,
+>>>>
+>>>> Am Tue, Sep 09, 2025 at 09:08:38AM -0700 schrieb Ryan.Wanner@microchip.com:
+>>>>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>>>>
+>>>>> Add the USER button as a GPIO input as well as add the LEDs and enable
+>>>>> the blue LED as a heartbeat.
+>>>>>
+>>>>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>>>> ---
+>>>>>  .../dts/microchip/at91-sama7d65_curiosity.dts | 49 +++++++++++++++++++
+>>>>>  1 file changed, 49 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+>>>>> index f091cc40a9f0..2fe34c59d942 100644
+>>>>> --- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+>>>>> +++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+>>>>> @@ -11,6 +11,7 @@
+>>>>>  #include "sama7d65-pinfunc.h"
+>>>>>  #include "sama7d65.dtsi"
+>>>>>  #include <dt-bindings/mfd/atmel-flexcom.h>
+>>>>> +#include <dt-bindings/input/input.h>
+>>>>>  #include <dt-bindings/pinctrl/at91.h>
+>>>>>
+>>>>>  / {
+>>>>> @@ -26,6 +27,42 @@ chosen {
+>>>>>             stdout-path = "serial0:115200n8";
+>>>>>     };
+>>>>>
+>>>>> +   gpio-keys {
+>>>>> +           compatible = "gpio-keys";
+>>>>> +
+>>>>> +           pinctrl-names = "default";
+>>>>> +           pinctrl-0 = <&pinctrl_key_gpio_default>;
+>>>>> +
+>>>>> +           button {
+>>>>> +                   label = "PB_USER";
+>>>>> +                   gpios = <&pioa PIN_PC10 GPIO_ACTIVE_LOW>;
+>>>>> +                   linux,code = <KEY_PROG1>;
+>>>>> +                   wakeup-source;
+>>>>> +           };
+>>>>> +   };
+>>>>> +
+>>>>> +   leds {
+>>>>> +           compatible = "gpio-leds";
+>>>>> +           pinctrl-names = "default";
+>>>>> +           pinctrl-0 = <&pinctrl_led_gpio_default>;
+>>>>> +
+>>>>> +           led-red {
+>>>>> +                   label = "red";
+>>>>> +                   gpios = <&pioa PIN_PB17 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
+>>>>> +           };
+>>>>> +
+>>>>> +           led-green {
+>>>>> +                   label = "green";
+>>>>> +                   gpios = <&pioa PIN_PB15 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
+>>>>> +           };
+>>>>> +
+>>>>> +           led-blue {
+>>>>> +                   label = "blue";
+>>>>> +                   gpios = <&pioa PIN_PA21 GPIO_ACTIVE_HIGH>;
+>>>>> +                   linux,default-trigger = "heartbeat";
+>>>>> +           };
+>>>>> +   };
+>>>>
+>>>> The label property is deprecated.  Please use the properties "color"
+>>>> and "function" for new boards.  See devicetree binding documentation
+>>>> for LEDs.
+>>>
+>>> From a quick glance, this seems to be an RGB-LED, so I would suggest
+>>> to not model it as three distinct LEDs, but make use of the
+>>> "leds-group-multicolor" feature, example:
+>>>
+>>>  59         multi-led {
+>>>  60                 compatible = "leds-group-multicolor";
+>>>  61                 color = <LED_COLOR_ID_RGB>;
+>>>  62                 function = LED_FUNCTION_INDICATOR;
+>>>  63                 leds = <&led_red>, <&led_green>, <&led_blue>;
+>>>  64         };
+>>
+>> I see, I was not aware of this feature. This would combine all of the
+>> LED pins into one RGB light correct, it seems from sysfs that this is
+>> the case.
 > 
-> can you show me your SM version when uboot start,
+> The group-multicolor feature was merged for kernel v6.6 so it's still
+> quite new.  I tried this some time ago, so this is from memory only.
+> The three single color gpio leds are still visible in sysfs, but you
+> can not control them independently anymore, only through the sysfs
+> interface of that one multicolor led.
+> 
+>> Would having the default-trigger="heartbeat" still be allowed for the
+>> led-blue node or should that be moved into the multi-led node? From the
+>> bindings it seems that the default trigger is still in the gpio-led nodes.
+> 
+> Sorry, not sure here.  I put linux-leds in Cc, maybe someone over
+> there can answer.  If this does not fit how Microchip wants to handle
+> that LED on their boards I think that's fine, too.  Just wanted to
+> make people aware of the possibility.
 
-Build 470, Commit a07928b4 Sep 03 2025 23:43:49
+It does not fit very well how we want to handle the LEDs on this board
+as of right now. I am assuming it is fine for now to have these as
+individual LEDs?
 
-> and the G310 firmware version which can be found by search git_sha string.
+Best,
+Ryan>
+> Greets
+> Alex
+> 
+>>
+>> Best,
+>> Ryan
+>>>
+>>> Greets
+>>> Alex
+>>>
+>>>>
+>>>> Thanks and greetings
+>>>> Alex
+>>>>
+>>>>> +
+>>>>>     memory@60000000 {
+>>>>>             device_type = "memory";
+>>>>>             reg = <0x60000000 0x40000000>;
+>>>>> @@ -352,6 +389,18 @@ pinctrl_i2c10_default: i2c10-default {
+>>>>>             bias-pull-up;
+>>>>>     };
+>>>>>
+>>>>> +   pinctrl_key_gpio_default: key-gpio-default {
+>>>>> +           pinmux = <PIN_PC10__GPIO>;
+>>>>> +           bias-pull-up;
+>>>>> +   };
+>>>>> +
+>>>>> +   pinctrl_led_gpio_default: led-gpio-default {
+>>>>> +           pinmux = <PIN_PB15__GPIO>,
+>>>>> +                    <PIN_PB17__GPIO>,
+>>>>> +                    <PIN_PA21__GPIO>;
+>>>>> +           bias-pull-up;
+>>>>> +   };
+>>>>> +
+>>>>>     pinctrl_sdmmc1_default: sdmmc1-default {
+>>>>>             cmd-data {
+>>>>>                     pinmux = <PIN_PB22__SDMMC1_CMD>,
+>>>>> --
+>>>>> 2.43.0
+>>>>>
+>>>>>
+>>>>
+>>
+>>
 
-That would be 50.2 . I now tried 53.0 and I suspect something might have 
-been fixed there ?
-
-As for the reset via block controller at 0x4d810000, without it, I get 
-SError, so it seems the reset is still needed.
-
-[    2.788317] panthor 4d900000.gpu: [drm] clock rate = 800000000
-[    2.795246] panthor 4d900000.gpu: EM: created perf domain
-[    2.801029] Internal error: synchronous external abort: 
-0000000096000010 [#1]  SMP
-[    2.808597] Modules linked in:
-[    2.811658] CPU: 3 UID: 0 PID: 52 Comm: kworker/u24:1 Tainted: G   M 
-               6.17.0-rc6-next-20250916-00076-ga73c9babac81-dirty #496 
-PREEMPT
-[    2.824939] Tainted: [M]=MACHINE_CHECK
-[    2.828684] Hardware name: Board (DT)
-[    2.834770] Workqueue: events_unbound deferred_probe_work_func
-[    2.840601] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS 
-BTYPE=--)
-[    2.847545] pc : panthor_hw_init+0x18/0x620
-[    2.851728] lr : panthor_device_init+0x388/0x5e0
-[    2.856333] sp : ffff800082383aa0
-[    2.859643] x29: ffff800082383aa0 x28: 0000000000000000 x27: 
-0000000000000000
-[    2.866782] x26: ffff000080034c28 x25: 0000000000000000 x24: 
-0000000000000000
-[    2.873909] x23: ffff00008036f010 x22: ffff000081082638 x21: 
-ffff00008036f010
-[    2.881033] x20: ffff000081082000 x19: ffff000081082000 x18: 
-0000000000000801
-[    2.888165] x17: 0000000000000000 x16: 0000000000000100 x15: 
-0000000000000001
-[    2.895298] x14: 0140000000000000 x13: ffff800083800000 x12: 
-ffff800083c7ffff
-[    2.902422] x11: 000000004dd80000 x10: 0000000040000000 x9 : 
-ffff8000809696b8
-[    2.909555] x8 : ffff8000823839a0 x7 : ffff000081082000 x6 : 
-ffff800082383a50
-[    2.916679] x5 : ffff8000823839d0 x4 : ffff800081beb4d0 x3 : 
-ffff800081beb000
-[    2.923803] x2 : 0000000000000000 x1 : ffff0000809a90c0 x0 : 
-ffff800083800000
-[    2.930934] Call trace:
-[    2.933378]  panthor_hw_init+0x18/0x620 (P)
-[    2.937555]  panthor_device_init+0x388/0x5e0
-[    2.941812]  panthor_probe+0x40/0x68
-[    2.945383]  platform_probe+0x60/0xa8
-[    2.949040]  really_probe+0xc0/0x2b8
-[    2.952611]  __driver_probe_device+0x7c/0x120
-[    2.956962]  driver_probe_device+0x40/0x180
-[    2.961130]  __device_attach_driver+0xb4/0x140
-[    2.965567]  bus_for_each_drv+0x88/0xf8
-[    2.969398]  __device_attach+0xa0/0x1a0
-[    2.973220]  device_initial_probe+0x18/0x30
-[    2.977397]  bus_probe_device+0x9c/0xa8
-[    2.981228]  deferred_probe_work_func+0x88/0xc8
-[    2.985743]  process_one_work+0x158/0x3a8
-[    2.989754]  worker_thread+0x2d8/0x410
-[    2.993498]  kthread+0x144/0x200
-[    2.996722]  ret_from_fork+0x10/0x20
-[    3.000296] Code: a9bb7bfd aa0003e7 910003fd f9430800 (b9400000)
-[    3.006378] ---[ end trace 0000000000000000 ]---
 
