@@ -1,129 +1,129 @@
-Return-Path: <devicetree+bounces-217980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-217981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3007AB59EB6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:03:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF82B59EB0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 19:02:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4830C3BF98E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:01:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BE651893F4E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Sep 2025 17:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A607832D5A0;
-	Tue, 16 Sep 2025 16:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D792F5A18;
+	Tue, 16 Sep 2025 16:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufGW4ipa"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="FhD3smbx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAB1329517;
-	Tue, 16 Sep 2025 16:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758041919; cv=none; b=DUXq8vthkEBxBGZPYTU3tHm+myshRgQN8K0CgXJZt6I+UbVgTCCbLgRxSmuhET2b6g1ohxjhPviWXSjxNytzxN3fIkaN4fVsrW2junZKcVkMgDumAphRZ1CPLX/6+9r7K3X3lL8d2ytlPUYNKG5b2KG+xi3moIuLDoCUuvmu0jY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758041919; c=relaxed/simple;
-	bh=cN2ZRIwpPuuTuFydKsuswQytPt7ZVYZueiDnIohjvxg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Zia4YqMQgCEV9MFnkqQFQMpYvuZpLaDNbOwiXJmgItyd9Sz/Sgt/SBrqvYFAjJWoI+j7t61cdevfwmXyE+plCgzQFyq90dRQWFkHNCRdblWSrsKtgw5YoSoAEvbnUXft/vr8XRfOWXBGg1PUXae2Y6ggn2xbvmkGIjmzhE4eYgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufGW4ipa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B765AC4CEF7;
-	Tue, 16 Sep 2025 16:58:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758041919;
-	bh=cN2ZRIwpPuuTuFydKsuswQytPt7ZVYZueiDnIohjvxg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ufGW4ipaBuqkZumNSbHozdOrPtbsJc8gOophMG/yqg6lu3A61SeJaSBfuxc/Rfoqz
-	 7HlzyPzelhOESnR9HvCdsZNEJSi0JGD8fNAsXzEEQIFoRTSAwhZcdWAv9sfxBiHIa+
-	 QsQOlGSghSU+nZNF2/mgsoKRKupQOzyAmoiHjNrT2lu9yNP/GsbWi/27oN/DI1AAfl
-	 zhkF9YltDSNt97izaa1CNRYiHmiKhHSE3sYTraXEXL+suTLKc3XHHn/EbzUMw00Lcm
-	 wpZyb0qfI6x5YGMxPsO/qMDVtdIuHtZCvSyscPc5RJV+CeIM+h3vbjB92oM0yZBh+Z
-	 f+0pQYAh9+jHA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-Cc: kernel@oss.qualcomm.com,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	Monish Chunara <quic_mchunara@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-	Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-	Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Subject: Re: [PATCH v5 00/10] arm64: dts: qcom: lemans-evk: Extend board support for additional peripherals
-Date: Tue, 16 Sep 2025 11:58:21 -0500
-Message-ID: <175804189844.3983789.17270960228782770722.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250916-lemans-evk-bu-v5-0-53d7d206669d@oss.qualcomm.com>
-References: <20250916-lemans-evk-bu-v5-0-53d7d206669d@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00FA132D5D7;
+	Tue, 16 Sep 2025 16:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758041964; cv=pass; b=Sj9GaDTgj7YBlw80rIXGsn/6HfNcDlMSU0W10jaC91cm2pUUdUWJwcwIpj683616TYhQmjzDBi/66oBlt10dJwmD6kIg0b6B7W9/UJBat13Ysy9pz6yBTRSwFJOZ3FNXRKVzXRopdX9Bt4AzcGOS+Wkur0377QlRsgwcQhRUUiM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758041964; c=relaxed/simple;
+	bh=BFapEZR7pLvRKQtMme0T8FJgGqNk+b5ibCXvTJHCk0A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aswJgm77YI3Mt/M0QoStn5RexrtoQaiJtuV4SX9z0ZQ7ROMBg7O9aRjmWDIS+4yj42xDsh7GlAWTUkRQE0Jj6JuJ52xxU9O5gT6JQfZOehVVkSRbZClUgX/wc9hG4bG//+JME3ioDIt4gCkYqImIefuXzuQHwHaUexxhG6UxJrU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=FhD3smbx; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1758041956; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ZZ0SjVIzPYCJPUMIv0mkGc/PdOQwwgsBzvVNKyAWwP2a/W3w6duOmRvspsiY/KjAVEGK3LBhKiBvRqeC81esltXLBS0uNUyIXq5xR7+a+YXN0eFJuzJnOLEw9I8EmIEX0NTXTu0Aa0md7lK7WFtcEaAD7a2GPPQKMlESMdgOfRQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758041956; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=YMjpeCVb969PSdBMAhTwISsWBnqQEgSO6YXUyj0ox1o=; 
+	b=L1vobNcpcri3sP68MsM8hr/gd6CAFb/9KDgSd9MEWHIFekiPFOuXsJihYZZoJxzElnfncfDmS+4jsG/qZzLLCitMqRJMj72SSc2+JtR98CFXXACkeoIQI2S76w9N4JCcZ6OG/Nf8jLOYNoH5Ch3BKPeelzafmkc7qI/BHdm6Zvc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758041956;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=YMjpeCVb969PSdBMAhTwISsWBnqQEgSO6YXUyj0ox1o=;
+	b=FhD3smbxZTuRE7Qlf5AApxW9DtW5dB9wEib1P7UfXeiY4hcom9+jah3cyQESNXGM
+	k37QU4j9PiW6/AgMRpoZIXi0Ehp0Lngvm20Sk/C4GumX78WcDA/ibZJtwyNWBHvRQi6
+	m7gOvNkm87OKnmv9BF334t3y7hyC6vL8B1V253T8=
+Received: by mx.zohomail.com with SMTPS id 1758041954603314.0056103351336;
+	Tue, 16 Sep 2025 09:59:14 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 98B7E180733; Tue, 16 Sep 2025 18:59:03 +0200 (CEST)
+Date: Tue, 16 Sep 2025 18:59:03 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/1] dt-bindings: power: supply: bq24190: document
+ charge enable pin
+Message-ID: <km7thoeguhkdp23gatn3w4kibgazzxi7s3cbkhueuokychqcbq@nabzlmfg3dmi>
+References: <20250912065146.28059-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jsjxjam7qlnfhjfv"
+Content-Disposition: inline
+In-Reply-To: <20250912065146.28059-1-clamor95@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/258.4.7
+X-ZohoMailClient: External
 
 
-On Tue, 16 Sep 2025 16:16:48 +0530, Wasim Nazir wrote:
-> This series extend support for additional peripherals on the Qualcomm
-> Lemans EVK board to enhance overall hardware functionality.
-> 
-> It includes:
->   - New peripherals like:
->     - I2C based devices like GPIO I/O expander and EEPROM.
->     - GPI (Generic Peripheral Interface) DMA controllers and QUPv3 controllers
->       for peripheral communication.
->     - PCIe HW with required regulators and PHYs.
->     - Remoteproc subsystems for supported DSPs.
->     - Iris video codec.
->     - First USB controller in device mode.
->     - SD card support on SDHC v5.
->     - Qca8081 2.5G Ethernet PHY.
-> 
-> [...]
+--jsjxjam7qlnfhjfv
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 0/1] dt-bindings: power: supply: bq24190: document
+ charge enable pin
+MIME-Version: 1.0
 
-Applied, thanks!
+Hi,
 
-[01/10] arm64: dts: qcom: lemans: Add SDHC controller and SDC pin configuration
-        commit: dfdbe4bf6ff386d96c1dc8c7407201d882fc4113
-[02/10] arm64: dts: qcom: lemans-evk: Enable GPI DMA and QUPv3 controllers
-        commit: 5bc646aa0c7a444d4e81d8e3cae4baf463e1a018
-[03/10] arm64: dts: qcom: lemans-evk: Add TCA9534 I/O expander
-        commit: 6ae6381f871803246e9f655537999f163656de33
-[04/10] arm64: dts: qcom: lemans-evk: Add EEPROM and nvmem layout
-        commit: 81618ba3fe33017be5e1fce99891abd220a775b8
-[05/10] arm64: dts: qcom: lemans-evk: Enable PCIe support
-        commit: 94d7d37f6ac34bd683a93fbf1013736616fc3677
-[06/10] arm64: dts: qcom: lemans-evk: Enable remoteproc subsystems
-        commit: cac44c46970adb4553bab5c5aa528462a5fe98d0
-[07/10] arm64: dts: qcom: lemans-evk: Enable Iris video codec support
-        commit: fd32b5d586ac650ce1c6f58535ec79cd2632be09
-[08/10] arm64: dts: qcom: lemans-evk: Enable first USB controller in device mode
-        commit: 7bd68ef80661a9436120702e1300b56904fdd022
-[09/10] arm64: dts: qcom: lemans-evk: Enable SDHCI for SD Card
-        commit: c3f107b514c357cbc08ae70a69700222e7d1192d
-[10/10] arm64: dts: qcom: lemans-evk: Enable 2.5G Ethernet interface
-        commit: 71ee90ed1756724d62cb55873555e006372792c7
+On Fri, Sep 12, 2025 at 09:51:45AM +0300, Svyatoslav Ryhel wrote:
+> Document active low Charge Enable pin. Battery charging is enabled when
+> REG01[5:4] =3D 01 and CE pin =3D Low. CE pin must be pulled high or low.
+>=20
+> Svyatoslav Ryhel (1):
+>   dt-bindings: power: supply: bq24190: document charge enable pin
+>=20
+>  Documentation/devicetree/bindings/power/supply/bq24190.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+No driver change?
+
+Greetings,
+
+-- Sebastian
+
+--jsjxjam7qlnfhjfv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmjJl1cACgkQ2O7X88g7
++pqzGA//XxqUyw5jYxT0uD4bpHiIMEA6rqkwQfHGBsEHgX0htoOkYGbbAAB2Sj/I
+CasgAwv0mLdvdcxrXINxP7dtimKHGgO+HWClgvhAcreDED2EznPevkXIBea7QDoU
+Cjgd2TCNdRfdNL4d46DXsPjWb/4MJJ+fYQsoYk8nl8n+Oza5BNfNGL6HteB1QnrJ
+LgAujfff+WO2RwpqPESCP+wRwH0p/IcYxv0/A26WrvYDd1H94enTuKMAPQ5jlrtj
+/6/InNeO8wsXyXDEgMMvtttxU96064NoETPicB2ylkMWf3ZjsNlKvrLsmTQcaxPV
+7OUmpe6OhdzP37rpoMeHjCpYyJYCcK/mGyJAtZ4WvZ4AD03joM/FqcxO0xVUk7mU
+Ikdl6+yDgnZs7mf2plq9eOKfZHRbVjlt6pS1hD+S3/TGBKhlzB3wlahhZVm30TVD
+NIhVlwzmDUMEj2DRjh00GCb+7uNfsZiJlNqwbzWx9bsMw/ATLIqWmVwkGj9Awbgt
+fjzC/aOvVXXANVT47Vyg/xyrBN7p5swLUg2p5Zn8m9/zDzciBor9jCE9bQ6E26HF
+ShrTaNFNbz9+p/GGU2yrXsDSPpPdhJXBqUXQ9PzXFhPbZ7JnnkCeAbOtBYhh4p8l
+UcPhET+6014FhEx+gXn6ZA8VZ7EkMbXsUghW0wYo/GAQcg8ujCA=
+=oJ1Z
+-----END PGP SIGNATURE-----
+
+--jsjxjam7qlnfhjfv--
 
