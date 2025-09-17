@@ -1,384 +1,291 @@
-Return-Path: <devicetree+bounces-218229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F551B7D0C9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:16:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437C1B7D8E6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:30:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98AE8166FA0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:29:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 874C13A69AA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EF22F83CF;
-	Wed, 17 Sep 2025 07:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E5A302179;
+	Wed, 17 Sep 2025 07:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="o1rL2aLG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Qox4nZRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010071.outbound.protection.outlook.com [52.101.201.71])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013068.outbound.protection.outlook.com [52.101.72.68])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ADB204583;
-	Wed, 17 Sep 2025 07:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.71
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B732F618A;
+	Wed, 17 Sep 2025 07:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.68
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758094111; cv=fail; b=X7dacrfe3tnzMnKRpxHZ46mMjwEebXdKnVkKVAFCabNQFIP5yc6hlpC147TYBFCBRjLtBhhdWfZKBO+fKnv95Kmiyzt02nv29dzTEynJ2rFaWqfwA3mWlVdE+/KKgr9oOz3PRb1rsgy+SCtn3cNX95eeesI1rjnVI3qr1w40iS0=
+	t=1758094846; cv=fail; b=EtgSf7oLxYnRRXNSJCxLP21b6jV15MBDTDxGBCulCKCLxlfqsafoCViR3KZzMnZbv9uGfRuOiDEgMGBLSAva1n3yVVMjNniyv+ki4Cyzq2nzqJcQ7cQimqkyoiRtHAy0gTiFhoNItLjLr/UlCG067ERuVJOJ9qLPpBq0re1FxO4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758094111; c=relaxed/simple;
-	bh=6lgsfpMIKqPtHq4G4JNY2CuVfvfTorZB+VThVm/HvcE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HRQ2L1hSYE38OETK7ifQFC+a7UlCllziPgw7454j67DqrKzYNrB900H5dwxpaPLqFmRqXELx4Cuae7lJ4mIGmiLZAUXOkKL4ikR1Wztxsb3mneJ929vf4o//OnBtdgJlmnJyRcFPxZwV4iqAy/Q6BjR1bxIQSptTAe4KyZWdSx0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=o1rL2aLG; arc=fail smtp.client-ip=52.101.201.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+	s=arc-20240116; t=1758094846; c=relaxed/simple;
+	bh=jRrV8LcYU68ahx2PMI+977xZGStcKCQXLU3qpw+oiJU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=cnmelH3vYf5wIJ2Wa/EGJqoooX9ga/Lfm9P5UotlGNTLLYs8VRp8kBzFIBxHuttvS3wxaKfVeEMh7WjLDT7sSZMoAbNXBslZ9Jx0HX15EXFPUlsfdeqA/Kxmq7kkrtETXsw+fYRIoB/rr+8CUa+NkvtHEMLAIp2qx8xcG5Bcln0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Qox4nZRe; arc=fail smtp.client-ip=52.101.72.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=geyAfOwFNbRVjruS4uFdOpIjED02zj2swWQChgLRds6ls8KoLPhdQtCjELMmUFzel+ZD7LLiP25NOMD3amshz4GvLUUj2ckxcpJZO28LXIRuro89/9mdry0HxJSlsoNDyw+vJBoVLLMY7KxkYoymxZiFM9Lq9E8pRM1teWfDseBuZ7THmPsErOrwY3vjVRJkdvG3Bxxz9mAz+z1WlxWuWM2Sdtq0p89XqHMpk/schWKztLlYYWt9dIMDct6Hy0rfzCHreuUr3EMAahOkFEtgWIhWaxm1m3jSClVzgTS2rgn3SbM1rhn9G5f06C2LWsHaknYQYhjcCc1wIhROUt9PZQ==
+ b=dNVdGJqcHdtV7SbeLAtdAE5FMJCxEkVk6BMlZ0x+2OUmXrIf38UcZWvnrLjM1u/n1be36U74XaYCWoLIKTezIIDZe6GkuUrUdB5Cx6MNDYIivttJQeBAN6aOwbpK1ygHourp/teS5XQx9uer2HUypg4Z1MoIXCuzX3/yP7ThR0WP/7Ulzb4G9mLpu19LYb7QtitpySOrN6XBnPTi8O3fZ2+HAhgiUXRxHGHcgVLqdY3vzyDGst8fWwIgexwYMrcMmcZDgNFGut0oeXxEMrWfdWnye86JV6Vpsf7PrDxVg63azzXYlwk8HNJA95wGqDMYIGfQx2/4thS4D6Q1tx0dwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4O76WIx4kpECgikEE0BPkww9C1tgcdZeYbwGxPlbdNA=;
- b=smaJUh0nR6sx8OABslsqb2JNIrxfaTmDvH/YzfJLXBySX4b2OvbnbAA+zICXW/6N2ypMSw95cxPxiJXStDao+fhT5ORJ/GvQd8kd61VEw3Lwfgnt4CyLLVvktl4CyzcahS6iLo2TgKVaMFiXmW1jMO8gkVIn+sONBI25ELh4+7DQQRvmuxM01izmkipwsAwgUzFI+7r0tEbtAymPPUEO2YQPX0/i8nx9p7Y0r9bGNyXVHKDosNOEjKcDrOTjLdBIs25fdQdY+GoCsSpQ5gq229u508IYQjECRDlm61qzumSUHuvvMr0WnvGWkWCaLVdxZLl+4n8jc7RpJc3AY3+9aA==
+ bh=BUcq8i0jtjiwqGBNDn4JeCOIML6YOLMYISZEjoZGfm4=;
+ b=aC+OA904pCghoMVJ1n3Zug/MEyrZzkXBV9nWR/nvoVW6MdoBxSsEJ3AYJPfuHBAWQvFD0iemohqjBqxxg4yq8so6uNqZfnsrEanoa6vGkJgaueWkMtSMkIfUzZLJA1qagx2zIVAx45Wj3wghJx545ZXTH3yNyHIayyBNoKZOW7DCYWZcXH0iSdbLr8tt9+7oe4IPytPjjD9KBrqgJfPK1f2ACThbGB4PUmnUA9jQE7GyNVzcetlXJwgR6CqoSUYe4V0Us0onX70euvFFQx9GPcbYVmpZkt/gG99W7cam8vLoGsYse41D4YgXWteRoJRQBqCjp7CU4aYPI6MQmFkVNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4O76WIx4kpECgikEE0BPkww9C1tgcdZeYbwGxPlbdNA=;
- b=o1rL2aLGopoE972gCsmUU1B2Pi+j9cVbo5PlCsVulSQ7u1UYvh1014XEFbZk22aR2pxs76+xKZUH99Jw92gv9YSlXUgJQO4h+DD4jc7JFqhG/XJC79Yw92iKxj89OyOtT/NHWoSHxh006ksQSsXtwkfRrwgvRg6zlCh/7HfokFU=
-Received: from LV8PR12MB9206.namprd12.prod.outlook.com (2603:10b6:408:186::21)
- by DS0PR12MB7727.namprd12.prod.outlook.com (2603:10b6:8:135::5) with
+ bh=BUcq8i0jtjiwqGBNDn4JeCOIML6YOLMYISZEjoZGfm4=;
+ b=Qox4nZReMIj86kE77vnRjODmpB9U6DLrX1bCxFdU3EQ6b1bRYh403LXGPUKMoGJYLDcjmN29D43tjsOJSUDADbWkzlHhHz4zcM5Nmly6hMYdhmG6w0GhhkVJHMGyA5WWqhmlTvOs5Rhe5lu3RYrLGIBC+6zlwlppjW2UE4yZz7kieH1N4gHe/Fi94ZF5ga5oRaRtRfjFNG2ct4mSCCELBXnf5r/EDpGuT5UezWmlcKqRjuTRHSKCfwNoG6O29bGBJebFGLW1W9bPrDeqAPLl51PMh+/79oPzZjBGM2dj0hD4i8YONdxK5dF38sBlVhl13sr0OkMko3+IYlVwQe1Y8A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
+ by VI1PR04MB7183.eurprd04.prod.outlook.com (2603:10a6:800:128::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.21; Wed, 17 Sep
- 2025 07:28:26 +0000
-Received: from LV8PR12MB9206.namprd12.prod.outlook.com
- ([fe80::5447:387a:c920:8a4a]) by LV8PR12MB9206.namprd12.prod.outlook.com
- ([fe80::5447:387a:c920:8a4a%2]) with mapi id 15.20.9115.022; Wed, 17 Sep 2025
- 07:28:26 +0000
-From: "Jain, Ronak" <ronak.jain@amd.com>
-To: Rob Herring <robh@kernel.org>
-CC: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, "Manne, Nava
- kishore" <nava.kishore.manne@amd.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
- pinctrl schema
-Thread-Topic: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
- pinctrl schema
-Thread-Index: AQHbeKKktzakC2pjxUKURYxGjWc/ybNCrZ0AgAJyC8CACw5/gIARD0CwgTcX/WA=
-Date: Wed, 17 Sep 2025 07:28:26 +0000
-Message-ID:
- <LV8PR12MB92065C249AFD2DF80149003E8617A@LV8PR12MB9206.namprd12.prod.outlook.com>
-References: <20250206142244.2553237-1-ronak.jain@amd.com>
- <20250206142244.2553237-3-ronak.jain@amd.com>
- <20250211215354.GA1244436-robh@kernel.org>
- <LV8PR12MB9206BA2BC6BBBA184B3E2FCD86FF2@LV8PR12MB9206.namprd12.prod.outlook.com>
- <LV8PR12MB9206B51A38A82F5A1730DA3486C42@LV8PR12MB9206.namprd12.prod.outlook.com>
- <LV8PR12MB9206C4FBC2C8675274FB1BCB86C82@LV8PR12MB9206.namprd12.prod.outlook.com>
-In-Reply-To:
- <LV8PR12MB9206C4FBC2C8675274FB1BCB86C82@LV8PR12MB9206.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-02-20T12:05:20.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LV8PR12MB9206:EE_|DS0PR12MB7727:EE_
-x-ms-office365-filtering-correlation-id: 8d8416fa-bff0-4163-7e12-08ddf5bbcae2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?rXXl9E+YtS97n8g7IeZc7u87xBo2DFEegYYRRia6UNQK0y7clb6b91d8GH8I?=
- =?us-ascii?Q?ir3KReySuJlUUxSk42Nxi8rwe9sfkKNAcqkoUuUUBnNAwVpFaphSirUipNni?=
- =?us-ascii?Q?QeB54HBjSMXd1CT7i1yp+YukSXhjeTWRtrFjUGlqsLH9JFk9gUTXkLm1Ru0+?=
- =?us-ascii?Q?J2U3bOAGyx4JytbciVuWEciS8qjIXu4V3FFIPLb5D3nfnQPa5GiFnhC3UjTk?=
- =?us-ascii?Q?UJAOmdGTEgtPLk1OaBmWVIh31ObyvoBd3kgvThtwX17CegWn2pPIh70dckt2?=
- =?us-ascii?Q?8h1aB1rN4h0R+gOmrNs9vQozohTzciQMxPbe9e142okYT5pkHa1bD8qKsbyl?=
- =?us-ascii?Q?WccqW3ad3zaxnJB16oc8/e57JNA5xYox7lHfrOZ0wrFifaykqXRpJuJH8XHI?=
- =?us-ascii?Q?O50MO5s2k7gXAPH8sF4vIYNMC/SzFsLkilvldOXUTQhPFYTiw3BPjFrGXLf0?=
- =?us-ascii?Q?P9+IKiERlEHjFeGowlL8KDeKOI2AMUD0/yfXlOzcNjz+zoBCSPyB9hFVj4aQ?=
- =?us-ascii?Q?PvWOwxzZ+J2HpExV4EU94aND4EfMMdLtBdbxtmb+UcFvUm6JJorE62xfIHYL?=
- =?us-ascii?Q?9d7mN2OPaa9BIa77GlL2d0jd85qbtugkSJA02orh4zlxCg1epIILjmN6sh0/?=
- =?us-ascii?Q?yTeBn3OQowx3MKewJWege1DNrzHPUx8Z+g3mbJJ1pHH2GQfNZuGFTqIVP18+?=
- =?us-ascii?Q?NNK4SPXyxwfG2oXm99vx4FLpXZLA80SNcGE/AeErIpvgl7SVc1Ah6XYiYPqj?=
- =?us-ascii?Q?8wAsibsOM59yNiONGRsW8/jSyiwO6jH57HaXWCbrHRDyrX5h2ywNgMszecrg?=
- =?us-ascii?Q?khBJXvI6n5FeDgQkXDRFwDQHcm7yujKVPVFNhksZeR4sdckHuFMU2t8D1ucY?=
- =?us-ascii?Q?v8vypWbW+MW2UE8/I7hdw4ylNGXfhPLgy747KWbRTMZjPgt9Ln5EeqPHhQzB?=
- =?us-ascii?Q?0KeTFmBNz4IzY2oAWrzN7QzBvxonl3O46JoZPkMJVzl4TrEuLIaaOyA35R1U?=
- =?us-ascii?Q?p6yATDJzm63XmGgNaiEiDoaicUze4lqcswzhmUnsBd6n+qpDGnq/aG7ge3cK?=
- =?us-ascii?Q?leQvkJzToqsOE9FDLJzSYy+75vP6ArQvB6Tzg01QN6JtCUORayQiBIsylh5a?=
- =?us-ascii?Q?+67B3BceBpXXhTgX5v2TTrGtoZWLafGaqdw0Oqdh6dSDORXp0wWCHMmCc3br?=
- =?us-ascii?Q?lSRNOhj8L3HuK3vcYGag11kRMrmys/fyXaQJLKUaxqNO5LHzTxcVPgxTH2Ur?=
- =?us-ascii?Q?uuWdllcoFMXsMrs4k3nbeQWt6iRuLKMU7yj1DGkA4gGTdL8+C/BVlr8fcXCl?=
- =?us-ascii?Q?WJI/4LRwwGwvwb7k/h8LBbJFS6GcpCtIsltudCqxAi6cd9sw534bAETqA/9k?=
- =?us-ascii?Q?pRrx+UmmDfFmzW2l+yRGRpa1ZSkvFfnW6fwPxC5cPej46r8SbBXuf5942Yet?=
- =?us-ascii?Q?hYd+EVjRDxoY6Fk2S1PLJWhofI0Pmz/DN/gni0hLFRr3Y+UPjf+Xev+wVdfr?=
- =?us-ascii?Q?rC4PK8FchoVyFXM=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV8PR12MB9206.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?vj51s1fAYL3D8338rqNQeAPsOldaOKaQHJE4zxBVwTHGpvFrTOXwc6EiO3/W?=
- =?us-ascii?Q?0XPAC8GsE79RFgFjnFDM7x8VIkm/g4RKJU1emnPlkpTwkBGsdQxMvBwEV6NR?=
- =?us-ascii?Q?D0DG/MlfRUrywe06jMciDZ5SR0qZCjB5Jay6yieA8iycoT6/IxSh+5E11md9?=
- =?us-ascii?Q?0+f3/zodZcb/Wyz8lIPw0p8qiNhLuzaT6WZPAgA2xoTSprZ0K2mS5761/HuL?=
- =?us-ascii?Q?amIgWKT+USUULSmzF7ZbOGRq+kxUP9L1M2uJMQoxl4azEH55H6QzVcpyBY3B?=
- =?us-ascii?Q?8zt0FK51PYNtmWzMIuoMwg7/YphiZc8AC/S68wm6bqeO0QON9+AUnY10uUu4?=
- =?us-ascii?Q?ppzfrDcdHn6WpdkSV2COSq9LNIeJIZa8IV72yhmPwnSjHRvvCxE+n3+YgUIH?=
- =?us-ascii?Q?0O4MwBZgnj6rsJr4wexiAv2zbEUvsbYXTYTkFvCWzPMbGu/q8j9MqWsg1IZf?=
- =?us-ascii?Q?ENaHU2DrLsEA9gnoY/ueyVE0HvFBG7kfFW910/YBLng5/1wa5Fr28ltHgjk+?=
- =?us-ascii?Q?9OGBD83TRAmVIiUCm8rLQFNmjZDgSU/EGtcc+RBbpWq5hSm+ofwpC8BJTXwd?=
- =?us-ascii?Q?SzY1Px76slb/jEodXwvhIvGwHdLEFXXXD81dnrIXj3G7c3yMJ9tW5CfxPJF/?=
- =?us-ascii?Q?0CXt9crl3V96AoA6MYKwvINv9k6c6CyXfNWhl2gYlmmoOhjQSOXytWomK8Io?=
- =?us-ascii?Q?SWo6KGlagu6NtFOcRfez9khw4LHoF2JsPrauVf4KejGyBXv0nol9h7KmhZNm?=
- =?us-ascii?Q?UUYKnhGhZi2KUGFy9le38Hv12VdK1iwxGcAvseQgJUNe7ItbqIS/BTtljPjk?=
- =?us-ascii?Q?v+Q/G+eTPzCNftQqnrmk3IDAXNxHIvbRsOC0fWtb9XDJVIhNp/rP4B1KN9ce?=
- =?us-ascii?Q?VksbRZvH6MeIq0P/MByqe4n9Tp1N/ndu+WMjB8aYEt9/F6b0hnCrYqkuD/fo?=
- =?us-ascii?Q?UG6n+B5yAu9ejIiY4UNeBBu8L8SGfsFp+33BDS8wGxppy6f/QSFxgj92B5EP?=
- =?us-ascii?Q?WC99XtoaEPbpA2BOvArv7BwakSi/xWztNj5huCiLlWfs/+95d0axE540nfBQ?=
- =?us-ascii?Q?WOFfht4NtJKrO0G5nDQTSY/6/v3wOsd6d3YUeO+zvh+hT+YW76hBiX+Icy2k?=
- =?us-ascii?Q?GoANK68gAh4wrtap8zg9ptgQbGuKp35hbUfpyw95YNKu5ly+wO6AWjmESFp2?=
- =?us-ascii?Q?eKCjtEQ/NKAtGpg6dll0yxXbiSPjdVTpXrGgmrGAfJ7MLsZTIViU1Itud7tN?=
- =?us-ascii?Q?UKjF7s13Gvu1A6UHxfFXyEE8FiIS6zX9oH5jIUO8evwBnXlEmy8MqcARZNXp?=
- =?us-ascii?Q?mTfwjSLrX9Bymbl7j66uT29XzrhqczE5z8BP0Mm3t6ckgbW+G6hs3reg1HPy?=
- =?us-ascii?Q?CgTz8/hl8BUHmc+e1zoRxkmml+floibggdO/SRhlaZEu2COXEerN0x7J5/YT?=
- =?us-ascii?Q?dcUrt5dQkjWcBKWJE8+JdXymq+8/gpYi0ZTxBuOlJXNCVC+LcbWA1B//9hJM?=
- =?us-ascii?Q?IKnf1agq3ARHgpKevd7hxmJeENdqdUGIjc+QoaoOqW4S3Usf+aIvd//ubRFS?=
- =?us-ascii?Q?JacBAt2BuToX42z+ekA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Wed, 17 Sep
+ 2025 07:40:39 +0000
+Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b7fe:6ce2:5e14:27dc]) by AS8PR04MB8868.eurprd04.prod.outlook.com
+ ([fe80::b7fe:6ce2:5e14:27dc%4]) with mapi id 15.20.9137.012; Wed, 17 Sep 2025
+ 07:40:39 +0000
+Date: Wed, 17 Sep 2025 10:40:37 +0300
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>, Lee Jones <lee@kernel.org>, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/9] drivers: gpio: add QIXIS FPGA GPIO controller
+Message-ID: <jfxasie7r3362tsxscd6bqpoprsj7pgmatlj6jsfgvorkwbor3@xsikgz67p6qb>
+References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
+ <20250915122354.217720-6-ioana.ciornei@nxp.com>
+ <aMmSpu/TWOmpHJ60@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aMmSpu/TWOmpHJ60@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: AS4P195CA0004.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e2::19) To AS8PR04MB8868.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42f::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|VI1PR04MB7183:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0d6ddf1b-933b-4247-d88f-08ddf5bd7fb6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|19092799006;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?o0IF3ImQ3wKv7GODKPxpSog7zEAO7wAaoCtjVv7kwKwcSS2DxyD243azPiow?=
+ =?us-ascii?Q?o0VAk53FJBb3SS1FfoQhRXqsrqX10AgCiGChaZaXF+Z8e3ySaa1AgvfTQ/qH?=
+ =?us-ascii?Q?BiNS88fSUA18YbLGnFE9JYwPcIfGiTTUlnvvVnvR/sKnq6MEwcEoG/rspg2L?=
+ =?us-ascii?Q?B/wmamZabrX5l6UJMUMqiaIV4rbxQbblsRXkfajXGjHrXjtHrT1eRG53JoEF?=
+ =?us-ascii?Q?QWrUJqcxDhmf5cNxFIa37FWHj1GW3wr7C75BZxrlxdZMGNjWoE//8j7ThV/P?=
+ =?us-ascii?Q?nZON3Al1V6c7oAbcugKB3Lj5Itf3mR2GG3gNxpkSvGflmZ1ye1Kdq9IRgLUb?=
+ =?us-ascii?Q?2rtoN7HU0bOP5HjHiiKZ1Hvak3evi5rpJof/2zJq78Cw6VvAoLu/Vffqf6xt?=
+ =?us-ascii?Q?MLRrhfIAaHkhWIkli1pI4Mrr6VR9WNXdnNn6Sm0qFsi/+ZxDm+Um+O5mShzV?=
+ =?us-ascii?Q?aX4FH2U85FDeXDJoASVAcLu48vQiYLuLa9nHNb/5ipjaNQ4OsKZ2kMgFbmU7?=
+ =?us-ascii?Q?H5UEAmfOl5cATpUkElvV+6OYMX4FtcW0PRYNiVHMr7zsD07+D8p5ctPYWZ0Z?=
+ =?us-ascii?Q?K+IMlw8y0BeuLoTPg0ouXPUodd5uCAzHUd25w27q8fr2KKoG0gGD7ytAKv+J?=
+ =?us-ascii?Q?oFYoeCDzNwjT4tylkGZwb26EabZgjiv6tJbu3TCXF3wx2LhqNF8KTW5Drgll?=
+ =?us-ascii?Q?+vz7LM8Sf5aAgUuf6usJzJ+sVa2LxUAqvTBSjUUTRaAn+iS5RJ8qtd0+4+vX?=
+ =?us-ascii?Q?is52iGCNm/F/hFtu5mGQf9bY8xQVbZwwGSF/muLpWqT7AFGzhliwPfpDkUUa?=
+ =?us-ascii?Q?F0+lLCJO18ppIyOfvKpARqVsdHkKXHUJoocEPBL+KsTLp7R2Bri6wJXOiBGX?=
+ =?us-ascii?Q?9MHEKTLdVW9UleHemX3PJKn87YT56LIdo6BHjsX0sKBozI2knLNJMCb8CFZN?=
+ =?us-ascii?Q?8bTZXQbrLHz2XCNFDxMo6/7tYvvpJwwuOk4YX8lrAIunLdLIqES8PXVT3iNV?=
+ =?us-ascii?Q?3CdBaQ9olSq1qO0KOiI0wNqG9O6sYSnAIajtptl0/SpTT/ZwXfnlhfPP9Dlo?=
+ =?us-ascii?Q?0g1JAeSXO0JdzrX2NNarYGcaYqsTgL1kHKTdkyFxgKbHnFmmS2jc8rYHF1c9?=
+ =?us-ascii?Q?p8R6C3fKcPZPD0vv/gd4cl/18JTVGvfad4qm4Db5RPSxi1Iy31iB7XrOyuWO?=
+ =?us-ascii?Q?Gkq7zJovzKW/84iBPZtiIi3aedUdduI3H/IZ/QBCAm156Ps1k+tzrPBTbYUi?=
+ =?us-ascii?Q?WsHiprvohkPg57ZWvZJiWfdAgHyHF4RwiIKfCIaLS5/5McbeAei2vB9iiUae?=
+ =?us-ascii?Q?OJ/+RPr9w3c9zmSoT0o0gAbAlp4XEvrlad6niM6BV5H3VbC2kfgBBcxrKCYC?=
+ =?us-ascii?Q?zdqNhnASTukkzWHRJEBn7yOxJmA4Y88HpEPXdyIsbUBmCjJb9MUHYCNNwcWt?=
+ =?us-ascii?Q?3ca9ol0fr4s=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(19092799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mHbechMrapvLB0cTTRXWrcJGPC+ppop/obVXjCKic/NvwW7DPb4BkERNDIF2?=
+ =?us-ascii?Q?t0YhsE10qS9FoiFAzxL4W0/GcitU8ydTRxBxrrkR7M161xZg0rslbNuM80tw?=
+ =?us-ascii?Q?s1St2VR3B0EF9uSTuISOASAG3voH5PFyREXiFgu61OVyTlh5aYqbIXiQXbOJ?=
+ =?us-ascii?Q?VZmqzkYz6CIW2Ec8QkXLh6Byrsv2Vo4rnLaX5aN+kBdAv9OEhjcUa9279uQv?=
+ =?us-ascii?Q?+y6bL20nicHJHisazqLrsvCy4G9s5Naa91bqYOg7K4AOO0fishf0/UOf2Pw1?=
+ =?us-ascii?Q?4G4LWDx+ZyZXdEnQVoVp/fqBUANerMocSHcpudA4qjWxQamjXStKLk9u6g0Q?=
+ =?us-ascii?Q?VJezMabEi2lgpYtNkoM1BSo5wT4yU54PCfAl4svbJhg7C6m+aQ6AMsbp1L/f?=
+ =?us-ascii?Q?h0WKoq9AYM/gOJ6FlMLcwSGDPJs6jOHPT1FBEvB07eBAp33F+1Hi0gOB0o6s?=
+ =?us-ascii?Q?+Hbz7tY6saLFHiJU7xNzMBytg2+RPxxYi3oREQ2WttQECgAeRD2IXRwWeYPv?=
+ =?us-ascii?Q?V3m4v4Z6pVJoWok9lzoX9n3K11W9JfauRfslaXfxUW4pe+SZ9z9TXiEcc06F?=
+ =?us-ascii?Q?Dwa9iPAITExIlyfcPbOsFj4gddC8Y3Sa72gxPRrCrETWrTTszMbdw/YppuKz?=
+ =?us-ascii?Q?HXZKeq5HD40qIBloCMdVc6gHMawtF5fI0T1FBIKyOwBYXz8zTvCYHdlkKaup?=
+ =?us-ascii?Q?eVSYSqTcFTSmxSGFtkKiwGcGNBpfP8o3+kiWumg/pZ5rBIfMCUDTRNs9Pvx3?=
+ =?us-ascii?Q?K+pPCoSwlybMtROy0tAAlu0xDK2sYMGvC5L/r/dsA61uW3n0gg0kbj/1erfU?=
+ =?us-ascii?Q?BbK+1Ny5VgUDgbFkydGiX///bhDQSc2/flQ8gnqBAwyBSw0HNHkimX79Q6Xc?=
+ =?us-ascii?Q?yeTLdQIH225gKY2oA1/CFWRSuG4hy1gY6ORQ17sQfsw63tXNxXQi17OA38Di?=
+ =?us-ascii?Q?tQFl4WVtctZGORY24lwjOgAvoEhDOumLVaae2s3D9SmDmjIHhInOn6CuhyUg?=
+ =?us-ascii?Q?0NHvx8D0qnMSEIPYhQGqFYgdxYQZ8KYL34ViU3XqvFqJMi7bDibeKXNT1Hfa?=
+ =?us-ascii?Q?2BENbspOAiS/Lo/f8+gXMxYtOTd8Yy7FUIE48FQ8gDP1OZaPoLdlOU6+mx2r?=
+ =?us-ascii?Q?Z35SwdbSfGp97xijMipD//3fiCa/mevcWlXQDxZPtjK4GEtXlhq4w0AZpp53?=
+ =?us-ascii?Q?XfTaF7M1IMydse+ukLaKToVHzBMZJKQEQsU/gsNbgRcm7LL9h4Sd34TUjpVU?=
+ =?us-ascii?Q?1zBT1ccm1M8Qm9NU3t46PmPQYLYoHMajgDwwT2csJhy4QyNrd1y5d2ua7Zrn?=
+ =?us-ascii?Q?VxkmE0SkdUcLiwxL1T9cYAbKhrrIgQaCpA9o+KBzen9no267WUi5KbDyFAWQ?=
+ =?us-ascii?Q?Lm35oEKeZK3UFQs9ROo+zzr96bkhl5YpLcONnA9qyluEhIOY/iY9iscw8+dh?=
+ =?us-ascii?Q?vv3rYJQhlRUr//QGO2sFpsYoeFr5uM0Zglp8DgnpEkk+fPQOMw3DDyf0hEq/?=
+ =?us-ascii?Q?GMXFc8MEebaxyCsVzL1Yl3GBc9PVz3g5Rw5YJOZ3at71653QsSbHZbt9yXOY?=
+ =?us-ascii?Q?Vwh3zaN9dVWYIi2DPVwiB4heisqyPliL4F03eTCE?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d6ddf1b-933b-4247-d88f-08ddf5bd7fb6
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9206.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d8416fa-bff0-4163-7e12-08ddf5bbcae2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2025 07:28:26.7405
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 07:40:39.8175
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 00tDRMl0+DzbbYHUwdbFxDsXdS+XTlkCePRm8ZuVIwHDuav6sZ7m82774nMA3h5g
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7727
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ugI+ITcYoimRRUCiHhFGhZV/Wudm/yxndJpRf2Fbrediy6rOLPKamrPcKsqUDZXBJMJHXl1LhKtj0Qs2AHB0WA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7183
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+On Tue, Sep 16, 2025 at 12:39:02PM -0400, Frank Li wrote:
+> On Mon, Sep 15, 2025 at 03:23:50PM +0300, Ioana Ciornei wrote:
+> > Add support for the GPIO controller found on some QIXIS FPGAs in
+> > Layerscape boards such as LX2160ARDB and LS1046AQDS. This driver is
+> > using gpio-regmap.
+> >
+> > A GPIO controller has a maximum of 8 lines (all found in the same
+> > register). Even within the same controller, the GPIO lines' direction is
+> > fixed, which mean that both input and output lines are found in the same
+> > register. This is why the driver also passed to gpio-regmap the newly
+> > added .fixed_direction_output bitmap to represent the true direction of
+> > the lines.
+> >
+> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> > ---
+> > Changes in v2:
+> > - Use the newly added .fixed_direction_output bitmap representing
+> >   the fixed direction of the GPIO lines.
+> >
+> >  drivers/gpio/Kconfig           |   9 +++
+> >  drivers/gpio/Makefile          |   1 +
+> >  drivers/gpio/gpio-qixis-fpga.c | 123 +++++++++++++++++++++++++++++++++
+> >  3 files changed, 133 insertions(+)
+> >  create mode 100644 drivers/gpio/gpio-qixis-fpga.c
+> >
+> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> > index 886bef9106da..4ca5890007ff 100644
+> > --- a/drivers/gpio/Kconfig
+> > +++ b/drivers/gpio/Kconfig
+> > @@ -1951,6 +1951,15 @@ config GPIO_LATCH
+> >  	  Say yes here to enable a driver for GPIO multiplexers based on latches
+> >  	  connected to other GPIOs.
+> >
+> > +config GPIO_QIXIS_FPGA
+> > +	tristate "NXP QIXIS FPGA GPIO support"
+> > +	depends on MFD_SIMPLE_MFD_I2C || COMPILE_TEST
+> > +	select GPIO_REGMAP
+> > +	help
+> > +	  This enables support for the GPIOs found in the QIXIS FPGA which is
+> > +	  integrated on some NXP Layerscape boards such as LX2160ARDB and
+> > +	  LS1046AQDS.
+> > +
+> >  config GPIO_MOCKUP
+> >  	tristate "GPIO Testing Driver (DEPRECATED)"
+> >  	select IRQ_SIM
+> > diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> > index 379f55e9ed1e..373b1f169558 100644
+> > --- a/drivers/gpio/Makefile
+> > +++ b/drivers/gpio/Makefile
+> > @@ -144,6 +144,7 @@ obj-$(CONFIG_GPIO_PL061)		+= gpio-pl061.o
+> >  obj-$(CONFIG_GPIO_PMIC_EIC_SPRD)	+= gpio-pmic-eic-sprd.o
+> >  obj-$(CONFIG_GPIO_POLARFIRE_SOC)	+= gpio-mpfs.o
+> >  obj-$(CONFIG_GPIO_PXA)			+= gpio-pxa.o
+> > +obj-$(CONFIG_GPIO_QIXIS_FPGA)		+= gpio-qixis-fpga.o
+> >  obj-$(CONFIG_GPIO_RASPBERRYPI_EXP)	+= gpio-raspberrypi-exp.o
+> >  obj-$(CONFIG_GPIO_RC5T583)		+= gpio-rc5t583.o
+> >  obj-$(CONFIG_GPIO_RCAR)			+= gpio-rcar.o
+> > diff --git a/drivers/gpio/gpio-qixis-fpga.c b/drivers/gpio/gpio-qixis-fpga.c
+> > new file mode 100644
+> > index 000000000000..23219a634f73
+> > --- /dev/null
+> > +++ b/drivers/gpio/gpio-qixis-fpga.c
+> > @@ -0,0 +1,123 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Layerscape GPIO QIXIS FPGA driver
+> > + *
+> > + * Copyright 2025 NXP
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/gpio/driver.h>
+> > +#include <linux/gpio/regmap.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +enum qixis_cpld_gpio_type {
+> > +	LX2160ARDB_GPIO_SFP = 0,
+> > +	LS1046AQDS_GPIO_STAT_PRES2,
+> > +};
+> 
+> needn't type at all.
+> 
 
-Hi Rob,
+True, I can just pass the u64 bitmap directly as data. Will try.
 
-I am following up on this thread as the query from April is still open.  Co=
-uld you please take a look at my question in the inline mail below?
+[snip]
 
-Thanks,
-Ronak
+> > +	if (!pdev->dev.parent)
+> > +		return -ENODEV;
+> > +
+> > +	cfg = device_get_match_data(&pdev->dev);
+> > +	if (!cfg)
+> > +		return -ENODEV;
+> 
+> Needn't this check.
 
-> -----Original Message-----
-> From: Jain, Ronak
-> Sent: Tuesday, March 4, 2025 11:46 AM
-> To: 'Rob Herring' <robh@kernel.org>
-> Cc: 'krzk+dt@kernel.org' <krzk+dt@kernel.org>; 'conor+dt@kernel.org'
-> <conor+dt@kernel.org>; Simek, Michal <michal.simek@amd.com>; Manne,
-> Nava kishore <nava.kishore.manne@amd.com>; 'devicetree@vger.kernel.org'
-> <devicetree@vger.kernel.org>; 'linux-arm-kernel@lists.infradead.org' <lin=
-ux-
-> arm-kernel@lists.infradead.org>; 'linux-kernel@vger.kernel.org' <linux-
-> kernel@vger.kernel.org>
-> Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional p=
-inctrl
-> schema
->
-> Hi @Rob Herring,
->
-> Did you get a moment to go through the queries I asked for?
->
-> Thanks,
-> Ronak
->
-> > -----Original Message-----
-> > From: Jain, Ronak
-> > Sent: Thursday, February 20, 2025 5:48 PM
-> > To: Rob Herring <robh@kernel.org>
-> > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
-> > <michal.simek@amd.com>; Manne, Nava kishore
-> > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> > Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
-> pinctrl
-> > schema
-> >
-> > Hi Rob,
-> >
-> > > -----Original Message-----
-> > > From: Jain, Ronak
-> > > Sent: Thursday, February 13, 2025 4:46 PM
-> > > To: Rob Herring <robh@kernel.org>
-> > > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
-> > > <michal.simek@amd.com>; Manne, Nava kishore
-> > > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-
-> arm-
-> > > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> > > Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add condition=
-al
-> > pinctrl
-> > > schema
-> > >
-> > > Hi Rob,
-> > >
-> > > > -----Original Message-----
-> > > > From: Rob Herring <robh@kernel.org>
-> > > > Sent: Wednesday, February 12, 2025 3:24 AM
-> > > > To: Jain, Ronak <ronak.jain@amd.com>
-> > > > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
-> > > > <michal.simek@amd.com>; Manne, Nava kishore
-> > > > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-
-> > arm-
-> > > > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
-> > > > Subject: Re: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditi=
-onal
-> > pinctrl
-> > > > schema
-> > > >
-> > > > On Thu, Feb 06, 2025 at 06:22:43AM -0800, Ronak Jain wrote:
-> > > > > Updates the Device Tree bindings for Xilinx firmware by introduci=
-ng
-> > > > > conditional schema references for the pinctrl node.
-> > > > >
-> > > > > Previously, the pinctrl node directly referenced
-> > > > > xlnx,zynqmp-pinctrl.yaml. However, this patch modifies the schema=
- to
-> > > > > conditionally apply the correct pinctrl schema based on the
-> compatible
-> > > > > property. Specifically:
-> > > > > - If compatible contains "xlnx,zynqmp-pinctrl", reference
-> > > > >   xlnx,zynqmp-pinctrl.yaml.
-> > > > > - If compatible contains "xlnx,versal-pinctrl", reference
-> > > > >   xlnx,versal-pinctrl.yaml.
-> > > > >
-> > > > > Additionally, an example entry for "xlnx,versal-pinctrl" has been
-> > > > > added under the examples section.
-> > > > >
-> > > > > Signed-off-by: Ronak Jain <ronak.jain@amd.com>
-> > > > > ---
-> > > > >  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 20
-> > ++++++++++++++++++-
-> > > > >  1 file changed, 19 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git
-> > a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
-> > > > firmware.yaml
-> > b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
-> > > > firmware.yaml
-> > > > > index 2b72fb9d3c22..d50438b0fca8 100644
-> > > > > ---
-> a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
-> > > > firmware.yaml
-> > > > > +++
-> b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
-> > > > firmware.yaml
-> > > > > @@ -76,7 +76,6 @@ properties:
-> > > > >      type: object
-> > > > >
-> > > > >    pinctrl:
-> > > > > -    $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
-> > > > >      description: The pinctrl node provides access to pinconfig a=
-nd
-> > pincontrol
-> > > > >        functionality available in firmware.
-> > > > >      type: object
-> > > > > @@ -106,6 +105,21 @@ properties:
-> > > > >      type: object
-> > > > >      deprecated: true
-> > > > >
-> > > > > +allOf:
-> > > > > +  - if:
-> > > > > +      properties:
-> > > > > +        compatible:
-> > > > > +          contains:
-> > > > > +            const: xlnx,zynqmp-firmware
-> > > > > +    then:
-> > > > > +      properties:
-> > > > > +        pinctrl:
-> > > > > +          $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
-> > > > > +    else:
-> > > > > +      properties:
-> > > > > +        pinctrl:
-> > > > > +          $ref: /schemas/pinctrl/xlnx,versal-pinctrl.yaml#
-> > > >
-> > > > The somewhat preferred way to do this would be to do this in the to=
-p
-> > > > level:
-> > > >
-> > > > pinctrl:
-> > > >   type: object
-> > > >   additionalProperties: true
-> > > >   properties:
-> > > >     compatible:
-> > > >       contains:
-> > > >         enum:
-> > > >           - xlnx,zynqmp-pinctrl
-> > > >           - xlnx,versal-pinctrl
-> > > >   required:
-> > > >     - compatible
-> > > >
-> > > > Otherwise, the pinctrl schema ends up being applied twice.
-> > >
-> > > Thanks for the patch review and inputs. I'll update and send the next
-> > version.
-> > >
-> >
-> > In your suggested code, the schema allows either xlnx,zynqmp-pinctrl or
-> > xlnx,versal-pinctrl on any platform, which is incorrect. This means tha=
-t if a
-> > user mistakenly assigns xlnx,versal-pinctrl to a ZynqMP platform or
-> > xlnx,zynqmp-pinctrl to a Versal platform, the wrong reference will be u=
-sed,
-> > but no error is reported. The dt-binding check still passes instead of =
-flagging
-> > this as an issue.
-> >
-> > By using a conditional schema, we can enforce platform-specific
-> compatibility,
-> > ensuring that the correct compatible string is used for the correspondi=
-ng
-> > platform. This would also generate an error if an incorrect compatible =
-string
-> is
-> > provided, preventing misconfigurations.
-> >
-> > Please let me know your thoughts.
-> >
-> > Thanks,
-> > Ronak
-> >
-> > > Thanks,
-> > > Ronak
-> > > >
-> > > > > +
-> > > > >  required:
-> > > > >    - compatible
-> > > > >
-> > > > > @@ -164,6 +178,10 @@ examples:
-> > > > >          compatible =3D "xlnx,versal-fpga";
-> > > > >        };
-> > > > >
-> > > > > +      pinctrl {
-> > > > > +        compatible =3D "xlnx,versal-pinctrl";
-> > > > > +      };
-> > > > > +
-> > > > >        xlnx_aes: zynqmp-aes {
-> > > > >          compatible =3D "xlnx,zynqmp-aes";
-> > > > >        };
-> > > > > --
-> > > > > 2.34.1
-> > > > >
+Ok.
+
+> 
+> > +
+> > +	ret = device_property_read_u32(&pdev->dev, "reg", &base);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> > +	if (!regmap) {
+> > +		/* In case there is no regmap configured by the parent device,
+> > +		 * create our own.
+> > +		 */
+> 
+> /* Use MMIO space */
+
+Ok.
+
+
+[snip]
+
+> +		config.reg_set_base = GPIO_REGMAP_ADDR(base);
+> 
+> 
+> only two compatibles string in qixis_cpld_gpio_of_match. so it can set
+> unconditional.
+> 
+
+Fair point. Will change.
+
+Ioana
 
