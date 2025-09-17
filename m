@@ -1,113 +1,108 @@
-Return-Path: <devicetree+bounces-218533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DCF8B81352
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:38:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22443B813CD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:52:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64A904660C2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:38:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B00CA627A59
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE3D2FF164;
-	Wed, 17 Sep 2025 17:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B118B2E090A;
+	Wed, 17 Sep 2025 17:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TvqfBWTP"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FWgOARlf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E612FF154;
-	Wed, 17 Sep 2025 17:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C39534BA3D
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 17:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758130697; cv=none; b=Hh5DGNUQGt8X40fhZBAoMaWj1SO6i15zdxsiFDZIVVfW4wtG8FxFmNm8G/C0x5zMF8RiIp2hYT//VqHd63v3PhUl4SwWQU9U5MNbj62HvNN2Vv+BQq/4z+6dc0sa6ck+3Axjg/EA+UXCNtpRu2m0FmrEKhtr0Ftvt/p5Y9s1Kzw=
+	t=1758131539; cv=none; b=gq/lh8bdY0QxM594REJKy/IvOSbQ/7MR/FsfmF9s9OkPMKYZb8hcmiX+R12/oCE7FMdedIdJ3kfcDsbRE23BLBbaSRVkiKfMaRsJvret09hDUjXB7bU7PIlHbuscStEErIV4Gmm9EfFwRr91bWC0nZF45Fkwvyt9Llv6bVLJ140=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758130697; c=relaxed/simple;
-	bh=98MNGnnkrUwGuRnrY4NUPpQAkwT8q3WuQcOsJRda4aQ=;
+	s=arc-20240116; t=1758131539; c=relaxed/simple;
+	bh=g2/Cse7salc1tIUE/OJp9FayjCskQFXXIpcOQv0wqcA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kLLUVCl2aGn6YMHMe/GqBowyc8SkQpXDULU4sSHIoo/bHkIltMbOXfxz8pahTJ0lZcIO9mqAhxHYn0B/5FKc1Fic3WQQnBRUd0hjxIvJSG5UaEx3DH+7W3WBYZMsX0Hmw/PGTepZey3Qy/7rEosJVRDUizwtOWPnl056fTPDjXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvqfBWTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66919C4CEE7;
-	Wed, 17 Sep 2025 17:38:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758130697;
-	bh=98MNGnnkrUwGuRnrY4NUPpQAkwT8q3WuQcOsJRda4aQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TvqfBWTPGLdZeVCIgXIle3ePtwYbq6UowyG2ynmEUXEKrd5Y1YiEHfUTAfvPQLy4Y
-	 7S+Ocx49woz1T+7Herl71V/2KKRbjtYLgXu43Q1cNAa68rPIqAv6OwCEJGw1YSZ5g/
-	 dlKBnjYcTl0wpl+cC9iGfUIQdAWRpmJM08zC1/xEAEz7IDE2WLOP5JjgHdCZ4NZk7L
-	 24oR2MF9Uk1zEoUAvnOh1D9tWfsTi5EYoylUP66UXteeXE3zEFmbMk1pnfzI6VbNmD
-	 u3pekvuK9xzT+hG7lgIe83Z/7lUruCdBBxFZY4lnF7lc97BgQDULDEuDXJvYFXI+vs
-	 yyoV/pybI17Pw==
-Date: Wed, 17 Sep 2025 18:38:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	lars.povlsen@microchip.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	luka.perkov@sartura.hr, benjamin.ryzman@canonical.com
-Subject: Re: [PATCH 1/2] dt-bindings: reset: microchip: Add LAN969x support
-Message-ID: <20250917-paparazzi-hermit-3a4aa686add3@spud>
-References: <20250917111323.60781-1-robert.marko@sartura.hr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lZv6JTVh8TzD61d6XY4WBW18UHDOoKzMmlRfEO01k/5+6Eo9m6ayRpQVwrdHauVqsWDCOv8UFhLGRKlnAx2vkARQuktreDwKfPGf7nUZ/3ZPWG4G5kVfGEd0GB5dK2QVkzjzurmjO7gDk4jKmaQ2osaKTJ1nc5vhBn/AUhtxMKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FWgOARlf; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Rx5V
+	0/lZD/IdbtCuUfwjiSEO0Grpo0JaThAgFi8Wh8s=; b=FWgOARlfcC5bBkEhH7jG
+	ITFPFlwr1VAfDuV0hIVqbDeNRxa2v7Ycn5BBKxibO0KMk2WxPeWb494SJo3SZ4QE
+	RFClSWn1PObw0nS9NEb3t1IMYTqChz5GwKXqsFSu9j0TT3VWAwE6MN3au5m6mGpS
+	JD/p/ucC6a7lTlJguzmIG+T8RyBoUsUmd+Cy2Cg3AZdC4PTagMr5mrvyPECtqOUh
+	rSgilWdz3j4OR/4LUArMds+Rffk4gY60pYA2iLgddKm6DKEjeKNKUM0HjLkxrPzc
+	/OPXKoqjG0tih5tcmDLmR3lqI7P4yCJGfxt6ZBz/cgerHqnfaKm8oige/Ejgtbyi
+	sQ==
+Received: (qmail 3221545 invoked from network); 17 Sep 2025 19:52:03 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Sep 2025 19:52:03 +0200
+X-UD-Smtp-Session: l3s3148p1@Zdbn5AI/itEujnvK
+Date: Wed, 17 Sep 2025 19:52:02 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	"Liang,  Kan" <kan.liang@linux.intel.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ian Rogers <irogers@google.com>, Ingo Molnar <mingo@redhat.com>,
+	James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>,
+	John Garry <john.g.garry@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Leo Yan <leo.yan@linux.dev>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh@kernel.org>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 5/6] arm64: dts: renesas: Add R8A78000 X5H DTs
+Message-ID: <aMr1QjI8vfrP_fwD@shikoro>
+References: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com>
+ <87ms6vi0js.wl-kuninori.morimoto.gx@renesas.com>
+ <86v7li1xs4.wl-maz@kernel.org>
+ <87h5x1afgr.wl-kuninori.morimoto.gx@renesas.com>
+ <86qzw51pmw.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZZrNlcphxvFNijN6"
-Content-Disposition: inline
-In-Reply-To: <20250917111323.60781-1-robert.marko@sartura.hr>
-
-
---ZZrNlcphxvFNijN6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <86qzw51pmw.wl-maz@kernel.org>
 
-On Wed, Sep 17, 2025 at 01:12:35PM +0200, Robert Marko wrote:
-> LAN969x also uses the Microchip reset driver, so document its compatible.
->=20
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  Documentation/devicetree/bindings/reset/microchip,rst.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b=
-/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> index f2da0693b05a..4d4dd47f830e 100644
-> --- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> @@ -23,6 +23,7 @@ properties:
->      enum:
->        - microchip,sparx5-switch-reset
->        - microchip,lan966x-switch-reset
-> +      - microchip,lan969x-switch-reset
 
-Driver patch makes a fallback compatible seem usable.
+> > And, the datasheet is very complex, I don't think people can find it by
+> > himself without any hint.
+> 
+> I guess we're just a bunch of inexperienced idiots unable to read a
+> TRM.
 
-> =20
->    reg:
->      items:
-> --=20
-> 2.51.0
->=20
+Please don't feel offended. Morimoto-san really has a point here. The
+datasheet available for us is currently in a very rough format with
+*lots* of attached documents with hard to grasp naming. I am dealing
+with R-Car datasheets for 10+ years now, and I do have a hard time
+finding the information I want with this one.
 
---ZZrNlcphxvFNijN6
-Content-Type: application/pgp-signature; name="signature.asc"
+That being said, I agree to the point that it is not very helpful to
+reference such documentation upstream.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMryBAAKCRB4tDGHoIJi
-0lF5APoCO2fpGBZ4T11tcyR1V+3vQvsaWXwe74qYjRS39jBoWwD/RTYl78Os46zO
-LOgCifCO7gUxjX+ibE/q2+B/LW3dLgE=
-=9R5e
------END PGP SIGNATURE-----
-
---ZZrNlcphxvFNijN6--
 
