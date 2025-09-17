@@ -1,201 +1,127 @@
-Return-Path: <devicetree+bounces-218165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CE5B7CD2A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:10:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FEBB7D302
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D03E9484AAD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 03:51:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 575FC1B27088
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 04:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26EDE2F6598;
-	Wed, 17 Sep 2025 03:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A9D29A30D;
+	Wed, 17 Sep 2025 04:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FG/ZqHkl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="go2jnzER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013062.outbound.protection.outlook.com [40.107.162.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131EA2F5485;
-	Wed, 17 Sep 2025 03:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758081108; cv=fail; b=nxmByqHRpwQL4WbyHFz1XlGCv8lHyYOVHqPVI9Ck+YMZ8w/Ab7kbPJGDopS6wOXet4OrNJMqwe7KqaBE/FakHh/u1WueFTGLnfoG6xXRnAlo5MXsF2yv25xOaqPTZQ1jjFzi6gesC2JugnOmbxbYoDliXXw+Ed6VB/9kMiA5tN8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758081108; c=relaxed/simple;
-	bh=sePattRwEnZu7GzaIRwrwAP5AF4WEGy4HVKSqYbNVLQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mWyDK0N3a4XBOl8Zf44+8hF0s/IXc0Qv1sitWVDqDdpM+D/Z5f/ixbqlnzh8mu4DSjLsbGqQruldWuU2+2nQJxsv+AOXTBLrVm0Fj1vXnvXxU0OOwhfaXr6IcnA6GbBrOjj7RgRr+o6fnwaFQmajxDMDzifG18La/rUwb9mqP7A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FG/ZqHkl; arc=fail smtp.client-ip=40.107.162.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yTJbnZf4CizMk0vAQy7T4p5gefD3avGDwuR4rVfXeVjvvnjju/QbmxMOmQxhsPEf5jrXREeEmauIIBrawABFJkXkicxgPvRNqUy3dboQDoIeH7feOC37NyfQrmrZU9yxoutFPbZ7tz5e3PfWF7IESi1zDl72z9ryyX6uQov7RmTnUr0s3N+QKVHqnFFkdZbvaXX7pLDxAA2iCV6lIcx+MjN8dDh9ZILBPLJOSRHvpFiw4CoyPFslu4irvC+zwfM/P+uhD22WBQqDTMDz6vnGawIhfeCIBh1QkswHHPp+XXemVgfeTvV8amHZ5VyP8IDzIckVEssY7CV71JzYxNdfAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CIiJBz38f3alqAM+wPhQryJKmeodGggrVgut8esFaJg=;
- b=g0dtcgFEr/kvb/sWQxKbZ4uF9Zy385xTux01H9/uOOSPnnuvaGzTwuAJ3I4HStB74M4k6K9loqO1hrDBXiBz58hUdlJcjfsiscBRtTs6bcwN5xYFxtveDa57Wgw/XvQ9+w498vCEt5D+5ArLFCPd71VeYKPjMJasdE7LmvGlZJo4FiItBSduzKD08xFcPeMSEAm2jHjY6XBbOnfC6DnQOb1ar2rY1FxBu8Br3D/RSCNHuM2tVglXLrlMInRKe9gZyTQ+7iZcu+HQhqhtlb4Qdozv+iphK7Xqr1j/0OihGDocFAl/3GZLEsQP0cPrGkDzfJdWAEBuDHD59z6hRnOAsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CIiJBz38f3alqAM+wPhQryJKmeodGggrVgut8esFaJg=;
- b=FG/ZqHkl6cao3+VBYlyJwwzHcjOIz4CJ7QuX4ImQucUEwCl5v9IfgUXNKeYpGtOWitPd6P625glPaviHwj6XXIJDLG16ac38+6pfJ4D0OmT016SZWIo3HAySLRSqoT3OV6txGhp7NBYVcVsz1fB/ZYX+WukeIPOTiC5XZXASHWqMvIRE9VvAsx/lac1F5OoNGUwg0dF1ztsNErm2jG50Qh8p9dR0NDbMXSkmR1isqcYyX3RUwVHi/D31u9iCXaneZmiH6C3bQj2iMA4pJn9tK59ZrJjOM58aMchgbDJ7FmM1xoxGGFMJG1tSMC6RI2Z5/yRG6ZwoaKi2GHolURZC/w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19)
- by AS8PR04MB7703.eurprd04.prod.outlook.com (2603:10a6:20b:23c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Wed, 17 Sep
- 2025 03:51:43 +0000
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86]) by AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86%3]) with mapi id 15.20.9137.012; Wed, 17 Sep 2025
- 03:51:43 +0000
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: frank.li@nxp.com,
-	l.stach@pengutronix.de,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	bhelgaas@google.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com
-Cc: linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v6 1/3] dt-bindings: PCI: dwc: Add one more reference clock
-Date: Wed, 17 Sep 2025 11:51:05 +0800
-Message-Id: <20250917035107.1003211-2-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20250917035107.1003211-1-hongxing.zhu@nxp.com>
-References: <20250917035107.1003211-1-hongxing.zhu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MA0PR01CA0022.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:b8::7) To AS8PR04MB8833.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF6726656F;
+	Wed, 17 Sep 2025 04:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758081707; cv=none; b=Pd0CErY4jtNt3XZwcPwr//7Tj2uBPnusbpfSkX5OplPMlBfK6MhXVKuUhsErusE3dRrsHq8U1xKr1iXbAzUQddnJEWetVVi+tZCVtZO2/Vi1WdOaDVWl0Kn/ygiYdo68gkEQrLUGPv2InbCq/0tA6IdD0XrZP2HXyCOYCBaapYg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758081707; c=relaxed/simple;
+	bh=J2NSNg0Gqtw2lyDsZpuPoODIxHZStkLFai9r0M2FN4I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zv3Jv30pgJMN2yk0ob7rdOU7ApAwOBnWfbrP9fJE3dmB7Mk2PcYuhSiNscK+nmpewgXlIaKjhq14uCQIzDIYi+U2Sby688uq55PYSiP518pKOHaDW2KChv2D5B+CT8yNi4mCfgA+wL8E5pELbY0oZcqz9BvsP+LfmzoRNEHpjmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=go2jnzER; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC4DC4CEF0;
+	Wed, 17 Sep 2025 04:01:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758081707;
+	bh=J2NSNg0Gqtw2lyDsZpuPoODIxHZStkLFai9r0M2FN4I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=go2jnzERdw7VxOgNIZrgWGBzeruCsK1AW9ZSyKThP7yqY3WQ/69loAHqO8ZwY+Pz5
+	 RmSNEASnzlmaE1l34EObx8PbsjpMZfAnTVeHmFY8ssJ+xda/ALlcDI+jAk1Vyd2i2s
+	 mO9FCoCVFwEvw/QBtU/dW+mWNXtAqYbjXItUg+7PZO7tQOMI4OniGKelNX4jGXk45b
+	 MacxQjgECMv/fvFL65VzgGkfPyUkl9GVWigT2Hozs0VT5GGhcE9uquyP7/lY1QKwCA
+	 AYoi5W0JlbnQWyM/gmWT+o/bjulyMJ3+cqqk6tLCqpWcmJMtgxjR6YUN/oCZV9sHom
+	 m9Y9l9Vt4iqPw==
+Date: Wed, 17 Sep 2025 00:01:34 -0400
+From: Guo Ren <guoren@kernel.org>
+To: Andrea Parri <parri.andrea@gmail.com>
+Cc: Xu Lu <luxu.kernel@bytedance.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, ajones@ventanamicro.com,
+	brs@rivosinc.com, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	apw@canonical.com, joe@perches.com
+Subject: Re: [PATCH v2 0/4] riscv: Add Zalasr ISA extension support
+Message-ID: <aMoyntAydNMtcl+3@gmail.com>
+References: <20250902042432.78960-1-luxu.kernel@bytedance.com>
+ <aLciY2putG8g2P9F@andrea>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8833:EE_|AS8PR04MB7703:EE_
-X-MS-Office365-Filtering-Correlation-Id: 49874262-47d0-44af-e590-08ddf59d83fb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|19092799006|52116014|376014|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?mngMyivLrckb0JKB4X2N1hzwtLu2mIbTeXTfewNVolZwHtRbGL+Nz16jAZFY?=
- =?us-ascii?Q?t5ke8BqBGjkRV/4H174lljWnQ33GQxJoHruU2xKlHcSQIeUwPnZn82SWzKf7?=
- =?us-ascii?Q?woJ5xQ1UbTx+/QCRg+xcDyW2LyKoUGOX2dkPLJ4Ifu+RW6wprnpRsGxDoAWE?=
- =?us-ascii?Q?yIf5xiwE0FR73lhprk4ukG9ZOaJD5Spl6vdG15HAqf5Nlb0sV0C2krVeYevu?=
- =?us-ascii?Q?F0sTVcs31WhYy7TWFyvgevAptadzVsgTpwh9nHgdVO3xtjyZ16FIUTJuyI5e?=
- =?us-ascii?Q?EkXMwbGiHSWRHBdDA+AyhluDiI9bbyysGz+3GdYt9jwpOTtP/gKtYK9YSNIz?=
- =?us-ascii?Q?Q1PCIamiKuwvDS9t/G5vN/GpJP7PDxzmxsxsD/UiChRY8SQQVtQ9SCEwkGyj?=
- =?us-ascii?Q?1XfdSKtVf9xCkSHgoOp9VuPk1TwlWbygrNHskszFadi3BdvQx7IbdrmLDnfn?=
- =?us-ascii?Q?gRlqcgdIPVHvKmkb+67pKLVQrrQYRti2POmoE+AsOnvMllXh+vwISAC8FQA+?=
- =?us-ascii?Q?tNsPWB1qJYcSRAP54nhSNWcaUWXPNEN4PrP8RBsD8ZtD/zuZQ96s4+Q9R7bU?=
- =?us-ascii?Q?h5nUbJ+3vIsgSscv22EfcqLnDjjc77A4m/uTpCL1i8nqwCJDNlne7kjDQY1P?=
- =?us-ascii?Q?owhtZWcCKDtnzr2EQ3Eid+4YXkyAXVCXv72bGhTjjZ9xH6ShuaTbR2V0tFzw?=
- =?us-ascii?Q?nBp8ZqRioWZQqQTVTTUvNE9Wv4QNoXypo69RybRixLfQdxeO7Oow7jz+VN1E?=
- =?us-ascii?Q?2RpjizYgopkuA/xIdMO3Tl3CF8nWSxqRnIE4cQ5ciZ8vGeokEhqe0Y21diU+?=
- =?us-ascii?Q?KcfigTgn2k0y9AN4XgV+UMtriB/TAd88zuhPo/8WAl44MPcMAcTI9gUR74ig?=
- =?us-ascii?Q?bPbQWIk1oIm/eHTYSIkYFqztFqbbz/Em2rWYO6pNerV5e74A7lhCARscNyLf?=
- =?us-ascii?Q?V9aWrxnMJ/0HKIx2UVj/l7Bh5+2bSASAr9Ql7o0AcU2eUn8lnR6Tk0kr7jo/?=
- =?us-ascii?Q?nWOJ+WpxT/Pw+NSjTP8GzOJcYzlF7J5VrdRtK/xFKBFcWYtihX6wm5czPxY/?=
- =?us-ascii?Q?4W3R/WEPqW4ZOY+dvJTZxlEz2BWapyblWrXeUp1IKDqazn5JBsrPS7WzUmBE?=
- =?us-ascii?Q?Ka2TLaWngWhs6C9LK91WIIiU9dtKu101uY8nUGn8GbqIMvjq9JnudeXALkyO?=
- =?us-ascii?Q?eUYCLJf8aWkVSbejOeVJCZHoxxy03cFYkQddTxXj+TPWXpISeQV6UDGr3amf?=
- =?us-ascii?Q?hBu3cC/P1K547qxdEgM55Mrbh2BAwWBxvx3lZstqbvmvmPHnjePbygMAayQR?=
- =?us-ascii?Q?X/hM5ZVxvDN03Hrexj4tsRIyFr1PkzLqyr9mF+IJSWUVgJPCCWVfTd/6B1Gq?=
- =?us-ascii?Q?Spu5ShkKSw++Aa5Oi9//CJoRTpVWvcyPKbZlDsl32fH4bf5tyVLga9H2TMQs?=
- =?us-ascii?Q?ppnE9V+Cl6Ipyl3NUaeEEZvH+S1Vrb2eYTIG0upqrSoYeAsG+Tv5APHYPbLv?=
- =?us-ascii?Q?lL+yQFjr6HLgGw4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8833.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(19092799006)(52116014)(376014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?vhVTJVXyQNjc8/7OYmgerMvWxGgU9cn7/T2JCTNaQ2pk2RTJBvwLQWnHO83l?=
- =?us-ascii?Q?W+k5+KVA3V6gzH9Wlvn6D4u6PfU5RJt4RpFP+Y+x6bEaoU6pYSCcGiXmvOci?=
- =?us-ascii?Q?Xsv920AxqFING2mxtVXCDU1serAEEs3plHo2A90ZJiCtN1Gfljcr0nNsEjSS?=
- =?us-ascii?Q?K5WSCK3jwpEWQsrPtsJKsFlOd0xUOKaLeuqSu09d4AB6eWosurbnTOawkIR8?=
- =?us-ascii?Q?M93AKzBfUGnYrZTAq1T2ivP7A2MaFEblYJfej+6m87lrM5bC61RD0hPqOD8O?=
- =?us-ascii?Q?0tOm7XnyzkayI9t/+lKhIx6hQ5r4oRO6vr0HTJQpS7fPWevgJSnVabBNZ9uK?=
- =?us-ascii?Q?XKYi2GQmAW0gmQYOfo5h7U2g4gvO9KQokFWsp51D0vXkdayxkokBVsGcgF22?=
- =?us-ascii?Q?FM7zdrVcJ7jk04Uj8R9DjOHhDN3eVuLQy6sf/xs0qyBIQT1axcp4SYO6iwzH?=
- =?us-ascii?Q?tHbZCKO3qfZ3+YNw0Appd0JIFn5P8mgignMNLENGKIoLzKfQxyrB8Hc08SEe?=
- =?us-ascii?Q?ecVWQ5MAjh80H+XBiJiyPJrm5RR7jVZ/oO5XMTM44LXY7aZ3ssnnlbq34+UD?=
- =?us-ascii?Q?C0X9eyFMzNzCz7EhQq1ovNB+KNeHDZO6oAQ0QYqJKnu3AYLuzRcA9DsFgvdq?=
- =?us-ascii?Q?9cgZSPP1GbZOkXByyIRHBk0mBxzXpSSw8E50nl/VYoe6+r7sL4aOR+rHxnZu?=
- =?us-ascii?Q?j9iR5sThKlp1EBEj0pT9Askim/T1NqefoE/tLiPBeZppUe6w9v/W31GEgiVI?=
- =?us-ascii?Q?4+2SeLJwfVBPTRmMcwVvCuZcGEarCqhotS1wO+dbqilJimx3dzuQDFFuBlpl?=
- =?us-ascii?Q?vUuUQH4ffPx2LNKoScD/VaxnAjInM+OznhlSnM3Y4PdDKXuS0YVGmBZSEXHJ?=
- =?us-ascii?Q?5l5kloscjAStRP/jn2sWp9ehbHqxYdwz7Lzw0ga7+i7cXTIgSayQZ4VoWaUg?=
- =?us-ascii?Q?LQmD3uVaW/oJudTkSVA6ZNTGRBdcUDVuK1iICoBcVyTruwZt/6MIBZRhNEWN?=
- =?us-ascii?Q?4/I7BlCEUnSunyMulOmO89/wd9BZgYokYyYgAdsY1V+R1pbKB+Kp24K6MD+Q?=
- =?us-ascii?Q?6MX18jR+71AHAS1x8P1c2iUHLogKMdfiBg7GU2oPzK29I6tioFgP6x9yLwLs?=
- =?us-ascii?Q?C65hmt0PP+RFvodBXDRWT4N0DUBvTFlXJDFWw7pBD5IGPrDOqUapNW6l6nAv?=
- =?us-ascii?Q?RAU1z8nKYfHv5v/eK7ijCmGT3yhN3yohOcPRklPaOeh0d/8skFMVpLtAqB6j?=
- =?us-ascii?Q?dewVX3jmAxPRbHU28SFIk4CSUMst7/wX8Dkk+agfUhBIhCIxoLaw+emGQ80w?=
- =?us-ascii?Q?rdh2La8SpcO5f7wTRqkHs1rV9aza0AjZCMxrfJXhyVuXzNA8oB+p1+VTPRhL?=
- =?us-ascii?Q?mp1aaUih3cormLLmR68nAGq7ndh/Rdyo0yNQXEdd6YgGRR8REPZbs0nyiYVw?=
- =?us-ascii?Q?ORn+273tmRemnzSM6ockhUnT7dJJ5TaQDaIYaif/1RlyYJNZpHF+YnVVLIRM?=
- =?us-ascii?Q?FG/7a4sBlCl06Vvgw33Yn7iZAKOUG5uRRsaqMPo8apbUbLhaW9qOt4WeCiWh?=
- =?us-ascii?Q?O/YWyO0XVHYdwhpBtWmRySxvjIcb4XgJmw2jEe88?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49874262-47d0-44af-e590-08ddf59d83fb
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8833.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 03:51:43.5707
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lZ5xcz7xJAFbRAlItxKO5D4bTtt2WvYO2kfXDcgzTRcLAPss7PoysTqxVX43rO7Ce9nteVOO4wsIFB6TUCCTgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7703
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aLciY2putG8g2P9F@andrea>
 
-Add one more reference clock "extref" for a reference clock that comes
-from external crystal oscillator.
+On Tue, Sep 02, 2025 at 06:59:15PM +0200, Andrea Parri wrote:
+> > Xu Lu (4):
+> >   riscv: add ISA extension parsing for Zalasr
+> >   dt-bindings: riscv: Add Zalasr ISA extension description
+> >   riscv: Instroduce Zalasr instructions
+> >   riscv: Use Zalasr for smp_load_acquire/smp_store_release
+> 
+> Informally put, our (Linux) memory consistency model specifies that any
+> sequence
+> 
+>   spin_unlock(s);
+>   spin_lock(t);
+> 
+> behaves "as it provides at least FENCE.TSO ordering between operations
+> which precede the UNLOCK+LOCK sequence and operations which follow the
+> sequence".  Unless I missing something, the patch set in question breaks
+> such ordering property (on RISC-V): for example, a "release" annotation,
+> .RL (as in spin_unlock() -> smp_store_release(), after patch #4) paired
+> with an "acquire" fence, FENCE R,RW (as could be found in spin_lock() ->
+> atomic_try_cmpxchg_acquire()) do not provide the specified property.
+> 
+> I _think some solutions to the issue above include:
+> 
+>  a) make sure an .RL annotation is always paired with an .AQ annotation
+>     and viceversa an .AQ annotation is paired with an .RL annotation
+>     (this approach matches the current arm64 approach/implementation);
+> 
+>  b) on the opposite direction, always pair FENCE R,RW (or occasionally
+>     FENCE R,R) with FENCE RW,W (this matches the current approach/the
+>     current implementation within riscv);
+> 
+>  c) mix the previous two solutions (resp., annotations and fences), but
+>     make sure to "upgrade" any releases to provide (insert) a FENCE.TSO.
+I prefer option c) at first, it has fewer modification and influence.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+asm volatile(ALTERNATIVE("fence rw, w;\t\nsb %0, 0(%1)\t\n",	\
+-			  SB_RL(%0, %1) "\t\nnop\t\n",		\
++			  SB_RL(%0, %1) "\t\n fence.tso;\t\n",	\
+			  0, RISCV_ISA_EXT_ZALASR, 1)		\
+			  : : "r" (v), "r" (p) : "memory");	\
 
-diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-index 34594972d8db..0134a759185e 100644
---- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-+++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-@@ -105,6 +105,12 @@ properties:
-             define it with this name (for instance pipe, core and aux can
-             be connected to a single source of the periodic signal).
-           const: ref
-+        - description:
-+            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
-+            inputs, one from an internal PLL, the other from an off-chip crystal
-+            oscillator. If present, 'extref' refers to a reference clock from
-+            an external oscillator.
-+          const: extref
-         - description:
-             Clock for the PHY registers interface. Originally this is
-             a PHY-viewport-based interface, but some platform may have
--- 
-2.37.1
+I didn't object option a), and I think it could be done in the future.
+Acquire Zalasr extension step by step.
 
+> 
+> (a) would align RISC-V and ARM64 (which is a good thing IMO), though it
+> is probably the most invasive approach among the three approaches above
+> (requiring certain changes to arch/riscv/include/asm/{cmpxchg,atomic}.h,
+> which are already relatively messy due to the various ZABHA plus ZACAS
+> switches).  Overall, I'm not too exited at the idea of reviewing any of
+> those changes, but if the community opts for it, I'll almost definitely
+> take a closer look with due calm.  ;-)
+> 
+>   Andrea
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
 
