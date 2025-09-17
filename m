@@ -1,235 +1,222 @@
-Return-Path: <devicetree+bounces-218514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49041B81066
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 18:34:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E1CB810BD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 18:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2C7E3A8280
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:32:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01B8E3A74E7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D031F2BEFEE;
-	Wed, 17 Sep 2025 16:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12CC29A9FA;
+	Wed, 17 Sep 2025 16:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="lqNmbubT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xx7VQFM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B86288A2;
-	Wed, 17 Sep 2025 16:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3E934BA5D
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:35:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758126696; cv=none; b=IwhsmY29IwVbqHznnfies+249KXt6HUZxBCDwdRCNmz1h5OiGuIn3woygP65edyq33c6b3xJ5myNR6Tsvp683/1LAj+4cCxO6WJ82TUkeqlQR9D0kpT+xaCvPm6m8gJ0idEG8AfJRaDzNA1PtsGkTgRutic0jJsoQFlVfdIS/pc=
+	t=1758126943; cv=none; b=pAxFzHB9aU1l6A+pNsa8azcf6vGd6Vj+Y+nfP4y31lYRHMFnPHvr3IOIUubkfphV9vpeXxZvHwg6XDadbaqRuMIXl+dW4psx35N0PxNz+QAeOM4aQO5ajvJm5Ubnv7RNx+NhiSnoiMgnsnd6cNuP1ADEYNurUyvZ9jfGce7vQvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758126696; c=relaxed/simple;
-	bh=UVuCdBv0y0ssaMtXvdPJf82lnAZePvxoqcizxkhuiYg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p1r7snYmhVZhZgfk81vPWMfzQHH/4eRpF4YA7PcXbhl1yWULi/NBlfbe5licoLsItmgQN2mD06ZBVZMh3SzMah83t69Xvq0ONJK2dz54XpX+4HXRbpMy5Z1mYrElDuzXRjKy+znpwNFVSoWxuTJl7O/tEILvVGN60LlONkvILCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=lqNmbubT; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=t7ZqalwnvjICi7kuOiOIafiliCtJGxrARFdp8W4lXxY=; b=lqNmbubTKYTpthGWHPykLNREkq
-	a6h0sXLqwZcvzf1kHFi8/4wqRzTLPZ5t4JG0CX4Ax83EBEIolNl3BmwHrN5NmNiZX671xdmPJSgH2
-	nFtq7ceA+M5n1PeBvkOVPFNvRXxDrq8tYVBobWZmNDyHpKQmZ158OQtCadM+oLJDaOmnk77cmCPYl
-	IFMBaQIdpJj0yuWqNpTnxRkrKexCbJs00Ef7dR2v3QxXq/JjrV8aDwIZKLzlbVv7iTPkFIPpFwXkb
-	d6e9GNwiy2bH5R5G8dIxQjEYUZwXZcz8KvO6Swi1xoMfVcDOTSVBZeIUeAISi+cACfrpX4OE/tHJs
-	d90qzIPw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49908)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uyv3v-000000005BG-32EF;
-	Wed, 17 Sep 2025 17:31:19 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uyv3s-000000000LJ-1mOb;
-	Wed, 17 Sep 2025 17:31:16 +0100
-Date: Wed, 17 Sep 2025 17:31:16 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Tristram Ha <Tristram.Ha@microchip.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/4] net: stmmac: stm32: add WoL from PHY
- support
-Message-ID: <aMriVDAgZkL8DAdH@shell.armlinux.org.uk>
-References: <20250917-wol-smsc-phy-v2-0-105f5eb89b7f@foss.st.com>
- <20250917-wol-smsc-phy-v2-2-105f5eb89b7f@foss.st.com>
+	s=arc-20240116; t=1758126943; c=relaxed/simple;
+	bh=f81wndd+dooIUGWRm5++6NpsJFUA8K/jCjOWGU9GpdA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aq5vq3S3Q9SEP0i/0pUeOdNH6YR4NSG1vsyPsfYg92JGaIaA3v3GgiTylMtTLUQzdUxNe9EsQzHjpE30el80cJ7kj14fkamGr5TyokMO4wPPS7s1H7Qf0ulvCq/s2ApZhB3miFtusfgNxKd4rcZAYb7QWA3d0RrgdH8jj62JPaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xx7VQFM2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58HGMIm9018228
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:35:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=YJiS1nQwiN1N7rkz3DDUWUz06uyHGgzyXb0
+	BmwurICE=; b=Xx7VQFM2sOkvb5L7YJ2MjruZ9ap6plaxtpqzTo5F28qK1dxhFWH
+	ZWdQ7PKddr+/nnk22WRbtVgRCgRMPnr/GhalgzUez0I39DmlYS/Mk0aN4TW9p/Cj
+	kP+8uYEVkk3xU4tfmpjFtMOcB3qMg9BgB7mFeNOMUukZXsyjdcuqI/3QAFw1p+ZG
+	Gc0T8xIW65fFTtmBYMTbsO0uAUxblP+KyU6iGn078D0bcN2BD48fvria9xSvj450
+	RIs+ClGdqSk3pdcsW1QxDrYtILMyNck6Zd6xSzayaND8a2xt4yVuoKQqgahZF83E
+	TeU2NpgBhSFv9okjx4OBrKGgZPIRlfI+Pew==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxwb440-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:35:41 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b62de0167aso797171cf.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 09:35:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758126940; x=1758731740;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YJiS1nQwiN1N7rkz3DDUWUz06uyHGgzyXb0BmwurICE=;
+        b=jPsAnVxWitu7jI6dplw/vMPAQe8jOLCWbyNZibXagJwjjes0JiOd8AjPWKtysRz6dK
+         xMzgh1w7N+MCFb9CdXsw7CNf9quMuzkH+FXXMO/c8gVH1sgMNlGCRIzc2AYtC2HQCIWr
+         LwcCcXKDt1nGuEZPvfNoiH/ozGTiKEpiopdCV/u/pJcwFdaZXSM9wJgPD5YWqOpBHUeJ
+         FxWOTZMu+5l7zsftUj89fq1FdYiHQpATjbkZByMbxtcWoWZaajm5DCfcxtDd0yLRjsVJ
+         3svKBwRZzWSLeDu5ix6aHQTokTy+nAnI9A87gXcODYp9+qlc9ywcEWjeLICZqbJu978I
+         TJfA==
+X-Forwarded-Encrypted: i=1; AJvYcCXL2XJgOSXoLrsojubpsm1sHoWXAya27vNTpQvb9glqGt6Zt7YWCJ2yrB6cPrQdWm2PZMdR6YfQGHjA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhmbcsENMQdtgWpgKb4qg+qQGyo+CAIcQbbgf7gXIV/R7KPEjr
+	La82acxbTQblhCdWJCJ05FlHOH/xhr3H31qGNYUuhNO3o8Zej4pEIYu8KE3vrsmsF6hGSE2dfsf
+	NY/pP0JNzMLxY1UiiJox5DIKCgC1mtThMk0DhBMnQTHmk+SMyEAH0nrtGPx29g/CxzoJM/ROR0q
+	Y=
+X-Gm-Gg: ASbGncsvqB8CtexDcZoPj6wMA+nZbMFWap4IABKY/EI38ERvtmAUbP6mgik2gT+ND8e
+	Ko0v1tOEuV2KJPehCEDwl5Gl5Co9AO0c7LtYdlYWMEU4XT2nHueBq61N626LL70I+w4T1OmbZJO
+	wBh+jAbDUpTQ6jzrnM54W2ppPYjQZehAEv/RF5qogoBqOg7rClamib70rN/WCkxgK7nizJuKZUS
+	kUwF2iXW0URNh1o4R48wr3T+3M+8S5HeNCRMdkm/+QcHW9fSGkOA/gmAbOGPyv1L9e9b9xfs98G
+	LEUbmjkAhauQU6A2b/PSWft2KPy+fA2M9Y/0HPgdNx8jwEz+RtrmxHZtcV5DuEB4ZREjpmy3s8M
+	=
+X-Received: by 2002:ac8:7d03:0:b0:4b4:8f9f:746c with SMTP id d75a77b69052e-4ba69395b33mr32934721cf.23.1758126939816;
+        Wed, 17 Sep 2025 09:35:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHnBOmyy0hUgWIxeQc/ni1SsWn1VtcEfbYG6Fec6zZQvLqdT9yZP1hmhXU17L8j/vURYJFrkw==
+X-Received: by 2002:ac8:7d03:0:b0:4b4:8f9f:746c with SMTP id d75a77b69052e-4ba69395b33mr32934061cf.23.1758126939042;
+        Wed, 17 Sep 2025 09:35:39 -0700 (PDT)
+Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:82c:5f0:81ce:8337:616d:c2d5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f32141ae9sm41337025e9.5.2025.09.17.09.35.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 09:35:38 -0700 (PDT)
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk+dt@kernel.org, Loic Poulain <loic.poulain@oss.qualcomm.com>
+Subject: [PATCH 1/2] arm64: dts: qcom: qrb2210-rb1: Add PM8008 node
+Date: Wed, 17 Sep 2025 18:35:33 +0200
+Message-Id: <20250917163534.832523-1-loic.poulain@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250917-wol-smsc-phy-v2-2-105f5eb89b7f@foss.st.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=HbIUTjE8 c=1 sm=1 tr=0 ts=68cae35d cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=yJojWOMRYYMA:10
+ a=EUspDBNiAAAA:8 a=1BEw5LmG3YzgyHxDt7YA:9 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX8MXu7CuEO/Ns
+ rQlhxxFTv2kO7os3oFXB8Q6mbGJfV/gFYPFDv1kRWWiHEsLekbhzeYY9KGhUZK9WAoCVQOae55Z
+ yFRsgSl314D+gW1D6fEFJjvQ/Lj+uwHpxOk40Bm8xo71ps73bcR2Z4YBDh01pQHOcY6/J1yiJW/
+ 6nI3dHa7hnR6nd3sV3g9/cgcNElHw/ejSNIemrEPlseZbWgFE23+9LBnKnJagosTiKuSV0WJWcm
+ LGS9ghfpt+zYXVTVjSEARQPHIT+8Ts/Vpfz3TLoAa32ZObu8M4MJNXJMVxnHNzbn0U4fEw/b0m5
+ 8q+P1zbte78dn/aV+o7tnYyJXTNwbhYWUIEoJQmMfJu8ZJ7qKFb5Q1rsMIO/dLYBarcZhRG5ppz
+ oT4jSRzW
+X-Proofpoint-GUID: OT_01NWJF-gP25jYnm8qW2gWXgW7CrgS
+X-Proofpoint-ORIG-GUID: OT_01NWJF-gP25jYnm8qW2gWXgW7CrgS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
 
-On Wed, Sep 17, 2025 at 05:36:37PM +0200, Gatien Chevallier wrote:
-> If the "st,phy-wol" property is present in the device tree node,
-> set the STMMAC_FLAG_USE_PHY_WOL flag to use the WoL capability of
-> the PHY.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> index 77a04c4579c9dbae886a0b387f69610a932b7b9e..6f197789cc2e8018d6959158b795e4bca46869c5 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
-> @@ -106,6 +106,7 @@ struct stm32_dwmac {
->  	u32 speed;
->  	const struct stm32_ops *ops;
->  	struct device *dev;
-> +	bool phy_wol;
->  };
->  
->  struct stm32_ops {
-> @@ -433,6 +434,8 @@ static int stm32_dwmac_parse_data(struct stm32_dwmac *dwmac,
->  		}
->  	}
->  
-> +	dwmac->phy_wol = of_property_read_bool(np, "st,phy-wol");
-> +
->  	return err;
->  }
->  
-> @@ -557,6 +560,8 @@ static int stm32_dwmac_probe(struct platform_device *pdev)
->  	plat_dat->bsp_priv = dwmac;
->  	plat_dat->suspend = stm32_dwmac_suspend;
->  	plat_dat->resume = stm32_dwmac_resume;
-> +	if (dwmac->phy_wol)
-> +		plat_dat->flags |= STMMAC_FLAG_USE_PHY_WOL;
+The PM8008 device is a dedicated camera PMIC integrating all the necessary
+camera power management features.
 
-I would much rather we found a different approach, rather than adding
-custom per-driver DT properties to figure this out.
+Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 81 ++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-Andrew has previously suggested that MAC drivers should ask the PHY
-whether WoL is supported, but this pre-supposes that PHY drivers are
-coded correctly to only report WoL capabilities if they are really
-capable of waking the system. As shown in your smsc PHY driver patch,
-this may not be the case.
-
-Given that we have historically had PHY drivers reporting WoL
-capabilities without being able to wake the system, we can't
-implement Andrew's suggestion easily.
-
-The only approach I can think that would allow us to transition is
-to add:
-
-static inline bool phy_can_wakeup(struct phy_device *phy_dev)
-{
-	return device_can_wakeup(&phy_dev->mdio.dev);
-}
-
-to include/linux/phy.h, and a corresponding wrapper for phylink.
-This can then be used to determine whether to attempt to use PHY-based
-Wol in stmmac_get_wol() and rtl8211f_set_wol(), falling back to
-PMT-based WoL if supported at the MAC.
-
-So, maybe something like:
-
-static u32 stmmac_wol_support(struct stmmac_priv *priv)
-{
-	u32 support = 0;
-
-	if (priv->plat->pmt && device_can_wakeup(priv->device)) {
-		support = WAKE_UCAST;
-		if (priv->hw_cap_support && priv->dma_cap.pmt_magic_frame)
-			support |= WAKE_MAGIC;
-	}
-
-	return support;
-}
-
-static void stmmac_get_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
-{
-	struct stmmac_priv *priv = netdev_priv(dev);
-	int err;
-
-	/* Check STMMAC_FLAG_USE_PHY_WOL for legacy */
-	if (phylink_can_wakeup(priv->phylink) ||
-	    priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL) {
-		err = phylink_ethtool_get_wol(priv->phylink, wol);
-		if (err != 0 && err != -EOPNOTSUPP)
-			return;
-	}
-
-	wol->supported |= stmmac_wol_support(priv);
-
-	/* A read of priv->wolopts is single-copy atomic. Locking
-	 * doesn't add any benefit.
-	 */
-	wol->wolopts |= priv->wolopts;
-}
-
-static int stmmac_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
-{
-	struct stmmac_priv *priv = netdev_priv(dev);
-	u32 support, wolopts;
-	int err;
-
-	wolopts = wol->wolopts;
-
-	/* Check STMMAC_FLAG_USE_PHY_WOL for legacy */
-	if (phylink_can_wakeup(priv->phylink) ||
-	    priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL) {
-		struct ethtool_wolinfo w;
-
-		err = phylink_ethtool_set_wol(priv->phylink, wol);
-		if (err != -EOPNOTSUPP)
-			return err;
-
-		/* Remove the WoL modes that the PHY is handling */
-		if (!phylink_ethtool_get_wol(priv->phylink, &w))
-			wolopts &= ~w.wolopts;
-	}
-
-	support = stmmac_wol_support(priv);
-
-	mutex_lock(&priv->lock);
-	priv->wolopts = wolopts & support;
-	device_set_wakeup_enable(priv->device, !!priv->wolopts);
-	mutex_unlock(&priv->lock);
-
-	return 0;
-}
-
-... and now I'm wondering whether this complexity is something that
-phylink should handle internally, presenting a mac_set_wol() method
-to configure the MAC-side WoL settings. What makes it difficult to
-just move into phylink is the STMMAC_FLAG_USE_PHY_WOL flag, but
-that could be a "force_phy_wol" flag in struct phylink_config as
-a transitionary measure... so long as PHY drivers get fixed.
-
+diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+index 67ba508e92ba..cc0c53fec1af 100644
+--- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
++++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+@@ -220,6 +220,87 @@ zap-shader {
+ 	};
+ };
+ 
++&i2c1 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	pm8008: pmic@8 {
++		compatible = "qcom,pm8008";
++		reg = <0x8>;
++
++		interrupts-extended = <&tlmm 25 IRQ_TYPE_EDGE_RISING>;
++		reset-gpios = <&tlmm 26 GPIO_ACTIVE_LOW>;
++
++		vdd-l1-l2-supply = <&pm4125_s3>;
++		vdd-l3-l4-supply = <&vph_pwr>;
++		vdd-l5-supply = <&vph_pwr>;
++		vdd-l6-supply = <&vph_pwr>;
++		vdd-l7-supply = <&vph_pwr>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-ranges = <&pm8008 0 0 2>;
++
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
++		#thermal-sensor-cells = <0>;
++
++		status = "disabled";
++
++		regulators {
++			vreg_l1p: ldo1 {
++				regulator-name = "vreg_l1p";
++				regulator-min-microvolt = <528000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-always-on;
++			};
++
++			vreg_l2p: ldo2 {
++				regulator-name = "vreg_l2p";
++				regulator-min-microvolt = <528000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-always-on;
++			};
++
++			vreg_l3p: ldo3 {
++				regulator-name = "vreg_l3p";
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			vreg_l4p: ldo4 {
++				regulator-name = "vreg_l4p";
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <3404000>;
++				regulator-always-on;
++			};
++
++			vreg_l5p: ldo5 {
++				regulator-name = "vreg_l5p";
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			vreg_l6p: ldo6 {
++				regulator-name = "vreg_l6p";
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++
++			vreg_l7p: ldo7 {
++				regulator-name = "vreg_l7p";
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
+ &i2c2_gpio {
+ 	clock-frequency = <400000>;
+ 	status = "okay";
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.34.1
+
 
