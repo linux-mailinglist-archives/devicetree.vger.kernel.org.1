@@ -1,204 +1,193 @@
-Return-Path: <devicetree+bounces-218432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFDCB7FFE1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:30:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1290B7FFB7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CEFD4A830D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:20:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70041720383
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28069291C13;
-	Wed, 17 Sep 2025 14:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3F2295511;
+	Wed, 17 Sep 2025 14:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="VBb6CCcE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hLWa/b6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013065.outbound.protection.outlook.com [52.101.83.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF072D375C
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758118713; cv=fail; b=BdblznrKj0DGgl6oAT1kyylItfUcJX5Qq8LLm9POaHWunK6mt2QL/C0Y/2b+NzBCWLuvqaqxEIWm2Qo7lqasEjHfIue3LPY/V/5u50rphmuOnizpGLDvIa4RauqzKd2nyhel6v2XyHiYqaTrAnfWiFz8QKHyKtduBINjVo/B8eE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758118713; c=relaxed/simple;
-	bh=qdbm/nMQwetK720kVhR+li4rSfD7HaUG9OZWZYLckCQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MjYihWA1iLZQ9Ztqha5w50EnC3xcLrNuGUQYgD9D57/L+C8dbHbYaxYfbeI2pQDqpE58MOu7/IefZGQxaVPZq5iI2an+R8YpGaUZfjNJk39WApNMh1f76qUaNARo2Vt9xsmp9etJOwmXkhHP/S6anw3jpGxL4JQjDTOAI9+Cm9Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=VBb6CCcE; arc=fail smtp.client-ip=52.101.83.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YO+t7hlhJzLZ5PLlnwlYPNaCK+1hV4urgsCDc7uq62ZM+sP3H6H30dlIbhLOvImIp4XsY5B80YQ1YlJLS8t0QihcpIkHRIzXse4yCCgSZ9urhEeiGNWDEv7XCwXL9cVHUbdTZ+KDN2SQB6mCGjR4DluPJiIQGSMLE2ye/cm0lWhgz6LJ0ZhE+xoCDHGarPiJUDuTV6XZyZitBkKt49vRcEpwqo0joJd8OvYlcKZIgIHKZUQmUeFdKZ8ab5Xk0iXqFKh+a2OcRR6flYrXgO4bR4ZDWnk0wl9lqIIsrMhivOqce8LoWEwzcyuBSkQpS/vftSBpYmnrneviFsdG+a8xsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jjbDvg5qSYD0mK+qSLoPazs/Ora+nsy3b5NYFTiQ1S0=;
- b=MJIoTcejyxwgqvsw/9YFoODxtC3Pc/6IWOYfY8D3D6ywZlWlZdhCv/5CD8HptvKjVZa9bXRZpcRc1A1ZUi4s6k0fDfTd6DkyHLFBHYglxJt6f2YuDe6QVSjOIfXFkrOsX8Dft101xZ+dBc+bazJ/T2jYG5zLUhgVVA9AF4rDJh1BKrVGVr0Z6sJzO7aym30NYkgRPv4tqVeZQJNQ+l4Jw+iOmqCV7i7ggmHKWtzvIVrMszrWzLw7j7jX+RshadW48O/vV9QdWvZTmJcUanKThXcB6rhOyOUTYGtz3T8GrHAsHGGPl+nWNr7+q0heqG/R0il8U2o0NVQKlmM5d71POg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jjbDvg5qSYD0mK+qSLoPazs/Ora+nsy3b5NYFTiQ1S0=;
- b=VBb6CCcEsxVP2IVM5acSoYQZFnvjXLivlQPvzNvHJ+dhBrp8mb03dvVeYa8GemE92F1ie0enaMaV56AKnJdd2rztlEx1S+pCl7cHMiE0NjLVv3/ZOBGLb5rfWCLjYW7wE37rg64P/wBqHmH3awLGgCRfNmMfakhk00MitiKN9h1Oixkfme/qvaxIOQ0na4MK5RtKc2srK37G978UK85pghgHdePi/IiMxQdCMwG3ObnNKfuOsMb2b/GOOFBGp9htaDlW2+PdoZrR/JPqtG6wGNXyRjpxAhOkuzA8623hk486eP5Bewv9CwM8387XphflZNof7ajTyTcecpCqL40Guw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB9PR04MB9627.eurprd04.prod.outlook.com (2603:10a6:10:30a::13)
- by DBAPR04MB7461.eurprd04.prod.outlook.com (2603:10a6:10:1a6::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.11; Wed, 17 Sep
- 2025 14:18:25 +0000
-Received: from DB9PR04MB9627.eurprd04.prod.outlook.com
- ([fe80::c5f7:3093:4ebd:1a2]) by DB9PR04MB9627.eurprd04.prod.outlook.com
- ([fe80::c5f7:3093:4ebd:1a2%6]) with mapi id 15.20.9137.010; Wed, 17 Sep 2025
- 14:18:25 +0000
-Date: Wed, 17 Sep 2025 22:18:18 +0800
-From: Rain Yang <jiyu.yang@oss.nxp.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: marek.vasut@mailbox.org, airlied@gmail.com,
-	boris.brezillon@collabora.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, p.zabel@pengutronix.de, peng.fan@nxp.com,
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
-	simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
-	tzimmermann@suse.de, xianzhong.li@nxp.com
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-Message-ID: <aMrDKkIoZvAlBD8d@oss.nxp.com>
-References: <20250904082224.113d0cd1@fedora>
- <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
- <20250904160445.1671f140@fedora>
- <36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
- <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
- <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
- <aMoTtr9KmdrgDUiE@oss.nxp.com>
- <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
-X-ClientProxiedBy: SI1PR02CA0050.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::12) To DB9PR04MB9627.eurprd04.prod.outlook.com
- (2603:10a6:10:30a::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5977B33C77A;
+	Wed, 17 Sep 2025 14:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758118799; cv=none; b=qqWPFYuKebWv2sX8j7sxeS2n0/FRu3lBfocMEroCJcO5Hyk9B7C48YEFKmfLf9Bb068yKli5gelNBfGn0rU+Oeq50qH7Ud8Pq3RcieOjEGZHmtvWTRuImHKZspEiBiU4Jn8oIuG5pB7diPVMxqkB3rctT6fk9ZEt7LH3aBW76kw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758118799; c=relaxed/simple;
+	bh=K8AzLf7x2a9JNhbTQRQliEaTadQE9bAB6ts5jXpmOOA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QZnNEYAzmoeLrR5k20EX5to4gn0PAFK+Ux5Tdrsi9aYFo3/P93A9anCAkGhPNwXxPwyMwgl6XkC1VBNdsi3POgF6Myfsn6t2KoOgnTN+iTOjujS4fwa9WmNFy701yKtn9go3pDWNx22/T+k1L7J78syRDlNt2mLcXBHWfd59wwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hLWa/b6a; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58H8Xafb021451;
+	Wed, 17 Sep 2025 14:19:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QClkAHTCsjCfKUD7nA/NyZmaWUaO8cGUX++gkDPGqS0=; b=hLWa/b6aA4kHDM4d
+	qbNNlapMynzRtfzhtbLDvtibkQCRHi9nz6uzjJq5Q6+7IpG4laEzcOc3Tvz6piX2
+	wwoWi1Eadqw3nOGTd4JI657i+BlXdT9NM3R5pWqx+wyDxSkxEatwWFiovq9WOVJL
+	Iw5IHH0R0V+0dv2oEhb0tgM8olUpFrqBTxw7TXyNzg+L0dhEGDEPFcYIYaJX6bLI
+	Y5rMkEcIVBPOvxcnEC0NNagBeNhOHH1E08bhJvziB/LP0QFCzdYnhY6j+kH2Hy1+
+	Mo+VDPxP0cT3dFmbk8ryKXdRaB+o59VFcSW6KqEymqICMqEpp7xYDmx5pFRpAxIX
+	9ju7sA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5an25-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Sep 2025 14:19:46 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58HEJjXO029528
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Sep 2025 14:19:45 GMT
+Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 17 Sep
+ 2025 07:19:41 -0700
+Message-ID: <2a3903f5-4494-4053-b821-435a75b1ad7b@quicinc.com>
+Date: Wed, 17 Sep 2025 19:49:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9627:EE_|DBAPR04MB7461:EE_
-X-MS-Office365-Filtering-Correlation-Id: f20fcf13-73b0-4b3d-e74a-08ddf5f510b8
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?KVOweLwDUzZx1POno/PFf3zhPTpnSsfv6UJvxbaUHnYjqh6gujwj13rNN0G5?=
- =?us-ascii?Q?Mg1nZvqfSQYieM1JoM6Nz+HqlTHiPPYXD9lZWjgR2hI7O29VWD5gVWi/7qGI?=
- =?us-ascii?Q?5CPL2wkpsyl4PZWuEoStodn+DPy7PGD4SnI+WcwPhP7cGkY2VLgpn0O8GTve?=
- =?us-ascii?Q?U1R1ZC4L+omQlGbixc+uWvhzVtbSa2dDOm9ipabO/dtJ3sNTQ0f4ENe+a2vr?=
- =?us-ascii?Q?w8n89X+Agp18Udj8umtkjMJcRgei9c/pd6+tE2ZabCVymAymhEDiDbM3b1yI?=
- =?us-ascii?Q?qmCEfuNaLvPRhAHmwK0KZl6ABLAegb1cvgeFcVpwsm/XixDTRIa2AYs/9XI9?=
- =?us-ascii?Q?PG9ZDl5yCtXgQHZVDdnOUHjjIHK/5QTDGkBFjdzw+wJ0MU5vE71SAnt6Qr2A?=
- =?us-ascii?Q?YBd9of8ESIgBdJ1/lBiKcXq4iquHz93Y4lhAWycYnsEhp973WbHjlFl8/MxF?=
- =?us-ascii?Q?r7BUpzbokICmAY34PVVaophnPl74XW14twT1JtDzATXUS76+a/2k0QMMsk5L?=
- =?us-ascii?Q?9Lu60HidTEW9I/UHqeKaYSr0YON1yYBlEbU5/lyFCzY7lCqIYcOZGAZmg7IC?=
- =?us-ascii?Q?t6I4VYdEqoQUpK8Yma8rnFjzm9NB6qA2e7dKPXGhB1z0XlKP1I3HRaIu0TQZ?=
- =?us-ascii?Q?DR7K8kacrF82vehcbQM+hnRw09cNMLcFyan51vq3h2cQLB6i5iBMQCo8AKvz?=
- =?us-ascii?Q?uAes15u3RzG9rWcvNEKFfN8l89e9tA2WSOja/CUPmPv5n6xd4BC4kPFY+HOt?=
- =?us-ascii?Q?h5+q9AbLsYue1Sk/k45Ro6eBy4B4MS7NidAHHBGmsgh/dEoOJU5LbtewKrZ5?=
- =?us-ascii?Q?qPuxth8GcqkStikwNrlLOl6fMArug/VnMplrGNw0Cd3UYU21YdmAbsqvdAXi?=
- =?us-ascii?Q?uCDkfaVhij4WatY5P4MDbK2nPTta0Gqm2wJzUzT68vNQcs2wzbxI1XIyowOQ?=
- =?us-ascii?Q?rEWXkkpG9Wy6FrvpSb0pWJuFwcf1XcvrgbOOf+S40MkE6pfF/s3X2ijL5Hkw?=
- =?us-ascii?Q?jMaparntAnGAYGSu9+zrFb05F7sbaKzK5VpSsVrqxqMLmuFzE1Fa+qRoZ+ia?=
- =?us-ascii?Q?G8ipj9jGb8SEbKkQSY/vbWvEOzSfSSUwUQS4Lqa3FCAJK6Pj9bEaGVI+undI?=
- =?us-ascii?Q?0VGFvQkmM99pjiPuBnWTTylwYlAnSZF9KUlm1nJioa/PAMZ0QtOinYTbg2xO?=
- =?us-ascii?Q?3cmSQTce+p6h0UJuVu1qc+GxYRuxOSoQqH6NogCD/yzbm2gFUT4IzIDMM8RH?=
- =?us-ascii?Q?DIPO9YwB4eu3xm3sfh2AAPMmX8ZqwH+X3oImIrntZbH7DrBxVaI0l/xPOqHH?=
- =?us-ascii?Q?5uULpOTBgZEtq8WP+HGy/+Hc6sq4LSxWaV5x+rPDu9TJj4q2rsTKiJjG2+US?=
- =?us-ascii?Q?sn+jq4ukggxHGFwo1eASeopKzGO3BMIK2kOP6uK0WWp23yc+qmdeFI2731zI?=
- =?us-ascii?Q?n6RfEh9AvomGsu2YYtjyTpiZ+bILl0cS0O67aAyZBsC2CoKG/fl2tQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9627.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JndQBn6CxeotgwVYT2hwRImdGgNm6FmiQhiyd7oHCRE3Oe4J9F1Wq5TFDv5G?=
- =?us-ascii?Q?7GYTxEzSj6tEYBGCTHtdA4DRaDhBDG3FB/bDq+6iARJA4f/bnz5mczFiwF08?=
- =?us-ascii?Q?lXuvtWuWcuwnoy8XkTr62s5CGSCXmXzEGgfM0kLh38LcGhXhPOywKRYmiKB4?=
- =?us-ascii?Q?/Nz84OzQw4kpYWD4/PAojqUFDnISg0v8cA0YpTWsXm6oB/m5L6iKrX6qoXXV?=
- =?us-ascii?Q?SHUN+llhyWVpXf/tIuuY9Ls6Er5e5X5UczBbpl2TntXT5YXVYo4C8a9DkfkO?=
- =?us-ascii?Q?/jX+w+/OhfWfBbODK32KJ6wPQxW4BQ4FLe2qZUKllJqM8iAQh7j13feLYCTw?=
- =?us-ascii?Q?PanohcP/s0ayYBAKTItpZ3gzYy9e2ZsszTg/0SnF60BygPOjnudjoTC0sg/I?=
- =?us-ascii?Q?jEvyEWWOnaezN2RiExDDfRZTBwjF3cwOr7VyWD95Q0p3v/cJEoZXMv7MSK1k?=
- =?us-ascii?Q?2HgSvwXBe0+dOF63SZW2DVhx1hWoifKHnmxf1aTZy5KxOgDkwKo1n+kRlKWs?=
- =?us-ascii?Q?cVXI8UNWvHjnSo9He8PJnybXj8sSSI9PwmI/C5PsvQXmvrkGK4gw6/6ZrCva?=
- =?us-ascii?Q?Anaulxdu/mGlDTV5sMyvb/AR5Ll7uxLXCUBPAmUSwkoNinq00hiaM6t04VSW?=
- =?us-ascii?Q?0y3aiSN4rOjIRAeA9vgp/DP8wREamAhB/gX/0Kr0hLoGqT2CH0vGHx6nVigo?=
- =?us-ascii?Q?RvHq/+cDQCN/Tiv8ICglkPYn0O0tdz1pbV4MzM9jj5/8Q1TLJQSac2gUOI36?=
- =?us-ascii?Q?wSDZQi++3kSi3q9Y7fB0k6crlEPSnW/tr5ou0p/VH6LYchhqTJWVr4LvS100?=
- =?us-ascii?Q?VO+tY7zIYIFHtU6xzAN9r9i7QBWOCWm6LmP+HFlXyrLUFQ5ys45jLdH3wxO1?=
- =?us-ascii?Q?Nj5GMtt5oxooP6mEnyNYOi+ITLI9bCkFXd/FTtoxpA1R8fnuLYaL2IeBf5hd?=
- =?us-ascii?Q?dB6iwGsZUHHlZELGmIhAEGxOOOKP2ifXqy8TPbBwJxcm4ZnxBmlPNOGzR/bP?=
- =?us-ascii?Q?BKm9hrlHWCB4RYtPfF3aRtp+isVcf25Cm3VrdJueB63Rs5+uAC9D2k0TF2nt?=
- =?us-ascii?Q?t2xb2S5bBlqMQ66h7a2IkFEHMJy0j1Ra29RxwElchGhqblwqrgYpcyeTPsPW?=
- =?us-ascii?Q?h1UV+iMQ+S2jWXZiUifaHc81XnTydfPrRtQ3WbV/bhpk4dWzVQCBam+ogvVD?=
- =?us-ascii?Q?it/F9lVkqtx3FBj9ibaWtPgrXrF1qk1q+uFppYe/PMVVZ2jTwqUxDuOAZ7Mi?=
- =?us-ascii?Q?+amb6eDoSQNMGB3l5n3U2GCTD/vItGJwkKt39BgqjknlF6AJsRLgb1Dg4E4K?=
- =?us-ascii?Q?M8dT4Ay9J2APnfR+qd/3y6sRjJXuqGbdoQve07kXD6onfi+yqNQr92g+aGnZ?=
- =?us-ascii?Q?6bQXdecCrW0iBXmhJNWXNO8REHa/BZv1D4qrEQfK3lPdl2x6smr1lz4UNf8A?=
- =?us-ascii?Q?KJkqeN5/4NIJnzGXT4ieID2Ts8uFjBdn4YN+XgrPl9mPOFKu2OrJPT+AaJPm?=
- =?us-ascii?Q?Mw5SCrb8TjNU5KvzIv7U1csPjsUu2A2kU3M4pe8SAFhUDKAfH0aLrXVw6MF2?=
- =?us-ascii?Q?yiKAUzVYEs58T0TxoVvyQDiouuPZbQvdjM0ZtIiH?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f20fcf13-73b0-4b3d-e74a-08ddf5f510b8
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9627.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 14:18:25.5193
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AbO2z0PphmoBaz95Yo6DM10YKhD74/i9OOwfXd+PeAviYs5JOUY5Gmfga7GPAl4R2PibXJyOYHZmAHqTBBYmgA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7461
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 0/4] Add DT-based gear and rate limiting support
+To: Alim Akhtar <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
+        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mani@kernel.org>,
+        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
+CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <CGME20250902164927epcas5p459352c28c0d5c5a4c04bd88345a049f0@epcas5p4.samsung.com>
+ <20250902164900.21685-1-quic_rdwivedi@quicinc.com>
+ <3a9101dc1c8d$f476b8e0$dd642aa0$@samsung.com>
+Content-Language: en-US
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+In-Reply-To: <3a9101dc1c8d$f476b8e0$dd642aa0$@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XTpOCO247mJJyou_uzo_-nSWIJjDP4ZH
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX5Ve8HZQOx8E9
+ u5uQYBI80UHUr9QAyYfnstmOdU8lC69fuamhRR/o0LNJi/Z7izg0E5XCBXCNPpiX7u9wNvYJP49
+ NGjuMaIeR5JsRtMjtID5aZOU13829ddQRdDXfJidFGInqhTNgfeOYpdzQbXRh06MZZndYjXTmeC
+ kZcO5UF9vzMUYzRP2M/hV4WiJhyq+FHrMWjc+Ij0WIPvnpdEtjBlZTr+9Yi8+uEL28ybRDy6qJo
+ WVQyk9tJWUxHQ5Yn39sbssJM0tHni/G9Ffa2g0qPk1NvzhJVf/D4taI4eqFMovbsvgzgNuzuY09
+ 1NBMCb2q5vNrt15HmkxH2GKZaUmUcLskS9ofK0sBa6oqeyOYVVZHU8eHdAkGPjX6tS93e3d+kbw
+ LHU3T44/
+X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cac382 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8
+ a=hD80L64hAAAA:8 a=JF9118EUAAAA:8 a=N54-gffFAAAA:8 a=VwQbUJbxAAAA:8
+ a=bLk-5xynAAAA:8 a=yPCof4ZbAAAA:8 a=tC5-z0Gf1kRdzandcvAA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=xVlTc564ipvMDusKsbsT:22
+ a=zSyb8xVVt2t83sZkrLMb:22
+X-Proofpoint-ORIG-GUID: XTpOCO247mJJyou_uzo_-nSWIJjDP4ZH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509160202
 
-On Wed, Sep 17, 2025 at 04:17:27AM +0200, Marek Vasut wrote:
->On 9/17/25 3:49 AM, Rain Yang wrote:
->
->Hello Jiyu,
->
->> Hi Marek,
->> sorry for the inconvienence. this uboot version don't include SM-184's change.
->> I heard you're using i.MX95 A1 Chip, so you can extract the uboot in below link[1],
->> or build from source, or raise one ticket in this website[2].
->
->I use mainline U-Boot 2025.07 with about 10 extra patches, but nothing
->significant. I don't think this is U-Boot issue, is it ?
->
->I can rebuild SM, which commit in SM (from imx-sm repository) do I need to
->use ?
->
->-- 
->Best regards,
->Marek Vasut
-Hi Marek,
-I think the problem may be about the multi power domain, the second power domain named perf
-is for frequency change only, you can try to power on gpumix power domain only.
 
-as the 0x4d810008 is a write-once register and whose operation has been moved into the SM side,
-so please drop the reset change.
-can you also change the label of the gpu node from gpu to mali like "mali: gpu@4d900000",
-as the internal driver use mali label to control the thermal up/low limitation.
 
-BTW, does the dynamic frequency work well on your side so far with perf domain?
+On 03-Sep-25 10:18 AM, Alim Akhtar wrote:
+> Hi Ram
+> 
+>> -----Original Message-----
+>> From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+>> Sent: Tuesday, September 2, 2025 10:19 PM
+>> To: alim.akhtar@samsung.com; avri.altman@wdc.com;
+>> bvanassche@acm.org; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; mani@kernel.org;
+>> James.Bottomley@HansenPartnership.com; martin.petersen@oracle.com
+>> Cc: linux-scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org
+>> Subject: [PATCH V5 0/4] Add DT-based gear and rate limiting support
+>>
+>> This patch series adds support for limiting the maximum high-speed gear
+> and
+>> rate used by the UFS controller via device tree properties.
+>>
+>> Some platforms may have signal integrity, clock configuration, or layout
+>> issues that prevent reliable operation at higher gears or rates.
+>> This is especially critical in automotive and other platforms where
+> stability is
+>> prioritized over peak performance.
+>>
+>> The series follows this logical progression:
+>> 1. Document the new DT properties in the common UFS binding 2. Clean up
+>> existing redundant code in the qcom driver 3. Add platform-level parsing
+>> support for the new properties 4. Integrate the platform support in the
+> qcom
+>> driver
+>>
+>> This approach makes the functionality available to other UFS host drivers
+> and
+>> provides a cleaner, more maintainable implementation.
+>>
+>> Changes from V1:
+>> - Restructured patch series for better logical flow and maintainability.
+>> - Moved DT bindings to ufs-common.yaml making it available for all UFS
+>>   controllers.
+>> - Added platform-level support in ufshcd-pltfrm.c for code reusability.
+>> - Separated the cleanup patch to remove redundant hs_rate assignment in
+>>   qcom driver.
+>> - Removed SA8155 DTS changes to keep the series focused on core
+>>   functionality.
+>> - Improved commit messages with better technical rationale.
+>>
+>> Changes from V2:
+>> - Documented default values of limit-rate and limit-hs-gear in DT bindings
+>>   as per Krzysztof's suggestion.
+>>
+>> Changes from V3:
+>> - Changed limit-rate property from numeric values 1 and 2 to string values
+>>   Rate-A and Rate-B for better readability and clarity as suggested by
+>>   Bart and Krzysztof.
+>> - Added Co-developed-by tag for Nitin Rawat in 3rd patch.
+>>
+>> Changes from V4:
+>> - Added the missing argument to the error message while parsing
+>>   limit-rate property.
+>> - Updated the maximum supported value and default for limit-gear
+>>   property to gear 6, as per Krzysztof's and Bart's recommendation.
+>> - Renamed Rate-A and Rate-B to lowercase (rate-a, rate-b) as suggested
+>>   by Krzysztof.
+>>
+> Please allow minimum 4 ~ 5 days for reviewers to complete the review before
+> posting next version.
+> That will also help to reduce the number of iteration a patch goes through.
+> Thanks
+
+Hi Alim,
+
+Thanks for input. I’ll make sure to allow at least 4–5 days for the 
+reviewers to complete their review before posting the next version.
+
+Thanks,
+Ram.> 
+> 
+> 
+
 
