@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-218604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF3AB824DD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 01:34:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62709B824F8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 01:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A48A71C23036
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 23:34:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1061258340C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 23:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FA13294FE;
-	Wed, 17 Sep 2025 23:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2E3329510;
+	Wed, 17 Sep 2025 23:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fHD3+5rY"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="fnnTFpM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968363101CE
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 23:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63440329505
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 23:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758152067; cv=none; b=uoMfaHuPbdxZToQW+mybF5Xhsqmut6tel0AuZ9lKE6koKVe5PNswWfEk5Ff9Gxwqm0l5TC48WPE8Hczwtx4qvfwNZihVJhieWmHCW2+layufEFy2SonD42o7rqT5+u0iG05yzVL4BEMH57S3nnftaXNjFIzc5V792tGlGByytkM=
+	t=1758152436; cv=none; b=D4xbS1aL+mVb7xr8Yz1UxDZ2/TMg99jVEe/fPQk1tCos4fBqe+j/Gb5EXJMz//YGEawNgaPNcNesLU9RXszNoQ+eZ0Vo9CJOubEWdpfUyuv0wX2OTzRCXxsdKYVIDfybGyhS7/75rCCiu1kdqxpOhwnAKsxGCzn9dMHUsnwbYmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758152067; c=relaxed/simple;
-	bh=swWyIN+1pJbbIQJJjvJgyKEibOYxD+xzaD2IMHdTwP8=;
+	s=arc-20240116; t=1758152436; c=relaxed/simple;
+	bh=WSUDTo2YPrsMhanXvD2WU2viqGWsoO+MKY+Xv+c2P7g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XfpAzyxZ3VPFf9FGcpA+dUrZ2oNt8Ziz8RK5MB6+Xa2D2S4EC6BgsDuBSb8d+83uMwYWlGgJWPVqbzG4n5TPeI4afy8BJaVqlJ77moHdZ/tdNtCAJ+GqWVJqyPLJaSBSEnL1oNafNv7CK+ex5GZagbRQIMa6PSBTWqYTNpFEJF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fHD3+5rY; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-74526ca7d64so418487a34.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:34:24 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=jefW2iXQdsijeni39XZesJw2G7pcSLTeJBzknoBozSeaq2wPIVEIfCaVUfb0Dug6HSj+kvUhwZBXdZtkH6BwM52pZcbUCuIcBcb0rHQfI/GBL2r3EFf2vVgUn/IT6ntroI80wAe1ZEGRF7dC/37FUFLR5m9H25ZBNFMhv5FIMEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=fnnTFpM9; arc=none smtp.client-ip=209.85.166.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-88432e60eebso13514539f.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:40:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758152063; x=1758756863; darn=vger.kernel.org;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758152433; x=1758757233; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKhBLhOoADNGhrD1cnDjjtM0fyI+xW8dSVMWE/99mqc=;
-        b=fHD3+5rYdQXWtZN9ttp8ggQRDm5yDRxNlGHZ29cm1jgrrVij0JbCSmK/esV8CgIpux
-         Q+nDMl4iBLq1wlsZN8GcwCWAMLzlMo9aV/xwpJ72mB4JYqXeYG7be/Ibumi5hzfAxzb9
-         bn/7GyZTLzOlLHvCn4lUkMBf9K7+I+0zl6ZiUcmQbV9JACLcLIIRjDgyT/vNisq+6dPb
-         fQ6mf542fBi8iGUGKfVPIekKVaDHlMMgSrkcWmvmIhLQEnI33H1xyOFbbik7k+J95wTC
-         6uJslYfxMdeXj++VxJrISTGdtZ7AjumAYrk/TF0fGN/IgSCfKAd54l0zNt4q8EtFVjCD
-         PADw==
+        bh=U4LnKnBe0mUrdxdcBF4M/llb4IeQlPfA2whttLuEB5Q=;
+        b=fnnTFpM9dbLZRTz6baEM0q99r59tQD9IRcrATU5qxeYy4P/VepArnvQsfq0gjt1/4D
+         VuhWE4wm00PqAmNIuqzZxOB1w8NejghD3PjIw5pKPbSqNLdInB+0YDnB+fADVgP4vrBt
+         8JOCwHBCYp9xiSxlxw+RWGitND6DfcJCOr+W2WsyA8GW0xfe2bA97HIJd5I6uuNfaACN
+         VbuVFlYwq32bXQUcFk0WVqpYMMq+bEPdUOBxA4eSxsM3ZbAAvu+vZ4vZ7bwPu/cLprQC
+         i7BYhE74YyHMnSqUMsjeDaj1IfYQIJdD5S/gN1oy36v6WOoraplaSZWe/rFWkO6CoPyZ
+         V0rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758152063; x=1758756863;
+        d=1e100.net; s=20230601; t=1758152433; x=1758757233;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKhBLhOoADNGhrD1cnDjjtM0fyI+xW8dSVMWE/99mqc=;
-        b=Bplha5BsRZDaPVbgNEzM5DQayOdySVoZBf7lvkbwOSUhgYbH6LhjNg0FSfrcT9/4Zy
-         Zc+SLPRfzVGSQfXLRw4RcBqX6UHRyQzx00ZQkkQdqyA4Hwn7TlLmv7KKyq1r8Z5vdajg
-         egtYzJDXU0h9LQkWedYD4tj6ro8dwcCcFtVLDHFwz4MBFVQ6EIIbCx9oPlp1MLUR8V0v
-         LPcApn2KGiTtogf3mrCQ/1BFZJZrIb9G1URmB4S1hWYewDsot+LDbm1ZERlyzfCx8bDs
-         g9h9DMLIm/YmHqwz9FGn9zZDP7/zWdsbejRcnUNzqDgI2mSaZjOsc2Ot0BN3ytaVE0sI
-         hOZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXVNHaPAHjXqszg9mzku64a1xO6rWqnBbK42u9Rez8bxGaha+r/lr/bq106B0ehJCwBN+rUpZJPJtuc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyplt4uBdD472IkzaeoIW+Kz8XmJDugiA03GkwHI2noiKWeKcVK
-	OtBAZX0gFScoJJCPkkvGS1nis4EQpd3TsSZpwQVbj9icYMBQgd40hiRvMd1/wuhXkCM=
-X-Gm-Gg: ASbGncth/kuPwR8vniP95cTV8u8D3h2r37y/EkGHgrvI5ENGhvtoWAOzQ7FA9/tUmZ0
-	rAYSb82xzKCGdTGh0E1Zge+1vcnovpX738rmt63gmL0qxNR0CbCkHq3RbasTK7lt+Ga0+eFTK1n
-	tcykAf16KAy1HR9wVbuFg1FOV6fTgv+Cj27h0xY2v3z2A+u/K67MhaCNfZtD4mMff6EsOzKCV9r
-	9Grd4yAhSwTg6yX6/dW90uLbbfA5YdlcyFSdqZ0OkVe3dyGzmXyRgRQ2nm0mqOaaoG57Cj2rLZH
-	ibmR9ZaHFPnELvLQVSaWdZHTOLNVzxWIMGNdKGKWjMmCFPZjj/vt720eL/ow9LHu+1G1e+NMbyx
-	5XmGBsiW7X1gUXXrzjBUlJjHlrQJ658yw1Exc+icOXziNmFfIjbIsbAvru1dLuGDK7HRke4Lmtl
-	o2B/HTdAyOrCWteSB2dQ==
-X-Google-Smtp-Source: AGHT+IE7RaIyMAJaTvPyOiXN+JJtZea0493IhCnfctYazgeVBHja7BYLWwucFVnhI9ICXngYTmNZug==
-X-Received: by 2002:a05:6830:6182:b0:746:d65b:a3b0 with SMTP id 46e09a7af769-76318d69ba4mr2431458a34.2.1758152063547;
-        Wed, 17 Sep 2025 16:34:23 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:55b7:b662:4c5b:a28e? ([2600:8803:e7e4:1d00:55b7:b662:4c5b:a28e])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-625dbab5cf1sm247661eaf.22.2025.09.17.16.34.22
+        bh=U4LnKnBe0mUrdxdcBF4M/llb4IeQlPfA2whttLuEB5Q=;
+        b=jq/Bf8xoTiQ5srKNTFp3tZCv6FOJmm1eWmcj+L1qcKlG4nLwgI0T/fhiZyQAEOLliK
+         lQRvPtmBrVMTtgrYmmSRYGj19mpY2bQhyTZ/qZHFGx/alLtl6n2OT8NxDFxKVxcrwF2b
+         spDIktv2Kc5YJIdbc9kbNJSH2B2iT9+Lz1t3Bt318spr2K885bz3at9kBRdGI+7C9lMX
+         irAe5cJ6IMDoh/4/Gs1RRwaczvMOebKga9CX96gQkK1QOHY7jv2rKnsFhI88H/eTSuG8
+         hCtcExYB776l4R7Uw7arObWOw1J9EqDCIKC7grzLiyJUfXX4VwFBKvwWHgIpbzAyMqbr
+         HjRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIrWQi9j2rP29Dse/LImOhfNGqHQvz6I0JsnlGwfA9Tk/olBqmmxWq5C+vnMwT9xUEA7UW6eBN/kk3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz63DqT2FqlZ7oU0UcJrGdxhI9hvr2sOA/FcyKJu/w2DsrWXe+b
+	nnI0LIfoFEUASZlloSF8zGKaNfG8mIleUosg2cFLaMK7KQ3aQXRBkPh1HU00PdciUAo=
+X-Gm-Gg: ASbGnctjBH+z9fi1/12AzethZEDJ1DrXermlOIZFzSKt3ByMNKUbLBfIs97nlJoZWOs
+	673gJzCMDhlshY4/XcRIouu52C0xTMpHn28RyLjA7obVLq3eWaqfEwSD8CpUGuapO0Xf8Cg/Bar
+	u+Q1eyADJOiprkPxbHNDn74yGV/5NAD3SHyex/A994XJ06Yia3ljQXhoS6f6ec5CvpupzRw+l/E
+	LERmjhxZOB+D/4VCpKWHn6zageNsE3/9lV/P5HtGpGjQJe4RSh9IQU4ui9q+bEhXMo+/TRBoU5L
+	ZyRBQSDtGhKSl1CzolvKtPP5GPYzKQRQR1zJbJp1M9KCa+MmMpVXEL9fklwZ8YP6hz3GN/duLk3
+	wwEDLl7oIlpdxmL5J0NNotjMsEp16UrrESIwYkBb23hBF/Xu39X03Qg==
+X-Google-Smtp-Source: AGHT+IFIMlPua7p/TY9YMSKjXsZOBX/5j6z1IJQ7nS5dT8sO4hABWq+/kl4R3zdjJi/vT1pYQ+i8NA==
+X-Received: by 2002:a05:6602:6c10:b0:86d:9ec7:267e with SMTP id ca18e2360f4ac-89d1a7c97eamr718446339f.4.1758152433403;
+        Wed, 17 Sep 2025 16:40:33 -0700 (PDT)
+Received: from [10.211.55.5] ([131.212.251.230])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-8a46fea3353sm31238739f.12.2025.09.17.16.40.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 16:34:23 -0700 (PDT)
-Message-ID: <0bc1b77c-bbbc-4e8a-a792-fb7e30a2a789@baylibre.com>
-Date: Wed, 17 Sep 2025 18:34:22 -0500
+        Wed, 17 Sep 2025 16:40:32 -0700 (PDT)
+Message-ID: <3b815302-21f2-4ee2-bf83-c1dba77ce3d1@riscstar.com>
+Date: Wed, 17 Sep 2025 18:40:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,205 +82,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: temperature: add support for
- EMC1812
-To: Marius Cristea <marius.cristea@microchip.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250917-iio-emc1812-v1-0-0b1f74cea7ab@microchip.com>
- <20250917-iio-emc1812-v1-1-0b1f74cea7ab@microchip.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
+To: Yixun Lan <dlan@gentoo.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250917220724.288127-1-elder@riscstar.com>
+ <20250917220724.288127-2-elder@riscstar.com>
+ <20250917231520-GYA1269891@gentoo.org>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250917-iio-emc1812-v1-1-0b1f74cea7ab@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250917231520-GYA1269891@gentoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 9/17/25 7:21 AM, Marius Cristea wrote:
-> This is the devicetree schema for Microchip EMC1812/13/14/15/33
-> Multichannel Low-Voltage Remote Diode Sensor Family.
+On 9/17/25 6:15 PM, Yixun Lan wrote:
+> Hi Alex,
 > 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
->  .../iio/temperature/microchip,emc1812.yaml         | 223 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 229 insertions(+)
+> On 17:07 Wed 17 Sep     , Alex Elder wrote:
+>> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   .../bindings/spi/spacemit,k1-spi.yaml         | 94 +++++++++++++++++++
+>>   1 file changed, 94 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+>> new file mode 100644
+>> index 0000000000000..5abd4fe268da9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+>> @@ -0,0 +1,94 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/spacemit,k1-spi.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: SpacemiT K1 SoC Serial Peripheral Interface (SPI)
+>> +
+>> +maintainers:
+>> +  - Alex Elder <elder@kernel.org>
+>> +
+>> +description:
+>> +  The SpacemiT K1 SoC implements a SPI controller that has two 32-entry
+>> +  FIFOs, for transmit and receive.  Details are currently available in
+>> +  section 18.2.1 of the K1 User Manual, found in the SpacemiT Keystone
+>> +  K1 Documentation[1].  The controller transfers words using PIO.  DMA
+>> +  transfers are supported as well, if both TX and RX DMA channels are
+>> +  specified,
+>> +
+>> +  [1] https://developer.spacemit.com/documentation
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/spi/spi-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - spacemit,k1-spi
+> one enum is effectively equal to const..
+
+OK.  That's an easy fix.
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Core clock
+>> +      - description: Bus clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: bus
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  dmas:
+>> +    items:
+>> +      - description: RX DMA channel
+>> +      - description: TX DMA channel
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: rx
+>> +      - const: tx
+>> +
+>> +  spacemit,k1-ssp-id:
+>> +    description: SPI controller number
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> could you explain a little bit why this vendor specific property should
+> be introduced? I took a look at the code, and didn't get the reason
+> behind.. or what's the problem of simply using "pdev->id"?
+
+This property was carried over from the vendor code.  It is
+optional, and if it isn't specified, the platform device ID (-1)
+will be used.  It's just intended to provide a well-defined ID
+for a particular SPI controller.
+
+> we should really be careful to introduce vendor specific property..
+
+If there were a standard way of doing this I'd love to use it.
+
+And if it isn't necessary, please just explain to me why.  I
+have no problem removing it.
+
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - interrupts
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +
+>> +    #include <dt-bindings/clock/spacemit,k1-syscon.h>
+>> +    spi3: spi@d401c000 {
+> label not needed for DT example
+
+OK.
+
+>> +        compatible = "spacemit,k1-spi";
+>> +        reg = <0xd401c000 0x30>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        clocks = <&syscon_apbc CLK_SSP3>,
+>> +                 <&syscon_apbc CLK_SSP3_BUS>;
+>> +        clock-names = "core",
+>> +                      "bus";
+>> +        resets = <&syscon_apbc RESET_SSP3>;
+>> +        interrupts-extended = <&plic 55>;
+>> +        spacemit,k1-ssp-id = <3>;
+>> +        dmas = <&pdma 20>,
+>> +               <&pdma 19>;
+>> +        dma-names = "rx",
+>> +                    "tx";
+> ..
+>> +        status = "disabled";
+> ditto, drop it
+
+OK.  Thanks a lot for your quick review.  I'll wait a bit
+(probably until Monday) before I send an update.
+
+					-Alex
+
+>> +    };
+>> -- 
+>> 2.48.1
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,emc1812.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,emc1812.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..898d6d246746e229cb004f447872ee6bd5a65074
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,emc1812.yaml
-> @@ -0,0 +1,223 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/microchip,emc1812.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip EMC1812/13/14/15/33 multichannel temperature sensor
-> +
-> +maintainers:
-> +  - Marius Cristea <marius.cristea@microchip.com>
-> +
-> +description: |
-> +  The Microchip EMC1812/13/14/15/33 is a high-accuracy 2-wire multichannel
-> +  low-voltage remote diode temperature monitor.
-> +
-> +  The datasheet can be found here:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/EMC1812-3-4-5-33-Data-Sheet-DS20005751.pdf
 
-The pinouts of these chips look nearly identical to MCP998X.
-Would it make sense to share a single bindings document for these?
-Or maybe there would be too many if: blocks and keeping it separate
-is fine.
-
-https://lore.kernel.org/linux-iio/20250829143447.18893-2-victor.duicu@microchip.com/
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,emc1812
-> +      - microchip,emc1813
-> +      - microchip,emc1814
-> +      - microchip,emc1815
-> +      - microchip,emc1833
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    description:
-> +      -alert-therm2 asserts when a diode temperature exceeds the ALERT
-> +      threshold.
-> +      -therm-addr asserts low when the hardware-set THERM limit threshold is
-> +      exceeded by one of the temperature sensors.
-> +    items:
-> +      - const: alert-therm2
-> +      - const: therm-addr
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  microchip,beta1:
-> +    description:
-> +      Set beta compensation value for external channel 1.
-> +      <0> 0.050
-> +      <1> 0.066
-> +      <2> 0.087
-> +      <3> 0.114
-> +      <4> 0.150
-> +      <5> 0.197
-> +      <6> 0.260
-> +      <7> 0.342
-> +      <8> 0.449
-> +      <9> 0.591
-> +      <10> 0.778
-> +      <11> 1.024
-> +      <12> 1.348
-> +      <13> 1.773
-> +      <14> 2.333
-> +      <15> Diode_Mode
-> +      <16> Auto
-> +      - Diode_Mode is used when measuring a discrete thermal diode
-> +      or a CPU diode that functions like a discrete thermal diode.
-> +      - Auto enables beta auto-detection. The chip monitors
-> +      external diode/transistor and determines the optimum
-> +      setting.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 16
-> +    default: 16
-> +
-> +  microchip,beta2:
-> +    description:
-> +      Set beta compensation value for external channel 2.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 16
-> +    default: 16
-
-This beta value sounds like something that might not belong in the
-devicetree.
-
-The datasheet says that auto is always the best. So that makes me
-wonder when would we want to use something else?
-
-Also, it says that in auto mode, that the value is recalculated
-on every conversion, so even if manually selecting a value, it
-sounds like something that could change at runtime, so having a
-fixed value might not cover all use cases.
-
-Having a boolean flag to say this is wired to a discrete thermal diode
-makes sense though (the driver would use this info to select diode mode).
-
-And if we can make the case that the beta value should be in the
-devicetree, then having the actual value instead of a lookup table
-would be preferred. There is a "basis points" standards unit (suffix
-"-bp") that can be used for non-integer values like this (assuming it
-is a unit-less value). It is 1/10,000 so it would make the property
-an enum with 15 values between 500 and 23330.
-
-Both properties would not be allowed at the same time and if both
-properties are omitted, the driver would know to use auto mode.
-
-Also, it would make more sense to have these as channel properties
-if they only apply to 1 channel each.
-
-> +
-> +  microchip,parasitic-res-on-channel1-2:
-> +    description:
-> +      Indicates that the chip and the diodes/transistors are sufficiently far
-> +      apart that a parasitic resistance is added to the wires, which can affect
-> +      the measurements. Due to the anti-parallel diode connections, channels
-> +      1 and 2 are affected together.
-> +    type: boolean
-> +
-> +  microchip,parasitic-res-on-channel3-4:
-> +    description:
-> +      Indicates that the chip and the diodes/transistors are sufficiently far
-> +      apart that a parasitic resistance is added to the wires, which can affect
-> +      the measurements. Due to the anti-parallel diode connections, channels
-> +      3 and 4 are affected together.
-> +    type: boolean
-> +
-> +  vdd-supply: true
-> +
-> +patternProperties:
-> +  "^channel@[1-4]$":
-> +    description:
-> +      Represents the external temperature channels to which
-> +      a remote diode is connected.
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 1
-> +          maximum: 4
-> +
-
-I.e. beta-related properties would go here.
-
-> +      microchip,ideality-factor:
-> +        description:
-> +          Each channel has an ideality factor.
-> +          Beta compensation and resistance error correction automatically
-> +          correct for most ideality errors. So ideality factor does not need
-> +          to be adjusted in general.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 8
-> +        maximum: 55
-> +        default: 18
-> +
 
