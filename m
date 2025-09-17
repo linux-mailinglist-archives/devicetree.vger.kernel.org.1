@@ -1,143 +1,186 @@
-Return-Path: <devicetree+bounces-218535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EF1B8146E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 20:01:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D10FB814B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 20:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B27567B9C9C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 722761C80CE2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 18:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11893009DF;
-	Wed, 17 Sep 2025 18:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE60D2FB0B6;
+	Wed, 17 Sep 2025 18:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amacapital-net.20230601.gappssmtp.com header.i=@amacapital-net.20230601.gappssmtp.com header.b="g1LtUuBN"
+	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="BbMYj2Nx";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Jj2Ss5bD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D049F2FFF83
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 18:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8B034BA24;
+	Wed, 17 Sep 2025 18:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758132049; cv=none; b=svbQFeznW6fiEHDS7o5Obf2yRXW7NXkMJZWK2tk1RW7Y+5Rm3BihHQDIpl+k2vHa4xsqFPyeUXKX1yXRtBkRUwGRo3Fz+pP2/S0lkZXLVuU0txGFAAWsm+P8T7b5Mi4iw7xp5Rm04ZMTv+DqwWwmyaGp8rjwLEm8yd/Eqi+6Bxk=
+	t=1758132278; cv=none; b=iRlj0n1BjOxoYVAvAtMcbqa2+JvlTMLmhPkcjTqSAgVn59URKpG8tZEFizWGWSO16L7w/NDzqaUP0d8bMJZGSFKVR95R+bkzbTLxwvTf7ZU6funOExANN6xL0TO9RS5FErtKC+z7rT33KBWzI9+IQht5DOwK0qqbLCSKShwyce8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758132049; c=relaxed/simple;
-	bh=DLDcGQ3mu3T/MPVKq0NF9V2I5Jn6ILZwFaw9KVQfhOo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SEpLowpb9c2WeJrgZZOOtpRLXKLMYE+WRJ6LCbzqb4b8CdAnchR4i0x0HOgLb5B1V+cSQQ7rGxb4GWB/vlxxUPU84whDGQ4BnZBCobTe0tP0FmJQKIXJN8MQIwRbtuodMy0/NsPqveo5UW40MjMxEdzf9QCxhLY/dDUD3z5ZiHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amacapital.net; spf=pass smtp.mailfrom=amacapital.net; dkim=pass (2048-bit key) header.d=amacapital-net.20230601.gappssmtp.com header.i=@amacapital-net.20230601.gappssmtp.com header.b=g1LtUuBN; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amacapital.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amacapital.net
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5720df4acc5so83174e87.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 11:00:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amacapital-net.20230601.gappssmtp.com; s=20230601; t=1758132044; x=1758736844; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0Pv4dFUExNQfPloEDat7jfEF9BkjeLOy7zrinjdnc80=;
-        b=g1LtUuBN2lj4qvyQzWAdLKTewMPpvB0BMgAm3EhYmOSEcT379TNMgVSmJk7DCmgjc/
-         T0eHokwlFMY3Yd+mXYCz+ekytPn0ndF69T0GJJIC1YMQr15FXnETUToESn8hAOjjN4TJ
-         wc+dE3joK8Hj6X0qrUlvmHpmCBRx7/hVESh3NV1/RSPbebawN77L/JxPYbAY8rno5NPR
-         h45BlMuQrVS79kOiLhszZHO32mHd/xwXNvhKNiRJJPEEOxGanxAq7D4RvCoxMPnsrP0o
-         gtEy+UX8pbw1CA/Tbhp0++SKDmI4SgqYBJ/2EKyXEOwvuyrgRQgYTYLI+VQny1h7rWhV
-         /NkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758132044; x=1758736844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0Pv4dFUExNQfPloEDat7jfEF9BkjeLOy7zrinjdnc80=;
-        b=McZDOOxN2lnjMQvcKwoA63YYBcYXwwNKm3CVtDuTqUdZf6aiMnEtJh0oV+rFr/s/N+
-         wzI6qeC12TDwnyDhUIxKqNk0AtLNdYGGoMekuQStAg6XPhmfpvq4CyFMlEPRfciVTiLu
-         DOfQL9vEiAtOyXQ9rioZZzRDuFlr5Y+mwa8fHJeZQ6WArD9n18QnScMz0yQF+78xPrnX
-         5eodiYb4Y7uKvdVa0ULNmd4Zx2iReAuaf4miZ1NOenLaQC1D9pEsZzaxXtBxhrVauHmy
-         +B7s7B41Y4aFLS2i0PV0ft6llxclzD2G26Z13Lv2rGOdcLrKz+fcq3Ro2LAOUpANU6u1
-         VFuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWqpsbDZ3fvXKZYvbfrL15uYb2Sr+tuYMM1UpukPhbwgzbHNvCozy20+HqY6nEPn7lSrhFw/80EbWLJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1SAlK/Gquu38NIbaV1IAHm3zbCMWTgkXal8iV//6N5EXHUfHV
-	n2AX1zI5y12uOrPg+ZX/X+JhupVV52QXDipJssJ+Gc68sfoG0cLEP0cjxveWKot/joYcVjGozDI
-	Vf+HFGpONRpV6vfVq7IaRbNausA55NAOPL6YvChum
-X-Gm-Gg: ASbGncukHiKT5+mTpBbjY6eO8hYVPhNoaKBh2qrEJhQ0aVjkjdPGlSGLmL+HrPO98Uc
-	rmEwT1fXG1MzGpHozG8ivU6oK6CvfEOyNfd3aY/vO6JvIEwvFRGmqg6KY5vsw7LJh73LAItIXGd
-	TzO42XvoGq0U6a2GTEF/pcHDSmStjA96aD0aTNV2ehj3iZL8cKJQcX6yWtziAM4A61U7ZsyUSui
-	Q1DBQ==
-X-Google-Smtp-Source: AGHT+IGI+xF2OSgRbI6+fabXiqu9Xwuf5bxWYwnja/rNGOUuSmNzhH42MNUAKuR34Ox7ov8nmiujA9clDhMS84oRbmU=
-X-Received: by 2002:ac2:4e09:0:b0:576:d217:3f2f with SMTP id
- 2adb3069b0e04-57796b5e819mr1028160e87.3.1758132043747; Wed, 17 Sep 2025
- 11:00:43 -0700 (PDT)
+	s=arc-20240116; t=1758132278; c=relaxed/simple;
+	bh=todZsB+sIRV2E9TUHrIPRgeJ0mUNTpiPKG4aFGalm/M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ON2KuYMSzD/OdAI0+PQMRTFlCtwmnoSSxDDDodADRoMKGbvhuKbmNU9Ssf7DP5YUAqSTHB4dzG6gktOrsSRNXExt3KzDur1XwN1Dod+DIoeZHeOwlHyRmVuCdO4x924v5m9TFTHiiwGSJPdpW4afknDiDy6OZSNAydLn+wFABbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=BbMYj2Nx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Jj2Ss5bD; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
+Received: from phl-compute-10.internal (phl-compute-10.internal [10.202.2.50])
+	by mailfout.phl.internal (Postfix) with ESMTP id A272FEC01CE;
+	Wed, 17 Sep 2025 14:04:35 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-10.internal (MEProxy); Wed, 17 Sep 2025 14:04:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
+	:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=fm2; t=1758132275; x=1758218675; bh=MmY+rQ6CX5jSxSv8cWbPf
+	wXi6SSyhtzs/3Z2Z1CrXyE=; b=BbMYj2Nxl0uG8TrrV+4MPx/MCLl6dy7zI61qa
+	xBM0nMs1RBwkUYUapcvKROnSvxMGden3l78ZuxwEWN1qQOaArdoQKzUGjW9DJ/JM
+	/EJyIwJR5JIO316qTScS4VHvozdl9qBGUjFRy/ofHFKmVJ5agECrly5cMjrlE1Ga
+	9f4BscYy+IFx3IzSaDc4h/BFEGukmOn7DDmER3WMfwbRSO84GHPWoahEckuVLc8J
+	wRbCvF4D1r0ZuFxfABGZ5b5NK5tYJbCcLY7XWesPxPVS3i4ZdIDMCwhpZl/zb33H
+	tXZHVj5Mv6BXQnVlRZcA33nHs2OxS+ptlfXrvbOswoca/3zNQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1758132275; x=1758218675; bh=MmY+rQ6CX5jSxSv8cWbPfwXi6SSyhtzs/3Z
+	2Z1CrXyE=; b=Jj2Ss5bDsETXiZgw8z06njHdzi09K2fNOYwhRKOFT59LtHAClh+
+	bM+0FYmfrWYYj04ER54Yl6pGOgJnkjFjT5u3uQmZgXD+oj5NTFuLAXj9SRn2Mmq/
+	6+mju9Erp8FP9QxkcrhLsOFAgaNaEz6ryGgZJnFGCJX1l2thLFh1fIogst+x9eRv
+	3yLNxpxrof+oS8JLi0vY6mGwueN9NSjHDM/QEfAbjiBr9GHKz/bjQtC/QvqeX+H1
+	+SVeYZ42s0AMHl7HNWgeePRVkjrrbDVDuTXyGve8F0s2stE+QzuYRhzeUlGMNTTr
+	HQmkv80oIb5hKsS0HKuF02GPFfW6pq6E9+A==
+X-ME-Sender: <xms:MvjKaBtfT7UYX4UvmktezWeYaOG9mpp8GTuTWYluG3GKGizyq_WwWA>
+    <xme:MvjKaGQrU1alR1FA_ai-FXWJVqJvZZjQdiCMfZRRridgRa8d52KkRm07mfR02zNLQ
+    _7ovBrp1GplZB9Y0Lo>
+X-ME-Received: <xmr:MvjKaAKL5vpkJTwu3HW-8dCdsSEKQV6rlI0Vx8ZZ1Wmg6-FRdz2ehfLeYwfa4dNa6N8tTAKSWm5y>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeggeduvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeftvggsvggttggrucev
+    rhgrnhcuoehrvggsvggttggrsegsshguihhordgtohhmqeenucggtffrrghtthgvrhhnpe
+    eghedvvedufedvheehvedtleejteekudfhvdekffevudduhedutdekfeehheegheenucff
+    ohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomheprhgvsggvtggtrgessghsughiohdrtghomhdp
+    nhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehroh
+    gshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghl
+    rdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtph
+    htthhopehjohgvlhesjhhmshdrihgurdgruhdprhgtphhtthhopegrnhgurhgvfiestgho
+    uggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghpthhtohepuggvvhhitggvthhrvg
+    gvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdq
+    khgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplh
+    hinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdrohhrghdprhgtphhtthho
+    pehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:MvjKaBs5kwkIojafz6Rn0y2e9cFGWP988O5fGOwjAd7Jh2UwDKb8Wg>
+    <xmx:MvjKaP8obK4yI20rtg5irglefP4zhIukd0Xm0IfWPaOslY8XD4X4VA>
+    <xmx:MvjKaD1g9YhaeciocwmF84hAUTHD90wdaDq93DJqZU0XNoq_mCuYww>
+    <xmx:MvjKaMjVxSxzopX5fSUUhsxtz2iugk2RAuhctS3lKuFHP1jkW-l5fA>
+    <xmx:M_jKaE7Ey3LRWLTDa2HFRiC8e7nHzmeuInpx1vEOF7oPXZvy36zT-znf>
+Feedback-ID: i5b994698:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 17 Sep 2025 14:04:33 -0400 (EDT)
+From: Rebecca Cran <rebecca@bsdio.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: Rebecca Cran <rebecca@bsdio.com>
+Subject: [PATCH v2 0/2] Add device tree for ASRock Rack ALTRAD8 BMC
+Date: Wed, 17 Sep 2025 12:04:24 -0600
+Message-ID: <20250917180428.810751-1-rebecca@bsdio.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912223937.3735076-1-safinaskar@zohomail.com> <0342fbda-9901-4293-afa7-ba6085eb1688@landley.net>
-In-Reply-To: <0342fbda-9901-4293-afa7-ba6085eb1688@landley.net>
-From: Andy Lutomirski <luto@amacapital.net>
-Date: Wed, 17 Sep 2025 11:00:32 -0700
-X-Gm-Features: AS18NWAGwakGZ9zjxjq7MnfN8O7ZgOJb6fmKIJ0JIML7P3j0NnlDZ27eNb5S7Es
-Message-ID: <CALCETrXHxOkHoS+0zhvc4cfpZqJ0wpfQUDnXW-A-qyQkqur-DQ@mail.gmail.com>
-Subject: Re: [PATCH 00/62] initrd: remove classic initrd support
-To: Rob Landley <rob@landley.net>
-Cc: Askar Safin <safinaskar@zohomail.com>, linux-fsdevel@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Christian Brauner <brauner@kernel.org>, 
-	Al Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>, 
-	Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Aleksa Sarai <cyphar@cyphar.com>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
-	Julian Stecklina <julian.stecklina@cyberus-technology.de>, 
-	Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Eric Curtin <ecurtin@redhat.com>, 
-	Alexander Graf <graf@amazon.com>, Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org, 
-	linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org, 
-	linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev, 
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org, 
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org, 
-	Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org, initramfs@vger.kernel.org, 
-	linux-api@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	"Theodore Y . Ts'o" <tytso@mit.edu>, linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>, 
-	devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>, Kees Cook <kees@kernel.org>, 
-	Thorsten Blum <thorsten.blum@linux.dev>, Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 15, 2025 at 10:09=E2=80=AFAM Rob Landley <rob@landley.net> wrot=
-e:
+The ASRock Rack ALTRAD8 BMC is an Aspeed AST2500-based BMC for the
+ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q boards with an Ampere Altra
+processor. The BMC runs OpenBMC.
 
-> While you're at it, could you fix static/builtin initramfs so PID 1 has
-> a valid stdin/stdout/stderr?
->
-> A static initramfs won't create /dev/console if the embedded initramfs
-> image doesn't contain it, which a non-root build can't mknod, so the
-> kernel plumbing won't see it dev in the directory we point it at unless
-> we build with root access.
+These patches add a device tree and binding for the BMC.
 
-I have no current insight as to whether there's a kernel issue here,
-but why are you trying to put actual device nodes in an actual
-filesystem as part of a build process?  It's extremely straightforward
-to emit devices nodes in cpio format, and IMO it's far *more*
-straightforward to do that than to make a whole directory, try to get
-all the modes right, and cpio it up.
+**Changes between v1 and v2**
 
-I wrote an absolutely trivial tool for this several years ago:
+- Reordered nodes to be in alphabetical order.
+- Removed status lines.
+- Fixed naming.
 
-https://github.com/amluto/virtme/blob/master/virtme/cpiowriter.py
+There are still several warnings from
+make CHECK_DTBS=y ARCH=arm W=1 aspeed/aspeed-bmc-asrock-altrad8.dtb
+I believe the only one which is reporting an issue in my dts file (as opposed
+to included files) is the first, and that's because the code partition contains
+the TF-A and UEFI areas. I couldn't see a way to suppress it.
 
-it would be barely more complicated to strip the trailer off an cpio
-file from some other source, add some device nodes, and stick the
-trailer back on.  But it's also really, really, really easy to emit an
-entire, functioning cpio-formatted initramfs from plain user code with
-no filesystem manipulation at all.  This also makes that portion of
-the build reproducible, which is worth quite a bit IMO.
+aspeed-bmc-asrock-altrad8.dts:578.16-581.6: Warning (unique_unit_address_if_enabled): /ahb/spi@1e630000/flash@0/partitions/code@400000: duplicate unit-address (also used in node /ahb/spi@1e630000/flash@0/partitions/tfa@400000)
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/memory-controller@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2500-sdram-edac']
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/syscon@1e6e2000/p2a-control@2c: failed to match any schema with compatible: ['aspeed,ast2500-p2a-ctrl']
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2500-gfx', 'syscon']
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2400-timer']
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/pwm-tacho-controller@1e786000: failed to match any schema with compatible: ['aspeed,ast2500-pwm-tacho']
+aspeed-bmc-asrock-altrad8.dtb: fan@0: aspeed,fan-tach-ch: b'\x00\x08' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@1: aspeed,fan-tach-ch: b'\x01\t' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@2: aspeed,fan-tach-ch: b'\x02\n' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@3: aspeed,fan-tach-ch: b'\x03\x0b' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@4: aspeed,fan-tach-ch: b'\x04\x0c' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@5: aspeed,fan-tach-ch: b'\x05\r' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@6: aspeed,fan-tach-ch: b'\x06\x0e' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: fan@7: aspeed,fan-tach-ch: b'\x07\x0f' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+aspeed-bmc-asrock-altrad8.dtb: lpc@1e789000 (aspeed,ast2500-lpc-v2): reg-io-width: 4 is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: lpc@1e789000 (aspeed,ast2500-lpc-v2): lpc-snoop@90: 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: kcs@24 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: kcs@28 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: kcs@2c (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: kcs@114 (aspeed,ast2500-kcs-bmc-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2500-lhc']
+aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2500-ibt-bmc']
+aspeed-bmc-asrock-altrad8.dtb: gpio@1c (nxp,pca9557): '#address-cells', '#size-cells', 'gpio@0', 'gpio@1', 'gpio@2', 'gpio@3', 'gpio@4', 'gpio@5', 'gpio@6', 'gpio@7' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
 
---Andy
+
+Rebecca Cran (2):
+  dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8 board
+  ARM: dts: aspeed: add device tree for ASRock Rack ALTRAD8 BMC
+
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml |   1 +
+ arch/arm/boot/dts/aspeed/Makefile                        |   1 +
+ arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts   | 633 ++++++++++++++++++++
+ 3 files changed, 635 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
+
+
+base-commit: 5aca7966d2a7255ba92fd5e63268dd767b223aa5
+-- 
+2.47.3
+
 
