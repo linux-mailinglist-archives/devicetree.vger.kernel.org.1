@@ -1,235 +1,202 @@
-Return-Path: <devicetree+bounces-218249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01DAB7F907
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:51:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4554FB7F856
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:47:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF462163D43
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:08:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 800E1164CC0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441D230596F;
-	Wed, 17 Sep 2025 08:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EEA30596F;
+	Wed, 17 Sep 2025 08:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="UjQf/qfu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="StGD3ARx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE412C21C5
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146A722A4EA;
+	Wed, 17 Sep 2025 08:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758096500; cv=none; b=eLgKv8hzoe/xaSdgeP8kJkZGwmHR02t89NEatnXgHyrti97qvkdQofSjIWWQwr4f/fA2ZeF00cccGR7gz0yPdkrKTXQmJ4Vdzt5Fgbi+iuRzgbkmgWPV8jQPKU+Iin8lOyA0BFDNXyg+M8v/W2g7UKHI2vw8R1EwjgiNG9PcSKs=
+	t=1758096654; cv=none; b=gQO2K+EK9o57CVVFn73W2YIRSGONv4hnY+cD4dhyAeONYoiEn+IZnW/BABargy2znNZfixzraG6iZwaLF4m91J7HgrA7FOXp9KlDQCUyngHlhKcSq4//vwImAwtao0ABAulIZ2P9Q+EbUrSJT3FfdEqlpTOwcjOCNEMDxS+lGoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758096500; c=relaxed/simple;
-	bh=zmAkUSmURyrPm9Es6pwndaNcte5fukrPYep/WwE6W4Y=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GiBtGtmody6E+6ygJCz6iR7zt9+Ocq14//9YogK/BT1tmvoX/9nexTwRaSUzqZLK/SIeSfajFSGWbNOxlbkE8IL8/jdS1rOEWolHZS5ghDQkfSll42Cb4OpUNHoCfLoaeQnPZKU0pNKbnNcmgilTgiZd72Q75uVso1oKeQ2pFFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=UjQf/qfu; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-570d0c280e4so6348246e87.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:08:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758096496; x=1758701296; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ol9k3KHJzXIaDXkNQhQhw49htl/DZQ8I8F+dCl06Mtw=;
-        b=UjQf/qfu8ssiqFjL4mkUQ6tDH1JbVipksc4AZKr30r6amd2K7kWnrIK7GhdDJIcCn+
-         AExW8HV9WXf6D3x70J6Mzh4BQIpWMCT+Jnc/5ZDH+gtuqoI9rLZC88XjbZD1iujVULMz
-         MgYEz2GZEi7EvTxb4TV+UMpAiVRzdpjobckhyNLF5Ht6JsKxYLpA0mRoWMGVfn5SpIEJ
-         rz/9sEsEVNaQnX/hbfk9X/ipbS5JVUtangSM7YSHTElNVkO4ojHqJaGDRZvhLfk4XzR5
-         s5zZrTY0656E5BpupBLOJdvruylExs3lsRWrI977XqkQpVLxrhAQoRMAcjRbuNX436TI
-         NgAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758096496; x=1758701296;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ol9k3KHJzXIaDXkNQhQhw49htl/DZQ8I8F+dCl06Mtw=;
-        b=nI765t1bAsutQf1g59ddCCr87hdHcTdhKx3exg8FFonCzzLEQLfq+l09lY41G48cvJ
-         GsqZae3GOeUpT5cSMFfsm6sCuclej3HQN+0SzjnAt6tvzJCj8z0wKtUukM2OxEBQky+W
-         6i66w45y7pF1imaC8pfpgIYG9OEXBj1f/HLgN3S/W+yhZTArrpwIXpi75bW0yKXGzUZ9
-         3pfMknGOJeQwRNuFU3KDoYzkD/4+OfxjopnGt/1+4hIPGLVow+zIqDY2bfcJYrf/CuoS
-         VNdakSkiJSV/hzj4lD0lE4eNVDjry/W7bLkcItzu53LHmWWlNXWgQOBSpfe2bhUAPRNM
-         MLwg==
-X-Forwarded-Encrypted: i=1; AJvYcCXX8TV6MXQls51FmJILenmo6EjV4DboxqfWwMZxcWLjSjx9EgzHQG2VkcAHHphoPVfiign5yuLZPk4z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsbWygJYjd2kIdurWK1t50/RrBELG1NRPjab3gMwycCJgA9SpA
-	xi2aQW4Sidjd010blgtAq9ri4uxgnBCUeDILZDhvw8+ouBdw91f/1GZRLGDb0fhGxSTO/p95UO8
-	PItqdxd/ygCGax/7wOZY6gCy+NpxyuYiPBGnOy1xTBaKIDdPCEQcisbKLqg==
-X-Gm-Gg: ASbGncsunvd/yh/DtOl/XpOow5xnSh8n8I52LMQ6nBXKIUMdXVthcFRwGJxOLgZCMes
-	tkYVoj4aiUhfLbNPVECyvLuHdZzZbQjmVw0LjQbXhrt3jfiaaUqGj0RDMqxfdZQZncpgwpwt8wm
-	BuqyKxqNIk5rTIKjYASAadfFbk/Ax7TbtzwisstilBUHj1KBi+blFbL+tUs3PNX5FtbuZzwqMNJ
-	G3AB/E=
-X-Google-Smtp-Source: AGHT+IFi1eJTaH7DVdwAIVZGkyYcqr+sGA4zyzraMkWCqnDPZbRtBQdZBum7IYP7LBbDpkKNnrt2EffnjwjITFjgOyw=
-X-Received: by 2002:a05:6512:308a:b0:56b:9958:517c with SMTP id
- 2adb3069b0e04-57798285a09mr489864e87.19.1758096496449; Wed, 17 Sep 2025
- 01:08:16 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 17 Sep 2025 04:08:14 -0400
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 17 Sep 2025 04:08:14 -0400
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <jfxasie7r3362tsxscd6bqpoprsj7pgmatlj6jsfgvorkwbor3@xsikgz67p6qb>
+	s=arc-20240116; t=1758096654; c=relaxed/simple;
+	bh=a2NGnZXyMk2WBG9QLMhqEkm3HJ2+sNYSVMHdCrgUh0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OYUBQ33ciBOSy1dkPTNT1fLTwR9g2zTbMEW8FfNVo7oGs73rBcseY0aecw472JCkPLUjFONIQ0r++YzSSFlpUwHLuPCpixUzAxPK2XluohvyAI7xPxA6yWlNRUxY2dvwaliF+G7hh45NUTGRiqGilvcaiChxLkPf9rc9ikk6M5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=StGD3ARx; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758096653; x=1789632653;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a2NGnZXyMk2WBG9QLMhqEkm3HJ2+sNYSVMHdCrgUh0E=;
+  b=StGD3ARxQ0t3B+MfdE2ZejedWUYhkBlgLlWFrUW2XDQGt2phSeCWYLYC
+   bceogOscj2XauQ1WRbA0YpLBFduFhIKJ1wW2CEHDxGpadOcC0JG9DA13f
+   BjCvEibR5YTJo9YGqwAThiztcpEg0T0y+gYJGqJVCqq5E9O4ADuucPzDy
+   QomfWdpD9MRXYZAho3pUO81pWIAGnzMnKXCapgObQQFIKi03VcfTjKkyZ
+   Q7+VzAWnM2eX7ctD5/+Ygz2Yl78lp2Fs5uk4+HJL/ePliZ3vsiPrId7cx
+   iSdY8FWLUIydeu4bMGMpriwRykWyYpkAUKtYw1AutnsTKqXksDqE2RWjr
+   g==;
+X-CSE-ConnectionGUID: rSzAGjOUS7qqrSI8EzwlNQ==
+X-CSE-MsgGUID: Xkey+w6XT5SjGA4TvBFxRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60452767"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="60452767"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2025 01:10:50 -0700
+X-CSE-ConnectionGUID: /JvmjEfbQ1SQOf+a5IYzwA==
+X-CSE-MsgGUID: dTtc8jMtQhWeBa63wngxgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; 
+   d="scan'208";a="180320252"
+Received: from smile.fi.intel.com ([10.237.72.51])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2025 01:10:45 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uynFS-00000003kRu-0aYO;
+	Wed, 17 Sep 2025 11:10:42 +0300
+Date: Wed, 17 Sep 2025 11:10:41 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v11 2/3] iio: adc: max14001: New driver
+Message-ID: <aMptAUsQaUIYpVNG@smile.fi.intel.com>
+References: <cover.1757971454.git.marilene.agarcia@gmail.com>
+ <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
+ <2d5ef36b-ae37-453d-a19b-76fc97b7f14f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-6-ioana.ciornei@nxp.com> <aMmSpu/TWOmpHJ60@lizhi-Precision-Tower-5810>
- <jfxasie7r3362tsxscd6bqpoprsj7pgmatlj6jsfgvorkwbor3@xsikgz67p6qb>
-Date: Wed, 17 Sep 2025 04:08:14 -0400
-X-Gm-Features: AS18NWD5qcNMsaefDUNSUUtp6FKM2Pq61oZoZu-DrMEwo5PMJ7fcwIRJJYocyvQ
-Message-ID: <CAMRc=MeoTwyj6kV7PYGCZSqTB5dfBsoQd8byHFc2B1MHAaeYdw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/9] drivers: gpio: add QIXIS FPGA GPIO controller
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>, 
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Frank Li <Frank.li@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2d5ef36b-ae37-453d-a19b-76fc97b7f14f@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Wed, 17 Sep 2025 09:40:37 +0200, Ioana Ciornei <ioana.ciornei@nxp.com> said:
-> On Tue, Sep 16, 2025 at 12:39:02PM -0400, Frank Li wrote:
->> On Mon, Sep 15, 2025 at 03:23:50PM +0300, Ioana Ciornei wrote:
->> > Add support for the GPIO controller found on some QIXIS FPGAs in
->> > Layerscape boards such as LX2160ARDB and LS1046AQDS. This driver is
->> > using gpio-regmap.
->> >
->> > A GPIO controller has a maximum of 8 lines (all found in the same
->> > register). Even within the same controller, the GPIO lines' direction is
->> > fixed, which mean that both input and output lines are found in the same
->> > register. This is why the driver also passed to gpio-regmap the newly
->> > added .fixed_direction_output bitmap to represent the true direction of
->> > the lines.
->> >
->> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
->> > ---
->> > Changes in v2:
->> > - Use the newly added .fixed_direction_output bitmap representing
->> >   the fixed direction of the GPIO lines.
->> >
->> >  drivers/gpio/Kconfig           |   9 +++
->> >  drivers/gpio/Makefile          |   1 +
->> >  drivers/gpio/gpio-qixis-fpga.c | 123 +++++++++++++++++++++++++++++++++
->> >  3 files changed, 133 insertions(+)
->> >  create mode 100644 drivers/gpio/gpio-qixis-fpga.c
->> >
->> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
->> > index 886bef9106da..4ca5890007ff 100644
->> > --- a/drivers/gpio/Kconfig
->> > +++ b/drivers/gpio/Kconfig
->> > @@ -1951,6 +1951,15 @@ config GPIO_LATCH
->> >  	  Say yes here to enable a driver for GPIO multiplexers based on latches
->> >  	  connected to other GPIOs.
->> >
->> > +config GPIO_QIXIS_FPGA
->> > +	tristate "NXP QIXIS FPGA GPIO support"
->> > +	depends on MFD_SIMPLE_MFD_I2C || COMPILE_TEST
->> > +	select GPIO_REGMAP
->> > +	help
->> > +	  This enables support for the GPIOs found in the QIXIS FPGA which is
->> > +	  integrated on some NXP Layerscape boards such as LX2160ARDB and
->> > +	  LS1046AQDS.
->> > +
->> >  config GPIO_MOCKUP
->> >  	tristate "GPIO Testing Driver (DEPRECATED)"
->> >  	select IRQ_SIM
->> > diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
->> > index 379f55e9ed1e..373b1f169558 100644
->> > --- a/drivers/gpio/Makefile
->> > +++ b/drivers/gpio/Makefile
->> > @@ -144,6 +144,7 @@ obj-$(CONFIG_GPIO_PL061)		+= gpio-pl061.o
->> >  obj-$(CONFIG_GPIO_PMIC_EIC_SPRD)	+= gpio-pmic-eic-sprd.o
->> >  obj-$(CONFIG_GPIO_POLARFIRE_SOC)	+= gpio-mpfs.o
->> >  obj-$(CONFIG_GPIO_PXA)			+= gpio-pxa.o
->> > +obj-$(CONFIG_GPIO_QIXIS_FPGA)		+= gpio-qixis-fpga.o
->> >  obj-$(CONFIG_GPIO_RASPBERRYPI_EXP)	+= gpio-raspberrypi-exp.o
->> >  obj-$(CONFIG_GPIO_RC5T583)		+= gpio-rc5t583.o
->> >  obj-$(CONFIG_GPIO_RCAR)			+= gpio-rcar.o
->> > diff --git a/drivers/gpio/gpio-qixis-fpga.c b/drivers/gpio/gpio-qixis-fpga.c
->> > new file mode 100644
->> > index 000000000000..23219a634f73
->> > --- /dev/null
->> > +++ b/drivers/gpio/gpio-qixis-fpga.c
->> > @@ -0,0 +1,123 @@
->> > +// SPDX-License-Identifier: GPL-2.0-only
->> > +/*
->> > + * Layerscape GPIO QIXIS FPGA driver
->> > + *
->> > + * Copyright 2025 NXP
->> > + */
->> > +
->> > +#include <linux/device.h>
->> > +#include <linux/gpio/driver.h>
->> > +#include <linux/gpio/regmap.h>
->> > +#include <linux/kernel.h>
->> > +#include <linux/mod_devicetable.h>
->> > +#include <linux/module.h>
->> > +#include <linux/platform_device.h>
->> > +#include <linux/regmap.h>
->> > +
->> > +enum qixis_cpld_gpio_type {
->> > +	LX2160ARDB_GPIO_SFP = 0,
->> > +	LS1046AQDS_GPIO_STAT_PRES2,
->> > +};
->>
->> needn't type at all.
->>
->
-> True, I can just pass the u64 bitmap directly as data. Will try.
->
-> [snip]
->
->> > +	if (!pdev->dev.parent)
->> > +		return -ENODEV;
->> > +
->> > +	cfg = device_get_match_data(&pdev->dev);
->> > +	if (!cfg)
->> > +		return -ENODEV;
->>
->> Needn't this check.
->
-> Ok.
->
->>
->> > +
->> > +	ret = device_property_read_u32(&pdev->dev, "reg", &base);
->> > +	if (ret)
->> > +		return ret;
->> > +
->> > +	regmap = dev_get_regmap(pdev->dev.parent, NULL);
->> > +	if (!regmap) {
->> > +		/* In case there is no regmap configured by the parent device,
->> > +		 * create our own.
->> > +		 */
->>
->> /* Use MMIO space */
->
-> Ok.
->
->
-> [snip]
->
->> +		config.reg_set_base = GPIO_REGMAP_ADDR(base);
->>
->>
->> only two compatibles string in qixis_cpld_gpio_of_match. so it can set
->> unconditional.
->>
->
-> Fair point. Will change.
->
-> Ioana
->
+On Tue, Sep 16, 2025 at 01:04:41PM -0500, David Lechner wrote:
+> On 9/15/25 5:16 PM, Marilene Andrade Garcia wrote:
 
-When sending the next revision please change the title to: "gpio: foo: ...",
-IOW: drop the drivers prefix.
+...
 
-Bartosz
+> > Change I was not able to do:
+> > - I could not remove bitrev16 because I am using an SPI controller that
+> > does not support SPI_LSB_FIRST. So I suggest keeping bitrev16 and not using
+> > the spi-lsb-first devicetree property for now, since this driver currently
+> > works for both types of controllers: those that support it and those that
+> > do not. I left a TODO comment to address this issue as soon as the SPI
+> > kernel code starts handling the bit-reverse operation for controllers that
+> > do not have this support. Once I finish my work on this driver, if the SPI
+> > code still does not include this handling, I can submit patches to add it.
+> 
+> I looked more at what it would take to implement this in the SPI core code
+> and found that it would actually be quite difficult to do in a generic way
+> because there are so many edge/corner/n-dim cases. We can't change tx_buf
+> data in-place because it might be const data that is in some memory area
+> that can't be modified. And things would get complicated if different
+> transfers pointed to the same buffer memory addresses anyway. So we would
+> basically have to allocate new memory for all buffers, copy all tx data to
+> that new memory, reverse all of the tx bits, and update all the pointers in
+> the transfer structs. Then when the message was finished, we would have to
+> reverse all of the rx bits, copy all of the rx buffers back to the original
+> buffers and put all the buffer pointers back the way they were. But this
+> could write over some of the original tx data if tx_buf and rx_buf point to
+> the same original buffer, which would break things if a peripheral driver
+> expected the tx data to persist.
+
+And what's the problem here? We do the same with bounce-buffers in case
+of DMA/IOMMU (okay, without actual data modification, but it's possible
+on-the-fly).
+
+> And we can't do this during the SPI optimize
+> step because that currently allows the tx_buf data values to be modified after
+> optimization.
+
+This I don't know, so perhaps it's indeed a showstopper.
+
+> So perhaps it is best to just handle it in the peripheral driver. It will
+> be much more efficent that way anyway.
+> 
+> However, we still do want to handle SPI_LSB_FIRST now so that people with
+> hardware support can be more efficient and we don't want things to break
+> if someone puts spi-lsb-first in the devicetree.
+
+...
+
+> > +	if (ret < 0)
+> > +		ret = 1250000;
+> > +	else
+> > +		ext_vrefin = 1;
+> > +	st->vref_mV = ret / (MICRO / MILLI);
+> 
+> Just a style choice here, but in other drivers with similar handling
+> we wrote it like this to avoid the extra if statement:
+
+I didn't get this. You move from clear if to not-so-clear ternary. How is
+the proposed code better?
+
+> 	if (ret < 0 && ret != -ENODEV)
+> 		return dev_err_probe(dev, ret, "Failed to get REFIN voltage\n");
+> 
+> 	ext_vrefin = ret != -ENODEV;
+> 	st->vref_mV = ext_vrefin ? ret / 1000 : 1250;
+> 
+> Keeping (MICRO / MILLI) instead of 1000 is fine too. There are varying opinions
+> on this.
+
+> Or we could drop ext_vrefin and have:
+
+It goes back and force. Can we keep the code as it's in this version?
+
+> 	if (ret < 0 && ret != -ENODEV)
+> 		return dev_err_probe(dev, ret, "Failed to get REFIN voltage\n");
+> 
+> 	if (ret != -ENODEV) {
+> 		st->vref_mV = ret / 1000;
+> 
+> 		/* regmap set bits goes here. */
+> 		... 
+> 	} else {
+> 		st->vref_mV = 1250;
+> 	}
+
+...
+
+> > +			return dev_err_probe(dev, ret, "Failed to set External REFIN in Configuration Register\n");
+> These lines are getting very long. We try to wrap to 80 characters
+> as much as we can in the IIO subsystem.
+
+Side note: checkpatch.pl almost never complained (okay, something like 15y+
+ago) on long string literals at the end of statements. For the code lines
+I fully support the wrapping.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
