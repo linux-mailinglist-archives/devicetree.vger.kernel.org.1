@@ -1,223 +1,102 @@
-Return-Path: <devicetree+bounces-218299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9007BB7E855
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:51:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0809FB7F628
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:36:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DD061C070CF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 09:11:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E59B03A88A1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 09:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36503331AE9;
-	Wed, 17 Sep 2025 09:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2395E2DF6F8;
+	Wed, 17 Sep 2025 09:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y3LMGCoy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZKe5MBSV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1A7331AE3
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 09:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E808E26B2DB;
+	Wed, 17 Sep 2025 09:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758100251; cv=none; b=iLk3w7/jh094lwJtD2UhIQ7HUv1By2m84u3Xjjlo8DoB9qO8jkzpsSN8+mn3Dewi2V02c5L3pXYNTIlMdDGHhHK0XdBpsKZ/hn55OKdD/Rj2Ve9nNX9HDTWZk/9XAPLM++0/UmwSxPFaI6hjTMyUavEQFeTNSQjJx2AwvBtdoIw=
+	t=1758100813; cv=none; b=cV8NlTojlalOC+7vBnlxZjW9Jii6DOYkJyvttk5w2CSsaQ1CZ30EQzz3fMXZ3JIT1St/F0Z/HdMDrobnp+aHI00ndaa1xat2wcHy+fzR6C4k6sMXcLqsGPWpw/wjQ0rpCELmbrCOdgMzDC25VqssQIb9OprdE/O+Cq7cN2Fz5og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758100251; c=relaxed/simple;
-	bh=tp3yfkg0GbRWDYfv+9qGd2iSh8ZB1FOcDNuHn8ewKpM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=KtVNMzWMIKzKB1eKhGAnh4oKdoWbi0M1EPM+F40xXeLJyRk80GWNnZ/PvfIDTKP6S4ZOzx47J8/uSabzauT6DKN/yX4n5woqa+rQDunzQRUggF4uPAniFv5QKZcf6ALdWYXipqKaqExIp7LGQAmbqbCKUo2ICZ9HWR2cKoVliVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y3LMGCoy; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45f2c9799a3so22900575e9.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 02:10:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758100246; x=1758705046; darn=vger.kernel.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PlK2stUccurl04mbWawfAf/ha/VEIfyoutD9WxWnA1M=;
-        b=y3LMGCoy5EzRxef+IzIfpv6wwqryKRAsVx5bVrSfcgdSAjvjQZw2LE8wVBHR3wIw8J
-         Bfd4tz3fjEgm0mVgTpQ/H5xDSj8rogrKOCZU3QnVTps2oGvBPyhP48F9/YtCNfpzemVV
-         t3AetX6g5jiBuF5c2A+0GAsch/gtPjnrsSj2p9+JZ4ESxMpZqkTQ34lcABBYVlVIcA9U
-         VeCL6NOlOO2kTRbDNJejrU469TcNMOZ/L6mU9u6RvRuQAUlV8CI58iqs9vEWoZTq6/nj
-         EiTBKQwPu4NzsSr6ls8lQM4T8RCMiXIGVuwicCT2QV21DtYXcdpbMrEr31JLuv79y2X8
-         deOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758100246; x=1758705046;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PlK2stUccurl04mbWawfAf/ha/VEIfyoutD9WxWnA1M=;
-        b=Z9AJ/U6+VYvkfbY8ewocex/jJzaymM37g6eF8DY1NFy8zv8Cyd0fkF3Jk1DDbcJ1d5
-         NsmtoNfuT8jlT/IwCo/ML9HerUPMW5w2CBvQwcGtNR+Dmy8c1WHiXgLfrVbakmw7NLLf
-         U0JUF7Q5XsdUnoZ/tDXnEHSv31x1OH0Ekrl95hBCUnQvj4i6RNPlRVHyCD9Cgz9WwU/3
-         omA+0nj6BfnQZUTe7DHt6gNp9G2VvBmTcJWSi+0wpvBTh8OE5TRkPS1o8kRsaFlVVy7A
-         SG3uOpBgTxt7mplRBILsprCAXaF6jw3CEV7Anqyw1ZwY3a4YDvVcBdWqsZXXjqtU0b5s
-         0DBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVV8NCYOVtqigPbZXvbm7EwFL0xQhikGII9w83SMVt37eP2hZ8ZouJ3DrUjqIEQAd4OvQq4pbW6bzE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzC/eZVjTeUZMh9BW6Z1/NwR37E3pehgAyxtsw3qzLPG0TgaN9V
-	wdlslixiwK3mJn9Wc/Y/r0h/OsRLfh3PfMuTYOdqBsVNYkGGwnUh/7GMBBuSPLQUEVA=
-X-Gm-Gg: ASbGncv/dL9prlZ8YYBj9pnSOGZJIfwCYKqjaA7N4x1mQDoJqu9GE3mD7HLueM8qJUG
-	jljOp28B4bIaV4hcF0AGghckFwYcm9uwGjoMs7UcyACmOFbKbLSCCMcjb05WZsbsnBvaJd0JHIu
-	p3v1kGlF/Y7RXk3BNStCwTqoqlN74TNfdB7pVju7VigaB3cMsRjiPRa+hqTPswblqrULCkLyEgW
-	+qFImUCKKkumW5SVf2mae8mt6gIPLkvn6D3gXNbRaTY0YAzajPd7E0RO93C/QNJ+vQ/1ce+XTgv
-	tLSh5XtwkrTPVWQxRAFfJvwPj5Bk/0oC/X2zWFfo2esp7e0LySu2gnNTV3O3WsHIqQducNdElGI
-	ooEIDOrY+Iiqsq5+QH6UShw==
-X-Google-Smtp-Source: AGHT+IFPGc7ic+PrwXQdYuhF8XZWH7tHR3Wzubn/3T39N6UzWqLydVcD4Osfm3AnC6uPAm7ruqpt8A==
-X-Received: by 2002:a05:600c:1c87:b0:456:fc1:c26d with SMTP id 5b1f17b1804b1-46201f8aa4bmr12363615e9.2.1758100246219;
-        Wed, 17 Sep 2025 02:10:46 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d458:6239:fdc1:d868])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45f32181a47sm37857465e9.1.2025.09.17.02.10.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Sep 2025 02:10:45 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  linux-arm-kernel@lists.infradead.org,  Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>,  Conor Dooley
- <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 0/2] clk: amlogic: add video-related clocks for S4 SoC
-In-Reply-To: <91935087-0f0c-42ed-8ad6-f6312240413c@amlogic.com> (Chuan Liu's
-	message of "Wed, 17 Sep 2025 10:02:19 +0800")
-References: <20250916-add_video_clk-v5-0-e25293589601@amlogic.com>
-	<1j348mj0sw.fsf@starbuckisacylon.baylibre.com>
-	<66f130b4-88d7-46d2-9f66-9055896d445a@amlogic.com>
-	<1jwm5yhgqz.fsf@starbuckisacylon.baylibre.com>
-	<91935087-0f0c-42ed-8ad6-f6312240413c@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Wed, 17 Sep 2025 11:10:44 +0200
-Message-ID: <1jqzw5h2az.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1758100813; c=relaxed/simple;
+	bh=StpFawo19worA0rs0jnoMKx2iOV9C2fa705i8857O34=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lO+lv++traLORtBqUE0O3lOXNLqJATRpSx4N5E7VVFYhgv0QPfAxziO9vZmQd5PgUF55TNchJ8hfG6oHnyZn7qX9eo0mkr/C2Dj8lxjomppny/g8IIynfErZCjBZ67WTxNjkwKIonZ5x+gt9TnmK0GlOzCphD5iY10aU4EC4Qtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZKe5MBSV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00DF9C4CEF0;
+	Wed, 17 Sep 2025 09:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758100812;
+	bh=StpFawo19worA0rs0jnoMKx2iOV9C2fa705i8857O34=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZKe5MBSVZJTvg/kPE+wl63bGOoWBIU9dsidqfP5sOi4Eqbcuw6V76OWnV/vzJDJia
+	 rJ94dAK92ul1sRmg8xy+3SeYIJIrdK0DUdfXfTKmxvIYqhcQ7i8IPx3Mixbxs0VNia
+	 mm4+IPH+7fNe08PZWGD7HtrhAiKN+bmdhU3DRiQt+1/4evpbTnDfTjB1SNB5d61zzR
+	 Z2IetMWjKo09Hfxg3JGNkY1rJn05GQDC4CAH5Uan37XX9aoeocBaQZuE5vFoS3Kysx
+	 aRbGKmAtcAzNWScXIV1684qBIulB40m/W+MJp4oop8eWDkdjru8Oj5kRrqT5exfAKd
+	 hHomotwtsAG3Q==
+Date: Wed, 17 Sep 2025 10:20:06 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v3 04/10] mfd: simple-mfd-i2c: add compatible string for
+ LX2160ARDB
+Message-ID: <20250917092006.GC3893363@google.com>
+References: <20250917090422.870033-1-ioana.ciornei@nxp.com>
+ <20250917090422.870033-5-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250917090422.870033-5-ioana.ciornei@nxp.com>
 
-On Wed 17 Sep 2025 at 10:02, Chuan Liu <chuan.liu@amlogic.com> wrote:
+On Wed, 17 Sep 2025, Ioana Ciornei wrote:
 
-> On 9/16/2025 5:46 PM, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Tue 16 Sep 2025 at 17:30, Chuan Liu <chuan.liu@amlogic.com> wrote:
->>
->>> Hi Jerome:
->>>
->>>
->>> On 9/16/2025 3:47 PM, Jerome Brunet wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On Tue 16 Sep 2025 at 10:06, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
->>>>
->>>>> This patch introduces new clock support for video processing components
->>>>> including the encoder, demodulator and CVBS interface modules.
->>>>>
->>>>> The related clocks have passed clk-measure verification.
->>>>>
->>>>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
->>>>> ---
->>>>> Changes in v5:
->>>>> - Add Acked-by tags from Conor.
->>>>> - Remove unnecessary flags as suggested by Jerome.
->>>> The request was "in an another change" ? Why was this ignored ?
->>>
->>> Sorry to bother you. I'll drop the flags for 's4_cts_encl_sel' in this
->>> series and submit a separate patch later to remove CLK_SET_RATE_PARENT
->>> from enci/encp/cdac/hdmitx clk_muxes. Is that ok?
->> Why can't make it part of this series, as requested ?
->> It does not seems that hard to do.
->
->
-> The topic of this patch series is "add video-related clocks," so I'm
-> concerned that patches adding or removing flags for other clocks might
-> be considered off-topic.
+> Extend the list of supported devices with the QIXIS FPGA found on the
+> LX2160ARDB board.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+> Changes in v2:
+> - none
+> Changes in v3:
+> - none
+> 
+>  drivers/mfd/simple-mfd-i2c.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> index 63ac26388860..6fbe85437d8d 100644
+> --- a/drivers/mfd/simple-mfd-i2c.c
+> +++ b/drivers/mfd/simple-mfd-i2c.c
+> @@ -115,6 +115,7 @@ static const struct of_device_id simple_mfd_i2c_of_match[] = {
+>  	{ .compatible = "maxim,max5970", .data = &maxim_max5970},
+>  	{ .compatible = "maxim,max5978", .data = &maxim_max5970},
+>  	{ .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
+> +	{ .compatible = "fsl,lx2160ardb-fpga" },
+>  	{ .compatible = "fsl,lx2160aqds-fpga" },
+>  	{ .compatible = "fsl,ls1028aqds-fpga" },
+>  	{ .compatible = "spacemit,p1", .data = &spacemit_p1, },
 
-If that's the case, you could simply reply, stating your concerns
-instead of ignoring a comment which does not suit you.
-
-And yes, you should adapt the cover letter to explain what you are doing
-
->
-> In the next revision of this series, I will include a separate patch
-> to remove these flags and provide the appropriate commit message.
->
-
-Please start with that.
-
->
->>
->> This is another unnecessary revision and the community will have to
->> review, because you ignored some feedback.
->>
->> As noted by Krzysztof, you really need to pay more attention to the time
->> and effort other are spending reviewing your work.
->
->
-> I'm still a newcomer when it comes to upstreaming, and I'm not yet very
-> familiar with the rules and processes.
-
-That's just not true.
-
-You have been doing that long enough and have been reminded time and time
-again not to ignore feedback. Continue doing so and you'll be ignored too.
-
-If you still feel "unfamiliar" with the rules and process, then you
-should read them again:
-
-https://docs.kernel.org/process/submitting-patches.html#respond-to-review-comments
-
-> I apologize for any inconvenience
-> this may have caused during this period, and I sincerely appreciate your
-> pointing out any issues with my patches.
->
->
->>
->>>
->>>>> - Link to v4: https://lore.kernel.org/r/20250909-add_video_clk-v4-0-5e0c01d47aa8@amlogic.com
->>>>>
->>>>> Changes in v4:
->>>>> - Add Acked-by tags from Rob and Krzysztof.
->>>>> - Fix compilation errors.
->>>>> - Link to v3: https://lore.kernel.org/r/20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com
->>>>>
->>>>> Changes in v3:
->>>>> - Rebase with Jerome's latest code base.
->>>>> - Link to v2: https://lore.kernel.org/r/20250814-add_video_clk-v2-0-bb2b5a5f2904@amlogic.com
->>>>>
->>>>> Changes in v2:
->>>>> - Removed lcd_an clock tree (previously used in meson series but obsolete in
->>>>> newer chips).
->>>>> - Removed Rob's 'Acked-by' tag due to dt-binding changes (Is it necessary?).
->>>>> - Link to v1: https://lore.kernel.org/r/20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com
->>>>>
->>>>> ---
->>>>> Chuan Liu (2):
->>>>>         dt-bindings: clock: add video clock indices for Amlogic S4 SoC
->>>>>         clk: amlogic: add video-related clocks for S4 SoC
->>>>>
->>>>>    drivers/clk/meson/s4-peripherals.c                 | 206 ++++++++++++++++++++-
->>>>>    .../clock/amlogic,s4-peripherals-clkc.h            |  11 ++
->>>>>    2 files changed, 213 insertions(+), 4 deletions(-)
->>>>> ---
->>>>> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
->>>>> change-id: 20250715-add_video_clk-dc38b5459018
->>>>>
->>>>> Best regards,
->>>> --
->>>> Jerome
->> --
->> Jerome
+Please keep alphabetical.
 
 -- 
-Jerome
+Lee Jones [李琼斯]
 
