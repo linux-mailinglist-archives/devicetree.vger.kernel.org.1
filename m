@@ -1,88 +1,103 @@
-Return-Path: <devicetree+bounces-218596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2653B8222F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFDDB8224A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:20:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AF6B17F773
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 22:18:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67C7E4645BB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 22:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18722DC76D;
-	Wed, 17 Sep 2025 22:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23F930EF86;
+	Wed, 17 Sep 2025 22:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WiO9y55N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rw09I1uC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8091A28B4F0;
-	Wed, 17 Sep 2025 22:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D8B30E85E;
+	Wed, 17 Sep 2025 22:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758147479; cv=none; b=EKYX1ezwQIT25sI/i5bU+yoCth1ymYD4BqwaotFShqlLgnm7DJX7/HCvIEU/Y4KYMhxUkJ+BNYwX6ywfp4ph/Yacy3QZizPf3U55cJ3dJZs+gCZKk9wrhN99aN0bqlaE9hogBLHbG5a3jem3XBb729KISEn5Cispog+ZzT5a/x8=
+	t=1758147624; cv=none; b=jUnGdugzfCWmbOrWN7RIOcnkjOWrxmkNYYCiP06grYCpu+upTDsGdau27KdHzlzeA16vskxNdTGEh2oHtT9Dg0VNYpF0YVIc8UIxVY2Cm2RW+RPbL/b0qFwKbqdMovwfDEUY79J/fsteFnj9cstHycz3M5Zvwgjz/ZPMz8FG2Vs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758147479; c=relaxed/simple;
-	bh=fbdW+KLDFPxSjGQleOs2jS1S1g6p2m+vvMK1Y9c6Oso=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=WzDykKHJN9nmJfWu0khwjjv7YrG0CmHSIRNicO6HAvYw6VY4p/DeGF2a5QPxPJ5oSRd4BbNoYjVTV3zFyEUsYM9odkHT83Ms9eRphZzU7AVVuii0yVsIqtwv7Z8/gmU8sh7W23exrLaUWTXirNZTXXsW/zjWmzWil2DPVPxOnIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WiO9y55N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3043C4CEE7;
-	Wed, 17 Sep 2025 22:17:58 +0000 (UTC)
+	s=arc-20240116; t=1758147624; c=relaxed/simple;
+	bh=UAXtTYSSZXwRncb6qHR46TFy6fZj+ssxz42YvkNnIos=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=YT9y5wPXTaf3HnKDfR2dJDQOlFts+LvZx7SKOavfX3rGgy7EgbTudVjSdATH/qLtIxEXFRBqg+2/NFm1V/9ypVbd+AcemCGpG8G//6LZKJKtT0IHYOyudZxy88+6y5yEC2M/1N693pVczLXXzcavwNGpPIx6yxRMN5m5Z+7eKtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rw09I1uC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E17BC4CEE7;
+	Wed, 17 Sep 2025 22:20:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758147479;
-	bh=fbdW+KLDFPxSjGQleOs2jS1S1g6p2m+vvMK1Y9c6Oso=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=WiO9y55NLHOAOCK2KmkjN2HDDGG1i3ZDMfTVlWD/l7IniL/n/Hy0DW5q2oKUhsMQf
-	 D6WTIEo2Jpc+/pcaoe9kxfHk+Xl8UQDzhAYQn4HvLggUwJQHT62ZnMngLU0e0MiN+x
-	 wjI685uwrPsmZl9sM06ejL9L91e758An1sU/1efbR6q5EfEtNPFzo0qFzAHWp8f2sq
-	 41/EKx+3Hl6Mq5fxI2lHZ/S0MA1qGtWiEwVy4bgKPbYr48hqNGPu55/CJWRCmabGks
-	 EFOfN1DKIC/VClQNU8Sxw8ZWoUJEsiPTSUgU0G1BIZ3y68Sn+dtaneBPSPm8WKoVr7
-	 5WVI/lJhM+tMQ==
-Date: Wed, 17 Sep 2025 17:17:57 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: pci-imx6: Add one more external
- reference clock
-Message-ID: <20250917221757.GA1878979@bhelgaas>
+	s=k20201202; t=1758147624;
+	bh=UAXtTYSSZXwRncb6qHR46TFy6fZj+ssxz42YvkNnIos=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Rw09I1uCNEqwlDcoHmLxffqhGJuSYrqsfILM2GsfGu91XQDQL69XpD16n5/tCEARD
+	 kSYmvF156axjFpN7K6cstRnL8OMaZqHJ/asvKIe31HssvMj4mqYzSNZzxL+iqnK7vH
+	 CNoIIl89cN0GOr/ve7Cz3m4c8nzcqjeNrv5hpU3TG1P4IPlzkg9EjF/oVj3ASiVCeU
+	 5ez0vme/bXEhj7+PW0Q0BCu922cvFc/r0GKwxweaOqq1Lju8qr7ceqV8s/T8As6liD
+	 UzfAOcYHGfMKswCLzF6aWeIDjnuHiRpsq1XWSS7Lhikq5z/AE2F/WVyT3NYNXY6J9L
+	 fBnS8LG50mqtQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3402D39D0C3D;
+	Wed, 17 Sep 2025 22:20:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250917045238.1048484-3-hongxing.zhu@nxp.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3] net: cadence: macb: Add support for Raspberry Pi RP1
+ ethernet controller
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175814762499.2168096.11472987759617415372.git-patchwork-notify@kernel.org>
+Date: Wed, 17 Sep 2025 22:20:24 +0000
+References: <20250916081059.3992108-1-svarbanov@suse.de>
+In-Reply-To: <20250916081059.3992108-1-svarbanov@suse.de>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, florian.fainelli@broadcom.com, andrea.porta@suse.com,
+ nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, phil@raspberrypi.com,
+ jonathan@raspberrypi.com, dave.stevenson@raspberrypi.com, andrew@lunn.ch
 
-Update subject line similar to patch 1/3?
+Hello:
 
-Also, I notice most binding commits include "PCI:", e.g.,
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-  dt-bindings: PCI: brcm,stb-pcie: ...
-  dt-bindings: PCI: qcom: ...
-  dt-bindings: PCI: altera ...
+On Tue, 16 Sep 2025 11:10:59 +0300 you wrote:
+> From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> 
+> The RP1 chip has the Cadence GEM block, but wants the tx_clock
+> to always run at 125MHz, in the same way as sama7g5.
+> Add the relevant configuration.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> 
+> [...]
 
-On Wed, Sep 17, 2025 at 12:52:37PM +0800, Richard Zhu wrote:
-> i.MX95 PCIes have two reference clock inputs: one from internal PLL,
-> the other from off chip crystal oscillator. Use extref clock name to be
-> onhalf of the reference clock comes from external crystal oscillator.
+Here is the summary with links:
+  - [v3] net: cadence: macb: Add support for Raspberry Pi RP1 ethernet controller
+    https://git.kernel.org/netdev/net-next/c/dc110d1b2356
 
-Not sure what "onhalf" means.  Maybe it means something like this?
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-  The "extref" clock refers to a reference clock from an external
-  crystal oscillator.
 
-Same issue in patch 3/3.
-
-> Add one more external reference clock for i.MX95 PCIes.
 
