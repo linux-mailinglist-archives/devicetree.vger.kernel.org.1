@@ -1,205 +1,160 @@
-Return-Path: <devicetree+bounces-218495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C5C1B80B9F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:50:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E769B80C44
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E3531890278
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:49:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1F5016BAE9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE628314D2A;
-	Wed, 17 Sep 2025 15:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9532A34136A;
+	Wed, 17 Sep 2025 15:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jyuy7Gal"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E0DV8B4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0358F285C82;
-	Wed, 17 Sep 2025 15:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F27341352;
+	Wed, 17 Sep 2025 15:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758124060; cv=none; b=Obq+370gJr6EL7PzBKZ7bsTIALQ9EfuwgWLFH4MlmAU919bIsbSx7jUOdL4VOTSQujI3w9n6HMiiTlGgzDiz41rfDB1Ka5SHxFmP0aTAZwdZ+OTEYt/bwGv9jqtY5vLGr70x6vOvqABpLx6kOgKequ5VScocJI9AEpQpfwm+h/Y=
+	t=1758124272; cv=none; b=PkrYLDgWZVlB/ZhZyu8XtH+kyYn7nqnXVdKuHwKzoxamMm49RYXDfVnayPJV/9xbaneu1HEI80T/YbW9ZPuk1WmgZptGBRcRxjhXWQg1zZSwupEpGJcobWHueu7DbFFI/dAMtvfNM20Pz3zGGBsCCzpd8zTUJIbKbazhyAkFMvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758124060; c=relaxed/simple;
-	bh=NlYC/Qs/zM0HnIIEytwgOrzKMLjNq/qFHYT1dPcwfWw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NmTXaHQ/XKcoqc/dTYVx0rPUTcG/LdCtCqwVrcV3UN2htZqdezpdJmIQhqEps166MFdZIkdQnF6bzweBP7U7RzMwRQyMz51irYRDZm1FWJXsVive9lERrQawSUf1wBge1nSYSivApVkck37yRZp6lq5k2HQZfqCEzLYjawF7rCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jyuy7Gal; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58HB0uJu031000;
-	Wed, 17 Sep 2025 15:47:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Nm5EclL4hvVyoCBtsdEWwKNnR6ndycdHW5JBCL0fhsU=; b=Jyuy7GalvecMmaUM
-	jKrC/FbQSCt8bh0Y2vn/D0Tgxno7s3ZRbiuGxfCMuw+FnTDMVUWrFn+nqGoSHEK1
-	ZzBku7SB9HoXqyNjoBeB98uYaIGCHVo0lqIVwzwO16eqGCAINbmVIiszR1XlFSSa
-	egFPFN6tm1vi5FhGQUWmUXWOtPrW7bMDucKPpA2yy/alBH8AhNIqEGc1LIEDc42t
-	remUyzRSzNKxBN829OdYEXNBvL1web4epncuwXDBXkPrh2YG8CR6NyTh+9qMXnF1
-	8FmSZkpOetZh5/Cm+cxs7VXvFc5C+9N95O5hPWuR0K38w8G5vGouuicTWibMRYAL
-	DdzRfw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy0tyqf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 15:47:22 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58HFlMsX029136
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 15:47:22 GMT
-Received: from [10.253.13.179] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 17 Sep
- 2025 08:47:15 -0700
-Message-ID: <d8da8454-d5ab-41e9-a34a-127366e83ae1@quicinc.com>
-Date: Wed, 17 Sep 2025 23:47:13 +0800
+	s=arc-20240116; t=1758124272; c=relaxed/simple;
+	bh=najpjZb1c8KxKCDHMDrrfxyuWSzUEpLP6UkAhnhEuwQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C1nQczvnKUA0XMiNjJXrWrbqogZCMJNRMREDA6isiIlLnGOXXhc8mCgnoT76Admhr/No9qj86VnghkjDaWHU9HD5ysS7zxWMoyCvI6pZ6a1SGwRNRnExPYUzeGsX+KRH8dqPJOVn/enPW7/QTKK5zG6JzsLTlp9kVn/WR+lWvxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E0DV8B4D; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E1C7843A63;
+	Wed, 17 Sep 2025 15:51:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1758124266;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=v1c79sUNcMVeE8q34apk1GvyhbBN1jZ6cmstvanDQC4=;
+	b=E0DV8B4D2a78odu/FKSlKYCGr7gdoXX7ABRE3ycoFBNQ4obfZNRRWWlERiRmdsdvr8aFNn
+	ydIkF+d33eaQ8jgDL88ExAsSE9U0RE60sDGdV+NjicQlG2rv+8Hb26akHE2ZvuDhXYy7xQ
+	x2flQhxaozQRNRS2b7fxhQkzfMBXl8PQWdqNF4n54dYz+frLGHrxH3S+RV3Mx56DrS4koT
+	qQ1IBMUL6zLVB2i1PmyhqomvDm9BlFyhuvtDUl8oSJnbZdbFzGbSVo22hGKc6iVvmD9708
+	93JhsesBGtxW6eZsIAmKvGt+c1nsDIBXsWxfrYS12jpRKHacFm/uk4rgQt3TUQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH 1/4] regulator: dt-bindings: Add Linear Technology LTM8054
+ regulator
+Date: Wed, 17 Sep 2025 17:51:05 +0200
+Message-ID: <5135820.31r3eYUQgx@fw-rgant>
+In-Reply-To: <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
+References:
+ <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <20250916-ltm8054-driver-v1-1-fd4e781d33b9@bootlin.com>
+ <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/10] dt-bindings: clock: Add required
- "interconnect-cells" property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Varadarajan
- Narayanan" <quic_varada@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>, "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        "Manikanta Mylavarapu" <quic_mmanikan@quicinc.com>,
-        Devi Priya
-	<quic_devipriy@quicinc.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Richard
- Cochran" <richardcochran@gmail.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_suruchia@quicinc.com>
-References: <20250909-qcom_ipq5424_nsscc-v5-0-332c49a8512b@quicinc.com>
- <20250909-qcom_ipq5424_nsscc-v5-2-332c49a8512b@quicinc.com>
- <20250912-nocturnal-horse-of-acumen-5b2cbd@kuoka>
- <b7487ab1-1abd-40ca-8392-fdf63fddaafc@oss.qualcomm.com>
- <0aa8bf54-50e4-456d-9f07-a297a34b86c5@linaro.org>
- <1e7d7066-fa0b-4ebc-8f66-e3208bb6f948@quicinc.com>
- <e874339e-f802-4793-8c0f-db85575be8e5@linaro.org>
-Content-Language: en-US
-From: Luo Jie <quic_luoj@quicinc.com>
-In-Reply-To: <e874339e-f802-4793-8c0f-db85575be8e5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wXx7ORkbgQ2ggq8x1-ynkeB8cSyPi6kB
-X-Authority-Analysis: v=2.4 cv=btZMBFai c=1 sm=1 tr=0 ts=68cad80a cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
- a=YxtPb7ZjVR6RY7X2M68A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: wXx7ORkbgQ2ggq8x1-ynkeB8cSyPi6kB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX5Fbqin2NXOcS
- e/NUiqHV51DBjUSBU5UbMKF9nGCBGOyb5Nnp+V6E5uNz/36h6XhaApGN+Af7me0yuDasmV8NLO+
- pnI4a5yQNAGB4fsZTrosNWNf8KxDtvGwgFOrlfaDFgMBnGwOvP1FqfRTssphD6cG1gTVf2Q7syA
- M8N/ynAIMAE3l53RKIylbihwoOea1ymxbuiCcUl4pGBVVk6BSURI9THQkMMcVpudISYWLdfAEIp
- cxVpUM6XI8ItqCqnvY1x3fob/HbO1aLy8sfMuG97QjCTxRTJhUK15eFurFTCOYXS41s5VUspzxV
- HvGdXMgG7Nd4EafFW62QoM+qOMV+MthOTMaQ/7nQkbcu9in0SqwkV/lR1OTCpBvFjoFzh6Hlnrh
- 7/cBr6Bw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015 malwarescore=0
- spamscore=0 adultscore=0 phishscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+Content-Type: multipart/signed; boundary="nextPart4774077.LvFx2qVVIh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegfeekiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtohepjhhitgdvfeeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhunhhordhsrgesrghnrghlohhgrdgtohhmpdhrtghpthhtoheprghnugihsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: romain.gantois@bootlin.com
 
+--nextPart4774077.LvFx2qVVIh
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Wed, 17 Sep 2025 17:51:05 +0200
+Message-ID: <5135820.31r3eYUQgx@fw-rgant>
+In-Reply-To: <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
+MIME-Version: 1.0
 
-
-On 9/17/2025 8:35 AM, Krzysztof Kozlowski wrote:
-> On 16/09/2025 16:03, Luo Jie wrote:
->>
->>
->> On 9/12/2025 5:16 PM, Krzysztof Kozlowski wrote:
->>> On 12/09/2025 11:13, Konrad Dybcio wrote:
->>>> On 9/12/25 9:04 AM, Krzysztof Kozlowski wrote:
->>>>> On Tue, Sep 09, 2025 at 09:39:11PM +0800, Luo Jie wrote:
->>>>>> The Networking Subsystem (NSS) clock controller acts as both a clock
->>>>>> provider and an interconnect provider. The #interconnect-cells property
->>>>>> is mandatory in the Device Tree Source (DTS) to ensure that client
->>>>>> drivers, such as the PPE driver, can correctly acquire ICC clocks from
->>>>>> the NSS ICC provider.
->>>>>>
->>>>>> Although this property is already present in the NSS CC node of the DTS
->>>>>> for CMN PLL for IPQ9574 SoC which is currently supported, it was previously
->>>>>> omitted from the list of required properties in the bindings documentation.
->>>>>> Adding this as a required property is not expected to break the ABI for
->>>>>> currently supported SoC.
->>>>>>
->>>>>> Marking #interconnect-cells as required to comply with Device Tree (DT)
->>>>>> binding requirements for interconnect providers.
->>>>>
->>>>> DT bindings do not require interconnect-cells, so that's not a correct
->>>>> reason. Drop them from required properties.
->>>>
->>>> "Mark #interconnect-cells as required to allow consuming the provided
->>>> interconnect endpoints"?
->>>
->>>
->>> The point is they do not have to be required.
->>
->> The reason for adding this property as required is to enforce
->> the DTS to define this important resource correctly. If this property
->> is missed from the DTS, the client driver such as PPE driver will not
->> be able to initialize correctly. This is necessary irrespective of
->> whether these clocks are enabled by bootloader or not. The IPQ9574 SoC
->> DTS defines this property even though the property was not marked as
->> mandatory in the bindings, and hence the PPE driver is working.
->>
->> By now marking it as required, we can enforce that DTS files going
->> forward for newer SoC (IPQ5424 and later) are properly defining this
->> resource. This prevents any DTS misconfiguration and improves bindings
->> validation as new SoCs are introduced.
+On Tuesday, 16 September 2025 21:24:42 CEST David Lechner wrote:
+> On 9/16/25 5:24 AM, Romain Gantois wrote:
+> > The Linear Technology LTM8054 is a Buck-Boost voltage regulator with an
+> > input range of 5V to 36V and an output range of 1.2V to 36V.
+...
+> > +  The output current of the LTM8054 can be limited by tying the Iout pin
+> > to a +  current sense resistor. This limit can be further lowered by
+> > applying a +  voltage below 1.2V to the CTL pin.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/regulator/regulator.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: lltc,ltm8054
 > 
-> So you explain to the DT maintainer how the DT works. Well, thank you,
-> everyday I can learn something.
+> Looks like they got bought by Analog Devices Inc., so adi,ltm8054.
 > 
-> You wasted a lot of our (multiple maintainers) time in the past, so I
-> will just NAK your patches instead of wasting time again.
+
+Ah yes, I'll also change the Kconfig and driver descriptions in that case. I'd 
+like to keep the lltc,fb-voltage-divider property name though, since that's 
+already used in an identical way by two other regulator bindings.
+
+...
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    / {
 > 
-> Best regards,
-> Krzysztof
+> Examples usually don't have a root node. Probably explains
+> the bot errors. (but you should have seen the same errors
+> locally with make dt_binding_check.)
+> 
 
-My sincere apologies for the misunderstanding and inconvenience my
-previous response has caused. I can assure you that my intention
-was never to describe the DT subsystem working, and am sorry that
-it has come out as such.
+I didn't see the errors but I'm guessing that's due to an out-of-date dtschema
+dependency on my system, thanks for pointing it out.
 
-I am committed to learning and continuously improving the quality
-of my contributions, and co-operating with reviewers and maintainers
-by following their feedback.
+Thanks,
 
-I will update the patch accordingly to remove this property marking
-as required. Thank you very much for your support.
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart4774077.LvFx2qVVIh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjK2OkACgkQKCYAIARz
+eA6jKw//RMj5RRwagLh2PF9GStE9vCC5p4+y4Eg0rXPlUlnUwWlVa7/7Lxo5iqGz
+INOVs4kGtJDjAgj39G1b3xf+fD2BBQ83kJBJpwqq9q7Qd/GXykUeeAJn2aro8Ben
+C3+uvKfkmYVseDEEmrve/AZ4q7SlbIGKfC/BuCOifh6DAmgXxeLLBuLjTV8DRGBR
+jQQplTyW/08LX8IGIv+n4A7nvboH+dkQgfyLz3TOwXOA56frqh607OQTxvfe0xq0
+rjR7hlQYI5F31Ta9uuYwp7ZYyGeEePyE+q2Ea1/Hu9yP+w6QWSQith3RGZ/u/cmS
+Z60FXYyHJ5PAkIoyo9yLiCX5VID5mDkpapL9/jEMd+VMkq+HWthpoq5+aAUrhqTz
+XZYyo+KS1gqZQO0Du70qvxUhodOjpsJYCt0JXnY4MYAkrAjREdTkDfjFQhkmtlG3
+0HoSLJtN+ZO2JjdmdfdgYHcuDPunS4oUvaMBt467d0MxqD8OZYYTwmiRvLOY9QF1
+hlW5VjT2w5V8Eb/wEFofbXfLJeO8tEblfLzUkM/YcgU9o9u0owheqd7xs9w2U5IH
+LC+bN/2ZziX1tz02PTOvgGyrMsRjcYIW2s8qIw8WALy003I1TBmf2vjmnxcOQYh2
+1o9aFwYvItHUzndWLCjmu7i0BEBX4NObUjgV23C3ZC1aBVvOxm0=
+=Ccw5
+-----END PGP SIGNATURE-----
+
+--nextPart4774077.LvFx2qVVIh--
+
+
+
 
