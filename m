@@ -1,367 +1,260 @@
-Return-Path: <devicetree+bounces-218357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20CCB7CB14
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:08:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA102B7CD98
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:11:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72687328546
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 12:08:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22B741C0839D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 12:10:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A249D393DF5;
-	Wed, 17 Sep 2025 12:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA5E30CB50;
+	Wed, 17 Sep 2025 12:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="qM0/0PqL"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WBNlnGOy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5604837428E;
-	Wed, 17 Sep 2025 12:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D44230CB3A
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 12:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758110859; cv=none; b=OmkawToGMKa5i1U3yWtWG5tuWouMesaNa0+6j+EGDlJ86W0LLioar0Hk/8sJvyCjbXu3PvgUNseG4aX7EJ89IPzRUS2i8y+v1KevByMKnM9XTP9vs+TZFlb/DLJqtFh7w5RGrFB5E5blSXXVCn2y6kupOiVBEQ9ipLPdBg5ZZ30=
+	t=1758110988; cv=none; b=sptBYxMvgDJ7OM06vqEy+nWpVYrF1ALf5g8ku9i18jLRhOIxydELqqptprgnopLkmCa7xnbBCxRRr2OQW3Pielt0uZfiq4tbh8wmLPUpNdn3d7+CN2Rnx65X+q/iFrAoLJt+Rj2xa2tont+yCfietFSBiOkunS0qUvjh+pQupwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758110859; c=relaxed/simple;
-	bh=5ig2eU5Fg0cCn3yPw6Y//iD8ou9gBDzeU/No0OLigJU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IHGY62XOJBqN7wezS389NIL1Bdrie+F5rQcqn4A1tk/IQMRML39+yQu8U4OWCSTQA3pu0aCsQI5AWER9hhbLBbizcnNlaagD6dZakSWipts5cfIkiwmcw/E2jX9E3JFWi/Ocx+F6v+J9TMNjEFoqMVr/HThyaaC/sHfABF+eV+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=qM0/0PqL; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: e34f538093be11f0b33aeb1e7f16c2b6-20250917
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4rWzUh3OtAgbptX2XM346gfFjl3YVUXZFKF3qDFzE+Y=;
-	b=qM0/0PqLReVY+QIuAvqyeNw9B5gcqKb8QLvbKTyID/D1yaQvULRRHWuEqZmQEwpHED5eKIoONa8Z5wG217NyweCGXLwN3CS3Vc9j2Oz1nY8utdmmlQMOH7WVOBb6T3JDs/sKzMIzbID96KHPkYu0cBCKzDP6k4SkN4OPFUXdQKk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.4,REQID:f15a3503-3892-4440-88a6-ad4a09d0e4c3,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:1ca6b93,CLOUDID:f4e16ba9-24df-464e-9c88-e53ab7cf7153,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836,TC:-5,Content:0|15|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: e34f538093be11f0b33aeb1e7f16c2b6-20250917
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <friday.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1576178336; Wed, 17 Sep 2025 20:07:31 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Wed, 17 Sep 2025 20:07:29 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Wed, 17 Sep 2025 20:07:29 +0800
-From: Friday Yang <friday.yang@mediatek.com>
-To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
- Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>
-CC: Friday Yang <friday.yang@mediatek.com>,
-	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v11 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
-Date: Wed, 17 Sep 2025 20:07:17 +0800
-Message-ID: <20250917120724.8650-3-friday.yang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250917120724.8650-1-friday.yang@mediatek.com>
-References: <20250917120724.8650-1-friday.yang@mediatek.com>
+	s=arc-20240116; t=1758110988; c=relaxed/simple;
+	bh=8oUJwioEDnAfVO3Y1PXWwxoLC14KxAtkMyhu2PHDtkY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=E72NpKesHenLyazmPgPZ6rFGQWMHIxftP5mB9bxRnJsY5wfx4mbM2A/iRp0Fc6uH6cvTt9jmdHmvEZFeLA0mkKMdWUb7SqFd96k8pYpDhigUQFW+FTvYGX5RbqlpgnHzZWLdDLz3/NH5bkneXjC8nw7Icn2UtQaG6q84mUs9ffI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WBNlnGOy; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250917120943epoutp02c381d0563fe6192f11d28f51d6e5a8d5~mEJ-TFdB60534005340epoutp02B
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 12:09:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250917120943epoutp02c381d0563fe6192f11d28f51d6e5a8d5~mEJ-TFdB60534005340epoutp02B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758110983;
+	bh=owWadpSv9H77ZxbKoBmofshhPRj3pGK/wIU+s8/EQVc=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=WBNlnGOyvhvdURAbgVsc8eIroy5H8a2SRO75EfKSBc741Nklz9GuHlXwKhGkpBx7i
+	 NJ4PocbRepuBeZmxh6sDk2lkIC6+IfkVvFVtbwTWIqq00H9tVxmPrUcs4OBKvjsIBT
+	 IH6udZJYiSGrQ0QhlT51XCv96TJuZCZo1e68KdI4=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250917120942epcas5p357c123d3099e83bb132f2cf79da872fb~mEJ_a0QgV0694206942epcas5p3J;
+	Wed, 17 Sep 2025 12:09:42 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.93]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4cRcyY23SNz3hhT4; Wed, 17 Sep
+	2025 12:09:41 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250917120940epcas5p2ccd8cbd489fe1634d9b176f1e8c01e79~mEJ85vD6F3174731747epcas5p26;
+	Wed, 17 Sep 2025 12:09:40 +0000 (GMT)
+Received: from FDSFTE196 (unknown [107.116.189.214]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250917120937epsmtip29e2450f342f91ad1dce9599cf91c9426~mEJ6DjSln1850718507epsmtip2N;
+	Wed, 17 Sep 2025 12:09:37 +0000 (GMT)
+From: "Inbaraj E" <inbaraj.e@samsung.com>
+To: "'Rob Herring'" <robh@kernel.org>
+Cc: <rmfrfs@gmail.com>, <laurent.pinchart@ideasonboard.com>,
+	<martink@posteo.de>, <kernel@puri.sm>, <mchehab@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <shawnguo@kernel.org>,
+	<s.hauer@pengutronix.de>, <kernel@pengutronix.de>, <festevam@gmail.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>,
+	<shradha.t@samsung.com>
+In-Reply-To: <20250829174638.GA1054721-robh@kernel.org>
+Subject: RE: [PATCH v3 1/7] dt-bindings: media: nxp: Add support for FSD SoC
+Date: Wed, 17 Sep 2025 17:39:35 +0530
+Message-ID: <024f01dc27cb$f167d370$d4377a50$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIBSJFzUA8Lz5NCh/Whmc1GwVh24gH1qTvqAkLBkWsB/yoSjrQbSRSA
+Content-Language: en-in
+X-CMS-MailID: 20250917120940epcas5p2ccd8cbd489fe1634d9b176f1e8c01e79
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250828085926epcas5p1b82576210280fb44c6c7f02851da71c6
+References: <20250828085911.81266-1-inbaraj.e@samsung.com>
+	<CGME20250828085926epcas5p1b82576210280fb44c6c7f02851da71c6@epcas5p1.samsung.com>
+	<20250828085911.81266-2-inbaraj.e@samsung.com>
+	<20250829174638.GA1054721-robh@kernel.org>
 
-To prevent handling glitch signals during MTCMOS on/off transitions,
-SMI requires clamp and reset operations. Parse the reset settings for
-SMI LARBs and the clamp settings for the SMI Sub-Common. Register
-genpd callback for the SMI LARBs located in image, camera and IPE
-subsystems, and apply reset and clamp operations within the callback.
+Hi Rob,
 
-Signed-off-by: Friday Yang <friday.yang@mediatek.com>
----
- drivers/memory/mtk-smi.c | 151 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+Thanks for the review
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index 733e22f695ab..117ff528db01 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -10,11 +10,15 @@
- #include <linux/err.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
- #include <linux/soc/mediatek/mtk_sip_svc.h>
- #include <soc/mediatek/smi.h>
- #include <dt-bindings/memory/mt2701-larb-port.h>
-@@ -34,6 +38,8 @@
- #define SMI_FIFO_TH1			0x238
- #define SMI_FIFO_TH2			0x23c
- #define SMI_DCM				0x300
-+#define SMI_COMMON_CLAMP_EN_SET		0x3c4
-+#define SMI_COMMON_CLAMP_EN_CLR		0x3c8
- #define SMI_DUMMY			0x444
 
- /* SMI LARB */
-@@ -134,6 +140,7 @@ struct mtk_smi_larb_gen {
- 	unsigned int			larb_direct_to_common_mask;
- 	unsigned int			flags_general;
- 	const u8			(*ostd)[SMI_LARB_PORT_NR_MAX];
-+	const u8			*clamp_port;
- };
+> > +    description:
+> > +      Syscon used to hold and release the reset of MIPI D-PHY
+> 
+> Reset? Sounds like you should be using the reset binding.
 
- struct mtk_smi {
-@@ -150,6 +157,7 @@ struct mtk_smi {
- };
+The Tesla FSD Soc does not have a dedicated reset controller. Instead, we
+are using the
+system controller which is MMIO Space handled by syscon driver, to assert or
+de-assert the D-PHY
+reset. So, I prefer to use syscon.
 
- struct mtk_smi_larb { /* larb: local arbiter */
-+	struct device			*dev;
- 	struct mtk_smi			smi;
- 	void __iomem			*base;
- 	struct device			*smi_common_dev; /* common or sub-common dev */
-@@ -157,6 +165,10 @@ struct mtk_smi_larb { /* larb: local arbiter */
- 	int				larbid;
- 	u32				*mmu;
- 	unsigned char			*bank;
-+	struct regmap			*smi_comm_syscon; /* smi-comm or sub-comm */
-+	u8				smi_comm_in_port_id; /* smi-comm or sub-comm */
-+	struct notifier_block		nb;
-+	struct reset_control		*rst_con;
- };
+> 
+> > +
+> >    phy-supply:
+> >      description: The MIPI D-PHY digital power supply
+> >
+> > @@ -93,7 +91,8 @@ properties:
+> >              properties:
+> >                data-lanes:
+> >                  description:
+> > -                  Note that 'fsl,imx7-mipi-csi2' only supports up to 2
+data lines.
+> > +                  Note that 'fsl,imx7-mipi-csi2' only supports up to 2
+data
+> > +                  lines.
+> 
+> Reformatting should be a separate patch.
 
- static int
-@@ -478,6 +490,19 @@ static const u8 mtk_smi_larb_mt8195_ostd[][SMI_LARB_PORT_NR_MAX] = {
- 	[28] = {0x1a, 0x0e, 0x0a, 0x0a, 0x0c, 0x0e, 0x10,},
- };
+Sure, I'll add new patch in next patchset.
 
-+static const u8 mtk_smi_larb_clamp_port_mt8188[MTK_LARB_NR_MAX] = {
-+	[9]	= BIT(1), /* larb10 */
-+	[10]	= BIT(2), /* larb11a */
-+	[11]	= BIT(2), /* larb11b */
-+	[12]	= BIT(3), /* larb11c */
-+	[13]	= BIT(0), /* larb12 */
-+	[16]	= BIT(1), /* larb15 */
-+	[17]	= BIT(2), /* larb16a */
-+	[18]	= BIT(2), /* larb16b */
-+	[19]	= BIT(3), /* larb17a */
-+	[20]	= BIT(3), /* larb17b */
-+};
-+
- static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
- 	.port_in_larb = {
- 		LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
-@@ -531,6 +556,7 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8188 = {
- 	.flags_general	            = MTK_SMI_FLAG_THRT_UPDATE | MTK_SMI_FLAG_SW_FLAG |
- 				      MTK_SMI_FLAG_SLEEP_CTL | MTK_SMI_FLAG_CFG_PORT_SEC_CTL,
- 	.ostd		            = mtk_smi_larb_mt8188_ostd,
-+	.clamp_port                 = mtk_smi_larb_clamp_port_mt8188,
- };
+> 
+> >                  minItems: 1
+> >                  items:
+> >                    - const: 1
+> > @@ -115,7 +114,6 @@ required:
+> >    - interrupts
+> >    - clocks
+> >    - clock-names
+> > -  - power-domains
+> >    - ports
+> >
+> >  additionalProperties: false
+> > @@ -124,20 +122,73 @@ allOf:
+> >    - if:
+> >        properties:
+> >          compatible:
+> > -          contains:
+> > -            const: fsl,imx7-mipi-csi2
+> > +          const: fsl,imx7-mipi-csi2
+> 
+> 'contains' was correct. It is more future proof when there is another SoC
+that
+> is backwards compatible with imx7.
 
- static const struct mtk_smi_larb_gen mtk_smi_larb_mt8192 = {
-@@ -582,6 +608,53 @@ static void mtk_smi_larb_sleep_ctrl_disable(struct mtk_smi_larb *larb)
- 	writel_relaxed(0, larb->base + SMI_LARB_SLP_CON);
- }
+Sure, I'll add new patch in next patchset.
 
-+static int mtk_smi_larb_clamp_protect_enable(struct device *dev, bool enable)
-+{
-+	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-+	u32 reg;
-+	int ret;
-+
-+	reg = enable ? SMI_COMMON_CLAMP_EN_SET : SMI_COMMON_CLAMP_EN_CLR;
-+	ret = regmap_write(larb->smi_comm_syscon, reg, larb->smi_comm_in_port_id);
-+	if (ret)
-+		dev_err(dev, "Unable to %s clamp for input port %d: %d\n",
-+			enable ? "enable" : "disable",
-+			larb->smi_comm_in_port_id, ret);
-+
-+	return ret;
-+}
-+
-+static int mtk_smi_genpd_callback(struct notifier_block *nb,
-+				  unsigned long event, void *data)
-+{
-+	struct mtk_smi_larb *larb = container_of(nb, struct mtk_smi_larb, nb);
-+	struct device *dev = larb->dev;
-+	int ret = 0;
-+
-+	switch (event) {
-+	case GENPD_NOTIFY_PRE_ON:
-+	case GENPD_NOTIFY_PRE_OFF:
-+		/* Clamp this larb to avoid the redundant commands */
-+		ret = mtk_smi_larb_clamp_protect_enable(dev, true);
-+		break;
-+	case GENPD_NOTIFY_ON:
-+		ret = reset_control_reset(larb->rst_con);
-+		if (ret) {
-+			dev_err(dev, "Failed to reset smi larb %d\n", ret);
-+			break;
-+		}
-+
-+		ret = mtk_smi_larb_clamp_protect_enable(dev, false);
-+		break;
-+	default:
-+		break;
-+	}
-+	if (ret)
-+		return NOTIFY_BAD;
-+
-+	return NOTIFY_OK;
-+}
-+
- static int mtk_smi_device_link_common(struct device *dev, struct device **com_dev)
- {
- 	struct platform_device *smi_com_pdev;
-@@ -638,6 +711,46 @@ static int mtk_smi_dts_clk_init(struct device *dev, struct mtk_smi *smi,
- 	return ret;
- }
+> 
+> >      then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: The peripheral clock (a.k.a. APB clock)
+> > +            - description: The external clock (optionally used as the
+pixel
+> > +                clock)
+> > +            - description: The MIPI D-PHY clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: pclk
+> > +            - const: wrap
+> > +            - const: phy
+> > +        tesla,syscon-csis: false
+> > +        fsl,num-channels: false
+> 
+> blank line
 
-+static int mtk_smi_larb_parse_syscon(struct mtk_smi_larb *larb, int larbid)
-+{
-+	struct device *dev = larb->dev;
-+	const struct mtk_smi_larb_gen *larb_gen = larb->larb_gen;
-+	int ret;
-+
-+	larb->smi_comm_in_port_id = larb_gen->clamp_port[larbid];
-+	larb->smi_comm_syscon = syscon_regmap_lookup_by_phandle(dev->of_node,
-+								"mediatek,smi");
-+	if (IS_ERR(larb->smi_comm_syscon)) {
-+		ret = PTR_ERR(larb->smi_comm_syscon);
-+		larb->smi_comm_syscon = NULL;
-+		return dev_err_probe(dev, ret,
-+				     "Failed to get smi syscon for larb %d\n", larbid);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mtk_smi_larb_parse_reset(struct mtk_smi_larb *larb)
-+{
-+	struct device *dev = larb->dev;
-+	int ret;
-+
-+	larb->rst_con = devm_reset_control_get_exclusive(dev, "larb");
-+	if (IS_ERR(larb->rst_con))
-+		return dev_err_probe(dev, PTR_ERR(larb->rst_con),
-+				     "Failed to get reset controller\n");
-+
-+	larb->nb.notifier_call = mtk_smi_genpd_callback;
-+	ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
-+	if (ret) {
-+		larb->nb.notifier_call = NULL;
-+		return dev_err_probe(dev, ret,
-+				     "Failed to add genpd callback\n");
-+	}
-+
-+	return 0;
-+}
-+
- static int mtk_smi_larb_probe(struct platform_device *pdev)
- {
- 	struct mtk_smi_larb *larb;
-@@ -648,6 +761,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- 	if (!larb)
- 		return -ENOMEM;
+Will remove in nextpatchset.
 
-+	larb->dev = dev;
- 	larb->larb_gen = of_device_get_match_data(dev);
- 	larb->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(larb->base))
-@@ -664,6 +778,30 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- 	if (ret < 0)
- 		return ret;
+> 
+> >        required:
+> > +        - power-domains
+> >          - phy-supply
+> >          - resets
+> > -    else:
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          const: fsl,imx8mm-mipi-csi2
+> > +    then:
+> >        properties:
+> >          clocks:
+> > -          minItems: 4
+> > +          items:
+> > +            - description: The peripheral clock (a.k.a. APB clock)
+> > +            - description: The external clock (optionally used as the
+pixel
+> > +                clock)
+> > +            - description: The MIPI D-PHY clock
+> > +            - description: The AXI clock
+> >          clock-names:
+> > -          minItems: 4
+> > +          items:
+> > +            - const: pclk
+> > +            - const: wrap
+> > +            - const: phy
+> > +            - const: axi
+> > +        tesla,syscon-csis: false
+> > +        fsl,num-channels: false
+> >          phy-supply: false
+> >          resets: false
+> 
+> blank line
+> 
+> > +      required:
+> > +        - power-domains
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          const: tesla,fsd-mipi-csi2
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: The peripheral clock (a.k.a. APB clock)
+> > +            - description: The DMA clock
+> 
+> Wouldn't this be the same as the "AXI clock"?
 
-+	/* The larbid are sequential for IOMMU if this property is not present */
-+	if (!of_property_present(dev->of_node, "mediatek,larb-id"))
-+		goto pm_runtime_en;
-+	ret = of_property_read_s32(dev->of_node, "mediatek,larb-id", &larb->larbid);
-+	if (ret || larb->larbid >= MTK_LARB_NR_MAX) {
-+		ret = -EINVAL;
-+		goto err_link_remove;
-+	}
-+
-+	/*
-+	 * Only SMI LARBs in camera, image and IPE subsys need to
-+	 * apply clamp and reset operations, others can be skipped.
-+	 */
-+	if (larb->larb_gen->clamp_port && larb->larb_gen->clamp_port[larb->larbid]) {
-+		ret = mtk_smi_larb_parse_syscon(larb, larb->larbid);
-+		if (ret)
-+			goto err_link_remove;
-+
-+		ret = mtk_smi_larb_parse_reset(larb);
-+		if (ret)
-+			goto err_link_remove;
-+	}
-+
-+pm_runtime_en:
- 	pm_runtime_enable(dev);
- 	platform_set_drvdata(pdev, larb);
- 	ret = component_add(dev, &mtk_smi_larb_component_ops);
-@@ -672,7 +810,11 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- 	return 0;
+According to v4.3 manual it is DMA clock.
 
- err_pm_disable:
-+	if (larb->nb.notifier_call)
-+		dev_pm_genpd_remove_notifier(&pdev->dev);
-+
- 	pm_runtime_disable(dev);
-+err_link_remove:
- 	device_link_remove(dev, larb->smi_common_dev);
- 	return ret;
- }
-@@ -681,6 +823,9 @@ static void mtk_smi_larb_remove(struct platform_device *pdev)
- {
- 	struct mtk_smi_larb *larb = platform_get_drvdata(pdev);
+> 
+> > +        clocks-names:
+> > +          items:
+> > +            - const: pclk
+> > +            - const: aclk
+> > +        phy-supply: false
+> > +        resets: false
+> > +        power-domains: false
+> 
+> blank line
 
-+	if (larb->nb.notifier_call)
-+		dev_pm_genpd_remove_notifier(&pdev->dev);
-+
- 	device_link_remove(&pdev->dev, larb->smi_common_dev);
- 	pm_runtime_disable(&pdev->dev);
- 	component_del(&pdev->dev, &mtk_smi_larb_component_ops);
-@@ -803,6 +948,11 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8188_vpp = {
- 	.init     = mtk_smi_common_mt8195_init,
- };
+Sure will remove in next patchset.
+> 
+> > +      required:
+> > +        - tesla,syscon-csis
+> > +        - fsl,num-channels
+> >
+> >  examples:
+> >    - |
+> > --
+> > 2.49.0
+> >
 
-+static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8188 = {
-+	.type     = MTK_SMI_GEN2_SUB_COMM,
-+	.has_gals = true,
-+};
-+
- static const struct mtk_smi_common_plat mtk_smi_common_mt8192 = {
- 	.type     = MTK_SMI_GEN2,
- 	.has_gals = true,
-@@ -847,6 +997,7 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
- 	{.compatible = "mediatek,mt8186-smi-common", .data = &mtk_smi_common_mt8186},
- 	{.compatible = "mediatek,mt8188-smi-common-vdo", .data = &mtk_smi_common_mt8188_vdo},
- 	{.compatible = "mediatek,mt8188-smi-common-vpp", .data = &mtk_smi_common_mt8188_vpp},
-+	{.compatible = "mediatek,mt8188-smi-sub-common", .data = &mtk_smi_sub_common_mt8188},
- 	{.compatible = "mediatek,mt8192-smi-common", .data = &mtk_smi_common_mt8192},
- 	{.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
- 	{.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
---
-2.46.0
+Regards,
+Inbaraj E
 
 
