@@ -1,80 +1,93 @@
-Return-Path: <devicetree+bounces-218279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF83B7D8B3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:30:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E65B7DDB8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590C54E3697
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:51:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 076A44E4A9F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C81B30F541;
-	Wed, 17 Sep 2025 08:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F98A30F816;
+	Wed, 17 Sep 2025 08:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WJkxqMh6"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ft+uKpHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012046.outbound.protection.outlook.com [40.107.200.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D1E30CDB5
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758099062; cv=none; b=Qbyw9BL5gh0WaaEME3yxAEiMLAj4D1rrAi0TcQpRpPh1xMvQvTZcyqH2GGHiUFkB5/ACXz+2ZFjL9y8+N02hEhmoKCg9y/VF+GxGuxBy3zI2qwwhAOwlFrDpu+zEg0i99i3DTqocAUQUzuTz1z8DzTUQEUpfZA0kBF3DFB0Lm7U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758099062; c=relaxed/simple;
-	bh=v5mdKVNA2fXREnhbIPNmxtZMo2leiCFd4QyPhWq6K+8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=dKYERAKHeYgIKtt2R49r+b30mWA3tlgiF3tm6lr0gjgCKi1op35Zo82lgQq7HRyMqTUmdDm8gHy4EXP0ZQ2CHId8Y+3fP5VZ/HObE7mSfYTeGd1tTEU3Xn34A+D1CHchWhhBUk2N8ngeec1xH0JVscWd2un7gSRBHwtmBBF/u3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WJkxqMh6; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250917085058epoutp03f8260c6794456282883d23d272115c60~mBcdiGVGP0662606626epoutp03K
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:50:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250917085058epoutp03f8260c6794456282883d23d272115c60~mBcdiGVGP0662606626epoutp03K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758099058;
-	bh=ZxOhlbK8ICcydhIlDZVWYfe0fihW305v0TiO0t+kvAc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WJkxqMh6Krjz/03T2upycOWw3ekoAVceI9zgBbIXmljVexRj1KdViGkU4m1jZDag5
-	 uPEkSJR8Du5wHKPZIx7cn3KvlhMFNuzeSztgkNIafgFKL6Qi55+xswUVcNn11WhYfH
-	 pzZzSs2qaU3usgl8UdiwLvcQmF68E77A6BhwTyIU=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250917085057epcas5p308d4f45d547411642dfef2587e150140~mBcc7T9-F0100501005epcas5p3i;
-	Wed, 17 Sep 2025 08:50:57 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.92]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cRXYD5ZHkz2SSKh; Wed, 17 Sep
-	2025 08:50:56 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250917085055epcas5p18e688864c8e9fd788f8073510ae0d0b3~mBca209kD0062500625epcas5p14;
-	Wed, 17 Sep 2025 08:50:55 +0000 (GMT)
-Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250917085050epsmtip2c958afcf2fe3877c052fcc208b38fa0c~mBcWiN0GB2771327713epsmtip2v;
-	Wed, 17 Sep 2025 08:50:50 +0000 (GMT)
-From: Ravi Patel <ravi.patel@samsung.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com,
-	sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
-	cw00.choi@samsung.com
-Cc: ravi.patel@samsung.com, ksk4725@coasia.com, smn1196@coasia.com,
-	linux-arm-kernel@axis.com, krzk@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com,
-	jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com,
-	hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com,
-	swathi.ks@samsung.com, kenkim@coasia.com
-Subject: [PATCH 7/7] arm64: dts: axis: Add ARTPEC-9 Alfred board support
-Date: Wed, 17 Sep 2025 14:20:04 +0530
-Message-ID: <20250917085005.89819-8-ravi.patel@samsung.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250917085005.89819-1-ravi.patel@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158F310F1;
+	Wed, 17 Sep 2025 08:57:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758099435; cv=fail; b=msgRuogPMech/T7ZtP6m53T/SjnddtQFipMPjWAnNIvthtlba9r+HyNGG7x2Q0Skqc/HwdovTd2YFXyMOBlwl6XUAJ67gbQaZxAk0/b6HOy0k//RbouObQDr0Jn8oNRnr8HUIcqqrXIf8ZFNZ10DT1h9uKZ4l0fn/hgdrbcHdAI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758099435; c=relaxed/simple;
+	bh=Z8ojFwa2kuk8l9A3Pbt+CKJUYgL4PVTm+K8r5jAXicA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X4WYKxEMJ4pLqHI2PkIC/Kb9RAe0CZpqG+IF3qd22P3z/YZr+EC/w2G/wqkv+SfPnXQCdNCIowAqsCfNeYOzo+3GZ1KhU6KdOQoxzRFa1Plow5PXC+qNdmpdPqw8URKTmIlz0BVN3hpc5q20WW7lxK0A4gISR4jP9H06KX73/nc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Ft+uKpHF; arc=fail smtp.client-ip=40.107.200.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=koKbn3QhtUNBG1gqL6vhfBIum+kBt7zZGKmmzEgJSZk4NqPagJ+B0qoLNbt2pDekk9EqglsdCDsyR28oT9v3LqBj5pdMe7YiQgv+yc7oxwc6pAC1MCviktxQGHG3oQ+SQRhxbdEkr45gRua9Pt7r/YrbmC6Fzr9zeHiJizKrIEuKz6dZXDVl/Zfs0nJI2g/dezLK+YUJNCkObQ1CtyNVWH1XliuyfEPVUTdiki+Uw5Ev3HbCikZk/FxXyHNx/ynAQRxac91SZ0K3ReFJdHCs/41orAYM25QPTDcn/Z4vO6LyubUbWZk6hGN7oACZdGWKTio8jz/GtUlowBuBsYVTIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QTsOEoFCuh3KPAbMXnlcfWsXYhIDUH7H08zyI1OAzBk=;
+ b=yg+8LSScvXZS1nKVffdfB4gc5Aen3F6nwuoqEur5+0WAbU7KtWeN7NJmXuoB6FEPMMr5XKhqMy2bm2o9Svov+sPNETe6DmhJ6jHMFeTsUASgT7GTjCuKcAwtrW2jv7aiLPIoarsGYcmEKVRC0C+/NS3GHdqfbzKcR60zzf3ZrgurGDVEkT0hRfuuwqLYJKq9pXpDuS+v+ua48KnzgvSYKdnkTWOUPhdyvsnWm1+0C+8Y818y2lPLDyv0H3O+H7BHBZcXd0GwYqLScMqfPPKHkJtIS0yzIZ45wN33BH86GF+V6tahGt9XlPOTsk9yKXF7OnjQCl1DtNO1RLdfJsnFJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QTsOEoFCuh3KPAbMXnlcfWsXYhIDUH7H08zyI1OAzBk=;
+ b=Ft+uKpHFLlTqu8c+Q1FcDxPcVyG2VOO4NTjBlBmfNRPQAqeGorNTRNBIadN27Ky5yu/ymcoZzSDxf7c+mjH5UYpN9c9arf3QtfY9iG0dYF+paqYueZMPIFDsFWJnFp1wP8aORknt/hwJQ1ebddezQAZMND9pWXwjT+emN5aloQYTpcMSO/8G7KJ0s+MHZjkVGCnBH5R+YgLwPv9+CYumK2EVdJKWk+skPHIi3MkjSWeRt24B2hvhMn1AdOjqo51VzlXND894eNsOPPUE1Fo1BmV16MxJGLQZGqFL0gYW2jXWvQvZukCSDk3PxKPKReqOyvg8ZmSVNw/q1JqLDIIlDA==
+Received: from BN9PR03CA0085.namprd03.prod.outlook.com (2603:10b6:408:fc::30)
+ by DM4PR12MB6278.namprd12.prod.outlook.com (2603:10b6:8:a4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Wed, 17 Sep
+ 2025 08:57:11 +0000
+Received: from BN3PEPF0000B372.namprd21.prod.outlook.com
+ (2603:10b6:408:fc:cafe::5a) by BN9PR03CA0085.outlook.office365.com
+ (2603:10b6:408:fc::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13 via Frontend Transport; Wed,
+ 17 Sep 2025 08:57:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ BN3PEPF0000B372.mail.protection.outlook.com (10.167.243.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9160.0 via Frontend Transport; Wed, 17 Sep 2025 08:57:10 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Wed, 17 Sep
+ 2025 01:56:57 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 17 Sep 2025 01:56:56 -0700
+Received: from kkartik-desktop.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Wed, 17 Sep 2025 01:56:52 -0700
+From: Kartik Rajput <kkartik@nvidia.com>
+To: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <digetx@gmail.com>,
+	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <kkartik@nvidia.com>
+Subject: [PATCH v8 0/4] Add I2C support for Tegra264
+Date: Wed, 17 Sep 2025 14:26:46 +0530
+Message-ID: <20250917085650.594279-1-kkartik@nvidia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,82 +95,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250917085055epcas5p18e688864c8e9fd788f8073510ae0d0b3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250917085055epcas5p18e688864c8e9fd788f8073510ae0d0b3
-References: <20250917085005.89819-1-ravi.patel@samsung.com>
-	<CGME20250917085055epcas5p18e688864c8e9fd788f8073510ae0d0b3@epcas5p1.samsung.com>
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B372:EE_|DM4PR12MB6278:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37f8ab67-b9ab-4385-18a2-08ddf5c8303b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|7416014|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pfn0TatoBHncb/rGtkY4QIbS4AvCxkZQD2lhCJpGykdBvnQT9Zksk02QQA2j?=
+ =?us-ascii?Q?Uyb6kOx5woWS5Ab81DSAU0Gyl3I4ScYiMB1OY6IlAJAaR3Ybr0lPeb35gcKr?=
+ =?us-ascii?Q?7e7/ehr4zz1Vfrg09pFrD+MxAZ8I086dqBdQgX5wzjB2QPj8QRbJ5fhDvHAH?=
+ =?us-ascii?Q?KmGQDVXLOspXw4uOEGTAIQW9L0aIvi/oc1BcBHQOMpBGPOT47UhQDRr3Zkhj?=
+ =?us-ascii?Q?J0MM7yZl1yVPja3QGY1fBHLZm81XiRk4dFjV/pzPbgHuxT2J5/qVIfjWff1M?=
+ =?us-ascii?Q?4hraoqd+C6yZWiniQxVrWYbHq9sRwwrW9MnMATdya6/3p/QTscHUxRhNfsPn?=
+ =?us-ascii?Q?DSCkrFEGmUlwvpB2V3jwzKrEHFtWpOlJ1uTqODNVRjT4BIAv6P684i3f2b5e?=
+ =?us-ascii?Q?RypnP16LSPOk9mGj/EaTMGbSeaHsvCHiE7/jtaw4rMZdQBYccLSj22NKIomo?=
+ =?us-ascii?Q?dgRgjNbYeF16FX2vMVmcZEjiTwOPxxISHKM/JJHDu47eqa0LbcdViFkR5LNV?=
+ =?us-ascii?Q?E+MrM/nArjyNIVUceBWBb91dgOvKPuDRxZ6HpR1/4ESdiLTmY6en+v+vFMId?=
+ =?us-ascii?Q?ITWduznvu6XdKpM3Zlur+4dIeSzYiJBJTI84jE7wvE33VokD6qK5RZLyVMz8?=
+ =?us-ascii?Q?JDOVRVJGCYIZEh4Sj4L6azdxYP+BL6wZ5lcJTFEF83msD9zv9LKiAWgXimb5?=
+ =?us-ascii?Q?MSQ7fSjTf5mDaFgNkGQL/EwzudLusuAPNjzcv5ZT8NaInhCt1D1F38bNu4SP?=
+ =?us-ascii?Q?1GlRgVA3+nR+qlV5ierc5qRaDMHWhHKh7TGSFhScBaFfMPdRGzuMUsZGN8Ct?=
+ =?us-ascii?Q?5O/du17ipIjUIbCfsxX+eLtK5EOMkdoizdgrVViOqdOMFiRzwKtoDnRpCDu0?=
+ =?us-ascii?Q?PeL/Gr53msmwGIAKm5XRLAXKNf/W/l/P/U3r2+9jkFBXtIkeH+I4y5uJxJXP?=
+ =?us-ascii?Q?VrccWzolbLMkw0tkAEegru4BC3NMwvgApEszuhJ3RAfZJdK1JVP8O6gVGvqc?=
+ =?us-ascii?Q?HVTVbuaP0ZwGFBuAnQYCn2duqSWPP+VycOEhdaZa3COPjUBwypuPO97dqJWI?=
+ =?us-ascii?Q?F5k5JgnrUhuti5vMj0qaHDab7lqxds76qJJPRVDbB3sG7nudlNYvDCjUmnX5?=
+ =?us-ascii?Q?0YCKbe3TfH9NBHCSq3z/eDP3fNtKdKM//dP9pt8EJ0uU1pJXCLeS820G8HMd?=
+ =?us-ascii?Q?8fGd9wtGR6Vum8WaEoxoOo3AxsQN2qiRbIFt2FEQp6MeHMzljVd4Gr9yR2F5?=
+ =?us-ascii?Q?uzjGlgk40jmy0AhNl0YcBQMxSBJKfwEGH/mPaTUl/NPui3K2MQFP7wUt2PWd?=
+ =?us-ascii?Q?OY30pIR4q1Ao6ssu49jheWLdu8gSiTnSbGrcRzOqFFUIdyFPObb5PcIeuEGj?=
+ =?us-ascii?Q?H1c+tafVgPvn6k7DTzsEsGJEhlcphz7u4fR3CyRboCiAcnV4qDyEyZUuVG7Z?=
+ =?us-ascii?Q?PNuAKyC4Wz3kI6Ow0RM97yKP3C9sfSQwIKl/6BJIy2qwLsvaYdLrltQwV1t5?=
+ =?us-ascii?Q?84Iba1eRHjLSvOF5Hj5u72Bp1D6fS1w/6oHim0+12wA8T9FJNNqFAs/xoA?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 08:57:10.6134
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37f8ab67-b9ab-4385-18a2-08ddf5c8303b
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B372.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6278
 
-Add initial devcie tree for the ARTPEC-9 Alfred board.
-The ARTPEC-9 Alfred is a board developed by Axis,
-based on the Axis ARTPEC-9 SoC.
+Following series of patches add support for Tegra264 and High Speed (HS)
+Mode in i2c-tegra.c driver.
 
-Signed-off-by: SungMin Park <smn1196@coasia.com>
-Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
----
- arch/arm64/boot/dts/exynos/axis/Makefile      |  3 +-
- .../boot/dts/exynos/axis/artpec9-alfred.dts   | 36 +++++++++++++++++++
- 2 files changed, 38 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts
+Akhil R (2):
+  i2c: tegra: Add HS mode support
+  i2c: tegra: Add Tegra264 support
 
-diff --git a/arch/arm64/boot/dts/exynos/axis/Makefile b/arch/arm64/boot/dts/exynos/axis/Makefile
-index ccf00de64016..da6a426516fc 100644
---- a/arch/arm64/boot/dts/exynos/axis/Makefile
-+++ b/arch/arm64/boot/dts/exynos/axis/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- dtb-$(CONFIG_ARCH_ARTPEC) += \
--	artpec8-grizzly.dtb
-+	artpec8-grizzly.dtb \
-+	artpec9-alfred.dtb
-diff --git a/arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts b/arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts
-new file mode 100644
-index 000000000000..5a779f1acf3b
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Axis ARTPEC-9 Alfred board device tree source
-+ *
-+ * Copyright (c) 2025 Samsung Electronics Co., Ltd.
-+ *             https://www.samsung.com
-+ * Copyright (c) 2025  Axis Communications AB.
-+ *             https://www.axis.com
-+ */
-+
-+/dts-v1/;
-+#include "artpec9.dtsi"
-+#include "artpec9-pinctrl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "ARTPEC-9 alfred board";
-+	compatible = "axis,artpec9-alfred", "axis,artpec9";
-+
-+	aliases {
-+		serial0 = &serial_0;
-+	};
-+
-+	chosen {
-+		stdout-path = &serial_0;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x80000000>;
-+	};
-+};
-+
-+&osc_clk {
-+	clock-frequency = <50000000>;
-+};
+Kartik Rajput (2):
+  i2c: tegra: Do not configure DMA if not supported
+  i2c: tegra: Add support for SW mutex register
+
+ drivers/i2c/busses/i2c-tegra.c | 159 +++++++++++++++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
+
 -- 
-2.17.1
+2.43.0
 
 
