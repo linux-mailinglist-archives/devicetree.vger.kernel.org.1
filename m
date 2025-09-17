@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-218554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A025DB819D4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:27:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7F5B819FA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:28:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3DD2168F23
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:27:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B71734847FF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151F02FCBF3;
-	Wed, 17 Sep 2025 19:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B1B2FBE0A;
+	Wed, 17 Sep 2025 19:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sTLQ3dDy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o593B8bh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD89734BA28;
-	Wed, 17 Sep 2025 19:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D401E223DCE;
+	Wed, 17 Sep 2025 19:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758137237; cv=none; b=r/oaRvj9oBfbsKiHCHKljGDSi6PYYViqGsr4Ipkc5iy17Zx1QQ61GxII90r/NmVQnlxC04qWNO2I7k3bquQFWQSryfcv4krgjsugVUZZZcpHZVK/wipQe/HqOwNGNyisuR702Pekj1owji7rWrBDkW7E/z1v+okVGt2CU5D/Wp4=
+	t=1758137263; cv=none; b=dZSMmbEM/q/JgSPcd79pDF+6mKqhtYTj4sUjnSGQkVhN7eK4z603tBmxHwCdwRn/MM7+oRw/Wf3QXjXtWP4JGRXYW3qVTfQQ/v90UGmjloslgCnuGRdSa65C013pvwvbWw2JrVAayspqtkwViZImNRiiJoIaFqWKtMeJFUl9dJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758137237; c=relaxed/simple;
-	bh=hYecWlwpLF5pcxqf8qo5BUboIUJ/izWfPJtqoE5fyPo=;
+	s=arc-20240116; t=1758137263; c=relaxed/simple;
+	bh=gr3F9g/r13IbodjkbswahgoO+gHnOjod7V4voFnQTMQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pJRf8ytfZ5M3s6SksJGzUXeyfqLjaRlD1wjvLmYs+aFi2T+sV4ke+KBRRtwW63a7DDiSVQVBv09nZ8YPMM2nJlYQNqn1uQMxSMtlkuY/onjkxHFzQKPWYBKxWKFjf6jxP+pPYtzj1ublj1iwGTcy8dnDpr5a0oZj91WHUmvJmh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sTLQ3dDy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29754C4CEE7;
-	Wed, 17 Sep 2025 19:27:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=phBpMgCKCtyTHZThHxSRPP5FhcZp8HwGLHkLnjzMgagihlFDS3raqUXgt08qGLhX/82HBGsmCvZvpTkE+ozvqoCJN/3cZygOlDUfMW73kCM0iRtEusXnRG3s7aGMNr3rhDJ3OimGwJcmgKP7zrm2Vz+gTfT7y93JCQnsVVVkDCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o593B8bh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55F9AC4CEE7;
+	Wed, 17 Sep 2025 19:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758137236;
-	bh=hYecWlwpLF5pcxqf8qo5BUboIUJ/izWfPJtqoE5fyPo=;
+	s=k20201202; t=1758137263;
+	bh=gr3F9g/r13IbodjkbswahgoO+gHnOjod7V4voFnQTMQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sTLQ3dDyLNEsrWaVpCGbcSecNcUdSC1YSlYQA/KH1KSYgRD1DmYdI4CaruN218UBW
-	 6+9h6oHyxTFoV3iodtvtr9khDT57r5ozjtS4D3+I7r2YHF2555CHWBNXjWmlaF7MP1
-	 vpMbxUdS+zkCDY9FMiEHH0sdF0+gDdob7w/+SxM+IQ8055yxB9NOEyOqEPn2xoWqb/
-	 e7aKkzCbpZ0F/OLQDB+realjPhAl/y9pdmCQ/jM9Tmqbq+92KqnkBx+a1ujNgEX2mG
-	 8GF4VwU+omyYMXHO0Ln3wPXOwhIPwWgpdhGe9pPCfd5hXXGrxtocVrtISjVZ6+9vKl
-	 +PixRf6HPbGiQ==
-Date: Wed, 17 Sep 2025 20:27:12 +0100
+	b=o593B8bhRSTEOjlj+wGHK1uCJ5fOkOv1NZ0b3Zc4xrlHoPteX4c8FuwXmyea3lKi0
+	 xx4Dwqgc/qz0is2U2wsj6K2uyW0IfkZdxrOz1a+m3QlON7xkwZTo5XPQWL23hcA/pX
+	 C8CO1Gc0z6eMH9Wr5wbL/RSqwzPcaEPsaiGkoZsuPPBvU3vDH6WzchAFrLtJi1h9ew
+	 QhcszbpSHUUbMdf5boE60/ZJavCDUmmkYCf0xQn9KvjNe33vGFVpsZq5pLHup4hdSJ
+	 OjR60akzeJssaNRF3Cu3RiOAIMUkrAwSaH7QGqdXTRO0bpfkazW16cOZUvDZ9Xo1W0
+	 FWav0Up9PrmDg==
+Date: Wed, 17 Sep 2025 20:27:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-	Frank Li <Frank.Li@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	Jeff LaBundy <jeff@labundy.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: Re: [PATCH v4 3/6] dt-bindings: touchscreen: add
- touchscreen-glitch-threshold-ns property
-Message-ID: <20250917-uncapped-scavenger-bbf6af193c1e@spud>
-References: <20250917080534.1772202-1-dario.binacchi@amarulasolutions.com>
- <20250917080534.1772202-4-dario.binacchi@amarulasolutions.com>
+To: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: aspeed: add Meta Yosemite5 board
+Message-ID: <20250917-removed-grader-328f0a71bb73@spud>
+References: <20250917075156.4043936-1-kevin.tung.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,34 +59,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4KbVf9V6PzgtCt0H"
+	protocol="application/pgp-signature"; boundary="iJ0kmrmEVtt0EMQV"
 Content-Disposition: inline
-In-Reply-To: <20250917080534.1772202-4-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20250917075156.4043936-1-kevin.tung.openbmc@gmail.com>
 
 
---4KbVf9V6PzgtCt0H
+--iJ0kmrmEVtt0EMQV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 17, 2025 at 10:05:08AM +0200, Dario Binacchi wrote:
-> Add support for glitch threshold configuration. A detected signal is valid
-> only if it lasts longer than the set threshold; otherwise, it is regarded
-> as a glitch.
->=20
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---4KbVf9V6PzgtCt0H
+--iJ0kmrmEVtt0EMQV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsLkAAKCRB4tDGHoIJi
-0p8FAQCERhRFn3VnwkFuoMDEhnCGxVhmGYxRtLp+A810RmuIzAEAjUNCsixsFs2f
-d4G/PU8PI1PMWN59yG4mamCUmD43pgc=
-=F+or
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsLqwAKCRB4tDGHoIJi
+0h+kAP47tu4UOEsK0a/6ISyjquXeGZE2vnuhAzzB52b1McFerwD8CfdmMddHrJuW
+QtdHkVqKuD2OiurAWDrWSuXMWIdiEQ0=
+=4008
 -----END PGP SIGNATURE-----
 
---4KbVf9V6PzgtCt0H--
+--iJ0kmrmEVtt0EMQV--
 
