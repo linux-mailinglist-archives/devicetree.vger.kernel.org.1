@@ -1,218 +1,317 @@
-Return-Path: <devicetree+bounces-218569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD65B81AE7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:48:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A74DB81B74
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 22:07:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7BD81C248FB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FF0A4668A9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 20:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26EA279789;
-	Wed, 17 Sep 2025 19:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66400279DA1;
+	Wed, 17 Sep 2025 20:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GpD6o0Yw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BzJBJu0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F2E1B3935
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A8B271468
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 20:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758138494; cv=none; b=eJZ92TRinItYRG+iReFaLbPlCj9GpGzQlcwVrkYiQ8CjOVkVjgBheTehYpmEO3um0TYDY6YsyP2K9Y0XClonfNYN+UvspJDKXT2/IlYk1GaYZVbQyOFZSdmDg28F/Q5weBWn7EgPAuIAp2bKbdjgvRqDagpIWvn6GErHf5uB+Jg=
+	t=1758139619; cv=none; b=rx8ReIK5h6vX4LY8WmP5OCAq88QqLgFYinOfFp/S5EsKZIHcMOFL8RMtG97y+OCTYs/Ycv8e2vpAIy/s0Z0JYilR1It0bBY8IoCllRw9jylx7ExwU0WALvgcNUg3XYGYGV7EBgidUDJnCD/Qb/GX/ueo+ipsjW9IRlxoMHBIWjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758138494; c=relaxed/simple;
-	bh=gc4XDbpi/SHiw+dIuM7XRaag8prdni7GHABTYWIpL6w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nxN457VLRa7qM136m3PQ6bEhGIAkyUlJDQAatooEQojKC1lVM24PvBS/5RpV/RBvBJrOeKIm0O0UqGbA1PNrKZFFFQmgh7jnd0tVYtGaXSwUUtnuuFyzJBEg+6qwBqrC1RfYXIGZKBedD/voMN+q7Qz1RRFf8GWlavjpqzKBgKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GpD6o0Yw; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58HG0JUo021469
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:48:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jGYCeRo2Nm2iHZbBrOloUMVIcfNZlQpAwgAkvYACT7Q=; b=GpD6o0YwTSxSy0Kp
-	04CweAao7LR1ZHrx1wCp8sY5Upn/Pzu3m8eb59eHCO0wr16aN+J5Fzvw/1yJNn5z
-	sttNHbvb8I39/pBW1nbVJ4ymqDFODZIhD7wL7Kq9WStjHIHYcNtU4fJRsKm+62Vs
-	H9LVkhTmZc8JzRsMT5Hu1k+J/qjmQKsLfnSvKsflWug0TP7r8DFnYGKwQcK+Va8r
-	TJtfNcm8wuNVEtlJuPzjj/wO+m7F2AUCaOFXHXmYogr36Mvpb7jlPMRIazSdFqM/
-	jYNja76a7NWsTxxhO0cnlJ8iQMo6B65f3qFaWjQHxJZ4SrOK/Y9/5ijPTMmL39zi
-	Uh/gmg==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5bn69-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:48:11 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32eb18b5529so113276a91.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 12:48:11 -0700 (PDT)
+	s=arc-20240116; t=1758139619; c=relaxed/simple;
+	bh=uk0f/jb3Tj9XsJt8rx5PWMAF8eB/0DbZGV6iarNBAyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mMRAEAWOz9VVceWPBDheoPt01yVGiSY7IFrGPyCSZWWq1bCHVvEwU28MJPBzy0ttRbAkQUlwBY/uYkG6s7pknhgCSNDcit5v8c/o0s2OOVknSjGMKikDLl2O2UyTNYzf/PSNRUx31yiN9+9e9HAOMYw8FE1vS/P7wOGpabVM9Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BzJBJu0s; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b522fd4d855so165903a12.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 13:06:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758139617; x=1758744417; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nAoo4cL1dIYweQDzrk/O9/maigv0J12ua5s1T9IZZIQ=;
+        b=BzJBJu0sl7Ot/aa/y4ipoWenR7W1XYwuHfYqZRntlmHYFhwX1d1n5ISbGLOWg6MV9J
+         ILKXZL/dPEKBh6CN5osdjky9h7ZpWdH2CPtjJu29hjBfa9FjlFWneM3HN2jGlDB2lwQI
+         n6DfCO7u/99Od3MOivDB5HvXA58ZJahlptoVCxXm++yAb0A5jWNiity/l1nqYd+pL0rO
+         dhrYmt0yX+s70ypiurlJvni+34oWFTJpXZ16Pv64CMWx5aLkZL434OnfD4Acb/3j+c9+
+         RMP1bBIcny77PNWmtMUbinZfpMaU54hdMc7w3Q0dorKq8bLqF3KEVanjvMPRSXPjf/aA
+         smwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758138490; x=1758743290;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jGYCeRo2Nm2iHZbBrOloUMVIcfNZlQpAwgAkvYACT7Q=;
-        b=f9LZmYQGkQbbSpkBgYtXrb2tP2S2Z3b90IpirampWLSHqrbYJQ5UgU7qXDHRRuuWF8
-         jOmWmnIlr/1xmpRPwtDT8msUbg4Jg9d8kLyl/lU3irVhwbGFdzqqFMTSIxD9khAguwlf
-         eLxUlJBL9tlvPdVHJiWd48L8yWJ/RpbrmF+317G2zaaQLgNANB1VForkxaAYK2OXH5jd
-         cR8fmNEAP31b0KTXxMM0yReRh/aCgtpj729Nrk7nX8a1oHGG7PZnnabe7RF94IEeJToR
-         frpoNqL8eq3GElW/uY9Msg2t5fgAoOFZg5ZrWSHdNyv49qh35qTznzgSMNgoyHBO/yZo
-         1xSA==
-X-Forwarded-Encrypted: i=1; AJvYcCUifpFGYfjpOUwatBXqSZrdlMWe+j9THSCqFlYCPOQkkDrvZD11xh3MYR7p76j7vivKxv5xnbZZM07i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+y7sAyWmsNF5ddZvvWvvpdXmr7AAk29Uj9SHaQZYRr40p6mIv
-	guV5ly64e4H3Ea/eBFVPFBKRanHEk+JvfB8hs3e2EcbY+4NGECVNk3mIxz8XCyJfkI6B2LFuQOT
-	rXtXeE5XhH2iFXaVaYCF8wwdpPIGcbM3p2zCngve0YwawY/Pwu1Vxb/rJ171J2fAs
-X-Gm-Gg: ASbGncsuXJtDdSPmny4GMolN86rUaCOlw1zcVUZUClvnLHq5hyzKr2u/swTP3Aku20B
-	6LtVBXoubDF8esPcOvIawUvOUGm4Ts5yTUGfFPAWnjwOGaDffWCWiPPzcqid7yQboIOrH0YhtsH
-	x6daFvUSYagznBB5G4JGGPGKG/vgCr6puBnfFIXMr+UIIfXhYS9qze+TftCBmtaS4kUuyxgC8ho
-	a69ZOUseZXPiKbHRhsyRBDQZU/5Y3KxNdugr9VbEN28UY3Pf9dOFBOLeMEYvuT+uy1UGGN4lxRy
-	a+/k9AKHWeX1EdnRMX/GcNBDdnWgiURAhas4cphoq4rsUJQDFsMTQYozYkjLI31QH+uU2/8=
-X-Received: by 2002:a17:90b:1f84:b0:32e:64ca:e84e with SMTP id 98e67ed59e1d1-32ee3ef7071mr4546636a91.15.1758138490223;
-        Wed, 17 Sep 2025 12:48:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFNUj9iiTkIiBdyuwHV1qhUP3oLhWgJBvCsq76MF3fHoniGNQ6FCUfXLye/WwI6WYVKAKakdA==
-X-Received: by 2002:a17:90b:1f84:b0:32e:64ca:e84e with SMTP id 98e67ed59e1d1-32ee3ef7071mr4546578a91.15.1758138489768;
-        Wed, 17 Sep 2025 12:48:09 -0700 (PDT)
-Received: from [10.216.40.15] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77cfec3f454sm199284b3a.75.2025.09.17.12.47.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 12:48:09 -0700 (PDT)
-Message-ID: <47f7a917-3bb6-4331-8813-49f6646333e5@oss.qualcomm.com>
-Date: Thu, 18 Sep 2025 01:17:58 +0530
+        d=1e100.net; s=20230601; t=1758139617; x=1758744417;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nAoo4cL1dIYweQDzrk/O9/maigv0J12ua5s1T9IZZIQ=;
+        b=ROVxy0MpoN4fS3fe6TlyF56MmYIWktU9HBcO19liMgJA1aKotrs1gmToAJBXQTHr5Q
+         8WnUz9U7pF+S65j6BZRoDvWWzjYQs4SUCGof5Jjz1ImTsTD1vs8t/5SXVsc2ZCE/8ORq
+         2Owha6nQUI7K3ihazGnjh/c1EzYaWDDbijpMU3JAH2tqzEMZPqG9FEUFp7m8ShEZQaNb
+         aQ8NTwQo9eWtbsUvicwcptidXsFZLuta4jg9vQaLOOZcb33wVacWvvpIRxSCLwMhmpF4
+         XXLpxqVw1AcRQW5hoFVv6fnVsKrKlWJeDTDwTsB+P/OnhYmhiH8L7Vfu7Aw0aaRskk8R
+         6ISw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8DTH0+IrpQdsGsOnqugVzSG2OvIqtO27o34xTU+P2NlzuQWLn+hQNkGsW+dBwCRR6NUTk9yTnh9KP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPxo/+HQB4YKo0apOQ6TRYdetTEDh8iNlUIEvFEdUfvbYMQzv0
+	ilCdFFdVzRgzdqE1WOVAR15xDPskpXKGTO/g7jadiyhsFDwxy1ZSCrh3
+X-Gm-Gg: ASbGncvjHuIaROVynniSNf1ckOsplabHbBk4j7xfnOrdE+j/OoeWXJv3sq4G9AUu7GT
+	I9sbH20WOjzbb8k9pRAgYAXQbPeGbMXrz9QEtAUwTzmLL0p/XLTnox4arlx8W/h9f9NaZuaqhQa
+	DPC2wubi9nk4gC1IihD7XU83pJopiYoEh96G1NLW6L6l5iV7gpV+fTVMmHNPX0Q0aJnl9IZiPUY
+	p0sLN4My1Vvl0UTHEbnrC4FRIGysYjO1gD/2KU3qeyKYkSI9FCh7ctWoMYuqw4OGrBchZQXQSTk
+	YLA62LF3lsIHqoNRUxI1gFCbPLTSpqzjw9Mk6Xci4Q4zIRmROY7pWttmRNZdjbqlXgKK0wqEf1+
+	1I8PZ9OPt+SroMkj79xFSVeMnllxaiKBgUHRuOM7r5w==
+X-Google-Smtp-Source: AGHT+IH4ljt2vti7NSBWoLRl1Y3YBR7ak2BF6N3DsrRX2rCMF4AUdMIoGbFRGc1NosrFKmMz+WdEHw==
+X-Received: by 2002:a17:903:2c7:b0:264:567b:dd92 with SMTP id d9443c01a7336-26813e02d08mr43177195ad.52.1758139616771;
+        Wed, 17 Sep 2025 13:06:56 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:c3d9:b11c:3856:2d3a])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698035cd39sm3762225ad.146.2025.09.17.13.06.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 13:06:56 -0700 (PDT)
+Date: Wed, 17 Sep 2025 13:06:53 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
+	linux-samsung-soc@vger.kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] Input: s6sa552 - add a driver for the Samsung
+ A552 touchscreen controller
+Message-ID: <zh2cvvhvdklwnrnhmzsgajk5ryk7gwd5sayde656ddysi53d7b@frw2ph3opmoe>
+References: <20250914134458.2624176-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250914134458.2624176-3-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V7 5/5] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
-        lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
-        amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
-        rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
-        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
-        lukasz.luba@arm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
-        neil.armstrong@linaro.org, stephan.gerhold@linaro.org
-References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
- <20250826083657.4005727-6-jishnu.prakash@oss.qualcomm.com>
- <20250830185809.5bc010cb@jic23-huawei>
-Content-Language: en-US
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <20250830185809.5bc010cb@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: -hQSlxnvZ6pF4B_k-WkqGzzsNRipqL78
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfXwmoSyEO4jWBw
- 5BYtrp32vtCmrpMC/Y6w5rAFZ/zXI828i3GyRm5iT3NzOgueil8MIGMtVoI7uHma89SkfbYlfbZ
- AE0RHSqIdrY+JtGeH3G4cuH8DDEo3zkbHLmPXyv17Wju6ttQTEAXUrRkOtd7uLwhtSCjEdp66eB
- Bgssf5HFoc8WKFbrb5xZQJ8MQZtXa4g16wlgHhzKV7M4i2PzhbedGzE7B/N5rSWVw3AqKALDNDp
- 8pW/YitvYLL/0dsfCI+IM6qN/lG6SIaKYlZNOehfxVCVv7Z/RKJ4nH0k6eRKYDzVPa0IMHh/MWI
- 8a7QstVWSzxIXd4J59DjEWTNm5dfQK4+x6EZgZ6K+g/ICA13Dl8PTwFWn7a36udMbReE3Em/oBa
- o2OyTZsG
-X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cb107b cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=-qQjPGFekNv0xv3-IhUA:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: -hQSlxnvZ6pF4B_k-WkqGzzsNRipqL78
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250914134458.2624176-3-ivo.ivanov.ivanov1@gmail.com>
 
-Hi Jonathan,
+Hi Ivaylo,
 
-On 8/30/2025 11:28 PM, Jonathan Cameron wrote:
-> On Tue, 26 Aug 2025 14:06:57 +0530
-> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+On Sun, Sep 14, 2025 at 04:44:57PM +0300, Ivaylo Ivanov wrote:
+> The S6SA552 touchscreen is a capacitive multi-touch controller for
+> mobile use. It connects via i2c at the address 0x48.
 > 
->> Add support for ADC_TM part of PMIC5 Gen3.
->>
->> This is an auxiliary driver under the Gen3 ADC driver, which implements the
->> threshold setting and interrupt generating functionalities of QCOM ADC_TM
->> drivers, used to support thermal trip points.
->>
->> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> Hi Jishnu,
+> Introduce a basic driver, which can handle initialization, touch events
+> and power states.
 > 
-> A few comment inline from a fresh read
-> 
-> Jonathan
-> 
-> 
+> At least the firmware for this IC on Galaxy S7 differs from S6SY761
+> in register layout and bits, as well as some missing registers/functions,
+> for example for retrieving the max X/Y coordinates and the amount
+> of TX/RX channels.
 
-...
+I am not sure why you are using runtime PM in the driver, given that you
+enable it on probe and disable it in remove and otherwise do not touch.
 
->> +
->> +	adc_tm5->dev = dev;
->> +	adc_tm5->dev_data = aux_dev_wrapper->dev_data;
->> +	adc_tm5->nchannels = aux_dev_wrapper->n_tm_channels;
->> +	adc_tm5->chan_props = devm_kcalloc(dev, aux_dev_wrapper->n_tm_channels,
->> +					   sizeof(*adc_tm5->chan_props), GFP_KERNEL);
->> +	if (!adc_tm5->chan_props)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < adc_tm5->nchannels; i++) {
->> +		adc_tm5->chan_props[i].common_props = aux_dev_wrapper->tm_props[i];
->> +		adc_tm5->chan_props[i].timer = MEAS_INT_1S;
->> +		adc_tm5->chan_props[i].sdam_index = (i + 1) / 8;
->> +		adc_tm5->chan_props[i].tm_chan_index = (i + 1) % 8;
->> +		adc_tm5->chan_props[i].chip = adc_tm5;
->> +	}
->> +
->> +	ret = devm_add_action_or_reset(dev, adc5_gen3_disable, adc_tm5);
-> 
-> I'd normally expect a pairing of a devm action with whatever it is undoing.
-> If not add a comment for why that isn't the case here.
+If you want to use it then you should probably call runtime_pm_get() and
+runtime_pm_put() from open()/close() methods instead of toggling power
+directly.
 
-This is meant to disable all ADC_TM channels in case of a probe failure.
+[...]
 
-But thinking more on it, ADC_TM channels could be enabled only by the thermal
-framework calling the .set_trip function and that could happen only after
-this line at the end of the probe, for thermal framework registration:
+> +
+> +static void s6sa552_input_close(struct input_dev *dev)
+> +{
+> +	struct s6sa552_data *sdata = input_get_drvdata(dev);
+> +	int ret;
 
-        return adc_tm5_register_tzd(adc_tm5);
+	int error;
 
-So I think it makes more sense to move this call to near the end of the probe
-and to make it devm_add_action() instead of devm_add_action_or_reset(). I'll
-also add a comment mentioning what it does.
+> +
+> +	ret = i2c_smbus_write_byte(sdata->client, S6SA552_SENSE_OFF);
+> +	if (ret)
+> +		dev_err(&sdata->client->dev, "failed to turn off sensing\n");
+> +}
+> +
+> +static ssize_t s6sa552_sysfs_devid(struct device *dev,
+> +				   struct device_attribute *attr, char *buf)
+> +{
+> +	struct s6sa552_data *sdata = dev_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%#x\n", sdata->devid);
+> +}
+> +
+> +static DEVICE_ATTR(devid, 0444, s6sa552_sysfs_devid, NULL);
+> +
+> +static struct attribute *s6sa552_sysfs_attrs[] = {
+> +	&dev_attr_devid.attr,
+> +	NULL
+> +};
+> +ATTRIBUTE_GROUPS(s6sa552_sysfs);
+> +
+> +static int s6sa552_power_on(struct s6sa552_data *sdata)
+> +{
+> +	u8 buffer[S6SA552_EVENT_SIZE];
+> +	int ret;
 
-I'll also address all your other comments in the next patch series.
+	int error;
 
-Thanks,
-Jishnu
+Use "error" for storing error values from APIs that return negative or
+0. For APIs that also return real values "ret" is fine.
 
-> 
->> +	if (ret)
->> +		return ret;
->> +
->> +	INIT_WORK(&adc_tm5->tm_handler_work, tm_handler_work);
-> 
->> +}
->> +
->> +static const struct auxiliary_device_id adctm5_auxiliary_id_table[] = {
->> +	{ .name = "qcom_spmi_adc5_gen3.adc5_tm_gen3", },
->> +	{}
-> 
-> For IIO drivers I'm trying to slowly standardize some formatting choices.
-> For these I picked (for no particular reason)
-> 	{ }
-> 
->> +};
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(sdata->regulators),
+> +				    sdata->regulators);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msleep(140);
+> +
+> +	/* double check whether the touch is functional */
+> +	ret = i2c_smbus_read_i2c_block_data(sdata->client,
+> +					    S6SA552_READ_ONE_EVENT,
+> +					    S6SA552_EVENT_SIZE,
+> +					    buffer);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (buffer[0] != S6SA552_EVENT_TYPE_ACK ||
+> +	    buffer[1] != S6SA552_EVENT_ACK_BOOT) {
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = i2c_smbus_read_byte_data(sdata->client, S6SA552_BOOT_STATUS);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* for some reasons the device might be stuck in the bootloader */
+> +	if (ret != S6SA552_BS_APPLICATION)
+> +		return -ENODEV;
+> +
+> +	/* enable touch functionality */
+> +	ret = i2c_smbus_write_byte_data(sdata->client,
+> +					S6SA552_TOUCH_FUNCTION, 0x01);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mdelay(20); /* make sure everything is up */
+> +
+> +	return 0;
+> +}
+> +
+> +static int s6sa552_hw_init(struct s6sa552_data *sdata)
+> +{
+> +	u8 buffer[S6SA552_DEVID_SIZE];
+> +	int ret;
+> +
+> +	ret = s6sa552_power_on(sdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = i2c_smbus_read_i2c_block_data(sdata->client,
+> +					    S6SA552_DEVICE_ID,
+> +					    S6SA552_DEVID_SIZE,
+> +					    buffer);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	sdata->devid = get_unaligned_be16(buffer + 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static void s6sa552_power_off(void *data)
+> +{
+> +	struct s6sa552_data *sdata = data;
+> +
+> +	disable_irq(sdata->client->irq);
+> +	regulator_bulk_disable(ARRAY_SIZE(sdata->regulators),
+> +			       sdata->regulators);
+> +}
+> +
+> +static int s6sa552_probe(struct i2c_client *client)
+> +{
+> +	struct s6sa552_data *sdata;
+> +	int err;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
+> +						I2C_FUNC_SMBUS_BYTE_DATA |
+> +						I2C_FUNC_SMBUS_I2C_BLOCK))
+> +		return -ENODEV;
+> +
+> +	sdata = devm_kzalloc(&client->dev, sizeof(*sdata), GFP_KERNEL);
+> +	if (!sdata)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, sdata);
+> +	sdata->client = client;
+> +
+> +	sdata->regulators[S6SA552_REGULATOR_VDD].supply = "vdd";
+> +	sdata->regulators[S6SA552_REGULATOR_AVDD].supply = "avdd";
+> +	err = devm_regulator_bulk_get(&client->dev,
+> +				      ARRAY_SIZE(sdata->regulators),
+> +				      sdata->regulators);
+> +	if (err)
+> +		return err;
+> +
+> +	err = devm_add_action_or_reset(&client->dev, s6sa552_power_off, sdata);
+> +	if (err)
+> +		return err;
+> +
+> +	err = s6sa552_hw_init(sdata);
+> +	if (err)
+> +		return err;
+> +
+> +	sdata->input = devm_input_allocate_device(&client->dev);
+> +	if (!sdata->input)
+> +		return -ENOMEM;
+> +
+> +	sdata->input->name = S6SA552_DEV_NAME;
+> +	sdata->input->id.bustype = BUS_I2C;
+> +	sdata->input->open = s6sa552_input_open;
+> +	sdata->input->close = s6sa552_input_close;
+> +
+> +	input_set_abs_params(sdata->input, ABS_MT_POSITION_X, 0, S6SA552_MAX_X,
+> +			     0, 0);
+> +	input_set_abs_params(sdata->input, ABS_MT_POSITION_Y, 0, S6SA552_MAX_Y,
+> +			     0, 0);
+> +	input_set_abs_params(sdata->input, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+> +	input_set_abs_params(sdata->input, ABS_MT_TOUCH_MINOR, 0, 255, 0, 0);
+> +	input_set_abs_params(sdata->input, ABS_MT_PRESSURE, 0, 255, 0, 0);
+> +
+> +	touchscreen_parse_properties(sdata->input, true, &sdata->prop);
+> +
+> +	if (!input_abs_get_max(sdata->input, ABS_X) ||
+> +	    !input_abs_get_max(sdata->input, ABS_Y)) {
+> +		dev_warn(&client->dev, "the axis have not been set\n");
+> +	}
+> +
+> +	err = input_mt_init_slots(sdata->input, S6SA552_TX_CHANNELS,
+> +				  INPUT_MT_DIRECT);
+> +	if (err)
+> +		return err;
+> +
+> +	input_set_drvdata(sdata->input, sdata);
+> +
+> +	err = input_register_device(sdata->input);
+> +	if (err)
+> +		return err;
+> +
+> +	err = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+> +					s6sa552_irq_handler,
+> +					IRQF_TRIGGER_LOW | IRQF_ONESHOT,
 
+Do not hardcode trigger type, just use IRQF_ONESHOT.
+
+> +					"s6sa552_irq", sdata);
+> +	if (err)
+> +		return err;
+> +
+> +	pm_runtime_enable(&client->dev);
+> +
+> +	return 0;
+> +}
+
+Thanks.
+
+-- 
+Dmitry
 
