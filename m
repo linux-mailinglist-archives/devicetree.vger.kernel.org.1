@@ -1,263 +1,227 @@
-Return-Path: <devicetree+bounces-218160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CB0B7E1C0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:42:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED6AEB7F5F2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D2F117EA09
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 03:12:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ED385270C6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 03:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CBE2F3C05;
-	Wed, 17 Sep 2025 03:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A62E25FA34;
+	Wed, 17 Sep 2025 03:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oGwtjH0E"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DiFT5vEg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5572D7809
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEE01D5147;
+	Wed, 17 Sep 2025 03:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758078734; cv=none; b=fU04yF2u3Ha8IzV2KeB96HK/XCIB8m2u+i3CN67HKScG0S2p6gdgRlgMMjN+L1kffxPVyYZDbRXh8mNf8qSNHXiWZnNY6YWF1kepWQzYP0gsb5ybf3xVDKb1oj4R5HwPsJ/VeKzAkKq6gATi0tfa/P3LkLhMayykxShl3VaGfos=
+	t=1758080263; cv=none; b=o+74dBeDNYXL0ID+wkaHxQp3OAfsynEhcCamzf9pZaOJ972OtLmoUy4Z19uLMhsDJMVsQ5qnfb24tu5DkcgaXHc4DDaGpjvOxSc26U81gHxPb6FC/fdin8gRLGxTBpium3YWaDP5yfNggSBTGnel/J2w71iA8XkN2E+bhT9mjpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758078734; c=relaxed/simple;
-	bh=HGk0zHkNVuTcetYNXMVhF4YwwhvGPgQMOA5eFKT2YJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
-	 In-Reply-To:Content-Type; b=lbx/+2x1ZsE2CHyNTOLEyVMnGN/QHBcmi2H2CMeygj2NQ88p2PvGAFoxmD5ODX6apviMbMDDpk7Hv3E1BqRz+IHjG+Z52lOflNsZAYoJo7tWIe1knGSeB1xJB2ePc7VP7pbigpvSltez8BOjw3JvVmfOaJ9AGMc6RTu1vMD5uyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oGwtjH0E; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58GLZlMa017840
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:12:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bIG1bOtImKnLmFSkvvJht6cuFZCgJS/l0Y73y0ey89k=; b=oGwtjH0Exgc4HJZ6
-	4LNgPy8k8wroe0yLplggfurthr8oAqn+Q5FKJ4OOs3YhWK5oqUa2JBku4nkVvU0i
-	cJMyidg0zNEdY520cjzriTQbt0TqdqNqr2WAP8bZUEDvUBlYXfjL3DcpsPpd40c4
-	/+W8LN8RH+Xzek48UJ3TraPDYOYWtbLh4GgwV/2uXEB9PeAZs/jFr6C3FhkehRXy
-	2mN2Qh+ObGJCWPmJJqTBCL43ZV2On770JPd+twZYZ3JTWixuyCgojwRbFPx3IQ2N
-	plMVPYcgdC2iGVnDL3c7BA2nmSolMByIediv0ySurzfJZ3DgERht8OkFvJheT90e
-	pepmUQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxt0ptm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:12:11 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2445806b18aso60298795ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 20:12:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758078731; x=1758683531;
-        h=content-transfer-encoding:in-reply-to:from:cc:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bIG1bOtImKnLmFSkvvJht6cuFZCgJS/l0Y73y0ey89k=;
-        b=OnP+60nfr20iwZ2hbE2dQoToSsRY0HQPTPBGSY5VV2P118/d4zexN9jK59RWXJKCfG
-         LbzCutujESRBUmLNb3ogZjWQ0DdyIY4VyRSl9pSxJZp/Gc0XS9u69Vv8yrzsGu0mrWWq
-         KsDUAHJPI8V7SW5dAkOeRQAYhDQ9lfk1YTsMb+mdGYFWMSJOQv6mF9Mysi5TfxwVLXZi
-         CZzDXB+F05D8jNsLs8IgO5Qv89jGf/IoR4P0/mVT52qVj1kPGJAKO+m/R5+U49Tg4Zw5
-         Wdc3LOg3IbMFTo6J5NpgSrQwij2ihMOPjH1aiEZjwD/zrDCjDo3Sc4Xfxb4iqqZ2QFob
-         o2kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOO5tkJOdp0fGOo0h2t+lI0wPVCKYZ781dhJKtqix+HhaKPQMP3P/d71LgtxtOklgaajgyeOOGiwwt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFQBPYR4AZkWNPKw+dDtn8venadHKfWdrLCO7ZGzdeoOUKgHoa
-	LuZAKKKb901xR2Dn2fspCJDBjezla+eDIBVxzWGce42Kg9x/yweoIFSB+eWGxLV6KoSlea7QcCk
-	CkWKcXBL7Zz9ASiJwx0iUWha/sWFbKFPb29PtvZDZyK1MVAxoS3P0RNDKX7UvodBn
-X-Gm-Gg: ASbGncvkbKf7Wf/uPDOQ8SsI0wEkpC1IMP7B3qd+7ZixlHhYsHhkR/Nkmrh8XEosJkS
-	LstvYkpd0psEGdevbCoxr0NZz+BVNyTBRnUXvOREJvD53qgj2CsSwu8QHywetHFSAgScoqwScnk
-	ctCCt2TKiEwnNuC0SPPnRamljptjZanoV66tTl2CzPqfNUADFDNCzkMTcu9vStZ0/Y6q+sT5Sp2
-	gKgQqmPKqmrnl+mW0k4p5i9akjZjPFzVMFveRzEg6YUSmvtkuugRJiuCJH4AkPrTM317bQAINs2
-	I1mM/HsnpvH46mznWd5gQKLmVIVCyr7L3yRTr++oNzi/P7XkbpL90h2Xoi92mkQAyaCqhJFXxHp
-	qrHpiLoyVVwvCVuiaM+2PU5sqj9FfbB0YXEw2B0I=
-X-Received: by 2002:a17:903:b0b:b0:264:a34c:c6d with SMTP id d9443c01a7336-268137f2232mr5877095ad.37.1758078730932;
-        Tue, 16 Sep 2025 20:12:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHBCLcKRApHcGH30xII8GXUVK5/XOxilDiSXJooBQ2zL0Io8pE34P9hJiDzte0TVak6qxwcsA==
-X-Received: by 2002:a17:903:b0b:b0:264:a34c:c6d with SMTP id d9443c01a7336-268137f2232mr5876785ad.37.1758078730453;
-        Tue, 16 Sep 2025 20:12:10 -0700 (PDT)
-Received: from [10.133.33.235] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25c36cc6abcsm176125835ad.16.2025.09.16.20.12.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Sep 2025 20:12:10 -0700 (PDT)
-Message-ID: <634a38d3-0a20-471d-bc39-44a822df00dd@oss.qualcomm.com>
-Date: Wed, 17 Sep 2025 11:12:04 +0800
+	s=arc-20240116; t=1758080263; c=relaxed/simple;
+	bh=QpIzzmoiyjFzmUV5nFkRfpf05E6kPAgObYxnWHjp9K8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dfdv8AB5J24VzG0J2nSVklEsK27Vf2Te1yqp4RsEOKHz01jVSByCbfS8Q75D2/7kJkv7LtFNMfNPjyiMKnXSR+Qquy2J9hC+rQ2Jo3C7hbvCzpt2+cLk3BANHpGRDaFlO+WYH92BXvBGCYdrAXq2ayjg8AzorHpdk4MYAWxBD/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DiFT5vEg; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758080260; x=1789616260;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QpIzzmoiyjFzmUV5nFkRfpf05E6kPAgObYxnWHjp9K8=;
+  b=DiFT5vEgApYtQFX0fEn7rMX7q84S1GdMb+RNiPkhPwj2To1ja1SAf4FK
+   9Nn8G+nqus5g1+ag1KX0FPjnR9RWcfBLJRMhsjkgmkmv/24h//H/NMFal
+   kywUh63gaPL8WBNDZ0Fm9SA068+0Ns6XR52AwzoxF7FO5jT9ih12UuBif
+   nLxTHUQVUmOce4LxTsFmIK0SFneZFGt7n73prsMVW9rneXTTn4cgU6qDd
+   5Odjj2E7VcjaTNMkpNcgScy6fimNXJ7+KL7n+WIEFRK0FCC1nBZgPhxYF
+   sKRpSPNg4sl+x84FbCu4zkChyZaqIFSHhUUkHr/7VNm7ZQ4riszGWt/mW
+   A==;
+X-CSE-ConnectionGUID: qg+s1tG/S/yyacGIqdZcrQ==
+X-CSE-MsgGUID: h0KfdJuGTcO14Fx8XEg6Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71741189"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; 
+   d="scan'208";a="71741189"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2025 20:37:39 -0700
+X-CSE-ConnectionGUID: ut4duC27SRigilgrF4A0MQ==
+X-CSE-MsgGUID: BIvNzQaMR3i/HH9X1fbcUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; 
+   d="scan'208";a="175214302"
+Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 16 Sep 2025 20:37:35 -0700
+Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uyiz7-00011H-0y;
+	Wed, 17 Sep 2025 03:37:33 +0000
+Date: Wed, 17 Sep 2025 11:37:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH 2/5] leds: rgb: Add Virtual Color LED Group driver to Make
+Message-ID: <202509171109.7rJrwT7i-lkp@intel.com>
+References: <20250916110217.45894-2-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] coresight-tnoc: Add support for Interconnect TNOC
-To: Mike Leach <mike.leach@linaro.org>
-References: <20250831-itnoc-v4-0-f0fb0ef822a5@oss.qualcomm.com>
- <f9d3b3ec-dcf1-42ce-b925-70e5543771ed@oss.qualcomm.com>
- <CAJ9a7Vivhrx2zss_8Ti+QS1dzakp+4CrAsDj00RKojUaL_t7Sg@mail.gmail.com>
-Content-Language: en-US
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>, coresight@lists.linaro.org,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        kernel@oss.qualcomm.com, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Leo Yan <leo.yan@arm.com>
-From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
-In-Reply-To: <CAJ9a7Vivhrx2zss_8Ti+QS1dzakp+4CrAsDj00RKojUaL_t7Sg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: BuZpRWuefbBeoDoaGAJ9wV1edIP5CRYb
-X-Authority-Analysis: v=2.4 cv=bIMWIO+Z c=1 sm=1 tr=0 ts=68ca270b cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=WTqQPv3OPy9EuyCnVQMA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX4E306CcKR/IU
- BVrjaXaSu5NUMe5n/aqMN69jFRe8kybE/mvH2I8qEmbbEicFuo9ymfS8JjiWoUWGha6wz3+yvTj
- bBMWMRYzQ0yAQkvAHYyCwHh98yn/ON+q0NgwYzb0t8s2b9szsvdQEmuHH+kkqXq+8l83Nca4O80
- SzqHKpdiMC2fpTYjjmvdUjQRn9n9z+0vILTc6l2v0NItQJACDtAAMUMkQuslm1SBALK8oDcTsvQ
- MQloMTdxPR/HATDRz7igzgXfCeUiqWkjWGa2UtvrbYa58Sp2PRRW+ikBTYs0lVpLsTuHl+By6RJ
- c4Ol+M0V7rcKtxbizfBMqLUMjtKuvcZlebNswt7/CI2xTzgaEN6Wv5X7ENX/W81BxaKKguK5iWT
- jk6UA4eJ
-X-Proofpoint-ORIG-GUID: BuZpRWuefbBeoDoaGAJ9wV1edIP5CRYb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-16_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250916110217.45894-2-professorjonny98@gmail.com>
+
+Hi Jonathan,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on lee-leds/for-leds-next]
+[also build test WARNING on robh/for-next linus/master v6.17-rc6 next-20250916]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/leds-rgb-Add-Virtual-Color-LED-Group-driver-to-Make/20250916-190606
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20250916110217.45894-2-professorjonny98%40gmail.com
+patch subject: [PATCH 2/5] leds: rgb: Add Virtual Color LED Group driver to Make
+config: i386-randconfig-012-20250917 (https://download.01.org/0day-ci/archive/20250917/202509171109.7rJrwT7i-lkp@intel.com/config)
+compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250917/202509171109.7rJrwT7i-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509171109.7rJrwT7i-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/leds/rgb/leds-group-virtualcolor.c: In function 'leds_virtualcolor_init_vled':
+   drivers/leds/rgb/leds-group-virtualcolor.c:254:28: error: implicit declaration of function 'of_led_get'; did you mean 'of_node_get'? [-Werror=implicit-function-declaration]
+     254 |                 led_cdev = of_led_get(child, i);
+         |                            ^~~~~~~~~~
+         |                            of_node_get
+>> drivers/leds/rgb/leds-group-virtualcolor.c:254:26: warning: assignment to 'struct led_classdev *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     254 |                 led_cdev = of_led_get(child, i);
+         |                          ^
+   cc1: some warnings being treated as errors
 
 
+vim +254 drivers/leds/rgb/leds-group-virtualcolor.c
 
-On 9/16/2025 9:00 PM, Mike Leach wrote:
-> Hi,
-> 
-> I'm a little confused as to precisely what this component is.
-> 
-> From the description in the DT - it appears to be very much like a
-> static trace funnel - multiple inputs, and a single output.
-> The DT describes the inputs as "Coresight Trace". What is meant here?
-> - if this is ATB trace then this component is identical to the
-> coresight trace funnel in functionality so should probably use the
-> normal CS static funnel driver.
-> 
-> However - if it does not appear on the AMBA bus - how are the
-> coresight management registers read - these are a mandatory
-> requirement in the CoreSight specification for any coresight
-> compatible component?
-> 
-> Thanks
-> 
-> Mike
-> 
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  217  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  218  static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  219  				       struct virtual_led *vled, struct leds_virtualcolor *vc_data)
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  220  {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  221  	struct fwnode_handle *child_fwnode = of_fwnode_handle(child);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  222  	struct led_init_data init_data = {};
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  223  	u32 blink_interval;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  224  	u32 phandle_count;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  225  	u32 max_brightness;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  226  	int ret, i;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  227  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  228  	ret = of_property_read_u32(child, "priority", &vled->priority);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  229  	if (ret)
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  230  		vled->priority = 0;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  231  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  232  	ret = of_property_read_u32(child, "blink", &blink_interval);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  233  	if (!ret) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  234  		vled->blink_delay_on = blink_interval;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  235  		vled->blink_delay_off = blink_interval;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  236  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  237  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  238  	phandle_count = fwnode_property_count_u32(child_fwnode, "leds");
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  239  	if (phandle_count <= 0) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  240  		dev_err(dev, "No monochromatic LEDs specified for virtual LED %s\n",
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  241  			vled->cdev.name);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  242  		return -EINVAL;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  243  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  244  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  245  	vled->num_monochromatics = phandle_count;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  246  	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  247  					    sizeof(*vled->monochromatics), GFP_KERNEL);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  248  	if (!vled->monochromatics)
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  249  		return -ENOMEM;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  250  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  251  	for (i = 0; i < vled->num_monochromatics; i++) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  252  		struct led_classdev *led_cdev;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  253  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16 @254  		led_cdev = of_led_get(child, i);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  255  		if (IS_ERR_OR_NULL(led_cdev)) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  256  			/*
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  257  			 * If the LED is not available yet, defer the probe.
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  258  			 * The probe will be retried when the it becomes available.
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  259  			 */
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  260  			if (PTR_ERR(led_cdev) == -EPROBE_DEFER || !led_cdev) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  261  				return -EPROBE_DEFER;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  262  			} else {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  263  				ret = PTR_ERR(led_cdev);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  264  				dev_err(dev, "Failed to get monochromatic LED for %s, error %d\n",
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  265  					vled->cdev.name, ret);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  266  				return ret;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  267  			}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  268  		}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  269  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  270  		vled->monochromatics[i] = led_cdev;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  271  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  272  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  273  	ret = of_property_read_u32(child, "max-brightness", &max_brightness);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  274  	if (ret)
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  275  		vled->cdev.max_brightness = LED_FULL;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  276  	else
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  277  		vled->cdev.max_brightness = max_brightness;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  278  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  279  	vled->cdev.brightness_set_blocking = virtual_led_brightness_set;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  280  	vled->cdev.max_brightness = LED_FULL;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  281  	vled->cdev.flags = LED_CORE_SUSPENDRESUME;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  282  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  283  	init_data.fwnode = child_fwnode;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  284  	ret = devm_led_classdev_register_ext(dev, &vled->cdev, &init_data);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  285  	if (ret) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  286  		dev_err(dev, "Failed to register virtual LED %s\n", vled->cdev.name);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  287  		return ret;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  288  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  289  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  290  	ret = device_create_file(vled->cdev.dev, &dev_attr_priority);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  291  	if (ret) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  292  		dev_err(dev, "Failed to create sysfs attribute for priority\n");
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  293  		return ret;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  294  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  295  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  296  	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_on);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  297  	if (ret) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  298  		dev_err(dev, "Failed to create sysfs attribute for blink_delay_on\n");
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  299  		return ret;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  300  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  301  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  302  	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_off);
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  303  	if (ret) {
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  304  		dev_err(dev, "Failed to create sysfs attribute for blink_delay_off\n");
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  305  		return ret;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  306  	}
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  307  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  308  	vled->vc_data = vc_data;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  309  
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  310  	return 0;
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  311  }
+8ce5fa26ed391cb Jonathan Brophy 2025-09-16  312  
 
-Hi Mike,
-
-"Coresight Trace" means ATB trace, the Video TNOC in the following example is an interconnect TNOC.
-It is used to replace TPDA and Funnel. Compared to Funnel, it is easier to configure and only
-requires enabling once, without the need to enable each inport separately.
-
-it has "reg" parameter on DT, can use memory-map to read management registers.
-
-  +------------------------+                +-------------------------+
-  | Video Subsystem        |                |Video Subsystem          |
-  |       +-------------+  |                |       +------------+    |
-  |       | Video TPDM  |  |                |       | Video TPDM |    |
-  |       +-------------+  |                |       +------------+    |
-  |            |           |                |              |          |
-  |            v           |                |              v          |
-  |   +---------------+    |                |        +-----------+    |
-  |   | Video funnel  |    |                |        |Video TNOC |    |
-  |   +---------------+    |                |        +-----------+    |
-  +------------|-----------+                +------------|------------+
-               |                                         |
-               v-----+                                   |
-+--------------------|---------+                         |
-|  Multimedia        v         |                         |
-|  Subsystem   +--------+      |                         |
-|              |  TPDA  |      |                         v
-|              +----|---+      |              +---------------------+
-|                   |          |              |   Aggregator  TNOC  |
-|                   |          |              +----------|----------+
-|                   +--        |                         |
-|                     |        |                         |
-|                     |        |                         |
-|              +------v-----+  |                         |
-|              |  Funnel    |  |                         |
-|              +------------+  |                         |
-+----------------|-------------+                         |
-                 |                                       |
-                 v                                       v
-      +--------------------+                    +------------------+
-      |   Coresight Sink   |                    |  Coresight Sink  |
-      +--------------------+                    +------------------+
-
-       Current Configuration                            TNOC
-
-This example is from the trace noce patch below:
-https://lore.kernel.org/all/20250710-trace-noc-v11-0-f849075c40b8@quicinc.com/
-
-> On Tue, 16 Sept 2025 at 03:35, yuanfang zhang
-> <yuanfang.zhang@oss.qualcomm.com> wrote:
->>
->> Hi Suzuki,
->>
->> Could this patch series be applied? Is there anything I need to update?
->>
->> thanks,
->> yuanfang.
->>
->> On 9/1/2025 2:58 PM, Yuanfang Zhang wrote:
->>> This patch series adds support for the Qualcomm CoreSight Interconnect TNOC
->>> (Trace Network On Chip) block, which acts as a CoreSight graph link forwarding
->>> trace data from subsystems to the Aggregator TNOC. Unlike the Aggregator TNOC,
->>> this block does not support aggregation or ATID assignment.
->>>
->>> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
->>> ---
->>> Changes in v4:
->>> - Fix unintended blank line removals in trace_noc_enable_hw.
->>> - Link to v3: https://lore.kernel.org/r/20250828-itnoc-v3-0-f1b55dea7a27@oss.qualcomm.com
->>>
->>> Changes in v3:
->>> - Add detail for changes in V2.
->>> - Remove '#address-cells' and '#size-cells' properties from in-ports field.
->>> - Fix comment indentation for packet description.
->>> - Link to v2: https://lore.kernel.org/r/20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com
->>>
->>> Changes in v2:
->>> - Removed the trailing '|' after the description in qcom,coresight-itnoc.yaml.
->>> - Dropped the 'select' section from the YAML file.
->>> - Updated node name to use a more generic naming convention.
->>> - Removed the 'items' property from the compatible field.
->>> - Deleted the description for the reg property.
->>> - Dropped clock-names and adjusted the order of clock-names and clocks.
->>> - Moved additionalProperties to follow the $ref of out-ports.
->>> - Change "atid" type from u32 to int, set it as "-EOPNOTSUPP" for non-AMBA device.
->>> - Link to v1: https://lore.kernel.org/r/20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com
->>>
->>> ---
->>> Yuanfang Zhang (3):
->>>       dt-bindings: arm: qcom: Add Coresight Interconnect TNOC
->>>       coresight-tnoc: add platform driver to support Interconnect TNOC
->>>       coresight-tnoc: Add runtime PM support for Interconnect TNOC
->>>
->>>  .../bindings/arm/qcom,coresight-itnoc.yaml         |  90 ++++++++++++++
->>>  drivers/hwtracing/coresight/coresight-tnoc.c       | 136 +++++++++++++++++++--
->>>  2 files changed, 215 insertions(+), 11 deletions(-)
->>> ---
->>> base-commit: 2b52cf338d39d684a1c6af298e8204902c026aca
->>> change-id: 20250815-itnoc-460273d1b80c
->>>
->>> Best regards,
->>
-> 
-> 
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
