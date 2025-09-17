@@ -1,443 +1,227 @@
-Return-Path: <devicetree+bounces-218457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41AA8B805A7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:05:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F5AB80694
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:11:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4FD462D46
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:03:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81C691C26FA1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500CD37289C;
-	Wed, 17 Sep 2025 15:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D90330D32;
+	Wed, 17 Sep 2025 15:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IC9AdMtH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NlgIVplc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CA736C061;
-	Wed, 17 Sep 2025 15:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0360132E747
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 15:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758121248; cv=none; b=SQV7WpWnRuWMaIriLwtrENkOAh0BNvlJOoJpBtjGVlpSdLWrz75gxd32yRkTBM7wWYnBxHA0wYGum9mNLgII/41TnPq+hs14JOY5EiU90WSs5GC1anuM4BnwBFYAEX2VRsPPE+1o5M+FIWT+yCcYb9iVMc/uRQbojk0E3ClVzBo=
+	t=1758121358; cv=none; b=NLYoOa5RdO+9MGFh0lFw27saBsf06IlEexn5ANOE07Imjz8rp9mWhNFI32GjdqObmUbNuFSLva3ip/Uhc23MNClHLfv5mJR7E/xoXQXpq3pKCcWwjmTslWmLQUPbZQghKxpC1UNFSl1MSzusz3St2YcODaKT5X4aV2zf58o4mCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758121248; c=relaxed/simple;
-	bh=6DeGizyZIA3afK/7T64SltvBMy2M5KKOzGhFBzbG51s=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nZZeLkLrqwTsJ47YofXA8nn3NOYKCyjw/Mg6ZI8guhDfjgGu7Tfk+lF02zj6HFNTF821q9HudbO1oZNtuu9lzWntLYsACPwOqVnGKQxj2hMZQtG/uRxMloSx3O3Qd03InfR4zzpemH4jZ8lQZJMdRvXgDOq1QXHAgvTYb+9NfLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IC9AdMtH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E347FC4CEE7;
-	Wed, 17 Sep 2025 15:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758121247;
-	bh=6DeGizyZIA3afK/7T64SltvBMy2M5KKOzGhFBzbG51s=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=IC9AdMtH1NTKJCgNfV4PjeWazIArN918M3iAYzDdZpCmSyiEcn4HY3iW1a9R1NOc6
-	 V39uH648CYQt62LMyPJVQzzXM0QipgshekPUUa1xVTylOPo5kYYrovdLgBtT3u2hFP
-	 5+3QMBeMWr929lgV4/h9xnO+t9niPF9ohtxhXD+VTWmXasrVlw8IThwj8V7IMmTiQJ
-	 dKLf57vsY+KSzt2nU1CkpJ6uhBGrrzTykLkLalks4r7tJrMnS7035FMljS8u1Q5BaK
-	 tPFUyG9ns7wbxst3QY3HUSGm/6ti/WpBUE4apzIH+HW7dYgdgcFb9smcBgY4sgr92+
-	 ZZhyntTB38ncQ==
-Date: Wed, 17 Sep 2025 10:00:46 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1758121358; c=relaxed/simple;
+	bh=NK1NyMuEOj0ydYsGx4ZznjUDtoWvKqGQmTI9anPdlYg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IiaMaR7OuBIc/Jniwyjx6w4rF1j6m88JhyGJNa4K+zl0bnfPkeIUvpP61jiGywM8fZQ+P55t3hPWNa4snlUXd0E3a3mT939TlVm6c+4MGuSKWVeEMs/qGfXGSpXX/i+eLKj7T1dO2JLnVezeEiAWxtkBaOqaBPLNWQPU4r7ziAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NlgIVplc; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-62105d21297so13142604a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:02:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758121354; x=1758726154; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lIUjmKGGbQEJsCoFeZig1jDOJNxeqR+9vgxX7Gkos/k=;
+        b=NlgIVplccLGOuDvQmoD4tVOjPq2CsNCms1DDKVBojv/PLJ1rVg3DGM6XZkhVJnsYmV
+         ul8erHnVNPhBNr0BJIO+Os3+qzQpLhm9jyqF+GPasH/tz4iuaK3w3OTpS+U9lgOWA/iq
+         H8ycdarrSInpy3Q2CHPukpaJHnCWmfwZ1ORjaUJWA2aE8vOAWnCEYUo/HuZtzQt2GuCM
+         aOzkR1kl31hdOmKUf4OdjuV+k5MwtW2gDdtS51/9NJOjPdmwVgSYsRXZgWGY8H702CO6
+         qtIKva4qwKkhl0q5flGlrcJOiMLFDLZk+Y8SZ0QFs0zCJT1yu//wga1S0/8x1Ti7eGej
+         IuTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758121354; x=1758726154;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lIUjmKGGbQEJsCoFeZig1jDOJNxeqR+9vgxX7Gkos/k=;
+        b=LD+jXcMs3Bhd73GTzJm4lYDesuRvBlTbctdePTOdp9W7gFy78hzlSttxzvzpVAryZQ
+         nXiuQU9JzpVbZo2wJgwBt/7+SiCGwvT+RSDYexNOVMRtKylPVMzltqfqN+LeNDkQIvVb
+         rlLWqjUXnjlrmGhxOje3/SdodPVEoZ5Vma4YQ4qev6AUEZzrFQQKGVm3EJx9fT6H7CTJ
+         GtMa3QBk94CwLYGF66O6Lsn6om2hSNYvY+TfgCn7q2+uLYxmMswpcA4+lMPzMSOWXHEQ
+         MraktgrVTesHllrTZVso523KWflxYRmtvNR2gd1UyOGTT6tMYBnnhjmA+EhtLqOytB8m
+         BUxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPMFCG1hjrJjzLzZPtG2D5S8sMs9kQ0BUkO8ufee+0c5lWS7mbfJjFgd+t1Qrn3LiohowggbOblzOb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzdtm+2UJRx+groHejFN/mxtemcxsmR/bgATiS3kh4omnXJLegQ
+	e9LSLO6ZkfOWZYlNoUzomh6WNZeKNfuV17YHQUJkObdTiVmlpJfaoXWRgv3VXH73nk8=
+X-Gm-Gg: ASbGnctCkzCmLXOEDsZMb90WoSws9GxBW945CY9tWu7wXOjehv5EO0lcLK/eq0WhsA7
+	uGXaruCGUzp2avBUzoYX2gj6jZuXSbUT6faAl3hcUkROWfILNtyDhMV/pY4wo53PblxeuZR6wHU
+	7sZcMJuG7UO0d1MBKCtqGTYxhQnqJwqP9qhF3wbO9tl/tMRZ1MnhzO5r6HdvpjZ0Cb+8n040cxk
+	6/j+lriearI9Qbfhy5RqRt8gYmqE0dLswAp4pbwaWr6AinEnmZmhU6AjS4RHujVVzyiasvsYh1B
+	6PGjgutrkjmG+zZx/muiOVN6IxS/3aDel7X+Dk5dr3Xwo8tz0II0lal9RvB1MSNTzZifkhXNcGJ
+	YOfxNBV0mj9hl5hb/NmnIc5vFIRs0ZBWr
+X-Google-Smtp-Source: AGHT+IH30uplY82utdrU9T7Dyp89uUZLy9OYpPpZfnqv2x2yCGVqH4bKpd1FnewjvmvV1dBnafhklA==
+X-Received: by 2002:a17:907:6ea4:b0:b04:85f2:d272 with SMTP id a640c23a62f3a-b1bb935d70fmr292343066b.49.1758121353549;
+        Wed, 17 Sep 2025 08:02:33 -0700 (PDT)
+Received: from [172.20.10.3] ([109.166.135.151])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b3347b90sm1362672466b.109.2025.09.17.08.02.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Sep 2025 08:02:33 -0700 (PDT)
+Message-ID: <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+Date: Wed, 17 Sep 2025 18:02:30 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-perf-users@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, 
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
- Mark Rutland <mark.rutland@arm.com>, Oliver Upton <oliver.upton@linux.dev>, 
- Marc Zyngier <maz@kernel.org>, linux-renesas-soc@vger.kernel.org, 
- Peter Zijlstra <peterz@infradead.org>, Jiri Olsa <jolsa@kernel.org>, 
- Ingo Molnar <mingo@redhat.com>, "Liang,  Kan" <kan.liang@linux.intel.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- John Garry <john.g.garry@oracle.com>, Will Deacon <will@kernel.org>, 
- James Clark <james.clark@linaro.org>, 
- Douglas Anderson <dianders@chromium.org>, Leo Yan <leo.yan@linux.dev>, 
- Mike Leach <mike.leach@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>, 
- linux-arm-kernel@lists.infradead.org
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com>
-References: <87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com>
-Message-Id: <175812100931.2051995.11690526615460455453.robh@kernel.org>
-Subject: Re: [PATCH v3 0/6] arm64: add R8A78000 support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+To: David Hildenbrand <david@redhat.com>, Thomas Gleixner
+ <tglx@linutronix.de>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-On Tue, 16 Sep 2025 02:37:50 +0000, Kuninori Morimoto wrote:
+
+On 9/17/25 17:46, David Hildenbrand wrote:
+> On 17.09.25 16:10, Thomas Gleixner wrote:
+>> On Wed, Sep 17 2025 at 09:16, David Hildenbrand wrote:
+>>> On 17.09.25 07:43, Eugen Hristev wrote:
+>>>> On 9/17/25 00:16, Thomas Gleixner wrote:
+>>>>> I pointed you to a solution for that and just because David does not
+>>>>> like it means that it's acceptable to fiddle in subsystems and expose
+>>>>> their carefully localized variables.
+>>>
+>>> It would have been great if we could have had that discussion in the
+>>> previous thread.
+>>
+>> Sorry. I was busy with other stuff and did not pay attention to that
+>> discussion.
 > 
-> Hi Geert
+> I understand, I'm busy with too much stuff such that sometimes it might 
+> be good to interrupt me earlier: "David, nooo, you're all wrong"
 > 
-> This is v3 of R8A78000 support for Renesas.
+>>
+>>> Some other subsystem wants to have access to this information. I agree
+>>> that exposing these variables as r/w globally is not ideal.
+>>
+>> It's a nono in this case. We had bugs (long ago) where people fiddled
+>> with this stuff (I assume accidentally for my mental sanity sake) and
+>> caused really nasty to debug issues. C is a horrible language to
+>> encapsulate stuff properly as we all know.
 > 
-> This patch-set adds R8A78000 and Ironhide board support.
-> It is based on SDK v4.28.0 or later. It will be released at end of Oct.
+> Yeah, there is this ACCESS_PRIVATE stuff but it only works with structs 
+> and relies on sparse IIRC.
 > 
-> Link: https://lore.kernel.org/r/87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com
-> Link: https://lore.kernel.org/r/87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com
+>>
+>>> I raised the alternative of exposing areas or other information through
+>>> simple helper functions that kmemdump can just use to compose whatever
+>>> it needs to compose.
+>>>
+>>> Do we really need that .section thingy?
+>>
+>> The section thing is simple and straight forward as it just puts the
+>> annotated stuff into the section along with size and id and I definitely
+>> find that more palatable, than sprinkling random functions all over the
+>> place to register stuff.
+>>
+>> Sure, you can achieve the same thing with an accessor function. In case
+>> of nr_irqs there is already one: irq_get_nr_irqs(), but for places which
 > 
-> v2 -> v3
-> 	- Add Reviewed-by from Geert [1/6]
-> 	- Add cortex-a720ae patches [3/6][4/6]
-> 	- Drop enable-method = "pcsi" [5/6]
-> 	- Tidyup node name controller -> cache-controller [5/6]
-> 	- Remove cache-unified from L2 [5/6]
-> 	- add dummy-clk-sgasyncd16 for scif [5/6]
-> 	- re-add clock-frequency on scif_clk [5/6]
-> 	- Tidyup GIC comments [5/6]
-> 	- Tidyup GIC regs [5/6]
-> 	- use "renesas,scif-r8a78000" instead of "renesas,rcar-gen5-scif" [5/6]
-> 	- Tidyup Subject [6/6]
-> 	- Tidyup Makefile position [6/6]
-> 	- Add explanation why it needs "maxcpus=1" [6/6]
-> 	- 518MB -> 518MiB on memory [6/6]
-> 	- 16666666 -> 16666600 on extal_clk [6/6]
-> 	- Drop comment from hscif0 [6/6]
+> Right, the challenge really is that we want the memory range covered by 
+> that address, otherwise it would be easy.
 > 
-> v1 -> v2
-> 	- Add Krzysztof's Acked-by on [1/4]
-> 	- Tidyup "cache" properties on [3/4]
-> 	- Add "clock-" prefix on fixed-clock [3/4]
-> 	- remove un-needed clock-frequency [3/4]
-> 	- use "-" instead of "_" on dummy-clk-sgasyncd4 [3/4]
-> 	- use "0" instead of "0x0" for gic [3/4]
-> 	- cleanup "bootargs" [4/4]
+>> do not expose the information already for real functional reasons adding
+>> such helpers just for this coredump muck is really worse than having a
+>> clearly descriptive and obvious annotation which results in the section
+>> build.
 > 
+> Yeah, I'm mostly unhappy about the "#include <linux/kmemdump.h>" stuff.
 > 
-> Duy Nguyen (1):
->   soc: renesas: Identify R-Car X5H
+> Guess it would all feel less "kmemdump" specific if we would just have a 
+> generic way to tag/describe certain physical memory areas and kmemdump 
+> would simply make use of that.
+
+The idea was to make "kmemdump" exactly this generic way to tag/describe
+the memory.
+If we would call it differently , simply dump , would it be better ?
+e.g. include linux/dump.h
+and then DUMP(var, size) ?
+
+could we call it maybe MARK ? or TAG ?
+TAG_MEM(area, size)
+
+this would go to a separate section called .tagged_memory.
+
+Then anyone can walk through the section and collect the data.
+
+I am just coming up with ideas here.
+Could it be even part of mm.h instead of having a new header perhaps ?
+Then we won't need to include one more.
+
 > 
-> Hai Pham (2):
->   arm64: dts: renesas: Add R8A78000 X5H DTs
->   arm64: dts: renesas: R8A78000: Add initial Ironhide support
+> For example, wondering if it could come in handy to have an ordinary 
+> vmcoreinfo header contain this information as well?
 > 
-> Kuninori Morimoto (3):
->   dt-bindings: soc: renesas: Document R-Car X5H Ironhide
->   arm64: cputype: Add Cortex-A720AE definitions
->   dt-bindings: arm: cpus: Add Cortex-A720AE
+> Case in point, right now we do in crash_save_vmcoreinfo_init()
 > 
->  .../devicetree/bindings/arm/cpus.yaml         |   1 +
->  .../bindings/soc/renesas/renesas.yaml         |   6 +
->  arch/arm64/boot/dts/renesas/Makefile          |   2 +
->  .../boot/dts/renesas/r8a78000-ironhide.dts    |  92 +++
->  arch/arm64/boot/dts/renesas/r8a78000.dtsi     | 756 ++++++++++++++++++
->  arch/arm64/include/asm/cputype.h              |   2 +
->  arch/arm64/kernel/cpu_errata.c                |   1 +
->  arch/arm64/kernel/proton-pack.c               |   1 +
->  drivers/soc/renesas/Kconfig                   |  12 +
->  drivers/soc/renesas/renesas-soc.c             |  12 +
->  tools/arch/arm64/include/asm/cputype.h        |   2 +
->  tools/perf/util/arm-spe.c                     |   1 +
->  12 files changed, 888 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a78000.dtsi
+> 	VMCOREINFO_SYMBOL_ARRAY(mem_section);
+> 	VMCOREINFO_LENGTH(mem_section, NR_SECTION_ROOTS);
+> 	VMCOREINFO_STRUCT_SIZE(mem_section);
 > 
-> --
-> 2.43.0
+> And in kmemdump code we do
 > 
+> 	kmemdump_register_id(KMEMDUMP_ID_COREIMAGE_mem_section,
+> 			     (void *)&mem_section, sizeof(mem_section));
 > 
+> I guess both cases actually describe roughly the same information: An 
+> area with a given name.
 > 
+> Note 1: Wondering if sizeof(mem_section) is actually correct in the 
+> kmemdump case
+> 
+> Note 2: Wondering if kmemdump would also want the struct size, not just 
+> the area length.
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/v6.17-rc5-68-g945f50036169 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com:
-
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@0 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
-	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
-	from schema $id: http://devicetree.org/schemas/cache.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0700000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,scif-r8a78000', 'renesas,scif'] is too long
-	['renesas,scif-r8a78000', 'renesas,scif'] is too short
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
-	'renesas,scif-r9a09g057' was expected
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
-	'renesas,rcar-gen1-scif' was expected
-	'renesas,rcar-gen2-scif' was expected
-	'renesas,rcar-gen3-scif' was expected
-	'renesas,rcar-gen4-scif' was expected
-	'renesas,rcar-gen5-scif' was expected
-	'renesas,scif-r9a07g044' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0704000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,scif-r8a78000', 'renesas,scif'] is too long
-	['renesas,scif-r8a78000', 'renesas,scif'] is too short
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
-	'renesas,scif-r9a09g057' was expected
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
-	'renesas,rcar-gen1-scif' was expected
-	'renesas,rcar-gen2-scif' was expected
-	'renesas,rcar-gen3-scif' was expected
-	'renesas,rcar-gen4-scif' was expected
-	'renesas,rcar-gen5-scif' was expected
-	'renesas,scif-r9a07g044' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0708000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,scif-r8a78000', 'renesas,scif'] is too long
-	['renesas,scif-r8a78000', 'renesas,scif'] is too short
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
-	'renesas,scif-r9a09g057' was expected
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
-	'renesas,rcar-gen1-scif' was expected
-	'renesas,rcar-gen2-scif' was expected
-	'renesas,rcar-gen3-scif' was expected
-	'renesas,rcar-gen4-scif' was expected
-	'renesas,rcar-gen5-scif' was expected
-	'renesas,scif-r9a07g044' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c070c000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,scif-r8a78000', 'renesas,scif'] is too long
-	['renesas,scif-r8a78000', 'renesas,scif'] is too short
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
-	'renesas,scif-r9a09g057' was expected
-	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
-	'renesas,rcar-gen1-scif' was expected
-	'renesas,rcar-gen2-scif' was expected
-	'renesas,rcar-gen3-scif' was expected
-	'renesas,rcar-gen4-scif' was expected
-	'renesas,rcar-gen5-scif' was expected
-	'renesas,scif-r9a07g044' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
-	'renesas,rcar-gen1-hscif' was expected
-	'renesas,rcar-gen2-hscif' was expected
-	'renesas,rcar-gen3-hscif' was expected
-	'renesas,rcar-gen4-hscif' was expected
-	'renesas,rcar-gen5-hscif' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0714000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
-	'renesas,rcar-gen1-hscif' was expected
-	'renesas,rcar-gen2-hscif' was expected
-	'renesas,rcar-gen3-hscif' was expected
-	'renesas,rcar-gen4-hscif' was expected
-	'renesas,rcar-gen5-hscif' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0718000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
-	'renesas,rcar-gen1-hscif' was expected
-	'renesas,rcar-gen2-hscif' was expected
-	'renesas,rcar-gen3-hscif' was expected
-	'renesas,rcar-gen4-hscif' was expected
-	'renesas,rcar-gen5-hscif' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c071c000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
-	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
-	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
-	'renesas,rcar-gen1-hscif' was expected
-	'renesas,rcar-gen2-hscif' was expected
-	'renesas,rcar-gen3-hscif' was expected
-	'renesas,rcar-gen4-hscif' was expected
-	'renesas,rcar-gen5-hscif' was expected
-	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-
-
-
-
+For kmemdump, right now, debugging without vmlinux symbols is rather
+impossible, so we have all that information from vmlinux.
+> 
+> (memblock alloc wrappers are a separate discussion)
+> 
+>>
+>> The charm of sections is that they don't neither extra code nor stubs or
+>> ifdeffery when a certain subsystem is disabled and therefore no
+>> information available.
+> 
+> Extra code is a very good point.
+> 
+>>
+>> I'm not insisting on sections, but having a table of 2k instead of
+>> hundred functions, stubs and whatever is definitely a win to me.
+> 
+> So far it looks like it's not that many, but of course, the question 
+> would be how it evolves.
+> 
 
 
