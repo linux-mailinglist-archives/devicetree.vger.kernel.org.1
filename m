@@ -1,310 +1,247 @@
-Return-Path: <devicetree+bounces-218217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77104B7CC51
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:09:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C75B7F430
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C32D1C002F4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:21:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D11253A929F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D5F2F39D6;
-	Wed, 17 Sep 2025 07:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445062C08AF;
+	Wed, 17 Sep 2025 07:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="RGWtcuUa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FC52F261E;
-	Wed, 17 Sep 2025 07:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A864627CB35
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758093642; cv=none; b=cqxkK9c6s7nTrfit6agTRRenYdd3qtcEg3OFkfcaoZ0mtC8CQCFypVYIPI4+18sp06hUyImNZVDMnkpEDiZL9URNIxkEZvfVsXFtasCOaVINg0VRNe8/cm61QD0Y84YN7HGCVOgdQ69vIqcVRYr0TPb0jnLOksm7a9QWCZf70as=
+	t=1758092869; cv=none; b=IOeZPRL272od9Pt9RHVuOevidQj/7edJJUaSmYzok6QqOPbT5AqLUL8s6emNw7Bhs784VSmqRjgCjHzd6B+DPTL7s6uxsCCXJuAWhe+Fjd+au/nh/uRC5XFtfmfyLnme0LE5shz4CejeNTOWFavLHxcJ3GTRjAxqh3fDj/fr838=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758093642; c=relaxed/simple;
-	bh=g3SlfpfcJCTkZfloKRDW2xWOuldW3Mvx2X3fYkZP400=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oqrVPKomJur1XqEMxV1cCP4SCNWu60UM+XOWOqElLNVa1N3d7PTUr3s+oY89LkIgstDwEKd+B5GAAwRIY3J3znJxyoNgSBC0gm7cd5t9B931NBR+yfwpBtLhiia8TUvvotHeRPyGx2N1lgnj3foMnQMDA4eJ9DQUWEI1zeBrZlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4cRVBQ0Hznz9sxx;
-	Wed, 17 Sep 2025 09:04:30 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qZIbjDChrYYG; Wed, 17 Sep 2025 09:04:29 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4cRVBP5pb8z9sxw;
-	Wed, 17 Sep 2025 09:04:29 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 999778B766;
-	Wed, 17 Sep 2025 09:04:29 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id gxsBtFU2AHJ4; Wed, 17 Sep 2025 09:04:29 +0200 (CEST)
-Received: from [192.168.235.99] (unknown [192.168.235.99])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 3EF6C8B763;
-	Wed, 17 Sep 2025 09:04:28 +0200 (CEST)
-Message-ID: <90b61871-21d9-4442-ba1d-cdf102dae1c8@csgroup.eu>
-Date: Wed, 17 Sep 2025 09:04:27 +0200
+	s=arc-20240116; t=1758092869; c=relaxed/simple;
+	bh=25mYkkbNo5dkgGxMHrf97VRhuH0HcwY5SglFwuDCXdo=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=XFarR4bjhrGutAj51zPaV9kSaJ1LvEimr8nrZQbrAgY2P995ETKaAYoYPbKGTj/fUjO1uZfXjSuqjrdoHW6dm2TXtSFzI2xEyl5xobvA6svdVpdklTz7qiEice8zCkvUef/sAtXaTJbzf9EgHgEcg9NlacnNwbYxMbWGiwsa4BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=RGWtcuUa; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250917070744epoutp01b535347492869baf9420775dabe1b2a0~mACVJKAYo2322923229epoutp01H
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:07:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250917070744epoutp01b535347492869baf9420775dabe1b2a0~mACVJKAYo2322923229epoutp01H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758092864;
+	bh=p2X+j5SJAMEREJd1w3t8TYTfU2tuNXV8TS1mq8smvaI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=RGWtcuUaLhY8WQoRtyFOqx/FJvfhMKjDYYPiIGcIN/rh/LOZiSE0ImM6Uz7pCYiSz
+	 7pwIjapvnQQrI1V11HFsyxt9lvlqFOgaXCJ6smnF/lygHilO0iyzaHcz3LyHrJEhPM
+	 ebnabodwTvetz6i9shXEWIpf0hNPG2O0ofuHlw/k=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250917070743epcas5p21e3006ddc5adb45dae44c3ad85d064da~mACT3guNG0339903399epcas5p2Y;
+	Wed, 17 Sep 2025 07:07:43 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4cRVG61MTyz6B9m7; Wed, 17 Sep
+	2025 07:07:42 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250917070741epcas5p3f40ff9cf54757eef08a6faa7451f4e2b~mACSKitQP0859608596epcas5p3-;
+	Wed, 17 Sep 2025 07:07:41 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250917070737epsmtip204cd5a53ee83aea2bc9f33c333939bdd~mACOpKYWk2897628976epsmtip24;
+	Wed, 17 Sep 2025 07:07:37 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: 
+Subject: RE: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Wed, 17 Sep 2025 12:37:36 +0530
+Message-ID: <054e01dc27a1$c2011120$46033360$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 00/18] net: phy: Introduce PHY ports
- representation
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
- Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-References: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-Content-Language: fr-FR
-In-Reply-To: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRMOVGdWg5oRjNsRBgEjzIeIB8IgGabj6EAmTXuDcB8lF0oAGjtHpaA19Hw4WzwQPd4IAUON4A
+Content-Language: en-in
+X-CMS-MailID: 20250917070741epcas5p3f40ff9cf54757eef08a6faa7451f4e2b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e
+References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+	<CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
+	<20250903073827.3015662-2-pritam.sutar@samsung.com>
+	<20250904-interesting-lovely-ringtail-38bbef@kuoka>
+	<000001dc1d70$aebf7d80$0c3e7880$@samsung.com>
+	<87857202-b436-4476-9384-67566126d844@kernel.org> 
+
+Hi Krzysztof,
 
 
+> -----Original Message-----
+> From: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Sent: 04 September 2025 03:52 PM
+> To: 'Krzysztof Kozlowski' <krzk=40kernel.org>
+> Cc: 'vkoul=40kernel.org' <vkoul=40kernel.org>; 'kishon=40kernel.org'
+> <kishon=40kernel.org>; 'robh=40kernel.org' <robh=40kernel.org>;
+> 'krzk+dt=40kernel.org' <krzk+dt=40kernel.org>; 'conor+dt=40kernel.org'
+> <conor+dt=40kernel.org>; 'alim.akhtar=40samsung.com'
+> <alim.akhtar=40samsung.com>; 'andre.draszik=40linaro.org'
+> <andre.draszik=40linaro.org>; 'peter.griffin=40linaro.org'
+> <peter.griffin=40linaro.org>; 'kauschluss=40disroot.org' <kauschluss=40di=
+sroot.org>;
+> 'ivo.ivanov.ivanov1=40gmail.com' <ivo.ivanov.ivanov1=40gmail.com>;
+> 'igor.belwon=40mentallysanemainliners.org'
+> <igor.belwon=40mentallysanemainliners.org>; 'm.szyprowski=40samsung.com'
+> <m.szyprowski=40samsung.com>; 's.nawrocki=40samsung.com'
+> <s.nawrocki=40samsung.com>; 'linux-phy=40lists.infradead.org' <linux-
+> phy=40lists.infradead.org>; 'devicetree=40vger.kernel.org'
+> <devicetree=40vger.kernel.org>; 'linux-kernel=40vger.kernel.org' <linux-
+> kernel=40vger.kernel.org>; 'linux-arm-kernel=40lists.infradead.org' <linu=
+x-arm-
+> kernel=40lists.infradead.org>; 'linux-samsung-soc=40vger.kernel.org' <lin=
+ux-
+> samsung-soc=40vger.kernel.org>; 'rosa.pila=40samsung.com'
+> <rosa.pila=40samsung.com>; 'dev.tailor=40samsung.com'
+> <dev.tailor=40samsung.com>; 'faraz.ata=40samsung.com'
+> <faraz.ata=40samsung.com>; 'muhammed.ali=40samsung.com'
+> <muhammed.ali=40samsung.com>; 'selvarasu.g=40samsung.com'
+> <selvarasu.g=40samsung.com>
+> Subject: RE: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 HS phy compatible
+>=20
+> Hi Krzysztof,
+>=20
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk=40kernel.org>
+> > Sent: 04 September 2025 03:12 PM
+> > To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> > krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> > andre.draszik=40linaro.org; peter.griffin=40linaro.org;
+> > kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> > igor.belwon=40mentallysanemainliners.org;
+> > m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> > phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> > kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> > linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> > dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> > muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> > Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy:
+> > add
+> > ExynosAutov920 HS phy compatible
+> >
+> > On 04/09/2025 09:51, Pritam Manohar Sutar wrote:
+> > > Hi Krzysztof,
+> > >
+> > >> -----Original Message-----
+> > >> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> > >> Sent: 04 September 2025 12:18 PM
+> > >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > >> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> > >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.c=
+om;
+> > >> andre.draszik=40linaro.org; peter.griffin=40linaro.org;
+> > >> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> > >> igor.belwon=40mentallysanemainliners.org;
+> > >> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> > >> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> > >> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> > >> linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> > >> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> > >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> > >> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-p=
+hy:
+> > >> add
+> > >> ExynosAutov920 HS phy compatible
+> > >>
+> > >> On Wed, Sep 03, 2025 at 01:08:22PM +0530, Pritam Manohar Sutar wrote=
+:
+> > >>> Document support for the USB20 phy found on the ExynosAutov920 SoC.
+> > >>> The
+> > >>> USB20 phy is functionally identical to that on the Exynos850 SoC,
+> > >>> so no driver changes are needed to support this phy. However, add
+> > >>> a dedicated compatible string for USB20 phy found in this SoC.
+> > >>>
+> > >>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> > >>
+> > >> You just dropped all tags without explaining why.
+> > >
+> > > Regretted inconvenience.
+> > >
+> > > There were significant changes in supplies' names in driver and
+> > > schemas (patch-set v8). This led to make changes in patch no 5.  And
+> > > review for these changes is needed.  Hence, removed RB tag in this pa=
+tch-
+> set.
+> > >
+> > > There was a ask for the same https://lore.kernel.org/linux-
+> >
+> phy/000401dc18cd=24ec02a1b0=24c407e510=24=40samsung.com/=23:=7E:text=3DLe=
+t%20me%
+> >
+> 20know%2C%20because%20of%20above%20changes%2C%20should%20be%20
+> >
+> removing%20your%20%0A%27reviewed%2Dby%27%20tag%20from%20patch%
+> > 201%20and%203.
+> > >
+> >
+> >
+> > Where in the changelog you explained why you dropped the tags?
+>=20
+> Along with supplies' names, there were similar commit messages for patch =
+no 1,
+> 3 as patch no 5 (v7). (though, they were explaining schema more than h/w)=
+.
+> Changed commit messages of the patch no 1, 3, 5 (v7) as per reference com=
+mits
+> and would like to get them reviewed again, so did not add RB for patch 1 =
+and 3,
+> which you had given RB (in v7).
+>=20
+> Forgot to add these details for dropping the RB tags in changelog.
+> Do I need to send v9 by retaining RB for patch 1 and 3?
+>=20
 
-Le 09/09/2025 à 17:25, Maxime Chevallier a écrit :
-> Hi everyone,
-> 
-> Here is a V12 for the phy_port work, aiming at representing the
-> connectors and outputs of PHY devices.
-> 
-> Last round was 16 patches, and now 18, if needed I can split some
-> patches out such as the 2 phylink ones.
-> 
-> this V12 address the SFP interface selection for PHY driver SFPs, as
-> commented by Russell on v10.
-> 
-> This and Rob's review on the dp83822 patch are the only changes.
+Gentle Reminder.=20
 
-For the series:
-
-Tested-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-
-
-
-> 
-> As a remainder, a few important notes :
-> 
->   - This is only a first phase. It instantiates the port, and leverage
->     that to make the MAC <-> PHY <-> SFP usecase simpler.
-> 
->   - Next phase will deal with controlling the port state, as well as the
->     netlink uAPI for that.
-> 
->   - The end-goal is to enable support for complex port MUX. This
->     preliminary work focuses on PHY-driven ports, but this will be
->     extended to support muxing at the MII level (Multi-phy, or compo PHY
->     + SFP as found on Turris Omnia for example).
-> 
->   - The naming is definitely not set in stone. I named that "phy_port",
->     but this may convey the false sense that this is phylib-specific.
->     Even the word "port" is not that great, as it already has several
->     different meanings in the net world (switch port, devlink port,
->     etc.). I used the term "connector" in the binding.
-> 
-> A bit of history on that work :
-> 
-> The end goal that I personnaly want to achieve is :
-> 
->              + PHY - RJ45
->              |
->   MAC - MUX -+ PHY - RJ45
-> 
-> After many discussions here on netdev@, but also at netdevconf[1] and
-> LPC[2], there appears to be several analoguous designs that exist out
-> there.
-> 
-> [1] : https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fnetdevconf.info%2F0x17%2Fsessions%2Ftalk%2Fimproving-multi-phy-and-multi-port-interfaces.html&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299867339%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=C6z%2FdAn5cHGllo%2FJVkqwMPEgkd%2BWyb7m1hUceaLzqLQ%3D&reserved=0
-> [2] : https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flpc.events%2Fevent%2F18%2Fcontributions%2F1964%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299889461%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=9NQmsDcOZa286wbUux%2FdCrI3fGUzYs4o%2FjscGN2zcdg%3D&reserved=0 (video isn't the
-> right one)
-> 
-> Take the MAchiatobin, it has 2 interfaces that looks like this :
-> 
->   MAC - PHY -+ RJ45
->              |
-> 	    + SFP - Whatever the module does
-> 
-> Now, looking at the Turris Omnia, we have :
-> 
-> 
->   MAC - MUX -+ PHY - RJ45
->              |
-> 	    + SFP - Whatever the module does
-> 
-> We can find more example of this kind of designs, the common part is
-> that we expose multiple front-facing media ports. This is what this
-> current work aims at supporting. As of right now, it does'nt add any
-> support for muxing, but this will come later on.
-> 
-> This first phase focuses on phy-driven ports only, but there are already
-> quite some challenges already. For one, we can't really autodetect how
-> many ports are sitting behind a PHY. That's why this series introduces a
-> new binding. Describing ports in DT should however be a last-resort
-> thing when we need to clear some ambiguity about the PHY media-side.
-> 
-> The only use-cases that we have today for multi-port PHYs are combo PHYs
-> that drive both a Copper port and an SFP (the Macchiatobin case). This
-> in itself is challenging and this series only addresses part of this
-> support, by registering a phy_port for the PHY <-> SFP connection. The
-> SFP module should in the end be considered as a port as well, but that's
-> not yet the case.
-> 
-> However, because now PHYs can register phy_ports for every media-side
-> interface they have, they can register the capabilities of their ports,
-> which allows making the PHY-driver SFP case much more generic.
-> 
-> Let me know what you think, I'm all in for discussions :)
-> 
+> >
+> > Best regards,
+> > Krzysztof
+>=20
+>=20
+> Thank you.
+>=20
 > Regards,
-> 
-> Changes in V12:
->   - Moved some of phylink's internal helpers to phy_caps for reuse in
->     phylib
->   - Fixed SFP interface selection
->   - Added Rob's review and changes in patch 6
-> 
-> Changes in V11:
->   - The ti,fiber-mode property was deprecated in favor of the
->     ethernet-connector binding
->   - The .attach_port was split into an MDI and an MII version
->   - I added the warning back in the AR8031 PHY driver
->   - There is now an init-time check on the number of lanes associated to
->     every linkmode, making sure the number of lanes is above or equal to
->     the minimum required
->   - Various typos were fixed all around
->   - We no longer use sfp_select_interface() for SFP interface validation
-> 
-> Changes in V10:
->   - Rebase on net-next
->   - Fix a typo reported by Köry
->   - Aggregate all reviews
->   - Fix the conflict on the qcom driver
-> 
-> Changes in V9:
->   - Removed maxItems and items from the connector binding
->   - Fixed a typo in the binding
-> 
-> Changes in V8:
->   - Added maxItems on the connector media binding
->   - Made sure we parse a single medium
->   - Added a missing bitwise macro
-> 
-> Changes in V7:
->   - Move ethtool_medium_get_supported to phy_caps
->   - support combo-ports, each with a given set of supported modes
->   - Introduce the notion of 'not-described' ports
-> 
-> Changes in V6:
-> 
->   - Fixed kdoc on patch 3
->   - Addressed a missing port-ops registration for the Marvell 88x2222
->     driver
->   - Addressed a warning reported by Simon on the DP83822 when building
->     without CONFIG_OF_MDIO
-> 
-> Changes in V5 :
-> 
->   - renamed the bindings to use the term "connector" instead of "port"
->   - Rebased, and fixed some issues reported on the 83822 driver
->   - Use phy_caps
-> 
-> Changes in V4 :
-> 
->   - Introduced a kernel doc
->   - Reworked the mediums definitions in patch 2
->   - QCA807x now uses the generic SFP support
->   - Fixed some implementation bugs to build the support list based on the
->     interfaces supported on a port
-> 
-> V11:https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250814135832.174911-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299905361%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=LWQCStSMzSc7DF0qVAuRm4DHd7NAutmdVOmDRgtwan8%3D&reserved=0
-> V10: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250722121623.609732-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299928854%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=YFI3Wgp4q14jtVSPIGTJUPpzErznptDT018xJhMMOP0%3D&reserved=0
-> V9: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250717073020.154010-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299944865%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=8iqRMpTrIErypHiKgEGz5Lhg%2BuYgpQc32ivkYIm1LsM%3D&reserved=0
-> V8: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250710134533.596123-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299960533%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=W%2B54fu5zioR1JpIPOGPDFFnRlwLvG0S9ZsUDAV0RxEM%3D&reserved=0
-> v7: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250630143315.250879-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299976028%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=bzctaCFpijcod4VEx2dXDP6%2Flg5bd6hEkw0mKcMut84%3D&reserved=0
-> V6: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250507135331.76021-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284299991595%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=pIQgF0ApV1207diKRjfUC%2BgPGd2EqVGwCSjc%2BvuFPtw%3D&reserved=0
-> V5: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250425141511.182537-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284300007423%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=SfRaJsV3K4M0JXHKulU881Pa7odw6uuW4wAXXRHRhSw%3D&reserved=0
-> V4: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250213101606.1154014-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284300024626%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=ekANNoVX6KMVPkE00%2F7BKATnVk3tHyhjvYULlKJSIcw%3D&reserved=0
-> V3: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250207223634.600218-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284300040453%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=rcoPmWiyQeQOjIyhLdr0dwncTrXOLQyzQvqASE3NUHY%3D&reserved=0
-> RFC V2: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20250122174252.82730-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284300056403%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UMXGhRV%2FMDaHi%2FV9%2BWAZKIniGX%2Bi9%2Bdz%2B3OSrusm7JQ%3D&reserved=0
-> RFC V1: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fnetdev%2F20241220201506.2791940-1-maxime.chevallier%40bootlin.com%2F&data=05%7C02%7Cchristophe.leroy%40csgroup.eu%7Cbecf734ee0f1436ece2508ddefb55559%7C8b87af7d86474dc78df45f69a2011bb5%7C0%7C0%7C638930284300075545%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=pkoqOiokIDN2YLhcixRyucwWHNvRWuC1NEVcZ1s26BU%3D&reserved=0
-> 
-> Maxime
-> 
-> Maxime Chevallier (18):
->    dt-bindings: net: Introduce the ethernet-connector description
->    net: ethtool: common: Indicate that BaseT works on up to 4 lanes
->    net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
->    net: phy: Introduce PHY ports representation
->    net: phy: dp83822: Add support for phy_port representation
->    dt-bindings: net: dp83822: Deprecate ti,fiber-mode
->    net: phy: Create a phy_port for PHY-driven SFPs
->    net: phylink: Move phylink_interface_max_speed to phy_caps
->    net: phylink: Move sfp interface selection and filtering to phy_caps
->    net: phy: Introduce generic SFP handling for PHY drivers
->    net: phy: marvell-88x2222: Support SFP through phy_port interface
->    net: phy: marvell: Support SFP through phy_port interface
->    net: phy: marvell10g: Support SFP through phy_port
->    net: phy: at803x: Support SFP through phy_port interface
->    net: phy: qca807x: Support SFP through phy_port interface
->    net: phy: Only rely on phy_port for PHY-driven SFP
->    net: phy: dp83822: Add SFP support through the phy_port interface
->    Documentation: networking: Document the phy_port infrastructure
-> 
->   .../bindings/net/ethernet-connector.yaml      |  45 +++
->   .../devicetree/bindings/net/ethernet-phy.yaml |  18 +
->   .../devicetree/bindings/net/ti,dp83822.yaml   |  10 +-
->   Documentation/networking/index.rst            |   1 +
->   Documentation/networking/phy-port.rst         | 111 ++++++
->   MAINTAINERS                                   |   3 +
->   drivers/net/phy/Makefile                      |   2 +-
->   drivers/net/phy/dp83822.c                     |  79 +++--
->   drivers/net/phy/marvell-88x2222.c             |  95 ++---
->   drivers/net/phy/marvell.c                     |  94 ++---
->   drivers/net/phy/marvell10g.c                  |  54 +--
->   drivers/net/phy/phy-caps.h                    |  12 +
->   drivers/net/phy/phy-core.c                    |   6 +
->   drivers/net/phy/phy_caps.c                    | 216 +++++++++++
->   drivers/net/phy/phy_device.c                  | 334 +++++++++++++++++-
->   drivers/net/phy/phy_port.c                    | 194 ++++++++++
->   drivers/net/phy/phylink.c                     | 157 +-------
->   drivers/net/phy/qcom/at803x.c                 |  78 ++--
->   drivers/net/phy/qcom/qca807x.c                |  73 ++--
->   include/linux/ethtool.h                       |  44 ++-
->   include/linux/phy.h                           |  63 +++-
->   include/linux/phy_port.h                      |  99 ++++++
->   include/uapi/linux/ethtool.h                  |  20 ++
->   net/ethtool/common.c                          | 267 ++++++++------
->   24 files changed, 1541 insertions(+), 534 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
->   create mode 100644 Documentation/networking/phy-port.rst
->   create mode 100644 drivers/net/phy/phy_port.c
->   create mode 100644 include/linux/phy_port.h
-> 
+> Pritam
+
+Thank you,
+
+Regards,
+Pritam
 
 
