@@ -1,219 +1,384 @@
-Return-Path: <devicetree+bounces-218228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A708EB7CE97
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:13:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F551B7D0C9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:16:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CB367B5914
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:25:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98AE8166FA0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27CA3016FE;
-	Wed, 17 Sep 2025 07:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4EF22F83CF;
+	Wed, 17 Sep 2025 07:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jrv27L5J"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="o1rL2aLG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010071.outbound.protection.outlook.com [52.101.201.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCFC3016F0
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:25:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758093933; cv=none; b=siKmf0WbJfVhPtPYKzNGu8IzblCSgTs0yjL/lcZRyGvizvSioikkeR0SpV3+o+OUJALT765jXrv6ZiVWY5fLtoBeWLdopfWrJIwXFetOzjSNhgELY2a0GIjYGvXrkGetG2D1jEuDokCnw1lhjkYzVndc+sVTUzmnClBZeeKbrk4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758093933; c=relaxed/simple;
-	bh=K05yOHkQJxqh+1NnuwPgO9RURX/RB+Vt4f5T83pIFBE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o/zqTCA9b605wzu8RMGt+SU962dsJOKyjqmANchoEaXBCrLtaWUPRKRqTRzUC9zN92rmP1XkFg4wB0euxC0jhPBHVVnLHrQMxeiTXlwx3qwus0OaQPhZxVj6zZgGCKmf4pPucRKG1yKzR0cLxWXkLvyH3v8g/sicZIXR9lXnIgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jrv27L5J; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 87B8FC8F473;
-	Wed, 17 Sep 2025 07:25:07 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D65826063E;
-	Wed, 17 Sep 2025 07:25:23 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC40D102F179E;
-	Wed, 17 Sep 2025 09:25:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758093922; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GZJ8sPcO3Cf+QQuAdpx3fIteLOXORrAouzZNLpZWsvA=;
-	b=jrv27L5Jlz6dFN0ujcqzXwnK9gIQ1V0dU4tBuCf7OAqdaZnjc+2nbXry5EnSBiMZaAbLom
-	wVs2Vf2NuaQszYM42A4SDHQ05Sj1/hMzk3EaNUmjjfUauDW/2rzgXhkgINxRtunslVub4l
-	DPzS0A9pFPlibNVRTWdiauuPeWqDO8rAQhXtCdkSCKYboxRBUz4WJcwwWjO/q8aR8Vd71Z
-	iTbiTGCmU+bnx+SqevI3I5XDZuMrB+uaOd8hLDjJbkoeiC9bGLBpk7ygAhXsTFp9rFBDK9
-	2lY9ODIJng2lK1cHK/jbGHlwJhwpLbaydfsVka6ga0llgK4aNRWk+xlAU2QRrA==
-Date: Wed, 17 Sep 2025 09:25:06 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding
- <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Jonathan
- Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni
- <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad
- <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko
- <digetx@gmail.com>, Jonas =?UTF-8?B?U2Nod8O2YmVs?=
- <jonasschwoebel@yahoo.de>, Charan Pedumuru <charan.pedumuru@gmail.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 11/23] staging: media: tegra-video: csi: add a check
- to tegra_channel_get_remote_csi_subdev
-Message-ID: <20250917092506.311c314c@booty>
-In-Reply-To: <CAPVz0n1Nvun5yBf_i3NB=kDmLfNFRjbFt1uTUW-hpLbp-h0g4w@mail.gmail.com>
-References: <20250906135345.241229-1-clamor95@gmail.com>
-	<20250906135345.241229-12-clamor95@gmail.com>
-	<20250916180418.3fa270a9@booty>
-	<CAPVz0n1Nvun5yBf_i3NB=kDmLfNFRjbFt1uTUW-hpLbp-h0g4w@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ADB204583;
+	Wed, 17 Sep 2025 07:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758094111; cv=fail; b=X7dacrfe3tnzMnKRpxHZ46mMjwEebXdKnVkKVAFCabNQFIP5yc6hlpC147TYBFCBRjLtBhhdWfZKBO+fKnv95Kmiyzt02nv29dzTEynJ2rFaWqfwA3mWlVdE+/KKgr9oOz3PRb1rsgy+SCtn3cNX95eeesI1rjnVI3qr1w40iS0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758094111; c=relaxed/simple;
+	bh=6lgsfpMIKqPtHq4G4JNY2CuVfvfTorZB+VThVm/HvcE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=HRQ2L1hSYE38OETK7ifQFC+a7UlCllziPgw7454j67DqrKzYNrB900H5dwxpaPLqFmRqXELx4Cuae7lJ4mIGmiLZAUXOkKL4ikR1Wztxsb3mneJ929vf4o//OnBtdgJlmnJyRcFPxZwV4iqAy/Q6BjR1bxIQSptTAe4KyZWdSx0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=o1rL2aLG; arc=fail smtp.client-ip=52.101.201.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=geyAfOwFNbRVjruS4uFdOpIjED02zj2swWQChgLRds6ls8KoLPhdQtCjELMmUFzel+ZD7LLiP25NOMD3amshz4GvLUUj2ckxcpJZO28LXIRuro89/9mdry0HxJSlsoNDyw+vJBoVLLMY7KxkYoymxZiFM9Lq9E8pRM1teWfDseBuZ7THmPsErOrwY3vjVRJkdvG3Bxxz9mAz+z1WlxWuWM2Sdtq0p89XqHMpk/schWKztLlYYWt9dIMDct6Hy0rfzCHreuUr3EMAahOkFEtgWIhWaxm1m3jSClVzgTS2rgn3SbM1rhn9G5f06C2LWsHaknYQYhjcCc1wIhROUt9PZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4O76WIx4kpECgikEE0BPkww9C1tgcdZeYbwGxPlbdNA=;
+ b=smaJUh0nR6sx8OABslsqb2JNIrxfaTmDvH/YzfJLXBySX4b2OvbnbAA+zICXW/6N2ypMSw95cxPxiJXStDao+fhT5ORJ/GvQd8kd61VEw3Lwfgnt4CyLLVvktl4CyzcahS6iLo2TgKVaMFiXmW1jMO8gkVIn+sONBI25ELh4+7DQQRvmuxM01izmkipwsAwgUzFI+7r0tEbtAymPPUEO2YQPX0/i8nx9p7Y0r9bGNyXVHKDosNOEjKcDrOTjLdBIs25fdQdY+GoCsSpQ5gq229u508IYQjECRDlm61qzumSUHuvvMr0WnvGWkWCaLVdxZLl+4n8jc7RpJc3AY3+9aA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4O76WIx4kpECgikEE0BPkww9C1tgcdZeYbwGxPlbdNA=;
+ b=o1rL2aLGopoE972gCsmUU1B2Pi+j9cVbo5PlCsVulSQ7u1UYvh1014XEFbZk22aR2pxs76+xKZUH99Jw92gv9YSlXUgJQO4h+DD4jc7JFqhG/XJC79Yw92iKxj89OyOtT/NHWoSHxh006ksQSsXtwkfRrwgvRg6zlCh/7HfokFU=
+Received: from LV8PR12MB9206.namprd12.prod.outlook.com (2603:10b6:408:186::21)
+ by DS0PR12MB7727.namprd12.prod.outlook.com (2603:10b6:8:135::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.21; Wed, 17 Sep
+ 2025 07:28:26 +0000
+Received: from LV8PR12MB9206.namprd12.prod.outlook.com
+ ([fe80::5447:387a:c920:8a4a]) by LV8PR12MB9206.namprd12.prod.outlook.com
+ ([fe80::5447:387a:c920:8a4a%2]) with mapi id 15.20.9115.022; Wed, 17 Sep 2025
+ 07:28:26 +0000
+From: "Jain, Ronak" <ronak.jain@amd.com>
+To: Rob Herring <robh@kernel.org>
+CC: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, "Manne, Nava
+ kishore" <nava.kishore.manne@amd.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
+ pinctrl schema
+Thread-Topic: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
+ pinctrl schema
+Thread-Index: AQHbeKKktzakC2pjxUKURYxGjWc/ybNCrZ0AgAJyC8CACw5/gIARD0CwgTcX/WA=
+Date: Wed, 17 Sep 2025 07:28:26 +0000
+Message-ID:
+ <LV8PR12MB92065C249AFD2DF80149003E8617A@LV8PR12MB9206.namprd12.prod.outlook.com>
+References: <20250206142244.2553237-1-ronak.jain@amd.com>
+ <20250206142244.2553237-3-ronak.jain@amd.com>
+ <20250211215354.GA1244436-robh@kernel.org>
+ <LV8PR12MB9206BA2BC6BBBA184B3E2FCD86FF2@LV8PR12MB9206.namprd12.prod.outlook.com>
+ <LV8PR12MB9206B51A38A82F5A1730DA3486C42@LV8PR12MB9206.namprd12.prod.outlook.com>
+ <LV8PR12MB9206C4FBC2C8675274FB1BCB86C82@LV8PR12MB9206.namprd12.prod.outlook.com>
+In-Reply-To:
+ <LV8PR12MB9206C4FBC2C8675274FB1BCB86C82@LV8PR12MB9206.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-02-20T12:05:20.0000000Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV8PR12MB9206:EE_|DS0PR12MB7727:EE_
+x-ms-office365-filtering-correlation-id: 8d8416fa-bff0-4163-7e12-08ddf5bbcae2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?rXXl9E+YtS97n8g7IeZc7u87xBo2DFEegYYRRia6UNQK0y7clb6b91d8GH8I?=
+ =?us-ascii?Q?ir3KReySuJlUUxSk42Nxi8rwe9sfkKNAcqkoUuUUBnNAwVpFaphSirUipNni?=
+ =?us-ascii?Q?QeB54HBjSMXd1CT7i1yp+YukSXhjeTWRtrFjUGlqsLH9JFk9gUTXkLm1Ru0+?=
+ =?us-ascii?Q?J2U3bOAGyx4JytbciVuWEciS8qjIXu4V3FFIPLb5D3nfnQPa5GiFnhC3UjTk?=
+ =?us-ascii?Q?UJAOmdGTEgtPLk1OaBmWVIh31ObyvoBd3kgvThtwX17CegWn2pPIh70dckt2?=
+ =?us-ascii?Q?8h1aB1rN4h0R+gOmrNs9vQozohTzciQMxPbe9e142okYT5pkHa1bD8qKsbyl?=
+ =?us-ascii?Q?WccqW3ad3zaxnJB16oc8/e57JNA5xYox7lHfrOZ0wrFifaykqXRpJuJH8XHI?=
+ =?us-ascii?Q?O50MO5s2k7gXAPH8sF4vIYNMC/SzFsLkilvldOXUTQhPFYTiw3BPjFrGXLf0?=
+ =?us-ascii?Q?P9+IKiERlEHjFeGowlL8KDeKOI2AMUD0/yfXlOzcNjz+zoBCSPyB9hFVj4aQ?=
+ =?us-ascii?Q?PvWOwxzZ+J2HpExV4EU94aND4EfMMdLtBdbxtmb+UcFvUm6JJorE62xfIHYL?=
+ =?us-ascii?Q?9d7mN2OPaa9BIa77GlL2d0jd85qbtugkSJA02orh4zlxCg1epIILjmN6sh0/?=
+ =?us-ascii?Q?yTeBn3OQowx3MKewJWege1DNrzHPUx8Z+g3mbJJ1pHH2GQfNZuGFTqIVP18+?=
+ =?us-ascii?Q?NNK4SPXyxwfG2oXm99vx4FLpXZLA80SNcGE/AeErIpvgl7SVc1Ah6XYiYPqj?=
+ =?us-ascii?Q?8wAsibsOM59yNiONGRsW8/jSyiwO6jH57HaXWCbrHRDyrX5h2ywNgMszecrg?=
+ =?us-ascii?Q?khBJXvI6n5FeDgQkXDRFwDQHcm7yujKVPVFNhksZeR4sdckHuFMU2t8D1ucY?=
+ =?us-ascii?Q?v8vypWbW+MW2UE8/I7hdw4ylNGXfhPLgy747KWbRTMZjPgt9Ln5EeqPHhQzB?=
+ =?us-ascii?Q?0KeTFmBNz4IzY2oAWrzN7QzBvxonl3O46JoZPkMJVzl4TrEuLIaaOyA35R1U?=
+ =?us-ascii?Q?p6yATDJzm63XmGgNaiEiDoaicUze4lqcswzhmUnsBd6n+qpDGnq/aG7ge3cK?=
+ =?us-ascii?Q?leQvkJzToqsOE9FDLJzSYy+75vP6ArQvB6Tzg01QN6JtCUORayQiBIsylh5a?=
+ =?us-ascii?Q?+67B3BceBpXXhTgX5v2TTrGtoZWLafGaqdw0Oqdh6dSDORXp0wWCHMmCc3br?=
+ =?us-ascii?Q?lSRNOhj8L3HuK3vcYGag11kRMrmys/fyXaQJLKUaxqNO5LHzTxcVPgxTH2Ur?=
+ =?us-ascii?Q?uuWdllcoFMXsMrs4k3nbeQWt6iRuLKMU7yj1DGkA4gGTdL8+C/BVlr8fcXCl?=
+ =?us-ascii?Q?WJI/4LRwwGwvwb7k/h8LBbJFS6GcpCtIsltudCqxAi6cd9sw534bAETqA/9k?=
+ =?us-ascii?Q?pRrx+UmmDfFmzW2l+yRGRpa1ZSkvFfnW6fwPxC5cPej46r8SbBXuf5942Yet?=
+ =?us-ascii?Q?hYd+EVjRDxoY6Fk2S1PLJWhofI0Pmz/DN/gni0hLFRr3Y+UPjf+Xev+wVdfr?=
+ =?us-ascii?Q?rC4PK8FchoVyFXM=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV8PR12MB9206.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?vj51s1fAYL3D8338rqNQeAPsOldaOKaQHJE4zxBVwTHGpvFrTOXwc6EiO3/W?=
+ =?us-ascii?Q?0XPAC8GsE79RFgFjnFDM7x8VIkm/g4RKJU1emnPlkpTwkBGsdQxMvBwEV6NR?=
+ =?us-ascii?Q?D0DG/MlfRUrywe06jMciDZ5SR0qZCjB5Jay6yieA8iycoT6/IxSh+5E11md9?=
+ =?us-ascii?Q?0+f3/zodZcb/Wyz8lIPw0p8qiNhLuzaT6WZPAgA2xoTSprZ0K2mS5761/HuL?=
+ =?us-ascii?Q?amIgWKT+USUULSmzF7ZbOGRq+kxUP9L1M2uJMQoxl4azEH55H6QzVcpyBY3B?=
+ =?us-ascii?Q?8zt0FK51PYNtmWzMIuoMwg7/YphiZc8AC/S68wm6bqeO0QON9+AUnY10uUu4?=
+ =?us-ascii?Q?ppzfrDcdHn6WpdkSV2COSq9LNIeJIZa8IV72yhmPwnSjHRvvCxE+n3+YgUIH?=
+ =?us-ascii?Q?0O4MwBZgnj6rsJr4wexiAv2zbEUvsbYXTYTkFvCWzPMbGu/q8j9MqWsg1IZf?=
+ =?us-ascii?Q?ENaHU2DrLsEA9gnoY/ueyVE0HvFBG7kfFW910/YBLng5/1wa5Fr28ltHgjk+?=
+ =?us-ascii?Q?9OGBD83TRAmVIiUCm8rLQFNmjZDgSU/EGtcc+RBbpWq5hSm+ofwpC8BJTXwd?=
+ =?us-ascii?Q?SzY1Px76slb/jEodXwvhIvGwHdLEFXXXD81dnrIXj3G7c3yMJ9tW5CfxPJF/?=
+ =?us-ascii?Q?0CXt9crl3V96AoA6MYKwvINv9k6c6CyXfNWhl2gYlmmoOhjQSOXytWomK8Io?=
+ =?us-ascii?Q?SWo6KGlagu6NtFOcRfez9khw4LHoF2JsPrauVf4KejGyBXv0nol9h7KmhZNm?=
+ =?us-ascii?Q?UUYKnhGhZi2KUGFy9le38Hv12VdK1iwxGcAvseQgJUNe7ItbqIS/BTtljPjk?=
+ =?us-ascii?Q?v+Q/G+eTPzCNftQqnrmk3IDAXNxHIvbRsOC0fWtb9XDJVIhNp/rP4B1KN9ce?=
+ =?us-ascii?Q?VksbRZvH6MeIq0P/MByqe4n9Tp1N/ndu+WMjB8aYEt9/F6b0hnCrYqkuD/fo?=
+ =?us-ascii?Q?UG6n+B5yAu9ejIiY4UNeBBu8L8SGfsFp+33BDS8wGxppy6f/QSFxgj92B5EP?=
+ =?us-ascii?Q?WC99XtoaEPbpA2BOvArv7BwakSi/xWztNj5huCiLlWfs/+95d0axE540nfBQ?=
+ =?us-ascii?Q?WOFfht4NtJKrO0G5nDQTSY/6/v3wOsd6d3YUeO+zvh+hT+YW76hBiX+Icy2k?=
+ =?us-ascii?Q?GoANK68gAh4wrtap8zg9ptgQbGuKp35hbUfpyw95YNKu5ly+wO6AWjmESFp2?=
+ =?us-ascii?Q?eKCjtEQ/NKAtGpg6dll0yxXbiSPjdVTpXrGgmrGAfJ7MLsZTIViU1Itud7tN?=
+ =?us-ascii?Q?UKjF7s13Gvu1A6UHxfFXyEE8FiIS6zX9oH5jIUO8evwBnXlEmy8MqcARZNXp?=
+ =?us-ascii?Q?mTfwjSLrX9Bymbl7j66uT29XzrhqczE5z8BP0Mm3t6ckgbW+G6hs3reg1HPy?=
+ =?us-ascii?Q?CgTz8/hl8BUHmc+e1zoRxkmml+floibggdO/SRhlaZEu2COXEerN0x7J5/YT?=
+ =?us-ascii?Q?dcUrt5dQkjWcBKWJE8+JdXymq+8/gpYi0ZTxBuOlJXNCVC+LcbWA1B//9hJM?=
+ =?us-ascii?Q?IKnf1agq3ARHgpKevd7hxmJeENdqdUGIjc+QoaoOqW4S3Usf+aIvd//ubRFS?=
+ =?us-ascii?Q?JacBAt2BuToX42z+ekA=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9206.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d8416fa-bff0-4163-7e12-08ddf5bbcae2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2025 07:28:26.7405
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 00tDRMl0+DzbbYHUwdbFxDsXdS+XTlkCePRm8ZuVIwHDuav6sZ7m82774nMA3h5g
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7727
 
-Hello Svyatoslav,
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-On Tue, 16 Sep 2025 19:24:52 +0300
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+Hi Rob,
 
-> =D0=B2=D1=82, 16 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:04 Lu=
-ca Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
+I am following up on this thread as the query from April is still open.  Co=
+uld you please take a look at my question in the inline mail below?
+
+Thanks,
+Ronak
+
+> -----Original Message-----
+> From: Jain, Ronak
+> Sent: Tuesday, March 4, 2025 11:46 AM
+> To: 'Rob Herring' <robh@kernel.org>
+> Cc: 'krzk+dt@kernel.org' <krzk+dt@kernel.org>; 'conor+dt@kernel.org'
+> <conor+dt@kernel.org>; Simek, Michal <michal.simek@amd.com>; Manne,
+> Nava kishore <nava.kishore.manne@amd.com>; 'devicetree@vger.kernel.org'
+> <devicetree@vger.kernel.org>; 'linux-arm-kernel@lists.infradead.org' <lin=
+ux-
+> arm-kernel@lists.infradead.org>; 'linux-kernel@vger.kernel.org' <linux-
+> kernel@vger.kernel.org>
+> Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional p=
+inctrl
+> schema
+>
+> Hi @Rob Herring,
+>
+> Did you get a moment to go through the queries I asked for?
+>
+> Thanks,
+> Ronak
+>
+> > -----Original Message-----
+> > From: Jain, Ronak
+> > Sent: Thursday, February 20, 2025 5:48 PM
+> > To: Rob Herring <robh@kernel.org>
+> > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
+> > <michal.simek@amd.com>; Manne, Nava kishore
+> > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+> > Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditional
+> pinctrl
+> > schema
 > >
-> > Hello Svyatoslav,
+> > Hi Rob,
 > >
-> > On Sat,  6 Sep 2025 16:53:32 +0300
-> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > =20
-> > > By default tegra_channel_get_remote_csi_subdev returns next device in=
- pipe
-> > > assuming it is CSI but in case of Tegra20 and Tegra30 it can also be =
-VIP
-> > > or even HOST. Lets check if returned device is actually CSI by compar=
-ing
-> > > subdevice operations. =20
-> >
-> > This is just for extra safety, or is there a real case where the lack
-> > of this check creates some issues in your use case?
-> > =20
-> > > --- a/drivers/staging/media/tegra-video/csi.c
-> > > +++ b/drivers/staging/media/tegra-video/csi.c
-> > > @@ -445,6 +445,22 @@ static const struct v4l2_subdev_ops tegra_csi_op=
-s =3D {
-> > >       .pad    =3D &tegra_csi_pad_ops,
-> > >  };
+> > > -----Original Message-----
+> > > From: Jain, Ronak
+> > > Sent: Thursday, February 13, 2025 4:46 PM
+> > > To: Rob Herring <robh@kernel.org>
+> > > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
+> > > <michal.simek@amd.com>; Manne, Nava kishore
+> > > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-
+> arm-
+> > > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+> > > Subject: RE: [PATCH 2/3] dt-bindings: firmware: xilinx: Add condition=
+al
+> > pinctrl
+> > > schema
 > > >
-> > > +struct v4l2_subdev *tegra_channel_get_remote_csi_subdev(struct tegra=
-_vi_channel *chan)
-> > > +{
-> > > +     struct media_pad *pad;
-> > > +     struct v4l2_subdev *subdev;
-> > > +
-> > > +     pad =3D media_pad_remote_pad_first(&chan->pad);
-> > > +     if (!pad)
-> > > +             return NULL;
-> > > +
-> > > +     subdev =3D media_entity_to_v4l2_subdev(pad->entity);
-> > > +     if (!subdev)
-> > > +             return NULL;
-> > > +
-> > > +     return subdev->ops =3D=3D &tegra_csi_ops ? subdev : NULL;
-> > > +} =20
+> > > Hi Rob,
+> > >
+> > > > -----Original Message-----
+> > > > From: Rob Herring <robh@kernel.org>
+> > > > Sent: Wednesday, February 12, 2025 3:24 AM
+> > > > To: Jain, Ronak <ronak.jain@amd.com>
+> > > > Cc: krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
+> > > > <michal.simek@amd.com>; Manne, Nava kishore
+> > > > <nava.kishore.manne@amd.com>; devicetree@vger.kernel.org; linux-
+> > arm-
+> > > > kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+> > > > Subject: Re: [PATCH 2/3] dt-bindings: firmware: xilinx: Add conditi=
+onal
+> > pinctrl
+> > > > schema
+> > > >
+> > > > On Thu, Feb 06, 2025 at 06:22:43AM -0800, Ronak Jain wrote:
+> > > > > Updates the Device Tree bindings for Xilinx firmware by introduci=
+ng
+> > > > > conditional schema references for the pinctrl node.
+> > > > >
+> > > > > Previously, the pinctrl node directly referenced
+> > > > > xlnx,zynqmp-pinctrl.yaml. However, this patch modifies the schema=
+ to
+> > > > > conditionally apply the correct pinctrl schema based on the
+> compatible
+> > > > > property. Specifically:
+> > > > > - If compatible contains "xlnx,zynqmp-pinctrl", reference
+> > > > >   xlnx,zynqmp-pinctrl.yaml.
+> > > > > - If compatible contains "xlnx,versal-pinctrl", reference
+> > > > >   xlnx,versal-pinctrl.yaml.
+> > > > >
+> > > > > Additionally, an example entry for "xlnx,versal-pinctrl" has been
+> > > > > added under the examples section.
+> > > > >
+> > > > > Signed-off-by: Ronak Jain <ronak.jain@amd.com>
+> > > > > ---
+> > > > >  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 20
+> > ++++++++++++++++++-
+> > > > >  1 file changed, 19 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git
+> > a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> > > > firmware.yaml
+> > b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> > > > firmware.yaml
+> > > > > index 2b72fb9d3c22..d50438b0fca8 100644
+> > > > > ---
+> a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> > > > firmware.yaml
+> > > > > +++
+> b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> > > > firmware.yaml
+> > > > > @@ -76,7 +76,6 @@ properties:
+> > > > >      type: object
+> > > > >
+> > > > >    pinctrl:
+> > > > > -    $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
+> > > > >      description: The pinctrl node provides access to pinconfig a=
+nd
+> > pincontrol
+> > > > >        functionality available in firmware.
+> > > > >      type: object
+> > > > > @@ -106,6 +105,21 @@ properties:
+> > > > >      type: object
+> > > > >      deprecated: true
+> > > > >
+> > > > > +allOf:
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            const: xlnx,zynqmp-firmware
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        pinctrl:
+> > > > > +          $ref: /schemas/pinctrl/xlnx,zynqmp-pinctrl.yaml#
+> > > > > +    else:
+> > > > > +      properties:
+> > > > > +        pinctrl:
+> > > > > +          $ref: /schemas/pinctrl/xlnx,versal-pinctrl.yaml#
+> > > >
+> > > > The somewhat preferred way to do this would be to do this in the to=
+p
+> > > > level:
+> > > >
+> > > > pinctrl:
+> > > >   type: object
+> > > >   additionalProperties: true
+> > > >   properties:
+> > > >     compatible:
+> > > >       contains:
+> > > >         enum:
+> > > >           - xlnx,zynqmp-pinctrl
+> > > >           - xlnx,versal-pinctrl
+> > > >   required:
+> > > >     - compatible
+> > > >
+> > > > Otherwise, the pinctrl schema ends up being applied twice.
+> > >
+> > > Thanks for the patch review and inputs. I'll update and send the next
+> > version.
+> > >
 > >
-> > I tested your series on a Tegra20 with a parallel camera, so using the
-> > VIP for parallel input.
+> > In your suggested code, the schema allows either xlnx,zynqmp-pinctrl or
+> > xlnx,versal-pinctrl on any platform, which is incorrect. This means tha=
+t if a
+> > user mistakenly assigns xlnx,versal-pinctrl to a ZynqMP platform or
+> > xlnx,zynqmp-pinctrl to a Versal platform, the wrong reference will be u=
+sed,
+> > but no error is reported. The dt-binding check still passes instead of =
+flagging
+> > this as an issue.
 > >
-> > The added check on subdev->ops breaks probing the video device:
+> > By using a conditional schema, we can enforce platform-specific
+> compatibility,
+> > ensuring that the correct compatible string is used for the correspondi=
+ng
+> > platform. This would also generate an error if an incorrect compatible =
+string
+> is
+> > provided, preventing misconfigurations.
 > >
-> >   tegra-vi 54080000.vi: failed to setup channel controls: -19
-> >   tegra-vi 54080000.vi: failed to register channel 0 notifier: -19
+> > Please let me know your thoughts.
 > >
-> > This is because tegra20_chan_capture_kthread_start() is also calling
-> > tegra_channel_get_remote_csi_subdev(), but when using VIP subdev->ops
-> > points to tegra_vip_ops, not tegra_csi_ops.
-> > =20
->=20
-> Your assumption is wrong. 'tegra_channel_get_remote_csi_subdev' is
-> designed to get next device which is expected to be CSI, NOT VIP
-> (obviously, Tegra210 has no VIP). It seems that VIP implementation did
-> not take into account that CSI even exists.
-
-IIRC it's rather the initial VI implementation was meant to be open to
-supporting both VIP and CSI but some CSI assumptions sneaked in. Which
-is somewhat unavoidable if only CSI could be tested, isn't it? So I had
-to change some when adding VIP (trying hard myself to not break CSI and
-T210).
-
->  -19 errors are due to
-> tegra_vi_graph_notify_complete not able to get next media device in
-> the line. Correct approach would be to add similar helper for VIP and
-> check if next device is VIP.
-
-I think it's almost correct.
-
-tegra_channel_get_remote_csi_subdev() is called:
- * in vi.c, where it is expeted to return either a CSI or VIP subdev
- * in tegra210.c, which apparently supports CSI only=20
-   (I don't know whether the hardware has parallel input)
- * in tegra20.c [added by patch 23 in this series] where only a CSI
-   subdev is wanted
-
-Based on that,  you're right that we need two functions, but they
-should be:
-
- 1. one to return the remote subdev, be it CSI or VIP
-    a. perhaps called tegra_channel_get_remote_subdev()
-    b. perhaps in vi.c
-    c. not checking subdev->ops (or checking for csi||vip)
- 2. one to return the remote subdev, only if it is CSI
-    a. perhaps called tegra_channel_get_remote_csi_subdev()
-    b. perhaps in csi.c
-    c. checking subdev->ops =3D=3D tegra_csi_ops
-
-The function in mainline as of now complies with 2a, 1b, 1c, so it is a
-hybrid.
-
-In other words, what I propose is:
-
- * rename the current tegra_channel_get_remote_csi_subdev()
-   to remove the "_csi" infix, so the name reflects what it does
-   - optionally add the check for (csi||vip)
- * add tegra_channel_get_remote_csi_subdev() for where a CSI-only
-   subdev is needed: that's exactly the function you are adding to csi.c
-   in this patch
-
-Does it look correct?
-
-> Since I have no devices with VIP support
-> I could not test this properly.
-
-Of course, no problem. I can test it (but I cannot test CSI).
-
-> I can add this in next iteration if
-> you are willing to test.
-
-Yes, please do, thanks.
-
-Luca
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> > Thanks,
+> > Ronak
+> >
+> > > Thanks,
+> > > Ronak
+> > > >
+> > > > > +
+> > > > >  required:
+> > > > >    - compatible
+> > > > >
+> > > > > @@ -164,6 +178,10 @@ examples:
+> > > > >          compatible =3D "xlnx,versal-fpga";
+> > > > >        };
+> > > > >
+> > > > > +      pinctrl {
+> > > > > +        compatible =3D "xlnx,versal-pinctrl";
+> > > > > +      };
+> > > > > +
+> > > > >        xlnx_aes: zynqmp-aes {
+> > > > >          compatible =3D "xlnx,zynqmp-aes";
+> > > > >        };
+> > > > > --
+> > > > > 2.34.1
+> > > > >
 
