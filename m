@@ -1,125 +1,170 @@
-Return-Path: <devicetree+bounces-218339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85350B7F6F7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:41:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDACAB801C1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:41:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D1E522DA1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:28:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE6C01BC13BF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59ADB302770;
-	Wed, 17 Sep 2025 10:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834C831B806;
+	Wed, 17 Sep 2025 10:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQ4aLEPM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixNeAMcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB05285073;
-	Wed, 17 Sep 2025 10:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6B0315D21
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 10:37:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758104898; cv=none; b=Nxqx2lWKhqsYQmTzDw+PF5BnNatypdXvoYEXprYQ5AiBqSwE4glLyA3iedZnNh1cydpEC5zSUcL0BqWA20hAsBblXhag+qvpR5p4+mAN/wJyfZEqK9+yMLdHow2r5mlRD8hK7wYRcDFrCbeuOr1/HGrcVgnuwtzDap59KY1d2SQ=
+	t=1758105473; cv=none; b=jaIxmY/U/VRmMK1TZpIjjDy4nuxHt8UCprprWS5GHkFQQLk7KXX6alxj+C0zyFjkpnrJY4bfK9GmggRJarEr5AhAOoZSuAamvAxGracUBYwTZr8+pSa5V0boaG3RYpX6wqBCajT5dpAInBnX5ylReAbDWviGIy7+/amIufK42J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758104898; c=relaxed/simple;
-	bh=HkIDtJKBhiORcxYgG/tKUBLECQnj2hugI4gQ2Ch0RiA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=eejtDP5qbt2/4NQIeNxyHC/0GuS+oxYBe7pNtjV/vBCLtDwAZYPJqc58YKkLP0MqJXV/qQCrCEvUHPng9FBw/d12HOgvEH3L/PbtjKMZGLBYzIe0bjl6723ZVi/S6kmFXIs2zCliKn9vC078thB9gyFyQdiS9ltr2zAQZE7Ahng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQ4aLEPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7C5C4CEF0;
-	Wed, 17 Sep 2025 10:28:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758104897;
-	bh=HkIDtJKBhiORcxYgG/tKUBLECQnj2hugI4gQ2Ch0RiA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=GQ4aLEPMm2MYWmyRIVwCEa9zK+w8zBhaUeKfXqMzoQ8EH/5ImCLhxkVaMJ9QRqlBp
-	 Aa37xRt98MsD5pP1t1iv+nxmhCx1Qsl23tJ77lY0LBet83cc3mHBWdmwZfDj4kYDz/
-	 JDURvT9bBdTtyDyT7avTATWd+/CFk5cBiCrzS1ojUYPpiuKHS7heKku3KeLQkbqq+7
-	 rxLzczVduphC1ZxQ6YDk6/IQYXV+ISZ7G/jNil75+FGK9GqT+afv49GnMh7p3j28yG
-	 L4D5vhFWskjjNu4DiQog0U4b8ARgcEnvOlRbHPHTpcJD7PmYhjnomcjKWbmk+L5OZl
-	 1ZbgGsjr9asnA==
-Date: Wed, 17 Sep 2025 05:28:16 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1758105473; c=relaxed/simple;
+	bh=+jUeO/7waznrAiGaH6nmbusoTFDyzVVMGz6K6davJk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kgG+6rLUIxDgWpcUTz/4cdpf8K3/iWcGjjijVkGJRHH3jC9Ki4XvX4j7/Eu2d1AbdurzarBJdTK1ecQo7i0rZD8o0YteEzkdw1Rc7k558of3mR/IURE8kGAGbNrn6N+/PKE/iibw7PlPWnn2/AEfS4GueMHeaMm+eJTY4v879lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixNeAMcC; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45dd505ae02so8128505e9.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:37:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758105470; x=1758710270; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wsYcWLS54K1ej44Yjhz6yrulC2XJ3aJ+2KhXmhL8N/4=;
+        b=ixNeAMcCtIwuhadNQBJP2UfBAm9SUCCGrfVtT2EPDG3TsEWMjB6nGC6D+fsT1OVdxq
+         LLx5P4Vjal47z5jUXRKMgeIY/WUV7mBVscAfIBIWxWLB+PJu2IN1oQYCfIOVJVyKpWu0
+         lFTCQmVubbambfUhvkiW2YOJ4OuuTaWJg5JmG/or24hT+Qlayp4pD2+rxmG6rx42oJho
+         U1CMkIzhyihb9HfgKBx+wFsgwRRHcnbZUnGLfHIkCjkoeAf075UmCeJC9E2AGzCizuhy
+         bEEcA1SZoYTulRZU+JjQz5NNFeSkmcCRn6uCSc3QXmx3KsVSW8Q/O6/L0X9SRkmi0wFp
+         X/BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758105470; x=1758710270;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wsYcWLS54K1ej44Yjhz6yrulC2XJ3aJ+2KhXmhL8N/4=;
+        b=cBBoM7gAcwfh4UnyWfiG4O1p0iSN7bPsQhW6Nq34YWYPBC+Uaqu7DqAPZIw1BfJ2Ej
+         iEEh+uOmHVKO94mZAwBy3sj0iyaWuUogRi/MmEk7O0uJ686fOEcZhsCH11nYrfsGvDob
+         867I/BJE5JI8v0IthcDzC4/lNhLcY1f0IbelsVPr1T7UnpfwvjKECCK9NSev9NmArbwZ
+         +aVHkmVu+kkt+vLAnzcWrlaAakCRWAwRvgCSMKAJTZ6eK0alEwwo1A5acxhCaDyeU33I
+         KuklVL8sSDDHJCr4PliROPCKpSga5twQ6XTtvwWEtJ6g5WA6uZcarbaetVCdF3TSHaQh
+         +JEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWU6CSen/XhI/0hDMl5Nkpt8xhpUlB0TnhRV/Edkc5ITyeAARJ+kXOn/F4fbyLAMnosVLDoPf797lyM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0eejK8KT3JuyVV3TJbzCNXguI17+6+5zHE8KPFmEhkcLxHE8u
+	KhJlAFCLQigEwExkrNA4zDAbaeK5tNMDay3906y+A6d+WgVHe8C1x9b5
+X-Gm-Gg: ASbGncviPZMXUfNxbrGD1jZ5v2YLGjvWxkTNL1ws+P8ZSdwEuApCLZxWOJUsLO+LCEW
+	5ICQDevoqloZUorZyhuZOxJ+e2HeVtVrCXcswTq7WBHKeKPsTpBPB7XGSZPYzswtNTbXh5jThXj
+	+6BPi5xyH58Ga+qnNQdnKmSGdMBZ8nmYeNz8D2HgCu8a+739ld8BVSKhjewkVYXMddJsTlLUrs/
+	HLqpQWKdJgIAO6UlF14ft/qDwzKl9n1mjN5iXVv7/bU0joNJBQwkR01XTm4soYjMINHEEdaVMX6
+	RrjGbs40h0Hr2qVprJoRr52YC/ng2y54oXwusOQl/zrVKa+eag/fHfWyTiN++uoCS2BJptAbF2n
+	OHUwCYvChG9GZUkE=
+X-Google-Smtp-Source: AGHT+IHmbRK/RR/f6CMsiKwgVCww0CbZLWw9FNcy1YCsTBab4ScCzhgCjBGfKDPKwCMgjbZt1yeo9Q==
+X-Received: by 2002:a05:600c:3d92:b0:45f:2919:5e8d with SMTP id 5b1f17b1804b1-46201cac25dmr7562685e9.1.1758105469624;
+        Wed, 17 Sep 2025 03:37:49 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d005:3b00:8bcc:b603:fee7:a273])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613e93dd85sm34991125e9.22.2025.09.17.03.37.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 03:37:48 -0700 (PDT)
+Date: Wed, 17 Sep 2025 13:37:45 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	DENG Qingfang <dqfext@gmail.com>, Lee Jones <lee@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Dumazet <edumazet@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Simon Horman <horms@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>
+Subject: Re: [net-next PATCH v18 3/8] dt-bindings: mfd: Document support for
+ Airoha AN8855 Switch SoC
+Message-ID: <20250917103745.vhdsvrrv7z23qpnn@skbuf>
+References: <20250915104545.1742-1-ansuelsmth@gmail.com>
+ <20250915104545.1742-4-ansuelsmth@gmail.com>
+ <175795551518.2905345.11331954231627495466.robh@kernel.org>
+ <20250915201938.GA3326233-robh@kernel.org>
+ <68c8a6fd.050a0220.26bdf7.871a@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bard Liao <yung-chuan.liao@linux.intel.com>, 
- linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
- sound-open-firmware@alsa-project.org, Jaroslav Kysela <perex@perex.cz>, 
- devicetree@vger.kernel.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Takashi Iwai <tiwai@suse.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>
-To: "hailong.fan" <hailong.fan@mediatek.com>
-In-Reply-To: <20250917075336.5985-2-hailong.fan@mediatek.com>
-References: <20250917075336.5985-1-hailong.fan@mediatek.com>
- <20250917075336.5985-2-hailong.fan@mediatek.com>
-Message-Id: <175810489672.1450298.11416938707985420274.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: dsp: mediatek: add mt8196 dsp
- document
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68c8a6fd.050a0220.26bdf7.871a@mx.google.com>
 
-
-On Wed, 17 Sep 2025 15:53:05 +0800, hailong.fan wrote:
-> From: Hailong Fan <hailong.fan@mediatek.com>
+On Tue, Sep 16, 2025 at 01:53:27AM +0200, Christian Marangi wrote:
+> On Mon, Sep 15, 2025 at 03:19:38PM -0500, Rob Herring wrote:
+> > On Mon, Sep 15, 2025 at 12:01:47PM -0500, Rob Herring (Arm) wrote:
+> > > 
+> > > On Mon, 15 Sep 2025 12:45:39 +0200, Christian Marangi wrote:
+> > > > Document support for Airoha AN8855 Switch SoC. This SoC expose various
+> > > > peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
+> > > > 
+> > > > It does also support i2c and timers but those are not currently
+> > > > supported/used.
+> > > > 
+> > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > > ---
+> > > >  .../bindings/mfd/airoha,an8855.yaml           | 173 ++++++++++++++++++
+> > > >  1 file changed, 173 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> > > > 
+> > > 
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml:
+> > > 	Error in referenced schema matching $id: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml
+> > > 	Tried these paths (check schema $id if path is wrong):
+> > > 	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
+> > > 	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/nvmem/airoha,an8855-efuse.yaml
+> > > 
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: soc@1 (airoha,an8855): efuse: {'compatible': ['airoha,an8855-efuse'], '#nvmem-cell-cells': 0, 'nvmem-layout': {'compatible': ['fixed-layout'], '#address-cells': 1, '#size-cells': 1, 'shift-sel-port0-tx-a@c': {'reg': [[12, 4]], 'phandle': 3}, 'shift-sel-port0-tx-b@10': {'reg': [[16, 4]], 'phandle': 4}, 'shift-sel-port0-tx-c@14': {'reg': [[20, 4]], 'phandle': 5}, 'shift-sel-port0-tx-d@18': {'reg': [[24, 4]], 'phandle': 6}, 'shift-sel-port1-tx-a@1c': {'reg': [[28, 4]], 'phandle': 7}, 'shift-sel-port1-tx-b@20': {'reg': [[32, 4]], 'phandle': 8}, 'shift-sel-port1-tx-c@24': {'reg': [[36, 4]], 'phandle': 9}, 'shift-sel-port1-tx-d@28': {'reg': [[40, 4]], 'phandle': 10}}} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/nvmem/airoha,an8855-efuse.yaml#"}
+> > > 	from schema $id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
+> > > Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: /example-0/mdio/soc@1/efuse: failed to match any schema with compatible: ['airoha,an8855-efuse']
+> > 
+> > Why are we on v18 and still getting errors? I only review patches 
+> > without errors.
 > 
-> Add device tree binding documentation for the MediaTek
-> MT8196 DSP. The DSP is used by the Sound Open Firmware
-> driver node and includes registers, clocks, memory regions,
-> and a mailbox for DSP communication.
+> Hi Rob,
 > 
-> Signed-off-by: Hailong Fan <hailong.fan@mediatek.com>
-> ---
->  .../bindings/dsp/mediatek,mt8196-dsp.yaml     | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.yaml
+> the problem is that the MFD driver and the schema patch subset of this
+> series has been picked separately and are now in linux-next.
+
+Link for MFD driver? I don't see the MFD driver in linux-next.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/mfd
+
+> I tried to make the bot happy by using base-commit but it doesn't seem
+> to work. Any hint for this? 
 > 
+> The errors comes from the missing efuse schema.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+So the efuse schema is in the nvmem tree and this schema needs to go
+through the mfd tree.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dts:18:18: fatal error: dt-bindings/clock/mt8196-clk.h: No such file or directory
-   18 |         #include <dt-bindings/clock/mt8196-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250917075336.5985-2-hailong.fan@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+For v17, you used "base-commit: 04b74f665961599e807b24af28099a29d691b18c":
+https://lore.kernel.org/netdev/20250911133929.30874-4-ansuelsmth@gmail.com/
+I ran "git show", after fetching linux-next, where all trees should be
+included, and didn't find this commit. What does it represent?
 
