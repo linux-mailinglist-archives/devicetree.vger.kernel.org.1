@@ -1,273 +1,117 @@
-Return-Path: <devicetree+bounces-218318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6B3B7E017
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:39:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F241BB7E00D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:39:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13F8D1BC7B77
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:11:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DC201BC77A9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6524C35690B;
-	Wed, 17 Sep 2025 10:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFACB350D7B;
+	Wed, 17 Sep 2025 10:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnWPOktB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MUhpTyNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D26356908;
-	Wed, 17 Sep 2025 10:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0208B34DCFD
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 10:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758103858; cv=none; b=JAxuYfd8DnxL6mSZ8vO17JIzJ5gIOkNBDEAz+IQydjQZXZ77LiCwQkivI09peR8LqN+4OYY25DIMcpiwF4kE21qrtPKgl7Ti1vx0iDtQAXmuYvKgQMHUuz57N1OKI8qGe+vKAomueE3PCIR7mcbnhq4VzLHKEXr5nBsmH8IP7JU=
+	t=1758103881; cv=none; b=otas6Y54e3PcSocmWmVaJ/9J3iccGDnxOjSrXfOlbGPJJJ89yI2d2ybBUyCEqGfMsychw+KzOOEZvoQxHGxIhZtEkztijNyv0qo7J27jZkA0gkK8Hs6aTDi5w2hxgFLOtCjW3Td5FxqHLCndRREncjmPweI1VBisXbjwrNGHJy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758103858; c=relaxed/simple;
-	bh=a3TxFGgi88EPRbXikutgfbto+hW60mBv6IPriBJtunA=;
+	s=arc-20240116; t=1758103881; c=relaxed/simple;
+	bh=4ga+azf3in2hBznJTvkA4X779mL4ML+24lGMfj0nOIA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZNkKtb6ffThOSn8SbYM6QYsogVwQKVJR/9QtS2gknj4weT5idpgqQ5N80ixgn+U2aUJ1rTxRmqnNNkt0CsYwUfMVVuEr3aY6KNW0Hei3H65g7vztDoJbU7WceKkPwjh0twj1BbRphrOfDAGMlYzoRhok5NPJBVFXLigu6nRP0HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnWPOktB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABA37C4CEF0;
-	Wed, 17 Sep 2025 10:10:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758103857;
-	bh=a3TxFGgi88EPRbXikutgfbto+hW60mBv6IPriBJtunA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hnWPOktBeofCuukIdaGjN17LL80o0d3i9OTMPKM5GSsleR4SAFdgsUvzYRKpUET9v
-	 k0U6wJRh9pdPn1BxoGPtzMqLyKfxkgLXRFOV8jfjYutZbwF6ZIiJ0icJqvndlEwiUT
-	 FNQAiCm/UbWww6PPwcWvWC0jOf9uHe3t6nKrG1EZts5LxeZnLWK7GAZ9h+csgnQZUn
-	 TEW8tIR1wIh5cQ0gt2yEqsRcKeJKbNzxAOr3PPH774kFMyQYGrAWxFJE9IoixGkZim
-	 k/anbDE62wBXjDZ+5Jbl6EJF3A1MBfngqND4VwMgMDpwKEyYf4SJwkdCL059fLP5iJ
-	 o5vmzVZ5exIQw==
-Date: Wed, 17 Sep 2025 15:40:48 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 2/4] PCI: qcom: Move host bridge 'phy' and 'reset'
- pointers to struct qcom_pcie_port
-Message-ID: <2tloujy4jx6xfjpq47ostfxen3rcghy7acmwh4njwzanirhxia@va47lzxqvud3>
-References: <20250912-pci-pwrctrl-perst-v3-2-3c0ac62b032c@oss.qualcomm.com>
- <20250916200817.GA1814336@bhelgaas>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UHyHU+PDq0lX6sCct8qAkEWH0SSP6YrVJWNg9L1Qhvqw/5by43gHVCYb3BdTnRvPS5Bw66bNZXE4m5zGD7u+LUPclJLCGS83bcE4NqulLtLZ6dCoQtko1Br+bcbALIf68p7PjmTbE8Q5p8Bcqy2XhGg6rHfOEz1F2Xso6kiEW2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MUhpTyNX; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45dec4289f0so3481835e9.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:11:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758103878; x=1758708678; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RFlgCXptLNgS0oUFv7P/jnH+n8Ia5ZxafQyZ/H5sxnA=;
+        b=MUhpTyNX/GINaDZeI389tgHDDW8Iot5T8E8vryV5EYWiBHdMXKiKz4ErdSibSbOtv0
+         b5nTyXNQfKyGEXzqNiQhyE81tnq+Bf6uoScQZ4si8+8wGtqi5Um9Oji8OlnjqeoBQT/l
+         k0HV1W88o8UHmcbXHyEfkyNwD8dS5eucgA2UPWtC1VxxM5r/ezoin+p4NN+KbMQkwt0m
+         +H3asFVkENIYAM/fQikTZ8ughU2pumIMXMfA98ROCJvNQNisnhsxa7luxfKcHuZN8p/I
+         ItnHtdeRqdbFYAY6dqkZSeHoMsdgKT1APsgH2umX3P2r8ym9wMjZ8dkxKd7pyhIQyPnb
+         l9dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758103878; x=1758708678;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RFlgCXptLNgS0oUFv7P/jnH+n8Ia5ZxafQyZ/H5sxnA=;
+        b=owL6uErgmzedKVYpMt+qFYFhi9kKM+vtG+gaXSmVROeKFNZcTviURkIZeNUe7kBHVI
+         OHNho/wboFOnV3QbTiNY4Zy7uMo/G4SwrKRU8tUCTV8/PrTcpDZUmCa4Yqpy2PEEaxLe
+         tbsnRWEHH0kLfnGR3pb2EKmIL2BiAvk0v4ee0nw44Dv/V6/eHntXfL80YI+ZF09yLBgi
+         5OXfapb9qfMSfMAdQxSsTXi7LCUKpbMgUS+dlxM3fojDfz8E1DpfIWOjmLRd9UIzG2Xr
+         NTcteU0yEpmMZsf3J6y/mSX2bOGZhOkO5/DjKFDhPGCzdHoDVEpNemy2/s77SAGoiAOF
+         qfrA==
+X-Forwarded-Encrypted: i=1; AJvYcCXcJDdREviLqSzcrceo/OIeg6M2zJRkYmj6culu8Gjnn97pVD5XV6go/LpqDis9CMqJOeQHpxyZ3H+9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1tllSj272z5Ystc1oAtD8qYKDlKIJE8beqJFmb2+F+FejE3UY
+	hPsWcIiJpktAOeI5qmn5n6HH1+Vtc3Z/Geslk+rX84S6KqzBFFRXAv4u
+X-Gm-Gg: ASbGncsrSMe9H09897lNBC8veXrAFXtFCL+iIB2V4hO6SpTpvbRKQGenlIofEWC8t7I
+	ljlgJ02PXAvtJvuj2Hgd2vv4gdKt80/Sx6YTazeq+tnWb1ii+zjg8yIUzPste0kswkcOLmKApft
+	jSmP94X0U9/gvKJhhnnFTr7K4tkhHTU9e7v2bXG58lhNbVSE6XGbntX6gxPg5xSMW75hGhU5+ru
+	lGQI5XmdfuGG4qJFDekGSO3NVgwBlzuyxVG9oAfiSsm88FJyoh9P8f7r66JTw+tRThw4PCdCBVz
+	fxWkBVOOlu1oy1QxxE20CBBP/WsBsTjCD2CeM97/3EgcnpcWFlnn118Ev2Y4QOiAhoqa22QdGiq
+	V1n+gSMGwKFHdx0k=
+X-Google-Smtp-Source: AGHT+IEGAWHbOGCVA8E1ghCrTfok0wf8HrSSu83uqpK5rtG+yvptJ+uZiWuJFaorxUfrNpWZkT3p1g==
+X-Received: by 2002:a05:6000:400e:b0:3e9:e2cf:cda2 with SMTP id ffacd0b85a97d-3ecdfa5ad4fmr599670f8f.8.1758103878166;
+        Wed, 17 Sep 2025 03:11:18 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d005:3b00:8bcc:b603:fee7:a273])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ece0fba34dsm1092120f8f.9.2025.09.17.03.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 03:11:15 -0700 (PDT)
+Date: Wed, 17 Sep 2025 13:11:12 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>,
+	"Chester A. Unal" <chester.a.unal@arinc9.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v18 6/8] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <20250917101112.555jzhzlmpkhgmh5@skbuf>
+References: <20250915104545.1742-1-ansuelsmth@gmail.com>
+ <20250915104545.1742-7-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250916200817.GA1814336@bhelgaas>
+In-Reply-To: <20250915104545.1742-7-ansuelsmth@gmail.com>
 
-On Tue, Sep 16, 2025 at 03:08:17PM GMT, Bjorn Helgaas wrote:
-> On Fri, Sep 12, 2025 at 02:05:02PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > 
-> > DT binding allows specifying 'phy' and 'reset' properties in both host
-> > bridge and Root Port nodes, though specifying in the host bridge node is
-> > marked as deprecated. Still, the pcie-qcom driver should support both
-> > combinations for maintaining the DT backwards compatibility. For this
-> > purpose, the driver is holding the relevant pointers of these properties in
-> > two structs: struct qcom_pcie_port and struct qcom_pcie.
-> > 
-> > However, this causes confusion and increases the driver complexity. Hence,
-> > move the pointers from struct qcom_pcie to struct qcom_pcie_port. As a
-> > result, even if these properties are specified in the host bridge node,
-> > the pointers will be stored in struct qcom_pcie_port as if the properties
-> > are specified in a single Root Port node. This logic simplifies the driver
-> > a lot.
-> > 
-> > Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> Reviewed-by: Bjorn Helgaas <bhelgaas@google.com> 
-> 
-> I would put this patch by itself on pci/controller/qcom immediately
-> because it's not related to the rest of the series, and we should make
-> sure it's in v6.18 regardless of the rest.
-> 
+On Mon, Sep 15, 2025 at 12:45:42PM +0200, Christian Marangi wrote:
+> +static int an855_regmap_phy_reset_page(struct an8855_core_priv *priv,
+> +				       int phy) __must_hold(&priv->bus->mdio_lock)
 
-Done!
-
-- Mani
-
-> > ---
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 87 ++++++++++++++--------------------
-> >  1 file changed, 36 insertions(+), 51 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..6170c86f465f43f980f5b2f88bd8799c3c152e68 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -279,8 +279,6 @@ struct qcom_pcie {
-> >  	void __iomem *elbi;			/* DT elbi */
-> >  	void __iomem *mhi;
-> >  	union qcom_pcie_resources res;
-> > -	struct phy *phy;
-> > -	struct gpio_desc *reset;
-> >  	struct icc_path *icc_mem;
-> >  	struct icc_path *icc_cpu;
-> >  	const struct qcom_pcie_cfg *cfg;
-> > @@ -297,11 +295,8 @@ static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
-> >  	struct qcom_pcie_port *port;
-> >  	int val = assert ? 1 : 0;
-> >  
-> > -	if (list_empty(&pcie->ports))
-> > -		gpiod_set_value_cansleep(pcie->reset, val);
-> > -	else
-> > -		list_for_each_entry(port, &pcie->ports, list)
-> > -			gpiod_set_value_cansleep(port->reset, val);
-> > +	list_for_each_entry(port, &pcie->ports, list)
-> > +		gpiod_set_value_cansleep(port->reset, val);
-> >  
-> >  	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
-> >  }
-> > @@ -1253,57 +1248,32 @@ static bool qcom_pcie_link_up(struct dw_pcie *pci)
-> >  	return val & PCI_EXP_LNKSTA_DLLLA;
-> >  }
-> >  
-> > -static void qcom_pcie_phy_exit(struct qcom_pcie *pcie)
-> > -{
-> > -	struct qcom_pcie_port *port;
-> > -
-> > -	if (list_empty(&pcie->ports))
-> > -		phy_exit(pcie->phy);
-> > -	else
-> > -		list_for_each_entry(port, &pcie->ports, list)
-> > -			phy_exit(port->phy);
-> > -}
-> > -
-> >  static void qcom_pcie_phy_power_off(struct qcom_pcie *pcie)
-> >  {
-> >  	struct qcom_pcie_port *port;
-> >  
-> > -	if (list_empty(&pcie->ports)) {
-> > -		phy_power_off(pcie->phy);
-> > -	} else {
-> > -		list_for_each_entry(port, &pcie->ports, list)
-> > -			phy_power_off(port->phy);
-> > -	}
-> > +	list_for_each_entry(port, &pcie->ports, list)
-> > +		phy_power_off(port->phy);
-> >  }
-> >  
-> >  static int qcom_pcie_phy_power_on(struct qcom_pcie *pcie)
-> >  {
-> >  	struct qcom_pcie_port *port;
-> > -	int ret = 0;
-> > +	int ret;
-> >  
-> > -	if (list_empty(&pcie->ports)) {
-> > -		ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> > +	list_for_each_entry(port, &pcie->ports, list) {
-> > +		ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> >  		if (ret)
-> >  			return ret;
-> >  
-> > -		ret = phy_power_on(pcie->phy);
-> > -		if (ret)
-> > +		ret = phy_power_on(port->phy);
-> > +		if (ret) {
-> > +			qcom_pcie_phy_power_off(pcie);
-> >  			return ret;
-> > -	} else {
-> > -		list_for_each_entry(port, &pcie->ports, list) {
-> > -			ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> > -			if (ret)
-> > -				return ret;
-> > -
-> > -			ret = phy_power_on(port->phy);
-> > -			if (ret) {
-> > -				qcom_pcie_phy_power_off(pcie);
-> > -				return ret;
-> > -			}
-> >  		}
-> >  	}
-> >  
-> > -	return ret;
-> > +	return 0;
-> >  }
-> >  
-> >  static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > @@ -1748,8 +1718,10 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
-> >  	return ret;
-> >  
-> >  err_port_del:
-> > -	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> > +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-> > +		phy_exit(port->phy);
-> >  		list_del(&port->list);
-> > +	}
-> >  
-> >  	return ret;
-> >  }
-> > @@ -1757,20 +1729,32 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
-> >  static int qcom_pcie_parse_legacy_binding(struct qcom_pcie *pcie)
-> >  {
-> >  	struct device *dev = pcie->pci->dev;
-> > +	struct qcom_pcie_port *port;
-> > +	struct gpio_desc *reset;
-> > +	struct phy *phy;
-> >  	int ret;
-> >  
-> > -	pcie->phy = devm_phy_optional_get(dev, "pciephy");
-> > -	if (IS_ERR(pcie->phy))
-> > -		return PTR_ERR(pcie->phy);
-> > +	phy = devm_phy_optional_get(dev, "pciephy");
-> > +	if (IS_ERR(phy))
-> > +		return PTR_ERR(phy);
-> >  
-> > -	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-> > -	if (IS_ERR(pcie->reset))
-> > -		return PTR_ERR(pcie->reset);
-> > +	reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(reset))
-> > +		return PTR_ERR(reset);
-> >  
-> > -	ret = phy_init(pcie->phy);
-> > +	ret = phy_init(phy);
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-> > +	if (!port)
-> > +		return -ENOMEM;
-> > +
-> > +	port->reset = reset;
-> > +	port->phy = phy;
-> > +	INIT_LIST_HEAD(&port->list);
-> > +	list_add_tail(&port->list, &pcie->ports);
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -1984,9 +1968,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
-> >  err_host_deinit:
-> >  	dw_pcie_host_deinit(pp);
-> >  err_phy_exit:
-> > -	qcom_pcie_phy_exit(pcie);
-> > -	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-> > +	list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-> > +		phy_exit(port->phy);
-> >  		list_del(&port->list);
-> > +	}
-> >  err_pm_runtime_put:
-> >  	pm_runtime_put(dev);
-> >  	pm_runtime_disable(dev);
-> > 
-> > -- 
-> > 2.45.2
-> > 
-> > 
-
--- 
-மணிவண்ணன் சதாசிவம்
+s/an855/an8855/ throughout this file.
 
