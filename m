@@ -1,111 +1,173 @@
-Return-Path: <devicetree+bounces-218552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641EDB81979
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:23:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB50B819C4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:26:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E0187A378F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:22:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 770BF188A359
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AD8314D00;
-	Wed, 17 Sep 2025 19:23:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E1829DB99;
+	Wed, 17 Sep 2025 19:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hztTDeD5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMhwH362"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E709730C110;
-	Wed, 17 Sep 2025 19:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D6534BA28;
+	Wed, 17 Sep 2025 19:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758137005; cv=none; b=YYlOapJGumFNKbKugnKGj8jWVBlq0+/vMvQDv/fSuJ2xUXLNw6+O00jM8mLj4CiWVNnuG4o4RT6pzA3uOolpRpCcrhfG2cZmxa6f9/dQCjAOwwW2IRKyw3klZUhVWR9cW3K2bDA5kNuNJE6R8nhEAU1av+TNwRL3sky4WJJ97CY=
+	t=1758137215; cv=none; b=o49IDmIViPNzYABy1Zbph8uTJ8q3k+spyfM5ASPZ2YWD6NqBXkHqNgtg8nhC9sV4oCN7x4dm/yKrqlbGGkBiG6mgRmSdLthSdr9qFaEEfJoWZ5nw8CrH96vtlPuBUR3Zv94wtwCSUuBFH3d2cfYOgLzTkRy5rYgoC012x1qGLE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758137005; c=relaxed/simple;
-	bh=MFa4MrLLeBxJ4spNgJzdHnMZEO1qEG9apiibEMwKF+Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dGu13itbM5cWhtbPkm7DPCwbwwo/aogCGIihXFgNUxsSBIZpy/GLBGifnN3xdz6U1n80H7HKhK/p2OtGTAMuAbrHtpsAF7d6nkpMYUwSZNrykT/z9A6Nv0RvPcfuPf5wH5JEtr2D22+6tgx/UOTfHAVhbTAbCwVvgWpq2a+OntQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hztTDeD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3109DC4CEFB;
-	Wed, 17 Sep 2025 19:23:23 +0000 (UTC)
+	s=arc-20240116; t=1758137215; c=relaxed/simple;
+	bh=rxQ5P0gTfpf4dmZ7B42QPAmEImAeP2nFA/KifuYjACM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Io19eJUgJvi7XDhBLVtm+XBUSWafCv7pH1waaJSfUGUZQ0dyG1HFhlPPQBGWbBAiGvJ4NgDQOCCi7OyFC1pSM8aQPZqgLIzFPAPVFcZqTVda/nSm/Ozdv0IUBCIyxConi2KQtR3bQcI6rfmVUzQn6IHHN3GBC8C0je4t190zeQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMhwH362; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9256C4CEE7;
+	Wed, 17 Sep 2025 19:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758137004;
-	bh=MFa4MrLLeBxJ4spNgJzdHnMZEO1qEG9apiibEMwKF+Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hztTDeD5xlD8jRixl4Pxqbhj8i+b07MKO4vukji5FOvcufnEFBVDnUG3O39XqxEDf
-	 fRfRqP9SzSW+KP9YaaoIOGCbEGdM+/jH9zvtgkeb1fk21D0+Woe/fz4mx+4nkTwi8t
-	 pI0F4pL4JR1rij724ydjdyWMqqm1SmfSaS0M0ZYYyHU6tr0Hh43jZy3SDWqKIDH8BL
-	 V8o35BqbbsomC6B9QR0d5mM/lCO9neVYWqrcCfLAsnPfjuwFR/QRHSj9pPcRtGKc1t
-	 9JObbpttreKLKaZxdOPbdiny+a14JCdMCRGm3Y0swnxHw2i4zX8ohFjE/+jhCjdYcp
-	 RhV6wSpUEI5kQ==
-From: Bjorn Andersson <andersson@kernel.org>
-To: andi.shyti@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	konradybcio@kernel.org,
-	broonie@kernel.org,
-	johan+linaro@kernel.org,
-	dianders@chromium.org,
-	agross@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mukesh.savaliya@oss.qualcomm.com
-Subject: Re: [PATCH v7 0/6] Add support to load QUP SE firmware from
-Date: Wed, 17 Sep 2025 14:23:19 -0500
-Message-ID: <175813699406.66282.993438408948834854.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com>
-References: <20250911043256.3523057-1-viken.dadhaniya@oss.qualcomm.com>
+	s=k20201202; t=1758137214;
+	bh=rxQ5P0gTfpf4dmZ7B42QPAmEImAeP2nFA/KifuYjACM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tMhwH362ygjjwtnqhXiVywzh3oiDjnrB5XKf0gfMFk/qbDnOy0tJhMrLeVNSz0XX1
+	 nF/X6JJvntikX0l4b7OuOv8ibCjAfJCW1P/mzjf03kgBw5yyB1Xe9LqCX4tJIrrQhP
+	 CCnjdAC0Lwj4DN+Zhc95Puuo6k9iXc/Z5ppMcbB5miUh4+tesHDmssV1vs6JMMjtC1
+	 lNhyo4jJGo/wCqrT3pOeG/zRkLc9PKFy8x/WxX+5l8RJMh4wcwDkah8aMz8m2yHyGN
+	 9KAIkeZfXV2rUFurIu/vgS94QSZkilL6fF1cVfI7nqawQUtFWDX/rzQSwcDSUSD78B
+	 FcmkowUHZpt1g==
+Date: Wed, 17 Sep 2025 20:26:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] dt-bindings: touchscreen: fsl,imx6ul-tsc: support
+ glitch thresold
+Message-ID: <20250917-unhidden-foothill-7c103245be1f@spud>
+References: <20250917080534.1772202-1-dario.binacchi@amarulasolutions.com>
+ <20250917080534.1772202-5-dario.binacchi@amarulasolutions.com>
+ <aMrc0GhVbpI38t3L@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1WzqRwur55oUj4Vo"
+Content-Disposition: inline
+In-Reply-To: <aMrc0GhVbpI38t3L@lizhi-Precision-Tower-5810>
 
 
-On Thu, 11 Sep 2025 10:02:50 +0530, Viken Dadhaniya wrote:
-> In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
-> hardware has traditionally been managed by TrustZone (TZ). This setup
-> handled Serial Engines(SE) assignments and access control permissions,
-> ensuring a high level of security but limiting flexibility and
-> accessibility.
-> 
-> This limitation poses a significant challenge for developers who need more
-> flexibility to enable any protocol on any of the SEs within the QUP
-> hardware.
-> 
-> [...]
+--1WzqRwur55oUj4Vo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Wed, Sep 17, 2025 at 12:07:44PM -0400, Frank Li wrote:
+> On Wed, Sep 17, 2025 at 10:05:09AM +0200, Dario Binacchi wrote:
+> > Support the touchscreen-glitch-threshold-ns property.
+> >
+> > Drivers must convert this value to IPG clock cycles and map it to one of
+>=20
+> binding descript hardware, not drivers. So below sentence should be bette=
+r.
+>=20
+> "TSC only supports the four discrete thresholds, counted by IPG clock cyc=
+les.
+> See SC_DEBUG_MODE2 register."
+>=20
+> > the four discrete thresholds exposed by the TSC_DEBUG_MODE2 register:
+> >
+> >   0: 8191 IPG cycles
+> >   1: 4095 IPG cycles
+> >   2: 2047 IPG cycles
+> >   3: 1023 IPG cycles
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> > Changes in v4:
+> > - Adjust property description following the suggestions of
+> >   Conor Dooley and Frank Li.
+> > - Update the commit description.
+> >
+> > Changes in v3:
+> > - Remove the final part of the description that refers to
+> >   implementation details.
+> >
+> >  .../bindings/input/touchscreen/fsl,imx6ul-tsc.yaml | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/fsl,im=
+x6ul-tsc.yaml b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx=
+6ul-tsc.yaml
+> > index 678756ad0f92..1975f741cf3d 100644
+> > --- a/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-ts=
+c.yaml
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/fsl,imx6ul-ts=
+c.yaml
+> > @@ -62,6 +62,20 @@ properties:
+> >      description: Number of data samples which are averaged for each re=
+ad.
+> >      enum: [ 1, 4, 8, 16, 32 ]
+> >
+> > +  touchscreen-glitch-threshold-ns:
+> > +    description: |
+> > +      Minimum duration in nanoseconds a signal must remain stable
+> > +      to be considered valid.
+> > +
+> > +      Drivers must convert this value to IPG clock cycles and map
+> > +      it to one of the four discrete thresholds exposed by the
+> > +      TSC_DEBUG_MODE2 register:
+>=20
+> same as commit messsage, talk about hardware.
 
-[1/6] dt-bindings: qcom: se-common: Add QUP Peripheral-specific properties for I2C, SPI, and SERIAL bus
-      commit: 9bc7130822c4c7f3ef39f20174a379e476586ab3
-[2/6] soc: qcom: geni-se: Cleanup register defines and update copyright
-      commit: b44a593fb53a6f5e135af2c5351546f80c1285ac
-[3/6] soc: qcom: geni-se: Add support to load QUP SE Firmware via Linux subsystem
-      commit: d4bf06592ad68ac4353a81c73e8e662cf88aa2cc
-[4/6] i2c: qcom-geni: Load i2c qup Firmware from linux side
-      commit: b645df76536c5b7d40e60450bf8011f70f34415f
-[5/6] spi: geni-qcom: Load spi qup Firmware from linux side
-      commit: 99cf351ee1c46b39c0581220807290b1dd56488e
-[6/6] serial: qcom-geni: Load UART qup Firmware from linux side
-      commit: 3f1707306b79cafc5a11350befd5a4081b807760
+This is fine. It's a generic comment about what must be done with the
+property by software that helps people understand how to populate it.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+
+> > +        0: 8191 IPG cycles
+> > +        1: 4095 IPG cycles
+> > +        2: 2047 IPG cycles
+> > +        3: 1023 IPG cycles
+> > +
+>=20
+> This case genenerally need enum 4 values, but it relates IPG frequency.
+> I have not idea how to restrict it base on clk frequency. May DT mainatai=
+ner
+> have idea.
+
+I don't see how you really can restrict it based on the frequency of a
+clock that can probably be varied at runtime.
+
+--1WzqRwur55oUj4Vo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsLeQAKCRB4tDGHoIJi
+0lL5AQCLnyauVzJQEzihjVDX0KlDXBi1HSOzSRs+/oAZJqNsBAEA8sAFqz68gVZ5
+J9dWazzA8+lZXRKWTAXkUnsZSD9G7Ac=
+=6CrS
+-----END PGP SIGNATURE-----
+
+--1WzqRwur55oUj4Vo--
 
