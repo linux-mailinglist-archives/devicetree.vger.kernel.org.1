@@ -1,261 +1,268 @@
-Return-Path: <devicetree+bounces-218462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F116B80776
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:17:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 695AFB8079D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72DC418872D4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:14:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15ABE46629A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049F6330D32;
-	Wed, 17 Sep 2025 15:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1C4333AA2;
+	Wed, 17 Sep 2025 15:19:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="WfX4KE76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCEB36D
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 15:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962D5330D45
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 15:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758122051; cv=none; b=Yo6Q3KbB1euuNvSu0iF+1ihiIlI2f4Y2oCPc5SF8PatzZ3INhtD3Izqa5qJVK3iD3wNAfVYIkfU8ut+stkskxCxSY1rsaYIx4ygviCUT5W9YroXL8+YEVRgaSp33BxMNnbe3X5Yw5KS2Z9TZFNCLnzwaeHln/Rz7A8ixqOWUl9U=
+	t=1758122341; cv=none; b=MP8iEDw84Xwe10eIqPQsSG1sZcxuH4NPExe9/OHVyDST97LFl7zMts3UZS3j6FIIvg81Jv3tbwchLi+c49nipMWSNi00O4erFmZVcLrH1KkOM64LKADMDJgZxWJUihwvwUMWMm20794hVdklSU0RiX03ZurZjkh3UUAtiJI4u3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758122051; c=relaxed/simple;
-	bh=KSe+VQBHvW0n2Vmc15r/RkklfJ0UGB66cliG33ieqhs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c6aAorFuI5GrQZnsz+gFjKWjmZf5VkbPH6C2inviSVMAqTELNrILqI9VWka1B13Uoml5+ftMgxpg5IltfBEQ/3aX5AFe6z7CHxbI/I9pRzg7I3/5q6Wn+izpHVaFUgvT/7rS+Np1asRRW+uhdE4cDNRD/icmdB35zmphUNgyGMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-544c9efb743so2172895e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:14:10 -0700 (PDT)
+	s=arc-20240116; t=1758122341; c=relaxed/simple;
+	bh=7jPZ96BclSCEIxwrjZ4n9aZB42Mvnx+aGDoeaEHGo3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pLK+yTWr9+oXLAmhyrIbL+HuhgEEKhRijBDMmnVoLB1m2xIhTW9HxpuVK3GFDbiVldhAQmA1Vahu4NK2VqdpOIidts6I007Q7kqnjHmV1PliwQbMLK4Ve5i9tLhGii4KV0V29x7GUyvzr8U0qQVZwTzdQ8Gy3F0zoMQqjG5IUZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=WfX4KE76; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1758122338;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Hy7kdzIRoahwzaXq+ZGvnPXEqK5VVBRIst3tKW3Ibxs=;
+	b=WfX4KE76zKuM5i2NUQrJiTpMmqfGB0/QRkGZ4jAveYCTh7XhIk+ebvPO3zcPefYIMjbdFs
+	IeP4Ra/1FZQ+7NFOPGJf4/dZYsWK2T478PrT0WUOkU5z5xkKjsGJO4UCEDQ/A8uaj107Fo
+	KauyGMtfNLr9y2s9HyRPl7PtKXqQXIU=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-153-T5fNZPMGPVaEbvLgsK13xA-1; Wed, 17 Sep 2025 11:18:57 -0400
+X-MC-Unique: T5fNZPMGPVaEbvLgsK13xA-1
+X-Mimecast-MFC-AGG-ID: T5fNZPMGPVaEbvLgsK13xA_1758122336
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-45e05ff0b36so5010625e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:18:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758122049; x=1758726849;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1758122336; x=1758727136;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tZ6rxnhh7QouGGcSBJApcqvcuY+RYoCVy1LFm/ChHAI=;
-        b=p5n1YMQzvkWNwUtmhUHL4QxheReZLBbpwwFcveKvfDFdgrFur6843et8tgLLcMh56i
-         w9iIqqHW9v/h0pTYG6GV2tz7umWk0p7CqcQHyG+JwtFIWdLnA2VOuJXookYSkdILHvWD
-         CX5sjfhiZ1wS/K74pfQfXvTBNnIT3BoxKmrk4QbgXhtj65HbSl5T/J/ijfrqOFw8rP4q
-         adYNaL9cTMbiUK1TXgY6e8FKcpr63a1hY1l2bKOHnl5AInLfg/q2bMVnvJse9DhI8BgV
-         hsr9TCcSatWoMxDbHa0cQtSmy3JmaEGdrN/oYW3sZawPQ/kCyvfVlj7p4FfbwmuexGz6
-         IAww==
-X-Forwarded-Encrypted: i=1; AJvYcCUQhUnaV/8M09RaaRDFBBps/fdDxlOlPAMZqOagChNFOBIlHk/ciT9XEwDvDItn5KqAh3DKhKLnwIt3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxmMlq8YCnyFvqpr1sSEA87oQvxX9ahMDnLknrHDjqkopHX3jU
-	KRK6FJU3UEJOAHe46kvBO7L1T8xD7S0DES2w/PH3hFfiUipQ3RfXr+JWsT9S1nQ/UcQ=
-X-Gm-Gg: ASbGnctgbrjbaxuV2j0wX83vGBHacgiunqRUwewaG4/kXZ4/WL+kV45yYizrA2YQWSZ
-	aA3eziUjucB7bHOPXR9gWP1KHBjHUxtwiFH0GI7/6djzK+bvCXCYq9LfSv15ud02fOrqlKL8EYK
-	l2k+1m37ZmZAln3/w+fuWgGrsG+dvkibrSXon4mKABEEGsLN+BMBsdFl0mJtStM03YhgbU/l4EA
-	VefYT3EX1a0p6Boxa/Sc/g+tY5Gns/c3wNM3KYyAzIajYZKRQLhYUj3+KQVawxrfJOWfb66InNG
-	9D8bhkbdVQ14bSnJOCHljesKHg6YyhrdzEHDV4Rztn3dJE5FhY89/uwhDsk5W4FVyMmASREk7UK
-	VXc9xh7sN+dlZknTskWKdvorA2etokeyGDa1oBD6U1K8BHs8+52y2/3TsdqXm
-X-Google-Smtp-Source: AGHT+IFhmra+6tI0oLFRwksDL8FR4yKWAdVKsddTkQWtQ52HsUML4Wxoxo58SqQlZ2lvBSQ6iKGXew==
-X-Received: by 2002:a05:6122:130d:b0:545:ed72:fdf1 with SMTP id 71dfb90a1353d-54a60a060dcmr747337e0c.1.1758122048670;
-        Wed, 17 Sep 2025 08:14:08 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54a0d1e52a4sm3316694e0c.10.2025.09.17.08.14.07
-        for <devicetree@vger.kernel.org>
+        bh=Hy7kdzIRoahwzaXq+ZGvnPXEqK5VVBRIst3tKW3Ibxs=;
+        b=tUo0Ppyxt9zBgsGRbBzZ7JqanAOCKygE2oIz69Xv9bSvKTzQlj5z2ZscZ9t1TatBX/
+         AumcZxsYbIgXXYtxOkw07A+dW6/X6xy74WFEf0gkg23XfpZyaBHW1fuyU2w/F4VCwqZD
+         vUtsHWNLtuY3dEssNV68+NV31V0bV12lyAQfT5PUbA4b/Qz82t0ltuEK0xhHWcZBGuwY
+         xNAaRt369L1kTEDEiwLcF3Cz0pXMW20SHAFCntrdsmplr1XE/2WkEcgJblnm3GNYpri8
+         vY8K20tugKkdQOqPwfsyJQFh6FC2/5xWXBOBF5kgnIGpZ3Q5CFYVj7nK5YJc1oyF2Qpp
+         PI3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUq4UiVS1DleAyhbgWgXhbcOu6Obgk9VhztyMFVCwRuQgouMBkIeErzNY58ptXkOUbTXMozbNh3G4Ev@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxvlo/mcuHkKDQQwOBX/MLiGoWys8kRD6TrBiwsRYCTjQ+wzLGg
+	sa9lvLe0jRO76+Scop+4/G6uiwCJlpbRPjLUo/RM2TpErP87qsahCHrr4yyXwWRTcl4B2OKdQcS
+	6sy0yZtAmB3cvgILL33zkS9uY3bu1sPYHJCQUANm0p8pCdIeAjWaWfUi+1COpKGU=
+X-Gm-Gg: ASbGncuzSUHmRdUcKLDWv6WkpZz5SOvSFmSe0wrdBmDzkJ0AxTCXkiTdaxNYWhcibz2
+	iNFqtSZkP0eEsdjo/AmNqqAlzg+lGPZp9T7OkuT6Ds03GlndBVN5SxtDw3i8z05QQyc8WeYEM9G
+	P5rqGPm59hxKjXWrX3LRAqkkf9lMKKhLtB+3BD73w/8efpXYfHEtNGi2qSx1EpsKOhku4AFSPfR
+	l60grvCsBo4bS5X/Cbaq6piig/vVy+gMjYZVNMxm8iv99MBO9nW1ScixmdmNWtR8yI1hoLkrp4j
+	yhJzfwJlVuFvGr6AJsbAdEVM9qe6BglB9T1MZtMDEjIu8AmHq2cUyTBcq3sk+k0SsVUQJJMyYWe
+	h/HK1SnSUxoKTye8sEMjLhfSUWcLuit3ZpAgc3Q47ifrwpcdAzZcTZ+KUn+bQFnPb
+X-Received: by 2002:a05:600c:c0c2:b0:45d:e201:1603 with SMTP id 5b1f17b1804b1-45ffbb87d0fmr44805885e9.15.1758122335844;
+        Wed, 17 Sep 2025 08:18:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGZJXZpzuRjgrByrwR+JkhhVX9lJLsNt0iPyJ6yeH+tCAOWNZvmbwXLVLzskDHw5XXeFtjkaQ==
+X-Received: by 2002:a05:600c:c0c2:b0:45d:e201:1603 with SMTP id 5b1f17b1804b1-45ffbb87d0fmr44805575e9.15.1758122335350;
+        Wed, 17 Sep 2025 08:18:55 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f27:6d00:7b96:afc9:83d0:5bd? (p200300d82f276d007b96afc983d005bd.dip0.t-ipconnect.de. [2003:d8:2f27:6d00:7b96:afc9:83d0:5bd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f3211e8c7sm40537455e9.3.2025.09.17.08.18.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 08:14:07 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-55a3c4194e9so1855117137.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:14:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVecljutblWudaIpBaOtBkYBRiSUp1iLjbksSWMBM1PFT0+3LD1qPZCyK1HA2brpmGIuec3ihamOF94@vger.kernel.org
-X-Received: by 2002:a05:6102:4414:b0:4e6:ddd0:96ff with SMTP id
- ada2fe7eead31-56d63efa012mr900359137.16.1758122046543; Wed, 17 Sep 2025
- 08:14:06 -0700 (PDT)
+        Wed, 17 Sep 2025 08:18:52 -0700 (PDT)
+Message-ID: <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com>
+Date: Wed, 17 Sep 2025 17:18:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87ecs5abp9.wl-kuninori.morimoto.gx@renesas.com> <877bxxabmr.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <877bxxabmr.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 17 Sep 2025 17:13:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUaoBP1ZtJqc7rfqLXGETXpVYNcFfJf5xFBFSHG9mSB8Q@mail.gmail.com>
-X-Gm-Features: AS18NWDAtmJ2xaoQuGRsAt7Kwia2BPFHIJLsHQkXMzPf_Sxvg99Y761td_EKCiw
-Message-ID: <CAMuHMdUaoBP1ZtJqc7rfqLXGETXpVYNcFfJf5xFBFSHG9mSB8Q@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] arm64: dts: renesas: Add R8A78000 X5H DTs
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: "Liang, Kan" <kan.liang@linux.intel.com>, Adrian Hunter <adrian.hunter@intel.com>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
-	Ian Rogers <irogers@google.com>, Ingo Molnar <mingo@redhat.com>, 
-	James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>, 
-	John Garry <john.g.garry@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Leo Yan <leo.yan@linux.dev>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Mike Leach <mike.leach@linaro.org>, 
-	Namhyung Kim <namhyung@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Peter Zijlstra <peterz@infradead.org>, Rob Herring <robh@kernel.org>, 
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>, Will Deacon <will@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+To: Eugen Hristev <eugen.hristev@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+ <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
+ ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
+ FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
+ 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
+ opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
+ 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
+ 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
+ Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
+ lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
+ cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
+ Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
+ otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
+ LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
+ 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
+ VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
+ /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
+ iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
+ 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
+ zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
+ azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
+ FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
+ sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
+ 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
+ EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
+ IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
+ 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
+ Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
+ sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
+ yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
+ 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
+ r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
+ 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
+ CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
+ qIws/H2t
+In-Reply-To: <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Morimoto-san,
+On 17.09.25 17:02, Eugen Hristev wrote:
+> 
+> 
+> On 9/17/25 17:46, David Hildenbrand wrote:
+>> On 17.09.25 16:10, Thomas Gleixner wrote:
+>>> On Wed, Sep 17 2025 at 09:16, David Hildenbrand wrote:
+>>>> On 17.09.25 07:43, Eugen Hristev wrote:
+>>>>> On 9/17/25 00:16, Thomas Gleixner wrote:
+>>>>>> I pointed you to a solution for that and just because David does not
+>>>>>> like it means that it's acceptable to fiddle in subsystems and expose
+>>>>>> their carefully localized variables.
+>>>>
+>>>> It would have been great if we could have had that discussion in the
+>>>> previous thread.
+>>>
+>>> Sorry. I was busy with other stuff and did not pay attention to that
+>>> discussion.
+>>
+>> I understand, I'm busy with too much stuff such that sometimes it might
+>> be good to interrupt me earlier: "David, nooo, you're all wrong"
+>>
+>>>
+>>>> Some other subsystem wants to have access to this information. I agree
+>>>> that exposing these variables as r/w globally is not ideal.
+>>>
+>>> It's a nono in this case. We had bugs (long ago) where people fiddled
+>>> with this stuff (I assume accidentally for my mental sanity sake) and
+>>> caused really nasty to debug issues. C is a horrible language to
+>>> encapsulate stuff properly as we all know.
+>>
+>> Yeah, there is this ACCESS_PRIVATE stuff but it only works with structs
+>> and relies on sparse IIRC.
+>>
+>>>
+>>>> I raised the alternative of exposing areas or other information through
+>>>> simple helper functions that kmemdump can just use to compose whatever
+>>>> it needs to compose.
+>>>>
+>>>> Do we really need that .section thingy?
+>>>
+>>> The section thing is simple and straight forward as it just puts the
+>>> annotated stuff into the section along with size and id and I definitely
+>>> find that more palatable, than sprinkling random functions all over the
+>>> place to register stuff.
+>>>
+>>> Sure, you can achieve the same thing with an accessor function. In case
+>>> of nr_irqs there is already one: irq_get_nr_irqs(), but for places which
+>>
+>> Right, the challenge really is that we want the memory range covered by
+>> that address, otherwise it would be easy.
+>>
+>>> do not expose the information already for real functional reasons adding
+>>> such helpers just for this coredump muck is really worse than having a
+>>> clearly descriptive and obvious annotation which results in the section
+>>> build.
+>>
+>> Yeah, I'm mostly unhappy about the "#include <linux/kmemdump.h>" stuff.
+>>
+>> Guess it would all feel less "kmemdump" specific if we would just have a
+>> generic way to tag/describe certain physical memory areas and kmemdump
+>> would simply make use of that.
+> 
+> The idea was to make "kmemdump" exactly this generic way to tag/describe
+> the memory.
 
-On Wed, 17 Sept 2025 at 07:31, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> From: Hai Pham <hai.pham.ud@renesas.com>
->
-> Add initial DT support for R8A78000 (R-Car X5H) SoC.
->
-> [Kuninori: tidyup for upstreaming]
->
-> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
-> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
-> Signed-off-by: Minh Le <minh.le.aj@renesas.com>
-> Signed-off-by: Huy Bui <huy.bui.wm@renesas.com>
-> Signed-off-by: Khanh Le <khanh.le.xr@renesas.com>
-> Signed-off-by: Phong Hoang <phong.hoang.wz@renesas.com>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+That's probably where I got lost, after reading the cover letter 
+assuming that this is primarily to program kmemdump backends, which I 
+understood to just special hw/firmware areas, whereby kinfo acts as a 
+filter.
 
-Thanks for the update!
+> If we would call it differently , simply dump , would it be better ?
+> e.g. include linux/dump.h
+> and then DUMP(var, size) ?
+> 
+> could we call it maybe MARK ? or TAG ?
+> TAG_MEM(area, size)
 
-> index 0000000000000..6445f05de0563
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r8a78000.dtsi
-> @@ -0,0 +1,755 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the R-Car X5H (R8A78000) SoC
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +       compatible = "renesas,r8a78000";
-> +       #address-cells = <2>;
-> +       #size-cells = <2>;
-> +
-> +       cpus {
+I'm wondering whether there could be any other user for this kind of 
+information.
 
-> +               a720_0: cpu@0 {
-> +                       compatible = "arm,cortex-a720ae";
-> +                       reg = <0x0 0x0>;
-> +                       device_type = "cpu";
-> +                       next-level-cache = <&L2_CA720_0>;
-> +
-> +                       L2_CA720_0: cache-controller {
+Like R/O access in a debug kernel to these areas, exporting the 
+ranges/names + easy read access to content through debugfs or something.
 
-As reported before, the cache nodes should be outside the CPU nodes.
+Guess that partially falls under the "dump" category.
 
-"make dtbs_check" would have reminded you:
+Including that information in a vmcore info would probably allow to 
+quickly extract some information even without the debug symbols around 
+(I run into that every now and then).
 
-    arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@0
-(arm,cortex-a720ae): Unevaluated properties are not allowed
-('cache-controller' was unexpected)
-            from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+> 
+> this would go to a separate section called .tagged_memory.
+> 
 
-> +                               compatible = "cache";
-> +                               cache-level = <2>;
+Maybe just "tagged_memory.h" or sth. like that? I'm bad at naming, so I 
+would let others make better suggestions.
 
-Missing "cache-unified".
+> Then anyone can walk through the section and collect the data.
+> 
+> I am just coming up with ideas here.
+> Could it be even part of mm.h instead of having a new header perhaps ?
+> Then we won't need to include one more.
 
-"make dtbs_check":
-
-    arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller
-(cache): 'cache-unified' is a required property
-            from schema $id: http://devicetree.org/schemas/cache.yaml#
-
-> +                               next-level-cache = <&L3_CA720_0>;
-> +                       };
-
-> +               };
-
-> +       soc: soc {
-> +               compatible = "simple-bus";
-> +               interrupt-parent = <&gic>;
-
-Marc asked to move interrupt-parent to the top, i.e. one level up...
-
-> +               #address-cells = <2>;
-> +               #size-cells = <2>;
-> +               ranges;
-> +
-> +               timer {
-
-... and please keep the timer node outside the soc node.
-
-"make dtbs_check":
-
-    arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: soc
-(simple-bus): timer: 'ranges' is a required property
-            from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
-
-> +                       compatible = "arm,armv8-timer";
-> +                       interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-> +                                    <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-> +                       interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
-> +               };
-
-> +               scif0: serial@c0700000 {
-> +                       compatible = "renesas,scif-r8a78000", "renesas,scif";
-
-Missing "renesas,rcar-gen5-scif".
-
-"make dtbs_check":
-
-    arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0700000
-(renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one
-must be fixed:
-            ...
-            ['renesas,scif-r8a78000', 'renesas,scif'] is too short
-            ...
-            'renesas,rcar-gen5-scif' was expected
-            ...
-            from schema $id:
-http://devicetree.org/schemas/serial/renesas,scif.yaml#
-
-> +                       reg = <0 0xc0700000 0 0x40>;
-> +                       interrupts = <GIC_SPI 4074 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&dummy_clk_sgasyncd16>, <&dummy_clk_sgasyncd16>, <&scif_clk>;
-> +                       clock-names = "fck", "brg_int", "scif_clk";
-> +                       status = "disabled";
-> +               };
-
-> +               hscif0: serial@c0710000 {
-> +                       compatible = "renesas,hscif-r8a78000", "renesas,hscif";
-
-Missing "renesas,rcar-gen5-hscif".
-
-"make dtbs_check":
-
-arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000
-(renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one
-must be fixed:
-        ['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
-        ...
-        'renesas,rcar-gen5-hscif' was expected
-        from schema $id:
-http://devicetree.org/schemas/serial/renesas,hscif.yaml#
-
-> +                       reg = <0 0xc0710000 0 0x60>;
-> +                       interrupts = <GIC_SPI 4078 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&dummy_clk_sgasyncd4>, <&dummy_clk_sgasyncd4>, <&scif_clk>;
-> +                       clock-names = "fck", "brg_int", "scif_clk";
-> +                       status = "disabled";
-> +               };
-
-Gr{oetje,eeting}s,
-
-                        Geert
+I don't really have something against a new include, just not one that 
+sounded like a very specific subsystem, not something more generic.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Cheers
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+David / dhildenb
+
 
