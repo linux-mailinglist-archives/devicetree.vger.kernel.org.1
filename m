@@ -1,155 +1,206 @@
-Return-Path: <devicetree+bounces-218529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC60B81256
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:20:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E399B81262
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:21:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 472B9462A83
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:20:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58AD2587F18
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64FC12F99BD;
-	Wed, 17 Sep 2025 17:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200E12FABFA;
+	Wed, 17 Sep 2025 17:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4kufLm3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C7xNlPl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF2028312D;
-	Wed, 17 Sep 2025 17:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2929C2D3745
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 17:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758129596; cv=none; b=Ck4wyXszp4Ah3dyPjZk7NpNQkM6MwBx5SEsEpGzINIEs4g098u2B28qWoEg/sUveQgQMx8ltoxhshzDjvqBXhbCd2Vpvr3yw10tG7AYLCeEaA94cvMJ4bMINjJtrScUxp1cHgec2cmKhq5yL6xkVQqechZYQzYaEvsEULHLNlyk=
+	t=1758129679; cv=none; b=mgfSeDf6ON3UDZUSO7EQ7Bbj5xFbsO7Le+LhAKlqoFItfY8ysPFARq+gXqt5VWjTvkp82pwVMNOZwZpyRGb7uW+CFDlUmkjZ01mhJj+P1OOiSys+Gj9bQtR0xyeYEQDLsrr8wKERuj7cvXw9PDOfrDJN2Khc/3ojedQUmIM3KdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758129596; c=relaxed/simple;
-	bh=PaQc8EUNl7CQtcyysbGlpZNQUgJZzBiTvE4agvsSPa8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=EJ947JVBXcEggflKdKPgv7Iil1IaED8r3fiEep3Bl1feq/lTMlhLdu//BOc+44F/gEh/CNaLFhuLfVFbgLikSwyqPc92vckfbPdoasjiOVttUHmph+Wa6EEBQxkg5NbvRlDLsD1SNb921WMNz0NpFW7Nh+GVvmZdTYFwHDO/1qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4kufLm3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD8B5C4CEE7;
-	Wed, 17 Sep 2025 17:19:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758129595;
-	bh=PaQc8EUNl7CQtcyysbGlpZNQUgJZzBiTvE4agvsSPa8=;
-	h=Date:From:To:Cc:Subject:From;
-	b=R4kufLm3DABZvpjbm0zHczD0JiihXYiw4z07kFCIgX0wrm/yZ13NQcOc7ZOcwlQ9n
-	 QOJxC5nD9L/yAnbtJWY/fkcoLbZ/mqotCWfKxP7gUumrj58/lgm5riTHGXI9Qejj9a
-	 uWLzIY2U6noLvIRjSZpIrCof6+7sxvYuBaPQKb/3LDGZlRc22DGnVWiWpqrEgLTjhU
-	 BUxN+z+if1W2BrB6JnBYiuDzNSPdbu1pJXcKT8o54zaO+A007t6U5bN7zDbR1UaTIN
-	 18TTBCLKVOGw5bD10waxcHETpLOGLRXNJrzC8yS657QXwDK8NnEhskRA9Iiv187ZZi
-	 xiW/v9ckPrERg==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 9FF465FDA7; Thu, 18 Sep 2025 01:19:53 +0800 (CST)
-Date: Thu, 18 Sep 2025 01:19:53 +0800
-From: Chen-Yu Tsai <wens@kernel.org>
-To: soc@kernel.org
-Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Allwinner Device Tree changes for 6.18
-Message-ID: <aMrtuZg8HlR--TAt@wens.tw>
+	s=arc-20240116; t=1758129679; c=relaxed/simple;
+	bh=1aoUAbCzO9b1WkCL1uGdzZ9KLosTf9Mi2eCsOLd4jP0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DFuZu9YQ2CSjHbl1odnLY7ornvlrpIxFrhfAgwKh6HJVHBsNpbPhsxn1ABxukXD78p8OApBD3R/VqbOaO8uWnv2QprsUYfoytSILkNWydTTxxhg+7icyCsbtYsT5l7EvakB6Mj9jAMZkZ61Gspc06oRfdnD25cmgR7chfP9LKBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C7xNlPl3; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-62f7bcde405so2382147a12.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 10:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758129675; x=1758734475; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jE5z6SStGstCRNv9ltTlbMEXuvhA93B8hSvu3mrmaPk=;
+        b=C7xNlPl3wMA8f5w/dNNhkhoXThE3Z0SfiUA4+LoqR03UzdJ1IQ/7kTuBRTp6K3uuCx
+         v3gpARv/B/Ms9w8441V8HRjKRZXkCUDioy46bA+VZDRa/dv4rFarA2i/4+d/YptUrpw3
+         3GcD4l4hL0p19S8CPWp01veHbqN41vUj3vKsc5nISh45uCGH1BwWovQxlRz4sdtqWbyL
+         Yo9WLmSKaNa7I0PdtJ7/kIXT7wSQoeIrpWAZenxz41j4HWyAfXuXgGIRSP9oXKBMFFYP
+         kbcwxKrK5IuXMRv3x7q54Oysq0uDykZ2hU38LlPNpT8C4kX7DBIr31Nl+ull5uFkXUdp
+         epuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758129675; x=1758734475;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jE5z6SStGstCRNv9ltTlbMEXuvhA93B8hSvu3mrmaPk=;
+        b=ETBM6EH/Xtxtpyl3fSKg6KV1SYyMJ57pFneDKGhwe+ClgmmKOFYc3iSnQmaXJtnKQS
+         UQPDHcArBqtZ5eXRhl00VcrRR2HG8R1QUeIa4qlCVKFPYF7AVY1A/+bG6ndQyX9t1+kU
+         yx7OxAiyfEVXCGWcR9LxRsWmaX7hsIZlJ01+N/NYI9wnYC1A5rtQ01JKv1j7EJ7cfpcd
+         L207YSPWdcqj2bG7kbDj28ZN7ttlk4gMKo5c9LfnzFEM+E3Rz3PYC/stAhFr7svnram1
+         nCD1p4QAMK3R7l1OI14rSKmmfua7LcVUWf0/r9PnMXsV0HuXC+pcXY2Qiw6ijz5Z7ZVY
+         UncA==
+X-Forwarded-Encrypted: i=1; AJvYcCXnei1jwX0UJgBpITsLGH/8QC8yZxbsf6/GsF5LkdpQkl2ko43j3g9aUAsfXCQbVRz60P42umDUx5LY@vger.kernel.org
+X-Gm-Message-State: AOJu0YweHReoRp6j7f5UEoB+WLdkedvjthCRjZQF2muwa7UAjbwEcBno
+	gJkdTn7fBRYL+MNC5IpoZm5aD9PPZvdmmK69fZMY4oznNY+zZ3PNgbOH/WgsjHzpcwkTxrdZitt
+	WbRfv3VTz53Iywv8ASPMNYcYVXtpBwNpqzbuUjkOi8Q==
+X-Gm-Gg: ASbGncst/PYdZmmzgCcNhYFYigfNfwKXzQqWxFJhuZHF6Anom9WL0/zYhkCLSkUpkMI
+	qKfUbZYwm6PiCrXqnHsjzc46I1pPaUDMCSdh0B8DypzPdSKdbUd80kEUrG5YQq9ix72/oUbsJUw
+	JG5ddUl1kU1Rgysc1/fdL+7nub3IruYBaa5IQh6ylqC9ROc0WNsd72/lWlQ3IBz7tiM/Cpr4z/n
+	GLAZXU3fxhC03i1cHzg2pBjz0nTt0BO1K8mDKBj1eySfhU=
+X-Google-Smtp-Source: AGHT+IEkd1wU5hGZ/gLYNvwM0MAW/mjMU6QrKeYk8BM4gj6vi/UmJm+Bn6+Gz2aNpC1XRxR9/RFUm05c3RIj8Ydo0XM=
+X-Received: by 2002:a05:6402:5205:b0:62f:5968:ae0c with SMTP id
+ 4fb4d7f45d1cf-62f83a3c874mr3294259a12.16.1758129675198; Wed, 17 Sep 2025
+ 10:21:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+References: <20250912141436.2347852-1-vincent.guittot@linaro.org>
+ <20250912141436.2347852-2-vincent.guittot@linaro.org> <aMp0hNnBUwTV5cbp@ryzen>
+In-Reply-To: <aMp0hNnBUwTV5cbp@ryzen>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Wed, 17 Sep 2025 19:21:03 +0200
+X-Gm-Features: AS18NWCc9Wuje5i2tQbCh3xBqxRFBZcfMF6Z2ZM58muUKw4hiti-IcbYy-eSg-E
+Message-ID: <CAKfTPtDTnzyksa4Om1HgZTJX7dGeM_vYiEV2eQnEi9AmZK7KEw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: pcie: Add the NXP PCIe controller
+To: Niklas Cassel <cassel@kernel.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
+	ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
+Hi Niklas,
 
-  Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
+On Wed, 17 Sept 2025 at 10:42, Niklas Cassel <cassel@kernel.org> wrote:
+>
+> Hello Vincent,
+>
+> Nice to see you sending some PCIe patches :)
+>
+> Quite different from the scheduler and power management patches that you
+> usually work on :)
 
-are available in the Git repository at:
+Yeah, It's always interesting to explore different areas
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git tags/sunxi-dt-for-6.18
+>
+> (snip)
+>
+> > +  nxp,phy-mode:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: Select PHY mode for PCIe controller
+> > +    enum:
+> > +      - crns  # Common Reference Clock, No Spread Spectrum
+> > +      - crss  # Common Reference Clock, Spread Spectrum
+> > +      - srns  # Separate reference Clock, No Spread Spectrum
+> > +      - sris  # Separate Reference Clock, Independent Spread Spectrum
+>
+> This does not seem to be anything NXP specific, so I really think that this
+> should be some kind of generic property.
 
-for you to fetch changes up to cca07ac2b5f7838b8ff612b53b9f82ac8cb58312:
+I agree. Thanks for having shared the email threads on the subject.
 
-  arm64: dts: allwinner: sun55i: Complete AXP717A sub-functions (2025-09-15 00:04:32 +0800)
+>
+>
+> Note that I tried to add a similar property, but for the PCIe endpoint side
+> rather that the PCIe root complex side:
+> https://lore.kernel.org/linux-pci/20250425092012.95418-2-cassel@kernel.org/
+>
+> However, due to shifting priorities, I haven't been able to follow up with
+> a new version/proposal.
+>
+> My problem is not exactly the same, but even for a root complex, the PCI
+> specification allows the endpoint side to provide the common clock, which
+> means that the root complex would source the refclk from the PCIe slot,
+> so I would say that our problems are quite similar.
 
-----------------------------------------------------------------
-Allwinner Device Tree changes for 6.18
+yes, they are all the same
 
-This tag contains two DT binding header changes that are shared with
-the clk tree.
+- common or separate clock
+- Spread spectrum or not
 
-In this cycle we gained support for the MCU PRCM clock and reset
-controller on the A523/A527/T527 family of SoCs, the NPU which is a
-Vivante GC9000 IP block, and the NPU clock that was missing. The other
-PRCM clock controller gained default bus clock rate settings. These
-were not configured in the upstream U-boot bootloader, leading to them
-running at slower rates. The assigned rates are from the user manual.
+and finally which clock to use as the reference behind internal or external
 
-There is also a new board, the NetCube Systems Nagami SoM and two of
-its carrier boards.
+In my case, I only need to know the first 2 items
 
-The A523 family development boards now have their internal RTC clocks
-configured correctly, so that the RTC does not drift wildly. The missing
-functions for the AXP717 on these boards are added. Missing reset GPIOs
-and delays for Ethernet PHYs are added. Last, the Cubie A5E now has its
-LEDs described and usable.
 
-An overlay for the Orange Pi Zero interface (addon) board was added.
-This can be used with the Orange Pi Zero and Zero Plus 2. Default audio
-routing for these two boards (to be used with the addon) were added to
-complement the overlay.
+>
+> Rob Herring suggested to use the clock binding rather than an enum.
+> I can see his point of view, but personally I'm not convinced that his
+> suggestion of not having a clock specified means "source the refclock from
+> the slot" is better than a simple enum.
 
-----------------------------------------------------------------
-Chen-Yu Tsai (13):
-      arm64: dts: allwinner: a527: cubie-a5e: Add LEDs
-      arm64: dts: allwinner: a527: cubie-a5e: Add ethernet PHY reset setting
-      arm64: dts: allwinner: t527: avaota-a1: Add ethernet PHY reset setting
-      dt-bindings: clock: sun55i-a523-ccu: Add missing NPU module clock
-      dt-bindings: clock: sun55i-a523-ccu: Add A523 MCU CCU clock controller
-      Merge branch 'sunxi/shared-dt-headers-for-6.18' into sunxi/dt-for-6.18
-      arm64: dts: allwinner: a523: Add MCU PRCM CCU node
-      arm64: dts: allwinner: a523: Add NPU device node
-      arm64: dts: sun55i: a523: Assign standard clock rates to PRCM bus clocks
-      arm64: dts: allwinner: a527: cubie-a5e: Drop external 32.768 KHz crystal
-      arm64: dts: allwinner: t527: avaota-a1: hook up external 32k crystal
-      arm64: dts: allwinner: t527: orangepi-4a: hook up external 32k crystal
-      arm64: dts: allwinner: sun55i: Complete AXP717A sub-functions
+Having a clock binding to define where the clock(s) comes from could
+be a good way to describe the various ways to provide the ref clock
+and an empty "ref" clock can suggest using an internal clock for those
+which have one.
 
-J. Neuschäfer (3):
-      ARM: dts: allwinner: orangepi-zero: Add default audio routing
-      ARM: dts: allwinner: orangepi-zero-plus2: Add default audio routing
-      ARM: dts: allwinner: Add Orange Pi Zero Interface Board overlay
+But I don't see an easy way to describe common vs separate and with or
+without spread spectrum.
 
-Lukas Schmid (5):
-      dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier board bindings
-      riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube Systems Nagami SoM
-      ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
-      ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
-      ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
 
- Documentation/devicetree/bindings/arm/sunxi.yaml   |   8 +
- .../bindings/clock/allwinner,sun55i-a523-ccu.yaml  |  37 ++-
- arch/arm/boot/dts/allwinner/Makefile               |  10 +
- .../dts/allwinner/sun8i-h2-plus-orangepi-zero.dts  |  14 ++
- .../dts/allwinner/sun8i-h3-orangepi-zero-plus2.dts |  14 ++
- .../sun8i-orangepi-zero-interface-board.dtso       |  46 ++++
- .../sun8i-t113s-netcube-nagami-basic-carrier.dts   |  67 ++++++
- .../sun8i-t113s-netcube-nagami-keypad-carrier.dts  | 129 +++++++++++
- .../dts/allwinner/sun8i-t113s-netcube-nagami.dtsi  | 250 +++++++++++++++++++++
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi     |  41 ++++
- .../boot/dts/allwinner/sun55i-a527-cubie-a5e.dts   |  46 +++-
- .../boot/dts/allwinner/sun55i-t527-avaota-a1.dts   |  34 +++
- .../boot/dts/allwinner/sun55i-t527-orangepi-4a.dts |  31 +++
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi  |  48 ++++
- include/dt-bindings/clock/sun55i-a523-ccu.h        |   1 +
- include/dt-bindings/clock/sun55i-a523-mcu-ccu.h    |  54 +++++
- include/dt-bindings/reset/sun55i-a523-mcu-ccu.h    |  30 +++
- 17 files changed, 853 insertions(+), 7 deletions(-)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-orangepi-zero-interface-board.dtso
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
- create mode 100644 include/dt-bindings/clock/sun55i-a523-mcu-ccu.h
- create mode 100644 include/dt-bindings/reset/sun55i-a523-mcu-ccu.h
+>
+> To me, it seems way clearer to explicitly specify the mode in device tree,
+> rather than the mode implictly being set if a "clk" phandle is there or not.
+
+I tend to agree that getting the common/separate and w/ or w/o spread
+spectrum is not straightforward.
+
+> That approach seems way easier to misunderstand, as the user would need to
+> know that the clocking mode is inferred from a "clk" phandle being there or
+> not.
+>
+>
+> I also note that Rob Herring was not really a fan of having separate spread
+> spectrum options. Instead, it seems like he wanted a separate way to define
+> if SSC was used or not.
+>
+> I have seen the following patch merged:
+> https://github.com/devicetree-org/dt-schema/pull/154
+> https://github.com/devicetree-org/dt-schema/commit/d7c9156d46bd287f21a5ed3303bea8a4d66d452a
+>
+> So I'm not sure if that is the intended way they want SSC to be defined or
+> not.
+
+The above provides much more than what we need as it is mainly a
+boolean for pcie than characterizing the spread spectrum itself
+
+>
+>
+> I apologize for bringing up my own problem in this discussion, but at least
+> it is clear to me that we cannot continue with each PCIe driver adding their
+> own vendor specific properties (with completely different names) for this.
+> Some kind of generic solution is needed, at least for new drivers.
+
+I agree.
+
+Regards,
+Vincent
+
+>
+>
+> Kind regards,
+> Niklas
 
