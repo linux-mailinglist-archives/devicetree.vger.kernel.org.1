@@ -1,161 +1,250 @@
-Return-Path: <devicetree+bounces-218464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B1EB80812
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:24:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF836B80989
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:33:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D03934E3219
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:24:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DCBA6214A3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1706335936;
-	Wed, 17 Sep 2025 15:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65347333AA7;
+	Wed, 17 Sep 2025 15:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u5VU4cWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C28335959
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 15:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D151369B4
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 15:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758122691; cv=none; b=IPvFTeR5kU/W/qjAnExhnntAIRRJEelwmdG8YQT3yGV77Ug/mK5kdiuU8M9CCbNUdrJTwpA7Qqz6TX1XwDnWZIbGgufzWYEGW3xqZxPD29r537PU+Na5RWtOc0Fjngfa4hkb/piUHH3iQldBc052sbg6qf3vRoHSww2zkrtWWWc=
+	t=1758123168; cv=none; b=LcJxnq9EdWKAJHAZT+jYXGketT3AzQDaol1eLsiAD2OoC8BxDt8j/fhnhRieGvYbiDpEmt9XKFgEus2pwfO1b9vFv5XZXkXd1vECZL8Y+kaI6WYbtUhL/yPBLKRoUuQngWnLQoAgJ8sn+wOtMvQty+U8MTcNQoxX+NTulv//SGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758122691; c=relaxed/simple;
-	bh=3ARUkUpoBf83aJNRQ8BiAp+2Sc3izs7X4NYbaBnVQgo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=TeSwh983oqowjKBN/awggIt8simAqF2AmzZ00OZ3Ix1MptOfPcVAoUxikFyrP3P4cRKfJDzPvzH8ercGYcsgKFe2pnxazAV97ncDAwf5JEi/sA+Afkw49sJifLwHSrNEUwmYvBBG4a6+1nYaBEJdQXLHMDViefkC7QlethVf7zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-77c6516af79so431027b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:24:49 -0700 (PDT)
+	s=arc-20240116; t=1758123168; c=relaxed/simple;
+	bh=1PjU7nEeEI5Wf3JTQRVSrCL28uqYi+NS88MtDd4/3b4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TsOv6o2n2XYJA1Zg3/zekXPr0/Z0fkMibekG3le4AJbMhfAncqi4e4MfIBFILXr6FNzkRLSWTtppkSMqutD4FaFREmpLPOZDLtlfAqpw+jcMNuMf4QIb/LwWgLHE7pvpGl5S+khKjF5EtAX7eFCMwPSS88W/BIVmr4+AxBDhYA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u5VU4cWL; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso11520610a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:32:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758123164; x=1758727964; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V4k5J8VkcsZOGowc/PhE+thWQDtpKbu6223a2JTLS/I=;
+        b=u5VU4cWLvJNpz09QCFKrR9WS/+Lra5YUO3vptMugtunB9E6jEgY/OKlWhkOoHc1H1X
+         I3qX8hKbQRjdvIWnMFUvC64EgrzeUNY8GkFP82xe54nlukkqHLoKRkrLPX/Ebund1Osr
+         Tdwwd+YVGj3F6z3AkC4xk6PkSjAb+clOqjhhe3DegFA9wE6ifxtbQQRIh1VNcY6VvfKp
+         h0DIPyhXzi96SvMh5jCO4/yOEs8K8epFO7r4SgjRiI+gO2MhU6rpM6vVixpgjNGtqC+B
+         uznB7eCyBPbJ3k5+ihi8YkcrwPYdB2K//2ORlsP4Jm/voVzrESZUFr/XeseP7ntBgyXY
+         9KTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758122689; x=1758727489;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8bY/asBqVOnDWFE5LcHmnDOT5AoWMNTr7WSHO+9CO+k=;
-        b=CUE7iqHNsyOTMMph7tHjxIhgqBbaaO6Ba+2++yb4aPxextEQWhTObju8UzILHyBTT8
-         vqU7y5n6wL9Z8DUFWsNzxwKeAwtRrqCtn3viaimSiEDQRhHLYS/0ekS/HrAE6yT+KIoN
-         METl0ts4HFkkHf1zAcny+HOJ+So239fqnItZtp1oA9JfQQ1xMTn0EXKftXoym9tIDbbu
-         t7rZHK5x0aZ08Xbh9PJaRs7CL2THOXSXhiiYpcCa5ZCSSeOAGilNfUJHv3/L3FypxRjV
-         IYZZqWKnrEAoGj+AUFIdZHAbjoFj3CRBzeTLa+T/oJUZdtSAD4SNoLSepW+Wr91TJ5kJ
-         7+Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCUwj9QoFR8fh5VlSrqm/fHVOycrZk3E9h/sUs+EeZz5WETZpJTMKuuCdHE2SdfOHBJjrIbmlGBGXB8P@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaImamI4x4eC0hrm20JNJM9CqGtls9oRTMvHXfSQuBXvFPkoEr
-	+QvSiGrnkDRPI2xm1WTWvTixDHhKvoZGnBdXzB+YAcMjmq6ydtsulcA91xL3Nmj8Zu4=
-X-Gm-Gg: ASbGncujVXVyhh1RVgGESdUtPlMriATM2BPyOk92dm7sZ3zOk2tgvuZRLDFGGQcM/fW
-	NHxyIUXvEcZTnTSfitfOXa2LJZXCSzF3mPQEtPMRWtMZHDe4+UEyXD/AJHYsUb7quPP+nTDTv9W
-	8iAMr80ZgbVDz1ymkGnA2E3lUUMLZTRKMhkUfuAnZdBxISL2neHIlSxerLUrJuDzXh4fRGxSbXM
-	5/XdY09YcJ9TBZvDQsSVeuTZGHMWg2fQO4np32A9rb99DrAhQNUOMWKNjAn52w/67N+YlRvnXf9
-	Qsdxvg5xY09RqulyO6ixGwBjBtXpKwuHmKJINs7NZUzcvwJibhO2DYHzKOlRllQijiC6NJtMYx1
-	fqC8DyDO04ghJJvUdhNjy
-X-Google-Smtp-Source: AGHT+IHJBEGVlWAkDnL7p8aPBmpzPuwLI6TVt47t7wf2wpFW3MFRt1QIyIXPCIevSu5aQ3ieTqwwuA==
-X-Received: by 2002:a05:6a20:2449:b0:24b:1a6d:298b with SMTP id adf61e73a8af0-27aa3cf5b6fmr3447692637.34.1758122689322;
-        Wed, 17 Sep 2025 08:24:49 -0700 (PDT)
-Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7760793b65dsm18800938b3a.9.2025.09.17.08.24.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Sep 2025 08:24:48 -0700 (PDT)
-From: Kevin Hilman <khilman@kernel.org>
-To: Michael Walle <mwalle@kernel.org>, Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, Michael
- Walle <mwalle@kernel.org>
-Subject: Re: [PATCH 2/3] clk: keystone: don't cache clock rate
-In-Reply-To: <20250915143440.2362812-3-mwalle@kernel.org>
-References: <20250915143440.2362812-1-mwalle@kernel.org>
- <20250915143440.2362812-3-mwalle@kernel.org>
-Date: Wed, 17 Sep 2025 08:24:47 -0700
-Message-ID: <7hv7lhp0e8.fsf@baylibre.com>
+        d=1e100.net; s=20230601; t=1758123164; x=1758727964;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V4k5J8VkcsZOGowc/PhE+thWQDtpKbu6223a2JTLS/I=;
+        b=uGEXEeHvx8NADgOnWytFjm5CHFyl6ykjEdNJnDvRGaFPivi3V7bUcfmBgWEw7SzRls
+         93lJ3fXyYwJdlgfqI7ataf7StlJNxyqoFnWyFUUYdG708GiEwOwJCK/xg0qq96bVMF3Z
+         8xQFIsHjUbAZctWtzejHMasz1+av2j7dCoVrKlSAcnPh3PTiKNrxuKijTnvwmg8KLgTp
+         64pChD5JGylQ0ix7dRFrX1YrlQXNRxjmtckdvmP9CcEjoM7fY57xsHHxcarf+dyDIO6E
+         SCfLsGn5bEgGcGVFzKk60yIz5mvHO1HpyY1H4LEzYxGivEPHA7UEs5+AMEcEJ5vJIy/6
+         dhhA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/hyEiymgBgS1uUfu/u7IB8cPqJTBudByBk6WJUdk7r28ooQ2UIWv3YvBB6I6UncSw4G2byV0xadcZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFqpLWgeVb22qr8he4jJnihdOJj0OFaoW3fgn/jm92F5lRAxfR
+	tdkf3r08jB7FpOAz1aS/mbxcBinqUsn8UVMat4mR/LINUiQpgGp0wgm9yvpWp9PHBLU=
+X-Gm-Gg: ASbGncv2EsBtl3eGIN3pxLSKOHJ77z6JCPzPO87VkOoTXgO3Pv8bwodbD95LJ2SeOf1
+	yigqjrSLXFz4di/ZvctPnNbOuYc6VZnPwpjuoUGljdgZtWLZQ5dkxN4n7vPG+JmyekiRVao0CTb
+	BofGmXX6k7DLQFKptCbDoubYMPzNNEww7CjgeNlnkGOccs0Oa4t7fgbgid7jTGts3ezSQ4flHGF
+	jK0ryY6AH08zFlr6pvzvMVp1eUBr5cN7MVBAvj2kcKjIbaIhdlqVSwFoTduYlVBpEPg9ot7ZskX
+	uxOyBd2YaZBg8iwZ+g+GKZM1Yzyu9OrdRlaHQ34vucpE6RFH9iUrqmN4IRNf3KCfwgwsuIn+pGs
+	iTOMX4Dt/t938MvcbIeZJxTy8QqIRfIEd+gxkSD3yBXg=
+X-Google-Smtp-Source: AGHT+IE8ZMv8HN0yNwSikwv6pMskOhk9zA0LwfuIGCKmhTnIQQy04Vwmljxv3YCiPD4eKH8iHrC6Ug==
+X-Received: by 2002:a17:906:6a09:b0:b04:a1a4:4bec with SMTP id a640c23a62f3a-b1bc020111bmr330491066b.58.1758123164384;
+        Wed, 17 Sep 2025 08:32:44 -0700 (PDT)
+Received: from [172.20.10.3] ([109.166.135.151])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b317124esm1395390166b.46.2025.09.17.08.32.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Sep 2025 08:32:43 -0700 (PDT)
+Message-ID: <10540b3e-09ca-403d-bc20-b9412a7fe28a@linaro.org>
+Date: Wed, 17 Sep 2025 18:32:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+To: David Hildenbrand <david@redhat.com>, Thomas Gleixner
+ <tglx@linutronix.de>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+ <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+ <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com>
+Content-Language: en-US
+From: Eugen Hristev <eugen.hristev@linaro.org>
+In-Reply-To: <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Michael Walle <mwalle@kernel.org> writes:
 
-> The TISCI firmware will return 0 if the clock or consumer is not
-> enabled although there is a stored value in the firmware. IOW a call to
-> set rate will work but at get rate will always return 0 if the clock is
-> disabled.
-> The clk framework will try to cache the clock rate when it's requested
-> by a consumer. If the clock or consumer is not enabled at that point,
-> the cached value is 0, which is wrong.
 
-Hmm, it also seems wrong to me that the clock framework would cache a
-clock rate when it's disabled.  On platforms with clocks that may have
-shared management (eg. TISCI or other platforms using SCMI) it's
-entirely possible that when Linux has disabled a clock, some other
-entity may have changed it.
+On 9/17/25 18:18, David Hildenbrand wrote:
+> On 17.09.25 17:02, Eugen Hristev wrote:
+>>
+>>
+>> On 9/17/25 17:46, David Hildenbrand wrote:
+>>> On 17.09.25 16:10, Thomas Gleixner wrote:
+>>>> On Wed, Sep 17 2025 at 09:16, David Hildenbrand wrote:
+>>>>> On 17.09.25 07:43, Eugen Hristev wrote:
+>>>>>> On 9/17/25 00:16, Thomas Gleixner wrote:
+>>>>>>> I pointed you to a solution for that and just because David does not
+>>>>>>> like it means that it's acceptable to fiddle in subsystems and expose
+>>>>>>> their carefully localized variables.
+>>>>>
+>>>>> It would have been great if we could have had that discussion in the
+>>>>> previous thread.
+>>>>
+>>>> Sorry. I was busy with other stuff and did not pay attention to that
+>>>> discussion.
+>>>
+>>> I understand, I'm busy with too much stuff such that sometimes it might
+>>> be good to interrupt me earlier: "David, nooo, you're all wrong"
+>>>
+>>>>
+>>>>> Some other subsystem wants to have access to this information. I agree
+>>>>> that exposing these variables as r/w globally is not ideal.
+>>>>
+>>>> It's a nono in this case. We had bugs (long ago) where people fiddled
+>>>> with this stuff (I assume accidentally for my mental sanity sake) and
+>>>> caused really nasty to debug issues. C is a horrible language to
+>>>> encapsulate stuff properly as we all know.
+>>>
+>>> Yeah, there is this ACCESS_PRIVATE stuff but it only works with structs
+>>> and relies on sparse IIRC.
+>>>
+>>>>
+>>>>> I raised the alternative of exposing areas or other information through
+>>>>> simple helper functions that kmemdump can just use to compose whatever
+>>>>> it needs to compose.
+>>>>>
+>>>>> Do we really need that .section thingy?
+>>>>
+>>>> The section thing is simple and straight forward as it just puts the
+>>>> annotated stuff into the section along with size and id and I definitely
+>>>> find that more palatable, than sprinkling random functions all over the
+>>>> place to register stuff.
+>>>>
+>>>> Sure, you can achieve the same thing with an accessor function. In case
+>>>> of nr_irqs there is already one: irq_get_nr_irqs(), but for places which
+>>>
+>>> Right, the challenge really is that we want the memory range covered by
+>>> that address, otherwise it would be easy.
+>>>
+>>>> do not expose the information already for real functional reasons adding
+>>>> such helpers just for this coredump muck is really worse than having a
+>>>> clearly descriptive and obvious annotation which results in the section
+>>>> build.
+>>>
+>>> Yeah, I'm mostly unhappy about the "#include <linux/kmemdump.h>" stuff.
+>>>
+>>> Guess it would all feel less "kmemdump" specific if we would just have a
+>>> generic way to tag/describe certain physical memory areas and kmemdump
+>>> would simply make use of that.
+>>
+>> The idea was to make "kmemdump" exactly this generic way to tag/describe
+>> the memory.
+> 
+> That's probably where I got lost, after reading the cover letter 
+> assuming that this is primarily to program kmemdump backends, which I 
+> understood to just special hw/firmware areas, whereby kinfo acts as a 
+> filter.
 
-Could another solution here be to have the clk framework only cache when
-clocks are enabled?
+If there is a mechanism to tag all this memory, or regions, into a
+specific section, what we would do with it next ?
+It would have a purpose to be parsed and reused by different drivers,
+that would be able to actually use it.
+So there has a to be some kind of middleman, that holds onto this list
+of regions, manages it (unique id, add/remove), and allows certain
+drivers to use it.
+Now it would be interesting to have different kind of drivers connect to
+it (or backends how I called them).
+One of these programs an internal table for the firmware to use.
+Another , writes information into a dedicated reserved-memory for the
+bootloader to use on the next soft reboot (memory preserved).
+I called this middleman kmemdump. But it can be named differently, and
+it can reside in different places in the kernel.
+But what I would like to avoid is to just tag all this memory and have
+any kind of driver connect to the table. That works, but it's quite
+loose on having control over the table. E.g. no kmemdump, tag all the
+memory to sections, and have specific drivers (that would reside where?)
+walk it.
 
-> Thus, disable the cache altogether.
->
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
-> I guess to make it work correctly with the caching of the linux
-> subsystem a new flag to query the real clock rate is needed. That
-> way, one could also query the default value without having to turn
-> the clock and consumer on first. That can be retrofitted later and
-> the driver could query the firmware capabilities.
->
-> Regarding a Fixes: tag. I didn't include one because it might have a
-> slight performance impact because the firmware has to be queried
-> every time now and it doesn't have been a problem for now. OTOH I've
-> enabled tracing during boot and there were just a handful
-> clock_{get/set}_rate() calls.
+> 
+>> If we would call it differently , simply dump , would it be better ?
+>> e.g. include linux/dump.h
+>> and then DUMP(var, size) ?
+>>
+>> could we call it maybe MARK ? or TAG ?
+>> TAG_MEM(area, size)
+> 
+> I'm wondering whether there could be any other user for this kind of 
+> information.
+> 
+> Like R/O access in a debug kernel to these areas, exporting the 
+> ranges/names + easy read access to content through debugfs or something.
 
-The performance hit is not just about boot time, it's for *every*
-[get|set]_rate call.  Since TISCI is relatively slow (involves RPC,
-mailbox, etc. to remote core), this may have a performance impact
-elsewhere too.  That being said, I'm hoping it's unlikely that
-[get|set]_rate calls are in the fast path.
+One idea I had to to have a jtag script read the table , parse it, and
+know where some information resides.
+Another idea is to use Uboot in case of persistent memory across reboot,
+and Uboot can read all the sections and assemble a ready-to-download
+coredump. (sure this doesn't work in all cases)
+What can be done in case of hypervisor is to implement there a routine
+that would read it, in case the OS is non-responsive, or even in the
+secure monitor.
+Another suggestion I had from someone was to use a pure software default
+backend in which to just keep the regions stored, and it could be
+accessed through userspace or read by a crash analyzer.
 
-All of that being said, I think the impacts of this patch are pretty
-minimal, so I don't have any real objections.
+> 
+> Guess that partially falls under the "dump" category.
+> 
+> Including that information in a vmcore info would probably allow to 
+> quickly extract some information even without the debug symbols around 
+> (I run into that every now and then).
+> 
+>>
+>> this would go to a separate section called .tagged_memory.
+>>
+> 
+> Maybe just "tagged_memory.h" or sth. like that? I'm bad at naming, so I 
+> would let others make better suggestions.
+> 
+>> Then anyone can walk through the section and collect the data.
+>>
+>> I am just coming up with ideas here.
+>> Could it be even part of mm.h instead of having a new header perhaps ?
+>> Then we won't need to include one more.
+> 
+> I don't really have something against a new include, just not one that 
+> sounded like a very specific subsystem, not something more generic.
+> 
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-> ---
->  drivers/clk/keystone/sci-clk.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/clk/keystone/sci-clk.c b/drivers/clk/keystone/sci-clk.c
-> index c5894fc9395e..d73858b5ca7a 100644
-> --- a/drivers/clk/keystone/sci-clk.c
-> +++ b/drivers/clk/keystone/sci-clk.c
-> @@ -333,6 +333,14 @@ static int _sci_clk_build(struct sci_clk_provider *provider,
->  
->  	init.ops = &sci_clk_ops;
->  	init.num_parents = sci_clk->num_parents;
-> +
-> +	/*
-> +	 * A clock rate query to the SCI firmware will return 0 if either the
-> +	 * clock itself is disabled or the attached device/consumer is disabled.
-> +	 * This makes it inherently unsuitable for the caching of the clk
-> +	 * framework.
-> +	 */
-> +	init.flags = CLK_GET_RATE_NOCACHE;
->  	sci_clk->hw.init = &init;
->  
->  	ret = devm_clk_hw_register(provider->dev, &sci_clk->hw);
-> -- 
-> 2.39.5
 
