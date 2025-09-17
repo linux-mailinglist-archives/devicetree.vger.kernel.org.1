@@ -1,166 +1,160 @@
-Return-Path: <devicetree+bounces-218442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E6AB801C7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:41:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84500B80287
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:44:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD355171C40
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:39:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A021D58698E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEF62F5333;
-	Wed, 17 Sep 2025 14:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2012F0C5E;
+	Wed, 17 Sep 2025 14:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MIyb62YM"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="o+EZo/EH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA7B2F067A
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93872FBDE5
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758119985; cv=none; b=rNOoF3h7C0d/pFo45lzIzXi9cFHfyXmlzoz9yzV8XHQd8wjscx9bwKV8lclI2ZsBPIJoyNqWe8SkA8GsQI6f6j6YdvApbjXAV6/F+WhefWy5+YiCG5EFSt0B9yAOLO9DFnKA5OZvCPfj4FVaNv01E6w13wvPtFdINhYJn8nAXOE=
+	t=1758120159; cv=none; b=kA65IGnO3vYHQtjyxmc0RsbKc5nxL6+MXyHlcxid6RpxYvv3YkCkl8w4cwpfEALhxBFYCzvZDTdoZZeA1TVaGq4n0IHr4oO5oS/JPp+o/ThLxR4a566NXwfZh0m/rnJvtuUu3unNCO+DBF1qafNT2TyvC4wUbMrTfJX2w5fwfyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758119985; c=relaxed/simple;
-	bh=hZTBRfz/ZMmGgfkxGvZJNqkrI3iVk75jFXYBuJXd97s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ufBa7lFfF6xaK4vwFM2LPKa5ISEznQKTLNkXBcYpI+HnvRy4vVd54G7DDJ1IE0znIZRPB0z/IJ4zafZjynbYk1mc4wA1lcsmxq4m+rf+WaWy+RfEHxpzTLO+GKLHRyM2lkgN+nY6UyTC9NiFKzv4um42lnrRlwgEokjHkjMNBPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MIyb62YM; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-61a8c134533so4611931a12.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:39:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758119981; x=1758724781; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G+JFxy0ygOdW3l3nHRVIFlZWqg48U5vYOHIigwzCCL4=;
-        b=MIyb62YMh8mkOlC9HmVaLYveK+3njYXe2BhsbpWkrpgk8DneoeCiw1Ta4mpCwdE8Xq
-         Oexsap5WtaCY+nkw4LyHqZk6hz1CSee8vXCtyv5q82Xug4Kpo6FwR1DofwGugdKrJlqe
-         CgJ/5W9gyKVJHijQwMe48ooe18vb5e3TC8TcJhIcbbchpXJDK2Plh3Aa1sEg8yRDHvpG
-         gqtWeK8NdJw6D7UPX5HTXMdbsFYkTGJ+xFIv6cEbdSj/qfnD3T3Og+jOGPfzG5lMrLGc
-         CArhKefHV59pHnM1Kx5huu+SlOgbCztWlE+1ThT2ZkB1pE/lpmYXTcyCkFfXTcTuf8Wl
-         YZbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758119981; x=1758724781;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G+JFxy0ygOdW3l3nHRVIFlZWqg48U5vYOHIigwzCCL4=;
-        b=u3F+9/FgKGPpDD9xYLXGAkIZOboNkyNo44FJJ7yCqr7IHSfd4QQL4mL1gr1Dct6yMo
-         8FsOQuF9FI0Ru9OaJgCU/6eG4GntdVBKF8QKzXQEDaYAP+RPa9xemJDIokRp4QsaCL1O
-         zulPLFUJgL+76j2KQfI3tPBsNQYM2UKhNI1BCptnJ0/E2Zqk4EYfVd/Z+R1Mipci8+4C
-         qKBkwKRo7TbveQ+JAEPhhgKOgX3Lh50TTa53XoSLojEvo5cptwIRJZhi9/OfDABK5aRT
-         jvDX3FHHIT+ZIzcJ2JPtCfT4qFCAuWBU27j2lBFsF1DLbw5URsm8fiP/toF/pI+kQrmO
-         Q2Wg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxHeUI67Njbm6gIKFy5YtDm5b6kSfGLu/YnBSdOpSl/aQB32dWoN/rCaabqgwn99H4vMfnTPVk8kX3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8WIoI4c/Y3TY7ojxxKUkchzaLh28mDYIb+DIQ5+DSGFOfU47L
-	a/H2HYMILrfV/q8lsf2VUcVPKmLOJteGuLuuvQd5DThm9L6+cdT7x41j+Lz1B/ZtoZs=
-X-Gm-Gg: ASbGncv3WXUXwzCvTXHQ0anaWqpr26YjMShwO2pkeaG/2gTwyx/dP7j0iexiaCXf3aI
-	HNEkARZ/nOorfYY5BTYv/vdvvPzB8ijrwgguITFDwk6SVyAUAh3ikU1//sjkVP0P53/QVwWoeGM
-	Qep/KfB5dHQNuRyx4/apw70FmDlVUS2MtEvAF4UIb1YnSmwak5E1CXufirVyfV03xwiVw8HwS0R
-	szvQ1/JuE+ZFZhzKp46I+5biO9wvyHiT7CwlwqfQ4sJnmxMDyZP6p03kzH0haQcy+H2En6NPxg0
-	G57ytlsoWsV36gHHvQDgwcWNSADzyPVZCLIlwupiv7dvy4Ko8CVuZPCRimDAMyHUBfJ4wxnJwLR
-	H+3rAkZwYnJlk1pMN9AKYtBdVEBaRVBUmr3bbeETFTFY1xQdn57MD3ZUGIWLLlhxvuKtwgYIw1e
-	291b/LMRraxt3e
-X-Google-Smtp-Source: AGHT+IE8VEnZlDl0+bIWDG3i7/q7d7hKEqhb51w8SDDyxzRAyEBFsV4sp9akw/faDA2uEjEVnVB25w==
-X-Received: by 2002:a05:6402:5210:b0:628:12e9:5e41 with SMTP id 4fb4d7f45d1cf-62f84685255mr2219366a12.29.1758119981486;
-        Wed, 17 Sep 2025 07:39:41 -0700 (PDT)
-Received: from puffmais2.c.googlers.com (224.138.204.35.bc.googleusercontent.com. [35.204.138.224])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62f317bf9f0sm7112464a12.49.2025.09.17.07.39.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Sep 2025 07:39:40 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 17 Sep 2025 15:39:33 +0100
-Subject: [PATCH RESEND v5 2/2] clk: s2mps11: add support for S2MPG10 PMIC
- clock
+	s=arc-20240116; t=1758120159; c=relaxed/simple;
+	bh=AAYWPk2ne1WPadv1QHFbQCisifs0cN/QDCwVVlDtG+Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EbmASQkpS0aJ4hnbtw65eeIMvjBuR/RvUb4AM73C+dai9Ei7dBY0wY+yLM1XYRAIL+G4+bR30UNOPQzA7unj5BHt6S4v1NnjNdI5w+5PtvDrBex6ouqg5dXLC96wdHkR59YYo7IkxlvWuXNWUaRb/KK/BkKASu0rgO28jj7/o8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=o+EZo/EH; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58H8dCFe023732;
+	Wed, 17 Sep 2025 14:42:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=MD6AbnscHWN81+Pc/unez7JtIk39dRYIR+VWn299l
+	GA=; b=o+EZo/EH+9ClyoJE81vL5DQb7v3NbebhdCO87Ecyb+EFovaRbNJmbfoey
+	5MhVsJghxp+zYGy0rMwwyrFdQkmtZaNvNS02h4LaYWLiO9/O5Xws5qN3L1qW4wXM
+	OuwBPhZ7iTaOsvSLv3uBLpGKcoJ8ASvY5VCilcj4qkTknKIJVl2AShGofscAxoS0
+	Han/RXgVu7q3VPDAbivT2cgbeBSKi4XRllSADM1xSYg5taziydwGM0P6q6Avc37F
+	OifH8jHcDKWDrRg8D6t8n3PO+JLJbC6004iCuSUunFMgpMdu3nceX8ev67uoIDtM
+	lr+QABT7vR3mTnDoAoRfqE8RMRn0w==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 497g4qm45j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Sep 2025 14:42:20 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 58HEYYPv027349;
+	Wed, 17 Sep 2025 14:42:20 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 495men9npa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Sep 2025 14:42:20 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 58HEgJGe10093552
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 17 Sep 2025 14:42:19 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 8517B58043;
+	Wed, 17 Sep 2025 14:42:19 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id C5ADE5805E;
+	Wed, 17 Sep 2025 14:42:18 +0000 (GMT)
+Received: from slate16 (unknown [9.61.98.41])
+	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Wed, 17 Sep 2025 14:42:18 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au,
+        conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+        eajames@linux.ibm.com
+Subject: [PATCH v5 0/6] ARM: dts: aspeed: Add Balcones system
+Date: Wed, 17 Sep 2025 09:42:04 -0500
+Message-ID: <20250917144210.160051-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250917-s2mpg10-v5-2-9f9c9c4a44d9@linaro.org>
-References: <20250917-s2mpg10-v5-0-9f9c9c4a44d9@linaro.org>
-In-Reply-To: <20250917-s2mpg10-v5-0-9f9c9c4a44d9@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: yqCRxC8zVTCq7tsP03GetSx7TvM9H5B_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwNCBTYWx0ZWRfXwkpSYzxgz3Lq
+ JxWu/mMh7lgsIWkMe7XD62Mg9vWTmcyRNKRcj8HLq6fifVJvSYG3D/7UFIxg8FRgwxxWjbuY5lk
+ QVa60Eamh28EdUVU4J/PI7noIhTwk15cZDVDnOd1cfLFIcYkGCIH/V7pZNfoQyguQTGq+MbqTeb
+ /U7xdmfZaBZdCap3RW8m0fV/Nf0Une2AF4nn4ZL1tlf6tqAu6iD3137Nn/MH8Y8pHyQhYKDUuac
+ 1b2WBZ3/By96HFDtY94VK7rCd+ixnW9PbTLndZbv2n2hXJK5iBzSESiiPoRIYwDp1vSxALpDoMh
+ yoE9KnW9r6XG40fFI52TtI6SGguHIztVdtxETllkGe0DpCzuPUpkAH3zUXwgB2BQcl5hkl76s4a
+ RPaAr1JT
+X-Authority-Analysis: v=2.4 cv=R8oDGcRX c=1 sm=1 tr=0 ts=68cac8cc cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=yJojWOMRYYMA:10 a=Hy7NEVtaT5kuqzZ1rwQA:9
+X-Proofpoint-GUID: yqCRxC8zVTCq7tsP03GetSx7TvM9H5B_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ adultscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160204
 
-Add support for Samsung's S2MPG10 PMIC clock, which is similar to the
-existing PMIC clocks supported by this driver.
+The Balcones system is similar to Bonnell but with a POWER11 processor.
 
-S2MPG10 has three clock outputs @ 32kHz: AP, peri1 and peri2.
+Changes since v4:
+ - Add patch to fix max31785 warnings
+ - Add patch to fix missing Bonnell documentation
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/clk/clk-s2mps11.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes since v3:
+ - Add max31785 to the max31790 document instead of to trivial-devices
+ - Fix minor formatting in dps310 document
 
-diff --git a/drivers/clk/clk-s2mps11.c b/drivers/clk/clk-s2mps11.c
-index d4e9c3577b35dec8d9ec67c489b7b5ae27211f55..ff7ce12a5da6b437b5c92b9a32dcaf9423647cde 100644
---- a/drivers/clk/clk-s2mps11.c
-+++ b/drivers/clk/clk-s2mps11.c
-@@ -11,6 +11,7 @@
- #include <linux/regmap.h>
- #include <linux/clk-provider.h>
- #include <linux/platform_device.h>
-+#include <linux/mfd/samsung/s2mpg10.h>
- #include <linux/mfd/samsung/s2mps11.h>
- #include <linux/mfd/samsung/s2mps13.h>
- #include <linux/mfd/samsung/s2mps14.h>
-@@ -140,6 +141,9 @@ static int s2mps11_clk_probe(struct platform_device *pdev)
- 	clk_data->num = S2MPS11_CLKS_NUM;
- 
- 	switch (hwid) {
-+	case S2MPG10:
-+		s2mps11_reg = S2MPG10_PMIC_RTCBUF;
-+		break;
- 	case S2MPS11X:
- 		s2mps11_reg = S2MPS11_REG_RTC_CTRL;
- 		break;
-@@ -221,6 +225,7 @@ static void s2mps11_clk_remove(struct platform_device *pdev)
- }
- 
- static const struct platform_device_id s2mps11_clk_id[] = {
-+	{ "s2mpg10-clk", S2MPG10},
- 	{ "s2mps11-clk", S2MPS11X},
- 	{ "s2mps13-clk", S2MPS13X},
- 	{ "s2mps14-clk", S2MPS14X},
-@@ -241,6 +246,9 @@ MODULE_DEVICE_TABLE(platform, s2mps11_clk_id);
-  */
- static const struct of_device_id s2mps11_dt_match[] __used = {
- 	{
-+		.compatible = "samsung,s2mpg10-clk",
-+		.data = (void *)S2MPG10,
-+	}, {
- 		.compatible = "samsung,s2mps11-clk",
- 		.data = (void *)S2MPS11X,
- 	}, {
+Changes since v2:
+ - Fix a couple of incorrect i2c addresses
+ - Document dps310 and max31785 properly
+ - Drop the UCD binding documentation update, it's been fixed
+
+Changes since v1:
+ - Add all the ucd9000 driver supported compatible strings
+ - Fix node ordering in Balcones device tree
+ - Improve commit message to explain addition of ibm-power11-dual.dtsi
+
+Eddie James (6):
+  dt-bindings: arm: aspeed: add IBM Balcones board
+  dt-bindings: arm: aspeed: add IBM Bonnell board
+  dt-bindings: iio: Add Infineon DPS310 sensor documentation
+  dt-bindings: hwmon: Move max31785 compatibles to max31790 document
+  ARM: dts: aspeed: Add Balcones system
+  ARM: dts: aspeed: Fix max31785 fan node naming
+
+ .../bindings/arm/aspeed/aspeed.yaml           |   2 +
+ .../devicetree/bindings/hwmon/max31785.txt    |  22 -
+ .../bindings/hwmon/maxim,max31790.yaml        |   6 +-
+ .../iio/pressure/infineon,dps310.yaml         |  44 +
+ .../devicetree/bindings/trivial-devices.yaml  |   2 -
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 609 ++++++++++++++
+ .../dts/aspeed/aspeed-bmc-ibm-bonnell.dts     |   6 +-
+ .../dts/aspeed/aspeed-bmc-ibm-everest.dts     |  10 +-
+ .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   |   2 -
+ .../dts/aspeed/aspeed-bmc-ibm-rainier.dts     |  14 +-
+ .../boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts |  10 +-
+ .../dts/aspeed/aspeed-bmc-opp-witherspoon.dts |   2 -
+ .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
+ .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
+ 16 files changed, 1459 insertions(+), 820 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
+ create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
 
 -- 
-2.51.0.384.g4c02a37b29-goog
+2.51.0
 
 
