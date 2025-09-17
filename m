@@ -1,60 +1,82 @@
-Return-Path: <devicetree+bounces-218173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26E1B7C7E4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:04:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2236B7CD11
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 015E11C02560
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 04:57:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEA6B3A1971
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 05:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C36262FC7;
-	Wed, 17 Sep 2025 04:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54B7263889;
+	Wed, 17 Sep 2025 05:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHEZplXR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J6/KbWhe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28382367AC;
-	Wed, 17 Sep 2025 04:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09239443;
+	Wed, 17 Sep 2025 05:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758085052; cv=none; b=pHYiBJtB0FqqCCkdhxbyH7v80Fapm7nDBDBUD5+StAbsWQhOjY5RKT2Y6iKtoycW6amd2lqFzPQKBdiFViC53liDYgDM7YL5bLiTld0yrCLRdHCRxHWveukwXfknGJOYaIPDFsLOB5V5Q3hBj4fRX8Aq4CRG7viz/LDNo/PzXxQ=
+	t=1758085492; cv=none; b=Qgin0cfjCeassZ3GV3ZvLeFZdicP2kq1hCxa8QC8IkZUCq9iNs0xH4Cr3zslYjNhH6zM+FNdUma4ExX3lQfMgs9PBqVpsWctM8Jgb1akRjIh1lwH4ELfNSF+Bibhrs1d9YabUt+APSWVrZW7tYeGx9lj0JoLGNFxo6jxaorTGgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758085052; c=relaxed/simple;
-	bh=EHm3TBvGDlP6rBdT5MZHECo49MHawrb0YmSg4xy3b/A=;
+	s=arc-20240116; t=1758085492; c=relaxed/simple;
+	bh=ricNDgxpX6EdbKVbm5njjwpkZfvpp73JpuZLbgpnaY0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TdAMiRWLK/UEjeI6kcWxKaIpw8C9sLf08eCMuCE0LyTazIeU3LUWJz4Zvtl2fnkyh9fvkSOY3ScnVzE+gS7wzFkyC24TQuJ4qTWoNhKELeuNwJGDl+YLer9hIyzuuVgrKnCGY9vcDJ83jvRlp2uCAd+KBQDpTherKjnmsmY9exE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHEZplXR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E9A3C4CEF0;
-	Wed, 17 Sep 2025 04:57:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758085052;
-	bh=EHm3TBvGDlP6rBdT5MZHECo49MHawrb0YmSg4xy3b/A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EHEZplXROnPxQHvXs/QlMP8GK+3dz9+zPqkRp7SK9hP48rt0rHXZPxeh81BdXxPGK
-	 9jf/iDFSeCIOThAmqOdGPzWPY5qMl6EJifYvQC5jCvkMtfjgPgazzSZWU3HRBfIT3i
-	 Y3XlCYxs2pjMxFgLUTLF1kEeHVuF+yQLBymZ1MoYxdJfYZad7fC1wYfYK0uL/cFdcu
-	 MCMZfihBLnudY5N6Er2JcG5x023ICaClz/prv2i0rrOxBvsN2g5nFW/glt1gWXa3d0
-	 JZguoEXIGWJE5qUwcqQrbwS35cGlSaoyFdG9k2HpGU8tx3UZ1VL2E7s0WMHGjKIb5C
-	 cyV5ahsyrUUQg==
-Date: Wed, 17 Sep 2025 00:57:21 -0400
-From: Guo Ren <guoren@kernel.org>
-To: Andrea Parri <parri.andrea@gmail.com>
-Cc: Xu Lu <luxu.kernel@bytedance.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, ajones@ventanamicro.com,
-	brs@rivosinc.com, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	apw@canonical.com, joe@perches.com
-Subject: Re: [PATCH v2 0/4] riscv: Add Zalasr ISA extension support
-Message-ID: <aMo/sQR80i7GbpAF@gmail.com>
-References: <20250902042432.78960-1-luxu.kernel@bytedance.com>
- <aLciY2putG8g2P9F@andrea>
- <aMoyntAydNMtcl+3@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GqSsXO77KI4B+n7qIA5Px0zoiuLept614SYRNZ6zk3i4XSkrE2vQhmGgBd0FCw/Oc0BaUoARX4OMVoHGwbh22pnq8jjU68Yi+/bW7PXF/SWya6MO28GDdO/e2PrSqYpWA4a8ZfzjOz12Gm2W8afU3Gbqc2i4uLH+75LUWts4jTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J6/KbWhe; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758085490; x=1789621490;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ricNDgxpX6EdbKVbm5njjwpkZfvpp73JpuZLbgpnaY0=;
+  b=J6/KbWheakTtDIFf8ATCt176DQv90HgZNYjsZ13X06m9ySFLeSyVVai2
+   Nd4ZnhE6QL08BA2yAeloEbJBP0KYrGRlITcvGPKc1RjvFtmzuJMmXac0h
+   QzN2lGpi9nt2b+YxC7+PePBLMk8KvQHz7JG1aNdWSsQYKIPw2ga+N4WLF
+   MWWY4b7APUut3fbMH6PGMRr8EVna3SnYlDJsrA3ckuw7d9Q2w9C/kq8nZ
+   1PSJcB/f5fQQMG2fLRgCkszMU5Y4BSFhIOcJNiZUrS5eBTdZzPTUtMCNA
+   vylpsvXO4sQ+yp+JIMvxS676o4Vv366f17mJaRfiTJLEXz9BFOILS0Rkh
+   g==;
+X-CSE-ConnectionGUID: P3WEKC4fSxeH3/mvf+5ELg==
+X-CSE-MsgGUID: je6GSa86RGiiO1USTJgpTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71484271"
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; 
+   d="scan'208";a="71484271"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2025 22:04:49 -0700
+X-CSE-ConnectionGUID: ndpkihabQuK2z4VLQLXD7A==
+X-CSE-MsgGUID: e2vJCrTnQQG5Q3KF2vIzjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; 
+   d="scan'208";a="175224110"
+Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 16 Sep 2025 22:04:46 -0700
+Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uykLT-00015r-1l;
+	Wed, 17 Sep 2025 05:04:43 +0000
+Date: Wed, 17 Sep 2025 13:04:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 2/5] leds: rgb: Add Virtual Color LED Group driver to Make
+Message-ID: <202509171255.NYgyfQOg-lkp@intel.com>
+References: <20250916110217.45894-2-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,76 +85,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aMoyntAydNMtcl+3@gmail.com>
+In-Reply-To: <20250916110217.45894-2-professorjonny98@gmail.com>
 
-On Wed, Sep 17, 2025 at 12:01:34AM -0400, Guo Ren wrote:
-> On Tue, Sep 02, 2025 at 06:59:15PM +0200, Andrea Parri wrote:
-> > > Xu Lu (4):
-> > >   riscv: add ISA extension parsing for Zalasr
-> > >   dt-bindings: riscv: Add Zalasr ISA extension description
-> > >   riscv: Instroduce Zalasr instructions
-> > >   riscv: Use Zalasr for smp_load_acquire/smp_store_release
-> > 
-> > Informally put, our (Linux) memory consistency model specifies that any
-> > sequence
-> > 
-> >   spin_unlock(s);
-> >   spin_lock(t);
-> > 
-> > behaves "as it provides at least FENCE.TSO ordering between operations
-> > which precede the UNLOCK+LOCK sequence and operations which follow the
-> > sequence".  Unless I missing something, the patch set in question breaks
-> > such ordering property (on RISC-V): for example, a "release" annotation,
-> > .RL (as in spin_unlock() -> smp_store_release(), after patch #4) paired
-> > with an "acquire" fence, FENCE R,RW (as could be found in spin_lock() ->
-> > atomic_try_cmpxchg_acquire()) do not provide the specified property.
-> > 
-> > I _think some solutions to the issue above include:
-> > 
-> >  a) make sure an .RL annotation is always paired with an .AQ annotation
-> >     and viceversa an .AQ annotation is paired with an .RL annotation
-> >     (this approach matches the current arm64 approach/implementation);
-> > 
-> >  b) on the opposite direction, always pair FENCE R,RW (or occasionally
-> >     FENCE R,R) with FENCE RW,W (this matches the current approach/the
-> >     current implementation within riscv);
-> > 
-> >  c) mix the previous two solutions (resp., annotations and fences), but
-> >     make sure to "upgrade" any releases to provide (insert) a FENCE.TSO.
-> I prefer option c) at first, it has fewer modification and influence.
-> 
-> asm volatile(ALTERNATIVE("fence rw, w;\t\nsb %0, 0(%1)\t\n",	\
-> -			  SB_RL(%0, %1) "\t\nnop\t\n",		\
-> +			  SB_RL(%0, %1) "\t\n fence.tso;\t\n",	\
-			   "fence rw, rw;\t\nsb %0, 0(%1)\t\n",	\
-How about enhance fence rw, rw? It's a bit more stronger than .tso.
+Hi Jonathan,
 
- 			  0, RISCV_ISA_EXT_ZALASR, 1)		\
-> 			  : : "r" (v), "r" (p) : "memory");	\
-> 
-> I didn't object option a), and I think it could be done in the future.
-> Acquire Zalasr extension step by step.
-> 
-> > 
-> > (a) would align RISC-V and ARM64 (which is a good thing IMO), though it
-> > is probably the most invasive approach among the three approaches above
-> > (requiring certain changes to arch/riscv/include/asm/{cmpxchg,atomic}.h,
-> > which are already relatively messy due to the various ZABHA plus ZACAS
-> > switches).  Overall, I'm not too exited at the idea of reviewing any of
-> > those changes, but if the community opts for it, I'll almost definitely
-> > take a closer look with due calm.  ;-)
-> > 
-> >   Andrea
-> > 
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> > 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on lee-leds/for-leds-next]
+[also build test ERROR on robh/for-next linus/master v6.17-rc6 next-20250916]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/leds-rgb-Add-Virtual-Color-LED-Group-driver-to-Make/20250916-190606
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20250916110217.45894-2-professorjonny98%40gmail.com
+patch subject: [PATCH 2/5] leds: rgb: Add Virtual Color LED Group driver to Make
+config: x86_64-randconfig-001-20250917 (https://download.01.org/0day-ci/archive/20250917/202509171255.NYgyfQOg-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250917/202509171255.NYgyfQOg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509171255.NYgyfQOg-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/leds/rgb/leds-group-virtualcolor.c:254:14: error: call to undeclared function 'of_led_get'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     254 |                 led_cdev = of_led_get(child, i);
+         |                            ^
+>> drivers/leds/rgb/leds-group-virtualcolor.c:254:12: error: incompatible integer to pointer conversion assigning to 'struct led_classdev *' from 'int' [-Wint-conversion]
+     254 |                 led_cdev = of_led_get(child, i);
+         |                          ^ ~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +/of_led_get +254 drivers/leds/rgb/leds-group-virtualcolor.c
+
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  217  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  218  static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  219  				       struct virtual_led *vled, struct leds_virtualcolor *vc_data)
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  220  {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  221  	struct fwnode_handle *child_fwnode = of_fwnode_handle(child);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  222  	struct led_init_data init_data = {};
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  223  	u32 blink_interval;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  224  	u32 phandle_count;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  225  	u32 max_brightness;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  226  	int ret, i;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  227  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  228  	ret = of_property_read_u32(child, "priority", &vled->priority);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  229  	if (ret)
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  230  		vled->priority = 0;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  231  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  232  	ret = of_property_read_u32(child, "blink", &blink_interval);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  233  	if (!ret) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  234  		vled->blink_delay_on = blink_interval;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  235  		vled->blink_delay_off = blink_interval;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  236  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  237  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  238  	phandle_count = fwnode_property_count_u32(child_fwnode, "leds");
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  239  	if (phandle_count <= 0) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  240  		dev_err(dev, "No monochromatic LEDs specified for virtual LED %s\n",
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  241  			vled->cdev.name);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  242  		return -EINVAL;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  243  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  244  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  245  	vled->num_monochromatics = phandle_count;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  246  	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  247  					    sizeof(*vled->monochromatics), GFP_KERNEL);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  248  	if (!vled->monochromatics)
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  249  		return -ENOMEM;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  250  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  251  	for (i = 0; i < vled->num_monochromatics; i++) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  252  		struct led_classdev *led_cdev;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  253  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16 @254  		led_cdev = of_led_get(child, i);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  255  		if (IS_ERR_OR_NULL(led_cdev)) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  256  			/*
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  257  			 * If the LED is not available yet, defer the probe.
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  258  			 * The probe will be retried when the it becomes available.
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  259  			 */
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  260  			if (PTR_ERR(led_cdev) == -EPROBE_DEFER || !led_cdev) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  261  				return -EPROBE_DEFER;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  262  			} else {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  263  				ret = PTR_ERR(led_cdev);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  264  				dev_err(dev, "Failed to get monochromatic LED for %s, error %d\n",
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  265  					vled->cdev.name, ret);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  266  				return ret;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  267  			}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  268  		}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  269  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  270  		vled->monochromatics[i] = led_cdev;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  271  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  272  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  273  	ret = of_property_read_u32(child, "max-brightness", &max_brightness);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  274  	if (ret)
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  275  		vled->cdev.max_brightness = LED_FULL;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  276  	else
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  277  		vled->cdev.max_brightness = max_brightness;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  278  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  279  	vled->cdev.brightness_set_blocking = virtual_led_brightness_set;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  280  	vled->cdev.max_brightness = LED_FULL;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  281  	vled->cdev.flags = LED_CORE_SUSPENDRESUME;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  282  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  283  	init_data.fwnode = child_fwnode;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  284  	ret = devm_led_classdev_register_ext(dev, &vled->cdev, &init_data);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  285  	if (ret) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  286  		dev_err(dev, "Failed to register virtual LED %s\n", vled->cdev.name);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  287  		return ret;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  288  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  289  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  290  	ret = device_create_file(vled->cdev.dev, &dev_attr_priority);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  291  	if (ret) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  292  		dev_err(dev, "Failed to create sysfs attribute for priority\n");
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  293  		return ret;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  294  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  295  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  296  	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_on);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  297  	if (ret) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  298  		dev_err(dev, "Failed to create sysfs attribute for blink_delay_on\n");
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  299  		return ret;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  300  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  301  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  302  	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_off);
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  303  	if (ret) {
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  304  		dev_err(dev, "Failed to create sysfs attribute for blink_delay_off\n");
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  305  		return ret;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  306  	}
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  307  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  308  	vled->vc_data = vc_data;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  309  
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  310  	return 0;
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  311  }
+8ce5fa26ed391c Jonathan Brophy 2025-09-16  312  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
