@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-218135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4B9B7CF9A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:15:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F41B7CF4C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF26052320F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:38:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70F171B26F11
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E870E2139CE;
-	Wed, 17 Sep 2025 01:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0561E2DCC03;
+	Wed, 17 Sep 2025 01:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sry4BLZ1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xdx7dNhC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D8A17C91
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2BF619049B
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758073120; cv=none; b=uwetsTXm/xH85OsO5/M2rTuWvEltgVEN7L+MPl/sOf9kv7WK7JLM5E+6DgEdOwqeCI+8ytaa4jaKA0E+CUcNHXw44NOvRr4/Hf54Nc4JwIg+twOdgqK5k6aZvjKevz7q9DzWCyng+jvvNXNQkev27SxAiNgflqileeEA+hPDr3Y=
+	t=1758073163; cv=none; b=LfRy+klT5TQsbObkyPgsOEnXbuo+xr0GpqQTjE0t75cWH4mKyGWh6y/n+uH7oGaEdImGyYgKr0jQBm6hSSAxF/UgNRhj/6nC6fOGxXVFoFPf30j2grDpNH4PNBOgaNCueWXGpV7YIQU+RH13VKIYZNSbhN4QFXSes/M0isdqVvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758073120; c=relaxed/simple;
-	bh=pABSfuwN68aYHQH+lAujDy8l8ti2r8Q8ufmwl6CLFow=;
+	s=arc-20240116; t=1758073163; c=relaxed/simple;
+	bh=iVUZW07jFSHQMRPtykqtDXh/HUsp65/tkxLn0bCk8jA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nM5kMbqEmhf6cvy9wNGaHQWCjJVceqcEDcpkQF33SwLRrayhKprE7dyRGm2L0TwLXiy1fc5IlemgRw+NAyW/KS7Ou7CrBczkd7woBAb/R7jdopqbLjQvA5KhNPTZJ8CRMYMozrey7R9o9fM0zCNfaCjoaZXq1HJ9zEalkvperVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sry4BLZ1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E621CC4CEEB;
-	Wed, 17 Sep 2025 01:38:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LTPbDMNg9kZI2eseadDQLFvOxIXARHkSAmcESBhiHfX3Gbgseq0JZbH0oXY94m2fNa+m0QPquaZv1tH+YqoCcxddIYdzK25fG1kgXDe/dWWDRxYDMi941DZXelE+IG4/HYISvYjiMNItLnV0S+ElBWq7hiY4eU+7sDOGG91OdMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xdx7dNhC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24320C4CEEB;
+	Wed, 17 Sep 2025 01:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758073120;
-	bh=pABSfuwN68aYHQH+lAujDy8l8ti2r8Q8ufmwl6CLFow=;
+	s=k20201202; t=1758073163;
+	bh=iVUZW07jFSHQMRPtykqtDXh/HUsp65/tkxLn0bCk8jA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Sry4BLZ1FMuerbiq4P6eb+q7drU6EhdbxAmGvQ9qN4nLEs9AiFRnKkhlp0Q1unrRo
-	 uv9bareQhcjuaqpgc/AouK9rMJQPUkUDHbKc8mxVklp47D2uneFDp+KdjZ7eQyaKVA
-	 saPiq9equjjvKv2YTPuYQNf8ypBS0jWeKVbBb+g5oN7EJy3Vk2Wz4bMU2a19QpzAK8
-	 9vsH5qO64DgOUGgO61cWYh1aMrcOLj8WRhM592Dz5YvfsTsFndHi1IDqkfN1WDPJJs
-	 v1HoqK6mhLTGN8lSs4Qcf+rGGVqTuYERYdF3Va4W7lDhNcL2blHrppQgjkz+Zt/eKk
-	 Atp53/sx8sbRw==
-Message-ID: <cce6473e-4081-45cc-865c-c00ba20821ae@kernel.org>
-Date: Wed, 17 Sep 2025 10:38:37 +0900
+	b=Xdx7dNhCYqT6fNlR/7wgwb4rwFBAV9Dww4Xmm9f58cRsG3tow+eTZEZV/uaxyRbKQ
+	 ZEojsL6DZBzjoW6X+IIL0twjZzti7eKIdlPBV/uebuaftzTJqiuvn6LVCv8p6DFEqZ
+	 U4lWFUfW+TZzpqSV3Bn/gQ+11sQUzmF6ZrT/pbrmCt5akK1ZQkaIiH5qxz4ZFHiclL
+	 QFM+wnzHk1S6tRBj60vz/9AYyiYY9m482hs1PFRUy2dGOgfEWzjUm0MFCPXbautCYb
+	 7EVrr6pgj4ZJoafSbKKUo5MSoFB3tGzBLkwL7hzbU/q7Mvj9CMtzSwAKaDByFUc3U4
+	 mLr2CTVh3RvcQ==
+Message-ID: <6dba55ed-7b1e-4d33-a442-ae27556af02f@kernel.org>
+Date: Wed, 17 Sep 2025 10:39:21 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] dt-bindings: embedded-controller: add binding for
+Subject: Re: [PATCH v4 1/2] dt-bindings: embedded-controller: add Traverse
  Ten64 board controller
 To: Mathew McBride <matt@traverse.com.au>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
@@ -58,6 +58,7 @@ Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
 References: <20250917011940.9880-1-matt@traverse.com.au>
+ <20250917011940.9880-2-matt@traverse.com.au>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,27 +104,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250917011940.9880-1-matt@traverse.com.au>
+In-Reply-To: <20250917011940.9880-2-matt@traverse.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 17/09/2025 03:19, Mathew McBride wrote:
-> This series requires the "dt-bindings: mfd: Move embedded controllers to own
-> directory"[1] change which is in mfd-next for the 6.18 cycle.
+> Add device tree binding for the board (micro)controller on Ten64 family
+> boards[1].
 > 
-> Changes since v3:
-> - Move to the embedded-controller directory (which was created following
->   the last submission)
-> - Remove the extra paragraph in the dt-binding description field
-> - Const'ify the I2C endpoint address (only one I2C address is implemented in
->   hardware, 0x7e)
-> - Fix the description line of the fsl-ls1088a-ten64 patch (s/arm/arm64)
+> The schema is simple and is (presently) only consumed by U-Boot, but it
+> is possible nvmem, watchdog and other features could be described in
+> the future, as well as extension to future Traverse boards.
 > 
-> v3 series:
-> https://patchwork.ozlabs.org/project/devicetree-bindings/cover/20250821061115.18254-1-matt@traverse.com.au/
+> [1] https://ten64doc.traverse.com.au/hardware/microcontroller/
+> 
+> Signed-off-by: Mathew McBride <matt@traverse.com.au>
+> ---
 
-Please use lore links or just start using b4.
-https://www.linaro.org/blog/becoming-a-kernel-developer-part1-posting-your-first-patch/
+Where is explanation of reason of dropping tag?
 
 Best regards,
 Krzysztof
