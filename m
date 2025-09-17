@@ -1,140 +1,167 @@
-Return-Path: <devicetree+bounces-218392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06339B7F505
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:31:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE652B7F5E0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7E701B274A9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 13:25:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D712418865DD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 13:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6C3244662;
-	Wed, 17 Sep 2025 13:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4681B2FBDFF;
+	Wed, 17 Sep 2025 13:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qj/Thras"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QKP72mg9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213101F4192
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 13:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E7A2EB869
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 13:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758115508; cv=none; b=mzU3RxOKpSu7p82ueGVeux4zuRhbUVlx2wdZc7cXzAPZ9ysArX5A5D/X3b9vHPk5utCBZcPBdQWCQhBeOo4fliyBAFt1mSgrB/E0QQ9C5x3yXLpyzzW62XFsqD4PL8fwnYQO4n6bVPRn6HCXid2TYGg3GkkQQWJ/eDZ5azB5m4Y=
+	t=1758115779; cv=none; b=GoOU8pqqz4fEtg/zikz091rZBtEQ2EbAjIhXUx3I30d2b3nwQaJI6SqOG5T7HAR9yc9E7KkxYq+JCD2XHOrkTT33guichf6i8c2W/KaiOd5WsKSu6QCa0j1JzAmpHu0p9oxFhtrQSMHHbV/EziAovXG55JpnppJAMUBvULy1QH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758115508; c=relaxed/simple;
-	bh=3MD+nT2bAWZX72DWsoioTXhieL+ehQibl5aVvtcfd8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aHAhHQVkm/VYPFJA16YbiPTVc1MsS75Vlm4tHywpdMSEeYTzu/Wx3M0ITpzpE8TixNLkQmSdlalofx0NS+9oLYBySeHa1wwshZU+lnhp4huAK8mz/07ybPt2IOgcEbwa3Bj8ZiCzEidhGsaaf/vcs2MKEc2/fBNHxFBkf9Nae7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qj/Thras; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-746c06937c3so463338a34.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 06:25:05 -0700 (PDT)
+	s=arc-20240116; t=1758115779; c=relaxed/simple;
+	bh=uW36CxPbpgNkRbAVrNYq1uP+W+fshOEviFJG8atk5HY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s2Ete0mLLt8fRsYxqaJ8S0/iaGAAjgrn1CP1puGn/Yfjw3cxiB9JJs9d1wYqOzXSzghaJ+Pt6pJlIDh7/r+khgYBMgvYNIA5tVG1xEoNrqAL55fx7e99pGnk7nYzS1NTzm0YbF0mL2DZhKUqQ7qGAGZPPT3GU5y6Bj3AHVD5MEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QKP72mg9; arc=none smtp.client-ip=74.125.224.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-5fe42994547so2462185d50.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 06:29:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758115505; x=1758720305; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m8q4pnZHASLYPEvExV/oNTuEhXYw8/V1jtaAGiihTOE=;
-        b=qj/Thras62q71BoSmqFuRq/MyGzFTGo3cT5wIdlDOoW1c7GYAD2yKZGNgrvY5JYUXp
-         0Ob/hPo2ztE6IX0SR2FdyI6UjfwV5QGDNa+9GbsyFkx9Hgm+X2UDLZZtVvruIVtPZyuC
-         xLLHpOiryhE78S4MZanvRXB3WpfoS8mY8mNSBWcFdvbGEIym5cUkNlrvf46GhBB35hpy
-         5S1UfzupAl89Lb4NvsI2beTSyKhee5tmtVqmioEFaN2gtU9otvqr/DhqRzm6yTbnamVH
-         0zYpKBoOjHWb8qHV05kqzNyZ7pc/6QRWUOmmIlKNKAE7XIxbp1A6VPP+77yFWDucqtjt
-         94DA==
+        d=linaro.org; s=google; t=1758115776; x=1758720576; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QjnKuNKA4ji6kMyGHxtwUN6WBWnj7945LQCwoquyyQo=;
+        b=QKP72mg9NETDbPyeuuJGP/MMuclTloXJMARWueksLytqigwlfpjbBWEoXh1OVyAulL
+         ne7pZpPLq0dOUsLskgLx2GOcdjMNBWmb86G4cJgzz7eShI3rvGvqp0voimYaV9Z5S+80
+         WaiYwN2HyE6InLr23R9CVuLWzqEC9ONgkbgXxJRJKe7Ky4zgHSCs2H9nnaOpmJDcJUkH
+         GFslVvZnLuqLDOB87GaUJolG7MNLD8MzJpToLeNUjEYlbgHymzuB43apGDMdrt8/WQ0C
+         OZNAKDBk37W476fqcaNMJZbCbbhcfKbpHsfNKGXlZr65EQO1QKjYlDHgu6vILtjbonEL
+         UAog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758115505; x=1758720305;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m8q4pnZHASLYPEvExV/oNTuEhXYw8/V1jtaAGiihTOE=;
-        b=OZcsYNJaXf6wY/H3BMj6r+48QtdB+TTgj7sc+TspgEiYOIb54lcb88kGukxuZMyPxA
-         Rm6Sk4V5x1UV+P1Ca7IDy6WJIUAOYG7X6KrlMVIbnYuh4/+wZyi9zfCzf4Smk1O4XONu
-         KWc+JTjUo9hyYwpO7DylCQWvfu66QgAirHb1smcfFlbpDfuGGRLwrUCrcr9nUBfQOA5Z
-         GplRs/+iHxBGCEvkih/ZCUNbDTMYHNrQvi7iZEmlvKd27k8rBza7vOepAJT9p2H7P1Bh
-         ukkPBn3cBXyGYSS0genflbeeW6qk0RveBXi2Fv9/L8dWlHiAZOq3y/zCHqoop9NzEzD4
-         3XwA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjpah21xyDxNFx9BggWVI62OVm9hbFP1fRI846J5x8YCIugTRBetto+hKuSHVf/dmptqTEh1wbnnfc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfAM2z6mrFC3C5HfsicgTwQiuxoKyyB1EfBf8YZFjM8KWvFKmJ
-	JxJJh6W1EgfMKApgGyZVyuiQownLu/x8arIATU1AvSvSkUt4A4LJILwUA9CkpebYcGc=
-X-Gm-Gg: ASbGnctXY9fgDnIeJ35WK/87z5wIPTnMxdvllOffbMk+NlmY9LpwW2nkkLfmlb0FrLJ
-	8LyPsWYvOIZdSvB4abCreTPlARzGX8hAd+srMpLgtIw531RSCwNhuKCJ1PlYnRKoPHNnhA2Lxmq
-	sb2o93XdrJlrrZWWUO8bAZdPmnOVzvoTcSLenBe7GbdgwjL7CErj+8/oE2bWJ8ZJcHeQVLxV9k7
-	bLkUjx8/mQ6sKC31Udz/dzH5HR/D/ilRquEeNyKMXpruvHW7Sb+p2CyMp+3z9+28O1n+JVV6PLV
-	EqiAGU5q1rFG3y+Xi14bAnTh5x/QfShF5iG2BoJpGWbXNsJRppmShY0+ajjC1BgiRJ0GFScEtcn
-	+cM8ADM4OFWXhi3PDT2231yRXQ+/9FzpDaJMKchNpEvBmVT8qtpTXpCyX2zPcrnLhH1bcjga6CQ
-	i/gbKOVQU=
-X-Google-Smtp-Source: AGHT+IG1u7fASL/1WA75d1Wor2F1IZmchDq7YS6/itsUAj9zXiSwllVgUQzVye0hFI5oYPpcXOy4nQ==
-X-Received: by 2002:a05:6830:3c8c:b0:745:9769:ea51 with SMTP id 46e09a7af769-76368fc2105mr1455163a34.9.1758115505093;
-        Wed, 17 Sep 2025 06:25:05 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:72c:cb37:521d:46e2? ([2600:8803:e7e4:1d00:72c:cb37:521d:46e2])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-758d8131976sm2894436a34.3.2025.09.17.06.25.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 06:25:03 -0700 (PDT)
-Message-ID: <e9379a2f-be0e-4f8a-b464-df7382338107@baylibre.com>
-Date: Wed, 17 Sep 2025 08:25:03 -0500
+        d=1e100.net; s=20230601; t=1758115776; x=1758720576;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QjnKuNKA4ji6kMyGHxtwUN6WBWnj7945LQCwoquyyQo=;
+        b=MyPNN5Rd8KdLDvU2iGwtvHhdRfIR+6yVhyCVddh4vYQKbYGKwKs4KcLVfS2TslKQkj
+         g48L0qHcIBdUq0sRKf81oO32TZIL6B/fMtIqBnvdpZKBFEagqSBil/xA07epyCNA0Ruh
+         fGtbbZVtwWUf2LYHtY56xzKu0IXjcUAcn4T8Mrk5lyg/JpkYWlDiAmMFQ5hkhzSIscDZ
+         X3nirH6PHeCSET3DGTetryCF5TVQwklUgMziA28++3ZTysGTMDkbAT1zx/AR8aMwKcZE
+         BGHwUgcj6XwAXVVub/MO3+VEbg1hRBKkBgS20K7QBnQemVuc0UcYT44FmKuoccI07xtR
+         JwSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPxtAN87ERcnYzkNbN1NAjC00jtFkNdBXZ9nVcLOxnVeKXYY9LpdFb86dZ3FhOsLcizWzxk7wUIGRr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzf3th0LenV0g3ofX2+VBS1kxYvgWtH6qFYmDvs2hZkknXQA/N9
+	4HhQL0cG5l33SCz0eaWw438jihTWreVtrdQCaw0er704TMW+k7v6W0u2xVOXvLnMDORo2XS4IaS
+	4PK2oD9kGm0C3XXDYCJMfm8d/CqUzaJ9eI0LigTHNEg==
+X-Gm-Gg: ASbGncsnf7crMUsZ0DnDXmYWPbdQk5fp8qIT3SLFs9w6sF1oEswadl2hwJB1OEvzdxm
+	wzy/jcVVtle0GeB0dmDtl+UoI91yL6LOj3xXiTLqBPfRysOPcOXY6jaP/NpEefpoArw0IP274QX
+	LMccQGG4o8wVnK/59wq14dyS+aLNS6DJ4wezifJf/NXoAihsaLl80YLnh0aai7BlJqmpUWf9GB/
+	PjLxcoW
+X-Google-Smtp-Source: AGHT+IHuI5AyhviMUE8d04CZKMsxw84ERhd0y58MB1DDZatjUo51eJKV0sipZSi6vcJejXizNerBql3FasBKpx0EYU8=
+X-Received: by 2002:a05:690e:1241:b0:62d:9854:f1c3 with SMTP id
+ 956f58d0204a3-633b0731376mr1875395d50.33.1758115776183; Wed, 17 Sep 2025
+ 06:29:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add support for Microchip EMC1812
-To: Marius Cristea <marius.cristea@microchip.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250917-iio-emc1812-v1-0-0b1f74cea7ab@microchip.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250917-iio-emc1812-v1-0-0b1f74cea7ab@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com>
+In-Reply-To: <20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 17 Sep 2025 15:28:59 +0200
+X-Gm-Features: AS18NWAFYxfdM-z9P24XcfzEBx3NAZQo5nY3cbJlHEFPJOB1W-fi7_dweQlyxBc
+Message-ID: <CAPDyKFoi9KcsP5k84cSxuXNuMHmcf3a8emfOc6hMjGm_0FMk8w@mail.gmail.com>
+Subject: Re: [PATCH v3 00/10] MT8196 GPU Frequency/Power Control Support
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Chia-I Wu <olvaffe@gmail.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 9/17/25 7:21 AM, Marius Cristea wrote:
-> This is the iio driver for EMC1812/13/14/15/33 multichannel Low-Voltage
-> Remote Diode Sensor Family. The chips in the family have one internal
-> and different numbers of external channels, ranging from 1 (EMC1812) to
-> 4 channels (EMC1815).
-> Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
-> and EMC1833.
-> 
-> Current version of driver does not support interrupts, events and data
-> buffering.
-> 
-> Differences related to previous patch:
+On Wed, 17 Sept 2025 at 14:23, Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> This series introduces two new drivers to accomplish controlling the
+> frequency and power of the Mali GPU on MediaTek MT8196 SoCs.
+>
+> The reason why it's not as straightforward as with other SoCs is that
+> the MT8196 has quite complex glue logic in order to squeeze the maximum
+> amount of performance possible out of the silicon. There's an additional
+> MCU running a specialised firmware, which communicates with the
+> application processor through a mailbox and some SRAM, and is in charge
+> of controlling the regulators, the PLL clocks, and the power gating of
+> the GPU, all while also being in charge of any DVFS control.
+>
+> This set of drivers is enough to communicate desired OPP index limits to
+> the aforementioned MCU, referred to as "GPUEB" from here on out. The
+> GPUEB is still free to lower the effective frequency if the GPU has no
+> jobs going on at all, even when a higher OPP is set. There's also
+> several more powerful OPPs it seemingly refuses to apply. The downstream
+> chromeos kernel also doesn't reach the frequencies of those OPPs, so we
+> assume this is expected.
+>
+> The frequency control driver lives in panthor's subdirectory, as it
+> needs to pass panthor some data. I've kept the tie-in parts generic
+> enough however to not make this a complete hack; mediatek_mfg (the
+> frequency control driver) registers itself as a "devfreq provider" with
+> panthor, and panthor picks it up during its probe function (or defers if
+> mediatek_mfg is not ready yet, after adding a device link first).
+>
+> It's now generic enough to where I'll ponder about moving the devfreq
+> provider stuff into a header in include/, and moving mediatek_mfg into
+> the drivers/soc/ subdirectory, but there were enough changes so far to
+> warrant a v3 without a move or further struct renames added, so that I
+> can get feedback on this approach.
+>
+> The mailbox driver is a fairly bog-standard common mailbox framework
+> driver, just specific to the firmware that runs on the GPUEB.
 
-This is confusing. I think this version is v1, so there is
-no previous patch. So why does this say "previous patch"?
-Is this actually v2?
+I had a brief look at the series and it seems to me that the devfreq
+thing here, may not be the perfect fit.
 
-> 
-> v1:
-> - initial version.
-> 
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
-> Marius Cristea (2):
->       dt-bindings: iio: temperature: add support for EMC1812
->       iio: temperature: add support for EMC1812
-> 
->  .../iio/temperature/microchip,emc1812.yaml         | 223 ++++++
->  MAINTAINERS                                        |   7 +
->  drivers/iio/temperature/Kconfig                    |  10 +
->  drivers/iio/temperature/Makefile                   |   1 +
->  drivers/iio/temperature/emc1812.c                  | 792 +++++++++++++++++++++
->  5 files changed, 1033 insertions(+)
-> ---
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> change-id: 20250805-iio-emc1812-e666183b07b5
-> 
-> Best regards,
+Rather than using a new binding  (#performance-domain-cells) to model
+a performance domain provider using devfreq, I think it could be more
+straightforward to model this using the common #power-domain-cells
+binding instead. As a power-domain provider then, which would be
+capable of scaling performance too. Both genpd and the OPP core
+already support this, though via performance-states (as indexes).
 
+In fact, this looks very similar to what we have implemented for the
+Arm SCMI performance domain.
+
+If you have a look at the below, I think it should give you an idea of
+the pieces.
+drivers/pmdomain/arm/scmi_perf_domain.c
+drivers/firmware/arm_scmi/perf.c
+Documentation/devicetree/bindings/firmware/arm,scmi.yaml (protocol@13
+is the performance protocol).
+
+That said, I don't have a strong opinion, but just wanted to share my
+thoughts on your approach.
+
+[...]
+
+Kind regards
+Uffe
 
