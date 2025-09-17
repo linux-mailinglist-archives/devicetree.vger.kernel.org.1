@@ -1,257 +1,145 @@
-Return-Path: <devicetree+bounces-218234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B90B7DD98
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:35:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3CCB7DE66
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:36:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80BA13B110B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:49:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17F0B176E72
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EB22F6195;
-	Wed, 17 Sep 2025 07:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3624E2DECC5;
+	Wed, 17 Sep 2025 07:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mkkyvL+g"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="KZvqpnXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FA62C1595
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:49:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D1023AE9A;
+	Wed, 17 Sep 2025 07:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758095389; cv=none; b=W+/elmaEnRvr9g7xrxaDD8ML4g15ACMQk6BOhiR59J3dtvtzPnfl0gHuvolDTAukqKmzF9rCnfgN7gebt/z1EZqZUmcrMHwC2i9zos4HG0v9asVtXqWAzdJ8V9v+EASsWHCEwyYgAPuztkl1lNAg+PF/BawdrOx8rqT6t2s9B/8=
+	t=1758095452; cv=none; b=UpOsFTaMq1VIVCVPLojn+0205sNC/F02yU/Qk7DP8Ct0gx1wNS0zfcqbbJoZHK5pJhCKFZ/oor/NYjs7+da81btNqqMbOD1gHg22PCX8aEDP5dr0OM+7D/xxk4oLrLGKEIMGo7PiaIEOIWqE7rJdojF7+GDn9F+w+hwiq36bU4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758095389; c=relaxed/simple;
-	bh=FTOYZyZlQbr9msNJypX5dkpxLMn6Qy9HuPMiesCA/SQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pWA3//thFUQGzQsEd2Z9VOHkCNG+BRtre8ngPn6pgQGVGbMpWYI+NZQgGmDhCGueGxmNev8vVBkOJhStMt1/M25qHBxi5/X7JKN+rsQxTCtmgUYcxEvjUU6icTkyltUrq4GS/Yaclk6SYKkMlA9k/ucjPwshgAzkv7rU4z/a0Lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mkkyvL+g; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45f2a69d876so21200885e9.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 00:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758095386; x=1758700186; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EBfFDRiXr9nEpDXh/89ReC7/hr9ub6V/By4vj+1KU5c=;
-        b=mkkyvL+gSEACYeH6/0MiF7d6iO3atBxUM5EghQiZoM7QeLRQAMDSPG3dg6xGnJZBwL
-         mH6XDK2NZlNv+huONTdke3x6wHXBRam/rKPXiZ99GFIHSzEGmveGXtzSfRtVI8c2NOcm
-         ry4vR/cKJFNXym18Kgn7aU9vmVPoEtpY0+Zejn/7soQDzkko3EngPM29PAzDx43HExl2
-         v7E+I+Prw5dY3EHcbvbOUAk9wlLdt+y29IF+axxKPhVcLVnbhdEoLRiP0o7gLSGCoLAi
-         Oi9uImsS4w860UU5Cs+i4VxQZ3TDCwfZsC/Xmd/h17PW4TCp3Oz1fEGQsy6SCaXvsPZI
-         9Log==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758095386; x=1758700186;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EBfFDRiXr9nEpDXh/89ReC7/hr9ub6V/By4vj+1KU5c=;
-        b=ocoFNF+7fGuJ5MDQo25EILzbNmrNGoKWhWNQ8IKFdmqrfCgGBoOTmFujn/utb+zIxX
-         jw3/XSvT9z5B53TJid4P+Hi//v+I4QQPU5NK7cuFPu2SSZ92GiqRV9bOBzatt4z65ukY
-         6cIcqOGXpiAVRGlc86qFDGUdleuJnuIuIEh48p4RioyytKRx/jPM38B7slQPTNpfY4r+
-         WKWNVlK3w/COY3IYRI7rgvIms6MQQgd0Y+e0t9f186TzsF0kstINHKxJwPx99DZ8BKKD
-         dkqKxLolV6BCUL8ax/6+zzpRBnn3DT3taA5ywa7TwFM51xPsXuFoorkjJFsjVH7cST/K
-         X0pg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXWur0Sy1MfFlSMe9y10Sct3fusQbRtv3CcKO6Hp9MxoqUer22pujsg8dRsr1WZorGg8SgSNRMVMGD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoiFMb6nm1Ug8mIbvULUVUC2ESdT75LTJJnWjttPtuvoY5N5PF
-	iDZtXyUdWKKdc+p85Hl74UGpyKmvKdNEO0LXQvNOzHEErVyiQeoDwu4EeZBPuOIOVm9HUIwSdtZ
-	hGEQsuYW0CN+GzOZwxyKCkEUUOGwvQCo=
-X-Gm-Gg: ASbGncuhaL8hrrAjGMfnYbe2iNLVzAIh4kp9QBRtASyLyyJ0AiH15XHMr33NTyJk4l5
-	3Q6jNf1sEpLmwISgfYa7zMaroi2NMddBzTrBy6WaXPxr3miNbmFHpYFtgGmoG+nczDAxomq142T
-	RQd9yGOPusq/O9JNEjsqs5j/ASpw11PfvI6ZxN4reTv/9qDvTzivfr34q1u8DEC1o4krDhOuovj
-	tPaMORL
-X-Google-Smtp-Source: AGHT+IF3lmE+Hj7uILLuG4qQmCcnlTdBQLcIILWDDReW6OA5JNsKz4AMqTaBfvmWdQByd126wN9UY2EbvRJzOucYNL8=
-X-Received: by 2002:a05:600c:354b:b0:45f:27fb:8014 with SMTP id
- 5b1f17b1804b1-46202bf79b6mr10547375e9.3.1758095385572; Wed, 17 Sep 2025
- 00:49:45 -0700 (PDT)
+	s=arc-20240116; t=1758095452; c=relaxed/simple;
+	bh=f1hZSSv8RRcFWnWU1u8ALs0G4QC2D0vWizfbU53WVsk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZxJdZnfrJJ+22dl5oQY3FWbffNfVXtNnyb1olzuybJhu3+/+wlaUra7xCEOUMvfipbiaDwR5bMgTn2IavJ4tU8wQLYjTg3btkLihGzHlTsgW/PwWFnFNj25DV2Go88BP3auC5oxDcMwx+c9ztZN5vP3vqQeKTaCZ2xFsEniP5Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=KZvqpnXt; arc=none smtp.client-ip=54.204.34.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1758095410;
+	bh=9zb8bG0zqIEOxhdQgpYL8pRl5cp21PGqetg4qySjTPM=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=KZvqpnXtnCI81jVvAtHoshMgai8xuWxSGyT2nTsevWC851081SOJNZ8PU+2zea/hO
+	 fzERwT9+yHpo6vd8Mbw91vKwGFvyQgsnQEvvPn+6dnmbk0Jv/LLsk+Q5CYw198rRJy
+	 cscoG7MEgangNCV+Jjqohb+SSsJoWXgRrgEe+zMM=
+X-QQ-mid: zesmtpgz9t1758095408tac496626
+X-QQ-Originating-IP: hoMmYmM+iXM9vjSWP534S9eL48TnmbgB6K21OZndabo=
+Received: from = ( [14.123.253.34])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 17 Sep 2025 15:50:07 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14088576248179835359
+EX-QQ-RecipientCnt: 17
+Date: Wed, 17 Sep 2025 15:50:07 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Yixun Lan <dlan@gentoo.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Troy Mitchell <troymitchell988@gmail.com>,
+	Alex Elder <elder@riscstar.com>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: Re: [PATCH] dt-bindings: i2c: spacemit: extend and validate all
+ properties
+Message-ID: <F28733C699531788+aMpoLx-bCpo9-ZsX@LT-Guozexi>
+References: <20250917-01-k1-i2c-schema-v1-1-bd276b366d9c@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250906135345.241229-1-clamor95@gmail.com> <20250906135345.241229-12-clamor95@gmail.com>
- <20250916180418.3fa270a9@booty> <CAPVz0n1Nvun5yBf_i3NB=kDmLfNFRjbFt1uTUW-hpLbp-h0g4w@mail.gmail.com>
- <20250917092506.311c314c@booty>
-In-Reply-To: <20250917092506.311c314c@booty>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 17 Sep 2025 10:49:33 +0300
-X-Gm-Features: AS18NWCKU4rZnTXxdA0a9QfyHpWTdRZtRMYt7KcgyNP1Kv6yaXuQBbEuLGoNYco
-Message-ID: <CAPVz0n3u1N5NHKYE6d_wNqe=tJ2K10c32YuSnusKDV9+iO5yCg@mail.gmail.com>
-Subject: Re: [PATCH v2 11/23] staging: media: tegra-video: csi: add a check to tegra_channel_get_remote_csi_subdev
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sowjanya Komatineni <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko <digetx@gmail.com>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250917-01-k1-i2c-schema-v1-1-bd276b366d9c@gentoo.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NNt1TDPmsCHksvhqgwcUQlsjkKReYbqTHTGx2NADfmIHTyCRbcsgUJSm
+	j55BSnZ/3CFe/UyLd0Z8rSTg45doZKGq5A8EERAl2iA2Jok+77boh6gvv+POGcyMb8w46DX
+	rXU3Wch89k5J8gVOlozCjs2dtPErn+Fvf+JlZwZQYoEp/A/gsRAHYqWq1mebweSIxrVRXMD
+	8ODQmaIAWaxIqnC+PmMMhnAGYzdxBMgGFLwwkUZfNMtg2C6Z+uMRUOQ8tK/qdke6SL4gdnq
+	KPVogjSriFNnTBrcoSQOEByZoV6fP0SJaPYMNX7OnbF9jrEtBJNeVNlLEthmhxyU/uhXNGS
+	9di1XQS1fw3l9fZ16ICvZ516vjL6V4pj9sfkZU1S45mN4sd51bqjdL1h7r+c2gE1vy0E+CC
+	U7j1n7TgQvDqZz2jpqoWk27DqvnhgLLETW0ctRDyKMxOci8+bURNDO0Iuf3rgkdtc8MFgMc
+	/1kcFET+Ucwq8jPdcMbzqFEBV1oKSM8MDh/IG21iTKtktwl64NmtKrj2/9dIJWXag0wltbu
+	qalakYhgRcdTiw6VCTjDJAqQVYqdbYA9xebmaSoChPWLXXNywoIQVfiA1ipXmLSNTlcevCy
+	3wheNcZsTg8LHmbhziIaNnkmGre1Jd7j0gwuvLA8nHjYGkNqjy3Of4hHXG5MoIiaTxx/FlX
+	qf1tcWNw84ApRa93FTxlV9lbSZG/BOWnSzLcR6wgTXiRSfJTETKz1p5RxMBZKlja+gvt/Vo
+	D7QSjpRswuN22LVP3jVldRgK9fNb2P38J9v2ZVIcUr7GEpwIzSKnD/nfSMFYH8JzjCM2L3z
+	mjD6sdsQe/I2+K1DSc+z/VDGDTm3SVd/ajOvPh6pB4vwonb2RCVCw8rZIimUZhztlpApK/S
+	Zqte5tL0gnqqLxW6QduaJtWLug1Gj7ZMaVh48i9hc2FepEzFgA6Mabo4mYmEc6uy0W2DJtv
+	aENXAesO95Dg5PsyNzgdejLl6+pGWTQvG1dzwQmdy7hebpIdx3EwG/ixToRF4EonYK81stD
+	1ACX2FIi1pH+45xbKDKepGEQGk4WQKCyrm/KKljlfD2vKZukyYBWkJaVbLIwcM5aIM8E20e
+	+Zj1/TDfJ5s
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
-=D1=81=D1=80, 17 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 10:25 Luca=
- Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hello Svyatoslav,
->
-> On Tue, 16 Sep 2025 19:24:52 +0300
-> Svyatoslav Ryhel <clamor95@gmail.com> wrote:
->
-> > =D0=B2=D1=82, 16 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:04 =
-Luca Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > >
-> > > Hello Svyatoslav,
-> > >
-> > > On Sat,  6 Sep 2025 16:53:32 +0300
-> > > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > >
-> > > > By default tegra_channel_get_remote_csi_subdev returns next device =
-in pipe
-> > > > assuming it is CSI but in case of Tegra20 and Tegra30 it can also b=
-e VIP
-> > > > or even HOST. Lets check if returned device is actually CSI by comp=
-aring
-> > > > subdevice operations.
-> > >
-> > > This is just for extra safety, or is there a real case where the lack
-> > > of this check creates some issues in your use case?
-> > >
-> > > > --- a/drivers/staging/media/tegra-video/csi.c
-> > > > +++ b/drivers/staging/media/tegra-video/csi.c
-> > > > @@ -445,6 +445,22 @@ static const struct v4l2_subdev_ops tegra_csi_=
-ops =3D {
-> > > >       .pad    =3D &tegra_csi_pad_ops,
-> > > >  };
-> > > >
-> > > > +struct v4l2_subdev *tegra_channel_get_remote_csi_subdev(struct teg=
-ra_vi_channel *chan)
-> > > > +{
-> > > > +     struct media_pad *pad;
-> > > > +     struct v4l2_subdev *subdev;
-> > > > +
-> > > > +     pad =3D media_pad_remote_pad_first(&chan->pad);
-> > > > +     if (!pad)
-> > > > +             return NULL;
-> > > > +
-> > > > +     subdev =3D media_entity_to_v4l2_subdev(pad->entity);
-> > > > +     if (!subdev)
-> > > > +             return NULL;
-> > > > +
-> > > > +     return subdev->ops =3D=3D &tegra_csi_ops ? subdev : NULL;
-> > > > +}
-> > >
-> > > I tested your series on a Tegra20 with a parallel camera, so using th=
-e
-> > > VIP for parallel input.
-> > >
-> > > The added check on subdev->ops breaks probing the video device:
-> > >
-> > >   tegra-vi 54080000.vi: failed to setup channel controls: -19
-> > >   tegra-vi 54080000.vi: failed to register channel 0 notifier: -19
-> > >
-> > > This is because tegra20_chan_capture_kthread_start() is also calling
-> > > tegra_channel_get_remote_csi_subdev(), but when using VIP subdev->ops
-> > > points to tegra_vip_ops, not tegra_csi_ops.
-> > >
-> >
-> > Your assumption is wrong. 'tegra_channel_get_remote_csi_subdev' is
-> > designed to get next device which is expected to be CSI, NOT VIP
-> > (obviously, Tegra210 has no VIP). It seems that VIP implementation did
-> > not take into account that CSI even exists.
->
-> IIRC it's rather the initial VI implementation was meant to be open to
-> supporting both VIP and CSI but some CSI assumptions sneaked in. Which
-> is somewhat unavoidable if only CSI could be tested, isn't it? So I had
-> to change some when adding VIP (trying hard myself to not break CSI and
-> T210).
->
+On Wed, Sep 17, 2025 at 11:38:13AM +0800, Yixun Lan wrote:
+> Extend the K1 I2C properties by including generic i2c-controller schema.
+> and this will enable it to do the DT validation check later.
+> 
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+> arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dtb: i2c@d401d800: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'pmic@41' were unexpected)
+> 
+> Link: https://lore.kernel.org/all/20250825172057.163883-6-elder@riscstar.com/ [1]
+> ---
+>  Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> index 3d6aefb0d0f185ba64e414ac7f5b96cd18659fd3..226c600deae142413277117e25baae09f0918381 100644
+> --- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -9,6 +9,9 @@ title: I2C controller embedded in SpacemiT's K1 SoC
+>  maintainers:
+>    - Troy Mitchell <troymitchell988@gmail.com>
+>  
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+oops, I forgot to add this..
+Thanks for your fix!
 
-It may be initial VI, that is not that important since my goal is not
-blame anyone but to implement stuff I would like to see working. If my
-words offended you, I am sorry for that.
-
-> >  -19 errors are due to
-> > tegra_vi_graph_notify_complete not able to get next media device in
-> > the line. Correct approach would be to add similar helper for VIP and
-> > check if next device is VIP.
->
-> I think it's almost correct.
->
-> tegra_channel_get_remote_csi_subdev() is called:
->  * in vi.c, where it is expeted to return either a CSI or VIP subdev
->  * in tegra210.c, which apparently supports CSI only
->    (I don't know whether the hardware has parallel input)
->  * in tegra20.c [added by patch 23 in this series] where only a CSI
->    subdev is wanted
->
-> Based on that,  you're right that we need two functions, but they
-> should be:
->
->  1. one to return the remote subdev, be it CSI or VIP
->     a. perhaps called tegra_channel_get_remote_subdev()
->     b. perhaps in vi.c
->     c. not checking subdev->ops (or checking for csi||vip)
->  2. one to return the remote subdev, only if it is CSI
->     a. perhaps called tegra_channel_get_remote_csi_subdev()
->     b. perhaps in csi.c
->     c. checking subdev->ops =3D=3D tegra_csi_ops
->
-> The function in mainline as of now complies with 2a, 1b, 1c, so it is a
-> hybrid.
->
-> In other words, what I propose is:
->
->  * rename the current tegra_channel_get_remote_csi_subdev()
->    to remove the "_csi" infix, so the name reflects what it does
->    - optionally add the check for (csi||vip)
->  * add tegra_channel_get_remote_csi_subdev() for where a CSI-only
->    subdev is needed: that's exactly the function you are adding to csi.c
->    in this patch
->
-> Does it look correct?
->
-
-Yes, if this was your initial idea then I must have misunderstood you,
-you are correct. We can agree that each VI source should have its own
-get_remote_device function since VI configuration cannot be agnostic
-in relation to the source. ATM since only CSI and VIP are supported we
-can have only one for CSI and use VIP as default option, which is
-fine. Meanwhile, since core VI configuration (vi.c) does not perform
-any specific operations with VIs source, we can leave
-tegra_channel_get_remote_csi_subdev structure as is, just call it smth
-like tegra_channel_get_remote_bridge_subdev and use it in vi, it will
-get any VIs source device in the pipe regardless of its type.
-
-> > Since I have no devices with VIP support
-> > I could not test this properly.
->
-> Of course, no problem. I can test it (but I cannot test CSI).
->
-
-Good, CSI is not an issue, I am always checking if it remains functional.
-
-> > I can add this in next iteration if
-> > you are willing to test.
->
-> Yes, please do, thanks.
->
-> Luca
->
-> --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+>  properties:
+>    compatible:
+>      const: spacemit,k1-i2c
+> 
+> ---
+> base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+> change-id: 20250917-01-k1-i2c-schema-faf6715d7b88
+> 
+> Best regards,
+> -- 
+> Yixun Lan
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
