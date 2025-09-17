@@ -1,143 +1,111 @@
-Return-Path: <devicetree+bounces-218296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192E4B7E514
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D1E6B7E517
 	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:47:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B0ED4E5708
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 09:07:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 452524E58F5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 09:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9690730BBA5;
-	Wed, 17 Sep 2025 09:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAC23093B8;
+	Wed, 17 Sep 2025 09:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HuBjnmo5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B963093B8;
-	Wed, 17 Sep 2025 09:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0B1306B09;
+	Wed, 17 Sep 2025 09:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758099938; cv=none; b=UFOFCH6BLK2bLUc6LtjjJw6GueSvorGCVQI2k0p28U1FFjbSRSQNdIscf+GxW3vFDqpH976gBILjyqyX9A36GMUzCTs9J5T5n8tbGMfcO7XLitwexMR+cHOgC1J1/ANEM6yw7ee7zqCQAnSL9DrbwvcQjLDK44XGkflEo1aQD7o=
+	t=1758099978; cv=none; b=DG2d+DYgIFv5Dj63FXJ1w+y51WYnhFrFKw6Rg/VxV1DVQ7b8Y61OM2lgrGAFmPqArgxgvlvAKy3huJhuL17HKHAA7zUljgCz8b4BX9r/wgRAQLsI/3n6LEfb8+GaPHDn9W6sqKEAJifprQiwDM4KyN0ZyJ0zU+7iKEoY0luyKbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758099938; c=relaxed/simple;
-	bh=dmmvGJe32wRJBDb1N1xG/Xr8pHkbI7gEJtrOH+aUo00=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CDcPvUJOeGR83K2K4zxlQ6xyZ7JXmMQkRDYWABjnlj6cOYTR4kWXp4/ePKPpsmuEom3c26ooAH3aXPq0YY6cx4f6RegRKMkpEPEg2FHwbx9Vj5GDYO/Ye9tUdGx9sYbDVLn8AdrJkomo7aT8nxtPU128+Zw/CTQ6OkoeJO4YqEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.158.240.90])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	s=arc-20240116; t=1758099978; c=relaxed/simple;
+	bh=uysw1dHCz2WslwLQVyxUkMNdtoTDG8ekcBjPK/8bbwU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bjHAHnRMrB8RZiuxJaWWKiz/nEPgNL+bo6XmD3VpDe74vhS0nZVpG7VsV8IExefKxlaLU7HUpAS8LiIJuEaj5xi/GPgvttQUJtD6RiSgCp53RAIAvRMQ6RUvJarurz0vqi5MJBvJb00CkBa/Kdhw9t1mU37K+WRpqENjUIHWroE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HuBjnmo5; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758099974;
+	bh=uysw1dHCz2WslwLQVyxUkMNdtoTDG8ekcBjPK/8bbwU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=HuBjnmo5S5KOiTh4tR8/9rfTE7/gh2nfoH91h2NwGzJCfJwBUE1Jz6zRUhljdJjA0
+	 yUNLVn0wL0+hM68nwAbRUVyeA6ORBMJKcEV8oyHt7FBxGYUsBzrzRrSQB+6IZS4LYX
+	 guY94nP+L4oovufloOu6nT+ArGQVBbTwtjPiY7xvYKzfwqn2L64VLH7K6ggN0N7SHR
+	 KcpeUY5d3VtdmDB+79+HNCtFip33Vv+HRdDpt5cmJ4WARce7JgthF621vq2q8Q527J
+	 iS3Yv8TOsGH2t30qlt/KVZ3zFcBNJ6hE0pDCqejZ856ZfIZ428u7eE/W4DMf9o8/W9
+	 9inEpA0MNHK5A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 2D9C6340FEC;
-	Wed, 17 Sep 2025 09:05:35 +0000 (UTC)
-Date: Wed, 17 Sep 2025 17:05:32 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, alex@ghiti.fr,
-	aou@eecs.berkeley.edu, conor+dt@kernel.org, krzk+dt@kernel.org,
-	robh@kernel.org, skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] riscv: dts: spacemit: add UART pinctrl combinations
-Message-ID: <20250917090532-GYA1265528@gentoo.org>
-References: <20250917065907.160615-1-hendrik.hamerlinck@hammernet.be>
- <F213A85E78015F1A+aMpnVc9S_ynYGDF8@LT-Guozexi>
- <b76520ff-f039-465c-a58d-8f0f37bd1664@hammernet.be>
- <A00BFAFA3FC941AF+aMp0kSc6UkR4QUn4@LT-Guozexi>
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A6E0D17E124A;
+	Wed, 17 Sep 2025 11:06:13 +0200 (CEST)
+Message-ID: <87179c9f-cc7f-446f-9e8d-c84bddb48660@collabora.com>
+Date: Wed, 17 Sep 2025 11:06:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <A00BFAFA3FC941AF+aMp0kSc6UkR4QUn4@LT-Guozexi>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt7622: add 'serial' cell to
+ efuse
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <18af6977cc34de75e64279141dee69dcbc81c420.1758063737.git.daniel@makrotopia.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <18af6977cc34de75e64279141dee69dcbc81c420.1758063737.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Troy,
+Il 17/09/25 01:05, Daniel Golle ha scritto:
+> The efuse of the MediaTek MT7622 contains an 8-byte unique identifier.
+> Add a 'serial' cell covering those 8 bytes to the nvmem defininition of
+> the efuse to allow easy access from userspace, eg. to generate a
+> persistent random MAC address on boards like the BananaPi R64 which
+> doesn't have any factory-assigned addresses.
 
-On 16:42 Wed 17 Sep     , Troy Mitchell wrote:
-> On Wed, Sep 17, 2025 at 10:17:16AM +0200, Hendrik Hamerlinck wrote:
-> > Hello Troy,
-> > 
-> > Thank you for reviewing.
-> > 
-> > On 9/17/25 09:46, Troy Mitchell wrote:
-> > > Hi Hendrik, Thanks for your patch!
-> > >
-> > > On Wed, Sep 17, 2025 at 08:59:07AM +0200, Hendrik Hamerlinck wrote:
-> > >> Add UART pinctrl configurations based on the SoC datasheet and the
-> > >> downstream Bianbu Linux tree. The drive strength values were taken from
-> > >> the downstream implementation, which uses medium drive strength.
-> > >> CTS/RTS are moved to separate *-cts-rts-cfg states so boards can enable
-> > >> hardware flow control conditionally.
-> > >>
-> > >> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-> > >> Reviewed-by: Yixun Lan <dlan@gentoo.org>
-> > >> ---
-> > >> Changes in v4:
-> > >> - Explicitly use 0 as bias-pull-up value
-> > >>
-> > >> Changes in v3:
-> > >> - Added /omit-if-no-ref/ to pinctrl states to reduce DT size
-> > >>
-> > >> Changes in v2:
-> > >> - Split cts/rts into separate pinctrl configs as suggested
-> > >> - Removed options from board DTS files to keep them cleaner
-> > >> ---
-> > >>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 430 ++++++++++++++++++-
-> > >>  1 file changed, 428 insertions(+), 2 deletions(-)
-> > >>
-> > >> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > >> +	/omit-if-no-ref/
-> > >> +	uart2_0_cts_rts_cfg: uart2-0-cts-rts-cfg {
-> > >> +		uart2-0-pins {
-> > >> +			pinmux = <K1_PADCONF(23, 1)>,	/* uart2_cts */
-> > >> +				 <K1_PADCONF(24, 1)>;	/* uart2_rts */
-> > >> +			bias-pull-up = <0>;
-> > >> +			drive-strength = <32>;
-> > >> +		};
-> > >> +	};
-> > > We are currently using the 8250 UART driver, but hardware flow control does not
-> > > work properly on K1. We are considering fixing this when time permits.
-> > >
-> > > Should we add a comment here to avoid confusing others who may run into this?
-> > > If so, I will remove the comment once the issue has been fixed.
-> > Not sure if I’m missing something, but hardware flow control seems to work
-> > with the `8250_of` driver?
-> > 
-> > On both ends I configured the ports with:
-> > `stty -F /dev/ttyS1 115200 crtscts -ixon -ixoff raw -echo`
-> > 
-> > With this setup, data sent with echo only goes through when the peer is
-> > actually reading on the other side, which looks like RTS/CTS is
-> > functioning correctly.
-> Let me clarify my earlier reply(I have double checked):
-> It is not that hardware flow control does not work at all,
-> but rather that it fails intermittently.
-> The higher the baud rate, the sooner the problem tends to show up.
+Sorry, but I don't get why this is named "serial" and not "soc-uuid".
+
+Care to explain?
+
+Cheers,
+Angelo
+
 > 
-> From your log I noticed the baud rate is 115200.
-> At this rate, it might take a full day of continuous testing before
-> the issue appears (though of course it could also fail much sooner, since it is probabilistic).
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7622.dtsi | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> So I am wondering whether we should add a comment here,
-> or instead put the note in the UART node.
-No, please start another thread to address this issue, find a solution
-and then ideally work out a patch for it, adding comment doesn't really help.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> index 917fa39a74f8..0b9803a183b9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> @@ -278,6 +278,10 @@ efuse: efuse@10206000 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   
+> +		serial@140 {
+> +			reg = <0x140 0x8>;
+> +		};
+> +
+>   		thermal_calibration: calib@198 {
+>   			reg = <0x198 0xc>;
+>   		};
 
-Besides, what Hendrik doing here is to complete the descriptions of UART pinctrl
-which is a different thing, let's not mix them together.
 
--- 
-Yixun Lan (dlan)
 
