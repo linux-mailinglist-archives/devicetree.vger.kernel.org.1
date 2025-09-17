@@ -1,183 +1,167 @@
-Return-Path: <devicetree+bounces-218259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6961CB7C3B0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 13:56:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD90B7CEE9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EB66173666
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:17:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD2F61C05E96
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 08:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED83308F3B;
-	Wed, 17 Sep 2025 08:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D71A304963;
+	Wed, 17 Sep 2025 08:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="qRXHxTPC"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="bZc9SZQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010047.outbound.protection.outlook.com [52.101.193.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D63308F15
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 08:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758097043; cv=none; b=Y/9XGobrvPHZL41DyTH2tLXvMB/6TZHpEvR8xFJaWXmgzXDF13j3s2ajnhY1FG1t2jpuwo4y6LeZEfxi+tCPPOE/6i2P902acMSgq4adtvbLP8R1V2Gx3nHjp6TlPmfykVGwdxEKtLDz7VIwuSsQrZ4lLYwwz9CzS0KGz9IjRHc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758097043; c=relaxed/simple;
-	bh=p93rnHzaYY1EKGqqeaVdEpYdoaH3KDGBdfemxVFPeCY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uvan5bNGdMaRkrCZsjuYegf1T1yVLuxx2Hc6t+V4tYUvHXwSm0s3OVrHFuHtIhLL6VNBUx0E7dyyRvEMTeXJHcQVZ4o5pmYwtyxbQHUCBOlTfFedN1X4vE20bWSoc/5FUZG9r1gLqgvhb5wZjoabz53audp+EO7/7FG38fQHTHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=qRXHxTPC; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45f2313dd86so43882505e9.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1758097038; x=1758701838; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1cfwZOPZzFsvlNm3ek81Eqwcg/vwsqzjRAGhBUvpRL8=;
-        b=qRXHxTPCTBdbsAObIFODtaOgNLWQMzUtrNxMcwuJzntW6EcNYp3GrZ2lAx9DBSihdm
-         1jneNHCdWJYkmhMv3r5hp9DkDSyV8HMsKDbzFLgaqhQ6oJ/RacXpGN6Ql/nMZMHAVPcQ
-         XC62ar4Sqa0wDhLSPfJuXY+ZDygirtUcjybxUeJozYWijQ/BFDEAl5ONn+lhvKw+I7fC
-         fIlNtEcL63yXj1zdXLWjzEskOVWLL7Ea7LFrFGCUJpoXS7J+kqfypMJDC7ax00xHA0+t
-         xXhp30/FF2L6LU8NR/fBarwxt89cuAuMNbIaBzCa5HyIo7uPIYod9taBSgVRn462vboX
-         OQ0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758097038; x=1758701838;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1cfwZOPZzFsvlNm3ek81Eqwcg/vwsqzjRAGhBUvpRL8=;
-        b=nBUbCqKjwDA92KRY5DKY/y94XNT6j64rAK4/ycY2D1O7qjH0pNZ8EdBDGM9ofP54QD
-         YdnpexBloL+NQLD5ZtfWLj5mlH/8sC3r70tNIQkf5jwv97eWWaKtz82RFp/C0AbEp2Y2
-         FKR9FkLUKPGYv4suOfs97uOj9hPzIuCcWYbujf+6d96wXpWgvfCBexsRo77IBV1kmC9I
-         lMggiHAz6psV41VXwbR6AS4pUI+FidK9+1uC7uE/v3xGFgxlbVcBo/+og2FtmaSYi4Dv
-         V1EIheMgs8L58ZVl2Y+IIg7tVElwWDgC81/JxT3OqxxIL7AEHH1WdlHSMOqdBMDXHUK5
-         h5Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCW7kLYmO9s1F4YReH8WiWwattR7mlPswGGuUA5kWHFF0SGuC3COWad8YkdEC4j2iCQiZhTWncuNsdEz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiFA/lsNNiNkZW3Yhuc8VGF6ASzMZneAhoBfVxOmfBBVsz+vZB
-	PV3dyKdsIxLlBE28Qwx5dZrQdQ1M4vQS3/D1x8sI8dXkgDL5kwB8IkLG3wEqBN2zQF4=
-X-Gm-Gg: ASbGncvE8Ia5MH1WYmnFDkZyQgiPb5fnltAJeje2JK6h8XjIFXAfAtwiQVFkrbDc6hO
-	2MnjhBqgZpvOFh/4+nWwJ39edFPIIuiH1SHc3wfmiKE49+TQV0nA8rco9fppQrB9BvU4/ZvsV5Z
-	kKV0oZPRj4cw2/AHiWuMn7SNL/JZmNPcxuxWGMX2w53GEOfEKBNgx5mTwEoCTI/LzEoTHF1xjTa
-	lBBNOh/AQK3l8NpFU47ntSvj8luSq6EnWwV4VRjmeFMksUjmPEwpyt0vjUPGcrbWwCNCGS/dJXD
-	zpdc2psQ4EyIOEZkct4xgOBSsPGneRiXbezFfcoa8cQP6WpFqxXZIQQZZAA/wFIZRuBGE9slFy7
-	bgvCcZMHiiWikgdNRNDcaKjckB1VZD98AhRxEYKvxjmyfibMZFIq1N2OglWMDBrAzmflDrrkMdf
-	Lo/vxhQ/eAeuGvJw==
-X-Google-Smtp-Source: AGHT+IHQauNqpq8lY/6H7jPfKtMFBDpqtFt79W/QicqW57Kb6YWQ9jdKsOFDxKIhImInFtNC7PPBqw==
-X-Received: by 2002:a05:600c:1554:b0:45d:d6fc:24f7 with SMTP id 5b1f17b1804b1-462074c55cfmr10061175e9.32.1758097037873;
-        Wed, 17 Sep 2025 01:17:17 -0700 (PDT)
-Received: from ?IPV6:2a02:1807:2a00:3400:1b1a:e580:5909:925c? ([2a02:1807:2a00:3400:1b1a:e580:5909:925c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45f32081248sm37379855e9.0.2025.09.17.01.17.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 01:17:17 -0700 (PDT)
-Message-ID: <b76520ff-f039-465c-a58d-8f0f37bd1664@hammernet.be>
-Date: Wed, 17 Sep 2025 10:17:16 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE2A301703;
+	Wed, 17 Sep 2025 08:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758098176; cv=fail; b=gsoS57jCbGF8XBHtlFNEOZ/ypfai5PEAg2PB1LYK9047UYUEIUc81AsC+H7r+eoMTkKb9E2jYhnQy/yBtDGQdUnsfh71AHqthf32oxzoQJNBL0F9GHtbYz/feiSoRG76SBGwukGSpxAFVtsM34Gou+dmA73G/dB4tBJpuD9Py/g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758098176; c=relaxed/simple;
+	bh=Z8ojFwa2kuk8l9A3Pbt+CKJUYgL4PVTm+K8r5jAXicA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hKcAWGgB5w8B8uX09YCbsDOPQO4z7xZmNjeW7TlGR8reC1VfxGtfzXhlHJ2kSV0/UdqkeHNpQQYwMCWLQ6E4rnowQ5wznqhyv9yVhNh/p+vyCRJqvQOvmI2tlDL06vhKb4aWxHJab6GVRN8xN2WVf406ftJ3hqOGDeG162HzvWs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=bZc9SZQT; arc=fail smtp.client-ip=52.101.193.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=paBeY8gZrXzA3ULG/u8MAh2wHyVy2Dd/i3WIVURbz+OPb/ge4nheaLBIiT2i3cDA11YbrRaVQ9QKEF8ju6vq4RiJHEEt3+CgnIzVKKRqKSivnPwIoj9f6Mtj9W3lVj/NwCBBCxCdXmEzlCl9TgGRH0wpqDWd+jTs36XwgitOa8+pUwXXd5Q96dsYdcZbLdrLlazs+h3wLBdfxbyzOme7rhOJFAQDPQyJRqAf+QMzqpzTJqeqoUDHSwE5DIK9vQnhtPIVswyhRQG9dWfGaGexGPs6Gcsff2pD9t3EZGNYBsCQpf2DHTYrK6DRhNfDhkEVsM3pymhC2+R5yqeCDsllFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QTsOEoFCuh3KPAbMXnlcfWsXYhIDUH7H08zyI1OAzBk=;
+ b=LWhaoMdUWVrylN0L4ADEVki7m9aN8BLpWStZMzoV3X30jUJdY8XA0B1xNsVmfNMb0Y4o8BBE20MjMPhUaW2ri3a4e+5bZSIQpfvRrDlgu6c8MiK2FiulBvAjcONi0kdnZHGvoE74HffYZ7g4Byc/hIUXzoqaaC0jiYXEw8uSlZ8oLP594vD0glORgbfPH6S8U6Dqkb1AWzfUQf1TJKGClRaRd3htBHubBQ932KcmPFmZrcy9tM9OHwSVbtBZxjtep+Or3BR2GDFnAPZGc2fG7c7MsDFyZ1a71ue1msOwrsZIqvhfJn5mGHySKx0q3yihYdTe4cxoDHY+LbE9AF6kpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QTsOEoFCuh3KPAbMXnlcfWsXYhIDUH7H08zyI1OAzBk=;
+ b=bZc9SZQTs7JD7JobZuocKO64ZkQkFHrfBRsqiaEVfxve/l4t3z0d3iUjUaGnDl17h9tIC7uGQcS3jqI59qIihOTTdNxEwB1JQhrH/UZ90myKpsr3OUZMvvm9cGdLFG1qlNU7P/JQ5AO6ZRnZjCl5j5wO2r1IgynQmtdoBnwQTEZsse5DHKeg3eYUAaNH6uBVkuDN5k3ADfoQhNwLZophqKl23fTWWztG4Ld7apT8rcwYvzxWJVMSzYLN8MaVWhM1zEXaImqdbZRyU0pwL70wxPTpIrpTnjKtGxabYEQLjhYgFjgzWrD9+x4GdBLgbd0rt20UV+T0TITp+7jP2y5T3w==
+Received: from MW4PR03CA0208.namprd03.prod.outlook.com (2603:10b6:303:b8::33)
+ by PH8PR12MB6866.namprd12.prod.outlook.com (2603:10b6:510:1c9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.23; Wed, 17 Sep
+ 2025 08:36:09 +0000
+Received: from CO1PEPF000044F2.namprd05.prod.outlook.com
+ (2603:10b6:303:b8:cafe::79) by MW4PR03CA0208.outlook.office365.com
+ (2603:10b6:303:b8::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13 via Frontend Transport; Wed,
+ 17 Sep 2025 08:36:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CO1PEPF000044F2.mail.protection.outlook.com (10.167.241.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.12 via Frontend Transport; Wed, 17 Sep 2025 08:36:09 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Wed, 17 Sep
+ 2025 01:35:53 -0700
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Wed, 17 Sep
+ 2025 01:35:52 -0700
+Received: from kkartik-desktop.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Wed, 17 Sep 2025 01:35:48 -0700
+From: Kartik Rajput <kkartik@nvidia.com>
+To: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <digetx@gmail.com>,
+	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <kkartik@nvidia.com>
+Subject: [PATCH v7 0/4] Add I2C support for Tegra264
+Date: Wed, 17 Sep 2025 14:05:41 +0530
+Message-ID: <20250917083545.594081-1-kkartik@nvidia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] riscv: dts: spacemit: add UART pinctrl combinations
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, dlan@gentoo.org
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, alex@ghiti.fr,
- aou@eecs.berkeley.edu, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, skhan@linuxfoundation.org,
- linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250917065907.160615-1-hendrik.hamerlinck@hammernet.be>
- <F213A85E78015F1A+aMpnVc9S_ynYGDF8@LT-Guozexi>
-Content-Language: en-US
-From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-In-Reply-To: <F213A85E78015F1A+aMpnVc9S_ynYGDF8@LT-Guozexi>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F2:EE_|PH8PR12MB6866:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0aec9f00-4ee6-4d37-78dd-08ddf5c5404f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|7416014|376014|82310400026|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?YUGW3bedCnxZiZGuU0Iiw6RediCvG10qaFTF44JpjWF954bxZjqEeKU48BmC?=
+ =?us-ascii?Q?A4+zCQtuHY3TnZNrwJYJEYdk9pVIyKR5I2wPjkRgp7T6aodmOzfaWo6WMHQ9?=
+ =?us-ascii?Q?NjPkoICyjXtmUZNWRCERSe5OUHVY0qMRz2ywVv5zgchWJdkUisJMv8Mh+v2W?=
+ =?us-ascii?Q?H414MImPLvGL/YGF/rfPNUeqOuKLKHed8vkyamxO8mXFv+j87pA4g34s52zm?=
+ =?us-ascii?Q?CgE65FAawWO0eiT4/ARbROHeQrBwu9ASCMh9spb1uVpwrqTyeOYpb9yqw2S6?=
+ =?us-ascii?Q?EgR9GDx8KDGDe6tuYSK9lUYgF5wreVWcCPk9twolFnWJbhzM9K8sZMO3t4Zo?=
+ =?us-ascii?Q?kjqsazYhOi5N904LjYxJyblq5RCkNJJ1+Mg+2rDIHhdb8uGpL//MdCmldvCw?=
+ =?us-ascii?Q?iBfsJibbosWUUeguZJ+Z6ChODz5+099BbH7A8Yw+/l68CnqzhFVr+hwmtspm?=
+ =?us-ascii?Q?5oxSvn4MOlUmI2qFnzOuBjnvkzYXQO0FKJ5DLCxTIFaxsXFHeKozaSA/En9E?=
+ =?us-ascii?Q?/6ibMNlSgmQ4a/AtEl6B0hCNxSiJ+2gfTXTeQxuAXTqpXREx2P6+pu12uYpk?=
+ =?us-ascii?Q?jP+GxVZqz6L04cmPl5xZxBi10hhC0hTN+LK6airh/DJ/nA7VFm3FbwLcgxf8?=
+ =?us-ascii?Q?yVLnv8pBrn6lBjq8AhVCuMur8RFsb7zCVXC/uUYp7g4IhgJa/rSbB4oBxk2f?=
+ =?us-ascii?Q?aCJuY5iXhDD1wy4BngO37yJmxymWArFPuZyrJmfvm904dI3htSotf3z3CgOl?=
+ =?us-ascii?Q?NwG6XqF0U/a2jqsPAgxmFqSQyHesGjIfGGrUhOvuuZyxTSU6yLRMdjAh0VUn?=
+ =?us-ascii?Q?B3nQzHDY2Ikpba1jQ7E85feuq4iIDf/C+T4fYsz0oQMg+REBgS7i9d052NVE?=
+ =?us-ascii?Q?BTZ5gnxMWsEbKzH/3qUAAHWjhWdCCLoII8yJULti3bpoPrneIZ23p1TXr/6N?=
+ =?us-ascii?Q?lRYos+kzYctlbCe0rXV5x/4PPVNUpm059Sja7USUngOYkqmByz9WNs6DIP1t?=
+ =?us-ascii?Q?xoHgIUkB1NBrCsCzgAco+zK4mnFkJOS3G3ko8zLkqQGmEMYmCEl7Ef1iJGQo?=
+ =?us-ascii?Q?4AF00Ct9n1fsMk3eYCWnT6FO8q5GsYC9y0qdXfGwG+PEOvpMQy4MjSGOT3fT?=
+ =?us-ascii?Q?H6U+6OXy4m4SMoxSnl2c4Lm9oARC7lSN0vkMOn44XxxvcJGZHFkv6oIXv6UE?=
+ =?us-ascii?Q?0WMqdVLyMnSRrnq5/NMegYYYqB0BlcpdJKPfx7KqtLsA3npjhpku66pxsy48?=
+ =?us-ascii?Q?docpc52f/ACH7I49hLDKcruYHZRPz2TWiItRkyFzwJMPbtE4H9TG5Fl0l4e7?=
+ =?us-ascii?Q?naWnvAGrvCdhsjOxN3l4tR/7i9Y9wo08OWh4hW7lk27mCkuV0IXA2tavnx5x?=
+ =?us-ascii?Q?Mozj+xEoz8mKgzY2dT6/VztZZNMvsSN+Mo8Y0/tMgL2OPhuZcuuxqs5G7fMA?=
+ =?us-ascii?Q?4+CM66+955xKQJH0bnUZaWdatxA4ootCR+3s8YbfuxQXQCwHfunaPlqUo0AM?=
+ =?us-ascii?Q?jgILVFVT+H7Of4LE1d1xv5H7Uzrhp4+I8ZNGCtZmMWyFNPCcoGNArpdT9A?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(376014)(82310400026)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 08:36:09.1369
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0aec9f00-4ee6-4d37-78dd-08ddf5c5404f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000044F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6866
 
-Hello Troy,
+Following series of patches add support for Tegra264 and High Speed (HS)
+Mode in i2c-tegra.c driver.
 
-Thank you for reviewing.
+Akhil R (2):
+  i2c: tegra: Add HS mode support
+  i2c: tegra: Add Tegra264 support
 
-On 9/17/25 09:46, Troy Mitchell wrote:
-> Hi Hendrik, Thanks for your patch!
->
-> On Wed, Sep 17, 2025 at 08:59:07AM +0200, Hendrik Hamerlinck wrote:
->> Add UART pinctrl configurations based on the SoC datasheet and the
->> downstream Bianbu Linux tree. The drive strength values were taken from
->> the downstream implementation, which uses medium drive strength.
->> CTS/RTS are moved to separate *-cts-rts-cfg states so boards can enable
->> hardware flow control conditionally.
->>
->> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
->> Reviewed-by: Yixun Lan <dlan@gentoo.org>
->> ---
->> Changes in v4:
->> - Explicitly use 0 as bias-pull-up value
->>
->> Changes in v3:
->> - Added /omit-if-no-ref/ to pinctrl states to reduce DT size
->>
->> Changes in v2:
->> - Split cts/rts into separate pinctrl configs as suggested
->> - Removed options from board DTS files to keep them cleaner
->> ---
->>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 430 ++++++++++++++++++-
->>  1 file changed, 428 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
->> +	/omit-if-no-ref/
->> +	uart2_0_cts_rts_cfg: uart2-0-cts-rts-cfg {
->> +		uart2-0-pins {
->> +			pinmux = <K1_PADCONF(23, 1)>,	/* uart2_cts */
->> +				 <K1_PADCONF(24, 1)>;	/* uart2_rts */
->> +			bias-pull-up = <0>;
->> +			drive-strength = <32>;
->> +		};
->> +	};
-> We are currently using the 8250 UART driver, but hardware flow control does not
-> work properly on K1. We are considering fixing this when time permits.
->
-> Should we add a comment here to avoid confusing others who may run into this?
-> If so, I will remove the comment once the issue has been fixed.
-Not sure if I’m missing something, but hardware flow control seems to work
-with the `8250_of` driver?
+Kartik Rajput (2):
+  i2c: tegra: Do not configure DMA if not supported
+  i2c: tegra: Add support for SW mutex register
 
-On both ends I configured the ports with:
-`stty -F /dev/ttyS1 115200 crtscts -ixon -ixoff raw -echo`
+ drivers/i2c/busses/i2c-tegra.c | 159 +++++++++++++++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
 
-With this setup, data sent with echo only goes through when the peer is
-actually reading on the other side, which looks like RTS/CTS is
-functioning correctly.
+-- 
+2.43.0
 
->
-> Anyway,
->
-> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
->> +
->> +	/omit-if-no-ref/
->> +	uart3_0_cfg: uart3-0-cfg {
->> +		uart3-0-pins {
->> +			pinmux = <K1_PADCONF(81, 2)>,	/* uart3_txd */
->> +				 <K1_PADCONF(82, 2)>;	/* uart3_rxd */
->> +			bias-pull-up = <0>;
->> +			drive-strength = <32>;
->> +		};
->> +	};
->> +
-...
->> -- 
->> 2.43.0
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
-Kind regards,
-Hendrik
 
