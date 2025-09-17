@@ -1,107 +1,87 @@
-Return-Path: <devicetree+bounces-218143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05CE6B7FA54
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:59:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BACB7F64C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:37:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92E51326B78
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 02:17:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAD495808E1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 02:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D6A1C862F;
-	Wed, 17 Sep 2025 02:17:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DX3J95Gh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B6D1F7586;
+	Wed, 17 Sep 2025 02:19:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBCD31BCB3
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 02:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC3B31BC82;
+	Wed, 17 Sep 2025 02:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758075463; cv=none; b=gJucjXeOcYxaIYVD8dNLxPEGrK5ySV6BLhjyLPUK/FwKappKVf8SEOxUg/NTcHZ0PIvXyNuVWbaPwtxV15P96tUP2B/t/G9zeZs/N9wtGM9FFP5wmPz4SLzQJSgCPpHviAOgMjS7SrhjdEn8dC7nuxStNy5JSCMt+XWQQRULsoc=
+	t=1758075569; cv=none; b=styPSSP7elOlpMPV14AqtDnddWHBuyzmOvEu8N6abSYlM5ypbH/mSwr3N09pscDymHnjdCdi1qbUEqGNrzL72r5K2cYjo78yTnmZ/RmgDNb7kGGlx+0gcyBnfjWMoyMcEFtjKPMqrPhg5DGrsus0oWlIfEaKorEFg4intq9ygUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758075463; c=relaxed/simple;
-	bh=Kd/aHdn/061S6f2KlRTjC4Sz1PFm4yi8eU6BlkyrouM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PdpaHIUcRvB4G4e7WYQ5bI60WjaRVR+F3yq8aYpftvTSeU58iG4DRjOmADK38j9zkNUEryrZzlkqwV/Q/Buy5L4Qavy3v5H+FiUpFjh2QwVkjdNmRCtaLP2zoDR1nehLs6nay/yTDo3AlTlVME8bJfODYN0ZEQr9K8BcuNzeEdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DX3J95Gh; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cRMqJ2bZnz9v0X;
-	Wed, 17 Sep 2025 04:17:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1758075452;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hYZlavsGsYMvMuDImVchJjtEZ+fzfmDCFdAdekFJbZI=;
-	b=DX3J95GhEEhGIvepllIW1gmmWf0NPMQvhJQFMI49rUIuIMXMIn5Qo6wzo6JY1iggIlQMUc
-	YcDwdic1zuXlJAo3XmnPW2D/wqdcKYGhsyzgBrC/cno6G0eOfE0TGlOrSpO8svVrBpDqRx
-	o73jTD+rknZIf6w/FIEaw/lQPvpinmu+AAy97en/ChFRNiTrE9I1RJKsK16MpqYXqeRas/
-	/7roj3JKFTMTR7yIh3tt5coxmJ7QT5HkRdwzmylQgAncGCwfkSg/3orGqK4ApnJDK7KNmS
-	DQe2azn3QnTS97yXA2AfwUsWlKVTgmA+ACg18GO9Vvl6sNXIJdeD7+hv9i5lKA==
-Message-ID: <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
-Date: Wed, 17 Sep 2025 04:17:27 +0200
+	s=arc-20240116; t=1758075569; c=relaxed/simple;
+	bh=Lh1Fyu0R6we48r05K/kArdT2TZftIHly1nA2h6zb9Aw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h7IttTa09JUNqSfBJkXoD5iAV/Uzl4hEtfIb/8fDvJU9yMtWYaXQhxwiPd41ArYUz+xiYZRMFuDVdcLLxv1WavTAhgOQxDZL0DZItySSBhBt0wH1VCYD3zeyiVfkZadu3cort/+eEZ2xrzshp2FJPQwtxkMLe2WqeRFYaK56Gcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 17 Sep
+ 2025 10:19:26 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 17 Sep 2025 10:19:26 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Alan
+ Stern" <stern@rowland.harvard.edu>, Philipp Zabel <p.zabel@pengutronix.de>,
+	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/4] Add Aspeed AST2700 uhci support
+Date: Wed, 17 Sep 2025 10:19:22 +0800
+Message-ID: <20250917021926.3692137-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: airlied@gmail.com, boris.brezillon@collabora.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- p.zabel@pengutronix.de, peng.fan@nxp.com, robh@kernel.org,
- s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch,
- sre@kernel.org, steven.price@arm.com, tzimmermann@suse.de
-References: <20250325155231.0d1b1000@collabora.com>
- <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
- <20250904082224.113d0cd1@fedora>
- <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
- <20250904160445.1671f140@fedora>
- <36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
- <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
- <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
- <aMoTtr9KmdrgDUiE@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aMoTtr9KmdrgDUiE@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: dfd0912c7d1407435e0
-X-MBO-RS-META: 7cm7ougi35mktp3698jjkyq6oj4cauw5
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 9/17/25 3:49 AM, Rain Yang wrote:
+This patch series adds support for the UHCI controller found on the
+Aspeed AST2700 SoC.
 
-Hello Jiyu,
+Compared to earlier SoCs (AST2400/2500/2600), AST2700 UHCI:
+ - requires a reset line to be deasserted before use
+ - supports 64-bit DMA addressing
 
-> Hi Marek,
-> sorry for the inconvienence. this uboot version don't include SM-184's change.
-> I heard you're using i.MX95 A1 Chip, so you can extract the uboot in below link[1],
-> or build from source, or raise one ticket in this website[2].
+This series updates the bindings and platform driver accordingly.
 
-I use mainline U-Boot 2025.07 with about 10 extra patches, but nothing 
-significant. I don't think this is U-Boot issue, is it ?
+v2:
+- usb-uhci.yaml
+ - add required resets for aspeed,ast2700-uhci
+- uhci-platform.c
+ - change the err_clk before err_reset.
 
-I can rebuild SM, which commit in SM (from imx-sm repository) do I need 
-to use ?
+Ryan Chen (4):
+  dt-bindings: usb: uhci: Add reset property
+  usb: uhci: Add reset control support
+  dt-bindings: usb: uhci: Add Aspeed AST2700 compatible
+  usb: uhci: Add Aspeed AST2700 support
+
+ .../devicetree/bindings/usb/usb-uhci.yaml     | 13 ++++++++
+ drivers/usb/host/uhci-hcd.h                   |  1 +
+ drivers/usb/host/uhci-platform.c              | 32 +++++++++++++++----
+ 3 files changed, 40 insertions(+), 6 deletions(-)
 
 -- 
-Best regards,
-Marek Vasut
+2.34.1
+
 
