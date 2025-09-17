@@ -1,147 +1,188 @@
-Return-Path: <devicetree+bounces-218189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A572B7D2EA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:21:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E5DB7DC38
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E18081C0279E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 06:23:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93143160A35
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 06:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A1B288C14;
-	Wed, 17 Sep 2025 06:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CD826F2BD;
+	Wed, 17 Sep 2025 06:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iw+1ptZy"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Q4f+VHKa";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ggQ3Lvy6";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Q4f+VHKa";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ggQ3Lvy6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B4F248861;
-	Wed, 17 Sep 2025 06:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF03B202F70
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 06:33:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758090186; cv=none; b=k5GECTOtt2o7hBES6f38VK/ralsA0wgb6fpAx9bkEdL6gT+ybI1YqTozS5o0y2sMB0oDilSMoqiuqQnoZGKgxLrBrri4MIljBAoMPruqcDeeD+eXiUUbF7ACgVXMLvHok3sKTPXxDE9FBhqeXi/0DA9vyF35GaZEWWktuxOmrhA=
+	t=1758090787; cv=none; b=khZ/Cl8g80QaOsiyUX7fh8T/6VgKH9SB7LzcFNp4uTpJLkjNz9DyphlAa8jFbIVVCpzdu178HPYj2HgZrpMof1v4veDj+X0bangbO2osn2tLhokXpSx8ZVmHfrf8b7PbKr9BVg9YeK6KgWhFV2GY7zbVFi7V6tjAnt7/jFAGW70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758090186; c=relaxed/simple;
-	bh=Rs+c/vVPVxFus14/jicS7KV9PWjsmmv1oIivk8MfMiI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HQgMrNVSjyOVeZ7/zhKExdLnLmg4Uq8QOHZ0QGVZem3Zo2BsqjLyCLL3quoIwPjecYLtOhHBa81b414AtKb+NzQpaLKCfquydel6q1Ymq7ull1uJZq6MdCEFfXj+rZLOS0eqybogSJatbOYWcFuZ5BThz8EQVjSbuhZ5rzm9iw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iw+1ptZy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58H5QV1W016245;
-	Wed, 17 Sep 2025 06:22:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PV0bRllSrJgBYJQjnvZ+Phhssn54H7w1TTU3TTjh7Xs=; b=iw+1ptZypZp9LXdY
-	0B19SrICsTgc2Y3+xHOSTHq53fi8Gcvv8P+pP/GaBcsABKVnDsy6t2ALUj4ZHprt
-	p1xfqT3k8O7yPhpL/vvyaLV38lg49F75QUSNcA3/Q23KgE+GUl0CWYiCZIksE46X
-	sT+zjt9UCrmWtVJnUyUH7dqwkigiNC65AegLLObDGIh7rl5W/11xorgzQocURlS1
-	weYEJ7q3athlaCEQe02jbIxCOlL3/1msS76O/vARuMdC3Lgp6c/3LGmXhfpWpkK0
-	87+TZ6qxsQ7tGSX6ZaeP0QMEqmBid77lzBXQMZ38/5nZcDFXn7+R2/WBz35fET5B
-	aiRdow==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxxh5ny-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 06:22:51 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58H6MowZ018092
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 06:22:50 GMT
-Received: from [10.206.103.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 16 Sep
- 2025 23:22:44 -0700
-Message-ID: <fd075b5f-3766-474a-bffe-c1c402cfca81@quicinc.com>
-Date: Wed, 17 Sep 2025 11:52:41 +0530
+	s=arc-20240116; t=1758090787; c=relaxed/simple;
+	bh=OwpnXyksNzAmNR2kSU9Q8CqRr0SDmzEMylOpOr0GHlk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pixzG6HfAmDfEOxquecX206xt7wLb+AxKJ7DxOzaDh0NBKnvwc1IhTiQcwV7K6dGt6tzAkw0392PMGl4LOEJuZPmq/OhzbC4Yw89W98SDmMkH2C1bg5LEHgnbnAcW3VDB/hC/kylk4zK/++DEeqbpDZixoJ7MLTrfXY+bE+wdxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Q4f+VHKa; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ggQ3Lvy6; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Q4f+VHKa; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ggQ3Lvy6; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 1313E1F749;
+	Wed, 17 Sep 2025 06:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1758090784; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=JVNIaZ4JH7HykQzRQnvri/UwzfQxsqoKdmmeam2Dikk=;
+	b=Q4f+VHKaoompE8sCs3n+zxgI/XEYtOpZlA4YT5StLBEi/63o4YlFNffoScvxbmNceIitYL
+	15pvWvcbNqyIeO4Ovw/30IH1ZFfzxzw6Bb2AUJI8gC9ILVOk3lgUtQ6uNPCfthwY+KhcX6
+	EepHWBbWWrF1NP187h+7qKKhJItXmoI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1758090784;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=JVNIaZ4JH7HykQzRQnvri/UwzfQxsqoKdmmeam2Dikk=;
+	b=ggQ3Lvy6Qu+iw4PQbRNNhDgJZI8lZZPaDBRoZjjB65xTDzhMe+4vkFyUxaUOdhvtkX7kKx
+	RkkSzdmNuGOmxFCw==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Q4f+VHKa;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=ggQ3Lvy6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1758090784; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=JVNIaZ4JH7HykQzRQnvri/UwzfQxsqoKdmmeam2Dikk=;
+	b=Q4f+VHKaoompE8sCs3n+zxgI/XEYtOpZlA4YT5StLBEi/63o4YlFNffoScvxbmNceIitYL
+	15pvWvcbNqyIeO4Ovw/30IH1ZFfzxzw6Bb2AUJI8gC9ILVOk3lgUtQ6uNPCfthwY+KhcX6
+	EepHWBbWWrF1NP187h+7qKKhJItXmoI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1758090784;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=JVNIaZ4JH7HykQzRQnvri/UwzfQxsqoKdmmeam2Dikk=;
+	b=ggQ3Lvy6Qu+iw4PQbRNNhDgJZI8lZZPaDBRoZjjB65xTDzhMe+4vkFyUxaUOdhvtkX7kKx
+	RkkSzdmNuGOmxFCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0EA701368D;
+	Wed, 17 Sep 2025 06:33:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id KuFCAR9WymiIXwAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Wed, 17 Sep 2025 06:33:03 +0000
+From: Stanimir Varbanov <svarbanov@suse.de>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-pm@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Lee Jones <lee@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Willow Cunningham <willow.e.cunningham@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>
+Subject: [PATCH 0/4] Add watchdog support for bcm2712
+Date: Wed, 17 Sep 2025 09:32:29 +0300
+Message-ID: <20250917063233.1270-1-svarbanov@suse.de>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: qcom-cci: Document qcs8300
- compatible
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Vikram Sharma <quic_vikramsa@quicinc.com>
-CC: <vladimir.zapolskiy@linaro.org>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_svankada@quicinc.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ravi Shankar <quic_rshankar@quicinc.com>
-References: <20250912141134.2799078-1-quic_vikramsa@quicinc.com>
- <20250912141134.2799078-2-quic_vikramsa@quicinc.com>
- <20250916024858.GA3574831-robh@kernel.org>
- <373bbb78-2b0c-446c-be97-53b82edeed64@quicinc.com>
- <49d6c554-e6ed-4c86-8946-be2cdba659d0@oss.qualcomm.com>
-Content-Language: en-US
-From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-In-Reply-To: <49d6c554-e6ed-4c86-8946-be2cdba659d0@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX8nXMPL614Yff
- lsRzdA57d3IrdbVicft0uc9b7mhS6zrbvgZIvjDiWMkM8RaTHeV76GETDi+V9PLZh1ecqHOHfRg
- GLatwjNwStxqvhwOTss9jCwuZlZJ+9LaufJ1mzfW6paR3Dl2JqxCnSSa7mCEM0+Y6geghZNY+i7
- a3Ssv6Ln/sLYUkuRCqFK5VQlIwKGYHPPXwftlc1j74gb5pc4XnPh9o3Vo1Rx6sxyH1WHgEBlKWt
- 4+TJbKiu3ilXD1fhkEZ31OUG3WdG51xfJE2hyXSj03oHbk6cjGsjviW9L/LSvFMj7M7PqwT7Z45
- zhOlWGtZIU+D5C83S6YDQJSSxDMG0bUqb5tesntilGjbY+V8PTdJ1PMOS7QTZOvxZau9mUmbnUZ
- 6/+3y0AO
-X-Authority-Analysis: v=2.4 cv=MMFgmNZl c=1 sm=1 tr=0 ts=68ca53bc cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
- a=XobKNSAVkuln2dIsCLwA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: -YWeYURqnfd2valzalzR04FJDFsdegub
-X-Proofpoint-GUID: -YWeYURqnfd2valzalzR04FJDFsdegub
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-16_02,2025-09-16_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 suspectscore=0 bulkscore=0 spamscore=0
- malwarescore=0 phishscore=0 impostorscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.51 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,linaro.org,gmail.com,gmx.net,suse.com,raspberrypi.com,suse.de];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+	TAGGED_RCPT(0.00)[dt];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Rspamd-Queue-Id: 1313E1F749
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -1.51
 
+Hello,
 
+The following patch-set aims to:
 
-On 16-09-2025 16:41, Konrad Dybcio wrote:
->>> Wrap commit messages at 72 chars. And explain how it's the same or 
->>> different from existing SoCs in the commit message. Don't explain the 
->>> diff. We can read that ourselves.
->>>
->> SA8775P(Lemans) has 4 CCIs, while QCS8300 (Monaco) has 3 CCI, with the 
->> only difference being the GPIOs used for SDA/SCL pins.
->>
->> Currently, the CCI driver probe happens through the "qcom,msm8996-cci" 
->> compatible string. Could we use the existing SA8775P compatible string
->> "qcom,sa8775p-cci" or we should remove it? 
->>
->> Please advise on the preferred approach for upstream compliance.
-> Try:
-> 
-> """
-> The three instances of CCI found on the QCS8300 are functionally
-> the same as on a number of existing Qualcomm SoCs.
-> 
-> Introduce a new SoC-specific compatible, with a common fallback.
-> """
-> 
+ * allow probe of bcm2835-wdt watchdog driver for bcm2712.
+ * prepare bcm2835-power driver for enabling of v3d for bcm2712.
 
-ACK, Will address this in next version.
-> Konrad
+ - patch 1/4 is preparing bcm2835-power driver to be able to
+control GRAFX_V3D pm-domain. This is a prerequisite for the follow-up
+patch-set which will add a v3d DT node for bcm2712 (RPi5).
+
+ - patches 2/4 and 3/4 are adding bcm2712-pm compatible in MFD driver
+and update the dt-bindings accordingly.
+
+ - patch 4/4 is adding a watchdog DT node for bcm2712.
+
+Comments are welcome!
+
+regards,
+~Stan
+
+Stanimir Varbanov (4):
+  pmdomain: bcm: bcm2835-power: Prepare to support BCM2712
+  dt-bindings: soc: bcm: Add bcm2712 compatible
+  mfd: bcm2835-pm: Add support for BCM2712
+  arm64: dts: broadcom: bcm2712: Add watchdog DT node
+
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 28 +++++++++++++++----
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  9 ++++++
+ drivers/mfd/bcm2835-pm.c                      |  1 +
+ drivers/pmdomain/bcm/bcm2835-power.c          | 17 ++++++++---
+ 4 files changed, 46 insertions(+), 9 deletions(-)
+
+-- 
+2.47.0
 
 
