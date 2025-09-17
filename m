@@ -1,195 +1,219 @@
-Return-Path: <devicetree+bounces-218227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1A6B7CC45
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:09:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A708EB7CE97
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36EB61C05616
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:24:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CB367B5914
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 07:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DDE2F7ABC;
-	Wed, 17 Sep 2025 07:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27CA3016FE;
+	Wed, 17 Sep 2025 07:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PGtrRBZ/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jrv27L5J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013021.outbound.protection.outlook.com [52.101.72.21])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849B92F5A3F;
-	Wed, 17 Sep 2025 07:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758093711; cv=fail; b=Q98K3COZy2zRIAhgX9z4NH276zDkqmQb3LWma641tSbaMRegEajPW+SGAzSkSpyAKeg9wxbjeb6yVh6jih1GQatty9mAOl+l1nIECGUma3JTJWiFn8pzamwxkBklJ3jDcYuyQzKg1NOKit5hEFn8CbVYrvVf+hQBqRHmw5Yzxjo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758093711; c=relaxed/simple;
-	bh=5Kibr+5tlT5k6rKolq6LiglgwSAUcWgxKQMm0fUqg04=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Aifue8VTwm0JSy3tU0YMVWKpR1hnJqd+3apKVaXIfR+rcXTvKzjmdZ7d8CxVbrwviO92ZyZUIUcszyGiIbXyEhoqn8hRbWl3AIdHdDxmiDWJq/jAfQxfHdTqz0zVheA5hJMVJDQqpEjaiD6tb54LJjiU1hXXE1/bigI++aq9EBk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PGtrRBZ/; arc=fail smtp.client-ip=52.101.72.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ueDLf0Qc7nu7JOlm20/aseSgHE64hw1bsOD1jw3BZwKm8zyga5kqE64K6FDchveuOOjwWKkPJCrc60kfwQfFEb536Wu/DEwpoU5MESFV4zk7nl+15x1NsxK7GEDkPWuaFG7//ljizojNvRGaUzJQamzinU6zk5Rka6e0WLU2tis3iCZDkqYc1p0o7I5T3uN0jldx06bvvSLyTTXFbKW73K0hytjK4E9wBhZVDOn/7WBPyDJ1RGn1KNX/5/NFFengdxSofA42xLkBoM4XjERcza14uywmOsYF5yCqO9WcOhdVJUyZ6qGrysavPmoZebK0q3sPw8gILu40K8WlORW7gQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JmzrycRiDHymGntWr7dOsvbcwyI73CyBFcrCSUcocX4=;
- b=YhiMEoPSFZn5ooHCT4pSSpw+vY3HTG+nh5zgr8expQSrFPYtn02bfxzqzCMzweD1yQF+dKsa7bK+aZacktjpoacNVfYSMgSS74HicocG0hoc4By8rshLc2G5lSIRqAgyGt9Bi+rRM1YJ0p2+m4eWZVg91eLirkVjRbgttKLcl7eufA9hkoOnvRUiAvnywVtvJwP+PxhEHTxGFl1SEukG6otkBpt0cFR2NpcNUmcSCmfKyrBSQ3U+teoGQ+YKm5Jez2pOKWIoaGqJex46T5sfjxgidJyNZu0Yat6WVH+/aC9+NYYyxtpsbC58z/J1V+9KJ7G6/rykLlcG5r6FQP2wRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JmzrycRiDHymGntWr7dOsvbcwyI73CyBFcrCSUcocX4=;
- b=PGtrRBZ/jUkHad/xoJWDZO7KtO3fqU2tC9Z+Kyzv0fiyalEqVrPLQacBcgsBYo9oBl7whcLlOh+g/u7OwkP7SfB2bMdzalE/yRG3Jt3MbxIgNKnQ2LvVAbYg81qowIh8CjknSxMnfY95+AkpaPnY/4kmBku3FHSXE6g+tdyotktHsyOG0IOGB7vYt6DmrpMAQ+mZBEq6h89ijTS6qQsip0SxCLOOdbH48uPRLpMxLHWaWJJZOwWRBLTAvJ0uKbifz7uF1QxGWFdXpY6V6TB9TejkWvuIup7FW3ejdCbUeuD6o2bS4sZ2uk/hn+k5V29D/ztvCu9i0wWwzpN2URtnZw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by VI1PR04MB9835.eurprd04.prod.outlook.com (2603:10a6:800:1e1::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Wed, 17 Sep
- 2025 07:21:44 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b7fe:6ce2:5e14:27dc]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b7fe:6ce2:5e14:27dc%4]) with mapi id 15.20.9137.012; Wed, 17 Sep 2025
- 07:21:44 +0000
-Date: Wed, 17 Sep 2025 10:21:41 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>, Lee Jones <lee@kernel.org>, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] mfd: simple-mfd-i2c: add compatible string for
- LX2160ARDB
-Message-ID: <p2sy5l7us7tviqd6f3r2llqsowm4tywp6xymihprcafbb2ab5z@xihsv5fsvq53>
-References: <20250915122354.217720-1-ioana.ciornei@nxp.com>
- <20250915122354.217720-4-ioana.ciornei@nxp.com>
- <aMmOSM6tOi9RX6ZD@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aMmOSM6tOi9RX6ZD@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: AM0P190CA0008.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::18) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCFC3016F0
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758093933; cv=none; b=siKmf0WbJfVhPtPYKzNGu8IzblCSgTs0yjL/lcZRyGvizvSioikkeR0SpV3+o+OUJALT765jXrv6ZiVWY5fLtoBeWLdopfWrJIwXFetOzjSNhgELY2a0GIjYGvXrkGetG2D1jEuDokCnw1lhjkYzVndc+sVTUzmnClBZeeKbrk4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758093933; c=relaxed/simple;
+	bh=K05yOHkQJxqh+1NnuwPgO9RURX/RB+Vt4f5T83pIFBE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o/zqTCA9b605wzu8RMGt+SU962dsJOKyjqmANchoEaXBCrLtaWUPRKRqTRzUC9zN92rmP1XkFg4wB0euxC0jhPBHVVnLHrQMxeiTXlwx3qwus0OaQPhZxVj6zZgGCKmf4pPucRKG1yKzR0cLxWXkLvyH3v8g/sicZIXR9lXnIgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jrv27L5J; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 87B8FC8F473;
+	Wed, 17 Sep 2025 07:25:07 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D65826063E;
+	Wed, 17 Sep 2025 07:25:23 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC40D102F179E;
+	Wed, 17 Sep 2025 09:25:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758093922; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=GZJ8sPcO3Cf+QQuAdpx3fIteLOXORrAouzZNLpZWsvA=;
+	b=jrv27L5Jlz6dFN0ujcqzXwnK9gIQ1V0dU4tBuCf7OAqdaZnjc+2nbXry5EnSBiMZaAbLom
+	wVs2Vf2NuaQszYM42A4SDHQ05Sj1/hMzk3EaNUmjjfUauDW/2rzgXhkgINxRtunslVub4l
+	DPzS0A9pFPlibNVRTWdiauuPeWqDO8rAQhXtCdkSCKYboxRBUz4WJcwwWjO/q8aR8Vd71Z
+	iTbiTGCmU+bnx+SqevI3I5XDZuMrB+uaOd8hLDjJbkoeiC9bGLBpk7ygAhXsTFp9rFBDK9
+	2lY9ODIJng2lK1cHK/jbGHlwJhwpLbaydfsVka6ga0llgK4aNRWk+xlAU2QRrA==
+Date: Wed, 17 Sep 2025 09:25:06 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding
+ <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Jonathan
+ Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni
+ <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad
+ <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko
+ <digetx@gmail.com>, Jonas =?UTF-8?B?U2Nod8O2YmVs?=
+ <jonasschwoebel@yahoo.de>, Charan Pedumuru <charan.pedumuru@gmail.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Subject: Re: [PATCH v2 11/23] staging: media: tegra-video: csi: add a check
+ to tegra_channel_get_remote_csi_subdev
+Message-ID: <20250917092506.311c314c@booty>
+In-Reply-To: <CAPVz0n1Nvun5yBf_i3NB=kDmLfNFRjbFt1uTUW-hpLbp-h0g4w@mail.gmail.com>
+References: <20250906135345.241229-1-clamor95@gmail.com>
+	<20250906135345.241229-12-clamor95@gmail.com>
+	<20250916180418.3fa270a9@booty>
+	<CAPVz0n1Nvun5yBf_i3NB=kDmLfNFRjbFt1uTUW-hpLbp-h0g4w@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|VI1PR04MB9835:EE_
-X-MS-Office365-Filtering-Correlation-Id: e164bc4c-2352-4c85-578b-08ddf5badb2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|19092799006;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?9hCOK489JziDFg2mIXTLOyioc1yWqDoieK+bBV24JjJJdvecokZsph4E7AZo?=
- =?us-ascii?Q?ksUgeBkJn32szEPYIyw6eHNPjbQQYrsboiLZfddD8KV4sstbRtmUDfnskz6p?=
- =?us-ascii?Q?uk0XmRS66PygpJiiAIkE7ijwHKa4427oD0p9o6yIVNZ7keW+c6pjOEnL9zcm?=
- =?us-ascii?Q?xm2+tkPip1sdCF6w8OySJoMP4oYhi/Zcpy49OnrwJt4nd/yk9BzWeuU5idT0?=
- =?us-ascii?Q?PuALssSiQjiApPvwuaJg5gMjQmCLjtXPnAVRNlL2vvFwOB5jaL2AUl0+GBKf?=
- =?us-ascii?Q?Jc7wOm9NEMazQ8Y6ALyByGcOyQZ+D+RpppvvtgQrHwE5//S50cwQabYvAwFl?=
- =?us-ascii?Q?Wvlfct2YvLq/x8DeGdun5ldACxWRXkQYSAr4PzAfimIAGxrpAW0lAK30hBhu?=
- =?us-ascii?Q?yXGmwR7hd4YsBH2gU4KBs9map+/DYgWl9d+dq70edRdSnrO2DlaT9zSOOKQK?=
- =?us-ascii?Q?Mi4Of5VHP5BEr015SlZkGbT/YrM+w4qh4N1pjNLd6bRRLCcVe1Pg1Dz3jJjZ?=
- =?us-ascii?Q?PEQsPfsnFpcOMTgSTY4oEB3JIZTKOsH3DKjBX7A1/tC2AgXnmLelCi/oPhrK?=
- =?us-ascii?Q?7ExULB+/+DEMO8pzWhs0fYjvrsEbfLeyNESo+bP7Np8Q4VpyEZVV4pixosh9?=
- =?us-ascii?Q?ZGdNpxX+mSWqOH0VzRe75GTxRfI3G+S4DgJiV586e24kkM6wrAC70CSJKJCh?=
- =?us-ascii?Q?L49z4XuS32Kdp4jGuLNcgfP4F82AbHETyCZC1B+gueY1aDjFCVEqvWcnCp4A?=
- =?us-ascii?Q?0baY+OghmX6egwaEQxktuzjtNqfM5lMTTr6/zJ0+FRFRq3tgoZ4rD/zJexRH?=
- =?us-ascii?Q?aBeEeQr1qf5nYc223nHWAusBhzMX/Pz62cPkwY4ks9WO7A0jxN7L7zz9wYgz?=
- =?us-ascii?Q?q4/KwZCweVAnhm29hwWYMISIHP9saihCQ3JF+KzJNYh/pYyTYMx3xSph9bUK?=
- =?us-ascii?Q?HYC83KCyx3nKOLk9MuFOE8Y+n1B4en30elpgazA9N3zrifSxLdJYuo1MqGzF?=
- =?us-ascii?Q?LYMSKyQQPz+IqrsiWIsIMcYW/tfMpD2c63GY9zYclpSyALAr5AlrjPNRvqjF?=
- =?us-ascii?Q?j6LFvb0ciURKUVFQ/6osXK1blrzfAFVHs3zgPxH+B+jNeGEyaQGgRq8DeqZs?=
- =?us-ascii?Q?chm16I96V5Zh8Gvv8G3i21xCzBaSQI7r59q6LyV3VrxrrVSAEtWz5hZEhm+c?=
- =?us-ascii?Q?wKw8nbqhyKqm7z/Lx8KiWzY9yKnoCamACxawYtFdMy2O6e7/jGHYJLAqQgRZ?=
- =?us-ascii?Q?V7gthJg7mqilH2p1VA5ygj2GdV+2Jqs5J1VDLhBZ5THUeAhBf8UoTrykHNg7?=
- =?us-ascii?Q?Gc6+l3bCE9St2EGhotnHzb1jdiHaaV8NtJGVBWDg86DPjMUUvvVfUkJKazN3?=
- =?us-ascii?Q?/4h9Krk9pNYXZAR1+Q0MxePieCgA/R9D+0HSvrvRlicFvltnOWSMyfOnMpBD?=
- =?us-ascii?Q?eNVUSdxRyCk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(19092799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?q9/4YwvixNZWOPfmvM662oiS677ZrLyWSASeOkd3WtWvbRUICCldWhTw3b1s?=
- =?us-ascii?Q?JafXwq239rqsDv+sxE5ExT/x5tEjz4CecAEwbI60d5d3QUKm2sSu23c8xib3?=
- =?us-ascii?Q?bck24PRK0Hkm4RGVVeKrSCa64VzxD8ECKb6D2hCgyof8RjtPrPlXt7ftzSki?=
- =?us-ascii?Q?pECTWw2iKgxX+zriJGT8JuB1JWSLcZOsG8c6DIXDbqQGtX6s/AGoUWBFzpYD?=
- =?us-ascii?Q?LugqkiDOTkaQOj60e96qGh1uRXybiPea7zItrwu2re85yvaXOXxxB7n6+kPS?=
- =?us-ascii?Q?03Tyb4T8ELrGJ0NXJSWHmJIDjfjDvKJ0jq9I5STetVlkZ1681IybqfwetpT5?=
- =?us-ascii?Q?R/JjdgULa3FzN4EENjKq6SQYIVhHlt/aZ0npV/8V/GB7YAhacI4bJ/ImIxdM?=
- =?us-ascii?Q?OeEA6/7i7OlyJ5LOR0DLMnLhoOvENaJABZVaS0kTMfxyFxttbI/jFiCorQdX?=
- =?us-ascii?Q?pZmTOLRyeow7Lyc5yoDkrHKEYanxuEAGfJ3vDjlox+UWHCyJbZdq5+MQgu7a?=
- =?us-ascii?Q?a4sUTqm75GonRrS7xH5Dt6DN5e4nGaPB50peEX5UbcUIbOBGcv54MQYe4DIC?=
- =?us-ascii?Q?hqWCY2ccs2awFB9zpLUeMy7syOAb4hjXbN5F0VsKfA3dntzVlo6/tBVP4Fo9?=
- =?us-ascii?Q?8uxtcBMofhafgOYO0wfd/hTf1IptZVv9/z9YHN2Wgi9FjyKdICaJM46brVmo?=
- =?us-ascii?Q?cqBVzwBvxW9gPj4uEAtdwHlXC+xM4KztXSsV7TDeEvgS1/NgV2M7qs4BlCvl?=
- =?us-ascii?Q?S96G4vt9XB0FTLQ+eGrBDIgaG+ZDMxtkxovYCNTPCX+feEsWCXZ5ArfTX8US?=
- =?us-ascii?Q?tfdaNUs3ev+rHk06/apONACrRvbGoJfecn06Nq5wsOKmo0OPs76sJS4D+cha?=
- =?us-ascii?Q?yOqhwOv5BOjtMZzdeiQ/2EHGr5SY6PdzkMh+dLgTSGG1EzUIAYCIA8ZddEFF?=
- =?us-ascii?Q?Ze+xctHFq2FmLx0lMLIB9NV/KNwRFVN8VhyztF2jHv5Z97wzv4F3x602S9Vh?=
- =?us-ascii?Q?5nUwzRwGnGBVFtGQa521egjI42KoeI09objcqiAjCHYhZuH6EX3aee6sk1YQ?=
- =?us-ascii?Q?Q1CQcbvfomvIdxDqCpMT6KKnLZU2UBKZ+0aBkJcG/ysP7rQuTreufu/jxCAX?=
- =?us-ascii?Q?4Qh4hAJ/RZS5X1kkrd0qSjbWm/Ut1BevNQxNYtZ4Hcb+d08VcNDUuDcs8bc6?=
- =?us-ascii?Q?9UR/h7/gsiYNaVR/Zmc37CiJFsMTSrb+gzYZNCroLowrXmjmD2Be2DjxLKd6?=
- =?us-ascii?Q?/AbO1MR0J4kLFrnXk6s0cJKjRKo/kRPLdaLh09I5Q3QaA2hkz+vQ9YWMHmpP?=
- =?us-ascii?Q?TsAH/LDeZilMsw7L/SBXErvy4Y5AtinVt6swdoVYnE2VR1kazW5Y5+x/S7Oi?=
- =?us-ascii?Q?OJkBowliKufvTrM2UJpDgJSIrTGOv6UBrkmXXXEdF04KAjVkHLGrw42vF1dL?=
- =?us-ascii?Q?pDW4Q0swN9W/LceoZOZwpKpuwlx9scHp/ln6R9+4pi4v01K9MaRcPprwnfSQ?=
- =?us-ascii?Q?D4T6c+NqCyNh4FrR9hhQz9Fnv0xgjHpMHaWzcy1FbfvSFZDj3jk1DietUXqL?=
- =?us-ascii?Q?vLIfQsT0lbPy5uqUmaqbq9ZGBisz0RYGZJM20eyq?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e164bc4c-2352-4c85-578b-08ddf5badb2e
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 07:21:44.7903
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: izI+lVUMnhw7si76J60rXQzDw6qIndamkBk34rzJvXiwzpY1nH2B9TK+Rvu8YW9x6GjH6Gg+ac1hQuvJ6rvkMw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9835
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Sep 16, 2025 at 12:20:24PM -0400, Frank Li wrote:
-> On Mon, Sep 15, 2025 at 03:23:48PM +0300, Ioana Ciornei wrote:
-> > Extend the list of supported devices with the QIXIS FPGA found on the
-> > LX2160ARDB board.
-> >
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> > Changes in v2:
-> > - none
-> >
-> >  drivers/mfd/simple-mfd-i2c.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
-> > index 63ac26388860..6fbe85437d8d 100644
-> > --- a/drivers/mfd/simple-mfd-i2c.c
-> > +++ b/drivers/mfd/simple-mfd-i2c.c
-> > @@ -115,6 +115,7 @@ static const struct of_device_id simple_mfd_i2c_of_match[] = {
-> >  	{ .compatible = "maxim,max5970", .data = &maxim_max5970},
-> >  	{ .compatible = "maxim,max5978", .data = &maxim_max5970},
-> >  	{ .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
-> > +	{ .compatible = "fsl,lx2160ardb-fpga" },
-> 
-> driver data is the same as fsl,lx2160aqds-fpga.
-> 
-> why not fallback to fsl,lx2160aqds-fpga in dts file ?
-> 
+Hello Svyatoslav,
 
-The register layout of the FPGA is different between the RDB and QDS
-boards. Even though there is no difference in terms of the
-simple-mfd-i2c driver, I still want to have the ability to differentiate
-between them. Also, the if/then added in patch 2/9 would not be
-possible.
+On Tue, 16 Sep 2025 19:24:52 +0300
+Svyatoslav Ryhel <clamor95@gmail.com> wrote:
 
+> =D0=B2=D1=82, 16 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:04 Lu=
+ca Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > Hello Svyatoslav,
+> >
+> > On Sat,  6 Sep 2025 16:53:32 +0300
+> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+> > =20
+> > > By default tegra_channel_get_remote_csi_subdev returns next device in=
+ pipe
+> > > assuming it is CSI but in case of Tegra20 and Tegra30 it can also be =
+VIP
+> > > or even HOST. Lets check if returned device is actually CSI by compar=
+ing
+> > > subdevice operations. =20
+> >
+> > This is just for extra safety, or is there a real case where the lack
+> > of this check creates some issues in your use case?
+> > =20
+> > > --- a/drivers/staging/media/tegra-video/csi.c
+> > > +++ b/drivers/staging/media/tegra-video/csi.c
+> > > @@ -445,6 +445,22 @@ static const struct v4l2_subdev_ops tegra_csi_op=
+s =3D {
+> > >       .pad    =3D &tegra_csi_pad_ops,
+> > >  };
+> > >
+> > > +struct v4l2_subdev *tegra_channel_get_remote_csi_subdev(struct tegra=
+_vi_channel *chan)
+> > > +{
+> > > +     struct media_pad *pad;
+> > > +     struct v4l2_subdev *subdev;
+> > > +
+> > > +     pad =3D media_pad_remote_pad_first(&chan->pad);
+> > > +     if (!pad)
+> > > +             return NULL;
+> > > +
+> > > +     subdev =3D media_entity_to_v4l2_subdev(pad->entity);
+> > > +     if (!subdev)
+> > > +             return NULL;
+> > > +
+> > > +     return subdev->ops =3D=3D &tegra_csi_ops ? subdev : NULL;
+> > > +} =20
+> >
+> > I tested your series on a Tegra20 with a parallel camera, so using the
+> > VIP for parallel input.
+> >
+> > The added check on subdev->ops breaks probing the video device:
+> >
+> >   tegra-vi 54080000.vi: failed to setup channel controls: -19
+> >   tegra-vi 54080000.vi: failed to register channel 0 notifier: -19
+> >
+> > This is because tegra20_chan_capture_kthread_start() is also calling
+> > tegra_channel_get_remote_csi_subdev(), but when using VIP subdev->ops
+> > points to tegra_vip_ops, not tegra_csi_ops.
+> > =20
+>=20
+> Your assumption is wrong. 'tegra_channel_get_remote_csi_subdev' is
+> designed to get next device which is expected to be CSI, NOT VIP
+> (obviously, Tegra210 has no VIP). It seems that VIP implementation did
+> not take into account that CSI even exists.
+
+IIRC it's rather the initial VI implementation was meant to be open to
+supporting both VIP and CSI but some CSI assumptions sneaked in. Which
+is somewhat unavoidable if only CSI could be tested, isn't it? So I had
+to change some when adding VIP (trying hard myself to not break CSI and
+T210).
+
+>  -19 errors are due to
+> tegra_vi_graph_notify_complete not able to get next media device in
+> the line. Correct approach would be to add similar helper for VIP and
+> check if next device is VIP.
+
+I think it's almost correct.
+
+tegra_channel_get_remote_csi_subdev() is called:
+ * in vi.c, where it is expeted to return either a CSI or VIP subdev
+ * in tegra210.c, which apparently supports CSI only=20
+   (I don't know whether the hardware has parallel input)
+ * in tegra20.c [added by patch 23 in this series] where only a CSI
+   subdev is wanted
+
+Based on that,  you're right that we need two functions, but they
+should be:
+
+ 1. one to return the remote subdev, be it CSI or VIP
+    a. perhaps called tegra_channel_get_remote_subdev()
+    b. perhaps in vi.c
+    c. not checking subdev->ops (or checking for csi||vip)
+ 2. one to return the remote subdev, only if it is CSI
+    a. perhaps called tegra_channel_get_remote_csi_subdev()
+    b. perhaps in csi.c
+    c. checking subdev->ops =3D=3D tegra_csi_ops
+
+The function in mainline as of now complies with 2a, 1b, 1c, so it is a
+hybrid.
+
+In other words, what I propose is:
+
+ * rename the current tegra_channel_get_remote_csi_subdev()
+   to remove the "_csi" infix, so the name reflects what it does
+   - optionally add the check for (csi||vip)
+ * add tegra_channel_get_remote_csi_subdev() for where a CSI-only
+   subdev is needed: that's exactly the function you are adding to csi.c
+   in this patch
+
+Does it look correct?
+
+> Since I have no devices with VIP support
+> I could not test this properly.
+
+Of course, no problem. I can test it (but I cannot test CSI).
+
+> I can add this in next iteration if
+> you are willing to test.
+
+Yes, please do, thanks.
+
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
