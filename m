@@ -1,209 +1,128 @@
-Return-Path: <devicetree+bounces-218361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3E4B7D3F6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85FB7B7D5A3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24399174465
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 12:21:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CB0168700
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 12:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB71A2FBDE2;
-	Wed, 17 Sep 2025 12:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945C2337EAF;
+	Wed, 17 Sep 2025 12:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MeacBEcx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E78A26E6F4;
-	Wed, 17 Sep 2025 12:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C10337E90;
+	Wed, 17 Sep 2025 12:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758111465; cv=none; b=jhf0aP8JxpLxvF0ZNvJniUVXng2lAFsSaicWy7fQh3HoYVk9zrKtWJgyQB0kF9p8nRf9wU5eTiYLiqkgcPy0vTGu8S55+swybNC9Izzb0GtmaeJ8AjBLpFGxz8Vxsv1F4H3tgbndGsuV9+EllQtEugTjLwonQf00L3Wvq+h2520=
+	t=1758111792; cv=none; b=DXwhTIX8gKfDBGjNg/RgryE3Uu+VELjvBPjUl82+SEz72cWMTkFi5f+4C3q78kvZ2z8BU0b8bEmGOCctKFEHQ8xbolx4eZJIJec5s4oZOsTTgy9Kd9Sm6jjYv0j5yBSUlYsaK0vfBRSIlJp2Ixvhmzotux52/oEUhYGej7QOvvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758111465; c=relaxed/simple;
-	bh=MnL+OLyGBlGIzgc1VK2Ha0TXloPlDmQ3gtUlcniYA5E=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P5QAI1xx4yPcsLXVvZiV/PnOIVMlcekbV5oK0bDLowSNHDJ3hLAnZwo8lnLw+g/ub/5RaK5KJb+yky9sb3mO4LlEqUqsuYGyuwyZm6V0mG7EW0aXiuo/y7JmhUVDHEAqtp61m0NBCJ2zBQvuDeZstdGA/2UdeUiEo0wQ8a+K08M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 58HCGWNJ024712
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 17 Sep 2025 20:16:32 +0800 (+08)
-	(envelope-from randolph@andestech.com)
-Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
- with Microsoft SMTP Server id 14.3.498.0; Wed, 17 Sep 2025 20:16:32 +0800
-Date: Wed, 17 Sep 2025 20:16:25 +0800
-From: Randolph Lin <randolph@andestech.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <jingoohan1@gmail.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
-        <kwilczynski@kernel.org>, <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alex@ghiti.fr>,
-        <aou@eecs.berkeley.edu>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <ben717@andestech.com>,
-        <inochiama@gmail.com>, <thippeswamy.havalige@amd.com>,
-        <namcao@linutronix.de>, <shradha.t@samsung.com>,
-        <randolph.sklin@gmail.com>, <tim609@andestech.com>
-Subject: Re: [PATCH v2 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
- support
-Message-ID: <aMqmmd381sySCGnY@swlinux02>
-References: <20250916100417.3036847-5-randolph@andestech.com>
- <20250916144652.GA1795814@bhelgaas>
+	s=arc-20240116; t=1758111792; c=relaxed/simple;
+	bh=Xca4q9i0SsPseNqNo7WFFdBKOdMMSDfvQy2AtXjlCoQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CoUkZxgai6wiYtegNnWCS67nk/i371ldCz5ZoBEj/LmOf9MVLfPtaZLtyAt4CmOIeGcsiTVTiWqyiPSUKgjxSgN5mz8S1VZTGFRq24ZCyQGiLtM+Ic9GBTMC1EEvnu5cYz74YCbVQx8GJ5Bnp3yPQ/TRAGiAjQTX11icITeCf9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MeacBEcx; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1758111790; x=1789647790;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=Xca4q9i0SsPseNqNo7WFFdBKOdMMSDfvQy2AtXjlCoQ=;
+  b=MeacBEcxC+Xv7wxRDIEZ5qopXDRaw6/uesdgp1Msr2E6+ESG3DMntwzF
+   W7sHHpNgvPGIW+YNX3sbHFK6ctVilBbHJYQ+XWx/WP3+LREf0x6tZVqw1
+   Kcnu4Fe/DbaAD6rwFlHYtciOhAaSN3xVi44AAZXTh2KD20K7ctAdCKN1k
+   v7jMS8ZPGmkyJrhXC70GavF+lSYF9b1hUjjiSiFVK4Qwdz5YRegwdslzX
+   thLSlNGnQ/O0zu/Q5i79xrEqdrU6T5wUXxrlCYbzc2uIvpOYiA/FKSKkz
+   bT291b8A5tNbuUQHlA5mc2xRSh+09PeVMqo4S+xR1oIhI+HG+sDsGD/jZ
+   w==;
+X-CSE-ConnectionGUID: 1EjJeCxgSey58B9ApuzhPA==
+X-CSE-MsgGUID: oN1ZNfiNTWKfKn6Gr6lg3g==
+X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; 
+   d="scan'208";a="46040402"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Sep 2025 05:23:09 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 17 Sep 2025 05:22:39 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Wed, 17 Sep 2025 05:22:36 -0700
+From: Marius Cristea <marius.cristea@microchip.com>
+Subject: [PATCH 0/2] Add support for Microchip EMC1812
+Date: Wed, 17 Sep 2025 15:21:56 +0300
+Message-ID: <20250917-iio-emc1812-v1-0-0b1f74cea7ab@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250916144652.GA1795814@bhelgaas>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 58HCGWNJ024712
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOSnymgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDCwNT3czMfN3U3GRDC0Mj3VQzMzNDC+MkA/MkUyWgjoKi1LTMCrBp0bG
+ 1tQBwo+uIXQAAAA==
+X-Change-ID: 20250805-iio-emc1812-e666183b07b5
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy
+ Shevchenko" <andy@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Marius Cristea <marius.cristea@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1232;
+ i=marius.cristea@microchip.com; h=from:subject:message-id;
+ bh=Xca4q9i0SsPseNqNo7WFFdBKOdMMSDfvQy2AtXjlCoQ=;
+ b=owGbwMvMwCW2tbSTZa7u0x2Mp9WSGDJOrWAp2/HPMinmu9hZUf7iI2q8ue18mT9O/dvXacXDx
+ /o07cz5jlIWBjEuBlkxRZYVb/3UqtZ+uKwklqkDM4eVCWQIAxenAEwkwIDhn6mQVnSTga/9FZPK
+ +CS9d+8W5vgduvDt8rSZ+aK7jKP2nmf4p6iV0qq6afudxZaTTs1s//qrhPG87KXX180PB5vFZp/
+ axAEA
+X-Developer-Key: i=marius.cristea@microchip.com; a=openpgp;
+ fpr=E32F8D4396E72E463E8CCD91446DE0ABD9140C3E
 
-Hi Bjorn,
+This is the iio driver for EMC1812/13/14/15/33 multichannel Low-Voltage
+Remote Diode Sensor Family. The chips in the family have one internal
+and different numbers of external channels, ranging from 1 (EMC1812) to
+4 channels (EMC1815).
+Reading diodes in anti-parallel connection is supported by EMC1814, EMC1815
+and EMC1833.
 
-On Tue, Sep 16, 2025 at 09:46:52AM -0500, Bjorn Helgaas wrote:
-> [EXTERNAL MAIL]
-> 
-> On Tue, Sep 16, 2025 at 06:04:16PM +0800, Randolph Lin wrote:
-> > Add driver support for DesignWare based PCIe controller in Andes
-> > QiLai SoC. The driver only supports the Root Complex mode.
-> 
-> > +config PCIE_ANDES_QILAI
-> > +     bool "ANDES QiLai PCIe controller"
-> > +     depends on OF && (RISCV || COMPILE_TEST)
-> > +     depends on PCI_MSI
-> > +     depends on ARCH_ANDES
-> 
-> This prevents a lot of compile testing.  AFAICT, no other controller
-> depends directly on the arch.  Most do something like these:
-> 
->   depends on MACH_ARTPEC6 || COMPILE_TEST
->   depends on ARCH_MXC || COMPILE_TEST
->   depends on OF && (ARM || ARCH_LAYERSCAPE || COMPILE_TEST)
-> 
+Current version of driver does not support interrupts, events and data
+buffering.
 
-ok.
+Differences related to previous patch:
 
-> > +     select PCIE_DW_HOST
-> > +     help
-> > +          Say Y here to enable PCIe controller support on Andes QiLai SoCs,
-> > +       which operate in Root Complex mode. The Andes QiLai SoCs PCIe
-> > +       controller is based on DesignWare IP (5.97a version) and therefore
-> > +       the driver re-uses the DesignWare core functions to implement the
-> > +       driver. The Andes QiLai SoC has three Root Complexes (RCs): one
-> > +       operates on PCIe 4.0 with 4 lanes at 0x80000000, while the other
-> > +       two operate on PCIe 4.0 with 2 lanes at 0xA0000000 and 0xC0000000,
-> > +       respectively.
-> 
-> I assume these addresses come from devicetree, so I don't think
-> there's any need to include them here.
-> 
+v1:
+- initial version.
 
-I will add num-lanes property in the devicetree.
+Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+---
+Marius Cristea (2):
+      dt-bindings: iio: temperature: add support for EMC1812
+      iio: temperature: add support for EMC1812
 
-> Fix space/tab indentation issue on first line of help text.  Do the
-> indentation the same way as the rest of the file.
-> 
+ .../iio/temperature/microchip,emc1812.yaml         | 223 ++++++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/temperature/Kconfig                    |  10 +
+ drivers/iio/temperature/Makefile                   |   1 +
+ drivers/iio/temperature/emc1812.c                  | 792 +++++++++++++++++++++
+ 5 files changed, 1033 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250805-iio-emc1812-e666183b07b5
 
-I'm sorry for making this mistake.
+Best regards,
+-- 
+Marius Cristea <marius.cristea@microchip.com>
 
-> > + * Refer to Table A4-5 (Memory type encoding) in the
-> > + * AMBA AXI and ACE Protocol Specification.
-> > + * The selected value corresponds to the Memory type field:
-> > + * "Write-back, Read and Write-allocate".
-> 
-> Add blank line between paragraphs or rewrap into a single paragraph.
-> 
-
-Ok.
-
-> > +static
-> > +bool qilai_pcie_outbound_atu_addr_valid(struct dw_pcie *pci,
-> > +                                     const struct dw_pcie_ob_atu_cfg *atu,
-> > +                                     u64 *limit_addr)
-> > +{
-> > +     u64 parent_bus_addr = atu->parent_bus_addr;
-> > +
-> > +     *limit_addr = parent_bus_addr + atu->size - 1;
-> > +
-> > +     /*
-> > +      * Addresses below 4 GB are not 1:1 mapped; therefore, range checks
-> > +      * only need to ensure addresses below 4 GB match pci->region_limit.
-> > +      */
-> > +     if (lower_32_bits(*limit_addr & ~pci->region_limit) !=
-> > +         lower_32_bits(parent_bus_addr & ~pci->region_limit) ||
-> > +         !IS_ALIGNED(parent_bus_addr, pci->region_align) ||
-> > +         !IS_ALIGNED(atu->pci_addr, pci->region_align) || !atu->size)
-> > +             return false;
-> 
-> Seems a little bit strange.  Is this something that could be expressed
-> via devicetree?  Or something peculiar about QiLai that's different
-> from all the other DWC-based controllers?
-> 
-
-After reviewing both the code history and the bug tracking system, it turns out
-that this code doesn't even qualify as a valid workaround.
-Apologies for having submitted it as a patch.
-
-The root cause is that the iATU limits were not configured correctly.
-The original design assumed at least 32GB or 128GB of BAR resource assignment,
-but the actual chip sets the iATU limit to only 4GB.
-As a result, region_limit is always constrained by this 4GB boundary.
-
-The correct workaround should be to program the iATU only for the 32-bit address
-space and skip iATU programming for the 64-bit space. A simple way to implement
-this workaround is to parse the num-viewport property from the devicetree and
-use this value directly, instead of relying on the result of reading
-PCIE_ATU_VIEWPORT.
-
-I will attempt to implement it this way, but the correct method is not yet
-well-defined. Do you have any suggestions on how to modify the num-viewport
-property from the devicetree for use in the driver?
-It seems it will be modified in pcie-designware.c.
-
-> > + * Setup the Qilai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
-> > + * Write-Back, Read and Write Allocate mode.
-> > + * The IOCP HW target is SoC last-level cache (L2 Cache), which serves as the
-> > + * system cache.
-> > + * The IOCP HW helps maintain cache monitoring, ensuring that the device can
-> > + * snoop data from/to the cache.
-> 
-> Add blank lines between paragraphs (or rewrap into a single paragraph
-> if that's what you intend).
-> 
-
-Ok.
-
-> > +static struct platform_driver qilai_pcie_driver = {
-> > +     .probe = qilai_pcie_probe,
-> > +     .driver = {
-> > +             .name   = "qilai-pcie",
-> > +             .of_match_table = qilai_pcie_of_match,
-> > +             /* only test passed at PROBE_DEFAULT_STRATEGY */
-> > +             .probe_type = PROBE_DEFAULT_STRATEGY,
-> 
-> This is the only use of PROBE_DEFAULT_STRATEGY in the entire tree, so
-> I doubt you need it.  If you do, please explain why in more detail.
-> 
-
-In the V1 patch, the reviewer, Manivannan, suggested:
-"You should start using PROBE_PREFER_ASYNCHRONOUS."
-However, after setting up PROBE_PREFER_ASYNCHRONOUS, numerous errors
-were encountered during the EP device probe flow.
-Therefore, we would prefer to continue using PROBE_DEFAULT_STRATEGY.
-
-> Bjorn
-
-Sincerely,
-Randolph
 
