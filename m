@@ -1,97 +1,90 @@
-Return-Path: <devicetree+bounces-218419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7DDB7FDE3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:17:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3C7B7FE61
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E496C3BBEEE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:11:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D9C91C84E7F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7649932E72A;
-	Wed, 17 Sep 2025 14:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F82C2C15A3;
+	Wed, 17 Sep 2025 14:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jzGEKl2l"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="fQQ/etmm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD1F32B4AA
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566FF2C08DC
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758117758; cv=none; b=VjA6RefEjHQfMPvYk2XpmjTIS31PQPy8xH0H2JRGRHwjtocZ4voQ1T822LgUQJicpktrIDIQLyPxsrwKm01AsTHfMk5QiBvhckmifimWFLTyMRq7FDCE7EZC5S7ifV1FnQKzkDkRx3bxKDGCPwTWb+zqcdsYT584zrHdBFr4bBo=
+	t=1758117779; cv=none; b=Zq3jqJG+RNkVwiLzBiqpcCtE67ku+KBw0hGPrvwkVQHpIVwvJbSbINJ1OBhjdrgoY3WUvMT8PN/p2dy1y2E0hqSNUlP8aFDtsQ9cH6h5t81zS46Qh5uco7PHoYQMKvL486IPvBDDb3Wic4jPqbM/H5o/oCtTTwcDv6XJa7mFR88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758117758; c=relaxed/simple;
-	bh=RefTj2LFec46dsJYSPZ8tEBm1+3mD1JsxhEJXrBH8b8=;
+	s=arc-20240116; t=1758117779; c=relaxed/simple;
+	bh=u65F9ibn0/EbG13e/4IgxRNvUJYSs9cVYFGQuF34WGA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GgaVL9QNghetbOn6Visi9FsnWF9uIelp/zRonXa977UC1sxVYDhQTAVgfvnZAbVOvmOXMkj9zhH9ZyUy68Dnb+20FV0LuyC4h15+eaNfcDt79Y/+qomQVf+30kes1pOtdTv7mmT4lMU1IMQE2cm26+B0B2e9zUC3/4LW+mhLaSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jzGEKl2l; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62598fcf41aso9440871a12.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:02:35 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QVTpR2SXQbTXKzjtZzPBzai9JtEckx6srdwYVE4yOuhQVO3TEAs9fsl/+8bQfZ9me0owXR+9NBBlLTLbue0iF56v5CO+tq7rAVwqPv0XiP35zhrIEy+PKgrjmSqyIL2aBHl3Z/svsDfiGUqaUmufV6WzSKJQUOKQozbUl3QylCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=fQQ/etmm; arc=none smtp.client-ip=209.85.219.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-778d99112fbso50219326d6.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:02:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758117754; x=1758722554; darn=vger.kernel.org;
+        d=rowland.harvard.edu; s=google; t=1758117776; x=1758722576; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+aI0KZC1S6i6KZFgi+7mCnlg3sWeGuC+L+mdTKqHXWA=;
-        b=jzGEKl2ldjQhOOSsKb06Fha6LgYoyLdKgQ3A4Jx6N9aXyL25JkKSdHMv3WQPzK44Jk
-         2e2A/q4FWpYAEoco41Qr6Fg/vwnaX2gEb7tp/l5+6uXdPDdptI4Pesl5xHH4cg7APoDM
-         xXr7IWGz569kWGi6atos85QR0WvnEdd4S1KRvyYLfeGlvWeUptRQx2C+hTl4q8K2moYJ
-         KCrg8a9zN4bbWJ6l03a7dIFkqLljT/+rnYA0N4ceMuPNoy+7K/CiANyoHDZf26G4JbY1
-         GpdzsZ05mW2cHfUkf910zsCe55jgTVY5t7IEGWbZmWjdYhFdhCAngArPksI90WX4Wf3q
-         np0w==
+        bh=6oT1gAMoRrlj04Hb48NO47TuLVXjyiMx+T7Y3GCHqFE=;
+        b=fQQ/etmmhSAtf02Jj9wEbAgxR2cms8RuEKxcrARQufb40E/BxXf4gbMgg1gJ0QR9hu
+         kZSHLyCY5wxL+WMQVxsIn0IqV80OX5YZLAI2o3wpYfj9nq3hnMJMiT0RJjMR6kEt8CL0
+         0TfvIG5M1JRDM3e5VX3cG7TLmRIvNgJL7vzNRIMS04Ktv61ZMP7Ftx+Yt0xfoX30Gg7g
+         37alP0M7SJRRLa6JHdKTIS0tgojkiJgDtMnk7KhwC3roFV5VOTtMX9X5GJnNVtceeIS0
+         MbQN3FUpFCscps0RlwNGKp8eBMlREZUpH7o6Oy9RTnuY3mH1RmFtFxfrfYHpFlQOBOhS
+         VjDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758117754; x=1758722554;
+        d=1e100.net; s=20230601; t=1758117776; x=1758722576;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+aI0KZC1S6i6KZFgi+7mCnlg3sWeGuC+L+mdTKqHXWA=;
-        b=hKuOCkx8ZztsS0OrWnlYOorftjxxdp5H9+oZvo4Nl17Nc4/+qoaxO+WoAdNHFVsxaQ
-         QVNsmAz6kyAR5Mfp+07OMNIyGlQHJ7OJscOYsNUfvjSRolNuhK/vYdrfS/EpFylpA4yK
-         NwJxjCM63G1uBQjp0sI3YJfuv2E2nGC0wHSxvNRPx2NxAhP4+53VF1qqm72/yjysV3Wb
-         57Kg6j3dSKexQK/1XS1kNIFJcmU2itQz9VU9aAuDc+LXKsnQtiJCOdnsST4khP7ZLAxk
-         gTZqpmOq1EddWYPxzOtpeQ0OVld7Erwuk+bopuF39RIDnqnlh6VGoLiu5sgMIQCLVugH
-         gg2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVNPZNwPXwO8AAAfpNp8QnjPffEOY28bIeLNj525kRyEx8s+MQL2VJAe1d9LmunmdwRNmvf5muTIfxc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwloF6dEp1MvKdFvRpYDrMJLqVL2tV+BQgNpTF9WVYQUa53X6z
-	JwEjXg4pzjmgL/wYe5i37CKuTbBUGHWHHdXxRvo8+LL1sHS+OiaR9eGhI0n7OJVBb6k=
-X-Gm-Gg: ASbGnct6g6AjmdNOpR6l+rE/pFoDi/n3sVbkgr7a+qinWI+2RI4MFsKllflzV8KwAo7
-	9bnX4Trz7c9PSDlJMcLJiPSx39klK0DgS/AhQEHsRCHmbkIpchR6kpbUSIPittvDB6upE2gDMrU
-	aaAVqXQHs+WBLLwrQ/V3cy0m72pilw0Vnt7qfKVJPN4RNXNx5qw/AHnFqj9nEXRiJL/MjGlcrVt
-	qdivv74/QYlC8jvoWbjKNdXZfR8XgiTQIftkW6nDC2slfV4mKlTTCOuTCXI6Vgk9BH6FsBhGyhw
-	mKxwqlAFa9zMuopk9M/zdAYJkKetbKfaLbCPQ8bQI0QycDUcd8l2xgHpR1GQMVv6Ne1r52Og+ut
-	/34IAlWEpNb1aKr+jci0nbDsi8d3PbQ==
-X-Google-Smtp-Source: AGHT+IG4Gian2+1eYXK+LJPiJ/IOk7YXX7BNAP8tJbijpr4j+Tg2SNRKcI5T/sLwoI+EVC41Iboriw==
-X-Received: by 2002:a17:907:9691:b0:b04:3b97:f965 with SMTP id a640c23a62f3a-b1bc1168641mr281451566b.49.1758117754340;
-        Wed, 17 Sep 2025 07:02:34 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:96c4:427:30f:64da])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b3347a4fsm1352382866b.103.2025.09.17.07.02.33
+        bh=6oT1gAMoRrlj04Hb48NO47TuLVXjyiMx+T7Y3GCHqFE=;
+        b=sT4KzOqr8KqFSmh+nQpWPB6frpiRyYB6b/kU3nrqwEQ6Ah28ptC/9PMDVmvHvsC+4+
+         kYoch0ue3A6ldjvrVco6S/lHIjvwdD8Z/6yIatSEgBLFQr984sYAWCce3R3YXVjq7TXl
+         yM66IDdcOsZdO2eXdD4+vuha+nOKYC/yyEbOK1Q+atY/eeIJ/GE0DA0tqViTkcGqL1ys
+         ckQY/2H32f0Z8uhPeCdd3YDksbfZWUNFh4hxiBTQrEwBEVYhtuQzYiE9ufMk3OMJvYlr
+         hjUXtTAvQ1YTcoqf1gynKVefZJggZd3xv6KMLfAMuXZb8KXTMItS3mgQ09yYhRN1FZkz
+         rrEw==
+X-Forwarded-Encrypted: i=1; AJvYcCWaQbNzb7pQG72jlNAhkaVSbodgen7zpvHzuQhC6Gl0RkdFyp9IJTqv8vPyCFsf9KaSHym+yiDWhyQ3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSxbuvoLfnewltNVqAf8T+Drw1GwROBVDDxcl9wUWALiSO9u51
+	u8IDoJWbanD+AytyUz/GsQM6PRXRgKn/w8IqgbwPbH6ObOHZ8sMpL1D6fm1Ky7UrHA==
+X-Gm-Gg: ASbGnct9ksr+tee73N/Q+iqXNGOIRrV5lv53go49CTznI53kic012il96vC6kzFxLnx
+	3IenBMal9YVxAO5/MrTlXsn0jYF+cDDVGc1aE1fNkDZLiZEzKRd4TsopTfzkhXHc+BpVNbRQf8F
+	8f83dCES/7BhMDFjGL14fvVEdDWYG9vXQcXAG1lDEYMqPsK+b0xxoKPTrapq87Tj4ZxuPn+fodC
+	sHe1WZhlqYDK2wPU8n4bSLVLpLFY8hyqwlsU0Idy+CelRHc8MIPsT9ZNDF9ECFkI+S4yDDp8gtN
+	c+rIdOTqI7s2EiQi8qbgqVW8ZohEQjWTD7tWaTMYF7e8yEZ8itFKMJW8orQ/60uOe/ckWf6ydmQ
+	bqATNHK1fRSao3MgJIEWe7yOBJzUMl4DbZNQcPu+3yAkMng==
+X-Google-Smtp-Source: AGHT+IF0RKbDCJQqlOaQ5lIihcYpXIyfMX0yPpffB1uNIpJ5D1oZ3LkjnzHtCCpYKRDg9m9F5+RN0Q==
+X-Received: by 2002:ad4:5c8c:0:b0:78b:684e:88b5 with SMTP id 6a1803df08f44-78ece94094cmr21380316d6.46.1758117775796;
+        Wed, 17 Sep 2025 07:02:55 -0700 (PDT)
+Received: from rowland.harvard.edu ([140.247.181.15])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-7858cb5ac70sm51464736d6.20.2025.09.17.07.02.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Sep 2025 07:02:33 -0700 (PDT)
-Date: Wed, 17 Sep 2025 16:02:29 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Paul Sajna <sajattack@postmarketos.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Wed, 17 Sep 2025 07:02:55 -0700 (PDT)
+Date: Wed, 17 Sep 2025 10:02:52 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org,
-	Amir Dahan <system64fumo@protonmail.com>,
-	Christopher Brown <crispybrown@gmail.com>
-Subject: Re: [PATCH v2 11/13] arm64: dts: qcom: sdm845-lg-common: Add
- bootloader-compatible board and MSM IDs
-Message-ID: <aMq_dbLRShTVLlc8@linaro.org>
-References: <20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org>
- <20250916-judyln-dts-v2-11-5e16e60263af@postmarketos.org>
- <acb4f8a2-ff08-4a90-a7ad-7b25a7f4b6b0@oss.qualcomm.com>
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] usb: uhci: Add reset control support
+Message-ID: <291b2bc2-6a61-44e9-91cb-56044c4277e6@rowland.harvard.edu>
+References: <20250917021926.3692137-1-ryan_chen@aspeedtech.com>
+ <20250917021926.3692137-3-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,66 +93,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <acb4f8a2-ff08-4a90-a7ad-7b25a7f4b6b0@oss.qualcomm.com>
+In-Reply-To: <20250917021926.3692137-3-ryan_chen@aspeedtech.com>
 
-On Wed, Sep 17, 2025 at 03:55:47PM +0200, Konrad Dybcio wrote:
-> On 9/17/25 3:09 AM, Paul Sajna wrote:
-> > The original bootloader (fastboot) requires board and MSM IDs in order
-> > to boot the kernel, so these have been added. When re-using the same
-> > files to chainload U-Boot, these compatibles are also needed to ensure
-> > proper booting.
-> > 
-> > Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 2 ++
-> >  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 1 +
-> >  2 files changed, 3 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > index 1baec758c7d881026bf6001a0a305687d7a14b40..a513cd931b3a984443183ee4e8df7b0e45732630 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > @@ -5,6 +5,7 @@
-> >   * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> >   */
-> >  
-> > +#include <dt-bindings/arm/qcom,ids.h>
-> >  #include <dt-bindings/gpio/gpio.h>
-> >  #include <dt-bindings/leds/common.h>
-> >  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> > @@ -29,6 +30,7 @@
-> >  
-> >  / {
-> >  	chassis-type = "handset";
-> > +	qcom,msm-id = <QCOM_ID_SDM845 0x20001>;
-> >  
-> >  	aliases {
-> >  		serial0 = &uart9;
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> > index 8c1692f86e6ceea7b718361965e78f95d39373bb..beb1372dc6c17f5f06c2044412ee1c8165858cd1 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> > @@ -12,6 +12,7 @@
-> >  / {
-> >  	model = "LG G7 ThinQ";
-> >  	compatible = "lg,judyln", "qcom,sdm845";
-> > +	qcom,board-id = <0x020C0008 0>;
+On Wed, Sep 17, 2025 at 10:19:24AM +0800, Ryan Chen wrote:
+> Some SoCs, such as the Aspeed AST2700, require the UHCI controller
+> to be taken out of reset before it can operate. Add optional reset
+> control support to the UHCI platform driver.
 > 
-> This is almost QCOM_BOARD_ID(MTP, 12, 0), except for the odd BIT(25)
-> which the dt-binding promises should be left unused..
+> The driver now acquires an optional reset line from device tree,
+> deasserts it during probe, and asserts it again in the error path
+> and shutdown.
 > 
-> +Stephan maybe you know more?
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/usb/host/uhci-hcd.h      |  1 +
+>  drivers/usb/host/uhci-platform.c | 17 +++++++++++++++--
+>  2 files changed, 16 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/usb/host/uhci-hcd.h b/drivers/usb/host/uhci-hcd.h
+> index 13ee2a6144b2..4326d1f3ca76 100644
+> --- a/drivers/usb/host/uhci-hcd.h
+> +++ b/drivers/usb/host/uhci-hcd.h
+> @@ -445,6 +445,7 @@ struct uhci_hcd {
+>  	short load[MAX_PHASE];			/* Periodic allocations */
+>  
+>  	struct clk *clk;			/* (optional) clock source */
+> +	struct reset_control *rsts;		/* (optional) clock reset */
 
-I'm not sure what BIT(25) is exactly, but I think you can generally give
-up any hope of trying to make sense of the board IDs of large vendors
-like LG, Samsung, Motorola etc. It's a pity that Qualcomm has never
-created a board ID scheme with enough room for customization for
-vendors. The qcom,board-id scheme seems to be entirely focused just
-around Qualcomm's own boards (MTP, QRD, SBC etc). That is why we ended
-up with every vendor using their own incompatible approach. :-(
+This new field is used only in uhci_hcd_platform_probe().  Therefore it 
+does not need to be stored in the uhci_hcd structure; it can simply be a 
+local variable.
 
-Sorry, I wish I had a better explanation. :-)
+Alan Stern
 
-Stephan
+>  
+>  	/* Reset host controller */
+>  	void	(*reset_hc) (struct uhci_hcd *uhci);
+> diff --git a/drivers/usb/host/uhci-platform.c b/drivers/usb/host/uhci-platform.c
+> index 62318291f566..1c1715bddc27 100644
+> --- a/drivers/usb/host/uhci-platform.c
+> +++ b/drivers/usb/host/uhci-platform.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/of.h>
+>  #include <linux/device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  
+>  static int uhci_platform_init(struct usb_hcd *hcd)
+>  {
+> @@ -132,17 +133,29 @@ static int uhci_hcd_platform_probe(struct platform_device *pdev)
+>  		goto err_rmr;
+>  	}
+>  
+> +	uhci->rsts = devm_reset_control_array_get_optional_shared(&pdev->dev);
+> +	if (IS_ERR(uhci->rsts)) {
+> +		ret = PTR_ERR(uhci->rsts);
+> +		goto err_clk;
+> +	}
+> +	ret = reset_control_deassert(uhci->rsts);
+> +	if (ret)
+> +		goto err_clk;
+> +
+>  	ret = platform_get_irq(pdev, 0);
+>  	if (ret < 0)
+> -		goto err_clk;
+> +		goto err_reset;
+>  
+>  	ret = usb_add_hcd(hcd, ret, IRQF_SHARED);
+>  	if (ret)
+> -		goto err_clk;
+> +		goto err_reset;
+>  
+>  	device_wakeup_enable(hcd->self.controller);
+>  	return 0;
+>  
+> +err_reset:
+> +	if (!IS_ERR_OR_NULL(uhci->rsts))
+> +		reset_control_assert(uhci->rsts);
+>  err_clk:
+>  	clk_disable_unprepare(uhci->clk);
+>  err_rmr:
+> -- 
+> 2.34.1
+> 
 
