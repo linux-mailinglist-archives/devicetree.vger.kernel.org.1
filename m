@@ -1,146 +1,150 @@
-Return-Path: <devicetree+bounces-218328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068FCB7E42A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:45:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73E2B7E6DE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:48:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A98A1B254AF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:16:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8596C1713AF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360523570B4;
-	Wed, 17 Sep 2025 10:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AF134AAEE;
+	Wed, 17 Sep 2025 10:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EIGFoxor"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iCHIiTS5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F1234AAEA;
-	Wed, 17 Sep 2025 10:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4330264A72;
+	Wed, 17 Sep 2025 10:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758104131; cv=none; b=hjd0fk04N9vkmU0nnX5WKwT6wXkrdlMYVV2ZEGj0aSxSo4EAF5ApCpk10GRRM4kas3motZw5BXB0mApuLqXe1k+Mgk+zh5z0cNjL4KATh0wjAtcRU0TH6ksTebUM4EsL8B7qa+ix5xaeUeTe4inPz2g1Sy0Z7Tb3SR+a/D1nC7U=
+	t=1758104185; cv=none; b=A+JnwucrbnUjCTnj/1w6HXkYXF3RZ5GFrAHNmQNg9hIk2/5srzEobj9FlhKbD6J6CG0MRLNvtCK/FPeCRHx4Kap/9OBYLN9H7Gcw3SMkpfhdZDYTfBRS+0rkCqbVRMP8mqw812xaBH6Sc2scodgpkOY0TDD4ZOrpWkSwbp5R2TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758104131; c=relaxed/simple;
-	bh=jFN0rM4WOdVF6LWQb08Md1pxuOJ6ixjcBhDhHV+V3Xw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GX5oezxrXZdTYiw6/rm8xm0dYTC0YzxqrflJpQmphFXw4DG6wu6iXOb0DGyUexaskUQvvW3FjVeObq6kkj7p0cF2Vy8k+3PtOZ0h2NVJn/ZxE7wtSXqZRjL272pL5cOGhr1/DKzsQDpLSMUNXd6hHW5cvXVIZPd2s+FCV/pTNyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIGFoxor; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A475EC113CF;
-	Wed, 17 Sep 2025 10:15:30 +0000 (UTC)
+	s=arc-20240116; t=1758104185; c=relaxed/simple;
+	bh=ambwCGac4A+Wl1cpfcxdw276sosjbIvttwf0nQ4WwSQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cYYpFqGmww9w6f6x8+ergDQwjueFP8eYCqHBlJgd25Rv3G8HghBks5G8emLthbs0oMIYZdJxOZTz79ywjjWRnSQQuCBwug5FkhaocYjhHfrL0Fz9vNBbwVZpUoyEFiEU/r8BVJc9Y0hODdRkXai7knQ9fHkBAN6lnV8ggkDc1mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iCHIiTS5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7C43C4CEF0;
+	Wed, 17 Sep 2025 10:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758104130;
-	bh=jFN0rM4WOdVF6LWQb08Md1pxuOJ6ixjcBhDhHV+V3Xw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=EIGFoxorRKqKKFJaurlSQO4Hwurdm3HLsk1NZItkPjwLRfydEXGE3LZQd9KTb8CSe
-	 ofwyQDkBXVgwzuBEhQc843kOgHWtF1F95L7pUtnmuqViwCTyQY1ZQYBsiigBRXW69L
-	 Ef4X1nqKtQ1p1zhkmKr+Ez23MJLrQuxXtNMXvpcSj2vLPatUxedR8Lf6RACR6mRcef
-	 WT7vTUCt5V6eIGqZDcrXfJKV2WzYCXz+dHvBfDasYpMNnwB1FrtG7YE/WO6fmxViJk
-	 10DNcObfLObN1TNO2+CvtXBrpqhJAcblBptzQKAjjKKc06QEH8mB4inGgnBIZDaJ4g
-	 43LPTkM2NL1iQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A423CAC59F;
-	Wed, 17 Sep 2025 10:15:30 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+fenglin.wu.oss.qualcomm.com@kernel.org>
-Date: Wed, 17 Sep 2025 18:15:22 +0800
-Subject: [PATCH v5 9/9] power: supply: qcom_battmgr: handle charging state
- change notifications
+	s=k20201202; t=1758104185;
+	bh=ambwCGac4A+Wl1cpfcxdw276sosjbIvttwf0nQ4WwSQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iCHIiTS5S7WjpNatZpUtiukDA24Vv/tY/DJRflBgUWWJTErqrXNp3Nn3kErGKvP2n
+	 mCS9pwMSp7FxkunDQ9SzVJr5lodt/TVG/2+GT6c2qe+nZR2TDuxXz2sP/IE0j1Evlr
+	 PjuXwXHBs3aVNDuvfSqUAsYZ3rfCYm8Adx+twqZuh4pDlHm6tX0SsDnvV1ehM7i/EX
+	 9SNV/B5cKpgWhiTfLbutW28xMCIEyOpZ1PWqcHNq3zAZ8IdSZj/RMomQyGrdIcl30/
+	 77dja6K58Mko0nfezrwfNbcLs8foBuId5yMnSyWWfnwlyKKzga+9Ds3FEeWcN+stfM
+	 Eckm0vLKBvZaQ==
+Date: Wed, 17 Sep 2025 11:16:17 +0100
+From: Lee Jones <lee@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [GIT PULL] Immutable branch between MFD, GPIO, Input, Pinctrl and
+ PWM due for the v6.18 merge window 
+Message-ID: <20250917101617.GI3893363@google.com>
+References: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250917-qcom_battmgr_update-v5-9-270ade9ffe13@oss.qualcomm.com>
-References: <20250917-qcom_battmgr_update-v5-0-270ade9ffe13@oss.qualcomm.com>
-In-Reply-To: <20250917-qcom_battmgr_update-v5-0-270ade9ffe13@oss.qualcomm.com>
-To: Sebastian Reichel <sre@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
- David Collins <david.collins@oss.qualcomm.com>, 
- =?utf-8?q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>, linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- kernel@oss.qualcomm.com, devicetree@vger.kernel.org, 
- linux-usb@vger.kernel.org, Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758104128; l=2037;
- i=fenglin.wu@oss.qualcomm.com; s=20240327; h=from:subject:message-id;
- bh=u/UsvrdOaH8FPPbaWz45xYUdDcRqs2rzsPnEOVbRCYQ=;
- b=fajsAkYwMy2+oxB6R/muS3GvMix4qIVRZwPtunicG8Ju8jmojarqCRdEnoWvFtAkses3lSYhR
- NMBwF3eGbozDIjQDpJmCsaKSmxJxlrkqkISyZsTJ/XOLE4FpRiTrRDL
-X-Developer-Key: i=fenglin.wu@oss.qualcomm.com; a=ed25519;
- pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
-X-Endpoint-Received: by B4 Relay for fenglin.wu@oss.qualcomm.com/20240327
- with auth_id=406
-X-Original-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Reply-To: fenglin.wu@oss.qualcomm.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
 
-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Enjoy!
 
-The X1E80100 battery management firmware sends a notification with
-code 0x83 when the battery charging state changes, such as switching
-between fast charge, taper charge, end of charge, or any other error
-charging states. The same notification code is used with bit[16] set
-if charging stops due to reaching the charge control end threshold.
-Additionally, a 2-bit value is added in bit[18:17] with the same code
-and used to indicate the charging source capability: a value of 2
-represents a strong charger, 1 is a weak charger, and 0 is no charging
-source. The 3-MSB [18:16] in the notification code is not much useful
-for now, hence just ignore them and trigger a power supply change event
-whenever 0x83 notification code is received. This helps to eliminate the
-unknown notification error messages.
+The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
 
-Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
----
- drivers/power/supply/qcom_battmgr.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+  Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
 
-diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
-index 151cd5618ca5c70f941245e4df5a18d4778f1349..4056290b5d737f762d9adb2783d26bb50ec5a664 100644
---- a/drivers/power/supply/qcom_battmgr.c
-+++ b/drivers/power/supply/qcom_battmgr.c
-@@ -34,8 +34,9 @@ enum qcom_battmgr_variant {
- #define NOTIF_BAT_PROPERTY		0x30
- #define NOTIF_USB_PROPERTY		0x32
- #define NOTIF_WLS_PROPERTY		0x34
--#define NOTIF_BAT_INFO			0x81
- #define NOTIF_BAT_STATUS		0x80
-+#define NOTIF_BAT_INFO			0x81
-+#define NOTIF_BAT_CHARGING_STATE	0x83
- 
- #define BATTMGR_BAT_INFO		0x9
- 
-@@ -1206,12 +1207,14 @@ static void qcom_battmgr_notification(struct qcom_battmgr *battmgr,
- 	}
- 
- 	notification = le32_to_cpu(msg->notification);
-+	notification &= 0xff;
- 	switch (notification) {
- 	case NOTIF_BAT_INFO:
- 		battmgr->info.valid = false;
- 		fallthrough;
- 	case NOTIF_BAT_STATUS:
- 	case NOTIF_BAT_PROPERTY:
-+	case NOTIF_BAT_CHARGING_STATE:
- 		power_supply_changed(battmgr->bat_psy);
- 		break;
- 	case NOTIF_USB_PROPERTY:
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-gpio-input-pinctrl-pwm-v6.18
+
+for you to fetch changes up to 32d4cedd24ed346edbe063323ed495d685e033df:
+
+  MAINTAINERS: Add entry on MAX7360 driver (2025-09-16 15:24:48 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD, GPIO, Input, Pinctrl and PWM due for the v6.18 merge window
+
+----------------------------------------------------------------
+Kamel Bouhara (2):
+      mfd: Add max7360 support
+      pwm: max7360: Add MAX7360 PWM support
+
+Mathieu Dubois-Briand (8):
+      dt-bindings: mfd: gpio: Add MAX7360
+      pinctrl: Add MAX7360 pinctrl driver
+      gpio: regmap: Allow to allocate regmap-irq device
+      gpio: regmap: Allow to provide init_valid_mask callback
+      gpio: max7360: Add MAX7360 gpio support
+      input: keyboard: Add support for MAX7360 keypad
+      input: misc: Add support for MAX7360 rotary
+      MAINTAINERS: Add entry on MAX7360 driver
+
+ .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++
+ .../devicetree/bindings/mfd/maxim,max7360.yaml     | 191 +++++++++++++
+ MAINTAINERS                                        |  13 +
+ drivers/gpio/Kconfig                               |  12 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-max7360.c                        | 257 +++++++++++++++++
+ drivers/gpio/gpio-regmap.c                         |  30 +-
+ drivers/input/keyboard/Kconfig                     |  12 +
+ drivers/input/keyboard/Makefile                    |   1 +
+ drivers/input/keyboard/max7360-keypad.c            | 308 +++++++++++++++++++++
+ drivers/input/misc/Kconfig                         |  10 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/max7360-rotary.c                | 192 +++++++++++++
+ drivers/mfd/Kconfig                                |  14 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/max7360.c                              | 171 ++++++++++++
+ drivers/pinctrl/Kconfig                            |  11 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/pinctrl-max7360.c                  | 215 ++++++++++++++
+ drivers/pwm/Kconfig                                |  10 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-max7360.c                          | 209 ++++++++++++++
+ include/linux/gpio/regmap.h                        |  18 ++
+ include/linux/mfd/max7360.h                        | 109 ++++++++
+ 24 files changed, 1869 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
+ create mode 100644 drivers/gpio/gpio-max7360.c
+ create mode 100644 drivers/input/keyboard/max7360-keypad.c
+ create mode 100644 drivers/input/misc/max7360-rotary.c
+ create mode 100644 drivers/mfd/max7360.c
+ create mode 100644 drivers/pinctrl/pinctrl-max7360.c
+ create mode 100644 drivers/pwm/pwm-max7360.c
+ create mode 100644 include/linux/mfd/max7360.h
 
 -- 
-2.34.1
-
-
+Lee Jones [李琼斯]
 
