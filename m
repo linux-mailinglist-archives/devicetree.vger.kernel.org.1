@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-218134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C82B7C8A9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4B9B7CF9A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:15:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07195482F88
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:29:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF26052320F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FCD21CC56;
-	Wed, 17 Sep 2025 01:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E870E2139CE;
+	Wed, 17 Sep 2025 01:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sry4BLZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82059214A79;
-	Wed, 17 Sep 2025 01:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D8A17C91
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758072588; cv=none; b=usR5U7fJ277DC5AhMLStqtiuUpt/lGdSd9MQMU5isHaIJ2cKlrEc7s1skFWK5l77WWbm/WcuCXa3Qts8B8rOVLUngjdJSMRCqUUlpa2SFmwSugBeFC6rm6sWyV2E1aX8fPwsDIIROU3ZfbrHEN6/7PeQfYGb9V8koDQcJZPfKgg=
+	t=1758073120; cv=none; b=uwetsTXm/xH85OsO5/M2rTuWvEltgVEN7L+MPl/sOf9kv7WK7JLM5E+6DgEdOwqeCI+8ytaa4jaKA0E+CUcNHXw44NOvRr4/Hf54Nc4JwIg+twOdgqK5k6aZvjKevz7q9DzWCyng+jvvNXNQkev27SxAiNgflqileeEA+hPDr3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758072588; c=relaxed/simple;
-	bh=hhZVsw3zt3A/oYqZ99Gjxd13hAnEOnscKFd/+BWn5Qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SGsxPH/1pwf41HSLIhJeP8MWEFPYrbP5gMg3O07pwTnSoF5K0WADYVHZx73s5toLVekhCRA9iOKfnrSvxWIwGwFEJbeUTnQVBYLC5UiSFI9m0CELnw19DfOJcDPypjxta2Ev5aVcduKg4vhfQdqkOaqZPLUbsac2yPyKGAanhIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.158.240.90])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 71C89340EF8;
-	Wed, 17 Sep 2025 01:29:45 +0000 (UTC)
-Date: Wed, 17 Sep 2025 09:29:41 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] riscv: dts: spacemit: add UART pinctrl combinations
-Message-ID: <20250917012941-GYA1263349@gentoo.org>
-References: <20250916064739.196695-1-hendrik.hamerlinck@hammernet.be>
+	s=arc-20240116; t=1758073120; c=relaxed/simple;
+	bh=pABSfuwN68aYHQH+lAujDy8l8ti2r8Q8ufmwl6CLFow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nM5kMbqEmhf6cvy9wNGaHQWCjJVceqcEDcpkQF33SwLRrayhKprE7dyRGm2L0TwLXiy1fc5IlemgRw+NAyW/KS7Ou7CrBczkd7woBAb/R7jdopqbLjQvA5KhNPTZJ8CRMYMozrey7R9o9fM0zCNfaCjoaZXq1HJ9zEalkvperVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sry4BLZ1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E621CC4CEEB;
+	Wed, 17 Sep 2025 01:38:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758073120;
+	bh=pABSfuwN68aYHQH+lAujDy8l8ti2r8Q8ufmwl6CLFow=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Sry4BLZ1FMuerbiq4P6eb+q7drU6EhdbxAmGvQ9qN4nLEs9AiFRnKkhlp0Q1unrRo
+	 uv9bareQhcjuaqpgc/AouK9rMJQPUkUDHbKc8mxVklp47D2uneFDp+KdjZ7eQyaKVA
+	 saPiq9equjjvKv2YTPuYQNf8ypBS0jWeKVbBb+g5oN7EJy3Vk2Wz4bMU2a19QpzAK8
+	 9vsH5qO64DgOUGgO61cWYh1aMrcOLj8WRhM592Dz5YvfsTsFndHi1IDqkfN1WDPJJs
+	 v1HoqK6mhLTGN8lSs4Qcf+rGGVqTuYERYdF3Va4W7lDhNcL2blHrppQgjkz+Zt/eKk
+	 Atp53/sx8sbRw==
+Message-ID: <cce6473e-4081-45cc-865c-c00ba20821ae@kernel.org>
+Date: Wed, 17 Sep 2025 10:38:37 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916064739.196695-1-hendrik.hamerlinck@hammernet.be>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] dt-bindings: embedded-controller: add binding for
+ Ten64 board controller
+To: Mathew McBride <matt@traverse.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+References: <20250917011940.9880-1-matt@traverse.com.au>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250917011940.9880-1-matt@traverse.com.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Hendrik,
-
-On 08:47 Tue 16 Sep     , Hendrik Hamerlinck wrote:
-> Add UART pinctrl configurations based on the SoC datasheet and the
-> downstream Bianbu Linux tree. The drive strength values were taken from
-> the downstream implementation, which uses medium drive strength.
-> CTS/RTS are moved to separate *-cts-rts-cfg states so boards can enable
-> hardware flow control conditionally.
+On 17/09/2025 03:19, Mathew McBride wrote:
+> This series requires the "dt-bindings: mfd: Move embedded controllers to own
+> directory"[1] change which is in mfd-next for the 6.18 cycle.
 > 
-> Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-> ---
-> Changes in v3:
-> - Added /omit-if-no-ref/ to pinctrl states to reduce DT size
+> Changes since v3:
+> - Move to the embedded-controller directory (which was created following
+>   the last submission)
+> - Remove the extra paragraph in the dt-binding description field
+> - Const'ify the I2C endpoint address (only one I2C address is implemented in
+>   hardware, 0x7e)
+> - Fix the description line of the fsl-ls1088a-ten64 patch (s/arm/arm64)
 > 
-> Changes in v2:
-> - Split cts/rts into separate pinctrl configs as suggested
-> - Removed options from board DTS files to keep them cleaner
-> ---
->  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi | 432 ++++++++++++++++++-
->  1 file changed, 429 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> index 381055737422..7811fb485bd4 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> @@ -11,12 +11,438 @@
->  #define K1_GPIO(x)	(x / 32) (x % 32)
->  
->  &pinctrl {
-> +	/omit-if-no-ref/
-> +	uart0_0_cfg: uart0-0-cfg {
-> +		uart0-0-pins {
-> +			pinmux = <K1_PADCONF(104, 3)>,	/* uart0_txd */
-> +				 <K1_PADCONF(105, 3)>;	/* uart0_rxd */
-> +			power-source = <3300>;
-> +			bias-pull-up;
-> +			drive-strength = <19>;
-> +		};
-> +	};
-> +
-> +	/omit-if-no-ref/
-> +	uart0_1_cfg: uart0-1-cfg {
-> +		uart0-1-pins {
-> +			pinmux = <K1_PADCONF(108, 1)>,	/* uart0_txd */
-> +				 <K1_PADCONF(80, 3)>;	/* uart0_rxd */
-> +			power-source = <3300>;
-..
-> +			bias-pull-up;
-here, see comment below
-> +			drive-strength = <19>;
-> +		};
-> +	};
-> +
-> +	/omit-if-no-ref/
->  	uart0_2_cfg: uart0-2-cfg {
->  		uart0-2-pins {
-> -			pinmux = <K1_PADCONF(68, 2)>,
-> -				 <K1_PADCONF(69, 2)>;
-> +			pinmux = <K1_PADCONF(68, 2)>,	/* uart0_txd */
-> +				 <K1_PADCONF(69, 2)>;	/* uart0_rxd */
-> +			bias-pull-up;
-> +			drive-strength = <32>;
-> +		};
-> +	};
->  
-> -			bias-pull-up = <0>;
+> v3 series:
+> https://patchwork.ozlabs.org/project/devicetree-bindings/cover/20250821061115.18254-1-matt@traverse.com.au/
 
-Sorry, I've overlooked this, the bias-pull-up need to explicitly set to
-a vale of 0, 1 - normal pull up, or strong pull up.. for uart, the normal
-pull up should be ok
+Please use lore links or just start using b4.
+https://www.linaro.org/blog/becoming-a-kernel-developer-part1-posting-your-first-patch/
 
-please refer Documentation/devicetree/bindings/pinctrl/spacemit,k1-pinctrl.yaml
-
-Since the rc6 is already tagged, I'm about to prepare a PR, so If you able 
-to respin a new version quickly, I'd be happy to take, otherwise let's wait
-for next merge window (which shouldn't be a big problem)
-
-btw, please always do a DT check: 
-  make ARCH=riscv dtbs_check W=1
-
--- 
-Yixun Lan (dlan)
+Best regards,
+Krzysztof
 
