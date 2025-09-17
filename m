@@ -1,194 +1,130 @@
-Return-Path: <devicetree+bounces-218194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E49B7D866
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:30:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6C84B7DE3E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:36:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A985D485CB3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 06:34:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E409F2A7261
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 06:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8345A2D662D;
-	Wed, 17 Sep 2025 06:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98448283121;
+	Wed, 17 Sep 2025 06:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ONdXD2SI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VBMjT73d";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ONdXD2SI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="VBMjT73d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ljl/Mtiv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12A828B4FA
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 06:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC581D5CC7
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 06:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758090813; cv=none; b=hhFtxKiliqK/fkT/wTgpZG2ARYw+MfLmBywzyWswMwdMTAfCnts7mtujz3VOrzw7bslVnpt8x5xEuE9AdAKqwR3pJYTWOJnjAxFFbx/0OumBiMzwTt6GzGrDhQIDVDuN5UPwLDWFGTJ1OnSlbr6ntiYQnCzsLWY/z3XnzRDH15E=
+	t=1758091106; cv=none; b=a49PkZ84OkxtMIW8LiPSPFP9E40yVPVb8md31B2NAUzrmOY2mJ3gGV/6RnkkG5Wux9wV5CDZWOjCVTxThaxHg7XL7wE7T9Cygu9JCdqEtNRxdr5q+W3mq4rH9t8CvfTsPf9Y1BQPontkNZypvl6KyUvUSKz32a9/q58J0Cje9BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758090813; c=relaxed/simple;
-	bh=bVA3eY/iw2XIOGWDFuc8E2fmrH5pn6xk2tupN/0aKRE=;
+	s=arc-20240116; t=1758091106; c=relaxed/simple;
+	bh=YYyAOVBQQtvxzPrtPJTgX3jJY+qiOrBT4+FZybWQNvc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c0V8zDdHvVzzLDWDzteXLyJF/r/G0Hz+ojTxu+xcT8ninqoOzaaRNrbk8c34zGY3TwXY0P3zSigul4nkWMO5qZC8x5D4z3l/M6mhS6zedxsbBb/mDB8topWM7J6HeG29TQwfEW9jDZsbz79xpxqGZYLNVa2JwldFaXehcn/BFGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ONdXD2SI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VBMjT73d; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ONdXD2SI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=VBMjT73d; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 48C8C21E93;
-	Wed, 17 Sep 2025 06:33:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758090788; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XZgR9nYmkkKQYZ8BnmvdxFr3mBxEAURL3WOMRrhNIUk=;
-	b=ONdXD2SIvcJwMBKG0yhcOdyemLWSIbGXGc8aBFzsuXCckMR4DntLTeCaUwuhIXDPUHXMwz
-	7PFgklBK0Es5v430wD1CBdJnj+KqsBY8hIK2mmIhMGMFS6L9vT5PxWOh6DuS6gR2ERSOeS
-	Z2jC6q3kN6rQu29oDYeYG6DxSjNeVwk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758090788;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XZgR9nYmkkKQYZ8BnmvdxFr3mBxEAURL3WOMRrhNIUk=;
-	b=VBMjT73dNvf+TZeKkER4w60PrdtKbNIay+Bb2vv3zQqrg9LODoN4R7EbvhkrDMG1drzSDI
-	CmMTWDzEvHbhc1AQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ONdXD2SI;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=VBMjT73d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758090788; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XZgR9nYmkkKQYZ8BnmvdxFr3mBxEAURL3WOMRrhNIUk=;
-	b=ONdXD2SIvcJwMBKG0yhcOdyemLWSIbGXGc8aBFzsuXCckMR4DntLTeCaUwuhIXDPUHXMwz
-	7PFgklBK0Es5v430wD1CBdJnj+KqsBY8hIK2mmIhMGMFS6L9vT5PxWOh6DuS6gR2ERSOeS
-	Z2jC6q3kN6rQu29oDYeYG6DxSjNeVwk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758090788;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XZgR9nYmkkKQYZ8BnmvdxFr3mBxEAURL3WOMRrhNIUk=;
-	b=VBMjT73dNvf+TZeKkER4w60PrdtKbNIay+Bb2vv3zQqrg9LODoN4R7EbvhkrDMG1drzSDI
-	CmMTWDzEvHbhc1AQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 580341368D;
-	Wed, 17 Sep 2025 06:33:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id mLpJEyNWymiIXwAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Wed, 17 Sep 2025 06:33:07 +0000
-From: Stanimir Varbanov <svarbanov@suse.de>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-pm@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
+	 MIME-Version:Content-Type; b=PoOr1AlLO1w0QK86J7woTHa5rdIcBvIQs8/LGrgIJ2Id35IACwkKYHEomq9Fyuh/m3E1lsEuqmEATx0ykrru/MNseyFh8IljtJWyzfjt6tQ189KZ19e2Tmy2QZRyhUdCVcA+/LnVrXCIDZnNBXhsoPwTYKl1dfqLzoiwRbNAZg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ljl/Mtiv; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7704f3c46ceso5547140b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Sep 2025 23:38:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758091104; x=1758695904; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9a6eDfP+fBc1ozuBGmtJ5qlwX2HPSbOLB5AoahUZfu0=;
+        b=ljl/Mtivb0fZRK9ToJ22OXlasMRmAaeh9rZGU8rKLBYr4nfHTGPuf7LcgxVKvhSsrh
+         PCycq9sh6uwiZsYOZmd2YQ/YCB8XCPatN/D//fxl7KRV95J/7GMwrbSHWYq4HFdMig4W
+         c5gnMDUn3GUIt1AtP0wDxAJrLAlEXPFV45w9T4lyaau6hHuMQV5XLOoLM39hvFmx33NK
+         UISGJDUoahD0hoR2BmEKpKhtRcGYmMXGDPRtjbkC+IlgQVSM9aAAmzD6FRAlhzs3nCzx
+         4vsxXNxgsIvHv7mwHIqiyXcV1+oLnRhSeffJ5dKIUcfe7SWfW0vpbrcUKg6Y+fsIpigl
+         8QIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758091104; x=1758695904;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9a6eDfP+fBc1ozuBGmtJ5qlwX2HPSbOLB5AoahUZfu0=;
+        b=G/hf899E/8ApQlvAfOb/+zGcRZrjBXcJGvEFd3T5hWFOMG1V/ne2iWhxZNCfm6a6Ld
+         0UhaN7BcGioTOSQiBMTU6SRVnJJzh88CF4Q6kl8dBba08414OdzhA4dRaZ0a1YhkSW9/
+         mSyI5hHLhgBOyfkNmVHZNomO7W5sdbGOyZ5FelMlPoVh+u2nXfDUxcpT6Gh1FlRi2ihg
+         LE4yd8TGeHSWLKaG9KnWZGOVbXVX3T4UM1cnXhFuuXiWasCuH78o4vEChi75ibAGgDxG
+         kMmiWsjmFuhus/xzYYL1WOqY8Y7Ij+0y3D/l7Z5MRgInrrN1pqfoOZyBqcDcrhI/Tyx1
+         EyWA==
+X-Gm-Message-State: AOJu0Yz5o7kwD+ymkkfZJpVjyWwK1U77fPUtpdX0/uEcbR0PzoXhmFC9
+	tllQxqGEkdGzhvW+jzJyFo+5MRECaXX/oVPvWHnhrLBgRVSWfQAkH+VOkO7MVokm0xY=
+X-Gm-Gg: ASbGncui8GPww95e/RhPSUaGaRXybp4ZUOlsQIFymR6rkkRVmkQs3rcICyKHH3FUaYY
+	sXjh1mDQuCjmtc0D58dy8w66szOgyXP/GxtaOkLVYfjrFrIXb94kj2sw8ecK6OWN6KHHmGJ+JPR
+	zffH57bocIAP3CuSR21dF7of3TlbeL0ZWlF3aVvWC7ZbB5fsAmikky+ygwJ/63SrsptoI6Y3/dZ
+	I7XCiKWafqodKUityuf6tf8ZfmjLQL8OHGSK7LQcxHFj3QZ1bt7tdwmuq+NqffLaX5tAZ6pZXEp
+	6DK1PbIsB+2NtMqO0YIhNtv85TnWWRGyY+FKUl+/G8Mf2NRQ2OVxcE7FZQClqrnZZBSQEm3BJZd
+	/EPzdwAFHmXtT4WZQPtiF5w==
+X-Google-Smtp-Source: AGHT+IHq6XZ5/++BtlIMzWowm21SXwFZ/EFsiRjC685ax8WDJ8CH4yI13VvPILnIiTf325I/TiMPPA==
+X-Received: by 2002:a05:6a21:6daa:b0:263:81aa:d60d with SMTP id adf61e73a8af0-27a911974e0mr1470121637.14.1758091104211;
+        Tue, 16 Sep 2025 23:38:24 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-77607a47310sm17432570b3a.27.2025.09.16.23.38.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 23:38:23 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Lee Jones <lee@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Willow Cunningham <willow.e.cunningham@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>
-Subject: [PATCH 4/4] arm64: dts: broadcom: bcm2712: Add watchdog DT node
-Date: Wed, 17 Sep 2025 09:32:33 +0300
-Message-ID: <20250917063233.1270-5-svarbanov@suse.de>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250917063233.1270-1-svarbanov@suse.de>
-References: <20250917063233.1270-1-svarbanov@suse.de>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Nutty Liu <liujingqi@lanxincomputing.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Zixian Zeng <sycamoremoon376@gmail.com>,
+	Han Gao <rabenda.cn@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dts: sophgo: sg2042: added numa id description
+Date: Wed, 17 Sep 2025 14:38:08 +0800
+Message-ID: <175809106542.461740.14901329077964229669.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250910105531.519897-1-rabenda.cn@gmail.com>
+References: <20250910105531.519897-1-rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 48C8C21E93
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-1.51 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_TLS_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,linaro.org,gmail.com,gmx.net,suse.com,raspberrypi.com,suse.de];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	DKIM_TRACE(0.00)[suse.de:+];
-	R_RATELIMIT(0.00)[to_ip_from(RLw7mkaud87zuqqztkur5718rm)];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net]
-X-Spam-Score: -1.51
 
-Add watchdog device-tree node for bcm2712 SoC.
+On Wed, 10 Sep 2025 18:55:31 +0800, Han Gao wrote:
+> According to the description of [1], sg2042 is divided into 4 numa.
+> STREAM test performance will improve.
+> 
+> Before:
+> Function    Best Rate MB/s  Avg time     Min time     Max time
+> Copy:           10739.7     0.015687     0.014898     0.016385
+> Scale:          10865.9     0.015628     0.014725     0.016757
+> Add:            10622.3     0.023276     0.022594     0.023899
+> Triad:          10583.4     0.023653     0.022677     0.024761
+> 
+> [...]
 
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
----
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Applied to dt/riscv, thanks!
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-index 0a9212d3106f..3094a8e69f35 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-@@ -243,6 +243,15 @@ uart10: serial@7d001000 {
- 			status = "disabled";
- 		};
- 
-+		pm: watchdog@7d200000 {
-+			compatible = "brcm,bcm2712-pm", "brcm,bcm2835-pm-wdt";
-+			reg = <0x7d200000 0x308>;
-+			reg-names = "pm";
-+			#power-domain-cells = <1>;
-+			#reset-cells = <1>;
-+			system-power-controller;
-+		};
-+
- 		interrupt-controller@7d517000 {
- 			compatible = "brcm,bcm7271-l2-intc";
- 			reg = <0x7d517000 0x10>;
--- 
-2.47.0
+[1/1] dts: sophgo: sg2042: added numa id description
+      https://github.com/sophgo/linux/commit/4d94abded400a5194b929c26b3aa07fb9485fe35
+
+Thanks,
+Inochi
 
 
