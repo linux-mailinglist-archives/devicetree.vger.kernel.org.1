@@ -1,149 +1,125 @@
-Return-Path: <devicetree+bounces-218338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11242B7E98E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85350B7F6F7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 621FF3AA53E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:23:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D1E522DA1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAFC92EA721;
-	Wed, 17 Sep 2025 10:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59ADB302770;
+	Wed, 17 Sep 2025 10:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mCPYpQC/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQ4aLEPM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C870224FA;
-	Wed, 17 Sep 2025 10:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB05285073;
+	Wed, 17 Sep 2025 10:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758104616; cv=none; b=BedAMLS62zRdgfcGW7S6Ov+yymXI/QVceJo0VG4Ka59jJRGOKk+2NNUgg3wx8had82/AKxgesuMvlSn1esxGGBzPv2WGsw3GeAhUO4XauQ7DTlp/JrxaeA5PhhcxYsoux9iLy18LqCD0eS84RxlguYx0aFqBn7go4EeEWFnDm+I=
+	t=1758104898; cv=none; b=Nxqx2lWKhqsYQmTzDw+PF5BnNatypdXvoYEXprYQ5AiBqSwE4glLyA3iedZnNh1cydpEC5zSUcL0BqWA20hAsBblXhag+qvpR5p4+mAN/wJyfZEqK9+yMLdHow2r5mlRD8hK7wYRcDFrCbeuOr1/HGrcVgnuwtzDap59KY1d2SQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758104616; c=relaxed/simple;
-	bh=1sHt+GhISQCh7Dw+H0WwBAFkHIiCQ9IvxG+dQYuSAXQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EM3IbcsWod3w7BoVJKY9dcEmjOL/7jjf+NLC98Mcnk7se4Kgr6Krsn4vKjlapcdKyffr0cuDevpb2YP/2DXnX8n3QJdYYhjDkMvnFJSG+P9vJQK/flVEy+YFEoUVPp9FFEgbTx2kGOKPJmW3nPVvcMxT4PrA+JUgfiU8qLfPT/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mCPYpQC/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 475B4C4CEF0;
-	Wed, 17 Sep 2025 10:23:30 +0000 (UTC)
+	s=arc-20240116; t=1758104898; c=relaxed/simple;
+	bh=HkIDtJKBhiORcxYgG/tKUBLECQnj2hugI4gQ2Ch0RiA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=eejtDP5qbt2/4NQIeNxyHC/0GuS+oxYBe7pNtjV/vBCLtDwAZYPJqc58YKkLP0MqJXV/qQCrCEvUHPng9FBw/d12HOgvEH3L/PbtjKMZGLBYzIe0bjl6723ZVi/S6kmFXIs2zCliKn9vC078thB9gyFyQdiS9ltr2zAQZE7Ahng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQ4aLEPM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7C5C4CEF0;
+	Wed, 17 Sep 2025 10:28:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758104616;
-	bh=1sHt+GhISQCh7Dw+H0WwBAFkHIiCQ9IvxG+dQYuSAXQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mCPYpQC/WAgfXA/i9a5VD06wTLnH+S/7nmo3AIo7KLuYWqTpEe3FJwk+FgyJhwobp
-	 nTait17HSpCRwEAneDE1HstHfQ7K2FIwst+O7hgs8pleiGnNNvkYjnbJjLE8js3rwf
-	 8TQh7K2+lsUal8wZP/6TtXJMN3svpxBCyVLKxFfOfjPS4wpneyVglZs27qxpf5brJW
-	 7e5j1olsZm8Hay6Lk6r22zgD6Wx4atAvKRfKPhLpCiC0xZ3cynDbhlpZQ1jsLOXN8b
-	 /6jeN4qO2yEOrZ+qYf/v4GfQcg7Q0LLZn7Y2srsjcdWQGT45e82mhIgSlZtWztKYZm
-	 +GqqYMaClakNg==
-Date: Wed, 17 Sep 2025 15:53:25 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 4/4] PCI: qcom: Allow pwrctrl core to control PERST#
- if 'reset-gpios' property is available
-Message-ID: <gnaubphg6iyh23vtf2flsjxoot7psgla7cr2c5jpecaozh4vf3@mzcmg74g3ogk>
-References: <20250912-pci-pwrctrl-perst-v3-4-3c0ac62b032c@oss.qualcomm.com>
- <20250916204810.GA1814032@bhelgaas>
+	s=k20201202; t=1758104897;
+	bh=HkIDtJKBhiORcxYgG/tKUBLECQnj2hugI4gQ2Ch0RiA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=GQ4aLEPMm2MYWmyRIVwCEa9zK+w8zBhaUeKfXqMzoQ8EH/5ImCLhxkVaMJ9QRqlBp
+	 Aa37xRt98MsD5pP1t1iv+nxmhCx1Qsl23tJ77lY0LBet83cc3mHBWdmwZfDj4kYDz/
+	 JDURvT9bBdTtyDyT7avTATWd+/CFk5cBiCrzS1ojUYPpiuKHS7heKku3KeLQkbqq+7
+	 rxLzczVduphC1ZxQ6YDk6/IQYXV+ISZ7G/jNil75+FGK9GqT+afv49GnMh7p3j28yG
+	 L4D5vhFWskjjNu4DiQog0U4b8ARgcEnvOlRbHPHTpcJD7PmYhjnomcjKWbmk+L5OZl
+	 1ZbgGsjr9asnA==
+Date: Wed, 17 Sep 2025 05:28:16 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250916204810.GA1814032@bhelgaas>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Bard Liao <yung-chuan.liao@linux.intel.com>, 
+ linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
+ sound-open-firmware@alsa-project.org, Jaroslav Kysela <perex@perex.cz>, 
+ devicetree@vger.kernel.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ Takashi Iwai <tiwai@suse.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
+ Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Ranjani Sridharan <ranjani.sridharan@linux.intel.com>
+To: "hailong.fan" <hailong.fan@mediatek.com>
+In-Reply-To: <20250917075336.5985-2-hailong.fan@mediatek.com>
+References: <20250917075336.5985-1-hailong.fan@mediatek.com>
+ <20250917075336.5985-2-hailong.fan@mediatek.com>
+Message-Id: <175810489672.1450298.11416938707985420274.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: dsp: mediatek: add mt8196 dsp
+ document
 
-On Tue, Sep 16, 2025 at 03:48:10PM GMT, Bjorn Helgaas wrote:
-> On Fri, Sep 12, 2025 at 02:05:04PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > 
-> > For historic reasons, the pcie-qcom driver was controlling the power supply
-> > and PERST# GPIO of the PCIe slot.
+
+On Wed, 17 Sep 2025 15:53:05 +0800, hailong.fan wrote:
+> From: Hailong Fan <hailong.fan@mediatek.com>
 > 
-> > This turned out to be an issue as the power supply requirements
-> > differ between components. For instance, some of the WLAN chipsets
-> > used in Qualcomm systems were connected to the Root Port in a
-> > non-standard way using their own connectors.
+> Add device tree binding documentation for the MediaTek
+> MT8196 DSP. The DSP is used by the Sound Open Firmware
+> driver node and includes registers, clocks, memory regions,
+> and a mailbox for DSP communication.
 > 
-> This is kind of hand-wavy.  I don't know what a non-standard connector
-> has to do with this.  I assume there's still a PCIe link from Root
-> Port to WLAN, and there's still a PERST# signal to the WLAN device and
-> a Root Port GPIO that asserts/deasserts it.
+> Signed-off-by: Hailong Fan <hailong.fan@mediatek.com>
+> ---
+>  .../bindings/dsp/mediatek,mt8196-dsp.yaml     | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.yaml
 > 
 
-If we have a non-standard connector, then the power supply requirements change.
-There is no longer the standard 3.3v, 3.3Vaux, 1.8v supplies, but plenty more.
-For instance, take a look at the WCN6855 WiFi/BT combo chip in the Lenovo X13s
-laptop:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts#n414
+yamllint warnings/errors:
 
-These supplies directly go from the host PMIC to the WCN6855 chip integrated
-in the PCB itself. And these supplies need to be turned on/off in a sequence
-also, together with the EN/SWCTRL GPIOs, while sharing with the Bluetooth
-driver.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dts:18:18: fatal error: dt-bindings/clock/mt8196-clk.h: No such file or directory
+   18 |         #include <dt-bindings/clock/mt8196-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-To handle this complexity, pwrctrl framework was introduced.
+doc reference errors (make refcheckdocs):
 
-- Mani
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250917075336.5985-2-hailong.fan@mediatek.com
 
-> > This requires specific power sequencing mechanisms for controlling
-> > the WLAN chipsets. So the pwrctrl framework (CONFIG_PWRCTRL) was
-> > introduced to handle these custom and complex power supply
-> > requirements for components.
-> > 
-> > Sooner, we realized that it would be best to let the pwrctrl driver control
-> > the supplies to the PCIe slots also. As it will allow us to consolidate all
-> > the power supply handling in one place instead of doing it in two. So the
-> > CONFIG_PWRCTRL_SLOT driver was introduced, that just parses the Root Port
-> > nodes representing slots and controls the standard power supplies like
-> > 3.3v, 3.3VAux etc...
-> > 
-> > However, the control of the PERST# GPIOs was still within the controller
-> > drivers like pcie-qcom. So the controller drivers continued to assert/
-> > deassert PERST# GPIOs independent of the power supplies to the components.
-> > This mostly went unnoticed as the components tolerated this non-standard
-> > PERST# assertion/deassertion. But this behavior completely goes against the
-> > PCIe Electromechanical specs like CEM, M.2, as these specs enforce strict
-> > control of PERST# signal together with the power supplies.
-> > 
-> > So conform to these specs, allow the pwrctrl core to control PERST# for the
-> > slots if the 'reset-gpios' property is specified in the DT bridge nodes.
-> > This is achieved by populating the 'pci_host_bridge::perst_assert' callback
-> > with qcom_pcie_perst_assert() function, so that the pwrctrl core can
-> > control PERST# through this callback.
-> > 
-> > qcom_pcie_perst_assert() will find the PERST# GPIO descriptor associated
-> > with the supplied 'device_node' of the component and asserts/deasserts
-> > PERST# as requested by the 'assert' parameter. If PERST# is not found in
-> > the supplied node of the component, the function will look for PERST# in
-> > the parent node as a fallback. This is needed since PERST# won't be
-> > available in the endpoint node as per the DT binding.
-> > 
-> > Note that the driver still asserts PERST# during the controller
-> > initialization as it is needed as per the hardware documentation.
-> > 
-> > For preserving the backward compatibility with older DTs that still
-> > specifies the Root Port resources in the host bridge DT node, the
-> > controller driver still controls power supplies and PERST# for them. For
-> > those cases, the 'qcom_pcie::legacy_binding' flag will be set and the
-> > driver will continue to control PERST# exclusively. If this flag is not
-> > set, then the pwrctrl driver will control PERST# through the callback.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
--- 
-மணிவண்ணன் சதாசிவம்
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
