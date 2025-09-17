@@ -1,82 +1,96 @@
-Return-Path: <devicetree+bounces-218307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CBA2B7D447
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:23:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBC8B7DC36
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC9D01719D7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 09:52:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 919C1162F2E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 10:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08A53451AE;
-	Wed, 17 Sep 2025 09:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE931309EE4;
+	Wed, 17 Sep 2025 10:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Klec7hvV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NSyPXowB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCF82F25E5;
-	Wed, 17 Sep 2025 09:52:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21680249F9
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 10:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758102767; cv=none; b=lRWNYO+l9ymSX1EkZbuihjYFpRxsOSSmQAEtKdH1TNqS+nLhg/FQHSKjX/1RxYivWa7LW8fUjRhjoeCsssBA+PzhQWi74uZ/WDFThTbjjD5h8r2nuKMmOLPRfoAg+VUQVaos4J7cP+RB0yfc57ZCIiyJq/1pQ9otmgPT2Q5PE7g=
+	t=1758103369; cv=none; b=u0utWuL65Nc/6FK6MA2nt+8YcydQJQMV9019QV/qnEJm7gQRhQyTRD5dq4mSkjdf5Uli7XUQ889BdiKx9cUlFsPM6tHV/9SOAxqYk60XDGJrS8iKHoFlS96QJwjID1tLnQV4++6p4nYus7jqLuY44K5mUoHwi3+8NV8ptlgufVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758102767; c=relaxed/simple;
-	bh=BFX6ownYzY7fkpQNkKIV0Q6ij+7Fw1P1XuX9Ln822Ro=;
+	s=arc-20240116; t=1758103369; c=relaxed/simple;
+	bh=eitIgTv7GwxROzOoX6w5BE9GZOWDF3FR13hWKajvlBU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e6fIVcnWC1VPQgXE0k9JmBTprvGpOzD3Asn20n1Kp4j+B7QniXyaM/Xd2qiigHHwfQD8hyPsKATOkmt5uGBGnqsSRjhSHyJGO5AoU8Fkoba63o1YDPydGCHExlV/K8dzvbe953zHGYqT8i65jHqucwn8U7myt7MExsfQHp9nf6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Klec7hvV; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758102766; x=1789638766;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BFX6ownYzY7fkpQNkKIV0Q6ij+7Fw1P1XuX9Ln822Ro=;
-  b=Klec7hvVXchPOEFDweWHCE9cb2KFWWdlBFL7ajZWQKxnzSfPT4pSRAMC
-   oluNwc7/G2EbusJ5MMxgq+V1HAZnl5giyhQL3LqsLTkcn2A7P5XY+MCAr
-   BaYtggyNBKXXkQJDJ5edPzqLDVO9wNhWRyMN9N079HM9yB+gmOW9t7yYd
-   ND6W5zYpEftalkSlyXh3eY8pZXqAEcvcl0QnTr3/oywNbLunZEoXzHJfd
-   6W8HaZaeKQgcq48atI0wmU4Hi12/zIdmfJIG1zZNmWeN6dUmubW2HnIWo
-   2YtsSE0u0uH0dKgL8313rdKsy0I24LxVsPh27kTj7OceTe1wHa9U5cLFO
-   Q==;
-X-CSE-ConnectionGUID: 8os2gCkzSA65QtIDUnm0cA==
-X-CSE-MsgGUID: KAty0HAESjamZaGVjIOsCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71507480"
-X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; 
-   d="scan'208";a="71507480"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2025 02:52:26 -0700
-X-CSE-ConnectionGUID: fXDEHERxTC+QoYiDPK7aNg==
-X-CSE-MsgGUID: rnd60lEbSgK/07jnyeF1WQ==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 17 Sep 2025 02:52:21 -0700
-Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uyopm-0001LH-3A;
-	Wed, 17 Sep 2025 09:52:18 +0000
-Date: Wed, 17 Sep 2025 17:52:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Randolph Lin <randolph@andestech.com>, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, jingoohan1@gmail.com, mani@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	alex@ghiti.fr, aou@eecs.berkeley.edu, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, ben717@andestech.com, inochiama@gmail.com,
-	thippeswamy.havalige@amd.com, namcao@linutronix.de,
-	shradha.t@samsung.com, randolph.sklin@gmail.com,
-	tim609@andestech.com, Randolph Lin <randolph@andestech.com>
-Subject: Re: [PATCH v2 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
- support
-Message-ID: <202509171747.yJ9wsIkH-lkp@intel.com>
-References: <20250916100417.3036847-5-randolph@andestech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BXgaVdh/QZ4goYoLlTe3SuO8aBIkFXcgcugDz58K3A7zF2/XCrcBeFuiNCc+T5ATBsaqU0U9szHCvJdz3AaODEEKWoYOs7bQ/0uMZdV07yf2kXrPR/2rE8PGeKKYO4NFN8mZTOc9IH+1f4hqe+LKRk2cWpXHjrEq2pOTYLn1P6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NSyPXowB; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45ddfe0b66dso13736235e9.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 03:02:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758103366; x=1758708166; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HmvDAXhB3YF18ndychtadEGtlpqabkSgHGl2UaFJHtM=;
+        b=NSyPXowBoZ0FgSPzWVjI+7EUvCqYTCgNNkXk2gJwZggEwoZUypkpevPgaS9FxiUFXv
+         ypIcBwEFGy2n9iDVEuOegRlkIOlcDnwp50E7lv+f1KKgbCAiKYX+KvwazKGG6BagtIhh
+         RS8nGLg/p78Y8dazHWapUO7tgJlP+M/dWz7BLCM7ELsbZMm6k6kKPXV0g+cxbPkf7n8S
+         YeEwWyHhZ5Llx5uHX+4uJnK/kZTKf/yNQyU/egTeODR5rseBSouJon3UrjZeREjhe9Ng
+         fOFFXTPSSPvXqG7B1LfyOxPfZc2M5iRvMfGbQcnhVKyJTBpHl8RVo5HdsEVbZpcne7eF
+         VHog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758103366; x=1758708166;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HmvDAXhB3YF18ndychtadEGtlpqabkSgHGl2UaFJHtM=;
+        b=sCQ1H1dgq7qBkLo5sVs1nH4kpmMABJc1/qUpfUTyjbW6w0CgABm4EJWdIP0DN4lhyt
+         JiWpbmJII9xF/VoO2z7PajLcuz7nIi0XVToJpOsj+UYU6R1nZGu+7pGBDJbtP6dIq6ys
+         RBEPk26Vfuk/fBvTQ7tm11bmJtDcE5Gxii7KelwHGUwCqVp5Y+pYnDUHEBzmIa6aNsKA
+         uchH02hepqUqjw8DdmDKFqfkv/eQ9IOw92YNS+MAo4aI/58T/0Prg5E42267F/wWu0Xq
+         msNqfz9DvxR+SVA/wypJdqufuW+m84z6pK2uhPpmKUHQTQSNJDqRow7krf6Re2dc9ai9
+         8dZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVedUseo7BAhD+ATU51TFsBGUxjdinOjXrRb3KA8IAC2NjNWK7iIHq7n33nLtp7VcA3/6UIUKGq3u98@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcHNNoiw7AxJ1/7NfHTklkmnEA4znCtxSgwKuhzqgJb296Fmay
+	8RRzrDa/Tpf87wQI5vs0ZFx2Yj31puz+moUIz1xlzENpgI+6ymj21DX1
+X-Gm-Gg: ASbGncvFrU9WglyhDGXm8RhVNWXDtFJCukB+A6bxfBhoFpN+Hix8uoBn8nbxbq4iT/Y
+	Dd+6gvZuhBx6pEHz7Ua/0tnVhn82uM/Dcgshx3x6lSINMGaJHTi8QuvL51C7SNnlTzyOhRKDuuO
+	DUC7bEt+7UPOQW7yqUxEVYXz7PsYMx90biw8yBzrxfGBIyhQ8FtZRayyWclGZBFaV6sII0TYB1B
+	eRpgse7wcVOy+m+kYYNeYpYV2XSIUraf4IRIyUOwZq2GUHQOnFIEODxyZnG0x5wbbaEltjvatCk
+	8j0a/maWmrIxFhK+bsi/dR2KMXd+rCNZStx/8mo+Q84zOTP11m0RJrmF3SsXDpb7q7bDRKrbKCh
+	tPnG/8eTa03//N9M=
+X-Google-Smtp-Source: AGHT+IEJSD+XRqxq7Nyy97GWdJgdPxBloPmolF7AIID/h3YZTxRJteo3lDDYW9w4cvIOkM3qFATA5Q==
+X-Received: by 2002:a05:600c:3555:b0:45d:d401:2777 with SMTP id 5b1f17b1804b1-462024532c8mr7748625e9.2.1758103366267;
+        Wed, 17 Sep 2025 03:02:46 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d005:3b00:8bcc:b603:fee7:a273])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e80da7f335sm18935412f8f.8.2025.09.17.03.02.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 03:02:45 -0700 (PDT)
+Date: Wed, 17 Sep 2025 13:02:43 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v9 3/3] net: dsa: yt921x: Add support for
+ Motorcomm YT921x
+Message-ID: <20250917100243.s55irruj4bzg343v@skbuf>
+References: <20250913044404.63641-1-mmyangfl@gmail.com>
+ <20250913044404.63641-4-mmyangfl@gmail.com>
+ <20250916231714.7cg5zgpnxj6qmg3d@skbuf>
+ <b0fc2de5-bccc-4ef8-a04d-0c3b13cde914@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,96 +99,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250916100417.3036847-5-randolph@andestech.com>
+In-Reply-To: <b0fc2de5-bccc-4ef8-a04d-0c3b13cde914@lunn.ch>
 
-Hi Randolph,
+On Wed, Sep 17, 2025 at 02:08:31AM +0200, Andrew Lunn wrote:
+> > > +static int yt921x_reg_mdio_read(void *context, u32 reg, u32 *valp)
+> > > +{
+> > > +	struct yt921x_reg_mdio *mdio = context;
+> > > +	struct mii_bus *bus = mdio->bus;
+> > > +	int addr = mdio->addr;
+> > > +	u32 reg_addr;
+> > > +	u32 reg_data;
+> > > +	u32 val;
+> > > +	int res;
+> > > +
+> > > +	/* Hold the mdio bus lock to avoid (un)locking for 4 times */
+> > > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> > 
+> > Andrew, are you satisfied with this lock?
+> 
+> This is O.K. You snipped too much context. As the comment says, the
+> code is about to do 4 MDIO bus transactions. Each will take and
+> release the lock. By taking it now, and then using the unlocked
+> version for read/write, it will make it a tiny bit faster. The time to
+> do the bus transaction will however dominate.
+> 
+> > Perhaps I missed some part of
+> > the conversation, but didn't you say "leave the mdio lock alone"?
+> 
+> Yes, i did, but then the mdio lock was being abused as a DSA driver
+> lock. The DSA driver now has its own lock. So what we see above is
+> purely an optimisation, not a locking scheme.
+> 
+> 	Andrew
 
-kernel test robot noticed the following build warnings:
+Ok, I misunderstood the reason for your comment to leave the MDIO lock
+alone. Acquiring &bus->mdio_lock I can agree with, regardless of whether
+the "driver lock" exists. I'm currently reviewing drivers/mfd/airoha-an8855.c
+and it handles this the same way.
 
-[auto build test WARNING on pci/next]
-[also build test WARNING on pci/for-linus robh/for-next linus/master v6.17-rc6 next-20250916]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Randolph-Lin/PCI-dwc-Add-outbound-ATU-address-range-validation-callback/20250916-180841
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20250916100417.3036847-5-randolph%40andestech.com
-patch subject: [PATCH v2 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver support
-config: riscv-allmodconfig (https://download.01.org/0day-ci/archive/20250917/202509171747.yJ9wsIkH-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 7c861bcedf61607b6c087380ac711eb7ff918ca6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250917/202509171747.yJ9wsIkH-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509171747.yJ9wsIkH-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from <built-in>:3:
-   In file included from include/linux/compiler_types.h:171:
-   include/linux/compiler-clang.h:28:9: warning: '__SANITIZE_ADDRESS__' macro redefined [-Wmacro-redefined]
-      28 | #define __SANITIZE_ADDRESS__
-         |         ^
-   <built-in>:371:9: note: previous definition is here
-     371 | #define __SANITIZE_ADDRESS__ 1
-         |         ^
->> drivers/pci/controller/dwc/pcie-andes-qilai.c:179:22: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-     179 |                 dev_err_probe(dev, ret, "Failed to Get APB registers.\n");
-         |                                    ^~~
-   drivers/pci/controller/dwc/pcie-andes-qilai.c:159:9: note: initialize the variable 'ret' to silence this warning
-     159 |         int ret;
-         |                ^
-         |                 = 0
-   2 warnings generated.
-
-
-vim +/ret +179 drivers/pci/controller/dwc/pcie-andes-qilai.c
-
-   153	
-   154	static int qilai_pcie_probe(struct platform_device *pdev)
-   155	{
-   156		struct qilai_pcie *pcie;
-   157		struct dw_pcie *pci;
-   158		struct device *dev;
-   159		int ret;
-   160	
-   161		pcie = devm_kzalloc(&pdev->dev, sizeof(*pcie), GFP_KERNEL);
-   162		if (!pcie)
-   163			return -ENOMEM;
-   164	
-   165		pcie->pdev = pdev;
-   166		platform_set_drvdata(pdev, pcie);
-   167	
-   168		pci = &pcie->pci;
-   169		dev = &pcie->pdev->dev;
-   170		pcie->pci.dev = dev;
-   171		pcie->pci.ops = &qilai_pcie_ops;
-   172		pcie->pci.pp.ops = &qilai_pcie_host_ops;
-   173		pci->use_parent_dt_ranges = true;
-   174	
-   175		dw_pcie_cap_set(&pcie->pci, REQ_RES);
-   176	
-   177		pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-   178		if (IS_ERR(pcie->apb_base)) {
- > 179			dev_err_probe(dev, ret, "Failed to Get APB registers.\n");
-   180			return PTR_ERR(pcie->apb_base);
-   181		}
-   182	
-   183		ret = dw_pcie_host_init(&pcie->pci.pp);
-   184		if (ret) {
-   185			dev_err_probe(dev, ret, "Failed to initialize PCIe host\n");
-   186			return ret;
-   187		}
-   188	
-   189		qilai_pcie_iocp_cache_setup(&pcie->pci.pp);
-   190	
-   191		return 0;
-   192	}
-   193	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+I'm not sure that a "driver lock" is something that drivers need.
+In this case it creates a lot of red tape. Function yt921x_dsa_X() takes
+the driver lock and calls function yt921x_X() which does the work.
+IMO that's part of what gives "vendor crap" drivers their name, when
+there's no reason behind it.
 
