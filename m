@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-218433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1290B7FFB7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:29:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F49B7FFE7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:30:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70041720383
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:20:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C0A43B8348
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3F2295511;
-	Wed, 17 Sep 2025 14:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66E829E10C;
+	Wed, 17 Sep 2025 14:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hLWa/b6a"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Um3WIhCl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5977B33C77A;
-	Wed, 17 Sep 2025 14:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F77D28B51E;
+	Wed, 17 Sep 2025 14:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758118799; cv=none; b=qqWPFYuKebWv2sX8j7sxeS2n0/FRu3lBfocMEroCJcO5Hyk9B7C48YEFKmfLf9Bb068yKli5gelNBfGn0rU+Oeq50qH7Ud8Pq3RcieOjEGZHmtvWTRuImHKZspEiBiU4Jn8oIuG5pB7diPVMxqkB3rctT6fk9ZEt7LH3aBW76kw=
+	t=1758119138; cv=none; b=Mo3t1gu0FHZxXks7X3n1nhGf+jtA7rpzSl8VCOkT4x805epAkPcLAkBobJq9kY7mhaLh/RGtdYt6GDYVvXYoO1rkaYb5/cdD2uF+j2ULp6dcoQ43pgLoJHQf2Q/wSRRjuwZP85P3L3yPlUG/H+i0tW05An2qh3qH59ZPl6X1+5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758118799; c=relaxed/simple;
-	bh=K8AzLf7x2a9JNhbTQRQliEaTadQE9bAB6ts5jXpmOOA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QZnNEYAzmoeLrR5k20EX5to4gn0PAFK+Ux5Tdrsi9aYFo3/P93A9anCAkGhPNwXxPwyMwgl6XkC1VBNdsi3POgF6Myfsn6t2KoOgnTN+iTOjujS4fwa9WmNFy701yKtn9go3pDWNx22/T+k1L7J78syRDlNt2mLcXBHWfd59wwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hLWa/b6a; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58H8Xafb021451;
-	Wed, 17 Sep 2025 14:19:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QClkAHTCsjCfKUD7nA/NyZmaWUaO8cGUX++gkDPGqS0=; b=hLWa/b6aA4kHDM4d
-	qbNNlapMynzRtfzhtbLDvtibkQCRHi9nz6uzjJq5Q6+7IpG4laEzcOc3Tvz6piX2
-	wwoWi1Eadqw3nOGTd4JI657i+BlXdT9NM3R5pWqx+wyDxSkxEatwWFiovq9WOVJL
-	Iw5IHH0R0V+0dv2oEhb0tgM8olUpFrqBTxw7TXyNzg+L0dhEGDEPFcYIYaJX6bLI
-	Y5rMkEcIVBPOvxcnEC0NNagBeNhOHH1E08bhJvziB/LP0QFCzdYnhY6j+kH2Hy1+
-	Mo+VDPxP0cT3dFmbk8ryKXdRaB+o59VFcSW6KqEymqICMqEpp7xYDmx5pFRpAxIX
-	9ju7sA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5an25-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 14:19:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58HEJjXO029528
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 14:19:45 GMT
-Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 17 Sep
- 2025 07:19:41 -0700
-Message-ID: <2a3903f5-4494-4053-b821-435a75b1ad7b@quicinc.com>
-Date: Wed, 17 Sep 2025 19:49:38 +0530
+	s=arc-20240116; t=1758119138; c=relaxed/simple;
+	bh=gdQ4bVQx9UsfgOGWthahXwQYrBNrMjs0pw9DZQGxUVU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DnnpFdu7O1cv4J+NFJEC4qJ3es2aGzy56MpJdKJhcgN33wmC3XAkCcu5C7CH/vnG+i4f1Ub1aSQ39uW3PpgwczbmVgTCGSE6gFX67zCRE4PlSskls6Pg9vQIsVw6A+ZbR41hzbrct/vqxOw1AzApfOIBypYTROuFAun33Brayvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Um3WIhCl; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758119134;
+	bh=gdQ4bVQx9UsfgOGWthahXwQYrBNrMjs0pw9DZQGxUVU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Um3WIhClnacJr72kepL51Jb68Z6nP193VKArJdLLLDO+57zbEiMA24rF69RpT4rG1
+	 /4/nyURj22/z2h8xSlC08eecHlawBsUoNFMHSJ0w1yU9stIMhvchJxiy+sIUGzX2fI
+	 Hby58O3agOef0ZXi3l1MZ1lJ3S5KrUrVCIUyEC5x/ctJFEzID1ZLuytvPtDBX6IYQ/
+	 Ib1G78e26a4x3RWEjHV8JFzEqCnvUjbrWC4NOuC93gWUZDMGdg3+0WY7YjAwwjl6Ni
+	 KT0GC/L6ePfl8fshgUywT3SE819dhSBguV34jB1VYLFlF5X0ZASXHcmtTkdVWWd96l
+	 oyXFp4qv1/bIA==
+Received: from [10.40.0.100] (185-251-200-65.lampert.tv [185.251.200.65])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7AC0F17E0237;
+	Wed, 17 Sep 2025 16:25:33 +0200 (CEST)
+Message-ID: <f9f8fb39-51d5-415c-b2dd-3fd837252edb@collabora.com>
+Date: Wed, 17 Sep 2025 16:25:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,129 +57,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 0/4] Add DT-based gear and rate limiting support
-To: Alim Akhtar <alim.akhtar@samsung.com>, <avri.altman@wdc.com>,
-        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
-CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <CGME20250902164927epcas5p459352c28c0d5c5a4c04bd88345a049f0@epcas5p4.samsung.com>
- <20250902164900.21685-1-quic_rdwivedi@quicinc.com>
- <3a9101dc1c8d$f476b8e0$dd642aa0$@samsung.com>
+Subject: Re: [PATCH v10 07/13] media: rockchip: add driver for mipi csi-2
+ receiver
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com>
+ <20240220-rk3568-vicap-v10-7-62d8a7b209b4@collabora.com>
+ <c5d8d527ca6194b606b5627e51abbb82ab6dd76c.camel@pengutronix.de>
 Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <3a9101dc1c8d$f476b8e0$dd642aa0$@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XTpOCO247mJJyou_uzo_-nSWIJjDP4ZH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX5Ve8HZQOx8E9
- u5uQYBI80UHUr9QAyYfnstmOdU8lC69fuamhRR/o0LNJi/Z7izg0E5XCBXCNPpiX7u9wNvYJP49
- NGjuMaIeR5JsRtMjtID5aZOU13829ddQRdDXfJidFGInqhTNgfeOYpdzQbXRh06MZZndYjXTmeC
- kZcO5UF9vzMUYzRP2M/hV4WiJhyq+FHrMWjc+Ij0WIPvnpdEtjBlZTr+9Yi8+uEL28ybRDy6qJo
- WVQyk9tJWUxHQ5Yn39sbssJM0tHni/G9Ffa2g0qPk1NvzhJVf/D4taI4eqFMovbsvgzgNuzuY09
- 1NBMCb2q5vNrt15HmkxH2GKZaUmUcLskS9ofK0sBa6oqeyOYVVZHU8eHdAkGPjX6tS93e3d+kbw
- LHU3T44/
-X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cac382 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8
- a=hD80L64hAAAA:8 a=JF9118EUAAAA:8 a=N54-gffFAAAA:8 a=VwQbUJbxAAAA:8
- a=bLk-5xynAAAA:8 a=yPCof4ZbAAAA:8 a=tC5-z0Gf1kRdzandcvAA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=xVlTc564ipvMDusKsbsT:22
- a=zSyb8xVVt2t83sZkrLMb:22
-X-Proofpoint-ORIG-GUID: XTpOCO247mJJyou_uzo_-nSWIJjDP4ZH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <c5d8d527ca6194b606b5627e51abbb82ab6dd76c.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Philipp,
 
-
-On 03-Sep-25 10:18 AM, Alim Akhtar wrote:
-> Hi Ram
+On 8/25/25 12:37, Philipp Zabel wrote:
+> On Di, 2025-08-19 at 01:25 +0200, Michael Riesch via B4 Relay wrote:
+>> From: Michael Riesch <michael.riesch@collabora.com>
+>>
+>> The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one
+>> input port and one output port. It receives the data with the help
+>> of an external MIPI PHY (C-PHY or D-PHY) and passes it to the
+>> Rockchip RK3568 Video Capture (VICAP) block.
+>>
+>> Add a V4L2 subdevice driver for this unit.
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+>> ---
+>>  MAINTAINERS                                    |   1 +
+>>  drivers/media/platform/rockchip/Kconfig        |   1 +
+>>  drivers/media/platform/rockchip/Makefile       |   1 +
+>>  drivers/media/platform/rockchip/rkcsi/Kconfig  |  16 +
+>>  drivers/media/platform/rockchip/rkcsi/Makefile |   3 +
+>>  drivers/media/platform/rockchip/rkcsi/rkcsi.c  | 741 +++++++++++++++++++++++++
+>>  6 files changed, 763 insertions(+)
+>>
+> [...]
+>> diff --git a/drivers/media/platform/rockchip/rkcsi/rkcsi.c b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
+>> new file mode 100644
+>> index 000000000000..5658ffb60769
+>> --- /dev/null
+>> +++ b/drivers/media/platform/rockchip/rkcsi/rkcsi.c
+>> @@ -0,0 +1,741 @@
+> [...]
+>> +static int rkcsi_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct rkcsi_device *csi_dev;
+>> +	int ret;
+>> +
+>> +	csi_dev = devm_kzalloc(dev, sizeof(*csi_dev), GFP_KERNEL);
+>> +	if (!csi_dev)
+>> +		return -ENOMEM;
+>> +	csi_dev->dev = dev;
+>> +	dev_set_drvdata(dev, csi_dev);
+>> +
+>> +	csi_dev->base_addr = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(csi_dev->base_addr))
+>> +		return PTR_ERR(csi_dev->base_addr);
+>> +
+>> +	ret = devm_clk_bulk_get_all(dev, &csi_dev->clks);
+>> +	if (ret != RKCSI_CLKS_MAX)
+>> +		return dev_err_probe(dev, -ENODEV, "failed to get clocks\n");
+>> +	csi_dev->clks_num = ret;
+>> +
+>> +	csi_dev->phy = devm_phy_get(dev, NULL);
+>> +	if (IS_ERR(csi_dev->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(csi_dev->phy),
+>> +				     "failed to get MIPI CSI PHY\n");
+>> +
+>> +	csi_dev->reset = devm_reset_control_array_get_exclusive(dev);
 > 
->> -----Original Message-----
->> From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> Sent: Tuesday, September 2, 2025 10:19 PM
->> To: alim.akhtar@samsung.com; avri.altman@wdc.com;
->> bvanassche@acm.org; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; mani@kernel.org;
->> James.Bottomley@HansenPartnership.com; martin.petersen@oracle.com
->> Cc: linux-scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org
->> Subject: [PATCH V5 0/4] Add DT-based gear and rate limiting support
->>
->> This patch series adds support for limiting the maximum high-speed gear
-> and
->> rate used by the UFS controller via device tree properties.
->>
->> Some platforms may have signal integrity, clock configuration, or layout
->> issues that prevent reliable operation at higher gears or rates.
->> This is especially critical in automotive and other platforms where
-> stability is
->> prioritized over peak performance.
->>
->> The series follows this logical progression:
->> 1. Document the new DT properties in the common UFS binding 2. Clean up
->> existing redundant code in the qcom driver 3. Add platform-level parsing
->> support for the new properties 4. Integrate the platform support in the
-> qcom
->> driver
->>
->> This approach makes the functionality available to other UFS host drivers
-> and
->> provides a cleaner, more maintainable implementation.
->>
->> Changes from V1:
->> - Restructured patch series for better logical flow and maintainability.
->> - Moved DT bindings to ufs-common.yaml making it available for all UFS
->>   controllers.
->> - Added platform-level support in ufshcd-pltfrm.c for code reusability.
->> - Separated the cleanup patch to remove redundant hs_rate assignment in
->>   qcom driver.
->> - Removed SA8155 DTS changes to keep the series focused on core
->>   functionality.
->> - Improved commit messages with better technical rationale.
->>
->> Changes from V2:
->> - Documented default values of limit-rate and limit-hs-gear in DT bindings
->>   as per Krzysztof's suggestion.
->>
->> Changes from V3:
->> - Changed limit-rate property from numeric values 1 and 2 to string values
->>   Rate-A and Rate-B for better readability and clarity as suggested by
->>   Bart and Krzysztof.
->> - Added Co-developed-by tag for Nitin Rawat in 3rd patch.
->>
->> Changes from V4:
->> - Added the missing argument to the error message while parsing
->>   limit-rate property.
->> - Updated the maximum supported value and default for limit-gear
->>   property to gear 6, as per Krzysztof's and Bart's recommendation.
->> - Renamed Rate-A and Rate-B to lowercase (rate-a, rate-b) as suggested
->>   by Krzysztof.
->>
-> Please allow minimum 4 ~ 5 days for reviewers to complete the review before
-> posting next version.
-> That will also help to reduce the number of iteration a patch goes through.
-> Thanks
+> Why array? rockchip,rk3568-mipi-csi bindings specify a single reset.
 
-Hi Alim,
+Hm. Copy-paste issue, I guess. Good catch, thanks for pointing it out.
 
-Thanks for input. I’ll make sure to allow at least 4–5 days for the 
-reviewers to complete their review before posting the next version.
+Best regards,
+Michael
 
-Thanks,
-Ram.> 
 > 
-> 
+> regards
+> Philipp
 
 
