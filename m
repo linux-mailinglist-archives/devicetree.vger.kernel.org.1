@@ -1,64 +1,52 @@
-Return-Path: <devicetree+bounces-218115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51739B7E956
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:54:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C09FB7EEAB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:06:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A719E481B8D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:00:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2ECA1C023E2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AD22192E4;
-	Wed, 17 Sep 2025 01:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE5B225A23;
+	Wed, 17 Sep 2025 01:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="kit1a2J7"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="rByKNAjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2C4288A2;
-	Wed, 17 Sep 2025 01:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8FC21B185
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:10:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758070826; cv=none; b=LG9Zp8xn38UA3oL9Hl9dlEFbDrUZ6aZRRSVHE9d3YieQVtArVhZxC3Uw32InBedsHfOUIHlX8PLqWwEsdS2luWgxJlAnpar59bPEmmHKRqnuRd15tkGPN7Z9KX2l8mKloMUZskMSIbz1NgdcB9uOiw0aSigrE7vZ6dEpxWx1n4U=
+	t=1758071433; cv=none; b=YdZZep0MPeXSv9p9Cnm+HD2tvi7XAhC5QCV127uUu1DfmHELcsPgLtazj9ZmNLiLfviRKN923AkDRT5HgpsHopkJJW0oHQzdcAQRUmGNGu+EvYC9EoES4HyvmtGMv6VKcMu7Sw0oa6LT2ihTLBn2SBYgrbSrVpfpnGO+YcxygRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758070826; c=relaxed/simple;
-	bh=tsO5jRTbC5C4sWkwBHBuj5Oo6pyzKwPwdmknegJNV2Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=kJdwipH872DdlIxTWtNCk3WtqBJy5gA/fROs2//3NuZMUoBIs0F3YS3o9rS2DZ0I2CjtF49nbE96mIAdFfvd8U9ulUw51LfSdO2dfnRYB77Fisysf4iLXhnAWWMJ8APi4sBEOPCIgjlVqRwwBwwuW1Kg5ye+TPLERG9NpVtcGFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=kit1a2J7; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1758070822;
-	bh=kPcYVN/bdj4IAsOc2wtOoTywOlIcugnZO98J5M8IzPg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=kit1a2J7OpKqINcCyhtqpEkjNPspQe0QOwfTIt3cnWsRBM0Z6bkiByAs5lTFy4yOl
-	 jdhbbVke58ds1NvIYBtljzY6o64gXE/r6XUIB4c6KrMbQQ2fJqBMEApFsPC5CQqyyV
-	 xaw+8O4jlmznaFgL1/A1IrL1WCIi1LumdLGHboTGVV5qtNLGigxKejX9HzmHn89vxD
-	 sjfViM6+lAkrql/m7IrQvBED6sFGuZrauJ9FPgc72Q4zNiZKVc+v5N2x4NB9DlewGO
-	 B9mOrlF/vyTg3ofG3J1+ITkzLEUnaI9jjs/r1fg/ih8GDLFa1KEpTEoaNjXHeWzoA0
-	 L67cOlWzEMtAQ==
-Received: from [127.0.1.1] (unknown [120.20.76.56])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BCCFC6F070;
-	Wed, 17 Sep 2025 09:00:17 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Zane Li <Zane_Li@wiwynn.com>
-Cc: Zane Li <zane_li@wiwynn.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-In-Reply-To: <20250916034036.348247-1-Zane_Li@wiwynn.com>
-References: <20250916034036.348247-1-Zane_Li@wiwynn.com>
-Subject: Re: [PATCH v1 1/1] ARM: dts: aspeed: yosemite4: allocate ramoops
- for kernel panic
-Message-Id: <175807081736.540394.10309376848327644681.b4-ty@codeconstruct.com.au>
-Date: Wed, 17 Sep 2025 10:30:17 +0930
+	s=arc-20240116; t=1758071433; c=relaxed/simple;
+	bh=83hlTojNpMHUMhNQlSYHxajM36tMhM0Trd8zSojDxFA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bKPcflSVpvnGRhuEuXzfIeBZcj90SbpZbsY3yDanCTA4nIk/UFTIE9ZcaSNStiTNNYiEnPO9VxqhrPx7l7Y5KWJResFX/xjFh/RWV6rsNDPf6uThyV1QuZXKDcaXOyWCJkvmQJW2l1Ik2a/uHwa7kY3j/xGXizJEWf0F2K7zB/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=rByKNAjH; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1758071420;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=nGEaWmxy+OrwGhatLDdMArPdkkpGy3vthm4epzwHO1Y=;
+	b=rByKNAjHmpq181LQG1zlOYpLWxF/snRF6a6mwqMbZAgmRMvLRBLgdg6RTcRSMpG5PQ0k4v
+	QllJD4oSzhSYzB3lKIgKChoaFoPVRD4/AI1KGYSMtUN0JwddGHnJilSI06DwXGB7gHK2L6
+	EUjIoKtfEnV91tM5++bUn6tfqQ82bZ1Tnv/u/xSPEKiAUG/KNKVMVhLcIjmfxTc7s3ceRw
+	7G2ysqTkew3CJZuAorjM/utT/8bR+6NsWfLXbW1LlMkCNzI3n9cwTeHBwkWFTVz/CIiN2b
+	Cc3lLemLicRgy9aA9JAwlNHNkcgJDIQVpBAUG3Jg+oSFzn2PfVuZOlgIZ4nOrQ==
+From: Paul Sajna <sajattack@postmarketos.org>
+Subject: [PATCH v2 00/13] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Improve HW support in dts
+Date: Tue, 16 Sep 2025 18:09:46 -0700
+Message-Id: <20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +55,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+X-B4-Tracking: v=1; b=H4sIAFsKymgC/2XO0QqCMBTG8VeRc91im4opEb1HdOG2k63U2c6SI
+ nz3lhUEXf4PnB/fAwi9RYIqeYDH0ZJ1fQy5SEAf675BZk1skFzmvBSCna7m3vbMBGKi0JnAvDS
+ aHyA+DB4P9jZju/27PV6u0QzvI3RIVM9mlaw/JP+SQ91jy0bBBFvJXBdZxlOl1HZwFLranzE4W
+ jrfbOCFHy0F5+/z8FHM+gdMfzdGjjOZqkwVRcmNxj8O9tM0PQEStQDVCAEAAA==
+X-Change-ID: 20250911-judyln-dts-17c41e59dc0f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Amir Dahan <system64fumo@protonmail.com>, 
+ Christopher Brown <crispybrown@gmail.com>, 
+ Paul Sajna <sajattack@postmarketos.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758071415; l=2827;
+ i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
+ bh=83hlTojNpMHUMhNQlSYHxajM36tMhM0Trd8zSojDxFA=;
+ b=KfxKLPGB1FMZwZ+v6MCQ7koPkTwUCKP70sPR06U0BdyQCmKKwigxluK6151GzMz0GEToL7q5Z
+ hfqEGe5L8oxBaJt6cHqE5JA3YnOg6+KLFlu4eDoxaIBB/eIKt43lJTH
+X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
+ pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, 16 Sep 2025 11:40:35 +0800, Zane Li wrote:
-> Reserve a ramoops memory region in the Yosemite4 device tree so that
-> kernel panic logs can be preserved across reboots. This helps with
-> post-mortem debugging and crash analysis.
-> 
-> 
+Rollup of improved hardware support via devicetree for LG G7 ThinQ 
+(judyln) from sdm845-mainline kernel fork
 
-Thanks, I've applied this to the BMC tree.
+Notably, this patch-series enables full DRM acceleration and wifi,
+among other small improvements in individual commits
 
+after this patch-series the main things that remain to be worked
+on include touchscreen, audio, and modem.
+
+Depends upon panel driver patch-series https://lore.kernel.org/all/20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org/T/#r9a976ca01e309b6c03100e984a26a0ffc2fe2002
+
+Co-developed-by: Amir Dahan <system64fumo@protonmail.com>
+Co-developed-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+---
+Changes in v2:
+- sort at the start
+- drop unnecessary labels
+- drop unnecessary gmu
+- multi-led
+- split fb-panel changes
+- expand upon firmware commit message
+- use qcom,calibration-variant instead of
+  qcom,ath10k-calibration-variant
+- change firmware paths to include "LG"
+- remove framebuffer reservation
+- add lab/ibb
+
+- Link to v1: https://lore.kernel.org/r/20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org
+
+---
+Amir Dahan (1):
+      arm64: dts: qcom: sdm845-lg-common: Add leds
+
+Christopher Brown (1):
+      arm64: dts: qcom: sdm845-lg-judyln: Add battery and charger
+
+Paul Sajna (11):
+      arm64: dts: qcom: sdm845-lg-common: Sort nodes and properties
+      arm64: dts: qcom: sdm845-lg-common: Add uarts and Bluetooth
+      arm64: dts: qcom: sdm845-lg-judyln: Add display panel
+      arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes
+      arm64: dts: qcom: sdm845-lg-{common, judyln}: Add wifi node
+      arm64: dts: qcom: sdm845-lg-common: Add chassis-type
+      arm64: dts: qcom: sdm845-lg-judyln: Add fb_panel dimensions
+      arm64: dts: qcom: sdm845-lg-common: Add camera flash
+      arm64: dts: qcom: sdm845-lg-common: Add bootloader-compatible board and MSM IDs
+      arm64: dts: qcom: sdm845-judyln-common: Remove framebuffer reserved-mem
+      arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 222 ++++++++++++++++++-------
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 136 ++++++++++++++-
+ 2 files changed, 296 insertions(+), 62 deletions(-)
+---
+base-commit: 8394712bc1340df993cb167199568f44013b45d3
+change-id: 20250911-judyln-dts-17c41e59dc0f
+prerequisite-message-id: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
+prerequisite-patch-id: e51151ea7f8fdad6ad7d90713febc5c6b6fc4f9c
+prerequisite-patch-id: b3dd44250da9cd12bc5b2d0d7e865dbe19ceed92
+prerequisite-patch-id: fd6c8077806cb03fcf37d0e0d730314c2760e334
+
+Best regards,
 -- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
+Paul Sajna <sajattack@postmarketos.org>
 
 
