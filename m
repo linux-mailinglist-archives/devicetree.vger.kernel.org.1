@@ -1,115 +1,171 @@
-Return-Path: <devicetree+bounces-218436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6245B80044
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:33:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347EEB7FFED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 16:30:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD1891C20105
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:26:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2F053BDBBD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A85B2D24B2;
-	Wed, 17 Sep 2025 14:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95A522C0F6E;
+	Wed, 17 Sep 2025 14:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="iPeTG/S7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wMacfxa6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB942BE7CC;
-	Wed, 17 Sep 2025 14:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27131CDFD5
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 14:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758119183; cv=none; b=dT11vjdY8vI8FQeFq2j7z00Enfqa+KfG0msV96IrjuYU/eJzxxjjzKYmkx1kdVWRMs1N2CExWkzdh1tV/H/epEbJQzqZa0uxkMYl7W4WTdMvrKL3b7WRzEq59ILgHuyFdJ1dQvngngK0AgQkazFYGD0b0Xrf5O6z43mMOKuj+Y8=
+	t=1758119175; cv=none; b=futQuQTAPuf7O4UcKXQYQV9ubGZbF6kbaJzSPEMVGgX2Sz2TXjhGqHItaCzTpCEigGqVZRm7b4JgEwQ1RJmLcJYVdaDDLQNlJdqx4jhwUZsXgfBzA1FZygRbO4eCdKnAFFqa5PzbkLoxWYZAHV3hdvWTxIeyNamXdEavnYgBcUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758119183; c=relaxed/simple;
-	bh=TR78DtXxPqTbF32P0w4pzB/KzzVQFhn8kipZmGGzaKs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FmQL7xN09dJii1tmugaoRi8nKN2ymiQdXA2pd7X6V7ND0ZDNRNrRuCUQMujyWs2CnoRP++0U1LXm3PSH6EbtrKhrTfgj7jh1x4nkn74auclcGaZ1+ZVf06tFyPsWuWjH7njo0cOiWiZ5wL+AFYRB2XnPbT10WhihS8p69YMOUgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=iPeTG/S7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=XBxKHfRCGcE5Q/eepg5aPjxUu8diqcOmzAvEs6SS1gU=; b=iPeTG/S7BlbqBcsqvb6s5BzW8C
-	+K5i7IF5xnqnky7+WluHCxzTVYLW/nX5SZ4xz1RRqfPrwlRCIPUb2l7VwS8EZtUMDFXIBh3I1HiUV
-	v6hOiPZ6kgUyWn/QyT7HAVCmge5ATcGHua9nehvN3uHnUDWteZpHXyEn6D5RGt1RDNxDKovDDrJIc
-	gJg9Nsh5XBjMoTJjI3znoDVX2LidNsR2MS/d43s+VfKZ+LKV3CvGmQqADqCP5zowN84MEkKpPt0q3
-	zY+XFX1H7akSvKHeWA5keKDUxePGwWuDjYuqh8Al6wqSXQWXEdYAh1OLPVtTVu1XKLDVFvdfAi6sP
-	fktAFmTw==;
-Received: from i53875a9d.versanet.de ([83.135.90.157] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uyt6e-0000pg-Tg; Wed, 17 Sep 2025 16:26:00 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Ed Wildgoose <lists@wildgooses.com>, Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 2/2] rockchip: dts: Enable UART DMA by adding default dma-names
- property
-Date: Wed, 17 Sep 2025 16:25:59 +0200
-Message-ID: <4007782.fW5hKsROvD@diego>
-In-Reply-To: <7c8576e3d9fc73ba45830833f5281706@manjaro.org>
-References:
- <20250917114932.25994-1-lists@wildgooses.com>
- <20250917114932.25994-3-lists@wildgooses.com>
- <7c8576e3d9fc73ba45830833f5281706@manjaro.org>
+	s=arc-20240116; t=1758119175; c=relaxed/simple;
+	bh=JZxC59+l0K5DkGdV5aRYQYUWp1YC5ovZfqzD3FPsuz8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=StBn0c6YR08CXwcOBZQyaVZrgyKFAlFXr941ScivFiON61lewlll27U3Vj9QNdo69XNTvVq0MnRP9f4kWSnJ3WUtjQci7LTy9fxk6N3fAkildWB/Pd5VKfeNs1q/4KrJKUSmfg2W/hFYaqBkpyEaV0z+OwJL5aSeufwyQqwyerI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wMacfxa6; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b07d4d24d09so555580666b.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 07:26:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758119171; x=1758723971; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=10t2Z6sgnABIAwDZkTB26QdFfX0ldYEILJpBIALC4NU=;
+        b=wMacfxa64V+hZqJdlMnXg2iSd8LdTVPmi5yXWNYYsPUQc/J8+hrz4DoD5nrQhJ42fn
+         lqYPw4FMS30yNrWWuIwJIIfpA35RmuASBsHIvLBSzdg20DpRwJU7UuxQdqsfZZ/myoN2
+         BgmpKgzbgIR9kuV8egT9fW7/uShJv18fYzfI5NdxS/JAzWA7HSLDoVYVOjt1/v+LZHOP
+         73H2hVA/lfUhzCm3SsnPH1BFNGNc5ii4yvJvXJunecjrn419i291yAPce4q3nT6ClaCZ
+         ZMWGweox/NDihX+XLcQlPvFDH8S2PZNE5jw3jJYdSH+c1b3qisNVF4MkZ9md+bo3CF72
+         4TXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758119171; x=1758723971;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=10t2Z6sgnABIAwDZkTB26QdFfX0ldYEILJpBIALC4NU=;
+        b=KUll6D7nAnHXmI/jVGvKgKrVeWzYagzTyEj7/bpLsuDCCX9FFoIggDe4PIBcddUUo9
+         pMcJay88nWwMHFF0+HGpVrcCUaX2yghOw6qAcMIpWi1p08DL5gryGP5ciYR6utM6hoe/
+         blvcQ9kHgbGzcnwCxDeLP4mrb7uVrOqdfBhcRr0k01Qm4oVFbzurceZ+exhawOaRvxHG
+         ptKh+kN0gVqBBXvYUviAWfd6Yz7D2xlkZBcu1m/BDbWXAnNkVyvnUHsXKexjX3DKTvW+
+         GydOwe+1iPn++5c4upV2RJ0zMH8kM05/RZhDHtTBVonb2Cgv+zIbFf1TeTojGRzE9qAf
+         Jbfg==
+X-Forwarded-Encrypted: i=1; AJvYcCXRLws+cIvLDN+L+9CULxeYD/WBCoIA9vpLyJPeGLm4DKOm70CFTg6QL105VjVw36Lp2DqpokuBjh0C@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFyRTujGn6BLYjEt1JCK8LN7zce10R2sQQ/kB3oNAd2fTToocJ
+	5XhP+hd88ZFxn1LYpjYm10fVBTqhmEQ3HVhRoKnouzXGbIkpRNExKKpyrlq6ynYWYSM=
+X-Gm-Gg: ASbGncsYXkX8LSWh29AB+AvRXDCe88W2WrwJLqR4i0m8KiH6HKrH7t3Sg2hlfPfMkuJ
+	Cg3BmxvG6oEPjkSZV/XkL1YnKtl1tsdi1+WhCL5wvTg/lJdYQtCLpgPY0enYOrKLqMd3++lAnXi
+	rOsWBsjAaNr8ctPQBvYCfoYX5RL5KouHYQb4D87d31LwVgEwkZqPiL6W6rXURG1ccuc2tSTpSg7
+	0fwp9cZ/vS4XyyqL0HO5XQeblE0esj040kbwoXyCMywAeVftvlKtXtVxbWtinCDe3g0Df1iFYf2
+	me0wgA5Tfyj3iFMZozIixkilWOWm3QuV6zTf9Ih3eCNO+FK0MWf1ribzHf7eCZV0wMilz0Fn0r3
+	UshWj7QkPr7q1cABw/43ftvJIkGseWepN6Zx+YJc/pnI=
+X-Google-Smtp-Source: AGHT+IEaxm2Ezs6X9pAGeZTfGiDeZKKFcv9jYxAWmPiRXScidoOV/iqJhV2uKVKOhqCyY8zfonbwMA==
+X-Received: by 2002:a17:907:970e:b0:afe:c2e7:3705 with SMTP id a640c23a62f3a-b1bb2d0f4fdmr263147466b.22.1758119170855;
+        Wed, 17 Sep 2025 07:26:10 -0700 (PDT)
+Received: from [172.20.10.3] ([109.166.135.151])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b3347b90sm1356906866b.109.2025.09.17.07.26.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Sep 2025 07:26:10 -0700 (PDT)
+Message-ID: <b8a0586e-a79a-4e14-87d8-ee156436d1b0@linaro.org>
+Date: Wed, 17 Sep 2025 17:26:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-Am Mittwoch, 17. September 2025, 14:22:52 Mitteleurop=C3=A4ische Sommerzeit=
- schrieb Dragan Simic:
-> Hello Ed,
->=20
-> On 2025-09-17 13:49, Ed Wildgoose wrote:
-> > Kernel appears to need a dma-names set for DMA to actually enable. Set=
-=20
-> > a
-> > default dma-names property for all UARTs defined in the base=20
-> > rk356x-base
-> > dtsi
-> >=20
-> > This is tested on a Radxa Zero 3W (which has 5x UARTs) and removes the
-> > warnings and enables DMA on this platform
->=20
-> Thanks for the patches.
->=20
-> We should (still) stay away from defining the "dma-names" property
-> at the SoC level, because doing that causes serious issues in certain
-> cases.  Thus, I'd suggest that this patch is dropped, and that the
-> "dma-names" property is defined instead at the board level, where
-> it's needed and tested to work as expected.
->=20
-> Please see commit bf6f26deb0e8 (arm64: dts: rockchip: Add dma-names
-> to uart1 on quartz64-b, 2024-06-28) for further explanation.
->=20
-> If/when the underlying issues are debugged and resolved, we can get
-> back to defining the "dma-names" property at the SoC level.
-
-And apart from the whole stability thing, on a number of socs the pl330
-dma controller has more possible sources for dma operations than it
-has available channels ... and right now the driver does not support
-handling this.
-
-So you can (and if I remember correctly we did) end up with some uart
-requesting dma channels (and not needing them) and then sound not
-getting any.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+To: Thomas Gleixner <tglx@linutronix.de>, David Hildenbrand
+ <david@redhat.com>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <87v7lh891c.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-Heiko
 
+On 9/17/25 17:10, Thomas Gleixner wrote:
+> On Wed, Sep 17 2025 at 09:16, David Hildenbrand wrote:
+>> On 17.09.25 07:43, Eugen Hristev wrote:
+>>> On 9/17/25 00:16, Thomas Gleixner wrote:
+>>>> I pointed you to a solution for that and just because David does not
+>>>> like it means that it's acceptable to fiddle in subsystems and expose
+>>>> their carefully localized variables.
+>>
+>> It would have been great if we could have had that discussion in the 
+>> previous thread.
+> 
+> Sorry. I was busy with other stuff and did not pay attention to that
+> discussion.
+> 
+>> Some other subsystem wants to have access to this information. I agree 
+>> that exposing these variables as r/w globally is not ideal.
+> 
+> It's a nono in this case. We had bugs (long ago) where people fiddled
+> with this stuff (I assume accidentally for my mental sanity sake) and
+> caused really nasty to debug issues. C is a horrible language to
+> encapsulate stuff properly as we all know.
+> 
+>> I raised the alternative of exposing areas or other information through 
+>> simple helper functions that kmemdump can just use to compose whatever 
+>> it needs to compose.
+>>
+>> Do we really need that .section thingy?
+> 
+> The section thing is simple and straight forward as it just puts the
+> annotated stuff into the section along with size and id and I definitely
+> find that more palatable, than sprinkling random functions all over the
+> place to register stuff.
+
++1 from my side.
+
+> 
+> Sure, you can achieve the same thing with an accessor function. In case
+> of nr_irqs there is already one: irq_get_nr_irqs(), but for places which
+
+Not really. I cannot use this accessory function because it returns the
+<value> of nr_irqs. To have this working with a debug tool, I need to
+dump the actual memory where nr_irqs reside. This is because any debug
+tool will not call any function or code, rather look in the dump where
+is the variable to find its value. And nr_irqs is not in the coredump
+image if it's not registered itself into kmemdump.
+So to make it work, the accessory would have to return a pointer to
+nr_irqs. Which is wrong. Returning a pointer to a static, outside of the
+subsystem, is not right from my point of view.
+
+> do not expose the information already for real functional reasons adding
+> such helpers just for this coredump muck is really worse than having a
+> clearly descriptive and obvious annotation which results in the section
+> build.
+> 
+> The charm of sections is that they don't neither extra code nor stubs or
+> ifdeffery when a certain subsystem is disabled and therefore no
+> information available.
+> 
+> I'm not insisting on sections, but having a table of 2k instead of
+> hundred functions, stubs and whatever is definitely a win to me.
+> 
+> Thanks,
+> 
+>         tglx
 
 
