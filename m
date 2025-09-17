@@ -1,303 +1,337 @@
-Return-Path: <devicetree+bounces-218472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47BEB80A34
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:38:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2904B80A58
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:40:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 988A84E32C4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:38:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3431882B9B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C060F33B483;
-	Wed, 17 Sep 2025 15:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4603451BF;
+	Wed, 17 Sep 2025 15:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="fWlW7F1+";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="LFx/x3tj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ns3iUK3u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2EE33B464;
-	Wed, 17 Sep 2025 15:37:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.152.168
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758123464; cv=fail; b=V9IPCVqA7PmTEfevKH7vqn1W1+r6PQDBl8MbWPtA9TrIAmmwH3lYtH15kH5XMljq0OcLNonhTO20z+rJwRuzPtZ70roHvp1BBNRS2T2c/MYLYIBmWb38ilavlNtDLkbFOerPFkz93ZwVVaH8HHJi21QgDe8PkeRpLdMXCq6RKRk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758123464; c=relaxed/simple;
-	bh=9fENK6SNnhV4DAGaNi7Ye8SDSFSJ/NGGImv71zIDeog=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KWL9zudT9jOs1laX/Verht+injCsZaa65eteZlinU9KQYZOdFBQjFFd0yr9nKJcZSp7rVGFLkA4FPFWlqFs+rIUzj3jt+5ZYGz18+uuo9lLQd6Gl1jfjpBNydAwd+enBDY/vBX/wYJiHQI60HlT0zWtVnnTfegLbDzETsayNbDo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=fWlW7F1+; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=LFx/x3tj; arc=fail smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 58HBDHi92718596;
-	Wed, 17 Sep 2025 10:37:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=gp40NizKm1FM7ylVvmUIRHmLfezg4m3gwW3kPy0zH7s=; b=
-	fWlW7F1+QDtvoSt2Fy0hpHjHhZz3bGCSYYc/f4t54DPJLkZJvlZV4vQ1c+5adQYB
-	3b3a2QBmCeg38InRzpkdG3aj/i7SqWz9eok0vobUA8Rb2xR9kKwN7JNwTSUfMLeo
-	cAUFdkZMI7p4/ZNorZ3cz1s1mSU8zin8wlQ56OBKI0JZUMqPrmt4Knw8silyf7g+
-	8igKLNG7wbJuc0bYSoKuYbF2+V2/PWd4w3uqI0XSnDVaKlMpQSI+CuT7PWO+T6Eh
-	lVx/IR75rrlorrnJGzB7N5cF4f7yw2kKhWmyC+zAiDcZGk6744H22SPQBcUrgzDC
-	repfK+uPqfCF/u6rIGw0/w==
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12on2133.outbound.protection.outlook.com [40.107.244.133])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 497fyks976-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 17 Sep 2025 10:37:39 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JkN+bXm5qMY3jKrllXAOVu4bOIA9rGR3F3iiJTtH2PDaSZXFcCcWFCNC871pgKGPy0INiodzSgLhskfqPZIISz7A87/LAy351wWZscv98GB83jHmx8OJBbM6du7byuh8Lh19d6P2SR86NLRljhFy114dPjhjwf91t4PqcfEOwqs3t7Z8Ae0jMx8JDeSr9LaJ6ve4i/rCuNBasEApP9PmwKjlLmP+c8lsGeoU3GB8zIamSCku8aMDomkJVxZZkuD1vRDndxaGZb7SVMmZnCs3VI+vG3zrHrHnLThbIBjADSkLrobkpLlaxwuuLt4u+QdvGEZLzCc9SbldsB4ll8Tf+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gp40NizKm1FM7ylVvmUIRHmLfezg4m3gwW3kPy0zH7s=;
- b=Adv4lSFQb/EWP1D1ffRxVVnhe28aAzYCsaQ2BFoBWAcr2rX3R+mA7/Fte5VA9WmVKwg8qNRnWdOasmOzOLK0THriFudRY0IR6dolASvTzEULRl8rZ4mXanU+JFawaRPE6fIR0+PrXcs7xWIgCEaLV4FHpgj68SjaLSEpSBgbX98U3AtvWZaPv4v8AlxHZr+rE9W8kbu6XbOhHOKOLT3jLwv/OwZKhoGeZ2kgWyGtu/3UlINMcWKzbtMwdGNiSwsX2Fg5MZDZc1bY8mJGIPJmY+E6BVS+IuFLKhPs4WQ5ICbYHvuhFLfhux1g38TauT1+9TfU+aBBhtwGSm5CU/UDfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 84.19.233.75) smtp.rcpttodomain=cirrus.com
- smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
- action=oreject header.from=opensource.cirrus.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gp40NizKm1FM7ylVvmUIRHmLfezg4m3gwW3kPy0zH7s=;
- b=LFx/x3tjUeOpCDRvnVJWF/2X8Ol/nWl3LzjH9BU+1xNbbh8oFa1tqcViIyV7p/Ssvm3du1jo5pEhp5smPNSa4dZMiC9IC8J+1iPppCcH3Ei6LQgRbQ7eagPbM+nqvUZuLgOrhpM/XgJLnGYH/G2oUDK9IvA1oIhuz8Y4Jshz57E=
-Received: from CH0P221CA0036.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::14)
- by CO1PR19MB4840.namprd19.prod.outlook.com (2603:10b6:303:f6::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Wed, 17 Sep
- 2025 15:37:35 +0000
-Received: from CH1PEPF0000AD76.namprd04.prod.outlook.com
- (2603:10b6:610:11d:cafe::fe) by CH0P221CA0036.outlook.office365.com
- (2603:10b6:610:11d::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.13 via Frontend Transport; Wed,
- 17 Sep 2025 15:37:34 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
- smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
-Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
- does not designate 84.19.233.75 as permitted sender)
- receiver=protection.outlook.com; client-ip=84.19.233.75;
- helo=edirelay1.ad.cirrus.com;
-Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
- CH1PEPF0000AD76.mail.protection.outlook.com (10.167.244.53) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.12
- via Frontend Transport; Wed, 17 Sep 2025 15:37:32 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 50F1A40654A;
-	Wed, 17 Sep 2025 15:37:31 +0000 (UTC)
-Received: from lonswws02.ad.cirrus.com (lonswws02.ad.cirrus.com [198.90.188.42])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 182E882024A;
-	Wed, 17 Sep 2025 15:37:31 +0000 (UTC)
-From: Stefan Binding <sbinding@opensource.cirrus.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        Stefan Binding <sbinding@opensource.cirrus.com>
-Subject: [PATCH v3 2/2] ASoC: cs35l41: Fallback to reading Subsystem ID property if not ACPI
-Date: Wed, 17 Sep 2025 16:37:12 +0100
-Message-ID: <20250917153722.94978-3-sbinding@opensource.cirrus.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250917153722.94978-1-sbinding@opensource.cirrus.com>
-References: <20250917153722.94978-1-sbinding@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363F33AEB5;
+	Wed, 17 Sep 2025 15:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758123533; cv=none; b=mvdnymrq6Z62uESD0JPARr/m/AXzCE6kdXYzu87LcNr5aJN/PdYfGpFPmZyWeCQ/mMOEALcYTIb/FYKHjY0uE/5/r2LdzyezLOgA/2fqGvfRklDccFkCXZHjYQi5N4wIOm+kmzClGp3/jcDXjAPXlfv+XGnQgQRaXHkeajYxAdM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758123533; c=relaxed/simple;
+	bh=3pSUyCvPtlKEAoyO55jMWubK5+XvPSCaonS4zDZvGwY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nE3M/0T3lxWHwLGPiantTR4W4aPwtj6PPZRRnE8+bHogEWx+5n3EbUMAm3VAUhnc68aIPkz3eETb//PL6AdWf+FaoHR3V2vqul5Eg74CdS6XIJHyK3k9ZNje+o/XxeacMSZGoM3MtKEmDHvlp4zGKQGTRsZgWDyQ+R5i8KQzVJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ns3iUK3u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8E313C4CEE7;
+	Wed, 17 Sep 2025 15:38:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758123532;
+	bh=3pSUyCvPtlKEAoyO55jMWubK5+XvPSCaonS4zDZvGwY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ns3iUK3ub6olJiv86+HaN3/bL3q5JqY3Yz1ixHG/9OGvZRNdp8jvnx7AMyF3XDz6l
+	 g9rOVoHzF1q3wnQ1y/tiTzSYAGOWUX/qJr0Iw2IlRP0YXUItWQnE2cPJNGtT20jW50
+	 jjav08zqhS9WjrNm90x24eV3G9Pr5AZqUHuKICZDt8tDi6cbWEl3b53WUJaTEGX6Ta
+	 QhxluNTxSwWfjh8KDP5TLW2NOXnBJlTeJwVowINxvDDe0J7+Xus9Y0abBGqZBdylDL
+	 +GAVV66r44GB+hHz9dC/3dYsYalA8JplAu5HCk34pQ2OrbULv97zWSNOLnjm+tILam
+	 YJ0QB9pxC5M2w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73C9CCAC59D;
+	Wed, 17 Sep 2025 15:38:52 +0000 (UTC)
+From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
+Subject: [PATCH v11 00/17] media: rockchip: add a driver for the rockchip
+ camera interface
+Date: Wed, 17 Sep 2025 17:38:40 +0200
+Message-Id: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD76:EE_|CO1PR19MB4840:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: d16b2196-850a-4afa-290d-08ddf6001e45
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|61400799027|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?7Q1H92xhwJa6dFy8h15cEPUI5oRqq7P1TwwVbFe2zjcHnMvUjymMOhv+/89M?=
- =?us-ascii?Q?XjJ91g2IE5O0YdXKKbiOYzNLWrGoXjeBkLfAFD1gRH0NNpT+2EGlMJfw6EB1?=
- =?us-ascii?Q?fLEoGjWwaeeomm2NsXOZTzE4uR71Ra4baGnNMclZO/VMbkl427h1ytgzoRfF?=
- =?us-ascii?Q?fXGT68kQUZ+dfIhkLwvi//JtNL5v4HZ0xVCe3gabWB5IYy8GudesQ1vYp9Rz?=
- =?us-ascii?Q?9I6+/sbQaY5BfutEkox3Yjz1+WgiyoLfFRX21+N3d2PI/hHfThWMZiT5Zx96?=
- =?us-ascii?Q?e+y7BdOnuNRpGP/Za8AmWqw547IFrMQkKg97dMcwb5FT74Xbki2tMOFl5wPM?=
- =?us-ascii?Q?J2N/Ivk/BYgY0vK7mbVdlSQPm+OzYU54LLtRya7XEyjp9C8vSc8QXcg0YEf+?=
- =?us-ascii?Q?rQgocdnc9K4s6QPlOJ7Fm4xezvEHTcAvG6XLjJDCZZzbr180KEEpUTefSROa?=
- =?us-ascii?Q?hjrOlbLHpaOHb2f7VWleSJOP7YB5r5/elRB7qaWNcNxeruj+iC6IOste8F/i?=
- =?us-ascii?Q?MCj+jUu+ZQlvd5fHQDWIZERFKqKJ0OsLhRoJURiQPGdZU8TD+BdWaz+ZNiWE?=
- =?us-ascii?Q?RMDT4T1gVmWYJxj9n8p84zm5syBdUVMOYcuQF6CXh4fUIR/VaUUdg7EuX0Oi?=
- =?us-ascii?Q?JszDhc9QR1jarcO/ATSBcp1Y2Sfh9ZhTkEe3p/hRrkjPyRXD7TBdV55mAMKw?=
- =?us-ascii?Q?c+331FZQcukPlgsp1H1l3UZ8gWRbdKqK5jis9EjVZC1fy7VRFOVS22XG6IP1?=
- =?us-ascii?Q?eRm6EuMBt1bvE+uykJyvqeur85RbtO0aQ2y4vzcryAv8Dz5X3QLx6mMRydY1?=
- =?us-ascii?Q?VcK4FYm/EqYKzyaIAwwzf7bzI/s+/ksiKMidFNd4jyNXjSTTHcqVndjt/nqi?=
- =?us-ascii?Q?yLuyETivvituYX2XSdiwhYy89bMH+q0ac15EkfuYhTPIhDQz+cNPPvCTOEE4?=
- =?us-ascii?Q?ZN3qjVlpFIfA7mX1ng2pwms2KViPuBHWv9PjdzsFARNnvk32dSRkJdARQh7A?=
- =?us-ascii?Q?5FV+7kmntu+VI22Ft0SLmZ474J5cu8/MJXkfCcTki6NId4GT+wh/pPITQyQu?=
- =?us-ascii?Q?35G7GPYrEp1Omzjn0quXAa1+UsjCVIAjeb1MZRMKa+Uc517jQq2AaPkZ1VMx?=
- =?us-ascii?Q?uZN0d3T6XfjCXYwL+Ad9XGIzMxsTTH82JVVi/mlq+mAhncOthmT4XouPHraK?=
- =?us-ascii?Q?VSENLmEjpj68rLYth53r/GFpssIyjER4K8/qw0AmNc8099A4egULlfcXRqTo?=
- =?us-ascii?Q?duJ2ri+O5T0feGmpC6Seg1PpIMJ4ql7FFQSybsB+VcENicqPoLa7cEHXJuWT?=
- =?us-ascii?Q?VxFBOLrKcwuXKpQJUy3pvSw1x0GxgvctNV5s9lgNmRTRvDd/46X5KNfYeeIA?=
- =?us-ascii?Q?FQCbnqKX0QbcuOxV3V3WkljsWoy6YPVcyUTFOK1UEQnj0acxqdqrhHwlN//I?=
- =?us-ascii?Q?RVqFeKRnySzeZMpC/tpmzB/EiDBpvHUI2zl7Uh4wzrm6oi1RLxuRgLBpmnwI?=
- =?us-ascii?Q?L2KldSIELg2CXt6CKclXMmuoZY6F22HcIAeG?=
-X-Forefront-Antispam-Report:
-	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(61400799027)(36860700013)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: opensource.cirrus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2025 15:37:32.2458
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d16b2196-850a-4afa-290d-08ddf6001e45
-X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CH1PEPF0000AD76.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR19MB4840
-X-Proofpoint-GUID: mtGvai5Gkel9Y0Jfl2j3ipgD3m4ssxVe
-X-Proofpoint-ORIG-GUID: mtGvai5Gkel9Y0Jfl2j3ipgD3m4ssxVe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE3MDE1MyBTYWx0ZWRfX9jIhZkFisI5S
- WX09EmYuDIRiu/ax6DNw9qznsAonzlEuGCFJObFedyE8Uh6ZlX0toi0T2RTci35Hw9MVmIOOvTg
- cSIB1Cq7QLAEZGlSHDgrvh+UTM1FmtyGy0u1Q2paZlne6c9/8/QSA8LGZFKapLeGeL8XPsOmPHY
- LmGIUsiuaPd1WkOU0glzw3E/EIawY3XqJraH5JfbMqVtGvFx4AzA2z3+y2a7lQnzpIhWPmITu7J
- U1Y5t1rC0152vIuTqJaTY0MxnhV2L6oyNEek920zL0SLQoDDYfVhKyS5h88tkIE75Nizxv8Ufvn
- pXfkZEFXPAv3xnni6Z+ghj+GzZkeQevJeBHBMcO+8YfpeSn/TPcknJQnLNB3Fk=
-X-Authority-Analysis: v=2.4 cv=KvRN2XWN c=1 sm=1 tr=0 ts=68cad5c3 cx=c_pps
- a=V+OjpK3aUZD57wWhQcm3pw==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10 a=w1d2syhTAAAA:8
- a=bL0rdlc7CeB77TPmB0MA:9
-X-Proofpoint-Spam-Reason: safe
+X-B4-Tracking: v=1; b=H4sIAAHWymgC/33RS07DQAwG4KtUWTOV7XlkhlXvgVjMk4xokyipA
+ qjq3Zm0glKUZmlb/n5LPlVjHHIcq+fNqRrilMfctaVAfNpUvrHtW2Q5lEZFQAKIgA3vXCrNpux
+ tz5xxPBlDMglRlRVnx8jcYFvfzEuH2ITMJuTzrB9iyp+XrJfXUjd5PHbD1yV6wrl7C5kU0+zY9
+ dnf503IgJHSYDFZJcDtPrp9up69beOxmuGJfjEkrB9jVDCHQWidvIfAFzH+g0kgUI8xXjBlAiY
+ 0UXoBi5j4g6F5jImCRQNKAdjI3TImbxhfu0wWLJU8SZKLxP0ipu4fcC+oIgRKMrkYUUrc+W6/t
+ 64b7NZ3hytQrwF1AWqpMQWjLOd2CdBrgC6ACcY7L5wkEZYAswaYAlgfsfzGC6tpCUBYExDmD1P
+ QtnYExon/xPl8/gapqh0BUAMAAA==
+To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Gerald Loacker <gerald.loacker@wolfvision.net>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Markus Elfring <Markus.Elfring@web.de>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Collabora Kernel Team <kernel@collabora.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, 
+ Alexander Shiyan <eagle.alexander923@gmail.com>, 
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Michael Riesch <michael.riesch@collabora.com>, 
+ Mehdi Djait <mehdi.djait@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Bryan O'Donoghue <bod@kernel.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758123529; l=11099;
+ i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
+ bh=3pSUyCvPtlKEAoyO55jMWubK5+XvPSCaonS4zDZvGwY=;
+ b=DCAqz8jFy+PT802s8GcvQxmc14KKL1P2E7I9XX0XIz2vvZkd0/YiE8ndiHaE2uMvuR5BiR46v
+ N7Zmii2Daw2Ai56G4GjP+TmXyuHeisvgjyJi7h02a6/vrpCfU7vnQxc
+X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
+ pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
+X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
+ with auth_id=371
+X-Original-From: Michael Riesch <michael.riesch@collabora.com>
+Reply-To: michael.riesch@collabora.com
 
-If ACPI is not used, then there is currently no way of reading a
-Subsystem ID property used for a system name to uniquely identify
-the system in order to load the correct firmware and tuning.
-Add a new property which can be read from device tree to be able to set
-the system name.
+Habidere,
 
-Signed-off-by: Stefan Binding <sbinding@opensource.cirrus.com>
+This series introduces support for the Rockchip Camera Interface (CIF),
+which is featured in many Rockchip SoCs in different variations.
+For example, the PX30 Video Input Processor (VIP) is able to receive
+video data via the Digital Video Port (DVP, a parallel data interface)
+and transfer it into system memory using a double-buffering mechanism
+called ping-pong mode.
+The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+DVP and a MIPI CSI-2 receiver that can receive video data independently
+(both using the ping-pong scheme).
+The different variants may have additional features, such as scaling
+and/or cropping.
+Finally, the RK3588 VICAP unit constitutes an essential piece of the
+camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+units, and a data path multiplexer (to scaler units, to ISP, ...).
+
+The v11 of the series adds a media controller centric V4L2 device driver
+for the Rockchip CIF with
+ - support for the PX30 VIP (not tested, though, due to the lack of HW)
+ - support for the RK3568 VICAP, including
+    - capturing frames from the DVP
+    - capturing frames from the MIPI CSI-2 receiver
+ - abstraction for the ping-pong scheme to allow for future extensions
+ - abstraction for the INTERFACE and CROP parts to allow for future
+   extensions
+ - initial support for different virtual channels (not tested, though,
+   due to the lack of HW)
+and a V4L2 subdevice driver for the Rockchip MIPI CSI-2 Receiver.
+
+The driver can be readily extended to provide support for the RK3588
+VICAP variant. In order to keep things simple, however, this extension
+shall be submitted separately.
+
+Looking forward to your comments!
+
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To: Gerald Loacker <gerald.loacker@wolfvision.net>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Collabora Kernel Team <kernel@collabora.com>
+To: Paul Kocialkowski <paulk@sys-base.io>
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: Val Packett <val@packett.cool>
+To: Rob Herring <robh@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+
+Changes in v11:
+- rkcif: split large driver patch (6/13 of v10) into smaller
+  patches (6-11/17 of v11) (Bryan)
+- rkcsi: replaced devm_reset_control_array_get_exclusive with 
+  devm_reset_control_get_exclusive (Philipp)
+- Link to v10: https://lore.kernel.org/r/20240220-rk3568-vicap-v10-0-62d8a7b209b4@collabora.com
+
+Changes in v10:
+- rkcsi: fixed error handling in rkcsi_start (Bryan)
+- rkcsi: fixed interrupt references in device tree and bindings
+  (Rob's bot)
+- added missing call to rkcif_mipi_stop_streaming from rkcif_mipi_isr
+  (Mehdi)
+- renamed remaining instances "cif_" -> "rkcif_" in functions
+- Link to v9: https://lore.kernel.org/r/20240220-rk3568-vicap-v9-0-ace1e5cc4a82@collabora.com
+
+Changes in v9:
+- added compatible for RK3588 MIPI CSI-2 receiver, thus dropped
+  Krzysztof's R-b
+- added interrupts to rkcsi DT binding and RK356x DT
+- added variant specific callback to rkcif-capture-mipi that puts
+  together the CTRL0 register content (which varies between RK3568
+  and RK3588)
+- fixed v4l2_fill_pixfmt_mp() return value handling (Mehdi)
+- Link to v8: https://lore.kernel.org/r/20240220-rk3568-vicap-v8-0-9d9cbc4b524d@collabora.com
+
+Changes in v8:
+- rebased onto v6.16-rc1
+- fixed RKCIF_MIPI_MAX value in rkcif-common.h
+- fixed rkcsi Kconfig (kernel test robot)
+- sorted rkcsi DT bindings document properly, completed example
+  (Krzysztof)
+- squashed the defconfig patches (Krzysztof), dropped Bryan's R-b
+- Link to v7: https://lore.kernel.org/r/20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com
+
+Changes in v7:
+- moved MIPI CSI-2 receiver driver into separate directory (Laurent)
+- rkcsi: fixed return values (Bryan)
+- rkcsi: fixed v4l2_get_link_freq to use pad instead of control
+  handler (Sakari)
+- rkcsi: added data-lanes property (Mehdi)
+- rkcif: fixed formatting (Bryan)
+- fixed "int" -> "unsigned int" in all for loops (Sakari)
+- rkcif-stream: fixed minimum number of required buffers (Mehdi)
+- rkcif-stream: used guards for the spinlock (Markus and Mehdi)
+- rkcif-stream: made driver less noisy with dev_dbg (Mehdi)
+- rkcif-stream: fixed issues detected by v4l2-compliance (Mehdi)
+- rkcif-dvp-capture: fixed return value propagation in _register()
+  (Mehdi)
+- removed stray "phy-names" from required properties (Rob's bot)
+- Link to v6: https://lore.kernel.org/r/20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com
+
+Changes in v6:
+- rebased onto v6.15-rc1
+- renamed "MIPI CSI HOST" -> "MIPI CSI RECEIVER" (Laurent)
+- s/@wolfvision.net/@collabora.com where appropriate
+- renamed DVP delay property and moved it to the endpoint (Sakari)
+- implemented DT review comments (Krzysztof and Sakari)
+- implemented driver review comments (Sakari)
+- fixed issues raised by media-ci (yet again)
+- added documentation including a RK3568 topology (new patch 1)
+  (Sakari)
+- added patch that enables rkcif in the defconfig (new patch 9)
+- Link to v5: https://lore.kernel.org/r/20250306-v6-8-topic-rk3568-vicap-v5-0-f02152534f3c@wolfvision.net
+
+Changes in v5:
+- fixed issues raised by media-ci
+- fixed dt bindings (comments by Rob and Sakari)
+- fixed probe on systems with no DVP in DT (comment by Alexander)
+- fixed error path in register offset calculation
+- split off MIPI CSI host driver into separate module (comment
+  by Mehdi)
+- added MODULE_DEVICE_TABLE() for both drivers (comment by Mehdi)
+- Link to v4: https://lore.kernel.org/r/20250219-v6-8-topic-rk3568-vicap-v4-0-e906600ae3b0@wolfvision.net
+
+Changes in v4:
+- added support for the MIPI CSI-2 receiver (new patches 4, 6, 7, 10)
+- fixed asserts on stream stop
+- fixed register address lookup
+- fixed link validiation callback
+- fixed issues raised by Rob's bot, kernel test robot, and media-ci
+- Link to v3: https://lore.kernel.org/r/20250206-v6-8-topic-rk3568-vicap-v3-0-69d1f19e5c40@wolfvision.net
+
+Changes in v3:
+- renamed the driver "cif" -> "rkcif"
+- rebased onto v6.14-rc1
+- abstracted the generic INTERFACE+CROP part
+- addressed comments by Rob and Sakari
+- added V4L2 MPLANE formats to DVP
+- added patch that enables the RK3568 VICAP DVP on PF5 IO Expander
+- fixed formatting issues raised by media-ci bot
+- Link to v2: https://lore.kernel.org/r/20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net
+
+Changes in v2:
+- merged with Mehdi's v13
+- refactored the complete driver towards a media controller centric driver
+- abstracted the generic ping-pong stream (can be used for DVP as well as for CSI-2)
+- switched to MPLANE API
+- added support for notifications
+- Link to v1: https://lore.kernel.org/r/20240220-v6-8-topic-rk3568-vicap-v1-0-2680a1fa640b@wolfvision.net
+
 ---
- sound/soc/codecs/cs35l41.c | 77 ++++++++++++++++++++++----------------
- 1 file changed, 44 insertions(+), 33 deletions(-)
+Mehdi Djait (2):
+      media: dt-bindings: add rockchip px30 vip
+      arm64: dts: rockchip: add the vip node to px30
 
-diff --git a/sound/soc/codecs/cs35l41.c b/sound/soc/codecs/cs35l41.c
-index 224d65987a8d..173d7c59b725 100644
---- a/sound/soc/codecs/cs35l41.c
-+++ b/sound/soc/codecs/cs35l41.c
-@@ -7,6 +7,7 @@
- // Author: David Rhodes <david.rhodes@cirrus.com>
- 
- #include <linux/acpi.h>
-+#include <acpi/acpi_bus.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/init.h>
-@@ -1147,45 +1148,55 @@ static int cs35l41_dsp_init(struct cs35l41_private *cs35l41)
- 	return ret;
- }
- 
--#ifdef CONFIG_ACPI
--static int cs35l41_acpi_get_name(struct cs35l41_private *cs35l41)
-+static int cs35l41_get_system_name(struct cs35l41_private *cs35l41)
- {
- 	struct acpi_device *adev = ACPI_COMPANION(cs35l41->dev);
--	acpi_handle handle = acpi_device_handle(adev);
--	const char *hid;
--	const char *sub;
--
--	/* If there is no acpi_device, there is no ACPI for this system, return 0 */
--	if (!adev)
--		return 0;
-+	const char *sub = NULL;
-+	const char *tmp;
-+	int ret = 0;
- 
--	sub = acpi_get_subsystem_id(handle);
--	if (IS_ERR(sub)) {
--		/* If no _SUB, fallback to _HID, otherwise fail */
--		if (PTR_ERR(sub) == -ENODATA) {
--			hid = acpi_device_hid(adev);
--			/* If dummy hid, return 0 and fallback to legacy firmware path */
--			if (!strcmp(hid, "device"))
--				return 0;
--			sub = kstrdup(hid, GFP_KERNEL);
--			if (!sub)
--				sub = ERR_PTR(-ENOMEM);
--
--		} else
--			return PTR_ERR(sub);
-+	/* If there is no acpi_device, there is no ACPI for this system, skip checking ACPI */
-+	if (adev) {
-+		acpi_handle handle = acpi_device_handle(adev);
-+
-+		sub = acpi_get_subsystem_id(handle);
-+		ret = PTR_ERR_OR_ZERO(sub);
-+		if (ret) {
-+			sub = NULL;
-+			/* If no _SUB, fallback to _HID, otherwise fail */
-+			if (ret == -ENODATA) {
-+				tmp = acpi_device_hid(adev);
-+				/* If dummy hid, return 0 and fallback to legacy firmware path */
-+				if (!strcmp(tmp, "device")) {
-+					ret = 0;
-+					goto err;
-+				}
-+				sub = kstrdup(tmp, GFP_KERNEL);
-+				if (!sub) {
-+					ret = -ENOMEM;
-+					goto err;
-+				}
-+			}
-+		}
-+	} else {
-+		if (!device_property_read_string(cs35l41->dev, "cirrus,subsystem-id", &tmp)) {
-+			sub = kstrdup(tmp, GFP_KERNEL);
-+			if (!sub) {
-+				ret = -ENOMEM;
-+				goto err;
-+			}
-+		}
- 	}
- 
--	cs35l41->dsp.system_name = sub;
--	dev_dbg(cs35l41->dev, "Subsystem ID: %s\n", cs35l41->dsp.system_name);
-+err:
-+	if (sub) {
-+		cs35l41->dsp.system_name = sub;
-+		dev_info(cs35l41->dev, "Subsystem ID: %s\n", cs35l41->dsp.system_name);
-+	} else
-+		dev_warn(cs35l41->dev, "Subsystem ID not found\n");
- 
--	return 0;
--}
--#else
--static int cs35l41_acpi_get_name(struct cs35l41_private *cs35l41)
--{
--	return 0;
-+	return ret;
- }
--#endif /* CONFIG_ACPI */
- 
- int cs35l41_probe(struct cs35l41_private *cs35l41, const struct cs35l41_hw_cfg *hw_cfg)
- {
-@@ -1317,7 +1328,7 @@ int cs35l41_probe(struct cs35l41_private *cs35l41, const struct cs35l41_hw_cfg *
- 		goto err;
- 	}
- 
--	ret = cs35l41_acpi_get_name(cs35l41);
-+	ret = cs35l41_get_system_name(cs35l41);
- 	if (ret < 0)
- 		goto err;
- 
+Michael Riesch (15):
+      Documentation: admin-guide: media: add rockchip camera interface
+      media: dt-bindings: video-interfaces: add defines for sampling modes
+      media: dt-bindings: add rockchip rk3568 vicap
+      media: dt-bindings: add rockchip rk3568 mipi csi-2 receiver
+      media: rockchip: add driver for the rockchip mipi csi-2 receiver
+      media: rockchip: add driver for the rockchip camera interface
+      media: rockchip: rkcif: add abstraction for interface and crop blocks
+      media: rockchip: rkcif: add abstraction for dma blocks
+      media: rockchip: rkcif: add support for px30 vip dvp capture
+      media: rockchip: rkcif: add support for rk3568 vicap dvp capture
+      media: rockchip: rkcif: add support for rk3568 vicap mipi capture
+      arm64: defconfig: enable rockchip camera interface and mipi csi-2 receiver
+      arm64: dts: rockchip: add vicap node to rk356x
+      arm64: dts: rockchip: add mipi csi-2 receiver node to rk356x
+      arm64: dts: rockchip: enable vicap dvp on wolfvision pf5 io expander
+
+ .../admin-guide/media/rkcif-rk3568-vicap.dot       |  21 +
+ Documentation/admin-guide/media/rkcif.rst          |  83 ++
+ Documentation/admin-guide/media/v4l-drivers.rst    |   1 +
+ .../bindings/media/rockchip,px30-vip.yaml          | 122 +++
+ .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 ++++
+ .../bindings/media/rockchip,rk3568-vicap.yaml      | 170 ++++
+ MAINTAINERS                                        |  17 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi             |  12 +
+ .../rk3568-wolfvision-pf5-io-expander.dtso         |  20 +
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  78 ++
+ arch/arm64/configs/defconfig                       |   2 +
+ drivers/media/platform/rockchip/Kconfig            |   2 +
+ drivers/media/platform/rockchip/Makefile           |   2 +
+ drivers/media/platform/rockchip/rkcif/Kconfig      |  18 +
+ drivers/media/platform/rockchip/rkcif/Makefile     |   8 +
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.c    | 864 +++++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-dvp.h    |  24 +
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.c   | 777 ++++++++++++++++++
+ .../platform/rockchip/rkcif/rkcif-capture-mipi.h   |  22 +
+ .../media/platform/rockchip/rkcif/rkcif-common.h   | 249 ++++++
+ drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 301 +++++++
+ .../platform/rockchip/rkcif/rkcif-interface.c      | 425 ++++++++++
+ .../platform/rockchip/rkcif/rkcif-interface.h      |  30 +
+ drivers/media/platform/rockchip/rkcif/rkcif-regs.h | 153 ++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.c   | 637 +++++++++++++++
+ .../media/platform/rockchip/rkcif/rkcif-stream.h   |  31 +
+ drivers/media/platform/rockchip/rkcsi/Kconfig      |  16 +
+ drivers/media/platform/rockchip/rkcsi/Makefile     |   3 +
+ drivers/media/platform/rockchip/rkcsi/rkcsi.c      | 741 ++++++++++++++++++
+ include/dt-bindings/media/video-interfaces.h       |   4 +
+ 30 files changed, 4977 insertions(+)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20240220-rk3568-vicap-b9b3f9925f44
+
+Best regards,
 -- 
-2.43.0
+Michael Riesch <michael.riesch@collabora.com>
+
 
 
