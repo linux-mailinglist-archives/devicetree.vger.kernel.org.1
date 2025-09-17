@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-218128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80655B7F494
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:29:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99545B7ED78
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DE4D52650B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:14:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 33AAA4E28D0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 01:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0355A2BEFF0;
-	Wed, 17 Sep 2025 01:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A5A20F08E;
+	Wed, 17 Sep 2025 01:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="m+ice5PW"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="aw2RRCax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CC02BE7D6
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3E72C234C
+	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 01:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758071482; cv=none; b=C3wBMSF3UlazFAP67K1OQr5/cG1VJlDFQLChMarOeMdPNOg0xhm8NkQr2at0RKDbPGqg0JGL9+E5uFFGNaZgQaOLrHM6so0kf+FNsSV6UiEQfOb464tGD9mkPJH1l/VzEi3eMcYSQ/GFpvqUx5D/kr3jixI8BsxY511md6DY1/M=
+	t=1758071487; cv=none; b=KZ0bjLbBp3oJ50uVt641AYrDx67tC2LaKkw8hwGj8WfA12G9xu1u8y+PHCYBavyLCkkErJW14zRQqJgz2LidPGRx84iONdjexd7ttwFIa7sgDyoUvvIBuXqGzDRHEMwuVLAlfluTdHtphVrUobKca7T2IA4uyobHe4KRxzOFsEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758071482; c=relaxed/simple;
-	bh=YHLZqINYGk1H0hz1fmUIwha3w4JbcoCTKRM8L5WzdUc=;
+	s=arc-20240116; t=1758071487; c=relaxed/simple;
+	bh=4A0pTY/r00iXG0eCKZOKSizZtOQKUJ6iVrZvAnx3Soo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G/dz7lHSdKp3WcAdtBjfkGIYd0wp1GiQtzQMGDQtWrt1fywxalQEthNUDT3Luud2jLwmtTAbU2NfpWU/NKkeFYIH/gORqeUIAl1k5tM1tr2E3CDu0XFJBoReJfTsjBcMJsHfgunMFsSbVq44TKJdiTCPgm4XnjMeXZsv7QhLfq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=m+ice5PW; arc=none smtp.client-ip=95.215.58.187
+	 In-Reply-To:To:Cc; b=K8FnNFeQCnGauQHZt1KfGRpK6oNO+esO4aWDI9N9VK63EOM0Zy6ah87jNhUFVrVxg6w9d37aXdw0ldNCMa3Z2rLfvLKBGoZbHRautuatsQhr2jmtQa97uG860Pycc9rJoDryblgRcsgFxPc6uF91+PKMPF2/twT+SRPxjJkcyco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=aw2RRCax; arc=none smtp.client-ip=95.215.58.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1758071479;
+	s=key1; t=1758071483;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UswufxGWEFrBrOYDPqROAB1alfGVOumzaZNgZawT5wI=;
-	b=m+ice5PWlAhqB5gRatPuJ8bts1p377xtTkYVEVfb3uS1pckVow1FRHPE67tSnJTfvt0wJ6
-	j/P7EzVH7EQVdCgZ3yKmKsMnBnC6XBMIVDDc7XrYGAD5lzS4AJKq64Jcaysbss/D+awQhy
-	0nRrYYQh6lATvdUOsJGu2iN7YxJkTPqzOJioaBLw/1aOBmTabu8FpudUx8RIR8oltp5qUQ
-	6bcsbPTolYXV4NEgAVptMwyPw68ENEIC8AYPaKFiCBv46E6gElMPPixEfcSMucxb39JDM+
-	zOK9lv9ncddlcTXQqH5QICzJJ/i0/rmv4/3dYlTtA9jf3QvI6CBLmsFvJSmn3g==
+	bh=K5LsA6788TohTMhJyMFVGJXUVKzjVvS4nvp3+t+5CR4=;
+	b=aw2RRCaxjd0tn7HYqhtEIG3Ptzo5SqzP5Y15s2g8p9Xnf5hG5XDCZMCsED1aEWUpB9fNtz
+	MlCMWMmkEjkApP7a9KUynOJZ3MyWPruNnDAjdET/vz7Kw+N1l6LNYUMzmmmjhfoF3IVOjm
+	lJCCO33lEZ06scwFVt3WrVSOt7kFcw73iPODKmHHFh7dbVYDkeYH553523paJq5+pEZD4y
+	q65fR4Wr7iRXJ+/e9WY4sZmzaJS2JQwHRSbf8O4t3fKkK7XZiEWQBeBKKYSw3AaQZfRPBu
+	PB0oDsCShWDqgS5n/e7NmiVrYCh6JEWDZuCbxgrVYw6rtzmroHfqV8mGKbqAHA==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Tue, 16 Sep 2025 18:09:58 -0700
-Subject: [PATCH v2 12/13] arm64: dts: qcom: sdm845-judyln-common: Remove
- framebuffer reserved-mem
+Date: Tue, 16 Sep 2025 18:09:59 -0700
+Subject: [PATCH v2 13/13] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250916-judyln-dts-v2-12-5e16e60263af@postmarketos.org>
+Message-Id: <20250916-judyln-dts-v2-13-5e16e60263af@postmarketos.org>
 References: <20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org>
 In-Reply-To: <20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -68,39 +67,55 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  Amir Dahan <system64fumo@protonmail.com>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758071415; l=811;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758071415; l=1151;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=YHLZqINYGk1H0hz1fmUIwha3w4JbcoCTKRM8L5WzdUc=;
- b=+XYEEK6aymO3iy4E2XkPdewGJoBhWR6c6hrtAbpPT09Zis82z3dOtC5xV8OoLmtQHlNGz+vJL
- q16xJqDat7MBftIUOdqOd2x5X4CQf+ocNYrpURick04vLvnP1mTdeRq
+ bh=4A0pTY/r00iXG0eCKZOKSizZtOQKUJ6iVrZvAnx3Soo=;
+ b=zmhOGULntOrTwQvWewxGiOMTDxAebMYCnVHxCWd19YUqDtBTfcJQxax28nZIMokbi8GhPUfAd
+ 5wPrYZRGB/ICSX+dSlg7rf14j64eVnH/njEKC7ns1eyJ5QG0fF2ibG/
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
 
-It causes a conflict with simple-framebuffer
+`regulator-always-on;` in ibb improves display blanking issue
 
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index a513cd931b3a984443183ee4e8df7b0e45732630..d8ff202a68da58a11392ffeb609390a677182715 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -100,12 +100,6 @@ spss_mem: memory@99000000 {
- 			no-map;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+index beb1372dc6c17f5f06c2044412ee1c8165858cd1..44ab98964ffe722144e01efc41e135dc7700fe95 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+@@ -69,10 +69,28 @@ zap-shader {
+ 	};
+ };
  
--		/* Framebuffer region */
--		memory@9d400000 {
--			reg = <0x0 0x9d400000 0x0 0x2400000>;
--			no-map;
--		};
--
- 		qseecom_mem: memory@b2000000 {
- 			reg = <0 0xb2000000 0 0x1800000>;
- 			no-map;
++&ibb {
++	regulator-min-microvolt = <4600000>;
++	regulator-max-microvolt = <6000000>;
++	regulator-over-current-protection;
++	regulator-pull-down;
++	regulator-soft-start;
++	regulator-always-on;
++	qcom,discharge-resistor-kohms = <300>;
++};
++
+ &ipa {
+ 	firmware-name = "qcom/sdm845/LG/judyln/ipa_fws.mbn";
+ };
+ 
++&lab {
++	regulator-min-microvolt = <4600000>;
++	regulator-max-microvolt = <6000000>;
++	regulator-over-current-protection;
++	regulator-pull-down;
++	regulator-soft-start;
++};
++
+ &mdss {
+ 	status = "okay";
+ };
 
 -- 
 2.51.0
