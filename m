@@ -1,73 +1,129 @@
-Return-Path: <devicetree+bounces-218589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0855FB82156
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A3FB821A4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2DFD1C80763
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 22:02:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 256831C07D3F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 22:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6A130C10C;
-	Wed, 17 Sep 2025 21:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21943043D0;
+	Wed, 17 Sep 2025 22:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ls+BvwCq"
+	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="GnyFuQsE";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cjS6Tyca"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70CAF261B70;
-	Wed, 17 Sep 2025 21:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB7134BA30;
+	Wed, 17 Sep 2025 22:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758146384; cv=none; b=GlKBx7Yr533rMgit/5O4/r1hUaVAQNuFTn81yNc1jn+aLSbBsKnGxW9Tn8wGZgoFhM9d1RMLrni16ooyA4Zru+G5BiOsPi1RGWQVMHVm26Bxb/Nyscp2IZ2Dbr9I63nupRitMNfSS2wyNU55pxHEjF69/BLo4aLj5uZOXDjwMJQ=
+	t=1758146845; cv=none; b=lgZUoiqlQLMb7LKMo6jKITPTAbghRzrrkOQrMShD2eo7MldYBbXn21rAXyrLaO22dTh1Fj/tbnP9fPAllTOuVvrtH9HNoOhYxLtV4QICrEZti0K7Is3OjHrqri57EWSZNP3BYvXjvh5ZKfq7Mawy2SiC86xpDb51zMj8UDdFluY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758146384; c=relaxed/simple;
-	bh=Ms4zIK3ciyF4BwpMHGeMZVIXlgJkP7aXFnQ2D+V8mU0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=cbEO1LH8HOsZjhhBgbyaa4GcSd1WJ9hc1Ij28/+wSQXLSHM2FYkCRzhpTJvKMn1mrivzRCdWp7S4lq61A9x5rFMWHJSjPAGXChkxUMpeyKavcn4zStuQCIAFtRa+fxBmL5EXB/XKcNy+7L+0cuaI4j8HUJvWDC/MI47Z8aB0czc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ls+BvwCq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C626EC4CEE7;
-	Wed, 17 Sep 2025 21:59:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758146384;
-	bh=Ms4zIK3ciyF4BwpMHGeMZVIXlgJkP7aXFnQ2D+V8mU0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ls+BvwCq0KajkMJX+MJcdaNZJeNvvWmelGxPaw0KYIcfi0TR1mG8iBybm6PU/7JDl
-	 9hwdxfqo9t8VEHhn3NufnGjQ7KOfkA0R+g5HFl4awduYen4103ZyvbfT21a22u1h25
-	 Qsk91Cp7xbexljBnzFdwXdtMDZXEskw567jHbT4f4sC1hKnjV0Z8ehPKkTdPi62mqr
-	 CU18Rh9h+AUdRq8sfyA6c/oyU8++9jTMTibx7OJ9cz2sUI/J08IwQQG7LyxeHeGPEm
-	 qm/O4761b7qaTRgd/jGUCcpg7d4PZOkKG0plU9tY94tENGkauKV8wqfr5vMaG4Roly
-	 tR1XesySusK9A==
-Date: Wed, 17 Sep 2025 16:59:42 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Randolph Lin <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
-	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	ben717@andestech.com, inochiama@gmail.com,
-	thippeswamy.havalige@amd.com, namcao@linutronix.de,
-	shradha.t@samsung.com, randolph.sklin@gmail.com,
-	tim609@andestech.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: Add Andes QiLai PCIe support
-Message-ID: <20250917215942.GA1877367@bhelgaas>
+	s=arc-20240116; t=1758146845; c=relaxed/simple;
+	bh=jwU9y7BeypRsEQCnku/soTHT3raPcT0fpdaluKNRgR8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=frDPCHiFGMhU6OIBY1mD8LaqQSbnyiZ8TystuC+f1thIByK/YyA5yDBUJr+jINRzQ0+7lzlqSGmDpe/179BLP5IvSfTAHXBzd4fSksUaKSgyHI2iGzTYKS2/Wf8krQ4UnexLfl6pzbecNH4ybPdn8O1yz0pDf4sUvJ6QmYJRPD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=GnyFuQsE; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=cjS6Tyca; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
+Received: from phl-compute-08.internal (phl-compute-08.internal [10.202.2.48])
+	by mailfout.phl.internal (Postfix) with ESMTP id 906BCEC0294;
+	Wed, 17 Sep 2025 18:07:22 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-08.internal (MEProxy); Wed, 17 Sep 2025 18:07:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1758146842;
+	 x=1758233242; bh=u4T4Y+htEHk0Kb10DGACvmH0TTe+99pyaFvj37z6/wg=; b=
+	GnyFuQsEKF2IuQGMNvo9BwlxBb5jX4kHD4votbFAGjxKrwFfUSJYmllYV85P4h1l
+	V/OhdskoOYAmG21Kb1jc4Ge/6d6Mg5br3YN0qVpnl/E1FWPn4lT0BI/jzUixCm5C
+	METW3z+BDaHm8wBRGQjmf19Kzlx+RHS/abGnksvprQUjlPfC6BYtoc0SABNby/oG
+	2HBbGqcBelDRDUhRIEDnMmDG0VvFrCtS4d+WyvNYeKQE3T3PqrRxSTuuF0U7wgKv
+	eKVJG/SJTf/zEWJ/zeGQ1n3JBLn9e+xysydgW1iRtYWVU/lYZiUs9IrZW8S6oApq
+	LCmEVrMRJcj/9tIEK4IdSQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758146842; x=
+	1758233242; bh=u4T4Y+htEHk0Kb10DGACvmH0TTe+99pyaFvj37z6/wg=; b=c
+	jS6Tyca1YI5+/Ml5n6Zv44XcnJH277ch3KUi3J50S5ENRl8WcyxcfncfQuGr++Ng
+	7TO2Eem7GT8rrINW1FKZG9a76GOcEsD49YYjZfFyyMBFga8+1x2rbz6SkiIP4w6P
+	qyjKryn/uHVRnqBg4cG5L4TQUa8+4vcnTjBie+yUQhRUU+HNiDeHS95xJDYROQcT
+	GojHS1uSWwt8KWmnhb7CjyMBor/mm/pHA//xQnXKvT+JF/xC6hnE556nZnUta1xJ
+	oqZSdd2bvOtSnB6DASJBON63q7vZRjIHUzwwylyg2r7qHDh5874QrlpR/93eu1kB
+	2OhJyYH8/yzVxMTjqvf2g==
+X-ME-Sender: <xms:GTHLaGRU6ie16DyxXOMBGRfYaBIMGtHrauOk4RN2ZDARaZAmi-SlPA>
+    <xme:GTHLaK_hktpwucTvYO0UAfF97ZtlaX3lLYKIBSUvOQ8ey6zPvk502-C7Hn6DsuHTA
+    S3pvvrbsBtTkXHx-u8>
+X-ME-Received: <xmr:GTHLaGi80pOI6MFvlMGJhY5aPagZ7LFfEz52-29coRxXpLqHPb-DPwqUVkZlh5XTJMTZTopY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeggeeitdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptfgvsggvtggt
+    rgcuvehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvg
+    hrnhephfekvdekvdfhtddvteehueeuleetjefhieehjeeuhfdtuddtvdeguddtkeevlefh
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsg
+    gvtggtrgessghsughiohdrtghomhdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhm
+    thhpohhuthdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhope
+    hrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprh
+    gtphhtthhopehjohgvlhesjhhmshdrihgurdgruhdprhgtphhtthhopegrnhgurhgvfies
+    tghouggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghpthhtohepuggvvhhitggvth
+    hrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghr
+    mhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoh
+    eplhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdrohhrgh
+X-ME-Proxy: <xmx:GTHLaLbhMO5zUH2oImyWNfvzJgSsabXu2pBe4O5jyXtJ7UtD9hHCMQ>
+    <xmx:GTHLaL_bD3CujM01bn6a3OGstVlhe6WxadDNXZLBkNo9Ch9Ds0_iHg>
+    <xmx:GTHLaNPAzHLJZsafqLU0_TGdG_0WOka9ID7cbuQAWiEqw_jiRG9KOw>
+    <xmx:GTHLaIF97r2dpKj9SqD4afZIHb2zHr9-7xF5L3kPSZPXu_oCZQloVw>
+    <xmx:GjHLaFSh6Lpz6c87qmzXNVP0KiwxTrDNvyQnzyWfhDSsquPoxCQcR6nf>
+Feedback-ID: i5b994698:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 17 Sep 2025 18:07:20 -0400 (EDT)
+Message-ID: <93193358-9818-4c63-bd55-9b910631e2a9@bsdio.com>
+Date: Wed, 17 Sep 2025 16:07:19 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916100417.3036847-3-randolph@andestech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
+ ALTRAD8 BMC
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20250917180428.810751-1-rebecca@bsdio.com>
+ <20250917180428.810751-3-rebecca@bsdio.com>
+ <8b5625a5-56bf-49bc-b4cf-82c60460db65@lunn.ch>
+Content-Language: en-US
+From: Rebecca Cran <rebecca@bsdio.com>
+In-Reply-To: <8b5625a5-56bf-49bc-b4cf-82c60460db65@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Suggest following convention for subject lines (run "git log --oneline
-Documentation/devicetree/bindings/pci/"), e.g.,
+On 9/17/25 15:04, Andrew Lunn wrote:
+> I see you did not manage to get phy-handle to work.
 
-  dt-bindings: PCI: andes: Add Andes QiLai PCIe controller
+No, I didn't. I added a printk and it said the addr is 0, but adding the 
+phy node with a reg value of 0 doesn't work.
+
+
+-- 
+
+Rebecca Cran
+
 
