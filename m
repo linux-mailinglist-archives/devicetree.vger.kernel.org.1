@@ -1,125 +1,87 @@
-Return-Path: <devicetree+bounces-218459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453CFB805CB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:06:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90EE6B80757
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 17:16:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 775FC17F3E1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:05:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 906D2188FB6D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 15:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E3A332A44;
-	Wed, 17 Sep 2025 15:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8C832E73F;
+	Wed, 17 Sep 2025 15:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sPT4O+Xv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GI2hr8NU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6E6332A39;
-	Wed, 17 Sep 2025 15:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDFA2EACF3;
+	Wed, 17 Sep 2025 15:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758121361; cv=none; b=ACSeIGDeOAtNYLCTep6Rb/ix4nHEt0XA30qRZXIcJ16zcdL7lAVTEejQIco9MKGj1GNNlksYIboO7IM3LyoNoOVdC+jvimUCXHzK8/H/daKp6NWvxGnr76bAa1qIJh1SCMiZIbwTUnjTUNx7DPsr1lGpnPmlsy82x5BvHsbBqIU=
+	t=1758121952; cv=none; b=GRC/rDHztz9SKGBW/LjdN8PLYkRTJa/gk8GcMMvhiB/5hR8Td/+gTkrqw8HEx4luZI5hIFjQQAQYGiPJebISL4la3DnU/NfUnkphNNKE3awDjMPlHhcWeTRYa21u1lW9+r3WyS3reV2ksG22LSJl4UFqc56gu/GhH98BlTJf0lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758121361; c=relaxed/simple;
-	bh=DkAob/mYPV+ZNAEqdno0NyXMgOtH4pnIcMp+zpKJAxo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ETIURkWlzygAZ5X8pl6Z99kENYKuvTRSIG1J/nrGPBBVgOkxg5IR9LAofWZAj2oJ2wDVEYcTmaI64Xw1zvGIg/2vv1dbgK5DkkXPZO3YWYwdEpzRlgdaCOmoUVvGkhm2V5T9XuBAsnokQrnpAMEZw148L6RABQE7QoRFIwnTXGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sPT4O+Xv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCF7C4CEF0;
-	Wed, 17 Sep 2025 15:02:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758121361;
-	bh=DkAob/mYPV+ZNAEqdno0NyXMgOtH4pnIcMp+zpKJAxo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=sPT4O+XvDEdrvk/c00OHoqwWJCwrh5WRxwW2tzfT6VyUHJdXBW/vpmYjndvYkUg9Q
-	 4Jj9Bu94e75coQqY0ZAY3DnhFg5EnUERYbd+Vaw8+dHEgY/SaTmvfFtvCWDker95nM
-	 s12OIAXMjopWutHC5B0Za8oNtIDlU7dyKOuKm5ZSCarfmgLIUyiIepAtgS0QXD3Ffc
-	 zs+brP/jrIpbtZnJtf8IuRs5IGUWOWNxBhmesgdnr/BBP+LjJ2EYVPOO49nNr5QV6L
-	 c2FZ4OI4wGqia7QEs/0k4oAvTRgJtumOc1CuOa9RiZ3b+U34Djc9Idi3hiLW4FfUxg
-	 1kQS/hbO4N+tQ==
-Date: Wed, 17 Sep 2025 10:02:40 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1758121952; c=relaxed/simple;
+	bh=fU8v0fIA14SUY+kAFYkLjnzFIT02aVtsijqSQ2zNf8Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qs1pPcTUxiSVdKAGYrU9QIQ9nbvWNctQQ9d8AyKUlspN8j+9jM0N2emaOTGJEzwgPHEMUBJPjnGxw/I+qYk11KnEQ+tFx/NxmJAFQBRMVzI+g8flikLFwnDz9oKk/AkC2+FJRn1E+8G2IGsLROx8nWJe1FMSAXt1L5OLgfb0xok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GI2hr8NU; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SbUH+ytp/I7r/qS0bTCYNaSJzrM2N4H+oZ5XzytcBc8=; b=GI2hr8NUA/wBoWosZZr4g/4/8R
+	lh/GHsVJEfQBe1JCCzTQcDmOYfx8xG4Lb9qNRvwPqQmVv8MP8Qgy7rc/DDVgKctW/899gLrFqCP/t
+	VLGWtcNnnByIsFzV8Ahz0ux9ZpaNZ8sCdyE1SgnOcJj3s0pCJLVe4JZoNmBVJKweRSrM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uytpK-008hZD-5s; Wed, 17 Sep 2025 17:12:10 +0200
+Date: Wed, 17 Sep 2025 17:12:10 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] Add Meta (Facebook) Yosemite5 BMC (AST2600)
+Message-ID: <9bb9929a-8130-48da-983e-2901a7c3da36@lunn.ch>
+References: <20250917074812.4042797-1-kevin.tung.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Kyungmin Park <kyungmin.park@samsung.com>, 
- Jassi Brar <jassisinghbrar@gmail.com>, Kees Cook <kees@kernel.org>, 
- Chia-I Wu <olvaffe@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-arm-kernel@lists.infradead.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- Maxime Ripard <mripard@kernel.org>, Steven Price <steven.price@arm.com>, 
- David Airlie <airlied@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, 
- MyungJoo Ham <myungjoo.ham@samsung.com>, kernel@collabora.com, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- linux-hardening@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- Liviu Dudau <liviu.dudau@arm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-In-Reply-To: <20250917-mt8196-gpufreq-v3-1-c4ede4b4399e@collabora.com>
-References: <20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com>
- <20250917-mt8196-gpufreq-v3-1-c4ede4b4399e@collabora.com>
-Message-Id: <175812136009.2068624.13991293282844294346.robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] dt-bindings: gpu: mali-valhall-csf: add
- mediatek,mt8196-mali variant
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250917074812.4042797-1-kevin.tung.openbmc@gmail.com>
 
-
-On Wed, 17 Sep 2025 14:22:32 +0200, Nicolas Frattaroli wrote:
-> The Mali-based GPU on the MediaTek MT8196 SoC uses a separate MCU to
-> control the power and frequency of the GPU.
+On Wed, Sep 17, 2025 at 03:48:08PM +0800, Kevin Tung wrote:
+> Summary:
+> Add device tree for the Meta (Facebook) Yosemite5 compute node,
+> based on the AST2600 BMC.
 > 
-> It lets us omit the OPP tables from the device tree, as those can now be
-> enumerated at runtime from the MCU. It also means the mali GPU node
-> described in this binding does not have any clocks in this case, as all
-> clock control is delegated to the MCU.
+> The Yosemite5 platform provides monitoring of voltages, power,
+> temperatures, and other critical parameters across the motherboard,
+> CXL board, E1.S expansion board, and NIC components. The BMC also
+> logs relevant events and performs appropriate system actions in
+> response to abnormal conditions.
 > 
-> Add the mediatek,mt8196-mali compatible, and a performance-domains
-> property which points to the MCU's device tree node in this case. It's
-> required on mt8196 devices.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 32 ++++++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
-> 
+> Kevin Tung (2):
+>   dt-bindings: arm: aspeed: add Meta Yosemite5 board
+>   ARM: dts: aspeed: yosemite5: Add Meta Yosemite5 BMC
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The threading between your patches are broken? How did you send them?
+git send-email? b4 send?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.example.dtb: gpu@48000000 (mediatek,mt8196-mali): 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250917-mt8196-gpufreq-v3-1-c4ede4b4399e@collabora.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+	Andrew
 
