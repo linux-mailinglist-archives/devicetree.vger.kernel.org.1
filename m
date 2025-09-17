@@ -1,150 +1,124 @@
-Return-Path: <devicetree+bounces-218347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DA1B7C885
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 14:05:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D60B7C47E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 13:56:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5363483409
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 11:46:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82AF177F62
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 11:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A76296BC0;
-	Wed, 17 Sep 2025 11:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871B32EC0B9;
+	Wed, 17 Sep 2025 11:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c31U7ebF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QP2YoTQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCE820E03F;
-	Wed, 17 Sep 2025 11:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58731284886;
+	Wed, 17 Sep 2025 11:49:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758109575; cv=none; b=N+wYAHEw1p1g1+odNFHOmQK4VgH+BP34kSA4tariNwpoI50nZRfCt+ef/2dQwKe3/CafcRS5zjCd4BMsqo/D1nNBAH9H91ixxSkW7VEodvcnOpI+Yxk3iAbcbZy+ckjc41O3PRHq+bxXunef8bHQ5bxERjU/JmDWtMj4ckBU1D8=
+	t=1758109756; cv=none; b=L6vK08AkznmciEH2vz8lRq7UpAKR/Qzs49bIILtjsCeQQhyGoIUmE5/ufCxuKKPg+oxgkNMy/dfwCGrsm/t4SoVUwiaZxO4dAdDQZ35/MJ325FWeOUkOddUQyx3Drx4FG+NKGDMdLHui7zdDWiZsc3WUvaPRpa7R5aaV+3uEY0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758109575; c=relaxed/simple;
-	bh=GE1ZvajMjR1jpdcyQ23SFnVuz3QmYfCASBO13hwms0Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VEFe8TkLGPiV3YPVwaYYI9L0gEUYM336U/YFilgfBMO3NN8NdlWsl2pOouTfIVpuBrDMazOvE1V7lZG061tvdeeQqieDWFVYlndh9py9ZUAtQEoatzPNR7eC3IAuxGglNIbPtE+pgqtNPjYukBm9tz5lsrvgR1+wL1J71FQzANU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c31U7ebF; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58HBj7G91597639;
-	Wed, 17 Sep 2025 06:45:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758109507;
-	bh=CESIdT/b5vC34F/eerVXaRdloEbeJeSQadVRXpn30xo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=c31U7ebFlqU6kZuPjeR3YrLRk3pu22idBxlSh8Qez5VPn+A9Pd896Vfs9dUFchjaq
-	 WQwPgC5USgoJu/BmU6RwfRFBd+IXgVYn/3y/Td1AAmKwptbKrDi3dYpM36blp2qNPj
-	 QyUxKkARwRsEFJiJufjePXpCFZiDDPIr7n+JX6Ro=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58HBj6CM2312628
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 17 Sep 2025 06:45:06 -0500
-Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 17
- Sep 2025 06:45:06 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 17 Sep 2025 06:45:06 -0500
-Received: from [172.24.231.152] (danish-tpc.dhcp.ti.com [172.24.231.152])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58HBivYL2975345;
-	Wed, 17 Sep 2025 06:44:58 -0500
-Message-ID: <7cd06f8f-bd74-429d-bf2c-71858178950a@ti.com>
-Date: Wed, 17 Sep 2025 17:14:57 +0530
+	s=arc-20240116; t=1758109756; c=relaxed/simple;
+	bh=2VBJNSP8fXo+EzchoAha0gc1J5Zxa0OZ9HgKOI0/mRs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kg6AcvvfZRWyzfeyPBHhIJuOAxgAVNZnBpkDECpEvCMdGv8Rv36vSRSFk15hndq3h9Qzo+NZZqrL9rvuGQYb8rGbx2VTNJxEg9wQl+D0yjksHMhlEo9S4n1UF+0iIh0gxPVbsp0+2f5HTowxjXoxh50VDZ8kedrmXj6xPUaosvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QP2YoTQO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D403CC4CEF0;
+	Wed, 17 Sep 2025 11:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758109755;
+	bh=2VBJNSP8fXo+EzchoAha0gc1J5Zxa0OZ9HgKOI0/mRs=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=QP2YoTQOJNFJtDfu8Ul5D4kvle8TkW5FFGNF7WSqpJcqM4duo5X8rcbGYwIOJahb4
+	 iODhrnKxSDVqhWScztYcgbCc/0iPHHEOfZ4upHrpvMKsfVQhCT2B9Bz+ifu5k/kmF3
+	 GahjKKximAaWXiq8kXchMeCdMngUVOPwqrp0v+XIt6O0c1ISm7AadJe19iu6HmyNpG
+	 w4w7afNBwMmzkSHwXvb9qN0sFM3XzPf+Evgzj3OnlupLJHAiffUeVRJyZxXxhO0rAR
+	 pG+5wKLzqUi4skWJTW3CPxqwH/+nM9zKzcqKEWIy4dGV9SO5ClG+6YcukCJ0LM6Xj4
+	 vXjRBW1A6QmZA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC982CAC59A;
+	Wed, 17 Sep 2025 11:49:15 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Date: Wed, 17 Sep 2025 15:49:00 +0400
+Subject: [PATCH] arm64: dts: qcom: ipq5018: add QUP1 UART2 node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 0/7] Add RPMSG Ethernet Driver
-To: Andrew Davis <afd@ti.com>, "David S. Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        Mengyuan Lou
-	<mengyuanlou@net-swift.com>,
-        Lei Wei <quic_leiwei@quicinc.com>, Xin Guo
-	<guoxin09@huawei.com>,
-        Michael Ellerman <mpe@ellerman.id.au>, Fan Gong
-	<gongfan1@huawei.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Parthiban
- Veerasooran <Parthiban.Veerasooran@microchip.com>,
-        Lukas Bulwahn
-	<lukas.bulwahn@redhat.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20250911113612.2598643-1-danishanwar@ti.com>
- <8a20160e-1528-4d0e-9347-0561fc3426b4@ti.com>
-Content-Language: en-US
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <8a20160e-1528-4d0e-9347-0561fc3426b4@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Message-Id: <20250917-ipq5018-uart2-v1-1-f8680bbf947f@outlook.com>
+X-B4-Tracking: v=1; b=H4sIACugymgC/x3MQQqAIBBA0avErBNGKdSuEi3EppqNmVYE0t2Tl
+ m/xf4FMiSnD0BRIdHPmPVTItgG/ubCS4LkaFKoerdSC49GjNOJy6VTCWtsZRYhee6hNTLTw8//
+ G6X0/WLnqal8AAAA=
+X-Change-ID: 20250917-ipq5018-uart2-999482e00c7c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, 
+ George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758109754; l=1271;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=HM/nI43DAlY/zjakfQ1WPfyIyi8Yd5G24Lox3W+bASA=;
+ b=tSA+wVVKSl7EQVIcar1wFpLWcYt4BMzrg8snAh1odR53zMJiIUMHLsb+W8lUSw7iKwSczqR2y
+ BNZTG48ItJxDzNo5VATpWWHiuOBBvnjpKsG3jmVzkgh+zt+wQhmOEmM
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-Hi Andrew,
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 
-On 11/09/25 9:34 pm, Andrew Davis wrote:
-> On 9/11/25 6:36 AM, MD Danish Anwar wrote:
->> This patch series introduces the RPMSG Ethernet driver, which provides a
->> virtual Ethernet interface for communication between a host processor and
->> a remote processor using the RPMSG framework. The driver enables
->> Ethernet-like packet transmission and reception over shared memory,
->> facilitating inter-core communication in systems with heterogeneous
->> processors.
->>
-> 
-> This is neat and all but I have to ask: why? What does this provide
-> that couldn't be done with normal RPMSG messages? Or from a userspace
-> TAP/TUN driver on top of RPMSG?
-> 
+Add node to support the second UART node controller in IPQ5018.
 
-This is different from RPMSG because here I am not using RPMSG to do the
-actual TX / RX. RPMSG is only used to share information (tx / rx
-offsets, buffer size, etc) between driver and firmware. The TX / RX
-happens in the shared memory. This implementation uses a shared memory
-circular buffer with head/tail pointers for efficient data passing
-without copies between cores.
+Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-> This also feels like some odd layering, as RPMSG sits on virtio, and
-> we have virtio-net, couldn't we have a firmware just expose that (or
-> would the firmware be vhost-net..)?
-> 
+diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+index e88b52006566fd39c0690e6fb53be743eb56d11b..52840eb00a262a05fe2e7cbe5b77c47ff5937222 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+@@ -490,6 +490,16 @@ blsp1_uart1: serial@78af000 {
+ 			status = "disabled";
+ 		};
+ 
++		blsp1_uart2: serial@78b0000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x078b0000 0x200>;
++			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
+ 		blsp1_spi1: spi@78b5000 {
+ 			compatible = "qcom,spi-qup-v2.2.1";
+ 			#address-cells = <1>;
 
-PMSG sits on virtio, and we do have virtio-net but I am not trying to do
-ethernet communication over RPMSG. RPMSG is only used to exchange
-information between cores regarding the shared memory where the actual
-ethernet communication happens.
+---
+base-commit: 05af764719214d6568adb55c8749dec295228da8
+change-id: 20250917-ipq5018-uart2-999482e00c7c
 
-> Andrew
-> 
-
-
+Best regards,
 -- 
-Thanks and Regards,
-Danish
+George Moussalem <george.moussalem@outlook.com>
+
 
 
