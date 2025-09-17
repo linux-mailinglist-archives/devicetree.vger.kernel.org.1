@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-218546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4089EB8193D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:22:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A164BB81970
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:23:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 875AB7220FD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:20:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 283113ABFE5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA0C2FFDDA;
-	Wed, 17 Sep 2025 19:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CA492F6164;
+	Wed, 17 Sep 2025 19:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NqtuiUAC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="elVhVFs1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034C52FF15D;
-	Wed, 17 Sep 2025 19:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22F75661;
+	Wed, 17 Sep 2025 19:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758136788; cv=none; b=iWaZIsHFvY99DQyoECw9WgkW9tH2TCyROjY/i/2CcDntFvqQPQQOLqFpdObCMJocNFkBuxIsgpWVMxtK6vIs1+gAaJR+yLeP5bGYiuDDy63Q6cWFB85qnrZIU1y2cLSJbfmYGYakYeu1fXTVw1xGq7Ju6WTCpn7bCYt1M6EkndE=
+	t=1758136863; cv=none; b=V0A2/IqYruu01+6qVFFSq80eJW18DYXQXZUMpbBFhckYtTotMnj0rmBIGBFxx7cwmmYszLWKiU9539mhGmkqqz1TU0u1KSt2BrLwQHaS7nMl3aAchvH0vcrS+rUIxVIXxXMpF+2QFHB6zKFYUX8AjjPV2KOekG2ErTNLIw1lzwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758136788; c=relaxed/simple;
-	bh=w5App2lZy9Ue5d4FnpqjXUraR+uQvJr8LQHwa7QQqSA=;
+	s=arc-20240116; t=1758136863; c=relaxed/simple;
+	bh=y+1oflaYqWx1oZke1AYLzfl4If0XApi/pCR6vFyP6Jg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R/YdXYcIxOrctQ1qgc/2jaV1qmUxioep0N7ue5kES7kZS9tYtd/nfEt7PL7LPJeLLPXAVA5oewK8EOwK67N4wii9Ju4myF96AhjV1VXdnBY7ECxrt0MVVnb8cbsq8t4hGS5y61JRIyPbHTElBW8+nHGXA52UsLPMFBrB7XURy1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NqtuiUAC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 006E5C4CEF7;
-	Wed, 17 Sep 2025 19:19:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=htMlF1iiPC1tto4zZ/LC8SWFJSEhyqXgUkN8wPSc0101LYmtXWHzsP3XUkdXauF9z/ryP/up/RXd/0IYvPnXMvgAmmXEtDhzWWxyxbL2ETi51CZGMpeKGg4vQA0daP8NosoBu617zwOIHSe/bJyzn4nQfDHVrpUk/YWki0yuDbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=elVhVFs1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299D8C4CEE7;
+	Wed, 17 Sep 2025 19:20:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758136787;
-	bh=w5App2lZy9Ue5d4FnpqjXUraR+uQvJr8LQHwa7QQqSA=;
+	s=k20201202; t=1758136862;
+	bh=y+1oflaYqWx1oZke1AYLzfl4If0XApi/pCR6vFyP6Jg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NqtuiUACJpzo5gkpXtYqwrgsfl+MNVA0aGNWRyu8ZSqghjOM7BZ8QtlNEK+5teMJT
-	 9fT15QgC04Bf4CKeWXb6T3cDdvhaXPe5Afel13hIHwTs1ZqzNkR5zytX1I3tx8qIqY
-	 9cCU9E61wNpp0hbUyEHeXOq6o9X07LsCnHXPy+v/fLXooomhVoOTXpJlKkOqYQXLB0
-	 9dtvfTMM6/9rVuSvfBpPrDOzluqhm63Z46sPSn1sv8YhebhpNG6uZiCq0ucZIAuOoK
-	 SRoN4C5OZAwvzOmhmS0sAURtRRM+1iC15HJ75z2sI0pCcgydlwTM5e1yg8DrL7MO3Q
-	 al8Znsh3+oxcw==
-Date: Wed, 17 Sep 2025 20:19:42 +0100
+	b=elVhVFs1jX2+3kDoleBQyuWVNoG1a8y2VSothBaxVMJS9D5ibYWTKz4q+tXzYInKC
+	 55z/W1t2Jb1zMwarTWYuGhb5qhN4bQPIP2fPQWNaIv6QZjSXWiKYwYhHo1COtzPgzk
+	 CytdkEvA9UTB0LAMsCyFd2kM9DILrBXh7+oxZVYYdXMjnPjxulqV9bAIjA5PdtsJRF
+	 bkkJjCor00KOuLH8e2/uPQZpY0GxpDnRPYJl1nal3oObv+zdx67FFeP1WpBM3PT/wP
+	 UpkpViIoAvdnhOttHIVvP95NQIWAPk6RdUpHbgraHqkuhSU8sPL+5XIGdSB0VnhKjh
+	 vFyfXteQdJhgA==
+Date: Wed, 17 Sep 2025 20:20:54 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v3 02/10] dt-bindings: fsl,fpga-qixis-i2c: add support
- for LX2160ARDB FPGA
-Message-ID: <20250917-document-enhance-4a6cb6053882@spud>
-References: <20250917090422.870033-1-ioana.ciornei@nxp.com>
- <20250917090422.870033-3-ioana.ciornei@nxp.com>
+To: Ravi Patel <ravi.patel@samsung.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jesper.nilsson@axis.com, lars.persson@axis.com,
+	mturquette@baylibre.com, sboyd@kernel.org, alim.akhtar@samsung.com,
+	s.nawrocki@samsung.com, cw00.choi@samsung.com, ksk4725@coasia.com,
+	smn1196@coasia.com, linux-arm-kernel@axis.com, krzk@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com,
+	jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com,
+	hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com,
+	swathi.ks@samsung.com, kenkim@coasia.com
+Subject: Re: [PATCH 5/7] dt-bindings: arm: axis: Add ARTPEC-9 alfred board
+Message-ID: <20250917-underrate-blurb-cd6a9aee014d@spud>
+References: <20250917085005.89819-1-ravi.patel@samsung.com>
+ <CGME20250917085045epcas5p2905ed7f307ca892997e14c33ad68f9fa@epcas5p2.samsung.com>
+ <20250917085005.89819-6-ravi.patel@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,150 +68,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DaAPDeI8ICb8eSbe"
+	protocol="application/pgp-signature"; boundary="+jcr3yw54Dfe8FJr"
 Content-Disposition: inline
-In-Reply-To: <20250917090422.870033-3-ioana.ciornei@nxp.com>
+In-Reply-To: <20250917085005.89819-6-ravi.patel@samsung.com>
 
 
---DaAPDeI8ICb8eSbe
+--+jcr3yw54Dfe8FJr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 17, 2025 at 12:04:14PM +0300, Ioana Ciornei wrote:
-> Extend the list of supported compatible strings with fsl,lx2160ardb-fpga.
->=20
-> Since the register map exposed by the LX2160ARDB's FPGA also contains
-> two GPIO controllers, accept the necessary GPIO pattern property.
-> At the same time, add the #address-cells and #size-cells properties as
-> valid ones so that the child nodes of the fsl,lx2160ardb-fpga node are
-> addressable.
->=20
-> This is necessary because when defining child devices such as the GPIO
-> controller described in the added example, the child device needs a the
-> reg property to properly identify its register location in the parent
-> I2C device address space.
->=20
-> Impose this restriction for the new compatible through an if-statement.
->=20
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> ---
-> Changes in v2:
-> - Enforce a unit address on the child gpios nodes (remove the ?)
-> - Enforce the use of unit addresses by having #address-size and
->   #size-cells only for the newly added fsl,lx2160ardb-fpga compatible
-> Changes in v3:
-> - Replace the trivial-gpio reference with an explicit mention of the
->   accepted child gpio compatible.
-> - Reword the commit message.
-> - Add the 'else' case to the if statement.
->=20
->  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.y=
-aml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> index 28b37772fb65..e889dac052e7 100644
-> --- a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> @@ -22,6 +22,13 @@ properties:
->                - fsl,lx2160aqds-fpga
->            - const: fsl,fpga-qixis-i2c
->            - const: simple-mfd
-> +      - const: fsl,lx2160ardb-fpga
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-How come this is not compatible with fsl,fpga-qixis-i2c ? Seems like
-that device has a feature subset of that one, given your changes here.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> =20
->    interrupts:
->      maxItems: 1
-> @@ -32,10 +39,37 @@ properties:
->    mux-controller:
->      $ref: /schemas/mux/reg-mux.yaml
-> =20
-> +patternProperties:
-> +  "^gpio@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          enum:
-> +            - fsl,lx2160ardb-fpga-gpio-sfp
-> +
->  required:
->    - compatible
->    - reg
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,lx2160ardb-fpga
-> +    then:
-> +      required:
-> +        - "#address-cells"
-> +        - "#size-cells"
-> +    else:
-> +      properties:
-> +        "#address-cells": false
-> +        "#size-cells": false
-> +
->  additionalProperties: false
-> =20
->  examples:
-> @@ -68,3 +102,27 @@ examples:
->          };
->      };
-> =20
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        board-control@66 {
-> +            compatible =3D "fsl,lx2160ardb-fpga";
-> +            reg =3D <0x66>;
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            gpio@19 {
-> +                compatible =3D "fsl,lx2160ardb-fpga-gpio-sfp";
-> +                reg =3D <0x19>;
-> +                gpio-controller;
-> +                #gpio-cells =3D <2>;
-> +                gpio-line-names =3D
-> +                    "SFP2_TX_EN", "",
-> +                    "", "",
-> +                    "SFP2_RX_LOS", "SFP2_TX_FAULT",
-> +                    "", "SFP2_MOD_ABS";
-> +            };
-> +        };
-> +    };
-> --=20
-> 2.25.1
->=20
-
---DaAPDeI8ICb8eSbe
+--+jcr3yw54Dfe8FJr
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsJzgAKCRB4tDGHoIJi
-0sFlAP9ec6NMDaXY0lpCg8p1Z2cDJCqMGjRdn/HLs7eqWASDbAD/R3xsaasgAaF1
-997IkysPI75MqTEU+K3k/zbihFA00ws=
-=EIw5
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsKFgAKCRB4tDGHoIJi
+0hWoAQCXo+6cPmdH6YWPs9PyzigkwJ60BhAPlINjCbIJTksefwD/VzsJGao/I5xz
+PPOC4KGvroyyyWVXBtRiAJbuIIL+nwA=
+=76fH
 -----END PGP SIGNATURE-----
 
---DaAPDeI8ICb8eSbe--
+--+jcr3yw54Dfe8FJr--
 
