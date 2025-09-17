@@ -1,347 +1,247 @@
-Return-Path: <devicetree+bounces-218539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A64B815AD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 20:36:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5F2CB81607
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 20:43:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C1BD324799
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 18:36:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58115521944
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 18:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE842FF676;
-	Wed, 17 Sep 2025 18:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD54301024;
+	Wed, 17 Sep 2025 18:42:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DD0K6u4b"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="31NPyURf";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="+0O3GflI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8992FF653
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 18:36:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582FB2F7ADF;
+	Wed, 17 Sep 2025 18:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758134189; cv=none; b=CLmmGtrdhe/uPxpsCM1+UQqO3q8AB8QU8yp9Ln8UCvrvbOiAJztkOIbDlbYgbZaaz5mnfkFsgKnSP3Y9vTawwr/8rsgvIoR6hELrz7jZkU0H5waamJKFJ/ZrW199+y4zOpPo2ltJuXnkqnE0qKzCQve8u3uneFFTbThMFZZP+JM=
+	t=1758134579; cv=none; b=BP8k6MUPvawf+5ZjibYaq7P8WkdnejM14zY1jYL7ihG7xYuYZHxYZfgLxAvPauid8zN4+kl3fV6ExCXLsR+lK2+EClxDhX7X6p+rcwKrQfikrrte+HlOUVzNBVmQ+/7xjpr6ZVhS52rCjg4XflhwwKY+Dc/r5vHGZhD1J+ZwcMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758134189; c=relaxed/simple;
-	bh=ShI2k9ivKU2ONLYeQn0ZPELa7RBfFm3UfEcjq3W58rw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QBiQHrdlRINEuz6jwj1BsD40px2U/jmP5G5cNomuwDiFYFPsTTZfcS8XFusakRor6Ma7Oy4csx+FOFhswDNKDXctVMGpQSeofjp9tExnwfdK9BQgy+6LyV1ALVNkxjSPSHgU52NHsWKRNAGZt2HFjdcA2zbSt1jnhjXCalL7Rhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DD0K6u4b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58HBLM5s028087
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 18:36:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	G6gNK6B9Z2A4lta5LSCT5cUXyJCQpIdZ/ubmiF5QefM=; b=DD0K6u4bwE+LyV2M
-	9H63lfkUvnBZGktna6oM0D2qFtT/PWfNP0YPoDh3EdO59A4UKUHpBfPCxP+d32D+
-	nzp+d36A9L1RUt5GBMJ4YyWdpi/SsVD8C5/0m9ykQWHKZf+Oq470ofpmBWT5CpTR
-	EkQYUBLbWckRXnIyqRZNSzH9rGbH9S2HGOWKjCfXffczo6DP+QfqlZvXqGo21HVL
-	0nFDebM5/z2b/ybIfiHu1t0jF7sLWmtRGiNOaHeQRGXhiIgeBq3h1XRaK1c3OV9i
-	UR0xm8bRsnviE0nd0JRc7t39/eJXe3+eqRnBvLJgj409f6D/FWzLaSFB4RRQ1C+y
-	dZI8fA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497v1j9cp4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 18:36:25 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b79d4154c9so740071cf.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 11:36:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758134185; x=1758738985;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6gNK6B9Z2A4lta5LSCT5cUXyJCQpIdZ/ubmiF5QefM=;
-        b=N1EYLb4K++RjfXA+7V4CllD96N5DTsHy/0EH+8r21OsndO0fiAZgRuVSBq9hr+MB1K
-         Pv0CygFHO9E1xSntxpPlmuLUprqMlf/6SyiK2xMVOFqbQFcEn5lsUFq6lqhUxAVKT74p
-         cxdge2fiVKpLFYKBXLp0KBxTcwLQEqgCIFyQYhtjsjjHlPxGXHPXm564B6Z4UCT1oJBc
-         w5xmkP1Lc+uw13oCNWwF4PYjstQ6k9mbVTTYA18mKX3inhBJPHzd2IwXdKsEm66gWB/b
-         PJnSw9GClNHeTkhD4L6t4VE9BH2Rhe479V0GExRCyc2Q0jJ4cAUs6NQKv5MfToWmm4hg
-         ZcVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZBepR2uGIJeePLZnoJqDzfRelxXou9nrymFp7SlPDEKTLeiWFKdF1wVEU0mO/jK5XHIQlBOOXAjQU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQf/fQhr5xmNQF773NOJVsllQW0Yl/VkH+rAFHrl3C1avI+pSK
-	ZpPH907LjtMhyYJ3HbRBZqG4fEH7YlcE+80ducxBy0eDaDEKRHFNrMf8VwE5U758KLXBMkIUll/
-	G/GM1GN3ZSNYSl/Aq2dOjRBKOAveqPSQvHdugHeGVCa+LSXrpiDi6Jm29xb3KhtwH
-X-Gm-Gg: ASbGncvhvUCfWTxDEULZfytUCbIUnaglCCT/xvM4kAhGyb7K4UtjcYm2RC8IbFzMVAd
-	mpjVq19gnkpSdDyd0d2bkUaEVVhvb7eA2gmXQ4KBl3lBv8xwfQ4naHFO9PxHRby3sLLu9lIUhO5
-	9NNJF4iGns0iirpKHvLDeD4YDnM/O2Op0sBsAUw6vlyffG4nKzmbzlif/RtXD9l6DbygQ7ORS+e
-	heN45H8giqNfDABdv8R0DLk1mxUZvk1eGopw8ia5YZtF2CJO5A3frtmEAJ14efEkF0k8NyfyCFc
-	Tr+wDRzQ53tH2BLOlpTNBoU9mqwmKR6PdeSZNWU4H7EzAgsDwXPGNJJP75C8a4WtR8XSZ6iPVQW
-	36E4tH77892TPdCcD/ZfNpQ==
-X-Received: by 2002:a05:622a:109:b0:4b7:8076:a18b with SMTP id d75a77b69052e-4ba6c1e8f28mr25265661cf.12.1758134184517;
-        Wed, 17 Sep 2025 11:36:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGLuRNGN9aEBJZ8GryG0uthn3tSIvqT4mf7CdTs+y8S8l0MhVt4Qree4ToiBP0C/0e4uJiEYA==
-X-Received: by 2002:a05:622a:109:b0:4b7:8076:a18b with SMTP id d75a77b69052e-4ba6c1e8f28mr25265241cf.12.1758134183687;
-        Wed, 17 Sep 2025 11:36:23 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62fa5f4156esm59054a12.46.2025.09.17.11.36.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 11:36:23 -0700 (PDT)
-Message-ID: <e648a71f-a642-4f5d-bcf8-893484cfe601@oss.qualcomm.com>
-Date: Wed, 17 Sep 2025 20:36:19 +0200
+	s=arc-20240116; t=1758134579; c=relaxed/simple;
+	bh=n4tuaVTkOrU5F2vMDHUFbmMsDqBcpYzzhkIfb7fSeSk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=OR6ix4pOUBKU8A9J+YMUF8/vd69X1IOlTde85ps5R4bWrJG0ptkodGGsY8QaABd7smtgWhCRIpZYMUcPfRJTBUkVIFqnhLHCxy+gEiZogI1NpqUy/OdtmSd4gcj7wnPPCK1kuFP0Wbq0Yodv43FIEDXDGY0qwdx0cwFrz+OnYT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=31NPyURf; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=+0O3GflI; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1758134575;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zgxBzCQCDvwwT1MdtXjPWMiw/X9+NdfomOMbxA0z+nk=;
+	b=31NPyURfNoC+Hp4DlCfka73PQbGe2AnSx5Lhwo3ZAk40OESvmsNtKLZX/mLN+gUMrsQ7Xj
+	oE1AJTAEi+EfVNjcJpgdtsMX+9eZeJVcd9Cxf9O9hoWMReNGVFq3KDq4HwFLvTJyTvpG0q
+	5tVYyYZKYPYmlYS1v+blGf4H505UHNUxr/5ykB0Z0b+1B0qOtFt2rLmkRPEIqCIw7dJu+t
+	CZNMJy4quCw5wPcBPT/ZONfgr9blUyWN2Tu7MkrKyaD2A2Bjm6turlQT2tLG4ftXi6KyEr
+	8wZRxR70OE05sJ5qLeKfeX3NfNnOjt+EX11TDmw61wq3ERRuxc6UzjUz9nzxiQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1758134575;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zgxBzCQCDvwwT1MdtXjPWMiw/X9+NdfomOMbxA0z+nk=;
+	b=+0O3GflIeWtQKvcZ+4RGDE9CFHto6HOBWzA3hxU9BVVK3FujuWCVujUHWubIAY5CX/ouK9
+	VWtYg60SdwLM0iCw==
+To: David Hildenbrand <david@redhat.com>, Eugen Hristev
+ <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+In-Reply-To: <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com>
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+ <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+ <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com>
+Date: Wed, 17 Sep 2025 20:42:54 +0200
+Message-ID: <87segk9az5.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] dt-bindings: thunderbolt: Add Qualcomm USB4 Host
- Router
-To: Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Jack Pham <quic_jackp@quicinc.com>,
-        Raghavendra Thoorpu <rthoorpu@qti.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mayank Rana <mayank.rana@oss.qualcomm.com>,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Mika Westerberg <westeri@kernel.org>,
-        Yehezkel Bernat
- <YehezkelShB@gmail.com>, linux-usb@vger.kernel.org
-References: <20250916-topic-qcom_usb4_bindings-v1-1-943ecb2c0fa7@oss.qualcomm.com>
- <20250917061236.GF2912318@black.igk.intel.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250917061236.GF2912318@black.igk.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: P5emWDHGWXBT82HgHlB9REvyt8zCt7FC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE3MDExMCBTYWx0ZWRfX7YUYCumMzzgD
- Ie2BXMHHb8ufZ8oCRzwh7DF4ICGMPoMJT7I0dXutndVq4/jvp+18SBUNmh7bywgE+uk1D2vRg66
- EtfzWZhjkDGnyt2uV5z6PILkdjjhczK4mSuPASX28QLwhlq/zi/geIKW4+5YoRnm1Z9ljwbHw9X
- jCl2U47hg6/xFMjQG9Fm4tz6cjMffXUhUzAJd3CHbxLdHJ9pegj/6OnC/JsiMVL2ODIN5oqc2Gv
- eifh5GtUZFxu2EkKTFt1Em0vVeJR5Dzfic7uoKL+FSXcS7cpLD4VqBw/QVZ7YeTUOF+IPN44P+s
- 231I8adwDM8g/efXZtmfInfFMZX1UczlJO2ddGArN0WO5aYrCnBiD2foob5iXXRZ6pMQzktbqiK
- AVfgBRMq
-X-Authority-Analysis: v=2.4 cv=AeqxH2XG c=1 sm=1 tr=0 ts=68caffa9 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=yMhMjlubAAAA:8 a=EUspDBNiAAAA:8
- a=6jotvRMCQIAsDOHH8VAA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: P5emWDHGWXBT82HgHlB9REvyt8zCt7FC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 phishscore=0 suspectscore=0 adultscore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509170110
+Content-Type: text/plain
 
-On 9/17/25 8:12 AM, Mika Westerberg wrote:
-> Hi Konrad,
-> 
-> On Tue, Sep 16, 2025 at 10:06:01PM +0200, Konrad Dybcio wrote:
->> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Wed, Sep 17 2025 at 17:18, David Hildenbrand wrote:
+> On 17.09.25 17:02, Eugen Hristev wrote:
+>> On 9/17/25 17:46, David Hildenbrand wrote:
+>>> On 17.09.25 16:10, Thomas Gleixner wrote:
+>>>> Sorry. I was busy with other stuff and did not pay attention to that
+>>>> discussion.
+>>>
+>>> I understand, I'm busy with too much stuff such that sometimes it might
+>>> be good to interrupt me earlier: "David, nooo, you're all wrong"
 
-[...]
+I know that feeling.
 
->> P.S.
->> The driver part (which has quite some dependencies) is not yet 100%
->> ready to share and will be published at a later date.
-> 
-> Okay, I think it is beter to submit the bindings with the driver changes so
-> that we can see the big picture.
+>> The idea was to make "kmemdump" exactly this generic way to tag/describe
+>> the memory.
+>
+> That's probably where I got lost, after reading the cover letter 
+> assuming that this is primarily to program kmemdump backends, which I 
+> understood to just special hw/firmware areas, whereby kinfo acts as a 
+> filter.
+>
+>> If we would call it differently , simply dump , would it be better ?
+>> e.g. include linux/dump.h
+>> and then DUMP(var, size) ?
+>> 
+>> could we call it maybe MARK ? or TAG ?
+>> TAG_MEM(area, size)
+>
+> I'm wondering whether there could be any other user for this kind of 
+> information.
+>
+> Like R/O access in a debug kernel to these areas, exporting the 
+> ranges/names + easy read access to content through debugfs or something.
+>
+> Guess that partially falls under the "dump" category.
 
-We're not going to do that just yet, but I'll give you the gist of it
-(partially also responding to Dmitry's other reply to this email):
+I'd rather call it inspection.
 
-- The current thunderbolt implementation is almost entirely reused
+> Including that information in a vmcore info would probably allow to 
+> quickly extract some information even without the debug symbols around 
+> (I run into that every now and then).
 
-- Our HR is MMIO-mapped and always present (i.e. it's not a PCIe device).
-  Since the NHI code already uses I/O accessors, we simply ioremap() the
-  NHI region and feed the existing code the __iomem ptr (really cool)
+Correct.
 
-- Because it's not a PCIe device, all the places where the code assumes
-  it can freehand dereference nhi->pdev are altered to instead consume
-  a struct device *, i.e.:
+>> this would go to a separate section called .tagged_memory.
 
-diff --git a/include/linux/thunderbolt.h b/include/linux/thunderbolt.h
-index 75247486616b..d05f8d6896e7 100644
---- a/include/linux/thunderbolt.h
-+++ b/include/linux/thunderbolt.h
-@@ -493,22 +493,37 @@ static inline struct tb_xdomain *tb_service_parent(struct tb_service *svc)
-  *                 MSI-X is used.
-  * @hop_count: Number of rings (end point hops) supported by NHI.
-  * @quirks: NHI specific quirks if any
-+ * @is_pci: Whether the NHI is a PCI device
-  */
- struct tb_nhi {
-        spinlock_t lock;
--       struct pci_dev *pdev;
-+       struct device *dev;
-        const struct tb_nhi_ops *ops;
-        void __iomem *iobase;
-        struct tb_ring **tx_rings;
-        struct tb_ring **rx_rings;
--       struct ida msix_ida;
-        bool going_away;
-        bool iommu_dma_protection;
-        struct work_struct interrupt_work;
-        u32 hop_count;
-        unsigned long quirks;
-+       bool is_pcie;
- };
+That'd be confusing vs. actual memory tags, no?
  
-+struct tb_nhi_pci {
-+       struct pci_dev *pdev;
-+       struct ida msix_ida;
-+       struct tb_nhi nhi;
-+};
-+
-+static inline struct tb_nhi_pci *nhi_to_pci(struct tb_nhi *nhi)
-+{
-+       if (WARN_ON(!nhi->is_pcie))
-+               return NULL;
-+
-+       return container_of(nhi, struct tb_nhi_pci, nhi);
-+}
+> Maybe just "tagged_memory.h" or sth. like that? I'm bad at naming, so I 
+> would let others make better suggestions.
 
-I suppose I can probably get this decoupling sent in advance of the rest..
-It's quite delicate so I'm hoping I won't cause any random nullptrs for you
+inspect.h :)
 
+I'm going to use 'inspect' as prefix for the thoughts below, but that's
+obviously subject to s/inspect/$BETTERNAME/g :)
 
-- Additional steps are necessary to take the hardware out of reset, set
-  some magic values here and there, load the firmware (i.e. memcpy_toio())
-  wake up the MCU and perform Type-C magic (more on that below), all of
-  which is handled in a new qcom_usb4.c, which does that and ends its probe
-  function with a nhi_probe_common(). PM of the hardware and its providers
-  also takes place in Linux, just like with any other IP block on embedded
-  systems
+>> Then anyone can walk through the section and collect the data.
+>> 
+>> I am just coming up with ideas here.
+>> Could it be even part of mm.h instead of having a new header perhaps ?
+>> Then we won't need to include one more.
+>
+> I don't really have something against a new include, just not one that 
+> sounded like a very specific subsystem, not something more generic.
 
+Right. We really don't want to have five different mechanisms for five
+infrastructures which all allow to inspect kernel memory (life or
+dead) in one way or the other. The difference between them is mostly:
 
-- Because the Type-C pipeline varies wildly across Qualcomm SoCs and even
-  devices using the same SoC, we need to register a typec_mux to receive
-  generic (alt)mode notifications. The is more or less:
+   - Which subset of the information they expose for inspection
 
-pmic_glink_altmode/ucsi (altmode notification provider)
-|-> QMPPHY (Qualcomm proprietary USB4/TBT3/USB3/DP mode switchable PHY)
-  |-> (optionally) Onboard switch (e.g. FSA4480)
-    |-> (optionally) Onboard retimer (e.g. Parade PS883x)
-      |-> USB4 HR (pinging the MCU with some mode/cable info)
+   - The actual exposure mechanism: crash dump, firmware storage,
+     run-time snapshots in a filesystem, ....
 
-The actual entry logic (sanity checking, magic VDMs, SOP/'/'' comms)
-happen on a remote processor - Audio DSP (yes) in the case of X1E and
-the OS is graciously presented with a trimmed-down notification that
-the altmode has been entered and it better cooperate
+Having one shared core infrastructure to expose data to those mechanisms
+makes everyones life simpler.
 
-[...]
+That obviously needs to collect the superset of data, but that's just a
+bit more memory consumed. That's arguably significantly smaller than
+supporting a zoo of mechanisms to register data for different
+infrastructures.
 
->> +  reg-names:
->> +    items:
->> +      - const: router
->> +      - const: router_config
->> +      - const: tmu_config
->> +      - const: port_group
->> +      - const: sideband
->> +      - const: uc_ram
->> +      - const: uc_per
->> +      - const: uc_mbox
->> +      - const: nhi
->> +      - const: cfg
->> +      - const: debug
->> +      - const: usbap_config
->> +      - const: pcieap_config
->> +      - const: dpap0_aux
->> +      - const: dpap0_config
->> +      - const: dpap1_aux
->> +      - const: dpap1_config
-> 
-> Are these the specific to the host controller? I mean route_config sounds
-> pretty much like Router Config space and that is available through the USB4
-> fabric so not sure why this is listed?
-> 
-> Also this does not list the standard Host Interface registers, is that on
-> purpose?
+I'm quite sure that at least a substantial amount of the required
+information can be collected at compile time in special section
+tables. The rest can be collected in runtime tables, which have the same
+format as the compile time section tables to avoid separate parsers.
 
-The 'nhi' region contains the entire spec-standardized set of registers,
-everything else is qc-specific. The host router has internal connections
-to the native protocol controllers, so the XXXap_config regions include some
-tunables related to that.
+Let me just float some ideas here, how that might look like. It might be
+completely inpractical, but then it might be at least fodder for
+thoughts.
 
-The uc_ regions relate to the block's MCU.
+As this is specific for the compiled kernel version you can define an
+extensible struct format for the table.
 
-router/router_config refer to top-level tunables or control/state registers.
+struct inspect_entry {
+	unsigned long	properties;
+        unsigned int	type;
+        unsigned int	id;
+        const char	name[$MAX_NAME_LEN];
+	unsigned long	address;
+        unsigned long	length;
+        ....
+};
 
-tmu_config is the same, for the internal timing management unit.
+@type
+       refers either to a table with type information, which describes
+       the struct in some way or just generate a detached compile time
+       description.
 
-debug/cfg are self-explanatory
+@id
+       a unique id created at compile time or via registration at
+       runtime. Might not be required
 
-Most of those will be left unused, but the binding has to be forward
-looking, in case some sort of a software workaround is required down
-the line
+@name:
+       Name of the memory region. That might go into a separate table
+       which is referenced by @id, but that's up for debate.
 
-> 
->> +
->> +  interrupts:
->> +    items:
->> +      - description: Combined event interrupt for all three rings
->> +      - description: OOB Firmware interrupt
-> 
-> No MSI? If not then at least I suggest to support it in the DT description.
+@address:
+@length:
+       obvious :)
 
-No, it seems like across the SoC we only have MSIs on the PCIe RCs
+...
+        Whatever a particular consumer might require
 
-Because I don't know what a valid MSI setup would look like, I'd like
-to defer adding that description to when a platform with them pops up
+@properties:
 
-[...]
+        A "bitfield", which allows to mark this entry as (in)valid for a
+        particular consumer.
 
->> +  wakeup-source: true
-> 
-> What about the "power contract"? Are you using the existing we have for
-> ACPI:
-> 
-> https://learn.microsoft.com/en-us/windows-hardware/drivers/pci/dsd-for-pcie-root-ports#map-native-protocols-pcie-displayport-tunneled-through-usb4-to-usb4-host-routers
-> 
-> It was designed DT in mind but I don't think we have DT bindings for it.
-> This is needed to make sure the driver (Connection Manager) creates the
-> tunnels before the native protocol stacks get enumerated (e.g during power
-> transitions).
+        That obviously requires to modify these properties when the
+        requirements of a consumer change, new consumers arrive or new
+        producers are added, but I think it's easier to do that at the
+        producer side than maintaining filters on all consumer ends
+        forever.
 
-I added a custom entry to drivers/of/property.c, matching that name.
-Seems to work fine (tm) so far, but then we haven't yet tested sus/res
-much.. 
+Though I might be wrong as usual. IOW this needs some thoughts. :)
 
-Just to make sure - are we expected to ensure that the NHI device is
-resumed before any protocol controller drivers (at runtime), or do the
-latter have to *probe* only after they're necessary? I firmly believe
-the former, but doesn't hurt to ask..
+The interesting engineering challenge with such a scheme is to come up
+with a annotation mechanism which is extensible.
 
-[...]
->> +            port {
->> +                usb4_0_mode_in: endpoint {
->> +                };
-> 
-> This describes the Downstream Facing Port (e.g USB4 port), right? We have
-> something similar used in Chromebooks so it would be good if we can make
-> the bindings close to each other if possible. This allows binding firmware
-> description to retimers (and also to "fixed/embedded" device routers as
-> recent changes to the USB4 spec makes possible).
-> 
-> See drivers/thunderbolt/acpi.c::tb_acpi_find_companion().
+     Runtime is trivial as it just needs to fill in the new field in the
+     datastructure and all other runtime users have that zero
+     initialized automatically, if you get the mechanism correct in the
+     first place. Think in templates :)
 
-Yes, this binding assumes the Host Router has precisely 1 DFP (Linux
-Type-C infra isn't ready for anything more, at least not on the DT side
-to my knowledge) and this port (which isn't necessarily the same as a
-connector, i.e. a physical receptacle in DT speak, it simply refers to
-an abstract data connection between two devices)
+     Compile time is a bit more effort, but that should be solvable with
+     key/value pairs.
 
-Notably, I don't think we currently describe the USB4 port (as in, the
-usb4_port.c meaning of it) at all, but for on-SoC HRs we know all about
-them, so perhaps a subnode description could make sense. This way we
-could also point them to the compatible = "usb-c-connector" node
+     Don't even waste a thought about creating the final tables and
+     sections in macro magic. All the annotation macros have to do is to
+     emit the pairs in a structured way into discardable sections.
 
-Konrad
+     Those section are then converted in post processing into the actual
+     section table formats and added to the kernel image. Not a
+     spectacular new concept. The kernel build does this already today.
+
+     Just keep the compile time annotation macro magic simple and
+     stupid. It can waste 10k per entry at compile time and then let
+     postprocessing worry about downsizing and consolidation. Nothing to
+     see here :)
+
+Hope that helps.
+
+Thanks,
+
+        tglx
 
