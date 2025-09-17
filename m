@@ -1,65 +1,70 @@
-Return-Path: <devicetree+bounces-218558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25764B81A15
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:29:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6563B81A30
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 21:31:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80A4189F3E2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:30:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0518A1890151
+	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 19:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0300D2FF666;
-	Wed, 17 Sep 2025 19:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66BB27A927;
+	Wed, 17 Sep 2025 19:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aG7uCXPN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFBRx0CE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C880D72614;
-	Wed, 17 Sep 2025 19:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B839820E03F;
+	Wed, 17 Sep 2025 19:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758137380; cv=none; b=Iz3K0s/DDjDDyZH31Lm8UN95RNAIJZOlQKFBmdJhvQ+COgSBSKPLDeGq2sSom5WCrjpO80r6Tl1Wg+bfhMHiWopKErRdx8nU9tz5ua5H86uf3PTit+/NAvqxJQ2YztDXTiw7neTZKuU6NpsCAky7x+By3f49nt3TAPEWtMObjPQ=
+	t=1758137467; cv=none; b=sJqKVgw0BSxXLcv/JiXrw0bs2gmYMyJgAD1ONQaw+QqlUabBprs2fGK5uIVURBnkcGFF1jKHL4X2jxBGmKeX7iKsDQhJIyJJBH0tMQaiHn/kUtvIGdrFjUTz4Ptf4zb4Q12mEE3wKnItcAm+7KxVJMrcgIG+EOia6pSivFjrnMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758137380; c=relaxed/simple;
-	bh=v12o5iwyw41C8ihek+ckWbnVdlFN2k5R+5rFNQJK590=;
+	s=arc-20240116; t=1758137467; c=relaxed/simple;
+	bh=CqHwmT9jquJeX+EOuVFi/0NzpVRGCzy+hiZmGgVtW60=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YvyhuEq8SKqDguUZH7UbZ2FNouJvg9jGvtYEWU5ss2vyPAL8+KQessmgFahM+k4QsJgi8bYL85awwJpaZQfVugHoFhS3K4RdYqBNpILDzNvneIXb4N/oQ7t3egce/JP0zDCl8PzvnY5X757+PYAsk1oc8IOtbW/RwU6A6aCUv5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aG7uCXPN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CFA2C4CEF7;
-	Wed, 17 Sep 2025 19:29:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WDGnjMD6Y+l2RcpKH44lqlGMkffqKM0+13ADI64UU2X9tmjWwN4ivcR8zeA0W2vnZ1FPA1Htm0ohiBu0EccTlR7kQoHo4fBJpqNVdqrpu9krGKcHQVMBEahQwnI+IaObkPxo2c+nRCEebs6HgYx5v0LNdsefzZmGGgMxBMTlQ9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFBRx0CE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F9F4C4CEF7;
+	Wed, 17 Sep 2025 19:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758137380;
-	bh=v12o5iwyw41C8ihek+ckWbnVdlFN2k5R+5rFNQJK590=;
+	s=k20201202; t=1758137467;
+	bh=CqHwmT9jquJeX+EOuVFi/0NzpVRGCzy+hiZmGgVtW60=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aG7uCXPN6cuxbuyjgnbi4iOfnjVxeRb015U5DHqy+klOPlPT77WuL0G5T0CemjsI8
-	 4/zk7UKc6bRVkrUfmd88q5fKo0Ol1hPBYdEIkzghhZXH1pMaZO1jvtpG7T/dG0tC3j
-	 VMDC3grM9mnvL3Ovw7gStTetMOj3Iewq2T3QTFq6N0/NBszyuM0R+ACXpKM83YCzG4
-	 ExAfGwPELxOd8OQIRo33XvK0fCK0Cy/6Co0XvU0BiaLT+R50boLjurLAEE1cVHU644
-	 chcK2+hUTmklopfOYLUuFk4q0GFupnY4SczRV6ctW/nLSRYQyFQepfShVLQjVZgMfe
-	 4Lzz0fHhROObQ==
-Date: Wed, 17 Sep 2025 20:29:33 +0100
+	b=nFBRx0CEoMoBxb7hu4YJFHjQFHjSbGtjzre87bEBhm34jP6xjcJiUEwdATpcjUYkw
+	 SRG2RoHicyG/894mlK9TWuGmMNM475o19F2JfEEIc85onRIivFD7NHqeABm7hUKCOC
+	 s5SsRpTIZgCyA0+NK1AhDUCr4o/pBURjCjE4wc89Bae4c1W7FESfXqhEtqAO6grm8D
+	 Q4eaF08o+ZUJWcxHT+lk1Nc9QQa/+IVtUrY+r8HnlyMmAajwCNRoqWi+pkO36em7YR
+	 hAunXLRVwqzVVRTAYM4dqxS86uL295XAeCrBfb1rp8b4YKwhD7bXQMzZhrle/3gSr9
+	 RNKFWLo3RPHVA==
+Date: Wed, 17 Sep 2025 20:31:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ravi Patel <ravi.patel@samsung.com>
-Cc: krzk@kernel.org, s.nawrocki@samsung.com, alim.akhtar@samsung.com,
-	linus.walleij@linaro.org, robh@kernel.org, conor+dt@kernel.org,
-	tomasz.figa@gmail.com, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ksk4725@coasia.com, pjsin865@coasia.com, gwk1013@coasia.com,
-	bread@coasia.com, jspark@coasia.com, limjh0823@coasia.com,
-	lightwise@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
-	smn1196@coasia.com, shradha.t@samsung.com, swathi.ks@samsung.com,
-	kenkim@coasia.com
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: samsung: Add compatible for
- ARTPEC-9 SoC
-Message-ID: <20250917-putdown-unbent-5f606733ab13@spud>
-References: <20250917070004.87872-1-ravi.patel@samsung.com>
- <CGME20250917070041epcas5p4729ea496eee0c1ec2f4c234a63f71f7d@epcas5p4.samsung.com>
- <20250917070004.87872-2-ravi.patel@samsung.com>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-pm@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Lee Jones <lee@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Willow Cunningham <willow.e.cunningham@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 2/4] dt-bindings: soc: bcm: Add bcm2712 compatible
+Message-ID: <20250917-crept-romp-8c02570c1d6f@spud>
+References: <20250917063233.1270-1-svarbanov@suse.de>
+ <20250917063233.1270-3-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,27 +72,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rU/3WvnOMBYZh5rC"
+	protocol="application/pgp-signature"; boundary="hsLFofKKl/aa/7Bd"
 Content-Disposition: inline
-In-Reply-To: <20250917070004.87872-2-ravi.patel@samsung.com>
+In-Reply-To: <20250917063233.1270-3-svarbanov@suse.de>
 
 
---rU/3WvnOMBYZh5rC
+--hsLFofKKl/aa/7Bd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Sep 17, 2025 at 09:32:31AM +0300, Stanimir Varbanov wrote:
+> Add bcm2712-pm compatible and update the bindings to satisfy it's
+> requirements. The PM hardware block inside bcm2712 lacks the "asb"
+> and "rpivid_asb" register ranges and also does not has clocks, update
+> the bindings accordingly.
+>=20
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> ---
+>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 28 +++++++++++++++----
+>  1 file changed, 23 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.ya=
+ml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> index e28ef198a801..c8d3d6131a8d 100644
+> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> @@ -13,8 +13,7 @@ description: |
+>  maintainers:
+>    - Nicolas Saenz Julienne <nsaenz@kernel.org>
+> =20
+> -allOf:
+> -  - $ref: /schemas/watchdog/watchdog.yaml#
+> +$ref: /schemas/watchdog/watchdog.yaml#
 
---rU/3WvnOMBYZh5rC
+Please move this down with the allof.
+
+> =20
+>  properties:
+>    compatible:
+> @@ -22,14 +21,15 @@ properties:
+>        - enum:
+>            - brcm,bcm2835-pm
+>            - brcm,bcm2711-pm
+> +          - brcm,bcm2712-pm
+>        - const: brcm,bcm2835-pm-wdt
+> =20
+>    reg:
+> -    minItems: 2
+> +    minItems: 1
+>      maxItems: 3
+> =20
+>    reg-names:
+> -    minItems: 2
+> +    minItems: 1
+>      items:
+>        - const: pm
+>        - const: asb
+> @@ -62,7 +62,25 @@ required:
+>    - reg
+>    - "#power-domain-cells"
+>    - "#reset-cells"
+> -  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - brcm,bcm2835-pm
+> +              - brcm,bcm2711-pm
+> +    then:
+> +      required:
+> +        - clocks
+> +
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +
+> +        reg-names:
+> +          minItems: 2
+
+If the new device doesn't have clocks or the extra reg ranges, please
+add an else clause that enforces it.
+
+> =20
+>  additionalProperties: false
+> =20
+> --=20
+> 2.47.0
+>=20
+
+--hsLFofKKl/aa/7Bd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsMHQAKCRB4tDGHoIJi
-0ofPAP0Vk4Yt1eXjrrWtDfuzaIZWx4hwMFwWg1joQyhYukSJzQEA6x2UXKkHQ1bq
-Gs0eZdMZWs1ZFN8FyjqQjoqMWzRgugk=
-=T4JH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMsMdQAKCRB4tDGHoIJi
+0oEUAP96o7GTUuuNQybMRhkNw285zZaGo8XaVxkYQ3BLGFgV6wD/RPPmf9sqKXEb
+fpXxJZcldGF1WuzX8uE8HjH1H+SKgAU=
+=7ERd
 -----END PGP SIGNATURE-----
 
---rU/3WvnOMBYZh5rC--
+--hsLFofKKl/aa/7Bd--
 
