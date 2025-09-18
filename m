@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-218626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FCDB827EF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 03:30:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE773B8283A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 03:34:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D484466E65
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 01:30:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD863B88EA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 01:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB972309B9;
-	Thu, 18 Sep 2025 01:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3727E1D61BB;
+	Thu, 18 Sep 2025 01:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UP62X561"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h7gkX0Ih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BC022D7B5;
-	Thu, 18 Sep 2025 01:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0146F10E9;
+	Thu, 18 Sep 2025 01:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758159022; cv=none; b=L17bIwPfDiiXEmg9P7WF797kcCyTDpiRQopEy1RQi2NFN9JWpyGR3CQlRXijW7jDjD8m5JAR55BGaduLFL1PSg9TCirOjlMLzuSkN2lCEK5+euRbNYg7wEtrCx64JOvfgjhhK/JiaQyB/8L301fFRGrHZehhh7eT55G6twXiCIY=
+	t=1758159258; cv=none; b=psGpGJ0hjbB3HCp1khuIO3j10sJoY8sKZPLar0J29C+Tl0IMwmLxLxAmufw0khr0QYLbsNDyhFlllZBtxQmaOMfcy+BvgyyrDlLLEE1jXZQf8sLJOzbKfwfkeWdTNhNnl2kpipjZqjvhTzOo3q44c7DVbKN8AFF3jNpdY2ZwX10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758159022; c=relaxed/simple;
-	bh=IaCfp+f16H/Nhx85vEiEZ5gnjsJOfVdzE/53S5Y1PQY=;
+	s=arc-20240116; t=1758159258; c=relaxed/simple;
+	bh=BFSypG+D8n2dHNguy82XXQgdB+Xd1CPeG5T2r6V5qP8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pHhaOxsKzbV8kP3ubDntq2+2rdW7hCgIFo7LNd2xsgSb9sii3aILG/CDBsHnVGPe20a1kaCRj+ofLc8I3Li5ifvF57V4HJBLJIAUCzed+N25yy/upoVYUTnTvJvdNSLGoKnd18IEJFpG9ggcj3MMJrGZt/IiLqy4hvEbAVEdx1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UP62X561; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E853C4CEE7;
-	Thu, 18 Sep 2025 01:30:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tdScBSRcTlXy/dj0HbinTyvUVvFYNFo/LzvvdRfCNz8DBGI9X+JUA+NJ1jjKKrqxwYHtX7AFye/uvHoZo85LFPWN4jOqneNvnjauOCXEnCcRi4KgQ7onmHtQdGunUCKh7Ep7jyVp8eFmsVX+xno0CbsoQrC9IzlhyVzurNxSLqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h7gkX0Ih; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E2EC4CEE7;
+	Thu, 18 Sep 2025 01:34:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758159022;
-	bh=IaCfp+f16H/Nhx85vEiEZ5gnjsJOfVdzE/53S5Y1PQY=;
+	s=k20201202; t=1758159257;
+	bh=BFSypG+D8n2dHNguy82XXQgdB+Xd1CPeG5T2r6V5qP8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UP62X56180FV91VCsOM2cQ8SpBTs5wf1d20hB/IXItXZOJ/vQsCV4r3/xzU5LuYMe
-	 KemOAZBJKwxU3Huo/b5U46YCaj9KcwI8/HuRyiJ8mRWRO+zqgIR8oQFr/3f4A0eB3i
-	 2nnTITiI6/eDGZ2iw6MJIGMBFeoJ/gq2Rx2ZTYa2fFdWpTYZ93/8jw2/IfnKD93YL2
-	 n3RPdgj7OBcs0zBDR4uK0GJNezGHObunsIhFdmN0gtmts3Y1g8alN5Cnq/ffSbJsMt
-	 MNK2riV3r5ZhX9m2eYuy8iZtoK4qRNIAU4LtKlVE2E0BhRAUmSijh5hChIMqIuvplx
-	 KxQFRlcGDgIQQ==
-Date: Thu, 18 Sep 2025 10:30:20 +0900
+	b=h7gkX0Ih4xfRP5sACyXibIse6oaWmNkV1JNOJpUEK11Rh3H/EYUhkKv4RLTqJbs/k
+	 oUQO5p4qoy+O326jJUPRPoVKUf+s1esqc7u8GWJNCvxdSe5Ycgujyxej0NG6EtcYbP
+	 sbU2653+A+fAjLi0LGuk0/xZ4cD9USrMnnyvcdevupgASnMoHhVVEe+XXicdHnH2+P
+	 hAknFbbSkp3LkcNb2fNoU8T7UTo7ilGprbiTm2egJSZFsWrPzwWdDVJrA5npXCWGGJ
+	 DRL9EvOGEQo4WeQOf+5i1t6YhPtjjIxIPotDUCM0dAhFH8CNpbdo/BqF74KAYjA9X7
+	 lMoYku+c1qkLA==
+Date: Thu, 18 Sep 2025 10:34:15 +0900
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harikrishna Shenoy <h-shenoy@ti.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	sjakhade@cadence.com, yamonkar@cadence.com, lumag@kernel.org, dianders@chromium.org, 
-	jani.nikula@intel.com, luca.ceresoli@bootlin.com, andy.yan@rock-chips.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devarsht@ti.com, u-kumar1@ti.com, s-jain1@ti.com, tomi.valkeinen@ideasonboard.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for DSC
-Message-ID: <20250918-dandelion-guan-of-storm-fa2051@kuoka>
-References: <20250915103041.3891448-1-h-shenoy@ti.com>
- <20250915103041.3891448-2-h-shenoy@ti.com>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: remoteproc: qcom,milos-pas: Document
+ remoteprocs
+Message-ID: <20250918-optimal-smooth-lynx-6e9a7c@kuoka>
+References: <20250915-sm7635-remoteprocs-v5-0-96526cac59c6@fairphone.com>
+ <20250915-sm7635-remoteprocs-v5-1-96526cac59c6@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,85 +63,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250915103041.3891448-2-h-shenoy@ti.com>
+In-Reply-To: <20250915-sm7635-remoteprocs-v5-1-96526cac59c6@fairphone.com>
 
-On Mon, Sep 15, 2025 at 04:00:40PM +0530, Harikrishna Shenoy wrote:
-> From: Swapnil Jakhade <sjakhade@cadence.com>
+On Mon, Sep 15, 2025 at 01:15:18PM +0200, Luca Weiss wrote:
+> Document the bindings for the ADSP, CDSP, MPSS and WPSS PAS on the Milos
+> (e.g. SM7635) SoC.
 > 
-> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
-> DPI/DP bridge.
-> 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  .../display/bridge/cdns,mhdp8546.yaml         | 24 ++++++++++++-------
->  1 file changed, 15 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> index c2b369456e4e..2a05a7d5847f 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-> @@ -27,13 +27,12 @@ properties:
->            Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->        - description:
->            Register block of mhdptx sapb registers.
-> +      - description:
-> +          Register block for mhdptx DSC encoder registers.
->  
->    reg-names:
-> -    minItems: 1
-> -    items:
-> -      - const: mhdptx
-> -      - const: j721e-intg
-> -      - const: mhdptx-sapb
-> +    description:
-> +      Names corresponding to entries in the reg property.
+>  .../bindings/remoteproc/qcom,milos-pas.yaml        | 198 +++++++++++++++++++++
+>  1 file changed, 198 insertions(+)
 
-No, top-level should have broadest constraints. In your case it is
-min/maxItems.
-
-Description is completely redundant. Wasn't here before, so why adding
-it?
-
->  
->    clocks:
->      maxItems: 1
-> @@ -100,18 +99,25 @@ allOf:
->        properties:
->          reg:
->            minItems: 2
-> -          maxItems: 3
-> +          maxItems: 4
->          reg-names:
->            minItems: 2
-> -          maxItems: 3
-> +          items:
-> +            - const: mhdptx
-> +            - const: j721e-intg
-> +            - const: mhdptx-sapb
-> +            - const: dsc
->      else:
->        properties:
->          reg:
->            minItems: 1
-> -          maxItems: 2
-> +          maxItems: 3
->          reg-names:
->            minItems: 1
-> -          maxItems: 2
-> +          items:
-> +            - const: mhdptx
-> +            - const: mhdptx-sapb
-
-This is wrong. Previously CDNS variant had two items means it had
-"j721e-intg". Now it's something else.
-
-First, this is an ABI break.
-
-Second, there is no explanation at all for it in the commit msg! Looks
-like random change.
-
-Read carefully writing-bindings doc.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
