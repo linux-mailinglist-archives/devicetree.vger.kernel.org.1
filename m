@@ -1,139 +1,137 @@
-Return-Path: <devicetree+bounces-218707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C830FB83497
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:20:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3BB1B8351B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:30:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F11E7A9DB1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:18:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84C284A070E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9D62DF714;
-	Thu, 18 Sep 2025 07:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625192D94AC;
+	Thu, 18 Sep 2025 07:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kGWXTilh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vs81.iboxed.net (vs10.datenmanufaktur-hosting.net [213.160.73.65])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43D023315A;
-	Thu, 18 Sep 2025 07:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.73.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD57189F5C;
+	Thu, 18 Sep 2025 07:30:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758179999; cv=none; b=ZR2lP8KPFZ4cPfnpmSx9oGo2+0MwMxgJ0fmd07lAuAOICJ/ZdMr0XibXtms9waAkOpqKQqN1bPrs6fQPu/Q8zJIq9fOcRTrlAEeZIB4G20j2/R06sVso9WVmSRWPYOLw3QcjJDgCrKFD3faR10edReCHaDhfEhB50oxQITEOuz0=
+	t=1758180651; cv=none; b=HK/LJJKXCZeHTxG7ezJrdgOncQh03yCTDmZwVaeYxbKDiHP2rtSV1+v1a4Yv9VT9Sr00iANYtWh+13Niq7JiP7NdvWd0UVI21Ze1AdPr8bW4q16mCR0IzZLj22oMZHNQ8QCzFYKx7qTeqh/ySVQVKLWpLuC8EzAN/eTKeGiDbNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758179999; c=relaxed/simple;
-	bh=VvMIAtEi37Ksv2pemOmzDYTf0zTpsAVgWcNFBkpSQto=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=Gq0ICWdFsymx2BZsSgBXBmQatRlvvTuKbb8CqRUlqtUGJJE2/g+Xe88fPGw/1uOrf7yvTyQyr8iKYFULejZvFDKrxR+Sqf+ElOdH2/DKcqWQOEo0UYogo/dL8qYD+Sv1klZOL/VRLdopM8hUoZAA3ixRCrdIvdFDdQoe4M8QP5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de; spf=pass smtp.mailfrom=blala.de; arc=none smtp.client-ip=213.160.73.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=blala.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blala.de
-Received: from blala.de (localhost [127.0.0.1])
-	by vs81.iboxed.net (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 58I7P6Mh009840;
-	Thu, 18 Sep 2025 07:25:06 GMT
-Received: from localhost (akurz@localhost)
-	by blala.de (8.15.2/8.15.2/Submit) with ESMTP id 58I7P5Wt009836;
-	Thu, 18 Sep 2025 07:25:05 GMT
-Date: Thu, 18 Sep 2025 07:25:05 +0000 (UTC)
-From: Alexander Kurz <akurz@blala.de>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dzmitry Sankouski <dsankouski@gmail.com>,
-        "Dr. David Alan Gilbert" <linux@treblig.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        =?ISO-8859-15?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/8] mfd: mc13xxx: Use devm_mfd_add_devices and
- devm_regmap_add_irq_chip
-In-Reply-To: <fqhldiqylcsp6kp4tvhopxekgszabbemnvbseygkqaipgp5mhl@wtz6c7kjloko>
-Message-ID: <alpine.DEB.2.21.2509180710190.9711@blala.de>
-References: <20250914193723.10544-1-akurz@blala.de> <20250914193723.10544-5-akurz@blala.de> <fqhldiqylcsp6kp4tvhopxekgszabbemnvbseygkqaipgp5mhl@wtz6c7kjloko>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+	s=arc-20240116; t=1758180651; c=relaxed/simple;
+	bh=MHnx+O7UTUM0+Qgvg+zW8i93qn3/EnGXsPh4/sTxWdw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cZf/AGwCxP2Zt6jUApsGHjARkxr9xWMnQpH5cTHTflQGF822Yk6/wTo0n8o6IFoKuuZtkTBRQwv7yDJAdxDgcRdbvNLG1r3P6aEd5OIyW+m8H0zl9e2IgNbzgncAcst3+9qDSOWTLIMZ+eaYk2WkXMojkKyeco0hjl77bPBqD1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kGWXTilh; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B7DF343A97;
+	Thu, 18 Sep 2025 07:30:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1758180643;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=O4F/RbCRhR45zS5/1p8N4VggT1zjMH4kZIX9ts8WeRo=;
+	b=kGWXTilhH4TtdjeVJJebweGHw8Tg2+1DIrRp63aiXH8qyX0SuDv0pkX5btEfORsJIlgGvW
+	Wkd3vrCNoMcNGTEv5FiZa+ENW8TiYZNeaS4hlVLOq9BX02mlFbzrgWBDrKsZ8GjZYvG9k3
+	0pQPYH53Zb0pFQix0LKlZvigdocLQs3VHFJCykV9pDZ1m1VtxbQoc6mfrYLx0RXiDue6DJ
+	U1LATn9b7zvaLrsPCsIQNKGGMWwXVd4nUMmROjACPeY+P7QqlPYMEcDrockDcCge0Q9eOS
+	7jLSTaJSq0eKdhuITHHykuP2CjBOnVHO+IFNAzQ7+qgpk7GvOuSzZux+6ZSaXQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH 1/4] regulator: dt-bindings: Add Linear Technology LTM8054
+ regulator
+Date: Thu, 18 Sep 2025 09:30:37 +0200
+Message-ID: <12743863.O9o76ZdvQC@fw-rgant>
+In-Reply-To: <5135820.31r3eYUQgx@fw-rgant>
+References:
+ <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
+ <5135820.31r3eYUQgx@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; boundary="nextPart5923224.DvuYhMxLoT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegheejgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemkeegvdegmeektdekvdemhegrtddumegrtdegvgemfhejieehmeelhegrmegufhekieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemkeegvdegmeektdekvdemhegrtddumegrtdegvgemfhejieehmeelhegrmegufhekiedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvl
+ hdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhitgdvfeeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhunhhordhsrgesrghnrghlohhgrdgtohhmpdhrtghpthhtoheprghnugihsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: romain.gantois@bootlin.com
 
+--nextPart5923224.DvuYhMxLoT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Thu, 18 Sep 2025 09:30:37 +0200
+Message-ID: <12743863.O9o76ZdvQC@fw-rgant>
+In-Reply-To: <5135820.31r3eYUQgx@fw-rgant>
+MIME-Version: 1.0
 
-Hi Dimitry
-On Tue, 16 Sep 2025, Dmitry Torokhov wrote:
-
-> Hi Alexander,
-> 
-> On Sun, Sep 14, 2025 at 07:37:19PM +0000, Alexander Kurz wrote:
-> > Use devm_mfd_add_devices() for adding MFD child devices and
-> > devm_regmap_add_irq_chip() for IRQ chip registration.
+On Wednesday, 17 September 2025 17:51:05 CEST Romain Gantois wrote:
+> On Tuesday, 16 September 2025 21:24:42 CEST David Lechner wrote:
+> > On 9/16/25 5:24 AM, Romain Gantois wrote:
+...
 > > 
-> > This reduces the amount of required cleanup.
-> > 
-> > Signed-off-by: Alexander Kurz <akurz@blala.de>
-> > ---
-> >  drivers/mfd/mc13xxx-core.c | 9 ++++-----
-> >  1 file changed, 4 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/mfd/mc13xxx-core.c b/drivers/mfd/mc13xxx-core.c
-> > index 920797b806ce..091c9171b2b7 100644
-> > --- a/drivers/mfd/mc13xxx-core.c
-> > +++ b/drivers/mfd/mc13xxx-core.c
-> > @@ -381,7 +381,7 @@ static int mc13xxx_add_subdevice_pdata(struct mc13xxx *mc13xxx,
-> >  	if (!cell.name)
-> >  		return -ENOMEM;
-> >  
-> > -	return mfd_add_devices(mc13xxx->dev, -1, &cell, 1, NULL, 0,
-> > +	return devm_mfd_add_devices(mc13xxx->dev, -1, &cell, 1, NULL, 0,
-> >  			       regmap_irq_get_domain(mc13xxx->irq_data));
-> >  }
-> >  
-> > @@ -455,8 +455,9 @@ int mc13xxx_common_init(struct device *dev)
-> >  	mc13xxx->irq_chip.irqs = mc13xxx->irqs;
-> >  	mc13xxx->irq_chip.num_irqs = ARRAY_SIZE(mc13xxx->irqs);
-> >  
-> > -	ret = regmap_add_irq_chip(mc13xxx->regmap, mc13xxx->irq, IRQF_ONESHOT,
-> > -				  0, &mc13xxx->irq_chip, &mc13xxx->irq_data);
-> > +	ret = devm_regmap_add_irq_chip(dev, mc13xxx->regmap, mc13xxx->irq,
-> > +				       IRQF_ONESHOT, 0, &mc13xxx->irq_chip,
-> > +				       &mc13xxx->irq_data);
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > @@ -502,8 +503,6 @@ void mc13xxx_common_exit(struct device *dev)
-> >  {
-> >  	struct mc13xxx *mc13xxx = dev_get_drvdata(dev);
-> >  
-> > -	mfd_remove_devices(dev);
-> > -	regmap_del_irq_chip(mc13xxx->irq, mc13xxx->irq_data);
-> >  	mutex_destroy(&mc13xxx->lock);
+> > Examples usually don't have a root node. Probably explains
+> > the bot errors. (but you should have seen the same errors
+> > locally with make dt_binding_check.)
 > 
-> This causes the mutex be destroyed while the sub-devices are still
-> present. The power button will try to call mc13xxx_lock() and
-> mc13xxx_unlock() and of mutex debugging is enabled you'll get errors.
-Thanks for noting this, actually I have introduced this change
-in v4 of this series.
+> I didn't see the errors but I'm guessing that's due to an out-of-date
+> dtschema dependency on my system, thanks for pointing it out.
 
-> I'd remove mutex_destroy() as well (and transitively get rid of 
-> mc13xxx_common_exit()) and then look into getting rid of  mc13xxx_lock()
-> and mc13xxx_unlock() because, as I mentioned in another email, they are
-> IMO not needed.
-I would prefer not to extend the scope of this series even further
-and just drop this patch for v5.
+Just a quick update: turns out this wasn't due to an out-of-date dependency, 
+it was because I was missing "DT_CHECKER_FLAGS=-m"
 
-There are still more issues todo with mc13xxx, e.g. mc13xxx-led does
-not work since commit 78efa53e715e ("leds: Init leds class earlier").
-Cleaning up potentially legacy mutex is just one more topic on this list. 
-> 
-> But this version of the patch is broken as far as I can tell.
-> 
-> Thanks.
-> 
-> -- 
-> Dmitry
-> 
-Thanks, Alexander
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart5923224.DvuYhMxLoT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjLtR0ACgkQKCYAIARz
+eA6zYg//SpcEEDWVYymOTmBH8skAMdw8D4lEZcgSxweNQSvdYJ64NcK5aJKHCqZX
+Iz7Tx+EAaofDaokVQMVoY6E2OFwAhXvgUt/nAhp1mIYnuDDcRHHiP+APC/RqFfPG
+zpabha7++EtNbd/UCzInFf7WcS1ZPKowf3KHm8aOMQWtO8YGSIBSDylp810XqmTy
+/odm6s0RUvcPXSOoT9/jmf42DquFOLPb9qQxmOZulfWzTJqyf2HD9A1LcpnpAEK3
+U0XpEN/p1xaqR+lu6zQwQdGdZvm+8WUnRHVbdQyqb+sDvN3PZxVh/mLlQrvBFN51
+eZv1Wh4HTK2kVwAI+exFgX8eULJOgjFwcZ6GVv9z7E99xNwq8qS/6i3TZvw6VaSm
+6hQ/UhIwqSUUQ1mEDChYkwc87su1Nk/Vg3G8cF6k9/GE/qWL7PCCw5+V1+fqiK56
+nSbYQpPPrkyE5+tkj64Oheg8j+mcPPyXnbpJ6CgNGLK+qIFzjVn43GPkWrtxDj85
+9HH1dmDa5KPrhX5KxmRPA377ERSJny8RCxotV+tHhXZdW+1u5I9w2YUfp77e6WcY
+hlm127OoCDCfuTw5Y0oqYNP0QlEsg1ZnBzzIVtFu74/n824njqFwYV9g61BqyLB6
+Sj0ytJPkJgHzTls8zcO9jhfMMKLmhppywrqiCQsyzvHeqMc0tRU=
+=FJAI
+-----END PGP SIGNATURE-----
+
+--nextPart5923224.DvuYhMxLoT--
+
+
+
 
