@@ -1,62 +1,53 @@
-Return-Path: <devicetree+bounces-218702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F056CB83373
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:52:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4094B833DC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:00:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90ED81C82784
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 06:52:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 466763B7A46
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31BF2E54A1;
-	Thu, 18 Sep 2025 06:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926AD2E7BA7;
+	Thu, 18 Sep 2025 07:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181AC1C2DB2;
-	Thu, 18 Sep 2025 06:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64692E3B19;
+	Thu, 18 Sep 2025 07:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758178228; cv=none; b=Vr/IX2ffce8BNOhM+FkzPnTFFbjOLt8Q++kazP9vmIyqkYSw3PowcI3GPccPDJ/bb8LnPlXHSBuW0wVuKOdHtYgPIRo3M9lYUeh9BQIAxAOAldk2QcO4YiBAxC9M8kMXAjqvlJcPXkTo6PTOkXmm/7keH6focans6xKCIt4Kweo=
+	t=1758178825; cv=none; b=hDsmYaT38RUiWT6DNzWzYKVh9g0LaQN6yu4Y+1oqen7pF1XvF3ws4XpwyNY/1Y3LElvoOMInhW9uYLoRDyAOVT0kIfyEOT8y+RZrpTqwUWOtw6jZUbs5mwtan1ar/aKdX2LLh/XDqZj02z2fe4BHxEXN9RIKTMPPx1f5JWdbTgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758178228; c=relaxed/simple;
-	bh=E61AklOCat9VCLqMef8JiiENaQpUakUCY+88tvDoJDg=;
+	s=arc-20240116; t=1758178825; c=relaxed/simple;
+	bh=9TwmV7PneZ5SQAfUJgegYDmRObz/1doHVkhwnTrvv6Q=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=L2lUm4+kcz7XUXCmVniR6WhpyUnL77W8PvknLqAfZ/5lMOJ9UN5TyJMEvqWtiaSpwpkOcvKFWeCSw5fh8bGTRcxWKqgWOMtLO8TcXRbs51UuINMm6nry8P6JqmcqnuIUhcHcfFZEwWSe4XVjGjgESuuHmsfFC8Hl51M+CQWvnJY=
+	 MIME-Version; b=PvdItyxjVk6UKrdIAkZV9bPO26fJbgoMO73BW0nmOAlWTC9cSKx0AF4q6/amgZ2LbD4sF5tS7z3W6VJiIEiSZpR3XtRrqHcDMPE4tB2tS8EZ7VmE7CuP4MZrzWOxTOuvmYx176Nk4b0EIHa1kzSA+6E2XxAgapjk/yHG7Cz5OUA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
 Received: from localhost.localdomain (unknown [119.122.213.2])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 233a88a56;
-	Thu, 18 Sep 2025 14:50:15 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 233a88c2c;
+	Thu, 18 Sep 2025 15:00:19 +0800 (GMT+08:00)
 From: Chukun Pan <amadeus@jmu.edu.cn>
-To: wens@kernel.org
-Cc: amadeus@jmu.edu.cn,
-	andre.przywara@arm.com,
-	andrew+netdev@lunn.ch,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
+To: amadeus@jmu.edu.cn
+Cc: conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	jernej@kernel.org,
+	heiko@sntech.de,
 	krzk+dt@kernel.org,
-	kuba@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	samuel@sholland.org
-Subject: Re: [PATCH net-next v6 2/6] net: stmmac: Add support for Allwinner A523 GMAC200
-Date: Thu, 18 Sep 2025 14:50:06 +0800
-Message-Id: <20250918065006.476860-1-amadeus@jmu.edu.cn>
+	linux-rockchip@lists.infradead.org,
+	naoki@radxa.com
+Subject: Re: [PATCH v3 0/3] arm64: dts: rockchip: Update Radxa E52C support
+Date: Thu, 18 Sep 2025 15:00:05 +0800
+Message-Id: <20250918070005.478674-1-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAGb2v640r+TwB7O+UAB9PehZ2FaXDjhVerK6j_CZ2+caJoJ9zA@mail.gmail.com>
-References: <CAGb2v640r+TwB7O+UAB9PehZ2FaXDjhVerK6j_CZ2+caJoJ9zA@mail.gmail.com>
+In-Reply-To: <20250901100027.164594-1-amadeus@jmu.edu.cn>
+References: <20250901100027.164594-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +55,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a995b96860203a2kunmec52b10073125
+X-HM-Tid: 0a995b9fbf2003a2kunm899a37c674489
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGktDVh4dGEJPThlOThkYTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVJWVdZFhoPEhUdFFlBWU9LSFVKS0lIQkhCVUpLS1VKQk
-	tLWQY+
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaSxpNVh4eGEJMThpMTktNHlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVJWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
+	Y+
 
 Hi,
 
-> I don't have 802.1q enabled so I didn't see this.
->
-> Can you provide the base commit you applied the patches to?
+> Changed from v3:
+>   Add vcc_3v3_pmu label to vcc_3v3_s3
 
-Based on the latest linux-next, 20250917
-with these enabled configurations:
-
-CONFIG_IPV6=y
-CONFIG_STP=y
-CONFIG_GARP=y
-CONFIG_MRP=y
-CONFIG_BRIDGE=y
-CONFIG_VLAN_8021Q=y
-CONFIG_STMMAC_ETH=y
-CONFIG_STMMAC_PLATFORM=y
-CONFIG_DWMAC_SUN8I=y
-CONFIG_DWMAC_SUN55I=y
-CONFIG_PCS_XPCS=y
-
-[   38.818801] 8021q: adding VLAN 0 to HW filter on device eth1
-
-When the interface is down:
-~ # ifconfig eth1 down
-[   69.181869] dwmac-sun55i 4510000.ethernet eth1: Timeout accessing MAC_VLAN_Tag_Filter
-[   69.189827] dwmac-sun55i 4510000.ethernet eth1: failed to kill vid 0081/0
+Are there any issues with this series of patches?
 
 Thanks,
 Chukun
