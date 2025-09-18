@@ -1,147 +1,151 @@
-Return-Path: <devicetree+bounces-218991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4755B862D0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 19:13:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED283B862E6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 19:17:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A03B1CC14BB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:14:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A4197BE578
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B2C313280;
-	Thu, 18 Sep 2025 17:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022C62571C2;
+	Thu, 18 Sep 2025 17:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmjBQyS3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eCd8PvGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9782641C3;
-	Thu, 18 Sep 2025 17:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC661C3314;
+	Thu, 18 Sep 2025 17:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758215614; cv=none; b=kF6mc1kSwQrAwHyngNKTg/bTyTiDgTrO9r3mqVmAocNlD4pKawX30DSYiE368TJeDNtveHKijTXo86r7iLKsY3hEkVO2ElIXFWLBv4uFS9QzhJgbABvusCzwKI6FgVtxzkVWyKAShZGQoabNh40/MuWWroc12PP6srSookWD+G0=
+	t=1758215815; cv=none; b=S/21kpOFMh1tX/FtoqGYaOo0NnfXMSbYyfavDcZTBp1/vJ+S+9VR6qpeh7aFUYRH/XKOisa45MxWC+aaunW5DSplEF4BwhfLdSg9sXB5eL0TJ5vz7bNjDfzhVa1W3if8pKfxSisX0JcXargXc2PBOHlxljFYYPRIQe/KZCFHyaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758215614; c=relaxed/simple;
-	bh=k5kPnZBeAnA3V1Ui5siLTtPQXO0de+C8LUAH7bGc7Sg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=mdZnm93gH2zPzEYYj+jLxs2pYlgiM48Sm2DiZAauZHQrhd4qr0/BSJQ18Fi3RPWicpa6tkBTT1ICv4kSdC1ph4Yw0FDAIZI/9Rwzw9UFxpzH4fHgQfGvl0rgT9eOYbzRB8Z0OJCGbZke5l7bKefpkGwx5Q4flv1BvvNAmpTWYjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmjBQyS3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 798F1C4CEE7;
-	Thu, 18 Sep 2025 17:13:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758215613;
-	bh=k5kPnZBeAnA3V1Ui5siLTtPQXO0de+C8LUAH7bGc7Sg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=DmjBQyS34U8zBIkv1MVRiTPrhnpH3Bx5xOadfZIEruV+n59yEJPKqHakZbw2DmFkk
-	 mTTv0VYIUXaSoTj7hNDwnG5XbZlaV03D+T21+nmzjbyCib8ULtwpLpvBB/wGWWMlgN
-	 i+hIHC52YWCW7BwbKW0j7kRWfE6q0WJ+hVnPbeYPcy4IrExDled+6BlkvEIG1+hilT
-	 i8gnvIgvq/DJKvllurrgS9eD95Sar5LVsPUhyh4klElnn91Wj4/d1Pch5Z0dXcptIs
-	 twPNzSc1irAE2nDcq9Y3S+LZxSaXxrX9ohbD4jgCTESOP4nnC8EJnkbVjqXP/ssi/E
-	 pmK6+s12BgQyA==
-Date: Thu, 18 Sep 2025 12:13:31 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de, johan+linaro@kernel.org,
-	quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
-	inochiama@gmail.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700
- PCIe host controller
-Message-ID: <20250918171331.GA1911330@bhelgaas>
+	s=arc-20240116; t=1758215815; c=relaxed/simple;
+	bh=0+HS+1qpYkL2lUHeHkicL6gdDQ3Ypfdr3kGKZ1ZjVwk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FAVkjbAE3PJkUIYkMSIorLplaAvDdlb3t+6N7Zt+1XDJN6frTQPBWBE0g4DTFu6fcTvnc1taqB4JFHinCIuwL8CVL8OL4hN1vLeNYnoI4c8szZX/+1MBc8L/bnMwk3ruEl/xzFyFJDgF3C7ogIdkT7O5qem7mu9qP/qYFB3aI84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=eCd8PvGi; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gy/Z85EpA6PtugEQo7tOjG3wD8Ws/VL623KxkN4uUxg=; b=eCd8PvGiIcC61VFrTKq+rfWTo4
+	gXilCPqrrdDWsaBvaiItkZCGj7Q1Za0o8TQFPU3zmt5Kt4H8rpVqqWNoU/LIZ8BeatYHkJI+w5DsC
+	IhX/tepsPjuCWaV5amxVMQX+HvAQZexJwq9qOAimbFI7GgaIQovNbXow32YnHE//WnlH67UPT9+4x
+	L4oyXn8ciroToLCc5xN8Gs648B02kcw759/Kr1ONF2jXe123CVwvTL44+O26XGC2rfrfMqrofk/AM
+	aIG3nx5MfhxEURDQ1stujVejjeWdTFVEdsHskp4QxNDPRsVd8WdCKAAGFOLFfqRJFq6r8plyJaERq
+	rNd8F/aQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51190)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uzIFS-000000001Vp-1DNL;
+	Thu, 18 Sep 2025 18:16:46 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uzIFL-000000001Lm-0Tdb;
+	Thu, 18 Sep 2025 18:16:39 +0100
+Date: Thu, 18 Sep 2025 18:16:38 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: weishangjuan@eswincomputing.com
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, vladimir.oltean@nxp.com,
+	yong.liang.choong@linux.intel.com, anthony.l.nguyen@intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, jan.petrous@oss.nxp.com,
+	jszhang@kernel.org, inochiama@gmail.com, 0x1207@gmail.com,
+	boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v7 2/2] ethernet: eswin: Add eic7700 ethernet driver
+Message-ID: <aMw-dgNiXgPeqeSz@shell.armlinux.org.uk>
+References: <20250918085612.3176-1-weishangjuan@eswincomputing.com>
+ <20250918090026.3280-1-weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3e54d23b.14bf.1995b523ddf.Coremail.zhangsenchuan@eswincomputing.com>
+In-Reply-To: <20250918090026.3280-1-weishangjuan@eswincomputing.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Sep 18, 2025 at 01:35:40PM +0800, zhangsenchuan wrote:
-> > -----Original Messages-----
-> > From: "Bjorn Helgaas" <helgaas@kernel.org>
-> > On Fri, Aug 29, 2025 at 04:22:37PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > 
-> > > Add Device Tree binding documentation for the ESWIN EIC7700
-> > > PCIe controller module,the PCIe controller enables the core
-> > > to correctly initialize and manage the PCIe bus and connected
-> > > devices.
+On Thu, Sep 18, 2025 at 05:00:26PM +0800, weishangjuan@eswincomputing.com wrote:
+> +	plat_dat->clk_tx_i = stmmac_pltfr_find_clk(plat_dat, "tx");
+> +	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
+> +	plat_dat->bsp_priv = dwc_priv;
+> +	plat_dat->clks_config = eic7700_clks_config;
+> +	dwc_priv->plat_dat = plat_dat;
+> +
+> +	ret = eic7700_clks_config(dwc_priv, true);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev,
+> +				ret,
+> +				"error enable clock\n");
+> +
+> +	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> +	if (ret) {
+> +		eic7700_clks_config(dwc_priv, false);
+> +		return dev_err_probe(&pdev->dev,
+> +				ret,
+> +				"Failed to driver probe\n");
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void eic7700_dwmac_remove(struct platform_device *pdev)
+> +{
+> +	struct eic7700_qos_priv *dwc_priv = get_stmmac_bsp_priv(&pdev->dev);
+> +
+> +	stmmac_pltfr_remove(pdev);
+> +	eic7700_clks_config(dwc_priv, false);
 
-> > > +            resets = <&reset 8 (1 << 0)>,
-> > > +                     <&reset 8 (1 << 1)>,
-> > > +                     <&reset 8 (1 << 2)>;
-> > > +            reset-names = "cfg", "powerup", "pwren";
-> > > +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
-> > > +            interrupt-names = "msi", "inta", "intb", "intc", "intd",
-> > > +                              "inte", "intf", "intg", "inth";
-> > > +            interrupt-parent = <&plic>;
-> > > +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> > > +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
-> > > +                            <0x0 0x0 0x0 0x2 &plic 180>,
-> > > +                            <0x0 0x0 0x0 0x3 &plic 181>,
-> > > +                            <0x0 0x0 0x0 0x4 &plic 182>;
-> > > +            device_type = "pci";
-> > > +            num-lanes = <0x4>;
-> > 
-> > num-lanes and perst are per-Root Port items.  Please put anything
-> > related specifically to the Root Port in its own stanza to make it
-> > easier to support multiple Root Ports in future versions of the
-> > hardware.
-> > 
-> > See
-> > https://lore.kernel.org/linux-pci/20250625221653.GA1590146@bhelgaas/
-> > for examples of how to do this.
-> 
-> Thank you very much for your review.
-> I think the suggestions you put forward are very good，I placed
-> perst in the root port as per your suggestion.
-> 
-> I'm a bit confused about the "num-lanes" attribute.  The "num-lanes"
-> attribute will be parsed in the "pcie-designware.c" file. In the
-> "pcie-designware-host.c" file, When our driver calls the
-> dw_pcie_host_init function for initialization, the attribute
-> "num_lanes" will be judged. If the attribute is available, use the
-> value parsed from the device tree. If the attribute cannot be
-> obtained from the node, the lanes supported by the hardware default
-> will be obtained by reading the register.Can I avoid reparsing the
-> num-lanes attribute?
-> 
-> I saw vendors based on Synopsys implementation. They separated the
-> root port node and did not place "num-lanes" in the root port node.
-> For examples:
-> hisilicon,kirin-pcie.yaml
-> qcom,pcie-sc7280.yaml
-> qcom,pcie-sa8255p.yaml
+It would be nice to see the above code cleaned up like I did for all
+the other stmmac glue drivers recently.
 
-This is currently a problem because the DWC core doesn't know to look
-for "num-lanes" in a Root Port node.  Similar situation in the NXP
-driver: https://lore.kernel.org/r/20250917212833.GA1873293@bhelgaas
+However, this is not to say this shouldn't be merged - but please
+consider this if you do another rework of these patches, if not as
+a follow-up patch.
 
-Would it work for you to add a Root Port parser in eic7700, similar to
-mvebu_pcie_parse_port() or qcom_pcie_parse_port() that would get
-"num-lanes"?
+Essentially, you can use devm_stmmac_pltfm_probe(), populate the
+plat_dat->init() and plat_dat->exit() methods to call the
+clks_config function, but as you don't want these methods to be
+called during suspend/resume (because plat_dat->clks_config() is
+already called there), provide empty plat_dat->suspend() and
+plat_dat->resume() methods.
 
-It looks like that would keep the DWC core from setting num-lanes.
+Bonus points if you include a patch which provides this functionality
+as library functions in stmmac_platform.c which can be used to
+initialise ->init() and ->exit() for this behaviour, and check other
+stmmac platform glue drivers to see if they would benefit from using
+these.
 
-Eventually the DWC core should look first for a Root Port node before
-falling back to the current behavior of looking in the host bridge
-node.  If/when that happens, we should be able to remove the num-lanes
-parsing in eic7700 and similar drivers.
+Of course, it would be nice not to have to go to the extent of
+adding empty functions for ->suspend() and ->resume(), but stmmac has
+a lot of weirdo history, and there was no easy way to maintain
+compatibility without doing that when I added these two new methods.
 
-I'd like to separate the per-Root Port things in the devicetree from
-the beginning because once devicetrees are out in the world, we
-basically have to support their structure forever.
+Lastly, please consider using "net: stmmac: <shortened-glue-name>: blah"
+as the subject so there's a consistent style for stmmac patches.
 
-Bjorn
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
