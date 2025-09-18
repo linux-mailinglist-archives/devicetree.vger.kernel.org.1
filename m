@@ -1,99 +1,119 @@
-Return-Path: <devicetree+bounces-218896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CE7B8576A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:09:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BB3B85785
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A2B91B2424C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:06:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDD9D1BC2964
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C09241CA2;
-	Thu, 18 Sep 2025 15:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902D4224B09;
+	Thu, 18 Sep 2025 15:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2Mg6dsQR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCERJzRw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB51522A1D5;
-	Thu, 18 Sep 2025 15:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF90223708;
+	Thu, 18 Sep 2025 15:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758207906; cv=none; b=uo1Dk9SrixpRmgm1l7O8m65zFADPEWcAiAHVQtRE7YAgQ3j9dQEfTqDqWTcDyG8P2fRO0UoATAKa0gVaS8QHPnbPn6PtMju1KOAoLDHQEV+yLtnID9TZfexP9vXUb6W5g+h+5+U1400d1K1LEixGRnCATNsUy7PYVDXhYkj1ns0=
+	t=1758207971; cv=none; b=hfZ2wALEVpH5p/WRhurh9zLVYEVH9erK3lu/krYGYUntFOxTY9HcQ4VOM+fONVSewOB/49EVwQVtYD0HbKoR7VJ0QLbXyKygFhd0KTLZXF7stp3BY7p7yTG6oEO0dAXyFaRrbnank/AFztDon8LSlY8pauRtW1t4B/pqPDKMwDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758207906; c=relaxed/simple;
-	bh=dEh6BfjHPJCDZQNyVxEP0Gyi/kZdfBsir4jzEInAR9U=;
+	s=arc-20240116; t=1758207971; c=relaxed/simple;
+	bh=vKA3fmJbqjvROjkDkbIy2DYmEFF9U5JT6KofB2Oe+D8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7W9upFSL9elNV7YK3ixFL1niHRd3TpVyhO2AdxFxlPb5lppWlo21HV36FnZc22xluBsLAl0eTrIdl6xbws3wYSsvC66IeIYnX78OSZGO9ONpIBy7mc1DjS0QRgerBhyDgg4+u0LolKJln2uXm2vCF6KD8ppv+7/tYkRtesGngQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2Mg6dsQR; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=gT7EyJhqaGT1c/vVbat3yyZR0Yh/jcDyJmsQcPvAhhs=; b=2Mg6dsQRTBgEVP1SD38awP1HMR
-	VvKK0efTP0JUtG5xvhbIVACkueM+2moVFWtAlmpRQfbaX166ZQBeUMz63JIUb4QIolAa6aTlcBmdP
-	E50ZUVM0uxw1NFBK57Eg0qCdzKXOiyM4dwi4vS3tzX+voRwq5MUK3j+7fA8h8V9Vy8QA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uzGBr-008q5n-Ct; Thu, 18 Sep 2025 17:04:55 +0200
-Date: Thu, 18 Sep 2025 17:04:55 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: David Jander <david@protonic.nl>
-Cc: Jonas Rebmann <jre@pengutronix.de>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CyPaF5GVMKJ6xYC2zsdf4Znu3Ha3K1ru5o2WKJh687HZ3Kn0w5aWjr0xEmyS1xqadtycuu8OYRrh3BecPioH2K2IERaVFcxSiXE6x84zV2uzsQYsHqKQeAm/M/sHzTJNqqL9hKAAXcuk50EuiwT8M38+kEF6JA5HM6Uo53G1QWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCERJzRw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 139BAC4CEE7;
+	Thu, 18 Sep 2025 15:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758207970;
+	bh=vKA3fmJbqjvROjkDkbIy2DYmEFF9U5JT6KofB2Oe+D8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fCERJzRwAKxDQ1KvUygEWV1CwZ+LNQrSQZW3Z5Q93OOMf+wsgZfPFpnPvD/poGRIE
+	 Xy7nzlzTJfTOkbrArwZuTMWQ6czKgtaTd92hfgVof0fI1x9FQbFCKnsemPm0xhIrpW
+	 f6qJmB00FwVbEI1LTqUnUOJpL2bseR1eEG8rOhd74hqecqds6nqLsCbxejTkPqYfuQ
+	 RpIDaK2MjAekSAcWWBMaUPYtaQEg8LhsjQAiOG9BTdH5Li+/Y1tRI+wZsZwsJQ3gaY
+	 3mj8W81eV9npOYB3kIQyq8boEXamS6oQBjrtqHm715AbvogPdtHnDRlfkFMFE1XDJv
+	 DRhk0L/PZuUkA==
+Date: Thu, 18 Sep 2025 16:06:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH v2 3/3] arm64: dts: add Protonic PRT8ML board
-Message-ID: <7f1d9289-4102-4db9-a2bb-ff270e8871b7@lunn.ch>
-References: <20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de>
- <20250918-imx8mp-prt8ml-v2-3-3d84b4fe53de@pengutronix.de>
- <af554442-aeec-40d2-a35a-c7ee5bfcb99a@lunn.ch>
- <20250918165156.10e55b85@erd003.prtnl>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
+ GPIO Interrupt Multiplexer
+Message-ID: <20250918-majestic-mockup-0a0e090db0a7@spud>
+References: <20250918104009.94754-1-herve.codina@bootlin.com>
+ <20250918104009.94754-7-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/pCwTkF86qaNRpVh"
+Content-Disposition: inline
+In-Reply-To: <20250918104009.94754-7-herve.codina@bootlin.com>
+
+
+--/pCwTkF86qaNRpVh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250918165156.10e55b85@erd003.prtnl>
+Content-Transfer-Encoding: quoted-printable
 
-> Yes, unfortunately the SJA1105Q does not support PAUSE frames, and the i.MX8MP
-> FEC isn't able to sustain 1000Mbps (only about 400ish) due to insufficient
-> internal bus bandwidth. It will generate PAUSE frames, but the SJA1105Q
-> ignores these, leading to packet loss, which is obviously worse than
-> restricting this link to 100Mbps. Ironically both chips are from the same
-> manufacturer, yet are incompatible in this regard.
+On Thu, Sep 18, 2025 at 12:40:04PM +0200, Herve Codina (Schneider Electric)=
+ wrote:
+> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+>=20
+> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> IRQ lines out of the 96 available to wire them to the GIC input lines.
+>=20
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
+> ---
+>  .../soc/renesas/renesas,rzn1-gpioirqmux.yaml  | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas=
+,rzn1-gpioirqmux.yaml
 
-Thanks for the explanation. Maybe add a comment that the bandwidth is
-limited due to the lack of flow control resulting in packet loss in
-the FEC.
+This is an interrupt controller, please move it to that subdirectory.
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Anything which looks odd deserves a comment, otherwise somebody will
-question it....
+--/pCwTkF86qaNRpVh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-	Andrew
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwf3AAKCRB4tDGHoIJi
+0gOcAP99XokItUtuX1ufiP8oJREsjdPE3fkFF7xU0WaEATzS1wD/UTca8xeZ5WSr
+4IXQT78rYWreCBOVjUd0cMtb6zr1IAE=
+=jKYH
+-----END PGP SIGNATURE-----
+
+--/pCwTkF86qaNRpVh--
 
