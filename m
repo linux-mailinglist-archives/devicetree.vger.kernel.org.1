@@ -1,114 +1,161 @@
-Return-Path: <devicetree+bounces-218960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB626B85C99
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:53:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB48DB85D11
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EC6D3AA5E4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:49:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BC292A2D24
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE57A31159B;
-	Thu, 18 Sep 2025 15:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73DD30DD33;
+	Thu, 18 Sep 2025 15:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QctwkPXg"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="htEDTDbY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885AC30FF2E;
-	Thu, 18 Sep 2025 15:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C94155A25;
+	Thu, 18 Sep 2025 15:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758210536; cv=none; b=FaoTdoANx82iIK7dZNl3cw/85QlQ6XmJKIHrDqNal5elt6gvi9gUYVZcW0A/oKUuRfuHs+eG64rgbKYUj+yDElvP0aeHLFHLg8Ua0pKO1KpwV8ayyvVZpqtOYXY+5wF9/L8FMSvyAj29ZF2Y3zOz5866fwyT6yHEizO6GMGc6E8=
+	t=1758210709; cv=none; b=kK053bKnufmmfhnFeGgWfb31gUag9sDrXsW4Kn9J9ocBFCTkki+lhwzexgMlamVR0apb/nWf1nZ1ztNrqHjSn735v8YnDAjMIpIVwKuHxshnopzpbUolHptLpxNFl/dTxAz/nhtK0WBv/bxnLd87jydWUff0X/4StyIpe7SGj8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758210536; c=relaxed/simple;
-	bh=nhdHKFO5bR2X2/D/hMT1di3VRboSYDncxCVlGCDhYws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RWqkOGXZ1lT32c6JjOPB2eDpkV3oNAvrTjXazkee5LevPYHut7clzNHecC+U0XsbA5bj39anzUUmz8EUMHAxxsQUHhQRCgq4ZmvIB3oYePy8NdoBTWqJie1byNfhmC+NecAWjM7pYniuU4R2wpDOYcjiJVLZhZVwrA1SYhqzgYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QctwkPXg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A1EC4CEE7;
-	Thu, 18 Sep 2025 15:48:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758210536;
-	bh=nhdHKFO5bR2X2/D/hMT1di3VRboSYDncxCVlGCDhYws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QctwkPXgZezc5Uo0p1TcUvL7QB0Sc82tqkeG3pnWMZM+eSrBlp+itzVXFN9zJxO5H
-	 p8LB4kSiNTjMTUymK1ItQx5yb2NhQycUIH66QUAoHTDAX5OtUBnbojCYQ3h2EnZaF4
-	 zt2tTNcv8isdLiHzt8NVKJuGwBhwTcQcZozCs/sEh0uI4N+CmZu074qQqyjVOH051M
-	 /BOUUCzD2v0jkhoENdU80q7Q2bVbdkaSJfEoQ0zrW9gx38a0wczqPOj/wY8fOZ7tH5
-	 /QmtCAQChpY9iSvAgTjl9La62Ca5MiFuVQtmbpBL5PrP/DEf9l1Xy4P2YRW3X2hy7p
-	 5Giv6O+Iq4a2g==
-Date: Thu, 18 Sep 2025 16:48:51 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Durai Manickam KR <durai.manickamkr@microchip.com>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	balamanikandan.gunasundar@microchip.com,
-	nicolas.ferre@microchip.com
-Subject: Re: [PATCH 4/4] ARM: dts: microchip: add I3C controller
-Message-ID: <20250918-award-cursor-d564edf710e0@spud>
-References: <20250918095429.232710-1-durai.manickamkr@microchip.com>
- <20250918095429.232710-5-durai.manickamkr@microchip.com>
- <aMwoxsACdicpAFup@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1758210709; c=relaxed/simple;
+	bh=G83wKThPq3CeUhKXfOkXQ5E51eysUy6f1Li89e+KT7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UP53e1UPShM178JoFF1XH4JbZMrq7C/u5napGtTynq3kDle63VlRlJ7S+ZFddwQ9SwjAbiKlxbJqOuIknNDyacR8SWYDppYRr6Ey55ncvesHOupO4TYfHdsD4N7wgaTpHx7t6IQZeOSLuCxI4QTsfSikXA2r1mGzRfHr8UxabeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=htEDTDbY; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58IFpViB520570;
+	Thu, 18 Sep 2025 10:51:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758210691;
+	bh=DaW2y8M1Hp4LhE2yjH46X5/LPaGnP2rYdbOHU8P9gRE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=htEDTDbYv06gEr46TsdcjIUDl5I399zAiz5sY0EPcbbp2+ihXzh7Mm0WucU+MR9wM
+	 eLmRAtDgW7gr6iVgR1A41j0J2y2YkRJWW8JicsUvsxa5Ytm1Q3XPkOMQySi+7wugnf
+	 8G5AABzIcN/vbU1RpFStonNeN8Mk/Mjk0g425x9k=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58IFpVUd2219323
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 18 Sep 2025 10:51:31 -0500
+Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 18
+ Sep 2025 10:51:31 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 18 Sep 2025 10:51:31 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58IFpVdM1115868;
+	Thu, 18 Sep 2025 10:51:31 -0500
+Message-ID: <a521de5c-4811-4ea0-bc78-3b69467591d9@ti.com>
+Date: Thu, 18 Sep 2025 10:51:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="w1hi8Aenph44Z7K4"
-Content-Disposition: inline
-In-Reply-To: <aMwoxsACdicpAFup@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] dt-bindings: nvmem: Introduce nvmem efuse binding for
+ TI K3 SoCs
+To: Srinivas Kandagatla <srini@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bryan
+ Brattlof <bb@ti.com>, Andrew Davis <afd@ti.com>,
+        Rob Herring
+	<robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20250916154809.545283-1-jm@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250916154809.545283-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hi Krzysztof,
+
+On 9/16/25 10:48 AM, Judith Mendez wrote:
+> On K3 SoCs there are efuse registers scattered across the memory
+> map. In order to reference these efuse registers like gp-sw which
+> may store SW REV information or other general purpose information
+> for drivers to consume, treat them appropriately as efuse devices
+> with nvmem framework.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> This patch is not complete and is sent as an RFC to get some initial
+> thoughts on this implementation to solve [0].
+> 
+> [0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
+> ---
+>   .../devicetree/bindings/nvmem/ti,efuses.yaml  | 36 +++++++++++++++++++
+>   1 file changed, 36 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+> new file mode 100644
+> index 0000000000000..fffca65cdbfe0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/ti,efuses.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI SoC eFuse-based NVMEM
+> +
+> +maintainers:
+> +  - Judith Mendez <jm@ti.com>
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +  - $ref: nvmem-deprecated-cells.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    - const: ti,am62p-efuse
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    efuse@43000230 {
+> +        compatible = "ti,am62p-efuse";
+> +        reg = <0x43000230 0x4>;
+> +    };
+> +
+> +...
+
+Ignoring the errors for now, do you think this could be a good solution
+to solve [0]?
+
+[0] 
+https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
 
 
---w1hi8Aenph44Z7K4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+regards,
 
-On Thu, Sep 18, 2025 at 11:44:06AM -0400, Frank Li wrote:
-> On Thu, Sep 18, 2025 at 03:24:29PM +0530, Durai Manickam KR wrote:
-> > Add I3C controller for sama7d65 SoC.
-> >
-> > Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-> > ---
-> >  arch/arm/boot/dts/microchip/sama7d65.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/=
-dts/microchip/sama7d65.dtsi
-> > index c191acc2c89f..3a5da27f7d83 100644
-> > --- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> > +++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-> > @@ -721,5 +721,17 @@ gic: interrupt-controller@e8c11000 {
-> >  			#address-cells =3D <0>;
-> >  			interrupt-controller;
-> >  		};
-> > +
-> > +		i3c: i3c@e9000000 {
-> > +			compatible =3D "mchp,sama7d65-i3c-hci";
->=20
-> Need update binding doc for "mchp,sama7d65-i3c-hci"
+~ Judith
 
-"mchp" isn't even a valid vendor prefix. It's not acceptable for a v2 to
-be like this after the feedback on v1.
 
---w1hi8Aenph44Z7K4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwp4wAKCRB4tDGHoIJi
-0hTeAQDnpMlsIfqKchO9c7i8p0jUcVfWOYT6zlgMmGj5JLJ9DwD/Qi/0BsK8n1i2
-ti7cdxLs5npgg3H7zlwDkBth5D0+2w8=
-=IrZi
------END PGP SIGNATURE-----
-
---w1hi8Aenph44Z7K4--
 
