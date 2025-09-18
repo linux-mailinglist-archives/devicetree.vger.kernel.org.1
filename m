@@ -1,171 +1,134 @@
-Return-Path: <devicetree+bounces-218647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBB91B82B1B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 04:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9105B82B51
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:08:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 437BF1C211DD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 03:00:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62E2D1C219AF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 03:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A799923C51C;
-	Thu, 18 Sep 2025 02:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F8723AB87;
+	Thu, 18 Sep 2025 03:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="T5TydTDM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jrlcIVRP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B538423B62C
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4D32253F2;
+	Thu, 18 Sep 2025 03:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758164380; cv=none; b=Qc8hiXxxfBixypnVPmy02seFq+pBgPMog7GUL+D5SJyTpg+VXWYSRE0rRSf6Lui8bFXtwDMedNizLjCQX2uyCfh9RpY0ko9AvD3Z//OUMajOJ91iyvtrb2qv4W6k6b5FMyiROOP9p4YCqYYcxobx6zLcGCp+wofYmj90FSheuhI=
+	t=1758164878; cv=none; b=eh2A1CSkc3ekJ3HYF4JKM6KP/drrEKSbiYhMD+++2kcPPDlfPIVRslp+VTQfLG0kK8amaKQ14Fz6YuYhQSL0i7qwwax/xgEtdVAxBS/8SmI4qPrwMtWbpZQN8PdUtLEmzM4tsl8izf4603UiBD9vJ9cWOLuiPIgp3vs+u7fkgxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758164380; c=relaxed/simple;
-	bh=hWH39yoGDCQ7N2R4TtE9DDb6608lJvIpDKnTkeelSlI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rdwAEvt8Mlgj4g2BCkQlB7Lp6C6npf/5TLgxloMe67nsOeEigVP+E4fmV5E1KhgU98RcdPcfUeVAvYjelyeR7gUdARiX/PVmy9RidUOL/xiA2HJnI1a2SgqjNYKip+zQZTb9x8GhovhPe+vLt+OwmJGWbBG2HT4AdcCjQWCOdnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=T5TydTDM; arc=none smtp.client-ip=209.85.166.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-88cdb27571eso18111839f.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758164377; x=1758769177; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5szgNDrrDfA9r/y/UulQg5Y7n0+PRvqIyjOb+dac47k=;
-        b=T5TydTDMrhsOPSG/u+vKp+cSnK6vxqI3uUVQ3kg6kKSxl9PQK4MbdCWaC0eCexID2N
-         Bvh3pkhIlo1/QQASAAweajfelnt3AbtAFlb81TSuzn/yRkvIk+1kw+VuPwPDqMyWl0SX
-         GbvPJtfkK5BDX8Kxw9OqgJpDv7XP6x1d3eOkTx0B+wEQPLmqIu+dkG2KPJudCL3R63x6
-         T+T72qMn7J5N+kvTa30d0tMKcWOXYjq/7pIIKo3sTTvVWj9cZRPF8hvTTjd/Jkj14wmv
-         dKNcFfpocLqBuJyC/AhJ5XdNiLNFQN2rk8tuky0AUXu35x8OL0GTe/B5gVd5zeERffW9
-         jkMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758164377; x=1758769177;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5szgNDrrDfA9r/y/UulQg5Y7n0+PRvqIyjOb+dac47k=;
-        b=StXQzN+gG2IyovxV9s78oeDLvp0HpUM//Ch0iXI2YuA325oHRXjUpHHflM0ExqSMRr
-         0e1JuOf881Q2gm53oMSlnLBN7riaceNjZx0AosfGZmO0BI6KSZn/IBfYUm5QkZAMGI0p
-         kpud5PFscr4nna4xqb/uWZsWwrgSBVEzFakjlAFYTHjazq2BVpLGAPuM9+STkf+Y+7kN
-         DSU5o5Nfqtiz4Bal9YIVJw1Z8pbfZ9x87UTjbJXkCwdoLf2Ua5BchyYVxC6vSBGgDOph
-         QVMeif3lcVDzxIIkMc7VAKydyBozabWq0/EK434cfqMEeMTnWCE8Kz7w5UbjlfLkmB1C
-         bxdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCTXWIzdlK8WrHLBiu1cMqKJp+v89RZMyxuQzIoDXdKEU3osDhmYjOmLfI0iYY13MXuh6c/ygX8kY/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUl+S7Vtqdt3pfrCwtyUyU6X08PuxE4A9BUn+6xEssq4FxhKjV
-	nvMwNxmWjpj0NMuqUWIrxrnUEBlQQOpUZ0otnM5ceJRO8eqb41DIE1LV5G5HoynsmZhFpySlDfM
-	ig9C+
-X-Gm-Gg: ASbGncsLZs87SZttijmZrWBK66ye2rMrWeZh0hQOVhusH2v/Cz41oif/E5ldxuZ5mjX
-	uUKNqzLo4stWsVXjGUQf6FOY+JFJFOLOAYfQ2HIdNBiwWPwsLd0tL4Ptt5JgjMyLVotls6PCSpV
-	z5wJvGAEdzVKUwAYzr/5BNj33qORnOuNPKPvHY2+8mNpP+PepwX9/e6JQdTeRHXmkL3hdxdxQK/
-	9YcFBfG94BXXZxMB5ANh7ZphTdSWXZuSQ0924gqdafZwzdkQYgDAisbRbPdOIxoghTd0II+ink3
-	RXWTfJXf8gsouuuE0taZiWOa6SuqyeUAIVT1s1/6wUO8VYot+n69f5RNXPnuncjZ2UVn2J7MLA9
-	2oo+VCvOICRSKHL2394RnQu/ydm9HlMOe3tR4Cb+mmGbYBv44QImWD7UPXA09UpoC93YKdkwE4i
-	Aubfm9
-X-Google-Smtp-Source: AGHT+IEQLSK+9pHMwlUU8ixZlncSUSA8tIOFByfMAjDBZy5wDSD6GkAsXBMax/RAtzqwjY2ctqPlRA==
-X-Received: by 2002:a05:6e02:380e:b0:423:fdc4:4e39 with SMTP id e9e14a558f8ab-4241a5784damr64016625ab.27.1758164377462;
-        Wed, 17 Sep 2025 19:59:37 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d3b017664sm448915173.17.2025.09.17.19.59.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 19:59:36 -0700 (PDT)
-Message-ID: <f7e12797-ea17-4e92-bd25-cc562c66d2a7@riscstar.com>
-Date: Wed, 17 Sep 2025 21:59:35 -0500
+	s=arc-20240116; t=1758164878; c=relaxed/simple;
+	bh=vxmzojAbDASA52i3gEMLP/8kjtkaX8qnfVm04vkuXBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b/3ktJ2mghsmjU39NLTyNW/uc1jqpecsMszWs21IxvoeZOyuqMMfsJbJzFMU3TV+L5xEWEOxO/EP56N1pK6vPo3v2GhUJ8qPbuHySP11lyHry4k37G1cbAmKW/e0dLcedHTZxyVPzOiygdo0T0aHV8rTGigoO9q7cVlkEQ31Fms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jrlcIVRP; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758164876; x=1789700876;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vxmzojAbDASA52i3gEMLP/8kjtkaX8qnfVm04vkuXBQ=;
+  b=jrlcIVRPsOvUJQnLWfX/xJKr7UY3wbL7FcjJbE0zSTLXxBAtQJot0u5D
+   HyD7ePXPg4/zvgJP2XEzClcdnwTKczDO9uJy+Q4/zfscItoemgf98Dnmp
+   vXz/0sWoGWZojbipNHpPmGxlYtlmgJR0hpohQjerFhp4a+jCRpNb/uqcu
+   m6oNLePshJuvwrvP/Z1pq0YfFLRnPS06NF8MHy5rIaGpZA5hkuNcNB6Ge
+   qIFFpc/aM1mXn+qz3Yty2Q/QWzV5WxEAqvZ8R5h2wor5VIg//sYjdbIAq
+   erlTo8qzLRb7jsgjEqUkkAL59Fzv+AygSfRxhKns0JO/KbZWXP3X7/xkX
+   g==;
+X-CSE-ConnectionGUID: 1oDRMn3kTjG3oFsZWpPhuw==
+X-CSE-MsgGUID: On2Ad8UMTka7VrDcqinpFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60372005"
+X-IronPort-AV: E=Sophos;i="6.18,273,1751266800"; 
+   d="scan'208";a="60372005"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2025 20:07:56 -0700
+X-CSE-ConnectionGUID: o+VnVdjrRbOrf5S9IyL/6Q==
+X-CSE-MsgGUID: mv2o59GIT6OgGr8WTEhazA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,273,1751266800"; 
+   d="scan'208";a="212567329"
+Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 17 Sep 2025 20:07:53 -0700
+Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uz4zu-0002gR-36;
+	Thu, 18 Sep 2025 03:07:50 +0000
+Date: Thu, 18 Sep 2025 11:07:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marius Cristea <marius.cristea@microchip.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Marius Cristea <marius.cristea@microchip.com>
+Subject: Re: [PATCH 2/2] iio: temperature: add support for EMC1812
+Message-ID: <202509181058.dx3hT9N3-lkp@intel.com>
+References: <20250917-iio-emc1812-v1-2-0b1f74cea7ab@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
-To: Yixun Lan <dlan@gentoo.org>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250917220724.288127-1-elder@riscstar.com>
- <20250917220724.288127-2-elder@riscstar.com>
- <20250917231520-GYA1269891@gentoo.org>
- <3b815302-21f2-4ee2-bf83-c1dba77ce3d1@riscstar.com>
- <20250918001632-GYA1270371@gentoo.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250918001632-GYA1270371@gentoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250917-iio-emc1812-v1-2-0b1f74cea7ab@microchip.com>
 
-On 9/17/25 7:16 PM, Yixun Lan wrote:
-> Hi Alex,
-> 
-> On 18:40 Wed 17 Sep     , Alex Elder wrote:
->> On 9/17/25 6:15 PM, Yixun Lan wrote:
->>> Hi Alex,
->>>
->>> On 17:07 Wed 17 Sep     , Alex Elder wrote:
->>>> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
->>>>
->>>> Signed-off-by: Alex Elder <elder@riscstar.com>
->>>> ---
->>>>    .../bindings/spi/spacemit,k1-spi.yaml         | 94 +++++++++++++++++++
->>>>    1 file changed, 94 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
->>>> new file mode 100644
->>>> index 0000000000000..5abd4fe268da9
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
-> ..
->>>> +
->>>> +  spacemit,k1-ssp-id:
->>>> +    description: SPI controller number
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> could you explain a little bit why this vendor specific property should
->>> be introduced? I took a look at the code, and didn't get the reason
->>> behind.. or what's the problem of simply using "pdev->id"?
->>
->> This property was carried over from the vendor code.  It is
-> inherit from vendor code isn't a valid reason
-> 
->> optional, and if it isn't specified, the platform device ID (-1)
->> will be used.  It's just intended to provide a well-defined ID
->> for a particular SPI controller.
->>
-> while looking at the code, it seems you can use alias to map specific id
-> to the spi controller, it even can do non-linear map, something like
-> 	spi0 = &spi3;
-I've never used this before, but yes, it looks like it's exactly
-what I want.  I'll just get rid of the "spacemit,k1-ssp-id" DT
-property entirely.  Easy.
+Hi Marius,
 
-> plese check of_alias_get_id()
-> 
-> note, I haven't actually verified on board, just look through the code
-> 
->>> we should really be careful to introduce vendor specific property..
->>
->> If there were a standard way of doing this I'd love to use it.
+kernel test robot noticed the following build warnings:
 
-Looks like you have told me the standard way of doing this.
+[auto build test WARNING on 19272b37aa4f83ca52bdf9c16d5d81bdd1354494]
 
-Thank you.
+url:    https://github.com/intel-lab-lkp/linux/commits/Marius-Cristea/dt-bindings-iio-temperature-add-support-for-EMC1812/20250917-202833
+base:   19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+patch link:    https://lore.kernel.org/r/20250917-iio-emc1812-v1-2-0b1f74cea7ab%40microchip.com
+patch subject: [PATCH 2/2] iio: temperature: add support for EMC1812
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250918/202509181058.dx3hT9N3-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 7c861bcedf61607b6c087380ac711eb7ff918ca6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250918/202509181058.dx3hT9N3-lkp@intel.com/reproduce)
 
-					-Alex
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509181058.dx3hT9N3-lkp@intel.com/
 
->>
->> And if it isn't necessary, please just explain to me why.  I
->> have no problem removing it.
->>
-> on the opposite, please have explicit good reason to introduce vendor
-> speifici property, and if there is generic way, then we shouldn't do it
-> 
+All warnings (new ones prefixed by >>):
 
+   In file included from <built-in>:3:
+   In file included from include/linux/compiler_types.h:171:
+   include/linux/compiler-clang.h:28:9: warning: '__SANITIZE_ADDRESS__' macro redefined [-Wmacro-redefined]
+      28 | #define __SANITIZE_ADDRESS__
+         |         ^
+   <built-in>:371:9: note: previous definition is here
+     371 | #define __SANITIZE_ADDRESS__ 1
+         |         ^
+>> drivers/iio/temperature/emc1812.c:259:27: warning: unused variable 'emc1812_window_size' [-Wunused-const-variable]
+     259 | static const unsigned int emc1812_window_size[3] = { 1, 4, 8 };
+         |                           ^~~~~~~~~~~~~~~~~~~
+   2 warnings generated.
+
+
+vim +/emc1812_window_size +259 drivers/iio/temperature/emc1812.c
+
+   258	
+ > 259	static const unsigned int emc1812_window_size[3] = { 1, 4, 8 };
+   260	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
