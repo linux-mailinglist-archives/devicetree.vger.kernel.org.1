@@ -1,141 +1,120 @@
-Return-Path: <devicetree+bounces-219034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC6E1B86B6B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 21:39:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09192B86BE6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 21:46:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4720D1B20DC2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 19:39:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7510B188B291
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 19:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10AF2D978C;
-	Thu, 18 Sep 2025 19:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5877F2E8B77;
+	Thu, 18 Sep 2025 19:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UpPMRvqf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A5FQPO83"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051242D838B
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 19:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343472E88B0
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 19:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758224345; cv=none; b=oNpCCWUgBK48pWA6ZccS8fR8bem25GvekYT+xrktGupxYCFgua9qdwTlCL7HP4WlhxjHG9RmClayWGs9IcmlN2Gr8ojUZE8BE/OLwPxT7aMZFRusiveWhs2+nRIHzo+fJ6FHjVnqaiEwXq7ZSV6yELGk7PHKw3LrCdSFQvSzMVc=
+	t=1758224677; cv=none; b=UmCfu1X2Qj8jQOF0Mp+a8HgHBuAfEB9vIp3MQJmEYMjZy0VHGA2fGdiEZ05rftruSPxwZL1BwS3kbtQxOn5zPq3BP0VqzH3Xf9qBYIPfhLURMJUq99WLYI3Rxd2D0iwrg0DvPyJbS2kTgEKKO/qpO+7eUHKTClBlO0SIIYuUxOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758224345; c=relaxed/simple;
-	bh=VQ3t8/qxZa8M7ApZdBgI92YVOKX5tQcpsXI5KcrvT5c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o5C8NEBppyqDB5ZliB79npVppzlbqug/SDsYTo34qms/kgejTmwPFmtyJe9EHpvLBjiw+IAenv6M+8QsSOeC8vIBHFdgfkLBOqQpuCgQikECxudbW3mePOEScPTsQpK+TMdRlozXjJuAVl08X2punq2oDGQVt6b3oxMy7LzH2FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UpPMRvqf; arc=none smtp.client-ip=209.85.161.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-621b965a114so744577eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 12:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758224343; x=1758829143; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lC1D1RXpqGWlfeokss9Ec91Msfh5uPWlxYgo1Th1KKE=;
-        b=UpPMRvqfOgPqzydGEl7JaO4hSSi6dZcUjUkHSSoIz0DfqyvkvF9j/JsdUOSOYTuWhl
-         o4jfmM7W5OJJ6zHMOS966ArVDhX66r3qIhCNyNAj/V5S/+eRnEUl4k/slQRRKch3DgS9
-         1YXJQznDKqO0M3OQmVewpS7qGTYoAp4N50yo7l1yNvEz5eFrGGs5OHZCc9Lo+O1wNXLq
-         SiE03ZfxmRahrzrVmBUYgrc1bMe2B6N/vEv1O/lZqi11l3GtvwdeXe8HMks8gQtDDZ5X
-         YBAXo4JzP/OQgVSRtlPYASsrot/bGx966NlHvOMADKz4IdAl0D46ACEB4aAzub+njKCm
-         2dUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758224343; x=1758829143;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lC1D1RXpqGWlfeokss9Ec91Msfh5uPWlxYgo1Th1KKE=;
-        b=MhcG5IDxbHP5r4AMAAo6oHmB+AjOz0jc6E12yxJ2IpcjF8S3KKxYI4qs0Hz3WQ+gZB
-         IUIoPkwH5M2ahSapjuQb3+ry5qJ3+fLuLT/gZH93tqD8dIgIIPL8OkMPVOkKNr6cjOxh
-         SnU4QBkbo9RccKushaJFbfmMzAODv+Tyj2DJMocGNr48potaUuYoncy/IWH9ZelGuNQP
-         5/9+/juSVn4bvQdVnfowxAQKpsrTlk9eazMnHvgGTuH3pmdlVyCPpIhIlPutHtymvtV9
-         yaawN/WQA1k9RssdThcVhj0HuUTzG+Xn4ESlKyJdF8oD5MKRNyi6tSYCWgCgd+s9M+9Y
-         4roA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuqecbfweagoycTx58t3cLEVimNpSz+d7uEQWfCC2rWU3BW9MkxkHIb103ogC8kuCytchV5VLe+9Kf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOD2//1HNqZzeh9yxrf689dJ3auuspDyjNPR9MNbPm3qJlXWQG
-	ko1mFBHeTU8zn70vQl7kUa7+Ehz+77JgimP0cX9h3FZHJbx7VeWUipUY8nDOkorTvpc=
-X-Gm-Gg: ASbGncuEHTZo5/gV0TQT0dIGwFwS+3pxvIbyfSc1dY+M3Z+9V4qrihE6yhPubak7/5D
-	hFWaCEjHmK8FbYfKabXaLTlLDLyi/hDdtPV9kR3oAhHYemTNurI5HpS315yi7/ZtdcqY+UbbYmn
-	2+R22Ss/dt/eqblrExjk0KqAqyi/MTC8kVSZ23vmIccX2pUEy4xWEVUtuoDlIXU4PAMXEbhoQI2
-	H3fiNM3RXsQKgF8syanb9atGIioPi3oVBakCnQuHBGzzInvCXhQp97n4J8bEECcLc9pKSGnEQWx
-	/88iTxrmCb5pawK65Lzx+6RAxNxGnA4Gxrk0HjT8kBV1JeU7TfPCO4CG/WFzXaU9QLhFBZjUz14
-	ej47VRpgjDTeI/rTI2BOP+ZGCWWw1Zk0Q6ZHE55wlthxwT0l2ms3vUwgQeJnLLCnKvIC/gAvrXu
-	UF2kW3W/n47BH26WKpWA==
-X-Google-Smtp-Source: AGHT+IGwPYMqQBvoGrbWLKmtCrh7hU1R/7J5LL0cXcvqHKYJ/id7TQ+ISZN+tixS6oxGOqJOrN22sQ==
-X-Received: by 2002:a05:6808:198f:b0:438:bdb0:89b7 with SMTP id 5614622812f47-43d6c2c68eemr244526b6e.49.1758224343041;
-        Thu, 18 Sep 2025 12:39:03 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:55b7:b662:4c5b:a28e? ([2600:8803:e7e4:1d00:55b7:b662:4c5b:a28e])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-43d5c881af7sm1142955b6e.29.2025.09.18.12.39.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Sep 2025 12:39:02 -0700 (PDT)
-Message-ID: <f7d7f400-cc43-41d9-bc97-39d308363f14@baylibre.com>
-Date: Thu, 18 Sep 2025 14:39:01 -0500
+	s=arc-20240116; t=1758224677; c=relaxed/simple;
+	bh=xDt0aZagELXwSkTdz82ubamN8Iov86wVWkejVlcjJIo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CoAAXkpZn5+ZFDWFoJEbtOlIeIUBHen+2j8eHQAhCYIJv7WkmoyxpwR08iw6DRoD14lRivAFeNUy3NcaK19BQ/x+IcuIBVIgC8dtwgobNnZCh2+iv0lDxizt3hQJr0ZnRCcwRAFLsLQwIwFxczyNeP/xVhRsWF6nsw6IzYyd1U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A5FQPO83; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6319C4CEF1
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 19:44:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758224676;
+	bh=xDt0aZagELXwSkTdz82ubamN8Iov86wVWkejVlcjJIo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=A5FQPO83h0wKAhG07kgXFOaEJL6tYOKh2fngOkQril0hLbZZmjcXeUljfduKCCRtw
+	 iu5a7LRoSizH9mS7jRyB2aoEuKfAW9PjFckimlYt5jtT3qSKl61anUHL26sYTjXFZT
+	 iEptKin3FfZqNyqbg5AdBSIfuGaisOmRuyCeWERgZDK8djiEvFIqqhGzx5ZmgnhJg8
+	 FxJghXNarV6GlowxrFhVzePBJ0mkLauCqyFcpiK/Xo8mj+CwtboUr8mNg28+yE1Jbc
+	 PXocGgLKhGWeV/CYGp1LzcLaOEepB6683LUzRmsxcv/Fn8eX6s+tjsOKcymfBsCtOZ
+	 uFD1ZuZ6eY8lA==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b07c28f390eso244761566b.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 12:44:36 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWBOw4Kgw148pmDV6MQDf4qZtdZANX9e9zAorn1zN1v/GB3dB0nVW0hsxre41ValSjzSlWcjc+Buc0A@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOF6/10JvkPBQqyZJ5TjPnpIpwkkT7RP/NOkuMl6XYXYZDElnN
+	5pVFDGnEJIa1PkgK/qiv0FPCojckpxZ341n+MaOHsIvCPOQVGzEiJMvewit+ww+ZLa+oz6JmiBS
+	RHj0siTamDh+7obaUjwp9DJF8VwFt7w==
+X-Google-Smtp-Source: AGHT+IGAhcnuc0wpWw/s1p4UA6lxTrINGFr54H6UilY1ZtrPf2GcAEbRMuog4KleHa2rD/k9wiHS+9FlPpcBXhXUlUs=
+X-Received: by 2002:a17:906:6a1f:b0:b04:85f2:d26f with SMTP id
+ a640c23a62f3a-b24ef6880fdmr46219566b.25.1758224675450; Thu, 18 Sep 2025
+ 12:44:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: iio: adc: adi,ad4030: Reference
- spi-peripheral-props
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com,
- eblanc@baylibre.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, corbet@lwn.net, marcelo.schmitt1@gmail.com
-References: <cover.1758214628.git.marcelo.schmitt@analog.com>
- <5c1c448e3e731fc013e1e3b3fdcbc31f806d41fe.1758214628.git.marcelo.schmitt@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <5c1c448e3e731fc013e1e3b3fdcbc31f806d41fe.1758214628.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250916091858.257868-1-lpieralisi@kernel.org>
+ <20250918135555.GA1540012-robh@kernel.org> <aMwjcIS/rvxkSZdr@lpieralisi>
+In-Reply-To: <aMwjcIS/rvxkSZdr@lpieralisi>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 18 Sep 2025 14:44:23 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+XKT+HkE0W0BLKbQ76RtgBrKToLAVaWOy80mLkD=x0+A@mail.gmail.com>
+X-Gm-Features: AS18NWA_awGPL2y1OiG42_bMmJJc8tA99I270bH2QK0xh_S_5QTtemDGIGlw3EA
+Message-ID: <CAL_Jsq+XKT+HkE0W0BLKbQ76RtgBrKToLAVaWOy80mLkD=x0+A@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: Add msi-parent check to of_msi_xlate()
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, Sascha Bischoff <sascha.bischoff@arm.com>, 
+	Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/18/25 12:38 PM, Marcelo Schmitt wrote:
-> AD4030 and similar devices all connect to the system as SPI peripherals.
-> Reference spi-peripheral-props so common SPI peripheral can be used from
-> ad4030 dt-binding.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> index 54e7349317b7..a8fee4062d0e 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> @@ -20,6 +20,8 @@ description: |
->    * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-24_ad4632-24.pdf
->    * https://www.analog.com/media/en/technical-documentation/data-sheets/ad4630-16-4632-16.pdf
->  
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+On Thu, Sep 18, 2025 at 10:21=E2=80=AFAM Lorenzo Pieralisi
+<lpieralisi@kernel.org> wrote:
+>
+> On Thu, Sep 18, 2025 at 08:55:55AM -0500, Rob Herring wrote:
+> > On Tue, Sep 16, 2025 at 11:18:58AM +0200, Lorenzo Pieralisi wrote:
+> > > In some legacy platforms the MSI controller for a PCI host
+> > > bridge is identified by an msi-parent property whose phandle
+> > > points at an MSI controller node with no #msi-cells property,
+> > > that implicitly means #msi-cells =3D=3D 0.
+> > >
+> > > For such platforms, mapping a device ID and retrieving the
+> > > MSI controller node becomes simply a matter of checking
+> > > whether in the device hierarchy there is an msi-parent property
+> > > pointing at an MSI controller node with such characteristics.
+> > >
+> > > Add a helper function to of_msi_xlate() to check the msi-parent
+> > > property in addition to msi-map and retrieve the MSI controller
+> > > node (with a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to
+> > > provide support for deviceID mapping and MSI controller node
+> > > retrieval for such platforms.
+> >
+> > Your line wrapping is a bit short.
+> >
+> > I had a look at who is parsing "msi-parent" themselves as that's
+> > typically a recipe for doing it incorrectly ('interrupt-map' anyone).
+> > Can we make iproc_pcie_msi_enable() use this? It's quite ugly reaching
+> > into the GICv3 node...
+>
+> I am not sure I get what you mean here. Possibly iproc_pcie_msi_enable()
+> can reuse this patch's code if I extend it and make it a global function,
+> yes and somehow use that function to carry out the check for an
+> msi-parent property with no #msi-cells property or an #msi-cells =3D=3D 0=
+.
 
-I think this is already referenced for all child nodes of a SPI
-controller because of pattern matching of:
+I meant using of_msi_xlate() (or even of_msi_get_domain()).
 
-patternProperties:
-  "^.*@[0-9a-f]+$":
-    type: object
-    $ref: spi-peripheral-props.yaml
+> Don't get what GICv3 node has to do with that though, sorry.
 
-in Documentation/devicetree/bindings/spi/spi-controller.yaml
+Just trace what the code there does after it gets the MSI parent. I
+didn't study it too closely, but why is a iProc PCIe parsing GICv3 MSI
+stuff itself? There's either some missing feature in the
+irqchip/domain APIs or it's being dumb.
 
-So perhaps not strictly necessary?
-
-Would be curious to know if there is some difference.
-
-> +
->  properties:
->    compatible:
->      enum:
-
+Rob
 
