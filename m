@@ -1,100 +1,73 @@
-Return-Path: <devicetree+bounces-218920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7ABBB85A08
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:33:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25260B859C6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64EDC3B6ED7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:29:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0285E54782C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6121130E0E9;
-	Thu, 18 Sep 2025 15:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF7630F944;
+	Thu, 18 Sep 2025 15:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Er0/+4DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4017C30DECA;
-	Thu, 18 Sep 2025 15:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.42.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6CC30F939;
+	Thu, 18 Sep 2025 15:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758209388; cv=none; b=WYq6KGHeiw8+Fr6IUeDir0CP34mWhD+5qQVhSn06o8SHUGC5cG+xivNKwFjfhs6TJ+h3N0mVb8MeApCdITR+8AH3yUNZuIrLvWEQLyfCJhduGGXHg88ORagUopM8jN74TDYNkWqxFIn+JQ/u5LdVaF+UQbkKUh9wjxNOc4L/FJQ=
+	t=1758209485; cv=none; b=O/3wJszZeysZPIbHPsY9l9s+QziMDm3xw1ffnbpbPjYo8BWhV3qihMEJSk72IwHq1C4BH15lg3i88jmjXnRZSXai3sBJuKy0oR0KDJFPb6HFejul28m67xiBsxFoQRthOxDRBzhyS4I5f3HPpcfg/jPAP56MctoNyXYfBV6WkIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758209388; c=relaxed/simple;
-	bh=1E1TtPIzWv3UVjPPN5oafjjL60AY6+jP9kR4QCfSNnU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PvGhCB0dzmwbkI77atdqyqReCeWamBfqjA3tAz4g9JGvz47TSOUXF7kFb9qaxjyBgfsCtN0RT5EFFcvG0igUUb2IpMn1llfTor0uONxBC09z8nci0HSl6jMjCSKZXjRNF8gbpefQC6MHYMrcxRAy3RyqLHO75Z3hJqUOfuKP3OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=fail smtp.mailfrom=freebox.fr; arc=none smtp.client-ip=212.27.42.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=freebox.fr
-Received: from daria.iliad.local (unknown [213.36.7.13])
-	by smtp2-g21.free.fr (Postfix) with ESMTP id 179252003FC;
-	Thu, 18 Sep 2025 17:28:31 +0200 (CEST)
-From: Nicolas Schichan <nschichan@freebox.fr>
-To: safinaskar@gmail.com
-Cc: akpm@linux-foundation.org,
-	andy.shevchenko@gmail.com,
-	axboe@kernel.dk,
-	brauner@kernel.org,
-	cyphar@cyphar.com,
+	s=arc-20240116; t=1758209485; c=relaxed/simple;
+	bh=kNhbnaZz9O0F4p7ucRW4mmMBjCu2zNDrBJriaH3FC64=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Srudb57yVi1lPCWSR2TJccLm/IbENWnPNfVxtI6sg2dtl/iQV007QLgsZEr7P3bpNWyYEjM1tojAHfEmNwIJ/maAPaeMyac3LoUthetLW5NsJUgB/e2vzDQpv8PM3t+/L/Z62aZ0o4BAa+jenOHyij9qdpQf2wvGAQ/GK9hw0Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Er0/+4DA; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E4EEE2649D;
+	Thu, 18 Sep 2025 17:31:21 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id admD6bqCwlFv; Thu, 18 Sep 2025 17:31:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1758209480; bh=kNhbnaZz9O0F4p7ucRW4mmMBjCu2zNDrBJriaH3FC64=;
+	h=From:To:Cc:Subject:Date;
+	b=Er0/+4DATvWq8LChdwoWUu4mCOryZT0oVFxIIV9N4ORORc2hW2iXF8uGNqcFSK2BD
+	 4f5fLcc/z2HhRuYUbFvmUR8ppmQ+CkQJKwcUQyidSml1Cf8JIlg3DhFvBvWkARDR9g
+	 2j1glEPrNCp5c01KvUQFG45oMHMgu89NFBGV185kUGUrUrFFrZoCsbYcEZTBTYxGp2
+	 sJhRH6jt1bfYjMt8H7ZBuQBuPRNwMVwpSSOm3zMmAo+mLL/Msqy16k86jO3t2hPkpv
+	 G5HaGRQLY/mWxXcj2vr0eJ2go4fpyTtNmsf0A8jUqEZftedcneQYkayFHuKl802qZD
+	 aNdpRxAfMA25w==
+From: Yao Zi <ziyao@disroot.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>
+Cc: linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	ecurtin@redhat.com,
-	email2tema@gmail.com,
-	graf@amazon.com,
-	gregkh@linuxfoundation.org,
-	hca@linux.ibm.com,
-	hch@lst.de,
-	hsiangkao@linux.alibaba.com,
-	initramfs@vger.kernel.org,
-	jack@suse.cz,
-	julian.stecklina@cyberus-technology.de,
-	kees@kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-alpha@vger.kernel.org,
-	linux-api@vger.kernel.org,
-	linux-arch@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-block@vger.kernel.org,
-	linux-csky@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-efi@vger.kernel.org,
-	linux-ext4@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org,
-	linux-hexagon@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-m68k@lists.linux-m68k.org,
-	linux-mips@vger.kernel.org,
-	linux-openrisc@vger.kernel.org,
-	linux-parisc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org,
-	linux-snps-arc@lists.infradead.org,
-	linux-um@lists.infradead.org,
-	linuxppc-dev@lists.ozlabs.org,
-	loongarch@lists.linux.dev,
-	mcgrof@kernel.org,
-	mingo@redhat.com,
-	monstr@monstr.eu,
-	mzxreary@0pointer.de,
-	patches@lists.linux.dev,
-	rob@landley.net,
-	sparclinux@vger.kernel.org,
-	thomas.weissschuh@linutronix.de,
-	thorsten.blum@linux.dev,
-	torvalds@linux-foundation.org,
-	tytso@mit.edu,
-	viro@zeniv.linux.org.uk,
-	x86@kernel.org,
-	nschichan@freebox.fr
-Subject: Re: [PATCH RESEND 00/62] initrd: remove classic initrd support
-Date: Thu, 18 Sep 2025 17:28:30 +0200
-Message-Id: <20250918152830.438554-1-nschichan@freebox.fr>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250913003842.41944-1-safinaskar@gmail.com>
-References: <20250913003842.41944-1-safinaskar@gmail.com>
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v2 0/3] Add PCIe Gen2x1 controller support for RK3528
+Date: Thu, 18 Sep 2025 15:30:54 +0000
+Message-ID: <20250918153057.56023-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,48 +76,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hello,
+Rockchip RK3528 ships one PCIe Gen2x1 controller that operates in RC
+mode only. The SoC doesn't provide a separate MSI controller, thus the
+one integrated in designware PCIe IP must be used. This series documents
+the PCIe controller in dt-binding and describes it in the SoC devicetree.
 
-> Intro
-> ====
-> This patchset removes classic initrd (initial RAM disk) support,
-> which was deprecated in 2020.
+Radxa E20C board is used for testing, whose LAN GbE port is provided
+through an RTL8111H chip connected to PCIe controller. Its devicetree
+is adjusted to enable the controller, and IPERF3 shows the interface
+runs at full-speed. A typical result looks like
 
-This serie came a bit as a surprise, because even though the message
-notifying of the initrd deprecation was added in July 2020, the message
-was never displayed on our kernels.
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.10 GBytes   942 Mbits/sec    0             sender
+[  5]   0.00-10.01  sec  1.10 GBytes   941 Mbits/sec                  receiver
 
-When booting with root=/dev/ram0 in the kernel commandline,
-handle_initrd() where the deprecation message resides is never called,
-which is rather unfortunate (init/do_mounts_initrd.c):
+This series is based on next-20250917, thanks for your time and review.
 
-	if (rd_load_image("/initrd.image") && ROOT_DEV != Root_RAM0) {
-		init_unlink("/initrd.image");
-		handle_initrd(root_device_name); // shows the deprecation msg
-		return true;
-	}
+Changed from v1
+- Collect review tags
+- SoC devicetree
+  - Drop redundant PCLK_PCIE_PHY clock for PCIe node
+  - Use 32-bit DBI address, adjust SoC ranges property and reorder nodes
+  - Align cells of reg and ranges properties
+- board devicetree
+  - drop redundant pinconf pcie_reset_g
+  - Add missing vpcie3v3-supply
+- Link to v1: https://lore.kernel.org/all/20250906135246.19398-1-ziyao@disroot.org/
 
-It is likely we are not the alone booting with that particular
-configuration, so other people are probably going to be surprised when
-initrd support is removed, because they never saw the deprecation
-message.
+Yao Zi (3):
+  dt-bindings: PCI: dwc: rockchip: Add RK3528 variant
+  arm64: dts: rockchip: Add PCIe Gen2x1 controller for RK3528
+  arm64: dts: rockchip: Enable PCIe controller on Radxa E20C
 
-We do depend on initrd support a lot on our embedded platforms (more
-than a million devices with a yearlyish upgrade to the latest
-kernel). If it eventually becomes removed this is going to impact us.
-
-We use an initrd squashfs4 image, because coming from a time where
-embedded flash devices were fragile, we avoid having the root
-filesystem directly mounted (even when read only) on the flash
-block/mtd device, and have the bootloader load the root filesystem as
-an initrd.
-
-We use a squashfs4 because we can mount it and keep it compressed. The
-kernel would decompress data on demand in the page cache, and evict it
-as needed.
-
-Regards,
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  3 +
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 12 ++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 56 ++++++++++++++++++-
+ 3 files changed, 70 insertions(+), 1 deletion(-)
 
 -- 
-Nicolas Schichan
+2.50.1
+
 
