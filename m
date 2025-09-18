@@ -1,152 +1,94 @@
-Return-Path: <devicetree+bounces-218893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3569B8563E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:57:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9B7B85707
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E71D34E11EB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:57:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F1D62398B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9E730C620;
-	Thu, 18 Sep 2025 14:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcWhgwzJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B0E310635;
+	Thu, 18 Sep 2025 15:01:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF121A0711;
-	Thu, 18 Sep 2025 14:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0338E3101B8
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758207443; cv=none; b=QyIMK7VC8YF3YVnSv2EgckWWmemcYw3X0+oz9RQ9ls2G59p1NSgtvpiECVQQmlfkRLWo4BvnhOqm4nK2bgVUohYPNkmHgpOkQCA9+wpc+2uk7tb197B2Ph85unctIiuxAOe0HMOVaaVY5L5/9Kggdd6MSki+fybREBG6tnQ9o8A=
+	t=1758207687; cv=none; b=cTgXYp+M+71SwVZ1GtZamPOJsmSNDu8MJXPdlcDVGjzf3GCPRPy3UySApWFxmLJ7dNAJpdx3y5+Vb6N4j3dReSyc+dcX1Pvxk1Gm9/8GqOdVggRVRIu+qrxWhNhmqiQSOyoYRLghbpNNcfqUGjleSUvrlzDrehd5qjNddwDKwws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758207443; c=relaxed/simple;
-	bh=9qcMiKQOAovuoaEjP9TACZofJi5AHs2TyY3m1XiwKHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kx+6HEUEILdrDCMzFI6FVM1ye96Ux5SZ6lZgUAz0beWZtz11e8gbd7InUNx1nBOPN11BGjsfJoFGIrvSa0dvDUDeyLcQJDzuq46L7axqVTFPUgSmy+sEk9/aVX8RkzJvjEXjcJfPBVs7OgLP+26Xah8PoiJSR1RVmegaVimepog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lcWhgwzJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F79AC4CEE7;
-	Thu, 18 Sep 2025 14:57:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758207443;
-	bh=9qcMiKQOAovuoaEjP9TACZofJi5AHs2TyY3m1XiwKHo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lcWhgwzJWNeLbMXfOHQfs9m9qODa2qJ9eXsEW/rvGbSvNN+o90pqpCyKlgjJq3ged
-	 kMSWut0ZkH3W+6xNNKupWPsfCP/nmlN6baUAxFHP4cRZwHtJcbvNlavy9qNeriWEX5
-	 JCCrvpJ6nMvxH2t2cDGVzLYeDcA6EZ+msN6ntF0oJNFho2e4aQAxga3TtX9/yez+Xc
-	 ipas8NUaTQM7ZtFKrP7RQar40xeVh91KeJTYBqlCJCHdRNHbmy6V2VVFVaA47i5eNE
-	 EfSaLkOP9xeRYQJTDwA6Ema1upog/TAm7CoQpBnJPhqCEW6ySC1DIBuvYV8kgFsIpv
-	 GPjd+sCVyMpgA==
-Date: Thu, 18 Sep 2025 15:57:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v3 02/10] dt-bindings: fsl,fpga-qixis-i2c: add support
- for LX2160ARDB FPGA
-Message-ID: <20250918-falsify-walk-2d8d1831141d@spud>
-References: <20250917090422.870033-1-ioana.ciornei@nxp.com>
- <20250917090422.870033-3-ioana.ciornei@nxp.com>
- <20250917-document-enhance-4a6cb6053882@spud>
- <hp5cothkqfs7hbviesjz3mxr76tjxolnccweuqpfwxs5m7aiqo@uer253tr67z2>
+	s=arc-20240116; t=1758207687; c=relaxed/simple;
+	bh=dMgnUT9SN0xWEnTD5CB7F2sIRMIdRNv8a528sPnHBx0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SFYWvtbEYQGX/1nZp4KQrW+XURwL2NSYy2FlIxjf/iIMig42sE3uKL9WbImtZ0JEazvncNkMk+awTYfYAwOXqG/SlJYMNVddxqb/TwzRsClMgH6Uwapy2SxFr/QhzI2gt0MDx47IKCeTVU3KM4w10fFYYm5v4PAkvNi/JXdMBhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <jre@pengutronix.de>)
+	id 1uzG88-0007Qj-74; Thu, 18 Sep 2025 17:01:04 +0200
+Message-ID: <09ffce72-e826-4126-8761-13efc689dee7@pengutronix.de>
+Date: Thu, 18 Sep 2025 17:01:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YXff6/cSOKFu56ap"
-Content-Disposition: inline
-In-Reply-To: <hp5cothkqfs7hbviesjz3mxr76tjxolnccweuqpfwxs5m7aiqo@uer253tr67z2>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: add Protonic PRT8ML board
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, David Jander <david@protonic.nl>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Oleksij Rempel <o.rempel@pengutronix.de>
+References: <20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de>
+ <20250918-imx8mp-prt8ml-v2-3-3d84b4fe53de@pengutronix.de>
+ <0f520191-7d9f-4800-a41e-a623b9335c9d@lunn.ch>
+From: Jonas Rebmann <jre@pengutronix.de>
+Content-Language: en-US
+In-Reply-To: <0f520191-7d9f-4800-a41e-a623b9335c9d@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: jre@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi Andrew,
 
---YXff6/cSOKFu56ap
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2025-09-18 16:18, Andrew Lunn wrote:
+>>   - Onboard T1 ethernet (10BASE-T1L+PoDL, 100BASE-T1+PoDL, 1000BASE-T1)
+> 
+> Are these PHYs connected to the switch? It just seems odd you have a
+> switch with only one port connected to the outside world.
 
-On Thu, Sep 18, 2025 at 02:44:06PM +0300, Ioana Ciornei wrote:
-> On Wed, Sep 17, 2025 at 08:19:42PM +0100, Conor Dooley wrote:
-> > On Wed, Sep 17, 2025 at 12:04:14PM +0300, Ioana Ciornei wrote:
-> > > Extend the list of supported compatible strings with fsl,lx2160ardb-f=
-pga.
-> > >=20
-> > > Since the register map exposed by the LX2160ARDB's FPGA also contains
-> > > two GPIO controllers, accept the necessary GPIO pattern property.
-> > > At the same time, add the #address-cells and #size-cells properties as
-> > > valid ones so that the child nodes of the fsl,lx2160ardb-fpga node are
-> > > addressable.
-> > >=20
-> > > This is necessary because when defining child devices such as the GPIO
-> > > controller described in the added example, the child device needs a t=
-he
-> > > reg property to properly identify its register location in the parent
-> > > I2C device address space.
-> > >=20
-> > > Impose this restriction for the new compatible through an if-statemen=
-t.
-> > >=20
-> > > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > > ---
-> > > Changes in v2:
-> > > - Enforce a unit address on the child gpios nodes (remove the ?)
-> > > - Enforce the use of unit addresses by having #address-size and
-> > >   #size-cells only for the newly added fsl,lx2160ardb-fpga compatible
-> > > Changes in v3:
-> > > - Replace the trivial-gpio reference with an explicit mention of the
-> > >   accepted child gpio compatible.
-> > > - Reword the commit message.
-> > > - Add the 'else' case to the if statement.
-> > >=20
-> > >  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 58 +++++++++++++++++=
-++
-> > >  1 file changed, 58 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i=
-2c.yaml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > > index 28b37772fb65..e889dac052e7 100644
-> > > --- a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > > +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > > @@ -22,6 +22,13 @@ properties:
-> > >                - fsl,lx2160aqds-fpga
-> > >            - const: fsl,fpga-qixis-i2c
-> > >            - const: simple-mfd
-> > > +      - const: fsl,lx2160ardb-fpga
-> >=20
-> > How come this is not compatible with fsl,fpga-qixis-i2c ? Seems like
-> > that device has a feature subset of that one, given your changes here.
->=20
-> The feature set exposed by the devices is highly dependent on the board
-> type, meaning that even though the FPGA found on the LX2160AQDS board
-> (fsl,lx2160aqds-fpga) works in the same way in terms of access over I2C
-> as the one found on the LX2160ARDB (fsl,lx2160ardb-fpga added here), the
-> register map inside the device space its different since there are
-> different on-board devices to be controlled.
+yes, the 10BASE-T1L+PoDL and 100BASE-T1+PoDL are. We didn't get to test
+them, so I removed them from the devicetree.
 
-Okay, please cover that in your commit message. With that,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Regards,
+Jonas
 
---YXff6/cSOKFu56ap
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwdzgAKCRB4tDGHoIJi
-0vUlAP0VjnEENTcq6jqZ7JzTz9qG2ZP/WhPq63Gs6UIfFNm/xwD7BEXl/9TaxRxr
-BuegGH+dt3DDqiQTEe0/rfEr6SOM7gY=
-=m3tR
------END PGP SIGNATURE-----
-
---YXff6/cSOKFu56ap--
+-- 
+Pengutronix e.K.                           | Jonas Rebmann               |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
