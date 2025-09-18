@@ -1,180 +1,139 @@
-Return-Path: <devicetree+bounces-218723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F50DB837EE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:18:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 972C7B8381B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A6093A6AFD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:18:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 605C42A09CB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278822D77ED;
-	Thu, 18 Sep 2025 08:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A1C2F3621;
+	Thu, 18 Sep 2025 08:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcNfN5Ds"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3+bEKqPq";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="MqbntZVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E971336B;
-	Thu, 18 Sep 2025 08:18:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5BE2EC0A5;
+	Thu, 18 Sep 2025 08:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758183534; cv=none; b=kK0awDY5q50ZOgrxv7SUkbD/GYWLiHI5qIpEV6jrSE9AcsZZnA0k5pQ2sJFKk4uZca37ioMCfZxtYXkP7MPsvVniQ9CnNP5pXq1dskxPhfpaTGvUw8Mog0nnnUSnvXUtbCX1wmtiIaN6H7EPNf+RzlTcxOIalspYnJ0uaUXmt3A=
+	t=1758183813; cv=none; b=CT/Y/ImyFHd9ZYCtu4qgw/MzJWL6F9nPMppkbPGJpV9TTjgwbf+oGBkfEYIlRboeHwzUZ8CUloBc24P11s2DphIjMYh9pwq7bKNqEojVMvadzclXDn11/lDmumpQ3MF/NtCfRc0sUcTiRgX8lR9uCdSB7Nzi9qmoRxWZ6SsuGnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758183534; c=relaxed/simple;
-	bh=4/T8IJ3R5U+TdrJnbKh29YlwkhUFe974lRou1fa2E7c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A2zTnoAG8do0Mn3J8sUBZ0ST9NkmmZidkjkY0ij30Xl/0Wfl2AaGTH+RocGyQRVzQG8DI89ll2ywjwUrCK/9FBwDbNvH+tGLbia9kTrayIieD/M7zKIzztqc2sHTqSN81S6CxaxIutCwyO/ynu2PJOeFsF3hnwD0rzHP0W1orD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FcNfN5Ds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E82FC4CEE7;
-	Thu, 18 Sep 2025 08:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758183533;
-	bh=4/T8IJ3R5U+TdrJnbKh29YlwkhUFe974lRou1fa2E7c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FcNfN5Dsp2/+2pRUGmkXJcq9DGpjivbfcunS78JexfYqyGSwpm8ukyzqUK+y3T0qG
-	 0ju5aQVHi+CDWv44RzSf/vhCc4QoxmiLxD83O2spr3KiqAvYXltMaTuGTLqijZIfaJ
-	 iuy9zUkYcOaajp4cd0SVgQJTl+5F/JMPUhu9VdyGbJ/qKqkDNRv5UwJr9RnCbOyL71
-	 dzHGfYPhgHyxat3evqwN5IRRt4GLW+e1BV+M2PPjQAPQTdTtSQVyS8XBhRr7OAgD3F
-	 H+hgD4L2p/XUyA9kas0nZ8+tpGrXqVN/4qKKZlbj1852EjEvDCI22oh02I1vFLH/XX
-	 F6AmSmmpK0acw==
-Message-ID: <f0330c18-11fb-473b-8ed8-891dad16ca78@kernel.org>
-Date: Thu, 18 Sep 2025 17:18:45 +0900
+	s=arc-20240116; t=1758183813; c=relaxed/simple;
+	bh=dPFZQ/J95tFGsWzkbIWX1hhJmkV3E3HPGj+Ah84D+lQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=B5YBKUy7jfs36wOl1yE6OEhq4k1VeKAS+F8dEG2dzWpfrXjPsfzIJERWtUZWe359E9PNNX+QC1ZL/pgS44p8uulG5KE9qRGZdjZzNKHszqK5i0OvPfhyaNrIE2Z4lclj/czvbqLYr347x2DPOSAFAMMySeI717YAU0zrVPq8aVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3+bEKqPq; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=MqbntZVI; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1758183803;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dhEheeaLjj12Q7mtWCuLhPIe+EYJsdjTeuBePvxpVHI=;
+	b=3+bEKqPqOkUEh6yS9o4ChhOb1k52Ky5bVGvD9xyofVq2LCseV4zCUGvhpgXwjYxYsC5WQx
+	yGf7WKJhXXYD0Ru9gsJ2HhWSCvTY8ZssNzpV3GhTySt+XxFzO6qDcVtS4jpjLDDB0sp2CG
+	nZ7oWjZkVT/YcKju2TTXTEedsmjkptE8yCpJczw/jGJrnsU1+4R5P1g/EB6TKbndSV/0fJ
+	UFMSz+q/92de2si2SyyiSBpZf4y843jj/KRsTtTztTQ8QK6WmaGWMuuZhfDfANJZPWZkYg
+	VrBaCRba5VrbCfUUWBvx0YZ+UyvQoF7XZml/fh7TnM0nfgpAzfuBSlrL7Tr2HQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1758183803;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dhEheeaLjj12Q7mtWCuLhPIe+EYJsdjTeuBePvxpVHI=;
+	b=MqbntZVIqi5UZvsyX/yRC/8YSYRz4x5RYd09EJQ+DsufyRhtx9gmkUl8tFF7x7EneRFTin
+	SNeyNBFCRxEVhFAw==
+To: David Hildenbrand <david@redhat.com>, Eugen Hristev
+ <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
+ pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+In-Reply-To: <f8d3c2d4-8399-4169-8527-3c87922f2ef1@redhat.com>
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+ <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+ <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com> <87segk9az5.ffs@tglx>
+ <f8d3c2d4-8399-4169-8527-3c87922f2ef1@redhat.com>
+Date: Thu, 18 Sep 2025 10:23:21 +0200
+Message-ID: <87jz1w88zq.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] Add support for the Axis ARTPEC-9 SoC
-To: Ravi Patel <ravi.patel@samsung.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jesper.nilsson@axis.com, lars.persson@axis.com,
- mturquette@baylibre.com, sboyd@kernel.org, alim.akhtar@samsung.com,
- s.nawrocki@samsung.com, cw00.choi@samsung.com
-Cc: ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, pjsin865@coasia.com, gwk1013@coasia.com,
- bread@coasia.com, jspark@coasia.com, limjh0823@coasia.com,
- lightwise@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
- shradha.t@samsung.com, swathi.ks@samsung.com, kenkim@coasia.com
-References: <CGME20250917085019epcas5p273ef86028a90e78ada55cde48a28a949@epcas5p2.samsung.com>
- <20250917085005.89819-1-ravi.patel@samsung.com>
- <59d50dee-cd6a-4eab-860a-bf6d50d9bb0a@kernel.org>
- <020801dc284d$6f555b50$4e0011f0$@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <020801dc284d$6f555b50$4e0011f0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On 18/09/2025 12:36, Ravi Patel wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 18 September 2025 06:35
->> To: Ravi Patel <ravi.patel@samsung.com>; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; jesper.nilsson@axis.com;
->> lars.persson@axis.com; mturquette@baylibre.com; sboyd@kernel.org; alim.akhtar@samsung.com; s.nawrocki@samsung.com;
->> cw00.choi@samsung.com
->> Cc: ksk4725@coasia.com; smn1196@coasia.com; linux-arm-kernel@axis.com; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; pjsin865@coasia.com;
->> gwk1013@coasia.com; bread@coasia.com; jspark@coasia.com; limjh0823@coasia.com; lightwise@coasia.com; hgkim05@coasia.com;
->> mingyoungbo@coasia.com; shradha.t@samsung.com; swathi.ks@samsung.com; kenkim@coasia.com
->> Subject: Re: [PATCH 0/7] Add support for the Axis ARTPEC-9 SoC
->>
->> On 17/09/2025 17:49, Ravi Patel wrote:
->>> Add basic support for the Axis ARTPEC-9 SoC which contains
->>> 6-core Cortex-A55 CPU and other several IPs. This SoC is an
->>> Axis-designed chipset used in surveillance camera products.
->>>
->>> This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
->>> Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
->>>
->>> This patch series includes below changes:
->>> - CMU (Clock Management Unit) driver and its bindings (patch #1 to #3)
->>> - PMU bindings (patch #4)
->>> - Basic Device Tree for ARTPEC-9 SoC and boards (patch #5 to #7)
->>>
->>> The patch series has been tested on the ARTPEC-9 EVB with
->>> Linux Samsung SoC tree (for-next branch) and intended
->>> to be merged via the `arm-soc` tree.
->>>
->>> NOTE: This patch series is dependent on following floating patches:
->>> 1. https://lore.kernel.org/all/20250917070004.87872-1-ravi.patel@samsung.com/T/#t
->>
->> NAK, sorry, DTS cannot depend on the drivers. Please decouple the
->> dependencies.
-> 
-> Ok, so you want patch #1 - #5 in separate series and #6 - #7 (DTS patches) in another series.
+On Wed, Sep 17 2025 at 21:03, David Hildenbrand wrote:
+>> As this is specific for the compiled kernel version you can define an
+>> extensible struct format for the table.
+>> 
+>> struct inspect_entry {
+>> 	unsigned long	properties;
+>>          unsigned int	type;
+>>          unsigned int	id;
+>>          const char	name[$MAX_NAME_LEN];
+>> 	unsigned long	address;
+>>          unsigned long	length;
+>>          ....
+>> };
+>> 
+>> @type
+>>         refers either to a table with type information, which describes
+>>         the struct in some way or just generate a detached compile time
+>>         description.
+>> 
+>> @id
+>>         a unique id created at compile time or via registration at
+>>         runtime. Might not be required
+>
+> We discussed that maybe one would want some kind of a "class" 
+> description. For example we might have to register one pgdat area per 
+> node. Giving each one a unique name might be impractical / unreasonable.
+>
+> Still, someone would want to select / filter out all entries of the same 
+> "class".
+>
+> Just a thought.
 
-No, I meant above dependencies. You said that these patchset, including
-DTS, depends on above. Above are drivers and that's a no go. I said it
-multiple times already in various occasions.
+Right. As I said this was mostly a insta brain dump to start a
+discussion. Seems it worked :)
 
-Patchset should be organized per maintainers subsystem, but that's
-different question.
+>> @properties:
+>> 
+>>          A "bitfield", which allows to mark this entry as (in)valid for a
+>>          particular consumer.
+>> 
+>>          That obviously requires to modify these properties when the
+>>          requirements of a consumer change, new consumers arrive or new
+>>          producers are added, but I think it's easier to do that at the
+>>          producer side than maintaining filters on all consumer ends
+>>          forever.
+>
+> Question would be if that is not up to a consumer to decide ("allowlist" 
+> / filter) by class or id, stored elsewhere.
 
-> Can you please review the patches, I will address review comments in v2 (if any) itself.
+Yes, I looked at it the wrong way round. We should leave the filtering
+to the consumers. If you use allow lists, then a newly introduced class
+won't be automatically exposed everywhere.
 
-As mentioned in other threads, I closed my tree a week ago (if you are
-surprised, notice kernel cycles and development process), so review will
-happen a bit later.
+Thanks,
 
-> 
->>
->> Maybe you wanted to point me where the bindings are, but then say so.
-> 
-> Yes, these dependencies are for bindings related.
-So not really a dependency so again: just provide links to the bindings.
-
-Best regards,
-Krzysztof
+        tglx
 
