@@ -1,180 +1,105 @@
-Return-Path: <devicetree+bounces-218664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282E9B82F0A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:06:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8172FB82F3B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:10:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 873F61C2529E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:06:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A98058329B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5939421D3C0;
-	Thu, 18 Sep 2025 05:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8869C246335;
+	Thu, 18 Sep 2025 05:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="pE5jBfSv";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="g46MYSrN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UahEEE5o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA9A1F3FEC;
-	Thu, 18 Sep 2025 05:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD45C26B0B3
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 05:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758171975; cv=none; b=YOTIBMKfwLpcSvT/T95r672wl6a9O0lEMeNBTIzNmp/Ytxd2occM8UtuWMslvujpSAMYVnsDPyJMCn1JOeBnbcghlB7hpJ9ngQhrV6n6efKUD6a8ZPvQ0xMmpzXHlchBMFrmCwDipbw2GTORpu26FYwxivJdOqOU6EQP3XEhFvI=
+	t=1758172197; cv=none; b=D71piptoGwTrCLteapNYYlEINdr1BMgHkkMmGKWKQbUNpulXwDLn7rZUAjvFiNeRKUaK34s+69s3fd3QKOsyJo5wxpa3FsGYFQ8bS9Xmt/WRXiiyLHplhJVOWn3ycZKRUoJpPfhiypj1ZiiFx/zgtUpfBJg/Q3JINiUGwbBpy4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758171975; c=relaxed/simple;
-	bh=f+/zAaJ0teiDY3KPMj73HZGvo94OMDlTnUVHWKEzMZY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=O9h1osaDTa53SzZ0nCJcSoYkuEmLrv3DNrVJEjuqNzBEX6w3v2W8vhJ6ndvmbX4/0l+AvVcLg8Mzad+9XfxWq7+MkfMgFEE0mQe3wNXEH39IhAUWg8EdnbDkqcpPRLrX8qBsuEDx9UDL5FhwD4dNN8p+y9AIaFX5UYmLmwD3wa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=pE5jBfSv; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=g46MYSrN; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758171735; bh=ILJJ/4RQIN/3m+STfmaTRfX
-	8whGDO74Pn1jtvUnbn8s=; b=pE5jBfSvsZUrjCB9VH6XNAMZoNEICEMvUDFtf4Z5OJj9cKIyXD
-	7qdg9SdfyvHtVx8KHdFdvp/lp/7vz3QsASIZiUEdJHe+RNdDlyCxi3xC8skGngfqxPUI28SVA3U
-	JAEh1wL/k4xi61M7u1hZb/UW6rR/pROpxF24/K1q7CJ5S0g79l6tpY13aNJFxntzea2f7ZLhzBb
-	hL8ilZX8Z0jkT02I77hRQrzWidUfEY3jZtWxfU8KExf5nZ6xCYU7/iB2zm1I+lmcvW6i6hM38Tc
-	e4N6D5ulDIft3V4zm999O4KQ4mUhtmYCuO6NngPSmiA0xXnlS9Jl8vNvNvX+3CBAwgA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758171735; bh=ILJJ/4RQIN/3m+STfmaTRfX
-	8whGDO74Pn1jtvUnbn8s=; b=g46MYSrNOlMn39zgBFesxBeZplRiG9bUuue5Tshga8eHr6e40B
-	CeEgiAoFZ+JDUeIGMWGo3oFQR5qxRlcizNBg==;
+	s=arc-20240116; t=1758172197; c=relaxed/simple;
+	bh=cSJ4eUM0DsaOhlcWfrSZ2S7GNwrJAdc8Rw5tLu8gtJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r+gu5Xu/toNqR9gd2xgp0ErwzWieuHmwEYhtB2+u7PxTeXspvhdab81yI2+2wQ6XsyBnFoh+KQL70UmbaeDc9FTsAkhfvWnBoVRgULRO7v1TeaCZGpc6HcBX7ujnUYSx4dZ0Eda+HOGkTkDTNf9rNP/J3DAb7TWKnE/IN8sujzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UahEEE5o; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-327f87275d4so529498a91.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 22:09:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758172195; x=1758776995; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JzO5J5b/DpAoS9q36wSTyxp4bWMYntWCRlnNr1Ul6mw=;
+        b=UahEEE5ofyyXoY047oataLzWhTWmrdVjWxR5DajFp+OW/RVx96mNne9PEwYgxIbr01
+         sgobGqqdmp2eERbWq8df6OZLLXGMAyJgQMKKyG2suLXyo6NIaoOV+BGwOSE22NjicMel
+         NoqPDcPuPDxfug2zTgMlZhWlJW84LhJ8PlfdzTMXmwai6XBmuWBLsH4U6az6OMtipAZ9
+         3dm/yo5REjUVgpyrCuAeDnmsF75hdWp7jJNBewYHlT/ylEf7W9XFTV0jTb0/7SpxQ3Zg
+         GNZe8podHYoL0RGhGMbozcaL1cICuAplq+K/b/RfqegoxOKsmA4xuNnWGmaFT61da3Je
+         /Nkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758172195; x=1758776995;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JzO5J5b/DpAoS9q36wSTyxp4bWMYntWCRlnNr1Ul6mw=;
+        b=eyFcWzBeS8Y3CRIPiEwsNguSPQ839RMNeAwQ5BbkxkeWxClNvbnri9J2RqMlE+LYK6
+         GJngLZj6e4XnRdN15HT18AmoKWfPhsVXt9Za2wn8XEMyg6TJXT0079AyaW84eoSBSgvX
+         eQgqMn5Y7cj0quEZvC5j7ffIj4S2I2ahWpr2TuvSNeUytaw89FBo9zXIp97w7f4Tq7DQ
+         R2xlzazjefJJ57SVqvntrxWrDned1CLi4mIC6Ie+tt9LjL4ZrFjgvSOdr2YmHt7wuy2E
+         WfjeYyfZ0UXyECEo/LtAiQ3D9E2PfiY2pdzBTkBVh5YDOCIVzJejefr/maiL/xVk/DLq
+         cW+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWES5EpLTNuYT9jyeiSqW4IgSnhko+M6ZNVhL5deQD2mXrf56q+bqyXrYRAc+yrlyAtuoETUmTce/oF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbBGFZk9ImgxMPEM4e6OttECtnv9UJBFmjF6SrAl7HoK2dDPWg
+	DJytoWivs3RiClkAd9wWhzGNPFXl6rUs7BTx+9VUZso6jgPoxCSZz6v9
+X-Gm-Gg: ASbGncupJPL7OjHqrWOLDFRyKbhZvl4xz/rG0+gVQeZLoc4ugfxr7tz9dWoWxzYRQWi
+	Ehk3Hd6It12NQSnh6IL1WlGvYILHwz1M0DGF4LLvkCw8tD6dRk7NG4DPFmLmvOnEQCj6FCGd+fk
+	dJiGx54FRihuArg631rc1LCoWorvfb8iJbLMMi1Snx1glIot0e/m60eH/nu1F1y+TRZXN2hPwGb
+	QbaQkmh2B5twFZ00VEHOhP8djDfjTUT70YOtttSu6udKdzTlh+CKO1pG0tZ71c6omlTmJVQvnDv
+	YOA4op40jWWm6kPr0TnR5ZxQD67siNgFKLeaANkttTcavJvmkAocXyKeIZcuo758494hw/iUfAn
+	TsoJm8/tomFiUSwNLdRfHtIqFCKVSvy1Oc/+uI2Kj37yibPs6MKGG
+X-Google-Smtp-Source: AGHT+IEoyQwkdhcbO2KKAnocbbWtxOraH4oEPJ9rZeaTPzEToqLKVmqvC+7go7FKKDfNLNeEHp+khA==
+X-Received: by 2002:a17:90a:e7c9:b0:32e:329d:3062 with SMTP id 98e67ed59e1d1-32ee3f7431fmr6979916a91.19.1758172195070;
+        Wed, 17 Sep 2025 22:09:55 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:194b:8358:5c91:3d3d])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32ed278b065sm4122687a91.29.2025.09.17.22.09.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 22:09:54 -0700 (PDT)
+Date: Wed, 17 Sep 2025 22:09:52 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: input: convert tca8418_keypad.txt to
+ yaml format
+Message-ID: <htwupxwox3c5fjvjr3nxc5qtotgnlesit2jnswg3g37a5tku7t@npyzyv7mtwr3>
+References: <20250916171327.3773620-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 18 Sep 2025 12:02:14 +0700
-From: Dang Huynh <dang.huynh@mainlining.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Alexandre
- Belloni <alexandre.belloni@bootlin.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Sebastian Reichel <sre@kernel.org>, Vinod Koul
- <vkoul@kernel.org>, Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva"
- <gustavoars@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-hardening@vger.kernel.org,
- linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 00/25] RDA8810PL Clock, RTC and MMC driver
-In-Reply-To: <lnfervvwctvemjdmyue2aohlsqpfd5gsuzjho3u6mtdtewl4vr@saqnionh72am>
-References: <20250917-rda8810pl-drivers-v1-0-9ca9184ca977@mainlining.org>
- <lnfervvwctvemjdmyue2aohlsqpfd5gsuzjho3u6mtdtewl4vr@saqnionh72am>
-Message-ID: <bf5b90c8a03765a7145b6e985c3e23f9@mainlining.org>
-X-Sender: dang.huynh@mainlining.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250916171327.3773620-1-Frank.Li@nxp.com>
 
-On 2025-09-17 17:03, Manivannan Sadhasivam wrote:
-> On Wed, Sep 17, 2025 at 03:24:57AM GMT, Dang Huynh via B4 Relay wrote:
->> This patch series aims to add support for Clock/Reset, Real-Time Clock 
->> and
->> SDMMC on the RDA Micro RDA8810PL platform.
->> 
->> It also adds Intelligent Flow Controller (IOW, a DMA controller) which 
->> is
->> important for working with this MMC IP.
->> 
->> Tested on the Orange Pi 2G-IOT.
->> 
+On Tue, Sep 16, 2025 at 01:13:26PM -0400, Frank Li wrote:
+> Convert tca8418_keypad.txt to yaml format.
 > 
-> Thanks for work! Is it possible to split this patchset logically to 
-> ease
-> reviewing and also merging? It currently touches different subsystems 
-> and has 25
-> patches.
-> 
-> You could easily split this into different series adding Clock/Reset, 
-> RTC, IFC,
-> SDMMC and other misc patches in one series.
-Will do. Is it possible for you to test it on your i96 board?
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-> 
-> - Mani
-> 
->> Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
->> ---
->> Dang Huynh (25):
->>       ARM: dts: unisoc: rda8810pl: Add label to GPIO nodes
->>       drivers: gpio: rda: Make IRQ optional
->>       dt-bindings: gpio: rda: Make interrupts optional
->>       rtc: Add timestamp for the end of 2127
->>       dt-bindings: rtc: Add RDA Micro RDA8810PL RTC
->>       rtc: Add driver for RDA Micro SoC
->>       ARM: dts: unisoc: rda8810pl: Enable Real-Time Clock
->>       ARM: dts: unisoc: rda8810pl: Enable ARM PMU
->>       dt-bindings: clock: Add RDA Micro RDA8810PL clock/reset 
->> controller
->>       drivers: clk: Add Clock and Reset Driver for RDA Micro RDA8810PL 
->> SoC
->>       dts: unisoc: rda8810pl: Enable clock/reset driver
->>       dts: unisoc: rda8810pl: Add OPP for CPU and define L2 cache
->>       dts: unisoc: orangepi: Disable UART with no users
->>       dt-bindings: power: reset: Add RDA Micro Modem Reset
->>       power: reset: Add basic power reset driver for RDA8810PL
->>       dts: unisoc: rda8810pl: Enable modem reset
->>       drivers: gpio: rda: Make direction register unreadable
->>       dt-bindings: dma: Add RDA IFC DMA
->>       dmaengine: Add RDA IFC driver
->>       dts: unisoc: rda8810pl: Enable IFC
->>       dt-bindings: mmc: Add RDA SDMMC controller
->>       mmc: host: Add RDA Micro SD/MMC driver
->>       dts: unisoc: rda8810pl: Add SDMMC controllers
->>       dts: unisoc: orangepi-2g: Enable SD Card
->>       dts: unisoc: orangepi-i96: Enable SD Card
->> 
->>  .../bindings/clock/rda,8810pl-apsyscon.yaml        |  44 ++
->>  Documentation/devicetree/bindings/dma/rda,ifc.yaml |  42 +
->>  .../devicetree/bindings/gpio/gpio-rda.yaml         |   3 -
->>  Documentation/devicetree/bindings/mmc/rda,mmc.yaml |  91 +++
->>  .../bindings/power/reset/rda,md-reset.yaml         |  36 +
->>  .../devicetree/bindings/rtc/rda,8810pl-rtc.yaml    |  30 +
->>  MAINTAINERS                                        |  30 +
->>  .../boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts  |  24 +-
->>  .../arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts |  24 +-
->>  arch/arm/boot/dts/unisoc/rda8810pl.dtsi            | 115 ++-
->>  drivers/clk/Kconfig                                |   1 +
->>  drivers/clk/Makefile                               |   1 +
->>  drivers/clk/rda/Kconfig                            |  14 +
->>  drivers/clk/rda/Makefile                           |   2 +
->>  drivers/clk/rda/clk-rda8810.c                      | 770 
->> +++++++++++++++++++
->>  drivers/dma/Kconfig                                |  10 +
->>  drivers/dma/Makefile                               |   1 +
->>  drivers/dma/rda-ifc.c                              | 450 +++++++++++
->>  drivers/gpio/gpio-rda.c                            |   4 +-
->>  drivers/mmc/host/Kconfig                           |  12 +
->>  drivers/mmc/host/Makefile                          |   1 +
->>  drivers/mmc/host/rda-mmc.c                         | 853 
->> +++++++++++++++++++++
->>  drivers/power/reset/Kconfig                        |   9 +
->>  drivers/power/reset/Makefile                       |   1 +
->>  drivers/power/reset/rda-reboot.c                   |  58 ++
->>  drivers/rtc/Kconfig                                |  11 +
->>  drivers/rtc/Makefile                               |   1 +
->>  drivers/rtc/rtc-rda.c                              | 356 +++++++++
->>  include/dt-bindings/clock/rda,8810pl-apclk.h       |  79 ++
->>  include/dt-bindings/dma/rda-ifc.h                  |  28 +
->>  include/linux/rtc.h                                |   1 +
->>  31 files changed, 3079 insertions(+), 23 deletions(-)
->> ---
->> base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
->> change-id: 20250916-rda8810pl-drivers-9a5271452635
->> 
->> Best regards,
->> --
->> Dang Huynh <dang.huynh@mainlining.org>
->> 
->> 
+Applied, thank you.
+
+-- 
+Dmitry
 
