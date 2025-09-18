@@ -1,325 +1,126 @@
-Return-Path: <devicetree+bounces-218819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC76B84569
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:26:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C07CB8458D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E3FA5842DB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:26:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 344FE1BC65AF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8542A2DA757;
-	Thu, 18 Sep 2025 11:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0484D3054C3;
+	Thu, 18 Sep 2025 11:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FZhAcqWU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h5zGTtsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD16454764;
-	Thu, 18 Sep 2025 11:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA67130506C;
+	Thu, 18 Sep 2025 11:27:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758194762; cv=none; b=f2EDgVRTAE7W/pAdyW27XkoQ2so2YjyXYmH7lWMBTyLTtm27mNUq23xh22iPcwEJepkh5VJu6KhAT6t+H1nnE9Md7MLn7qV71mlcl8waafxoZBFFJ6/u8u7lLW1DLe9iRV1AoIpBoE97hYo5OSPLW0NlVcGJ/Rry0qlEHWiRlp8=
+	t=1758194850; cv=none; b=G52Bf8iEP0L33BIrsNuj2UgxannnJh7vyb1JT20EzLTHqntNx3FKdvWnyWO2yy5+srV/1Yy0FlhIexfxyCz3O3+Dgy8BKPNz8jImiCtqYBURA7Upu3V/dBT5YvGVZvOhPC+4WpBDtIR3quEgdntFxpkcxDaA8a5+40iqa2zE0rc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758194762; c=relaxed/simple;
-	bh=Oiap5ri9qx0u1p7+O1mgP8sl6KQHs1DP8B50ceS+q0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zs3xL4EyGCOKjGEeSQfkqiFu8IY216zalJrb4bwvEdQH/bhNyXwfhZ7QIWGBTQCD1koaN/cMD8hn4JkstNoN6sHLO1CSJ1X6gowackvohlJlGJ0kmBSy6PNE3bhSMjwBb1fQq2nGU17MpuYE2ljewzeDpIzd99Dq9aB2RtxFik8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FZhAcqWU; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1758194757;
-	bh=Oiap5ri9qx0u1p7+O1mgP8sl6KQHs1DP8B50ceS+q0g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FZhAcqWU5e+LkAoukxYOBqTCHOb5EjvvLavJU1mWoe5KZT89kTeIGnRUtP2TEnAr5
-	 Xvq506cBFeY5jiepakxzIODaJa4W3lCc+v74ydqn55JmVaTK/uEbCm7Cn1c+P7T4NG
-	 sK//IcEObtEXCUOY4Ky0b6INN/YLC06VrmrldwcOtv0gPlzm5tlu+zBDxf6fPbPoBj
-	 ykNuq5wn+rl2Mf+dDX35HzobVQoFxPoHG/Xqk2BkW9T7/KXsAENu9J0Hr5Xu/F+yQN
-	 u+z8NDroEmdboajlt3sIMeRxWeNaCh1aTp8fJXfoAadynYO5WcHNvNsHS4pvTlXSOm
-	 MqQMZqAQZsV+A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 28E1017E12C4;
-	Thu, 18 Sep 2025 13:25:57 +0200 (CEST)
-Message-ID: <c24901fd-fa64-45f6-a6f7-57f09afe9707@collabora.com>
-Date: Thu, 18 Sep 2025 13:25:56 +0200
+	s=arc-20240116; t=1758194850; c=relaxed/simple;
+	bh=5QEZw9RNRk0Ahq+77CpxSjVPDT2KfPGtnFnDNhj6xoY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LWMY+Effw4g1qsZecCw6QlAm2cgPD4Ph5hrvuowsKeXfDYR6LttkEJzdpGtH19oSKX3fLvrICLidXyg1URlk5dUf9bcpEBFIqxlnmT+p6qYCBzSOs7u4FngIsBRusLpZm5rRTFcOv7tKznN6D2tLBLyEUsRYw3T7USHiHb35zew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h5zGTtsu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F854C4CEEB;
+	Thu, 18 Sep 2025 11:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758194850;
+	bh=5QEZw9RNRk0Ahq+77CpxSjVPDT2KfPGtnFnDNhj6xoY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h5zGTtsu1W9M0jWaxE9ILyjT/ckuehlLA/0hpKMWrGT7swQ5Ka93LFolWtBokBtIm
+	 dc6Cj23xIowaXTikI5NCF33jw/T7AqRzRMYNy5JgyKjMNG/EKHETeVA1b+uDnGE7FO
+	 rjKzZDCJ3t0h5/0cI8H2H+qV0M795NaFHzpuwOJkvuDKK7022WrdFCqPbufsDiIxQD
+	 zHWvm1ySLqnZhMRcGNDovEkYiY9cTyB5qHTc/CW8/XoZCkMEY1QmL1e+EbCzswGVMf
+	 JPKQVT3CYrZpS8LPwhxZiRAL156S2c9lL0mqPJ4BMM/O+CjAPInW/rGO3tMbbW8Iyv
+	 UIUsa0spCwjrQ==
+Date: Thu, 18 Sep 2025 16:57:20 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, chester62515@gmail.com, mbrugger@suse.com, 
+	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, Ionut.Vicovan@nxp.com, 
+	larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
+	bogdan.hamciuc@nxp.com, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: pcie: Add the NXP PCIe controller
+Message-ID: <gejrg6oyzml3dwcsoqpusazlipceejvba4zkkg6gkghxdfryki@m5k4hz4pgrk2>
+References: <e236uncj7qradf34elkmd2c4wjogc6pfkobuu7muyoyb2hrrai@tta36jq5fzsr>
+ <20250917212833.GA1873293@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/19] dt-bindings: display: mediatek: add EXDMA yaml
- for MT8196
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?=
- <Paul-pl.Chen@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: =?UTF-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>
-References: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
- <20250828080855.3502514-4-paul-pl.chen@mediatek.com>
- <89356c625715c984fcdca4e275df1a8747866909.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <89356c625715c984fcdca4e275df1a8747866909.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250917212833.GA1873293@bhelgaas>
 
-Il 18/09/25 09:01, CK Hu (胡俊光) ha scritto:
-> Hi, Rob and Krzysztof:
+On Wed, Sep 17, 2025 at 04:28:33PM -0500, Bjorn Helgaas wrote:
+> On Wed, Sep 17, 2025 at 10:41:08PM +0530, Manivannan Sadhasivam wrote:
+> > On Tue, Sep 16, 2025 at 09:23:13AM GMT, Bjorn Helgaas wrote:
+> > > On Tue, Sep 16, 2025 at 10:10:31AM +0200, Vincent Guittot wrote:
+> > > > On Sun, 14 Sept 2025 at 14:35, Vincent Guittot
+> > > > <vincent.guittot@linaro.org> wrote:
+> > > > > On Sat, 13 Sept 2025 at 00:50, Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > > > > On Fri, Sep 12, 2025 at 04:14:33PM +0200, Vincent Guittot wrote:
+> > > > > > > Describe the PCIe controller available on the S32G platforms.
+> > > 
+> > > > > > > +                  num-lanes = <2>;
+> > > > > > > +                  phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
+> > > > > >
+> > > > > > num-lanes and phys are properties of a Root Port, not the host bridge.
+> > > > > > Please put them in a separate stanza.  See this for details and
+> > > > > > examples:
+> > > > > >
+> > > > > >   https://lore.kernel.org/linux-pci/20250625221653.GA1590146@bhelgaas/
+> > > > >
+> > > > > Ok, I'm going to have a look
+> > > > 
+> > > > This driver relies on dw_pcie_host_init() to get common resources like
+> > > > num-lane which doesn't look at childs to get num-lane.
+> > > > 
+> > > > I have to keep num-lane in the pcie node. Having this in mind should I
+> > > > keep phys as well as they are both linked ?
 > 
-> On Thu, 2025-08-28 at 16:06 +0800, Paul Chen wrote:
->> From: Paul-pl Chen <paul-pl.chen@mediatek.com>
->>
->> Add mediatek,exdma.yaml to support EXDMA for MT8196.
->> The MediaTek display overlap extended DMA engine, namely
->> OVL_EXDMA or EXDMA, primarily functions as a DMA engine
->> for reading data from DRAM with various DRAM footprints
->> and data formats.
->>
->> Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
->> ---
->>   .../bindings/dma/mediatek,exdma.yaml          | 68 +++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml b/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
->> new file mode 100644
->> index 000000000000..eabf0cfc839e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/dma/mediatek,exdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!mjQH2qNKhXsl47d3xz2_Qmo7Wadq5-kD0GJaAVjh7XY8W3NgI_dDpBNinME7NVW1PKdO9IEUsObOTugjypqo5j8$
->> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!mjQH2qNKhXsl47d3xz2_Qmo7Wadq5-kD0GJaAVjh7XY8W3NgI_dDpBNinME7NVW1PKdO9IEUsObOTugj3hMMPhU$
->> +
->> +title: MediaTek display overlap extended DMA engine
->> +
->> +maintainers:
->> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
->> +  - Philipp Zabel <p.zabel@pengutronix.de>
->> +
->> +description:
->> +  The MediaTek display overlap extended DMA engine, namely OVL_EXDMA or EXDMA,
->> +  primarily functions as a DMA engine for reading data from DRAM with various
->> +  DRAM footprints and data formats. For input sources in certain color formats
->> +  and color domains, OVL_EXDMA also includes a color transfer function
->> +  to process pixels into a consistent color domain.
->> +
->> +properties:
->> +  compatible:
->> +    const: mediatek,mt8196-exdma
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  mediatek,larb:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: |
->> +      A phandle to the local arbiters node in the current SoCs.
->> +      Refer to bindings/memory-controllers/mediatek,smi-larb.yaml.
+> > > Huh, that sounds like an issue in the DWC core.  Jingoo, Mani?
+> > > 
+> > > dw_pcie_host_init() includes several things that assume a single Root
+> > > Port: num_lanes, of_pci_get_equalization_presets(),
+> > > dw_pcie_start_link() are all per-Root Port things.
+> > 
+> > Yeah, it is a gap right now. We only recently started moving the DWC
+> > platforms to per Root Port binding (like Qcom).
 > 
-> In MT8196, the data path that EXDMA access DRAM data is shown below.
-> 
-> EXDMA (dma device) <-> LARB <-> SMMU (mmu device) <-> DRAM
-> 
-> In MT8195, the data path that OVL access DRAM data is shown below.
-> 
-> OVL (dma device) <-> LARB <-> IOMMU_VPP (mmu device) <-> DRAM
-> 
-> These two are similar, and LARB works like a bus.
-> 
-> In MT8195 device tree [1] (upstream), OVL has an iommus property pointing to IOMMU_VPP,
-> 
-> and IOMMU_VPP has a larbs property pointing to LARB
-> 
->                  iommu_vpp: iommu@14018000 {
-> 
->                           compatible = "mediatek,mt8195-iommu-vpp";
-> 
->                           reg = <0 0x14018000 0 0x1000>;
-> 
->                           mediatek,larbs = <&larb1 &larb3 &larb4 &larb6 &larb8
-> 
->                                              &larb12 &larb14 &larb16 &larb18
-> 
->                                              &larb20 &larb22 &larb23 &larb26
-> 
->                                              &larb27>;
-> 
->                           interrupts = <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>;
-> 
->                           clocks = <&vppsys0 CLK_VPP0_SMI_IOMMU>;
-> 
->                           clock-names = "bclk";
-> 
->                           #iommu-cells = <1>;
-> 
->                           power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-> 
->                  };
-> 
->                  display@14009000 {
-> 
->                           compatible = "mediatek,mt8195-mdp3-ovl";
-> 
->                           reg = <0 0x14009000 0 0x1000>;
-> 
->                           interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH 0>;
-> 
->                           mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0x9000 0x1000>;
-> 
->                           clocks = <&vppsys0 CLK_VPP0_MDP_OVL>;
-> 
->                           power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-> 
->                           iommus = <&iommu_vpp M4U_PORT_L4_MDP_OVL>;
-> 
->                  };
-> 
-> In MT8196 [2] (this patch), EXDMA has an iommus property pointing to SMMU and a larbs property pointing to LARB.
-> 
->                   mm_smmu: iommu@30800000 {
-> 
->                           compatible = "mediatek,mt8196-mm-smmu", "arm,smmu-v3";
-> 
->                           reg = <0 0x30800000 0 0x1e0000>;
-> 
->                           interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING 0>;
-> 
->                           interrupt-names = "combined";
-> 
->                           #iommu-cells = <1>;
-> 
->                   };
-> 
->                   disp_ovl0_exdma2: dma-controller@32850000 {
-> 
->                           compatible = "mediatek,mt8196-exdma";
-> 
->                           reg = <0 0x32850000 0 0x1000>;
-> 
->                           clocks = <&ovlsys_config_clk CLK_OVL_EXDMA2_DISP>;
-> 
->                           power-domains = <&hfrpsys MT8196_POWER_DOMAIN_OVL0_DORMANT>;
-> 
->                           mediatek,larb = <&smi_larb0>;
-> 
->                           iommus = <&mm_smmu 144>;
-> 
->                           #dma-cells = <1>;
-> 
->                   };
-> 
-> Both hardware data path is similar, but LARB is pointed by IOMMU device in MT8195 and LARB is pointed by DMA device in MT8196.
-> 
-> Should LARB be pointed by the same device (DMA device or IOMMU device)?
-> 
-> Or another way to describe these three device?
+> Do you need num-lanes in the devicetree?
+> dw_pcie_link_get_max_link_width() will read it from PCI_EXP_LNKCAP, so
+> if that works maybe you can omit it from the binding?
 > 
 
-Read dt-bindings/iommu/mediatek,iommu.yaml for a nice block diagram from Yong Wu:
-as explained, the Local Arbiters are arbitering multimedia IP block memory access
-between either IOMMU translation or EMI DMA.
+'num-lanes' is an optional property. But we do need it to be specified in
+devicetree so that the drivers can set proper MLW, Link Width and Link Control
+settings if the default values are wrong.
 
-This means that the LARBs need knowledge of both the INPUT device (EXDMA) and of
-the possible diverting paths (SMI, or IOMMU).
-
-What has been done in previous platforms is a borderline (but imo, acceptable for
-multiple reasons) almost-hack, done to avoid having a vendor property on each of
-the nodes and to avoid overcomplicating the actual code, as if the LARB is a child
-of IOMMU, it can get knowledge of the translation tables (and since LARBs come from
-SMI, those also have knowledge of SMI properties).
-
-For this reason, I agree with CK and I would also suggest to still go with LARBs
-assigned to IOMMU, as this eliminates all those vendor-specific properties from so
-many devicetree nodes, makes code simpler, and also works with PM (larbs need smi
-clocked/powered and iommu clocked/powered in order to work correctly), mimicking
-the same devicetree structure as the previous SoCs.
-
-Besides - as far as I know, hardware-wise the tree is very very similar anyway.
-
-Cheers,
-Angelo
-
->   
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/mediatek/mt8195.dtsi?h=next-20250626
-> 
-> [2] https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/6253459/2/arch/arm64/boot/dts/mediatek/mt8196.dtsi#3127
-> 
->   
-> 
-> Regards,
-> 
-> CK
-> 
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  '#dma-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - power-domains
->> +  - mediatek,larb
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        exdma: dma-controller@32850000 {
->> +            compatible = "mediatek,mt8196-exdma";
->> +            reg = <0 0x32850000 0 0x1000>;
->> +            clocks = <&ovlsys_config_clk 13>;
->> +            power-domains = <&hfrpsys 12>;
->> +            iommus = <&mm_smmu 144>;
->> +            #dma-cells = <1>;
->> +        };
->> +    };
+> If you do need num-lanes in the binding, maybe you could make a Root
+> Port parser similar to mvebu_pcie_parse_port() or
+> qcom_pcie_parse_port() that would get num-lanes, the PHY, and
+> nxp,phy-mode from a Root Port node?
 > 
 
+Yeah, we need to have a similar parser.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
