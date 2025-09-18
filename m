@@ -1,354 +1,130 @@
-Return-Path: <devicetree+bounces-218806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57528B8437D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:49:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C70B84395
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FA111888215
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBBB3166FDA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265FF2FE07B;
-	Thu, 18 Sep 2025 10:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="C7kzHhb1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AFB2F7446;
+	Thu, 18 Sep 2025 10:49:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307962820D5
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 10:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4AF22FE11;
+	Thu, 18 Sep 2025 10:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758192410; cv=none; b=iSq8r3oS5OhuYVEkKQ0HeTpCuUAHhcaH1fDuJAUzjWpfDDO6Q8G1LjmSdpAYD7/7ajApaLz+xAzdmM2M2VkSVdOIgTMNSNL03/Ou5gC8qGu2sP0EC/IGgLSZqqFerdfSgE1PlKx9ngngxCL0pkAFSBc9DcAiosSIDPsr6NZki3Q=
+	t=1758192597; cv=none; b=bgxgdLHmXwDxkToTXeDiFG40z33eA+1Psg52EsEHYs0QSZ5MXmL0hPraZvBX5rBqmhIOVchigqcYbKAG8WvN+NZseuQeNwbqj674AXqamVjyK5MWVkUKtZkbDVTw3ir+MRe4XXLBtYvY5PqBfug/kagtptvXKL6KzreNpnrAjt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758192410; c=relaxed/simple;
-	bh=XVqqCBkwm/ssm9tGz5Xg/OAtvJ6BnaZKy/zr6x0t32Y=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UPG95WUDtufiEBfisKLkUZT/PjCl81o57CkZSO5u6vIsccx+WREMlzxzLFX6VXz9e0eRPjtsrHiVmMmot2YslvdGt2pgnZqdRR1KVJUiSVGCOdnQ50ocqXeG+3IYWcjCKb2VHgGyupeWe1aFsbPxPmphJLYsK9NRo0mkWy2NdrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=C7kzHhb1; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-579363a4602so450344e87.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 03:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758192406; x=1758797206; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=X4DN5nEjseCE7cGcG3iV255Wk1+Y0Hrh3r/JaVmcefc=;
-        b=C7kzHhb1XQoiNvb2xNpJow6y+FXL65IM9ZfLwbyrNdZmBTTfLg4agQwAgAX8YNNMAZ
-         xBf4e7kYDoR7B+kn7t7Vp3aM3SpmkYz7Nh6ZNWM5rKRXZBhyG8leTNXgt01GIF+1ohG2
-         Yqj1Lbkx5kgUhmcgA5yvLx5wRsX1yaMMlHWi0BoPeV41KRJY8e0JqLpPcrnKH/gS5wUL
-         /PHqF0kmphwpaoCvnGATP9gicTSVrDwT7xCa0tGxPjbP7B/iU+6BlPs2EfxQob5Qb+Oq
-         anZlT6BO6iG5hBg0iS7Jgrbmt4B+AVu5brTLQCNLgzZwwoN15snrvkiu7tyhYq2ZkD75
-         FFuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758192406; x=1758797206;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X4DN5nEjseCE7cGcG3iV255Wk1+Y0Hrh3r/JaVmcefc=;
-        b=DEXI/gh/ZVKZEqaxaIae/nGHRT80SpYtkXgnBpAuVkF/kqedCWGS/uF3YXVROBJqez
-         cNtH/6ly4uxykICaQiMMP4yyZUgJ0BMGtUp3JbyHo4TZkZO73yikZfPZWAbpLgLV/VA3
-         RP/nxotRCalrdc5qds41GYTWob6v7z9tAxSNI/DoI8naOZQZzqPCLYrhC97XcjZHFXF3
-         yG6KQxd7gXVLGYe55Ld42TZVTksiJYjf/XEPSD1mCuAtriMpOhm7GdFd1/0g79KrXE4w
-         NXEO7bCv8EqU35Jgkj+pvoagZn1V2OBHiJ7A1ue+ZpKhSm3rCEoQ6NxKHo13eRo1pg8G
-         lOzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbp0SLIUg3RPLpFXmdNgHTMRoWxYn8hU8seL+5FHJkSKXOeoeXsYLstBdWrkzPKv9FuJm//TPY0CgR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXZRzAq3iQXU9gD7AyTyFgUq32Rv6T6Cw/cu6rHb4IOaj6mBvG
-	cPVE8ErMo5AECBVfJcayxGyAbz0U5sNax2g9W+IDzOAfFkFvnA+xa9lUVZHd73h5WH/JcxA75ZU
-	QdOtrtFY5KEm6Z5f1FY9R/VGvQ4BvMsgLl8eE8i/Wlw==
-X-Gm-Gg: ASbGnctROl+yMFmu4DdezPKHXBVnzNvaWzKGVLnHnjqA+sme790z0WNs6VkKYlw4j0u
-	TP705DFuwD4rR81v7TMHYfllZ3JCeKhFWJecgN80PgU9RLNxt5fvBTGeWeuRbdCExaarw5dkhs0
-	he/jFYD6vpE1eraYKENRLWYfAxtR0JsgDtC8jg5yRlDWr9BLsuuDaC821TrZf0Bx4j3DvLdQfnd
-	KQxq3byMJWD+HUr1aii/gKL/HhThnJUcEMd
-X-Google-Smtp-Source: AGHT+IHxBqYYKRgDXZ9Dhxc49mfxCa2jy2ihInGuA+js7QsWtXsgWolEja58+bOuOWNUxcHCefSpFtMFNOl415IGxJc=
-X-Received: by 2002:a05:6512:3042:b0:55f:4839:d049 with SMTP id
- 2adb3069b0e04-5779ac2b2c3mr1455199e87.39.1758192406237; Thu, 18 Sep 2025
- 03:46:46 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 18 Sep 2025 05:46:44 -0500
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 18 Sep 2025 05:46:44 -0500
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
+	s=arc-20240116; t=1758192597; c=relaxed/simple;
+	bh=AKL5KEMR2SKUgFa4Z/HWI4OFweCE72oxUR2h3KCWLgg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FgFn0t0wNbWt43MVvjcjKr2mlaa0PVEq8H/g1908WCTDLILooR7P6kH/6WZ4y9IlkIHvJNCyjRMR/k+CBUBZmbvmLE7noF3ZiBnQMn/I0mxziH9mP+CrCiU9+7AbiBjmaDhjTo+3XQ7n1iV8O7ARShJQ0erPBMZ2j+ijY03lq3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D09D1A2D;
+	Thu, 18 Sep 2025 03:49:47 -0700 (PDT)
+Received: from J2N7QTR9R3.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D8793F673;
+	Thu, 18 Sep 2025 03:49:51 -0700 (PDT)
+Date: Thu, 18 Sep 2025 11:49:48 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: "Liang,  Kan" <kan.liang@linux.intel.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ian Rogers <irogers@google.com>, Ingo Molnar <mingo@redhat.com>,
+	James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>,
+	John Garry <john.g.garry@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Leo Yan <leo.yan@linux.dev>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mike Leach <mike.leach@linaro.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh@kernel.org>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v5 5/7] arm64: errata: Expand speculative SSBS workaround
+ for Cortex-A720AE
+Message-ID: <aMvjzPBAKtaIzXC1@J2N7QTR9R3.cambridge.arm.com>
+References: <87ms6snut0.wl-kuninori.morimoto.gx@renesas.com>
+ <87frcknum8.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com> <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
-Date: Thu, 18 Sep 2025 05:46:44 -0500
-X-Gm-Features: AS18NWCc5q4WPW5KXMv4YgdUI2GDWsy35XSnSqBywmNMbFE0fV54rNh06zfR5FY
-Message-ID: <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
-Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, mkl@pengutronix.de, mani@kernel.org, 
-	thomas.kopp@microchip.com, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org, 
-	brgl@bgdev.pl, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87frcknum8.wl-kuninori.morimoto.gx@renesas.com>
 
-On Thu, 18 Sep 2025 08:49:02 +0200, Viken Dadhaniya
-<viken.dadhaniya@oss.qualcomm.com> said:
-> From: Gregor Herburger <gregor.herburger@ew.tq-group.com>
->
-> The mcp251xfd devices allow two pins to be configured as gpio. Add this
-> functionality to driver.
->
-> Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-> Tested-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+On Thu, Sep 18, 2025 at 06:27:12AM +0000, Kuninori Morimoto wrote:
+> It is same as Cortex-A720.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+It might be worth saying that Cortex-A720AE is explciitly describedon
+Arm's "Arm CPU Security Bulletin: Spectre/Meltdown" page at:
+
+  https://developer.arm.com/documentation/110280/3-0/
+
+... and is described identially to Cortex-A720.
+
+No need to respin for that, Will can choose to add that if he wants.
+
+Either way:
+
+Acked-by: Mark Rutland <mark.rutland@arm.com>
+
+Mark.
+
 > ---
->  .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 179 ++++++++++++++++++
->  drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |   4 +
->  2 files changed, 183 insertions(+)
->
-> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> index ea41f04ae1a6..8c253091f498 100644
-> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> @@ -16,6 +16,7 @@
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/device.h>
-> +#include <linux/gpio/driver.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
-> @@ -1797,6 +1798,178 @@ static int mcp251xfd_register_check_rx_int(struct mcp251xfd_priv *priv)
->  	return 0;
->  }
->
-> +#ifdef CONFIG_GPIOLIB
-
-Any reason why you don't just depend on GPIOLIB in Kconfig? There's no
-reason to make it optional if the device always has the GPIO pins.
-
-> +static const char * const mcp251xfd_gpio_names[] = { "GPIO0", "GPIO1" };
-> +
-> +static int mcp251xfd_gpio_request(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 pin_mask = MCP251XFD_REG_IOCON_PM(offset);
-> +	int ret;
-> +
-> +	if (priv->rx_int && offset == 1) {
-> +		netdev_err(priv->ndev, "Can't use GPIO 1 with RX-INT!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = pm_runtime_resume_and_get(priv->ndev->dev.parent);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-> +				  pin_mask, pin_mask);
-> +}
-> +
-> +static void mcp251xfd_gpio_free(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +
-> +	pm_runtime_put(priv->ndev->dev.parent);
-> +}
-> +
-> +static int mcp251xfd_gpio_get_direction(struct gpio_chip *chip,
-> +					unsigned int offset)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 mask = MCP251XFD_REG_IOCON_TRIS(offset);
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (mask & val)
-> +		return GPIO_LINE_DIRECTION_IN;
-> +
-> +	return GPIO_LINE_DIRECTION_OUT;
-> +}
-> +
-> +static int mcp251xfd_gpio_get(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 mask = MCP251XFD_REG_IOCON_GPIO(offset);
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return !!(mask & val);
-> +}
-> +
-> +static int mcp251xfd_gpio_get_multiple(struct gpio_chip *chip, unsigned long *mask,
-> +				       unsigned long *bit)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*bit = FIELD_GET(MCP251XFD_REG_IOCON_GPIO_MASK, val) & *mask;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mcp251xfd_gpio_direction_output(struct gpio_chip *chip,
-> +					   unsigned int offset, int value)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 dir_mask = MCP251XFD_REG_IOCON_TRIS(offset);
-> +	u32 val_mask = MCP251XFD_REG_IOCON_LAT(offset);
-> +	u32 val;
-> +
-> +	if (value)
-> +		val = val_mask;
-> +	else
-> +		val = 0;
-> +
-> +	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-> +				  dir_mask | val_mask, val);
-> +}
-> +
-> +static int mcp251xfd_gpio_direction_input(struct gpio_chip *chip,
-> +					  unsigned int offset)
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 dir_mask = MCP251XFD_REG_IOCON_TRIS(offset);
-> +
-> +	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-> +				  dir_mask, dir_mask);
-> +}
-> +
-> +static void mcp251xfd_gpio_set(struct gpio_chip *chip, unsigned int offset,
-> +			       int value)
-
-You must be rebased on pre v6.17 code, this will not compile with current
-mainline.
-
-> +{
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 val_mask = MCP251XFD_REG_IOCON_LAT(offset);
-> +	u32 val;
-> +	int ret;
-> +
-> +	if (value)
-> +		val = val_mask;
-> +	else
-> +		val = 0;
-> +
-> +	ret = regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-> +				 val_mask, val);
-> +	if (ret)
-> +		dev_err(&priv->spi->dev, "Failed to set GPIO %u: %d\n",
-> +			offset, ret);
-> +}
-> +
-> +static void mcp251xfd_gpio_set_multiple(struct gpio_chip *chip, unsigned long *mask,
-> +					unsigned long *bits)
-> +{
-
-Same here, the setter callbacks now return int.
-
-> +	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-> +	u32 val;
-> +	int ret;
-> +
-> +	val = FIELD_PREP(MCP251XFD_REG_IOCON_LAT_MASK, *bits);
-> +
-> +	ret = regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-> +				 MCP251XFD_REG_IOCON_LAT_MASK, val);
-> +	if (ret)
-> +		dev_err(&priv->spi->dev, "Failed to set GPIOs %d\n", ret);
-> +}
-> +
-> +static int mcp251fdx_gpio_setup(struct mcp251xfd_priv *priv)
-> +{
-> +	struct gpio_chip *gc = &priv->gc;
-> +
-> +	if (!device_property_present(&priv->spi->dev, "gpio-controller"))
-> +		return 0;
-> +
-> +	gc->label = dev_name(&priv->spi->dev);
-> +	gc->parent = &priv->spi->dev;
-> +	gc->owner = THIS_MODULE;
-> +	gc->request = mcp251xfd_gpio_request;
-> +	gc->free = mcp251xfd_gpio_free;
-> +	gc->get_direction = mcp251xfd_gpio_get_direction;
-> +	gc->direction_output = mcp251xfd_gpio_direction_output;
-> +	gc->direction_input = mcp251xfd_gpio_direction_input;
-> +	gc->get = mcp251xfd_gpio_get;
-> +	gc->get_multiple = mcp251xfd_gpio_get_multiple;
-> +	gc->set = mcp251xfd_gpio_set;
-> +	gc->set_multiple = mcp251xfd_gpio_set_multiple;
-> +	gc->base = -1;
-> +	gc->can_sleep = true;
-> +	gc->ngpio = ARRAY_SIZE(mcp251xfd_gpio_names);
-> +	gc->names = mcp251xfd_gpio_names;
-> +
-> +	return devm_gpiochip_add_data(&priv->spi->dev, gc, priv);
-> +}
-> +#else
-> +static inline int mcp251fdx_gpio_setup(struct mcp251xfd_priv *priv)
-> +{
-> +	return 0;
-> +}
-> +#endif
-> +
->  static int
->  mcp251xfd_register_get_dev_id(const struct mcp251xfd_priv *priv, u32 *dev_id,
->  			      u32 *effective_speed_hz_slow,
-> @@ -1930,6 +2103,12 @@ static int mcp251xfd_register(struct mcp251xfd_priv *priv)
->
->  	mcp251xfd_ethtool_init(priv);
->
-> +	err = mcp251fdx_gpio_setup(priv);
-> +	if (err) {
-> +		dev_err_probe(&priv->spi->dev, err, "Failed to register gpio-controller.\n");
-> +		goto out_runtime_disable;
-> +	}
-> +
->  	err = register_candev(ndev);
->  	if (err)
->  		goto out_runtime_disable;
-> diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h b/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-> index bd28510a6583..fd9e005708e4 100644
-> --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-> +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-> @@ -15,6 +15,7 @@
->  #include <linux/can/dev.h>
->  #include <linux/can/rx-offload.h>
->  #include <linux/gpio/consumer.h>
-> +#include <linux/gpio/driver.h>
->  #include <linux/kernel.h>
->  #include <linux/netdevice.h>
->  #include <linux/regmap.h>
-> @@ -676,6 +677,9 @@ struct mcp251xfd_priv {
->
->  	struct mcp251xfd_devtype_data devtype_data;
->  	struct can_berr_counter bec;
-> +#ifdef CONFIG_GPIOLIB
-> +	struct gpio_chip gc;
-> +#endif
->  };
->
->  #define MCP251XFD_IS(_model) \
-> --
-> 2.34.1
->
->
-
-Bart
+>  arch/arm64/kernel/cpu_errata.c  | 1 +
+>  arch/arm64/kernel/proton-pack.c | 1 +
+>  2 files changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
+> index 59d723c9ab8f5..7ff6b49beaaff 100644
+> --- a/arch/arm64/kernel/cpu_errata.c
+> +++ b/arch/arm64/kernel/cpu_errata.c
+> @@ -531,6 +531,7 @@ static const struct midr_range erratum_spec_ssbs_list[] = {
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A710),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
+> +	MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_A725),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1),
+>  	MIDR_ALL_VERSIONS(MIDR_CORTEX_X1C),
+> diff --git a/arch/arm64/kernel/proton-pack.c b/arch/arm64/kernel/proton-pack.c
+> index edf1783ffc817..f9a32dfde0067 100644
+> --- a/arch/arm64/kernel/proton-pack.c
+> +++ b/arch/arm64/kernel/proton-pack.c
+> @@ -884,6 +884,7 @@ static u8 spectre_bhb_loop_affected(void)
+>  	static const struct midr_range spectre_bhb_k38_list[] = {
+>  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A715),
+>  		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720),
+> +		MIDR_ALL_VERSIONS(MIDR_CORTEX_A720AE),
+>  		{},
+>  	};
+>  	static const struct midr_range spectre_bhb_k32_list[] = {
+> -- 
+> 2.43.0
+> 
 
