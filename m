@@ -1,167 +1,151 @@
-Return-Path: <devicetree+bounces-218966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C72B85DBA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:02:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F81B85E26
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:05:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC8031C247D0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:56:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60F942A458E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0047313D4B;
-	Thu, 18 Sep 2025 15:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA442314D13;
+	Thu, 18 Sep 2025 15:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bz2jjyCV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="phDbi24B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C1A3126C6
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEAE5314D09;
+	Thu, 18 Sep 2025 15:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758210903; cv=none; b=UwNcLZLqljdInA9d3+6aJnptHvc5fjJwtyPYUGhKEN4zjvv9XN12Bc36ithOK1vXoWTfjXXuwbKgCyjYusvp1n7nT4GDXmPPcRSqHBOnu0Bb9M5E2S9NHTbGJSe+ut1wS4joymPvCeFTJz1jrtwSP/1Om2/ZUXcwEoPsBP8QYSI=
+	t=1758211048; cv=none; b=cZvTWoR2aAQsilpKCH/9BL+3EP4eE/ZEC95z1zJ2wwiiDdNRpCRV1RecxVgwSWpGKw72Z+nrzSoKt7HUlnYH8UqXJk8/Fd8b7G6OlwHAr21h8EZdOuB5s07eZBaaiatf9RxWDcvBLtqNpFEDz8ZG8CJ1DFkrqw55nNLC0dkLTzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758210903; c=relaxed/simple;
-	bh=TrV+frHKp8A2bFzxsG2fj2eLK4upb9k/aGE38082JM8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pWpIsy5+ENE/+uoIDhlTk2YVZQtMaAETpqGgMt+h9Ct68+/CWQV0p/lXnPxyDc8yp95TgZ5qtvv/z0x9+tYu4rGkFfbAF0erlkM10vYQmtVNqIMIGi9IMwcszuqBvtQCb1b4VadDPE3oIPV0GVpRoQJrzqIfLrxgrLm8pGJ9duI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bz2jjyCV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58IAaYZe032419
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:55:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=LU5pItXmiqnd4o/P2E59yLiYc8TuhTKDEsc
-	hoWWnvRw=; b=Bz2jjyCVnLTxqJonWjLOUioz4+ECBbJhasAduLwF+udTWq0IDbk
-	aPcekNODRAFTsB2gUGNvuAgMYe+K1WanO2yFUMWKLHmGsmRlzvihJzZ5qTVkJ6Gx
-	2bbgJNKUHwvPWd6aQcfs2rdEA4YvVz/mbhWDM9Fdc6KzUF0naNVZEmk6fEuQhE2F
-	3fMasQ31lcP+vUu2rnz5s0LR5Tr2ghttQYqbvSWnmITuIRd132S2lfdLG5oUggh5
-	coCREGKlzMvAzpUPAvVae19tfYjKtQVeLk1OgHgHWRWB8yBmQnWtQjgFdp+QynNv
-	XMrO22BV83WCvsYwvfWUNO432KmGxqe29QA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxyq1a3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:55:01 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-77585c74658so30223076d6.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:55:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758210900; x=1758815700;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LU5pItXmiqnd4o/P2E59yLiYc8TuhTKDEschoWWnvRw=;
-        b=QRtlAx9byBnU1Ac6Iw/VEXLbZQYyvL9LfBVrIWkyyu1W6JZruFBAJ1XRMs7SUL/m5w
-         HQDEqVmwLZGXRxA9N0uRGxmL+plamF7KSgUDd4GWtfoAUzMSWlnJkxFk4CgzCO0qQkQ9
-         u4fs+7gderZSQcZe7XVU66XU90MfY7Dx6G4KKCNGojSr2RaKFCkOVKOLtjQ4QrbBh9Yy
-         gcg/oPA1GcAx1g1voWT5da81EJYSMigEi9WFCUmRZtjZqzEfVi4ACPJuQBNJl68gjOYE
-         j0rWt0GiyNW+ESFriHTQlEaP3AMiN9GAyfVFDC2zuCbzxvOAGVSC2v959fDPch0NDcYP
-         nztA==
-X-Forwarded-Encrypted: i=1; AJvYcCVrnPWZp8EHScO1rMp2KO05RDX5vPglNb0Z3RkwH14U+UNCK6si7DB9+x591EEcYgZzROVBntsHe0MR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0irRQhYwdofj/k4GUWsmr4u8l2+Rkc5nUHRbO3Cme1Qf4qkfD
-	FH613izrYjQos/6PFtglwgzpvjSMAg6qSfFhrz91J9+0rfNuxIefn+6VsMlGYzaAk503GpbW+M4
-	Izcv5dsHp/B74c7xbaGthTBTX8ItCru0dLourVMPPEE1ITDZZ+xjgRIMvR53rJWrwVLNghxvy+9
-	s=
-X-Gm-Gg: ASbGnct7c6z2dtZvHzEB91jMrPJx4YIKt4GUtqB/ZTHa90CxPnPYHrH7MFpYSLCBd2d
-	lT7Pbk0KnzKYt2XHKG7LQzXjYBXrQoaQUiLJR/MOwCUUQDeI7iv+sVZbmDorNRE0Fqyt8UQAnI9
-	wEo65vMVPG9Gkq7uvMvl9dn+H3BkOIS3aQAk9pdZ52LngOnVfe6pY2UlUIN6Mo4sYyVyfZ8FOrE
-	lxijkgaSy8vgAotQ3XufbbWbJkivpnhGti4hcLa5qkiQT//1osS02vmRpk6MQ2p3DJB1l5uo4yJ
-	WkGSF6fSzRG1DVnhwSF6fqXbl1Fs042EmGEvGFulXW9LcVcBdDxBC1yXSn82zZGIsdhBETPOgqg
-	=
-X-Received: by 2002:a05:6214:2022:b0:784:be20:64e9 with SMTP id 6a1803df08f44-78ecc6297bdmr77300346d6.9.1758210899739;
-        Thu, 18 Sep 2025 08:54:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHPqTfGJSu0pVm0mj7H6Eq6hklqspz+RrX/TH168uK1ggsxUzHAvffXmh5lREb28mNN4fUGfw==
-X-Received: by 2002:a05:6214:2022:b0:784:be20:64e9 with SMTP id 6a1803df08f44-78ecc6297bdmr77300056d6.9.1758210899228;
-        Thu, 18 Sep 2025 08:54:59 -0700 (PDT)
-Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:82c:5f0:81ce:8337:616d:c2d5])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fc5f4386esm223209166b.15.2025.09.18.08.54.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Sep 2025 08:54:58 -0700 (PDT)
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: [PATCH] arm64: dts: qcom: qcm2290: Fix camss register prop ordering
-Date: Thu, 18 Sep 2025 17:54:56 +0200
-Message-Id: <20250918155456.1158691-1-loic.poulain@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1758211048; c=relaxed/simple;
+	bh=7szmy2OW+pKdnxlLQgL5ZyztXZVlULEeY328f0dD5nM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MU31y+XAc6v6wsaowpgLQFVEW4VM8q07UBYXzxXB5C2mJeS8tQniNMsR3twW6RegNMJdQ/Q1wI8AKCAljtt5awPazND3b3BM4GLGLiNIo7v5bqr0cerTgxiy1QFUfVvX11GvgeIjCoPgxh6NT5qawks35D/WCJss9492AugoByM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=phDbi24B; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 08EB11A0EB9;
+	Thu, 18 Sep 2025 15:57:25 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C8AAF606A8;
+	Thu, 18 Sep 2025 15:57:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B467D102F1D0B;
+	Thu, 18 Sep 2025 17:57:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758211043; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=TxZksMSppeoI1kAjsorjjiU9ZV35lEO/QcgVtoJNdhk=;
+	b=phDbi24B+Am3HE81Qq/HYW6qFlByZ7uAfZgeuWMxFldWNrdNRyQ0Zz2upRDUHbSwCpqTuy
+	vBL5KxbtcXkaKq+rpt8meuUoefi3LQhDnd4/qdIbVQxdLgDPmur11ePGZGoRidCjg6ajLO
+	G7nac19LjQ+C7tZOR5spe+Vc51uSgaXvxrV/D6EDMJAAClWYlkJGtVeTX4/GhRg3IlDKJK
+	0xY6ixodMhtL36QoPnvxcrnRYnrp6t5EXuqLFYCI79znuQPsXAdAu6/2C37dT7O9CfZPUE
+	GEwhxeqCrUYtC8mAt6fjRj77g9PNxd8xmSUqOFGfIWLUCwxkemqhNI0UU2YS8w==
+Date: Thu, 18 Sep 2025 17:57:16 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
+ Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
+ Eberhard <pascal.eberhard@se.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 0/8] gpio: renesas: Add support for GPIO and related
+ interrupts in RZ/N1 SoC
+Message-ID: <20250918175716.6c3fd406@bootlin.com>
+In-Reply-To: <20250918-sterilize-malt-b0f182256617@spud>
+References: <20250918104009.94754-1-herve.codina@bootlin.com>
+	<20250918-sterilize-malt-b0f182256617@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=e50GSbp/ c=1 sm=1 tr=0 ts=68cc2b55 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=yJojWOMRYYMA:10
- a=EUspDBNiAAAA:8 a=ssarpNazB3TWaIbJ0ZoA:9 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-GUID: PFNGTXb60WjboJqzs2P2Yr8BywgzSc5A
-X-Proofpoint-ORIG-GUID: PFNGTXb60WjboJqzs2P2Yr8BywgzSc5A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX6e1pTMwymX18
- lAKfzjJcqgwbjfYE1j+2TvhPb3qzlFp4OIP/Sk1d0iaFElAdFHEMlfuruiNcO4Dse6egK+Uu7Sx
- mB3dz/+60bdeADN9LoUgWY7V+7mG6gbwZfzVilOO+axtF+dBLz9kzGmKwnPO0afYE6ODmxCao/A
- jBRD5k13ZfIBKuemwzfAxpiUljOR6vviHFbbGtujGNFXE/0buYgAp+JhMfhYwKT5XdzAOL0NblQ
- bToMI9II0h5sJz/oZVWX1JC/ew/RvGZO0NBGJZ5N6F8Ci1M1bFygxLNB53d4oQHioiK9CAHQ6Ht
- iyW0ITZMKZSzf6Kq5YqMu98w//Z3s1U3GkQkzN4ROwAUyP/c1nPIri80D4/vv9zFeGqVZSWxx+R
- fUjVECIU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-18_01,2025-09-18_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- phishscore=0 malwarescore=0 suspectscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
+X-Last-TLS-Session-Version: TLSv1.3
 
-The qcm2290 CAMSS node has been applied from the V4 series, but a later
-version changed the order of the register property, fix it to prevent
-dtb check error.
+Hi Conor,
 
-Fixes: 2b3aef30dd9d ("arm64: dts: qcom: qcm2290: Add CAMSS node")
-Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On Thu, 18 Sep 2025 16:37:39 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 08141b41de24..3b0ba590ee82 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -1685,25 +1685,25 @@ cci_i2c1: i2c-bus@1 {
- 			};
- 		};
- 
--		camss: camss@5c6e000 {
-+		camss: camss@5c11000 {
- 			compatible = "qcom,qcm2290-camss";
- 
--			reg = <0x0 0x5c6e000 0x0 0x1000>,
-+			reg = <0x0 0x5c11000 0x0 0x1000>,
-+			      <0x0 0x5c6e000 0x0 0x1000>,
- 			      <0x0 0x5c75000 0x0 0x1000>,
- 			      <0x0 0x5c52000 0x0 0x1000>,
- 			      <0x0 0x5c53000 0x0 0x1000>,
- 			      <0x0 0x5c66000 0x0 0x400>,
- 			      <0x0 0x5c68000 0x0 0x400>,
--			      <0x0 0x5c11000 0x0 0x1000>,
- 			      <0x0 0x5c6f000 0x0 0x4000>,
- 			      <0x0 0x5c76000 0x0 0x4000>;
--			reg-names = "csid0",
-+			reg-names = "top",
-+				    "csid0",
- 				    "csid1",
- 				    "csiphy0",
- 				    "csiphy1",
- 				    "csitpg0",
- 				    "csitpg1",
--				    "top",
- 				    "vfe0",
- 				    "vfe1";
- 
--- 
-2.34.1
+> On Thu, Sep 18, 2025 at 12:39:58PM +0200, Herve Codina (Schneider Electric) wrote:
+> > Hi,
+> > 
+> > This series adds support for GPIO and GPIO IRQ mux available in the
+> > RZ/N1 SoCs.
+> > 
+> > The first patches in this series are related to a new helper introduced
+> > to parse an interrupt-map property.
+> >   - patch 1: Introduce the helper (for_each_of_imap_item)
+> >   - patch 2: Add a unittest for the new helper
+> >   - patch 3 and 4: convert existing drivers to use this new helper
+> > 
+> > Patch 4 will conflicts with commit 40c26230a1bf ("irqchip: Use int type
+> > to store negative error codes") available in linux-next.
+> > 
+> > Patch 5 adds support for GPIO (device-tree description)
+> > 
+> > The last patches (6, 7 and 8) of the series are related to GPIO
+> > interrupts and GPIO IRQ multiplexer.
+> > 
+> > In the RZ/N1 SoCs, GPIO interrupts are wired to a GPIO IRQ multiplexer.
+> > 
+> > This multiplexer does nothing but select 8 GPIO IRQ lines out of the 96
+> > available to wire them to the GIC input lines.
+> > 
+> > One upstreaming attempt have been done previously by Phil Edworthy [1]
+> > but the series has never been applied.
+> > 
+> > Based on my understanding, I have fully reworked the driver proposed by
+> > Phil and removed the IRQ domain. Indeed, the device doesn't handle
+> > interrupts. It just routes signals.
+> > 
+> > Also, as an interrupt-map property is used, the driver cannot be
+> > involved as an interrupt controller itself. It is a nexus node.
+> > 
+> > With that in mind,
+> >   - Patch 6 is related to the irq-mux binding.
+> > 
+> >   - Patch 7 introduces the irq-mux driver.
+> >     This driver uses the 'for_each_of_imap_item' helper introduced
+> >     previously. Indeed, the lines routing is defined by the
+> >     interrupt-map property and the driver needs to set registers to
+> >     apply this routing.
+> > 
+> >   - Patch 8 is the RZ/N1 device-tree description update to have the
+> >     support for the GPIO interrupts.
+> > 
+> > [1] https://lore.kernel.org/all/20190219155511.28507-1-phil.edworthy@renesas.com/
+> > 
+> > Best regards,
+> > Hervé  
+> 
+> This whole thing is super interesting to me. I have a gpio irq mux of my
+> own with a driver that is massively more complex than what you have here
+> (it's a full on irqchip driver). I'm definitely gonna have to see if I
+> can ape what you have done here and simplify what I have.
 
+Glad to see that this is giving some ideas!
+
+Best regards,
+Hervé
 
