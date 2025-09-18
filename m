@@ -1,56 +1,86 @@
-Return-Path: <devicetree+bounces-218862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81082B84ECA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:56:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48209B84F00
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 491CE543BD5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:56:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD17C1B285D1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6539C2222BF;
-	Thu, 18 Sep 2025 13:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D79236435;
+	Thu, 18 Sep 2025 13:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WTCWsD6L"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="x0uhvtYB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA4A21171B;
-	Thu, 18 Sep 2025 13:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30986230BCC;
+	Thu, 18 Sep 2025 13:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758203757; cv=none; b=KdbF+DCsXF40SqnCGxhW3nbIM0OXSIeI2D9pVxSgGSwVq5MXK1Qjjj5jTVjNIEdu7U8iUDq7AcT6dpMzT4n01o9tmbo+UvpX9vTIEcEQBQL38k5e4qSq0efByTjhMguH0+qLVbzQ+iMDn6qlfUGq8r0E23L3WB9vVevIhYROhnk=
+	t=1758203972; cv=none; b=VS1Lrg3QzmQBujKV8QL8ne41C0M12sj5xTjCyqXnrRKnQ2r+UqAwjnzlxPuheBb10hb79m8ADX4/hneQ88j3TNIGT6CCMfNs9s8uYYkdguxZwI8BmkFWcWT55z58hXnV08jqFcaQEn8VTOnh9NVGcHhtdfGfQCkpore+tsau1Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758203757; c=relaxed/simple;
-	bh=G7/78i6RoQRQodPeKCJlvCChMtkjXdabJYnM8oOuRa8=;
+	s=arc-20240116; t=1758203972; c=relaxed/simple;
+	bh=PYQn2VLpXq30qPT2Nio97KPnrBpck+Q8SjCmT8+7P+8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jPqQWYzNUsksm6ASQm+UYfsZ9HAqjS2xSgrTFhmfqnEv9V7QHKf4nXeUmsoX0kqhNw5CBWGsNBz3Z0w7btKXKTLwCc+acZBCxaV3BPIncvMcFQ7fWVm7vFAgu27BogzvaSpGboo5m9r+tzsEjt4/GJ0yhc4wMCZMkvZyJS2EqBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTCWsD6L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8938DC4CEE7;
-	Thu, 18 Sep 2025 13:55:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758203756;
-	bh=G7/78i6RoQRQodPeKCJlvCChMtkjXdabJYnM8oOuRa8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WTCWsD6L7/v5r0aazrPV4ecf3YGy+0V6OCMU84LAqsRbFvd4h07tCGJfl4JcB7Iex
-	 q0EOF4zuSUAEnYPpTCabSIrITdqQATMaexeXvPifNm6R/b/oh3GW4AZ4b6XHjAwSsd
-	 jIQ44AM12/V1Et0YlNXrJnWEQR7Q8/hmk0nZzetqn0kSk2lk0UFq5GGyRsth1je6gZ
-	 QOCbB5Z17UW0ZPfMdsktxJe0fkQS9MzQV4kbpBEx0N2mRhkIX92Irr3txGNA/zoKpN
-	 FF9t2GH/t0d7U7Sy0qh3WibSWz4BwNB5Of8FvdVkTh/dHRSHF7V3AxUAOTc0aQpH2U
-	 zx6OijYZr3/ZA==
-Date: Thu, 18 Sep 2025 08:55:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH] of/irq: Add msi-parent check to of_msi_xlate()
-Message-ID: <20250918135555.GA1540012-robh@kernel.org>
-References: <20250916091858.257868-1-lpieralisi@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=laHYPsTfmFfsyDe/ZlVuHIeiaggBp6FFoaFfK2mh8HMss8Ly/VnC/A9rZwQaRGxeTW1h1eaoyk1lT+7hNfxsSOZru7in9zddV6u8VPpu4KDqZ+xJXa8mONMxYynCWEkmgAg3LT7Sz9MkUk2GE7kmfdnM8Sl48EsoaQ9vJPwGJGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=x0uhvtYB; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jZhxEQj8wZgmKlh5JqOaBLYYciKgqt6bF58Ec3MI89Q=; b=x0uhvtYBfqM4ev+QWxKV0Frpwg
+	N9X8yEsVyXlcdquDplWJZyDSlAuYdBR/tphzRSDW0zb1xSWPXb5fyhb6wT625E6bya4WZyk3APlLp
+	GVzyCnyrbryNoM1RQ6h5uepOBsoSK1fQX5fQ9KY3kEC7q/gLhn5VGtaDK7f0zZxqJU4MD8lIEVOp9
+	C+vWkp3FiAdoyUyE+IeL/dsRBWh8fDVUt5eS1Fc01ftOWH7skmHklK/wGzAPgsLg+EfMgPIsZ2krI
+	5P1StXX1neYRSzqDCeJDD34LPKo1UIlSvE9Mm0EohDvCDVEATdxJDVNrtVBUOsUeL0zLiWOp7wQoi
+	93q80zzw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49182)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uzFAC-000000000ng-2pjn;
+	Thu, 18 Sep 2025 14:59:08 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uzFA8-000000001EY-1H75;
+	Thu, 18 Sep 2025 14:59:04 +0100
+Date: Thu, 18 Sep 2025 14:59:04 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/4] net: stmmac: stm32: add WoL from PHY
+ support
+Message-ID: <aMwQKERA1p29BeKF@shell.armlinux.org.uk>
+References: <20250917-wol-smsc-phy-v2-0-105f5eb89b7f@foss.st.com>
+ <20250917-wol-smsc-phy-v2-2-105f5eb89b7f@foss.st.com>
+ <aMriVDAgZkL8DAdH@shell.armlinux.org.uk>
+ <72ad4e2d-42fa-41c2-960d-c0e7ea80c6ff@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,113 +89,153 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250916091858.257868-1-lpieralisi@kernel.org>
+In-Reply-To: <72ad4e2d-42fa-41c2-960d-c0e7ea80c6ff@foss.st.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Sep 16, 2025 at 11:18:58AM +0200, Lorenzo Pieralisi wrote:
-> In some legacy platforms the MSI controller for a PCI host
-> bridge is identified by an msi-parent property whose phandle
-> points at an MSI controller node with no #msi-cells property,
-> that implicitly means #msi-cells == 0.
+On Thu, Sep 18, 2025 at 02:46:54PM +0200, Gatien CHEVALLIER wrote:
+> On 9/17/25 18:31, Russell King (Oracle) wrote:
+> > On Wed, Sep 17, 2025 at 05:36:37PM +0200, Gatien Chevallier wrote:
+> > > If the "st,phy-wol" property is present in the device tree node,
+> > > set the STMMAC_FLAG_USE_PHY_WOL flag to use the WoL capability of
+> > > the PHY.
+> > > 
+> > > Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> > > ---
+> > >   drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c | 5 +++++
+> > >   1 file changed, 5 insertions(+)
+> > > 
+> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> > > index 77a04c4579c9dbae886a0b387f69610a932b7b9e..6f197789cc2e8018d6959158b795e4bca46869c5 100644
+> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+> > > @@ -106,6 +106,7 @@ struct stm32_dwmac {
+> > >   	u32 speed;
+> > >   	const struct stm32_ops *ops;
+> > >   	struct device *dev;
+> > > +	bool phy_wol;
+> > >   };
+> > >   struct stm32_ops {
+> > > @@ -433,6 +434,8 @@ static int stm32_dwmac_parse_data(struct stm32_dwmac *dwmac,
+> > >   		}
+> > >   	}
+> > > +	dwmac->phy_wol = of_property_read_bool(np, "st,phy-wol");
+> > > +
+> > >   	return err;
+> > >   }
+> > > @@ -557,6 +560,8 @@ static int stm32_dwmac_probe(struct platform_device *pdev)
+> > >   	plat_dat->bsp_priv = dwmac;
+> > >   	plat_dat->suspend = stm32_dwmac_suspend;
+> > >   	plat_dat->resume = stm32_dwmac_resume;
+> > > +	if (dwmac->phy_wol)
+> > > +		plat_dat->flags |= STMMAC_FLAG_USE_PHY_WOL;
+> > 
+> > I would much rather we found a different approach, rather than adding
+> > custom per-driver DT properties to figure this out.
+> > 
+> > Andrew has previously suggested that MAC drivers should ask the PHY
+> > whether WoL is supported, but this pre-supposes that PHY drivers are
+> > coded correctly to only report WoL capabilities if they are really
+> > capable of waking the system. As shown in your smsc PHY driver patch,
+> > this may not be the case.
 > 
-> For such platforms, mapping a device ID and retrieving the
-> MSI controller node becomes simply a matter of checking
-> whether in the device hierarchy there is an msi-parent property
-> pointing at an MSI controller node with such characteristics.
+> So how can we distinguish whether a PHY that implements WoL features
+> is actually able (wired) to wake up the system? By adding the
+> "wakeup-source" property to the PHY node?
+
+Andrew's original idea was essentially that if the PHY reports that it
+supports WoL, then it's functional.
+
+Sadly, that's not the case with many PHY drivers - the driver
+implementers just considered "does this PHY have the ability to detect
+WoL packets" and not "can this PHY actually wake the system."
+
+Thankfully, all but one PHY driver does not use
+device_set_wakeup_capable() - my recent patches for realtek look like
+the first PHY driver to use this.
+
+Thus, if we insist that PHY drivers use device_set_wakeup_capable()
+to indicate that (a) they have WoL capability _and_ are really
+capable of waking the system, we have a knob we can test for.
+
+Sadly, there is no way to really know whether the interrupt that the
+PHY is attached to can wake the system. Things get worse with PHYs
+that don't use interrupts to wake the system. So, I would suggest
+that, as we already have this "wakeup-source" property available for
+_any_ device in DT, we start using this to say "on this system, this
+PHY is connected to something that can wake the system up."
+
+See the past discussion when Realtek was being added - some of the
+context there covers what I mention above.
+
+> Therefore, only set the "can wakeup" capability when both the PHY
+> supports WoL and the property is present in the PHY node?
+
+Given that telling the device model that a device is wakeup
+capable causes this to be advertised to userspace, we really do
+not want devices saying that they are wakeup capable when they
+aren't capable of waking the system. So I would say that a call
+to device_set_wakeup_capable(dev, true) should _only_ be made if
+the driver is 100% certain that this device really can, without
+question, wake the platform.
+
+If we don't have that guarantee, then we're on a hiding to nothing
+and chaos will reign, MAC drivers won't work properly... but I would
+suggest that's the price to be paid for shoddy implementation and
+not adhering to a sensible approach such as what I outline above.
+
+> However, this does not solve the actual static pin function
+> configuration for pins that can, if correct alternate function is
+> selected, generate interrupts, in PHY drivers.
 > 
-> Add a helper function to of_msi_xlate() to check the msi-parent
-> property in addition to msi-map and retrieve the MSI controller
-> node (with a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to
-> provide support for deviceID mapping and MSI controller node
-> retrieval for such platforms.
+> It would be nice to be able to apply some kind of pinctrl to configure
+> the PHY pins over the MDIO bus thanks to some kind of pinctrl hogging.
+> This suggests modifying relevant PHY drivers and documentation to be
+> able to handle an optional pinctrl.
 
-Your line wrapping is a bit short.
+How would that work with something like the Realtek 8821F which has
+a single pin which can either signal interrupts (including a wake-up)
+or be in PME mode, where it only ever signals a wake-up event.
+Dynamically switching between the two modes is what got us into the
+crazy situation where, when WoL was enabled on this PHY, phylib
+stopped working because the pin was switched to PME mode, and we no
+longer got link status interrupts. So one could enable WoL, plug in
+an ethernet cable, and the kernel has no idea that the link has come
+up.
 
-I had a look at who is parsing "msi-parent" themselves as that's 
-typically a recipe for doing it incorrectly ('interrupt-map' anyone). 
-Can we make iproc_pcie_msi_enable() use this? It's quite ugly reaching 
-into the GICv3 node...
+So no. In a situation like this, either we want to be in interrupt
+mode (in which case we have an interrupt), or the pin is wired to
+a power management controller and needs to be in PME mode, or it isn't
+wired.
 
-And perhaps irq-gic-its-msi-parent.c could use this? 
+Which it is can be easily identified.
 
-And looks like pcie-layerscape-gen4 is leaking a node reference...
+$1. Is there an interrupt specified (Y/N) ?
+$2. Is there a wakeup-source property (Y/N) ?
 
-> 
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/of/irq.c | 38 +++++++++++++++++++++++++++++++++++---
->  1 file changed, 35 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index e7c12abd10ab..d0e2dfd0ee28 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -670,6 +670,35 @@ void __init of_irq_init(const struct of_device_id *matches)
->  	}
->  }
->  
-> +static int of_check_msi_parent(struct device_node *dev_node, struct device_node **msi_node)
-> +{
-> +	struct of_phandle_args msi_spec;
-> +	int ret;
-> +
-> +	/*
-> +	 * An msi-parent phandle with a missing or == 0 #msi-cells
-> +	 * property identifies a 1:1 ID translation mapping.
-> +	 *
-> +	 * Set the msi controller node if the firmware matches this
-> +	 * condition.
-> +	 */
-> +	ret = of_parse_phandle_with_optional_args(dev_node, "msi-parent", "#msi-cells",
-> +						  0, &msi_spec);
-> +	if (!ret) {
-> +		if ((*msi_node && *msi_node != msi_spec.np) || msi_spec.args_count != 0)
-> +			ret = -EINVAL;
-> +
-> +		if (!ret) {
-> +			/* Return with a node reference held */
-> +			*msi_node = msi_spec.np;
-> +			return 0;
-> +		}
-> +		of_node_put(msi_spec.np);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  /**
->   * of_msi_xlate - map a MSI ID and find relevant MSI controller node
->   * @dev: device for which the mapping is to be done.
-> @@ -677,7 +706,7 @@ void __init of_irq_init(const struct of_device_id *matches)
->   * @id_in: Device ID.
->   *
->   * Walk up the device hierarchy looking for devices with a "msi-map"
-> - * property. If found, apply the mapping to @id_in.
-> + * or "msi-parent" property. If found, apply the mapping to @id_in.
->   * If @msi_np points to a non-NULL device node pointer, only entries targeting
->   * that node will be matched; if it points to a NULL value, it will receive the
->   * device node of the first matching target phandle, with a reference held.
-> @@ -691,12 +720,15 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
->  
->  	/*
->  	 * Walk up the device parent links looking for one with a
-> -	 * "msi-map" property.
-> +	 * "msi-map" or an "msi-parent" property.
->  	 */
-> -	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent)
-> +	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
->  		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
->  				"msi-map-mask", msi_np, &id_out))
->  			break;
-> +		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
-> +			break;
-> +	}
->  	return id_out;
->  }
->  
-> -- 
-> 2.48.0
-> 
+States:
+$1  $2
+*   N   we have no idea if an interrupt (if specified) can wake the
+        system, or if there is other wiring from the PHY which might.
+	Legacy driver, or has no wake-up support. We have to fall back
+	on existing approaches to maintain compatibility and void
+	breaking userspace, which may suggest WoL is supported when it
+	isn't. For example, with stmmac, if STMMAC_FLAG_USE_PHY_WOL is
+	set, we must assume the PHY can wake the system in this case.
+Y   Y   interrupt wakes the system, we're good for WoL
+N   Y   non-interrupt method of waking the system, e.g. PME
+
+I'd prefer not to go for a complicated solution to this, e.g. involving
+pinctrl, when we don't know how many PHYs need this, because forcing
+extra complexity on driver authors means we have yet more to review, and
+I think it's fair to say that we're already missing stuff. Getting the
+pinctrl stuff right also requires knowledge of the hardware, and is
+likely something that reviewers can't know if it's correct or not -
+because datasheets giving this information aren't publicly available.
+
+So, I'm all in favour of "keep it damn simple, don't give people more
+work, even if it looks nice in DT" here.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
