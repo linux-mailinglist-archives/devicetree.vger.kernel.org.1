@@ -1,332 +1,157 @@
-Return-Path: <devicetree+bounces-218748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B33B83B00
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:06:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0432B83B1B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F5841B219D4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:06:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFC121C07276
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EFB2FF17C;
-	Thu, 18 Sep 2025 09:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iasrYwn/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E91F2FF16D;
+	Thu, 18 Sep 2025 09:09:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14712FE588
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71B72FF149
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758186353; cv=none; b=Jpxye3EVBBBMEVs1E3vINEEZIPx/SE8h9P0ucpvoUp9Mtc4p9TA/H5mNOACU8zKHPrVUMYSm4q92ZNfeQZ/gTb0gNoFvLo6VVP5VDHywXSOMv0/gaGM5HcmolFHB3UYzzOLhdZWeFQWbTDKC5VCWh7xgWkm/Le+r/2QXUSDKSx4=
+	t=1758186569; cv=none; b=aYJQ+vpdTtgmfQlCiC4mF0nIZyDRgW3gq5IhWpQqfWm9DYDsuC0309LyseVgwo4idkFqk4FQm9T26Wk9bIPixwBftNfLR/N/3L8qGgtJYmz7GEXsgT8NviSAUNufPPVM6IhVIZUSpajIcHVlPR24vBGVOynLbzsbnZ7lyifi5sE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758186353; c=relaxed/simple;
-	bh=3jNolqJkapC/Ko3tIVGHtQ6koTpXkWQZS6HoZP9KJ3w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J/1bkV1R401cDLadsybY834tB+zUxpTKMXrHJ71g5H/6q5T3KherlGgu74Jfgo5nJN3p34OgoRaik6qUPwbQHzE2/1LN+igGNwQ4s5W+HSLqrhFzGvRNdarY/rqwITTx7PkYAjVKqJGjpuOI9PfoJuke8M8MQhlWIjNfr/isXQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iasrYwn/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58I3E6nu021427
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	efwfuR0XZuIlYyd3jHeDV9GXnA+hdIP5wvjI/VjJjUc=; b=iasrYwn/9pH8hb8G
-	GQWuNQoQqOP+gTGpFNe+OrrORZJb/JnVA5//h2oL/HI6l7PBAXj6MupId/BycE8L
-	WWq3eCzQGm1t4/MqsNbYmtG00kp7m9YZoWRmYgruE6ZeMkFHGsj/7Y23vr2JOxDJ
-	1QxQhSiXaUvqxc953YkjJbmr2zCqxUZOa0bysKsXqjm5cywbG9NVY12t2ame+qfp
-	kAisG1Fv2FCoW4oIeWf7Vd+jpzcEUB5c2OCJAtVN/m5gdaFOUVrFyDqk3wpskgNF
-	M1z73/iupTXGViwl6eLLDyNDd2KoYrqhW520JIGhH5c8vyc0xNifME75mS9Pg71N
-	t2dX3Q==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5dp2d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:47 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-78f40a59135so2048586d6.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:05:47 -0700 (PDT)
+	s=arc-20240116; t=1758186569; c=relaxed/simple;
+	bh=oA78+Hc2QsigW6eOAwWharYmhHBJia9T9YFq3+h/+4Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kfHJBqpoDpbd6dYyD6nPHdueJhD5og5YcOHgvXdsOnIZ7qWwL5+8R3KJFu4buMIZzeBypABrumxeUHQtfDWY7P8WhLSZC9FwKksWh5bez9pbtXnr2LEwc8zwEiPxdAegmntzZg7lVvcwxaZ4HcN0+PH3r05+LdPyKbHK1b2cNVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-8e3239afdf2so503312241.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:09:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758186347; x=1758791147;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=efwfuR0XZuIlYyd3jHeDV9GXnA+hdIP5wvjI/VjJjUc=;
-        b=gSwHv+CBObeNQZNkRB5F+tTIFRdKRYqzp84Vif+120zFa6BNf/zrbepZlqdjOTcJNj
-         lf3AkuZceqwJH04ujQgehEitNOm+9xKQ2XebhB8UqYLAUAQ0won2AXOopFX1QqvDejwG
-         ci2pz8wxqH7lR+somiJmFJ3jQuGJopWCSTifenSQTmWGAsKh2GSggT3EV6BC4cBvXdXf
-         WifvpsrZo3ZK7pA6hwksLYQOsBzEafFup0XPn4MqFtSr9baXk+8TNI1SGC57DVXxm/RY
-         qNPBAxe8jTHARmrh5nMRAqvelzZjKhavR2pTH7ug06FeZS9olWsbV/aej8f1f1unjtrB
-         SAIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWzYD3CNJFiN89oM3E6r0Hv7B28sGUuL7LrThh9ZRoRtVFi6/VepVMIso1s/OCJqHkamp9B/uJ4A/sA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+De7Kv8GJF8tyBuGBMQ3lxN4EQOKqlrJbNiTz4n1C5Mrbjs4A
-	j7ik4AAB5GbkPGMtMVEPcwurfhT2c3f4c4Pl/hPZDP82K4O1JMfmTQfeoB6I0rN2hEfKkTHy7DU
-	adRQutJlNYJ5ciShOiq63Xm5xeLiG42jsr0YzeCuKSpEK5Oa4CWFT4xIyt1g9t1CN
-X-Gm-Gg: ASbGncviMczsPvQtWv86gbRWMeVjSzIDAqMMZ0KPX9uO0TaQZfewHHCkJPiZHlgKzhj
-	2tIqaNIq8FPKdn1ridnhfPHfUZTEoz5mdSdYUGKZEogO0sDf9WRf4l0wFN+dojT6ST1WURjnXfE
-	1b09xMMaeRwVWmpylmOpVRXTFXJCPte5o/VOfTfWZL1odNHriIqe4an0RuhXAtd7jDUXGP6080l
-	P6tZyrsjTzBlFiNuTTOEjdakWo33XrqfJWMGHZgJ4N6RfjCuftoRbC4uwT9xZg56j1kJFYhyA/K
-	HwJQZAZn5Bg/ile3WiUBqLwEByEQg/siXLvEjr2+F++nok2SYPUy+0uNQ4qAztkD2ypZefJgvni
-	hYgQMcecNiw6APkuLVaO65g==
-X-Received: by 2002:ad4:5c4e:0:b0:773:84c1:396 with SMTP id 6a1803df08f44-78ecc822080mr35313266d6.1.1758186346572;
-        Thu, 18 Sep 2025 02:05:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGFbRLbBIv3u5UrETuMfbcXFVbaueQuIikLkfQf7q3WwNCyZ+rot/De/umJEGNwkT7guFXU/w==
-X-Received: by 2002:ad4:5c4e:0:b0:773:84c1:396 with SMTP id 6a1803df08f44-78ecc822080mr35312996d6.1.1758186345967;
-        Thu, 18 Sep 2025 02:05:45 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62fa5f287d9sm1085733a12.44.2025.09.18.02.05.43
+        d=1e100.net; s=20230601; t=1758186566; x=1758791366;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BUI3LMEUjKeaMro6VS1cwSeOA9TFMizFtGUUlwJmP8Y=;
+        b=SIxQpWgjukFvbh8iN/K6Pl3NBSpRqK8fpc8YMRIjJV13x8+myoKQVs9jhKSYBLAogq
+         p4uv7WndEco27oTHzeemPMAA3H2Ac26tP8kZ8lQ6VFHEd6AI4rsp+4KL6FEWRHa27M93
+         p7EItjhh1AHJSLYCijsdRisssFy+dFb10y2sAlWqZ6H3//sqXo5iPgVv+8NTdjZHlAU5
+         24931AZ0nD+9gnWxEBtPQ1/RxyEDUvj9MH6znwNfL+RasQpzDMFJVWYd7dvkOhHoBhy/
+         U3B7SCZ8YYNjPM5Z6HOJyq/VCto9qjrBDFEieCAK8LWcD98sJTmmJ9B4sT8YbrNYsy2j
+         LHbw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/jJn8+wN9dnt4r+8cK5V+BvvHNaqgdUkbsmWih+fZ9yEN4xm5t/FaixLaKxqa1kcX14o64q5f2gTv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzk5/M+NB16hBVbQAXG1uOKq4kxz9OSqCcmTNc6WsTPqDr+cliL
+	K6hQPXMCQYHHvgEdLQlO9lQtzDb60F1S3kHvLgi3X9DIadx4LV7JgQkfaxIJV/aX
+X-Gm-Gg: ASbGncs52NF0F029nunFUbLMO4xpR/EaBYVxuMrKVzXhDLC7iHWcktyWK5/b8TszSHx
+	Lyb0KLaOhnj00nFPdB24LmR9v3qGkte/lrztZpBgKVhvkJVbuRdtvw22AOJ5QcDyMCqxBeMiVEH
+	s12emyysZrXAi5px0oxCzBahS3F9lzZPW4XdavElxd0lTEM5b+MTJus1B32PkoverxoP1W9ZbRT
+	AdnGoqAmJ1tEnyDB6m/AEFEhF+M747YeQZpn9K4My4NnDYNT5/g45s3/H5bzJACDnm/QnRsUpym
+	APqRiIdaejKy+iCmDvCCg2Q5kZW+90NZL88k4//DziDs/1qgBF5PROYMLBYHh4KJBE4Dk4aJl3r
+	dzsGZMbful0M9ulGy59EZpQFWWSmsLyAdx5HPXteab8FU2wyR0XtpvZk5wyqNYUvFXvSuETWSjQ
+	KGqM8=
+X-Google-Smtp-Source: AGHT+IHLGnQdNm+tLmu6JOQrDNIUXHA/oU5RSFaqUZwR1Z79CCjiSGPpo58PUWnmhH1+E7roSSu1iw==
+X-Received: by 2002:a05:6102:5a90:b0:522:48fb:9478 with SMTP id ada2fe7eead31-56d69d015d4mr1805785137.28.1758186566451;
+        Thu, 18 Sep 2025 02:09:26 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-579dd9085d6sm492998137.4.2025.09.18.02.09.25
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Sep 2025 02:05:45 -0700 (PDT)
-Message-ID: <035c0d66-bddd-495c-bd23-e1d98570ba7f@oss.qualcomm.com>
-Date: Thu, 18 Sep 2025 11:05:42 +0200
+        Thu, 18 Sep 2025 02:09:25 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-557a6856135so606477137.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:09:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUeaxG7RyHCaY+Gn/EoIkSyz3NuGJTpG/E8uMKVmgpDpqrqY9KDPlcHA4l/aa5MyYowXaiAqfjmESiL@vger.kernel.org
+X-Received: by 2002:a05:6102:6c7:b0:4fb:fc47:e8c2 with SMTP id
+ ada2fe7eead31-56d5088a6e8mr1645890137.9.1758186565181; Thu, 18 Sep 2025
+ 02:09:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] dt-bindings: thunderbolt: Add Qualcomm USB4 Host
- Router
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Jack Pham <quic_jackp@quicinc.com>,
-        Raghavendra Thoorpu <rthoorpu@qti.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mayank Rana <mayank.rana@oss.qualcomm.com>,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Mika Westerberg <westeri@kernel.org>,
-        Yehezkel Bernat
- <YehezkelShB@gmail.com>, linux-usb@vger.kernel.org
-References: <20250916-topic-qcom_usb4_bindings-v1-1-943ecb2c0fa7@oss.qualcomm.com>
- <20250917061236.GF2912318@black.igk.intel.com>
- <e648a71f-a642-4f5d-bcf8-893484cfe601@oss.qualcomm.com>
- <20250918051244.GJ2912318@black.igk.intel.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250918051244.GJ2912318@black.igk.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 8BAdKkuYTRUO4ANESdgKc8dBUtaO5bIa
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX5fBksdAZuyC/
- jL2JH9tSLBasXoJg9eeDPuc/Y1LdN7CumC3zaZo6xebZENqlT4ujoWnhJuE8zfCpoFrZbDEr1cb
- FwfhPi5SYGiDOvcH2vibWnCd1vanIS+6dvk5KrX9vXGax3l90DVURKo1xbFKNwITWNpgu9e65y+
- 3SkBYtVOw5p7lE6QE9x2PR15IXmk0X4ys5LrZ+8CSdMS5bFqDNcuVCOuzfiaihpeiLxWigRnl3P
- XaektKExsftAzQ+9R8UT4FE6XcY6lTXBC/YsHKOGCYVRaZCimzHNAFPkkJnQXAgab9rte/XOPs+
- nhB5e/BFMTjSA1k81lc9Vuw3fZz9UUrAhFhHlI7XxpVKHHoDG/DDfqTVaClgEjGhur0xp1ZHyHX
- Sux/ghGL
-X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cbcb6b cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=yMhMjlubAAAA:8 a=EUspDBNiAAAA:8
- a=Nf3ZQrY7d6tcd-rdNfQA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: 8BAdKkuYTRUO4ANESdgKc8dBUtaO5bIa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-18_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com> <20250912122444.3870284-5-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250912122444.3870284-5-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 18 Sep 2025 11:09:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWP638eB_p9xMAqZmOnuc6n7=n31h6AqV+287uvqQEdww@mail.gmail.com>
+X-Gm-Features: AS18NWCGAnZ0XCOYl-nrDkcvcpM1hNQPPeX1PmUWoRk02X3Ow_sZmQjL_oQhdiM
+Message-ID: <CAMuHMdWP638eB_p9xMAqZmOnuc6n7=n31h6AqV+287uvqQEdww@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] arm64: dts: renesas: rzg3s-smarc-som: Update
+ dma-ranges for PCIe
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 9/18/25 7:12 AM, Mika Westerberg wrote:
-> Hi,
-> 
-> On Wed, Sep 17, 2025 at 08:36:19PM +0200, Konrad Dybcio wrote:
->> On 9/17/25 8:12 AM, Mika Westerberg wrote:
->>> Hi Konrad,
->>>
->>> On Tue, Sep 16, 2025 at 10:06:01PM +0200, Konrad Dybcio wrote:
->>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Hi Claudiu,
 
-[...]
+On Fri, 12 Sept 2025 at 14:24, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The first 128MB of memory is reserved on this board for secure area.
+> Secure area is a RAM region used by firmware. The rzg3s-smarc-som.dtsi
+> memory node (memory@48000000) excludes the secure area.
+> Update the PCIe dma-ranges property to reflect this.
+>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
->>  struct tb_nhi {
->>         spinlock_t lock;
->> -       struct pci_dev *pdev;
->> +       struct device *dev;
->>         const struct tb_nhi_ops *ops;
->>         void __iomem *iobase;
->>         struct tb_ring **tx_rings;
->>         struct tb_ring **rx_rings;
->> -       struct ida msix_ida;
->>         bool going_away;
->>         bool iommu_dma_protection;
->>         struct work_struct interrupt_work;
->>         u32 hop_count;
->>         unsigned long quirks;
->> +       bool is_pcie;
->>  };
->>  
->> +struct tb_nhi_pci {
->> +       struct pci_dev *pdev;
->> +       struct ida msix_ida;
->> +       struct tb_nhi nhi;
->> +};
->> +
->> +static inline struct tb_nhi_pci *nhi_to_pci(struct tb_nhi *nhi)
->> +{
->> +       if (WARN_ON(!nhi->is_pcie))
->> +               return NULL;
->> +
->> +       return container_of(nhi, struct tb_nhi_pci, nhi);
->> +}
->>
->> I suppose I can probably get this decoupling sent in advance of the rest..
->> It's quite delicate so I'm hoping I won't cause any random nullptrs for you
-> 
-> Instead of the above is_pcie thing, can you split it so that the PCI parts
-> live in pci.c and the "platform" parts live in platform.c (or perhaps this
-> is fauxbus now). Then the core part of the NHI code (nhi.c) just works
-> regardless of how the controller is wired to the SoC.
+Thanks for your patch!
 
-I'll simply try to get this decoupling sent soon, so we can debate
-over material changes
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> @@ -214,6 +214,16 @@ &sdhi2 {
+>  };
+>  #endif
+>
+> +&pcie {
+> +       /* First 128MB is reserved for secure area. */
 
-> There are plenty of examples in the kernel how to do this.
-> 
->> - Additional steps are necessary to take the hardware out of reset, set
->>   some magic values here and there, load the firmware (i.e. memcpy_toio())
->>   wake up the MCU and perform Type-C magic (more on that below), all of
->>   which is handled in a new qcom_usb4.c, which does that and ends its probe
->>   function with a nhi_probe_common(). PM of the hardware and its providers
->>   also takes place in Linux, just like with any other IP block on embedded
->>   systems
-> 
-> Call it qcom.c. But please try to move all the non-PCI generic parts into
-> platform.c and then only the Qualcomm specific things live in qcom.c. Idea
-> is that we can re-use all that when for example Apple Silicon support is
-> added and so on.
+Do you really have to take that into account here?  I believe that
+128 MiB region will never be used anyway, as it is excluded from the
+memory map (see memory@48000000).
 
-That's the plan
+> +       dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0x0 0x38000000>;
 
-[...]
+Hence shouldn't you add
 
->>>> +
->>>> +  interrupts:
->>>> +    items:
->>>> +      - description: Combined event interrupt for all three rings
->>>> +      - description: OOB Firmware interrupt
->>>
->>> No MSI? If not then at least I suggest to support it in the DT description.
->>
->> No, it seems like across the SoC we only have MSIs on the PCIe RCs
->>
->> Because I don't know what a valid MSI setup would look like, I'd like
->> to defer adding that description to when a platform with them pops up
-> 
-> I it hard to change these DT bindings later on? If yes then I would
-> definitely think forward and make this support MSI from the get-go.
+    dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0x0 0x38000000>;
 
-dt-bindings (attempt to) promise an ABI-like interface, so bindings
-for *a given IP block* ("dt-bindings describe the hardware") should
-not change, unless there's something critically wrong (e.g. "this
-could have never really worked").
+to the pcie node in arch/arm64/boot/dts/renesas/r9a08g045s33.dtsi
+instead, like is done for all other Renesas SoCs that have PCIe?
 
-Adding new properties is always OK, marking the new properties  as
-'required' is not (unless it falls into the aforementioned case).
+> +};
+> +
+> +&pcie_port0 {
+> +       clocks = <&versa3 5>;
+> +       clock-names = "ref";
+> +};
 
-It's also totally OK to add MSI properties to e.g. Apple Host Router
-bindings specifically when they come around, as it's simply a different
-piece of hardware. It's also OK to create a usb4-host-router.yaml down
-the line, which will act as a common include and perform any
-maintenance/code churn, so long as it doesn't end up in the bindings
-for any specific hw block (e.g. this QC one) becoming more strict
-than they were on HEAD^.
+This is not related.
+
+> +
+>  &pinctrl {
+>  #if SW_CONFIG3 == SW_ON
+>         eth0-phy-irq-hog {
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-> 
->> [...]
->>
->>>> +  wakeup-source: true
->>>
->>> What about the "power contract"? Are you using the existing we have for
->>> ACPI:
->>>
->>> https://learn.microsoft.com/en-us/windows-hardware/drivers/pci/dsd-for-pcie-root-ports#map-native-protocols-pcie-displayport-tunneled-through-usb4-to-usb4-host-routers
->>>
->>> It was designed DT in mind but I don't think we have DT bindings for it.
->>> This is needed to make sure the driver (Connection Manager) creates the
->>> tunnels before the native protocol stacks get enumerated (e.g during power
->>> transitions).
->>
->> I added a custom entry to drivers/of/property.c, matching that name.
->> Seems to work fine (tm) so far, but then we haven't yet tested sus/res
->> much.. 
->>
->> Just to make sure - are we expected to ensure that the NHI device is
->> resumed before any protocol controller drivers (at runtime), or do the
->> latter have to *probe* only after they're necessary? I firmly believe
->> the former, but doesn't hurt to ask..
-> 
-> The former. The TB driver needs to setup tunnels before native protocol
-> stacks and their drivers (e.g PCIe and the like) resume. We have the
-> device_link from the native "port" / device to the NHI that deals with it
-> but it expects the property to be there.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-OK then we're on the same page, good
-
-> 
->> [...]
->>>> +            port {
->>>> +                usb4_0_mode_in: endpoint {
->>>> +                };
->>>
->>> This describes the Downstream Facing Port (e.g USB4 port), right? We have
->>> something similar used in Chromebooks so it would be good if we can make
->>> the bindings close to each other if possible. This allows binding firmware
->>> description to retimers (and also to "fixed/embedded" device routers as
->>> recent changes to the USB4 spec makes possible).
->>>
->>> See drivers/thunderbolt/acpi.c::tb_acpi_find_companion().
->>
->> Yes, this binding assumes the Host Router has precisely 1 DFP (Linux
->> Type-C infra isn't ready for anything more, at least not on the DT side
->> to my knowledge) and this port (which isn't necessarily the same as a
->> connector, i.e. a physical receptacle in DT speak, it simply refers to
->> an abstract data connection between two devices)
-> 
-> Okay I'm not too familiar with the current DT bindings.
-> 
->> Notably, I don't think we currently describe the USB4 port (as in, the
->> usb4_port.c meaning of it) at all, but for on-SoC HRs we know all about
->> them, so perhaps a subnode description could make sense. This way we
->> could also point them to the compatible = "usb-c-connector" node
-> 
-> It should be something (eventually at least :-)) that allows us to describe the
-> USB4 ports and on-board retimers (to make it possible to upgrade firmwares
-> on those even if there is no link). But also if there is "embedded link"
-> device router.
-
-FWIW on DT platforms, onboard retimers (such as the PS883x) are often
-described as children of the I2C bus (see e.g. "parade,ps8830" in:
-arch/arm64/boot/dts/qcom/x1-crd.dtsi), marked as 'retimer-switch',
-which then typec_retimer_xxx() APIs look for using of/fwnode_graph.
-
-Because they're not opaque, but rather self-contained platform
-devices, FW updates can/will happen without the tbt subsystem in the
-picture.
-
-That said, the retimer being TBT-compliant, still shows up in the
-topology:
-thunderbolt 1-0:2.1: new retimer found, vendor=0x1da0 device=0x8830
-
-
-I think adding description of a usb4 port should be quite simple,
-I'll look into that.
-
-Konrad
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
