@@ -1,134 +1,104 @@
-Return-Path: <devicetree+bounces-219028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9F2B86968
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:54:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E433FB86A52
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 21:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A49371674C2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:54:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EC303B818F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 19:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED4D2D2397;
-	Thu, 18 Sep 2025 18:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF89296BBC;
+	Thu, 18 Sep 2025 19:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggOo/wv6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kYVU55zs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF6127B357;
-	Thu, 18 Sep 2025 18:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D492571BE;
+	Thu, 18 Sep 2025 19:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758221638; cv=none; b=cEqnSh9dunaHECkyakMZcLX8enHnBA3iOP0mZ4Ttw4g32tk93nleVHaP3I6plBq4O3uF4WSdMCDu/eV5y9nNyMEo+0JgvaBKEYf5IL68XUMUtlRqSVwKGTGSNK4pEPgc0Roxz3j5ycEmPPfWKod2d+fPUG//wm9DdxoJ76fc5O4=
+	t=1758222955; cv=none; b=quHJ7L5AWOVAuh464Oaj5EwOCrPbkhBI2jFWm8E+FwOTpGcyqf5PtzKVVtPFbOqXrTCBTGbphyRVu3iGagCc9w0wp5ipUddkKvFhWOBC3N//JJ0jlvzOKAfvKpxRqQMPNELW2G9wd7d2ejV+38uBO9cMe3ey7bq+BsjZF8ZltpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758221638; c=relaxed/simple;
-	bh=8pFcwNdTRRXNyhxMg3EVbIUjIj9oGklWQFId1hTxeWE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=WkDTKSUT7e6vZYBfwufMerreXl7Fv+gxvo1DEOfdH4MCs9emKgc5g8oB7SFkM32ZUqJm7KaATuoevAaMlSd7k3IMYQSrx0eLQRe7pUgQK4I8PuIjSYP5qRLiw0vjLlgtPjCk2w+ps93Ldcf2xkTZrwkF0frDu0n7n4qrEmpuEfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggOo/wv6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F161BC4CEE7;
-	Thu, 18 Sep 2025 18:53:57 +0000 (UTC)
+	s=arc-20240116; t=1758222955; c=relaxed/simple;
+	bh=MdXdHMNG/Jg1OzCMhQMXRrx24VoocLdYQOqhwxpuULE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FgjxDZ9KmEzQsAGLGpZAn5qQcj3GBiTWVUApj5XUdqADXJ58TYGYbjZLaYDgJRq+myqlcEtxtskS5koOp4TMFvLTDSlQTKcEP/RyI3qSsIBK2OzbL7ct4F2y3sq7S7M73q1ABMyEoaD21+xjQqp9wHNrDjElR9nDewVHSvjx/D0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kYVU55zs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9411CC4CEE7;
+	Thu, 18 Sep 2025 19:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758221638;
-	bh=8pFcwNdTRRXNyhxMg3EVbIUjIj9oGklWQFId1hTxeWE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ggOo/wv6spysNgu8Zxg51el+9c+Z9BAXohzEw+5T15dJ+3eruutBRss9+oDCUC2vW
-	 PEeWGEyCt9dR8CEqji9p5mJLcd+FMZrCJNWWjjECY5+khLbKSIa9PoMxqUK4W/T1gu
-	 RoSutHlVDJuXpFBeL2IwrWkYFR9Fu0sH50+eZHDzCv6em8UCH6HmvAXQ+iv3EDTHCN
-	 dNBxRSIhbGYde6Njg+JNAphhQBxMFlvg/936HWE6jaV/2YoG6IQJkrCeYpXZLL2pqZ
-	 JdqFD+eXg8aoLS/s0W2Il8jmiuSOCoGjEPHxSbhwKd/sHAHXDGjgU3t6APcksbGCOH
-	 /ISDzYzl48cfg==
-Date: Thu, 18 Sep 2025 13:53:56 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=k20201202; t=1758222953;
+	bh=MdXdHMNG/Jg1OzCMhQMXRrx24VoocLdYQOqhwxpuULE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=kYVU55zs4hkC0IeLxrSCXai8GQ+OH0tC/ZBFvqF2f4G5dJq7OjO+PTKHdZnQdy0h5
+	 60FBeFjV4pxaEerauQNCoRGb21SUvTPOp8pvrOK8Uf+GRVjDppC16C60+vWipo2QGP
+	 w9zHdN9+YtfAxctXIVs3WSBsF9SzRtW4jQqLPWuO0WZnWxksvPSo8Lgn3Wfc7eOGFw
+	 ilbmP8c1QQy9JYTDcwOksZkB0hHpFyDbqoyeSqE4TN0ixlP8mwke+AqC1yTKag7y1n
+	 L4NNHvel6qjqdx5fek6neWyO6AWz82ZZMT2LgUQfEA6qiLmucrGZ3XT2j9OGXs7JAH
+	 KxuGhcSMTn0Mg==
+From: Sven Peter <sven@kernel.org>
+To: Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hector Martin <marcan@marcan.st>,
+	Marc Zyngier <maz@kernel.org>,
+	Janne Grunau <j@jannau.net>
+Cc: Sven Peter <sven@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 4/4] PCI: qcom: Allow pwrctrl core to control PERST#
- if 'reset-gpios' property is available
-Message-ID: <20250918185356.GA1879416@bhelgaas>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/6] arm64: Add initial device trees for Apple M2 Pro/Max/Ultra devices
+Date: Thu, 18 Sep 2025 21:15:36 +0200
+Message-Id: <175822291278.28444.14875676651074123815.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.5 (Apple Git-154)
+In-Reply-To: <20250914-dt-apple-t6020-v2-0-1a738a98bb43@jannau.net>
+References: <20250914-dt-apple-t6020-v2-0-1a738a98bb43@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gnaubphg6iyh23vtf2flsjxoot7psgla7cr2c5jpecaozh4vf3@mzcmg74g3ogk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 17, 2025 at 03:53:25PM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Sep 16, 2025 at 03:48:10PM GMT, Bjorn Helgaas wrote:
-> > On Fri, Sep 12, 2025 at 02:05:04PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > 
-> > > For historic reasons, the pcie-qcom driver was controlling the
-> > > power supply and PERST# GPIO of the PCIe slot.
-> > 
-> > > This turned out to be an issue as the power supply requirements
-> > > differ between components. For instance, some of the WLAN
-> > > chipsets used in Qualcomm systems were connected to the Root
-> > > Port in a non-standard way using their own connectors.
-> > 
-> > This is kind of hand-wavy.  I don't know what a non-standard
-> > connector has to do with this.  I assume there's still a PCIe link
-> > from Root Port to WLAN, and there's still a PERST# signal to the
-> > WLAN device and a Root Port GPIO that asserts/deasserts it.
+On Sun, 14 Sep 2025 21:38:43 +0200, Janne Grunau wrote:
+> This series adds device trees for Apple's M2 Pro, Max and Ultra based
+> devices. The M2 Pro (t6020), M2 Max (t6021) and M2 Ultra (t6022) SoCs
+> follow design of the t600x family so copy the structure of SoC *.dtsi
+> files.
 > 
-> If we have a non-standard connector, then the power supply
-> requirements change.  There is no longer the standard 3.3v, 3.3Vaux,
-> 1.8v supplies, but plenty more.  For instance, take a look at the
-> WCN6855 WiFi/BT combo chip in the Lenovo X13s laptop:
+> t6020 is a cut-down version of t6021, so the former just includes the
+> latter and disables the missing bits.
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts#n414
-> 
-> These supplies directly go from the host PMIC to the WCN6855 chip
-> integrated in the PCB itself. And these supplies need to be turned
-> on/off in a sequence also, together with the EN/SWCTRL GPIOs, while
-> sharing with the Bluetooth driver.
+> [...]
 
-It sounds like the WCN6855 power supplies have nothing to do with the
-qcom PCIe controller, the Root Port, or any switches leading to the
-WCN6855.  And I guess the same for the wlan-enable, bt-enable, and
-swctrl GPIOs?
+Applied to git@github.com:AsahiLinux/linux.git (asahi-soc/for-next), thanks!
 
-  wcn6855-pmu {
-          compatible = "qcom,wcn6855-pmu";
-          wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-          bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-          swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-          regulators {
-                  vreg_pmu_rfa_cmn_0p8: ldo0 {
-                          regulator-name = "vreg_pmu_rfa_cmn_0p8";
-                  ...
+[1/6] dt-bindings: arm: apple: Add t6020x compatibles
+      https://github.com/AsahiLinux/linux/commit/28f94ed138c3
+[2/6] arm64: dts: apple: Add ethernet0 alias for J375 template
+      https://github.com/AsahiLinux/linux/commit/6313115c55f4
+[3/6] arm64: dts: apple: Add initial t6020/t6021/t6022 DTs
+      https://github.com/AsahiLinux/linux/commit/a8f20eb60788
+[4/6] arm64: dts: apple: Add J414 and J416 Macbook Pro device trees
+      https://github.com/AsahiLinux/linux/commit/44a952585b4b
+[5/6] arm64: dts: apple: Add J474s, J475c and J475d device trees
+      https://github.com/AsahiLinux/linux/commit/9da45d978ccb
+[6/6] arm64: dts: apple: Add J180d (Mac Pro, M2 Ultra, 2023) device tree
+      https://github.com/AsahiLinux/linux/commit/637f7d2c731f
 
-  &pcie4_port0 {
-          wifi@0 {
-                  compatible = "pci17cb,1103";
-                  vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-                  ...
+Best regards,
+-- 
+Sven Peter <sven@kernel.org>
 
-But I guess PERST# isn't described in the same place (not in
-wcn6855-pmu)?  Looks like maybe it's this, which IIUC is part of the
-pcie4 host bridge?
-
-  &pcie4 {
-          max-link-speed = <2>;
-          perst-gpios = <&tlmm 141 GPIO_ACTIVE_LOW>;
-          wake-gpios = <&tlmm 139 GPIO_ACTIVE_LOW>;
-
-Does that mean this PERST# signal is driven by a GPIO and routed
-directly to the WCN6855?  Seems like there's some affinity between the
-WCN6855 power supplies and the WCN6855 PERST# signal, and maybe they
-would be better described together?
 
