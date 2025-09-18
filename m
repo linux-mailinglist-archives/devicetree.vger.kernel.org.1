@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-218637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E9FCB829DB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 04:09:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6EAB829FC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 04:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 143837233C5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:09:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF0FB18897DE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED6622A1D5;
-	Thu, 18 Sep 2025 02:09:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849F922E406;
+	Thu, 18 Sep 2025 02:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tiEd8KC6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVywYqx4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F89B2629D;
-	Thu, 18 Sep 2025 02:09:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFFC2629D;
+	Thu, 18 Sep 2025 02:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758161341; cv=none; b=u8hv3p6MQQwxzmm7pzmVoekXnC7uN6t13omOWMIBAWrriNwERu0F/FumbAUyH4EM3zhmb1qwzyhTYhLY4sON3WckTcwIXUIlpLcQdprktXwv3la0zxPBZbes3eQbE5hiSfppOuUAA/zQizanXMXIUWZ7ZY/otOG0gyvj0r5vJU8=
+	t=1758161580; cv=none; b=K0mz5kUFTQJ9Nz4TL5wxtMeO3vfcZfhiZ2652klmqCYoKP4LDT+WTULQraIzvRUsy42XPQoEC0gDBuYIztT8tRyc9OJrCRRixzWTlUOjFy5TNsAYTB9UoWj9R8wHfSuDhok37XAo/qSQEpyRAhePG/hFHwGdAhgHiIUyBrHmVCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758161341; c=relaxed/simple;
-	bh=uFCVuLS9FONMgDNghTO7S8MUxH9RID83Er5IyfEHK/g=;
+	s=arc-20240116; t=1758161580; c=relaxed/simple;
+	bh=RmTmszHy29/IYyE8hO8RdzIEpogaX5vISAAq3PM6OJw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AauM7Fy2/clKk1WX2jLMJBefwqyzpWTGtdMI1N8089xegbScse/S56HUSVHevbE5S5UsEFaXdenhjYkViHV3tceMROVtkLiwzoi89BnhKrEzFc62m1SJ2i6s2/umV/ixmSeaIISAgFnIfhIuwB6dJU/69i4NjsJZ6zpSHdYQ5rE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tiEd8KC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D05E6C4CEE7;
-	Thu, 18 Sep 2025 02:09:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=P42kynysPmZ0OLFPaXVhccO4xhTMS8dhKc/hn81bNRYv9eoZB4Ht4y5HLymN9hv0HnivuBc88iNNPHj2s2HKOf+JD5WLXoXxjFQ4xAnyOlhv3H/bEtx6pE3Y68rB9C4q92JJjwr3q4u1E2ioNxUMH8HkRsSHJX2dulxm3ZDJRQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVywYqx4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85620C4CEE7;
+	Thu, 18 Sep 2025 02:12:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758161341;
-	bh=uFCVuLS9FONMgDNghTO7S8MUxH9RID83Er5IyfEHK/g=;
+	s=k20201202; t=1758161579;
+	bh=RmTmszHy29/IYyE8hO8RdzIEpogaX5vISAAq3PM6OJw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tiEd8KC6ND1FemX4BP6D9dxiom7gzcIX3j1FUvLN6Nh3Pw9vK6dcTr4qsVrz3IJsX
-	 4bizlYedi9y7rlebJFE+JQiwVLVsg0mFRjXExUh27Q+3glGaOxxIrSd1So07PZWkKW
-	 gMNdpDnViVOrM+UAizgC6vWXvHjxd04IhdAlS7p7MrvsqZVt+h+DDtd+Ns26BQsyvv
-	 F88wBOez9cHIfhrfEzdFYtZaE+VfUw0iyIXS6G7ekFvXa944fNFT2INbI87mgXnKqI
-	 +UeLItjln38SkOcmiKFmrKDpvCkOw5D1jxxXanXkV/1ol0lhIr6AffaBErRexCiOMn
-	 l7504rcG3BhTA==
-Date: Thu, 18 Sep 2025 11:08:59 +0900
+	b=NVywYqx45ZFQAmZ3lqtf9zoVMbbJu80Ydr+/B+L7X9S9MkA3YPyEfbe0daz4taGAf
+	 dJrettLKjUgStBsqUXMpZh26C4h5OW23BK7vKrdGKOu1r5RIGLtHPxr5qE65Ohyp/X
+	 Mdu8zvfWTN8yCvkc3rjp/od6Au2TlwWToewpNLWJuyAl3Z7lvdpuEYxpMcS7Iq4kgJ
+	 pHdiz52f68dQ4RKnOHjZyRcHmvMX0osguMIp5MB2Ec6Z1YmHEWyf46Fzos324fW7ro
+	 zIN5TiaTjAkaF+h29N4hpSvC7d7E9z7I8HKFWzIaCf93Rbq4YelIt43Halj+79tloE
+	 SwKwedynV0SZg==
+Date: Thu, 18 Sep 2025 11:12:58 +0900
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/18] dt-bindings: iio: accel: bosch,bma220 set irq
- type in example block
-Message-ID: <20250918-brave-khaki-sloth-b0b7dd@kuoka>
-References: <20250913-b4-bma220_improvements-v3-0-0b97279b4e45@subdimension.ro>
- <20250913-b4-bma220_improvements-v3-3-0b97279b4e45@subdimension.ro>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: touchscreen: convert bu21013
+ bindings to json schema
+Message-ID: <20250918-turkey-of-inescapable-freedom-1a1b1c@kuoka>
+References: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +60,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250913-b4-bma220_improvements-v3-3-0b97279b4e45@subdimension.ro>
+In-Reply-To: <20250914203812.1055696-1-dario.binacchi@amarulasolutions.com>
 
-On Sat, Sep 13, 2025 at 06:39:24PM +0300, Petre Rodan wrote:
-> Set the interrupt type to rising edge within the example block in order
-> to match the new driver.
-> 
-> The entry that got replaced was not in use by the original driver.
-> 
-> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> ---
+On Sun, Sep 14, 2025 at 10:37:52PM +0200, Dario Binacchi wrote:
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/bu21013.yaml b/Documentation/devicetree/bindings/input/touchscreen/bu21013.yaml
+> new file mode 100644
+> index 000000000000..aeb581fcaf29
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/bu21013.yaml
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Filename based on compatible, so rohm,bu21013.yaml
+
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/bu21013.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rohm BU21013 touchscreen
+> +
+> +description:
+> +  Rohm BU21013 I2C driven touchscreen controller.
+> +
+> +maintainers:
+> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rohm,bu21013_tp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO resetting the chip
+
+Drop description, obvious.
+
+> +
+> +  touch-gpios:
+> +    maxItems: 1
+> +    description: GPIO registering a touch event.
+> +
+> +  avdd-supply:
+> +    description: Phandle to the regulator supplying the analog circuit.
+
+Analog circuit supply.
+(rest is redundant, it cannot be something else than phandle)
+
+With these fixed:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
