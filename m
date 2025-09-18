@@ -1,303 +1,134 @@
-Return-Path: <devicetree+bounces-219026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E83B868B7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9F2B86968
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:54:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469511659C8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:50:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A49371674C2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3172E3054ED;
-	Thu, 18 Sep 2025 18:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED4D2D2397;
+	Thu, 18 Sep 2025 18:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPYRYtUx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ggOo/wv6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC97B2D97BF;
-	Thu, 18 Sep 2025 18:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF6127B357;
+	Thu, 18 Sep 2025 18:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758221398; cv=none; b=LR5sd+PrL5hY+JA+Mij/g9/NTSxx8P4Akjj/Q62E8DO0x+T3tHLvAmceodW+/JyW0L3YgisDAi9FXefUscg17zhDN2wIJevajMbr8YvURbrCJbMqosKKZ/AHmXZkyksTQKW9S3Mqh9Ep9On8DpZz5sCi4x1vOhaqmsAd415ZSfw=
+	t=1758221638; cv=none; b=cEqnSh9dunaHECkyakMZcLX8enHnBA3iOP0mZ4Ttw4g32tk93nleVHaP3I6plBq4O3uF4WSdMCDu/eV5y9nNyMEo+0JgvaBKEYf5IL68XUMUtlRqSVwKGTGSNK4pEPgc0Roxz3j5ycEmPPfWKod2d+fPUG//wm9DdxoJ76fc5O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758221398; c=relaxed/simple;
-	bh=65t1RPp0ka+Y5SQw4gZNb7wOM4Xg/4h5FQ+MMy0If5o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i2TMGQu5fA8CBSMpvZaC+bFTmeaoE0MZtOt8576sOO6FcvnyxYEPJw09Zyz/vH6lVkWRdhFolP0T9uGlJ7QpTfLtkiTF8g55b860SmYsPGhv61ZHl4jFA60poqUNICQXvMLBnXIa0AZ2VMlIrx6oOn5zhXbC4VtP+4EhpIhvbr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPYRYtUx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 800EFC19421;
-	Thu, 18 Sep 2025 18:49:58 +0000 (UTC)
+	s=arc-20240116; t=1758221638; c=relaxed/simple;
+	bh=8pFcwNdTRRXNyhxMg3EVbIUjIj9oGklWQFId1hTxeWE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=WkDTKSUT7e6vZYBfwufMerreXl7Fv+gxvo1DEOfdH4MCs9emKgc5g8oB7SFkM32ZUqJm7KaATuoevAaMlSd7k3IMYQSrx0eLQRe7pUgQK4I8PuIjSYP5qRLiw0vjLlgtPjCk2w+ps93Ldcf2xkTZrwkF0frDu0n7n4qrEmpuEfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ggOo/wv6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F161BC4CEE7;
+	Thu, 18 Sep 2025 18:53:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758221398;
-	bh=65t1RPp0ka+Y5SQw4gZNb7wOM4Xg/4h5FQ+MMy0If5o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=cPYRYtUxsRVr9TyEYjCtAQTqYPvJrV1iY9MI6vrjRkwS/ofN48fRnHmKGT2MPRLOX
-	 8+G8kJGwfWV4aaqZnUoR79jTLrXH9wC3uNTdABh5TW2aLaa1hdcmPX2502qAaqlz1y
-	 KOZ4/9SR648YUuTRIkWyrCHqwwTKxIs/64TmBhMQOZfJx9NcvHvvuxZjNYdeaumcc9
-	 RRm9kTWVHnUIwBEbKBQ07vlUQTmpUSg4+1i7RBP8RWQ15G2U/9Ho+8wToWa+iTo9Yj
-	 7yYZbXR7dGaRGMHGVEcAa21cE7q7XAzRSdVvHWnUXimqBTPu8bz1v9tJLeBjYUnJO1
-	 bOCeMGi+vT0aA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76D83CA1013;
-	Thu, 18 Sep 2025 18:49:58 +0000 (UTC)
-From: Dang Huynh via B4 Relay <devnull+dang.huynh.mainlining.org@kernel.org>
-Date: Fri, 19 Sep 2025 01:48:50 +0700
-Subject: [PATCH 10/10] ARM: dts: unisoc: rda8810pl: Add SDMMC controllers
+	s=k20201202; t=1758221638;
+	bh=8pFcwNdTRRXNyhxMg3EVbIUjIj9oGklWQFId1hTxeWE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ggOo/wv6spysNgu8Zxg51el+9c+Z9BAXohzEw+5T15dJ+3eruutBRss9+oDCUC2vW
+	 PEeWGEyCt9dR8CEqji9p5mJLcd+FMZrCJNWWjjECY5+khLbKSIa9PoMxqUK4W/T1gu
+	 RoSutHlVDJuXpFBeL2IwrWkYFR9Fu0sH50+eZHDzCv6em8UCH6HmvAXQ+iv3EDTHCN
+	 dNBxRSIhbGYde6Njg+JNAphhQBxMFlvg/936HWE6jaV/2YoG6IQJkrCeYpXZLL2pqZ
+	 JdqFD+eXg8aoLS/s0W2Il8jmiuSOCoGjEPHxSbhwKd/sHAHXDGjgU3t6APcksbGCOH
+	 /ISDzYzl48cfg==
+Date: Thu, 18 Sep 2025 13:53:56 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: manivannan.sadhasivam@oss.qualcomm.com,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH v3 4/4] PCI: qcom: Allow pwrctrl core to control PERST#
+ if 'reset-gpios' property is available
+Message-ID: <20250918185356.GA1879416@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250919-rda8810pl-mmc-v1-10-d4f08a05ba4d@mainlining.org>
-References: <20250919-rda8810pl-mmc-v1-0-d4f08a05ba4d@mainlining.org>
-In-Reply-To: <20250919-rda8810pl-mmc-v1-0-d4f08a05ba4d@mainlining.org>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-mmc@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Dang Huynh <dang.huynh@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758221395; l=5720;
- i=dang.huynh@mainlining.org; s=20250917; h=from:subject:message-id;
- bh=zi1lBIjsLiJ+MvStlhu52N5g0U+YipGaIL9gPvgvEPE=;
- b=l77vToHDcYswIc8WztAJWYO/+3IYOVrmTQlZnFRvjc0lKarYC0h4XR0hoxgA2q3ZB98uFJham
- quoNd+aQB2RCTuhZ8oSMEutdqzVeCxtTOtcZpguuNT9Z4JHuV24Oxly
-X-Developer-Key: i=dang.huynh@mainlining.org; a=ed25519;
- pk=RyzH4CL4YU/ItXYUurA51EVBidfx4lIy8/E4EKRJCUk=
-X-Endpoint-Received: by B4 Relay for dang.huynh@mainlining.org/20250917
- with auth_id=526
-X-Original-From: Dang Huynh <dang.huynh@mainlining.org>
-Reply-To: dang.huynh@mainlining.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <gnaubphg6iyh23vtf2flsjxoot7psgla7cr2c5jpecaozh4vf3@mzcmg74g3ogk>
 
-From: Dang Huynh <dang.huynh@mainlining.org>
+On Wed, Sep 17, 2025 at 03:53:25PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Sep 16, 2025 at 03:48:10PM GMT, Bjorn Helgaas wrote:
+> > On Fri, Sep 12, 2025 at 02:05:04PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > > 
+> > > For historic reasons, the pcie-qcom driver was controlling the
+> > > power supply and PERST# GPIO of the PCIe slot.
+> > 
+> > > This turned out to be an issue as the power supply requirements
+> > > differ between components. For instance, some of the WLAN
+> > > chipsets used in Qualcomm systems were connected to the Root
+> > > Port in a non-standard way using their own connectors.
+> > 
+> > This is kind of hand-wavy.  I don't know what a non-standard
+> > connector has to do with this.  I assume there's still a PCIe link
+> > from Root Port to WLAN, and there's still a PERST# signal to the
+> > WLAN device and a Root Port GPIO that asserts/deasserts it.
+> 
+> If we have a non-standard connector, then the power supply
+> requirements change.  There is no longer the standard 3.3v, 3.3Vaux,
+> 1.8v supplies, but plenty more.  For instance, take a look at the
+> WCN6855 WiFi/BT combo chip in the Lenovo X13s laptop:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts#n414
+> 
+> These supplies directly go from the host PMIC to the WCN6855 chip
+> integrated in the PCB itself. And these supplies need to be turned
+> on/off in a sequence also, together with the EN/SWCTRL GPIOs, while
+> sharing with the Bluetooth driver.
 
-Add SDMMC1 and 2 controllers for the RDA8810PL platform and enable it
-on the Orange Pi i96 and 2G-IOT.
+It sounds like the WCN6855 power supplies have nothing to do with the
+qcom PCIe controller, the Root Port, or any switches leading to the
+WCN6855.  And I guess the same for the wlan-enable, bt-enable, and
+swctrl GPIOs?
 
-Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
----
- .../boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts  | 20 +++++++++
- .../arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts | 20 +++++++++
- arch/arm/boot/dts/unisoc/rda8810pl.dtsi            | 47 ++++++++++++++++++++--
- 3 files changed, 83 insertions(+), 4 deletions(-)
+  wcn6855-pmu {
+          compatible = "qcom,wcn6855-pmu";
+          wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
+          bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+          swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
+          regulators {
+                  vreg_pmu_rfa_cmn_0p8: ldo0 {
+                          regulator-name = "vreg_pmu_rfa_cmn_0p8";
+                  ...
 
-diff --git a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts
-index 98e34248ae80b1fcd673ff01fe045db412d5bcc9..b462057ec0d1eb1877eb770afa6aced99efd84b7 100644
---- a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts
-+++ b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-2g-iot.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rda8810pl.dtsi"
- 
- / {
-@@ -27,6 +28,13 @@ memory@80000000 {
- 		reg = <0x80000000 0x10000000>;
- 	};
- 
-+	vdd_sdmmc: regulator-fixed {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_sdmmc";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
- 	uart_clk: uart-clk {
- 		compatible = "fixed-clock";
- 		clock-frequency = <921600>;
-@@ -34,6 +42,18 @@ uart_clk: uart-clk {
- 	};
- };
- 
-+&mmc1 {
-+	status = "okay";
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	max-frequency = <30000000>;
-+	cd-gpios = <&gpiob 4 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vdd_sdmmc>;
-+	rda,mclk-adj = /bits/ 8 <1>;
-+	rda,mclk-inv;
-+};
-+
- &uart1 {
- 	status = "okay";
- 	clocks = <&uart_clk>;
-diff --git a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-index 728f76931b995fdfc036b586f899b15a7f07528b..cf4b75f114b33b27fad0ead4951b15abb1f5cabd 100644
---- a/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-+++ b/arch/arm/boot/dts/unisoc/rda8810pl-orangepi-i96.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "rda8810pl.dtsi"
- 
- / {
-@@ -27,6 +28,13 @@ memory@80000000 {
- 		reg = <0x80000000 0x10000000>;
- 	};
- 
-+	vdd_sdmmc: regulator-fixed {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_sdmmc";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+	};
-+
- 	uart_clk: uart-clk {
- 		compatible = "fixed-clock";
- 		clock-frequency = <921600>;
-@@ -34,6 +42,18 @@ uart_clk: uart-clk {
- 	};
- };
- 
-+&mmc1 {
-+	status = "okay";
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	max-frequency = <30000000>;
-+	cd-gpios = <&gpiob 4 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vdd_sdmmc>;
-+	rda,mclk-adj = /bits/ 8 <1>;
-+	rda,mclk-inv;
-+};
-+
- &uart1 {
- 	status = "okay";
- 	clocks = <&uart_clk>;
-diff --git a/arch/arm/boot/dts/unisoc/rda8810pl.dtsi b/arch/arm/boot/dts/unisoc/rda8810pl.dtsi
-index f30d6ece49fb33d9c5c3ad9522c83bb8e4f8b488..438be79a89060655e4a12edc6d3c42574748108b 100644
---- a/arch/arm/boot/dts/unisoc/rda8810pl.dtsi
-+++ b/arch/arm/boot/dts/unisoc/rda8810pl.dtsi
-@@ -7,6 +7,8 @@
-  */
- 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/rda,8810pl-apclk.h>
-+#include <dt-bindings/dma/rda-ifc.h>
- 
- / {
- 	compatible = "rda,8810pl";
-@@ -39,7 +41,7 @@ modem@10000000 {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x10000000 0xfffffff>;
- 
--		gpioc@1a08000 {
-+		gpioc: gpioc@1a08000 {
- 			compatible = "rda,8810pl-gpio";
- 			reg = <0x1a08000 0x1000>;
- 			gpio-controller;
-@@ -68,6 +70,13 @@ apb@20900000 {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x20900000 0x100000>;
- 
-+		ap_syscon: syscon@0 {
-+			compatible = "rda,8810pl-apsyscon", "syscon";
-+			reg = <0x0 0x1000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		timer@10000 {
- 			compatible = "rda,8810pl-timer";
- 			reg = <0x10000 0x1000>;
-@@ -76,7 +85,7 @@ timer@10000 {
- 			interrupt-names = "hwtimer", "ostimer";
- 		};
- 
--		gpioa@30000 {
-+		gpioa: gpioa@30000 {
- 			compatible = "rda,8810pl-gpio";
- 			reg = <0x30000 0x1000>;
- 			gpio-controller;
-@@ -87,7 +96,7 @@ gpioa@30000 {
- 			interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		gpiob@31000 {
-+		gpiob: gpiob@31000 {
- 			compatible = "rda,8810pl-gpio";
- 			reg = <0x31000 0x1000>;
- 			gpio-controller;
-@@ -98,7 +107,7 @@ gpiob@31000 {
- 			interrupts = <13 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		gpiod@32000 {
-+		gpiod: gpiod@32000 {
- 			compatible = "rda,8810pl-gpio";
- 			reg = <0x32000 0x1000>;
- 			gpio-controller;
-@@ -123,6 +132,30 @@ uart1: serial@0 {
- 			status = "disabled";
- 		};
- 
-+		mmc1: mmc@50000 {
-+			compatible = "rda,8810pl-mmc", "rda,mmc";
-+			reg = <0x50000 0x1000>;
-+			interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ap_syscon CLK_APB2>;
-+			clock-names = "mclk";
-+			resets = <&ap_syscon RST_APB2_SDMMC1>;
-+			dmas = <&ifc IFC_SDMMC1_TX>, <&ifc IFC_SDMMC1_RX>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		mmc2: mmc@60000 {
-+			compatible = "rda,8810pl-mmc", "rda,mmc";
-+			reg = <0x60000 0x1000>;
-+			interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ap_syscon CLK_APB2>;
-+			clock-names = "mclk";
-+			resets = <&ap_syscon RST_APB2_SDMMC2>;
-+			dmas = <&ifc IFC_SDMMC2_TX>, <&ifc IFC_SDMMC2_RX>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		uart2: serial@10000 {
- 			compatible = "rda,8810pl-uart";
- 			reg = <0x10000 0x1000>;
-@@ -136,6 +169,12 @@ uart3: serial@90000 {
- 			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-+
-+		ifc: dma-controller@f0000 {
-+			compatible = "rda,8810pl-ifc", "rda,ifc";
-+			reg = <0xf0000 0x1000>;
-+			#dma-cells = <1>;
-+		};
- 	};
- 
- 	l2: cache-controller@21100000 {
+  &pcie4_port0 {
+          wifi@0 {
+                  compatible = "pci17cb,1103";
+                  vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
+                  ...
 
--- 
-2.51.0
+But I guess PERST# isn't described in the same place (not in
+wcn6855-pmu)?  Looks like maybe it's this, which IIUC is part of the
+pcie4 host bridge?
 
+  &pcie4 {
+          max-link-speed = <2>;
+          perst-gpios = <&tlmm 141 GPIO_ACTIVE_LOW>;
+          wake-gpios = <&tlmm 139 GPIO_ACTIVE_LOW>;
 
+Does that mean this PERST# signal is driven by a GPIO and routed
+directly to the WCN6855?  Seems like there's some affinity between the
+WCN6855 power supplies and the WCN6855 PERST# signal, and maybe they
+would be better described together?
 
