@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-218909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A49B8589A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:22:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBB6B85843
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F05C41B23F03
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:16:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C237F165C60
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C85D27AC4C;
-	Thu, 18 Sep 2025 15:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B303054F8;
+	Thu, 18 Sep 2025 15:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxuJHyBh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTkRzD95"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1177B1A0711;
-	Thu, 18 Sep 2025 15:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E73921D590;
+	Thu, 18 Sep 2025 15:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758208553; cv=none; b=p+X+LxNhuwor5PpyzbdmodvJnINIBY6d8byJztnCkdxVFMVQjBilS/gPOFg6khoIkpFU79CBn8JyG37H2Qk0lMtHS5U3dNAag6B2WgK/S34isoeDNpeNJ9TdJM0yhsrnVB5IfcGaQmBktYVXaMs42FZpKYsSZGHta8nft8DfETY=
+	t=1758208612; cv=none; b=HkBwRN2C3vcyy/4vJXeO7odkGJq0qORnojFaM2vGZxqoGTYO2T1bsilSwJJKawpo8lvYNr8tkeBR6IVtXtN8Z7EarQPC0883ZW2/AJp4RdDMZYN/YFx2dTqtcAZPNOROIXnRhCr70YK6jXtFQyHUE5IH/I1ZNTeM5YHTvFec4ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758208553; c=relaxed/simple;
-	bh=r5o+CxqA/412fJ3eG2K654Tnc4D5Ezd5ce7Iv9F6Ko0=;
+	s=arc-20240116; t=1758208612; c=relaxed/simple;
+	bh=+y2XjvrZWRm/NClN851RwZErZn1znenBebdqAfPBjsw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CrwKr9kAlP6D2VoG3dbQU9eniQp9+C1bV8sLKHazdBUrlV04nbcVJlik6nhw1wFwvqNJx2BYUHoYEcRtU7ljDtJTzD5aRK7+qT2QV1dftc8KELmznZAiHZ5teoOBNwvu7WdJWyPxFiCW5INgOjPFN4JaTXX/FOBpLSPooVP7PaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxuJHyBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0847CC4CEE7;
-	Thu, 18 Sep 2025 15:15:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oZe/ibE4cGyzWdbNt7NzR1tCmjMzxJ2JPwBNVTWQAciNAiR95J7rlj2C/4iw6I7922A5pZ9TxFJ4oh62jeDOC365+n0d8Bj0StTmf9T9tZN6aBKGCzc2ennzli4QinoivGpzw1MRbZM4Lz+005H3KoEcrty0QCqcRlxXzUntZ8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTkRzD95; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64A8FC4CEE7;
+	Thu, 18 Sep 2025 15:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758208552;
-	bh=r5o+CxqA/412fJ3eG2K654Tnc4D5Ezd5ce7Iv9F6Ko0=;
+	s=k20201202; t=1758208612;
+	bh=+y2XjvrZWRm/NClN851RwZErZn1znenBebdqAfPBjsw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OxuJHyBhTOSdSdOyE3sNTRJKEkqCOLu3lc+WuNawPNbB1YNa8AUdfN6c0xuRTbn+6
-	 z9vDG5mY/1RuI2XwdFpGaaFqvLRldDZoQ63XANTSEkxK4FD2U/sccEEWcX4LA1FeP8
-	 mH/jLnVeQvNE6Y4Iu2nsJS2CuijVsYQMUruRoZhXbAa5tXJ17D4E9qR2ZK4Uz9fdGn
-	 4sFSJiwBR+i9Ux/fSHZrKhbfyd6eFfbc9LIwixhZnIxzpINPydzoTlCcaSjO6aMAxI
-	 Vf/Ldmyda6bwpe4ShtCAoKtmnE1R5KJ4K6rnN5iaWB0J81KP8zLm02bpbfa9ameAAW
-	 getsmNBOO3ANg==
-Date: Thu, 18 Sep 2025 16:15:47 +0100
+	b=fTkRzD952iQSSmqp3QGmQhtrP7UYTgMoQjGAhBIvPm9gw0HCJRDqdBoDLxwFC7/16
+	 69d+VjpMfvYT/PBNfwB/xmv4hyoVoWlCewO2eQ4C3NJ93WULXBScT4Hugpzv2XVSEj
+	 45ceYgvCwYTaQoVEjQ7KrJz7/AOQAvgOLKKWUuUsLYu8IiJ3BCEUuGdsMa81fzLRaz
+	 VXbQwplS2ZpqJG4HDcZUBDcxBLuHoxMGxYDFi4P/W/dv19Y2UxhVVpfAJF8ZPfWgrg
+	 otYdR9afl4KUhzImZehrc20EI9cwwVj2LuDlo6tsUNFJ3cIA8pdpz1udxXEaOGgNuS
+	 0F84uOnJyqy5g==
+Date: Thu, 18 Sep 2025 16:16:48 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	lars.povlsen@microchip.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	luka.perkov@sartura.hr, benjamin.ryzman@canonical.com
-Subject: Re: [PATCH 1/2] dt-bindings: reset: microchip: Add LAN969x support
-Message-ID: <20250918-truce-muster-d9a1818e7367@spud>
-References: <20250917111323.60781-1-robert.marko@sartura.hr>
- <20250917-paparazzi-hermit-3a4aa686add3@spud>
- <CA+HBbNHS9TMd5u_Mysv21=nsqjeEb44oHFj06kS_hxkXZWutnw@mail.gmail.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alan Stern <stern@rowland.harvard.edu>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: ehci: Add Aspeed AST2700 compatible
+Message-ID: <20250918-prevalent-repossess-a04c661bad5d@spud>
+References: <20250918064919.224927-1-ryan_chen@aspeedtech.com>
+ <20250918064919.224927-2-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,66 +61,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k2146MXiFzmmP5e7"
+	protocol="application/pgp-signature"; boundary="xwj6gubmpH3vqK2o"
 Content-Disposition: inline
-In-Reply-To: <CA+HBbNHS9TMd5u_Mysv21=nsqjeEb44oHFj06kS_hxkXZWutnw@mail.gmail.com>
+In-Reply-To: <20250918064919.224927-2-ryan_chen@aspeedtech.com>
 
 
---k2146MXiFzmmP5e7
-Content-Type: text/plain; charset=utf-8
+--xwj6gubmpH3vqK2o
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 18, 2025 at 01:45:32PM +0200, Robert Marko wrote:
-> On Wed, Sep 17, 2025 at 7:38=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Wed, Sep 17, 2025 at 01:12:35PM +0200, Robert Marko wrote:
-> > > LAN969x also uses the Microchip reset driver, so document its compati=
-ble.
-> > >
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > ---
-> > >  Documentation/devicetree/bindings/reset/microchip,rst.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.ya=
-ml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > index f2da0693b05a..4d4dd47f830e 100644
-> > > --- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > @@ -23,6 +23,7 @@ properties:
-> > >      enum:
-> > >        - microchip,sparx5-switch-reset
-> > >        - microchip,lan966x-switch-reset
-> > > +      - microchip,lan969x-switch-reset
-> >
-> > Driver patch makes a fallback compatible seem usable.
->=20
-> Hi Conor,
-> Will respin to simply use the fallback compatible, that will avoid
-> adding more compatibles to the driver
-> for no reason.
->=20
-> But, can I ask what do you think about the
-> microchip,lan969x-switch-reset compatible?
-> Is lan969x fine or should I just make it lan9691 or like cause the
-> whole series uses the same
-> reset setup?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-I'd rather the 1, I thought that the x was part of the name for some
-reason.
-
---k2146MXiFzmmP5e7
+--xwj6gubmpH3vqK2o
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwiIwAKCRB4tDGHoIJi
-0g5zAQCnIRGhz+Srw14h0GSHIp6EAXNyzBx+jtrDNbBFA2EzOgEAyf4TNCUklcQO
-3ZAB4lss+pXY/yNX2Taf7hhBxiEs2wY=
-=XzuA
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwiYAAKCRB4tDGHoIJi
+0rJdAP49HEdrWgLuTBLXGn7pi+F6QZmqKvqasAHyebnYrx0zFgEAy3Xf4zokdJxN
+M+GDZdt+ee9FgiHBgN2LGIsihjOTOAE=
+=4kOT
 -----END PGP SIGNATURE-----
 
---k2146MXiFzmmP5e7--
+--xwj6gubmpH3vqK2o--
 
