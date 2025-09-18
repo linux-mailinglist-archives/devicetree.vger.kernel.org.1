@@ -1,127 +1,115 @@
-Return-Path: <devicetree+bounces-218836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23823B848A7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:18:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A55DB848D2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4ACB7C0424
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:18:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F2AF5447B7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E9A20E005;
-	Thu, 18 Sep 2025 12:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dtHP/ZEK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A17A2D9491;
+	Thu, 18 Sep 2025 12:20:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD891C5486;
-	Thu, 18 Sep 2025 12:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71684286D50
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 12:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758197885; cv=none; b=npnfsyg2OWqHUxvg+uBAooXsStBMxpy6vm1NbkeDU3oYAUtlP7cPJgle6ttHEVxkfny/zeVgvNoDCzCseXpj6KN5qMO1EFIAt5h4PEosgqBnjs8VqdsBJkUqSLHberYXYoO4aopQ5STVGL9RtTIHemuvdBvnWwE28pnNG0l7Ohk=
+	t=1758198003; cv=none; b=G4TiCKa/9Slee8ejbXaBg9drQUWrWgH+skSCyb1wV4iEXmnc5sNEK3COyRMOnYyrgzp/JIZ5DPUlJlCO/RK/br6nEe856e7DCvK6uNWVnisTh1qP6iN8apaZsOw5Smlv50m1j/lMDf+HvBwGcuNnmoJ4dSrVH6b1HtWc/fAd6qQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758197885; c=relaxed/simple;
-	bh=i+yDfi/479YybxR30hsg1UF5H6lWRNpq+qhbiEjwXNQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=G7NdpZPRcbdGY9CNAUM1HCQbrD+iVC3TqNWVwF/B+W1rfwgf+JZFNKun3inImE0+5X0BhY3KmupFrLEcbnI0ThLEu7Ud6iRoyGkrN8sAs9iVCxPbRqg870hYFJsm8wqG+qvvuLV8dS8ZpK8Gea6oNH8Ywt6WJKXn8ZzMn+keCSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dtHP/ZEK; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 81fc9270948911f08d9e1119e76e3a28-20250918
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=KYI0VLNGPFF+BPC8SpD1zlWgSvD0SEyXsY08IItMsME=;
-	b=dtHP/ZEKU7fjC9FaGLAWuol/WpeOteHi8F+zGdYEbSskpkwb7zw/HZaDWnz/jficU2XaKkRSPOeCBwF9Gm5++JhbrobrF2Ch5nBFrpkrm4PbbMkXDaOESq4egP9Px5k6bkivNk+KXla7AMUtxEwp/miv/XoMTL++ieu/fY0qz2k=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.4,REQID:42f50449-b9b2-40b4-be83-a2ed395d2802,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:1ca6b93,CLOUDID:7e5d71f8-ebfe-43c9-88c9-80cb93f22ca4,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
-	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 81fc9270948911f08d9e1119e76e3a28-20250918
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1928731714; Thu, 18 Sep 2025 20:17:56 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Thu, 18 Sep 2025 20:17:54 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Thu, 18 Sep 2025 20:17:54 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Sean Wang
-	<sean.wang@mediatek.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Ramax Lo <ramax.lo@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 4/4] arm64: defconfig: Enable UFS support for MediaTek Genio 1200 EVK UFS board
-Date: Thu, 18 Sep 2025 20:17:50 +0800
-Message-ID: <20250918121751.229554-4-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250918121751.229554-1-macpaul.lin@mediatek.com>
-References: <20250918121751.229554-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1758198003; c=relaxed/simple;
+	bh=FsXTDizrH/4gfOwdWNseCJsGuPazREdG9eV/96rDM88=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AvdevBuADkOTxtt6nzgikro8+SjIqLFvXeURYz6ZuojDLVmmPNEgsLpiCFvysbjJI88SV89wqvNktMERWAUVFqkOFuPxSmXJIZmHQCm2H50bc4FjcGZr5H3WKMzMcLOFUqobuG8zlD+zNgPVEbeE+P3GNtHHhOrl3tFOSXq6zsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <jre@pengutronix.de>)
+	id 1uzDc7-0006mw-9i; Thu, 18 Sep 2025 14:19:51 +0200
+From: Jonas Rebmann <jre@pengutronix.de>
+Subject: [PATCH v2 0/3] Mainline Protonic PRT8ML board
+Date: Thu, 18 Sep 2025 14:19:43 +0200
+Message-Id: <20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN/4y2gC/13Myw6CMBCF4Vchs7ZmiuW68j0MC7QDTCKlabHBk
+ L67FXcu/5OcbwdPjslDm+3gKLDnxaTITxk8pt6MJFinhhzzAiuUguetnq2wbq3np0B5p4sqa1U
+ WDaSPdTTwdni3LvXEfl3c++CD/K4/qZH4JwUpUAwaVU9aFmWFV0tmfK1uMbydNUEXY/wAhrRJo
+ a8AAAA=
+X-Change-ID: 20250701-imx8mp-prt8ml-01be34684659
+To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Jonas Rebmann <jre@pengutronix.de>, 
+ David Jander <david@protonic.nl>, Lucas Stach <l.stach@pengutronix.de>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>
+X-Mailer: b4 0.15-dev-7abec
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1358; i=jre@pengutronix.de;
+ h=from:subject:message-id; bh=FsXTDizrH/4gfOwdWNseCJsGuPazREdG9eV/96rDM88=;
+ b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYsg4/ePJl6u3r7nvYpst9cU93nbZa5ffJtw/uvyt7Nh36
+ BY3X3AK6ihlYRDjYpAVU2SJVZNTEDL2v25WaRcLM4eVCWQIAxenAEwk5Tsjw/r7Lp/mLmf7tWZP
+ ZMrkzXf8ZI6bZe1b+Pi6Bktm3uaipbwM/0zyi2/dZIx5e6Xqa+Oi4tdTiyqde4LFl2t/z2DWO66
+ 3lhkA
+X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
+ fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
+X-SA-Exim-Mail-From: jre@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Enable the UFS related settings to support Genio 1200 EVK UFS board.
-This board uses UFS as the boot device and also the main storage.
-This includes support for:
- - CONFIG_SCSI_UFS_MEDIATEK
+This series adds the Protonic PRT8ML device tree as well as some minor
+corrections to the devicetree bindings used.
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- Dropped "ASoC: dt-bindings: asahi-kasei,ak4458: Reference common DAI
+  properties", applied to broonie/sound for-next (Thanks, Mark)
+- Updated description of the reset-gpios property in sja1105 binding to
+  address the issues of connecting this pin to GPIO (Thanks, Vladimir)
+- Added the fec, switch and phy for RJ45 onboard ethernet after
+  successful testing
+- Consistently use interrupts-extended
+- Link to v1: https://lore.kernel.org/r/20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de
 
-Changes for v2:
- - No changes.
+---
+Jonas Rebmann (3):
+      dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios property
+      dt-bindings: arm: fsl: Add Protonic PRT8ML
+      arm64: dts: add Protonic PRT8ML board
 
-Changes for v3:
- - Enable CONFIG_SCSI_UFS_MEDIATEK as a built-in option, since it’s
-   required to mount the root filesystem during boot.
- - Use 'make savedefconfig' to generate patch. Thanks for reminding.
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ .../devicetree/bindings/net/dsa/nxp,sja1105.yaml   |   9 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dts    | 500 +++++++++++++++++++++
+ 4 files changed, 511 insertions(+)
+---
+base-commit: ea21fa34164c9ea0a2a5b8714c7e36f54c7fb46e
+change-id: 20250701-imx8mp-prt8ml-01be34684659
 
-Changes for v4:
- - No change. Add Reviewed-by tag. Thanks!
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 58f87d09366c..c4601925221c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1218,6 +1218,7 @@ CONFIG_SCSI_UFS_BSG=y
- CONFIG_SCSI_UFSHCD_PLATFORM=y
- CONFIG_SCSI_UFS_CDNS_PLATFORM=m
- CONFIG_SCSI_UFS_QCOM=m
-+CONFIG_SCSI_UFS_MEDIATEK=y
- CONFIG_SCSI_UFS_HISI=y
- CONFIG_SCSI_UFS_RENESAS=m
- CONFIG_SCSI_UFS_TI_J721E=m
--- 
-2.45.2
+Best regards,
+--  
+Jonas Rebmann <jre@pengutronix.de>
 
 
