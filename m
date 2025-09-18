@@ -1,119 +1,127 @@
-Return-Path: <devicetree+bounces-218908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43C1BB8588B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:21:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A49B8589A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:22:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A59188536F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:16:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F05C41B23F03
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F9130E85C;
-	Thu, 18 Sep 2025 15:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C85D27AC4C;
+	Thu, 18 Sep 2025 15:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S2QRPGDs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxuJHyBh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B8E238C03
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1177B1A0711;
+	Thu, 18 Sep 2025 15:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758208524; cv=none; b=gp+e32IKWsqEUCBpbWE1HERbop9RADRzcbEU67/msKFhCGU079EsW8+a0ola677GWjLFb0muRPhPZABiB7lpQvX0oewU30e2fOMoreJVkr2ikKLrsEPFuKVJL02Q9HkM+obk4QwhvLIJg1RFbtv2OYPlwRGsKRZOC/AgO2xhC04=
+	t=1758208553; cv=none; b=p+X+LxNhuwor5PpyzbdmodvJnINIBY6d8byJztnCkdxVFMVQjBilS/gPOFg6khoIkpFU79CBn8JyG37H2Qk0lMtHS5U3dNAag6B2WgK/S34isoeDNpeNJ9TdJM0yhsrnVB5IfcGaQmBktYVXaMs42FZpKYsSZGHta8nft8DfETY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758208524; c=relaxed/simple;
-	bh=ykNt9ik5AHQfEDNEYgj4XVFufl8SXg51nFMFWRD/dvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N4hhYib01lIE45aaxw2gABtygkFh3Ip+HQJvXyqm8YQHTqk8yP3Una3i1fftJyqelADjaN68bwMbPkUvecKDc+iTlj467Bmh2LL5DsWpzm+w7nEm0AEGRWUxporz/OhIaULBz6nDW7SkSSdkPrSc5lKdxHGagvwXbLEbVtUfbz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S2QRPGDs; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 05D661A0EED;
-	Thu, 18 Sep 2025 15:15:20 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C20756062C;
-	Thu, 18 Sep 2025 15:15:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 91341102F1704;
-	Thu, 18 Sep 2025 17:15:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758208518; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=bBz84TZkfDLLhPGBTU9pbGWLejx7qAV5GjzUkaLGTDs=;
-	b=S2QRPGDsWgskQ9R2aBDQIzYoTJlPbeMnY822QlcaVGz0DjmmLRZ0VT2WDVd3K578tGsiUE
-	FZ0lKu0Ji8Kp384+VNLkqxnH0jBCTPyae4nq6WAa4IWP48kntCA/iCwRFJqjutj6t9XjVS
-	vlL6gGYJ2i56+CzKuwocDEoamTaSVNKFCCpO3aHeoAXSB+op/bH9j0B1PuJ8OGad/k+QsG
-	OHpW2JFvBXFNPNah2LYAcKcOfTsHDg6v+wKtzNASfRZhLPCPvOvriugzKKdfHfFBBAh7J2
-	hi2c/ADc0cWTiG8dQScE89zEQo/wecOEhn6iYVysqikg3zeXQnuodwaj9QRFXA==
-Date: Thu, 18 Sep 2025 17:15:02 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
- Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
- Eberhard <pascal.eberhard@se.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
- GPIO Interrupt Multiplexer
-Message-ID: <20250918171502.411c3527@bootlin.com>
-In-Reply-To: <20250918-majestic-mockup-0a0e090db0a7@spud>
-References: <20250918104009.94754-1-herve.codina@bootlin.com>
-	<20250918104009.94754-7-herve.codina@bootlin.com>
-	<20250918-majestic-mockup-0a0e090db0a7@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1758208553; c=relaxed/simple;
+	bh=r5o+CxqA/412fJ3eG2K654Tnc4D5Ezd5ce7Iv9F6Ko0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CrwKr9kAlP6D2VoG3dbQU9eniQp9+C1bV8sLKHazdBUrlV04nbcVJlik6nhw1wFwvqNJx2BYUHoYEcRtU7ljDtJTzD5aRK7+qT2QV1dftc8KELmznZAiHZ5teoOBNwvu7WdJWyPxFiCW5INgOjPFN4JaTXX/FOBpLSPooVP7PaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxuJHyBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0847CC4CEE7;
+	Thu, 18 Sep 2025 15:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758208552;
+	bh=r5o+CxqA/412fJ3eG2K654Tnc4D5Ezd5ce7Iv9F6Ko0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OxuJHyBhTOSdSdOyE3sNTRJKEkqCOLu3lc+WuNawPNbB1YNa8AUdfN6c0xuRTbn+6
+	 z9vDG5mY/1RuI2XwdFpGaaFqvLRldDZoQ63XANTSEkxK4FD2U/sccEEWcX4LA1FeP8
+	 mH/jLnVeQvNE6Y4Iu2nsJS2CuijVsYQMUruRoZhXbAa5tXJ17D4E9qR2ZK4Uz9fdGn
+	 4sFSJiwBR+i9Ux/fSHZrKhbfyd6eFfbc9LIwixhZnIxzpINPydzoTlCcaSjO6aMAxI
+	 Vf/Ldmyda6bwpe4ShtCAoKtmnE1R5KJ4K6rnN5iaWB0J81KP8zLm02bpbfa9ameAAW
+	 getsmNBOO3ANg==
+Date: Thu, 18 Sep 2025 16:15:47 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Steen.Hegelund@microchip.com,
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
+	lars.povlsen@microchip.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	luka.perkov@sartura.hr, benjamin.ryzman@canonical.com
+Subject: Re: [PATCH 1/2] dt-bindings: reset: microchip: Add LAN969x support
+Message-ID: <20250918-truce-muster-d9a1818e7367@spud>
+References: <20250917111323.60781-1-robert.marko@sartura.hr>
+ <20250917-paparazzi-hermit-3a4aa686add3@spud>
+ <CA+HBbNHS9TMd5u_Mysv21=nsqjeEb44oHFj06kS_hxkXZWutnw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="k2146MXiFzmmP5e7"
+Content-Disposition: inline
+In-Reply-To: <CA+HBbNHS9TMd5u_Mysv21=nsqjeEb44oHFj06kS_hxkXZWutnw@mail.gmail.com>
 
-Hi Conor,
 
-On Thu, 18 Sep 2025 16:06:04 +0100
-Conor Dooley <conor@kernel.org> wrote:
+--k2146MXiFzmmP5e7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Thu, Sep 18, 2025 at 12:40:04PM +0200, Herve Codina (Schneider Electric) wrote:
-> > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> > interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
-> > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
-> > 
-> > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> > IRQ lines out of the 96 available to wire them to the GIC input lines.
-> > 
-> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
-> > ---
-> >  .../soc/renesas/renesas,rzn1-gpioirqmux.yaml  | 87 +++++++++++++++++++
-> >  1 file changed, 87 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzn1-gpioirqmux.yaml  
-> 
-> This is an interrupt controller, please move it to that subdirectory.
+On Thu, Sep 18, 2025 at 01:45:32PM +0200, Robert Marko wrote:
+> On Wed, Sep 17, 2025 at 7:38=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Wed, Sep 17, 2025 at 01:12:35PM +0200, Robert Marko wrote:
+> > > LAN969x also uses the Microchip reset driver, so document its compati=
+ble.
+> > >
+> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > > ---
+> > >  Documentation/devicetree/bindings/reset/microchip,rst.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.ya=
+ml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > > index f2da0693b05a..4d4dd47f830e 100644
+> > > --- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > > @@ -23,6 +23,7 @@ properties:
+> > >      enum:
+> > >        - microchip,sparx5-switch-reset
+> > >        - microchip,lan966x-switch-reset
+> > > +      - microchip,lan969x-switch-reset
+> >
+> > Driver patch makes a fallback compatible seem usable.
+>=20
+> Hi Conor,
+> Will respin to simply use the fallback compatible, that will avoid
+> adding more compatibles to the driver
+> for no reason.
+>=20
+> But, can I ask what do you think about the
+> microchip,lan969x-switch-reset compatible?
+> Is lan969x fine or should I just make it lan9691 or like cause the
+> whole series uses the same
+> reset setup?
 
-Not so sure. It is a nexus node. It routes interrupt signals to the
-interrupt controller (interrupt-map) but it is not an interrupt controller
-itself.
+I'd rather the 1, I thought that the x was part of the name for some
+reason.
 
-I am not sure that it should be moved to the interrupt-controller
-directory.
+--k2146MXiFzmmP5e7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Otherwise,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Hervé
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwiIwAKCRB4tDGHoIJi
+0g5zAQCnIRGhz+Srw14h0GSHIp6EAXNyzBx+jtrDNbBFA2EzOgEAyf4TNCUklcQO
+3ZAB4lss+pXY/yNX2Taf7hhBxiEs2wY=
+=XzuA
+-----END PGP SIGNATURE-----
+
+--k2146MXiFzmmP5e7--
 
