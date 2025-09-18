@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-218874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF193B85300
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:23:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11188B85321
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:24:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FFCC188DC2A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:19:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBD1B5859AE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142533128C2;
-	Thu, 18 Sep 2025 14:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E3530CB33;
+	Thu, 18 Sep 2025 14:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FhpXnzrZ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xLtYIaKI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4730D3126D2;
-	Thu, 18 Sep 2025 14:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32847212566;
+	Thu, 18 Sep 2025 14:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758204607; cv=none; b=dNa8VtONcrvNNZUjfvoPX25IBbOFQY9jemvgVeSF2VDD7h3V8wGLArjd7NyRzxWFX8uYJJNPVqrQ1onByb//f+F+Re+jfqjNgM5Krm2FdKXFOeOrYP+0O+1F0mkoLRFJVRvKDLX0kTzjchkxhQOk1l3iMjZw2eZtUYsJ5zNf+lE=
+	t=1758204880; cv=none; b=epJ++TNt32XrxQdcTveAWh9pZB2bs8lNz0ADLTEPw8iD6lMBF44TGjRndYqv8WhwtmugrxlGbAFH71G1QnNE7+tEH8Txzj/+NT5VpLmYUmP/VwNr8vWlwbSYQKpfdvv6lyqY5vw+q978qmJizCRS/lR2iZmM6AEe4rR1TsqvSZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758204607; c=relaxed/simple;
-	bh=nFHi54wCET7igQC5KRhNHkJ7aBYvqs3E5kPuCORPpoQ=;
+	s=arc-20240116; t=1758204880; c=relaxed/simple;
+	bh=ltzBq0tO28nPTffMbWoonVTdsbfTivoYy/S7lL7ZEF4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jA3ncoCfzUtWuKl53/JmdlaQlERYjMIIxD9pIX0DifbHRsIMPBUrs9MLKgVFL7upfa6u/gNZYQWxHr19VV8UjD3ZipyVusP9IsA1cz21fG1CgOUXtyBZMaIX1gQv1DvjibdRFO3wt15ftAU70g12XxXsMqCp2tM2UWrPAnP9LXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FhpXnzrZ; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=SL6fMyg8+T6W+A+RscQqDIi4GNyx+TwLmkosKsvImgxVWUCSRG0HOMQv86JTSbAxeyfojwmWEQklfcsBGiCwWfTPh6YIVLF9Peo71H4LvA9QwCfI74oxHB7whicTRQF0GJ4cC3DnGDcT7wbkjcUghoZdt3WxMXEnEb2iA2HSc0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xLtYIaKI; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,32 +36,40 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=FFLORDihYCicM5VZt7vNB80L4AErinlH5+UxIfqQxVw=; b=FhpXnzrZcb6mjDFRd2NdWQ823k
-	R1B/DN7Ol8sQnnusRoRVLVERXTDVPwq1oVqpGj/rKM/9/Z6+AG7R2cKBc/su7lPAwG4hsTsFPsI7e
-	yUg2SmC1Fb4dXcWWQwxNoOuGivGonRXsPgGFp6WWOJjmVD3NUrCfzObSrDiF1HqBRLgs=;
+	bh=08YXLdcE/jW5FZxN5yg4w5BQuPpc21LjIlXkGV/CKro=; b=xLtYIaKI7UYAtBnjxE1ZmPMGLl
+	hx8KJYqySbsN4YuR3ovcEtgEUguzNlmeLL5fX+9tMRDd42vsLPZhICqG2Np5YXDvVnhS915SltDWh
+	fFd2CB+kualtme2lN5RIoIikrgqVO4ZSwQ6UNTudHbG+tKxHnYmn0raPY194wsr3TVsY=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1uzFKa-008pbw-Bz; Thu, 18 Sep 2025 16:09:52 +0200
-Date: Thu, 18 Sep 2025 16:09:52 +0200
+	id 1uzFP2-008pfC-8P; Thu, 18 Sep 2025 16:14:28 +0200
+Date: Thu, 18 Sep 2025 16:14:28 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+To: Jonas Rebmann <jre@pengutronix.de>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] arm64: dts: marvell: cn9132-clearfog: fix
- multi-lane pci x2 and x4 ports
-Message-ID: <dedd4222-b2ba-4247-98b4-504b5c032f69@lunn.ch>
-References: <20250911-cn913x-sr-fix-sata-v2-0-0d79319105f8@solid-run.com>
- <20250911-cn913x-sr-fix-sata-v2-3-0d79319105f8@solid-run.com>
- <9272b233-b710-4e57-b3ff-735f45c03c74@lunn.ch>
- <dbb10e82-ae10-4987-900b-17d4f4b62099@solid-run.com>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	David Jander <david@protonic.nl>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: Re: [PATCH v2 3/3] arm64: dts: add Protonic PRT8ML board
+Message-ID: <af554442-aeec-40d2-a35a-c7ee5bfcb99a@lunn.ch>
+References: <20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de>
+ <20250918-imx8mp-prt8ml-v2-3-3d84b4fe53de@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,45 +78,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dbb10e82-ae10-4987-900b-17d4f4b62099@solid-run.com>
+In-Reply-To: <20250918-imx8mp-prt8ml-v2-3-3d84b4fe53de@pengutronix.de>
 
-On Thu, Sep 18, 2025 at 10:46:03AM +0000, Josua Mayer wrote:
-> Am 12.09.25 um 00:12 schrieb Andrew Lunn:
-> > On Thu, Sep 11, 2025 at 08:28:06PM +0200, Josua Mayer wrote:
-> >> The mvebu-comphy driver does not currently know how to pass correct
-> >> lane-count to ATF while configuring the serdes lanes.
-> >>
-> >> This causes the system to hard reset during reconfiguration, if a pci
-> >> card is present and has established a link during bootloader.
-> >>
-> >> Remove the comphy handles from the respective pci nodes to avoid runtime
-> >> reconfiguration, relying solely on bootloader configuration - while
-> >> avoiding the hard reset.
-> >>
-> >> When bootloader has configured the lanes correctly, the pci ports are
-> >> functional under Linux.
-> > Does this require a specific bootloader? Can i use mainline grub or
-> > bareboot?
-> 
-> In this case it means U-Boot, i.e. before one would start grub.
-> 
-> I am never quite sure if in this situation I should say "firmware" instead ...
+> +			port@4 {
+> +				reg = <4>;
+> +				ethernet = <&fec>;
+> +				label = "cpu";
+> +				phy-mode = "rgmii-id";
+> +				rx-internal-delay-ps = <2000>;
+> +				tx-internal-delay-ps = <2000>;
+> +
+> +				fixed-link {
+> +					full-duplex;
+> +					speed = <100>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&fec {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_fec>;
+> +	phy-mode = "rgmii"; /* switch inserts delay */
+> +	rx-internal-delay-ps = <0>;
+> +	tx-internal-delay-ps = <0>;
+> +	status = "okay";
+> +
+> +	fixed-link {
+> +		full-duplex;
+> +		speed = <100>;
+> +	};
 
-What you failed to answer is my question about 'mainline'? Do i need a
-specific vendor u-boot, or can i just use mainline u-boot, or mainline
-bareboot.
-
-I personally like to replace the bootloader, because the one shipped
-with the board often has useful features disabled, or is old. If i do
-that, will the board work? I would much prefer the kernel makes no
-assumptions about the bootloader. You said:
-
-> The mvebu-comphy driver does not currently know how to pass correct
-> lane-count to ATF while configuring the serdes lanes.
-
-Why not just teach mvebu-comphy to pass the correct line-count? That
-sounds like the proper fix, and that makes the kernel independent of
-the bootloader.
+You have an RGMII interface, but you run it at 100Mbps? That might be
+worth a comment somewhere to explain why.
 
 	Andrew
+
+	
 
