@@ -1,104 +1,152 @@
-Return-Path: <devicetree+bounces-218892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93AF3B8562C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:57:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3569B8563E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 643954E28F0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:57:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E71D34E11EB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158E130CB5A;
-	Thu, 18 Sep 2025 14:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9E730C620;
+	Thu, 18 Sep 2025 14:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcWhgwzJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D92830CB4A;
-	Thu, 18 Sep 2025 14:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF121A0711;
+	Thu, 18 Sep 2025 14:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758207412; cv=none; b=TMz58m3mh520Xqm3ptey1qQTtV0nyfnTJXTTYZHPCVqZxZNVIJhMzVbhPzyCD9QvXUwx9mgeoCIvWYku7gAHOtD/5tg060vwjuGfyvSzS0LRvR108QyuYMpQTcCrKruJ6vdfQo7XJR6mSY3qkT+47LcVoDikB8TQSQxcXYwrg5E=
+	t=1758207443; cv=none; b=QyIMK7VC8YF3YVnSv2EgckWWmemcYw3X0+oz9RQ9ls2G59p1NSgtvpiECVQQmlfkRLWo4BvnhOqm4nK2bgVUohYPNkmHgpOkQCA9+wpc+2uk7tb197B2Ph85unctIiuxAOe0HMOVaaVY5L5/9Kggdd6MSki+fybREBG6tnQ9o8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758207412; c=relaxed/simple;
-	bh=4Rea0CJn+cU52Kg9PUi0QQZVkVEYQqNrOKaPzqZ6jgs=;
+	s=arc-20240116; t=1758207443; c=relaxed/simple;
+	bh=9qcMiKQOAovuoaEjP9TACZofJi5AHs2TyY3m1XiwKHo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HzB5wlS10vt3MBHDPccx+eCtWAGooJ+WSoQBae+vUdvts7BZ7z6RcpCkWjr5t+KHeeDr0ucbcR/4YnDjYXw+N2GkP6lHP3AOxcPH7livrCk15KzPXJN/4pVrmdRQX2ud1QCwDiSyOz1lsD/OaKwQ4QJ3Udwj+IQ7HFJF/q/IF1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.158.240.90])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 51221341B26;
-	Thu, 18 Sep 2025 14:56:50 +0000 (UTC)
-Date: Thu, 18 Sep 2025 22:56:44 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	p.zabel@pengutronix.de, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] spi: spacemit: introduce SpacemiT K1 SPI controller
- driver
-Message-ID: <20250918145644-GYC1274501@gentoo.org>
-References: <20250917220724.288127-1-elder@riscstar.com>
- <20250917220724.288127-3-elder@riscstar.com>
- <20250918124120-GYA1273705@gentoo.org>
- <034cecd3-c168-4c8d-9ad5-10cc1853894b@riscstar.com>
- <20250918143928-GYB1274501@gentoo.org>
- <cedaad98-1eba-431f-af4a-b84e106e5f65@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kx+6HEUEILdrDCMzFI6FVM1ye96Ux5SZ6lZgUAz0beWZtz11e8gbd7InUNx1nBOPN11BGjsfJoFGIrvSa0dvDUDeyLcQJDzuq46L7axqVTFPUgSmy+sEk9/aVX8RkzJvjEXjcJfPBVs7OgLP+26Xah8PoiJSR1RVmegaVimepog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lcWhgwzJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F79AC4CEE7;
+	Thu, 18 Sep 2025 14:57:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758207443;
+	bh=9qcMiKQOAovuoaEjP9TACZofJi5AHs2TyY3m1XiwKHo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lcWhgwzJWNeLbMXfOHQfs9m9qODa2qJ9eXsEW/rvGbSvNN+o90pqpCyKlgjJq3ged
+	 kMSWut0ZkH3W+6xNNKupWPsfCP/nmlN6baUAxFHP4cRZwHtJcbvNlavy9qNeriWEX5
+	 JCCrvpJ6nMvxH2t2cDGVzLYeDcA6EZ+msN6ntF0oJNFho2e4aQAxga3TtX9/yez+Xc
+	 ipas8NUaTQM7ZtFKrP7RQar40xeVh91KeJTYBqlCJCHdRNHbmy6V2VVFVaA47i5eNE
+	 EfSaLkOP9xeRYQJTDwA6Ema1upog/TAm7CoQpBnJPhqCEW6ySC1DIBuvYV8kgFsIpv
+	 GPjd+sCVyMpgA==
+Date: Thu, 18 Sep 2025 15:57:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v3 02/10] dt-bindings: fsl,fpga-qixis-i2c: add support
+ for LX2160ARDB FPGA
+Message-ID: <20250918-falsify-walk-2d8d1831141d@spud>
+References: <20250917090422.870033-1-ioana.ciornei@nxp.com>
+ <20250917090422.870033-3-ioana.ciornei@nxp.com>
+ <20250917-document-enhance-4a6cb6053882@spud>
+ <hp5cothkqfs7hbviesjz3mxr76tjxolnccweuqpfwxs5m7aiqo@uer253tr67z2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="YXff6/cSOKFu56ap"
+Content-Disposition: inline
+In-Reply-To: <hp5cothkqfs7hbviesjz3mxr76tjxolnccweuqpfwxs5m7aiqo@uer253tr67z2>
+
+
+--YXff6/cSOKFu56ap
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cedaad98-1eba-431f-af4a-b84e106e5f65@riscstar.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Alex,
+On Thu, Sep 18, 2025 at 02:44:06PM +0300, Ioana Ciornei wrote:
+> On Wed, Sep 17, 2025 at 08:19:42PM +0100, Conor Dooley wrote:
+> > On Wed, Sep 17, 2025 at 12:04:14PM +0300, Ioana Ciornei wrote:
+> > > Extend the list of supported compatible strings with fsl,lx2160ardb-f=
+pga.
+> > >=20
+> > > Since the register map exposed by the LX2160ARDB's FPGA also contains
+> > > two GPIO controllers, accept the necessary GPIO pattern property.
+> > > At the same time, add the #address-cells and #size-cells properties as
+> > > valid ones so that the child nodes of the fsl,lx2160ardb-fpga node are
+> > > addressable.
+> > >=20
+> > > This is necessary because when defining child devices such as the GPIO
+> > > controller described in the added example, the child device needs a t=
+he
+> > > reg property to properly identify its register location in the parent
+> > > I2C device address space.
+> > >=20
+> > > Impose this restriction for the new compatible through an if-statemen=
+t.
+> > >=20
+> > > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> > > ---
+> > > Changes in v2:
+> > > - Enforce a unit address on the child gpios nodes (remove the ?)
+> > > - Enforce the use of unit addresses by having #address-size and
+> > >   #size-cells only for the newly added fsl,lx2160ardb-fpga compatible
+> > > Changes in v3:
+> > > - Replace the trivial-gpio reference with an explicit mention of the
+> > >   accepted child gpio compatible.
+> > > - Reword the commit message.
+> > > - Add the 'else' case to the if statement.
+> > >=20
+> > >  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 58 +++++++++++++++++=
+++
+> > >  1 file changed, 58 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i=
+2c.yaml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> > > index 28b37772fb65..e889dac052e7 100644
+> > > --- a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> > > +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
+> > > @@ -22,6 +22,13 @@ properties:
+> > >                - fsl,lx2160aqds-fpga
+> > >            - const: fsl,fpga-qixis-i2c
+> > >            - const: simple-mfd
+> > > +      - const: fsl,lx2160ardb-fpga
+> >=20
+> > How come this is not compatible with fsl,fpga-qixis-i2c ? Seems like
+> > that device has a feature subset of that one, given your changes here.
+>=20
+> The feature set exposed by the devices is highly dependent on the board
+> type, meaning that even though the FPGA found on the LX2160AQDS board
+> (fsl,lx2160aqds-fpga) works in the same way in terms of access over I2C
+> as the one found on the LX2160ARDB (fsl,lx2160ardb-fpga added here), the
+> register map inside the device space its different since there are
+> different on-board devices to be controlled.
 
-On 09:47 Thu 18 Sep     , Alex Elder wrote:
-> On 9/18/25 9:39 AM, Yixun Lan wrote:
-> >>>> +	u32 data_reg_addr;		/* DMA address of the data register */
-> >>> s/data_reg_addr/ssp_data/? I just feel uncomfortable with redundant 'reg_addr'
-> >> My convention is normally "virt" or maybe "base" to represent
-> >> a virtual address, and "addr" to represent I/O addresses.
-> >>
-> >> This symbol represents the physical address that underlies the
-> >> "SSP Data Register", which fills the TX FIFO when written and
-> >> drains the RX FIFO when read.
-> >>
-> >> How about "data_addr"?  I know you wouldn't like "reg_addr".
-> >>
-> > another idea here, instead of introducing a variable here,
-> > how about simply using plain iores->start + SSP_DATAR?
-> > 
-> > so you can cache "iores" instead..
-> 
-> This code has gone through a huge amount of refactoring.
-> 
-> I hadn't looked, but now I see this field is used exactly one
-> place in the code, in k1_spi_prepare_dma_io().  It's still
-> needed though.
-> 
-> Here's what I plan to do.  Rather than saving data_reg_addr,
-> I will simply save base_addr, which is the I/O resource start
-> address that corresponds to the mapped virtual pointer, "base".
-> 
-> Then in k1_spi_prepare_dma_io() I'll use base_addr + SSP_DATAR.
-> 
-> OK?
-> 
-Yes, this is what I'm suggesting
--- 
-Yixun Lan (dlan)
+Okay, please cover that in your commit message. With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--YXff6/cSOKFu56ap
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwdzgAKCRB4tDGHoIJi
+0vUlAP0VjnEENTcq6jqZ7JzTz9qG2ZP/WhPq63Gs6UIfFNm/xwD7BEXl/9TaxRxr
+BuegGH+dt3DDqiQTEe0/rfEr6SOM7gY=
+=m3tR
+-----END PGP SIGNATURE-----
+
+--YXff6/cSOKFu56ap--
 
