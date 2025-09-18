@@ -1,144 +1,169 @@
-Return-Path: <devicetree+bounces-218937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCA0B85B4F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DB7B85B71
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8329F188754D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:38:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 939A41896C6A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEEA314B60;
-	Thu, 18 Sep 2025 15:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BEA31195D;
+	Thu, 18 Sep 2025 15:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="nQCh3sjg"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="F7JJb73T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDED313E1B
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE5C630EF94;
+	Thu, 18 Sep 2025 15:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758209803; cv=none; b=SoICJ/b8AwemgxgFEXwq3+aFbw6vOSS6fEEg+kMch4258z9IMs4tQdmOhR2/ZriMHSANdPI0PS+Nqko/GB/zUoUjPZxbk7TqWfiLtQlqL2IQXAU+Qxjlr5w4hksPkIEOtqOI22n+tS71VLQj5EF0JOYQzc9w73YweZakp+aP7zM=
+	t=1758209829; cv=none; b=A8Ryp5RKZYB4sJfTfJsZIe23WfROmKt/Qaodz0a8K2tkcdkyvPWBJeF4mqyeXBrYYCV3e6q6DbdgNu6d46AY/69ypUuNsTwRqDlrw54cs9DONE7O3iJxAr3FJgP3799D5GAFOOg+Es/AKjKnIvmAHDX7eShntqlLvAPuTpzgEKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758209803; c=relaxed/simple;
-	bh=+49SRGaRIxmipz3ICarmrQvVbL7KzASPcS7C4Boj4ck=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JZ6LqjAlut+qMd4oo78xc1d/YVUGfS1+MdRNzmx0J3Z63IoAt/vzJGsbwyIpnhcZ07G6LRLlO3IJkBfLcB4XIO0D85as7LzrglEQPhXgyH8St4d2jjIQc0J7Ov5KTjg922iQUDJp27Y8G0glyQDcgAiekNs3aUDJzwOTeETZaBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=nQCh3sjg; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b07e3a77b72so317332766b.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:36:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1758209800; x=1758814600; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uNO/I2yItTXLiDSbQlltWztaUTi6rNx8Ylu9Dt/JXIk=;
-        b=nQCh3sjgMTF+hR9c9mSPdRxBkTXSzRYyUenWhRdAPG2b/9AkB7/+2hQQHPPBsSk7vY
-         CiQTYtwmpqRasZc7uFyeUaXH7a72F93SZn1/0oTHcI/YrHI8vgSkBd5in2rWH39VIUqT
-         gIf3vEdRVgjlcVJ7mUmrjp0hcj6M3AeAmtXH4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758209800; x=1758814600;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uNO/I2yItTXLiDSbQlltWztaUTi6rNx8Ylu9Dt/JXIk=;
-        b=APs6yavydnWot0rzrDglXqdGVBkTCEqsiJOXi1lOKthl6KtgJ/ib0eV6qipy34xqnd
-         dxFCMPJpxJqm9tAjH+YmwVIxwdm77dVc/hkoq08ZblNTVnoe5uzOsrmLW9amouFjxb/C
-         /nob+w9BZ/IUEuwzU4JQ1lOk9c6bLFZScqiSZnKGEciiRa56q2D0z7m/rzSIZ9mOLQPE
-         FF5gr5sIe5JNgRJAko0q415rgaL9zmTkJHBftNW/7K6juqtYERGM2eiXoBlJzL3kaywC
-         v9joviet+4yrNe6VhTe2EoVPQH8AWa8amr/PathXxAkWjQYE2JQyiA9BRfJ8tTU/x1gP
-         ByHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWIskvmdaUzLE0NajpOTc3bLpBiHM2wjaZUjzV1VDG1U62Fhk1GoVC7YFPLe8Hvn6hFHuAvKkezRnMh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgFLQMLjSCt6h+eoWWpxmiOz+D9PXuQ/YEDC+oi1gqnCE57FT8
-	g0rHjfY+mfjFCOuRP4wZ8/q+vXBErwHcJ8EWfbLp7WnnjDGYvop3hgn96iN1pPRXQ2c=
-X-Gm-Gg: ASbGnctgJV0IqUyc3cYneUsh2tw7IqLlrWA9wtPfGVcJ/G6+2UD5xsih4H+XtUibJIn
-	mvC6h/GTP1yDI/d183ZZ3SrNeGxtM4LIm471x5LrXIpl0KIinhl95UPHKsaa4M2njaNOfFuQdlL
-	bOBhmrYpvoSRo8jkG8f3E5i6g7/F7uGv8tWQvi5DhwMULyTwwgKdOhVxY3tLZLU5KcczxIxOBmd
-	1yE0zcT7MHlbgkGF93MdIov2m1pbv/D28Bc9HpzmQQTcGkk5hCKxUrYzz37kX+Jqx9xSvJ0/Q6p
-	HOXyxiD2NX88FaallJtp2APs2wlXtYdkNMIz6Boah0BpD0YcXMm6wWfXSp1fvZ1ILUQQQwO0AUL
-	5/0mhEZ0se+WX/wvYG3hAFeMx1MJMTIHO2cxsRvG2Aqr54uDgXYeRQm6RILNC5grcM5GI1QHFrI
-	/O0y6JLvqrfNBLigT3N3H/KdnOF9IQ1vDUs/mJkasg/6LemBMk28149W0jUgVz8MubDelKROKhR
-	79+JhcHXeMufZZ3m/MoIA==
-X-Google-Smtp-Source: AGHT+IHHoXU0i3krxfj/ayKHEAuFsB7LewUpC+X2Hw0TTk9jlaDxf33gzR19IirWjjXDnMMeOUQg5g==
-X-Received: by 2002:a17:907:60ca:b0:b0d:95cf:2eae with SMTP id a640c23a62f3a-b1fa8359440mr456702266b.5.1758209799966;
-        Thu, 18 Sep 2025 08:36:39 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fd272026csm212430766b.102.2025.09.18.08.36.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Sep 2025 08:36:39 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	s=arc-20240116; t=1758209829; c=relaxed/simple;
+	bh=AjBGs66bwYcRT0DYbNaapwReZ4uUeTrPz4K6vm2LwC8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KSNv7AZb3STm8W4vgNoEDF3gTJyv83062FBDlSFq+ZsVyV2+2UEixvAKZMPX7UKY6OUe8P1K2b/lkXYg27/xSEkYHtivKU5Neyq+FUsCRSeQnsKIGT3T23IAB93fPbG3kRVDZy9W7CFtRf2To3qNbZzF3u1jnHIziHRIb8UVbHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=F7JJb73T; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=aM9defDUbxftG1qhQP/TtclfqCxbcheJJLtqcFMRzU4=; b=F7JJb73THAOqRK1K8GFdiT/8Ej
+	gj9W1dfgE4nWfaTkdI63AdaKD9zzZMlzAxOzu/aVmbYNPPczfMsbitvrzmw7CZnzqz/C9q3imUOni
+	DrjmmEfLd4yPeTmSp8UTMZiFZhZVOCF/DbW5nbpr95AdhrtzhSqzme+mDJkXUlfUxPsOgtLSizXEI
+	aKmM1UInF0ZFJyDXT4Q/TiHrZbxO+8cSKNzxhzXu4mZcNN4QEbc2pAfsUEqW1Dfh8v32Pv/wPfA9I
+	6e+qoV4lDUliCYjwrwt3A8JGGBM4o8WYYgFiQYMG0kH0PY/hQ7LWOjWw3XYtpBs06bmGxtzkqmwLx
+	q1UygtCQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43486)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uzGgg-000000001BG-1j6Y;
+	Thu, 18 Sep 2025 16:36:46 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uzGgc-000000001Hk-0d9w;
+	Thu, 18 Sep 2025 16:36:42 +0100
+Date: Thu, 18 Sep 2025 16:36:41 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH v4 5/5] dt-bindings: touchscreen: remove touchscreen.txt
-Date: Thu, 18 Sep 2025 17:36:10 +0200
-Message-ID: <20250918153630.2535208-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250918153630.2535208-1-dario.binacchi@amarulasolutions.com>
-References: <20250918153630.2535208-1-dario.binacchi@amarulasolutions.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/4] net: stmmac: stm32: add WoL from PHY
+ support
+Message-ID: <aMwnCWT5JFY4jstm@shell.armlinux.org.uk>
+References: <20250917-wol-smsc-phy-v2-0-105f5eb89b7f@foss.st.com>
+ <20250917-wol-smsc-phy-v2-2-105f5eb89b7f@foss.st.com>
+ <aMriVDAgZkL8DAdH@shell.armlinux.org.uk>
+ <72ad4e2d-42fa-41c2-960d-c0e7ea80c6ff@foss.st.com>
+ <aMwQKERA1p29BeKF@shell.armlinux.org.uk>
+ <64b32996-9862-4716-8d14-16c80c4a2b10@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <64b32996-9862-4716-8d14-16c80c4a2b10@foss.st.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-With commit 1d6204e2f51f ("dt-bindings: touchscreen: Add touchscreen
-schema") touchscreen.txt is no longer needed, and since no other file
-refers to it, it can be safely removed.
+On Thu, Sep 18, 2025 at 05:07:00PM +0200, Gatien CHEVALLIER wrote:
+> On 9/18/25 15:59, Russell King (Oracle) wrote:
+> >  > So no. In a situation like this, either we want to be in interrupt
+> > mode (in which case we have an interrupt), or the pin is wired to
+> > a power management controller and needs to be in PME mode, or it isn't
+> > wired.
+> > 
+> 
+> If you are in interrupt mode, plugging a cable would trigger a
+> system wakeup in low-power mode if the INTB/PMEB line is wired to a
+> power management controller and the WoL is enabled because we're no
+> longer in polling mode, wouldn't it?
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+What Andrew suggested, which is what I implemented for Realtek, other
+interrupts get disabled when we enter suspend:
 
----
+static int rtl8211f_suspend(struct phy_device *phydev)
+{
+...
+        /* If a PME event is enabled, then configure the interrupt for
+         * PME events only, disabling link interrupt. We avoid switching
+         * to PMEB mode as we don't have a status bit for that.
+         */
+        if (device_may_wakeup(&phydev->mdio.dev)) {
+                ret = phy_write_paged(phydev, 0xa42, RTL821x_INER,
+                                      RTL8211F_INER_PME);
 
-Changes in v4:
-- For rohm,bu21013 bindings:
-  - Drop description from reset-gpios
-  - Simplify description of avdd-supply
-  - Rename bu21013.yaml to rohm,bu21013.yaml
-  - Add Reviewed-by tag of Krzysztof Kozlowski
-- For zeitec,zet6223
-  - Drop "Phandle to the" from vio-supply and vcc-supply dscription
-  - Rename zet6223.yaml to zeitec,zet6223.yaml
+This disables all other interrupts when entering suspend _if_ WoL
+is enabled and only if WoL is enabled.
 
-Changes in v2:
-- Update the commit message
-- Add Acked-by tag of Rob Herring
-- Add patches:
-  - 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
-  - 2/5 dt-bindings: touchscreen: convert eeti bindings to json schema
-  - 3/5 dt-bindings: touchscreen: convert raspberrypi,firmware-ts bindings
-    to json schema
-  - 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
+If you're getting woken up when you unplug/replug the ethernet cable
+when WoL is disabled, that suggests you have something wrong in your
+interrupt controller - the wake-up state of the interrupt is managed
+by core driver-model code. I tested this on nVidia Jetson Xavier NX
+and if WoL wasn't enabled at the PHY, no wakeup occurred.
 
- .../devicetree/bindings/input/touchscreen/touchscreen.txt        | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
+> You can argue that as per the Realtek 8211F datasheet:
+> "The interrupts can be individually enabled or disabled by setting or
+> clearing bits in the interrupt enable register INER". That requires
+> PHY registers handling when going to low-power mode.
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-deleted file mode 100644
-index e1adb902d503..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-+++ /dev/null
-@@ -1 +0,0 @@
--See touchscreen.yaml
+... which is what my patch does.
+
+> There are PHYs like the LAN8742 on which 3 pins can be configured
+> as nINT(equivalent to INTB), and 2 as nPME(equivalent to PMEB). The
+> smsc driver, as is, contains hardcoded nPME mode on the
+> LED2/nINT/nPME/nINTSEL pin. What if a manufacturer wired the power
+> management controller to the LED1/nINT/nPME/nINTSEL?
+> This is where the pinctrl would help even if I do agree it might be a
+> bit tedious at first. The pinctrl would be optional though.
+
+I'm not opposing the idea of pinctrl on PHYs. I'm opposing the idea
+of tying it into the WoL code in a way that makes it mandatory.
+Of course, if it makes sense for a PHY driver to do pinctrl stuff
+then go ahead - and if from that, the driver can work out that
+the PHY is wake-up capable, even better.
+
+What I was trying to say is that in such a case as the Realtek
+driver, I don't want to see pinctrl forced upon it unless there is
+a real reason and benefit, especially when there are simpler ways
+to do this.
+
+I also think that it would be helpful to add the wakeup-source
+property where PHYs are so capable even if the PHY driver doesn't
+need it for two reasons. 1. OS independence. 2. it's useful docs.
+3. just because our driver as it stands at whatever moment in time
+doesn't make use of it doesn't mean that will always be the case.
+(e.g., we may want to have e.g. phylib looking at that property.)
+
 -- 
-2.43.0
-
-base-commit: 8b789f2b7602a818e7c7488c74414fae21392b63
-branch: drop-touchscreen.txt
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
