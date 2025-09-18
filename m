@@ -1,88 +1,82 @@
-Return-Path: <devicetree+bounces-218646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86107B82AFF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 04:51:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB91B82B1B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 04:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BFD4488566
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:51:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 437BF1C211DD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 03:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC101E1A17;
-	Thu, 18 Sep 2025 02:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A799923C51C;
+	Thu, 18 Sep 2025 02:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="la9pR+Bl"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="T5TydTDM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4AB1FC8
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B538423B62C
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758163897; cv=none; b=gx5xD+8EFwiSd2hdE/0oeoZ+LzsBE3fMZ8G39gkDTKGdXs8xpEMPlg2ZDZ95wA5E9qWwiGvlRTTgDYdMO6PsmkCmklaQXYXU3qFULgBcLQ9s9if6PU4e70k3XeDoKEVh8/Hw2La1CrvRHL1CmbSGaFExacs08yyvqaegwidEdnM=
+	t=1758164380; cv=none; b=Qc8hiXxxfBixypnVPmy02seFq+pBgPMog7GUL+D5SJyTpg+VXWYSRE0rRSf6Lui8bFXtwDMedNizLjCQX2uyCfh9RpY0ko9AvD3Z//OUMajOJ91iyvtrb2qv4W6k6b5FMyiROOP9p4YCqYYcxobx6zLcGCp+wofYmj90FSheuhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758163897; c=relaxed/simple;
-	bh=WcSRvEvShhrqbxNvzLtiCjssybnUH82Y+EQUkkK4AkQ=;
+	s=arc-20240116; t=1758164380; c=relaxed/simple;
+	bh=hWH39yoGDCQ7N2R4TtE9DDb6608lJvIpDKnTkeelSlI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d4DK0SfkBDsByVLbzfSuCoEiJZoFhKjlpfntpXWFsIpmEnUWoaJNqNdXsEcsk8Nd7/na3o0mHxm62JazF3nMXg1NDcCeJXKsAHHgsNaI7h/pxsigdVIMr5slT7rwwJsLDMk2LBl7ef9xTiTEKtoKpqEIL7Xi+LmdC9z+RohBKv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=la9pR+Bl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58HGWsZQ019611
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:51:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fgecCebfDJtpE3JoBpenuay0Bs5D6Xykj3YET5V/PY8=; b=la9pR+BldbY1vaar
-	z2ZOcpik7u9tIlKZiJvBbA9VeNGYARVhcmkrJowjycZL6wbInfwlv2zl+ZiCjaqn
-	QZRDTZeAzsNpa3RQOGjAA2EPuq2qPgOGIDGzQqnbR0MrD7Irko5v64FWHZJmHCtc
-	6tigV/dNKYaXzM6qk/j8wbpckq1CTRow47BYmA+AXC4FSgZ/KfiTWOtZFPCh6eeX
-	0U4TVstOEz/r6gCTphdgxh6crAuReFj7aP0FKuSQGA7kxsPWjrR8RYTHsZ5DFxpr
-	v9BzvTyZcCefnD5wd6motgT6CdM5zkRIvfKNJpsn51OhYEOFEmfhapQ2TgOdDW58
-	0oMqCg==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy1vra9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:51:33 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b4f86568434so324511a12.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:51:33 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=rdwAEvt8Mlgj4g2BCkQlB7Lp6C6npf/5TLgxloMe67nsOeEigVP+E4fmV5E1KhgU98RcdPcfUeVAvYjelyeR7gUdARiX/PVmy9RidUOL/xiA2HJnI1a2SgqjNYKip+zQZTb9x8GhovhPe+vLt+OwmJGWbBG2HT4AdcCjQWCOdnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=T5TydTDM; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-88cdb27571eso18111839f.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 19:59:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758164377; x=1758769177; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5szgNDrrDfA9r/y/UulQg5Y7n0+PRvqIyjOb+dac47k=;
+        b=T5TydTDMrhsOPSG/u+vKp+cSnK6vxqI3uUVQ3kg6kKSxl9PQK4MbdCWaC0eCexID2N
+         Bvh3pkhIlo1/QQASAAweajfelnt3AbtAFlb81TSuzn/yRkvIk+1kw+VuPwPDqMyWl0SX
+         GbvPJtfkK5BDX8Kxw9OqgJpDv7XP6x1d3eOkTx0B+wEQPLmqIu+dkG2KPJudCL3R63x6
+         T+T72qMn7J5N+kvTa30d0tMKcWOXYjq/7pIIKo3sTTvVWj9cZRPF8hvTTjd/Jkj14wmv
+         dKNcFfpocLqBuJyC/AhJ5XdNiLNFQN2rk8tuky0AUXu35x8OL0GTe/B5gVd5zeERffW9
+         jkMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758163892; x=1758768692;
+        d=1e100.net; s=20230601; t=1758164377; x=1758769177;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fgecCebfDJtpE3JoBpenuay0Bs5D6Xykj3YET5V/PY8=;
-        b=rVkmVTfeFGjxoEesIA53RaksjJSIaRNrMIX9jQ0Dk0CH983umCgLVXDHoHDKWNVsYW
-         XnQzmFH7nNGJWLFDLjtQ+13ipVLqEGrU6WN/rDwqAXo5J6HG61NO2CBh7aIB++Iyf7pV
-         Xt08scuh2b6uOV0tmgNs71oqdDZururCRhOCcaX66HoGJ5TqrWOmbFO46IhEGRX+/GQc
-         RnCp8aW4JvQ+XLgy4e/4+y/QzmrkcKqKVKLCxe1tibWLE+E101vVGasHeNxV9sL88FNY
-         x1xRgwPuGCev/Tqv8FRtqTdLyBpGeIRSZCXBN4DGBIJnrbMHpwrWS6LWpTW7gmuZ355k
-         41DA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUE2mNXxxFLkpgNGrdj7ZAn2bBVD1WnUsjOCFF5WXSoIHmZQ3t/f+YXPDnoU1pEVEo5JKi36LowhZA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/R30QvHcDRef6XV3wowAc0iQ7I8Q8FTNszVp8yBz+jd2rC7ix
-	croOK8JbjHOJoHK1CBItr0ivKLRBHpVQLl1eLTQzC9P8/eTMKwJvChZTNVxrL83c4qN9OE5tTfw
-	K3aDBVdICXmWqOna1gKwPYA0ezrxrtI0imBekDqIho3esjpPqveMDLrFd9mfypFFZ
-X-Gm-Gg: ASbGncvp+rjtK/bg5efoI/JfVstTbBGhP8kfsQMMGfZ7zLzdXfyk4zNLN15mrF5ygIY
-	AIPETkHrjVdHwSWONs6VAXAYwL5ZM/uFp3Oc/3e/FNist/UKQL5QBQnK6wuZFqzDzE2od+WRu5h
-	f727WFqyiNATIIYTPnzZxK3LhclAFpflyoJbV8A4SeJybfvxVWyBmdoeUJIZG5W/PC2djW7faFc
-	47ML/hf7FVM2+2CCP8LfPUZgdmNX/tG7HzblMKG7mUPpSJJhxeA4gwL9Gyxl3d9ZuG0c5sPwCje
-	jwrlZh3gNGf1MUA62Qv3j2pbaNoUtjOFd8oDLQbvOxIIG+849kERxmbNwvQsk6pnKY03wA2PucH
-	yYYVoOGP21UOvDi3us2CY5x0mYbJi
-X-Received: by 2002:a05:6a20:548d:b0:24f:f79d:66a8 with SMTP id adf61e73a8af0-27a96a993f3mr5835807637.24.1758163891913;
-        Wed, 17 Sep 2025 19:51:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEO8+Yv7Mvypcl39Oo+6RrtTJ5B0aTO0XwTIkdwLESldoizSlNvP5sGd7bDmK1hg4lFmJhW6A==
-X-Received: by 2002:a05:6a20:548d:b0:24f:f79d:66a8 with SMTP id adf61e73a8af0-27a96a993f3mr5835757637.24.1758163891401;
-        Wed, 17 Sep 2025 19:51:31 -0700 (PDT)
-Received: from [10.133.33.24] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff435325sm869595a12.43.2025.09.17.19.51.24
+        bh=5szgNDrrDfA9r/y/UulQg5Y7n0+PRvqIyjOb+dac47k=;
+        b=StXQzN+gG2IyovxV9s78oeDLvp0HpUM//Ch0iXI2YuA325oHRXjUpHHflM0ExqSMRr
+         0e1JuOf881Q2gm53oMSlnLBN7riaceNjZx0AosfGZmO0BI6KSZn/IBfYUm5QkZAMGI0p
+         kpud5PFscr4nna4xqb/uWZsWwrgSBVEzFakjlAFYTHjazq2BVpLGAPuM9+STkf+Y+7kN
+         DSU5o5Nfqtiz4Bal9YIVJw1Z8pbfZ9x87UTjbJXkCwdoLf2Ua5BchyYVxC6vSBGgDOph
+         QVMeif3lcVDzxIIkMc7VAKydyBozabWq0/EK434cfqMEeMTnWCE8Kz7w5UbjlfLkmB1C
+         bxdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCTXWIzdlK8WrHLBiu1cMqKJp+v89RZMyxuQzIoDXdKEU3osDhmYjOmLfI0iYY13MXuh6c/ygX8kY/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUl+S7Vtqdt3pfrCwtyUyU6X08PuxE4A9BUn+6xEssq4FxhKjV
+	nvMwNxmWjpj0NMuqUWIrxrnUEBlQQOpUZ0otnM5ceJRO8eqb41DIE1LV5G5HoynsmZhFpySlDfM
+	ig9C+
+X-Gm-Gg: ASbGncsLZs87SZttijmZrWBK66ye2rMrWeZh0hQOVhusH2v/Cz41oif/E5ldxuZ5mjX
+	uUKNqzLo4stWsVXjGUQf6FOY+JFJFOLOAYfQ2HIdNBiwWPwsLd0tL4Ptt5JgjMyLVotls6PCSpV
+	z5wJvGAEdzVKUwAYzr/5BNj33qORnOuNPKPvHY2+8mNpP+PepwX9/e6JQdTeRHXmkL3hdxdxQK/
+	9YcFBfG94BXXZxMB5ANh7ZphTdSWXZuSQ0924gqdafZwzdkQYgDAisbRbPdOIxoghTd0II+ink3
+	RXWTfJXf8gsouuuE0taZiWOa6SuqyeUAIVT1s1/6wUO8VYot+n69f5RNXPnuncjZ2UVn2J7MLA9
+	2oo+VCvOICRSKHL2394RnQu/ydm9HlMOe3tR4Cb+mmGbYBv44QImWD7UPXA09UpoC93YKdkwE4i
+	Aubfm9
+X-Google-Smtp-Source: AGHT+IEQLSK+9pHMwlUU8ixZlncSUSA8tIOFByfMAjDBZy5wDSD6GkAsXBMax/RAtzqwjY2ctqPlRA==
+X-Received: by 2002:a05:6e02:380e:b0:423:fdc4:4e39 with SMTP id e9e14a558f8ab-4241a5784damr64016625ab.27.1758164377462;
+        Wed, 17 Sep 2025 19:59:37 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d3b017664sm448915173.17.2025.09.17.19.59.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 19:51:30 -0700 (PDT)
-Message-ID: <f16f14ab-ff11-42a2-b63b-ed28e85d620b@oss.qualcomm.com>
-Date: Thu, 18 Sep 2025 10:51:22 +0800
+        Wed, 17 Sep 2025 19:59:36 -0700 (PDT)
+Message-ID: <f7e12797-ea17-4e92-bd25-cc562c66d2a7@riscstar.com>
+Date: Wed, 17 Sep 2025 21:59:35 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,147 +84,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/5] pci: qcom: Add QCS8300 PCIe support
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-References: <20250908073848.3045957-1-ziyue.zhang@oss.qualcomm.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
+To: Yixun Lan <dlan@gentoo.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250917220724.288127-1-elder@riscstar.com>
+ <20250917220724.288127-2-elder@riscstar.com>
+ <20250917231520-GYA1269891@gentoo.org>
+ <3b815302-21f2-4ee2-bf83-c1dba77ce3d1@riscstar.com>
+ <20250918001632-GYA1270371@gentoo.org>
 Content-Language: en-US
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-In-Reply-To: <20250908073848.3045957-1-ziyue.zhang@oss.qualcomm.com>
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250918001632-GYA1270371@gentoo.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: cTDNWgpKp_4sWn4DLrXx6_cE0_emZmr7
-X-Proofpoint-ORIG-GUID: cTDNWgpKp_4sWn4DLrXx6_cE0_emZmr7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX4jmpJT2Di8oE
- XHIUtsgm8d8NgXB4BECKaWrfTpiR0puA8OqI2vS0RKhRBiitqHgXZfikPbibocATZzQCbW+i8du
- Tb7WlZ96/C7nuqHYP5P9NjD4vrqd7kXDrSg2sgCxRxSVytmOUZrRONwJQf+K0XW0/HAEJRQgtmZ
- J5Xl+CPuUYLH2Ff9y87Zbue2M2CMKN05dBSvih33m7eA7QSlS2m6MZa4L1KIcartmepCxsSyBib
- ys9nXPKYLK0bdhEM6GaSr2X6/3x3Cw3nhZqSzfNsSZsPxIcBr4+ucFYtNw0IRimzLjOhZkatobJ
- Eu8U+/A2V3hdqHuVc2vLbnZRv02fHaD/D7+LOcA7qBHYxUzU4maFn23QAwmdjONmzAmLXS3DhVW
- 2x8NBND5
-X-Authority-Analysis: v=2.4 cv=cf7SrmDM c=1 sm=1 tr=0 ts=68cb73b5 cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=QyXUC8HyAAAA:8 a=IHEL40AIkIxnPEiLsFYA:9 a=QEXdDO2ut3YA:10
- a=_Vgx9l1VpLgwpw_dHYaR:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-17_01,2025-09-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 adultscore=0 bulkscore=0 priorityscore=1501
- spamscore=0 phishscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
 
+On 9/17/25 7:16 PM, Yixun Lan wrote:
+> Hi Alex,
+> 
+> On 18:40 Wed 17 Sep     , Alex Elder wrote:
+>> On 9/17/25 6:15 PM, Yixun Lan wrote:
+>>> Hi Alex,
+>>>
+>>> On 17:07 Wed 17 Sep     , Alex Elder wrote:
+>>>> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
+>>>>
+>>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>>> ---
+>>>>    .../bindings/spi/spacemit,k1-spi.yaml         | 94 +++++++++++++++++++
+>>>>    1 file changed, 94 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000..5abd4fe268da9
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> ..
+>>>> +
+>>>> +  spacemit,k1-ssp-id:
+>>>> +    description: SPI controller number
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> could you explain a little bit why this vendor specific property should
+>>> be introduced? I took a look at the code, and didn't get the reason
+>>> behind.. or what's the problem of simply using "pdev->id"?
+>>
+>> This property was carried over from the vendor code.  It is
+> inherit from vendor code isn't a valid reason
+> 
+>> optional, and if it isn't specified, the platform device ID (-1)
+>> will be used.  It's just intended to provide a well-defined ID
+>> for a particular SPI controller.
+>>
+> while looking at the code, it seems you can use alias to map specific id
+> to the spi controller, it even can do non-linear map, something like
+> 	spi0 = &spi3;
+I've never used this before, but yes, it looks like it's exactly
+what I want.  I'll just get rid of the "spacemit,k1-ssp-id" DT
+property entirely.  Easy.
 
-On 9/8/2025 3:38 PM, Ziyue Zhang wrote:
-> This series depend on this patch
-> https://lore.kernel.org/all/20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com/
->
-> This series adds document, phy, configs support for PCIe in QCS8300.
-> It also adds 'link_down' reset for sa8775p.
->
-> Have follwing changes:
-> 	- Add dedicated schema for the PCIe controllers found on QCS8300.
-> 	- Add compatible for qcs8300 platform.
-> 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
-> 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
->
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
-> Changes in v13:
-> - Fix dtb error
-> - Link to v12: https://lore.kernel.org/all/20250905071448.2034594-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v12:
-> - rebased pcie phy bindings
-> - Link to v11: https://lore.kernel.org/all/20250826091205.3625138-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v11:
-> - move phy/perst/wake to pcie bridge node (Mani)
-> - Link to v10: https://lore.kernel.org/all/20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v10:
-> - Update PHY max_items (Johan)
-> - Link to v9: https://lore.kernel.org/all/20250725104037.4054070-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v9:
-> - Fix DTB error (Vinod)
-> - Link to v8: https://lore.kernel.org/all/20250714081529.3847385-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v8:
-> - rebase sc8280xp-qmp-pcie-phy change to solve conflicts.
-> - Add Fixes tag to phy change (Johan)
-> - Link to v7: https://lore.kernel.org/all/20250625092539.762075-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v7:
-> - rebase qcs8300-ride.dtsi change to solve conflicts.
-> - Link to v6: https://lore.kernel.org/all/20250529035635.4162149-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v6:
-> - move the qcs8300 and sa8775p phy compatibility entry into the list of PHYs that require six clocks
-> - Update QCS8300 and sa8775p phy dt, remove aux clock.
-> - Fixed compile error found by kernel test robot
-> - Link to v5: https://lore.kernel.org/all/20250507031019.4080541-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v5:
-> - Add QCOM PCIe controller version in commit msg (Mani)
-> - Modify platform dts change subject (Dmitry)
-> - Fixed compile error found by kernel test robot
-> - Link to v4: https://lore.kernel.org/linux-phy/20241220055239.2744024-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v4:
-> - Add received tag
-> - Fixed compile error found by kernel test robot
-> - Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
->
-> Changes in v3:
-> - Add received tag(Rob & Dmitry)
-> - Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
-> - remove pcieprot0 node(Konrad & Mani)
-> - Fix format comments(Konrad)
-> - Update base-commit to tag: next-20241213(Bjorn)
-> - Corrected of_device_id.data from 1.9.0 to 1.34.0.
-> - Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v2:
-> - Fix some format comments and match the style in x1e80100(Konrad)
-> - Add global interrupt for PCIe0 and PCIe1(Konrad)
-> - split the soc dtsi and the platform dts into two changes(Konrad)
-> - Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
->
-> Ziyue Zhang (5):
->    dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
->      for qcs8300
->    arm64: dts: qcom: qcs8300: enable pcie0
->    arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
->    arm64: dts: qcom: qcs8300: enable pcie1
->    arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
->
->   .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  17 +-
->   arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  84 +++++
->   arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 310 +++++++++++++++++-
->   3 files changed, 394 insertions(+), 17 deletions(-)
->
->
-> base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
-Hi Maintainers,
+> plese check of_alias_get_id()
+> 
+> note, I haven't actually verified on board, just look through the code
+> 
+>>> we should really be careful to introduce vendor specific property..
+>>
+>> If there were a standard way of doing this I'd love to use it.
 
-It seems the patches get reviewed tag for a long time, can you give this
+Looks like you have told me the standard way of doing this.
 
-series further comment or help me to merge them ?
-Thanks very much.
+Thank you.
 
-BRs
-Ziyue
+					-Alex
+
+>>
+>> And if it isn't necessary, please just explain to me why.  I
+>> have no problem removing it.
+>>
+> on the opposite, please have explicit good reason to introduce vendor
+> speifici property, and if there is generic way, then we shouldn't do it
+> 
+
 
