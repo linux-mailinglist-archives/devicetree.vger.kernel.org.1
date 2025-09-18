@@ -1,156 +1,187 @@
-Return-Path: <devicetree+bounces-218760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49D4B83D2C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:34:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 714B4B83C8E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4B691B2057F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:34:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F1181883117
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086DE1B394F;
-	Thu, 18 Sep 2025 09:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83375301498;
+	Thu, 18 Sep 2025 09:28:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SESQ9tHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7585834BA2B
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B48821CC60
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758188013; cv=none; b=Y9RfqJU7gMapQGKq4FrrCv1NOhosiHIxzRdnBmVx6pivA5k3jITNUUw2BRGYC2HgercLbHele5zqo7e95hcUHkUaPp36HAZ2u9dpamF0L+ipje09qvSbz9N5DxMTkKl7YBFRPCWlTxzNYF/oXHph7iqj2GaT5Mf9cnNgONHxHXE=
+	t=1758187687; cv=none; b=kyCZD4kBVpih68bZiqUZE0hIuOXUmglXgGuZpopHhLtERn+tmkPeTTfWIfeZDbqBB94/ZbL46Js2slBKRZUrb/kpiL4UTbnVeZlMeOomB0vIA/hs29uoqqd/i8Ml84ZHndA8LOwuy8fwyaSYhbDkgjl9OsAu1EmGX4JzdYA3XI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758188013; c=relaxed/simple;
-	bh=F+7UwolL+d5M3u3SJQMdS/JoH4KAhipm+vZbdTiVTtU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hYmgEpKDuBFyXfixh84WN8I83792ej/I/mYcODYi3GjtBUaRduY5yCeE6bwJWri4mZv8snrq7xaZbHUvWiS83K2erwX0u+ecIyNT8FBYqMxN9FWUfUjS9OI9rzhrnweZx0SxKE2bhj4j474wtx9KxtNfGAngKa7asQ7mhnOCPWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-81076e81a23so113393685a.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:33:32 -0700 (PDT)
+	s=arc-20240116; t=1758187687; c=relaxed/simple;
+	bh=l6H4V0fQEokHqrkMVzviMMbf53iH0VnNQQZCKS04FPw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NI9sCq7pAYDf0NexnQ7H73pX0ReVRIxdplswTrjjWiPDVqaVHXs/yJFPlhuA+8XuPKV4d54PonZ0V8hTohBO5/RLCF3hXFb6QHbCy27x5tHYgtvgPgoq2fp78uTzgb3GZ72mSfzCGwna4f+4ITmdYupXbZqqFWh+VnW1MQnIZvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SESQ9tHW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58I3P7GM021414
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:28:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=BHFxrzpGWX6fpMMyJtE9Sd
+	73ze9X/UFyj9mR/CCnpNI=; b=SESQ9tHWfvNidSpU2IDiakLhvL4iDlruqiWkZh
+	BJZ/TsZ/TkG6IaNP52Eh8BWMhFMRjdU2uBggz67pAqk66X4Bz6wYT0z4qUz+knop
+	I3EIjh1EL+iY9jWMJEdhZqw9csRNEP/HE1FzIKe/Z3qT+p4NAJjI/gbvEV1/rm4E
+	OdBV2XnO/RIMoIQDCSfigPcLIPQRvIIJsIsuKyMu6BHCGiqWkYgD8A3b9plfF2D4
+	qf3KQJNFo4TNJlmTyLCRT4phKoaLEhbRvmr5EprDXq/UXpmeKholX3bQyWBwpskP
+	yZHAF5gEGPg2qF+KUUEtgVl9KcgzPfa4hnqwjL5MLcIKIF0A==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5drh9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:28:03 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77243618babso866868b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:28:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758188011; x=1758792811;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1758187682; x=1758792482;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=thwzdmTgqO/aYIbO/EaYexBbO6rJAeT6rezea+eeFXA=;
-        b=kuWjfAgFOhSZIqf4W6aTjF/4zAgEYGrtBoDockVOEsE/UKc3isSH8rdPF1kE2513Cn
-         2Om+Tln/OqMgYJaqwpUt4Ajv9zVTtsRXDwSB+XdH9z+2Ikz3kbJyvTzTC7zmSY3eycpC
-         4/gqsbDwBvHWAGdDptuyNeNixM85cqirWYZ5RyAZavHTTPFiywt1Nddb+2S9rrn8hR+y
-         ECnfl+ZCswzG6r35yJQfUUn/F5XIPkDEa9p6QpbivV/G7VaZ7gMVClDdN+RLS0fPqL3t
-         VTBXV9ww/bz6vwUaeLapehIzZvDWoP2YIXTqnnw3qHPZRXJPLNaEUUSIL1TuOWI7RZJW
-         zVnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTzIS8vr2CIgM07uA02BhfteU7t2FhhiLJ+xEXZ0NnhgRX0hsqRrLUWVV9PDVEleH2p9Y8wb/ishyE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo4nXfRLf9rSyxO8l/WF9KzCAKEgCD+9kA2Odb6Z+ECgiJf+nT
-	rWAeCAGYz0EeWK+FX6sOpjM/CDK92gqmr52h1DMbUqJ/jdnVuT9piQRWeZo2SHRc
-X-Gm-Gg: ASbGnctZag58yNijsTWwEA7XNuEOMSnFZSQgXrrjS/aNMQg1kfB/VWDDjxJs1OqUhWT
-	JF7f+qrqzGOY4at+eZ97NN2kT+QkoYc2WT7aRJMbjs17tG9KEK07QtmpQAVUgtfB0RgKa1tW8EK
-	MIwmc0E0//kW/BluVQLkvGqTpwKBwU3IXFil2itpzpTReWRfiJ9ohPzU3ks7u1Nt67dxLT/lpTg
-	EwWwXR/ED+fqDXNq967mtP1QlpzRerDlpZ/Z/YrU6n1irIeYS/Oelo38lUJPg/VMawJLaE/sc8o
-	cP/SCVVEGcMvThFS1zPBQtNJh1zapjqbQBOEO2O6A6UHvz2SviPhoL2ba3xKM3R4Qr+k+pjFMeY
-	e2Sf+l9nAvFm7p4BAKNxNo17bwgSR9+C+KVeEC0/NihJmkldEPXbJx6++icWo2ZQ3RNHqTP1OOW
-	jZpy2kNnVoRLdXwA==
-X-Google-Smtp-Source: AGHT+IGWL57sKAiYhJSr7yEE4OC3SLaaAPxuszMCSQvRpnMbTXFZyDRNXhKJYDP+OzwNMgAPb/J7Ow==
-X-Received: by 2002:a05:620a:a812:b0:838:d547:a908 with SMTP id af79cd13be357-838d556f202mr64698685a.85.1758188011185;
-        Thu, 18 Sep 2025 02:33:31 -0700 (PDT)
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com. [209.85.219.50])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8363203a546sm131228085a.52.2025.09.18.02.33.30
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Sep 2025 02:33:31 -0700 (PDT)
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-7639af4c4acso9302146d6.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:33:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUifMhG3OBxFyOelL3QV0i+B2pYg+1ER6v+6EM9JkxLs1cOKN02grwDG+dpG+yApv1VO+i+5Wrp+ifQ@vger.kernel.org
-X-Received: by 2002:a05:6102:80a6:b0:51e:92cc:6e6a with SMTP id
- ada2fe7eead31-56d6d57bf75mr1452834137.33.1758187611708; Thu, 18 Sep 2025
- 02:26:51 -0700 (PDT)
+        bh=BHFxrzpGWX6fpMMyJtE9Sd73ze9X/UFyj9mR/CCnpNI=;
+        b=fY6Nxl1kKgtCXttFUxrUyK21Ss1YJ7pRXVJRPXeJoSwndH4hAFZvSz46b/iWKXvRXk
+         0PEVof04DGPd+oQ77UhO3VNPgX8mOqz1V0iMWCUiaHMPDj8zfPoLTBFEqQK3YHk+6Bii
+         qZ7nZWkFHMxZzcwa/urPtraMsdB27NyuWVmzChLINMFQUYw2nIOCrCvcCvlWS9nXvl5K
+         OyjLEVHd8V8ThqU+stB1IStGNs/mauf4fYAi9uho7SufxCMUxbJRs5zgEpqIXgINr+fk
+         JjOT1RMM5EQL6lLSuIGYpyuGtqiRehRa1HsUNkBu1+mPw38TVG7JX0fZxyK0g9rc9nbd
+         GC+A==
+X-Forwarded-Encrypted: i=1; AJvYcCUJG/vEhGIze/bLTtuLVRQNr1wSkMObTHMjLhQdNxlp9dsGMWsLu9sxai9WpVeU84c/uggC2pxmpEvO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwFyJXkyzAfxdQI6Ry+iiZMF85SzGjAj/Zfg4zzExqdbaHuD8P
+	YvrcIHT5NSgi1PFszA0irLJkkTCMmWMn+qjnUX4gJLsoYAkodJKjOVm2gtp3PERDjo3Luj16cp+
+	Tuj3PXz73hjJwEdcaDoB+ooGbuqp6aEQq+PHb6C4B66IvHXCcdxc7nH1VeWLIArfe
+X-Gm-Gg: ASbGncvDQ+geSUgq4o/+Hdr0TeaCzm0rLITPyQoWwLgZLN4D4gvLKDFH0ccYmr9ZRr/
+	2YC0xXH7Sbx+bnK7y2OJQA++e23XozMgGvGyz9Ou2ZpMpzawcA0ZKfcASiATC0JXNJ1AT0rOZZ/
+	zsk6XR/KoUKvNxO8on906JqejzMrdIoqbjz44vPiN2VWqg/mEKX941XAVXeaIVO+gLYj7i5Sh2N
+	OucsOWrayMBp4lylN54LOPkyN5Fi9zsh0u2720So4j3AR+jc2CWtcxLeCwqRgunD3ZwYSWvF/Hx
+	U/ieuwDN09HuDy7RTw2MaYyw9PViQpsIXF+OOPR0GZOb0V1pH3UauhochxCOW3F6QdPZx7n0XAc
+	2RLkEbryhj3emgBBKHLU/cOYuZA==
+X-Received: by 2002:a05:6a00:39a0:b0:772:a5c:6eea with SMTP id d2e1a72fcca58-77bf936aed3mr7399520b3a.17.1758187681814;
+        Thu, 18 Sep 2025 02:28:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGLbURNKAK354nvvmQrQ7xrw5OdrE51GKcGvT0vEwNXT9BwkSQR+mZlitAF9htpDXo2P52P9Q==
+X-Received: by 2002:a05:6a00:39a0:b0:772:a5c:6eea with SMTP id d2e1a72fcca58-77bf936aed3mr7399471b3a.17.1758187681194;
+        Thu, 18 Sep 2025 02:28:01 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77cfbb79b81sm1819205b3a.10.2025.09.18.02.27.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Sep 2025 02:28:00 -0700 (PDT)
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: [PATCH v3 0/4] rpmh-regulators: Update rpmh-regulator driver and
+ dt-bindings for Glymur
+Date: Thu, 18 Sep 2025 14:57:00 +0530
+Message-Id: <20250918-glymur-rpmh-regulator-driver-v3-0-184c09678be3@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87ms6snut0.wl-kuninori.morimoto.gx@renesas.com> <87jz1wnunm.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87jz1wnunm.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 18 Sep 2025 11:26:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVfhMKrdnQCjf_Z90EnH_gb-RpdxPiVUjEe3C5ZyuTfUw@mail.gmail.com>
-X-Gm-Features: AS18NWDTdMprA4ImYjVf-zjtYmKdsmDO9RIvez5aKcVZCW3WJ100X4TbNjepaRg
-Message-ID: <CAMuHMdVfhMKrdnQCjf_Z90EnH_gb-RpdxPiVUjEe3C5ZyuTfUw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/7] dt-bindings: serial: sh-sci: don't required "power-domain"
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: "Liang, Kan" <kan.liang@linux.intel.com>, Adrian Hunter <adrian.hunter@intel.com>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Douglas Anderson <dianders@chromium.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Ian Rogers <irogers@google.com>, 
-	Ingo Molnar <mingo@redhat.com>, James Clark <james.clark@linaro.org>, Jiri Olsa <jolsa@kernel.org>, 
-	John Garry <john.g.garry@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Leo Yan <leo.yan@linux.dev>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Mike Leach <mike.leach@linaro.org>, 
-	Namhyung Kim <namhyung@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Peter Zijlstra <peterz@infradead.org>, Rob Herring <robh@kernel.org>, 
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>, Will Deacon <will@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGTQy2gC/5XNwQ6DIAyA4VdZOA8DomTstPdYdgCsSiLiyiQzx
+ ncfet5huzT5m+brSiKgg0iup5UgJBddGHOI84nYXo8dUNfkJiUra6a4pN2w+BkpTr6nCN086Fd
+ A2qBLgPTCrKorYZtGAsnEhNC698HfH7l7F/P1cnxLfN/+CCdOGTVGGcZACS35LcRYPGc92OB9k
+ QfZ/VT+Y5bZtLJWom2VqQx8Mbdt+wCosCG6IwEAAA==
+X-Change-ID: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758187677; l=2051;
+ i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
+ bh=l6H4V0fQEokHqrkMVzviMMbf53iH0VnNQQZCKS04FPw=;
+ b=xbpUVtZC7cZLMFRi5jtkV49vKMoccBhfy1sonC0NksGzZ5U95xbLp2LSPhtRNFPCYdQz4CGll
+ hYQ2f0UyCuYDHA/fp7XozC8EhPNSeci0e+X6UYtP6pWNzAClNEecQx7
+X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
+ pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
+X-Proofpoint-GUID: tqUanzDT3dP0u988NQMtry-DhcWQ5Oc7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX16gG/Y8MPrwb
+ gxcAvZii0YYijvd0ZVFmH+5PSp/Abry+iNL8xmKEjf47M3GrnZesZp9wvmvDWtWC1w5S34VcjGQ
+ uD8wML8CuNb3jIcazrM1Z4t+zMVwfsbk5++Q1MvGkyAME73vqfJCyhYr5x5H/4LADNfYaLYtPQ6
+ 5N+MGF1iElyrKAyghOe5o0fvmQMM3xaAdq0i+1JAdV4NA2mhzTrYCvNcPkx8WjFS/NcNo6PAPur
+ +H3R9AfkAebLZFjUMX1h8i5dmUKFJBJPXkoJMwWx6YN1ES2Q+3zKA/RG5MfdetNoeBbNmQjJeOH
+ KfDOJfdI0iKDd8gcFVbUf/sHuu941FLEq3i5a3/ZQlqSYgQnaZnqy+ryo7SZCB9LEmPtNKBc/Rk
+ +KD/aXiN
+X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cbd0a3 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8
+ a=EUspDBNiAAAA:8 a=BXGrXTCzJtV5nmjeyUEA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: tqUanzDT3dP0u988NQMtry-DhcWQ5Oc7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-18_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509160202
 
-Hi Morimoto-san,
+This series contains patches to update rpmh-regulator driver and
+dt-bindings for supporting the PMIC voltage regulators present on the
+boards with Qualcomm's next gen compute SoC - Glymur.
 
-On Thu, 18 Sept 2025 at 08:26, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> {H}SCIF is in the always-on power area. "power-domain" property is not
-> mandatory. Remove it.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Device tree changes aren't part of this series and will be posted
+separately after the official announcement of the Glymur SoC.
 
-Thanks for your patch!
+Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+---
+Changes in v3:
+- Added more details in pmic-id dt binding's commit message to clearly
+  explain about the limitation in existing CMD-DB names and why the
+  new format has been added and how this changes the pmic-id
+  interpretation in code
+- Fixed the issue reported-by the `kernel test robot <lkp@intel.com>`
+  in patch [3/4] code comments to close:
+  https://lore.kernel.org/oe-kbuild-all/202509171822.oRjF64pS-lkp@intel.com/
+- Link to v2: https://lore.kernel.org/r/20250916-glymur-rpmh-regulator-driver-v2-0-c6593ff9b4be@oss.qualcomm.com
 
-> I'm not sure this is acceptable patch. This is optional patch.
+Changes in v2:
+- Updated pmic-id dt binding's change commit message to elaborate `why` the
+  dt-binding change is needed
+- Updated commit message for driver change related to new resource name patch
+  to clarify that `resource name` refers to `cmd-db resource names`.
+- Link to v1: https://lore.kernel.org/r/20250916-glymur-rpmh-regulator-driver-v1-0-bb9b00e93a61@oss.qualcomm.com
 
-(H)SCIF is indeed part of the always-on power area.  However, like
-for many other modules, its power management is handled similarly
-through a clock/module controller.  Hence it falls under the PM Domain
-abstraction, and the power-domains property is justified.
+---
+Kamal Wadhwa (4):
+      dt-bindings: rpmh-regulator : Add compatibles for PMH01XX & PMCX0102
+      dt-bindings: rpmh-regulator: Update pmic-id DT prop info for new CMD-DB
+      regulator: rpmh-regulator: Add support for new resource name format
+      regulator: rpmh-regulator: Add RPMH regulator support for Glymur
 
-What this power-domains property will point to on R-ar X5H is a
-different question, as there are no DT bindings and no driver for the
-clock/module controller yet...
+ .../bindings/regulator/qcom,rpmh-regulator.yaml    |   39 +-
+ drivers/regulator/qcom-rpmh-regulator.c            | 1323 ++++++++++++--------
+ 2 files changed, 812 insertions(+), 550 deletions(-)
+---
+base-commit: c3067c2c38316c3ef013636c93daa285ee6aaa2e
+change-id: 20250916-glymur-rpmh-regulator-driver-80c9543cdd6e
 
-> --- a/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,hscif.yaml
-> @@ -116,7 +116,6 @@ required:
->    - interrupts
->    - clocks
->    - clock-names
-> -  - power-domains
->
->  if:
->    properties:
-
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -168,7 +168,6 @@ required:
->    - interrupts
->    - clocks
->    - clock-names
-> -  - power-domains
->
->  allOf:
->    - $ref: serial.yaml#
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
