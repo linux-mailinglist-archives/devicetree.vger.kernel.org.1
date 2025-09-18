@@ -1,220 +1,143 @@
-Return-Path: <devicetree+bounces-218719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4CC3B836FD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:06:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D505FB8379F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:11:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D5381B21BA0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:07:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 78EF44E3072
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0CF2F069B;
-	Thu, 18 Sep 2025 08:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F20F2EFD8C;
+	Thu, 18 Sep 2025 08:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QpmsbjQZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TNG14Fln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E181E32D6
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB8C2ED853
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758182796; cv=none; b=B4XPGTEkv1yyezh9BrzKU9J0I4Pnm7iPIsfHXxcR/qL4H8LWNn58TBtAycauNuuncDgxZTq9cRJjV+03JxGLF4Y6eUIZDWW+NILw6SRnoBy7ciYM6yu3oH6hJx7DiEyIIsgg/ckgJj7YhTjPCrRZuBrk2S9dLIMUsBhG4p6nxKg=
+	t=1758182967; cv=none; b=qfGFF/mzA9od92eANjh/kb8fjNTsgUcwxVBsHQXs6Ypk8JyqPGdJTsBdENNXw/QQ+lIMHlqo8czHSqdXWBFlPEPu2Imwmz7jNvpYgQBxGXuTzyBsIXfvjgy5a3j5uLM+pO0oIQX98D0yFJ4hoxrUM9/SXCNozxqfhRdHGtwmJ3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758182796; c=relaxed/simple;
-	bh=AaP8jAwu3COBFa+1gSHxgZ9i6K0l+bR8enetNlwbgvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N278TEXytRyKL4r8N5mNSTyf5qFt3vB7cgG/zoscw1ojT38+qglyjTTBTp0/D0XX8Hk4eEGZOt0u49dOeE0dilfkALZ/ZHZOrynwHlyKcldFn7cjCM3HVkkbCw02bry3rGFqkHwkg90sdUFF46Ovk9VkVej2lBtOuP8EOMP7mu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QpmsbjQZ; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7818D1A0EAF;
-	Thu, 18 Sep 2025 08:06:31 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4CD186062C;
-	Thu, 18 Sep 2025 08:06:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 35358102F1CAC;
-	Thu, 18 Sep 2025 10:06:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758182790; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=D5MVBHmkN7cjqswXDZGFFyBJdqaJ0IPaIn8c9D4XbvE=;
-	b=QpmsbjQZk7EKG2VQ7y1F2SgzqGNWnVmMWJtehA4cjFRiE5+EupoUhVQukYsxRHahFjHFQh
-	sFeblOgUEugoS3R3nojXegLhyTgCv55IkwGPmZeBlDQLgaqosXyM2AN4+M4AdOsnyCrC6l
-	18ptj9zXWS3nDNhpxHQMrSS8XxZfKt9o/Lr+kHI4W3HRcX+U7bbGRkAl0lhmVf10kapLKk
-	WUZMhA5UUkakzZcf3/y0DLXxfEXyrTh5Q1ac2svEe+ZX+/yqe6J+PKB26ZRVtDficQMt4i
-	EOh4gpDwNn5JVpN0jcRVXbRvNeXmTv3K6KXDtHrzVYaXan04r/5qLYmI3rbbYQ==
-Date: Thu, 18 Sep 2025 10:06:19 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>, Krzysztof Kozlowski
- <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Andrew Davis
- <afd@ti.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Ayush Singh <ayush@beagleboard.org>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org, Jason Kridner
- <jkridner@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <20250918100619.08501259@bootlin.com>
-In-Reply-To: <20250918094409.0d5f92ec@bootlin.com>
-References: <aLkiNdGIXsogC6Rr@zatzit>
-	<337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
-	<aL5dNtzwiinq_geg@zatzit>
-	<20250908145155.4f130aec@bootlin.com>
-	<aL-2fmYsbexEtpNp@zatzit>
-	<20250909114126.219c57b8@bootlin.com>
-	<aMD_qYx4ZEASD9A1@zatzit>
-	<20250911104828.48ef2c0e@bootlin.com>
-	<aMebXe-yJy34kST8@zatzit>
-	<20250916084631.77127e29@bootlin.com>
-	<aMt5kEI_WRDOf-Hw@zatzit>
-	<20250918094409.0d5f92ec@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1758182967; c=relaxed/simple;
+	bh=bNRSsVjHraTSifvRPC86WNSgH9qdAgtHsEY2HL8mCSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rp0f3Sv/Z+uVQZxsY7EaH0tNcON/Lp4p2MNcHaIutHiNQPsJDIcEHOAH8WL18xQklkGzA7JJTf9+RdyQYw7Y/FBKJ5rbrKpvZe19+SIpjcnWQRBIn3l588yqafd2jpZzlvx+Sq5Fkf5ctcvAHA8haGdOR8lVZnNnUPZnnS6VqZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TNG14Fln; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58I3ZRwf018260
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:09:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aJA7VAffYY4Y1JcP7y8dr3RF6SvDCYE2JBAiVTScq8s=; b=TNG14FlneGPjGZIk
+	rU1SOrJfefZxLUAGSYR4v2EUICihsjWgtgRq2182wSyl47USJ6hjveBTdaX6pnn+
+	bPGaBl25BHoc99wkkkqf3ZjvCumoDMf5JuzTg/AsRJvQ2oj/zNGxLkMR2FpqVzD1
+	7SYgiNXfOcoeefrEFT6Sr8pwvbkOkD+0DouaEPckVl+yUqZPKHnroEAU4s5rMowp
+	12EKJska/lmDEm0uCvEoiRIBJHY1gX/ebd1tth1n49PWFywSQI+DcLSNDpj65w7P
+	k0TqzdyOAXGW8pdE9OFmkp9+bAgvSZY0v+TVXqBM3kT8cW9vcdDohRxgYaMudxgC
+	X0tvKA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxwdfk4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:09:25 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70dca587837so1977506d6.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 01:09:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758182964; x=1758787764;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aJA7VAffYY4Y1JcP7y8dr3RF6SvDCYE2JBAiVTScq8s=;
+        b=KF6qrAl5i1NjgAnX72bUPhDWYYmhQklNpyPbjWxsRkwlZaNIVL2Qhum5+MO7JZdHeU
+         6Xgqt95Tng0wcOGazjpNDZM3uZpdjHmqhX8iKfHoXpRkze8J0brHQ3TefblwySYoMrMh
+         24Y88xPqfP4/rgP/6oYnX2X6w43rKTb1d9gMOCrk0qZHwanHSmtBY9VbKQvGMHHAL/ak
+         JgxchHLUdxhNWSOdLFKT80dspi08cwHTwB2//8mCUtzkbaQvChjEAtr2Zken5K0rpXs/
+         2d5+tL/OhCQSKY8eMhRAD9O0XLL8sD4g8hJORZkwLBGARvveywTxbeykw91RydOr7JSZ
+         HGsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXuhIB/qu4eVoKnd1LSMwZ5nAQn2xc8tGELI9LVUY/7ULSQPt5s4ywWxLHBvY8f9Sa/tY2AprnpDIJx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEdDNeTgljS/uy68Q+YKn6aAvhkewiOPVrmgosHqH8hwV0/ZvP
+	WSxVi2uifp/9JDrF5IPMdKgEbICk0bfLwmQVvLSqvfx6RAfdrNdrwSAzAnuZYUaIYebeRWRLJ1T
+	W2Oi4cZHNEKCoUK4sj4MR/nUSmkxILIDUqS1mz2cq45fcEDFnRu3T5wbXjg8mJY5R
+X-Gm-Gg: ASbGncsD4ighELcVuZJlsj3TSmeump9gYke3Kk7bXs3sLAWt64dlbhDYv1S1vwEVw2j
+	h1jsxWUQmjkhJOOUoRfM2qwzWlBFvUjHkqDgA1Im3cqTDCwqZWMCbxT3Ntoty+oGPMrMWeIw0J5
+	jEYEMYXP2tWjRPU3EZcDjFS/E3NJLMIF9BxfhemGytgCwRh8Guf/U981vYwfE5VWWAGPQAjXgco
+	pg0QoOqbYzKluNu+z36uty79vIvDdxY1Orqto3+b/ZywWty2R5Jx0B0URH0oP4+yerwYj3SHcEz
+	gaHwOn4K5sgHbjhLci6CPtF0ErLTpY+jA7snFl2TCtMzDGPwnAkY+TSqgoEXha+15lrGEBTzqsU
+	iVgDnxaiHThL4QM+/a9CA4w==
+X-Received: by 2002:a05:620a:4686:b0:82b:3e9d:cb4a with SMTP id af79cd13be357-83108b6a5e2mr366846785a.6.1758182963572;
+        Thu, 18 Sep 2025 01:09:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH4IK/Hv/LU0FDqkoYUbi5kVpSfI5NaF9URUEdirRjUipWlQyY+BY7AigUdhaAwEFPtoF+gSQ==
+X-Received: by 2002:a05:620a:4686:b0:82b:3e9d:cb4a with SMTP id af79cd13be357-83108b6a5e2mr366844685a.6.1758182962991;
+        Thu, 18 Sep 2025 01:09:22 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fc73ba1e8sm140635166b.31.2025.09.18.01.09.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Sep 2025 01:09:22 -0700 (PDT)
+Message-ID: <c94f8c86-625a-4c88-be9b-b29ddb28aec1@oss.qualcomm.com>
+Date: Thu, 18 Sep 2025 10:09:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qrb2210-rb1: Add PM8008 node
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk+dt@kernel.org
+References: <20250917163534.832523-1-loic.poulain@oss.qualcomm.com>
+ <a3fkaue7vbh36gtvofkuucop23spupytjwtsuh4yq6k2rznf4o@fyfw6mi6lqol>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a3fkaue7vbh36gtvofkuucop23spupytjwtsuh4yq6k2rznf4o@fyfw6mi6lqol>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=HbIUTjE8 c=1 sm=1 tr=0 ts=68cbbe35 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=yc5wwUi0_VSKho11VZ4A:9
+ a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX8dn0qntf4ZRf
+ kdUMngoZjGL6lKIRHB0oK2rceABwbXcnZUFoQlyrnM3lAAXS7Q1NPoBmSeURlxYm2ajOe+YQLK3
+ kkfwL53n3a1bL3IPpVQenAORd4cNa+1wh0tFfHdGHFmS2i3kvfzGwEQ496FhovD7CVIKO1N2/dJ
+ +r4K+6H23BXyrADIyU0awEu2g7FxhtVxDrDm7CjIOyM+o8jps6KODZxHy0hH4zvQVJ1eTyM5Xl0
+ 7zsQXNaKZZ8SoID2WONQizd3As93vaieGk1Dl0Y1AhMB8goDOC5V0R/Wgu+7WyNFBG04sHWlnXV
+ 7snUYQ8cdj6Z0/DzAmpfostDfIfhboIduz0K0xf8TfYXzMrRTAgou5OdZNWj5Fqa446umRHiWmX
+ 94/swbkS
+X-Proofpoint-GUID: N0K64nkJFrzD7JBtxrvShXuYH9GfYYEi
+X-Proofpoint-ORIG-GUID: N0K64nkJFrzD7JBtxrvShXuYH9GfYYEi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-18_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
 
-On Thu, 18 Sep 2025 09:44:09 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
+On 9/18/25 2:42 AM, Dmitry Baryshkov wrote:
+> On Wed, Sep 17, 2025 at 06:35:33PM +0200, Loic Poulain wrote:
+>> The PM8008 device is a dedicated camera PMIC integrating all the necessary
+>> camera power management features.
+> 
+> 
+> According to qcom_socinfo it's not present on my RB1 board. Are you sure
+> that it's a part of the main board and not of the mezzanine?
 
-> Hi David,
-> 
-> On Thu, 18 Sep 2025 13:16:32 +1000
-> David Gibson <david@gibson.dropbear.id.au> wrote:
-> 
-> ...
-> 
-> > > > Thoughts above suggest a different direction, but here's what I was
-> > > > thinking before:
-> > > > 
-> > > > base board:
-> > > > 
-> > > > 	connector {
-> > > > 		/export/ "i2c" &i2c0;
-> > > > 	};
-> > > > 
-> > > > addon:
-> > > > 	eeprom@10 {
-> > > > 		compatible = "foo,eeprom";
-> > > > 		bus-reg = <&i2c 0x10>;
-> > > > 	}
-> > > > 
-> > > > Or, if the addon had multiple i2c devices, maybe something like:
-> > > > 
-> > > > 	board-i2c {
-> > > > 		compatible = "i2c-simple-bridge";
-> > > > 		bus-ranges = <&i2c 0 0x3ff>; /* Whole addr space */
-> > > > 		eeprom@10 {
-> > > > 			compatible = "foo,eeprom";
-> > > > 			reg = <0x10>;
-> > > > 		}
-> > > > 		widget@20 {
-> > > > 			compatible = "vendor,widget";
-> > > > 			reg = <0x20>;
-> > > > 		}
-> > > > 	}
-> > > > 
-> > > > Writing that, I realise I2C introduces some complications for this.
-> > > > Because it has #size-cells = <0>, ranges doesn't really work (without
-> > > > listing every single address to be translated).  Likewise, because we
-> > > > always need the parent bus phandle, we can't use the trick of an empty
-> > > > 'ranges' to mean an identity mapping.
-> > > > 
-> > > > We could invent encodings to address those, but given the addon with
-> > > > multiple connectors case provides another incentive for a single
-> > > > connector to allow adding nodes in multiple (but strictly enumerated)
-> > > > places in the base device tree provides a better approach.    
-> > > 
-> > > and the "place in base device tree" is the goal of the extension bus.
-> > > 
-> > > The strict enumeration of nodes enumerated is done by two means:
-> > >  - extension busses at connector level
-> > >    Those extensions are described as connector sub-nodes.
-> > >    The addon DT can only add nodes in those sub-nodes to describe devices
-> > >    connected to the relared extension bus.
-> > >  - export symbols
-> > >    An addon DT can only use symbols exported to reference symbols outside
-> > >    the addon DT itself.
-> > > 
-> > > Can I assume that bus extensions we proposed (i2c-bus-extension and
-> > > spi-bus-extension) could be a correct solution ?    
-> > 
-> > Maybe?  I prefer the idea of a universal mechanism, not one that's
-> > defined per-bus-type.
-> > 
-> > 
-> > Also, IIUC the way bus extension operates is a bit different - nodes
-> > would be "physically" added under the bus extension node, but treated
-> > logically as if they go under the main bus.  What I'm proposing here
-> > is something at the actualy overlay application layer that allows
-> > nodes to be added to different parts of the base device tree - so you
-> > could add your i2c device under the main i2c bus.  
-> 
-> I think we should avoid this kind of node dispatching here and there in
-> the base DT.
-> 
-> We work on decoupling busses wired to a connector and dispatching nodes
-> looks like this decoupling is ignored.
-> 
-> IMHO, keeping devices available on an addon board as nodes under the
-> connector is a real hardware representation.
-> 
-> Also, at runtime, once an addon board DT is applied, when you look at
-> your current DT either using /proc/device-tree or some links such as
-> /sys/bus/devices/.../of_node, the connector and extension bus appear
-> and clearly identify devices behind the connector.
-> 
-> > 
-> > That approach does complicate removal, but its not as bad as overlays
-> > at the moment, because a) it could be limited to adding new nodes, not
-> > modifying existing ones and b) the connector would specify exactly the
-> > places that additions are allowed.
-> >   
-> 
-> I think bus extensions comply with a) and b).
-> 
-> Yes, bus extensions need to be handled per-bus types but they have the
-> advantage of keeping the hardware reality well described and visible at
-> runtime in term of "wiring" topology.
-> 
-> Whatever the solution, this will already be handled per-bus types.
-> Only busses that support runtime DT node addition/removal (OF_RECONFIG_*
-> notifications in the kernel implementation) will support adding or
-> removing nodes.
-> 
-> Your approach is more complex, dispatch node here and there and actually
-> is also a per-bus types solution.
-> 
-> I think, in order to choose between both solutions, the main question is:
-> Do we want to dispatch nodes provided by an addon DT everywhere in the base
-> DT ?
-> 
-> IMHO, the answer is no.
-> 
-> Rob, others, any opinion ?
-> 
+I don't think socinfo is going to be aware of I2C PMICs
 
-The base DT describes the base board hardware.
+(except maybe cases where they're the PMIC_A/B.. and critical
+for operation, like on certain IPQ SKUs)
 
-With this in mind, adding a node at some location other than behind a
-connector node means that you add a new device on this board and not on
-something behind a connector. In other words this describes a physical
-modification of the base board itself.
-
-Best regards,
-Hervé
-
+Konrad
 
