@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-218971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B35AB85F72
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:22:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F9FB86026
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:26:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E4791887EAE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:20:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 659577E0CAA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:24:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC5430FC35;
-	Thu, 18 Sep 2025 16:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C073161BE;
+	Thu, 18 Sep 2025 16:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KrYRs1+0"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="UU28H28T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C25245006;
-	Thu, 18 Sep 2025 16:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53873161A5;
+	Thu, 18 Sep 2025 16:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758212413; cv=none; b=pjastH2Qj19Wt46/FXNpL0HOegqFt4ZK0cXt4I18u5yvCxTuIyM8Aq0enUlo5dBUaez3ZOt2P6PkYxeHCIDZA1yemsCqa8L6MFTsgVY28UH7Ir6hVARZU++xKvxDAtJ6Po+utDZdkETsoYf0ly9OOOlkzp6Qm+2Y0jaVNxImgEc=
+	t=1758212540; cv=none; b=jkinRYeciVDqCrCRcnrkdkSQgLBNSbSETCGHWFyKXDVE5H2+K025pLCUm+x5qjI+N7Ng7Z01tQehGc5yRmR8ygRNIW/tA2odFrMz4inGTZ+ZVkZpKGa3KmBqq3G7e3lxBQy+k68R66g5y+5eujgCqrQ9Jn1dc4ITuFakRfAi6YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758212413; c=relaxed/simple;
-	bh=ij7YRpjwTvulY3aWdGjnbYtUTkWGQpudRGCGsT9FAsA=;
+	s=arc-20240116; t=1758212540; c=relaxed/simple;
+	bh=FtsfJN4xPfRjRMw1YqW5hwk2ajn8XRMpiI9Uwq+ok/A=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PjQDR3mezmeJrnGyQWh1mYKxpj9ytYn+4FEKDP3KzKBtEpdX4/K6VsL31ylGJPkioG1NR79yYNlbLEoWvEdrtIT8mX9KlqEWGlVGpsbt4JrQPKu/3z+Dh4H6Fb0w0MJAEMvT4jJpXJFyI5GZ/5kVD1RB08y0DG/lW09s8A7ETfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KrYRs1+0; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=JR/WMhUch9555H4uenDpjIrmN5fmggRETEoXErBRPYvHAupfgHl/+zDBPgoBnOeuiOM8F7qBvPK9t51rZl2wk/Z3BM2+iPKzdkrBhoHr7DK9BKPPD7p6Ff5w8wGfBK/X5xzkNMKSK0fna4CdH7FvgGEmZXmT2UZC14p6bW347kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=UU28H28T; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:Cc;
-	bh=zMNCQB3IZJa1lenTGE4yLUo0+d2lJWLrI+MvU6M7hlo=; b=KrYRs1+0IXwH9rggfZxB6I0V6F
-	VAf+xYmNBz8d+HEdykNno5v245fcT0C+kM+zRG5hz/ikTomnlz+QfmjC/QS3kh82Ns/Cm8Dcc2XkG
-	BcdW/C0yUTbJd09PDkUBnNs94Uk59AofnJfc8m6KlJqO9byyHdqsv/xqN3iKGOmeHKHnaJ/AO0c00
-	HsOOsKYhs+HoG9QPh3WM/5xrKTChgnc6oAcXm0Z7ntp/ekW0yj6Wrmw3afS2y/uO6n7CYjtE4meUG
-	sfIAZEunYHPCiw3/TFbQZcmoibdlXCvn9ZUpaiO40k8b6JPPzt1EHFgJHwoKIKyP/4WbFoItXFUpe
-	Qyi5HrRQ==;
+	bh=6tkeGma96gdssMGmQ/bwCDw+4IJuG2DJOLS8GBEx04Y=; b=UU28H28T+IdwxcIHhq6+rQWoDs
+	IXX+mglDASqKZjCoFLpOY2a/8JmSWvc1dslZiwKZUDPkXpE4p4J5bZpgJNNe2SxAak00fpBKzgq6r
+	ym5g09YcoUdpoB9aDbFHKILO3eTm62DeZWAiKyh2EJqGoLoMM+rabCh1d/4GcyVgVGATw3PsGgam4
+	bXwy4vLPJ3LmnkmDiEQYbiubibtaKvyfJ31thciTeNr5wnYCYltUXNwMl6X+vh/yMKf34hSolXW8F
+	yPY+pCGtFXzEa8B7aOUG35Ntfw1hh8l1Ny4WStmmxg++V0chMIYn2y1VSUoVAUwNxk5QfDogLjK2W
+	wXIBePTQ==;
 Received: from i53875b0a.versanet.de ([83.135.91.10] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1uzHMd-0001yb-F5; Thu, 18 Sep 2025 18:20:07 +0200
+	id 1uzHOf-0001zZ-MR; Thu, 18 Sep 2025 18:22:13 +0200
 From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Ed Wildgoose <lists@wildgooses.com>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
  Ed Wildgoose <lists@wildgooses.com>
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: fix dma and pinctrl defs v2
-Date: Thu, 18 Sep 2025 18:20:06 +0200
-Message-ID: <2424735.BjyWNHgNrj@diego>
-In-Reply-To: <20250918093246.15623-1-lists@wildgooses.com>
+Subject:
+ Re: [PATCH 2/2] rockchip: dts: Enable UART DMA by adding default dma-names
+ property
+Date: Thu, 18 Sep 2025 18:22:12 +0200
+Message-ID: <3477683.usfYGdeWWP@diego>
+In-Reply-To: <20250918093246.15623-3-lists@wildgooses.com>
 References:
  <20250917114932.25994-1-lists@wildgooses.com>
  <20250918093246.15623-1-lists@wildgooses.com>
+ <20250918093246.15623-3-lists@wildgooses.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,41 +70,70 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
 
-Hi Ed,
+Hi,
 
-Am Donnerstag, 18. September 2025, 11:32:44 Mitteleurop=C3=A4ische Sommerze=
+Am Donnerstag, 18. September 2025, 11:32:46 Mitteleurop=C3=A4ische Sommerze=
 it schrieb Ed Wildgoose:
-> Based on feedback, I reworked these patches. I've re-presented both as
-> I realise that one had invalid formatting (spaces vs tabs) and I've
-> moved the dma-names definition into the same board level dtsi. At this
-> point it seems reasonable to also squash the two patches, but feedback
-> appreciated?
+> Kernel appears to need a dma-names set for DMA to actually enable. Set a
+> default dma-names property for all UARTs defined in the board
+> definition: rk3566-radxa-zero-3.dtsi
 >=20
-> The default pinctrl definitions for the Radxa Zero 3W don't match the
-> datasheet. Possibly few people enable extra UARTs and hence it wasn't
-> noticed? I needed all 5 UARTs for a project and the first patch corrects
-> the pinctrl defs. Without this patch, enabling the extra UARTs causes
-> issues such as the MMC devices disappearing, due to collisions.
->=20
-> Second patch adds a dma-names property, which appears to be a
-> pre-requisite for enabling DMA on the UARTs. I've applied this to the
-> board level dts as feedback suggested there could be unintended problems
-> if enabled across the complete rockchip dtsi.
->=20
-> It's tested on my Zero 3W board and appears to function correctly and
-> DMA is reported as enabled.
+> This is tested on a Radxa Zero 3W (which has 5x UARTs) and removes the
+> warnings and enables DMA on this platform
 
-housekeeping requests:
-=2D please don't attach new versions to an old thread, but instead
-  start a new thread
-=2D this is supposed to be v2, so patches should be named
-"[PATCH v2 0/2] ..." etc.
+the kernel does not _need_ the dmas and the uart will work just fine
+without.
 
-At least the cover-letter should contain a changelog what changed
-between versions.
+And as was pointed out in the previous version, the uarts have possible
+stability issues, when connected to specific peripherals
 
+So I'd prefer to not enable uart dmas "just for fun".
 
 Heiko
+
+
+> Signed-off-by: Ed Wildgoose <lists@wildgooses.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch=
+/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> index e644bfc9c..fc26a4a52 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> @@ -488,21 +488,29 @@ &tsadc {
+>  	status =3D "okay";
+>  };
+> =20
+> +&uart1 {
+> +	dma-names =3D "tx", "rx";
+> +};
+> +
+>  &uart2 {
+> +	dma-names =3D "tx", "rx";
+>  	status =3D "okay";
+>  };
+> =20
+>  &uart4{
+> +	dma-names =3D "tx", "rx";
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&uart4m1_xfer>;
+>  };
+> =20
+>  &uart5 {
+> +	dma-names =3D "tx", "rx";
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&uart5m1_xfer>;
+>  };
+> =20
+>  &uart9 {
+> +	dma-names =3D "tx", "rx";
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&uart9m1_xfer>;
+>  };
+>=20
+
 
 
 
