@@ -1,239 +1,254 @@
-Return-Path: <devicetree+bounces-219069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4724DB873CC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:32:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1080AB873D5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:33:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02965563079
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:32:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF16F3B2ECC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA082C326F;
-	Thu, 18 Sep 2025 22:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478202D7DD3;
+	Thu, 18 Sep 2025 22:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="G3fT7X0q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NryvmGPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8229C8BEE;
-	Thu, 18 Sep 2025 22:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758234760; cv=pass; b=DDn/n87uQYWWGZHFrRhJebjV5rpDM8uj00Y3aRgTL+Df6ApNGcEN05KqaPEPqycFl1ZZAKAGuem62pBC5u7hTggnJ3j9+9XUNPEZRuRzxb4Kh8XBeXERdq4t0hhNIof8XDM92AyICQObJVTdmyt+ilfIjkkX14RyahwnfP6y2C0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758234760; c=relaxed/simple;
-	bh=LKfd7YhgqVodO+ohQnk7rPcRh/t7chZtCCpRejy960A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MzriTKaqAGoos4DCXfoFLxK2pNUYAyRmTrebc1/k+Yk2Qi4PPMXqFbG68xICqquLP1ajHc/sI1FC9qRlXz+35kV6xIYamTEOAZCAZSpt/lQhePcqcLbhwn5BZmWZKBk0p6WBhe8+wf7++o/OIfguDiSwxRIEUkgXXh+ydQXyg9k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=G3fT7X0q; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1758234752; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jOMTxLBaV/5FveAwFspfWOOfSMg+weuKkPzL+a51cYqaltJyNvaLDsJcGxriWK3+hVdpoYrpI5rR06YUtHoY9bsHL20q7l+/wG0kuuL1WDTH5rtyDGm9lawp6gXUN2IyF7/SFTOAP8D2dmFK8qmQRuc8nXdGtPujYn/maTT0/RE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1758234752; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=mDwItCB03abiRLXZLyNzwDEO1gPTRSnyb/2++XuyMts=; 
-	b=d6loXg6iYRsZNBM9ICnnqk8/qTdMGs++mYo66E3AZsoGYrEuUjTrahb9idqoxHnI68boNDW3rTjfQqRxD6wi+8fbHhStV0wSCgZAoZtqBWM//6yKYIKrzay+JKXd6fSoq8Bg34+BmcV+acz1oM3mF+ouaYJn9SgbXqJwBPukee0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758234752;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=mDwItCB03abiRLXZLyNzwDEO1gPTRSnyb/2++XuyMts=;
-	b=G3fT7X0qqAwWeTr9zOezSwLPeh4CMr5I0IdoD05TF7JioykPPuOlPQmuWaVmsHNU
-	bZDgojnRXvwIpUz9umuBTKjSIf5WR95vXeKeUIA6FwjrSdRWcvHZDtRG2vuvazA+lQf
-	RAeIImgVzkOCJLy20BKiyBpEs3WC+ZOp31KB4hBQ=
-Received: by mx.zohomail.com with SMTPS id 1758234750741977.6413015849289;
-	Thu, 18 Sep 2025 15:32:30 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 1186A180517; Fri, 19 Sep 2025 00:32:18 +0200 (CEST)
-Date: Fri, 19 Sep 2025 00:32:18 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Thomas Antoine <t.antoine@uclouvain.be>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings: power: supply: add support for
- MAX77759 fuel gauge
-Message-ID: <65xrumpt7ug5mqd7mkcknwyqmljrn4sofrqymg46bwvcmjoarr@wmt5fhsj3viz>
-References: <20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be>
- <20250915-b4-gs101_max77759_fg-v6-2-31d08581500f@uclouvain.be>
- <20250915-presoak-answering-2df6fca532ad@spud>
- <c5f2e6e8-2ada-476a-8557-85273b9a93b7@uclouvain.be>
- <a55d7e6e6d9515293ca735f25ffd5c925a6ec617.camel@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202908BEE
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 22:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758234789; cv=none; b=RWBkJxy6XZh79+Tr81rMxNuqZ82uoKTLtelC24YoJmiQ4BMjWPjtdZKtWXWkFQS6URLX8fHXpTj+wLyPtvY6o2/1OX3SzTgOJCYpqMsjZuSFVNI+S5IB/zlyM144oT0+TnStCJetaD29eVMdY9G3MxSObaeLdeub9crEhDvFCcI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758234789; c=relaxed/simple;
+	bh=WPfmqn1OxLWBN/7IZvB3pbW3CMSPqKScIpv+qE8feW8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=LqlDO+DdrVyCIw1FgUPEKNe7WTx1gj75bJ/lY+pQlJo4pLlMBbzbW6GlLhUsxcEKyx0TbTOpZDd8RlY4TjYzMDS5J8karI0NX5/ShmhTLHvZaHBGHUSDFUgDJfhBFtxmQnHBYojL12K0rAxJeXdeWPgTxLDFQBS2PnVeiQiGuJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NryvmGPh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CC4C4CEE7;
+	Thu, 18 Sep 2025 22:33:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758234788;
+	bh=WPfmqn1OxLWBN/7IZvB3pbW3CMSPqKScIpv+qE8feW8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=NryvmGPhT+wgy5n2Oxn4mneZkvZGgKNtfJrUj+Py6fzQzzPLz3+JKEGrlaZJNzd8W
+	 qVo37pdZlp5X9IbyFgiqZrXEatFOv0v+t5Z9DSP2Pirti36wyLMEqFaotuS5gZZvac
+	 H3kK5qv2mANC/A91ik9p20pQoZchteJQKBxv75F9250x/k1w36k3OABG+1G3YUIyJs
+	 os+K7IPsj+1jAyBBOoxogGH2Fv+uMaPi93ilYd6vcofaBl72dyxQEaUYZtvxNX7GWl
+	 QK6vBDpfhYCLv82Brp3xREQzJCSnmZZIbZxDOfL6yACcrcCnOwj8huD5RQDRnr0+ce
+	 jLfzScyaSJ28A==
+Date: Thu, 18 Sep 2025 17:33:06 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uby4qznfm6t46loa"
-Content-Disposition: inline
-In-Reply-To: <a55d7e6e6d9515293ca735f25ffd5c925a6ec617.camel@linaro.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/258.211.62
-X-ZohoMailClient: External
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-aspeed@lists.ozlabs.org, krzk+dt@kernel.org, 
+ andrew@codeconstruct.com.au
+To: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <20250918180402.199373-1-eajames@linux.ibm.com>
+References: <20250918180402.199373-1-eajames@linux.ibm.com>
+Message-Id: <175823464696.3104136.904298221604133111.robh@kernel.org>
+Subject: Re: [PATCH v6 0/7] ARM: dts: aspeed: Add Balcones system
 
 
---uby4qznfm6t46loa
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/2] dt-bindings: power: supply: add support for
- MAX77759 fuel gauge
-MIME-Version: 1.0
+On Thu, 18 Sep 2025 13:03:55 -0500, Eddie James wrote:
+> The Balcones system is similar to Bonnell but with a POWER11 processor.
+> 
+> Changes since v5:
+>  - Add patch to add address and size cells to max31790 document
+>  - Don't remove address and size cells in max31785 fixes change
+> 
+> Changes since v4:
+>  - Add patch to fix max31785 warnings
+>  - Add patch to fix missing Bonnell documentation
+> 
+> Changes since v3:
+>  - Add max31785 to the max31790 document instead of to trivial-devices
+>  - Fix minor formatting in dps310 document
+> 
+> Changes since v2:
+>  - Fix a couple of incorrect i2c addresses
+>  - Document dps310 and max31785 properly
+>  - Drop the UCD binding documentation update, it's been fixed
+> 
+> Changes since v1:
+>  - Add all the ucd9000 driver supported compatible strings
+>  - Fix node ordering in Balcones device tree
+>  - Improve commit message to explain addition of ibm-power11-dual.dtsi
+> 
+> Eddie James (7):
+>   dt-bindings: arm: aspeed: add IBM Balcones board
+>   dt-bindings: arm: aspeed: add IBM Bonnell board
+>   dt-bindings: iio: Add Infineon DPS310 sensor documentation
+>   dt-bindings: hwmon: Move max31785 compatibles to max31790 document
+>   dt-bindings: hwmon: max31790: Document address and size cells
+>   ARM: dts: aspeed: Add Balcones system
+>   ARM: dts: aspeed: Fix max31785 fan node naming
+> 
+>  .../bindings/arm/aspeed/aspeed.yaml           |   2 +
+>  .../devicetree/bindings/hwmon/max31785.txt    |  22 -
+>  .../bindings/hwmon/maxim,max31790.yaml        |  12 +-
+>  .../iio/pressure/infineon,dps310.yaml         |  44 +
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>  MAINTAINERS                                   |   1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 609 ++++++++++++++
+>  .../dts/aspeed/aspeed-bmc-ibm-bonnell.dts     |   4 +-
+>  .../dts/aspeed/aspeed-bmc-ibm-everest.dts     |   8 +-
+>  .../dts/aspeed/aspeed-bmc-ibm-rainier.dts     |  12 +-
+>  .../boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts |   8 +-
+>  .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
+>  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
+>  14 files changed, 1465 insertions(+), 808 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
+>  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+> 
+> --
+> 2.51.0
+> 
+> 
+> 
 
-Hi,
 
-On Thu, Sep 18, 2025 at 02:02:55PM +0100, Andr=E9 Draszik wrote:
-> > On 9/15/25 7:31 PM, Conor Dooley wrote:
-> > > On Mon, Sep 15, 2025 at 12:14:11PM +0200, Thomas Antoine via B4 Relay=
- wrote:
-> > > > From: Thomas Antoine <t.antoine@uclouvain.be>
-> > > >=20
-> > > > The Maxim MAX77759 is a companion PMIC for USB Type-C. It contains
-> > > > Battery Charger, Fuel Gauge, temperature sensors, USB Type-C Port
-> > > > Controller (TCPC), NVMEM, and additional GPIO interfaces
-> > > >=20
-> > > > Use max77759-fg compatible to avoid conflict with drivers for other
-> > > > functions.
-> > > >=20
-> > > > The battery node is used to pass the REPCAP and ICHGTERM values
-> > > > needed for the initialization of the fuel gauge.
-> > > >=20
-> > > > The nvmem cells are used to get initialization values and to backup
-> > > > the learning and the number of cycles. It should work out of the box
-> > > > with gs101-oriole and gs101-raven which were previously running
-> > > > Android.
-> > > >=20
-> > > > Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
-> > > > ---
-> > > > =A0.../bindings/power/supply/maxim,max77759.yaml=A0=A0=A0=A0=A0 | 7=
-8 ++++++++++++++++++++++
-> > > > =A01 file changed, 78 insertions(+)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/power/supply/maxim,m=
-ax77759.yaml
-> > > > b/Documentation/devicetree/bindings/power/supply/maxim,max77759.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000000000000000000000000000000..4d45739fcaf26273ec5=
-7b60049d6d0421df38efb
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77759=
-=2Eyaml
-> > > > @@ -0,0 +1,78 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/power/supply/maxim,max77759.yam=
-l#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Maxim Integrated MAX77759 fuel gauge
-> > > > +
-> > > > +maintainers:
-> > > > +=A0 - Thomas Antoine <t.antoine@uclouvain.be>
-> > > > +
-> > > > +allOf:
-> > > > +=A0 - $ref: power-supply.yaml#
-> > > > +
-> > > > +properties:
-> > > > +=A0 compatible:
-> > > > +=A0=A0=A0 const: maxim,max77759-fg
-> > >=20
-> > > Compatible doesn't match the filename, why?
-> > > I assume the "fg" is fuel-gauge, but can this device be anything else?
-> >=20
-> > The max77759 is a multifunction chip.
-> > The following compatibles are already used for some of those functions:
-> > - maxim,max77759 (for the pmic)
-> > - maxim,max77759-gpio
-> > - maxim,max77759-nvmem
-> > - maxim,max77759-tcpci
-> >=20
-> > The fuel gauge functionality that is added with this patch is very simi=
-lar
-> > to the functionality of the max1720x which is why the filename was chos=
-en
-> > to fit other maxim fuel gauge chips pattern.
-> >=20
-> > Maybe it would be better to use the maxim,max77759-battery compatible to
-> > match the filename? It would also fit with the already existing
-> > maxim,max77705-battery and maxim,max77849-battery compatibles.
->=20
-> It also has a (battery) charger, a -battery compatible could be misleadin=
-g.
-> The datasheet refers to these subblocks as FG (for fuelgauge) and CHARGER.
-> I'd suggest keeping those terms.
->=20
-> Additionally, the FG block can also measure temperature and battery ID. F=
-or
-> those, a combination of (top-level) PMIC and FG registers are needed
-> unfortunately. Which means that the FG should probably be an MFD child
-> device, even though the FG itself doesn't depend on the top-level. Otherw=
-ise
-> it'd be hard to access the top-level PMIC register.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-My understanding is, that the FG has a dedicated I2C device address
-and thus cannot be a simple MFD child of the PMIC. Did I misunderstood
-that part?
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Assuming I understood things correctly, I think I suggest to model
-things like this for the battery temperature/ID:
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-i2c {
-    pmic: pmic@42 {
-        compatible =3D "maxim,max77759";
-        ...
+  pip3 install dtschema --upgrade
 
-        pmic_adc: adc {
-            compatible =3D "maxim,max77759-adc";
-            ...
-        };
-    };
 
-    fuel-gauge@43 {
-        compatible =3D "maxim,max77759-fg";
-        ...
-        io-channels =3D <&pmic_adc MAX77759_ADC_BAT_TEMP>, <&pmic_adc MAX77=
-759_ADC_BAT_ID>;
-        io-channel-names =3D "temperature", "ID";
-    };
-};
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250917 (best guess, 10/11 blobs matched)
 
-Greetings,
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
 
--- Sebastian
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250918180402.199373-1-eajames@linux.ibm.com:
 
---uby4qznfm6t46loa
-Content-Type: application/pgp-signature; name="signature.asc"
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmjMiGcACgkQ2O7X88g7
-+prggxAAgXz3uekzgfRqZwrErlIsVJbozFo1uNIETUzLbK2Ad+oLrGZBMHGbeAdF
-VFS01udeF7SjmEap8qQ7DqjJ64iaP6KxkqnblPIgHPH7FV8kgS7CzdSTrgQofSFg
-+TbCovtw9xDJKZ9QY5DUmckMhCGkklpj8NDsr6EMn9JgPkhd7zqdxOt24KDMgCJ7
-DlGnIaU4ickaFQ/fpSkhoUaf7eRi1svFE2BTfUX3Qygrp0JR67J2UJR5iLSDRi39
-EO+LKwr1vRQjcSbnGZ2ubHf6f9AjAG7N7CKty1IQejuz0Mn9vQ7MVHwJueLOGgh1
-kgVIlTZvddNhPJVUxMjrgit0EAVt2j24YNgFTRd18DxpZyP5I9WHk8JPpEcoT8EW
-eKis2G7A47KadR2wXDJwSQUjDWN8ED5pjSfu8wRQ/+B3oRUiG14gqTIhPoU4WlD7
-5nU+l69jmqakkg+XxFcbkl4nHgy53v5/O0mupikPnofX4m24AXPcdPy8MxMM8HcD
-ChiKkOZDnOEd9XFVF0zTXCnXke4VsaUU2B993x279joRTzyC6llvcTlJSmjnjr61
-6ExxVSxk2SV7dgY+cY7cucEf3yEcX6u6e9ZUmOSW8HM2CMOUwG29UTMBMsI6KTdg
-EN/KQQSmvzYrI2NdLEpHkD3Cpcb04/JoicfMKLuf3i2O74LVc0M=
-=xT0I
------END PGP SIGNATURE-----
 
---uby4qznfm6t46loa--
+
+
 
