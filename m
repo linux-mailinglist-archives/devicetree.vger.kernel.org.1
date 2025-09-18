@@ -1,150 +1,118 @@
-Return-Path: <devicetree+bounces-218812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7065B8440A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:00:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396EAB844A6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B34A7AF68E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:57:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63A151C006C7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA092FFF89;
-	Thu, 18 Sep 2025 10:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1383016E7;
+	Thu, 18 Sep 2025 11:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBef1k3P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B14C2FE57F
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 10:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 706BD23ABA0;
+	Thu, 18 Sep 2025 11:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758193168; cv=none; b=mOG4sO5bJGf2APX0o0GEBUivXiGzpSrkN2NZLTFndY0w6BxnMT0p6iR3vS+oZ4FXwakzDAcj9qUnqWh8SUlOcahXCNG/eLetB3z5NDGaRF67LGsJK5kNaqeXLsA5/6vYzmA5gI9SEXxX0C6MkQ0tRCQKn7czRxn7zH+hqBOFmiI=
+	t=1758193610; cv=none; b=bunjdKHySb/V6rYT0Ngg1oGyijT6sZg5GqVf0y47pO1u5goYeI/LoPVrgPJevodYj/qUaSgccCG8CksP5eVTlWF4SROgk4iMGxYVUban9VuKD3TaGNT06Wq8Wi/yzL81v8P0D77M3q0UY3QGb/xq/1+CymnsPCiVSJc3Y78P85U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758193168; c=relaxed/simple;
-	bh=uQ0qyw5c8o/+colPeKujxDOwIHdwYhxWGqbj0nq87f4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AVV050VbNHbC8HL2Urf72cKuYnsprSlrpsf8uu6Pe+FEjVHpMsnMXDi3ynWwu7ntgZpL1l50NNOedAAaB6OWBo+sLUk4spi2g2JMiuj9gmuXMFoQmBtiEwN6EeIhh2PreMxiTkFH8UP/FSSpqxDzEkPogEAmT3AFo9CXu3Gb0dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uzCLp-0003qI-WA; Thu, 18 Sep 2025 12:58:58 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uzCLo-001vOk-1I;
-	Thu, 18 Sep 2025 12:58:56 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 0A18D473F21;
-	Thu, 18 Sep 2025 10:58:56 +0000 (UTC)
-Date: Thu, 18 Sep 2025 12:58:54 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
-	mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, mani@kernel.org, thomas.kopp@microchip.com, 
-	mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
-Message-ID: <20250918-daffy-steady-griffin-5299ac-mkl@pengutronix.de>
-References: <20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com>
- <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
- <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
+	s=arc-20240116; t=1758193610; c=relaxed/simple;
+	bh=tLCrfcwuvmqPecuw/USrpVPpjk1XTTQBWxdekuHCy/E=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eO9+2dHBqJbT0ToSzm3YIaGi6xdPQ+PPfRPHETlWNuCM5d/Yd/Ce1AnnL9ksA9VjfIQjtTUMWYiwVBzj1smzfq8V9nePrJtBF8PR5wRtyqSxl8rm+CbtB6HB3/68u2Ihu6C46H6OFRm0vM8wcXFM8Zh94F4s/NpBW0jEzvF1LpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBef1k3P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B4C7C4CEEB;
+	Thu, 18 Sep 2025 11:06:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758193610;
+	bh=tLCrfcwuvmqPecuw/USrpVPpjk1XTTQBWxdekuHCy/E=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=oBef1k3P2JyWc9LBWFAz6ImTtdvOwDQn6zp/dKDsPHP4Jc1ELZP0a1OBbDHZYRq25
+	 FEENxEfLwSAaOA0OVE1zmGTvB8Dcqb7s/BC/Za5PEFIFXxhFXFT0E0aBjtA0BGf+LU
+	 9EXN+s65WmQ5ItxX5LeuWXtJAOeBSCPNfTZEKW/iF8MqI+fTSyKhoDYaqzXChqyrzA
+	 DbjOMRKjHimtUflLNy+xZtbs81X8DmfrXSgogRsVdiTGReljuX7BekvciP166Koa82
+	 xfe2EfwqnTFFfk287DUlREOMPKxP9mGfmARdwYYjL59cezZODjnsLVGWH2rXipvnGI
+	 HvbbTs9WVUlng==
+From: Will Deacon <will@kernel.org>
+To: "Liang, Kan" <kan.liang@linux.intel.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Douglas Anderson <dianders@chromium.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ian Rogers <irogers@google.com>,
+	Ingo Molnar <mingo@redhat.com>,
+	James Clark <james.clark@linaro.org>,
+	Jiri Olsa <jolsa@kernel.org>,
+	John Garry <john.g.garry@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Leo Yan <leo.yan@linux.dev>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh@kernel.org>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: kernel-team@android.com,
+	Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v5 0/7] arm64: add R8A78000 support
+Date: Thu, 18 Sep 2025 12:06:35 +0100
+Message-Id: <175819208575.1966292.14850843650367600650.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <87ms6snut0.wl-kuninori.morimoto.gx@renesas.com>
+References: <87ms6snut0.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ngvdfwkgcmvnjorf"
-Content-Disposition: inline
-In-Reply-To: <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Thu, 18 Sep 2025 06:23:07 +0000, Kuninori Morimoto wrote:
+> This is v5 of R8A78000 support for Renesas.
+> 
+> This patch-set adds R8A78000 and Ironhide board support.
+> It is based on SDK v4.28.0 or later. It will be released at end of Oct.
+> 
+> Link: https://lore.kernel.org/r/87ecs5abp9.wl-kuninori.morimoto.gx@renesas.com
+> Link: https://lore.kernel.org/r/87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com
+> Link: https://lore.kernel.org/r/87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com
+> Link: https://lore.kernel.org/r/87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com
+> 
+> [...]
 
---ngvdfwkgcmvnjorf
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
-MIME-Version: 1.0
+Applied MIDR bits to arm64 (for-next/cpufeature), thanks!
 
-On 18.09.2025 05:46:44, Bartosz Golaszewski wrote:
-> > diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/n=
-et/can/spi/mcp251xfd/mcp251xfd-core.c
-> > index ea41f04ae1a6..8c253091f498 100644
-> > --- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> > +++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-> > @@ -16,6 +16,7 @@
-> >  #include <linux/bitfield.h>
-> >  #include <linux/clk.h>
-> >  #include <linux/device.h>
-> > +#include <linux/gpio/driver.h>
-> >  #include <linux/mod_devicetable.h>
-> >  #include <linux/module.h>
-> >  #include <linux/pm_runtime.h>
-> > @@ -1797,6 +1798,178 @@ static int mcp251xfd_register_check_rx_int(stru=
-ct mcp251xfd_priv *priv)
-> >  	return 0;
-> >  }
-> >
-> > +#ifdef CONFIG_GPIOLIB
->=20
-> Any reason why you don't just depend on GPIOLIB in Kconfig? There's no
-> reason to make it optional if the device always has the GPIO pins.
+[4/7] arm64: cputype: Add Cortex-A720AE definitions
+      https://git.kernel.org/arm64/c/f38c2c3e572c
+[5/7] arm64: errata: Expand speculative SSBS workaround for Cortex-A720AE
+      https://git.kernel.org/arm64/c/3ba8d4aa42bd
 
-I don't mind having the ifdef. But it's up to you.
+Cheers,
+-- 
+Will
 
-[...]
-
-> > +static void mcp251xfd_gpio_set(struct gpio_chip *chip, unsigned int of=
-fset,
-> > +			       int value)
->=20
-> You must be rebased on pre v6.17 code, this will not compile with current
-> mainline.
-
-You mean "post" v6.17? Best rebase to latest net-next/main, which
-already contains the new signatures for the GPIO callbacks.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ngvdfwkgcmvnjorf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjL5esACgkQDHRl3/mQ
-kZxWLAf9H29wR6UqS6bdRKZ4KlZYkl/42mdy3IWhfZlWgaDGqn3LdFB+d+Qo3N3d
-+Nq7YwbrAlnoFmWKeGDyORPEBHK6gswUuVo2MKrkm4zMqMAUa6df5SauSk2t4Vxd
-ooKnMVKZGpe5QvAvS44Uafb3CblPAkOs/l5zVaVUV2YmB+TL/GDmLHImdUgpuJte
-/PoK5bAuzMY/O5pFgC/bX2PLpZehnqMQcBULmn9vSWroleMiSgiOCWCgd4jyC6HH
-QBUN0Pn+KbCK+xoVcsInanEMZNX9Ygzv5BiEeFiSzXO4rahpb3m7Kvf23NkTnVJA
-Das1wTaBuKioOE1vXP46xAzFbfaatA==
-=U1R1
------END PGP SIGNATURE-----
-
---ngvdfwkgcmvnjorf--
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
