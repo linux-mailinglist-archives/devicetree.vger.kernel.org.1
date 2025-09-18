@@ -1,151 +1,144 @@
-Return-Path: <devicetree+bounces-218967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F81B85E26
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:05:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2E5B85DFF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:04:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60F942A458E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2FDD3AC31A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA442314D13;
-	Thu, 18 Sep 2025 15:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8253128CF;
+	Thu, 18 Sep 2025 15:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="phDbi24B"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="eIqDrv8I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEAE5314D09;
-	Thu, 18 Sep 2025 15:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC79130FC35
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:58:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758211048; cv=none; b=cZvTWoR2aAQsilpKCH/9BL+3EP4eE/ZEC95z1zJ2wwiiDdNRpCRV1RecxVgwSWpGKw72Z+nrzSoKt7HUlnYH8UqXJk8/Fd8b7G6OlwHAr21h8EZdOuB5s07eZBaaiatf9RxWDcvBLtqNpFEDz8ZG8CJ1DFkrqw55nNLC0dkLTzw=
+	t=1758211123; cv=none; b=KGO2A8fqGgktsaYPS5d6DlEnNyC9L7NjT3ZugAj95VbYxVoF4dM9L1OZaxc0ahpHRxmwGv5HJORNUOMf4ni2fbt1ohMuTSyxjGslYlxnxDR1kBUFGeuvZ4m/oYOdziwv5i2PWMBM2nlg/QpycsNi2msCHgYilnnE9PfCLCwFD1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758211048; c=relaxed/simple;
-	bh=7szmy2OW+pKdnxlLQgL5ZyztXZVlULEeY328f0dD5nM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MU31y+XAc6v6wsaowpgLQFVEW4VM8q07UBYXzxXB5C2mJeS8tQniNMsR3twW6RegNMJdQ/Q1wI8AKCAljtt5awPazND3b3BM4GLGLiNIo7v5bqr0cerTgxiy1QFUfVvX11GvgeIjCoPgxh6NT5qawks35D/WCJss9492AugoByM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=phDbi24B; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 08EB11A0EB9;
-	Thu, 18 Sep 2025 15:57:25 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C8AAF606A8;
-	Thu, 18 Sep 2025 15:57:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B467D102F1D0B;
-	Thu, 18 Sep 2025 17:57:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758211043; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=TxZksMSppeoI1kAjsorjjiU9ZV35lEO/QcgVtoJNdhk=;
-	b=phDbi24B+Am3HE81Qq/HYW6qFlByZ7uAfZgeuWMxFldWNrdNRyQ0Zz2upRDUHbSwCpqTuy
-	vBL5KxbtcXkaKq+rpt8meuUoefi3LQhDnd4/qdIbVQxdLgDPmur11ePGZGoRidCjg6ajLO
-	G7nac19LjQ+C7tZOR5spe+Vc51uSgaXvxrV/D6EDMJAAClWYlkJGtVeTX4/GhRg3IlDKJK
-	0xY6ixodMhtL36QoPnvxcrnRYnrp6t5EXuqLFYCI79znuQPsXAdAu6/2C37dT7O9CfZPUE
-	GEwhxeqCrUYtC8mAt6fjRj77g9PNxd8xmSUqOFGfIWLUCwxkemqhNI0UU2YS8w==
-Date: Thu, 18 Sep 2025 17:57:16 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
- Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
- Eberhard <pascal.eberhard@se.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-Message-ID: <20250918175716.6c3fd406@bootlin.com>
-In-Reply-To: <20250918-sterilize-malt-b0f182256617@spud>
-References: <20250918104009.94754-1-herve.codina@bootlin.com>
-	<20250918-sterilize-malt-b0f182256617@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1758211123; c=relaxed/simple;
+	bh=mBOMOV2UEaBJS1bN98PWLw1Tk1D7AqCi+UV4js6u0C4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NsNQu0GQLTvS8KD92YJF0+Hed2APoTr0tMP3a9IUmZcVI69zvCuMKv76R89NhIKv6Tvgv1M2HFBD2gdQuoo2UODfkWJ0BV8w61GdgTw1/iRiZpnJXS0oBsFNZz+iY4rj1KWq+5/jsN9qzDCq7lGYxpXcSuVPQ0Q2f9s8kNhjNX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=eIqDrv8I; arc=none smtp.client-ip=209.85.166.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-892db7eb552so147899339f.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 08:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758211121; x=1758815921; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RWwPXk3+CMDIY3Ii9TMDH0aQbdb6ssOVOtszqmINL5E=;
+        b=eIqDrv8IlQnhhhur3TiOpM6K5hTCjACBRPi8UeXGHdC0YshE1hZ3YQODdHtE63tgtO
+         HuSYevpRg3f4cJVzJN3Gs9ZQTAS8YaCaPC591wj61SjBVXCIqUxc1bOmryjbXwiDLFiM
+         fJjYeWM1iY2g3jWecCD26TRvYeTjegxCDWqJ/4fZTzG8M/OikNkhTsF44OvudjfOZ1dC
+         zaTcFX+LQ7GM5pd6+yFYbBeNh5JCydjwZiyT/Vd9L37zKhtykeDqcrEcidzWBWnC8CHp
+         BuoKdKf+gl65xhgmCAb7bYS9o1KIP/T8zG1DTdZP0vaN3C5sDO3Dqe8evzCSV3/w54ya
+         KAbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758211121; x=1758815921;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RWwPXk3+CMDIY3Ii9TMDH0aQbdb6ssOVOtszqmINL5E=;
+        b=AN0LhEREjI9Ej9ZYJejtm9SEYEkcIz/5rz1qhAVW1Qajg7IXzry3vdMSGvXwZCzwNy
+         BAhdQ02FoVssfbx7I81paI45cjPFy0l9YDAudy+9RRP01gz8axHnPR4wIo3wlsLiV1b6
+         KXIJY3eiucJs702iKqrCm5ZZ5gF5IUOjibdSTwIOL3qSRg/e05arUicvLgYliBLKKxV4
+         UL1hHRM2yTANeJ6BxMSwDtnlI8e1zuCpTmI1qadMLGg1tAfmIkBiFGii/9yYs4tab8E3
+         0kiae3wSG5GXv5qAvbfdT3sjWb9YBpQkx8pJEAKH9m34Cy8Z9Az+LvUyJ9sPXdcM9hOy
+         RH2w==
+X-Forwarded-Encrypted: i=1; AJvYcCU3PE3c+qZSV/v8qKkL5krNEF/GCMS4K3lauRS5bHgA8psJ79/j2tW69s8+Ue33hzKKtXBvTU6cl4M8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNJ2tykSiscF+3Ce2/O7paVNm8jB8q1ZEWY4ZbTpgovzCOIEaW
+	a9gieXzp2OOkyEG7RPkUD1MPoPknwtqyVhlHO65H04T9eujqqzyG9/GNmafT5Lh2LY8=
+X-Gm-Gg: ASbGncuWQoDwvj6uOx4o5t8L6q6kFgL+llGo1drUMIpa1yxcabRzJQIQkaJpgRNSmW6
+	2ZONzHVxmHbTZbu0GPjspQO+1OYONUkTaG2dPIcm2REZWVs/LFP2uJwsdfIMwZpGmR4MheSfSr8
+	sPwPfbgnJYoussrwZOymx5h5TmSHsqdS0mLkOAX9bTjJUVTLqkWNC8vi/Y2UhvFuuuoNa9I2G5i
+	6CvIv8fl/UqOG2CszF8CjgPZO/0THmVa+7kv55bN72B2Jd1lVtetOndByR4XJYv76xpaVmomyVB
+	ybRT1H/47F7FtQ+1bEWgWifAd1U7XsKYoXYX3/N7FcMLrWkZtOmTC0mOwhG7hlOqZM0fOR4SRbq
+	4lUkGIf/zu9H4I4ZjQxy1GWndBSWrCSAzIRy83lotw2GwTq+AsXfwpxyxCnv29AKKUmyifNK3zV
+	w94n4SYMa9VZUiCvTo
+X-Google-Smtp-Source: AGHT+IF7L6Nzhpq00zRjUOtUlsvmOyj8YvPWYBfqvWW1/q2pHZGHXZWCIyaJ4bn8yb0d408EYIgLfQ==
+X-Received: by 2002:a05:6e02:b48:b0:41f:8265:4100 with SMTP id e9e14a558f8ab-4248199c677mr962075ab.18.1758211113083;
+        Thu, 18 Sep 2025 08:58:33 -0700 (PDT)
+Received: from [172.22.22.234] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d3a591637sm1058871173.15.2025.09.18.08.58.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Sep 2025 08:58:32 -0700 (PDT)
+Message-ID: <000a41ee-a099-4944-8ef5-eed768f905cb@riscstar.com>
+Date: Thu, 18 Sep 2025 10:58:30 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] spi: spacemit: introduce SpacemiT K1 SPI controller
+ driver
+To: Yixun Lan <dlan@gentoo.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250917220724.288127-1-elder@riscstar.com>
+ <20250917220724.288127-3-elder@riscstar.com>
+ <20250918124120-GYA1273705@gentoo.org>
+ <034cecd3-c168-4c8d-9ad5-10cc1853894b@riscstar.com>
+ <20250918143928-GYB1274501@gentoo.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250918143928-GYB1274501@gentoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Conor,
-
-On Thu, 18 Sep 2025 16:37:39 +0100
-Conor Dooley <conor@kernel.org> wrote:
-
-> On Thu, Sep 18, 2025 at 12:39:58PM +0200, Herve Codina (Schneider Electric) wrote:
-> > Hi,
-> > 
-> > This series adds support for GPIO and GPIO IRQ mux available in the
-> > RZ/N1 SoCs.
-> > 
-> > The first patches in this series are related to a new helper introduced
-> > to parse an interrupt-map property.
-> >   - patch 1: Introduce the helper (for_each_of_imap_item)
-> >   - patch 2: Add a unittest for the new helper
-> >   - patch 3 and 4: convert existing drivers to use this new helper
-> > 
-> > Patch 4 will conflicts with commit 40c26230a1bf ("irqchip: Use int type
-> > to store negative error codes") available in linux-next.
-> > 
-> > Patch 5 adds support for GPIO (device-tree description)
-> > 
-> > The last patches (6, 7 and 8) of the series are related to GPIO
-> > interrupts and GPIO IRQ multiplexer.
-> > 
-> > In the RZ/N1 SoCs, GPIO interrupts are wired to a GPIO IRQ multiplexer.
-> > 
-> > This multiplexer does nothing but select 8 GPIO IRQ lines out of the 96
-> > available to wire them to the GIC input lines.
-> > 
-> > One upstreaming attempt have been done previously by Phil Edworthy [1]
-> > but the series has never been applied.
-> > 
-> > Based on my understanding, I have fully reworked the driver proposed by
-> > Phil and removed the IRQ domain. Indeed, the device doesn't handle
-> > interrupts. It just routes signals.
-> > 
-> > Also, as an interrupt-map property is used, the driver cannot be
-> > involved as an interrupt controller itself. It is a nexus node.
-> > 
-> > With that in mind,
-> >   - Patch 6 is related to the irq-mux binding.
-> > 
-> >   - Patch 7 introduces the irq-mux driver.
-> >     This driver uses the 'for_each_of_imap_item' helper introduced
-> >     previously. Indeed, the lines routing is defined by the
-> >     interrupt-map property and the driver needs to set registers to
-> >     apply this routing.
-> > 
-> >   - Patch 8 is the RZ/N1 device-tree description update to have the
-> >     support for the GPIO interrupts.
-> > 
-> > [1] https://lore.kernel.org/all/20190219155511.28507-1-phil.edworthy@renesas.com/
-> > 
-> > Best regards,
-> > Hervé  
+On 9/18/25 9:39 AM, Yixun Lan wrote:
+>>>> +	virt = drv_data->ioaddr + SSP_TOP_CTRL;
+>>>> +	val = readl(virt);
+>>>> +	val |= TOP_TRAIL;	/* Trailing bytes handled by DMA */
+>>>> +	writel(val, virt);
+>>> I'd prefer to do like this, it's more easy for people to grep..
+>>> 	val = readl(drv_data->ioaddr + SSP_TOP_CTRL) | TOP_TRAIL;
+>>> 	writel(val, drv_data->ioaddr + SSP_TOP_CTRL);
+>> This is an idiom I use to make it very clear that:
+>> - The address being read is exactly the same as what's being
+>>     written
+>> - The value read is being updated with bits/values
+>>
+>> I find that putting the "| TOP_TRAIL" on the same line as the
+>> readl() call obscures things a bit.  Like my eye doesn't notice
+>> it as readiliy somehow...
+> fair, let's put it into another line
 > 
-> This whole thing is super interesting to me. I have a gpio irq mux of my
-> own with a driver that is massively more complex than what you have here
-> (it's a full on irqchip driver). I'm definitely gonna have to see if I
-> can ape what you have done here and simplify what I have.
+>> Yours is a pure coding style comment.  There are two pieces, and
+>> I'd like you to tell me how strongly you feel about them:
+>> - Using virt to grab the address being written and read (versus
+>>     just using drv_data->ioaddr + SSP_TOP_CTRL twice)
+>> - Put the "| TOP_TRAIL" on the same line as the readl() (versus
+>>     having that be assigned on a separate line).
+>> To me, the second one is more important than the first.
+>>
+>> Let me know how strongly you feel about these and I'll update
+>> my convention througout.
+>>
+> I'd strongly prefer not to introduce 'virt', so be something like this:
+>   	val = readl(drv_data->ioaddr + SSP_TOP_CTRL);
+>   	val |= TOP_TRAIL;
+>   	writel(val, drv_data->ioaddr + SSP_TOP_CTRL);
+> 
 
-Glad to see that this is giving some ideas!
+OK.  I'll do it this way throughout the driver in the
+next version.
 
-Best regards,
-Hervé
+					-Alex
 
