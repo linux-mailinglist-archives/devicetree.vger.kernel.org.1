@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-218617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D57B8265A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:40:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8A4B82657
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 439F11C0626B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:40:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70CBC7ABD0C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B012211706;
-	Thu, 18 Sep 2025 00:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43AF1DE8BF;
+	Thu, 18 Sep 2025 00:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzhruWYX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cm/8kvft"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0669B20DD72
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 00:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DE61A5B8A;
+	Thu, 18 Sep 2025 00:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758155975; cv=none; b=Os69kcQqeVZmHOR8CYRPN+01ggCwu4dIfYO3LE66tufhHlVeRdtyddt1ukOIMNAk47y/pOSCRFmYGGDG1nisz2CvxQP26UTwnLNPymCP/Xx80aCeIi/Wnn65kZQ55MNzL6i3BCdda72ECQYJkzVSWz+CQ3OX+CafdYpytlUG9JI=
+	t=1758155979; cv=none; b=QMbc3ui/MJa9ieX/yC9czG0CBSrrs6FOAVTHVkNQWaZjGsD3SnSiFWwHA1FXTIxx0FC7xXTaK8+myJyiEDWsnCWFcn8Zh8oyPdf5IMginRGJ8jRyaPjfk+mvt3OYg7aYiOO7ijlEnz3bxFmhpxqfkEHdq2Vu5HgIbWjjrNv0D+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758155975; c=relaxed/simple;
-	bh=EDq2s+UOe0hB5ybmNUS4sEMfhsLszMAeTal9Gso6a7I=;
+	s=arc-20240116; t=1758155979; c=relaxed/simple;
+	bh=lsWRCCr4cJw7Y8fW6uKVSRJBfmAICK+6DUVgoOLhAWI=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=KWSisISgf+So1LXx9M9fvJRADIFXUAC9YtIi5YeqhYNVPJ2GhrPAl6kGM6H3TQ/3Xtb+gTr1YAqenC3FcaUP3U4qL9UbPGADeIDZBEz/rwE2IPeXPX703P78Fw6juiF+dUTVbj1v8Xi59ufxoEOfhuv1uuZK4haK/4OKXEHAm/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzhruWYX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC858C4CEF9;
-	Thu, 18 Sep 2025 00:39:32 +0000 (UTC)
+	 Message-Id:Subject; b=plt7ikOtriqGu6PyY9jD0camhlp+gUOHxXSUUreqUSZ+Lc1/wfXQozLARYPxF/HmIyOR4PJ42DHfDH1Vv5O9lucImle7wMlHWOwFo1aue1fd8BAzMbddbIupb0RcjwgBRF/cnGWvmfwr5Erf3y+J7cKv7JMsIwr/ykmeXIUtWqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cm/8kvft; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4ABCC4CEF9;
+	Thu, 18 Sep 2025 00:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758155974;
-	bh=EDq2s+UOe0hB5ybmNUS4sEMfhsLszMAeTal9Gso6a7I=;
+	s=k20201202; t=1758155979;
+	bh=lsWRCCr4cJw7Y8fW6uKVSRJBfmAICK+6DUVgoOLhAWI=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=uzhruWYXrMwFU9UXJnFSyHZDYmimRy2kqCSlQAFR195x+nMnYWbORFYrvjYiKUMWM
-	 lDr4+lH9/PflVERLxpXLCBmp8lTTW1IP6fG8jqSOJj9OqSQxXMGHEeg/SZEXTHVRIs
-	 G4pe6JOIlbsASBZ6DfYmCdsJmixw7ZWLlt5U/oicdGjwcrFDHbe1TQWTi0wXTelrKf
-	 VbrPr+l9AEQTsHp6hrrCpFKincQOuFIyGlg+KkPqgQPPu1U6uJ4zpux0MtHWkI0jNF
-	 gcXW6GZ8xy8krgfx9BpKkoISewAgtozrOWVNIPmivwWXk3rDIPALxyQDZ9okobIt3z
-	 7Q+XpF00x5HZg==
-Date: Wed, 17 Sep 2025 19:39:31 -0500
-Content-Type: text/plain; charset="utf-8"
+	b=Cm/8kvft8UTa4lNLuOTGIbOqxmKVVgddcNJFpRoJ90f2AnqbPjLJX8caF2JSqKNHQ
+	 T59yjojCYh2Q+R5CmMpnqmHx/M85eiICWXQfpclsYzngHXS+o743FEWyYGksW7MMup
+	 Zs9NY3d6j6eZl2uPml7gmWxv30+mrjege0qk43aeoy67RAGiSRdVJFNcDqw4RMSVIM
+	 p9WeMYZ29+PJIEVr9MsIKblBJci3omXfK3DcVUnfod26JNYQZPGtRJhqOe1KqZE2cX
+	 D6FsN1gJHlDn3GcvBqo3m7pGdYGv2+tWGfrHqJsYd6tLnKMlAajEMlGAjoC4dhypXw
+	 WwpbL8Tq4HgKA==
+Date: Wed, 17 Sep 2025 19:39:35 -0500
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -51,69 +51,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, 
- andrew@codeconstruct.com.au, linux-aspeed@lists.ozlabs.org, 
- conor+dt@kernel.org
-To: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <20250917144210.160051-1-eajames@linux.ibm.com>
-References: <20250917144210.160051-1-eajames@linux.ibm.com>
-Message-Id: <175815587292.3804357.10012138669742636066.robh@kernel.org>
-Subject: Re: [PATCH v5 0/6] ARM: dts: aspeed: Add Balcones system
+Cc: Oliver Upton <oliver.upton@linux.dev>, 
+ John Garry <john.g.garry@oracle.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Mike Leach <mike.leach@linaro.org>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Marc Zyngier <maz@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Leo Yan <leo.yan@linux.dev>, 
+ Peter Zijlstra <peterz@infradead.org>, Ian Rogers <irogers@google.com>, 
+ Douglas Anderson <dianders@chromium.org>, Jiri Olsa <jolsa@kernel.org>, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>, 
+ Ingo Molnar <mingo@redhat.com>, linux-perf-users@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, James Clark <james.clark@linaro.org>, 
+ Will Deacon <will@kernel.org>, Arnaldo Carvalho de Melo <acme@kernel.org>, 
+ Adrian Hunter <adrian.hunter@intel.com>, Namhyung Kim <namhyung@kernel.org>, 
+ linux-renesas-soc@vger.kernel.org, 
+ "Liang,  Kan" <kan.liang@linux.intel.com>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87ecs5abp9.wl-kuninori.morimoto.gx@renesas.com>
+References: <87ecs5abp9.wl-kuninori.morimoto.gx@renesas.com>
+Message-Id: <175815587441.3804411.7556880628074141796.robh@kernel.org>
+Subject: Re: [PATCH v4 0/5] arm64: add R8A78000 support
 
 
-On Wed, 17 Sep 2025 09:42:04 -0500, Eddie James wrote:
-> The Balcones system is similar to Bonnell but with a POWER11 processor.
+On Wed, 17 Sep 2025 05:29:39 +0000, Kuninori Morimoto wrote:
+> Hi Geert
 > 
-> Changes since v4:
->  - Add patch to fix max31785 warnings
->  - Add patch to fix missing Bonnell documentation
+> This is v4 of R8A78000 support for Renesas.
 > 
-> Changes since v3:
->  - Add max31785 to the max31790 document instead of to trivial-devices
->  - Fix minor formatting in dps310 document
+> This patch-set adds R8A78000 and Ironhide board support.
+> It is based on SDK v4.28.0 or later. It will be released at end of Oct.
 > 
-> Changes since v2:
->  - Fix a couple of incorrect i2c addresses
->  - Document dps310 and max31785 properly
->  - Drop the UCD binding documentation update, it's been fixed
+> Link: https://lore.kernel.org/r/87tt13i0lh.wl-kuninori.morimoto.gx@renesas.com
+> Link: https://lore.kernel.org/r/87o6rjvzf4.wl-kuninori.morimoto.gx@renesas.com
+> Link: https://lore.kernel.org/r/87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com
 > 
-> Changes since v1:
->  - Add all the ucd9000 driver supported compatible strings
->  - Fix node ordering in Balcones device tree
->  - Improve commit message to explain addition of ibm-power11-dual.dtsi
+> v3 -> v4
+> 	- Don't include already applied patches
+> 	- separate Cortex-A725AE patch into tools/ID/errata [1/5][2/5][3/5]
+> 	- fixup gic reg [4/5]
+> 	- move timer node into soc [4/5]
 > 
-> Eddie James (6):
->   dt-bindings: arm: aspeed: add IBM Balcones board
->   dt-bindings: arm: aspeed: add IBM Bonnell board
->   dt-bindings: iio: Add Infineon DPS310 sensor documentation
->   dt-bindings: hwmon: Move max31785 compatibles to max31790 document
->   ARM: dts: aspeed: Add Balcones system
->   ARM: dts: aspeed: Fix max31785 fan node naming
+> v2 -> v3
+> 	- Add Reviewed-by from Geert [1/6]
+> 	- Add cortex-a720ae patches [3/6][4/6]
+> 	- Drop enable-method = "pcsi" [5/6]
+> 	- Tidyup node name controller -> cache-controller [5/6]
+> 	- Remove cache-unified from L2 [5/6]
+> 	- add dummy-clk-sgasyncd16 for scif [5/6]
+> 	- re-add clock-frequency on scif_clk [5/6]
+> 	- Tidyup GIC comments [5/6]
+> 	- Tidyup GIC regs [5/6]
+> 	- use "renesas,scif-r8a78000" instead of "renesas,rcar-gen5-scif" [5/6]
+> 	- Tidyup Subject [6/6]
+> 	- Tidyup Makefile position [6/6]
+> 	- Add explanation why it needs "maxcpus=1" [6/6]
+> 	- 518MB -> 518MiB on memory [6/6]
+> 	- 16666666 -> 16666600 on extal_clk [6/6]
+> 	- Drop comment from hscif0 [6/6]
 > 
->  .../bindings/arm/aspeed/aspeed.yaml           |   2 +
->  .../devicetree/bindings/hwmon/max31785.txt    |  22 -
->  .../bindings/hwmon/maxim,max31790.yaml        |   6 +-
->  .../iio/pressure/infineon,dps310.yaml         |  44 +
->  .../devicetree/bindings/trivial-devices.yaml  |   2 -
->  MAINTAINERS                                   |   1 +
->  arch/arm/boot/dts/aspeed/Makefile             |   1 +
->  .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 609 ++++++++++++++
->  .../dts/aspeed/aspeed-bmc-ibm-bonnell.dts     |   6 +-
->  .../dts/aspeed/aspeed-bmc-ibm-everest.dts     |  10 +-
->  .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   |   2 -
->  .../dts/aspeed/aspeed-bmc-ibm-rainier.dts     |  14 +-
->  .../boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts |  10 +-
->  .../dts/aspeed/aspeed-bmc-opp-witherspoon.dts |   2 -
->  .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
->  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
->  16 files changed, 1459 insertions(+), 820 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
->  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
+> v1 -> v2
+> 	- Add Krzysztof's Acked-by on [1/4]
+> 	- Tidyup "cache" properties on [3/4]
+> 	- Add "clock-" prefix on fixed-clock [3/4]
+> 	- remove un-needed clock-frequency [3/4]
+> 	- use "-" instead of "_" on dummy-clk-sgasyncd4 [3/4]
+> 	- use "0" instead of "0x0" for gic [3/4]
+> 	- cleanup "bootargs" [4/4]
+> 
+> Hai Pham (2):
+>   arm64: dts: renesas: Add R8A78000 X5H DTs
+>   arm64: dts: renesas: R8A78000: Add initial Ironhide support
+> 
+> Kuninori Morimoto (3):
+>   arm64: cputype: Add Cortex-A725AE definitions
+>   arm64: errata: Expand speculative SSBS workaround for Cortex-A725AE
+>   tools: arm64: Add Cortex-A725AE definitions
+> 
+>  arch/arm64/boot/dts/renesas/Makefile          |   2 +
+>  .../boot/dts/renesas/r8a78000-ironhide.dts    |  92 +++
+>  arch/arm64/boot/dts/renesas/r8a78000.dtsi     | 756 ++++++++++++++++++
+>  arch/arm64/include/asm/cputype.h              |   2 +
+>  arch/arm64/kernel/cpu_errata.c                |   1 +
+>  arch/arm64/kernel/proton-pack.c               |   1 +
+>  tools/arch/arm64/include/asm/cputype.h        |   2 +
+>  tools/perf/util/arm-spe.c                     |   1 +
+>  8 files changed, 857 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a78000.dtsi
 > 
 > --
-> 2.51.0
+> 2.43.0
 > 
 > 
 > 
@@ -135,222 +166,275 @@ make sure dt-schema is up to date:
 
 This patch series was applied (using b4) to base:
  Base: attempting to guess base-commit...
- Base: tags/next-20250917 (best guess, 12/13 blobs matched)
+ Base: tags/next-20250917 (best guess, 3/4 blobs matched)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250917144210.160051-1-eajames@linux.ibm.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 87ecs5abp9.wl-kuninori.morimoto.gx@renesas.com:
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:483.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:496.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:509.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:522.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:481.9-492.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:481.9-492.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:494.9-505.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:494.9-505.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:507.9-518.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:507.9-518.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:520.9-531.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:520.9-531.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2068.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2074.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2080.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2086.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2066.11-2070.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2066.11-2070.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2072.11-2076.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2072.11-2076.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2078.11-2082.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2078.11-2082.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2084.11-2088.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2084.11-2088.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:279.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:285.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:277.15-281.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:277.15-281.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:283.15-287.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:283.15-287.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
-	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@0 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@10300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@20300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@30300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@40300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@50300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@60300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70000 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70100 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70200 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cpu@70300 (arm,cortex-a720ae): Unevaluated properties are not allowed ('cache-controller' was unexpected)
+	from schema $id: http://devicetree.org/schemas/arm/cpus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: cache-controller (cache): 'cache-unified' is a required property
+	from schema $id: http://devicetree.org/schemas/cache.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: soc (simple-bus): timer: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0700000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,scif-r8a78000', 'renesas,scif'] is too long
+	['renesas,scif-r8a78000', 'renesas,scif'] is too short
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
+	'renesas,scif-r9a09g057' was expected
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
+	'renesas,rcar-gen1-scif' was expected
+	'renesas,rcar-gen2-scif' was expected
+	'renesas,rcar-gen3-scif' was expected
+	'renesas,rcar-gen4-scif' was expected
+	'renesas,rcar-gen5-scif' was expected
+	'renesas,scif-r9a07g044' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0704000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,scif-r8a78000', 'renesas,scif'] is too long
+	['renesas,scif-r8a78000', 'renesas,scif'] is too short
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
+	'renesas,scif-r9a09g057' was expected
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
+	'renesas,rcar-gen1-scif' was expected
+	'renesas,rcar-gen2-scif' was expected
+	'renesas,rcar-gen3-scif' was expected
+	'renesas,rcar-gen4-scif' was expected
+	'renesas,rcar-gen5-scif' was expected
+	'renesas,scif-r9a07g044' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0708000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,scif-r8a78000', 'renesas,scif'] is too long
+	['renesas,scif-r8a78000', 'renesas,scif'] is too short
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
+	'renesas,scif-r9a09g057' was expected
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
+	'renesas,rcar-gen1-scif' was expected
+	'renesas,rcar-gen2-scif' was expected
+	'renesas,rcar-gen3-scif' was expected
+	'renesas,rcar-gen4-scif' was expected
+	'renesas,rcar-gen5-scif' was expected
+	'renesas,scif-r9a07g044' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c070c000 (renesas,scif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,scif-r8a78000', 'renesas,scif'] is too long
+	['renesas,scif-r8a78000', 'renesas,scif'] is too short
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s72100']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r7s9210']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7778', 'renesas,scif-r8a7779']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a7742', 'renesas,scif-r8a7743', 'renesas,scif-r8a7744', 'renesas,scif-r8a7745', 'renesas,scif-r8a77470', 'renesas,scif-r8a7790', 'renesas,scif-r8a7791', 'renesas,scif-r8a7792', 'renesas,scif-r8a7793', 'renesas,scif-r8a7794']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a774a1', 'renesas,scif-r8a774a3', 'renesas,scif-r8a774b1', 'renesas,scif-r8a774c0', 'renesas,scif-r8a774e1', 'renesas,scif-r8a7795', 'renesas,scif-r8a7796', 'renesas,scif-r8a77961', 'renesas,scif-r8a77965', 'renesas,scif-r8a77970', 'renesas,scif-r8a77980', 'renesas,scif-r8a77990', 'renesas,scif-r8a77995']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r8a779a0', 'renesas,scif-r8a779f0', 'renesas,scif-r8a779g0', 'renesas,scif-r8a779h0']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g044']
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a07g043', 'renesas,scif-r9a07g054', 'renesas,scif-r9a08g045']
+	'renesas,scif-r9a09g057' was expected
+	'renesas,scif-r8a78000' is not one of ['renesas,scif-r9a09g047', 'renesas,scif-r9a09g056']
+	'renesas,rcar-gen1-scif' was expected
+	'renesas,rcar-gen2-scif' was expected
+	'renesas,rcar-gen3-scif' was expected
+	'renesas,rcar-gen4-scif' was expected
+	'renesas,rcar-gen5-scif' was expected
+	'renesas,scif-r9a07g044' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,scif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
+	'renesas,rcar-gen1-hscif' was expected
+	'renesas,rcar-gen2-hscif' was expected
+	'renesas,rcar-gen3-hscif' was expected
+	'renesas,rcar-gen4-hscif' was expected
+	'renesas,rcar-gen5-hscif' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): 'power-domains' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0710000 (renesas,hscif-r8a78000): Unevaluated properties are not allowed ('compatible' was unexpected)
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0714000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
+	'renesas,rcar-gen1-hscif' was expected
+	'renesas,rcar-gen2-hscif' was expected
+	'renesas,rcar-gen3-hscif' was expected
+	'renesas,rcar-gen4-hscif' was expected
+	'renesas,rcar-gen5-hscif' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c0718000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
+	'renesas,rcar-gen1-hscif' was expected
+	'renesas,rcar-gen2-hscif' was expected
+	'renesas,rcar-gen3-hscif' was expected
+	'renesas,rcar-gen4-hscif' was expected
+	'renesas,rcar-gen5-hscif' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
+arch/arm64/boot/dts/renesas/r8a78000-ironhide.dtb: serial@c071c000 (renesas,hscif-r8a78000): compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,hscif-r8a78000', 'renesas,hscif'] is too short
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7778', 'renesas,hscif-r8a7779']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a7742', 'renesas,hscif-r8a7743', 'renesas,hscif-r8a7744', 'renesas,hscif-r8a7745', 'renesas,hscif-r8a77470', 'renesas,hscif-r8a7790', 'renesas,hscif-r8a7791', 'renesas,hscif-r8a7792', 'renesas,hscif-r8a7793', 'renesas,hscif-r8a7794']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a774a1', 'renesas,hscif-r8a774b1', 'renesas,hscif-r8a774c0', 'renesas,hscif-r8a774e1', 'renesas,hscif-r8a7795', 'renesas,hscif-r8a7796', 'renesas,hscif-r8a77961', 'renesas,hscif-r8a77965', 'renesas,hscif-r8a77970', 'renesas,hscif-r8a77980', 'renesas,hscif-r8a77990', 'renesas,hscif-r8a77995']
+	'renesas,hscif-r8a78000' is not one of ['renesas,hscif-r8a779a0', 'renesas,hscif-r8a779f0', 'renesas,hscif-r8a779g0', 'renesas,hscif-r8a779h0']
+	'renesas,rcar-gen1-hscif' was expected
+	'renesas,rcar-gen2-hscif' was expected
+	'renesas,rcar-gen3-hscif' was expected
+	'renesas,rcar-gen4-hscif' was expected
+	'renesas,rcar-gen5-hscif' was expected
+	from schema $id: http://devicetree.org/schemas/serial/renesas,hscif.yaml#
 
 
 
