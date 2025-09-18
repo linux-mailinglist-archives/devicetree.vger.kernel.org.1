@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-218894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9B7B85707
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:06:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7100B8572B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F1D62398B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:03:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9BA357BEC0D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B0E310635;
-	Thu, 18 Sep 2025 15:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2A71CDFD5;
+	Thu, 18 Sep 2025 15:04:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0338E3101B8
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17271EB36;
+	Thu, 18 Sep 2025 15:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758207687; cv=none; b=cTgXYp+M+71SwVZ1GtZamPOJsmSNDu8MJXPdlcDVGjzf3GCPRPy3UySApWFxmLJ7dNAJpdx3y5+Vb6N4j3dReSyc+dcX1Pvxk1Gm9/8GqOdVggRVRIu+qrxWhNhmqiQSOyoYRLghbpNNcfqUGjleSUvrlzDrehd5qjNddwDKwws=
+	t=1758207898; cv=none; b=FaFgPwAnre18JwqUB48uIMPAQ6vnaS/0SZx6+a/fsgusvMYAQk5YCxkAXmPinJj/ya+4794/mvJoaOd6CNCOzqjVIGANDRusKrmmoVUw8K49f5TVeJLoOUlKzJ77o56+9iZkC9IeOk/yY5uwCWBfMjUfMJZemDNgwPsW0UUb2yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758207687; c=relaxed/simple;
-	bh=dMgnUT9SN0xWEnTD5CB7F2sIRMIdRNv8a528sPnHBx0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SFYWvtbEYQGX/1nZp4KQrW+XURwL2NSYy2FlIxjf/iIMig42sE3uKL9WbImtZ0JEazvncNkMk+awTYfYAwOXqG/SlJYMNVddxqb/TwzRsClMgH6Uwapy2SxFr/QhzI2gt0MDx47IKCeTVU3KM4w10fFYYm5v4PAkvNi/JXdMBhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1uzG88-0007Qj-74; Thu, 18 Sep 2025 17:01:04 +0200
-Message-ID: <09ffce72-e826-4126-8761-13efc689dee7@pengutronix.de>
-Date: Thu, 18 Sep 2025 17:01:00 +0200
+	s=arc-20240116; t=1758207898; c=relaxed/simple;
+	bh=4PZfLFnOxLVq3nXJlAJ9Bj7bNfCQqBZqH9+lTJiqVhA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W8P5J1ZJiptcU46YmaKGQAd/Ja53+3u4ZTD8tIZIQ6cfiqHlU9sU97lSho74EKHU3XYmLfe6hqq2Ewd4/rL1xYOEcvThQsCLIB6kx5rX200KSrDDgoY6+4d9lYHROcOzEPbqFvHnBFMX/UMS9SeTEZGB1FX5QVuhA3FGmGB8+ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.158.240.90])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C2BEC34210A;
+	Thu, 18 Sep 2025 15:04:55 +0000 (UTC)
+Date: Thu, 18 Sep 2025 23:04:50 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] riscv: dts: spacemit: define a SPI controller node
+Message-ID: <20250918150450-GYD1274501@gentoo.org>
+References: <20250917220724.288127-1-elder@riscstar.com>
+ <20250917220724.288127-4-elder@riscstar.com>
+ <20250918133209-GYB1273705@gentoo.org>
+ <5956e320-7cbb-4d9a-95a7-720cfa6b9654@riscstar.com>
+ <20250918140633-GYA1274501@gentoo.org>
+ <0053c0ca-340f-46fd-adb1-6af6928717ee@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: add Protonic PRT8ML board
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-sound@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, David Jander <david@protonic.nl>,
- Lucas Stach <l.stach@pengutronix.de>,
- Oleksij Rempel <o.rempel@pengutronix.de>
-References: <20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de>
- <20250918-imx8mp-prt8ml-v2-3-3d84b4fe53de@pengutronix.de>
- <0f520191-7d9f-4800-a41e-a623b9335c9d@lunn.ch>
-From: Jonas Rebmann <jre@pengutronix.de>
-Content-Language: en-US
-In-Reply-To: <0f520191-7d9f-4800-a41e-a623b9335c9d@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0053c0ca-340f-46fd-adb1-6af6928717ee@riscstar.com>
 
-Hi Andrew,
+Hi Alex,
 
-On 2025-09-18 16:18, Andrew Lunn wrote:
->>   - Onboard T1 ethernet (10BASE-T1L+PoDL, 100BASE-T1+PoDL, 1000BASE-T1)
+On 09:20 Thu 18 Sep     , Alex Elder wrote:
+> On 9/18/25 9:06 AM, Yixun Lan wrote:
+> > Hi Alex,
+> > 
+> > On 08:51 Thu 18 Sep     , Alex Elder wrote:
+> >> On 9/18/25 8:32 AM, Yixun Lan wrote:
+> >>>> +			spi3: spi@d401c000 {
+> >>>> +				compatible = "spacemit,k1-spi";
+> >>>> +				reg = <0x0 0xd401c000 0x0 0x30>;
+> >>>> +				#address-cells = <1>;
+> >>>> +				#size-cells = <0>;
+> >>>> +				clocks = <&syscon_apbc CLK_SSP3>,
+> >>>> +					 <&syscon_apbc CLK_SSP3_BUS>;
+> >>> ..
+> >>>> +				clock-names = "core",
+> >>>> +					      "bus";
+> >>> can you simply put them together in one line? it's kind of tedious to split..
+> >>
+> >> Sure I can do that.  I've seen it both ways.
+> >>
+> > right, it's merely a coding style I want to enforce, to make it slightly consistent
+> > 
+> >>>> +				resets = <&syscon_apbc RESET_SSP3>;
+> >>>> +				interrupts-extended = <&plic 55>;
+> >>> why use interrupts-extended?
+> >>
+> >> Because it specifies both the controller and interrupt number
+> >> explicitly.  Why *not* use interrupts-extended?
+> >>
+> > It's just unnecessary, the SPI node will fall back to find parent node's interrupt
+> > which already specific as &plic, brings no benefits
 > 
-> Are these PHYs connected to the switch? It just seems odd you have a
-> switch with only one port connected to the outside world.
+> The benefit it brings is that I don't have to search backward to
+> see what the interrupt controller is.  I realize it's redundant
+> but I do prefer interrupts-extended over just interrupts.
+> 
+although both should work fine, I do prefer simple "interrupts" version
+for dts wide consistence, at least for SpacemiT
 
-yes, the 10BASE-T1L+PoDL and 100BASE-T1+PoDL are. We didn't get to test
-them, so I removed them from the devicetree.
+while reading Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+interrupts-extended is useful when there are multi interrupt parents, or need
+to specific different one..
 
-Regards,
-Jonas
+Yes, we have different opinion here, let's wait and see what DT maintainer think
 
 -- 
-Pengutronix e.K.                           | Jonas Rebmann               |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+Yixun Lan (dlan)
 
