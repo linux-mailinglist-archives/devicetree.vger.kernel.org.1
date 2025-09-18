@@ -1,162 +1,123 @@
-Return-Path: <devicetree+bounces-219050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E23FB86EDF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:38:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA7BB86F0F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:45:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D98D01C87CA6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:38:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 791DE582454
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:45:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0A92F2910;
-	Thu, 18 Sep 2025 20:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D8F313D77;
+	Thu, 18 Sep 2025 20:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="dGITqn4J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TjZnR+kJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160462D63FF
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 20:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C2730B528
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 20:45:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758227871; cv=none; b=Brojm/irKdBQFj4uYCu9J5DUibRuONDeN0ptxeaUV4B0dd9+czPpH6009SDOrNojUIo9YtpqWBvoPBNPZs2Rodudz4sAOqETWAGoqANQj3T1TJNbd7vI7ET5Gzny3dOsGB0ACL+O2W61ZjxGgT3PHztKcDyyk8B1xUy90HiyIkc=
+	t=1758228315; cv=none; b=NFqXYSKDshpc2hhpGVTI/Bium4Q5awzBDtJuVH1G21NNHdy5jdpF8awyyn1QcDpY/1dfBKL8i4rSPtivcD8jMWDsGD/sgemRXie+r9ReVaYxHh/jBmSM49mzlFK6HhEhv9Ck0QuOYrZ55wyREy34iXqB4bvh4680FYdsYVZXlq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758227871; c=relaxed/simple;
-	bh=+0R/2T7Tg9D4YiaoqRiplwCZvbPjlzXYv47AHkbl7dM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DilhLTNZxRRcG45qRNNr6nPE8XU4Esga+EdHckESazrslZ77O367ALEtb8To1cmFUGlSLnGIhIAmcAIh4vaeZBMhQs/7GuvPYOJHdyeAZfRToNHsEieE2rJ/4hm5WWj24KLCFdx3eO74Rks8hOjGc6bo65v92vhAdwQyom3y/6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=dGITqn4J; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-ea5c612297bso1070727276.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 13:37:48 -0700 (PDT)
+	s=arc-20240116; t=1758228315; c=relaxed/simple;
+	bh=GGg6d/r4jDGzehwcYIRRjIy+qluRFFKgKPsa5MqzzFw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=al9pi0fpTG3Tef9tRi/2u5Y7Z43OUeMcuMxuJEVcJF2rAQDD8dT/BYjLZaYw5zUp0a2DrF/k1KiAOQZp8ddU30mKAW/ndwakE+clpaJ5ajIOPnqNTdhf2lZ2Xcku1k7X1Ytb28iSgl0wPPT0UXE0EehwR0No4VcXadB1DFhYH04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TjZnR+kJ; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-77b0a93e067so1339539b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 13:45:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1758227868; x=1758832668; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vPqblTFKrLAe0mzsDyY6YySHuY6Q2kBBLw78NU0KIeg=;
-        b=dGITqn4JwTmj5KwN35OD6/w5on0Ky8BtXx72gnPAkmp+/tXztRoUxlrBVs4ZSLAQFl
-         0WJTdsR4LIGjuEl1QwUmqXU1ZbKWotDZBJG6uz0fcDJu+Pde2OpvjBLV6Wcgt7ebZaGE
-         3IiA0rQaf+FOGwRk4LF2MySoeTtdmVC5ogGWw=
+        d=gmail.com; s=20230601; t=1758228313; x=1758833113; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OndiLXsBaZlIfnc6wgFkQBsEvn2pe7regfwA2hv/6vI=;
+        b=TjZnR+kJHVwb7ZqsIxQ4Fplc2xS75O8S2fvbwi5MYYCasqvOcu2KwaE/LDe02VZbSA
+         PMtxNu6Soy+69zZQ0Hj0Qw5i9N16004aAnHZGGRU0Qm+vCiQq5yyVf8ch/WPQQppHB8g
+         +xzDvRAibDwvfxrDxVF1a6JL1yTVanROUTJlX8EiKyZ65tdOSa+H/An22mMGahXTMQ+A
+         sWfxMODtbJfTfLkKG+Bn+uej8+o+qA0NC3/YYOTf/Ydiz4vSDRN4SOVfU3RPsMOASVmm
+         q6RjtAq7fUzANCq0328g1V59/c2JFhZKf353SIevDTut6BD3tWuhBLg7BWTEBEjXe6ME
+         a3jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758227868; x=1758832668;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vPqblTFKrLAe0mzsDyY6YySHuY6Q2kBBLw78NU0KIeg=;
-        b=Hvz1yHnHJVMnZAZQUE0W4mtFTjgwfajhdDnzS4Xcxoqt/qwXvG82GjT9ZVC2REotyP
-         esKvsV8LVT9NpzMD9T6YmnBvQR29a1jIKDfXiNoOtYQRRlJZv9mAqNltsCMxFAECioV1
-         LrlQEZEVxeoGGbCKc4kR1ZzNSGN6trmyALHwEdK7P5crEiobV0Vbmge6Z8Rb3VFFrz0A
-         6osjgbmafYNIw6lG97vRRJvGcXL3M1U1jbb/HNYg82y6Pant0AYAOg45WKt2VvBtNo5K
-         PEsqJjS5CGgXuLxPYHuKnQ+tx9rE0u/GGhntUm6BCu6G5pCDnGAsi3rGoVFpLzgrXHII
-         RkoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVkuuFU6vAbEQAzLjVuE9mBQODQyPVYKXtp8uU++xvwKx2AwtNjUa2J8QHHn2JCLICqPjltQidqDOLG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw505vju5dFuIYnooGLkTuLDYM2TBEYmPAlVdrbUXyqoXDinDjq
-	FmeJ5LORTuPQYcDiiykiUaRCdtrDYSK68QTkCKluvK8bwv8zA6SF/Mp12nZncP2LKSiyYjXr+UC
-	bFSEct4D87K5QgSZHaG/4Eb5DBFIPyOu6353wEoXWag==
-X-Gm-Gg: ASbGncskui02vU3BHzLgYHFj1Gk9GfUleFBW1o3Rg7b2I4Grlc94dnGneQC5IY4th8T
-	MvXYfrZ5GBpvmFbdcokXepIOMwYu6zMlbetEK5tt20gX4qLS5ELSIbFdn0o8CRbNGOIJCZ/tQ98
-	gF6whVwJ9EJtr/5mjOfo/Yyok/0pewbzaLc+y/cO4UK+ODttBQCjejmQNLbSxR1zw8QXk5vObFE
-	gfX0dcDLLgTRrXYsQegoFDF
-X-Google-Smtp-Source: AGHT+IH14ML5OeTgfNCjZ+eLR5D0BkEN/X8W7UZQcrAQKu6xXP5etxnsRLfqJ5tS5GUlUf2xOTL9iOYN03VgHVRvQJU=
-X-Received: by 2002:a05:6902:c04:b0:ea4:f3f:5498 with SMTP id
- 3f1490d57ef6-ea8aa09f336mr791364276.36.1758227867928; Thu, 18 Sep 2025
- 13:37:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758228313; x=1758833113;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OndiLXsBaZlIfnc6wgFkQBsEvn2pe7regfwA2hv/6vI=;
+        b=Iz+ubZdLJRTsp9QdrUKGClxfrs67bLI228CFy/TPJYcP7VXF55iUVHJ3Xm4M2l36O/
+         mki/3Gx6DyIk/rLbIiOx9j+5yzv181/K4MADs3vcbldUUD4OmL1GvabWOpWCSoIx4qxs
+         +hwrDpLGPbtSqxqnR9UXNkeq3rxcTHIua3P7vaId7nStMnfu8nrXzghLhaBptJti8LPi
+         zw7JaGlo9DcqhhjxVD2FGQhky2Lb1fks2mnyuro7IyNdA97eTXQMKvBXpYqgud+2OrT8
+         t4stBI6I1YcNgFVb20Vysysb9LGt4uaIlNBkcNzitWsPD5He2+VooilzjvZi762qSpPq
+         XXMA==
+X-Gm-Message-State: AOJu0YwcQm5m7toZrWpNkFWyeQsDQtL6xmPAt3NAssaX7WFmUmKmJiXh
+	Ewojx4pUU823YTsZLrce4fV7Ay3g2BaLmJk5gq+7ixR0nqD/H7lxarJ4DWfMP7jQNAS4bw==
+X-Gm-Gg: ASbGncs2unxhVN9s8T3z565MGz9h859NfnZiU8sI26f32jnQlaafnHG48f4e6KOcB4D
+	R7uo1OPvwf9Kbp4mhxvkE67G2UadVHW97ssTf4dqJTV5uc/lkNo/UNn6HGj0X2jtrLcvTkMEeXV
+	FV1WtwPXGXolZYvvYimYjRW7KfkiOCBtAl3Ol7GaqYhah5bKlqCeNOxyRvBYIP05GgJ+KMilzjr
+	M2eTnrui2a0mAcJJBc0EXNpZJO6IaXC6oD2Ld/pn5HdPSdLJr8lbXMXyXX5GVbUn7GfT0Ug8Q2a
+	n51xrixTfaIIb13ndXzod/s2K/waHecVLBlhYKDontoy/IJwguylnq2UAE18j/dF3YrETlLOOx0
+	SNaDI0mf0v4PGSmuT8qfiZUJduWjm/yMo8OUUgrggK6BJ1W1UkrQ=
+X-Google-Smtp-Source: AGHT+IH6nT7K0iPQvyubO2xs7c/GfuU5J21G9ftRRvl+G+ljHMvaAOMJ9VufECcV+u3dMud2d7dvVw==
+X-Received: by 2002:a05:6a20:7f9e:b0:245:fdeb:d26b with SMTP id adf61e73a8af0-2925e23aaa3mr1419052637.15.1758228313064;
+        Thu, 18 Sep 2025 13:45:13 -0700 (PDT)
+Received: from localhost.localdomain ([119.8.44.69])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff35aff2sm3178181a12.1.2025.09.18.13.45.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Sep 2025 13:45:12 -0700 (PDT)
+From: Han Gao <rabenda.cn@gmail.com>
+To: devicetree@vger.kernel.org,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Han Gao <rabenda.cn@gmail.com>
+Cc: linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] riscv: dts: thead: add more th1520 isa extension support
+Date: Fri, 19 Sep 2025 04:44:46 +0800
+Message-ID: <cover.1758228055.git.rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250918155240.2536852-1-dario.binacchi@amarulasolutions.com>
- <20250918155240.2536852-4-dario.binacchi@amarulasolutions.com> <20250918200445.GA2529753-robh@kernel.org>
-In-Reply-To: <20250918200445.GA2529753-robh@kernel.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Thu, 18 Sep 2025 22:37:37 +0200
-X-Gm-Features: AS18NWBqzx_QCJLvM1ZupXjBE082LYlK02aLhStfsrL_kkHbqntwv2U3qqpvFFU
-Message-ID: <CABGWkvqX9aCxam6UMYsUBkwnMJrMNKjVKrqi5Ca7O5Jk8xRTAA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/6] dt-bindings: touchscreen: add touchscreen-glitch-threshold-ns
- property
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
-	linux-amarula@amarulasolutions.com, Conor Dooley <conor.dooley@microchip.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Javier Carrasco <javier.carrasco@wolfvision.net>, Jeff LaBundy <jeff@labundy.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 18, 2025 at 10:04=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Thu, Sep 18, 2025 at 05:52:31PM +0200, Dario Binacchi wrote:
-> > Add support for glitch threshold configuration. A detected signal is va=
-lid
-> > only if it lasts longer than the set threshold; otherwise, it is regard=
-ed
-> > as a glitch.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > ---
-> >
-> > Changes in v5:
-> > - Add Acked-by tag of Conor Dooley
-> >
-> > Changes in v2:
-> > - Added in v2.
-> >
-> >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml    | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchs=
-creen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscree=
-n.yaml
-> > index 3e3572aa483a..a60b4d08620d 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
-aml
-> > @@ -206,6 +206,10 @@ properties:
-> >
-> >          unevaluatedProperties: false
-> >
-> > +  touchscreen-glitch-threshold-ns:
-> > +    description: Minimum duration in nanoseconds a signal must remain =
-stable
-> > +      to be considered valid.
->
-> What's wrong with debounce-delay-ms?
+Add xtheadvector & ziccrse & zfh for th1520
 
-Do you mean that I should rename touchscreen-glitch-threshold-ns to
-debounce-delay-ms?
+Updated the commit message for the patchset
 
-Thanks and regards,
-Dario
+Thanks,
+Han
 
---=20
+---
+v1: https://lore.kernel.org/all/20250911184528.1512543-1-rabenda.cn@gmail.com/
 
-Dario Binacchi
+Han Gao (3):
+  riscv: dts: thead: add xtheadvector to the th1520 devicetree
+  riscv: dts: thead: add ziccrse for th1520
+  riscv: dts: thead: add zfh for th1520
 
-Senior Embedded Linux Developer
+ arch/riscv/boot/dts/thead/th1520.dtsi | 28 +++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
 
-dario.binacchi@amarulasolutions.com
+-- 
+2.47.3
 
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
