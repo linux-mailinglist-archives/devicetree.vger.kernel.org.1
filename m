@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-218747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EF2B83AB8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:03:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B33B83B00
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:06:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C94B72131B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:03:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F5841B219D4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13D92F4A14;
-	Thu, 18 Sep 2025 09:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EFB2FF17C;
+	Thu, 18 Sep 2025 09:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MCjtsiz4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iasrYwn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DED52D94AC
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14712FE588
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758186190; cv=none; b=BS/sjkCpHmENziWQafLBDB8sQD/FEQVQMQGNs0OUbe+xNADS8U6DFjehcKJJ6VqtGgQFmBuPcqtr70ydUhZbB22hfFbP3GpvwXyt2KPE3VMgz+lLuVc3RGjugshvsMiyB0bE3Q7VLSjg8zwJWEKIHXpENYhpmIIUe0RV17eEntw=
+	t=1758186353; cv=none; b=Jpxye3EVBBBMEVs1E3vINEEZIPx/SE8h9P0ucpvoUp9Mtc4p9TA/H5mNOACU8zKHPrVUMYSm4q92ZNfeQZ/gTb0gNoFvLo6VVP5VDHywXSOMv0/gaGM5HcmolFHB3UYzzOLhdZWeFQWbTDKC5VCWh7xgWkm/Le+r/2QXUSDKSx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758186190; c=relaxed/simple;
-	bh=3gF74B/Ah4EDnWU58ZXx6dvP16HFD3sYPDMbzivTE0c=;
+	s=arc-20240116; t=1758186353; c=relaxed/simple;
+	bh=3jNolqJkapC/Ko3tIVGHtQ6koTpXkWQZS6HoZP9KJ3w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sQsM3a5PEIgrd6YdHv4HWvSq82KQKPfCUoAnRC1rwY8e9Gb2K/bwXYPv8uRuChqrXLp9IpXdt+T8r78bWCmo0hyaJ0u1EsDJCuoBRUWAP4mQ7QtX4kPknV5Xy/vylXGn/fs3orrxwn8+KnC7mxtdvpYnkaaNcNncfPr/tiVfo/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MCjtsiz4; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1758186188;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=XFCZX9eN7thiq9pavKtpP8J9JCm4he2B7yCgrgp98u4=;
-	b=MCjtsiz4r9xGj+hY01nwJfnHfS/x74Wez0cQH0RlxB6nI6WsptM4xKY+TOJotUsgpZev9X
-	wb/PWgC8Oc9RujZKW7PV3HM1CnV/p2eAQIF3GoyvhHSTUZjm7bcurfjEwwCrKcbtx8eAgh
-	OUUiP4Rc3MsrCmEwdgpxAdJVriCXSbY=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-37-w4gRiAUzM-yHh5ErVuZb1Q-1; Thu, 18 Sep 2025 05:03:06 -0400
-X-MC-Unique: w4gRiAUzM-yHh5ErVuZb1Q-1
-X-Mimecast-MFC-AGG-ID: w4gRiAUzM-yHh5ErVuZb1Q_1758186186
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-45dd5c1b67dso3177135e9.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:03:06 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=J/1bkV1R401cDLadsybY834tB+zUxpTKMXrHJ71g5H/6q5T3KherlGgu74Jfgo5nJN3p34OgoRaik6qUPwbQHzE2/1LN+igGNwQ4s5W+HSLqrhFzGvRNdarY/rqwITTx7PkYAjVKqJGjpuOI9PfoJuke8M8MQhlWIjNfr/isXQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iasrYwn/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58I3E6nu021427
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	efwfuR0XZuIlYyd3jHeDV9GXnA+hdIP5wvjI/VjJjUc=; b=iasrYwn/9pH8hb8G
+	GQWuNQoQqOP+gTGpFNe+OrrORZJb/JnVA5//h2oL/HI6l7PBAXj6MupId/BycE8L
+	WWq3eCzQGm1t4/MqsNbYmtG00kp7m9YZoWRmYgruE6ZeMkFHGsj/7Y23vr2JOxDJ
+	1QxQhSiXaUvqxc953YkjJbmr2zCqxUZOa0bysKsXqjm5cywbG9NVY12t2ame+qfp
+	kAisG1Fv2FCoW4oIeWf7Vd+jpzcEUB5c2OCJAtVN/m5gdaFOUVrFyDqk3wpskgNF
+	M1z73/iupTXGViwl6eLLDyNDd2KoYrqhW520JIGhH5c8vyc0xNifME75mS9Pg71N
+	t2dX3Q==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5dp2d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 09:05:47 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-78f40a59135so2048586d6.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 02:05:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758186186; x=1758790986;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XFCZX9eN7thiq9pavKtpP8J9JCm4he2B7yCgrgp98u4=;
-        b=l5FXfp9fq+7AR1GeBhpeIbKOriAZVub9lRSK5vTwCYrpwEZY67VFdhk3C6DE5NVY0A
-         tkctS1L21c8KKw4+39e4ppVKOl+8LsRwDewvoDcxnJ3j8VMKoMx8/DyzzAOeo5skXO8z
-         nWN3NbUV0GjS5S8QUaQCIJ4kP7HWRk+/a1n5Ol0lfobe/JKo8OifMI7oLW0i4v/blLlO
-         Cllf5SpZsu8NsihxGU0WwNPo44NyopW7ZxibTGu14B8o6tX9WmGPzQjbJaH35OvWzv8U
-         FzBawQRtCiHdWhPqyRaqySuXBxZ2h+acL9a/lSMq+1ijR/IUlF5AwGFzhMu7/pcwlWN5
-         V5Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVi5uiPcToXW5E27UBvzK510uuWygqbBsJemC65GDe2iXAVwOylOwy2DPrUPtVnSX+GklynZSKbRJgo@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq0chF7C0zAlVlJeZmnFrhYdd8gOqtVWGCYu7BUPHJW8CDSMhU
-	06R8hRqecYHpp0Dy3k1yd2odun3IqViHFUULOeQe7Rzk+q+KmykopQx3kMIF03M4BYkxjxlXTMI
-	McfzqClmKITXNN0DdkYEv7YVBGN4kFxlubStW3ihQVF+RLgAS0XSmJtRQEKqzhVc=
-X-Gm-Gg: ASbGncuoj/xji9I50vmQxFnDcU0+dbmMCQhfsm7K8MXB3hwZMVumIT1j/bAZkJBQgXu
-	zg2U0+fdTYkVJVWW/gi3UMdwKU1i/4tSbK6pjTNWGt27pJZuKha/9XXl2pi6Wx7+x6ia5Ggi6TR
-	w5EypRdCvuK/Vm0o9pVKQ0Qkf9dd7G/3ClfX1vgEorAcps3VH4byfXLCIwPyCSohMn8lrW10gs5
-	JyB1sVMQPEcdaUMRMcnKxO6HYq/7EwDkmLeoh+1JJetjcMYFWoWhKWk8JbcriraKiMHRz/W9ePC
-	3ra7Cs54psI3sn1JZnjLQP60H9BNqYJQt0cMiY2RquqCBo6lNJDpUjVf4nwwxL57SvVtCcst5fs
-	HFl2UAC6fBzPOwJb5tutBR1bO52uhaQdyjkIaX8eaQ+IHi0ZpE+8oxiKEUBx3O9Ur26+5
-X-Received: by 2002:a05:6000:2313:b0:3e7:42ba:7e66 with SMTP id ffacd0b85a97d-3ecdf9f4477mr4804904f8f.3.1758186185424;
-        Thu, 18 Sep 2025 02:03:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElkxupMxmNif5/lzfzUVobHl0PSoeQ1IdEubg1s704Bcn0Lb4/+vf/JHCv5gGV276WTwwYSg==
-X-Received: by 2002:a05:6000:2313:b0:3e7:42ba:7e66 with SMTP id ffacd0b85a97d-3ecdf9f4477mr4804839f8f.3.1758186184853;
-        Thu, 18 Sep 2025 02:03:04 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f07:dd00:ca9c:199e:d2b6:9099? (p200300d82f07dd00ca9c199ed2b69099.dip0.t-ipconnect.de. [2003:d8:2f07:dd00:ca9c:199e:d2b6:9099])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613e754140sm70721995e9.21.2025.09.18.02.03.03
+        d=1e100.net; s=20230601; t=1758186347; x=1758791147;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=efwfuR0XZuIlYyd3jHeDV9GXnA+hdIP5wvjI/VjJjUc=;
+        b=gSwHv+CBObeNQZNkRB5F+tTIFRdKRYqzp84Vif+120zFa6BNf/zrbepZlqdjOTcJNj
+         lf3AkuZceqwJH04ujQgehEitNOm+9xKQ2XebhB8UqYLAUAQ0won2AXOopFX1QqvDejwG
+         ci2pz8wxqH7lR+somiJmFJ3jQuGJopWCSTifenSQTmWGAsKh2GSggT3EV6BC4cBvXdXf
+         WifvpsrZo3ZK7pA6hwksLYQOsBzEafFup0XPn4MqFtSr9baXk+8TNI1SGC57DVXxm/RY
+         qNPBAxe8jTHARmrh5nMRAqvelzZjKhavR2pTH7ug06FeZS9olWsbV/aej8f1f1unjtrB
+         SAIw==
+X-Forwarded-Encrypted: i=1; AJvYcCWzYD3CNJFiN89oM3E6r0Hv7B28sGUuL7LrThh9ZRoRtVFi6/VepVMIso1s/OCJqHkamp9B/uJ4A/sA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+De7Kv8GJF8tyBuGBMQ3lxN4EQOKqlrJbNiTz4n1C5Mrbjs4A
+	j7ik4AAB5GbkPGMtMVEPcwurfhT2c3f4c4Pl/hPZDP82K4O1JMfmTQfeoB6I0rN2hEfKkTHy7DU
+	adRQutJlNYJ5ciShOiq63Xm5xeLiG42jsr0YzeCuKSpEK5Oa4CWFT4xIyt1g9t1CN
+X-Gm-Gg: ASbGncviMczsPvQtWv86gbRWMeVjSzIDAqMMZ0KPX9uO0TaQZfewHHCkJPiZHlgKzhj
+	2tIqaNIq8FPKdn1ridnhfPHfUZTEoz5mdSdYUGKZEogO0sDf9WRf4l0wFN+dojT6ST1WURjnXfE
+	1b09xMMaeRwVWmpylmOpVRXTFXJCPte5o/VOfTfWZL1odNHriIqe4an0RuhXAtd7jDUXGP6080l
+	P6tZyrsjTzBlFiNuTTOEjdakWo33XrqfJWMGHZgJ4N6RfjCuftoRbC4uwT9xZg56j1kJFYhyA/K
+	HwJQZAZn5Bg/ile3WiUBqLwEByEQg/siXLvEjr2+F++nok2SYPUy+0uNQ4qAztkD2ypZefJgvni
+	hYgQMcecNiw6APkuLVaO65g==
+X-Received: by 2002:ad4:5c4e:0:b0:773:84c1:396 with SMTP id 6a1803df08f44-78ecc822080mr35313266d6.1.1758186346572;
+        Thu, 18 Sep 2025 02:05:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGFbRLbBIv3u5UrETuMfbcXFVbaueQuIikLkfQf7q3WwNCyZ+rot/De/umJEGNwkT7guFXU/w==
+X-Received: by 2002:ad4:5c4e:0:b0:773:84c1:396 with SMTP id 6a1803df08f44-78ecc822080mr35312996d6.1.1758186345967;
+        Thu, 18 Sep 2025 02:05:45 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62fa5f287d9sm1085733a12.44.2025.09.18.02.05.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Sep 2025 02:03:04 -0700 (PDT)
-Message-ID: <45cd1637-54f6-4941-9670-7130aaf080f0@redhat.com>
-Date: Thu, 18 Sep 2025 11:03:02 +0200
+        Thu, 18 Sep 2025 02:05:45 -0700 (PDT)
+Message-ID: <035c0d66-bddd-495c-bd23-e1d98570ba7f@oss.qualcomm.com>
+Date: Thu, 18 Sep 2025 11:05:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,116 +90,243 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V14 1/6] mm: softdirty: Add pgtable_supports_soft_dirty()
-To: Chunyan Zhang <zhangchunyan@iscas.ac.cn>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
- Deepak Gupta <debug@rivosinc.com>, Ved Shanbhogue <ved@rivosinc.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Andrew Morton <akpm@linux-foundation.org>, Peter Xu <peterx@redhat.com>,
- Arnd Bergmann <arnd@arndb.de>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Axel Rasmussen <axelrasmussen@google.com>, Yuanchu Xie <yuanchu@google.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>
-References: <20250918083731.1820327-1-zhangchunyan@iscas.ac.cn>
- <20250918083731.1820327-2-zhangchunyan@iscas.ac.cn>
-From: David Hildenbrand <david@redhat.com>
+Subject: Re: [PATCH RFC] dt-bindings: thunderbolt: Add Qualcomm USB4 Host
+ Router
+To: Mika Westerberg <mika.westerberg@linux.intel.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Jack Pham <quic_jackp@quicinc.com>,
+        Raghavendra Thoorpu <rthoorpu@qti.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mayank Rana <mayank.rana@oss.qualcomm.com>,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andreas Noever <andreas.noever@gmail.com>,
+        Mika Westerberg <westeri@kernel.org>,
+        Yehezkel Bernat
+ <YehezkelShB@gmail.com>, linux-usb@vger.kernel.org
+References: <20250916-topic-qcom_usb4_bindings-v1-1-943ecb2c0fa7@oss.qualcomm.com>
+ <20250917061236.GF2912318@black.igk.intel.com>
+ <e648a71f-a642-4f5d-bcf8-893484cfe601@oss.qualcomm.com>
+ <20250918051244.GJ2912318@black.igk.intel.com>
 Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
- ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
- FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
- 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
- opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
- 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
- 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
- Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
- lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
- cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
- Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
- otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
- LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
- 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
- VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
- /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
- iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
- 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
- zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
- azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
- FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
- sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
- 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
- EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
- IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
- 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
- Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
- sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
- yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
- 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
- r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
- 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
- CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
- qIws/H2t
-In-Reply-To: <20250918083731.1820327-2-zhangchunyan@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250918051244.GJ2912318@black.igk.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 8BAdKkuYTRUO4ANESdgKc8dBUtaO5bIa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX5fBksdAZuyC/
+ jL2JH9tSLBasXoJg9eeDPuc/Y1LdN7CumC3zaZo6xebZENqlT4ujoWnhJuE8zfCpoFrZbDEr1cb
+ FwfhPi5SYGiDOvcH2vibWnCd1vanIS+6dvk5KrX9vXGax3l90DVURKo1xbFKNwITWNpgu9e65y+
+ 3SkBYtVOw5p7lE6QE9x2PR15IXmk0X4ys5LrZ+8CSdMS5bFqDNcuVCOuzfiaihpeiLxWigRnl3P
+ XaektKExsftAzQ+9R8UT4FE6XcY6lTXBC/YsHKOGCYVRaZCimzHNAFPkkJnQXAgab9rte/XOPs+
+ nhB5e/BFMTjSA1k81lc9Vuw3fZz9UUrAhFhHlI7XxpVKHHoDG/DDfqTVaClgEjGhur0xp1ZHyHX
+ Sux/ghGL
+X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cbcb6b cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=yMhMjlubAAAA:8 a=EUspDBNiAAAA:8
+ a=Nf3ZQrY7d6tcd-rdNfQA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: 8BAdKkuYTRUO4ANESdgKc8dBUtaO5bIa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-17_01,2025-09-18_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509160202
 
-On 18.09.25 10:37, Chunyan Zhang wrote:
-> Some platforms can customize the PTE PMD entry soft-dirty bit making it
-> unavailable even if the architecture provides the resource.
+On 9/18/25 7:12 AM, Mika Westerberg wrote:
+> Hi,
 > 
-> Add an API which architectures can define their specific implementations
-> to detect if soft-dirty bit is available on which device the kernel is
-> running.
-> 
-> This patch is removing "ifdef CONFIG_MEM_SOFT_DIRTY" in favor of
-> pgtable_supports_soft_dirty() checks that defaults to
-> IS_ENABLED(CONFIG_MEM_SOFT_DIRTY), if not overridden by
-> the architecture, no change in behavior is expected.
-> 
-> We make sure to never set VM_SOFTDIRTY if !pgtable_supports_soft_dirty(),
-> so we will never run into VM_SOFTDIRTY checks.
-> 
-> Acked-by: David Hildenbrand <david@redhat.com>
-> Signed-off-by: Chunyan Zhang <zhangchunyan@iscas.ac.cn>
-> ---
+> On Wed, Sep 17, 2025 at 08:36:19PM +0200, Konrad Dybcio wrote:
+>> On 9/17/25 8:12 AM, Mika Westerberg wrote:
+>>> Hi Konrad,
+>>>
+>>> On Tue, Sep 16, 2025 at 10:06:01PM +0200, Konrad Dybcio wrote:
+>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 [...]
 
->   mas_store_fail:
-> diff --git a/mm/vma_exec.c b/mm/vma_exec.c
-> index 922ee51747a6..a822fb73f4e2 100644
-> --- a/mm/vma_exec.c
-> +++ b/mm/vma_exec.c
-> @@ -107,6 +107,7 @@ int relocate_vma_down(struct vm_area_struct *vma, unsigned long shift)
->   int create_init_stack_vma(struct mm_struct *mm, struct vm_area_struct **vmap,
->   			  unsigned long *top_mem_p)
->   {
-> +	unsigned long flags  = VM_STACK_FLAGS | VM_STACK_INCOMPLETE_SETUP;
+>>  struct tb_nhi {
+>>         spinlock_t lock;
+>> -       struct pci_dev *pdev;
+>> +       struct device *dev;
+>>         const struct tb_nhi_ops *ops;
+>>         void __iomem *iobase;
+>>         struct tb_ring **tx_rings;
+>>         struct tb_ring **rx_rings;
+>> -       struct ida msix_ida;
+>>         bool going_away;
+>>         bool iommu_dma_protection;
+>>         struct work_struct interrupt_work;
+>>         u32 hop_count;
+>>         unsigned long quirks;
+>> +       bool is_pcie;
+>>  };
+>>  
+>> +struct tb_nhi_pci {
+>> +       struct pci_dev *pdev;
+>> +       struct ida msix_ida;
+>> +       struct tb_nhi nhi;
+>> +};
+>> +
+>> +static inline struct tb_nhi_pci *nhi_to_pci(struct tb_nhi *nhi)
+>> +{
+>> +       if (WARN_ON(!nhi->is_pcie))
+>> +               return NULL;
+>> +
+>> +       return container_of(nhi, struct tb_nhi_pci, nhi);
+>> +}
+>>
+>> I suppose I can probably get this decoupling sent in advance of the rest..
+>> It's quite delicate so I'm hoping I won't cause any random nullptrs for you
+> 
+> Instead of the above is_pcie thing, can you split it so that the PCI parts
+> live in pci.c and the "platform" parts live in platform.c (or perhaps this
+> is fauxbus now). Then the core part of the NHI code (nhi.c) just works
+> regardless of how the controller is wired to the SoC.
 
-No need to resend because of this (probably can be fixed up when 
-applying): there is a double space before the "="
+I'll simply try to get this decoupling sent soon, so we can debate
+over material changes
 
--- 
-Cheers
+> There are plenty of examples in the kernel how to do this.
+> 
+>> - Additional steps are necessary to take the hardware out of reset, set
+>>   some magic values here and there, load the firmware (i.e. memcpy_toio())
+>>   wake up the MCU and perform Type-C magic (more on that below), all of
+>>   which is handled in a new qcom_usb4.c, which does that and ends its probe
+>>   function with a nhi_probe_common(). PM of the hardware and its providers
+>>   also takes place in Linux, just like with any other IP block on embedded
+>>   systems
+> 
+> Call it qcom.c. But please try to move all the non-PCI generic parts into
+> platform.c and then only the Qualcomm specific things live in qcom.c. Idea
+> is that we can re-use all that when for example Apple Silicon support is
+> added and so on.
 
-David / dhildenb
+That's the plan
 
+[...]
+
+>>>> +
+>>>> +  interrupts:
+>>>> +    items:
+>>>> +      - description: Combined event interrupt for all three rings
+>>>> +      - description: OOB Firmware interrupt
+>>>
+>>> No MSI? If not then at least I suggest to support it in the DT description.
+>>
+>> No, it seems like across the SoC we only have MSIs on the PCIe RCs
+>>
+>> Because I don't know what a valid MSI setup would look like, I'd like
+>> to defer adding that description to when a platform with them pops up
+> 
+> I it hard to change these DT bindings later on? If yes then I would
+> definitely think forward and make this support MSI from the get-go.
+
+dt-bindings (attempt to) promise an ABI-like interface, so bindings
+for *a given IP block* ("dt-bindings describe the hardware") should
+not change, unless there's something critically wrong (e.g. "this
+could have never really worked").
+
+Adding new properties is always OK, marking the new properties  as
+'required' is not (unless it falls into the aforementioned case).
+
+It's also totally OK to add MSI properties to e.g. Apple Host Router
+bindings specifically when they come around, as it's simply a different
+piece of hardware. It's also OK to create a usb4-host-router.yaml down
+the line, which will act as a common include and perform any
+maintenance/code churn, so long as it doesn't end up in the bindings
+for any specific hw block (e.g. this QC one) becoming more strict
+than they were on HEAD^.
+
+
+> 
+>> [...]
+>>
+>>>> +  wakeup-source: true
+>>>
+>>> What about the "power contract"? Are you using the existing we have for
+>>> ACPI:
+>>>
+>>> https://learn.microsoft.com/en-us/windows-hardware/drivers/pci/dsd-for-pcie-root-ports#map-native-protocols-pcie-displayport-tunneled-through-usb4-to-usb4-host-routers
+>>>
+>>> It was designed DT in mind but I don't think we have DT bindings for it.
+>>> This is needed to make sure the driver (Connection Manager) creates the
+>>> tunnels before the native protocol stacks get enumerated (e.g during power
+>>> transitions).
+>>
+>> I added a custom entry to drivers/of/property.c, matching that name.
+>> Seems to work fine (tm) so far, but then we haven't yet tested sus/res
+>> much.. 
+>>
+>> Just to make sure - are we expected to ensure that the NHI device is
+>> resumed before any protocol controller drivers (at runtime), or do the
+>> latter have to *probe* only after they're necessary? I firmly believe
+>> the former, but doesn't hurt to ask..
+> 
+> The former. The TB driver needs to setup tunnels before native protocol
+> stacks and their drivers (e.g PCIe and the like) resume. We have the
+> device_link from the native "port" / device to the NHI that deals with it
+> but it expects the property to be there.
+
+OK then we're on the same page, good
+
+> 
+>> [...]
+>>>> +            port {
+>>>> +                usb4_0_mode_in: endpoint {
+>>>> +                };
+>>>
+>>> This describes the Downstream Facing Port (e.g USB4 port), right? We have
+>>> something similar used in Chromebooks so it would be good if we can make
+>>> the bindings close to each other if possible. This allows binding firmware
+>>> description to retimers (and also to "fixed/embedded" device routers as
+>>> recent changes to the USB4 spec makes possible).
+>>>
+>>> See drivers/thunderbolt/acpi.c::tb_acpi_find_companion().
+>>
+>> Yes, this binding assumes the Host Router has precisely 1 DFP (Linux
+>> Type-C infra isn't ready for anything more, at least not on the DT side
+>> to my knowledge) and this port (which isn't necessarily the same as a
+>> connector, i.e. a physical receptacle in DT speak, it simply refers to
+>> an abstract data connection between two devices)
+> 
+> Okay I'm not too familiar with the current DT bindings.
+> 
+>> Notably, I don't think we currently describe the USB4 port (as in, the
+>> usb4_port.c meaning of it) at all, but for on-SoC HRs we know all about
+>> them, so perhaps a subnode description could make sense. This way we
+>> could also point them to the compatible = "usb-c-connector" node
+> 
+> It should be something (eventually at least :-)) that allows us to describe the
+> USB4 ports and on-board retimers (to make it possible to upgrade firmwares
+> on those even if there is no link). But also if there is "embedded link"
+> device router.
+
+FWIW on DT platforms, onboard retimers (such as the PS883x) are often
+described as children of the I2C bus (see e.g. "parade,ps8830" in:
+arch/arm64/boot/dts/qcom/x1-crd.dtsi), marked as 'retimer-switch',
+which then typec_retimer_xxx() APIs look for using of/fwnode_graph.
+
+Because they're not opaque, but rather self-contained platform
+devices, FW updates can/will happen without the tbt subsystem in the
+picture.
+
+That said, the retimer being TBT-compliant, still shows up in the
+topology:
+thunderbolt 1-0:2.1: new retimer found, vendor=0x1da0 device=0x8830
+
+
+I think adding description of a usb4 port should be quite simple,
+I'll look into that.
+
+Konrad
 
