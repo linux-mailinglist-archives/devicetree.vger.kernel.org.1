@@ -1,111 +1,154 @@
-Return-Path: <devicetree+bounces-218676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF2B6B83107
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:58:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D00B831AE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAAFC16495E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:58:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A82A621DB4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 06:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A662D73A7;
-	Thu, 18 Sep 2025 05:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621AE2D77ED;
+	Thu, 18 Sep 2025 06:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TyV3OBci"
+	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="BezBWcen";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jMkQyWrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1DA92D6E67
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 05:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2902D6E7D
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 06:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758175112; cv=none; b=M+ZCWwKnSSVtrrxYYLdnC2OPK3hXr6gEk5LTe/r+SQMsQn9ndj7cGKTyq0ysPnM552blrMZXEXpWivPxa/gq6biwDJrxbgw57mNanXFvQNL49DofXsVHrW2cBLacZQxTG/klZmkzY0IcVbHD6aUCZuoRKaHd1/+ngbhIStyq3eY=
+	t=1758176095; cv=none; b=slgek6mWYlJAZnVHYA5TlGVdMYRbuAD4xAE0y1imn9FmEpXe5yncpAktyXFeVzpBJnobWqX4yuitWDjeuGY8ae+OuT8peOCvkHmatmbEkxomU1hVkNWs9AlazTcKqU5jszp3kap/ubaT4wtx/o8PNT4m2hsGtR/9sUWi/oGFfXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758175112; c=relaxed/simple;
-	bh=e7yRxA2B68UWIKkdczYYijQsT9ZC4h4tFwI2brifv3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NyK15P4CIt2hC1kV2dK+u0A3bHOofC5B5QWc73GdnuIGDbXufOIsaMNmfLDQCG60IK630VoBy97t+SaLSXCBjrUcZyhCWp1dBuAIJJ9/FG4XFz30+0bZtAf/edCsgTBlWexpwZjfEL4YHJD8dJXTmKLiN0YDVsTWAnyrmUxINwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TyV3OBci; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-77d24db67e0so281972b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 22:58:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758175110; x=1758779910; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1M8K/x0sWMdi+p7zlur7P/Abek/ld1zdxtrufjSounw=;
-        b=TyV3OBciB6qhzJ4DdhcCjulEYOnOExKqaLoQAsOiTfqpMJMwVuXNZWAYksnXfxBXqT
-         1Y8zu/glvqt9pd8bJOah8UvJMmL06zfGb0cdh//qOHw4NxaFbiJrdFooqKkHgxdn91hD
-         EtbCeHaxl4naGo4FbxipOHoMuUufnoM/x3eiQoVZEyIqkJJE4qnvvBLbusOTiGpcjmcB
-         EvtJ67UN6uk32YgrA25u4W/+vRkvgkUr3YLwIWGD23oOWbuU9aqHR0yJL6U8GaiI1RHs
-         XbFA77Ykaku74TFvngzrM08k6voUHeIetAT9cHlsQxetKZUv9QyshrHB+DlMrmMqCwGd
-         EYQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758175110; x=1758779910;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1M8K/x0sWMdi+p7zlur7P/Abek/ld1zdxtrufjSounw=;
-        b=RV8JkbSqdchdBJEW7r0ngqBp+n/4M3IfSQ/AI7TMzA2dFxUwvMR8p9LKdveJqIOa+g
-         SynUDhgMqgLkmAUPXdyqDCCaJhKscyPi8dMjUri6ConOLL32rLJG7SkStdd9ei7aatAz
-         JTVyr0wl2iQ1m+Idc3WHfrk1g8uUGIdP+VCpTYkm5fcpvhXw/ExKgzRiSYHP7xSCAGwI
-         IPt4P0+9M+BLc0qr2c19rYMKjKQCO5tnynCGMccbrpVs+ZQ4PHyQsoUJfg6EXuTji5lB
-         u1g65okRQYaz/V8d1bIxvoY4o3qhDFiTC3n9ZCD9bb02nJuSDZE3+9qUlakotgzmfklT
-         rIYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjzdjFKrIUXHE82jVEw+PDtmxwRInpkSGFx8fXwL+bk2g85TfXcHf/mk/LwmdEiGTNaiYqOIAHPL/I@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPLMktSFp4BJXyQb+6ILnz8ezUX7EER14h/SQkC68bIK+ylQU9
-	xWy9Zevxxfg5Nn/hwMW16VNT7+xuCumE6cLZQIRy6JYLXwUqQH9G+hLB
-X-Gm-Gg: ASbGncs5SJ0+BbYCCvtCuRJs/rusGR4MHY00AnOKRhsmfK2/vmybipHB+7RT21d5ZXq
-	lGnWKcGRJQ7vqlVE6WEIitVUUBjwigsp7qRAGQagxTcsmfGttqIezqWSzYiCVlK8rM/oh3uHFxP
-	/Sv4jRYl+yHumGa3wFUE/36BW9owW1p5XjeImv/GTJ4ojXqr7WcrfgOqy8ff5KmOxpCAfGoIz55
-	oTPhQjN3yaeGwxDwVj7V1RA4cNxlHL5k5RkBMTrSs/Fw4irDwmVXaDrvZmSoI3oz463FbFQi0+n
-	ZXNQPIa04A1oaRY2YLOXjdEucZXYGcRSlXaM25p1C02YfZJyu5LUg+hqjZndfsFDMzxHF8oSiL3
-	X+zSlMaVz63ewp/1fgryOLpVMIVAo/FvaLin690XwOw==
-X-Google-Smtp-Source: AGHT+IGb+rdTMfwVbcT/i/JK1WiLKpQvT7aq4HHFKHQrPydPEVY0k2OXSVn7CE/ZKWO3IERNaHMXMw==
-X-Received: by 2002:a05:6a20:748c:b0:271:cdbb:4d26 with SMTP id adf61e73a8af0-27aac3da5a9mr6725643637.58.1758175110263;
-        Wed, 17 Sep 2025 22:58:30 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:194b:8358:5c91:3d3d])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff4002edsm1199838a12.33.2025.09.17.22.58.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Sep 2025 22:58:29 -0700 (PDT)
-Date: Wed, 17 Sep 2025 22:58:27 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksij Rempel <o.rempel@pengutronix.de>, 
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: touchscreen: resistive-adc-touch:
- change to unevaluatedProperties
-Message-ID: <wbwtlcrlwnvvjyv7cnffu3sltrqfaddjf5f6dzizhgglwskjgb@zgxjfm5oafxz>
-References: <20250910224402.994046-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1758176095; c=relaxed/simple;
+	bh=Or82chwrTDFX2pfbnUhGfu/iS7YygMoNRdJiDvkRi10=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DstuVvksFPE0htMiRbiRYhP98aZbL/KuVyCYqITkvHnmBiugcFL8UB8QqL5z3YQ+EtWQzVQb4nngsyU1DYNEfHeigUfo4ePRL2zx3EG6+484/fkgAcSeBVwMTk7eoXHtB5uX5d7rrb1ueabuCux8wGowqjXzuX3ZFUkozv6js4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=BezBWcen; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jMkQyWrb; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 09EF11400270;
+	Thu, 18 Sep 2025 02:14:51 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Thu, 18 Sep 2025 02:14:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm3; t=1758176091; x=1758262491; bh=lQJyQ7FLUM
+	cIhP5TEGnDgUZcIoEC+sx4YCsTN5+u4L0=; b=BezBWcen9LSA5oncojP1Qfq7Ta
+	/sLn7aYCEqICzUJXKpY4kQYXZgEv7Qx6TdhNqqe2QNczPESjWZYCxoeFNZn913Su
+	+M2Nr7OW+KyRtiXl/KcR1oXlgmz1vZkgH2wymcNfpuKWT5PQpnnAM9C9Frah3hSn
+	Xrjh/13J43aeQxCsIf/nOPMQf5nh1JqDYq+HpNBsbqmMPEUI1tTE9GKHd1qw1idx
+	e1xa1YfmDxcw5F6xVofa+xWDpQGRHQwlKHSnhuHzzv2WuLEtEywDqKmZ8RVof38d
+	9DDRaY93UP6gt7M5Y3kTgTqzYnWDgp1kUHO6KOTnv1y2FWPf1gWU9dtFSAww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1758176091; x=1758262491; bh=lQJyQ7FLUMcIhP5TEGnDgUZcIoEC+sx4YCs
+	TN5+u4L0=; b=jMkQyWrbbehtL/JEHvOSNJcFfifhWNWCvQpxf9L1Zv7Gy76jJYb
+	LcXIyA/JlXrYeljn3+FT+vC+JVkdk2efUhm0LNecKWj+FFWYiLY8P+ItSRPl1Di3
+	VHU1IohHOERS18On2A0pmm6dvgvPdRpuR5LJerqS7ct7YTpiPS1LG/zN7p/x0w0Y
+	zXj5sqsv63nIyJHlxYcvEa6+ZdY+5H4+nUElcBA+yvHlcPiIK/UaGMxClRar4D44
+	HVgnJpUIF4azqtvl9g2ooWHEU2MdngqXA9HEX0lU9Vz3FkMqNR+F1UuQ6WHsmwri
+	IqeorjITwgK7eb5Mf7K+bZ9Fn45lyRWDFVQ==
+X-ME-Sender: <xms:WqPLaB65Td4CgHbfUTT-D0RIEWMBH-h2epdyBtKLnXynoVf3DO7zow>
+    <xme:WqPLaFoW1KmQXsRuthzFOuL1JUa_NHYrJ-7Hho6MWVNUbwTOhHkgK0fSNoARW0-gP
+    MCQQiBe0LpCfPjopSo>
+X-ME-Received: <xmr:WqPLaKNADrXFrami6u7mO2NJaNLWhbK_wGfhef3Srxk6NkrpuuD3W_eK1Z2rbV0e8JD-7RSUvC5ztvnxBwbWkH6fRyG28tE4x5fJpXhKI4DVspZ8mKkEgcGN3JE4c3Wmc4AXWAdudc86qOXceeKSY-M7Nps>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegheehkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeforghthhgvficuofgt
+    uehrihguvgcuoehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruheqnecuggftrfgrth
+    htvghrnhepjeetheejgeehhfeuleeghfeihfdtvedtvdefhedvvdeludfguddvheekhfei
+    geetnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpthhrrghvvghrshgvrdgtohhmrd
+    gruhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehm
+    rghtthesthhrrghvvghrshgvrdgtohhmrdgruhdpnhgspghrtghpthhtohepkedpmhhoug
+    gvpehsmhhtphhouhhtpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgv
+    rhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlih
+    hsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepshhhrgifnhhguhhosehk
+    vghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhho
+    rhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruh
+X-ME-Proxy: <xmx:WqPLaF3MhVx6MXo1P2YFhxqhz7rlzy5fX2FLw41B7YA0FzQ8Xn9owg>
+    <xmx:WqPLaBBH3LMOsga1skicxtFDZvcvs4gFur1kFBdohvJ--XaL8Xzxig>
+    <xmx:WqPLaKLR4mCtcyWcZjC0KnpQ5EjLAvvkIkjvWTFFjmipOjtHdISyjA>
+    <xmx:WqPLaCmE5NfXPbF7ovmUrQ08r8LNdEKyo99xWMlSc6W9GaKtILhQmg>
+    <xmx:WqPLaPRpNU_CD7My1fxzdaYFprYcSO8w6hd24lyEmmgQMV0Cig1Sm0pN>
+Feedback-ID: i426947f3:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 18 Sep 2025 02:14:47 -0400 (EDT)
+From: Mathew McBride <matt@traverse.com.au>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Shawn Guo <shawnguo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH v5 0/2] dt-bindings: embedded-controller: add binding for Ten64 board controller
+Date: Thu, 18 Sep 2025 16:14:39 +1000
+Message-ID: <20250918061441.5488-1-matt@traverse.com.au>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250910224402.994046-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 10, 2025 at 06:44:01PM -0400, Frank Li wrote:
-> Change additionalProperties to unevaluatedProperties because it refs to
-> touchscreen.yaml.
-> 
-> Fix below CHECK_DTBS warnings:
-> arch/arm/boot/dts/nxp/imx/imx6dl-skov-revc-lt6.dtb: touchscreen (resistive-adc-touch): 'touchscreen-y-plate-ohms' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/input/touchscreen/resistive-adc-touch.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+This series requires the "dt-bindings: mfd: Move embedded controllers to own
+directory"[1] change which is in mfd-next for the 6.18 cycle.
 
-Applied, thank you.
+Changes since v3:
+- Move to the embedded-controller directory (which was created following
+  the last submission)
+- Remove the extra paragraph in the dt-binding description field
+- Const'ify the I2C endpoint address (only one I2C address is implemented in
+  hardware, 0x7e)
+- Fix the description line of the fsl-ls1088a-ten64 patch (s/arm/arm64)
+
+Changes since v4:
+- Cosmetic only (no changes to the patch diff), clarify why the Reviwed-By:
+  tag previously given to dt-schema file, was not taken up due to the content
+  of the patch changing
+- Previous links changed to lore.kernel.org where applicable
+
+v3 series:
+https://lore.kernel.org/linux-devicetree/20250821061115.18254-1-matt@traverse.com.au/
+
+v4:
+https://lore.kernel.org/linux-devicetree/20250917011940.9880-1-matt@traverse.com.au/
+
+More information on the board controller can be found here:
+https://ten64doc.traverse.com.au/hardware/microcontroller/
+
+There is no (presently) Linux kernel driver for this device, but
+it is used by U-Boot for functions such as reading out the boards 
+assigned MAC and controlling some devices on the board.
+
+[1] https://lore.kernel.org/all/20250825081201.9775-2-krzysztof.kozlowski@linaro.org/
+
+Mathew McBride (2):
+  dt-bindings: embedded-controller: add Traverse Ten64 board controller
+  arm64: dts: ten64: add board controller binding
+
+ .../traverse,ten64-controller.yaml            | 40 +++++++++++++++++++
+ .../boot/dts/freescale/fsl-ls1088a-ten64.dts  |  4 ++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/embedded-controller/traverse,ten64-controller.yaml
 
 -- 
-Dmitry
+2.45.1
+
 
