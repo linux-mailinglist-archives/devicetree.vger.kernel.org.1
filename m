@@ -1,153 +1,125 @@
-Return-Path: <devicetree+bounces-218830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E854B846C0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0787B84844
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:10:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3C7D3AAECC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A977A5872E2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87A0306B2A;
-	Thu, 18 Sep 2025 11:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CEC3019CE;
+	Thu, 18 Sep 2025 12:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lMjQgkSb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClUm3upV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A5D302CD7;
-	Thu, 18 Sep 2025 11:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C5D2FE56B;
+	Thu, 18 Sep 2025 12:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758196325; cv=none; b=IM/N2sv7zXA6GSLNxj10dR0ct7+NZLUyrZl1bme/jwWIGApCq2Acz/AT08/mf/yPXJlEzLWb52TPLU+tfaKzDoA5oB48PR8GsB7QAQw0YoWieUqKTQGSbZJezx477UFDxcaSrlYV6NkWVK59Lol3DU+jENm7FOVnkPdUhnIePOE=
+	t=1758197392; cv=none; b=TVoTpr6Zy+qqxvhuMT6oxhENapgi8UppikaWbkyf68EsXK7c4rzjjQT3p1DTFA506sZMTtuNu1vBw+AUKgsnLNWIBIIJqasxxRscXUSGVAxvM9dFAjq+r5jXf8uwEIHcIJXteoLH0IUqH0N4xOzwscA2U83QSIC8jIQs4L7Yviw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758196325; c=relaxed/simple;
-	bh=gRM5ebAAEf4TRIWQFHbcl8pLy8N7ldQhFRmgB1sHmKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K1rgGiTtdNgHOw9LZJZtF7eRllRNz4OPLxF6kA4RXsTs55hWk4+J3NkPievehrll0RxkjDjf1+bkOByBdk1xEs/VNB1mwXc7SeRJ1CvjQxM4MafuLBC6RuZ2ICtThzVM7Xgyro9nzCE+2b/PEi49bptWjClUXtKsIcO264SLx34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lMjQgkSb; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758196323; x=1789732323;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gRM5ebAAEf4TRIWQFHbcl8pLy8N7ldQhFRmgB1sHmKg=;
-  b=lMjQgkSb1i9TJMwdwcBEkuoREb13VReBGNKC2Nbx6AIQmX+RhFhMvwwq
-   YoimvS5PWBAQsKGF3lTuE1CxpYqqT7R0zpt8tjR2j7zCLqrlPyOO7gAWy
-   FMRx7gRLmA3TGglDg5CYwtN/xjpoglb13K1kovCnCSNb9ytyVOcy0/0Wf
-   cT+N1sqfmmsjEZNp9P6jZacfr5u/0OfL7+7t/XMfYHQaRCRS/Vs+Rb9JL
-   RIFHx3FO2QEzJrh5Bk9EhNapWZmYITCgBv9Lp4PUiX+ZfOPHaYvGQ2gfK
-   sTj2E+PtZ3qJKaoUT4FRnBHsC7y17cTzik1Hf5uZ3c2UCFg/xnGAq16oP
-   w==;
-X-CSE-ConnectionGUID: B8ZVAdgnST60rHEwTjRNvg==
-X-CSE-MsgGUID: hM5iuPmZQJOUOhrOa5DqvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60454918"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; 
-   d="scan'208";a="60454918"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2025 04:52:03 -0700
-X-CSE-ConnectionGUID: xpACrP6fTbC4WJ9LOd4WfQ==
-X-CSE-MsgGUID: RkJTVKFVTm6UUBTnBekyMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; 
-   d="scan'208";a="206471603"
-Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 18 Sep 2025 04:51:56 -0700
-Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uzDB4-0003D5-14;
-	Thu, 18 Sep 2025 11:51:54 +0000
-Date: Thu, 18 Sep 2025 19:51:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ravi Patel <ravi.patel@samsung.com>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jesper.nilsson@axis.com,
-	lars.persson@axis.com, mturquette@baylibre.com, sboyd@kernel.org,
-	alim.akhtar@samsung.com, s.nawrocki@samsung.com,
-	cw00.choi@samsung.com
-Cc: oe-kbuild-all@lists.linux.dev, ravi.patel@samsung.com,
-	ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com,
-	krzk@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com,
-	jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com,
-	hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com,
-	swathi.ks@samsung.com
-Subject: Re: [PATCH 2/7] clk: samsung: Add clock PLL support for ARTPEC-9 SoC
-Message-ID: <202509181955.NgLJ2aBv-lkp@intel.com>
-References: <20250917085005.89819-3-ravi.patel@samsung.com>
+	s=arc-20240116; t=1758197392; c=relaxed/simple;
+	bh=kxvoxyFm3bsmG5fR/QhS8oki8BVLBIs9xvRNaDN6iBQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eEAbjjmIDyL1i50chN0nAv7GkupMQEEejsOXoZsaFU7q+tAMIMT5U3S6i89jFzJ4Cu/N/fxWd+p/j66ZEz8RPHy4ipB+ra1m1cd/7yHBf16Ug/v5qdxtQq6ysBoijAHeC/PaFc0s5uepxwLOY+IYYPMnQAsqQupByTaXRehDEJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClUm3upV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C558DC4CEEB;
+	Thu, 18 Sep 2025 12:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758197392;
+	bh=kxvoxyFm3bsmG5fR/QhS8oki8BVLBIs9xvRNaDN6iBQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ClUm3upV2LwuB3YH7Sm8fKswv4hTKSUAzjgIiOM9F+UdrzwDD5jcCQjDeSvz2ikwX
+	 m2hBKLBpG10n2nVy5M2YSy2JKItJeFxt55x7PLCaTptQ3DE+5DA3VsthscKMjhwVsI
+	 xURiLzmJLMzxJmPvvrGd/0mfTNtOIaYgdmCED+kQ6fexFDPX6dIIhCJBLEHRyHPTJe
+	 TkdsDYj7oWD9FFUFTV/pVIL0rsxxpmqH+H6PVasfhwh+WBYsiLHpattspfcIRD8L33
+	 VwWhFqpEUy4wWIXiUAqpRI0U9FWN3NbDUGVMVhD57R3wxu098nEAR+1XIA4AyVp042
+	 XqrYzMwn14BgA==
+From: Niklas Cassel <cassel@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: Vidya Sagar <vidyas@nvidia.com>,
+	Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>,
+	Gautham Srinivasan <gauthams@nvidia.com>,
+	Niklas Cassel <cassel@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH] arm64: tegra: Add pinctrl definition for PCIe C4 EP
+Date: Thu, 18 Sep 2025 14:01:39 +0200
+Message-ID: <20250918120138.17572-2-cassel@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250917085005.89819-3-ravi.patel@samsung.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1964; i=cassel@kernel.org; h=from:subject; bh=6PJXltUOQm1nMFJJzkygNCQvMogAYb5v8LmPSXMSDoo=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGDJOf1ksM4/ZXuve8YTX7LstuP5Vis2r0yqPueK9WKpu3 yvD3TGpHaUsDGJcDLJiiiy+P1z2F3e7TzmueMcGZg4rE8gQBi5OAZjI1TxGhscTeMJU1wjsOvKb n1VvD1cc0+IHhu7sR87cyz97LfrH0nJGhvkR6uLbW5ZOK4jObRPz8s1gebh897nGJd3u6w6YV07 V5QEA
+X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
+Content-Transfer-Encoding: 8bit
 
-Hi Ravi,
+From: Gautham Srinivasan <gauthams@nvidia.com>
 
-kernel test robot noticed the following build errors:
+Commit 0580286d0d22 ("arm64: tegra: Add Tegra234 PCIe C4 EP definition")
+added the device tree entry "pcie-ep@14160000" for C4 endpoint. However,
+it missed pinctrl definition. Without the pinctl definition, the C4
+endpoint of Jetson Orin Nano does not work. Add the missing definition.
 
-[auto build test ERROR on krzk/for-next]
-[also build test ERROR on clk/clk-next next-20250917]
-[cannot apply to robh/for-next linus/master v6.17-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
+[cassel: add to the existing nodes instead of creating new ones]
+Signed-off-by: Niklas Cassel <cassel@kernel.org>
+---
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ravi-Patel/dt-bindings-clock-Add-ARTPEC-9-clock-controller/20250917-165346
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250917085005.89819-3-ravi.patel%40samsung.com
-patch subject: [PATCH 2/7] clk: samsung: Add clock PLL support for ARTPEC-9 SoC
-config: arm-s5pv210_defconfig (https://download.01.org/0day-ci/archive/20250918/202509181955.NgLJ2aBv-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250918/202509181955.NgLJ2aBv-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509181955.NgLJ2aBv-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   arm-linux-gnueabi-ld: drivers/clk/samsung/clk-pll.o: in function `samsung_a9fraco_recalc_rate':
->> drivers/clk/samsung/clk-pll.c:1508:(.text+0xcc): undefined reference to `__aeabi_uldivmod'
-
-
-vim +1508 drivers/clk/samsung/clk-pll.c
-
-  1490	
-  1491	static unsigned long samsung_a9fraco_recalc_rate(struct clk_hw *hw,
-  1492							 unsigned long parent_rate)
-  1493	{
-  1494		struct samsung_clk_pll *pll = to_clk_pll(hw);
-  1495		u32 pll_con0, pll_con5;
-  1496		u64 mdiv, pdiv, sdiv, kdiv;
-  1497		u64 fvco = parent_rate;
-  1498	
-  1499		pll_con0 = readl_relaxed(pll->con_reg);
-  1500		pll_con5 = readl_relaxed(pll->con_reg + PLLA9FRACO_PLL_CON5_DIV_FRAC);
-  1501		mdiv = (pll_con0 >> PLLA9FRACO_MDIV_SHIFT) & PLLA9FRACO_MDIV_MASK;
-  1502		pdiv = (pll_con0 >> PLLA9FRACO_PDIV_SHIFT) & PLLA9FRACO_PDIV_MASK;
-  1503		sdiv = (pll_con0 >> PLLA9FRACO_SDIV_SHIFT) & PLLA9FRACO_SDIV_MASK;
-  1504		kdiv = (pll_con5 & PLLA9FRACO_KDIV_MASK);
-  1505	
-  1506		/* fvco = fref * (M + K/2^24) / p * (S+1) */
-  1507		fvco *= mdiv;
-> 1508		fvco = ((fvco << 24) + kdiv) / ((pdiv * (sdiv + 1)) << 24);
-  1509	
-  1510		return (unsigned long)fvco;
-  1511	}
-  1512	
-
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index df034dbb82853..dd3e51b7d35ef 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/power/tegra234-powergate.h>
+ #include <dt-bindings/reset/tegra234-reset.h>
+ #include <dt-bindings/thermal/tegra234-bpmp-thermal.h>
++#include <dt-bindings/pinctrl/pinctrl-tegra.h>
+ 
+ / {
+ 	compatible = "nvidia,tegra234";
+@@ -127,6 +128,17 @@ gpio: gpio@2200000 {
+ 		pinmux: pinmux@2430000 {
+ 			compatible = "nvidia,tegra234-pinmux";
+ 			reg = <0x0 0x2430000 0x0 0x19100>;
++
++			pex_rst_c4_in_state: pex_rst_c4_in {
++				pex_rst {
++					nvidia,pins = "pex_l4_rst_n_pl1";
++					nvidia,function = "rsvd1";
++					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
++					nvidia,tristate = <TEGRA_PIN_ENABLE>;
++					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
++					nvidia,lpdr = <TEGRA_PIN_DISABLE>;
++				};
++			};
+ 		};
+ 
+ 		gpcdma: dma-controller@2600000 {
+@@ -4881,6 +4893,8 @@ pcie-ep@14160000 {
+ 			       <&bpmp TEGRA234_RESET_PEX0_CORE_4>;
+ 			reset-names = "apb", "core";
+ 
++			pinctrl-names = "default";
++			pinctrl-0 = <&pex_rst_c4_in_state>;
+ 			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;  /* controller interrupt */
+ 			interrupt-names = "intr";
+ 			nvidia,bpmp = <&bpmp 4>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.51.0
+
 
