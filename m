@@ -1,266 +1,132 @@
-Return-Path: <devicetree+bounces-219012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C13B865D9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:04:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C2F1B86707
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 161FB1CC48BE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:04:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C76258871B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 18:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652D22853F7;
-	Thu, 18 Sep 2025 18:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD412D3737;
+	Thu, 18 Sep 2025 18:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="AAjfBPEn"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="O9EVDpf5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC5928A3EF
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 18:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 864B71643B;
+	Thu, 18 Sep 2025 18:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758218666; cv=none; b=od6/gerG5t1NInrRv+jqfZxSkcDOcKyETbt+Dx6wE1WrFIJ9EAhhP7/Gw9iZ46ZHd7mTUUsIYHh3tKddQHWLnojTouiYXmW3NvCOXNt2P77angTdrVULMzQ5bAdZVSGFpSH8wThoIlAQvLmCu1o0/upudwFNydBbtBKp2QAbUDA=
+	t=1758221011; cv=none; b=V2lpnQ7pZ2YJ6aZYzE2p48494Urtcoocy0fRqoAPTnZX2IvMzN+sQngTIfWzNeYj3k17F621raY7dFU7EO5R7nqJwv1AmZ38DP1INnQi0BzuyeJBAa/ZSKxSpRQRNKH91Sy1cPvr3citZSc1Za++qm84KDSB0AIZU/VVYqm1usU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758218666; c=relaxed/simple;
-	bh=OKzFf95ILgfMu/AnvmTKeyhD5AU9ll7Dknh23TDT5GQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ShwVa4dOz5GSfcOoFo72IgNUiZFy48f582VjnQjPbdMRpGRbNNqpkTX+dpKT9ffbXdcSAFFKbaXcJYiFnIZENnFlCQ9Sk4t7pZtkRdzp8SA1EDde1yrRmaSVEmMiUpUUGECNesEH/yRRx3dknoTodCEv4o63geiCqup55CnVOq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=AAjfBPEn; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58IEL1oY011501;
-	Thu, 18 Sep 2025 18:04:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=pp1; bh=cb2+xvNavcqXeO9Rx
-	uwMzm6yHui/7LQoZ3Dz4AcaNIc=; b=AAjfBPEnewRI1l0OGIdmsOcE0RY69t98D
-	3zR8A13oz0xTHy/yqGMUHGGYxs9xwfoK3Y36I1KjX8lYs0JC1g1sUeMO4L8Eq4cJ
-	xS/EsqyCqqq+3EMlFLFf85wzBwjLtDK5+JzjMYf4ZuIhikhJ+ROEK+pqw1F/cUyf
-	5MdAKqFimpAS3p54lVsNjajjvYGmoebu0rhedCGHlXRtpUwnXfpdtO4N+3leQl08
-	MWnsxDTDFXGQLLiwRQ8dpxr3hkLNlkKfikXy80kI78/3JG2bO0SL18H9QbYii0pd
-	SrtlhKTuXXFSRh/oKeKOT+BT7UbDfvl/W52IQdglPEZAFTPdlz65A==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 497g4jc1qf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Sep 2025 18:04:15 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 58IFA93j009382;
-	Thu, 18 Sep 2025 18:04:13 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 495nn3qrag-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Sep 2025 18:04:13 +0000
-Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 58II4CQ119661474
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 18 Sep 2025 18:04:12 GMT
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 12C2758068;
-	Thu, 18 Sep 2025 18:04:12 +0000 (GMT)
-Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id DED7D58063;
-	Thu, 18 Sep 2025 18:04:11 +0000 (GMT)
-Received: from slate16 (unknown [9.61.169.208])
-	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 18 Sep 2025 18:04:11 +0000 (GMT)
-From: Eddie James <eajames@linux.ibm.com>
-To: linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au,
-        conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-        eajames@linux.ibm.com
-Subject: [PATCH v6 7/7] ARM: dts: aspeed: Fix max31785 fan node naming
-Date: Thu, 18 Sep 2025 13:04:02 -0500
-Message-ID: <20250918180402.199373-8-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250918180402.199373-1-eajames@linux.ibm.com>
-References: <20250918180402.199373-1-eajames@linux.ibm.com>
+	s=arc-20240116; t=1758221011; c=relaxed/simple;
+	bh=lOi4oPKaTPDoudyEXtbkS6QEa07mzTiiZ91A7/9u70E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VhpKb2c7Nw2G19Ov2pBdS9/rB4ga6jjKK9ePJDt/bLmSxXHQBH/vs1ZDGDg+8c52qE6+Vw/FEGZ6zzgxzm8SOAc31NFQj9l6WiZFAGJIWWGJeNty8208xk93Oy/aP9Y5DscqY+9GgRYj1Bskw+LEpUUg+ea5pVtGDqyaCsjS6TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=O9EVDpf5; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=liLJhgZknOFrb3ADlwKcsc/J07rUAwg/dZtDpx06Vic=; b=O9EVDpf5g7zgd/J126cLkxpokq
+	67CZ2pUYtUpJvmRk+WYzJi4DRPy27TOexm3lqamKDUh9IAlUGC03Lo2+0dFCanLLcxE4Mq1PqYmfD
+	zsG861c8Yr5xX5D52wzOhnO9imrDSEtHEzBeBr7ShxCDXCN7KUWzGlLz5OtEM/SgQI+7R701O6suA
+	cqJ61q2nppVq1TNR9wmWEcUpWFM/p7f1YIhX+ZAp278XRRDKeWyKepe8MLKNd1KkIFXmrisE/qJNF
+	AeU2q6OwccURPflquwzeQOYrJnhz8Z3QCRMH4kKvxK1qifV6WvifJnGULJgOXEDIPW+XnTMdlRxk4
+	KPFtZ1jw==;
+Received: from [50.53.25.54] (helo=[192.168.254.17])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1uzJbK-00000000t2F-3Pb9;
+	Thu, 18 Sep 2025 18:43:26 +0000
+Message-ID: <be6e146b-3429-4264-bf04-2ea15957f010@infradead.org>
+Date: Thu, 18 Sep 2025 11:43:25 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Authority-Analysis: v=2.4 cv=Qf5mvtbv c=1 sm=1 tr=0 ts=68cc499f cx=c_pps
- a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
- a=yJojWOMRYYMA:10 a=VnNF1IyMAAAA:8 a=u3jscfC60MhvLZHegIcA:9
-X-Proofpoint-ORIG-GUID: BJINxADZ-jmk3YdlgEmMUm1w5moFaovy
-X-Proofpoint-GUID: BJINxADZ-jmk3YdlgEmMUm1w5moFaovy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwNCBTYWx0ZWRfXwcYzEoYmJfHO
- yeu49He4YhH8VvVYjDVrF6Dknnmk+D+PtjK/mN3aDGg+fz3uXYqMkGOB7azIe/WubCeCtU1zLLU
- ErVY8bQf+vkAppzkvh+4HkamaMlJHBdJBNBZ8GYrB1ggPoy/JpQyyGpAylqJ0V/TL0W7QZoEYjH
- bQpl3qk4nKsEn0tQ6wAWiG8PIb4wSMyTcsU2RghYLInuLSWL+WSpq1XrOoPNUM7qo0n0IQ+Z5Vj
- hgxyFv4DxBItUB05/+j8sLGX7JThTayfo2b1RAT8Yf3Dv+EJe7tNTTqUjkeVEqS86D5mPf3P6LT
- xwbMVMavf+YDe1rmgU+jPZkjab03ig2cG+HkYcTeaUSCGGu/M7BwiPMYl0F3OQGKg3H7w+zNPKm
- iDIYNgAx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-18_02,2025-09-18_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 phishscore=0 suspectscore=0 adultscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160204
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
+To: Eugen Hristev <eugen.hristev@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, David Hildenbrand <david@redhat.com>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, andersson@kernel.org, pmladek@suse.com, corbet@lwn.net,
+ mhocko@suse.com
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
+ <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
+ <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
+ <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
+ <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
+ <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
+ <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com> <87segk9az5.ffs@tglx>
+ <f8d3c2d4-8399-4169-8527-3c87922f2ef1@redhat.com> <87jz1w88zq.ffs@tglx>
+ <c3ab4a21-183f-495a-b3b5-cc74b392eebc@linaro.org>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <c3ab4a21-183f-495a-b3b5-cc74b392eebc@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Now that the max31785 is properly documented, fix up the uses of
-it in the Aspeed dts.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts |  4 ++--
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts |  8 ++++----
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts | 12 ++++++------
- arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts  |  8 ++++----
- 4 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts
-index 2f5d4075a64ad..c2a4153bdcf49 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts
-@@ -276,13 +276,13 @@ max31785@52 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		fan0: fan@0 {
-+		fan0: fan-0 {
- 			compatible = "pmbus-fan";
- 			reg = <0>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan1: fan@1 {
-+		fan1: fan-1 {
- 			compatible = "pmbus-fan";
- 			reg = <1>;
- 			tach-pulses = <2>;
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-index 9f144f527f03b..2f42482d98df2 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-@@ -2065,25 +2065,25 @@ max31785@52 {
- 				#size-cells = <0>;
- 				reg = <0x52>;
- 
--				fan@0 {
-+				fan-0 {
- 					compatible = "pmbus-fan";
- 					reg = <0>;
- 					tach-pulses = <2>;
- 				};
- 
--				fan@1 {
-+				fan-1 {
- 					compatible = "pmbus-fan";
- 					reg = <1>;
- 					tach-pulses = <2>;
- 				};
- 
--				fan@2 {
-+				fan-2 {
- 					compatible = "pmbus-fan";
- 					reg = <2>;
- 					tach-pulses = <2>;
- 				};
- 
--				fan@3 {
-+				fan-3 {
- 					compatible = "pmbus-fan";
- 					reg = <3>;
- 					tach-pulses = <2>;
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-index c5fb5d410001b..bbe26f950821e 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
-@@ -1079,37 +1079,37 @@ max: max31785@52 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		fan0: fan@0 {
-+		fan0: fan-0 {
- 			compatible = "pmbus-fan";
- 			reg = <0>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan1: fan@1 {
-+		fan1: fan-1 {
- 			compatible = "pmbus-fan";
- 			reg = <1>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan2: fan@2 {
-+		fan2: fan-2 {
- 			compatible = "pmbus-fan";
- 			reg = <2>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan3: fan@3 {
-+		fan3: fan-3 {
- 			compatible = "pmbus-fan";
- 			reg = <3>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan4: fan@4 {
-+		fan4: fan-4 {
- 			compatible = "pmbus-fan";
- 			reg = <4>;
- 			tach-pulses = <2>;
- 		};
- 
--		fan5: fan@5 {
-+		fan5: fan-5 {
- 			compatible = "pmbus-fan";
- 			reg = <5>;
- 			tach-pulses = <2>;
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
-index b31eb8e58c6b4..91d514567cba5 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
-@@ -480,7 +480,7 @@ max31785@52 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		fan@0 {
-+		fan-0 {
- 			compatible = "pmbus-fan";
- 			reg = <0>;
- 			tach-pulses = <2>;
-@@ -493,7 +493,7 @@ fan@0 {
- 			maxim,fan-fault-pin-mon;
- 		};
- 
--		fan@1 {
-+		fan-1 {
- 			compatible = "pmbus-fan";
- 			reg = <1>;
- 			tach-pulses = <2>;
-@@ -506,7 +506,7 @@ fan@1 {
- 			maxim,fan-fault-pin-mon;
- 		};
- 
--		fan@2 {
-+		fan-2 {
- 			compatible = "pmbus-fan";
- 			reg = <2>;
- 			tach-pulses = <2>;
-@@ -519,7 +519,7 @@ fan@2 {
- 			maxim,fan-fault-pin-mon;
- 		};
- 
--		fan@3 {
-+		fan-3 {
- 			compatible = "pmbus-fan";
- 			reg = <3>;
- 			tach-pulses = <2>;
+On 9/18/25 6:53 AM, Eugen Hristev wrote:
+> 
+> 
+> So, one direction to follow from this discussion is to have the
+> inspection entry and inspection table for all these entries.
+> Now, one burning question open for debate, is, should this reside into mm ?
+> mm/inspect.h would have to define the inspection entry struct, and some
+> macros to help everyone add an inspection entry.
+> E.g. INSPECTION_ENTRY(my ptr, my size);
+> and this would be used all over the kernel wherever folks want to
+> register something.
+> Now the second part is, where to keep all the inspection drivers ?
+> Would it make sense to have mm/inspection/inspection_helpers.h which
+> would keep the table start/end, some macros to traverse the tables, and
+> this would be included by the inspection drivers.
+> inspection drivers would then probe via any mechanism, and tap into the
+> inspection table.
+
+Surely someone wants to inspect more than mm/ variables.
+I prefer kernel/inspect/ etc.
+
+> I am thinking that my model with a single backend can be enhanced by
+> allowing any inspection driver to access it. And further on, each
+> inspection driver would register a notifier to be called when an entry
+> is being created or not. This would mean N possible drivers connected to
+> the table at the same time. ( if that would make sense...)
+> Would it make sense for pstore to have an inspection driver that would
+> be connected here to get different kinds of stuff ?
+> Would it make sense to have some debugfs driver that would just expose
+> to user space different regions ? Perhaps something similar with
+> /proc/kcore but not the whole kernel memory rather only the exposed
+> inspection entries.
+> Now, for the dynamic memory, e.g. memblock_alloc and friends ,
+> would it be interesting to have a flag e.g. MEMBLOCK_INSPECT, that would
+> be used when calling it, and in the background, this would request an
+> inspection_entry being created ? Or it makes more sense to call some
+> function like inspect_register as a different call directly at the
+> allocation point ?
+> 
+> Feel free to throw your opinion at each of the above.
+> Thanks for helping out !
+
+In general I like the way that this is going.
+Thanks to all of you for this discussion.
+
 -- 
-2.51.0
+~Randy
 
 
