@@ -1,101 +1,235 @@
-Return-Path: <devicetree+bounces-218828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF06B84675
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:47:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D73B84696
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:50:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6243916A7B4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:47:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED5CD2A1D09
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C1027AC57;
-	Thu, 18 Sep 2025 11:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BFA2C11CC;
+	Thu, 18 Sep 2025 11:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aT13i7do"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="TGWkFV+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570BE25334B;
-	Thu, 18 Sep 2025 11:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94F9286427
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 11:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758196044; cv=none; b=M1wNwz4WVL4VPbM3jlJjU2T7Z6g/2xGGqfXyXPSUG4g/5k8AEtojCwvN9xfAntDEGHTjEnRR0zIrJCI2SfbXpg9ChOk40MOwwPgBkabUuDmtFib6tA2TaknbvRTwYro2rx6tcSYVhMPW1csY7VDzszL6wlyG23MZZK/WUgJCTBo=
+	t=1758196195; cv=none; b=Pvch6DjFHvW5FeGu2IObjWYy3RL+suhmVXO8oX3sbCOK2J0ZFceVVSaI3+YuF5OxmeVq0Ctisegk9sddfTMBASy7gY9t8v/AABJUzRnBPPxOoWcICdGUZSVneWKyHM46Ekrm+kt5jmlgFV+r2/3HSCsyqhZlCTQKNLqXiapeTw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758196044; c=relaxed/simple;
-	bh=6EKZDkdDj+TQTFKi29y3ENgReTXMEGTTC1s38Fo2/GA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TKLPctxpDXXpwGstykJm/IO3zIP2CKIbmg/7Uw8CcEQ5PnOjgdFFJzy+n1Vr2GelgW5Jc3em9sqRidtio9grnuCts0stKmZ/eMeSZ+XR+UN8vozwfU7bHdisiIzbytmUdcxeFqTos/ucE+CuBRprznRzvTdagtvx43yp8ev7mdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aT13i7do; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1758196040;
-	bh=6EKZDkdDj+TQTFKi29y3ENgReTXMEGTTC1s38Fo2/GA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aT13i7doY1WMx3ADOq+HzXsPl1jAKpBpEZI81nRRpR+YRkCVwTNVdH5tHrdUx3Ave
-	 c4g1Gvmj9RW3sKCGJM52hwcYc/6zn+zlK/Zd+zsC4hBX1vWPqf/EFswGkgsaDi+xhb
-	 +k4ZyVOf7h0E3WxBhGKhb8x20GmLSarNAv5g9/6+2zAS6XBJj7I3RmfHAdN6Fkghu8
-	 33DaoU50JzO5m0UplX3G/wEQZpt2qUBVdkwgWr9Q4P5pStpXl8UjqIWMQb9GPvE7fV
-	 Ew1wQ82nMzRp497XUEfegOK0EIk48nKPkU9MuQwkYliUnzpmPYQEU7nZhpOsTzxtXG
-	 aYenc45V8LhOQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0583E17E0B8C;
-	Thu, 18 Sep 2025 13:47:19 +0200 (CEST)
-Message-ID: <c31bc281-94d5-40b6-a9bd-76b41769f6e5@collabora.com>
-Date: Thu, 18 Sep 2025 13:47:19 +0200
+	s=arc-20240116; t=1758196195; c=relaxed/simple;
+	bh=+gk5KKF36ujB7nycJnCCTzw/u4iBDBaYYBO8dxVw9JE=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=rkhXIlXDDKEu9ZekG2c3LKIZKYo7QlkxcweR8zoeN3heE++HP3nUS8bkoN0wQsnlFYKcnQorsXMNxi/IqAk03HkybKXP2ZP+GQn20lxbn5KNktgMpsaih9PbwCe9YPROPGBpc+3q/7PVWmrcKplffkPfa87lsNPVAwZtJ7//Qd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=TGWkFV+v; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250918114950epoutp022bd22632b6d30295ccec855fba553717~mXh67WaOs1656416564epoutp02e
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 11:49:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250918114950epoutp022bd22632b6d30295ccec855fba553717~mXh67WaOs1656416564epoutp02e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758196190;
+	bh=FuCxKZOC5gMCxjvUIfysdvbKbIwAjaMklqaPwT6Cdlc=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=TGWkFV+vyXk3M6D6IuqlvEcybwVaHrnNnW9UTGangKu78Dxid6hGC6Jp6+GP/8M4/
+	 K07WT+sAL/a7T+T93OpNKuIMJJCdbO2Vd0njOwz4MQ3Hb+pRUh8J12oYOcOwokCEJ2
+	 +M5oqwcj6WkE/+sf8JWveeiB8lg96xueIVHg6boM=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250918114949epcas5p4219721d84eadeb39ff7750e82a05c84f~mXh6Ld_2n0579905799epcas5p4a;
+	Thu, 18 Sep 2025 11:49:49 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4cSDT863xpz6B9m9; Thu, 18 Sep
+	2025 11:49:48 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250918114947epcas5p1851912aadf4466cda635681b1a9fa798~mXh4OkerZ1378713787epcas5p1m;
+	Thu, 18 Sep 2025 11:49:47 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250918114943epsmtip210861e859c25dd4fcf3ce0fb14a9bf45~mXh0dCmTB3083330833epsmtip2O;
+	Thu, 18 Sep 2025 11:49:43 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <67c2b5c6-7559-4ae9-b2af-e839b6b8f4d5@kernel.org>
+Subject: RE: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Thu, 18 Sep 2025 17:19:41 +0530
+Message-ID: <007701dc2892$553aded0$ffb09c70$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] SPMI: MediaTek: Add support for multi-bus
-To: sboyd@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, hsin-hsiung.wang@mediatek.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20250703115828.118425-1-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250703115828.118425-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRMOVGdWg5oRjNsRBgEjzIeIB8IgGabj6EAmTXuDcB8lF0oAGjtHpaA19Hw4UBhGAZeAGHPhyts76/S3A=
+Content-Language: en-in
+X-CMS-MailID: 20250918114947epcas5p1851912aadf4466cda635681b1a9fa798
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e
+References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+	<CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
+	<20250903073827.3015662-2-pritam.sutar@samsung.com>
+	<20250904-interesting-lovely-ringtail-38bbef@kuoka>
+	<000001dc1d70$aebf7d80$0c3e7880$@samsung.com>
+	<87857202-b436-4476-9384-67566126d844@kernel.org>
+	<001001dc1d85$c0d56a60$42803f20$@samsung.com>
+	<67c2b5c6-7559-4ae9-b2af-e839b6b8f4d5@kernel.org>
 
-Il 03/07/25 13:58, AngeloGioacchino Del Regno ha scritto:
-> Changes in v2:
->   - Fixed indentation error in dt-bindings
-> 
-> This series adds basic support for multi-bus (multi-master) SPMI
-> controllers, as found in the MediaTek MT8196 Chromebook SoC and
-> the MediaTek MT6991 Dimensity 9400 Smartphone SoC, including RCS
-> interrupt handling and per-bus registration.
-> 
-> AngeloGioacchino Del Regno (5):
->    dt-bindings: spmi: Add MediaTek MT8196 SPMI 2 Arbiter/Controllers
->    spmi: mtk-pmif: Add multi-bus support for SPMI 2.0
->    spmi: mtk-pmif: Keep spinlock until read is fully done
->    spmi: mtk-pmif: Implement Request Capable Slave (RCS) interrupt
->    spmi: mtk-pmif: Add support for MT8196 SPMI Controller
-> 
->   .../bindings/spmi/mediatek,mt8196-spmi.yaml   | 138 +++++
->   drivers/spmi/spmi-mtk-pmif.c                  | 471 +++++++++++++++---
->   2 files changed, 530 insertions(+), 79 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/spmi/mediatek,mt8196-spmi.yaml
-> 
+Hi Krzysztof,
 
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 18 September 2025 08:13 AM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> andre.draszik=40linaro.org; peter.griffin=40linaro.org; kauschluss=40disr=
+oot.org;
+> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
+> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 HS phy compatible
+>=20
+> On 04/09/2025 19:21, Pritam Manohar Sutar wrote:
+> > Hi Krzysztof,
+> >
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> >> Sent: 04 September 2025 03:12 PM
+> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com=
+;
+> >> andre.draszik=40linaro.org; peter.griffin=40linaro.org;
+> >> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> >> igor.belwon=40mentallysanemainliners.org;
+> >> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> >> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> >> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> >> linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> >> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> >> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy=
+:
+> >> add
+> >> ExynosAutov920 HS phy compatible
+> >>
+> >> On 04/09/2025 09:51, Pritam Manohar Sutar wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>>> -----Original Message-----
+> >>>> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> >>>> Sent: 04 September 2025 12:18 PM
+> >>>> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >>>> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> >>>> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.c=
+om;
+> >>>> andre.draszik=40linaro.org; peter.griffin=40linaro.org;
+> >>>> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> >>>> igor.belwon=40mentallysanemainliners.org;
+> >>>> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> >>>> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> >>>> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> >>>> linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> >>>> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> >>>> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> >>>> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-p=
+hy:
+> >>>> add
+> >>>> ExynosAutov920 HS phy compatible
+> >>>>
+> >>>> On Wed, Sep 03, 2025 at 01:08:22PM +0530, Pritam Manohar Sutar wrote=
+:
+> >>>>> Document support for the USB20 phy found on the ExynosAutov920 SoC.
+> >>>>> The
+> >>>>> USB20 phy is functionally identical to that on the Exynos850 SoC,
+> >>>>> so no driver changes are needed to support this phy. However, add
+> >>>>> a dedicated compatible string for USB20 phy found in this SoC.
+> >>>>>
+> >>>>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >>>>
+> >>>> You just dropped all tags without explaining why.
+> >>>
+> >>> Regretted inconvenience.
+> >>>
+> >>> There were significant changes in supplies' names in driver and
+> >>> schemas (patch-set v8). This led to make changes in patch no 5.  And
+> >>> review for these changes is needed.  Hence, removed RB tag in this pa=
+tch-
+> set.
+> >>>
+> >>> There was a ask for the same https://lore.kernel.org/linux-
+> >>
+> phy/000401dc18cd=24ec02a1b0=24c407e510=24=40samsung.com/=23:=7E:text=3DLe=
+t%20me%
+> >>
+> 20know%2C%20because%20of%20above%20changes%2C%20should%20be%20
+> >>
+> removing%20your%20%0A%27reviewed%2Dby%27%20tag%20from%20patch%
+> >> 201%20and%203.
+> >>>
+> >>
+> >>
+> >> Where in the changelog you explained why you dropped the tags?
+> >
+> > Along with supplies' names, there were similar commit messages for
+> > patch no 1, 3 as patch no 5 (v7). (though, they were explaining schema
+> > more than h/w). Changed commit messages of the patch no 1, 3, 5 (v7)
+> > as per reference commits and would like to get them reviewed again, so
+> > did not add RB for patch 1 and 3, which you had given RB (in v7).
+>=20
+> I do not have time to review the same second time and I find such request=
+ quite
+> a waste of my time. It's v8 so I am surprised to see it getting changed e=
+ven after
+> review.=09
+>=20
 
-Gentle ping on this series.
+OK, those were only commit message changes, so I am going to retain your=20
+RB tags for patch 1 and 3. Sorry about noise.
+
+However, do you want me to send v9 by retaining RB tags in respective patch=
+es?
+
+>=20
+> Best regards,
+> Krzysztof
+
+Thank you,
 
 Regards,
-Angelo
+Pritam
+
 
