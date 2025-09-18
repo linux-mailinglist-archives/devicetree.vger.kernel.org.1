@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-219052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB24BB86F18
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:45:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1737EB86F1B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB4041CC0AC6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BCE97C6FC8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD982F360B;
-	Thu, 18 Sep 2025 20:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273E33195F7;
+	Thu, 18 Sep 2025 20:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YA4hyCg1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d42QCTEJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677CB2F0685
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 20:45:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931432F7AC6
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 20:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758228319; cv=none; b=DTKK0Fq2iVOKeDIJzQWmkjmkTt8MgRxPpWElkTMKwZf1Y6sOP6tgWpN+DMAdFTA+9Zw5TR+czRy5SUhC3/R5vIfsECswKqBuRHzq2hTQFlaargIU/EAbuyrPyRPDdBVzY6x3+01BsLvOjxGFT9PxprNXt6Ix0k2e/h86K8LrPbI=
+	t=1758228324; cv=none; b=CfEQa1khQJm1ZsG6DHYLCLn6Z/ylMya1ehjiGl8oniHCxEcMN2cHZ6XkncR6pM8jJKLEzz5vgV9smv1ywyJSeIHCb6F4DY7lXucPngKqHNn1OKPacC85IdI2ZZIueKuhInP2D15ZpdmX+WgPjEBq+CtQG1pjGSHuuEbLGe9yAwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758228319; c=relaxed/simple;
-	bh=MU+f40hGuQXdwuQBnwoIxZYaxXYINr0tJaHL8O1lpRI=;
+	s=arc-20240116; t=1758228324; c=relaxed/simple;
+	bh=WR4FHVVhcDnWn/j+5eNlUmmFrVtxMPPjypE6sBwEbC8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g9ohrFljComa0te4SieEjSuTqyrfEw/AVREn4BGr7RBCm1eVyXO6Wst1cgyUjQcF4iUWU8eXBDUiVQjgmr+I8WB6g+UaF/fpE6oR1QAHskGkh5zyE5+MDQqZTiiUjDGT+97/Eqigfw/qYkfCqZn+EuRu5s2Vpr7Z2/xFlGMfyXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YA4hyCg1; arc=none smtp.client-ip=209.85.210.173
+	 MIME-Version; b=I1tDdRANU/Xl1kglJJ/oQTbzyanHAHkVQ0m+7Bxdheo2o6LZ/z0LiYF9fe91/V9BgqqoiJ8VEQRIEfXekWj4O5yHcIyaqPXr6Fnd4MT7h41jh84jGbCeiBSdv4mz37JWm1Zz7FY71vxxo0gHqsDBJXE6gCc2DQp8Zju+tyrhaNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d42QCTEJ; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-76e4fc419a9so1452165b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 13:45:18 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-77d64726e47so986886b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 13:45:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758228317; x=1758833117; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758228322; x=1758833122; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1XovHlZK1pH9N9kTTwIVt2nXIuLc61uTIHy4WvXRZJw=;
-        b=YA4hyCg1t0VzqIwRALuRKifYQG9pwkToSQmW9LODd7Yn45iYQWm6ojUItdlhODiM/I
-         wslc28TBy3DcskEK3NvdX+la4ibbpXEmypmcmxXNYnhDFj9s0Rjxs7UpSUnnFVTY+yyz
-         Z2G2K4/kHDoow8oLVWdlZEmthIIFXTxpw28wCO+OE+xMrMyr06MDQK5Xtpxib8H45XIb
-         F8F5PLK7uz299Qc0qFxZxiHzYNd0H6VAAvayJMIANmAa81ss6LrSIZrge8rcj3rHMbPh
-         IlcnYpo7UeQVz8LFdhYQ2AIRSE4nE+B47d0V8/ZrjNC5D+2Am3daVhUy4tG4icESR4Ji
-         dcGQ==
+        bh=BtrLIyGEWOU6fa2LicSTWFbyugqQN0mZ4i8wIx/QdRc=;
+        b=d42QCTEJ6b0LWyjxN//vc6rGfaagxepE+pStlmZmwOm4YDMP/Bgspb3aSfFUdfUv7z
+         3CPz77sxDf+AhUtNifT0C3Nb3RkDrrn+gdMwane7x33KC+CE7iA2fWwru9pLXub3gPMi
+         /kYg9ag1zCGAbqgnuza5nLMOxNKPjs+ULkRrqXPA0wHtPI441SqGsLvjT6knKd7gHryH
+         6pxgJptuSnk8RKcnNL9+LcYRZW2UKxBuB+oW9ymFDJofPDdSR28AoDWvYvmsxazldmAf
+         pnNOJbDgcoRzzEizbdmZXzcfJ+ftsTSmTsn/NXFrgqKUf0wEXpowbLVvrWTUeZ6d5iEH
+         M5DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758228317; x=1758833117;
+        d=1e100.net; s=20230601; t=1758228322; x=1758833122;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1XovHlZK1pH9N9kTTwIVt2nXIuLc61uTIHy4WvXRZJw=;
-        b=mnC1uH9W2H11cYQX/FFJw1RleiyOJlM5Q95AS7xq8sbx2ddFkHOGJ+eLoDLJVOVbpv
-         shLVUnBBah6P5HG7MwWTu4/fcyxQBCuiGwMmK93O5d9lW87jf58l/UGE8xWUkaQl1K+E
-         xQ2+xt93ISiH/GhvSsqpKR3E/D3G+C/OcDX9yXW9Jy7w23cYxdznvQHySnO0O+BGhjNs
-         kCl67oJRCh4NUB1nuIWK65uGrT6sdq87Dj7+SU5Ws1Wb1xKZBZ8SXv+rHcpYzSc0xypo
-         Vnsqs2aM68shzTQDFRZf0/GLBzCPymkivB7LFdHde3zcp1Zhsifoa+9s9F0jo8jTb/E8
-         9c/w==
-X-Gm-Message-State: AOJu0YwcT7/QwBgnuEvM0LVlfej0hTDCcxilwPG2LomgpkuBpStebHuS
-	8bDKiBflvwlq9GDGHYaLXFE6CYn8vOlOKylmq+2DJ6fMwvbw0S5S2XUqEZjPTleJKQfSuQ==
-X-Gm-Gg: ASbGncu6imJzxPYFbFGeZAsio5tX21/IpQpAJYNiGrZzrRPy0J8y9uelgFKZcWBzHtx
-	bf7rDb9U5PeU8cMPmGOlX31Sc4ocGT/r3rVSNLrLjfh6Bl6VMlP2g6rnlWL5zDFV63yrj5xu5E0
-	ajFiNlLhQrss1UvNpKo11HXViad//fgKplbiVvhM539Lr+CAewhVQHYU9wykGsfxdqLG9ulPIPz
-	P8oBn4QqJcxJoNzAjrhYi8c6h44Oc0EyWU9jTSho0ObfuDgc1oTceeDLkaaYspKFFrbbBrRJOdd
-	h3H87f7kwNr6bGG9SwIqcqzj6aw843+tbwfyyIqRw3DsZ0GOkluG5gr0UAlFZ7hur6WKO57QZYs
-	B97nc0O0EvbKQtLBnmIFEK8vpPnk854Jmj/dQYB7nMg1mjWzpYZQ=
-X-Google-Smtp-Source: AGHT+IEj3b4BXwmrsRFa4LZOkX3gZIr52lRGH/WszcqWvRFISeo4WKiVHEB/Cjg8hGWzvaKJHkXTGA==
-X-Received: by 2002:a05:6a21:6d95:b0:251:e4b4:7a37 with SMTP id adf61e73a8af0-2925ca2491emr1394921637.19.1758228317173;
-        Thu, 18 Sep 2025 13:45:17 -0700 (PDT)
+        bh=BtrLIyGEWOU6fa2LicSTWFbyugqQN0mZ4i8wIx/QdRc=;
+        b=ed98yYV9ZLPssLCaiPQ82R1t9dgaxo9twkQZpksCHJZcxztZqx6ue8doAc/HrtwaIi
+         jD6lZXtjuZMKnKUoCsYLMILXNjmL6qlpd6C98z14owscatGJZjTrbuyfX0JJkfkqk7c1
+         FSVXlTdtqQVAwYLuh40GYHb0mt5jRGDWMLO94XokkTHDTE9TFr77h5m7Yp4IK3iMUi8r
+         az/n3MEU8YXtZOTTR7U4NrGjE+04KFGNrb8DZVqK8onB5z+WfFd+zpz+8ua0ifTBxvWd
+         D27mlWm+idk8P1JrDzB/HMHpmp2+XNu7Z4Ffh5di0z53f5tmtYZJmClONUNc3r5ASaes
+         JGog==
+X-Gm-Message-State: AOJu0YyVS0CHWh+fDRVkUYHJRxQSa/A7DPdBArYj9gQVVzFDfNDAuUbx
+	KOBUvdOIqwP5kfrP54SpFHji5SfhBJ6nBPBdd4/nyK8wQJqUkf1PJ0Tl30IKH5bvc02cVQ==
+X-Gm-Gg: ASbGnctLo6y2LyNPIUS2UmlzG4REbsV991S8GDCSU1hJkX+Oek73uM+b00mxVV1PcUZ
+	gVTW1fnLSbWyrsNLwVH7rG/4ofK8QZFwGxWvPu0iB+z5C17j/TROa6jT0vEuK0J26QVM0OR0u/6
+	/3T3JbtGoZjY/XlGEVq2SNTQsJPd3iZ/89VggnnUncBBJ3nSWm9taQuzv+zu+HW0vH1Mz1Yzg96
+	qmzjNLbPNF5Z9+qqdK5xLsaL/dARloGJTOh0ACpBN9mpSUGMLEU5HCtvkFxCEgL/FO5NuU7OOI5
+	FGm+qHuLiX664aioTGz6EuWYGpzFq2e9uXCDe61feei7kpEjxHFL5o/ruNChe21iaFcQykiGkp8
+	K/h9JtBxG5xYpUH6rmpdWhHKhMLHYluW+ypkFdpOep5BTMM96dVM=
+X-Google-Smtp-Source: AGHT+IE8751B+bVDOfdJ1EVLTNVCctqoy8v2KTEAWN2TnaxEmjyaFaE2yRT5zYFCYRIrStFZWJzm6A==
+X-Received: by 2002:a05:6a20:9189:b0:247:f6ab:69cc with SMTP id adf61e73a8af0-29262399d44mr1426160637.26.1758228321256;
+        Thu, 18 Sep 2025 13:45:21 -0700 (PDT)
 Received: from localhost.localdomain ([119.8.44.69])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff35aff2sm3178181a12.1.2025.09.18.13.45.13
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff35aff2sm3178181a12.1.2025.09.18.13.45.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Sep 2025 13:45:16 -0700 (PDT)
+        Thu, 18 Sep 2025 13:45:20 -0700 (PDT)
 From: Han Gao <rabenda.cn@gmail.com>
 To: devicetree@vger.kernel.org,
 	Drew Fustini <fustini@kernel.org>,
@@ -89,9 +89,9 @@ To: devicetree@vger.kernel.org,
 	Han Gao <rabenda.cn@gmail.com>
 Cc: linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] riscv: dts: thead: add xtheadvector to the th1520 devicetree
-Date: Fri, 19 Sep 2025 04:44:47 +0800
-Message-ID: <1ff3fb07b24fb375fcf9d3067aa50583f47c35fe.1758228055.git.rabenda.cn@gmail.com>
+Subject: [PATCH v2 2/3] riscv: dts: thead: add ziccrse for th1520
+Date: Fri, 19 Sep 2025 04:44:48 +0800
+Message-ID: <71ac2ff73a63bd8674c4bc91fd287390d5339609.1758228055.git.rabenda.cn@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758228055.git.rabenda.cn@gmail.com>
 References: <cover.1758228055.git.rabenda.cn@gmail.com>
@@ -103,63 +103,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The th1520 support xtheadvector [1] so it can be included in the
-devicetree. Also include vlenb for the cpu. And set vlenb=16 [2].
+Existing rv64 hardware conforms to the rva20 profile.
 
-This can be tested by passing the "mitigations=off" kernel parameter.
-
-Link: https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-4-236c22791ef9@rivosinc.com/ [1]
-Link: https://lore.kernel.org/linux-riscv/aCO44SAoS2kIP61r@ghost/ [2]
+Ziccrse is an additional extension required by the rva20 profile, so
+th1520 has this extension.
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---
- arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ arch/riscv/boot/dts/thead/th1520.dtsi | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 42724bf7e90e..59d1927764a6 100644
+index 59d1927764a6..7f07688aa964 100644
 --- a/arch/riscv/boot/dts/thead/th1520.dtsi
 +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -25,7 +25,8 @@ c910_0: cpu@0 {
+@@ -24,8 +24,10 @@ c910_0: cpu@0 {
+ 			device_type = "cpu";
  			riscv,isa = "rv64imafdc";
  			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
--					       "zifencei", "zihpm";
-+					       "zifencei", "zihpm", "xtheadvector";
-+			thead,vlenb = <16>;
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm", "xtheadvector";
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
++					       "ziccrse", "zicntr", "zicsr",
++					       "zifencei", "zihpm",
++					       "xtheadvector";
+ 			thead,vlenb = <16>;
  			reg = <0>;
  			i-cache-block-size = <64>;
- 			i-cache-size = <65536>;
-@@ -49,7 +50,8 @@ c910_1: cpu@1 {
+@@ -49,8 +51,10 @@ c910_1: cpu@1 {
+ 			device_type = "cpu";
  			riscv,isa = "rv64imafdc";
  			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
--					       "zifencei", "zihpm";
-+					       "zifencei", "zihpm", "xtheadvector";
-+			thead,vlenb = <16>;
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm", "xtheadvector";
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
++					       "ziccrse", "zicntr", "zicsr",
++					       "zifencei", "zihpm",
++					       "xtheadvector";
+ 			thead,vlenb = <16>;
  			reg = <1>;
  			i-cache-block-size = <64>;
- 			i-cache-size = <65536>;
-@@ -73,7 +75,8 @@ c910_2: cpu@2 {
+@@ -74,8 +78,10 @@ c910_2: cpu@2 {
+ 			device_type = "cpu";
  			riscv,isa = "rv64imafdc";
  			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
--					       "zifencei", "zihpm";
-+					       "zifencei", "zihpm", "xtheadvector";
-+			thead,vlenb = <16>;
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm", "xtheadvector";
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
++					       "ziccrse", "zicntr", "zicsr",
++					       "zifencei", "zihpm",
++					       "xtheadvector";
+ 			thead,vlenb = <16>;
  			reg = <2>;
  			i-cache-block-size = <64>;
- 			i-cache-size = <65536>;
-@@ -97,7 +100,8 @@ c910_3: cpu@3 {
+@@ -99,8 +105,10 @@ c910_3: cpu@3 {
+ 			device_type = "cpu";
  			riscv,isa = "rv64imafdc";
  			riscv,isa-base = "rv64i";
- 			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
--					       "zifencei", "zihpm";
-+					       "zifencei", "zihpm", "xtheadvector";
-+			thead,vlenb = <16>;
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+-					       "zifencei", "zihpm", "xtheadvector";
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
++					       "ziccrse", "zicntr", "zicsr",
++					       "zifencei", "zihpm",
++					       "xtheadvector";
+ 			thead,vlenb = <16>;
  			reg = <3>;
  			i-cache-block-size = <64>;
- 			i-cache-size = <65536>;
 -- 
 2.47.3
 
