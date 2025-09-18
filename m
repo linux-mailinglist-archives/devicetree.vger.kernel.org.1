@@ -1,1020 +1,325 @@
-Return-Path: <devicetree+bounces-218818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A68B84548
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:22:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC76B84569
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 13:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D981E1C05C1B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:22:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E3FA5842DB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 11:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FAF7304BD4;
-	Thu, 18 Sep 2025 11:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8542A2DA757;
+	Thu, 18 Sep 2025 11:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MJN3Wybh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FZhAcqWU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DFF3043B3;
-	Thu, 18 Sep 2025 11:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD16454764;
+	Thu, 18 Sep 2025 11:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758194507; cv=none; b=g9MtqpI8Oi+J08MDVUgvSMDKCLJtNSUSbNEERt5iCsZfgy4QGsZgQXQ50fPPvPRdy5cON4ay1PtYjdcEQ0RMXO6xMzAFly9aYxTCyEsUcf0/Vo96wmH7W5bYR96LrPnqT8ad/RnFItRoSgIOlLSgenLt9eOxUNtKfinh7NTu01A=
+	t=1758194762; cv=none; b=f2EDgVRTAE7W/pAdyW27XkoQ2so2YjyXYmH7lWMBTyLTtm27mNUq23xh22iPcwEJepkh5VJu6KhAT6t+H1nnE9Md7MLn7qV71mlcl8waafxoZBFFJ6/u8u7lLW1DLe9iRV1AoIpBoE97hYo5OSPLW0NlVcGJ/Rry0qlEHWiRlp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758194507; c=relaxed/simple;
-	bh=+jaEkPbMQpxxOekIjwy1jkkk1LgUbv8GT13rn1HUzAw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lHokHmMEVQYUGXJJeOSWfkR8IPbL35CaC7d6r6Oo6hF0URDNpd8JT8TDkHxU7JIxzaSMFASXg1349fcN6d8Iti5DXJGc5jpxSJXy2I6rglQkwRE2iGFWR+oQ0QgwQ7LlVJyx0xbcpyIIRzBaIsMrwW/6yjg/pbDo0AheUKwiPOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MJN3Wybh; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1758194505; x=1789730505;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=+jaEkPbMQpxxOekIjwy1jkkk1LgUbv8GT13rn1HUzAw=;
-  b=MJN3WybhyVR8QAJYiqDZX5k1rW7ySsfwdmHnPAuJB8zLHAnIvTxGOmEV
-   LR+qDgFvhMbDw1XKVHMjI7MxokqJzdmmNY4H1FgNrMy0Q5OtW76yVRTVH
-   /wSg3yDwcXIdPap/QLI8+f2aflPSYwP+1Jm7/4lVEsXfcc1jRdbKNHKhg
-   Jw/DM9mi0oqLoTwsYphabt5daIOfOOY/AllpTZiPyppt/6DqW/6YBJK0x
-   YKmpNvUuKCkkiIXKKNHRe9bMBXb8FGh3Iq8JW5eDBEDAwRJr6L3CDHLQp
-   csZwGubhYENPm25iRFhbluD9L4YJfLppjjDdoEex5hB435vBdUfGnxYqi
-   A==;
-X-CSE-ConnectionGUID: MK9Bjv+SSfyA+tPYDT8xQg==
-X-CSE-MsgGUID: oiEbPw2zRVO5O/3T721asw==
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; 
-   d="scan'208";a="278045455"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Sep 2025 04:21:43 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 18 Sep 2025 04:21:09 -0700
-Received: from vduicu-Virtual-Machine.mshome.net (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 18 Sep 2025 04:21:06 -0700
-From: <victor.duicu@microchip.com>
-To: <jic23@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
-	<andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <marius.cristea@microchip.com>,
-	<victor.duicu@microchip.com>
-Subject: [PATCH v5 2/2] iio: temperature: add support for MCP998X
-Date: Thu, 18 Sep 2025 14:19:37 +0300
-Message-ID: <20250918111937.5150-3-victor.duicu@microchip.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250918111937.5150-1-victor.duicu@microchip.com>
-References: <20250918111937.5150-1-victor.duicu@microchip.com>
+	s=arc-20240116; t=1758194762; c=relaxed/simple;
+	bh=Oiap5ri9qx0u1p7+O1mgP8sl6KQHs1DP8B50ceS+q0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zs3xL4EyGCOKjGEeSQfkqiFu8IY216zalJrb4bwvEdQH/bhNyXwfhZ7QIWGBTQCD1koaN/cMD8hn4JkstNoN6sHLO1CSJ1X6gowackvohlJlGJ0kmBSy6PNE3bhSMjwBb1fQq2nGU17MpuYE2ljewzeDpIzd99Dq9aB2RtxFik8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FZhAcqWU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758194757;
+	bh=Oiap5ri9qx0u1p7+O1mgP8sl6KQHs1DP8B50ceS+q0g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FZhAcqWU5e+LkAoukxYOBqTCHOb5EjvvLavJU1mWoe5KZT89kTeIGnRUtP2TEnAr5
+	 Xvq506cBFeY5jiepakxzIODaJa4W3lCc+v74ydqn55JmVaTK/uEbCm7Cn1c+P7T4NG
+	 sK//IcEObtEXCUOY4Ky0b6INN/YLC06VrmrldwcOtv0gPlzm5tlu+zBDxf6fPbPoBj
+	 ykNuq5wn+rl2Mf+dDX35HzobVQoFxPoHG/Xqk2BkW9T7/KXsAENu9J0Hr5Xu/F+yQN
+	 u+z8NDroEmdboajlt3sIMeRxWeNaCh1aTp8fJXfoAadynYO5WcHNvNsHS4pvTlXSOm
+	 MqQMZqAQZsV+A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 28E1017E12C4;
+	Thu, 18 Sep 2025 13:25:57 +0200 (CEST)
+Message-ID: <c24901fd-fa64-45f6-a6f7-57f09afe9707@collabora.com>
+Date: Thu, 18 Sep 2025 13:25:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/19] dt-bindings: display: mediatek: add EXDMA yaml
+ for MT8196
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?=
+ <Paul-pl.Chen@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: =?UTF-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
+ =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
+ =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+ =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
+ <Xiandong.Wang@mediatek.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "fshao@chromium.org" <fshao@chromium.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "treapking@chromium.org" <treapking@chromium.org>
+References: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
+ <20250828080855.3502514-4-paul-pl.chen@mediatek.com>
+ <89356c625715c984fcdca4e275df1a8747866909.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <89356c625715c984fcdca4e275df1a8747866909.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-From: Victor Duicu <victor.duicu@microchip.com>
+Il 18/09/25 09:01, CK Hu (胡俊光) ha scritto:
+> Hi, Rob and Krzysztof:
+> 
+> On Thu, 2025-08-28 at 16:06 +0800, Paul Chen wrote:
+>> From: Paul-pl Chen <paul-pl.chen@mediatek.com>
+>>
+>> Add mediatek,exdma.yaml to support EXDMA for MT8196.
+>> The MediaTek display overlap extended DMA engine, namely
+>> OVL_EXDMA or EXDMA, primarily functions as a DMA engine
+>> for reading data from DRAM with various DRAM footprints
+>> and data formats.
+>>
+>> Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
+>> ---
+>>   .../bindings/dma/mediatek,exdma.yaml          | 68 +++++++++++++++++++
+>>   1 file changed, 68 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml b/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
+>> new file mode 100644
+>> index 000000000000..eabf0cfc839e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
+>> @@ -0,0 +1,68 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/dma/mediatek,exdma.yaml*__;Iw!!CTRNKA9wMg0ARbw!mjQH2qNKhXsl47d3xz2_Qmo7Wadq5-kD0GJaAVjh7XY8W3NgI_dDpBNinME7NVW1PKdO9IEUsObOTugjypqo5j8$
+>> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!mjQH2qNKhXsl47d3xz2_Qmo7Wadq5-kD0GJaAVjh7XY8W3NgI_dDpBNinME7NVW1PKdO9IEUsObOTugj3hMMPhU$
+>> +
+>> +title: MediaTek display overlap extended DMA engine
+>> +
+>> +maintainers:
+>> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+>> +  - Philipp Zabel <p.zabel@pengutronix.de>
+>> +
+>> +description:
+>> +  The MediaTek display overlap extended DMA engine, namely OVL_EXDMA or EXDMA,
+>> +  primarily functions as a DMA engine for reading data from DRAM with various
+>> +  DRAM footprints and data formats. For input sources in certain color formats
+>> +  and color domains, OVL_EXDMA also includes a color transfer function
+>> +  to process pixels into a consistent color domain.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,mt8196-exdma
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  mediatek,larb:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      A phandle to the local arbiters node in the current SoCs.
+>> +      Refer to bindings/memory-controllers/mediatek,smi-larb.yaml.
+> 
+> In MT8196, the data path that EXDMA access DRAM data is shown below.
+> 
+> EXDMA (dma device) <-> LARB <-> SMMU (mmu device) <-> DRAM
+> 
+> In MT8195, the data path that OVL access DRAM data is shown below.
+> 
+> OVL (dma device) <-> LARB <-> IOMMU_VPP (mmu device) <-> DRAM
+> 
+> These two are similar, and LARB works like a bus.
+> 
+> In MT8195 device tree [1] (upstream), OVL has an iommus property pointing to IOMMU_VPP,
+> 
+> and IOMMU_VPP has a larbs property pointing to LARB
+> 
+>                  iommu_vpp: iommu@14018000 {
+> 
+>                           compatible = "mediatek,mt8195-iommu-vpp";
+> 
+>                           reg = <0 0x14018000 0 0x1000>;
+> 
+>                           mediatek,larbs = <&larb1 &larb3 &larb4 &larb6 &larb8
+> 
+>                                              &larb12 &larb14 &larb16 &larb18
+> 
+>                                              &larb20 &larb22 &larb23 &larb26
+> 
+>                                              &larb27>;
+> 
+>                           interrupts = <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>;
+> 
+>                           clocks = <&vppsys0 CLK_VPP0_SMI_IOMMU>;
+> 
+>                           clock-names = "bclk";
+> 
+>                           #iommu-cells = <1>;
+> 
+>                           power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
+> 
+>                  };
+> 
+>                  display@14009000 {
+> 
+>                           compatible = "mediatek,mt8195-mdp3-ovl";
+> 
+>                           reg = <0 0x14009000 0 0x1000>;
+> 
+>                           interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH 0>;
+> 
+>                           mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0x9000 0x1000>;
+> 
+>                           clocks = <&vppsys0 CLK_VPP0_MDP_OVL>;
+> 
+>                           power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
+> 
+>                           iommus = <&iommu_vpp M4U_PORT_L4_MDP_OVL>;
+> 
+>                  };
+> 
+> In MT8196 [2] (this patch), EXDMA has an iommus property pointing to SMMU and a larbs property pointing to LARB.
+> 
+>                   mm_smmu: iommu@30800000 {
+> 
+>                           compatible = "mediatek,mt8196-mm-smmu", "arm,smmu-v3";
+> 
+>                           reg = <0 0x30800000 0 0x1e0000>;
+> 
+>                           interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING 0>;
+> 
+>                           interrupt-names = "combined";
+> 
+>                           #iommu-cells = <1>;
+> 
+>                   };
+> 
+>                   disp_ovl0_exdma2: dma-controller@32850000 {
+> 
+>                           compatible = "mediatek,mt8196-exdma";
+> 
+>                           reg = <0 0x32850000 0 0x1000>;
+> 
+>                           clocks = <&ovlsys_config_clk CLK_OVL_EXDMA2_DISP>;
+> 
+>                           power-domains = <&hfrpsys MT8196_POWER_DOMAIN_OVL0_DORMANT>;
+> 
+>                           mediatek,larb = <&smi_larb0>;
+> 
+>                           iommus = <&mm_smmu 144>;
+> 
+>                           #dma-cells = <1>;
+> 
+>                   };
+> 
+> Both hardware data path is similar, but LARB is pointed by IOMMU device in MT8195 and LARB is pointed by DMA device in MT8196.
+> 
+> Should LARB be pointed by the same device (DMA device or IOMMU device)?
+> 
+> Or another way to describe these three device?
+> 
 
-This is the driver for Microchip MCP998X/33 and MCP998XD/33D Multichannel
-Automotive Temperature Monitor Family.
+Read dt-bindings/iommu/mediatek,iommu.yaml for a nice block diagram from Yong Wu:
+as explained, the Local Arbiters are arbitering multimedia IP block memory access
+between either IOMMU translation or EMI DMA.
 
-Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
----
- MAINTAINERS                       |   1 +
- drivers/iio/temperature/Kconfig   |  10 +
- drivers/iio/temperature/Makefile  |   1 +
- drivers/iio/temperature/mcp9982.c | 871 ++++++++++++++++++++++++++++++
- 4 files changed, 883 insertions(+)
- create mode 100644 drivers/iio/temperature/mcp9982.c
+This means that the LARBs need knowledge of both the INPUT device (EXDMA) and of
+the possible diverting paths (SMI, or IOMMU).
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 37530194c9fb..9aa9d8e29462 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16667,6 +16667,7 @@ M:	Victor Duicu <victor.duicu@microchip.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
-+F:	drivers/iio/temperature/mcp9982.c
- 
- MICROCHIP MMC/SD/SDIO MCI DRIVER
- M:	Aubin Constans <aubin.constans@microchip.com>
-diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
-index 9328b2250ace..d1751db6bf6f 100644
---- a/drivers/iio/temperature/Kconfig
-+++ b/drivers/iio/temperature/Kconfig
-@@ -184,4 +184,14 @@ config MCP9600
- 	  This driver can also be built as a module. If so, the module
- 	  will be called mcp9600.
- 
-+config MCP9982
-+       tristate "Microchip Technology MCP9982 driver"
-+       depends on I2C
-+       help
-+         Say yes here to build support for Microchip Technology's MCP998X/33
-+         and MCP998XD/33D Multichannel Automotive Temperature Monitor Family.
-+
-+         This driver can also be built as a module. If so, the module
-+         will be called mcp9982.
-+
- endmenu
-diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
-index 07d6e65709f7..83f5f4bb4ff3 100644
---- a/drivers/iio/temperature/Makefile
-+++ b/drivers/iio/temperature/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_MAX30208) += max30208.o
- obj-$(CONFIG_MAX31856) += max31856.o
- obj-$(CONFIG_MAX31865) += max31865.o
- obj-$(CONFIG_MCP9600) += mcp9600.o
-+obj-$(CONFIG_MCP9982) += mcp9982.o
- obj-$(CONFIG_MLX90614) += mlx90614.o
- obj-$(CONFIG_MLX90632) += mlx90632.o
- obj-$(CONFIG_MLX90632) += mlx90635.o
-diff --git a/drivers/iio/temperature/mcp9982.c b/drivers/iio/temperature/mcp9982.c
-new file mode 100644
-index 000000000000..05130b72ba14
---- /dev/null
-+++ b/drivers/iio/temperature/mcp9982.c
-@@ -0,0 +1,871 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * IIO driver for MCP998X/33 and MCP998XD/33D Multichannel Automotive Temperature Monitor Family
-+ *
-+ * Copyright (C) 2025 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Victor Duicu <victor.duicu@microchip.com>
-+ *
-+ * Datasheet can be found here:
-+ * https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/device/devres.h>
-+#include <linux/dev_printk.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/math64.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/string.h>
-+#include <linux/units.h>
-+
-+/* MCP9982 Registers */
-+#define MCP9982_HIGH_BYTE_ADDR(index)		(2 * (index))
-+#define MCP9982_ONE_SHOT_ADDR			0x0A
-+#define MCP9982_INTERNAL_HIGH_LIMIT_ADDR	0x0B
-+#define MCP9982_INTERNAL_LOW_LIMIT_ADDR		0x0C
-+#define MCP9982_EXT1_HIGH_LIMIT_HIGH_BYTE_ADDR	0x0D
-+#define MCP9982_EXT1_HIGH_LIMIT_LOW_BYTE_ADDR	0x0E
-+#define MCP9982_EXT1_LOW_LIMIT_HIGH_BYTE_ADDR	0x0F
-+#define MCP9982_EXT1_LOW_LIMIT_LOW_BYTE_ADDR	0x10
-+#define MCP9982_INTERNAL_THERM_LIMIT_ADDR	0x1D
-+#define MCP9982_EXT1_THERM_LIMIT_ADDR		0x1E
-+#define MCP9982_CFG_ADDR			0x22
-+#define MCP9982_CONV_ADDR			0x24
-+#define MCP9982_HYS_ADDR			0x25
-+#define MCP9982_CONSEC_ALRT_ADDR		0x26
-+#define MCP9982_ALRT_CFG_ADDR			0x27
-+#define MCP9982_RUNNING_AVG_ADDR		0x28
-+#define MCP9982_HOTTEST_CFG_ADDR		0x29
-+#define MCP9982_STATUS_ADDR			0x2A
-+#define MCP9982_EXT_FAULT_STATUS_ADDR		0x2B
-+#define MCP9982_HIGH_LIMIT_STATUS_ADDR		0x2C
-+#define MCP9982_LOW_LIMIT_STATUS_ADDR		0x2D
-+#define MCP9982_THERM_LIMIT_STATUS_ADDR		0x2E
-+#define MCP9982_HOTTEST_HIGH_BYTE_ADDR		0x2F
-+#define MCP9982_HOTTEST_LOW_BYTE_ADDR		0x30
-+#define MCP9982_HOTTEST_STATUS_ADDR		0x31
-+#define MCP9982_THERM_SHTDWN_CFG_ADDR		0x32
-+#define MCP9982_HRDW_THERM_SHTDWN_LIMIT_ADDR	0x33
-+/* 52 is the start address in decimal for the beta registers. */
-+#define MCP9982_EXT_BETA_CFG_ADDR(index)	((index) + 52)
-+/* 54 is the start address in decimal for ideality registers. */
-+#define MCP9982_EXT_IDEAL_ADDR(index)		((index) + 54)
-+/* 128 is the start address in decimal for temperature memory block */
-+#define MCP9982_TEMP_MEM_BLOCK_ADDR(index)	(2 * (index) + 128)
-+#define MCP9982_TEMP_MEMORY_BLOCK_LOW		0x80
-+#define MCP9982_TEMP_MEMORY_BLOCK_HIGH		0x89
-+
-+/* MCP9982 Bits */
-+#define MCP9982_CFG_MSKAL			BIT(7)
-+#define MCP9982_CFG_RS				BIT(6)
-+#define MCP9982_CFG_ATTHM			BIT(5)
-+#define MCP9982_CFG_RECD12			BIT(4)
-+#define MCP9982_CFG_RECD34			BIT(3)
-+#define MCP9982_CFG_RANGE			BIT(2)
-+#define MCP9982_CFG_DA_ENA			BIT(1)
-+#define MCP9982_CFG_APDD			BIT(0)
-+#define MCP9982_STATUS_BUSY			BIT(5)
-+
-+/* The maximum number of channels a member of the family can have. */
-+#define MCP9982_MAX_NUM_CHANNELS		5
-+#define MCP9982_BETA_AUTODETECT			16
-+#define MCP9982_IDEALITY_DEFAULT		18
-+#define MCP9982_OFFSET				-64
-+#define MCP9982_SCALE				3906250
-+/**
-+ * Bit flags and their meaning
-+ * @RECD34_ENABLE:		state of Resistance Error Correction(REC) on channels 3 and 4
-+ * @RECD12_ENABLE:		state of Resistance Error Correction(REC) on channels 1 and 2
-+ * @APDD_ENABLE:		state of anti-parallel diode mode
-+ * @RUN_STATE:			chip is in run state, otherwise is in standby state
-+ * @WAIT_BEFORE_READ:		whether we need to wait a delay before reading a new value
-+ */
-+#define RECD34_ENABLE				0
-+#define RECD12_ENABLE				1
-+#define APDD_ENABLE				2
-+#define RUN_STATE				3
-+#define WAIT_BEFORE_READ			4
-+#define USE_PREVIOUS_FREQ			5
-+
-+#define MCP9982_CHAN(index, si, __address) (						\
-+	(struct iio_chan_spec) {							\
-+		.type = IIO_TEMP,							\
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),				\
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ) |	\
-+		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),			\
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
-+		BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) |			\
-+		BIT(IIO_CHAN_INFO_OFFSET) |						\
-+		BIT(IIO_CHAN_INFO_SCALE),						\
-+		.channel = index,							\
-+		.address = __address,							\
-+		.scan_index = si,							\
-+		.scan_type = {								\
-+			.sign = 'u',							\
-+			.realbits = 8,							\
-+			.storagebits = 8,						\
-+		},									\
-+		.indexed = 1,								\
-+	}										\
-+)
-+
-+/**
-+ * struct mcp9982_features - features of a mcp9982 instance
-+ * @name:			chip's name
-+ * @phys_channels:		number of physical channels supported by the chip
-+ * @hw_thermal_shutdown:	presence of hardware thermal shutdown circuitry
-+ * @allow_apdd:			whether the chip supports enabling APDD
-+ */
-+struct mcp9982_features {
-+	const char	*name;
-+	u8		phys_channels;
-+	bool		hw_thermal_shutdown;
-+	bool		allow_apdd;
-+};
-+
-+static const struct mcp9982_features mcp9933_chip_config = {
-+	.name = "mcp9933",
-+	.phys_channels = 3,
-+	.hw_thermal_shutdown = false,
-+	.allow_apdd = true,
-+};
-+
-+static const struct mcp9982_features mcp9933d_chip_config = {
-+	.name = "mcp9933d",
-+	.phys_channels = 3,
-+	.hw_thermal_shutdown = true,
-+	.allow_apdd = true,
-+};
-+
-+static const struct mcp9982_features mcp9982_chip_config = {
-+	.name = "mcp9982",
-+	.phys_channels = 2,
-+	.hw_thermal_shutdown = false,
-+	.allow_apdd = false,
-+};
-+
-+static const struct mcp9982_features mcp9982d_chip_config = {
-+	.name = "mcp9982d",
-+	.phys_channels = 2,
-+	.hw_thermal_shutdown = true,
-+	.allow_apdd = false,
-+};
-+
-+static const struct mcp9982_features mcp9983_chip_config = {
-+	.name = "mcp9983",
-+	.phys_channels = 3,
-+	.hw_thermal_shutdown = false,
-+	.allow_apdd = false,
-+};
-+
-+static const struct mcp9982_features mcp9983d_chip_config = {
-+	.name = "mcp9983d",
-+	.phys_channels = 3,
-+	.hw_thermal_shutdown = true,
-+	.allow_apdd = false,
-+};
-+
-+static const struct mcp9982_features mcp9984_chip_config = {
-+	.name = "mcp9984",
-+	.phys_channels = 4,
-+	.hw_thermal_shutdown = false,
-+	.allow_apdd = true,
-+};
-+
-+static const struct mcp9982_features mcp9984d_chip_config = {
-+	.name = "mcp9984d",
-+	.phys_channels = 4,
-+	.hw_thermal_shutdown = true,
-+	.allow_apdd = true,
-+};
-+
-+static const struct mcp9982_features mcp9985_chip_config = {
-+	.name = "mcp9985",
-+	.phys_channels = 5,
-+	.hw_thermal_shutdown = false,
-+	.allow_apdd = true,
-+};
-+
-+static const struct mcp9982_features mcp9985d_chip_config = {
-+	.name = "mcp9985d",
-+	.phys_channels = 5,
-+	.hw_thermal_shutdown = true,
-+	.allow_apdd = true,
-+};
-+
-+static const unsigned int mcp9982_conv_rate[][2] = {
-+	{ 0, 62500 },
-+	{ 0, 125000 },
-+	{ 0, 250000 },
-+	{ 0, 500000 },
-+	{ 1, 0 },
-+	{ 2, 0 },
-+	{ 4, 0 },
-+	{ 8, 0 },
-+	{ 16, 0 },
-+	{ 32, 0 },
-+	{ 64, 0 },
-+};
-+
-+/*
-+ * Constants were calculated using:
-+ * (Sampling_Frequency(Hz) * 1000000) / (Window_Size * 2)
-+ * The formula is used for Window_Size = {4, 8}.
-+ * For Window_Size = 1 the filter is OFF and the 3db value
-+ * is equal to the frequency.
-+ */
-+static const unsigned int mcp9982_3db_values_map_tbl[11][3][2] = {
-+	{
-+		{0, 62500},
-+		{0, 7812},
-+		{0, 3906},
-+	},
-+	{
-+		{0, 125000},
-+		{0, 15625},
-+		{0, 7812},
-+	},
-+	{
-+		{0, 250000},
-+		{0, 31250},
-+		{0, 15625},
-+	},
-+	{
-+		{0, 500000},
-+		{0, 62500},
-+		{0, 31250},
-+	},
-+	{
-+		{1, 0},
-+		{0, 125000},
-+		{0, 62500},
-+	},
-+	{
-+		{2, 0},
-+		{0, 250000},
-+		{0, 125000},
-+	},
-+	{
-+		{4, 0},
-+		{0, 500000},
-+		{0, 250000},
-+	},
-+	{
-+		{8, 0},
-+		{1, 0},
-+		{0, 500000},
-+	},
-+	{
-+		{16, 0},
-+		{2, 0},
-+		{1, 0},
-+	},
-+	{
-+		{32, 0},
-+		{4, 0},
-+		{2, 0},
-+	},
-+	{
-+		{64, 0},
-+		{8, 0},
-+		{4, 0},
-+	},
-+};
-+
-+/* The delay, in milliseconds, needed to allow the conversion to end. */
-+static const u64 mcp9982_delay_ms[11] = {
-+	16125,
-+	8125,
-+	4125,
-+	2125,
-+	1125,
-+	625,
-+	375,
-+	255,
-+	190,
-+	160,
-+	145,
-+};
-+
-+/* MCP9982 regmap configuration */
-+static const struct regmap_range mcp9982_regmap_wr_ranges[] = {
-+	regmap_reg_range(MCP9982_ONE_SHOT_ADDR,
-+			 MCP9982_EXT1_LOW_LIMIT_LOW_BYTE_ADDR),
-+	regmap_reg_range(MCP9982_INTERNAL_THERM_LIMIT_ADDR,
-+			 MCP9982_EXT1_THERM_LIMIT_ADDR),
-+	regmap_reg_range(MCP9982_CFG_ADDR, MCP9982_CFG_ADDR),
-+	regmap_reg_range(MCP9982_CONV_ADDR, MCP9982_HOTTEST_CFG_ADDR),
-+	regmap_reg_range(MCP9982_THERM_SHTDWN_CFG_ADDR,
-+			 MCP9982_THERM_SHTDWN_CFG_ADDR),
-+	regmap_reg_range(MCP9982_EXT_BETA_CFG_ADDR(0),
-+			 MCP9982_EXT_IDEAL_ADDR(3)),
-+	regmap_reg_range(MCP9982_TEMP_MEMORY_BLOCK_LOW,
-+			 MCP9982_TEMP_MEMORY_BLOCK_HIGH),
-+};
-+
-+static const struct regmap_access_table mcp9982_regmap_wr_table = {
-+	.yes_ranges = mcp9982_regmap_wr_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp9982_regmap_wr_ranges),
-+};
-+
-+static const struct regmap_range mcp9982_regmap_rd_ranges[] = {
-+	regmap_reg_range(MCP9982_HIGH_BYTE_ADDR(0),
-+			 MCP9982_EXT1_LOW_LIMIT_LOW_BYTE_ADDR),
-+	regmap_reg_range(MCP9982_INTERNAL_THERM_LIMIT_ADDR,
-+			 MCP9982_EXT1_THERM_LIMIT_ADDR),
-+	regmap_reg_range(MCP9982_CFG_ADDR, MCP9982_CFG_ADDR),
-+	regmap_reg_range(MCP9982_CONV_ADDR, MCP9982_EXT_IDEAL_ADDR(3)),
-+	regmap_reg_range(MCP9982_TEMP_MEMORY_BLOCK_LOW,
-+			 MCP9982_TEMP_MEMORY_BLOCK_HIGH),
-+};
-+
-+static const struct regmap_access_table mcp9982_regmap_rd_table = {
-+	.yes_ranges = mcp9982_regmap_rd_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp9982_regmap_rd_ranges),
-+};
-+
-+static bool mcp9982_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case MCP9982_ONE_SHOT_ADDR:
-+	case MCP9982_INTERNAL_HIGH_LIMIT_ADDR:
-+	case MCP9982_INTERNAL_LOW_LIMIT_ADDR:
-+	case MCP9982_EXT1_HIGH_LIMIT_HIGH_BYTE_ADDR:
-+	case MCP9982_EXT1_HIGH_LIMIT_LOW_BYTE_ADDR:
-+	case MCP9982_EXT1_LOW_LIMIT_HIGH_BYTE_ADDR:
-+	case MCP9982_EXT1_LOW_LIMIT_LOW_BYTE_ADDR:
-+	case MCP9982_INTERNAL_THERM_LIMIT_ADDR:
-+	case MCP9982_EXT1_THERM_LIMIT_ADDR:
-+	case MCP9982_CFG_ADDR:
-+	case MCP9982_CONV_ADDR:
-+	case MCP9982_HYS_ADDR:
-+	case MCP9982_CONSEC_ALRT_ADDR:
-+	case MCP9982_ALRT_CFG_ADDR:
-+	case MCP9982_RUNNING_AVG_ADDR:
-+	case MCP9982_HOTTEST_CFG_ADDR:
-+	case MCP9982_THERM_SHTDWN_CFG_ADDR:
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
-+
-+static const struct regmap_config mcp9982_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.rd_table = &mcp9982_regmap_rd_table,
-+	.wr_table = &mcp9982_regmap_wr_table,
-+	.volatile_reg = mcp9982_is_volatile_reg,
-+	.max_register = 137,
-+};
-+
-+/**
-+ * struct mcp9992_priv - information about chip parameters
-+ * @bit_flags:			holds the state of the flags
-+ * @regmap:			device register map
-+ * @chip:			pointer to structure holding chip features
-+ * @lock:			synchronize access to driver's state members
-+ * @iio_chan:			specifications of channels
-+ * @labels:			labels of the channels
-+ * @sampl_idx:			index representing the current sampling frequency
-+ * @time_limit:			time when it is safe to read
-+ * @num_channels:		number of active physical channels
-+ */
-+struct mcp9982_priv {
-+	unsigned long bit_flags;
-+	struct regmap *regmap;
-+	const struct mcp9982_features *chip;
-+	/* Synchronize access to driver's state members. */
-+	struct mutex lock;
-+	struct iio_chan_spec iio_chan[5];
-+	const char *labels[MCP9982_MAX_NUM_CHANNELS];
-+	unsigned int sampl_idx;
-+	unsigned long  time_limit;
-+	u8 num_channels;
-+
-+};
-+
-+static int mcp9982_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, const int **vals,
-+			      int *type, int *length, long mask)
-+{
-+	struct mcp9982_priv *priv = iio_priv(indio_dev);
-+	unsigned int idx;
-+	unsigned int sub;
-+
-+	if (priv->chip->hw_thermal_shutdown) {
-+		idx = 4;
-+		sub = 8;
-+	} else {
-+		idx = 0;
-+		sub = 0;
-+	}
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		*vals = mcp9982_conv_rate[idx];
-+		*length = ARRAY_SIZE(mcp9982_conv_rate) * 2 - sub;
-+		return IIO_AVAIL_LIST;
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		*vals = mcp9982_3db_values_map_tbl[priv->sampl_idx][0];
-+		*length = ARRAY_SIZE(mcp9982_3db_values_map_tbl[priv->sampl_idx]) * 2;
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp9982_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	unsigned int tmp_reg, reg_status;
-+	struct mcp9982_priv *priv = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (test_bit(RUN_STATE, &priv->bit_flags)) {
-+		/*
-+		 * When working in Run mode, after modifying a parameter (like sampling
-+		 * frequency) we have to wait a delay before reading the new values.
-+		 * We can't determine when the conversion is done based on the BUSY bit.
-+		 */
-+		if (test_bit(WAIT_BEFORE_READ, &priv->bit_flags)) {
-+			if (!time_after(jiffies, priv->time_limit))
-+				mdelay(jiffies_to_msecs(priv->time_limit - jiffies));
-+			clear_bit(WAIT_BEFORE_READ, &priv->bit_flags);
-+		}
-+	} else {
-+		ret = regmap_write(priv->regmap, MCP9982_ONE_SHOT_ADDR, 1);
-+		if (ret)
-+			return ret;
-+		/*
-+		 * In Standby state after writing in OneShot register wait for
-+		 * the start of conversion and then poll the BUSY bit.
-+		 */
-+		mdelay(125);
-+		ret = regmap_read_poll_timeout(priv->regmap, MCP9982_STATUS_ADDR,
-+					       reg_status, !(reg_status & MCP9982_STATUS_BUSY),
-+					       mcp9982_delay_ms[priv->sampl_idx] * USEC_PER_MSEC,
-+					       0);
-+		if (ret)
-+			return ret;
-+	}
-+	guard(mutex)(&priv->lock);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		/*
-+		 * The Block Read Protocol first returns the number of user readable
-+		 * bytes, held in bulk_read[0], followed by the data.
-+		 */
-+		u8 bulk_read[3];
-+
-+		ret = regmap_bulk_read(priv->regmap, MCP9982_TEMP_MEM_BLOCK_ADDR(chan->channel),
-+				       &bulk_read, sizeof(bulk_read));
-+		if (ret)
-+			return ret;
-+
-+		*val = (bulk_read[1] << 8) + (bulk_read[2]);
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 0;
-+		*val2 = MCP9982_SCALE;
-+		return IIO_VAL_INT_PLUS_NANO;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = mcp9982_conv_rate[priv->sampl_idx][0];
-+		*val2 = mcp9982_conv_rate[priv->sampl_idx][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		unsigned long *src;
-+
-+		ret = regmap_read(priv->regmap, MCP9982_RUNNING_AVG_ADDR, &tmp_reg);
-+		if (ret)
-+			return ret;
-+		*src = tmp_reg;
-+		*val = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][0];
-+		*val2 = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = MCP9982_OFFSET;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp9982_read_label(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, char *label)
-+{
-+	struct mcp9982_priv *priv = iio_priv(indio_dev);
-+
-+	return sysfs_emit(label, "%s\n", priv->labels[chan->channel]);
-+}
-+
-+static int mcp9982_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				     struct iio_chan_spec const *chan, long info)
-+{
-+	switch (info) {
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp9982_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	unsigned int i, start, previous_sampl_idx;
-+	struct mcp9982_priv *priv = iio_priv(indio_dev);
-+	int ret;
-+	unsigned long new_time_limit;
-+
-+	start = 0;
-+	guard(mutex)(&priv->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		previous_sampl_idx = priv->sampl_idx;
-+
-+		/* For MCP998XD and MCP9933D sampling frequency can't be set lower than 1. */
-+		if (priv->chip->hw_thermal_shutdown)
-+			start = 4;
-+		for (i = start; i < ARRAY_SIZE(mcp9982_conv_rate); i++)
-+			if (val == mcp9982_conv_rate[i][0] &&
-+			    val2 == mcp9982_conv_rate[i][1])
-+				break;
-+
-+		if (i == ARRAY_SIZE(mcp9982_conv_rate))
-+			return -EINVAL;
-+
-+		ret = regmap_write(priv->regmap, MCP9982_CONV_ADDR, i);
-+		if (ret)
-+			return ret;
-+
-+		priv->sampl_idx = i;
-+
-+		/*
-+		 * When changing the frequency in Run mode, wait a delay based
-+		 * on the previous value to ensure the new value becomes active.
-+		 */
-+		if (test_bit(RUN_STATE, &priv->bit_flags))
-+			set_bit(USE_PREVIOUS_FREQ, &priv->bit_flags);
-+
-+		break;
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		for (i = 0; i < ARRAY_SIZE(mcp9982_3db_values_map_tbl[priv->sampl_idx]); i++)
-+			if (val == mcp9982_3db_values_map_tbl[priv->sampl_idx][i][0] &&
-+			    val2 == mcp9982_3db_values_map_tbl[priv->sampl_idx][i][1])
-+				break;
-+
-+		if (i == ARRAY_SIZE(mcp9982_3db_values_map_tbl[priv->sampl_idx]))
-+			return -EINVAL;
-+
-+		/*
-+		 * In mcp9982_3db_values_map_tbl the second index maps:
-+		 * 0 for filter off
-+		 * 1 for filter at level 1
-+		 * 2 for filter at level 2
-+		 */
-+		if (i == 2)
-+			i = 3;
-+		/*
-+		 * If the digital filter is activated for chips without "D", set
-+		 * the power state to Run to ensure the averaging is made on fresh values.
-+		 */
-+		if (!priv->chip->hw_thermal_shutdown) {
-+			if (i == 0) {
-+				ret = regmap_assign_bits(priv->regmap,
-+							 MCP9982_CFG_ADDR,
-+							 MCP9982_CFG_RS, 1);
-+				clear_bit(RUN_STATE, &priv->bit_flags);
-+			} else {
-+				ret = regmap_assign_bits(priv->regmap,
-+							 MCP9982_CFG_ADDR,
-+							 MCP9982_CFG_RS, 0);
-+				set_bit(RUN_STATE, &priv->bit_flags);
-+			}
-+		}
-+
-+		ret = regmap_write(priv->regmap, MCP9982_RUNNING_AVG_ADDR, i);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (test_bit(RUN_STATE, &priv->bit_flags)) {
-+		if (test_bit(USE_PREVIOUS_FREQ, &priv->bit_flags)) {
-+			new_time_limit = jiffies +
-+					msecs_to_jiffies(mcp9982_delay_ms[previous_sampl_idx]);
-+			clear_bit(USE_PREVIOUS_FREQ, &priv->bit_flags);
-+		} else {
-+			new_time_limit = jiffies +
-+					msecs_to_jiffies(mcp9982_delay_ms[priv->sampl_idx]);
-+		}
-+		if (time_after(new_time_limit, priv->time_limit)) {
-+			priv->time_limit = new_time_limit;
-+			set_bit(WAIT_BEFORE_READ, &priv->bit_flags);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct iio_info mcp9982_info = {
-+	.read_raw = mcp9982_read_raw,
-+	.read_label = mcp9982_read_label,
-+	.read_avail = mcp9982_read_avail,
-+	.write_raw_get_fmt = mcp9982_write_raw_get_fmt,
-+	.write_raw = mcp9982_write_raw,
-+};
-+
-+static int mcp9982_init(struct device *dev, struct mcp9982_priv *priv)
-+{
-+	int ret;
-+	unsigned int i;
-+	u8 val;
-+
-+	/* Chips 82/83 and 82D/83D do not support anti-parallel diode mode. */
-+	if (!priv->chip->allow_apdd && test_bit(APDD_ENABLE, &priv->bit_flags))
-+		return dev_err_probe(dev, -EINVAL, "Incorrect setting of APDD.\n");
-+
-+	/* Chips with "D" work in Run state and those without work in Standby state. */
-+	if (priv->chip->hw_thermal_shutdown)
-+		set_bit(RUN_STATE, &priv->bit_flags);
-+
-+	/*
-+	 * For chips with "D" in the name resistance error correction must be on
-+	 * so that hardware shutdown feature can't be overridden.
-+	 */
-+	if (priv->chip->hw_thermal_shutdown)
-+		if (!test_bit(RECD34_ENABLE, &priv->bit_flags) ||
-+		    !test_bit(RECD12_ENABLE, &priv->bit_flags))
-+			return dev_err_probe(dev, -EINVAL, "Incorrect setting of RECD.\n");
-+	/*
-+	 * Set default values in registers.
-+	 *
-+	 * APDD, RECD12 and RECD34 are active on 0.
-+	 */
-+	val = FIELD_PREP(MCP9982_CFG_MSKAL, 1) |
-+	      FIELD_PREP(MCP9982_CFG_RS, !test_bit(RUN_STATE, &priv->bit_flags)) |
-+	      FIELD_PREP(MCP9982_CFG_ATTHM, 1) |
-+	      FIELD_PREP(MCP9982_CFG_RECD12, !test_bit(RECD12_ENABLE, &priv->bit_flags)) |
-+	      FIELD_PREP(MCP9982_CFG_RECD34, !test_bit(RECD34_ENABLE, &priv->bit_flags)) |
-+	      FIELD_PREP(MCP9982_CFG_RANGE, 1) | FIELD_PREP(MCP9982_CFG_DA_ENA, 0) |
-+	      FIELD_PREP(MCP9982_CFG_APDD, !test_bit(APDD_ENABLE, &priv->bit_flags));
-+
-+	ret = regmap_write(priv->regmap, MCP9982_CFG_ADDR, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(priv->regmap, MCP9982_CONV_ADDR, 6);
-+	if (ret)
-+		return ret;
-+	priv->sampl_idx = 6;
-+
-+	ret = regmap_write(priv->regmap, MCP9982_HYS_ADDR, 10);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(priv->regmap, MCP9982_CONSEC_ALRT_ADDR, 112);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(priv->regmap, MCP9982_RUNNING_AVG_ADDR, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(priv->regmap, MCP9982_HOTTEST_CFG_ADDR, 0);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Only external channels 1 and 2 support beta compensation.
-+	 * Set beta auto-detection.
-+	 */
-+	for (i = 0; i < 2; i++) {
-+		ret = regmap_write(priv->regmap, MCP9982_EXT_BETA_CFG_ADDR(i),
-+				   MCP9982_BETA_AUTODETECT);
-+		if (ret)
-+			return ret;
-+	}
-+	/* Set ideality factor to default for all external channels. */
-+	for (i = 0; i < 4; i++) {
-+		ret = regmap_write(priv->regmap, MCP9982_EXT_IDEAL_ADDR(i),
-+				   MCP9982_IDEALITY_DEFAULT);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	priv->time_limit = jiffies;
-+
-+	return 0;
-+}
-+
-+static int mcp9982_parse_fw_config(struct iio_dev *indio_dev, struct device *dev,
-+				   int device_nr_channels)
-+{
-+	unsigned int reg_nr, iio_idx;
-+	struct mcp9982_priv *priv = iio_priv(indio_dev);
-+
-+	if (device_property_read_bool(dev, "microchip,enable-anti-parallel"))
-+		set_bit(APDD_ENABLE, &priv->bit_flags);
-+
-+	if (device_property_read_bool(dev, "microchip,parasitic-res-on-channel1-2"))
-+		set_bit(RECD12_ENABLE, &priv->bit_flags);
-+
-+	if (device_property_read_bool(dev, "microchip,parasitic-res-on-channel3-4"))
-+		set_bit(RECD34_ENABLE, &priv->bit_flags);
-+
-+	priv->num_channels = device_get_child_node_count(dev) + 1;
-+
-+	if (priv->num_channels > device_nr_channels)
-+		return dev_err_probe(dev, -E2BIG,
-+				     "More channels than the chip supports\n");
-+
-+	priv->iio_chan[0] = MCP9982_CHAN(0, 0, MCP9982_HIGH_BYTE_ADDR(0));
-+
-+	priv->labels[0] = "internal diode";
-+	iio_idx++;
-+	device_for_each_child_node_scoped(dev, child) {
-+		reg_nr = 0;
-+		fwnode_property_read_u32(child, "reg", &reg_nr);
-+		if (!reg_nr || reg_nr >= device_nr_channels)
-+			return dev_err_probe(dev, -EINVAL,
-+				     "The index of the channels does not match the chip\n");
-+
-+		fwnode_property_read_string(child, "label",
-+					    &priv->labels[reg_nr]);
-+
-+		priv->iio_chan[iio_idx++] = MCP9982_CHAN(reg_nr, reg_nr,
-+							 MCP9982_HIGH_BYTE_ADDR(reg_nr));
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp9982_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct mcp9982_priv *priv;
-+	struct iio_dev *indio_dev;
-+	const struct mcp9982_features *chip;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	priv = iio_priv(indio_dev);
-+	priv->regmap = devm_regmap_init_i2c(client, &mcp9982_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "Cannot initialize register map\n");
-+
-+	ret = devm_mutex_init(dev, &priv->lock);
-+	if (ret)
-+		return ret;
-+
-+	chip = i2c_get_match_data(client);
-+	if (!chip)
-+		return -EINVAL;
-+	priv->chip = chip;
-+	priv->bit_flags = 0;
-+
-+	ret = mcp9982_parse_fw_config(indio_dev, dev, chip->phys_channels);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp9982_init(dev, priv);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = chip->name;
-+	indio_dev->info = &mcp9982_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = priv->iio_chan;
-+	indio_dev->num_channels = priv->num_channels;
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Cannot register IIO device\n");
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id mcp9982_id[] = {
-+	{ .name = "mcp9933", .driver_data = (kernel_ulong_t)&mcp9933_chip_config },
-+	{ .name = "mcp9933d", .driver_data = (kernel_ulong_t)&mcp9933d_chip_config },
-+	{ .name = "mcp9982", .driver_data = (kernel_ulong_t)&mcp9982_chip_config },
-+	{ .name = "mcp9982d", .driver_data = (kernel_ulong_t)&mcp9982d_chip_config },
-+	{ .name = "mcp9983", .driver_data = (kernel_ulong_t)&mcp9983_chip_config },
-+	{ .name = "mcp9983d", .driver_data = (kernel_ulong_t)&mcp9983d_chip_config },
-+	{ .name = "mcp9984", .driver_data = (kernel_ulong_t)&mcp9984_chip_config },
-+	{ .name = "mcp9984d", .driver_data = (kernel_ulong_t)&mcp9984d_chip_config },
-+	{ .name = "mcp9985", .driver_data = (kernel_ulong_t)&mcp9985_chip_config },
-+	{ .name = "mcp9985d", .driver_data = (kernel_ulong_t)&mcp9985d_chip_config },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mcp9982_id);
-+
-+static const struct of_device_id mcp9982_of_match[] = {
-+	{
-+		.compatible = "microchip,mcp9933",
-+		.data = &mcp9933_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9933d",
-+		.data = &mcp9933d_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9982",
-+		.data = &mcp9982_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9982d",
-+		.data = &mcp9982d_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9983",
-+		.data = &mcp9983_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9983d",
-+		.data = &mcp9983d_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9984",
-+		.data = &mcp9984_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9984d",
-+		.data = &mcp9984d_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9985",
-+		.data = &mcp9985_chip_config
-+	}, {
-+		.compatible = "microchip,mcp9985d",
-+		.data = &mcp9985d_chip_config
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mcp9982_of_match);
-+
-+static struct i2c_driver mcp9982_driver = {
-+	.driver	 = {
-+		.name = "mcp9982",
-+		.of_match_table = mcp9982_of_match,
-+	},
-+	.probe = mcp9982_probe,
-+	.id_table = mcp9982_id,
-+};
-+module_i2c_driver(mcp9982_driver);
-+
-+MODULE_AUTHOR("Victor Duicu <victor.duicu@microchip.com>");
-+MODULE_DESCRIPTION("MCP998X/33 and MCP998XD/33D Multichannel Automotive Temperature Monitor Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
+What has been done in previous platforms is a borderline (but imo, acceptable for
+multiple reasons) almost-hack, done to avoid having a vendor property on each of
+the nodes and to avoid overcomplicating the actual code, as if the LARB is a child
+of IOMMU, it can get knowledge of the translation tables (and since LARBs come from
+SMI, those also have knowledge of SMI properties).
+
+For this reason, I agree with CK and I would also suggest to still go with LARBs
+assigned to IOMMU, as this eliminates all those vendor-specific properties from so
+many devicetree nodes, makes code simpler, and also works with PM (larbs need smi
+clocked/powered and iommu clocked/powered in order to work correctly), mimicking
+the same devicetree structure as the previous SoCs.
+
+Besides - as far as I know, hardware-wise the tree is very very similar anyway.
+
+Cheers,
+Angelo
+
+>   
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/mediatek/mt8195.dtsi?h=next-20250626
+> 
+> [2] https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/6253459/2/arch/arm64/boot/dts/mediatek/mt8196.dtsi#3127
+> 
+>   
+> 
+> Regards,
+> 
+> CK
+> 
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  '#dma-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - power-domains
+>> +  - mediatek,larb
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        exdma: dma-controller@32850000 {
+>> +            compatible = "mediatek,mt8196-exdma";
+>> +            reg = <0 0x32850000 0 0x1000>;
+>> +            clocks = <&ovlsys_config_clk 13>;
+>> +            power-domains = <&hfrpsys 12>;
+>> +            iommus = <&mm_smmu 144>;
+>> +            #dma-cells = <1>;
+>> +        };
+>> +    };
+> 
 
 
