@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-218886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF432B8559F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:51:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E181B855B4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 16:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A510C3A6FCA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:50:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66B9B1BC80F7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CB82FBDEB;
-	Thu, 18 Sep 2025 14:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734B130CB2F;
+	Thu, 18 Sep 2025 14:50:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="knajWF5j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oo6rWe6R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B802D322C;
-	Thu, 18 Sep 2025 14:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AFAC30C629;
+	Thu, 18 Sep 2025 14:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758207018; cv=none; b=Tooh0DRTDbpHP15v2nPS7lqo9jwiu0I6lCR9E8bvXhFCYo9mNs1f1d/25C9t1iaqAjiYxCHU0WJ0i364JC4PkstF7z3AEnU7w+nn4Lc8zSxvxNCeKlcpWjXBL4BbhUBU+6zK4U9Gi3tAoDS9zruP1XQf9+UGIj7h0XPpiha6MEI=
+	t=1758207019; cv=none; b=XiSRe2YLtxdkKkOIvqyRR5RTxt2moOzBZ8sW8fAge19crDagmvjpp5H2Maj7AzqhOwDUvmy23V1e7mjMFOZMQJg5YHUdA0sfAZV+DV7uR+icX5kRLrc8zUNajiKEZyl4atqEmUGaPk+GNLY3upIBh5Awm+Y6uoKSkVXqCWM9LQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758207018; c=relaxed/simple;
-	bh=dFFUTKsb5HmnpUVQ50VCJETlKPYAb86qPFm7HVjesZM=;
+	s=arc-20240116; t=1758207019; c=relaxed/simple;
+	bh=Rcf3B0DAejjSqSgIDquDJyFE5L8CqiwqQLvZw2O/UQE=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=IrUZ4PV1qGKP7ci5WKO9BlgNrEukMGfx/fVpf0IYmNpq+Bm8NPsWh63OJKg22DdKCRBe6NflNWTssQi0xA02i9KYytz5LK1qVY2PTGpXH0g/UOvkykJGDDDQUbcxPfAB0M7wm82ndNBw0OLfYbURIYR0S6C2vny+yoV8Mg1Vog4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=knajWF5j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BE42C4CEEB;
-	Thu, 18 Sep 2025 14:50:17 +0000 (UTC)
+	 Message-Id:Subject; b=iC+ZjxFAW6NipaiLst4CWAaXcqswj6E44oGA4Hq6sbJXC3VdU2zM0PVPyX1t0dlpr7mREI8PJn0kDOv2H64NpgfkDqwdEkc75G6ySmPn6PPlSfzcEWoOhXc5L6RVo+L0HMUtNQe9Eoo6WNqYvnb/Mq03sfwDq4hWHP2TvAOXpWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oo6rWe6R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2FB8C4CEFB;
+	Thu, 18 Sep 2025 14:50:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758207017;
-	bh=dFFUTKsb5HmnpUVQ50VCJETlKPYAb86qPFm7HVjesZM=;
+	s=k20201202; t=1758207018;
+	bh=Rcf3B0DAejjSqSgIDquDJyFE5L8CqiwqQLvZw2O/UQE=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=knajWF5j1gTQ1MVKy8Gzhy257IxELviuKIwoockJVZbRYuzCOEdkHbpwCfEVytJvV
-	 2InH+G5SioxlDQfSa7qqJadKvOtOApdmWqwff/Wj0TYA2OCUtDLZe9zOSlTbTHl+ou
-	 YOKZi6cyOhZFOJsC7kanejGBQ5xJNg4Z5ZQ+bLtBKwRJ2ykWUUyHaU5r3njiFNhpLE
-	 6Yx0/sCxMTo0bO7iqkzG8Z5P04ppv2lq/JSKQFn+QjSepki2frcL7lqJnszqLkEA4Z
-	 T9I3NPNlXKpQfna1pxUw6uazMYgamdsuka2h3J7IbO4wfI29M2+hHNt32NJ4+DRYPc
-	 /gWXGw4RLakPw==
-Date: Thu, 18 Sep 2025 09:50:16 -0500
+	b=Oo6rWe6R1knG0nNCCAyDLOYlVJe1c/FvXjuqeJbDKL50RJtzk8AWGKgFQPTVv9rTu
+	 ICK7L9tm+M10RiMttvlW4PJnl0KkHMKw2n6lwsHm/eC5xOgyiXcQn8k2ojvcATHhis
+	 i6ZAgoIjLkovHUy0reUvxUm7FHNrMU3tPy0IBW6IF7dvs9BIk8G+tl2bgZ0bM5R17S
+	 gJ5xJ2dMJI19SQO5hdKWxYnuFqFtzujVMPUFZs4WWt0Oeuzo/o9dBgnbr7ma8is/wF
+	 lFIBm2IT3+lOuItz5n2C6D7yfNNqbHDcluiygSHgVwa7IUwloEWHnE+FW/juvbNux8
+	 2PF5YbXQ3rl9A==
+Date: Thu, 18 Sep 2025 09:50:17 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,52 +51,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
- krzk+dt@kernel.org, alexandre.belloni@bootlin.com, 
- devicetree@vger.kernel.org, balamanikandan.gunasundar@microchip.com, 
- conor+dt@kernel.org, Frank.Li@nxp.com, nicolas.ferre@microchip.com
-To: Durai Manickam KR <durai.manickamkr@microchip.com>
-In-Reply-To: <20250918095429.232710-1-durai.manickamkr@microchip.com>
-References: <20250918095429.232710-1-durai.manickamkr@microchip.com>
-Message-Id: <175820686358.1653800.8373809331040324947.robh@kernel.org>
-Subject: Re: [PATCH 0/4] Add microchip sama7d65 SoC I3C support
+Cc: Thierry Reding <thierry.reding@gmail.com>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Gautham Srinivasan <gauthams@nvidia.com>, linux-tegra@vger.kernel.org, 
+ Vidya Sagar <vidyas@nvidia.com>, 
+ Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>
+In-Reply-To: <20250918120138.17572-2-cassel@kernel.org>
+References: <20250918120138.17572-2-cassel@kernel.org>
+Message-Id: <175820686494.1653871.8284165728773708790.robh@kernel.org>
+Subject: Re: [PATCH] arm64: tegra: Add pinctrl definition for PCIe C4 EP
 
 
-On Thu, 18 Sep 2025 15:24:25 +0530, Durai Manickam KR wrote:
-> Add support for microchip sama7d65 SoC I3C master only IP which is based on
-> mipi-i3c-hci from synopsys implementing version 1.0 specification. The platform
-> specific changes are integrated in the existing mipi-i3c-hci driver by introducing
-> a quirk and SoC specific config option.
+On Thu, 18 Sep 2025 14:01:39 +0200, Niklas Cassel wrote:
+> From: Gautham Srinivasan <gauthams@nvidia.com>
 > 
-> I3C in master mode supports up to 12.5MHz, SDR mode data transfer in
-> mixed bus mode (I2C and I3C target devices on same i3c bus).
+> Commit 0580286d0d22 ("arm64: tegra: Add Tegra234 PCIe C4 EP definition")
+> added the device tree entry "pcie-ep@14160000" for C4 endpoint. However,
+> it missed pinctrl definition. Without the pinctl definition, the C4
+> endpoint of Jetson Orin Nano does not work. Add the missing definition.
 > 
-> Testing done:
-> With this patch we are able to fully configure the lsm6dso I3C slave
-> device. Unlike I2C, I hope there is no linux utility to check the
-> various transactions supported in the host controller. These features
-> will be tested later probably with I3C analyser KIT.
-> 
-> Durai Manickam KR (4):
->   clk: at91: sama7d65: add peripheral clock for I3C
->   i3c: mipi-i3c-hci: add microchip sama7d65 SoC
->   ARM: configs: at91: sama7: add sama7d65 i3c-hci
->   ARM: dts: microchip: add I3C controller
-> 
->  arch/arm/boot/dts/microchip/sama7d65.dtsi     | 12 ++++++
->  arch/arm/configs/sama7_defconfig              |  2 +
->  drivers/clk/at91/sama7d65.c                   |  5 ++-
->  drivers/i3c/master/mipi-i3c-hci/Makefile      |  3 +-
->  drivers/i3c/master/mipi-i3c-hci/core.c        | 28 ++++++++++++
->  drivers/i3c/master/mipi-i3c-hci/hci.h         | 12 ++++++
->  .../i3c/master/mipi-i3c-hci/hci_quirks_mchp.c | 43 +++++++++++++++++++
->  7 files changed, 102 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/i3c/master/mipi-i3c-hci/hci_quirks_mchp.c
-> 
-> --
-> 2.34.1
-> 
-> 
+> Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
+> [cassel: add to the existing nodes instead of creating new ones]
+> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
 
 
@@ -116,14 +98,25 @@ make sure dt-schema is up to date:
 
 This patch series was applied (using b4) to base:
  Base: attempting to guess base-commit...
- Base: tags/v6.17-rc1-3-g0b9dcd02ea93 (exact match)
+ Base: tags/next-20250917 (exact match)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/microchip/' for 20250918095429.232710-1-durai.manickamkr@microchip.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20250918120138.17572-2-cassel@kernel.org:
 
-arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/i3c@e9000000: failed to match any schema with compatible: ['mchp,sama7d65-i3c-hci']
+arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0008.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
+arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dtb: pinmux@2430000 (nvidia,tegra234-pinmux): Unevaluated properties are not allowed ('pex_rst_c4_in' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra234-pinmux.yaml#
 
 
 
