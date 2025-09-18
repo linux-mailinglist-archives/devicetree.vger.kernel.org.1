@@ -1,137 +1,175 @@
-Return-Path: <devicetree+bounces-218708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3BB1B8351B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC50B83607
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 09:44:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84C284A070E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:30:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03ACB1661C3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625192D94AC;
-	Thu, 18 Sep 2025 07:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BD22E7F0B;
+	Thu, 18 Sep 2025 07:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kGWXTilh"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="v+gxEhpr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD57189F5C;
-	Thu, 18 Sep 2025 07:30:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13B9275AF6;
+	Thu, 18 Sep 2025 07:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758180651; cv=none; b=HK/LJJKXCZeHTxG7ezJrdgOncQh03yCTDmZwVaeYxbKDiHP2rtSV1+v1a4Yv9VT9Sr00iANYtWh+13Niq7JiP7NdvWd0UVI21Ze1AdPr8bW4q16mCR0IzZLj22oMZHNQ8QCzFYKx7qTeqh/ySVQVKLWpLuC8EzAN/eTKeGiDbNU=
+	t=1758181464; cv=none; b=nC3OQypSRXDqefAPWVBDLgwiJfEXx3PhanA2Ub5JXlPwOJ1QVqtpcLM+w/E2QgEG/mMPe7I0Kh1N6a/iLYZCvQb3VWfi3yjuffNcBDEtp4Z0Vh8cXv5BAEIKmwspsQVJe/Uhz14i5MiXGHAwohWkmflaUcfMxqMGgKw6NsC74vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758180651; c=relaxed/simple;
-	bh=MHnx+O7UTUM0+Qgvg+zW8i93qn3/EnGXsPh4/sTxWdw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cZf/AGwCxP2Zt6jUApsGHjARkxr9xWMnQpH5cTHTflQGF822Yk6/wTo0n8o6IFoKuuZtkTBRQwv7yDJAdxDgcRdbvNLG1r3P6aEd5OIyW+m8H0zl9e2IgNbzgncAcst3+9qDSOWTLIMZ+eaYk2WkXMojkKyeco0hjl77bPBqD1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kGWXTilh; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B7DF343A97;
-	Thu, 18 Sep 2025 07:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1758180643;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=O4F/RbCRhR45zS5/1p8N4VggT1zjMH4kZIX9ts8WeRo=;
-	b=kGWXTilhH4TtdjeVJJebweGHw8Tg2+1DIrRp63aiXH8qyX0SuDv0pkX5btEfORsJIlgGvW
-	Wkd3vrCNoMcNGTEv5FiZa+ENW8TiYZNeaS4hlVLOq9BX02mlFbzrgWBDrKsZ8GjZYvG9k3
-	0pQPYH53Zb0pFQix0LKlZvigdocLQs3VHFJCykV9pDZ1m1VtxbQoc6mfrYLx0RXiDue6DJ
-	U1LATn9b7zvaLrsPCsIQNKGGMWwXVd4nUMmROjACPeY+P7QqlPYMEcDrockDcCge0Q9eOS
-	7jLSTaJSq0eKdhuITHHykuP2CjBOnVHO+IFNAzQ7+qgpk7GvOuSzZux+6ZSaXQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject:
- Re: [PATCH 1/4] regulator: dt-bindings: Add Linear Technology LTM8054
- regulator
-Date: Thu, 18 Sep 2025 09:30:37 +0200
-Message-ID: <12743863.O9o76ZdvQC@fw-rgant>
-In-Reply-To: <5135820.31r3eYUQgx@fw-rgant>
-References:
- <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <936e16dd-d11f-4452-8942-64366f173d6f@baylibre.com>
- <5135820.31r3eYUQgx@fw-rgant>
+	s=arc-20240116; t=1758181464; c=relaxed/simple;
+	bh=dmM/nfY9ZGJWZNd9QVwh8AdV4xV1NZFaRSTZnw0XJTg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XEt93WK7tijZ7c81m718RWtGxbIC6+RXGPq7a1/F2SIAdyu2kPq5lVTBvKCVoAM63Pzyq+1A/6iE8d+cvCuQoF+2PVXEJZbJ2PpKixx4BcYaetFZwVlyaEeVnSfU+eT+Beil9gImLnbJqCvROYYyMZr1HmftKYE1qcluLMsCLOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=v+gxEhpr; arc=none smtp.client-ip=18.132.163.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1758181416;
+	bh=fKIhYdZo0gbuLJoLY01IaGGDghYLeBAKJXGGD1WoNs4=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=v+gxEhprMaNkI5zdgN3ffLbhETn4ksZ9PUxQaVD6hQ/8w/SXZf/4phNPyGTtjw9GM
+	 KOf7JQlCkrWXY68DIem3/Nl1xVxmZN0zBn3uueOijScjCamido4SQyXYzy1k/jo8VE
+	 6Hb0EL0LBRZyfsrQ0jISm8tlje7qUxIS45au72yo=
+X-QQ-mid: esmtpsz11t1758181409t25a73e83
+X-QQ-Originating-IP: TBFWLYNJiVsLazlBh4iNqndLkAwUI57Zz+YC92McJmE=
+Received: from = ( [120.239.196.247])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 18 Sep 2025 15:43:27 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 8956593677624534324
+EX-QQ-RecipientCnt: 17
+Date: Thu, 18 Sep 2025 15:43:27 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Alex Elder <elder@riscstar.com>, Yixun Lan <dlan@gentoo.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
+Message-ID: <D2A109C6A8BDED08+aMu4H4xap2GSP50w@LT-Guozexi>
+References: <20250917220724.288127-1-elder@riscstar.com>
+ <20250917220724.288127-2-elder@riscstar.com>
+ <20250917231520-GYA1269891@gentoo.org>
+ <3b815302-21f2-4ee2-bf83-c1dba77ce3d1@riscstar.com>
+ <20250918001632-GYA1270371@gentoo.org>
+ <f7e12797-ea17-4e92-bd25-cc562c66d2a7@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5923224.DvuYhMxLoT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegheejgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemkeegvdegmeektdekvdemhegrtddumegrtdegvgemfhejieehmeelhegrmegufhekieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtvdemkeegvdegmeektdekvdemhegrtddumegrtdegvgemfhejieehmeelhegrmegufhekiedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvl
- hdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhitgdvfeeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhunhhordhsrgesrghnrghlohhgrdgtohhmpdhrtghpthhtoheprghnugihsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7e12797-ea17-4e92-bd25-cc562c66d2a7@riscstar.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MwQdfXoP8nuzwjcN1/JTOvKPKAJ/Oqc5WU5eoCinbQrbmJofDHOfXHAI
+	nD6eYPOhuTd/C7wEbm1r63oWEtnHFHcNqRkPSg0+n+c9wrEL6SyrAnmnZtbFXbRYzqXBZXU
+	aWRKP6zQIz1saboU1rVI2QQzkAqUFHys82st5LEjXxL/53syfVIhhUvUrYLxuAcYPXIAHNQ
+	cju6RjK78O2O/B1d7+fLlNWRjHM9h7/aCGqMieymarcitoYPFChqjLKbuSbJ9N7gqoTURmV
+	Be6DYxdOTlhY0C1vUJZLIPKnuzO7RcE6hwjYLT4JxMcGCy7ucrN0wRXjNbPxBiFb+Fo82Qv
+	Hd4lYreY0eab/MrLrvP1xFTZUbLAEmSuEybLBk4AZkNZLdO/MYH/DlPfW+jsMxl8n4gW12S
+	UIMU8238GPq1qQZXzvHG3zNzdbM4mzulmvjFFhZEWRTxPQP6LOIk+Cp7KdlO6DwYNSR4DTb
+	wuHAUtwHKmTr9wqpTj8ZDSvtgnwE8Z/grF2AcNR0qOHQpX52JXocoo5Trbb8PIIkdOWpMhR
+	7+sNHL/6JFOQ3Hpcx1nJFQxDYttNoUBsiNwL0rw8anViz/cKaGJln6/XqpjvmH0YPnUW1H2
+	+LB0BwGkVf/feuBSiUq5e9vNA25DdD4ynvM8DJ+oCr8AafRdxjcYFv44enLoCOlKoN8vwja
+	zARIVqzTNLNm0gOR4M2F3DcTyzboo6uH3FzjZBPooMyb6N6mSPG/zWVhW2lOrTIq+0kLTb3
+	idXbE0MtaNV2D7yYa56dL0DeXoeZmxonnLgganPp1MBugZSyQxRdi0dLB1ERE/3qpGd03Ie
+	U6/azKQNzEyjt5ANkh7tpcMck9LgFxi54tqVhreuBpGhgbCmwRVhteK9kn+yj3/QVJEI7BS
+	9lHMPop8lqmnptKLu5gy7rCsVIVhud10t5cvK93LQMEy0c/Xub60g0o0/QF9MR2hUgRx5ru
+	+FCtAQRS34wRtd2NkUmQY/dSR9LC/K309IQMt7tb/j0ItNIFwyBvLBjRWUUGat8AqfvHsUp
+	Fb+TWq/g46d6YPeOJa4FXXml8R8iUnKNA7biLb3qqcUcRSFs9xO/FtgwLUV0M=
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-RECHKSPAM: 0
 
---nextPart5923224.DvuYhMxLoT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Thu, 18 Sep 2025 09:30:37 +0200
-Message-ID: <12743863.O9o76ZdvQC@fw-rgant>
-In-Reply-To: <5135820.31r3eYUQgx@fw-rgant>
-MIME-Version: 1.0
-
-On Wednesday, 17 September 2025 17:51:05 CEST Romain Gantois wrote:
-> On Tuesday, 16 September 2025 21:24:42 CEST David Lechner wrote:
-> > On 9/16/25 5:24 AM, Romain Gantois wrote:
-...
+On Wed, Sep 17, 2025 at 09:59:35PM -0500, Alex Elder wrote:
+> On 9/17/25 7:16 PM, Yixun Lan wrote:
+> > Hi Alex,
 > > 
-> > Examples usually don't have a root node. Probably explains
-> > the bot errors. (but you should have seen the same errors
-> > locally with make dt_binding_check.)
+> > On 18:40 Wed 17 Sep     , Alex Elder wrote:
+> > > On 9/17/25 6:15 PM, Yixun Lan wrote:
+> > > > Hi Alex,
+> > > > 
+> > > > On 17:07 Wed 17 Sep     , Alex Elder wrote:
+> > > > > Add support for the SPI controller implemented by the SpacemiT K1 SoC.
+> > > > > 
+> > > > > Signed-off-by: Alex Elder <elder@riscstar.com>
+> > > > > ---
+> > > > >    .../bindings/spi/spacemit,k1-spi.yaml         | 94 +++++++++++++++++++
+> > > > >    1 file changed, 94 insertions(+)
+> > > > >    create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000000000..5abd4fe268da9
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> > ..
+> > > > > +
+> > > > > +  spacemit,k1-ssp-id:
+> > > > > +    description: SPI controller number
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > could you explain a little bit why this vendor specific property should
+> > > > be introduced? I took a look at the code, and didn't get the reason
+> > > > behind.. or what's the problem of simply using "pdev->id"?
+> > > 
+> > > This property was carried over from the vendor code.  It is
+> > inherit from vendor code isn't a valid reason
+> > 
+> > > optional, and if it isn't specified, the platform device ID (-1)
+> > > will be used.  It's just intended to provide a well-defined ID
+> > > for a particular SPI controller.
+> > > 
+> > while looking at the code, it seems you can use alias to map specific id
+> > to the spi controller, it even can do non-linear map, something like
+> > 	spi0 = &spi3;
+> I've never used this before, but yes, it looks like it's exactly
+> what I want.  I'll just get rid of the "spacemit,k1-ssp-id" DT
+> property entirely.  Easy.
 > 
-> I didn't see the errors but I'm guessing that's due to an out-of-date
-> dtschema dependency on my system, thanks for pointing it out.
+> > plese check of_alias_get_id()
+> > 
+> > note, I haven't actually verified on board, just look through the code
+This is the right API that Alex what to use.
+I have verified it in i2c driver.
 
-Just a quick update: turns out this wasn't due to an out-of-date dependency, 
-it was because I was missing "DT_CHECKER_FLAGS=-m"
+                - Troy
 
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart5923224.DvuYhMxLoT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjLtR0ACgkQKCYAIARz
-eA6zYg//SpcEEDWVYymOTmBH8skAMdw8D4lEZcgSxweNQSvdYJ64NcK5aJKHCqZX
-Iz7Tx+EAaofDaokVQMVoY6E2OFwAhXvgUt/nAhp1mIYnuDDcRHHiP+APC/RqFfPG
-zpabha7++EtNbd/UCzInFf7WcS1ZPKowf3KHm8aOMQWtO8YGSIBSDylp810XqmTy
-/odm6s0RUvcPXSOoT9/jmf42DquFOLPb9qQxmOZulfWzTJqyf2HD9A1LcpnpAEK3
-U0XpEN/p1xaqR+lu6zQwQdGdZvm+8WUnRHVbdQyqb+sDvN3PZxVh/mLlQrvBFN51
-eZv1Wh4HTK2kVwAI+exFgX8eULJOgjFwcZ6GVv9z7E99xNwq8qS/6i3TZvw6VaSm
-6hQ/UhIwqSUUQ1mEDChYkwc87su1Nk/Vg3G8cF6k9/GE/qWL7PCCw5+V1+fqiK56
-nSbYQpPPrkyE5+tkj64Oheg8j+mcPPyXnbpJ6CgNGLK+qIFzjVn43GPkWrtxDj85
-9HH1dmDa5KPrhX5KxmRPA377ERSJny8RCxotV+tHhXZdW+1u5I9w2YUfp77e6WcY
-hlm127OoCDCfuTw5Y0oqYNP0QlEsg1ZnBzzIVtFu74/n824njqFwYV9g61BqyLB6
-Sj0ytJPkJgHzTls8zcO9jhfMMKLmhppywrqiCQsyzvHeqMc0tRU=
-=FJAI
------END PGP SIGNATURE-----
-
---nextPart5923224.DvuYhMxLoT--
-
-
-
+> > 
+> > > > we should really be careful to introduce vendor specific property..
+> > > 
+> > > If there were a standard way of doing this I'd love to use it.
+> 
+> Looks like you have told me the standard way of doing this.
+> 
+> Thank you.
+> 
+> 					-Alex
+> 
+> > > 
+> > > And if it isn't necessary, please just explain to me why.  I
+> > > have no problem removing it.
+> > > 
+> > on the opposite, please have explicit good reason to introduce vendor
+> > speifici property, and if there is generic way, then we shouldn't do it
+> > 
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
