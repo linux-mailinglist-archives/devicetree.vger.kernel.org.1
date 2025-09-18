@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-218616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ADECB82648
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:39:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D57B8265A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:40:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7B2424E170F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:39:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 439F11C0626B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045FE1EDA26;
-	Thu, 18 Sep 2025 00:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B012211706;
+	Thu, 18 Sep 2025 00:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqxK6uqJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzhruWYX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A321E1DF2;
-	Thu, 18 Sep 2025 00:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0669B20DD72
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 00:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758155971; cv=none; b=gpr6HIFWJYcRJNoXTDwDkCvjaBx652ACSw2IhkLl8rmjfjbGhkbq5c9Ou15IYkGejX0yLOxafFgb/YkV4XIS2T4E+RGmfXm4x3Cd//J8Z0asOzNILAWii6i9D3X2RO9ciNk2Uv8Ezyrmj5csRW5Y9xolqQOaezsH/rFNFhoTYqg=
+	t=1758155975; cv=none; b=Os69kcQqeVZmHOR8CYRPN+01ggCwu4dIfYO3LE66tufhHlVeRdtyddt1ukOIMNAk47y/pOSCRFmYGGDG1nisz2CvxQP26UTwnLNPymCP/Xx80aCeIi/Wnn65kZQ55MNzL6i3BCdda72ECQYJkzVSWz+CQ3OX+CafdYpytlUG9JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758155971; c=relaxed/simple;
-	bh=wCEJTBS5uIVfDBDzT/2Z5MMI5evfx/hh621pvrQxQLE=;
+	s=arc-20240116; t=1758155975; c=relaxed/simple;
+	bh=EDq2s+UOe0hB5ybmNUS4sEMfhsLszMAeTal9Gso6a7I=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=PMiSN7PrbmmiwkRo/pdMtVEFV4o7J7xotsxcs961Vaf/T9dAdwXxTp2ilx3tQeA5+g7cqK1BZJiDyeACIzX9eTviJNnOU81w8zAq9qPXIGrDgzl0TrTmeJHCX+7UbzSnd4cXsDIMF484JGZ88RPnQYcBqfA+ZJv37vq2afZnuEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqxK6uqJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F89DC4CEFB;
-	Thu, 18 Sep 2025 00:39:31 +0000 (UTC)
+	 Message-Id:Subject; b=KWSisISgf+So1LXx9M9fvJRADIFXUAC9YtIi5YeqhYNVPJ2GhrPAl6kGM6H3TQ/3Xtb+gTr1YAqenC3FcaUP3U4qL9UbPGADeIDZBEz/rwE2IPeXPX703P78Fw6juiF+dUTVbj1v8Xi59ufxoEOfhuv1uuZK4haK/4OKXEHAm/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzhruWYX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC858C4CEF9;
+	Thu, 18 Sep 2025 00:39:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758155971;
-	bh=wCEJTBS5uIVfDBDzT/2Z5MMI5evfx/hh621pvrQxQLE=;
+	s=k20201202; t=1758155974;
+	bh=EDq2s+UOe0hB5ybmNUS4sEMfhsLszMAeTal9Gso6a7I=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=FqxK6uqJmMN9Zg7D3ZQgs2RhF5MMCneizh7omKZrTu+TEjdVCS+LMexuWv9EWxJR4
-	 xONha/Kvj3IB56BjvKOKSNdgBzM/fgovjQmPSfGV9hBtWNH/ObnoAhSoiXz6k9Mlgf
-	 lIQo9zhf7CrsAnIY78jt8jtgJjsOYCBMEYdbtV9b0+86InRC902wYLMo+Nl9m/kWIr
-	 TsGEVMNkdbFFtW/XJqhNKg1P5S1HSfW+MT0elZmUjy7DPbmGqNZv3hvROz7V2wv3ie
-	 MYo0lkRJDLljjMFAI5a5MkwFBs5Z1PXG04Sg5QMGjKoM/39YmNQXdDq/FfDpYdU9bA
-	 0nj8eHYVfSI3w==
-Date: Wed, 17 Sep 2025 19:39:30 -0500
+	b=uzhruWYXrMwFU9UXJnFSyHZDYmimRy2kqCSlQAFR195x+nMnYWbORFYrvjYiKUMWM
+	 lDr4+lH9/PflVERLxpXLCBmp8lTTW1IP6fG8jqSOJj9OqSQxXMGHEeg/SZEXTHVRIs
+	 G4pe6JOIlbsASBZ6DfYmCdsJmixw7ZWLlt5U/oicdGjwcrFDHbe1TQWTi0wXTelrKf
+	 VbrPr+l9AEQTsHp6hrrCpFKincQOuFIyGlg+KkPqgQPPu1U6uJ4zpux0MtHWkI0jNF
+	 gcXW6GZ8xy8krgfx9BpKkoISewAgtozrOWVNIPmivwWXk3rDIPALxyQDZ9okobIt3z
+	 7Q+XpF00x5HZg==
+Date: Wed, 17 Sep 2025 19:39:31 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,82 +51,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: gwk1013@coasia.com, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org, sboyd@kernel.org, 
- krzk+dt@kernel.org, s.nawrocki@samsung.com, shradha.t@samsung.com, 
- swathi.ks@samsung.com, kenkim@coasia.com, linux-kernel@vger.kernel.org, 
- lars.persson@axis.com, devicetree@vger.kernel.org, jspark@coasia.com, 
- cw00.choi@samsung.com, bread@coasia.com, ksk4725@coasia.com, 
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com, 
- krzk@kernel.org, mingyoungbo@coasia.com, limjh0823@coasia.com, 
- pjsin865@coasia.com, smn1196@coasia.com, lightwise@coasia.com, 
- alim.akhtar@samsung.com, hgkim05@coasia.com, mturquette@baylibre.com, 
- jesper.nilsson@axis.com
-To: Ravi Patel <ravi.patel@samsung.com>
-In-Reply-To: <20250917085005.89819-1-ravi.patel@samsung.com>
-References: <CGME20250917085019epcas5p273ef86028a90e78ada55cde48a28a949@epcas5p2.samsung.com>
- <20250917085005.89819-1-ravi.patel@samsung.com>
-Message-Id: <175815587241.3804330.15494043939076166560.robh@kernel.org>
-Subject: Re: [PATCH 0/7] Add support for the Axis ARTPEC-9 SoC
+Cc: devicetree@vger.kernel.org, krzk+dt@kernel.org, 
+ andrew@codeconstruct.com.au, linux-aspeed@lists.ozlabs.org, 
+ conor+dt@kernel.org
+To: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <20250917144210.160051-1-eajames@linux.ibm.com>
+References: <20250917144210.160051-1-eajames@linux.ibm.com>
+Message-Id: <175815587292.3804357.10012138669742636066.robh@kernel.org>
+Subject: Re: [PATCH v5 0/6] ARM: dts: aspeed: Add Balcones system
 
 
-On Wed, 17 Sep 2025 14:19:57 +0530, Ravi Patel wrote:
-> Add basic support for the Axis ARTPEC-9 SoC which contains
-> 6-core Cortex-A55 CPU and other several IPs. This SoC is an
-> Axis-designed chipset used in surveillance camera products.
+On Wed, 17 Sep 2025 09:42:04 -0500, Eddie James wrote:
+> The Balcones system is similar to Bonnell but with a POWER11 processor.
 > 
-> This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
-> Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
+> Changes since v4:
+>  - Add patch to fix max31785 warnings
+>  - Add patch to fix missing Bonnell documentation
 > 
-> This patch series includes below changes:
-> - CMU (Clock Management Unit) driver and its bindings (patch #1 to #3)
-> - PMU bindings (patch #4)
-> - Basic Device Tree for ARTPEC-9 SoC and boards (patch #5 to #7)
+> Changes since v3:
+>  - Add max31785 to the max31790 document instead of to trivial-devices
+>  - Fix minor formatting in dps310 document
 > 
-> The patch series has been tested on the ARTPEC-9 EVB with
-> Linux Samsung SoC tree (for-next branch) and intended
-> to be merged via the `arm-soc` tree.
+> Changes since v2:
+>  - Fix a couple of incorrect i2c addresses
+>  - Document dps310 and max31785 properly
+>  - Drop the UCD binding documentation update, it's been fixed
 > 
-> NOTE: This patch series is dependent on following floating patches:
-> 1. https://lore.kernel.org/all/20250917070004.87872-1-ravi.patel@samsung.com/T/#t
-> 2. https://lore.kernel.org/all/20250917071342.5637-1-ravi.patel@samsung.com/T/#u
-> 3. https://lore.kernel.org/all/20250917071311.1404-1-ravi.patel@samsung.com/T/#u
+> Changes since v1:
+>  - Add all the ucd9000 driver supported compatible strings
+>  - Fix node ordering in Balcones device tree
+>  - Improve commit message to explain addition of ibm-power11-dual.dtsi
 > 
-> GyoungBo Min (3):
->   dt-bindings: clock: Add ARTPEC-9 clock controller
->   clk: samsung: Add clock PLL support for ARTPEC-9 SoC
->   clk: samsung: artpec-9: Add initial clock support for ARTPEC-9 SoC
+> Eddie James (6):
+>   dt-bindings: arm: aspeed: add IBM Balcones board
+>   dt-bindings: arm: aspeed: add IBM Bonnell board
+>   dt-bindings: iio: Add Infineon DPS310 sensor documentation
+>   dt-bindings: hwmon: Move max31785 compatibles to max31790 document
+>   ARM: dts: aspeed: Add Balcones system
+>   ARM: dts: aspeed: Fix max31785 fan node naming
 > 
-> Ravi Patel (2):
->   dt-bindings: arm: axis: Add ARTPEC-9 alfred board
->   arm64: dts: axis: Add ARTPEC-9 Alfred board support
-> 
-> SungMin Park (2):
->   dt-bindings: samsung: exynos-pmu: Add compatible for ARTPEC-9 SoC
->   arm64: dts: exynos: axis: Add initial ARTPEC-9 SoC support
-> 
->  .../devicetree/bindings/arm/axis.yaml         |    6 +
->  .../bindings/clock/axis,artpec9-clock.yaml    |  232 ++++
->  .../bindings/soc/samsung/exynos-pmu.yaml      |    1 +
->  arch/arm64/boot/dts/exynos/axis/Makefile      |    3 +-
->  .../boot/dts/exynos/axis/artpec9-alfred.dts   |   36 +
->  .../boot/dts/exynos/axis/artpec9-pinctrl.dtsi |  115 ++
->  arch/arm64/boot/dts/exynos/axis/artpec9.dtsi  |  277 ++++
->  drivers/clk/samsung/Makefile                  |    1 +
->  drivers/clk/samsung/clk-artpec9.c             | 1224 +++++++++++++++++
->  drivers/clk/samsung/clk-pll.c                 |  184 ++-
->  drivers/clk/samsung/clk-pll.h                 |   17 +
->  include/dt-bindings/clock/axis,artpec9-clk.h  |  195 +++
->  12 files changed, 2282 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/axis,artpec9-clock.yaml
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9-pinctrl.dtsi
->  create mode 100644 arch/arm64/boot/dts/exynos/axis/artpec9.dtsi
->  create mode 100644 drivers/clk/samsung/clk-artpec9.c
->  create mode 100644 include/dt-bindings/clock/axis,artpec9-clk.h
+>  .../bindings/arm/aspeed/aspeed.yaml           |   2 +
+>  .../devicetree/bindings/hwmon/max31785.txt    |  22 -
+>  .../bindings/hwmon/maxim,max31790.yaml        |   6 +-
+>  .../iio/pressure/infineon,dps310.yaml         |  44 +
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>  MAINTAINERS                                   |   1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../dts/aspeed/aspeed-bmc-ibm-balcones.dts    | 609 ++++++++++++++
+>  .../dts/aspeed/aspeed-bmc-ibm-bonnell.dts     |   6 +-
+>  .../dts/aspeed/aspeed-bmc-ibm-everest.dts     |  10 +-
+>  .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   |   2 -
+>  .../dts/aspeed/aspeed-bmc-ibm-rainier.dts     |  14 +-
+>  .../boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts |  10 +-
+>  .../dts/aspeed/aspeed-bmc-opp-witherspoon.dts |   2 -
+>  .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++++++++++
+>  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +----------------
+>  16 files changed, 1459 insertions(+), 820 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dts
+>  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.dtsi
 > 
 > --
-> 2.17.1
+> 2.51.0
 > 
 > 
 > 
@@ -148,36 +135,222 @@ make sure dt-schema is up to date:
 
 This patch series was applied (using b4) to base:
  Base: attempting to guess base-commit...
- Base: tags/next-20250917 (exact match)
+ Base: tags/next-20250917 (best guess, 12/13 blobs matched)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/exynos/' for 20250917085005.89819-1-ravi.patel@samsung.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250917144210.160051-1-eajames@linux.ibm.com:
 
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: timer@10040000 (axis,artpec9-mct): compatible: 'oneOf' conditional failed, one must be fixed:
-	['axis,artpec9-mct', 'samsung,exynos4210-mct'] is too long
-	'axis,artpec9-mct' is not one of ['samsung,exynos4210-mct', 'samsung,exynos4412-mct']
-	'axis,artpec9-mct' is not one of ['axis,artpec8-mct', 'google,gs101-mct', 'samsung,exynos2200-mct-peris', 'samsung,exynos3250-mct', 'samsung,exynos5250-mct', 'samsung,exynos5260-mct', 'samsung,exynos5420-mct', 'samsung,exynos5433-mct', 'samsung,exynos850-mct', 'samsung,exynos8895-mct', 'samsung,exynos990-mct', 'tesla,fsd-mct']
-	from schema $id: http://devicetree.org/schemas/timer/samsung,exynos4210-mct.yaml#
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: /soc/timer@10040000: failed to match any schema with compatible: ['axis,artpec9-mct', 'samsung,exynos4210-mct']
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: /soc/pinctrl@141f0000: failed to match any schema with compatible: ['axis,artpec9-pinctrl']
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: /soc/pinctrl@14430000: failed to match any schema with compatible: ['axis,artpec9-pinctrl']
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: /soc/pinctrl@14c30000: failed to match any schema with compatible: ['axis,artpec9-pinctrl']
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: serial@14c70000 (axis,artpec9-uart): compatible: 'oneOf' conditional failed, one must be fixed:
-	['axis,artpec9-uart', 'samsung,exynos8895-uart'] is too long
-	'axis,artpec9-uart' is not one of ['apple,s5l-uart', 'axis,artpec8-uart', 'google,gs101-uart', 'samsung,s3c6400-uart', 'samsung,s5pv210-uart', 'samsung,exynos4210-uart', 'samsung,exynos5433-uart', 'samsung,exynos850-uart', 'samsung,exynos8895-uart']
-	'axis,artpec9-uart' is not one of ['samsung,exynos2200-uart']
-	'axis,artpec9-uart' is not one of ['samsung,exynos7-uart', 'tesla,fsd-uart']
-	'axis,artpec9-uart' is not one of ['samsung,exynos7885-uart']
-	'axis,artpec9-uart' is not one of ['samsung,exynosautov9-uart', 'samsung,exynosautov920-uart']
-	'axis,artpec9-uart' is not one of ['samsung,exynos7870-uart']
-	'google,gs101-uart' was expected
-	'samsung,exynos4210-uart' was expected
-	'samsung,exynos5433-uart' was expected
-	'samsung,exynos850-uart' was expected
-	from schema $id: http://devicetree.org/schemas/serial/samsung_uart.yaml#
-arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dtb: /soc/serial@14c70000: failed to match any schema with compatible: ['axis,artpec9-uart', 'samsung,exynos8895-uart']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:483.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:496.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:509.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:522.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:481.9-492.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:481.9-492.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:494.9-505.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:494.9-505.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:507.9-518.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:507.9-518.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:520.9-531.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:520.9-531.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2068.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2074.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2080.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2086.6-16: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2066.11-2070.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2066.11-2070.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2072.11-2076.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2072.11-2076.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2078.11-2082.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2078.11-2082.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2084.11-2088.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:2084.11-2088.7: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'maxim,fan-dual-tach', 'maxim,fan-fault-pin-mon', 'maxim,fan-no-fault-ramp', 'maxim,fan-no-watchdog', 'maxim,fan-pwm-freq', 'maxim,fan-ramp', 'maxim,fan-rotor-input', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dtb: /ahb/apb/bus@1e78a000/i2c@200/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: timer (arm,armv7-timer): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: bus@1e600000 (aspeed,ast2600-ahbc): compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: syscon@1e6e2000 (aspeed,ast2600-scu): 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^pinctrl-[0-9]+$', '^silicon-id@[0-9a-f]+$'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'interrupts' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: crypto@1e6fa000 (aspeed,ast2600-acry): 'aspeed,ahbc' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: /ahb/apb/bus@1e78a000/i2c@780/i2c-mux@70/i2c@3/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1082.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1088.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1094.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1100.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1106.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1112.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1080.15-1084.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1086.15-1090.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1092.15-1096.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1098.15-1102.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1104.15-1108.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts:1110.15-1114.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:279.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:285.4-14: Warning (reg_format): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:277.15-281.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:277.15-281.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:283.15-287.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #address-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:283.15-287.5: Warning (avoid_default_addr_size): /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: Relying on default #size-cells value
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-2: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-3: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-4: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: max31785@52 (maxim,max31785a): fan-5: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-2: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-3: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-4: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-5: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-0: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: max31785@52 (maxim,max31785a): fan-1: Unevaluated properties are not allowed ('compatible', 'tach-pulses' were unexpected)
+	from schema $id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-0: failed to match any schema with compatible: ['pmbus-fan']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: /ahb/apb/bus@1e78a000/i2c@400/max31785@52/fan-1: failed to match any schema with compatible: ['pmbus-fan']
 
 
 
