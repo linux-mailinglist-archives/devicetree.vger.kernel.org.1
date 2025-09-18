@@ -1,189 +1,162 @@
-Return-Path: <devicetree+bounces-219049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204A0B86DE1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:14:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E23FB86EDF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 22:38:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B1127A9D07
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:12:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D98D01C87CA6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 20:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630B131AF01;
-	Thu, 18 Sep 2025 20:14:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0A92F2910;
+	Thu, 18 Sep 2025 20:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vLIp2Jvi"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="dGITqn4J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3037C2BDC3F;
-	Thu, 18 Sep 2025 20:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160462D63FF
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 20:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758226472; cv=none; b=IhJS/+AgQBb0H95yKOCvdui73HGuVLm33ja/OrHGV0Ev/W/be8u1kZOdvBc9uyaWHTajA48+KqWAsXNjb56yQmNubqISFE9RycSgps+909XVQjy2VPEtgyFWJe5eTx/eZGHK/zXG9q2+lEubGVW0fiv+o+60F/HvPqGoluEgihM=
+	t=1758227871; cv=none; b=Brojm/irKdBQFj4uYCu9J5DUibRuONDeN0ptxeaUV4B0dd9+czPpH6009SDOrNojUIo9YtpqWBvoPBNPZs2Rodudz4sAOqETWAGoqANQj3T1TJNbd7vI7ET5Gzny3dOsGB0ACL+O2W61ZjxGgT3PHztKcDyyk8B1xUy90HiyIkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758226472; c=relaxed/simple;
-	bh=O5wQLmWrqsWflWIq1hbTefCtmSzwhyOY86w/cK+ayWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=meDHbsHiocEv4s6b4C91gPYVpt2qMY/B16P82tf8Bhhd8FK0fwsr5euPuNoQqZsij7GqA9I2nZIqYEGui+8DfSS1ViXtnlmHgkoq8JZsqXf6VwCL5d+C5ShBlzRakQ2xkNfdv+FIQ3vQK0GfOfmJYR5VxIlSwqCuLwsCUQfn3PU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vLIp2Jvi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68955C4CEF0;
-	Thu, 18 Sep 2025 20:14:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758226471;
-	bh=O5wQLmWrqsWflWIq1hbTefCtmSzwhyOY86w/cK+ayWM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=vLIp2JviNDdoeJs5bzgcw9toagt6JcspQdZSI2/VUGY4b2P2T/XPi7jNDi7Ob3ixu
-	 wtW5/TiXPX8Y6C4WgRQ/Ao7SZmG3oWkR0gzgrW5hq2+h9JX0h8BIjE/J8fWsEiVRGF
-	 9wZX3a1sZO6huUr8iHt4d5HpQbJTGMLS1fiBwekPSyD5705VQTDoIHPg7/clJ9mYaP
-	 QYuRQolbLD+8lRS19zwwMBN4CWd1nqIFzZxNNGQpDf6hy8zNmZ3D47gdJkgLo65yfe
-	 0SUA8ReXk1iO2pnIL1HeAqCnfBS44SpCxBZaJZcq3WQkeBshG0T9DdpT/UP2Uh+1NL
-	 SJfSIWqbQ/YNg==
-Date: Thu, 18 Sep 2025 15:14:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-	mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-	kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-	kw@linux.com, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-	qiang.yu@oss.qualcomm.com, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Subject: Re: [PATCH v13 0/5] pci: qcom: Add QCS8300 PCIe support
-Message-ID: <20250918201430.GA1919478@bhelgaas>
+	s=arc-20240116; t=1758227871; c=relaxed/simple;
+	bh=+0R/2T7Tg9D4YiaoqRiplwCZvbPjlzXYv47AHkbl7dM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DilhLTNZxRRcG45qRNNr6nPE8XU4Esga+EdHckESazrslZ77O367ALEtb8To1cmFUGlSLnGIhIAmcAIh4vaeZBMhQs/7GuvPYOJHdyeAZfRToNHsEieE2rJ/4hm5WWj24KLCFdx3eO74Rks8hOjGc6bo65v92vhAdwQyom3y/6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=dGITqn4J; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-ea5c612297bso1070727276.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 13:37:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1758227868; x=1758832668; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vPqblTFKrLAe0mzsDyY6YySHuY6Q2kBBLw78NU0KIeg=;
+        b=dGITqn4JwTmj5KwN35OD6/w5on0Ky8BtXx72gnPAkmp+/tXztRoUxlrBVs4ZSLAQFl
+         0WJTdsR4LIGjuEl1QwUmqXU1ZbKWotDZBJG6uz0fcDJu+Pde2OpvjBLV6Wcgt7ebZaGE
+         3IiA0rQaf+FOGwRk4LF2MySoeTtdmVC5ogGWw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758227868; x=1758832668;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vPqblTFKrLAe0mzsDyY6YySHuY6Q2kBBLw78NU0KIeg=;
+        b=Hvz1yHnHJVMnZAZQUE0W4mtFTjgwfajhdDnzS4Xcxoqt/qwXvG82GjT9ZVC2REotyP
+         esKvsV8LVT9NpzMD9T6YmnBvQR29a1jIKDfXiNoOtYQRRlJZv9mAqNltsCMxFAECioV1
+         LrlQEZEVxeoGGbCKc4kR1ZzNSGN6trmyALHwEdK7P5crEiobV0Vbmge6Z8Rb3VFFrz0A
+         6osjgbmafYNIw6lG97vRRJvGcXL3M1U1jbb/HNYg82y6Pant0AYAOg45WKt2VvBtNo5K
+         PEsqJjS5CGgXuLxPYHuKnQ+tx9rE0u/GGhntUm6BCu6G5pCDnGAsi3rGoVFpLzgrXHII
+         RkoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkuuFU6vAbEQAzLjVuE9mBQODQyPVYKXtp8uU++xvwKx2AwtNjUa2J8QHHn2JCLICqPjltQidqDOLG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw505vju5dFuIYnooGLkTuLDYM2TBEYmPAlVdrbUXyqoXDinDjq
+	FmeJ5LORTuPQYcDiiykiUaRCdtrDYSK68QTkCKluvK8bwv8zA6SF/Mp12nZncP2LKSiyYjXr+UC
+	bFSEct4D87K5QgSZHaG/4Eb5DBFIPyOu6353wEoXWag==
+X-Gm-Gg: ASbGncskui02vU3BHzLgYHFj1Gk9GfUleFBW1o3Rg7b2I4Grlc94dnGneQC5IY4th8T
+	MvXYfrZ5GBpvmFbdcokXepIOMwYu6zMlbetEK5tt20gX4qLS5ELSIbFdn0o8CRbNGOIJCZ/tQ98
+	gF6whVwJ9EJtr/5mjOfo/Yyok/0pewbzaLc+y/cO4UK+ODttBQCjejmQNLbSxR1zw8QXk5vObFE
+	gfX0dcDLLgTRrXYsQegoFDF
+X-Google-Smtp-Source: AGHT+IH14ML5OeTgfNCjZ+eLR5D0BkEN/X8W7UZQcrAQKu6xXP5etxnsRLfqJ5tS5GUlUf2xOTL9iOYN03VgHVRvQJU=
+X-Received: by 2002:a05:6902:c04:b0:ea4:f3f:5498 with SMTP id
+ 3f1490d57ef6-ea8aa09f336mr791364276.36.1758227867928; Thu, 18 Sep 2025
+ 13:37:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f16f14ab-ff11-42a2-b63b-ed28e85d620b@oss.qualcomm.com>
+References: <20250918155240.2536852-1-dario.binacchi@amarulasolutions.com>
+ <20250918155240.2536852-4-dario.binacchi@amarulasolutions.com> <20250918200445.GA2529753-robh@kernel.org>
+In-Reply-To: <20250918200445.GA2529753-robh@kernel.org>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Thu, 18 Sep 2025 22:37:37 +0200
+X-Gm-Features: AS18NWBqzx_QCJLvM1ZupXjBE082LYlK02aLhStfsrL_kkHbqntwv2U3qqpvFFU
+Message-ID: <CABGWkvqX9aCxam6UMYsUBkwnMJrMNKjVKrqi5Ca7O5Jk8xRTAA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/6] dt-bindings: touchscreen: add touchscreen-glitch-threshold-ns
+ property
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+	linux-amarula@amarulasolutions.com, Conor Dooley <conor.dooley@microchip.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Javier Carrasco <javier.carrasco@wolfvision.net>, Jeff LaBundy <jeff@labundy.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 18, 2025 at 10:51:22AM +0800, Ziyue Zhang wrote:
-> On 9/8/2025 3:38 PM, Ziyue Zhang wrote:
-> > This series depend on this patch
-> > https://lore.kernel.org/all/20250826-pakala-v2-3-74f1f60676c6@oss.qualcomm.com/
-
-That patch ("PCI: qcom: Restrict port parsing only to pci child
-nodes") is currently in the pci/controller/qcom branch:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=controller/qcom
-
-and won't be merged upstream until the v6.18 merge window.  This will
-probably be between Sep 28 and Oct 12.
-
-I don't know what that means for the dt-binding and arm64 dts changes
-in this series, but typically changes like this series are merged via
-a different tree than the PCI changes, so the ordering isn't
-guaranteed until one of them is pulled by Linus.
-
-> > This series adds document, phy, configs support for PCIe in QCS8300.
-> > It also adds 'link_down' reset for sa8775p.
-> > 
-> > Have follwing changes:
-> > 	- Add dedicated schema for the PCIe controllers found on QCS8300.
-> > 	- Add compatible for qcs8300 platform.
-> > 	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
-> > 	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
-> > 
-> > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+On Thu, Sep 18, 2025 at 10:04=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Thu, Sep 18, 2025 at 05:52:31PM +0200, Dario Binacchi wrote:
+> > Add support for glitch threshold configuration. A detected signal is va=
+lid
+> > only if it lasts longer than the set threshold; otherwise, it is regard=
+ed
+> > as a glitch.
+> >
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >
 > > ---
-> > Changes in v13:
-> > - Fix dtb error
-> > - Link to v12: https://lore.kernel.org/all/20250905071448.2034594-1-ziyue.zhang@oss.qualcomm.com/
-> > 
-> > Changes in v12:
-> > - rebased pcie phy bindings
-> > - Link to v11: https://lore.kernel.org/all/20250826091205.3625138-1-ziyue.zhang@oss.qualcomm.com/
-> > 
-> > Changes in v11:
-> > - move phy/perst/wake to pcie bridge node (Mani)
-> > - Link to v10: https://lore.kernel.org/all/20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com/
-> > 
-> > Changes in v10:
-> > - Update PHY max_items (Johan)
-> > - Link to v9: https://lore.kernel.org/all/20250725104037.4054070-1-ziyue.zhang@oss.qualcomm.com/
-> > 
-> > Changes in v9:
-> > - Fix DTB error (Vinod)
-> > - Link to v8: https://lore.kernel.org/all/20250714081529.3847385-1-ziyue.zhang@oss.qualcomm.com/
-> > 
-> > Changes in v8:
-> > - rebase sc8280xp-qmp-pcie-phy change to solve conflicts.
-> > - Add Fixes tag to phy change (Johan)
-> > - Link to v7: https://lore.kernel.org/all/20250625092539.762075-1-quic_ziyuzhan@quicinc.com/
-> > 
-> > Changes in v7:
-> > - rebase qcs8300-ride.dtsi change to solve conflicts.
-> > - Link to v6: https://lore.kernel.org/all/20250529035635.4162149-1-quic_ziyuzhan@quicinc.com/
-> > 
-> > Changes in v6:
-> > - move the qcs8300 and sa8775p phy compatibility entry into the list of PHYs that require six clocks
-> > - Update QCS8300 and sa8775p phy dt, remove aux clock.
-> > - Fixed compile error found by kernel test robot
-> > - Link to v5: https://lore.kernel.org/all/20250507031019.4080541-1-quic_ziyuzhan@quicinc.com/
-> > 
+> >
 > > Changes in v5:
-> > - Add QCOM PCIe controller version in commit msg (Mani)
-> > - Modify platform dts change subject (Dmitry)
-> > - Fixed compile error found by kernel test robot
-> > - Link to v4: https://lore.kernel.org/linux-phy/20241220055239.2744024-1-quic_ziyuzhan@quicinc.com/
-> > 
-> > Changes in v4:
-> > - Add received tag
-> > - Fixed compile error found by kernel test robot
-> > - Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
-> > 
-> > Changes in v3:
-> > - Add received tag(Rob & Dmitry)
-> > - Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
-> > - remove pcieprot0 node(Konrad & Mani)
-> > - Fix format comments(Konrad)
-> > - Update base-commit to tag: next-20241213(Bjorn)
-> > - Corrected of_device_id.data from 1.9.0 to 1.34.0.
-> > - Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
-> > 
+> > - Add Acked-by tag of Conor Dooley
+> >
 > > Changes in v2:
-> > - Fix some format comments and match the style in x1e80100(Konrad)
-> > - Add global interrupt for PCIe0 and PCIe1(Konrad)
-> > - split the soc dtsi and the platform dts into two changes(Konrad)
-> > - Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
-> > 
-> > Ziyue Zhang (5):
-> >    dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
-> >      for qcs8300
-> >    arm64: dts: qcom: qcs8300: enable pcie0
-> >    arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
-> >    arm64: dts: qcom: qcs8300: enable pcie1
-> >    arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
-> > 
-> >   .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  17 +-
-> >   arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  84 +++++
-> >   arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 310 +++++++++++++++++-
-> >   3 files changed, 394 insertions(+), 17 deletions(-)
-> > 
-> > 
-> > base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
-> Hi Maintainers,
-> 
-> It seems the patches get reviewed tag for a long time, can you give this
-> 
-> series further comment or help me to merge them ?
-> Thanks very much.
-> 
-> BRs
-> Ziyue
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+> > - Added in v2.
+> >
+> >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml    | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchs=
+creen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscree=
+n.yaml
+> > index 3e3572aa483a..a60b4d08620d 100644
+> > --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
+aml
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.y=
+aml
+> > @@ -206,6 +206,10 @@ properties:
+> >
+> >          unevaluatedProperties: false
+> >
+> > +  touchscreen-glitch-threshold-ns:
+> > +    description: Minimum duration in nanoseconds a signal must remain =
+stable
+> > +      to be considered valid.
+>
+> What's wrong with debounce-delay-ms?
+
+Do you mean that I should rename touchscreen-glitch-threshold-ns to
+debounce-delay-ms?
+
+Thanks and regards,
+Dario
+
+--=20
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
