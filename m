@@ -1,174 +1,111 @@
-Return-Path: <devicetree+bounces-218675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C256AB830DC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:56:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2B6B83107
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 07:58:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60AA47AC5E3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:54:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAAFC16495E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 05:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B9B2D73A8;
-	Thu, 18 Sep 2025 05:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A662D73A7;
+	Thu, 18 Sep 2025 05:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vM+QcwdY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TyV3OBci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BB32D640D
-	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 05:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1DA92D6E67
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 05:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758174967; cv=none; b=YmlUimrr50AoULhG7umXTFRDd8oAJeoJysO0OLjItj/vSF2TxgXUKjS/O/Ps2unVfXWQktGkods0jeMXHla8uT6MTZanamTH4qa3996r+Mvc6sqoDoRwbqvbGJY3upQsKBj9YrwPdIVltd49uAIMSA6aa/ArK9INJ1JZnUijOPU=
+	t=1758175112; cv=none; b=M+ZCWwKnSSVtrrxYYLdnC2OPK3hXr6gEk5LTe/r+SQMsQn9ndj7cGKTyq0ysPnM552blrMZXEXpWivPxa/gq6biwDJrxbgw57mNanXFvQNL49DofXsVHrW2cBLacZQxTG/klZmkzY0IcVbHD6aUCZuoRKaHd1/+ngbhIStyq3eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758174967; c=relaxed/simple;
-	bh=MtvCNWiMVnsL+fP/NF0hiCxoJi0DUaViJhCKPmRyngw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ABWr2xQWOA+pm5KHVkPpxexXr+qylcQCZ+JofCkLZZtzHDmjtcDnC/HRiXEVZHvA4xBJj1ocV4UHf4g5SfPTE1kw61EgyGQTfgu90cUBoA9dLzhYUitfINSi3yWmk1VGOllQCwRy8ZCNzOzbrWBCYLUJm2IQp5s9Xka1ytfbfKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vM+QcwdY; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62f0411577aso1062755a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 22:56:05 -0700 (PDT)
+	s=arc-20240116; t=1758175112; c=relaxed/simple;
+	bh=e7yRxA2B68UWIKkdczYYijQsT9ZC4h4tFwI2brifv3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NyK15P4CIt2hC1kV2dK+u0A3bHOofC5B5QWc73GdnuIGDbXufOIsaMNmfLDQCG60IK630VoBy97t+SaLSXCBjrUcZyhCWp1dBuAIJJ9/FG4XFz30+0bZtAf/edCsgTBlWexpwZjfEL4YHJD8dJXTmKLiN0YDVsTWAnyrmUxINwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TyV3OBci; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-77d24db67e0so281972b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 22:58:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758174964; x=1758779764; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=crkj1xqggaMTh9oPYxb0RXj1qaPHLThFfXIKjj2cn5I=;
-        b=vM+QcwdY2P+3Maa1johRsRZg1Txz8wupuAtxuUSLM9/5RmqY6LdGIXaPpDo70JB7LL
-         m7LI4TKxYVFrV7/v+vFAQsTAxX3BtBENUFtnkGIMIr/GyLmb1yb2foeK1EW5jN+qemRZ
-         xb3LXEpb/aRzmEQZHPL/jZe6rEe263ShoL+Cn1bMgS6aJt3MLRhWYxVYfk+VwqthzZpF
-         RUuL2V7yWHTj1a1FMi5mbKPp+mHsIK40cRLsKJmEDxclSMvkCvPauFZtLhY5fzgN51Sa
-         jd3zlLDDDHO6/ezMwcJzcK9L/g9IZtNhiLTv0pXFfNvPG27J3whJ4W2MoiNe0Xalhnl2
-         /lKw==
+        d=gmail.com; s=20230601; t=1758175110; x=1758779910; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1M8K/x0sWMdi+p7zlur7P/Abek/ld1zdxtrufjSounw=;
+        b=TyV3OBciB6qhzJ4DdhcCjulEYOnOExKqaLoQAsOiTfqpMJMwVuXNZWAYksnXfxBXqT
+         1Y8zu/glvqt9pd8bJOah8UvJMmL06zfGb0cdh//qOHw4NxaFbiJrdFooqKkHgxdn91hD
+         EtbCeHaxl4naGo4FbxipOHoMuUufnoM/x3eiQoVZEyIqkJJE4qnvvBLbusOTiGpcjmcB
+         EvtJ67UN6uk32YgrA25u4W/+vRkvgkUr3YLwIWGD23oOWbuU9aqHR0yJL6U8GaiI1RHs
+         XbFA77Ykaku74TFvngzrM08k6voUHeIetAT9cHlsQxetKZUv9QyshrHB+DlMrmMqCwGd
+         EYQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758174964; x=1758779764;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=crkj1xqggaMTh9oPYxb0RXj1qaPHLThFfXIKjj2cn5I=;
-        b=VDprkKSwj5SdZ1XwUsQdbFDQp0l1zbHVUexri3+VOoIopztBVc3zo6v9eiHF5mdlnx
-         aULVxUx4IPFHTAEQ/TQeRP3Jpm9C6gm0PilGwE4CE6EjaNtA9RjCnxdH9NIVYOJqwM5r
-         vp8S4HJLhAyLIBG/NOwXDo4cpEFWqTLd332mYNQMoEws40gcCpO/tedtbrIAP1sBEgi/
-         3bT9f2nTBah9inFXqsy/kukH189PJQ5TZVvRpz3/6Boyd5qJArVJZ+4Otr8ln//xFLPl
-         RyyiG90sPZdHlHJWCehCjabhfuhXOtRhmFWXUZx3Kebyz8FMqZF61wC2QVeNMhQ7niDC
-         UmaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBp3xMRxMZGQoTIZrOwnIyQcwYzfaBtGohjScttIscjYhAPtL/QMLNbeUbgSsfsCu9XCE2goXHu5kE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaLofeRURxjaiduRkzAxZaW5uXJZY3gxaQa5ynK3IVRSlsQ4aM
-	fZ62re8e6qyuofCqq6SzHKnn9ovdeLj2AygEbrwq+fZLL4ilY7C7dK/NQtnO15ndurXkaOOLJi/
-	M2BbT33E8ifqt8cO96yMrdHnP0KEsh7iIe3p1GPUU1Q==
-X-Gm-Gg: ASbGncslQvSoO5guNTWIO3dPUrd9+LsL/SaxSPiJUrydbShxX2//AdBLWXt3KiB7fCt
-	kA0qUX8TswthKUh30Ic1Ta78Nzf0HrUigCZHzryIEAGxpNlDNJw5UtHruu4T5+QjChg6G+nmCzo
-	eh2SF22xuxLPCF7NgXcP5tgBMkbXuA6UQPNpc+gHZR9O1EJ2N61920wQ5WFkannSfkgveFgFP1h
-	zAhP7EMQYcGKq4/RbvgG/TzWzW/hmDpWNIMVF5eSgzyDfyXTcqeG8Q=
-X-Google-Smtp-Source: AGHT+IGR7nTIOBAlrh93nycdh2C4wP1m8EWpmRWv6aiZAFrIZWDDf8XTFM9Ow/5GHA8Zx6KHRGOD1LFlVtecDyn67Xg=
-X-Received: by 2002:a05:6402:1d52:b0:62f:4be5:2268 with SMTP id
- 4fb4d7f45d1cf-62f84231d4dmr4414232a12.19.1758174963640; Wed, 17 Sep 2025
- 22:56:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758175110; x=1758779910;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1M8K/x0sWMdi+p7zlur7P/Abek/ld1zdxtrufjSounw=;
+        b=RV8JkbSqdchdBJEW7r0ngqBp+n/4M3IfSQ/AI7TMzA2dFxUwvMR8p9LKdveJqIOa+g
+         SynUDhgMqgLkmAUPXdyqDCCaJhKscyPi8dMjUri6ConOLL32rLJG7SkStdd9ei7aatAz
+         JTVyr0wl2iQ1m+Idc3WHfrk1g8uUGIdP+VCpTYkm5fcpvhXw/ExKgzRiSYHP7xSCAGwI
+         IPt4P0+9M+BLc0qr2c19rYMKjKQCO5tnynCGMccbrpVs+ZQ4PHyQsoUJfg6EXuTji5lB
+         u1g65okRQYaz/V8d1bIxvoY4o3qhDFiTC3n9ZCD9bb02nJuSDZE3+9qUlakotgzmfklT
+         rIYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjzdjFKrIUXHE82jVEw+PDtmxwRInpkSGFx8fXwL+bk2g85TfXcHf/mk/LwmdEiGTNaiYqOIAHPL/I@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPLMktSFp4BJXyQb+6ILnz8ezUX7EER14h/SQkC68bIK+ylQU9
+	xWy9Zevxxfg5Nn/hwMW16VNT7+xuCumE6cLZQIRy6JYLXwUqQH9G+hLB
+X-Gm-Gg: ASbGncs5SJ0+BbYCCvtCuRJs/rusGR4MHY00AnOKRhsmfK2/vmybipHB+7RT21d5ZXq
+	lGnWKcGRJQ7vqlVE6WEIitVUUBjwigsp7qRAGQagxTcsmfGttqIezqWSzYiCVlK8rM/oh3uHFxP
+	/Sv4jRYl+yHumGa3wFUE/36BW9owW1p5XjeImv/GTJ4ojXqr7WcrfgOqy8ff5KmOxpCAfGoIz55
+	oTPhQjN3yaeGwxDwVj7V1RA4cNxlHL5k5RkBMTrSs/Fw4irDwmVXaDrvZmSoI3oz463FbFQi0+n
+	ZXNQPIa04A1oaRY2YLOXjdEucZXYGcRSlXaM25p1C02YfZJyu5LUg+hqjZndfsFDMzxHF8oSiL3
+	X+zSlMaVz63ewp/1fgryOLpVMIVAo/FvaLin690XwOw==
+X-Google-Smtp-Source: AGHT+IGb+rdTMfwVbcT/i/JK1WiLKpQvT7aq4HHFKHQrPydPEVY0k2OXSVn7CE/ZKWO3IERNaHMXMw==
+X-Received: by 2002:a05:6a20:748c:b0:271:cdbb:4d26 with SMTP id adf61e73a8af0-27aac3da5a9mr6725643637.58.1758175110263;
+        Wed, 17 Sep 2025 22:58:30 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:194b:8358:5c91:3d3d])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff4002edsm1199838a12.33.2025.09.17.22.58.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 22:58:29 -0700 (PDT)
+Date: Wed, 17 Sep 2025 22:58:27 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Oleksij Rempel <o.rempel@pengutronix.de>, 
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: touchscreen: resistive-adc-touch:
+ change to unevaluatedProperties
+Message-ID: <wbwtlcrlwnvvjyv7cnffu3sltrqfaddjf5f6dzizhgglwskjgb@zgxjfm5oafxz>
+References: <20250910224402.994046-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912141436.2347852-2-vincent.guittot@linaro.org> <20250917211825.GA1874549@bhelgaas>
-In-Reply-To: <20250917211825.GA1874549@bhelgaas>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Thu, 18 Sep 2025 07:55:50 +0200
-X-Gm-Features: AS18NWDMnG99kNALQoafVcWPwrQuqGOxmbLVsuUCgARppc3AjZboY6ARustWRK0
-Message-ID: <CAKfTPtC6bGYCoUuMZSX=kx0uR1XS1rHKzY99tkTQa-hUigmpPQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: pcie: Add the NXP PCIe controller
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, Ghennadi.Procopciuc@nxp.com, 
-	ciprianmarian.costea@nxp.com, bogdan.hamciuc@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250910224402.994046-1-Frank.Li@nxp.com>
 
-On Wed, 17 Sept 2025 at 23:18, Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> Suggest following convention for subject lines (run "git log --oneline
-> Documentation/devicetree/bindings/pci/"), e.g.,
->
->   dt-bindings: PCI: s32g: Add NXP PCIe controller
+On Wed, Sep 10, 2025 at 06:44:01PM -0400, Frank Li wrote:
+> Change additionalProperties to unevaluatedProperties because it refs to
+> touchscreen.yaml.
+> 
+> Fix below CHECK_DTBS warnings:
+> arch/arm/boot/dts/nxp/imx/imx6dl-skov-revc-lt6.dtb: touchscreen (resistive-adc-touch): 'touchscreen-y-plate-ohms' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> 	from schema $id: http://devicetree.org/schemas/input/touchscreen/resistive-adc-touch.yaml#
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-okay
+Applied, thank you.
 
->
-> On Fri, Sep 12, 2025 at 04:14:33PM +0200, Vincent Guittot wrote:
-> > Describe the PCIe controller available on the S32G platforms.
->
-> > +        pcie0: pcie@40400000 {
-> > +            compatible = "nxp,s32g3-pcie",
-> > +                         "nxp,s32g2-pcie";
-> > +            dma-coherent;
-> > +            reg = <0x00 0x40400000 0x0 0x00001000>,   /* dbi registers */
-> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 registers */
-> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers */
-> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers */
-> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl registers */
-> > +                  /* RC configuration space, 4KB each for cfg0 and cfg1
-> > +                   * at the end of the outbound memory map
-> > +                   */
-> > +                  <0x5f 0xffffe000 0x0 0x00002000>,
-> > +                  <0x58 0x00000000 0x0 0x40000000>; /* 1GB EP addr space */
-> > +                  reg-names = "dbi", "dbi2", "atu", "dma", "ctrl",
-> > +                              "config", "addr_space";
->
-> Looks like an indentation error.  Shouldn't "reg-names" and subsequent
-> properties be aligned under "reg"?
-
-yeah, that's a mistake.
-
->
-> > +                  #address-cells = <3>;
-> > +                  #size-cells = <2>;
-> > +                  device_type = "pci";
-> > +                  ranges =
-> > +                  /* downstream I/O, 64KB and aligned naturally just
-> > +                   * before the config space to minimize fragmentation
-> > +                   */
-> > +                  <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x00010000>,
-> > +                  /* non-prefetchable memory, with best case size and
-> > +                  * alignment
-> > +                   */
-> > +                  <0x82000000 0x0 0x00000000 0x58 0x00000000 0x7 0xfffe0000>;
-> > +
-> > +                  nxp,phy-mode = "crns";
->
-> If "nxp,phy-mode" goes with "phys", should it be adjacent to it?
-
-yes, this , phys and num-lane should be together
-
->
-> > +                  bus-range = <0x0 0xff>;
-> > +                  interrupts =  <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-> > +                  interrupt-names = "link_req_stat", "dma", "msi",
-> > +                                    "phy_link_down", "phy_link_up", "misc",
-> > +                                    "pcs", "tlp_req_no_comp";
-> > +                  #interrupt-cells = <1>;
-> > +                  interrupt-map-mask = <0 0 0 0x7>;
-> > +                  interrupt-map = <0 0 0 1 &gic 0 0 0 128 4>,
-> > +                                  <0 0 0 2 &gic 0 0 0 129 4>,
-> > +                                  <0 0 0 3 &gic 0 0 0 130 4>,
-> > +                                  <0 0 0 4 &gic 0 0 0 131 4>;
-> > +                  msi-parent = <&gic>;
-> > +
-> > +                  num-lanes = <2>;
-> > +                  phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
-> > +        };
-> > +    };
+-- 
+Dmitry
 
