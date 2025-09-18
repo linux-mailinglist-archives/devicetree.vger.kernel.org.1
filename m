@@ -1,125 +1,106 @@
-Return-Path: <devicetree+bounces-218835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0787B84844
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6ACBB84829
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 14:09:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A977A5872E2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:10:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 499D96207EE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 12:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CEC3019CE;
-	Thu, 18 Sep 2025 12:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2986C302770;
+	Thu, 18 Sep 2025 12:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClUm3upV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ktNmaoJk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C5D2FE56B;
-	Thu, 18 Sep 2025 12:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BDA2FFF85;
+	Thu, 18 Sep 2025 12:08:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758197392; cv=none; b=TVoTpr6Zy+qqxvhuMT6oxhENapgi8UppikaWbkyf68EsXK7c4rzjjQT3p1DTFA506sZMTtuNu1vBw+AUKgsnLNWIBIIJqasxxRscXUSGVAxvM9dFAjq+r5jXf8uwEIHcIJXteoLH0IUqH0N4xOzwscA2U83QSIC8jIQs4L7Yviw=
+	t=1758197313; cv=none; b=ayCABQM7hHR1tU3WOFUist3arY57DhqfZB5hLJQ0VffjYVK8zVYHpUTGfFUUEfCKuiHkscTeeFSV/VLoujvDlLkmlX53ZZ9cLLeVbi5WkoTxVo4nhg2otvIVnGbl2Zy/GTdk0BPFRYmNj9qSB+Qr6I22uuBiKx68Y+wJnK8xZpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758197392; c=relaxed/simple;
-	bh=kxvoxyFm3bsmG5fR/QhS8oki8BVLBIs9xvRNaDN6iBQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eEAbjjmIDyL1i50chN0nAv7GkupMQEEejsOXoZsaFU7q+tAMIMT5U3S6i89jFzJ4Cu/N/fxWd+p/j66ZEz8RPHy4ipB+ra1m1cd/7yHBf16Ug/v5qdxtQq6ysBoijAHeC/PaFc0s5uepxwLOY+IYYPMnQAsqQupByTaXRehDEJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClUm3upV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C558DC4CEEB;
-	Thu, 18 Sep 2025 12:09:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758197392;
-	bh=kxvoxyFm3bsmG5fR/QhS8oki8BVLBIs9xvRNaDN6iBQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=ClUm3upV2LwuB3YH7Sm8fKswv4hTKSUAzjgIiOM9F+UdrzwDD5jcCQjDeSvz2ikwX
-	 m2hBKLBpG10n2nVy5M2YSy2JKItJeFxt55x7PLCaTptQ3DE+5DA3VsthscKMjhwVsI
-	 xURiLzmJLMzxJmPvvrGd/0mfTNtOIaYgdmCED+kQ6fexFDPX6dIIhCJBLEHRyHPTJe
-	 TkdsDYj7oWD9FFUFTV/pVIL0rsxxpmqH+H6PVasfhwh+WBYsiLHpattspfcIRD8L33
-	 VwWhFqpEUy4wWIXiUAqpRI0U9FWN3NbDUGVMVhD57R3wxu098nEAR+1XIA4AyVp042
-	 XqrYzMwn14BgA==
-From: Niklas Cassel <cassel@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Vidya Sagar <vidyas@nvidia.com>,
-	Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>,
-	Gautham Srinivasan <gauthams@nvidia.com>,
-	Niklas Cassel <cassel@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH] arm64: tegra: Add pinctrl definition for PCIe C4 EP
-Date: Thu, 18 Sep 2025 14:01:39 +0200
-Message-ID: <20250918120138.17572-2-cassel@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1758197313; c=relaxed/simple;
+	bh=P0vvBsCMPE9HUr2EnkPlQHcU36fhBR6Uw7Rhq/WgBSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WWHnbhVTVdnvmBZ8a1v9bHEIcfc+sgPwVbdO7trxp1J3wUtwYJTHmb/VPazxcopdJ9Tk+1KJIin2/kHlwrR/yBbzVlfSH2X6zZtrfcmllO85dWpNLkolAEtKS6EX4g3giVIQAGBBqLuI4fFk2CxrMpTfA7ZL8tA0FrICnVed+Nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ktNmaoJk; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758197308;
+	bh=P0vvBsCMPE9HUr2EnkPlQHcU36fhBR6Uw7Rhq/WgBSE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ktNmaoJkLqqALEoAaj1Cs2rF5wWQvvuG7tuopmXTSk1u61yapIkUYhFC3Hb5HlQYx
+	 m3f7fQjD1NnjfNbDEaBn2bf1Qgkpbf18m5114gmAW+04pih+QDfVGbuNkpZotnPyRy
+	 OIlT27AHjzEEIepJwi2ZH4duRoBaYi1TMo/+jRBK2igslBbzDmjhTMGr46rcdFPvfV
+	 TGO67YNI5YcwjVRMF1MzWv9VOmbn1pP442Emvsr3fWJ1GYirtcuta9R4ipSgkAdyHz
+	 mm8+Dfb7MiHPKyR2Q9q7cc/S63TAwa0/fiqRyPdXpW8R24wqmntAUrgvXL0qoiB0bB
+	 qZIZJtyz0WIYw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9945A17E0DC2;
+	Thu, 18 Sep 2025 14:08:27 +0200 (CEST)
+Message-ID: <f2eded27-54cb-43a9-ab48-54cb9ecb45be@collabora.com>
+Date: Thu, 18 Sep 2025 14:08:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1964; i=cassel@kernel.org; h=from:subject; bh=6PJXltUOQm1nMFJJzkygNCQvMogAYb5v8LmPSXMSDoo=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGDJOf1ksM4/ZXuve8YTX7LstuP5Vis2r0yqPueK9WKpu3 yvD3TGpHaUsDGJcDLJiiiy+P1z2F3e7TzmueMcGZg4rE8gQBi5OAZjI1TxGhscTeMJU1wjsOvKb n1VvD1cc0+IHhu7sR87cyz97LfrH0nJGhvkR6uLbW5ZOK4jObRPz8s1gebh897nGJd3u6w6YV07 V5QEA
-X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: timer: mediatek,timer: Add compatible for
+ MT8189
+To: Zhanzhan Ge <zhanzhan.ge@mediatek.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250825033136.7705-1-zhanzhan.ge@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250825033136.7705-1-zhanzhan.ge@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Gautham Srinivasan <gauthams@nvidia.com>
+Il 25/08/25 05:31, Zhanzhan Ge ha scritto:
+> Add the compatible for mt8189 timer to the binding.
+> 
+> Signed-off-by: Zhanzhan Ge <zhanzhan.ge@mediatek.com>
 
-Commit 0580286d0d22 ("arm64: tegra: Add Tegra234 PCIe C4 EP definition")
-added the device tree entry "pcie-ep@14160000" for C4 endpoint. However,
-it missed pinctrl definition. Without the pinctl definition, the C4
-endpoint of Jetson Orin Nano does not work. Add the missing definition.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
-[cassel: add to the existing nodes instead of creating new ones]
-Signed-off-by: Niklas Cassel <cassel@kernel.org>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> ---
+>   Documentation/devicetree/bindings/timer/mediatek,timer.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/mediatek,timer.yaml b/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
+> index e3e38066c2cb..5ceedc3a4f91 100644
+> --- a/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
+> +++ b/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
+> @@ -43,6 +43,7 @@ properties:
+>                 - mediatek,mt8183-timer
+>                 - mediatek,mt8186-timer
+>                 - mediatek,mt8188-timer
+> +              - mediatek,mt8189-timer
+>                 - mediatek,mt8192-timer
+>                 - mediatek,mt8195-timer
+>                 - mediatek,mt8196-timer
+> --
+> 2.45.2
+> 
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index df034dbb82853..dd3e51b7d35ef 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/power/tegra234-powergate.h>
- #include <dt-bindings/reset/tegra234-reset.h>
- #include <dt-bindings/thermal/tegra234-bpmp-thermal.h>
-+#include <dt-bindings/pinctrl/pinctrl-tegra.h>
- 
- / {
- 	compatible = "nvidia,tegra234";
-@@ -127,6 +128,17 @@ gpio: gpio@2200000 {
- 		pinmux: pinmux@2430000 {
- 			compatible = "nvidia,tegra234-pinmux";
- 			reg = <0x0 0x2430000 0x0 0x19100>;
-+
-+			pex_rst_c4_in_state: pex_rst_c4_in {
-+				pex_rst {
-+					nvidia,pins = "pex_l4_rst_n_pl1";
-+					nvidia,function = "rsvd1";
-+					nvidia,pull = <TEGRA_PIN_PULL_NONE>;
-+					nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+					nvidia,enable-input = <TEGRA_PIN_ENABLE>;
-+					nvidia,lpdr = <TEGRA_PIN_DISABLE>;
-+				};
-+			};
- 		};
- 
- 		gpcdma: dma-controller@2600000 {
-@@ -4881,6 +4893,8 @@ pcie-ep@14160000 {
- 			       <&bpmp TEGRA234_RESET_PEX0_CORE_4>;
- 			reset-names = "apb", "core";
- 
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pex_rst_c4_in_state>;
- 			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;  /* controller interrupt */
- 			interrupt-names = "intr";
- 			nvidia,bpmp = <&bpmp 4>;
--- 
-2.51.0
 
 
