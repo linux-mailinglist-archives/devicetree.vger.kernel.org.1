@@ -1,311 +1,215 @@
-Return-Path: <devicetree+bounces-218733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2FFB838A8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3507CB838C5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 10:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2D267AC5E5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B4D17A9295
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 08:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46742F7AA4;
-	Thu, 18 Sep 2025 08:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cRJKn1RH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEC52ED17A;
+	Thu, 18 Sep 2025 08:38:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB542F6599;
-	Thu, 18 Sep 2025 08:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC382D781B;
+	Thu, 18 Sep 2025 08:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758184517; cv=none; b=RvJDenVICFZzdSYPdguJ1mkKngYPfAdPBMYEvtN+M0JpcaNdyjNpD7oRmguobBWGepUl/Wy4SNCKszwK5XX/7ZHyQnO5AkUmaNcIZC0zYGrPKtC1zhQ0c4fIdFDR8+98Y9H1NgpiCzrnjhKhUSs5Lhz++ntSuMGcz2PD5CpMkRY=
+	t=1758184713; cv=none; b=pDod3asAHXdHOu6v9RUufE5gqjIxvpG0qqtHcNDRHOyz+p9ctHnrH3d3qnmvQAiei3iLfjdzIeefEuIKfNhDviKyQ6njHozXLvORGCLn0qMaYcStzo3jAz+gWbhbkNOVDg3Mqg0ChYU9tv4dh2znKM0F6tDvwmrllJxldoOTXfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758184517; c=relaxed/simple;
-	bh=lpMnSBw5eXCFVEZ77Jf4N2uMk6YKZK4ppHKLrkinK64=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cxjE66g1vAgmj4gFtHiQ8k5XUVTttwuk+H3OxsDmBCG1EmqKejwyckUUTnEOO6fK9rUPLLZbws4EY2JrugfjAZSi2Q/tr1ePNaYcRs82oI9Fc9fGNpTNGQRkU4WQHqWfU9boi8PBeu3aGaatEcA++Nl5WQLWBQHPm0o1YAwxbKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRJKn1RH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 00F32C4CEE7;
-	Thu, 18 Sep 2025 08:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758184517;
-	bh=lpMnSBw5eXCFVEZ77Jf4N2uMk6YKZK4ppHKLrkinK64=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=cRJKn1RH/+X2dxtSg2ezHCIjH8dJoJ2gMmAjFXF3xzY8LmnmQrLmM3HNgOsO9Pdu8
-	 cFXgMnDwM0w+IUiFlBENbF5KJOit6j86lC3kr5Kka6ezL8FzTKzJOG6h7qJlGZw0RE
-	 MRifjO3AHzqyxG/NJYdcC84xIF2oa9geajtb1IVsNRFXM1Ka1X96vNr304J2y/kO0j
-	 EAQf/2KoXFDZzBXQvnzGwpQyCM5zudKZa4Czu9NuEo5j6bBK2xQvcjWEvugxa9yDtf
-	 +i+PgjLla+XqQu6i8/ABBPKelqUwGj/V/YO45TvgJjtYiUUCkkCHm+vDLd+FJidl06
-	 pHsY6CRzKMwAg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1098CAC59F;
-	Thu, 18 Sep 2025 08:35:16 +0000 (UTC)
-From: Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>
-Date: Thu, 18 Sep 2025 16:35:09 +0800
-Subject: [PATCH RESEND] dts: arm64: amlogic: Add ISP related nodes for C3
+	s=arc-20240116; t=1758184713; c=relaxed/simple;
+	bh=/0HMAOXe4clUy0YwfJUqQRJTSwPtdXc6tsYrKGzkfb0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Vb9RcTIMsGzESdB4/klkDvXlCSfQHKcLSlk7pVbe+Q47b/IiVEpM2YCwxZADjtD86EF/6BsCX03iFYNIZlgGagicI8wxu0/GADbwnDkpwqEKVfZQEEqHgwNjTc7lXuO3zsXS8xYzlRfYVj2YpaJ81FsBso9XPskaXNl/5ezcu3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from ubt.. (unknown [210.73.43.101])
+	by APP-03 (Coremail) with SMTP id rQCowACnu4XjxMtolHKCAw--.43062S2;
+	Thu, 18 Sep 2025 16:37:56 +0800 (CST)
+From: Chunyan Zhang <zhangchunyan@iscas.ac.cn>
+To: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org,
+	linux-kernel@vger.kernel.org
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Deepak Gupta <debug@rivosinc.com>,
+	Ved Shanbhogue <ved@rivosinc.com>,
+	Alexander Viro <viro@zeniv.linux.org.uk>,
+	Christian Brauner <brauner@kernel.org>,
+	Jan Kara <jack@suse.cz>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Peter Xu <peterx@redhat.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	David Hildenbrand <david@redhat.com>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Mike Rapoport <rppt@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Michal Hocko <mhocko@suse.com>,
+	Axel Rasmussen <axelrasmussen@google.com>,
+	Yuanchu Xie <yuanchu@google.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: [PATCH V14 0/6] riscv: mm: Add soft-dirty and uffd-wp support
+Date: Thu, 18 Sep 2025 16:37:25 +0800
+Message-Id: <20250918083731.1820327-1-zhangchunyan@iscas.ac.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Keke Li <keke.li@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758184516; l=5995;
- i=keke.li@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=UmVS1PU/90tdLntCDKm08KbbQoIVC5jklVv6ZZ2RpE0=;
- b=rOF2nql3OL4yABLAuC+LQqHynH/oDDl+RTCOUrGInFY9HEDC/KN8vaRuOultWR8rlGgKKIJWT
- mzviPpJYSmBA10Cqza6TcVMTR41EHARbh2ZWa72nAbwjbMEmcFmKK6j
-X-Developer-Key: i=keke.li@amlogic.com; a=ed25519;
- pk=XxNPTsQ0YqMJLLekV456eoKV5gbSlxnViB1k1DhfRmU=
-X-Endpoint-Received: by B4 Relay for keke.li@amlogic.com/20240902 with
- auth_id=204
-X-Original-From: Keke Li <keke.li@amlogic.com>
-Reply-To: keke.li@amlogic.com
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowACnu4XjxMtolHKCAw--.43062S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Wr18CrW3AryrKry8Kw1kGrg_yoW7Zr1fpF
+	4UGry3tr4rtryIga93Jw109a1Yqan8tw15Gw1rX34rA3y2k3Wjvrna9a1rGF1DJr4UWryS
+	qryakr90934qyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvCb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4IIrI8v6xkF7I0E8cxan2IY
+	04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
+	1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
+	b7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
+	vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAI
+	cVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kf
+	nxnUUI43ZEXa7IUYDcTJUUUUU==
+X-CM-SenderInfo: x2kd0wxfkx051dq6x2xfdvhtffof0/1tbiBwkJB2jLv3UZYwAAsT
 
-From: Keke Li <keke.li@amlogic.com>
+This patchset adds support for Svrsw60t59b [1] extension which is ratified now,
+also add soft dirty and userfaultfd write protect tracking for RISC-V.
 
-Add the IMX290 sensor node description to the device tree file,
-which will be controlled via I2C bus with image data transmission
-through MIPI CSI-2 interface.
+The patches 1 and 2 add macros to allow architectures to define their own checks
+if the soft-dirty / uffd_wp PTE bits are available, in other words for RISC-V,
+the Svrsw60t59b extension is supported on which device the kernel is running.
+Also patch1-2 are removing "ifdef CONFIG_MEM_SOFT_DIRTY"
+"ifdef CONFIG_HAVE_ARCH_USERFAULTFD_WP" and
+"ifdef CONFIG_PTE_MARKER_UFFD_WP" in favor of checks which if not overridden by
+the architecture, no change in behavior is expected.
 
-Add CSI-2, adapter and ISP nodes for C3 family.
+This patchset has been tested with kselftest mm suite in which soft-dirty, 
+madv_populate, test_unmerge_uffd_wp, and uffd-unit-tests run and pass,
+and no regressions are observed in any of the other tests.
 
-Signed-off-by: Keke Li <keke.li@amlogic.com>
----
-The C3 ISP driver and device-tree bindings have been
-submitted. To facilitate using the C3 ISP driver, the
-related device nodes need to be added.
----
- .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 84 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 88 ++++++++++++++++++++++
- 2 files changed, 172 insertions(+)
+This patchset applies on top of the lastest mm-new branch.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-index 45f8631f9feb..e026604c55e6 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
-@@ -17,6 +17,7 @@ / {
- 	aliases {
- 		serial0 = &uart_b;
- 		spi0 = &spifc;
-+		i2c2 = &i2c2;
- 	};
- 
- 	memory@0 {
-@@ -146,6 +147,36 @@ sdcard: regulator-sdcard {
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
-+
-+	camera_vdddo_1v8: regulator-camera-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDDO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	camera_vdda_2v9: regulator-camera-2v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDA";
-+		regulator-min-microvolt = <2900000>;
-+		regulator-max-microvolt = <2900000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	camera_vddd_1v2: regulator-camera-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CAMERA_VDDD";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &uart_b {
-@@ -258,3 +289,56 @@ &sd {
- 	vmmc-supply = <&sdcard>;
- 	vqmmc-supply = <&sdcard>;
- };
-+
-+&i2c2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins1>;
-+	clock-frequency = <100000>; /* default 100k */
-+
-+	imx290: sensor0@1a {
-+		compatible = "sony,imx290";
-+		reg = <0x1a>;
-+		clocks = <&clkc_pll CLKID_MCLK0>;
-+		clock-names = "xclk";
-+		clock-frequency = <37125000>;
-+		assigned-clocks = <&clkc_pll CLKID_MCLK_PLL>,
-+				  <&clkc_pll CLKID_MCLK0>;
-+		assigned-clock-rates = <74250000>, <37125000>;
-+
-+		vdddo-supply = <&camera_vdddo_1v8>;
-+		vdda-supply = <&camera_vdda_2v9>;
-+		vddd-supply = <&camera_vddd_1v2>;
-+
-+		reset-gpios = <&gpio GPIOE_4 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			imx290_out: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				link-frequencies = /bits/ 64 <222750000 148500000>;
-+				remote-endpoint = <&c3_mipi_csi_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&csi2 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			c3_mipi_csi_in: endpoint {
-+				remote-endpoint = <&imx290_out>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&adap {
-+	status = "okay";
-+};
-+
-+&isp {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-index cb9ea3ca6ee0..a62fd8534209 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-@@ -992,5 +992,93 @@ mdio0: mdio {
- 				#size-cells = <0>;
- 			};
- 		};
-+
-+		csi2: csi2@ff018000 {
-+			compatible = "amlogic,c3-mipi-csi2";
-+			reg = <0x0 0xff018000 0x0 0x100>,
-+			      <0x0 0xff019000 0x0 0x300>,
-+			      <0x0 0xff01a000 0x0 0x100>;
-+			reg-names = "aphy", "dphy", "host";
-+			power-domains = <&pwrc PWRC_C3_MIPI_ISP_WRAP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_CSI_PHY0>;
-+			clock-names = "vapb", "phy0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_CSI_PHY0>;
-+			assigned-clock-rates = <0>, <200000000>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					c3_mipi_csi_out: endpoint {
-+						remote-endpoint = <&c3_adap_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		adap: adap@ff010000 {
-+			compatible = "amlogic,c3-mipi-adapter";
-+			reg = <0x0 0xff010000 0x0 0x100>,
-+			      <0x0 0xff01b000 0x0 0x100>,
-+			      <0x0 0xff01d000 0x0 0x200>;
-+			reg-names = "top", "fd", "rd";
-+			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_ISP0>;
-+			clock-names = "vapb", "isp0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_ISP0>;
-+			assigned-clock-rates = <0>, <400000000>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					c3_adap_in: endpoint {
-+						remote-endpoint = <&c3_mipi_csi_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					c3_adap_out: endpoint {
-+						remote-endpoint = <&c3_isp_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		isp: isp@ff000000 {
-+			compatible = "amlogic,c3-isp";
-+			reg = <0x0 0xff000000 0x0 0xf000>;
-+			reg-names = "isp";
-+			power-domains = <&pwrc PWRC_C3_ISP_TOP_ID>;
-+			clocks = <&clkc_periphs CLKID_VAPB>,
-+				 <&clkc_periphs CLKID_ISP0>;
-+			clock-names = "vapb", "isp0";
-+			assigned-clocks = <&clkc_periphs CLKID_VAPB>,
-+					  <&clkc_periphs CLKID_ISP0>;
-+			assigned-clock-rates = <0>, <400000000>;
-+			interrupts = <GIC_SPI 145 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+
-+			port {
-+				c3_isp_in: endpoint {
-+					remote-endpoint = <&c3_adap_out>;
-+				};
-+			};
-+		};
- 	};
- };
+[1] https://github.com/riscv-non-isa/riscv-iommu/pull/543
 
----
-base-commit: 84b92a499e7eca54ba1df6f6c6e01766025943f1
-change-id: 20250731-b4-c3isp-16531391a1cb
+V14:
+- Fix indent inssues in userfaultfd_k.h;
+- Some descriptions and comments minor changes.
 
-Best regards,
+V13: https://lore.kernel.org/all/20250917033703.1695933-1-zhangchunyan@iscas.ac.cn/
+- Rebase on mm-new branch;
+- Fixed build errors;
+- Add more exactly descriptions in commit message in patch 1-2;
+- Replace '__always_inline' with 'inline' for uffd_supports_wp_marker();
+- Add Svrsw60t59b description to the extensions dt-binding in patch 6.
+
+V12: https://lore.kernel.org/all/20250915101343.1449546-1-zhangchunyan@iscas.ac.cn/
+- Rename the macro API to pgtable_supports_soft_dirty/uffd_wp();
+- Add changes for setting VM_SOFTDIRTY flags conditionally;
+- Drop changes to show_smap_vma_flags();
+- Drop CONFIG_MEM_SOFT_DIRTY compile condition of clear_soft_dirty() and clear_soft_dirty_pmd();
+- Fix typos;
+- Add uffd_supports_wp_marker() and drop some ifdef CONFIG_PTE_MARKER_UFFD_WP.
+
+V11: https://lore.kernel.org/all/20250911095602.1130290-1-zhangchunyan@iscas.ac.cn/
+- Rename the macro API to pgtable_*_supported() since we also have PMD support;
+- Change the default implementations of two macros, make CONFIG_MEM_SOFT_DIRTY or
+  CONFIG_HAVE_ARCH_USERFAULTFD_WP part of the macros;
+- Correct the order of insertion of RISCV_ISA_EXT_SVRSW60T59B;
+- Rephrase some comments.
+
+V10: https://lore.kernel.org/all/20250909095611.803898-1-zhangchunyan@iscas.ac.cn/
+- Fixed the issue reported by kernel test irobot <lkp@intel.com>.
+
+V9: https://lore.kernel.org/all/20250905103651.489197-1-zhangchunyan@iscas.ac.cn/
+- Add pte_soft_dirty/uffd_wp_available() API to allow dynamically checking
+  if the PTE bit is available for the platform on which the kernel is running.
+
+V8: https://lore.kernel.org/all/20250619065232.1786470-1-zhangchunyan@iscas.ac.cn/)
+- Rebase on v6.16-rc1;
+- Add dependencies to MMU && 64BIT for RISCV_ISA_SVRSW60T59B;
+- Use 'Svrsw60t59b' instead of 'SVRSW60T59B' in Kconfig help paragraph;
+- Add Alex's Reviewed-by tag in patch 1.
+
+V7: https://lore.kernel.org/all/20250409095320.224100-1-zhangchunyan@iscas.ac.cn/
+- Add Svrsw60t59b [1] extension support;
+- Have soft-dirty and uffd-wp depending on the Svrsw60t59b extension to
+  avoid crashes for the hardware which don't have this extension.
+
+V6: https://lore.kernel.org/all/20250408084301.68186-1-zhangchunyan@iscas.ac.cn/
+- Changes to use bits 59-60 which are supported by extension Svrsw60t59b
+  for soft dirty and userfaultfd write protect tracking.
+
+V5: https://lore.kernel.org/all/20241113095833.1805746-1-zhangchunyan@iscas.ac.cn/
+- Fixed typos and corrected some words in Kconfig and commit message;
+- Removed pte_wrprotect() from pte_swp_mkuffd_wp(), this is a copy-paste
+  error;
+- Added Alex's Reviewed-by tag in patch 2.
+
+V4: https://lore.kernel.org/all/20240830011101.3189522-1-zhangchunyan@iscas.ac.cn/
+- Added bit(4) descriptions into "Format of swap PTE".
+
+V3: https://lore.kernel.org/all/20240805095243.44809-1-zhangchunyan@iscas.ac.cn/
+- Fixed the issue reported by kernel test irobot <lkp@intel.com>.
+
+V2: https://lore.kernel.org/all/20240731040444.3384790-1-zhangchunyan@iscas.ac.cn/
+- Add uffd-wp supported;
+- Make soft-dirty uffd-wp and devmap mutually exclusive which all use
+  the same PTE bit;
+- Add test results of CRIU in the cover-letter.
+
+Chunyan Zhang (6):
+  mm: softdirty: Add pgtable_supports_soft_dirty()
+  mm: userfaultfd: Add pgtable_supports_uffd_wp()
+  riscv: Add RISC-V Svrsw60t59b extension support
+  riscv: mm: Add soft-dirty page tracking support
+  riscv: mm: Add userfaultfd write-protect support
+  dt-bindings: riscv: Add Svrsw60t59b extension description
+
+ .../devicetree/bindings/riscv/extensions.yaml |   6 +
+ arch/riscv/Kconfig                            |  16 ++
+ arch/riscv/include/asm/hwcap.h                |   1 +
+ arch/riscv/include/asm/pgtable-bits.h         |  37 +++++
+ arch/riscv/include/asm/pgtable.h              | 143 +++++++++++++++++-
+ arch/riscv/kernel/cpufeature.c                |   1 +
+ fs/proc/task_mmu.c                            |  15 +-
+ fs/userfaultfd.c                              |  22 +--
+ include/asm-generic/pgtable_uffd.h            |  17 +++
+ include/linux/mm.h                            |   3 +
+ include/linux/mm_inline.h                     |   8 +-
+ include/linux/pgtable.h                       |  12 ++
+ include/linux/userfaultfd_k.h                 | 114 ++++++++------
+ mm/debug_vm_pgtable.c                         |  10 +-
+ mm/huge_memory.c                              |  13 +-
+ mm/internal.h                                 |   2 +-
+ mm/memory.c                                   |   6 +-
+ mm/mmap.c                                     |   6 +-
+ mm/mremap.c                                   |  13 +-
+ mm/userfaultfd.c                              |  10 +-
+ mm/vma.c                                      |   6 +-
+ mm/vma_exec.c                                 |   5 +-
+ 22 files changed, 361 insertions(+), 105 deletions(-)
+
 -- 
-Keke Li <keke.li@amlogic.com>
-
+2.34.1
 
 
