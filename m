@@ -1,105 +1,119 @@
-Return-Path: <devicetree+bounces-218907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8A9B8585B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:19:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C1BB8588B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 17:21:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EF40189B8FF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:14:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A59188536F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 15:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B752522538F;
-	Thu, 18 Sep 2025 15:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F9130E85C;
+	Thu, 18 Sep 2025 15:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dyx37ooM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S2QRPGDs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2D1221546;
-	Thu, 18 Sep 2025 15:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B8E238C03
+	for <devicetree@vger.kernel.org>; Thu, 18 Sep 2025 15:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758208460; cv=none; b=hfUHdO5hnmYO5Iyd/P9X2tpcHd8icd/TUJ5upNRXNpU+GolBhEATRQg8T5of3+5pSxd+U+gmya1KyK3b2ClRe/eBT1hErePZp0Eiq0K/DWtgbeHhKQkweU4kWDHuSQFKw8We+pB39iygWpf+NqD58ebCAFxqgqmrAXSOJBp+ucg=
+	t=1758208524; cv=none; b=gp+e32IKWsqEUCBpbWE1HERbop9RADRzcbEU67/msKFhCGU079EsW8+a0ola677GWjLFb0muRPhPZABiB7lpQvX0oewU30e2fOMoreJVkr2ikKLrsEPFuKVJL02Q9HkM+obk4QwhvLIJg1RFbtv2OYPlwRGsKRZOC/AgO2xhC04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758208460; c=relaxed/simple;
-	bh=e37jPrqR9E8heaYU5Fw0c1p4mhM/UmeLs+VMIVzgSZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pLaCu2uquGQIapodVA+EL5J+NoWDa0vrUMNlln3aVojr3QXLF5MeQiZ08MY/hNLp77DPx76AuJ+WIrx5cHFQU249zbR2sy956+oewHrupsxSMqwWRaqpi01w4XOz0dsgtv3LN4UhtVb2GNb3fTETvSGSwwpf77eNAnt4R/eSYhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dyx37ooM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B84D7C4CEE7;
-	Thu, 18 Sep 2025 15:14:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758208460;
-	bh=e37jPrqR9E8heaYU5Fw0c1p4mhM/UmeLs+VMIVzgSZE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dyx37ooMvHHb8c2sv5ewsfpuJtmCBzSabR83O1NgTFpdz8Z/WZ2OJfpZPLSHPAOTj
-	 f26qGMh6giX3o7w25KYRJjZZlZYAyKI0w5E4csToLEmUKG7ymqX5vZN4kNtOYsYJuK
-	 aZiouhU6Yheg0iQC0Kqk/TbZpTdCBCJde0+fOjJONutiDEGcx6nB/8KQCOoBrM62Ex
-	 ucKITNtFN4+nAw1QHFF5cbsY2wcvDQhIcOpoK14AEFv1j+ymWVNhIR2tgVKTv4pbxf
-	 FsrwjSN8lBpLrKgUDlWA0P1+wfg0R10wopAEqZCgvdRgEsox15caWrQjvlsmO/FROT
-	 3hY+hk1liNTfg==
-Date: Thu, 18 Sep 2025 16:14:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chunyan Zhang <zhangchunyan@iscas.ac.cn>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Deepak Gupta <debug@rivosinc.com>,
-	Ved Shanbhogue <ved@rivosinc.com>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Peter Xu <peterx@redhat.com>, Arnd Bergmann <arnd@arndb.de>,
-	David Hildenbrand <david@redhat.com>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Michal Hocko <mhocko@suse.com>,
-	Axel Rasmussen <axelrasmussen@google.com>,
-	Yuanchu Xie <yuanchu@google.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Subject: Re: [PATCH V14 6/6] dt-bindings: riscv: Add Svrsw60t59b extension
- description
-Message-ID: <20250918-hamburger-dyslexia-4f28f632ba2e@spud>
-References: <20250918083731.1820327-1-zhangchunyan@iscas.ac.cn>
- <20250918083731.1820327-7-zhangchunyan@iscas.ac.cn>
+	s=arc-20240116; t=1758208524; c=relaxed/simple;
+	bh=ykNt9ik5AHQfEDNEYgj4XVFufl8SXg51nFMFWRD/dvQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=N4hhYib01lIE45aaxw2gABtygkFh3Ip+HQJvXyqm8YQHTqk8yP3Una3i1fftJyqelADjaN68bwMbPkUvecKDc+iTlj467Bmh2LL5DsWpzm+w7nEm0AEGRWUxporz/OhIaULBz6nDW7SkSSdkPrSc5lKdxHGagvwXbLEbVtUfbz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S2QRPGDs; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 05D661A0EED;
+	Thu, 18 Sep 2025 15:15:20 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C20756062C;
+	Thu, 18 Sep 2025 15:15:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 91341102F1704;
+	Thu, 18 Sep 2025 17:15:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758208518; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=bBz84TZkfDLLhPGBTU9pbGWLejx7qAV5GjzUkaLGTDs=;
+	b=S2QRPGDsWgskQ9R2aBDQIzYoTJlPbeMnY822QlcaVGz0DjmmLRZ0VT2WDVd3K578tGsiUE
+	FZ0lKu0Ji8Kp384+VNLkqxnH0jBCTPyae4nq6WAa4IWP48kntCA/iCwRFJqjutj6t9XjVS
+	vlL6gGYJ2i56+CzKuwocDEoamTaSVNKFCCpO3aHeoAXSB+op/bH9j0B1PuJ8OGad/k+QsG
+	OHpW2JFvBXFNPNah2LYAcKcOfTsHDg6v+wKtzNASfRZhLPCPvOvriugzKKdfHfFBBAh7J2
+	hi2c/ADc0cWTiG8dQScE89zEQo/wecOEhn6iYVysqikg3zeXQnuodwaj9QRFXA==
+Date: Thu, 18 Sep 2025 17:15:02 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
+ Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
+ Eberhard <pascal.eberhard@se.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
+ GPIO Interrupt Multiplexer
+Message-ID: <20250918171502.411c3527@bootlin.com>
+In-Reply-To: <20250918-majestic-mockup-0a0e090db0a7@spud>
+References: <20250918104009.94754-1-herve.codina@bootlin.com>
+	<20250918104009.94754-7-herve.codina@bootlin.com>
+	<20250918-majestic-mockup-0a0e090db0a7@spud>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FffgZ+UbWyVNp4c4"
-Content-Disposition: inline
-In-Reply-To: <20250918083731.1820327-7-zhangchunyan@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Conor,
 
---FffgZ+UbWyVNp4c4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Thu, 18 Sep 2025 16:06:04 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> On Thu, Sep 18, 2025 at 12:40:04PM +0200, Herve Codina (Schneider Electric) wrote:
+> > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> > interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+> > 
+> > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> > IRQ lines out of the 96 available to wire them to the GIC input lines.
+> > 
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> > ---
+> >  .../soc/renesas/renesas,rzn1-gpioirqmux.yaml  | 87 +++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzn1-gpioirqmux.yaml  
+> 
+> This is an interrupt controller, please move it to that subdirectory.
 
---FffgZ+UbWyVNp4c4
-Content-Type: application/pgp-signature; name="signature.asc"
+Not so sure. It is a nexus node. It routes interrupt signals to the
+interrupt controller (interrupt-map) but it is not an interrupt controller
+itself.
 
------BEGIN PGP SIGNATURE-----
+I am not sure that it should be moved to the interrupt-controller
+directory.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMwhxAAKCRB4tDGHoIJi
-0iAsAQD7ScZJcmETkRnAWwXKaeLSK+AK6nQi41/FAWzfFHlGdwEA7piCtUIt1/yB
-fVjprhuNZVfc3qSe20i1DS2O+/jVCgw=
-=VlWO
------END PGP SIGNATURE-----
+> Otherwise,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---FffgZ+UbWyVNp4c4--
+Best regards,
+Hervé
 
