@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-218605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-218606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62709B824F8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 01:40:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825CDB82558
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 02:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1061258340C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Sep 2025 23:40:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31C593B7D5D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Sep 2025 00:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2E3329510;
-	Wed, 17 Sep 2025 23:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212B018EAB;
+	Thu, 18 Sep 2025 00:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="fnnTFpM9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDDVgE8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63440329505
-	for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 23:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00FD17E0;
+	Thu, 18 Sep 2025 00:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758152436; cv=none; b=D4xbS1aL+mVb7xr8Yz1UxDZ2/TMg99jVEe/fPQk1tCos4fBqe+j/Gb5EXJMz//YGEawNgaPNcNesLU9RXszNoQ+eZ0Vo9CJOubEWdpfUyuv0wX2OTzRCXxsdKYVIDfybGyhS7/75rCCiu1kdqxpOhwnAKsxGCzn9dMHUsnwbYmU=
+	t=1758153677; cv=none; b=ARBDxq9K+hjveg7PDrPJltEcVDxICdnZjdK0vi+bf49JbjKZIw7T2Ayj1wRePhxab60G6e4KBYdt0qLfqbGQKl764BuOKSoQ/UyjRWK1Y8JisMWHH3M6TFJOb9JmmvbpctvMZ5FCjJtcWS5dV6tjUGty12NyihdNnHjvDU5YaeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758152436; c=relaxed/simple;
-	bh=WSUDTo2YPrsMhanXvD2WU2viqGWsoO+MKY+Xv+c2P7g=;
+	s=arc-20240116; t=1758153677; c=relaxed/simple;
+	bh=1B3/y6mC3x0Gb7mESrjJVqtP5iKoAmAQvn0c34F3HYY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jefW2iXQdsijeni39XZesJw2G7pcSLTeJBzknoBozSeaq2wPIVEIfCaVUfb0Dug6HSj+kvUhwZBXdZtkH6BwM52pZcbUCuIcBcb0rHQfI/GBL2r3EFf2vVgUn/IT6ntroI80wAe1ZEGRF7dC/37FUFLR5m9H25ZBNFMhv5FIMEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=fnnTFpM9; arc=none smtp.client-ip=209.85.166.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-88432e60eebso13514539f.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Sep 2025 16:40:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758152433; x=1758757233; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U4LnKnBe0mUrdxdcBF4M/llb4IeQlPfA2whttLuEB5Q=;
-        b=fnnTFpM9dbLZRTz6baEM0q99r59tQD9IRcrATU5qxeYy4P/VepArnvQsfq0gjt1/4D
-         VuhWE4wm00PqAmNIuqzZxOB1w8NejghD3PjIw5pKPbSqNLdInB+0YDnB+fADVgP4vrBt
-         8JOCwHBCYp9xiSxlxw+RWGitND6DfcJCOr+W2WsyA8GW0xfe2bA97HIJd5I6uuNfaACN
-         VbuVFlYwq32bXQUcFk0WVqpYMMq+bEPdUOBxA4eSxsM3ZbAAvu+vZ4vZ7bwPu/cLprQC
-         i7BYhE74YyHMnSqUMsjeDaj1IfYQIJdD5S/gN1oy36v6WOoraplaSZWe/rFWkO6CoPyZ
-         V0rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758152433; x=1758757233;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U4LnKnBe0mUrdxdcBF4M/llb4IeQlPfA2whttLuEB5Q=;
-        b=jq/Bf8xoTiQ5srKNTFp3tZCv6FOJmm1eWmcj+L1qcKlG4nLwgI0T/fhiZyQAEOLliK
-         lQRvPtmBrVMTtgrYmmSRYGj19mpY2bQhyTZ/qZHFGx/alLtl6n2OT8NxDFxKVxcrwF2b
-         spDIktv2Kc5YJIdbc9kbNJSH2B2iT9+Lz1t3Bt318spr2K885bz3at9kBRdGI+7C9lMX
-         irAe5cJ6IMDoh/4/Gs1RRwaczvMOebKga9CX96gQkK1QOHY7jv2rKnsFhI88H/eTSuG8
-         hCtcExYB776l4R7Uw7arObWOw1J9EqDCIKC7grzLiyJUfXX4VwFBKvwWHgIpbzAyMqbr
-         HjRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWIrWQi9j2rP29Dse/LImOhfNGqHQvz6I0JsnlGwfA9Tk/olBqmmxWq5C+vnMwT9xUEA7UW6eBN/kk3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz63DqT2FqlZ7oU0UcJrGdxhI9hvr2sOA/FcyKJu/w2DsrWXe+b
-	nnI0LIfoFEUASZlloSF8zGKaNfG8mIleUosg2cFLaMK7KQ3aQXRBkPh1HU00PdciUAo=
-X-Gm-Gg: ASbGnctjBH+z9fi1/12AzethZEDJ1DrXermlOIZFzSKt3ByMNKUbLBfIs97nlJoZWOs
-	673gJzCMDhlshY4/XcRIouu52C0xTMpHn28RyLjA7obVLq3eWaqfEwSD8CpUGuapO0Xf8Cg/Bar
-	u+Q1eyADJOiprkPxbHNDn74yGV/5NAD3SHyex/A994XJ06Yia3ljQXhoS6f6ec5CvpupzRw+l/E
-	LERmjhxZOB+D/4VCpKWHn6zageNsE3/9lV/P5HtGpGjQJe4RSh9IQU4ui9q+bEhXMo+/TRBoU5L
-	ZyRBQSDtGhKSl1CzolvKtPP5GPYzKQRQR1zJbJp1M9KCa+MmMpVXEL9fklwZ8YP6hz3GN/duLk3
-	wwEDLl7oIlpdxmL5J0NNotjMsEp16UrrESIwYkBb23hBF/Xu39X03Qg==
-X-Google-Smtp-Source: AGHT+IFIMlPua7p/TY9YMSKjXsZOBX/5j6z1IJQ7nS5dT8sO4hABWq+/kl4R3zdjJi/vT1pYQ+i8NA==
-X-Received: by 2002:a05:6602:6c10:b0:86d:9ec7:267e with SMTP id ca18e2360f4ac-89d1a7c97eamr718446339f.4.1758152433403;
-        Wed, 17 Sep 2025 16:40:33 -0700 (PDT)
-Received: from [10.211.55.5] ([131.212.251.230])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-8a46fea3353sm31238739f.12.2025.09.17.16.40.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Sep 2025 16:40:32 -0700 (PDT)
-Message-ID: <3b815302-21f2-4ee2-bf83-c1dba77ce3d1@riscstar.com>
-Date: Wed, 17 Sep 2025 18:40:31 -0500
+	 In-Reply-To:Content-Type; b=ufwV9JJypoiiCeWyE3qg7xJQfalAJ0nNLWTkITubpzpr7HvrYrYuUu8a34EQHnWk2iQYrrOo9xX3yUE42C56DVi82qJ3H+Jc/Zke+BtH/ykZnxWL8Npa4Kc4bqkalKmrbes1/HhHNxo3Z0fPQb6+IIKE1X//Eevmu/utDfPnxmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDDVgE8B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DF7BC4CEE7;
+	Thu, 18 Sep 2025 00:01:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758153676;
+	bh=1B3/y6mC3x0Gb7mESrjJVqtP5iKoAmAQvn0c34F3HYY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VDDVgE8BCfMQPQ6fqgNJCfqaNGdgmJyEgRe2ykUFgjSd+ZBzPU5ulEDRfLPZY86Ko
+	 VBoiy9cHUAM3MMEw8uNXmNL3NRNtBZKopg3noLfc9RmH89sPqGS1rj4X/hhDxhpxYb
+	 8rQWdHRhbHk0pepfxNSTpcM2TK6bSNcEnXAduDi35HgQOH7CbMuxBzzU6kii96TMlp
+	 gn5Qs8BYvAgJNsOVkPbKuJWS5cTAoXW4qAos6D90t14uWlZ7hct0mISncgCmy8oFOI
+	 GEOQ15U7PkofWvlykkzLAFBGRkXIK43wUoGVZ8qjWIMcXP6AFmFK5g5VgtHYjhh77U
+	 hDovHNlhfh57w==
+Message-ID: <0daf1bda-d0f2-45bb-a68b-2437ba0579e7@kernel.org>
+Date: Thu, 18 Sep 2025 09:01:11 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,168 +50,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
-To: Yixun Lan <dlan@gentoo.org>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250917220724.288127-1-elder@riscstar.com>
- <20250917220724.288127-2-elder@riscstar.com>
- <20250917231520-GYA1269891@gentoo.org>
+Subject: Re: [PATCH v3 1/7] dt-bindings: media: nxp: Add support for FSD SoC
+To: Inbaraj E <inbaraj.e@samsung.com>, 'Rob Herring' <robh@kernel.org>
+Cc: rmfrfs@gmail.com, laurent.pinchart@ideasonboard.com, martink@posteo.de,
+ kernel@puri.sm, mchehab@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ pankaj.dubey@samsung.com, ravi.patel@samsung.com, shradha.t@samsung.com
+References: <20250828085911.81266-1-inbaraj.e@samsung.com>
+ <CGME20250828085926epcas5p1b82576210280fb44c6c7f02851da71c6@epcas5p1.samsung.com>
+ <20250828085911.81266-2-inbaraj.e@samsung.com>
+ <20250829174638.GA1054721-robh@kernel.org>
+ <024f01dc27cb$f167d370$d4377a50$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250917231520-GYA1269891@gentoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <024f01dc27cb$f167d370$d4377a50$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 9/17/25 6:15 PM, Yixun Lan wrote:
-> Hi Alex,
+On 17/09/2025 21:09, Inbaraj E wrote:
+> Hi Rob,
 > 
-> On 17:07 Wed 17 Sep     , Alex Elder wrote:
->> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   .../bindings/spi/spacemit,k1-spi.yaml         | 94 +++++++++++++++++++
->>   1 file changed, 94 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
->> new file mode 100644
->> index 0000000000000..5abd4fe268da9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
->> @@ -0,0 +1,94 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/spi/spacemit,k1-spi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: SpacemiT K1 SoC Serial Peripheral Interface (SPI)
->> +
->> +maintainers:
->> +  - Alex Elder <elder@kernel.org>
->> +
->> +description:
->> +  The SpacemiT K1 SoC implements a SPI controller that has two 32-entry
->> +  FIFOs, for transmit and receive.  Details are currently available in
->> +  section 18.2.1 of the K1 User Manual, found in the SpacemiT Keystone
->> +  K1 Documentation[1].  The controller transfers words using PIO.  DMA
->> +  transfers are supported as well, if both TX and RX DMA channels are
->> +  specified,
->> +
->> +  [1] https://developer.spacemit.com/documentation
->> +
->> +allOf:
->> +  - $ref: /schemas/spi/spi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - spacemit,k1-spi
-> one enum is effectively equal to const..
-
-OK.  That's an easy fix.
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Core clock
->> +      - description: Bus clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: core
->> +      - const: bus
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  dmas:
->> +    items:
->> +      - description: RX DMA channel
->> +      - description: TX DMA channel
->> +
->> +  dma-names:
->> +    items:
->> +      - const: rx
->> +      - const: tx
->> +
->> +  spacemit,k1-ssp-id:
->> +    description: SPI controller number
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> could you explain a little bit why this vendor specific property should
-> be introduced? I took a look at the code, and didn't get the reason
-> behind.. or what's the problem of simply using "pdev->id"?
-
-This property was carried over from the vendor code.  It is
-optional, and if it isn't specified, the platform device ID (-1)
-will be used.  It's just intended to provide a well-defined ID
-for a particular SPI controller.
-
-> we should really be careful to introduce vendor specific property..
-
-If there were a standard way of doing this I'd love to use it.
-
-And if it isn't necessary, please just explain to me why.  I
-have no problem removing it.
-
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - interrupts
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +
->> +    #include <dt-bindings/clock/spacemit,k1-syscon.h>
->> +    spi3: spi@d401c000 {
-> label not needed for DT example
-
-OK.
-
->> +        compatible = "spacemit,k1-spi";
->> +        reg = <0xd401c000 0x30>;
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        clocks = <&syscon_apbc CLK_SSP3>,
->> +                 <&syscon_apbc CLK_SSP3_BUS>;
->> +        clock-names = "core",
->> +                      "bus";
->> +        resets = <&syscon_apbc RESET_SSP3>;
->> +        interrupts-extended = <&plic 55>;
->> +        spacemit,k1-ssp-id = <3>;
->> +        dmas = <&pdma 20>,
->> +               <&pdma 19>;
->> +        dma-names = "rx",
->> +                    "tx";
-> ..
->> +        status = "disabled";
-> ditto, drop it
-
-OK.  Thanks a lot for your quick review.  I'll wait a bit
-(probably until Monday) before I send an update.
-
-					-Alex
-
->> +    };
->> -- 
->> 2.48.1
->>
+> Thanks for the review
 > 
+> 
+>>> +    description:
+>>> +      Syscon used to hold and release the reset of MIPI D-PHY
+>>
+>> Reset? Sounds like you should be using the reset binding.
+> 
+> The Tesla FSD Soc does not have a dedicated reset controller. Instead, we
+> are using the
+> system controller which is MMIO Space handled by syscon driver, to assert or
+> de-assert the D-PHY
 
+
+But that's the reset controller, no?
+
+
+Best regards,
+Krzysztof
 
