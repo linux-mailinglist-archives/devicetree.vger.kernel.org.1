@@ -1,138 +1,136 @@
-Return-Path: <devicetree+bounces-219088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48975B87746
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 02:16:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0532B87788
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 02:29:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C54216C350
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:16:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F9B81BC3D6A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94EC834BA5A;
-	Fri, 19 Sep 2025 00:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1644D22FE0A;
+	Fri, 19 Sep 2025 00:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b="bQRgSfLf";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="XTzOJH8L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEkiIOLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080C579F2
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDF44A3E;
+	Fri, 19 Sep 2025 00:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758240983; cv=none; b=Femn4wt0D71DRrFoBHmLmPh8YOSrmZI0tOx9UV3gQdu2Yz6hq/8CUpcbacEKQsfQEgjqG/nofBB693bw4SP2e2CP01Xs+5RGNmuwo+aJ+UmpgYVI2jgP3iAZDG7kzvEQwFMiwgLgsugck9mpE1uKI/70s4Zvc0v1MV0G67Prx8o=
+	t=1758241760; cv=none; b=iZLxnWPs65YQ91hFqtewTtNg6/Y6kbNxLDjAopt75SAKdUPHKEc6qTcWvakiacw6SIFtdXIe2CyF3nnzh22c7cxJWqGs+JOJLXy/pvgwDS+Q3eMC4gDbYxLCV9Oqc8m5v/a2l9YH0K1GyqMJ/j0St5WYDS+J3xJVWTlQpzqGAt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758240983; c=relaxed/simple;
-	bh=xleZcsCinMchh6C0BPsur1lY0vz/DDe7FZmlTielDRo=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=FQPNHHUt/onh2XutpVwQgkA+bxTHXgdEQs6Zbv4DWFFXj3W1mfp2eN7NVBS8RmKjJy+5tyZfm7CLedovLnYDWS6W5wTaFNbc3qrMo0wZH1STzjyKv6rdTNhLpJ1benPINMQLfm7sC8ER/Rj4REHsMkdz2RDf3CMPUgP2yLlMxVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au; spf=pass smtp.mailfrom=traverse.com.au; dkim=pass (2048-bit key) header.d=traverse.com.au header.i=@traverse.com.au header.b=bQRgSfLf; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=XTzOJH8L; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=traverse.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=traverse.com.au
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id E8F851400175;
-	Thu, 18 Sep 2025 20:16:19 -0400 (EDT)
-Received: from phl-imap-18 ([10.202.2.89])
-  by phl-compute-01.internal (MEProxy); Thu, 18 Sep 2025 20:16:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1758240979; x=1758327379; bh=vEGJRFKTNrsJE0HCbcK9vp/Iv76/uJJd
-	ZCX2X7FKaRs=; b=bQRgSfLfxYtxeK2ZY1mNg5iMzaMmb8PtsCSnTRIS5u9+/9F/
-	DRKlgR/9oRthRfpGe1UEEGF+Dxl+scqYzVGemCLPgUfDv0CG4DZKoEIKdy5SEq82
-	ybRnpPKs7qvtW4NIUjmBBRM9jfU9BRY48RDUeXZOkCm8QVNerhVrn6v8BkJIt732
-	9oi6K1hyO3nIjDWK9RhXH9TZ32Jhg5Cggfx29Z0kbTBNeL8YSv0hUKsFm3E6t+Q1
-	ZuKlWofVsYoXinEOAKPHe877+4MWD79s2kU+IZBC3g0pJdF75Ro+41R47Z0WoKgu
-	7QUozTf9PJvF/paYRrcWOFeRqNC54hRfgOGLXQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758240979; x=
-	1758327379; bh=vEGJRFKTNrsJE0HCbcK9vp/Iv76/uJJdZCX2X7FKaRs=; b=X
-	TzOJH8L0oYawVfbQtdJY/K7nPMTEMrCn32tzXzAu4zm5B3VDROTVlj+tKmJiwTEx
-	aROqItV4IGLA5MY3+yF3US40cy8h0RhtfcrvYjeeKCSba5Jatkat7k1rO3Z199Ta
-	OSVs2Ef+eiiNjF0OhAbD2ODdniPFrv2zAKJFZrmI8pSxv+WYU52mqj6zBwKGaFBn
-	y4ALaP/LS3uMH+xX4wjXgLtHD+0HtfGkNZeEcJ2J1LbDJGKLpnQS9UCYC7wdrBys
-	g84pWZ8IKX/wwHh0OmqjyM0PngKSuFo/DMak+5zJDEaRTp9OM6//uykN97RwzIgY
-	c564QtJ4iOmVwi75XmFBQ==
-X-ME-Sender: <xms:06DMaCbjYrQyeHtnlD6C5vM0U3hxJvrl9DrOcANoA0Jyukkb_xcE8A>
-    <xme:06DMaFb3LElbYUKxxGZD8CASwsm-KUoqM8cEVU5bHaVlaYcsQP5XROBa-L_jIqIh7
-    z0xjJXG24oV-9zd0Bc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegjeejhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdforghthhgv
-    ficuofgtuehrihguvgdfuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenuc
-    ggtffrrghtthgvrhhnpeffudeiledvtdekkeeuvdegheetveduvdeivdeuieeiheekleel
-    ueetffdvgeeikeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrthhtsehtrhgrvhgvrhhs
-    vgdrtghomhdrrghupdhnsggprhgtphhtthhopeekpdhmohguvgepshhmthhpohhuthdprh
-    gtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhr
-    iihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehs
-    hhgrfihnghhuoheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmh
-    dqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohep
-    fhhrrghnkhdrlhhisehngihprdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggvse
-    hvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:06DMaAFzKQ1iBw3Ukqx8FgeJPd-kAiO33j-Rd8i8e4FspevVBh7kWQ>
-    <xmx:06DMaAEuqD2L2wg1U9MRAQhwv6nyvm6ISbGPt-rEVd01ZBJZKsoovg>
-    <xmx:06DMaL5ckNPCCxaOzyH5_otnq5lLPoBOscM1iEFkNopHB7TNr8tNOA>
-    <xmx:06DMaNwFEJKHrHYApVkJuupNarcT1ucEOZbDBR1BRry9rcz2oCrfQA>
-    <xmx:06DMaCUOoqjVkgr5-Zhs78YYBLZ7TmkM4Tnq7r1scgKG-Wm9teQbcBwG>
-Feedback-ID: i426947f3:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 6429E15C008C; Thu, 18 Sep 2025 20:16:19 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1758241760; c=relaxed/simple;
+	bh=rUZMRwKfJQIUT6+1NgJgtotbl/gzBIiQfywFOchXLW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YtulF7wlSGlhyvi5jaklap+tZ4oJSEGRB8LhmdSzLt5hYEU9rY7gZUnD8NBOv3Uf/lik6FuSkWPWljGCY39dz6juMV3DZQZg/QeAqmX/tOA+0s3J3aORfmeVqipZC/AhHNbxkmseji08Cjt6glPPKkodYJ76JMGjPMavLDZY2Xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEkiIOLL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4A8C4CEE7;
+	Fri, 19 Sep 2025 00:29:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758241759;
+	bh=rUZMRwKfJQIUT6+1NgJgtotbl/gzBIiQfywFOchXLW4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DEkiIOLLA0RQTZ5hhIdQMlCD0lO3IRsf1YXx19L5OXy88YzR45VJuNTP2tGgzolCc
+	 QYqi2t+FfZ7c3+TjX9Rr3jI3HR79dVBG8bm+7T2QOoT1ClZgO5H8otYNlcKpoInwYn
+	 1F6Earh5v8Bc5WSG5s7sRIucxcn7Fyz2nwTEyJVpYKIDUMx+H5fdosoFxgnM6Zo/sY
+	 TCd+fvW9ciWxHtDPS27/oyVvrqp1htABi5SXwpakrbb+ycNB/StUoAKutBDVd4aZlQ
+	 nxSlKNglFxHatTPZPFgiHc0btJA0BfqAaoWyfuwIiv0Zb+moR+4pcU/q0xjO4Yl0JV
+	 fmO67ZYPai80g==
+Message-ID: <02ef5180-ad56-45f0-a56f-87f442bf6793@kernel.org>
+Date: Fri, 19 Sep 2025 09:29:13 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A_NFvKLCkkX-
-Date: Fri, 19 Sep 2025 10:14:53 +1000
-From: "Mathew McBride" <matt@traverse.com.au>
-To: "Frank Li" <Frank.li@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "Shawn Guo" <shawnguo@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Lee Jones" <lee@kernel.org>
-Message-Id: <c757c692-2fd2-41fe-9499-bdd48a71f0a0@app.fastmail.com>
-In-Reply-To: <aMw3t691HHwCQc+g@lizhi-Precision-Tower-5810>
-References: <20250918061441.5488-1-matt@traverse.com.au>
- <20250918061441.5488-2-matt@traverse.com.au>
- <aMw3t691HHwCQc+g@lizhi-Precision-Tower-5810>
-Subject: Re: [PATCH v5 1/2] dt-bindings: embedded-controller: add Traverse Ten64 board
- controller
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ alim.akhtar@samsung.com, andre.draszik@linaro.org, peter.griffin@linaro.org,
+ kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
+ igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com,
+ s.nawrocki@samsung.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+ dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
+ selvarasu.g@samsung.com
+References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+ <CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
+ <20250903073827.3015662-2-pritam.sutar@samsung.com>
+ <0df74c2b-31b9-4f29-97d3-b778c8e3eaf1@kernel.org>
+ <007801dc2893$18ed4a20$4ac7de60$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <007801dc2893$18ed4a20$4ac7de60$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Frank,
-
-On Fri, Sep 19, 2025, at 2:47 AM, Frank Li wrote:
-[snip]
-> > +properties:
-> > +  compatible:
-> > +    const: traverse,ten64-controller
-> > +
-> > +  reg:
-> > +    const: 0x7e
-> > +
+On 18/09/2025 20:55, Pritam Manohar Sutar wrote:
 > 
-> only have reg properties,  can you put to
-> Documentation/devicetree/bindings/trivial-devices.yaml
+> Yes, we have already discussed this and convergence was to use the 
+> conventions which are mentioned in the Data-book. So, I updated the 
+> supply names accordingly. 
+> 
+> Please see the below communications for the same. 
+> 
+> https://lore.kernel.org/linux-phy/83dc9435-5850-425d-b345-52e84ef9262c@kernel.org/
+> https://lore.kernel.org/linux-phy/6e1c67d2-9bfa-442a-9d53-8c5970a2a9ef@kernel.org/
+Ah, ok, although next time I might ask the same, since commit msg does
+not explain that.
 
-I submitted a version of this binding as a trivial device a while ago (2023) and it was not accepted:
-https://lore.kernel.org/linux-devicetree/c44a73f0-5b34-c740-40c9-afb04bf1c6ab@linaro.org/
-
-Even if it were to be accepted today as a trivial-device, my concern is that we would end up with this schema again should we expose any functions of the device, for example, as an nvmem device.
-
-Best Regards,
-Matt
+I still cannot find constraints for the rest of properties, though.
+Best regards,
+Krzysztof
 
