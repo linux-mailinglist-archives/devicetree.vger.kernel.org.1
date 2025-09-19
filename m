@@ -1,383 +1,650 @@
-Return-Path: <devicetree+bounces-219454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD51DB8B613
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 23:41:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6F5B8B71F
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 00:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A1D41C84C72
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:41:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D2115A0B62
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55F02D3740;
-	Fri, 19 Sep 2025 21:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E0B2D3ED0;
+	Fri, 19 Sep 2025 22:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="GfRBatTM";
-	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="jcucREp0";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="kg4nPD5x"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ZOKlpcQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00230701.pphosted.com (mx0a-00230701.pphosted.com [148.163.156.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38322BE653;
-	Fri, 19 Sep 2025 21:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.156.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758318077; cv=fail; b=qqKDyypo8VKN3oihREBeb7hGZzvH2eyLG9+/a8Qi52oVsrAi57uPmjdah122ooaeyYDTgdNdow+06h57X4/rC4b0HTPnv39DZNVkZuDPvqchKm69kvbY3zoYUEwlGZX6QO9rz7GDQwW0az5iXlZS3hcN0w6aAG208Hb5NZ5BXeQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758318077; c=relaxed/simple;
-	bh=91f6Tq1ikVk0XNlEq/yld4KeYGnQbHTOqo7NoLtH9Qw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=hJFYIjtPwQvSr7sw2roGIzw/vVfQte826sTUnowzlpwEABhDGqJ13W8lVU9Hcu1t/RN6ShNMPNrzaQC3TRH/h8eu6lZQrcDvMPcXU02WC+k3wceF2DNPo4i8LTKzbSTstemp+bx2u/HtFgbKzcnOiiSXPGmcev4mjFHMIhc9Ne8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=GfRBatTM; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=jcucREp0; dkim=fail (1024-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=kg4nPD5x reason="signature verification failed"; arc=fail smtp.client-ip=148.163.156.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
-Received: from pps.filterd (m0098571.ppops.net [127.0.0.1])
-	by mx0a-00230701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58JJWGsW005290;
-	Fri, 19 Sep 2025 14:40:29 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
-	cc:content-id:content-transfer-encoding:content-type:date:from
-	:in-reply-to:message-id:mime-version:references:subject:to; s=
-	pfptdkimsnps; bh=91f6Tq1ikVk0XNlEq/yld4KeYGnQbHTOqo7NoLtH9Qw=; b=
-	GfRBatTMRn89K/fqNxlBSkoFgWoKMWtVMgvfS1c5327Hkgu6k9FxYkhmgXawVezJ
-	ZEWGHLoiQTkBhKJ5exZiQMcactz7I3GdvT5TBKU6sAKXaL9cGlHFo1Ij6rQ8h8nG
-	DE5yQAiTwS7DZHFboySjIgCXl3g6l1yOCixQJiOYumjm8PtoBulreAt67f49Czs3
-	UsNSphLFaRMW2ImCfmFGJozFyOXb4+LZf3ZJTuEjPQeo6SlZotweXT4QrtnIn3v8
-	JVWLoSb+/ZON3Tge3pZWJJs04IMIYhLDRXivaZ00nZCU7R1HbhG985vWn7+XXUIR
-	K+Rbf1pwK9bXLl3RrPh04A==
-Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.73.133])
-	by mx0a-00230701.pphosted.com (PPS) with ESMTPS id 497fxradp1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Sep 2025 14:40:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-	t=1758318029; bh=91f6Tq1ikVk0XNlEq/yld4KeYGnQbHTOqo7NoLtH9Qw=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=jcucREp0TbgvxS6CDpEf+LTT8rfDYC8YfB7APy2hfZrbzhgpyjOvdLDiOI7lIg8v6
-	 vIFYJyuSpa8WvOCG55QUPxq+EX3GgAKzUKUcI0ThsDUUscakShzLVnbHfJ69jChv28
-	 lF/tme6nx9G+jjKcf5PZHFrJH784wLhp7S01JrI7T74kE2Y+El3/02CWrXMLKAToAI
-	 hyc5wv7zsz4bAllSkPZuhL/g0FAnIcy6BiyDXmRvuPVf1g6s8Um7FhSuld7ZGxNy5a
-	 CmYlQ+lK1WP8HWDRXngfx0EFo/TV87ZirygikKSBnYF1ULgj332laUccvl1UDfjHen
-	 yrTe7dLweFftA==
-Received: from mailhost.synopsys.com (badc-mailhost4.synopsys.com [10.192.0.82])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
-	 client-signature RSA-PSS (2048 bits))
-	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
-	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id E2B354048F;
-	Fri, 19 Sep 2025 21:40:26 +0000 (UTC)
-Received: from o365relay-in.synopsys.com (sv2-o365relay1.synopsys.com [10.202.1.137])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
-	 client-signature RSA-PSS (2048 bits))
-	(Client CN "o365relay-in.synopsys.com", Issuer "Entrust Certification Authority - L1K" (not verified))
-	by mailhost.synopsys.com (Postfix) with ESMTPS id C428EA01D9;
-	Fri, 19 Sep 2025 21:40:24 +0000 (UTC)
-Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com;
-	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=kg4nPD5x;
-	dkim-atps=neutral
-Received: from DM2PR0701CU001.outbound.protection.outlook.com (mail-dm2pr0701cu00100.outbound.protection.outlook.com [40.93.13.64])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
-	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
-	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
-	by o365relay-in.synopsys.com (Postfix) with ESMTPS id 8A57340149;
-	Fri, 19 Sep 2025 21:40:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i6lZdW6A71wOx6B5R+ijNttmhUeqpCxQBIdjFp6Lpavk2/O+nd1wBEhkjfTef6ad8KD/sdgmi6DX5W25+V1EUGCqb9jeBkX5oxEeCzsBtz3zj8gQP6eMKHGxMWeY/Zu0jzDv6nbFaohVes0GEIMWagy0xNHT9Ce6FystDTHaJto7YAqVFK+X8t4ZNDsiHLbuCj8zAPHJaOoK0pE2oc2HC7TO/GblKEYnMfZqBNGWWE9X3ASoWUVUu0i/Y4TMLB7nxVbMsWlr8wJ3ceD7QYyDFel7HTEVmnr3QxsOTG61B6zfQLdOEsZfEiSH8l3awhQ9pJgUszmvhW0wTKVN5S3zCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=91f6Tq1ikVk0XNlEq/yld4KeYGnQbHTOqo7NoLtH9Qw=;
- b=fb08LbCiadwy0Z4TSoT4qU485ceTtuLIogC/DS2M2sZN9lD9wc7UHNNesEx2Hud2fLvKRm/CTDhWckwwF119Eafqwy136wUZSBfj5Cw/BtFe8IR5gdoGjRa0v1ACmE0rt0lswptNP2Fzoqj4MxlewXGMilcjkNyemSMsDW1fR4+erHfpOR7EVqg9VJEcOHfuB2HB1JK63t3nz+SvCXG+/Wm4qD0cWunTEMXJ9xqjG+IVXGjvvK8FEzqZz+Kjo38eI/EJAgAtqcf2pAPj+wXuAr3XEYK193p4LNctIhXLD2v1utMhtwy1bzYcziJ8Kg9AalEjwGHt7dZoBG5gDW5BRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
- dkim=pass header.d=synopsys.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=91f6Tq1ikVk0XNlEq/yld4KeYGnQbHTOqo7NoLtH9Qw=;
- b=kg4nPD5xTHf+hrHeaTwgqhnqIq4VsQgrc2roPqvpbwSS1wf2Nq+mAsgTpgfPIfg8i3j5O4oiGe199zyT6G3TXsBWhe2tj6PY4WJwF7hAT9oHOzUB7BAlvIIMVON4dwwiEgYLv7HVa9ajnozJkSok65GyI5TU/WHep/VbyU/gxt8=
-Received: from LV2PR12MB5990.namprd12.prod.outlook.com (2603:10b6:408:170::16)
- by MW5PR12MB5684.namprd12.prod.outlook.com (2603:10b6:303:1a1::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.14; Fri, 19 Sep
- 2025 21:40:20 +0000
-Received: from LV2PR12MB5990.namprd12.prod.outlook.com
- ([fe80::3d09:f15f:d888:33a8]) by LV2PR12MB5990.namprd12.prod.outlook.com
- ([fe80::3d09:f15f:d888:33a8%3]) with mapi id 15.20.9094.021; Fri, 19 Sep 2025
- 21:40:20 +0000
-X-SNPS-Relay: synopsys.com
-From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-To: Sven Peter <sven@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-        Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v2 03/22] usb: dwc3: glue: Allow more fine grained control
- over mode switches
-Thread-Topic: [PATCH v2 03/22] usb: dwc3: glue: Allow more fine grained
- control over mode switches
-Thread-Index: AQHcH0UIOVAW2qnvKUuy0q9Kv04FeLSbHWuA
-Date: Fri, 19 Sep 2025 21:40:20 +0000
-Message-ID: <20250919214013.gtbaknjrgd375hm6@synopsys.com>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-3-52c348623ef6@kernel.org>
-In-Reply-To: <20250906-atcphy-6-17-v2-3-52c348623ef6@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LV2PR12MB5990:EE_|MW5PR12MB5684:EE_
-x-ms-office365-filtering-correlation-id: 139f727d-83a4-4c3f-3f98-08ddf7c521b6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?TE1QdE8wU1hRYjJQQ0hXVWNtM3pBY1ZMa1BqNnkzWDdld2dDYmlSYi9pM1k3?=
- =?utf-8?B?TzdTRTJubVBnZjZUZzJORFlPaXR3YVU2aXNIY2J3ZXJOMzdrNENrTFZiUjRk?=
- =?utf-8?B?UlYxOHkwbWdOdDNNb0t4YXlUaldUR25teEpKS1NOODZFcUQ0SEVDenNQcE90?=
- =?utf-8?B?N3l4ODNBRTF2em9pTjh5UTVlcDRkcjkzVk0wZ0FvRG9ZTFNuMTU3cEJTYmwv?=
- =?utf-8?B?UTBLbzZwdmI4S205UTFTcURIcENZZnV6SHJZRVZTK0UrOGl6L1Q0VmtpYS8r?=
- =?utf-8?B?SFRSdFdOZHcxQW96YlNzZmdJRk9rcThiNS80S1BUeU9EcVFGNWx2a2tMbHha?=
- =?utf-8?B?aTlTYW9RT1AvczBscm5mMEtrdURSaHY0bUNLRFAveGQ0STA4RFpzdGdJWDRn?=
- =?utf-8?B?RXZmSzhDUmVDMmVsREFkVEZCYmQ1K0JCVjNVYkt0djBaYXhXQ1NzL3BhRXFX?=
- =?utf-8?B?V2FyUm42M29nUmRKcEZRVnlpeTN1eC9RK2w4QUFnbTJ1cnFOb0pmQnlJejdG?=
- =?utf-8?B?aUxidVZrWkd3VUVHek8rL1MzNElxbmZoK3ZIamdCL1U3Y0F5amZYS1hlMVE1?=
- =?utf-8?B?OHNuaW5uOXBsbDY1R2prd2tIcUhNM0lwNEY2b3JMalp5MVppU0FQd1A3WGxa?=
- =?utf-8?B?eFU4UFdOSE5QY2JQdEFBR0oxVEowSkt4UnFycm1FRnpOREpaendjZW9lQUx4?=
- =?utf-8?B?c0p2bjlwZTlKaW83QUt6VGcxL3lLMFdmdFZmV1NHYkxrditLSDVibEI2OStz?=
- =?utf-8?B?ZGRJaU1hZ01UamtHWUZ0UHdlVTVxVUtIMVRaanhPVWhsMHhoWitFd2RJdVN4?=
- =?utf-8?B?ZExzWHVKeklVRDY1ZU10K1VEQWk4dnZFTmFUeEN3aGdNczVpMC9rbG13VURG?=
- =?utf-8?B?bXJGdVdQUWNQLzE4dDdiK2l0dDUyZXNDZXhxYW5OUHZpcFRLNUlBa0RnUzRw?=
- =?utf-8?B?WjNwanFIYmR2c0czckdzdmpBWStIMkhXeGluT0EwcllNU2ZBR0ExVVBnVmxv?=
- =?utf-8?B?eGpCZGlLVE1kVWU4MDlIK2l4bnVseTRpbEJHU2k3WFpNdGcrM01MbUJNRm1t?=
- =?utf-8?B?d3JmcHRTblpPbWtOcFFNVzJpSjdLRlUzV1NwUWtjM1ozQUNuQitFS01Xa3Qz?=
- =?utf-8?B?TFVnTGV6VGVWbklESCthMXU0SGRjWTdPSDlGRlJ4S24xL0pIaTZrM3M1b1ZL?=
- =?utf-8?B?Qms4RStoaXRGZzNSZWlidUc5ZHZybzA2WVdlSktaS1JteitDS09SSU1XS1B6?=
- =?utf-8?B?K2VET0k4VXpNdTk5a042UlB6akZCYVdZejNEWjZ2ZjhjL1hhVm92N3BuKzJV?=
- =?utf-8?B?dU5uRVNSY2VibE0xYWtSVGVJL1BXZlpwVk9JRXE5eDQwWjJ6SWJWaWRod0Vi?=
- =?utf-8?B?NnZXZGRIQVRaOWI5L1huMUpKTmUvR2JoU21uSGg2S2g5QUpTM2dkbllDVUFk?=
- =?utf-8?B?T0pGTDZoeUlldEZGcUFjMXZ4Q2JKbFdTS0FWamloSVJOVEJDKzNUMEpjVUEv?=
- =?utf-8?B?QVFCNGNMTlJ5cXBmWGRrV1dCRExMVEZtOUpjZWlmTE9peWVKOUQzbDFodGN3?=
- =?utf-8?B?Wk15bWN1RVJhcHUxZlFuc3ZrZWFKT1pUZktKTVJmQ1VXNlhmeWVqY3BnQ21w?=
- =?utf-8?B?QkJMTFNWaDlSVHgxcFF2dVpCTHlFaHZQeTR0a2dNVjNyeVRtbkNWYS9qWE82?=
- =?utf-8?B?a3Q1R2ZxSkIzT3BGVmd5c045MGloUGhqWUIxQklXOTEyZTk1M3hRdmZrZzRN?=
- =?utf-8?B?dXluWTlJQnFvSnppR3FQaTdXTGIydW1LbzhpN2pOVXVOMVFCSXY3aUpFYzZM?=
- =?utf-8?B?ZEZvclcrYzU4NDNEbU5PM05ESDJiT3owcmlYb1NuN1JqUTV5dHRaYzZibGRs?=
- =?utf-8?B?T3ZpOERhdFNwZ3hMK3U2aXJETkwrQ2w2TTNsWmRYeFlJOWVHRW9vRkszbk9m?=
- =?utf-8?B?NzFaK3JXQTZtQ1Rpc1JkS3lwV0lsQ2wvb3FacTlZaWFLVjZhdWdEb0JGVTcy?=
- =?utf-8?B?UmJkNThmZXF3PT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NUtvOVdVOXpBMWZ3WGJGQmtndVpST2JIU1lGYzZIRk1DcUthUjlZT2dySGMr?=
- =?utf-8?B?YUFSN2N5WUM5R3NwSU9lVGFOTFhLOVZEcUFHVFVvOWlTbGp4dWJJb09qTDhO?=
- =?utf-8?B?WTMrRGpZREVXNjJCWkJnV2tOOWNOWmtxTHBPYnJrejZTM2NlQnhkb29abGFz?=
- =?utf-8?B?VjRzcDA1dTREQjA3U2RkVXQ4ZzJkVkJaQjlpZys4R3lxVVp0YjJXR3pCVnJp?=
- =?utf-8?B?SnZjVlBTdEFkd3NMQUN1bXRnR3A4b2F0czZ5cEVDcE44YkVJbHFjSlUxL2lD?=
- =?utf-8?B?MDdYbmtFZ0txd2YxNEE2NEw4cFNNeGVYbysrcGpaaVV3eFVIUlBJakpOR09a?=
- =?utf-8?B?VXNYY0Z0Q21LS2YrM0ZYMlNGVnhDZWFjRVlYNUZjVnU1cEgzenlkMytCbmI1?=
- =?utf-8?B?eXZGTURkL25KVm56T1JTUnFXUGgyYTdFWHBSK1RMUCt2M2JvRFZkQmp1ZW4r?=
- =?utf-8?B?WHlwSm5XUCtNVkUxeWZRVkdkSkluQlhzcDFWRUdGKzJWcWNQU1hFd0dRYjFk?=
- =?utf-8?B?STN3VHhSYWhCTHArZ01acE9ldE1XRndwTWFJaTFXWUxYb2U3UXJHeWhHYTAz?=
- =?utf-8?B?R1IvSGNQaS9mdHo4QmFsVERFTXVoSjJ6UGYxNFFyNlJQeVdYUjZwRytFbjZM?=
- =?utf-8?B?cDNYSG9MR1N0RnNoa0ZCYkpIbDkxaSt6SjlTSmpGTllQMXNBMHNQemsvMDhL?=
- =?utf-8?B?RkN4em1nWEprNnJubDBYQlpQZFY1bEJLMHl2VklFemhKNTBhK3dwQnJSRmFN?=
- =?utf-8?B?aUtsR255WUErSHFZMk1pZG81KzVRd2pnckU3dDVTRUd0aHR1S0g2QmY5YlBB?=
- =?utf-8?B?MHBXbUtFUFVGYUR4ck4wOVkrdVZ4dVduV2lpWXRvZDlIeEpDdTArMzdLYkVv?=
- =?utf-8?B?b2ZnaDVxdHNKUnIzeFFhaGRCSmtFZk5OWHZQekgza1pLdFZmRXFZMGJtekR6?=
- =?utf-8?B?ZkM5emtBU1F4OGh6TWZRcXdEL0FWL1EyZTkwVU5XbGovcmR4Skp4eGk0UGlG?=
- =?utf-8?B?bzBrVW84L2UwSEx5NnZpeUUxQ1VVMWdNY0RFazlpV2hjZ3EwdlF0cVBXellC?=
- =?utf-8?B?VEhRMTV1RG56cFF6eGpUNVNROWlTYjdqUEZkVWg3NnBidzhQWDBhMUtuZk1z?=
- =?utf-8?B?am1vYks4OU1hcFBIUGhGNnp4R25mYithNXNqMVcwTWtrWmh5cEVaQUJmMXZi?=
- =?utf-8?B?MkJrQ2xCMGxIRk8wZlgrczYvUzM0T3pnaGdBeFNUdEJhcEtiK0JEVkVEZFhB?=
- =?utf-8?B?ZC9XRzJ0VkQ5UGw1YTA2NXdQV2ZDd0lyUmRJbDlSYmFmNTRhanhuek82elpY?=
- =?utf-8?B?S01DQjJoWFI3OS9MeW4vN1JWVjRTUDZLbHZvN1cwcER0QTBQMGVVT2NZUEhL?=
- =?utf-8?B?alFLaE0xNWJpQkFrS3pxMDcxQjV4WExrUGNNWTlxR2hHaElIYWR5RStGMS9U?=
- =?utf-8?B?QmgwVlM2cFd4dzZMTU0vbW1qTzk5MGNXY3hScEdnSUVyWFJ5Vmo5SkNqellG?=
- =?utf-8?B?dFZJazFLNVpUQ0s2RGxiejB6VEhwdmkyc1pTWWdjNjVYMTFjazk5WmtqRE1X?=
- =?utf-8?B?Sk1MeGJ0NjVqQzBvckxWaytualZjU0h1VXQxVWxNS0tIR2tHQVJQQnoyVEJX?=
- =?utf-8?B?OTk4NFlRcHZZY09sektIK1JCalFFSHo1bnN5UTBrWEN2RnJsT1RwS1NFQ2t3?=
- =?utf-8?B?UDVOVEVWYTJUM1dRSUdpdkhPSlVUVVVOMHgyR2NBYk1Ya3pUczFGQUt1aDhJ?=
- =?utf-8?B?NkxtVWRzTUJ6dHBQT3hReDhqaXlmRWZoYjJkSXJ4bkxGMW14MVlZVXMwR1Jz?=
- =?utf-8?B?anJxRit3SWZLdTBESmFxckJ3d3lzb1hCdHZyUGNhaGJzTklya3QvL080cFNm?=
- =?utf-8?B?OSthakd2eVpBT1d4L3lqRzQ2U0lmQTlhT3duVmRJdjhKTVlpbHdZZ2hWczZx?=
- =?utf-8?B?SkYwdzdLYWliR1pMcjhHZTJMRHNERWVnb05GRCtaUmVTTys5RGNBb05CVTZ5?=
- =?utf-8?B?aEpKanlaRTFkOEF6aG91VW51OCtWRFVVUHFFejk0MHpqT0VJQ2I0dzN6RmtN?=
- =?utf-8?B?bGN0OEIwZnNHTTZxbmtxQy9mc1AzMUEvMTYyeXV3SXVQKy9YUXh4dWc3YzZu?=
- =?utf-8?Q?B2QbuFc39ni4I91BD+PbZ1BBa?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9DE661A2C6327044BADBB6D6211D167E@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C1E2D3740
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 22:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758319839; cv=none; b=fZe4UwgfvDsz3tmIvMdjxyt3FZZvsAKpigOlvTjsM/3JgbUCwQQ5kQcH59a2rjRd1YrxXTyenlqf8vKtZIVAsE4X4dqsjtJG13ZY2OX6qzLhiRd9QzMzU4eoPIzCJALdz/+w07JsvZ4e5n3MgCsUifUkaUraonE1iqSSx9xC8X8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758319839; c=relaxed/simple;
+	bh=4q1AnSE6bsLLkAJ7K9Pc3wIAgoqhjjlrMBV8BMtECGk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EklC1ZgnTGQoP8yPuFLcZ01lpGYLPQ5HKSLXovvnq0owMJoFkBTf8JZaRoewb1N7D+SjUV6FmcLUAbTMFLmM0Gu1gIiZPyZyIrIozV8Msfoy/uIivQEf8rwmHIwOqqC6YkM/ZhyA7bc/gFAoXHpZWoJg1DliJaDzmRVJv0WtQ3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ZOKlpcQN; arc=none smtp.client-ip=209.85.166.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-42480cb4127so18026265ab.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758319836; x=1758924636; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xgcPdNC8TLKzaK2dbK4ItnfKIaHmVEGBsiI70uCF/kk=;
+        b=ZOKlpcQNv9mtCJncgT0M17yvi/LItfAg3M5m6iC9d1xJWZyaMWu9LWDZupd8gpU9hS
+         AkMKTvC606zKsy3Ajy3n57j0AJAYpHgcwI8iYrVBvS5RQWvPoEtXPWocVT7jK2dHit+R
+         RuhEdhr4fib+VHKSSEVgTK0sbTNWVqKHwUaNEdUsxd2AaaXftW8XFnfBhqlafUrl71Oy
+         /o7Y4gAkzCcqPGH90tPxWEC5iXR1Rg2wU0+yUu9KCOrztCwJWDross7EBXxY34YKw/H4
+         NRWwp3oW+y8Bf/diZCDK66y7sWNT5AnmCu2M0Q5JuJmYb/d1OwaRRSS0RoPqE3AdlAcq
+         uSCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758319836; x=1758924636;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xgcPdNC8TLKzaK2dbK4ItnfKIaHmVEGBsiI70uCF/kk=;
+        b=eMtiPHsa8RdE63Ukx2oom/QbsOpDjC33cik0gDPL0wEl2sd2DCQGZxKrQ0yopjjskE
+         DCduhZ2mdWj2H1svco/xb2408PMV4K82nmEmUL2ULGpOj4p3rAw/5kKfF/8xQvk/K0md
+         T8KXcPR/uOa47XsZlEY0grOSvcDHUwKyp2EXNAx3lKOhpd7iPbL3V+H/9gbOLjGB7YXr
+         jInR7FmEUcjcpj4yhqCZf+p1ynHT4mpk1N6n+t/bkh/4xWeUBdXkWVpbVEh3xaw0uTxI
+         FVMZWs4/dGrYhKJjib9Ll97QJV5F6oS//wCoY6TF2zHS2l1XrxoD5SiFNALdjq4MYA7t
+         tWEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxsYagLh9tA/WTenNIccunW0dUJNymEb1KCDnPdGImoTqcqbR2rplkI+hE3oE8cSLaThLZu28nl8KA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuZUA+LpGcNXwPtKQgtTbagXVo1fJIkxPWcM5hQI4U6xsYFzcP
+	SgyLZFQIqapqIRhd3GZ91DbJucU1hvq2Hfj2qRAkPfdJl7tbvbQE+UP+KacuxxIqaeI=
+X-Gm-Gg: ASbGncvBdQMvBT9hQfwq19ZwKhluMZjLfEgPrZENEdcNiVHtrhz8gB9Oy155U45SnYQ
+	T/KGV+j/ZLuFZRtf1iOQBl3Y1W6R1CYXotU0Zjx5HFLI8GxPsQZfnlGRS7ia8Js8z/Il7/nDBPL
+	0PcPhrYcbaNLUPWLnBdlV31h0LNYcZ3RIPC4Ct1uR/uDZvV/QM6ivUqiA8S56bBLNHSeKvLxwy9
+	uA8U596hQM4eIEX8s0dMl9+cxArWjIDNwgkNf6lCUNAQxken2HURQAiUgdmxHcXP+SsiHeN2Bik
+	YJa+FrcklhxEoak/VSKiRjZXHK8tFyODFIICsY9HCaTDWm1rqQC3aS/peXUDLoxzcCDe6/F8OaJ
+	vlCDmDhZVGV0Cl8CbAneO0rIfrJFCYkD5TeImihAniMqwe6K7OoG/Vi/MTtm4bXSVfGaE5Spc
+X-Google-Smtp-Source: AGHT+IGUMi5Y+ZNyrqZVZaqAnb8mulirnkLZLTN1tiOo9Dktfk1VavRS0LndvmbeW3SqfgHBdfpwmQ==
+X-Received: by 2002:a05:6e02:2195:b0:424:672:e0fa with SMTP id e9e14a558f8ab-42481927108mr82251805ab.11.1758319835807;
+        Fri, 19 Sep 2025 15:10:35 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d56b5a45csm2587794173.70.2025.09.19.15.10.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 15:10:35 -0700 (PDT)
+Message-ID: <21ad322f-5abe-4a97-9373-d027b846ee8c@riscstar.com>
+Date: Fri, 19 Sep 2025 17:10:33 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	23/61iqn0t0D92qUwTzkOPQ5z40LUUaffhss8Ec/0/GL4vhKIoGNyGl8vLuE9xtLjAFHf+fPgAqSGDNhH/kiD97MYcRxExjJE+scvfxolH3yWAMjrQ10IDf1mM6F5G1d9xlffHJLB4VpzDvVAmNdPqiLi3jsO5lL2BdCyW1cv6TtlVfNfeUT03FaPLPpyfTB4cjGHxlXJKOp2sTwdpntFVFe3tUbhzIT4kCGY13MIKvWC7zJEUtBaaq/rWNQoJs6yTpbPeF4L/xiVoMd7sEgZhJjEq4SzVtfNCK8QO/Z5UyCcVezkoMrmAF1sqZKxI/YdNWfBYf/JnmSqwd0cI0eku6xwWr0qt8EuzArpcXrNrFrBQJLQeReVu4vUWWyrqVDPlk5UThZ9yeWmttRzwyFWSCVk8CP9JJlF19yGxN+X1mlZ2hua1nZ/o0OcTHa937HLHvN41BD5PnfidKvUnf7vj3pWTtI3hlaYWevJYCi3mXUOT7k3ViR3k+n+d0/C7BpnOMjNN0wg7c+NRfeHXpMbGuONIaGXmlMDRNsPLI+KPtZJwdACR73ooJJKmNNit7ckyMRSjG03+nNaYBUfjvtMsbOQyYa/5Dg4Yu2sKUMP4oLGcMyBjQJVK5yBBZbEymNs70RBv+kfgB1dSbTGkB0ew==
-X-OriginatorOrg: synopsys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 139f727d-83a4-4c3f-3f98-08ddf7c521b6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2025 21:40:20.2598
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: a1+foCUAny19tQL+W0Tv7eISQtKKNbyI8J0tI1AFlxrI6I0fmtZsgBEGLi5Vd0ujgCOMS04Xi6D1BjbbNay4jQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR12MB5684
-X-Proofpoint-ORIG-GUID: y1upiScGRUi4WB4qC5EGCbVEtsLK28kU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX0TwmcoR+r7lE
- zcTx4sw96Z1/1x/ODfrsLPu9sg0GzWoQp882R7xf+8PMatjvj3u+GP6ZqpItMN6heV4Tv8ZCkFZ
- j1Q26BV6d6YFmJ2hqJoYoZa8rMhIQU6oBKapjMXHibPzeb/F1VPQl018Golw7DMZys+NsriRpyc
- 15HekFXCJs+3STe8f5FKH1hWCdnG0HGtkqJwibBs2JCjLvlki02vauDJBhc4xWNZYmX7Nu1y2ij
- TJPLxay1YKkiS0TRkJ6e1c2IAbg25fZ08RaU7X7ZsgV4kWw6goxkPiAfZmsr8tzLldSkqHqy+gc
- jWXwIqXuLYvEDm9xAKkKQbgbQrwFeQde0zZW4/+rIZeV4c2aAZAPDWTJ74X4NwK2bLInNS51lOe
- j64XmLor
-X-Authority-Analysis: v=2.4 cv=dZSA3WXe c=1 sm=1 tr=0 ts=68cdcdcd cx=c_pps
- a=8EbXvwLXkpGsT4ql/pYRAw==:117 a=8EbXvwLXkpGsT4ql/pYRAw==:17
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
- a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=qPHU084jO2kA:10
- a=VwQbUJbxAAAA:8 a=ipA0ZPK-uZ5-fD56_icA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: y1upiScGRUi4WB4qC5EGCbVEtsLK28kU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-19_03,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam
- policy=outbound_active_cloned score=0 phishscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0
- spamscore=0 priorityscore=1501 classifier=typeunknown authscore=0 authtc=
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/6] PCI: spacemit: introduce SpacemiT PCIe host driver
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
+ bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, p.zabel@pengutronix.de, tglx@linutronix.de,
+ johan+linaro@kernel.org, thippeswamy.havalige@amd.com, namcao@linutronix.de,
+ mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, inochiama@gmail.com,
+ quic_schintav@quicinc.com, fan.ni@samsung.com, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250813184701.2444372-1-elder@riscstar.com>
+ <20250813184701.2444372-6-elder@riscstar.com>
+ <sptrmspkmqrwsh2iv4rmha45vsoz5ks7vhcdp3dytsxyabn6qn@mmk7z6tf5wcv>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <sptrmspkmqrwsh2iv4rmha45vsoz5ks7vhcdp3dytsxyabn6qn@mmk7z6tf5wcv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-T24gU2F0LCBTZXAgMDYsIDIwMjUsIFN2ZW4gUGV0ZXIgd3JvdGU6DQo+IFdlIG5lZWQgZmluZSBn
-cmFpbmVkIGNvbnRyb2wgb3ZlciBtb2RlIHN3aXRjaGVkIG9uIHRoZSBEV0MzIGNvbnRyb2xsZXIN
-Cj4gcHJlc2VudCBvbiBBcHBsZSBTaWxpY29uLiBFeHBvcnQgY29yZSwgaG9zdCBhbmQgZ2FkZ2V0
-IGluaXQgYW5kIGV4aXQsDQo+IHB0cmNhcCBhbmQgc3VzcGh5IGNvbnRyb2wgZnVuY3Rpb25zLiBB
-bHNvIGludHJvZHVjZSBhbiBhZGRpdGlvbmFsDQo+IHBhcmFtZXRlciB0byBwcm9iZV9kYXRhIHRo
-YXQgYWxsb3dzIHRvIHNraXAgdGhlIGZpbmFsIGluaXRpYWxpemF0aW9uDQo+IHN0ZXAgdGhhdCB3
-b3VsZCBicmluZyB1cCBob3N0IG9yIGdhZGdldCBtb2RlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTog
-U3ZlbiBQZXRlciA8c3ZlbkBrZXJuZWwub3JnPg0KPiAtLS0NCj4gIGRyaXZlcnMvdXNiL2R3YzMv
-Y29yZS5jICAgfCAxNiArKysrKysrKysrKy0tLS0tDQo+ICBkcml2ZXJzL3VzYi9kd2MzL2dhZGdl
-dC5jIHwgIDIgKysNCj4gIGRyaXZlcnMvdXNiL2R3YzMvZ2x1ZS5oICAgfCAxNCArKysrKysrKysr
-KysrKw0KPiAgZHJpdmVycy91c2IvZHdjMy9ob3N0LmMgICB8ICAyICsrDQo+ICA0IGZpbGVzIGNo
-YW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy91c2IvZHdjMy9jb3JlLmMgYi9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiBp
-bmRleCA4MDAyYzIzYTVhMDJhY2I4ZjNlODdiMjY2MmE1Mzk5OGE0Y2Y0ZjVjLi4xODA1NmZhYzQ0
-Yzg3MzIyNzhhNjUwYWMyYmU4YjQ5Mzg5MmM5MmRkIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL3Vz
-Yi9kd2MzL2NvcmUuYw0KPiArKysgYi9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiBAQCAtMTMy
-LDYgKzEzMiw3IEBAIHZvaWQgZHdjM19lbmFibGVfc3VzcGh5KHN0cnVjdCBkd2MzICpkd2MsIGJv
-b2wgZW5hYmxlKQ0KPiAgCQlkd2MzX3dyaXRlbChkd2MtPnJlZ3MsIERXQzNfR1VTQjJQSFlDRkco
-aSksIHJlZyk7DQo+ICAJfQ0KPiAgfQ0KPiArRVhQT1JUX1NZTUJPTF9HUEwoZHdjM19lbmFibGVf
-c3VzcGh5KTsNCj4gIA0KPiAgdm9pZCBkd2MzX3NldF9wcnRjYXAoc3RydWN0IGR3YzMgKmR3Yywg
-dTMyIG1vZGUsIGJvb2wgaWdub3JlX3N1c3BoeSkNCj4gIHsNCj4gQEAgLTE1Nyw2ICsxNTgsNyBA
-QCB2b2lkIGR3YzNfc2V0X3BydGNhcChzdHJ1Y3QgZHdjMyAqZHdjLCB1MzIgbW9kZSwgYm9vbCBp
-Z25vcmVfc3VzcGh5KQ0KPiAgDQo+ICAJZHdjLT5jdXJyZW50X2RyX3JvbGUgPSBtb2RlOw0KPiAg
-fQ0KPiArRVhQT1JUX1NZTUJPTF9HUEwoZHdjM19zZXRfcHJ0Y2FwKTsNCg0KSSdtIGhlc2l0YW50
-IHRvIGV4cG9ydCB0aGlzIGFzIGlzLiBUaGlzIGZ1bmN0aW9uIG1heSBjaGFuZ2UgdGhlIHN1c3Bo
-eQ0KYml0cyBhbmQgZXhwZWN0IHRoZW0gdG8gYmUgcmVzdG9yZWQgbGF0ZXIuIEl0J3Mgbm90IG1l
-YW50IHRvIGJlIGENCnN0YW5kYWxvbmUgdXNlLiBBdCBsZWFzdCwgd2Ugc2hvdWxkIGRvY3VtZW50
-IGhvdyBpdCBzaG91bGQgYmUgdXNlZCBhbG9uZw0Kd2l0aCB0aGUgb3RoZXIgbmV3bHkgYWRkZWQg
-aW50ZXJmYWNlcy4NCg0KPiAgDQo+ICBzdGF0aWMgdm9pZCBfX2R3YzNfc2V0X21vZGUoc3RydWN0
-IHdvcmtfc3RydWN0ICp3b3JrKQ0KPiAgew0KPiBAQCAtOTc0LDcgKzk3Niw3IEBAIHN0YXRpYyB2
-b2lkIGR3YzNfY2xrX2Rpc2FibGUoc3RydWN0IGR3YzMgKmR3YykNCj4gIAljbGtfZGlzYWJsZV91
-bnByZXBhcmUoZHdjLT5idXNfY2xrKTsNCj4gIH0NCj4gIA0KPiAtc3RhdGljIHZvaWQgZHdjM19j
-b3JlX2V4aXQoc3RydWN0IGR3YzMgKmR3YykNCj4gK3ZvaWQgZHdjM19jb3JlX2V4aXQoc3RydWN0
-IGR3YzMgKmR3YykNCj4gIHsNCj4gIAlkd2MzX2V2ZW50X2J1ZmZlcnNfY2xlYW51cChkd2MpOw0K
-PiAgCWR3YzNfcGh5X3Bvd2VyX29mZihkd2MpOw0KPiBAQCAtOTgyLDYgKzk4NCw3IEBAIHN0YXRp
-YyB2b2lkIGR3YzNfY29yZV9leGl0KHN0cnVjdCBkd2MzICpkd2MpDQo+ICAJZHdjM19jbGtfZGlz
-YWJsZShkd2MpOw0KPiAgCXJlc2V0X2NvbnRyb2xfYXNzZXJ0KGR3Yy0+cmVzZXQpOw0KPiAgfQ0K
-PiArRVhQT1JUX1NZTUJPTF9HUEwoZHdjM19jb3JlX2V4aXQpOw0KPiAgDQo+ICBzdGF0aWMgYm9v
-bCBkd2MzX2NvcmVfaXNfdmFsaWQoc3RydWN0IGR3YzMgKmR3YykNCj4gIHsNCj4gQEAgLTEzMjcs
-NyArMTMzMCw3IEBAIHN0YXRpYyB2b2lkIGR3YzNfY29uZmlnX3RocmVzaG9sZChzdHJ1Y3QgZHdj
-MyAqZHdjKQ0KPiAgICoNCj4gICAqIFJldHVybnMgMCBvbiBzdWNjZXNzIG90aGVyd2lzZSBuZWdh
-dGl2ZSBlcnJuby4NCj4gICAqLw0KPiAtc3RhdGljIGludCBkd2MzX2NvcmVfaW5pdChzdHJ1Y3Qg
-ZHdjMyAqZHdjKQ0KPiAraW50IGR3YzNfY29yZV9pbml0KHN0cnVjdCBkd2MzICpkd2MpDQo+ICB7
-DQo+ICAJdW5zaWduZWQgaW50CQlod19tb2RlOw0KPiAgCXUzMgkJCXJlZzsNCj4gQEAgLTE1Mjcs
-NiArMTUzMCw3IEBAIHN0YXRpYyBpbnQgZHdjM19jb3JlX2luaXQoc3RydWN0IGR3YzMgKmR3YykN
-Cj4gIA0KPiAgCXJldHVybiByZXQ7DQo+ICB9DQo+ICtFWFBPUlRfU1lNQk9MX0dQTChkd2MzX2Nv
-cmVfaW5pdCk7DQo+ICANCj4gIHN0YXRpYyBpbnQgZHdjM19jb3JlX2dldF9waHkoc3RydWN0IGR3
-YzMgKmR3YykNCj4gIHsNCj4gQEAgLTIyOTgsOSArMjMwMiwxMSBAQCBpbnQgZHdjM19jb3JlX3By
-b2JlKGNvbnN0IHN0cnVjdCBkd2MzX3Byb2JlX2RhdGEgKmRhdGEpDQo+ICAJZHdjM19jaGVja19w
-YXJhbXMoZHdjKTsNCj4gIAlkd2MzX2RlYnVnZnNfaW5pdChkd2MpOw0KPiAgDQo+IC0JcmV0ID0g
-ZHdjM19jb3JlX2luaXRfbW9kZShkd2MpOw0KPiAtCWlmIChyZXQpDQo+IC0JCWdvdG8gZXJyX2V4
-aXRfZGVidWdmczsNCj4gKwlpZiAoIWRhdGEtPnNraXBfY29yZV9pbml0X21vZGUpIHsNCj4gKwkJ
-cmV0ID0gZHdjM19jb3JlX2luaXRfbW9kZShkd2MpOw0KPiArCQlpZiAocmV0KQ0KPiArCQkJZ290
-byBlcnJfZXhpdF9kZWJ1Z2ZzOw0KPiArCX0NCj4gIA0KPiAgCXBtX3J1bnRpbWVfcHV0KGRldik7
-DQo+ICANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2R3YzMvZ2FkZ2V0LmMgYi9kcml2ZXJz
-L3VzYi9kd2MzL2dhZGdldC5jDQo+IGluZGV4IDI1ZGIzNmM2Mzk1MWJmNTY1NGY0YmY1YTk4ZDcw
-NzNhMDI4MzY0Y2QuLjdiOTJlYjhjNGNjZjExOGI4MWYyN2FmYWYzZjMxYmY1NmUxYjZmNzQgMTAw
-NjQ0DQo+IC0tLSBhL2RyaXZlcnMvdXNiL2R3YzMvZ2FkZ2V0LmMNCj4gKysrIGIvZHJpdmVycy91
-c2IvZHdjMy9nYWRnZXQuYw0KPiBAQCAtNDc5NCw2ICs0Nzk0LDcgQEAgaW50IGR3YzNfZ2FkZ2V0
-X2luaXQoc3RydWN0IGR3YzMgKmR3YykNCj4gIGVycjA6DQo+ICAJcmV0dXJuIHJldDsNCj4gIH0N
-Cj4gK0VYUE9SVF9TWU1CT0xfR1BMKGR3YzNfZ2FkZ2V0X2luaXQpOw0KPiAgDQo+ICAvKiAtLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLSAqLw0KPiAgDQo+IEBAIC00ODEyLDYgKzQ4MTMsNyBAQCB2b2lkIGR3YzNf
-Z2FkZ2V0X2V4aXQoc3RydWN0IGR3YzMgKmR3YykNCj4gIAlkbWFfZnJlZV9jb2hlcmVudChkd2Mt
-PnN5c2Rldiwgc2l6ZW9mKCpkd2MtPmVwMF90cmIpICogMiwNCj4gIAkJCSAgZHdjLT5lcDBfdHJi
-LCBkd2MtPmVwMF90cmJfYWRkcik7DQo+ICB9DQo+ICtFWFBPUlRfU1lNQk9MX0dQTChkd2MzX2dh
-ZGdldF9leGl0KTsNCj4gIA0KPiAgaW50IGR3YzNfZ2FkZ2V0X3N1c3BlbmQoc3RydWN0IGR3YzMg
-KmR3YykNCj4gIHsNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL2R3YzMvZ2x1ZS5oIGIvZHJp
-dmVycy91c2IvZHdjMy9nbHVlLmgNCj4gaW5kZXggMmVmZDAwZTc2M2JlNGZjNTE5MTFmMzJkNDMw
-NTQwNTllNjFmYjQzYS4uNjMzMjY4Yzc2ZmU0YzdmZGMzMTJjOTcwNWRmYTdjZjdjY2YzNTQ0YyAx
-MDA2NDQNCj4gLS0tIGEvZHJpdmVycy91c2IvZHdjMy9nbHVlLmgNCj4gKysrIGIvZHJpdmVycy91
-c2IvZHdjMy9nbHVlLmgNCj4gQEAgLTE1LDE2ICsxNSwzMCBAQA0KPiAgICogQHJlczogcmVzb3Vy
-Y2UgZm9yIHRoZSBEV0MzIGNvcmUgbW1pbyByZWdpb24NCj4gICAqIEBpZ25vcmVfY2xvY2tzX2Fu
-ZF9yZXNldHM6IGNsb2NrcyBhbmQgcmVzZXRzIGRlZmluZWQgZm9yIHRoZSBkZXZpY2Ugc2hvdWxk
-DQo+ICAgKgkJYmUgaWdub3JlZCBieSB0aGUgRFdDMyBjb3JlLCBhcyB0aGV5IGFyZSBtYW5hZ2Vk
-IGJ5IHRoZSBnbHVlDQo+ICsgKiBAc2tpcF9jb3JlX2luaXRfbW9kZTogc2tpcCB0aGUgZmluaWFs
-IGluaXRpYWxpemF0aW9uIG9mIHRoZSB0YXJnZXQgbW9kZSwgYXMNCg0KZmluaWFsIC0+IGZpbmFs
-Pw0KDQo+ICsgKgkJaXQgbXVzdCBiZSBtYW5hZ2VkIGJ5IHRoZSBnbHVlDQo+ICAgKi8NCj4gIHN0
-cnVjdCBkd2MzX3Byb2JlX2RhdGEgew0KPiAgCXN0cnVjdCBkd2MzICpkd2M7DQo+ICAJc3RydWN0
-IHJlc291cmNlICpyZXM7DQo+ICAJYm9vbCBpZ25vcmVfY2xvY2tzX2FuZF9yZXNldHM7DQo+ICsJ
-Ym9vbCBza2lwX2NvcmVfaW5pdF9tb2RlOw0KPiAgfTsNCj4gIA0KPiAgaW50IGR3YzNfY29yZV9w
-cm9iZShjb25zdCBzdHJ1Y3QgZHdjM19wcm9iZV9kYXRhICpkYXRhKTsNCj4gIHZvaWQgZHdjM19j
-b3JlX3JlbW92ZShzdHJ1Y3QgZHdjMyAqZHdjKTsNCj4gIA0KPiAraW50IGR3YzNfY29yZV9pbml0
-KHN0cnVjdCBkd2MzICpkd2MpOw0KPiArdm9pZCBkd2MzX2NvcmVfZXhpdChzdHJ1Y3QgZHdjMyAq
-ZHdjKTsNCj4gKw0KPiAraW50IGR3YzNfaG9zdF9pbml0KHN0cnVjdCBkd2MzICpkd2MpOw0KPiAr
-dm9pZCBkd2MzX2hvc3RfZXhpdChzdHJ1Y3QgZHdjMyAqZHdjKTsNCj4gK2ludCBkd2MzX2dhZGdl
-dF9pbml0KHN0cnVjdCBkd2MzICpkd2MpOw0KPiArdm9pZCBkd2MzX2dhZGdldF9leGl0KHN0cnVj
-dCBkd2MzICpkd2MpOw0KPiArDQo+ICt2b2lkIGR3YzNfZW5hYmxlX3N1c3BoeShzdHJ1Y3QgZHdj
-MyAqZHdjLCBib29sIGVuYWJsZSk7DQo+ICt2b2lkIGR3YzNfc2V0X3BydGNhcChzdHJ1Y3QgZHdj
-MyAqZHdjLCB1MzIgbW9kZSwgYm9vbCBpZ25vcmVfc3VzcGh5KTsNCj4gKw0KDQpXZSBzaG91bGQg
-ZG9jdW1lbnQgdGhlc2UgaW50ZXJmYWNlcy4gVGhlIGR3YzNfY29yZV9wcm9iZSgpIGRvZXMgYWxs
-IG9mDQp0aGUgYWJvdmUgaW4gdGhlIHByb3BlciBvcmRlci4gSXQncyBub3Qgb2J2aW91cyB3aHkg
-dGhlc2UgYXJlIG5lZWRlZCBhbmQNCmhvdyB0aGV5IHNob3VsZCBiZSB1c2VkLg0KDQpUaGFua3Ms
-DQpUaGluaA0KDQo+ICBpbnQgZHdjM19ydW50aW1lX3N1c3BlbmQoc3RydWN0IGR3YzMgKmR3Yyk7
-DQo+ICBpbnQgZHdjM19ydW50aW1lX3Jlc3VtZShzdHJ1Y3QgZHdjMyAqZHdjKTsNCj4gIGludCBk
-d2MzX3J1bnRpbWVfaWRsZShzdHJ1Y3QgZHdjMyAqZHdjKTsNCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvdXNiL2R3YzMvaG9zdC5jIGIvZHJpdmVycy91c2IvZHdjMy9ob3N0LmMNCj4gaW5kZXggZTc3
-ZmQ4NmQwOWNmMGEzNjE2MWMyMGFkM2M4M2YxMGU2NzA5OTc3NS4uY2Y2NTEyZWQxN2E2OTEzNGU2
-Y2ExYjg4NGY3NmMxNDM5NjkzZmFiMSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy91c2IvZHdjMy9o
-b3N0LmMNCj4gKysrIGIvZHJpdmVycy91c2IvZHdjMy9ob3N0LmMNCj4gQEAgLTIyMCw2ICsyMjAs
-NyBAQCBpbnQgZHdjM19ob3N0X2luaXQoc3RydWN0IGR3YzMgKmR3YykNCj4gIAlwbGF0Zm9ybV9k
-ZXZpY2VfcHV0KHhoY2kpOw0KPiAgCXJldHVybiByZXQ7DQo+ICB9DQo+ICtFWFBPUlRfU1lNQk9M
-X0dQTChkd2MzX2hvc3RfaW5pdCk7DQo+ICANCj4gIHZvaWQgZHdjM19ob3N0X2V4aXQoc3RydWN0
-IGR3YzMgKmR3YykNCj4gIHsNCj4gQEAgLTIzMCwzICsyMzEsNCBAQCB2b2lkIGR3YzNfaG9zdF9l
-eGl0KHN0cnVjdCBkd2MzICpkd2MpDQo+ICAJcGxhdGZvcm1fZGV2aWNlX3VucmVnaXN0ZXIoZHdj
-LT54aGNpKTsNCj4gIAlkd2MtPnhoY2kgPSBOVUxMOw0KPiAgfQ0KPiArRVhQT1JUX1NZTUJPTF9H
-UEwoZHdjM19ob3N0X2V4aXQpOw0KPiANCj4gLS0gDQo+IDIuMzQuMQ0KPiANCj4g
+On 9/15/25 3:09 AM, Manivannan Sadhasivam wrote:
+> On Wed, Aug 13, 2025 at 01:46:59PM GMT, Alex Elder wrote:
+>> Introduce a driver for the PCIe root complex found in the SpacemiT
+>> K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
+>> The driver supports three PCIe ports that operate at PCIe v2 transfer
+>> rates (5 GT/sec).  The first port uses a combo PHY, which may be
+>> configured for use for USB 3 instead.
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   drivers/pci/controller/dwc/Kconfig   |  10 +
+>>   drivers/pci/controller/dwc/Makefile  |   1 +
+>>   drivers/pci/controller/dwc/pcie-k1.c | 355 +++++++++++++++++++++++++++
+>>   3 files changed, 366 insertions(+)
+>>   create mode 100644 drivers/pci/controller/dwc/pcie-k1.c
+>>
+>> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
+>> index ff6b6d9e18ecf..ca5782c041ce8 100644
+>> --- a/drivers/pci/controller/dwc/Kconfig
+>> +++ b/drivers/pci/controller/dwc/Kconfig
+>> @@ -492,4 +492,14 @@ config PCIE_VISCONTI_HOST
+>>   	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
+>>   	  This driver supports TMPV7708 SoC.
+>>   
+>> +config PCIE_K1
+>> +	bool "SpacemiT K1 host mode PCIe controller"
+> 
+> No need to make it bool, build it as a module. Only the PCI controller drivers
+> implementing irqchip need to be kept bool for irq disposal concerns.
+
+OK.
+
+>> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+>> +	depends on PCI && OF && HAS_IOMEM
+>> +	select PCIE_DW_HOST
+>> +	default ARCH_SPACEMIT
+>> +	help
+>> +	  Enables support for the PCIe controller in the K1 SoC operating
+>> +	  in host mode.
+> 
+> Is the driver only applicable for K1 SoCs or other SoCs from spacemit? Even if
+> it is the former, I would suggest renaming to 'pcie-spacemit-k1.c'
+
+Yes, I will do that.
+
+>>   endmenu
+>> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
+>> index 6919d27798d13..62d9d4e7dd4d3 100644
+>> --- a/drivers/pci/controller/dwc/Makefile
+>> +++ b/drivers/pci/controller/dwc/Makefile
+>> @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
+>>   obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
+>>   obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
+>>   obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
+>> +obj-$(CONFIG_PCIE_K1) += pcie-k1.o
+>>   
+>>   # The following drivers are for devices that use the generic ACPI
+>>   # pci_root.c driver but don't support standard ECAM config access.
+>> diff --git a/drivers/pci/controller/dwc/pcie-k1.c b/drivers/pci/controller/dwc/pcie-k1.c
+>> new file mode 100644
+>> index 0000000000000..e9b1df3428d16
+>> --- /dev/null
+>> +++ b/drivers/pci/controller/dwc/pcie-k1.c
+>> @@ -0,0 +1,355 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * SpacemiT K1 PCIe host driver
+>> + *
+>> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
+>> + * Copyright (c) 2023, spacemit Corporation.
+>> + */
+>> +
+>> +#include <linux/bitfield.h>
+>> +#include <linux/bits.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/gfp.h>
+>> +#include <linux/irq.h>
+> 
+> unused?
+
+Yes, and there are a few others I can get rid of too.
+
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/of.h>
+>> +#include <linux/pci.h>
+>> +#include <linux/phy/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/reset.h>
+>> +#include <linux/types.h>
+>> +
+>> +#include "pcie-designware.h"
+>> +
+>> +#define K1_PCIE_VENDOR_ID	0x201f
+>> +#define K1_PCIE_DEVICE_ID	0x0001
+>> +
+>> +/* Offsets and field definitions of link management registers */
+>> +
+>> +#define K1_PHY_AHB_IRQ_EN			0x0000
+>> +#define PCIE_INTERRUPT_EN		BIT(0)
+>> +
+>> +#define K1_PHY_AHB_LINK_STS			0x0004
+>> +#define SMLH_LINK_UP			BIT(1)
+>> +#define RDLH_LINK_UP			BIT(12)
+>> +
+>> +#define INTR_ENABLE				0x0014
+>> +#define MSI_CTRL_INT			BIT(11)
+>> +
+>> +/* Offsets and field definitions for PMU registers */
+>> +
+>> +#define PCIE_CLK_RESET_CONTROL			0x0000
+>> +#define LTSSM_EN			BIT(6)
+>> +#define PCIE_AUX_PWR_DET		BIT(9)
+>> +#define PCIE_RC_PERST			BIT(12)	/* 0: PERST# high; 1: low */
+>> +#define APP_HOLD_PHY_RST		BIT(30)
+>> +#define DEVICE_TYPE_RC			BIT(31)	/* 0: endpoint; 1: RC */
+>> +
+>> +#define PCIE_CONTROL_LOGIC			0x0004
+>> +#define PCIE_SOFT_RESET			BIT(0)
+>> +
+>> +struct k1_pcie {
+>> +	struct dw_pcie pci;
+>> +	void __iomem *link;
+>> +	struct regmap *pmu;
+>> +	u32 pmu_off;
+>> +	struct phy *phy;
+>> +	struct reset_control *global_reset;
+>> +};
+>> +
+>> +#define to_k1_pcie(dw_pcie)	dev_get_drvdata((dw_pcie)->dev)
+>> +
+>> +static int k1_pcie_toggle_soft_reset(struct k1_pcie *k1)
+>> +{
+>> +	u32 offset = k1->pmu_off + PCIE_CONTROL_LOGIC;
+>> +	const u32 mask = PCIE_SOFT_RESET;
+>> +	int ret;
+>> +
+>> +	ret = regmap_set_bits(k1->pmu, offset, mask);
+> 
+> For MMIO, it is OK to skip the error handling.
+
+You mean even though the regmap API returns an error,
+it never will with MMIO?
+- regmap_mmio_read() and regmap_mmio_write() always
+   return 0 unless there's an error enabling its clock.
+
+Sounds good, I'll simplify places that use this.
+
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	mdelay(2);
+> 
+> If the previous write to the PMU got stuck in the CPU cache, there is no
+> guarantee that this delay of 2ms between write and clear will be enforced. So
+> you should do a dummy read after write to ensure that the previous write has
+> reached the PMU (or any device) and then clear the bits.
+
+Wow, really?  I was aware of this being possible for I/O
+writes but it seems like something regmap might handle.
+
+I'll add a regmap_read() for the same offset and discard
+the result *before* the delay.  I'll do the same for this:
+
+         mdelay(PCIE_T_PVPERL_MS);
+
+>> +	return regmap_clear_bits(k1->pmu, offset, mask);
+>> +}
+>> +
+>> +/* Enable app clocks, deassert app resets */
+>> +static int k1_pcie_app_enable(struct k1_pcie *k1)
+>> +{
+>> +	struct dw_pcie *pci = &k1->pci;
+>> +	u32 clock_count;
+>> +	u32 reset_count;
+>> +	int ret;
+>> +
+>> +	clock_count = ARRAY_SIZE(pci->app_clks);
+> 
+> Just use ARRAY_SIZE() directly below.
+
+OK.
+
+>> +	ret = clk_bulk_prepare_enable(clock_count, pci->app_clks);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	reset_count = ARRAY_SIZE(pci->app_rsts);
+> 
+> Same here.
+
+OK.
+
+>> +	ret = reset_control_bulk_deassert(reset_count, pci->app_rsts);
+>> +	if (ret)
+>> +		goto err_disable_clks;
+>> +
+>> +	ret = reset_control_deassert(k1->global_reset);
+>> +	if (ret)
+>> +		goto err_assert_resets;
+>> +
+>> +	return 0;
+>> +
+>> +err_assert_resets:
+>> +	(void)reset_control_bulk_assert(reset_count, pci->app_rsts);
+> 
+> Why void cast? Here and in other places.
+
+I put void casts when I'm ignoring a returned value.
+It's not necessary, but it reminds me that the function
+returns a value, and at some point I decided to ignore it.
+I can drop those if you find them offensive.
+
+If you're suggesting I should issue a warning here if
+an error is returned here, tell me that.
+
+>> +err_disable_clks:
+>> +	clk_bulk_disable_unprepare(clock_count, pci->app_clks);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/* Disable app clocks, assert app resets */
+>> +static void k1_pcie_app_disable(struct k1_pcie *k1)
+>> +{
+>> +	struct dw_pcie *pci = &k1->pci;
+>> +	u32 count;
+>> +	int ret;
+>> +
+>> +	(void)reset_control_assert(k1->global_reset);
+>> +
+>> +	count = ARRAY_SIZE(pci->app_rsts);
+>> +	ret = reset_control_bulk_assert(count, pci->app_rsts);
+>> +	if (ret)
+>> +		dev_err(pci->dev, "app reset assert failed (%d)\n", ret);
+>> +
+>> +	count = ARRAY_SIZE(pci->app_clks);
+>> +	clk_bulk_disable_unprepare(count, pci->app_clks);
+>> +}
+> 
+> Same comments as k1_pcie_app_enable().
+
+OK.
+
+>> +static int k1_pcie_init(struct dw_pcie_rp *pp)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+>> +	u32 offset;
+>> +	u32 mask;
+>> +	int ret;
+>> +
+>> +	ret = k1_pcie_toggle_soft_reset(k1);
+>> +	if (ret)
+>> +		goto err_app_disable;
+>> +
+>> +	ret = k1_pcie_app_enable(k1);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = phy_init(k1->phy);
+>> +	if (ret)
+>> +		goto err_app_disable;
+>> +
+>> +	/* Set the PCI vendor and device ID */
+>> +	dw_pcie_dbi_ro_wr_en(pci);
+>> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, K1_PCIE_VENDOR_ID);
+>> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, K1_PCIE_DEVICE_ID);
+>> +	dw_pcie_dbi_ro_wr_dis(pci);
+>> +
+>> +	/*
+>> +	 * Put the port in root complex mode, record that Vaux is present.
+> 
+> There is no 3.3Vaux supply present in the binding. So the supply is guaranteed
+> to be present and enabled always by the platform?
+
+Actually, I don't know, I'll ask.  Thank you for pointing this out.
+
+>> +	 * Assert fundamental reset (drive PERST# low).
+>> +	 */
+>> +	offset = k1->pmu_off + PCIE_CLK_RESET_CONTROL;
+>> +	mask = DEVICE_TYPE_RC | PCIE_AUX_PWR_DET;
+>> +	mask |= PCIE_RC_PERST;
+>> +	ret = regmap_set_bits(k1->pmu, offset, mask);
+>> +	if (ret)
+>> +		goto err_phy_exit;
+>> +
+>> +	/* Wait the PCIe-mandated 100 msec before deasserting PERST# */
+>> +	mdelay(100);
+> 
+> Same comment as k1_pcie_toggle_soft_reset() applies here.
+
+Yes, understood.
+
+>> +
+>> +	ret = regmap_clear_bits(k1->pmu, offset, PCIE_RC_PERST);
+>> +	if (!ret)
+>> +		return 0;	/* Success! */
+> 
+> Please use common pattern to return success:
+> 
+> 	regmap_clear_bits()
+> 
+> 	return 0;
+
+Now that I won't be checking return values this will come
+naturally.  So yes, it will look like this, and there are
+no other instances of this return pattern in this file.
+
+> 
+>> +
+>> +err_phy_exit:
+>> +	(void)phy_exit(k1->phy);
+>> +err_app_disable:
+>> +	k1_pcie_app_disable(k1);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/* Silently ignore any errors */
+>> +static void k1_pcie_deinit(struct dw_pcie_rp *pp)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+>> +
+>> +	/* Re-assert fundamental reset (drive PERST# low) */
+> 
+> s/Re-assert/Assert
+> 
+>> +	(void)regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
+>> +			      PCIE_RC_PERST);
+>> +
+>> +	(void)phy_exit(k1->phy);
+>> +
+>> +	k1_pcie_app_disable(k1);
+>> +}
+>> +
+>> +static const struct dw_pcie_host_ops k1_pcie_host_ops = {
+>> +	.init		= k1_pcie_init,
+>> +	.deinit		= k1_pcie_deinit,
+>> +};
+>> +
+>> +static void k1_pcie_enable_interrupts(struct k1_pcie *k1)
+>> +{
+>> +	void __iomem *virt;
+>> +	u32 val;
+>> +
+>> +	/* Enable the MSI interrupt */
+>> +	writel(MSI_CTRL_INT, k1->link + INTR_ENABLE);
+> 
+> If there are no ordering issues (I guess so), you can very well use the _relaxed
+> variants throughout the driver.
+
+The only writel() calls are related to updating
+these interrupt bits.  I think you're right.
+
+>> +	/* Top-level interrupt enable */
+>> +	virt = k1->link + K1_PHY_AHB_IRQ_EN;
+>> +	val = readl(virt);
+>> +	val |= PCIE_INTERRUPT_EN;
+>> +	writel(val, virt);
+>> +}
+>> +
+>> +static void k1_pcie_disable_interrupts(struct k1_pcie *k1)
+>> +{
+>> +	void __iomem *virt;
+>> +	u32 val;
+>> +
+>> +	virt = k1->link + K1_PHY_AHB_IRQ_EN;
+>> +	val = readl(virt);
+>> +	val &= ~PCIE_INTERRUPT_EN;
+>> +	writel(val, virt);
+>> +
+>> +	writel(0, k1->link + INTR_ENABLE);
+>> +}
+>> +
+>> +static bool k1_pcie_link_up(struct dw_pcie *pci)
+>> +{
+>> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+>> +	u32 val;
+>> +
+>> +	val = readl(k1->link + K1_PHY_AHB_LINK_STS);
+>> +
+>> +	return (val & RDLH_LINK_UP) && (val & SMLH_LINK_UP);
+>> +}
+>> +
+>> +static int k1_pcie_start_link(struct dw_pcie *pci)
+>> +{
+>> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+>> +	int ret;
+>> +
+>> +	/* Stop holding the PHY in reset, and enable link training */
+>> +	ret = regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
+>> +				 APP_HOLD_PHY_RST | LTSSM_EN, LTSSM_EN);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	k1_pcie_enable_interrupts(k1);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void k1_pcie_stop_link(struct dw_pcie *pci)
+>> +{
+>> +	struct k1_pcie *k1 = to_k1_pcie(pci);
+>> +	int ret;
+>> +
+>> +	k1_pcie_disable_interrupts(k1);
+>> +
+>> +	/* Disable the link and hold the PHY in reset */
+>> +	ret = regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
+>> +				 APP_HOLD_PHY_RST | LTSSM_EN, APP_HOLD_PHY_RST);
+>> +	if (ret)
+>> +		dev_err(pci->dev, "disable LTSSM failed (%d)\n", ret);
+>> +}
+>> +
+>> +static const struct dw_pcie_ops k1_pcie_ops = {
+>> +	.link_up	= k1_pcie_link_up,
+>> +	.start_link	= k1_pcie_start_link,
+>> +	.stop_link	= k1_pcie_stop_link,
+>> +};
+>> +
+>> +static int k1_pcie_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct dw_pcie_rp *pp;
+>> +	struct dw_pcie *pci;
+>> +	struct k1_pcie *k1;
+>> +	int ret;
+>> +
+>> +	k1 = devm_kzalloc(dev, sizeof(*k1), GFP_KERNEL);
+>> +	if (!k1)
+>> +		return -ENOMEM;
+>> +	dev_set_drvdata(dev, k1);
+>> +
+>> +	k1->pmu = syscon_regmap_lookup_by_phandle_args(dev_of_node(dev),
+>> +						       "spacemit,syscon-pmu",
+>> +						       1, &k1->pmu_off);
+>> +	if (IS_ERR(k1->pmu))
+>> +		return dev_err_probe(dev, PTR_ERR(k1->pmu),
+>> +				     "lookup PMU regmap failed\n");
+> 
+> 'Failed to lookup \"PMU\" registers'
+OK.
+
+>> +
+>> +	k1->link = devm_platform_ioremap_resource_byname(pdev, "link");
+>> +	if (!k1->link)
+>> +		return dev_err_probe(dev, -ENOMEM, "map link regs failed\n");
+> 
+> 'Failed to map \"link\" registers
+> 
+> Same for below error prints as well.
+
+OK.
+
+>> +
+>> +	k1->global_reset = devm_reset_control_get_shared(dev, "global");
+>> +	if (IS_ERR(k1->global_reset))
+>> +		return dev_err_probe(dev, PTR_ERR(k1->global_reset),
+>> +				     "get global reset failed\n");
+>> +
+>> +	/* Hold the PHY in reset until we start the link */
+>> +	ret = regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
+>> +			      APP_HOLD_PHY_RST);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "hold PHY in reset failed\n");
+>> +
+>> +	k1->phy = devm_phy_get(dev, NULL);
+>> +	if (IS_ERR(k1->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(k1->phy), "get PHY failed\n");
+>> +
+>> +	pci = &k1->pci;
+>> +	dw_pcie_cap_set(pci, REQ_RES);
+>> +	pci->dev = dev;
+>> +	pci->ops = &k1_pcie_ops;
+>> +
+>> +	pp = &pci->pp;
+>> +	pp->num_vectors = MAX_MSI_IRQS;
+> 
+> I don't understand how MSI is implemented in this platform. If the controller
+> relies on an external interrupt controller for handling MSIs (I think it does),
+> then there should be either 'msi-parent' or 'msi-map' existed in the binding.
+
+OK your comment earlier made me realize I had more to do here.
+I'll work to improve that.
+
+> But I see none, other than 'interrupts-extended'. So I don't know how MSI works
+> at all.
+> 
+>> +	pp->ops = &k1_pcie_host_ops;
+>> +
+>> +	ret = dw_pcie_host_init(pp);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "host init failed\n");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void k1_pcie_remove(struct platform_device *pdev)
+>> +{
+>> +	struct k1_pcie *k1 = dev_get_drvdata(&pdev->dev);
+>> +	struct dw_pcie_rp *pp = &k1->pci.pp;
+>> +
+>> +	dw_pcie_host_deinit(pp);
+>> +}
+>> +
+>> +static const struct of_device_id k1_pcie_of_match_table[] = {
+>> +	{ .compatible = "spacemit,k1-pcie-rc", },
+>> +	{ },
+>> +};
+>> +
+>> +static struct platform_driver k1_pcie_driver = {
+>> +	.probe	= k1_pcie_probe,
+>> +	.remove	= k1_pcie_remove,
+>> +	.driver = {
+>> +		.name			= "k1-dwc-pcie",
+>> +		.of_match_table		= k1_pcie_of_match_table,
+>> +		.suppress_bind_attrs	= true,
+> 
+> No need of this flag for the reason I mentioned in the Kcofig change.
+
+Because this doesn't implement an irqchip?
+
+> You should also set,
+> 
+> 	.probe_type = PROBE_PREFER_ASYNCHRONOUS,
+> 
+> to make use of the async probing of the devices during boot. This does save some
+> boot time.
+
+That's great to know, there is a noticeable delay during probe.
+
+Thank you very much for your careful review, Mani.
+
+					-Alex
+
+> - Mani
+> 
 
