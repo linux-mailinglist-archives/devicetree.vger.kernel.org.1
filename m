@@ -1,60 +1,73 @@
-Return-Path: <devicetree+bounces-219446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70AE0B8B358
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F86CB8B400
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E5D9563B55
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:47:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 482225A4F46
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2AA2206AC;
-	Fri, 19 Sep 2025 20:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7337B2C234F;
+	Fri, 19 Sep 2025 20:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="el2P5cI5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cADIhg/4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC8C1FB3;
-	Fri, 19 Sep 2025 20:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4610B223702;
+	Fri, 19 Sep 2025 20:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758314832; cv=none; b=lj4smv3C96qUCtkj7PhZOte9gyh1QOiHoowkW7qA62fOTknJRiwhYrGTBlAXCyPEhJxAMFnrEQ3eC9kLQ5gfLaESXTd/9WJZLuV8L5La3HhYWmPES53Mb3yyNp5AwTYRlS8xzbpPTUQqA8zX7rAErDU5Lt+IfcckWUsbqci6iXA=
+	t=1758315211; cv=none; b=r+hTWC/RdE1Gd7uQzr8iMWTfkPdL3X+neewC38kYHjtbBTO/RpHLufE3hNAJa92IF69lpA6BYVMUu7J+9MwXviNLO8V2XgDTqykGH5/iDpykrNXwhlwqslsivGxc0FWhpcQ0XVTyj6KSD8sjLYkeO55dRanStCeJNieHIZtWbj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758314832; c=relaxed/simple;
-	bh=8ZdaVlsLZ6+YqF2PuATIawPN2p3wYF0R7tpv5xXnP8I=;
+	s=arc-20240116; t=1758315211; c=relaxed/simple;
+	bh=E1ZV+UNqR3veyxuHfX6mAzdM+m+4EnKUxmuyWi+TK24=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a4FkFTJ76skyv8Ay5+HWkSSrLK3ss8nXjGqIPlHF35w6jYlwsEKnX4y7ixd86+TrV6FOV6bfoc3bf/Tb+9DWQmnFUPP6IXCcjfcCU613aM3AWtLzOFBDYjW1BBkXVdVRVokJBO7rIsuTOti13oqD299S7NN4pznu4G/NUTfI7as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=el2P5cI5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87121C4CEF0;
-	Fri, 19 Sep 2025 20:47:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PU3XD/sYXcCTZG69Lq73A4a8zUJjKBRrAtEtCA7ui4vE02E2hv43rqBqU+ihqyWsY7RTT1qBLCN0LHCS4jN9aPqg9Bvtt4say2rmbKMInTk+UDOZx8P5iGcN437BoNo/QBTPOm7SgWyvTnURFQbMzYpP49AJ7tbXaQup0Q3vcKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cADIhg/4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97ABEC4CEF0;
+	Fri, 19 Sep 2025 20:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758314831;
-	bh=8ZdaVlsLZ6+YqF2PuATIawPN2p3wYF0R7tpv5xXnP8I=;
+	s=k20201202; t=1758315210;
+	bh=E1ZV+UNqR3veyxuHfX6mAzdM+m+4EnKUxmuyWi+TK24=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=el2P5cI5c1PQLUF1JQ9+vMHslN9O+S4VdFuzZEypxycWiaT8dz+kwJvqfmqweFFOp
-	 9o0OxuGVX5XGmf1IRbLnGHAntNslP/aveO+Sk6okFX5gbcM9aLXgyLhdOGZqRXiph6
-	 OB4AN5c+YTkq7a2p4EEMx1+QFOdI7nMPrsgfoL+CrS8o7FR72RJ44qxiCmwuJNdB6q
-	 AshlowEhC8N0XIDT6WaL33UfgkZK4mnkO1g3fpk/pcQ1fbhS3lUxnq/ywcleuQ3Vbx
-	 Q1mO+p56dkqr2MBsFL/GRb8u2ErSty2BwsfQjhmEajtnP3poyJAjYn+rWiNqzWqO+T
-	 i7WgYF5X5t7Jw==
-Date: Fri, 19 Sep 2025 15:47:10 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: alex@ghiti.fr, conor+dt@kernel.org, spacemit@lists.linux.dev,
-	broonie@kernel.org, linux-spi@vger.kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, dlan@gentoo.org,
-	aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
-Message-ID: <175831481987.2188907.2053375143678932465.robh@kernel.org>
-References: <20250919155914.935608-1-elder@riscstar.com>
- <20250919155914.935608-2-elder@riscstar.com>
+	b=cADIhg/49suBO/uC2IsFh0Z7L+funFZc48pMScM7SuZh2dhesxomGab/EsnPO8bdD
+	 BeF+aZ1x7wBm0wJcNgRvxBhY+NZIzza1GoorjrVhGAnu0KMJU8BsAQTn7ZnrZ8cy/v
+	 k2nEtYObhwAaQKGRaorlKhok+oho/mDNS94ZwHXxz3NqaOQv76rzs2SThvkFERpMSD
+	 agfFoSpllXKFRxQBQ5PmodugBYh6s0bt/MmWq0QpygbEpo+3JczH8bcI0ASmFpVxk8
+	 R2li5Bcz9H3VLWwBtpbG2PRrkEbZGjHH0SJa2xd1wasFzPTmaDC+Mvw8qZWv/QYP0y
+	 Fwj2Hwaj1icUw==
+Date: Fri, 19 Sep 2025 15:53:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jeremy Kerr <jk@codeconstruct.com.au>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v18 1/3] dt-bindings: i2c: aspeed,i2c.yaml: add
+ transfer-mode and global-regs properties and update example
+Message-ID: <20250919205329.GA2192084-robh@kernel.org>
+References: <20250820051832.3605405-1-ryan_chen@aspeedtech.com>
+ <20250820051832.3605405-2-ryan_chen@aspeedtech.com>
+ <9d6660f0bf5119cedee824cf764f15838622833a.camel@codeconstruct.com.au>
+ <OS8PR06MB7541C0D6696FC754D944D45EF208A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <03abda47219b8b0b476a3740c7ed2acc4b2b16dc.camel@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +76,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919155914.935608-2-elder@riscstar.com>
+In-Reply-To: <03abda47219b8b0b476a3740c7ed2acc4b2b16dc.camel@codeconstruct.com.au>
 
-
-On Fri, 19 Sep 2025 10:59:11 -0500, Alex Elder wrote:
-> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
+On Mon, Sep 15, 2025 at 11:41:31AM +0800, Jeremy Kerr wrote:
+> Hi Ryan,
 > 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
-> v2: - Use enum rather than const for the binding compatible string
->     - Omit the label and status property in the binding example
->     - No more spacemit,k1-ssp-id property
->     - Interrupts no longer specified with interrupts-extended
+> > > OK, but the ast2400 and ast2500 I2C peripherals - which this binding also
+> > > describes - do not have that facility. Given the 2600 is a distinct peripheral (as
+> > > discussed on the v16 series), this would seem to warrant a distinct binding.
+> > > 
+> > > Should this be split out into an ast2600-specific binding, to reflect that it is
+> > > different hardware? The reference to the global registers and transfer modes
+> > > would then be added only to the ast2600-i2c-bus binding.
+> > 
+> > I agree it would be cleaner to split out a new binding file specifically for AST2600,
+> > for example: `aspeed,ast2600-i2c.yaml`
+> > But also I think `aspeed,i2cv2.yaml` more better name, that compatible will 
+> > support next generation such like AST2700 .....
 > 
->  .../bindings/spi/spacemit,k1-spi.yaml         | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> The ship may have already sailed on that one, as you already have the
+> existing compatible string describing existing hardware.
 > 
+> I would assume that the compatible string should be fixed for an
+> instance of the specific hardware, but the DT maintainers may be able to
+> provide some input/precedence on changing an existing binding, if
+> necessary.
+> 
+> If this does get changed, I would expect that you would need a
+> corresponding update in the old driver too.
+> 
+> Or, another option may be to keep the current generation ("v2 core with
+> compat registers") as-is (ie., at ast2600-i2c-bus), and introduce a new
+> string for the next - where the primary hardware change might be the
+> removal of compat registers, but it's still new hardware
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+About the only place we use version numbers (without regret) is when the 
+version can be traced back to the actual verilog. This is typically only 
+IP targeted to FPGAs. The reality in SoCs is h/w designers can't help 
+themselves to not change things. In reality, there are almost always 
+some changes.
 
+Rob
 
