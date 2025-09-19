@@ -1,154 +1,86 @@
-Return-Path: <devicetree+bounces-219445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FE4B8B348
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:44:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70AE0B8B358
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:47:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B16721C27460
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:45:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E5D9563B55
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87AE27B338;
-	Fri, 19 Sep 2025 20:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2AA2206AC;
+	Fri, 19 Sep 2025 20:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLEgARSi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="el2P5cI5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E6A256C6D;
-	Fri, 19 Sep 2025 20:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC8C1FB3;
+	Fri, 19 Sep 2025 20:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758314679; cv=none; b=bzNL53Bg6RTsfHGdDxWr30QgVt5KKCY8AFHrb81E1vk2qbFlbWC95QYMARw7RUULS+t3VydoXeEIFss07wKGWRB3evNRkLo9m6ma9xRC42MdvjvvQ3uWZNI5sdw4K8sCcGgHEyuXKapZckHJGEZ5MXFDV+8LiUOyrUuDajNvCIU=
+	t=1758314832; cv=none; b=lj4smv3C96qUCtkj7PhZOte9gyh1QOiHoowkW7qA62fOTknJRiwhYrGTBlAXCyPEhJxAMFnrEQ3eC9kLQ5gfLaESXTd/9WJZLuV8L5La3HhYWmPES53Mb3yyNp5AwTYRlS8xzbpPTUQqA8zX7rAErDU5Lt+IfcckWUsbqci6iXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758314679; c=relaxed/simple;
-	bh=Nqbm8JHtC4qbA2KN+mmp4Vel4T38mLLZnMXpL1wOzU8=;
+	s=arc-20240116; t=1758314832; c=relaxed/simple;
+	bh=8ZdaVlsLZ6+YqF2PuATIawPN2p3wYF0R7tpv5xXnP8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CB5QucWE+3w3NR0bjuKGDT6vnjO9YsPwAB6unFxEFTRFNy8IxckH4lbPIyuuQ6NKiKp/h1A9DkzaGGqpE6KDqY0zdPqpMhKv935F1ZF7KS4XLV5izg7AtNVA71YnXIX48szzJ/2gC6u+/HJOnqguwN2BalNdHj5pSszBNR9l7rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLEgARSi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B23AC4CEF0;
-	Fri, 19 Sep 2025 20:44:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=a4FkFTJ76skyv8Ay5+HWkSSrLK3ss8nXjGqIPlHF35w6jYlwsEKnX4y7ixd86+TrV6FOV6bfoc3bf/Tb+9DWQmnFUPP6IXCcjfcCU613aM3AWtLzOFBDYjW1BBkXVdVRVokJBO7rIsuTOti13oqD299S7NN4pznu4G/NUTfI7as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=el2P5cI5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87121C4CEF0;
+	Fri, 19 Sep 2025 20:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758314679;
-	bh=Nqbm8JHtC4qbA2KN+mmp4Vel4T38mLLZnMXpL1wOzU8=;
+	s=k20201202; t=1758314831;
+	bh=8ZdaVlsLZ6+YqF2PuATIawPN2p3wYF0R7tpv5xXnP8I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PLEgARSiCCXof0XoxphMT8Z/4OkX5WpkWg3DrvrtQGViFwnerjHjel9I3mnKtQ09D
-	 Y0uDR61pUlZcac6UnYIx9ZJAVdnBBlbYc3VnKwJRSSHMKvn3ST82eMgY+bcquxdRgD
-	 6mxOlFipr5M7QrVYfclMSCXJewkexYBz/388ysbOrGhiOMzSAVikwrCoa/UsyEdMpz
-	 BA+q4TebjXm5TkeOqp7NcuAKqjNaIAvs3nms47wZccvDpFtt33FPPFMkDqov0/L7Qh
-	 byC5nyHLtgeUPtjnUpPpJpoPmg8mTQGzSWXbG9JMiAz89B4cskDknPKnml7R+XP2dB
-	 FqcWWfFWKvpaQ==
-Date: Fri, 19 Sep 2025 15:44:36 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
-	linux-amarula@amarulasolutions.com,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	Jeff LaBundy <jeff@labundy.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] dt-bindings: touchscreen: add
- touchscreen-glitch-threshold-ns property
-Message-ID: <20250919204436.GA2176045-robh@kernel.org>
-References: <20250918155240.2536852-1-dario.binacchi@amarulasolutions.com>
- <20250918155240.2536852-4-dario.binacchi@amarulasolutions.com>
- <20250918200445.GA2529753-robh@kernel.org>
- <CABGWkvqX9aCxam6UMYsUBkwnMJrMNKjVKrqi5Ca7O5Jk8xRTAA@mail.gmail.com>
- <20250919143831.GA862818-robh@kernel.org>
- <CABGWkvrxOTzAcqWHLvuqk_7WFxybheSZFnMkqnksfkPi6wXcpQ@mail.gmail.com>
+	b=el2P5cI5c1PQLUF1JQ9+vMHslN9O+S4VdFuzZEypxycWiaT8dz+kwJvqfmqweFFOp
+	 9o0OxuGVX5XGmf1IRbLnGHAntNslP/aveO+Sk6okFX5gbcM9aLXgyLhdOGZqRXiph6
+	 OB4AN5c+YTkq7a2p4EEMx1+QFOdI7nMPrsgfoL+CrS8o7FR72RJ44qxiCmwuJNdB6q
+	 AshlowEhC8N0XIDT6WaL33UfgkZK4mnkO1g3fpk/pcQ1fbhS3lUxnq/ywcleuQ3Vbx
+	 Q1mO+p56dkqr2MBsFL/GRb8u2ErSty2BwsfQjhmEajtnP3poyJAjYn+rWiNqzWqO+T
+	 i7WgYF5X5t7Jw==
+Date: Fri, 19 Sep 2025 15:47:10 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: alex@ghiti.fr, conor+dt@kernel.org, spacemit@lists.linux.dev,
+	broonie@kernel.org, linux-spi@vger.kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, dlan@gentoo.org,
+	aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+	ziyao@disroot.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
+Message-ID: <175831481987.2188907.2053375143678932465.robh@kernel.org>
+References: <20250919155914.935608-1-elder@riscstar.com>
+ <20250919155914.935608-2-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABGWkvrxOTzAcqWHLvuqk_7WFxybheSZFnMkqnksfkPi6wXcpQ@mail.gmail.com>
+In-Reply-To: <20250919155914.935608-2-elder@riscstar.com>
 
-On Fri, Sep 19, 2025 at 05:12:42PM +0200, Dario Binacchi wrote:
-> On Fri, Sep 19, 2025 at 4:38 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Sep 18, 2025 at 10:37:37PM +0200, Dario Binacchi wrote:
-> > > On Thu, Sep 18, 2025 at 10:04 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Thu, Sep 18, 2025 at 05:52:31PM +0200, Dario Binacchi wrote:
-> > > > > Add support for glitch threshold configuration. A detected signal is valid
-> > > > > only if it lasts longer than the set threshold; otherwise, it is regarded
-> > > > > as a glitch.
-> > > > >
-> > > > > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > >
-> > > > > ---
-> > > > >
-> > > > > Changes in v5:
-> > > > > - Add Acked-by tag of Conor Dooley
-> > > > >
-> > > > > Changes in v2:
-> > > > > - Added in v2.
-> > > > >
-> > > > >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml    | 4 ++++
-> > > > >  1 file changed, 4 insertions(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > index 3e3572aa483a..a60b4d08620d 100644
-> > > > > --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > @@ -206,6 +206,10 @@ properties:
-> > > > >
-> > > > >          unevaluatedProperties: false
-> > > > >
-> > > > > +  touchscreen-glitch-threshold-ns:
-> > > > > +    description: Minimum duration in nanoseconds a signal must remain stable
-> > > > > +      to be considered valid.
-> > > >
-> > > > What's wrong with debounce-delay-ms?
-> > >
-> > > Do you mean that I should rename touchscreen-glitch-threshold-ns to
-> > > debounce-delay-ms?
-> >
-> > I mean that's the common property we already have, so use it or explain
-> > why you aren't using it. I suppose the definition is technically a bit
-> > different if it's purely a s/w delay vs. h/w monitoring of the signal
-> > state. I don't think it matters if the interpretation by each driver is
-> > a bit different.
-> >
-> > Maybe msec is not enough resolution for you could be another reason?
-> 
-> Yes, this is the main reason. As specified in the following patch:
->   v5 4/6 dt-bindings: touchscreen: fsl,imx6ul-tsc: support glitch threshold
-> 
-> Drivers must convert this value to IPG clock cycles and map
-> it to one of the four discrete thresholds exposed by the
-> TSC_DEBUG_MODE2 register:
-> 
->   0: 8191 IPG cycles
->   1: 4095 IPG cycles
->   2: 2047 IPG cycles
->   3: 1023 IPG cycles
-> 
-> In my case, the IPG clock runs at 66 MHz, which corresponds to:
-> 
-> 124 µs for 0
-> 62 µs for 1
-> 31 us for 2
-> 15 us for 3
-> 
-> So using milliseconds would not fit my use case. A possible trade-off
-> could be to use debounce-delay-us. Would that be acceptable?
 
-I agree it wouldn't map to what the h/w provides, but is what the h/w 
-provides actually useful? There's plenty of h/w designed that's not 
-useful. 15us is quite short for a glitch. Do you have an actual cases 
-where the different values above are needed?
+On Fri, 19 Sep 2025 10:59:11 -0500, Alex Elder wrote:
+> Add support for the SPI controller implemented by the SpacemiT K1 SoC.
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+> v2: - Use enum rather than const for the binding compatible string
+>     - Omit the label and status property in the binding example
+>     - No more spacemit,k1-ssp-id property
+>     - Interrupts no longer specified with interrupts-extended
+> 
+>  .../bindings/spi/spacemit,k1-spi.yaml         | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spacemit,k1-spi.yaml
+> 
 
-Rob
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
