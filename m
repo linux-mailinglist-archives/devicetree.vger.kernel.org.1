@@ -1,130 +1,231 @@
-Return-Path: <devicetree+bounces-219418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566EEB8AC87
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:35:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A67EB8AC8D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25D42189C9D2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:35:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8F51CC2EE7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBA03112B7;
-	Fri, 19 Sep 2025 17:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03573203A5;
+	Fri, 19 Sep 2025 17:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="kFNWe1ma"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9b2GGM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 003.mia.mailroute.net (003.mia.mailroute.net [199.89.3.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5B7221D9E;
-	Fri, 19 Sep 2025 17:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.3.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A677221D9E;
+	Fri, 19 Sep 2025 17:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758303316; cv=none; b=aFou8ikAV+VrcLr9xdDMJF1V6oFgKL9KzGIBxfm88mtLBoXE+PR4tNnjyY62y9Lqg4zoL7cepTyuvNhohapu8dlCRuDTpQCsRByCIriG25CfCCpmAR5zDlA+rRtxy0J4mE97OIcldyS1TPnbdoFo7UDg/QqSFckt7EaGVA82Rl8=
+	t=1758303378; cv=none; b=Zay5oY/f1n7E3/D4AU/xdBZDlFE+jfQEvBvQe0x2FmsNbS6nT53LCwxNjo+0eeGYsZv+YnNJBnaqgsj589NlIV5+ijiyXYkSJXJc00olrDPLQCATAPIGP3HWbyYQV5hsf3kl5eVYNq1HmTGPxtLhsswwGXeFDdf41CTJbcrabaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758303316; c=relaxed/simple;
-	bh=loC9KzaKeHCRPlVSVARAYBeZ7jUr94Onk64kaDgn1yk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PBrHhyAVVXmlsxKywgEUYBa9zGDR8z4UBhrZNgMlQs1GbMhhoW9mt3DIFGhlB4xHJpIeR5hAn2vOS/7zMLM6X5O1IBfP1NIHTVa3nRxwQO2RIEEoS5cU8mDyAVyI3y76ZQJzW3KnDgroh8lC/Yh2daE+vhjC4mWYu0QuJZJ/qcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=kFNWe1ma; arc=none smtp.client-ip=199.89.3.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 003.mia.mailroute.net (Postfix) with ESMTP id 4cT05F2L1fzlgrtT;
-	Fri, 19 Sep 2025 17:35:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:content-language:references:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1758303310; x=1760895311; bh=eiq7VVzykfp191mRlVNE0Qy7
-	GIGkAdjLq7NaP7tcDaE=; b=kFNWe1maVFphxxWWq8eyNmm/uZJWWZkOp424tsag
-	EpUB/cpNb4TUjpU765y+JWn+ANFwIT/Mvk+V6cvWBTLHHO/2/+d0gNWfouHf2ZrR
-	ilr4t3pf63M6UpxeHaxxLLScpft22Raeg6Jo2kFkBA+sNmi/8dR+TX8rwxLgxTnY
-	sM14oY2quPZprkmJN0o0vSxH/ZARRAJA9DO0MLLrS4/XWPh8+eUQ4+6nho0FzY7C
-	y0RHG3h6izeMwurdbxRVQuJCHLTe+vEBAedbzXwZYP90yzVpTh4Ezb+LA6YiVAFG
-	GR3H1fEe9deJaImceWApuUjX3keC1yU5SXpaO6FhxO2hLw==
-X-Virus-Scanned: by MailRoute
-Received: from 003.mia.mailroute.net ([127.0.0.1])
- by localhost (003.mia [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id 2OIJTmyC9Wqr; Fri, 19 Sep 2025 17:35:10 +0000 (UTC)
-Received: from [100.66.154.22] (unknown [104.135.204.82])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 003.mia.mailroute.net (Postfix) with ESMTPSA id 4cT0500ZwCzlgrtN;
-	Fri, 19 Sep 2025 17:34:58 +0000 (UTC)
-Message-ID: <d2a66ef0-1f01-4ef2-afa8-8ea6f392c365@acm.org>
-Date: Fri, 19 Sep 2025 10:34:57 -0700
+	s=arc-20240116; t=1758303378; c=relaxed/simple;
+	bh=FO8wvkYRv7nTrTXR9Ddx+akxFWDQBaEu2zw/QHN4Eig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=geqQ1salMKRE8wRhW/AB1Iv2gA/8xgwgCKpXdAwgMb620Bsq4Mu+94m1HRvbgmy/X/DVFhKRWvB4cJ0/V1Ex/AIQGTpcmY/8vXxeQ6v5f8ji8dymcFYiObulVlXaP9wSkVv3sYerw4C16U9pJ635NCxafExngVG5Yew8DfvmBks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9b2GGM4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB856C4CEF0;
+	Fri, 19 Sep 2025 17:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758303377;
+	bh=FO8wvkYRv7nTrTXR9Ddx+akxFWDQBaEu2zw/QHN4Eig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N9b2GGM4BBa0/x3g/XtG1YIUP+CeVPucx8Qfy3FwTFRmhFnRmwz6Wl/QJ5YORseMx
+	 qelTD0GuduCyavwvmetPKa3QwdVVS2xi1MghAUJzTgwaO7brdHC+UMahzQJwk+RuYV
+	 eXtunFtPYHy0VuqpaoV0S1fZE2Iy7p7dPvrUyoPk1jyNVAMAzghFDuhgZPqjdXtxAK
+	 NE786ikXrx9DuPqAfgiQIgoZmntWjG9IfmvEMo1JWranEqgKkps+hihg2D37kSP5us
+	 LqhqV4zv5K7YmMTYlOEQJo/ri0gIC4qidxHjBbYuw8dhSfoVELf0HGuwOqiOdRI2bl
+	 T5V4EkvmEghkA==
+Date: Fri, 19 Sep 2025 18:36:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, jic23@kernel.org,
+	michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v2 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <20250919-unsure-mounted-0fc49ce72216@spud>
+References: <cover.1758214628.git.marcelo.schmitt@analog.com>
+ <2d6bca62056e1254f91b45f70f4ba4614e659c1c.1758214628.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] ufs: core: Add vendor specific ops to handle
- interrupts
-To: Ajay Neeli <ajay.neeli@amd.com>, martin.petersen@oracle.com,
- James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, pedrom.sousa@synopsys.com
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, git@amd.com, michal.simek@amd.com,
- srinivas.goud@amd.com, radhey.shyam.pandey@amd.com,
- Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-References: <20250919123835.17899-1-ajay.neeli@amd.com>
- <20250919123835.17899-5-ajay.neeli@amd.com>
-Content-Language: en-US
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <20250919123835.17899-5-ajay.neeli@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oNeuq5bm6kVKK+yF"
+Content-Disposition: inline
+In-Reply-To: <2d6bca62056e1254f91b45f70f4ba4614e659c1c.1758214628.git.marcelo.schmitt@analog.com>
 
-On 9/19/25 5:38 AM, Ajay Neeli wrote:
-> Some vendors will define their own interrupts, current interrupt service
-> routine handles only interrupts defined by the JEDEC standard.
-> Add provision to handle vendor specific interrupts by defining vendor
-> specific vops.
 
-Yikes. Please comply to the standard or contribute to the standard
-instead of using reserved interrupt status bits for vendor-specific
-purposes.
+--oNeuq5bm6kVKK+yF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
-> index 5442bb8..7a6dde8 100644
-> --- a/drivers/ufs/core/ufshcd.c
-> +++ b/drivers/ufs/core/ufshcd.c
-> @@ -7069,6 +7069,9 @@ static irqreturn_t ufshcd_sl_intr(struct ufs_hba *hba, u32 intr_status)
->   	if (intr_status & MCQ_CQ_EVENT_STATUS)
->   		retval |= ufshcd_handle_mcq_cq_events(hba);
->   
-> +	if (intr_status & UFSHCD_VENDOR_IS_MASK)
-> +		retval |= ufshcd_vops_isr(hba, intr_status);
+On Thu, Sep 18, 2025 at 02:39:29PM -0300, Marcelo Schmitt wrote:
+> ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have=
+ a
+> PGA (programmable gain amplifier) that scales the input signal prior to it
+> reaching the ADC inputs. The PGA is controlled through a couple of pins (=
+A0
+> and A1) that set one of four possible signal gain configurations.
+>=20
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> Change log v1 -> v2
+> - Use pattern to specify devices that require gain related properties.
+> - Disallow gain related properties for devices that don't come with embed=
+ded PGA.
+> - Documented VDDH and VDD_FDA supplies for ADAQ4216 and ADAQ4224.
+> - Updated PGA gain constants.
+>=20
+>  .../bindings/iio/adc/adi,ad4030.yaml          | 65 +++++++++++++++++--
+>  1 file changed, 60 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> index 564b6f67a96e..bd43c617ae11 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> @@ -19,6 +19,8 @@ description: |
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4030-24-4032-24.pdf
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4630-24_ad4632-24.pdf
+>    * https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4630-16-4632-16.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/=
+adaq4216.pdf
+> +  * https://www.analog.com/media/en/technical-documentation/data-sheets/=
+adaq4224.pdf
+> =20
+>  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> =20
+> @@ -31,6 +33,8 @@ properties:
+>        - adi,ad4630-24
+>        - adi,ad4632-16
+>        - adi,ad4632-24
+> +      - adi,adaq4216
+> +      - adi,adaq4224
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -54,6 +58,14 @@ properties:
+>      description:
+>        Internal buffered Reference. Used when ref-supply is not connected.
+> =20
+> +  vddh-supply:
+> +    description:
+> +      PGIA Positive Power Supply.
 > +
->   	return retval;
->   }
+> +  vdd-fda-supply:
+> +    description:
+> +      FDA Positive Power Supply.
+> +
+>    cnv-gpios:
+>      description:
+>        The Convert Input (CNV). It initiates the sampling conversions.
+> @@ -64,6 +76,27 @@ properties:
+>        The Reset Input (/RST). Used for asynchronous device reset.
+>      maxItems: 1
+> =20
+> +  pga-gpios:
+> +    description:
+> +      A0 and A1 pins for gain selection. For devices that have PGA confi=
+guration
+> +      input pins, pga-gpios should be defined if adi,gain-milli is absen=
+t.
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  adi,pga-value:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-[ ... ]
+How come this is "value" rather than "gain"?
 
-> diff --git a/include/ufs/ufshci.h b/include/ufs/ufshci.h
-> index 612500a..2844772 100644
-> --- a/include/ufs/ufshci.h
-> +++ b/include/ufs/ufshci.h
-> @@ -185,6 +185,9 @@ static inline u32 ufshci_version(u32 major, u32 minor)
->   #define CRYPTO_ENGINE_FATAL_ERROR		0x40000
->   #define MCQ_CQ_EVENT_STATUS			0x100000
->   
-> +/* Other than above mentioned bits are treated as Vendor specific status bits */
-> +#define UFSHCD_VENDOR_IS_MASK			0xFFE8F000
+> +    description: |
+> +      Should be present if PGA control inputs are pin-strapped. The valu=
+es
+> +      specify the gain per mille. For example, 333 means the input signa=
+l is
+> +      scaled by a 0.333 factor (i.e. attenuated to one third of it's ori=
+ginal
+> +      magnitude). Possible values:
+> +      Gain 333 (A1=3D0, A0=3D0)
+> +      Gain 555 (A1=3D0, A0=3D1)
+> +      Gain 2222 (A1=3D1, A0=3D0)
+> +      Gain 6666 (A1=3D1, A0=3D1)
+> +      If defined, pga-gpios must be absent.
+> +    enum: [333, 555, 2222, 6666]
+> +
+>    pwms:
+>      description: PWM signal connected to the CNV pin.
+>      maxItems: 1
+> @@ -86,11 +119,33 @@ required:
+>    - vio-supply
+>    - cnv-gpios
+> =20
+> -oneOf:
+> -  - required:
+> -      - ref-supply
+> -  - required:
+> -      - refin-supply
+> +allOf:
+> +  - oneOf:
+> +      - required:
+> +          - ref-supply
+> +      - required:
+> +          - refin-supply
+> +  # ADAQ devices require a gain property to indicate how hardware PGA is=
+ set
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            pattern: ^adi,adaq
+> +    then:
+> +      allOf:
+> +        - required: [vddh-supply, vdd-fda-supply]
+> +          properties:
+> +            ref-supply: false
+> +        - oneOf:
+> +            - required:
+> +                - adi,pga-value
+> +            - required:
+> +                - pga-gpios
+> +    else:
+> +      properties:
+> +        adi,pga-value: false
+> +        pga-gpios: false
+> +
+> =20
+>  unevaluatedProperties: false
+> =20
+> --=20
+> 2.50.1
+>=20
 
-That's a violation of the UFSHCI standard. In the UFSHCI standard bits
-31:22 and 15:13 are marked as reserved and hence must not be marked as
-"vendor specific". Please either drop this patch or remove the
-UFSHCD_VENDOR_IS_MASK definition from this patch and remove the
-"if (intr_status & UFSHCD_VENDOR_IS_MASK)" condition from the interrupt
-handler.
+--oNeuq5bm6kVKK+yF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Bart.
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaM2UjAAKCRB4tDGHoIJi
+0maCAP0X6Ycu32Zx57iHv8gynnTTCR4gcKXh1z3OmUDvmRhhQQD/YdUYZ66mR9YO
+d/7UA6JvzjYg4YpAD5hSfGZMuA3wrwc=
+=UgDm
+-----END PGP SIGNATURE-----
+
+--oNeuq5bm6kVKK+yF--
 
