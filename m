@@ -1,157 +1,172 @@
-Return-Path: <devicetree+bounces-219086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20494B8771F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 02:02:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE82B87740
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 02:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73EAA7C601F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC69F170CB7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 00:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613242144D7;
-	Fri, 19 Sep 2025 00:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9C8225A39;
+	Fri, 19 Sep 2025 00:15:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A7D1F4297;
-	Fri, 19 Sep 2025 00:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753C919AD89;
+	Fri, 19 Sep 2025 00:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758240092; cv=none; b=N7yC8t1iqei5tDP09tCdUMc+zDfCgHGQS9rbPZ5WCyFzn7koes0d3xjqAZ8DaPRZy6DNMI+EiPMG2bSoz7uzaEQFExgTUNzXOkAyos2lzv+FwnnVa47hLNUjvJ8wtItg6mgrT0efNREHRaiOJ8kyCaGImELbEMtaXegZVpKsTbI=
+	t=1758240927; cv=none; b=QaJBS3i9HbRM6xFPTFylx81Z+8dourG2sByMGFcFM6qt587XoiBrbNtSttOrxmtFsEgnoaeBAkOoFOQh1dGrDYj7abaiERWUj+jpqeDpv3LTlTaqAScabzSrxyt7ByffS4ZWNJGel0E0uiDta/ZHLsD+OWIKsuRuwjTitTvG3x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758240092; c=relaxed/simple;
-	bh=Tg1ld0C9aJV9Taesd/GOIbrFd9dLKzMX+uwTJypScp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yo3l14ivi6SQDQ3/aeqdXv+sR9x3zfEATTMjrFzLOQYzldAYzYCXPTjC+z1NZunWOD8GgXtt7KmTkg6JNkKiU10e/JH6udrauORVQP9ndPS6xpWxD22edd99C5dSRUxb6OWtgumAi1yLNlQ4F0GHY6Pov1Mlpq4N+VA67V6isoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1148B1762;
-	Thu, 18 Sep 2025 17:01:22 -0700 (PDT)
-Received: from minigeek.fritz.box (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 058443F673;
-	Thu, 18 Sep 2025 17:01:27 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Lee Jones <lee@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Mikhail Kalashnikov <iuncuim@gmail.com>
-Subject: [RFC PATCH 5/5] arm64: dts: allwinner: a523: Mark dual-phased regulators
-Date: Fri, 19 Sep 2025 01:00:20 +0100
-Message-ID: <20250919000020.16969-6-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.46.4
-In-Reply-To: <20250919000020.16969-1-andre.przywara@arm.com>
-References: <20250919000020.16969-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1758240927; c=relaxed/simple;
+	bh=eGf80KRM5JbUE5eALncots9eBl+gmrYyLghxAEkJNhs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=B7y0VPWaJF2Q+8WmI3HFrP2jb8xsiCUGnmSGlpvP2oukaJwdZsRzEnJvP2EiMChy5S38NzQBxJveEwwrW/L65adOWVIcZ/h45dUChE4l1YIJALFFKZf7Y8hHMyzdWNbxvdYj+ApT7ixTPqQWrH9obgUVcp9+C3i7XwC2Fb13tPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip3t1758240836tb58d29e6
+X-QQ-Originating-IP: m6WApfYMqy/M1U5G9blRrrjx+KT0iGx5rYj1EBrL7aY=
+Received: from [IPV6:240f:10b:7440:1:ce36:128f ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 19 Sep 2025 08:13:52 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 3376898036188312182
+Message-ID: <F1C5CEF8D2933380+98b20449-12bb-4697-84e0-40fd8c2ed81f@radxa.com>
+Date: Fri, 19 Sep 2025 09:13:51 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: correct uart mux for Radxa ZERO
+ 3
+To: Ed W <lists@wildgooses.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250917114932.25994-1-lists@wildgooses.com>
+ <20250917114932.25994-2-lists@wildgooses.com>
+ <FBB5B30DE8FEABD7+59ee6f48-2ad1-45dd-8cf1-8b58a03513a9@radxa.com>
+ <adbc2396-d5f0-4dd6-a65e-0dd78a58b9a4@wildgooses.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <adbc2396-d5f0-4dd6-a65e-0dd78a58b9a4@wildgooses.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: OAOHw7tUGLQOcxelNBtkTVWFdi8/NGrLMCDKXvFBpW4bo9CpAlddDcXD
+	aBeJWa76gD9H1h/5+gsuhYc3MdFNrjPMA8l7hWoLRInPb+7gsDVKbzbGdd8G4DILDa+3R5R
+	FVYCZnm/v53Ad1yswfmtcOaPNqXurdBrjFN4/MCbd1hWOrqSvHbp/csKVJltTFDzHQWThnX
+	8CjTfMxziQF5ybLPVWVOFLFaslYCySlN6A/sL9oTUB0bSOP+fLse/mvQUfbhbeTzmvGfUhj
+	o5y2fRQaCXHIqOKzsM0kR4VRXrnygpVjZnwyYaLsRjFxHcCdFxK1nW5ioh/nnUdTIvX4ag5
+	ZCeSs6gucfCFWtdN/regX2wXKvoebWhvN3ekTrGkHgCU60S315e9h8L50MOw2Jb/77UiXWW
+	hH3CypWLuFtJLjAN3sgm2d8Zs1lFl7Z6k73sQxahBpuUYjYfgrQJQkM6i0GdSQoboqik+bQ
+	lIOaiXDciSen9RACuxkcC0fCwsU0mPEEraveQLwY9OtUXgx3wCfc7KbCzqXbHxFS/E+GCTm
+	B2sOkQhMXHnERU+NfQ1yKVu9T8JM+hqy8emchfb3RvnhYOLYqCfvxw1bm1Ot3mnZ8LK3Me1
+	7mcVMjHz1c22+qoUcwp5S2ElLj+wqCA4h+pDcTFUS4Oblr1BUbpInGdkSjMlKt+cgnIzL/H
+	ZX1bbXvghralKOdGVjszj4CTc7UO0YxvO5QIOseMLkGzfQJ50Qk9++2NkWwK+5GyBQIuvl4
+	9R/8/seGPnGFTV/cSz+5w9qHprVVoCCYhRcKdB6FUg1Z81avqYxQ69kNWKaS5piLnzFP/D3
+	VNYIqqMvFIeATJ9NtL/AHgQnK03YkXJdrzo7lc8ddS9e5Uc273Em0QQKd/w/46vYHbF26mf
+	XkabuuraSUxWFds1iyJEV0OZRJYENAbINFuQYgwmiR6RO8zvHYXHR649DwWAof027az5g06
+	8UQ0RUsMmPYXp/MQqqg5KLZMrSOXsjFSQgXtBT2Rnpw1wLFQ/mXM7nJFiIYlORyn4w9lS0l
+	icoLXBpB0//wm33lio
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-The X-Powers AXP323 PMIC on the boards with a SoC from the Allwinner
-A523 family typically uses DCDC1 and DCDC2 in a dual-phase setup to
-supply the "big" CPU cluster. For some reason this dual-phase
-configuration is not the PMIC's reset default, but needs to be actively
-programmed at runtime.
+Hi Ed,
 
-Add the newly introduced x-powers,polyphased property in the board DTs,
-to mark this connection and let drivers program the dual-phase setup.
+On 9/19/25 00:23, Ed W wrote:
+> On 18/09/2025 05:53, FUKAUMI Naoki wrote:
+>> Hi Ed,
+>>
+>> Thank you very much for your work.
+>>
+>> On 9/17/25 20:49, Ed Wildgoose wrote:
+>>> The rk3566 has multiplexed pins and the uarts can be moved to a choice
+>>> of 2 pin groups. The default rk356x-base.dtsi appears to default to mux0
+>>> for all uarts, however, specific hardware might choose to implement
+>>> alternatives
+>>>
+>>> The Radxa zero 3 shows that is uses M1 for uarts:
+>>> - uart4
+>>> - uart5
+>>> - uart9
+>>>
+>>> These aren't normally enabled, but we should at least correct the
+>>> default pinctrl definitions. Without these changes there will be
+>>> conflicts with mmc0/mmc1, leading to the SD or eMMC going missing.
+>>
+>> Sorry, but why do we need these definitions for disabled nodes?
+>>
+>> Or why don't we do similar definitions for nodes other than uart?
+>> For example, PWM12, I2S3, and SPI3 also use M1. Are they not related to SD/eMMC and therefore
+>> don't need to be defined?
+>>
+>> If users want to use UARTs on pin headers, they will refer to the correct documentation[1] to
+>> determine which pins are UARTs and will of course write the correct pinctrl definition.
+>>
+>> [1] https://docs.radxa.com/en/zero/zero3/hardware-design/hardware-interface#gpio-interface
+>>
+>> Best regards,
+>>
+>> -- 
+>> FUKAUMI Naoki
+>> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+> 
+> Personally, and I'm saying this as a user who is technical enough to fix the definitions, it took me
+> quite a few days to figure out what was wrong with the definitions and understand the intricate tree
+> of dtsi includes, to finally figure out why I couldn't just do a "status = "okay";" to enable the
+> UARTs... (which is roughly what is shown in several radxa supplied overlays to enable uarts on
+> various boards)
+> 
+> So my vote would be to correctly define all the hardware for a given board. Then users can simply do
+> a status="okay" to enable and off they go. Phrased another way, I can't see a disadvantage in doing
+> this, rather than leaving broken definitions in place which don't work correctly. Ideally I think
+> you should add at least the I2C defs as well, as that is something I would like to use for another
+> reason and haven't even got to the point of discovering that was broken?
+> 
+> I might also (gently) add that it was not easy to find all the documentation to fix this. I located
+> the datasheet for the Zero 3 via google (it's not obviously available on the wiki?), then there is
+> the reading through and I must admit I missed the multiplex difference the first few reads through.
+> Eventually I fed the docs into a LLM and it pointed out what I missed and we got there
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts   | 5 ++++-
- arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts    | 5 ++++-
- arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts   | 5 ++++-
- arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts | 5 ++++-
- 4 files changed, 16 insertions(+), 4 deletions(-)
+In addition to docs.radxa.com, we also distribute some PDFs on the 
+following pages:
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-index 4ad91b6f01d34..a51446482927c 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-@@ -269,9 +269,12 @@ reg_dcdc1_323: dcdc1 {
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1160000>;
- 				regulator-name = "vdd-cpub";
-+				x-powers,polyphased = <&reg_dcdc2_323>;
- 			};
- 
--			/* DCDC2 is polyphased with DCDC1 */
-+			reg_dcdc2_323: dcdc2 {
-+				/* dual-phased with DCDC1 */
-+			};
- 
- 			/* RISC-V management core supply */
- 			reg_dcdc3_323: dcdc3 {
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-index 68c5765c2e919..848b5abb4203f 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-h728-x96qpro+.dts
-@@ -285,9 +285,12 @@ reg_dcdc1_323: dcdc1 {
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1160000>;
- 				regulator-name = "vdd-cpub";
-+				x-powers,polyphased = <&reg_dcdc2_323>;
- 			};
- 
--			/* DCDC2 is polyphased with DCDC1 */
-+			reg_dcdc2_323: dcdc2 {
-+				/* dual-phased with DCDC1 */
-+			};
- 
- 			reg_dcdc3_323: dcdc3 {
- 				regulator-always-on;
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-index 7b7ef54ec7684..ec69b409ac47f 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-avaota-a1.dts
-@@ -291,9 +291,12 @@ reg_dcdc1_323: dcdc1 {
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1160000>;
- 				regulator-name = "vdd-cpub";
-+				x-powers,polyphased = <&reg_dcdc2_323>;
- 			};
- 
--			/* DCDC2 is polyphased with DCDC1 */
-+			reg_dcdc2_323: dcdc2 {
-+				/* dual-phased with DCDC1 */
-+			};
- 
- 			/* Some RISC-V management core related voltage */
- 			reg_dcdc3_323: dcdc3 {
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-index d07bb9193b438..e9e6d85fb84f7 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-@@ -322,9 +322,12 @@ reg_dcdc1_323: dcdc1 {
- 				regulator-min-microvolt = <900000>;
- 				regulator-max-microvolt = <1150000>;
- 				regulator-name = "vdd-cpub";
-+				x-powers,polyphased = <&reg_dcdc2_323>;
- 			};
- 
--			/* DCDC2 is polyphased with DCDC1 */
-+			reg_dcdc2_323: dcdc2 {
-+				/* dual-phased with DCDC1 */
-+			};
- 
- 			/* Some RISC-V management core related voltage */
- 			reg_dcdc3_323: dcdc3 {
--- 
-2.46.4
+  https://radxa.com/products/zeros/zero3e#downloads
+  https://radxa.com/products/zeros/zero3w#downloads
+
+All information should be linked from the product pages (e.g. 
+https://radxa.com/products/zeros/zero3e), but if something is missing, 
+please report the issue by clicking "Report issue" at the bottom of each 
+page on docs.radxa.com.
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> So in summary, I'm hoping you will adjust the (really very well structured! thanks!) dtsi include
+> tree to correctly define all hardware on each board so that we don't have a situation that every
+> user in the world needs to be a really decent level kernel tech just to use the board! Pretty please!
+> 
+> Thanks for listening
+> 
+> Ed W
+> 
+> 
+> 
 
 
