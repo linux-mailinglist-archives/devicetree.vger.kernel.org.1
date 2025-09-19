@@ -1,101 +1,124 @@
-Return-Path: <devicetree+bounces-219318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CED6BB89F6E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:30:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F02B89FE3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:34:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7BD6A4E143D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:30:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C238A188CEE2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1230C316196;
-	Fri, 19 Sep 2025 14:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4ED33161A9;
+	Fri, 19 Sep 2025 14:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="BQOMoimQ"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0Gq56a7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716DA315783;
-	Fri, 19 Sep 2025 14:29:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C0130F541
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 14:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758292191; cv=none; b=aSSR+r98No2kVRctKiz+1HzVIe2b2F4z2byWSrS2oJVV8crOHzOmfv8gQ5IRi2em8GbhP7SjRkx3OFkp6qCeJ6W2vYY2YxBtsYpO40I4O6KVm7q8RlPL6qAwG/n+kvgHnGN7RdCxkRhSe0fnyzxDlFt5UPQnZMrRfQwrI2Rxtj4=
+	t=1758292417; cv=none; b=P/ka/0LfB4+jqHqI+vxlJh4xOgGBw6BauaIPW13xFA4rwAOvtsfLM/VB+PXBUZE/v0nwZE3czdESPOawiIFSvGG4EZDXZUWE2zS2jifQh6Bao+ydwB2E4GLCnUH6/6FUdZNoKlodsbehUiGDbr/NnrHL7+F5AdqD5meZTyUkAdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758292191; c=relaxed/simple;
-	bh=81PMYlqM/y1cobIvGWv6NmLT8uHoL246gy0zJP1C1Hk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=r8Of90LDgcea2gxeAuqPbhapq3I5ZJSJkqpCbGh/ErB+u+1K5B1Q3eBZYKa/J/lk24fnuaDtobh6HoTHuuXBPbm9uPHbM0UtRdvxash5Spt/bPkZHCHqP070n6cTj2SUCqhxJJ1XHuWd9j73nsWhBIQhPrzItBEaE85hueMfRu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=BQOMoimQ; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 059042054C;
-	Fri, 19 Sep 2025 16:29:48 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id tBBtd3IQlEy2; Fri, 19 Sep 2025 16:29:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1758292186; bh=81PMYlqM/y1cobIvGWv6NmLT8uHoL246gy0zJP1C1Hk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=BQOMoimQpdAVlc0FjdRCdRXrc9RdGZlN5x5GcNVaZTZroEZ4irVCJF+dvkIeNZ4yd
-	 F+YHKnSE3/oSxm5E6USKGj4LaChrpfN4ZVmClHDRtvQYi/lQsUWKdf5zgwvbeXr4Gc
-	 r7An77PaG7TYJA8d1JqqQb/0Vi6DwVmSrOrtxAt+hc0KNtSCpnx/OagWgkMuOLfnR6
-	 gJ1Q1bgfy1ckEjOzwlIdFrLVUwHNHtNiP+n/aQXZyR95JqDpP1e2ZnLlG6mmzIVkl0
-	 J9k+g5S+DFWrc8P6KOteGN6FCPL1La1AHw9S6kbyJyMlS3OwghbVursrksVnp9MHjm
-	 d7vEjb8yD3Oyw==
-From: Yao Zi <ziyao@disroot.org>
-To: Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH v4 8/8] LoongArch: dts: Remove clock-frquency from UART0 of CTCISZ Forever Pi
-Date: Fri, 19 Sep 2025 14:26:49 +0000
-Message-ID: <20250919142649.58859-9-ziyao@disroot.org>
-In-Reply-To: <20250919142649.58859-1-ziyao@disroot.org>
-References: <20250919142649.58859-1-ziyao@disroot.org>
+	s=arc-20240116; t=1758292417; c=relaxed/simple;
+	bh=e4UBUt6lR4A0mwQEEq4xjqzMIANLj8niyjojOgxFoI4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MNmxZ+f41uGTD9BOPV8D+rR1CBb0tSPoaK2o4VezfIyyf5I5fUynkRE1LeU0lyubmexjLYRfqO4yeLDfGQHaEpeI0q/GRcR76zrzMwTQiLFQ38grN2F5fGtAfJ+g7V+bzdvD19Me7RF1N1BwPpmrl1wNx/L7WvokY8x37LXxRcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0Gq56a7d; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-26e68904f0eso1639435ad.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:33:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1758292415; x=1758897215; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y2gym8TYp/ovo8G/55zCJFXd/aU/zbsFHKBPG4aVbvE=;
+        b=0Gq56a7dcWgKwVzWSvZVd02q3nKJi7LcU+PktMhXWJf6DDFlsyQ5mtLAhM4u30PnOe
+         vo4tY204IWtbaJ4kVpZn1BwVw5gPXk+XEGcTGb9916FwTBGyKcOKw24ZqWcM75C513Wb
+         3AJLIeuFlJfqM3SgZig7COpgTa6xC6MfWNqYQbbv+4E8lxjtRUYow1s0AV9j1l9bpu3y
+         oyI+5EWAC6zBSnUg0P7L363uchFS7wH5/P4qHmQHuEJXOil9UcfuggWxzoRhxerElH2c
+         sEZVZ0nORrgxn29rh2OXdBtcc/oBu7SK37EgM5dQBUIpZ+NOEiVs+mZU8tDzMUa8wV2Z
+         +cmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758292415; x=1758897215;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y2gym8TYp/ovo8G/55zCJFXd/aU/zbsFHKBPG4aVbvE=;
+        b=jijMZdbyIk5O4uL+FHvos8qViMf4CfFRqpdY0/lKnDkB1Z2FPFKWxEAyLixucYV2K4
+         HiMsjdui89nu/++ak/2gUZ+dBL09scu6ZIa+My6JkbmXsgjQzlKMr5n7hypuNmp1U5Jw
+         t9GU5h7nrziK+P+ax1wePzt6TYxKDsuOgFZZqffjLUCxvF17lCMyVN64qeHbeBlCm6aO
+         o4C9uVwNlzn4HO0O5inDn+j+fwcpzRAVG97iJKNDykvqbU8s0LSy9LpoD/YCLDPI/rlQ
+         Kpv1V3l3gogqAXoRIIcE6iyIyF7ptpnYDbojTjnPP2HZlzOQMg33WhIJJgicKwYzIdDN
+         5OcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUsnHIHg3HuDZBhF9DTOost9a5kzhdIsyLWV1gQuyH2x8idUCAJXo5NL2XSKKNMMxObZo3VIQZOM5ar@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW7fPOibi+m5dl7XYrFXO8+Q/EfJfgiCz+YAg5DWswRfq8xIem
+	7Poc43OGKvnujiMW7sNiPWF9DcMXjHFdgETk+xpBDeCWiPmA8K0gLDC4JjZvHbqPy4wS3yQjXZV
+	MAlKC4PenAkfaUjpo8asE79kTeK5eHwQM6ubomL+E
+X-Gm-Gg: ASbGncsY0pfwJlu6iK/MYHePP0jvw/8zSMIWnfoBaIIzg22ID3OAIPBIw45WjYLkzGC
+	Kc2nOT/oVXUz1RdhM99ee/WD6RJGmbc6eIe2OWZAhZbBTjR5LVHgjLknBY3jNm9S5QMAhztM7wu
+	3lh/mdc85+iT59Vw9ooboTqzp6fuTTHJgrW+LiTyRqSZwdGAtoHnkQeFZP4EOyY+yYzx/uO2OMU
+	IZC3qb1TVvIHLO521NPGS6OhayfMtRoDLbbXZDhFocz8Co=
+X-Google-Smtp-Source: AGHT+IGoZM0jnVTt1Y2CJHZqnYGBoUxj4B49GMuB7/9WxT3I0dZXKe1ddSPAgfCVn0IDJ7MGh4cZz1erCcimfhFsdfE=
+X-Received: by 2002:a17:902:e787:b0:269:9a71:dc4a with SMTP id
+ d9443c01a7336-269ba562469mr40478525ad.41.1758292414956; Fri, 19 Sep 2025
+ 07:33:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250919111101.2955536-1-yanzhijian@huaqin.corp-partner.google.com>
+In-Reply-To: <20250919111101.2955536-1-yanzhijian@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@google.com>
+Date: Fri, 19 Sep 2025 07:33:23 -0700
+X-Gm-Features: AS18NWD7sjIWHslodAybxfuXYKhfB9xyIPTlMG3JfDBvZbYFN3An-yBQPnL5d3I
+Message-ID: <CAD=FV=VDChmUn50S7FKUumEDXZS-S4YZyyV4B1-HiHAiiDEn8A@mail.gmail.com>
+Subject: Re: [PATCH] drm/panel: Add support for KD116N3730A12
+To: Zhijian Yan <yanzhijian@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The property isn't required anymore as the supply clock of UART0 has
-been described.
+Hi,
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/loongarch/boot/dts/loongson-2k0300-ctcisz-forever-pi.dts | 1 -
- 1 file changed, 1 deletion(-)
+On Fri, Sep 19, 2025 at 4:11=E2=80=AFAM Zhijian Yan
+<yanzhijian@huaqin.corp-partner.google.com> wrote:
+>
+> Add panel driver support for the KD116N3730A12 eDP panel.
+> This includes initialization sequence and compatible string, the
+> enable timimg required 50ms.
+>
+> KD116N3730A12:
+> edid-decode (hex):
+>
+> 00 ff ff ff ff ff ff 00 2c 83 97 03 00 00 00 00
+> 02 23 01 04 95 1a 0e 78 03 3a 75 9b 5d 5b 96 28
+> 19 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+> 01 01 01 01 01 01 09 1e 56 dc 50 00 28 30 30 20
+> 36 00 00 90 10 00 00 1a 00 00 00 00 00 00 00 00
+> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+> 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 fe
+> 00 4b 44 31 31 36 4e 33 37 33 30 41 31 32 00 a9
+>
+> Signed-off-by: Zhijian Yan <yanzhijian@huaqin.corp-partner.google.com>
+> ---
+>  drivers/gpu/drm/panel/panel-edp.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k0300-ctcisz-forever-pi.dts b/arch/loongarch/boot/dts/loongson-2k0300-ctcisz-forever-pi.dts
-index a033c086461f..1bdfff7fae92 100644
---- a/arch/loongarch/boot/dts/loongson-2k0300-ctcisz-forever-pi.dts
-+++ b/arch/loongarch/boot/dts/loongson-2k0300-ctcisz-forever-pi.dts
-@@ -40,6 +40,5 @@ linux,cma {
- };
- 
- &uart0 {
--	clock-frequency = <100000000>;
- 	status = "okay";
- };
--- 
-2.50.1
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
+Pushed to drm-misc-next:
+
+[1/1] drm/panel: Add support for KD116N3730A12
+      commit: 048deed5faf012c6ecf6057ddf1340c41f69fdb0
 
