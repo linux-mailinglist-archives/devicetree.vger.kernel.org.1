@@ -1,161 +1,170 @@
-Return-Path: <devicetree+bounces-219431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D99DB8AF95
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:49:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C79B8AFFE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:51:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A53D3B2D8E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:49:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7155BA017C6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273D7265CCD;
-	Fri, 19 Sep 2025 18:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9951D2690F9;
+	Fri, 19 Sep 2025 18:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ocbb0xK4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="U0+4PGeA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1CC1A9F91
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E7026E16E;
+	Fri, 19 Sep 2025 18:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758307747; cv=none; b=DkS24Tyd0teQo+Z6JkeS+vtDf+PNLoPVW1bI1uuI3Bls+9zCk9h02d5ZVbvjU7YSjSg4kzCEXrfQBzlqY2UAWrSDHuYe3ZxvTk+g9WrMVfXbj20ZN7FAQ07sQrSmNkdR0gbKaDeatxpOvjdCphXyfZEemNdJO1kONhMEwhuuo70=
+	t=1758307867; cv=none; b=uufQHd81uMYacmqG/u3LmfokCAHsuLdN8WF/JAeLzxkgIRPZ1rxQQEPQ7yncSx8HbF5C5o/ZGDTq8UzGR1cXIAZEZieN4Vi3NXxVKbPLib4E7tN/ShQrgCYm4f4uQhnX1apt9R4MhxRkm1XLBeCrv+YMXGa3TPO911rGaEsnHf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758307747; c=relaxed/simple;
-	bh=tDpff8O9qf1+POqcMf7/vsOvLzgZ1HmZhTtn5x1unOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNWHjaJPS9+epyTclqGTKH75lhvhL739sGGVGvtRHXeoutuZ3Eov6ouqGIMj+5gKt+ybQdOiP+lqfwqoYC3IBM8ggLDxraUCHk/0H84APyz2+sZ+TVpGWcBJO3vn424mc4wNNMmlnxL5uqi+2LIAvonpj0R/BViyeFOXuw2s6W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ocbb0xK4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58JDJQoa031264
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:49:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1xZa8NKZpDGoqnGXensXWLoa
-	+hUVxbdOY1y1b66zJ+E=; b=Ocbb0xK4Ljujs9Rpfrf+140ehslrxIZaeV5ZsHXA
-	sdEMwZoFTfb1Ql+BuaLOuDI/yc//8QfcddWVzrrz6XZzs5l52mLhX6M6HOZMh/dl
-	/AoK4LDROWC8q2OdtxEBsFupe2CEPy+PAG6UOj3XCgBK3t8TlA4VIxHHIe4xuPbK
-	wyy/EkBWHD1qo++duSE1fcHFjLQHzgsV9sQYLrzRdsnq4W7R+rnHpU9/2mg1muZT
-	TzuoUhs8Xc6phG3Ve2179+Kh+lSmOFF2hLYBUmnUEtTIWt3KAygpVBwq43chfh3Y
-	XsIAAwZTWzD5NTg8AKs/WIDXuyPAiS9QOzRg2awX+Eg6iA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49916x2cds-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:49:04 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-827de9171a2so491287185a.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 11:49:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758307743; x=1758912543;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1xZa8NKZpDGoqnGXensXWLoa+hUVxbdOY1y1b66zJ+E=;
-        b=uE93JKSzhzf5fOB5Gi4HsPkMf/7Eb+hfcArsVQsV3gcP40v14KOWQUS0+zr13ERFpF
-         OYGdxlQOJoX4CpqQ4BF03uRXQMHFSR60/R3jZ2+ABgeTAylQBzrf7JOFUhWt20dBlLF6
-         UvZA8QeUudXGqgKiRtMWhRM8rUmDlN+TR+TfJgFfDojqLZJ/K20s7B9SYAX5mKmLzsBf
-         aYcHdiq/ELxdBjMPfn53i6MbtjlMQk4Pd8fqESC1fJWby7vMvBW9xlzdBB5xDIMh2Qpm
-         8Vlq94mm9uPILAiAddZaOUGH9NjuqFWwySKTlmaiUx0uZcL3w2riW7+usKH+1CaS19gN
-         xR+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVLhFmNS1ks5QJ7ap/IFq+WHGXTVouqbf3hKHn2okwWmt2Sr5eVccKXbSZBqPi5rOYr+aCO/3vWcPd/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJ0MTXrR2l9iztwEnUu5IjAjgHBq+UQaiNb58JRPPVcWLx7eXT
-	+FhbDyMBsm53nrbDNx5asIopzblbU/yBW9yzyq4V22X0gxdO6eHv7scOvN2qZG3dKK+pv7X+ZVo
-	gzJz767N6A0bEDVHR2njPQwdRc3al8SJonpGf8KSEjIaIG2TxTJaDzntMuKW1j/SK
-X-Gm-Gg: ASbGncu4sdvoknDdIvDJ1bmnbXtD/R64HYtpCnV6MDjST5t5PYtu6DORO6Si1CIS0pt
-	5rgp+JnkYt/eyExhRgbEyAqCCODu2bZ0obBboFYW05FaNqc2GctC8ZAMTHA+DyxHO6AV1AvNrCr
-	XQM7tKtlnEO/YJFQNJ+yn38kXneSGZBkCK4U9bkIhcNn8JBcEAcf0R9iWD1Tn+Cxvcl43DwiCHF
-	Ge2eP9sbwME57D+e/ISGQubANTLMvcUiU/xpZvCPvYhBFgKS2Dj0svtDY7Z7uPBKv1klowuL7ww
-	+/0poQTqtwav4UqpakjHZWRiosGrcmQ7saDrvuLpu+JP1x4983phoGVKlrejpUAnmMZeNvCw4ui
-	fEMg3Ausk1nUIFucoxqwz2icd5+ynhLOh++psvNlihUTWcvadJ6gE
-X-Received: by 2002:a05:622a:551a:b0:4b5:dd8c:1d3 with SMTP id d75a77b69052e-4c073d929f7mr60166721cf.77.1758307743351;
-        Fri, 19 Sep 2025 11:49:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFd704pWx6mR4liYWHfvStigqH2zSqR9FouEegfxS0MAneRfE6nX5yLKo0d8lSjuQhI5Fty2w==
-X-Received: by 2002:a05:622a:551a:b0:4b5:dd8c:1d3 with SMTP id d75a77b69052e-4c073d929f7mr60166031cf.77.1758307742681;
-        Fri, 19 Sep 2025 11:49:02 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-578a9e1d901sm1499917e87.135.2025.09.19.11.49.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 11:49:01 -0700 (PDT)
-Date: Fri, 19 Sep 2025 21:48:59 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v5 07/14] phy: qcom: qmp-usbc: Move USB-only init to
- usb_power_on
-Message-ID: <zjegjucwluzzh2x56mn7dpk4ocmbdrhyvubkxprpiuko5cifvv@ygvbal3vpssv>
-References: <20250919-add-displayport-support-for-qcs615-platform-v5-0-eae6681f4002@oss.qualcomm.com>
- <20250919-add-displayport-support-for-qcs615-platform-v5-7-eae6681f4002@oss.qualcomm.com>
+	s=arc-20240116; t=1758307867; c=relaxed/simple;
+	bh=x6gy2G+xa01YQQzTPQSurz4mJFhVMxRZroZa5+IK4hc=;
+	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
+	 References:In-Reply-To; b=EXgpnFkOg/sUWLYiq7Nfp6UawOBptxEIdhNgT9tpFSQz4tQBGUQfhY5TKgr3OchXWhEFW7CcagOl8nuG63svFY8Q89h5qyjzhdM5qZI/aJE7tm1QhflTr3o9i7HcrtX4J/eAqTmYFBNDGc0tfB8K9vgOVI1XwRAXSgj2hD38pn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=U0+4PGeA; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JIoWrV768216;
+	Fri, 19 Sep 2025 13:50:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758307832;
+	bh=7UTiup6Y10g60KAI/PbYDXjLaW+SFyw7bFx/SuweNw4=;
+	h=Date:CC:Subject:From:To:References:In-Reply-To;
+	b=U0+4PGeA5mwPBObl6NurDgnyeuC0OPvJ8HWzOzVgfUGu87uVHgwmTEcxA8gRCZCDG
+	 MQ+5aB+3twSC55m0qDpgyYTwWMTSkDxBnAm7m700WFdfA9ce9p1diWjyQdzLkwV7Cg
+	 MTTs6BxKdzedEtmONjJ8sY7JnIAYtrXgKmJoMmEI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JIoV2U2537318
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 19 Sep 2025 13:50:32 -0500
+Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
+ Sep 2025 13:50:31 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 19 Sep 2025 13:50:31 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JIoVGn2754111;
+	Fri, 19 Sep 2025 13:50:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919-add-displayport-support-for-qcs615-platform-v5-7-eae6681f4002@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE5MDA0OCBTYWx0ZWRfX1T/vyqtV+BKk
- LIy5qLOrX4MgQNWMxSsbuh/x68rlyx3a9riFVbqhDKFSY5Mw0eXd/JJJhqBRzdD94FIDOfPRSa8
- Hxia6JZwBYPA7PBZMUpaDMwwGAIRbAh2/M8PDXdc6jzMBC8o+1Rla0SYVUDLB5CmRDutlH0+Wty
- CoYpu1Wqb3qjQs2Zk0Sblx5x5wooa0es40wrequ1RO0XIkBGj9KpPOY7tEXzZZpVGcmw4AAgwEG
- 3N6HEwuVRBDc6L8Z7RAPyEDlo0y5po0sC34cRmZbeMiB4+pRYm0VW/aslCTCTrqu8KlkJ7ABFIu
- sl5l1W6iGLzYup4E5aSwh/wbhFW31dVdjjnZLpc+og2N5zKbvrKgsERlz7LuY4naQn5AT8BCxLP
- gjd/rr/W
-X-Proofpoint-GUID: RUQrob7ZutnJxn07ZuRO80Gao_YP4PE5
-X-Authority-Analysis: v=2.4 cv=LcM86ifi c=1 sm=1 tr=0 ts=68cda5a0 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=0ERirU_vq5G6WO8xEvsA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: RUQrob7ZutnJxn07ZuRO80Gao_YP4PE5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-19_02,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 phishscore=0 spamscore=0 impostorscore=0
- suspectscore=0 adultscore=0 bulkscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509190048
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Fri, 19 Sep 2025 13:50:31 -0500
+Message-ID: <DCX03UL17R3K.1MRUGNR4PUIDL@ti.com>
+CC: Andrew Davis <afd@ti.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/3] clk: keystone: don't cache clock rate
+From: Randolph Sapp <rs@ti.com>
+To: Michael Walle <mwalle@kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+        Matt Coster <matt.coster@imgtec.com>,
+        "Maarten Lankhorst"
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        "David Airlie" <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth
+ Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Michael
+ Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250915143440.2362812-1-mwalle@kernel.org>
+ <20250915143440.2362812-3-mwalle@kernel.org>
+In-Reply-To: <20250915143440.2362812-3-mwalle@kernel.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Sep 19, 2025 at 10:24:24PM +0800, Xiangxu Yin wrote:
-> Move USB-only register setup from com_init to qmp_usbc_usb_power_on,
-> so it runs only for USB mode.
-
-
-Please rewrite the commit message to start from the problem description.
-
-With that fixed:
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
-> 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+On Mon Sep 15, 2025 at 9:34 AM CDT, Michael Walle wrote:
+> The TISCI firmware will return 0 if the clock or consumer is not
+> enabled although there is a stored value in the firmware. IOW a call to
+> set rate will work but at get rate will always return 0 if the clock is
+> disabled.
+> The clk framework will try to cache the clock rate when it's requested
+> by a consumer. If the clock or consumer is not enabled at that point,
+> the cached value is 0, which is wrong. Thus, disable the cache
+> altogether.
+>
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 22 ++++++++++------------
->  1 file changed, 10 insertions(+), 12 deletions(-)
-> 
+> I guess to make it work correctly with the caching of the linux
+> subsystem a new flag to query the real clock rate is needed. That
+> way, one could also query the default value without having to turn
+> the clock and consumer on first. That can be retrofitted later and
+> the driver could query the firmware capabilities.
+>
+> Regarding a Fixes: tag. I didn't include one because it might have a
+> slight performance impact because the firmware has to be queried
+> every time now and it doesn't have been a problem for now. OTOH I've
+> enabled tracing during boot and there were just a handful
+> clock_{get/set}_rate() calls.
+> ---
+>  drivers/clk/keystone/sci-clk.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/clk/keystone/sci-clk.c b/drivers/clk/keystone/sci-cl=
+k.c
+> index c5894fc9395e..d73858b5ca7a 100644
+> --- a/drivers/clk/keystone/sci-clk.c
+> +++ b/drivers/clk/keystone/sci-clk.c
+> @@ -333,6 +333,14 @@ static int _sci_clk_build(struct sci_clk_provider *p=
+rovider,
+> =20
+>  	init.ops =3D &sci_clk_ops;
+>  	init.num_parents =3D sci_clk->num_parents;
+> +
+> +	/*
+> +	 * A clock rate query to the SCI firmware will return 0 if either the
+> +	 * clock itself is disabled or the attached device/consumer is disabled=
+.
+> +	 * This makes it inherently unsuitable for the caching of the clk
+> +	 * framework.
+> +	 */
+> +	init.flags =3D CLK_GET_RATE_NOCACHE;
+>  	sci_clk->hw.init =3D &init;
+> =20
+>  	ret =3D devm_clk_hw_register(provider->dev, &sci_clk->hw);
 
--- 
-With best wishes
-Dmitry
+
+Thanks for looking into this Michael. I'm still convinced that it's unusual=
+ to
+report 0 for a clock rate when the device is powered down. In most cases it=
+'s
+not actually 0 and is actually just in bypass mode.
+
+I was told it's a way to indicate clock status and probably won't be changi=
+ng
+any time soon though. Ignore the fact that we also already have a separate =
+way
+to query clock status. :)
+
+This series looks good, but won't quite result in a functional GPU without =
+the
+following patch: https://lore.kernel.org/all/20250808232522.1296240-1-rs@ti=
+.com/
+
+I suppose I'll submit that again on it's own.
+
+Reviewed-by: Randolph Sapp <rs@ti.com>
 
