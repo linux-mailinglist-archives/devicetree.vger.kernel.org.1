@@ -1,92 +1,76 @@
-Return-Path: <devicetree+bounces-219181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97497B884DB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:58:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43BDB8856C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:11:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6182516A64A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:58:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1ECB97A7E59
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3962FFDE9;
-	Fri, 19 Sep 2025 07:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0933304989;
+	Fri, 19 Sep 2025 08:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ZXyVQWmP"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="B+ZhD47l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17572FF165
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C013043B3;
+	Fri, 19 Sep 2025 08:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758268712; cv=none; b=fP5e41ZOIWi77GXgTIPhzPiHeARDEquP6r7UGbhKZDYb/JlnvVx7NVMdtQDgfBvUkkcL1V3RYhOwstl1SW+yhISGPUwPVWIADq8tH80w15lllCIyTqpuwChHt/2/e40qu1aolr7eiP5NEGOCp4AsHblG6RCYL6lZgL5Sokxqdi0=
+	t=1758269471; cv=none; b=Wk5Yc5HqWzPqDxHz3yIm5Mn/8nEfk7xq/nzKE6oEAqzXRK/WA1ob+GpeY//XNhBfEJfsITWmRtqNi+WMCP2EO5o2TxRiBdfUqtR7BmvTmiKBQCJ5tdAqFsmNrBmh+6FdbV+1Nej1bGQIwE/DVuSRB8W/k+y0uJsX4dxzN+KeqSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758268712; c=relaxed/simple;
-	bh=l92OkncAkN7CQH5Yv/FMs4byey/iHXNBxiKHSxhWJmg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R/0XdaLLSzZeDSF8EnpKXMGaPvtMWainqLc8Bb24nUr28If+jPkTDN/mDCkPuMPnuNH0FaJlY6wC5VvYL70dyDSlFRdVi1oaYNO6MZZXX8ihGI6luIx7EfZ1DafFiJcwiiMf4GR3ghiHxUYraswJ8KCdYtje0rw8vZjWjzCuDpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=ZXyVQWmP; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b07e3a77b72so415353766b.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:58:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1758268709; x=1758873509; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c/F5R/2NOqkoymo9zvAsteuAQQNJ4xYdq+NdFZB1zNk=;
-        b=ZXyVQWmPavnwHO3frbL8P+xuZUywheVdlZZrQQBwhMfqJTXyPYPKVmP/+uObnHk/Zm
-         XWoQp7Y+tT0l6vXK7jsKjP/pO9le8YpmiDZGaYgczIyc+6mVDCkrTp+NwBf77IsfEGTM
-         nh7BVORtmrZNC+GKLfapW7Z4o5D/h0mekxv5g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758268709; x=1758873509;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c/F5R/2NOqkoymo9zvAsteuAQQNJ4xYdq+NdFZB1zNk=;
-        b=wvH9xoRnL32tlapBrSZnWyEMnbjFZS5BphofyGdcWeAYg4dZIs4mX2WXsNUX1M1smg
-         KSEYbn5FZQRzw5q29HXFh/KJO8iORcxn3VOBXNfiSq1o8a1UCsFShurbDCUZxkCtJVTL
-         v1B/ksfT+YQAjOtPjzzwMF0lfZMPercwRP7QrpJ9buXBZsdVjks/eGZHB5gZTo3qaG7h
-         h/skRUReY7H7ZKNVNrqZLFSS0o7qg5U88B2LmfTsvvvzsZs0xv5eTLgU7oFTdVpkwab+
-         2g8eDkUBWR8a1ZO04KWRjbd6KzL9xXCb5S2bthiHdHNS+wDKqQH/8YON3nhhbXqQL2X4
-         JkCg==
-X-Forwarded-Encrypted: i=1; AJvYcCVTXoL2rsEZ0BF+LlrALVWmfR/aJMt6H+2iaFroNwV2CJuewlDKZcj9PW3DXknFGFvwae7ihvhKo0je@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7lBQAisQtoMbKZrIrWTBRW/e0JVM7EeJ7olFAmwREpVqKcXZa
-	yJV8txrfu3WWcqty/4hMfD3whHXjVd98kdQT7QQtNE6lEh1kJ23/hA1loGvPWAJvlHg=
-X-Gm-Gg: ASbGncv9NrDqvz3Us2teJar9pxIbVVqQwDH64+rMwBpQmJQv4lIq6Ns71uLSlK/Ap16
-	c+/V2jzYFKaxgAoie+WRwe/tcT7GEa2FFn3LAFWP9VWcPDKaHvO3j+rub1Y4ivF5VDaktb76e1c
-	IyAXODE6NLMAn5TjYayoS6Yfk1j15bNLVkoIfKUrPFAYtfJMOPGt6JjTtDwH42BOgL9aAefG779
-	uAyvpc1FNEgWPRI8KhVdjUVqBh3RrR476mZEdKEeIDIdEmP66SdAFuqolPL+9uvkPgpacPpv9Vl
-	srj69qNmU6iKSRvRlwBWJTobHGCNIJ2qsmY17XypSR6CVy78oHKDvrdzmNwgQ/kiWSnlbblu/Zn
-	m1DsdbeYrF0ds+Hv3JyEI51jBsMsYT1jgVVZ9VDWeKfNr/e74xfnh5EndASUrJtTY0yG0WRo6HI
-	DgbjE/t+oAlft0N3x2HRNxuAb4kyqLvTsu2rPqWzYWJPYx9vsS7ST9r4Czfgq7aXwW
-X-Google-Smtp-Source: AGHT+IFWBJ0JF07xrrg1AEfrd/lNei6bNWfdewxHUBTlYbJy0+2ZBEssQAE3DyJkSIWh4hsDeA90Kw==
-X-Received: by 2002:a17:906:2e8e:b0:b26:40bd:66fd with SMTP id a640c23a62f3a-b2640ccbdb9mr72789666b.10.1758268709023;
-        Fri, 19 Sep 2025 00:58:29 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fc890cc98sm384693466b.49.2025.09.19.00.58.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 00:58:28 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org
-Subject: [PATCH v5 3/3] dt-bindings: touchscreen: remove touchscreen.txt
-Date: Fri, 19 Sep 2025 09:58:11 +0200
-Message-ID: <20250919075823.2557865-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250919075823.2557865-1-dario.binacchi@amarulasolutions.com>
-References: <20250919075823.2557865-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1758269471; c=relaxed/simple;
+	bh=ALCnOuduqAWYut7A9zGDs0qAuQIAGnQc2mNL9Ep4YhU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SbCmVhVr8+Kt1M+s/+CFsvfQEhJyTpB+g1E5GjMW89Y/g2ZISICNWVDaANKEDfgDmCfrjmZjTGdmaR8cP+UHwgC0qWinqXoJuvN9pAOxvyz0cSCluDPzQf4U05jrSGLlgBfjvV6yi5WcbnYCHB9DLy42du2Mud5nda06DU1bBOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=B+ZhD47l; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2d919346953011f08d9e1119e76e3a28-20250919
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8AGrTL1WME+MkjB7NmTfDtQhx+C8E273qhuMaHap5lc=;
+	b=B+ZhD47ldAOLJZxc1X+5RWcrJ3jkjxgVKkATCx6ar15TWzllPatTbT3l64FnZ478LdJnOQ3lkkzju/cCsmRctXvXAi/7R9zHwwb6hjvYGF+P/IGwcWD2NLckRa7ZQNQmHXiOIOoqmRAx6HrN5qhghfPtYpK7EfKqcVSVzpsDG4c=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.4,REQID:48aa178e-121b-4a5d-84c5-a94143c8eb7a,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:1ca6b93,CLOUDID:9edf2191-68e1-4022-b848-86f5c49a6751,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 2d919346953011f08d9e1119e76e3a28-20250919
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <zhengnan.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1927383756; Fri, 19 Sep 2025 16:11:00 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 19 Sep 2025 16:10:58 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 19 Sep 2025 16:10:57 +0800
+From: Zhengnan Chen <zhengnan.chen@mediatek.com>
+To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Zhengnan Chen
+	<zhengnan.chen@mediatek.com>
+Subject: [PATCH 0/2] MT8189 SMI SUPPORT
+Date: Fri, 19 Sep 2025 16:09:54 +0800
+Message-ID: <20250919081014.14100-1-zhengnan.chen@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,56 +78,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-With commit 1d6204e2f51f ("dt-bindings: touchscreen: Add touchscreen
-schema") touchscreen.txt is no longer needed, and since no other file
-refers to it, it can be safely removed.
+Based on tag: next-20250919, linux-next/master
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+This patchset add mt8189 smi support.
 
----
+zhengnan.chen (2):
+  dt-bindings: memory-controllers: mtk-smi: Add support for mt8189
+  memory: mtk-smi: Add mt8189 support
 
-Changes in v5:
-- Drop patches:
-  - v4 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
-  - v4 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
-  because accepted
+ .../mediatek,smi-common.yaml                  |  2 +
+ .../memory-controllers/mediatek,smi-larb.yaml |  3 ++
+ drivers/memory/mtk-smi.c                      | 44 +++++++++++++++++++
+ 3 files changed, 49 insertions(+)
 
-Changes in v4:
-- For rohm,bu21013 bindings:
-  - Drop description from reset-gpios
-  - Simplify description of avdd-supply
-  - Rename bu21013.yaml to rohm,bu21013.yaml
-  - Add Reviewed-by tag of Krzysztof Kozlowski
-- For zeitec,zet6223
-  - Drop "Phandle to the" from vio-supply and vcc-supply dscription
-  - Rename zet6223.yaml to zeitec,zet6223.yaml
-
-Changes in v2:
-- Update the commit message
-- Add Acked-by tag of Rob Herring
-- Add patches:
-  - 1/5 dt-bindings: touchscreen: convert bu21013 bindings to json schema
-  - 2/5 dt-bindings: touchscreen: convert eeti bindings to json schema
-  - 3/5 dt-bindings: touchscreen: convert raspberrypi,firmware-ts bindings
-    to json schema
-  - 4/5 dt-bindings: touchscreen: convert zet6223 bindings to json schema
-
- .../devicetree/bindings/input/touchscreen/touchscreen.txt        | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-deleted file mode 100644
-index e1adb902d503..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
-+++ /dev/null
-@@ -1 +0,0 @@
--See touchscreen.yaml
 -- 
-2.43.0
+2.46.0
 
-base-commit: 8b789f2b7602a818e7c7488c74414fae21392b63
-branch: drop-touchscreen.txt
 
