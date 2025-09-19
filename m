@@ -1,124 +1,135 @@
-Return-Path: <devicetree+bounces-219193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B159DB8869B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:27:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CA75B886B0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85CE61C85FAF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:27:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66EF61C86625
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7B03016F1;
-	Fri, 19 Sep 2025 08:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBB02EDD74;
+	Fri, 19 Sep 2025 08:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="Y/wXleBu"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="IoBTP1iA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8AE62FDC4E;
-	Fri, 19 Sep 2025 08:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1917029E113
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758270425; cv=none; b=UZgri5eW7KFZPQMlKvIV6lAOjJ/VqD8buYsyJdDBi8jOxU9edvQfFgRBPOXRCg4Dp4qodvnKQzbD2EwDRRrVDixWRUpaXVqLuZd1EhuyrROzNC2plxwxasu4ZmpLkp7sVYw7lcgIDVyRJai6bQMvVAOJ1/JgBfu0D13fWwRWhjs=
+	t=1758270571; cv=none; b=Nxc91zt7DhDCiWIqiALBamDlYes4j89H2eSsN07hTljIRHzCNFs2q6rbOG4S5zrUQ4fzqzV8Sxb8l7F6N5h7FtCht/kRRpR/NN55ZZnNeiX0u6UMLH13eRn6ugVldoiDFEroJjKYnCu3WZS/c3Q4VIrS1GAshVVtwzaLLuCre5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758270425; c=relaxed/simple;
-	bh=/CB0cwOmhbgSy12uwrIEf0k4JswvKeJ/Fi2YKoa5O7Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KKQ7APYIuunN3nspYGgHdNwmT8sxf8ImOLSXEruaRG+sB4LI4BCu64owkbiLhplpkUYiEqMNyFljQf25yB02ys0Wci2nFPqR9ql/hHP4cjLWoZt7WgODlJEwK9gzGn3DW6eb3EYwIH1pb1gLCx28kg0h0oRAOkgOh1544Ok4PKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=Y/wXleBu; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1758270413;
-	bh=K02hNlRBxyxBeAOesGR89UhJH2sHlmv3taRcii4Mw/I=; l=1728;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=Y/wXleBunM2yJxC2XT6Et7h2lPCA6z2DVxcCv/89222IAH5Ss4+tB6USqhmlSLM2V
-	 sU4M4fLiNxw1wSpxeHEi/WRmjMwmSu8ta7EiVet9jnWjpq1u3TxcgQ8l+7TRK0xSI0
-	 oO9ew7DFwsuCdZAh2vEZR6tbo9XBbdfWZ1OCDluXF7hykF7p1ee19ScNjyS1czYNuF
-	 xzYLyDHCT8NRYZqXrHPiouaIPw/dh4vjC6lgvw2vTVIkwyxTBFqdGP3KXx73pP5jk4
-	 iOw5yy0I5G8OMhtPzwhUcUdc6/7Whyrc7cf9AZ2u1ca8dBMSYk4avv2hynfM83dgus
-	 VVG7uygTpISvw==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(2461094:1:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Fri, 19 Sep 2025 16:26:38 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.26; Fri, 19 Sep
- 2025 16:26:37 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1748.26 via Frontend
- Transport; Fri, 19 Sep 2025 16:26:37 +0800
-Date: Fri, 19 Sep 2025 16:27:50 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RESEND v2 2/3] power: supply: rt9756: Add Richtek RT9756
- smart cap divider charger
-Message-ID: <aM0UBoynaX7ln2Tw@git-send.richtek.com>
-References: <cover.1755154950.git.cy_huang@richtek.com>
- <2bceb1be91e8841cd373c1d04f0a79d88c888dd8.1755154950.git.cy_huang@richtek.com>
- <uarjdpyemkqnwneoj6kdj7vfzzllbqmsurjnsjr5hkujao6thx@2ysih3s7mftj>
+	s=arc-20240116; t=1758270571; c=relaxed/simple;
+	bh=5GZQAzsBDxmBoNDVxpMz9GYzaZl8SmM/riDG9Ea6u6U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Pdr4Nkv/mLT/jCtPQ3MyX6mMCHTxIdrpltfcItdWL2JUabzIry0twCUhbNdElnrWqX1agH98uI9z1awxnREIZarmM88dUVQaUX/dIFO3FSVhGq9E/u/qtUrWJpGQnzBiJYKXg0k+Hg/yB8pYfuIT8SSzsyFDLc8g17sRNO6ogaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=IoBTP1iA; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3ee12807d97so1360721f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 01:29:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1758270567; x=1758875367; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+b+SS9EcCBpWrJSOsjaxJ+vMRqJ6poQmZkbdSM8xRQ=;
+        b=IoBTP1iAZOMUpE++BvJgAFpzWI3TeqV6rCK2CMYkdmHN8e9978L8/wUGQVmdyJxpvA
+         YV80apV6BdhI/uofL1hs6XlHW2HnDDcTCDx1wf+7YPj6h+uKRNBRxdQyE4gna5gm3ec5
+         zhlqpALUJsXDxaMyVVD5Y3ADBWb6Mp8oB3Pkdt9hSqk4xnvJOJ8gzqQAUSh7LghwsSxK
+         oIOtCuGMhKAqq2mT7jXb85d+Ju5shl52wobATtWy/f8M/nZqu62GhRVPgDFzJ6wQ8jeF
+         UCs1EdFU7BiInCJjE9pwxjrENWHZGb5zWyh52RZnk/WV5bi3l4ECmHGb+DBZHFgKKz8+
+         eEDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758270567; x=1758875367;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y+b+SS9EcCBpWrJSOsjaxJ+vMRqJ6poQmZkbdSM8xRQ=;
+        b=Rq9aHVjAtShv940207f9QMo+F+KUFlQ4VCX2S4OZrUVmZ3+Y3KJes0yNmYgzTFnTBE
+         YvarFNtaUfExHrjQG1YLW2e76JmlXwNyTXHMe25YVl8Wee5ElE+RtvOEdLftUjCBHniZ
+         sTdcGxgGNbPO4y6+Jo/ltMpcnWCjwfmFB7QxhRIUdCjwjk/SGD3ClSk8lU1FBN8n4P8m
+         dkUcmBdsdZH1GKGSQZE21LuFt1+4dmMn+TcFrO6h2xY2LrwViQJLQnLVhCtK1SuPbN0B
+         y4em7Xe4syNz4JtEULLSddnLpP2JKYQcNQI6z4vxqXBuGCCoaBun1EdHvMRYTwleq8V8
+         sn/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVGmVTCt9nZd3mwnq+0nvQ7R/YPJzlkKX75t5uEoQqvsWRBR5OvDGGSqcdNPHK6dYe+ci7AMEHQjWMO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyy6M/IIkG+QFtcWTt3qOQXlMG+6b3bqjZ/eXd3zSTQHmX6yQV+
+	EHIwylVTd9DugyOzIBEempWCtVO8mvxhjwRtLzeum7e9gGXtTUorD99Qk8JOcWrgqQI=
+X-Gm-Gg: ASbGncufXyCjPbmfeAJMk/Suop3a0/gQYAZOb0wrAGwLv4pPSjj/W8eol3rkRMsvFZE
+	IsjsL8q+OJT6YGkr5fbFn+66avCVdV9PfOqSGgAQmvZy9ezGV5CUTgZBPsXiLgXNjCuLLxj6wkZ
+	dKa1HK93o9+woRzFiMw3G32k/ThkapTXZ6uhO5FuLrzNpcc+kaaLLf5wnh8e9ri3QqdtAIgvFMz
+	KtD/nZkYsfLpgRLXJEaZDuWTz/sQmIVQzT9WJ/EVPdDOgN9O9EqFfmOy9av2XuhDHE1VIMEVqgt
+	+TH7yFPMTxpz1wyovKnyIfDbryIcN1ywGTbqHY69qDRUoycmLvQsavE1bsVwWL0oF9JUiscRpkr
+	b++j8VbhK2+E7tdJt+/+Z3txQKNoKjAXFlhBe1Xb2RmZQDKlVHIp/rDVXvn0=
+X-Google-Smtp-Source: AGHT+IGr6/NZ65WWph91+bm6NKBVnrRuG5VH7akG1kGp6hji/8XJIT/htWHf6blvAVKGFcC3VsZm/A==
+X-Received: by 2002:a05:6000:178a:b0:3e9:d54:19a0 with SMTP id ffacd0b85a97d-3ee87f90c16mr1595319f8f.57.1758270567304;
+        Fri, 19 Sep 2025 01:29:27 -0700 (PDT)
+Received: from fedora (cpe-109-60-83-189.zg3.cable.xnet.hr. [109.60.83.189])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3ee0740841dsm6771286f8f.23.2025.09.19.01.29.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 01:29:26 -0700 (PDT)
+From: Robert Marko <robert.marko@sartura.hr>
+To: p.zabel@pengutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	steen.hegelund@microchip.com,
+	lars.povlsen@microchip.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	daniel.machon@microchip.com
+Cc: luka.perkov@sartura.hr,
+	benjamin.ryzman@canonical.com,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v2 1/2] dt-bindings: reset: microchip: Add LAN969x support
+Date: Fri, 19 Sep 2025 10:28:38 +0200
+Message-ID: <20250919082919.19864-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <uarjdpyemkqnwneoj6kdj7vfzzllbqmsurjnsjr5hkujao6thx@2ysih3s7mftj>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 19, 2025 at 01:43:02AM +0200, Sebastian Reichel wrote:
-Hi, Sebastian:
-> Hi,
-> 
-> On Thu, Aug 14, 2025 at 03:31:07PM +0800, cy_huang@richtek.com wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> > 
-> > Add support for RT9756 smart cap divider charger.
-> > 
-> > The RT9759 is a high efficiency and high charge current charger. The
-> > maximum charge current is up to 8A. It integrates a dual-phase charge
-> > pump core with ADC monitoring.
-> > 
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> 
-> Sorry for the delay. This looks mostly good, but I really don't like
-> the custom properties for the battery voltage and current. Instead
-> of handling via custom properties, register a second power_supply
-> device with POWER_SUPPLY_TYPE_BATTERY and use the normal 
-> POWER_SUPPLY_PROP_VOLTAGE_NOW and POWER_SUPPLY_PROP_CURRENT_NOW
-> properties. Having custom properties for the watchdog and the
-> operating mode is fine with me, as these two things are quite
-> specific to the RT9756 chips.
-> 
-> While you are at it, you can also add this constant property for
-> the battery device:
-> 
-> POWER_SUPPLY_PROP_TECHNOLOGY = POWER_SUPPLY_TECHNOLOGY_LION
-> 
-> Also the charger's power_supply_config should set the
-> .supplied_to, listing the battery device, so that the kernel
-> is aware of the link between those two devices.
-> 
-Essentianly, these two attributes are only used for battery monitoring
-from charger side perspective.
+LAN969x also uses the Microchip reset driver, it reuses the LAN966x
+support so use a fallback compatible.
 
-As you know, RT9756 is a charger, not fuelgauge. To register a second
-power supply seems weird. If what you cares is the keyword 'battery',
-I can change it to 'vout'. What do you think?
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+Changes in v2:
+* Use a fallback compatible
 
-Regards,
-ChiYuan.
-> Greetings,
-> 
-> -- Sebastian
+ .../devicetree/bindings/reset/microchip,rst.yaml      | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+index f2da0693b05a..12a3b04fc8ed 100644
+--- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -20,9 +20,14 @@ properties:
+     pattern: "^reset-controller@[0-9a-f]+$"
+ 
+   compatible:
+-    enum:
+-      - microchip,sparx5-switch-reset
+-      - microchip,lan966x-switch-reset
++    oneOf:
++      - enum:
++        - microchip,sparx5-switch-reset
++        - microchip,lan966x-switch-reset
++      - items:
++        - enum:
++          - microchip,lan9691-switch-reset
++        - const: microchip,lan966x-switch-reset
+ 
+   reg:
+     items:
+-- 
+2.51.0
+
 
