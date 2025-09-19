@@ -1,212 +1,122 @@
-Return-Path: <devicetree+bounces-219152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6037DB881EB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:11:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871B4B88232
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:18:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 027D51C86867
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:11:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BA74173276
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A332C237D;
-	Fri, 19 Sep 2025 07:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FC9275112;
+	Fri, 19 Sep 2025 07:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RtuP/hvx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvjzJifU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011032.outbound.protection.outlook.com [52.101.70.32])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799192C234F;
-	Fri, 19 Sep 2025 07:11:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758265880; cv=fail; b=hiToytpAVvH/0utkQpQbZ26nTyeFAmckGavKatfhZPOR6zCcpFOCFu3tJJtCRczyPLX3EveLXczxWTceQ/fe+BbhSmOoId3p3jJrLIlAf2hGO1eIW6cogmQuW8CXy1EIiZnXvLnPz3ysLwpDszNa4dSzB+nB0VSIJScnX8rMMqQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758265880; c=relaxed/simple;
-	bh=MyFhVPSU8Dg3F9+fzaS5XmFYXq2VcDpKn3KOMvaL0Cs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kI2QriYDH4psRd83baNb7C+yP+XUyUH4Drl8s5QCZQoPOSoLRA0Nda/FFen4bVm3fX5MaDnZxbGflQllC06bTwIriWX5A6TxKgATFCTzSEd86Ll1f8HrOB9CZNuG1TnRjZmTDquItDeLZ7tN6vaLxNaeiwYX2ngu9elNxSaFCa0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RtuP/hvx; arc=fail smtp.client-ip=52.101.70.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xZ4uHOIHhNcrrkX5HB0FtESkFSBuj+/mKBj6kekyCBaVNRRbJ31I+CedUTh/Tk20MyRUb7YukeDahcTrHLb0HLlNCbce0yoNkz43IAHXA4LENHNbGpQW8yF+Wy/V6mWpUlzh2MAg5UTdFomuuvBjFrbTMcX43RWVF1BsjluaPXm6U1iLzg8Baq4MQIjjBF+s4pdFMH59NRBxIIU4dtsW1B8ZdWTrztArYeMaZf+0rx8uR5DB83AWsxkLslmi2suv3XK7ucnOVQ2gP9Jq9NMiwWXQx9zfwXpW69+eF7f6AfMIgWmIGiFMshNHc5OJQrOc6+eZ7iM73isLbOGWuc/TFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nLckjpzen4RwM/Isz6rEhdF/9a2WwxXfsNWLI0vy9Y0=;
- b=vadHWX+KKg6DZyr7I50i5Cn181aZp23lHwDhO5envCOT5OKXnbbFDpFTHI0xYB740tFnITF0S6PkGrLIEg2a3m1mb3PsklZ8FkdvQs58yNvNftXUUS4U4qK0ODV7FGKHzezfvRd1gdurp8bTzOEMTlwxiLIoahMD+kTCwU9bZ871yVRMdQ0TtT4fGMRA+OFbB8/PX3xGlzscsEUGNxVeQV/L/bbXytffZCjVzjs5RxEiypCkb7/yt1Iqhx2wIPHXOIAwkh9E2nB5QtLxH7HfEGQJg5+VLZK7fLFD8vu1fgfOcGTafucdJ7KMIAJjOby+vvBYF2CGkaornCH1vATlBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nLckjpzen4RwM/Isz6rEhdF/9a2WwxXfsNWLI0vy9Y0=;
- b=RtuP/hvxpHLC36lagyDGNpA25lPETW0/uUNTMAT9pKHMlFkToMXNXqtSAOOzANepudEFDVgjU4NIcHKB/nV79lekJSrnKqKPRNJVVgRDPBKVgyex+mSgJhHcqdHwm8qx7zwLqdG6sSo19AAcCunUr98/uS19DmI2G+qotffY5yqT7ObjMHIdmY2t1M/ZcqeuArAB/uLuujvOnoaS45umwFzu6pBe0YuTXwchBJxgoIlHRcdbkBI3ex2tvIv8lZwZlu1rZnOLFU/zPtiPR1hsQUUIX02KlboDrQmHwIs5rNWNYze2lEf1xXIUOJ8O1O67eJVHzZBT7InjhdDqpimteA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by PA4PR04MB7998.eurprd04.prod.outlook.com (2603:10a6:102:c5::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 19 Sep
- 2025 07:11:14 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::c67b:71cd:6338:9dce]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::c67b:71cd:6338:9dce%4]) with mapi id 15.20.9137.015; Fri, 19 Sep 2025
- 07:11:14 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	peter.chen@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	peng.fan@nxp.com,
-	jun.li@nxp.com
-Cc: linux-usb@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBA61862A;
+	Fri, 19 Sep 2025 07:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758266321; cv=none; b=Z+tOdWYkXD23Xr4RH3IHGBA2TUS/iGpqnN6D7l8IxxqDWFAvCFbLU/FbHpJ9DsEw47KYKUZ3NaM/747bw/0Yzapfu/6h+6PSPnn/mBI8MHiHAN3AECyds1if84F1m9KG6SEnwXprVF24mINpZOfgp81JEMOjOvKgqOkVymRMxc8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758266321; c=relaxed/simple;
+	bh=5tSIdJQP1tIdIsNeNk84JqAQX+HeQ6XQr+kbFkQIixM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r5hrMeV4PokUJ9WnjAUfZlN3zub0l/eVQqejk7akahwI5jO73d7HRkpLpXKE3RjxFYyht4XipJohppho2AT2PNUoNzWqo5Ru0SqbURH1zeLF+Q0QcbQ71YZKofQVc6qpkr0lUfzLxavdu3lCwKFqtGDO6rhP6IKAaCkIsjF4pZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvjzJifU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74E51C4CEF0;
+	Fri, 19 Sep 2025 07:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758266321;
+	bh=5tSIdJQP1tIdIsNeNk84JqAQX+HeQ6XQr+kbFkQIixM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SvjzJifUjhpsXlzjcIDJ8ccaxl9apNLSSwyzS+ME+E9fZdtmTbYdwCjKqP8zlQRzV
+	 ukXRsLK+wEfHxVw2IXXHtGgbrKlfiwfDsncuDK2d2IELOSFHBECuMvGg85ZPK3kX7o
+	 FpM5wkqNhdVFSFqNrCMHWOSmItQkxZvZCmNghzGr4yJMpkk/kYwl38Iug++0EUj92d
+	 lv5Sv2VvwIqTeZaaKvAZQkIHVTPVW3VBARkuKn3tlgtd3ZKInnk+jfJ1SMdWeW+Gwy
+	 5ds9wmY8lCbVHAhCqmw23sbhNHl/WuFQMJgrScPk+E4VfV/gEpDpgREuAsWrnMDOVG
+	 vD+ZcQhooPZzw==
+Date: Fri, 19 Sep 2025 09:18:36 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] usb: chipidea: imx: add USB support for i.MX94
-Date: Fri, 19 Sep 2025 15:11:11 +0800
-Message-Id: <20250919071111.2558628-2-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250919071111.2558628-1-xu.yang_2@nxp.com>
-References: <20250919071111.2558628-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0010.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::17) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH] of/irq: Add msi-parent check to of_msi_xlate()
+Message-ID: <aM0DzMe8qW4eKQBX@lpieralisi>
+References: <20250916091858.257868-1-lpieralisi@kernel.org>
+ <20250918135555.GA1540012-robh@kernel.org>
+ <aMwjcIS/rvxkSZdr@lpieralisi>
+ <CAL_Jsq+XKT+HkE0W0BLKbQ76RtgBrKToLAVaWOy80mLkD=x0+A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|PA4PR04MB7998:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11232d2e-c3c0-4e1a-e38e-08ddf74bb865
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|376014|1800799024|7416014|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?T1uKrd7SqP4W2HbI9eNW6f1LMXQ0yUsR2/Z47+HNkbz5U1/utQLCgkZslLKZ?=
- =?us-ascii?Q?xFnXLd+B3GRUybR4d2QY4AWSrmq/AOvsLd+dXgU4gkJnXE0+NPLeX3fzW3Ll?=
- =?us-ascii?Q?PFYzMJBM6A1ztzCa6ThY+weJXXyJXv4Nv/XjBvJ/sg/toZM2NuDqWTh363kT?=
- =?us-ascii?Q?5vWYtHTIZElWyufe1u/VihkQzQwkIlUWL2k42Xk5L3yoa/otJ2wxctApCZJB?=
- =?us-ascii?Q?OM53NcxTobRMEg6Mfonp4LqpMZU6VH6Lk1bADxdWZ+xmq/1/3EiA/10OrZFD?=
- =?us-ascii?Q?PIS8XINENhE2xywDR5i4wdvpCGqDtk6z3CNAHTyxSxqEnWdS/fQkkalsRqc9?=
- =?us-ascii?Q?517xnF1nHsvQHNoyBVmBLyXq1KZUbOR9JUi/q2gGaMdPas0AtnghfPFVvZjE?=
- =?us-ascii?Q?UdlkT7KX70NPQ3AwzCyEvVZLYMvlpos241647lYnnxD67A5iu5ir3Y6G5TOT?=
- =?us-ascii?Q?Lyi33yFoyy8CA3sAaUJTjstPfVjU0MVF5IYuqT+yf3Ut1oX1OLp4Zdd58BKS?=
- =?us-ascii?Q?IpC8kUPpqbkIo6GzHhHXnvIM3NUSno9S0DaSQmIuUaVUoiCCA2cdvTXps38g?=
- =?us-ascii?Q?T5YB+leUt+L7+MJUlxh0T8vknmurOnNer8D81NKa3gaRixGkNwsnzLj6c3Ah?=
- =?us-ascii?Q?Sdr975moz7u0MTKRTTooTL+DrYT1VVzJj1BtCNsoIWsqKz5G+yNdjgmVJQYd?=
- =?us-ascii?Q?c+K0FAI+AnMphyqGBgIWhOcE0z4eGlbKqp0HZhA30vzc9eLkjVdtpFpFaZWU?=
- =?us-ascii?Q?ksOucvfq8upQuOUwK5depprrj/wVLT2X0GxoZBYSH7Nx8yVKRNTL9lQLzS0k?=
- =?us-ascii?Q?7LZX+1q49bUT26z6VA9Z9VyJ7XWqRy1zqNaQI0fOeSgk3xhhDOexZSMbXfm7?=
- =?us-ascii?Q?FTG+s9wpJMNV7s/sxHHNgtUxUYBfcxBSOhgi8oSPXkISwdstWVPBPtwFL5gB?=
- =?us-ascii?Q?yOgXW6IGnReWU3a+Lm52FrXRrbff8JGsjzw/cAQ5caPUsFMc6kCSMv3j95Z0?=
- =?us-ascii?Q?uhajxP/dM5wnh2BfzCR73wFOeYqGKBn7QN51+AwTe+LZX5uNcUfXIpoTxgW6?=
- =?us-ascii?Q?dEyp/ckVudMiIPuxjNPlMHHCxV9g0hjTfGfid0maqvGq/Nd1505AcUhRHN2v?=
- =?us-ascii?Q?pateCkiAtqKncWcIpweit8++o+jiNM0JjiDZMuNZCmFD6w027rnJD/At1Rnn?=
- =?us-ascii?Q?K8QnCyg7ljLp0NlZts69C1+GM+GmtDChEyhtJ/jmnrQaJjzTeI+xlz8LwnAG?=
- =?us-ascii?Q?bqra/PSgjGR3cDnUrzswLYktnhjdRS/3zIy1Mz2sQ3UWdV8PwfPKSuVayEbm?=
- =?us-ascii?Q?owUps7LJIKo1YQ3F1tRwatxjgJf4zSMD6QzqPBP58+HG/hwpyqVodj8kt1QK?=
- =?us-ascii?Q?hUiNh48igpP7pd9GxV7m8O5nKJu3YllbDcsdkOPPPTK97rL9BigEP8nLWk0r?=
- =?us-ascii?Q?zBRX6ks4Tiz89+78V26bZN8G6JegTg4UgQ1f1pcvlneQ7mS64uO5vn1ODwJG?=
- =?us-ascii?Q?Hdg6UJRaIJjaZ94=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(1800799024)(7416014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?LrESvO18fQ8FDJ5Eov/J266UXT9CyTzV4Hw7mkLKC99/ryaj+QeahH2w8UUt?=
- =?us-ascii?Q?etnnbFFUhjp3SdTiTU7wxe2LqCpdTOU1Qp7w3drd+F3GSuFbq2xVPBnJ71zB?=
- =?us-ascii?Q?H4qTbcVRYpSR0SmYwiL+m1NJmMwntBbK1qdpkWyPLKzFh7QqWiUZlQqCIx3s?=
- =?us-ascii?Q?fjfzsZrVQJfa06xJz5omELS2EQzowv9wMdhf+sszsO+5Ud+KlbXvXeIPintB?=
- =?us-ascii?Q?93FsAwoUGWQFSGCMnamyfH6i3Rd63LgoVdW8aoaZLhYZa3cwW1B/c8YP4EPo?=
- =?us-ascii?Q?RtC49CvCEQGimtac6qER9Mz/uMXcJicj3oW+R/vlUuWphZYcR/x9T9YW1heF?=
- =?us-ascii?Q?srqOIOL3Bu25yrIBmkx2YWnYIuFpeR9MG7uIWGejt1wt4J2j21VqyTYKPT1K?=
- =?us-ascii?Q?a1fWCiHM0L+MYCyconKcstpE1GBEh/iAGd2m2Zeta4tf23hE9nTOTu/ZNi/6?=
- =?us-ascii?Q?/NLmSKEsdUJ0B6Zi2a+ESN8RM30rMEa8NNpad52hk8C9LHsRKEC6+3Jygpsp?=
- =?us-ascii?Q?t95DgnetTIeQLGyDjElykRpctNNaW2RkkqRJB+glD8OHZwp1mkiQPwxiBwoH?=
- =?us-ascii?Q?c9LCH+zesWHIFOvhO3v357QGF2r/q5YcmSTxr7cz/c7aPBskp1az3c+d+JJL?=
- =?us-ascii?Q?Rj3eU1LDdNCZGyuPqFl0bXnpq9S1QplZNZ8l1zmsLYoazbt0OlAGfv14NtCu?=
- =?us-ascii?Q?4psrsPEPCLo7qNGcR9jaHvqboyKK9hlsLstGF70hZPhmO0ntGMJ9saVmge23?=
- =?us-ascii?Q?ADCwLoKjjMrdGXWUXgqs2t+2iugEEpojczrLoYzMpgGzNrqNVJtExfPArDdE?=
- =?us-ascii?Q?bfwxxRxPgTmplB+bya6NmJNw8Xk6wCpOV43iE4QNpsnQo0gm61LeF07UT1JZ?=
- =?us-ascii?Q?Un12zeQhbVy8bUiwLHSb6/tvGJBJ3Hbu8qHgbx8g9/2zceKICZZhRCU4t2y8?=
- =?us-ascii?Q?ncqQT94HS5TaIHTBzgt/CyoxXjW8AB1iU3aQR3+Q0j+SV8MBeWPdKoEcFO67?=
- =?us-ascii?Q?lINGABBF59UsDEgQsUdfk7zSB2geANCd4AwoMzV5XF+9FTh+1Xh7KQWvjVnl?=
- =?us-ascii?Q?vNeLz0lQCifh6tHgmzNsTEFzn94s81kQWMSgzP0y9j/GrGMwGEpcbFxX1/vy?=
- =?us-ascii?Q?Kj5bpxglEuMK1wcVjVn/A8LAMCusJLR3hA8NPoRPMibVUVPuI0I8UjCwrr0w?=
- =?us-ascii?Q?hCm/5jHUquEmSiNZ1gzTxxE0CntEJcYaBe1yYYK3WG1Dgu+5KziGSkgt++jX?=
- =?us-ascii?Q?1a9GrNARC+6QXIEhKz1Q+/gZHmg9g4mZK4KtvttAUts0YInmYFzeg/VAIZjh?=
- =?us-ascii?Q?IMP13956C3CoduapredufXo1aEN1qtBORBdaoCVkXh+1pEY2316hcN8CEibi?=
- =?us-ascii?Q?M3WRDoUg95nBy5c8Unhe5+WgHr6PbyB5N0LB7XiYnFn3crXhAu3BE43RgxOQ?=
- =?us-ascii?Q?lyZcncZmu+EigchqZyVfR00zxgtZVHn1ej41CLRrVk0Y3y2UtSy/wo4WwQuQ?=
- =?us-ascii?Q?ydB+kvoDXtueIVpkSmrtps7r558IR+QOmclf1fVICgaz8MOs5SAH7hdAhMiq?=
- =?us-ascii?Q?lBRRl1Hdde27P/oGTNU0i5OLLb0LfHGD7swyngSc?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11232d2e-c3c0-4e1a-e38e-08ddf74bb865
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 07:11:14.6899
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O2b3E0kSWxjjPgw6+7fEeUALrQehZMNoG8viBmtH2BxInhGU3m5eZYeWMTQuaQHQsqgQNxuxmkTue0jYVWmsvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7998
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+XKT+HkE0W0BLKbQ76RtgBrKToLAVaWOy80mLkD=x0+A@mail.gmail.com>
 
-Add new imx94_usbmisc_ops for i.MX94 due to it has same wakeup logic
-as i.MX95, but it doesn't need workaround for ERR051725, so pullup
-is not needed.
+On Thu, Sep 18, 2025 at 02:44:23PM -0500, Rob Herring wrote:
+> On Thu, Sep 18, 2025 at 10:21 AM Lorenzo Pieralisi
+> <lpieralisi@kernel.org> wrote:
+> >
+> > On Thu, Sep 18, 2025 at 08:55:55AM -0500, Rob Herring wrote:
+> > > On Tue, Sep 16, 2025 at 11:18:58AM +0200, Lorenzo Pieralisi wrote:
+> > > > In some legacy platforms the MSI controller for a PCI host
+> > > > bridge is identified by an msi-parent property whose phandle
+> > > > points at an MSI controller node with no #msi-cells property,
+> > > > that implicitly means #msi-cells == 0.
+> > > >
+> > > > For such platforms, mapping a device ID and retrieving the
+> > > > MSI controller node becomes simply a matter of checking
+> > > > whether in the device hierarchy there is an msi-parent property
+> > > > pointing at an MSI controller node with such characteristics.
+> > > >
+> > > > Add a helper function to of_msi_xlate() to check the msi-parent
+> > > > property in addition to msi-map and retrieve the MSI controller
+> > > > node (with a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to
+> > > > provide support for deviceID mapping and MSI controller node
+> > > > retrieval for such platforms.
+> > >
+> > > Your line wrapping is a bit short.
+> > >
+> > > I had a look at who is parsing "msi-parent" themselves as that's
+> > > typically a recipe for doing it incorrectly ('interrupt-map' anyone).
+> > > Can we make iproc_pcie_msi_enable() use this? It's quite ugly reaching
+> > > into the GICv3 node...
+> >
+> > I am not sure I get what you mean here. Possibly iproc_pcie_msi_enable()
+> > can reuse this patch's code if I extend it and make it a global function,
+> > yes and somehow use that function to carry out the check for an
+> > msi-parent property with no #msi-cells property or an #msi-cells == 0.
+> 
+> I meant using of_msi_xlate() (or even of_msi_get_domain()).
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
----
- drivers/usb/chipidea/usbmisc_imx.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+https://lore.kernel.org/all/20240818161816.GA173148-robh@kernel.org/
 
-diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
-index b1418885707c..bb027d2bd700 100644
---- a/drivers/usb/chipidea/usbmisc_imx.c
-+++ b/drivers/usb/chipidea/usbmisc_imx.c
-@@ -1224,6 +1224,14 @@ static const struct usbmisc_ops imx7ulp_usbmisc_ops = {
- 	.power_lost_check = usbmisc_imx7d_power_lost_check,
- };
- 
-+static const struct usbmisc_ops imx94_usbmisc_ops = {
-+	.init = usbmisc_imx7d_init,
-+	.set_wakeup = usbmisc_imx95_set_wakeup,
-+	.charger_detection = imx7d_charger_detection,
-+	.power_lost_check = usbmisc_imx7d_power_lost_check,
-+	.vbus_comparator_on = usbmisc_imx7d_vbus_comparator_on,
-+};
-+
- static const struct usbmisc_ops imx95_usbmisc_ops = {
- 	.init = usbmisc_imx7d_init,
- 	.set_wakeup = usbmisc_imx95_set_wakeup,
-@@ -1481,6 +1489,10 @@ static const struct of_device_id usbmisc_imx_dt_ids[] = {
- 		.compatible = "fsl,imx8ulp-usbmisc",
- 		.data = &imx7ulp_usbmisc_ops,
- 	},
-+	{
-+		.compatible = "fsl,imx94-usbmisc",
-+		.data = &imx94_usbmisc_ops,
-+	},
- 	{
- 		.compatible = "fsl,imx95-usbmisc",
- 		.data = &imx95_usbmisc_ops,
--- 
-2.34.1
+Isn't of_msi_get_domain() leaking a reference when it finds an IRQ domain and
+return ?
 
+Possibly I can generalize it and use it in this patch too.
+
+Thanks,
+Lorenzo
+
+> > Don't get what GICv3 node has to do with that though, sorry.
+> 
+> Just trace what the code there does after it gets the MSI parent. I
+> didn't study it too closely, but why is a iProc PCIe parsing GICv3 MSI
+> stuff itself? There's either some missing feature in the
+> irqchip/domain APIs or it's being dumb.
+> 
+> Rob
 
