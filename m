@@ -1,217 +1,194 @@
-Return-Path: <devicetree+bounces-219381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4890B8A7FC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C46BEB8A7E7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:05:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EABC4E4CF3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:06:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D39253B485D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289F3320A00;
-	Fri, 19 Sep 2025 15:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F9E31D744;
+	Fri, 19 Sep 2025 16:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="hIba/qvU"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EojGlzkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013069.outbound.protection.outlook.com [52.101.83.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F6731E8A3
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758297566; cv=none; b=OHgEfanlhSCLeeo9d9O3coOATJTxNPRxAUfH3GPyI+/rEBh53mhcRuQ03bzr1EYFRgJksmuCFAV/Gt1FtBlyYt3KAo8GCAxlb0NVOIATrJi/8PsOVpAN/aquKtpu9rFsmq6/SJuq43nnzZ8ZNotcHdj1dCMjbgNHRKR+NXe1ACI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758297566; c=relaxed/simple;
-	bh=NlMkLdvD64IRA/MwFZvIoBYriU4Nid/OitYs5+FRBUQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cOHYNetWrFRhpXr7s9o/wIYT1/Jy3DZ8rpMiGY2s3fKqoR1vKxrhEfpU37fGe4g/O1eSg4j4r3z5Us4lmM/CvsLAwQlMQibGtB2az/zts6HLf2zy0JECtk/9x/1GesYkrEkdixS+f++cPrSXQcIa/LQ6wmJ0qkeNDx8PcGp/HD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=hIba/qvU; arc=none smtp.client-ip=209.85.166.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-4248b320541so524515ab.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:59:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758297563; x=1758902363; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Oo7s49MWiPP0XpbU9jJjL7SpuVNC45j91Je82FzACGw=;
-        b=hIba/qvU9jPG2mLC86wu4sLVoK7VbCJibIkixSqa6F6tzSbpIyq0ZR8A6svQzqFQnC
-         GNN/aijr3a26oe9k/JIaldh8tW+ENCK/cbJVgDGCzp0V7f64qpELN7KFMlnIO0frmf7c
-         khWz40qeAYc/W8Db8KcS4KQpYBjSyJmzycXw2S3Eb6DRgR76RdwVG9L2t7fYBX8itstE
-         H3op3/V+iOv4CrMZtwstDlPwVeVyi/oICgjChjqiWo6NNXzBSp2k6m0Gz7uRaiNkN3j8
-         utPs70cZGC5dX7yhXyeRtVYW+WHxeZT+FQdNIHbXhTiCLfCLSeE3Fz2bOV9iXkpIHP3E
-         aJSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758297563; x=1758902363;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Oo7s49MWiPP0XpbU9jJjL7SpuVNC45j91Je82FzACGw=;
-        b=kgEq9VrY/qRMUConZ0G6ZSAvOcYPEFDokVr3gSJ++by8MkNHjL1/IoEyxM8/taMhUt
-         CM0vOsQsaPMmFSzN+DSj/7t2StBW5B33WR0EQ/Ivd4L9b4iQrvNwhAFO2Z5xbRBjc+np
-         W+TiK0CUvFhOJIaZUQgVDecLgjb//WtqFxRnD0qypqREeMSE/x7D523wSzcOs+eX+vY1
-         X/t8XPoR/EDOXfuk5a2fP5tt1Mp7CJKTub9UJPq/H8PWs3718PGXFFVK14n6Vu0K8Pt5
-         kdHCF/RzT3jl4EF96st0MuEXhzwmwzbH1paTLNjnio8HHQyZIv8wCWKdbWeiSQYF1FLI
-         7N+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWJSCrAERx4YAAIqYk9iZO0VXCHAZS9YW3nfULzAzFo17/iZ3soysSMlYME1IEc2eyfq2MQz30Tw8n7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxao3jBOfWoPGNTAp77UWCmtDZEQbCRWKBx9ismkE6N2FhAxGmY
-	aC7gl+IYDmOPrSdS56t+jM083ytuMsX5TbD2282F8lcsQ8FCqtIdCCK+0iRfMiVDHKc=
-X-Gm-Gg: ASbGnctiDSdSnWKBg6/Cqb1H+mvkndcTbbS0qNm6Upqnrfu3gFijyIG9sfJpd98r8Jl
-	9a2yoquZk6LXBQGlHtnrgc1te0fJ1jMSrP8LqFiGVoB7PBpGUOcGLPgSXjcDxr4Bxf83o4C16wm
-	W95bJTTQmY+RNhayb2b6p9MKkEvC84FR/R7vod0Y3BsKBLb9S/xzxtYK0lNpw5PDL8tzR9NL9Hu
-	Nl/qSkKdO/Mqiz/RkZDpOZtTXg5Uu6gUHXqfWSgofBC8LFpJh/usHWmEVZ7EFIjzTq8L5ZQSnZn
-	psew0XmD8hyl6Swz8oCEyCAu2b62GxHnAMz+RJJp/ufEsgWEIkBtbm9+ucs38FSWw5rB+hc8uJh
-	+6dswgeE4QQcErfKkPbV7HcLFaZHz7a53wIJ1jJd/ucGvD5ZoBjdc7ZzRbMq3XipbCw==
-X-Google-Smtp-Source: AGHT+IGv8Gt7EaPcdotr9gY5Yd6METFFETdEj+xRnRLa13tdcKb2eRmmBl1GTwt/NGaaW1sg3ZmbBQ==
-X-Received: by 2002:a05:6e02:258a:b0:423:fdc4:4e35 with SMTP id e9e14a558f8ab-4248197e1b4mr55249165ab.24.1758297562539;
-        Fri, 19 Sep 2025 08:59:22 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d50aa460bsm2250898173.52.2025.09.19.08.59.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 08:59:22 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlan@gentoo.org,
-	ziyao@disroot.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	p.zabel@pengutronix.de,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8802A17A2EA;
+	Fri, 19 Sep 2025 16:04:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758297875; cv=fail; b=RlBcNXC4VkuLjzLAXB6pghalVrczCBDSp86Nm9N6sW3+aD6CzL6ZnjuUM82N631cv7JSOj/8R2Gj15yuL7ziOeuCCmYa0hqSaIhFRxwzBCuWoKEpjNWN2IhbcKVIp16tOzGbHF/h/3H+YsdepcehSXysezG7FvCt5QynvyNb43U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758297875; c=relaxed/simple;
+	bh=I3uUBorp9uAi8/sqmljN4TF5m3fU3Ko2jFBcHB1CjR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ugx95MH0JwRbOohXemTFPUnQ1xsIEArcLJnUYzPPHSKZjZbsNnCL5T/YlNbo/IIfyfhctIAoxdAJeOwslz7kYhI/DwLz8meCJBPBpHPX/MRGnfY5hoisOxlYyCYD5dqhP5dRuBQVvAL4/Iv69OtmZAk9QtbP9qwdQm8bv5Dt4S4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EojGlzkB; arc=fail smtp.client-ip=52.101.83.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AuFdRavyXtJW+xHd0DYyO9OUrHFCAYQ2JncP0/YpFJdHB5KWhQc6U8Nplv7PGTSTicL77rLOjz4c71wGqCCVQposa6ZbspcS2+n5htXBzZY2DzG86Qec9NWC9B3Hby0VcUVue4X9efxiYO+Un+AARM+4pspXMTm+JM7qKLv7Coyzmt3l1ggeSAjixkQewshPpIUq5ukSatMwIsx0kmakyrotFogh06xDU723XPn9WGfNTyrDij3kENIZoDVf1IdNttxip+RMMOxolAhk0rOmqZBmuaOJqTZsEhSUSUjeqatVWaYcBw+ImwNjbRzmeadrZd/nNq7ZTuScgjvO0rsI+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rc+8V3sOVI66vb6IvQWfZtyk0mVtVLh3TuLOrW/2yjg=;
+ b=jb/OBBxOcwMzHl6gTKrHsj877xvimKwKNOynupm0QnyC/vorC/0uA9j4nlKi1Fzi4jNla+E/Kp/rAofmQZ7YNWrqLqDNR5JPQVrhvbSIqJe4+tHCq/R0DkXaPwice/il6f6CK/GML3IPO1rpcJEldMO3Mszy1/r3Ft3dfLAlda0TNRSezDAYHVkfM7B2aQWvZokQUWnQpMZJNh1nKIya0o2MkmHeZl28/0QuUlY/chBDTsB7R8RFoE8x/O81wctEFsxIMW5wLHhZr7131HMFVEzkhlOpsOtvKnVWuClfKb7/y2yHyr9rqjyMJEy4wM3hGUDfPW/l/bEtMsc3ayTrww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rc+8V3sOVI66vb6IvQWfZtyk0mVtVLh3TuLOrW/2yjg=;
+ b=EojGlzkB0UAWIhu8u0vm1AkUj0LtOf4sbunqZC8msgo4xGQZCvbG4xEsweIpIbuGPVTEVkN1HsPTEbHuI2id0yFzvrF6cs5Y2OHHMVDklDCwiGue79Sz1Mvc4qJqIK56/DznRk4QcP+emxM5gjTjF5Rw9zqEYwXThr0eI95YexVez+VXW9FBclEbM+YpsdW7y6McUTbGkr3rOFPfLJS0w7IeE9yOAaWVQFwtF7gKKwsmmd8KZe+Apxou6rDOwBRCVejrEdrh0WJG8y04SXNCFYOdCWSUXESLKo/C5NJGobOTIhNhMihaoPfKGaPrWbiwt1WYGYRl1SH+YkSn9TLWnQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by AS8PR04MB7846.eurprd04.prod.outlook.com (2603:10a6:20b:2a0::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 19 Sep
+ 2025 16:04:30 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9137.015; Fri, 19 Sep 2025
+ 16:04:29 +0000
+Date: Fri, 19 Sep 2025 12:04:13 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Joy Zou <joy.zou@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] riscv: dts: spacemit: define a SPI controller node
-Date: Fri, 19 Sep 2025 10:59:13 -0500
-Message-ID: <20250919155914.935608-4-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250919155914.935608-1-elder@riscstar.com>
-References: <20250919155914.935608-1-elder@riscstar.com>
+Subject: Re: [PATCH] arm64: dts: imx95-15x15-evk: add fan-supply property for
+ pwm-fan
+Message-ID: <aM1+/XSr9+oninEW@lizhi-Precision-Tower-5810>
+References: <20250919-b4-imx95-fan-v1-1-c9127bd975e9@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250919-b4-imx95-fan-v1-1-c9127bd975e9@nxp.com>
+X-ClientProxiedBy: SJ2PR07CA0002.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::25) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|AS8PR04MB7846:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6190711e-c442-4f42-5b0a-08ddf79636e8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?XKP/VRdhW0LBlRzWIBNjA210XAMmXV5hncNN8ll7ajBqm3+DCsG5PnjdRxrP?=
+ =?us-ascii?Q?PosUpNcTntoVaXU0iBMIH9R2Sepy7S+T3npSxm3W1QP5refYX+e8+LdKCb2s?=
+ =?us-ascii?Q?6WO6T1AeIhbxB/ykWJl6EuVkRj8tXyOc/cKiY5D6EcvtIOs+Klsil947vNmL?=
+ =?us-ascii?Q?JZpDPKlnqetQRNqTGQqlRJz1+qTbYrnZ90WXzicA/3DebaDOiz+ScrE/3Wsa?=
+ =?us-ascii?Q?evlAIGyUsGI+lCc0xRsT3e1+x/u8dHBrjWGFJwV1hAsfbtKRWkDCjsQ11B23?=
+ =?us-ascii?Q?MHRY44woDUu+UWmerr1Hx/ngJDUx9dcZZIqAH88AYBNRtwGANxDBvlsePDay?=
+ =?us-ascii?Q?VBxsZmrPYatHsBqQo0bS99LjtllgpAMtYHsiDDscMt4syzoFP2tJjV0dvkFS?=
+ =?us-ascii?Q?rCQutwbzMsmilC76AsmEkjz654FMnlLwTlVUF5JiErX3OFNMuRGDaVBJGgvl?=
+ =?us-ascii?Q?tY2g08bQbjqSv6t+iOmyTLVc68ttWPI1hm2CN6ISAgihDXX7YGKVWIn+sRbt?=
+ =?us-ascii?Q?mQPHf2IpsG4I3CtqMolgr3BnrumRXximnZ3GvvTEVjV1aOp6KE4fX1/3rpcr?=
+ =?us-ascii?Q?mU3I7ksgs93pLeLdv9WdVpC3aeerMIBth9bQbf1bNSDoWQtVYVt6ZL4iLF8Z?=
+ =?us-ascii?Q?WLS9m3hQl6aJy761mFPE1MRUkszOlLhN3MFcYefgr8UQeA2MuDiY7DvGo2Vw?=
+ =?us-ascii?Q?3RFMMF0F24phzkRGIYA9eg/vpV1adhKnzPcsu3oYZ4G6rD4u8asTVaNJl6/y?=
+ =?us-ascii?Q?BCYLoeb1EyHbu70i3Wr3QjVk6oCCdpltgliB5tIs49YKYYt1zBe4DRmZAxjA?=
+ =?us-ascii?Q?jM6tN1wxU7YpialB/vtreI1/swG36dVYw4lPpWSeOJjvnV6mbj/9yJSRNznH?=
+ =?us-ascii?Q?lU4g/VejPkwkCBO2J2R6CzbWH0d4rMXxrmaw2fa3q81sz5kMdCF9iRu/+5y/?=
+ =?us-ascii?Q?SZBt4KFAB9pvpw4zS7aI0qqYfsZ1tewn3G6MNQuJzdXNIw01miX1clSPeW/F?=
+ =?us-ascii?Q?wOCcHd9T4XC7CIRkC8HdnufZ6c0leeSwZL8UHrML2wEWZV0mYbSmwLWTPzdc?=
+ =?us-ascii?Q?Gny3rpn094fFJT6uYsuPogj0VKS41KpNmRAHsCWIFrA4I1BBdBeLAtr7rFEo?=
+ =?us-ascii?Q?T2Din6xP7N0yxREKJcz0j4ey6LyzlW5IWn2/JQ2TDYIqs8Q0I1hLV8c5g78J?=
+ =?us-ascii?Q?RluCdZFDdqpWaWpzpldhvqn6v4zXuIaAH/888Xam2/Gop9qF13+bjt5tOfRO?=
+ =?us-ascii?Q?pWl0mj2Vw/ljeA6ifOtemv+riuIYMIankNy/zT0gunWfSEieStWvUNHtF0Ug?=
+ =?us-ascii?Q?byCl0Ecmjz4X34CpD5x5fY2sbi7Y99XwNaSL2PJ8mSXk3X7riD3TSVEsbv1y?=
+ =?us-ascii?Q?H4SfzWGFroKAx/sxJRmU7lazIhTFcv56ZUemXzi2O8mIll5mKag7+c1njRER?=
+ =?us-ascii?Q?ZtSe5dG3Sqq2zecBJDJ+OkANQJGxEIY3WKNYOn6wpeJGIVTx7nXTYQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?9ZX9fmgrZQCZlmCHlI9iN4NSa15FXodYAALs5XsEL4qIgJac7m4zuOmBVN5E?=
+ =?us-ascii?Q?md8XNRddUHckE/st9hb6gyDWBUBMAvOZrMk9/lgV27fEqItE0m+19TDrcPbd?=
+ =?us-ascii?Q?ZvDwVMNu9W6XdkPT9+gS1YXQxfmGJ63WypGEd4ETt18QgGPkXl6S9IOUO2t9?=
+ =?us-ascii?Q?11cCU1I73bHUdlghGzETwONSgkr5R5gA8qEKo9u8GNBHru6SAcS6iNAHuMpm?=
+ =?us-ascii?Q?09FxIfOGBVfrCGdYnMXDXqNpRnqnhyTfHIaSPhGA7QZLE6L6vafcLcD882WD?=
+ =?us-ascii?Q?gAqS19GcZbrm23pBLGWTuQUrvvpvHR4M9rHW2e1lDmVIFx+Vc4eSMntCqrVA?=
+ =?us-ascii?Q?bylidhwP6IPnTeQ9wRStNOCsCwNlUdgALYTW6MlRKYPaHYjR1jjmMSe3w75V?=
+ =?us-ascii?Q?s7cYGw3TLkZH6P3Al7t13MspyKyGMB6gusXyxMxN/l1rUzvUDLM7+eJ576QF?=
+ =?us-ascii?Q?ub0pWSpBHxJuYSoqFhxmDKGPPndQTxoUuq2rTkzY+iJ7s+k29hV+pyL0xWnp?=
+ =?us-ascii?Q?teE6qb43lS2BdqhrjbvRFIJoByIl3vu95MvB1X+bYWHWpQvGchdj3zmpIjFP?=
+ =?us-ascii?Q?NbOfpwiBfEt/84ySkJVCulAtrmocv32pngjDUAmPMGr40HsrTQT5tUgwaqPf?=
+ =?us-ascii?Q?QrkYu45ec1qW566sYV2+/dtW1H7rfFYEb4LYtvPg9BK9e2BrrNVNo7HA+Ty5?=
+ =?us-ascii?Q?un67BYC/3A3JFvd/y1w1UbhMhixbyDDNv4xXl3zSBV9RtmLCpyU3GaG0hK72?=
+ =?us-ascii?Q?kx3eTFdXWzufv4PJ4SVYeSI+RIOYh7pd4iALqmITT8LK9m3udbysiBixuZaT?=
+ =?us-ascii?Q?p/Bw4vFE43zdBea+igyyceNW6fRLqcsu5H180E0D6wd678rnZyTxF1K87/th?=
+ =?us-ascii?Q?Z6+tvglDyCMnVJ0oMnXhazV/i1vxtBXb1C14i/iv6TcI3TmG0c32f4BxT0Zk?=
+ =?us-ascii?Q?Rpq11ggeWmzYSqXxVBoHjL2Hq9aEsQuT0dV4Zat9Jf3Bpj5wRbkEN5pplBrr?=
+ =?us-ascii?Q?jF0QeJEwwNIJPEZYIWwgQyajoq54gOJWMB6q2K2C6cW/mvHc/1bDwk+e7t3X?=
+ =?us-ascii?Q?NzvX6MW1STudWOVLNPU4qASYCs0um1KtJ4j846io0DlyT1Ti+ug7akTRO7nS?=
+ =?us-ascii?Q?E5oCeaoqbweVaTJX05lGZJh96d5betSzbd5CT7pnvS1J43pVIcLEl+oTgrdU?=
+ =?us-ascii?Q?TccvhGTYVZd39BRCTICfzsARyk3dTL2mdiV+PUcs7y+/j+QZsLrmItlb78JE?=
+ =?us-ascii?Q?VH10QWXakE0q4zZFpDxIDgNmFb3afC244D9amTnqULqmuWNhbe50t8HNP4Tn?=
+ =?us-ascii?Q?g2xFnQuAsf0MhQMhW7WOa/W0LSVqedfUKeUGY//e9ecgV5b7+J7KOHKuvf6c?=
+ =?us-ascii?Q?WHdnR2/SuqhucQfAHjWDAWsEKieKJt85PwU6eA0pt5zMuC80BfXNCfx5cRH2?=
+ =?us-ascii?Q?520b7+CiICryY/hN8wyPD8QbneAkbK35bwEhIzCFU+ijUpwdN9ySDqM1nt4e?=
+ =?us-ascii?Q?oG8Se2VgZAYjt3QhM95D54pADIXI3lkUoFL2JOlaaRQOKompVr49ecbXPm5y?=
+ =?us-ascii?Q?GGNKyLiN9rL/eYRVUVdW39iOocJ7kr+Xl6W8uwf8?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6190711e-c442-4f42-5b0a-08ddf79636e8
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 16:04:29.5651
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSgDDkq5GLIPA8b+F5vlVLMJPlrOlLo3l1e5Zafg4LCT2EX+vfWQF2EfFz9/x7MrEdhJ4LTnY6pVMwZw3/Yi/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7846
 
-Define a node for the fourth SoC SPI controller (number 3) on
-the SpacemiT K1 SoC.
+On Fri, Sep 19, 2025 at 10:27:04AM +0800, Joy Zou wrote:
+> Add fan-supply regulator to pwm-fan node to specify power source.
+>
+> Fixes: e3e8b199aff8 ("arm64: dts: imx95: Add imx95-15x15-evk support")
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
 
-Enable it on the Banana Pi BPI-F3 board, which exposes this feature
-via its GPIO block:
-  GPIO PIN 19:  MOSI
-  GPIO PIN 21:  MISO
-  GPIO PIN 23:  SCLK
-  GPIO PIN 24:  SS (inverted)
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Define pincontrol configurations for the pins as used on that board.
-
-(This was tested using a GigaDevice GD25Q64E SPI NOR chip.)
-
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
-v2: - DT aliases are used rather than spacemit,k1-ssp-id for bus number
-    - The order of two pin control properties was changed as requested
-    - Clock names and DMA names are now on one line in the "k1.dtsi"
-    - The interrupts property is used rather than interrupts-extended
-
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  7 +++++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 20 +++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 +++++++++++++++
- 3 files changed, 43 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 2aaaff77831e1..d9d865fbe320e 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -14,6 +14,7 @@ aliases {
- 		ethernet0 = &eth0;
- 		ethernet1 = &eth1;
- 		serial0 = &uart0;
-+		spi3 = &spi3;
- 	};
- 
- 	chosen {
-@@ -92,6 +93,12 @@ &pdma {
- 	status = "okay";
- };
- 
-+&spi3 {
-+	pinctrl-0 = <&ssp3_0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index aff19c86d5ff3..205c201a3005c 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -76,4 +76,24 @@ pwm14-1-pins {
- 			drive-strength = <32>;
- 		};
- 	};
-+
-+	ssp3_0_cfg: ssp3-0-cfg {
-+		ssp3-0-no-pull-pins {
-+			pinmux = <K1_PADCONF(75, 2)>,	/* SCLK */
-+				 <K1_PADCONF(77, 2)>,	/* MOSI  */
-+				 <K1_PADCONF(78, 2)>;	/* MISO */
-+
-+			bias-disable;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+
-+		ssp3-0-frm-pins {
-+			pinmux = <K1_PADCONF(76, 2)>;	/* FRM (frame) */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+	};
- };
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 6cdcd80a7c83b..f8c37d16968e4 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -856,6 +856,22 @@ storage-bus {
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
- 
-+			spi3: spi@d401c000 {
-+				compatible = "spacemit,k1-spi";
-+				reg = <0x0 0xd401c000 0x0 0x30>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&syscon_apbc CLK_SSP3>,
-+					 <&syscon_apbc CLK_SSP3_BUS>;
-+				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_SSP3>;
-+				interrupts = <55>;
-+				dmas = <&pdma 20>,
-+				       <&pdma 19>;
-+				dma-names = "rx", "tx";
-+				status = "disabled";
-+			};
-+
- 			emmc: mmc@d4281000 {
- 				compatible = "spacemit,k1-sdhci";
- 				reg = <0x0 0xd4281000 0x0 0x200>;
--- 
-2.48.1
-
+> ---
+>  arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> index 148243470dd4ab03afdae949c8316f31467d1377..0953c25ef557684a3e78ef27a5e3f5aface33e3e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> @@ -61,6 +61,7 @@ chosen {
+>
+>  	fan0: pwm-fan {
+>  		compatible = "pwm-fan";
+> +		fan-supply = <&reg_vcc_12v>;
+>  		#cooling-cells = <2>;
+>  		cooling-levels = <64 128 192 255>;
+>  		pwms = <&tpm6 0 4000000 PWM_POLARITY_INVERTED>;
+>
+> ---
+> base-commit: ae2d20002576d2893ecaff25db3d7ef9190ac0b6
+> change-id: 20250918-b4-imx95-fan-9a371ca858f5
+>
+> Best regards,
+> --
+> Joy Zou <joy.zou@nxp.com>
+>
 
