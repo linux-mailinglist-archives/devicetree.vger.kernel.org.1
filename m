@@ -1,167 +1,208 @@
-Return-Path: <devicetree+bounces-219165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491ACB883AF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:42:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF75B883CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8FBE1646E2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:41:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A60AB63679
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9239B2D23BC;
-	Fri, 19 Sep 2025 07:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DA92F7AC6;
+	Fri, 19 Sep 2025 07:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="PjIU41OU"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="LLfIf4GA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA20C2C3271
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5B92F747A
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758267534; cv=none; b=bPL78F2OVyDThoCZIzil4APS8AmWL1fFJVdj6A4OLNDWu5I0KRv1JNCzipf/yG0NMSbXTZk+lQSrSTvdm2gBoFBsi3G6C1E2wWG7d/FWT1vzH/wUZPBQPqxeloPoYRfUijVr54cXcLHkwcDds14RGxFnjdys5TATdvIV3r7M6UM=
+	t=1758267539; cv=none; b=CbzzOPhmk9nPnKY1IjGpqEhzY7uqDrjvJPQ9N574QP4dCXlWzPpdm47xIdGrN7wRJyZX53OWnZW/FT4G4ZQlPNvttzckcLZnsUL0i8VLyefthS+2ekkCDzNWkNpoloVKdaWtmF1Qs1hZ/NfCUyVD3bbW/9//4iwT993O/O7yn1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758267534; c=relaxed/simple;
-	bh=c191XMGekjwyT0k1fIaZ95ZvPfNZBLAH+N5NWD52kwE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=T4qr4I/5xrnHeCJOoge3FThyM69Iru3yHz6l7f6lxskKtO2rvPenvDTQbt/9huLdAkOzAL5EzYA+uiI5RsrVmIxp9QUhF408Xu4mdnmmIVsSjdhbVcLL+by5E0/H8/GR6LRTZbjAuFdaGKc0Y3t7dfpdrurbKURJ5KF1O5XkbHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=PjIU41OU; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-772301f8ae2so1733775b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:38:52 -0700 (PDT)
+	s=arc-20240116; t=1758267539; c=relaxed/simple;
+	bh=kMc6qIYkpkSaZVkYzK0h2R64lMZcG/aeYocJD7OH9t0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YYJGR804LLNESEN4bkeOPxd3VDRCZ2hQdGl2Oeu06F1IxC8XUB81HF+PMp5Dwmb0RT0LHcuasPIx0rzkDSLyX9TvxTZX+D10OIVDasW2bMu4tlZBNBS0hgWgbNJPW+Xd0pWSmJEOZlRc5g/t9IS88BY36VZDQN2UyPtQQarv/5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=LLfIf4GA; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-62fc2d92d34so802973a12.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:38:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1758267532; x=1758872332; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K/wZtJxRjsPgsFT1TZQP06vJqUDEl57iCFv88CuZkP4=;
-        b=PjIU41OUYpa5GM79iBUbErnojyglssB59mxt+pnqxe5xNSugTp3XzUbZtTRDhYY+mj
-         AFI4vSoldVpgCaoKhmnNBmrfsSWD9hi6PyJoWW3iPsCWpqA8u+0yN7coz4mTvEw9XJoF
-         S9Cz5vQoYeanUxpS89cLVdS4OLWRDtmQrrFBHhZlWY6Z6anmELda6AMSniGIBt38AhA/
-         WSDWti9dtcR5Lx1U+UWp2MsPJ4rWRC1A/7Me5ySF1XNqOdHPUYri6ZAsMwxjHJQENOV1
-         BzYDpD95J4TUq9jA1Jg8DbEYdeENlJSgIGNO4xtE0TqTE+zAoBk0vu73X/uMlOGdbO/v
-         UlAQ==
+        d=tuxon.dev; s=google; t=1758267535; x=1758872335; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C52fJI8OZn6dmpJ0EOOlg/5SF4AUK9kWOko1av6xLQQ=;
+        b=LLfIf4GAnVHjjU7p7nlOkC4EhaL2uxwAaiVPmwozaKqf/Tv9iNlt8JRYALD5QEJGq1
+         vLnCmIBKAL8b57erjZBJQum377AcTR1Zc02OCH5DfOOEg0klz47zdq698d67fMZlIthG
+         B5/l8VqVSkIfYMgYYlvy34sn/3fjjm7hCKI8738VPuATVWOvwxeiij0WAzMOIn2XuaXw
+         z1HoaJ5F/iT03Wqp2z2gOBNYDNQvvpQyJbBbW52D1HTtWkNEdHSLdr0AZ9FLq3lxGNZ1
+         PrCLb5fWQZsP+S4N/sFGAzUcylmgvYda6n8AwWiPMVVFmlpAnn4BAHmZEEf8Ec1M8qXW
+         Aw5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758267532; x=1758872332;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K/wZtJxRjsPgsFT1TZQP06vJqUDEl57iCFv88CuZkP4=;
-        b=jidp0iOk1N3K9LlJlwqAl9zt+C0+ZTEQl6E7xlJZAq90iknCIXLuFG1CYwOJZusMK1
-         1iICyoll10XWhlJlfjmEF/XGhUfpiPQwSlpsZiox4+WJZsPcAaPObvbd2/hbH3kJujb9
-         uFA+sm67zNhxxWyNof0Q/cPHqVt3QGvaIqrpl5NB+483bZQc7og9P5Lc+4wrbAeXneJi
-         hH+H3IB9N9ES9d/IaFIPF67y4gdSVAa/xKlH9fUn09AVfQRW9TP25WPbMgFYmj0f89Tm
-         GXVKRX901ILIyRBptOah905yws0pp9X6YrCRTkbF9rHouU93ml8OLH2N7WAKGbCd5tj4
-         Mraw==
-X-Gm-Message-State: AOJu0YyfWwAuvgWvHCo/tJNOaPdLAgChCVirdHfoxOaMvIggspQJs2ou
-	NUcz7fhD6thIH/1BEvtcUTASi29N5QAYjRLy6+doLKN7q6Xsa7Q98SlC9t/DwbtcIqA=
-X-Gm-Gg: ASbGncvSRscd3usDv9H0hxpIe0mvon8ZTLlSSqwKeNoFi70iSQ3LjHVA5ouDn4oR56r
-	20+evViS0IN5bHNsKlmi9xZcX8vcec7vwkUb5wllzity0rq075Jd11aJB69RebKf8LN2jbM0zyi
-	DDZn4XBdFrPcxJvPAFdtCCyLr6BuWaXE70FO2LvXQse2c1EFXSpx7kAKsyDu9H54uYVoHG0xKId
-	pFzWSo+8cpK2qNGq4YnQjjtRQ5ZOt2i9GrT+6/kPMhv7kcIIdhP8tvnuuP2ZB+HVYmklVbDY3um
-	m95sz5XjFevrZxesYYnHfK6VuOfwkRGWymuRy64nM7pkPOURbRbRc56+kKjiqGEBeY8LxZdgwnK
-	ZIgGQqFWNm2N9c5ajOwkqZYJqMtHhEq9F0AW/U+PweawzlhCcLSl8CeiLHVBwOKgugK63C/Uq2h
-	a0nNhQFg6H57ir3Z5u5bKFAYjE6MMbGMMZXJK+V5UAOg==
-X-Google-Smtp-Source: AGHT+IH+4QZdIMI6dt1vIbAhIv1otTpdn3Cuf58RfGKyqc29IOHSadIrxg84hnYxuSAKEAjnTACHLA==
-X-Received: by 2002:a05:6a20:244e:b0:24d:d206:6992 with SMTP id adf61e73a8af0-29260d81077mr3369360637.22.1758267532201;
-        Fri, 19 Sep 2025 00:38:52 -0700 (PDT)
-Received: from J9GPGXL7NT.bytedance.net ([61.213.176.57])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b550fd7ebc7sm2679096a12.19.2025.09.19.00.38.42
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Fri, 19 Sep 2025 00:38:52 -0700 (PDT)
-From: Xu Lu <luxu.kernel@bytedance.com>
-To: corbet@lwn.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	will@kernel.org,
-	peterz@infradead.org,
-	boqun.feng@gmail.com,
-	mark.rutland@arm.com,
-	parri.andrea@gmail.com,
-	ajones@ventanamicro.com,
-	brs@rivosinc.com,
-	anup@brainfault.org,
-	atish.patra@linux.dev,
-	pbonzini@redhat.com,
-	shuah@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	apw@canonical.com,
-	joe@perches.com,
-	linux-doc@vger.kernel.org,
-	kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org,
-	linux-kselftest@vger.kernel.org,
-	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v3 8/8] KVM: riscv: selftests: Add Zalasr extensions to get-reg-list test
-Date: Fri, 19 Sep 2025 15:37:14 +0800
-Message-ID: <20250919073714.83063-9-luxu.kernel@bytedance.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250919073714.83063-1-luxu.kernel@bytedance.com>
-References: <20250919073714.83063-1-luxu.kernel@bytedance.com>
+        d=1e100.net; s=20230601; t=1758267535; x=1758872335;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C52fJI8OZn6dmpJ0EOOlg/5SF4AUK9kWOko1av6xLQQ=;
+        b=e6LqQgTH4dZo8I2yvXgExAEgkmCUYUFMiqOKgmkCbtUwvZve4dUNbTabBAYSdZ1VuI
+         QNETf43suqGKAT0NNDTgI24jsvbq3THNVX8QURki8M/F9UzX/DNEqmJBd4AFSpzZbyiY
+         PrMocaqQd6SUud66gqdVd1XFVRAO9E2YqLRXNdggaPTyOPW1DIcRZ/AXAheRwJo35rgv
+         E7rdTFYe4J8Zc9nPddjAxt65Q2qLlUNH5iD6FuBAci1mzo8SpRgfVHeksqGNbyUeGH+2
+         mvjIKZ4Y67Zsx/iZRR/aLZ9kKI61No57LhM25xnrMudykcad2ZvNjNf0SVL7i+d4+/v0
+         006A==
+X-Forwarded-Encrypted: i=1; AJvYcCWuwX9bSGQqb4A0sJo7Qz+CQa8ZOBTasitXhXJg1PpowgqsT/ZABS5aKf/b7rCFQve6dvWFSr4NlVf6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzITXMRUbM6Re8OVbZ56e3yccaVa17dzzVTGxkW8JACJepnMEUD
+	m64i5LEeyJ0XGPQHPoOErOb54/cEki88ahCFdH9dHeTESVq6sTc8PxWOzDQwdMEAhfo=
+X-Gm-Gg: ASbGncuv6CdCZLt8OptnRvL0PYXn2ZdWy7OOMH/FgiQqWkC5PFCAMlWNcMJRGNv8wlO
+	+tiVAC6OXmeTM1GHowInH7ExSopuVw8PHokYagnEB16U9pCGdVUaHfZQmdNJyAaRCJP8U2kcnf7
+	sKg/UBt9VfNO0BGUzCwUclL/rk7qVaH07biffEBYRKkCSxHKJLDt3ugJlCPt3gH4VqYL8P6Jg/m
+	+Nw73IqWZZ1LjvIdXcw7oxIJkcpI5R6Yvv1UjPO1nDoSa971rCi6Upj3Nc/uhHCqxrei/tVj0/b
+	P4r0J8uLwhvzWVCSlFr/jB+zc2H+ORy0WwzpxyBtii0Dib/LMsAdzljuvN/l3Nrm9rpMKMmrjQk
+	73OUqiJmwTWjy12h8mkDwwaMpgi1ZxpYT44ziGGXA4w==
+X-Google-Smtp-Source: AGHT+IGZhuyuyTd1aKAi+fBtFosLneGcx8gx8yEr9OgXp4C95CMy9oC3K7BFoFpsdhrbZOu6d5TNSA==
+X-Received: by 2002:a17:907:3e96:b0:afe:63ae:c337 with SMTP id a640c23a62f3a-b24f727a7f1mr237583366b.57.1758267535087;
+        Fri, 19 Sep 2025 00:38:55 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.153])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fc5f43924sm386437766b.6.2025.09.19.00.38.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 00:38:54 -0700 (PDT)
+Message-ID: <0a20c765-ff72-4c03-af84-dff3f4850fa4@tuxon.dev>
+Date: Fri, 19 Sep 2025 10:38:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/6] arm64: dts: renesas: rzg3s-smarc-som: Update
+ dma-ranges for PCIe
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250912122444.3870284-5-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdWP638eB_p9xMAqZmOnuc6n7=n31h6AqV+287uvqQEdww@mail.gmail.com>
+ <c2fc5f6b-0e7c-464e-89a6-35dc76177d18@tuxon.dev>
+ <CAMuHMdWeHoUe-=7TDetnDQbLQsKGf4pDGpSdz3xEVLs_Rst9qQ@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <CAMuHMdWeHoUe-=7TDetnDQbLQsKGf4pDGpSdz3xEVLs_Rst9qQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The KVM RISC-V allows Zalasr extensions for Guest/VM so add these
-extensions to get-reg-list test.
+Hi, Geert,
 
-Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
----
- tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On 9/18/25 13:00, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Thu, 18 Sept 2025 at 11:47, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+>> On 9/18/25 12:09, Geert Uytterhoeven wrote:
+>>> On Fri, 12 Sept 2025 at 14:24, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> The first 128MB of memory is reserved on this board for secure area.
+>>>> Secure area is a RAM region used by firmware. The rzg3s-smarc-som.dtsi
+>>>> memory node (memory@48000000) excludes the secure area.
+>>>> Update the PCIe dma-ranges property to reflect this.
+>>>>
+>>>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>
+>>> Thanks for your patch!
+>>>
+>>>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+>>>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+>>>> @@ -214,6 +214,16 @@ &sdhi2 {
+>>>>  };
+>>>>  #endif
+>>>>
+>>>> +&pcie {
+>>>> +       /* First 128MB is reserved for secure area. */
+>>>
+>>> Do you really have to take that into account here?  I believe that
+>>> 128 MiB region will never be used anyway, as it is excluded from the
+>>> memory map (see memory@48000000).
+>>>
+>>>> +       dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0x0 0x38000000>;
+>>>
+>>> Hence shouldn't you add
+>>>
+>>>     dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0x0 0x38000000>;
+> 
+> Oops, I really meant (forgot to edit after copying it):
+> 
+>     dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0x0 0x40000000>;
+> 
+>>>
+>>> to the pcie node in arch/arm64/boot/dts/renesas/r9a08g045s33.dtsi
+>>> instead, like is done for all other Renesas SoCs that have PCIe?
+>>
+>> I chose to add it here as the rzg3s-smarc-som.dtsi is the one that defines
+>> the available memory for board, as the available memory is something board
+>> dependent.
+> 
+> But IMHO it is independent from the amount of memory on the board.
+> On other SoCs, it has a comment:
+> 
+>      /* Map all possible DDR as inbound ranges */
+> 
+>>
+>> If you consider it is better to have it in the SoC file, please let me know.
+> 
+> Hence yes please.
+> 
+> However, I missed you already have:
+> 
+>     /* Map all possible DRAM ranges (4 GB). */
+>     dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0x1 0x0>;
+> 
+> in r9a08g045.dtsi, so life's good.
+> 
+> +
+>>>> +};
+>>>> +
+>>>> +&pcie_port0 {
+>>>> +       clocks = <&versa3 5>;
+>>>> +       clock-names = "ref";
+>>>> +};
+>>>
+>>> This is not related.
+>>
+>> Ah, right! Could you please let me know if you prefer to have another patch
+>> or to update the patch description?
+> 
+> Given the dma-ranges changes is IMHO not needed,
 
-diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-index a0b7dabb50406..3020e37f621ba 100644
---- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-+++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-@@ -65,6 +65,7 @@ bool filter_reg(__u64 reg)
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZAAMO:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZABHA:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZACAS:
-+	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZALASR:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZALRSC:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZAWRS:
- 	case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBA:
-@@ -517,6 +518,7 @@ static const char *isa_ext_single_id_to_str(__u64 reg_off)
- 		KVM_ISA_EXT_ARR(ZAAMO),
- 		KVM_ISA_EXT_ARR(ZABHA),
- 		KVM_ISA_EXT_ARR(ZACAS),
-+		KVM_ISA_EXT_ARR(ZALASR),
- 		KVM_ISA_EXT_ARR(ZALRSC),
- 		KVM_ISA_EXT_ARR(ZAWRS),
- 		KVM_ISA_EXT_ARR(ZBA),
-@@ -1112,6 +1114,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svvptc, SVVPTC);
- KVM_ISA_EXT_SIMPLE_CONFIG(zaamo, ZAAMO);
- KVM_ISA_EXT_SIMPLE_CONFIG(zabha, ZABHA);
- KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
-+KVM_ISA_EXT_SIMPLE_CONFIG(zalasr, ZALASR);
- KVM_ISA_EXT_SIMPLE_CONFIG(zalrsc, ZALRSC);
- KVM_ISA_EXT_SIMPLE_CONFIG(zawrs, ZAWRS);
- KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
-@@ -1187,6 +1190,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
- 	&config_zabha,
- 	&config_zacas,
- 	&config_zalrsc,
-+	&config_zalasr,
- 	&config_zawrs,
- 	&config_zba,
- 	&config_zbb,
--- 
-2.20.1
+I kept it here as the driver configures the PCIe registers for the inbound
+windows with the values passed though the dma-ranges. This is done through
+rzg3s_pcie_set_inbound_windows() -> rzg3s_pcie_set_inbound_window(). The
+controller will be aware that the secure area zone is something valid to
+work with. In that case, if my understanding of PCIe windows is right, I
+added this in the idea that an endpoint (a malicious one?) could DMA
+into/from secure area if we don't exclude it here?
+
+Thank you,
+Claudiu
+
+> this can just be
+> a separate patch.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
 
