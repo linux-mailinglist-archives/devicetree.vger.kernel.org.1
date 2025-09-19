@@ -1,128 +1,131 @@
-Return-Path: <devicetree+bounces-219357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3397BB8A51B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:35:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A070B8A590
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:39:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809CB3A74CD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:35:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E877E3B0635
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6B33176E7;
-	Fri, 19 Sep 2025 15:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2684331AF20;
+	Fri, 19 Sep 2025 15:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AoKi0E0+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RcPwZbUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33ED3314A68
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DCA031A7FC
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758296110; cv=none; b=rJDwEmjIQ5VbUI3j2njmEfb5lWv9fNbojwTWJMN+3uWvFzPh+sd1b0jshxMUsGpoo0rT755uvaXwTV26ro6tX7DbQv3nvvSIrucyLl55OdwJQBuXV1knXaVyMWlpqWF0CHef+s1VTBxpHXId1bYHjwXb8xi2j51s/al8KRcoIOg=
+	t=1758296352; cv=none; b=NgG2L/pWyBL3R6RujVyeemWA+cESW+L6bTQAevtcjZu61p9/e1YvzEVcXY+GxuVNsOqfIdoCh23cMpQaQXwaaUrmDMvtBoRO7ZuBjIPac7W/Ltsqjat8Rn4xaFAcd/njssliG/XvCSoe6Hr7a+5Pihihy8lRB9qCIhCjrkDEhJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758296110; c=relaxed/simple;
-	bh=eTWf0PO9mv+rTbVMmJ0b0B+mt8XNGOqlZu172ARy+Zg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VmwOy2XCiJ/7fEK11jQlO4GyltLDYUiHoQ3PFHwpCt3nkUZ78sqrWG8/ZPsarPp2nqrZtD+EEl5LREsX6mMVLyxUAHETYEtK6b+xXd28ce843lgPJZ4zVd3l73XkB0Oej2jA/C3AeHVxJbDJpz5qOixpuBF/ryWS6bYVesINnA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AoKi0E0+; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b9c35bc0aso24290515e9.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:35:08 -0700 (PDT)
+	s=arc-20240116; t=1758296352; c=relaxed/simple;
+	bh=K0k+4kNcMJsdNdrqorQ4S7Pg5Q5SSIopCK9d++okImQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jgiuMb6XLUlSVUuJFq0YYlamj82clSpqO4VSb5xOF9PHWcr1qCZrcyPMF60cPx+XOHfG3d1oSjm2icb5XWNYUduwDvMRbW3IeUtzUTKLUp1Y875LNlBMZaDYDWEyCie7KpIWVfHwQxxthjT8pR8PJ+M7bTVRZr1C3cXxnlHYYiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RcPwZbUA; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55f74c6d316so2544977e87.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:39:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758296107; x=1758900907; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sg77gnAfv1VmZ7w/Slv7Z+RDQVw26Pq4VwEULeHQZFo=;
-        b=AoKi0E0+zbXV6pwQhkC5STDf/iOc7ZySP4oGbYXB2bBuMzX6g7sBnknSRVK1PWag/t
-         UmlmKiijet+6tegsWbw/izjd4Iw0UfyJ+ZkpLqGWXgB8iXggHTZPTbz6iToyahK+b5eW
-         xRpW1W8V/a1psM7bic4Mu5JG70LzVv9KeT6fGDLc8KCIPnA6qG7Pzn10T0ot/CfdC8Lc
-         ZoOrQIs8jFSYxeN5yNHub57zEwoLKX8kQeMuGb6qVdjul+hEOBOSDq1KR9jwz/3O/b0O
-         k1lf1dPMs2XQiTPms8sIHTn4qcfu2+tecx0fs0PtxKpPBaXVve2IjUvesxy+K+DDjGsE
-         gJ/Q==
+        d=gmail.com; s=20230601; t=1758296348; x=1758901148; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uctKhO+/UeiiSpqt6MjSlg1WxmH8h+yZMn/dalnwyT8=;
+        b=RcPwZbUA1+8xlMSkpVoYoLeXBt44D10Ob/IWJdXthnBnDsTEFwNB9decoIl14+2+oL
+         s+qwYmtTJYzjLjMKiaAr6GduPKVBmlf/Xh3Tosvdldgfb8KTXIkyjRwTYjhOGKSmPGuO
+         kyZsJiOILUHgp2zHoRnXU0LVpyeGuQ2NTJ6kpndg+Fh5DSphO8CCs/ZjpfEA4YbL0oZU
+         GlSODIVOKtjvVAmfyISK7NWB4aEkgCFJJqdOpWhY7syzdE51u1Fn9ssERcBbX3mF5mO4
+         pwVMAmt9MpKDU/E/9Xo4g1c0QgnT4hN0m+sxWpzlPX+mCjW/3arPa3baiFCFwtaN6esK
+         +tdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758296107; x=1758900907;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sg77gnAfv1VmZ7w/Slv7Z+RDQVw26Pq4VwEULeHQZFo=;
-        b=FQJDsnIZJ2dn67pi8TzbkEN9lJXjaM3ilyLD6a05D0H1yR32jNlP0SphV8dzTSx7cr
-         j9e6/gH3o8v/taRS/P2iW7452QWk/3YehCCwi7O6vfFd8+25sjg2crZpEG0gx4j5eTjI
-         PnVaIAfA8QMGmFDXE9p+pUyALxOMVQPS+bPkyt/3BOCZazPvG9qKJ7zlS3ufuFEAVH91
-         PK2xHek5LKKe2qf1ZgFasxpQhJ7IkdH9KDuuYe6GwZrFecfB4WOdDMEQriuS1yIobLbJ
-         oyZSXTc5RRlLOXEDliAa2bVdoMToESVnq3UeR2GOMeDnvn0s95EkF0NYKQsfXV9jmTPM
-         pbXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUi/yExUi6p8A/D/MOtiyfXQ9FBaxkt0OeGBo/eR1WDV1gVRQ5cCt5GzDGcrI2c+J6bddIKuflEoLY1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAQcvHwDufYdayXVXlYaDn+o37bOlPX/2J3j4GbMbjwzwtN9ZI
-	s5S8Kit7H8clQrx6AXr3aTIwNiCkzzAABqnr2h6a4b6TXEt81uoq5gAy6TfSWhnJM2g=
-X-Gm-Gg: ASbGncsvs+Q1up8sudBo3hPzFW2rONLvrIDMaYe+itq2aXSxoXVAIF/IN/YTPofxo72
-	vp3LFeS5QWCeHqQFosEarj77l5NgI2GSHa2g6CjGhtWBIYgFuqj1b0KTSdsnCuu2UZh4p6Clg8P
-	S49rEpBwN61RA1Ch0sdINsUFJPAAFjLF/Orh/nY4ZsTigWWzJKhB1pgb7Z9PWbUgXlfuSzT6Z7F
-	4xcmp+qiDqsB1yda+CdFDi26U53g/7g5eKx7jgZkpbPUwWwcpveBlIpdwt/m0jCi3WDOHq3fxH8
-	ewa2NmOsvdOosb22KMiGSa/IdFtf2Y6gKLVGVOiQPw3ncNK9BBM3ITztYwmjmLHCAcyTZe2JRT6
-	TuvREA5JN4dwiQfBA+InMZkbZFCXHAA+GtQlj1VKJWzYFqkHWJJh1cGfL9zHnBJKbPpplPIWDjp
-	QMfQ==
-X-Google-Smtp-Source: AGHT+IFy7Dj8N6gYfL+jhWcvEkvYrz3Su9+hU8mu+33/hZoSVy239ih6pL/rb05L3vQtZWkPx65Y3w==
-X-Received: by 2002:a05:600c:3587:b0:45b:80ff:58f7 with SMTP id 5b1f17b1804b1-467eb603b52mr32347595e9.36.1758296107505;
-        Fri, 19 Sep 2025 08:35:07 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:8ffd:205a:6719:49c1? ([2a05:6e02:1041:c10:8ffd:205a:6719:49c1])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46139123102sm128369815e9.9.2025.09.19.08.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Sep 2025 08:35:06 -0700 (PDT)
-Message-ID: <013d1911-50f8-4891-823b-566bd90a0601@linaro.org>
-Date: Fri, 19 Sep 2025 17:35:04 +0200
+        d=1e100.net; s=20230601; t=1758296348; x=1758901148;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uctKhO+/UeiiSpqt6MjSlg1WxmH8h+yZMn/dalnwyT8=;
+        b=aLhxkgylBF6oOlhor1mvVvCBj5QT19AwGVw7zCDTkHpUGI5tr94YZxu+G7StJXMoki
+         ZdrdYZBUYT+zZSv/6sZlLhHPmh0CqlwmBxR5gQlRJGtk3gkM+iJ9bfehncb2yMXFuXat
+         +xaPb/mrP3hV/+U3DMH3CdfQh16j4BAInJcDM1Db5Q8iKIF/LYjik2Vt432DqbIqE6aB
+         uDuaiZrtwusx+Y+Ytlmq/gsyglI2+GrkS7I7o9+gGgG8aiqAnvP9ux2CRIb/xaZY45WI
+         WNW8t9LyV3wnh6ii9HmQcZYL9zd4OWqRmf3zchAGln5/7UTz9PlVni0eIU9wobT4nz4D
+         g5Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCV7b5PevRhxWgABTgio4FWfUhCnscH8JJWn0YeijyXJCl2XJpLuwQKWX7NbISyOeacbZgQWUuIAp/rm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP/HHNwj6g5LwzSgJMNwIK7mNWj/kQvtUSk7itiuSJRd8gIQli
+	0HiYhr00P79WBVM598aBWdybxaRPXv75Hs4d4mZxc+qN+MauisLd9YVz
+X-Gm-Gg: ASbGncvGKLkzOxTZsT+05KiFefVnMv8jKY5j+GhDgPyWWe2ZvZPrTdLoECSw9Ga8KXD
+	quGXxTmSQe2CCM2NpdriTmlHHH19U6SBxa/518yuajIffdUWBlYu7/3pLYOlmoyGn+5P9Lu0Dib
+	AjJ+0AAcA4q8Q9JbQH4qtwuj5N7dXCf47eDtGhJW8YJ05g2VSJ7J5eAUrsDwSS++d11NhD8vtV8
+	nZoIQIWgzKJUif6fvWOIPsKSreDDDTLNoaNAOGOsMeYBWVyZb1xvY/dI7zW2AkTV9BFc+5DGXGt
+	gLYLlWuY1xQ2qKa1dlX+m7wRwW15qnVrmAvv7nb7PDymx+kB6jv1a8iXybLK20ahCPUxPUP2Dwy
+	S5fClWAU/cK/MGQ==
+X-Google-Smtp-Source: AGHT+IGJfZhXf/HH8Pyz+cqkoqEOZKpxJz2zqRcH4yC3gZ73i2LnNl7A6Sca09TBNTUOc4JHpYxYMA==
+X-Received: by 2002:a05:6512:6508:b0:55f:6c5d:759d with SMTP id 2adb3069b0e04-579e45216bbmr1104441e87.49.1758296347969;
+        Fri, 19 Sep 2025 08:39:07 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-578a5f44771sm1485769e87.20.2025.09.19.08.39.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 08:39:07 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] DRM: panel: add support for Sharp LQ079L1SX01 panel
+Date: Fri, 19 Sep 2025 18:38:37 +0300
+Message-ID: <20250919153839.236241-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/6] thermal: tegra: add SOCTHERM support for Tegra114
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250828055104.8073-1-clamor95@gmail.com>
- <tdknls7jieu4ple3qhmdqntllmctks2auxhxzynwjjmgl3hnx2@nubqlzpgohwf>
- <da8aa4c5-4aa0-42f6-acb6-55d37cc29774@linaro.org>
- <amc5e3sffmwqguivwch6b5vtmlgu5dlwxm7bsrn6nd3rllbvxg@koqmavn6uuy5>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <amc5e3sffmwqguivwch6b5vtmlgu5dlwxm7bsrn6nd3rllbvxg@koqmavn6uuy5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 12/09/2025 12:26, Thierry Reding wrote:
-> On Thu, Sep 11, 2025 at 08:56:12PM +0200, Daniel Lezcano wrote:
+Sharp LQ079L1SX01 panel is a LCD panel working in dual video mode found in
+Xiaomi Mi Pad (A0101).
 
-[ ... ]
+---
+Changes in v2:
+- adjusted schema with ">" and dsi0 > dsi
+- fixed copyright from Nvidia to Xiaomi since sconfiguration equence is
+  based on the downstream Xiaomi code.
+- adjusted commit name of second commit
 
->>
->> I can take the patches 2-5. Regarding a shared branch or wait for the next
->> version, I would prefer the latter
-> 
-> Alright, let's do it that way. I've picked up patch 1. If you take
-> patches 2-5 now I'll pick up patch 6 once v6.18-rc1 has released.
+Changes in v3:
+- tested with drm-misc-next
+- switched to mipi_dsi_dual* macros
+---
 
-Applied 2-5, thanks
+Svyatoslav Ryhel (2):
+  dt-bindings: display: panel: document Sharp LQ079L1SX01 panel
+  gpu/drm: panel: Add Sharp LQ079L1SX01 panel support
 
+ .../display/panel/sharp,lq079l1sx01.yaml      |  99 ++++++++
+ drivers/gpu/drm/panel/Kconfig                 |  15 ++
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-sharp-lq079l1sx01.c   | 225 ++++++++++++++++++
+ 4 files changed, 340 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.48.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
