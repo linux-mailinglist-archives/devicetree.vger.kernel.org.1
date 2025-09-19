@@ -1,151 +1,145 @@
-Return-Path: <devicetree+bounces-219186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB6AAB885DB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:16:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EE2B8861B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D2A73A48A0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D14F1BC7FC6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1F12D3A86;
-	Fri, 19 Sep 2025 08:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B08712EC54E;
+	Fri, 19 Sep 2025 08:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aduFlHHp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="e8ZRXd0g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180A727FD71;
-	Fri, 19 Sep 2025 08:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37AE2E7162;
+	Fri, 19 Sep 2025 08:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758269760; cv=none; b=i0b8nmpwvhu3rqyDrehUOaR1X+X/OAK/ipkLbIhx+ja6iQ+V7KBGWBwVmY6u+i1zOc4lJfIWiRiPLXFKSYEpEcLhONgpX8gxKCT9oyOaHZbGZkFvdDGOVhxXPFGGTYnmCa5Uu6lzPU1lze6303+RViuzX08ZKuzEA8tLbBC9ygI=
+	t=1758269984; cv=none; b=TFhS9pFJb9ctW4OFGOlcqKicYLn8UpWxVmvHESE3cj9J3E2AtJ0rwuUAxQkWCyMYb1hhb/rOIVUbXIG/Y3Nwg8bz2Fsu9FxwcUKaXSzJHHyIAj3EssY26FqYbfVuntcwdJGTERFV5TMUVIamfzSByHTnfBT4sg16YDJ/uIIEl2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758269760; c=relaxed/simple;
-	bh=VxTAjSklRSGqESyW8iAN9ut3qajeB4/ZGEoQ1sC9AGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CjqePxo111cBziWdO+xo77qP5OP56ljKQur5giit85mSVjHAxwaqiuDbvHKOfgEBmmtWX8haRC1YxSLK+PSLuDgCtnDGAkI4tWjxC2/uhFhAmyxRqjj/MM0AN4/gJEpis27pQae2Ocp87QMxNEOBUe/lZndv2kwUHlGZsdHzPsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aduFlHHp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F8FAC4CEF0;
-	Fri, 19 Sep 2025 08:15:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758269759;
-	bh=VxTAjSklRSGqESyW8iAN9ut3qajeB4/ZGEoQ1sC9AGc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aduFlHHpk5thnaiNT9P64Li/+3xf6NFuLJ0K2/6m57BH17S00nClFhpJJkvSGMcx/
-	 FG2FWJmu0sXcdVr3znKtPHiuysD4gSew11FaMSpfpEnSL/XKzV9NaSdAAzo2CQo3oK
-	 +Npzxtvvafi7SKiQRZDZxvYp/qhXl39HRJa36AOIZsNd2B6JRcO68BIGraQkX1Kz54
-	 ayZTWtsZfE8DjK4AyTvrgxoO0WyOgMVi4ET7aPTph55fEdRmrNpsYZnWZUrHEkoxh9
-	 z3cNG71qmYRzZRM+nu3UauFTAQ/zBMmZP3WNIXwfB0yU8mBVySI1cCsQPrcGSOQJpX
-	 BHabaLVJrQp+w==
-Date: Fri, 19 Sep 2025 13:45:51 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v3 4/4] PCI: qcom: Allow pwrctrl core to control PERST#
- if 'reset-gpios' property is available
-Message-ID: <nxcr6ymgspcdofoy7cv4lok34qqucwrm4cxn7a7spqrszgmvin@x3mhucqy2tb3>
-References: <gnaubphg6iyh23vtf2flsjxoot7psgla7cr2c5jpecaozh4vf3@mzcmg74g3ogk>
- <20250918185356.GA1879416@bhelgaas>
+	s=arc-20240116; t=1758269984; c=relaxed/simple;
+	bh=xm/ErcBYhYbmBboTTN6ZM5cxbTGS4S39+svDSeRK1vI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qxamGfEv/i4v2VOBtGmNBBlOpv294EttRHsMCkflY97k0XBFKyX8lOe0KOQ5A9dMbaVMhmIQlsn+VKWktID4ahJabsAHSdnX2CvuL5hOEq9qc4/5xCnDRqFrcCQsT5WzZdWB2bcSwaqk3T2/zs0UaLE7S34kADgRskUkmuAkyzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=e8ZRXd0g; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EF3D1430CE;
+	Fri, 19 Sep 2025 08:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1758269972;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y0xh7YMSH4C4tJj4Lo6jHL0M6rH8dEMNlQiMKss9trE=;
+	b=e8ZRXd0g1FvDcSB11TdT6+sYS3HiNO4mKZprS7PNgQ4vgSeBOV/GU3cb7/jDK5/SmAE55z
+	AP7VjLW2JJ0MK0OoReYsf2EP4iSrpKSNwRAt62X9KARu++aQ/fTlX5VRY37SRLKjlZZzxg
+	AzVs4U5nwnCkXlDOMhQV8h7sAt6ebeOQnOXCIWktYZ/ANHhi+wbXcxLQGRmaJ1uNFHFpQS
+	XhS5VPf+wSvGQ+k+YcvsExGNY3c4hrp6r4q0n+EeIXyffH670SbLatv1wzq9GgM9O/DUTp
+	pZfaonmi/zSVtLb8f/bxpFlvSH4E1Gog81NBi6f3Sqg8GEY6oLO+q3hDSy9UFg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH 3/4] regulator: Support the LTM8054 voltage regulator
+Date: Fri, 19 Sep 2025 10:19:26 +0200
+Message-ID: <2799517.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <aMxa5_LG3ADCjeHj@smile.fi.intel.com>
+References:
+ <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <12775482.O9o76ZdvQC@fw-rgant> <aMxa5_LG3ADCjeHj@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250918185356.GA1879416@bhelgaas>
+Content-Type: multipart/signed; boundary="nextPart12745262.O9o76ZdvQC";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdegkeejudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
+ ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Thu, Sep 18, 2025 at 01:53:56PM -0500, Bjorn Helgaas wrote:
-> On Wed, Sep 17, 2025 at 03:53:25PM +0530, Manivannan Sadhasivam wrote:
-> > On Tue, Sep 16, 2025 at 03:48:10PM GMT, Bjorn Helgaas wrote:
-> > > On Fri, Sep 12, 2025 at 02:05:04PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > > > From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> > > > 
-> > > > For historic reasons, the pcie-qcom driver was controlling the
-> > > > power supply and PERST# GPIO of the PCIe slot.
+--nextPart12745262.O9o76ZdvQC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Date: Fri, 19 Sep 2025 10:19:26 +0200
+Message-ID: <2799517.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <aMxa5_LG3ADCjeHj@smile.fi.intel.com>
+MIME-Version: 1.0
+
+On Thursday, 18 September 2025 21:17:59 CEST Andy Shevchenko wrote:
+> On Thu, Sep 18, 2025 at 11:31:50AM +0200, Romain Gantois wrote:
+> > On Tuesday, 16 September 2025 16:17:56 CEST Romain Gantois wrote:
+> > > On Tuesday, 16 September 2025 15:12:37 CEST Andy Shevchenko wrote:
+> > > > On Tue, Sep 16, 2025 at 12:24:08PM +0200, Romain Gantois wrote:
+...
+> > > > I think we have already something agnostic in regulator API to get a
+> > > > regulator from a firmware node (rather than from specific OF/etc one).
 > > > 
-> > > > This turned out to be an issue as the power supply requirements
-> > > > differ between components. For instance, some of the WLAN
-> > > > chipsets used in Qualcomm systems were connected to the Root
-> > > > Port in a non-standard way using their own connectors.
-> > > 
-> > > This is kind of hand-wavy.  I don't know what a non-standard
-> > > connector has to do with this.  I assume there's still a PCIe link
-> > > from Root Port to WLAN, and there's still a PERST# signal to the
-> > > WLAN device and a Root Port GPIO that asserts/deasserts it.
+> > > IIRC the "of_match" regulator descriptor property can be used for this,
+> > > I'll have a second look and see if I can use that instead.
 > > 
-> > If we have a non-standard connector, then the power supply
-> > requirements change.  There is no longer the standard 3.3v, 3.3Vaux,
-> > 1.8v supplies, but plenty more.  For instance, take a look at the
-> > WCN6855 WiFi/BT combo chip in the Lenovo X13s laptop:
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts#n414
-> > 
-> > These supplies directly go from the host PMIC to the WCN6855 chip
-> > integrated in the PCB itself. And these supplies need to be turned
-> > on/off in a sequence also, together with the EN/SWCTRL GPIOs, while
-> > sharing with the Bluetooth driver.
+> > Looks like I misread your comment sorry, the "of_match" property is pretty
+> > much irrelevant to using fwnode_* wrappers, and I didn't find any of those
+> > in the regulator subsystem. I'm missing a Kconfig dependency on "OF"
+> > though, I'll have to add that.
 > 
-> It sounds like the WCN6855 power supplies have nothing to do with the
-> qcom PCIe controller, the Root Port, or any switches leading to the
-> WCN6855.  And I guess the same for the wlan-enable, bt-enable, and
-> swctrl GPIOs?
-> 
->   wcn6855-pmu {
->           compatible = "qcom,wcn6855-pmu";
->           wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
->           bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
->           swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
->           regulators {
->                   vreg_pmu_rfa_cmn_0p8: ldo0 {
->                           regulator-name = "vreg_pmu_rfa_cmn_0p8";
->                   ...
-> 
->   &pcie4_port0 {
->           wifi@0 {
->                   compatible = "pci17cb,1103";
->                   vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
->                   ...
-> 
-> But I guess PERST# isn't described in the same place (not in
-> wcn6855-pmu)?  Looks like maybe it's this, which IIUC is part of the
-> pcie4 host bridge?
-> 
->   &pcie4 {
->           max-link-speed = <2>;
->           perst-gpios = <&tlmm 141 GPIO_ACTIVE_LOW>;
->           wake-gpios = <&tlmm 139 GPIO_ACTIVE_LOW>;
-> 
-> Does that mean this PERST# signal is driven by a GPIO and routed
-> directly to the WCN6855?  Seems like there's some affinity between the
-> WCN6855 power supplies and the WCN6855 PERST# signal, and maybe they
-> would be better described together?
+> Why do we need to add that dependency? Yes, probably it won't function,
+> but then it will decrease test coverage at compile time.
 
-Yes, 'perst-gpios' is the PERST# signal that goes from the host system to the
-WCN6855 chip. But we cannot define this signal in the WCN6855 node as the DT
-binding only allows to define it in the PCI bridge nodes. This is why it is
-currently defined in the host bridge node. But when this platform switches to
-the per-Root Port binding, this property will be moved to the Root Port node as
-'reset-gpios'.
+Oh I didn't see it that way, in that case I'll just go the LTC3676 way and 
+leave the OF dependency out.
 
-Because of this reason, the host controller driver has to parse PERST# from all
-PCI bridge nodes (like if there is a switch connected, there might be PERST# per
-downstream port) and share them with the pwrctrl framework.
-
-- Mani
+Thanks,
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart12745262.O9o76ZdvQC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjNEg4ACgkQKCYAIARz
+eA63DhAAkmwgOOk+4SMBXxGJZ5sj3PTl8C3rqkn0Na5mAHAygKHjiJgI6tQMkQqg
+hBzuzxz8HNlJPCv0DS9wAOuemR4o0NQjo+oI+/oNjpm2/ZZswj+slwKjGkD18/bO
+SGAPYL84JvN6rXQzIv0YMKsyvBTrVAblrSBSkREV9vTfxhQ+82KmRjPgLK1sU1sp
+6DuYKKID5h4zl4f4k7t61uiYGDmQeVMvpFo4wUSatEAI2Nc1Lxa1A+QBG4XC+1xV
+t7hkX4oiEjp1LQkShz/ggQhdbBZm1Gsqv24tqD8o2Lie665gWasyT9bDiQEun5co
+yrmWgKWDhJl2RU8fPEcaqtaO7EXyyUby/7OME48zjmcIHYj1G49QZEwkV1MVxygY
+1qjZxxpSblSOgl9Ifi7NhVctyUIHlS14Uy1DmF5K2VZSWZ7be/O+KNbYDkmpSNFb
+zgKmuXfI+X/OEDdmrUXKVhUF6cEucqvguomBnvJ4j99D9AsMD/9HJLmxeq1xo8UX
+nEJcNUa1bQr5XHsUoV/e1T7Sg0sqkUBbBjH6GfVSswF+P0+8hjtQ+nuUl8FkqSo4
+Ru/lm4b+AjqId4E2ohmohFPcgbiNR4FgepgOa/lHWUZnRyK/UWJI8v2+eFftwWrl
+H+aX0WhgbJsGPuf4SiIf8KSqIIdYGPAUrktXxAxUgD3fPm9u/G4=
+=RS2Y
+-----END PGP SIGNATURE-----
+
+--nextPart12745262.O9o76ZdvQC--
+
+
+
 
