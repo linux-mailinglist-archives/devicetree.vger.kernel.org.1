@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-219368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFA8B8A6C5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:52:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB10B8A6BF
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:51:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E49F16B8B7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:51:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D134B189BA8A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E882F31FEC1;
-	Fri, 19 Sep 2025 15:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9465231E88F;
+	Fri, 19 Sep 2025 15:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fPpnGcTc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TQnS83S5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9620B31E8BE;
-	Fri, 19 Sep 2025 15:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2111314B74
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:51:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758296988; cv=none; b=D1xV+/Uu1VNT4JYV/2A7KncF9DR3cqE5BWTmXb1vNvitKIGGfYiydrtrayCoZfoO7D7t56h/u3Gntc42V4Y3UICSTBH0EwfbTYYdlp5OP1doRLeeTm0JOQR+xc0TXKtVYxWqyHnM84m8Qyh8e/dMdcBe6E06py3EZbd3LHJeMf8=
+	t=1758297086; cv=none; b=JMAaACwGjtUnQDRJihrE55LKqj70PVY1yGRnzZ4WLzEucheDNvpjKFbEoucmunQXa5biefEMiX9Q38V2LPDhdTmDkXugrd5pt5c+y8yLXbGI3fEmC/fwr1yyXBKZ+1D7B6jX7z1bWzY1GWY6OjNTz2w8WFkQ0TQwNesEahtZjg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758296988; c=relaxed/simple;
-	bh=uzz8UtcR8/EpP02NCPWiEvxG4gfkUH/EZNqtISIb7gU=;
+	s=arc-20240116; t=1758297086; c=relaxed/simple;
+	bh=TK+FiTveEwrbiejIKycFmZ6vZ/ypwSUiSrrtTb1yXb4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hy3vqUadjcFFaQmV/JzFziXRAzo/DYVZ1qWMwgDv4s/tpWhqecbDD7mDAYaqWcQNkYPwMehW01tUKqYJCxRwJai46jIc5/+o5MwGoBMbiKyFnhmAMS/b2/cnIWAdwJmhf9zFNAWozmH7GxopwxEeNdkqEPBjk3RWzMwIay1nFK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fPpnGcTc; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BABAD6DF;
-	Fri, 19 Sep 2025 17:48:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1758296903;
-	bh=uzz8UtcR8/EpP02NCPWiEvxG4gfkUH/EZNqtISIb7gU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fPpnGcTc4YjA80wmVNlEPgddwWAhvxA9LK74u+F2Ii53E94D+KvtcAOZBDxNQ4Vvu
-	 KSds7oq75mUOfBvI0yKI+bvDjHdW2WMpLzO6D2G1PYSc04fDHgwQMYrOuZ6lGRovCQ
-	 OW7+88ZbPWdElF/4ZzeAZ1moiZs8z0Jo7EJLmR4o=
-Message-ID: <cd0c59f8-bb83-4d1b-9bda-96be3a960154@ideasonboard.com>
-Date: Fri, 19 Sep 2025 18:49:39 +0300
+	 In-Reply-To:Content-Type; b=MvPQ8ZufURAfIJTYQd0LPv0oFX4+BMCZ4+nl/92xPI6muKSZLVmh8b3715dWPBQo9s1gYddUwcJLAwpNv0bTPyUES7/4G19gLPd2g5uNf3Fa+ZNr6kxS9XV6HsFmErWDUUDXw1TaGeYVtTj3K9vo1Wi623L0GFIQ3yjALbvkAMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TQnS83S5; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45dde353b47so12337465e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:51:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758297082; x=1758901882; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mk5UbU1vmdkhvVI9gXoWyB4lbjlenJW2I4nrsVx97aE=;
+        b=TQnS83S56EOiwL9IqqlLIN9Sa3T6Fonx/MtQ5MzaWdRCE33s6OZnTn38qu3r5TEJoN
+         jNhay7pgS+tdkVeEUv9L40EzV6/u9U1PRIucSQ56jMzI8mr68n6y6nRipDmFNDVB4VrA
+         d3txarGYTOSiiJ1/KvfuVCMXOm6gp829d3iCpXT12gTi6X2T2l1CzJw8x/Vf0N5e/zc1
+         wCKrhGDtLqT3cPDoCU1ntVoXZ/tGwaVa0IB5ZD4thUUWiwoAW2uuRO2m813vgGLa4FhU
+         fzIYzw1DGp/79ae9R7PhhSIHfXvpoWjqqaq161YpXWrQXRjzC/WpqN83TaU/VHRvm9hM
+         72rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758297082; x=1758901882;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mk5UbU1vmdkhvVI9gXoWyB4lbjlenJW2I4nrsVx97aE=;
+        b=sZCiYVsuZPFM18rsWfyXLY2CzvW+yMWhM3xnodqmZKb83a8GfQstasqPMl+sCO2VQ7
+         /qwSuR6SkrzrEJFw+4LXA8bGB7V+eoCRiUedAk+haB267EvcOEC+IJdIo2wl8bVfylyx
+         hxUsAIzdb14+zvT6Njg/Q0Qhfp6ETa3nb5W0DovC+WdFJdmpCONJCMSq94AefkgSgBpb
+         aN6w6vlJp2hbvPmITBWHxIHEhi8f81REwtztsKuklG+8gN+chXvbDIMKJJc5xLNupwcY
+         KSN9MQZ2JmBEPPBSPvrjAy4apC4tDpTCjNrpQTqNQTmwqycuIcjp2P5KRe893K56TeDD
+         MCiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsW3NQ0PQWS6zrvYrRuo4WDPgb8bwKy5TwpOTb1l33tqqlMVFtI8XX3B9o3CJGWvS48X4sRLREx8fc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAe5r4zKt9NH3rbHq/cyqZbNHQ8XiD1CDK8Z5Kbdfk33aEyy30
+	koKqtruv2qIbtbcFHP3j1IJEXMyaID1Q2cYzlLEqcOY10MwoozhZZp+GovFuoE75P08=
+X-Gm-Gg: ASbGnctkDbX6JKT0IQobOVczjSKQCuDzHeNfmHe8M3WOfl9kpECFfm6697XfG1cvi1L
+	gZoZJj8IUiywLRW+DICcVcerd6e5QPSfNQwQYKaT5Y+gVn5R1LOJPCRMH5szc7jufQ0fokIPhP8
+	uScaQHBdyi0xtwvtdat5a0Y0EmuHG2BcfqApZ5wQPD8IzKIbouRAF+9mDVOctGdRTnJMdT+6P+o
+	sUNsgPnwFKtVMRBscM7esSf3yqDcCZrUdmaRahgsfRiJFQr2DkgFex9BIgzpQhUH0MQMxCak7WF
+	qQNTgDdNN6riF4mEk4jGLsjSFPGjSKtOiBl5tdlXDYwj+kgaJmkw6JLp5W/FCN6+7ZtckcsjbBb
+	ZLs/gtesWF7+XKb3gDq61iGzshAILbGFlqdrio2oVmmj8KkwgHgwzh84uPVTakNPs/WHLC/ZlBW
+	LAgQ==
+X-Google-Smtp-Source: AGHT+IEottwmKNmGH3CS9GghPYQKwlqbFMuq8pbSqNH1dciybusPD40QQuLbFVR/u9qMf8tPOI+eLA==
+X-Received: by 2002:a05:600c:350d:b0:45f:2843:e779 with SMTP id 5b1f17b1804b1-467ee3057d8mr35673815e9.8.1758297082008;
+        Fri, 19 Sep 2025 08:51:22 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:8ffd:205a:6719:49c1? ([2a05:6e02:1041:c10:8ffd:205a:6719:49c1])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-469bd07268csm13103315e9.14.2025.09.19.08.51.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 08:51:21 -0700 (PDT)
+Message-ID: <d9392dbc-806a-41df-8992-28c3d6132309@linaro.org>
+Date: Fri, 19 Sep 2025 17:51:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,109 +83,157 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
- Allow panel@ subnode
-To: Marek Vasut <marek.vasut@mailbox.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- dri-devel@lists.freedesktop.org
-Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20250904210147.186728-1-marek.vasut+renesas@mailbox.org>
- <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
- <4ffcf4fc-17a9-4669-af07-f81ddb46aee9@ideasonboard.com>
- <d76ff19c-7b0f-4aa9-8ae2-d08c82d70410@mailbox.org>
- <aebc10ec-73ed-4843-95c5-9ba5a2759ccb@ideasonboard.com>
- <b4c0e78a-eecb-4a18-9199-18ea91c8df31@mailbox.org>
+Subject: Re: [PATCH v4 2/4] thermal: qoriq: add i.MX93 tmu support
+To: Jacky Bai <ping.bai@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Alice Guo <alice.guo@nxp.com>, Frank Li <Frank.Li@nxp.com>
+References: <20250821-imx93_tmu-v4-0-6cf5688bf016@nxp.com>
+ <20250821-imx93_tmu-v4-2-6cf5688bf016@nxp.com>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <b4c0e78a-eecb-4a18-9199-18ea91c8df31@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250821-imx93_tmu-v4-2-6cf5688bf016@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On 19/09/2025 18:42, Marek Vasut wrote:
-> On 9/19/25 5:21 PM, Tomi Valkeinen wrote:
+On 21/08/2025 08:23, Jacky Bai wrote:
+> For Thermal monitor unit(TMU) used on i.MX93, the HW revision info read
+> from the ID register is the same the one used on some of the QorIQ
+> platform, but the config has some slight differance. Add i.MX93 compatible
+> string and corresponding code for it.
 > 
-> Hello Tomi,
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>   - v4 changes:
+>    - no
 > 
->>>> On 05/09/2025 00:01, Marek Vasut wrote:
->>>>> This controller can have both bridges and panels connected to it. In
->>>>> order to describe panels properly in DT, pull in dsi-controller.yaml
->>>>> and disallow only unevaluatedProperties, because the panel node is
->>>>> optional. Include example binding with panel.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
->>>>> ---
->>>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>>> Cc: David Airlie <airlied@gmail.com>
->>>>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->>>>> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
->>>>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>>>> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->>>>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
->>>>> Cc: Rob Herring <robh@kernel.org>
->>>>> Cc: Robert Foss <rfoss@kernel.org>
->>>>> Cc: Simona Vetter <simona@ffwll.ch>
->>>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>>>> Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->>>>> Cc: devicetree@vger.kernel.org
->>>>> Cc: dri-devel@lists.freedesktop.org
->>>>> Cc: linux-renesas-soc@vger.kernel.org
->>>>> ---
->>>>> V2: Drop the dsi0: and dsi1: controller labels
->>>>> ---
->>>>>    .../display/bridge/renesas,dsi-csi2-tx.yaml   | 53 +++++++++++++
->>>>> +++++-
->>>>>    1 file changed, 51 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/
->>>>> renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/
->>>>> bridge/renesas,dsi-csi2-tx.yaml
->>>>> index c167795c63f64..51d685ed82891 100644
->>>>> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-
->>>>> csi2-tx.yaml
->>>>> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-
->>>>> csi2-tx.yaml
->>>>> @@ -14,6 +14,9 @@ description: |
->>>>>      R-Car Gen4 SoCs. The encoder can operate in either DSI or CSI-2
->>>>> mode, with up
->>>>>      to four data lanes.
->>>>>    +allOf:
->>>>> +  - $ref: /schemas/display/dsi-controller.yaml#
->>>>> +
->>>>
->>>> Did you try with a bridge? dsi-controller.yaml only allows a panel. I
->>>> think I discussed this with someone not long ago, but I couldn't find
->>>> any patch sent for that.
->>> Nope, I only have these two 5" and 7" RPi Display 2 panels.
->>
->> Ok. My point was just that the dsi-controller.yaml doesn't allow
->> "bridge" node (you can just rename the panel to bridge to test). I
->> thought someone (I just can't remember who was it =) will send a patch
->> for it, but I think that hasn't happened.
-> Do you want me to drop the bridge part from the commit message (I assume
-> yes) ?
+>   - v3 changes:
+>    - use the drv data struct for match data and refine the code
+>    - update the copyright
+> 
+>   - v2 changes:
+>    - use the compatible match data to identify the i.MX93 TMU variant
+> ---
+>   drivers/thermal/qoriq_thermal.c | 18 +++++++++++++++++-
+>   1 file changed, 17 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/thermal/qoriq_thermal.c b/drivers/thermal/qoriq_thermal.c
+> index 01b58be0dcc64d14ca5e4bba654eed8f15e827fc..b2e634547271dcf512c714907baa162921d2d527 100644
+> --- a/drivers/thermal/qoriq_thermal.c
+> +++ b/drivers/thermal/qoriq_thermal.c
+> @@ -1,6 +1,7 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   //
+>   // Copyright 2016 Freescale Semiconductor, Inc.
+> +// Copyright 2025 NXP
+>   
+>   #include <linux/clk.h>
+>   #include <linux/err.h>
+> @@ -24,6 +25,7 @@
+>   #define TMTMIR_DEFAULT	0x0000000f
+>   #define TIER_DISABLE	0x0
+>   #define TEUMR0_V2		0x51009c00
+> +#define TEUMR0_V21		0x55000c00
+>   #define TMSARA_V2		0xe
+>   #define TMU_VER1		0x1
+>   #define TMU_VER2		0x2
+> @@ -66,6 +68,8 @@
+>   						   */
+>   #define REGS_V2_TEUMR(n)	(0xf00 + 4 * (n))
+>   
+> +#define GET_TEUMR0(drvdata)	(drvdata && drvdata->teumr0 ? drvdata->teumr0 : TEUMR0_V2)
 
-It's not clear to me if the binding before this patch supported both
-panels and bridges as DSI peripherals, or neither, only "external" ones,
-i.e. i2c?.
+This is not adequate for code which will evolve. Please don't use this 
+macro.
 
-If it supported bridges earlier, and now doesn't, it's a regression in
-the binding.
+>   /*
+>    * Thermal zone data
+>    */
+> @@ -73,12 +77,17 @@ struct qoriq_sensor {
+>   	int				id;
+>   };
+>   
+> +struct tmu_drvdata {
+> +	u32 teumr0;
+> +};
+> +
+>   struct qoriq_tmu_data {
+>   	int ver;
+>   	u32 ttrcr[NUM_TTRCR_MAX];
+>   	struct regmap *regmap;
+>   	struct clk *clk;
+>   	struct qoriq_sensor	sensor[SITES_MAX];
+> +	const struct tmu_drvdata *drvdata;
 
-What I want is for someone to fix dsi-controller.yaml (hint hint!), but
-as for this patch, assuming there's no regression, I think it's fine to
-just mention that only panels are currently supported due to
-dsi-controller.yaml.
+The drvdata pointer is not usually used.
 
- Tomi
+	u32 model;
 
+>   };
+>   
+>   static struct qoriq_tmu_data *qoriq_sensor_to_data(struct qoriq_sensor *s)
+> @@ -234,7 +243,7 @@ static void qoriq_tmu_init_device(struct qoriq_tmu_data *data)
+>   		regmap_write(data->regmap, REGS_TMTMIR, TMTMIR_DEFAULT);
+>   	} else {
+>   		regmap_write(data->regmap, REGS_V2_TMTMIR, TMTMIR_DEFAULT);
+> -		regmap_write(data->regmap, REGS_V2_TEUMR(0), TEUMR0_V2);
+> +		regmap_write(data->regmap, REGS_V2_TEUMR(0), GET_TEUMR0(data->drvdata));
+
+		
+	regmap_write(data->regmap, REGS_V2_TEUMR(0), data->model);
+>   	}
+>   
+>   	/* Disable monitoring */
+> @@ -319,6 +328,8 @@ static int qoriq_tmu_probe(struct platform_device *pdev)
+>   
+>   	data->ver = (ver >> 8) & 0xff;
+>   
+> +	data->drvdata = of_device_get_match_data(&pdev->dev);
+> +
+>   	qoriq_tmu_init_device(data);	/* TMU initialization */
+>   
+>   	ret = qoriq_tmu_calibration(dev, data);	/* TMU calibration */
+> @@ -376,9 +387,14 @@ static int qoriq_tmu_resume(struct device *dev)
+>   static DEFINE_SIMPLE_DEV_PM_OPS(qoriq_tmu_pm_ops,
+>   				qoriq_tmu_suspend, qoriq_tmu_resume);
+>   
+> +static const struct tmu_drvdata imx93_data = {
+> +	.teumr0 = TEUMR0_V21,
+> +};
+> +
+
+Do the change for everyone
+
+static const struct tmu_drvdata imx8mq_data = {
+	.model = TEUMR0_V2,
+};
+
+static const struct tmu_drvdata qoriq_data = {
+	.model = TEUMR0_V2,
+};
+
+>   static const struct of_device_id qoriq_tmu_match[] = {
+>   	{ .compatible = "fsl,qoriq-tmu", },
+>   	{ .compatible = "fsl,imx8mq-tmu", },
+> +	{ .compatible = "fsl,imx93-tmu", .data = &imx93_data },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, qoriq_tmu_match);
+
+Thanks
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
