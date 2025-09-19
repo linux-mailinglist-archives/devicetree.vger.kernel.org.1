@@ -1,147 +1,135 @@
-Return-Path: <devicetree+bounces-219413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3740AB8AC15
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:26:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC05B8AC30
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:29:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CA4118940BA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:26:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83FDA5A3D69
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BA42773D1;
-	Fri, 19 Sep 2025 17:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1585B322779;
+	Fri, 19 Sep 2025 17:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y2hKqOgT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bsG07qKK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E266257852
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 17:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3070322771;
+	Fri, 19 Sep 2025 17:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758302754; cv=none; b=KpmUM86AjYAOrpfxanCAv9fAk3jl3Uda8IjEE/eLc5EKZmAZUBSD7Gu23hXVgncPHkFmPpnkMO6y/E07nJPwABxgPLM/iFscKDYbpwb8eAJVIYKw1Ov0DZ0OMRpTkimjAATeF1C2jEhDaOvZ78xbQ3GLnWDvzX00yITYBsEvSpc=
+	t=1758302976; cv=none; b=ttnFho523+RnyadqHHaRoBHHsmBCd3JrFmmi2ChFLENxBITGo1OLjc4hAy5HDQItSenv5ZcccT7zE9Mr9nNGYmXjzfrVN9amun2oNuqs39/ZyWS9zZlH+cgUhleNnwdU9O7eUF4rk+cxu5nM2ENKZqVci56tmNt0tfrLt0d1uUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758302754; c=relaxed/simple;
-	bh=e/06IG78l72vZWuwgEyPefWRsdnhck2vY6DZJfGE9Cc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mCebc+VWLn60HHxfsolX0mJd4rAM0Sfk5M+nkobOHFiPHP6aYSyfQx0o8HLaxSkmfEaKAFA/KjiaSU6iDZ4w7jexrGrfeCu8UqxBMhXoUZBH46K6CGCASI7wBpoOlgk3i/F2p/NuV5AGaHOJB+UGpxlMpgqi6vb6zXMS1nC2v5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y2hKqOgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5380AC4CEFA
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 17:25:54 +0000 (UTC)
+	s=arc-20240116; t=1758302976; c=relaxed/simple;
+	bh=yolyFSvAZQSCV4o00YkI5zTRWR/ZeCIulMzo4rybVAs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V5scXZJ2v3BeLsjIR9LdmKK6YL3xupG4BOvl9aMR6FYgFUX+lqKrlVG/Fjkr9MkcSiKIPMePVvW4y4NksBZcE8Iet5B2XAccrylaEY4/UZTpRH49N6uorNfQhLelLuvtbngi159a06nSUNaW8mh1aBgIri+EeTzW4k6EuCYDlC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bsG07qKK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9B17C4CEF7;
+	Fri, 19 Sep 2025 17:29:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758302754;
-	bh=e/06IG78l72vZWuwgEyPefWRsdnhck2vY6DZJfGE9Cc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Y2hKqOgTXj90J7Qf2177upuLgnxdRqPRGpLXV2WEeUHLWM5SKgnu3EqeJOiEENHll
-	 8NQfbGikLZnZg2St+CA+mQZZdTa0WWaCm+KJnj6L7+pP72K54pvQzWFDwHwbzLU61j
-	 FV3pcj3pEbzSdepH8MLViF7lvRI16FuZ2fColZfY55ePWe9civkyOd9NaGtlif98LS
-	 ESRH0VdF6IxC7ezZw2lDbO/0ruHFmHPBNDLBcGFOL3V21nTiTMw4ziej2IMskrnBfj
-	 GpUFv+ZonK2ZdiaQEi80R7SdVnBK076OUgw1OhL6krCUq5RwGhwKdkEI+Lj6rZzrCV
-	 ar0oVcZlleW4g==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-62fc2d92d34so2027221a12.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 10:25:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWu3z0+OlD4cR51b86MGv6j/PvdWOkmR0zr+SqWshKh41jjMWkkd+6qG1dsUET+h2uRK3X/QycTzAeD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqzNA8rgIDyi3B+HhQEasU2/oKTtqAO8jD9GM15x4x11uo0Yze
-	jmsw+bEnPqbnLJT38o3vR6NWeoxRj/EOPPtsB7lKMqZJ5Pi64uvE6lQZBSnoVMQNDko7QNwtOQ7
-	gK/yaE/j99esd6Pun15cg2zRrIPDHgg==
-X-Google-Smtp-Source: AGHT+IGeenENqJBxJjPqOrrm/JVLNxJrVj/hxvFxVCm9i7mPtSF5P6nDXH24m4UbtRCMbcE8t+bWjlGRdUoDrhKYxTE=
-X-Received: by 2002:a05:6402:2111:b0:62f:50cb:764d with SMTP id
- 4fb4d7f45d1cf-62fc08fa54bmr3803049a12.1.1758302752907; Fri, 19 Sep 2025
- 10:25:52 -0700 (PDT)
+	s=k20201202; t=1758302975;
+	bh=yolyFSvAZQSCV4o00YkI5zTRWR/ZeCIulMzo4rybVAs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bsG07qKKniEd6O+WrjI6ci8uYXes5STUKUnnn1PvaSz+EKY86M11/ZMhIhci10tzs
+	 p8k+yFATL57JcJ6e4eUFBGnYFK6s8rRT6SzdtgSoHJtAhzcKfOVOiGa2mOsAf9fXmO
+	 dEuMIZ6eT2TVXmZGs/5eWPO6O8TF4p9yh61hdpiZSI0GaYZVKDDbxr2uQOdcLDcgih
+	 WWlXl78spe/elw1zwYpOpcfjBhjtGwKdNiS44ScY9yL3EQALA4GHfdu4WN1/YtN27D
+	 93jxldHmhlVhShxGlfZZ0JRxGuA8vYpzLN+ZgRw1fAqoiXLQl52U4xX8J8ObOyiduT
+	 yQgD80c8KB/oQ==
+Date: Fri, 19 Sep 2025 18:29:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v2 2/8] dt-bindings: iio: adc: adi,ad4030: Reference
+ spi-peripheral-props
+Message-ID: <20250919-paramount-headstand-c9b5d4d03c58@spud>
+References: <cover.1758214628.git.marcelo.schmitt@analog.com>
+ <5c1c448e3e731fc013e1e3b3fdcbc31f806d41fe.1758214628.git.marcelo.schmitt@analog.com>
+ <f7d7f400-cc43-41d9-bc97-39d308363f14@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
- <CAL_JsqKG+dcMgp1QF4F3Oxh5Shvagg6cSde=g1JMcEAquZhH_Q@mail.gmail.com>
- <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com> <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
- <82906e08-9583-4f4c-91ad-d5b53b2dffd6@kernel.org>
-In-Reply-To: <82906e08-9583-4f4c-91ad-d5b53b2dffd6@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 19 Sep 2025 12:25:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
-X-Gm-Features: AS18NWB3nDWNmjlyCpk4HdoePdoXd3Gad5AK6JFUUmEhCGrdoE42mQFAkpny8zo
-Message-ID: <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
-Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
-To: Srinivas Kandagatla <srini@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eiMpNmTU9mjnvz9W"
+Content-Disposition: inline
+In-Reply-To: <f7d7f400-cc43-41d9-bc97-39d308363f14@baylibre.com>
+
+
+--eiMpNmTU9mjnvz9W
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 5, 2025 at 12:30=E2=80=AFAM Srinivas Kandagatla <srini@kernel.o=
-rg> wrote:
->
->
->
-> On 9/5/25 12:08 AM, Rob Herring wrote:
-> > On Tue, Aug 19, 2025 at 8:44=E2=80=AFAM Srinivas Kandagatla
-> > <srinivas.kandagatla@oss.qualcomm.com> wrote:
-> >>
-> >> Thanks Rob for reporting this,
-> >>
-> >> On 8/19/25 2:35 PM, Rob Herring wrote:
-> >>> On Thu, Jul 24, 2025 at 8:28=E2=80=AFAM <srinivas.kandagatla@oss.qual=
-comm.com> wrote:
-> >>>>
-> >>>> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> >>>>
-> >>>> Qcom Slimbus controller driver is totally unused and dead code, ther=
-e is
-> >>>> no point in keeping this driver in the kernel without users.
-> >>>>
-> >>>> This patch removes the driver along with device tree bindings.
-> >>>>
-> >>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm=
-.com>
-> >>>> ---
-> >>>>  .../bindings/slimbus/qcom,slim.yaml           |  86 --
-> >>>>  drivers/slimbus/Kconfig                       |   7 -
-> >>>>  drivers/slimbus/Makefile                      |   3 -
-> >>>>  drivers/slimbus/qcom-ctrl.c                   | 735 ---------------=
----
-> >>>>  4 files changed, 831 deletions(-)
-> >>>>  delete mode 100644 Documentation/devicetree/bindings/slimbus/qcom,s=
-lim.yaml
-> >>>>  delete mode 100644 drivers/slimbus/qcom-ctrl.c
-> >>>
-> >>> This adds warnings to dt_binding_check:
-> >>>
-> >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>> /example-0/soc/slim@28080000: failed to match any schema with
-> >>> compatible: ['qcom,apq8064-slim', 'qcom,slim']
-> >>
-> >> Will replace this example with slim-ngd and fold it in the original pa=
-tch.
-> >
-> > Still warning in linux-next...
-> Its done now!
+On Thu, Sep 18, 2025 at 02:39:01PM -0500, David Lechner wrote:
+> On 9/18/25 12:38 PM, Marcelo Schmitt wrote:
+> > AD4030 and similar devices all connect to the system as SPI peripherals.
+> > Reference spi-peripheral-props so common SPI peripheral can be used from
+> > ad4030 dt-binding.
+> >=20
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> > index 54e7349317b7..a8fee4062d0e 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> > @@ -20,6 +20,8 @@ description: |
+> >    * https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/ad4630-24_ad4632-24.pdf
+> >    * https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/ad4630-16-4632-16.pdf
+> > =20
+> > +$ref: /schemas/spi/spi-peripheral-props.yaml#
+>=20
+> I think this is already referenced for all child nodes of a SPI
+> controller because of pattern matching of:
+>=20
+> patternProperties:
+>   "^.*@[0-9a-f]+$":
+>     type: object
+>     $ref: spi-peripheral-props.yaml
+>=20
+> in Documentation/devicetree/bindings/spi/spi-controller.yaml
+>=20
+> So perhaps not strictly necessary?
+>=20
+> Would be curious to know if there is some difference.
 
-Now I get this:
+I think it's good form if you're actually referencing the properties. I
+don't know if it actually makes a difference in the end result of
+dtbs_check but it may in terms of making sure properties in this binding
+are properly typed when it is tested against. In this case, it appears
+you're only looking at uint32 properties so it mightn't have any impact.
+Rob would know for sure.
 
-Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not match
-any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
-        from schema $id:
-http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
-        from schema $id:
-http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
-        from schema $id:
-http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required
-property
-        from schema $id:
-http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+
+--eiMpNmTU9mjnvz9W
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaM2S+QAKCRB4tDGHoIJi
+0rJvAP9pbgnWHcefL9cZQwGDDaXr8+UfIrd0gSsrfedRiYie+AD8DsnTAienjOR2
+JqyWaPj65PIXAeCWs5vwNEf5aUxIMQU=
+=n/GA
+-----END PGP SIGNATURE-----
+
+--eiMpNmTU9mjnvz9W--
 
