@@ -1,190 +1,162 @@
-Return-Path: <devicetree+bounces-219332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3964AB8A19D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:54:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD60B8A17F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CDEF1C244A0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:54:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62DC47BE837
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4CB5315D4C;
-	Fri, 19 Sep 2025 14:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7E33191A4;
+	Fri, 19 Sep 2025 14:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="atNMxuBZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MVYAu8fd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88761313264;
-	Fri, 19 Sep 2025 14:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758293584; cv=pass; b=cTTC43lkMh0LC08iVAHEwFBmDg0n+E+PqW/c2aYiAPblw6el4SInx4qFHBwl/JzBc6Xc6Pyhw6Cm7cHWuSL15ATFMqMsGMK/YxdCoTX+MlnaMo4X1pVl9uelrOkXEaeXGVIW+MHYwmRuiXfTTd8PNEp4DAkWsHuY55Slm7v2s/M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758293584; c=relaxed/simple;
-	bh=NPU6R/xcCQOM1ggUhPE7hD61oLKixNf8wkoXcLLLXeY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Qbn593kK0IxECxpPn3kJ+7vE7Mil6ktk5HCQocBDIt/+Ln5StVegBBguWj1i2zZKAEZ2yr3PvQmO49g2IB6S163dqaY2u81ElvTQUNZP2lK8S1V/kONLC0gYw1kuwn0oaIoY83Tt48pQs8SGaNvozl/fAXDe9L6BhHP6HN6DWDc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=atNMxuBZ; arc=pass smtp.client-ip=85.215.255.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1758293394; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=acv5eugD5Gq4KPFEfWtA3/fTqwmKOIsFvg1B+hJkTnk0vgRmqFNqjkOkuMbir2or3Z
-    8bjOZ2qOPQ6QwrAFXi2JuKNQBwiNSPN/PyrZIOl/p6cUj62XtbjSu3XaGFy/GQoqQd54
-    ohqvLSaMitlWMEC4KKrWYAM7jX3qqaa67oyaPRJPmZRHIwNfDxqKCYi+zdcS0LNcxYB1
-    q+lM7S4wa9aieaSE1ua8XZbBXnK7RMmMogAdDyMh2pk8zIBvatStL4rSTcEanO9CFTOE
-    ZwZlBc+zHVVDdfeGrOaY3XEtEVJglU9e7PdpP7KlQPhulUGXdNbbICqdP49GBAnAT+1+
-    61ZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1758293394;
-    s=strato-dkim-0002; d=strato.com;
-    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
-    bh=61bwaMcPRWuSXCmHhvg6GAB4rPUgzrAWmuHTQsPRxU0=;
-    b=cHcEmvNS+eK0791m83j75JlC7Y4usGSsN9VQZjXSGnPdocITcJ3de8dvAKKyU3YiQH
-    6nGMKfm4O9aoaKhZOVW/zsgMVEDA20lAwXiX52EXB7l5KRDYiBe4CeGsFXu3Qp8v0Mz9
-    k13AzTKfJX8aiFiSSXmgTG8EHz/NwGSGphe/EoObCbo73nqTMRUzcrdNPd7x3cARdr5u
-    LR3d596JN2KOv6zxj7CacF2UlVSdeKOVce1WJkgE4mAQNZC6FXsW4/E/9nQl7hNvHA2q
-    88H/P4znlE3iW+z1OkYQJGe9C0mz3DR0TKFMMuZvs3NRd4pZBqBf/Ro77QLsPGiCWqzJ
-    etIA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1758293394;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
-    bh=61bwaMcPRWuSXCmHhvg6GAB4rPUgzrAWmuHTQsPRxU0=;
-    b=atNMxuBZcv/q+MRebWRNd+obdkHIWmFDCKBqPm45j0nhkkg/Qbfm47kRKtlus6ZmXG
-    lwgen8AJxHYjZkotjqHik9VyIfnL/eODWZDDfR1sCjxENcQ3xNi3Gzwebwqt9N8Ij346
-    k+x9buYOdOs20+SJRt4CBwIUugS8sBR4e6a5QHX3pieUyCJ4fwosL9NjdFkfDWRxz4qE
-    7QMgWXq3k7V0SKDf2fD9kAdf8uvtrkrFs/VbWmuuMXSFvBNvC5DJz9XlrKzeffE8UBLO
-    cyDsY77m/vrediVTYn/896NNOFKfiLx9G04eMRNzTujuvrvsYm2vtlvXFeFO+tX/fE4B
-    5DVw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXSOYQGpRtZhZnncGoRCMFriGKY/zxVJ2QgPDtEteoYvgoAn2AACU="
-Received: from [127.0.0.2]
-    by smtp.strato.de (RZmta 52.1.2 AUTH)
-    with ESMTPSA id R027cc18JEnsOGm
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 19 Sep 2025 16:49:54 +0200 (CEST)
-From: Stephan Gerhold <stephan@gerhold.net>
-Date: Fri, 19 Sep 2025 16:49:32 +0200
-Subject: [PATCH] arm64: dts: qcom: msm8916-longcheer-l8910: Add touchscreen
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C77D3161AC;
+	Fri, 19 Sep 2025 14:51:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758293489; cv=none; b=sUhL8QgotVEApWVZ8VQKvUICoD6HVOIoEpo5G2dUbXiHDZcWuCr5lbRsCzT7bsKh7GIn8zLJgaoS5qNxS/q7j3/UI2xFNk5qoTl/ziaamToASRDSLxjUTIvDzIZ1LSNcw92jwYAAP/nrPmTFbvvt3Bi6z+9N7OlU5xV7MMtpdj0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758293489; c=relaxed/simple;
+	bh=ltSbKh4n47FzGRqG8/CEVAcFRLma3NAxjpUJcx3cn0o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gX3T9u7RJGF4/Nqhbz9sUCrc+KE5Vo63XRpH49og1SJmqf56W7KLDDsA/q5k0c7kkdxd1HbwjZjPeR0pbCjIoZrk/44aOaiaQQ3Vgy8SJFQRtEqNdDmz3ua+evIcy3rbxe2sqNqVqiC4uPdSIHhXs8MDfCize465vR3rq0hN9pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MVYAu8fd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99218C4CEF0;
+	Fri, 19 Sep 2025 14:51:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758293488;
+	bh=ltSbKh4n47FzGRqG8/CEVAcFRLma3NAxjpUJcx3cn0o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MVYAu8fd2IftIHC95aUjjJiEO0whJ69qIM7P7FPm66q/1KYPBQZcRi+FQnrndtgO2
+	 bVpjt/Usk9yzCb9XU208L1bGvJEzZlx0yUYq8iyZNZIST/ARjUfNfSTKCHbW33xyL8
+	 Pn9VVgK0KUZr1uCxcTcSXz0H2J8JR4jVwaA9NCGHBHfJhzzVuykUUXGPCqM+x1TXNz
+	 E6qWOxQ8BfccX49o2P8koeGXZU32rRUplPa3YZclRuSwXkH1p5W+85e/gfb2NJ4O/9
+	 NA3VHk7zSBFOqO6G43f74qadqFJNYKBjn4u2OXR4IeVMfuC5kPK23SFq53iIK/NdoI
+	 8/uu0CSg55RLQ==
+Date: Fri, 19 Sep 2025 09:51:27 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 6/7] dt-bindings: soc: fsl: qe: Convert QE GPIO to DT
+ schema
+Message-ID: <20250919145127.GA852815-robh@kernel.org>
+References: <cover.1758212309.git.christophe.leroy@csgroup.eu>
+ <5c4f831404857dd6eeefebe2ecdf2bb8ad503538.1758212309.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250919-msm8916-l8910-touchscreen-v1-1-c46e56ec0a3b@gerhold.net>
-X-B4-Tracking: v=1; b=H4sIAHttzWgC/x2MywqEMAwAf0Vy3kAqvuqvLHvQNmpAqzSrCOK/W
- 7wMzGHmAuUorNBmF0Q+RGUNScwnAzd1YWQUnxxyykuyxuKiS2NNhXMi4X/d3aQuMgesuSipMH1
- F3kPqt8iDnO/7+7vvB1E9UUBrAAAA
-X-Change-ID: 20250919-msm8916-l8910-touchscreen-7e45041b60dd
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Albrieux <jonathan.albrieux@gmail.com>, 
- Stephan Gerhold <stephan@gerhold.net>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5c4f831404857dd6eeefebe2ecdf2bb8ad503538.1758212309.git.christophe.leroy@csgroup.eu>
 
-From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+On Thu, Sep 18, 2025 at 06:23:26PM +0200, Christophe Leroy wrote:
+> Convert QE QPIO devicetree binding to DT schema.
 
-The BQ Aquaris X5 (Longcheer L8910) has a Himax HX852x-ES touchscreen,
-which can now be described with the bindings recently added to linux-next.
-Add it to the device tree to allow using the touchscreen.
+Why is this in linux-next when it still needs review? Anything in 
+linux-next already gets removed from my review queue (patchwork), so 
+you're lucky I'm looking at it. It's also not tested probably for the 
+same reason that b4 couldn't figure out how to apply the series.
 
-Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- .../boot/dts/qcom/msm8916-longcheer-l8910.dts      | 46 ++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+> v6: Comments from Rob taken into account except the comment on fsl,<chip>-qe-pario-bank becoming fsl,chip-qe-pario-bank as I don't know what to do.
+> ---
+>  .../gpio/fsl,mpc8323-qe-pario-bank.yaml       | 49 +++++++++++++++++++
+>  .../bindings/soc/fsl/cpm_qe/qe/par_io.txt     | 26 +---------
+>  2 files changed, 50 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml b/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml
+> new file mode 100644
+> index 000000000000..0dd9c0e6ca39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/fsl,mpc8323-qe-pario-bank.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml#
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-index 887764dc55b21a5892510f822004b054eb65fa0a..93d5ea279cff1eaf929d2bf0673e02819225d88a 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-@@ -79,6 +79,19 @@ led-0 {
- 		};
- 	};
- 
-+	reg_ts_vcca: regulator-vcca-ts {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-vcca-ts";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 78 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&ts_vcca_default>;
-+		pinctrl-names = "default";
-+	};
-+
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
- 		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-@@ -176,6 +189,25 @@ imu@68 {
- 	};
- };
- 
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "himax,hx8527e", "himax,hx852es";
-+		reg = <0x48>;
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+		vcca-supply = <&reg_ts_vcca>;
-+		vccd-supply = <&pm8916_l6>;
-+
-+		pinctrl-0 = <&ts_int_reset_default>;
-+		pinctrl-names = "default";
-+
-+		linux,keycodes = <KEY_BACK KEY_HOMEPAGE KEY_APPSELECT>;
-+	};
-+};
-+
- &blsp_uart2 {
- 	status = "okay";
- 	pinctrl-0 = <&blsp_uart2_console_default>;
-@@ -338,6 +370,20 @@ spk_ext_pa_default: spk-ext-pa-default-state {
- 		bias-disable;
- 	};
- 
-+	ts_int_reset_default: ts-int-reset-default-state {
-+		pins = "gpio12", "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_vcca_default: ts-vcca-default-state {
-+		pins = "gpio78";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	usb_id_default: usb-id-default-state {
- 		pins = "gpio110";
- 		function = "gpio";
+Did you test this? No, because this is wrong and the tools will tell you 
+so I don't have to.
 
----
-base-commit: 8f7f8b1b3f4c613dd886f53f768f82816b41eaa3
-change-id: 20250919-msm8916-l8910-touchscreen-7e45041b60dd
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale QUICC Engine Parallel I/O (QE PARIO) GPIO Bank
+> +
+> +maintainers:
+> +  - Christophe Leroy <christophe.leroy@csgroup.eu>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,chip-qe-pario-bank
 
-Best regards,
--- 
-Stephan Gerhold <stephan@gerhold.net>
+You have to list out every <chip>. Lots of examples in the tree, but 
+like this:
+
+oneOf:
+  - items:
+      - enum:
+          - fsl,mpc8360-qe-pario-bank
+          - fsl,mpc8569-qe-pario-bank
+      - const: fsl,mpc8323-qe-pario-bank
+  - const: fsl,mpc8323-qe-pario-bank
+
+
+> +      - const: fsl,mpc8323-qe-pario-bank
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio-controller@1400 {
+> +        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
+> +        reg = <0x1400 0x18>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +    };
+> +
+> +    gpio-controller@1460 {
+> +        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
+> +        reg = <0x1460 0x18>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +    };
+
+We don't need 2 examples of the same thing.
 
 
