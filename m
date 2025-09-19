@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-219421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E37BB8ACC6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:45:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A92B7B8AD9F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDC667C7E9C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:45:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E4177E5D0E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E527E322A15;
-	Fri, 19 Sep 2025 17:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9285D245022;
+	Fri, 19 Sep 2025 18:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="sL2JANKk"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="dHsqH5Bg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 004.mia.mailroute.net (004.mia.mailroute.net [199.89.3.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AC332255A;
-	Fri, 19 Sep 2025 17:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.3.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991D3155A30
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758303907; cv=none; b=l0kRjJPu/L56qy//pShMIe5sARPSWntJxfVwEAdI+dvxJgTSlA2GUpDLq0FF2rLHh+7L8Cnfsj+X7XJQQ7ApWqLLW7c/rqFHjN+J0umhWVFr2rXDPKMj2loNQYl9eE7xPN5pydm6WdB+SQ5CapWt5oeOvLvRQ71ercj0YNaWoic=
+	t=1758305180; cv=none; b=dbqxnQGz68s+K27/35dNelRA/XnxBxVhq1LllGdWDWWThj2p9rU+jPepLqN/zHq5VNWmDeMJ4CG4AERFQQQdE4txbF2vY5CDcU+hzd5wfw1bAgxVtT60LQ2ESUafYkbVtd6EC0G1XEYIbjyJT4EJU6SAxatXkY0yWwh0umw+lFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758303907; c=relaxed/simple;
-	bh=ruZL1+sZk87jbzcMPg4L7Xzp4wEUUUWQj4LRTo+RCh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=omZGmZrCkiWpsMho6UDwkERI6JITHYfFWU82VK+DBV2m4koizNYGo5xcfCOV+RGiIQ6ouoyTOv+dMCrHl57/h6E72OThyD2Nb/yB/lwr7up/LUPY+A9hB2fLa4HbBRS4nERS9seMuhCkHWs++tDhYSDvqCml+1Y4EXvA0Z1cbnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=sL2JANKk; arc=none smtp.client-ip=199.89.3.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 004.mia.mailroute.net (Postfix) with ESMTP id 4cT0JW1rWjzm1747;
-	Fri, 19 Sep 2025 17:44:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:content-language:references:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1758303896; x=1760895897; bh=KifpkoMQNZGnfKwHvbjFz6wL
-	n+n9uAm028Wj6ai7BYo=; b=sL2JANKksLKbN0f97C8MtZs5hQjXwb1aqF4QGahh
-	hT+L/Fd5fwr/sdHCAI98sOwAN5rj+S/YlmoreKmGLY4aKVAky+WbIEEWpo6wAwvH
-	TtkO8AAfLTMUbmWu/orbEMw4YmgC2g0dheTV6q+mWe5rbdEu74ciGyFltSZksc+h
-	baC5gs3yew2hV77TL4PCWi7B0VuxN+BDguTiVDctnx1YkVwXSU/6VPcotOafKcyf
-	xhSaVvMZNk6eYKP89VqLqLZ01x7Paqeg/WlRfep8pzV4SJCNzqAQ7xpc+igd61qf
-	NC+XIozCgBUCAa6inct+S9NAxeieAx/eCuqe+hEp21dGHQ==
-X-Virus-Scanned: by MailRoute
-Received: from 004.mia.mailroute.net ([127.0.0.1])
- by localhost (004.mia [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id cscHFmNmlGa7; Fri, 19 Sep 2025 17:44:56 +0000 (UTC)
-Received: from [100.66.154.22] (unknown [104.135.204.82])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 004.mia.mailroute.net (Postfix) with ESMTPSA id 4cT0JF6NM4zm0ysv;
-	Fri, 19 Sep 2025 17:44:45 +0000 (UTC)
-Message-ID: <911ac2e9-2f3d-41d2-8a2f-74d2aebef21d@acm.org>
-Date: Fri, 19 Sep 2025 10:44:44 -0700
+	s=arc-20240116; t=1758305180; c=relaxed/simple;
+	bh=hSswRjdQ+04+nrR+tOkaECVX6apGop8z+9eTH/YRAUk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=d2eEW20CiCF6mRl0rMbWIe/2FY5HV0UCHXROC2bMKfHE3vewsb5tkzQNgHEfC2/K8ssEjTlLMi8GgiJOOeoYlYgEJMPmwJ0CdaCosl2KF61+qdWVP48mRalnQWmF0nz6iIxfQuIyRMbbcfz2mrfCIulh1zgOpFrHuSxvUc/ucSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=dHsqH5Bg; arc=none smtp.client-ip=209.85.166.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-4248733422bso4127095ab.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 11:06:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758305178; x=1758909978; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PyDhfnNhpXNHSy1fs/Ww3WtAuz4kktx1C3rWmJRS220=;
+        b=dHsqH5Bgc3PjRjFN9w+kyyUTNDEg9aObIROFWI3lAPPiU0lvdg7ydYai3FlssN7FaF
+         +/IVRSMTqPjOBAqcPjhdHLPFZ5pdh0o0pLToWwodTdgFmk1IshzHzx4hB8o7NTv+DPZg
+         WE4Rw84f2b1fqfwGmHmD7yajDThRKQ9JEm9lUo5YKKK6ysBQ9ChNdBoib4byRNKJn3iP
+         r69TyVwgl+YMtfd9qAHNUJTeK6J1O3yOSpzK5JAVFQ3B4RypIjxe3ICXWf0w5Zfh87u5
+         6j03EF/K5n0GOzHTZ9cr5bYfTTHvKJoWBdqIfUU5butR+bbHTciazZz47E/5ktC9RQ7m
+         8U4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758305178; x=1758909978;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PyDhfnNhpXNHSy1fs/Ww3WtAuz4kktx1C3rWmJRS220=;
+        b=W8pYUsns/yll4kLWAcKM4pjoEWnwu26OGPv5OYent3ONLtqDVn6HMK2NYGIVmz7q6L
+         9i45MWqudvaRFlr46U90nMT1PmCQiIFz9LSEwIZfd5eNRfC1IzZmRSNLrY31U9pn6P0+
+         FWLVSKF0Hr8RwtdjmYzTex9Fx2wPZwsvMWW1KxoPNsJ6gGsN+FgFF1DuQ/Lus481OY9F
+         5kIhUIb9JucmpjvV8CyEJQTiBMxoX894qGC1O0KKiGfSq+GmBmsd7I27jcH0Ji9KV1Gk
+         GjKyvmc6Zi/rlP1ayduPxq7WlApCX8PS6ULWypeAZlIZAxZAZsvF+/Bw82sprOf8+kXX
+         6YkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWh+d24lBNx+Gh+y4y7j5urrVWwnKzKIJnlN5c5/20BKGqgJzykSchwfwRMStaxhY/vYcHcrJmb2VsP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKvFA6138oCto/d5YXbyckVVUKTBkssN/zFKOqNOFdTqO3ZFli
+	wMu0gDDVM+ejUmeTptyedpoclxTPNGpXk+HuUhqKAPpyEgNe9lHW8tzlB8SzsPXMeIQ=
+X-Gm-Gg: ASbGncsSdRM5aYlyzDd5mOVO9jQGHe7HIshNnBJ4am4c2nWlSmPbdXWX4Q25TglOfGG
+	hGNimYbikd66jIKXIZ3WB1Cy70HDO3uhNa4Lz4+nHyCtdq/SB5KeHaa4+f/37rcoEAiufTjqHQb
+	qGQuog1QCLAJv/BcD+2wpQQ7NuKuTGJE6Nvd8s/ywJZm84/+6HdbLjmMw4EZl37BWuke35QMZuR
+	U03qLQDJLIGhegydPpDC5Xpqy2LGa5i9lqxodC3nStdxSsW/j24edwtdS11zjTaoUr6Go/gSy38
+	QVbxJnpOb2KJVXFI1nPkYyL6GRy7Qd5U4toR26Rd2RmobPx4bq61miOwllndFFtQTaBlKhbT5BG
+	Z8SlGKp0zEu4wQWni3+GB+QIk+ednyI/abWsUKRavzABV1yp3Bicr5QVFHsFpTw==
+X-Google-Smtp-Source: AGHT+IHsassX7VCPU49903k7FzEDerinifFoBfyC5zAcBlOttmj7mzgkmLRJ6A7BaHGoGe18lpW13w==
+X-Received: by 2002:a05:6e02:148b:b0:424:1c30:a3a7 with SMTP id e9e14a558f8ab-4248197c46emr68662845ab.25.1758305177594;
+        Fri, 19 Sep 2025 11:06:17 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d3a59103csm2326715173.6.2025.09.19.11.06.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 11:06:17 -0700 (PDT)
+Message-ID: <5463beb7-9909-4cb0-bb39-9f2d1aa4d2fd@riscstar.com>
+Date: Fri, 19 Sep 2025 13:06:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,45 +82,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ufs: amd-versal2: Add AMD Versal Gen 2 UFS support
-To: Ajay Neeli <ajay.neeli@amd.com>, martin.petersen@oracle.com,
- James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, pedrom.sousa@synopsys.com
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, git@amd.com, michal.simek@amd.com,
- srinivas.goud@amd.com, radhey.shyam.pandey@amd.com,
- Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-References: <20250919123835.17899-1-ajay.neeli@amd.com>
- <20250919123835.17899-6-ajay.neeli@amd.com>
+Subject: Re: [PATCH 5/6] PCI: spacemit: introduce SpacemiT PCIe host driver
+From: Alex Elder <elder@riscstar.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, p.zabel@pengutronix.de, tglx@linutronix.de,
+ johan+linaro@kernel.org, thippeswamy.havalige@amd.com, namcao@linutronix.de,
+ mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, inochiama@gmail.com,
+ quic_schintav@quicinc.com, fan.ni@samsung.com, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250813212219.GA294849@bhelgaas>
+ <5d5eacff-4c32-4df4-8da0-3b55974b74aa@riscstar.com>
 Content-Language: en-US
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <20250919123835.17899-6-ajay.neeli@amd.com>
+In-Reply-To: <5d5eacff-4c32-4df4-8da0-3b55974b74aa@riscstar.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/19/25 5:38 AM, Ajay Neeli wrote:
-> +#include "ufshcd-dwc.h"
-> +#include "ufshcd-pltfrm.h"
-> +#include "ufshci-dwc.h"
+On 8/13/25 4:27 PM, Alex Elder wrote:
+> On 8/13/25 4:22 PM, Bjorn Helgaas wrote:
+>> On Wed, Aug 13, 2025 at 01:46:59PM -0500, Alex Elder wrote:
+>>> Introduce a driver for the PCIe root complex found in the SpacemiT
+>>> K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
+>>> The driver supports three PCIe ports that operate at PCIe v2 transfer
+>>> rates (5 GT/sec).  The first port uses a combo PHY, which may be
+>>> configured for use for USB 3 instead.
 
-The *-dwc.h header files are for Synopsys Designware UFS host
-controllers only and hence should not be included in the implementation
-of the AMD Versal UFS host controller.
+I'm following up on a few things I said last month.
 
-> diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dwc.h
-> index ad91ea5..379f3cf 100644
-> --- a/drivers/ufs/host/ufshcd-dwc.h
-> +++ b/drivers/ufs/host/ufshcd-dwc.h
-> @@ -12,6 +12,55 @@
->   
->   #include <ufs/ufshcd.h>
->   
-> +/* PHY modes */
-> +#define UFSHCD_DWC_PHY_MODE_ROM         0
+>> I assume "PCIe v2" means what most people call "PCIe gen2", but the
+>> spec encourages avoidance "genX" because it's ambiguous.
+> 
+> Yes, that's what I meant, but I did try to clarify with the
+> transfer rate.
+> 
+>>> +config PCIE_K1
+>>> +    bool "SpacemiT K1 host mode PCIe controller"
+>>
+>> Style of nearby entries is:
+>>
+>>    "SpacemiT K1 PCIe controller (host mode)"
+> 
+> OK I'll fix that.
+> 
+>> Please alphabetize by the company name ("SpacemiT") in the menu entry.
+> 
+> OK.
 
-Please do not modify header files from other controller vendors.
+I will be renaming the Kconfig option to be PCIE_SPACEMIT_K1
+(instead of just PCIE_K1).  I'm renaming the source file to
+be "pcie-spacemit-k1.c" instead of "pcie-k1.c" as well.
 
-Thanks,
+>>> +#define K1_PCIE_VENDOR_ID    0x201f
+>>> +#define K1_PCIE_DEVICE_ID    0x0001
+>>
+>> I assume this (0x201f) has been reserved by the PCI-SIG?  I don't see
+>> it at:
+>>
+>>    https://pcisig.com/membership/member-companies?combine=0x201f
+> 
+> I hadn't even thought to check that.  I will follow up.  Thanks
+> for pointing this out.
 
-Bart.
+I inquired yesterday about this, and was told that this
+will be finalized next week.  I told them that the driver
+would not be accepted upstream unless the vendor ID had
+been properly reserved by PCI-SIG.
+
+>> Possibly rename this to PCI_VENDOR_ID_K1 (or maybe
+>> PCI_VENDOR_ID_SPACEMIT?) to match the usual format in
+>> include/linux/pci_ids.h, since it seems likely to end up there
+>> eventually.
+> 
+> OK.
+
+I will use PCI_VENDOR_ID_SPACEMIT and PCI_DEVICE_ID_SPACEMIT_K1.
+
+>>> +#define PCIE_RC_PERST            BIT(12)    /* 0: PERST# high; 1: 
+>>> low */
+>>
+>> Maybe avoid confusion by describing as "1: assert PERST#" or similar?
+> 
+> OK.  I struggled with how to express this to avoid confusion.
+> But I do think "assert PERST#" is better.
+> 
+>>> +    /* Wait the PCIe-mandated 100 msec before deasserting PERST# */
+>>> +    mdelay(100);
+>>
+>> I think this is PCIE_T_PVPERL_MS.  Comment is superfluous then.
+> 
+> Excellent, thank you, I'll use that.
+> 
+>>> +static int k1_pcie_probe(struct platform_device *pdev)
+>>> +{
+>>> +    struct device *dev = &pdev->dev;
+>>> +    struct dw_pcie_rp *pp;
+>>> +    struct dw_pcie *pci;
+>>> +    struct k1_pcie *k1;
+>>> +    int ret;
+>>> +
+>>> +    k1 = devm_kzalloc(dev, sizeof(*k1), GFP_KERNEL);
+>>> +    if (!k1)
+>>> +        return -ENOMEM;
+>>> +    dev_set_drvdata(dev, k1);
+>>
+>> Most neighboring drivers use platform_set_drvdata().  Personally, I
+>> would set drvdata after initializing k1 because I don't like to
+>> advertise pointers to uninitialized things.
+> 
+> OK, I understand that and will do it the way you suggest.
+> 
+>>> +static void k1_pcie_remove(struct platform_device *pdev)
+>>> +{
+>>> +    struct k1_pcie *k1 = dev_get_drvdata(&pdev->dev);
+>>
+>> Neighbors use platform_get_drvdata().
+> 
+> Yes, that goes with platform_set_drvdata().
+Actually, many of them use dev_get_drvdata().  And I think
+that's why I used dev_set_drvdata() in the first place, to
+match dev_get_drvdata().
+
+But in any case, I'll switch to setting and getting platform
+driver data.
+
+					-Alex
+
+> 
+>>> +    struct dw_pcie_rp *pp = &k1->pci.pp;
+>>> +
+>>> +    dw_pcie_host_deinit(pp);
+>>> +}
+> 
+> Thank you very much for your review.
+> 
+>                      -Alex
+
 
