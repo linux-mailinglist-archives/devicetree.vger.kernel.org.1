@@ -1,245 +1,203 @@
-Return-Path: <devicetree+bounces-219344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73838B8A3C5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:19:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0F6B8A3E6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:20:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B293A32F4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:19:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B129D1BC71D8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376073164D0;
-	Fri, 19 Sep 2025 15:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25885316913;
+	Fri, 19 Sep 2025 15:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LGaPJcP5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="H5+ogntH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2DF30F80C
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01CE2F83BA;
+	Fri, 19 Sep 2025 15:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758295163; cv=none; b=f0CMuFzTDOSXG2qvcrALLbdIqENHyaNCTjC3I0amOgU6Su0tpnVptOm36XEmqdXBhQq+Tp3iUKxf7xtemJ5NugBqZnpH/1eykbIIAAmJO10BmhuRcDtX5aVTKPI+Ca/zM9AccJTecdYvhjiX6wP2qPfGm1bm+ZvJCbOTEF9Opxw=
+	t=1758295257; cv=none; b=d6nZFwHk8imtNmM7som4/GVCTiWQHM6s+/P8Q/kqXqCO+DcuBN5vAfPKkCsDZ2lWrPg8u4pjFpqw1dTmgNlSWZUB/6csTlTkuK71+PEJKnaRj5GuKU3wXa/fn1tuMXmWUM7vVSiWYjfabO3CSu1do+8pnVuI8d0IwJSobb6S1zI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758295163; c=relaxed/simple;
-	bh=88M6rHSLlPFVyAjo4HogX57EduLLErY+swc4NMImAKI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gzAq2eNJHWBWSFotH2jaK5j3IxBOW1Ai6Wxo3CD+Y3O63AS2w9FIg4yIEhjiTFdqtOqBzrzYbbh6pImNgfnAlxEtpQJFOGqhuZamw74Noi2glit2ml1s2emNv34pmQnONwfoZroDtF6bGQLa2Agc1t244gCGKh3QTgQm8r4ucIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LGaPJcP5; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45dd7b15a64so20460595e9.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:19:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758295160; x=1758899960; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PmIZQg/p+wsk73O/7IQ/2J8qTtcW5vWlRDzFnnbt5FE=;
-        b=LGaPJcP51bo29jFvjZU+mJwwyz8cd3z8yWJbPZqwoYC1soFQPkFftfy36lKeqFN6oY
-         ISzu+7uNDVxKeM/T414olbEsUUpbXV+H3J//JUHR9qMB2Vg1eNJzqcvVZLYeoQnwfGIc
-         c/JzvdSI0OfNEqcMX4EqLRR+AoUgOajgPN5p9LFu4TvCab9ldByvB1ANyv15rqQIcVIY
-         tA+fbB0TOZILH3ISg8yMLuQn/1w2ZWQN1fGeX9hgSI/pxQnmcQtWTqjvhl22ORmkxKAs
-         WUNxNLVWVz7S5eJJfEZ/aQNbp/VC4lsc6sLVEdrbIQL9ghhiMqLO+BD7kMkFMlJ8fD8F
-         +ipQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758295160; x=1758899960;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PmIZQg/p+wsk73O/7IQ/2J8qTtcW5vWlRDzFnnbt5FE=;
-        b=XJqshX0EhZUBvU8eb+KO236D33UUek0ugaV+hc+9troGb4slVC/8SFObYXjF6sR75v
-         VlZaYvrLj937bOH8+wI9vyH8ZrXyrIPQ1FryNV6lStopNM0Gt7vkKbugHJgOZ0MWSYHn
-         pfXvlIHG3PkBk/U33q6wtfxvLV9QO7hNWVum0Bepd/4i8LOuB5c4USeBUCIvIr0+Ty93
-         IPvS7xTeLlZVzvJ9ajM2creoqcJXbVoCBdx5y4++rQXxa+A+3nPrK2b74N3Wfdg3oY5I
-         S3alHO3+CDjiIoX27xsDhtQynzlYpuSyd7fz2nVH/S91oz/taAJPLsgGbIyy9bgOJCPc
-         4U+A==
-X-Forwarded-Encrypted: i=1; AJvYcCX/JS+/x+lwH7eunBXEzUCQpgJ+s6A4xbjJxYw8KLIwzYFOVKYriF/zASJtEsRPTfUZLcMbeiFM6v/w@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhmYGeoaFST28qDFNGr18JSUnOLPSVrb/sII3srGxhwWLUYNbX
-	t5SmQ2fDbm+B/wdugDPG7HO6QXzkplEqQ9Z6uANnbFgLQmTsOcxm0ZZUBWhA0YUscNeYVyjnAA8
-	gxPAFqkjzQ83B6cl12bwIWicoLGb6Jjs=
-X-Gm-Gg: ASbGnctJWoNw2GQSrgYAnaA5u/MZZwYbJIDGpNmaVZ2YaNlL+KJF8YXt3LGkiRnv+YV
-	iG4cMgMaRE7AszMqFDAlkDonoWalTHaryUJePraYAXFA7r8iJCFniEiES6Rv3F+XYN8ni6jIYBL
-	OTb5QF1TFfcpTUPgZ8OpSiH/u16wP87DJ8FR96qHw8omBERrVoC9J+UirhGd4fdumSnFKeUAQQ5
-	gY19S3k
-X-Google-Smtp-Source: AGHT+IEgDPEnhQPRnnEH3yzuZMEraGTWgDOPI/yCagFTF5k+zG5oUinI/JMOdDHldD4AWPJfCuYA6PY7j0z7U7Vj7PU=
-X-Received: by 2002:a05:600c:8b4c:b0:45f:29eb:2148 with SMTP id
- 5b1f17b1804b1-467a7f111camr42527475e9.7.1758295159374; Fri, 19 Sep 2025
- 08:19:19 -0700 (PDT)
+	s=arc-20240116; t=1758295257; c=relaxed/simple;
+	bh=MViMuuNgZD7sjfNlh6TXFukLjkEGvIaxt16zUzYp7VU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BviNfcxoN/VtcWau+iL+2oe8BdOs04ebeCJaJDRDc73Cb8I56d3Hw1wpWuu297rHQgAxa99WQi5CM8LGqy4I8Fm8C8hmvup7UUA9mZVkvApWIW8wdwVVpRdVwhIQbFZwpyLeB8yzeZC94v9l7VwlxgwUFMfpAaP8Psc4XUvuAJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=H5+ogntH; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 217B11A0F07;
+	Fri, 19 Sep 2025 15:20:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DE3DE606A8;
+	Fri, 19 Sep 2025 15:20:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B8C86102F183B;
+	Fri, 19 Sep 2025 17:20:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758295252; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=x7trutKtRuIY9robPMYlNj2akoLusmpHD27Z0lZC8tk=;
+	b=H5+ogntHioAoI7eXHmQ7xbwiOO313ybPdTlIEeK2ime/ZF5ufYpUG32BVjrJErXLa25CR5
+	mSnjtqxLydWAOZ4c4HWzRke6om15K2aJbXQiS5k7EXtIFBlmNuLMairpT9brl6D/bSR4b8
+	EM7QgsrZ+bxaY8GJe3SCRRLZ62x+kSs3TBQCDuPrspQf86pv9twFAQFzpC/4i889SKdFbt
+	GEljet7948QPH4Ek4B8/1aTW8PSq+0FL0ig+PCzFl0JiwfDnLc2m/JjXD2nQOD/uZ+n2Os
+	nfAyGyVxi0UCPq/dmLBb/vNFOW7+WNUwPFDsGGplyRBEl+eHeWWHBkEpKaORTg==
+Date: Fri, 19 Sep 2025 17:20:36 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Herve Codina
+ <herve.codina@bootlin.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
+ Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, devicetree@vger.kernel.org, Jason
+ Kridner <jkridner@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <20250919172036.2f2b4bab@booty>
+In-Reply-To: <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
+References: <aL5dNtzwiinq_geg@zatzit>
+	<20250908145155.4f130aec@bootlin.com>
+	<aL-2fmYsbexEtpNp@zatzit>
+	<20250909114126.219c57b8@bootlin.com>
+	<aMD_qYx4ZEASD9A1@zatzit>
+	<20250911104828.48ef2c0e@bootlin.com>
+	<aMebXe-yJy34kST8@zatzit>
+	<20250916084631.77127e29@bootlin.com>
+	<aMt5kEI_WRDOf-Hw@zatzit>
+	<20250918094409.0d5f92ec@bootlin.com>
+	<aMzhgDYOuG4qNcc0@zatzit>
+	<dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912064253.26346-1-clamor95@gmail.com> <20250912064253.26346-2-clamor95@gmail.com>
- <bdd942ef-1ede-4f9f-ab90-ea7ac8995b92@linaro.org> <CAPVz0n1Ac=opNj=qAM5Rp0fpDo-6khCdmhoCwkztGLosKV31tw@mail.gmail.com>
-In-Reply-To: <CAPVz0n1Ac=opNj=qAM5Rp0fpDo-6khCdmhoCwkztGLosKV31tw@mail.gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 19 Sep 2025 18:19:07 +0300
-X-Gm-Features: AS18NWBYrUfprQab9kLOINFBMV1nhqiBixHyzPLKGA0f4GLaKH_9AlhIHvotelk
-Message-ID: <CAPVz0n26P7Bb6MvaJ2S1-HN-0Oya2Z6SMCUXYjxxctFowuq-eg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Sharp
- LQ079L1SX01 panel
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-=D0=BF=D1=82, 19 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 17:45 Svya=
-toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> =D0=BF=D1=82, 19 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 17:36 Ne=
-il Armstrong <neil.armstrong@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > Hi,
-> >
-> > On 12/09/2025 08:42, Svyatoslav Ryhel wrote:
-> > > Document Sharp LQ079L1SX01 panel found in Xiaomi Mi Pad.
-> >
-> > The patch doesn't apply on drm-misc-next, please rebase.
-> >
+On Fri, 19 Sep 2025 10:47:17 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
-Ok, I see where conflict is, I will send rebased version within an hour.
+> On 9/19/25 10:22, David Gibson wrote:
+> 
+> > On Thu, Sep 18, 2025 at 09:44:09AM +0200, Herve Codina wrote:  
+> >> Hi David,
+> >>
+> >> On Thu, 18 Sep 2025 13:16:32 +1000
+> >> David Gibson <david@gibson.dropbear.id.au> wrote:
+> >>
+> >> ...
+> >>  
+> >>>>> Thoughts above suggest a different direction, but here's what I was
+> >>>>> thinking before:
+> >>>>>
+> >>>>> base board:
+> >>>>>
+> >>>>> 	connector {
+> >>>>> 		/export/ "i2c" &i2c0;
+> >>>>> 	};
+> >>>>>
+> >>>>> addon:
+> >>>>> 	eeprom@10 {
+> >>>>> 		compatible = "foo,eeprom";
+> >>>>> 		bus-reg = <&i2c 0x10>;
+> >>>>> 	}
+> >>>>>
+> >>>>> Or, if the addon had multiple i2c devices, maybe something like:
+> >>>>>
+> >>>>> 	board-i2c {
+> >>>>> 		compatible = "i2c-simple-bridge";
+> >>>>> 		bus-ranges = <&i2c 0 0x3ff>; /* Whole addr space */
+> >>>>> 		eeprom@10 {
+> >>>>> 			compatible = "foo,eeprom";
+> >>>>> 			reg = <0x10>;
+> >>>>> 		}
+> >>>>> 		widget@20 {
+> >>>>> 			compatible = "vendor,widget";
+> >>>>> 			reg = <0x20>;
+> >>>>> 		}
+> >>>>> 	}
+> >>>>>
+> >>>>> Writing that, I realise I2C introduces some complications for this.
+> >>>>> Because it has #size-cells = <0>, ranges doesn't really work (without
+> >>>>> listing every single address to be translated).  Likewise, because we
+> >>>>> always need the parent bus phandle, we can't use the trick of an empty
+> >>>>> 'ranges' to mean an identity mapping.
+> >>>>>
+> >>>>> We could invent encodings to address those, but given the addon with
+> >>>>> multiple connectors case provides another incentive for a single
+> >>>>> connector to allow adding nodes in multiple (but strictly enumerated)
+> >>>>> places in the base device tree provides a better approach.  
+> >>>> and the "place in base device tree" is the goal of the extension bus.
+> >>>>
+> >>>> The strict enumeration of nodes enumerated is done by two means:
+> >>>>   - extension busses at connector level
+> >>>>     Those extensions are described as connector sub-nodes.
+> >>>>     The addon DT can only add nodes in those sub-nodes to describe devices
+> >>>>     connected to the relared extension bus.
+> >>>>   - export symbols
+> >>>>     An addon DT can only use symbols exported to reference symbols outside
+> >>>>     the addon DT itself.
+> >>>>
+> >>>> Can I assume that bus extensions we proposed (i2c-bus-extension and
+> >>>> spi-bus-extension) could be a correct solution ?  
+> >>> Maybe?  I prefer the idea of a universal mechanism, not one that's
+> >>> defined per-bus-type.
+> >>>
+> >>>
+> >>> Also, IIUC the way bus extension operates is a bit different - nodes
+> >>> would be "physically" added under the bus extension node, but treated
+> >>> logically as if they go under the main bus.  What I'm proposing here
+> >>> is something at the actualy overlay application layer that allows
+> >>> nodes to be added to different parts of the base device tree - so you
+> >>> could add your i2c device under the main i2c bus.  
+> >> I think we should avoid this kind of node dispatching here and there in
+> >> the base DT.  
+> > Until I saw Geert's multi-connector case, I would have agreed.  That
+> > case makes me thing differently: in order to support that case we
+> > already have to handle adding information in multiple places (under
+> > all of the connectors the addon uses).  Given we have to handle that
+> > anyway, I wonder if it makes more sense to lean into that, and allow
+> > updates to multiple (strictly enumerated) places.  
+> 
+> Well, I don't love this idea. Here are my main qalms about the approach 
+> of adding devices directly to the actual i2c/spi etc nodes.
+> 
+> 1. In boards with multiple connectors, they sometimes share the same 
+> i2c. Now assume that someone decided to connect the same i2c device to 
+> both the connectors. If we are using something like bus extension, while 
+> the node would be added, it will fail in the registration since you 
+> cannot add the same address device a second time. However, if we are 
+> adding the device directly to the `main_i2c`, the overlay application 
+> will just end up modifying the exact same device node. There is no 
+> error, or even a 2nd device node in this case. It is just lost.
 
->
-> Sure, but I have synced with drm-misc-next right now and it applied clean=
-ly.
->
-> I am on top of 048deed5faf0 (drm/drm-misc-next) drm/panel: Add support
-> for KD116N3730A12
->
-> Top commit is correct on my side?
->
-> > Neil
-> >
-> > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >   .../display/panel/sharp,lq079l1sx01.yaml      | 99 ++++++++++++++++=
-+++
-> > >   1 file changed, 99 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/display/panel/=
-sharp,lq079l1sx01.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq=
-079l1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq07=
-9l1sx01.yaml
-> > > new file mode 100644
-> > > index 000000000000..08a35ebbbb3c
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx=
-01.yaml
-> > > @@ -0,0 +1,99 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/panel/sharp,lq079l1sx01.y=
-aml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Sharp Microelectronics 7.9" WQXGA TFT LCD panel
-> > > +
-> > > +maintainers:
-> > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > +
-> > > +description: >
-> > > +  This panel requires a dual-channel DSI host to operate and it supp=
-orts
-> > > +  only left-right split mode, where each channel drives the left or =
-right
-> > > +  half of the screen and only video mode.
-> > > +
-> > > +  Each of the DSI channels controls a separate DSI peripheral.
-> > > +  The peripheral driven by the first link (DSI-LINK1), left one, is
-> > > +  considered the primary peripheral and controls the device.
-> > > +
-> > > +allOf:
-> > > +  - $ref: panel-common-dual.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: sharp,lq079l1sx01
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  avdd-supply:
-> > > +    description: regulator that supplies the analog voltage
-> > > +
-> > > +  vddio-supply:
-> > > +    description: regulator that supplies the I/O voltage
-> > > +
-> > > +  vsp-supply:
-> > > +    description: positive boost supply regulator
-> > > +
-> > > +  vsn-supply:
-> > > +    description: negative boost supply regulator
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +
-> > > +  backlight: true
-> > > +  ports: true
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - avdd-supply
-> > > +  - vddio-supply
-> > > +  - ports
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    dsi {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        panel@0 {
-> > > +            compatible =3D "sharp,lq079l1sx01";
-> > > +            reg =3D <0>;
-> > > +
-> > > +            reset-gpios =3D <&gpio 59 GPIO_ACTIVE_LOW>;
-> > > +
-> > > +            avdd-supply =3D <&avdd_lcd>;
-> > > +            vddio-supply =3D <&vdd_lcd_io>;
-> > > +            vsp-supply =3D <&vsp_5v5_lcd>;
-> > > +            vsn-supply =3D <&vsn_5v5_lcd>;
-> > > +
-> > > +            backlight =3D <&backlight>;
-> > > +
-> > > +            ports {
-> > > +                #address-cells =3D <1>;
-> > > +                #size-cells =3D <0>;
-> > > +
-> > > +                port@0 {
-> > > +                    reg =3D <0>;
-> > > +                    panel_in0: endpoint {
-> > > +                        remote-endpoint =3D <&dsi0_out>;
-> > > +                    };
-> > > +                };
-> > > +
-> > > +                port@1 {
-> > > +                    reg =3D <1>;
-> > > +                    panel_in1: endpoint {
-> > > +                        remote-endpoint =3D <&dsi1_out>;
-> > > +                    };
-> > > +                };
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +...
-> >
+Thinking out loud: what about preventing loading any overlay that does
+more than just adding nodes? IOW forbidding to create properties in
+nodes already in the live tree, and modifying existing properties.
+
+I think being very restrictive in terms of overlays the implementation
+can accept is a good idea in general. A requirement can be relaxed in
+the future, but forbidding what used to be allowed would be a nightmare.
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
