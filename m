@@ -1,115 +1,188 @@
-Return-Path: <devicetree+bounces-219123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00112B87ECE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:42:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63159B87F29
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:57:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4E6D7E01F2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 05:42:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 181CA580830
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 05:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF0424BC0A;
-	Fri, 19 Sep 2025 05:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2863F283FFB;
+	Fri, 19 Sep 2025 05:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dfnG49GD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L8bAx6LC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15ED42E40E
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 05:41:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F67D248F51;
+	Fri, 19 Sep 2025 05:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758260521; cv=none; b=XsfwxajX8DrAFZ4JyFTxhEeeRMNjv7TyX5NOhNo3UJGSTBXiZLjUtYq2ij6A9hR4Ib9+YCnjhpwq0fG4lUAJQSPABO2XFTFapyzL8AXWpiskez02Fp8e5pbS5NsPg7Ie9Betv4MR2HEEUNXNrQGfqXBnXB7WK1nrinqO8HOBegE=
+	t=1758261440; cv=none; b=e0nN7RNZve8gAMVvg7VRE8q9I80jAB8OB4ViCeQMQ1Oxq/K3tF2ZKBQn4wuxLR0AehXf55YuLf8L/+3ZUjdhvN4zM55/Jy4+xXnO8v/h9fMMEQ/GRKsFc2xWNNpJlRk7chi+PwrJKzz55obtxbenECXKUo2QQpkFBUU6DkWUrSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758260521; c=relaxed/simple;
-	bh=4q4/rw5mnD3aV6CATtWOIIeUTbmfcdY4ZrTuAkDyrvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KdphNgQEVRiE1okHNKA7Vvmwi+LmRL4bDoSDnznd4qCsFISBlWovMGdDSWxFFVJXWtgp4G93LO/4ogtjQy/v6ghj3+q+9WzsaVcSnZ9hyICXgdvLtqqS6yWGn25MaKsu6PN2I8bjXpzgJZE/ma/j9D7z7ze+FdnxvZ5w8MeCDBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=dfnG49GD; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=4q4/
-	rw5mnD3aV6CATtWOIIeUTbmfcdY4ZrTuAkDyrvQ=; b=dfnG49GDha8fXT56thxG
-	XT9hTOWvzhhtDVXTQaTEElgu+xxb7CvyzHzWrTOMcp70IxkaYpOQM0Kya1+sr4BV
-	29aJn76ePhww7F5y4DuTxut1uZ9HMR8KjAQM/asoay8F+jUEossNINNzc6+uYhFt
-	EdZShvQgd8QpfhnxATVhItcQeC2ybTVyLUpRZnsI5yyrxFkncIdy4iQ6U2pm5sT5
-	S+/U0hoP5bE5f/VnsWRH4JwZq3FS/3245jK0A1QmojcR5a5/e4J/UES0jN7NWJkq
-	n+BVaxt3CLe/aLjYbMcUHghx0CM3vyqiOzOQRjeT36A0EZ7nVolAIa/tZ81/S2bf
-	Kg==
-Received: (qmail 3787594 invoked from network); 19 Sep 2025 07:41:49 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Sep 2025 07:41:49 +0200
-X-UD-Smtp-Session: l3s3148p1@yJAV7SA//tgujnsa
-Date: Fri, 19 Sep 2025 07:41:47 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-Message-ID: <aMztGzYMHEPL1GVt@ninjato>
-References: <20250918104009.94754-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1758261440; c=relaxed/simple;
+	bh=3/neqeoz3dR36pzmXn8NzzsA7fMzfe5HS4/BkxssVOE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=k//G2eBZB2IAVRQOy+hvTLFhE5YD2OfL6rhkY6XGNozipHkELoWAa/2S6MZAPcV3NJLuAKUPH9pqLo5pXgCEOdrLnj3fIDCDOSfJXscR0BLB3peInXdlmSbLSOEYSvYLuTO3cZcV6WHfxg90zzNMmSOIsTtytHQqoIKlvin97bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L8bAx6LC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58IIV1V9029614;
+	Fri, 19 Sep 2025 05:57:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4TwweCMeQcFLfszimtHQ88ugV7vqgQWjFSaEotoMWe8=; b=L8bAx6LCjF5TfmDX
+	VlDS03RB1EDCXAh9INq/LEWMvppl/ly+T9nACY0vuuFUl8kB3ywqtLTERnT86pjj
+	AuGF0cvD4aMc7XtOOCfdUi5jxzaMOquXyzFc9gLbCJ68GCimC4IyLvnVXoPDEonb
+	SQ9+1MvU+GPU0Pz9HEjMtGjMnu9v3dAOqS5zRiAM4vnDxhusQXF5s5VNbuqSGBQ4
+	yyyezETvgN2Cz+lI4ugDjN43E3q/AMMKTip4DAyDhU0M3lL/fo9W4EAuPHGRkFWR
+	w9fkqv/FeDsD5Uq9XCcJhSbDJfVf9JrNMk3AWXp5/qs8avW5+jBmyWnDc2e+2JNh
+	YkMMMw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy11510-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 19 Sep 2025 05:57:03 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 58J5v29a019999
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 19 Sep 2025 05:57:02 GMT
+Received: from [10.50.44.58] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 18 Sep
+ 2025 22:56:58 -0700
+Message-ID: <2394e63f-1df7-764e-5489-3567065707a1@quicinc.com>
+Date: Fri, 19 Sep 2025 11:26:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+NCAvgYw1zCajOLr"
-Content-Disposition: inline
-In-Reply-To: <20250918104009.94754-1-herve.codina@bootlin.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/9] dma: qcom: bam_dma: Fix command element mask field
+ for BAM v1.6.0+
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <broonie@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <vkoul@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+CC: <quic_varada@quicinc.com>
+References: <20250918094017.3844338-1-quic_mdalam@quicinc.com>
+ <20250918094017.3844338-4-quic_mdalam@quicinc.com>
+ <c5d5c026-3240-4828-b9b3-455f057fb041@oss.qualcomm.com>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <c5d5c026-3240-4828-b9b3-455f057fb041@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9-JoQtRTpVI2r9Lokjbnkcuo1rVxbeXP
+X-Authority-Analysis: v=2.4 cv=btZMBFai c=1 sm=1 tr=0 ts=68ccf0af cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
+ a=5kgzbmhzmrmLAAh7KT4A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: 9-JoQtRTpVI2r9Lokjbnkcuo1rVxbeXP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX/mqX81BMEqt0
+ Cs5dlwt2twmVv4t+yOqcvpQJW2h0WGhvrwqbB1XdQot8riYhvfansLefqMFKDQS3ycwqIS6wEB7
+ bwLKfNguC+f/sPx7teDNXLzz0Aadunq5+tMnrMC5SXb3nJ5gx6OZ822IPyTBpHhTSwOU0m3hST6
+ wI3Y/JJ8VSWVvfb0uTHP12W9TL58R0Y+ejwD9ccVozLY1CZe9w/VbciNFx4sbHHoRQfK+2yZxX4
+ LbQDIOnSct/IwSl6uQ9+5FCA+fgZggXFXgdo3Gu25BPbWWRJjItP5l9HKSeBxM1Z5nOxSwmjy8/
+ BaTFnvNMHEmkdh8R5cQQQ1D/R9C4lQMmdwhQN8AZ1LXIFGWd8pPZhDfF20MF6k5UbXEtx38imj8
+ l1/If817
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-18_03,2025-09-19_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015 malwarescore=0
+ spamscore=0 adultscore=0 phishscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509160202
 
 
---+NCAvgYw1zCajOLr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
+On 9/18/2025 3:57 PM, Konrad Dybcio wrote:
+> On 9/18/25 11:40 AM, Md Sadre Alam wrote:
+>> BAM version 1.6.0 and later changed the behavior of the mask field in
+>> command elements for read operations. In newer BAM versions, the mask
+>> field for read commands contains the upper 4 bits of the destination
+>> address to support 36-bit addressing, while for write commands it
+>> continues to function as a traditional write mask.
+> 
+> So the hardware can read from higher addresses but not write to them?
+No,
+Write Operations: Can target any 32-bit address in the peripheral 
+address space (up to 4GB)
 
-> This series adds support for GPIO and GPIO IRQ mux available in the
-> RZ/N1 SoCs.
+Read Operations: Can read from any 32-bit peripheral address and
+place the data into 36-bit memory addresses (up to 64GB) starting
+from BAM v1.6.0
+> 
+> Plus, you didn't explain what the mask register does on BAM <1.6.0.
+> If it really masks the address, all reads will now point to 0x0
+The mask field never masks addresses in any BAM version. Here's the 
+complete specification:
 
-I want to test this series today. From a glimpse, I might have some
-comments, so please wait a little before resending.
+BAM Command Element Structure
 
+Write Command Elements (All BAM Versions):
 
---+NCAvgYw1zCajOLr
-Content-Type: application/pgp-signature; name="signature.asc"
+| Field  | Bits  | Description                                         |
+|--------|-------|-----------------------------------------------------|
+| 1st DW | 31:24 | Command (must be 0 for write)                       |
+|        | 23:0  | Address - target address in peripheral              |
+|-----------------------------------------------------------------------
+| 2nd DW | 31:0  | Data - the data to be written                       |
+------------------------------------------------------------------------
+| 3rd DW | 31:0  | Mask - 32-bit mask defining which bits to modify    |
+-----------------------------------------------------------------------
+| 4th DW | 31:0  | Reserved                                            |
+------------------------------------------------------------------------
 
------BEGIN PGP SIGNATURE-----
+Read Command Elements (BAM < v1.6.0):
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjM7RcACgkQFA3kzBSg
-KbZqVQ//Z+JQrYUTEYKiVUYjRP3/e3VPEoOzJNLrPBAT0k4udThHiHECeEV72V/j
-jQEv/o2rOTQ8/tR9cN4F8ZbBhbA3LmnLDj3msnHZK4t54ZmrG4DFM0shZYNx8F5y
-iHjBIa/YRoC0Fp0udz9PI2yzDgteKNUJ0WiDqEa5R73OHR54Go6VFTunIe3bujMC
-CU5uKDs14GFxU3K43GKJEaqxf+oF2Xc9M0mslmGsCDCuGRkA4gIM04WwUSEqvmHr
-sXj+v0W6rnhNqtmyHu2ndvr8FTjzSF1hL0AUvwfa6y4hL3knb5XQTuTr5774ZdT/
-7wH7m++QJh5YtolMlWvEiGim5+zyBziRyeJxyIm2c164piYWavyfJvJb/vn3KIHM
-IxMuKo1VOt/oL6C5dSrSnlvGAHedRf9sU0Nkja/reAcUcBF/l7RChTUnzEqg0DEf
-OiXFHpUZrFjXRli040DhILDe3UAszFf4DavvOwzkngYl2YGoFchLano7ws5yxBMC
-oa7HL/51xlW7DGgwGm7SHQ5Rx93z/ZJyY8/uB3+RA1nyVBl4C8qYq5CVOiWQrnna
-sWvVwbNly46K613UZdCCw4nlJWQvPR4oxdXIUZZCWRCdDVeF11nzEHbBgzIOGAux
-jHLh1HMewT/wxlue9Nr6dtQJYKa9QMKdD/MhIQzC8+oqgqEFD8A=
-=I+cJ
------END PGP SIGNATURE-----
+| Field  | Bits  | Description                                         |
+|--------|-------|-----------------------------------------------------|
+| 1st DW | 31:24 | Command (must be 1 for read)                        |
+|        | 23:0  | Address - source address in peripheral              |
+------------------------------------------------------------------------
+| 2nd DW | 31:0  | Destination - memory address to write read-data     |
+------------------------------------------------------------------------
+| 3rd DW | 31:0  | Reserved (IGNORED by hardware)                      |
+------------------------------------------------------------------------
+| 4th DW | 31:0  | Reserved                                            |
+------------------------------------------------------------------------
 
---+NCAvgYw1zCajOLr--
+Read Command Elements (BAM >= v1.6.0):
+
+| Field  | Bits  | Description                                         |
+|--------|-------|-----------------------------------------------------|
+| 1st DW | 31:24 | Command (must be 1 for read)                        |
+|        | 23:0  | Address - source address in peripheral              |
+------------------------------------------------------------------------
+| 2nd DW | 31:0  | Destination - 32 LSBs of 36-bit destination addr    |
+------------------------------------------------------------------------
+| 3rd DW | 31:4  | Reserved                                            |
+|        | 3:0   | Destination Address 4 MSBs (bits 35:32)             |
+------------------------------------------------------------------------
+| 4th DW | 31:0  | Reserved                                            |
+------------------------------------------------------------------------
+
+For Read Commands:
+- BAM < v1.6.0: 3rd Dword completely ignored by hardware
+- BAM >= v1.6.0: 3rd Dword[3:0] contains upper 4 bits of destination
+address
+
+Thanks,
+Alam.
 
