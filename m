@@ -1,239 +1,188 @@
-Return-Path: <devicetree+bounces-219328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0838B8A0EE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:45:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651C6B8A0E6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4447A58736F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:45:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 443394E1644
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1AD253B66;
-	Fri, 19 Sep 2025 14:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A57246BD5;
+	Fri, 19 Sep 2025 14:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="abMwWbgy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FuHlC55X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF67E257855
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 14:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66B13148A6
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 14:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758293128; cv=none; b=Gb42nacp1CGMg/MdjZESjHNWN0Hd0eVshNjHUOYTWOHBoin9NuXUhSFokhHkGMUkR8ESjmE9WJ3h4xbxIaSh/79ZLvm6Wj9yykCInTpZxQ3NMicNewjf9YLhgQkS4//1qnwSFscQWpoHEhaMXs2OecpoXGRIc5zezRqKIj5MWL4=
+	t=1758293121; cv=none; b=nwI7WZ12WlWjltfdKmeXkVIZVDAcCHnI9X/fP/dqRfKKrUc1MBt1319kMxMVnLmTDQfP39pGWJ6JNasTlzYdQ/oj8CWO3MwEtNUs1SqxsO71QXxBifHS/yqUTSzKEFUDykfGCZTWLZczCH5Pd9GdtIj0ZTY5+kZwVun7UeFKcdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758293128; c=relaxed/simple;
-	bh=NLFFD0lnEa8eGx4soPKV8lM6nEBYsJIEn4aMXEIQHww=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=efhe0gqG45xYc90vSi+aTFaPx81+gwhWOlT2ZVD/MqEEonLP9tFc81n4VZmTz1Tmap4/lzEYznCnwP6RsAQTciAl8hhbTah03SBDS+myMnvkE1vJMO9XdgCqBTbru0LBiK9Yrab9Z3WKnhuTayD0LkTKeXCkdXuAKIsxmvYHKhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=abMwWbgy; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-ea5ca8dbd37so1452531276.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:45:25 -0700 (PDT)
+	s=arc-20240116; t=1758293121; c=relaxed/simple;
+	bh=q5GTIDOH6nNGTWtSpjuk6PU/ndO/Nf+ZFH5Pj5u31/o=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=fbMV+061cwhhjXNnOcRu5Y50Kn/zfKjaFxbSvjvfAyWhLuBmxXCgt66FVQLKumWh94REnBwcIlBrfJcXwybYns6bSNfo/deB3n8SGTUoI1NQ4nYQ6lY9jxiwFEJTMAv7EIb8yJHHlJAiqkF9qU4UbmqOdkWG3olMHg0VMbjalyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FuHlC55X; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45cb6428c46so21346925e9.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758293125; x=1758897925; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3WjyTwxOlL5TBVN6HVHH54w6s0HUnwkgruRLNDXu+EU=;
-        b=abMwWbgy1hwj8hk9n6xrIm3xAkFH+3qF+nnYXEu+LAejSdxrAA+S2ztZOtdxdnUjtn
-         fu99h5h4iDKXFd2wkxSkHOGvGKzPD2/MsLLhNeKy0etB5AcguBifQDghyBGRFUj2ojn3
-         yJKC0Nb2MH/vtb3Z2gK3/dG7jqn5ixjrVogPktVLZmt9JqyoTQR3c3pkaz35/fSpHqSD
-         edQZsBENbvGfJpHpnN2asxNJ52DMsyUX1pSTVRYJYMQ3sZeP6IX7DKI4IdQoKL7dLWjX
-         h4rTXO8uXJgU/JcvcG9jtm8o+s63CQwSrPXkGZY4IvlBld+sdyLtQrWxEqC26iJkJLAm
-         KiWw==
+        d=linaro.org; s=google; t=1758293118; x=1758897918; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EJj1y8HqXNnf98ADR5kQhDmwOZyt1Xf4VxjtZZ9P8no=;
+        b=FuHlC55XGE75NnFuxZVpJ777sqLFZ1zXbQz4WSo3bPUwTAlN/cWYS4zUUjyU1w8137
+         MeGYn34Cbr9xe4Acyp/hl6mJBu9aHq8Dnb/bmd6GTyWNWX0FVC4O42/oc3hTTre34RGb
+         a7Trd73WhQbtnRb4eLCMNhjqi22/Te7jHOksXqn0eZGDxgGRn30FGzM3uXzfv80upgQt
+         68RzV9ELz/HRC8tIhtNzPTTgR6wGXCQfMtILjm6eoE97OPt2F/ELSap/sZOME8iZ6AbS
+         pS6/cQ+DKOsysiMXjsEPxAfqjYVuaDwDmX0RNmslr+Sc128vqtCUA7kXVBAVvwNWnyET
+         2oGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758293125; x=1758897925;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3WjyTwxOlL5TBVN6HVHH54w6s0HUnwkgruRLNDXu+EU=;
-        b=tTM2W4fPa/e+OcE/9z0sLGiYs93V+anond8HsZw0k4kvN70sI/MO9IM5Xqn6aa4JkA
-         oTGFkeE3RnyCndcyMdRdED9T6Ws1iUstHBjsfCSBjU8cXJHFiSvM2f5iBR6Jfii2p4xN
-         c/njWomfVTMK9lx6RFUSdseD+An0WRPqsmkCmF105MfJ5P/iEKlxc9pID09yH9OJpoXe
-         Mkn/oJ6txrJBCI/FbRqsyK4rMaC1HGLnSgFWTsl5GUCt8xhjMGd3Rl9xWvEnjzJjCYyG
-         S+MKRLsRTKRpx+z38VK4vHiFqzoTEoTvlskk0vm09NbvfrPJEyFb0BetoWaMpiYo2hxU
-         WlKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUx5SBcJ35VjVOnbqylGpupkRVltGitWtZ+L43ydG28jX9AxqPIvQirRYJHYntHwWfriCvyc5jN47IS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuXUWqxoxoMJ3cn+uNOZ9WT/H1lFoy/8wtBQHRdi5VBradx8XZ
-	OKfJHTgx4hvF5Xf39k0dcIkvh1hKv1Yj8OoIDA2WOeOpwCBCYXD+ZZtBIwsV9ska2boG0pRmWLn
-	9z/t3TkI2DTJve+1u7TTDfAY2wQk1DXo=
-X-Gm-Gg: ASbGncuLVsB3rNqMQdcGUoEcIh5nhDO/vhsTlFnNsIlYgB5HTi/sxDANrHhRt+c+MqZ
-	qDILLaJ3qGOpoQLjs/oRZ8T+oMtkaXpsB4IrBbTLR77By2RtzWV/PzLQbmO85yZYN4lKcNd1njs
-	K33kpc/uzxUey8i7+kPcgv0fpGD1wVojK4aH57IqBRJMDVNbd9YEqkEEgL8UPulSq21LN/42fi9
-	V2fq0VQ
-X-Google-Smtp-Source: AGHT+IGJw1+yEfFNFqRcYjWUnG/h8+qC9oVnvpeOX94lxBtVsN40UmgyUvz0yHEx0P3xwOLztHIl2uP+N3Us1ggwwRI=
-X-Received: by 2002:a05:6902:1b87:b0:ea3:e63f:7b42 with SMTP id
- 3f1490d57ef6-ea8a79e880cmr3533510276.33.1758293124321; Fri, 19 Sep 2025
- 07:45:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758293118; x=1758897918;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EJj1y8HqXNnf98ADR5kQhDmwOZyt1Xf4VxjtZZ9P8no=;
+        b=BsevpyB1xQUu8zz8ulotrvSvjL4cR2xzxhivHpUNNEkdaIY4EtRJ/kTW5ogvR2dROQ
+         5y8UtDSPBASX2aErRn/vG/KJeRP/oUSyg8G7xawz+CDsZk3hL8x/ODz8sT8YI9WIaXud
+         RyYJ2Ugw9XsK20afpKsIFn5RVX0QE5MWgMWMNr6q6MA4UuLL5Ye5kKOSwUQkO399YW4c
+         UDUr4sVRn9sO7z35gMY8v7XkkL01vw7ekmNWPuAPnAn2bKR+/en8b4GAUY/np5EXtBYY
+         5fdii15FU2hfztQwjMHj2EqbUsIqtIcXNhSSu9JiWk0z3tM06W0fdzq6FvjLNPsVwUx8
+         L3eQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVNo1GR8mWaZTMoMoqPAzYEHBkK6uZP96+suRdAgtPST0rrL7npMZplxAVBIQ6aYsm8SMdSVfCLDsUZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG5g5cf6tDwof9cFu9k1ys2FUSBrDugGkoni5qMANBikefDRK7
+	pVp08XgosOTzBBfrRl4Q1DkDBYF98HwwMAN0u40agXGIvnSCvyZUdv/N9WfBZE0Bhvo=
+X-Gm-Gg: ASbGncsQuJLdeNWGy2ibVwmWv8boQw5pxzDwd2lcFcej8lbpNOf+e5Gx4QSxC4Oha1C
+	F8Tw3XbyxbB+1H/1exce4XQCa1IRQCU22nyszdp0egQyWU4hAxj6gijj2fwtnVwZXWZ+MyOER04
+	k4AOn7MH33Kk4J9M/FNhtxLf9+jfiXQOVt4df3hZ896kk4BgVmpo2AkoQHbJX+RAnsfjp6ZAz3H
+	ZMrgMPh498UCK+NHqmbVHOC7WNsHLsaj9LXQ+4eJWkXZEygnbLa+zTQLQCOx6/Q5HiXhOCq9aXB
+	VtwRdAUrC3iusnS65Zt8qYJUEsqjJ9XywA6yJauUiOR9clBnAHXb/f/yMXgPKwgKeWbybKKU9+W
+	lVf8WHOwRKJVVXkJ3oY8bPnVO592+hTMFlJxkac1W1lpwxvs0Dm2gOZAGhZjJ9HV8iUPBurfT
+X-Google-Smtp-Source: AGHT+IFxWL+PQqZanQNlYmC61Jl0EglExICuzzye9odcz+14oOJKf1NTLs6pstSwIMChvW2GI7XGEw==
+X-Received: by 2002:a05:600c:468a:b0:45d:e326:96e7 with SMTP id 5b1f17b1804b1-467eaa86e42mr31110285e9.29.1758293118114;
+        Fri, 19 Sep 2025 07:45:18 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f? ([2a01:e0a:3d9:2080:77b3:66a:b2a0:c20f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee073f3d73sm8046942f8f.8.2025.09.19.07.45.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 07:45:17 -0700 (PDT)
+Message-ID: <272d8cd6-e151-4bab-b8fb-438182a575be@linaro.org>
+Date: Fri, 19 Sep 2025 16:45:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250912064253.26346-1-clamor95@gmail.com> <20250912064253.26346-2-clamor95@gmail.com>
- <bdd942ef-1ede-4f9f-ab90-ea7ac8995b92@linaro.org>
-In-Reply-To: <bdd942ef-1ede-4f9f-ab90-ea7ac8995b92@linaro.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 19 Sep 2025 17:45:11 +0300
-X-Gm-Features: AS18NWCaPEoqBynvU0_LqnkYzZ1JgNAvdrHR_FyFiEbwwYX_CdM3v2DxCZzUGeU
-Message-ID: <CAPVz0n1Ac=opNj=qAM5Rp0fpDo-6khCdmhoCwkztGLosKV31tw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Sharp
- LQ079L1SX01 panel
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 0/3] Add LG SW49410 Panel Driver
+To: Paul Sajna <sajattack@postmarketos.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, David Heidelberg <david@ixit.cz>,
+ phone-devel@vger.kernel.org, Amir Dahan <system64fumo@protonmail.com>
+References: <20250915-judyln-panel-v2-0-01ab2199fea5@postmarketos.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250915-judyln-panel-v2-0-01ab2199fea5@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-=D0=BF=D1=82, 19 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 17:36 Neil=
- Armstrong <neil.armstrong@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi,
->
-> On 12/09/2025 08:42, Svyatoslav Ryhel wrote:
-> > Document Sharp LQ079L1SX01 panel found in Xiaomi Mi Pad.
->
-> The patch doesn't apply on drm-misc-next, please rebase.
->
+On 16/09/2025 04:32, Paul Sajna wrote:
+> This patch series adds a drm panel driver for the LG SW49410 panel found
+> in the LG G7 ThinQ (codename judyln).
+> 
+> The basic driver skeleton was generated by https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+> from the vendor device-tree.
+> 
+> The panel driver works but during testing we noticed sometimes the
+> display goes blank. Source of this problem is unknown but seems to be external.
+> i.e. It could be a conflict with another driver or an issue with
+> aftermarket panels.
+> 
+> Comments were added explaining magic numbers, and devicetree
+> documentation was also added
+> 
+> Once this patch has been accepted, I'll follow up with
+> a devicetree update for sdm845-lg-judyln
+> that includes this driver, along with several other improvements
+> 
+> Co-authored-by: Amir Dahan <system64fumo@protonmail.com>
+> Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
+> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> ---
+> Changes in v2:
+> - use "multi" versions of functions
+> - remove DRM_DISPLAY_DP_HELPER
+> - change dt-bindings to panel-simple
+> - Link to v1: https://lore.kernel.org/r/20250910-judyln-panel-v1-0-825c74403bbb@postmarketos.org
+> 
+> ---
+> Amir Dahan (1):
+>        drm: panel: Add LG SW49410 Panel
+> 
+> Paul Sajna (2):
+>        Update MAINTAINERS for lg,sw49410
 
-Sure, but I have synced with drm-misc-next right now and it applied cleanly=
-.
+This patch hasn't been reviewed, and anyway the subject is wrong, it should start with MAINTAINERS:
+please fix ans send a v3.
 
-I am on top of 048deed5faf0 (drm/drm-misc-next) drm/panel: Add support
-for KD116N3730A12
+Thanks,
+Neil
 
-Top commit is correct on my side?
+>        dt-bindings: display: panel: panel-simple: Add lg,sw49410 compatible
+> 
+>   .../bindings/display/panel/panel-simple.yaml       |   2 +
+>   MAINTAINERS                                        |   5 +
+>   drivers/gpu/drm/panel/Kconfig                      |  13 +
+>   drivers/gpu/drm/panel/Makefile                     |   1 +
+>   drivers/gpu/drm/panel/panel-lg-sw49410.c           | 502 +++++++++++++++++++++
+>   5 files changed, 523 insertions(+)
+> ---
+> base-commit: e04c78d86a9699d136910cfc0bdcf01087e3267e
+> change-id: 20250910-judyln-panel-948f177c5c5c
+> 
+> Best regards,
 
-> Neil
->
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >   .../display/panel/sharp,lq079l1sx01.yaml      | 99 ++++++++++++++++++=
-+
-> >   1 file changed, 99 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/display/panel/sh=
-arp,lq079l1sx01.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq07=
-9l1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq079l=
-1sx01.yaml
-> > new file mode 100644
-> > index 000000000000..08a35ebbbb3c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01=
-.yaml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/sharp,lq079l1sx01.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sharp Microelectronics 7.9" WQXGA TFT LCD panel
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +description: >
-> > +  This panel requires a dual-channel DSI host to operate and it suppor=
-ts
-> > +  only left-right split mode, where each channel drives the left or ri=
-ght
-> > +  half of the screen and only video mode.
-> > +
-> > +  Each of the DSI channels controls a separate DSI peripheral.
-> > +  The peripheral driven by the first link (DSI-LINK1), left one, is
-> > +  considered the primary peripheral and controls the device.
-> > +
-> > +allOf:
-> > +  - $ref: panel-common-dual.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sharp,lq079l1sx01
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  avdd-supply:
-> > +    description: regulator that supplies the analog voltage
-> > +
-> > +  vddio-supply:
-> > +    description: regulator that supplies the I/O voltage
-> > +
-> > +  vsp-supply:
-> > +    description: positive boost supply regulator
-> > +
-> > +  vsn-supply:
-> > +    description: negative boost supply regulator
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +
-> > +  backlight: true
-> > +  ports: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - avdd-supply
-> > +  - vddio-supply
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    dsi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        panel@0 {
-> > +            compatible =3D "sharp,lq079l1sx01";
-> > +            reg =3D <0>;
-> > +
-> > +            reset-gpios =3D <&gpio 59 GPIO_ACTIVE_LOW>;
-> > +
-> > +            avdd-supply =3D <&avdd_lcd>;
-> > +            vddio-supply =3D <&vdd_lcd_io>;
-> > +            vsp-supply =3D <&vsp_5v5_lcd>;
-> > +            vsn-supply =3D <&vsn_5v5_lcd>;
-> > +
-> > +            backlight =3D <&backlight>;
-> > +
-> > +            ports {
-> > +                #address-cells =3D <1>;
-> > +                #size-cells =3D <0>;
-> > +
-> > +                port@0 {
-> > +                    reg =3D <0>;
-> > +                    panel_in0: endpoint {
-> > +                        remote-endpoint =3D <&dsi0_out>;
-> > +                    };
-> > +                };
-> > +
-> > +                port@1 {
-> > +                    reg =3D <1>;
-> > +                    panel_in1: endpoint {
-> > +                        remote-endpoint =3D <&dsi1_out>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
->
 
