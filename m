@@ -1,87 +1,109 @@
-Return-Path: <devicetree+bounces-219420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563BEB8ACA8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:38:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E37BB8ACC6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:45:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10CC24E7683
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:38:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDC667C7E9C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7990A321F22;
-	Fri, 19 Sep 2025 17:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E527E322A15;
+	Fri, 19 Sep 2025 17:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DhwxqF+w"
+	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="sL2JANKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 004.mia.mailroute.net (004.mia.mailroute.net [199.89.3.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CAF1DD543;
-	Fri, 19 Sep 2025 17:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AC332255A;
+	Fri, 19 Sep 2025 17:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.3.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758303505; cv=none; b=Vt9Y2B74CR0RIRF5ZgQS6mf6xpsYqFmLCcl3kzzMOAVC0AIRRyxJqKY1N2wCM0WOsQtFszGZ+G7vA/GoD2I2UZ3T00D/uh5xsLurAbS+TCksWvRF8INJSvla3VCgIVuD+GkMltMTS1nX0LOGzLvou8h6lw7mAOgnoelMyuP7l/w=
+	t=1758303907; cv=none; b=l0kRjJPu/L56qy//pShMIe5sARPSWntJxfVwEAdI+dvxJgTSlA2GUpDLq0FF2rLHh+7L8Cnfsj+X7XJQQ7ApWqLLW7c/rqFHjN+J0umhWVFr2rXDPKMj2loNQYl9eE7xPN5pydm6WdB+SQ5CapWt5oeOvLvRQ71ercj0YNaWoic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758303505; c=relaxed/simple;
-	bh=JXalJEMcPKVI/FVEmtCWbAZklUCmyc26S6X4DiPHDhs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GcdT7GZpaMBip3xADaUC/7HZHgupivBR4rF5nDZfo17/aH/ZDgtlJiDFReTaPe5JT/cFUyWcHSEQItmU3l02OGU8tuslMg1F2Airp63CdLMtVMEkyhWrAHHnJEVmYhtVbXvErLpD39STpf1bd+bDLWFbm9dGrdAQXwPwgWCr1aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DhwxqF+w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A808FC4CEF0;
-	Fri, 19 Sep 2025 17:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758303504;
-	bh=JXalJEMcPKVI/FVEmtCWbAZklUCmyc26S6X4DiPHDhs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DhwxqF+wG8hXFFHVWDx5aJLsRFthdERZdrOA8ex0VML4B0kDewcxb5QOC5j0CHcsY
-	 x83LLiayEZ4ako1S04jEKQPZucYCyEbqkOV1aI7a594i8wRkDwfgz7URxkh5gLVIwM
-	 2EOdGu9/lZ8/gwNaRGMkcKRYuYKMjqbIVSNSYv0ezhGx8xmLAcV32f3tw47e+LC7th
-	 rVrzdJmK5B8S3GIc/B4vUrbIxm9KDElfmQcPPtOIACkmLVcCE5OhtQZFNRr9ccXtrk
-	 0Sj9+w9gwAjrkJ5XZv9zt/7biTS6ephQD1z9xVCZIoGbw69XS2ojE7sV+b52OcMlbk
-	 p6CqafBRmTViQ==
-Date: Fri, 19 Sep 2025 18:38:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlan@gentoo.org, ziyao@disroot.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
-Message-ID: <20250919-serotonin-simple-ba6ff8cee16b@spud>
-References: <20250919155914.935608-1-elder@riscstar.com>
- <20250919155914.935608-2-elder@riscstar.com>
+	s=arc-20240116; t=1758303907; c=relaxed/simple;
+	bh=ruZL1+sZk87jbzcMPg4L7Xzp4wEUUUWQj4LRTo+RCh0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=omZGmZrCkiWpsMho6UDwkERI6JITHYfFWU82VK+DBV2m4koizNYGo5xcfCOV+RGiIQ6ouoyTOv+dMCrHl57/h6E72OThyD2Nb/yB/lwr7up/LUPY+A9hB2fLa4HbBRS4nERS9seMuhCkHWs++tDhYSDvqCml+1Y4EXvA0Z1cbnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=sL2JANKk; arc=none smtp.client-ip=199.89.3.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
+Received: from localhost (localhost [127.0.0.1])
+	by 004.mia.mailroute.net (Postfix) with ESMTP id 4cT0JW1rWjzm1747;
+	Fri, 19 Sep 2025 17:44:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:content-type:content-type:in-reply-to
+	:from:from:content-language:references:subject:subject
+	:user-agent:mime-version:date:date:message-id:received:received;
+	 s=mr01; t=1758303896; x=1760895897; bh=KifpkoMQNZGnfKwHvbjFz6wL
+	n+n9uAm028Wj6ai7BYo=; b=sL2JANKksLKbN0f97C8MtZs5hQjXwb1aqF4QGahh
+	hT+L/Fd5fwr/sdHCAI98sOwAN5rj+S/YlmoreKmGLY4aKVAky+WbIEEWpo6wAwvH
+	TtkO8AAfLTMUbmWu/orbEMw4YmgC2g0dheTV6q+mWe5rbdEu74ciGyFltSZksc+h
+	baC5gs3yew2hV77TL4PCWi7B0VuxN+BDguTiVDctnx1YkVwXSU/6VPcotOafKcyf
+	xhSaVvMZNk6eYKP89VqLqLZ01x7Paqeg/WlRfep8pzV4SJCNzqAQ7xpc+igd61qf
+	NC+XIozCgBUCAa6inct+S9NAxeieAx/eCuqe+hEp21dGHQ==
+X-Virus-Scanned: by MailRoute
+Received: from 004.mia.mailroute.net ([127.0.0.1])
+ by localhost (004.mia [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id cscHFmNmlGa7; Fri, 19 Sep 2025 17:44:56 +0000 (UTC)
+Received: from [100.66.154.22] (unknown [104.135.204.82])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 004.mia.mailroute.net (Postfix) with ESMTPSA id 4cT0JF6NM4zm0ysv;
+	Fri, 19 Sep 2025 17:44:45 +0000 (UTC)
+Message-ID: <911ac2e9-2f3d-41d2-8a2f-74d2aebef21d@acm.org>
+Date: Fri, 19 Sep 2025 10:44:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="txZUjU8dSxy0XkUh"
-Content-Disposition: inline
-In-Reply-To: <20250919155914.935608-2-elder@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] ufs: amd-versal2: Add AMD Versal Gen 2 UFS support
+To: Ajay Neeli <ajay.neeli@amd.com>, martin.petersen@oracle.com,
+ James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, pedrom.sousa@synopsys.com
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, git@amd.com, michal.simek@amd.com,
+ srinivas.goud@amd.com, radhey.shyam.pandey@amd.com,
+ Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+References: <20250919123835.17899-1-ajay.neeli@amd.com>
+ <20250919123835.17899-6-ajay.neeli@amd.com>
+Content-Language: en-US
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <20250919123835.17899-6-ajay.neeli@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 9/19/25 5:38 AM, Ajay Neeli wrote:
+> +#include "ufshcd-dwc.h"
+> +#include "ufshcd-pltfrm.h"
+> +#include "ufshci-dwc.h"
 
---txZUjU8dSxy0XkUh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The *-dwc.h header files are for Synopsys Designware UFS host
+controllers only and hence should not be included in the implementation
+of the AMD Versal UFS host controller.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dwc.h
+> index ad91ea5..379f3cf 100644
+> --- a/drivers/ufs/host/ufshcd-dwc.h
+> +++ b/drivers/ufs/host/ufshcd-dwc.h
+> @@ -12,6 +12,55 @@
+>   
+>   #include <ufs/ufshcd.h>
+>   
+> +/* PHY modes */
+> +#define UFSHCD_DWC_PHY_MODE_ROM         0
 
---txZUjU8dSxy0XkUh
-Content-Type: application/pgp-signature; name="signature.asc"
+Please do not modify header files from other controller vendors.
 
------BEGIN PGP SIGNATURE-----
+Thanks,
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaM2VCwAKCRB4tDGHoIJi
-0mCuAP96BDQRGtzFy5PJ4/T+VpC8SeoS17z41ztpiwSPJWowfAD/RhMhwlKRv5Bz
-O5cbvTsjzlk3z7wOks+MXJiY/k1q+gA=
-=ltSs
------END PGP SIGNATURE-----
-
---txZUjU8dSxy0XkUh--
+Bart.
 
