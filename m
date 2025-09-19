@@ -1,158 +1,173 @@
-Return-Path: <devicetree+bounces-219289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D528AB89CB4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:07:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D2DB89D1E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 945593B1732
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:07:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E75A7A02580
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3C928726F;
-	Fri, 19 Sep 2025 14:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JXx6/+2W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3EA314B66;
+	Fri, 19 Sep 2025 14:10:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E61D19D89E;
-	Fri, 19 Sep 2025 14:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C2B314A6D;
+	Fri, 19 Sep 2025 14:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758290824; cv=none; b=Kc+7g+p+/1RQuuK7jHSZvBGVxD8rjsq1OYo7J7KYimaFFDcCkMmfhILf6obA6nsy4Oxy+Nx9G6tIl7d3h1/vgbPjupNc2GTxw78tIw6cZwVdIOmnKMuWrLmggvgfkrK+ANF4UL5x+lCLteO+Mdy32DIUWeB9x1I22UmiS8fiJsY=
+	t=1758291035; cv=none; b=ReTYHkgwWyYnx2V1Snj5eR3wV7mbaNWljFNblmq15OW/Az0zVFwdU8Rb6TITrMH8bzBc6USwwSyU1d48ID+TOQ0lcMrGIspd/XA2QhWI3Qx2N4doYcklxruprAMyclq27Y1/6M8PyR52HPZDzbDrcqQsj5pgN0LxGWi1KjY26J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758290824; c=relaxed/simple;
-	bh=lD0zXCe7O3Qv3mgyhk/Uwu2fvbC6A8RGfqhioMnV9DI=;
-	h=Content-Type:Date:Message-Id:To:Subject:Cc:From:References:
-	 In-Reply-To; b=nG3pQrv98D30Ckfo4kzxYBv8NwQc3ON+L+Q4sIvbdwAjM7QfMXfiCFnQH78y1GV7L/F2sfefkeSn4yMiWjtazfvpKQ00yJAnFJQiTSIG3fj1D9d3/jZncSs44JqFScVCn6ScEasVo6vqGgrsP22J3Fr22fCfynQByniQoiO4MDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JXx6/+2W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1887C4CEF0;
-	Fri, 19 Sep 2025 14:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758290824;
-	bh=lD0zXCe7O3Qv3mgyhk/Uwu2fvbC6A8RGfqhioMnV9DI=;
-	h=Date:To:Subject:Cc:From:References:In-Reply-To:From;
-	b=JXx6/+2WdPJVF7J9Hh1r2V8RZ6VEK1BgvPiiaJV3ytWYTeQOgh0tBHw0txKmY2ReZ
-	 EKJnJgq7OJV8L3GWG2NxvLSg59bJbzPeVcuN1fMiIUXrYakOVsg6cUkaaSu1juGWd7
-	 fYzBwYDINRoJKOl5lalsU3slOinKwG3mMyplPGCZwZKtfN9bil9k82n/YAlNAtR/p8
-	 QA5JGxx5vbKjLxt7Z6kKmRT7zeeL3GyezT8LgKBYOdZtLj98VGwFcz/gXnTZejPn2a
-	 /6/Fp7wqJ6K+y4Srusv9edoS3oXQ3cnmb05V+m3F5d0XPcJK8Z/FI+oLWbJFp6Fd1+
-	 r7M6LZ7sGxEbQ==
-Content-Type: multipart/signed;
- boundary=00b412111fd7ee6f5957702d234f390bcbb45bd82c439efd0768cbbe22e3;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Fri, 19 Sep 2025 16:07:00 +0200
-Message-Id: <DCWU2RORGVQS.1R1V3SNBA883K@kernel.org>
-To: "Ioana Ciornei" <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH v4 06/11] gpio: regmap: add the .fixed_direction_output
- configuration parameter
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Shawn
- Guo" <shawnguo@kernel.org>, "Lee Jones" <lee@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Frank Li" <Frank.Li@nxp.com>
-From: "Michael Walle" <mwalle@kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20250919132515.1895640-1-ioana.ciornei@nxp.com>
- <20250919132515.1895640-7-ioana.ciornei@nxp.com>
- <DCWTIV3281OX.1N3AA8K3T21LY@kernel.org>
- <re2izaxwbjp6hcms3cps4l4tfvwaxyt56gkc7ohrftcjizwkwt@jsjjo3b6xrcs>
-In-Reply-To: <re2izaxwbjp6hcms3cps4l4tfvwaxyt56gkc7ohrftcjizwkwt@jsjjo3b6xrcs>
+	s=arc-20240116; t=1758291035; c=relaxed/simple;
+	bh=0hXwFoGYuDdVPmME9wVaGprT/NOSamKumbeC1/ux5Ag=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=axHM/2+NY0rpmPLVj3yqYzYbHjAxlQ1EuINpvYdqWhF6fKyRFSOSKwUJ3D+9mmR0BT8BmqjbLM6OF84hAG2CgwTB0XE93RH/oVLwKf8yOgd5kn+USn1/6piu+RCGLjjEOhnyp8FTmah9p6x9px3+aU1wWHXB/bSnGw1QBgQ3nvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpgz8t1758290981t77ee29e2
+X-QQ-Originating-IP: c8xff3gMJrx6BoNwsH+6nJBZVwySXY19XV/90FS6mw8=
+Received: from [127.0.0.1] ( [116.234.80.13])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 19 Sep 2025 22:09:38 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 13887952541491144058
+Message-ID: <C0056DA1635FC14E+7d3d6fb4-f43e-4107-baab-bbb871264c7a@radxa.com>
+Date: Fri, 19 Sep 2025 22:09:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/3] phy: qcom: edp: Add missing ref clock to x1e80100
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Sibi Sankar <quic_sibis@quicinc.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>, Johan Hovold <johan@kernel.org>,
+ Taniya Das <quic_tdas@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20250909-phy-qcom-edp-add-missing-refclk-v3-0-4ec55a0512ab@linaro.org>
+ <6A43111ED3D39760+a88e4a65-5da8-4d3b-b27e-fa19037462c8@radxa.com>
+ <qohctzmztibeoy4jv6unsvevdawfh2h3drrneo5wmbfkirokog@pfaz3vht5kjz>
+Content-Language: en-US
+From: Xilin Wu <sophon@radxa.com>
+In-Reply-To: <qohctzmztibeoy4jv6unsvevdawfh2h3drrneo5wmbfkirokog@pfaz3vht5kjz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: NqN/wpVFVRYXTETqIpE/ShUxpxhxFZIAAZG5TEJxdn8+jwImr19vh0ik
+	qXPnnemUr8vRPLvlxpUf7oVQ6trGgUadog3xRDslkBhICa8QW4wCchpoHB2SOspORTqmPeq
+	KAzaFuOSa6mpe3xh2aRhgBKu62Z2zVEgjX9YDd1LOBchTyxp06jjAayWXhfvzYtgSC8cAmQ
+	D15/pHX3A+qTfXnrfHPSEbwTR8oMVO38urrs8dlQoagk7Vv9F57S5VuPsBfeduvPCkibenw
+	1VvgLifKmTDnt9I/+X5E5HszmCfTjjdLtRuIEjG8VeOHzFQInaOOStIVQQHu1jT9aYP05iB
+	P+QKuhwIjAjf11WrGmRqGM5soSGrh9zzuRVzxZ31s4jsGz4xoWGcJu91rY0e8B0eKNaGwos
+	IXNn9XjeXdODM7rEhPC1ZsiYxRcpXV8CNX4eE6Ra95cLj59lUSapyd+xBp9JV7GCnyBNo9s
+	9ekmGWbZ8xqyuwxd79XR3fHuIWxlvEQN6y+GEqgJCpM4K3xsmoQB3U2bQiGPBRRdZKuNuh0
+	92MMB6aYv/L6fp8rzuIlz5FvKJhbhKVShByd+nG0BTym95D+mmdmQMn/7HdfrkOxZeZ7JDq
+	ZA45IIHCQMVK71nBIb0S/G4YystNtMyjNNgLV/aK6ZyEXy4v7p0V6iz494iOjjKCWYHhn8C
+	LDlgUf52MA6EoIOgV5coqz0FvDCO+EKplexh2tO8CmG/36CrLqzuI6FjuYxuOfBvAtaDLXx
+	R7nWj9R4y6KiXUoJISEQwxd21kTK3jYCQgSy3po4tSyNF9VZ4KHUOpQ//BiedCAjg89JqVA
+	lNnp38L0Mk72yGZG7TyKUtPqgJvS2+Y2UmDMtvkVajyTQNEAbEomu043gdNjLqGyE2JWxBQ
+	MWOGV8ROvCTuB2seEK8omKWl5qFZnBKNpOMYfIAe8L5Pm9g0HBkJ9bRpNvM/cky+h0P7sA3
+	yeqXuZ3j1RfkAOCFKgJ/jmFJFajJeVKseA+4K7IK+97Fp553uY65wYiRiaOzs42RqlXA2a+
+	vLwhtWGBYy+XVtDyEVzemc9mfsED6fBCn1E6BGtAQxeq9l+FJRVxK2sSsT/Fw=
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
---00b412111fd7ee6f5957702d234f390bcbb45bd82c439efd0768cbbe22e3
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 9/19/2025 7:54 PM, Abel Vesa wrote:
+> On 25-09-19 19:06:36, Xilin Wu wrote:
+>> On 9/9/2025 3:33 PM, Abel Vesa wrote:
+>>> According to documentation, the DP PHY on x1e80100 has another clock
+>>> called ref.
+>>>
+>>> The current X Elite devices supported upstream work fine without this
+>>> clock, because the boot firmware leaves this clock enabled. But we should
+>>> not rely on that. Also, when it comes to power management, this clock
+>>> needs to be also disabled on suspend. So even though this change breaks
+>>> the ABI, it is needed in order to make we disable this clock on runtime
+>>> PM, when that is going to be enabled in the driver.
+>>>
+>>> So rework the driver to allow different number of clocks, fix the
+>>> dt-bindings schema and add the clock to the DT node as well.
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>>> Changes in v3:
+>>> - Use dev_err_probe() on clocks parsing failure.
+>>> - Explain why the ABI break is necessary.
+>>> - Drop the extra 'clk' suffix from the clock name. So ref instead of
+>>>     refclk.
+>>> - Link to v2: https://lore.kernel.org/r/20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org
+>>>
+>>> Changes in v2:
+>>> - Fix schema by adding the minItems, as suggested by Krzysztof.
+>>> - Use devm_clk_bulk_get_all, as suggested by Konrad.
+>>> - Rephrase the commit messages to reflect the flexible number of clocks.
+>>> - Link to v1: https://lore.kernel.org/r/20250730-phy-qcom-edp-add-missing-refclk-v1-0-6f78afeadbcf@linaro.org
+>>>
+>>> ---
+>>> Abel Vesa (3):
+>>>         dt-bindings: phy: qcom-edp: Add missing clock for X Elite
+>>>         phy: qcom: edp: Make the number of clocks flexible
+>>>         arm64: dts: qcom: Add missing TCSR ref clock to the DP PHYs
+>>>
+>>>    .../devicetree/bindings/phy/qcom,edp-phy.yaml      | 28 +++++++++++++++++++++-
+>>>    arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 12 ++++++----
+>>>    drivers/phy/qualcomm/phy-qcom-edp.c                | 16 ++++++-------
+>>>    3 files changed, 43 insertions(+), 13 deletions(-)
+>>> ---
+>>> base-commit: 65dd046ef55861190ecde44c6d9fcde54b9fb77d
+>>> change-id: 20250730-phy-qcom-edp-add-missing-refclk-5ab82828f8e7
+>>>
+>>> Best regards,
+>>
+>> Hi,
+>>
+>> I'm observing what looks like a related clock failure on sc8280xp when
+>> booting without a monitor connected to a DP-to-HDMI bridge on mdss0_dp2.
+> 
+> Am I to understand that this is triggered by this patchset ?
+> 
+Sorry, it's not indeed. I just saw this patchset and wondered if it can 
+fix the issue on sc8280xp. Just now I tried adding the missing 
+GCC_EDP2_PHY_CLKREF_EN to DT and gcc driver, but it didn't fix the issue. :(
 
-Hi,
+> I don't see how though.
+> 
+>>
+>> Do you think sc8280xp might require a similar fix, or could this be a
+>> different issue?
+> 
+> There is no TCSR clock controller on sc8280xp, so it must be something
+> else. My feeling is that this is probably triggered by the link clock
+> source not being parented to the clock generated by the PHY, or PHY PLL
+> isn't locked yet at that point, but I'm not sure.
+> 
+> I'm not able to reproduce this issue on my x13s.
+> 
 
-> > > @@ -129,6 +130,13 @@ static int gpio_regmap_get_direction(struct gpio=
-_chip *chip,
-> > >  	unsigned int base, val, reg, mask;
-> > >  	int invert, ret;
-> > > =20
-> > > +	if (gpio->fixed_direction_output) {
-> > > +		if (test_bit(offset, gpio->fixed_direction_output))
-> > > +			return GPIO_LINE_DIRECTION_OUT;
-> > > +		else
-> > > +			return GPIO_LINE_DIRECTION_IN;
-> > > +	}
-> > > +
-> > >  	if (gpio->reg_dat_base && !gpio->reg_set_base)
-> > >  		return GPIO_LINE_DIRECTION_IN;
-> > >  	if (gpio->reg_set_base && !gpio->reg_dat_base)
-> > > @@ -277,6 +285,17 @@ struct gpio_regmap *gpio_regmap_register(const s=
-truct gpio_regmap_config *config
-> > >  			return ERR_PTR(ret);
-> >=20
-> > Not related to your patch, but this line above is wrong. That should
-> > be "goto err_free_gpio". Would you mind adding a patch for it? I
-> > could do it myself, but it will probably conflict with this series.
-> > I'm fine either way (if you do it, don't forget the Fixes: tag).
->
-> If this would be the only change, I would not do a v5. If there are more
-> things to change, of course.
+It only happens when mdss0_dp2 is not connected to a display during 
+boot. I believe laptops usually use mdss0_dp3, and it's always connected.
 
-Fine by me.
+I guess the Windows Dev Kit may have the same issue, since it also uses 
+mdss0_dp2 as an external mini-DP port.
 
-> > >  	}
-> > > =20
-> > > +	if (config->fixed_direction_output) {
-> > > +		gpio->fixed_direction_output =3D bitmap_alloc(chip->ngpio,
-> > > +							    GFP_KERNEL);
-> > > +		if (!gpio->fixed_direction_output) {
-> > > +			ret =3D -ENOMEM;
-> > > +			goto err_free_gpio;
-> > > +		}
-> > > +		bitmap_copy(gpio->fixed_direction_output,
-> > > +			    config->fixed_direction_output, chip->ngpio);
-> > > +	}
-> > > +
-> > >  	/* if not set, assume there is only one register */
-> > >  	gpio->ngpio_per_reg =3D config->ngpio_per_reg;
-> > >  	if (!gpio->ngpio_per_reg)
-> > > @@ -293,7 +312,7 @@ struct gpio_regmap *gpio_regmap_register(const st=
-ruct gpio_regmap_config *config
-> > > =20
-> > >  	ret =3D gpiochip_add_data(chip, gpio);
-> > >  	if (ret < 0)
-> > > -		goto err_free_gpio;
-> > > +		goto err_free_bitmap;
-> >=20
-> > There's also an err_free_gpio jump below, that should also be
-> > replaced with err_free_bitmap.
->
-> I am a bit confused. With this patch applied there is only one 'goto
-> err_free_gpio' in gpio-regmap.c and that's the one added by me above.
->
-> What am I missing?
-
-Probably commit 553b75d4bfe9 ("gpio: regmap: Allow to allocate
-regmap-irq device") which was added to the mfd/gpio/next tree a
-couple of days ago.
-
--michael
-
---00b412111fd7ee6f5957702d234f390bcbb45bd82c439efd0768cbbe22e3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaM1jhBIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/jKGwF+PVRyuzBD4EqNfDUok7ywKjX5FxI4SZP9
-oR2Lu1LYWA4+ToNQTjkw4q3WDcQQ1kNyAX9r8PsuQzPBJmSqmKIWwjUl7JRKBf55
-1Q3GSgZirXf6a8lOV0ogw6h0lbYp7BoCNEk=
-=Kyd5
------END PGP SIGNATURE-----
-
---00b412111fd7ee6f5957702d234f390bcbb45bd82c439efd0768cbbe22e3--
+-- 
+Best regards,
+Xilin Wu <sophon@radxa.com>
 
