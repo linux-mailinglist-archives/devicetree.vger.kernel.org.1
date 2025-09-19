@@ -1,93 +1,97 @@
-Return-Path: <devicetree+bounces-219457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19948B8B76F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 00:22:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA86B8B8D5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 00:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8FC03B6C66
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:22:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29C9E1737C1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400302D24AD;
-	Fri, 19 Sep 2025 22:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6403A2DAFDA;
+	Fri, 19 Sep 2025 22:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="JGtH06Rm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fjfsW0CY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B922857D2
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 22:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BED2D77E6;
+	Fri, 19 Sep 2025 22:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758320557; cv=none; b=X2aLtKnGYeyB0qHqy23qKzI+/6iudGzh9vAgXtskAAlWW+O4hsZiPhrl2fjp4EblkEfZjaMr6vAIbGg81juCUicAqxkgby203sxrW9Xme+PPZjCZy9wrzMvwLIikxW5A/Eo6loPA1XZ7DPidZ6Ids4LVOB7BW6Y89wGXCW/CyVc=
+	t=1758321286; cv=none; b=tLFq+lGROISQ1a7cVzg5ZK216YSC0uEAp4TdKw7VJWts1Y0rydyCpeT53H5K9aYMHUQn0vXoHLeDVs+Bt1gYJ2zezVXbGxd9jexdw68YUmEZ04xAl0IvYACXm8bHOwpeXRCd5+5mQfoa6tfT62WkHZk9y3xmbL+qbgfYjcf0WM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758320557; c=relaxed/simple;
-	bh=nYGGBD9CXGQtXqvwR9vlAEwW8zMQIP2X0qfHIuQV2jQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jVZJwmYlA/lAWt7zBEV4DTih8Mkv4NxUXzFxh/0E6Atw+Be0zYbT4OrzN5KekhKeG5TfS5VMALOoZmmyFwJbpmjbb7DMdIIDnJ3ESeunpC35INPttMh9KF114aI8PaMPws0d6zYhO6pbFALExcxr4x7tBA5Dl2igHSwq1pt7LV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=JGtH06Rm; arc=none smtp.client-ip=91.218.175.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Message-ID: <4a0bb60b-e3f0-4fce-8622-02ebeb374210@postmarketos.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1758320543;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Qdn6JbPiCcC2JrSnnuBVjmN1kD2fzIMN5v5TkpaM+WM=;
-	b=JGtH06RmUhHwJPMIDikVH2yW3nlzgZcEJKmu5O2KIbue4QO2WUp7vWx7Hum10YDP3rRApn
-	s7jSYbAoZwjP7jtRD91W8xV9lw5gmFM0A0qKmw9sprNxbXbDcBhBJiy6CUqfkDnMbr6Bfn
-	rEpGZofbZ8g3bZFXze7Q34wh4u5fa/7SwNZgOfmrzNS7UtdJ95OcyogBALmxG9DWNUXEN3
-	TJ9SNmirL6z3/8xKS4fLAWyUkBvwb46DcycD6s02U8p6Hm0ulyEDLR2t239ZZSbMCzL8FS
-	gX2l9XQCmi+Tc6Ong+4sOm1MLonqK5nWX+lmp6yRmJxqnqzgezQj2yqDDknTAQ==
-Date: Fri, 19 Sep 2025 15:22:16 -0700
+	s=arc-20240116; t=1758321286; c=relaxed/simple;
+	bh=563htESlYeVLr71p16XCYivqzbd2/aC0PNcnMx65i/U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Fb+mYrJyPXrCyZP4r8jMI0gjpOhHR4jsnl69vQmOyLjoJgmakeK4hjWQ2YBDwSedrrVa2vzaJr0CUJcpRe9Wg8fVATRXH4U31sU1ISi6RByVtCr6ZD8St5X/CBz5G4rZeDECBy4q7smMyh8a0C7x9qCcaZ0VWKygPOUoJNGNOxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fjfsW0CY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F82CC4CEF0;
+	Fri, 19 Sep 2025 22:34:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758321285;
+	bh=563htESlYeVLr71p16XCYivqzbd2/aC0PNcnMx65i/U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=fjfsW0CYjGee80NwP2Zv50OZvoV5hcYnHWmdQmWVja5Ee2b9TbB5uIIsEwYrEySAU
+	 /eKTy6BpHz9epWDMnuA2ziwcqJumka23lJE/VclN12i787MV5gjET7C6/yWGocABYU
+	 wRTzg/x/mnfaQyKyRcjFkueE6LdBbdBMvcDVDhTraHWyuZq21bmDBgEkjwXqIJjBvK
+	 jQuDcb9lkUACYdwUeWWBBXTQGW6x5WW5I0iRymMLFY4FA8VovXafbdKGFfcqaJ/hj2
+	 KkeNHl8daZPo4DbbmhkOnOkob2Ne1wx3j5SqtGTIIFXRcqME+lMLqtdGuVgtMFxeK1
+	 d7bL+rnFOwjiw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mathias Nyman <mathias.nyman@intel.com>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: usb: xhci: Allow "iommus" and "dr_mode" properties
+Date: Fri, 19 Sep 2025 17:34:31 -0500
+Message-ID: <20250919223433.2399927-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 0/3] Add LG SW49410 Panel Driver
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, David Heidelberg <david@ixit.cz>,
- phone-devel@vger.kernel.org, Amir Dahan <system64fumo@protonmail.com>
-References: <20250915-judyln-panel-v2-0-01ab2199fea5@postmarketos.org>
- <272d8cd6-e151-4bab-b8fb-438182a575be@linaro.org>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Paul Sajna <sajattack@postmarketos.org>
-In-Reply-To: <272d8cd6-e151-4bab-b8fb-438182a575be@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-On 9/19/25 7:45 AM, Neil Armstrong wrote:
-> This patch hasn't been reviewed, and anyway the subject is wrong, it 
-> should start with MAINTAINERS:
-> please fix ans send a v3.
-> 
-> Thanks,
-> Neil
-Is there a rule that a driver must be reviewed before getting 
-MAINTAINERS? I'm a little bit confused by your message.
+Allow "iommus" property as it's reasonable for any XHCI controller to be
+behind an IOMMU. Allow "dr_mode" as an XHCI controller can be part of a
+dual-role controller.
 
-On another subject, I'm testing the touchscreen, and think
-I may need to add more power management to this driver in
-order for it to function correctly. So it might take longer
-than expected for v3 to be ready.
+In particular, the Marvell Armada 8K XHCI controller uses both of these
+properties.
 
-I'm pretty new to contributing to the mailing list and probably
-sent this a bit prematurely. Apologies.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/usb/generic-xhci.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+index a2b94a138999..8875911b43cc 100644
+--- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+@@ -53,6 +53,14 @@ properties:
+ 
+   dma-coherent: true
+ 
++  dr_mode:
++    enum:
++      - host
++      - otg
++
++  iommus:
++    maxItems: 1
++
+   power-domains:
+     maxItems: 1
+ 
+-- 
+2.51.0
+
 
