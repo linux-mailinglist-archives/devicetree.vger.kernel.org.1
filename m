@@ -1,180 +1,207 @@
-Return-Path: <devicetree+bounces-219231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 765A9B88BF1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 12:04:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 640FAB88C20
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 12:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C6DA1C24A32
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 394B81C81762
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 10:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DB42C029D;
-	Fri, 19 Sep 2025 10:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8D82EC55B;
+	Fri, 19 Sep 2025 10:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7o6dHTX"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="InUv81VS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52FCF23E32B
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 10:04:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC562C029D
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 10:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758276256; cv=none; b=j8C30Jlp8aTykAozEofYwEhp3ITQqBqXQMXIdOb4eVptnU5XUIhjn+douIHzAVG8mCC27t9mAUl23YFMaamyTh4aDdifiN1OPpXCpb8ljhD7LB7Ckqe7rkGLUJFRKokSSQmlTTnJE0vhL+/svWrnCKR+aM4UJzHj7NrdWODloUY=
+	t=1758276468; cv=none; b=NI/fKgQ9UcE2DlAi5Wm0RjBSmZ9cXmexbbdiZ54uGDcHHX2XIcFHtK0RRpkkuE4Sb+ENuxtStnOnwLO6frIKGwOSrETGywm+u1TULQp0ln8t40OlPhbRdNS6C0HYpX4bsRHToH3HF1OOnfyBZdvSak3M7M8lk9coee8KT9d1CI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758276256; c=relaxed/simple;
-	bh=MIxBc+wC/cmWNfba7NJKwLPOOs4c9e3k+S+2+58b6Og=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TyoQMXFw3YaObf3aOFhMlyc3kuZtplzokYYlJSfDb/6sx2tfymf6CLfrNdlYkFkDYvA4+SumgMIMaeQTBF9XHvTbWZUY3y1bNNGi/ooImLRQ1/+37uWgYapur+/b2NlOk1sZBfSUenLfNy3cM1LVHL/pmzGiNzu4RgMn8IujMZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g7o6dHTX; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45f2c4c3853so6825085e9.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 03:04:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758276253; x=1758881053; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cwSJqMLbkr+n3h9atzHQFhMdHOFSLWWZIBI6hzjzDlU=;
-        b=g7o6dHTX/jKHUK07jvyCoY6ajcxb8/0bRLC2sulEeTiYYmsNUrN/qQ/Kx+x8TGrH09
-         xXtmOl/GW/IoqmUA5L8WmpnY/Ry4Mac8F62gy298XaBuGkf30NMiGOVgxuDU0wMvEgog
-         9fICTRwDWsQqioLOic49O/qJycH1rVfrSrPZTNghHMFyjkvgtcfZAArPlykxj6LRAgIn
-         /z+2cdKAoSMYYHGcHTJUF11WeWwvX1KLS9ZNV0FO83Q74Nm2sLgb/jDzNEhIoab1YNJW
-         mPjeFOktVP7AS7KpiFHPoxoBQ7ou9utiKL5FYJ9mpyFQ+LBfTNx7acGRLaPFBHksBDK+
-         /N9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758276253; x=1758881053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cwSJqMLbkr+n3h9atzHQFhMdHOFSLWWZIBI6hzjzDlU=;
-        b=ogqJNBbwe4N3ejAhRUNWhyGGmDykqMZstCV15GWiNmagvrJTMxP60N1nzpg8omagqE
-         MKcmOndmxihfYi7UKVbw5c8BDEptcdsi0TjGsMCGClhfRuznxmgMbwYyQRUrJ+kaeWVp
-         ZsGhT5r1nGKS0aJ4TK1hrhqHnDFXDDOnCDhb81PSzll9H/P09Qk8QPul5d5lQXfMQpEm
-         G8oduMqO2uvpVPo7OrIUzedt5K4y63mWlhm90LxH0iZUzmEevt2yTfKL/unctY60S9B3
-         gbjU5+PW7MNgjJO1NMtRzN7BB4SEot8zEhtzg8xg9Zti/jfLiD0AQL34lr0fDoaEta/4
-         QvRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUSwkTfay0CzoQEcqMHWveq19g2vvNtr8jPz3fud6AzH9tq1LvZ/uoJy52NReiXtmyg5yn0gk5bzBsr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxf3fqYYSvzsC+mD7lDY7+VCECmHCAK5wW6dESJ2Mshh6uBjsrX
-	XL5krjmOVDg2RCHRPc/4+NPippTBRGKCqcZSczS0q1ohOIcFBO7dRh5y
-X-Gm-Gg: ASbGncsfr2R//Qm17HDvfAbdtQViAQZ+g8k8gf/562yuRsD/3eOS4icS5r1kW9H1pt9
-	EBkZhgyd2FA/d/hfLOqsA9/BdtP7/fBk2h6ZjVET3un5NSPdaMmLHM6DhK8GQ9y1r0L5KeGRqo0
-	yRbTQgizSwmb/Ptc0+PwkiiRr0GAO1dV0kOSowpMd0ryks9pkwZwWFM99unij+wanyMAu31WSC/
-	NVIl7wtUBTkzd+n4Dg43rGJ0r+IM/uUgwqN9ulTP1h5EhYC9N+VYdm063b2OmWP/FsA6pFRkA3l
-	UraI8ZVZ3rC+WZYY0OCaHEp3n5LZv6jM/5ZxLEfB7QARhN2j5sOUclYo2yfzQHVqkm+RJDmSl/E
-	CcqOIgrzILKGjv5ekVXMV
-X-Google-Smtp-Source: AGHT+IHvZMGRRNi+u2pMIpVVRpaJCUA/81PZdTy1q3wdlCcos410V3il5VvXKBDg1PnvbPEV8rv3lQ==
-X-Received: by 2002:a05:600c:6305:b0:45b:868e:7f7f with SMTP id 5b1f17b1804b1-467ee8c56d6mr28084075e9.17.1758276252440;
-        Fri, 19 Sep 2025 03:04:12 -0700 (PDT)
-Received: from andrea ([176.201.192.207])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f5a286edsm90295055e9.16.2025.09.19.03.04.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 03:04:12 -0700 (PDT)
-Date: Fri, 19 Sep 2025 12:04:05 +0200
-From: Andrea Parri <parri.andrea@gmail.com>
-To: Xu Lu <luxu.kernel@bytedance.com>
-Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, will@kernel.org,
-	peterz@infradead.org, boqun.feng@gmail.com, mark.rutland@arm.com,
-	ajones@ventanamicro.com, brs@rivosinc.com, anup@brainfault.org,
-	atish.patra@linux.dev, pbonzini@redhat.com, shuah@kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com,
-	linux-doc@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] riscv: Add Zalasr ISA extension support
-Message-ID: <aM0qlTNPiaQRY2Nv@andrea>
-References: <20250919073714.83063-1-luxu.kernel@bytedance.com>
+	s=arc-20240116; t=1758276468; c=relaxed/simple;
+	bh=ZEijCkm5JFA7W5dAVumfXX91XZdpHgOa0FJjn89WkDM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Kovzgl8JtLLAK0ecs7gKgOMthYJRJMsrDLWz1LZFjUj+bw4ZYzVEr+vIaBuTKO+XNGvjPoKho/z+Vx/ThWqJzu928S4p9VA8gTxL/xEkwBz2UxHu3EQXe4ufb2iMLUX8E2KxC9yJ2uCMfQPd3UFG9FuEeSMJS4FjJ8nBlDh92lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=InUv81VS; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=de7W3rM6nCceW2
+	hUAcO3aWBmElPbrQ0yWYcqZue19ck=; b=InUv81VSQIbYzJmOFYTqxagz0mwJt8
+	apyDlREiBJJNiJAwy7LNQ330hPDp+v/fwSo/Vok149oz0UEr+zn58sa3HkAnNUEV
+	QaiyFEM2teGUHM2mUA8BM3g0rUTEhLQK4+QLkKzfUpIK6LNEViD9f8O0UJNkdnaf
+	+74C4Hp3BqU7FsMKMDtRPEmS6lv5hFkplj53jMQtk3VeiCH/Ke+tkMLIiBI8JJbJ
+	OjmSuG68cncNrul7pjCMkzdOUVkZmPb9bW2sI+L6mkc9eFSo8+hJRXHTK4vG6Z8h
+	2Y3njv6hyq4MEaFBMN7iS1KONnqFJDimEC7oCXlLoOUOIGZIL5FBO5IQ==
+Received: (qmail 3874070 invoked from network); 19 Sep 2025 12:07:43 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Sep 2025 12:07:43 +0200
+X-UD-Smtp-Session: l3s3148p1@7n4DpCQ/iOEujns7
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe LEDs
+Date: Fri, 19 Sep 2025 12:07:20 +0200
+Message-ID: <20250919100740.28429-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919073714.83063-1-luxu.kernel@bytedance.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 19, 2025 at 03:37:06PM +0800, Xu Lu wrote:
-> This patch adds support for the Zalasr ISA extension, which supplies the
-> real load acquire/store release instructions.
-> 
-> The specification can be found here:
-> https://github.com/riscv/riscv-zalasr/blob/main/chapter2.adoc
-> 
-> This patch seires has been tested with ltp on Qemu with Brensan's zalasr
-> support patch[1].
-> 
-> Some false positive spacing error happens during patch checking. Thus I
-> CCed maintainers of checkpatch.pl as well.
-> 
-> [1] https://lore.kernel.org/all/CAGPSXwJEdtqW=nx71oufZp64nK6tK=0rytVEcz4F-gfvCOXk2w@mail.gmail.com/
-> 
-> v3:
->  - Apply acquire/release semantics to arch_xchg/arch_cmpxchg operations
->  so as to ensure FENCE.TSO ordering between operations which precede the
->  UNLOCK+LOCK sequence and operations which follow the sequence. Thanks
->  to Andrea.
->  - Support hwprobe of Zalasr.
->  - Allow Zalasr extensions for Guest/VM.
-> 
-> v2:
->  - Adjust the order of Zalasr and Zalrsc in dt-bindings. Thanks to
->  Conor.
-> 
-> Xu Lu (8):
->   riscv: add ISA extension parsing for Zalasr
->   dt-bindings: riscv: Add Zalasr ISA extension description
->   riscv: hwprobe: Export Zalasr extension
->   riscv: Introduce Zalasr instructions
->   riscv: Use Zalasr for smp_load_acquire/smp_store_release
->   riscv: Apply acquire/release semantics to arch_xchg/arch_cmpxchg
->     operations
->   RISC-V: KVM: Allow Zalasr extensions for Guest/VM
->   KVM: riscv: selftests: Add Zalasr extensions to get-reg-list test
-> 
->  Documentation/arch/riscv/hwprobe.rst          |   5 +-
->  .../devicetree/bindings/riscv/extensions.yaml |   5 +
->  arch/riscv/include/asm/atomic.h               |   6 -
->  arch/riscv/include/asm/barrier.h              |  91 ++++++++++--
->  arch/riscv/include/asm/cmpxchg.h              | 136 ++++++++----------
->  arch/riscv/include/asm/hwcap.h                |   1 +
->  arch/riscv/include/asm/insn-def.h             |  79 ++++++++++
->  arch/riscv/include/uapi/asm/hwprobe.h         |   1 +
->  arch/riscv/include/uapi/asm/kvm.h             |   1 +
->  arch/riscv/kernel/cpufeature.c                |   1 +
->  arch/riscv/kernel/sys_hwprobe.c               |   1 +
->  arch/riscv/kvm/vcpu_onereg.c                  |   2 +
->  .../selftests/kvm/riscv/get-reg-list.c        |   4 +
->  13 files changed, 242 insertions(+), 91 deletions(-)
+To be able to use the LEDs, a configuration switch has to be set to a
+non-default value. So, infrastructure to support these switches (which
+modify signal routing via the CPLD on the demo board (DB)) is added as
+well.
 
-I wouldn't have rushed this submission while the discussion on v2 seems
-so much alive;  IAC, to add and link to that discussion, this version
-(not a review, just looking at this diff stat) is changing the fastpath
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-  read_unlock()
-  read_lock()
+This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
+controllers" which is still in-flight. I send this out as RFC already,
+so we can discuss the introduction of the switch dependant settings. I
+copied this approach form RZ/G3S.
+ 
 
-from something like
+ .../renesas/r9a06g032-rzn1d400-db-switches.h  | 22 ++++++++++++++
+ .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 30 +++++++++++++++++++
+ .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 19 ++++++++++++
+ 3 files changed, 71 insertions(+)
+ create mode 100644 arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
 
-  fence rw,w
-  amodadd.w
-  amoadd.w
-  fence r,rw
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+new file mode 100644
+index 000000000000..4560d16e7c60
+--- /dev/null
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * On-board switches for the Renesas RZ/N1D demo board (DB) and extension
++ * board (EB)
++ *
++ * Copyright (C) 2025 Renesas Electronics Corp.
++ */
++
++#ifndef __N1D_DB_EB_SWITCHES_H__
++#define __N1D_DB_EB_SWITCHES_H__
++
++#define SW_OFF         0
++#define SW_ON          1
++
++/*
++ * SW_2-2:
++ *     SW_OFF - enable PMOD1-3+LEDs on the extension board
++ *     SW_ON  - enable CAT/S3 (default)
++ */
++#define SW_2_2 SW_ON
++
++#endif
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+index 3258b2e27434..849b5ad9c79d 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
+ 
+ #include "r9a06g032.dtsi"
++#include "r9a06g032-rzn1d400-db-switches.h"
+ 
+ / {
+ 	model = "RZN1D-DB Board";
+@@ -185,6 +186,14 @@ fixed-link {
+ 	};
+ };
+ 
++#if SW2_2 == SW_OFF
++&gpio1 {
++	pinctrl-0 = <&pins_gpio1>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++#endif
++
+ &i2c2 {
+ 	pinctrl-0 = <&pins_i2c2>;
+ 	pinctrl-names = "default";
+@@ -256,6 +265,27 @@ pins_cpld: pins-cpld {
+ 			 <RZN1_PINMUX(122, RZN1_FUNC_USB)>;
+ 	};
+ 
++#if SW2_2 == SW_OFF
++	pins_gpio1: pins-gpio1 {
++		pinmux = <RZN1_PINMUX(80, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(81, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(82, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(83, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(84, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(85, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(86, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(87, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(88, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(89, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(90, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(91, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(92, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(93, RZN1_FUNC_GPIO)>;
++		drive-strength = <12>;
++		bias-disable;
++	};
++#endif
++
+ 	pins_eth3: pins_eth3 {
+ 		pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+ 			 <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+index 97a339b30d76..6d0e12ae4de1 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+@@ -8,11 +8,30 @@
+ 
+ #include <dt-bindings/leds/common.h>
+ #include "r9a06g032-rzn1d400-db.dts"
++#include "r9a06g032-rzn1d400-db-switches.h"
+ 
+ / {
+ 	model = "RZN1D-EB Board";
+ 	compatible = "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
+ 		     "renesas,r9a06g032";
++
++#if SW2_2 == SW_OFF
++	leds {
++		compatible = "gpio-leds";
++
++		led-prog0 {
++			gpios = <&gpio1b 23 GPIO_ACTIVE_HIGH>;
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_PROGRAMMING;
++		};
++
++		led-prog1 {
++			gpios = <&gpio1b 24 GPIO_ACTIVE_HIGH>;
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_PROGRAMMING;
++		};
++	};
++#endif
+ };
+ 
+ &gmac1 {
+-- 
+2.47.2
 
-to
-
-  fence rw,rw
-  amoadd.w
-  amoadd.w
-  fence rw,rw
-
-no matter Zalasr or !Zalasr.  Similarly for other atomic operations with
-release or acquire semantics.  I guess the change was not intentional?
-If it was intentional, it should be properly mentioned in the changelog.
-
-  Andrea
 
