@@ -1,123 +1,113 @@
-Return-Path: <devicetree+bounces-219439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95550B8B111
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:18:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED0ADB8B177
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49A633AE94B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:18:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A731DA065E0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55AAC26D4EB;
-	Fri, 19 Sep 2025 19:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60547266581;
+	Fri, 19 Sep 2025 19:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="du/t96Rq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9022256C6C
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 19:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1326B256C70;
+	Fri, 19 Sep 2025 19:34:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758309531; cv=none; b=S4+M8yYl1U8V16stysfeouamCnqOPeCdchVkmJI0U8FUFO3C//zYnYl/BSyy9RAFguKcCxWoRiWEvxdBuXRRI4t6dZFMyuPFK+uA8E7HQvh26kEGoNRZYqZrblKCsfncF3hCWelw5tqgyUThni2w4XJKcUvDX6NyWd54reipeUU=
+	t=1758310496; cv=none; b=upkEq75dmt0y6e9CFCt9lObdoiDfavCqcZJ/jKHr/0K1yKFsC569LG4R57/Vuq834QGKBSlOmMe414CnSKCRf5LblF2dqGUkHlbJ6XUE+l1IojCq5TvYr11aaiCiK2+x5HaxoeAr7Bnc/RL4cAojfkaBrLIk09mDEUHR4aaJu2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758309531; c=relaxed/simple;
-	bh=Nm+atkHlX329nBUD+ou4VUp5OVx7b5SAjbLtVdyGzew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A+v9AI2G74H63tXZ6Lvgok/bA/LnyFL995HaOsqJ2apuC2SFxaPeh/aSPxAZntA7XW16CeDHj3AbHQJIsFwNApbB/HDKFbH2fTmvrPlteRYWVlTng7NVQLE5Gdp++3X9PD92Qr8WWwgiAg8jzgJO/7nqRmo6VcrirJ/JVTCNV3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uzgcr-0004Qj-VG; Fri, 19 Sep 2025 21:18:33 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uzgcq-0029eE-2e;
-	Fri, 19 Sep 2025 21:18:32 +0200
-Received: from pengutronix.de (ip-185-104-138-125.ptr.icomera.net [185.104.138.125])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id B75A847520E;
-	Fri, 19 Sep 2025 19:18:29 +0000 (UTC)
-Date: Fri, 19 Sep 2025 21:18:21 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	Haibo Chen <haibo.chen@nxp.com>, linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 5/9] phy: phy-can-transceiver: Propagate return value
- of gpiod_set_value_cansleep
-Message-ID: <20250919-lovely-amethyst-bullmastiff-5cef8b-mkl@pengutronix.de>
-References: <20250909-can-v6-0-1cc30715224c@nxp.com>
- <20250909-can-v6-5-1cc30715224c@nxp.com>
+	s=arc-20240116; t=1758310496; c=relaxed/simple;
+	bh=rRgtaSBogQ9OXl3HAtx2DncBhgZdCZT7YigyFbtUo5k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ojKiQNVdaxbs5P8RWUhVm6DhlA7U7MWCGoeGebXxZn9yicm3VHb6QROZotMhKk7UybsXRMBt0rsVazO8q367lT4zLeJLQp15vd5ny60/7eWE8rD1KLjZrzzS4urcgT8mkidchzEpTNAu+MUHz/U1QGO7CO3Xd4PtffpPtH2DxPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=du/t96Rq; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JJYVnd309082;
+	Fri, 19 Sep 2025 14:34:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758310471;
+	bh=4e+vM8y65RFB7t9z0rUFFvypiNgEA9GqKV1KkIOAjaw=;
+	h=From:To:CC:Subject:Date;
+	b=du/t96Rqu8z/S9y/E8DMnrXo9Sdt/i5dE5RVObEXS3ejwua+k1Lq79523nhCeQO00
+	 ZTmqtS+kG6lNgNqsEfrcU27dzoW1qNEIWWd8RWZqj+7JPVHmUBOs5eBKU/bCqM9cxS
+	 ekflEfqY3L+UCV/UvrVkoudRIAEFrA47KMcRj04g=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JJYVIE2559652
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 19 Sep 2025 14:34:31 -0500
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
+ Sep 2025 14:34:30 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 19 Sep 2025 14:34:31 -0500
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JJYVKA3079903;
+	Fri, 19 Sep 2025 14:34:31 -0500
+From: <rs@ti.com>
+To: <mwalle@kernel.org>, <afd@ti.com>, <conor+dt@kernel.org>,
+        <frank.binns@imgtec.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
+        <matt.coster@imgtec.com>, <nm@ti.com>, <robh@kernel.org>,
+        <vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <detheridge@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62p: Fix memory ranges for GPU
+Date: Fri, 19 Sep 2025 14:33:42 -0500
+Message-ID: <20250919193341.707660-2-rs@ti.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="t6u4zda4cx5kdnck"
-Content-Disposition: inline
-In-Reply-To: <20250909-can-v6-5-1cc30715224c@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+From: Randolph Sapp <rs@ti.com>
 
---t6u4zda4cx5kdnck
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 5/9] phy: phy-can-transceiver: Propagate return value
- of gpiod_set_value_cansleep
-MIME-Version: 1.0
+Update the memory region listed in the k3-am62p.dtsi for the BXS-4-64
+GPU to match the Main Memory Map described in the TRM [1].
 
-On 09.09.2025 13:40:15, Peng Fan wrote:
-> gpiod_set_value_cansleep might return failure, propagate the return value
-> of gpiod_set_value_cansleep to parent.
+[1] https://www.ti.com/lit/ug/spruj83b/spruj83b.pdf
 
-Are there any expectations of the phy framework from the driver if the
-switch on or off fails? Do you have to roll back any changes in case of
-an error?
+Fixes: 29075cc09f43 ("arm64: dts: ti: Introduce AM62P5 family of SoCs")
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
 
-Marc
+Requirement for the following series:
+https://lore.kernel.org/all/20250915143440.2362812-1-mwalle@kernel.org/
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---t6u4zda4cx5kdnck
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+index 75a15c368c11..dd24c40c7965 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+@@ -59,7 +59,7 @@ cbass_main: bus@f0000 {
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x01b28400>, /* First peripheral window */
+ 			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+ 			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01d20000>, /* Second peripheral window */
+-			 <0x00 0x0fd00000 0x00 0x0fd00000 0x00 0x00020000>, /* GPU */
++			 <0x00 0x0fd80000 0x00 0x0fd80000 0x00 0x00080000>, /* GPU */
+ 			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+ 			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
+ 			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00010100>, /* CSI window */
+-- 
+2.51.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjNrHoACgkQDHRl3/mQ
-kZwqYQf/c1/IXd7aRBuqdaMALPyXhUQLb5zDa8xv15HZudLAlb4N3ZCTwnOa8WuR
-6C1PiBoxg6JPbbcgfCADKc3ADq/+nxjr8fk1rU3bPf/9t3p+BNJFfX8jiwL7B42w
-X/Yt9MEtmxWaOBWeNXedyM4pFB2qT+GJncKrl6lBIjyjIRkhABKaiNyt/M/DFenK
-rA+xEFrZVljI5iLMktjI92K1FlNaRiaEyOvCSYrM33pHz8RQWPECEF0T4D9z9siI
-XPy/dP9YRUkUszZ1kp+vh//bd2I8Z1R7fwNBWZf+ZwLMISDDx/lt06ohQQwTcLgs
-fHVzHn541sJjrfMO6kikrs8r0W3FQg==
-=qpEC
------END PGP SIGNATURE-----
-
---t6u4zda4cx5kdnck--
 
