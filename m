@@ -1,61 +1,55 @@
-Return-Path: <devicetree+bounces-219240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D02B892D3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 13:03:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C1BB89300
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 13:06:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B7783AE9DB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 11:03:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E3151BC6867
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 11:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966463081AC;
-	Fri, 19 Sep 2025 11:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fGeLMXoD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101623093CF;
+	Fri, 19 Sep 2025 11:06:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69BF619755B;
-	Fri, 19 Sep 2025 11:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB9F19755B;
+	Fri, 19 Sep 2025 11:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758279801; cv=none; b=DEul/z9ycy7bEutv+Ek80TTr8YMt93gT8lWJSTMmQaaQPiSOrsL3bcJ7+i8fUmSU3kE1ztAyvgK/5tfw5fK4XWyb6Jh4vUWEOdJQvlqYGrDLTIUAIXyLuHeuelKsQTGq7+AZNL2ZwniYLJiVF7cVs/ckmBT39lbY99nH1fMNalU=
+	t=1758279973; cv=none; b=MzefXoX0uAEYkBVazbZkNtibbHn0rZZgc7ZjShfEwGK2zEwZlMgDSAM8ObcsOGe8B6N/Tg1YTN4JkPRi7S/ujM5ipAC1M+mAY55rM+8oU0tydHWDddhYvgGr/O8NcmbM4DmYhuRklOju8OjAO6Vfk3S5pN3HgIeZmcxVa0T59o8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758279801; c=relaxed/simple;
-	bh=/SMfYBD9o53+oBR5Fb0Sh6Q3hjzWJCSrQeWD4NzwKs8=;
+	s=arc-20240116; t=1758279973; c=relaxed/simple;
+	bh=y1cOiK5WYv4FOuw4lu59oKTNO+GXg7K9GS8y/iGGcaI=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=KBj6iIwrMk9uFDKb0sDygkwVGrSPs6P3g3ul6vGpTL/JE0++1Zil/qFYYFolWuPo0XJVvCK40bxA0AYL4SFWJ4ouT1fphfyHA9mRvWzL5MZVsWBPy/jf3ICEayr2ZNuevVI1WoKEb+sZhoEq6wLW6OFOjYH6rYKf+0cO4pTfSGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fGeLMXoD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22896C4CEF0;
-	Fri, 19 Sep 2025 11:03:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758279801;
-	bh=/SMfYBD9o53+oBR5Fb0Sh6Q3hjzWJCSrQeWD4NzwKs8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=fGeLMXoDiHe4erpsBlR6ur/37nSbWWsPlYLwtqvvskQug3OBxLs93dRmzJ2p/azvz
-	 Iyh1OWok4YsmbWtrktldGqdgVdsYc+XIgz3zsTetyuVRupYXbF2QwY4lnahycDN3CK
-	 1S2tG/APIVPKHGhWQrUErsztRSA7GypaWaDYoRIb5TpsS0CKCgusdKn0Y099SXKQdK
-	 /4o90AIe1NyXa3h68oPRzR9agELAoDGlUTAOcTU3Pgk+cXG+CXxC4Cl9r5TdGROtGX
-	 6o9qH+5wU0dxFtgQ8DaUr1xw+UAcviAZN79XmhnyG8PlTYtjGBEZihdPagL139haW3
-	 tCQEG9MC2fnUg==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	 MIME-Version:Content-Type; b=YtMfvo2ScQWd53xt7vrt3zzR4rEBslVOyF2WtTCsyrJLixX62PIuZMRAo4J/lHdLwG/Zgt00qZI3NY6t21kZAzQXzWSnOarmbG/qix3hAS57XFEy/+Uq+bS07rRUuNLQ70M4M6YN/ke0BcnWK+7DZ7a648KQ3Vbi6U2FN126IwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D944EC4CEF0;
+	Fri, 19 Sep 2025 11:06:11 +0000 (UTC)
+Received: by venus (Postfix, from userid 1000)
+	id 836011805C9; Fri, 19 Sep 2025 13:06:09 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: kernel@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>, 
- Stefan Kerkmann <s.kerkmann@pengutronix.de>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
- =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-In-Reply-To: <20250910-v6-12-topic-pcm1754-v2-0-0917dbe73c65@pengutronix.de>
-References: <20250910-v6-12-topic-pcm1754-v2-0-0917dbe73c65@pengutronix.de>
-Subject: Re: [PATCH v2 0/2] ASoC: codecs: pcm1754: add pcm1754 dac driver
-Message-Id: <175827979786.43708.15817637781655085954.b4-ty@kernel.org>
-Date: Fri, 19 Sep 2025 12:03:17 +0100
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
+ David Collins <david.collins@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20250919-qcom_battmgr_update_new-v6-0-ed5c38867614@oss.qualcomm.com>
+References: <20250919-qcom_battmgr_update_new-v6-0-ed5c38867614@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v6 0/2] power: supply: Add several features
+ support in qcom-battmgr driver
+Message-Id: <175827996951.33558.9078630116788204768.b4-ty@collabora.com>
+Date: Fri, 19 Sep 2025 13:06:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,40 +58,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-56183
+X-Mailer: b4 0.14.2
 
-On Wed, 10 Sep 2025 11:34:04 +0200, Stefan Kerkmann wrote:
+
+On Fri, 19 Sep 2025 11:18:49 +0800, Fenglin Wu wrote:
+> This continues the effort of updating changes which haven't been accepted
+> in patch v5. Including:
+>   1. Add nvmem cells for x1-crd device to enable reading back charger
+>      control threshold.
+>   2. Add handling for notification 0x83 to avoid unexpected error messages.
 > 
+> Rebase the changes on linux-power-supply.git@for-next
+> 
+> [...]
 
+Applied, thanks!
 
-Applied to
+[2/2] power: supply: qcom_battmgr: handle charging state change notifications
+      commit: 41307ec7df057239aae3d0f089cc35a0d735cdf8
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] ASoC: dt-bindings: ti,pcm1754: add binding documentation
-      (no commit info)
-[2/2] ASoC: codecs: pcm1754: add pcm1754 dac driver
-      commit: 5b65120115420b1b7132c2aafbfe1a54120cbfb7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
