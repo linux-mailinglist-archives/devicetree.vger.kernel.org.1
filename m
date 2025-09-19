@@ -1,59 +1,93 @@
-Return-Path: <devicetree+bounces-219450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E693B8B43B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 23:00:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18972B8B4C2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 23:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA8BE7BEF1B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 20:58:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19E211CC446F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911442C3271;
-	Fri, 19 Sep 2025 20:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EBD2877F1;
+	Fri, 19 Sep 2025 21:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrbSRbwQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bcK/X7nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5944D2C3261;
-	Fri, 19 Sep 2025 20:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B3E29BDAD
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 21:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758315582; cv=none; b=VTSZb9h1cD5OGd7InQ5w+NcaPX2GgnKPV+vqkqNOdtOCdV2ZcAGYmzYugGy/dDvYu1qZvPaQmeERTAuKWZUrnaVEqRID/eOotcEkLCQ5MXa+c3CiTm3W8Xnb3X3ovuJZv6rOXI8uR3rmXPUu/QPMsVnt9n9pGza06WiY5MSIJ70=
+	t=1758316285; cv=none; b=OkxGFJOks1tWdgBOR0e4eGEKFF7OTzWd1HXiYQJclCpN6KAAWb2WeqlaoalXYdGlr3ZBUFEBa4dNRJ4OoUTscr/BkdNC0joOqW8rdfmeOe1wqiUTQ5MJYED+lD2TqYZ+FFKXKtwZ9Kye0aIuSu6jF8D4qZpC3HYYtMU+sbF8YlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758315582; c=relaxed/simple;
-	bh=i/tnZg+7FZHJ7MVvgVqjrjsZ0b0664aRwSQlPNUdZKs=;
+	s=arc-20240116; t=1758316285; c=relaxed/simple;
+	bh=G5ZTT0/2dA6G2tttpKgcyUVjFhq8OBnLoSkHTTYjaCM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f4YZmZ0EWmaFZzP0ClE1Brewq+wuyx86dtvQ1JdvVgQFDieY4uAI/m1xjs0k7qV3VlHSHz5s7mPf9+rfUggkm9rol04UBWaBtdJraRTmChnSRKfhUso+J+1QI/7/nxZ/E2YvCTz/XS4AYNMGrrOA579arsjRXM8ZXUvbMb24xC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrbSRbwQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6CAC4CEF0;
-	Fri, 19 Sep 2025 20:59:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758315581;
-	bh=i/tnZg+7FZHJ7MVvgVqjrjsZ0b0664aRwSQlPNUdZKs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RrbSRbwQtN+Kxc97iqWElOG5aU1X3r5q2TSenj6lVTLxZ+9PazqPrVyuDsIw/tH9m
-	 dvH8TJf6CpL3tpXswSAHmQ0YSEFJ9enmeoPY64MeAGsYwKSHc6kFDid0glt3C9sYfY
-	 L9TtY9KSObIZcNWXAj2B+pU5Ym9Uqm21Dkdn7rvHyOT7DA37aTMHktpXRhSUHGtG5G
-	 mld6VmWG/+/Kip2txx4zNmQ0uVS7yziOGxvA58H6eBjCsjIo0LWG6jItyxtQWd4VvA
-	 RgHgoP3XYLXKHTinj+B5KK43nY7i7sSAavb9+cC9K3P5QaEAGxSlcBVu6MSg7BPvcu
-	 pLhZ9AmEZL9pQ==
-Date: Fri, 19 Sep 2025 15:59:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-samsung-soc@vger.kernel.org,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] dt-bindings: hwinfo: samsung,exynos-chipid: add
- exynos8890-chipid compatible
-Message-ID: <175831557662.2207360.15078209817499196017.robh@kernel.org>
-References: <20250914112942.2604194-1-ivo.ivanov.ivanov1@gmail.com>
- <20250914112942.2604194-3-ivo.ivanov.ivanov1@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KD+hDzaNfI1EBOAR/cDEeJW5rKzM+5ijhvs9XM24DMG7qRKQ1GuTmR1n2f9rQaChkCTez+Ze8z+9rp7MFi8+Ccv7oQ27jbEZwiJ4wJq+Qb1iAr8pNgLfK8Bqlk553C+F2Zv3dMBJChIbLy5XUhqSvzGV0k35tkvucVQrHMSTfls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bcK/X7nf; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-77b2e3169dcso3548065b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 14:11:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758316283; x=1758921083; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zFD2PiGcX7JoCeN4pUYUathAXqzYxKQBC02xv/EkTPU=;
+        b=bcK/X7nfY8Xd4ZED9wwZgphkp8AxTLwPqYqkTiDciDH8g6T2EMRCzwHaxmv2/ySE+U
+         tck9XxMyPZu5WmtwFWeVIppt2j5bDmma0cfwSitExWQTbo6QXa0CNN6Y1BS4nb8a53Tu
+         ZlXyLSSAI3mqDOqs7B3HbgZAc0gqC9Cr1v+TlQKlX58Sim7iLMSNsVBye8aqS96BuDRQ
+         ZZmGP7SMViHZ1vXCfK/cwNj2Jc8WNMBnLi96aG28ikbeN/DOJhLRqW7dm4CByxmDS8jK
+         vSbnd37clSNy/MyI1n1C3Gu057gizkT58S3KnqahHKH+rskIlANIF+gz0nqRdapNo8Zx
+         qSAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758316283; x=1758921083;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zFD2PiGcX7JoCeN4pUYUathAXqzYxKQBC02xv/EkTPU=;
+        b=GBTiHElgHkn0RL71lSHr0iHHLzmtmC5+g3pbgSLFxxPkE9i8tuDyuWosIuOs+8ecb9
+         OjzRrSS8247wls60jO/I9l479ADJ1B/NHunyRpH0tFXVzBblRd1rEW3CLlL9TyKxW/h6
+         2g77xkdikWnGcprhezKvNPm0StfRhmBd4j5WWaBKmbRDhqFF6emqRHp0iqW0vfp5eqMn
+         1ur+IbPg/4iUNc/jyZ2fAuYqNBJLisNjsMPqN3Wlu12nUpwPVCikR0owdmy5M58CQUX5
+         OWqA80RETRaLMgZaqA+E46TwR7NNo52ff4I4heLgwD2qO6uTUUF/Zy13ef80tdmRwqJn
+         HWsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX3gtAu0Acz9NHGoSewnOsWjZqkKSjBhv6CTpqBxnlajKr26jcTdTroC7H1m63TkhBXmsPUHz8p6gOD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB/WCTueJ2TZEMwGFrDIhYxgeP/zKVYZXJzlEIFjahwLeG6rWT
+	A5xJzkEfXvmT7aIvmc+Wyiu9zbv5I0bxX76DCuQIVuSFwVAC6szjI+Hy
+X-Gm-Gg: ASbGncvcG4mbvv/x712rP9xdJ+SEqEt5NCfhWY2kENDhzHJNl/BP9WDDYSA7bTHLBIV
+	jp9Bmx8UuRpUI1h7X6wk9c7mbzW7MQk5QRL1sd4Nq/roqrhT9SNhM3cW6pY+JjdwEJz3xWTR/WD
+	q+b/uLAdUWPg88VtQF/iusm72jBlPTtiq565oN1NiQfqxmuG/FXYeUY1O0rFibHWZjYKVajutPe
+	Dvqf2Xq9edE6cYVhQOclAgz3Ha2isPXU6jalysvQdn4kljE56wPXklWthBxRs29RdRB3Yj+Y/nj
+	cemMPVq0l6BDoYfWNKrmjo0s78UXJp+cqVUkQKIZnQk8M6FHwPVDWHIHjRkPdDOL6w629Jy7S2f
+	LFAJBO8jamNbg+3+DgqNmYtdZjlbNe4A=
+X-Google-Smtp-Source: AGHT+IFuIiW4juUqRqMj5seaAf5fiJdyitd63hqZHOD9nE/8E7rUafQl57TENToxffffGCpntb7bcw==
+X-Received: by 2002:a05:6a00:17a6:b0:776:20e7:d6f6 with SMTP id d2e1a72fcca58-77e4eac2ac7mr5701354b3a.22.1758316282737;
+        Fri, 19 Sep 2025 14:11:22 -0700 (PDT)
+Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-77cfec3f379sm6089705b3a.74.2025.09.19.14.11.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 14:11:22 -0700 (PDT)
+Date: Fri, 19 Sep 2025 18:12:05 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net
+Subject: Re: [PATCH v2 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <aM3HJY0GWJmP8-do@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1758214628.git.marcelo.schmitt@analog.com>
+ <2d6bca62056e1254f91b45f70f4ba4614e659c1c.1758214628.git.marcelo.schmitt@analog.com>
+ <20250919-unsure-mounted-0fc49ce72216@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +96,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250914112942.2604194-3-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250919-unsure-mounted-0fc49ce72216@spud>
 
-
-On Sun, 14 Sep 2025 14:29:41 +0300, Ivaylo Ivanov wrote:
-> Document the samsung,exynos8890-chipid compatible. The registers are
-> entirely compatible with "samsung,exynos4210-chipid".
+On 09/19, Conor Dooley wrote:
+> On Thu, Sep 18, 2025 at 02:39:29PM -0300, Marcelo Schmitt wrote:
+> > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
+> > PGA (programmable gain amplifier) that scales the input signal prior to it
+> > reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
+> > and A1) that set one of four possible signal gain configurations.
+> > 
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> > Change log v1 -> v2
+> > - Use pattern to specify devices that require gain related properties.
+> > - Disallow gain related properties for devices that don't come with embedded PGA.
+> > - Documented VDDH and VDD_FDA supplies for ADAQ4216 and ADAQ4224.
+> > - Updated PGA gain constants.
+> > 
+> >  .../bindings/iio/adc/adi,ad4030.yaml          | 65 +++++++++++++++++--
+> >  1 file changed, 60 insertions(+), 5 deletions(-)
+> > 
+...
+> >  
+> > +  pga-gpios:
+> > +    description:
+> > +      A0 and A1 pins for gain selection. For devices that have PGA configuration
+> > +      input pins, pga-gpios should be defined if adi,gain-milli is absent.
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +
+> > +  adi,pga-value:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
 > 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  .../devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+> How come this is "value" rather than "gain"?
+
+Because, for this one, I drew inspiration from ad7191 bindings [1] in the hopes
+of avoiding creating new properties or using discontinued/deprecated
+nomenclature [2].
+
+The thing is, we now have ADC chips coming with PGA circuitry in front of ADC
+inputs. Those PGAs are usually set/configured through hardware connections
+(e.g. dedicated GPIOs or pin-strapped) and have been described in dt-bindings.
+Though, since these added PGAs don't follow a pattern with respect to the
+provided gain, different properties began to appear. ad7380 and ad4000 use
+adi,gain-milli to describe PGA gain [3, 4], ad7191 uses adi,pga-value and,
+more recently, adaq7768-1 has been proposed with adi,aaf-gain-bp [5].
+adaq7768-1 is arguably a slightly different case since the signal gain stems
+from an anti-aliasing filter, but it nevertheless results in signal attenuation
+much like some PGAs.
+
+I personally like the -milli (or even -permille) nomenclature because 4 digits
+have been more than enough to describe the gains (at least so far). Though, I
+acknowledge the base points suffix (-bp) which is documented in
+property-units.yaml [6]. The only thing I don't like much about -bp for
+describing PGA gain is that PGA gains are often described in terms of unitless
+scale factors, while bp implies the value to be described as a percent.
+
+Anyways, whatever property name is chosen, it will probably be better settle to
+something rather than arguing about property names each time a new ADC comes
+with an integrated PGA.
+
+
+[1] Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
+[2] https://lore.kernel.org/linux-iio/510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org/
+[3] Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+[4] Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+[5] https://lore.kernel.org/linux-iio/46842d4cf2c1149bd64188f94c60ce5e4f3b2beb.1757001160.git.Jonathan.Santos@analog.com/
+[6] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
 > 
+> > +    description: |
+> > +      Should be present if PGA control inputs are pin-strapped. The values
+> > +      specify the gain per mille. For example, 333 means the input signal is
+> > +      scaled by a 0.333 factor (i.e. attenuated to one third of it's original
+> > +      magnitude). Possible values:
+> > +      Gain 333 (A1=0, A0=0)
+> > +      Gain 555 (A1=0, A0=1)
+> > +      Gain 2222 (A1=1, A0=0)
+> > +      Gain 6666 (A1=1, A0=1)
+> > +      If defined, pga-gpios must be absent.
+> > +    enum: [333, 555, 2222, 6666]
+> > +
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Thanks,
+Marcelo
 
