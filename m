@@ -1,193 +1,140 @@
-Return-Path: <devicetree+bounces-219262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82BDB899FE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:15:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5F3B89A2B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:17:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A54687E194D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 13:15:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E0DA188FBB0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 13:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B58309EF9;
-	Fri, 19 Sep 2025 13:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E76221271;
+	Fri, 19 Sep 2025 13:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Axz3FXF4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Eyed/DFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139CA20468E;
-	Fri, 19 Sep 2025 13:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62473249EB
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 13:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758287707; cv=none; b=oTaV8I631pHPMKBTjg7l5qyKZ7LasEf9RCfz3Zo75MbVoz8JHLvQL3YA4aJpGAbJlA90JIVyRed4glwW5HQI2RchBt6FViLSSpabx9ddOm2MENAL7wRs8tcpViN5WrErPYVBmagiILZ3QmQevSiqP89fVjhIPdvF0Ng0ny6fin4=
+	t=1758287851; cv=none; b=Vui/JsRFz9sagVmGxsUzvuWxV3g2pOMTgkE2Lc+e0wmGN+YjnCggfUmUgRVvkRjOPTSo1bSWGtB++rg7XQCmOjcX+IENCu8LmslnQmwPvNco/Is2ScgdoJ+Hs82yIa3S/1l/uUc098Avr2+/FSk3U94xAfQYHJEgVivUMZvq2ZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758287707; c=relaxed/simple;
-	bh=4fc6a0O2Ct2ACGyTZVA9k3181Dr2+/nX0D6D+4aFGQA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ahg6ZFBX8URHyQqQkZCVHSM117+XcmXcvTd7CCuc2XhsY/H7/ebITUFDxkLrqHsfL0GdvNQB0Xa5S/XhJucHbp346WVLKTENmWwIxaXIBVmZ/oFUkv11pna4qwFFNZ9w7tneMcnhXaRshpz2TqMyKPf0zY5y/zXmdVfsdmabzGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Axz3FXF4; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 62F10C8F1C5;
-	Fri, 19 Sep 2025 13:14:45 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DB47F606A8;
-	Fri, 19 Sep 2025 13:15:01 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B0E50102F17C5;
-	Fri, 19 Sep 2025 15:14:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758287699; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=zkLSfTCSK30R9rnBMrwgwQurzUY0AzbDvB3qzxOn7Vc=;
-	b=Axz3FXF42lf4Jr7BG20uduI+4cHtaPmCNT+YGAtHgjs2YaI3lAqfOF52VepQXDiDCSqyIW
-	2NNkJIXmbC5KnEdJUJe1VCrwIFmjDyjUQNGaPzY3eIh1cpWzs2SFTCNwOjuKz5CYMr+53u
-	kRWOTUAydDlzosgQ+snn7FdhPrHmyC4XHPzlViUbtTqd4n6eT7LmLXORk/0b8IbhsS49kQ
-	ycXbS/oneOwhVtcHgJ1tKE6kbACHX/HpH+27DGH6VaSlEH0gCb3iCP/XgIOP/5BPP46a7X
-	3wPkVjOTgkkNTnEx6tMUxx0tmQi6qfRmOYVszE+GUbjO1dWCynOvzzBPOwJqAg==
-Date: Fri, 19 Sep 2025 15:14:48 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, Serge
- Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Pascal
- Eberhard <pascal.eberhard@se.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-Message-ID: <20250919151448.14f8719a@bootlin.com>
-In-Reply-To: <aM0lU01x1w2wB3LG@ninjato>
-References: <20250918104009.94754-1-herve.codina@bootlin.com>
-	<20250918104009.94754-8-herve.codina@bootlin.com>
-	<aM0lU01x1w2wB3LG@ninjato>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1758287851; c=relaxed/simple;
+	bh=eSREDETOuCirK9j7pp0KaT4IL5H8FAZmt4obtpK9FwU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=samypQ1vtb9W2BpMabTBGHMZJcPCgVbu3cawblbT8/j3XjosKtzvQaOyNZKR0mRxTKTEaKq/gRUqfGJEbA46WeC0GCNfMyxo8uM3mtiRdBT+XEHCUhzMpzlvRe3O/a1Kq6dR8cbqlvM/7s6JHZVoaaRbRAFQr/flSGvU1Ao01Xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Eyed/DFU; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45de56a042dso14122525e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 06:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758287848; x=1758892648; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=eSREDETOuCirK9j7pp0KaT4IL5H8FAZmt4obtpK9FwU=;
+        b=Eyed/DFUcHC/eY9Dwk4WEIuNjwmF9UxRzgbac3/eRs7vXT7HafKOX9/WmJtUm81cNU
+         16D8oo56DzfuODKP4SnAWxfuawbSO6wrbOP/S29XpuW7QlTl5CLAe2AcDhxsAcvWLtWp
+         sO2wgGz60g91ftbQY/TyVOzIcsOwE/ANEEFKYDxJ+UtuCryb2KAqjWcsjMgUOZiVOlkM
+         oZxAtnmMUnqtcRirGwMxeTIkBuZ0oCn8ET/gfBcTDzzQfCmKEcwjssSWaVjMy0pPEg53
+         iAzCLx/TxSbsgn7IbZrKaCf35X0ILKQBPyonYzO694lTAFZHLrnCthURULfH8ECwFrli
+         OEKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758287848; x=1758892648;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eSREDETOuCirK9j7pp0KaT4IL5H8FAZmt4obtpK9FwU=;
+        b=dFugQLDBboy1y4NSARzkK0KWe7A4bx3vjkLXIaNxRQTA2HoWhy99z0iR8laVrLaIkV
+         d1WRGce9LHNn2chxUgzhVIp+EQL+DzHCHVrh1klvsgJNfQVO9pFXhgr4mPHQagvGqHbH
+         56xSMFELtVEkLVk69kzgO5DWY9/aMKRj42aBjQDFiOfWO+vcFNfELjI1pOQqKR0nQSLU
+         Kaygcm6r1q8H16qGVmyXpQZwr6F5LxICi0WW3oc8R3V2ZyC+uemFgDQzDFqB9BQYkNxm
+         q1knVaRlqR4lecGJEomJMCxLIs41UasCXR4dHyTAkVpg3lRE1SHz5c31wKz5emRSyzk+
+         FfJg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGBMMSsQm/U/q6vhoHM/dpLZ/KO+xa0oH1jGT0Wd8c0m+Z6aektzvMLihQ2zh9N8G6plvo8NoK2/SQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEGihlmh9DEJBTPDQf1h6mdVqXBMkIC+o9WNFTomcycBiIrX3V
+	ZrDjfPyWxQ+WmSdIM3suLvbkdhx2FkTWZIQyoHRnCkeUdhMa21aIZJ2C6oBT/0wDt80=
+X-Gm-Gg: ASbGnctgz9bMxcsZLnahtN6ZBkeovzTYyOFdhHlF3nstPVzwHoHX5zvc2Hzhkyl2EC+
+	r7MMRWvgZDzz279pqLK8XQ/9cRYc1BruLaC1Ht5BRKLkGfgPMslYpC41qKH2Toz7NwsCf2ILw40
+	KI+e4uLwFn9AA+li4vfujtCxHPiV8y82ivEaWdkIkOyR3NwIgRiI2xlCmWerinoB+Rq8iIXQWE7
+	KuNNxLTyn7/L4et/FK4v+l3kOAOEFbvgaDmjZ117LIQ/1cz7aJoxbhy+uwt0fiHwGs94aFe9rTP
+	gD56Wm5b16gqCG+/O4573n9HjCdYQaYBCdnwdFJDm3f4h5SY11gAc5S2EFPueSW9YaPVx20575X
+	S+bgw+LlWg+BQufEhRC2Bezac75JWKCO1xkDd
+X-Google-Smtp-Source: AGHT+IFOEEL5rr0JEeFyk2H6x0E84IJDnhVN8O14E2Hi/9ffavovVbWpQzybBfB+MObNjmkLFHYNTA==
+X-Received: by 2002:a05:600c:6305:b0:45b:868e:7f7f with SMTP id 5b1f17b1804b1-467ee8c56d6mr37027415e9.17.1758287847647;
+        Fri, 19 Sep 2025 06:17:27 -0700 (PDT)
+Received: from [10.1.1.59] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f6695a9dsm88797825e9.24.2025.09.19.06.17.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 06:17:27 -0700 (PDT)
+Message-ID: <dfde0a91359b87d4eff88815b4112ad17cca9935.camel@linaro.org>
+Subject: Re: [PATCH v6 2/2] dt-bindings: power: supply: add support for
+ MAX77759 fuel gauge
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Thomas Antoine <t.antoine@uclouvain.be>, Conor Dooley
+ <conor@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Peter Griffin
+ <peter.griffin@linaro.org>, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, 	devicetree@vger.kernel.org
+Date: Fri, 19 Sep 2025 14:17:26 +0100
+In-Reply-To: <65xrumpt7ug5mqd7mkcknwyqmljrn4sofrqymg46bwvcmjoarr@wmt5fhsj3viz>
+References: <20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be>
+	 <20250915-b4-gs101_max77759_fg-v6-2-31d08581500f@uclouvain.be>
+	 <20250915-presoak-answering-2df6fca532ad@spud>
+	 <c5f2e6e8-2ada-476a-8557-85273b9a93b7@uclouvain.be>
+	 <a55d7e6e6d9515293ca735f25ffd5c925a6ec617.camel@linaro.org>
+	 <65xrumpt7ug5mqd7mkcknwyqmljrn4sofrqymg46bwvcmjoarr@wmt5fhsj3viz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Wolfram,
+Hi,
 
-On Fri, 19 Sep 2025 11:41:39 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+On Fri, 2025-09-19 at 00:32 +0200, Sebastian Reichel wrote:
+> Hi,
+>=20
+> On Thu, Sep 18, 2025 at 02:02:55PM +0100, Andr=C3=A9 Draszik wrote:
+> >=20
+> > Additionally, the FG block can also measure temperature and battery ID.=
+ For
+> > those, a combination of (top-level) PMIC and FG registers are needed
+> > unfortunately. Which means that the FG should probably be an MFD child
+> > device, even though the FG itself doesn't depend on the top-level. Othe=
+rwise
+> > it'd be hard to access the top-level PMIC register.
+>=20
+> My understanding is, that the FG has a dedicated I2C device address
 
-> Hi Herve,
-> 
-> > +#define IRQMUX_MAX_IRQS 8
-> > +
-> > +static int irqmux_setup(struct device *dev, struct device_node *np, u32 __iomem *regs)  
-> 
-> The whole driver would benefit from a 'rzn1_irqmux' instead of 'irqmux'
-> prefix, I'd say.
+Yes, that is correct. It also has its own dedicated interrupt output.
 
-Agree, I will used the 'rzn1_irqmux' prefix.
+> and thus cannot be a simple MFD child of the PMIC.
 
-> 
-> > +	for_each_of_imap_item(&imap_parser, &imap_item) {
-> > +		/*
-> > +		 * The child #address-cells is 0 (already checked). The first
-> > +		 * value in imap item is the src hwirq.
-> > +		 *
-> > +		 * imap items matches 1:1 the interrupt lines that could
-> > +		 * be configured by registers (same order, same number).
-> > +		 * Configure the related register with the src hwirq retrieved
-> > +		 * from the interrupt-map.
-> > +		 */  
-> 
-> I haven't looked into the above for_each_of_imap_item-helper. But
-> wouldn't it be possibleto retrieve the GIC_SPI number as well and use
-> the correct register based on that? That would remove the need of an
-> already sorted interrupt-map.
+The core can still create child devices if a child uses a different
+i2c address, as already done by the max77759 core driver for the charger
+(which e.g. doesn't have its own interrupt). Some MFD other core drivers
+also use such an approach.
 
-Hum, this give the knowledge of the GIC interrupt number in the driver itself.
 
-Not sure that the mapping between the output interrupt line number N (handled
-by register index N) and the GIC interrupt number X should be hardcoded in
-the driver.
+[...]
 
-In my v1 series iteration, I used the 'interrupts' property to provide this
-missing information:
-   interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* line 0 (reg index 0) route to GIC 103 */
-                <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>, /* line 1 (reg index 1) route to GIC 104 */
-                <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>, /* line 2 (reg index 2) route to GIC 105 */
-                ...
+> Assuming I understood things correctly, I think I suggest to model
+> things like this for the battery temperature/ID:
 
-Base on the interrupts table and the interrupt-map, I deduce the reg index:
-  - From interrupt-map, got a GIC interrupt number
-  - From interrupts table and the GIC interrupt number, got the line/reg index.
+Nice, yes, that should work - didn't think of that...
 
-Rob asked to use only interrupt-map and use directly the interrupt-map index as
-the hardware index:
-  https://lore.kernel.org/lkml/20250801111753.382f52ac@bootlin.com/
-
-> 
-> > +		if (index > IRQMUX_MAX_IRQS) {
-> > +			of_node_put(imap_item.parent_args.np);
-> > +			dev_err(dev, "too much items in interrupt-map\n");
-> > +			return -EINVAL;  
-> 
-> -E2BIG? With such a unique errno, we could even drop the dev_err.
-
-Yes sure.
-
-> 
-> > +		}
-> > +
-> > +		writel(imap_item.child_imap[0], regs + index);
-> > +		index++;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int irqmux_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device_node *np = dev->of_node;
-> > +	u32 __iomem *regs;
-> > +	int nr_irqs;
-> > +	int ret;
-> > +
-> > +	regs = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(regs))
-> > +		return PTR_ERR(regs);
-> > +
-> > +	nr_irqs = of_irq_count(np);
-> > +	if (nr_irqs < 0)
-> > +		return nr_irqs;
-> > +
-> > +	if (nr_irqs > IRQMUX_MAX_IRQS) {
-> > +		dev_err(dev, "too many output interrupts\n");
-> > +		return -ENOENT;  
-> 
-> -E2BIG? Wait, isn't this the same check twice?
-
-This is not the same check but this one should not be there.
-
-Indeed of_irq_count() counts the number of items available in the
-'interrupts' property. This is not used anymore.
-
-I missed to remove it from v1 to v2 updates (and also from v2 to v3).
-
-The of_irq_count() call and related checks will be remove in the next
-iteration.
-
-Best regards,
-Hervé
+Cheers,
+Andre'
 
