@@ -1,245 +1,329 @@
-Return-Path: <devicetree+bounces-219134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C4FDB87FDB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:29:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2857BB87FED
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 08:30:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 144D1522EFC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 06:29:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C736A1BC7AF0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 06:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C271F29BDAE;
-	Fri, 19 Sep 2025 06:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC5129C33D;
+	Fri, 19 Sep 2025 06:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i+NIu5x0"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="EiT8H2tx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011007.outbound.protection.outlook.com [52.101.52.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F3D21FF24;
-	Fri, 19 Sep 2025 06:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758263343; cv=none; b=NrwSvKWU/FIeA8T4z64uw2BhWmpfQE1ILJZ2v6/q5DAyIvWUkLY3WPjyRmqFIGACB8n91klIyxiqd7q8Eehk25e5NE962KQZec2OKdhVMHN8AwWYttAMuDcjpFG+62W2OTbWTANntHzXtGo8aqfWryV2I/1EX9HmK6qdXxcHbDQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758263343; c=relaxed/simple;
-	bh=1dA4LqMD015yw3IbVxtUS6ilnL+cRVcNULs8C7ckGjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=roIlGlOlf2iugQ5rYqVdZ1DOjOzQ7Chpg5LuSFDc8H2yxRTva7vB89CC5haNvAD4r32ZWZFtX0d8N50m6INR8TlAbOaoe9q2YtRpK/pV5tYJ9mNXm3XYnujoriF3q/arwGcbI6WVd34aE8oeT/WWW8Jp/BFAH9s8HEH0mkfDx1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i+NIu5x0; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758263341; x=1789799341;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1dA4LqMD015yw3IbVxtUS6ilnL+cRVcNULs8C7ckGjM=;
-  b=i+NIu5x0ibzSRneEPk7+KQMvCb9Kdlhs3zzkFraXBkbRPqudGa7UFwvw
-   nhU2kWMppw0tUqMS6ibz6CT7DEpMoi4xxvOlbAY0QQEBsJ4Sob1nWDgOD
-   SF0ZgWHzuRkhx68NgqBZ/t3pMkL1EILtaLRvPFHd7sMqonSDBeskT85Bw
-   d36wyI7/NGId92jcxxH1hAQENUK4eXEqHpdF6yAXQa1mc0RRiEwd2IxKx
-   hK4YjvrlVLZr+03DMPRGIAC8RVPfARJ/HAB/p1Kdq5aHoE7dUtyeMHFut
-   g1IV8ERu/vtXN27sO8XKy1LDaO47HPg1aPtj4I/PVn06Glh34q67xPXe5
-   A==;
-X-CSE-ConnectionGUID: FdlVjhUpSVqhuH5iuPy0rw==
-X-CSE-MsgGUID: XaJMRDX9RTu9Ht5AX7IvHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="63238509"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; 
-   d="scan'208";a="63238509"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2025 23:28:59 -0700
-X-CSE-ConnectionGUID: zx6p22r+QaSNoXCTHFyF4g==
-X-CSE-MsgGUID: VNIjzq8mSLST2STe4v+vPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; 
-   d="scan'208";a="206698556"
-Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 18 Sep 2025 23:28:56 -0700
-Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uzUc1-00042B-21;
-	Fri, 19 Sep 2025 06:28:53 +0000
-Date: Fri, 19 Sep 2025 14:27:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: victor.duicu@microchip.com, jic23@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, marius.cristea@microchip.com,
-	victor.duicu@microchip.com
-Subject: Re: [PATCH v5 2/2] iio: temperature: add support for MCP998X
-Message-ID: <202509191423.1OvJW2X1-lkp@intel.com>
-References: <20250918111937.5150-3-victor.duicu@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46703DF59;
+	Fri, 19 Sep 2025 06:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.7
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758263397; cv=fail; b=dtNZKw0erjOez57wECwHNLsXY3Y0FIkJ7Wf2OC4ZUqLK/nLdWPDcK+kEK873+R3VVBAdaj3yZjGTkvU0uYWqG6EATZCRNCMRAJeO3yg1WFf+6rfPpQB6xEchxabd2UusDnYo095vxGsm5T+5sRQ2duBBAF5oaza/+0ySVk9B+OY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758263397; c=relaxed/simple;
+	bh=nzBJg2fZ1sApTCdmPU1lbi5+wx56UYAsbNCNdCZTyEw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=glbZligReDBN8IYGI7tWHGcVR3jN0Ae941mkNWl87SSUtVCZPd5D5PPU5+VAo0XFYAZ0xgCoBBkDGCBFXSWV0sZEp94At5rB2a5COF2sLpdxDhCe1+f2AlOmScyw59PtML07k4K0934YAGvHLIr8tl4Mt4NjEoII37gp4nB2IGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=EiT8H2tx; arc=fail smtp.client-ip=52.101.52.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ijW7tH3nTlLDi8YN/ZkVAM4KRwvpt4UM4Oaa8C+6vkyZM4AVg9YRAKeDmIKQzpMZvVcFSSslDPKXJs/vQaRiefAv15oQ/gaZ3Be5WVEOUs5qwNXUMONxUAF53HyEiYYdkBtMp2xnjuT0CMUAiQnZ/BWbC9vrRDnjB8RAzN0JvXrWbgHZ4dCyP6H9ZCgugle8kp2L6RWQNaxIJxZac2vuQ6GoHY/ZbVgH98whlBM+pPt+mcOLNvSQkggEO/Ff5HFfBdRFUMTZtA0O7ncjgFebdmxalD00cgp5sgRbxT957LKbRITaVFsKH7LRVZxMMw3OwOGAAg5AwxtkFegDyb8RnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ymr5RFPtABic/nvXfzxQr4ydK4bWl9RC+MknIief+v4=;
+ b=SznquUtaIrBY+wZJqXC4AY8PtPyBwy8jVJt1peFJafar4dKUUMSXnBvwUXBrygn87lnxZ5WBKA7elVz+10rcx1rtOWHzYm2G8XTpcoPdBjdMFcleo4oqT6MxvXz4TYAxqHgRoCXfsY0m3/EOPMnJ3GYuTgm1tNZk4TMjIuF9UeT/cjkNaI7xRhK2Z+g+TiQ6sZj/ez4E/RY1SVe4sVyg+NuvD6c3DDqftZ/zb1FMwyXDWu48T7yPOg1OY0eYw1krMqGHJMFE9VUjOGWj/quXUqR2UyN4YQrqbOdjdWBEx90tkQbGmlW+AliGdTpzz/iZ9vuTxfwUqIMOMD7baGlwTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ymr5RFPtABic/nvXfzxQr4ydK4bWl9RC+MknIief+v4=;
+ b=EiT8H2txoSY8pQbyrkf6E7bMYBmFjPhh+9hPCvKavjG13FWdXUg9sTF3u16R+1P3DCzXusgtXWUBO14n5dJ8/K4umgrX+XPma70UC0KkrsyhKrP0AMYi6MWc3flQliUwOEIGzxsxv1npQmpAR8GVSaZ1XrGrz9tZ//2N9RFVMUQuuJWGaUeLbjq9zpQVHfaDdjp7ATk4g11jyBn7PkotUQzAsMH2lDeT4lb2UXDrbEeno0dO+8mmsBauUFHR7m4OTlMxXaGVZPRUrz1wAHhLcK7tZdfZlvbXEYbs209aTKWvTUzA4QcwMGLPEJbZTiWlj9TO2kuDOh9D6r3v/8MUxw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB6494.namprd12.prod.outlook.com (2603:10b6:8:ba::19) by
+ DM6PR12MB4170.namprd12.prod.outlook.com (2603:10b6:5:219::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.14; Fri, 19 Sep 2025 06:29:51 +0000
+Received: from DM4PR12MB6494.namprd12.prod.outlook.com
+ ([fe80::346b:2daf:d648:2e11]) by DM4PR12MB6494.namprd12.prod.outlook.com
+ ([fe80::346b:2daf:d648:2e11%6]) with mapi id 15.20.9115.018; Fri, 19 Sep 2025
+ 06:29:50 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+ Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Svyatoslav Ryhel <clamor95@gmail.com>, Dmitry Osipenko <digetx@gmail.com>,
+ Jonas =?UTF-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>,
+ Charan Pedumuru <charan.pedumuru@gmail.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Subject:
+ Re: [PATCH v2 01/23] clk: tegra: set CSUS as vi_sensors gate for Tegra20,
+ Tegra30 and Tegra114
+Date: Fri, 19 Sep 2025 15:29:46 +0900
+Message-ID: <2718480.Icojqenx9y@senjougahara>
+In-Reply-To: <20250906135345.241229-2-clamor95@gmail.com>
+References:
+ <20250906135345.241229-1-clamor95@gmail.com>
+ <20250906135345.241229-2-clamor95@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: TYCP286CA0146.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31b::11) To DM4PR12MB6494.namprd12.prod.outlook.com
+ (2603:10b6:8:ba::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250918111937.5150-3-victor.duicu@microchip.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB6494:EE_|DM6PR12MB4170:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e19da22-0470-4a7e-2eb9-08ddf745efc5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|10070799003|376014|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bThTSGprMHNJcTVCdnMxOE9PblFVbVo3Z1AyaTJMSVAvWkNqQkw4UlllMHhF?=
+ =?utf-8?B?TXg3VDNBM0tOeHlETUlHbDl0UGxUOTNZVFNIVngyZnl6ZnBpeE1vNVNsZ3Ar?=
+ =?utf-8?B?UDBJRHBoTU1Xa2tXR3o0eDVXcnhRUktEY2hpaFBqYVc2QlIwYTRLTjVmRWVU?=
+ =?utf-8?B?elNXWHU3OVVTaTRNOEt3ejNNWWEvTkJzdng1SkFMN3NpMmczbG54TWZyRUpB?=
+ =?utf-8?B?TEJQMDFTZEdYU2hHenZDVndXcmR5UTllQTF2S1dtRnBBMEljRHdiWnU2eXpK?=
+ =?utf-8?B?bHI3WENIekRCVFpRam9TN3RFakUxdVZRbXNEMThmMUwraUlnOWNZZU9GNW8w?=
+ =?utf-8?B?RVE4THlVbmZjNUg1UTdZYm9iRnpsRWpqZS9rQzhYOGlBc0lJbVdNZUNPclFs?=
+ =?utf-8?B?aDNXbUNLa3hsektCd2U3NUxjbU44bDdyRW4vK1Jmak54bG8wRGh4em0wdkVE?=
+ =?utf-8?B?V1lWYU42Zm4weEdsMnVERGRMOGc0eFRMcXZoK1F2cm9vWmE0LzR5VTlWU1k5?=
+ =?utf-8?B?NFZzVThTMTdEK2NUTkk2QXp3VE5UNGs1OXJNK2xYazUydXdRN3drTnl1T1pT?=
+ =?utf-8?B?dkFrQVRkeVFWbmFaWk1JV0Eva1hGNnEzWlBPNTJCNjdKMHlyR0MxMWJ4RU93?=
+ =?utf-8?B?Rk9UNUIzOEZaeE1pTStDd1JvRzBsUHVtQUR2Y0N2YTRqQi9jSmd5V1RxelUz?=
+ =?utf-8?B?WHRpU3dxMzI1dTJPY1NCN0lPbFcyRjFnU3J6SjZLdldBZXQ5Yk96YThlSS9k?=
+ =?utf-8?B?R2YwOFVvdk5RWnVpRkV6bmxnRUFnODFhcktJZW5YZHREWmJET3JscEtFc3hC?=
+ =?utf-8?B?dkk0QlZhRkRNQ1I5bFdmdFphRjltMndZcWk3N01OaGFZQVJueEFBK2ozd3lu?=
+ =?utf-8?B?WEUxNllTOUc3a0dhTHJwOFdtb3MrcjJ6SFFpQ2FLL2JmMlU1N3RLdkJhcmF5?=
+ =?utf-8?B?elhYRHdQYytHUlNqdUNaYTdMSlRNeElldEZaWUFPNnhNNlZ2Z1d0Z29xaWdD?=
+ =?utf-8?B?OXFNSEZNUjV5Nm1FaVBjTWJjOGgvOTBVVE43a0JoSGxZZUQxRlV6MjRUVHVY?=
+ =?utf-8?B?QjF4UFFHMXpoMllvVVpwdzExMStLRWx0cTFiSzJFK0wwVTgxSjI4b094WlJx?=
+ =?utf-8?B?dnpVejVZVXY4SG1pU056ZlNZVFRaeUZGUWdJZGtlVHpmamxuTDJvQU00dnRX?=
+ =?utf-8?B?eVErdnZidGZudXRodmppQnVLV0s3dE1HVUUvRHlZNy9PWEs4a2NEaTFFemFT?=
+ =?utf-8?B?TDgrUHVCejhQTUxwRmtXcGhtSmRWQjI4TmxsRUdxQmxGV1h3eEp6UFEzU2sv?=
+ =?utf-8?B?L3NWWHl0K2pYNFAwTUhzVFJNclNqQm5EVXBDWmsxSTRtb3NkOSs2WWJWYTlj?=
+ =?utf-8?B?VDlXOHFBMDh1M0M0WEtNdjg4TXBsQnJ6bVQ0ZUkyU0RxOFp4c1hnNVlQUkJY?=
+ =?utf-8?B?eWZFTmozUkhpdHRKNDY0b1hNK1k5UzdSL0h2YWxyZXBneU5DY01uNTFKMFk0?=
+ =?utf-8?B?ajZHSitxTUQxckgrNnUvemlHakVjTUI3MXdteFBWZWpsVVB4Zmw3TXkxS0pB?=
+ =?utf-8?B?bVd0RjJOOFg4d2Z5UTRJSXBPcmdkZ2tNMzNrcng4eDFuWTlBb3phRzNJZ1ZL?=
+ =?utf-8?B?YldqSm1MMzRhcnpDTUtLaHR2Y2hXVjJtZndWR0g5STc5N2dzQWh3K0xkM1Rj?=
+ =?utf-8?B?U0MyUjE1U2x2bkZyL1NNaWt3bWU5MHB3RUQ2dExoR0FLMWpPbXRJVWdJMlMr?=
+ =?utf-8?B?SXhPeFZJTnl5WVN3RWNLNHhiQ1VZR1ZNeTcrcUV1RWg5cFdla1NQMjBGT3Vz?=
+ =?utf-8?B?SExrQThWQ3ZQd2RpZHBZRUprSlhhbHdDRVNlek12Z1ZRbWc0OXpXR3BwQ3FU?=
+ =?utf-8?B?UzhTcFM0UkJ6M2hEOURlR0ZXbzlDWWY1V0JKOVkvTGtiTDFHL2hqbkRRdjNU?=
+ =?utf-8?B?T3RxV1haQXU2Zm5meGNhMzhtTlpoMlVrdS9XbjZGSStyYVZycUFISHZrSmxw?=
+ =?utf-8?B?dHJQaVlCTERBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6494.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(7416014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TC90UllUN0NEeW84b1Y5T0szWFNXZFFFWlVOd2Vac3Yxb3h3TFZJL2Jkbzgy?=
+ =?utf-8?B?RjdaNlBiOVlYV3FET2dIOWZ0SG4zcU94Q2JNNGRxcVZKd3JHbDdjL0E3QjZ5?=
+ =?utf-8?B?RWNuSXdyc0FmanUrZFRtcEk1eUJaMDZJTUJ2dzJIUHQ5ek11cjE1SWlKUmhH?=
+ =?utf-8?B?NXpBdHcxUFhNZVpwZXREaFM4ODd5eVNWV0NvK1dXVzJHTXUvbUlXbVdLR1NU?=
+ =?utf-8?B?WXVFa3hNY1IwS3l5amEvUFZING1GdzlrUHlsbzByV2J5OHo2ZUJiM1prTHdM?=
+ =?utf-8?B?ZFo1UHVQT3ZQNWZBVUNVdHR2MlFPS2pLR1M4OGFXd3J3UHJGeE8xV2xTWjNl?=
+ =?utf-8?B?a09xa3hKajNHZDhvaTVzMDUwdy8wTTNpQ2U0cXM1WlpReUMzT0lZY3BvVHN5?=
+ =?utf-8?B?ZFhJeEF2Wk1qYnkyK2ZZSVJZbm9ITGNobHpjOGlEOGcrOGFmY3BKOElWS0Mv?=
+ =?utf-8?B?RWVjM0NUcGNPUHhPcG16V280ZHhicmhvQlRJU2NLN05xZk0xWTdVWFBGTVJC?=
+ =?utf-8?B?RHVsZkc5U3BuSi9HS3pPOUV2eHpqQUlEZlNNMUlLRlFOaXQ4cWFORC9TS3JU?=
+ =?utf-8?B?Q01BUGhydUYvTFVKZi9DRWtSN0JTeXhxQ2wxMEs4NUN6MUYxbTRwZzZNR29k?=
+ =?utf-8?B?enNOVCtMbkRkM1VCYVFCQU5tVDdyTC9VQzBidWw1RHAxRWMxelVNSEpOVjln?=
+ =?utf-8?B?bHFsSGxSTUV5ejloOHJrRVlWRGlWaC9vSWJBbUJmTGd4R2g4aHdNZ1VQNkhR?=
+ =?utf-8?B?TG5idi9rMnRsZU5zQXVNY0t3YzRzUTlCZkJEbDhJSVh2RFZjY0FORkRyckMr?=
+ =?utf-8?B?VjV4NUFiVHZoQ0VzUmMrUmJ1ekwvazdMN1hWNThjNTIwc1FaL3MwUkFzN1lD?=
+ =?utf-8?B?L1RoTDRDRWJkWVdBL1dJS1VGZExaK21tN1kvK2JFWmN6OFpvY1d4bk9jdVo2?=
+ =?utf-8?B?SUp5d0VKYW9uMlJIVFdCOFJZUVhQTHBhUzdOcXp0ZHB5UTJZK0NSVFUyRys4?=
+ =?utf-8?B?eU5hbzB3WHkxL2dKTlpMM2JIakdvcGlYUWI5Y2o5bG8wdVJLMkkycHlZMXVp?=
+ =?utf-8?B?Q1lUQ2Z4bkxPVGZBVDBENzYxdGJBaWhLaVhmQ0YwSHZIQ01mN3U3bEE0K081?=
+ =?utf-8?B?QUNmVlU4ekpWbXhaeTU0M2J4T3k0NHNPSXB5L29xRXdHRFFOVnZEeTd4aFRh?=
+ =?utf-8?B?bjBVYmNUVHZtRmtSVGNBbko1ZFo0d3lyNjMrcXRxSis0L1ZGcFFNNWlpSFVK?=
+ =?utf-8?B?ZmN3TEdrUnhTOXVURlp1UnNUL1FtSTd5UTMwZkpmQk1IL1ptVzB5NjJYTlp3?=
+ =?utf-8?B?TU9idWdzc3cxd2FQZ2M4UFhlQWhrMjhvc1h6dm5TbThETkg2bW0rdVBXK3dQ?=
+ =?utf-8?B?UXRNQUxFeDlhY241dzZhbFloN2xRQ2Y4YXJ6YVpEYW05OUxZQmgxNXFvQkEw?=
+ =?utf-8?B?RDlGZmhoRGkwNU1uNVJFVW84QXc4eXlKbCsySEg2eVppQTFjalFkdk5vem9H?=
+ =?utf-8?B?K3IrdWJiY2RINTNRN2tBRE9FNUgyUElOd2J3WFcrNHVuajVUdC9jSzVHMmlF?=
+ =?utf-8?B?bHgvSC8yYUhHVC94RlRDc3c4NTdJd2QwWGNNR1I1NmpaSTNlY0dkR2tiRkNP?=
+ =?utf-8?B?WjNWTmRuQXdOTUtrZGhsOEhUekl5aGVoNUpJUmovNThGYjBscG9zcVV2NDJq?=
+ =?utf-8?B?WEJIYkhkRlJSYktYbUc4L2dDY3Y0T1RWd2IzYVVHT25QVVllc3NObyttWUM0?=
+ =?utf-8?B?MkNJcVdSbFhqZk9tR0xKcCs0UFBxaXhNMzdWQU1KQmV6dXBXdmRlVTF4VTZP?=
+ =?utf-8?B?WUsvUDIyOWl0MXNUZVVMOCtFclBhbldwNFJjRmZJYXFuYzEwZm1XUzJoa1Ew?=
+ =?utf-8?B?WTZLTFgxcmJWYm9ySHJMK25SVnl6TkNoUjhpVnhwVyt0MW11REZTaUVlanA1?=
+ =?utf-8?B?K2VNM2U2MXl2UkFUWFNvVis4c1pDVndVeWRDbm9ROGJ3MSsxQXRIZjZLU2lp?=
+ =?utf-8?B?ZktkK1J6QllMaTFMcXJCMHZmOEI5WGRldE1SK2RRQWZsZW1qZXo4N2FhNXZs?=
+ =?utf-8?B?MWFWTHBVNU0rU0k0OWF4TURmeHRNNVp4S3VZTzU2TGw1azFVU3VWTFQ2c2x3?=
+ =?utf-8?B?ci9aQkVsSjRiRVQyTkx3blYvUXYvODVDb1d0anRQN3l0UzVDZW4wRWEwSWZ1?=
+ =?utf-8?B?V1k2UFlxQjR4SVE4eFRYV1NZdW5za2c2VzdkRzIrZ0ttM3ZoUHBOK09rc2Rj?=
+ =?utf-8?B?bkJhYS9pTWdhenpIZm9HYUZHSlJ3PT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e19da22-0470-4a7e-2eb9-08ddf745efc5
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6494.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 06:29:50.6834
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X4/LXBw9wZx7FMawmzvnouey5LvPquJuDTVNj1uxQ8RjbMs/ZNZZS2n2SQ/FTwABKa5ppmvHEB3mqk8cJec3qw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4170
 
-Hi,
+On Saturday, September 6, 2025 10:53=E2=80=AFPM Svyatoslav Ryhel wrote:
+> CSUS clock which is camera MCLK, is also a clock gate for vi_sensor so
+> lets model it by creating CSUS grate with vi_sensor as a parent.
 
-kernel test robot noticed the following build errors:
+s/grate/gate/; "vi_sensor's" in commit message.
 
-[auto build test ERROR on 671b9b6d7f4fe17a174c410397e72253877ca64e]
+The commit message is a bit difficult to understand (to me at least), perha=
+ps explain it in terms of the clock signal flow, e.g. "The CSUS clock is a =
+clock gate for the output clock signal primarily sourced from the VI_SENSOR=
+ clock. This clock signal is used as an input MCLK clock for cameras."
 
-url:    https://github.com/intel-lab-lkp/linux/commits/victor-duicu-microchip-com/dt-bindings-iio-temperature-add-support-for-MCP998X/20250918-192457
-base:   671b9b6d7f4fe17a174c410397e72253877ca64e
-patch link:    https://lore.kernel.org/r/20250918111937.5150-3-victor.duicu%40microchip.com
-patch subject: [PATCH v5 2/2] iio: temperature: add support for MCP998X
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250919/202509191423.1OvJW2X1-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250919/202509191423.1OvJW2X1-lkp@intel.com/reproduce)
+For Tegra30/114, I think this is correct. For Tegra20, I noticed that for t=
+he two other output clocks -- cdev1 and cdev2 -- we already are modelling t=
+he source clock muxing in the clock framework through clocks called cdev1_m=
+ux and cdev2_mux which are registered as read-only mux clocks in pinctrl-te=
+gra20.c. So I think the same should be done for csus -- add a csus_mux cloc=
+k in pinctrl-tegra20.c, and make it csus's parent. For Tegra30 and later ch=
+ips, these output clocks seem to have only one source clock.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509191423.1OvJW2X1-lkp@intel.com/
+Thanks,
+Mikko
 
-All errors (new ones prefixed by >>):
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/clk/tegra/clk-tegra114.c | 7 ++++++-
+>  drivers/clk/tegra/clk-tegra20.c  | 7 ++++++-
+>  drivers/clk/tegra/clk-tegra30.c  | 7 ++++++-
+>  3 files changed, 18 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/clk/tegra/clk-tegra114.c b/drivers/clk/tegra/clk-teg=
+ra114.c
+> index 186b0b81c1ec..00282b0d3763 100644
+> --- a/drivers/clk/tegra/clk-tegra114.c
+> +++ b/drivers/clk/tegra/clk-tegra114.c
+> @@ -691,7 +691,6 @@ static struct tegra_clk tegra114_clks[tegra_clk_max] =
+__initdata =3D {
+>  	[tegra_clk_tsec] =3D { .dt_id =3D TEGRA114_CLK_TSEC, .present =3D true =
+},
+>  	[tegra_clk_xusb_host] =3D { .dt_id =3D TEGRA114_CLK_XUSB_HOST, .present=
+ =3D true },
+>  	[tegra_clk_msenc] =3D { .dt_id =3D TEGRA114_CLK_MSENC, .present =3D tru=
+e },
+> -	[tegra_clk_csus] =3D { .dt_id =3D TEGRA114_CLK_CSUS, .present =3D true =
+},
+>  	[tegra_clk_mselect] =3D { .dt_id =3D TEGRA114_CLK_MSELECT, .present =3D=
+ true },
+>  	[tegra_clk_tsensor] =3D { .dt_id =3D TEGRA114_CLK_TSENSOR, .present =3D=
+ true },
+>  	[tegra_clk_i2s3] =3D { .dt_id =3D TEGRA114_CLK_I2S3, .present =3D true =
+},
+> @@ -1047,6 +1046,12 @@ static __init void tegra114_periph_clk_init(void _=
+_iomem *clk_base,
+>  					     0, 82, periph_clk_enb_refcnt);
+>  	clks[TEGRA114_CLK_DSIB] =3D clk;
+> =20
+> +	/* csus */
+> +	clk =3D tegra_clk_register_periph_gate("csus", "vi_sensor", 0,
+> +					     clk_base, 0, TEGRA114_CLK_CSUS,
+> +					     periph_clk_enb_refcnt);
+> +	clks[TEGRA114_CLK_CSUS] =3D clk;
+> +
+>  	/* emc mux */
+>  	clk =3D clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
+>  			       ARRAY_SIZE(mux_pllmcp_clkm),
+> diff --git a/drivers/clk/tegra/clk-tegra20.c b/drivers/clk/tegra/clk-tegr=
+a20.c
+> index 2c58ce25af75..bf9a9f8ddf62 100644
+> --- a/drivers/clk/tegra/clk-tegra20.c
+> +++ b/drivers/clk/tegra/clk-tegra20.c
+> @@ -530,7 +530,6 @@ static struct tegra_clk tegra20_clks[tegra_clk_max] _=
+_initdata =3D {
+>  	[tegra_clk_rtc] =3D { .dt_id =3D TEGRA20_CLK_RTC, .present =3D true },
+>  	[tegra_clk_timer] =3D { .dt_id =3D TEGRA20_CLK_TIMER, .present =3D true=
+ },
+>  	[tegra_clk_kbc] =3D { .dt_id =3D TEGRA20_CLK_KBC, .present =3D true },
+> -	[tegra_clk_csus] =3D { .dt_id =3D TEGRA20_CLK_CSUS, .present =3D true }=
+,
+>  	[tegra_clk_vcp] =3D { .dt_id =3D TEGRA20_CLK_VCP, .present =3D true },
+>  	[tegra_clk_bsea] =3D { .dt_id =3D TEGRA20_CLK_BSEA, .present =3D true }=
+,
+>  	[tegra_clk_bsev] =3D { .dt_id =3D TEGRA20_CLK_BSEV, .present =3D true }=
+,
+> @@ -807,6 +806,12 @@ static void __init tegra20_periph_clk_init(void)
+>  	clk_register_clkdev(clk, NULL, "dsi");
+>  	clks[TEGRA20_CLK_DSI] =3D clk;
+> =20
+> +	/* csus */
+> +	clk =3D tegra_clk_register_periph_gate("csus", "vi_sensor", 0,
+> +					     clk_base, 0, TEGRA20_CLK_CSUS,
+> +					     periph_clk_enb_refcnt);
+> +	clks[TEGRA20_CLK_CSUS] =3D clk;
+> +
+>  	/* pex */
+>  	clk =3D tegra_clk_register_periph_gate("pex", "clk_m", 0, clk_base, 0, =
+70,
+>  				    periph_clk_enb_refcnt);
+> diff --git a/drivers/clk/tegra/clk-tegra30.c b/drivers/clk/tegra/clk-tegr=
+a30.c
+> index 82a8cb9545eb..ca367184e185 100644
+> --- a/drivers/clk/tegra/clk-tegra30.c
+> +++ b/drivers/clk/tegra/clk-tegra30.c
+> @@ -779,7 +779,6 @@ static struct tegra_clk tegra30_clks[tegra_clk_max] _=
+_initdata =3D {
+>  	[tegra_clk_rtc] =3D { .dt_id =3D TEGRA30_CLK_RTC, .present =3D true },
+>  	[tegra_clk_timer] =3D { .dt_id =3D TEGRA30_CLK_TIMER, .present =3D true=
+ },
+>  	[tegra_clk_kbc] =3D { .dt_id =3D TEGRA30_CLK_KBC, .present =3D true },
+> -	[tegra_clk_csus] =3D { .dt_id =3D TEGRA30_CLK_CSUS, .present =3D true }=
+,
+>  	[tegra_clk_vcp] =3D { .dt_id =3D TEGRA30_CLK_VCP, .present =3D true },
+>  	[tegra_clk_bsea] =3D { .dt_id =3D TEGRA30_CLK_BSEA, .present =3D true }=
+,
+>  	[tegra_clk_bsev] =3D { .dt_id =3D TEGRA30_CLK_BSEV, .present =3D true }=
+,
+> @@ -1008,6 +1007,12 @@ static void __init tegra30_periph_clk_init(void)
+>  				    0, 48, periph_clk_enb_refcnt);
+>  	clks[TEGRA30_CLK_DSIA] =3D clk;
+> =20
+> +	/* csus */
+> +	clk =3D tegra_clk_register_periph_gate("csus", "vi_sensor", 0,
+> +					     clk_base, 0, TEGRA30_CLK_CSUS,
+> +					     periph_clk_enb_refcnt);
+> +	clks[TEGRA30_CLK_CSUS] =3D clk;
+> +
+>  	/* pcie */
+>  	clk =3D tegra_clk_register_periph_gate("pcie", "clk_m", 0, clk_base, 0,
+>  				    70, periph_clk_enb_refcnt);
+>=20
 
->> drivers/iio/temperature/mcp9982.c:470:3: error: expected expression
-     470 |                 u8 bulk_read[3];
-         |                 ^
->> drivers/iio/temperature/mcp9982.c:473:31: error: use of undeclared identifier 'bulk_read'; did you mean 'up_read'?
-     473 |                                        &bulk_read, sizeof(bulk_read));
-         |                                                           ^~~~~~~~~
-         |                                                           up_read
-   include/linux/rwsem.h:246:13: note: 'up_read' declared here
-     246 | extern void up_read(struct rw_semaphore *sem);
-         |             ^
-   drivers/iio/temperature/mcp9982.c:473:13: error: use of undeclared identifier 'bulk_read'; did you mean 'up_read'?
-     473 |                                        &bulk_read, sizeof(bulk_read));
-         |                                         ^~~~~~~~~
-         |                                         up_read
-   include/linux/rwsem.h:246:13: note: 'up_read' declared here
-     246 | extern void up_read(struct rw_semaphore *sem);
-         |             ^
-   drivers/iio/temperature/mcp9982.c:477:11: error: use of undeclared identifier 'bulk_read'; did you mean 'up_read'?
-     477 |                 *val = (bulk_read[1] << 8) + (bulk_read[2]);
-         |                         ^~~~~~~~~
-         |                         up_read
-   include/linux/rwsem.h:246:13: note: 'up_read' declared here
-     246 | extern void up_read(struct rw_semaphore *sem);
-         |             ^
->> drivers/iio/temperature/mcp9982.c:477:11: error: subscript of pointer to function type 'void (struct rw_semaphore *)'
-     477 |                 *val = (bulk_read[1] << 8) + (bulk_read[2]);
-         |                         ^~~~~~~~~
-   drivers/iio/temperature/mcp9982.c:477:33: error: use of undeclared identifier 'bulk_read'; did you mean 'up_read'?
-     477 |                 *val = (bulk_read[1] << 8) + (bulk_read[2]);
-         |                                               ^~~~~~~~~
-         |                                               up_read
-   include/linux/rwsem.h:246:13: note: 'up_read' declared here
-     246 | extern void up_read(struct rw_semaphore *sem);
-         |             ^
-   drivers/iio/temperature/mcp9982.c:477:33: error: subscript of pointer to function type 'void (struct rw_semaphore *)'
-     477 |                 *val = (bulk_read[1] << 8) + (bulk_read[2]);
-         |                                               ^~~~~~~~~
-   drivers/iio/temperature/mcp9982.c:488:3: error: expected expression
-     488 |                 unsigned long *src;
-         |                 ^
->> drivers/iio/temperature/mcp9982.c:493:4: error: use of undeclared identifier 'src'
-     493 |                 *src = tmp_reg;
-         |                  ^
-   drivers/iio/temperature/mcp9982.c:494:68: error: use of undeclared identifier 'src'
-     494 |                 *val = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][0];
-         |                                                                                  ^
-   drivers/iio/temperature/mcp9982.c:495:69: error: use of undeclared identifier 'src'
-     495 |                 *val2 = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][1];
-         |                                                                                   ^
-   11 errors generated.
 
 
-vim +470 drivers/iio/temperature/mcp9982.c
 
-   426	
-   427	static int mcp9982_read_raw(struct iio_dev *indio_dev,
-   428				    struct iio_chan_spec const *chan, int *val,
-   429				    int *val2, long mask)
-   430	{
-   431		unsigned int tmp_reg, reg_status;
-   432		struct mcp9982_priv *priv = iio_priv(indio_dev);
-   433		int ret;
-   434	
-   435		if (test_bit(RUN_STATE, &priv->bit_flags)) {
-   436			/*
-   437			 * When working in Run mode, after modifying a parameter (like sampling
-   438			 * frequency) we have to wait a delay before reading the new values.
-   439			 * We can't determine when the conversion is done based on the BUSY bit.
-   440			 */
-   441			if (test_bit(WAIT_BEFORE_READ, &priv->bit_flags)) {
-   442				if (!time_after(jiffies, priv->time_limit))
-   443					mdelay(jiffies_to_msecs(priv->time_limit - jiffies));
-   444				clear_bit(WAIT_BEFORE_READ, &priv->bit_flags);
-   445			}
-   446		} else {
-   447			ret = regmap_write(priv->regmap, MCP9982_ONE_SHOT_ADDR, 1);
-   448			if (ret)
-   449				return ret;
-   450			/*
-   451			 * In Standby state after writing in OneShot register wait for
-   452			 * the start of conversion and then poll the BUSY bit.
-   453			 */
-   454			mdelay(125);
-   455			ret = regmap_read_poll_timeout(priv->regmap, MCP9982_STATUS_ADDR,
-   456						       reg_status, !(reg_status & MCP9982_STATUS_BUSY),
-   457						       mcp9982_delay_ms[priv->sampl_idx] * USEC_PER_MSEC,
-   458						       0);
-   459			if (ret)
-   460				return ret;
-   461		}
-   462		guard(mutex)(&priv->lock);
-   463	
-   464		switch (mask) {
-   465		case IIO_CHAN_INFO_RAW:
-   466			/*
-   467			 * The Block Read Protocol first returns the number of user readable
-   468			 * bytes, held in bulk_read[0], followed by the data.
-   469			 */
- > 470			u8 bulk_read[3];
-   471	
-   472			ret = regmap_bulk_read(priv->regmap, MCP9982_TEMP_MEM_BLOCK_ADDR(chan->channel),
- > 473					       &bulk_read, sizeof(bulk_read));
-   474			if (ret)
-   475				return ret;
-   476	
- > 477			*val = (bulk_read[1] << 8) + (bulk_read[2]);
-   478			return IIO_VAL_INT;
-   479		case IIO_CHAN_INFO_SCALE:
-   480			*val = 0;
-   481			*val2 = MCP9982_SCALE;
-   482			return IIO_VAL_INT_PLUS_NANO;
-   483		case IIO_CHAN_INFO_SAMP_FREQ:
-   484			*val = mcp9982_conv_rate[priv->sampl_idx][0];
-   485			*val2 = mcp9982_conv_rate[priv->sampl_idx][1];
-   486			return IIO_VAL_INT_PLUS_MICRO;
-   487		case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-   488			unsigned long *src;
-   489	
-   490			ret = regmap_read(priv->regmap, MCP9982_RUNNING_AVG_ADDR, &tmp_reg);
-   491			if (ret)
-   492				return ret;
- > 493			*src = tmp_reg;
-   494			*val = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][0];
-   495			*val2 = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][1];
-   496			return IIO_VAL_INT_PLUS_MICRO;
-   497		case IIO_CHAN_INFO_OFFSET:
-   498			*val = MCP9982_OFFSET;
-   499			return IIO_VAL_INT;
-   500		default:
-   501			return -EINVAL;
-   502		}
-   503	}
-   504	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
