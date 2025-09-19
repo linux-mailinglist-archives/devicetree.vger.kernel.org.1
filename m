@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-219159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC62B88355
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:39:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D54FB88361
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:39:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FBAC526833
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:39:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB8E8526890
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3652D7DC8;
-	Fri, 19 Sep 2025 07:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D662DF159;
+	Fri, 19 Sep 2025 07:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="ILMwbVmv"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="NGvft+cw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C6F2D322E
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2152DC32A
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:38:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758267472; cv=none; b=h7dv8gVLfg+n08RJiaVlgmpjfjs1LdWqkHMjFWF0GrTlSd0krcPqI1MqYNF46xNen1MGslP+vVXxkHXq3H/P7HVyIuUqbCB1txPevgmsyAZt9mlR2upArJZcP7OaK4GkxDxxNrftU+wWxZ+1fzKKOVVO2Js5YECKvyny+5GtQ/4=
+	t=1758267482; cv=none; b=huVzGJOcuwRKVchfkrRRlVQejyX1+iUjRfquUQ/ukGJSKW7AWgJnBsGVJrMuXCDs6B19Qzhq++IV/sjL83I3oaZsAjThVpPHkFtEe+IX6OWUGC4sagWdnLevinQcl26X7KlD/XUEzBeZuUhx6NaEwhg3LyTda6LEjFlyp2V0Tjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758267472; c=relaxed/simple;
-	bh=+YpuvhJCI/yShT1rtWNvOFpxGI7l/ehsFRhKIaNPItU=;
+	s=arc-20240116; t=1758267482; c=relaxed/simple;
+	bh=ny7Y87UCldoCAyN22m3dB64S4BMG+0HtGPlSRdbS+ts=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nkylIjFnpn8jgf1+V/7Oh+a5aVXY2Id4KT5s225l6ry5i5r/cgaGjQt5XN6O+tuKG2OPlTBaR40M3/tdcsyPiDOJk/G2jL9x1YUF/6Su/R0MK+5V0emhNA35kSNUMSHEEjfhHSZG9rwgxP2VsV1IrD3JR4SWAi85+M/3snbhirQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=ILMwbVmv; arc=none smtp.client-ip=209.85.210.181
+	 MIME-Version; b=ui1PbpilRl+ng5Zl0ToAbtUjFE3H624i363fNsfRG5JrpIXuZgnHd+jzEOiXH2T1HqIRRE/baoj/d+bJmt+FvVwkxsIJ+pyFKvU5t8QVgN2riZUphQEHP2HpD3FzLoEshDfZISPzRTmDGPZ1R3rMCmTNUPqEoi6bCEooDFg+o/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=NGvft+cw; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-77d37d71967so1311867b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:37:50 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-77ddfe29cccso882415b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1758267470; x=1758872270; darn=vger.kernel.org;
+        d=bytedance.com; s=google; t=1758267480; x=1758872280; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kcpuRb5Zady/Ndj7TK1NVXuo7wdyupAjCmRtQU7qg78=;
-        b=ILMwbVmvePhwb63VcL6xWvyq86V2LqZ5vXnadEgJSykWDZwrQbtAnlaKSLd3nA6aMV
-         jjV2urD+9mkl06Sa4OQeeh7HWIPO0kMaFmaEAXwdo2FOU60uZ4RIqvqs0I8QlAOBoBxT
-         9axFeZevbtti6CXIFJ0keSVca9dPy7hVEEoe1iHCa5009KqC2o7FtDiXeVWQUJOJUvZb
-         Lt1y55GTQZmmN1H8cm3gYunoYcwbpSViiSdjlmuPTwSpG+TvAmJzVz6zuk9aIX2gMFCj
-         0auPMTS8G7O/CtzigwFHBUHWa9W30oulwiCRzilvQtvO3eJtrZtv0yciY/YDCRyhwVpk
-         dTLg==
+        bh=TLsLBJWdfVYa2JlLG/bj2PxPL4kYEdygRJ5GLCZsFlo=;
+        b=NGvft+cwpOD6gUZN1ZSkAqe6YbS4jHbcoKFzSuVHrJzB0rJN6GUL+QIOBLUnjlQtLr
+         jEH7bNBPYLhLIXag3CUNWbLGylLL+KH9nA6RZqNVAJZTTJeR+FR0S9JRCfH85leoQbq8
+         6POFciiPZAwDj1XauVeYrHZRG0fq+9XQkC7BIDwrKFU57I+nNn7/9a/1264+GF9C0NyO
+         K3FxX/hec6TAm0oWWXTErnHk9CmHg7y0kEWDIy66N50xUV8jfj8KYYbvuFCmiOTpb6fs
+         hl22eqUBPIcRQfCo/UrxJ+fZBqhY7m0PoT5xXk6HlzR8z3IozxG+lcdmQD5dUhKwfnc9
+         Az7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758267470; x=1758872270;
+        d=1e100.net; s=20230601; t=1758267480; x=1758872280;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kcpuRb5Zady/Ndj7TK1NVXuo7wdyupAjCmRtQU7qg78=;
-        b=BFFYKV95PXiUi/KqVftEZCGs/qBIGcZJA+QjBjPUTQ2/CH5ZcXcZiL1R8Yq4SJT6+I
-         wRGyDvokFQLUmDNsfauKUYMMjVN4BEFI558eCOR5svILVCsVWz2VJp1GpJ8UrJxR8H4/
-         fn7MS1tFc95o4/GNNBfcnknlJaIAng3Tv0NzACxt5yfaJDkW60rkD8UVc7yEMhB4dpNO
-         2EUlGx8Bh/wmcWgim1UpaATKRGM5keP60DRqbtTMCSzrq2S3cZul/d2CuxyffPMqzmJ1
-         ZwErrpofsWkUdOqdk/n7LLYITtOk90LEK8YbQztP0TMNP3ONLJ9rokEgA3tHc0O1ty9+
-         AilQ==
-X-Gm-Message-State: AOJu0Yw0rEdPjmiHX8QlMh4YqrPGkEiEzuJrEUqVcVwYVk4ARf+RG9l4
-	NVOAa2fa1zvRQonbip9muLXjAO1fuPVNdycSUqPF3kQ9LZHqYT2R3Gykxl9rmPs3cBQ=
-X-Gm-Gg: ASbGncs0hFb1oDly1HHNvV6DUbpa9zIL0q2/YBqRGQp/Gv7XEyH1kNaZ4qh0Hp/BfMY
-	EoEhbjUkeZQr9FyJGIlu4a+gayuAgaB/61z5JTPg+3QkonM5zoQOYRq8Vin7tnw9WGhCFjrQwuU
-	K0Tcac2II2uuNzdeKRz+EzrMbQKOakinNZnhQe2qb2nQ5J36Xoc2MR6IECoRlOaRSiNoX2h8IuX
-	Iz/3HC1TsU1SQP0J+uJkcIsaDkqt+Av/k8RbSA9PqLwHtJ+u+nhzvxCJYuIKeqtyZalz6gVaKlH
-	TGn9BhSYklCzjw2B2uLJQAMc/KD9w4XObDjN2DiY1CRkwGQs9rLGQIQ0uMgIjxhmMaSTwd4Mxzs
-	5kmoro2mtNdFmxCwQGqYpA/ckpje3BtczMLCmKGTB5N6OtjkH8z4NbECCTnbwitiET/eIowkrjz
-	oTc06Y7vFvXgQYQI5/i6I2fW47I8O1V+r1rRR6X2JZbg==
-X-Google-Smtp-Source: AGHT+IEgACB1Se8zkEhUh/liD5ZfRMe2E7bZVsNaOovjpda2dN5kxeT40rB2jna9QVBQYl1FDLn0SQ==
-X-Received: by 2002:a05:6a20:258e:b0:248:f6f1:200a with SMTP id adf61e73a8af0-2844b5ca29cmr7654865637.1.1758267470068;
-        Fri, 19 Sep 2025 00:37:50 -0700 (PDT)
+        bh=TLsLBJWdfVYa2JlLG/bj2PxPL4kYEdygRJ5GLCZsFlo=;
+        b=DsxhXKRdvgFT7lm7N7k6oeCmW4XrDd7vUB4PRVqGP3ebPlkVoWQolML0FkGWGa12pM
+         uw4ZjcFmThjuxyeKXgTB35x+dognqDSElS7H2/P6w1gkevnTE+yKCvnunRFAaqKxbHOH
+         xKHwEY5qngrtRkgs1JKWgntHmldFsZKKkhU0BapGlxHIJGCZB+A3EpSrPwXFX5nG4dGf
+         Mehat7gdPzMu16HVCCItU/FXXz1its5U106siQ84th/+Bf7yRgvpXwSXcvW2u02Pm9RP
+         5srUQB5ElCobFwzMpiOcFv2Uxsy9B6jAKn8BqQJBBBRaMjbeM5SkYmRIewxmDkQb5ZLo
+         tpWA==
+X-Gm-Message-State: AOJu0YzBpFIx7tZdfFuXEx6U7dfmxEV7Ydm5RThkg7N5ixtSLI6RyK1p
+	TspRTpkWks4N9HYH+WFHFeay6036x/rwwaTPd5Dd6ogJFKUEcoKizaosNog6hCvVD0c=
+X-Gm-Gg: ASbGncvhwxnk0n/Lh/J0YTlv+aQzx7EJurAVprJoRseNs2E4nbcq982J0QYhrzIeNxY
+	A8XzHZr8cMRZzjwcQfTfsdoZLGke3ksZGH+tal+jiuY5xaYIunE+fV5QW2KN3nHjuj8xZC06xqF
+	D+QEW2MlZPW1QXrmPyv+nfkJrmtV9TCGfblBDdGi342vQi89TwuoB5xzFBSCJdRbbKl4ihk7a4D
+	1Yu97XYiQRCxUQ+tT9RqkHJK+0EsI0+JhPPb1vNg0t7UE7FcUisYEWVGZ4yp3rWPc6T+qtOfswC
+	RYjWyVTd9q/Et/lrw8GiSLWL2zTYRN22KXlL1i8NvEGudNvaTLX0TA9ltUUPOw1SPzlIzL8id2C
+	COUX4DCvJrhnIPN12O54zSdpfde7B83BwjhdtPW+pGxHyc4+65ongBs4U2tSedD7E5scZU4TjC7
+	5PNZupdVyDgYHSBEKcx5wGzaeDtE/C5UZ8lPILzqAj5g==
+X-Google-Smtp-Source: AGHT+IEf5W21ek4SN0ll5sE3XkSqbMBzmLR+7/wUne5d4f1g+TFSnmeY9PodKHF4WkSxZeu62+QPKQ==
+X-Received: by 2002:a05:6a21:3288:b0:264:94:3f5f with SMTP id adf61e73a8af0-2925c55263bmr3821388637.15.1758267480440;
+        Fri, 19 Sep 2025 00:38:00 -0700 (PDT)
 Received: from J9GPGXL7NT.bytedance.net ([61.213.176.57])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b550fd7ebc7sm2679096a12.19.2025.09.19.00.37.40
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b550fd7ebc7sm2679096a12.19.2025.09.19.00.37.50
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Fri, 19 Sep 2025 00:37:49 -0700 (PDT)
+        Fri, 19 Sep 2025 00:38:00 -0700 (PDT)
 From: Xu Lu <luxu.kernel@bytedance.com>
 To: corbet@lwn.net,
 	robh@kernel.org,
@@ -103,9 +103,9 @@ Cc: devicetree@vger.kernel.org,
 	kvm-riscv@lists.infradead.org,
 	linux-kselftest@vger.kernel.org,
 	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v3 2/8] dt-bindings: riscv: Add Zalasr ISA extension description
-Date: Fri, 19 Sep 2025 15:37:08 +0800
-Message-ID: <20250919073714.83063-3-luxu.kernel@bytedance.com>
+Subject: [PATCH v3 3/8] riscv: hwprobe: Export Zalasr extension
+Date: Fri, 19 Sep 2025 15:37:09 +0800
+Message-ID: <20250919073714.83063-4-luxu.kernel@bytedance.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250919073714.83063-1-luxu.kernel@bytedance.com>
 References: <20250919073714.83063-1-luxu.kernel@bytedance.com>
@@ -117,29 +117,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add description for the Zalasr ISA extension
+Export the Zalasr extension to userspace using hwprobe.
 
 Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 ---
- Documentation/devicetree/bindings/riscv/extensions.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/arch/riscv/hwprobe.rst  | 5 ++++-
+ arch/riscv/include/uapi/asm/hwprobe.h | 1 +
+ arch/riscv/kernel/sys_hwprobe.c       | 1 +
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index ede6a58ccf534..100fe53fb0731 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -242,6 +242,11 @@ properties:
-             is supported as ratified at commit 5059e0ca641c ("update to
-             ratified") of the riscv-zacas.
+diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
+index 2aa9be272d5de..067a3595fb9d5 100644
+--- a/Documentation/arch/riscv/hwprobe.rst
++++ b/Documentation/arch/riscv/hwprobe.rst
+@@ -249,6 +249,9 @@ The following keys are defined:
+        defined in the in the RISC-V ISA manual starting from commit e87412e621f1
+        ("integrate Zaamo and Zalrsc text (#1304)").
  
-+        - const: zalasr
-+          description: |
-+            The standard Zalasr extension for load-acquire/store-release as frozen
-+            at commit 194f0094 ("Version 0.9 for freeze") of riscv-zalasr.
++  * :c:macro:`RISCV_HWPROBE_EXT_ZALASR`: The Zalasr extension is supported as
++       frozen at commit 194f0094 ("Version 0.9 for freeze") of riscv-zalasr.
 +
-         - const: zalrsc
-           description: |
-             The standard Zalrsc extension for load-reserved/store-conditional as
+   * :c:macro:`RISCV_HWPROBE_EXT_ZALRSC`: The Zalrsc extension is supported as
+        defined in the in the RISC-V ISA manual starting from commit e87412e621f1
+        ("integrate Zaamo and Zalrsc text (#1304)").
+@@ -360,4 +363,4 @@ The following keys are defined:
+ 
+     * :c:macro:`RISCV_HWPROBE_VENDOR_EXT_XSFVFWMACCQQQ`: The Xsfvfwmaccqqq
+         vendor extension is supported in version 1.0 of Matrix Multiply Accumulate
+-	Instruction Extensions Specification.
+\ No newline at end of file
++	Instruction Extensions Specification.
+diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
+index aaf6ad9704993..d3a65f8ff7da4 100644
+--- a/arch/riscv/include/uapi/asm/hwprobe.h
++++ b/arch/riscv/include/uapi/asm/hwprobe.h
+@@ -82,6 +82,7 @@ struct riscv_hwprobe {
+ #define		RISCV_HWPROBE_EXT_ZAAMO		(1ULL << 56)
+ #define		RISCV_HWPROBE_EXT_ZALRSC	(1ULL << 57)
+ #define		RISCV_HWPROBE_EXT_ZABHA		(1ULL << 58)
++#define		RISCV_HWPROBE_EXT_ZALASR	(1ULL << 59)
+ #define RISCV_HWPROBE_KEY_CPUPERF_0	5
+ #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
+ #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
+diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
+index 0b170e18a2beb..0529e692b1173 100644
+--- a/arch/riscv/kernel/sys_hwprobe.c
++++ b/arch/riscv/kernel/sys_hwprobe.c
+@@ -99,6 +99,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
+ 		EXT_KEY(ZAAMO);
+ 		EXT_KEY(ZABHA);
+ 		EXT_KEY(ZACAS);
++		EXT_KEY(ZALASR);
+ 		EXT_KEY(ZALRSC);
+ 		EXT_KEY(ZAWRS);
+ 		EXT_KEY(ZBA);
 -- 
 2.20.1
 
