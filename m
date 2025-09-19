@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-219406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C350B8AB6F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:14:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0A1B8AB72
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:14:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C69E47ACFD8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:12:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61D03B037E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD57F322520;
-	Fri, 19 Sep 2025 17:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA16E322521;
+	Fri, 19 Sep 2025 17:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJXDwZan"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4hS36ry"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA4C3164D0;
-	Fri, 19 Sep 2025 17:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88663164D0;
+	Fri, 19 Sep 2025 17:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758302055; cv=none; b=np8zEbzoZWUeDBE76ifImX7HhTYz/JAtRjxXhuxqTb+9rqheYOsZ5pG9wrpXZiH1YoU23kGZd9VKuuQKec/tGCbi83hBefaRpocGGLd2HrcYo+7OELrlyblydXql3BPaRp7Lwg4k8CWtB7HOtg41BWiveu3BBXgZzGuTZM4wsdI=
+	t=1758302085; cv=none; b=f1Alh+mgRvnVLQPHRBZEeI3opfQnmowtOkrutxtKqKalzq0clZLrDYgO3TXUzSphFyGHrjVvYDfD0uRgCZLZNH82ajQhqOByVn1TvArtyjJfDZdAQGDe2Dt/K6x6VyZcsHQRY6gx2Yjb3mSR3eS2OTptMn9OFpreoCCcl8jPr9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758302055; c=relaxed/simple;
-	bh=c0gay8liZZpMxu1wbo/3pb8Be4pbY2davSvmv8BnEJs=;
+	s=arc-20240116; t=1758302085; c=relaxed/simple;
+	bh=Wj/m644+t47KAw3LB4MKuqjLJmSbKJ/mTCXlvM4Q5NQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eFyldCesqVDM5uY+elyBTvffFHKo/X4gVE5+qFV3VyVZciPkCaRHWzvyBjPfE3DYVIsoqG+g7/7UnbJDklezlnCsG0Q3dra5I5Lje/KiHaon0BSYNZAVrfFNZCBiNolSI4clBwDWjtN0WZcs5xev7p8wUKTbJwDZ9esTRsVW3as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NJXDwZan; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C52AC4CEF0;
-	Fri, 19 Sep 2025 17:14:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GQZVHHzxTFFYJH83+1VDvssHBeJuJSPjVAHJvy63JwOkLLjd/05/mw2nmDGw6Ere6IGRsGe0vFWVvHhdkpTqDeqTr+IV3MVWZR+ydVyBoGz1Vz1b+Q1vLl7XswWORvotzJH9QTIHrEPZBgPhLqoC8SAzJC1D/tABP8KcRNYnjsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4hS36ry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10572C4CEF0;
+	Fri, 19 Sep 2025 17:14:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758302054;
-	bh=c0gay8liZZpMxu1wbo/3pb8Be4pbY2davSvmv8BnEJs=;
+	s=k20201202; t=1758302085;
+	bh=Wj/m644+t47KAw3LB4MKuqjLJmSbKJ/mTCXlvM4Q5NQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NJXDwZanWpXWP5Do08/3QVhVXL89GUZA1HPkV51OYg377z0Fe/444cGrHCuTR10ps
-	 636xFSIKiAgDkhPcrOHt4v0y8xhioVCW3f0tX9YKs9B1N1eXJlK9HUeqoGmrIvJeI4
-	 HujOfz5pAJXJoHujLadevvUFi0MpMNtOTaYiozH/FBMyhbIySWZYClQRhGFvtOS5YN
-	 ZTMXIGjIKRjQjJftN2dCsvpwSsrMIjx76x5SlR95ooFUDC77sYxatB0vdG3qmEY9zJ
-	 fiVREZvmXEBpZeXcFVd+wHrI6W+p37119nsB27BZd7fl8MadCEG/WqqpaTzwx5i8UW
-	 vZau7bct/kD1A==
-Date: Fri, 19 Sep 2025 18:14:09 +0100
+	b=e4hS36ry+QYbSYYmEtLZeosWU3x0Z4itK8GmXtBAYYmaFmi9RH01gYERfiCdenb1a
+	 6RMyffkabKzw0nDDpwuf+qABO03smyYDKnWo7hjYYqUcVNcwlHOePxcMhVUq/syeQw
+	 gjOmUnXR8OB5rPg9JM5WMf6mL7JWUYFJkhm8T9zkeUOqbVRBazugRT6/Z8IAzjxkCq
+	 SLYm6CTTB78/e6ev5x1athG0v/oE/EIqfzgqaEqymCHjzCBSGb3mo/b+NF/WUxAp52
+	 6DvQ18Tc5iWXawdyjZJFskbv5Rr337R8hfrMcX1nIFvCBZlsPQXhiGFBB/nN3UqZ2X
+	 2uTGWDnRtCdgQ==
+Date: Fri, 19 Sep 2025 18:14:39 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org, Prathamesh Shete <pshete@nvidia.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: Add Tegra410 support
-Message-ID: <20250919-undusted-distrust-ff5e2f25cdd5@spud>
-References: <20250919093627.605059-1-kkartik@nvidia.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, peter.chen@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	peng.fan@nxp.com, jun.li@nxp.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: usbmisc-imx: add fsl,imx94-usbmisc
+ compatible
+Message-ID: <20250919-anemia-repressed-9d8ea950ecaf@spud>
+References: <20250919071111.2558628-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,93 +61,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kGXcB5rXmwo+NFQF"
+	protocol="application/pgp-signature"; boundary="fEb/lBhoMoWNWi/F"
 Content-Disposition: inline
-In-Reply-To: <20250919093627.605059-1-kkartik@nvidia.com>
+In-Reply-To: <20250919071111.2558628-1-xu.yang_2@nxp.com>
 
 
---kGXcB5rXmwo+NFQF
+--fEb/lBhoMoWNWi/F
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 19, 2025 at 03:06:26PM +0530, Kartik Rajput wrote:
-> From: Prathamesh Shete <pshete@nvidia.com>
->=20
-> Add the port definitions for the main GPIO controller found on
-> Tegra410.
->=20
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
-> ---
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Why are you modifying a binding header for devicetree when the driver
-only appear to grow acpi support?
-
->  include/dt-bindings/gpio/tegra410-gpio.h | 37 ++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/tegra410-gpio.h
->=20
-> diff --git a/include/dt-bindings/gpio/tegra410-gpio.h b/include/dt-bindin=
-gs/gpio/tegra410-gpio.h
-> new file mode 100644
-> index 000000000000..e4d042fbacb2
-> --- /dev/null
-> +++ b/include/dt-bindings/gpio/tegra410-gpio.h
-> @@ -0,0 +1,37 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved. */
-> +
-> +/*
-> + * This header provides constants for the nvidia,tegra410-gpio DT bindin=
-g.
-> + *
-> + * The first cell in Tegra's GPIO specifier is the GPIO ID. The macros b=
-elow
-> + * provide names for this.
-> + *
-> + * The second cell contains standard flag values specified in gpio.h.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_GPIO_TEGRA410_GPIO_H
-> +#define _DT_BINDINGS_GPIO_TEGRA410_GPIO_H
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/* GPIOs implemented by main GPIO controller */
-> +#define TEGRA410_MAIN_GPIO_PORT_A	0
-> +#define TEGRA410_MAIN_GPIO_PORT_B	1
-> +#define TEGRA410_MAIN_GPIO_PORT_C	2
-> +#define TEGRA410_MAIN_GPIO_PORT_D	3
-> +#define TEGRA410_MAIN_GPIO_PORT_E	4
-> +#define TEGRA410_MAIN_GPIO_PORT_I	5
-> +#define TEGRA410_MAIN_GPIO_PORT_J	6
-> +#define TEGRA410_MAIN_GPIO_PORT_K	7
-> +#define TEGRA410_MAIN_GPIO_PORT_L	8
-> +#define TEGRA410_MAIN_GPIO_PORT_M	9
-> +#define TEGRA410_MAIN_GPIO_PORT_N	10
-> +#define TEGRA410_MAIN_GPIO_PORT_P	11
-> +#define TEGRA410_MAIN_GPIO_PORT_Q	12
-> +#define TEGRA410_MAIN_GPIO_PORT_R	13
-> +
-> +#define TEGRA410_MAIN_GPIO(port, offset) \
-> +	((TEGRA410_MAIN_GPIO_PORT_##port * 8) + (offset))
-> +
-> +#endif
-> --=20
-> 2.43.0
->=20
-
---kGXcB5rXmwo+NFQF
+--fEb/lBhoMoWNWi/F
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaM2PYQAKCRB4tDGHoIJi
-0trLAP9bcGoUEpo7TdiJs3G3/B2yydrsGsY4grCq2LDCik57HQD/dNmzzLduEroE
-XE97oc5867oQXWzTv5RrnFMADaPRVQs=
-=e47o
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaM2PfwAKCRB4tDGHoIJi
+0s4+AQCbK/8AUsOWCz+3KwYXizsLQGg7i0VwKgSPMS9KpKNUvgEAht/haKKbsye2
+9I5raGzWfgrWOaZ+XbJyboPkFJS6pQs=
+=8lcc
 -----END PGP SIGNATURE-----
 
---kGXcB5rXmwo+NFQF--
+--fEb/lBhoMoWNWi/F--
 
