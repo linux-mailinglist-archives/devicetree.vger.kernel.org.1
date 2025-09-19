@@ -1,276 +1,338 @@
-Return-Path: <devicetree+bounces-219205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18415B8888B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 11:18:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC831B888D7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 11:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EADFA7A3284
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:17:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77B513B12FA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0602C0F81;
-	Fri, 19 Sep 2025 09:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE02A2F5A2F;
+	Fri, 19 Sep 2025 09:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gtiD4oQN"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="W2Lu3BvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013068.outbound.protection.outlook.com [52.101.72.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431A01F790F;
-	Fri, 19 Sep 2025 09:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758273524; cv=fail; b=c2QB8DjMiTzKCYHGKlejeqrbD+NBju4JngYJpHF0opJ/rmoXajAaT8OkR1uXSB26czlMyfdPgZGDCMqSLeOKlSWq9duVspCKpiJQhRXpy5a6iU5NXjJ8coYHPEzG7cQXTvrJXBUD64Zi7ZjgSB4/ZSV6q1/EeBcOVPl4paSqNoM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758273524; c=relaxed/simple;
-	bh=G9IiFcekMtErIpYNG96H1v9fA5jAOsb4kJidW3ssIE8=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Q5ShUWxJmDzdHmQw8Pgm2B3ThXtxuW6CXA5agdC1Psz8p7BMDLC0rur9CuaURq/sbqSmUL7/qKDNkN/whxGm8bCESKtNMHmrdG4avw5xVaGLOyrBmPCUvoW7E/snKPeLjYL5lJpheNg6jAAjbtGoMS5Y3/OLRRyqo7QwB3rTnvw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gtiD4oQN; arc=fail smtp.client-ip=52.101.72.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y+8TW6b2XdatmJXoGQal+SMVhxkl6ICT+59CYGMeqpKq32joSh3QoVezHHJ9edH2oDaVzhCBHgocEOFan9x8fs390+cU3c3JGQskxL9JsvfgHHPduYlFzBapy0v0Xwpmoc2WqntmPvM3cZMvVfo2oJSiAETNi0qUJXas4/EEenvIK3jxqOcNtxxr0I2EmxSst5m+w5EDB9Fy1dwXJew95yGRb3JtfrCmAEMWM/Ho81F2oF51lx1wEtn2F8JD60bbPy83dNr0EjAHzH7jjzHhATLa7stSA9qlQ20F4oeFl8HPNxmfPMNxU0PTvh3O149a/IDu//HBL7jmWhYpnYu5YA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p81yK+o/h/+o94yvCinssbPqd0qkrixwF5iknpA4rmw=;
- b=MESnKjquKhoKAq3LtPI2T+EdJOveL70ZoABBJcBstfoPdz3JJxiKZDPrushzrbZ72ActTQd6G1nxi/l6q+MpakH4Z20mysnCDfKER4u5eHVGRuU0X+E+dv17SM9omMkdvQGf0ORaiMhhp1XeD2Crn16ocWvI0xDXDgf6XJs8gImRLFJ1csWYxSn2oe0BbOuCNqV8Ji1hNkaS2Aa4btkLPAt5YM/SdEWwjnqQbz5wGnxB+n3ax3xQ7Gt89jAnFn9vSykwkp60fXdFIucuF8x4pJp9+EZx+J0NUAn9ZYi78RJGRhGP8XHu5tIOEdKQ3pCcjRebM5KKeOndj9V9pqgjUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p81yK+o/h/+o94yvCinssbPqd0qkrixwF5iknpA4rmw=;
- b=gtiD4oQN35x1Y6ANJLwheXR/4Z9TS3rn5UV6ym3gbf6PHwuJ92WBSoicDcIkF7Q5ktHLecbxQJDfVmSkUlWU7gfLgzE79CPIi9oreQ/5m2j+BaJiPCQxIYJHXlKeA9qZR6itjw9O8sKqzbIZzF8GRWYuryspJLUK0jukqtHTRjwKvNVAx67FURbuTrGZIkqT1dIofkbUn+y267Q7YLmmKlJBvbEI088mAjyAQ9mG6cPxDxaUQeGjGd1BmiVJFL3H6a9qYN91/p2Zq+RXFNUt5sgikCkjTYyppExuN/IgdYkZu8+EZmdBqSxd71XpESgHyFdEs2NolmgnZXAPAdK8Xg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by GVXPR04MB10429.eurprd04.prod.outlook.com (2603:10a6:150:1da::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 19 Sep
- 2025 09:18:39 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9137.012; Fri, 19 Sep 2025
- 09:18:39 +0000
-Message-ID: <77840bf0-7dec-485b-a531-aa12b033ee45@nxp.com>
-Date: Fri, 19 Sep 2025 17:20:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/14] drm/imx: dc: Use prefetch engine
-From: Liu Ying <victor.liu@nxp.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250704-imx8-dc-prefetch-v1-0-784c03fd645f@nxp.com>
- <10a9b4e1-c777-4e63-86f6-134d6100d70a@nxp.com>
-Content-Language: en-US
-In-Reply-To: <10a9b4e1-c777-4e63-86f6-134d6100d70a@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: SI1PR02CA0009.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::10) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DEE2ECD15
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 09:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758274097; cv=none; b=QV4q7a/5W+7uKiCshBkO02ek4ahcPFSFYGD1NPP/lY0S+QJdK48Q8gyFwrmoJRFFcL4JnO6Qwba7KibAGGFYuu8BGrgnHcr/i2jEK+bXA6SEBx+a9aRKsMoRWkt/fftszbcigEfq/uNF9mo5PbO+XTpp6VTRkfbwHRt7j1Ndibc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758274097; c=relaxed/simple;
+	bh=buBQGVajJF/1m5lwRo22cHctIaIWABcM5rOL+YdF3lY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kymoumg9PEXx9G0r2+N5x/vOX3pbC8IB9iYqgdUw23Gof7UP6Z0w7sOIungeBYHzaH3Y3dWcgu94CmDQ7++xGdJUmuyj4sYNHqSSQB+dEG4TZiiCXuXTEsmbybcR4PhRePZQKHsKbGZMTCZzOpbtv+d6KJOogOai86LVYMgl+g0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=W2Lu3BvC; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3e9042021faso1365792f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 02:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1758274093; x=1758878893; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eX2C6o9JQrp4KbfLBIaQxUWMPEDMSUognUn/sSIXlqA=;
+        b=W2Lu3BvCCZvzOsZOqrJR9hMiazm9QbS2jp6AVNqDjn2yPSO4G3STOHrnQfTwVU1XT3
+         cQFGbR6fDhs+Qfw+bgBtKfA09oqNVw/k119xoh3RwmORiajJwe4mSZLvkXb8w+iGz4PH
+         JU6JEanC/PNiexljU334/PWpHcA+tRmea+vzDKSxHrAIwX/DQ+AESBmKx0v1+gQ/8N1y
+         STLPo0VZ+WUcOZkDdMrycaPBlgmZUeOUAZRHW6trUpFRyjl8ic8JIscAv9A+Qe/1h9Nx
+         pGZRFc/D1OKfxHW5GY+I8fPte8f2webKX433ZF3flLYfn5PR145X/OvqXV9M/A+cNK3l
+         d0jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758274093; x=1758878893;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eX2C6o9JQrp4KbfLBIaQxUWMPEDMSUognUn/sSIXlqA=;
+        b=lOX2j4P6VbdFnv+Q4SpCMQn1e3KRzN7d7MtmUuINxzOTSvrGYf/1VYIlRcFJYSU7LX
+         GzgQP2ZB5gv5q3qzAoT3HdgKrazsbLVqz0aZX9IFoUzxhkJPy9o2qjqhd79PiSarOz/g
+         VSbvcmCiL2152xA2pxfdcj1c5XkFRhP3heZovr8NH0+0bW3fGOn/DehgMtfljKGp13IN
+         QxL1mHriLnZsE0thStx6l9+wGdBTZlNnDbbemw9W4WTnoXdgyhFQA9Oi7pqv17zwpN6F
+         X/4Qa7MdwA8c28WlNIX5xnUNvpgYRmaQyvdSyqRipwRQWwrxxhdGk8uvlnnmUiHYsVY8
+         Ubkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrI/E+F5lC1SVXZy37uwl+rC8DYdsjyTm06QaOsaBqZZnhAlxs5gToBHHhAAvyelxt3Peap4bKMgV/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9KT/N6NM2BIMHHGg4sarRXOb+uN/ILuUAXg1Dfl38BnpSG4pb
+	CQZTU/yDj2QfkUuRnqIyCQXtzdMLDc3Tya1ufVXRzhthhlpQrz9STBJ1FL5DEgXudCk=
+X-Gm-Gg: ASbGncsrJjIj5JG+0bpk8zP+SRRgHF2DzxySKy63O1MVCwDP3mZd0JR610nQJJMeDKn
+	zTcnOxiM5WnEV2ASPZwPzgk7hukExCYCeWjsDSIWMZq+ce8GJvuABq4Oxqzs5xUvQ+CspaOc6zB
+	cTs7ZQbowsxY9FhGghWgNIVHUViKs9TxOzwn36tdxX39xU+KFtOBTQU/uBLHKgt+6u7yF/3G3+J
+	6qGM/5H3nvYVt1tw7ZbAHq16qLvJaDjqCqt1JWzAe7/xZVybsM8Nv/fkPh3FvsRgHpY67jFgvtK
+	69eZdanN6c8pwwK/FwZABVb40/toziQA1bfKhwS0fdmNDS8IZ8fv86kE4QrKPTk4Shdh0jJNvpJ
+	s4EfYcD4GfEn/PWkC54Zt63S85zLf+CM=
+X-Google-Smtp-Source: AGHT+IF8SvCo8+93/CF/N3fM2f638seOlv8Zs1arZJ3G7JJNpr7/3DX/KLCOOUOnhqlegFVFvupfZg==
+X-Received: by 2002:a05:6000:605:b0:3ea:5f76:3f7a with SMTP id ffacd0b85a97d-3ee7e0116d6mr1373555f8f.22.1758274092847;
+        Fri, 19 Sep 2025 02:28:12 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.153])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee073f4f6asm6778052f8f.6.2025.09.19.02.28.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 02:28:12 -0700 (PDT)
+Message-ID: <ca1da9cb-5003-49f2-ab8d-70b80a10d8cd@tuxon.dev>
+Date: Fri, 19 Sep 2025 12:28:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GVXPR04MB10429:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad331c55-fa8f-4392-5ece-08ddf75d84af
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|376014|7416014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Uk8xcnFKS3VBRXFXbnVNSmRGUGI2Q1BMbkRFZ0dIWjlVOWU3SWEydnk4MmVy?=
- =?utf-8?B?T3Rqb2F3dkJTQ0Qyd25kUHRSQmZSUDk4V1JWTjJRWVV1ZG53eWVTU1BYM3pT?=
- =?utf-8?B?c0xBSmkwenRkNHZ3bi9GamY0Y25NeWZMYUlnZy9oWUJWR0VWU0IrUUZSSDE0?=
- =?utf-8?B?eUVNSDlTdG1sWXprSktmSjliWTY3RFJKbEF2Z3BTMXBVYzhob2xLVFFwdUd2?=
- =?utf-8?B?YkdjbDI5em1yaXNtKzNVSzcrVTZEYUMrT3dqbUFlN2ljSDBMTUpzbjJCaEVh?=
- =?utf-8?B?R3FqN2M4Umh3S1FZb00zYU9ydWZ1WCsrMzBBZVJ3cG4rZUhJakZNc1NjOTBt?=
- =?utf-8?B?UUthL0hNNTlIOUlRbjZVdmVkTFZsTUlERnZsMlR6a1Z1VTc5bFo3cnVqb0ww?=
- =?utf-8?B?Yk02ZWgyaUFRQ3NOanlTQ1VxQ05YU1dieis0eWdzbXZOTFdNanRkZVpvQ0pi?=
- =?utf-8?B?eSszL3RiOVhxQWFEZnE3dkw5b2c5aVJCR1F3ZHN5SEYySEJtWGhRaStFVWY1?=
- =?utf-8?B?TWs1OUVPVkcrdUFtdFZCbGs5dXVEY3FPeis5aFhqbGxnUmZScUZMM0VybGNY?=
- =?utf-8?B?eDdJZDZ3SU45UEY5ZFMrT0NnYW56RlpMRmh1MHo2ZG4rTWpINjdpcTdxR0R4?=
- =?utf-8?B?WGVvaktSeUZFTmFUMnRUSUtoTGE2UnhjVmV4UlR1Vk5hMi9vVXdEYk4vNjc4?=
- =?utf-8?B?d1hlUlpETWFWMUN5dkhvYm1iVjNNYnRtRWNSOVBQZVFqUFNvVmp1QWJTZ20y?=
- =?utf-8?B?NW55ZGczM2JsQkxTUk83VjJKRll2emVIRk9yLzVMajFFVnFlSnpBdjBSSXRp?=
- =?utf-8?B?SGFkeDNQbGlqbzIyTFd0eGY3R1hydXkvL1AvQXJtendBQkp1Vzhjb1ViQy9m?=
- =?utf-8?B?Y1dLVFlrT1VtUjF5TlVza3hMTFRMdVVtcEFZYTExZ3FKb1NEUmpmRjVxN1FX?=
- =?utf-8?B?eHJJaDJnMXQzSWpMR01WdVVPclJRbm55Y3V0ZVlhRlBjYmo3MCtJa3pQSTV2?=
- =?utf-8?B?b2NSdzZka0JCS2pGVzV1NUZuMkxGbWE2UnhSOFc0NmRSZFhEVUcxd1FGRXFO?=
- =?utf-8?B?K2dJR2RRWHArS3NRQ1ZUVlRIbWZWdXRRblZYcGtaWHlNM0NnejVFc2Rxb3o3?=
- =?utf-8?B?NUR6SmlUUk9sS3dRMngvb1J2QXhxYUhBTkdFaSthQ2JUbFlEZVFnYnphMHVE?=
- =?utf-8?B?aWl6anRMQkFpSVFlTUR3NEg0TTVGcUVzcFREQ0plY3pnMzRSemdkeUM5V2NC?=
- =?utf-8?B?V0wzeXhsazVQeWRYS0NOck5Xb04rb0RGZmV3cjFRTHN6MGYvZU9WdEx2Nm16?=
- =?utf-8?B?ZGsvY3c0NnVYdE50dzNhSTBJeHp1Z2NXSmtod1VZbDFhd09mNGFqYzhMTHhv?=
- =?utf-8?B?S1JPUEZseTdRY0s4cnBkMGc1a2VDRUkxK3V3UDVSNENJUG9zczZONkFzQTY5?=
- =?utf-8?B?Tmw4YkVoVmxXMkhEOUN6Wkp1bllJSC95eEYxUHlHeE1EMjFzcW9uVmRvQ21R?=
- =?utf-8?B?QnNJWk5wSmFSWGErRktMNWNkaHNwYVdGTEp6a05WRm5OWmxsTUFhcWlhaUVL?=
- =?utf-8?B?bGF3ZDVaVUJUZXpPY1BEaFVaRVo3WjVVTGFmbS9rUXV2Tm5WYXdIVlphZlRE?=
- =?utf-8?B?Mlg5YmxiWWdZZUg3MUhGZ3Q2eUpBOGthS1Z3U2pHT3J2b2I0NFA0RDFpWEY3?=
- =?utf-8?B?WXFVN0hpVlpaeVZJMDc0LzVzSm91RzJJTjU4OFdsRVVtTGdkWnU1MFovdzls?=
- =?utf-8?B?S1NlVXgvci9CSmlkcUgrQTZPbTIyRzZxMks1RkxEN3R3LzJQWnIxbE9PZ25N?=
- =?utf-8?B?dXdJQk1jeVpZeDJKZEtoYVdJbkhXTWp2OHptaDIzeHRzb0JxL0EraVBHWllw?=
- =?utf-8?B?ZVVWNFhwZzQvQ2U0THo4M0I3d214QnljUkYyK3hWbndPVmFVZnlaeGJ0ckFq?=
- =?utf-8?Q?IUSuw0A/HRw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(376014)(7416014)(366016)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?akZheDVzOFV4TlhtRjE0OTlZUlFwYVIxWStGSUEvVzBid081Q0NHVVIvZ0FG?=
- =?utf-8?B?Z2VLK0IzRVdjU2FLM2FCc0NkSHpjZStkNDUzVHppQUtuM3p3MENHQ004d1hR?=
- =?utf-8?B?NkF3ZHpGcStpM0VQemFHbzR0UGVJMG12Uy94ZGpKeGQ0WHptdkQ2WkFXeXNV?=
- =?utf-8?B?SFMwdlZnaVJMZXNMckxua1VPRFFURnBZVU5sVHU1UVdOaWp1bkdLcFgyMy9w?=
- =?utf-8?B?YzVxcE5EL2pvdXBIN3ZmMkN6RjByWG5oZkFZZnQ3dkhlZjFaeVBXK21WTTRs?=
- =?utf-8?B?eGRIbWwzaDVTNUxRN1NjVllsRjdxYy9Vd0pvTGV1dC9FOXBpWUdaTC9iZUR4?=
- =?utf-8?B?YWJTWnkzVUNsWGhyeHN5TFI4SUxEVm00eC9jaGcvbnJUcUdlaHFPcTE3SmFW?=
- =?utf-8?B?QUJsVGpQZWEwK0dwM0dVaG15VndZcEwxOGIybDZFam9raHJJM0pobDVxdlRp?=
- =?utf-8?B?YkZlZ1M3L3V1d3prSDdSTW1aOWlMbkdCNnlwMldlNFZXdDczbWx4b3VubjlL?=
- =?utf-8?B?SUVBd09FelpJQTZIYkdtZGFRSE1YNTZGUVFhbXhWa01UNlVQUE4xRitQTVZu?=
- =?utf-8?B?VWZjazlCeVBpWlc2RXo0eXJ5d212RzNwSTArQXBnbnlVL1d2K24rSHdVWERJ?=
- =?utf-8?B?ejlXWWluK1NYb0E0ekJ4Mk5NR2Qxd1poc015ZVd5WkJtY3NqdzN1eTByc05F?=
- =?utf-8?B?Q0VudHNTQ2R4dkxQVnNNaW1NOCtmNHFnWUpFekJ1L0l0WUhOTGRtdUc4N05F?=
- =?utf-8?B?UDhIQkdNRENZakNoVWFQK01QRk1iSlR0UnlRYmdqVmVPQ0JNSVdXeTdkSFlW?=
- =?utf-8?B?eFpNZXNnS2NPOWdFQ1c5YmtsWis5LzZvOThOWGl4MGYrOGsrV0IxVENYWXFM?=
- =?utf-8?B?OEZCM292dlRGV0MrcEpwK3lBWnVLeXNrc0VUUTlVb0lKbHhFQnRXYTg2YW5k?=
- =?utf-8?B?UCtaRW82QjRMZGZ5T0JyRnFZclovaEs0L3htZHprczVocEJub2Ywa3A3WTBy?=
- =?utf-8?B?amFURXNGVS9pdlBrVXVpN2xRMVNSVDBnNHhUT3dyL3puK1g2US9teEhjVVRJ?=
- =?utf-8?B?cEpaOGt2blNoQUVQOWdtZU1Hd2lWWlQxejcvd0hzQy9jT3lIMlFhR2ZBM1J4?=
- =?utf-8?B?Y0E0UEduWjJXUXVKdmZ6ZTJhRmd4TGNIRnhHY1VjYTM4ZEtqS05ldnI4dVJC?=
- =?utf-8?B?RU1WSnFBZmFyL0doMFlOTUZBUm9VOHhsRXNUQU4weFFlT1NBV0xhMjFVM1BK?=
- =?utf-8?B?L3cwYll4TXRyUUFVWEVjV0sxMlV4emJUcmwwbExTdEN2dmtXeFRKeHRYVmhl?=
- =?utf-8?B?cmNUSHA2bXpQZ1BUV1F1K2dXTjRiZitaR3JPQ1oxaS9jNzRmWEROMGVNRFN1?=
- =?utf-8?B?a09EMVdKMWVhdzhVeGNtN0hPWjdPdVpsOHZoSWhkTzNxVFhDVm1GV1ZZVUhm?=
- =?utf-8?B?MG9MdS9vQlpnM2VLU3JVb1BQdDZTQUhXcFpCeDR1aXZBVVdIMkJScGxaUndB?=
- =?utf-8?B?Sk1keFU3U3AzZEsrL0xvb3UrUzAxc2liUjlMSFNCOGpPNWVhL0RaN3cwemxn?=
- =?utf-8?B?eFd2YTdSeWJLVUJFVmNaUDRNQUxhNTJnSlRFdnNFYlpraVp6eCtlQXBkSXZE?=
- =?utf-8?B?UlVtL2ZiT3NaQ1hBU3RkMmVVZC8wczRNMk4wRitYWStvSGxMd2drUURValhh?=
- =?utf-8?B?SEhuVzByT2Y4UzNHNmxNeFpKUUZPNXZZQ1k5TkJkODFoSDc5MnNUSzVFelRU?=
- =?utf-8?B?WjU5bnppRnhVSkt0R0tqRGJaeEtEUEFtZElGN285cnJwQXAwbGRCc3dvQ2Vu?=
- =?utf-8?B?TEltTHFvbmQ0SzZXekhicVNQNmFRblRaVXZnckR1UWFFeUlKN2pKejhPRFND?=
- =?utf-8?B?MVhCUmFOM2ZWZnpDU0xJVEFNa3BiejQrSFBYU1BzVHhYc0loL1NqUm5teWxD?=
- =?utf-8?B?SGxjY2psN3JMRWZxb1JVK2tVcTdVSUhrcVV5UGcyaHpham1DeTNmNDVySURT?=
- =?utf-8?B?MDQ5dCtYbU4xTWRhNGhNUW00a0tyeERQZmwxVEY1VnR5SFV5Ui93ZHhoUkpW?=
- =?utf-8?B?UTBTT28ydWc2Vk1RSjFWZnpVUmV1UTByKzM3OGt0UzUyTHN3bnJjcURCUE41?=
- =?utf-8?Q?GjciRnSIm2Fed54Rx7dEhKESx?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad331c55-fa8f-4392-5ece-08ddf75d84af
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 09:18:38.9939
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T2COtK1XyWQxEM1Y/2YjJv9cgwqCm92/mkeFLnTZHAWnFQkZL590QAYMEn2/TRX9nZaBD88A50jf227tT/+HGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10429
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host
+ driver
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, p.zabel@pengutronix.de,
+ linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250912122444.3870284-3-claudiu.beznea.uj@bp.renesas.com>
+ <pnph54wv3736lemzren64ig4karlulffkvmc3dzgrhgyv2cpwu@2mcgvlqdr6wu>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <pnph54wv3736lemzren64ig4karlulffkvmc3dzgrhgyv2cpwu@2mcgvlqdr6wu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 08/12/2025, Liu Ying wrote:
-> On 07/04/2025, Liu Ying wrote:
->> Hi,
+
+
+On 9/19/25 11:45, Manivannan Sadhasivam wrote:
+> On Fri, Sep 12, 2025 at 03:24:40PM +0300, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >>
->> This patch series aims to use prefetch engine in imx8-dc KMS driver.
+>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>> only as a root complex, with a single-lane (x1) configuration. The
+>> controller includes Type 1 configuration registers, as well as IP
+>> specific registers (called AXI registers) required for various adjustments.
 >>
->> One prefetch engine consists of one DPR Channel(DPRC) and one or two
->> Display Prefetch Resolve Gaskets(PRGs).  It prefetches data from
->> DDR, resolves data in tile formats if needed and outputs the result
->> data to FetchUnit(s).  When one PRG is used, a prefetch engine supports
->> processing pixel formats with one planar, e.g., RGB formats.  When two
->> are used, pixel formats with two planars are supported, e.g., NV12.
+>> Hardware manual can be downloaded from the address in the "Link" section.
+>> The following steps should be followed to access the manual:
+>> 1/ Click the "User Manual" button
+>> 2/ Click "Confirm"; this will start downloading an archive
+>> 3/ Open the downloaded archive
+>> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
+>> 5/ Open the file r01uh1014ej*-rzg3s.pdf
 >>
->> For now, this patch series only supports prefetch engines with one PRG
->> because it is enough for XRGB8888 which is the only pixel format
->> supported by imx8-dc plane driver.  Two PRGs would be supported by
->> future patches.
->>
->> Patch 1 and 2 add dt-bindings for DPRC and PRG.  They were reviewed
->> by Rob[1][2].  I slightly modified the patches' commit message to use
->> imperative mood.
->>
->> Patch 3 adds DPRC and PRG dt-binding files to MAINTAINERS.
->>
->> Patch 4 fixes FetchUnit dimensions as related to prefetch engine function.
->>
->> Patch 5 disables CRTC at boot if needed to support prefetch engine better.
->>
->> Patch 6 and 7 add PRG and DPRC drivers.
->>
->> Patch 8 to 13 do preparations before using prefetch engine in imx8-dc KMS
->> driver.
->>
->> Patch 14 uses prefetch engine in imx8-dc KMS driver.
->>
->> [1] https://lore.kernel.org/lkml/20201207165945.GA430214@robh.at.kernel.org/
->> [2] https://lore.kernel.org/lkml/20201207170206.GA434964@robh.at.kernel.org/
->>
->> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
+>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >> ---
->> Liu Ying (14):
->>       dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
->>       dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
->>       MAINTAINERS: Add i.MX8qxp prefetch engine DT binding files
->>       drm/imx: dc-fu: Fix dimensions
->>       drm/imx: dc-crtc: Disable at boot
->>       drm/imx: dc: Add PRG support
->>       drm/imx: dc: Add DPR channel support
->>       drm/imx: dc: Use TCON operation mode
->>       drm/imx: dc-ed: Support getting source selection
->>       drm/imx: dc-lb: Support getting secondary input selection
->>       drm/imx: dc-ed: Drop initial source selection
->>       drm/imx: dc-lb: Drop initial primary and secondary input selections
->>       drm/imx: dc-fu: Get DPR channel
->>       drm/imx: dc: Use prefetch engine
 >>
->>  .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     | 100 +++++
->>  .../bindings/display/imx/fsl,imx8qxp-prg.yaml      |  60 +++
->>  MAINTAINERS                                        |   2 +
->>  drivers/gpu/drm/imx/dc/Kconfig                     |   1 +
->>  drivers/gpu/drm/imx/dc/Makefile                    |   6 +-
->>  drivers/gpu/drm/imx/dc/dc-crtc.c                   | 191 +++++++-
->>  drivers/gpu/drm/imx/dc/dc-de.h                     |   2 +
->>  drivers/gpu/drm/imx/dc/dc-dprc.c                   | 499 +++++++++++++++++++++
->>  drivers/gpu/drm/imx/dc/dc-dprc.h                   |  35 ++
->>  drivers/gpu/drm/imx/dc/dc-drv.c                    |   7 +
->>  drivers/gpu/drm/imx/dc/dc-drv.h                    |   5 +
->>  drivers/gpu/drm/imx/dc/dc-ed.c                     |  27 +-
->>  drivers/gpu/drm/imx/dc/dc-fl.c                     |   7 +-
->>  drivers/gpu/drm/imx/dc/dc-fu.c                     |  49 +-
->>  drivers/gpu/drm/imx/dc/dc-fu.h                     |  11 +-
->>  drivers/gpu/drm/imx/dc/dc-fw.c                     |   7 +-
->>  drivers/gpu/drm/imx/dc/dc-kms.h                    |   7 +
->>  drivers/gpu/drm/imx/dc/dc-lb.c                     |  23 +-
->>  drivers/gpu/drm/imx/dc/dc-pe.h                     |   2 +
->>  drivers/gpu/drm/imx/dc/dc-plane.c                  |  46 +-
->>  drivers/gpu/drm/imx/dc/dc-prg.c                    | 335 ++++++++++++++
->>  drivers/gpu/drm/imx/dc/dc-prg.h                    |  39 ++
->>  drivers/gpu/drm/imx/dc/dc-tc.c                     | 114 ++++-
->>  23 files changed, 1545 insertions(+), 30 deletions(-)
->> ---
->> base-commit: 50c8770a42faf8b1c7abe93e7c114337f580a97d
->> change-id: 20250703-imx8-dc-prefetch-028e306591c6
->>
->> Best regards,
 > 
-> Gentle ping.
+> [...]
+> 
+>> +static void rzg3s_pcie_update_bits(void __iomem *base, u32 offset, u32 mask,
+>> +				   u32 val)
+>> +{
+>> +	u32 tmp;
+>> +
+>> +	tmp = readl(base + offset);
+> 
+> Unless there is an ordering requirement, you can safely use
+> {readl/writel}_relaxed variants throughout the driver.
 
-Ping for review again.
+HW manual lists specific steps to follow when issuing requests. These steps
+are listed in chapter "34.4.2.4 Issuing Special Requests" in the manual
+pointed in patch description.
 
--- 
-Regards,
-Liu Ying
+> 
+>> +	tmp &= ~mask;
+>> +	tmp |= val & mask;
+>> +	writel(tmp, base + offset);
+>> +}
+>> +
+> 
+> [...]
+> 
+>> +static void __iomem *rzg3s_pcie_child_map_bus(struct pci_bus *bus,
+>> +					      unsigned int devfn,
+>> +					      int where)
+>> +{
+>> +	struct rzg3s_pcie_host *host = bus->sysdata;
+>> +	unsigned int dev, func, reg;
+>> +
+>> +	dev = PCI_SLOT(devfn);
+>> +	func = PCI_FUNC(devfn);
+>> +	reg = where & ~0x3;
+>> +
+>> +	/* Set the destination */
+>> +	writel(FIELD_PREP(RZG3S_PCI_REQADR1_BUS, bus->number) |
+>> +	       FIELD_PREP(RZG3S_PCI_REQADR1_DEV, dev) |
+>> +	       FIELD_PREP(RZG3S_PCI_REQADR1_FUNC, func) |
+>> +	       FIELD_PREP(RZG3S_PCI_REQADR1_REG, reg),
+>> +	       host->axi + RZG3S_PCI_REQADR1);
+>> +
+>> +	/* Set byte enable */
+>> +	writel(RZG3S_PCI_REQBE_BYTE_EN, host->axi + RZG3S_PCI_REQBE);
+>> +
+>> +	/*
+>> +	 * rzg3s_pcie_child_map_bus() is used to configure the controller before
+>> +	 * executing requests. It is called only within this driver and not
+>> +	 * through subsystem calls. Since it does not return an address that
+>> +	 * needs to be used later, return NULL.
+>> +	 */
+> 
+> What guarantees that the PCI core will not call this function through
+> pci_ops::map_bus?
+
+As of my code inspection the pci_ops::map_bus is currently called from:
+pci_generic_config_read()
+pci_generic_config_write()
+pci_generic_config_read32()
+pci_generic_config_write32()
+
+As of my code inspection, these are currently called from vendor specific
+drivers. I the core behavior will be changed, I can't guarantee the
+statement from the comment. Please let me know if you want me to drop the
+initialization of rzg3s_pcie_child_ops::map_bus and call
+rzg3s_pcie_child_map_bus() explicitly instead of calling it though
+rzg3s_pcie_child_ops::map_bus
+
+As mentioned in the previous review rounds, this is implemented like this
+as it was suggested in v1 review process.
+
+> 
+>> +	return NULL;
+>> +}
+>> +
+>> +static struct pci_ops rzg3s_pcie_child_ops = {
+>> +	.read		= rzg3s_pcie_child_read,
+>> +	.write		= rzg3s_pcie_child_write,
+>> +	.map_bus	= rzg3s_pcie_child_map_bus,
+>> +};
+>> +
+>> +static void __iomem *rzg3s_pcie_root_map_bus(struct pci_bus *bus,
+>> +					     unsigned int devfn,
+>> +					     int where)
+>> +{
+>> +	struct rzg3s_pcie_host *host = bus->sysdata;
+>> +
+>> +	if (devfn)
+>> +		return NULL;
+>> +
+>> +	return host->pcie + where;
+>> +}
+>> +
+>> +/* Serialization is provided by 'pci_lock' in drivers/pci/access.c */
+>> +static int rzg3s_pcie_root_write(struct pci_bus *bus, unsigned int devfn,
+>> +				 int where, int size, u32 val)
+>> +{
+>> +	struct rzg3s_pcie_host *host = bus->sysdata;
+>> +
+>> +	/* Enable access control to the CFGU */
+>> +	writel(RZG3S_PCI_PERM_CFG_HWINIT_EN, host->axi + RZG3S_PCI_PERM);
+>> +
+> 
+> I'm not sure if 'host->axi' written above and the address written below are in
+> the same domain or not. 
+
+host->axi and host->pci are both part of the PCI controller address space.
+I don't have more info on it than this. HW manual don't mention anything
+about this.
+
+> If they are, then the writes will be serialized and
+> would be no issues. If they are in different domains, then you would need to do
+> readl() to make sure the above write reaches the hardware before writing below.
+> 
+>> +	pci_generic_config_write(bus, devfn, where, size, val);
+>> +
+>> +	/* Disable access control to the CFGU */
+>> +	writel(0, host->axi + RZG3S_PCI_PERM);
+>> +
+>> +	return PCIBIOS_SUCCESSFUL;
+>> +}
+>> +
+>> +static struct pci_ops rzg3s_pcie_root_ops = {
+>> +	.read		= pci_generic_config_read,
+>> +	.write		= rzg3s_pcie_root_write,
+>> +	.map_bus	= rzg3s_pcie_root_map_bus,
+>> +};
+>> +
+> 
+> [...]
+> 
+>> +static int rzg3s_pcie_intx_setup(struct rzg3s_pcie_host *host)
+>> +{
+>> +	struct device *dev = host->dev;
+>> +
+>> +	for (int i = 0; i < PCI_NUM_INTX; i++) {
+>> +		struct platform_device *pdev = to_platform_device(dev);
+>> +		char irq_name[5] = {0};
+>> +		int irq;
+>> +
+>> +		scnprintf(irq_name, ARRAY_SIZE(irq_name), "int%c", 'a' + i);
+>> +
+>> +		irq = platform_get_irq_byname(pdev, irq_name);
+>> +		if (irq < 0)
+>> +			return dev_err_probe(dev, -EINVAL,
+>> +					     "Failed to parse and map INT%c IRQ\n",
+>> +					     'A' + i);
+>> +
+>> +		host->intx_irqs[i] = irq;
+>> +		irq_set_chained_handler_and_data(irq,
+>> +						 rzg3s_pcie_intx_irq_handler,
+>> +						 host);
+>> +	}
+>> +
+>> +	host->intx_domain = irq_domain_create_linear(of_fwnode_handle(dev->of_node),
+>> +						     PCI_NUM_INTX,
+>> +						     &rzg3s_pcie_intx_domain_ops,
+>> +						     host);
+>> +	if (!host->intx_domain)
+>> +		return dev_err_probe(dev, -EINVAL,
+>> +				     "Failed to add irq domain for INTx IRQs\n");
+>> +	irq_domain_update_bus_token(host->intx_domain, DOMAIN_BUS_WIRED);
+>> +
+>> +	return devm_add_action_or_reset(dev, rzg3s_pcie_intx_teardown, host);
+> 
+> Didn't I suggest dropping these devm_add_action_or_reset() calls and use error
+> labels as like other controller drivers?
+
+It has been mentioned like "It is generally preferred to cleanup the
+resources in err path using goto labels."; thorough "generally preferred" I
+understood this as a non-strict rule, thus I asked back if you prefer it
+for this driver as well, but got no further reply. Sorry for any confusion,
+if any.
+
+But before posting this version I also prepared a version that drops the
+devm actions or resets and uses gotos instead. I'll send it in reply to
+this patch for you to check it. I personally consider it complicates the
+failure path. Please let me know your thoughts.
+
+> 
+>> +}
+>> +
+> 
+> [...]
+> 
+>> +static struct platform_driver rzg3s_pcie_driver = {
+>> +	.driver = {
+>> +		.name = "rzg3s-pcie-host",
+>> +		.of_match_table = rzg3s_pcie_of_match,
+>> +		.pm = pm_ptr(&rzg3s_pcie_pm_ops),
+>> +		.suppress_bind_attrs = true,
+>> +	},
+>> +	.probe = rzg3s_pcie_probe,
+> 
+> You could use '.probe_type = PROBE_PREFER_ASYNCHRONOUS' to allow async probing
+> of the devices. This will have a big impact in boot time if you have multiple
+> controllers.
+
+Thank you for the hint. I'll look to it.
+
+Thank you for your review,
+Claudiu
+
+> 
+> - Mani
+> 
+
 
