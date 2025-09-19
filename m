@@ -1,113 +1,136 @@
-Return-Path: <devicetree+bounces-219440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0ADB8B177
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:35:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B1ECB8B19B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 21:39:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A731DA065E0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:34:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56C55668C0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 19:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60547266581;
-	Fri, 19 Sep 2025 19:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73A3283FE6;
+	Fri, 19 Sep 2025 19:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="du/t96Rq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K/1XrRAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1326B256C70;
-	Fri, 19 Sep 2025 19:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE41A1E5B63;
+	Fri, 19 Sep 2025 19:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758310496; cv=none; b=upkEq75dmt0y6e9CFCt9lObdoiDfavCqcZJ/jKHr/0K1yKFsC569LG4R57/Vuq834QGKBSlOmMe414CnSKCRf5LblF2dqGUkHlbJ6XUE+l1IojCq5TvYr11aaiCiK2+x5HaxoeAr7Bnc/RL4cAojfkaBrLIk09mDEUHR4aaJu2k=
+	t=1758310772; cv=none; b=DXEFQ/TPsX7mWzj50JrQ3vUFwi3xFMGp89kg7GNiLSih4Pxzfd4OI1wW3b2ZnP0/0IfSTxofTyFXZo4RZtBfUB4Yi+1Jj1Eaqz6qjBkwMze8oi/wXY/WmyS02/rswUfka+FrocuwKMhIYOSEZ/dbDt9pEGtnOIP4M7ebRoaMx20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758310496; c=relaxed/simple;
-	bh=rRgtaSBogQ9OXl3HAtx2DncBhgZdCZT7YigyFbtUo5k=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ojKiQNVdaxbs5P8RWUhVm6DhlA7U7MWCGoeGebXxZn9yicm3VHb6QROZotMhKk7UybsXRMBt0rsVazO8q367lT4zLeJLQp15vd5ny60/7eWE8rD1KLjZrzzS4urcgT8mkidchzEpTNAu+MUHz/U1QGO7CO3Xd4PtffpPtH2DxPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=du/t96Rq; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JJYVnd309082;
-	Fri, 19 Sep 2025 14:34:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758310471;
-	bh=4e+vM8y65RFB7t9z0rUFFvypiNgEA9GqKV1KkIOAjaw=;
-	h=From:To:CC:Subject:Date;
-	b=du/t96Rqu8z/S9y/E8DMnrXo9Sdt/i5dE5RVObEXS3ejwua+k1Lq79523nhCeQO00
-	 ZTmqtS+kG6lNgNqsEfrcU27dzoW1qNEIWWd8RWZqj+7JPVHmUBOs5eBKU/bCqM9cxS
-	 ekflEfqY3L+UCV/UvrVkoudRIAEFrA47KMcRj04g=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JJYVIE2559652
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 19 Sep 2025 14:34:31 -0500
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
- Sep 2025 14:34:30 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 19 Sep 2025 14:34:31 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JJYVKA3079903;
-	Fri, 19 Sep 2025 14:34:31 -0500
-From: <rs@ti.com>
-To: <mwalle@kernel.org>, <afd@ti.com>, <conor+dt@kernel.org>,
-        <frank.binns@imgtec.com>, <kristo@kernel.org>, <krzk+dt@kernel.org>,
-        <matt.coster@imgtec.com>, <nm@ti.com>, <robh@kernel.org>,
-        <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <detheridge@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62p: Fix memory ranges for GPU
-Date: Fri, 19 Sep 2025 14:33:42 -0500
-Message-ID: <20250919193341.707660-2-rs@ti.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1758310772; c=relaxed/simple;
+	bh=pfrlJV7xT9mCTFBKlTyzmehnciaaG4sFS0+gOJkLiU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nYu4dCWsf9/Vy/cnX597WSjy9P+zPo8LfeLeS/Ulxe1/izdlne6GBuOErupzohrtq0h8PzTMb+fmehmji4oNWpVQ+CXV3Whawn+zWsqJIEM5SpmjxWt3N2ceK3vUAiXYyc7BgZuS3vWWFeJQY5Pi55AuVrzwnF3y7jS9nprxcy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K/1XrRAe; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758310771; x=1789846771;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pfrlJV7xT9mCTFBKlTyzmehnciaaG4sFS0+gOJkLiU8=;
+  b=K/1XrRAeUj4h01+D0mmxvPSUrPdhV6GDSSyCUxqzipVoYyZTjajnMStw
+   zfnIU9kbWTWNrhJIMtisdR10ISDzHBXn6UEUrMONSaiFCi/oG6WafQaKU
+   Nz83AW/Xd+J9naaL09dUc9NMyR2FLYw4ovDlN0bU8eptz+u1r+wtzX6uK
+   kunYyXQsvMec/MmIXrQWr7uWBQpvy37JWS3i9bg05Z8yEu54Q02qtf2Zw
+   E0W1bP7LjdkyzBe7VYEOft+zjGPumhuIKoUK6tOUXMakeg55qOpB/4g7/
+   HEJks/oOO94HMeRqXdxzjva0CZgJ0HmL7c1l4UBCAsO1A1zPHLyXFqp8r
+   Q==;
+X-CSE-ConnectionGUID: w1mfhkUFRyuEXh/WOrF3YQ==
+X-CSE-MsgGUID: EL/EEtEMSeGmGfYlBE3EcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64465234"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="64465234"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Sep 2025 12:39:31 -0700
+X-CSE-ConnectionGUID: NGydXMcGToenjZurbbPepw==
+X-CSE-MsgGUID: SonlgQ+oRPexgrdvb3MD8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; 
+   d="scan'208";a="175717300"
+Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 19 Sep 2025 12:39:21 -0700
+Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uzgww-0004kd-1C;
+	Fri, 19 Sep 2025 19:39:18 +0000
+Date: Sat, 20 Sep 2025 03:38:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Harikrishna Shenoy <h-shenoy@ti.com>, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, sjakhade@cadence.com, yamonkar@cadence.com,
+	lumag@kernel.org, dianders@chromium.org, jani.nikula@intel.com,
+	luca.ceresoli@bootlin.com, andy.yan@rock-chips.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devarsht@ti.com, u-kumar1@ti.com,
+	s-jain1@ti.com, tomi.valkeinen@ideasonboard.com
+Cc: oe-kbuild-all@lists.linux.dev, h-shenoy@ti.com
+Subject: Re: [PATCH v5 2/2] drm: bridge: cdns-mhdp8546: Add support for DSC
+ and FEC
+Message-ID: <202509200323.OEAahLBT-lkp@intel.com>
+References: <20250915103041.3891448-3-h-shenoy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250915103041.3891448-3-h-shenoy@ti.com>
 
-From: Randolph Sapp <rs@ti.com>
+Hi Harikrishna,
 
-Update the memory region listed in the k3-am62p.dtsi for the BXS-4-64
-GPU to match the Main Memory Map described in the TRM [1].
+kernel test robot noticed the following build errors:
 
-[1] https://www.ti.com/lit/ug/spruj83b/spruj83b.pdf
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on drm-misc/drm-misc-next linus/master v6.17-rc6 next-20250919]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Fixes: 29075cc09f43 ("arm64: dts: ti: Introduce AM62P5 family of SoCs")
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
+url:    https://github.com/intel-lab-lkp/linux/commits/Harikrishna-Shenoy/dt-bindings-drm-bridge-MHDP8546-bridge-binding-changes-for-DSC/20250915-183321
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250915103041.3891448-3-h-shenoy%40ti.com
+patch subject: [PATCH v5 2/2] drm: bridge: cdns-mhdp8546: Add support for DSC and FEC
+config: arm64-randconfig-002-20250919 (https://download.01.org/0day-ci/archive/20250920/202509200323.OEAahLBT-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250920/202509200323.OEAahLBT-lkp@intel.com/reproduce)
 
-Requirement for the following series:
-https://lore.kernel.org/all/20250915143440.2362812-1-mwalle@kernel.org/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509200323.OEAahLBT-lkp@intel.com/
 
- arch/arm64/boot/dts/ti/k3-am62p.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+All errors (new ones prefixed by >>):
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-index 75a15c368c11..dd24c40c7965 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
-@@ -59,7 +59,7 @@ cbass_main: bus@f0000 {
- 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x01b28400>, /* First peripheral window */
- 			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
- 			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01d20000>, /* Second peripheral window */
--			 <0x00 0x0fd00000 0x00 0x0fd00000 0x00 0x00020000>, /* GPU */
-+			 <0x00 0x0fd80000 0x00 0x0fd80000 0x00 0x00080000>, /* GPU */
- 			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
- 			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
- 			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00010100>, /* CSI window */
+   aarch64-linux-ld: Unexpected GOT/PLT entries detected!
+   aarch64-linux-ld: Unexpected run-time procedure linkages detected!
+   aarch64-linux-ld: drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-dsc.o: in function `cdns_mhdp_dsc_write_enc_config':
+>> cdns-mhdp8546-dsc.c:(.text+0x2f0): undefined reference to `drm_dsc_flatness_det_thresh'
+   aarch64-linux-ld: drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-dsc.o: in function `cdns_mhdp_compute_dsc_params':
+>> cdns-mhdp8546-dsc.c:(.text+0x91c): undefined reference to `drm_dsc_set_const_params'
+>> aarch64-linux-ld: cdns-mhdp8546-dsc.c:(.text+0x924): undefined reference to `drm_dsc_set_rc_buf_thresh'
+>> aarch64-linux-ld: cdns-mhdp8546-dsc.c:(.text+0x930): undefined reference to `drm_dsc_setup_rc_params'
+>> aarch64-linux-ld: cdns-mhdp8546-dsc.c:(.text+0x940): undefined reference to `drm_dsc_initial_scale_value'
+>> aarch64-linux-ld: cdns-mhdp8546-dsc.c:(.text+0x954): undefined reference to `drm_dsc_compute_rc_parameters'
+   aarch64-linux-ld: drivers/gpu/drm/bridge/cadence/cdns-mhdp8546-dsc.o: in function `cdns_mhdp_dsc_send_pps_sdp':
+>> cdns-mhdp8546-dsc.c:(.text+0xa44): undefined reference to `drm_dsc_dp_pps_header_init'
+>> aarch64-linux-ld: cdns-mhdp8546-dsc.c:(.text+0xa54): undefined reference to `drm_dsc_pps_payload_pack'
+
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
