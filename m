@@ -1,201 +1,156 @@
-Return-Path: <devicetree+bounces-219393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06DFB8A9D7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:42:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3169B8AA13
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 18:46:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D76D1894F94
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:43:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EB405A3CC3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 16:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55E3481B1;
-	Fri, 19 Sep 2025 16:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148D9321437;
+	Fri, 19 Sep 2025 16:45:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wWvQ4BAp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L+zIWkYX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C9EE23815B
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 16:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5017331E88A
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 16:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758300170; cv=none; b=eq24RBFh+UdsFL4BuWmLVMFrO+x3WM3kDwFqklHfUKc9/seQMTgWui0cluxAvVT1Twr0/fXJlLb/dBuJPXakNVmIlvcb1/WQDL8DInixAeHdrXfffj1LjiXe8XotX2Et8BIBuy17wAtXi5AX6RLB2PDTY6AUHc82T+UEwlg42Wg=
+	t=1758300336; cv=none; b=G3XoxChav5seMOZcRYc4kETXFF9NRkRGb19H9gUU73sxsiFWOl6PbdvaHrbwp8gE/GIjr4+S/kMZbEQJ1TWASiCjtWLjArGheV7bE/sy0O+xpJOzvcvHD1KRAx062kwIClwTqECm7SN21wv5Q61onpK89BArPnHP6GbNvsyaNTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758300170; c=relaxed/simple;
-	bh=IVmeYFEt5n78kowyzbALJ2qR43obCrrnzs3YepyioWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EZLk0PpLxFetH3F1XQ4Zb2u3EKEyXT6tKJeTyM7587NH+hh7o9T+AqQ7OHgrHpbAq+SHfj2akpE2G+qlJqD3SzVCnI5tj/RZOxLkrtprpnGyq/RNmfU2CV3433ozHUTx8pcujHPmp5Qe9SMm/J3m2tRjC4mxFFH3Z5o3MyTmr+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wWvQ4BAp; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee1317b1f7so1200507f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 09:42:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758300167; x=1758904967; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QkHj6yxNHqV86xD9f9rRMp4RmegxtrG2NNsn/fkhknU=;
-        b=wWvQ4BApGTAQVOMBo0lK4TT/Nhb0Y5f8AgIcULgKprpvJCRm7k2pTlThkLrwReFHyO
-         k8ZP99TIfvSqR78QxCHtkP7ZND3r4HFrjgseKLq07VP0rLOu1MDaZE/FKcdKjqkDRxF+
-         sh4TyWnsw6LP6XbE9tB4Vp6Z1FkYPYvpbJDqPsahfnL/4D2hMyiH/9swzuUGycNsdBOF
-         Bwcbg6yanXYammhI7ra42uLBVlUa4jRKopXXQp65boFUxrTpxnJYnFV+EP5qbgBwOyKH
-         QPdCxeNsc2rZUcVnFxVb9Wh7qW5Y93eATOulq6JTqXoaonlAGeOjl+LLiM5gUhVbIPQ7
-         N7wg==
+	s=arc-20240116; t=1758300336; c=relaxed/simple;
+	bh=4fs98jrSck3x8PLmQUQVQOKqZfnNTah8hBpBS8SrcvU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mCgYpNxTpkbvdGpYs1FqiAsD/v5Saogb9bhwTGCpJGhF3Iz1ldei3tsIG5zmnJUJk8seeDf8ZHw53txUkkfa1TewWogbgyA0i7XK7zzklRCaf9+sQW0ywRNA8BZV5chdFIwMF1lecpcsdyK1N7NjZ++4M4pCj3N0Yd5iW95ZM34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L+zIWkYX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58JEN497021478
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 16:45:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=C20ghaTYz2z07OewDUW3U9kP
+	PyChf5ZskPTDdANcg0M=; b=L+zIWkYX2CHEXD1IG7LIUWQjC0kQ25fACtMvwpbi
+	OZboAtLm0n3MKd/wqPAgbMCllkaBCywR/c1UNbx1+bk1upwTi5krAOiY71qoc0b2
+	mivrON5KmSG3KK97wOSVX03BecCOBLMcWCTd47sVdojrmDgixGdUsvzoIh5GLaDm
+	aJVclV883owgqTbbHMTb+uPs707N0k+5UoKpuhQr5EqDLQKjYj5jGRrfrQJsVsTx
+	ji7qbLbGiKr67yB3KEJIZgXwx0mG+6sRoNFTnbeB0NUw4vBVXA48aV6Hb2Gz35D+
+	RY8MC/gjrF7wxU3T1isgVegs5peQSApRmS6bTSj9bGegVw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fy5k5e1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 16:45:32 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b5e178be7eso56180301cf.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 09:45:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758300167; x=1758904967;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QkHj6yxNHqV86xD9f9rRMp4RmegxtrG2NNsn/fkhknU=;
-        b=RESqtja0L1bdQiqEQoOja31FYRe/XUR3DXlCWg0wlYpMwGfpvNvaN95AhFBTAhrF2Y
-         ZgPb5RctTw3np2cD7ygq9EeyLfYmTpHqIYbiWcOGnBTEvzQ3orLvCWm+JXba635Oxv6T
-         Epm3UHbX+odwjDSkISsp1AfVmKnO26MHvXPOygoJqU+MXPv/vbjNtZwG/GdzEC9WAHUO
-         TCGD7OVKFIP7QiXhqIWpXq8FCCgcq+qY0UTyrSsZPYtGeW1wB+ZCPP5YlZM9Z708Yq8E
-         qq8x4hNkPL/CbQ2NIpDo8QOlfJYMMXxiYNroJq8yl/Rn8Eu8Cm7UG57rI4rVxAJdkiWO
-         yxvg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjzxAnCL4UNfEMVYQcuOpzRee1GOEh1fZi31at0P1S794lXqs6N/QwWLITi9vmDgu7pMA5X66uYtrW@vger.kernel.org
-X-Gm-Message-State: AOJu0YymaVXHs85E65huVt8tcS/ACp2GVGltyN0NEMGjKQu0uzrLYRzJ
-	K2UGX/I0Qp+NfymdD/DKFlB1i468ygEVo4n4TMbDT1x71alsS7OTosohKXborB3golQ=
-X-Gm-Gg: ASbGnctrCJZ388caEJLotEgaz/3z3uU39i4XULz73EUlcnBOPIZS7VmH9qdtd/y4Kjd
-	0RwGtuSeMIfvTnqfnSvJPwutLDfCVaQajaCWeU+b2PJ6AUnGfByV/WSggcMm2chqePiVo2vXoVC
-	S92e0BT35XGQLVBFVpP8AxqOWoUMRA6MAw4+vmPThbr3zaRwj7X/G5kipDtqAwQtW0a6E+iVkND
-	egtUjfxvSwrRGDtLKMUdc0/p0HbXGFKvB/nmj9VithFbgHksjlGkYYa5U0d5JX22wC4Jpvp9/wI
-	ggNyKtytjEJ97denjlkFDlGbhCpCvbR5oazocLPtc23kkakPhJlS30tlqMmnqOMKmWbKRDmYcQ6
-	E0DRVdODWVpnBVVXgxpmnmBxbFEXg+MLjRst/lmMJ1dAsiBI39AvmNpf+eOzRfgdBeyfSdgpEXd
-	aQXwZjEhj72V3m
-X-Google-Smtp-Source: AGHT+IFhUncdh/63zODwAY6Eoa8z9GQAGmPnzhNb7b4Y3hgpiTCynPlk24Zvc+GNdq/F+x3+CVBVbA==
-X-Received: by 2002:a05:6000:1aca:b0:3b9:148b:e78 with SMTP id ffacd0b85a97d-3ee855812a7mr3683227f8f.53.1758300166902;
-        Fri, 19 Sep 2025 09:42:46 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:8ffd:205a:6719:49c1? ([2a05:6e02:1041:c10:8ffd:205a:6719:49c1])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3f1549285c9sm1799412f8f.52.2025.09.19.09.42.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Sep 2025 09:42:46 -0700 (PDT)
-Message-ID: <ffa6fcdd-2b0d-4493-a8b1-961e51d41e6f@linaro.org>
-Date: Fri, 19 Sep 2025 18:42:45 +0200
+        d=1e100.net; s=20230601; t=1758300332; x=1758905132;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C20ghaTYz2z07OewDUW3U9kPPyChf5ZskPTDdANcg0M=;
+        b=uhZ+QCph7HV7ulxi/zKCT83AS5+xNTDjWsbcW/iy5jpe3i8bj/yEtLSjJeQO4+bnk7
+         werEeP/xzXcaBcc3EJiV2mtkyUPxxiKttXkZ7mpZLIiJETyIRjE2svu13JRdQGTOrHJt
+         cwRzCQ5g/9kl4xzsPuc2Ji3tmm9vThSr9pdv10A0OXY3KH5I3Cq5d8UkiAl+dXjc4W1f
+         4FNpqqAlrHHEKp5Qv/VRU11uc3RDglXur8n34WssxqWNE0nrmXnCojhFDCOQ6qLy+iyg
+         rpoahvrGTJNw03Lr5jFT9nxZuYXQQPv+bl6XrvR6fT8H+bC5umP70Qh8SCYxpuyquJOR
+         yG7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV2llzekJAsMCgt0E2agmLsaF5I6GzjQ+PSKTs2kGCfXFNsRWhQvHPCC57u+rtmmoM4NqE7wx72c7PK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/B3NCrDN1YuDv8UKxSEIYUcPwpMONh43tdOYy+LH3w+vSXaZg
+	Xsw9dxds7S2v0jharMr7kznhIFNtLQe9IhuE0UCpRaTNVQxiaA7frLU2FlNsSiv1YtaMZGDUfjA
+	x3Uzf70MUHrTa+ALd3roq5pOv4L4Za72iMcI8JTeE1YtiuimzuZ2E1Txi7M3mi6Nj
+X-Gm-Gg: ASbGncutFZ+BTvfd+zL5rkfiU/Zy8A70n+Axfap/3G3EfzDu90dcrbTxtahMdg5DSrf
+	OypyQHPKu2sRI9UZQjBHzjmAA2UExSXzeN5Yu0MbWOifIIoOIxpTJfM3C7hu8+2u+AAv+zjmfLl
+	RvtyvbkxkI8A4RdOP7xDuQaGsT5OfrAiFIvQ5UAcb4tDzcjqyG80k8tbJlpWVu2mPafyI3nv7lO
+	L4kY91Mj/eYq+oepMKcsp76/G3fDV/++WqFH2++EyJOGF4iV3pSpokqi/s9cNUgEXruqX9gZrXo
+	1aypb0+0EjIZyQ9KdoKqjWkxOymA9ze5dKLKGaFjce3kNxRGT/2u5FXkNNVBSpuqO3jnJTeyCe9
+	fjPJ0n6dEdGBpbH2ytbslkWYxlHJgNTpP5eiuZCf0P/F4nUA4UG4f
+X-Received: by 2002:ad4:5de6:0:b0:78d:72e5:4309 with SMTP id 6a1803df08f44-79913f8ccc3mr48541676d6.25.1758300331933;
+        Fri, 19 Sep 2025 09:45:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IENMkKKG2cQIkLe25WJp4a+nFBl5DjpFFzclGB37kCIW8D1f1msQ+H2z+bjyqDP10qr1zJDzA==
+X-Received: by 2002:ad4:5de6:0:b0:78d:72e5:4309 with SMTP id 6a1803df08f44-79913f8ccc3mr48541056d6.25.1758300331184;
+        Fri, 19 Sep 2025 09:45:31 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-361a26cbcffsm14030911fa.22.2025.09.19.09.45.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 09:45:29 -0700 (PDT)
+Date: Fri, 19 Sep 2025 19:45:27 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
+        li.liu@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v5 05/14] phy: qcom: qmp-usbc: Move reset config into PHY
+ cfg
+Message-ID: <z3phuuokrhonbukct2siz3ujear5ymtnoviea2epxzvjdmsvkj@w4puf4c44tmk>
+References: <20250919-add-displayport-support-for-qcs615-platform-v5-0-eae6681f4002@oss.qualcomm.com>
+ <20250919-add-displayport-support-for-qcs615-platform-v5-5-eae6681f4002@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] thermal: qoriq: add i.MX93 tmu support
-To: Frank Li <Frank.li@nxp.com>
-Cc: Jacky Bai <ping.bai@nxp.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Alice Guo <alice.guo@nxp.com>
-References: <20250821-imx93_tmu-v4-0-6cf5688bf016@nxp.com>
- <20250821-imx93_tmu-v4-2-6cf5688bf016@nxp.com>
- <d9392dbc-806a-41df-8992-28c3d6132309@linaro.org>
- <aM2D+q/XCI38M9sp@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aM2D+q/XCI38M9sp@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250919-add-displayport-support-for-qcs615-platform-v5-5-eae6681f4002@oss.qualcomm.com>
+X-Proofpoint-GUID: EKyDmB86F9JFxHWiblHzK6ArbdSoNNg1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX/r0PaEmjD5GS
+ KDe1AECMz5PBAcAc5SS3Egc9987zZSBXYASnwkUHGSyMLsFEcxjqwLg9TwG3xHFPCw+iwwnA0Nz
+ zV2pgoFwlZILcDDkKi4SXRgyfm0wcyJtBq6TtFYfuWDzVZfNYSfK24Kmny8Xye/ygz0x9RxzNrd
+ in2txHvuS5kUXCGB3on0o2OSBKphRvaUQ4j/RBY6FuoKy0qxY7vyVSaAADegeKTJ9uYUE0vSv7T
+ KccQ59O/iqCTOM/rb93lF6oiItQsEMFE4l4U+pZBIyns5PomODyW68khCmlRaSYFjGgdnjubzds
+ EHtw1ELs6X1xJMU1zvG+42/1XC03EcPjbtCxoylmWbX1X6DOPn2o6kYY/zagHOp52pB8lqhffbS
+ LuOv+wuT
+X-Authority-Analysis: v=2.4 cv=Y+f4sgeN c=1 sm=1 tr=0 ts=68cd88ad cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=_hUenYmi4SsfCOKiixMA:9 a=CjuIK1q_8ugA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: EKyDmB86F9JFxHWiblHzK6ArbdSoNNg1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-19_01,2025-09-19_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509160202
 
-On 19/09/2025 18:25, Frank Li wrote:
-> On Fri, Sep 19, 2025 at 05:51:20PM +0200, Daniel Lezcano wrote:
->> On 21/08/2025 08:23, Jacky Bai wrote:
->>> For Thermal monitor unit(TMU) used on i.MX93, the HW revision info read
->>> from the ID register is the same the one used on some of the QorIQ
->>> platform, but the config has some slight differance. Add i.MX93 compatible
->>> string and corresponding code for it.
->>>
->>> Signed-off-by: Alice Guo <alice.guo@nxp.com>
->>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
->>> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
->>> ---
->>>    - v4 changes:
->>>     - no
->>>
->>>    - v3 changes:
->>>     - use the drv data struct for match data and refine the code
->>>     - update the copyright
->>>
->>>    - v2 changes:
->>>     - use the compatible match data to identify the i.MX93 TMU variant
->>> ---
->>>    drivers/thermal/qoriq_thermal.c | 18 +++++++++++++++++-
->>>    1 file changed, 17 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/thermal/qoriq_thermal.c b/drivers/thermal/qoriq_thermal.c
->>> index 01b58be0dcc64d14ca5e4bba654eed8f15e827fc..b2e634547271dcf512c714907baa162921d2d527 100644
->>> --- a/drivers/thermal/qoriq_thermal.c
->>> +++ b/drivers/thermal/qoriq_thermal.c
->>> @@ -1,6 +1,7 @@
->>>    // SPDX-License-Identifier: GPL-2.0
->>>    //
->>>    // Copyright 2016 Freescale Semiconductor, Inc.
->>> +// Copyright 2025 NXP
->>>    #include <linux/clk.h>
->>>    #include <linux/err.h>
->>> @@ -24,6 +25,7 @@
->>>    #define TMTMIR_DEFAULT	0x0000000f
->>>    #define TIER_DISABLE	0x0
->>>    #define TEUMR0_V2		0x51009c00
->>> +#define TEUMR0_V21		0x55000c00
->>>    #define TMSARA_V2		0xe
->>>    #define TMU_VER1		0x1
->>>    #define TMU_VER2		0x2
->>> @@ -66,6 +68,8 @@
->>>    						   */
->>>    #define REGS_V2_TEUMR(n)	(0xf00 + 4 * (n))
->>> +#define GET_TEUMR0(drvdata)	(drvdata && drvdata->teumr0 ? drvdata->teumr0 : TEUMR0_V2)
->>
->> This is not adequate for code which will evolve. Please don't use this
->> macro.
->>
->>>    /*
->>>     * Thermal zone data
->>>     */
->>> @@ -73,12 +77,17 @@ struct qoriq_sensor {
->>>    	int				id;
->>>    };
->>> +struct tmu_drvdata {
->>> +	u32 teumr0;
->>> +};
->>> +
->>>    struct qoriq_tmu_data {
->>>    	int ver;
->>>    	u32 ttrcr[NUM_TTRCR_MAX];
->>>    	struct regmap *regmap;
->>>    	struct clk *clk;
->>>    	struct qoriq_sensor	sensor[SITES_MAX];
->>> +	const struct tmu_drvdata *drvdata;
->>
->> The drvdata pointer is not usually used.
->>
->> 	u32 model;
+On Fri, Sep 19, 2025 at 10:24:22PM +0800, Xiangxu Yin wrote:
+> Move resets to qmp_phy_cfg for per-PHY customization. Keep legacy DT
+> path on the old hardcoded list; non-legacy path uses cfg->reset_list.
+
+Why? Start your commit messages with the description of the issue that
+you are trying to solve.
+
 > 
-> I think it is not true.  Copy model here is not extendable if need add
-> new field in drvdata in future, especially need ops callback for differece
-> variances.
+> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 18 +++++++++++++++---
+>  1 file changed, 15 insertions(+), 3 deletions(-)
 > 
-> Just list two examples:
-> 
-> https://elixir.bootlin.com/linux/v6.17-rc6/source/drivers/pci/controller/dwc/pci-imx6.c#L173
-> https://elixir.bootlin.com/linux/v6.17-rc6/source/drivers/pci/controller/dwc/pcie-qcom.c#L286
-
-Yeah may be I'm doing a confusion with a previous comment I had related 
-to this approach
-
-
-
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+With best wishes
+Dmitry
 
