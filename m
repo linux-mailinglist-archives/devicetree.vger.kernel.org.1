@@ -1,154 +1,106 @@
-Return-Path: <devicetree+bounces-219248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33EC3B89620
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE14B8977A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 14:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78DE2189F4EB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 12:13:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C5AC1C859FB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 12:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA5830EF95;
-	Fri, 19 Sep 2025 12:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1271E3769;
+	Fri, 19 Sep 2025 12:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="i3L5hTO+"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="FJbxdM5n";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="BElzwfKH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C8630E0DC
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 12:12:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859471B4236;
+	Fri, 19 Sep 2025 12:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758283948; cv=none; b=GXAwlPct3TYuxJy2E63mLcdLL/5VMPZFJqEUUctsJRwONttbtwoTDo9WEfrm7VKQGXuKxteAn6P6GFylYRrJ0xKhaoy63lxTpXQ71NONgXko7caXYvdhjivFlJQGIj1JbQm79qZlb6TKFfvLWwklpSCjb0jnHwBsb7FZr4BnrAY=
+	t=1758285376; cv=none; b=O/2o4y2Hj6okNYaPbvQXtuV+YRHaR2OF09ed3bKZ2cZdu1DSuXBky+mkHPZmbrrsTssP3w5mzNZCIycx4UML9L9Q+/j8CtoHgliOYhMo2yaop29Y7dj8LQe57ff3rIXgl2hcKTZrlySKPg9c1bjLns7fXBG8R/5mCn02inblqFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758283948; c=relaxed/simple;
-	bh=40LHT+10W2MVoOVX/TuobAQ0nf6X5e/oMpwW9iNer2U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NsB3cT2JS+GWSUk0EATXzmCNfCoVW6aMQeQp+LpXsKqziQV8ijvHdS96Cn1BsI8riZzSOoWFw96Lundaie4hcpswaFF+3U9Ne6IfzVNtuHRLjNmhK5JjC74IxAARoWJqRHumW3BJhgzR0/n2YXZQVU8SLq5ngq6r4j4MpSj1+F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=i3L5hTO+; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-32e1c8223d3so1726889a91.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 05:12:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1758283946; x=1758888746; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t2HMMNKqDgzt194tG8vLKUMKuY47t2DmDtqHxNeA0cA=;
-        b=i3L5hTO+OK0u16+FMy8g/o/GtRBwoIAWTx+0t5TyjL2n1ZnFuFaSg+ag/W0sq9Ods6
-         7ZROy0ix55Pwfo5EWpUQQsd+hFmWAfnKKcK2d4iwGwOOzwbZgJr7enaZNgsAmta3ApYR
-         cVP9Q0rLGKcLmiPm6aXPABjzh2uiFLsit79pAP+6hEOykLypQz6UfZl+fcyaArJvBRjQ
-         rddxlzns+YXwp/e59lBVfjTf5bnDzjCWAY87bGQCwlx4qnYPiXOW4zxUIbeHJTXT5A8F
-         iUvpEvozC2b9xMJh5Skr2rDn9ColV4103N2r5m7huefr4L2LtR1fjd3qN3ttXo1sUs9T
-         9Aqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758283946; x=1758888746;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t2HMMNKqDgzt194tG8vLKUMKuY47t2DmDtqHxNeA0cA=;
-        b=GtpDfR6q2MmU27jxi3Zn1SFiaiG3LwyqPKHU3g36GfpCnOawCMNo2HoA9a3vYuneEk
-         a5S+YqSO+vdkLUiD8CN0+Enxfcmy+WdkijkZfmmy1XhwrODwysbHkuKNMIXp7rxKlOJn
-         VYg8DH3/3/hYy6GZUTom818KJv5l0ZgEWWfaxmxRHiADFsa/78tpBa0ePF73eZaJoKa4
-         eJq1Jt3214Ek/rqOiUG0RY+r7zqYlfTKHUxMofqMjMyTMZ05rMDDxR8rBYmQK6Tdmr7u
-         ZSR5j+dVEZrwkM1f73Flmaag+Jl6e6saUKa/cBf58NgDlAPXK0OAQB4I/dhm+WPYWqEB
-         ddHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOOU6Uj+eUjVduy+j70780G7MMay2D5gmx2+xdk5b3ou7kmJJAaJPLujPRM9RFZUAW+VLMz8UsVNWw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb2KkxZOC7EGtUoxuECDLSQTG271ml54Vf/FxMKNu0HbxP+PLq
-	1YoyrDgMOsmayCTwXfdpZE4h7S5l85dERmPu6CbSaZSRO3dqmg0+HNOVZxLe8mVqCL2OfTlIB9Q
-	h6zoYp5Gd8pAKZqifnvpCkRaswxCEaNJ7Nu/f/oxJVQ==
-X-Gm-Gg: ASbGncu97rWG59vdACMpe77BWee0BycK7xhFe9cB6p8uRflgbORPyJZOGgsZk7dgif4
-	wBl5/Xge24gXwMTqlq73mGru4SWmj9BQr4du8JPQ+2phF2vm/URkL+6vF6nbaqopEjV8VoKPCpJ
-	R0FQW30HZqr6wjBppKoLjAbYQx5t0unm+FXpS8MoBfOCV/E7sHxfw0rFVwkpWfwOy2VXal0dsZD
-	4q3HUpgPBNqymh3MTu5SM0UFLw8vcR6lTaD3jpEo44HkQfY/RcX
-X-Google-Smtp-Source: AGHT+IGm4y1poVxGUSiB4FXU7penSJROWpZ9IBJ4RsACGtjYuoj82wxnXamn8PKPxeWN3xAf3wDL9CKqcfW9WQHchPw=
-X-Received: by 2002:a17:90a:d40d:b0:32e:3f93:69f5 with SMTP id
- 98e67ed59e1d1-3309836a969mr3636748a91.26.1758283945619; Fri, 19 Sep 2025
- 05:12:25 -0700 (PDT)
+	s=arc-20240116; t=1758285376; c=relaxed/simple;
+	bh=yHE19xNWqMoQ0j5g1y4gQ2BjKim8cHCBZSXAnCp6u+U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OS4R9vEjzVG94jC8ka3CMgq/P4zxlm4hV02PjnmLSOHbEstfhW82tSkZ19lxfnIKDLDvLOeYe0LenQ3AQQorQ/YO/FjsKKNIv8nvq3WIYDtE1wI8AC6UiDjxfSOT8Cdpk+oE3ihQrYfNmIWlxx+uBgQiPtdWkIk0d8Am26wMb1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=FJbxdM5n; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=BElzwfKH; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1758285281; bh=oq1b1uY6WD8MECr+zOBO74z
+	BuK4eY2CaQ4h7o8MTRj8=; b=FJbxdM5nf7mj9ohcJJHm8qBW9/QvH7VUNYyQZoKInDqNq1R3ho
+	LnSY0HU7Ty9sHSKcuF+bpKfV+aHt2bq3CIrsR1ZdTtgJySqfVpiVY7DHMMz95UFdVkabUZpnCu1
+	rtkTD3+OgBucccGrpA+u4IK5kHTCf2nFEaUbChKemrE3RzkEek+2FKOwIRC3aiGMrnEmmTjkckL
+	qn5YWchQIEaaaK+Ik0RzsMqm78KIFMvuDWW5O/UCJiNXaT1kKUy/IX8gGXo7MUFEzE/gSYJaRh9
+	Dw3AR5ltOpp1Zv+3Fp5pqvcH8j6wCJxJN9a0QrtpTIEVAGf3uJxDJUaKZ6LmNS7y97g==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1758285281; bh=oq1b1uY6WD8MECr+zOBO74z
+	BuK4eY2CaQ4h7o8MTRj8=; b=BElzwfKH8zasbivxDfNkiZZGHoIXk/bi3Zp5iCe+gSV/eN9dIW
+	X/fsfs9AvU5gdXVgXlTP8ti7Nab4XJMbtyAg==;
+From: Jens Reidel <adrian@mainlining.org>
+Subject: [PATCH 0/3] Fixes for SM7150 dispcc driver
+Date: Fri, 19 Sep 2025 14:34:29 +0200
+Message-Id: <20250919-sm7150-dispcc-fixes-v1-0-308ad47c5fce@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919073714.83063-1-luxu.kernel@bytedance.com>
- <aM0qlTNPiaQRY2Nv@andrea> <CAPYmKFsP+=S56Cj2XT0DjdvBT_SY84moM4LVeqxHTVWbtq4EVw@mail.gmail.com>
- <CAPYmKFsV_ZPifJBtvPOdqM6_Mzhac9A4-PH9zt8TirOqAwKGhw@mail.gmail.com> <aM05J6FU0xG3SBzR@andrea>
-In-Reply-To: <aM05J6FU0xG3SBzR@andrea>
-From: Xu Lu <luxu.kernel@bytedance.com>
-Date: Fri, 19 Sep 2025 20:12:14 +0800
-X-Gm-Features: AS18NWC1LrBbaCsNeBFlqUXUWaqY8b6JknWKL06v5j39bQDtG4KDuo4wYFErj1E
-Message-ID: <CAPYmKFunbrughXdG9Fpum6bxHVu9jmjQdgLVSJ_JA9z+GDsZbA@mail.gmail.com>
-Subject: Re: [External] Re: [PATCH v3 0/8] riscv: Add Zalasr ISA extension support
-To: Andrea Parri <parri.andrea@gmail.com>
-Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, will@kernel.org, peterz@infradead.org, boqun.feng@gmail.com, 
-	mark.rutland@arm.com, ajones@ventanamicro.com, brs@rivosinc.com, 
-	anup@brainfault.org, atish.patra@linux.dev, pbonzini@redhat.com, 
-	shuah@kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com, 
-	linux-doc@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
-	linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANVNzWgC/x3LSwqAMAwA0atI1gYapVS9irgoMWoWfmhAhOLdL
+ S4fw2QwSSoGQ5Uhya2m51FAdQW8xWMV1LkYGtd411OPtgfyDme1ixkXfcSwJR86juKZIpTzSvK
+ HMo7T+36UaYOGZQAAAA==
+X-Change-ID: 20250919-sm7150-dispcc-fixes-31578cae5c1a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Danila Tikhonov <danila@jiaxyga.com>, 
+ David Wronek <david@mainlining.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, linux@mainlining.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, Jens Reidel <adrian@mainlining.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=909; i=adrian@mainlining.org;
+ h=from:subject:message-id; bh=yHE19xNWqMoQ0j5g1y4gQ2BjKim8cHCBZSXAnCp6u+U=;
+ b=owGbwMvMwCWmfPDpV6GDysyMp9WSGDLO+j5wlzLQyfIPXsvU//3qgbvPWCLMrJ9wH+Z+sj1u+
+ z9R8zX3O0pZGMS4GGTFFFnqbySYXLX+dmh+vs1qmDmsTCBDGLg4BWAijzwY/mfLN167u0uuSsTr
+ Z+R/tUrBz5dVbWJsO2T4Lj5S5N4Wr8zwz0RvYfN0p/T20r1Zz6xdd5xzED7+2FZ3SY6puOTuymm
+ ruAA=
+X-Developer-Key: i=adrian@mainlining.org; a=openpgp;
+ fpr=7FD86034D53BF6C29F6F3CAB23C1E5F512C12303
 
-On Fri, Sep 19, 2025 at 7:06=E2=80=AFPM Andrea Parri <parri.andrea@gmail.co=
-m> wrote:
->
-> > > > (not a review, just looking at this diff stat) is changing the fast=
-path
-> > > >
-> > > >   read_unlock()
-> > > >   read_lock()
-> > > >
-> > > > from something like
-> > > >
-> > > >   fence rw,w
-> > > >   amodadd.w
-> > > >   amoadd.w
-> > > >   fence r,rw
-> > > >
-> > > > to
-> > > >
-> > > >   fence rw,rw
-> > > >   amoadd.w
-> > > >   amoadd.w
-> > > >   fence rw,rw
-> > > >
-> > > > no matter Zalasr or !Zalasr.  Similarly for other atomic operations=
- with
-> > > > release or acquire semantics.  I guess the change was not intention=
-al?
-> > > > If it was intentional, it should be properly mentioned in the chang=
-elog.
-> > >
-> > > Sorry about that. It is intended. The atomic operation before
-> > > __atomic_acquire_fence or operation after __atomic_release_fence can
-> > > be just a single ld or sd instruction instead of amocas or amoswap. I=
-n
-> > > such cases, when the store release operation becomes 'sd.rl', the
-> > > __atomic_acquire_fence via 'fence r, rw' can not ensure FENCE.TSO
-> > > anymore. Thus I replace it with 'fence rw, rw'.
->
-> But you could apply similar changes you performed for xchg & cmpxchg: use
-> .AQ and .RL for other atomic RMW operations as well, no?  AFAICS, that is
-> what arm64 actually does in arch/arm64/include/asm/atomic_{ll_sc,lse}.h .
+The MDSS needs a reference to the MDSS_CORE reset since 6.17-rc,
+otherwise video mode panel initialization appears to be broken.
 
-I see. I will study the implementation of ARM and refine my patch. Thanks a=
- lot.
+Also ensure that the parent of dispcc_mdss_pclk0_clk_src gets prepared
+and enabled to fix an "rcg didn't update its configuration" warning that
+started occurring recently.
+
+Signed-off-by: Jens Reidel <adrian@mainlining.org>
+---
+Jens Reidel (3):
+      dt-bindings: clock: sm7150-dispcc: Add MDSS_CORE reset
+      clk: qcom: dispcc-sm7150: Add MDSS_CORE reset
+      clk: qcom: dispcc-sm7150: Fix dispcc_mdss_pclk0_clk_src
+
+ drivers/clk/qcom/dispcc-sm7150.c               | 9 ++++++++-
+ include/dt-bindings/clock/qcom,sm7150-dispcc.h | 3 +++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+---
+base-commit: 8f7f8b1b3f4c613dd886f53f768f82816b41eaa3
+change-id: 20250919-sm7150-dispcc-fixes-31578cae5c1a
 
 Best regards,
-Xu Lu
+-- 
+Jens Reidel <adrian@mainlining.org>
 
->
->   Andrea
->
->
-> > This is also the common implementation on other architectures who use
-> > aq/rl instructions like ARM. And you certainly already knew it~
 
