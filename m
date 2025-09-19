@@ -1,272 +1,499 @@
-Return-Path: <devicetree+bounces-219177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E5DB88476
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963F3B884C0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:58:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D48E67C5723
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:53:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 522F23B3012
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8BF2EACFF;
-	Fri, 19 Sep 2025 07:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790432FE075;
+	Fri, 19 Sep 2025 07:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="oDwfs2lU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nH/WJMHU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011027.outbound.protection.outlook.com [52.101.125.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CA92E8882;
-	Fri, 19 Sep 2025 07:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758268408; cv=fail; b=IQZYD+0xFFYoDUuElGUIXxPw00pSXAbJEUhy7+AjELa9H7a8/ueDg5ZIRaYqEvoasYd4HFy/PQh58HKeJcrUa+lPX7r6Qe3IclV6zcPvs2YzPqoWHcVeVsJmEfnaqzVmnrLXIXjxIr98RWhEG2KFeLK2cgBdtgGruDOIvOb/q6g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758268408; c=relaxed/simple;
-	bh=Ry1i6/YIf89ykLpfnsb30YpY+/obOOPAlzbu2Oz7PEQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=l9mOc/mFY9UwxMy3F/hmLB6Iah5WwjRmlPXypNmccfBHMOagUhLIvYlkV9ViuErOElwkUCIVYHEEAHdRALEUgP/elko6dTMPhcSOiujwVQ5/tbyJ2eSy0DLWBJ8xqX9+YfB522Bi398/Yn3z256sVOStBn34K/s/Pm5ArmZqWt4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=oDwfs2lU; arc=fail smtp.client-ip=52.101.125.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HQDnB2OTfKJz3mhD1DE3+N2IhWoYMrgDGrsLXd7+3fBk4iCQSXdbPGSjzJPydS4e3dfaoMaKLzf253bT7h9umgp2I5D4rSVEbO96lfl7Yeh7tAufpmjqau5FW9HH2uaUXmJcqgk3QP0XP9Ry0nEqJM9kAj7SDAa2dXyvorTMmy0x3FAPuI/4xfiSzDGd0yQRHN2z2oEjxtKRrQe3ZUqt/RIPp2X0E0zJk0AmUNB3QGEjtmIdZ7C3SLeMwqWGryqov6RQm95UjxHmxM9uIwSYLEl1+epYdOhg76Et5AezSVN5yHoP5OpYbdIevTgg3wVE/G35nwIvxDo0exiHOQP5Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ry1i6/YIf89ykLpfnsb30YpY+/obOOPAlzbu2Oz7PEQ=;
- b=S9Zv0BWeXkCGC1koT14V4hd5G0xedm1ksyYcX5bnpCzCdBLedD2l0VxazhKnRjd0abDWpGFmpGIl3keFLbUlNJT57jRoMzSy9wArU60bH8N8n51xBHL6vUfQAaDVWFrgE+8C0Rlj1CUekHTJ34Q+CCDFdQvdufEXzW45oQc9+6PNtpcpdGrSmCMdGMvc932Ry7FzQYV9FOBnfO7jdASj+rH3dQEH9MWAXkpF31XV/S5kTQjW4kpdH+ZZvFyMfGNZjPPZHLc873nPaps58jyv5WewsSpxHwMB9/hQLq1elNErmYQXC9reM/4W669n0b3auH6ql8i2MMeoooSpz/oVGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ry1i6/YIf89ykLpfnsb30YpY+/obOOPAlzbu2Oz7PEQ=;
- b=oDwfs2lU6PAJtXEdzZcbUrSI4Pnnzo8uftrj0wrlmXURp/aQpj/7WOX0vC56XMexrwBNcuRH2txoTwmo5lP7WV39zpjE7MLO95LuAHYNJ/mWk2tMrRmX30AhpJrDao5EJFeQ0i2dcaOcmE8a2uTniDg5Z2HAAm98qHR21gyjTDQ=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by OS7PR01MB11583.jpnprd01.prod.outlook.com (2603:1096:604:241::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 19 Sep
- 2025 07:53:21 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.9137.012; Fri, 19 Sep 2025
- 07:53:21 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, geert <geert@linux-m68k.org>
-CC: "bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, magnus.damm <magnus.damm@gmail.com>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Claudiu Beznea
-	<claudiu.beznea.uj@bp.renesas.com>, wsa+renesas
-	<wsa+renesas@sang-engineering.com>
-Subject: RE: [PATCH v4 4/6] arm64: dts: renesas: rzg3s-smarc-som: Update
- dma-ranges for PCIe
-Thread-Topic: [PATCH v4 4/6] arm64: dts: renesas: rzg3s-smarc-som: Update
- dma-ranges for PCIe
-Thread-Index: AQHcI+D54xmUZ411IEKyJIJvW9uYWbSYsAwAgAAKvQCAAAN3AIABauEAgAACKLA=
-Date: Fri, 19 Sep 2025 07:53:21 +0000
-Message-ID:
- <TY3PR01MB11346D854714038C5FE8C37118611A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com>
- <20250912122444.3870284-5-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdWP638eB_p9xMAqZmOnuc6n7=n31h6AqV+287uvqQEdww@mail.gmail.com>
- <c2fc5f6b-0e7c-464e-89a6-35dc76177d18@tuxon.dev>
- <CAMuHMdWeHoUe-=7TDetnDQbLQsKGf4pDGpSdz3xEVLs_Rst9qQ@mail.gmail.com>
- <0a20c765-ff72-4c03-af84-dff3f4850fa4@tuxon.dev>
-In-Reply-To: <0a20c765-ff72-4c03-af84-dff3f4850fa4@tuxon.dev>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS7PR01MB11583:EE_
-x-ms-office365-filtering-correlation-id: 7ab30210-6303-4c68-1972-08ddf7519a57
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?NFhTQnhmZTZsZTFaV1NBUFRxSjZxTEtsclM3OGkrVC82ZmFVUWRKSkJyRVNp?=
- =?utf-8?B?MlVPSmdoMVZjUjM2ajhSOEhMaUVzdFNrOWVGdldsU0ZzUVNiVFJBZWl3QlB1?=
- =?utf-8?B?SVpnN3BQVERWNE9ncnVMVThxSWczc3hyeTJuSEhicHpxcWtZb2d2WERzQUd0?=
- =?utf-8?B?TVVScFFDQmRzWFNkQVVob3djZDVsRVc1KzlQWmswendSREdNN0sxYTcrZUVt?=
- =?utf-8?B?SGs2Y0dLcVJORWJHeGlJS3JkelR2cGJQQ0VQblhSRGhaS21lNjd3UzBhNzNy?=
- =?utf-8?B?Q3Z4UVFSTUFoSmNiNyt2OTlJLzZwNDlCRDNoVU9pSTI0RzlxdWpoRE1JdElC?=
- =?utf-8?B?WVAydExwSGRwTG1DY1pseUxYYlNYb0hGQnJkQUpEb0xkZFNpeHN6cW4zMjdk?=
- =?utf-8?B?SWJsVDl6UnU4LzdmeU9sTGJFSGtLMFgzanVNVXp1TWtPYU5SUGNQNWY0OWZu?=
- =?utf-8?B?dk9CaUNCQk9ueUVoVWg5Q0lUMzVRWm00ajVJbGoxejNZcytEeUJZQ0c4Y3dq?=
- =?utf-8?B?TGNkZ3lYRytyNXcwUHB2aGtEZjYrWDhSSm5rdjNUZXNQM3Y2bUdmTmsyMEtm?=
- =?utf-8?B?S0RBbXhHazRySjdWRVB0NElYN1FYdVRSTm9GOU1rU1FVWXhDMDMwTkZzbXIx?=
- =?utf-8?B?eUdDZzZpd0IvK2Eya2dCcFlwYzArQkQ1WHRnc0RGRWNySVc1WXZxRElTK05u?=
- =?utf-8?B?WWxsU2NqOGJOaXNOY20xL1BFUWtBTmpvQ2hESGNoS3hlajVHQ2JId0ZOOFB3?=
- =?utf-8?B?KzRiUGVVdDI4bG9OMXVJRjQrdWw0ampiMVpQdkM1M2I3clY5S29WMjhIdm5u?=
- =?utf-8?B?REx5cmxPTXBlZUJPTUR6RWVmQlhNdUlIQjYrN05jTWZ6SUR2Yy94YVN2TXJh?=
- =?utf-8?B?OFhHYXdXUER2Yi9JUmdLZ1pWMUwycStuNGwwUWx5TVNTRldBTzFwbUNSR0k3?=
- =?utf-8?B?ME9CN1BIMEdER0E1ZFFRNi9hTjVrdmQrak9xNERMSTA3Q0Rkem1VT2U5UTVk?=
- =?utf-8?B?dW9PZUVkQXBMVnczRGRRUjhlRnZEaWNoeWZUazhLSGtMeVdrY2lQWkRDQWx4?=
- =?utf-8?B?bm9Ua1pvMzV5NWpjcEs3QzI4Q3piOFF1SVN3azhITGpnTDNtSjhoT0xkUjJw?=
- =?utf-8?B?NWhCbkZEQU5aSUtsckV2alZLdUZGazh0M09pWmRac0NGS281T0hWSlhvSTdw?=
- =?utf-8?B?VHB3WDFoc1RkYU1peU5Kc0xHczUyVWdqb1NTWkRBbTAwU0JLMWZyaWxUNVkz?=
- =?utf-8?B?U001WXFoR25MYVBhU2h2QVBlVk41L1ovRmlpbXJ0enNYQzA2T3MvVmRQSnJD?=
- =?utf-8?B?WTB5WkZkWWY1UzJGcEhaemRENVhBUXQ3QnNwRmQ5Vk9Rem5XWXViczByV2V1?=
- =?utf-8?B?RWk3ZnpGUW1iR2JyRG5MeUhad2UwTU5kMFR6WFlYMzZZRjJxcW1LRUQ2eUtH?=
- =?utf-8?B?Y3VFZ3BmZkJEQ29WVE9kRlJuL0FaNHNZWWt1cks4V3FFWGEvcm45N2JVdlpP?=
- =?utf-8?B?NzF2TUNOMlNaQ2l1UWJvT2ZMM0tvWjNTaUV6UHN5ZEhmaXNjRHNOSnNwUW40?=
- =?utf-8?B?S21XdVRydkJ3bkNjeHphUnkwdVFabHhXTzdITGViRmJudmsvQ0VJYzVacFVO?=
- =?utf-8?B?ZWErTlZRRk1KUlpib21YWXh2RXlGZ1FhZVl1TmJVZXVvcGhCTWJBQWZSUytz?=
- =?utf-8?B?eXRRUm40Umo3dHlUdkx2N0dnNnFGVzVmeW55VkZEbWljeGl5UTRwN0djYWdS?=
- =?utf-8?B?anlnNWN1T2s2U3cxOFRMbGRndkJHb3EzcjV2YjI3cndhRGZBVjdxaTJraEpv?=
- =?utf-8?B?OEJlKzZsOEJ3WjRxaVpwRGhoTEg5Q2tuNHpybEs4R3RDeFpzQXY4N0xpY3J0?=
- =?utf-8?B?c3BmUDZnTEt5UDErRTVhMWJYc2dGYTlKZkV4QVJRVlRPcGQ4UitqQ0NlTGtl?=
- =?utf-8?B?VjhIenQvazNIaGZBQXBIZ3B1SVhiYmtycjBiY2R6R0xFZHBSQnNua3BwVTdq?=
- =?utf-8?B?MGxoRUdRU0dRPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bVE0cjAwRWpxK1ZXNXFvUnp6MHJWdEVDRXBmTGpEdFZnSDhKYUNhQ3FPcHAx?=
- =?utf-8?B?d043cWNKUGM3a3FXd3BSSkM0QVQwUE9XRk5nWW1zb2p0Z2dRTzFYOFVPQnNV?=
- =?utf-8?B?c3pSd0pxTkJNRnNXMHFENGk4N0o3Sk9jS3Z3VnFQTnhadFd5dVBEaGlSY2hr?=
- =?utf-8?B?UnJ5Z1RkMVZwa3UwUGFvS29kWVl2Ym1TUDRpMXNmL252ZnVDQS9PenFuMzFy?=
- =?utf-8?B?STFScENuVEFzVW9GUDlScFBYT2dLbkVBeGFVUEFMdmcyMHkyN3daVzdra0w0?=
- =?utf-8?B?N1hjanl0dEdzWkZvUDFhL0l2M0ZVOXNpS1RhVWk5L3dzMWxKOWVOSmhac2o5?=
- =?utf-8?B?blYxSDlqaUlaWHd2UzU5MXU1MWhnMVBCTjNSdm9nWlhJV214TkZWd1pYcFcz?=
- =?utf-8?B?eDRzTE8xS2xXRW9mZWQrOGNxYjFMQjBhOFc2cmVzQ29TQTVEd3FKL0haSlVY?=
- =?utf-8?B?eHkvQzFKUERXMGpPT0FjYmZvS2RaV3NvWWtjenVHcEdPVUN4QUY4RVJEcVlW?=
- =?utf-8?B?VFliYmRpQldQaVpvRURQc3h1Z3JrOU5sL0trMExVclJlVGhuMldZZXZ0NEdL?=
- =?utf-8?B?NFg0Q0N3bjZDM09uSWFVWkdjZ3lUR3dhRzdaRktveU1kdzRVUGsvZEtXM2hO?=
- =?utf-8?B?T3BaRE9iZU9WNmR2ZUltV1lYWm4zWEFXcjFyKzRvYWZQa0xaRlBSclRQRUhp?=
- =?utf-8?B?YnhtQ2VEenB3Q1RBY1RXT2pPdHZjV1JFLy9salh0dC8xaU4xSDgzaFNoV3lO?=
- =?utf-8?B?NjBYdTMzeDR4OUdKVHdjUmRqbE9jQ1NGbDBnNXIra1h3czc4QTMwUkM3bmtK?=
- =?utf-8?B?by9MRW1hMDdNRTNTRDJ6NThxUnNldnVINHl5NzU4Tm0xaUdMcEFON1EwVzQ5?=
- =?utf-8?B?T2RRYkR1UzAzR09uK0M1bGo2NzlTS2YwSEpmd1NJUFkzNjZpS0s3V1BjUXcy?=
- =?utf-8?B?aDgreFRUT1M2aGhQUnFRNDhiOEt3YVNNK0Y0MHZ6d0xrOE1BRzBqQ0pZTzJR?=
- =?utf-8?B?Wm4wRURGNy9jZDBoUTE4ZzFod3dHVENGLzBONzduS2FVS1dsN0IxNHBFaUZn?=
- =?utf-8?B?QjcwTS9odHZQSUZCN2x4MEpaVTBmenRlUk1CN0I3aXZtS05XdnJpMXRrbkNs?=
- =?utf-8?B?MDJPMG9CY3lrZlpnZ0hFTDk1R09kYzh2UnJQc1UwZ1FERGsrNUdMcnJ0Mzd3?=
- =?utf-8?B?Y21vcmlOTUE3cTlaZTRIVmRXSnM2RWQvSkJqc1N3Ny90UkZGT01YWFpYZFc2?=
- =?utf-8?B?RmJkcG5qSTlyZ1hDVVR2eGNiMmVBNi90RUc3TlJqUFQwMUtTdWNGM2hHMjF2?=
- =?utf-8?B?eWpacW5uc3VCS2x6dVE0RFQ5VWpUZ3BucVpIRGZxcVBHVzJ1bldtd3dlZDdh?=
- =?utf-8?B?bytia3lpRzZGTUNqYlczclNsNzlQVFF0TlA5UXFkZXpSNjUxVzZqR0tlcXFL?=
- =?utf-8?B?VEY5VHFtUnlyNXhWMldOQVNqbTBHNUQ1dTA2VG1lbVQvN3lyemFNREFyamdk?=
- =?utf-8?B?RjBsM3B2czNGSzRJTXNkVXNwUklFRURyWWlVVUd2dG5IeU9ZSDlNQlIrajQ5?=
- =?utf-8?B?Q3JSbU01WHdBMjJjald2bVowcXE4V3ZpNy9zWG1QOFhHaDFkWDhUbG9yNVJL?=
- =?utf-8?B?cGVBM2tVaEpjQnh3MjNvVGxBc3BSSHhqRlpzc0Zya0VMejl0eEtHa05YTXpX?=
- =?utf-8?B?RG9qTXpwN1N5SnhBcUo5QUFXN1Q0amM2aEZjQjN6R2VrVG83TkFRYXZVNXV2?=
- =?utf-8?B?dGZ4VmJjTVhsazU2cUU3M3NobzcrRXJvQ1MxV2QvU3A2ejh5SHl6RVNFQm5h?=
- =?utf-8?B?eVorc3htdlNFOGJ0VlFoaTd0cW5GYVlQMUZWL3Q1TVVMS2o1dUttK1JFSkRE?=
- =?utf-8?B?N1dLV0hZaEtzRFhWRHNRUXdRSldhQVhZcFNIbDUrNjBTcVIxdWF4ZENxelp6?=
- =?utf-8?B?WDF1dVZoOFpCcEJHNjBST04wSnhVQ0lQOGx2dVJVQzFibHlDSlFmbEgrZEhs?=
- =?utf-8?B?Qm8zaGZkV3hrZ1l0dUVtdmY1dHUxakQwdk5TN29tV0JpRTExbXBpZno4NXc5?=
- =?utf-8?B?akJSeDkwK0p4eDNvOUdLbyt3aVIrVzlmeDhOOENOckpMVTQvZzgrQkYwTGcw?=
- =?utf-8?B?K3pyemFJcXQ1anpFRE1ISlZ6bjF4Z09QUHJwZUlWSEUzdldaNEZDQjBQa29t?=
- =?utf-8?B?MFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151762EA75A
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 07:58:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758268701; cv=none; b=uCgKA8dvBDYybVG+YpbFCDGY4m9fIu2MGtGH0aIIkIr6OeGnFuak7HzCA0u8hPC5W68JzKYaxjwjeEve1S39e1zXYL6WyxyFx0qG0KVLULH4oehfe/pTwFX0lmZrfn67WQGolJTxNZwsYDnKvL5hI7gm09MEtvruY2HhjZu8i64=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758268701; c=relaxed/simple;
+	bh=L0yXECtg7eSfyO0a7TPST1Aow/CfDQdxq/Yj0Y/taqo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YXy+s39v0Y+lUaGZi6+ew7TcLkBScQtIyGfhRslUzxgZqqUXOrO4fgOi5CoAzY0/TDtsnthElBbsV5w4RoNVSTOEg7IrqOYteyx+YQlJRQfrjMCIb0CpT5PT0yBj7Qo4q1cYrY5SMOx7Az/LSmGAy2CRMyC4CQVBKVTJppael04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nH/WJMHU; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45dd513f4ecso12506275e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 00:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758268696; x=1758873496; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=splF+8JlyOtgaVr9dc9noPOlUZyomVcWNQU3cuIJgKU=;
+        b=nH/WJMHUZNyDaHp7VfEqOesL+AQhM4nIim8YGYppdl/y7/89G4pMLkEBr4ho52X7qu
+         gl73LJqkawcfI91Jt54Y0snv/ibkT43Sgeugmld6MToLMzZOft/Z1/NTRup7bMQQzPWi
+         b25ZX45KNJvPwE0KRqABP+YCnh30Kjt1PN2Uqk1/9WaP7ZWStn7rROdVnkzIkQ4dKOAX
+         7S/2MbXBX8caC3Um6dn38tQhx0rIawFtJKw0r9jtuQnwDuBybjLluyqC0MRAmzATGHRT
+         q5/XBqwKtp0KPrAgWqZhDtS1C7oqE9Dj7r5wt1owHZlV+bCC85kmQ0Am/0DNBS4Lgi58
+         6Qyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758268696; x=1758873496;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=splF+8JlyOtgaVr9dc9noPOlUZyomVcWNQU3cuIJgKU=;
+        b=fOTml9oj3m6rIAwu+0Z5zxxiwQyZ571qI62IKYQ1UITr3g8D22fEIBbO0BTPv/ZXJG
+         rpNgsYg40kXnl0ZRr7PSWJSmV8MBad52Kx+A7t98RmY3gRu4qfPKIjUSAIavQxJQkx6K
+         fQFFI74myq/sHUM46OHAmX0Dzs+BAgOavZe76KOvjh0L4cSjqmQxT8w1WIyuDZ2E0uG8
+         aN6yXpdMaVdPMlJ/sZsM/w4jKawwfstJgK+/rnz6ZOy85jDUmMsjJmg64wOUlbpX+S6J
+         e2qFcvLHmlmM5qLl4rWxXoUNj1oDdic049jWbqsrcmmHXQejxc+NEYYtvqenF8yqdt1g
+         zAGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUFV85yoWOOU0CQwvHk5GnXREeKy4aTldvB2Ur5CwE8669A+r7nCV1oUcDW/2pZql8kAzyj5qNb24wd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhyfxfxUYwPOqYxnZDO5bJd7nlzgJq/wPHUsJMng/EtbrPIubX
+	u9Id0tCjkGxMdmdAZpdq2B/32+idTJ5o13ab5BK8EYA3FW+v9TIt3fYCib5aRfzB0qhzVNNN2Xe
+	mRRmCEWdSLg+Z2ZOgk3Q7p7//dl02zrA=
+X-Gm-Gg: ASbGncvwUTcgzP2CGmsZRYHwZh1BdyD1HQCEGrwQ4SmV0IH0Q3XiotiKLk5MdL3Z/C+
+	vDajB38r65KO55vom3msnxBkwD3y22R6ogDu8KXJSWTPAa4KXQVpwSTD4eTEoOu8ygtd4Rc/NDk
+	q4B3wd3PyWSI0+tCrs0lTsvuhlHwatoQFWm/Di0Y2i30rscZS2Ha1s+F1tqFWlRM97dLIzlxcF3
+	+xGopOf
+X-Google-Smtp-Source: AGHT+IHppvRGOigsb83+csm47sXpTHqrPSMQZfRTamYHWe7WmHrKSq19JNVz1P8bdI7gcaP501nlOyxD1WZiEO9qsDo=
+X-Received: by 2002:a05:600c:a4c:b0:45f:2c7c:c1ed with SMTP id
+ 5b1f17b1804b1-467ebe9db02mr17555735e9.2.1758268695912; Fri, 19 Sep 2025
+ 00:58:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ab30210-6303-4c68-1972-08ddf7519a57
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2025 07:53:21.0215
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YTHMerPEJuAB1zOZmejxyCZzNtyR9wQJ/MLZflYuVYlqLgXEiTs5Lwpva9j5yrZ8yNW1I0qrCmwNfC7NxKrp5xj7Pt5ikBvmeEkOH6hRKYs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB11583
+References: <20250906135345.241229-1-clamor95@gmail.com> <20250906135345.241229-10-clamor95@gmail.com>
+ <4792993.1IzOArtZ34@senjougahara>
+In-Reply-To: <4792993.1IzOArtZ34@senjougahara>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Fri, 19 Sep 2025 10:58:04 +0300
+X-Gm-Features: AS18NWAXr1wNXHHzdM2gbB4uz2mpmdR1MF94EvKfyDbqthbpxnE_0eGctbJvCYQ
+Message-ID: <CAPVz0n2BpSeZkoT1YV9q5bkOCkjSvOwAXNVGgM4wPUqV3jyxgg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/23] gpu: host1x: convert MIPI to use operations
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko <digetx@gmail.com>, 
+	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
+	Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2xhdWRpdSBCZXpuZWEg
-PGNsYXVkaXUuYmV6bmVhQHR1eG9uLmRldj4NCj4gU2VudDogMTkgU2VwdGVtYmVyIDIwMjUgMDg6
-MzkNCj4gVG86IGdlZXJ0IDxnZWVydEBsaW51eC1tNjhrLm9yZz4NCj4gQ2M6IGJoZWxnYWFzQGdv
-b2dsZS5jb207IGxwaWVyYWxpc2lAa2VybmVsLm9yZzsga3dpbGN6eW5za2lAa2VybmVsLm9yZzsg
-bWFuaUBrZXJuZWwub3JnOw0KPiByb2JoQGtlcm5lbC5vcmc7IGtyemsrZHRAa2VybmVsLm9yZzsg
-Y29ub3IrZHRAa2VybmVsLm9yZzsgbWFnbnVzLmRhbW0gPG1hZ251cy5kYW1tQGdtYWlsLmNvbT47
-DQo+IHAuemFiZWxAcGVuZ3V0cm9uaXguZGU7IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7IGxp
-bnV4LXJlbmVzYXMtc29jQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5l
-bC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IENsYXVkaXUgQmV6bmVhDQo+IDxj
-bGF1ZGl1LmJlem5lYS51akBicC5yZW5lc2FzLmNvbT47IHdzYStyZW5lc2FzIDx3c2ErcmVuZXNh
-c0BzYW5nLWVuZ2luZWVyaW5nLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCA0LzZdIGFy
-bTY0OiBkdHM6IHJlbmVzYXM6IHJ6ZzNzLXNtYXJjLXNvbTogVXBkYXRlIGRtYS1yYW5nZXMgZm9y
-IFBDSWUNCj4gDQo+IEhpLCBHZWVydCwNCj4gDQo+IE9uIDkvMTgvMjUgMTM6MDAsIEdlZXJ0IFV5
-dHRlcmhvZXZlbiB3cm90ZToNCj4gPiBIaSBDbGF1ZGl1LA0KPiA+DQo+ID4gT24gVGh1LCAxOCBT
-ZXB0IDIwMjUgYXQgMTE6NDcsIENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJlem5lYUB0dXhvbi5k
-ZXY+IHdyb3RlOg0KPiA+PiBPbiA5LzE4LzI1IDEyOjA5LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
-dGU6DQo+ID4+PiBPbiBGcmksIDEyIFNlcHQgMjAyNSBhdCAxNDoyNCwgQ2xhdWRpdSA8Y2xhdWRp
-dS5iZXpuZWFAdHV4b24uZGV2PiB3cm90ZToNCj4gPj4+PiBGcm9tOiBDbGF1ZGl1IEJlem5lYSA8
-Y2xhdWRpdS5iZXpuZWEudWpAYnAucmVuZXNhcy5jb20+DQo+ID4+Pj4NCj4gPj4+PiBUaGUgZmly
-c3QgMTI4TUIgb2YgbWVtb3J5IGlzIHJlc2VydmVkIG9uIHRoaXMgYm9hcmQgZm9yIHNlY3VyZSBh
-cmVhLg0KPiA+Pj4+IFNlY3VyZSBhcmVhIGlzIGEgUkFNIHJlZ2lvbiB1c2VkIGJ5IGZpcm13YXJl
-LiBUaGUNCj4gPj4+PiByemczcy1zbWFyYy1zb20uZHRzaSBtZW1vcnkgbm9kZSAobWVtb3J5QDQ4
-MDAwMDAwKSBleGNsdWRlcyB0aGUgc2VjdXJlIGFyZWEuDQo+ID4+Pj4gVXBkYXRlIHRoZSBQQ0ll
-IGRtYS1yYW5nZXMgcHJvcGVydHkgdG8gcmVmbGVjdCB0aGlzLg0KPiA+Pj4+DQo+ID4+Pj4gVGVz
-dGVkLWJ5OiBXb2xmcmFtIFNhbmcgPHdzYStyZW5lc2FzQHNhbmctZW5naW5lZXJpbmcuY29tPg0K
-PiA+Pj4+IFNpZ25lZC1vZmYtYnk6IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJlem5lYS51akBi
-cC5yZW5lc2FzLmNvbT4NCj4gPj4+DQo+ID4+PiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+ID4+
-Pg0KPiA+Pj4+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yemczcy1zbWFyYy1z
-b20uZHRzaQ0KPiA+Pj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yemczcy1z
-bWFyYy1zb20uZHRzaQ0KPiA+Pj4+IEBAIC0yMTQsNiArMjE0LDE2IEBAICZzZGhpMiB7DQo+ID4+
-Pj4gIH07DQo+ID4+Pj4gICNlbmRpZg0KPiA+Pj4+DQo+ID4+Pj4gKyZwY2llIHsNCj4gPj4+PiAr
-ICAgICAgIC8qIEZpcnN0IDEyOE1CIGlzIHJlc2VydmVkIGZvciBzZWN1cmUgYXJlYS4gKi8NCj4g
-Pj4+DQo+ID4+PiBEbyB5b3UgcmVhbGx5IGhhdmUgdG8gdGFrZSB0aGF0IGludG8gYWNjb3VudCBo
-ZXJlPyAgSSBiZWxpZXZlIHRoYXQNCj4gPj4+IDEyOCBNaUIgcmVnaW9uIHdpbGwgbmV2ZXIgYmUg
-dXNlZCBhbnl3YXksIGFzIGl0IGlzIGV4Y2x1ZGVkIGZyb20gdGhlDQo+ID4+PiBtZW1vcnkgbWFw
-IChzZWUgbWVtb3J5QDQ4MDAwMDAwKS4NCj4gPj4+DQo+ID4+Pj4gKyAgICAgICBkbWEtcmFuZ2Vz
-ID0gPDB4NDIwMDAwMDAgMCAweDQ4MDAwMDAwIDAgMHg0ODAwMDAwMCAweDANCj4gPj4+PiArIDB4
-MzgwMDAwMDA+Ow0KPiA+Pj4NCj4gPj4+IEhlbmNlIHNob3VsZG4ndCB5b3UgYWRkDQo+ID4+Pg0K
-PiA+Pj4gICAgIGRtYS1yYW5nZXMgPSA8MHg0MjAwMDAwMCAwIDB4NDgwMDAwMDAgMCAweDQ4MDAw
-MDAwIDB4MA0KPiA+Pj4gMHgzODAwMDAwMD47DQo+ID4NCj4gPiBPb3BzLCBJIHJlYWxseSBtZWFu
-dCAoZm9yZ290IHRvIGVkaXQgYWZ0ZXIgY29weWluZyBpdCk6DQo+ID4NCj4gPiAgICAgZG1hLXJh
-bmdlcyA9IDwweDQyMDAwMDAwIDAgMHg0MDAwMDAwMCAwIDB4NDAwMDAwMDAgMHgwDQo+ID4gMHg0
-MDAwMDAwMD47DQo+ID4NCj4gPj4+DQo+ID4+PiB0byB0aGUgcGNpZSBub2RlIGluIGFyY2gvYXJt
-NjQvYm9vdC9kdHMvcmVuZXNhcy9yOWEwOGcwNDVzMzMuZHRzaQ0KPiA+Pj4gaW5zdGVhZCwgbGlr
-ZSBpcyBkb25lIGZvciBhbGwgb3RoZXIgUmVuZXNhcyBTb0NzIHRoYXQgaGF2ZSBQQ0llPw0KPiA+
-Pg0KPiA+PiBJIGNob3NlIHRvIGFkZCBpdCBoZXJlIGFzIHRoZSByemczcy1zbWFyYy1zb20uZHRz
-aSBpcyB0aGUgb25lIHRoYXQNCj4gPj4gZGVmaW5lcyB0aGUgYXZhaWxhYmxlIG1lbW9yeSBmb3Ig
-Ym9hcmQsIGFzIHRoZSBhdmFpbGFibGUgbWVtb3J5IGlzDQo+ID4+IHNvbWV0aGluZyBib2FyZCBk
-ZXBlbmRlbnQuDQo+ID4NCj4gPiBCdXQgSU1ITyBpdCBpcyBpbmRlcGVuZGVudCBmcm9tIHRoZSBh
-bW91bnQgb2YgbWVtb3J5IG9uIHRoZSBib2FyZC4NCj4gPiBPbiBvdGhlciBTb0NzLCBpdCBoYXMg
-YSBjb21tZW50Og0KPiA+DQo+ID4gICAgICAvKiBNYXAgYWxsIHBvc3NpYmxlIEREUiBhcyBpbmJv
-dW5kIHJhbmdlcyAqLw0KPiA+DQo+ID4+DQo+ID4+IElmIHlvdSBjb25zaWRlciBpdCBpcyBiZXR0
-ZXIgdG8gaGF2ZSBpdCBpbiB0aGUgU29DIGZpbGUsIHBsZWFzZSBsZXQgbWUga25vdy4NCj4gPg0K
-PiA+IEhlbmNlIHllcyBwbGVhc2UuDQo+ID4NCj4gPiBIb3dldmVyLCBJIG1pc3NlZCB5b3UgYWxy
-ZWFkeSBoYXZlOg0KPiA+DQo+ID4gICAgIC8qIE1hcCBhbGwgcG9zc2libGUgRFJBTSByYW5nZXMg
-KDQgR0IpLiAqLw0KPiA+ICAgICBkbWEtcmFuZ2VzID0gPDB4NDIwMDAwMDAgMCAweDQwMDAwMDAw
-IDAgMHg0MDAwMDAwMCAweDEgMHgwPjsNCj4gPg0KPiA+IGluIHI5YTA4ZzA0NS5kdHNpLCBzbyBs
-aWZlJ3MgZ29vZC4NCj4gPg0KPiA+ICsNCj4gPj4+PiArfTsNCj4gPj4+PiArDQo+ID4+Pj4gKyZw
-Y2llX3BvcnQwIHsNCj4gPj4+PiArICAgICAgIGNsb2NrcyA9IDwmdmVyc2EzIDU+Ow0KPiA+Pj4+
-ICsgICAgICAgY2xvY2stbmFtZXMgPSAicmVmIjsNCj4gPj4+PiArfTsNCj4gPj4+DQo+ID4+PiBU
-aGlzIGlzIG5vdCByZWxhdGVkLg0KPiA+Pg0KPiA+PiBBaCwgcmlnaHQhIENvdWxkIHlvdSBwbGVh
-c2UgbGV0IG1lIGtub3cgaWYgeW91IHByZWZlciB0byBoYXZlIGFub3RoZXINCj4gPj4gcGF0Y2gg
-b3IgdG8gdXBkYXRlIHRoZSBwYXRjaCBkZXNjcmlwdGlvbj8NCj4gPg0KPiA+IEdpdmVuIHRoZSBk
-bWEtcmFuZ2VzIGNoYW5nZXMgaXMgSU1ITyBub3QgbmVlZGVkLA0KPiANCj4gSSBrZXB0IGl0IGhl
-cmUgYXMgdGhlIGRyaXZlciBjb25maWd1cmVzIHRoZSBQQ0llIHJlZ2lzdGVycyBmb3IgdGhlIGlu
-Ym91bmQgd2luZG93cyB3aXRoIHRoZSB2YWx1ZXMNCj4gcGFzc2VkIHRob3VnaCB0aGUgZG1hLXJh
-bmdlcy4gVGhpcyBpcyBkb25lIHRocm91Z2gNCj4gcnpnM3NfcGNpZV9zZXRfaW5ib3VuZF93aW5k
-b3dzKCkgLT4gcnpnM3NfcGNpZV9zZXRfaW5ib3VuZF93aW5kb3coKS4gVGhlIGNvbnRyb2xsZXIg
-d2lsbCBiZSBhd2FyZSB0aGF0DQo+IHRoZSBzZWN1cmUgYXJlYSB6b25lIGlzIHNvbWV0aGluZyB2
-YWxpZCB0byB3b3JrIHdpdGguIEluIHRoYXQgY2FzZSwgaWYgbXkgdW5kZXJzdGFuZGluZyBvZiBQ
-Q0llIHdpbmRvd3MNCj4gaXMgcmlnaHQsIEkgYWRkZWQgdGhpcyBpbiB0aGUgaWRlYSB0aGF0IGFu
-IGVuZHBvaW50IChhIG1hbGljaW91cyBvbmU/KSBjb3VsZCBETUEgaW50by9mcm9tIHNlY3VyZSBh
-cmVhDQo+IGlmIHdlIGRvbid0IGV4Y2x1ZGUgaXQgaGVyZT8NCg0KVGhhdCBpcyBhbiBpbnRlcmVz
-dGluZyBpc3N1ZS4gVGhlIGVuZHBvaW50IChtYWxpY2lvdXMgb25lKSBzaG91bGQgZ2V0IERBVEEg
-YWJvcnQgaW4gdGhhdCBjYXNlLg0KDQpDaGVlcnMsDQpCaWp1DQogIA0K
+=D0=BF=D1=82, 19 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:47 Mikk=
+o Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Saturday, September 6, 2025 10:53=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > This commit converts the existing MIPI code to use operations, which is=
+ a
+> > necessary step for the Tegra20/Tegra30 SoCs. Additionally, it creates a
+> > dedicated header file, tegra-mipi-cal.h, to contain the MIPI calibratio=
+n
+> > functions, improving code organization and readability.
+>
+> I'd write out "operation function pointers", at least the first time. Jus=
+t "operations" isn't clear to me.
+>
+> Please write the commit message in imperative mood (like you've done in o=
+ther patches).
+>
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  drivers/gpu/drm/tegra/dsi.c             |   1 +
+> >  drivers/gpu/host1x/mipi.c               |  40 +++------
+> >  drivers/staging/media/tegra-video/csi.c |   1 +
+> >  include/linux/host1x.h                  |  10 ---
+> >  include/linux/tegra-mipi-cal.h          | 111 ++++++++++++++++++++++++
+> >  5 files changed, 126 insertions(+), 37 deletions(-)
+> >  create mode 100644 include/linux/tegra-mipi-cal.h
+> >
+> > diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+> > index 64f12a85a9dd..278bf2c85524 100644
+> > --- a/drivers/gpu/drm/tegra/dsi.c
+> > +++ b/drivers/gpu/drm/tegra/dsi.c
+> > @@ -14,6 +14,7 @@
+> >  #include <linux/pm_runtime.h>
+> >  #include <linux/regulator/consumer.h>
+> >  #include <linux/reset.h>
+> > +#include <linux/tegra-mipi-cal.h>
+> >
+> >  #include <video/mipi_display.h>
+> >
+> > diff --git a/drivers/gpu/host1x/mipi.c b/drivers/gpu/host1x/mipi.c
+> > index e51b43dd15a3..2fa339a428f3 100644
+> > --- a/drivers/gpu/host1x/mipi.c
+> > +++ b/drivers/gpu/host1x/mipi.c
+> > @@ -27,6 +27,7 @@
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/slab.h>
+> > +#include <linux/tegra-mipi-cal.h>
+> >
+> >  #include "dev.h"
+> >
+> > @@ -116,23 +117,6 @@ struct tegra_mipi_soc {
+> >       u8 hsclkpuos;
+> >  };
+> >
+> > -struct tegra_mipi {
+> > -     const struct tegra_mipi_soc *soc;
+> > -     struct device *dev;
+> > -     void __iomem *regs;
+> > -     struct mutex lock;
+> > -     struct clk *clk;
+> > -
+> > -     unsigned long usage_count;
+> > -};
+> > -
+> > -struct tegra_mipi_device {
+> > -     struct platform_device *pdev;
+> > -     struct tegra_mipi *mipi;
+> > -     struct device *device;
+> > -     unsigned long pads;
+> > -};
+> > -
+> >  static inline u32 tegra_mipi_readl(struct tegra_mipi *mipi,
+> >                                  unsigned long offset)
+> >  {
+> > @@ -261,7 +245,7 @@ void tegra_mipi_free(struct tegra_mipi_device *devi=
+ce)
+> >  }
+> >  EXPORT_SYMBOL(tegra_mipi_free);
+> >
+> > -int tegra_mipi_enable(struct tegra_mipi_device *dev)
+> > +static int tegra114_mipi_enable(struct tegra_mipi_device *dev)
+> >  {
+> >       int err =3D 0;
+> >
+> > @@ -273,11 +257,9 @@ int tegra_mipi_enable(struct tegra_mipi_device *de=
+v)
+> >       mutex_unlock(&dev->mipi->lock);
+> >
+> >       return err;
+> > -
+> >  }
+> > -EXPORT_SYMBOL(tegra_mipi_enable);
+> >
+> > -int tegra_mipi_disable(struct tegra_mipi_device *dev)
+> > +static int tegra114_mipi_disable(struct tegra_mipi_device *dev)
+> >  {
+> >       int err =3D 0;
+> >
+> > @@ -289,11 +271,9 @@ int tegra_mipi_disable(struct tegra_mipi_device *d=
+ev)
+> >       mutex_unlock(&dev->mipi->lock);
+> >
+> >       return err;
+> > -
+> >  }
+> > -EXPORT_SYMBOL(tegra_mipi_disable);
+> >
+> > -int tegra_mipi_finish_calibration(struct tegra_mipi_device *device)
+> > +static int tegra114_mipi_finish_calibration(struct tegra_mipi_device *=
+device)
+> >  {
+> >       struct tegra_mipi *mipi =3D device->mipi;
+> >       void __iomem *status_reg =3D mipi->regs + (MIPI_CAL_STATUS << 2);
+> > @@ -309,9 +289,8 @@ int tegra_mipi_finish_calibration(struct tegra_mipi=
+_device *device)
+> >
+> >       return err;
+> >  }
+> > -EXPORT_SYMBOL(tegra_mipi_finish_calibration);
+> >
+> > -int tegra_mipi_start_calibration(struct tegra_mipi_device *device)
+> > +static int tegra114_mipi_start_calibration(struct tegra_mipi_device *d=
+evice)
+> >  {
+> >       const struct tegra_mipi_soc *soc =3D device->mipi->soc;
+> >       unsigned int i;
+> > @@ -384,7 +363,13 @@ int tegra_mipi_start_calibration(struct tegra_mipi=
+_device *device)
+> >
+> >       return 0;
+> >  }
+> > -EXPORT_SYMBOL(tegra_mipi_start_calibration);
+> > +
+> > +static const struct tegra_mipi_ops tegra114_mipi_ops =3D {
+> > +     .tegra_mipi_enable =3D tegra114_mipi_enable,
+> > +     .tegra_mipi_disable =3D tegra114_mipi_disable,
+> > +     .tegra_mipi_start_calibration =3D tegra114_mipi_start_calibration=
+,
+> > +     .tegra_mipi_finish_calibration =3D tegra114_mipi_finish_calibrati=
+on,
+> > +};
+> >
+> >  static const struct tegra_mipi_pad tegra114_mipi_pads[] =3D {
+> >       { .data =3D MIPI_CAL_CONFIG_CSIA },
+> > @@ -512,6 +497,7 @@ static int tegra_mipi_probe(struct platform_device =
+*pdev)
+> >
+> >       mipi->soc =3D match->data;
+> >       mipi->dev =3D &pdev->dev;
+> > +     mipi->ops =3D &tegra114_mipi_ops;
+> >
+> >       mipi->regs =3D devm_platform_get_and_ioremap_resource(pdev, 0, NU=
+LL);
+> >       if (IS_ERR(mipi->regs))
+> > diff --git a/drivers/staging/media/tegra-video/csi.c b/drivers/staging/=
+media/tegra-video/csi.c
+> > index 74c92db1032f..9e3bd6109781 100644
+> > --- a/drivers/staging/media/tegra-video/csi.c
+> > +++ b/drivers/staging/media/tegra-video/csi.c
+> > @@ -12,6 +12,7 @@
+> >  #include <linux/of_graph.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <linux/tegra-mipi-cal.h>
+> >
+> >  #include <media/v4l2-fwnode.h>
+> >
+> > diff --git a/include/linux/host1x.h b/include/linux/host1x.h
+> > index 9fa9c30a34e6..b1c6514859d3 100644
+> > --- a/include/linux/host1x.h
+> > +++ b/include/linux/host1x.h
+> > @@ -453,16 +453,6 @@ void host1x_client_unregister(struct host1x_client=
+ *client);
+> >  int host1x_client_suspend(struct host1x_client *client);
+> >  int host1x_client_resume(struct host1x_client *client);
+> >
+> > -struct tegra_mipi_device;
+> > -
+> > -struct tegra_mipi_device *tegra_mipi_request(struct device *device,
+> > -                                          struct device_node *np);
+> > -void tegra_mipi_free(struct tegra_mipi_device *device);
+> > -int tegra_mipi_enable(struct tegra_mipi_device *device);
+> > -int tegra_mipi_disable(struct tegra_mipi_device *device);
+> > -int tegra_mipi_start_calibration(struct tegra_mipi_device *device);
+> > -int tegra_mipi_finish_calibration(struct tegra_mipi_device *device);
+> > -
+> >  /* host1x memory contexts */
+> >
+> >  struct host1x_memory_context {
+> > diff --git a/include/linux/tegra-mipi-cal.h b/include/linux/tegra-mipi-=
+cal.h
+> > new file mode 100644
+> > index 000000000000..2bfdbfd3cb77
+> > --- /dev/null
+> > +++ b/include/linux/tegra-mipi-cal.h
+> > @@ -0,0 +1,111 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +
+> > +#ifndef __TEGRA_MIPI_CAL_H_
+> > +#define __TEGRA_MIPI_CAL_H_
+> > +
+> > +struct tegra_mipi {
+> > +     const struct tegra_mipi_soc *soc;
+> > +     const struct tegra_mipi_ops *ops;
+> > +     struct device *dev;
+> > +     void __iomem *regs;
+> > +     struct mutex lock;
+> > +     struct clk *clk;
+> > +
+> > +     unsigned long usage_count;
+> > +};
+> > +
+> > +struct tegra_mipi_device {
+> > +     struct platform_device *pdev;
+> > +     struct tegra_mipi *mipi;
+> > +     struct device *device;
+> > +     unsigned long pads;
+> > +};
+>
+> We should avoid putting implementation details / chip-specific things in =
+the public header. Here's a sketch of what I'm thinking about:
+>
+> --- tegra-mipi-cal.h:
+>
+> struct tegra_mipi_device;
+>
+> struct tegra_mipi_ops {
+>         // ...
+> };
+>
+> int tegra_mipi_add_provider(struct device_node *np, struct tegra_mipi_ops=
+ *ops);
+>
+> int tegra_mipi_enable(...);
+> // ...
+>
+> --- host1x/mipi.c:
+>
+> // move tegra114-mipi specific stuff to a new file, e.g. host1x/tegra114-=
+mipi.c
+>
+> struct tegra_mipi_device {
+>         struct tegra_mipi_ops *ops;
+>         struct platform_device *pdev;
+> };
+>
+> /* only need to support one provider */
+> static struct {
+>         struct device_node *np;
+>         struct tegra_mipi_ops *ops;
+> } provider;
+>
+> int tegra_mipi_add_provider(struct device_node *np, struct tegra_mipi_ops=
+ *ops)
+> {
+>         if (provider.np)
+>                 return -EBUSY;
+>
+>         provider.np =3D np;
+>         provider.ops =3D ops;
+>
+>         return 0;
+> }
+>
+> struct tegra_mipi_device *tegra_mipi_request(struct *device, struct devic=
+e_node *np)
+> {
+>         struct device_node *phandle_np =3D /* ... */;
+>         struct platform_device *pdev;
+>         struct tegra_mipi_device *mipidev;
+>
+>         if (provider.np !=3D phandle_np)
+>                 return -ENODEV;
+>
+>         pdev =3D /* ... */;
+>
+>         mipidev =3D kzalloc(...);
+>         mipidev->ops =3D provider.ops;
+>         mipidev->pdev =3D pdev;
+>         mipidev->cells =3D phandle_cells;
+>
+>         return mipidev;
+> }
+>
+> int tegra_mipi_enable(struct tegra_mipi_device *device)
+> {
+>         return device->ops->enable(platform_get_drvdata(device->pdev), de=
+vice->cells);
+> }
+>
+> > +
+> > +/**
+> > + * Operations for Tegra MIPI calibration device
+> > + */
+> > +struct tegra_mipi_ops {
+> > +     /**
+> > +      * @tegra_mipi_enable:
+> > +      *
+> > +      * Enable MIPI calibration device
+> > +      */
+> > +     int (*tegra_mipi_enable)(struct tegra_mipi_device *device);
+>
+> The tegra_mipi_ prefix should be dropped for the field names.
+>
+> > +
+> > +     /**
+> > +      * @tegra_mipi_disable:
+> > +      *
+> > +      * Disable MIPI calibration device
+> > +      */
+> > +     int (*tegra_mipi_disable)(struct tegra_mipi_device *device);
+> > +
+> > +     /**
+> > +      * @tegra_mipi_start_calibration:
+> > +      *
+> > +      * Start MIPI calibration
+> > +      */
+> > +     int (*tegra_mipi_start_calibration)(struct tegra_mipi_device *dev=
+ice);
+> > +
+> > +     /**
+> > +      * @tegra_mipi_finish_calibration:
+> > +      *
+> > +      * Finish MIPI calibration
+> > +      */
+> > +     int (*tegra_mipi_finish_calibration)(struct tegra_mipi_device *de=
+vice);
+> > +};
+> > +
+> > +struct tegra_mipi_device *tegra_mipi_request(struct device *device,
+> > +                                          struct device_node *np);
+> > +
+> > +void tegra_mipi_free(struct tegra_mipi_device *device);
+> > +
+> > +static inline int tegra_mipi_enable(struct tegra_mipi_device *device)
+> > +{
+> > +     /* Tegra114+ has a dedicated MIPI calibration block */
+> > +     if (device->mipi) {
+> > +             if (!device->mipi->ops->tegra_mipi_enable)
+> > +                     return 0;
+> > +
+> > +             return device->mipi->ops->tegra_mipi_enable(device);
+> > +     }
+> > +
+> > +     return -ENOSYS;
+> > +}
+> > +
+> > +static inline int tegra_mipi_disable(struct tegra_mipi_device *device)
+> > +{
+> > +     if (device->mipi) {
+> > +             if (!device->mipi->ops->tegra_mipi_disable)
+> > +                     return 0;
+> > +
+> > +             return device->mipi->ops->tegra_mipi_disable(device);
+> > +     }
+> > +
+> > +     return -ENOSYS;
+> > +}
+> > +
+> > +static inline int tegra_mipi_start_calibration(struct tegra_mipi_devic=
+e *device)
+> > +{
+> > +     if (device->mipi) {
+> > +             if (!device->mipi->ops->tegra_mipi_start_calibration)
+> > +                     return 0;
+> > +
+> > +             return device->mipi->ops->tegra_mipi_start_calibration(de=
+vice);
+> > +     }
+> > +
+> > +     return -ENOSYS;
+> > +}
+> > +
+> > +static inline int tegra_mipi_finish_calibration(struct tegra_mipi_devi=
+ce *device)
+> > +{
+> > +     if (device->mipi) {
+> > +             if (!device->mipi->ops->tegra_mipi_finish_calibration)
+> > +                     return 0;
+> > +
+> > +             return device->mipi->ops->tegra_mipi_finish_calibration(d=
+evice);
+> > +     }
+> > +
+> > +     return -ENOSYS;
+> > +}
+> > +
+> > +#endif /* __TEGRA_MIPI_CAL_H_ */
+> >
+>
+
+All this is good, but how to include into this CSI? Adding support for
+CSI is why I am even touching this at the first place.
 
