@@ -1,239 +1,581 @@
-Return-Path: <devicetree+bounces-219148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 625BDB881A3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:07:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B30BB881CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 09:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17430522AAB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:07:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D50E1567D8F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 07:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D16BE2512C8;
-	Fri, 19 Sep 2025 07:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F5729E110;
+	Fri, 19 Sep 2025 07:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Ngxa6HHG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4rptESW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBF0283FD0;
-	Fri, 19 Sep 2025 07:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758265663; cv=fail; b=oV0pWBRirLzacY8Izkhj2GBDunA5p6ayJeb/H6qizHAAVPOQB19+7Sj4RjVS4vjoIhZuEFpbOxA2ha07u6PSHwp2FmtgPRVhFhqa0Oq567Y+GvpIhhDowzPkVtxxng83U0cZjx45Fggbgov31s5GhhJTqqI88fnlWl+aB/5Ii1E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758265663; c=relaxed/simple;
-	bh=/7wJS+mQvipeJFLOmAdGBBcRqL2EEBSFgFQkQZQIrdM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=csBxzDLmgjX4AlTRM21r8m2npWrwx4QyDBA3AohQCKBFZxxOP3WXv3e4RNYNxBfglhK/ibxIpNn7ThpS4P+p8IhKXtZjwnl4UKkpCxRFQFPY6YkofMId/pUDRrISvfNEcJqOQmnMt6PhRxtjPFUgDMtDNX0cC87AFhqAQiYZma8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Ngxa6HHG; arc=fail smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58J5LmqJ018786;
-	Fri, 19 Sep 2025 09:07:30 +0200
-Received: from as8pr04cu009.outbound.protection.outlook.com (mail-westeuropeazon11011057.outbound.protection.outlook.com [52.101.70.57])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 497fxhuwhf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Sep 2025 09:07:30 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FHaQJWm1F6ZekxImC1ZIbelXrx13o3CsxOh8jxnEYpI3oy+yKTRrpcC2PLjXuoz/dmgqdo4Gg9GmA/oxuImxP7OfOvoQ3V9Ojwwh4ROGr/5nEocNdEiTqWEaUtfHqvRy6wWPL5uCZy7o+g5zBgDDOBE4Y/1jwsTtrpM2oVZrkTzAigD5FNLx7qtF+gl803zxiDALCIRHsMUpFjfqHKEeNlXcYO/jkMqXjOjIepmnqbNU+YyQ5fDvtYEOixwcveneDYGgeSwFHF/qlXvdnYHNbih2MXN3CdXR1RJQjvCJIuYMrn/dW8WB69UEKH8iHO2oBsWi6Ssvh7BNAxKrpJsj+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=toM+gCUgcqUJ5hgJsi7pFc8Q+OvJsYy6dpBnMib2IdU=;
- b=DzKZqsgEm9fxcSzNZ98O7Z5s8lR/QW+Jfy8H916wXKxE7mEnwxdOTNqEv6OjYIwXwWZ2Jy3yOYh4G11qaa134nxBxnPCN0yLAYAEOdrcwF4UDm0PbJsNmMHSXORnP3vDCgU88DOoy3RHD2AI9WgncDudIkPwapcZTVfdDqyl/fy5R0a2whJcEKxebgzDj/pTa8SQY/k/Nx0P6mfr0+bK087iYHMkCr5cEaDhrKDud5ti5KPaHsCUqv1vQZDS87uu8RrPcUqgvN11R4r+WRHSZsMgO++6NZCL/MqDo2cTbj+frwYk0UcaI/B6VCVmaWGlftArdJijnBzFt+jka72ujw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.43) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=toM+gCUgcqUJ5hgJsi7pFc8Q+OvJsYy6dpBnMib2IdU=;
- b=Ngxa6HHGDVQlUwahB8a2Wozjw9YxJvfXHMWVvoe+VbOoVGhumfP8EjPO5dxVV+uCK6ZRlYMvBV3FJYHzIRAsPbvsnToF+oc0ji8vzvk+oRgoF4ml8DIZg0wQzD0KrzwOsy7DtXI+q3EKyovMBHuJpytntIzoItwZ5D9XEvnPQzq51TARxPh0IiBKMQZ4bbMnj6QBRga/Z5N6ptjkljWABf0zFmFj2f7wpAh2mcGfng0eU3yN/ipq0/ReKzzceEX1mUEx8TLf0p+GBRbLPM2+VBkOEX6V53R+3YtSced50cLhDB0oY49dMOPnHvVLq03f2lxjjbupUpriyMM+SCQ+0g==
-Received: from AM8P191CA0020.EURP191.PROD.OUTLOOK.COM (2603:10a6:20b:21a::25)
- by FRWPR10MB9496.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:d10:1af::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.14; Fri, 19 Sep
- 2025 07:07:28 +0000
-Received: from AM4PEPF00027A5F.eurprd04.prod.outlook.com
- (2603:10a6:20b:21a:cafe::1a) by AM8P191CA0020.outlook.office365.com
- (2603:10a6:20b:21a::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.16 via Frontend Transport; Fri,
- 19 Sep 2025 07:07:28 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.43; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.43) by
- AM4PEPF00027A5F.mail.protection.outlook.com (10.167.16.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Fri, 19 Sep 2025 07:07:28 +0000
-Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
- (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Fri, 19 Sep
- 2025 09:05:02 +0200
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Fri, 19 Sep
- 2025 09:07:27 +0200
-Message-ID: <257e006b-daab-4eed-9e1e-189d1b7a3167@foss.st.com>
-Date: Fri, 19 Sep 2025 09:07:27 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184432AD24;
+	Fri, 19 Sep 2025 07:10:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758265811; cv=none; b=lI2Qkm/wIG7jfTEWldq9DsYz3929WSMINuVAS21Vo7DLgo/1MDWuHL+rmT781+Nx6oYdUzp6hGPWyBFDV3vDS7OEiND+Pya2N2n4SoxELo4LQ31hhocB0ZHvuargS5TAq20iJ10lR/n504i8CVGq3FvKuEs+r0y8VorA0oHTcZ4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758265811; c=relaxed/simple;
+	bh=UN238o5/y4J5dcysXM/nOx7D7SlXXhWZAQZD1SbKS5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U3oVLb+Gm6t9J5DsS59+6VUX3eCeDE7NSDNRIFkhivW4IKlgc7UyvXpDIIBkfG6pamC02Om8iSnMrtnbLCqJPV6DeQoIX29FTLPC6UIvw0aJCUHwZ6uXSz1tPHJoeMDlLMP0JmMmAYRhxsvLdrUpdQSlVJltdHmDsTd5StRvdgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4rptESW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17C97C4CEF0;
+	Fri, 19 Sep 2025 07:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758265810;
+	bh=UN238o5/y4J5dcysXM/nOx7D7SlXXhWZAQZD1SbKS5k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e4rptESW8c1TJuIle/DO+v42SUIePmqwkH1ldDkMoiKtHMBytvKSjajtJiSb3nPN9
+	 SZUiSzFpYmEbdQ2lDykSTMN3H4UtiT6wPc3qd2YIrmcHOadRszfLjUMPnrG8Z2+/oX
+	 qmjqpky90EfNmOrqVK/9q7SDeetMtt1sPcTmdt+7ugCRTC+UzRe+CRllLBzfyyDAbq
+	 mVWV/EiOiy5wMlkPusXi8GGTJalfO9ryCf5EcuT+Z6vGQmHh3zQcQGuWZHCO2uS5s9
+	 pRC1AL2t0dBpSdT3jSU6cMer3lQDJdkYxmxVTXGVkVIjdzDpIwX46CGEiECd+9eb42
+	 nmtCQhxgibHoA==
+Date: Fri, 19 Sep 2025 09:10:08 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Drew Fustini <fustini@kernel.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v14 4/7] pwm: Add Rust driver for T-HEAD TH1520 SoC
+Message-ID: <ca2ftwfducf4swuoondajiid642mctilh4lt3grgxpnup3nhag@tyuwyasfw4uj>
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+ <CGME20250820083544eucas1p2be0157353ec1201b0651292792429aa4@eucas1p2.samsung.com>
+ <20250820-rust-next-pwm-working-fan-for-sending-v14-4-df2191621429@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: st: Add memory-region-names property for
- stm32mp257f-ev1
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>
-References: <20250811-upstream_fix_dts_omm-v3-1-c4186b7667cb@foss.st.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250811-upstream_fix_dts_omm-v3-1-c4186b7667cb@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00027A5F:EE_|FRWPR10MB9496:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04c05c45-01f9-4a97-3e26-08ddf74b3190
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YWJnN29uZXRSQ0hUVm5hcWRwN0pOcnlNYkQrNkduWGdPbE16NFFiSmJhL1M3?=
- =?utf-8?B?QzhqTS80ZGlBd2RINEtHN28vOTZiRHlhRUhza3dQZ256VW1Hc0o1SkZLODV6?=
- =?utf-8?B?ZjFEclZ1R3ZLUGlyNDduRE9RNS8zOXFzc0syQUdNaXBod01WZTFoMURpVnlw?=
- =?utf-8?B?T1NOM0JmS2U2TXp4K0dZcEJ5SEJ4S3pZRnNpY2lWblRPcEw4aG5ER0pRZmw0?=
- =?utf-8?B?MHh4OVJWalR0K0lWY21zakhXOGo3d05nemdRK1FsNDR6dFYrY1ZuSHhwQVBk?=
- =?utf-8?B?ak5leFZlT2s0Yldrb1JPUkc5QXNlSk1PeDVjOEtiRFZONjVWdENmTmV3VzZG?=
- =?utf-8?B?elVhdVZzWmhaKzkrQ2lXR2w3cWVEYnVwWUIrMEx2eitTTHJiVTRDNUhKSVZR?=
- =?utf-8?B?OUg4ZGlGWUdmWnBQeVRxZFpDVjVSQ2xkMEtsU3pObG1oWFNKTVJWK2F2ZWND?=
- =?utf-8?B?ZElyMmNpbUNuYy9kamxGb2ZiK291Vks2WGJWS1YxWE9wM1ZaZGphWUM3QlZF?=
- =?utf-8?B?Z3pPeHN1ZVY3dFIwQXFhMXBxYXVxR1hmQVZRcHA2USthMEExOTNnNzBXYmRi?=
- =?utf-8?B?Nk9qZGYxNHBwN09PM1I2QjNCak0xNzUwaEovZ3VLdEw2VGZPK2k4Tm5iR0lF?=
- =?utf-8?B?ZVRCMXBacjNhUUlpYWlzNUlGYkhFanpkOUlJem1Ub3lrSWJIa2dTbUV2Tlhm?=
- =?utf-8?B?bXRUUzdIVG9URUtwUndGQWtyMitiT2JBSU5sajhYU2Z1dEpEQmhPeVQ1SUFJ?=
- =?utf-8?B?VmNseG9LbnJSb2l2TFhOc3pJclRjZ0FLT0hiY3pRMmlFaVR3ZVZadWJuVVRs?=
- =?utf-8?B?MklDZE4zSlZMekgzM1VxeGE3WDMwd0toUzZUSnpKdlpWNmRuL1prVnZLY2Nx?=
- =?utf-8?B?UDNqRE5Tcm5oTUQwL081Z3c4UTl0MzBydlBJUW55L2lsVGdMS0w2d1BOZUlD?=
- =?utf-8?B?NXl1TmRQNEVWdmRuV2tOR0lCV2p0dGFUYjFLdno4TXVNWmhmYVBqK3hkRlUw?=
- =?utf-8?B?b1V1Uk1Dci9YTXN4VXp6UThWR2F1VmZXUzZFTWNPb2l3elJ5TVZ5aXNpU1BU?=
- =?utf-8?B?RkRvOUVHNnZDUU1pQzFscmM5T3pLWGk0MU01MEJRRXBYdktSdXdPdHkvZ2l0?=
- =?utf-8?B?bkRocktoV2M1VkpGT1c2bk05bGlOc1pHRjJQdEZUUk1raXF2eXE4N3JwdEh3?=
- =?utf-8?B?RTRIbjBJdmVFOUlYNExBRHYyZCtnajk2Y0gvdUVOUEg4VFAxRk8zaHV1RTIr?=
- =?utf-8?B?Wnh1T0xFNGpNdEdobFBBZGljS2FoTUo2YThBUWUyTzJMRXlXY01VM3g4U05R?=
- =?utf-8?B?Ni80ODl5Y0o2WXpTMlg1VW1vS3FVS0RkUDhkaEI5ZW9vVFNwM0xmbHpEM2Vs?=
- =?utf-8?B?WGl1SUcvcFpTWXRzeXgxWXdPN0IzQmJ3NWo0VkZybkhlSDhFZk5vTDFzeWxP?=
- =?utf-8?B?RXNyd01mb1BGLzZTQmlkSXB6UGJCRUNFdThtQ1d2eSt1WitVUXd6a0JLa04r?=
- =?utf-8?B?Z1NWUC9GTk8xNVlpUVFlTmxoVERSS1JyQkVYOFRuV3lpeUZxUzVyTGh5WjRT?=
- =?utf-8?B?NGpkNFJwR1FWa2ZxQU9XalJZbCtqRUtNbXhaNFZseFM1cWx6d1pxVTFEYm45?=
- =?utf-8?B?UUptN1BjZVJDZXZtOU1jZWJHNDZRQ1U3YkxsS2hWdkxQbDF3R2RHM003VmZ4?=
- =?utf-8?B?TWxzdi9xbk9PY0h5WHpnQVJRL2hrQVVqYUJ0dnk3VlRXNHZtVWlNak5uSi9L?=
- =?utf-8?B?VVZyZmFlR0ROZEFXeW5Xb0hJNU5VMnB3aFlTeTNPblducVNBbWN6VWs3dk9s?=
- =?utf-8?B?Y3VPUHlhZThOQmlKaFQvKzJSR3NRTERXZXYxQTc0UEdHbGVTZkx4dy9CRjVR?=
- =?utf-8?B?bjdXMlVpdXhGYW5NZFRUTUFTSFhKdTBXc2hVblRJa3lLR2psTitWN2VDTXha?=
- =?utf-8?B?YVN4bkk3Z1FOZFhhR1hoRjRJakZPMjZiT2QrL2YvM295UDJ6QVFqZnYvQThP?=
- =?utf-8?B?NXpDNGo1NExxd2RiYnlHMktUcHhjTE9LbHZvTVEvVzlFcCtLcUJvN1M5K2tj?=
- =?utf-8?B?eTN6ek8ya0UraG5vRkY2dXFEdVNOZWRNbkZMUT09?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 07:07:28.1451
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04c05c45-01f9-4a97-3e26-08ddf74b3190
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A5F.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRWPR10MB9496
-X-Authority-Analysis: v=2.4 cv=K9MiHzWI c=1 sm=1 tr=0 ts=68cd0132 cx=c_pps a=TGtHJSg9jqUEU2jNioFT0w==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
- a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=SAHXIHsbQyQA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8 a=i9Drqpc0j13i6tykvIIA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfXyIltgLBlDYaz 4d5pWYH19Afiyh1ZfPkP+UqlEk45wzd67oqYWCnU/65qSeM8v65TSUe7vMlp0Mxc4VlD0kkeKm0 6PMcptJLJlTnfJtVueuQ4YxT7NWdAsbTauGEc/8GefhIr9Ut8/o4pptKVTw/yWe5hzbw8kPZ1Md
- pbM+I9+r1IbbMz65wvxRGoT84WfNruGYfL1WMhshv9EN3gaYbQ8zjaZAFH+J32cmlJSuHPK0bV2 77PV/sycxthY1rEszUqn3HVO8991dodA1hddtcWiTf8ncjsYsB65vzRBX25J5Wm2PSoNIM14Hbw uzzDDi9SzgPdFZfLHygZRSWi7rCYkp6HxOzRNuewVEECWmipA9p3ZfgNyei3aQLeCMmiguYH/S1 2tWaiDcD
-X-Proofpoint-ORIG-GUID: 6ZqLLRW_LXiEexrSYcElZROYasS85DDj
-X-Proofpoint-GUID: 6ZqLLRW_LXiEexrSYcElZROYasS85DDj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-18_03,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 adultscore=0
- phishscore=0 bulkscore=0 malwarescore=0 spamscore=0 suspectscore=0
- impostorscore=0 clxscore=1011 classifier=typeunknown authscore=0 authtc=
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509160202
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uu7qwrkf63ilczbj"
+Content-Disposition: inline
+In-Reply-To: <20250820-rust-next-pwm-working-fan-for-sending-v14-4-df2191621429@samsung.com>
 
 
-On 8/11/25 15:28, Patrice Chotard wrote:
-> In order to set the AMCR register, which configures the
-> memory-region split between ospi1 and ospi2, we need to
-> identify the ospi instance.
-> 
-> By using memory-region-names, it allows to identify the
-> ospi instance this memory-region belongs to.
-> 
-> Fixes: cad2492de91c ("arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+--uu7qwrkf63ilczbj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v14 4/7] pwm: Add Rust driver for T-HEAD TH1520 SoC
+MIME-Version: 1.0
+
+Hello,
+
+actually I intended to give my feedback as a patch, but I'm not fluent
+enough in Rust yet :-\, so here come my thoughts in text only.
+
+On Wed, Aug 20, 2025 at 10:35:39AM +0200, Michal Wilczynski wrote:
+> Introduce a PWM driver for the T-HEAD TH1520 SoC, written in Rust and
+> utilizing the safe PWM abstractions from the preceding commit.
+>=20
+> The driver implements the pwm::PwmOps trait using the modern waveform
+> API (round_waveform_tohw, write_waveform, etc.) to support configuration
+> of period, duty cycle, and polarity for the TH1520's PWM channels.
+>=20
+> Resource management is handled using idiomatic Rust patterns. The PWM
+> chip object is allocated via pwm::Chip::new and its registration with
+> the PWM core is managed by the pwm::Registration RAII guard. This
+> ensures pwmchip_remove is always called when the driver unbinds,
+> preventing resource leaks. Device managed resources are used for the
+> MMIO region, and the clock lifecycle is correctly managed in the
+> driver's private data Drop implementation.
+>=20
+> The driver's core logic is written entirely in safe Rust, with no unsafe
+> blocks, except for the Send and Sync implementations for the driver
+> data, which are explained in the comments.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
-> Changes in v3:
-> - Set again "Cc: <stable@vger.kernel.org>"
-> - Link to v2: https://lore.kernel.org/r/20250811-upstream_fix_dts_omm-v2-1-00ff55076bd5@foss.st.com
-> 
-> Changes in v2:
-> - Update commit message.
-> - Use correct memory-region-names value.
-> - Remove "Cc: <stable@vger.kernel.org>" tag as the fixed patch is not part of a LTS.
-> - Link to v1: https://lore.kernel.org/r/20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com
-> ---
->  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> index 2f561ad4066544445e93db78557bc4be1c27095a..7bd8433c1b4344bb5d58193a5e6314f9ae89e0a4 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> +++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-> @@ -197,6 +197,7 @@ &i2c8 {
->  
->  &ommanager {
->  	memory-region = <&mm_ospi1>;
-> +	memory-region-names = "ospi1";
->  	pinctrl-0 = <&ospi_port1_clk_pins_a
->  		     &ospi_port1_io03_pins_a
->  		     &ospi_port1_cs0_pins_a>;
-> 
-> ---
-> base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-> change-id: 20250806-upstream_fix_dts_omm-c006b69042f1
-> 
-> Best regards,
+>  MAINTAINERS               |   1 +
+>  drivers/pwm/Kconfig       |  11 ++
+>  drivers/pwm/Makefile      |   1 +
+>  drivers/pwm/pwm_th1520.rs | 355 ++++++++++++++++++++++++++++++++++++++++=
+++++++
 
-Hi Krzysztof 
+For consistency I would prefer this file to be named pwm-th1520.rs. I
+tried to fix that but then the compiler was unhappy. I guess a minus in
+a filename just doesn't work for Rust?
 
-Do you have any additional remarks on this patch ?
-I would like this patch to be part of next kernel v6.18.
+>  4 files changed, 368 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5d7c0676c1d00a02b3d7db2de88b039c08c99c6e..d79dc21f22d143ca8cde6a061=
+94545fbc640e695 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21741,6 +21741,7 @@ F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thea=
+d.c
+>  F:	drivers/pinctrl/pinctrl-th1520.c
+>  F:	drivers/pmdomain/thead/
+>  F:	drivers/power/sequencing/pwrseq-thead-gpu.c
+> +F:	drivers/pwm/pwm_th1520.rs
+>  F:	drivers/reset/reset-th1520.c
+>  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
+>  F:	include/dt-bindings/power/thead,th1520-power.h
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 2b608f4378138775ee3ba4d53f682952e1914118..dd6db01832ee985e2e588a413=
+a13df869a029d3d 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -729,6 +729,17 @@ config PWM_TEGRA
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-tegra.
+> =20
+> +config PWM_TH1520
+> +	tristate "TH1520 PWM support"
+> +	depends on RUST
+> +	select RUST_PWM_ABSTRACTIONS
+> +	help
+> +	  This option enables the driver for the PWM controller found on the
+> +	  T-HEAD TH1520 SoC.
+> +
+> +	  To compile this driver as a module, choose M here; the module
+> +	  will be called pwm-th1520. If you are unsure, say N.
+> +
+>  config PWM_TIECAP
+>  	tristate "ECAP PWM support"
+>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARC=
+H_K3 || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index ff4f47e5fb7a0dbac72c12de82c3773e5582db6d..5c15c95c6e491439693891986=
+57eed0ecf4086b2 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -67,6 +67,7 @@ obj-$(CONFIG_PWM_STMPE)		+=3D pwm-stmpe.o
+>  obj-$(CONFIG_PWM_SUN4I)		+=3D pwm-sun4i.o
+>  obj-$(CONFIG_PWM_SUNPLUS)	+=3D pwm-sunplus.o
+>  obj-$(CONFIG_PWM_TEGRA)		+=3D pwm-tegra.o
+> +obj-$(CONFIG_PWM_TH1520)	+=3D pwm_th1520.o
+>  obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
+>  obj-$(CONFIG_PWM_TIEHRPWM)	+=3D pwm-tiehrpwm.o
+>  obj-$(CONFIG_PWM_TWL)		+=3D pwm-twl.o
+> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..5ef887b1b5dfed92c5d4b87a7=
+d48f673352a257e
+> --- /dev/null
+> +++ b/drivers/pwm/pwm_th1520.rs
+> @@ -0,0 +1,355 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> +
+> +//! Rust T-HEAD TH1520 PWM driver
+> +//!
+> +//! Limitations:
+> +//! - The period and duty cycle are controlled by 32-bit hardware regist=
+ers,
+> +//!   limiting the maximum resolution.
+> +//! - The driver supports continuous output mode only; one-shot mode is =
+not
+> +//!   implemented.
+> +//! - The controller hardware provides up to 6 PWM channels.
+> +//! - Reconfiguration is glitch free - new period and duty cycle values =
+are
+> +//!   latched and take effect at the start of the next period.
+> +//! - Polarity is handled via a simple hardware inversion bit; arbitrary
+> +//!   duty cycle offsets are not supported.
+> +//! - Disabling a channel is achieved by configuring its duty cycle to z=
+ero to
+> +//!   produce a static low output. Clearing the `start` does not reliably
+> +//!   force the static inactive level defined by the `INACTOUT` bit. Hen=
+ce
+> +//!   this method is not used in this driver.
+> +//!
+> +
+> +use core::ops::Deref;
+> +use kernel::{
+> +    c_str,
+> +    clk::Clk,
+> +    device::{Bound, Core, Device},
+> +    devres,
+> +    io::mem::IoMem,
+> +    of, platform,
+> +    prelude::*,
+> +    pwm, time,
+> +};
+> +
+> +const TH1520_MAX_PWM_NUM: u32 =3D 6;
+> +
+> +// Register offsets
+> +const fn th1520_pwm_chn_base(n: u32) -> usize {
+> +    (n * 0x20) as usize
+> +}
+> +
+> +const fn th1520_pwm_ctrl(n: u32) -> usize {
+> +    th1520_pwm_chn_base(n)
+> +}
+> +
+> +const fn th1520_pwm_per(n: u32) -> usize {
+> +    th1520_pwm_chn_base(n) + 0x08
+> +}
+> +
+> +const fn th1520_pwm_fp(n: u32) -> usize {
+> +    th1520_pwm_chn_base(n) + 0x0c
+> +}
+> +
+> +// Control register bits
+> +const TH1520_PWM_START: u32 =3D 1 << 0;
+> +const TH1520_PWM_CFG_UPDATE: u32 =3D 1 << 2;
+> +const TH1520_PWM_CONTINUOUS_MODE: u32 =3D 1 << 5;
+> +const TH1520_PWM_FPOUT: u32 =3D 1 << 8;
+> +
+> +const TH1520_PWM_REG_SIZE: usize =3D 0xB0;
+> +
+> +fn ns_to_cycles(ns: u64, rate_hz: u64) -> u64 {
+> +    const NSEC_PER_SEC_U64: u64 =3D time::NSEC_PER_SEC as u64;
+> +
+> +    (match ns.checked_mul(rate_hz) {
+> +        Some(product) =3D> product,
+> +        None =3D> u64::MAX,
+> +    }) / NSEC_PER_SEC_U64
+> +}
+> +
+> +fn cycles_to_ns(cycles: u64, rate_hz: u64) -> u64 {
+> +    const NSEC_PER_SEC_U64: u64 =3D time::NSEC_PER_SEC as u64;
+> +
+> +    // Round up
+> +    let Some(numerator) =3D cycles
+> +        .checked_mul(NSEC_PER_SEC_U64)
+> +        .and_then(|p| p.checked_add(rate_hz - 1))
+> +    else {
+> +        return u64::MAX;
+> +    };
+> +
+> +    numerator / rate_hz
 
-Thanks
-Patrice
+Does cycles_to_ns(18446744074, 66000000) yield u64::MAX or u64::MAX /
+66000000? Reading through the docs I found I think it's the former. I
+guess we don't reach these spheres in the driver, but conceptually the
+latter would be better and I think that's relevant as this is the first
+Rust driver and so very likely will be the blueprint for further
+drivers.
 
+Further below you're using saturating_sub(), is there a similar variant
+for multiplication that could simplify this function to
 
+	let numerator =3D cyles
+	  .saturating_mul(NSEC_PER_SEC_U64)
+	  .saturating_add(rate_hz - 1);
 
+	numerator / rate_hz
+
+?
+
+Additionally I'd add a comment that this should be replaced by
+mul_u64_u64_div_u64_roundup() once that exists in Rust. (Sigh, I just
+notice we still don't have that in C yet.)
+
+> +}
+> +
+> +/// Hardware-specific waveform representation for TH1520.
+> +#[derive(Copy, Clone, Debug, Default)]
+> +struct Th1520WfHw {
+> +    period_cycles: u32,
+> +    duty_cycles: u32,
+> +    ctrl_val: u32,
+> +    enabled: bool,
+> +}
+> +
+> +/// The driver's private data struct. It holds all necessary devres mana=
+ged resources.
+> +#[pin_data(PinnedDrop)]
+> +struct Th1520PwmDriverData {
+> +    #[pin]
+> +    iomem: devres::Devres<IoMem<TH1520_PWM_REG_SIZE>>,
+> +    clk: Clk,
+> +}
+> +
+> +// This `unsafe` implementation is a temporary necessity because the und=
+erlying `kernel::clk::Clk`
+> +// type does not yet expose `Send` and `Sync` implementations. This bloc=
+k should be removed
+> +// as soon as the clock abstraction provides these guarantees directly.
+> +// TODO: Remove those unsafe impl's when Clk will support them itself.
+> +
+> +// SAFETY: The `devres` framework requires the driver's private data to =
+be `Send` and `Sync`.
+> +// We can guarantee this because the PWM core synchronizes all callbacks=
+, preventing concurrent
+> +// access to the contained `iomem` and `clk` resources.
+> +unsafe impl Send for Th1520PwmDriverData {}
+> +
+> +// SAFETY: The same reasoning applies as for `Send`. The PWM core's sync=
+hronization
+> +// guarantees that it is safe for multiple threads to have shared access=
+ (`&self`)
+> +// to the driver data during callbacks.
+> +unsafe impl Sync for Th1520PwmDriverData {}
+> +
+> +impl pwm::PwmOps for Th1520PwmDriverData {
+> +    type WfHw =3D Th1520WfHw;
+> +
+> +    fn round_waveform_tohw(
+> +        chip: &pwm::Chip<Self>,
+> +        _pwm: &pwm::Device,
+> +        wf: &pwm::Waveform,
+> +    ) -> Result<pwm::RoundedWaveform<Self::WfHw>> {
+> +        let data =3D chip.drvdata();
+> +
+> +        if wf.period_length_ns =3D=3D 0 {
+
+Please add a dev_dbg! here for consistency with the wf.period_length_ns
+!=3D 0 case here.
+
+> +            return Ok(pwm::RoundedWaveform {
+> +                status: 0,
+> +                hardware_waveform: Th1520WfHw {
+> +                    enabled: false,
+> +                    ..Default::default()
+> +                },
+> +            });
+> +        }
+> +
+> +        let rate_hz =3D data.clk.rate().as_hz() as u64;
+> +
+> +        let period_cycles =3D ns_to_cycles(wf.period_length_ns, rate_hz)=
+=2Emin(u64::from(u32::MAX));
+
+What happens if you get period_cycles =3D 0 here?
+
+> +        let mut duty_cycles =3D ns_to_cycles(wf.duty_length_ns, rate_hz)=
+=2Emin(u64::from(u32::MAX));
+> +
+> +        let mut ctrl_val =3D TH1520_PWM_CONTINUOUS_MODE;
+> +
+> +        let is_inversed =3D wf.duty_length_ns > 0
+> +            && wf.duty_offset_ns > 0
+> +            && wf.duty_length_ns + wf.duty_offset_ns >=3D wf.period_leng=
+th_ns;
+
+For
+	duty_length_ns =3D   0x8000000000000000
+	duty_offset_ns =3D   0x8000000000000000
+	period_length_ns =3D 0xffffffffffffffff
+
+this should evaluate to true (right?) but if + overflows in the same way
+in Rust as it does in C, you get is_inversed =3D false here.
+
+The safe condition is
+
+	wf.duty_offset_ns >=3D wf.period_length_ns - wf.duty_length_ns
+
+here.
+
+> +        if is_inversed {
+> +            duty_cycles =3D period_cycles - duty_cycles;
+> +        } else {
+> +            ctrl_val |=3D TH1520_PWM_FPOUT;
+> +        }
+> +
+> +        let wfhw =3D Th1520WfHw {
+> +            period_cycles: period_cycles as u32,
+> +            duty_cycles: duty_cycles as u32,
+
+This casts period_cycles and duty_cycles from an u64 to an u32, right?
+Can you please add a comment that shortly explains why these values fit
+into an u32?
+
+> +            ctrl_val,
+> +            enabled: true,
+> +        };
+> +
+> +        dev_dbg!(
+> +            chip.device(),
+> +            "clk_rate: {}Hz Requested: period {}ns, duty {}ns, offset {}=
+ns -> HW: period {} cyc, duty {} cyc, ctrl 0x{:x}\n",
+
+" " before the units please.
+
+I want to establish
+
+	"{}/{} [+{}]", duty_length_ns, period_length_ns, duty_offset_ns
+
+as the typical way to emit a waveform. Please use that consistently.
+
+> +            rate_hz,
+> +            wf.period_length_ns,
+> +            wf.duty_length_ns,
+> +            wf.duty_offset_ns,
+> +            wfhw.period_cycles,
+> +            wfhw.duty_cycles,
+> +            wfhw.ctrl_val
+> +        );
+> +
+> +        Ok(pwm::RoundedWaveform {
+> +            status: 0,
+> +            hardware_waveform: wfhw,
+> +        })
+> +    }
+> +
+> +    fn round_waveform_fromhw(
+> +        chip: &pwm::Chip<Self>,
+> +        _pwm: &pwm::Device,
+> +        wfhw: &Self::WfHw,
+> +        wf: &mut pwm::Waveform,
+> +    ) -> Result {
+> +        let data =3D chip.drvdata();
+> +        let rate_hz =3D data.clk.rate().as_hz() as u64;
+> +
+> +        wf.period_length_ns =3D cycles_to_ns(u64::from(wfhw.period_cycle=
+s), rate_hz);
+
+Here I wonder again about wfhw.period_cycles =3D 0.
+
+> +        let duty_cycles =3D u64::from(wfhw.duty_cycles);
+> +
+> +        if (wfhw.ctrl_val & TH1520_PWM_FPOUT) !=3D 0 {
+> +            wf.duty_length_ns =3D cycles_to_ns(duty_cycles, rate_hz);
+> +            wf.duty_offset_ns =3D 0;
+> +        } else {
+> +            let period_cycles =3D u64::from(wfhw.period_cycles);
+> +            let original_duty_cycles =3D period_cycles.saturating_sub(du=
+ty_cycles);
+> +
+> +            // For an inverted signal, `duty_length_ns` is the high time=
+ (period - low_time).
+> +            wf.duty_length_ns =3D cycles_to_ns(original_duty_cycles, rat=
+e_hz);
+> +            // The offset is the initial low time, which is what the har=
+dware register provides.
+> +            wf.duty_offset_ns =3D cycles_to_ns(duty_cycles, rate_hz);
+> +        }
+> +
+> +        Ok(())
+> +    }
+> +
+> +    fn read_waveform(
+> +        chip: &pwm::Chip<Self>,
+> +        pwm: &pwm::Device,
+> +        parent_dev: &Device<Bound>,
+> +    ) -> Result<Self::WfHw> {
+> +        let data =3D chip.drvdata();
+> +        let hwpwm =3D pwm.hwpwm();
+> +        let iomem_accessor =3D data.iomem.access(parent_dev)?;
+> +        let iomap =3D iomem_accessor.deref();
+> +
+> +        let ctrl =3D iomap.try_read32(th1520_pwm_ctrl(hwpwm))?;
+> +        let period_cycles =3D iomap.try_read32(th1520_pwm_per(hwpwm))?;
+> +        let duty_cycles =3D iomap.try_read32(th1520_pwm_fp(hwpwm))?;
+> +
+> +        let wfhw =3D Th1520WfHw {
+> +            period_cycles,
+> +            duty_cycles,
+> +            ctrl_val: ctrl,
+> +            enabled: duty_cycles !=3D 0,
+> +        };
+> +
+> +        dev_dbg!(
+> +            chip.device(),
+> +            "PWM-{}: read_waveform: Read hw state - period: {}, duty: {}=
+, ctrl: 0x{:x}, enabled: {}",
+> +            hwpwm,
+> +            wfhw.period_cycles,
+> +            wfhw.duty_cycles,
+> +            wfhw.ctrl_val,
+> +            wfhw.enabled
+> +        );
+> +
+> +        Ok(wfhw)
+> +    }
+> +
+> +    fn write_waveform(
+> +        chip: &pwm::Chip<Self>,
+> +        pwm: &pwm::Device,
+> +        wfhw: &Self::WfHw,
+> +        parent_dev: &Device<Bound>,
+> +    ) -> Result {
+> +        let data =3D chip.drvdata();
+> +        let hwpwm =3D pwm.hwpwm();
+> +        let iomem_accessor =3D data.iomem.access(parent_dev)?;
+> +        let iomap =3D iomem_accessor.deref();
+> +        let was_enabled =3D pwm.state().enabled();
+
+The driver would be a tad more robust if was_enabled is determined from
+the hardware registers instead. (And also it helps not to add another
+dependency on pwm.state which I'd like to get rid of in the long run
+with waveforms being the canonical representation internally.)
+
+> +
+> +        if !wfhw.enabled {
+
+dev_dbg! here for consistence please.
+
+> +            if was_enabled {
+> +                iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))=
+?;
+> +                iomap.try_write32(0, th1520_pwm_fp(hwpwm))?;
+> +                iomap.try_write32(wfhw.ctrl_val | TH1520_PWM_CFG_UPDATE,=
+ th1520_pwm_ctrl(hwpwm))?;
+> +            }
+> +            return Ok(());
+> +        }
+> +
+> +        iomap.try_write32(wfhw.ctrl_val, th1520_pwm_ctrl(hwpwm))?;
+> +        iomap.try_write32(wfhw.period_cycles, th1520_pwm_per(hwpwm))?;
+> +        iomap.try_write32(wfhw.duty_cycles, th1520_pwm_fp(hwpwm))?;
+> +        iomap.try_write32(wfhw.ctrl_val | TH1520_PWM_CFG_UPDATE, th1520_=
+pwm_ctrl(hwpwm))?;
+> +
+> +        // The `TH1520_PWM_START` bit must be written in a separate, fin=
+al transaction, and
+> +        // only when enabling the channel from a disabled state.
+> +        if !was_enabled {
+> +            iomap.try_write32(wfhw.ctrl_val | TH1520_PWM_START, th1520_p=
+wm_ctrl(hwpwm))?;
+> +        }
+> +
+> +        dev_dbg!(
+> +            chip.device(),
+> +            "PWM-{}: Wrote (per: {}, duty: {})",
+> +            hwpwm,
+> +            wfhw.period_cycles,
+> +            wfhw.duty_cycles,
+> +        );
+> +
+> +        Ok(())
+> +    }
+> +}
+
+Best regards
+Uwe
+
+--uu7qwrkf63ilczbj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmjNAcYACgkQj4D7WH0S
+/k4Sewf/SVau6tkPjfRkfj0oxHSb6f/jhZChnnVs4iPLwVSRazcobjGdD0WcUBQB
+fhDJHbAaYey6ihKnfiIL7mdcQxhwsfqfxfGqGY0Y2/hvyKFuV1CPtMPXzKEWvnP/
+cwHE6pOC1RfipN5UEwq3oUqIDwyPzq7vUdpWSxSFa3UbKg/nU5gnN2W2Mlb80X4r
+0pZli7Ht35xlNWbFhNc2/Zj/6bQtuA+E1U20dXy6fyH1k+3NqNjPMgfrq1z1SrUM
+lWYiHLKVE6d4JovqEVolhplH2akJfWCprBS7eVs1HxD3FKfhvHYf6sOzBlUw4JZm
++Z+1n6Rga3Rq1Z7d2tzl1/g+8zE9yg==
+=IOjA
+-----END PGP SIGNATURE-----
+
+--uu7qwrkf63ilczbj--
 
