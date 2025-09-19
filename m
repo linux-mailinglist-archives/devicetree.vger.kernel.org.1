@@ -1,650 +1,189 @@
-Return-Path: <devicetree+bounces-219455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6F5B8B71F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 00:10:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9640B8B763
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 00:20:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D2115A0B62
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:10:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83EB15A745A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 22:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E0B2D3ED0;
-	Fri, 19 Sep 2025 22:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7588A2D0626;
+	Fri, 19 Sep 2025 22:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="ZOKlpcQN"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="g5S2aZE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012068.outbound.protection.outlook.com [52.101.66.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C1E2D3740
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 22:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758319839; cv=none; b=fZe4UwgfvDsz3tmIvMdjxyt3FZZvsAKpigOlvTjsM/3JgbUCwQQ5kQcH59a2rjRd1YrxXTyenlqf8vKtZIVAsE4X4dqsjtJG13ZY2OX6qzLhiRd9QzMzU4eoPIzCJALdz/+w07JsvZ4e5n3MgCsUifUkaUraonE1iqSSx9xC8X8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758319839; c=relaxed/simple;
-	bh=4q1AnSE6bsLLkAJ7K9Pc3wIAgoqhjjlrMBV8BMtECGk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EklC1ZgnTGQoP8yPuFLcZ01lpGYLPQ5HKSLXovvnq0owMJoFkBTf8JZaRoewb1N7D+SjUV6FmcLUAbTMFLmM0Gu1gIiZPyZyIrIozV8Msfoy/uIivQEf8rwmHIwOqqC6YkM/ZhyA7bc/gFAoXHpZWoJg1DliJaDzmRVJv0WtQ3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=ZOKlpcQN; arc=none smtp.client-ip=209.85.166.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-42480cb4127so18026265ab.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:10:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758319836; x=1758924636; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xgcPdNC8TLKzaK2dbK4ItnfKIaHmVEGBsiI70uCF/kk=;
-        b=ZOKlpcQNv9mtCJncgT0M17yvi/LItfAg3M5m6iC9d1xJWZyaMWu9LWDZupd8gpU9hS
-         AkMKTvC606zKsy3Ajy3n57j0AJAYpHgcwI8iYrVBvS5RQWvPoEtXPWocVT7jK2dHit+R
-         RuhEdhr4fib+VHKSSEVgTK0sbTNWVqKHwUaNEdUsxd2AaaXftW8XFnfBhqlafUrl71Oy
-         /o7Y4gAkzCcqPGH90tPxWEC5iXR1Rg2wU0+yUu9KCOrztCwJWDross7EBXxY34YKw/H4
-         NRWwp3oW+y8Bf/diZCDK66y7sWNT5AnmCu2M0Q5JuJmYb/d1OwaRRSS0RoPqE3AdlAcq
-         uSCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758319836; x=1758924636;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xgcPdNC8TLKzaK2dbK4ItnfKIaHmVEGBsiI70uCF/kk=;
-        b=eMtiPHsa8RdE63Ukx2oom/QbsOpDjC33cik0gDPL0wEl2sd2DCQGZxKrQ0yopjjskE
-         DCduhZ2mdWj2H1svco/xb2408PMV4K82nmEmUL2ULGpOj4p3rAw/5kKfF/8xQvk/K0md
-         T8KXcPR/uOa47XsZlEY0grOSvcDHUwKyp2EXNAx3lKOhpd7iPbL3V+H/9gbOLjGB7YXr
-         jInR7FmEUcjcpj4yhqCZf+p1ynHT4mpk1N6n+t/bkh/4xWeUBdXkWVpbVEh3xaw0uTxI
-         FVMZWs4/dGrYhKJjib9Ll97QJV5F6oS//wCoY6TF2zHS2l1XrxoD5SiFNALdjq4MYA7t
-         tWEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWxsYagLh9tA/WTenNIccunW0dUJNymEb1KCDnPdGImoTqcqbR2rplkI+hE3oE8cSLaThLZu28nl8KA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuZUA+LpGcNXwPtKQgtTbagXVo1fJIkxPWcM5hQI4U6xsYFzcP
-	SgyLZFQIqapqIRhd3GZ91DbJucU1hvq2Hfj2qRAkPfdJl7tbvbQE+UP+KacuxxIqaeI=
-X-Gm-Gg: ASbGncvBdQMvBT9hQfwq19ZwKhluMZjLfEgPrZENEdcNiVHtrhz8gB9Oy155U45SnYQ
-	T/KGV+j/ZLuFZRtf1iOQBl3Y1W6R1CYXotU0Zjx5HFLI8GxPsQZfnlGRS7ia8Js8z/Il7/nDBPL
-	0PcPhrYcbaNLUPWLnBdlV31h0LNYcZ3RIPC4Ct1uR/uDZvV/QM6ivUqiA8S56bBLNHSeKvLxwy9
-	uA8U596hQM4eIEX8s0dMl9+cxArWjIDNwgkNf6lCUNAQxken2HURQAiUgdmxHcXP+SsiHeN2Bik
-	YJa+FrcklhxEoak/VSKiRjZXHK8tFyODFIICsY9HCaTDWm1rqQC3aS/peXUDLoxzcCDe6/F8OaJ
-	vlCDmDhZVGV0Cl8CbAneO0rIfrJFCYkD5TeImihAniMqwe6K7OoG/Vi/MTtm4bXSVfGaE5Spc
-X-Google-Smtp-Source: AGHT+IGUMi5Y+ZNyrqZVZaqAnb8mulirnkLZLTN1tiOo9Dktfk1VavRS0LndvmbeW3SqfgHBdfpwmQ==
-X-Received: by 2002:a05:6e02:2195:b0:424:672:e0fa with SMTP id e9e14a558f8ab-42481927108mr82251805ab.11.1758319835807;
-        Fri, 19 Sep 2025 15:10:35 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-53d56b5a45csm2587794173.70.2025.09.19.15.10.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Sep 2025 15:10:35 -0700 (PDT)
-Message-ID: <21ad322f-5abe-4a97-9373-d027b846ee8c@riscstar.com>
-Date: Fri, 19 Sep 2025 17:10:33 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11B1202C5D;
+	Fri, 19 Sep 2025 22:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758320433; cv=fail; b=CYiYmZy8SiLGCxRgwtSFQynWWIpqoE3BCGwTWsXCdRlUYWP+kNki8BCEzSu3i9zx4xErYhPJ2l7rmhHKAhIkRKJalkXQFBHpaRfSEI+HbXv9MIArIZ1SIqLkHBWrgQlsAlRLrZB/e472ifGm/udOoEZk+CUx6G2qRvKdlF9M2KU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758320433; c=relaxed/simple;
+	bh=dazljmAAmJ+Iul7wV5e+vn0h9Ldb8ucTaRmULsZVNT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=YFAIkEymF/g0aLVUpzFpm+RWyyoATDHiBnRYEJteZ4tPXZpaXQanKqH6ym5GRc36IVP3CNFUjOFQlKNdbvf7vQCR6IJB/NF6E0EQZ1H4gNNRRZkKS9oUkxR6UY8H9uuH00p26cqZFmsB4SJHQYOpG0FplYocafI5awSJu9wKEwk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=g5S2aZE6; arc=fail smtp.client-ip=52.101.66.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z6lYltRmDkmi57x3R/n5QONUYXng8PziKRszCbRBMy9te/ngL4QnsQAL0f0q2z5F8HDQ3ie0nyQz9P+6/HOAnPDpD0YyW0uJmC/qw1Bnz/4oId6sDpvUZ91em4N6k6n3dqqohceF2t05DdbSbXZ3U3AdwsmQbqKzmj+Xgn4fd6SwCyQUXiTsfU7L4y6DoInNvUrKuuSKd3rRe4L//oiEtyExZbvf/8o/0FdzfkcywFMA4bRB6xJn44TesaK8Bq0u5+oXXp+MQDtezZP3jF05mpLSAFtf5b0boy/7dmF6T+vlr6bK3wpVeDgB8/c05k2WDR69SpoBGa7AM+W2RuLp0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dazljmAAmJ+Iul7wV5e+vn0h9Ldb8ucTaRmULsZVNT4=;
+ b=bX/j3Xp/63iY1U8IEAZmje4EBBvy8yq4Fw85BAxz+vTQDx5Dpw37kYNYcSkpFNdyAiMTs0CBYZnUiUiLkZefrP3h0aYs+u2/pwyeVPa6y75QF1zmXoEzXjfh3irWGWduvHJVHdK014nbXz57qGin+xQmi3h2aSvWVnByKmp7EBAwiF/6YD5HPocWMT+45IteRnXawGgjg7L/wMhiwu99bxuba9lFB9zv9ImgbCMkhDbqlp2XONUG1vloGKArcR8qarXPKwM1uAHhF/eXkafaNRjeGGOUg/USoQcVwIIePueJUJN0+y7G35IHey2KeMxofvRwa8blmS9iDpfC2xRKNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dazljmAAmJ+Iul7wV5e+vn0h9Ldb8ucTaRmULsZVNT4=;
+ b=g5S2aZE6Ag/DwWrir3nIAkTUJEg2hTYrjBjYJBp7MHpt0NI3JsF2HW3J7xOAEeOecd/Jf6osjnmswiS3i9jcL7Qs34gZPLKFGm0VQBhCUDWk/wmMT5Kjt7C/kufgTD5ahrMldv2aE2LEcuTK36ZemUjqO8iMk9Wv9O8z8qbWDcLsAG4u8vvXy3FmYr1geJfwEgUBVLFcX4y/vzxjB3jHpOdrROigjzD57W5+WuoTCbqpXfFSM5alu+puV/E0inuqVBQQn9aGKr19o7MntXB+uyK1aNn7iTzmI22oy23vgChyet5aSqdOhtO4zJjNIWewMLc8HjdqfJvcDE0bP1Gr9g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by GVXPR04MB10304.eurprd04.prod.outlook.com (2603:10a6:150:1e9::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.14; Fri, 19 Sep
+ 2025 22:20:26 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9137.015; Fri, 19 Sep 2025
+ 22:20:25 +0000
+Date: Fri, 19 Sep 2025 18:20:14 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"bjorn.andersson@oss.qualcomm.com" <bjorn.andersson@oss.qualcomm.com>
+Subject: Re: [PATCH 2/3] usb: dwc3: add layerscape dwc3 support
+Message-ID: <aM3XHv7VcOGLz3Wo@lizhi-Precision-Tower-5810>
+References: <20250602-ls_dma_coherence-v1-0-c67484d6ab64@nxp.com>
+ <20250602-ls_dma_coherence-v1-2-c67484d6ab64@nxp.com>
+ <20250603012259.gyat6ungxyufhhbe@synopsys.com>
+ <aD8NxfmJjSMeQKOu@lizhi-Precision-Tower-5810>
+ <20250919211703.gbaqcc6mhtgolomt@synopsys.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250919211703.gbaqcc6mhtgolomt@synopsys.com>
+X-ClientProxiedBy: SJ0PR03CA0376.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::21) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] PCI: spacemit: introduce SpacemiT PCIe host driver
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
- bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, p.zabel@pengutronix.de, tglx@linutronix.de,
- johan+linaro@kernel.org, thippeswamy.havalige@amd.com, namcao@linutronix.de,
- mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, inochiama@gmail.com,
- quic_schintav@quicinc.com, fan.ni@samsung.com, devicetree@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250813184701.2444372-1-elder@riscstar.com>
- <20250813184701.2444372-6-elder@riscstar.com>
- <sptrmspkmqrwsh2iv4rmha45vsoz5ks7vhcdp3dytsxyabn6qn@mmk7z6tf5wcv>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <sptrmspkmqrwsh2iv4rmha45vsoz5ks7vhcdp3dytsxyabn6qn@mmk7z6tf5wcv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|GVXPR04MB10304:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51631d23-3450-4e4b-ef87-08ddf7cabb66
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?G1oYcc9jb5HHvQYomOsMLv3zi3NuUuRFiGiYRprtyfyh3Atp3kRQ+Xd8Apiu?=
+ =?us-ascii?Q?5huhHGZ8I2cZIYBQyotkzOqfdCyAz8NefEu/35P2284LLmQxpImdJhilJfu3?=
+ =?us-ascii?Q?bywBKTq+mUdKxzLDqk8VkGtHOJoYhMuSVuWVDBEu5zILb2Qy6/L/vBQUnM3l?=
+ =?us-ascii?Q?N68nI+Tk0CpDxxsUzstcCfwCIboSRjT7AzsOPmU+v/Gq5uYgOjIChKG72Fqw?=
+ =?us-ascii?Q?TMUvvUiJtwADY9OL1Z0U87iDe+5vVLHg40miBYy7qWfZzt7NyOHqmi14ayGg?=
+ =?us-ascii?Q?kTR7544DkJ0Cln1ZYKPw6151gr/4J34BDKLKEvKMHD4Qtd0JXwC5bInalB5L?=
+ =?us-ascii?Q?8R4A3LGUgr8l/mNUOaS/Y0h4PnwoBcNCYxoJ8VRcfoO1PNT2CNKqeP80tXka?=
+ =?us-ascii?Q?NfXw4qKnf+xj0YN4oWlf6PVrsKz7cEFjNtqVb7+EuDMYfRByNtnnd+hxnRb4?=
+ =?us-ascii?Q?j1+Hm5ckXkDb2LRnYRrfxHRtbJvlMeTfxbhahiB/1jt2KNZmcoUnpGdOFpZv?=
+ =?us-ascii?Q?zkxSdocWh2sG3eaMsQUDn5C9FtXux/HgovomUba9tZeC4vs3tKlUZYtCCDRQ?=
+ =?us-ascii?Q?v7jcjfW4MWZpG5lhR4U0BwUng3uguUzksNuLw1Y1CwCB91b4pHWOteBw8xF+?=
+ =?us-ascii?Q?T8PPHw8SGfTlIfOrxlBcv6TAamuAXv/TJ3b1YtQdBLi4qI9ZRI4DixaWyOQC?=
+ =?us-ascii?Q?RnxP9kO1XhPrrFTTfxMISrRofgw+Lc+ZShCvKThODILaOleWEJirak4VWFno?=
+ =?us-ascii?Q?JW1BVX8ybrwyEgkHxDDLYzILgo8rFw0q8VeCrxYq/SSrSj05DbARVXBtXaAM?=
+ =?us-ascii?Q?erBSDbnEAGtJQ1Zm5iNzTAvOBDH1icINEuMh4GfQ+KuIVdmUV1Ruv9s6yiPp?=
+ =?us-ascii?Q?8O7FxvJScmtMxR8kgtllLZiXiy7A/nVP2t3d7rb0slPbvB0jGbB/jpea2DQM?=
+ =?us-ascii?Q?r4ErVmjyBYn0KZa0pop/jInOu2oIqOZzB41BsAK0H/VrAlZdFYUTuRrBL1wE?=
+ =?us-ascii?Q?rMyHW+E4H6uZGXWl3wyxur5Hb4qByUsM8aGJRQ/eocRyr4wSmajWab9jGFeE?=
+ =?us-ascii?Q?xX4ru2D9GbdUfaR+2/ovPC0tivpTkLlXxD0gjtAlWy9DbqSu2ai9J/+65OaH?=
+ =?us-ascii?Q?9MoQvJAQwOYzdkm8wc0bEd5j0fKZ+zHst6P6ZOpbDjM/IvOWu4iBMoNShLZK?=
+ =?us-ascii?Q?OdJURkYSoSiCsCpdTLrbH3a+FePFNJVkAiVR6nKY2G6iM0KMkOuvVEIGqtnR?=
+ =?us-ascii?Q?+ciGfowN67G2mATw8EUvYZEqgWQdyembOextMsMlOkJoynPji6X6KYvkmIfo?=
+ =?us-ascii?Q?qFqgUxufEcwcf4+p7hFQDIrgO8sBd85UHjYOG1ha0F2zZHBilnBKKmjW7km/?=
+ =?us-ascii?Q?5uLJsO5r+k/rogfgyPwHjkZ0Umk+eSVw2eDYpxsXEYdGsXfvSnrXVNFs/7Vo?=
+ =?us-ascii?Q?IwFoYXrUAOMMAHAHGvwgW0T5Ka9rNKxxOELT+7thVMS35GnRB0TS+z/VjgE8?=
+ =?us-ascii?Q?xbiJ8KjLRKvUdqk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?IWr0l9b4861x1QSzwK4eBhhVTL2CLlpLW6c2QOfywQmej4aO5PwBoFkLgI3O?=
+ =?us-ascii?Q?3jr45dRUCGikQgwlIZ4W4I7b/2pEXz5zXNOVtkvQY4+ucYWj8iBRXIEBE/Pt?=
+ =?us-ascii?Q?345yVrBEKwYt9OVu3CtZNIYpJLa5sIO8T90AXBVLc/wKme+TP5NBUh3GiNR/?=
+ =?us-ascii?Q?cU6D3K460TMi6K3ZcaguBJNwm6hLoowvRT94lQ2WCR1p+1p+5TaU8Zkcyt5i?=
+ =?us-ascii?Q?lWuSZGnI60BCKn4LFD8C88NaNbYkcHavS+GtfIUB0ngz81KvwpTJ2GqGPm7F?=
+ =?us-ascii?Q?Zfy9UzlL2XMxqXRNvltwVH5k8OBXqD/LDUjuOlZ3x/VRuNhxl5b2ytDX2s0h?=
+ =?us-ascii?Q?3ka2yYLsgHHRQcjpLXzJ5sWX5B/DJGbykYn9zDVeZUpWGpbddesBklQ5MIcp?=
+ =?us-ascii?Q?ov/lAHpj52RGvNqfuqKc/ofOsWKkfp9WDDxGcy9lojA2Lb77FEMZB17pM2+s?=
+ =?us-ascii?Q?4g2I3qW8bNzcnZoGBxPqlstjg4Kp8yC4MpxxvxHB2kXXsHuS2pBOobVwWgSU?=
+ =?us-ascii?Q?6+zySL8ZYqoFr0BsA60z8Cgk/cD/QpKPCMGI85ITQNJ1vIudOYLXzV5NxH9d?=
+ =?us-ascii?Q?53NLRI1vol0GIwOD1gEkTbiBgvp7A3VKnVl/0Mj8lEvQkfi/2S2/PYYv4eu5?=
+ =?us-ascii?Q?jxl0wHs0D8c1wbHt0R4S8331xfRAUdpyP4Z2TeEB1ZBamz7PNH48Pq4QyVCl?=
+ =?us-ascii?Q?8AqvKvQpUs2rhzwNzd45D7abwYRJ1/W64zFbymTpk6VR2cpbDy6ylXfaiGIQ?=
+ =?us-ascii?Q?YAXAuADiYAQzq6WRcSyToHstK4LGrm/kBad78W1KX6Uhnvi6QxQASW60UDOc?=
+ =?us-ascii?Q?WhNUewU41NpxlmzY7F5nkI2FGcICNRZTCo8oumgvmxGU14gkjdSzwzuG6mIm?=
+ =?us-ascii?Q?XUXmI2WshTuBtCxy19Ll85n3EyghyqPykEz8YWjlnnFV+AFL8enge4O6vkyj?=
+ =?us-ascii?Q?9Nw6XK2PrYSgo60+hSYOs5kBcJPcC/iDM999BJQi55k1SRB1M295LmFfCVJC?=
+ =?us-ascii?Q?fowd/gXv+uS5TU40Brh0kqofQe/mu+63xhRNMGxeM6u3UnkzHuSGWXF9Ff6r?=
+ =?us-ascii?Q?YnuLclB0dki4agO1fKwnSo7w3lJuc20v7pootM1lxcYCaumVRolUEr8zxLLc?=
+ =?us-ascii?Q?vWN28FYeAhCBLxXQOLBI4gLr62orBsaO2YPAAh+arMWJS+PIehSLtGgUTkTa?=
+ =?us-ascii?Q?Swl1FEk+u9DGvLyOgpS3teIb3kP5O4Yqi+I/3ONLSlSiJR/Vidl3wiKhZUmk?=
+ =?us-ascii?Q?ywE75yLVJrAseNH4wPtXfradn91WgR6NHwEBxEPC3cL8DQYm36kZVBtNAyGu?=
+ =?us-ascii?Q?kg/BFG1CTalA9oLx0BiqTsKStsPRsQSI78Qk7WAD4h70ZsmIf5BdUb2TiRdP?=
+ =?us-ascii?Q?q6gN/xKt/Vs4RrFIkPRp/PhUoby8dC3YnpNbcEquh3+VNuzipLHhnDmJSN6d?=
+ =?us-ascii?Q?TldgKDUN9AJ7YCvXfaJtQfMVb1e3LOvqnOQUPMLy9abhVnn/XKTDsMHtmG/3?=
+ =?us-ascii?Q?YbzuSmTGu6fNI53py045JSDacfPLq3ethZgoGodxM5W38hl8i2MKLENtn7wf?=
+ =?us-ascii?Q?uB0KqfcjtjZuYAd/QmK22EorHAv4ueCj1471qTiz?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51631d23-3450-4e4b-ef87-08ddf7cabb66
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 22:20:25.7808
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +c6Hte03X4usnbhkHMBXWoqmzUpwjOknftkjuNhKAZLx8mAw9OC3+80D0tPJufsEpkobMkd1g8NbuNoqKKN3xg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10304
 
-On 9/15/25 3:09 AM, Manivannan Sadhasivam wrote:
-> On Wed, Aug 13, 2025 at 01:46:59PM GMT, Alex Elder wrote:
->> Introduce a driver for the PCIe root complex found in the SpacemiT
->> K1 SoC.  The hardware is derived from the Synopsys DesignWare PCIe IP.
->> The driver supports three PCIe ports that operate at PCIe v2 transfer
->> rates (5 GT/sec).  The first port uses a combo PHY, which may be
->> configured for use for USB 3 instead.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   drivers/pci/controller/dwc/Kconfig   |  10 +
->>   drivers/pci/controller/dwc/Makefile  |   1 +
->>   drivers/pci/controller/dwc/pcie-k1.c | 355 +++++++++++++++++++++++++++
->>   3 files changed, 366 insertions(+)
->>   create mode 100644 drivers/pci/controller/dwc/pcie-k1.c
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index ff6b6d9e18ecf..ca5782c041ce8 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -492,4 +492,14 @@ config PCIE_VISCONTI_HOST
->>   	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
->>   	  This driver supports TMPV7708 SoC.
->>   
->> +config PCIE_K1
->> +	bool "SpacemiT K1 host mode PCIe controller"
-> 
-> No need to make it bool, build it as a module. Only the PCI controller drivers
-> implementing irqchip need to be kept bool for irq disposal concerns.
+On Fri, Sep 19, 2025 at 09:17:04PM +0000, Thinh Nguyen wrote:
+> On Tue, Jun 03, 2025, Frank Li wrote:
+> > On Tue, Jun 03, 2025 at 01:23:03AM +0000, Thinh Nguyen wrote:
+> > >
+> > > Is this something that can be enhanced in dwc3-generic-plat glue from Ze
+> > > Huang:
+> >
+> > Yes, I can base on Zehuang's work with little modify. Please let me know
+> > when his patch merged.
+> >
+>
+> Greg picked up Zehuang's changes[*] on his usb-next branch.
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=e0b6dc00c701e600e655417aab1e100b73de821a
 
-OK.
+Thank you very much. Let me work on layerscape base on that.
 
->> +	depends on ARCH_SPACEMIT || COMPILE_TEST
->> +	depends on PCI && OF && HAS_IOMEM
->> +	select PCIE_DW_HOST
->> +	default ARCH_SPACEMIT
->> +	help
->> +	  Enables support for the PCIe controller in the K1 SoC operating
->> +	  in host mode.
-> 
-> Is the driver only applicable for K1 SoCs or other SoCs from spacemit? Even if
-> it is the former, I would suggest renaming to 'pcie-spacemit-k1.c'
+Frank
 
-Yes, I will do that.
-
->>   endmenu
->> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
->> index 6919d27798d13..62d9d4e7dd4d3 100644
->> --- a/drivers/pci/controller/dwc/Makefile
->> +++ b/drivers/pci/controller/dwc/Makefile
->> @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->>   obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->>   obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->>   obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
->> +obj-$(CONFIG_PCIE_K1) += pcie-k1.o
->>   
->>   # The following drivers are for devices that use the generic ACPI
->>   # pci_root.c driver but don't support standard ECAM config access.
->> diff --git a/drivers/pci/controller/dwc/pcie-k1.c b/drivers/pci/controller/dwc/pcie-k1.c
->> new file mode 100644
->> index 0000000000000..e9b1df3428d16
->> --- /dev/null
->> +++ b/drivers/pci/controller/dwc/pcie-k1.c
->> @@ -0,0 +1,355 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * SpacemiT K1 PCIe host driver
->> + *
->> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
->> + * Copyright (c) 2023, spacemit Corporation.
->> + */
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/bits.h>
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/device.h>
->> +#include <linux/err.h>
->> +#include <linux/gfp.h>
->> +#include <linux/irq.h>
-> 
-> unused?
-
-Yes, and there are a few others I can get rid of too.
-
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/of.h>
->> +#include <linux/pci.h>
->> +#include <linux/phy/phy.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
->> +#include <linux/types.h>
->> +
->> +#include "pcie-designware.h"
->> +
->> +#define K1_PCIE_VENDOR_ID	0x201f
->> +#define K1_PCIE_DEVICE_ID	0x0001
->> +
->> +/* Offsets and field definitions of link management registers */
->> +
->> +#define K1_PHY_AHB_IRQ_EN			0x0000
->> +#define PCIE_INTERRUPT_EN		BIT(0)
->> +
->> +#define K1_PHY_AHB_LINK_STS			0x0004
->> +#define SMLH_LINK_UP			BIT(1)
->> +#define RDLH_LINK_UP			BIT(12)
->> +
->> +#define INTR_ENABLE				0x0014
->> +#define MSI_CTRL_INT			BIT(11)
->> +
->> +/* Offsets and field definitions for PMU registers */
->> +
->> +#define PCIE_CLK_RESET_CONTROL			0x0000
->> +#define LTSSM_EN			BIT(6)
->> +#define PCIE_AUX_PWR_DET		BIT(9)
->> +#define PCIE_RC_PERST			BIT(12)	/* 0: PERST# high; 1: low */
->> +#define APP_HOLD_PHY_RST		BIT(30)
->> +#define DEVICE_TYPE_RC			BIT(31)	/* 0: endpoint; 1: RC */
->> +
->> +#define PCIE_CONTROL_LOGIC			0x0004
->> +#define PCIE_SOFT_RESET			BIT(0)
->> +
->> +struct k1_pcie {
->> +	struct dw_pcie pci;
->> +	void __iomem *link;
->> +	struct regmap *pmu;
->> +	u32 pmu_off;
->> +	struct phy *phy;
->> +	struct reset_control *global_reset;
->> +};
->> +
->> +#define to_k1_pcie(dw_pcie)	dev_get_drvdata((dw_pcie)->dev)
->> +
->> +static int k1_pcie_toggle_soft_reset(struct k1_pcie *k1)
->> +{
->> +	u32 offset = k1->pmu_off + PCIE_CONTROL_LOGIC;
->> +	const u32 mask = PCIE_SOFT_RESET;
->> +	int ret;
->> +
->> +	ret = regmap_set_bits(k1->pmu, offset, mask);
-> 
-> For MMIO, it is OK to skip the error handling.
-
-You mean even though the regmap API returns an error,
-it never will with MMIO?
-- regmap_mmio_read() and regmap_mmio_write() always
-   return 0 unless there's an error enabling its clock.
-
-Sounds good, I'll simplify places that use this.
-
->> +	if (ret)
->> +		return ret;
->> +
->> +	mdelay(2);
-> 
-> If the previous write to the PMU got stuck in the CPU cache, there is no
-> guarantee that this delay of 2ms between write and clear will be enforced. So
-> you should do a dummy read after write to ensure that the previous write has
-> reached the PMU (or any device) and then clear the bits.
-
-Wow, really?  I was aware of this being possible for I/O
-writes but it seems like something regmap might handle.
-
-I'll add a regmap_read() for the same offset and discard
-the result *before* the delay.  I'll do the same for this:
-
-         mdelay(PCIE_T_PVPERL_MS);
-
->> +	return regmap_clear_bits(k1->pmu, offset, mask);
->> +}
->> +
->> +/* Enable app clocks, deassert app resets */
->> +static int k1_pcie_app_enable(struct k1_pcie *k1)
->> +{
->> +	struct dw_pcie *pci = &k1->pci;
->> +	u32 clock_count;
->> +	u32 reset_count;
->> +	int ret;
->> +
->> +	clock_count = ARRAY_SIZE(pci->app_clks);
-> 
-> Just use ARRAY_SIZE() directly below.
-
-OK.
-
->> +	ret = clk_bulk_prepare_enable(clock_count, pci->app_clks);
->> +	if (ret)
->> +		return ret;
->> +
->> +	reset_count = ARRAY_SIZE(pci->app_rsts);
-> 
-> Same here.
-
-OK.
-
->> +	ret = reset_control_bulk_deassert(reset_count, pci->app_rsts);
->> +	if (ret)
->> +		goto err_disable_clks;
->> +
->> +	ret = reset_control_deassert(k1->global_reset);
->> +	if (ret)
->> +		goto err_assert_resets;
->> +
->> +	return 0;
->> +
->> +err_assert_resets:
->> +	(void)reset_control_bulk_assert(reset_count, pci->app_rsts);
-> 
-> Why void cast? Here and in other places.
-
-I put void casts when I'm ignoring a returned value.
-It's not necessary, but it reminds me that the function
-returns a value, and at some point I decided to ignore it.
-I can drop those if you find them offensive.
-
-If you're suggesting I should issue a warning here if
-an error is returned here, tell me that.
-
->> +err_disable_clks:
->> +	clk_bulk_disable_unprepare(clock_count, pci->app_clks);
->> +
->> +	return ret;
->> +}
->> +
->> +/* Disable app clocks, assert app resets */
->> +static void k1_pcie_app_disable(struct k1_pcie *k1)
->> +{
->> +	struct dw_pcie *pci = &k1->pci;
->> +	u32 count;
->> +	int ret;
->> +
->> +	(void)reset_control_assert(k1->global_reset);
->> +
->> +	count = ARRAY_SIZE(pci->app_rsts);
->> +	ret = reset_control_bulk_assert(count, pci->app_rsts);
->> +	if (ret)
->> +		dev_err(pci->dev, "app reset assert failed (%d)\n", ret);
->> +
->> +	count = ARRAY_SIZE(pci->app_clks);
->> +	clk_bulk_disable_unprepare(count, pci->app_clks);
->> +}
-> 
-> Same comments as k1_pcie_app_enable().
-
-OK.
-
->> +static int k1_pcie_init(struct dw_pcie_rp *pp)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> +	struct k1_pcie *k1 = to_k1_pcie(pci);
->> +	u32 offset;
->> +	u32 mask;
->> +	int ret;
->> +
->> +	ret = k1_pcie_toggle_soft_reset(k1);
->> +	if (ret)
->> +		goto err_app_disable;
->> +
->> +	ret = k1_pcie_app_enable(k1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = phy_init(k1->phy);
->> +	if (ret)
->> +		goto err_app_disable;
->> +
->> +	/* Set the PCI vendor and device ID */
->> +	dw_pcie_dbi_ro_wr_en(pci);
->> +	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, K1_PCIE_VENDOR_ID);
->> +	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, K1_PCIE_DEVICE_ID);
->> +	dw_pcie_dbi_ro_wr_dis(pci);
->> +
->> +	/*
->> +	 * Put the port in root complex mode, record that Vaux is present.
-> 
-> There is no 3.3Vaux supply present in the binding. So the supply is guaranteed
-> to be present and enabled always by the platform?
-
-Actually, I don't know, I'll ask.  Thank you for pointing this out.
-
->> +	 * Assert fundamental reset (drive PERST# low).
->> +	 */
->> +	offset = k1->pmu_off + PCIE_CLK_RESET_CONTROL;
->> +	mask = DEVICE_TYPE_RC | PCIE_AUX_PWR_DET;
->> +	mask |= PCIE_RC_PERST;
->> +	ret = regmap_set_bits(k1->pmu, offset, mask);
->> +	if (ret)
->> +		goto err_phy_exit;
->> +
->> +	/* Wait the PCIe-mandated 100 msec before deasserting PERST# */
->> +	mdelay(100);
-> 
-> Same comment as k1_pcie_toggle_soft_reset() applies here.
-
-Yes, understood.
-
->> +
->> +	ret = regmap_clear_bits(k1->pmu, offset, PCIE_RC_PERST);
->> +	if (!ret)
->> +		return 0;	/* Success! */
-> 
-> Please use common pattern to return success:
-> 
-> 	regmap_clear_bits()
-> 
-> 	return 0;
-
-Now that I won't be checking return values this will come
-naturally.  So yes, it will look like this, and there are
-no other instances of this return pattern in this file.
-
-> 
->> +
->> +err_phy_exit:
->> +	(void)phy_exit(k1->phy);
->> +err_app_disable:
->> +	k1_pcie_app_disable(k1);
->> +
->> +	return ret;
->> +}
->> +
->> +/* Silently ignore any errors */
->> +static void k1_pcie_deinit(struct dw_pcie_rp *pp)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> +	struct k1_pcie *k1 = to_k1_pcie(pci);
->> +
->> +	/* Re-assert fundamental reset (drive PERST# low) */
-> 
-> s/Re-assert/Assert
-> 
->> +	(void)regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
->> +			      PCIE_RC_PERST);
->> +
->> +	(void)phy_exit(k1->phy);
->> +
->> +	k1_pcie_app_disable(k1);
->> +}
->> +
->> +static const struct dw_pcie_host_ops k1_pcie_host_ops = {
->> +	.init		= k1_pcie_init,
->> +	.deinit		= k1_pcie_deinit,
->> +};
->> +
->> +static void k1_pcie_enable_interrupts(struct k1_pcie *k1)
->> +{
->> +	void __iomem *virt;
->> +	u32 val;
->> +
->> +	/* Enable the MSI interrupt */
->> +	writel(MSI_CTRL_INT, k1->link + INTR_ENABLE);
-> 
-> If there are no ordering issues (I guess so), you can very well use the _relaxed
-> variants throughout the driver.
-
-The only writel() calls are related to updating
-these interrupt bits.  I think you're right.
-
->> +	/* Top-level interrupt enable */
->> +	virt = k1->link + K1_PHY_AHB_IRQ_EN;
->> +	val = readl(virt);
->> +	val |= PCIE_INTERRUPT_EN;
->> +	writel(val, virt);
->> +}
->> +
->> +static void k1_pcie_disable_interrupts(struct k1_pcie *k1)
->> +{
->> +	void __iomem *virt;
->> +	u32 val;
->> +
->> +	virt = k1->link + K1_PHY_AHB_IRQ_EN;
->> +	val = readl(virt);
->> +	val &= ~PCIE_INTERRUPT_EN;
->> +	writel(val, virt);
->> +
->> +	writel(0, k1->link + INTR_ENABLE);
->> +}
->> +
->> +static bool k1_pcie_link_up(struct dw_pcie *pci)
->> +{
->> +	struct k1_pcie *k1 = to_k1_pcie(pci);
->> +	u32 val;
->> +
->> +	val = readl(k1->link + K1_PHY_AHB_LINK_STS);
->> +
->> +	return (val & RDLH_LINK_UP) && (val & SMLH_LINK_UP);
->> +}
->> +
->> +static int k1_pcie_start_link(struct dw_pcie *pci)
->> +{
->> +	struct k1_pcie *k1 = to_k1_pcie(pci);
->> +	int ret;
->> +
->> +	/* Stop holding the PHY in reset, and enable link training */
->> +	ret = regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
->> +				 APP_HOLD_PHY_RST | LTSSM_EN, LTSSM_EN);
->> +	if (ret)
->> +		return ret;
->> +
->> +	k1_pcie_enable_interrupts(k1);
->> +
->> +	return 0;
->> +}
->> +
->> +static void k1_pcie_stop_link(struct dw_pcie *pci)
->> +{
->> +	struct k1_pcie *k1 = to_k1_pcie(pci);
->> +	int ret;
->> +
->> +	k1_pcie_disable_interrupts(k1);
->> +
->> +	/* Disable the link and hold the PHY in reset */
->> +	ret = regmap_update_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
->> +				 APP_HOLD_PHY_RST | LTSSM_EN, APP_HOLD_PHY_RST);
->> +	if (ret)
->> +		dev_err(pci->dev, "disable LTSSM failed (%d)\n", ret);
->> +}
->> +
->> +static const struct dw_pcie_ops k1_pcie_ops = {
->> +	.link_up	= k1_pcie_link_up,
->> +	.start_link	= k1_pcie_start_link,
->> +	.stop_link	= k1_pcie_stop_link,
->> +};
->> +
->> +static int k1_pcie_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct dw_pcie_rp *pp;
->> +	struct dw_pcie *pci;
->> +	struct k1_pcie *k1;
->> +	int ret;
->> +
->> +	k1 = devm_kzalloc(dev, sizeof(*k1), GFP_KERNEL);
->> +	if (!k1)
->> +		return -ENOMEM;
->> +	dev_set_drvdata(dev, k1);
->> +
->> +	k1->pmu = syscon_regmap_lookup_by_phandle_args(dev_of_node(dev),
->> +						       "spacemit,syscon-pmu",
->> +						       1, &k1->pmu_off);
->> +	if (IS_ERR(k1->pmu))
->> +		return dev_err_probe(dev, PTR_ERR(k1->pmu),
->> +				     "lookup PMU regmap failed\n");
-> 
-> 'Failed to lookup \"PMU\" registers'
-OK.
-
->> +
->> +	k1->link = devm_platform_ioremap_resource_byname(pdev, "link");
->> +	if (!k1->link)
->> +		return dev_err_probe(dev, -ENOMEM, "map link regs failed\n");
-> 
-> 'Failed to map \"link\" registers
-> 
-> Same for below error prints as well.
-
-OK.
-
->> +
->> +	k1->global_reset = devm_reset_control_get_shared(dev, "global");
->> +	if (IS_ERR(k1->global_reset))
->> +		return dev_err_probe(dev, PTR_ERR(k1->global_reset),
->> +				     "get global reset failed\n");
->> +
->> +	/* Hold the PHY in reset until we start the link */
->> +	ret = regmap_set_bits(k1->pmu, k1->pmu_off + PCIE_CLK_RESET_CONTROL,
->> +			      APP_HOLD_PHY_RST);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "hold PHY in reset failed\n");
->> +
->> +	k1->phy = devm_phy_get(dev, NULL);
->> +	if (IS_ERR(k1->phy))
->> +		return dev_err_probe(dev, PTR_ERR(k1->phy), "get PHY failed\n");
->> +
->> +	pci = &k1->pci;
->> +	dw_pcie_cap_set(pci, REQ_RES);
->> +	pci->dev = dev;
->> +	pci->ops = &k1_pcie_ops;
->> +
->> +	pp = &pci->pp;
->> +	pp->num_vectors = MAX_MSI_IRQS;
-> 
-> I don't understand how MSI is implemented in this platform. If the controller
-> relies on an external interrupt controller for handling MSIs (I think it does),
-> then there should be either 'msi-parent' or 'msi-map' existed in the binding.
-
-OK your comment earlier made me realize I had more to do here.
-I'll work to improve that.
-
-> But I see none, other than 'interrupts-extended'. So I don't know how MSI works
-> at all.
-> 
->> +	pp->ops = &k1_pcie_host_ops;
->> +
->> +	ret = dw_pcie_host_init(pp);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "host init failed\n");
->> +
->> +	return 0;
->> +}
->> +
->> +static void k1_pcie_remove(struct platform_device *pdev)
->> +{
->> +	struct k1_pcie *k1 = dev_get_drvdata(&pdev->dev);
->> +	struct dw_pcie_rp *pp = &k1->pci.pp;
->> +
->> +	dw_pcie_host_deinit(pp);
->> +}
->> +
->> +static const struct of_device_id k1_pcie_of_match_table[] = {
->> +	{ .compatible = "spacemit,k1-pcie-rc", },
->> +	{ },
->> +};
->> +
->> +static struct platform_driver k1_pcie_driver = {
->> +	.probe	= k1_pcie_probe,
->> +	.remove	= k1_pcie_remove,
->> +	.driver = {
->> +		.name			= "k1-dwc-pcie",
->> +		.of_match_table		= k1_pcie_of_match_table,
->> +		.suppress_bind_attrs	= true,
-> 
-> No need of this flag for the reason I mentioned in the Kcofig change.
-
-Because this doesn't implement an irqchip?
-
-> You should also set,
-> 
-> 	.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-> 
-> to make use of the async probing of the devices during boot. This does save some
-> boot time.
-
-That's great to know, there is a noticeable delay during probe.
-
-Thank you very much for your careful review, Mani.
-
-					-Alex
-
-> - Mani
-> 
+>
+> Thanks,
+> Thinh
 
