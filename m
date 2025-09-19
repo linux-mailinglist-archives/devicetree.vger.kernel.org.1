@@ -1,312 +1,128 @@
-Return-Path: <devicetree+bounces-219356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32B7B8A4DC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:32:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3397BB8A51B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E82ED16DF92
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:32:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809CB3A74CD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B163164DA;
-	Fri, 19 Sep 2025 15:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6B33176E7;
+	Fri, 19 Sep 2025 15:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Rh8bx4xZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AoKi0E0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011055.outbound.protection.outlook.com [52.101.70.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54746313E30;
-	Fri, 19 Sep 2025 15:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758295920; cv=fail; b=Mwi1Z96xQgSG2LdTAjhruUnFgOngxs74p2Zi67Vr1h0W1GWD6m7l8FY6pkB9DW26xecCBCXJlJeJT8O6yAdsbrTrnpk3E62mfcSOPHm0NIdDmRYAU6l9XJGAzFrgPf4CiSXnCkItbLsB+oLZzZ8/fp2qyisoFMGpnrokARlJhR0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758295920; c=relaxed/simple;
-	bh=g/oq7T8nQ7IPOOPXO3AzF58dwzlylcGRyyvufB+ZS6g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Dq/Ma0jwtjfcfX0c6mrpl3SwHsT9b1VJorZIXzfDSNXqbj79mGtIfVX56jq1HD8JVcwgafFuuKZzVPlEepb1CfXhdp39G1MfS44lQ8E27xuk1dHjzl4DSZwrhPpVhCSpdVMgfCLsXP8s6bdL3BaRBCP1Q73lYR95TQ7l1sqLt3E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Rh8bx4xZ; arc=fail smtp.client-ip=52.101.70.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wLbisE41HX12TUlRMdYHfQvgH0T8gLf5HrTLbVh4mGutDlaWV36+ZX0MH7GMXmwv5j7C43BkPKCmcbV6fjxTA/1Sj72LcC+GpJfME8FIUOTKuRWBYo7vBGO7wUjnO9cmI0twbimWz1W5N8HatJottLsoPGWOsKiSMTmknu2aTClkNLUjbaJzIQo9vMuyf8f+wUlbq+ZwYVGDEisuQCqkzMgUBgcWMUxE8AR55rjgV5TwiQvEDxVTJUjRMT+5AuvqGWWUsfjH04umfl7sEmRNxRAaFreI8I7fb8dkN9+LiwQKv9rGjMowhfQST5iXXmMLT6AcxDrUInygdfmFYLS39A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4Rnj+tn5BhghHc2JD00O1Zhp70YUSAiqHu5Xfxsl4+c=;
- b=XR2jnDs74/NEQ3iHfmwQw/6jU7LnSfu/tQOa1Ch8m/CJXfWIUfY3ZZS4S7bXUE0qiWFn0Gh2Gug2EqXksbulsQOIBUcIxyATwk9zo+QTYSF+Ib62ulix9VJZW+72pL9cnQlPv5SdkayKd1iBnQ3Hs7sYxbPIG7XXuthhyMaPtlKJ0ynhXMG6Jigv5LIBDFkvP33zrArHZZdLE8cxPi9CoHh3jTnOjXbYFYE4kBztzsF/ywa4JEu0XrcMo5U8jv/tN3ngHDpn8ChqrFc6XrnQufR/j4jsHK8mnUw7bYGRha/ajqhCswZArwgn5d13xbUHxOUe1wix/v8LgmmATFFg5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4Rnj+tn5BhghHc2JD00O1Zhp70YUSAiqHu5Xfxsl4+c=;
- b=Rh8bx4xZmuCrjAMG+Pws/QxA+CM1Wa0Or3qorcx21q66ivyeAVbuIGd2hKzG8iVFxa6V5jrtPitcwUEQiO0+28o9/QF9p/S1QmEzQ1hIbn1iY9gPpeqIh+29WjAraI5lyvsxKiggNy8+IgoMDxsag/pyhard6ysVZvMVpq1euCMagsoTn1srdGybh9DhzYPjHuWjkYwIJu/TVktk07qZzDz7+88FAeMOwTx8AWcVftrqmTlXhOLs2Yyg2kMk7b7Or9+eIdTSVV0+wVj2vzXWSLrcxCwjw7VjAWIUpgHE9mG682PP8TN+IjNJzJr0Iw/heSpvGXLZOHIENLyPYA8Gmw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by PAXPR04MB9204.eurprd04.prod.outlook.com (2603:10a6:102:227::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.16; Fri, 19 Sep
- 2025 15:31:56 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9137.015; Fri, 19 Sep 2025
- 15:31:56 +0000
-Date: Fri, 19 Sep 2025 11:31:46 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 13/14] drm/imx: dc-fu: Get DPR channel
-Message-ID: <aM13Yv9CIkzuLV6N@lizhi-Precision-Tower-5810>
-References: <20250704-imx8-dc-prefetch-v1-0-784c03fd645f@nxp.com>
- <20250704-imx8-dc-prefetch-v1-13-784c03fd645f@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250704-imx8-dc-prefetch-v1-13-784c03fd645f@nxp.com>
-X-ClientProxiedBy: SJ0PR05CA0006.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::11) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33ED3314A68
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758296110; cv=none; b=rJDwEmjIQ5VbUI3j2njmEfb5lWv9fNbojwTWJMN+3uWvFzPh+sd1b0jshxMUsGpoo0rT755uvaXwTV26ro6tX7DbQv3nvvSIrucyLl55OdwJQBuXV1knXaVyMWlpqWF0CHef+s1VTBxpHXId1bYHjwXb8xi2j51s/al8KRcoIOg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758296110; c=relaxed/simple;
+	bh=eTWf0PO9mv+rTbVMmJ0b0B+mt8XNGOqlZu172ARy+Zg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VmwOy2XCiJ/7fEK11jQlO4GyltLDYUiHoQ3PFHwpCt3nkUZ78sqrWG8/ZPsarPp2nqrZtD+EEl5LREsX6mMVLyxUAHETYEtK6b+xXd28ce843lgPJZ4zVd3l73XkB0Oej2jA/C3AeHVxJbDJpz5qOixpuBF/ryWS6bYVesINnA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AoKi0E0+; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b9c35bc0aso24290515e9.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:35:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758296107; x=1758900907; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Sg77gnAfv1VmZ7w/Slv7Z+RDQVw26Pq4VwEULeHQZFo=;
+        b=AoKi0E0+zbXV6pwQhkC5STDf/iOc7ZySP4oGbYXB2bBuMzX6g7sBnknSRVK1PWag/t
+         UmlmKiijet+6tegsWbw/izjd4Iw0UfyJ+ZkpLqGWXgB8iXggHTZPTbz6iToyahK+b5eW
+         xRpW1W8V/a1psM7bic4Mu5JG70LzVv9KeT6fGDLc8KCIPnA6qG7Pzn10T0ot/CfdC8Lc
+         ZoOrQIs8jFSYxeN5yNHub57zEwoLKX8kQeMuGb6qVdjul+hEOBOSDq1KR9jwz/3O/b0O
+         k1lf1dPMs2XQiTPms8sIHTn4qcfu2+tecx0fs0PtxKpPBaXVve2IjUvesxy+K+DDjGsE
+         gJ/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758296107; x=1758900907;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sg77gnAfv1VmZ7w/Slv7Z+RDQVw26Pq4VwEULeHQZFo=;
+        b=FQJDsnIZJ2dn67pi8TzbkEN9lJXjaM3ilyLD6a05D0H1yR32jNlP0SphV8dzTSx7cr
+         j9e6/gH3o8v/taRS/P2iW7452QWk/3YehCCwi7O6vfFd8+25sjg2crZpEG0gx4j5eTjI
+         PnVaIAfA8QMGmFDXE9p+pUyALxOMVQPS+bPkyt/3BOCZazPvG9qKJ7zlS3ufuFEAVH91
+         PK2xHek5LKKe2qf1ZgFasxpQhJ7IkdH9KDuuYe6GwZrFecfB4WOdDMEQriuS1yIobLbJ
+         oyZSXTc5RRlLOXEDliAa2bVdoMToESVnq3UeR2GOMeDnvn0s95EkF0NYKQsfXV9jmTPM
+         pbXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUi/yExUi6p8A/D/MOtiyfXQ9FBaxkt0OeGBo/eR1WDV1gVRQ5cCt5GzDGcrI2c+J6bddIKuflEoLY1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAQcvHwDufYdayXVXlYaDn+o37bOlPX/2J3j4GbMbjwzwtN9ZI
+	s5S8Kit7H8clQrx6AXr3aTIwNiCkzzAABqnr2h6a4b6TXEt81uoq5gAy6TfSWhnJM2g=
+X-Gm-Gg: ASbGncsvs+Q1up8sudBo3hPzFW2rONLvrIDMaYe+itq2aXSxoXVAIF/IN/YTPofxo72
+	vp3LFeS5QWCeHqQFosEarj77l5NgI2GSHa2g6CjGhtWBIYgFuqj1b0KTSdsnCuu2UZh4p6Clg8P
+	S49rEpBwN61RA1Ch0sdINsUFJPAAFjLF/Orh/nY4ZsTigWWzJKhB1pgb7Z9PWbUgXlfuSzT6Z7F
+	4xcmp+qiDqsB1yda+CdFDi26U53g/7g5eKx7jgZkpbPUwWwcpveBlIpdwt/m0jCi3WDOHq3fxH8
+	ewa2NmOsvdOosb22KMiGSa/IdFtf2Y6gKLVGVOiQPw3ncNK9BBM3ITztYwmjmLHCAcyTZe2JRT6
+	TuvREA5JN4dwiQfBA+InMZkbZFCXHAA+GtQlj1VKJWzYFqkHWJJh1cGfL9zHnBJKbPpplPIWDjp
+	QMfQ==
+X-Google-Smtp-Source: AGHT+IFy7Dj8N6gYfL+jhWcvEkvYrz3Su9+hU8mu+33/hZoSVy239ih6pL/rb05L3vQtZWkPx65Y3w==
+X-Received: by 2002:a05:600c:3587:b0:45b:80ff:58f7 with SMTP id 5b1f17b1804b1-467eb603b52mr32347595e9.36.1758296107505;
+        Fri, 19 Sep 2025 08:35:07 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:8ffd:205a:6719:49c1? ([2a05:6e02:1041:c10:8ffd:205a:6719:49c1])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46139123102sm128369815e9.9.2025.09.19.08.35.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Sep 2025 08:35:06 -0700 (PDT)
+Message-ID: <013d1911-50f8-4891-823b-566bd90a0601@linaro.org>
+Date: Fri, 19 Sep 2025 17:35:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|PAXPR04MB9204:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4fa047de-f68a-4ea4-6217-08ddf791aa66
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?yrZiFljFuTx6FtkCyLfAfzXYHL+iJ0VdwdfHqaCqQc2rIi41J3Ms1a3av3Ju?=
- =?us-ascii?Q?xYB/a3kKqIl4IXpOw4KbLH05kwiV02nvq0eR5SBsRkJHBymkTf4SlGFvQnIo?=
- =?us-ascii?Q?9IlhbDJ0m70Jb9O/IaJoj/kQd4GCB69PcnRxapJln5K7fWsUv5e9BIrYit8x?=
- =?us-ascii?Q?gZw0d5Ew8JpaAj00PmsjizMiNjr9/DWzTGED3KWUM+fBm6+4u+QJObWFlhnt?=
- =?us-ascii?Q?2/IbykTKWBFbXaCQrnA67PPz2DeRFjE1y1CRX078MAqYkwZz+QnDS6ENHsiN?=
- =?us-ascii?Q?TfvCkLffUNF/8fPssskBDA/eb/pwG7IVbOmKLWP2uAgPVH4N39ySLf8C25cS?=
- =?us-ascii?Q?j/RShFBD46aDPi/aeEOhf2wGkKB7xKDYThs/ixfjPBgJwM50GFuilGWxasie?=
- =?us-ascii?Q?SN0L3Or5ENhAfV7n+n/97bzj1K5/4kaQDI8WdfCTPjnOxSIgpWyJm6PD1ioH?=
- =?us-ascii?Q?6DBYUvXNgWTYZPpzuekATxqFpgSg5q1Zfag4hvLZerzObonju2tFEnvKOKDX?=
- =?us-ascii?Q?iwkhYpEy8r4hMa/6RetFtqe3IATOKTlJR4kA7Op6RByRXQrZOj4P0gX6r2Z7?=
- =?us-ascii?Q?5f3XKT3HigSrpeReafQGFxKPz7aVt3EQyQk6MZ9UnlvmQ5Rn/KNhSMtLBJGT?=
- =?us-ascii?Q?uDEub6k5MuBtY8jB9T787ZOlnJfhGyz1zH8nB7G9+7qDwTDiUTzWcnDmAz0z?=
- =?us-ascii?Q?XmTRzlTF3ibFtcqcBRZyJMFL8tPR5XvITmSDEEVkYnP/VqiklQvrlioxMSHD?=
- =?us-ascii?Q?lS2ddPNhS0wDGLjtB4re5APw7Mui02M3Ki3/vCleUxfYdqFcIchtSszKzoD/?=
- =?us-ascii?Q?LWDl8H9K+5sfeoPmsVFwyogfBLkf7KhihSmxHidhhDrMfp9Y9avJ52O3fEyt?=
- =?us-ascii?Q?FgXL7786Cv04Sw5t87tiP0UaB1TdDdZOlHkw8+pOvuEdHn3LaRN8yJ1/ohr4?=
- =?us-ascii?Q?mTWv4PmhBHkQX2IGOH6iQ470WNIk8OqZ+jXXMLSUJUtL/Q2O7GCidlqb8Jot?=
- =?us-ascii?Q?pj+6SeLBKKKWoVGfraOkST07702vFOIogoDohteQFejo7bHD9VhwB/h12dED?=
- =?us-ascii?Q?WmPgJRFzEKELFVFCnsIVwiEvzgoQW16uFrYWCS34McVGDLexgFJJ5lyom3kJ?=
- =?us-ascii?Q?HTsL4UYK8FmcXsT8aoxvIUssUOPh8b0wn53RFRzz1VTvGzOrBK7z2P273Xpq?=
- =?us-ascii?Q?I+JxWwmFLRnv+iZab/pqc2ztToWCQuEIsgkhqHC9aKk1vi68kcopqzlvxGkr?=
- =?us-ascii?Q?l722A/tmAmB7Ue4y3hH1vt1RX7+q8kq9+044mf5euGNtcdq2PL4DHwxPrxZw?=
- =?us-ascii?Q?+yvEjVa9ZKkxvKzYqdMH5NOQqLMBJqFOBmyjZsJsteDa5HN/EOp8fHSmx2XJ?=
- =?us-ascii?Q?ISUDhgwvf7prLl1dGAWMRZXENiEpqRjyXVDIZ/T0P6nh1EmGf7jzcA3bbpAx?=
- =?us-ascii?Q?Vdp3KivFtPucyExsVYWY9TVvMo09Snt9y2eMuL3TYVX3b/5eIARC1g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?uwnmhNIC+Nx00as2H2RCzluU1jg7u3dtcG5FY5uaW1ehNKFowBDu4h8UlG0W?=
- =?us-ascii?Q?fuWnFQB27BFW6J8NEoyDdl/XfTrbAEXFp//IR3C5x/bw+Xp+p2LxYMiUte9O?=
- =?us-ascii?Q?vjvgAVYlOhUNIRJvTf4rA9//AwGk5l/KDJqr/JLGKiKI/tdkTu1SgrpkNAmk?=
- =?us-ascii?Q?rLZ3TJQaVuTxgToxV64kG3afAZDRU0WIFYOeTDMUSj58rzI2CxDZtz+m7PZP?=
- =?us-ascii?Q?NZCghEMSPNX0BBCYxrMYo1tAvCyOilEV0sHcAQyrLcYdrgMB0oS232dBNp3z?=
- =?us-ascii?Q?7DxDXsPVXyJy69lCwKvpYeTbvHVP0VdNIxnThhO6kiLH9Ai1zafMqQWzcKQv?=
- =?us-ascii?Q?aX9hpnuPX4BgDkpcWrjrZ+FpBWqZT71Fqooolz2HlO6sFSoMQxsoKVL2n1kl?=
- =?us-ascii?Q?MN/Cs+Tc+Ya46gE66seN+dfNHkXKczYhp62XvQWPH18QIYvBohWEI0frtmBT?=
- =?us-ascii?Q?VdJuCWWqiZbLM2velHW61cFd/aI5HSVTKlUhIyvy58OBgUFQgjTJQJFNGHcL?=
- =?us-ascii?Q?ATb2QamSCKRUgkFRoxBk81Ks6L/4Llefh47FyW2s5vb6t2o73iNeY84yx/cT?=
- =?us-ascii?Q?rWNB8+U4IF7HILQO7dojHqwbe643Aq2Ff4T87GBXtMp65VZgUl+SWHDNkrYo?=
- =?us-ascii?Q?v1RdZx1DCUAR4znp5z/ap/yOEJ/OgKEUmNNmr7FZXd/NF/q5QAsTnkAgXMf/?=
- =?us-ascii?Q?ufWxT1XpP9WWONXq2LVol4L93IzNoFruOTzn7BsAVngdItfGgkTQRDrORWZF?=
- =?us-ascii?Q?RpFYxL8KaYkeUuNxf+/XazYMH3PFJt08zRJlz8YGVtCROU3utnyZ8cAcmENw?=
- =?us-ascii?Q?m8iTad4wcT8Sa5auTBsj0gAoc3QiwRq0g8+StR1P3txiGF/t560zF+oFmhfq?=
- =?us-ascii?Q?nA7bf66GgiAZBOc1RujvPuaHc3fPu1M5oit1NnscAwrJEFE/eO7EKJ82PIQ7?=
- =?us-ascii?Q?kRSuKC5TfruBlevaQqe7XPFJLu94IRE9+zyRLzGjnUoHk0J0qYfdAomW8vQo?=
- =?us-ascii?Q?GbRu1SOqCv2EUdr7NEg9pWQuItZIh56vHNC8rjmkk5W6zDEe+5NZDVM+N6PO?=
- =?us-ascii?Q?cGcLFOx/WF6iNWAUCY14NQSZzPpkTRXuG8FeyrxwbGseugHU/02LTo50PJNc?=
- =?us-ascii?Q?HE2kA/uVXsNgNFcVWJYV5caUQYkHz+dQ1alRi3qEELsqvmhxRfcKJ5Gybduh?=
- =?us-ascii?Q?TIcakiU41HBD80A1coiHe+ZFKpwWcnI5Yb5mzQxPX5PrOMxYLm4Fgt4LwRuf?=
- =?us-ascii?Q?8X5Jr/7aFveiFYSOFzuh4ttpUr7ZTueARUeB0i7qFYF8FE98MHdavgv63LvO?=
- =?us-ascii?Q?QKG0IGve5qBual2EnfpPxejjgsLZ+E3RVs5elvUxFXGlXAwj1NPYZeEczoJm?=
- =?us-ascii?Q?wG6pzw9OTcgn2IOSfyWWk3iP3kmyvk1OEC6IoS+gmZk8PRapohh++J1YmCWX?=
- =?us-ascii?Q?FjsJz/GsPHKmNbofAe0t/P2+FXHPtoT+Nn/PlR2NY/6uDFpQtWUuIoSqSR+g?=
- =?us-ascii?Q?k56VK0bk890JClJg2ru+5H/naRNo1Ee+eTo4bvLMcJcwd7jSEk2HWh0veoDQ?=
- =?us-ascii?Q?9fCk12+oQnK4gmLsREpxp+2SxcP/IWeC//eA4WxN?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4fa047de-f68a-4ea4-6217-08ddf791aa66
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 15:31:55.9461
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /0aBT9P0qQam6RB4kaP96QE1Js0+tOqwGfU1zIK1Q+3R8Ojd+VQWfetbxVoUL5HD6EjdaZQb/EnrgKQAECQeHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9204
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/6] thermal: tegra: add SOCTHERM support for Tegra114
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250828055104.8073-1-clamor95@gmail.com>
+ <tdknls7jieu4ple3qhmdqntllmctks2auxhxzynwjjmgl3hnx2@nubqlzpgohwf>
+ <da8aa4c5-4aa0-42f6-acb6-55d37cc29774@linaro.org>
+ <amc5e3sffmwqguivwch6b5vtmlgu5dlwxm7bsrn6nd3rllbvxg@koqmavn6uuy5>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <amc5e3sffmwqguivwch6b5vtmlgu5dlwxm7bsrn6nd3rllbvxg@koqmavn6uuy5>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jul 04, 2025 at 05:04:00PM +0800, Liu Ying wrote:
-> Add a helper dc_fu_get_dprc() to get DPR channel for FetchUnit.
-> And, call it from dc_{fl,fw)_bind() to get DPR channels for
-> FetchLayer and FetchWarp.
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+On 12/09/2025 12:26, Thierry Reding wrote:
+> On Thu, Sep 11, 2025 at 08:56:12PM +0200, Daniel Lezcano wrote:
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+[ ... ]
 
-> ---
->  drivers/gpu/drm/imx/dc/dc-fl.c |  7 ++++++-
->  drivers/gpu/drm/imx/dc/dc-fu.c | 18 ++++++++++++++++++
->  drivers/gpu/drm/imx/dc/dc-fu.h |  5 +++++
->  drivers/gpu/drm/imx/dc/dc-fw.c |  7 ++++++-
->  4 files changed, 35 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fl.c b/drivers/gpu/drm/imx/dc/dc-fl.c
-> index 3ce24c72aa13e8aa150c0152a5a1ea3d0fa90b7e..a1835f43da0dc5cf0c83d93f16658b485011e285 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fl.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fl.c
-> @@ -101,13 +101,18 @@ static int dc_fl_bind(struct device *dev, struct device *master, void *data)
->  	void __iomem *base_cfg;
->  	struct dc_fl *fl;
->  	struct dc_fu *fu;
-> -	int i, id;
-> +	int ret, i, id;
->
->  	fl = devm_kzalloc(dev, sizeof(*fl), GFP_KERNEL);
->  	if (!fl)
->  		return -ENOMEM;
->
->  	fu = &fl->fu;
-> +	fu->dev = dev;
-> +
-> +	ret = dc_fu_get_dprc(fu);
-> +	if (ret)
-> +		return ret;
->
->  	res_pec = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-fu.c
-> index b36d3034b8d5962eaab212b6b65ebbb5c29f978c..47d436abb65157de7cab74565e44b199be76de52 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
-> @@ -10,6 +10,7 @@
->
->  #include "dc-fu.h"
->  #include "dc-pe.h"
-> +#include "dc-prg.h"
->
->  /* STATICCONTROL */
->  #define SHDLDREQSTICKY_MASK		GENMASK(31, 24)
-> @@ -256,3 +257,20 @@ void dc_fu_common_hw_init(struct dc_fu *fu)
->  		dc_fu_set_pixel_blend_mode(fu, i);
->  	}
->  }
-> +
-> +int dc_fu_get_dprc(struct dc_fu *fu)
-> +{
-> +	struct dc_prg *prg;
-> +
-> +	prg = dc_prg_lookup_by_phandle(fu->dev, "fsl,prg", 0);
-> +	if (!prg)
-> +		return dev_err_probe(fu->dev, -EPROBE_DEFER,
-> +				     "failed to lookup PRG\n");
-> +
-> +	fu->dprc = dc_prg_get_dprc(prg);
-> +	if (!fu->dprc)
-> +		return dev_err_probe(fu->dev, -EPROBE_DEFER,
-> +				     "failed to get DPR channel\n");
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.h b/drivers/gpu/drm/imx/dc/dc-fu.h
-> index 518d1af49f5ae9d4f67da5e6c2e80abd7e962120..44b9497e53580589a05bcb180eb2312ea4449da4 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.h
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.h
-> @@ -8,11 +8,13 @@
->
->  #include <linux/bitfield.h>
->  #include <linux/bits.h>
-> +#include <linux/device.h>
->  #include <linux/regmap.h>
->  #include <linux/types.h>
->
->  #include <drm/drm_fourcc.h>
->
-> +#include "dc-dprc.h"
->  #include "dc-pe.h"
->
->  #define FRAC_OFFSET			0x28
-> @@ -99,6 +101,7 @@ struct dc_fu_ops {
->  };
->
->  struct dc_fu {
-> +	struct device *dev;
->  	struct regmap *reg_pec;
->  	struct regmap *reg_cfg;
->  	char name[21];
-> @@ -114,6 +117,7 @@ struct dc_fu {
->  	enum dc_link_id link_id;
->  	struct dc_fu_ops ops;
->  	struct dc_lb *lb;
-> +	struct dc_dprc *dprc;
->  };
->
->  extern const struct dc_fu_ops dc_fu_common_ops;
-> @@ -123,6 +127,7 @@ void dc_fu_get_pixel_format_shifts(struct dc_fu *fu, u32 format, u32 *shifts);
->  void dc_fu_shdldreq_sticky(struct dc_fu *fu, u8 layer_mask);
->  void dc_fu_set_src_bpp(struct dc_fu *fu, enum dc_fu_frac frac, unsigned int bpp);
->  void dc_fu_common_hw_init(struct dc_fu *fu);
-> +int dc_fu_get_dprc(struct dc_fu *fu);
->
->  const struct dc_fu_ops *dc_fu_get_ops(struct dc_fu *fu);
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fw.c b/drivers/gpu/drm/imx/dc/dc-fw.c
-> index acb2d4d9e2ecd6d36dbab050f25b560d9ec9aba5..c2e60741bc871c6976ead53f132b60f19352aab3 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fw.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fw.c
-> @@ -131,13 +131,18 @@ static int dc_fw_bind(struct device *dev, struct device *master, void *data)
->  	void __iomem *base_cfg;
->  	struct dc_fw *fw;
->  	struct dc_fu *fu;
-> -	int i, id;
-> +	int ret, i, id;
->
->  	fw = devm_kzalloc(dev, sizeof(*fw), GFP_KERNEL);
->  	if (!fw)
->  		return -ENOMEM;
->
->  	fu = &fw->fu;
-> +	fu->dev = dev;
-> +
-> +	ret = dc_fu_get_dprc(fu);
-> +	if (ret)
-> +		return ret;
->
->  	base_pec = devm_platform_get_and_ioremap_resource(pdev, 0, &res_pec);
->  	if (IS_ERR(base_pec))
->
-> --
-> 2.34.1
->
+>>
+>> I can take the patches 2-5. Regarding a shared branch or wait for the next
+>> version, I would prefer the latter
+> 
+> Alright, let's do it that way. I've picked up patch 1. If you take
+> patches 2-5 now I'll pick up patch 6 once v6.18-rc1 has released.
+
+Applied 2-5, thanks
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
