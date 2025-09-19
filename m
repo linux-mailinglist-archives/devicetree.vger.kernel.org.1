@@ -1,149 +1,109 @@
-Return-Path: <devicetree+bounces-219106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4107B87C8D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 05:19:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED45CB87CE1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 05:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8C1189CD31
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 03:19:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63625810E0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 03:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9E026A091;
-	Fri, 19 Sep 2025 03:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC59523770D;
+	Fri, 19 Sep 2025 03:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ILDIsli4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KfIWXTgH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D6526529A;
-	Fri, 19 Sep 2025 03:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51CE34BA2B;
+	Fri, 19 Sep 2025 03:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758251940; cv=none; b=Kq/YCjC8tOsMcjGz46g1I7xPnAhiyhDBnkhAKft83LCJmprnua487CnrhRz/42dsxNP4jroX3fT/+IXw5/wtFqc6u+aVra08Oxb+bZVsGrW4iuq2Zg6uNAyCiIrPKdsWu7Zd6wvsTlfAZYekfF/NT/HJQRjwLz61fWuD6FAIaB0=
+	t=1758252545; cv=none; b=EbkeoEWWikpWIQ2FfS0dWbWDTwuHBsrTNO1JSxbPGHY/H0T/iDnJnBq0fuVjLvbtv2lkhtxarehNDqwcBN3p9ibix/585jwSkVQHacrANR1d6g6bxx8O9rqRCSMyA8Jv+sJ2UUKeu+FjFHLAuvf6ZTt6+jGYFFeklWCsq2GP9hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758251940; c=relaxed/simple;
-	bh=ggPk5dpFrY5d2ktYSzXrZSvVa0LXccEQketSd+fFRQo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IeIxCYg5jj0gbzqcozyAnrIClo5+1JM9DCEMb8RnJmOnv56saNAb7dg01UfdbROLKsLYUrQmPmzes/skeB4d8fN3/3YvA9XYK6+PYBJK1KdiosHrL6u9dMsgjacOZE3EAc5GMGrrppFK3J9S3WrWB8rjNyb6EYMOMlzbKL37OHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ILDIsli4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F3418C4CEEB;
-	Fri, 19 Sep 2025 03:18:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758251940;
-	bh=ggPk5dpFrY5d2ktYSzXrZSvVa0LXccEQketSd+fFRQo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ILDIsli4+KUscphy54iXEx04Nis5Q+lxBqWeu2hdMUXHej/8A0GN3QLyAke8fWvlb
-	 go6kMXMqsfGg0AvsdwHswXcDmuduGdWmOyjlUKcpPMK6qqv8MdH2SScrt50sNw3s0W
-	 /oo69yD8SwRb3usaorm+ur+zDKhvEX+2VitztkxT7BjHAYTUdArvP/Wwwlm/Tf0pwn
-	 hYW4GpRN5SDakfnBSXyVU5xJEUiAbm1YezaWaR3XMIH31H84A4eFZPSwueLC8VDKDk
-	 MlNGWMxjjvo6krgEfs4Mp4KRfWVU6BGdzxdSTNQr/VfqyMLRVgvGEzaVpA0JrXVAQ7
-	 8JmYFMCpgxa7g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFEE5CAC5A8;
-	Fri, 19 Sep 2025 03:18:59 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+fenglin.wu.oss.qualcomm.com@kernel.org>
-Date: Fri, 19 Sep 2025 11:18:51 +0800
-Subject: [PATCH v6 2/2] power: supply: qcom_battmgr: handle charging state
- change notifications
+	s=arc-20240116; t=1758252545; c=relaxed/simple;
+	bh=wvmowbwTXArDbVodDc+wxs7J5XrWKjh/Af74xjtzoq4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Uhatay1wd/ujmPIgQfKvgbrLp52WFxiCNqUdccO/XiIpgaS4XGDaUSmGdkGLxByunRuHOy0g9ucMJ0gTijAiNBfu+bXjrDtRAnCCgOODaGlpHEyq4QKW57RsTZEF2Gq3MnJU2g3sXqYywyWMw/+2BoM63okG4QBEpTCrEqdg/6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KfIWXTgH; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58J3SrCD151725;
+	Thu, 18 Sep 2025 22:28:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758252533;
+	bh=fm7EbK8iCdBY8MyFpYjSk6v/Dd93EhSIFsL/bG1/W7c=;
+	h=From:To:CC:Subject:Date;
+	b=KfIWXTgHSZworZl4+c0lPgT4HMiC8jPBo5NgzMnEH5R8HpSioCtIT6OXcwT0pTqdz
+	 U8G1ZgOnN8bjosp4bSY2e3g1bR0T2Pn843BHBLZcVOJAt81nKHl6v3vVRtnZRkevrU
+	 msCMS6K1zbYqBiPS4n8Y+foMtsRuMLz6JUwYYTc0=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58J3Sr2n2842067
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 18 Sep 2025 22:28:53 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 18
+ Sep 2025 22:28:52 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 18 Sep 2025 22:28:52 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.233.249])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58J3Sptd1901011;
+	Thu, 18 Sep 2025 22:28:52 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <s-ramamoorthy@ti.com>
+Subject: [PATCH 0/2] Add PMIC support for AM62D
+Date: Fri, 19 Sep 2025 08:58:04 +0530
+Message-ID: <20250919032806.707926-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250919-qcom_battmgr_update_new-v6-2-ed5c38867614@oss.qualcomm.com>
-References: <20250919-qcom_battmgr_update_new-v6-0-ed5c38867614@oss.qualcomm.com>
-In-Reply-To: <20250919-qcom_battmgr_update_new-v6-0-ed5c38867614@oss.qualcomm.com>
-To: kernel@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
- David Collins <david.collins@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Fenglin Wu <fenglin.wu@oss.qualcomm.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758251938; l=2311;
- i=fenglin.wu@oss.qualcomm.com; s=20240327; h=from:subject:message-id;
- bh=qjtOHMPRwa1lClP72psxdJHsxXcpoXRVZvAtkWmKRnw=;
- b=uSCs45ufv9KjscLuuIBQVIsz9B6oD0bnb8skr2MyeHUxpvyB+mjw6PZYJ+JJWPdSprJZdl09D
- L04pPpex0mCCrwVOWPbHq3B/2uNiPafD2rlsa9m2V1LjFpVdasPGKdn
-X-Developer-Key: i=fenglin.wu@oss.qualcomm.com; a=ed25519;
- pk=BF8SA4IVDk8/EBCwlBehKtn2hp6kipuuAuDAHh9s+K4=
-X-Endpoint-Received: by B4 Relay for fenglin.wu@oss.qualcomm.com/20240327
- with auth_id=406
-X-Original-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Reply-To: fenglin.wu@oss.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+This series adds PMIC support for the AM62D2-EVM.
 
-The X1E80100 battery management firmware sends a notification with
-code 0x83 when the battery charging state changes, such as switching
-between fast charge, taper charge, end of charge, or any other error
-charging states.
+The first patch corrects the PMIC pad configuration by wiring the 
+PMIC’s INT pin to the SoC’s EXTINTn input.
+The second patch enables the TPS65224 PMIC on the wakeup I2C0 bus.
 
-The same notification code is used with bit[8] set when charging stops
-because the charge control end threshold is reached. Additionally,
-a 2-bit value is included in bit[10:9] with the same code to indicate
-the charging source capability, which is determined by the calculated
-power from voltage and current readings from PDOs: 2 means a strong
-charger over 60W, 1 indicates a weak charger, and 0 means there is no
-charging source.
+Tag used
+next-20250918
 
-These 3-MSB [10:8] in the notification code is not much useful for now,
-hence just ignore them and trigger a power supply change event whenever
-0x83 notification code is received. This helps to eliminate the unknown
-notification error messages.
+Boot logs
+https://gist.github.com/paresh-bhagat12/11dee1b07be3019d5f92f893fa11229d
 
-Reported-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Closes: https://lore.kernel.org/all/r65idyc4of5obo6untebw4iqfj2zteiggnnzabrqtlcinvtddx@xc4aig5abesu/
-Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
----
- drivers/power/supply/qcom_battmgr.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Datasheet - https://www.ti.com/lit/ug/sprujd4/sprujd4.pdf
+Schematics - https://www.ti.com/lit/zip/sprcal5
 
-diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
-index 0fe14a109b70fcc15575730573a7a16d1d843613..3c2837ef3461730369b52a4edb096795a531926a 100644
---- a/drivers/power/supply/qcom_battmgr.c
-+++ b/drivers/power/supply/qcom_battmgr.c
-@@ -34,8 +34,9 @@ enum qcom_battmgr_variant {
- #define NOTIF_BAT_PROPERTY		0x30
- #define NOTIF_USB_PROPERTY		0x32
- #define NOTIF_WLS_PROPERTY		0x34
--#define NOTIF_BAT_INFO			0x81
- #define NOTIF_BAT_STATUS		0x80
-+#define NOTIF_BAT_INFO			0x81
-+#define NOTIF_BAT_CHARGING_STATE	0x83
- 
- #define BATTMGR_BAT_INFO		0x9
- 
-@@ -1209,12 +1210,14 @@ static void qcom_battmgr_notification(struct qcom_battmgr *battmgr,
- 	}
- 
- 	notification = le32_to_cpu(msg->notification);
-+	notification &= 0xff;
- 	switch (notification) {
- 	case NOTIF_BAT_INFO:
- 		battmgr->info.valid = false;
- 		fallthrough;
- 	case NOTIF_BAT_STATUS:
- 	case NOTIF_BAT_PROPERTY:
-+	case NOTIF_BAT_CHARGING_STATE:
- 		power_supply_changed(battmgr->bat_psy);
- 		break;
- 	case NOTIF_USB_PROPERTY:
+TPS65224 Datasheet - https://www.ti.com/lit/ds/symlink/tps65222-q1.pdf
+
+This also depends on this patch
+https://lore.kernel.org/all/20250916090736.2299127-1-p-bhagat@ti.com/
+
+Paresh Bhagat (2):
+  arm64: dts: ti: k3-am62d2-evm: Fix PMIC padconfig
+  arm64: dts: ti: k3-am62d2-evm: Enable PMIC
+
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts | 93 +++++++++++++++++++++++-
+ 1 file changed, 92 insertions(+), 1 deletion(-)
 
 -- 
 2.34.1
-
 
 
