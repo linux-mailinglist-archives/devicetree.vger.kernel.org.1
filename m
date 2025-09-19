@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-219118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3996AB87DE7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 06:34:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6658EB87DF9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 06:41:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63D9E7B1C03
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 04:33:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F97E4625C0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 04:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11348230BE9;
-	Fri, 19 Sep 2025 04:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B236525C6E2;
+	Fri, 19 Sep 2025 04:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N8jG/QFb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y29jnlP0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69071FDA;
-	Fri, 19 Sep 2025 04:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FC734BA5A;
+	Fri, 19 Sep 2025 04:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758256485; cv=none; b=h9Qb/hEjg2ydbEJCmTw/Sy2yBgGUXJJ6z5FwBCgZ3LzSvOyY8LGvFmoLHYQjj292IuOw7NAB3ZJbKadVrY/AKDyHbiwa4b2KlpN1bXNUBFJuFB4tG23Mbu1ZD8ln/zl8Ft1xUOudUSzXsM6GMLwhSZ7bVuMNpD0RqRvI+Msl7vo=
+	t=1758256900; cv=none; b=eiqGQKVAMW3uV/ijJS8fGdpKjBhCzxNED7GOVIEx8KCdmlxL5uPeejANMyNLkbkgWGDy5R0K4blt76A/YF286JsdBhiUrv4hQNf7/JJ5nyuEucLFczE5oTKQKoOrU2CV8490tTDfFGdMkd/ohrgEvK3JCFAMjwfzbhVjDDfa7wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758256485; c=relaxed/simple;
-	bh=BtgRIAv1NeNf0H/TkBpkzJcOUAc+TUTV3AA3RFSt2uA=;
+	s=arc-20240116; t=1758256900; c=relaxed/simple;
+	bh=ugy88brg8y4iybp2YryKe8P5fZS3f1QoeQUirxpOajc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RFFjO4tjdfc8HVhrWuK5o0gBWS4N66Op5QRn++FsMdbZ3OqakYl356f1qPJol1+L6DKB+O1dDZ44TuHXTXr+uxdTDaDT3lRbiyJg9BJITv0+iIED+7GfrnicG8jja92RambBFKKpfgQcg0yHQSMsD1Rt2L4h2iGWLpCA/rXk6NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N8jG/QFb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82F31C4CEF0;
-	Fri, 19 Sep 2025 04:34:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gbBZU/MglMNhquvVJRpSC84dZNqzEnA5uySXS0bGlREB14w6S9w1own748tx8sSMKAxu7fkKONXCj/b+Ku13rui7DG4PkUmnglmXXEbd143Jyw4piSZGkwQBPb/ZA7Gen1QGsYSxJIDFgoxf9mJSc7+vS3IpR7v+PMsSsDNset0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y29jnlP0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB12C4CEF0;
+	Fri, 19 Sep 2025 04:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758256484;
-	bh=BtgRIAv1NeNf0H/TkBpkzJcOUAc+TUTV3AA3RFSt2uA=;
+	s=k20201202; t=1758256900;
+	bh=ugy88brg8y4iybp2YryKe8P5fZS3f1QoeQUirxpOajc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N8jG/QFbGCFEov41U0drKBovbF2odF+GKKExLO0IiwmvFF7QIFZSbI2uj0Xvodl2G
-	 GtfUwBtMyt2ggtrFxKO9JPqBXVJ2w5Q7U6ASxkbNZL2omDwcgn/6XvUoExgfTtPUFY
-	 PR/JWro5dkoVc/bz4x5Ay5tL1IYXviSFwQm/OrUNc6DpaHyMk4pVUhwHMvN+nRtPL9
-	 BPsOAaKY8CpnZQgDwvoEyhQZSx+dk9PPI6s4yK/h5mVoouWIOTGfqAWARA0EZEjAE9
-	 F3sa8TeJ8DZv3pfwps6d01Vdi3+Eq4QspJQBAAhmelzbkH3/YVM30rZ3pHU4AFDtjW
-	 sTQ70pg5TwH4Q==
-Message-ID: <6c195b42-d994-4d24-9c40-48d8069304e3@kernel.org>
-Date: Fri, 19 Sep 2025 13:34:39 +0900
+	b=Y29jnlP09r1ppq3KtzAIA5I8vjQCz8GOlnqT4S8Etnk2gD2abLfupYfqTQ3CsqJsP
+	 JowUMI0Ns1Bkv+T36rCi8txmPn1wBNBNSfM1Pn0M6iwHNVwoc7r6oWRjZTmCDO84CA
+	 vGJJDy++T8vtuomF3dGwS2WTm5MkodGrlQqWhS46G8wSwjX1U1HHONliZmAZtH68yP
+	 hiOKTKTeSv/tC5THm332VuB0snOe6XvhaaU/OkYem1t0bcWLrTlUEEDrJlWZUx5/vk
+	 jd11IZ8o0LET2FEUfBfLctQCjqHcxAF3cR8OiP44sQXXz0KFaDTUUWdOx01ZXpdHC0
+	 NJ28hyk9M9+lg==
+Message-ID: <1ec41f26-8418-4f96-b7e2-9b851c926fa7@kernel.org>
+Date: Fri, 19 Sep 2025 13:41:33 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/5] dt-bindings: display/msm: Document MDSS on
- QCS8300
-To: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
- <abhinav.kumar@linux.dev>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250911-qcs8300_mdss-v12-0-5f7d076e2b81@oss.qualcomm.com>
- <20250911-qcs8300_mdss-v12-3-5f7d076e2b81@oss.qualcomm.com>
- <20250918-spectral-seahorse-of-witchcraft-69553c@kuoka>
- <b745c515-2264-42aa-8d92-663efc7f6276@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
+ host controller
+To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+ johan+linaro@kernel.org, quic_schintav@quicinc.com, shradha.t@samsung.com,
+ cassel@kernel.org, thippeswamy.havalige@amd.com,
+ mayank.rana@oss.qualcomm.com, inochiama@gmail.com,
+ ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com
+References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
+ <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+ <20250901-congenial-weightless-parakeet-42d2de@kuoka>
+ <43535323.1499.1995ad1dce3.Coremail.zhangsenchuan@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,63 +111,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <b745c515-2264-42aa-8d92-663efc7f6276@oss.qualcomm.com>
+In-Reply-To: <43535323.1499.1995ad1dce3.Coremail.zhangsenchuan@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 18/09/2025 13:14, Yongxing Mou wrote:
+On 18/09/2025 12:15, zhangsenchuan wrote:
+>>> +  num-lanes:
+>>> +    const: 4
+>>
+>> If that's const, you do not need it. It's implied by the compatible.
+>> I see some other bindings do similarly and I think that's not the
+>> correct choice.
+>>
+>> Well, maybe @Rob knows if PCI is different here anyhow?
 > 
+> Dear Krzysztof
 > 
-> On 9/18/2025 9:01 AM, Krzysztof Kozlowski wrote:
->> On Thu, Sep 11, 2025 at 07:24:03PM +0800, Yongxing Mou wrote:
->>> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
->>>
->>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
->>
->> Patch v11 and still basic issues. I am very dissapointed.
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions of patchset, under or above your Signed-off-by tag, unless
->> patch changed significantly (e.g. new properties added to the DT
->> bindings). Tag is "received", when provided in a message replied to you
->> on the mailing list. Tools like b4 can help here. However, there's no
->> need to repost patches *only* to add the tags. The upstream maintainer
->> will do that for tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
->>
->> Best regards,
->> Krzysztof
->>
-> Hi,
-> Sorry for the confusion. I did intend to remove the Reviewed-by tag, and 
-> I mentioned this in the cover letter, but maybe explanation in 
-> cover-letter was probe not clear at all.
+> Thank you very much for your review.
+> You're right，If that's const,  I don't think it's necessary either.
+> After investigation, the description of the "num-lanes" attribute here 
+> is incorrect. The correct one should be the following description:
+>     num-lanes:
+>       maximum: 4
+
+If 1, 2 or 4 lanes are correct, for this compatible, then yes.
+
+> If so, the num-lanes attribute should need to be described here.
+> What do you think?
 > 
-> This patch includes three changes:
-> 
-> 1.In the displayport-controller compatible property, "items" was changed 
-> to "contains".
-> 2.Use "qcom,sa8775p-dp" as fallback.
-> 
-> These changes might not be considered significant. So I’ll be more 
-> careful next time. Thanks~
 
 
-I really do not expect v12 to receive so significant changes in the
-first place. If you keep sending us buggy code, which then you keep
-changing after review, I will just not do the review. It's easier for me
-to wait for v20...
+...
+
+>>> +            reset-names = "cfg", "powerup", "pwren";
+>>> +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
+>>> +            interrupt-names = "msi", "inta", "intb", "intc", "intd",
+>>> +                              "inte", "intf", "intg", "inth";
+>>> +            interrupt-parent = <&plic>;
+>>> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+>>> +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
+>>> +                            <0x0 0x0 0x0 0x2 &plic 180>,
+>>> +                            <0x0 0x0 0x0 0x3 &plic 181>,
+>>> +                            <0x0 0x0 0x0 0x4 &plic 182>;
+>>> +            device_type = "pci";
+>>> +            num-lanes = <0x4>;
+>>
+>> That's not a hex number, but decimal.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Manivannan and Bjorn have provided me with some excellent suggestions for my yaml. 
+> My yaml will be refactored in the next patch, and I might need you to review it 
+> again for me in the next patch. I'm a little wondering if I need to add
+> "Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>" in next patch.
+
+
+If you are changing it significantly, then drop/ignore my tag and write
+in the changelog reasons why the tag was dropped. Usually adding new
+properties is a significant change. Changing some clock name from A to B
+is not a significant change. Other cases vary. More important is to
+explain the differences and reason of dropping tag.
 
 
 Best regards,
