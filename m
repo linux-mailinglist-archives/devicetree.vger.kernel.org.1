@@ -1,99 +1,90 @@
-Return-Path: <devicetree+bounces-219336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C063B8A27D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:04:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36165B8A298
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 17:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C65705A0981
-	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:03:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B59A516C7DA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Sep 2025 15:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB3030DEA7;
-	Fri, 19 Sep 2025 15:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47FC530DEA7;
+	Fri, 19 Sep 2025 15:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lqH5Vu/g"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="AV7yuJwf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1678E1F03C9
-	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8527224111D
+	for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 15:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758294181; cv=none; b=ZfXoxMKc5pxg4Qdb0RuernQjHNQ011VYJBF7ijxXfKT/JXVE+5PYcdwqrk+xy5LgF+6f9LF79GqS7d60ErPxLmtmd0K8UGSd6LsF1+YijPDf3gdVHyujL7Jr9V7sKfBiWv02jiQquDOEvGGKNx9UeoCqU+MZO3pbNGJpcKblULE=
+	t=1758294204; cv=none; b=etNYYg0gbA17QF6VOQuvf680c3CzRsYonGHKGLYLMFQo8MrofkXDkUyNo2dsTG/EwtxmfG2B3tivkVMEYurRzSzP/wlNLHAnPdHwPB0+AQg1tTcGFHs4eTPdGFaH07CnaQXd81Q+xgkcEX2vJJzotquL11rTXj4bgGjTwtuc6wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758294181; c=relaxed/simple;
-	bh=yJDbiEVUS07mmti0ILNgyNrCuuyjwpOfHFogMMEzfLA=;
+	s=arc-20240116; t=1758294204; c=relaxed/simple;
+	bh=VpWztYwxlC4gMifd+Ha6GcloBpo1TRsrsojMqZ6IwKU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cifo657toeikcGD11ka0BFHj00xfvff3jq/0XWosu7yjgw926+upoJIfeK+pzWVYpJpCUcpGSpWSLvTunYFfIm/U4iEE1F+aireXuO31ADSWcgrPLRItsPW/lMmLk5QZWIa3EV1w/Iy9nue28Kuyw1XNw7yIEEWAKb/PdTG47V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lqH5Vu/g; arc=none smtp.client-ip=209.85.218.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b0787fa12e2so337604366b.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:02:58 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dQLYu6ubIdB35911XYSdOKRFn5xmK9kXDNmL1M+oqdf/CglOCdImorsMGx40uN4A2Oh9QJ6tfV8fQAsjDV+0lU7GHzBmGIYnOR8wMsX9L57Af7f/26pz0FVGMyJR+IMbBsbHfGJ8Dw+dJbRugCI8NLgSmIBkE+bIz5oztUNYlBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=AV7yuJwf; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-829243c1164so233420185a.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 08:03:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758294177; x=1758898977; darn=vger.kernel.org;
+        d=rowland.harvard.edu; s=google; t=1758294201; x=1758899001; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RuhmeiLRDOZblDBgAns4hX7zt5ydWj4wdgPVrc0nj58=;
-        b=lqH5Vu/gBEodaaOyTpEOiAf9pJ9krRfuophAPcgH6n1USEDzWicu0lItL5tKLv/KI0
-         Eb/TRCI2oFGip88b5OXQVSGauGZwmHDsIlRy14e8FyOfsbZ9R8Qwt+ALchD23uhvjFyg
-         pZfI3m8pX1kVOFXHsjWcbUJd5n94a5aTDEfGZrT5M96US8Va/mT64Ij+ywevp1SHALbA
-         C9g02KUKHzVL8KEfnvpvLmKoufb6Y7r5l9eUrZOjHd4tOcwe8txh9tyrVFLIOsEpM5Qt
-         DsTNJPGukqghCcI4Tb8dfIPJvLcvkkW5yXACppDfsBDEY2Zr1PS+7AyJbcA3kX00RLn2
-         TMRQ==
+        bh=h4yk0L0m2YyOV3Nsx1VlOk0MGMOAEd0mQJ4qs4qAJKA=;
+        b=AV7yuJwfMpAWDh9609+yB12v2hIAuX02dpTRybfODTnbO+j+FxxIOiWJPDI9SZcL1e
+         sx1qAxuEev7l+pdiDSLaBYs+AzLYA3qMpJ5XwgtT6GkTBSeEyiVwaUD65r1e+GgZ0XQ9
+         Bk82VGxulW/XKJzsCfq9oFZ2CKWicJbZQeELSc5eYgimG9Zar7vuUdH0uEzEB4tze75a
+         ze8tDavJbKn6vS8eX7rFLpYMOyrEeCZOCwRcAIFMeeRSIRxP2JonXmnbrPb12tUwFbuz
+         Bz3hG/fNgwldzRebgAnrLX/vINq4yJPqO9bZpKgeX5Suws2ZnUAIgNoG6o5BgMNDAjxQ
+         rlmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758294177; x=1758898977;
+        d=1e100.net; s=20230601; t=1758294201; x=1758899001;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RuhmeiLRDOZblDBgAns4hX7zt5ydWj4wdgPVrc0nj58=;
-        b=AGly0XNwKtEQIHlYiT1eEf/K6nTHM3596m9jiRE80CRkbj0MTo0CjTbNi0M5JwzV/g
-         XHs5POtzGiBDvaFA/2J/5H5kLtHCymdHXVuQQIEUW0OOSdHUiblKNRS66XxFVhw3nCWi
-         WlarY31LatxerQnb9PnJ2fiIqg/x1yfdlKeCtcWLzwOhjYWcLloCbh+Uo1XPMGioyC+9
-         72p4O65lHmVec2/zor0HMWn0YF70uI4PGxb4+rEjxn4W3jb98R0ygkRgx/craSOgh+lU
-         0JaOxNxuihfAYFNwqZ2eDGEim1lYjxca68ul4e5D7utNAE5ZoarSzdHpsMBjRAr30f1M
-         gPww==
-X-Forwarded-Encrypted: i=1; AJvYcCXfrK2Mc82RBvcPvCzQeZnS5Hcglh7KNqIUR/HxKLlLRE4dWyGDSjkMIqr3kY83ST2uzK1Il3b1PftX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywai7ad+FsPzOPWtd9TbpBz0B5ETV42RFa7pX73kUVe/hURT6PA
-	JbzA1enp20HvCuEKRcXAxfKV9rR4zOLQzvwfDcc1d0rGfV5AImrJu1044K636o3CmBw=
-X-Gm-Gg: ASbGncurwnK3OYHIQMmO8tyak6Vuwn7JF5WA9jTayd4vZpLhQ8eEa9dwLWzwPZo+jZg
-	if0WEx/A8DgJmrKeK+jGNinV7IxFrxyYOo6nBsQnrLeYWbImgrCPdfxCq79qwm5wwsovOaZMW39
-	MxtjTTq5vU8S5hw8DIUHIz1U/9q0QhN49jAIMbUSvMouFHOf+/h+TI5vnhZGCsZsN/3lal8ER2s
-	STOY9jcC2uSG9ke/PgSHz5Bo68ZVydlA7w1iGiWN0rPpCBlTwm/ed4vx63q9GKEWsoU1Jkbvf06
-	g0pq4GyP+5H+hhia5v0NJpy6DYpaSVOeWD9TnbckdNnE6PgYkS7TXov7kJzK6/RJj6u41/2x9m2
-	az0hS0AJjsirzpORkZU6k6L9NuiSycTE2
-X-Google-Smtp-Source: AGHT+IFfO0W8JQzVl/Y/fMJyVo1TEp0T/8tQQYw78b9ni5HcTOJsYbcXUUCxll2lkB3I4VDq0l24kg==
-X-Received: by 2002:a17:906:bc94:b0:b04:7232:3ea9 with SMTP id a640c23a62f3a-b24f56858a3mr307356066b.50.1758294177283;
-        Fri, 19 Sep 2025 08:02:57 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:b511:37d7:e73a:6aaa])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fd1102093sm458529066b.83.2025.09.19.08.02.56
+        bh=h4yk0L0m2YyOV3Nsx1VlOk0MGMOAEd0mQJ4qs4qAJKA=;
+        b=PYG1kSF8E1ZCCEDQVGcttNFOwux92OIgO6826+ttEY6OEAIMDYN8l5CwhGTlFwgxWD
+         xJEbI7iK63nlP028qcLWcO+hyeMcFNtrnMAUSGK0osx/kTq2nV6jgtoTOaVKxXDHldi3
+         hPPAK0lNTZCZPHHerQBVELXVCsU9GN+fLXqys/CQzXPW1jNONnB6mSqQrsSoYog6u0oe
+         3b2OnLPwas6eo4Iz6/u8F1dHisUsVfAcdVJvHtJ/1a/jrUOqXRJmemIJBdohAqRV5o4/
+         ZRUfV7ezFWoD6Uji/e/jmqFaba+lP5G0AA4oLcU8x8k0FBY0qYWVIfBJSGadwrpIBWTm
+         VNIA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVIHUc6aRu6MTCtjT0MwzHFh3tdMZqOa4Hm/nm9iPfJCPLBjgJrDP0aa9gZjctVOLGCsk6aqlDviig@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxVd8apolAxZxMl/Y3L+22BjhpkFG3HEyDnJSyaKrl+JGib56W
+	dFZrc8p2E6Vs/i10gnGoTCBxvcXxL8rDogD59TzZu09ZYHPKCCquD+Poj/oXjQFRow==
+X-Gm-Gg: ASbGnctYP8X1nJD71Q8cFSB8P4ISmtcMWOjddJySUPhaYTC7+cGPSopYwodnDIVakrF
+	yE07tzOi2W4BsyujLPkJfLXPw0i/T8nm/G0aXpn0xAGPw27/47DjYu9kYbgsihlLWBbGT6ZkH7e
+	ORYtDkY1zQq3MD7zgHFCRkKpiRev4iXi2EjcP9nGV5Sf20J7Tp986bgIpEOVc2npmzi051EBidr
+	B1ZE9GeywHapf0Om3rxyJgd0Fur4inBOIO67yD1V5Fvwriv4G1eqfdO2Z5B4Mt3Tb/JAIp6FMKw
+	LWWx4FJxL6L4j7o0gy7mDMs0qeUqC6qkdQqSpbSvnWHOHqsWj+k+IlDpCgt4bITzj/h9SXKE+Y4
+	3R/i/vnH7QcTV35Q1vPt2MVNktuHMnbg7a1E=
+X-Google-Smtp-Source: AGHT+IFp77cMd6GqPBGe5WvLIisHAqV/1FC5no9jIM9sJ2NZm/RlCjBbuh5QO7SS6a/+S22CdYggrQ==
+X-Received: by 2002:a05:620a:520a:b0:825:dd8f:1a61 with SMTP id af79cd13be357-83ba2c93824mr366464385a.3.1758294201220;
+        Fri, 19 Sep 2025 08:03:21 -0700 (PDT)
+Received: from rowland.harvard.edu ([2601:19b:d03:1700::bb27])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-836304820e7sm350662085a.40.2025.09.19.08.03.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 08:02:56 -0700 (PDT)
-Date: Fri, 19 Sep 2025 17:02:52 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Xilin Wu <sophon@radxa.com>
-Cc: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+        Fri, 19 Sep 2025 08:03:20 -0700 (PDT)
+Date: Fri, 19 Sep 2025 11:03:17 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Johan Hovold <johan@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] phy: qcom: edp: Add missing ref clock to x1e80100
-Message-ID: <aM1wnAw0mA-iNgJy@linaro.org>
-References: <20250909-phy-qcom-edp-add-missing-refclk-v3-0-4ec55a0512ab@linaro.org>
- <6A43111ED3D39760+a88e4a65-5da8-4d3b-b27e-fa19037462c8@radxa.com>
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] usb: uhci: Add reset control support
+Message-ID: <9c867c34-047d-4771-b9a6-a2c88dd1f800@rowland.harvard.edu>
+References: <20250919025712.719246-1-ryan_chen@aspeedtech.com>
+ <20250919025712.719246-3-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,193 +93,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6A43111ED3D39760+a88e4a65-5da8-4d3b-b27e-fa19037462c8@radxa.com>
+In-Reply-To: <20250919025712.719246-3-ryan_chen@aspeedtech.com>
 
-On Fri, Sep 19, 2025 at 07:06:36PM +0800, Xilin Wu wrote:
-> On 9/9/2025 3:33 PM, Abel Vesa wrote:
-> > According to documentation, the DP PHY on x1e80100 has another clock
-> > called ref.
-> > 
-> > The current X Elite devices supported upstream work fine without this
-> > clock, because the boot firmware leaves this clock enabled. But we should
-> > not rely on that. Also, when it comes to power management, this clock
-> > needs to be also disabled on suspend. So even though this change breaks
-> > the ABI, it is needed in order to make we disable this clock on runtime
-> > PM, when that is going to be enabled in the driver.
-> > 
-> > So rework the driver to allow different number of clocks, fix the
-> > dt-bindings schema and add the clock to the DT node as well.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > Changes in v3:
-> > - Use dev_err_probe() on clocks parsing failure.
-> > - Explain why the ABI break is necessary.
-> > - Drop the extra 'clk' suffix from the clock name. So ref instead of
-> >    refclk.
-> > - Link to v2: https://lore.kernel.org/r/20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org
-> > 
-> > Changes in v2:
-> > - Fix schema by adding the minItems, as suggested by Krzysztof.
-> > - Use devm_clk_bulk_get_all, as suggested by Konrad.
-> > - Rephrase the commit messages to reflect the flexible number of clocks.
-> > - Link to v1: https://lore.kernel.org/r/20250730-phy-qcom-edp-add-missing-refclk-v1-0-6f78afeadbcf@linaro.org
-> > 
-> > ---
-> > Abel Vesa (3):
-> >        dt-bindings: phy: qcom-edp: Add missing clock for X Elite
-> >        phy: qcom: edp: Make the number of clocks flexible
-> >        arm64: dts: qcom: Add missing TCSR ref clock to the DP PHYs
-> > 
-> >   .../devicetree/bindings/phy/qcom,edp-phy.yaml      | 28 +++++++++++++++++++++-
-> >   arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 12 ++++++----
-> >   drivers/phy/qualcomm/phy-qcom-edp.c                | 16 ++++++-------
-> >   3 files changed, 43 insertions(+), 13 deletions(-)
-> > ---
-> > base-commit: 65dd046ef55861190ecde44c6d9fcde54b9fb77d
-> > change-id: 20250730-phy-qcom-edp-add-missing-refclk-5ab82828f8e7
-> > 
-> > Best regards,
+On Fri, Sep 19, 2025 at 10:57:10AM +0800, Ryan Chen wrote:
+> Some SoCs, such as the Aspeed AST2700, require the UHCI controller
+> to be taken out of reset before it can operate. Add optional reset
+> control support to the UHCI platform driver.
 > 
-> Hi,
+> The driver now acquires an optional reset line from device tree,
+> deasserts it during probe, and asserts it again in the error path
+> and shutdown.
 > 
-> I'm observing what looks like a related clock failure on sc8280xp when
-> booting without a monitor connected to a DP-to-HDMI bridge on mdss0_dp2.
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/usb/host/uhci-hcd.h      |  1 +
+>  drivers/usb/host/uhci-platform.c | 18 ++++++++++++++++--
+>  2 files changed, 17 insertions(+), 2 deletions(-)
 > 
-> Do you think sc8280xp might require a similar fix, or could this be a
-> different issue?
-> 
-> 
-> [    0.390390] ------------[ cut here ]------------
-> [    0.390398] disp0_cc_mdss_dptx2_link_clk_src: rcg didn't update its
-> configuration.
-> [    0.390419] WARNING: CPU: 0 PID: 63 at drivers/clk/qcom/clk-rcg2.c:136
-> update_config+0xa4/0xb0
-> [    0.390439] Modules linked in:
-> [    0.390448] CPU: 0 UID: 0 PID: 63 Comm: kworker/u32:1 Not tainted 6.16.3+
-> #45 PREEMPT(lazy)
-> [    0.390455] Hardware name: Qualcomm QRD, BIOS
-> 6.0.250905.BOOT.MXF.1.1.c1-00167-MAKENA-1 09/ 5/2025
-> [    0.390460] Workqueue: events_unbound deferred_probe_work_func
-> [    0.390476] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
-> BTYPE=--)
-> [    0.390482] pc : update_config+0xa4/0xb0
-> [    0.390492] lr : update_config+0xa4/0xb0
-> [    0.390500] sp : ffff80008351b9e0
-> [    0.390504] x29: ffff80008351b9e0 x28: 0000000000000000 x27:
-> ffff0000850ec3c0
-> [    0.390515] x26: ffff800081205320 x25: 0000000000000002 x24:
-> 0000000000000000
-> [    0.390523] x23: ffff8000812052a0 x22: ffff000080467800 x21:
-> ffff800081207ef0
-> [    0.390531] x20: ffff8000822ad6f0 x19: 0000000000000000 x18:
-> ffffffffffc06b68
-> [    0.390539] x17: 616c707369642e30 x16: 3030313065613a6d x15:
-> ffff800081474230
-> [    0.390547] x14: ffffffffff806b67 x13: 2e6e6f6974617275 x12:
-> 6769666e6f632073
-> [    0.390556] x11: 0000000000000058 x10: 0000000000000018 x9 :
-> ffff8000814742b8
-> [    0.390565] x8 : 0000000000afffa8 x7 : 0000000000000179 x6 :
-> ffff800081f742b8
-> [    0.390574] x5 : ffff800081f742b8 x4 : 0000000000000178 x3 :
-> 00000000fffdffff
-> [    0.390582] x2 : ffff8000814741f8 x1 : ffff00008091cec0 x0 :
-> 0000000100000000
-> [    0.390591] Call trace:
-> [    0.390595]  update_config+0xa4/0xb0 (P)
-> [    0.390606]  clk_rcg2_set_parent+0x58/0x68
-> [    0.390617]  clk_core_set_parent_nolock+0xc4/0x1e0
-> [    0.390630]  clk_set_parent+0x40/0x144
-> [    0.390638]  of_clk_set_defaults+0x12c/0x520
-> [    0.390645]  platform_probe+0x38/0xdc
-> [    0.390652]  really_probe+0xc0/0x390
-> [    0.390657]  __driver_probe_device+0x7c/0x150
-> [    0.390663]  driver_probe_device+0x40/0x120
-> [    0.390667]  __device_attach_driver+0xbc/0x168
-> [    0.390673]  bus_for_each_drv+0x74/0xc0
-> [    0.390684]  __device_attach+0x9c/0x1ac
-> [    0.390688]  device_initial_probe+0x14/0x20
-> [    0.390694]  bus_probe_device+0x9c/0xa0
-> [    0.390703]  deferred_probe_work_func+0xa8/0xf8
-> [    0.390713]  process_one_work+0x150/0x2b0
-> [    0.390725]  worker_thread+0x2d0/0x3ec
-> [    0.390731]  kthread+0x118/0x1e0
-> [    0.390738]  ret_from_fork+0x10/0x20
-> [    0.390751] ---[ end trace 0000000000000000 ]---
-> [    0.390760] clk: failed to reparent disp0_cc_mdss_dptx2_link_clk_src to
-> aec2a00.phy::link_clk: -16
-> [    0.401093] ------------[ cut here ]------------
-> [    0.401096] disp0_cc_mdss_dptx2_pixel0_clk_src: rcg didn't update its
-> configuration.
-> [    0.401112] WARNING: CPU: 0 PID: 63 at drivers/clk/qcom/clk-rcg2.c:136
-> update_config+0xa4/0xb0
-> [    0.401126] Modules linked in:
-> [    0.401132] CPU: 0 UID: 0 PID: 63 Comm: kworker/u32:1 Tainted: G   W
-> 6.16.3+ #45 PREEMPT(lazy)
-> [    0.401141] Tainted: [W]=WARN
-> [    0.401144] Hardware name: Qualcomm QRD, BIOS
-> 6.0.250905.BOOT.MXF.1.1.c1-00167-MAKENA-1 09/ 5/2025
-> [    0.401147] Workqueue: events_unbound deferred_probe_work_func
-> [    0.401159] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS
-> BTYPE=--)
-> [    0.401164] pc : update_config+0xa4/0xb0
-> [    0.401174] lr : update_config+0xa4/0xb0
-> [    0.401182] sp : ffff80008351b9e0
-> [    0.401185] x29: ffff80008351b9e0 x28: 00000000fffffff0 x27:
-> ffff0000850ec3c0
-> [    0.401194] x26: ffff800081205320 x25: 0000000000000002 x24:
-> 0000000000000000
-> [    0.401203] x23: ffff8000812052a0 x22: ffff000080467800 x21:
-> ffff800081207ea0
-> [    0.401211] x20: ffff8000822ad640 x19: 0000000000000000 x18:
-> ffffffffffc07528
-> [    0.401219] x17: 32636561206f7420 x16: 0001020ef3c08cb3 x15:
-> ffff800081474230
-> [    0.401227] x14: ffffffffff807527 x13: 2e6e6f6974617275 x12:
-> 6769666e6f632073
-> [    0.401235] x11: 0000000000000058 x10: 0000000000000018 x9 :
-> ffff8000814742b8
-> [    0.401243] x8 : 0000000000afffa8 x7 : 00000000000001a4 x6 :
-> ffff800081f742b8
-> [    0.401252] x5 : ffff800081f742b8 x4 : 00000000000001a3 x3 :
-> 00000000fffdffff
-> [    0.401260] x2 : ffff8000814741f8 x1 : ffff00008091cec0 x0 :
-> 0000000100000000
-> [    0.401268] Call trace:
-> [    0.401271]  update_config+0xa4/0xb0 (P)
-> [    0.401281]  clk_rcg2_set_parent+0x58/0x68
-> [    0.401291]  clk_core_set_parent_nolock+0xc4/0x1e0
-> [    0.401299]  clk_set_parent+0x40/0x144
-> [    0.401308]  of_clk_set_defaults+0x12c/0x520
-> [    0.401314]  platform_probe+0x38/0xdc
-> [    0.401321]  really_probe+0xc0/0x390
-> [    0.401325]  __driver_probe_device+0x7c/0x150
-> [    0.401330]  driver_probe_device+0x40/0x120
-> [    0.401335]  __device_attach_driver+0xbc/0x168
-> [    0.401340]  bus_for_each_drv+0x74/0xc0
-> [    0.401349]  __device_attach+0x9c/0x1ac
-> [    0.401353]  device_initial_probe+0x14/0x20
-> [    0.401358]  bus_probe_device+0x9c/0xa0
-> [    0.401367]  deferred_probe_work_func+0xa8/0xf8
-> [    0.401377]  process_one_work+0x150/0x2b0
-> [    0.401384]  worker_thread+0x2d0/0x3ec
-> [    0.401390]  kthread+0x118/0x1e0
-> [    0.401395]  ret_from_fork+0x10/0x20
-> [    0.401405] ---[ end trace 0000000000000000 ]---
-> [    0.401412] clk: failed to reparent disp0_cc_mdss_dptx2_pixel0_clk_src to
-> aec2a00.phy::vco_div_clk: -16
-> 
+> diff --git a/drivers/usb/host/uhci-hcd.h b/drivers/usb/host/uhci-hcd.h
+> index 13ee2a6144b2..4326d1f3ca76 100644
+> --- a/drivers/usb/host/uhci-hcd.h
+> +++ b/drivers/usb/host/uhci-hcd.h
+> @@ -445,6 +445,7 @@ struct uhci_hcd {
+>  	short load[MAX_PHASE];			/* Periodic allocations */
+>  
+>  	struct clk *clk;			/* (optional) clock source */
+> +	struct reset_control *rsts;		/* (optional) clock reset */
+>  
+>  	/* Reset host controller */
+>  	void	(*reset_hc) (struct uhci_hcd *uhci);
+> diff --git a/drivers/usb/host/uhci-platform.c b/drivers/usb/host/uhci-platform.c
+> index 62318291f566..f255358d6242 100644
+> --- a/drivers/usb/host/uhci-platform.c
+> +++ b/drivers/usb/host/uhci-platform.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/of.h>
+>  #include <linux/device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  
+>  static int uhci_platform_init(struct usb_hcd *hcd)
+>  {
+> @@ -132,17 +133,29 @@ static int uhci_hcd_platform_probe(struct platform_device *pdev)
+>  		goto err_rmr;
+>  	}
+>  
+> +	uhci->rsts = devm_reset_control_array_get_optional_shared(&pdev->dev);
+> +	if (IS_ERR(uhci->rsts)) {
+> +		ret = PTR_ERR(uhci->rsts);
+> +		goto err_clk;
+> +	}
+> +	ret = reset_control_deassert(uhci->rsts);
 
-The same happens on the X1E Devkit if there is nothing connected to the
-HDMI port. I believe you are looking for my patch series instead. :-)
+Does this work right if uhci->rsts is NULL?
 
-https://lore.kernel.org/r/20250814-platform-delay-clk-defaults-v1-0-4aae5b33512f@linaro.org/T/
+> +	if (ret)
+> +		goto err_clk;
+> +
+>  	ret = platform_get_irq(pdev, 0);
+>  	if (ret < 0)
+> -		goto err_clk;
+> +		goto err_reset;
+>  
+>  	ret = usb_add_hcd(hcd, ret, IRQF_SHARED);
+>  	if (ret)
+> -		goto err_clk;
+> +		goto err_reset;
+>  
+>  	device_wakeup_enable(hcd->self.controller);
+>  	return 0;
+>  
+> +err_reset:
+> +	if (!IS_ERR_OR_NULL(uhci->rsts))
+> +		reset_control_assert(uhci->rsts);
 
-If it works for you, replying with a Tested-by there would be much
-appreciated. I'm still trying to convince folks that the approach of the
-series is the best way to move forward with this issue. :-)
+How could this code ever execute if uhci->rsts is an ERR_PTR?
 
-Thanks,
-Stephan
+Also, why does this code test for NULL...
+
+>  err_clk:
+>  	clk_disable_unprepare(uhci->clk);
+>  err_rmr:
+> @@ -156,6 +169,7 @@ static void uhci_hcd_platform_remove(struct platform_device *pdev)
+>  	struct usb_hcd *hcd = platform_get_drvdata(pdev);
+>  	struct uhci_hcd *uhci = hcd_to_uhci(hcd);
+>  
+> +	reset_control_assert(uhci->rsts);
+
+when this code doesn't?
+
+Alan Stern
+
+>  	clk_disable_unprepare(uhci->clk);
+>  	usb_remove_hcd(hcd);
+>  	usb_put_hcd(hcd);
+> -- 
+> 2.34.1
+> 
 
