@@ -1,98 +1,147 @@
-Return-Path: <devicetree+bounces-219513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA03AB8C10A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 08:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE32B8C11B
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 08:50:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C50D562E87
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 06:45:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87DD75A09AF
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 06:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FD32D6E47;
-	Sat, 20 Sep 2025 06:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4992EAB6A;
+	Sat, 20 Sep 2025 06:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="SYNAL7ZZ"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Mu0WT1kU";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="sb2pc5UT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E01B2D63E5
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 06:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBE03D6F;
+	Sat, 20 Sep 2025 06:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758350698; cv=none; b=YhGVMyZEe7cC9GyOd1gVjBFpz6ukI1uQb5ogBJVaSoYg9oLFg1dGbWJAlXfiCDPDK2nHg/LB6t3ftX8EYD5xHSNqTuxZDjC22t0yKG+RMfA6yHDnDzsyKE/CP2EtCv/FgVxtNgzRiBLpCPjrAXIFEiVoysbJzbFzJ4/AJxr9BM8=
+	t=1758351034; cv=none; b=etyPG6bG7utYNA6Gp/GMq49/ExhFATKLIx3agLJSh+fc9Wb14YMejPd0ybbZz+m0cn+pdG5qJTSk4y7U3zQikqCxxsnEr603c1Myz2Qw9yX6TnjnFy5mnoIUwycoGVp9llesglZ3UesgKdqIFI2NMbsu9fdd+v3Ufxyh2BQjklo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758350698; c=relaxed/simple;
-	bh=GOOW/d/ss8up/fz43pypDl4Y02NWzBsQZ6XqY2/VBCE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sNx14ZrOPB5Eg2NZv/NsIbDyvfxq4EBXkM7ynHxYWakM5ncqWvwoKb8A/EzT7s2IuXZh4DU1kR6tFmcyS2QtekBUdGyv7XxCmevxRQD9qsX2SwII2uZQEgLB0yp4DKx3+kdBHJURMFMKcoSFyQNrvNVJqz5LE43NzsxWy9OwAus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=SYNAL7ZZ; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=tAQzM1sJbeBSeptPyMrJdNzl+tol7KBGvjuoPdcZrVc=; b=SYNAL7
-	ZZr5mWNusA9XYw6JVntlViD0ZszPNniDnJBBrz4FLVW8hZVDY9cNDya1chzSdGM5
-	rGOQxPBfdR+tXO0MBRaDF9c3thIZPFmUn9rEzX5Mjmn+k0LgjpV+Yq8Z3CQA0orX
-	pyxlcH44VRtp0Bhehyen8WY3A5+/khGxiCRCm9jJ1h9xHWyFeUea07SSdf67nHWJ
-	efmSkYRVJJbLgyPOZBfS1mpzCLu33mBwUus1i4mdTow28dGNrcZyFbemd7sXTCJC
-	xRN9ewWFVlm0UZHKC6yG/MJ7p4F3hVRclGB0LdJqVFgBqS9bito7Q3aJjiMVylbT
-	DafllC0AztWh7g6w==
-Received: (qmail 4169376 invoked from network); 20 Sep 2025 08:44:46 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Sep 2025 08:44:46 +0200
-X-UD-Smtp-Session: l3s3148p1@MF0D7DU/eskgAwDPXwQHAL/S9V79e5yL
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [RFC PATCH 6/6] arm64: dts: renesas: ulcb: mark SWDT as reserved
-Date: Sat, 20 Sep 2025 08:44:33 +0200
-Message-ID: <20250920064428.5544-14-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250920064428.5544-8-wsa+renesas@sang-engineering.com>
-References: <20250920064428.5544-8-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1758351034; c=relaxed/simple;
+	bh=MjWkIR76I1fTlnqtv2BmHI0tJUeHTaAgBYhO8/TTe4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BR2yb3zRAs8aMWgaedoVL5pIWVZFMpbJcRWo7Xu3+uPaYQnQPoNrczp32qT6avArTLgOnfHJ/aYLwztZYkO94AuZcrKHLk95WbvAT3zygOPPzf8gVMLYhN+SzdF2SKyE0VRU/g0QcbFsnJoDjlPqa68GoPxOWWrEhamq0uvKYSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Mu0WT1kU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=sb2pc5UT; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1758350983; bh=AW17lv89eSJE61jE0VgMo7I
+	K1f6MgMq0qzbJdrYGhAU=; b=Mu0WT1kUgl5cQlQ5PX2jRN2PMPq/dDr7fRG/j6P0q/F6ULS3KE
+	xoivzs0uuNLw4YbnCqJ/RpZ/PfDofasRt6XK59LmkyQwhHfrYQs5bo3vCn4BfUfSMZCWKBpoxJV
+	vMP/Z2Sr8hc2GauwgD00WGBgzerVfzWAzFlX2DTdBLXVaGuNIxQ6AhMRvo9an2gF8HJZ+IlipSj
+	ZFbt0CEcr+vfPWQLXzlDP1a7ZwX8LCwXd9Zavc+fRk0VUvcp2Vr1vhIGSK2ElWRDGPsIfvXrcrb
+	5MpdxFv/SmLCVSnaS9Ly+kcSIAagZt63ASSYPlG0/PYmKuYDp+HZCucRJi734fkCYdQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1758350983; bh=AW17lv89eSJE61jE0VgMo7I
+	K1f6MgMq0qzbJdrYGhAU=; b=sb2pc5UTtihwQjvou4NnnaSmANU2soJblZAj9CMKygiR43FHTi
+	g56bTIeDIQPJ5/5lGPQJtPn7nlgAN0FmJpBw==;
+Date: Sat, 20 Sep 2025 13:49:34 +0700
+From: Dang Huynh <dang.huynh@mainlining.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, dmaengine@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, linux-mmc@vger.kernel.org
+Subject: Re: [PATCH 05/25] dt-bindings: rtc: Add RDA Micro RDA8810PL RTC
+Message-ID: <cr5gkkckxan2b2x23knfwb35a4ulngsp6gguqhcku3z6ghzkcn@cq4krj5qxy3r>
+References: <20250917-rda8810pl-drivers-v1-0-74866def1fe3@mainlining.org>
+ <20250917-rda8810pl-drivers-v1-5-74866def1fe3@mainlining.org>
+ <20250917-contort-sassy-df07fd7515a0@spud>
+ <c905fb3ace281280f1ac11c7fbe8e0aa@mainlining.org>
+ <20250918-unharmed-bloating-8b573513fce6@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250918-unharmed-bloating-8b573513fce6@spud>
 
-This watchdog can't be used with Linux because the firmware needs it on
-ULCB boards. Sadly, it doesn't mark the node as reserved, so this is
-added manually here.
+On Thu, Sep 18, 2025 at 04:18:25PM +0100, Conor Dooley wrote:
+> On Thu, Sep 18, 2025 at 11:11:10AM +0700, Dang Huynh wrote:
+> > On 2025-09-18 03:46, Conor Dooley wrote:
+> > > On Wed, Sep 17, 2025 at 03:07:22AM +0700, Dang Huynh wrote:
+> > > > Add documentation describing the RTC found in RDA8810PL SoC.
+> > > > 
+> > > > Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
+> > > > ---
+> > > >  .../devicetree/bindings/rtc/rda,8810pl-rtc.yaml    | 30
+> > > > ++++++++++++++++++++++
+> > > >  1 file changed, 30 insertions(+)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
+> > > > b/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..3ceae294921cc3211cd775d9b3890393196faf82
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
+> > > > @@ -0,0 +1,30 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/rtc/rda,8810pl-rtc.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: RDA Micro RDA8810PL Real Time Clock
+> > > > +
+> > > > +maintainers:
+> > > > +  - Dang Huynh <dang.huynh@mainlining.org>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: rda,8810pl-rtc
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > 
+> > > Your driver implements functions that turn on an alarm irq, but there is
+> > > none mentioned here. What's going on there?
+> > The RTC doesn't seem to have an AP IRQ associated. I can't find any
+> > reference to it on downstream kernel and the docs.
+> > 
+> > > 
+> > > Additionally, there's no clocks property? For an onboard RTC I'd have
+> > > expected there to be a clock sourced outside of the block.
+> 
+> What about the clock?
+I'll fix this in v2.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- arch/arm64/boot/dts/renesas/ulcb.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+> 
+> > > 
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    rtc@1a06000 {
+> > > > +      compatible = "rda,8810pl-rtc";
+> > > > +      reg = <0x1a06000 0x1000>;
+> > > > +    };
+> > > > 
+> > > > --
+> > > > 2.51.0
 
-diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-index 8a30908992ab..a9e53b36f1d9 100644
---- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
-@@ -495,6 +495,11 @@ &ssi1 {
- 	shared-pin;
- };
- 
-+/* Firmware should reserve it but sadly doesn't */
-+&swdt {
-+	status = "reserved";
-+};
-+
- &usb2_phy1 {
- 	pinctrl-0 = <&usb1_pins>;
- 	pinctrl-names = "default";
--- 
-2.47.2
 
 
