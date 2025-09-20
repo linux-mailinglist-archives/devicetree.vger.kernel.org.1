@@ -1,119 +1,159 @@
-Return-Path: <devicetree+bounces-219576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56B9B8CBA3
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:32:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B1BB8CB8E
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 969861BC2A16
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:32:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BB667E0787
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A113016FA;
-	Sat, 20 Sep 2025 15:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E9A2248B3;
+	Sat, 20 Sep 2025 15:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="WAf3mWuW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qg2bH4tc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18DB22D793
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3718C21CC64
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758382305; cv=none; b=Uo8RYbONVyk9bvXHM4nhcfTZfr085gLJsT4+QnTsvHe4wz6VXVSILKIF4PMtt5YXjqIHlYTD0Jg2DPeNpzsQqjc0fFKoMDCX332mzulNZcejTJ0cdFLqSBf6iB92lRp5P6GNXuI6ACILTTE3fY6eYo44t3shfeVLG0Huz4KoKao=
+	t=1758382303; cv=none; b=ObcHVamcramdL6i3swVKbPV3n7F4qZSFhVrdo1Jezyfxr9GVhLat/zLECD7w3+WofXgbEjciXrgSf8aJ8Ui3olz35t6HwWs0B2LuOGQ8Tqh7vdy7q7jRl0Y0YyWuf7hmlP/NuPbw9k41Y53aORhrzdcs6zlsihh2qpD63pWnVsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758382305; c=relaxed/simple;
-	bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F8GTX5V7tbOYSLng6d2T0MNOPfB63Uut3+E47NhURUHvS9CYYnsf1VXRGC3gyThSMggwXfaBvD23hheidQ5TXbV4mHftwLEinRVtzEvNkhFDM4jKwd2mhzp9EmqdoQBSEC/vFoakbMZ6AVzLt5MahPmT2E2iP6yS1Vj/PdpbyqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=WAf3mWuW; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=WAf3mWuW96hFGq4BJ1iyiYkb4moeL6UPzqDlqymZ+dlV7xLfdfkz1x0WMaBLy6FjKAm3pByUXkuGAhwCyn7rIW4TQs86m6jOp62JAXSuMwcqnlE5O4gvRP+ucHbEoVUegH+eyfc+rZOsEXz+vet+wjpu6Gt0nLEIBOgYSUBk3qc0EXvXzXG9SODBcK1Ns2K3VotnwccF4Obr9ILwxjpsSy/NDkiW5CZPn0KoK2FTsb5zRh+Q+fBx/bdwpf+u1k1ks+7PGDln8ASc4soWqdV+LcQqbMp7IamDU508cMnVoBBVoNeNOysORqg5p8fQ47WDgk9CfwzVjBb+YHtaA8KrWw==; s=purelymail1; d=purelymail.com; v=1; bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=; h=Feedback-ID:Received:From:Date:Subject:To;
-Feedback-ID: 68247:10037:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1935225507;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Sat, 20 Sep 2025 15:31:12 +0000 (UTC)
-From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Date: Sat, 20 Sep 2025 17:31:04 +0200
-Subject: [PATCH 2/2] i2c: mediatek: add support for MT6878 SoC
+	s=arc-20240116; t=1758382303; c=relaxed/simple;
+	bh=udxfCGmnVPp3xuxZUomY6Jk5jtbCwqUC6PXYgyxxiTw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k4of9Ug/2jrg7lQ/021lWlepj7ldO+Xe1N9XMNl/bVOfqfPSPRYL4rVBDOSZF+wl7mvwIAjA5qKgdDiRHthPIHbWdNw1G4RPHdq41aVL5QrhmVU/CqAWTj7jIxPM8u5HD0mUylzoPAQ/FcjVB0+ZKlrh0VuOSrWRlEgaLi2XqVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qg2bH4tc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58K3kaXO005850
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Agw1jf4xhD2dHvOPSs6hIpbq
+	udXfs5BkybpcFGMrFAA=; b=Qg2bH4tcfoIH9x0hMOcjMnqT2Tnhanqu0xSzf9vr
+	UxJTTIAX2EDnB/J/yjVXv+isq8NlO4GN3npTf3glkUOHfPXNMxhsRNBzrLOtZJXy
+	JHcB2TrR6Nq6W6sqvgUVC0jd3tioWSaHM7QdkKdvJYgJeEc/P/rAJfovXlhtzxSI
+	quiRW7Pw4BOZLISYzjZ+hqdU0YcPYPKXk75ZZ91BVXAoaI7vwusd291CYV9Sk6tP
+	YVFANlrRhtP3vSoIyFkh2PBzCYRRLGpefFUGBd2uA5JAeaJYzIo8MjF5KMlmyQzK
+	spCgGPqtmDKCZkTAZ1ZZFzJqJjppIx6y2PY9gRYmaMJupA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499mn78vm2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:40 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-798ab08dde5so32740796d6.2
+        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 08:31:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758382300; x=1758987100;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Agw1jf4xhD2dHvOPSs6hIpbqudXfs5BkybpcFGMrFAA=;
+        b=I+2uJ81TcgyU+G5gQS59lDtXD8+mQ0CDmQBC7SRCP/s0nz03hj2YrU/GwpgV4F4cg1
+         jpbfB9Nuz4YGf7wORvpQ+DTco4Ej5rOP0XVhc7x1pBfwlLQda2CBF5p9azY1hg7G9qFL
+         WYMURV8gdN7aHCHOCY4z0eHCSh0irZK2oM5v5JyV1PlPdoRa42E7DwfREReQsT+mvGKS
+         b0rQj+crgYNsWF4FEg2JPxwl5UONl3ZD17J3erYuR1bAu/Jr4LYY9ht3wCUkBgya1MgN
+         Fx/n1PJZ3JUAo9jS81MQiaC6YrecU41K9JiojkWJF9y2SP+JDL43EhaozIRan6JN6cbj
+         iA7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVlFKnjteNHWsCj9ZoibBo+rTHoUduAhPisMzI7jeAf6bvjTfBClGis3ZZ55rkpM4nElWQIxxmefj3U@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywg05IkhnpuqUPFGswGa0W6sy4AVSUksYJSTnJQWVKtOHy8ULIf
+	5P6xF3opM8XXALgWhJarEWnTiS/D+MtcoI5iZk0j2FQy9lg3qlohvzn7tl77L83Pr/ykr5/x6+9
+	Qmqtv8mbbJ06xhAr4YXlk3YWvpgZnJk+1ohKLMokgdq4QB9S5/RJmmy4JBTn+SPl0
+X-Gm-Gg: ASbGnctBFtpgwcN1FwaNVVUMTdq1hWg0x9IvSRcLEZeE1JpiPAH55ysPiqKPCRAS4rZ
+	gpzZn4A0aO3OxNwsZj3pGa5fUs8+hWyI5ftcdHv392Ym71bHJm8+pKYvxX6hHvQR+NeWaL8OY0H
+	1ZvLHMC78ke10EEPYPGTVoY0FAUiRJlqvXmzYMgYmh+s0z53yyVVqj7pBk3I2squNwxB1jj69JU
+	35eqQFh3ogET7tJSnaIldXNXAlllKCRDaSAtwwpr0aQR/CICsnyT+4GVAMyKnlwjxv5MfzAMTLc
+	Q/WoTzy3IGafhr1qignCuAVJdD+GB+1rYV5K+Q7Z4KLzMqeGvgiy+b2oOB6k0rXsviUsKTkCMot
+	JZgIm1DuFu+eoIVZdA+F9fJr/NcoyzLp/OGZAG6HyHqdPdPm5Jlyg
+X-Received: by 2002:a05:6214:62e:b0:768:f173:a0a1 with SMTP id 6a1803df08f44-79919dad1b6mr75240866d6.42.1758382300080;
+        Sat, 20 Sep 2025 08:31:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF5J8E1oBMgOvgfZk+xaTiZAs81UEBJOVjkmbbKOqjcN60ku0uMpKtLAmm2ZHJO1n+o1SNXFw==
+X-Received: by 2002:a05:6214:62e:b0:768:f173:a0a1 with SMTP id 6a1803df08f44-79919dad1b6mr75240506d6.42.1758382299623;
+        Sat, 20 Sep 2025 08:31:39 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-57cb7f53a76sm144778e87.102.2025.09.20.08.31.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Sep 2025 08:31:37 -0700 (PDT)
+Date: Sat, 20 Sep 2025 18:31:35 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
+        vkoul@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH 6/9] phy: qualcomm: qmp-combo: Update QMP PHY with Glymur
+ settings
+Message-ID: <kmo2xwxia334fba4nt3eyzijlet7ogv4trxskoog6ymkxmpsi7@2pr2pryaxxgp>
+References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
+ <20250920032108.242643-7-wesley.cheng@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250920-mt6878-i2c-bringup-v1-2-d1527ffd3cd7@mentallysanemainliners.org>
-References: <20250920-mt6878-i2c-bringup-v1-0-d1527ffd3cd7@mentallysanemainliners.org>
-In-Reply-To: <20250920-mt6878-i2c-bringup-v1-0-d1527ffd3cd7@mentallysanemainliners.org>
-To: Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Igor Belwon <igor.belwon@mentallysanemainliners.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758382267; l=1715;
- i=igor.belwon@mentallysanemainliners.org; s=20250908;
- h=from:subject:message-id; bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=;
- b=YZB3LNAadsjA02iG5NTdWh8e13gZGiQwzvjF7fYZg4rXVNL7C+SgjfARtCWlDTmE+QZhBzmlw
- 3jFtL39WcEyB6tm9nHVany5eM/8qY8rYRGWCPYF767QM2BTe3vzdSln
-X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
- pk=t9Kz6B3jEwJD7YAKcp8XftfEz7SUSlGbrsfFlbrrFwA=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250920032108.242643-7-wesley.cheng@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAzMyBTYWx0ZWRfX363UbsndYzWR
+ QPrvIGc5Ra37D0LYO7CX3e82LAkgZLG2h8TM/x6x6UwCW36Ya27VXg1b+acKlbxwt/cBg+60usu
+ BQ8ECkjTvp8Uq1NXy5+gREO206QiefP9EIUwNkwIGOAk8ZxokFeaxtPLwDT8rLaDpxIpbodzakX
+ ENXGyGHa006xF7fdB6NinLv5cBAesZ27qJ4C+JfwPR07PmIY7DZT/FHkOSunipzip1fJf97E1k+
+ /9aeQGLg44667G6AqT+ikip79lfUlm7cqax6iDzSQyZ10EM9pdqB/fPbdQ4D+C0MmzYqwo0hnwY
+ awn+8E7R20FMpzMJNuA6WkgHzNJbShpFDLs+U9hCr7ThT5c+gc4zijBxd2aRyHFtKF7RcPawbhz
+ Sx8XwGN7
+X-Proofpoint-GUID: hJZV1aIx6Qpkkq5zt3VXIVOXGBnPRNsd
+X-Proofpoint-ORIG-GUID: hJZV1aIx6Qpkkq5zt3VXIVOXGBnPRNsd
+X-Authority-Analysis: v=2.4 cv=EZrIQOmC c=1 sm=1 tr=0 ts=68cec8dd cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=gzIeawRUdsEZb0YUvHYA:9 a=CjuIK1q_8ugA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-20_06,2025-09-19_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 phishscore=0 suspectscore=0 priorityscore=1501
+ impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509200033
 
-Add support for the I2C units found in the MediaTek MT6878 SoC.
-Just like other recent MediaTek SoCs, it uses the v3 register offsets
-(which differ from v2 only by OFFSET_SLAVE_ADDR being
-0x94 instead of 0x4).
+On Fri, Sep 19, 2025 at 08:21:05PM -0700, Wesley Cheng wrote:
+> For SuperSpeed USB to work properly, there is a set of HW settings that
+> need to be programmed into the USB blocks within the QMP PHY.  Ensure that
+> these settings follow the latest settings mentioned in the HW programming
+> guide.  The QMP USB PHY on Glymur is a USB43 based PHY that will have some
+> new ways to define certain registers, such as the replacement of TXA/RXA
+> and TXB/RXB register sets.  This was replaced with the LALB register set.
+> 
+> There are also some PHY init updates to modify the PCS MISC register space.
+> Without these, the QMP PHY PLL locking fails.
+> 
+> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 309 ++++++++-
+>  .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h    |  17 +
+>  .../qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h   | 639 ++++++++++++++++++
+>  .../phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h  |  33 +
+>  .../phy-qcom-qmp-usb43-qserdes-com-v8.h       | 224 ++++++
+>  drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+>  6 files changed, 1225 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h
+>  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h
+>  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h
+>  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-qserdes-com-v8.h
+> 
 
-Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
----
- drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index ab456c3717db18eef74226de0ee88c49228796f5..085702aee006a6dd0ac89d1382a12fbac2d91c55 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -402,6 +402,19 @@ static const struct mtk_i2c_compatible mt6589_compat = {
- 	.max_dma_support = 32,
- };
- 
-+static const struct mtk_i2c_compatible mt6878_compat = {
-+	.regs = mt_i2c_regs_v3,
-+	.pmic_i2c = 0,
-+	.dcm = 0,
-+	.auto_restart = 1,
-+	.aux_len_reg = 1,
-+	.timing_adjust = 1,
-+	.dma_sync = 0,
-+	.ltiming_adjust = 1,
-+	.apdma_sync = 1,
-+	.max_dma_support = 36,
-+};
-+
- static const struct mtk_i2c_compatible mt7622_compat = {
- 	.quirks = &mt7622_i2c_quirks,
- 	.regs = mt_i2c_regs_v1,
-@@ -525,6 +538,7 @@ static const struct of_device_id mtk_i2c_of_match[] = {
- 	{ .compatible = "mediatek,mt2712-i2c", .data = &mt2712_compat },
- 	{ .compatible = "mediatek,mt6577-i2c", .data = &mt6577_compat },
- 	{ .compatible = "mediatek,mt6589-i2c", .data = &mt6589_compat },
-+	{ .compatible = "mediatek,mt6878-i2c", .data = &mt6878_compat },
- 	{ .compatible = "mediatek,mt7622-i2c", .data = &mt7622_compat },
- 	{ .compatible = "mediatek,mt7981-i2c", .data = &mt7981_compat },
- 	{ .compatible = "mediatek,mt7986-i2c", .data = &mt7986_compat },
 
 -- 
-2.51.0
-
+With best wishes
+Dmitry
 
