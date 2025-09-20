@@ -1,147 +1,123 @@
-Return-Path: <devicetree+bounces-219625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293FFB8D1B0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 23:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13776B8D200
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 00:42:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A51321B24EE2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 21:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F35D4189EF4C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 22:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7248028489D;
-	Sat, 20 Sep 2025 21:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999302236E1;
+	Sat, 20 Sep 2025 22:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGCB6x6m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2VD451v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E782C28312D
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 21:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6661E491B;
+	Sat, 20 Sep 2025 22:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758404652; cv=none; b=DumNyburrBHnPm+5cYyTMCWXplV+HbHKpwv2ZUAl4iHKIziXiRqLlZZi+NEirvvOQBixyXvvR270DqrcLkT13w5ndbl2um4HzGNXjwcRTVN4s2MtG2Tcs48Cx12ADVbNf1k3R4vukuFnlZUkcIGfLaX3vGxB8W9aqTrUpkzrNs0=
+	t=1758408121; cv=none; b=mu++fLPFkC5+bzEzKxRLHJW0IyKYkBHlnKNkUvoZWTJY5UCvckF8i03POTUpQs/mZUPIO3b1GACK1wpbWdpAPBlM6+Wuf1N9Yoh4l4BpJVoRG6gMxrozp8T0QpYTvSM2cGs28WSKJ2C5oRPU2sNl0HRhcjLWhqdXCmW8y4Hb2v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758404652; c=relaxed/simple;
-	bh=DVCcp2q5VKcd7KC9g3EJSBxxRQgEDpwWkfmRLnIh1Xk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pCFRKmHSGQkBcsogHv430SsjTgLHjLxQh5/aVFgUfKiOPR7Roq+jd+k0ywAG/IQxZ1a16kTjd1gQaIWQyBhc0s/ee/Ga+rj6eUhw5qXm26aKyVY4m2LdRKoxOKz+ftZV96hGlSG5G4jiyyXCguVTS9/E4TWKqJYHx58ljcyWD/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGCB6x6m; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-267f0fe72a1so21071565ad.2
-        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 14:44:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758404650; x=1759009450; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/XaK3Ga5I4OskdvUpK/KRvj93+5lScsBFICoRwq2vUw=;
-        b=JGCB6x6mP5ozvGnpZuiO6YO8WAsnhGdkS9KRxIH7POkfsJWk5CaOfkPNjZBn3O0XEx
-         pKPPFuqlsQgeKTF1hdV7pMDq7KQCjytDu4LvIz/6/ULoBqtmvaPDJO4RonWCR83c0Q+7
-         vIhdj8tAT8DEmV3ewr4TV16zU0s8glyt9e3NxNkSR8kA+tk+LCY280X+XpuSvT6gmvbt
-         qK0SO84rHCxd0DB7KyykFpXgdZil341JV7mnp9GtFu1QtGgdDkV4Uh03bqJprT66H7rn
-         1Jhp+EZPomENlrqzed0ABy6MSgX/szhR4Ajw7uKKMZsxWG6K2+1TE/cneO98Xg6w+TBu
-         Pwjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758404650; x=1759009450;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/XaK3Ga5I4OskdvUpK/KRvj93+5lScsBFICoRwq2vUw=;
-        b=itAFgW4+Loi6ME3xDP/SU3RI1j3Z+Vsgo2zkmBFv8prpt0+yMKyWo2ahmsgXlUAkmn
-         INpWXlOxV7t2WXeuXlweQ4alynzLnjnfAQMzqPqhjngy0tjJzNjtaHO5srSYTys2IZTT
-         Y3lQ/Vk2RxrMYoOo3L32dhuPzGmxYAO1Ne5DC9YeYyLSD4hGELF2PrG3Q+9Lsd3XTpNU
-         EnK7omUZbAkbKnIjsvLcmZ4cYohnxXuR/tLOnBfDPS1CXXCEE4epaRSLpHutJbukMFl3
-         i3MIxe2Irw1fS7z4pt0ktr0m9edgQptVL3TTN/JkGmjxvIk5Z8zReTM9XZLWZPM85I6n
-         86Tg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXmynXo4oynUhQrvzuvJ3EQEbGTJKNMt7GkRtUKJkCg7QoxlxWuVMhvmoo6A4uRLMiXcdcvykcACjR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrWwyuneyaNfLx02rvDh1nsTVMXxjj/dijC4kCYUQIXD7kmLze
-	THZYu7rZGezJK4RRbFVE27K4614V93dRZm75oeM4RWwRbg9/0wwgKIpD
-X-Gm-Gg: ASbGncsrqj7ffoJPNy3tPGhXTdDfZgPvcplDs8YXISnrps/sw/F8E2FQWxKPp/oJ2OE
-	pYYIXMQlDO+eLChVtbz2ffHWHqzwLXe0Uqx7rsi93IttEYB6H/1m4BEJ3ixVbUjDcITKvtcPLe8
-	PB/U6xgt8/kD9njyMskv+oNFcg1m721zgsvmAimrGaGrPM4SqS1xBYizT0Hdx+VWJ7iARaxa6aK
-	fBKw8q5Sl9uwi4kPlME/AE3frkH0FULkNFk8HRdAv0V0njwJI8EaUkhVcsNOTVsyvHcUchtRK8Y
-	VVo4Z8G+7lRK/EcPW01IshWpmMxTfX+A/Tstk9wnz1jlOjK1mzjaFfCfod72LyE1hkUTUZzznyg
-	fIW7CRdxTGS0ZFZgZJPFBWjoS4tSLpRo=
-X-Google-Smtp-Source: AGHT+IGstBVeN4BQ2EHAw6pn8u8U0MiwUr1OFBQKcuOmxzx9i3nxQXrFoOaA2+s/lnUkyZn6bVvZmQ==
-X-Received: by 2002:a17:903:2284:b0:269:9adf:839 with SMTP id d9443c01a7336-269ba427cb8mr100761545ad.19.1758404649948;
-        Sat, 20 Sep 2025 14:44:09 -0700 (PDT)
-Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-330606509e9sm9225974a91.9.2025.09.20.14.44.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Sep 2025 14:44:08 -0700 (PDT)
-Date: Sat, 20 Sep 2025 18:44:52 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Kim Seer Paller <kimseer.paller@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	Jonathan Santos <Jonathan.Santos@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>
-Subject: Re: [PATCH v11 1/3] dt-bindings: iio: adc: add max14001
-Message-ID: <aM8gVOVEujP6Yzxx@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1757971454.git.marilene.agarcia@gmail.com>
- <30f33a64da0339eccc1474406afb2b1d02a0cd6b.1757971454.git.marilene.agarcia@gmail.com>
- <8e88b601-1329-4cdb-bbd7-feb998c552e8@baylibre.com>
- <20250916-alto-vaseline-f8dafbab03e9@spud>
+	s=arc-20240116; t=1758408121; c=relaxed/simple;
+	bh=Dt8VKsI0bzzPWavc0PQi4CMaYsaPhVChPxt1pBUrkF4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ln87ulYu587Cma4jdPH6OrspFJnLaPyGcPOhiYl0vXm9zJOb5lKnEnfjyVKwXxVC8iwOnMVZkJySOf4W+9JXIT+FrheWa88KSVgNnCnkhTZNLqEc6sUN8Lx+7YEzhiuFrmQmUkiFZzRos5WWzKjQLEWo+816hjWdWUblEJ+niXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2VD451v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDD5C4CEEB;
+	Sat, 20 Sep 2025 22:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758408121;
+	bh=Dt8VKsI0bzzPWavc0PQi4CMaYsaPhVChPxt1pBUrkF4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=O2VD451vT9HNTTN9Ot+gYm+T7u5XS4TeGU3KNlq3MyYzbPc/WfKyJ5YsAal0YSqZa
+	 xVtREVHKDSzLplyY10SBSdmsSkd8v5ip1Co82UnaMPTaNqgxCQbGA18E8DeWVBE2Zo
+	 SPYF0+SvJAmBHV64T2e37DNfLhT5tv8ICq0uLqr/KChDAFAk3cxcyoFYaBYj8TEvYu
+	 tFnngljlcAoDTqs1yknnMrQY7rGzRV3q8ZPQ4pR3BcK5CAvsPT0GYyQPXbCNhMKRpw
+	 GIQRLcZwMYeIxTY63zUOhMNQchRVFai5QcRRjKXe54mpAmHWTldY9qzCM9oUtlMk28
+	 Pmn+JiZra4uYA==
+Date: Sat, 20 Sep 2025 17:41:57 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916-alto-vaseline-f8dafbab03e9@spud>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jianjun Wang <jianjun.wang@mediatek.com>, 
+ linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, Bjorn Helgaas <bhelgaas@google.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Ryder Lee <ryder.lee@mediatek.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
+To: Christian Marangi <ansuelsmth@gmail.com>
+In-Reply-To: <20250920114103.16964-1-ansuelsmth@gmail.com>
+References: <20250920114103.16964-1-ansuelsmth@gmail.com>
+Message-Id: <175838993594.10832.1517003373145392481.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: mediatek: Convert to YAML schema
 
-...
+
+On Sat, 20 Sep 2025 13:41:01 +0200, Christian Marangi wrote:
+> Convert the PCI mediatek Documentation to YAML schema to enable
+> validation of the supported GEN1/2 Mediatek PCIe controller.
 > 
-> > > +  interrupts:
-> > > +    minItems: 1
-> > > +    items:
-> > > +      - description: |
-> > > +          Asserts high when ADC readings exceed the upper threshold and low
-> > > +          when below the lower threshold. Must be connected to the COUT pin.
-> > > +      - description: |
-> > > +          Alert output that asserts low during a number of different error
-> > > +          conditions. The interrupt source must be attached to FAULT pin.
+> While converting, lots of cleanup were done from the .txt with better
+> specifying what is supported by the various PCIe controller variant and
+> drop of redundant info that are part of the standard PCIe Host Bridge
+> schema.
 > 
-> These descriptions read wrong to me. They __are__ the COUT and FAULT
-> pins, given what David responded to above, not something that can be
-> connected to these pins (if they were, they would be represented as
-> -gpios rather than interrupts most likely). Unless you mean that these
-> pins can have some other use and are only available on the COUT/FAULT
-> pins when some register value is set - but even in that case saying
-> "must be" doesn't fit since the interrupt property could be used to
-> configure the device accordingly.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/pci/mediatek-pcie.txt | 289 ---------
+>  .../bindings/pci/mediatek-pcie.yaml           | 564 ++++++++++++++++++
+>  2 files changed, 564 insertions(+), 289 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+> 
 
-COUT and FAULT are just two pins on the ADC chip that can be used to generate
-interrupts. Would a description like the one below sound better?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-  interrupts:
-    minItems: 1
-    items:
-      - description: |
-          cout: Comparator output signal that asserts high when ADC readings
-          exceed the upper threshold and low when readings fall below the lower
-          threshold.
-      - description: |
-          fault: When fault reporting is enabled, the FAULT pin is asserted low
-          whenever one of the monitored fault conditions occurs.
+yamllint warnings/errors:
 
-Best regards,
-Marcelo
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: syscon@1a000000 (mediatek,mt7623-hifsys): compatible: 'oneOf' conditional failed, one must be fixed:
+	['mediatek,mt7623-hifsys', 'mediatek,mt2701-hifsys', 'syscon'] is too long
+	'mediatek,mt7623-hifsys' is not one of ['mediatek,mt2701-hifsys', 'mediatek,mt7622-hifsys']
+	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt2701-hifsys.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@0,0: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@1,0: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@2,0: 'device_type' is a required property
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250920114103.16964-1-ansuelsmth@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
