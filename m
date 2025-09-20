@@ -1,234 +1,210 @@
-Return-Path: <devicetree+bounces-219530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F983B8C4C9
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 11:40:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 077BCB8C4E7
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 11:43:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA327B37CD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 09:38:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 748417B41B1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 09:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E27B2BCF6C;
-	Sat, 20 Sep 2025 09:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3342288C25;
+	Sat, 20 Sep 2025 09:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="F3Dg3qEJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/bFJ6Dc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4F21C01
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 09:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E335D515;
+	Sat, 20 Sep 2025 09:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758361214; cv=none; b=dbFBL2yqN5ELOgpUVt25BEXkZo62tYl87+VJ1DQAvhifFmPGfDIamHAJ4o2PU2bQPlTDeX1hVcSuiOrEcv7tDL0tAnZhIz2QBP3fEDu1iW0Q77FrM5rI1i8oRfaN5bO+tcM3hJT0OZL5bKpcPYUMVfV7214r54Lf0EcZy8xa7GI=
+	t=1758361383; cv=none; b=ZniHNelF9v4OCjQ+6LNTSd4tCh7ecVkrC/xNy7qOL3QJjZZn0twueTH0bdt+Orgj3SCOpp6/kSuEjO2bY3ShugJb7PWjZgoSHR7kYdrCI34qKgquotz84cCZGiv5yVjCi/kuGSuFEMPKouCLyOD1h44wNQ4wa8xu36AEF3ZJe1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758361214; c=relaxed/simple;
-	bh=Agn7APdbyMftIUbKtaGM92mZicr4jzMovNNhtGLzuto=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JwnTwMYT8yAsnoI+/NkuCUKrDjuOCIpnWZ2oF7tzi4nlFq6zl++S9MpDlPxLL6i+VWy1Vj4DcU0lFQvj8YG6tokCZU5o5wU3+xeQIK5B3hVDhNaTm8P6P4TwvBymp3JgxaVre5c0x21mrOJ8j5ak0CcDz7zz/x70MF3hK4RgLJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=F3Dg3qEJ; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-74109e2ed70so8456947b3.3
-        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 02:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1758361210; x=1758966010; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NaDnghTXUn1bVSOceTjgt47F5y7FKqMUoIUfRqhx4Dw=;
-        b=F3Dg3qEJq1XA4wD773jYJDR7KUe5oqO6/VKBNU2J+F0BnHhwmrRsv26BKQr60mG+mN
-         Daf3eOeggDgxxehchzOEqG6+ihvt3xCuRdBWB1ywX5BhBdQelM2qg49xcH8FjLQ/h4uP
-         qg0C5jJFg0htnwdh7LAauDXZNv/nSD1EP1dBU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758361210; x=1758966010;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NaDnghTXUn1bVSOceTjgt47F5y7FKqMUoIUfRqhx4Dw=;
-        b=S/WgD8zK1PY1NnMAIOobpEY4VC076Ksr6Ysnq1MCvPZV8gJcERpNhEoTSgBozihW4A
-         DdvdSuh2c1leHNg6upG6IT7WGhcCJ7YPXWT6IjMe65t8Y9iTCX6I0kG+Mie6ItvvZCrC
-         C0KQd88Rfj5b/gK4ufhCFNhA7WpkuHxxZMhNobvLm66qrneLALz034BNaTZwuBof4NTQ
-         rH58mYJGmFBOK/8g+DEIr9FV6mPNyeL/2Zgd8Na6jVtEbqK7RGyNok+KR9zm+qqoq+bv
-         5X1SSaxRIDmdL1ZsCzgJj7akFyWyloatYRg/sEFMvZhN1qe4mkNPlTLGwNGEfzqGxn3U
-         8y+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXW+rxAfjKDqxl4IkdZ9Blsxl5QtJEgECZsju4jZ8NI7bkSdBElER2c2I4NsQd5Z1IgMnTTCQy45oQE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy695dSpglGU98ORYfoS7Hescky+VwxJw37JsmzoO71hMPp6DtN
-	kx9FtQUw+0xtEE9fu+hbjnxxp7geNbKJed8eiUFY2LCX/kmZcdLlQzDjIdWnnjZCGvG0x5n/MFS
-	g/l7pY9xpwL8l/bb++ueQ2mNJ2wm9uTuPLSy6kcyFTA==
-X-Gm-Gg: ASbGncvUBN+7wFZTZfVrgMOAs824n/vlnDmv3xhKbdi0fmdnaxZ8z6DBFjqObL6C2gP
-	ThP/OFhxXnMvpMcb4MpIk3rCpTUcvz1A+lr92PHwH8EJFYJUZOe72t7In0nYiJZdMMoR5lTLp2N
-	xW8DncNz3xudkIW9MdBqOuFuMCBWcXCShFJRJOCvc8NdIGeDJJlhvZWr6XYUId3fSz7UfBJD6Uz
-	pRtoQ==
-X-Google-Smtp-Source: AGHT+IEPzdUNUNS8RORST6IBN7ohD/O7mRgh2fZsz71PA+MZD892Wsiz/RFPoXNGMYe0EdjdagsopXhExq5cyI8G3W4=
-X-Received: by 2002:a05:690c:6203:b0:749:36fd:abf0 with SMTP id
- 00721157ae682-74936fdafb5mr1084097b3.54.1758361210580; Sat, 20 Sep 2025
- 02:40:10 -0700 (PDT)
+	s=arc-20240116; t=1758361383; c=relaxed/simple;
+	bh=8XEGRu8PQcCsAGb5Pu649yAmmLV43sxK7OgP8RaqHIo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ExB4rrWA2HS8ePpqscNKksUjmFypuse6dgHdGguJbAvj7jLfjecJJV/9C6/aqX5avbK6htSXpoa0toYCRm+TyT+XN5HgKN88IH7Nkmy09pOL1QS69kZFIB80P8AQfltw3zDcEDEPXF3+t0c63csuVqVTKjBOdOs2Ns3FKMqlDmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/bFJ6Dc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 704A8C4CEEB;
+	Sat, 20 Sep 2025 09:42:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758361383;
+	bh=8XEGRu8PQcCsAGb5Pu649yAmmLV43sxK7OgP8RaqHIo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=p/bFJ6DcZg6XnjoiQxOLyqkj1KqVKcdbFhcyehayJCuNqEEQagXjhb62HCUuaoYzu
+	 /K+TPoFR8bgv1ki7hrjPd3sEwHE89MYuziUK8Ix28FYKSLnx3n5PbC/jx0nsFhKBoB
+	 hSSdxxmfwGoKXNY5hj3tStgrUgft6jj4GNEf5SLQUbOZJvr4LiTDgJgIdPhMFa/tvR
+	 rIg6cJkdgS8D9qJhxWGBXoDIcW6NBcsuoPHT/H8Z4Yppp4+YM2eDo2iSHyALfYqWEc
+	 9r8hcFsSefToKgky4mm2hLmcmy5PEJP4WkwkEsj7tyNWwRPHki26ISDh8B3V12ioqv
+	 La3FwOFmoEoxA==
+Date: Sat, 20 Sep 2025 10:42:51 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <michael.hennerich@analog.com>,
+ <nuno.sa@analog.com>, <eblanc@baylibre.com>, <dlechner@baylibre.com>,
+ <andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>,
+ Sergiu Cuciurean <sergiu.cuciurean@analog.com>, Trevor Gamblin
+ <tgamblin@baylibre.com>, Axel Haslam <ahaslam@baylibre.com>
+Subject: Re: [PATCH v2 6/8] iio: adc: ad4030: Add SPI offload support
+Message-ID: <20250920104251.3f7dcbb2@jic23-huawei>
+In-Reply-To: <da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
+References: <cover.1758214628.git.marcelo.schmitt@analog.com>
+	<da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250918155240.2536852-1-dario.binacchi@amarulasolutions.com>
- <20250918155240.2536852-4-dario.binacchi@amarulasolutions.com>
- <20250918200445.GA2529753-robh@kernel.org> <CABGWkvqX9aCxam6UMYsUBkwnMJrMNKjVKrqi5Ca7O5Jk8xRTAA@mail.gmail.com>
- <20250919143831.GA862818-robh@kernel.org> <CABGWkvrxOTzAcqWHLvuqk_7WFxybheSZFnMkqnksfkPi6wXcpQ@mail.gmail.com>
- <20250919204436.GA2176045-robh@kernel.org>
-In-Reply-To: <20250919204436.GA2176045-robh@kernel.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Sat, 20 Sep 2025 11:39:59 +0200
-X-Gm-Features: AS18NWCRsqQle93KcCsQB12JjSzQRdG4BDO3bzqtWjUIXPoU75kmVb0GdVk6IVA
-Message-ID: <CABGWkvr8X5a0ezeu6HDCMfjh+xbg-bQq4cLwzRD2BvoJsvH_BA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/6] dt-bindings: touchscreen: add touchscreen-glitch-threshold-ns
- property
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
-	linux-amarula@amarulasolutions.com, Conor Dooley <conor.dooley@microchip.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Javier Carrasco <javier.carrasco@wolfvision.net>, Jeff LaBundy <jeff@labundy.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 19, 2025 at 10:44=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Fri, Sep 19, 2025 at 05:12:42PM +0200, Dario Binacchi wrote:
-> > On Fri, Sep 19, 2025 at 4:38=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > >
-> > > On Thu, Sep 18, 2025 at 10:37:37PM +0200, Dario Binacchi wrote:
-> > > > On Thu, Sep 18, 2025 at 10:04=E2=80=AFPM Rob Herring <robh@kernel.o=
-rg> wrote:
-> > > > >
-> > > > > On Thu, Sep 18, 2025 at 05:52:31PM +0200, Dario Binacchi wrote:
-> > > > > > Add support for glitch threshold configuration. A detected sign=
-al is valid
-> > > > > > only if it lasts longer than the set threshold; otherwise, it i=
-s regarded
-> > > > > > as a glitch.
-> > > > > >
-> > > > > > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.=
-com>
-> > > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > >
-> > > > > > ---
-> > > > > >
-> > > > > > Changes in v5:
-> > > > > > - Add Acked-by tag of Conor Dooley
-> > > > > >
-> > > > > > Changes in v2:
-> > > > > > - Added in v2.
-> > > > > >
-> > > > > >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml    =
-| 4 ++++
-> > > > > >  1 file changed, 4 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/input/touchscree=
-n/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/to=
-uchscreen.yaml
-> > > > > > index 3e3572aa483a..a60b4d08620d 100644
-> > > > > > --- a/Documentation/devicetree/bindings/input/touchscreen/touch=
-screen.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/touch=
-screen.yaml
-> > > > > > @@ -206,6 +206,10 @@ properties:
-> > > > > >
-> > > > > >          unevaluatedProperties: false
-> > > > > >
-> > > > > > +  touchscreen-glitch-threshold-ns:
-> > > > > > +    description: Minimum duration in nanoseconds a signal must=
- remain stable
-> > > > > > +      to be considered valid.
-> > > > >
-> > > > > What's wrong with debounce-delay-ms?
-> > > >
-> > > > Do you mean that I should rename touchscreen-glitch-threshold-ns to
-> > > > debounce-delay-ms?
-> > >
-> > > I mean that's the common property we already have, so use it or expla=
-in
-> > > why you aren't using it. I suppose the definition is technically a bi=
-t
-> > > different if it's purely a s/w delay vs. h/w monitoring of the signal
-> > > state. I don't think it matters if the interpretation by each driver =
-is
-> > > a bit different.
-> > >
-> > > Maybe msec is not enough resolution for you could be another reason?
-> >
-> > Yes, this is the main reason. As specified in the following patch:
-> >   v5 4/6 dt-bindings: touchscreen: fsl,imx6ul-tsc: support glitch thres=
-hold
-> >
-> > Drivers must convert this value to IPG clock cycles and map
-> > it to one of the four discrete thresholds exposed by the
-> > TSC_DEBUG_MODE2 register:
-> >
-> >   0: 8191 IPG cycles
-> >   1: 4095 IPG cycles
-> >   2: 2047 IPG cycles
-> >   3: 1023 IPG cycles
-> >
-> > In my case, the IPG clock runs at 66 MHz, which corresponds to:
-> >
-> > 124 =C2=B5s for 0
-> > 62 =C2=B5s for 1
-> > 31 us for 2
-> > 15 us for 3
-> >
-> > So using milliseconds would not fit my use case. A possible trade-off
-> > could be to use debounce-delay-us. Would that be acceptable?
->
-> I agree it wouldn't map to what the h/w provides, but is what the h/w
-> provides actually useful? There's plenty of h/w designed that's not
-> useful. 15us is quite short for a glitch. Do you have an actual cases
-> where the different values above are needed?
+On Thu, 18 Sep 2025 14:39:10 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
 
-Considering an IPG clock at 66 MHz, currently at reset the deglitch
-filter is set to 124 =C2=B5s,
-the driver sets it to 31 =C2=B5s with a hardcoded value, and in my use case
-I need to set it to 62 =C2=B5s,
-as you can see in the patch:
-https://lore.kernel.org/all/20250918155240.2536852-6-dario.binacchi@amarula=
-solutions.com/
-and its handling in
-https://lore.kernel.org/all/20250918155240.2536852-7-dario.binacchi@amarula=
-solutions.com/
+> AD4030 and similar ADCs can capture data at sample rates up to 2 mega
+> samples per second (MSPS). Not all SPI controllers are able to achieve such
+> high throughputs and even when the controller is fast enough to run
+> transfers at the required speed, it may be costly to the CPU to handle
+> transfer data at such high sample rates. Add SPI offload support for AD4030
+> and similar ADCs to enable data capture at maximum sample rates.
+> 
+> Co-developed-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Co-developed-by: Nuno Sa <nuno.sa@analog.com>
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> Co-developed-by: Axel Haslam <ahaslam@baylibre.com>
+> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> Most of the code for SPI offload support is based on work from Sergiu Cuciurean,
+> Nuno Sa, Axel Haslam, and Trevor Gamblin. Thus, this patch comes with many
+> co-developed-by tags. I also draw inspiration from other drivers supporting SPI
+> offload, many of them written by David Lechner.
+> 
+> Change log v1 -> v2
+> - Dropped all clock-modes and DDR related stuff for now as those will require
+>   further changes to the SPI subsystem or to SPI controller drivers.
+> - Update the modes register with proper output data mode bits when sample
+>   averaging (oversampling_ratio) is set.
+> - Lock on device state mutex before updating oversampling and sampling frequency.
+> - Made sampling_frequency shared by all channels.
+> - Better checking the requested sampling frequency is valid.
+> - Adjusted to SPI offload data capture preparation and stop procedures.
+> - Error out if try to get/set sampling frequency without offload trigger.
+> - Depend on PWM so build always succeed.
+> - Drop unmatched/unbalanced call to iio_device_release_direct().
+> - No longer shadowing error codes.
+> 
+> Suggestions to v1 that I did not comply to:
+> [SPI]
+> > I would be tempted to put the loop check here [in drivers/spi/spi-offload-trigger-pwm.c]:
+> > 
+> > 	offload_offset_ns = periodic->offset_ns;
+> > 
+> > 	do {
+> > 		wf.offset_ns = offload_offset_ns;
+> > 		ret = pwm_round_waveform_might_sleep(st->pwm, &wf);
+> > 		if (ret)
+> > 			return ret;
+> > 		offload_offset_ns += 10;
+> > 
+> > 	} while (wf.offset_ns < periodic->offset_ns);
+> > 
+> > 	wf.duty_offset_ns = periodic->offset_ns;
+> > 
+> > instead of in the ADC driver so that all future callers don't have to
+> > repeat this.  
+> 
+> Not sure implementing the PWM trigger phase approximation/rounding/setup within
+> spi-offload-trigger-pwm is actually desirable. The PWM phase
+> approximation/rounding/setup done in AD4030 iterates over the configuration of a
+> second PWM (the PWM connected to the CNV pin). I haven't seen any other device
+> that would use such double PWM setup schema so pushing an additional argument to
+> spi_offload_trigger_pwm_validate() doesn't seem worth it.
+> 
+> [IIO]
+> > Why using slower speed for offload?  
+> Looks like it's the same max speed for both register access and data sample.
+> So, just reusing the existing define for the max transfer speed.
+> 
+>  drivers/iio/adc/Kconfig  |   3 +
+>  drivers/iio/adc/ad4030.c | 485 +++++++++++++++++++++++++++++++++++----
+>  2 files changed, 445 insertions(+), 43 deletions(-)
+Hi Marcelo
 
-Another option could be to use a specific binding for the
-fsl,imx6ul-tsc controller, as I did in the
-earlier versions of the series.
+Just one thing I noticed today.  If nothing else comes up I can fix that
+up whilst applying.  However, this will benefit from review from others
++ the IIO tree is effectively closed for this cycle so we have lots of time
+to tidy up any remaining stuff.
 
-Thanks and regards,
-Dario
+Thanks,
 
->
-> Rob
+Jonathan
+ 
+> diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
+> index aa0e27321869..52805c779934 100644
+> --- a/drivers/iio/adc/ad4030.c
+> +++ b/drivers/iio/adc/ad4030.c
+
+> +static int ad4030_offload_buffer_postenable(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4030_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4030_REG_EXIT_CFG_MODE, BIT(0));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ad4030_prepare_offload_msg(indio_dev);
+> +	st->offload_msg.offload = st->offload;
+> +	ret = spi_optimize_message(st->spi, &st->offload_msg);
+> +	if (ret)
+> +		goto out_reset_mode;
+> +
+> +	ret = pwm_set_waveform_might_sleep(st->cnv_trigger, &st->cnv_wf, false);
+> +	if (ret)
+> +		goto out_unoptimize;
+> +
+> +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
+> +					 &st->offload_trigger_config);
+> +	if (ret)
+> +		goto out_pwm_disable;
+> +
+> +	return 0;
+> +
+> +out_pwm_disable:
+> +	pwm_disable(st->cnv_trigger);
+> +out_unoptimize:
+> +	spi_unoptimize_message(&st->offload_msg);
+> +out_reset_mode:
+> +	/* reenter register configuration mode */
+> +	ret = ad4030_enter_config_mode(st);
+
+This blows away the original error.  I'd do something like
+	if (ad40303_enter_config_mode(st))
+		dev_err(...)
+
+	return ret;
+so we preserve whatever went wrong first.
 
 
-
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
+> +	if (ret)
+> +		dev_err(&st->spi->dev,
+> +			"couldn't reenter register configuration mode\n");
+> +	return ret;
+> +}
 
 
-Amarula Solutions SRL
 
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
