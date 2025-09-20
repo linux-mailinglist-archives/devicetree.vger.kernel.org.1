@@ -1,355 +1,255 @@
-Return-Path: <devicetree+bounces-219600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2489B8CEEE
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 20:37:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69280B8CF37
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 21:41:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2A27E4F9E
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 18:37:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42D281B2085C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 19:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B315E313260;
-	Sat, 20 Sep 2025 18:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281A9243371;
+	Sat, 20 Sep 2025 19:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IYXuCmjz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W573NwvO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F60D1AF0AF;
-	Sat, 20 Sep 2025 18:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6114A23E356
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 19:41:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758393461; cv=none; b=AKz3feoPxFaZRXMgpWlh41rsMCLOtgFxdzhqJZ4Jh/X7RmaKGGboEbi8Umxs9hacSQIZqvxwiSoy8VNMcJPQ+GUVsifJIsn9F8AdNShoDtWOrx/HFv812fF1C5nSC9XP06lYjaO96eFCIT1QcPYK05JcVPx0wK5mlsPUuGZnviE=
+	t=1758397309; cv=none; b=KQ3CMZ09ibVJ1NN0SfDKolmlYlchK9IvWQsn40ykiiOqRkW+yN3D10bEcQyOoR3jM0uNH6VkwYv/JDqCjbEA3Y9JJ2bX3lmWbIzR+hyMzuXBfRVVG8bFksaD8bZwk2WggynyOtflBaVwKJgHceTY4rktR1DLJZEKTWEY0XXO3wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758393461; c=relaxed/simple;
-	bh=iCSylAv93zCUppqLF9OkTeWwtoRe8xc76Vs6biiXuuA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PkU5n9nQOIO1dAZRym6AR9KfkkiwByfMwIxeD+PIWCenS4kxqtCFb7QCy+FcUZuHHaFEVPeWmVZrJNbBh6SHMAbPUXfWFljrE6X5acd4q47/fzBRx8SjyNwFrE3dIGUqKWjdYZpvCZXog6gL1lRAY+T9skvDKkcTwZWPLjIfwN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IYXuCmjz; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758393460; x=1789929460;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iCSylAv93zCUppqLF9OkTeWwtoRe8xc76Vs6biiXuuA=;
-  b=IYXuCmjzQYTZtUhDmWGUu5nvfJUQy71yeMOVLdXIbPBO3bK/aKd4zPuT
-   XweefddPAmh1EvfnYdQofTd8JiwLoHW/1FXWYpKSUGhVjKnyK6m0tf2bO
-   ETL9EkfV+ZwiXIs6i6JuVlNF6Vk32dDfOL6saEqBmXkIx7uwVOeUhiKx0
-   tD+ekC8d50r9+YLW0yYNWoo52S4DO2TDJo/PX70UN5Tt9253bkGxyeYWv
-   2czQXc6J9b+6FOxxX93wJsx9F9fyDig4SXcwVzO0AFfStEj1cJcEgBSEc
-   ysdubVEtBBs6T4URTuaMIS+ITtjnHT6DMkwi8zkY2LzzFOemLlTGWtjeo
-   A==;
-X-CSE-ConnectionGUID: qVQwxTpZSsO6q+peAFAhTw==
-X-CSE-MsgGUID: +e4CqfA6RbKawyaXf8mEXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="71338532"
-X-IronPort-AV: E=Sophos;i="6.18,281,1751266800"; 
-   d="scan'208";a="71338532"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2025 11:37:39 -0700
-X-CSE-ConnectionGUID: 7uzSBtwqRPi0r9v6cgcLbQ==
-X-CSE-MsgGUID: 6rHf7XkzRWCj7l/x+VrB4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,281,1751266800"; 
-   d="scan'208";a="180140357"
-Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 20 Sep 2025 11:37:36 -0700
-Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v02Sj-0005fX-0l;
-	Sat, 20 Sep 2025 18:37:33 +0000
-Date: Sun, 21 Sep 2025 02:36:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Eric =?iso-8859-1?Q?Gon=E7alves?= <ghatto404@gmail.com>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] Input: add support for the STM FTS2BA61Y
- touchscreen
-Message-ID: <202509210247.oVPW8pop-lkp@intel.com>
-References: <20250920014450.37787-3-ghatto404@gmail.com>
+	s=arc-20240116; t=1758397309; c=relaxed/simple;
+	bh=K2OyxdO7ubcOPTwnuaRk/c9sNPk7E+gpfFWfYmyPSeE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RmA5Gz24XEe7r4VCllhAVc2ZmeF2lKtkIieb+Bs561jJ1x9+jj7q0eMPIicx1aNZV5Ryw71ENjNmtnwuqV0tkw2pwRdu2VjcpIBlCRPc2Zjf8uEXIjjwn1zw95Ng7xXndMrPnzzJINKLZHuqiCaM1q27IuSps6eB8LBVoXLyrDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W573NwvO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58KJKVTX003215
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 19:41:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=fT06xmtnl6rWFVbfZrdV6V
+	rMvIkSRrsGT4Wh5dam0ls=; b=W573NwvOrOFVDcb0FRVhxB8Ud3ZUb7iFZwtKAD
+	BZI7b4pjywkrAe9mAMVfm48vALrzemRydiQry66WDLidsQbG01yn+NBYCpWs51Zc
+	mbKa13Gqizz//Xm55tK62rpF0xUfmwyDQX9WIrO/mtbtLqTHjnxp90tf7EmQbzYO
+	T3GcnZidQKJn2UF/zpdttzoM3Do3V2LYS49tz5sYlYW+rBy/wD/JGanlKk6jtxG6
+	Gzy+EPAra7LbnlG20khWvuL7o37e7SmonCBkbLaQegIFkEP8VD0R8DmYFTILGbUN
+	ovx9iUJTRPLkQTZIP5IJpbd5d450cu2Sl7NwHWSJnUdHCOBQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hmnhg9n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 19:41:46 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-77615793f06so3057818b3a.0
+        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 12:41:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758397305; x=1759002105;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fT06xmtnl6rWFVbfZrdV6VrMvIkSRrsGT4Wh5dam0ls=;
+        b=usE2OMXH4TDFw/9dN+27EPVTI/lDhKxd26wYhPQWkhKGQh+u6b0wgrO0D48TPnpiof
+         DruMRy/eB//7N34wzt08GLtNpaPLbf6a0OYvR7Y4gZpzR9Rb5REYWi9wznBabA3Gp9U0
+         okNmQ4ASyu4a8y/ZbGG4BdUv0ncaUELdLG4nPibZw8ezk8oOxe8khoT8nT2wr5bc55bm
+         nZDGsXmiZddLLCAcDZ3Lk7AN4UMCnl2KnfuttT0gXLi1iKfGJGXShlvMeqoKS3GNTpFF
+         GlkgUPCND14Yoesftia4naXFHHLw2HW8xNJp/yToMUgkfeQrBwzDXjV0FiRShIw//cqi
+         bKCw==
+X-Forwarded-Encrypted: i=1; AJvYcCVSERlGWF1D1YRnmJC4QaQrYFOs3qLAMnewcbzmWcJcu9EwKyLePR1sBcQpPtfkHznBaCW7w3ujGeEp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq+utGyFgKzZau4cKHshHH60+G7PEUcyTq0E6bC4P3y/eguXoq
+	TlJvhjmufYw/d7y9w/LEKuYXVClAPxxnjlGd3MeUHA1RS14Bl4ZSqAs1N6jLJnfqR1LupdbuY+a
+	6/q5zLSL06EYK6Wxslb88xn31/yob2EE1YuOSY0Ku98WXtGhLq/oZPOZ0Tahd081K
+X-Gm-Gg: ASbGncvve2f5AxJ/8m7twGIrhCt6AZ5gE36Emp70+NTD7SiRKKNouUAZXdvPrFdGTW0
+	F+bwKcdwFJfZVTq7hMi8fQos6e+BwiB0Ixq1NmP4m8y3ttxTM3aX14BHHummO81/rMnRz4kmVYf
+	lLbQGDHDLYCdBUjh6Aw04CgPLoz1u76I7X2ouVXgWPe3AJ+q0PjkgznhyjP3+iOs6oYktTr0ewh
+	z3jSr5Z2ADaFXVXyqkP6FvBEOrYqnJddH2VUIsWTJrIb4YzARAaccnpYjJcq6rFwdbsKZw9LVOv
+	2xnRdmMKxXROH4VUqICmYy5FOJigeq2yY6d1TdPjiTI1iK1A5fsUGWYlkxT0IOoaSwA=
+X-Received: by 2002:aa7:8892:0:b0:771:fa65:ae6e with SMTP id d2e1a72fcca58-77e4e9b283fmr9779088b3a.17.1758397304472;
+        Sat, 20 Sep 2025 12:41:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEVBpwzcISySMoRxxhSW3bqAQjfkkmpHz+UKOp5LWSOH0BtJkY9TttWmnrSMnElGO3I9VQqkw==
+X-Received: by 2002:aa7:8892:0:b0:771:fa65:ae6e with SMTP id d2e1a72fcca58-77e4e9b283fmr9779059b3a.17.1758397303977;
+        Sat, 20 Sep 2025 12:41:43 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77f2c8aa554sm143767b3a.34.2025.09.20.12.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Sep 2025 12:41:43 -0700 (PDT)
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Subject: [PATCH v3 00/12] Peripheral Image Loader support for Qualcomm SoCs
+ running Linux host at EL2
+Date: Sun, 21 Sep 2025 01:10:58 +0530
+Message-Id: <20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250920014450.37787-3-ghatto404@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEoDz2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDS0NL3eyy3PiigqL85PiCxGLdFFOLtFTjJAtLk6QkJaCegqLUtMwKsHn
+ RsbW1AAFePm1fAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.14-dev-f7c49
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758397299; l=6066;
+ i=mukesh.ojha@oss.qualcomm.com; s=20250708; h=from:subject:message-id;
+ bh=K2OyxdO7ubcOPTwnuaRk/c9sNPk7E+gpfFWfYmyPSeE=;
+ b=oTq0EA+J851yqjgWugcghVLyhbBc/9uMo0h6d2YorWDNXrLOeSkR/DeNihp/ezF1AbN9OTjVv
+ Dz5n0K6ZRk1C1ZEky0HI+DBUl0qIt5yXeMOB+8aS0YvbFiiIHokHR56
+X-Developer-Key: i=mukesh.ojha@oss.qualcomm.com; a=ed25519;
+ pk=eX8dr/7d4HJz/HEXZIpe3c+Ukopa/wZmxH+5YV3gdNc=
+X-Authority-Analysis: v=2.4 cv=YPqfyQGx c=1 sm=1 tr=0 ts=68cf037a cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=VEXWNMxOzYjbEOQZ4E8A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: EetY_fSc20pHGjAkOlp7HwR9XMIVjXHT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwMCBTYWx0ZWRfXxfXHLR93Hx+4
+ SBTVlk+VUhQKgCtfCk/+aYnydV1z8/jwiKReQaLR29HjKxxRkuZBjPSzRk9aaN25TKZBcvvGnId
+ Ci4ps1tRwzvrn6CwuweKfyy1KK5ylEyLeQrYug+4H8X5C+V3mAAVI0BElWIuIuoDGBr67unA1Uo
+ pR5p4wq3+EJzTuISlm5K4T+lnYPU1PM+NYVA5uDosZsa+a7Ll8aK0utdcs9I/9ZVG7Wk5raaFib
+ hCrVYcxJNcEgtTRB1AmXzcuvYruH6ybIA6Mq+LvVtpscb8xC23O6uomcog6IDNTKp4VKmdoNopG
+ bwcODc0ieHUaJxULmVkWtQLgOOt3jXPtHhRSZj2xuKBKvHV07VsWs/yII4YUwifubFaagDYhqp0
+ s3ci7sdi
+X-Proofpoint-GUID: EetY_fSc20pHGjAkOlp7HwR9XMIVjXHT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-20_07,2025-09-19_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 adultscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200000
 
-Hi Eric,
+A few months ago, we discussed the challenges at Linaro Connect 2025 [1] 
+related to Secure PAS remoteproc enablement when Linux is running at EL2.
 
-kernel test robot noticed the following build errors:
+[1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
 
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus robh/for-next linus/master v6.17-rc6 next-20250919]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Below, is the summary of the discussion.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Eric-Gon-alves/dt-bindings-input-Add-ST-Microelectronics-FTS2BA61Y-touchscreen/20250920-094849
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20250920014450.37787-3-ghatto404%40gmail.com
-patch subject: [PATCH v1 2/2] Input: add support for the STM FTS2BA61Y touchscreen
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250921/202509210247.oVPW8pop-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250921/202509210247.oVPW8pop-lkp@intel.com/reproduce)
+Qualcomm is working to enable remote processors on the SA8775p SoC with
+a Linux host running at EL2. In doing so, it has encountered several
+challenges related to how the remoteproc framework is handled when Linux
+runs at EL1.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509210247.oVPW8pop-lkp@intel.com/
+One of the main challenges arises from differences in how IOMMU
+translation is currently managed on SoCs running the Qualcomm EL2
+hypervisor (QHEE), where IOMMU translation for any device is entirely
+owned by the hypervisor. Additionally, the firmware for remote
+processors does not contain a resource table, which would typically
+include the necessary IOMMU configuration settings.
 
-All errors (new ones prefixed by >>):
+Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
+Authentication Service (PAS) from TrustZone (TZ) firmware to securely
+authenticate and reset remote processors via a single SMC call,
+_auth_and_reset_. This call is first trapped by QHEE, which then invokes
+TZ for authentication. Once authentication is complete, the call returns
+to QHEE, which sets up the IOMMU translation scheme for the remote
+processors and subsequently brings them out of reset. The design of the
+Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+is not permitted to configure IOMMU translation for remote processors,
+and only a single-stage translation is configured.
 
-   drivers/input/touchscreen/fts2ba61y.c: In function 'fts2ba61y_wait_for_ready':
->> drivers/input/touchscreen/fts2ba61y.c:250:25: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-     250 |                 stype = FIELD_GET(FTS2BA61Y_MASK_STYPE, buffer[0]);
-         |                         ^~~~~~~~~
-   drivers/input/touchscreen/fts2ba61y.c: In function 'fts2ba61y_irq_handler':
->> drivers/input/touchscreen/fts2ba61y.c:442:9: error: implicit declaration of function 'usleep'; did you mean 'fsleep'? [-Wimplicit-function-declaration]
-     442 |         usleep(1);
-         |         ^~~~~~
-         |         fsleep
+To make the remote processor bring-up (PAS) sequence
+hypervisor-independent, the auth_and_reset SMC call is now handled
+entirely by TZ. However, the issue of IOMMU configuration remains
+unresolved, for example a scenario, when KVM host at EL2 has no
+knowledge of the remote processors’ IOMMU settings.  This is being
+addressed by overlaying the IOMMU properties when the SoC runs a Linux
+host at EL2. SMC call is being provided from the TrustZone firmware to
+retrieve the resource table for a given subsystem.
 
+There are also remote processors such as those for video, camera, and
+graphics that do not use the remoteproc framework to manage their
+lifecycle. Instead, they rely on the Qualcomm PAS service to
+authenticate their firmware. These processors also need to be brought
+out of reset when Linux is running at EL2. The client drivers for these
+processors use the MDT loader function to load and authenticate
+firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
+to retrieve the resource table, create a shared memory bridge
+(shmbridge), and map the resources before bringing the processors out of
+reset.
 
-vim +/FIELD_GET +250 drivers/input/touchscreen/fts2ba61y.c
+This series has dependency on below series for creating SHMbridge over
+carveout memory. It seems to be merged on linux-next and pushed for 6.18.
 
-   239	
-   240	static int fts2ba61y_wait_for_ready(struct fts2ba61y_data *ts)
-   241	{
-   242		u8 buffer[FTS2BA61Y_EVENT_BUFF_SIZE];
-   243		u8 cmd = FTS2BA61Y_CMD_READ_EVENT;
-   244		u8 status_id, stype;
-   245		int ret;
-   246	
-   247		for (int retries = 5; retries > 0; retries--) {
-   248			ret = fts2ba61y_read(ts, &cmd, 1, buffer, FTS2BA61Y_EVENT_BUFF_SIZE);
-   249	
- > 250			stype = FIELD_GET(FTS2BA61Y_MASK_STYPE, buffer[0]);
-   251			status_id = buffer[1];
-   252	
-   253			if (stype == FTS2BA61Y_EVENT_STATUSTYPE_INFO &&
-   254			    status_id == FTS2BA61Y_INFO_READY_STATUS) {
-   255				ret = 0;
-   256				break;
-   257			} else
-   258				ret = -ENODEV;
-   259	
-   260			msleep(20);
-   261		}
-   262	
-   263		return ret;
-   264	}
-   265	
-   266	static int fts2ba61y_reset(struct fts2ba61y_data *ts)
-   267	{
-   268		u8 cmd = FTS2BA61Y_CMD_REG_W;
-   269		/* the following sequence is undocumented */
-   270		u8 reset[FTS2BA61Y_RESET_CMD_SIZE] = { 0x20, 0x00,
-   271						       0x00, 0x24, 0x81 };
-   272		int ret;
-   273	
-   274		disable_irq(ts->spi->irq);
-   275	
-   276		ret = fts2ba61y_write(ts, &cmd, 1, &reset[0], FTS2BA61Y_RESET_CMD_SIZE);
-   277		if (ret)
-   278			return ret;
-   279		msleep(30);
-   280	
-   281		ret = fts2ba61y_wait_for_ready(ts);
-   282		if (ret)
-   283			return ret;
-   284	
-   285		enable_irq(ts->spi->irq);
-   286	
-   287		return 0;
-   288	}
-   289	
-   290	static int fts2ba61y_set_channels(struct fts2ba61y_data *ts)
-   291	{
-   292		int ret;
-   293		u8 cmd = FTS2BA61Y_CMD_READ_PANEL_INFO;
-   294		u8 data[FTS2BA61Y_PANEL_INFO_SIZE];
-   295	
-   296		ret = fts2ba61y_read(ts, &cmd, 1, data, FTS2BA61Y_PANEL_INFO_SIZE);
-   297		if (ret)
-   298			return ret;
-   299	
-   300		ts->max_x = get_unaligned_be16(data);
-   301		ts->max_y = get_unaligned_be16(data + 2);
-   302	
-   303		/* if no tx channels defined, at least keep one */
-   304		ts->tx_count = max_t(u8, data[8], 1);
-   305	
-   306		return 0;
-   307	}
-   308	
-   309	static int fts2ba61y_set_touch_func(struct fts2ba61y_data *ts)
-   310	{
-   311		u8 cmd = FTS2BA61Y_CMD_TOUCHTYPE;
-   312		u16 touchtype = cpu_to_le16(FTS2BA61Y_TOUCHTYPE_DEFAULT);
-   313	
-   314		return fts2ba61y_write(ts, &cmd, 1, (u8 *)&touchtype, 2);
-   315	}
-   316	
-   317	static int fts2ba61y_hw_init(struct fts2ba61y_data *ts)
-   318	{
-   319		int ret;
-   320	
-   321		ret = regulator_bulk_enable(ARRAY_SIZE(ts->regulators),
-   322									ts->regulators);
-   323		if (ret)
-   324			return ret;
-   325	
-   326		msleep(140);
-   327	
-   328		ret = fts2ba61y_reset(ts);
-   329		if (ret)
-   330			return ret;
-   331	
-   332		ret = fts2ba61y_set_channels(ts);
-   333		if (ret)
-   334			return ret;
-   335	
-   336		return fts2ba61y_set_touch_func(ts);
-   337	}
-   338	
-   339	static int fts2ba61y_get_event(struct fts2ba61y_data *ts, u8 *data, int *n_events)
-   340	{
-   341		int ret;
-   342		u8 cmd = FTS2BA61Y_CMD_READ_EVENT;
-   343	
-   344		ret = fts2ba61y_read(ts, &cmd, 1, data, FTS2BA61Y_EVENT_BUFF_SIZE);
-   345		if (ret < 0)
-   346			return ret;
-   347	
-   348		if (!data[0]) {
-   349			*n_events = 0;
-   350			return 0;
-   351		}
-   352	
-   353		*n_events = FIELD_GET(FTS2BA61Y_MASK_LEFT_EVENTS, data[7]);
-   354		if (unlikely(*n_events >= FTS2BA61Y_EVENT_COUNT)) {
-   355			cmd = FTS2BA61Y_CMD_CLEAR_EVENTS;
-   356			fts2ba61y_write(ts, &cmd, 1, NULL, 0);
-   357			*n_events = 0;
-   358			return -EINVAL;
-   359		}
-   360	
-   361		if (*n_events > 0) {
-   362			ret = fts2ba61y_read(ts, &cmd, 1,
-   363					     &data[1 * FTS2BA61Y_EVENT_BUFF_SIZE],
-   364					     FTS2BA61Y_EVENT_BUFF_SIZE * (*n_events));
-   365			if (ret)
-   366				return ret;
-   367		}
-   368	
-   369		return 0;
-   370	}
-   371	
-   372	static void fts2ba61y_report_coordinates(struct fts2ba61y_data *ts,
-   373						 u8 *event, u8 tid)
-   374	{
-   375		u8 major = event[4];
-   376		u8 minor = event[5];
-   377		u8 z = FIELD_GET(FTS2BA61Y_MASK_Z, event[6]);
-   378	
-   379		u16 x = (event[1] << 4) |
-   380			FIELD_GET(FTS2BA61Y_MASK_X_3_0, event[3]);
-   381		u16 y = (event[2] << 4) |
-   382			FIELD_GET(FTS2BA61Y_MASK_Y_3_0, event[3]);
-   383		u16 ttype = (FIELD_GET(FTS2BA61Y_MASK_TTYPE_3_2, event[6]) << 2) |
-   384			    (FIELD_GET(FTS2BA61Y_MASK_TTYPE_1_0, event[7]) << 0);
-   385	
-   386		if (ttype != FTS2BA61Y_TOUCHTYPE_NORMAL &&
-   387		    ttype != FTS2BA61Y_TOUCHTYPE_PALM &&
-   388		    ttype != FTS2BA61Y_TOUCHTYPE_WET &&
-   389		    ttype != FTS2BA61Y_TOUCHTYPE_GLOVE)
-   390			return;
-   391	
-   392		input_mt_slot(ts->input_dev, tid);
-   393		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, true);
-   394		input_report_abs(ts->input_dev, ABS_MT_POSITION_X, x);
-   395		input_report_abs(ts->input_dev, ABS_MT_POSITION_Y, y);
-   396		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, major);
-   397		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MINOR, minor);
-   398		input_report_abs(ts->input_dev, ABS_MT_PRESSURE, z);
-   399	
-   400		input_mt_sync_frame(ts->input_dev);
-   401		input_sync(ts->input_dev);
-   402	}
-   403	
-   404	static void fts2ba61y_report_release(struct fts2ba61y_data *ts, u8 tid)
-   405	{
-   406		input_mt_slot(ts->input_dev, tid);
-   407		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, false);
-   408	
-   409		input_mt_sync_frame(ts->input_dev);
-   410		input_sync(ts->input_dev);
-   411	}
-   412	
-   413	static void fts2ba61y_handle_coordinates(struct fts2ba61y_data *ts, u8 *event)
-   414	{
-   415		u8 t_id = FIELD_GET(FTS2BA61Y_MASK_TID, event[0]);
-   416		u8 action = FIELD_GET(FTS2BA61Y_MASK_TCHSTA, event[0]);
-   417	
-   418		if (t_id > ts->tx_count)
-   419			return;
-   420	
-   421		switch (action) {
-   422		case FTS2BA61Y_COORDINATE_ACTION_PRESS:
-   423		case FTS2BA61Y_COORDINATE_ACTION_MOVE:
-   424			fts2ba61y_report_coordinates(ts, event, t_id);
-   425			break;
-   426	
-   427		case FTS2BA61Y_COORDINATE_ACTION_RELEASE:
-   428			fts2ba61y_report_release(ts, t_id);
-   429			break;
-   430		}
-   431	}
-   432	
-   433	static irqreturn_t fts2ba61y_irq_handler(int irq, void *handle)
-   434	{
-   435		struct fts2ba61y_data *ts = handle;
-   436		u8 buffer[FTS2BA61Y_EVENT_COUNT * FTS2BA61Y_EVENT_BUFF_SIZE];
-   437		u8 *event;
-   438		u8 event_id;
-   439		int n_events = 0;
-   440		int ret;
-   441	
- > 442		usleep(1);
-   443	
-   444		ret = fts2ba61y_get_event(ts, buffer, &n_events);
-   445		if (ret < 0) {
-   446			dev_dbg(&ts->spi->dev, "failed to get event: %d", ret);
-   447			return IRQ_HANDLED;
-   448		}
-   449	
-   450		for (int i = 0; i <= n_events; i++) {
-   451			event = &buffer[i * FTS2BA61Y_EVENT_BUFF_SIZE];
-   452			event_id = FIELD_GET(FTS2BA61Y_MASK_EVENT_ID, event[0]);
-   453	
-   454			if (event_id == FTS2BA61Y_COORDINATE_EVENT)
-   455				fts2ba61y_handle_coordinates(ts, event);
-   456		}
-   457	
-   458		return IRQ_HANDLED;
-   459	}
-   460	
+https://lore.kernel.org/lkml/20250911-qcom-tee-using-tee-ss-without-mem-obj-v12-0-17f07a942b8d@oss.qualcomm.com/
 
+It is based on next-20250919 where above series is already merged
+and tested on SA8775p which is now called Lemans IOT platform and
+does not addresses DMA problem discussed at [1] which is future
+scope of the series.
+
+Changes in v3: https://lore.kernel.org/lkml/20250819165447.4149674-1-mukesh.ojha@oss.qualcomm.com/
+ - Dropped video subsystem enablement for now, could add it in future
+   or on a separate series.
+ - Addressed most of the suggestion from Stephen and Bryan like some
+   remoteproc code checking resource table presence or right error
+   code propagation above the layer.
+ - Added leman-el2 overlay file.
+ - Added missed iommus binding which was missed last series.
+ - Separated qcom_mdt_pas_load() patch and its usage.
+ - Patch numbering got changed compared to last version
+
+Changes in v2: https://lore.kernel.org/lkml/20241004212359.2263502-1-quic_mojha@quicinc.com/
+ - A lot has changed from the V1 and a fresh look would be preferred.
+ - Removed approach where device tree contain devmem resources in
+   remoteproc node.
+ - SHMbridge need to created for both carveout and metadata memory
+   shared to TZ in a new way.
+ - Now, resource table would be given by SMC call which need to mapped
+   along with carveout before triggering _auth_and_reset_.
+ - IOMMU properties need to be added to firmware devices tree node when Linux
+   control IOMMU.
+
+---
+Mukesh Ojha (12):
+      dt-bindings: remoteproc: qcom,pas: Add iommus property
+      firmware: qcom_scm: Rename peripheral as pas_id
+      firmware: qcom_scm: Introduce PAS context initialization and destroy helper
+      soc: qcom: mdtloader: Add context aware qcom_mdt_pas_load() helper
+      remoteproc: pas: Use PAS context awareness in smc and mdt functions
+      firmware: qcom_scm: Add a prep version of auth_and_reset function
+      firmware: qcom_scm: Simplify qcom_scm_pas_init_image()
+      firmware: qcom_scm: Add shmbridge support to pas_init/release function
+      firmware: qcom_scm: Add qcom_scm_pas_get_rsc_table() to get resource table
+      remoteproc: pas: Extend parse_fw callback to fetch resources via SMC call
+      remoteproc: qcom: pas: Enable Secure PAS support with IOMMU managed by Linux
+      arm64: dts: qcom: Add EL2 overlay for Lemans
+
+ .../bindings/remoteproc/qcom,pas-common.yaml       |   3 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   7 +-
+ arch/arm64/boot/dts/qcom/lemans-el2.dtso           |  28 ++
+ drivers/firmware/qcom/qcom_scm.c                   | 414 ++++++++++++++++++---
+ drivers/firmware/qcom/qcom_scm.h                   |   1 +
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 187 ++++++++--
+ drivers/soc/qcom/mdt_loader.c                      |  19 +-
+ include/linux/firmware/qcom/qcom_scm.h             |  36 +-
+ include/linux/soc/qcom/mdt_loader.h                |  15 +-
+ 9 files changed, 607 insertions(+), 103 deletions(-)
+---
+base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+change-id: 20250919-kvm_rproc_pas-d58fe3b894bb
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-Mukesh Ojha
+
 
