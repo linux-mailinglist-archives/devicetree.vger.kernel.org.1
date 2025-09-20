@@ -1,231 +1,302 @@
-Return-Path: <devicetree+bounces-219622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1006FB8D0BF
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 22:22:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FB6B8D143
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 22:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01E654E19B0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 20:22:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 250C1621BF7
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 20:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4139B2C2346;
-	Sat, 20 Sep 2025 20:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D232D8365;
+	Sat, 20 Sep 2025 20:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CjRtdm5Q"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="gxLroDBm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966B22C11C3
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 20:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758399756; cv=none; b=bV9m3hZajk+p1vAsOLZpkxQ1WZ5zwpsmZLHK7LH+T1Q+I2zgG2uKjMpGoCeMqkXbrgW/Iwaaks4KcQf2nd4U9xrWnkplAKBjoV3aWhZTMp1w+J7SzcMQ//uzIHB9mXNjGfD0lAE4NgOfCdKbRmsh+ne2UVKnNJJ+xtB5tES1iws=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758399756; c=relaxed/simple;
-	bh=Am3FqAor/UTkbjr2Ye8bRp/s+L2cvBen6QV6UQ5vJDE=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=g5tOeNviga8C0JFfNIHPGPJTqHnylotg9Kh5SkfoTnInwLC5ix73q1grBkscQD+ZnllSCijVqvW4wYI6ZMBWh+cE5O2JJWyeBuk5oeTTlqQ3IAza3OWT2bEcAS2woNZV0eQKxpYQrnYOI1HYF05Lu50RmjCAp3Ezd8xEujtH2h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CjRtdm5Q; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-33067909400so2057758a91.2
-        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 13:22:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758399754; x=1759004554; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=oEDh+Wvs/2MhWrMqDGofeZax2aipiW7qS5Up+Qu8dgY=;
-        b=CjRtdm5QANpR1A7Vu1tlBf24Iv7p5TWXvsy1q8IFnBj1Q/klm0xEVuiK58/6dYrR3y
-         /DsBGbxlEKH9JDE4LnAcPqEnugfH/HWGM0O64whTMiB2cTWN1yimUE2pf4tL0DmWp2FN
-         BN8d4pH+zapGrmJMiT+lVv9SMzDIQ2ZM3tfZjTLuGOWjGIWkE+1vLwNJ3HDnubR3+LxG
-         PPoePo5H0t5m/jeqaWnpfzIr6CDk+iyqWHJeB5Fpwqfvl/+lmRykl8iuBMjU54rLV7IA
-         8LLZo53VHIQSboJeI6/ED65n0ZIxkRbjt8rE9+EoQ98yxUSqGy98J+8JyPJfOo0UlcTi
-         cwdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758399754; x=1759004554;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oEDh+Wvs/2MhWrMqDGofeZax2aipiW7qS5Up+Qu8dgY=;
-        b=BM9LVXGYW9OYB5xDM9x5m7zepDLG9zQM+ATtzSNnTx+R1yJqcAk7AkTy6mUte74h2o
-         +TmT0Lm0LcuewodwBPvWtdMHf0cmHO5Cqzew8BLEZFeRcp7AEbg0MFmboOyLkSOQJyIG
-         7SKZYfhuHCLehfhhHWdqSK3uRGp5P20zpAo4Gw1o3WuQ2W6QAaLwz3ckc0gHFTyNnUPB
-         F4zij7wPfztwoCGk77Y4NlKhLvPKb7AuZiXg4nFkvJjr+LPiAcJgLG7lz8kFW59lWMKa
-         HeJr/ytYeFxTEilOwSRRFU9XG2AyZCDIU7coJiEtY66EnVyRsCNsDonUw+3o5jfcbW6P
-         Xofw==
-X-Forwarded-Encrypted: i=1; AJvYcCWXK+u2HCTY/PDTFGUzm7IYDYwCe4ZMbht+l2Q5HcStq5tXAU2sVHv3KUfx+XErEppyewAnFAfuuMpx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNjcUnGOcRQFGFYzf2U9IdniYH4f7uJKTiyHRAODf7bjUQt03p
-	1nkcnrdRMdYLmZNrHPoO0L9Z/HlrPMx5WQUNRSruBlGM/iSqn+PJ2dAH
-X-Gm-Gg: ASbGnctjCikk6It32OPmVrgq8e8fkibnV2LrxDvLtINHDZ/3ntWmzVlzRwk77XSJ51G
-	hNyjFuZUsoFxygkUMprkNYWeoks22QMEFbbx0QJK/L4nHn7yq9F8fOnrXcCgjKYWcgo4sbHrRDW
-	31LjqzN+JHWpfNYXDA2evzFuzNeyBiUTIv3dXPRwm4Jb+flUgOyL/OigLd2fufl/XiG3Jc0kDyo
-	QWUby/NVpjC1ofVEcvL73DKTsV/XIkbGdoW0cdZk8mK48er056YyqPMe5wwz9kzajm1Dq0zARbo
-	PxzTPkOjMWH5OP1Y16zEse6Hw8UaY7jgGWnnAuTye17qo9W0Gv61wRfhZuHw6ufev5Ay4O2uPLP
-	y8V5oNo+LPVSgrRIDnVAUWNmVCR27AfNlGRjmYNyP8NI=
-X-Google-Smtp-Source: AGHT+IG3D81KvO3jDKAMB7j9mZS/RFnD2xJducLybPfAPsNEHFakSNlx4mse/NO+LH4HnBqVFQfMJg==
-X-Received: by 2002:a17:90b:2c8f:b0:32e:96b1:fb70 with SMTP id 98e67ed59e1d1-33098004a50mr9769248a91.12.1758399753726;
-        Sat, 20 Sep 2025 13:22:33 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([191.193.70.152])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3309c81f50bsm5417043a91.23.2025.09.20.13.22.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Sep 2025 13:22:33 -0700 (PDT)
-Date: Sat, 20 Sep 2025 17:22:28 -0300
-From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: r0q: add gpio keys
-User-Agent: Thunderbird for Android
-In-Reply-To: <r6e23h4nkddktkle5rohdiiqkw667rq26j7u2yodao6p3scixp@y3roqbly4oje>
-References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-2-ghatto404@gmail.com> <qiiuezocvxvj5bhrr77v6o2amaaaepdx54pqoewvhtnxce5ccz@g7bhkrb6a4pd> <5436E420-E459-4E47-9752-EF80F550FA6F@gmail.com> <r6e23h4nkddktkle5rohdiiqkw667rq26j7u2yodao6p3scixp@y3roqbly4oje>
-Message-ID: <B58EE981-3702-4FA3-B150-A3C862643870@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1DFD2D7D41;
+	Sat, 20 Sep 2025 20:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758400803; cv=pass; b=qEUkmCsLc7P4ElCCrwcSvLIsIzhP+iUNdpCJyd9mjrui+IMr29NwRvtCLXLfgfSullHkqbjy4/tY8t5hBDgLew1DC/UqOP+l8c1T+qlvkDo50RMgTQhc3aXfjaq/GY+KgzJv4mBl5YnmxYe+QbV/lI6pMhb7HFj5n1vl1TRKv44=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758400803; c=relaxed/simple;
+	bh=uWI4/qj6thpZ0Tc19jhX4B24Cqj4vytw6faAdyXa6JI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKxiJbeG6Yf7VzIU+sNNNw1AKuJOPH5riMlkuDisfH9AhrrG/44MFDaW8UkM24JApcW2rmq00tb2URDe1XXXh4pb3yCAUGOXFxmTsTVE1/AWaxBY8YeqXbODr2OUic3WTFGObbUi4n1X8U/rpB3TF5wowlyJF0vrNI0EG6SJZws=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=gxLroDBm; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1758400792; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=B2DhV/vuRbct8iVI7PfPT7kIvwrPnUtI9ADKXQmxsXeiqkoN9F6hbWdeZp7L8tJ9gMxqB8JbK/f8a8d4CSeB5vYdifaWx3tpRaaDmmZZVc1WoSkyfD+Aiky0GNIyyjDJMLIAWOhgmkVIfRF+OMk34diGEQHu3ylYlECa1Pz9axw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758400792; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=i3CZ8I6hMfZuqlYG/R7kbbW2PmgdFbuMEuk5EuX4U84=; 
+	b=i1t1yVng4DEvL3QkBqhkZfOc9rokg5DBdduqJgUhwvxQ1sZeVn6kDMgqRngRKhiimKO1AiC9RDjBb9jkzZ6ft3QhIj4y1TTM2QjmRnuLi4iGb/gPn42Pm2S2S8JbfgRU72FaOzKVHZgIdNbsz8gCJB6fyUUswSU5rC4nrEd+eN0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758400792;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=i3CZ8I6hMfZuqlYG/R7kbbW2PmgdFbuMEuk5EuX4U84=;
+	b=gxLroDBmdYYuzJnigHmahDbH+flW97oQv1ZEih0+klSpSHuzK20m+EoxJo2izzau
+	SV8Vy72qx/x0FyMXxjkteMHRkMXpKHUcq54JAeTOtYCzNlumXF5UL2WYoaD7Uj4yGlt
+	XF2YrY6I3HmOPURBDBK7qkosUY/23k67BjDf6ZDA=
+Received: by mx.zohomail.com with SMTPS id 1758400790928789.1689767088144;
+	Sat, 20 Sep 2025 13:39:50 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 52ACA1805CD; Sat, 20 Sep 2025 22:39:43 +0200 (CEST)
+Date: Sat, 20 Sep 2025 22:39:43 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: touchscreen: convert eeti bindings
+ to json schema
+Message-ID: <iqfvpacnymzckd3vi7mxgzbljomwkww3mpuupn5mhy3rtlwebv@2vf346kfqpno>
+References: <20250919075823.2557865-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2hqg7mcrxxpxuwym"
+Content-Disposition: inline
+In-Reply-To: <20250919075823.2557865-1-dario.binacchi@amarulasolutions.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/258.384.42
+X-ZohoMailClient: External
+
+
+--2hqg7mcrxxpxuwym
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 1/3] dt-bindings: touchscreen: convert eeti bindings
+ to json schema
+MIME-Version: 1.0
 
+Hi,
 
+On Fri, Sep 19, 2025 at 09:58:09AM +0200, Dario Binacchi wrote:
+> Convert EETI touchscreen controller device tree binding to json-schema.
+>=20
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+>=20
+> Changes in v5:
+> - Move bindings into eeti,exc3000.yaml
+> - Remove eeti.yaml
+>=20
+> Changes in v2:
+> - Added in v2
+>=20
+>  .../input/touchscreen/eeti,exc3000.yaml       | 41 ++++++++++++++++---
+>  .../bindings/input/touchscreen/eeti.txt       | 30 --------------
+>  2 files changed, 36 insertions(+), 35 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/e=
+eti.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc=
+3000.yaml b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc300=
+0.yaml
+> index 1c7ae05a8c15..13b865d3ee58 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/eeti,exc3000.ya=
+ml
+> @@ -9,15 +9,13 @@ title: EETI EXC3000 series touchscreen controller
+>  maintainers:
+>    - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> =20
+> -allOf:
+> -  - $ref: touchscreen.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+>        - const: eeti,exc3000
+>        - const: eeti,exc80h60
+>        - const: eeti,exc80h84
+> +      - const: eeti,exc3000-i2c
 
-On September 20, 2025 5:15:41 PM GMT-03:00, Dmitry Baryshkov <dmitry=2Ebar=
-yshkov@oss=2Equalcomm=2Ecom> wrote:
->On Sat, Sep 20, 2025 at 03:02:42PM -0300, Eric Gon=C3=A7alves wrote:
->>=20
->>=20
->> On September 20, 2025 12:45:27 PM GMT-03:00, Dmitry Baryshkov <dmitry=
-=2Ebaryshkov@oss=2Equalcomm=2Ecom> wrote:
->> >On Sat, Sep 20, 2025 at 01:46:33AM +0000, Eric Gon=C3=A7alves wrote:
->> >> Add GPIO keys support to Samsung Galaxy S22 (r0q)=2E
->> >>=20
->> >> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
->> >> ---
->> >>  =2E=2E=2E/boot/dts/qcom/sm8450-samsung-r0q=2Edts      | 53 ++++++++=
-+++++++----
->> >>  1 file changed, 44 insertions(+), 9 deletions(-)
->> >>=20
->> >> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/arc=
-h/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> >> index 880d74ae6032=2E=2E70e953824996 100644
->> >> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> >> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> >> @@ -2,11 +2,12 @@
->> >> =20
->> >>  /dts-v1/;
->> >> =20
->> >> +#include <dt-bindings/input/linux-event-codes=2Eh>
->> >>  #include <dt-bindings/regulator/qcom,rpmh-regulator=2Eh>
->> >> -
->> >>  #include "sm8450=2Edtsi"
->> >>  #include "pm8350=2Edtsi"
->> >>  #include "pm8350c=2Edtsi"
->> >> +#include "pmk8350=2Edtsi"
->> >> =20
->> >>  / {
->> >>  	model =3D "Samsung Galaxy S22 5G";
->> >> @@ -28,13 +29,19 @@ framebuffer: framebuffer@b8000000 {
->> >>  		};
->> >>  	};
->> >> =20
->> >> -	vph_pwr: regulator-vph-pwr {
->> >> -		compatible =3D "regulator-fixed";
->> >> -		regulator-name =3D "vph_pwr";
->> >> -		regulator-min-microvolt =3D <3700000>;
->> >> -		regulator-max-microvolt =3D <3700000>;
->> >> -		regulator-always-on;
->> >> -		regulator-boot-on;
->> >
->> >Please don't mix up refactorings and new features=2E Split this patch =
-into
->> >several=2E
->> The patch only added gpio-keys node and pon_resin,
->> pon_pwrkey=2E Do you mean I have to split each button
->> into separate patches?
->
->No=2E The patch also moves regulator-vph-pwr and changes the comment in
->the TLMM node=2E
->
-I thought they would be too small to be
-patches on their own=2E Is it okay if I split
-them into 2: arm64: dts: qcom: r0q: small refactor
-and arm64: dts: qcom: r0q: add gpio keys?
->> >
->> >> +	gpio-keys {
->> >> +		compatible =3D "gpio-keys";
->> >> +		autorepeat;
->> >> +
->> >> +		pinctrl-0 =3D <&vol_up_n>;
->> >> +		pinctrl-names =3D "default";
->> >> +
->> >> +		key-vol-up {
->> >> +			label =3D "Volume Up";
->> >> +			linux,code =3D <KEY_VOLUMEUP>;
->> >> +			gpios =3D <&pm8350_gpios 6 GPIO_ACTIVE_LOW>;
->> >> +			debounce-interval =3D <15>;
->> >> +		};
->> >>  	};
->> >> =20
->> >>  	reserved-memory {
->> >> @@ -47,6 +54,15 @@ splash-region@b8000000 {
->> >>  			no-map;
->> >>  		};
->> >>  	};
->> >> +
->> >> +	vph_pwr: regulator-vph-pwr {
->> >> +		compatible =3D "regulator-fixed";
->> >> +		regulator-name =3D "vph_pwr";
->> >> +		regulator-min-microvolt =3D <3700000>;
->> >> +		regulator-max-microvolt =3D <3700000>;
->> >> +		regulator-always-on;
->> >> +		regulator-boot-on;
->> >> +	};
->> >>  };
->> >> =20
->> >>  &apps_rsc {
->> >> @@ -119,8 +135,27 @@ vreg_l1c_1p8: ldo1 {
->> >>  	};
->> >>  };
->> >> =20
->> >> +&pm8350_gpios {
->> >> +	vol_up_n: vol-up-n-state {
->> >> +		pins =3D "gpio6";
->> >> +		function =3D "normal";
->> >> +		power-source =3D <1>;
->> >> +		input-enable;
->> >> +	};
->> >> +};
->> >> +
->> >> +&pon_pwrkey {
->> >> +	status =3D "okay";
->> >> +};
->> >> +
->> >> +&pon_resin {
->> >> +	linux,code =3D <KEY_VOLUMEDOWN>;
->> >> +
->> >> +	status =3D "okay";
->> >> +};
->> >> +
->> >>  &tlmm {
->> >> -	gpio-reserved-ranges =3D <36 4>; /* SPI (not linked to anything) *=
-/
->> >> +	gpio-reserved-ranges =3D <36 4>; /* SPI (Unused) */
->> >>  };
->> >> =20
->> >>  &usb_1 {
->> >> --=20
->> >> 2=2E51=2E0
->> >>=20
->> >
->> Resend because I forgot to CC the mailing lists
->
+I think this should be
+
+- const: eeti,exc3000-i2c
+  deprecated: true
+
+The compatible is obviously not something that should be used
+anymore.
+
+>        - items:
+>            - enum:
+>                - eeti,exc81w32
+> @@ -30,18 +28,34 @@ properties:
+>      maxItems: 1
+>    vdd-supply:
+>      description: Power supply regulator for the chip
+> +  attn-gpios:
+> +    maxItems: 1
+> +    description: Phandle to a GPIO to check whether interrupt is still
+> +                 latched. This is necessary for platforms that lack
+> +                 support for level-triggered IRQs.
+
+  deprecated: true
+
+(see below)
+
+>    touchscreen-size-x: true
+>    touchscreen-size-y: true
+>    touchscreen-inverted-x: true
+>    touchscreen-inverted-y: true
+>    touchscreen-swapped-x-y: true
+> =20
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: eeti,exc3000-i2c
+> +    then:
+> +      required:
+> +        - touchscreen-size-x
+> +        - touchscreen-size-y
+
+And I think it makes sense to add this to disallow using this ugly
+hack with the normal compatibles:
+
+else:
+  attn-gpios: false
+
+Looking at the only user (pxa300-raumfeld-controller), it supplies
+the same GPIO as IRQ and as GPIO, so it is actually a software
+limitation. Instead of implementing the software level based IRQ
+handling in the gpio driver, it was hacked into the EETI driver.
+
+Looks like this legacy platform is pretty much dead, otherwise I
+would have suggested to simply switch it to the new binding/driver.
+
+Greetings,
+
+-- Sebastian
+
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - touchscreen-size-x
+> -  - touchscreen-size-y
+> =20
+>  additionalProperties: false
+> =20
+> @@ -51,6 +65,7 @@ examples:
+>      i2c {
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+> +
+>          touchscreen@2a {
+>                  compatible =3D "eeti,exc3000";
+>                  reg =3D <0x2a>;
+> @@ -62,3 +77,19 @@ examples:
+>                  touchscreen-swapped-x-y;
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include "dt-bindings/interrupt-controller/irq.h"
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        touchscreen@2a {
+> +            compatible =3D "eeti,exc3000-i2c";
+> +            reg =3D <0x2a>;
+> +            interrupt-parent =3D <&gpio>;
+> +            interrupts =3D <123 IRQ_TYPE_EDGE_RISING>;
+> +            attn-gpios =3D <&gpio 123 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+
+I would also drop the example, nobody should use this :)
+
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/eeti.txt=
+ b/Documentation/devicetree/bindings/input/touchscreen/eeti.txt
+> deleted file mode 100644
+> index 32b3712c916e..000000000000
+> --- a/Documentation/devicetree/bindings/input/touchscreen/eeti.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Bindings for EETI touchscreen controller
+> -
+> -Required properties:
+> -- compatible:	should be "eeti,exc3000-i2c"
+> -- reg:		I2C address of the chip. Should be set to <0xa>
+> -- interrupts:	interrupt to which the chip is connected
+> -
+> -Optional properties:
+> -- attn-gpios:	A handle to a GPIO to check whether interrupt is still
+> -		latched. This is necessary for platforms that lack
+> -		support for level-triggered IRQs.
+> -
+> -The following optional properties described in touchscreen.txt are
+> -also supported:
+> -
+> -- touchscreen-inverted-x
+> -- touchscreen-inverted-y
+> -- touchscreen-swapped-x-y
+> -
+> -Example:
+> -
+> -i2c-master {
+> -	touchscreen@a {
+> -		compatible =3D "eeti,exc3000-i2c";
+> -		reg =3D <0xa>;
+> -		interrupt-parent =3D <&gpio>;
+> -		interrupts =3D <123 IRQ_TYPE_EDGE_RISING>;
+> -		attn-gpios =3D <&gpio 123 GPIO_ACTIVE_HIGH>;
+> -	};
+> -};
+> --=20
+> 2.43.0
+>=20
+> base-commit: 8b789f2b7602a818e7c7488c74414fae21392b63
+> branch: drop-touchscreen.txt
+>=20
+
+--2hqg7mcrxxpxuwym
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmjPEQsACgkQ2O7X88g7
++powtw/+MsgxaegIJFTpRlr69ZjoUlOE5KEOAnbPdA6CIJKOvScUU/qSVxX2njiH
+FsBi4e4kndKsrc5jvHmtTtNcif9xMKPq8Ik/p6PbxqCh474EB+uYIBejfxkpK2rF
+HVn5P5gFtS4b2uRxVOGddkAe/1KZexqcpYatlEpISeyGCh4FhcHG6vzb5Np2zniX
+Wrc3TK2h3K3BVrzWEFO/+XYOcjlv6XoMZ6HTbOhgwmYn6n3u1n8t550OmskPaxXd
+pki8zkLZFNCeOkFoBCWPYFLt6AkoQIAlW1Lt4VIrrMfx9JLskcjft1jALTqSKS6+
+TqFqdmCeA9gY/KH2BxNiCixIdjcJRET3B9lzHYMUa3BvLjQMAaa9bjSeH0NDfOzO
+3vXg+uNqW0C8kUSW5Mq2y5Ag1/1Gfc5GMqaS8Zbo8/wvT/e2YrWlYQFWIJyrui0e
+/RzFei2C1Eyf10EFXF2v+3y/oatFvSB+VXESU3UNUoD0UPo76mPxDEfyd2zEIHsI
+AViP7O7An698cg3vKNoeKB+O7F0DNuMDz4LdD86k3RSxb+2g5ZguF5GTeFygotiA
+8iytG/WO+kP/ZeP2UvCligtZyZVPC4xB6JscedldxjFr0WxYfwo4RPa4I/0Tag9j
+SxosTR/+N8mT5139PFF58AdHmDoGZeuTVU/KZNV1DAI/Ym+iGxI=
+=9UZq
+-----END PGP SIGNATURE-----
+
+--2hqg7mcrxxpxuwym--
 
