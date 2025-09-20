@@ -1,151 +1,105 @@
-Return-Path: <devicetree+bounces-219521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774ACB8C3F3
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 10:36:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7C1B8C40F
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 10:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E52B1C02113
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 08:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46D127E11AE
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 08:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421C0283141;
-	Sat, 20 Sep 2025 08:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FFE286D52;
+	Sat, 20 Sep 2025 08:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="KIX9+q9k"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="DS7HG/wX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123D6283124
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 08:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968AD78C9C;
+	Sat, 20 Sep 2025 08:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758357394; cv=none; b=qVLFZOnPnWWD1Wa9HbLcyZ60x/XPmIp2S+iZrfVtZSSlHdr7LSpnbSKkrqjrzT0o1XPXey5f/URjhk/bEfPyXb3zbi8a6LspcRfQArV3gn03vWWBV9IO5beoIiIOzaktcJMYcDteLNaCb7SQAzaaa7pT8GhSMSIMAhuhKo38E+U=
+	t=1758357777; cv=none; b=bMgerXAeKL2uAyiciaQAJPg1uHtqhyWZIJ6jlUcUDUAoNMNIden4gaWhEz6pXbBtMZLADvk4Rx3F8kS1d8auaSqcugPg/bYtxgrQC4qI36N9x2UpJTI+RiY6dxx/9W94EyN0eO6EcGhR0yo4+op4CMGsW76ewyWPgmNRGK8pYE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758357394; c=relaxed/simple;
-	bh=QJQGLbxn9lFCmMtOVMZa34rVYSu5IRYrBvI46GE1S7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=ka4CNchOED41fV1g3PorsLMrcobvIKA6xEpeTnhFQyEoN6Z8KR5rqWfx0wbpkdY4HRdJdGW7UnwLjp6wIYZQxyigz0wSci4vjjm6WSgqSO8hHe6fsvmcp4h1nGuB3jHG4BvbQ/NMmHsZBd6/wuiep2ajS2ZVX1rUfnFZZjELvh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=KIX9+q9k; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: Cc: From:
- References: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1758357391;
- bh=nhhXvyJU4Q/ep+pG2LVNeGtKFMmPOfCIGjE2903J/IY=;
- b=KIX9+q9krMXHdfedhQg37ioqSyXm2HvaKmHozGxjCB8pnvJXJdMAqwmHvyD7ALfiEmqt1h2j0
- +pRnDxh7Br8YNVVUZHlg1Jy1hTEwYfFN5F8ubFqFhM5vpTIkkrKYZ3/nRgLPy2mb8SFnOmjoONz
- y9Cl89sntnYdqk05VL4bpG1KoVUcqWUXvPgKb2X929FOZIKAVbRmAlQRzcoSggl9qrachs58cKb
- VKOLOerhcgs48oGHSd1hr4ERsKYl9s98T1/LGWhIDDDVfye5ILV2JsMXjE6Q85GqgiLGg3Mtyre
- flelavFiY7Og+bnLziYKhP4sPmE1mN6zBT3PR41AFvBA==
-X-Forward-Email-ID: 68ce627a528963d4864a57f8
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.14
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <07560892-6672-45a0-aa3d-79e47d145ff4@kwiboo.se>
-Date: Sat, 20 Sep 2025 10:14:45 +0200
+	s=arc-20240116; t=1758357777; c=relaxed/simple;
+	bh=t29V9AgX/NKmPHjTgaedf7R9252R6wr9WoYCntM+Lvc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dma0B7PlgiVI/t+JGigMFK5zKPcYPfCEPaPoMKhACSCd66m1SUHCgiWHQ95DqCG95EMSuvq1FOIkRrycDwhD4wzdiDFxy5kOchL97+JKHEbZ1Qq9BY5uzfZQ5Daj7nTCeImTSDERbyvsGhW5B91dTRnSlKQ+Yr2ReWt6RmUo/mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=DS7HG/wX; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xBF9CyZWiKiOxeJFSHS98uiQ2p7XF52s9xV5fyUWZwo=; b=DS7HG/wX/9KVMrGrwe6t6++FzJ
+	0QiMmw8de9ipH73yC4hEbVnJr4ZR7td34n+Q4bKcn8jz3p3tMqWM4V3x+8Ya/OwgE8R3tOsB+9w3p
+	GHugrGfuwjl8sXMc7/xhG+RJmPZozx3BAWkAhKjuajrYZxw1woc72pq/zLxj4N8qXiQwyfaG12RuM
+	XVcGbWSrqjUvSqI1FK/W0Ovmvf78oZM++wKmujE2S6CfDLcK0LEs8txdEsYOtxN2JjQ90lMq3kG/u
+	aiYrxkX0+5bNtMnhYZZTz1okHYgbMuvo+vARbE0KMJ62fJo8xgt5+zx3BUp1V13dtC54zF9nsykLV
+	mTasN8SA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48600)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uztBC-000000008CR-2fDj;
+	Sat, 20 Sep 2025 09:42:50 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uztBA-000000002zo-0Qam;
+	Sat, 20 Sep 2025 09:42:48 +0100
+Date: Sat, 20 Sep 2025 09:42:47 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: David Yang <mmyangfl@gmail.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v10 2/5] net: phy: introduce
+ PHY_INTERFACE_MODE_REVSGMII
+Message-ID: <aM5pB-c-AR_E4U8k@shell.armlinux.org.uk>
+References: <20250919094234.1491638-1-mmyangfl@gmail.com>
+ <20250919094234.1491638-3-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: correct uart mux for Radxa ZERO
- 3
-To: Ed Wildgoose <lists@wildgooses.com>
-References: <20250917114932.25994-1-lists@wildgooses.com>
- <20250917114932.25994-2-lists@wildgooses.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-In-Reply-To: <20250917114932.25994-2-lists@wildgooses.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250919094234.1491638-3-mmyangfl@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Ed,
-
-On 9/17/2025 1:49 PM, Ed Wildgoose wrote:
-> The rk3566 has multiplexed pins and the uarts can be moved to a choice
-> of 2 pin groups. The default rk356x-base.dtsi appears to default to mux0
-> for all uarts, however, specific hardware might choose to implement
-> alternatives
+On Fri, Sep 19, 2025 at 05:42:27PM +0800, David Yang wrote:
+> The "reverse SGMII" protocol name is a personal invention, derived from
+> "reverse MII" and "reverse RMII", this means: "behave like an SGMII
+> PHY".
 > 
-> The Radxa zero 3 shows that is uses M1 for uarts:
-> - uart4
-> - uart5
-> - uart9
-> 
-> These aren't normally enabled, but we should at least correct the
-> default pinctrl definitions. Without these changes there will be
-> conflicts with mmc0/mmc1, leading to the SD or eMMC going missing.
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
 
-Please rephrase the commit subject and message, currently it seem to
-imply that there is something broken that needs fixing, however this
-mainly make it easier to apply an overlay that does not include
-description of any changed behavior for pins on the 40-pin header.
+Thanks. This is also going to be needed for stmmac, which can operate in
+SGMII mode acting as if it were a PHY to allow a SGMII MAC-to-MAC
+connection to be established.
 
-Current expected behavior of the hw, using pins on 40-pin header as gpio
-pins should already be correctly described in this board device tree.
+As noted by the kernel build bot, there are several other locations that
+need to be updated whenever a new phy interface is added.
 
-My original intent when submitting board device trees, such as this one, 
-is that a device tree overlay will fully describe any required changes.
-Also I do not expect that using an overlay intended for an old vendor
-kernel device tree will work as-is on mainline kernel device tree.
+Thanks.
 
-> 
-> Signed-off-by: Ed Wildgoose <lists@wildgooses.com>
-> ---
->  .../boot/dts/rockchip/rk3566-radxa-zero-3.dtsi    | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-> index 1ee5d96a4..41b3c4403 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
-> @@ -492,6 +492,21 @@ &uart2 {
->  	status = "okay";
->  };
->  
-> +&uart4{
-
-nit: missing space
-
-> +    pinctrl-names = "default";
-> +    pinctrl-0 = <&uart4m1_xfer>;
-
-nit: seem to use space instead of tab, same for rest.
-
-Regards,
-Jonas
-
-> +};
-> +
-> +&uart5 {
-> +    pinctrl-names = "default";
-> +    pinctrl-0 = <&uart5m1_xfer>;
-> +};
-> +
-> +&uart9 {
-> +    pinctrl-names = "default";
-> +    pinctrl-0 = <&uart9m1_xfer>;
-> +};
-> +
->  &usb_host0_xhci {
->  	status = "okay";
->  };
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
