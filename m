@@ -1,150 +1,97 @@
-Return-Path: <devicetree+bounces-219573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E3EB8CB67
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:28:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E06B8CBA0
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CFD81BC1CF0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:29:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99EBB7AF79A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AB62FD7DE;
-	Sat, 20 Sep 2025 15:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1036530149F;
+	Sat, 20 Sep 2025 15:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ehB3Rpr/"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="iWqtrSbk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE8B2F6587
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5232D21CC64
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758382122; cv=none; b=I3ALVfFktZQe17l8GYlgkA65Per5GAncVifqdxynTf9hVbOM0tHMti/q5W1ZHuCqqjDord+IoHJuA5ac/knS4YAWEi7HelI4eicXmkOt01VLxagjKTqVlMRwOpysi7JhxPIpLyD/MFHsz8Wew9nTAo1EgG5u6MG8WzrK9ZpFH4Q=
+	t=1758382306; cv=none; b=kpRMqisMj/ukrQoR//KDZhyl3sEdkKD+UrgYcQnP/2LTudezuBSSzlYhsdwBiaGGurV3XUVUbnp1tbt7ORiwH5AUiG93Gn34bF501i83KkvmLyxlXQRru1eozyzB+vzhDm7lU+PxoKiwgieIlNNGgteWni+23Lj1qnXxrJUPD4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758382122; c=relaxed/simple;
-	bh=o7/SBdtKnoTV18ExhMxfVnZ3RnDyVKUeLtlNcSpc66A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pigRIx80XTlCM6Xr28SIJLZflatv13e08HZvONpJO153qrMePm7VpRbNUdEBVpydXIP10qC+rah2s15RYOlYhMpfSV4MnLq/TW4JMwxw+NkIJ/FSFWW0Bh+cBQPug67R85iR7OHsl45qKDswpcX+MbL8OovwyKYuET07XAg+TLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ehB3Rpr/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58K3FL6K006123
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:28:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=EdXXPQvg8zqZCB98GzJoeagW
-	GyqEl3pkoBjW0+Eu99s=; b=ehB3Rpr/9nEP6BK5BIrTZQ+WGhrLc3l8s833FM0Q
-	NjCBkw0NWhCOkTf1JBmpLIOvWtFBeQNWlDcd+vuQFLmLlkkXhqO7ENQAZ3Piz7+q
-	80J4EATxd4rrlc87IK583/hvLdDEmQI9SHgIkeL+Tf3Y/ea0Gi4vh5SZ2UTkzyRf
-	hQGrWJOzBvLBJEdK3v2mFMHJcIaTi6xIzeZrAc8paqWKAyhgWOcCgQ1KJnej8vNz
-	JBF8B+vkjMDUso8RQ6iv4ekq6DkDeJ7OJVWgke6qE6+NrN8sQj2C3X+nlg+WaRRy
-	ma1Xdn+yGBLq/JFDhq3+eR7jefxnqtBRZD3Gd39ePglfXg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499kkhgy29-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:28:40 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5d5cc0f25so53541201cf.2
-        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 08:28:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758382119; x=1758986919;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EdXXPQvg8zqZCB98GzJoeagWGyqEl3pkoBjW0+Eu99s=;
-        b=PEIz7YIjmbuVtKY7GnVGVgy62oJ7VU4bpxBY+3M7DJvBWg/N4R8Uun7QR0NhXwwjdF
-         EMW6dC8mZhDkdWrbADViaFQvAT5HTg6EUyp86Bw19AywbyFv3rMeobCJr83VaUkiHyoa
-         E3IqVq1Ulj6Q+5oR95vpt5wMVeV89hRIN9wPIp3sJcJcbziMZUz0R4ZrbvqMwXD/P9qB
-         tXo1NJljLokyb135cIbBUyviNmTXg1jJnKLuzWsbh/+0MzmgrefnPAppAXu9+N9YQ3Qz
-         gsXiJ/Ea0605Oz/8geuKgBARTfDYgCjbuQK8z3MstR33wcMhxRgeVyczcTETLxdRtQMK
-         aKcw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFNZ/EP5nCi+Lrkd6zB8qFzbqskh/iMorLHae+300HZr1kft9ZhQvnWeO9XxOhKAAwdlcTM8P9OajG@vger.kernel.org
-X-Gm-Message-State: AOJu0YygvsSHDkDs5Byfs3f/pyPws6ZNHQDw/E/+7fcG+IRhbIpT0o7Q
-	5qxmAtGokGj3Fh03JEq3QfvOIBKxArfxgNfiwdlbwOuoSc11veNvsPIeT1naB5bs64xi5IefW90
-	PVeCSVw272XNeW1hComIRIqNgfDOm1GTfZh4ZXCCACCe+5t1eMRvWn2FdGHXMZB5Y
-X-Gm-Gg: ASbGncsbwBNEU27hlorAGAfoXxmuOvMcNojdIYYH4g40XmTZo5Kiv/jSSJElmVA/JVA
-	l7pa6BRabYDshq3WSb7O+BsYdau7/vmI1vnWcSo54q/3bzSoYbVqf7YmK06+7dk3dNNY4uH7DaM
-	H6jrHRhnMvz6WMYOHxsK1/aUygiHYc6tHhUYsNFBgWmoJ0odjU33hKRmvANqYYFuXOscDN4YODY
-	as928KfkENJuIwUoAJ75V0sx88YBQUB0kLVKQs8mKqcfOdfXeoU/srM0atpo/mTWA3RVlH2mmaW
-	x/g/HvHb/WH4i4v2kvC6R12UBm5Dt9Zp9zBi56BcpVTbcAcfvB6nYCSnL927hQ9JT/lQEQtrBzT
-	/fLoMTohal/46QPcMW8nDbyoYJNk0F4kLftXjZ+gr4LoNRCesi0qf
-X-Received: by 2002:a05:622a:4c9:b0:4b7:9c8d:1bab with SMTP id d75a77b69052e-4c0707a770cmr68026861cf.20.1758382119009;
-        Sat, 20 Sep 2025 08:28:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+GPIhiPGXPqgJWbEBTsRikkIInjv9j9qp3bfqE/zhraGDQEZi6oZt/op8Qsh7YXTkasO13g==
-X-Received: by 2002:a05:622a:4c9:b0:4b7:9c8d:1bab with SMTP id d75a77b69052e-4c0707a770cmr68026511cf.20.1758382118421;
-        Sat, 20 Sep 2025 08:28:38 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-57bef64ecf1sm247359e87.126.2025.09.20.08.28.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Sep 2025 08:28:37 -0700 (PDT)
-Date: Sat, 20 Sep 2025 18:28:35 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
-        vkoul@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Elson Roy Serrao <quic_eserrao@quicinc.com>
-Subject: Re: [PATCH 5/9] phy: qualcomm: Update the QMP clamp register for V6
-Message-ID: <mbei72eoq4vss4enwfp2c74756xdhyvd7bwfomgehm4fneardc@dgmofkbof3ie>
-References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
- <20250920032108.242643-6-wesley.cheng@oss.qualcomm.com>
+	s=arc-20240116; t=1758382306; c=relaxed/simple;
+	bh=hSg3c2ZghTZizAbYqX13nbRSTVnHbltJh3jiavgkq80=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CeaNzOQTDtJ+4df+2Bl9IXurWJcxUPG6OoFI0cz2HnqURng692q9nsDuaEShHqx6YRR0zgzaX3XAM6/1oNBmBd8QJmoXfM7HbRRDIioGZ9LcxlurakQ5HgWmEPuu2u74hf61p6+uX7W7E+yTSTnr3LC3cAJ2Tx5QnvVenlKZPfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=iWqtrSbk; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=iWqtrSbkxBi/JLRtP+iV4RQ3k1a/tesuTQDMgAOYaJrV4z4Alue0kRIlCXG9+d0c7mYoZjRyokZC22Hggfu2+b6LpUspt8EsOPd0y42DuKze8KnMR2qsqUXog8/vBIDorYRSGpMhhkzrylMEnZFo8XMajFm4DXKrdI8Gvhw40NCJpOAClQuewkde8tKwYx+5CPhtWn7VLhRtgiGa2pcmcfDUwpPA/HPCQNkI0yX4WgetJ6Kekc3bFTlHJePlollL72koMZLnIU3bi1RNKs6xTQm77+g+4MTi19Y8AgflsVqnDRUe5byyQ7OWccIXe0Aa+TVbQyjfEvY3fDB14PL3eQ==; s=purelymail1; d=purelymail.com; v=1; bh=hSg3c2ZghTZizAbYqX13nbRSTVnHbltJh3jiavgkq80=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1935225507;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Sat, 20 Sep 2025 15:31:09 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 0/2] i2c: Add support for MT6878 I2C controllers
+Date: Sat, 20 Sep 2025 17:31:02 +0200
+Message-Id: <20250920-mt6878-i2c-bringup-v1-0-d1527ffd3cd7@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250920032108.242643-6-wesley.cheng@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: mR76qRKE3qQbHztR9pUzrhKNVc1iIJ-B
-X-Proofpoint-GUID: mR76qRKE3qQbHztR9pUzrhKNVc1iIJ-B
-X-Authority-Analysis: v=2.4 cv=JMo7s9Kb c=1 sm=1 tr=0 ts=68cec828 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=iQ3mrrbCar-o9T1obZQA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyMiBTYWx0ZWRfXxTQkiX9gHsb4
- 00qkXp03FXhQvaVdQ3BiT8ojbrDbhcVtTqG1Xu4MVc/bORKK0Pldh6WwtQcpubEKMPA7XBaL/Fl
- j8x1QH658+t2OmHy7JQI9wCC2PO1vvUzUMu/AHDuoTMqO4hLyFl3fOFhujK/v7afVQP6h0kqhzl
- FhAJRm7e2cQVxNELchKMg+vjbTiwpOK6LeOhc5tfNhrcHEyr7E6tYgeZOwiOi1xNh76vFca2fh/
- 4jYGmNfyEnI8oQH/gnpdyygFcDvTycgpR1x3/ZRy0HIr0ficQnpIGFEDbR4sqTL7RyQo5RThogz
- xaz5baojX8RjCULK9jat3IC2n8x4wLaEGDExN4/lVGhSd9yQSY+oIt/9qT/tG4aBi1Fy5TWAV4Q
- WOfE1MEI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-20_06,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- clxscore=1015 adultscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509200022
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALfIzmgC/x3MQQ5AMBBA0avIrE1SDVWuIhZa05qFkhaRiLtrL
+ N/i/wcSRaYEffFApIsTbyGjKguwyxQ8Ic/ZIIVsRCcFrofSrUaWFk3k4M8dVS3mWlvjlDKQwz2
+ S4/ufDuP7fnRUnrZkAAAA
+X-Change-ID: 20250920-mt6878-i2c-bringup-640d48cbf66b
+To: Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758382267; l=759;
+ i=igor.belwon@mentallysanemainliners.org; s=20250908;
+ h=from:subject:message-id; bh=hSg3c2ZghTZizAbYqX13nbRSTVnHbltJh3jiavgkq80=;
+ b=ZmmuUVQP60SFRzeKx5oSct4QOEoDeLeYJIF9FKk4TQgtZPtWpkWxvMFN31WjyU6lbr31VyM1G
+ uWVbihpePQ5BA6j/daH/+17Zn4BAr2LzmQymhbXdmJlbCFgEvwgwFTG
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=t9Kz6B3jEwJD7YAKcp8XftfEz7SUSlGbrsfFlbrrFwA=
 
-On Fri, Sep 19, 2025 at 08:21:04PM -0700, Wesley Cheng wrote:
-> From: Elson Roy Serrao <quic_eserrao@quicinc.com>
-> 
-> QMP combo phy V6 and above use the clamp register from the PCS always on
-> (AON) address space.  Update the driver accordingly.
-> 
-> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 38 ++++++++++++++++---
->  .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v6.h    | 12 ++++++
->  .../phy/qualcomm/phy-qcom-qmp-pcs-misc-v5.h   | 12 ++++++
->  3 files changed, 57 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v6.h
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v5.h
-> 
+Hi all,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This patchest adds support for the i2c units found in the MediaTek 
+MT6878 SoC. These units use the new v3 register offset scheme 
+(differing only in OFFSET_SLAVE_ADDR).
 
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Igor Belwon (2):
+      dt-bindings: i2c: i2c-mt65xx: Document MediaTek MT6878 I2C
+      i2c: mediatek: add support for MT6878 SoC
 
+ Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml |  1 +
+ drivers/i2c/busses/i2c-mt65xx.c                       | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+)
+---
+base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+change-id: 20250920-mt6878-i2c-bringup-640d48cbf66b
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
 
