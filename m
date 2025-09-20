@@ -1,147 +1,105 @@
-Return-Path: <devicetree+bounces-219515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEE32B8C11B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 08:50:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8667B8C148
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 09:04:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87DD75A09AF
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 06:50:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C1F4A026DE
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 07:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4992EAB6A;
-	Sat, 20 Sep 2025 06:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C481F23815D;
+	Sat, 20 Sep 2025 07:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Mu0WT1kU";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="sb2pc5UT"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ceS0/8Ji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBE03D6F;
-	Sat, 20 Sep 2025 06:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78E32AD16
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 07:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758351034; cv=none; b=etyPG6bG7utYNA6Gp/GMq49/ExhFATKLIx3agLJSh+fc9Wb14YMejPd0ybbZz+m0cn+pdG5qJTSk4y7U3zQikqCxxsnEr603c1Myz2Qw9yX6TnjnFy5mnoIUwycoGVp9llesglZ3UesgKdqIFI2NMbsu9fdd+v3Ufxyh2BQjklo=
+	t=1758351885; cv=none; b=lshwd5hZMiAiVFM/mg12o41aWsmKVCfDzIzumpWHf8pFCswpu1ZoQFHZbmLL7dN3wXnVUjGJKacnsTLuu0ATxRPIoQVdk6dqmOY6FPLyh3A32v4oo1b88A92bz5fmVy+F41VywxidrDV8vYRt8jkeUZ123lY+kIfECYjsnftBJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758351034; c=relaxed/simple;
-	bh=MjWkIR76I1fTlnqtv2BmHI0tJUeHTaAgBYhO8/TTe4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BR2yb3zRAs8aMWgaedoVL5pIWVZFMpbJcRWo7Xu3+uPaYQnQPoNrczp32qT6avArTLgOnfHJ/aYLwztZYkO94AuZcrKHLk95WbvAT3zygOPPzf8gVMLYhN+SzdF2SKyE0VRU/g0QcbFsnJoDjlPqa68GoPxOWWrEhamq0uvKYSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Mu0WT1kU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=sb2pc5UT; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758350983; bh=AW17lv89eSJE61jE0VgMo7I
-	K1f6MgMq0qzbJdrYGhAU=; b=Mu0WT1kUgl5cQlQ5PX2jRN2PMPq/dDr7fRG/j6P0q/F6ULS3KE
-	xoivzs0uuNLw4YbnCqJ/RpZ/PfDofasRt6XK59LmkyQwhHfrYQs5bo3vCn4BfUfSMZCWKBpoxJV
-	vMP/Z2Sr8hc2GauwgD00WGBgzerVfzWAzFlX2DTdBLXVaGuNIxQ6AhMRvo9an2gF8HJZ+IlipSj
-	ZFbt0CEcr+vfPWQLXzlDP1a7ZwX8LCwXd9Zavc+fRk0VUvcp2Vr1vhIGSK2ElWRDGPsIfvXrcrb
-	5MpdxFv/SmLCVSnaS9Ly+kcSIAagZt63ASSYPlG0/PYmKuYDp+HZCucRJi734fkCYdQ==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758350983; bh=AW17lv89eSJE61jE0VgMo7I
-	K1f6MgMq0qzbJdrYGhAU=; b=sb2pc5UTtihwQjvou4NnnaSmANU2soJblZAj9CMKygiR43FHTi
-	g56bTIeDIQPJ5/5lGPQJtPn7nlgAN0FmJpBw==;
-Date: Sat, 20 Sep 2025 13:49:34 +0700
-From: Dang Huynh <dang.huynh@mainlining.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, dmaengine@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 05/25] dt-bindings: rtc: Add RDA Micro RDA8810PL RTC
-Message-ID: <cr5gkkckxan2b2x23knfwb35a4ulngsp6gguqhcku3z6ghzkcn@cq4krj5qxy3r>
-References: <20250917-rda8810pl-drivers-v1-0-74866def1fe3@mainlining.org>
- <20250917-rda8810pl-drivers-v1-5-74866def1fe3@mainlining.org>
- <20250917-contort-sassy-df07fd7515a0@spud>
- <c905fb3ace281280f1ac11c7fbe8e0aa@mainlining.org>
- <20250918-unharmed-bloating-8b573513fce6@spud>
+	s=arc-20240116; t=1758351885; c=relaxed/simple;
+	bh=ms6H0zuIbTYWoJdWWwX8nF6BGcBfA/YLHETn8ZbeEMw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZJ9wrpdavd/VD0q0AiIAnRxN5v/AIrlwGVPc1U42pQHmSP28TKVsRGXOEEfe96EeYM/ZOseE3zPBiwPgXeJi0H3BFDOorxVTp3tr/HeDTcsrK2doK8DBtfSTzW16ra/kpGmu2L+XhEjFMPR5sA864ioWJ4GdckdtSrvCwULKTJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ceS0/8Ji; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=7ennbGTkPtMsB+
+	E8zT/JHm1h/5feeorOxgKf4lzb0L8=; b=ceS0/8JiSCfXbJWibdwLOADo2z1J0Z
+	4kt4qX2yEcPMhjfCTfPWKLTuWR2OmY39BSmDynnudNj5zyUePu5rdkMF5gKfBqkD
+	RzAwpXQtY70S1F68EWd8tUHb89bO9qro04ngHrYgsnQORkLHUzCgYhTB6EawWx12
+	Uyh9ktFyKJu5t8MU/+ePeppyXppOlDL2cw4gUnATHSIxa2xXtSp3ai5f9BCQNvCi
+	woli2y2DzNdX1IiN4ocJmToJLqSBYe0f4I2JaCdly2KYS2WK8mmRvL94e3ZmaByp
+	CLxL9GE4mKwTrXQHKuoISv4IWV1DBldoIp1HKvTdU8AALIzEvsfkL+CQ==
+Received: (qmail 4174503 invoked from network); 20 Sep 2025 09:04:41 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Sep 2025 09:04:41 +0200
+X-UD-Smtp-Session: l3s3148p1@ywhKMzY/muAgAwDPXwQHAL/S9V79e5yL
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: v3{m|h}sk: remove wrong sound property in HDMI encoder node
+Date: Sat, 20 Sep 2025 09:04:34 +0200
+Message-ID: <20250920070433.8229-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250918-unharmed-bloating-8b573513fce6@spud>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 18, 2025 at 04:18:25PM +0100, Conor Dooley wrote:
-> On Thu, Sep 18, 2025 at 11:11:10AM +0700, Dang Huynh wrote:
-> > On 2025-09-18 03:46, Conor Dooley wrote:
-> > > On Wed, Sep 17, 2025 at 03:07:22AM +0700, Dang Huynh wrote:
-> > > > Add documentation describing the RTC found in RDA8810PL SoC.
-> > > > 
-> > > > Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
-> > > > ---
-> > > >  .../devicetree/bindings/rtc/rda,8810pl-rtc.yaml    | 30
-> > > > ++++++++++++++++++++++
-> > > >  1 file changed, 30 insertions(+)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
-> > > > b/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000000000000000000000000000000..3ceae294921cc3211cd775d9b3890393196faf82
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/rtc/rda,8810pl-rtc.yaml
-> > > > @@ -0,0 +1,30 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/rtc/rda,8810pl-rtc.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: RDA Micro RDA8810PL Real Time Clock
-> > > > +
-> > > > +maintainers:
-> > > > +  - Dang Huynh <dang.huynh@mainlining.org>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: rda,8810pl-rtc
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > 
-> > > Your driver implements functions that turn on an alarm irq, but there is
-> > > none mentioned here. What's going on there?
-> > The RTC doesn't seem to have an AP IRQ associated. I can't find any
-> > reference to it on downstream kernel and the docs.
-> > 
-> > > 
-> > > Additionally, there's no clocks property? For an onboard RTC I'd have
-> > > expected there to be a clock sourced outside of the block.
-> 
-> What about the clock?
-I'll fix this in v2.
+'#sound-dai-cells' is not mentioned in the encoder bindings doc, so
+dtbs_check rightfully complains. Remove the property.
 
-> 
-> > > 
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    rtc@1a06000 {
-> > > > +      compatible = "rda,8810pl-rtc";
-> > > > +      reg = <0x1a06000 0x1000>;
-> > > > +    };
-> > > > 
-> > > > --
-> > > > 2.51.0
+.../renesas-v8/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dtb: hdmi@39 (adi,adv7511w): '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/display/bridge/adi,adv7511.yaml#
 
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts | 1 -
+ arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+index 445f5dd7c983..6319a66fac95 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+@@ -146,7 +146,6 @@ &i2c0 {
+ 
+ 	hdmi@39 {
+ 		compatible = "adi,adv7511w";
+-		#sound-dai-cells = <0>;
+ 		reg = <0x39>;
+ 		interrupts-extended = <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+ 		avdd-supply = <&vcc_d1_8v>;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+index c2692d6fd00d..2da63b4daa0a 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+@@ -138,7 +138,6 @@ &i2c0 {
+ 
+ 	hdmi@39 {
+ 		compatible = "adi,adv7511w";
+-		#sound-dai-cells = <0>;
+ 		reg = <0x39>;
+ 		interrupts-extended = <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+ 		avdd-supply = <&vcc1v8_d4>;
+-- 
+2.47.2
 
 
