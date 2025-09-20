@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-219468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C05B8BCEB
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A10DB8BCF1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:47:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D24861C05757
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 01:47:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DC261C0576C
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 01:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C9B17BB35;
-	Sat, 20 Sep 2025 01:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A43E1FBEB9;
+	Sat, 20 Sep 2025 01:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dmmgozi9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JhMm8xki"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314BA135A53
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 01:47:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E7B1F78E6
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 01:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758332824; cv=none; b=n1Quyvz4TQDDTM8pft6c45bMQdHjK2Niz3XJuhwLSqR99kzHLYb7F1344qNVbfSOxJnvruaUOPZdgh1ynR1jisy5tGuyzz2IMqE6toFBmhrII2CQe0AAJHvWcrz6TWLmkFxjY9vw+143UffOEd/2Q1iPtyxh54GuN411Ix4fG00=
+	t=1758332828; cv=none; b=IXRQrUM1VpaJEHocKIO+5MlveuU2rvTc1/wIVRxPx3aYzwpTlClE5Ctu3gLCyrCmsqx3RSwPAXLgtfHWOBvZH+T7ybUkAAj0IUrnzMy5Qu5LSiGJD9CuyrUms+A+l5prethn2RllPhvYS183y1gEebFVGMdhxDbpW6iRpF8VgOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758332824; c=relaxed/simple;
-	bh=wDMWA1XDRYyfWXmf2uFObk5LPGfLk4nxYuVObBjxLQ8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qAMKsZdM35va4rjzKhk3ShORIZbV2nbAQKivwyCtnxGPTF9ywNrxB//TkELCuUA+dBacWZEIXMUhkMWpUByNUI8rg5OUuOgbwd/DIDWm+P3buGh5odRtlkSeS6rz/dxqRL5wCQCSJGMPPDOTlEL6ENMtuFqPTymksSS/nsHPDEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dmmgozi9; arc=none smtp.client-ip=209.85.214.174
+	s=arc-20240116; t=1758332828; c=relaxed/simple;
+	bh=wttyNu3FB0JHzpeprhteba5sV89v7tUiRECg5BE75Mw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n3noiKGoXuTZJ9pId+LadMDZ7PUDZ+SvESZhQ6+Jf3Cmgz8H9CBeqMd3tuHfytxSQ1/QG+HudYt4nl+9uMS+6+VA5SpOhM1HljqEOrLMpqIo5ZaJFPMDbY8iuoztAIZlLrM3w8XhPguJf/ZS5WGGEkxCRVfo9bAbj0x8hFaE3sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JhMm8xki; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-24457f581aeso27711775ad.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:47:02 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-271d1305ad7so410255ad.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758332822; x=1758937622; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ItqGWvE73tEMGd0HU8fsZkdI93BYRYkpjepUbVRc3aY=;
-        b=dmmgozi9j05dxQDBS8nX6IBdyiU4VhIvtQl35ajIz65Kq1+gwI97pkJPI1Z3SuBNGx
-         8TFwjvGX2NwRpTcPVbYG/Onrfvd90S2A0kAL83H8Wxu8fOaU+DVWwfoafpF/jeyjd2Pw
-         agsGyxG+my2qfwUats5rX+3zLqY/5u4b8sHsDLaiTWk8uefHnKKamNtq5c/Q1qNlV0fO
-         dQKuTu5lbNyrCfp04ctzlGJY6mYhsy8aahOeI81tML56y4JNgV964neMJVJuQdBxO5cG
-         R9ZhQ9ma46p0bn38iAmd3v86pCELtHVFkFm86CtwJlxD6xX7Zph3SV+i+o5zEQRG5D3Q
-         JOTw==
+        d=gmail.com; s=20230601; t=1758332827; x=1758937627; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PcxgtjVmCUZxaigJVlvyZe7TDMmHkjmyWKCsB43+itQ=;
+        b=JhMm8xkiucygClKtWcJDQyATzF+yhqdWj//AfVdMkCqpkbgpI0eH7GMyae9ib4PCh1
+         daHwE9qtgdQSETWBHsouSU2qrU9qlaAKINjy/j9LUcUG7/xderIWV6y4kuNzYNiKL+jn
+         GJv9Srs4QMdzfK2rv+bR0p8MKS1umbyPMk8umk1dkR4XBeUrjpURtMyJ13Sv/I2w7I/2
+         /6RsoTLbVUZfvQdMJUlLbojytZVf/Kyh1jEVxL139ZKs8Gea2bBCAN8/RkjuJosOn1v+
+         gkiWSUoUmL3Mi7/Wf6TJ9k2y7zQmtG5vE7gHpA1MTELa+w+lvJs/hjA2AmHcwmDpZWxR
+         b9wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758332822; x=1758937622;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ItqGWvE73tEMGd0HU8fsZkdI93BYRYkpjepUbVRc3aY=;
-        b=N89mC3CWAOTSDnwHC97zJigIeh5uFB5kSzefb9iAPddmnBZBHcjZCZ+wQKARfoKStn
-         qevrvmpAgay5da2r4yKvitmXuHC4UEciHe/jsafkC5kaGbq15pbiYWianDAv+MEWtho3
-         cJ3lBLx9jE0X+rbohXRarbzM10hJ2O5sglfXo9WWUAugoArQ//uC1K/4SJBeq8P9lTW/
-         x+y2CEF0rbWDsBfdrFgiYNp1K7hrzU4etRyyvAVKyBxHL/IX4oX8KyoXLXQnXDAEzZdi
-         KFwaaiFhRtEAOi6J8ngK8rPm+7VBa5ifaePmsvbJ5B+HAZv4RIX489pUoPsWPdtQTuNq
-         bvXA==
-X-Gm-Message-State: AOJu0YwMjgxOjxJfcBcfvFmbs0GAYjQpxV1uwEdtBcfs577JmT7GeohO
-	1iISFVDmNbwuDqszzqA6ElgSSgoYZmfcPa7Xrmgd9TWj5YGfte/cExiu
-X-Gm-Gg: ASbGnctjjg2hvN//pVWUuOPQeaRo9bMrQHSuJFTMTmIGv3HX+RkB4faxktPVFmIqNKp
-	ZdWFswIDaC1UpcT5a/mkLxUiFXNaITf4WtuOya1HaZruy1aApx3MYEDrk4LdUarsTr5IqlUgLYg
-	1+2E411Gxbs0fp1UXqW6ecU/hxXRy6NodDjtVKO+bHq553qfzRfbiQvV4iIuugMHMZQ5XpLeJrT
-	nVMWpJxDfTw/oqfnZ2/JQSNQwvqQCzY0dg1WJtB/z0DvN/n+bEVKScewtPk0PvIEtbJ2nkQJiw7
-	25oR4V8A4OnGO/N90VdCrFvoR3zkTFW8BwkF0oG42HAWVRP4dB8aE5/vGbaAWi73UhL8P6OfSly
-	QHNvoappF9zfQlTXhQOMb
-X-Google-Smtp-Source: AGHT+IFhVtPRrzUa1oA5+mrndWQ6aoOCM+peC2mKSWqQa5wNTYiIDbb7fZTmJbOHy0FXAk8jpurd9w==
-X-Received: by 2002:a17:903:1cc:b0:24c:ed9f:ba53 with SMTP id d9443c01a7336-269ba517018mr68430995ad.29.1758332822392;
-        Fri, 19 Sep 2025 18:47:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758332827; x=1758937627;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PcxgtjVmCUZxaigJVlvyZe7TDMmHkjmyWKCsB43+itQ=;
+        b=uMfvSYdm+9mzPUvz0sMZmOIakpsL6vTySpWZL1+abxT6AY+beU0kvL1+IkuoBY9Jz8
+         9cN6r5ZnFoPGI6S1v07Iy8POAT6v1iqvxzyBuyjowXqxWDr5xxGXi+D0y2R5Ifko6SQH
+         0GhWw7BaLC6OptfpEjcylsyiPWy4S60nlvt3vDzPdQWaCBR/uJ12zdW3Z+oAtG7h6fMS
+         8IWgpfrXLUIUQPSo6NQXu2Zih6sVpFydzQmpP/U8oMCONwzFqZ5FWBWcRgc28MKJmBjG
+         s5wxYPgKIOgXo7tYG1c53ob53g4aPBd3EK0QaPsI5qS7eU7/uE4EBEVZyWCjfDhr8UmI
+         4QAw==
+X-Gm-Message-State: AOJu0YzziEVPWavHg4fpCwqVUupgHUdRokcbM2qeuGmTVifdxgpPsH8S
+	uTVFmqG8bM4iCg05orl49ewPkAlnNZgJHk44PZHvo6kh2AEWD3UgXwkc
+X-Gm-Gg: ASbGnct4iATxHXSDzbz0fXTOJeKmPwiDU7Um5uXlONwUvUHV2e7sWH31c8567CAapVu
+	IqCaa3QiLeS2YsyH6N5THhEQ0DN765KxzMQRLlD0YdmDXoGTAharfgQAshrA/nInv3Az/44XtAY
+	dKv1foUpwltZM2BNkWqWzI44IkTCB6qvYWxCgrvxws6x3EEsfDkAvwj7mPQQabZJdOqUKs0dV+b
+	Gel92l0jHsDf/KevEi6cHiv4/wFb714sfu1Uq6Bej43dbuQ5t248X3oKCq76aO3cba6bePFh+2q
+	e9Ig3HcKXW56WPdxtkFhUysgyM5wSp+JCabl3qqP6TW9PKWtIOykDZbHu6QqHUr4gTmsiXILPX3
+	YPEjgTQqqCqGNXOMb13Ui
+X-Google-Smtp-Source: AGHT+IHu1VNSw+3ZcwebyxobluQNwXjhZ7r3UWUU730aQvye7TB/kSMESaaIT14huvuykOXkg+coQw==
+X-Received: by 2002:a17:903:90b:b0:263:b8f:77dd with SMTP id d9443c01a7336-269ba568cd3mr78159545ad.57.1758332826778;
+        Fri, 19 Sep 2025 18:47:06 -0700 (PDT)
 Received: from archlinux ([191.193.70.152])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033c922sm65709455ad.131.2025.09.19.18.46.59
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033c922sm65709455ad.131.2025.09.19.18.47.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 18:47:01 -0700 (PDT)
+        Fri, 19 Sep 2025 18:47:06 -0700 (PDT)
 From: =?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -79,10 +81,12 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/5] arm64: dts: qcom: r0q: enable more peripherals
-Date: Sat, 20 Sep 2025 01:46:32 +0000
-Message-ID: <20250920014637.38175-1-ghatto404@gmail.com>
+Subject: [PATCH 1/5] arm64: dts: qcom: r0q: add gpio keys
+Date: Sat, 20 Sep 2025 01:46:33 +0000
+Message-ID: <20250920014637.38175-2-ghatto404@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250920014637.38175-1-ghatto404@gmail.com>
+References: <20250920014637.38175-1-ghatto404@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,23 +96,103 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This patchset adds support for multiple devices found on the Galaxy S22,
-side buttons, touchscreen, max77705 charger/fuelgauge, RTC and UFS. It
-depends on "Input: add support for the STM FTS2BA61Y touchscreen" for
-TS to be enabled.
+Add GPIO keys support to Samsung Galaxy S22 (r0q).
 
-Thanks!
+Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
+---
+ .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 53 +++++++++++++++----
+ 1 file changed, 44 insertions(+), 9 deletions(-)
 
-Eric Gonçalves (5):
-  arm64: dts: qcom: r0q: add gpio keys
-  arm64: dts: qcom: r0q: add touchscreen support
-  arm64: dts: qcom: r0q: enable max77705 PMIC
-  arm64: dts: qcom: r0q: enable hardware clocks
-  arm64: dts: qcom: r0q: enable ufs storage
-
- .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 308 +++++++++++++++++-
- 1 file changed, 299 insertions(+), 9 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+index 880d74ae6032..70e953824996 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+@@ -2,11 +2,12 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+-
+ #include "sm8450.dtsi"
+ #include "pm8350.dtsi"
+ #include "pm8350c.dtsi"
++#include "pmk8350.dtsi"
+ 
+ / {
+ 	model = "Samsung Galaxy S22 5G";
+@@ -28,13 +29,19 @@ framebuffer: framebuffer@b8000000 {
+ 		};
+ 	};
+ 
+-	vph_pwr: regulator-vph-pwr {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vph_pwr";
+-		regulator-min-microvolt = <3700000>;
+-		regulator-max-microvolt = <3700000>;
+-		regulator-always-on;
+-		regulator-boot-on;
++	gpio-keys {
++		compatible = "gpio-keys";
++		autorepeat;
++
++		pinctrl-0 = <&vol_up_n>;
++		pinctrl-names = "default";
++
++		key-vol-up {
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++			gpios = <&pm8350_gpios 6 GPIO_ACTIVE_LOW>;
++			debounce-interval = <15>;
++		};
+ 	};
+ 
+ 	reserved-memory {
+@@ -47,6 +54,15 @@ splash-region@b8000000 {
+ 			no-map;
+ 		};
+ 	};
++
++	vph_pwr: regulator-vph-pwr {
++		compatible = "regulator-fixed";
++		regulator-name = "vph_pwr";
++		regulator-min-microvolt = <3700000>;
++		regulator-max-microvolt = <3700000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
+ };
+ 
+ &apps_rsc {
+@@ -119,8 +135,27 @@ vreg_l1c_1p8: ldo1 {
+ 	};
+ };
+ 
++&pm8350_gpios {
++	vol_up_n: vol-up-n-state {
++		pins = "gpio6";
++		function = "normal";
++		power-source = <1>;
++		input-enable;
++	};
++};
++
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++
++	status = "okay";
++};
++
+ &tlmm {
+-	gpio-reserved-ranges = <36 4>; /* SPI (not linked to anything) */
++	gpio-reserved-ranges = <36 4>; /* SPI (Unused) */
+ };
+ 
+ &usb_1 {
 -- 
 2.51.0
 
