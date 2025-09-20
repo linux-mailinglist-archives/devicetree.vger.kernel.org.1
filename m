@@ -1,153 +1,306 @@
-Return-Path: <devicetree+bounces-219489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC3FB8BE55
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 05:23:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64757B8BE71
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 05:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42576A05B7F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:23:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20DC65A01AC
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96D9D25484D;
-	Sat, 20 Sep 2025 03:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iJCLG5K5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C51D2153FB;
+	Sat, 20 Sep 2025 03:53:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C0D2459E7
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 03:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD38934BA28;
+	Sat, 20 Sep 2025 03:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758338491; cv=none; b=Kdd8l/ufRyhB0QcVNyjz0obMyFMwvvjTswlh58AVVpSaTqYidkefuVollese/xIo03WqsxPvWodDPIq21PWuyZcm/XFHZw5aCIyaWYL4mVHUXKAr8zSmgVlJKBR7gzq3wImiQZLJGAQcRGyLZVQqfvQj4R0+tAZgr72+pUwiTks=
+	t=1758340395; cv=none; b=MeoclgomcAh66N7FlAPL+fM2DyAFqJti1hvpPjYCU5c532PL+ZJsormn2euIH6MtWO6ZbFV+dOYpXFwd794cC9xx2ZzM6XtpLYDsoMe0bDnpwkDz5vVIRg791zhHTgNOtIq7a9lIc6tlbBj7r+yOiCYdOpMpKNFYIUN1xgMJ8jY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758338491; c=relaxed/simple;
-	bh=kP94qs9O8DLQcs2Bvirs3zIUN/e+b/TSSwwcST/H/sw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=u4kyzD4I43sOBxDXNrOgE2LIE0JZkmWkj6XSVbthHHSiC1AxYp7fKUBGFMEFTxNr482xNI69x9OO6tNRUuqARwXf99VgCdvVHibWKAYplWxL987oPDX8mEoPRJE+1DID/TD+vpKSXy/LebZ5zPR3jOJPDTUQVKhLvXOyGudjLPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iJCLG5K5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58K3FVBi023775
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 03:21:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=6uA00onJvkc
-	yy2M4ZvUqeOEt+eh84BjDYyNUmNEMNdU=; b=iJCLG5K5y5LXSke0an0jS6RPOOC
-	7HuyWTkzcucl6yxfe+N7K38UlJerDUYkkFwGi37UqKs6CjIvueeWpMc8JZKrB6BZ
-	yjemXDDG2iP7plYqEpLHoWvhxuBRtaUFnmq49boNm8xrJcrK4UgAL6uWmHz3CiRg
-	w1L0RbC0ua6TOrO0UPiI+tW74nLJG1jbu8qYba77RhnrjB2Ne7vjOK+/X4ZeLVJe
-	hBGjXLloLgoaWzEMdUV3n+xYIW9MTPmqtp5twpt3Uc0btFeY7kLjAu5JC404RdRx
-	7xpdmPPOOOuRZflrmDYtYCECJcBLxA0qT8IC9GcFWS4LDjbxzfKYY2cWYyQ==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 497fxwmfyf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 03:21:28 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-777d7c52cc3so4208147b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 20:21:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758338487; x=1758943287;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6uA00onJvkcyy2M4ZvUqeOEt+eh84BjDYyNUmNEMNdU=;
-        b=eARtIWL6YC6ekvPlyNySUqD3Oyu+KRZamWIfVcKoEYXoDrQ/3FaaW17twvso/x27yJ
-         guHZITXwaeWqeRABXd4ph9IeVTSunb8gP0tHNQkqYBb/Yb/aaSI+rvaanYhfKeP67Npm
-         3VBNpB91I6Sj4UpP+uEVuoxiAq9KZfVUfBonrmrSwTldaMUDHQ1LnBDbsAFhkf/XMa1k
-         0fgWp/TTHJTPN4a1nT2bDN00sb1aohwaQqTHjEPhL9Zon2oLxbG0uzhKZoiLBTU7zjXe
-         b153Ms2JjTblWLCj3loSLL5CvPZr1OPVp1K4XwH7yDZHc9SQc0FC6YEC3CXUrTsEY0jm
-         1LXw==
-X-Forwarded-Encrypted: i=1; AJvYcCV73QPql6Nn8Y7+EvzDX3ktIWK2Yz0U0mobHBLhSyDKT/lm71DWIdgRnpaAsTQURGa7lvisnqMxSgrW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGodkgIg+dvyFSUnnKjpB8gll4ZpCzhloLhpnSSVWDO/IugoOb
-	LsD8TStTT4lAJrWo4WGpv7VqZTKZ8oVCLgYob7mfqnDVg5xO8w2JVW9dasROahXRmOArkyX6kMA
-	iv2SfGOZkE6e1/41dwLsOdfw69FvbixGwguKHCTWT/7QDsffAy8obWe3jy3QhE8Uu
-X-Gm-Gg: ASbGncuxGRnnFCZASVcaRWbNSzP+MJFXTAGhNQ2ymVxqx9DWSxrxydj10jMGtN4LFbG
-	xeaVz8f3dxGt5lMb2Q+93SRaAGUbzSm/p/jTvMOGvbxVPismpMyD+RBES6CIyPUTYy0uAmK7Sjl
-	rUIG15zb/mjoWVmiCE3AadCZPs9KvR3qLMnr0zGu4XX0tnFZhMYPdIlxjAZPTgv+Wl3G8o9wMnO
-	mupmrZqPTKzX2nYvGuRr4MEZwTgK7NaQPRUICbBiHm7Ftne4rNyBTUgFG422FqI4etfkdhfH/Cp
-	GNZG3h+cfkC1RIC2ZimHibPqa832DwmcYaebGJ6H56/v5H8UdvERV+pWkYc82brQk7RFT0M4uHw
-	ot0paG6K5HgtPP8gz
-X-Received: by 2002:a05:6a20:9143:b0:262:cbbc:312c with SMTP id adf61e73a8af0-2925d0de225mr8589056637.17.1758338487155;
-        Fri, 19 Sep 2025 20:21:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHFXJwFYvetfpsIeKUWHiInvLQN1H67mlVltjKBQFq18DtwSU2ecOTFXwigElZASvrT0QR38Q==
-X-Received: by 2002:a05:6a20:9143:b0:262:cbbc:312c with SMTP id adf61e73a8af0-2925d0de225mr8589029637.17.1758338486759;
-        Fri, 19 Sep 2025 20:21:26 -0700 (PDT)
-Received: from hu-wcheng-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b54ff448058sm6178807a12.54.2025.09.19.20.21.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 20:21:26 -0700 (PDT)
-From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-To: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
-        vkoul@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Subject: [PATCH 9/9] phy: qualcomm: m31-eusb2: Make USB repeater optional
-Date: Fri, 19 Sep 2025 20:21:08 -0700
-Message-Id: <20250920032108.242643-10-wesley.cheng@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
-References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
+	s=arc-20240116; t=1758340395; c=relaxed/simple;
+	bh=Gr/V9zBrcmfXE1HIoAgXxx7HeT1pp+J4AlPClBXV9Vo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HkmrNifLVm5aL4BHHFo4oVamL14EHu/ExacoeTKfXD5cECi5KgfARS5ouGZK/qzfrODiMew72g+3oT6sUwJ5J3k8cdkNjO1P4Vbz15NrEAvXZT06s9piha3UupfKrOy3qGbSHsIXk8SPsfsu4eOjMXlEvAWbF7N4noAwtL3tDcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.102] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowAAnjRYRJc5o_pjgAw--.30976S2;
+	Sat, 20 Sep 2025 11:52:49 +0800 (CST)
+Message-ID: <a7070f3f-8857-4834-9e9e-02068637075c@iscas.ac.cn>
+Date: Sat, 20 Sep 2025 11:52:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=HbIUTjE8 c=1 sm=1 tr=0 ts=68ce1db8 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=LPx1eKQi2Xt_nUOAx-wA:9
- a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTE2MDIwMiBTYWx0ZWRfX9U+zVXGTE+ho
- HbZlDAcGf9hx+KPj3A6/BeuNLlSR6UotIgFLjw+Y5mIG3ud8QazIh2bV0Bfg2KCguaVCPUhFkwu
- 5St/h8FSApKULF/GNaxf8r2SMtz4Lu0bMySmk52B/5gmvhKKsjY/yAiFXcuHlLdnLDSGR1/D4iv
- LbtvxYyHXb1kICrvXAz0zP9yYCy+XXVFqeftGurQOruhzUnHZ0+KmCXJ5gitJSBUwh93lQoumjo
- a5uob2hIIp+/4jHbJp897hpX/KYF4hP/C1mbj8FNU3ruuT/dNrNPTkY576KR0hz0/zAUvpU2/AF
- laAPdXRzzrr/QXp02vzYsZ3FG2ljectdCeXIl6sSZ5CQpL9rJWDuAAtI3AjN2hbEoB2TRudc/P1
- hNuEhwzB
-X-Proofpoint-GUID: oUpQOB7IqdubLDWlxeM86yRZaYDnE2Gu
-X-Proofpoint-ORIG-GUID: oUpQOB7IqdubLDWlxeM86yRZaYDnE2Gu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-20_01,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- adultscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509160202
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] spi: spacemit: introduce SpacemiT K1 SPI
+ controller driver
+To: Alex Elder <elder@riscstar.com>, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlan@gentoo.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250919155914.935608-1-elder@riscstar.com>
+ <20250919155914.935608-3-elder@riscstar.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250919155914.935608-3-elder@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowAAnjRYRJc5o_pjgAw--.30976S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3JF13Kw1DuF18JFyfXF48Xrb_yoW7ZF1kpF
+	Z8GFZxCrWktF4fGr42ya17ua4ruw1rWFW0gw4UJ343Zryq93y7AF1rKryxZa129FWkA3WI
+	ya18Wa109as8Wr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
+	vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
+	wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
+	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
+	17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
+	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
+	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
+	73UjIFyTuYvjxUvaZXDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Change the notation of making the USB repeater a required DT parameter.
-Issues were seen when supporting USB2 across different form
-factor/platforms, which led to enumeration issues due to improper eUSB2
-repeater tuning.  By making the repeater optional, for SMB/QC PMIC based
-repeaters, it can utilize repeater settings done in the bootloader,
-which cover a wider range of platforms.
+Hi Alex,
 
-For other repeater vendors outside of the SMB/QC PMICs the repeater
-should be defined and managed within the kernel.
+On 9/19/25 23:59, Alex Elder wrote:
+> [...]
+>
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index 82fa5eb3b8684..4f6c446c6bc16 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -1071,6 +1071,14 @@ config SPI_SG2044_NOR
+>  	  also supporting 3Byte address devices and 4Byte address
+>  	  devices.
+>  
+> +config SPI_SPACEMIT_K1
+> +	tristate "K1 SPI Controller"
+> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+> +	depends on OF
+> +	default ARCH_SPACEMIT
+> +	help
+> +	  Enable support for the SpacemiT K1 SPI controller.
+> +
 
-Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
----
- drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We could still add:
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
-index f4355d38aad9..b8ddadf78c53 100644
---- a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
-+++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
-@@ -285,7 +285,7 @@ static int m31eusb2_phy_probe(struct platform_device *pdev)
- 
- 	phy_set_drvdata(phy->phy, phy);
- 
--	phy->repeater = devm_of_phy_get_by_index(dev, dev->of_node, 0);
-+	phy->repeater = devm_phy_optional_get(dev, NULL);
- 	if (IS_ERR(phy->repeater))
- 		return dev_err_probe(dev, PTR_ERR(phy->repeater),
- 				     "failed to get repeater\n");
+	imply MMP_PDMA if ARCH_SPACEMIT
+
+To add a "recommended" dependency. This way, enabling SPI_SPACEMIT_K1
+automatically enables MMP_PDMA, but if the user is willing to fiddle
+around, they can explicitly disable it. What do you think?
+
+>  config SPI_SPRD
+>  	tristate "Spreadtrum SPI controller"
+>  	depends on ARCH_SPRD || COMPILE_TEST
+>
+> [...]
+>
+> diff --git a/drivers/spi/spi-spacemit-k1.c b/drivers/spi/spi-spacemit-k1.c
+> new file mode 100644
+> index 0000000000000..8d564fe6c4303
+> --- /dev/null
+> +++ b/drivers/spi/spi-spacemit-k1.c
+> @@ -0,0 +1,968 @@
+>
+> [...]
+>
+> +static void k1_spi_read_word(struct k1_spi_driver_data *drv_data)
+> +{
+> +	struct k1_spi_io *rx = &drv_data->rx;
+> +	u32 bytes = drv_data->bytes;
+> +	u32 val;
+> +
+> +	val = readl(drv_data->base + SSP_DATAR);
+> +	rx->resid -= bytes;
+> +
+> +	if (!rx->buf)
+> +		return;	/* Null reader: discard the data */
+> +
+> +	if (bytes == 1)
+> +		*(u8 *)rx->buf = val;
+> +	else if (bytes == 1)
+
+Typo? else if (bytes == 2)
+
+> +		*(u16 *)rx->buf = val;
+> +	else
+> +		*(u32 *)rx->buf = val;
+
+Maybe
+
+	else if (bytes == 4)
+		*(u32 *)rx->buf = val;
+	else
+		WARN_ON_ONCE(1);
+
+Just to make the pattern consistent? Same for k1_spi_write_word.
+
+> +
+> +	rx->buf += bytes;
+> +}
+>
+> [...]
+>
+> +static int k1_spi_dma_setup(struct k1_spi_driver_data *drv_data)
+> +{
+> +	struct device *dev = drv_data->dev;
+> +	int rx_ret;
+> +	int tx_ret;
+> +
+> +	/* We must get both DMA channels, or neither of them */
+> +	rx_ret = k1_spi_dma_setup_io(drv_data, true);
+> +	if (rx_ret == -EPROBE_DEFER)
+> +		return -EPROBE_DEFER;
+> +
+> +	tx_ret = k1_spi_dma_setup_io(drv_data, false);
+> +
+> +	/* If neither is specified, we don't use DMA */
+> +	if (rx_ret == -ENODEV && tx_ret == -ENODEV)
+> +		return 0;
+> +
+> +	if (rx_ret || tx_ret)
+> +		goto err_cleanup;
+
+This seems a bit convoluted. I'm wondering if all this explicit handling
+really is necessary - if we get an error at probe time, can we just
+return that error and let devres handle the rest? With the special case
+that if we get both -ENODEV then disable DMA.
+
+k1_spi_dma_cleanup_io seems to handle unmapping and termination of DMA,
+which we... don't need, right?
+
+> +
+> +	drv_data->dummy = devm_kzalloc(dev, SZ_2K, GFP_KERNEL);
+> +	if (drv_data->dummy)
+> +		return 0;		/* Success! */
+> +
+> +	dev_warn(dev, "error allocating DMA dummy buffer; DMA disabled\n");
+
+Just return -ENOMEM. If we can't even allocate 2K of buffer, we're
+doomed anyway.
+
+> +err_cleanup:
+> +	if (tx_ret) {
+> +		if (tx_ret != -EPROBE_DEFER)
+> +			dev_err(dev, "error requesting DMA TX DMA channel\n");
+> +	} else {
+> +		k1_spi_dma_cleanup_io(drv_data, false);
+> +	}
+> +
+> +	if (rx_ret)
+> +		dev_err(dev, "error requesting DMA RX DMA channel\n");
+> +	else
+> +		k1_spi_dma_cleanup_io(drv_data, true);
+> +
+> +	if (tx_ret == -EPROBE_DEFER)
+> +		return -EPROBE_DEFER;
+> +
+> +	/* Return success if we don't get the dummy buffer; PIO will be used */
+> +
+> +	return rx_ret ? : tx_ret ? : 0;
+> +}
+>
+> [...]
+>
+> +static int devm_k1_spi_dma_setup(struct k1_spi_driver_data *drv_data)
+> +{
+> +	struct k1_spi_driver_data **ptr;
+> +	int ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_MMP_PDMA)) {
+> +		dev_warn(drv_data->dev, "DMA not available; using PIO\n");
+> +		return 0;
+> +	}
+> +
+
+Shouldn't be necessary if we do the "imply" thing in Kconfig.
+
+> [...]
+>
+> +static void k1_spi_host_init(struct k1_spi_driver_data *drv_data)
+> +{
+>
+> [...]
+>
+> +
+> +	ret = of_property_read_u32(np, "spi-max-frequency", &max_speed_hz);
+> +	if (!ret) {
+> +		host->max_speed_hz = clamp(max_speed_hz, K1_SPI_MIN_SPEED_HZ,
+> +					   K1_SPI_MAX_SPEED_HZ);
+> +		if (host->max_speed_hz != max_speed_hz)
+> +			dev_warn(dev, "spi-max-frequency %u out of range, using %u\n",
+> +				max_speed_hz, host->max_speed_hz);
+> +	} else {
+> +		if (ret != -EINVAL)
+> +			dev_warn(dev, "bad spi-max-frequency, using %u\n",
+> +				 K1_SPI_DEFAULT_MAX_SPEED_HZ);
+> +		host->max_speed_hz = K1_SPI_DEFAULT_MAX_SPEED_HZ;
+> +	}
+
+I think it makes sense to have spi-max-frequency default to
+K1_SPI_DEFAULT_MAX_SPEED_HZ, but if the value is out of range just print
+a message and return an error, to get whoever wrote the bad value to fix it.
+
+This range seems to be fixed by hardware, so, it should also be
+specified in the bindings.
+
+> +}
+> +
+>
+> [...]
+>
+> +
+> +static int k1_spi_probe(struct platform_device *pdev)
+> +{
+> +	struct k1_spi_driver_data *drv_data;
+> +	struct device *dev = &pdev->dev;
+> +	struct reset_control *reset;
+> +	struct spi_controller *host;
+> +	struct resource *iores;
+> +	struct clk *clk_bus;
+> +	int ret;
+> +
+> +	host = devm_spi_alloc_host(dev, sizeof(*drv_data));
+> +	if (!host)
+> +		return -ENOMEM;
+> +	drv_data = spi_controller_get_devdata(host);
+> +	drv_data->controller = host;
+> +	platform_set_drvdata(pdev, drv_data);
+> +	drv_data->dev = dev;
+> +	init_completion(&drv_data->completion);
+> +
+> +	drv_data->base = devm_platform_get_and_ioremap_resource(pdev, 0,
+> +								&iores);
+
+Maybe
+
+    devm_platform_ioremap_resource(pdev, 0);
+
+> [...]
+>
+> +
+> +MODULE_DESCRIPTION("SpacemiT K1 SPI controller driver");
+> +MODULE_LICENSE("GPL");
+
+Maybe MODULE_AUTHOR()?
+
+Vivian "dramforever" Wang
+
 
