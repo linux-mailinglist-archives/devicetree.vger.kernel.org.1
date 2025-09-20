@@ -1,47 +1,46 @@
-Return-Path: <devicetree+bounces-219575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8369B8CB9D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A56B9B8CBA3
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 17:32:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD6731BC2AD2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:32:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 969861BC2A16
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 15:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E7F301024;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A113016FA;
 	Sat, 20 Sep 2025 15:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="mgAenjro"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="WAf3mWuW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8229223DD1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18DB22D793
 	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 15:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758382305; cv=none; b=JjuZcVW4ThtK2C0w3UvFF1GvBiDBNG1WttpOutYyRKHrVdWrzfJfaZ+V+5dgiFYOuXu8McJNwRjw1VXn+fBwe8Yerm9qnjUeW84GcPdV43aOsBB4i27sW7edAstjsoHAPJPpsATdo3ys1hDcjFrFIrPcPFvrnnK2J9PJ111nPMM=
+	t=1758382305; cv=none; b=Uo8RYbONVyk9bvXHM4nhcfTZfr085gLJsT4+QnTsvHe4wz6VXVSILKIF4PMtt5YXjqIHlYTD0Jg2DPeNpzsQqjc0fFKoMDCX332mzulNZcejTJ0cdFLqSBf6iB92lRp5P6GNXuI6ACILTTE3fY6eYo44t3shfeVLG0Huz4KoKao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1758382305; c=relaxed/simple;
-	bh=RjfYDW3XL3WFS67dBPrYHYQD9w91q2A/xdKqO8p9qok=;
+	bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=srd2tuLvlozURR5sAOBy/pMrFj9T2dpc8PQGZjdPRCgrZ8UFzOLAw0KZuFNDocMVo3qHCXEFH+gS5tPtISeGQvSRUoOr7Ub7w1nD4qiEcpr99y5qkEkmjR4Tvm4f6XtGG0+llRgowbBHgyh41QMg94cLTEhnhmJRJtlTotjZpsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=mgAenjro; arc=none smtp.client-ip=34.202.193.197
+	 In-Reply-To:To:Cc; b=F8GTX5V7tbOYSLng6d2T0MNOPfB63Uut3+E47NhURUHvS9CYYnsf1VXRGC3gyThSMggwXfaBvD23hheidQ5TXbV4mHftwLEinRVtzEvNkhFDM4jKwd2mhzp9EmqdoQBSEC/vFoakbMZ6AVzLt5MahPmT2E2iP6yS1Vj/PdpbyqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=WAf3mWuW; arc=none smtp.client-ip=34.202.193.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
 Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=mgAenjroz9uQ51Qfl3SdJRi+P7U5GqtTYbXi+z8t5Fl++2IuxwyyiLvUXrbxZBKeSI1jRUSsugAvSmOmf1ObrQMpcw1MV6bW9+TmU1LO+2A1bV6dLBZsR3LJ93ZG5whCQ0bm6vAXfYXmVzzc5iQijTBuVWqSCrPJtwbV3PbQQFfIGlDSjz+BrBXNxHO3Cq47dfSomHDW+CEgEe6CaXGObPRIs+rSFzYB5EmyOPblEmziaq8+5g0RWZnMk0YK2rhrgbfShOAshz7qOD9A9D0EVUJUedu1BGpGGwK6bf3YBo9D8wh0QJpn6hm06gKdlqLB7Lk3KEKXMjAQZTueYAoXKw==; s=purelymail1; d=purelymail.com; v=1; bh=RjfYDW3XL3WFS67dBPrYHYQD9w91q2A/xdKqO8p9qok=; h=Feedback-ID:Received:From:Date:Subject:To;
+DKIM-Signature: a=rsa-sha256; b=WAf3mWuW96hFGq4BJ1iyiYkb4moeL6UPzqDlqymZ+dlV7xLfdfkz1x0WMaBLy6FjKAm3pByUXkuGAhwCyn7rIW4TQs86m6jOp62JAXSuMwcqnlE5O4gvRP+ucHbEoVUegH+eyfc+rZOsEXz+vet+wjpu6Gt0nLEIBOgYSUBk3qc0EXvXzXG9SODBcK1Ns2K3VotnwccF4Obr9ILwxjpsSy/NDkiW5CZPn0KoK2FTsb5zRh+Q+fBx/bdwpf+u1k1ks+7PGDln8ASc4soWqdV+LcQqbMp7IamDU508cMnVoBBVoNeNOysORqg5p8fQ47WDgk9CfwzVjBb+YHtaA8KrWw==; s=purelymail1; d=purelymail.com; v=1; bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=; h=Feedback-ID:Received:From:Date:Subject:To;
 Feedback-ID: 68247:10037:null:purelymail
 X-Pm-Original-To: devicetree@vger.kernel.org
 Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1935225507;
           (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Sat, 20 Sep 2025 15:31:11 +0000 (UTC)
+          Sat, 20 Sep 2025 15:31:12 +0000 (UTC)
 From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Date: Sat, 20 Sep 2025 17:31:03 +0200
-Subject: [PATCH 1/2] dt-bindings: i2c: i2c-mt65xx: Document MediaTek MT6878
- I2C
+Date: Sat, 20 Sep 2025 17:31:04 +0200
+Subject: [PATCH 2/2] i2c: mediatek: add support for MT6878 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +49,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250920-mt6878-i2c-bringup-v1-1-d1527ffd3cd7@mentallysanemainliners.org>
+Message-Id: <20250920-mt6878-i2c-bringup-v1-2-d1527ffd3cd7@mentallysanemainliners.org>
 References: <20250920-mt6878-i2c-bringup-v1-0-d1527ffd3cd7@mentallysanemainliners.org>
 In-Reply-To: <20250920-mt6878-i2c-bringup-v1-0-d1527ffd3cd7@mentallysanemainliners.org>
 To: Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>, 
@@ -63,34 +62,56 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Igor Belwon <igor.belwon@mentallysanemainliners.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758382267; l=941;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758382267; l=1715;
  i=igor.belwon@mentallysanemainliners.org; s=20250908;
- h=from:subject:message-id; bh=RjfYDW3XL3WFS67dBPrYHYQD9w91q2A/xdKqO8p9qok=;
- b=ZXan0Dlj6yTNyY363LasAgg5Y0RHz7OwnbUOCm3Byq5WFKaxXm00S9qCbRZrVl/Paa9hv89MK
- CNbcuNhTdhsBCpGXtEzZn85aH8gc9EYpxUj8lAbZoHjuwND1ynfmdiR
+ h=from:subject:message-id; bh=L4sIzuHH5e728nteRUrwdrI8eR4rd0jT03HRoNtIA4U=;
+ b=YZB3LNAadsjA02iG5NTdWh8e13gZGiQwzvjF7fYZg4rXVNL7C+SgjfARtCWlDTmE+QZhBzmlw
+ 3jFtL39WcEyB6tm9nHVany5eM/8qY8rYRGWCPYF767QM2BTe3vzdSln
 X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
  pk=t9Kz6B3jEwJD7YAKcp8XftfEz7SUSlGbrsfFlbrrFwA=
 
-Document the I2C controllers found in the MediaTek MT6878 SoC, by adding
-a new compatible string for the controllers.
+Add support for the I2C units found in the MediaTek MT6878 SoC.
+Just like other recent MediaTek SoCs, it uses the v3 register offsets
+(which differ from v2 only by OFFSET_SLAVE_ADDR being
+0x94 instead of 0x4).
 
 Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 ---
- Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-index 23fe8ff76645e440c19469999ae9a86b7fdabe68..b0d7dd0dd8fdd7b0dba14d11f75c8f0b7ac15f58 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-@@ -22,6 +22,7 @@ properties:
-       - const: mediatek,mt2712-i2c
-       - const: mediatek,mt6577-i2c
-       - const: mediatek,mt6589-i2c
-+      - const: mediatek,mt6878-i2c
-       - const: mediatek,mt7622-i2c
-       - const: mediatek,mt7981-i2c
-       - const: mediatek,mt7986-i2c
+diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
+index ab456c3717db18eef74226de0ee88c49228796f5..085702aee006a6dd0ac89d1382a12fbac2d91c55 100644
+--- a/drivers/i2c/busses/i2c-mt65xx.c
++++ b/drivers/i2c/busses/i2c-mt65xx.c
+@@ -402,6 +402,19 @@ static const struct mtk_i2c_compatible mt6589_compat = {
+ 	.max_dma_support = 32,
+ };
+ 
++static const struct mtk_i2c_compatible mt6878_compat = {
++	.regs = mt_i2c_regs_v3,
++	.pmic_i2c = 0,
++	.dcm = 0,
++	.auto_restart = 1,
++	.aux_len_reg = 1,
++	.timing_adjust = 1,
++	.dma_sync = 0,
++	.ltiming_adjust = 1,
++	.apdma_sync = 1,
++	.max_dma_support = 36,
++};
++
+ static const struct mtk_i2c_compatible mt7622_compat = {
+ 	.quirks = &mt7622_i2c_quirks,
+ 	.regs = mt_i2c_regs_v1,
+@@ -525,6 +538,7 @@ static const struct of_device_id mtk_i2c_of_match[] = {
+ 	{ .compatible = "mediatek,mt2712-i2c", .data = &mt2712_compat },
+ 	{ .compatible = "mediatek,mt6577-i2c", .data = &mt6577_compat },
+ 	{ .compatible = "mediatek,mt6589-i2c", .data = &mt6589_compat },
++	{ .compatible = "mediatek,mt6878-i2c", .data = &mt6878_compat },
+ 	{ .compatible = "mediatek,mt7622-i2c", .data = &mt7622_compat },
+ 	{ .compatible = "mediatek,mt7981-i2c", .data = &mt7981_compat },
+ 	{ .compatible = "mediatek,mt7986-i2c", .data = &mt7986_compat },
 
 -- 
 2.51.0
