@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-219471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA9FB8BD09
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:47:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E05C7B8BD0F
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:48:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E8B11C0555D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 01:48:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD2C35A4656
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 01:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BDC216E32;
-	Sat, 20 Sep 2025 01:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258BA21B9DE;
+	Sat, 20 Sep 2025 01:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R0lqCVxt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TRNBWyEu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE2A214A97
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 01:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998341EF39E
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 01:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758332836; cv=none; b=f6U2XS+14LmZcHKrlg+CFHATQf05zmqL2DT15yYlJiqw3dvOkuS7yDIwR2e5f2b8gX7F+V7yy4EX6PKByyMg3eoUqcnu0gdeiCgcFrTRWoLD+MPe4/7R3Qb8b2MClOAQ66K5NS5rXLPM7kgoyRBvHuGwHp/8lO2eN7/6DsbV/jE=
+	t=1758332839; cv=none; b=EIUv9choVq1EA996qTx2E0vec8sJSoJexNbCZRmaggY24lcARUJrxKcmWuB3Wl7yZ8nxM0ZixvIONomwsSZgU40bLgQNztNxtbuzPdaPJK6uDiQ1wjbRNgcl9nK9gdGJkvnVIdxAyf9DdVV9fzRh29Mnbre+08YAultSTiU9MYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758332836; c=relaxed/simple;
-	bh=J3OQ/gbZXClh+gnMC9yVomxVT5i16d4sRMT1zK1pgf4=;
+	s=arc-20240116; t=1758332839; c=relaxed/simple;
+	bh=vb0BTK2Rk5uuPvvLLg1eCaDr5BF/IiFelvHr+G7OHfA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=q8UBjKD+BJC4JIhjvNSS8XGlhx5UefitgvveBMBM13lG1VLbZptmtJ0TTLpt++KdfvnGiA4uIjr6wF+i2eTR8grIWMdwVf4FTQdefbAKmOpOje1fB9s7aadueJ7d3Dom4EW47Vs8U/WQR5yFSZJUsCEp2v7vFzqbOgmB8Y54VcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R0lqCVxt; arc=none smtp.client-ip=209.85.214.180
+	 MIME-Version:Content-Type; b=aD7XSWiKAlRXGYvipaJnoB7h+KtcsPIIFb5KEiIAeYPeTNicWMFwbiHulHalesj/POKdXFm5u5VaE3Fbi7lSV+S/ZlKIYp/UOUrb++ZMa2FPgpykejbcUHz1dNmTiZSKEJQ21OTbdaf1sVUBpuq3DoGPWlFKnt1ZsR8Crbb1AsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TRNBWyEu; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-267facf9b58so20266665ad.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:47:14 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-26c209802c0so11525735ad.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 18:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758332833; x=1758937633; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758332837; x=1758937637; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qeUIHWsKLh6gjLn9Z3+FbhnYjwlNLiSz3aZCwDtFUKY=;
-        b=R0lqCVxtloWyypEeavKNztwcl+prrAy2NFsIkEV4oWTQtDjJ9y4pCid+szugR6TNjw
-         cwu2y90eVqjOkhZqeE0tA5Eojnn1UfsgPNKQ/cd1Vwe5MOQtjBYspD+1BJ07WjXXmPCH
-         rRHRTwnjrucG3GbbOOwkA6toVs1DKT4K2B5e7iVg3j9GbeHGdtczTljfdpXwjJcLqocc
-         0KEgcSMNyBvljPSPTYIA/ZpCuv7puNxYMKI1kgu/Cr9hm0pdyKJ5g6t6/NZ2GDHh5Xne
-         bQX1VbAvo86lBikv//knGSiUsxAiDILFdZiV+amLUSOeUaYLU6vLScLJyVw67Y+OSaAy
-         RJnA==
+        bh=yDANVNLAXNlGDsrc5CGt536N9WLG4foln19BmJ4pqwQ=;
+        b=TRNBWyEuHV+HlY98pe+oZ2vZvYVUN8rkvOagtMUYHWrymYPX53Pza+taS3Hz9mLs8V
+         Opsg4XK2uHTEhMoRTYyT7miFc6UOzRbCWIvN5NGWrzOq5NHNNz2DybZ6rR1mOf/J2P/J
+         LxRh5My6vAc7U5Bsn5prlv6Sgj5LPsgd5OPdlEkbhZ/yohmd9xUCdN1yG0ON4iEonWJ3
+         AYPIbV/2KqF7bsINDRIepqGyeyHrw6WWmVXvDu+s7T4MpkYUM/PiuxZU6XtV/PqGOGj8
+         GzAgo3pe9eidoD7v74VgpMwt625sBYtwpXUl/MBuo0USZDVoNJdX/PNG4k8jhSs86Gk0
+         FsWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758332833; x=1758937633;
+        d=1e100.net; s=20230601; t=1758332837; x=1758937637;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qeUIHWsKLh6gjLn9Z3+FbhnYjwlNLiSz3aZCwDtFUKY=;
-        b=eTFmKWGwK464tEhtVwk0NR9gkl+kC2A/RHWYbaww5yREus0jwfY1aJskOrZ5lT6VUs
-         teoHkAuoxl3Vwl9Yayq1RFqOFZ3IsWaJ5nDTW9JooJLLxeyDp4Kv62CEgzS95BrHRdLU
-         YOccwnl23HCqJMTWxpU8AMPpqpJp0ey8hDFqNboWw0EJy3E2K4+Y018Meb9KH+QUf7yR
-         Q8meMLyIdjax5GV/TuaURTbHebBqf2MYAXDEZWPfxvb7Wnz92v1aoSmSR4N0jqoMiOvi
-         x1Puy6zuN4frAsbAXrUKMNdoLMCOJ3sFztbsROvZDiUUKMUd11/ISNY5l1IVwBYhdeIb
-         SOlQ==
-X-Gm-Message-State: AOJu0YzVJ7/4MwDiu8fHA56ZiXPzGCKId5/ze3LZg6ADwUaQSmzoYEiK
-	e63r9NUXluIhD0ql9sYhSfDOhFZTa8t08I5HR1DEoDKEkebkFoTWsw3T
-X-Gm-Gg: ASbGnctiAODDpUAyvOjbGSIrz7kq6nXU/XMcRdR01P6g+vtzz315czhtgdIDxbN7rZn
-	dUTKUJdhveUPzwQ41754lo+KoqJ17Dyr4Z0Sgw/uUqT7x1gYMirBNGGOZoVphFSutfChxY12fiH
-	K3nU8dYFEZsNwumXXR40CMAKBJ+kP42Ayay3i7o5abB+ol2Ndzhyjn1G5vJQ9ajd2EmcuO6QrsJ
-	c9tGGkGqjar8/f+1ByJhgfhqq0imafrJ2H6kjZkcBh5pDF8qjukKNsOdkpeKlgQVVka2Taiq421
-	+U6F4TrEGpy4qWcsw40SYfadk1sPnIvxCECgbg4OJcQPyaHl/xIgrkL/7PETlcz6jJEKVTc6bMb
-	/LoKDrnldkPJ0tzftz16F
-X-Google-Smtp-Source: AGHT+IHAb8q347For76gqV7j8lIEycMW9TAsw2JxhvCS3NbiNhH4DBGbKJw3OQ7FwHz61bSv6avlkA==
-X-Received: by 2002:a17:902:ef12:b0:248:a4e2:e6d6 with SMTP id d9443c01a7336-269ba5042eemr66295115ad.39.1758332833618;
-        Fri, 19 Sep 2025 18:47:13 -0700 (PDT)
+        bh=yDANVNLAXNlGDsrc5CGt536N9WLG4foln19BmJ4pqwQ=;
+        b=aWmf8yYGIQXbwpeduDkwgsdHzu+Du0mpMo8UmXWENUGqj9lXtCUCgfBx53KutZRcPu
+         JPHXZpToYnOkfSTGDM4g9QptMt2fbwnYe7b+j63gOqZm0HQGkT64rNTjVu3o00dVL4pN
+         jpige4WKlzj9iZlReU+Q+fTXBTQ6YP0N90dRQ+p1o66up8z5fK7N3SnLlhfNxKcDZvLy
+         xsvmvinzvWxs14bjUSLtoGvGrEwWu3EuL5ObqUrEDB6FvvHRlRpJBs5zwemwRuMNPuow
+         OD9kBlSvGD3e9u0lhndkK7jMQdLJ3PZGos4BRuUwDPinA7ekXkb1k0/KuRBFvvl3J67M
+         G+UQ==
+X-Gm-Message-State: AOJu0YzpqeKH83sHqraHGkU+C4YQoJROm6esKz/X2dVRay9AxKjoun5E
+	yp+c43pOQ1HIT9WveuU/W5onetLMlADD1H3y8PswigopaNpzQQqW4qUy
+X-Gm-Gg: ASbGncsZhaIaf7PoB38Yahqfr88sU9Xo6UdZYBnxdKPl9MttCrW25U1Dvp8XQYgQ4HD
+	TiUDmDRdUr7myUhI8wUrXK/n7yzuaF0lHB+8R6Ou7ev3o4hh/MRUPB+12FmIrNTeMyTR/bj4eb3
+	ifqla+8Yvu4BjyQiZaA0VQBt2onmNjlMTZJwe+MV9hNVmVFQA9+TKzSXgMP/h5x0SSwJFBJW73a
+	Eg+TqCYVWIi5CHwQlsDurFLSP1KCJI529c9fqgQ9j1JiUlZOjL2liNWwB4RVMi7R7f8BiP9Qp6l
+	M4HDSz35ZPrlzkdO2OCthghWsHFmuKTp5neetFQpHAmaHDAvnkbyyEbqxtCNLN/C3ut/NcP5aCB
+	7EVz+EifFb3LBcQuRpegh
+X-Google-Smtp-Source: AGHT+IF8Qv7XXWFPUXzrHtj8oUR7XmANyCLJf1PLQPpKbnLGaW+uYuJ1GuJzs4v8GW8udB3N0U4Iug==
+X-Received: by 2002:a17:903:2a8f:b0:271:479d:3de2 with SMTP id d9443c01a7336-271479d4e0emr7643705ad.13.1758332836972;
+        Fri, 19 Sep 2025 18:47:16 -0700 (PDT)
 Received: from archlinux ([191.193.70.152])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033c922sm65709455ad.131.2025.09.19.18.47.11
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033c922sm65709455ad.131.2025.09.19.18.47.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Sep 2025 18:47:13 -0700 (PDT)
+        Fri, 19 Sep 2025 18:47:16 -0700 (PDT)
 From: =?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -81,9 +81,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/5] arm64: dts: qcom: r0q: enable max77705 PMIC
-Date: Sat, 20 Sep 2025 01:46:35 +0000
-Message-ID: <20250920014637.38175-4-ghatto404@gmail.com>
+Subject: [PATCH 4/5] arm64: dts: qcom: r0q: enable hardware clocks
+Date: Sat, 20 Sep 2025 01:46:36 +0000
+Message-ID: <20250920014637.38175-5-ghatto404@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250920014637.38175-1-ghatto404@gmail.com>
 References: <20250920014637.38175-1-ghatto404@gmail.com>
@@ -96,70 +96,39 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The Samsung Galaxy S22 uses max77705 as its charger, fuelgauge and haptic
-PMIC, enable the fuelgauge and charger for now.
+Enable the real-time clocks found in R0Q board.
 
 Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
 ---
- .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
-index 7bf56564dfc6..c1b0b21c0ec5 100644
+index c1b0b21c0ec5..c088f1acf6ea 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
 +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
-@@ -14,6 +14,16 @@ / {
- 	compatible = "samsung,r0q", "qcom,sm8450";
- 	chassis-type = "handset";
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		constant-charge-current-max-microamp = <2150000>;
-+		charge-full-design-microamp-hours = <3700000>;
-+		over-voltage-threshold-microvolt = <4500000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4350000>;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -186,6 +196,26 @@ vreg_l11c_3p0: ldo11 {
+@@ -225,6 +225,21 @@ vol_up_n: vol-up-n-state {
  	};
  };
  
-+&i2c5 {
++&pmk8350_rtc {
++	nvmem-cells = <&rtc_offset>;
++	nvmem-cell-names = "offset";
++
++	status = "okay";
++};
++
++&pmk8350_sdam_2 {
 +	status = "okay";
 +
-+	max77705_charger: charger@69 {
-+	    compatible = "maxim,max77705-charger";
-+	    reg = <0x69>;
-+	    monitored-battery = <&battery>;
-+	    interrupt-parent = <&tlmm>;
-+	    interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	fuel-gauge@36 {
-+		reg = <0x36>;
-+		compatible = "maxim,max77705-battery";
-+		power-supplies = <&max77705_charger>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
++	rtc_offset: rtc-offset@bc {
++		reg = <0xbc 0x4>;
 +	};
 +};
 +
- &pm8350_gpios {
- 	vol_up_n: vol-up-n-state {
- 		pins = "gpio6";
-@@ -345,3 +375,7 @@ &usb_1_hsphy {
- 
+ &pon_pwrkey {
  	status = "okay";
  };
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
 -- 
 2.51.0
 
