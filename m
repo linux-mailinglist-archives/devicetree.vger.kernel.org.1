@@ -1,96 +1,115 @@
-Return-Path: <devicetree+bounces-219478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDDC5B8BD87
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 04:39:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D94A2B8BDC5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 04:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 828EF1C046E6
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 02:40:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84B9C5A120D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 02:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8701F4617;
-	Sat, 20 Sep 2025 02:39:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPeHtY/t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F54202C5D;
+	Sat, 20 Sep 2025 02:58:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6401A9F84;
-	Sat, 20 Sep 2025 02:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1085A10F1;
+	Sat, 20 Sep 2025 02:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758335976; cv=none; b=gvgaVwdfs43xMclL4arSOo4Mo3QQHW5AFYEfotgdn7FgIJKKggPuFl9NqH29hhQFOmyEnzOYUoRDZNbOjmRROwdRykKR7+CONAiNiP3q+M5ZjiL+CqHzVkm6CWOgJDG9mnx0YF4tY3bNbfLXROaod2WDh0tyFz87ESow4O76b9Y=
+	t=1758337122; cv=none; b=K9Q4TGZnGNhhIr6yXs8Xb6uy9uVikJE6xbzETfBvxqZFiyvEU7L5/piVJtqqFktOaz7p35GcLvjehTQ5XQ1V/oOcE9Aiwuqepxnr/yam1EAv5Gz0xlsBZiDrBEcMD0ukLg1CIOjymC9ydEpgkFfUUX+5yzdK740nSKnXq70tSwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758335976; c=relaxed/simple;
-	bh=k/FTCnl96MXSP+fDHycI6rpSXi1muA+ifuNnSEKRkhQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B4pp9wUkyYwIzxX90sS1JEL4jJ24fDAeOO1HVQSwLtGw0ZWTrW1qPpTdVd2CaldPNCNim5um8kEdNVlo9UwYgTc39tOW4wLVp8r8t/Bl88FsZU1r/fi1vklM+baC0LLfTFg8J2yzDC6lS514F8hhoaQXCot0ZhcSqo60VaOM6fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPeHtY/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D52BDC4CEF0;
-	Sat, 20 Sep 2025 02:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758335975;
-	bh=k/FTCnl96MXSP+fDHycI6rpSXi1muA+ifuNnSEKRkhQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QPeHtY/tD4wGBP0/ZK3YB1RP3Bi2fBiPf7JivsZ+2FOB/EC9+JwISbekDxnJAxira
-	 r5XwSbsGF/N64TIvG30RNo1O3243IMNfoAYNu3GteqKIcEVh0kv2PnDfNbsRGBdGx4
-	 yQwmk9hD6kYnnI741KbLX4OBVGHdrOTlK0CBs7J90Lu7KDpLdas28TYM6mY5f/qL3t
-	 oUFARJi+xLD5zecIc3ZFPhofXrV0tk5Rm3vYt4mVODt7TTw1UyYmk9Jrr/2WRs2dZA
-	 g93Ga9afg9G3C70VkZKne8xyfVIC64iu8ESTDyD8SLxrh1ZxTKYtzkVDnNOQ72oC16
-	 hXZF/205IjXbw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-Subject: Re: [PATCH v9 0/2] arm64: dts: qcom: Add support for 4 pixel streams
-Date: Fri, 19 Sep 2025 21:39:33 -0500
-Message-ID: <175833597012.494389.4056335450832869480.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250916-dp_mst_bindings-v9-0-68c674b39d8e@oss.qualcomm.com>
-References: <20250916-dp_mst_bindings-v9-0-68c674b39d8e@oss.qualcomm.com>
+	s=arc-20240116; t=1758337122; c=relaxed/simple;
+	bh=BNOcrsPtGVCnjoHd0bfmpLA8vi4nFc9VnR7K2gZeWzk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GO6GA7biqN8bc0oWvRzc1Czl7sdHfJIByieV5H76+17ZtWoxUddj7/ZON24+SWarW2o7iyvL0GvC9DhsN4yywiGcBATuKNlR5Pb6kh2Br47Osl7JohGda4YPi8dFBJmk/xSlSg1aPSYy1fisRRQ04mXrWr6zR/yvvZqzNOCOW4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.102] (unknown [114.241.87.235])
+	by APP-03 (Coremail) with SMTP id rQCowACX54EzGM5obAbXAw--.5582S2;
+	Sat, 20 Sep 2025 10:57:55 +0800 (CST)
+Message-ID: <50456256-fc9e-4de5-a512-5749b832dc3a@iscas.ac.cn>
+Date: Sat, 20 Sep 2025 10:57:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] riscv: dts: spacemit: define a SPI controller node
+To: Alex Elder <elder@riscstar.com>, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlan@gentoo.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250919155914.935608-1-elder@riscstar.com>
+ <20250919155914.935608-4-elder@riscstar.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250919155914.935608-4-elder@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:rQCowACX54EzGM5obAbXAw--.5582S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrZw4xCw1xZFy3WF13Wr13CFg_yoWDtFb_G3
+	ZruayIganrCFnrWFyDWw1ftr40vrs2krWrtwn7Gry7Gan5Wr1kGa18Ja15Ar4UGr1aqr93
+	Ca15tF4kJwsFkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbV8YjsxI4VWkCwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
+	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+	W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+	1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
+	IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
+	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07jDKsUUUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
+On 9/19/25 23:59, Alex Elder wrote:
 
-On Tue, 16 Sep 2025 20:18:27 +0300, Dmitry Baryshkov wrote:
-> On some MSM chipsets, the display port controller is capable of supporting
-> up to 4 streams.
-> 
-> To drive these additional streams, the pixel clocks for the corresponding
-> stream needs to be enabled.
-> 
-> Fixup the documentation of some of the bindings to clarify exactly which
-> stream they correspond to, then add the new bindings and device tree
-> changes.
-> 
 > [...]
+>
+> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> index 6cdcd80a7c83b..f8c37d16968e4 100644
+> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+> @@ -856,6 +856,22 @@ storage-bus {
+>  			#size-cells = <2>;
+>  			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
+>  
+> +			spi3: spi@d401c000 {
+> +				compatible = "spacemit,k1-spi";
+> +				reg = <0x0 0xd401c000 0x0 0x30>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&syscon_apbc CLK_SSP3>,
+> +					 <&syscon_apbc CLK_SSP3_BUS>;
+> +				clock-names = "core", "bus";
+> +				resets = <&syscon_apbc RESET_SSP3>;
+> +				interrupts = <55>;
+> +				dmas = <&pdma 20>,
+> +				       <&pdma 19>;
+> +				dma-names = "rx", "tx";
+> +				status = "disabled";
+> +			};
+> +
 
-Applied, thanks!
+Is storage-bus the right place for SPI? I'd have thought that SPI
+wouldn't need its own dma-ranges if it does DMA though &pdma.
 
-[1/2] arm64: dts: qcom: sm6350: correct DP compatibility strings
-      commit: f2983d8a1ea2812a4ccf6693dcd59118ac3f0a8e
-[2/2] arm64: dts: qcom: Add MST pixel streams for displayport
-      commit: 2f695d3eac36601d383155e3bba189f06a0f750c
+I know "dram_range4" is where SpacemiT put it but I'm not sure if that
+makes sense now.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Vivian "dramforever" Wang
+
 
