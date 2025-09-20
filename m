@@ -1,135 +1,226 @@
-Return-Path: <devicetree+bounces-219491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA7EB8BEAD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 05:56:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314FFB8BF30
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 06:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73CDF7C1C0D
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 03:55:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 123A64E0638
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 04:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8485C22B5AC;
-	Sat, 20 Sep 2025 03:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74CE21B9C0;
+	Sat, 20 Sep 2025 04:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZFPKZ+Oq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ku8k1gwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3811224B1F
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 03:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0881FDE22;
+	Sat, 20 Sep 2025 04:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758340539; cv=none; b=D6lPCRZCCdu5eJBPHo4LaajgPr9Lct/wvX5B8+zsgHepFPQoHmQxLtv7IIOlJ6C+HOnEkXW9oq2LvVuueV1rBPz5Pj0eV5PZD6agUkB6HoFPHWmrww/CMFGAT7hSzLJDmY4YXeIIgq+9b/FsO+lpRHwDqZqipyMYd+vHSpzIJqM=
+	t=1758343027; cv=none; b=EC7AIdW/fSDlwJdosSUa7QOd77gGZxlIowX/ex+9bVCK6oOybAOOYp8ac/YMWXkcCqSgmQvjU+5DXC5FFdW4ag91alyiBsrAr9iT3ATayIc9y+qgZbikftXFKwSTjeHgbgp91bKVjLbeNhL1RH9CIBRxwu0phNWS8X7Nvk3A9sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758340539; c=relaxed/simple;
-	bh=wLR5A4WVJygISPHG42IIvYb+LPD25B9I3WH7jC2e5xU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sps9oXZXlnblEITZmO5YKYd25Z4wGhRazs+J2a0MNg5PkhQ/+udVe82NELRGLlZ06Ni4OHR/oKzjfqEjx3PL/HqJNMT2vZqwmJsqdTvHzK8mA+jUpk7AOQe4hlHplI5QnRMT0DWMBQ+0E/D7/nQYdH3daT6QmeKsWP6g1zxdr8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZFPKZ+Oq; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e931c71a1baso3466773276.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Sep 2025 20:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758340534; x=1758945334; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wLR5A4WVJygISPHG42IIvYb+LPD25B9I3WH7jC2e5xU=;
-        b=ZFPKZ+OqAAj1VhKugky3kjemp/VIqd75of38HGEmt1IOj91W4b7jLe+Myfu3ent1n8
-         I+OsNztO7baVS7SDNqQDhsKyRcudzp5fPl2dQ3EsKmIi5TGzzTSREF9BOYtdvwLtcCQ9
-         lX8BgfQDKyo0m2JfxIC+zD4CzDFgLzCucCTNnl0sqYXFOybMgodTGPU/RxeED3KpD6Ge
-         7yQG/mA18ZVwa9TAvZspdmtVMoFft3MmApalEp7/PJVnD7pAqdNfemDIdWOkktS1fK7N
-         5MIan1ZBYEJnEUm4lD9oNaRI/NjfTi3RIA4zVC5lAmPgo6eel/h/B86mXEMgdrCKJemE
-         DM2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758340534; x=1758945334;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wLR5A4WVJygISPHG42IIvYb+LPD25B9I3WH7jC2e5xU=;
-        b=vBlvAo5CaTqH7kcTI9N3wWoBJ7x33BPU7GY2lfUinapwdXorxDoSNJM80V1NGaMoIe
-         KnITxUzms9LABHU0rfjyBe8Z7fIroM3ucfWmg46QvVI+JzCUCFJODpFNCw23mibuzp8H
-         fepRjxwlipuUmL10TheWVyygfNsd8+Iai7OsPu6sGiD/Rjs2AjJRNow9V8/wt4wtpC+u
-         siJpClRmGkW9WcGno2JWYCQQKHvbGn/kdWdNdqxaNgawnxOGB8Ne+ZAabb8h7cUVETYT
-         vgLCD3XnghS9qgS1R4+QshSSPGFNY8HePF6TYOKMfRe+1oX2hIonvDaVivDbnVb7KW8r
-         6lOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxnHXJPSxaXsUVGYuOQH286JDmYkoYszDcW0/H9xV9cQTTaGaSmcgxicLC9vV8zFj0zibqwTIwU5dF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxckV2YsbwyIoPxJZjHXGoglkVYkonCCZWYXafc22tXYNe02G9X
-	nDHivrtbjiPZKdACxgdRCbyVBbrUe+zkN7HL4T/k48ykvunn5wM6CsmiNX6A7uhwGCOWduI0MHb
-	90X/US/y6DeSDKF8h7jlku3SA34ckTGg=
-X-Gm-Gg: ASbGncsrzORI+IRPixMEKtFCQ2vLQoUOFblbExTkBHQ6CswXrsw0DOhz7hl/dttQBME
-	VTYl5OfRGPkq08OLwsTg1vHDxyzojihaXragkZGZAZUee5t+1nB3b41foexV/tG6lWYWNXDyvp9
-	DCtW/gOU6v7fU67KQWROmY6LHC7ytIPkq2OmGXvmTw4wkxA9lIEWuup3UAixOV+Kf/1RjvCsvR4
-	9JOeMQ=
-X-Google-Smtp-Source: AGHT+IH7cxRQcDAWrx6iopGK0fgAvvotX/SwRt/T/KElvH4XQULrd96czgOrVv1CSvA0vDpbRNCMKcVlhfdowxEBryU=
-X-Received: by 2002:a53:b3c5:0:b0:622:4818:ce38 with SMTP id
- 956f58d0204a3-6347f610c7emr3546092d50.37.1758340534336; Fri, 19 Sep 2025
- 20:55:34 -0700 (PDT)
+	s=arc-20240116; t=1758343027; c=relaxed/simple;
+	bh=XZcIJUwCAmn7bLiLcL6/z2NRHNOeBmZZikzGRXm2HZw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UfH8quYCEZlGGax2Knn5xnn5zUAkn9aLwQdRlUqoaMBdg/iM3HU2LYlSY35U0r6IB8yyIGh5V9bbgzyDGzfrsp9+KPz6tIi96ElUCjxRu4MzCjTyYj/VTjylCFH7ET23EpAKMaU7Wz8wdZiu2OJR/5hTeP6vEaxJylfr5UpOCMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ku8k1gwv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39687C4CEEB;
+	Sat, 20 Sep 2025 04:37:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758343026;
+	bh=XZcIJUwCAmn7bLiLcL6/z2NRHNOeBmZZikzGRXm2HZw=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=ku8k1gwv4/iu1UQeZn0Rt5uC9E7zQynusyjonfNbPSMWG6nLmZlKWTUL6fZ++ERXO
+	 +nSsYbAt6SvR2VZa1++gw8sARcveq7SYJx8drmF93RdQaYZfBTQ4gfMP3FPLaLgzPY
+	 7E2gf2xqlBnsj9HH1pni23CJiPXa/nJ+7jVHDJLfvKqeba5BHxyBdOGQC7qGDjENjs
+	 SJ6bXqzEE4p1qmMuqi6rLYD4JOO/SV0wsGW8PS7kUgPxbCFVC82m0dcGH+x7RInNnf
+	 cDfKxq7V6y6+H+jLcgFKVN1qab7uyLVXzSZYHD7Tmf+3YN5a0ybS2wd/TpQqWdyg5h
+	 0dzdwdGTrYlhA==
+Message-ID: <71462d3c-8865-47fe-949c-2dd154bd90dc@kernel.org>
+Date: Sat, 20 Sep 2025 13:37:02 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250918152830.438554-1-nschichan@freebox.fr> <20250918195806.6337-1-safinaskar@gmail.com>
- <CAHNNwZAzecVcJXZmycX063-=p-M5jVkfStfgYVKJruOFo7y9zg@mail.gmail.com>
-In-Reply-To: <CAHNNwZAzecVcJXZmycX063-=p-M5jVkfStfgYVKJruOFo7y9zg@mail.gmail.com>
-From: Askar Safin <safinaskar@gmail.com>
-Date: Sat, 20 Sep 2025 06:54:58 +0300
-X-Gm-Features: AS18NWCqg0xtU5KiNe17DWjmiPCEbBI_FSj5NCOyDGZFj_7oFaRqSu7O_vUKCrA
-Message-ID: <CAPnZJGDwETQVVURezSRxZB8ZAwBETQ5fwbXyeMpfDLuLW4rVdg@mail.gmail.com>
-Subject: Re: [PATCH RESEND 00/62] initrd: remove classic initrd support
-To: Nicolas Schichan <nschichan@freebox.fr>
-Cc: akpm@linux-foundation.org, andy.shevchenko@gmail.com, axboe@kernel.dk, 
-	brauner@kernel.org, cyphar@cyphar.com, devicetree@vger.kernel.org, 
-	ecurtin@redhat.com, email2tema@gmail.com, graf@amazon.com, 
-	gregkh@linuxfoundation.org, hca@linux.ibm.com, hch@lst.de, 
-	hsiangkao@linux.alibaba.com, initramfs@vger.kernel.org, jack@suse.cz, 
-	julian.stecklina@cyberus-technology.de, kees@kernel.org, 
-	linux-acpi@vger.kernel.org, linux-alpha@vger.kernel.org, 
-	linux-api@vger.kernel.org, linux-arch@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-block@vger.kernel.org, 
-	linux-csky@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-hexagon@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	linux-snps-arc@lists.infradead.org, linux-um@lists.infradead.org, 
-	linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, mcgrof@kernel.org, 
-	mingo@redhat.com, monstr@monstr.eu, mzxreary@0pointer.de, 
-	patches@lists.linux.dev, rob@landley.net, sparclinux@vger.kernel.org, 
-	thomas.weissschuh@linutronix.de, thorsten.blum@linux.dev, 
-	torvalds@linux-foundation.org, tytso@mit.edu, viro@zeniv.linux.org.uk, 
-	x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Vincent Mailhol <mailhol@kernel.org>
+Subject: Re: [PATCH v6 2/9] phy: phy-can-transceiver: Introduce
+ can_transceiver_priv
+To: Peng Fan <peng.fan@nxp.com>
+Cc: linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Marc Kleine-Budde <mkl@pengutronix.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
+ Haibo Chen <haibo.chen@nxp.com>
+References: <20250909-can-v6-0-1cc30715224c@nxp.com>
+ <20250909-can-v6-2-1cc30715224c@nxp.com>
+Content-Language: en-US
+Autocrypt: addr=mailhol@kernel.org; keydata=
+ xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
+ JFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbEBrZXJuZWwub3JnPsKZBBMWCgBBFiEE7Y9wBXTm
+ fyDldOjiq1/riG27mcIFAmdfB/kCGwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcC
+ F4AACgkQq1/riG27mcKBHgEAygbvORJOfMHGlq5lQhZkDnaUXbpZhxirxkAHwTypHr4A/joI
+ 2wLjgTCm5I2Z3zB8hqJu+OeFPXZFWGTuk0e2wT4JzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrb
+ YZzu0JG5w8gxE6EtQe6LmxKMqP6EyR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDl
+ dOjiq1/riG27mcIFAmceMvMCGwwFCQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8V
+ zsZwr/S44HCzcz5+jkxnVVQ5LZ4BANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
+In-Reply-To: <20250909-can-v6-2-1cc30715224c@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 19, 2025 at 6:25=E2=80=AFPM Nicolas Schichan <nschichan@freebox=
-.fr> wrote:
-> Considering that the deprecation message didn't get displayed in some
-> configurations, maybe it's a bit early at the very least.
+A couple nitpicks. I was hesitating to send this, but because it seems there
+will be a v7 anyway, could be worth to integrate these as well.
 
-I changed my opinion.
-Breaking users, who did not see a deprecation message at all,
-is unfair.
-I will send a patchset soon, which will remove initrd codepath,
-which currently contains deprecation notice. And I will put
-deprecation notice to
-other codepath.
+On 09/09/2025 at 14:40, Peng Fan wrote:
+> To prepare for dual-channel phy support, introduce can_transceiver_priv as
+> a higher level encapsulation for phy and mux_state.
+> 
+> No functional changes.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/phy/phy-can-transceiver.c | 41 ++++++++++++++++++++++++++-------------
+>  1 file changed, 27 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
+> index f59caff4b3d4c267feca4220bf1547b6fad08f95..6415c6af0e8414a6cc8d15958a17ee749a3f28e9 100644
+> --- a/drivers/phy/phy-can-transceiver.c
+> +++ b/drivers/phy/phy-can-transceiver.c
+> @@ -23,6 +23,11 @@ struct can_transceiver_phy {
+>  	struct phy *generic_phy;
+>  	struct gpio_desc *standby_gpio;
+>  	struct gpio_desc *enable_gpio;
+> +	struct can_transceiver_priv *priv;
+> +};
+> +
+> +struct can_transceiver_priv {
+> +	struct can_transceiver_phy *can_transceiver_phy;
+>  	struct mux_state *mux_state;
+>  };
+>  
+> @@ -32,8 +37,8 @@ static int can_transceiver_phy_power_on(struct phy *phy)
+>  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
+>  	int ret;
+>  
+> -	if (can_transceiver_phy->mux_state) {
+> -		ret = mux_state_select(can_transceiver_phy->mux_state);
+> +	if (can_transceiver_phy->priv->mux_state) {
+> +		ret = mux_state_select(can_transceiver_phy->priv->mux_state);
+>  		if (ret) {
+>  			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
+>  			return ret;
+> @@ -56,8 +61,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
+>  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
+>  	if (can_transceiver_phy->enable_gpio)
+>  		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
+> -	if (can_transceiver_phy->mux_state)
+> -		mux_state_deselect(can_transceiver_phy->mux_state);
+> +	if (can_transceiver_phy->priv->mux_state)
+> +		mux_state_deselect(can_transceiver_phy->priv->mux_state);
+>  
+>  	return 0;
+>  }
+> @@ -107,7 +112,7 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
+>  {
+>  	struct phy_provider *phy_provider;
+>  	struct device *dev = &pdev->dev;
+> -	struct can_transceiver_phy *can_transceiver_phy;
 
-Then in September 2026 I will fully remove initrd.
+Considering the number on time you are accessing priv->can_transceiver_phy, I
+think it is better to keep this local variable.
 
-> SMTP server I used wasn't authenticated to google, so all gmail
-> recipients were dropped. Hopefully this work better today.
+With this, the patch diff is also smaller.
 
-Yes, this time I got your email
+> +	struct can_transceiver_priv *priv;
+>  	const struct can_transceiver_data *drvdata;
+>  	const struct of_device_id *match;
+>  	struct phy *phy;
+> @@ -117,18 +122,25 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
+>  	u32 max_bitrate = 0;
+>  	int err;
+>  
+> -	can_transceiver_phy = devm_kzalloc(dev, sizeof(struct can_transceiver_phy), GFP_KERNEL);
+> -	if (!can_transceiver_phy)
+> -		return -ENOMEM;
+> -
+>  	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
+>  	drvdata = match->data;
+>  
+> +	priv = devm_kzalloc(dev, sizeof(struct can_transceiver_priv), GFP_KERNEL);
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
---=20
-Askar Safin
+  sizeof(*priv)
+
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->can_transceiver_phy = devm_kzalloc(dev, sizeof(struct can_transceiver_phy),
+
+After adding back the can_transceiver_phy variable:
+
+  sizeof(*can_transceiver_phy)
+
+> +						 GFP_KERNEL);
+> +	if (!priv->can_transceiver_phy)
+> +		return -ENOMEM;
+> +
+>  	mux_state = devm_mux_state_get_optional(dev, NULL);
+>  	if (IS_ERR(mux_state))
+>  		return PTR_ERR(mux_state);
+>  
+> -	can_transceiver_phy->mux_state = mux_state;
+> +	priv->mux_state = mux_state;
+>  
+>  	phy = devm_phy_create(dev, dev->of_node,
+>  			      &can_transceiver_phy_ops);
+> @@ -142,23 +154,24 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
+>  		dev_warn(dev, "Invalid value for transceiver max bitrate. Ignoring bitrate limit\n");
+>  	phy->attrs.max_link_rate = max_bitrate;
+>  
+> -	can_transceiver_phy->generic_phy = phy;
+> +	priv->can_transceiver_phy->generic_phy = phy;
+> +	priv->can_transceiver_phy->priv = priv;
+>  
+>  	if (drvdata->flags & CAN_TRANSCEIVER_STB_PRESENT) {
+>  		standby_gpio = devm_gpiod_get_optional(dev, "standby", GPIOD_OUT_HIGH);
+>  		if (IS_ERR(standby_gpio))
+>  			return PTR_ERR(standby_gpio);
+> -		can_transceiver_phy->standby_gpio = standby_gpio;
+> +		priv->can_transceiver_phy->standby_gpio = standby_gpio;
+>  	}
+>  
+>  	if (drvdata->flags & CAN_TRANSCEIVER_EN_PRESENT) {
+>  		enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
+>  		if (IS_ERR(enable_gpio))
+>  			return PTR_ERR(enable_gpio);
+> -		can_transceiver_phy->enable_gpio = enable_gpio;
+> +		priv->can_transceiver_phy->enable_gpio = enable_gpio;
+>  	}
+>  
+> -	phy_set_drvdata(can_transceiver_phy->generic_phy, can_transceiver_phy);
+> +	phy_set_drvdata(priv->can_transceiver_phy->generic_phy, priv->can_transceiver_phy);
+>  
+>  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+
+
+Yours sincerely,
+Vincent Mailhol
+
+
 
