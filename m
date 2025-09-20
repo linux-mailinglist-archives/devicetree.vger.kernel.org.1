@@ -1,122 +1,124 @@
-Return-Path: <devicetree+bounces-219559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708CCB8CA89
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 16:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF972B8CAA4
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 16:47:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F87262159B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 14:43:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 873503B8E0A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 14:47:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1AA7183CC3;
-	Sat, 20 Sep 2025 14:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D99C1E1E04;
+	Sat, 20 Sep 2025 14:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3SQ+H65M"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="JrpO2igs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6114422A7E6
-	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 14:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94001A2C0B
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 14:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758379390; cv=none; b=psbsJtNWAYKLaol8agvk5qjLxNYFgsdN/4Et+K8ZX11AaMaLRAUnhlxYL5D0N+hHP0iGoFGq6oZU8ZEGSzN2bR+aqJU705fKzQpaw5pF17sn6lPQUnrWR7uwWuzUtOSGzQbhc40stTqrp+Zl/7QI6KGti3tz8xaf3CGRZjy09lo=
+	t=1758379668; cv=none; b=MGMXxmr8NVl0sCek9waPjQkXYVfKHgoY9/eI0cEaOe7YMp4sczaDtydaWOiPFwIEJ1ahV4x9RFSvy8qY68MV6oJ76ISq/MehXGKQApd464G+MrhwI0Piyvxp0K7jBSxl4kve6HjjHhpm0ccV0RHqYxoqJgrSPUAx8N3cS7rDLFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758379390; c=relaxed/simple;
-	bh=reGQ0DWfCnnIVp/Nxw5dBkwic445/96e5CXDstaYNKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nMX93KQRUzNwLGT8hvESRw+JMaAQWS9wlKo9cTelvU7Xd0b/G59G9AzZBK49HfC5FzlurraYpaSKoWuuH4V76Yx2vMOSdYb9Q4WMW/D/TMUCd2iEF34R0U+Onwcc53jTEENElf6kxzmHqta2auC9Tjw040kc+PT0ZKfr4gzOiyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3SQ+H65M; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-74526ca79beso2799212a34.0
-        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 07:43:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758379387; x=1758984187; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/zr1FxzQeV23WAfXkGwnch/VhAJlzRpqociU7pEguSA=;
-        b=3SQ+H65Mq7lmz1B5VG20x9Lq90j5XOP0m6A9igV9aIJktsX2S+XYfV8k40KiAfLXLI
-         F4ynoVa80m9k1y+BFmkiBJDY++D1LOfVFsYh3SiDi2s09tmRoBKfgBoMC6JfNkaGNF6g
-         zONNJcYhNQyRJjAz2SwfU+05xp9sLB3vkt6VNsYhrWP2jrdiotxv0kgfqXtz9iDTggUd
-         wQgl5Hu1BHqzbKCvtsyEVkAY+zxaavsHVzrSRCKKOcw19LIHHJP5kqTH6EECU+ylMHAI
-         5CNuh8Bi6BvwUP/cTwXTw5mtEd+v1sRXJxAbC12HV2/RjkkMVFh7Ef8GhLYhSjwLFk8A
-         YDLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758379387; x=1758984187;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/zr1FxzQeV23WAfXkGwnch/VhAJlzRpqociU7pEguSA=;
-        b=oflyN92BOHv5pRd2KxUnwNI22vC00cTj3ZM/egWTXyK06ZavM52CW+QD3EpftW7ewd
-         Uj49UgDGZfqtQ9f3SxGBoCpNt2bJIMqknhksOzqgsW6vcEPHtiW5DyHlzEklD2I/6kFw
-         EwWtrMqJUTSN7agf8aapSNSLXfsD5V/08vwsF2gyCiuKNs+z6lTeIJytwLMBtRVhNYwm
-         QMpRSLZMKp4MtkUxURVdBzXj4RIdz1apm98NqKDOMQ/lNOxMvHexzX7Pr7o7SfzFhxHr
-         YGrQCm7KblTfkiVlpfavAQRYEzJALKAwfmlv6i9rdM0ainNLG99Wxy3EDspk7WL07ikK
-         jU8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWtGqJGNFMZs7mp3EnHyB8nCHoYWLoj8nNVNmSaF5aJJmtII0BJC92ja92Ul8a+qJIGyzZ+mwPQ7Aza@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNBeUKiIACOsH7Xo7p3U4Bzo4ZaJAPXqhtwkJfXhgaeMtijrgZ
-	9hRKoOyf6WndBshchOeuwSXPlqDMwSbk/VokMhTsCatzr7U3zQszsxJGs/qnIDzIc+8=
-X-Gm-Gg: ASbGncvkMVMIsaVDu2AbSGU3tyyoAypvqglTd3GZ6iDfvY2oOmKO96hgSsvqSm3GQlj
-	FDcB/D5SSSq2sK3o3ajBoq3xzc/HISJzeVdU643eIi6OGPwbq+OzrIkQFxzdCuPVRjHHilesrgd
-	hHAZ86FaVIHWobSLIgCCb6Zwv/m+Ddlwr4idBy4vL6b92mYYNObV8K99CIhCXxl2NwhF8TwjwV/
-	RQ3rmlqW+2eJZ1LT2r11oTJySMi+gQOPNrxXm8B3EqUNhWf2bNDZEnIMJ5/8C0PDlnE7/0+kThr
-	PBPvzMYnxc9Z8L/DzbQqhQViuA9XaPEDOgf+rOEQxiFqPGXqjFUWnr1Ij+HenO35nJCyKqp3mA0
-	odhJcHaa1Fi3EzGMKPdhKG/e3wWX/GS51IJE1BGRczeWv48r4pswfC9J9xoGYjhpd3Qxs1RRnyt
-	M=
-X-Google-Smtp-Source: AGHT+IFRMjIdQHCqLYdQqsM4bOgBkQvcyRd2wt9TOxoiyYemPs4kzShqexKQOBSerVYHshLpIqXW1Q==
-X-Received: by 2002:a05:6830:6606:b0:750:69c2:365f with SMTP id 46e09a7af769-76f6e58bc30mr4230967a34.4.1758379387269;
-        Sat, 20 Sep 2025 07:43:07 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:14ea:b68a:f92c:93c4? ([2600:8803:e7e4:1d00:14ea:b68a:f92c:93c4])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-625dbca6014sm2701941eaf.25.2025.09.20.07.43.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Sep 2025 07:43:05 -0700 (PDT)
-Message-ID: <7021b57f-bad0-425d-a7a1-3a613a408a42@baylibre.com>
-Date: Sat, 20 Sep 2025 09:43:04 -0500
+	s=arc-20240116; t=1758379668; c=relaxed/simple;
+	bh=789DFs4LQtmBntaur0VPctHDw1awAzUu8jfoedb8OpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h5D4B45RRAtfFhPH+lbTLHPTNfcbCUA8wCGNN2OtyCcUXvUJLodipZMLuhU7A/A5yRgw9rhg8U6Ry6T0ybCYynSYb17rnyXHrok6PPJ99k7I1hZ/12cO9DGSURY4BfvCqk5GlBRLGP462lfw/60/w+RCp/tb77nYO8qBHsA45uA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=JrpO2igs; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id 91960104CBA2
+	for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 20:17:39 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 91960104CBA2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1758379659; bh=789DFs4LQtmBntaur0VPctHDw1awAzUu8jfoedb8OpM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JrpO2igsc7Y9T+uQg3mG7dnzHTOB5ipGql9wQppg6TWtNQvwj+lJhRG1e/ZRFUTAc
+	 kQknJ9dqRNDXjI1VM8neeof97UoG7BYOTplpqwnqmVQcL3r+EkucYQlXFtcvtcB2Cv
+	 LEVY4UfCNwbnsHcQQWvoXrX5JaY5ip/DNqlrCZlg=
+Received: (qmail 8143 invoked by uid 510); 20 Sep 2025 20:17:39 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 5.520536 secs; 20 Sep 2025 20:17:39 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
+  by ldns1.iitb.ac.in with SMTP; 20 Sep 2025 20:17:33 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns1.iitb.ac.in (Postfix) with ESMTP id 66BDA36003F;
+	Sat, 20 Sep 2025 20:17:33 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 3C61E1E814BD;
+	Sat, 20 Sep 2025 20:17:33 +0530 (IST)
+Date: Sat, 20 Sep 2025 20:17:28 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, skhan@linuxfoundation.org,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH v2 1/6] dt-bindings: rtc: Add ST m41t93
+Message-ID: <20250920144728.GA69280@bhairav-test.ee.iitb.ac.in>
+References: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
+ <3aed714163abc86a18a62f039b285643d9504e64.1757510157.git.akhilesh@ee.iitb.ac.in>
+ <20250911-resolute-translucent-koala-1707dd@kuoka>
+ <20250915141951.GA3239298@bhairav-test.ee.iitb.ac.in>
+ <85a46710-64ee-4a21-b95c-d4c18c2f634f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] iio: adc: ad4030: Add SPI offload support
-To: Jonathan Cameron <jic23@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
- nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- marcelo.schmitt1@gmail.com, Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Axel Haslam <ahaslam@baylibre.com>
-References: <cover.1758214628.git.marcelo.schmitt@analog.com>
- <da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
- <20250920104251.3f7dcbb2@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250920104251.3f7dcbb2@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85a46710-64ee-4a21-b95c-d4c18c2f634f@kernel.org>
 
-On 9/20/25 4:42 AM, Jonathan Cameron wrote:
-> On Thu, 18 Sep 2025 14:39:10 -0300
-> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+On Wed, Sep 17, 2025 at 09:52:24AM +0900, Krzysztof Kozlowski wrote:
+> On 15/09/2025 16:19, Akhilesh Patil wrote:
+> >>> +$id: http://devicetree.org/schemas/rtc/st,m41t93.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: ST M41T93 RTC and compatible
+> >>> +
+> >>> +maintainers:
+> >>> +  - linux-rtc@vger.kernel.org
+> >>
+> >> Not much improved. This should be a person responsible/caring about this
+> >> hardware support in the kernel. Why would we want to take the binding if
+> >> no one cares about it?
+> > 
+> > Okay. As per get_maintainer.pl, linux driver corresponding to this binding does not have a dedicated
+> > maintainer, hence it shows rtc subsystem maintainer (Alexandre Belloni).
 > 
+> And what did I express at v1?
+> 
+> > Looking forward for your suggestion here.
+> > What do you suggest to keep maintainer as Rob Herring or/and me ? as I see in
+> > such cases Rob is the maintainer.
+> 
+> No, I really doubt Rob cares about this particular hardware. Neither do
+> I, nor Conor.
 
-...
+okay.
+I have this rtc hardware with me and I am willing to own and maintain
+this support in the kernel.
+Hence I will add myself as a maintainer for this binding and share v3.
+
+Regards,
+Akhilesh
 
 > 
-> Just one thing I noticed today.  If nothing else comes up I can fix that
-> up whilst applying.  However, this will benefit from review from others
-> + the IIO tree is effectively closed for this cycle so we have lots of time
-> to tidy up any remaining stuff.
 > 
-FYI, I have some comments on this patch I am working on but will be some
-time next week before I send it since I would also like to actually test
-this since I have the hardware.
-
+> Best regards,
+> Krzysztof
 
