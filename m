@@ -1,123 +1,87 @@
-Return-Path: <devicetree+bounces-219626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13776B8D200
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 00:42:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF126B8D229
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 01:12:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F35D4189EF4C
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 22:42:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A032178B87
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 23:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999302236E1;
-	Sat, 20 Sep 2025 22:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E89827F728;
+	Sat, 20 Sep 2025 23:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2VD451v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSGJRckd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6661E491B;
-	Sat, 20 Sep 2025 22:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4461325FA0E;
+	Sat, 20 Sep 2025 23:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758408121; cv=none; b=mu++fLPFkC5+bzEzKxRLHJW0IyKYkBHlnKNkUvoZWTJY5UCvckF8i03POTUpQs/mZUPIO3b1GACK1wpbWdpAPBlM6+Wuf1N9Yoh4l4BpJVoRG6gMxrozp8T0QpYTvSM2cGs28WSKJ2C5oRPU2sNl0HRhcjLWhqdXCmW8y4Hb2v0=
+	t=1758409924; cv=none; b=iK0EesNTC462IOisbULr5k4IpPFZHp9zEOc9KvC//jMX58N+KFXwCNiwid/88ibv8YmWXYU6qJiDgnQAqWV/4SMhXDfU386+osmpTDJQEAvVJ2AGwR5OdeCleCvDgFM/JoDCR/eqjHi6YNOK7Wlbm3QnM1LxZnGttSftyTdvpwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758408121; c=relaxed/simple;
-	bh=Dt8VKsI0bzzPWavc0PQi4CMaYsaPhVChPxt1pBUrkF4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ln87ulYu587Cma4jdPH6OrspFJnLaPyGcPOhiYl0vXm9zJOb5lKnEnfjyVKwXxVC8iwOnMVZkJySOf4W+9JXIT+FrheWa88KSVgNnCnkhTZNLqEc6sUN8Lx+7YEzhiuFrmQmUkiFZzRos5WWzKjQLEWo+816hjWdWUblEJ+niXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2VD451v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDD5C4CEEB;
-	Sat, 20 Sep 2025 22:42:00 +0000 (UTC)
+	s=arc-20240116; t=1758409924; c=relaxed/simple;
+	bh=Xz0ZO8Amtu9KkICAzIlfDkm862T/8+/a/0h4CNym7TY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oP5Uojq+EKSLAtErcXF1I0xPJFq/umCeVPTLWpYry/+XTqbNAf+e9+UzY+tBscp9Hj8FOGgiwwBzfqZmIX5fp+Qs49DJlJwa9Znbmw2oR0TJwKiE09NK6COepzK6LJBWexMgnlODqDI+Ft4tHIVV8WN2+CmGkZmmrZvVhgaKE8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSGJRckd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77AD1C4CEEB;
+	Sat, 20 Sep 2025 23:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758408121;
-	bh=Dt8VKsI0bzzPWavc0PQi4CMaYsaPhVChPxt1pBUrkF4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=O2VD451vT9HNTTN9Ot+gYm+T7u5XS4TeGU3KNlq3MyYzbPc/WfKyJ5YsAal0YSqZa
-	 xVtREVHKDSzLplyY10SBSdmsSkd8v5ip1Co82UnaMPTaNqgxCQbGA18E8DeWVBE2Zo
-	 SPYF0+SvJAmBHV64T2e37DNfLhT5tv8ICq0uLqr/KChDAFAk3cxcyoFYaBYj8TEvYu
-	 tFnngljlcAoDTqs1yknnMrQY7rGzRV3q8ZPQ4pR3BcK5CAvsPT0GYyQPXbCNhMKRpw
-	 GIQRLcZwMYeIxTY63zUOhMNQchRVFai5QcRRjKXe54mpAmHWTldY9qzCM9oUtlMk28
-	 Pmn+JiZra4uYA==
-Date: Sat, 20 Sep 2025 17:41:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1758409923;
+	bh=Xz0ZO8Amtu9KkICAzIlfDkm862T/8+/a/0h4CNym7TY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VSGJRckdldKLlEis/93BetnOjwyxMW19G3O1dui2TpdtDhX1ZokF/vQNqxPkr1EBS
+	 EUjmr/u+5ggVDPbHclssDZkifMJiasT84Urxw8tZ9MmKluiPyWNT3Vg6LNpf/+8l1T
+	 1WimfKmfFmM27WWQ0W3Gq/FZ7VGS5OpPiJI1CXKn6ubETezfAaF8PWOxPEEPDe0ugs
+	 sMWPsBjd38bpoB3kP5kAY/U+las7leL4YLwrZkg11qSgG6CU9H/MEmfSpU6XVzPsXi
+	 vlrbVJSdY4LgmIKhueVlPD3TWN/peseWpkCEsXFnhpMZyWaYMSqO/sacIjqY8TQivT
+	 EgDxHkFieqD2A==
+Date: Sat, 20 Sep 2025 16:12:01 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Han Gao <rabenda.cn@gmail.com>
+Cc: devicetree@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] riscv: dts: thead: add xtheadvector to the th1520
+ devicetree
+Message-ID: <aM80wXloinEr6srH@thelio>
+References: <cover.1758228055.git.rabenda.cn@gmail.com>
+ <1ff3fb07b24fb375fcf9d3067aa50583f47c35fe.1758228055.git.rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jianjun Wang <jianjun.wang@mediatek.com>, 
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, Bjorn Helgaas <bhelgaas@google.com>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Ryder Lee <ryder.lee@mediatek.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20250920114103.16964-1-ansuelsmth@gmail.com>
-References: <20250920114103.16964-1-ansuelsmth@gmail.com>
-Message-Id: <175838993594.10832.1517003373145392481.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: mediatek: Convert to YAML schema
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1ff3fb07b24fb375fcf9d3067aa50583f47c35fe.1758228055.git.rabenda.cn@gmail.com>
 
-
-On Sat, 20 Sep 2025 13:41:01 +0200, Christian Marangi wrote:
-> Convert the PCI mediatek Documentation to YAML schema to enable
-> validation of the supported GEN1/2 Mediatek PCIe controller.
+On Fri, Sep 19, 2025 at 04:44:47AM +0800, Han Gao wrote:
+> The th1520 support xtheadvector [1] so it can be included in the
+> devicetree. Also include vlenb for the cpu. And set vlenb=16 [2].
 > 
-> While converting, lots of cleanup were done from the .txt with better
-> specifying what is supported by the various PCIe controller variant and
-> drop of redundant info that are part of the standard PCIe Host Bridge
-> schema.
+> This can be tested by passing the "mitigations=off" kernel parameter.
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/pci/mediatek-pcie.txt | 289 ---------
->  .../bindings/pci/mediatek-pcie.yaml           | 564 ++++++++++++++++++
->  2 files changed, 564 insertions(+), 289 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+> Link: https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-4-236c22791ef9@rivosinc.com/ [1]
+> Link: https://lore.kernel.org/linux-riscv/aCO44SAoS2kIP61r@ghost/ [2]
 > 
+> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Drew Fustini <fustini@kernel.org>      
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: syscon@1a000000 (mediatek,mt7623-hifsys): compatible: 'oneOf' conditional failed, one must be fixed:
-	['mediatek,mt7623-hifsys', 'mediatek,mt2701-hifsys', 'syscon'] is too long
-	'mediatek,mt7623-hifsys' is not one of ['mediatek,mt2701-hifsys', 'mediatek,mt7622-hifsys']
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt2701-hifsys.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@0,0: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@1,0: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@2,0: 'device_type' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250920114103.16964-1-ansuelsmth@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Drew
 
