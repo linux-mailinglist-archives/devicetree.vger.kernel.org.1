@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-219499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF123B8BFF4
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 07:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C60B8C015
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 07:55:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A4EBA02375
-	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 05:45:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46F8B3ACE87
+	for <lists+devicetree@lfdr.de>; Sat, 20 Sep 2025 05:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2E1231845;
-	Sat, 20 Sep 2025 05:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45423229B16;
+	Sat, 20 Sep 2025 05:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cGpfmWnd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSoZqo65"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7FD3770B;
-	Sat, 20 Sep 2025 05:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C356B67E;
+	Sat, 20 Sep 2025 05:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758347099; cv=none; b=S631VLu2DasskeT7jvDbH/FQuFgMUJGAfliQcuvCDa8/KUlkDsnLzsft3R8zauc+Jm0vPd5D369oaV4aOYIl6qBuMH3mSakrXhO+PR4Fl7NijsmdW1kz076t2/BEM2PRq4EuyFRL+FERbNjNtJ9+c+38ENxjyAB0has+WwsgjZ8=
+	t=1758347724; cv=none; b=OeVbp/59PJ15QyxX5DueQJ7C6WaQwkg8pTzNDUuA/3fkA9Sx8Zag3RDW3jr42lVoVKV59BxdpQ/QBKVvJwTHYO9fwnPeL+5l5x1d0IHTI/5Mng/MLq8zBd+cZkgVVvBQEyuNdOoZcJ5zKP+ccV2EbHnhyzNNIbFZtRfnMHiKRp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758347099; c=relaxed/simple;
-	bh=rTQs86DAm2tZv18wSt1opDcS3zS26ZYKcrgH0Yd9fmQ=;
+	s=arc-20240116; t=1758347724; c=relaxed/simple;
+	bh=eSPIm+5TmCgbXgE5lwwUhgZEGgepcr9yXpb9e2Q4g6E=;
 	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=CS397kouhAuM1v/g+nzE2IpCDV6PUma2m6/2dMU+U4N6UR1O3zr9kNkgi98yyiTqxuAbGAtZFefW9uPrSQ+Ab0XQAc6xtJweZ/qHDC8zqOE3dvQBuy7JiQqOhrhepP+xORz71j58PJ9v5bey/riBStMqWBSXddeQLIejEv/ClsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cGpfmWnd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E65DAC4CEEB;
-	Sat, 20 Sep 2025 05:44:58 +0000 (UTC)
+	 To:Date:Message-ID; b=FXwDudxksNjbHwnAYkhzf8m+rnrO7mfV38W1+lrsDfJys+dSy6C2hpLsCpT8ilIQTpHGXHAQKnx+p551ewslr2ZnIKsVrHQV8wGQD8ifvun3a3kakXX1M36lLk6FDerKeePvAphO1G4Tlh/QutaVCIEUX+PBbj/PB+9AHp6302k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSoZqo65; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 786F2C4CEEB;
+	Sat, 20 Sep 2025 05:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758347099;
-	bh=rTQs86DAm2tZv18wSt1opDcS3zS26ZYKcrgH0Yd9fmQ=;
+	s=k20201202; t=1758347723;
+	bh=eSPIm+5TmCgbXgE5lwwUhgZEGgepcr9yXpb9e2Q4g6E=;
 	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=cGpfmWndf5HUwxCZa9NfrgZLcoIsJ1CoQN4e4qsm1oNoisRq5jF4TsDewMKr7ZKCt
-	 BRwsS8tjb7XQ77Kb621epmaGTL4+1moxlokJq2zHDuAqWuKV3uZevwYaIZ2/S/QSon
-	 VU/jcHBIzQPMcj9+QtNL7/J5MhNBQW23rGy/Mr04Ry6BHNcrL7hresy+qXbOQB0sgZ
-	 zHN4R2a5UjaO8XY1zRrKhJY5WOqZ2SMoUZDw4I/c1ifITPAtfsxZ+fI8Yn/Nz2bEX+
-	 PFwfA8QOwzN1IQfJ66+Gr+sjjSSgXd+vX5cCY2sDxug1EAPfviYAuzbrQbisb5x+yI
-	 HI/u24mCsYofA==
+	b=WSoZqo65cjmrXgVPnoj1mtMjc/3rDP8Hdwl47hmKURXdhUoeIjESkGd2LTI1uwwwb
+	 jSMqr1pKW8JYrdUezAypJvgqMG4McauCg7Wi1EPN1wojwsbp+LCMxtoku34ib7ejdA
+	 aKj7JvTrvZ9hlpCaYUxa6Leh2RzjjXN/tVFivcytaj5n6JYUT0Adja1A9xta/fa2D0
+	 wPr9iouqRCMtdtDwGpHyjG9Ke1jtdNISR+1vRVa7Q5Aqa6E7jWzjkBGz6XAPDuzUm8
+	 Kts6ZN60mdxaxYOQhDWxnPAQ4+S4WfUnw7KD1jQOPtGb/vxCdu1H+vR5FuX9pW/fUk
+	 ilJjZ85yqB6ag==
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -49,26 +49,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250826-mtk-dtb-warnings-v3-1-20e89886a20e@collabora.com>
-References: <20250826-mtk-dtb-warnings-v3-0-20e89886a20e@collabora.com> <20250826-mtk-dtb-warnings-v3-1-20e89886a20e@collabora.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: mediatek: Add power-domains property
+In-Reply-To: <20250911-k1-clk-i2s-generation-v4-1-cba204a50d48@linux.spacemit.com>
+References: <20250911-k1-clk-i2s-generation-v4-0-cba204a50d48@linux.spacemit.com> <20250911-k1-clk-i2s-generation-v4-1-cba204a50d48@linux.spacemit.com>
+Subject: Re: [PATCH RESEND v4 1/3] dt-bindings: clock: spacemit: introduce i2s pre-clock to fix i2s clock
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>, Conor Dooley <conor+dt@kernel.org>, Enric Balletbo i Serra <eballetbo@kernel.org>, Eugen Hristev <eugen.hristev@linaro.org>, Ikjoon Jang <ikjn@chromium.org>, Julien Massot <jmassot@collabora.com>, Julien Massot <julien.massot@collabora.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Sean Wang <sean.wang@kernel.org>, Weiyi Lu <weiyi.lu@mediatek.com>, kernel@collabora.com
-Date: Fri, 19 Sep 2025 22:44:58 -0700
-Message-ID: <175834709805.4354.2882057128826835319@lazor>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, Troy Mitchell <troy.mitchell@linux.spacemit.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Alex Elder <elder@riscstar.com>, Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@4d2.org>, Inochi Amaoto <inochiama@outlook.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Troy Mitchell <troy.mitchell@linux.spacemit.com>, Yixun Lan <dlan@gentoo.org>
+Date: Fri, 19 Sep 2025 22:55:21 -0700
+Message-ID: <175834772190.4354.14570183719489742202@lazor>
 User-Agent: alot/0.11
 
-Quoting Julien Massot (2025-08-26 00:39:34)
-> The mt8183-mfgcfg node uses a power domain in its device tree node.
-> To prevent schema validation warnings, add the optional `power-domains`
-> property to the binding schema for mediatek syscon clocks.
+Quoting Troy Mitchell (2025-09-10 20:34:03)
+> Previously, the K1 clock driver did not include the parent clocks of
+> the I2S sysclk.
 >=20
-> Fixes: 1781f2c46180 ("arm64: dts: mediatek: mt8183: Add power-domains pro=
-perity to mfgcfg")
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> Introduce pre-clock to fix I2S clock.
+>=20
+> Otherwise, the I2S clock may not work as expected.
+>=20
+> This patch adds their definitions to allow proper registration
+> in the driver and usage in the device tree.
+>=20
+> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 S=
+oC")
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 > ---
 
 Applied to clk-next
