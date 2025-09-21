@@ -1,133 +1,121 @@
-Return-Path: <devicetree+bounces-219672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8523FB8D68A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 09:31:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7975B8D717
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 10:04:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0DE91766AC
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 07:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9EA189F962
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 08:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C13238C0D;
-	Sun, 21 Sep 2025 07:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03AD1F2382;
+	Sun, 21 Sep 2025 08:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BIBbm+BK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mcYkOQeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F218BBAE;
-	Sun, 21 Sep 2025 07:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6720F50F;
+	Sun, 21 Sep 2025 08:04:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758439887; cv=none; b=Hd1i2ufE3xZUK89ZnjXp4z8ydaAwCWXJ0oaxRTiA0tsbhmS0WEDb3Bd5ppEdwK5jw6PF/4w6p8HeHs0WDOm5EdDvg+sZuV9e+H1I8f3rVqDTwjWQVtq6YoyL8/RA3dDOWukNmc8eLMuy6jWxYsbDz0+P4DvqwhwbHoQyn0yloFo=
+	t=1758441860; cv=none; b=FfQdsmeXZ916bFDSNejIO5o0+JuDGMfKib218v76yvzClRoqeJCq8gbpGnVXvYTCDTYNTb/hoGFZt/mudpfR2uZVkn3Dl5pd2ItlNIHwqx5R6Lc783lqNc/A1sjBQn8w4fpcvnrdAQt4rlgCSSJrl2cGExMBIW3kHOZ3hjjOOdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758439887; c=relaxed/simple;
-	bh=Zx2s38jOkZMSCTI4ObaRdGYcXjsynTIZirrNLaJlpYI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qIJMUQa77+8VAEtolC+0OeKRox4qPZI7QQ6xbrPO13iPaWHNEm+QswI370Z3ht/F8YsRJ7/vkL4opqIGbP1EHFZTxfsQdtTnb2jCrzrKHExxOMbA1YrmiF5R2EaMT2rEgRpM+AXjZ6uDGGEqHrg9cwNYhHW6GweHzsUtFtYGbxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BIBbm+BK; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758439886; x=1789975886;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Zx2s38jOkZMSCTI4ObaRdGYcXjsynTIZirrNLaJlpYI=;
-  b=BIBbm+BKDYCDibTBqNS52ETGSEw4dLR8+3S+GS+xjQefKdB2YEtbA98u
-   E48FXnWeEjC0B5tvMkYi8mFG7ltK84zzJ2I3R1Z0qrDOndH+ak7pEDomH
-   bqkvwX1wfGB2gIuHdggdfBhRgotGVMlMDRiB+qEb1FPwRaI0fhfiTVHC7
-   FBdTKnfxJCG9BzcHboKUYb5q8yasnjGgvv4Bb63MI4hRvZzPL+F36g9uH
-   XTD8XF9vUOjB6t8SZtLBTqs0L0Z7L58HpVEQ0kbpFA0MXH2j5fDczWZSX
-   4ha4O4Qi6mp5M9CQMpMhyaI/yuFPom7/H9Ug83M8cJ2pimOHRSFFLs4t3
-   A==;
-X-CSE-ConnectionGUID: T/8vmloFTSm5/ZfnCRRpDw==
-X-CSE-MsgGUID: aj9/JyfIQh+0XnpcIr0q8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="60622166"
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; 
-   d="scan'208";a="60622166"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2025 00:31:25 -0700
-X-CSE-ConnectionGUID: lWtdmAeGSQO/zSzivUP1iQ==
-X-CSE-MsgGUID: yEXdxvB4RzWxZ2t5A3StgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; 
-   d="scan'208";a="175814344"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 21 Sep 2025 00:31:21 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v0EXM-0000YT-1T;
-	Sun, 21 Sep 2025 07:31:11 +0000
-Date: Sun, 21 Sep 2025 15:31:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Subject: Re: [PATCH v3 04/12] soc: qcom: mdtloader: Add context aware
- qcom_mdt_pas_load() helper
-Message-ID: <202509211544.9DSw3dBc-lkp@intel.com>
-References: <20250921-kvm_rproc_pas-v3-4-458f09647920@oss.qualcomm.com>
+	s=arc-20240116; t=1758441860; c=relaxed/simple;
+	bh=FgPJvqpqOwscoSmbcR68/IeWY3DU89hmprNU9y1mNWo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=La9LMrmxckep5WKn6YeCV4O4W/y15Utzg8udW0m6odteJAZtUhArqriYFLbiliLdw5PNTQmVoYH8sYEu2L0W4bLPJEoyUZ2TnvuaAKBNk+go9N2c6TDW0/21Qww8prlmu6wnJrwg21TBl8uusV5gl14dO4YYYHkhWY++8+yCBfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mcYkOQeU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 52C69C4CEF7;
+	Sun, 21 Sep 2025 08:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758441860;
+	bh=FgPJvqpqOwscoSmbcR68/IeWY3DU89hmprNU9y1mNWo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mcYkOQeUuvZpXq9ABNgmVKAmLX1OeoM4xY11vgCPjq5K1o+q2TCklZW6ihT1KDRjK
+	 Lj+/PV10WEp13JHp5LgfXtJzN1gm4S0qcKNQE20z/jem9fV0gKwL+IKZy24IcHlMIH
+	 pcAkWu9PS1ltSv6WrO0av7/mvhferYJw2f7g6qHT55CjtrukmQNVDwPPngSBBx4uC4
+	 ceAOPCBwmZSIPWlIzyYS9fbynR2vDg1YK/PJCjO6Cj6YbmV6lOMsgla6XiW7ZMcpkk
+	 qEs0ss1hWq/Q7VrY3wj1zYuhG44FgA0rhPumOwPiTDqquYzWfVDlQhwY6XU0xEho/m
+	 nLGisSNIbooOw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F40DCAC5A7;
+	Sun, 21 Sep 2025 08:04:20 +0000 (UTC)
+From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
+Subject: [PATCH v2 0/5] Upstreaming Pinephone Pro Patches
+Date: Sun, 21 Sep 2025 01:04:18 -0700
+Message-Id: <20250921-ppp_light_accel_mag_vol-down-v2-0-e6bcc6ca74ae@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250921-kvm_rproc_pas-v3-4-458f09647920@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIKxz2gC/43NQQ7CIBRF0a00jMVQrJE6ch+mIRR+6U9oIdCgp
+ mHvYlfg8LzBfTtJEBESuTc7iZAxoV8r+KkhelarBYqmmnDGr6znjIYQpEM7b1JpDU4uysrsHTX
+ +tVLR3rToJqNAGFITIcKE7yP/HKpnTJuPn+Mtt7/1z3BuKaNajKM2F+DQdw+7KHRn7RcylFK+3
+ xP3xcgAAAA=
+X-Change-ID: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Rudraksha Gupta <guptarud@gmail.com>, Ondrej Jirman <megi@xff.cz>, 
+ "Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758441859; l=1475;
+ i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=FgPJvqpqOwscoSmbcR68/IeWY3DU89hmprNU9y1mNWo=;
+ b=7rJt2/J0HOq5hczBdqnTmVEddXZp8Btn2v7rl1sz+OwnW9PYE1e4/lCkq3o6XbA2eJGLX6xsa
+ X4VQXHQ1qiuCWHmmFZAhmPbtr7K+04ysADOacc7pEiORI0It4AzVzti
+X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
+ pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
+X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
+ auth_id=211
+X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
+Reply-To: guptarud@gmail.com
 
-Hi Mukesh,
+Throughout the years, many have contributed to the Pinephone Pro (pro)
+development. Unfortunately, these patches are scattered around various
+repositories in different states.
 
-kernel test robot noticed the following build warnings:
+I will be attempting to upstream these patches. I will start off with the
+following small series:
+- Add light/proximity sensor support
+- Add accelerometer sensor support
+- Add magnetometer sensor support
+- Add mount-matrix for magnetometer
+- Fix voltage threshold for volume down key
 
-[auto build test WARNING on 846bd2225ec3cfa8be046655e02b9457ed41973e]
+Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+---
+Changes in v2:
+- remove usb-typec node in dts from light/proximity sensor patch
+- Link to v1: https://lore.kernel.org/r/20250920-ppp_light_accel_mag_vol-down-v1-0-c8bbcd3e2e94@gmail.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mukesh-Ojha/dt-bindings-remoteproc-qcom-pas-Add-iommus-property/20250921-041055
-base:   846bd2225ec3cfa8be046655e02b9457ed41973e
-patch link:    https://lore.kernel.org/r/20250921-kvm_rproc_pas-v3-4-458f09647920%40oss.qualcomm.com
-patch subject: [PATCH v3 04/12] soc: qcom: mdtloader: Add context aware qcom_mdt_pas_load() helper
-config: x86_64-buildonly-randconfig-006-20250921 (https://download.01.org/0day-ci/archive/20250921/202509211544.9DSw3dBc-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250921/202509211544.9DSw3dBc-lkp@intel.com/reproduce)
+---
+Leonardo G. Trombetta (1):
+      arm64: dts: rk3399-pinephone-pro: Add mount-matrix for magnetometer
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509211544.9DSw3dBc-lkp@intel.com/
+Ondrej Jirman (4):
+      arm64: dts: rk3399-pinephone-pro: Add light/proximity sensor support
+      arm64: dts: rk3399-pinephone-pro: Add accelerometer sensor support
+      arm64: dts: rk3399-pinephone-pro: Add magnetometer sensor support
+      arm64: dts: rk3399-pinephone-pro: Fix voltage threshold for volume down key
 
-All warnings (new ones prefixed by >>):
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 40 +++++++++++++++++++++-
+ 1 file changed, 39 insertions(+), 1 deletion(-)
+---
+base-commit: f83ec76bf285bea5727f478a68b894f5543ca76e
+change-id: 20250920-ppp_light_accel_mag_vol-down-817c84fdae8d
 
-   In file included from drivers/media/platform/qcom/iris/iris_firmware.c:10:
->> include/linux/soc/qcom/mdt_loader.h:59:5: warning: no previous prototype for 'qcom_mdt_pas_load' [-Wmissing-prototypes]
-      59 | int qcom_mdt_pas_load(struct qcom_scm_pas_ctx *ctx, const struct firmware *fw,
-         |     ^~~~~~~~~~~~~~~~~
-
-
-vim +/qcom_mdt_pas_load +59 include/linux/soc/qcom/mdt_loader.h
-
-    58	
-  > 59	int qcom_mdt_pas_load(struct qcom_scm_pas_ctx *ctx, const struct firmware *fw,
-    60			      const char *firmware, void *mem_region, phys_addr_t *reloc_base)
-    61	{
-    62		return -ENODEV;
-    63	}
-    64	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rudraksha Gupta <guptarud@gmail.com>
+
+
 
