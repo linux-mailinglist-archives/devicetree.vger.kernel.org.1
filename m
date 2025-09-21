@@ -1,188 +1,148 @@
-Return-Path: <devicetree+bounces-219781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B813B8E2E1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 20:08:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86DC8B8E381
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 20:52:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470EA1899E29
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 18:08:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D2F23BF0DE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 18:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090D4273D8D;
-	Sun, 21 Sep 2025 18:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kgDzWBw2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1F5267AF2;
+	Sun, 21 Sep 2025 18:52:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F109254B19;
-	Sun, 21 Sep 2025 18:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630661C84A0;
+	Sun, 21 Sep 2025 18:52:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758478098; cv=none; b=g13uPumySOTADgQytZ8ugS1feTZc53Gw+r8SxKZPbGfguo9x5TAljPFOT7puHvszSxFvITJ3pY2FlVzRnml4MzQMiGiFANrDNo8+TdN6yo2ziFJUKRWyHp4sDn+G+blbEro0Vgmk+R3G081arLp5lOiOnkwLTVoCWesBKZT5C3A=
+	t=1758480745; cv=none; b=MQx8UCXiFZvT5m4iXTv4Z80c57XfmzaHLSeWwRBzcQtLHUBKVw0iytNZkm2ON72PL4d3YGQPpy02hhRbzJoHtwVryuT3XgI2t/HX/UnJLJIuTLHG0StTnvvrT3K+j0uNaK633EozbfLv1Zxl6cBF88K195FUe8PR7yq3smKqPdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758478098; c=relaxed/simple;
-	bh=29O2r18L5h5k9tMHESiP8SbFSGsjDajPABR1syF2lSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VYlTRmBdwYgHgAhl/CcC5sGJxMGbAaH9ad/5l2KNZEGKN56hIrUuJN4jD8t8C4KjYiSgd6gHt6As7zzi6yRa5jqTSp2iqMw++qEGShzwMTfNAm4YEPpAbjooxyn1VXNZhBv1fvOzHce3dJs35T2hmGXr8pooVo2+sJEYlPpZCIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kgDzWBw2; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758478096; x=1790014096;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=29O2r18L5h5k9tMHESiP8SbFSGsjDajPABR1syF2lSc=;
-  b=kgDzWBw24t4nuohOOqA9wMH6LoEH/oRDp3oVKJq7s1q1sHRLzSgXrIha
-   MlgZYFyXir4PFNs+mrplXO7ACDG2Lu+rpM+Yg1PkpC11g4TzW5hG8ALDv
-   vTA/tBnRqzMJ/GPX2AG7IDpT0S5hNcnMLgKWQH7WLSyqJisni7mXnBqfk
-   o1c2IIth2nOE4mUuYS7BhAgw+CJjPObN0IWXxEsFQu9lQOt7qorVuDH8N
-   dT7SxwXFjNFc9ul784eHOBcJIab2E3FskMzxYr1q5aSBEfNfZTtBj7rDP
-   zhWD+7altLsZApUGAFfkkqxeZYBwOG4Lp6mjGvtuOJ7nw0EDxt5kYIEKp
-   w==;
-X-CSE-ConnectionGUID: GHTYWN7vS7i1/R1hCnkG5Q==
-X-CSE-MsgGUID: 138peNyOQX+1j9uaFb9pfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="59790121"
-X-IronPort-AV: E=Sophos;i="6.18,283,1751266800"; 
-   d="scan'208";a="59790121"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2025 11:08:15 -0700
-X-CSE-ConnectionGUID: kyWGG7/RTeKeC6tgM24SkQ==
-X-CSE-MsgGUID: K9p1Qzi2QJi1nS2PfQSEQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,283,1751266800"; 
-   d="scan'208";a="176126326"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by orviesa007.jf.intel.com with ESMTP; 21 Sep 2025 11:08:11 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v0OTo-0000xF-1m;
-	Sun, 21 Sep 2025 18:08:08 +0000
-Date: Mon, 22 Sep 2025 02:07:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Subject: Re: [PATCH v3 10/12] remoteproc: pas: Extend parse_fw callback to
- fetch resources via SMC call
-Message-ID: <202509220147.nsw5xumc-lkp@intel.com>
-References: <20250921-kvm_rproc_pas-v3-10-458f09647920@oss.qualcomm.com>
+	s=arc-20240116; t=1758480745; c=relaxed/simple;
+	bh=aGtuEHxtXePmXb9Bz/sjo4Ha/4K0ioBr7XAQzZ75TU0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tleTIIN2UgVNB/hIy4AyzKmoZZvnfvzoPNYnSwvkiBOcMWzqptJt8nqMSpc8ik43+mNEKfXcxepc351OtzqneGwA9mgTjjailFcd0e4O9vPflZTUUtB0vTy1ogmThLNIoMPdBcnTDgKdkmDzP0YDCGejRRHlw6auKHaC5JaXiUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.106] (unknown [114.241.87.235])
+	by APP-01 (Coremail) with SMTP id qwCowAA3kaM3SdBo3kkjBA--.9911S2;
+	Mon, 22 Sep 2025 02:51:35 +0800 (CST)
+Message-ID: <411ade91-3fb5-40a3-baca-e6b03c5783ae@iscas.ac.cn>
+Date: Mon, 22 Sep 2025 02:51:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250921-kvm_rproc_pas-v3-10-458f09647920@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] spi: spacemit: introduce SpacemiT K1 SPI
+ controller driver
+To: Alex Elder <elder@riscstar.com>, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlan@gentoo.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250919155914.935608-1-elder@riscstar.com>
+ <20250919155914.935608-3-elder@riscstar.com>
+ <a7070f3f-8857-4834-9e9e-02068637075c@iscas.ac.cn>
+ <3c9aaa62-f685-47f7-a21c-00f51550f185@riscstar.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <3c9aaa62-f685-47f7-a21c-00f51550f185@riscstar.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qwCowAA3kaM3SdBo3kkjBA--.9911S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7WFWxZFW5Kr4xKry8CFy7GFg_yoW8WFyUpF
+	95WFWYkFW5tFn3Xr17tF1UWa45Aw1rKa4DAFy8Xas0yr45uw1vgFW5XrWv93srJr4kJF1U
+	Jw1UXr47Z3sxJrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvlb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r
+	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+	W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+	1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
+	IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
+	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07jfb18UUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi Mukesh,
 
-kernel test robot noticed the following build errors:
+On 9/20/25 23:59, Alex Elder wrote:
+> On 9/19/25 10:52 PM, Vivian Wang wrote:
+>>
+>> [...]
+>>
+>> +static void k1_spi_read_word(struct k1_spi_driver_data *drv_data)
+>> +{
+>> +    struct k1_spi_io *rx = &drv_data->rx;
+>> +    u32 bytes = drv_data->bytes;
+>> +    u32 val;
+>> +
+>> +    val = readl(drv_data->base + SSP_DATAR);
+>> +    rx->resid -= bytes;
+>> +
+>> +    if (!rx->buf)
+>> +        return;    /* Null reader: discard the data */
+>> +
+>> +    if (bytes == 1)
+>> +        *(u8 *)rx->buf = val;
+>> +    else if (bytes == 1)
+>>
+>> Typo? else if (bytes == 2)
+>
+> Wow.  Yes that is an error that I'll correct.
+>
+>>> +        *(u16 *)rx->buf = val;
+>>> +    else
+>>> +        *(u32 *)rx->buf = val;
+>>
+>> Maybe
+>>
+>>     else if (bytes == 4)
+>>         *(u32 *)rx->buf = val;
+>>     else
+>>         WARN_ON_ONCE(1);
+>
+> The value of bytes will be 1, 2, or 4, which we can tell
+> by inspection.  At one time I had a switch statement with
+> a default, but I decided to leave out the default, which
+> won't happen.
+>
+>> Just to make the pattern consistent? Same for k1_spi_write_word.
+>
+> Consistent with what? 
+>
+I was just thinking it would be clearer if the code states clearly:
 
-[auto build test ERROR on 846bd2225ec3cfa8be046655e02b9457ed41973e]
+    1 -> u8
+    2 -> u16
+    4 -> u32
+    anything else -> shouldn't happen
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mukesh-Ojha/dt-bindings-remoteproc-qcom-pas-Add-iommus-property/20250921-041055
-base:   846bd2225ec3cfa8be046655e02b9457ed41973e
-patch link:    https://lore.kernel.org/r/20250921-kvm_rproc_pas-v3-10-458f09647920%40oss.qualcomm.com
-patch subject: [PATCH v3 10/12] remoteproc: pas: Extend parse_fw callback to fetch resources via SMC call
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20250922/202509220147.nsw5xumc-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250922/202509220147.nsw5xumc-lkp@intel.com/reproduce)
+As is, it wasn't obvious to me that we're just handling 4 as u32. Maybe
+we're just capping it at u32, and 8 is also handled.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509220147.nsw5xumc-lkp@intel.com/
+Well, maybe I'm just not familiar with SPI stuff, and word size above 4
+doesn't make sense anyway.
 
-All errors (new ones prefixed by >>):
+It could also be a comment
 
-   drivers/remoteproc/qcom_q6v5_pas.c: In function 'qcom_pas_parse_firmware':
->> drivers/remoteproc/qcom_q6v5_pas.c:452:45: error: passing argument 1 of 'qcom_scm_pas_get_rsc_table' makes pointer from integer without a cast [-Wint-conversion]
-     452 |         ret = qcom_scm_pas_get_rsc_table(pas->pas_id, table, table_sz, &output_rt,
-         |                                          ~~~^~~~~~~~
-         |                                             |
-         |                                             int
-   In file included from drivers/remoteproc/qcom_q6v5_pas.c:22:
-   include/linux/firmware/qcom/qcom_scm.h:97:57: note: expected 'struct qcom_scm_pas_ctx *' but argument is of type 'int'
-      97 | int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_ctx *ctx, void *input_rt,
-         |                                ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+    else /* 4 */
 
+Just a suggestion, no strong preference from me.
 
-vim +/qcom_scm_pas_get_rsc_table +452 drivers/remoteproc/qcom_q6v5_pas.c
+Vivian "dramforever" Wang
 
-   411	
-   412	static int qcom_pas_parse_firmware(struct rproc *rproc, const struct firmware *fw)
-   413	{
-   414		size_t output_rt_size = MAX_RSCTABLE_SIZE;
-   415		struct qcom_pas *pas = rproc->priv;
-   416		struct resource_table *table = NULL;
-   417		void *output_rt;
-   418		size_t table_sz;
-   419		int ret;
-   420	
-   421		ret = qcom_register_dump_segments(rproc, fw);
-   422		if (ret) {
-   423			dev_err(pas->dev, "Error in registering dump segments\n");
-   424			return ret;
-   425		}
-   426	
-   427		if (!rproc->has_iommu)
-   428			return ret;
-   429	
-   430		ret = rproc_elf_load_rsc_table(rproc, fw);
-   431		if (ret)
-   432			dev_info(&rproc->dev, "Error in loading resource table from firmware\n");
-   433	
-   434		table = rproc->table_ptr;
-   435		table_sz = rproc->table_sz;
-   436	
-   437		/*
-   438		 * Qualcomm remote processor may rely on static and dynamic resources for
-   439		 * it to be functional. For most of the Qualcomm SoCs, when run with Gunyah
-   440		 * or older QHEE hypervisor, all the resources whether it is static or dynamic,
-   441		 * is managed by present hypervisor. Dynamic resources if it is present for
-   442		 * a remote processor will always be coming from secure world via SMC call
-   443		 * while static resources may be present in remote processor firmware binary
-   444		 * or it may be coming from SMC call along with dynamic resources.
-   445		 *
-   446		 * Here, we call rproc_elf_load_rsc_table() to check firmware binary has resources
-   447		 * or not and if it is not having then we pass NULL and zero as input resource
-   448		 * table pointer and size respectively to the argument of qcom_scm_pas_get_rsc_table()
-   449		 * and this is even true for Qualcomm remote processor who does follow remoteproc
-   450		 * framework.
-   451		 */
- > 452		ret = qcom_scm_pas_get_rsc_table(pas->pas_id, table, table_sz, &output_rt,
-   453						 &output_rt_size);
-   454		if (ret) {
-   455			dev_err(pas->dev, "error %d getting resource_table\n", ret);
-   456			return ret;
-   457		}
-   458	
-   459		kfree(rproc->cached_table);
-   460		rproc->cached_table = output_rt;
-   461		rproc->table_ptr = rproc->cached_table;
-   462		rproc->table_sz = output_rt_size;
-   463	
-   464		return ret;
-   465	}
-   466	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
