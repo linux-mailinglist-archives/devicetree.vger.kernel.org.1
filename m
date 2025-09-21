@@ -1,96 +1,272 @@
-Return-Path: <devicetree+bounces-219812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D134B8E62B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 23:22:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1792FB8E63A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 23:31:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E7DE3B6F48
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 21:22:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5D40189B297
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 21:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1503D2848AA;
-	Sun, 21 Sep 2025 21:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A0A2C21EF;
+	Sun, 21 Sep 2025 21:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZbrg/c1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NP5Y6sVj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF69A246333;
-	Sun, 21 Sep 2025 21:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A999923E334
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 21:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758489758; cv=none; b=JBCUjYE56xEwH9WUDS0I+w92rigaSNrofqfWaB9ErIEtQWa8ulHYR1gN3at+v5R9TqlRbc6AouA78YDCDknF6//HxnbV31yoQHypR5CNv0s4IUC5OOJPFbMWpOzgqEMiCu8WZwPZRjwJGm+gfTbzBbzMWT+u+ZDqdHTBwhUYQes=
+	t=1758490271; cv=none; b=WxVboYlaUPUmt+aznMWwgSH8ditNEwvCykvZ0sS+uqnekVSAyPt2QlxwCmDHhMp6Awg1obAY1Ffgdd3Z0VaAegnYl7m8NnazD1Eek3xdJ0Y8fU5JO70AjXN6aHVwpNEoD36ZdlYyxvAOmezEz62HFPubBOzID9uXBmtLJ1l4jPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758489758; c=relaxed/simple;
-	bh=FfaSe140mcWx+5UOLTrRKCtyL3nIIKPUV/4Fn/ZxxyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B1uNUSOScVvcKjKQGIRMy6G02JFFA8Q63fzOoj/MnhsoEZNA5heocsKWeoG2HI8hBdZn9ieoC2Er/kEpsls+0rWDVo0bgydQk42KEHRwg3Iq34YJVg6yISoPl+L3VClevyJgbX8EffMhgbnjRlnTPp6tCa11hiD0oWawBaVxzL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sZbrg/c1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD94C4CEE7;
-	Sun, 21 Sep 2025 21:22:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758489757;
-	bh=FfaSe140mcWx+5UOLTrRKCtyL3nIIKPUV/4Fn/ZxxyE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sZbrg/c1Tlz/SC8p2ImWDZfmjBBXU5q5KqwYxyO3CdMFVDWWcyHa6psEzHuMzITaT
-	 /YzgQkUj0iSec/ioqadcRy+uEc02QYcWkvwpgX/8WZoFGUnAzf/TvFVoamqU7P+mYY
-	 pmulic5sQb7T3OTv3KXpGrifKDEHguTO7ulauMDHMqVZ+saKJzPGzYJaiU17k/PsLZ
-	 L6/Czh8wtuBVPGlX24WHODb2tXetQrWR6ZihUgYAqAlpoEgEPMrWfes3M5POcGybpY
-	 wjZDjDarKM/QwG7s4tp1E/RkDKgbzWrdS8nspHhRSCxWTc1q+LfDXaoM+JiIRQiwh0
-	 5W+SU4eWBwkkg==
-Date: Sun, 21 Sep 2025 22:22:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	James Morse <james.morse@arm.com>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>, guo.wenjia23@zte.com.cn,
-	liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: riscv: Add Ssqosid extension
- description
-Message-ID: <20250921-praying-module-6a94b3510482@spud>
-References: <20250920-ssqosid-v6-17-rc5-v3-0-5093162922d8@kernel.org>
- <20250920-ssqosid-v6-17-rc5-v3-1-5093162922d8@kernel.org>
+	s=arc-20240116; t=1758490271; c=relaxed/simple;
+	bh=DZpkHI4TD2hvKTQKBnBvZs/BblBW5gA4aYkqMLJjl5Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NWqijf3LPanPCTw3npHqQzg/t3p/sHn8pOVwsO3wCzv8wyt/CjiAE94VVFJiyuvw80/OXe9a+aBb1Kqc/XJbiqYZ6L9OtHJh1ZL5IlcNMfo0wnyXngjAdNp8utzJb2Jer+gIwKzyAYP2Y2iPXARHsbRH7NVXEUvtuexylOAR1nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NP5Y6sVj; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45f2313dd86so32283395e9.2
+        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 14:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758490266; x=1759095066; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rbZQorlrgA6b5A6SBj4ZBWzjR7Vw60RlID9QDg6+Jl0=;
+        b=NP5Y6sVj36oU6fN92/xtCrZ6OAlf7AcTqY3omPIlLwr01wX6cXkYOItLz34qzq73cV
+         s+MR+JcOv35XKG1/0rVfIex8u5755wSMXSbIMQfH6/lr+8smjIbSolW8sSJJQiJnskja
+         JSWuzH2P57A9p3KQxrfWcJa0u34qt5tUYM4M+wcRrcAaa90YIwPDKNyu9uJiCltHOnMZ
+         jhbzKsDQUUUm57u+CmA696QMzr9vRdzyOX0s4SowzTZ99QDILJ+b+WXwME+ioc8RR2JC
+         3YCe9zhIip2LxYnZ5jODsyiybhseXiwFLaYLCHe8AJzxcZG19iIAWxX7Wjpupb9aKsmx
+         zvFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758490266; x=1759095066;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rbZQorlrgA6b5A6SBj4ZBWzjR7Vw60RlID9QDg6+Jl0=;
+        b=UnrT2MusO1/YbqwWUYurpYTlV5yvXAiMMIi7rgy/mZ/3Kqg+syTM5hJ46j3nb4eg/V
+         Z/8SeCOhT2GgTCmGlbX3V/PAquTLnbElKy6nK2/I6mbLuRmoDClNl3g7FNBEFFBt7CbK
+         V4eFGMYzfG4QEsOFrvM/A9ldaVUAl04OvL4Qg6XpTLjkAEvq5xebBOAGsxba1aHLDAnS
+         NUMrDHm0fAx1N38tk1BF+X5FCFeejmX8kic2x6bsyKhZ5NPlNRC0gmPeZptCTsmYxGse
+         JgBfqRQsql8nAl1UkN4ffE9OS+A0/dCDUXKLKMSNIQbZ8tKwu366jmrNv1mDY/da+WA2
+         C8KQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8y+8tXKnYMFDNXW/ASYlVz0lrpecFXHwBXP6ZYp0VBmeveOw/eIc4zG/RfIHpkNtsi5gEkaZyc7Gk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTuvUouFOK6GKCI1HaVfTOnUEK/IXFaY7MzcMteHW6pAEWUb0d
+	Elf79dLl9HZbEOlgfvsrfcuYEXs0/9oxeG8Iz7W1giQOtWMFFZ7D4l1t2bpmBgu+ef0=
+X-Gm-Gg: ASbGncupEI7wt6/MigIsGFaby8MeG6NXfeyy//ERI8RpyjYg3JuBFOd1uOhNNrxGWU0
+	vUXdmaGc4LxD+M10GdzvWQ3HFEqhH0E50JW0+b4aftBcZKlWCWeRlbhHeje9g0sZxy1Zw6GXQFk
+	UiFHdS8A+1XfQEvv8d6LrZzUDoGndobmFpUpuRmVmIn3MSsOt/FLBbLNjJrJvEYgFnqYddrlxQ3
+	/kqFxmIsf9vPg0T8rMTPycLSOV/2UcYP9I9MOqinUhYlM5P0gaZAXJ1ZXH/qhFK/SMeEargz1aj
+	LyyEzRcQkoPJcdEChcq9ZUEuOPFHz+BQLyzAafqFOdd0Ty3eDaiIE+/OAMDObHAocDB6phOuUMh
+	qcy0Si60tyy0ZZJ6ehGY23pY5pY81onETyedYfuQ+lA78DxxpjdWsLMwTAsqeh1pZChooXtUd/H
+	4XP2ZbqovDxo1DSoQ2fck=
+X-Google-Smtp-Source: AGHT+IGqFUiCUYgfnAodCkYRdOYe88jnjHMAVwRc+cHVKvA44NreuIhB2IHj2+gqeBMuaZ+h+lm2Ow==
+X-Received: by 2002:a05:600c:450b:b0:45b:9a46:69e9 with SMTP id 5b1f17b1804b1-467eaa86fddmr108599635e9.31.1758490265825;
+        Sun, 21 Sep 2025 14:31:05 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613e09f879sm214454715e9.19.2025.09.21.14.31.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Sep 2025 14:31:05 -0700 (PDT)
+Message-ID: <fb4ce572-5fd7-4533-a783-f98c191dc910@linaro.org>
+Date: Sun, 21 Sep 2025 22:31:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Im1OnXI+wDR1opM0"
-Content-Disposition: inline
-In-Reply-To: <20250920-ssqosid-v6-17-rc5-v3-1-5093162922d8@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/12] firmware: qcom_scm: Rename peripheral as pas_id
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com>
+ <h5BhHaTRDvnuxhBvoD8fUGJ_NA7Kg29dqnpXWxtR36TI4j3KPZ1lC5cARb92L7F9mPrWcZtsjIb3aI7ASr0V8w==@protonmail.internalid>
+ <20250921-kvm_rproc_pas-v3-2-458f09647920@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20250921-kvm_rproc_pas-v3-2-458f09647920@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 20/09/2025 20:41, Mukesh Ojha wrote:
+> Peripheral and pas_id refers to unique id for a subsystem and used only
+> when peripheral authentication service from secure world is utilized.
+> 
+> Lets rename peripheral to pas_id to reflect closer to its meaning.
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>   drivers/firmware/qcom/qcom_scm.c       | 30 +++++++++++++++---------------
+>   include/linux/firmware/qcom/qcom_scm.h | 10 +++++-----
+>   2 files changed, 20 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+> index e777b7cb9b12..3379607eaf94 100644
+> --- a/drivers/firmware/qcom/qcom_scm.c
+> +++ b/drivers/firmware/qcom/qcom_scm.c
+> @@ -562,7 +562,7 @@ static void qcom_scm_set_download_mode(u32 dload_mode)
+>    * qcom_scm_pas_init_image() - Initialize peripheral authentication service
+>    *			       state machine for a given peripheral, using the
+>    *			       metadata
+> - * @peripheral: peripheral id
+> + * @pas_id:	peripheral authentication service id
+>    * @metadata:	pointer to memory containing ELF header, program header table
+>    *		and optional blob of data used for authenticating the metadata
+>    *		and the rest of the firmware
+> @@ -575,7 +575,7 @@ static void qcom_scm_set_download_mode(u32 dload_mode)
+>    * track the metadata allocation, this needs to be released by invoking
+>    * qcom_scm_pas_metadata_release() by the caller.
+>    */
+> -int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
+> +int qcom_scm_pas_init_image(u32 pas_id, const void *metadata, size_t size,
+>   			    struct qcom_scm_pas_metadata *ctx)
+>   {
+>   	dma_addr_t mdata_phys;
+> @@ -585,7 +585,7 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
+>   		.svc = QCOM_SCM_SVC_PIL,
+>   		.cmd = QCOM_SCM_PIL_PAS_INIT_IMAGE,
+>   		.arginfo = QCOM_SCM_ARGS(2, QCOM_SCM_VAL, QCOM_SCM_RW),
+> -		.args[0] = peripheral,
+> +		.args[0] = pas_id,
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   	struct qcom_scm_res res;
+> @@ -658,20 +658,20 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_metadata_release);
+>   /**
+>    * qcom_scm_pas_mem_setup() - Prepare the memory related to a given peripheral
+>    *			      for firmware loading
+> - * @peripheral:	peripheral id
+> + * @pas_id:	peripheral authentication service id
+>    * @addr:	start address of memory area to prepare
+>    * @size:	size of the memory area to prepare
+>    *
+>    * Returns 0 on success.
+>    */
+> -int qcom_scm_pas_mem_setup(u32 peripheral, phys_addr_t addr, phys_addr_t size)
+> +int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size)
+>   {
+>   	int ret;
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_PIL,
+>   		.cmd = QCOM_SCM_PIL_PAS_MEM_SETUP,
+>   		.arginfo = QCOM_SCM_ARGS(3),
+> -		.args[0] = peripheral,
+> +		.args[0] = pas_id,
+>   		.args[1] = addr,
+>   		.args[2] = size,
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+> @@ -699,18 +699,18 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_mem_setup);
+>   /**
+>    * qcom_scm_pas_auth_and_reset() - Authenticate the given peripheral firmware
+>    *				   and reset the remote processor
+> - * @peripheral:	peripheral id
+> + * @pas_id:	peripheral authentication service id
+>    *
+>    * Return 0 on success.
+>    */
+> -int qcom_scm_pas_auth_and_reset(u32 peripheral)
+> +int qcom_scm_pas_auth_and_reset(u32 pas_id)
+>   {
+>   	int ret;
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_PIL,
+>   		.cmd = QCOM_SCM_PIL_PAS_AUTH_AND_RESET,
+>   		.arginfo = QCOM_SCM_ARGS(1),
+> -		.args[0] = peripheral,
+> +		.args[0] = pas_id,
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   	struct qcom_scm_res res;
+> @@ -735,18 +735,18 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_auth_and_reset);
+> 
+>   /**
+>    * qcom_scm_pas_shutdown() - Shut down the remote processor
+> - * @peripheral: peripheral id
+> + * @pas_id:	peripheral authentication service id
+>    *
+>    * Returns 0 on success.
+>    */
+> -int qcom_scm_pas_shutdown(u32 peripheral)
+> +int qcom_scm_pas_shutdown(u32 pas_id)
+>   {
+>   	int ret;
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_PIL,
+>   		.cmd = QCOM_SCM_PIL_PAS_SHUTDOWN,
+>   		.arginfo = QCOM_SCM_ARGS(1),
+> -		.args[0] = peripheral,
+> +		.args[0] = pas_id,
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   	struct qcom_scm_res res;
+> @@ -772,18 +772,18 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_shutdown);
+>   /**
+>    * qcom_scm_pas_supported() - Check if the peripheral authentication service is
+>    *			      available for the given peripherial
+> - * @peripheral:	peripheral id
+> + * @pas_id:	peripheral authentication service id
+>    *
+>    * Returns true if PAS is supported for this peripheral, otherwise false.
+>    */
+> -bool qcom_scm_pas_supported(u32 peripheral)
+> +bool qcom_scm_pas_supported(u32 pas_id)
+>   {
+>   	int ret;
+>   	struct qcom_scm_desc desc = {
+>   		.svc = QCOM_SCM_SVC_PIL,
+>   		.cmd = QCOM_SCM_PIL_PAS_IS_SUPPORTED,
+>   		.arginfo = QCOM_SCM_ARGS(1),
+> -		.args[0] = peripheral,
+> +		.args[0] = pas_id,
+>   		.owner = ARM_SMCCC_OWNER_SIP,
+>   	};
+>   	struct qcom_scm_res res;
+> diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
+> index a55ca771286b..a13f703b16cd 100644
+> --- a/include/linux/firmware/qcom/qcom_scm.h
+> +++ b/include/linux/firmware/qcom/qcom_scm.h
+> @@ -72,13 +72,13 @@ struct qcom_scm_pas_metadata {
+>   	ssize_t size;
+>   };
+> 
+> -int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
+> +int qcom_scm_pas_init_image(u32 pas_id, const void *metadata, size_t size,
+>   			    struct qcom_scm_pas_metadata *ctx);
+>   void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx);
+> -int qcom_scm_pas_mem_setup(u32 peripheral, phys_addr_t addr, phys_addr_t size);
+> -int qcom_scm_pas_auth_and_reset(u32 peripheral);
+> -int qcom_scm_pas_shutdown(u32 peripheral);
+> -bool qcom_scm_pas_supported(u32 peripheral);
+> +int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size);
+> +int qcom_scm_pas_auth_and_reset(u32 pas_id);
+> +int qcom_scm_pas_shutdown(u32 pas_id);
+> +bool qcom_scm_pas_supported(u32 pas_id);
+> 
+>   int qcom_scm_io_readl(phys_addr_t addr, unsigned int *val);
+>   int qcom_scm_io_writel(phys_addr_t addr, unsigned int val);
+> 
+> --
+> 2.50.1
+> 
+> 
 
---Im1OnXI+wDR1opM0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks, thats a more comprehensive patch than I had expected.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
---Im1OnXI+wDR1opM0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNBslwAKCRB4tDGHoIJi
-0iBnAP9QK5OUnppWh5JFkOmqVjJHymCA82qhsBOC5l1deD+XxwD8DY86nmCWEIGK
-0Vr5AbEic0vlD+Kfh3aiA61aRx6MqAs=
-=4SqQ
------END PGP SIGNATURE-----
-
---Im1OnXI+wDR1opM0--
+---
+bod
 
