@@ -1,144 +1,71 @@
-Return-Path: <devicetree+bounces-219736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74ECB8DF3D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 18:13:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFAEB8DF7D
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 18:27:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569A2173836
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 16:13:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27E333A7DF9
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 16:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272D7213E89;
-	Sun, 21 Sep 2025 16:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2D4238C1F;
+	Sun, 21 Sep 2025 16:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b="J/Gsn4i9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqs2RA8s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [91.198.250.236])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1EF1F91F6;
-	Sun, 21 Sep 2025 16:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.198.250.236
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00551B87E8;
+	Sun, 21 Sep 2025 16:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758471121; cv=none; b=BggxXyXW1qMHYigwqkmJ8GwtuLSVyhHWLBDK4s4dRU4b+c0+V9gRcGHh0j6q1NCac64vV+cRPX/lQtLP1OB6o6e4INFLgC2MmRf7HE3XE+xGPC0nVIH5gZRhoRDrRCCahfR+UW9m0P5+pLCRb59wzenbLTObsyuwZW20+xCTuqc=
+	t=1758472015; cv=none; b=pYNsONiag8Y4ugByUDT7/QDQNWVRklZcdIpcRPAx+BdUQuWzmW7MjxRp6cIPM3d8uxmT9EnchLuAfBMc6hTpT1OrQoXLq/Xx2TbI+aRmx3JBCPQaEdzGquBmLD6b7itTk2yYetjwmjbVuH3zHENJFs4V8weqKWq/nMqdAM+Ul8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758471121; c=relaxed/simple;
-	bh=IVrEBq93I57sHkKBpKzLJwIv8WpcngwvrIe6Ij19Yw0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pvnxHsoBNb/yEo4NU0HKlB07A4EntUZH9hjiVxPRVyHIbBGTNbk3X7mibcjcGzW0/dfcSVYCOYd/78/yTQz2ajeNT2Ag3Cd7jTwHjCiXPvEXHoAuW5W2bg8wnY2wV31HrZpRF7zL0kHG5osV4UD/iyWI+Qfpu7IYOHPNKPZLHig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io; spf=pass smtp.mailfrom=kael-k.io; dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b=J/Gsn4i9; arc=none smtp.client-ip=91.198.250.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kael-k.io
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4cVB8360TKz9y0k;
-	Sun, 21 Sep 2025 18:11:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kael-k.io; s=MBO0001;
-	t=1758471107;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=e32bgj/ZkouP/y1c9EuzQEy6snPVu+L7GnJFnUo6h6M=;
-	b=J/Gsn4i9EMikkA05Zg9B9/f/8G8vBgiNgKQikWmuqA06PXvbVMEA/CBFm3jJbbB9sr0mSU
-	g4MXgskV/WHiD0zKWJYKuCfHXOLPidPBRyie5JCRn1SH4Mh2DWnoWU7Olvvw27l0aC9n0E
-	WGN9D2anilpplvVbGb2wOibrpoQ3raLSiNE0ZCDVw2ie4FaHM06VnmljEvv3rV9mztHp0C
-	x5X5pvvwliE8QiKKP6BaQPZ28IpPf4mIxWpMYIlB6WXa2eXrq4lJaal0Q/W/V621rmOWBL
-	R7KcqyenGuwg+J6iu3Y4hXn/i5XIUGBMiPT7TX/qZKBhbZX1NhkkfmkXDZQU2g==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=none;
-	spf=pass (outgoing_mbo_mout: domain of dev@kael-k.io designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=dev@kael-k.io
-From: Kael D'Alcamo <dev@kael-k.io>
-To: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: rng: hisi-rng: convert to DT schema
-Date: Sun, 21 Sep 2025 18:11:34 +0200
-Message-ID: <20250921161139.99047-1-dev@kael-k.io>
+	s=arc-20240116; t=1758472015; c=relaxed/simple;
+	bh=DnyM/HiW2L8/+nO6lf5exBhkmRcu83sEQj8T4rqCO0c=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=s8Kd7AdT92ABFwXN8jvxRP67Uf8uCf6zgKuFhxrEuPM8YdSbG9ys9rq7f16IuV4Uf+zBDYbutnYXaCEIMbc10h3tBS6Wjj6CNeYLhBBVkuX3oCwdVzGTyNnuRa6i7vbk7sGtjB7+VR0mM4ZvkAlEb9ohruC++G2VBlVfanFA91A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqs2RA8s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E495C4CEE7;
+	Sun, 21 Sep 2025 16:26:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758472015;
+	bh=DnyM/HiW2L8/+nO6lf5exBhkmRcu83sEQj8T4rqCO0c=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=oqs2RA8sdQxc/94driMw2SpJWiaz00MozT5Ndygo6NXhYV1zs1DUPGz4RnWmAnmoA
+	 vM5gY/rQUvBCsWZ7OXbTDtZrCh6kRprI72x+2B3bcstCCsVZZ5Rso4Cp/XjuKjkeb8
+	 BZr6MtkF7HLKwsBRc1AhpKyxuK2v4D/5ByYBsCBKg6o7BW1iUbkd33MdaMyf0J0QR5
+	 gbGTQa6egQESHWTM6AXVggwYyfNe3sDbbyHer0/TSXZRyZ3pn36BCYHZ5vt0aTpCld
+	 wweJcEFHgt2x26i2pjKF6snTrZZhwo3VVaJXrX+bjc2JxCr4JQYwT3IRkWD1XJt7Wb
+	 zekgiDZuyb3jw==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4cVB8360TKz9y0k
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250912-master-v2-4-2c0b1b891c20@gmail.com>
+References: <20250912-master-v2-0-2c0b1b891c20@gmail.com> <20250912-master-v2-4-2c0b1b891c20@gmail.com>
+Subject: Re: [PATCH v2 4/5] clk: st: flexgen: remove unused compatible
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+To: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Patrice Chotard <patrice.chotard@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, Rob Herring <robh@kernel.org>
+Date: Sun, 21 Sep 2025 09:26:53 -0700
+Message-ID: <175847201377.4354.4235111396754845133@lazor>
+User-Agent: alot/0.11
 
-Convert the Devicetree binding documentation for hisilicon,hip04-rng
-and hisilicon,hip05-rng from plain text to YAML.
+Quoting Raphael Gallais-Pou (2025-09-12 04:36:11)
+> Following B2120 boards removal in commit dee546e1adef ("ARM: sti: drop
+> B2120 board support"), several compatibles are left unused.  Remove
+> them.
+>=20
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> ---
 
-Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
----
- .../devicetree/bindings/rng/hisi-rng.txt      | 12 -------
- .../devicetree/bindings/rng/hisi-rng.yaml     | 32 +++++++++++++++++++
- 2 files changed, 32 insertions(+), 12 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rng/hisi-rng.txt
- create mode 100644 Documentation/devicetree/bindings/rng/hisi-rng.yaml
-
-diff --git a/Documentation/devicetree/bindings/rng/hisi-rng.txt b/Documentation/devicetree/bindings/rng/hisi-rng.txt
-deleted file mode 100644
-index d04d55a6c2f5..000000000000
---- a/Documentation/devicetree/bindings/rng/hisi-rng.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--Hisilicon Random Number Generator
--
--Required properties:
--- compatible : Should be "hisilicon,hip04-rng" or "hisilicon,hip05-rng"
--- reg : Offset and length of the register set of this block
--
--Example:
--
--rng@d1010000 {
--	compatible = "hisilicon,hip05-rng";
--	reg = <0xd1010000 0x100>;
--};
-diff --git a/Documentation/devicetree/bindings/rng/hisi-rng.yaml b/Documentation/devicetree/bindings/rng/hisi-rng.yaml
-new file mode 100644
-index 000000000000..5406b2596f42
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rng/hisi-rng.yaml
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rng/hisi-rng.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon Random Number Generator
-+
-+maintainers:
-+  - Kefeng Wang <wangkefeng.wang@huawei>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,hip04-rng
-+      - hisilicon,hip05-rng
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rng@d1010000 {
-+      compatible = "hisilicon,hip05-rng";
-+      reg = <0xd1010000 0x100>;
-+    };
--- 
-2.51.0
-
+Applied to clk-next
 
