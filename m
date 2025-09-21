@@ -1,196 +1,151 @@
-Return-Path: <devicetree+bounces-219708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4DFB8DC80
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 15:40:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92251B8DC8C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 15:42:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6D7E17F49F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4703F3AD2DD
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BEC2D73B3;
-	Sun, 21 Sep 2025 13:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4452D73B5;
+	Sun, 21 Sep 2025 13:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKgWQQZX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jiGuu+k+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834032868B;
-	Sun, 21 Sep 2025 13:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2B3248F47
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 13:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758462035; cv=none; b=lkoX+CN+fkxUlT9o/QF6rJs4kojVcfOKpbvbF0+0p/qqySc40eARB+DpLzR2pSkeGJnkTGccUi83F4C8H8km4S3S0mBg689Akf6HjycQo6cWTC4W5TyyefW7I1yEb1ujSoqN3iVadgmPnPIcZS0dX+Xl/nhr9vfL4cO9ifkEkoY=
+	t=1758462150; cv=none; b=pTuULtPRl5TD4c5Frrt5LWC6mMhP8qH9uPGbliJyn4NxsUt1o2yY2keIOBaURQ2X106E8FtJ9u6QRNDLHyjMKN0yp9kcZCzf9enqYmGrxnzfyUxlo9fK23z6nfsl6eEgHt25OzxT2kIH8gICAYsQieQp90R8/61hpZ05n/pAAM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758462035; c=relaxed/simple;
-	bh=95QcD0HJijwOHoaQ6eyOQBU6JkvhnmTwXbdFW5nxPbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n70+U7E3KNvei0SmcN72+KwtrX/pYKe82rbmVPZl5Rx/RQOCVmBBJia9zK6w4lf+YV7p/z1RKGgRboU7EmdMqgmN5iMicFHBQZTUf3Irord9xfkq74fMbMNtmrdbd4j6LvTalg0Rp6cg9LRmh/iFnUj+1IgHW6OJ5A9L2YgtiPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKgWQQZX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD449C4CEE7;
-	Sun, 21 Sep 2025 13:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758462035;
-	bh=95QcD0HJijwOHoaQ6eyOQBU6JkvhnmTwXbdFW5nxPbM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DKgWQQZXjQN82L8kwgQ1cbiOIhuNq4crRXiki+UNkV3qaXbmI8jeQiebAsX9P3zpO
-	 V91T12ukCZY9WgU+VsuNXfDS0hwayPluHpc5H3tWZV4/ci7xd0qpNf9MBvGyuBrZIA
-	 qzHM1lnthrdQms+WHEs6qy/NvWYV5h+/8RJAtfIv7eKeC+M1P3c+Q6ibITQ+l4olyg
-	 zTmZrVXhzWDqEUm0WGrmWRHLrk/VFI+YPj98lgcg8HXmKfMATUCcow5EmJPPQ7sgnI
-	 oh8XKMRU2RB2ivVWxRBXC5TqO2KYDgdyi9LuAo1EAucj4CnPsyDIHGs4Wo54MeKJSP
-	 jsOrImSzehm+Q==
-Message-ID: <41bb000c-5643-4ed2-8d33-a6bd8a549409@kernel.org>
-Date: Sun, 21 Sep 2025 15:40:28 +0200
+	s=arc-20240116; t=1758462150; c=relaxed/simple;
+	bh=P1m9m6X7raH53exBEgl1dSftxYvXtfQPuUKA+FGcWJk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ctj0O4BjJXgU3TElpghihUqijOajNIYjPisxyFQ+N3iMc/1TCqhV91U6woonttozCdK4NRjhz9aRdi2Inx/pHvO++/WO31jj3q9AgPO4A3GdhR/0Tt0QnXDLdKTFfE+1BbMRpoyOBR5O1gWhk0ciS/zt5wj/uVAHZCd6k79FilI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jiGuu+k+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58LARR7g008196
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 13:42:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=8fbZ8AUpdSZTGf7eQiIgMqXI
+	ZYleKr5ODhbUFzT6EXc=; b=jiGuu+k+texJvrRXTRJ6E/bblgHDWUjW1QVgjrwg
+	SfmDYMW44LEQO7SZwZm8yQVoI13ioB/phuMiUXK4AUQdpTFy3QB4D9JEvTbEyMBH
+	Gn1nQRCHxXGtBPrKhnvDwfey4kXdgK+fsn2RzeSNbGhshZt4qJ92kYulprxmn61m
+	Knv5vqLft+d2pTeSIEyAlXk/B09HaGyz+Gm35cjXusKX2oJZGr2MoZby0dOgWiVQ
+	AN2qE6aavGBLvOtfCee9hogEUbPem1as14gl4MMhEA0ICTi8NmqmFJ63k1uO+t4E
+	P5PmVCRoRRJccKaJYMGTlEK2oRpXR8Y9fm399BhfykkX8w==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hmnjgnv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 13:42:28 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b793b04fe0so68872861cf.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 06:42:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758462147; x=1759066947;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8fbZ8AUpdSZTGf7eQiIgMqXIZYleKr5ODhbUFzT6EXc=;
+        b=Q62zv70wVZDrCU/PKg5l7sBzved5196oBMIGgkK1Mqbv5xs63mwg/kHzOtlsKa3nrU
+         uYYbCtji36asxAajlZ8o9RzlppnClxI8i8WH6UfM30pMSWtN87Gk0CfKAbs96Ff7clzs
+         yrjsqZ77A9yAjkfDgCXaB3KPk3hRzkTOou0XUl/dmj7BiN8Q6LBsvlj0P/C06vMGMfv/
+         5UKPxjEQThRrcAXJuQLqnmu4x2CSYKSyURdQIfVFhSS/2UXrnNzjgbLF7jxPpyyTvI5B
+         Ghyms2z7Da2Ym7ClSBVbyJQ2G3qfIat8mFBOFgFOE4yDlv5uTy5+90FemZlM9bNM7d1p
+         1sfw==
+X-Forwarded-Encrypted: i=1; AJvYcCVi2dLgLkA8I52aafte+4VjqZg8gWUeQseP5d74snH4JrB7YypDViUgxfOVl2fgzzx83+KAbkap5XJu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+lL0GGqetiOn6onlOrxg1nmBayB72rNHpR4c9nQE+vBzVSkZ+
+	TedjFN/kTUtHEREpLeRhGtBK4qXSnXV3LGZggVhcNpYLOI8v/eZOMB+PpeC258V5b1lKLxBBoIq
+	2KyN9urv11CFZmiYMpVj0/gLSkJRYnssahxGhO3cI+yIvgUkmj1Clmr000kFn1rHL
+X-Gm-Gg: ASbGncvXRszG7pOkI9sESUOU8O6H5mjFRvALrG+gCzPeexvTq3Ix9RQ5Yzlu1bDal5A
+	Tp8RAS2Kf6OJCxYCK+harC/CpDuhbep2jlcd9caZQ+WlRL8rqoLldaXLDI7caQlfJl/B+N+AmX4
+	eHIql0dHXawDZSu/3caslrGH1HQqCXy5NUm9x89/w5HansULKmP712Vkk3woJiKr1SpmNW5wO8+
+	5G72KI69KH7WsFkUD2cpy2aQ9AaOla2U8mieK3keSXjlfYjsbUWhoQVj+WDNFIHGk1p5WwmDKEy
+	7f6T0sXD89B1mtElDKEQqpgchAGHvrf1tKxPyoTew7HD40JaQK31lDeHi0P4muu4ooelowXtaTc
+	Ccb9yoOGEcP3HWs9djuodKhFiv9ARzBzeKTPAi/iFGKhaFuz64n17
+X-Received: by 2002:ac8:5d0b:0:b0:4b7:a71f:5819 with SMTP id d75a77b69052e-4c074075e01mr132048701cf.38.1758462147391;
+        Sun, 21 Sep 2025 06:42:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGJ7Q9Xe0lR9Xj9tnIcryF9l+1mpr8zgHCX8Mvs3/dsJgHI/XKaercYfK+VaNnsZz4Oy15W+Q==
+X-Received: by 2002:ac8:5d0b:0:b0:4b7:a71f:5819 with SMTP id d75a77b69052e-4c074075e01mr132048351cf.38.1758462146925;
+        Sun, 21 Sep 2025 06:42:26 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-361a8f56471sm23012031fa.42.2025.09.21.06.42.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Sep 2025 06:42:24 -0700 (PDT)
+Date: Sun, 21 Sep 2025 16:42:22 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Antony Kurniawan Soemardi <linux@smankusors.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        David Heidelberg <david@ixit.cz>, Max Shevchenko <wctrl@proton.me>,
+        Rudraksha Gupta <guptarud@gmail.com>, Shinjo Park <peremen@gmail.com>
+Subject: Re: [PATCH v2 4/5] ARM: dts: qcom: msm8960: add I2C nodes for gsbi1
+ and gsbi8
+Message-ID: <vanz6ktal4lx2v7d74u4ac7jzxjahnxy2l45yg36il7evgaw3q@hbszkjgfrkct>
+References: <20250921-msm8960-reorder-v2-0-26c478366d21@smankusors.com>
+ <20250921-msm8960-reorder-v2-4-26c478366d21@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/22] usb: dwc3: Add Apple Silicon DWC3 glue layer
- driver
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
- Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-4-52c348623ef6@kernel.org>
- <20250919224016.gyao3aoka5ineear@synopsys.com>
-Content-Language: en-US
-From: Sven Peter <sven@kernel.org>
-In-Reply-To: <20250919224016.gyao3aoka5ineear@synopsys.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921-msm8960-reorder-v2-4-26c478366d21@smankusors.com>
+X-Authority-Analysis: v=2.4 cv=YPqfyQGx c=1 sm=1 tr=0 ts=68d000c4 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=wxLWbCv9AAAA:8 a=EUspDBNiAAAA:8
+ a=t1JXzLs-izEPKbqAoeQA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=QJY96suAAestDpCc5Gi9:22
+X-Proofpoint-ORIG-GUID: GCjc97pCcOsE_a9T0pijs_JlB3zw_mVU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwMCBTYWx0ZWRfX/bnsJKMtBvH+
+ 6GIbar4dS2zmhEXQx4aZcMLQmxZW+NWyhsUWIqJ5R+Cu9ncb+T6EXS4BlzEtkbsY9RUKQYzUQTZ
+ iKfoQVNXmzCxbUKjarYvFAwQydwgebtm5iDeok8OGsOueEq9zIRs6DVlKCsydOyt+1sMlyK4rc/
+ cM5IjcGvLALegZ9WaBgFXD8olrgSNmYjzZ/8wOSYWiFFRaCn5UveD4/F/BjJnguezcILJiK6h1n
+ d/hHfRMQFLi9XCsEWUGCexc8H/iJ7enmTv6zXjWvFC7Efu8DiZ/VBYLJCgamzyXhw2ESbBUHHjv
+ 7l67m4ukKgrAJ4ZC7yyHkzRT1ilmOXyImCu1mXrSjVGKWxuY01xWw/3Yit3rvgWa+6erfta3MP+
+ ifFjQl8V
+X-Proofpoint-GUID: GCjc97pCcOsE_a9T0pijs_JlB3zw_mVU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-21_04,2025-09-19_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 adultscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200000
 
-Hi,
-
-On 20.09.25 00:40, Thinh Nguyen wrote:
-> On Sat, Sep 06, 2025, Sven Peter wrote:
->> As mad as it sounds, the dwc3 controller present on the Apple M1 must be
->> reset and reinitialized whenever a device is unplugged from the root
->> port or when the PHY mode is changed.
-
-[....]
-
->> +/**
->> + * struct dwc3_apple - Apple-specific DWC3 USB controller
->> + * @dwc: Core DWC3 structure
->> + * @dev: Pointer to the device structure
->> + * @mmio_resource: Resource to be passed to dwc3_core_probe
->> + * @apple_regs: Apple-specific DWC3 registers
->> + * @resets: Reset control
->> + * @role_sw: USB role switch
->> + * @lock: Mutex for synchronizing access
->> + * @core_probe_done: True if dwc3_core_probe was already called after the first plug
->> + * @mode: Current mode of the controller (off/host/device)
+On Sun, Sep 21, 2025 at 03:08:12AM +0000, Antony Kurniawan Soemardi wrote:
+> These are present on msm8960 and are required for devices such as the
+> Casio G'zOne, which has NFC wired to gsbi1 and audio amplifier wired to
+> gsbi8.
 > 
-> For this platform, current mode of the controller should only ever be
-> host or device mode. Seems we're mixing power with usb role? ie. what
-> DWC3_APPLE_OFF is being used for?
+> The nodes are added disabled by default.
+> 
+> Co-developed-by: Shinjo Park <peremen@gmail.com>
+> Signed-off-by: Shinjo Park <peremen@gmail.com>
+> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
+> ---
+>  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 70 ++++++++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
 > 
 
-So this platform is very messed up and in order the bring up dwc3 and 
-the PHY there are four steps:
-
-1) The PHY itself has to be brought up; for this we need to know the 
-mode (USB3, USB3+DisplayPort, USB4, etc) and the lane orientation. This 
-happens from typec_mux_set
-2) DWC3 has to be brought up but we must not touch the gadget area or 
-start xhci yet
-3) The PHY bring-up has to be finalized and dwc3's PIPE interface has to 
-be switched to the USB3 PHY, this is done inside phy_set_mode.
-4) We can now initialize xhci or gadget mode.
-
-I think we can switch 1 and 2 but 3 has to happen after (1 and 2) and 4 
-has to happen after 3.
-
-And then to bring this all down again:
-
-1) DWC3 has to exit host or gadget mode and must no longer touch those 
-registers
-2) The PHY has to switch dwc3's PIPE interface back to the dummy backend
-3) The PHY itself can be shut down, this happens from typec_mux_set
-
-We also can't transition the PHY from one mode to another while dwc3 is 
-up and running (this is slightly wrong, some transitions are possible, 
-others aren't but because we have no documentation for this I'd rather 
-play it safe).
-
-After both the PHY and dwc3 are initialized we will also only ever see a 
-single "new device connected" event. If we just keep them running only 
-the first device plugged in will ever work. XHCI's port status register 
-actually does show the correct state but no interrupt ever comes in. In 
-gadget mode we don't even get a USBDisconnected event and everything 
-looks like there's still something connected on the other end.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-And to make this all extra fun: If we get the order of some of this 
-wrong either the port is just broken until a phy+dwc3 reset, or it's 
-broken until a full SoC reset (likely because we can't reset some parts 
-of the PHY), or some watchdog kicks in after a few seconds and forces a 
-full SoC reset (I've mostly seen this with USB4/Thunderbolt but there's 
-clearly some watchdog that hates invalid states).
-
-
-So there's really no good way to keep dwc3 fully up and running after we 
-disconnect a cable because then we can't shut down the PHY anymore. And 
-if we kept the PHY running in whatever mode until the next cable is 
-connected we'd need to tear it all down and bring it back up again 
-anyway to detect and use the next device.
-
-
-Instead, I just shutdown everything once a cable is disconnected and 
-that's this DWC3_APPLE_OFF state. Maybe I can put the explanation above 
-as a comment in there and maybe also rename "mode" to "state" here 
-because we may get something like DWC3_APPLE_USB4_TUNNEL in the future 
-here as well because the sequence might be a bit different there.
-
-
-
->> + */
->> +struct dwc3_apple {
-
-[...]
-
->> +	/*
->> +	 * Note that we only bring up dwc3 once the first device is attached because we need to know
->> +	 * the role (e.g. host), mode (e.g. USB3) and lane orientation to bring up the PHY which is
->> +	 * tightly coupled to dwc3.
->> +	 */
-> 
-> The wording here is odd. You can wait for attach to do this, but it
-> should not be a requirement. You might not know whether you need to
-> switch role, but you should be able to initialize the controller in
-> either host or device mode prior to attachment.
-> 
-> Any particular reason we need to do this? If not, we can do away with
-> the core_probe_done condition.
-
-Because I can't really bring up dwc3 fully to any mode without 
-cooperation from the PHY and bringing it up here doesn't really buy us 
-much (see above). What I could do here is already call dwc3_core_probe 
-and then immediately dwc3_core_exit again to get rid of that condition.
-
-
-
-Thanks,
-
-
-Sven
+-- 
+With best wishes
+Dmitry
 
