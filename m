@@ -1,56 +1,94 @@
-Return-Path: <devicetree+bounces-219637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B307AB8D3AA
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 04:41:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C162CB8D3CB
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 04:51:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E3264403CA
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 02:41:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D0BC3B3FD9
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 02:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59E11F4E57;
-	Sun, 21 Sep 2025 02:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689191D5CFB;
+	Sun, 21 Sep 2025 02:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qlaHzz6W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c34fqZ4A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7375DB672;
-	Sun, 21 Sep 2025 02:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04A5199252
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 02:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758422470; cv=none; b=aU9H2A2r+xLs2eIuN0E8GTdmG+c6RN1PxKQs0KrezVtMAZH6F252lGa1fElBe+oh0SHKFnO1kwVe1w27pB//Y+2w/bhY0hYKJ/Xc56RWM/HQoRwfkSpx4hHZrGiU24LerV4bCfjbr0v5vO1ZYk8LEWoaozbVgNGXkvHjNq9WpdI=
+	t=1758423097; cv=none; b=g7Cu1dF3MRKqQ9P6tYvIQkiRlqQcb1aVvfbbbDpOoFuH6ELfvm3kgBaaw8GH+ZKyDICNmHlFT1mZht+PgTg8//vaJZWHCrGTVletAmDkA5TsjcuICJVoQxTPTvI+g5oYrRy86iYsXAaBYBQjoThLRvAISmCjJSjf+0zgik2SpDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758422470; c=relaxed/simple;
-	bh=WHVI3zam98eCtwHQ4w4qHUBottfzJI0Bz/jC+FZPTM4=;
+	s=arc-20240116; t=1758423097; c=relaxed/simple;
+	bh=lBKwjGlD2sl3HW/InUD61SetLUkGpSZmLWIOs3WO++0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cx5afn6NvGyTiP4qyDjmxTJPDt9JUPC2Qh/8ZPVrbdKG2WrTTi/EGV4Ksy8glIjF/1jAExDafkYJtcQHi6B1VDh9jpQUQZ6/lXVQMvLf06uAGeCD4hYBVDYUgwDeDvP+3JSDTmJ1W6KYQBO0TocHJoTEcrGUt74ghy+wMZkL3GY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qlaHzz6W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D7FC4CEEB;
-	Sun, 21 Sep 2025 02:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758422470;
-	bh=WHVI3zam98eCtwHQ4w4qHUBottfzJI0Bz/jC+FZPTM4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qlaHzz6WDu05CaJSeVBF54HsisQIp2JfKEm2gouk6LmpTpRlemIkU7J6YrwlwFEuj
-	 6MP1f3jqyytXZYXKF++ISIWnnp6BMzSlROxlFaAas6F/HfOuk4NWI8jbkQGNaEsqxK
-	 Wi4JNYUe11iOEYF8Af9oNfk3O1dhaokROBYT9wLaCI6sRVaMBOLySpSYVIuD8JBASB
-	 aofJ61EBW25V45gQOaa5mDLiFrP2qeojyGoCea3x3mfkVOj2iy3W9Iit3KftQ/EXg7
-	 MEV/7CROoiSO3NtcEFrkEVx9y44NTzOhBjOerSPwNPreFlaEV54rJWuYsGv2wqhEhy
-	 UDK5f4JKAlcCg==
-Date: Sat, 20 Sep 2025 21:41:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-gpio: Add GPIO bindings
- for Glymur PMICs
-Message-ID: <mp2elkdhqg2fsmvebwbxbxr5jyasfpzi4b5kbfxkjjxv433thc@7codfe5sp7pv>
-References: <20250919141440.1068770-1-pankaj.patil@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hVJ5937W5sIcKwBbbbv39OB6deyQ35gt9kZVhNksBps8Z3JS+Z9unHexOIdoW5Vmus8bl7pLzBmodvwy2us7gMmDhz3SDhZarm58WZ9+ZAkiNf6KMmq736rY1Ub/NQ/UncMJ9KOHaYahI3RJTkAdFgWHlfKkDleHDFL3Mid8h5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c34fqZ4A; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-77f2e621ef8so169811b3a.0
+        for <devicetree@vger.kernel.org>; Sat, 20 Sep 2025 19:51:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758423095; x=1759027895; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uNUurTQ+hy6CY4Cjol5+Pld9O12FSqVbj7oLrH9uB4M=;
+        b=c34fqZ4ALdicuB0rvpf7UTTZav8oKwjvwDLljjOCh+9QFOyGJsTCnuTbRnK8w1jwrp
+         4pcM49o5An3ayeRaiM7MjB3sOCcFubvcv6TA2JT9v126egfj2fZXPaqifXyRGHOujvlf
+         8brHNqjWyBGQFk3o11FifRq5cC5lIrtmONe9mX+4078r/yB+oD6clyv5/TjGBKTU/TVt
+         v7CEzmtbF3Vz0Q6bjP4YzZY/HIxSJ0jdCMokw23FLA+Nv+Dux6dlkuJBMw4SsLxDMn7r
+         hBFK+bosIqwrw2m7XiQQqIgW7dolitXCZAZsETdSis3yS/OKb3GiWqY2Vi9b82SPtHaN
+         PvSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758423095; x=1759027895;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uNUurTQ+hy6CY4Cjol5+Pld9O12FSqVbj7oLrH9uB4M=;
+        b=Qa5JSgrRhTh+o0T9EbiFDW/hhXiBzLmhez50tICfB5E5dAV46+P69H5TJBL+aprUKX
+         RrdzaxTuBdihKZzyQNY9YfYMn/OAO/G5s4apQlpe5aPMeAavvTBP87sVU8B26iZs+ZyR
+         MuBjYhTiFkgARb4B0wb7XLQ0qD6yM3cg//vT1d9+j5+gyYhsBNWD+x5GmfKoz2CQQ5wD
+         6jjqmA1pimfbu23v1p/tezQVhX5JkRhtL3QJMISu2U5fO3w59nY2tE2SKacFMRWjDXkY
+         gJ9Sis55GHLHKBMFArP3P7Rx+lows325qzmO7VvqeBeDa8ciAz0FV1svMF4hqw34rTUn
+         HkjA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWEel7LMsVBWRd79Tr5QqoNXD2JlABrr0PA7qe1M8rmblN6h3O0SYZoT0FrtmuDV8sYjg2DgM6yhRT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsowKq2gWz1aLpv1lXFyIhg+p5Mrd4OL8HnHeZt6FEjbEiq+1Z
+	drflh+dtOlnC5TExGzNpvUI+dd/tLr6VdkarPZI886DYRvXIcxcVQtwp
+X-Gm-Gg: ASbGncut+hFenW/tgG5bWFATBWQbgCBmLOfhgQSAqClz7qe7nBoZD+xsnXWusNS53dI
+	4LI+egjc1DLGz3DV5eyqlq2OuDRadXz3MSXaTzvY0otGTlimx9rbAt5k6RkE5tFbu9nqnXLMGjx
+	jrkt07OIv9jCkmW+b2ffr3a6rJeJSN4zT3BmgRJc8UsLUHzYNwpIvc8qiMwitBjJLK/QcV59hxD
+	e1qEsk4RIQuq4CJlpRlm1uCspuMPtftnYVAtOaXGuIW8cr14UX9AH7lKHCd3tRMK2uN08bZz7m0
+	BBQpMDYoAij5Suvzj26vrixCYM7AQMihxD+W7EyeGbTtu53IPw0uJTqbgM+K5Z5xcfhTOm5ioWh
+	tPQSySEjg+FT3a8Fhd7dAcj7PP8na4iKaLg==
+X-Google-Smtp-Source: AGHT+IESujOc+8Y6ELJdqssqI+rnI6S3xwgji1KMFUZchDD3lbjMYc3GMQ6PK1vBR+/eIGQAQZ2CkQ==
+X-Received: by 2002:a05:6a00:3e0a:b0:776:14f1:492c with SMTP id d2e1a72fcca58-77e4d327e41mr10079127b3a.12.1758423095044;
+        Sat, 20 Sep 2025 19:51:35 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:fdae:ef9f:3050:cdfb])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77e70c06ba1sm6029313b3a.67.2025.09.20.19.51.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Sep 2025 19:51:34 -0700 (PDT)
+Date: Sat, 20 Sep 2025 19:51:31 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Russ Weight <russ.weight@linux.dev>
+Cc: Marco Felsch <m.felsch@pengutronix.de>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] firmware_loader: expand firmware error codes with
+ up-to-date error
+Message-ID: <5tlhy2jl77etqxsna42ksdmvu3x3bsp5c44poshkt45agldfsj@bkzlvbfoshsl>
+References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
+ <20250821-v6-10-topic-touchscreen-axiom-v3-1-940ccee6dba3@pengutronix.de>
+ <ifdhjgo6wchlsztqvgkaawpbnh3zahb76vmyzlomokfrqt6tjp@qjcdvcdqviag>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,102 +97,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919141440.1068770-1-pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <ifdhjgo6wchlsztqvgkaawpbnh3zahb76vmyzlomokfrqt6tjp@qjcdvcdqviag>
 
-On Fri, Sep 19, 2025 at 07:44:40PM +0530, Pankaj Patil wrote:
-> From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-
-This doesn't match the first signed-off-by.
-
+On Wed, Aug 27, 2025 at 03:29:33PM -0600, Russ Weight wrote:
 > 
-> Update the Qualcomm Technologies, Inc. PMIC GPIO binding documentation
-> to include compatible strings for PMK8850, PMH0101, PMH0104, PMH0110
-> and PMCX0102 PMICs.
+> On Thu, Aug 21, 2025 at 07:26:36PM +0200, Marco Felsch wrote:
+> > Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
+> > framework that the update is not required. This can be the case if the
+> > user provided firmware matches the current running firmware.
+> > 
+> > Sync lib/test_firmware.c accordingly.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > 
+> Reviewed-by: Russ Weight <russ.weight@linux.dev>
 
-Looks good, but this should be sent together with the related driver
-change.
+Does this mean I should merge this through input tree?
 
-Thank you,
-Bjorn
+Thanks.
 
-> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml          | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> index 5e6dfcc3fe9b..8ae4489637f3 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -59,7 +59,11 @@ properties:
->            - qcom,pmc8180-gpio
->            - qcom,pmc8180c-gpio
->            - qcom,pmc8380-gpio
-> +          - qcom,pmcx0102-gpio
->            - qcom,pmd8028-gpio
-> +          - qcom,pmh0101-gpio
-> +          - qcom,pmh0104-gpio
-> +          - qcom,pmh0110-gpio
->            - qcom,pmi632-gpio
->            - qcom,pmi8950-gpio
->            - qcom,pmi8994-gpio
-> @@ -68,6 +72,7 @@ properties:
->            - qcom,pmiv0104-gpio
->            - qcom,pmk8350-gpio
->            - qcom,pmk8550-gpio
-> +          - qcom,pmk8850-gpio
->            - qcom,pmm8155au-gpio
->            - qcom,pmm8654au-gpio
->            - qcom,pmp8074-gpio
-> @@ -191,6 +196,8 @@ allOf:
->                - qcom,pm8950-gpio
->                - qcom,pm8953-gpio
->                - qcom,pmi632-gpio
-> +              - qcom,pmh0104-gpio
-> +              - qcom,pmk8850-gpio
->      then:
->        properties:
->          gpio-line-names:
-> @@ -303,6 +310,8 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,pmcx0102-gpio
-> +              - qcom,pmh0110-gpio
->                - qcom,pmi8998-gpio
->      then:
->        properties:
-> @@ -318,6 +327,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,pmh0101-gpio
->                - qcom,pmih0108-gpio
->      then:
->        properties:
-> @@ -481,13 +491,18 @@ $defs:
->                   - gpio1-gpio22 for pm8994
->                   - gpio1-gpio26 for pm8998
->                   - gpio1-gpio22 for pma8084
-> +                 - gpio1-gpio14 for pmcx0102
->                   - gpio1-gpio4 for pmd8028
-> +                 - gpio1-gpio18 for pmh0101
-> +                 - gpio1-gpio8 for pmh0104
-> +                 - gpio1-gpio14 for pmh0110
->                   - gpio1-gpio8 for pmi632
->                   - gpio1-gpio2 for pmi8950
->                   - gpio1-gpio10 for pmi8994
->                   - gpio1-gpio18 for pmih0108
->                   - gpio1-gpio4 for pmk8350
->                   - gpio1-gpio6 for pmk8550
-> +                 - gpio1-gpio8 for pmk8850
->                   - gpio1-gpio10 for pmm8155au
->                   - gpio1-gpio12 for pmm8654au
->                   - gpio1-gpio12 for pmp8074 (holes on gpio1 and gpio12)
-> -- 
-> 2.34.1
-> 
+-- 
+Dmitry
 
