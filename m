@@ -1,173 +1,226 @@
-Return-Path: <devicetree+bounces-219696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD50B8DA22
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:27:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F149B8DB76
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 14:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E4293B834A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 11:27:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52DB4189DDDE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34975269CE5;
-	Sun, 21 Sep 2025 11:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4344C2D0612;
+	Sun, 21 Sep 2025 12:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="vdj922gU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MDLmlFQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9607F25D533;
-	Sun, 21 Sep 2025 11:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444201E5219
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 12:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758454039; cv=none; b=eQf30Y4MmIn0ArVYZ4LaWq/zF8z1M33p00KvC0rV1RU4mPn/gBzmF5IupQNfy//Eybq/OEC2mLapavi2ggyse2VSFPWvyiJGyYYpKWClKNzslMDlLRja2EDejNQZGYV21Er0aLvaUDSB6vcz1AbT1mQrYF/nZh+S/JX9mQTVVjU=
+	t=1758459588; cv=none; b=O7cWWuKgFSgQXc2fVapVNTp1KaeUav74Y/ln3h+1vEvQu+UeZw4A3m1CDrQobNedKmeig2sHSn5DZzkztJDbhd3DJM44VJmrquQ/oGpfgq/iXIyW2EWt2rqB5Chgr7HUsDAg2HCVx9j02sj8twf+k7sgtaxEGbRHvW62p3aP1SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758454039; c=relaxed/simple;
-	bh=uj7IBPcVgr5j3kXfBUzjwNgz92gThuVhXKzbjYk8hmA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k0GVzF7exwHbNr0aaEZQYOyg+zZfVj6gUm9MGrsULJiejv2saspuyg4cIMAMAvKn4exHcfRk9rh3FyX1f7zgJH2Ics8MegAW/p560S8jfiuZ8iFupHi9cBYvEB2YQmgpFFVAisp4QoBVCCRy9zXnVElrKbbynzk02FbmtBh7IOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=vdj922gU; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1758453604; bh=uj7IBPcVgr5j3kXfBUzjwNgz92gThuVhXKzbjYk8hmA=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=vdj922gU4Bwxp0+IEbQJ62HSf7JICixDFHtqgq7RMoDfAroKG5WAHcjE2dXxGcP6t
-	 Vty3YA30lc1iIbjr1Q4qoLbo4uZpc7uyJQQ9RObMoQzpgzkIUl2DztucV0Fi2SjBM6
-	 MELH9wXs6Y5GWO7GgJRMfxLpzSJrJiXfynhUf4t8=
-Date: Sun, 21 Sep 2025 13:20:03 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: guptarud@gmail.com
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] arm64: dts: rk3399-pinephone-pro: Fix voltage
- threshold for volume down key
-Message-ID: <addgrqhxanzrjdhb7y7y2qrqu4odpoclbwlswuua4yqinrzh2l@wcdtuquzuqvr>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	guptarud@gmail.com, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20250921-ppp_light_accel_mag_vol-down-v2-0-e6bcc6ca74ae@gmail.com>
- <20250921-ppp_light_accel_mag_vol-down-v2-5-e6bcc6ca74ae@gmail.com>
+	s=arc-20240116; t=1758459588; c=relaxed/simple;
+	bh=JBjh6tWinHQ8j2zeq/CGszjnQcF7SdBlIAR8B2+vUVE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M/RM8A5Wi+gqtRrTg2IwWPUWJEl929pDCGIBJqc1XwOuaTu7kks/WM8ptBdWvtHjJxjIYvgBjS6oBh29AWt+KPktH+e+SpQpK8lYsGurGJEfHbBsBU1H1znVhy9k0FPMlPRUzVEc7hjW+wCwg7RgNg1d97XxDHuynLQPogFJEy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MDLmlFQv; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-57bd04f2e84so890198e87.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 05:59:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758459584; x=1759064384; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p+TxbCJDfqUR5usrZF8ZGw7MDVN54yzt0d/I/rO53p4=;
+        b=MDLmlFQvgaoMi3LQR9IqprMfIURmz/SY2C2jLZH/ZsXIyUksEyB60ZlFfo4xqe4ac8
+         XvJt4t4vhYk968kecPMKmDfvvFsklqsYw0ux6HCwWD8ni5QHZyuqN2OMLsJA2Sp0I40x
+         VOrbp99oBYG3yVPn/GmOvXZd3x9nEc8LO5YC8XYI4QHJNZ0xDYphAZYRZczzqz79fSS3
+         RCSJgrYBPV9U+XTNph7H8Wd7l8MHaZHgnJGeQgGOV4EYbUv/ylhFtwsDPNNaOvOv/rkv
+         bNsKuwhZAM4a4wg7rLToVAYuo4hrmGzTmafzyTr3XEDPF3LGUUbCcqTZrHmuEgqBQ6dt
+         p/Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758459584; x=1759064384;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p+TxbCJDfqUR5usrZF8ZGw7MDVN54yzt0d/I/rO53p4=;
+        b=NLP+3zlhz5PhvKVnLJLJxdjOzLPNRHmeuRLCtWg6vzPqFfnTeYKqv7i6l8yt4azwWH
+         N1cbs92nHgn/beCAM0D627lTSHlNMDfGM8sbyV/vQDTUBWuQBVCJRFhz6TEzh5VThJVN
+         qIcjBUacXsx5wjl2HUx4wIhjSb2MqHXfynRsctlfJO1LMsnPdoWB2t8Jh3CDDnqD2Oo2
+         33TUZg8O6Vnhc67gP3D2KAD8DDbBnuIXC/tXpKkWVkCb68tLZw86GozDH9E0KULWzHRh
+         2w/7r66fvZXOdQgC8XZEMyz+4zIVlmLMpR/CLFAL2qPKVpJfrITZ8QrK4veYtz4agAIX
+         fuvg==
+X-Forwarded-Encrypted: i=1; AJvYcCUBTh4nrsd64MRuDSgHn5M9A1NV5UXYepQDJl+1tlW6DI/bYajLmqNTVT9c+pzkfc1b2WsKMBA/+N7J@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4xWG/derrLvH7jJTJWoEnikqKLh9wEf3POP7w0dNNV2omLVxn
+	EgFeMc3OOYsqF6GntWYa7N046i9vYjJFYE71akk4tl3KHPpIxjwOgMCs
+X-Gm-Gg: ASbGncvQxNr1WrxJSduPnSyHqX5iKNTCr75GEjtStUOe9+hTGAdQrfJ3n23YHkqRrL+
+	+j3J+KRxm/ql0aw51vvIRGB4YyzGjctrgJuUF5SkPhG2jaUfYcxCcst5x45LKBnpTZIppmotSdh
+	tW0kP8/HBiGck0bfWd9SnZhgBhEHnfLdYmxv5/VG/TgvQhGxHOTm3pg13IAVmEraXKrsG7uk9Mp
+	sxN8EnEk1ZzWyxJjX4wpcYL6k8725pliMBQwwukSlOxwcm05LwAEOqRAChVFjKwpC+eP2jVgond
+	d3+wX7aHUta+4zmiMs7JJ4oXdECsLV/boQJWIAq5Z0WPXEmEbJ2nHQ+mat1NkCnd8F5cCnUitsL
+	Xq8CXmNcV4hyl/r/NZYkhqJ28a+LMTabWr/hBR/z3T3s76B5nK22mCDXf48wmTO8gb2wFAtEi2Q
+	==
+X-Google-Smtp-Source: AGHT+IGYaR2gQ4apuGZRpv2ImMcFvulHtA0EBUVIq7xsH5xPkqYWo+X8dnpiiDAv7FxtRFcsrTFnrg==
+X-Received: by 2002:a05:6512:6809:b0:57a:1846:9514 with SMTP id 2adb3069b0e04-57a184695b9mr2571830e87.9.1758459584177;
+        Sun, 21 Sep 2025 05:59:44 -0700 (PDT)
+Received: from kuzhyl-vm.home (46.205.205.154.nat.ftth.dynamic.t-mobile.pl. [46.205.205.154])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-361a1e079e7sm22297751fa.13.2025.09.21.05.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Sep 2025 05:59:43 -0700 (PDT)
+From: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sasha Finkelstein <fnkl.kernel@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Janne Grunau <j@jannau.net>,
+	Sven Peter <sven@kernel.org>,
+	Neal Gompa <neal@gompa.dev>,
+	Oleh Kuzhylnyi <kuzhylol@gmail.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v10 1/2] dt-bindings: input: touchscreen: add hynitron cst816x series
+Date: Sun, 21 Sep 2025 14:59:38 +0200
+Message-ID: <20250921125939.249788-1-kuzhylol@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250921-ppp_light_accel_mag_vol-down-v2-5-e6bcc6ca74ae@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Add documentation for Hynitron CST816x series touchscreen bindings.
 
-On Sun, Sep 21, 2025 at 01:04:23AM -0700, Rudraksha Gupta via B4 Relay wrote:
-> From: Ondrej Jirman <megi@xff.cz>
-> 
-> U-Boot and Linux use different algorithms for determining voltage ranges
-> for comparison. Pick value that will work with both.
-> 
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index 0a4121b05d36c5a7e05eddbd3514a11ae4f7d3eb..4e6df664d780ed4798015db6b2fe79bf7c4e4c00 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -46,7 +46,7 @@ button-up {
->  		button-down {
->  			label = "Volume Down";
->  			linux,code = <KEY_VOLUMEDOWN>;
-> -			press-threshold-microvolt = <600000>;
-> +			press-threshold-microvolt = <400000>;
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+---
+Changes in v10:
+ - No code changes
 
-This is fixes the issue accidentally...
+Changes in v9:
+ - Adjust linux,keycodes: Add items with event descriptions, and remove maxItems
+ - Adjust dt example: Fix four-spaces indentation
 
-According to the schematic the actual threshold is 1.8V*(2/12) = 0.3V :)
+Changes in v8:
+ - Update the bindings title to indicate CST816x series support
+ - Rephrase bindings description to describe controller more precisely
+ - Remove redundant description field from the reset-gpio property
+ - Completely remove cst816x,gestures object with all dependants
+ - Apply linux,keycodes to represent gestures (slide up, slide down, etc.)
+ - Extend dt example with linux,keycodes
+ - Align indentation in dt example to use four spaces
 
-  https://xff.cz/dl/tmp/f1410ee03fac4c5b.png
+Changes in v7:
+ - Introduce the gestures field along with its sub-fields
+ - Make reset-gpio property optional
+ - Extend main description
+ - Remove "touchscreen" reference
 
-Linux adc-keys driver uses the "closest to the threshold voltage key wins"
-algorithm.
+Changes in v6:
+ - Fix minor tweak adviced by Krzysztof:
+ - Move additionalProperties field after required
 
-  https://elixir.bootlin.com/linux/v6.16.8/source/drivers/input/keyboard/adc-keys.c#L32
+Changes in v5:
+ - No code changes
 
-U-Boot uses the same algorithm implemented differently:
+Changes in v4:
+ - Add Conor's Dooley "Reviewed-by" tag
 
-  https://elixir.bootlin.com/u-boot/v2025.10-rc4/source/drivers/button/button-adc.c#L97
+Changes in v3:
+ - Rename filename to hynitron,cst816s.yaml
+ - Update description with display details
 
-So my description in the commit message is wrong.
+Changes in v2:
+ - Apply pin definitions and DT headers
+ - Use generic name for DT node
+ - Drop status field
 
-For the current volume up/down key voltage DT "thresholds" the actual threshold
-used by the driver to determine which key will be detected will be:
+ .../input/touchscreen/hynitron,cst816x.yaml   | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
 
-  (100 + (600 - 100)/2) = 350 mV
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
+new file mode 100644
+index 000000000000..72d4da636881
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cst816x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Hynitron CST816x Series Capacitive Touch controller
++
++maintainers:
++  - Oleh Kuzhylnyi <kuzhylol@gmail.com>
++
++description: |
++  Bindings for CST816x high performance self-capacitance touch chip series
++  with single point gesture and real two-point operation.
++
++properties:
++  compatible:
++    enum:
++      - hynitron,cst816s
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  linux,keycodes:
++    minItems: 1
++    items:
++      - description: Slide up gesture
++      - description: Slide down gesture
++      - description: Slide left gesture
++      - description: Slide right gesture
++      - description: Long press gesture
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/input/linux-event-codes.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        touchscreen@15 {
++            compatible = "hynitron,cst816s";
++            reg = <0x15>;
++            interrupt-parent = <&gpio0>;
++            interrupts = <4 IRQ_TYPE_EDGE_RISING>;
++            reset-gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
++            linux,keycodes = <KEY_UP>, <KEY_DOWN>, <KEY_LEFT>, <KEY_RIGHT>,
++                             <BTN_TOOL_TRIPLETAP>;
++        };
++    };
++
++...
+-- 
+2.43.0
 
-So unless you press the key very lightly, a lot of the time adc voltage will be
-below 350 mV for the Volume Down key and will be misdetected as Volume Up key
-press.
-
-Here a few volume down key presses on my PPP:
-
-[   32.567143] volkey val 1791
-[   32.671337] volkey val 1791
-[   32.775266] volkey val 1791
-[   32.879208] volkey val 1791
-[   32.983109] volkey val 1791
-[   33.086836] volkey val 1791
-[   33.191116] volkey val 300
-[   33.295158] volkey val 298 <-----
-[   33.399351] volkey val 1791
-[   33.503339] volkey val 1792
-[   33.607128] volkey val 1792
-[   33.711296] volkey val 1791
-[   33.815307] volkey val 1791
-[   33.919333] volkey val 1791
-[   34.023392] volkey val 311
-[   34.127329] volkey val 305
-[   34.231124] volkey val 1791
-[   34.335390] volkey val 1791
-[   34.439303] volkey val 1791
-[   34.543256] volkey val 1791
-
-On my other Pinephone Pro it goes down even to 293 mV when the button is pressed harder.
-
-It doesn't help that the Volume Up button threshold in DT is set incorrectly, too.
-It should be 2mV and not 100mV.
-
-So the correct fix here is to change both button thresholds to:
-
-  Volume Down
-
-    press-threshold-microvolt = <300000>;
-
-  Volume Up
-
-    press-threshold-microvolt = <2000>;
-
-To match the schematic. Then the threshold/decision voltage will become ~150mV,
-which works fine according to my tests.
-
-Best regards,
-	o.
-
-
->  		};
->  	};
->  
-> 
-> -- 
-> 2.51.0
-> 
-> 
 
