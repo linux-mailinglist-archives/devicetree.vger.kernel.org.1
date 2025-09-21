@@ -1,155 +1,192 @@
-Return-Path: <devicetree+bounces-219679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87993B8D73E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 10:05:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91914B8D775
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 10:36:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5177317DD15
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 08:05:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5197E17946C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 08:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90991244679;
-	Sun, 21 Sep 2025 08:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89ED2226CF6;
+	Sun, 21 Sep 2025 08:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JP5+TcYP"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="ZV5RVQ9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE7C23C4F2
-	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 08:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758441896; cv=none; b=t+XhR+upOAavKOMTyfJHI+XWeNrSKnMhhaOJlkR38GFK492Uc130giYlZ+DsfVGWsnlzITUY1ITtD3Bgqo4oQ1rFsE/GMOOdmNvWznFbH+A/DNb83zRlkIZlr4p/7ruULJGDtIh50dLH0pyIAc0PJTCv5flmaBsgkQ/L1cRbrqc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758441896; c=relaxed/simple;
-	bh=WSnEXLeKHrRXxvgOkBIhVPDjW8GLL9YPyvl91reKnRs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JRLJpFSn4Mv+2R/aRMynOa+uPyenhNda8OdSDdUXcO8NFwhYRI0CWK47gEAlZ+E93SLPjKOM0b05mAqU0qs/zZfCKm0/5JtyFy8J+aihJv7ipcbEsXmetzyh6t52TSjiyt6GkDpH9NSuCTowXukJMMnhg5sxbvt3sXdL0GjOCfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JP5+TcYP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58L5U666007452
-	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 08:04:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=XEAbnHbHFmi3/gfqNWQjGriA
-	bFrVzrvYQPzuEkN3rt4=; b=JP5+TcYPY6LzluEkFZbKFYhH25r6O2ijmcUFHJqu
-	M1XaHtBxXz/f4rf/R3LFiZgy8BYi/ZIwcUORGkEUiJ4JT1nN4H+L/Zfu/g1b5m2Z
-	owh6KojNfdA3aHiWVHQH3aNwvVaeExap3LbiqkjN0smy2Q7HGgqYprr8dQeDsHIR
-	LH1EEa9+S6q/zZXp2/8+RX9jab6DXM7BEMmg1QaqEIIAPCZR3HQ+Q2sKMQvcA331
-	Um0RTMTZtjIg5Kc1izKZYpzPhOkuqyYv5KNAWfh58tPc2ARyEyNenpTyYVj3mGdw
-	jHewL9n+uFcCVyIGW5To6sVv9UkZ8jY2KY/9TLEFhp7n0w==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499neksqtm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 08:04:53 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b7a2999d38so63533801cf.3
-        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 01:04:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758441892; x=1759046692;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XEAbnHbHFmi3/gfqNWQjGriAbFrVzrvYQPzuEkN3rt4=;
-        b=aAMjJqFRLG8SKpWugo9PNWYT1GM44hJfgVCTVuGAMfs+jlX9O7Y7+W71TwR90sVQNa
-         kGwg1mFetYSr8JMLDPfe41oFM0+2HePns3J0dOlcX2CzEQKecL4cV3hLY0zFwC4W7mvz
-         uo1RhicmnSDNiUi1KCT6fxnIQl47hqlASO4JuZ6bSs8u0uS2ZwE+hyzF/eGm/SvWDRzs
-         Ns2UBeMGkrtMCHu8tJt/RlXzzag2wZUGRborMjqsnX4rZC35pbyI+0X+dfejY7TpT2dO
-         pofQ4e6YORgv+0e0Coa6BdwzD0OtEr3SadQRJr+keJiRjJTZFNXvzcC0V1ChxCwHNBc0
-         BtKw==
-X-Forwarded-Encrypted: i=1; AJvYcCWC8rwPc8ajFSfropkkriGfvYL35wChtssoIjYvahVu67aiDdcK83ZjL52vp7odSCTjzDm7jsg/VuEa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLf/9QTrRLl5PFvSIV+c1QZNe7RszY2qRJtppRXPTJmep0p6je
-	zz7zmdm+2g5dFcJAHRbJDYiFyRmx1cx7Xqz/fEm/yKApvB4lXU6uH0c/OG7LSnueDsZIVHt3l1F
-	RfbZWHCqH5KObV45Mp7HuG7B/VHT6wSlSaYApYKHXd46nYqCg8ghIzAGhoCmQKeht
-X-Gm-Gg: ASbGnctioq1icTDClDwiuAmkLXWgYF9kwhB+ZWEQ+H6cMZcXpOoT8L92wKnblKCeIIy
-	gTjkzoYsGoPA8hCjt+nbWrfoH45xUnx9XnKPBFDQAfDivG+EQd+WYTwgmcH2+F+qA8aK8eOAB0P
-	YlEH4w1z1yWTbshCkCrCYopsXiZbJoTLsXWzRG+UL+XLtwiOuoYlu/GPV9jcStO6G8clWWWJLgp
-	+hAmW47UgdYgk2Tc0kSPogafDrbf+3wFEv4B2NAtoWqBIXtUPPP8PAs0ajWnO0IofcIUybSKjiG
-	voypRzJV33qH8QhgYe6xY3mFbSXEqw1MUTUS5PdFINV8GeHlkWG4y6GgP7A5TlM8ikqWDEBDqOr
-	WZY1vDMGdG50V9aulNDVgKHILIq3Ku5Of+PxmSqfMHuZrPxRExdsG
-X-Received: by 2002:a05:622a:4119:b0:4b3:4c51:6436 with SMTP id d75a77b69052e-4c06f07dacfmr109908861cf.35.1758441891711;
-        Sun, 21 Sep 2025 01:04:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHZ2B20lb1PcP9AA7tQ7PqdyejHFWWWwxoSKhwLsPdsUWH2uJIeWVjvdVYTP8xVh+qWatH8wg==
-X-Received: by 2002:a05:622a:4119:b0:4b3:4c51:6436 with SMTP id d75a77b69052e-4c06f07dacfmr109908621cf.35.1758441891250;
-        Sun, 21 Sep 2025 01:04:51 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-361a904b961sm21573731fa.40.2025.09.21.01.04.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Sep 2025 01:04:49 -0700 (PDT)
-Date: Sun, 21 Sep 2025 11:04:46 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>, Max Shevchenko <wctrl@proton.me>,
-        Rudraksha Gupta <guptarud@gmail.com>, Shinjo Park <peremen@gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom: msm8960: rename msmgpio node
- to tlmm
-Message-ID: <le3zymkfrocgkzb3pldezhndricja7xpg3pj4xcpmt6ngnvuam@he3a44gnvuoj>
-References: <20250921-msm8960-sdcard-dtbindings-v1-1-5a2455a30a06@smankusors.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A804A173;
+	Sun, 21 Sep 2025 08:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758443762; cv=pass; b=adajM+45fdksELuokQaFIaOvjnspSGglzNNz9w+Wj2qgBWy8yLYxVkedCTP5uUp8hrYZFwWWFY57YxsMuvxmI+SiHuQnWMLF1kLBaFz0vak+9ht32WJT/ISq/gk/MynBRrgpiQrjHTbJNDwQ6wIXsvxOPy0NyOKfM2+N8OgUz30=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758443762; c=relaxed/simple;
+	bh=PIfjZ3Fs6YbgwIbbUgWR2kkWiszMmwfiBexqoQLeLdw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VNO6coBrma+LFTQGxGdIDNCTDayBCQLn02qZO2HkISIZFslMcfXEoBsj0uk5QpttB3sLFO6/TOI1uHOVWJ3yDt7VewVbrysc7ZMMrNrkQ9Ee4JW6XAXOlTvHHb0lse5xLjov9GSD1lVJMkXrLTnDNRIOSdWscRFhp/pB9nivC0E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=ZV5RVQ9/; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1758443710; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CJoO6owkdOESu+6bpP/sAPOHgBOb4L08csdM3HkGUVe8/zLBwk07/o2BoYNWVmXU366pyJRRfm7TeSjTPEd/Y5TX3mWpi9ZkOFPWzl/4vJrJI9a1U+tmvC0BnFkz1uGWNj/1DmDbtu5L/gevJn/EAHgx7vcvkE75utYjglEL+XE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758443710; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=kk0B0q8mgr/jR54kAu+j6qYyWJ8TWiaJRm+zdm8Bf7E=; 
+	b=Tf5YiL19ZW3Gs67Yj+VynW3W2saTT1Q2OfKRNrCzUkUfXTPsV9MiOSKuVNtEbX+E5tf3uYeEh1hKnr4sJMzkeWzwbNKp4r0GWktYgKtuYeGrhkZx1dT03KAeViF56tHKNybFIRyFvKj83mlTDXy459+N9KdJ/DtPhxDVYtacYos=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758443709;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=kk0B0q8mgr/jR54kAu+j6qYyWJ8TWiaJRm+zdm8Bf7E=;
+	b=ZV5RVQ9/PGMk9oIm80L5KQ/VDupw2C3OvTif2JipyNtqpCYqVK1sXZuSvcURbLyW
+	AGpiJGSfK3Rs8zKFAGQcV/TF1T318sv09i6XqfMMH8WbGFFxFpsY1vdLQggpChuo9wi
+	RqiUF8Laem/fTYmx2wOmw40r6H4Vc2ATNhPfaYkJ7Z9TlPuofX+2QYCJhL3jvXwxSGR
+	RpIrOuegCr+gJarlq/4h0avUpc7KtLDj+4qot3lK4k3hrbaRFyPvlEtVAXgFEivgNTx
+	PaK+8qORybwEeQoHa79HKqTnzEVMAbyH/ljSaMPky6j5HHayqGZdC6hvFv4Ae4idM9A
+	Fj0neNwMcA==
+Received: by mx.zohomail.com with SMTPS id 1758443705635105.82961184727219;
+	Sun, 21 Sep 2025 01:35:05 -0700 (PDT)
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>,
+	Yao Zi <ziyao@disroot.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v2 0/8] Verisilicon DC8200 driver (and adaption to TH1520)
+Date: Sun, 21 Sep 2025 16:34:38 +0800
+Message-ID: <20250921083446.790374-1-uwu@icenowy.me>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250921-msm8960-sdcard-dtbindings-v1-1-5a2455a30a06@smankusors.com>
-X-Proofpoint-ORIG-GUID: f4f5DVHLMCT7S4PICbvLpxOIuutQTslX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDA0MSBTYWx0ZWRfX8TW0a6GvyAAh
- vLJzJhI8Ke9piPYiqvGIHTMTc3N5jelCF8WFUqGKJ7+xUCMz4jgc9kTNb4WcBtQEuRWx4li4bGH
- 2bxURl7tEDenATz2g1y5a2q7fF8TaOVkm2flsUjJy5qiue6pIqWiX42/b2uT5YBTaDbix4553PZ
- ABngnPDxlG2vYNG+rbNE77fA6nRJAIk57Qw2+wjUpo+U1ZagEwJYgS+GSohmm4rrWloJjQIe2Y9
- 3NW82OPHSXaNgFNR2GotLTzosqDs2yjLpFwL1Jh+9nB12JLQ5sbnHPCNo6lgI4hx59ghP3zm7F1
- j0ddwZdrm6pbxajcIDrgvOuEUTJRnn9wLsS/c04+u+sQxNoyJxsRzKYZMRQeQGk/W54xD8nll6U
- UoI9JcWS
-X-Authority-Analysis: v=2.4 cv=b+Oy4sGx c=1 sm=1 tr=0 ts=68cfb1a5 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=wxLWbCv9AAAA:8 a=pGLkceISAAAA:8
- a=EUspDBNiAAAA:8 a=mZIXpXDClypwcOwN9UcA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22 a=QJY96suAAestDpCc5Gi9:22
-X-Proofpoint-GUID: f4f5DVHLMCT7S4PICbvLpxOIuutQTslX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-21_02,2025-09-19_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200041
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Sun, Sep 21, 2025 at 03:25:59AM +0000, Antony Kurniawan Soemardi wrote:
-> Rename the GPIO controller node from "msmgpio" to "tlmm" to match the
-> convention used by other Qualcomm SoCs.
-> 
-> Suggested-by: Shinjo Park <peremen@gmail.com>
-> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
-> ---
-> This patch was originally part of msm8960 cleanup series [1], but as
-> Bjorn pointed out, dt-bindings live in a different subsystem and should
-> be submitted independently.
-> 
-> [1] https://lore.kernel.org/all/20250915-msm8960-reorder-v1-5-84cadcd7c6e3@smankusors.com/
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,msm8960-pinctrl.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+This patchset tries to add a driver for Verisilicon DC8200 driver, and
+demonstrates the driver on T-Head TH1520 with its HDMI output.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This display controller IP is used on StarFive JH7110 too, but as the
+HDMI controller used there isn't as common as the DesignWare one, I
+choose to use TH1520 in this patchset.
 
+The DC driver is written with other DC-series (mainly DC8000, which is
+known to be used on Eswin EIC7700 SoC) display controllers in mind, and
+uses the identification registers available on all Vivante branded IPs.
+A known exception is DCNano display controller, which is unlikely to be
+supported by this driver because of totally different register map and
+no known identification registers. (P.S. the in-tree loongson DRM driver
+seems to be for some DCNano instances based on the register map.)
+
+The HDMI controller seems to come with some common PHY by Synopsys, the
+DesignWare HDMI TX 2.0 PHY. By searching a few register names from the
+BSP driver of that PHY, that PHY seems to be used by a in-tree dw-hdmi
+glue, rcar_dw_hdmi -- an updated downstream version of rcar_dw_hdmi
+contains all 6 registers set here in the th1520-dw-hdmi driver. Some
+more suprising thing is that RK3288 uses the same PHY too, but the
+in-tree dw_hdmi-rockchip driver writes the configuration data array in a
+weird way to reuse the HDMI 3D TX PHY configuring function. It might be
+valuable to add common configuring function and configuration data
+definition for this HDMI 2.0 PHY too, but the current driver in this
+patchset simply duplicated most configuration logic from rcar_dw_hdmi
+driver (but with 3 extra configuration registers configured).
+
+Icenowy Zheng (8):
+  dt-bindings: vendor-prefixes: add verisilicon
+  dt-bindings: display: add verisilicon,dc
+  drm: verisilicon: add a driver for Verisilicon display controllers
+  dt-bindings: display/bridge: add binding for TH1520 HDMI controller
+  drm/bridge: add a driver for T-Head TH1520 HDMI controller
+  riscv: dts: thead: add DPU and HDMI device tree nodes
+  riscv: dts: thead: lichee-pi-4a: enable HDMI
+  MAINTAINERS: assign myself as maintainer for verisilicon DC driver
+
+ .../display/bridge/thead,th1520-dw-hdmi.yaml  | 120 +++++++
+ .../bindings/display/verisilicon,dc.yaml      | 127 +++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  25 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi         |  70 ++++
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/bridge/Kconfig                |  10 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/th1520-dw-hdmi.c       | 173 +++++++++
+ drivers/gpu/drm/verisilicon/Kconfig           |  15 +
+ drivers/gpu/drm/verisilicon/Makefile          |   5 +
+ drivers/gpu/drm/verisilicon/vs_bridge.c       | 330 ++++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_bridge.h       |  40 +++
+ drivers/gpu/drm/verisilicon/vs_bridge_regs.h  |  54 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         | 217 ++++++++++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |  60 ++++
+ drivers/gpu/drm/verisilicon/vs_dc.c           | 205 +++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  39 +++
+ drivers/gpu/drm/verisilicon/vs_dc_top_regs.h  |  27 ++
+ drivers/gpu/drm/verisilicon/vs_drm.c          | 177 ++++++++++
+ drivers/gpu/drm/verisilicon/vs_drm.h          |  29 ++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         | 150 ++++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |  29 ++
+ drivers/gpu/drm/verisilicon/vs_plane.c        | 102 ++++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |  68 ++++
+ .../gpu/drm/verisilicon/vs_primary_plane.c    | 157 +++++++++
+ .../drm/verisilicon/vs_primary_plane_regs.h   |  53 +++
+ 30 files changed, 2325 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/thead,th1520-dw-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+ create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_bridge_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_top_regs.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drm.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_hwdb.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_primary_plane_regs.h
 
 -- 
-With best wishes
-Dmitry
+2.51.0
+
 
