@@ -1,121 +1,173 @@
-Return-Path: <devicetree+bounces-219695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6022B8D998
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD50B8DA22
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 13:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3068C3A8F02
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 11:04:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E4293B834A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 11:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5DB25A33A;
-	Sun, 21 Sep 2025 11:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34975269CE5;
+	Sun, 21 Sep 2025 11:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t56+27g4"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="vdj922gU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6A423B60A;
-	Sun, 21 Sep 2025 11:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9607F25D533;
+	Sun, 21 Sep 2025 11:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758452649; cv=none; b=qTbD9dQg18JwrvDDn9ULqw2nMBHZutwg229N4XlCwU0iaw62L1js2L7xPGpBrwGmgCJ5bS0g5RcrUePWn/YLduZ5CBujDQl1Q/Y7w/rLMazjkIZ9GwhQB49LMTbEm2aAbv9OJ93fpvSL+OS1lcClJOya7GgmyGi7tjSF9f/OjFg=
+	t=1758454039; cv=none; b=eQf30Y4MmIn0ArVYZ4LaWq/zF8z1M33p00KvC0rV1RU4mPn/gBzmF5IupQNfy//Eybq/OEC2mLapavi2ggyse2VSFPWvyiJGyYYpKWClKNzslMDlLRja2EDejNQZGYV21Er0aLvaUDSB6vcz1AbT1mQrYF/nZh+S/JX9mQTVVjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758452649; c=relaxed/simple;
-	bh=ulSPXBA1u1faRv4/f8arTi2w78WVoq/znuBQRkfs6Zo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hEFYnp7DUgJNPYmG/yPMjbCT2Q9cHPVZq1oWqzBqXPixhGijedXLoy+0rxwY0atQ+jLE9qEdk6PeWEbbx3C0er/Y8IwyayGUNAG3fpSsGqzwUPk1z53mmO4UfNKOR4MNosKPFrbPApsOWDSxg1RSKrhEmX2/OBlUbUq+sFWrmIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t56+27g4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2A950C116D0;
-	Sun, 21 Sep 2025 11:04:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758452649;
-	bh=ulSPXBA1u1faRv4/f8arTi2w78WVoq/znuBQRkfs6Zo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=t56+27g4EaW8nnlv1PZ3Su58UPdFiDAuie2uyPMxsjoXMsAHjpTucLIK9bOBDIqh+
-	 hOPhXrFJXSbC0efVuWfAWR7eXSVgn67VtYEq4GaYEOdqqVSc8c1TlF9PpvtqJjpJMc
-	 49cqXUyZX9RNUC/qsFCCRLZZQJFyzxUPu2DV0EemhUDp8T9fjmCvMfoip0kyF63n1c
-	 iGGIXaXAE6vsAA7nrSz2sLhAN48GmTAXyvdWHH6u+VR/UOIK8DxcfxBKpAKeWmPSx8
-	 A+5+VOKGv0ND8GwvuonbgB6E2H4ASAWv/YpmuljOY06Kr/bP7jPZTlQWlUJmHpPF/I
-	 y9/Ti4RN2hUVQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C82ACAC5A8;
-	Sun, 21 Sep 2025 11:04:09 +0000 (UTC)
-From: Max Shevchenko via B4 Relay <devnull+wctrl.proton.me@kernel.org>
-Date: Sun, 21 Sep 2025 14:03:42 +0300
-Subject: [PATCH 3/3] arm64: dts: mediatek: mt6795: drop mediatek,dma-33bits
- property
+	s=arc-20240116; t=1758454039; c=relaxed/simple;
+	bh=uj7IBPcVgr5j3kXfBUzjwNgz92gThuVhXKzbjYk8hmA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k0GVzF7exwHbNr0aaEZQYOyg+zZfVj6gUm9MGrsULJiejv2saspuyg4cIMAMAvKn4exHcfRk9rh3FyX1f7zgJH2Ics8MegAW/p560S8jfiuZ8iFupHi9cBYvEB2YQmgpFFVAisp4QoBVCCRy9zXnVElrKbbynzk02FbmtBh7IOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=vdj922gU; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1758453604; bh=uj7IBPcVgr5j3kXfBUzjwNgz92gThuVhXKzbjYk8hmA=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=vdj922gU4Bwxp0+IEbQJ62HSf7JICixDFHtqgq7RMoDfAroKG5WAHcjE2dXxGcP6t
+	 Vty3YA30lc1iIbjr1Q4qoLbo4uZpc7uyJQQ9RObMoQzpgzkIUl2DztucV0Fi2SjBM6
+	 MELH9wXs6Y5GWO7GgJRMfxLpzSJrJiXfynhUf4t8=
+Date: Sun, 21 Sep 2025 13:20:03 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: guptarud@gmail.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] arm64: dts: rk3399-pinephone-pro: Fix voltage
+ threshold for volume down key
+Message-ID: <addgrqhxanzrjdhb7y7y2qrqu4odpoclbwlswuua4yqinrzh2l@wcdtuquzuqvr>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	guptarud@gmail.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20250921-ppp_light_accel_mag_vol-down-v2-0-e6bcc6ca74ae@gmail.com>
+ <20250921-ppp_light_accel_mag_vol-down-v2-5-e6bcc6ca74ae@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250921-uart-apdma-v1-3-107543c7102c@proton.me>
-References: <20250921-uart-apdma-v1-0-107543c7102c@proton.me>
-In-Reply-To: <20250921-uart-apdma-v1-0-107543c7102c@proton.me>
-To: Sean Wang <sean.wang@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Long Cheng <long.cheng@mediatek.com>
-Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Max Shevchenko <wctrl@proton.me>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758452646; l=1089;
- i=wctrl@proton.me; s=20250603; h=from:subject:message-id;
- bh=efNh38U+hbw7SE9tyV1qJBxX+aihILQofpcGc0kC/ts=;
- b=P2Den4CzqXR4nni1RZlcgJUrU+BdnDEx6nZid1RneZyCMn5h8Mysh1cY8Rig6oOMQpbLsXBdS
- golrZUGOoSGA2ZCKjBqltNqDh1rkr621J5L7bYeinB8Sw0aZmqZIF3B
-X-Developer-Key: i=wctrl@proton.me; a=ed25519;
- pk=JXUx3mL/OrnRvbK57HXgugBjEBKq4QgDKJqp7BALm74=
-X-Endpoint-Received: by B4 Relay for wctrl@proton.me/20250603 with
- auth_id=421
-X-Original-From: Max Shevchenko <wctrl@proton.me>
-Reply-To: wctrl@proton.me
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921-ppp_light_accel_mag_vol-down-v2-5-e6bcc6ca74ae@gmail.com>
 
-From: Max Shevchenko <wctrl@proton.me>
+Hi,
 
-Drop the mediatek,dma-33bits property and use compatible for the
-platform data instead.
+On Sun, Sep 21, 2025 at 01:04:23AM -0700, Rudraksha Gupta via B4 Relay wrote:
+> From: Ondrej Jirman <megi@xff.cz>
+> 
+> U-Boot and Linux use different algorithms for determining voltage ranges
+> for comparison. Pick value that will work with both.
+> 
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> index 0a4121b05d36c5a7e05eddbd3514a11ae4f7d3eb..4e6df664d780ed4798015db6b2fe79bf7c4e4c00 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> @@ -46,7 +46,7 @@ button-up {
+>  		button-down {
+>  			label = "Volume Down";
+>  			linux,code = <KEY_VOLUMEDOWN>;
+> -			press-threshold-microvolt = <600000>;
+> +			press-threshold-microvolt = <400000>;
 
-Signed-off-by: Max Shevchenko <wctrl@proton.me>
----
- arch/arm64/boot/dts/mediatek/mt6795.dtsi | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+This is fixes the issue accidentally...
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-index e5e269a660b11b0e94da1a1cf362ff0839f0dabf..5123316b21285cf589c0c616c0a12420f0b1ef19 100644
---- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-@@ -547,8 +547,7 @@ uart1: serial@11003000 {
- 		};
- 
- 		apdma: dma-controller@11000380 {
--			compatible = "mediatek,mt6795-uart-dma",
--				     "mediatek,mt6577-uart-dma";
-+			compatible = "mediatek,mt6795-uart-dma";
- 			reg = <0 0x11000380 0 0x60>,
- 			      <0 0x11000400 0 0x60>,
- 			      <0 0x11000480 0 0x60>,
-@@ -568,7 +567,6 @@ apdma: dma-controller@11000380 {
- 			dma-requests = <8>;
- 			clocks = <&pericfg CLK_PERI_AP_DMA>;
- 			clock-names = "apdma";
--			mediatek,dma-33bits;
- 			#dma-cells = <1>;
- 		};
- 
+According to the schematic the actual threshold is 1.8V*(2/12) = 0.3V :)
 
--- 
-2.51.0
+  https://xff.cz/dl/tmp/f1410ee03fac4c5b.png
+
+Linux adc-keys driver uses the "closest to the threshold voltage key wins"
+algorithm.
+
+  https://elixir.bootlin.com/linux/v6.16.8/source/drivers/input/keyboard/adc-keys.c#L32
+
+U-Boot uses the same algorithm implemented differently:
+
+  https://elixir.bootlin.com/u-boot/v2025.10-rc4/source/drivers/button/button-adc.c#L97
+
+So my description in the commit message is wrong.
+
+For the current volume up/down key voltage DT "thresholds" the actual threshold
+used by the driver to determine which key will be detected will be:
+
+  (100 + (600 - 100)/2) = 350 mV
+
+So unless you press the key very lightly, a lot of the time adc voltage will be
+below 350 mV for the Volume Down key and will be misdetected as Volume Up key
+press.
+
+Here a few volume down key presses on my PPP:
+
+[   32.567143] volkey val 1791
+[   32.671337] volkey val 1791
+[   32.775266] volkey val 1791
+[   32.879208] volkey val 1791
+[   32.983109] volkey val 1791
+[   33.086836] volkey val 1791
+[   33.191116] volkey val 300
+[   33.295158] volkey val 298 <-----
+[   33.399351] volkey val 1791
+[   33.503339] volkey val 1792
+[   33.607128] volkey val 1792
+[   33.711296] volkey val 1791
+[   33.815307] volkey val 1791
+[   33.919333] volkey val 1791
+[   34.023392] volkey val 311
+[   34.127329] volkey val 305
+[   34.231124] volkey val 1791
+[   34.335390] volkey val 1791
+[   34.439303] volkey val 1791
+[   34.543256] volkey val 1791
+
+On my other Pinephone Pro it goes down even to 293 mV when the button is pressed harder.
+
+It doesn't help that the Volume Up button threshold in DT is set incorrectly, too.
+It should be 2mV and not 100mV.
+
+So the correct fix here is to change both button thresholds to:
+
+  Volume Down
+
+    press-threshold-microvolt = <300000>;
+
+  Volume Up
+
+    press-threshold-microvolt = <2000>;
+
+To match the schematic. Then the threshold/decision voltage will become ~150mV,
+which works fine according to my tests.
+
+Best regards,
+	o.
 
 
+>  		};
+>  	};
+>  
+> 
+> -- 
+> 2.51.0
+> 
+> 
 
