@@ -1,538 +1,327 @@
-Return-Path: <devicetree+bounces-219785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C919B8E3AE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 21:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BB4B8E42A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 21:30:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 481431659F8
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 19:11:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 447B8177990
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 19:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8674E23AB90;
-	Sun, 21 Sep 2025 19:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92DCF27146A;
+	Sun, 21 Sep 2025 19:30:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="0DrFFI/y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q4vhVMpR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F3B214A9B
-	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 19:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9168B268C42
+	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 19:30:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758481890; cv=none; b=TBayNGcuXT9RQdrvPCa0F3e1kAYF1duPaIxXTP7xPgFpabMDEG/oDtcuSE/VTihNkBJSNc6uhXw3KrV4iS2PjoGUFNCxwI3yEL4EQR4T6/FSxbpwnQZioMfIHHaB3MlYNxZ9K3XJaLktDSmZla/raNoAs/Wkf0UfB4xqew6AoeQ=
+	t=1758483008; cv=none; b=JhjMLQRy9KDqxyYPR+Xy8gmXPgf2HQUAz1rFXUseVObK0+wCODpW74qUvUAK/m+5xmj4XqBMatI+MBuyBxJBFcaX8VGXIl1ATankRCvkk/hohBxV0x6d0W8Cv/DDx7+eGIMElSzkm43JOrDQXMvoMabRoPKKLZNhvtpvJGA4c0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758481890; c=relaxed/simple;
-	bh=srYtm3oBIvUj97TCmmHwjRWYDpoeZlRczyaWQJBFgdU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OCEcHxaBmtXUXtAQ61A+KFy1X9+mf50S7exo7BqYQbMTJ8Uu122dTJJnh4y0W5n7cBwC3rOQL77QIA96JzTZKKCHJGtTho8K+YeqEqrqxkHP5OTRC4k0vao0eY5GazwQDxDKDn1S41ZMZa0NbwM5pzuDew7u5nyaNxleSXZyHgA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=0DrFFI/y; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-4256f499013so5149545ab.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 12:11:27 -0700 (PDT)
+	s=arc-20240116; t=1758483008; c=relaxed/simple;
+	bh=xL0xteRgZwLL/d+XkaOCM9yVPSOOPMdShcGQmRctNw8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jXZaRCbgGsw3GJyQsP5qwm05qY/kJBtfiEWqo/On4UTvdagrcPvJZEKYau2bYY3GSoviZh7w4ZGUNuSXpJGNBIQhq829gELalreFIjDBop5l6xCchzJz2ho9pLThiR2ujbCbXyLzCfOOoVdwoyIIRaqBOMuIhywRugO1Hqx/ZyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q4vhVMpR; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-afcb78ead12so550662966b.1
+        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 12:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758481887; x=1759086687; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GMuX0JbtGkVS69zIsmL/4yyhk/kkfK+G5uLsvMrvjAc=;
-        b=0DrFFI/yVgPu8zg9A96I9D2wbRjG4taQv5iURQSuwpWDoYVCm7KHSys7bfL7gk7sES
-         IiwWoEFJp2sa+ConHzeZpaDhDfBFSj6NGIkPK9PbUWL0DhGHKt5CxLlTsh6SKqAtJMt0
-         Lyi82QWgYT78aIRNkwfeeJVBw/XFsZbtjkcNGflJyqAsOgH0N5qwi9HE4rsotR6HIOuK
-         JaTUzzZ1fZREKbARMUsy2gUY6JEvQvr/Z6fXxeHloZxppsRpC4LvY/JFmIY+YHuDhSbv
-         7uOEHjIVgFLP4mACRNNHGAuhYQOrn3Rr4N4elC2lCd0Q6rhhmF/hXATv33J3JYkGuVCv
-         BP3w==
+        d=gmail.com; s=20230601; t=1758483005; x=1759087805; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7UMcFVuFgFi7YsZ6vb6UWI1/YDjWPIeekCziENthjkU=;
+        b=Q4vhVMpRC+sAaxVYfuc0LPPZvWYhQ0YTMPL5BdOBsLYyYeqnaeccMvSmKk8BNhiT+n
+         Va2OyiJwcrRu4I1a5SLdvakpbPEn6T6DEwe8P85QLk//yMA3jf1/upGToa//JTA+bvgh
+         McRFWE/N9meOG7O4b5BjfUCMrWNQhAgGDyBuUmZ4UgZVzPV6ga/T+dzVLASlEHEDlE+Z
+         ZY7Fa7JWBKV8KGloSxZ0qiEAHLobrtF0xSceJWGs7e2uo73wfyKMawfTMyA2UnQyRmrK
+         B3gyjP6w/CgkIDZ38Il0plwudjzN+T28F6Io0MGF1VsqNLEQdHd3ougpYAXAkSGX0xLo
+         4fHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758481887; x=1759086687;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GMuX0JbtGkVS69zIsmL/4yyhk/kkfK+G5uLsvMrvjAc=;
-        b=N5dBGDcEWzgXhD7ifpST2F81jAX02kOyRsWN3X+wyGtlcMKQLal4LaTIu11pMwZcUo
-         +DJNco7Di9DX/RjvFCT9v8apO6Rnq4VBDb3/9zKrErOYcdWdcQztntsQUvOBRhhyijAv
-         SgSrE2bQyYCVUO/9yuow54EV5cqKuFxDd1sdOE3opDcsUq29C268ONEQeX+d35+AyS9j
-         RzlOxL/d4syWE354ZTgyp07wZx312TsQ0GiBv76CNmtG2divMuDcUpdQxeGqXooxKlwT
-         fHff2HcJv0JRwdcww/dI7OIVCTaeNpVWxHEZMsLh/g/ukvZi1dOy6hbk14C0hjkaOzGw
-         W4SA==
-X-Forwarded-Encrypted: i=1; AJvYcCUF884QC2CEfqiaR1rFp0pxePe7dYD2A0u3q0zE+IqE9Rtg1Hyvj+lLj435izOWiWiHNSrxaVssmdPp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwtqDhtZ2wVDuP+kroNDKHZaI4VcIKjkWR071XibOXdpwbMbss
-	FmTPJfoJTVb6pWNHqsMe1wAOdhdmsD86+Ug64WXA74nmogd4hIs8LVZxkA0OU+Kf/Vs=
-X-Gm-Gg: ASbGnct2pNhm+NQUslXDwvJGyf9M/Mkn/xs/ZPmVJ9s8arlW++oNVeuzbTveKszzNB7
-	fGia9t0OWww5HBN6JuzkIwPB4gtHo0WIuj7vIYFYIu2IdwmXdEzI7BULjdyO8XzxUnnU64VgOWh
-	rhA9Agi395cloOAC4VeTOnqVmXVDrC2CgKpq/t1qf2lCi0YynS9qHkjA7XvkzFeugonE+N+TQEU
-	oACJR7nvrFd+1tbF0p2t1dFFIeyqH8XRUr1IzvE2nH3QT+xDtl6KPS2oYbS9cY3F8GkvrEoPtfe
-	oZDLRDvEkfDVZH3xBKy79nixiDtc3xfIWCuoSw7geHhJFi9MzVUIiK3KK7aKACAKMHBBrdFA7NA
-	94ce0vt2d/9VQ+fvCRcpmotBpk712A785STNzs2wyQzs7plajj4Lv2wiiHaMqTXygDC4hd5E=
-X-Google-Smtp-Source: AGHT+IErLvmxbESoatXMb3XqN+8yw94Jw5Exiri+q1GvICGK0rTfRDmu/C2sh2YMSDRU5YG3uU2tzA==
-X-Received: by 2002:a05:6e02:190a:b0:425:7526:7f56 with SMTP id e9e14a558f8ab-425752680c5mr30193615ab.5.1758481887085;
-        Sun, 21 Sep 2025 12:11:27 -0700 (PDT)
-Received: from [10.211.55.5] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-55ec34ec281sm107152173.0.2025.09.21.12.11.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Sep 2025 12:11:26 -0700 (PDT)
-Message-ID: <ab64c617-f0a0-4dd8-95c9-cf85486d5612@riscstar.com>
-Date: Sun, 21 Sep 2025 14:11:25 -0500
+        d=1e100.net; s=20230601; t=1758483005; x=1759087805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7UMcFVuFgFi7YsZ6vb6UWI1/YDjWPIeekCziENthjkU=;
+        b=m9oFOJ8WeJvXtGsd7iEHsDhQqzfcH8nLUKkR4NcHf0yxycY/AkIsWekSNZImPdKVU7
+         WzC6urHZbDRddQmKZF5rp+okS9IL4UhqUg5X1iTVI4y/w8W+OScsP4tpSr71W7u4N3Eh
+         rhXaUsJinR7HKZctr67XLNx873CA7qYe5jU9MDkg1wr1EdiRgRMLKz7xWINM8Bd3oSDu
+         3wCmW8tyPebIV/OX8u2oxNZl7zTZccnQ1KtHTHy62dtLVc/t9kW62alKP4+7w88r2/qd
+         U/k4NtpCPm6nNFYNQ5qjVTo/SAw8v4URh67DRW87AWc9lCXyKcRViANejkiKbKrTbWwu
+         mQzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVX6WnGhFeQhFXQQmqsxwK0usQw/0Rnh4mnaDj9mdn70gcJeAy5riZQU6juAstqP2HBPhm7W3tx2s46@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUQMtD8A6UTESqaxTm6qTU4kR/tP5TrMplAVIEeu4VuWItnYHg
+	1l5bKTfWWWz1cdNuDkwggSDaTEC2gmga7euPe0txu67UKfS5mnXPPwPgGSED9o5C/Bm078/HNRQ
+	Q4D8B9VsZ1OaRIAUV14Pe3S4MQuYCRko=
+X-Gm-Gg: ASbGncsTe+3keXY5XQmlDgZW5+yV+hyYBzhfY8VER3M5O7Y31/YjgwB1ei7NzwwUbZh
+	btMYOnazgY9xs7CYVfaERkJ+j2STmv2ilBhPON6HFK2lxAAVwzjv2hwGh+eGJtef0lnHZIebgFQ
+	Jpv3rCAlWlGmDmEjZsAmgvsZpfaLlQjc6pR848/5JC9+IdHE374D6R36rSBxXwg+zv8hyU53wbO
+	iyF9aY=
+X-Google-Smtp-Source: AGHT+IFRbSoEZ4hXrHbKY7rIQkedlBzCq7GAq/7nUM86aUC+QIgIG0f0jGEzVYrCAsMezOI4D1Ia5clt3pGh8SLFEpY=
+X-Received: by 2002:a17:907:97d4:b0:b07:b782:51cc with SMTP id
+ a640c23a62f3a-b24f66e5a01mr948675266b.64.1758483004871; Sun, 21 Sep 2025
+ 12:30:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] spi: spacemit: introduce SpacemiT K1 SPI
- controller driver
-To: Troy Mitchell <troy.mitchell@linux.dev>, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: dlan@gentoo.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250919155914.935608-1-elder@riscstar.com>
- <20250919155914.935608-3-elder@riscstar.com>
- <aM9t7fO_DyIG92Rx@troy-wujie14pro-arch>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <aM9t7fO_DyIG92Rx@troy-wujie14pro-arch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250921133327.123726-1-apokusinski01@gmail.com> <20250921133327.123726-3-apokusinski01@gmail.com>
+In-Reply-To: <20250921133327.123726-3-apokusinski01@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sun, 21 Sep 2025 22:29:28 +0300
+X-Gm-Features: AS18NWCSPjyBPsDVoWwYybZi87WIvw4V2TP9e6hcpgy3ZV6wzxpTNjeA8qyui4M
+Message-ID: <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] iio: mpl3115: add support for DRDY interrupt
+To: Antoni Pokusinski <apokusinski01@gmail.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux@roeck-us.net, rodrigo.gobbi.7@gmail.com, 
+	naresh.solanki@9elements.com, michal.simek@amd.com, grantpeltier93@gmail.com, 
+	farouk.bouabid@cherry.de, marcelo.schmitt1@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/20/25 10:15 PM, Troy Mitchell wrote:
-> On Fri, Sep 19, 2025 at 10:59:12AM -0500, Alex Elder wrote:
->> This patch introduces the driver for the SPI controller found in the
->> SpacemiT K1 SoC.  Currently the driver supports master mode only.
->> The SPI hardware implements RX and TX FIFOs, 32 entries each, and
->> supports both PIO and DMA mode transfers.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->> v2: - The SPI_SPACEMIT_K1 config option is added in sorted order
->>      - The spi-spacemit-k1.o make target is now added in sorted order
->>      - Read/modify/writes of registers no longer use an additional
->>        "virt" variable to hold the address accessed
->>      - The k1_spi_driver_data->ioaddr field has been renamed base
->>      - The DMA address for the base address is maintained, rather than
->>        saving the DMA address of the data register
->>      - CONFIG_MMP_PDMA is checked at runtime, and if it is not enabled,
->>        DMA will not be used
->>      - The spi-max-frequency property value is now bounds checked
->>      - A local variable is now initialized to 0 in k1_spi_write_word()
->>      - The driver name is now "k1-spi"
->>
->>   drivers/spi/Kconfig           |   8 +
->>   drivers/spi/Makefile          |   1 +
->>   drivers/spi/spi-spacemit-k1.c | 968 ++++++++++++++++++++++++++++++++++
->>   3 files changed, 977 insertions(+)
->>   create mode 100644 drivers/spi/spi-spacemit-k1.c
->>
->> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
->> index 82fa5eb3b8684..4f6c446c6bc16 100644
->> --- a/drivers/spi/Kconfig
->> +++ b/drivers/spi/Kconfig
->> @@ -1071,6 +1071,14 @@ config SPI_SG2044_NOR
->>   	  also supporting 3Byte address devices and 4Byte address
->>   	  devices.
->>   
->> +config SPI_SPACEMIT_K1
->> +	tristate "K1 SPI Controller"
->> +	depends on ARCH_SPACEMIT || COMPILE_TEST
->> +	depends on OF
->> +	default ARCH_SPACEMIT
->> +	help
->> +	  Enable support for the SpacemiT K1 SPI controller.
->> +
->>   config SPI_SPRD
->>   	tristate "Spreadtrum SPI controller"
->>   	depends on ARCH_SPRD || COMPILE_TEST
->> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
->> index eefaeca097456..637d750ead996 100644
->> --- a/drivers/spi/Makefile
->> +++ b/drivers/spi/Makefile
->> @@ -140,6 +140,7 @@ obj-$(CONFIG_SPI_SIFIVE)		+= spi-sifive.o
->>   obj-$(CONFIG_SPI_SLAVE_MT27XX)          += spi-slave-mt27xx.o
->>   obj-$(CONFIG_SPI_SN_F_OSPI)		+= spi-sn-f-ospi.o
->>   obj-$(CONFIG_SPI_SG2044_NOR)	+= spi-sg2044-nor.o
->> +obj-$(CONFIG_SPI_SPACEMIT_K1)		+= spi-spacemit-k1.o
->>   obj-$(CONFIG_SPI_SPRD)			+= spi-sprd.o
->>   obj-$(CONFIG_SPI_SPRD_ADI)		+= spi-sprd-adi.o
->>   obj-$(CONFIG_SPI_STM32) 		+= spi-stm32.o
->> diff --git a/drivers/spi/spi-spacemit-k1.c b/drivers/spi/spi-spacemit-k1.c
->> new file mode 100644
->> index 0000000000000..8d564fe6c4303
->> --- /dev/null
->> +++ b/drivers/spi/spi-spacemit-k1.c
->> @@ -0,0 +1,968 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Support for SpacemiT K1 SPI controller
->> + *
->> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
->> + * Copyright (c) 2023, spacemit Corporation.
-> SpacemiT?
+On Sun, Sep 21, 2025 at 4:34=E2=80=AFPM Antoni Pokusinski
+<apokusinski01@gmail.com> wrote:
+>
+> MPL3115 sensor features a "data ready" interrupt which indicates the
+> presence of new measurements.
 
-Already addressed this suggestion, which Yixun also made.
-  
-https://lore.kernel.org/lkml/034cecd3-c168-4c8d-9ad5-10cc1853894b@riscstar.com/
+...
+
+>  #include <linux/module.h>
+
+>  #include <linux/iio/trigger_consumer.h>
+>  #include <linux/iio/buffer.h>
+>  #include <linux/iio/triggered_buffer.h>
+> +#include <linux/iio/trigger.h>
+>  #include <linux/delay.h>
+
+> +#include <linux/property.h>
+
+This is like delay.h is misplaced. What we do here, we group generic
+ones followed by subsystem (IIO) related ones, and this seems wrong in
+this driver.
+
+Can you rather move delay.h to be the first, and add property.h after
+i2c.h followed by a blank line, so in the result it will be like
+
+delay.h
+i2c.h
+module.h
+property.h
+...blank.line...
+iio/*.h
+
+...
+
+> +#define MPL3115_CTRL_INT_SRC_DRDY BIT(7)
+> +
+> +#define MPL3115_PT_DATA_EVENT_ALL (BIT(2) | BIT(1) | BIT(0))
+
+Not sure I understand this definition in the following aspects:
+1) why is this disrupting the _CTRL_ definitions?
+2) why is this using BIT(x) and not respective definitions?
+3) why can't you use GENMASK() if you just select all bits in a
+certain bitfield?
 
 
-> 
->> + */
->> +
-> [...]
->> +static void k1_spi_read_word(struct k1_spi_driver_data *drv_data)
->> +{
->> +	struct k1_spi_io *rx = &drv_data->rx;
->> +	u32 bytes = drv_data->bytes;
->> +	u32 val;
->> +
->> +	val = readl(drv_data->base + SSP_DATAR);
->> +	rx->resid -= bytes;
->> +
->> +	if (!rx->buf)
->> +		return;	/* Null reader: discard the data */
->> +
->> +	if (bytes == 1)
->> +		*(u8 *)rx->buf = val;
->> +	else if (bytes == 1)
-> typo?
+>  #define MPL3115_CTRL_RESET BIT(2) /* software reset */
+>  #define MPL3115_CTRL_OST BIT(1) /* initiate measurement */
+>  #define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
+>  #define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling */
 
-Yes, Vivian noticed this too.  It's a bug, and it will be
-fixed in the next version.
-  
-https://lore.kernel.org/lkml/a7070f3f-8857-4834-9e9e-02068637075c@iscas.ac.cn/
+...
 
-> 
->> +		*(u16 *)rx->buf = val;
->> +	else
->> +		*(u32 *)rx->buf = val;
->> +
->> +	rx->buf += bytes;
->> +}
->> +
-> [...]
->> +static bool k1_spi_write(struct k1_spi_driver_data *drv_data)
->> +{
->> +	struct k1_spi_io *tx = &drv_data->tx;
->> +	unsigned int count;
->> +	u32 val;
->> +
->> +	if (!tx->resid)
->> +		return true;	/* Nothing more to send */
->> +
->> +	/* See how many slots in the TX FIFO are available */
->> +	val = readl(drv_data->base + SSP_STATUS);
->> +	count = FIELD_GET(SSP_STATUS_TFL, val);
->> +
->> +	/* A zero count means the FIFO is either full or empty */
->> +	if (!count) {
->> +		if (val & SSP_STATUS_TNF)
->> +			count = K1_SPI_FIFO_SIZE;
->> +		else
->> +			return false;	/* No room in the FIFO */
-> please early return:
+>         mutex_lock(&data->lock);
+> -       ret =3D mpl3115_request(data);
+> -       if (ret < 0) {
+> -               mutex_unlock(&data->lock);
+> -               goto done;
+> +       if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
+> +               ret =3D mpl3115_request(data);
+> +               if (ret < 0) {
 
-OK.
+> +                       mutex_unlock(&data->lock);
 
-> 
-> if (!(val & SSP_STATUS_TNF))
->    return false;
-> count = K1_SPI_FIFO_SIZE;
->> +	}
->> +
->> +	/*
->> +	 * Limit how much we try to send at a time, to reduce the
->> +	 * chance the other side can overrun our RX FIFO.
->> +	 */
->> +	count = min3(count, K1_SPI_THRESH, tx->resid);
->> +	while (count--)
->> +		k1_spi_write_word(drv_data);
->> +
->> +	return !tx->resid;
->> +}
->> +
-> [...]
->> +
->> +static int k1_spi_transfer_one_message(struct spi_controller *host,
->> +					   struct spi_message *message)
->> +{
->> +	struct k1_spi_driver_data *drv_data = spi_controller_get_devdata(host);
->> +	struct completion *completion = &drv_data->completion;
->> +	struct spi_transfer *transfer;
->> +	u32 val;
->> +
->> +	drv_data->message = message;
->> +
->> +	/* Message status starts out successful; set to -EIO on error */
->> +	message->status = 0;
->> +
->> +	/* Hold frame low to avoid losing transferred data */
->> +	val = readl(drv_data->base + SSP_TOP_CTRL);
->> +	val |= TOP_HOLD_FRAME_LOW;
->> +	writel(val, drv_data->base + SSP_TOP_CTRL);
->> +
->> +	list_for_each_entry(transfer, &message->transfers, transfer_list) {
->> +		reinit_completion(completion);
->> +
->> +		/* Issue the next transfer */
->> +		if (!k1_spi_transfer_start(drv_data, transfer)) {
->> +			message->status = -EIO;
->> +			break;
-> we don't need return a error code?
+Instead, I suggest adding a prerequisite that moves the driver to use
+cleanup.h, in particular scoped_guard(). This will reduce a churn
+here,
 
-You're right.  This always returns 0.  I think I'll
-just return message->status.
+> +                       goto done;
+> +               }
+>         }
 
-Thank you for catching this.  I'll fix it in the next version.
+...
 
-					-Alex
+> +static int mpl3115_set_trigger_state(struct iio_trigger *trig, bool stat=
+e)
+> +{
+> +       struct iio_dev *indio_dev =3D iio_trigger_get_drvdata(trig);
+> +       struct mpl3115_data *data =3D iio_priv(indio_dev);
+> +       int ret;
+> +       u8 ctrl_reg1 =3D data->ctrl_reg1;
+> +
+> +       if (state)
+> +               ctrl_reg1 |=3D MPL3115_CTRL_ACTIVE;
+> +       else
+> +               ctrl_reg1 &=3D ~MPL3115_CTRL_ACTIVE;
+
+> +       guard(mutex)(&data->lock);
+
+Oh, and you already use this! Definitely, it misses the prerequisite patch.
+
+> +       ret =3D i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1=
+,
+> +                                       ctrl_reg1);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret =3D i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG4=
+,
+> +                                       state ? MPL3115_CTRL_INT_EN_DRDY =
+: 0);
+> +       if (ret < 0)
+> +               goto reg1_cleanup;
+> +
+> +       data->ctrl_reg1 =3D ctrl_reg1;
+> +
+> +       return 0;
+> +
+> +reg1_cleanup:
+> +       i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
+> +                                 data->ctrl_reg1);
+> +       return ret;
+> +}
+
+...
+
+> +static int mpl3115_trigger_probe(struct mpl3115_data *data,
+> +                                struct iio_dev *indio_dev)
+> +{
+> +       struct fwnode_handle *fwnode;
+> +       int ret, irq, irq_type;
+> +       bool act_high, is_int2 =3D false;
+
+> +       fwnode =3D dev_fwnode(&data->client->dev);
+> +       if (!fwnode)
+> +               return -ENODEV;
 
 
-> 
->> +		}
->> +
->> +		k1_spi_transfer_wait(drv_data);
->> +
->> +		k1_spi_transfer_end(drv_data, transfer);
->> +
->> +		/* If an error has occurred, we're done */
->> +		if (message->status)
->> +			break;
-> ditto.
-> 
-> [...]
->> +}
->> +
->> +static void k1_spi_dma_cleanup(struct device *dev, void *res)
->> +{
->> +	struct k1_spi_driver_data *drv_data = res;
->> +
->> +	if (k1_spi_dma_enabled(drv_data)) {
-> if (!k1_spi_dma_enabled(drv_data))
->    return;
-> 
->                    - Troy
-> 
->> +		k1_spi_dma_cleanup_io(drv_data, false);
->> +		k1_spi_dma_cleanup_io(drv_data, true);
->> +	}
->> +}
->> +
->> +
->> +static const struct of_device_id k1_spi_dt_ids[] = {
->> +	{ .compatible = "spacemit,k1-spi", },
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, k1_spi_dt_ids);
->> +
->> +static void k1_spi_host_init(struct k1_spi_driver_data *drv_data)
->> +{
->> +	struct device_node *np = dev_of_node(drv_data->dev);
->> +	struct spi_controller *host = drv_data->controller;
->> +	struct device *dev = drv_data->dev;
->> +	u32 max_speed_hz;
->> +	int ret;
->> +
->> +	host->dev.of_node = np;
->> +	host->dev.parent = drv_data->dev;
->> +	host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LOOP;
->> +	host->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
->> +	host->num_chipselect = 1;
->> +
->> +	if (k1_spi_dma_enabled(drv_data))
->> +		host->dma_alignment = K1_SPI_DMA_ALIGNMENT;
->> +	host->cleanup = k1_spi_cleanup;
->> +	host->setup = k1_spi_setup;
->> +	host->transfer_one_message = k1_spi_transfer_one_message;
->> +
->> +	ret = of_property_read_u32(np, "spi-max-frequency", &max_speed_hz);
->> +	if (!ret) {
->> +		host->max_speed_hz = clamp(max_speed_hz, K1_SPI_MIN_SPEED_HZ,
->> +					   K1_SPI_MAX_SPEED_HZ);
->> +		if (host->max_speed_hz != max_speed_hz)
->> +			dev_warn(dev, "spi-max-frequency %u out of range, using %u\n",
->> +				max_speed_hz, host->max_speed_hz);
->> +	} else {
->> +		if (ret != -EINVAL)
->> +			dev_warn(dev, "bad spi-max-frequency, using %u\n",
->> +				 K1_SPI_DEFAULT_MAX_SPEED_HZ);
->> +		host->max_speed_hz = K1_SPI_DEFAULT_MAX_SPEED_HZ;
->> +	}
->> +}
->> +
->> +/* Set our registers to a known initial state */
->> +static void
->> +k1_spi_register_reset(struct k1_spi_driver_data *drv_data, bool initial)
->> +{
->> +	u32 val = 0;
->> +
->> +	writel(0, drv_data->base + SSP_TOP_CTRL);
->> +
->> +	if (initial) {
->> +		/*
->> +		 * The TX and RX FIFO thresholds are the same no matter
->> +		 * what the speed or bits per word, so we can just set
->> +		 * them once.  The thresholds are one more than the values
->> +		 * in the register.
->> +		 */
->> +		val = FIELD_PREP(FIFO_RFT_MASK, K1_SPI_THRESH - 1);
->> +		val |= FIELD_PREP(FIFO_TFT_MASK, K1_SPI_THRESH - 1);
->> +	}
->> +	writel(val, drv_data->base + SSP_FIFO_CTRL);
->> +
->> +	writel(0, drv_data->base + SSP_INT_EN);
->> +	writel(0, drv_data->base + SSP_TIMEOUT);
->> +
->> +	/* Clear any pending interrupt conditions */
->> +	val = readl(drv_data->base + SSP_STATUS);
->> +	writel(val, drv_data->base + SSP_STATUS);
->> +}
->> +
->> +static irqreturn_t k1_spi_ssp_isr(int irq, void *dev_id)
->> +{
->> +	struct k1_spi_driver_data *drv_data = dev_id;
->> +	bool rx_done;
->> +	bool tx_done;
->> +	u32 val;
->> +
->> +	/* Get status and clear pending interrupts */
->> +	val = readl(drv_data->base + SSP_STATUS);
->> +	writel(val, drv_data->base + SSP_STATUS);
->> +
->> +	if (!drv_data->message)
->> +		return IRQ_NONE;
->> +
->> +	/* Check for a TX underrun or RX underrun first */
->> +	if (val & (SSP_STATUS_TUR | SSP_STATUS_ROR)) {
->> +		/* Disable all interrupts on error */
->> +		writel(0, drv_data->base + SSP_INT_EN);
->> +
->> +		drv_data->message->status = -EIO;
->> +		complete(&drv_data->completion);
->> +
->> +		return IRQ_HANDLED;
->> +	}
->> +
->> +	/* Drain the RX FIFO first, then transmit what we can */
->> +	rx_done = k1_spi_read(drv_data);
->> +	tx_done = k1_spi_write(drv_data);
->> +
->> +	/* Disable interrupts if we're done transferring either direction */
->> +	if (rx_done || tx_done) {
->> +		/* If both are done, disable all interrupts */
->> +		if (rx_done && tx_done) {
->> +			val = 0;
->> +		} else {
->> +			val = readl(drv_data->base + SSP_INT_EN);
->> +			if (rx_done)
->> +				val &= ~(SSP_INT_EN_TINTE | SSP_INT_EN_RIE);
->> +			if (tx_done)
->> +				val &= ~SSP_INT_EN_TIE;
->> +		}
->> +		writel(val, drv_data->base + SSP_INT_EN);
->> +	}
->> +
->> +	if (rx_done && tx_done)
->> +		complete(&drv_data->completion);
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int k1_spi_probe(struct platform_device *pdev)
->> +{
->> +	struct k1_spi_driver_data *drv_data;
->> +	struct device *dev = &pdev->dev;
->> +	struct reset_control *reset;
->> +	struct spi_controller *host;
->> +	struct resource *iores;
->> +	struct clk *clk_bus;
->> +	int ret;
->> +
->> +	host = devm_spi_alloc_host(dev, sizeof(*drv_data));
->> +	if (!host)
->> +		return -ENOMEM;
->> +	drv_data = spi_controller_get_devdata(host);
->> +	drv_data->controller = host;
->> +	platform_set_drvdata(pdev, drv_data);
->> +	drv_data->dev = dev;
->> +	init_completion(&drv_data->completion);
->> +
->> +	drv_data->base = devm_platform_get_and_ioremap_resource(pdev, 0,
->> +								&iores);
->> +	if (IS_ERR(drv_data->base))
->> +		return dev_err_probe(dev, PTR_ERR(drv_data->base),
->> +				     "error mapping memory\n");
->> +	drv_data->base_addr = iores->start;
->> +
->> +	ret = devm_k1_spi_dma_setup(drv_data);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "error setting up DMA\n");
->> +
->> +	k1_spi_host_init(drv_data);
->> +
->> +	clk_bus = devm_clk_get_enabled(dev, "bus");
->> +	if (IS_ERR(clk_bus))
->> +		return dev_err_probe(dev, PTR_ERR(clk_bus),
->> +				     "error getting/enabling bus clock\n");
->> +	drv_data->bus_rate = clk_get_rate(clk_bus);
->> +
->> +	drv_data->clk = devm_clk_get_enabled(dev, "core");
->> +	if (IS_ERR(drv_data->clk))
->> +		return dev_err_probe(dev, PTR_ERR(drv_data->clk),
->> +				     "error getting/enabling core clock\n");
->> +
->> +	reset = devm_reset_control_get_exclusive_deasserted(dev, NULL);
->> +	if (IS_ERR(reset))
->> +		return dev_err_probe(dev, PTR_ERR(reset),
->> +				     "error getting/deasserting reset\n");
->> +
->> +	k1_spi_register_reset(drv_data, true);
->> +
->> +	drv_data->irq = platform_get_irq(pdev, 0);
->> +	if (drv_data->irq < 0)
->> +		return dev_err_probe(dev, drv_data->irq, "error getting IRQ\n");
->> +
->> +	ret = devm_request_irq(dev, drv_data->irq, k1_spi_ssp_isr,
->> +			       IRQF_SHARED, dev_name(dev), drv_data);
->> +	if (ret < 0)
->> +		return dev_err_probe(dev, ret, "error requesting IRQ\n");
->> +
->> +	ret = devm_spi_register_controller(dev, host);
->> +	if (ret)
->> +		dev_err(dev, "error registering controller\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static void k1_spi_remove(struct platform_device *pdev)
->> +{
->> +	struct k1_spi_driver_data *drv_data = platform_get_drvdata(pdev);
->> +
->> +	k1_spi_register_reset(drv_data, false);
->> +}
->> +
->> +static struct platform_driver k1_spi_driver = {
->> +	.driver = {
->> +		.name		= "k1-spi",
->> +		.of_match_table	= k1_spi_dt_ids,
->> +	},
->> +	.probe			= k1_spi_probe,
->> +	.remove			= k1_spi_remove,
->> +};
->> +
->> +module_platform_driver(k1_spi_driver);
->> +
->> +MODULE_DESCRIPTION("SpacemiT K1 SPI controller driver");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.48.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Why is this fatal? Also, do we have a board file for users of this right no=
+w?
 
+> +       irq =3D fwnode_irq_get_byname(fwnode, "INT1");
+> +       if (irq < 0) {
+> +               irq =3D fwnode_irq_get_byname(fwnode, "INT2");
+> +               if (irq < 0)
+> +                       return 0;
+> +
+> +               is_int2 =3D true;
+> +       }
+> +
+> +       irq_type =3D irq_get_trigger_type(irq);
+> +       switch (irq_type) {
+> +       case IRQF_TRIGGER_RISING:
+> +               act_high =3D true;
+> +               break;
+> +       case IRQF_TRIGGER_FALLING:
+> +               act_high =3D false;
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       ret =3D i2c_smbus_write_byte_data(data->client, MPL3115_PT_DATA_C=
+FG,
+> +                                       MPL3115_PT_DATA_EVENT_ALL);
+> +       if (ret < 0)
+> +               return ret;
+
+> +       if (!is_int2) {
+> +               ret =3D i2c_smbus_write_byte_data(data->client,
+> +                                               MPL3115_CTRL_REG5,
+> +                                               MPL3115_CTRL_INT_CFG_DRDY=
+);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +       if (act_high) {
+> +               ret =3D i2c_smbus_write_byte_data(data->client,
+> +                                               MPL3115_CTRL_REG3,
+> +                                               is_int2 ? MPL3115_CTRL_IP=
+OL2 :
+> +                                                         MPL3115_CTRL_IP=
+OL1);
+> +               if (ret)
+> +                       return ret;
+> +       }
+
+This if (!is_int2) and ternary with the same argument is kinda hard to
+read, can we refactor it somehow?
+
+For example, if these two booleans are represented by a common enum, we can=
+ do
+
+switch (cfg_flags) {
+case INT2_ACTIVE_HIGH:
+    _write_byte_data(REG3);
+    break;
+case INT2_ACTIVE_LOW:
+    break;
+case INT1_ACTIVE_HIGH:
+   _write_byte_data(REG5);
+   _write_byte_data(REG3);
+  break;
+case INT1_ACTIVE_LOW:
+   _write_byte_data(REG5);
+   break;
+default:
+    return -EINVAL;
+}
+
+Yes, it's more verbose, but I find this better to read and understand.
+
+Note, you may drop the switch case for IRQ with this approach as you
+can use a few bits together (separate bits for raising and falling to
+make the default case working here).
+
+> +       data->drdy_trig =3D devm_iio_trigger_alloc(&data->client->dev,
+> +                                                "%s-dev%d",
+> +                                                indio_dev->name,
+> +                                                iio_device_id(indio_dev)=
+);
+> +       if (!data->drdy_trig)
+> +               return -ENOMEM;
+> +
+> +       data->drdy_trig->ops =3D &mpl3115_trigger_ops;
+> +       iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
+> +       ret =3D iio_trigger_register(data->drdy_trig);
+> +       if (ret)
+> +               return ret;
+> +
+> +       indio_dev->trig =3D iio_trigger_get(data->drdy_trig);
+> +
+> +       return devm_request_threaded_irq(&data->client->dev, irq,
+> +                                        NULL,
+> +                                        mpl3115_interrupt_handler,
+> +                                        IRQF_ONESHOT,
+> +                                        "mpl3115_irq",
+> +                                        indio_dev);
+> +}
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
