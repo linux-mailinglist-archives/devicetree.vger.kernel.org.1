@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-219792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF098B8E47E
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 21:51:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D614EB8E4B8
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 22:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DD54160EA5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 19:51:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD4A27AF0AB
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 20:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CC12765F8;
-	Sun, 21 Sep 2025 19:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E76A284B26;
+	Sun, 21 Sep 2025 20:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyX2XELJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QxioDiRi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799EB26E710;
-	Sun, 21 Sep 2025 19:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D48725783F;
+	Sun, 21 Sep 2025 20:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758484261; cv=none; b=BeNXFAQqS4YDqwkE/IcGaIUNNl+wjI7h4rZr5FWBXUQpc59DD/aWmLuIje9Jb0rRZdsklvlXv0WqJ6P1yAEWHHdTiB2FeC9GkUXiW5j931zeSHO+pZCre5c3/4EmkWtG4lIMddfIPPe+YYDpMUnvG4CO29XcLl3UGnMekLNqo3M=
+	t=1758485289; cv=none; b=Sf8iz2tXXtwOoV4qeR4pqCLtiet4wTZd/geZ4UVoQLCdcSH/Vn30GlyCP4hljMieyPE42APeEaLGe5AhhKh1LOQZjVKZ8hBfsjJmebGx2uPCJJ8sF6XqYXdd52r1A87xlHdbv2ElSVkrA+2HSxgqyIlxYcXDmF3wZTyy+Nfa/MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758484261; c=relaxed/simple;
-	bh=Ktbhbbw6P7I40jvmJGm8sst1UUSzjrMoDRrHXi/7018=;
+	s=arc-20240116; t=1758485289; c=relaxed/simple;
+	bh=JhK7EYIcFoZDxlEsEl//u9AwwpAD2Ir5SVc2aQvCAxE=;
 	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=I5rJTm3UOZSrwm5uThQ1CPr8n1T6+dQ3Qkgs0ZnGOkleqjhlHp1J346zpZMOz7/bWyl8y9LMmP/1m3epLsaVn+UuQLZgwNUuRQrAtxbGQd4xq3BwUo+TasNGe6Q7uU09TWtJv77w+hBvGdkxTWIj/DUTwvBwPvDyz+FBKs2gV8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyX2XELJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E47C4CEE7;
-	Sun, 21 Sep 2025 19:51:01 +0000 (UTC)
+	 To:Date:Message-ID; b=AQ/zHua2V/nMCgZrsFZP5dGKmbY3UchNLLIbXtkPUMX6/vwdQU+ehIi1dJSCyhvwC1mF6zC6IUZS0yvsrYt6RKZYtpJP1SXcc7W1tttXnJDqLx9fXSfu+S3cPZ6AOnkKZXKB+8S9vPC3xsjaNKitMwa19FGtYPpynTXj3pQRnts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QxioDiRi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BFB3C4CEE7;
+	Sun, 21 Sep 2025 20:08:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758484261;
-	bh=Ktbhbbw6P7I40jvmJGm8sst1UUSzjrMoDRrHXi/7018=;
+	s=k20201202; t=1758485288;
+	bh=JhK7EYIcFoZDxlEsEl//u9AwwpAD2Ir5SVc2aQvCAxE=;
 	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=gyX2XELJOdYKhlx82RNTbTthXB+UbykXNeI2+rVg0CICyDmitGUDp5D1ePNGv2zvE
-	 kVNMvSvmDWtCdErruCW7OVye6NBd4cxg4HU9f7xCF1cxWUNDwaWHyugqCTXjOpabrq
-	 S79y+ioXPW3xOnaayJJSOwMLKI5Zc6L3dDsWuXC1crMZ/W1dYWV97DJI4eCzvSp3m7
-	 r7cIQ9F6lpbbigcIIIyzrheAsm5qiaRYYEhf/qUXLfwL4rFupLrvVfOLmO9SuEANNp
-	 9lDlDhNEdGQc0lt965AMtFTNxRq3+0uvyTW9k86eI2V4flE4du70HCgq1xR+t/s48c
-	 7KppWOC9XBFxw==
+	b=QxioDiRihJpqXM64fWo+FGJq8dV0fkMzt6QxQvB+j0ky3ntrdunW1droBiNEcHllB
+	 fpuisUIgea9BsH/Y4gTHb94VjH2DQ0YaOkjDxDlaBfpPJkWnAbqT17N8oOchJmhKsT
+	 Slv3kzv3C2cikmJ7Am+tQ78nqAK7YISos79wJjZpIoOeI5cHc3o/YmkZgPvKbmrvgR
+	 1ZJk2DHR3ZTZ0ZaFiL2FEiF9IODEsTSs1YDeXmIu6ej0UdmKQKasW8DphCxFCaPZ3y
+	 Sr9vaxqbLMwFyTg5En/466EGThtjwHEE6/DvGlkcSrW4VI1PxVpVBhTgcXFEwt9yw/
+	 vN2xDxREgy+xA==
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -49,28 +49,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250919142649.58859-7-ziyao@disroot.org>
-References: <20250919142649.58859-1-ziyao@disroot.org> <20250919142649.58859-7-ziyao@disroot.org>
-Subject: Re: [PATCH v4 6/8] clk: loongson2: Add clock definitions for Loongson-2K0300 SoC
+In-Reply-To: <20250906131655.239340-2-clamor95@gmail.com>
+References: <20250906131655.239340-1-clamor95@gmail.com> <20250906131655.239340-2-clamor95@gmail.com>
+Subject: Re: [PATCH v2 1/4] clk: tegra20: reparent dsi clock to pll_d_out0
 From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>, Yao Zi <ziyao@disroot.org>
-To: Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, WANG Xuerui <kernel@xen0n.name>, Yao Zi <ziyao@disroot.org>, Yinbo Zhu <zhuyinbo@loongson.cn>
-Date: Sun, 21 Sep 2025 12:50:59 -0700
-Message-ID: <175848425977.4354.17680776767445912980@lazor>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org
+To: Charan Pedumuru <charan.pedumuru@gmail.com>, Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, Dmitry Osipenko <digetx@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Mikko Perttunen <mperttunen@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, Svyatoslav Ryhel <clamor95@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>
+Date: Sun, 21 Sep 2025 13:08:06 -0700
+Message-ID: <175848528652.4354.10389254038978524687@lazor>
 User-Agent: alot/0.11
 
-Quoting Yao Zi (2025-09-19 07:26:47)
-> The clock controller of Loongson-2K0300 consists of three PLLs, requires
-> an 120MHz external reference clock to function, and generates clocks in
-> various frequencies for SoC peripherals.
+Quoting Svyatoslav Ryhel (2025-09-06 06:16:52)
+> Reparent DSI clock to PLLD_OUT0 instead of directly descend from PLLD.
 >=20
-> Clock definitions for previous SoC generations could be reused for most
-> clock hardwares. There're two gates marked as critical, clk_node_gate
-> and clk_boot_gate, which supply the CPU cores and the system
-> configuration bus. Disabling them leads to a SoC hang.
->=20
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
 
-Applied to clk-next
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
