@@ -1,157 +1,122 @@
-Return-Path: <devicetree+bounces-219829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524B1B8E89B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 00:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C516B8E892
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 00:21:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE1C917DD9C
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 22:21:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9FA117D12C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 22:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE84257844;
-	Sun, 21 Sep 2025 22:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DF825333F;
+	Sun, 21 Sep 2025 22:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="urhkteUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWFQwBZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011F6245005;
-	Sun, 21 Sep 2025 22:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314972AE6A;
+	Sun, 21 Sep 2025 22:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758493263; cv=none; b=nnxR7Wglz1U2ILvrFSMgANv60c50Kx6N2Y4LsJ4ts0X9+NJZiw9IwH03F7ghpP3soUqeB/QxZw5ssZTZJ74mdR2g9ZA/XU2byRCgA4+rwn8drT+3sSgx9oUcsT5ZGdFhYW4akH/ugpSrkuSNGoV1UgQfGRpfQBsHy3y/A0w2Cuo=
+	t=1758493257; cv=none; b=X2ysAccpGfaXxme+FC9BUad78sBgfL03NlvVGPTrkwDl3sOmpKK9v8cCsFV4nc/cxZOq3qFabcVs8dluQE70MY5wB/M8s24bncjxBQFyMYyTLoATSPZmlzqKsAtZtaIuXmxeUJIDg/DC7chhdQApXyjoATYYqxZemwnWwkivD2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758493263; c=relaxed/simple;
-	bh=+eOD1GcoHBO726C3msHiBvYXNdElq3AA2TEiC9gvtBE=;
+	s=arc-20240116; t=1758493257; c=relaxed/simple;
+	bh=deIlNliIFfttHaVaz+a5cZngYOdByEk2eSULIl0DxWs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lWd0TQStdlEP8Hy4rzk6RNgR8ZEdXGTxTN2ugHvcSGPGMWDvas+SFLZiysvh/qry33JbAV0KrEJV4t8Np8FO0alIJKV71iGuDEiG5ZgkfRTKSasL31pR1w+WnxGyh8Bu4d2EGuaP39qXK0MLKP7QrzCVirRef/jb3U0pdJud570=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=urhkteUg; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 551D710C4;
-	Mon, 22 Sep 2025 00:19:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1758493178;
-	bh=+eOD1GcoHBO726C3msHiBvYXNdElq3AA2TEiC9gvtBE=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=VrwYuHAePeCPtC5FxtdhES+8Zk7dUxHgOQsRH79U+Ba8BbVh0gU3iNIdBla+ZlkAWr/z2TfV/rkaOvkKpjEHhRvMtqEiwCpzw6FyhOC6F1fUFthWRDC4dDAeEVdSDGDurQM9KawrjK15dmczqDT8+2ouFHfY/tlWZ0+3+segVP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AWFQwBZA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F07C4CEE7;
+	Sun, 21 Sep 2025 22:20:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758493256;
+	bh=deIlNliIFfttHaVaz+a5cZngYOdByEk2eSULIl0DxWs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=urhkteUgoEr0pBFx5ZznC9R2+mPCnkVmCYz5NI8vXmF1bE1E22cMMjRdVmF1KKKRD
-	 UTiO7k4R30B2fyZLEg2IeT4PCGYPuyY41r3RrPWsSGbYimiIWaV0/+bCl0BdU1zgQv
-	 Pb+jYlPU7F6tTtayG/H3hMsVuUvw2m/gLF5P8x9w=
-Date: Mon, 22 Sep 2025 01:20:29 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Guoniu Zhou <guoniu.zhou@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=AWFQwBZAhMYUaaA5uo8ILM7NlcErylUxQ0nRkEnKhmzH9SouyhUwUsvmPI8QMRlt9
+	 Jg2/R3gHsr8SZPU31xZDfAd1A63rI4tGgEnOzVNDdm3/rg0soJjO205N0BG6WGf2nW
+	 WW8D7QcD+yi2pqrLhsgwlPIIKEwBhDthWnIoiVFPXf2kxhdRf5Y6Po4bYd+TOsAA7/
+	 Q9ny93JPVwtoGPrSc4xbuu0gY6KwDLYX59A5Ygmq2srNC0wUu7EnWnODFp9RcNmMe4
+	 Yswi79VHYfZLnnz8r8LNOolutZmqspeDlCmODf7uIfi6Ls6u2XBT95jAjtpbXhPU/I
+	 objma6kY4n/pw==
+Date: Sun, 21 Sep 2025 23:20:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] media: nxp: imx8-isi: Reorder the platform data
-Message-ID: <20250921222029.GD10540@pendragon.ideasonboard.com>
-References: <20250905-isi_imx93-v2-0-37db5f768c57@nxp.com>
- <20250905-isi_imx93-v2-4-37db5f768c57@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Diederik de Haas <didi.debian@cknow.org>, linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: rockchip: tighten grf
+ requirements
+Message-ID: <20250921-abroad-decibel-5b81c0680693@spud>
+References: <20250820-thermal-rockchip-grf-warning-v2-0-c7e2d35017b8@kernel.org>
+ <20250820-thermal-rockchip-grf-warning-v2-3-c7e2d35017b8@kernel.org>
+ <20250820-await-chomp-9812902c0f74@spud>
+ <wtwdpqi4tk3ixzmrvdyv2aguf6pjlmnz6q5gvhlajl2hk6mdys@fmkugriedhqe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7v51AzaYiK6X0Wju"
 Content-Disposition: inline
-In-Reply-To: <20250905-isi_imx93-v2-4-37db5f768c57@nxp.com>
+In-Reply-To: <wtwdpqi4tk3ixzmrvdyv2aguf6pjlmnz6q5gvhlajl2hk6mdys@fmkugriedhqe>
 
-Hi Guoniu,
 
-Thank you for the patch.
+--7v51AzaYiK6X0Wju
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 05, 2025 at 02:56:01PM +0800, Guoniu Zhou wrote:
-> Sort platform data in the order of compatible strings in of_match table
-> to make it more convenient to read.
-> 
-> No functions changed.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+On Fri, Sep 19, 2025 at 08:35:12PM +0200, Sebastian Reichel wrote:
+> Hi,
+>=20
+> On Wed, Aug 20, 2025 at 08:48:23PM +0100, Conor Dooley wrote:
+> > On Wed, Aug 20, 2025 at 07:40:49PM +0200, Sebastian Reichel wrote:
+> > > Instead of having an optional rockchip,grf property, forbid using it =
+on
+> > > platforms without registers in a GRF being needed for thermal monitor=
+ing
+> > > and make it mandatory on the platforms actually needing it.
+> >=20
+> > I am assuming that "needing it" means that it was actually mandatory but
+> > the binding was just missing the required required entry. If so
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> I just noticed, that I never replied: The GRF configuration is
+> required for proper functionality as far as I can tell. Technically
+> it might be skipped, if the bootloader already configured the
+> registers correctly. but I don't think this is something anyone wants
+> to rely on and with the same argument we could describe almost any
+> resource as optional :) The upstream kernel DT always had the GRF
+> specified for these platforms (and thus most likely has never been
+> tested without it).
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> ---
->  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 44 +++++++++++-----------
->  1 file changed, 22 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index adc8d9960bf0df87d4e475661a3439beaf5ce9f6..0155c75983f02f33f7f0669e73188222ebb5e816 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -314,6 +314,28 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
->  	.has_36bit_dma		= true,
->  };
->  
-> +static const struct mxc_isi_plat_data mxc_imx8qm_data = {
-> +	.model			= MXC_ISI_IMX8QM,
-> +	.num_ports		= 5,
-> +	.num_channels		= 8,
-> +	.reg_offset		= 0x10000,
-> +	.ier_reg		= &mxc_imx8_isi_ier_qm,
-> +	.set_thd		= &mxc_imx8_isi_thd_v1,
-> +	.buf_active_reverse	= true,
-> +	.has_36bit_dma		= false,
-> +};
-> +
-> +static const struct mxc_isi_plat_data mxc_imx8qxp_data = {
-> +	.model			= MXC_ISI_IMX8QXP,
-> +	.num_ports		= 5,
-> +	.num_channels		= 6,
-> +	.reg_offset		= 0x10000,
-> +	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> +	.set_thd		= &mxc_imx8_isi_thd_v1,
-> +	.buf_active_reverse	= true,
-> +	.has_36bit_dma		= false,
-> +};
-> +
->  static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
->  	.model			= MXC_ISI_IMX8ULP,
->  	.num_ports		= 1,
-> @@ -337,28 +359,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
->  	.has_36bit_dma		= false,
->  };
->  
-> -static const struct mxc_isi_plat_data mxc_imx8qm_data = {
-> -	.model			= MXC_ISI_IMX8QM,
-> -	.num_ports		= 5,
-> -	.num_channels		= 8,
-> -	.reg_offset		= 0x10000,
-> -	.ier_reg		= &mxc_imx8_isi_ier_qm,
-> -	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.buf_active_reverse	= true,
-> -	.has_36bit_dma		= false,
-> -};
-> -
-> -static const struct mxc_isi_plat_data mxc_imx8qxp_data = {
-> -	.model			= MXC_ISI_IMX8QXP,
-> -	.num_ports		= 5,
-> -	.num_channels		= 6,
-> -	.reg_offset		= 0x10000,
-> -	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> -	.set_thd		= &mxc_imx8_isi_thd_v1,
-> -	.buf_active_reverse	= true,
-> -	.has_36bit_dma		= false,
-> -};
-> -
->  /* -----------------------------------------------------------------------------
->   * Power management
->   */
+(ik I gave it already, but for clarity)
 
--- 
-Regards,
+--7v51AzaYiK6X0Wju
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Laurent Pinchart
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNB6QwAKCRB4tDGHoIJi
+0oeMAP9PVmH8y60xBY5fyeXeZW7A8LvI0TS/a+zumSiuaKg5lwEA1ZC8Pd7dkYva
+SIjnbkEWh1VeQ9wWMnQJof1jJW/IsAY=
+=mGFB
+-----END PGP SIGNATURE-----
+
+--7v51AzaYiK6X0Wju--
 
