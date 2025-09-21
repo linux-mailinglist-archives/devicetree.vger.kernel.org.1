@@ -1,98 +1,188 @@
-Return-Path: <devicetree+bounces-219780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12DB0B8E2A1
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 19:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B813B8E2E1
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 20:08:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C25C1896CEF
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 17:54:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470EA1899E29
+	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 18:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABFA2566DF;
-	Sun, 21 Sep 2025 17:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090D4273D8D;
+	Sun, 21 Sep 2025 18:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dN9EP4k7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kgDzWBw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30122AE6A;
-	Sun, 21 Sep 2025 17:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F109254B19;
+	Sun, 21 Sep 2025 18:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758477255; cv=none; b=EVL4u0/U+EDIXd73QteSmZ9ZvL/u/5dcxCglyGWsAlaphSQvulpq2M7ta/KvPar6Q3LBdngVPB9x8bG/A4ysse4QlZyDaRiZFcKqI5ImR01IJa2KOWESOd0oxRHf8/fPlSzsxuAdsFmooSNrqMJh9UmJ3zIlyhhrgs1OEJVFy5U=
+	t=1758478098; cv=none; b=g13uPumySOTADgQytZ8ugS1feTZc53Gw+r8SxKZPbGfguo9x5TAljPFOT7puHvszSxFvITJ3pY2FlVzRnml4MzQMiGiFANrDNo8+TdN6yo2ziFJUKRWyHp4sDn+G+blbEro0Vgmk+R3G081arLp5lOiOnkwLTVoCWesBKZT5C3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758477255; c=relaxed/simple;
-	bh=ypzo+3PMu9bLzVVOUbp8LKYZ7ZW06X9TJgzOBqby/8g=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=jbbrDtI/o+1ytNXvTKtOGcDjYmJwDycFgYJuvELuybtYAL/l2kV0BRMvQlLGdIUbiSErESe75RtWyKmOMZcywqGYW59/S9vCOq8JQ2GYnjA36GFe5PBH+UqbCXp4nidbYzo9lDe+yJpp9qC7DPNDHwV8ucFA05/s5TMs9rp+GZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dN9EP4k7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D94BDC4CEE7;
-	Sun, 21 Sep 2025 17:54:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758477255;
-	bh=ypzo+3PMu9bLzVVOUbp8LKYZ7ZW06X9TJgzOBqby/8g=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=dN9EP4k7trHibwCBzzsM5veaTrH/dC46AzdFdMJxejZ0CV7NFya1PlK9k2f2XyZZJ
-	 fJ4CVcifA1piF6s5izpji5JiuljVxrDNagoAdmgXOo59QMS+xGapjHZytK37J7t7uh
-	 sMdkt5rj5djJhVMEpvwxScYO5KxNxmei4ADIrdHSmc9PbWEme8pnnd0UXLEWJPEHVQ
-	 d+523Yz1Xz0T7YCPct3W/+aDi81G3x/fDAEBZjOB8modZt5DOTy6XvgPDsDjZ8+G/b
-	 nBxd/88YbYKmdMKDPMigyhLfbQBC0EXuRNr6Jn1zNiCqBp5QtXBTpqvIVDtrpkdxDZ
-	 1xh2xEgAWsxVA==
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1758478098; c=relaxed/simple;
+	bh=29O2r18L5h5k9tMHESiP8SbFSGsjDajPABR1syF2lSc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VYlTRmBdwYgHgAhl/CcC5sGJxMGbAaH9ad/5l2KNZEGKN56hIrUuJN4jD8t8C4KjYiSgd6gHt6As7zzi6yRa5jqTSp2iqMw++qEGShzwMTfNAm4YEPpAbjooxyn1VXNZhBv1fvOzHce3dJs35T2hmGXr8pooVo2+sJEYlPpZCIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kgDzWBw2; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758478096; x=1790014096;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=29O2r18L5h5k9tMHESiP8SbFSGsjDajPABR1syF2lSc=;
+  b=kgDzWBw24t4nuohOOqA9wMH6LoEH/oRDp3oVKJq7s1q1sHRLzSgXrIha
+   MlgZYFyXir4PFNs+mrplXO7ACDG2Lu+rpM+Yg1PkpC11g4TzW5hG8ALDv
+   vTA/tBnRqzMJ/GPX2AG7IDpT0S5hNcnMLgKWQH7WLSyqJisni7mXnBqfk
+   o1c2IIth2nOE4mUuYS7BhAgw+CJjPObN0IWXxEsFQu9lQOt7qorVuDH8N
+   dT7SxwXFjNFc9ul784eHOBcJIab2E3FskMzxYr1q5aSBEfNfZTtBj7rDP
+   zhWD+7altLsZApUGAFfkkqxeZYBwOG4Lp6mjGvtuOJ7nw0EDxt5kYIEKp
+   w==;
+X-CSE-ConnectionGUID: GHTYWN7vS7i1/R1hCnkG5Q==
+X-CSE-MsgGUID: 138peNyOQX+1j9uaFb9pfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="59790121"
+X-IronPort-AV: E=Sophos;i="6.18,283,1751266800"; 
+   d="scan'208";a="59790121"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2025 11:08:15 -0700
+X-CSE-ConnectionGUID: kyWGG7/RTeKeC6tgM24SkQ==
+X-CSE-MsgGUID: K9p1Qzi2QJi1nS2PfQSEQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,283,1751266800"; 
+   d="scan'208";a="176126326"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 21 Sep 2025 11:08:11 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v0OTo-0000xF-1m;
+	Sun, 21 Sep 2025 18:08:08 +0000
+Date: Mon, 22 Sep 2025 02:07:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Subject: Re: [PATCH v3 10/12] remoteproc: pas: Extend parse_fw callback to
+ fetch resources via SMC call
+Message-ID: <202509220147.nsw5xumc-lkp@intel.com>
+References: <20250921-kvm_rproc_pas-v3-10-458f09647920@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250915080157.28195-7-clamor95@gmail.com>
-References: <20250915080157.28195-1-clamor95@gmail.com> <20250915080157.28195-7-clamor95@gmail.com>
-Subject: Re: [PATCH v3 06/11] clk: tegra: remove EMC to MC clock mux in Tegra114
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
-To: Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>, Dmitry Osipenko <digetx@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, Michael Turquette <mturquette@baylibre.com>, Mikko Perttunen <mperttunen@nvidia.com>, MyungJoo Ham <myungjoo.ham@samsung.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, Rob Herring <robh@kernel.org>, Svyatoslav Ryhel <clamor95@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>
-Date: Sun, 21 Sep 2025 10:54:13 -0700
-Message-ID: <175847725338.4354.4145979844570539358@lazor>
-User-Agent: alot/0.11
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921-kvm_rproc_pas-v3-10-458f09647920@oss.qualcomm.com>
 
-Quoting Svyatoslav Ryhel (2025-09-15 01:01:52)
-> diff --git a/drivers/clk/tegra/clk-tegra114.c b/drivers/clk/tegra/clk-teg=
-ra114.c
-> index 8bde72aa5e68..6b3a140772c2 100644
-> --- a/drivers/clk/tegra/clk-tegra114.c
-> +++ b/drivers/clk/tegra/clk-tegra114.c
-> @@ -1321,6 +1309,28 @@ static int tegra114_reset_deassert(unsigned long i=
-d)
->         return 0;
->  }
-> =20
-> +#ifdef CONFIG_TEGRA124_CLK_EMC
-> +static struct clk *tegra114_clk_src_onecell_get(struct of_phandle_args *=
-clkspec,
-> +                                               void *data)
-> +{
-> +       struct clk_hw *hw;
-> +       struct clk *clk;
-> +
-> +       clk =3D of_clk_src_onecell_get(clkspec, data);
-> +       if (IS_ERR(clk))
-> +               return clk;
-> +
-> +       hw =3D __clk_get_hw(clk);
+Hi Mukesh,
 
-Can you just use of_clk_hw_onecell_get() instead? Then we don't need to
-use __clk_get_hw(). Or is this whole function used to return a clk
-pointer to something that isn't the clk framework?
+kernel test robot noticed the following build errors:
 
-> +
-> +       if (clkspec->args[0] =3D=3D TEGRA114_CLK_EMC) {
-> +               if (!tegra124_clk_emc_driver_available(hw))
-> +                       return ERR_PTR(-EPROBE_DEFER);
-> +       }
-> +
-> +       return clk;
+[auto build test ERROR on 846bd2225ec3cfa8be046655e02b9457ed41973e]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mukesh-Ojha/dt-bindings-remoteproc-qcom-pas-Add-iommus-property/20250921-041055
+base:   846bd2225ec3cfa8be046655e02b9457ed41973e
+patch link:    https://lore.kernel.org/r/20250921-kvm_rproc_pas-v3-10-458f09647920%40oss.qualcomm.com
+patch subject: [PATCH v3 10/12] remoteproc: pas: Extend parse_fw callback to fetch resources via SMC call
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20250922/202509220147.nsw5xumc-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250922/202509220147.nsw5xumc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509220147.nsw5xumc-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/remoteproc/qcom_q6v5_pas.c: In function 'qcom_pas_parse_firmware':
+>> drivers/remoteproc/qcom_q6v5_pas.c:452:45: error: passing argument 1 of 'qcom_scm_pas_get_rsc_table' makes pointer from integer without a cast [-Wint-conversion]
+     452 |         ret = qcom_scm_pas_get_rsc_table(pas->pas_id, table, table_sz, &output_rt,
+         |                                          ~~~^~~~~~~~
+         |                                             |
+         |                                             int
+   In file included from drivers/remoteproc/qcom_q6v5_pas.c:22:
+   include/linux/firmware/qcom/qcom_scm.h:97:57: note: expected 'struct qcom_scm_pas_ctx *' but argument is of type 'int'
+      97 | int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_ctx *ctx, void *input_rt,
+         |                                ~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+
+
+vim +/qcom_scm_pas_get_rsc_table +452 drivers/remoteproc/qcom_q6v5_pas.c
+
+   411	
+   412	static int qcom_pas_parse_firmware(struct rproc *rproc, const struct firmware *fw)
+   413	{
+   414		size_t output_rt_size = MAX_RSCTABLE_SIZE;
+   415		struct qcom_pas *pas = rproc->priv;
+   416		struct resource_table *table = NULL;
+   417		void *output_rt;
+   418		size_t table_sz;
+   419		int ret;
+   420	
+   421		ret = qcom_register_dump_segments(rproc, fw);
+   422		if (ret) {
+   423			dev_err(pas->dev, "Error in registering dump segments\n");
+   424			return ret;
+   425		}
+   426	
+   427		if (!rproc->has_iommu)
+   428			return ret;
+   429	
+   430		ret = rproc_elf_load_rsc_table(rproc, fw);
+   431		if (ret)
+   432			dev_info(&rproc->dev, "Error in loading resource table from firmware\n");
+   433	
+   434		table = rproc->table_ptr;
+   435		table_sz = rproc->table_sz;
+   436	
+   437		/*
+   438		 * Qualcomm remote processor may rely on static and dynamic resources for
+   439		 * it to be functional. For most of the Qualcomm SoCs, when run with Gunyah
+   440		 * or older QHEE hypervisor, all the resources whether it is static or dynamic,
+   441		 * is managed by present hypervisor. Dynamic resources if it is present for
+   442		 * a remote processor will always be coming from secure world via SMC call
+   443		 * while static resources may be present in remote processor firmware binary
+   444		 * or it may be coming from SMC call along with dynamic resources.
+   445		 *
+   446		 * Here, we call rproc_elf_load_rsc_table() to check firmware binary has resources
+   447		 * or not and if it is not having then we pass NULL and zero as input resource
+   448		 * table pointer and size respectively to the argument of qcom_scm_pas_get_rsc_table()
+   449		 * and this is even true for Qualcomm remote processor who does follow remoteproc
+   450		 * framework.
+   451		 */
+ > 452		ret = qcom_scm_pas_get_rsc_table(pas->pas_id, table, table_sz, &output_rt,
+   453						 &output_rt_size);
+   454		if (ret) {
+   455			dev_err(pas->dev, "error %d getting resource_table\n", ret);
+   456			return ret;
+   457		}
+   458	
+   459		kfree(rproc->cached_table);
+   460		rproc->cached_table = output_rt;
+   461		rproc->table_ptr = rproc->cached_table;
+   462		rproc->table_sz = output_rt_size;
+   463	
+   464		return ret;
+   465	}
+   466	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
