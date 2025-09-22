@@ -1,178 +1,141 @@
-Return-Path: <devicetree+bounces-220095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7F5B91D8E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:08:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 840BFB91DCF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:12:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0512D1886C32
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:08:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 423282A361A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED9E27E05E;
-	Mon, 22 Sep 2025 15:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OVr1+wwM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957672DC785;
+	Mon, 22 Sep 2025 15:12:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD2C2472A5;
-	Mon, 22 Sep 2025 15:07:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07332836F
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 15:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758553678; cv=none; b=NbIYmoXYHcuLAbJmeNJUEX+y5K9G/CxwjdH3BYmJpZrxyoZ/NBNtNL3Imq/WAUOoZS27J6b7o+LW4fCj5OBnMw3qN/lJy1jcb5ld9Tr83GJHmfnOOBcgIqB/qK0kdV6b+5OTx+61tIraH3bQQrfuhTlUHTbN9y88iXBm2tjqY2w=
+	t=1758553933; cv=none; b=q6bNOycHL/m8kJmJG0FtT7UjkmZl36fN5hgBeQK0tdV0AK3L8un9Z0yDC+ZS4i6xsEx/FUdMbfTFyO96ZMLnVZM4OkxrgqniA0UCU/1sBu6py/pBD8QmVhyRDXlbqSt52cH3C/o06gBdb7rZg2tOvi1o8xzRxEoUSgqu41r5O2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758553678; c=relaxed/simple;
-	bh=vbLkyYO1ho2QXwgTCTsuqDjxvmrQw+xxt3g7fmU6nZ4=;
+	s=arc-20240116; t=1758553933; c=relaxed/simple;
+	bh=LaIN3J/vQ9YPefRubVXI2BAIJgu1RFfWNe2oY4chlAI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gk+yKwCDaNKggKtOVADKuajHdizfPtik4DLVXGSgc/+a+hSG7GDOjC8eL4pmGOckllRReVV0XMO4urTgoGP9ECgb0GLp1aWxzns9yiuXl7xzQn+MR3SB5P7wNB72t+d2KeR744Lp06C0IxC1kgEk1BMzoxlLPyIC+aPGyCgk3Zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVr1+wwM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A63E6C4CEF0;
-	Mon, 22 Sep 2025 15:07:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758553677;
-	bh=vbLkyYO1ho2QXwgTCTsuqDjxvmrQw+xxt3g7fmU6nZ4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OVr1+wwMiIk7xARqd87WYOOfkEkqFyxyxwimW7Dnlfd45uNXpOpOljuAQWdk+j+A0
-	 VmhcjKz7iCaYTsUzfbB28gZQtvHT73G+IcaxhfHia0l8FW5LhAXLIoGvq42ve27NfC
-	 eLZa/8HCOphRn8xOHJwZeGVsNIljhAtWntTg+DaQkvjfCrWJIHRV/IE4TdI7P2W83O
-	 B3NdwRjkhGLxQQKn4OwQjQ9wk15ZPVFf0gJxb26dpQoNJTq0pyf83qlWKhKVLWw+9z
-	 aNuRK0sLaQPszJEl/YCuAtHjcUcMjFtMGR0d8bn5HKKqD1n9SaeUtM/IqZB9Hy4jrY
-	 fBMZgSk0mrZQw==
-Date: Mon, 22 Sep 2025 10:07:56 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
-	linux-amarula@amarulasolutions.com,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	Jeff LaBundy <jeff@labundy.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] dt-bindings: touchscreen: add
- touchscreen-glitch-threshold-ns property
-Message-ID: <20250922150756.GA4067300-robh@kernel.org>
-References: <20250918155240.2536852-1-dario.binacchi@amarulasolutions.com>
- <20250918155240.2536852-4-dario.binacchi@amarulasolutions.com>
- <20250918200445.GA2529753-robh@kernel.org>
- <CABGWkvqX9aCxam6UMYsUBkwnMJrMNKjVKrqi5Ca7O5Jk8xRTAA@mail.gmail.com>
- <20250919143831.GA862818-robh@kernel.org>
- <CABGWkvrxOTzAcqWHLvuqk_7WFxybheSZFnMkqnksfkPi6wXcpQ@mail.gmail.com>
- <20250919204436.GA2176045-robh@kernel.org>
- <CABGWkvr8X5a0ezeu6HDCMfjh+xbg-bQq4cLwzRD2BvoJsvH_BA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SwSt/zhjaspDlbM+UWIXN4U03SXG6pbsI/AyOdhahlhnF3DI0/JYEj7tPg+ucqO5c/mGm0oK9zqlHU8xEawU2rpox5+8CI+wPKUtul1rBlai5bCJwl1MHVmiqyDddCLT+v/Io+Po/w5eeZJd5Qh/fRjHzwdbrQFaTCqbQUZBQhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1v0iCr-0006IN-Ek; Mon, 22 Sep 2025 17:11:57 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1v0iCq-002c4x-0Q;
+	Mon, 22 Sep 2025 17:11:56 +0200
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id AD4954771B9;
+	Mon, 22 Sep 2025 15:11:55 +0000 (UTC)
+Date: Mon, 22 Sep 2025 17:11:55 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
+	mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com, 
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>, mani@kernel.org, thomas.kopp@microchip.com, 
+	mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
+Message-ID: <20250922-ermine-of-perpetual-culture-41ea3a-mkl@pengutronix.de>
+References: <20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com>
+ <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
+ <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
+ <20250918-daffy-steady-griffin-5299ac-mkl@pengutronix.de>
+ <CAMRc=Mfypwopu6daCBzg90i98dbO-7rwAehkiNkA-tF074fO5w@mail.gmail.com>
+ <20250922-magnetic-dashing-piculet-97f38d-mkl@pengutronix.de>
+ <CAMRc=MdEkp6Mztoe44Nv0orX+f4ops7nh8XS7hbJS2KvQFc3Fg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fgd45ycva64pju5t"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABGWkvr8X5a0ezeu6HDCMfjh+xbg-bQq4cLwzRD2BvoJsvH_BA@mail.gmail.com>
+In-Reply-To: <CAMRc=MdEkp6Mztoe44Nv0orX+f4ops7nh8XS7hbJS2KvQFc3Fg@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, Sep 20, 2025 at 11:39:59AM +0200, Dario Binacchi wrote:
-> On Fri, Sep 19, 2025 at 10:44 PM Rob Herring <robh@kernel.org> wrote:
+
+--fgd45ycva64pju5t
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
+MIME-Version: 1.0
+
+On 22.09.2025 16:49:07, Bartosz Golaszewski wrote:
+> On Mon, Sep 22, 2025 at 4:43=E2=80=AFPM Marc Kleine-Budde <mkl@pengutroni=
+x.de> wrote:
 > >
-> > On Fri, Sep 19, 2025 at 05:12:42PM +0200, Dario Binacchi wrote:
-> > > On Fri, Sep 19, 2025 at 4:38 PM Rob Herring <robh@kernel.org> wrote:
+> > On 22.09.2025 16:28:53, Bartosz Golaszewski wrote:
+> > > > > You must be rebased on pre v6.17 code, this will not compile with=
+ current
+> > > > > mainline.
 > > > >
-> > > > On Thu, Sep 18, 2025 at 10:37:37PM +0200, Dario Binacchi wrote:
-> > > > > On Thu, Sep 18, 2025 at 10:04 PM Rob Herring <robh@kernel.org> wrote:
-> > > > > >
-> > > > > > On Thu, Sep 18, 2025 at 05:52:31PM +0200, Dario Binacchi wrote:
-> > > > > > > Add support for glitch threshold configuration. A detected signal is valid
-> > > > > > > only if it lasts longer than the set threshold; otherwise, it is regarded
-> > > > > > > as a glitch.
-> > > > > > >
-> > > > > > > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > > > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > > >
-> > > > > > > ---
-> > > > > > >
-> > > > > > > Changes in v5:
-> > > > > > > - Add Acked-by tag of Conor Dooley
-> > > > > > >
-> > > > > > > Changes in v2:
-> > > > > > > - Added in v2.
-> > > > > > >
-> > > > > > >  .../devicetree/bindings/input/touchscreen/touchscreen.yaml    | 4 ++++
-> > > > > > >  1 file changed, 4 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > > > index 3e3572aa483a..a60b4d08620d 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-> > > > > > > @@ -206,6 +206,10 @@ properties:
-> > > > > > >
-> > > > > > >          unevaluatedProperties: false
-> > > > > > >
-> > > > > > > +  touchscreen-glitch-threshold-ns:
-> > > > > > > +    description: Minimum duration in nanoseconds a signal must remain stable
-> > > > > > > +      to be considered valid.
-> > > > > >
-> > > > > > What's wrong with debounce-delay-ms?
-> > > > >
-> > > > > Do you mean that I should rename touchscreen-glitch-threshold-ns to
-> > > > > debounce-delay-ms?
-> > > >
-> > > > I mean that's the common property we already have, so use it or explain
-> > > > why you aren't using it. I suppose the definition is technically a bit
-> > > > different if it's purely a s/w delay vs. h/w monitoring of the signal
-> > > > state. I don't think it matters if the interpretation by each driver is
-> > > > a bit different.
-> > > >
-> > > > Maybe msec is not enough resolution for you could be another reason?
+> > > > You mean "post" v6.17? Best rebase to latest net-next/main, which
+> > > > already contains the new signatures for the GPIO callbacks.
 > > >
-> > > Yes, this is the main reason. As specified in the following patch:
-> > >   v5 4/6 dt-bindings: touchscreen: fsl,imx6ul-tsc: support glitch threshold
-> > >
-> > > Drivers must convert this value to IPG clock cycles and map
-> > > it to one of the four discrete thresholds exposed by the
-> > > TSC_DEBUG_MODE2 register:
-> > >
-> > >   0: 8191 IPG cycles
-> > >   1: 4095 IPG cycles
-> > >   2: 2047 IPG cycles
-> > >   3: 1023 IPG cycles
-> > >
-> > > In my case, the IPG clock runs at 66 MHz, which corresponds to:
-> > >
-> > > 124 µs for 0
-> > > 62 µs for 1
-> > > 31 us for 2
-> > > 15 us for 3
-> > >
-> > > So using milliseconds would not fit my use case. A possible trade-off
-> > > could be to use debounce-delay-us. Would that be acceptable?
+> > > No, you read that right. The signature of the set() and set_multiple()
+> > > callbacks changed in v6.17-rc1 so Viken must have rebased his changes
+> > > on v6.16 or earlier.
 > >
-> > I agree it wouldn't map to what the h/w provides, but is what the h/w
-> > provides actually useful? There's plenty of h/w designed that's not
-> > useful. 15us is quite short for a glitch. Do you have an actual cases
-> > where the different values above are needed?
-> 
-> Considering an IPG clock at 66 MHz, currently at reset the deglitch
-> filter is set to 124 µs,
-> the driver sets it to 31 µs with a hardcoded value, and in my use case
-> I need to set it to 62 µs,
+> > I'm not sure if I understand you correctly. This series must apply on
+> > current net-next/main, which is v6.17-rc6.
+>=20
+> The GPIO driver interface changed between v6.16 and v6.17-rc1. This
+> series uses the old interface. It will not apply on top of v6.17-rc6.
 
-It would be helpful if the commit message explained why. What platform 
-needs it and what happens without this support added?
+ACK, apparently we had a communication problem about what we exactly
+pre/post and earlier means.
 
-> as you can see in the patch:
-> https://lore.kernel.org/all/20250918155240.2536852-6-dario.binacchi@amarulasolutions.com/
-> and its handling in
-> https://lore.kernel.org/all/20250918155240.2536852-7-dario.binacchi@amarulasolutions.com/
-> 
-> Another option could be to use a specific binding for the
-> fsl,imx6ul-tsc controller, as I did in the
-> earlier versions of the series.
+regards,
+Marc
 
-No, add debounce-delay-us to the common binding.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-Rob
+--fgd45ycva64pju5t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjRZzcACgkQDHRl3/mQ
+kZypmAf+OPO1II+zolxOvU49bEuzELcZ/w0zUYi15K9jRVgsgzyTszm0QWCs9F5k
+RhMeKPx5ABC3chks/wk5f3iXEkIk194EKHOI3x3gjcBzGvHI2FbQfXjqQOHcfQh7
+UllDjL9TfrFatFTt9PyTNWhuqejsyokBOwmb+otuwjgDyxRkTdYEGmaurZXTfYS0
+ZsJ0lSzgiI+JnyK+wN4td5U1FY0VG+uvG02nBWb/MLxHAuJaRNtAQfo76J+FNf05
+kLXLTczvfStOfVuIm/fPVCZH1MES81u/rDIIERo5/1Yt0JSx+s3P/Je4PMp/cwik
+YmZKhOwuNlrjXfjDfLcEOnWApGIiAw==
+=vOMn
+-----END PGP SIGNATURE-----
+
+--fgd45ycva64pju5t--
 
