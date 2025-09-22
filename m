@@ -1,71 +1,61 @@
-Return-Path: <devicetree+bounces-220150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD82B92492
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:45:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B486EB924E6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:50:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F92144096C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:45:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E50A7A879C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3600126C1E;
-	Mon, 22 Sep 2025 16:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9495831194A;
+	Mon, 22 Sep 2025 16:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKl1iuRQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgRpaLe9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9821979CD;
-	Mon, 22 Sep 2025 16:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6491330CDA6;
+	Mon, 22 Sep 2025 16:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758559543; cv=none; b=adrb8LO9Cvy8MBQkdvj5F8YKtDVN31Y6HbgZQ0kgpvXTeCK6pwaF9/x32ETHWh+9pv0H0RYZqM+eA9JpYEIOIp7cSM5kK+Xd7k1F8XxhDUcdDs9mIx6VKa1zyTlIplwwZF3Adhla5k+zLiMzCp9/YYBg8K/UHghAblXRr0jUUg8=
+	t=1758559848; cv=none; b=ThIvZ9EJ+Lg/XrwHIrCFehpJtK1LA1UAYW34pyqr48loaZsXhlJyc3qAgG4QOdHLau2TcpfVHRi/KcFefsNv+bz4sjWffo2AHYV/NVeuVN+OYYmDQexPd3mhAQ1GHz5Es1ssG5wI3YO9++Wr4efHUJP/zAYxfKM9hg23l8sN5f8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758559543; c=relaxed/simple;
-	bh=DfqJ03fjXW2q/FSPPzCRU01fL5qNfhhdgRjHbspkYGQ=;
+	s=arc-20240116; t=1758559848; c=relaxed/simple;
+	bh=SmYHS6MJbi0vRw6qB/2BTayFi9UqFpognQacTg5pVXs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BjY7A4a4ddE6baOzlEN+uL56UbbkXXiXplcqbMyWljW+G4TFlyqpaHhz6hlTkkUtX31NiQkYqFuczoxP8gjWg8GvbXtNcywQ/VHzcJQD40DnKwmEjBZZ0MJ83hDHIx+E+/mJTJJGKwgydXskuDAm12ZYvY4l3LVKIQbr4VXvA8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKl1iuRQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C775BC4CEF0;
-	Mon, 22 Sep 2025 16:45:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZAwpqaA0F125/dw5uDlUq5GTanaC1O+xHhcKy3G5LBfGXwt02Dkz8qbEjB8mvqMima2ez+ySB1hLm8X0Ah5RhUs7wOdP6cS1OVv3rn7NUyXM29Lub42zoDQKGO5pt4YxJdIeUYkmPQARLDK8GvEmHMEr8uGNgzvu/yuHDL75Zxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgRpaLe9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D97B2C4CEF0;
+	Mon, 22 Sep 2025 16:50:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758559543;
-	bh=DfqJ03fjXW2q/FSPPzCRU01fL5qNfhhdgRjHbspkYGQ=;
+	s=k20201202; t=1758559848;
+	bh=SmYHS6MJbi0vRw6qB/2BTayFi9UqFpognQacTg5pVXs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mKl1iuRQvPvgPk6QutkItO5vT3cBEu9RlRTBLhhabF+BE194f1VIaDU1tP9sC6Xoy
-	 FLitfi3RW0c9obWhyytPyDyqWL45qIU0RvEObco3E2Re20dNoA7c7tI+dXumwr0s0H
-	 WsXIGuko64ayHA5rbki3iCrd3VeSqI69yGtP+uNOsIeerMOykExYCq8U7GH2dW2VdB
-	 +tacsPNJa04ERnRYA27O2Xs85TBphveNa1AYOPhR6LOgnKgLpsubYrrwScyoFShhdi
-	 z0jCSCXVH+bIv/OAMLYNuXCUUUftcqgjitUVt1ACDrq2vOf15KosQB3WID1C/mKFY0
-	 60voZPXNdJc1Q==
-Date: Mon, 22 Sep 2025 11:45:42 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org, Simona Vetter <simona@ffwll.ch>,
-	li.liu@oss.qualcomm.com, Sean Paul <sean@poorly.run>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	linux-arm-msm@vger.kernel.org, David Airlie <airlied@gmail.com>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	devicetree@vger.kernel.org,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	freedreno@lists.freedesktop.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>, yongxing.mou@oss.qualcomm.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	fange.zhang@oss.qualcomm.com
-Subject: Re: [PATCH v3] dt-bindings: display/msm: dp-controller: Add SM6150
-Message-ID: <175855954154.407393.7360010734247803300.robh@kernel.org>
-References: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+	b=JgRpaLe9mPRAsaZBexDSLcYyDGflu/cGHmjb5A9woWtWBlZh8F+Y5dWKZcg7Z4z0i
+	 HtICrPn/KFhQzRUKM108f42vF4MgHew/4egR5ogSg81mN/p4u4TKOVl54Zl3aXz0t1
+	 ggStJsUqvvbf0cVxY612FdiDDuN2pJcbXZ1tgNrEoQ5AhUrdCzatcgF/e/Dtvilh4q
+	 PkhvkyYOEGn1hxon29vLtkRZNnuYG/dRHVy/HLewwRhbvdl0L6RZMfeI/Mxc5/A2C+
+	 KVasxB4FpAIaSBIVys8eBlJVfEyGlJeMrr/JJfyLieBk3hyCck6PGHCPPWwsZfeZ9L
+	 hcxxm1LYYEsxQ==
+Date: Mon, 22 Sep 2025 11:50:47 -0500
+From: Rob Herring <robh@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, mani@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: PCI: dwc: Add one more reference
+ clock
+Message-ID: <20250922165047.GA436960-robh@kernel.org>
+References: <20250917045238.1048484-1-hongxing.zhu@nxp.com>
+ <20250917045238.1048484-2-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,38 +64,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+In-Reply-To: <20250917045238.1048484-2-hongxing.zhu@nxp.com>
 
+On Wed, Sep 17, 2025 at 12:52:36PM +0800, Richard Zhu wrote:
+> Add one more reference clock "extref" for a reference clock that comes
+> from external crystal oscillator.
 
-On Tue, 16 Sep 2025 20:11:03 +0800, Xiangxu Yin wrote:
-> Add DisplayPort controller binding for Qualcomm SM6150 SoC.
-> SM6150 uses the same controller IP as SM8150.
-> Declare 'qcom,sm6150-dp' as a fallback compatible to
-> 'qcom,sm8150-dp' and 'qcom,sm8350-dp' for consistency with existing
-> bindings and to ensure correct matching and future clarity.
+See what I just commented on v5.
+
 > 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> This series splits the SM6150 dp-controller definition from the
-> '[v3] Add DisplayPort support for QCS615 platform' series and rebases
-> 'dt-bindings: msm/dp: Add support for 4 pixel streams'.
-> 
-> The devicetree modification for DisplayPort on SM6150 will be provided
-> in a future patch.
-> ---
-> Changes in v3:
-> - Update binding fallback chain to "qcom,sm6150-dp", "qcom,sm8150-dp", "qcom,sm8350-dp". [Dmitry]
-> - Link to v2: https://lore.kernel.org/r/20250916-add-dp-controller-support-for-sm6150-v2-1-e466da9bb77d@oss.qualcomm.com
-> 
-> Changes in v2:
-> - Update commit message and binding with fallback configuration. [Dmitry]
-> - Drop driver patch since SM6150 is declared as a fallback to 'qcom-sm8350-dp'.
-> - Link to v1: https://lore.kernel.org/r/20250912-add-dp-controller-support-for-sm6150-v1-0-02b34b7b719d@oss.qualcomm.com
-> ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 6 ++++++
+>  .../devicetree/bindings/pci/snps,dw-pcie-common.yaml        | 6 ++++++
 >  1 file changed, 6 insertions(+)
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> index 34594972d8db..0134a759185e 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> @@ -105,6 +105,12 @@ properties:
+>              define it with this name (for instance pipe, core and aux can
+>              be connected to a single source of the periodic signal).
+>            const: ref
+> +        - description:
+> +            Some dwc wrappers (like i.MX95 PCIes) have two reference clock
+> +            inputs, one from an internal PLL, the other from an off-chip crystal
+> +            oscillator. If present, 'extref' refers to a reference clock from
+> +            an external oscillator.
+> +          const: extref
+>          - description:
+>              Clock for the PHY registers interface. Originally this is
+>              a PHY-viewport-based interface, but some platform may have
+> -- 
+> 2.37.1
+> 
 
