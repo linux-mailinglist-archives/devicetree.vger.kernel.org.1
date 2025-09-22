@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-220202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AFFAB93146
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:46:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CEFB93237
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ABA67AEE65
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:44:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F091E175D68
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59552E765E;
-	Mon, 22 Sep 2025 19:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902AC2F3C2F;
+	Mon, 22 Sep 2025 19:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uvw2dSO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eq3Hhmzz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1EF1C1ADB;
-	Mon, 22 Sep 2025 19:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633FD18C2C;
+	Mon, 22 Sep 2025 19:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758570390; cv=none; b=bNQ2w8VS2XA8iXZBDt/aaRzxgzfKMl7BK8i11aZMlux2mKBmcb3DNO1u0jQYhrAljWw0wHaZH5VrOq15sEi5P7HdrEUkAaGggIthmTj9bbuJwNcInB61G0mM2OHOs6XEbIcdkkDF1mqVHWMDPoIeGkxkG6DpXyU9SHc47mU5uPU=
+	t=1758570635; cv=none; b=MDwEwwZUNjEyJlSBNpZ61PD52iWpqc0OvqiiDF4ikQIcCcOynziwV4YEe9pjj9O+4ZarvbDkP52StJmPzowVDo9jQRcnUBvD3QF6WEJ9lnMQ9E1CsyRsa7a4CvW7sqBVZreY1UZcQFoZjKQ8zesdjf7pSany325Rzh/845PVwLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758570390; c=relaxed/simple;
-	bh=9mwBHQlyy1lyCqbjaRGhEhTY0naii4PSOmHAewQhrjo=;
+	s=arc-20240116; t=1758570635; c=relaxed/simple;
+	bh=JgLQHFBkmZ+S8gkaMiPw+41o8BKwW0HfdBhWNAIaIPQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y9MbBkBK8Uj8k+EjXvuN/eNRnq3TOM5umOW403WnQlDiNi8MJRfePzA/tg8+2Kbfud9Dg0BO8t+SB2FsW1TEnaguUVDW+9R3uVK83C7vmbLGx7sb2Ogi4dlwrhLjZHeqYBw8Yq++kA6iLXxeiDrJ0ayOePyFAX0AhUi+tgosBBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uvw2dSO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ACFFC4CEF7;
-	Mon, 22 Sep 2025 19:46:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qcw4Vtr7Gil6S6EgnjRxSOMJ1jBfSFUu1h6xdhfgHla8QW65zz5MjjdaZmrt1ZPKbL8Wk+cUD9UpXZQUZ8pjTq05+A4nhbMi5bRm7MC2NtH9rUvRyRPSGOK9Wpb1R1jR+3XcOXW8TrzSyRpeEtoq5qAxgatfOF1UsumgLDYJoio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eq3Hhmzz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A65E2C4CEF0;
+	Mon, 22 Sep 2025 19:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758570390;
-	bh=9mwBHQlyy1lyCqbjaRGhEhTY0naii4PSOmHAewQhrjo=;
+	s=k20201202; t=1758570635;
+	bh=JgLQHFBkmZ+S8gkaMiPw+41o8BKwW0HfdBhWNAIaIPQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uvw2dSO+0QkBvqFTP4T6g8s7hpi4WyIjvBkAZRHVIRSrFJ4394ah6Pn10JFGaf7J7
-	 PWx21DYg74+ax0MwrsKREwS3ZtT5wS2+TqmcWdrP3cyhT+PomjPU52PEJrudHDB/hH
-	 +/QMC5CqUJw6o/H9vZGUCooXtjXz402woUFtuNtoOdUHpJ0dFg7OQ4CDI/wwwDXPu+
-	 OowIsoq2M+V3SD4NqX7TEI272+RiUB2cwRVnlEh9g8eGL56v4lcJYxJNxnmsM2H6A9
-	 TKcIWe4d3foqCtzelYSShwIHeBcirJuw4nhYiYvwpwmAHS0Gfyod3Inp7kQrcFBnJF
-	 IxkN4IUiJS1gw==
-Date: Mon, 22 Sep 2025 14:46:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ajay Neeli <ajay.neeli@amd.com>
-Cc: martin.petersen@oracle.com, James.Bottomley@hansenpartnership.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, pedrom.sousa@synopsys.com,
-	alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, git@amd.com,
-	michal.simek@amd.com, srinivas.goud@amd.com,
-	radhey.shyam.pandey@amd.com,
-	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Subject: Re: [PATCH 1/5] dt-bindings: ufs: amd-versal2: Add support for AMD
- Versal Gen 2 UFS Host Controller
-Message-ID: <20250922194629.GA905336-robh@kernel.org>
-References: <20250919123835.17899-1-ajay.neeli@amd.com>
- <20250919123835.17899-2-ajay.neeli@amd.com>
+	b=eq3HhmzzMi36uwfqkhClHjhpl+S9BA68fd5sFhlPgUAeZrY96QuYy9gxImTYMUfiv
+	 CGEtyjX2PmHYJ6c2q06VCVw+j4p7UhZ4wlb1UzfitdnwdQ2bHZajnTC28wPeS+D7Yu
+	 bD953/e628+SHiat6Tk1L+Afea5w3wUqs/DJDXdVhZYjDkP9VZQST99QGxd2LXbZ1G
+	 hYl8j1MyYblb4OWFip8qjYNIBJGA9jeBRCmW6Ab+XOgzII/uLqe7GUD2Lt7UheqQAO
+	 ZfShDqsaVm3AadRLs1xGvb+31G0ZFJVeDCOGQa7DxbIBKzF7liiwHXiUrEE85he7Ql
+	 42vUx85UYuJTg==
+Date: Mon, 22 Sep 2025 14:50:33 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 03/11] dt-bindings: fsl,fpga-qixis: describe the gpio
+ child node found on LS1046AQDS
+Message-ID: <175857063304.1062079.93303890842024200.robh@kernel.org>
+References: <20250919132515.1895640-1-ioana.ciornei@nxp.com>
+ <20250919132515.1895640-4-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,99 +64,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919123835.17899-2-ajay.neeli@amd.com>
+In-Reply-To: <20250919132515.1895640-4-ioana.ciornei@nxp.com>
 
-On Fri, Sep 19, 2025 at 06:08:31PM +0530, Ajay Neeli wrote:
-> From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+
+On Fri, 19 Sep 2025 16:25:07 +0300, Ioana Ciornei wrote:
+> Extend the list of accepted child nodes with the QIXIS FPGA based GPIO
+> controller and explicitly list its compatible string
+> fsl,ls1046aqds-fpga-gpio-stat-pres2 as the only one accepted.
 > 
-> Add devicetree document for AMD Versal Gen 2 UFS Host Controller.
-> This includes clocks and clock-names as mandated by UFS common bindings.
-> 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> Co-developed-by: Ajay Neeli <ajay.neeli@amd.com>
-> Signed-off-by: Ajay Neeli <ajay.neeli@amd.com>
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 > ---
->  .../devicetree/bindings/ufs/amd,versal2-ufs.yaml   | 61 ++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ufs/amd,versal2-ufs.yaml
+> Changes in v3:
+> - new patch
+> Changes in v4:
+> - none
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/amd,versal2-ufs.yaml b/Documentation/devicetree/bindings/ufs/amd,versal2-ufs.yaml
-> new file mode 100644
-> index 0000000..9f55949
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/amd,versal2-ufs.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/amd,versal2-ufs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD Versal Gen 2 UFS Host Controller
-> +
-> +maintainers:
-> +  - Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> +
-> +allOf:
-> +  - $ref: ufs-common.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: amd,versal2-ufs
-
-2 is versal2 or gen 2? I read it as the former, but everything else in 
-this patchset says the latter. compatibles should be based on SoC names, 
-not versions. Or does "gen 2" mean Gen 2 UFS specification (if there is 
-such a thing)?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: ufshc
-> +      - const: ufsphy
-
-"ufs" part is redundant. Drop.
-
-> +
-> +required:
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    ufs@f10b0000 {
-> +        compatible = "amd,versal2-ufs";
-> +        reg = <0xf10b0000 0x1000>;
-> +        clocks = <&ufs_core_clk>;
-> +        clock-names = "core";
-> +        resets = <&scmi_reset 4>, <&scmi_reset 35>;
-> +        reset-names = "ufshc", "ufsphy";
-> +        interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
-> +        freq-table-hz = <0 0>;
-> +    };
-> -- 
-> 1.8.3.1
+>  .../devicetree/bindings/board/fsl,fpga-qixis.yaml      | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
