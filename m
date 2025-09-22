@@ -1,243 +1,770 @@
-Return-Path: <devicetree+bounces-219897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20E5B8F20A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 08:24:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6712BB8F2A6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 08:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8790A189E0F5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 06:25:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A57F189F145
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 06:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 733C9256C83;
-	Mon, 22 Sep 2025 06:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674512EFD9E;
+	Mon, 22 Sep 2025 06:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="fdq31dF3"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="Qotb+mlR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010071.outbound.protection.outlook.com [52.101.201.71])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14E924A063;
-	Mon, 22 Sep 2025 06:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758522252; cv=fail; b=l8SdGp0oY6/dk8ToVxltONzrF7GgTdT1X9Bm1p90EKM54btIcLRn2tOdPHheLJZg4D2l7eyTmCpaMWBnySueiS0DlGp8gELnYBz3yG5cd7lWeucJo9+OgCiXTwtdM/sk39Opz1CgbGGH3mtkQk5sy/oWf8R+iYkbsTuP/co+NRY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758522252; c=relaxed/simple;
-	bh=VcxAXadmhQUUwlaoACxVtGw6M48OhnC/hXB+8d1GaEE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IENrbUMTQ25+OzLzRTX0p/Orlsnaxxvt68+OmyCQ2K1NTW0f7Uv0RDC7yuMRv63y6N5DjpgdoETXF/6aF451t9xQhuItzc6HpdvAO1UL/bsIBDZsNNEPlUvX4nft1U4oZlFjtIbXfPstRfD/V0DIWpvh+z3w5ydbEuhk3AaUtnU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=fdq31dF3; arc=fail smtp.client-ip=52.101.201.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S2LAHG+cFa9K1lHYcOHs6/OX2WTJZm2z7mYJcyOtNvYGzr/6Hsn5CbKEwSHRwh1N32y5KkATMsuy7TEpgBUpgJF78uowyuCPRdqaiaMDkfNgPPdLC9Z6JlsKHu7xDZGegu9pVhb7zfhmoGnHu/JTx9uvSO7ntrBDFjJRSR0kPhTbBcV5mjU8OhXK7R0Y/8hhq26yZ8D873VsJPiczYdKNwbwOdXko2ZipgINeUD7U1LJ0Ve8b6CEjXgRP/iG9j7AwJ9g08sPvGQJobUPIDSIcOke0QnHYc3cbySfUt2k4pXHxobbjjvHaYsi8y0zB6kSF2uTxVylZQxgbehADF8g+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bg+2vwqo696TUPQHOUVyrcU6E+9SikgKZtT3GZxAohk=;
- b=CFkkosj2ZWvBKi2tT2dzmbbBIm+/uDeq5VYJRLB+o3uRMn6vfKr9eG4B84l5y9cCdPClGpqAfHhCITLPlm7ikHpdPByGKhgoblj6R3USdTK48NWvjV9Lxtbw6gOFor9cDjsPSEK4O2Zvml4J6aggB07dlPSdXTVaT3NKcoYsEV0/1PPO5/91qdQaVC6qYLVk4eCF3rLyjToTzvP8QEh/nixauE0FV+4NGqkMb/YVtf8+cFFSPQvLK66vxomCfzZflAqep4LJu6g/YxC+Hx20jCBgcIpg8zSMqiQJkUTPuIxt3+7jrZ/CG+wuUPVL/3HTtmuL9hvx7Ie0zuFD2E9Zfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bg+2vwqo696TUPQHOUVyrcU6E+9SikgKZtT3GZxAohk=;
- b=fdq31dF3cuV62eafHUPth6JtzoCYT6DdHKdE+m1hxOfMl4Kj4niR+R71IM+d/nw4DbM6f+0jhwSNuI/MSrdEjFox+POHYqVJU3nIA10tGYb/Ir4/tkFuLMjs1B8wm000+VuquVyE6tGaWMFW+mF3SPc8/ni2NBKQ+RUAVtTmHJn6/zGiEhvnV9rzpS/Tj22+nOkUlL/gN37JBN50XewP0+KSo6uSMHl+RMOuzUGEuXqRxkLGu2EZeNdTGU5uMkY5lywRVxazZqogp6/QfdMhLo0UgqLOgKyex60l2vPklvnr8alvhWcFEbrbbC5N+3R5Ulgny1fH1B9WiG4jneLt/w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB6494.namprd12.prod.outlook.com (2603:10b6:8:ba::19) by
- DM4PR12MB6086.namprd12.prod.outlook.com (2603:10b6:8:b2::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.20; Mon, 22 Sep 2025 06:24:07 +0000
-Received: from DM4PR12MB6494.namprd12.prod.outlook.com
- ([fe80::346b:2daf:d648:2e11]) by DM4PR12MB6494.namprd12.prod.outlook.com
- ([fe80::346b:2daf:d648:2e11%6]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
- 06:24:07 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Osipenko <digetx@gmail.com>,
- Jonas =?UTF-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>,
- Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Subject:
- Re: [PATCH v2 18/23] staging: media: tegra-video: tegra20: increase maximum
- VI clock frequency
-Date: Mon, 22 Sep 2025 15:23:58 +0900
-Message-ID: <39551204.XM6RcZxFsP@senjougahara>
-In-Reply-To:
- <CAPVz0n2AjRPMuZbLAnc=9TriPHDLOFok+Qz3zoSpQSKX1R=cqg@mail.gmail.com>
-References:
- <20250906135345.241229-1-clamor95@gmail.com>
- <2331830.3VsfAaAtOV@senjougahara>
- <CAPVz0n2AjRPMuZbLAnc=9TriPHDLOFok+Qz3zoSpQSKX1R=cqg@mail.gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:381::14) To DM4PR12MB6494.namprd12.prod.outlook.com
- (2603:10b6:8:ba::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B8F23D7FD;
+	Mon, 22 Sep 2025 06:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758522930; cv=none; b=DIFSkM87bRuiAa0d9Q17efhaQVdx0euvMu4wjfocQ3xkokE0nngA9qaHQUx0ROEs0TkTR0E0a5zRKLEPKtjDGXTXTayC2U194ykyt+2QRH8mIx2GkGi4XgNAOjWJ75HX0QaThMG+cd46ZIZGe2s9CvaaEBJRmjMSFcOOR6IygKM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758522930; c=relaxed/simple;
+	bh=H21fEjv6yjZI+jEhU2XlE9SRiHRY5rvfF7H6lLrkv74=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CTuPmKLoqaaepNWDdVNVpRafQLrqbzjXU3ha94/BpTXAt1PF3xn8V8QpQZIxSOJPaaEsEC+4blbkLAIBtNjHA98DobTdOfZxBheYRUWZ5RbnnK61LQD0WvnoNA1JqUIvTHzOTXU+IKYoAFHKnW76Jf9Ct5X+9XAQt334/uW1h9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=Qotb+mlR; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1758522558;
+	bh=8rkcGkkSHNbg3BRN1kDct5tF5NkukCIyzIEeS3WDl34=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qotb+mlRjdAlDEHIdNKxb3p8iUNutOfEqykG66Udy7+RBiMRR1PuxgXa4Q8+h2uYd
+	 aExoCuxRP0lnBtaKjt8U+Y74Qy3Qkk6z2h92O5P48rNAKo9GffbmWYrrlWRr24nCC5
+	 OJNZYFwsIQr7s48ui0KDryP2smVGGmoDv+43fwnk=
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:713c:eb00::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id B8FDD1BA;
+	Sun, 21 Sep 2025 23:29:17 -0700 (PDT)
+Date: Sun, 21 Sep 2025 23:29:16 -0700
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Rebecca Cran <rebecca@bsdio.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
+ ALTRAD8 BMC
+Message-ID: <66c5bf80-a3ef-4984-82ce-6d1720b15d38@hatter.bewilderbeest.net>
+References: <20250917180428.810751-1-rebecca@bsdio.com>
+ <20250917180428.810751-3-rebecca@bsdio.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6494:EE_|DM4PR12MB6086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b7cbd18-bb13-42dd-d858-08ddf9a0a2b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WVFvbm9YWHZQNk1RQkVwMTJxeGgzdTdqcUVyUWswa29NRzVFNzRhVWJQeTJN?=
- =?utf-8?B?VXVHcFVRb01GZHRmVmlSbUlvNUNubWdlQ0pxYmxIdnJJbmxOa2QwdmkvRDAw?=
- =?utf-8?B?NDRoQmZQQXB4OUptR1pOMlJrbEwySTlBY3pvdHNlbGtQUGxvTUJ4bXJOTTVM?=
- =?utf-8?B?b24wbTdhTUN0S1NZR0picmQ4aWFlUzRlZmZWcmxXRXhCSVRYZzdiZXNQQ0o3?=
- =?utf-8?B?dnQ2eGo0SmtXZld6WHp1aTRoK21UTk9vTGNFeUppaE1HY0l2OWhKTVlid2ph?=
- =?utf-8?B?cklJZ29LS05UeVE2WmlLbExvL0pBamQ1THE3aGlCTVRmRFNBOFZFanlFNFBO?=
- =?utf-8?B?bmp0NzZ6ZDYxVDFWL2pRTmN2dWxKMjUzNk9VOE9wRTN6Z3ZSZU9PZ0NrQmZC?=
- =?utf-8?B?MmxtbCtMTEp6OUJHM0hrZVFFODJ1aFovWVlKWDZtN1loNG5jSnVKOVEzUFg3?=
- =?utf-8?B?WklQYTkzUVlOOC90Mkg5T1k4SnBmMGRBeUVOek0yVVBQQmxaWkNGQk9Zb0g3?=
- =?utf-8?B?d0FRcWlDUjgxcXpKYlNDdEhXSFhqYnlaUTRLMGI0Wnh5M3F0RENLWS9nZU1E?=
- =?utf-8?B?VXRDREdZbXFCL0ZuRDdrb3BLV0c4aGVVZ1JGbjVFL09kd1F0NUQ2Z1I5ZHpC?=
- =?utf-8?B?ZXNlOHhUVWpjbVpkRTJRNjdUcmp3d1Rnekg2cDRjTVBLcXFTUWE0Z25XMEtH?=
- =?utf-8?B?QjdXK3lIdElDRkJpYytBRHVYUFRjQ3FsajVrZ1psaUJsTkMvanFFM0o1eGFu?=
- =?utf-8?B?VW41amJmL3VMaUZXUjA4ajdMa0NIdVRpK25aekEzVlRGcitjT2ppaVZoREtU?=
- =?utf-8?B?MjczK013MUU1WTNYUkpvMm5OVWJUQ2FvZHFldVZ3OVl6V0xWdVNqTXRKZTFE?=
- =?utf-8?B?d25qOTBPS2dzci8wYlVueC9mM0tpNHJsczN3US9RNkU4cUQ2WWdjQmZwMGYz?=
- =?utf-8?B?dFNFMlRoYWlTendmNGxYcGt1bjlDNTc3b1VhWFpSMXRzOUFyVzdocXlnYXYr?=
- =?utf-8?B?N1pQU1M3TU9lc2hzWG5ZNmhFU0JBdEtkM3hNSVkzeWxqTU5VTXhUNmR4S1du?=
- =?utf-8?B?OS90Vi9wdUJhcjd3MnBaQ1BkVEZXV1hOMHdzeXRsN2QweWpUUXEzVGxTN2VK?=
- =?utf-8?B?cVA5YUNiOE92NU8vRysrQlN6bzhHc1orWDB6RDNoWExKZUpmQnlYT1c0bk1n?=
- =?utf-8?B?em1jZ3ZxSExra1Fxb3FreDAvZmQ3MWVnQmI1ZEVBQm52SjNuS215RUdQSEdp?=
- =?utf-8?B?WFZZUWJnK08vNXlYRTVDejdZVjVCVW9zMXl0VmZUa0kzdGw4ZXBIekRFaHA1?=
- =?utf-8?B?aDhzbVM5Z1BzcEJ2QnFJRGx0UVI3cWdmNTdjdERib1pVc0NxN2c5dzdtUW5Q?=
- =?utf-8?B?UmgxeEtUZ1NWZUNtbmtRMTdHL25jbzU5TFg3alE3Q1BTbDRPdGkxY1Zra0VZ?=
- =?utf-8?B?c1FlNHNUUmo2TU1aV0U0T2VMQnFuRU4xWHpudTFpdGJWSGtJcG1Fakl6aUJa?=
- =?utf-8?B?emloaGFqdERja0YwamxMVHZoUmFSQ2FWb0d6VFZnMlFYVUhTSy8ySENBaExm?=
- =?utf-8?B?V1JPOXJZOFArbUNxRnJEYVVvV1B0cEg3Wm5FaldyTUxxUjdwNXo3OWNZSDFT?=
- =?utf-8?B?ZnNheUdXS0dicURrNllFbW1RQUhOa2xoTEFYNFphVUN3OThoVjJXVXJ1UVgx?=
- =?utf-8?B?Z2hYWG9wS1RONTAzMG1kOXY3UEx5REZTdHVXNm9pOWFqWXRwM2VtNTNDTVc3?=
- =?utf-8?B?WmFmck54KzI4T1haWm9oNE52S2JOTVpyUVNMQVNQKzFUb2lia1hsT2M2WGpN?=
- =?utf-8?B?aHRwSVNLZkZ6SWM3OC9wS2lhb3VyNUV6NnptblZmWnBxYWFoaythbWd2NDJT?=
- =?utf-8?B?dk9qdExYcS8xU3NPeEpOeG5JR2luNFZmVW1iMUZCbEZWeFVNb1RDKy9oQjRY?=
- =?utf-8?Q?KiS4AlmLzuQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6494.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OUlsTEJXZHBUSzBMcU5McFhLNDNYYUdEZHdhTjV6TjN3K1FicHVPa1ZxWHlK?=
- =?utf-8?B?dDJWblRJdjhwbmttMnd0SEtUc2FyV1djK2FyZWRsa3pxUW12YVpxemRtWlJr?=
- =?utf-8?B?bzdKa2g4dFVSN1M3dWVOdnBwUmNNMk40Y21FTzlENFdublkvZlloZko0TkRQ?=
- =?utf-8?B?eCtlK1NCK3pEd2ROeE5SbTJnaUhGRFNveHdFZEtOZlp4NnVFVWhvcis4WU1a?=
- =?utf-8?B?aElkN2hQeUR4MUJPbDVpcy9POUVQUyt6ODRLT3hlK1NCb2FNdE1JdjBqR3lJ?=
- =?utf-8?B?ZkM0K2o3cWRCamx6c1NFdHdIRjVaTWZabzAvMUNkMGVBZ2lYd01hL3NhL0tl?=
- =?utf-8?B?T2N2d0JKZGtyYkFOUEtOMGVpUkxia3NQVG9YUUJxbkFGUFdKNkxwUzBUNW44?=
- =?utf-8?B?aFltTk9UUXpXUXgxWU1LamVaZjdZaERma1ExUjhIRERsM1lRK1JmWDFoMk5Q?=
- =?utf-8?B?ZW9jNlIzbXlydUhnL2dFNFVyenJpUWRES05oaDB5RnYvZVJOVGd4ZmVzR2N4?=
- =?utf-8?B?ZGVGVVk4eURLZFFua1JYb2lLNm5nVFYyc0FTWTlRL0N6TWN5eExXcUErVUMy?=
- =?utf-8?B?dGdOcnhzNHlzNlBJcFlwZVVZN1BqNWNhUnlyTlVpcDlyM3VoZ25SaXllcjFx?=
- =?utf-8?B?WnlsRTdralFYNE9JMTdnTEZjRFlsVWpWT0xtM3Ivb3JMazcyblloUFlTYkpO?=
- =?utf-8?B?WUtJMWxaV1FEU1RieFpMaGdNUXZzZWdzTEJPcjR2OFZBV010bFZwR01ucnBH?=
- =?utf-8?B?Q3NHQUp4MWlGSDhibk8rczIzZzA4UGtzempJMEVJWWFPdmZPQzFXOVJVUlV3?=
- =?utf-8?B?WC9UTkM5bEt1OUZsZ1QzS1hqWWMwMy9JeGVwRWE2L25YSDhlOXJsb01IK3pu?=
- =?utf-8?B?S3VxVXlHejh3ZllEalp4YTB5OXNHd0YrWFBrMVByN1U3TjN6dGptSkk3UHpB?=
- =?utf-8?B?cFdTWU03cmtXV0gvSEhWZHNTbXc1NXFWdU9ZVzFIZXhGTjhPUnNJWlNMSkxT?=
- =?utf-8?B?b1AxRzNJc2l3MVNBNCt3WkhFZk1VbCt5SENtdEFVYU81R1JqWmZINE5GL0dE?=
- =?utf-8?B?TDRtRWJ3RGI3STU3L2xCNFRkUmYwcTdLMWtwT21vTTFVdXZlNUgvT1g5VlY4?=
- =?utf-8?B?VENtbUxvQW1qL2M4eGFaQ1BNc05LTGNmSXNwNElGUUtjMDVFdWVKOUYrK1JQ?=
- =?utf-8?B?Zm5oL3RYSGo1VTFTSHRXUENOY0M0RzIvNGkxTldYaE9pcHlFSytZNUVHUzBI?=
- =?utf-8?B?SzFvaFM5SldaQXNRSUEzMDlxcFFFZEd5ODlXQkVzbkplTE95K01SdlEzRmp4?=
- =?utf-8?B?VFRTaXAwcGhDWnR2ZXpxL0dZek5zTmRFeVdFbnZuVjQxSEpldDlMWlAzYkxa?=
- =?utf-8?B?SFJ3MXlYR2twbTF5VGY0WVVYMnFQUjhQVm5FNGduc3hGVW94YWZYUzFNdXQv?=
- =?utf-8?B?MlVjS05tL1FQREZyTXlKdGhyWDJCelVrWEUrTUptRDVrN1FPUjhGZkJFWEgv?=
- =?utf-8?B?MEdBaE9XajBodTZXOUtLTEdLa3NiSXB0dHNaOXA1UjYwODVPc3NyVHFtTHQw?=
- =?utf-8?B?aTRsYmVaZFJPY29pWkhlK0UrT1MwK3hoTmVoSTdWMVROODlpdEhiRlZSWjhG?=
- =?utf-8?B?dkFmeWY5L3VVbSthMm5GMHJhVXFvVzI4eFhjQjlrVUtFa1NaL29MUDluUmdW?=
- =?utf-8?B?Qy9wd2h5dnl4c1F5QU54V0s5cERGeDFNd3REMFBGV1lOaW5SNlJYbDJhNTZi?=
- =?utf-8?B?YndEbHBCY25BempJTmg5NUxWNDkzWDJBbFBtVStvUTBFNm0zWEVmZUFQUU1a?=
- =?utf-8?B?bGxRUnNXaUlFQ3FnM1BiS1k5Q0luWVl0OEtwQWJUWWpDbGRtdCt4eEVxbVBi?=
- =?utf-8?B?QVBDU3JaRVVkQkMzdys0YlI5emhqK0laNEZZc2hYZENHYnlsb2M4NEJwYlhY?=
- =?utf-8?B?djh4ZjUrQUsxR0xmRm51Qkc4MEppT21hLy9xZFJsS0FnSHdlN1NNMXg0UnlW?=
- =?utf-8?B?QWVpQnNzRkdyL1ZpREc1Nkk4UmRGa0dJSWc3LzdDZlRHTmdIWXNlMVJBSXp1?=
- =?utf-8?B?OVViblE2ZGtpeHJ2Mnc5MU5SRkUvNHl6S1ZqTzFqVUtKWEZIQzl6K21Za0V5?=
- =?utf-8?B?TitPUHBZWjVibzlvcmdKdDdrRmxuZGc1WjBTeFJzY2ZVQ2pIaUwzclFqRyta?=
- =?utf-8?B?clkxcFc0SlNOVXRIOGUzNHVWQ2RLUVJZcHJtem1lRm5KeHN3OU1ZWlpBd0dN?=
- =?utf-8?B?ZlZmczQ4dGR4YURSMHBQT2NmOVRBPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7cbd18-bb13-42dd-d858-08ddf9a0a2b3
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6494.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 06:24:07.7655
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gWPrZDBkVDKwrIcLqr+08/laWjh2wyTnEMwzHEZZRjJgAGFjON1scgW3V1scqLkgUxqMJuqAgDBDOX7rqJfC/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6086
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20250917180428.810751-3-rebecca@bsdio.com>
 
-On Monday, September 22, 2025 1:58=E2=80=AFPM Svyatoslav Ryhel wrote:
-> =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 07:54 Mi=
-kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Saturday, September 6, 2025 10:53=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > Increase maximum VI clock frequency to 450MHz to allow correct work w=
-ith
-> > > high resolution camera sensors.
-> > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >  drivers/staging/media/tegra-video/tegra20.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/staging/media/tegra-video/tegra20.c b/drivers/st=
-aging/media/tegra-video/tegra20.c
-> > > index e0da496bb50f..3c5bafebfcd8 100644
-> > > --- a/drivers/staging/media/tegra-video/tegra20.c
-> > > +++ b/drivers/staging/media/tegra-video/tegra20.c
-> > > @@ -590,7 +590,7 @@ const struct tegra_vi_soc tegra20_vi_soc =3D {
-> > >       .ops =3D &tegra20_vi_ops,
-> > >       .hw_revision =3D 1,
-> > >       .vi_max_channels =3D 2, /* TEGRA_VI_OUT_1 and TEGRA_VI_OUT_2 */
-> > > -     .vi_max_clk_hz =3D 150000000,
-> > > +     .vi_max_clk_hz =3D 450000000,
-> > >       .has_h_v_flip =3D true,
-> > >  };
-> > >
-> > >
-> >
-> > Where does the 450MHz come from? Instead of hardcoding this value for e=
-ach SoC, could we just clk_set_rate(ULONG_MAX) like e.g. the vic driver doe=
-s, or does that get a too high rate?
-> >
->=20
-> This values comes from downstream 3.1 tegra30 sources and setting it
-> higher breaks VI, I have tried. If it is set lower (150MHz as it was)
-> it breaks VI for cameras with resolution higher then 2MP
->=20
-> >
+Hi Rebecca,
 
-Ok, very good.
-
-Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
+Thanks for posting this -- a handful of small comments below...
 
 
+Zev
 
+On Wed, Sep 17, 2025 at 11:04:26AM PDT, Rebecca Cran wrote:
+>The ALTRAD8 BMC is an Aspeed AST2500-based BMC for the ASRock Rack
+>ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q boards.
+>
+>Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+>---
+> arch/arm/boot/dts/aspeed/Makefile                      |   1 +
+> arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts | 633 ++++++++++++++++++++
+> 2 files changed, 634 insertions(+)
+>
+>diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>index aba7451ab749..6bffb7130839 100644
+>--- a/arch/arm/boot/dts/aspeed/Makefile
+>+++ b/arch/arm/boot/dts/aspeed/Makefile
+>@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+> 	aspeed-bmc-ampere-mtjefferson.dtb \
+> 	aspeed-bmc-ampere-mtmitchell.dtb \
+> 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>+	aspeed-bmc-asrock-altrad8.dtb \
+> 	aspeed-bmc-asrock-e3c246d4i.dtb \
+> 	aspeed-bmc-asrock-e3c256d4i.dtb \
+> 	aspeed-bmc-asrock-romed8hm3.dtb \
+>diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
+>new file mode 100644
+>index 000000000000..ae3ddf5f6eb7
+>--- /dev/null
+>+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
+>@@ -0,0 +1,633 @@
+>+// SPDX-License-Identifier: GPL-2.0+
+>+/dts-v1/;
+>+
+>+#include "aspeed-g5.dtsi"
+>+#include <dt-bindings/gpio/aspeed-gpio.h>
+>+#include <dt-bindings/leds/common.h>
+>+#include <dt-bindings/i2c/i2c.h>
+>+
+>+/ {
+>+	model = "ASRock ALTRAD8 BMC";
+>+	compatible = "asrock,altrad8-bmc", "aspeed,ast2500";
+>+
+>+	aliases {
+>+		serial4 = &uart5;
+>+		i2c50 = &nvme1;
+>+		i2c51 = &pcie4;
+>+		i2c52 = &pcie5;
+>+		i2c53 = &pcie6;
+>+		i2c54 = &pcie7;
+>+		i2c55 = &nvme3;
+>+		i2c56 = &nvme2;
+>+		i2c57 = &nvme0;
+>+		i2c58 = &nvme4;
+>+		i2c59 = &nvme5;
+>+		i2c60 = &nvme6;
+>+		i2c61 = &nvme7;
+>+		i2c62 = &nvme8;
+>+		i2c63 = &nvme9;
+>+		i2c64 = &nvme10;
+>+		i2c65 = &nvme11;
+>+	};
+>+
+>+	chosen {
+>+		stdout-path = "uart5:115200n8";
+>+	};
+>+
+>+	iio-hwmon {
+>+		compatible = "iio-hwmon";
+>+		io-channels =	<&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
+>+				<&adc 4> ,<&adc 5>, <&adc 6>, <&adc 7>,
+>+				<&adc 8>, <&adc 9>, <&adc 10>, <&adc 11>,
+>+				<&adc 12>, <&adc 13>, <&adc 14>, <&adc 15>;
+>+	};
+>+
+>+	leds {
+>+		compatible = "gpio-leds";
+>+
+>+		led-system-fault {
+>+			gpios = <&gpio ASPEED_GPIO(G,3) GPIO_ACTIVE_LOW>;
+>+			label = "platform:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+
+>+		led-enclosure-identify {
+>+			gpios = <&gpio ASPEED_GPIO(G,0) GPIO_ACTIVE_LOW>;
+>+			label = "platform:green:indicator";
+>+			color = <LED_COLOR_ID_GREEN>;
+>+			function = LED_FUNCTION_INDICATOR;
+>+		};
+>+
+>+		led-fan1-fault {
+>+			retain-state-shutdown;
+>+			default-state = "off";
+>+			gpios = <&pca0 0 GPIO_ACTIVE_LOW>;
+>+			label = "fan1:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+
+>+		led-fan2-fault {
+>+			retain-state-shutdown;
+>+			default-state = "off";
+>+			gpios = <&pca0 1 GPIO_ACTIVE_LOW>;
+>+			label = "fan2:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+
+>+		led-fan3-fault {
+>+			retain-state-shutdown;
+>+			default-state = "off";
+>+			gpios = <&pca0 2 GPIO_ACTIVE_LOW>;
+>+			label = "fan3:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+
+>+		led-fan4-fault {
+>+			retain-state-shutdown;
+>+			default-state = "off";
+>+			gpios = <&pca0 3 GPIO_ACTIVE_LOW>;
+>+			label = "fan4:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+
+>+		led-fan5-fault {
+>+			retain-state-shutdown;
+>+			default-state = "off";
+>+			gpios = <&pca0 4 GPIO_ACTIVE_LOW>;
+>+			label = "fan5:red:fault";
+>+			color = <LED_COLOR_ID_RED>;
+>+			function = LED_FUNCTION_FAULT;
+>+		};
+>+	};
+>+
+>+	memory@80000000 {
+>+		reg = <0x80000000 0x20000000>;
+>+	};
+>+
+>+	reserved-memory {
+>+		#address-cells = <1>;
+>+		#size-cells = <1>;
+>+		ranges;
+>+
+>+		gfx_memory: framebuffer {
+>+			compatible = "shared-dma-pool";
+>+			size = <0x01000000>;
+>+			alignment = <0x01000000>;
+>+			reusable;
+>+		};
+>+
+>+		vga_memory: framebuffer@9f000000 {
+>+			no-map;
+>+			reg = <0x9f000000 0x01000000>; /* 16M */
+>+		};
+>+
+>+		video_engine_memory: jpegbuffer {
+>+			compatible = "shared-dma-pool";
+>+			size = <0x02000000>;	/* 32M */
+>+			alignment = <0x01000000>;
+>+			reusable;
+>+		};
+>+	};
+>+};
+>+
+>+&adc {
+>+	status = "okay";
+>+};
+>+
+>+&fmc {
+>+	flash@0 {
+>+		label = "bmc";
+>+		m25p,fast-read;
+>+		spi-max-frequency = <50000000>;
+>+#include "openbmc-flash-layout-64.dtsi"
+>+	};
+>+};
+>+
+>+&gfx {
+>+	memory-region = <&gfx_memory>;
+>+};
+>+
+>+&gpio {
+>+	gpio-line-names =
+>+	/*A0-A7*/	"","","","BMC_READY","","","","",
+>+	/*B0-B7*/	"i2c-backup-sel","","","","","","","host0-shd-ack-n",
+>+	/*C0-C7*/	"","","","","","","","",
+>+	/*D0-D7*/	"POWER_BUTTON","POWER_OUT","RESET_BUTTON",
+>+			"host0-sysreset-n","","","SYS_PWR_GD","",
+>+	/*E0-E7*/	"","s0-vrd1-vddq0123-fault-l",
+>+			"s0-vrd1-vddq4567-fault-l","s0-vrd0-vddc-fault-l",
+>+			"s0-vrd3-p0v75-fault-l","","","",
+>+	/*F0-F7*/	"","","SYS_ATX_PSON_L","","","","","",
+>+	/*G0-G7*/	"id-led","id-button","","","UBOOT_READY",\
+>+			"BMC_SALT2_L","","",
+>+	/*H0-H7*/	"PS_PWROK","uart1-mode1","uart2-mode1","uart3-mode1",
+>+			"uart4-mode1","","BMC_HB_LED","",
+>+	/*I0-I7*/	"","","","","","","","",
+>+	/*J0-J7*/	"s0-hightemp-n","","","","","","","",
+>+	/*K0-K7*/	"","","","","","","","",
+>+	/*L0-L7*/	"","","","","","","","",
+>+	/*M0-M7*/	"","","","","","s0-spi-auth-fail-n","","",
+>+	/*N0-N7*/	"","","","","","","","",
+>+	/*O0-O7*/	"","","","","","","","",
+>+	/*P0-P7*/	"","","CPLD_DISABLE_BMC","","","","","",
+>+	/*Q0-Q7*/	"","","ext-hightemp-n","","","","",
+>+			"CHASSIS_INTRUSION",
+>+	/*R0-R7*/	"","","EXT_HIGHTEMP_L","spi0-program-sel","",
+>+			"HWM_BAT_EN","","",
+>+	/*S0-S7*/	"s0-vr-hot-n","","","BMC_SYSRESET_L","","","","",
+>+	/*T0-T7*/	"","","","","","","","",
+>+	/*U0-U7*/	"","","","","","","","",
+>+	/*V0-V7*/	"","","","","","","","",
+>+	/*W0-W7*/	"","","","","","","","",
+>+	/*X0-X7*/	"","","","","","","","",
+>+	/*Y0-Y7*/	"SIOS3","SIOS5","SIOPWREQ","SIOONCTRL","","","","",
+>+	/*Z0-Z7*/	"","SIOPWRGD","","s0-rtc-lock","","","","",
+>+	/*AA0-AA7*/	"RTC_INT","","","","","PMBUS_SEL_N","","",
+>+	/*AB0-AB7*/	"host0-reboot-ack-n","s0-sys-auth-failure-n",
+>+			"","","","","","",
+>+	/*AC0-AC7*/	"s0-fault-alert","host0-ready","s0-overtemp-n",
+>+			"","bmc-ok","host0-special-boot","presence-cpu0",
+>+			"host0-shd-req-n";
+>+};
+>+
+>+&i2c0 {
+>+	bus-frequency = <100000>;
+
+Here and on most of the other i2c busses, is there a particular reason 
+we want this bus-frequency explicitly specified?  100kHz is the default 
+according to Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml (and 
+the other existing aspeed-bmc-asrock-*.dts files leave it at that 
+implicit default, FWIW).
+
+>+
+>+	ipmb@10 {
+>+		compatible = "ipmb-dev";
+>+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+>+		i2c-protocol;
+>+	};
+>+
+>+};
+>+
+>+&i2c1 {
+>+	bus-frequency = <100000>;
+>+
+>+	i2c-mux1@73 {
+>+		compatible = "nxp,pca9548";
+>+		reg = <0x73>;
+>+		#address-cells = <1>;
+>+		#size-cells = <0>;
+>+		i2c-mux-idle-disconnect;
+>+
+>+		nvme1: i2c@0 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <0>;
+>+		};
+>+
+>+		pcie4: i2c@1 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <1>;
+>+		};
+>+
+>+		pcie5: i2c@2 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <2>;
+>+		};
+>+
+>+		pcie6: i2c@3 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <3>;
+>+		};
+>+
+>+		pcie7: i2c@4 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <4>;
+>+		};
+>+
+>+		nvme3: i2c@5 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <5>;
+>+		};
+>+
+>+		nvme2: i2c@6 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <6>;
+>+		};
+>+
+>+		nvme0: i2c@7 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <7>;
+>+		};
+>+	};
+>+
+>+	i2c-mux2@75 {
+>+		compatible = "nxp,pca9548";
+>+		reg = <0x75>;
+>+		#address-cells = <1>;
+>+		#size-cells = <0>;
+>+		i2c-mux-idle-disconnect;
+>+
+>+		nvme4: i2c@0 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <0>;
+>+		};
+>+
+>+		nvme5: i2c@1 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <1>;
+>+		};
+>+
+>+		nvme6: i2c@2 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <2>;
+>+		};
+>+
+>+		nvme7: i2c@3 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <3>;
+>+		};
+>+
+>+		nvme8: i2c@4 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <4>;
+>+		};
+>+
+>+		nvme9: i2c@5 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <5>;
+>+		};
+>+
+>+		nvme10: i2c@6 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <6>;
+>+		};
+>+
+>+		nvme11: i2c@7 {
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+			reg = <7>;
+>+		};
+>+	};
+>+};
+>+
+>+&i2c2 {
+>+	bus-frequency = <100000>;
+>+
+>+	smpro@4f {
+>+		compatible = "ampere,smpro";
+>+		reg = <0x4f>;
+>+	};
+>+};
+>+
+>+&i2c3 {
+>+	// PSU FRU
+>+	eeprom@38 {
+>+		compatible = "atmel,24c02";
+>+		reg = <0x38>;
+>+	};
+>+};
+>+
+>+&i2c4 {
+>+	bus-frequency = <100000>;
+>+
+>+	hardware-monitor@29 {
+
+It looks like this device only monitors temperatures?  If so, perhaps 
+temperature-sensor@29 would be a slightly more appropriate node name.
+
+>+		compatible = "nuvoton,nct7802";
+>+		reg = <0x29>;
+>+
+>+		#address-cells = <1>;
+>+		#size-cells = <0>;
+>+
+>+		channel@0 { /* LTD */
+>+			reg = <0>;
+>+		};
+>+
+>+		channel@1 { /* RTD1 */
+>+				reg = <1>;
+>+				sensor-type = "temperature";
+>+				temperature-mode = "thermistor";
+>+		};
+>+
+>+		channel@2 { /* RTD2 */
+>+				reg = <2>;
+>+				sensor-type = "temperature";
+>+				temperature-mode = "thermal-diode";
+>+		};
+
+channel@1 and channel@2 block bodies look over-indented by one level 
+here.
+
+>+	};
+>+
+>+	temperature-sensor@4c {
+>+		compatible = "nuvoton,w83773g";
+>+		reg = <0x4c>;
+>+	};
+>+};
+>+
+>+&i2c5 {
+>+	status = "okay";
+>+};
+>+
+>+&i2c6 {
+>+	bus-frequency = <100000>;
+>+
+>+	rtc@6f {
+>+		compatible = "isil,isl1208";
+>+		reg = <0x6f>;
+>+	};
+>+};
+>+
+>+&i2c7 {
+>+	bus-frequency = <100000>;
+>+
+>+	// BMC FRU
+>+	eeprom@57 {
+>+		compatible = "atmel,24c128";
+>+		reg = <0x57>;
+>+
+>+		nvmem-layout {
+>+			compatible = "fixed-layout";
+>+			#address-cells = <1>;
+>+			#size-cells = <1>;
+>+
+>+			eth0_macaddress: macaddress@3f88 {
+>+				reg = <0x3f88 6>;
+>+			};
+>+
+>+			eth1_macaddress: macaddress@3f80 {
+>+				reg = <0x3f80 6>;
+>+			};
+
+Are these correct?  On every other ASRock board I've dealt with, the 
+eth0 address is at 0x3f80 and eth1 is at 0x3f88.
+
+If so and they are really for some reason swapped on this platform, as a 
+slight nitpick I might suggest swapping the order the nodes are listed 
+in so they go in order of increasing addresses.
+
+>+		};
+>+	};
+>+};
+>+
+>+&i2c8 {
+>+	bus-frequency = <100000>;
+>+
+>+	pca0: gpio@1c {
+>+		compatible = "nxp,pca9557";
+>+		reg = <0x1c>;
+>+		#address-cells = <1>;
+>+		#size-cells = <0>;
+>+
+>+		gpio-controller;
+>+		#gpio-cells = <2>;
+>+
+>+		gpio@0 {
+>+			reg = <0>;
+>+		};
+>+
+>+		gpio@1 {
+>+			reg = <1>;
+>+		};
+>+
+>+		gpio@2 {
+>+			reg = <2>;
+>+		};
+>+
+>+		gpio@3 {
+>+			reg = <3>;
+>+		};
+>+
+>+		gpio@4 {
+>+			reg = <4>;
+>+		};
+>+
+>+		gpio@5 {
+>+			reg = <5>;
+>+		};
+>+
+>+		gpio@6 {
+>+			reg = <6>;
+>+		};
+>+
+>+		gpio@7 {
+>+			reg = <7>;
+>+		};
+>+	};
+>+};
+>+
+>+&i2c9 {
+>+	status = "okay";
+>+};
+>+
+>+&i2c10 {
+>+	status = "okay";
+>+};
+>+
+>+&i2c11 {
+>+	status = "okay";
+>+};
+>+
+>+&i2c12 {
+>+	status = "okay";
+>+};
+>+
+>+&i2c13 {
+>+	bus-frequency = <100000>;
+>+
+>+	ssif-bmc@10 {
+>+		compatible = "ssif-bmc";
+>+		reg = <0x10>;
+>+	};
+>+};
+>+
+>+// Connected to host Intel X550 (ALTRAD8UD-1L2T) or
+>+// Broadcom BCM57414 (ALTRAD8UD2-1L2Q) interface
+>+&mac0 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_rmii1_default>;
+>+
+>+	clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>,
+>+		 <&syscon ASPEED_CLK_MAC1RCLK>;
+>+	clock-names = "MACCLK", "RCLK";
+>+
+>+	use-ncsi;
+>+
+>+	nvmem-cells = <&eth0_macaddress>;
+>+	nvmem-cell-names = "mac-address";
+>+};
+>+
+>+// Connected to Realtek RTL8211E
+>+&mac1 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+>+
+>+	nvmem-cells = <&eth1_macaddress>;
+>+	nvmem-cell-names = "mac-address";
+>+};
+>+
+>+&pinctrl {
+>+	aspeed,external-nodes = <&gfx &lhc>;
+>+};
+>+
+>+&pwm_tacho {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_pwm0_default
+>+			&pinctrl_pwm1_default
+>+			&pinctrl_pwm2_default
+>+			&pinctrl_pwm3_default
+>+			&pinctrl_pwm4_default
+>+			&pinctrl_pwm5_default
+>+			&pinctrl_pwm6_default
+>+			&pinctrl_pwm7_default>;
+>+
+>+	fan@0 {
+>+		reg = <0x00>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x00 0x08>;
+>+	};
+>+
+>+	fan@1 {
+>+		reg = <0x01>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x09>;
+>+	};
+>+
+>+	fan@2 {
+>+		reg = <0x02>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x02 0x0a>;
+>+	};
+>+
+>+	fan@3 {
+>+		reg = <0x03>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x03 0x0b>;
+>+	};
+>+
+>+	fan@4 {
+>+		reg = <0x04>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x04 0x0c>;
+>+	};
+>+
+>+	fan@5 {
+>+		reg = <0x05>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x05 0x0d>;
+>+	};
+>+
+>+	fan@6 {
+>+		reg = <0x06>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x06 0x0e>;
+>+	};
+>+
+>+	fan@7 {
+>+		reg = <0x07>;
+>+		aspeed,fan-tach-ch = /bits/ 8 <0x07 0x0f>;
+>+	};
+>+};
+>+
+>+&spi1 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_spi1_default>;
+>+
+>+	flash@0 {
+>+		m25p,fast-read;
+>+		label = "pnor";
+>+		spi-max-frequency = <100000000>;
+>+
+>+		partitions {
+>+			compatible = "fixed-partitions";
+>+			#address-cells = <1>;
+>+			#size-cells = <1>;
+>+
+>+			code@400000 {
+>+				reg = <0x400000 0x1C00000>;
+>+				label = "pnor-code";
+>+			};
+>+
+>+			tfa@400000 {
+>+				reg = <0x400000 0x200000>;
+>+				label = "pnor-tfa";
+>+			};
+
+As the DTBS_CHECK lint reported and Andrew Jeffery commented on, these 
+two partitions overlapping is a bit surprising -- is that intentional?
+
+>+
+>+			uefi@600000 {
+>+				reg = <0x600000 0x1A00000>;
+>+				label = "pnor-uefi";
+>+			};
+>+		};
+>+	};
+>+};
+>+
+>+&uart1 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_txd1_default
+>+			 &pinctrl_rxd1_default
+>+			 &pinctrl_ncts1_default
+>+			 &pinctrl_nrts1_default>;
+>+};
+>+
+>+&uart2 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_txd2_default
+>+			 &pinctrl_rxd2_default>;
+>+};
+>+
+>+&uart3 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_txd3_default
+>+			 &pinctrl_rxd3_default>;
+>+};
+>+
+>+&uart4 {
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_txd4_default
+>+			 &pinctrl_rxd4_default>;
+>+};
+>+
+>+// The BMC's uart
+>+&uart5 {
+>+	status = "okay";
+>+};
+>+
+>+&vhub {
+>+	status = "okay";
+>+};
+>+
+>+&video {
+>+	memory-region = <&video_engine_memory>;
+>+};
+>-- 
+>2.47.3
+>
+>
 
