@@ -1,125 +1,189 @@
-Return-Path: <devicetree+bounces-220016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1D3B91481
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:02:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0B1B9136F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F094D17212E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:01:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A2547A4FFB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1603081AB;
-	Mon, 22 Sep 2025 13:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CC2309EEE;
+	Mon, 22 Sep 2025 12:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="gRRw9l79"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="i/IsJlYd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16AE913A3ED;
-	Mon, 22 Sep 2025 13:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758546100; cv=pass; b=jtlgEBK3pTHdQ0qi4/aOliv96nTB/etuA/jCtcAXm3Q807hyTsf3w+p9f8bEldEXRlyRkl1WzS3i5dCy/aP1UZG8MytrwCZvA6ATW20Xrl4xzTbEIAbkPpln1Cw+Dn+zSwC5QE6NQTNNxq81NENU8MGvAwHRYcpd9mmgmOi+WHw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758546100; c=relaxed/simple;
-	bh=5FXdFyIr2fRFf+Ae1txoKmwxWECY148pHNFz1j152tE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PEbr6/SBgpIRPAxzt/XZ+gJC0rk/K4PbIrVcdX/esqmlV5V0HTBbt6rr5O4d49GhwerWwXW5+dG4I93NLV5nXmEBehsPugkQi/X17L4xWeLeCofMO7UkedL0cMuBbwtVPLm46oADevVMYApVjA3WWEQrrTk0KZL32g3MiakgDxw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=gRRw9l79; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1758546062; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ICouqmTvyKcy/ch0AWJ3uHBxtEcG20RfMqSI81uN2AtkBACvQrUSc2a+WtMXMwcNNpr6y5YBoKYKBPH936ghZsh16ZMvG3hjENWqwRNFOx3HDoq3txSTlx8pOGyQbRzRztMJRkPdjfhEL7OryJUwQ6XoG6l3um7OvIN48DD5Sas=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1758546062; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=cMfs34T5Vja4v7ftmJgnF2ValILJIvUnI6GgN9qZHtE=; 
-	b=B2RYMpNAhW13eJyVh3ywSK0/bPRuicSuAwJCe9XzIOD81KbiwPkMTRRhfA+KOotrKwy/d/+LVO2d506w4YgMe/wKjjjz3r0GS1q2w5enB0QNcBs9mW+hLn4S2jZ3GmUmwQNSZ8W3GQwPBwzoYYgfRTPxbztDdfBSFu3qmt8OJ1s=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758546062;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=cMfs34T5Vja4v7ftmJgnF2ValILJIvUnI6GgN9qZHtE=;
-	b=gRRw9l79CdKc1/g1du5p7nu3gyabRqPZtq43MdgQfd3ek9c7a7INwnLE2OIQlL7h
-	uVrW+PzwdzpW7v4mptm9hZMNpUijo5NK9TYx1X0aMgQ0AKRpK8dzhwAHQLHE8lj1RCj
-	sg/ngVcbJ7TgLWfNaTy25QTw7xLnMnbVjee2tDq0=
-Received: by mx.zohomail.com with SMTPS id 1758546059371192.16620849433718;
-	Mon, 22 Sep 2025 06:00:59 -0700 (PDT)
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-Date: Mon, 22 Sep 2025 20:46:41 +0800
-Subject: [PATCH v2 11/11] MAINTAINERS: Setup support for Anlogic DR1V90 SoC
- tree
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584013090C5;
+	Mon, 22 Sep 2025 12:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758545402; cv=none; b=eWCzQdO3SNkohQRVX8Vm68tEiR1Gj54790YLlZKHFk4mx/ZV7vHFcq/2p0J3qo7yo6DQ6NZY3rimUyT/kmZnBMCvGXj6z9p4qC/Z/b2p+6vM69Y0CVenrAhqpO/PERod8NgUs3A3vtyjWso7RoBSScVA40gBLaVQc/8Wqfg3yHI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758545402; c=relaxed/simple;
+	bh=UqNJkhD4MlW/tv6RLb3etkdyBlvfbgd6/2Si8yvhVY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s9jkuYbSQl4xp9bpdC1GCZ4um+F3Z+2x0RaoRvd5gBcWaCFMo9cMcgwAOzkR1bebbLXW7p/A1KN7TshVbS/nxYXLcV+lYG1p7ApX5OmXSnbnrvtPDxuXec41y/sP9zug9I3AVDo35t6cmGzhq0wMMY0evSF0ck49dfKSiJW6NuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=i/IsJlYd; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AB320F89;
+	Mon, 22 Sep 2025 14:48:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1758545315;
+	bh=UqNJkhD4MlW/tv6RLb3etkdyBlvfbgd6/2Si8yvhVY0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i/IsJlYdtd4DW/kq1OamDpscD4/is9ua+tjt07xaLkLw6Ze25zePIvqoiKYFPDJV4
+	 4eoYF0TAjFf4HPwStqBirNmC8GZY6wXkUZWvOhGKc0Z2ZyYx8qzGI2PuTZdGGutAWn
+	 fq54DRBCH7alx3kFyxWuKdfzo0S5yrzBoKMBO6D0=
+Message-ID: <ddcd794a-a57d-4cfc-81d0-dc47435bd874@ideasonboard.com>
+Date: Mon, 22 Sep 2025 15:49:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 08/16] media: cadence: csi2rx: add get_frame_desc
+ wrapper
+To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev,
+ laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com,
+ vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+ hverkuil-cisco@xs4all.nl, jai.luthra@ideasonboard.com,
+ changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
+ sjoerd@collabora.com, hverkuil+cisco@kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250911102832.1583440-1-r-donadkar@ti.com>
+ <20250911102832.1583440-9-r-donadkar@ti.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20250911102832.1583440-9-r-donadkar@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250922-dr1v90-basic-dt-v2-11-64d28500cb37@pigmoral.tech>
-References: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
-In-Reply-To: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Anup Patel <anup@brainfault.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
- linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758545232; l=1069;
- i=junhui.liu@pigmoral.tech; s=20250910; h=from:subject:message-id;
- bh=5FXdFyIr2fRFf+Ae1txoKmwxWECY148pHNFz1j152tE=;
- b=IKikTb5co2cwNgrDLxDroyXreMVTXAoHZa+CQqra3scT3SaZzrdaZa1Q1MeY0mcQp56V9YJ9N
- EfVgRbMK/4CBSfh0ZHiW5jirdnKVjs3bog/WzarlnDoxYotD+QM6oEj
-X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
- pk=cgATWSU1KfGWmdwNmkPyHGnWgofhqqhE8Vts58wyxe4=
-X-ZohoMailClient: External
 
-Add myself as the maintainer of the Anlogic DR1V90 SoC tree, including
-the corresponding DTS and DT bindings paths for Anlogic RISC-V-based
-SoCs.
+Hi,
 
-Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On 11/09/2025 13:28, Rishikesh Donadkar wrote:
+> From: Pratyush Yadav <p.yadav@ti.com>
+> 
+> J721E wrapper CSI2RX driver needs to get the frame descriptor from the
+> source to find out info about virtual channel. This driver itself does
+> not touch the routing or virtual channels in any way. So simply pass the
+> descriptor through from the source.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Reviewed-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> ---
+>  drivers/media/platform/cadence/cdns-csi2rx.c | 24 ++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 520fb4e379a3954ff9b163bfdfda857e5c5b99d4..44b4b4f7e53c5904f6b9076f9542866292d33fce 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21681,6 +21681,15 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iommu/linux.git
- F:	Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
- F:	drivers/iommu/riscv/
- 
-+RISC-V ANLOGIC DR1V90 SoC SUPPORT
-+M:	Junhui Liu <junhui.liu@pigmoral.tech>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+T:	git https://github.com/pigmoral/linux-dr1v90
-+F:	Documentation/devicetree/bindings/riscv/anlogic.yaml
-+F:	arch/riscv/boot/dts/anlogic/
-+N:	dr1v90
-+
- RISC-V MICROCHIP FPGA SUPPORT
- M:	Conor Dooley <conor.dooley@microchip.com>
- M:	Daire McNamara <daire.mcnamara@microchip.com>
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
--- 
-2.51.0
+Tomi
+
+> 
+> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+> index 828b4ba4301d..3c99de56c095 100644
+> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+> @@ -235,6 +235,21 @@ static const struct csi2rx_fmt *csi2rx_get_fmt_by_code(u32 code)
+>  	return NULL;
+>  }
+>  
+> +static int csi2rx_get_frame_desc_from_source(struct csi2rx_priv *csi2rx,
+> +					     struct v4l2_mbus_frame_desc *fd)
+> +{
+> +	struct media_pad *remote_pad;
+> +
+> +	remote_pad = media_entity_remote_source_pad_unique(&csi2rx->subdev.entity);
+> +	if (!remote_pad) {
+> +		dev_err(csi2rx->dev, "No remote pad found for sink\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	return v4l2_subdev_call(csi2rx->source_subdev, pad, get_frame_desc,
+> +				remote_pad->index, fd);
+> +}
+> +
+>  static inline
+>  struct csi2rx_priv *v4l2_subdev_to_csi2rx(struct v4l2_subdev *subdev)
+>  {
+> @@ -607,10 +622,19 @@ int cdns_csi2rx_negotiate_ppc(struct v4l2_subdev *subdev, unsigned int pad,
+>  }
+>  EXPORT_SYMBOL_GPL_FOR_MODULES(cdns_csi2rx_negotiate_ppc, "j721e-csi2rx");
+>  
+> +static int csi2rx_get_frame_desc(struct v4l2_subdev *subdev, unsigned int pad,
+> +				 struct v4l2_mbus_frame_desc *fd)
+> +{
+> +	struct csi2rx_priv *csi2rx = v4l2_subdev_to_csi2rx(subdev);
+> +
+> +	return csi2rx_get_frame_desc_from_source(csi2rx, fd);
+> +}
+> +
+>  static const struct v4l2_subdev_pad_ops csi2rx_pad_ops = {
+>  	.enum_mbus_code	= csi2rx_enum_mbus_code,
+>  	.get_fmt	= v4l2_subdev_get_fmt,
+>  	.set_fmt	= csi2rx_set_fmt,
+> +	.get_frame_desc	= csi2rx_get_frame_desc,
+>  };
+>  
+>  static const struct v4l2_subdev_video_ops csi2rx_video_ops = {
 
 
