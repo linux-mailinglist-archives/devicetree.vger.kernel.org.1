@@ -1,57 +1,93 @@
-Return-Path: <devicetree+bounces-220068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCEDB91B06
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:27:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DA9B91B30
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:28:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CF637ABF61
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:26:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8B037AF1A4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7EC200110;
-	Mon, 22 Sep 2025 14:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0771EF39F;
+	Mon, 22 Sep 2025 14:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n+6J3Ylk"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="Bsp0jTHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8567F1F8AC8;
-	Mon, 22 Sep 2025 14:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CAE18BC3B
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 14:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758551176; cv=none; b=d6dh7p7tddpseGQis1QTd4U9l+uCODQnkE9vpx2WnXeaUWT+j5EzFo4+IjHVBP31TDXvLu2eLA4MCy7KKxNEj9q/rF/DcupkDdIOuGL/63PlACTkAjul98XjHpPK0IGgmIGGorMAj6Lp/Tbd7tqO80r/H3GAu6HIpeP8vthJ8SM=
+	t=1758551307; cv=none; b=nrliNbNYNZguRupGxpfjWjKCZFdwdwx/ue2BhcxBCg5Fp1HHbBG4/pkduk2XALXSU0EGWnHnOmbqz/x3wONXBe3QCQZSIifR4qhlbj0tnuhZBqBukbFRREhZbS/ZNpV5HUfoPFpuD83VF6/gSioUnN5FXgyafsAXLpJuUv+9phI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758551176; c=relaxed/simple;
-	bh=CEK8yHPxJKhWjl3RH+TVpm29Wny+6IBKlzfazln71jo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MCj6prvJptoNRmn+Lmm3GhRce3Vz49hPED9LpN9gK34qI/PolHyheQgyS1k0Kff+4ml3GtXRunUJyZIYir1y89j4fpIK8Feu2NQvGZErhCdkXkBVreyYorESi8zgZBfLsP8CrbntT74I1mPlqdprM/8beiMcW5szT8rJFF5+MoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n+6J3Ylk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BFC1C4CEF0;
-	Mon, 22 Sep 2025 14:26:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758551176;
-	bh=CEK8yHPxJKhWjl3RH+TVpm29Wny+6IBKlzfazln71jo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=n+6J3YlkzS+dsKSUT5df0ZjUzucjalYcUGdQcyRUwxogpDUpe+d7y7RjK6MQCMNNB
-	 nwUgfy4ceEHu/0znn+stF8hwdhzHL3e3MXSUnHwq4Dv1h9jz0+Dq8G2R+5Z5+ZO1CN
-	 0P4cpIqGlRbttm/xNQK0AIUT89fC7Qo6q06CfBTQk7enmhONfPKq14A1WmPgKXYNC5
-	 p7HTBnd4+KMvUdPG4WN78zOXUzrzeNeLasVDPAqLfuFUdR5LQd6cITHaeILLsIYUEn
-	 lO+RjtVNYV6MJZWh87KxH5Uxk/E4vKe87ohb5Im1wW+Ot1TSvRD14PbxUms4bge3y0
-	 LWoXby9vxGUkg==
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1758551307; c=relaxed/simple;
+	bh=SvK7btLYRO//NEuSLQunuo6sNLbgIRPNMFVxPrxcILk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ug85kQ7sIHnmd2ghw7EosuQ2rzdQFeKWvNuMeHeaWOPz8aqG7SgyMbtT2XxA9HD80N93yQGtzaZXdTC/yDndoiLBZM7ZwSNvTHiwkB32qbPpEkaB9RL/Kr+6IeOuGjMfcbLGvOKMH9/1ZX7kxSYJsZZqcid/obgruDBWvddqKbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=Bsp0jTHa; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-ea5c1a18acfso4203830276.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 07:28:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1758551305; x=1759156105; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ix+hu5NanbKuv9VZhmjhSAP9/8kt7Tc9p5wZOTLERrA=;
+        b=Bsp0jTHaxGxDMrKSTjsbYpDejdQIFz04VtbQgqxENNU/UtnTV7/CmZX3xqs+i5zUcx
+         Hr+U5lWkE/gVYqezmiH8Pj08uREP5zwecu4DiYFkVSW+t0DYoloA1IxjuQn/gjycGoWh
+         3EyWENvOv6zlDbrY8Wz3vsAc5kanRlPTZRLyOPYckWfzYeFNbS1ei0ut2gtS8kD18RT3
+         eTYptX2YYDH9Wo2JBgKyeakKm3UVHoIDAsyo1VmUkGWoK4VrI1NPXgK+VOwUgufaxdZ2
+         X9h19XEDjg1XThRRYwGixfJrg+UOXxpy/osb//IK8+BZicE2sKT6wuPLO1omCv0an3/w
+         GTQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758551305; x=1759156105;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ix+hu5NanbKuv9VZhmjhSAP9/8kt7Tc9p5wZOTLERrA=;
+        b=lxi4G+f3AIZr3WwzhiWsXb+0JsuVZd8NJAE/S0s27uf3HvvDvwOIu5hIe9/394yiBE
+         4bdCFPCrU5tZD8jr2g3eZ0Lm27JtYzFeWuwWhRc/rIh2kcySdSHHioZ2BXGNPgppvKKX
+         1UFO1fI3rJVO9x7YgyL4R2zY/WgvokIaE5y7Ztu4Gnu7ehidzgt01Bgqg3Kbuenbuul3
+         hF0bDSgaopLMXH+F0mMDJ9h/r2lQuPk7XxZELCwAZXtVBxkJrxzOHC0iaejk5w/zBdKb
+         VhejqqYNVAxGMs0GqPeOoZkr6mpqnvhjqYtl7gSnKi58ZVTTWTzS3l2hCpMGdVIRqCHP
+         bbXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUu8ozWmnKbJG1v3ETuNF8W+IW4cRpQhVqQCdh4IPwyFNOnnqI/fmEvLHagZ4lxeUFjb7ouXOhU4moJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmDLUgc40wUGHzMNtRZXyy8/UqLd5VVXy7qSL/KXiW6dXqn+2q
+	/3anu5BaueD/Je93Ng99Huu8X/l8XWZfI7Kdb5pDy9VuiCodEelJyuiTBOSWUW1FuHk=
+X-Gm-Gg: ASbGncv9VTMJ08aehkisdZXfgnCkMP5A6+5Tjm1YO+MsDA2DKasqHHUIIbFdXk2i5jD
+	KnpwHtoqJIWYa/zPdjq+39s+kMpW1budGrScL3AF4s3HDv0h/6UaIIa1p5O2C9jADHnQtFihzof
+	uR2ickh+wRELlhegYrnWcktVAij73YyozmgaEZ+VdAQn2Z6IB2K1BpH7OwQa8khZU3Ta6MGefLf
+	osbfDWPrwRJFm5qa+UMnmdg2QxerCxv9kh7WjoIwt0mKYd/MVBmrJE/QSN8UgLnouhF8PVRRCZS
+	06zUmRVPi0iEdKhqA7Whht7ltCRgkvtnqN164itA5bW3rotp3CEj8XtU5BCuRlK4dm2OHCF4HP5
+	nkQPbPNaws8tSwIlSy1Knsb/yRQ48MhKcejy6X1BSOffjQwykgAINpg==
+X-Google-Smtp-Source: AGHT+IHgHNnGSIkqfxadXFSwLUGIDeGN7fzklQfcWRZ5+8r/Qi0U+5pV4roKHuT4HCHEmzJ79dd0zA==
+X-Received: by 2002:a05:6902:f84:b0:eaa:251a:a4ab with SMTP id 3f1490d57ef6-eaa251aa597mr8087710276.40.1758551304769;
+        Mon, 22 Sep 2025 07:28:24 -0700 (PDT)
+Received: from fedora (d-zg1-232.globalnet.hr. [213.149.36.246])
+        by smtp.googlemail.com with ESMTPSA id 3f1490d57ef6-ea5ce709efdsm4163124276.1.2025.09.22.07.28.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 07:28:24 -0700 (PDT)
+From: Robert Marko <robert.marko@sartura.hr>
+To: p.zabel@pengutronix.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	steen.hegelund@microchip.com,
+	lars.povlsen@microchip.com,
+	daniel.machon@microchip.com,
 	devicetree@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Marc Zyngier <maz@kernel.org>
-Subject: [PATCH] irqchip/gic-v5: Add PCI bus msi-parent property handling
-Date: Mon, 22 Sep 2025 16:26:10 +0200
-Message-ID: <20250922142610.80200-1-lpieralisi@kernel.org>
-X-Mailer: git-send-email 2.48.0
+	linux-kernel@vger.kernel.org
+Cc: luka.perkov@sartura.hr,
+	benjamin.ryzman@canonical.com,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v3 1/2] dt-bindings: reset: microchip: Add LAN969x support
+Date: Mon, 22 Sep 2025 16:27:28 +0200
+Message-ID: <20250922142813.221586-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,92 +96,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-In some legacy platforms the MSI controller for a PCI host bridge is
-identified by an msi-parent property whose phandle points at an MSI
-controller node with no #msi-cells property, that implicitly
-means #msi-cells == 0.
+LAN969x also uses the Microchip reset driver, it reuses the LAN966x
+support so use a fallback compatible.
 
-For such platforms, mapping a device ID and retrieving the MSI controller
-node becomes simply a matter of checking whether in the device hierarchy
-there is an msi-parent property pointing at an MSI controller node with
-such characteristics.
-
-Add a helper function to its_v5_pci_msi_prepare() to check the msi-parent
-property in addition to msi-map and retrieve the MSI controller node (with
-a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to provide support for
-deviceID mapping and MSI controller node retrieval for such platforms.
-
-Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
-Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
-Follow-up to [1] in that it is a fix and too risky to fix generic OF code at
-this stage of development since it might affect other platforms.
+Changes in v3:
+* Fix compatible indentation
 
-Apply a fix to GIC ITS v5 MSI parent code - follow-up will clean up
-the msi-parent parsing in the kernel tree.
+Changes in v2:
+* Use a fallback compatible
 
-[1] https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
+ .../devicetree/bindings/reset/microchip,rst.yaml      | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
- drivers/irqchip/irq-gic-its-msi-parent.c | 34 ++++++++++++++++++++++--
- 1 file changed, 32 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
-index eb1473f1448a..198fb4e9a22d 100644
---- a/drivers/irqchip/irq-gic-its-msi-parent.c
-+++ b/drivers/irqchip/irq-gic-its-msi-parent.c
-@@ -101,6 +101,33 @@ static int its_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
- 	return msi_info->ops->msi_prepare(domain->parent, dev, nvec, info);
- }
+diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+index f2da0693b05a..e190e526f3e9 100644
+--- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
++++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+@@ -20,9 +20,14 @@ properties:
+     pattern: "^reset-controller@[0-9a-f]+$"
  
-+static int its_v5_get_msi_parent(struct device *dev, struct device_node **msi_np)
-+{
-+	struct of_phandle_args out_msi;
-+	struct device *parent_dev;
-+	int ret;
-+
-+	/*
-+	 * Walk up the device parent links looking for one with a
-+	 *  "msi-parent" property.
-+	 */
-+	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
-+		ret = of_parse_phandle_with_optional_args(parent_dev->of_node, "msi-parent",
-+							  "#msi-cells",
-+							  0, &out_msi);
-+		if (!ret) {
-+			if (!out_msi.args_count) {
-+				/* Return with a node reference held */
-+				*msi_np = out_msi.np;
-+				return 0;
-+			}
-+			of_node_put(out_msi.np);
-+		}
-+	}
-+
-+	return -ENODEV;
-+}
-+
- static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
- 				  int nvec, msi_alloc_info_t *info)
- {
-@@ -117,8 +144,11 @@ static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
- 	pdev = to_pci_dev(dev);
+   compatible:
+-    enum:
+-      - microchip,sparx5-switch-reset
+-      - microchip,lan966x-switch-reset
++    oneOf:
++      - enum:
++          - microchip,sparx5-switch-reset
++          - microchip,lan966x-switch-reset
++      - items:
++          - enum:
++              - microchip,lan9691-switch-reset
++          - const: microchip,lan966x-switch-reset
  
- 	rid = pci_msi_map_rid_ctlr_node(pdev, &msi_node);
--	if (!msi_node)
--		return -ENODEV;
-+	if (!msi_node) {
-+		ret = its_v5_get_msi_parent(&pdev->dev, &msi_node);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = its_translate_frame_address(msi_node, &pa);
- 	if (ret)
+   reg:
+     items:
 -- 
-2.48.0
+2.51.0
 
 
