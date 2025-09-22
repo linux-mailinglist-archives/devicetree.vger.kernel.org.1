@@ -1,537 +1,231 @@
-Return-Path: <devicetree+bounces-219835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2BD5B8E98F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 01:36:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFDAB8EAB9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 03:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1B43B7261
-	for <lists+devicetree@lfdr.de>; Sun, 21 Sep 2025 23:36:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2572E173F2E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 01:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F4F2C11FC;
-	Sun, 21 Sep 2025 23:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86EF3188A0C;
+	Mon, 22 Sep 2025 01:21:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FcFeD01B"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="AAR26LKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E163524E4C6
-	for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 23:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B159B18E20;
+	Mon, 22 Sep 2025 01:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758497754; cv=none; b=HSMddasMfzVo5GnPB11YjmJ4Mj12DNWT8bHiJL0J9GIgEHC1WWzLiL0wJ2ANkx3DRuLb/TEFEymNVPk8ZGcdIvrSLHIQazAUAx+F6Y18wuSWbbllGMf2gsa9TrkPuK4779s9aD/YIuEdnDBZXtQ2OJoWKtpiutDiT5GbnfAEh+g=
+	t=1758504094; cv=none; b=HC3xPxY2U1uz/nMvMS3+CTHwYeA1eQNu6oz3BHnk1icJsROoeniEae6izUx1WfpKB9C4gs9U+yYdQGqLDqCY6lO4EdqNYmMk5x4W/iIX0lXUACa+ov/7H6VE9nmNfhh7Fn8+pTnv3ubJY0IOy/L/kjoPhPebIJgGNxXvO7WXF9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758497754; c=relaxed/simple;
-	bh=AHidsI5RoYVti2WriFKFuRRpkhiX23TQW2Ea6SqRYyA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=O3eevWPA4l7PTEbkQ54y4JrH+jy8KkJ0POm4I0/SRGR9R/l3JB/njj81F5IT06qbC3VdusTEyFnJKePPico59gOXz3x7GP1kgEjrg3GiaZrESEAmMBQC/abWvGAoOPWAGJ0T6DBV1nTRGD8YaceHBwPEWhcdtlGk4lhFVI4JeUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FcFeD01B; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-8127215a4c6so433068485a.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Sep 2025 16:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758497752; x=1759102552; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Aq/XbpxEcTTBwM2uie3A5y3PRK50AFwXMuVecv5w7Mg=;
-        b=FcFeD01BUMuTmjmPSFwV5zTvSnYOC6le5BhBkglBfE6FaVlQ/sdKKMHhP3dN1tz6GS
-         ZE/XI44yHWwuTU3hm3seUgDlHeyARE5ne4dakAFqkrD+loAoYmgE4ZpIOphmVQjF6Ymu
-         WDuiUMviQDfZZ/YPhn7Eko/ZcdJLk74CL5+CIBUSFrrfi1BBa7Zcdmz+/hzBlPiP1rCY
-         /uLZG3m/lkGCbznXqb7d9DtvAfvTRvdQ/ubrGgZw4nuXEBpUcJ6i2gSFVG6BY5on1CGX
-         ag7IuRREmJM4vC9BgVJVm1lf/7W/wXIn9S3bVVm9ik/3zCwMeD/3hIHwpWPbj3cq6o0B
-         3OUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758497752; x=1759102552;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Aq/XbpxEcTTBwM2uie3A5y3PRK50AFwXMuVecv5w7Mg=;
-        b=SDloHJoHsv+sLrNTCb1Qg3AolItCnwkYd7PVXcOM5XVOjClxMji3rRpFQf7hixiitG
-         eiAJ/Ev3UnIpn5E+rERVFbE8wUeOmlAurtRkRSYRU0BDdyPi+lnPBZi5yWfwT1gdW+6p
-         7aWc7+caj39hOSHYV9EX0N67JPfpQF8dxrqFRsY/IJoDqasY+ITRV6sAWJDGjdmmXrIY
-         rYCI43LYPhdZpSmt4xPYVzVadwye2N/yRDYgTg5rTF24GFs+0tHdg0H9aYSIK2rmunmQ
-         HzQNFGnIHcsXRPYwO+y61F+eVPwWh+QW/aXUvFWdYjbG5DzdG6R9yiVot1yVnOEV1KGf
-         DuXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWCd2e00IrfD0DcgOSx5XgPZa9ySFE73lWdDgrzLAQmK0kjqP7+0zcKT0OT3mrTw0QHWBf1HTEZw06v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTwDYN/W6EKtpxC1BnzEwgIJGmjk4RNByGTer1FMYO8BvQEI9J
-	5d2VF2zGeZdhj2bg1LbdzELRXv9lQmKdwtopgcNP8wrGElEmlERtxsV1
-X-Gm-Gg: ASbGncslIIsPDylAvYJ/HM4ORUBJy5TECw58csuypFJtnWHr9VMOCKu6Wkd9FX159Qa
-	NvD0HbMHhv73hruui0pWR4dYE4PLGWxtSMeU2D25jorVjvpgt56l5JAV9C2QJEKRRgoAJf3nxeV
-	vZtX1s7pNzQ6RACyVUyQtS+Qkb0erGvN+7vyGNKq08xMb3fwpKZ0GBUkrUU2JcOEIrBQ1GP6E6m
-	UJ9fhDaaijGv6KMpE2VPedY4KwRb9FKNH4atmqbwU+8PpOpaQdTHBeWxKoITuzWwrAoQofKE1D8
-	rAPaXN1Z8nyFYKnLs5evsMABm5Zq5RuY+GISObcijXn7u4GkLCEpEAoG1nUeo9GDImyDpk30UFh
-	L6cHfhVXZe2/l48mBTEI5Z8Ek6NoOdTedk2j1wCKSE9D53ryjWAQ=
-X-Google-Smtp-Source: AGHT+IHtWr8BYWk0a543mLVk9jLcs4xheLhrEKiEs3MLNZwTHVl4JwO0HGo3p2pbvEb6k8kswMAtLg==
-X-Received: by 2002:a05:620a:372b:b0:7e8:8086:cb83 with SMTP id af79cd13be357-836393287f2mr1839104185a.28.1758497751546;
-        Sun, 21 Sep 2025 16:35:51 -0700 (PDT)
-Received: from rogerio-laptop.home ([184.148.194.86])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-83631a8095esm725949085a.49.2025.09.21.16.35.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Sep 2025 16:35:51 -0700 (PDT)
-From: Rogerio Pimentel <rpimentel.silva@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de
-Cc: xiaofeng.wei@nxp.com,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	alexander.stein@ew.tq-group.com,
-	dario.binacchi@amarulasolutions.com,
-	marex@denx.de,
-	Markus.Niebel@tq-group.com,
-	y.moog@phytec.de,
-	joao.goncalves@toradex.com,
-	frieder.schrempf@kontron.de,
-	josua@solid-run.com,
-	francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1758504094; c=relaxed/simple;
+	bh=CD1SQmOAhRrBECdX80K+TmGesTLRxNBkJ4iHSKGNXyI=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Tv2Mhk79mlvjWSCGENQgxzSFRzqeQEdrKAL2h2LKjVOpkqubHCS7Xv+Y3AuJyEOFFz3G8MAt4h0/nX4YWDFAoO1zZ8iB1NlUJOWL3nBsW/P3i721960LZpCo3LQpdADAw94IaaGBi67mGBluUYD/xzn12q3XFs7uAnYz3XdYNxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=AAR26LKo; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1758504051;
+	bh=nXCBtUA+m9scr2xmpRaIuBuOlGHEVWl3gOWkOzJl1I0=;
+	h=From:To:Subject:Date:Message-Id;
+	b=AAR26LKomQpmT5YIMQOt5i2lHyowL02UnA8HPo3J9JH12ndwQeMd6kEyB1NOr9OsJ
+	 mV+br2L3CVhFAfGGSsAyd8rLj6Vrr0XQNSbVohfPOuVtUyZgJIUuo0SsoLA39l+m9Z
+	 hBvft8Q03ZQQHmJjM19H4VvxDgxj6CV2Oswzc7OM=
+X-QQ-mid: zesmtpgz1t1758504048tb13996bb
+X-QQ-Originating-IP: zyZxvz1kW6DoY+Ykz8VGYNjxDxOh/OBcK7J8ECz/sP0=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 22 Sep 2025 09:20:45 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2099483455769991136
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Yubing Zhang <yubing.zhang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Amit Sunil Dhamne <amitsd@google.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Peter Robinson <pbrobinson@gmail.com>
+Cc: linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Rogerio Pimentel <rpimentel.silva@gmail.com>,
-	Anson Huang <Anson.Huang@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Daniel Baluta <daniel.baluta@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: add support for NXP i.MX8MP FRDM board
-Date: Sun, 21 Sep 2025 19:35:34 -0400
-Message-Id: <20250921233534.838680-2-rpimentel.silva@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250921233534.838680-1-rpimentel.silva@gmail.com>
-References: <20250921233534.838680-1-rpimentel.silva@gmail.com>
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 0/7] Add Type-C DP support for RK3399 EVB IND board
+Date: Mon, 22 Sep 2025 09:20:32 +0800
+Message-Id: <20250922012039.323-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: MZ9X7MyfBLblIoi9hIZLojGLP7mu+oTAFeAnrHaB7NPYiAOxISXZwHrg
+	HHcphF0ZBGLXWLESKaW2RL8AO2oGl7H4bAsTaXUKcmZnDC3Bc7BEJS+2YUxUMf1o8D5HAmw
+	fdtDUr0a9ebiblf8xekQft+3ox3JrkkHBgBzCy2DmZ7TN8wUkK4BLIKmymCnw5LICJSITZy
+	H0j4ryhzrNdZG9VT0v6J/8of22aRc+fiVYl+6meVHl8qqOq7vEoP2QhitgxsneUd/89UQ6k
+	5PaIiA+TpfdmMyJL8NLJkg+zvnubYGrgfspYJCrQ5d/OOrFhs2q6+AB/B9MjU4ueTAkXdNB
+	p2TE3HfwG5aD/zRuGxV77HHMOLh7DFdBLDefITCFkecc9q8voQApgvWfKALCx4l6GoQ/+lu
+	HTEQWaWqotntEww5j85VywTEBS9qJ0BSjlZX/oJkbJXcsQKs9iSrxszVRiREa9JwZiOrkbk
+	TdNEiUk66HON9kX0XORwJt6ZlBg1oc6uPhfasDJ/ZDvRfF7+Hn359v+oHcVJgcFUj+z84F7
+	8RqLKLsWtpCNMDpTZiXqAVwiT8Y6CKl8oQ4F3U1PQvJmQSMRkBrdPGSf3/hSt7yTrVopbMh
+	wnmo2cItcUETg3VihF0LGyl8w2IjJEwqzX/2SBmitWz/TZ6wIlTBKkR+vMV7l0b2hRfNV0p
+	SOo8+pdgvyXQq63h6kds2fRVNaP7RuYmhD5lmF9GDrHd6y/uMF8AYWmpIl1Bq5SFRBfStNf
+	JeuYRYOPKU/v9kE/zLEwClTiG7KHhMduD4KSfTfRZORGZw95pUd0K3mLkXskxm10/4eTjYl
+	7y/KiurR10iuPg9mjWPTb8Wq6rSd7n9cnMiarjgx8gsz3B3nO1R6BldToA6k+IgVc41hS6h
+	IT+nF2EUpd+Vv4bFScOEHdbmNxz+1f+skjKoysysEaFQlRFwgpGaz8jyE6J8LUrt/x5jj0x
+	9QouUhnDFGNywBdXeUrwYDOskl0c7UuvPiK1gV7LfzYfI1TQQHDQ+kFYaOreMf+CsUmA=
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-The FRDM-i.MX8MP is an NXP development platform based on the i.MX8M Plus
-SoC, featuring a quad Cortex-A53, Cortex-M7 co-processor, 4GB LPDDR4,
-32GB eMMC, Wi-Fi 6/Bluetooth 5.4/802.15.4 tri-radio, Ethernet, HDMI/MIPI
-display interfaces, camera connectors, and standard expansion headers.
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Based on the device tree found in the NXP repository at github
-https://github.com/nxp-imx-support/meta-imx-frdm and on imx8mp-evk
-board kernel mainline device tree.
+This series focuses on adding Type-C DP support for USBDP PHY and DP
+driver. The USBDP PHY and DP will perceive the changes in cable status
+based on the USB PD and Type-C state machines provided by TCPM. Before
+this, the USBDP PHY and DP controller of RK3399 sensed cable state
+changes through extcon, and devices such as the RK3399 Gru-Chromebook
+rely on them. This series should not break them.
 
-This is a basic device tree supporting:
+====
+1. DisplayPort HPD status notify
 
- - Quad Cortex-A53
- - 4GB LPDDR4 DRAM
- - PCA9450C PMIC with regulators
- - Two NXP PCAL6416 GPIO expanders
- - RGB LEDs via GPIO expander
- - I2C1, I2C2, I2C3 controllers
- - UART2 (console) and UART3 (with RTS/CTS)
- - USDHC3 (8-bit eMMC)
- - SNVS power key (onboard power button)
+Before v4, I implemented a variety of DP HPD status notify. However,
+they all had various problems and it was difficult to become a common
+solution.
 
-Signed-off-by: Rogerio Pimentel <rpimentel.silva@gmail.com>
-Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Daniel Baluta <daniel.baluta@gmail.com>
----
+Under Dmitry's guidance, I try to add default DRM AUX HPD device when
+register DisplayPort altmode in patch 1. That makes it redundant for
+each Type-C chip driver to implement a similar registration process
+in embedded scenarios.
+
+I'm not certain if the current implementation is appropriate.
+Please let me know if there's a better way.
+ 
+====
+2. Altmode switching and orientation switching for USBDP PHY
+
+For USB Type-C interfaces, an external Type-C controller chip assists
+by detecting cable attachment, determining plug orientation, and
+reporting USB PD message. The USB/DP combo PHY supports software
+configurable pin mapping and DisplayPort lane assignment. Based on
+these message, the combo PHY can perform both altmode switching and
+orientation switching via software.
+
+The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
+fusb302 chip as Type-C controller. The connection diagram is shown below:
+
+fusb302 chip +---> USB2.0 PHY ----> DWC3 USB controller
+             |
+             +---> USB/DP PHY0 +--> CDN-DP controller
+                               |
+                               +--> DWC3 USB controller
+
+====
+3. Multiple bridge model for RK3399 CDN-DP
+
+The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+the CDN-DP can be switched to output to one of the PHYs.
+
+USB/DP PHY0 ---+
+               | <----> CDN-DP controller
+USB/DP PHY1 ---+
+
+In previous versions, if both PHY ports were connected to DP,
+the CDN-DP driver would select the first PHY port for output.
+
+On Dmitry's suggestion, we introduced a multi-bridge model to support
+flexible selection of the output PHY port. For each PHY port, a
+separate encoder and bridge are registered.
+
+The change is based on the DRM AUX HPD bridge, rather than the
+extcon approach. This requires the DT to correctly describe the
+connections between the PHY, USB connector, and DP controller.
+And cdn_dp_parse_hpd_bridge_dt() will parses it and determines
+whether to register one or two bridges.
+
+====
+Patch1 add default HPD device when register Displayport altmode.
+Patch2 add new Type-C mode switch for RK3399 USBDP phy binding.
+Patch3 add typec_mux and typec_switch for RK3399 USBDP PHY.
+Patch4 drops CDN-DP's extcon dependency when Type-C is present.
+Patch5 add multiple bridges to support PHY port selection. 
+Patch6 add missing dp_out port for RK3399 CDN-DP.
+Patch7 add Type-C DP support for RK3399 EVB IND board.
+
+Changes in v4:
+- Link to V3: https://lore.kernel.org/all/20250729090032.97-1-kernel@airkyi.com/
+- Add default HPD device for DisplayPort altmode.
+- Introduce multiple bridges for CDN-DP.
+- ...
+
+Changes in v3:
+- Link to V2: https://lore.kernel.org/all/20250718062619.99-1-kernel@airkyi.com/
+- Add more descriptions to clarify the role of the PHY in switching.
+- Fix wrong vdo value.
+- Fix port node in usb-c-connector.
 
 Changes in v2:
+- Link to V1: https://lore.kernel.org/all/20250715112456.101-1-kernel@airkyi.com/
+- Reuse dp-port/usb3-port in rk3399-typec-phy binding.
+- Fix compile error when CONFIG_TYPEC is not enabled.
+- Notify DP HPD state by USB/DP PHY.
+- Ignore duplicate HPD events.
+- Add endpoint to link DP PHY and DP controller.
+- Fix devicetree coding style.
 
- - Fixed dt-binding schema warnings
- - Renamed nodes 'red, green and blue' to
-   'led-0, led-1 and led-2'
- - Renamed led labels 'led-0, led-1 and led-2'
-   to 'red, green and blue'
- - Added Reviewed-by and Signed-off-by tags
+Chaoyi Chen (7):
+  usb: typec: Add default HPD device when register DisplayPort altmode
+  dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode-switch
+  phy: rockchip: phy-rockchip-typec: Add typec_mux/typec_switch support
+  drm/rockchip: cdn-dp: Support handle lane info without extcon
+  drm/rockchip: cdn-dp: Add multiple bridges to support PHY port
+    selection
+  arm64: dts: rockchip: Add missing dp_out port for RK3399 CDN-DP
+  arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
 
- 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- arch/arm64/boot/dts/freescale/imx8mp-frdm.dts | 355 ++++++++++++++++++
- 2 files changed, 356 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
+ .../phy/rockchip,rk3399-typec-phy.yaml        |   6 +
+ arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+ .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++
+ drivers/gpu/drm/rockchip/Kconfig              |   1 +
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        | 423 +++++++++++++++---
+ drivers/gpu/drm/rockchip/cdn-dp-core.h        |  23 +-
+ drivers/phy/rockchip/phy-rockchip-typec.c     | 365 ++++++++++++++-
+ drivers/usb/typec/altmodes/displayport.c      |  27 ++
+ drivers/usb/typec/altmodes/displayport.h      |   2 +
+ drivers/usb/typec/class.c                     |   8 +
+ include/linux/usb/typec_altmode.h             |   2 +
+ 11 files changed, 932 insertions(+), 81 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 525ef180481d..d861e576779a 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -206,6 +206,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-picoitx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-edm-g-wb.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-hummingboard-mate.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-hummingboard-pro.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-hummingboard-pulse.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-new file mode 100644
-index 000000000000..9138c65739aa
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-@@ -0,0 +1,355 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp.dtsi"
-+
-+/ {
-+	model = "NXP i.MX8MPlus FRDM board";
-+	compatible = "fsl,imx8mp-frdm", "fsl,imx8mp";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "red";
-+			gpios = <&pcal6416 13 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-1 {
-+			label = "green";
-+			gpios = <&pcal6416 14 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+
-+		led-2 {
-+			label = "blue";
-+			gpios = <&pcal6416 15 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0 0xc0000000>,
-+		      <0x1 0x00000000 0 0x40000000>;
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&reg_arm>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&reg_arm>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&reg_arm>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&reg_arm>;
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9450c";
-+		reg = <0x25>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		regulators {
-+			BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			reg_arm: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <720000>;
-+				regulator-max-microvolt = <1025000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+			};
-+
-+			BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			reg_buck5: BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1045000>;
-+				regulator-max-microvolt = <1155000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <1950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO3 {
-+				regulator-name = "LDO3";
-+				regulator-min-microvolt = <1710000>;
-+				regulator-max-microvolt = <1890000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	pcal6416: gpio@20 {
-+		compatible = "nxp,pcal6416";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pcal6416_int>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names = "CSI1_nRST",
-+			"CSI2_nRST",
-+			"DSI_CTP_RST",
-+			"EXT_PWREN1",
-+			"CAN_STBY",
-+			"EXP_P0_5",
-+			"EXP_P0_6",
-+			"P0_7",
-+			"LVDS0_BLT_EN",
-+			"LVDS1_BLT_EN",
-+			"LVDS0_CTP_RST",
-+			"LVDS1_CTP_RST",
-+			"SPK_PWREN",
-+			"RLED_GPIO",
-+			"GLED_GPIO",
-+			"BLED_GPIO";
-+	};
-+
-+	pcal6416_1: gpio@21 {
-+		compatible = "nxp,pcal6416";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pcal6416_1_int>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		gpio-line-names = "P0_0",
-+			"P0_1",
-+			"AUD_nINT",
-+			"RTC_nINTA",
-+			"USB1_SS_SEL",
-+			"USB2_PWR_EN",
-+			"SPI_EXP_SEL",
-+			"P0_7",
-+			"W2_HOST_WAKE_SD_3V3",
-+			"W2_HOST_WAKE_BT_3V3",
-+			"EXP_WIFI_BT_PDN_3V3",
-+			"EXP_BT_RST_3V3",
-+			"W2_RST_IND_3V3",
-+			"SPI_nINT_3V3",
-+			"KEYM_PCIE_nWAKE",
-+			"P1_7";
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	assigned-clocks = <&clk IMX8MP_CLK_UART3>;
-+	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	0x400001c2
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	0x400001c2
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL	0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
-+		>;
-+	};
-+
-+	pinctrl_pcal6416_int: pcal6416_int_grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x146
-+		>;
-+	};
-+
-+	pinctrl_pcal6416_1_int: pcal6416_1_int_grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x146
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX	0x140
-+			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX	0x140
-+			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS	0x140
-+			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-+		>;
-+	};
-+};
 -- 
-2.25.1
+2.49.0
 
 
