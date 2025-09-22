@@ -1,152 +1,90 @@
-Return-Path: <devicetree+bounces-219921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A1CB8F5F5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CC3B8F608
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:58:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 810F53AF539
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 07:57:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D0DD3B4913
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 07:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B501C2F746F;
-	Mon, 22 Sep 2025 07:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86EF2F83C2;
+	Mon, 22 Sep 2025 07:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TjgRs4rm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b5d7EVlU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F152EE268;
-	Mon, 22 Sep 2025 07:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C4A26AEC;
+	Mon, 22 Sep 2025 07:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758527853; cv=none; b=NBgrvqIrIUVtOlhXo1+u2TCEPMVuhWCmhLmvU3cHFpOg8TYsZLr4FXua8oRwS7Viy0iBVQB/GPoeotbP6mB+k2mNRMTozdzWnKgmlvGHw+JLmcXju0BmY3MMUKcykZ0V/xn+fRhA7gwd1y763doDQ0n8cN+Oadv7nno4Qn7kFNw=
+	t=1758527912; cv=none; b=P/MhdEQueR78rTATzZ7Zuxajgb11WEk7jfsqBIpyqxUjC1v2rzAnnwqaNTib5ub17PsP65FIdhdQZ9ZnY1tRV2IFzZg/5bedX6DPz6uZOBE9QEv2rP0OUbxLP43wavX/n9ojK90IHY+FViTwIlQysc9L8EuT1V6Lawa7punmVPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758527853; c=relaxed/simple;
-	bh=8yVDHTkeERDKqGU8/+5de0a01zz7l/9JjTsXpfwJEqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lGZq0r6MZwc+DnOgKwP8SFu77JgdrngjkQ7vMq67vrYnCHrnk2sohbeAGT0t+v49l68z1SxTKu6eTNd31CbWfSuMRHJRKxvSLXruhDTeEBONgxGAykEJXE+UVyKChcvj23RE8TcSgBqkVmU/NCm4jHhk4VCssGqNSi5oa+sGB6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TjgRs4rm; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758527852; x=1790063852;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8yVDHTkeERDKqGU8/+5de0a01zz7l/9JjTsXpfwJEqU=;
-  b=TjgRs4rmwW5v0yZCOlqNcAg96oG0h+dKEFCADumPcty2zoLHrdeo6sKT
-   WuserhXt7PZcBUf5EaAxVgofXYDrJR/rph1rQ5kgjUGHSvZiijmeMIYcj
-   CglOwfekxfEwvG9kGFZQChV4afgRy1IxhhhyoMAsYvmahfk1SBfoUMDI3
-   lS/R+WfsfdpsqlSmPF/0Qe3ILqgDOP4IERldduL7Bcq8aHd8pQkM799uy
-   nQOITsAM6VJE8OQoaHSu8GcoLxGpad4v9ZdZD3EL3mVEC0wd1gKPAt1mp
-   2rUaKk1vQnscjhtKcrI4lM7uS/8XCd06xDrRa5RwCv7ZlHtpZkOaSTpHo
-   g==;
-X-CSE-ConnectionGUID: ctd+v4wfT4CNyOdT4fbQyg==
-X-CSE-MsgGUID: 1CHTgxUUSuyxc6eyAcl1AA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60901903"
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; 
-   d="scan'208";a="60901903"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2025 00:57:31 -0700
-X-CSE-ConnectionGUID: A37dvFYzS3yKNurn/d60PA==
-X-CSE-MsgGUID: JVijE6a3RaepPTic1nShNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; 
-   d="scan'208";a="180675538"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 22 Sep 2025 00:57:24 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v0bQH-0001R3-1T;
-	Mon, 22 Sep 2025 07:57:21 +0000
-Date: Mon, 22 Sep 2025 15:56:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 1/7] usb: typec: Add default HPD device when register
- DisplayPort altmode
-Message-ID: <202509221516.1umvcXG6-lkp@intel.com>
-References: <20250922012039.323-2-kernel@airkyi.com>
+	s=arc-20240116; t=1758527912; c=relaxed/simple;
+	bh=8prAEjWiaIxuhpvbka12E01qTmGrcc+1Ik4AmS/ME0Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dRgCz2dp0DB4aYbAUffFzaHy36vF0HJ4Tf8Hf6AZY0vOAWbejoFYthI7u+lEJxlCtmnw8Kk24+hoSznDESoNVcdt3gtzDR2gsYoACkLwaVejpxYHmmI99uhtuxShnPGtM6ua8v/X6Wmo20ZZmBt41whLSHC3VZuE5SUwZgTmc0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=b5d7EVlU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758527909;
+	bh=8prAEjWiaIxuhpvbka12E01qTmGrcc+1Ik4AmS/ME0Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b5d7EVlUHQdN2AF0SXwMm4ZQ8Cu4k5AEEp0o7tYGfyA2lZ+UnVAFjn4gyXQmzr29L
+	 G7tazT37GcCi+JWj6chdYu54wRR7iNjrf2ESHQAL3gpxgTlHLDQeZrcfJ1b7U9Z3Pk
+	 WSQW5DT5I4n3Y2KLN2SzIqrT+LGizeLnQCgzRFvHQdregu7OmRbK5bWggbFR1dNpW9
+	 7548ERovKVc+HmAnNz0Nrzff2QCNFkUKRvHW14vA9pD4WExqrWXVrH6i0tTkWDlcwt
+	 GfN/Y0X+7ppGbk1xC03+k271jPVvKoX22lStPWe3wuigMlIQ4+wlIDRQW13QolOn7a
+	 hTr/RLOGFbwkQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BEB8E17E00A3;
+	Mon, 22 Sep 2025 09:58:28 +0200 (CEST)
+Message-ID: <0e45f5bc-837c-448c-952e-6fbd16c738ed@collabora.com>
+Date: Mon, 22 Sep 2025 09:58:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250922012039.323-2-kernel@airkyi.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: i2c: i2c-mt65xx: Document MediaTek MT6878
+ I2C
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
+ Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Chaoyi,
+Il 20/09/25 19:22, Igor Belwon ha scritto:
+> Document the I2C controllers found in the MediaTek MT6878 SoC, by adding
+> a new compatible string for the controllers. Their design is compatible
+> with the design from the MediaTek MT8188 SoC.
+> 
 
-kernel test robot noticed the following build warnings:
+Heh, I have seen that one just after reviewing the first version.
 
-[auto build test WARNING on usb/usb-testing]
-[also build test WARNING on usb/usb-next usb/usb-linus robh/for-next linus/master v6.17-rc7 next-20250919]
-[cannot apply to rockchip/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Happy to see that you already pushed a fix for whatever I would be complaining
+about :))))
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chaoyi-Chen/usb-typec-Add-default-HPD-device-when-register-DisplayPort-altmode/20250922-092549
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/20250922012039.323-2-kernel%40airkyi.com
-patch subject: [PATCH v4 1/7] usb: typec: Add default HPD device when register DisplayPort altmode
-config: i386-buildonly-randconfig-003-20250922 (https://download.01.org/0day-ci/archive/20250922/202509221516.1umvcXG6-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250922/202509221516.1umvcXG6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509221516.1umvcXG6-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/usb/typec/class.c:18:
->> drivers/usb/typec/altmodes/displayport.h:7:5: warning: no previous prototype for 'dp_altmode_probe' [-Wmissing-prototypes]
-       7 | int dp_altmode_probe(struct typec_altmode *alt) { return -ENOTSUPP; }
-         |     ^~~~~~~~~~~~~~~~
->> drivers/usb/typec/altmodes/displayport.h:8:6: warning: no previous prototype for 'dp_altmode_remove' [-Wmissing-prototypes]
-       8 | void dp_altmode_remove(struct typec_altmode *alt) { }
-         |      ^~~~~~~~~~~~~~~~~
->> drivers/usb/typec/altmodes/displayport.h:9:6: warning: no previous prototype for 'dp_altmode_hpd_device_register' [-Wmissing-prototypes]
-       9 | void dp_altmode_hpd_device_register(struct typec_altmode *alt) { }
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
-vim +/dp_altmode_probe +7 drivers/usb/typec/altmodes/displayport.h
-
-d266e96820cc36 Ajay Gupta  2019-04-23 @7  int dp_altmode_probe(struct typec_altmode *alt) { return -ENOTSUPP; }
-d266e96820cc36 Ajay Gupta  2019-04-23 @8  void dp_altmode_remove(struct typec_altmode *alt) { }
-50d2edccce6bf3 Chaoyi Chen 2025-09-22 @9  void dp_altmode_hpd_device_register(struct typec_altmode *alt) { }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
