@@ -1,117 +1,130 @@
-Return-Path: <devicetree+bounces-220192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B29DB9294D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:16:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB6CB92A2C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:45:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DE232A4CF1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:16:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 288A51889016
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346E93112BB;
-	Mon, 22 Sep 2025 18:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9451C31A579;
+	Mon, 22 Sep 2025 18:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l30ktzbZ"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="eo1Piz8Z";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="BWB+I0rN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D3CC2FB;
-	Mon, 22 Sep 2025 18:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C556319865;
+	Mon, 22 Sep 2025 18:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758564973; cv=none; b=VDPGicRuWz2tloLG6Mtm/xtuWwinb0DnITSRj9j3rz6gL5UO2VY8p7ednuvYZZrOyn5we2gKLbS7hN5d7vh6dj4n5GcXaaNcW73VzAMupg9XoCbNLkv2paQ4s+nVJwUYNeAS1zXjzhTbvZaISkbXhI2ULHreSjqDlMFe94Bqwis=
+	t=1758566696; cv=none; b=QFZA6P8KittQclGA+aufSLJOFUE3lqRaPu/tQB9+InfCubVs7bzAVoyfamvltZe20f+uiMGlWcOPVg3riliPBoNZaMpmzA51VNeGWjbLBwh37MI/zrQBq5Y6Ad1CYePWwD9IhuLyvwg9MsFlY03wJSjOwycn0nN6h0sVKNQNntA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758564973; c=relaxed/simple;
-	bh=B27HomHuhJBTrQOAEO4poRW47y74aiAoiPzAwmJBk+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lMtU4bQBTYkNHVQwVoUYIhobTNMGy9wl4rNeVpGL9u6fFE65vkyLoEt30Yd7StTXKbKvhe7HfOZlcAsfllBcToRvLIZJwpc/mgRPnac1xCQljGSd9GeRxrFDpoPp5MihtSgQr6OMzbEszL2yPxhGkwHKgtO5/2+h0TSVbRtYCSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l30ktzbZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50281C4CEF0;
-	Mon, 22 Sep 2025 18:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758564972;
-	bh=B27HomHuhJBTrQOAEO4poRW47y74aiAoiPzAwmJBk+U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l30ktzbZF077F855O0xutvYLVis5e2kFa2zr5BK0uU49ekrNDOoOQLBOA34o5wvkd
-	 lMkdIigJT6NGy45DFVdaagNhbioDHCJrIffvCjXqSUF3nRogRh+fdXQWxxlOUgb+hj
-	 SfRWCroIxZR6dbzrqOIilUwA/f3LsnMB9Ch4OrCN7PF+whQvwqPvZvfm1MMvs9slPD
-	 i2QkoELimpXiFIVj6O+hl97UNXIsOMlPWADFQJz3zVxzKH19EV23qPVRw7Z+G7Em9r
-	 IJk1e8RhcOCT9I7sk72jMzp7viNPNOLxSCQzvb0fWOmi68xtbcVPDSxSUr5Pt1kwx+
-	 Ak2BDG4SqdATg==
-Date: Mon, 22 Sep 2025 13:16:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Mikhail Kalashnikov <iuncuim@gmail.com>
-Subject: Re: [RFC PATCH 1/5] dt-bindings: mfd: x-powers,axp152: Add
- polyphased property
-Message-ID: <20250922181611.GA567602-robh@kernel.org>
-References: <20250919000020.16969-1-andre.przywara@arm.com>
- <20250919000020.16969-2-andre.przywara@arm.com>
+	s=arc-20240116; t=1758566696; c=relaxed/simple;
+	bh=5uqT9t7LL1q3vO4IziGFJ6VO0hi/i5q9U42aGdBhQg0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qYSuB2oaxMJPod8qNr+HHVPk8AL/l2Q1vJloBLlNesI5Dbo/+uvaLVhGKhdVYjvlqcL6ubHT8/yQgXPCMkyZvcQWUnaOi9s5pWV/j3H0X/jpkGqvAK/cRiJ7RlkpmbYJQionaeR2aRrjwAA4kqf+LQKDGYfGa3PSR3AZ3u52ELE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=eo1Piz8Z; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=BWB+I0rN; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1758566001; bh=LZHdHS0/egfSIVwJPqC+6tM
+	bMT7So0l95Joa495MF4s=; b=eo1Piz8ZM5BZDpfSbRx8Zj6a23YzXpQZHuOF89mE17zE0rEwbH
+	jOQcUzPfEin5QboCMH3DX/K8YrQn3mPk2rN8kCLgbMVl79wtMubqiUof66FVYKgzSBPW8jxnlT9
+	4hGC3iy5scoCGQkTmBS2aYx/eh+fruEOPIi7MtY494b95fIhBfDLd9seY5PN7a/40A43e9cBfZ7
+	OlBmu3a/q6iS5GR6+tNnaNPWEo3w++Eh9/dY7dL5e3tJOMn5LvCeh8r6rWJ9vswBHuUDLATkPKc
+	B61VcYCg0g8CnbT97kR9q9rp7Z7Z2HSKBsGF6tpkr3TM/gQyXzD7mg3MdIVnlpXXY3Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1758566001; bh=LZHdHS0/egfSIVwJPqC+6tM
+	bMT7So0l95Joa495MF4s=; b=BWB+I0rNnuo1GzvOkQ2q25+N5gfmlW3Hz0TJRrHHdTwn4h57cl
+	9qYXf64wW+VGtMXrRgZmbEU494DrI1ymkEBg==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919000020.16969-2-andre.przywara@arm.com>
+Date: Mon, 22 Sep 2025 20:33:21 +0200
+From: barnabas.czeman@mainlining.org
+To: Pavel Machek <pavel@ucw.cz>
+Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, Linus Walleij
+ <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, Joerg Roedel
+ <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, Sean Paul
+ <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Marijn Suijten
+ <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Dmitry Baryshkov
+ <lumag@kernel.org>, Adam Skladowski <a_skl39@protonmail.com>, Sireesh Kodali
+ <sireeshkodali@protonmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang
+ <jessica.zhang@oss.qualcomm.com>, Srinivas Kandagatla <srini@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v7 6/6] arm64: dts: qcom: Add Xiaomi Redmi 3S
+In-Reply-To: <aNGLPdmOyh/pfroq@duo.ucw.cz>
+References: <20250831-msm8937-v7-0-232a9fb19ab7@mainlining.org>
+ <20250831-msm8937-v7-6-232a9fb19ab7@mainlining.org>
+ <aNGLPdmOyh/pfroq@duo.ucw.cz>
+Message-ID: <97ee369f6ffbe42c72c57ebd72887b23@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 19, 2025 at 01:00:16AM +0100, Andre Przywara wrote:
-> Some X-Powers AXP PMICs can combine some of their DC/DC buck converter
-> outputs in a multi-phase fashion, to achieve higher currents and
-> decrease the output ripple. The datasheets call this poly-phase. This is
-> programmable in the PMIC, although often set up as the PMIC's reset
-> default.
+On 2025-09-22 19:45, Pavel Machek wrote:
+> Hi!
 > 
-> Add the "x-powers,polyphased" property to the binding, to describe those
-> pairs or tuples of regulators that should work together. In the lead
-> regulator node, the property lists the phandles of the connected
-> regulators. Just an empty property means no poly-phasing.
-
-Don't we have a coupled regulator binding already?
-
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../devicetree/bindings/mfd/x-powers,axp152.yaml   | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>> +	led-controller@45 {
+>> +		compatible = "awinic,aw2013";
+>> +		reg = <0x45>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		vcc-supply = <&pm8937_l10>;
+>> +		vio-supply = <&pm8937_l5>;
+>> +
+>> +		led@0 {
+>> +			reg = <0>;
+>> +			function = LED_FUNCTION_STATUS;
+>> +			led-max-microamp = <5000>;
+>> +			color = <LED_COLOR_ID_RED>;
+>> +		};
+>> +
+>> +		led@1 {
+>> +			reg = <1>;
+>> +			function = LED_FUNCTION_STATUS;
+>> +			led-max-microamp = <5000>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +		};
+>> +
+>> +		led@2 {
+>> +			reg = <2>;
+>> +			function = LED_FUNCTION_STATUS;
+>> +			led-max-microamp = <5000>;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +		};
+>> +	};
+>> +};
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> index 45f015d63df16..260c4c0afc475 100644
-> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> @@ -304,6 +304,15 @@ properties:
->                noise. This probably makes sense for HiFi audio related
->                applications that aren't battery constrained.
->  
-> +          x-powers,polyphased:
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            description:
-> +              A list of phandles pointing to other regulators that should be
-> +              polyphased with this regulator. The linked regulators will be
-> +              synchronised with this regulator, within the PMIC, but only if
-> +              supported by the PMIC. An empty list means this regulator
-> +              should be configured in a single-phase setup.
-
-phandle-array is poorly named and is really a matrix because you can 
-have arg cells. So you need:
-
-items:
-  maxItems: 1
-
-And is there an outer max for linked regulators?
-
-Rob
+> That's single, 3-color LED, right? Please see LED multicolor support.
+As far as i know aw2013 driver does not have multicolor support.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> 
+> Best regards,
+> 								Pavel
 
