@@ -1,230 +1,126 @@
-Return-Path: <devicetree+bounces-219980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4F4B905C5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:29:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E49B9064F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:32:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E322420041
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 11:29:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F008189EBD2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 11:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E402305078;
-	Mon, 22 Sep 2025 11:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72F8309F0A;
+	Mon, 22 Sep 2025 11:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n1nb9aYO"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Ibl6Sbpi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE51C304BB3
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 11:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B61130506F;
+	Mon, 22 Sep 2025 11:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758540510; cv=none; b=KKgxCVTCxp0XoqQNIrltWqe0AYWQ8WSzpW45GUFaPrlE/8KUKeqnkeAOqsrKkpE5gN6ySKRg6YvFYq9AGUkktKkQC78E9O7sjaEPQ6Gdic9Gpw4yVINy9isBaKGbtC29uY5zNpMzrorHekXllvDG9VdI/ahP9v4DPNe0yXUb3Zs=
+	t=1758540691; cv=none; b=F+2zHaE49bBzzUJRPPxLjeycbnIJQ//9IvkPZdz228G7l2k2X7VOfnCbGoAJQpdiw3FwemzuaZJr516bolj+7nOfSBHM203C1pjSdjtmxrqyufhstGbvUy8X5FA8XmalO+2We9d7Xu+PFexzUNq3jKGQ8uFUf1JkXpHI8BF2r6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758540510; c=relaxed/simple;
-	bh=igUJVoAn28btOF3Drs+Jwi38T6h4G1rqrTuYeaXV2n4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=twugWhhF6oGxobtJLYll7XnYT6bsvMUuUTjeMsBjOSOLAzt68mtLpNNs1cWvsnYWtS8wizAUcumkFFAsrzn1AmbUgeYj/NLFtREhSNEq+TPhae4a9/vNmanGLgdZ98RelmTJWgveKlDG466DHXVka4Eg55TPLYy9x0mqQWoapr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n1nb9aYO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58M8wUGQ012996
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 11:28:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vhPS2DpVO5rMmjT/67K3Kgtn22q0loN6kh/+0Y18da0=; b=n1nb9aYOq3EyHaOj
-	c4UBjNTgHUM9vgFrThXaqHS1hfPu1iMbOUHCh6iKl/L1F1Zcaea+R2gwTtejObuc
-	SOY3KNd1R+57NuGeHMOfpZ9wsghm0SlG05acoIW55/VOhHnL/SLGyOa4VOTv2/ac
-	7HBMVoFFCaO7kvHLd2mLRdLYF2AJbRlpUA5L9VYsKJD9Zk5dbm1ORIDPBah/zBZq
-	Dx6AJ3pO1SPme64NP9ZSHL9314yOKJW5pBmmiZuthVX6xzJRcTIorD9Z6uGcvH/t
-	zu9TTWsxcV33O4NULgx1A9R5fFDtfujo1aS6CsNhVnOYA5uo/Uyy9uMmRtM4pUxI
-	fM7q5w==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499mg34hnd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 11:28:27 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-245fbdc2546so9161095ad.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 04:28:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758540507; x=1759145307;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vhPS2DpVO5rMmjT/67K3Kgtn22q0loN6kh/+0Y18da0=;
-        b=u94ZCGd9xatZy++Slkcgbk18HPTWhztDzRgr//V0Wa3ERnJ4U2Uox9S1KBLT9P0PNA
-         GV5pjze3xEPqfmiOtYjO3SFgvZ0s20MQSQK409l7hU18RYlCLmnTZICFJ856Ao8umKmQ
-         N8SlFUaCnVYbmu2bcaGHL3TO9ZS8dYlwSrrx5MhOH3G6r3+pn+vXTn/cEZF0BGXtN6Ch
-         NzV3ssT1Nq0airffajlXwFLdnRL1Aaf61qOEH2kwAxaHPuLMFRIEPzJe6lMXfVHcA0xg
-         jZA+Wu/Iov5iW5nToGqmYuuM7rrpmdkDQj08tLuh4Nz8iwttPP4kJkcMgOtsJo2Gv7Jr
-         GS+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXXosBWlXX+jZ7FA3ZK8UpLy22dXQKu6JD9/kCqBqtfhttxZgrq4zeNZMZmBye41qDJb4hGmLBp/mxd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZsU5p0hHQZtjzuCJ8l0we70FgiDi4VrTET+375IFzVJTJMilB
-	Bhms6Pg8w+ARnTHOMFkuHc6fAKGbU39j4uGU4/Rrj0KV08HdeEvLnBp4siicnOcJn1OODOFJ2t0
-	/+KTJuZ2L6EIT6Sf1h41r4VVlWkVr8Ue64oOIqI4t9oabqjomgzT4dA1JG2Ldr+FI
-X-Gm-Gg: ASbGnctxcmEZEl8pllRUI0a1bWRXBtNH9m1CP1BytdVPzNMUpprqqfKyQ0o6opzXPXY
-	6PqjJJ2NMESNPTB7WQnlIWwRqJjJduZvF9fmE/jFBvlu12B/i9Z2UZbiRlJM+2RfQ31M7NM36T7
-	1UHDBhP6sDKa4H6ilZQ5XDz1QoPG/jO00Qq2k4hi8SXmKk5G9n6FFD4k/Fv5AxLk6fDHtqx29G7
-	Q9FKpqHoanjpd7yV8bjmJVgIu7DjkBzBoAFyJ2vx1Xo1hKJcfiYS3NKOk0rhoV+iBFugniAmUoH
-	wFlRfxy7n24JB2z+MzieEHzH1FYmn+BncIrgANB/vJk9CdLU1xC6LAr+0vXBCsyW/71RECsQnX/
-	+Sd7YE76KXzrUfuQCa16UWsgiw0ctGlczhck=
-X-Received: by 2002:a17:902:e751:b0:27a:186f:53ec with SMTP id d9443c01a7336-27a186f5486mr11582375ad.9.1758540506938;
-        Mon, 22 Sep 2025 04:28:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEbTTlEoreUEOX6AkaJ7bnWs6eRBLiaiABm7kGf/pBZ+bhPDPXyhXj4EX3Eva+nVibdWRmp5A==
-X-Received: by 2002:a17:902:e751:b0:27a:186f:53ec with SMTP id d9443c01a7336-27a186f5486mr11582105ad.9.1758540506290;
-        Mon, 22 Sep 2025 04:28:26 -0700 (PDT)
-Received: from [10.133.33.111] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3306061925esm13230568a91.2.2025.09.22.04.28.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Sep 2025 04:28:25 -0700 (PDT)
-Message-ID: <28eef277-c778-4ffe-94c6-2e90d58633de@oss.qualcomm.com>
-Date: Mon, 22 Sep 2025 19:28:17 +0800
+	s=arc-20240116; t=1758540691; c=relaxed/simple;
+	bh=HrSs+EwKvaIOsKnacb9gRdXLOC2RSNtMLI5caZpumFg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=GuShj9bRBcfQCUI9BPrpGC9lEQPCEITgH8eko6sH+AXEuUeSCfmx4Ib/FFjKW4lBODflNySXg5zhRKQNd8aOnHLIcyfK2SbDOZiy8/1DPsVADBrcjHvQmg3zbmszEYoXzhz0xgEF6vYPWclv/kLWcRBb+eZ9jx/p51p5We19v4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Ibl6Sbpi; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1758540689; x=1790076689;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=HrSs+EwKvaIOsKnacb9gRdXLOC2RSNtMLI5caZpumFg=;
+  b=Ibl6SbpiG0qzv3/rVRGy1WLpcyQ/gVtBGyh8e+zdXMrlTfVWgIVNnp0b
+   RVJUTsu3J2hL17ri8i7jN+7+jxLQYYZnEf/q6FNrPnIRpN3Dghzrgftr0
+   X12e+6kJhppEuShMUNtdx+MXIM3LXggMgS4pRSsUY5GjP0tuDdxSpJlW0
+   LSfQ1z0W0a9ocBIDPASdosqLVbkDQdSU0/OFCIr2w58ibWGwRrmwSWYIX
+   F9N/EqaYYEBwWt/V1vfO9b5zMGOOtrSoF2xsPM560L7Q2ejUmwjKYXATS
+   eH2OBkfkQ61WCnEyVvE7PSCqU6o/tIonhuN9ISPv0VBphpqxcEebX22Pb
+   g==;
+X-CSE-ConnectionGUID: ItnTgdDQT3CQ6aHeJ/KMMA==
+X-CSE-MsgGUID: iCVfDHXvTI+z3drHLz7Pcw==
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; 
+   d="scan'208";a="46230241"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Sep 2025 04:31:22 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Mon, 22 Sep 2025 04:31:03 -0700
+Received: from [127.0.1.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Mon, 22 Sep 2025 04:31:01 -0700
+From: Ariana Lazar <ariana.lazar@microchip.com>
+Subject: [PATCH 0/2] Adding support for Microchip MCP47FEB02
+Date: Mon, 22 Sep 2025 14:30:52 +0300
+Message-ID: <20250922-mcp47feb02-v1-0-06cb4acaa347@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 12/14] phy: qcom: qmp-usbc: Add QCS615 USB/DP PHY
- config and DP mode support
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20250919-add-displayport-support-for-qcs615-platform-v5-0-eae6681f4002@oss.qualcomm.com>
- <20250919-add-displayport-support-for-qcs615-platform-v5-12-eae6681f4002@oss.qualcomm.com>
- <bfpgktxgo2hb6dpzy3i7jdr6w4de5boorx4n6qeapct2vre4sn@4z2mnppridn5>
- <14cdf3a4-714c-4136-8c1d-99392e7911f5@oss.qualcomm.com>
- <2ewxoe76rrii4w3n5b6wl32vmatcp2boj75o65cuq5nx4f2a55@7cn6m7oxzu6c>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <2ewxoe76rrii4w3n5b6wl32vmatcp2boj75o65cuq5nx4f2a55@7cn6m7oxzu6c>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAzMiBTYWx0ZWRfXyV/02u3xBnGa
- +t6QVTnO11h//MeCBcsMqEOdDgx67a1UHPUxiklZL7LufwNXek9mJmPF29LpOUjK4HPxysKzNwB
- 6c+e8HspWAzw6+fAYbNUrlwgPerZrnzpLsRikPt5HupoApzhyWwKAn0lsvBGXKYHW9s6z3ugdbn
- fW2BAX1xZyjxFdu/ihL0/NOJoSCuJtLixmHG6Rx1fy/FDY2Gf3pWP4ZxVdUjKq+NZbZZRWsafMI
- cH3TUt0IumQL/W2VmBSGmEHw4zux6mXyBguw0HoLDtCeavr1eXSXRXUStURWtvIJoWuwafVmR2D
- usFGU7FocMJAnAGn0+fJp9+8wbQxG8z0hI770+6nMQd75ktRaDn1C6tY27uWuL/bxmaTD9vZZgh
- Dg2qi3WV
-X-Proofpoint-GUID: 6aT4S706QnjOiSYLsc7kgfimu0D5mHEm
-X-Authority-Analysis: v=2.4 cv=UvtjN/wB c=1 sm=1 tr=0 ts=68d132db cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=XVeZa78dugChcG7OFuEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: 6aT4S706QnjOiSYLsc7kgfimu0D5mHEm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-22_01,2025-09-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 adultscore=0 impostorscore=0 bulkscore=0
- malwarescore=0 suspectscore=0 clxscore=1015 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200032
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGwz0WgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDCyNT3dzkAhPztNQkAyNdY8Nkc3MLU/PEVCNLJaCGgqLUtMwKsGHRsbW
+ 1AMjHngZcAAAA
+X-Change-ID: 20250825-mcp47feb02-31c77857ae29
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy
+ Shevchenko" <andy@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Ariana Lazar <ariana.lazar@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758540660; l=1489;
+ i=ariana.lazar@microchip.com; s=20250825; h=from:subject:message-id;
+ bh=HrSs+EwKvaIOsKnacb9gRdXLOC2RSNtMLI5caZpumFg=;
+ b=8IsiKnHd6DQdHXMfiGzJ5JGQq6/qIVmK3mV0eDf7x36iizoh5nb1xE1gaRx9SBEujSFaRHj7W
+ jiQ3k+j7e+6AJuvA+vwAxK/iRXtYGORqWQw+o1N/3ijbL7XJrlfGqq0
+X-Developer-Key: i=ariana.lazar@microchip.com; a=ed25519;
+ pk=jmvf1fSxcnzZmXfITM3L94IwutM+wqA1POQHiYyD6Dk=
 
+Adding support for Microchip MCP47F(E/V)B(0/1/2)1, MCP47F(E/V)B(0/1/2)2,
+MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series of buffered voltage
+output Digital-to-Analog converters with an I2C Interface. This driver
+covers the following part numbers:
+ - With nonvolatile memory:
+   - MCP47FEB01, MCP47FEB11, MCP47FEB21, MCP47FEB02, MCP47FEB12
+   - MCP47FEB22, MCP47FVB01, MCP47FVB11, MCP47FVB21, MCP47FVB02
+ - With volatile memory:	 
+   - MCP47FVB12, MCP47FVB02, MCP47FVB12, MCP47FVB22, MCP47FVB04
+   - MCP47FVB14, MCP47FVB24, MCP47FVB04, MCP47FVB08, MCP47FVB18
+   - MCP47FVB28, MCP47FEB04, MCP47FEB14 and MCP47FEB24
 
-On 9/22/2025 5:45 PM, Dmitry Baryshkov wrote:
-> On Mon, Sep 22, 2025 at 02:58:17PM +0800, Xiangxu Yin wrote:
->> On 9/20/2025 2:41 AM, Dmitry Baryshkov wrote:
->>> On Fri, Sep 19, 2025 at 10:24:29PM +0800, Xiangxu Yin wrote:
->>>> Add QCS615-specific configuration for USB/DP PHY, including DP init
->>>> routines, voltage swing tables, and platform data. Add compatible
->>>> "qcs615-qmp-usb3-dp-phy".
->>>>
->>>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>>> ---
->>>>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 395 +++++++++++++++++++++++++++++++
->>>>  1 file changed, 395 insertions(+)
->>>>
->>>> +
->>>> +	writel(0x3f, qmp->dp_tx + QSERDES_V2_TX_TRANSCEIVER_BIAS_EN);
->>>> +	writel(0x10, qmp->dp_tx + QSERDES_V2_TX_HIGHZ_DRVR_EN);
->>>> +	writel(0x0a, qmp->dp_tx + QSERDES_V2_TX_TX_POL_INV);
->>>> +	writel(0x3f, qmp->dp_tx2 + QSERDES_V2_TX_TRANSCEIVER_BIAS_EN);
->>>> +	writel(0x10, qmp->dp_tx2 + QSERDES_V2_TX_HIGHZ_DRVR_EN);
->>>> +	writel(0x0a, qmp->dp_tx2 + QSERDES_V2_TX_TX_POL_INV);
->>> Are you sure that these don't need to be adjusted based on
->>> qmp->orientation or selected lanes count?
->>>
->>> In fact... I don't see orientation handling for DP at all. Don't we need
->>> it?
->>
->> Thanks for the review.
->>
->> I agree with your reasoning and compared talos 14nm HPG with hana/kona
->> 7nm PHY HPG; the 7nm COMBO PHY series has orientation/lane-count dependent
->> configs, but the 14nm PHY series does not. On QCS615 (talos), the TX_*
->> registers you pointed to are programmed with constant values regardless
->> of orientation or lane count. This has been confirmed from both the HPG
->> and the downstream reference driver.
-> Thanks for the confirmation.
->
->> For orientation, from reference the only difference is DP_PHY_MODE, which
->> is set by qmp_usbc_configure_dp_mode(). The DP PHY does have an
->> SW_PORTSELECT-related register, but due to talos lane mapping from the
->> DP controller to the PHY not being the standard <0 1 2 3> sequence, it
->> cannot reliably handle orientation flip. Also, QCS615 is a fixed-
->> orientation platform (not DP-over-TypeC), so there is no validated hardware
->> path for orientation flip on this platform.
-> Wait... I thought that the the non-standard lane order is handled by the
-> DP driver, then we should be able to handle the orientation inside PHY
-> driver as usual.
+The families support up to 8 output channels. The devices can be 8-bit,
+10-bit and 12-bit resolution.
 
+Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+---
+Ariana Lazar (2):
+      dt-bindings: iio: dac: adding support for Microchip MCP47FEB02
+      iio: dac: adding support for Microchip MCP47FEB02
 
-Yes, I have confirmed this with our verification team.
+ .../bindings/iio/dac/microchip,mcp47feb02.yaml     |  305 +++++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/dac/Kconfig                            |   16 +
+ drivers/iio/dac/Makefile                           |    1 +
+ drivers/iio/dac/mcp47feb02.c                       | 1347 ++++++++++++++++++++
+ 5 files changed, 1676 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250825-mcp47feb02-31c77857ae29
 
-For the non-standard lane order, handling flip requires swapping mapped 
-lane 0 ↔ lane 3 and lane 1 ↔ lane 2 in the logical2physical mapping.
-This is a hardware limitation, and with the current PHY driver we cannot
-propagate orientation status to dp_ctrl for processing.
+Best regards,
+-- 
+Ariana Lazar <ariana.lazar@microchip.com>
 
-
-> Anyway, please add a FIXME comment into the source file and a note to
-> the commit message that SW_PORTSELECT should be handled, but it's not a
-> part of this patch for the stated reasons.
-
-
-OK, I will add a |FIXME| comment in |qmp_usbc_dp_power_on| and update the
-related commit message.
-
-
->>
->>>> +
->>>> +	writel(0x18, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
->>>> +	writel(0x19, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
->>>> +
->>>> +	if (readl_poll_timeout(qmp->dp_dp_phy + QSERDES_V2_DP_PHY_STATUS,
->>>> +			       status,
->>>> +			       ((status & BIT(1)) > 0),
->>>> +			       500,
->>>> +			       10000)){
->>>> +		dev_err(qmp->dev, "PHY_READY not ready\n");
->>>> +		return -ETIMEDOUT;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
 
