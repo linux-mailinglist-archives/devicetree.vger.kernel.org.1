@@ -1,55 +1,80 @@
-Return-Path: <devicetree+bounces-219922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CC3B8F608
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:58:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C56B8F619
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D0DD3B4913
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 07:58:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7851165DF7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 07:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86EF2F83C2;
-	Mon, 22 Sep 2025 07:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 544372F83DB;
+	Mon, 22 Sep 2025 07:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b5d7EVlU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A0LtMm4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C4A26AEC;
-	Mon, 22 Sep 2025 07:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3562F659C
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 07:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758527912; cv=none; b=P/MhdEQueR78rTATzZ7Zuxajgb11WEk7jfsqBIpyqxUjC1v2rzAnnwqaNTib5ub17PsP65FIdhdQZ9ZnY1tRV2IFzZg/5bedX6DPz6uZOBE9QEv2rP0OUbxLP43wavX/n9ojK90IHY+FViTwIlQysc9L8EuT1V6Lawa7punmVPk=
+	t=1758527940; cv=none; b=iW7x/p3OyskZRzc8Ttg7bWxnL1xlKfPlVv0vpmLEc7TPrcc7it1VqaU7yLn/MsI0/Eo5GGO8guCSia2lJyz3cGc9NowxIE+XIinwxUmEtb54YApydef1Psr+I+Ef8bnLZY+Odovf2gYZoFd228QrB8xoQVy0SFKBarr+nGsR4wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758527912; c=relaxed/simple;
-	bh=8prAEjWiaIxuhpvbka12E01qTmGrcc+1Ik4AmS/ME0Q=;
+	s=arc-20240116; t=1758527940; c=relaxed/simple;
+	bh=VxFoXFJfLJu72VUQI8PkapTjFSVP1bwVeJjNyFvSU6A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dRgCz2dp0DB4aYbAUffFzaHy36vF0HJ4Tf8Hf6AZY0vOAWbejoFYthI7u+lEJxlCtmnw8Kk24+hoSznDESoNVcdt3gtzDR2gsYoACkLwaVejpxYHmmI99uhtuxShnPGtM6ua8v/X6Wmo20ZZmBt41whLSHC3VZuE5SUwZgTmc0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=b5d7EVlU; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1758527909;
-	bh=8prAEjWiaIxuhpvbka12E01qTmGrcc+1Ik4AmS/ME0Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b5d7EVlUHQdN2AF0SXwMm4ZQ8Cu4k5AEEp0o7tYGfyA2lZ+UnVAFjn4gyXQmzr29L
-	 G7tazT37GcCi+JWj6chdYu54wRR7iNjrf2ESHQAL3gpxgTlHLDQeZrcfJ1b7U9Z3Pk
-	 WSQW5DT5I4n3Y2KLN2SzIqrT+LGizeLnQCgzRFvHQdregu7OmRbK5bWggbFR1dNpW9
-	 7548ERovKVc+HmAnNz0Nrzff2QCNFkUKRvHW14vA9pD4WExqrWXVrH6i0tTkWDlcwt
-	 GfN/Y0X+7ppGbk1xC03+k271jPVvKoX22lStPWe3wuigMlIQ4+wlIDRQW13QolOn7a
-	 hTr/RLOGFbwkQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BEB8E17E00A3;
-	Mon, 22 Sep 2025 09:58:28 +0200 (CEST)
-Message-ID: <0e45f5bc-837c-448c-952e-6fbd16c738ed@collabora.com>
-Date: Mon, 22 Sep 2025 09:58:28 +0200
+	 In-Reply-To:Content-Type; b=tWpTGfepWCKBRUqB73uEM6XEcZ0EHM5xRvht+DOx2ZP9C4ToFwy9Ew56wGjUluAANOT82Ze5DsVhRZY51q4pBeDugKlDwN/hjJAg6TeFvPX/1GFDUuZhIkHQ1BT2B3TRPiMfw4YNI1ilKwGJD8TUX+jNFTvI4UgnxVM/T7RUTig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A0LtMm4K; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45f29e5e89bso49023585e9.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 00:58:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758527935; x=1759132735; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xQRpOTdPlsJ/I3ie9xITMLFON03T608didGjNtYqmd8=;
+        b=A0LtMm4KGe7kf1WDxajMfqTBr3JGx9o8EdpYa+ejdHZrKrlF6Mi4lLBtiyGDrxRmaG
+         hTTlfQsAZWd+dKrcx0eV5ANPokbJp2z8/lq/GTgXh/ygBrbSTjU2XEMnT6W9jFpeXTXT
+         yKXwNIbflatbA9lo1tNpsxitqPh39dzWVlUKG5dBCJr/geLe10jlMqU8sYM09YoqKzKN
+         ZZG+JYhbAiz8TX8+H13XhDtvGvmhd7XafBB2ZfRPhcqoGkdIVB9iaNgHoCKXbMcZ/Fe9
+         aKYVfhl2fze0MOruqfugaS3D7ZEnSmRadwuoW8NQ5OM5sIY7r2hTUklIHgJImfr2hXV/
+         KDZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758527935; x=1759132735;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xQRpOTdPlsJ/I3ie9xITMLFON03T608didGjNtYqmd8=;
+        b=RZeSTwJKGNEo76Ngzqwe9kN9O7fMWd5ifJ9Z/R3KWbWVkrq4CG7yBDcecw/21BRqR6
+         rMtDPh9gFQNvOohuviOOOGBJk6lsI/ODE4aakJpUOez2cy004tbNBfZ/A0hQTrbPDJl/
+         aOFeEkzJsIkOv5YLDRoKJ9GV5HU0mUOXilk2cDAYLrZtyj0sh/Ylw8NnKViQjTdv4FwB
+         Dk5kiqnwxbo4zMlLgdgghRXSCJR5LtsUfjNmQDw4k6gdzaHQCsmfg1Cz1i8HLAW/lVdo
+         7Pg8fMWV5FQ2FSAVIqXNwxZ76gKOkso3UQ/zS7R36wka0fyFnAVrGwIM+t/ywdnyyph+
+         TRpw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6NIxW647E+Qw7gp4e7f/2wEUPZRjjBQbENIpOAp2HOP4jSCIIZclOXTpcmobjoYYTVmOUYBI2eEd9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa1n4NvjMyNWArxL6GCA09/NvF8VrS/zcp/URToYL4//FYh8Qg
+	+fMY1yl/z6gQSOrJFhPgREf4yV27Q4tZcqcpcQg7jvn1VPeP208pV3FddHntzkq7tww=
+X-Gm-Gg: ASbGncvM+IbiPdVW+SrsmC2uC/3Z56y2p9XdrkwsVlya7Rvk4EBojdCFd8AFVkDxL9y
+	z/WBgua9UP46PQ3XfvZjxHJh2OXNfAhOg27k4YUJk5pCh5CXwwcUfA3MZUKGDLPg36BnyVnfJoD
+	7Uy2yVY27b9eKb5sSkzFHIg6jHww8uhB3g3cvIy2CW4Jp2WLIgNXo3/oR8tzezzCXR83UXTvsVe
+	N7A88OASY0g6zifkKT8YiUKhzwMfML7rFgIM1TLdAgs7Q8f7D/EaAraOfLzhXDa87w1W2Wv/2nE
+	s9SrytJowZv4naA0zBtrGMHjj2I+77Ae2aNwwfNFt6GzLC0fkEX90UB8Dm2OUwoQGGmbwXI6ZTW
+	gAUzbJ3phdQu/MfdIZwzbgwkLiEbxBZvY
+X-Google-Smtp-Source: AGHT+IGv/gvgtd+VyFOGRY+JKmS6raLqaaGrk4Saz9mqQNEkVwU+lxnyBc+9ONztYTEGxxuU7e9nsg==
+X-Received: by 2002:a05:600c:3555:b0:45d:5c71:769a with SMTP id 5b1f17b1804b1-467eb048bafmr104267165e9.26.1758527934709;
+        Mon, 22 Sep 2025 00:58:54 -0700 (PDT)
+Received: from [10.11.12.107] ([79.118.185.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f0aac3fdsm186423945e9.1.2025.09.22.00.58.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Sep 2025 00:58:54 -0700 (PDT)
+Message-ID: <905d8c89-56d3-40c9-928f-d6418a0f9193@linaro.org>
+Date: Mon, 22 Sep 2025 08:58:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,34 +82,269 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: i2c: i2c-mt65xx: Document MediaTek MT6878
- I2C
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
- Qii Wang <qii.wang@mediatek.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v4 4/5] clk: samsung: add Exynos ACPM clock driver
+To: Stephen Boyd <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250908-acpm-clk-v4-0-633350c0c0b1@linaro.org>
+ <20250908-acpm-clk-v4-4-633350c0c0b1@linaro.org>
+ <175848703636.4354.2936744718103927060@lazor>
 Content-Language: en-US
-In-Reply-To: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <175848703636.4354.2936744718103927060@lazor>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 20/09/25 19:22, Igor Belwon ha scritto:
-> Document the I2C controllers found in the MediaTek MT6878 SoC, by adding
-> a new compatible string for the controllers. Their design is compatible
-> with the design from the MediaTek MT8188 SoC.
+Hi, Stephen,
+
+On 9/21/25 9:37 PM, Stephen Boyd wrote:
+> Quoting Tudor Ambarus (2025-09-08 06:12:45)
+>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
+>> --- a/drivers/clk/samsung/Kconfig
+>> +++ b/drivers/clk/samsung/Kconfig
+>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
+>>           status of the certains clocks from SoC, but it could also be tied to
+>>           other devices as an input clock.
+>>  
+>> +config EXYNOS_ACPM_CLK
+>> +       tristate "Clock driver controlled via ACPM interface"
+>> +       depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
 > 
+> Why is COMPILE_TEST limited to !EXYNOS_ACPM_PROTOCOL?
 
-Heh, I have seen that one just after reviewing the first version.
 
-Happy to see that you already pushed a fix for whatever I would be complaining
-about :))))
+otherwise on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+ERROR: modpost: "devm_acpm_get_by_node" [drivers/clk/samsung/clk-acpm.ko] undefined!
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+>> +       help
+>> +         This driver provides support for clocks that are controlled by
+>> +         firmware that implements the ACPM interface.
+>> +
+>> +         This driver uses the ACPM interface to interact with the firmware
+>> +         providing all the clock controlls.
+>> +
+>>  config TESLA_FSD_COMMON_CLK
+>>         bool "Tesla FSD clock controller support" if COMPILE_TEST
+>>         depends on COMMON_CLK_SAMSUNG
+>> diff --git a/drivers/clk/samsung/clk-acpm.c b/drivers/clk/samsung/clk-acpm.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..8566495265ee3e06dbf370f9e424d5540f5c7457
+>> --- /dev/null
+>> +++ b/drivers/clk/samsung/clk-acpm.c
+>> @@ -0,0 +1,184 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Samsung Exynos ACPM protocol based clock driver.
+>> + *
+>> + * Copyright 2025 Linaro Ltd.
+>> + */
+>> +
+>> +#include <linux/array_size.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/device.h>
+>> +#include <linux/err.h>
+>> +#include <linux/firmware/samsung/exynos-acpm-protocol.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+> 
+> Is this include used?
 
+ah, it's no longer used, I'll drop it, thanks!
+> 
+>> +#include <linux/platform_device.h>
+>> +#include <linux/types.h>
+> 
+> Are you avoiding kernel.h? If so, please include container_of.h and
+
+I tend to include just what's needed, yes. kernel.h has some things that
+are not yet needed in this driver.
+
+> device/devres.h to avoid implicit includes.
+
+Will add the two and recheck whether I rely on implicit includes somewhere else.
+
+>> +
+>> +struct acpm_clk {
+>> +       u32 id;
+>> +       struct clk_hw hw;
+>> +       unsigned int mbox_chan_id;
+>> +       const struct acpm_handle *handle;
+>> +};
+>> +
+>> +struct acpm_clk_variant {
+>> +       const char *name;
+>> +};
+>> +
+>> +struct acpm_clk_driver_data {
+>> +       const struct acpm_clk_variant *clks;
+>> +       unsigned int nr_clks;
+>> +       unsigned int mbox_chan_id;
+>> +};
+>> +
+>> +#define to_acpm_clk(clk) container_of(clk, struct acpm_clk, hw)
+>> +
+>> +#define ACPM_CLK(cname)                                        \
+>> +       {                                               \
+>> +               .name           = cname,                \
+>> +       }
+>> +
+>> +static const struct acpm_clk_variant gs101_acpm_clks[] = {
+>> +       ACPM_CLK("mif"),
+>> +       ACPM_CLK("int"),
+>> +       ACPM_CLK("cpucl0"),
+>> +       ACPM_CLK("cpucl1"),
+>> +       ACPM_CLK("cpucl2"),
+>> +       ACPM_CLK("g3d"),
+>> +       ACPM_CLK("g3dl2"),
+>> +       ACPM_CLK("tpu"),
+>> +       ACPM_CLK("intcam"),
+>> +       ACPM_CLK("tnr"),
+>> +       ACPM_CLK("cam"),
+>> +       ACPM_CLK("mfc"),
+>> +       ACPM_CLK("disp"),
+>> +       ACPM_CLK("b0"),
+>> +};
+>> +
+>> +static const struct acpm_clk_driver_data acpm_clk_gs101 = {
+>> +       .clks = gs101_acpm_clks,
+>> +       .nr_clks = ARRAY_SIZE(gs101_acpm_clks),
+>> +       .mbox_chan_id = 0,
+>> +};
+>> +
+>> +static unsigned long acpm_clk_recalc_rate(struct clk_hw *hw,
+>> +                                         unsigned long parent_rate)
+>> +{
+>> +       struct acpm_clk *clk = to_acpm_clk(hw);
+>> +
+>> +       return clk->handle->ops.dvfs_ops.get_rate(clk->handle,
+>> +                                       clk->mbox_chan_id, clk->id, 0);
+>> +}
+>> +
+>> +static int acpm_clk_determine_rate(struct clk_hw *hw,
+>> +                                  struct clk_rate_request *req)
+>> +{
+>> +       /*
+>> +        * We can't figure out what rate it will be, so just return the
+>> +        * rate back to the caller. acpm_clk_recalc_rate() will be called
+>> +        * after the rate is set and we'll know what rate the clock is
+>> +        * running at then.
+>> +        */
+>> +       return 0;
+>> +}
+>> +
+>> +static int acpm_clk_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                            unsigned long parent_rate)
+>> +{
+>> +       struct acpm_clk *clk = to_acpm_clk(hw);
+>> +
+>> +       return clk->handle->ops.dvfs_ops.set_rate(clk->handle,
+>> +                                       clk->mbox_chan_id, clk->id, rate);
+>> +}
+>> +
+>> +static const struct clk_ops acpm_clk_ops = {
+>> +       .recalc_rate = acpm_clk_recalc_rate,
+>> +       .determine_rate = acpm_clk_determine_rate,
+>> +       .set_rate = acpm_clk_set_rate,
+>> +};
+>> +
+>> +static int acpm_clk_ops_init(struct device *dev, struct acpm_clk *aclk,
+> 
+> Maybe acpm_clk_register() is a more appropriate name.
+
+okay, will update.
+
+> 
+>> +                            const char *name)
+>> +{
+>> +       struct clk_init_data init = {};
+>> +
+>> +       init.name = name;
+>> +       init.ops = &acpm_clk_ops;
+>> +       aclk->hw.init = &init;
+>> +
+>> +       return devm_clk_hw_register(dev, &aclk->hw);
+>> +}
+>> +
+>> +static int acpm_clk_probe(struct platform_device *pdev)
+>> +{
+>> +       const struct acpm_handle *acpm_handle;
+>> +       struct clk_hw_onecell_data *clk_data;
+>> +       struct clk_hw **hws;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct acpm_clk *aclks;
+>> +       unsigned int mbox_chan_id;
+>> +       int i, err, count;
+>> +
+>> +       acpm_handle = devm_acpm_get_by_node(dev, dev->parent->of_node);
+>> +       if (IS_ERR(acpm_handle))
+>> +               return dev_err_probe(dev, PTR_ERR(acpm_handle),
+>> +                                    "Failed to get acpm handle.\n");
+> 
+> Remove the period please. Most error messages don't have proper
+> punctuation.
+
+okay, will update.
+
+> 
+>> +
+>> +       count = acpm_clk_gs101.nr_clks;
+>> +       mbox_chan_id = acpm_clk_gs101.mbox_chan_id;
+>> +
+>> +       clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, count),
+>> +                               GFP_KERNEL);
+>> +       if (!clk_data)
+>> +               return -ENOMEM;
+>> +
+>> +       clk_data->num = count;
+>> +       hws = clk_data->hws;
+>> +
+>> +       aclks = devm_kcalloc(dev, count, sizeof(*aclks), GFP_KERNEL);
+>> +       if (!aclks)
+>> +               return -ENOMEM;
+>> +
+>> +       for (i = 0; i < count; i++) {
+>> +               struct acpm_clk *aclk = &aclks[i];
+>> +
+>> +               /*
+>> +                * The code assumes the clock IDs start from zero,
+>> +                * are sequential and do not have gaps.
+>> +                */
+>> +               aclk->id = i;
+>> +               aclk->handle = acpm_handle;
+>> +               aclk->mbox_chan_id = mbox_chan_id;
+>> +
+>> +               hws[i] = &aclk->hw;
+>> +
+>> +               err = acpm_clk_ops_init(dev, aclk,
+>> +                                       acpm_clk_gs101.clks[i].name);
+>> +               if (err)
+>> +                       return dev_err_probe(dev, err,
+>> +                                            "Failed to register clock.\n");
+>> +       }
+>> +
+>> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>> +                                          clk_data);
+>> +}
+>> +
+>> +static const struct platform_device_id acpm_clk_id[] = {
+>> +       { "gs101-acpm-clk" },
+>> +       {},
+> 
+> Please drop comma here so that nothing can come after.
+
+okay. Thanks for the review!
+Cheers,
+ta
 
 
