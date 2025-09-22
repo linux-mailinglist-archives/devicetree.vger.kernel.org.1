@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-219970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81831B904AD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:00:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 551D3B904BF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4491C7A3A1D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:58:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DD4418977BA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 11:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4546F2FC866;
-	Mon, 22 Sep 2025 11:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7752836B5;
+	Mon, 22 Sep 2025 11:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="F46rgG33"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="K3A1IcUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC7E2FC008;
-	Mon, 22 Sep 2025 11:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF291B808;
+	Mon, 22 Sep 2025 11:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758538805; cv=none; b=d639zfflEgvHIk6dn3SpSthOXW3z1agLvsoC1e7sPOhlsjfzkk6CGl0jEdd+9BHv1QfdR50loaa7lWbPJXqwuLGBRe8PlIighFjg0G4wTLqRbJSs4EhSkgUmQKT3U3mwTvuY+WsBK2DCvhGLyOIXtkKWj3xwyg9UXNINVZOTg5M=
+	t=1758539154; cv=none; b=PjWAg+E6lFy8ZDxCfrOL2V/QdVGG3JWj3j4wlYbatJbDWE524uWNaACw03yLJf+ZZ+lU0Qxht29T+Jh/b6h5cIXxJ1qEI/q2MqvsuOyJvRqZtrIwR4S7apAv4L3u2fcKD8nxxa8nagr/cKC6taN7oCkaNbV7+qCip8WLYKeW4Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758538805; c=relaxed/simple;
-	bh=3o+03UvtuKo6XVZQs/hIKg2h5/JAcBwZytDhnqiwhVk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dhXwJyGGlsDLVoAWn8ICAkJKQCQPF7LLhltDCKz4q8bnykI0U2qe7BFVS7Ep5r0I2Cf3GXZTsGIO93Br2SVI0dM6ZGm8yKxfGIoyuPdHgKQO5zlPHSY/xkLecNbjupG1e8RXjH3gEtV1kbkpDK+pouqXCIIIgDn7U93sj4uFHBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=F46rgG33; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58MAxEfY1220947;
-	Mon, 22 Sep 2025 05:59:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758538754;
-	bh=a07Jje9wgJS411V9TAYdRp6D/A+/X9TQdr2317tN+Jw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=F46rgG33jswHneyWPfRr/B1Vx1kkSi1ndlwOdFNTX32Yo1+g/s5Ajpx5MLqsODlr0
-	 xODnXVWbWqk1mH6HqDUaRJIsdtR7jIhu4CjeMGjgK5kjcwRLQUhBGbZ1pyHqTY/lMa
-	 5SnfW3adXlc+VhXuLyozljYOsgJuLtdkllo6Qyls=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58MAxE2B251090
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 22 Sep 2025 05:59:14 -0500
-Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 22
- Sep 2025 05:59:13 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 22 Sep 2025 05:59:13 -0500
-Received: from [172.24.231.152] (danish-tpc.dhcp.ti.com [172.24.231.152])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58MAx5q52656697;
-	Mon, 22 Sep 2025 05:59:06 -0500
-Message-ID: <4f6af874-ca9c-48d5-a812-9fd42226ac5c@ti.com>
-Date: Mon, 22 Sep 2025 16:29:05 +0530
+	s=arc-20240116; t=1758539154; c=relaxed/simple;
+	bh=R4tlWJgzes/Y4DKi4qcXXpLirntdDRaHq2QxnEkO0WI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=duVgiidZjugGEE/XHijP43GAPSVi/vR2A/JUohxlQjYsaQhOYGq0F17cSNZnUoYWBmJeHiisny9ciUAmpZsKokyGLqt/++ZUkxIaLXIcnV9W78aboZp6c6Gk1qKBzRw0TEhfgOxirQ/0qONzkql499NMS5SzoN7ULZaDcEkvwp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=K3A1IcUS; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1758539151;
+	bh=R4tlWJgzes/Y4DKi4qcXXpLirntdDRaHq2QxnEkO0WI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K3A1IcUS1C5LiZIFZkICC+3I+uhRd2Cudsmvef2QmWxJO3L+1ZokRE0lFf82kKr2G
+	 qMluh0T5op0YcZ9KAZ+oAMQpwxGTAqXwfIiU3Fcbq9+6X6xVxhAeayQsyE0ajcFpSF
+	 0PvrwtfkyU6ZFXDYxHCOK92w4EpZjCQar3nK/6XzvzFtQGVpcBhaM7w6UNj912elWv
+	 arwFBKwPCvUF9xlkKy7wS6p9SGaKSkMDjMdy8bf4vLNbH9vCJonQICrSjPCdC73Qkk
+	 BqxfRVgbPebd85Vu9utTqJygdc4IbZ6fnM46A+JQ3QkT8PzugjWzGL4WVPXT7FPo69
+	 MVqQLhk3iy4vQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C3E5417E0125;
+	Mon, 22 Sep 2025 13:05:50 +0200 (CEST)
+Message-ID: <6657bfa7-9a6e-49a1-890f-81cf655940a7@collabora.com>
+Date: Mon, 22 Sep 2025 13:05:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,133 +57,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 0/7] Add RPMSG Ethernet Driver
-To: Andrew Davis <afd@ti.com>, "David S. Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        Mengyuan Lou
-	<mengyuanlou@net-swift.com>,
-        Lei Wei <quic_leiwei@quicinc.com>, Xin Guo
-	<guoxin09@huawei.com>,
-        Michael Ellerman <mpe@ellerman.id.au>, Fan Gong
-	<gongfan1@huawei.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Parthiban
- Veerasooran <Parthiban.Veerasooran@microchip.com>,
-        Lukas Bulwahn
-	<lukas.bulwahn@redhat.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20250911113612.2598643-1-danishanwar@ti.com>
- <8a20160e-1528-4d0e-9347-0561fc3426b4@ti.com>
- <7cd06f8f-bd74-429d-bf2c-71858178950a@ti.com>
- <65a98655-68a1-4bf9-b139-c4172f48dad4@ti.com>
+Subject: Re: [PATCH 00/10] ARM: Add support for yarisxl mt6582 board
+To: cristian_ci@protonmail.com, Matthias Brugger <matthias.bgg@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sean Wang <sean.wang@mediatek.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20250920-mt6582-v1-0-b887720f577d@protonmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <65a98655-68a1-4bf9-b139-c4172f48dad4@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20250920-mt6582-v1-0-b887720f577d@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Andrew
-
-On 17/09/25 10:07 pm, Andrew Davis wrote:
-> On 9/17/25 6:44 AM, MD Danish Anwar wrote:
->> Hi Andrew,
->>
->> On 11/09/25 9:34 pm, Andrew Davis wrote:
->>> On 9/11/25 6:36 AM, MD Danish Anwar wrote:
->>>> This patch series introduces the RPMSG Ethernet driver, which
->>>> provides a
->>>> virtual Ethernet interface for communication between a host
->>>> processor and
->>>> a remote processor using the RPMSG framework. The driver enables
->>>> Ethernet-like packet transmission and reception over shared memory,
->>>> facilitating inter-core communication in systems with heterogeneous
->>>> processors.
->>>>
->>>
->>> This is neat and all but I have to ask: why? What does this provide
->>> that couldn't be done with normal RPMSG messages? Or from a userspace
->>> TAP/TUN driver on top of RPMSG?
->>>
->>
->> This is different from RPMSG because here I am not using RPMSG to do the
->> actual TX / RX. RPMSG is only used to share information (tx / rx
->> offsets, buffer size, etc) between driver and firmware. The TX / RX
->> happens in the shared memory. This implementation uses a shared memory
-> 
-> This is how RPMSG is supposed to be used, it is meant for small messages
-> and signaling, bulk data should be send out-of-band. We have examples
-> specifically showing how this should be done when using RPMSG[0], and our
-> RPMSG backed frameworks do the same (like DSP audio[1] and OpenVX[2]).
-> 
->> circular buffer with head/tail pointers for efficient data passing
->> without copies between cores.
->>
->>> This also feels like some odd layering, as RPMSG sits on virtio, and
->>> we have virtio-net, couldn't we have a firmware just expose that (or
->>> would the firmware be vhost-net..)?
->>>
->>
->> PMSG sits on virtio, and we do have virtio-net but I am not trying to do
->> ethernet communication over RPMSG. RPMSG is only used to exchange
->> information between cores regarding the shared memory where the actual
->> ethernet communication happens.
->>
-> 
-> Again nothing new here, virtio-net does control plane work though a
-> message channel but the data plane is done using fast shared memory
-> vqueues with vhost-net[3]. Using RPMSG would just be an extra unneeded
-> middle layer and cause you to re-implement what is already done with
-> virtio-net/vhost-net.
+Il 20/09/25 20:23, Cristian Cozzolino via B4 Relay ha scritto:
+> This series adds support for Alcatel Pop C7 (OT-7041D) smartphone
+> board, named yarisxl, based on MT6582 SoC. It also includes some
+> preliminary patches. More in detail:
+> - patches 1 and 2 add support for mt6582 to platform code
+>    (verified by looking at generic mt6582 downstream source code)
+> - patches 3-6 do some maintenance work to mt6582.dtsi
+>    (I was unsure if squashing timer node patches into one)
+> - patches 7 and 8 add devicetree and dt-bindings support for yarisxl
 > 
 
-virtio-net provides a solution for virtual ethernet interface in a
-virtualized environment. Our use-case here is traffic tunneling between
-heterogeneous processors in a non virtualized environment such as TI's
-AM64x that has Cortex A53 and Cortex R5 where Linux runs on A53 and a
-flavour of RTOS on R5(FreeRTOS) and the ethernet controller is managed
-by R5 and needs to pass some low priority data to A53. The data plane is
-over the shared memory while the control plane is over RPMsg end point
-channel.
+That's simply great! Nice cleanup and nice addition - the only thing I can say here
+is that seeing simple-framebuffer is a pity, and that I hope that your plans are to
+continue with systimer, clocks, spi, i2c, apdma, mediatek-drm components, etc :-)
 
-We had aligned with Andrew L [1] and the ask was to create a generic
-Linux Ethernet driver that can be used for heterogeneous system. Similar
-to rpmsg_tty.c. It was suggested to create a new rpmsg_eth.c driver that
-can be used for this purpose.
+In the meanwhile, for the whole series
 
-Here I have implemented what was suggested in [1]
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-[1]
-https://lore.kernel.org/all/8f5d2448-bfd7-48a5-be12-fb16cdc4de79@lunn.ch/
+Keep up the good work!
 
-> Andrew
+Cheers,
+Angelo
+
+> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+> ---
+> Cristian Cozzolino (10):
+>        ARM: mediatek: add board_dt_compat entry for the MT6582 SoC
+>        ARM: mediatek: add MT6582 smp bring up code
+>        ARM: dts: mediatek: mt6582: move MMIO devices under soc node
+>        ARM: dts: mediatek: mt6582: sort nodes and properties
+>        ARM: dts: mediatek: mt6582: remove compatible property from root node
+>        ARM: dts: mediatek: mt6582: add mt6582 compatible to timer
+>        ARM: dts: mediatek: mt6582: add clock-names property to uart nodes
+>        ARM: dts: mediatek: mt6582: add enable-method property to cpus
+>        dt-bindings: arm: mediatek: Add MT6582 yarisxl
+>        ARM: dts: mediatek: add basic support for Alcatel yarisxl board
 > 
-> [0] https://git.ti.com/cgit/rpmsg/rpmsg_char_zerocopy
-> [1] https://github.com/TexasInstruments/rpmsg-dma
-> [2] https://github.com/TexasInstruments/tiovx
-> [3] https://www.redhat.com/en/blog/deep-dive-virtio-networking-and-
-> vhost-net
+>   .../devicetree/bindings/arm/mediatek.yaml          |   1 +
+>   arch/arm/boot/dts/mediatek/Makefile                |   1 +
+>   .../boot/dts/mediatek/mt6582-alcatel-yarisxl.dts   |  61 +++++++++
+>   arch/arm/boot/dts/mediatek/mt6582.dtsi             | 142 +++++++++++----------
+>   arch/arm/mach-mediatek/Kconfig                     |   4 +
+>   arch/arm/mach-mediatek/mediatek.c                  |   1 +
+>   arch/arm/mach-mediatek/platsmp.c                   |   1 +
+>   7 files changed, 142 insertions(+), 69 deletions(-)
+> ---
+> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+> change-id: 20250920-mt6582-9339d7fceb34
 > 
+> Best regards,
 
-
--- 
-Thanks and Regards,
-Danish
 
 
