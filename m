@@ -1,265 +1,127 @@
-Return-Path: <devicetree+bounces-219940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B505BB8FB1B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 11:05:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B936B8FB67
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 11:17:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF25318825E5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:05:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B613BB8AE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 09:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147E5274B51;
-	Mon, 22 Sep 2025 09:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E6B27E048;
+	Mon, 22 Sep 2025 09:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kM9qSsDi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YR21dulM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F5CA48
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 09:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A23A63398A
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 09:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758531923; cv=none; b=KGpeQx9Eam5aB2M1rqRINrltkQmB5qau7ltYuEHbMdSmAmB72SQN86su+huaSs/0SV5HtQ/U21H7ADcs49dxxQn6gKAZQ7YfGgxf315/l3ucM3t6BqH6ENZ0bHAx4Qnz5lPauQa9ArYEHPHpH8Qcr0LSg8A/M2cZ3yRQ1UwWXNg=
+	t=1758532647; cv=none; b=H/dq5FxHcYKBKjZrMzz0/+bsSX8R+Hnld6nJ5GangFEVi4EytKnLPwJYI39889KLHscM279O0ncvv2SR/rL/FjUlygwLL0zr9hz2aNz06W2JMM2HhAL2yq6lPALsinvg4SZIqsnhcUocHsdUKAbaGaX6kABwHHVSoKunqFWHinY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758531923; c=relaxed/simple;
-	bh=3L2KUtmsY83gc+oCBkcyCm5FU6uR+xNn9giKRJDc3O8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VICBIvYzwWkwXK1rACWKPNozL4qtSv0YIlw7LZg8jj8MLrALFzXdjSNPnUarZTJUAD3F1TdfIiyAjJZVqWbG1deamLgNFCuWCY80pO8/tXcOaHD3iU3e50zs99reTkLzyZBkVa9IZUSZdeKpFd4kCMfZfY1UKdkNrS4WnKeIrQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kM9qSsDi; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1758532647; c=relaxed/simple;
+	bh=H4xR9rGnsgWWE3kFpKrgf6Nqe4SgPA48B2S8CSNA3sc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O3KYQIz7TrR6H2ATeO0hOZjRIYPDVSwStC56Ya/y3VR1VhBR+zxRNoYht5u8Ug1iA0D1NSx8QWDJdD3e0WiUKf/0gjj+YBntTfoSvLDxhE2KAyiKjsl1EFMK2FODsu2QDEun4N2PitWOL37fCUhe0SVhhVDDNEkJFzYnlP4Naho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YR21dulM; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3ee130237a8so2114230f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 02:05:21 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2698384978dso34696445ad.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 02:17:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758531920; x=1759136720; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3Ee16tm5fPYpMiH0g1jotbGW9E/HrwY5n2PcWRp+jOI=;
-        b=kM9qSsDitJTXvtulj7UVZ0GxeJMLhEauutaPopWkaVfRl9yQsSeORvoBzJoI6ctsf4
-         lp2Xz6mdNXVHtCaxPZnGWxsS/ifCzZlybg7DKCVCnFEkFDMLoWuPkepbAbpPrzlcv8Y5
-         x++Lp048Q/qQSfJXyqG2YbV923bNpo4BlOkUcSzxX9uGZXu8VtPvHf6LnJ2YIZi9XztW
-         1El/lgh4lzJmosurbF76X2OTT1GT/G+YcrZWi4dOgcuReZBMbnFs/XiTbInI+unnlfDR
-         ZTORItBoWIlqztF7dwPzSJYzYZsjL7sR0lO3eeF/Hr2ff0EVdRG75F8EbgKJW06GPmR3
-         uYsQ==
+        d=gmail.com; s=20230601; t=1758532645; x=1759137445; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fGb/DBgzMdYPrR58mCFwPhHuJtGwABvWLMjhmJdkkaY=;
+        b=YR21dulMwp6yaiIGQC1xJSWThqkpsYV7mpD7kcpQozpeiC7vnM3sgX0Se9N2MPWg0r
+         uoYQDhFCURB+1ad+LeviCQrGXq/fyVIJ99JUCQ2Lh2S0v52tbNbXgFLsHWj1q8262K9Q
+         IQabTlqVC0mBUxCzo8UrOhXYUwvNe/SgS8es1WfWAnqhklhySYa2ODoZlRqlOQ/A3gNK
+         M7xdh+m1RZHkMdchYUQuh7WAWQRF7d6GddF1VNZdswmlFV9/PGQKYSoYEoyuh3FqBsGU
+         Q56oIOH3UYvVn3M1GL+0ep6y482VSJ1YhUsD17je3/J7nUFd1xbqYL0hQTyyQtJ7Xk8J
+         uQAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758531920; x=1759136720;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Ee16tm5fPYpMiH0g1jotbGW9E/HrwY5n2PcWRp+jOI=;
-        b=Wz9XTbfp6jqAR/pu1lFpcP9pKzGijgi4rNIDMxlJd7KUIwnYLQu1YIBJXXVQFu3USn
-         +oECxn89MNcKUcqaqglq9FObGCgdWZaAxN1liOMSB1GO/Mi0pUjLmp0mUv38idUbdmQL
-         W6/o2Kzy6RNC0uOw8kcfcizuIxv6L6Gvumgza96emiz8RW65tCT7ZBkID86eSpJ8KbHR
-         Ax/xGeTLvajE6vK5hIKb5ouxluA/LC7nANs/dkVY93zEs3QIF+LbqUrs+j952V36LkXd
-         qhRfsBUkAhZgoiwqkW3Rmd2BmPVtmJ5T6XyPnf6kLnqNydKaHAGfeEiCNrMmqvsepq+d
-         Axiw==
-X-Forwarded-Encrypted: i=1; AJvYcCXGXsORyV/IoG8FFWqpwPMcF+6jLBGSeb6RvsJDepzfYz/Z1jcxMueqr6C5QqVr/V7FqWzFvFuvsz/z@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNOxIFuP/v7AKEtPA9w1hEN5MWGKvC0KnjC1odEYMIDO6e4tgd
-	IzYBeqrV+KM8UXLtOiVMKJYuQX3mA/Hb+XZfh0XNkvArygvzGlj+D/zy
-X-Gm-Gg: ASbGncvxBGESmsBs+/iNZiXx8kLm6+DCly/5c+5TwNs78X4emVqvcDU40iSZE3VAtWQ
-	ry6q8aWl9PTx4iTWv4d3rA47o3PZjyzXNfDNUOMGngLxYxG4TMCaNI/fwzf+y9XvaDDunr3AHMg
-	+kXP/ka3tjYM3nuNo3p8/mWOC90FsrXTxzYMDHMXzRFcYxc1x6iG7PfoTkzK39fhjYPZ/WHBjZA
-	pBA2AgeD+0uVepj+A9pKPqqA9HlzHJWb03VbbkGw/1G/q5tgL988mYmIMFMftvVqH1gfoY4Oe/Z
-	8moGom/aySsOBNelpSEZylv+YXvrQKRBMe7uk4AfKVCSOuI2RTf1ewR3xs0a3tcYfiFcq1jN8Cq
-	PPeMxxfuSbIyld9Jx8Izy9+w=
-X-Google-Smtp-Source: AGHT+IHIns4bB1wZcwsVcZ01acEXAhCG3YI7dM9exxRG8quZe8mBvLKfFE58b5oWtum0qhQ4Vl7QYw==
-X-Received: by 2002:adf:e906:0:b0:3f2:b86a:5356 with SMTP id ffacd0b85a97d-3f2b86a5380mr5293768f8f.15.1758531919423;
-        Mon, 22 Sep 2025 02:05:19 -0700 (PDT)
-Received: from [10.5.0.2] ([45.94.208.160])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3f61703b206sm8813934f8f.6.2025.09.22.02.05.18
+        d=1e100.net; s=20230601; t=1758532645; x=1759137445;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fGb/DBgzMdYPrR58mCFwPhHuJtGwABvWLMjhmJdkkaY=;
+        b=NSOnGahb09MNPHMu+yqg7KVAgz5EIjFkVw/fT8Jss4q2Dlz+6Gj0dX9D8sjykxPCtR
+         xqPNpYAtEdOfHcYK8QNpJmiiLv6gIa1P5XmdVA+VIu+KErGPMcE0L8KfIBdsetiLLYWu
+         +Dov4SMLRg17JJzQ29g1s1HevussnOfAPUJHG3zsVXoNIzfD1kw95RojqZcg2+WQiV93
+         7kHZzNzLLN7TDiy5DvgdpWoG9ugpSuoe4i2mY5eORnQfG0IwUCQFZyQt2um6YvIV4/qS
+         PpdZboyw7Z8swu0yfuqrtarrqttLhPUliYHEuGKensjL1no0X0L71bfDn3V7QhhbH2EZ
+         UrRg==
+X-Gm-Message-State: AOJu0YydvR9TYWp5AgydeNBta24AjSw6BlLsntjr68CKHRyjgCeuvxLO
+	QLYy2hkMGiW2svoXoYluURWUhBp2gczm4rq2Dtr0BG8LcTqb/tdiwEBd
+X-Gm-Gg: ASbGncvod+jD7qnfO7+ArJeqmnzKyB5FEviCDbe82gGp0EYXmuDelccLsHDSmGAUnDW
+	18x4bI5i7x2/dFxinkbtW2+zIcvIMctKUF4SonH9184DrJ6eO8AWigx16jcqX5ccxImgCx1CgNd
+	S9mTbJ3tqNLbNb95TtKuGWTh68IjEIbSDoswvp7wayIQZDL3p04EnQYvdrIk7+8SyC6Wj/YcI2y
+	0Fzb6KK/I92rSyMCDe/KNAAR6ZORlYSbtbhZnZRYVz+N7GAmbRLF4h5328AqIiq2YBFzMhSaiKW
+	TJ3iBQN5FNcsWGNESoE6uTfpc90SDOLadu94r+bRdHIH/LMp1M3T38ylJ1tntg1qvzZBLvwxdoS
+	GJQG8/P+mVZNHy2oJkflbAvesSHZOf4n1
+X-Google-Smtp-Source: AGHT+IHpQUnDxqtshyNYZwoifi0+JfQ4lWp5zNwj1YOtKACLv1wuYj4WHK6vgRUMTUwuv7Y9Eq6txA==
+X-Received: by 2002:a17:903:1aee:b0:269:96db:958 with SMTP id d9443c01a7336-269ba52872bmr156749785ad.43.1758532644418;
+        Mon, 22 Sep 2025 02:17:24 -0700 (PDT)
+Received: from CNSZTL-DEB.lan ([211.158.26.188])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-269802deb48sm124126865ad.70.2025.09.22.02.17.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Sep 2025 02:05:19 -0700 (PDT)
-Message-ID: <fca33559fa5b54e9aa34772c97d545f0670af78b.camel@gmail.com>
-Subject: Re: [PATCH 3/3] iio: mpl3115: add support for sampling frequency
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoni Pokusinski <apokusinski01@gmail.com>, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux@roeck-us.net, rodrigo.gobbi.7@gmail.com, 
-	naresh.solanki@9elements.com, michal.simek@amd.com,
- grantpeltier93@gmail.com, 	farouk.bouabid@cherry.de,
- marcelo.schmitt1@gmail.com
-Date: Mon, 22 Sep 2025 10:05:45 +0100
-In-Reply-To: <20250921133327.123726-4-apokusinski01@gmail.com>
-References: <20250921133327.123726-1-apokusinski01@gmail.com>
-	 <20250921133327.123726-4-apokusinski01@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 
+        Mon, 22 Sep 2025 02:17:24 -0700 (PDT)
+From: Tianling Shen <cnsztl@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: rockchip: Add FriendlyElec NanoPi R76S
+Date: Mon, 22 Sep 2025 17:15:08 +0800
+Message-ID: <20250922091509.2695565-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Sun, 2025-09-21 at 15:33 +0200, Antoni Pokusinski wrote:
-> When the device is in ACTIVE mode the temperature and pressure measuremen=
-ts
-> are collected with a frequency determined by the ST[3:0] bits of CTRL_REG=
-2
-> register.
->=20
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> ---
+The NanoPi R76S (as "R76S") is an open-sourced mini IoT gateway
+device with two 2.5G, designed and developed by FriendlyElec.
 
-LGTM,
+Add devicetree binding documentation for the FriendlyElec NanoPi R76S
+board.
 
-Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> =C2=A0drivers/iio/pressure/mpl3115.c | 80 +++++++++++++++++++++++++++++++=
-+++
-> =C2=A01 file changed, 80 insertions(+)
->=20
-> diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl311=
-5.c
-> index cf34de8f0d7e..2f1860ca1f32 100644
-> --- a/drivers/iio/pressure/mpl3115.c
-> +++ b/drivers/iio/pressure/mpl3115.c
-> @@ -28,6 +28,7 @@
-> =C2=A0#define MPL3115_INT_SOURCE 0x12
-> =C2=A0#define MPL3115_PT_DATA_CFG 0x13
-> =C2=A0#define MPL3115_CTRL_REG1 0x26
-> +#define MPL3115_CTRL_REG2 0x27
-> =C2=A0#define MPL3115_CTRL_REG3 0x28
-> =C2=A0#define MPL3115_CTRL_REG4 0x29
-> =C2=A0#define MPL3115_CTRL_REG5 0x2a
-> @@ -46,6 +47,8 @@
-> =C2=A0#define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
-> =C2=A0#define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling=
- */
-> =C2=A0
-> +#define MPL3115_CTRL_ST (BIT(3) | BIT(2) | BIT(1) | BIT(0))
-> +
-> =C2=A0#define MPL3115_CTRL_IPOL1 BIT(5)
-> =C2=A0#define MPL3115_CTRL_IPOL2 BIT(1)
-> =C2=A0
-> @@ -53,6 +56,25 @@
-> =C2=A0
-> =C2=A0#define MPL3115_CTRL_INT_CFG_DRDY BIT(7)
-> =C2=A0
-> +static const unsigned int mpl3115_samp_freq_table[][2] =3D {
-> +	{ 1,=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0},
-> +	{ 0, 500000},
-> +	{ 0, 250000},
-> +	{ 0, 125000},
-> +	{ 0,=C2=A0 62500},
-> +	{ 0,=C2=A0 31250},
-> +	{ 0,=C2=A0 15625},
-> +	{ 0,=C2=A0=C2=A0 7812},
-> +	{ 0,=C2=A0=C2=A0 3906},
-> +	{ 0,=C2=A0=C2=A0 1953},
-> +	{ 0,=C2=A0=C2=A0=C2=A0 976},
-> +	{ 0,=C2=A0=C2=A0=C2=A0 488},
-> +	{ 0,=C2=A0=C2=A0=C2=A0 244},
-> +	{ 0,=C2=A0=C2=A0=C2=A0 122},
-> +	{ 0,=C2=A0=C2=A0=C2=A0=C2=A0 61},
-> +	{ 0,=C2=A0=C2=A0=C2=A0=C2=A0 30},
-> +};
-> +
-> =C2=A0struct mpl3115_data {
-> =C2=A0	struct i2c_client *client;
-> =C2=A0	struct iio_trigger *drdy_trig;
-> @@ -163,10 +185,60 @@ static int mpl3115_read_raw(struct iio_dev *indio_d=
-ev,
-> =C2=A0		default:
-> =C2=A0			return -EINVAL;
-> =C2=A0		}
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		ret =3D i2c_smbus_read_byte_data(data->client,
-> MPL3115_CTRL_REG2);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret &=3D MPL3115_CTRL_ST;
-> +
-> +		*val =3D mpl3115_samp_freq_table[ret][0];
-> +		*val2 =3D mpl3115_samp_freq_table[ret][1];
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> =C2=A0	}
-> =C2=A0	return -EINVAL;
-> =C2=A0}
-> =C2=A0
-> +static int mpl3115_read_avail(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const int **vals, int *type, int *leng=
-th,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 long mask)
-> +{
-> +	if (mask !=3D IIO_CHAN_INFO_SAMP_FREQ)
-> +		return -EINVAL;
-> +
-> +	*type =3D IIO_VAL_INT_PLUS_MICRO;
-> +	*length =3D ARRAY_SIZE(mpl3115_samp_freq_table) * 2;
-> +	*vals =3D (int *)mpl3115_samp_freq_table;
-> +	return IIO_AVAIL_LIST;
-> +}
-> +
-> +static int mpl3115_write_raw(struct iio_dev *indio_dev,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 int val, int val2, long mask)
-> +{
-> +	struct mpl3115_data *data =3D iio_priv(indio_dev);
-> +	int i, ret;
-> +
-> +	if (mask !=3D IIO_CHAN_INFO_SAMP_FREQ)
-> +		return -EINVAL;
-> +
-> +	for (i =3D 0; i < ARRAY_SIZE(mpl3115_samp_freq_table); i++)
-> +		if (val =3D=3D mpl3115_samp_freq_table[i][0] &&
-> +		=C2=A0=C2=A0=C2=A0 val2 =3D=3D mpl3115_samp_freq_table[i][1])
-> +			break;
-> +
-> +	if (i =3D=3D ARRAY_SIZE(mpl3115_samp_freq_table))
-> +		return -EINVAL;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
-> +	ret =3D i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG2, i);
-> +	iio_device_release_direct(indio_dev);
-> +	return ret;
-> +}
-> +
-> =C2=A0static irqreturn_t mpl3115_trigger_handler(int irq, void *p)
-> =C2=A0{
-> =C2=A0	struct iio_poll_func *pf =3D p;
-> @@ -224,6 +296,9 @@ static const struct iio_chan_spec mpl3115_channels[] =
-=3D {
-> =C2=A0		.type =3D IIO_PRESSURE,
-> =C2=A0		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),
-> =C2=A0		.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available =3D
-> +			BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> =C2=A0		.scan_index =3D 0,
-> =C2=A0		.scan_type =3D {
-> =C2=A0			.sign =3D 'u',
-> @@ -237,6 +312,9 @@ static const struct iio_chan_spec mpl3115_channels[] =
-=3D {
-> =C2=A0		.type =3D IIO_TEMP,
-> =C2=A0		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),
-> =C2=A0		.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_shared_by_all =3D BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available =3D
-> +			BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> =C2=A0		.scan_index =3D 1,
-> =C2=A0		.scan_type =3D {
-> =C2=A0			.sign =3D 's',
-> @@ -307,6 +385,8 @@ static const struct iio_trigger_ops mpl3115_trigger_o=
-ps =3D
-> {
-> =C2=A0
-> =C2=A0static const struct iio_info mpl3115_info =3D {
-> =C2=A0	.read_raw =3D &mpl3115_read_raw,
-> +	.read_avail =3D &mpl3115_read_avail,
-> +	.write_raw =3D &mpl3115_write_raw,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static int mpl3115_trigger_probe(struct mpl3115_data *data,
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 6aceaa8acbb2..e8185344c6f0 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -330,6 +330,11 @@ properties:
+               - friendlyarm,nanopi-r6s
+           - const: rockchip,rk3588s
+ 
++      - description: FriendlyElec NanoPi R76S
++        items:
++          - const: friendlyarm,nanopi-r76s
++          - const: rockchip,rk3576
++
+       - description: FriendlyElec NanoPi Zero2
+         items:
+           - const: friendlyarm,nanopi-zero2
+-- 
+2.51.0
+
 
