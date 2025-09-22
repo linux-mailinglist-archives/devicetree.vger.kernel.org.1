@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-220152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1325B924F8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:53:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1D4B92510
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:54:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727BF2A587E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:53:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A05212A65E9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:54:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423A131194A;
-	Mon, 22 Sep 2025 16:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D430B3126B6;
+	Mon, 22 Sep 2025 16:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haa/u39e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZumRcMh8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E03E1624E9;
-	Mon, 22 Sep 2025 16:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A434C31195A;
+	Mon, 22 Sep 2025 16:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758560024; cv=none; b=G6zeMN8g+YItUK0K7usQKyXE9NOYaiPARDEG7MhGj3ZVNknqVfGSm+P5IhJoRC4U/SWbexFqwKJuj4nXXzVeRWSt9mPaPVRBZwaq0kEsvSvvZzV6CQaxdYF2t/pjPqvEgXmJDU4x/jm0xQOgVAMiorJLWc5wbKaORyVuOyswHi8=
+	t=1758560089; cv=none; b=Cr9PbVLF9oci+NeHrJP5ZSqYH5/tiWx2r2yKYrtTtbLlImJ0iATod96493i+xwjCdiod9MP7hiHR8tpDCmtZOtiVpAg73f5U9qsHbb4qsiBS4qwmk1w+YoCivfDvOrbz6+1Zj/A3Jize8ooKJWkOAK6XjsRcfZMY6v88PAJH8lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758560024; c=relaxed/simple;
-	bh=66YVdEIz0WO5xOUAZXPuRtDVfvF4ZqtngHDQvIbb4OU=;
+	s=arc-20240116; t=1758560089; c=relaxed/simple;
+	bh=ymMmzTp4EnxrYkm69r1TPDGsncG3tXK6gHua10vVyNw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rDMr2xiA+G2M7/Gqf9WzuaRS21f7fNJsHSppcjLbQRJvtA0X8ZYUpmnd/cvTaaobxRLeRHuxKgOJKHASmrnuOuehJQ2A5H2bSLNoey51sJzQt8xPqh39rJWV07qvE7v9Ak5X+U27pFJvL8Nhj4F9X1uza9aScy75jWIH7sanCC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haa/u39e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FB29C4CEF0;
-	Mon, 22 Sep 2025 16:53:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mN+xl4F9gc35RRY9xVzTbcc2ztCDuqF5+428GemfDrlUrYTUoWWMhVs+mKUjSzkFtdfjKeK0qJUgraLf+263371E0ZNE3wntPJVjlQPRKNAM3UVf7OXi+ADOYAQ5PQwzvWXNiiZZtKA4pv7EuLn4qkaiOloP9jhxflXyoDIJHCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZumRcMh8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F61C4CEF0;
+	Mon, 22 Sep 2025 16:54:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758560023;
-	bh=66YVdEIz0WO5xOUAZXPuRtDVfvF4ZqtngHDQvIbb4OU=;
+	s=k20201202; t=1758560089;
+	bh=ymMmzTp4EnxrYkm69r1TPDGsncG3tXK6gHua10vVyNw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=haa/u39eq5BLyx3UoZBQ1gg9wuP69x6DUj/rxEJE/qhGf9Fd0u5Te+KW89NvfVKBm
-	 7xfdjvF2tQCp+A3hO+2oeuDpGnIsney4VEfDVvrSa2vy31p4IX9TzZnbXuTV1LMwU8
-	 BeB7Eui+Noq6w7m/Qe1QZ1So3r3Tq+uGNJeMxhonPX7gduqIJRicoArwpC5BMarFk8
-	 20D+1Xfc30GxQ62VETnvK4LqIUJHYja/WxJ6u7Px4dEEmrEjM+PAN9ghH0UrzdMFYs
-	 YBUWsacp8SM86DyL5V89hpaoBGl8k9lmxjpu7vY3nWcJD2CwporgGCX+IRe0PkPxf4
-	 k5WmcfOv5NrnQ==
-Date: Mon, 22 Sep 2025 11:53:42 -0500
+	b=ZumRcMh8jm0KqGBSZyCF42mMASpEBcfAlsxnbT1a5Cw5HjxL29txLT6wRycCpy58/
+	 xCfoNVjWsQFAjYPXIQ/ZKudI3gEYpRPNGqql1MP4dJ6bWxv2B2nyMrPLcO8VZqsQpx
+	 Nr+GPl6F2D1FXZ7p8fI9V6EmIXws+SJm7U5npCZKflv7cQcodcw6Hs5Mf5sVA786f7
+	 eVo0OlN3PEPh+4/dCBS5Z6+ZYaHpossPyHAm+QPB+pt7VrRUtE0jzxkb4SjfVpplVm
+	 5qX81wdLsEPALK1Kxip+zVgsC1KdVfeYX2sWh615p8TRTSyZWeWCUZfERYi8ysLYmN
+	 68IZ8ShEarFXg==
+Date: Mon, 22 Sep 2025 11:54:47 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ravi Patel <ravi.patel@samsung.com>
-Cc: ksk4725@coasia.com, kenkim@coasia.com, jesper.nilsson@axis.com,
-	s.nawrocki@samsung.com, hgkim05@coasia.com, krzk+dt@kernel.org,
-	bread@coasia.com, shradha.t@samsung.com, mingyoungbo@coasia.com,
-	cw00.choi@samsung.com, krzk@kernel.org,
-	linux-kernel@vger.kernel.org, jspark@coasia.com,
-	linux-arm-kernel@axis.com, linux-clk@vger.kernel.org,
-	limjh0823@coasia.com, smn1196@coasia.com, lightwise@coasia.com,
-	devicetree@vger.kernel.org, gwk1013@coasia.com, pjsin865@coasia.com,
-	lars.persson@axis.com, sboyd@kernel.org, alim.akhtar@samsung.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, swathi.ks@samsung.com,
-	conor+dt@kernel.org, mturquette@baylibre.com
-Subject: Re: [PATCH 1/7] dt-bindings: clock: Add ARTPEC-9 clock controller
-Message-ID: <175856002216.463169.9530978340977850859.robh@kernel.org>
-References: <20250917085005.89819-1-ravi.patel@samsung.com>
- <CGME20250917085025epcas5p229b9eba48bd93a1f059b3cc4656145bc@epcas5p2.samsung.com>
- <20250917085005.89819-2-ravi.patel@samsung.com>
+To: Vikram Sharma <quic_vikramsa@quicinc.com>
+Cc: mchehab@kernel.org, linux-media@vger.kernel.org, krzk+dt@kernel.org,
+	andersson@kernel.org, vladimir.zapolskiy@linaro.org,
+	cros-qcom-dts-watchers@chromium.org, quic_nihalkum@quicinc.com,
+	will@kernel.org, linux-kernel@vger.kernel.org,
+	hverkuil-cisco@xs4all.nl, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, konradybcio@kernel.org,
+	bryan.odonoghue@linaro.org, catalin.marinas@arm.com,
+	quic_svankada@quicinc.com, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: qcom-cci: Document qcs8300
+ compatible
+Message-ID: <175856008717.464887.16008377245653350497.robh@kernel.org>
+References: <20250917130647.1701883-1-quic_vikramsa@quicinc.com>
+ <20250917130647.1701883-2-quic_vikramsa@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,38 +66,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250917085005.89819-2-ravi.patel@samsung.com>
+In-Reply-To: <20250917130647.1701883-2-quic_vikramsa@quicinc.com>
 
 
-On Wed, 17 Sep 2025 14:19:58 +0530, Ravi Patel wrote:
-> From: GyoungBo Min <mingyoungbo@coasia.com>
+On Wed, 17 Sep 2025 18:36:45 +0530, Vikram Sharma wrote:
+> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
 > 
-> Add dt-schema for Axis ARTPEC-9 SoC clock controller.
+> The three instances of CCI found on the QCS8300 are functionally the same
+> as on a number of existing Qualcomm SoCs.
 > 
-> The Clock Management Unit (CMU) has a top-level block CMU_CMU
-> which generates clocks for other blocks.
+> Introduce a new SoC-specific compatible string "qcom,qcs8300-cci" with a
+> common fallback.
 > 
-> Add device-tree binding definitions for following CMU blocks:
-> - CMU_CMU
-> - CMU_BUS
-> - CMU_CORE
-> - CMU_CPUCL
-> - CMU_FSYS0
-> - CMU_FSYS1
-> - CMU_IMEM
-> - CMU_PERI
-> 
-> Signed-off-by: GyoungBo Min <mingyoungbo@coasia.com>
-> Reviewed-by: Kyunghwan Kim <kenkim@coasia.com>
-> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../bindings/clock/axis,artpec9-clock.yaml    | 232 ++++++++++++++++++
->  include/dt-bindings/clock/axis,artpec9-clk.h  | 195 +++++++++++++++
->  2 files changed, 427 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/axis,artpec9-clock.yaml
->  create mode 100644 include/dt-bindings/clock/axis,artpec9-clk.h
+>  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
