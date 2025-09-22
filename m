@@ -1,198 +1,185 @@
-Return-Path: <devicetree+bounces-220190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBB2B9291D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:13:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3D4B9293B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1533019066CB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:13:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AC2A19068E0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7E031813F;
-	Mon, 22 Sep 2025 18:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732613191DE;
+	Mon, 22 Sep 2025 18:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yk6ob/OG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JiDKUjPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC0E27A919;
-	Mon, 22 Sep 2025 18:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08A73191B5
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 18:13:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758564805; cv=none; b=L+kaudMK0UoXLI/rR8keSFMZRKdHaZvJ1pdOXAJ4uMwWZ9SsOJ7vERyHk51biyaFbTVbTClPBmstKD4G6W34xAc+EQWbKYZIFTY/rJooN3ckPaLb5RJmHsd9Igy91YXQlDBOFs+Z8+OTNg0uJXhvvy8QdisJRTh7iO7OPAZZfPI=
+	t=1758564827; cv=none; b=kh1DVTeZxIlTDHFBJRTYjhAe3K7oyjdQ3APQflDWjXuL2gWvTmeuHBvQwD7T+uMPvITw3WsHDtPZKXWdZivzmbqcg983XtNbqBaGXeDUeBcA2yfHBgHlHvp0z6iDv+aLAQaLNDPM2iGoLtfB6W3rUGRIxLHNgemBKLhY1IhQNaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758564805; c=relaxed/simple;
-	bh=ch3XJR3/J1ZY9eeHVCkTk3w1gXTPD/CTnWH+kKraEHE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=puKWaC+jb+aHlo1ESPqwoKCkRx4RwmO5BymV2OcMS7fTTXdboQOhQemdW/8wt6sMlGHj33+Vxt1MCaG5/X1OEzSo1lVqPtDPzc/w0g5aoURlocx0sj1TXaxZTYZhPt3T0252eR6iNj52YYnGeZfloCEdFeMl6yw5GqSEGymHgJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yk6ob/OG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABED0C4CEF5;
-	Mon, 22 Sep 2025 18:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758564804;
-	bh=ch3XJR3/J1ZY9eeHVCkTk3w1gXTPD/CTnWH+kKraEHE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yk6ob/OGAwkGwWAGBkC3qGsL386M31FRg5HYHcF6fPnimFhdojR95nWwH1ZyzM8So
-	 h7zcLzQJCGrZUbByHokQiq2rPXoQovFkjUIRLMWjh/C5NUAWvWT7r9jw+e6hVXqknQ
-	 v/gyeUsRx5+lyUGTRB4ay78pCyjW8zJsxawdOzJeJ9USmCKNyQChfKIqy54MA59FlL
-	 1CL0h2tfxpF4yPwQs6pFiHonmeFZIc1eK8syWFQeya/tghmGe8aRRHgEPqMyyDrhMe
-	 97Nhgnd0kWevlM6zF4bWz0Z9Fz4Rql+DkHFKCo/IXy/gL4hzqII5Izi3/JAu1UA1HN
-	 2b9fRV2dD7PDw==
-Date: Mon, 22 Sep 2025 13:13:23 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dang Huynh <dang.huynh@mainlining.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-unisoc@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 04/10] dt-bindings: mmc: Add RDA SDMMC controller
-Message-ID: <20250922181323.GA556259-robh@kernel.org>
-References: <20250919-rda8810pl-mmc-v1-0-d4f08a05ba4d@mainlining.org>
- <20250919-rda8810pl-mmc-v1-4-d4f08a05ba4d@mainlining.org>
+	s=arc-20240116; t=1758564827; c=relaxed/simple;
+	bh=MUr2xBlFaMHPYimzwjsX+HB1YVfDMLkYxct4Q1cAHTk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hBdBdtaWlaA33Thoj+RGLrrQP8BC7VuyFv+vXPPpwtM6dTzS2/52C3EZ3bBy8n9X7M1V8SmR9zmX66zQkaIWfJXEYBejSOBVQO0f8WagHjQSFBwf6YjZdWux7wbwDTo3o0ljMS0BP6Nf6fuHBH+3wcZ0HALVs0AMREJ6H6XP6tI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JiDKUjPk; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-3322e63602eso2029077a91.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 11:13:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758564825; x=1759169625; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JS3gwnWxYRXNP0WueyxHPt/KOeWuxiqPFIg5DnQSPG4=;
+        b=JiDKUjPkVvjxeVHS8s0C0Ts5pxmKI9oF/eG50sPwr/9kCUo1PhMktQ4Opk9LoxsDFE
+         CwaDl9fy94yWNYYJhiPXyqu4umUdtcn1P3Qs3T+XmqA7s2hkmy8CmjdaIa9Wj7jtXkAc
+         sPKvTSucj57Vm2uAvoy/UfXUoYP0smfwWwCystLDDUJZg5IFBr69znBlsW8gd759S14s
+         Ppo99nkcMwDq2fYbC+P6du9ZUW8mO84aZtjiEi4w/BW9p4MuhaUZF6jh5rkd+72Zv+aD
+         Y57CXTc4z8WyQ/NX6mA5JDnHpN4rbHpd94Nah6JdEmzZSFvLp3zc50+ct3zwe1DYXbxf
+         3T+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758564825; x=1759169625;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JS3gwnWxYRXNP0WueyxHPt/KOeWuxiqPFIg5DnQSPG4=;
+        b=r+PA6ZG/lXlrjL7DCfQ4Ph0Y/VEMHwnrb17H2SOrngsCjL1A6kAmLvwYrEumNleFvS
+         dyLFVMulhO9JRF9BnmQSXvMRfnrgc17pWymfeQhgbfNtVFpoVkGG2xShnFHUsvJHkeEq
+         MKkkTkEWWs3g8ITHTaM8qkneUf3TQ8mJxgBmJnQTWDWgfD8PbKHjXCIOy8Q82aafF0zD
+         rU21JEft8TjZz7CmfIWZoBO3DE65l1t9bqPNgDyRVPCDVTAI0yMYDZYrCsOtIF3qKIDR
+         HCQsrSKIhyRpZuC7a0ppI12lD4fPBNZb4dU+2k1XgtTInTO4UEyEYHBLGWQAQi2YCOWO
+         /6Aw==
+X-Forwarded-Encrypted: i=1; AJvYcCVEBwXzsPacfbJ4UkQXUalUF54mNdKEVWrBCWulbOHWrgWfzZPtmySrksSYVpmtKiCAqJpGgCrLy763@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlR6AkbDliOkazFxDF49DyoFmQJumwQfdPAnblUuOVyBT6E17g
+	zqtTMXdJMHIMdknC7ndk4ulSEq4U3GjZLBd7cTDv/opb+yMpwVTEYhQ4OSEUO22xqpQ=
+X-Gm-Gg: ASbGncs0G8TvTy8dazf4Wwz427FEFjNGB2RBJY2vXcAfPZYY44P4GmTyPtQ+uYtdqQ5
+	Ra6/lSH2VNDgGhPWEMynL59zSl1ziSkuMYVVP4H9YJ0DEnbDCjqfxiT8TRqngZEyiCSAoxNppZA
+	/NPUm14uqEe+/YDLlDe0d1mYNovsBFV/6Vfpd1FQ6CSFXbZD5IDTMfjN4RqnOzi3MaOWrHB3MAv
+	cSXuxvLS7mpKtUwDFsNCzd1vTwc4fcZdxDcNq5Jt+5531Af/bOJelLzothB/EsR2VxMUGUWXdg/
+	ZDEB3plch+HnOggxVg8xrtbIrD2qD2Ie64KkRj3enmIs8Fz/JQa5FceSMYqOF32Ffj2UyernpU7
+	8/4E+woEGCBa1CiLpRvzqOsmlE/3p5Mrc
+X-Google-Smtp-Source: AGHT+IGeNEigtJ3sWUCGc2Q8fUfKmvK70W4opDCk6DT+2YmvQ55xAMWPms12V8aYXXk3JCi8mg/0Ow==
+X-Received: by 2002:a17:90b:2d85:b0:329:ca48:7090 with SMTP id 98e67ed59e1d1-3309838e108mr17580167a91.37.1758564825015;
+        Mon, 22 Sep 2025 11:13:45 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.118.25.226])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33060828031sm13917767a91.26.2025.09.22.11.13.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 11:13:44 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: lee@kernel.org,
+	pavel@kernel.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v14 0/4] leds: add new LED driver for TI LP5812
+Date: Tue, 23 Sep 2025 01:13:41 +0700
+Message-Id: <20250922181341.10761-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <2025091113-mournful-smirk-8e03@gregkh>
+References: <2025091113-mournful-smirk-8e03@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919-rda8810pl-mmc-v1-4-d4f08a05ba4d@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 19, 2025 at 01:48:44AM +0700, Dang Huynh wrote:
-> Add documentation describing the SD/MMC controller in RDA Micro
-> RDA8810PL SoC.
+On Thu, 11 Sep 2025, Greg KH wrote:
+
+> On Sun, Sep 07, 2025 at 11:09:40PM +0700, Nam Tran wrote:
+> > This patch series adds initial support for the TI LP5812,
+> > a 4x3 matrix RGB LED driver with autonomous engine control.
+> > This version provides a minimal, clean implementation focused
+> > on core functionality only. The goal is to upstream a solid
+> > foundation, with the expectation that additional features can
+> > be added incrementally in future patches.
+> > 
+> > The driver integrates with the LED multicolor framework and
+> > supports a set of basic sysfs interfaces for LED control and
+> > chip management.
+> > 
+> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
 > 
-> Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
-> ---
->  Documentation/devicetree/bindings/mmc/rda,mmc.yaml | 92 ++++++++++++++++++++++
->  1 file changed, 92 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/rda,mmc.yaml b/Documentation/devicetree/bindings/mmc/rda,mmc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f3cda38abd66023ca9bc94d1c29df5ae9e211e7c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/rda,mmc.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/rda,mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RDA Micro SD/MMC Controller
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +maintainers:
-> +  - Dang Huynh <dang.huynh@mainlining.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - rda,8810pl-mmc
-> +      - const: rda,mmc
+> The sysfs api is really odd here.  WHy not do the same thing as this
+> other controller recently submitted does:
+> 	https://lore.kernel.org/r/20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de
 
-Drop the generic compatible.
+Thank you for the feedback!
+I agree that consistency is important, and I've reviewed the patch you referenced.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  rda,mclk-adj:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description:
-> +      Some board need MCLK output to be delayed for the card to work.
-> +      If not present, MCLK output is not delayed.
-> +    minimum: 0
-> +    maximum: 255
+I also checked the LP5860 datasheet and noticed that its driver exposes sysfs entries
+for configuring registers like `R_current_set`, `G_current_set`, and `B_current_set`.
+Similarly, the LP5812 requires register-level configuration for operation.
 
-You can drop the constraints if they are not less than uint8 range.
+In my driver, I've implemented the following sysfs attributes:
+- '/sys/bus/i2c/devices/.../lp5812_chip_setup/dev_config' - Configures drive mode and
+scan order (Dev_Config_1 and Dev_Config_2 registers).
+- '/sys/bus/i2c/devices/.../lp5812_chip_setup/sw_reset' - Triggers a software reset of
+the device (Reset register).
+- '/sys/bus/i2c/devices/.../lp5812_chip_setup/fault_clear' - Clears fault status
+(Fault_Clear register).
+- '/sys/class/leds/led_<id>/activate' - Activate or deactivate the specified LED channel
+in runtime (led_en_1, led_en_2 registers).
+- '/sys/class/leds/led_<id>/led_current' - To change DC/PWM current level of each led
+(Manual_DC_xx and Manual_PWM_xx registers).
+- '/sys/class/leds/led_<id>/max_current' - To show max current setting (Dev_Config_0 register).
+- '/sys/class/leds/led_<id>/lod_lsd' - To read lod, lsd status of each LED
+(LOD_Status_0, LOD_Status_1, LSD_Status_0, LSD_Status_1 registers).
 
-What are the units? 
+These attributes map directly to LP5812 registers. I’ve kept the interface minimal and
+focused only on essential functionality needed to operate the device.
 
-I guess 'adj' means adjust. Just use 'rda,mclk-delay' to be more 
-precise.
+If any of these attributes seem unconventional or redundant, I’d appreciate clarification
+so I can revise accordingly.
 
-> +
-> +  rda,mclk-inv:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Some board need MCLK to be inverted for the card to work.
-> +      If not present, MCLK is not inverted.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - dmas
-> +  - dma-names
-> +  - vmmc-supply
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/rda,8810pl-apclk.h>
-> +    #include <dt-bindings/dma/rda-ifc.h>
-> +    mmc@20950000 {
-> +      compatible = "rda,8810pl-mmc", "rda,mmc";
-> +      reg = <0x20950000 0x1000>;
-> +      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-> +      clocks = <&ap_syscon CLK_APB2>;
-> +      clock-names = "mclk";
-> +      resets = <&ap_syscon RST_APB2_SDMMC1>;
-> +      dmas = <&ifc IFC_SDMMC1_TX>, <&ifc IFC_SDMMC1_RX>;
-> +      dma-names = "tx", "rx";
-> +      vmmc-supply = <&vdd_sdmmc>;
-> +      rda,mclk-adj = /bits/ 8 <1>;
-> +      rda,mclk-inv;
-> +    };
-> +
-> +...
-> 
-> -- 
-> 2.51.0
-> 
+> but better yet, why does this need to be a kernel driver at all?  Why
+> can't you just control this directly from userspace with a program
+> there?
+
+LP5812 is controlled via I2C, and its register map is non-trivial. Moving control to userspace
+would require users to manually handle I2C transactions and understand the register layout,
+which is error-prone and not user-friendly.
+
+Moreover, the driver integrates with the LED multicolor framework, allowing standardized control
+via existing userspace tools. This abstraction is difficult to achieve reliably from userspace alone.
+
+> For USB, we generally do not allow these types of crazy apis to be added
+> to the kernel when controlling the device can be done from userspace.  I
+> think the same thing can happen here too, right?
+
+USB devices benefit from standardized descriptors and interfaces, which reduce the need for custom
+sysfs APIs. In contrast, LP5812 has no such standard interface, and some customization is necessary.
+
+I’m open to improving the sysfs interface or moving parts to another method if that’s more appropriate.
+Please let me know which specific changes you’d recommend.
+
+For completeness, I considered these methods:
+- sysfs: Recommended and standard for LED drivers.
+- i2c-tools: Not recommended, intended for development/debug only.
+- ioctl: Not recommended for new LED drivers.
+- debugfs: For debugging only.
+- Direct I2C register access: Requires users to know the register map and protocol.
+
+Thanks again for the review!
+
+Best regards,
+Nam Tran
 
