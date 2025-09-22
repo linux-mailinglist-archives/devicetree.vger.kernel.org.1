@@ -1,96 +1,129 @@
-Return-Path: <devicetree+bounces-220162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 740F0B92663
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6344EB9269D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D12B3A7EE9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:22:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 246523B320D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99D6313E27;
-	Mon, 22 Sep 2025 17:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E67313E2B;
+	Mon, 22 Sep 2025 17:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPPtVhHX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGQwq3BA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C434305E33;
-	Mon, 22 Sep 2025 17:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9369126F0A;
+	Mon, 22 Sep 2025 17:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758561744; cv=none; b=lnAtRiW1Sza9NkdxSPpP4vIdCaiqXCddwaVB1VVsE9calSg+VX/j/J1HdTaCD23+63fJxqY2q+JsPc6Ucgv+qfFG4KCvccEjN7jKLE67EBkMgcGMFWYH/EWfICmb+rPqbPulrcOWEoXammesbhl/z2YOvDXLX15hVKLveR4N8Ro=
+	t=1758562061; cv=none; b=MA7z0lh5op0+t3IpvemQo9bSEAaE5ywvwGZ/58W98uYKIfZngv3US/iv2DInv6xBjfz+CL6EPc7yPWK0HwG7eAbVYFRrFe2tOitfPY8Lfnqm0OwLTNId/e5WgEw6IM3FjJ1+Uq3uIj+bDA2125HBH0LerC5W7lV26ALpY3c2v7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758561744; c=relaxed/simple;
-	bh=qy1QbR66kQUDGYOnr92+yGqpqDsKbyUc8q+DQOYC8sM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tViFq9AIoy6Cdj15DD7BxNjNKaUNvjgCSFC4TFd8Wzo8rfKcu1QXvUWW4O+hIkkPjBYdq7nZXD71Me3JUZIyE7kyyuJ6hY9t+vn/8gbqxg/nYMmtiv+kqsYoTYrmOhQnDKzAWMvfYXY2IqWKwr74zDH+nE4Ic+8HhOhOjbJ5CbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RPPtVhHX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8396C4CEF5;
-	Mon, 22 Sep 2025 17:22:23 +0000 (UTC)
+	s=arc-20240116; t=1758562061; c=relaxed/simple;
+	bh=HnPSSlUSpZrAcD4oDZt1QLsdHVZRdP8Zbo9c9kITCks=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=EE+IhxmO3NPhcffLNdbSN84wjXssUnkcSqbx4qCav1LacV/3XLDeY/6Os1FWjp5RkzM1uaNfnmyRngUFa5RvFUn3Y3AA0kkMHtj80D2btPepCKjArReH4ypLu0b+PidWw2Yr+xFoRXLBw8nKqcwfe8JqwAYItokn8Hx6rAvaSps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGQwq3BA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1779C4CEF0;
+	Mon, 22 Sep 2025 17:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758561744;
-	bh=qy1QbR66kQUDGYOnr92+yGqpqDsKbyUc8q+DQOYC8sM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RPPtVhHXH0/j78nfPB92exe0uKQvzKlcDNjJPt44XHxjO5B8Tmn7e6SmWluIFh0aG
-	 xtxoOtms5E6kBV5xRLvcJTIcsPdZqBqoUbhbfCzGGIwm0pAWeKBtkJrnU1HOkXwlJN
-	 uiBD/gq4szUvsjJJCjrzR04phylNsu3ENHn5h3sWpITod1YdkMAmtG1sRKcVZlWN6C
-	 KStGYMhXMLOPGCWX3hMKk4p0pf7VpDntc1jN0y8qD6XWRVsSjgj/FAy+tKE8AzK5Gh
-	 v6gk/ER5sXMQ7S5vcMV8ynjR92S+y/4/Q9sLD+NSm6gJz7wnCItja9AJYI+uRk6x++
-	 l5hKpn91TBOOg==
-Date: Mon, 22 Sep 2025 12:22:22 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Bastien Curutchet (Schneider Electric)" <bastien.curutchet@bootlin.com>
-Cc: Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <Woojung.Huh@microchip.com>, netdev@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>, Vladimir Oltean <olteanv@gmail.com>,
-	UNGLinuxDriver@microchip.com,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Eric Dumazet <edumazet@google.com>, Andrew Lunn <andrew@lunn.ch>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH net-next v3 2/3] dt-bindings: net: dsa: microchip: Add
- strap description to set SPI mode
-Message-ID: <175856174145.496533.6230819934968287513.robh@kernel.org>
-References: <20250918-ksz-strap-pins-v3-0-16662e881728@bootlin.com>
- <20250918-ksz-strap-pins-v3-2-16662e881728@bootlin.com>
+	s=k20201202; t=1758562061;
+	bh=HnPSSlUSpZrAcD4oDZt1QLsdHVZRdP8Zbo9c9kITCks=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BGQwq3BAV7JKQqf9KC8Jchxh6K2oO46jbR39GbEcgY6JDy4t7sVesnp+O1vduEe9I
+	 ZPAq3+Xj+dWKMVqE+xwMeubFCj7lrlzPYvITjhGpGPg3b3Qars9cgIZ9oNnzd9NAwj
+	 kFZKRsq1RKw7WKfm1QpQ+cPxC8ogVLXSlxouQrF+dM+zV2rP6G+/Gjw0l2TZOADwHv
+	 QCFaYI5d64z0BsHgWZgWyLdLCDSWw6hqZ/r2S7CXW/9r6/AwNZaIzxIN0QYO0tbjpY
+	 5CyiajgDun71TBQsGbxT+9tE4SI31mT0FSdMC6LuR/MCRijEUO8Np2Ec/RG0ii/GJu
+	 YvyOcgvPCIb+w==
+Date: Mon, 22 Sep 2025 12:27:40 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250918-ksz-strap-pins-v3-2-16662e881728@bootlin.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
+To: =?utf-8?q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>
+In-Reply-To: <20250920014637.38175-1-ghatto404@gmail.com>
+References: <20250920014637.38175-1-ghatto404@gmail.com>
+Message-Id: <175856183518.499741.3237175571653776732.robh@kernel.org>
+Subject: Re: [PATCH 0/5] arm64: dts: qcom: r0q: enable more peripherals
 
 
-On Thu, 18 Sep 2025 10:33:51 +0200, Bastien Curutchet (Schneider Electric) wrote:
-> At reset, KSZ8463 uses a strap-based configuration to set SPI as
-> interface bus. If the required pull-ups/pull-downs are missing (by
-> mistake or by design to save power) the pins may float and the
-> configuration can go wrong preventing any communication with the switch.
+On Sat, 20 Sep 2025 01:46:32 +0000, Eric Gonçalves wrote:
+> This patchset adds support for multiple devices found on the Galaxy S22,
+> side buttons, touchscreen, max77705 charger/fuelgauge, RTC and UFS. It
+> depends on "Input: add support for the STM FTS2BA61Y touchscreen" for
+> TS to be enabled.
 > 
-> Add a 'reset' pinmux state
-> Add a KSZ8463 specific strap description that can be used by the driver
-> to drive the strap pins during reset. Two GPIOs are used. Users must
-> describe either both of them or none of them.
+> Thanks!
 > 
-> Signed-off-by: Bastien Curutchet (Schneider Electric) <bastien.curutchet@bootlin.com>
-> ---
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml    | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> Eric Gonçalves (5):
+>   arm64: dts: qcom: r0q: add gpio keys
+>   arm64: dts: qcom: r0q: add touchscreen support
+>   arm64: dts: qcom: r0q: enable max77705 PMIC
+>   arm64: dts: qcom: r0q: enable hardware clocks
+>   arm64: dts: qcom: r0q: enable ufs storage
+> 
+>  .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 308 +++++++++++++++++-
+>  1 file changed, 299 insertions(+), 9 deletions(-)
+> 
+> --
+> 2.51.0
+> 
+> 
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.17-rc1-242-g11cf389c103f (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250920014637.38175-1-ghatto404@gmail.com:
+
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: / (samsung,r0q): spi-gpio@0: 'anyOf' conditional failed, one must be fixed:
+	'reg' is a required property
+	'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: pinctrl@f100000 (qcom,sm8450-tlmm): Unevaluated properties are not allowed ('spi_clk_tsp_active', 'spi_clk_tsp_sleep', 'spi_cs_tsp_active', 'spi_cs_tsp_sleep', 'spi_miso_tsp_active', 'spi_miso_tsp_sleep', 'spi_mosi_tsp_active', 'spi_mosi_tsp_sleep', 'tsp_int_active', 'tsp_int_sleep_state' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sm8450-tlmm.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: spi-gpio@0 (spi-gpio): $nodename:0: 'spi-gpio@0' does not match '^spi(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: spi-gpio@0 (spi-gpio): Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'spi-max-frequency', 'touchscreen@0' were unexpected)
+	from schema $id: http://devicetree.org/schemas/spi/spi-gpio.yaml#
+arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dtb: /spi-gpio@0/touchscreen@0: failed to match any schema with compatible: ['st,fts2ba61y']
+
+
+
+
 
 
