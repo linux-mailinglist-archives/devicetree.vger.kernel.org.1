@@ -1,368 +1,363 @@
-Return-Path: <devicetree+bounces-220195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E253B92B6C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:01:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A163CB92BA2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DAD190639E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:02:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89C871905540
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B023331A56C;
-	Mon, 22 Sep 2025 19:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C656119A288;
+	Mon, 22 Sep 2025 19:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RiuqbOlg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LcWiGJof"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D0319A288
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 19:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC36D3164C5
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 19:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758567695; cv=none; b=bl0Y6PzWp5yaCx7BoqFSJC9neoWca/tfNXWd+Tk01wfwr74mQJhtVo2fVta9ti5SeJyAmCrifdxlgDKKBnhrwgi4AMkzEQ3LM8wRATSscLH8Wop6f6IkxEYqUlvvQdOYjjXxLghY1m4uPqhNXBrAsFB6LyANArntGhSQjL2erwg=
+	t=1758567968; cv=none; b=HNIreWqIqv0iwH8b9Z6+iJq3IQFFweSlTkyMjBYOvAO8y/5NGBjy6OpQA1YGFvqcrCBQr3Mrnq2tKQJMS6VHoKUWxp4U2tByFqhcATrdwQpxbrAIknh/xOOlWyqL1b7vfVMiNJuOcrz8/ccuu9WVDDPq0bWx4DTzR5FKDDN2M50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758567695; c=relaxed/simple;
-	bh=v+AauHexqbsx+kMHbhzLmDqnPPDd/nh8wvUhdAuAo2s=;
+	s=arc-20240116; t=1758567968; c=relaxed/simple;
+	bh=aFWXLiivJ4YUzHUPxpWbeSvezEsm51bwTeklbJQIcYA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O57IupfhG37QU1y6i7pNVzXw0oa4aHZ2VMNcSQl3HggavBBRR8+3QkZuKC+TpU1dxim+uzvIaURvG929HuooIejUJ2W2cxAse+Kqkplm4QwUbF3rxiI94Kw5DPmFDwngPicTM1hmoet+SyelLoRad7QGDf+kWyTZGVS3Ba8vhjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RiuqbOlg; arc=none smtp.client-ip=209.85.128.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=b3xjR5YQky09myFHzh02ZFcb+KNwz4KlGUkoz+Cb5nPpk81GTwkXZneoUeJTflZ03PRwN+MHXjN1PiO0oOYbHKQuVaROJ8o+XGROYmQVljNZYfovMRRxEVAJJ+vfkL2UGns/fSDK+NpfMCQnvjMTT4L+adHLfXa+oWz42dkvdoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LcWiGJof; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46b303f755aso20515295e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 12:01:33 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-468973c184bso17954145e9.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 12:06:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758567692; x=1759172492; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758567965; x=1759172765; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ig+SGte1YlJLE1MPKQYUa5gbYQHEaBms1N5501hGvqU=;
-        b=RiuqbOlgfp42KZzQgkifQt7JEJM9wlyltLH9yXu9xaFMopger7qPMiJFAqRaTFMTjS
-         E7HnHwnRshV/xxKaURjiI1SqhJxMnGCII7M5JUiY8TS/KLG9jEsJ6jsZ5drw2NeNHTYa
-         fe8QIkYs/BTvz1St1dO55Fr0EY0XWg5nkbWnKY3WcpIKQ9AX/hyKKO26fRs/K4cn4XRG
-         JIGGefH6CZNzbFi062h8HZbSqRD3OMlL4ZqKCQBYKcHG2F1s8CUH/6HGLRyaEZd60JRV
-         0iZ/Shv28ppWLFLDC0MuOUxBg1Vj9ajDnb0Yfh4RjkLyHEWqxHLLEQBf8loeHU9ixEaj
-         wM+Q==
+        bh=xfkY5AXvD0ZvDWTOWzvtBozCzcTw2ZSBgWbw8Ju3dcg=;
+        b=LcWiGJofrtnq5/bRmWEFYgOAdl+fpACZajYlNS/jGSXsWm+7fq5cbf3BDdaTPSqfaM
+         f6JK8EwPcP7zMz4wfGAo0xnhi5KlBwG/VIErv6DuV2fIDak5Zu9uR8nGyi2N1h8A+/d1
+         +eliyOHNpVNUq1uDsvgZ9OVBt7ZKwx6obHNWyrwr16CI1lL4amEF+Rxq9WnyDKXGOnXf
+         Gvtnj7xXKfmXwCAysl3xxw2ThmZISVm75HXGV8AEHL1tkXjmKEU1O6XoQe6quWFTgwc4
+         cef+ou5O2eXdmn4laYUu1vhQRMvwJGj9OhDajlJNNLof/nR87M//y/Ob8FEa7GLKoDxo
+         CyIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758567692; x=1759172492;
+        d=1e100.net; s=20230601; t=1758567965; x=1759172765;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ig+SGte1YlJLE1MPKQYUa5gbYQHEaBms1N5501hGvqU=;
-        b=slnjs0cPbzYBb4IKRqA5zkrCs1I71y8zIv97+9pOp6dUi9vsEU8vBND2XGYngPUZEp
-         4FfgxbykJtFb7eyedbYEwBJ+kkhoyIlMQBNYXK2jbmndEjhOBq+IAusRHxP2xIrWu3PE
-         hZ3qqD2JK0+wX/RJpnXbW47zuOyM5gjMmM2aakXoGlr/ubkdHXWHOPJlZiSygPEM58fd
-         ErQeWu/jo6CX8rI8Z1+OiAjEXRgf+yywjEqtyzYzt+2jfEay7UaCDCUEtONvXG3IFjUC
-         Wrtme1w4RDtAObGxcCl2rP3WLn+Ob58FA/vfyhHovROPkZ5BBfw5UaEuJZihwYAd+nSf
-         lA5A==
-X-Forwarded-Encrypted: i=1; AJvYcCV24Tnm8T09cKOOOda/oFEzO7USzrRFy4+wNn+oKGIwx9PyTYH7FRUjWMdB3rkX0nEHhG6ZA8bcRENa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm9Z1Hy6AKkPLcOGAwSfwZpC69xe0+lPPVXJRwY8uXmDKJCDeu
-	diM5Jspt3wniAjWxmVCzBKwlhLckVu8s4FAPIsjqppWL/PDwCpQgXxt3
-X-Gm-Gg: ASbGncun5GTVloTR254LRcBlrr6J33ZhsQ7iLqy1fml5xmmL3hQplaYM/0TqU9v+pH4
-	f2r0TqcS1VrH6e8k/PJNZV+hGd/rQ9IFp9pOE0VxykfH5R6xtIWrTfQpVkhDMSSSiHDpNWm0d7P
-	XgcR4OJ0sVgfhzgbxW6uakygwRuAbTi+M6OzQJ1+qR+aNyDBDf+QQTDRoifY79CIE86D2zvBgcY
-	m4xnfEyrToss/HHY8SaWeDbs8/EppFbF8m8BicB9z3fkSLeTo3aWMImKKJdBg+1Kn4bm/JDZoqf
-	gcqFE+Vu7KntdlxGI3ObASE46+JSNjTsPoKBg+BSv9WjF8UdYcC90hg4kBfABUo29AAvouOG854
-	ua5/bPNuHFItn15VuFXq6xtmzyQyYoYO2+Dy7FcV6lCgAMYGHSG5XEEdx1Qnm8KEjhX0=
-X-Google-Smtp-Source: AGHT+IEk5XBqJgHzPIl46kgroy3/wNhJN7w0G9fck0gvkY8FvZdMAEzr6qKdAfpmL8ZbDrvtXCU1dw==
-X-Received: by 2002:a05:600c:350d:b0:45c:b6b1:29a7 with SMTP id 5b1f17b1804b1-46e1d98bf58mr151975e9.16.1758567691635;
-        Mon, 22 Sep 2025 12:01:31 -0700 (PDT)
+        bh=xfkY5AXvD0ZvDWTOWzvtBozCzcTw2ZSBgWbw8Ju3dcg=;
+        b=uh0pOuvBbOZ05v7hzxKyVKzAx6hA+nQlqTXctdbfTDLukG/CE/JxqDTrv3Ybuxz7Zv
+         1fyLp9fq+FqJnXojyTtckwJ/wQGMPFZeDJn9HOEW0OTnIvACj9F7WvYrbS6H8FfN/SoO
+         PRrV4Yjx0HSJE4xhSujMG2O6/D1djdiboW+MAAagFhFFL7TWjXEf/074YJX6UwHotb6b
+         n4xDalCrrbhDp5tBAkLQkX9kERApHMydkgjTVdekTLDcYSxBj5oF64cSrCcJ4XsteFug
+         N9gXCgr62P3yeVHxOXmMkbwphnt0QaZBWtx793feVNRS+Ba6UUgBQygryn0CDUY/VY/5
+         n/7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUPm76Bgy/EpT3kaO3yjTvT3m4T0FyfQxt54KAA+NOKY5x+j4cfOc20MZS54LQlMgO7rxxqy6eXE5rC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSQAn935ldOmojJff3gLfVFDCevTMk8N7z1sXuLXqUMwlALE1N
+	gIQfeUPEvBjsdFVv0o6CQn+c3b1Ocwlea5drrTGhhMkm8b5mFX1dVl17
+X-Gm-Gg: ASbGnctS5hF/ZBfzrif+QAIDdy6s7IfRG4tcDStKNlwapOBNYvdiGDP1bG2vK9DJRlY
+	YVTCC0sco1WiaXvlwBtUF3cKhhVYA5WZlNuWK2q9x00Hztw7v+2aMezid7fxQnOnqcEpJLaBoBC
+	SM7/zp9geiF+viQ1llEE4KzISGaTfUSSdqFhkV/r4EKYARMvwGa8yaxJmqtKVF5A+3fsyxWqhKH
+	Eqw4ierx5liqH3YURz/CIZUNocFgtnawGTTR5TrGUHPxb6PvGCrVj57BmM8570g6Yssm8mZfu6e
+	dpEdYF0b0Vpij6zRMDzzv3XidNtHsMvylPuC5eAn5q0p90XXIY4USQQJCb5UmuE0qEshWa8IRK2
+	4lnFCtiXg7WvjhVLzHaZKQ2cQDfiwMYIdnfM2jsrll3NkPD0J9w9hVRkOgf9H9zwoNik=
+X-Google-Smtp-Source: AGHT+IHiYtsZgQnnhYurpBqcCwqkq3VPjSs12XfFd0dBTlEzJMi+R4rGhaLrT5UZpoVZwHHVfGt4pA==
+X-Received: by 2002:a05:600c:6288:b0:46d:996b:8293 with SMTP id 5b1f17b1804b1-46e1dab26ccmr133545e9.22.1758567964495;
+        Mon, 22 Sep 2025 12:06:04 -0700 (PDT)
 Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.163.188.178])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f64ad359sm244439725e9.22.2025.09.22.12.01.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46d1c97a87csm58186295e9.20.2025.09.22.12.06.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Sep 2025 12:01:31 -0700 (PDT)
-Date: Mon, 22 Sep 2025 21:01:13 +0200
+        Mon, 22 Sep 2025 12:06:04 -0700 (PDT)
+Date: Mon, 22 Sep 2025 21:05:49 +0200
 From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-iio@vger.kernel.org, linux@roeck-us.net,
 	rodrigo.gobbi.7@gmail.com, naresh.solanki@9elements.com,
 	michal.simek@amd.com, grantpeltier93@gmail.com,
 	farouk.bouabid@cherry.de, marcelo.schmitt1@gmail.com
 Subject: Re: [PATCH 2/3] iio: mpl3115: add support for DRDY interrupt
-Message-ID: <20250922190113.xjqujtts7uu4cucg@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+Message-ID: <20250922190549.22ly3ekwuflgbga7@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
 References: <20250921133327.123726-1-apokusinski01@gmail.com>
  <20250921133327.123726-3-apokusinski01@gmail.com>
- <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
+ <073de1da8b8f04c037f267765235b3334941844f.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
+In-Reply-To: <073de1da8b8f04c037f267765235b3334941844f.camel@gmail.com>
 
-On Sun, Sep 21, 2025 at 10:29:28PM +0300, Andy Shevchenko wrote:
-> On Sun, Sep 21, 2025 at 4:34â€¯PM Antoni Pokusinski
-> <apokusinski01@gmail.com> wrote:
-> >
+On Mon, Sep 22, 2025 at 10:15:19AM +0100, Nuno Sá wrote:
+> On Sun, 2025-09-21 at 15:33 +0200, Antoni Pokusinski wrote:
 > > MPL3115 sensor features a "data ready" interrupt which indicates the
 > > presence of new measurements.
-> 
-> ...
-> 
-> >  #include <linux/module.h>
-> 
-> >  #include <linux/iio/trigger_consumer.h>
-> >  #include <linux/iio/buffer.h>
-> >  #include <linux/iio/triggered_buffer.h>
+> > 
+> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+> > ---
+> >  drivers/iio/pressure/mpl3115.c | 167 ++++++++++++++++++++++++++++++++-
+> >  1 file changed, 162 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl3115.c
+> > index 579da60ef441..cf34de8f0d7e 100644
+> > --- a/drivers/iio/pressure/mpl3115.c
+> > +++ b/drivers/iio/pressure/mpl3115.c
+> > @@ -7,7 +7,7 @@
+> >   * (7-bit I2C slave address 0x60)
+> >   *
+> >   * TODO: FIFO buffer, altimeter mode, oversampling, continuous mode,
+> > - * interrupts, user offset correction, raw mode
+> > + * user offset correction, raw mode
+> >   */
+> >  
+> >  #include <linux/module.h>
+> > @@ -17,26 +17,45 @@
+> >  #include <linux/iio/trigger_consumer.h>
+> >  #include <linux/iio/buffer.h>
+> >  #include <linux/iio/triggered_buffer.h>
 > > +#include <linux/iio/trigger.h>
-> >  #include <linux/delay.h>
-> 
+> >  #include <linux/delay.h>
 > > +#include <linux/property.h>
-> 
-> This is like delay.h is misplaced. What we do here, we group generic
-> ones followed by subsystem (IIO) related ones, and this seems wrong in
-> this driver.
-> 
-> Can you rather move delay.h to be the first, and add property.h after
-> i2c.h followed by a blank line, so in the result it will be like
-> 
-> delay.h
-> i2c.h
-> module.h
-> property.h
-> ...blank.line...
-> iio/*.h
-> 
-> ...
-> 
-Sure, will fix this in v2.
-
+> >  
+> >  #define MPL3115_STATUS 0x00
+> >  #define MPL3115_OUT_PRESS 0x01 /* MSB first, 20 bit */
+> >  #define MPL3115_OUT_TEMP 0x04 /* MSB first, 12 bit */
+> >  #define MPL3115_WHO_AM_I 0x0c
+> > +#define MPL3115_INT_SOURCE 0x12
+> > +#define MPL3115_PT_DATA_CFG 0x13
+> >  #define MPL3115_CTRL_REG1 0x26
+> > +#define MPL3115_CTRL_REG3 0x28
+> > +#define MPL3115_CTRL_REG4 0x29
+> > +#define MPL3115_CTRL_REG5 0x2a
+> >  
+> >  #define MPL3115_DEVICE_ID 0xc4
+> >  
+> >  #define MPL3115_STATUS_PRESS_RDY BIT(2)
+> >  #define MPL3115_STATUS_TEMP_RDY BIT(1)
+> >  
 > > +#define MPL3115_CTRL_INT_SRC_DRDY BIT(7)
 > > +
 > > +#define MPL3115_PT_DATA_EVENT_ALL (BIT(2) | BIT(1) | BIT(0))
-> 
-> Not sure I understand this definition in the following aspects:
-> 1) why is this disrupting the _CTRL_ definitions?
-> 2) why is this using BIT(x) and not respective definitions?
-> 3) why can't you use GENMASK() if you just select all bits in a
-> certain bitfield?
-> 
-> 
-1) I placed the definitions of the bits/masks in the order of the registers
-that they correspond to, i.e.
-  CTRL_INT_SRC_DRDY // bit in reg 0x12
-  PT_DATA_EVENT_ALL // bits in reg 0x13
-  CTRL_RESET        // bit in reg 0x14
-
-Actually, the wrong name here is the INT_SRC_DRDY definition because it is a
-bit in the INT_SOURCE register, not a control register. Therefore, the
-name should be MPL3115_INT_SRC_DRDY instead of MPL3115_CTRL_INT_SRC_DRDY
-
-2) I saw that e.g. CTRL_OS_258MS is defined using BIT(x), so I thought
-that this is the convention in this driver that I did not want to
-disrupt by using GENMASK()
-
-3) Sure, I'd even prefer GENMASK(), the only reason why I didn't use it
-is explained in 2)
-
-> >  #define MPL3115_CTRL_RESET BIT(2) /* software reset */
-> >  #define MPL3115_CTRL_OST BIT(1) /* initiate measurement */
-> >  #define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
-> >  #define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling */
-> 
-> ...
-> 
-> >         mutex_lock(&data->lock);
-> > -       ret = mpl3115_request(data);
-> > -       if (ret < 0) {
-> > -               mutex_unlock(&data->lock);
-> > -               goto done;
-> > +       if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
-> > +               ret = mpl3115_request(data);
-> > +               if (ret < 0) {
-> 
-> > +                       mutex_unlock(&data->lock);
-> 
-> Instead, I suggest adding a prerequisite that moves the driver to use
-> cleanup.h, in particular scoped_guard(). This will reduce a churn
-> here,
->
-Will add in v2.
-> > +                       goto done;
-> > +               }
-> >         }
-> 
-> ...
-> 
+> > +
+> >  #define MPL3115_CTRL_RESET BIT(2) /* software reset */
+> >  #define MPL3115_CTRL_OST BIT(1) /* initiate measurement */
+> >  #define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
+> >  #define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling */
+> >  
+> > +#define MPL3115_CTRL_IPOL1 BIT(5)
+> > +#define MPL3115_CTRL_IPOL2 BIT(1)
+> > +
+> > +#define MPL3115_CTRL_INT_EN_DRDY BIT(7)
+> > +
+> > +#define MPL3115_CTRL_INT_CFG_DRDY BIT(7)
+> > +
+> >  struct mpl3115_data {
+> >  	struct i2c_client *client;
+> > +	struct iio_trigger *drdy_trig;
+> >  	struct mutex lock;
+> >  	u8 ctrl_reg1;
+> >  };
+> > @@ -164,10 +183,12 @@ static irqreturn_t mpl3115_trigger_handler(int irq, void
+> > *p)
+> >  	int ret, pos = 0;
+> >  
+> >  	mutex_lock(&data->lock);
+> > -	ret = mpl3115_request(data);
+> > -	if (ret < 0) {
+> > -		mutex_unlock(&data->lock);
+> > -		goto done;
+> > +	if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
+> > +		ret = mpl3115_request(data);
+> > +		if (ret < 0) {
+> > +			mutex_unlock(&data->lock);
+> > +			goto done;
+> > +		}
+> >  	}
+> >  
+> >  	if (test_bit(0, indio_dev->active_scan_mask)) {
+> > @@ -228,10 +249,142 @@ static const struct iio_chan_spec mpl3115_channels[] =
+> > {
+> >  	IIO_CHAN_SOFT_TIMESTAMP(2),
+> >  };
+> >  
+> > +static irqreturn_t mpl3115_interrupt_handler(int irq, void *private)
+> > +{
+> > +	struct iio_dev *indio_dev = private;
+> > +	struct mpl3115_data *data = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	ret = i2c_smbus_read_byte_data(data->client, MPL3115_INT_SOURCE);
+> > +	if (ret < 0)
+> > +		return IRQ_HANDLED;
+> > +
+> > +	if (!(ret & MPL3115_CTRL_INT_SRC_DRDY))
+> > +		return IRQ_NONE;
+> > +
+> > +	iio_trigger_poll_nested(data->drdy_trig);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
 > > +static int mpl3115_set_trigger_state(struct iio_trigger *trig, bool state)
 > > +{
-> > +       struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> > +       struct mpl3115_data *data = iio_priv(indio_dev);
-> > +       int ret;
-> > +       u8 ctrl_reg1 = data->ctrl_reg1;
+> > +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+> > +	struct mpl3115_data *data = iio_priv(indio_dev);
+> > +	int ret;
+> > +	u8 ctrl_reg1 = data->ctrl_reg1;
 > > +
-> > +       if (state)
-> > +               ctrl_reg1 |= MPL3115_CTRL_ACTIVE;
-> > +       else
-> > +               ctrl_reg1 &= ~MPL3115_CTRL_ACTIVE;
+> > +	if (state)
+> > +		ctrl_reg1 |= MPL3115_CTRL_ACTIVE;
+> > +	else
+> > +		ctrl_reg1 &= ~MPL3115_CTRL_ACTIVE;
+> > +
+> > +	guard(mutex)(&data->lock);
+> > +
 > 
-> > +       guard(mutex)(&data->lock);
+> As Andy pointed out, you should have a precursor patch converting the complete
+> driver to use the cleanup logic.
 > 
-> Oh, and you already use this! Definitely, it misses the prerequisite patch.
+> Another nice cleanup you could do (if you want of course) would be to get rid of
+> mpl3115_remove().
 > 
-> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
-> > +                                       ctrl_reg1);
-> > +       if (ret < 0)
-> > +               return ret;
+Will add the precursor patch in v2
+> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
+> > +					ctrl_reg1);
+> > +	if (ret < 0)
+> > +		return ret;
 > > +
-> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG4,
-> > +                                       state ? MPL3115_CTRL_INT_EN_DRDY : 0);
-> > +       if (ret < 0)
-> > +               goto reg1_cleanup;
+> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG4,
+> > +					state ? MPL3115_CTRL_INT_EN_DRDY :
+> > 0);
+> > +	if (ret < 0)
+> > +		goto reg1_cleanup;
 > > +
-> > +       data->ctrl_reg1 = ctrl_reg1;
+> > +	data->ctrl_reg1 = ctrl_reg1;
 > > +
-> > +       return 0;
+> > +	return 0;
 > > +
 > > +reg1_cleanup:
-> > +       i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
-> > +                                 data->ctrl_reg1);
-> > +       return ret;
+> > +	i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
+> > +				  data->ctrl_reg1);
+> > +	return ret;
 > > +}
-> 
-> ...
-> 
+> > +
+> > +static const struct iio_trigger_ops mpl3115_trigger_ops = {
+> > +	.set_trigger_state = mpl3115_set_trigger_state,
+> > +};
+> > +
+> >  static const struct iio_info mpl3115_info = {
+> >  	.read_raw = &mpl3115_read_raw,
+> >  };
+> >  
 > > +static int mpl3115_trigger_probe(struct mpl3115_data *data,
-> > +                                struct iio_dev *indio_dev)
+> > +				 struct iio_dev *indio_dev)
 > > +{
-> > +       struct fwnode_handle *fwnode;
-> > +       int ret, irq, irq_type;
-> > +       bool act_high, is_int2 = false;
-> 
-> > +       fwnode = dev_fwnode(&data->client->dev);
-> > +       if (!fwnode)
-> > +               return -ENODEV;
-> 
-> 
-> Why is this fatal? Also, do we have a board file for users of this right now?
-> 
-Actually it seems it does not have to be fatal. If we get rid of this
-if, then we'd simply return without setting up the trigger and with no
-interrupt support, which is ok I guess.
-
-As for the board file, do you mean some PCB schematics? I don't know
-about any, I've only used the following datasheet from NXP:
-https://www.nxp.com/docs/en/data-sheet/MPL3115A2S.pdf
-
-> > +       irq = fwnode_irq_get_byname(fwnode, "INT1");
-> > +       if (irq < 0) {
-> > +               irq = fwnode_irq_get_byname(fwnode, "INT2");
-> > +               if (irq < 0)
-> > +                       return 0;
+> > +	struct fwnode_handle *fwnode;
+> > +	int ret, irq, irq_type;
+> > +	bool act_high, is_int2 = false;
 > > +
-> > +               is_int2 = true;
-> > +       }
+> > +	fwnode = dev_fwnode(&data->client->dev);
+> > +	if (!fwnode)
+> > +		return -ENODEV;
 > > +
-> > +       irq_type = irq_get_trigger_type(irq);
-> > +       switch (irq_type) {
-> > +       case IRQF_TRIGGER_RISING:
-> > +               act_high = true;
-> > +               break;
-> > +       case IRQF_TRIGGER_FALLING:
-> > +               act_high = false;
-> > +               break;
-> > +       default:
-> > +               return -EINVAL;
-> > +       }
+> 
+> And to add to Andy's review, fwnode_irq_get_byname() will give you an error
+> anyways if !fwnode.
+> 
+> > +	irq = fwnode_irq_get_byname(fwnode, "INT1");
+> > +	if (irq < 0) {
+> > +		irq = fwnode_irq_get_byname(fwnode, "INT2");
+> > +		if (irq < 0)
+> > +			return 0;
 > > +
-> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_PT_DATA_CFG,
-> > +                                       MPL3115_PT_DATA_EVENT_ALL);
-> > +       if (ret < 0)
-> > +               return ret;
-> 
-> > +       if (!is_int2) {
-> > +               ret = i2c_smbus_write_byte_data(data->client,
-> > +                                               MPL3115_CTRL_REG5,
-> > +                                               MPL3115_CTRL_INT_CFG_DRDY);
-> > +               if (ret)
-> > +                       return ret;
-> > +       }
-> > +       if (act_high) {
-> > +               ret = i2c_smbus_write_byte_data(data->client,
-> > +                                               MPL3115_CTRL_REG3,
-> > +                                               is_int2 ? MPL3115_CTRL_IPOL2 :
-> > +                                                         MPL3115_CTRL_IPOL1);
-> > +               if (ret)
-> > +                       return ret;
-> > +       }
-> 
-> This if (!is_int2) and ternary with the same argument is kinda hard to
-> read, can we refactor it somehow?
-> 
-> For example, if these two booleans are represented by a common enum, we can do
-> 
-> switch (cfg_flags) {
-> case INT2_ACTIVE_HIGH:
->     _write_byte_data(REG3);
->     break;
-> case INT2_ACTIVE_LOW:
->     break;
-> case INT1_ACTIVE_HIGH:
->    _write_byte_data(REG5);
->    _write_byte_data(REG3);
->   break;
-> case INT1_ACTIVE_LOW:
->    _write_byte_data(REG5);
->    break;
-> default:
->     return -EINVAL;
-> }
-> 
-> Yes, it's more verbose, but I find this better to read and understand.
-> 
-> Note, you may drop the switch case for IRQ with this approach as you
-> can use a few bits together (separate bits for raising and falling to
-> make the default case working here).
-> 
-Ok, your suggestion looks nice. I think to define maybe the enums like this:
-
-  #define INT2 BIT(2) 
-  enum {
-    INT2_ACTIVE_LOW = INT2 | IRQF_TRIGGER_FALLING,
-    INT2_ACTIVE_HIGH = INT2 | IRQF_TRIGGER_RISING,
-    INT1_ACTIVE_LOW = !INT2 | IRQF_TRIGGER_FALLING,
-    INT1_ACTIVE_HIGH = !INT2 | IRQF_TRIGGER_RISING, 
-  };
-
-This way the cfg_flags could be first |= INT_2 (after the call to the
-fwnode_irq_get_byname) and then |= irq_type (after the call to the irq_get_trigger_type)
-
-> > +       data->drdy_trig = devm_iio_trigger_alloc(&data->client->dev,
-> > +                                                "%s-dev%d",
-> > +                                                indio_dev->name,
-> > +                                                iio_device_id(indio_dev));
-> > +       if (!data->drdy_trig)
-> > +               return -ENOMEM;
+> > +		is_int2 = true;
+> > +	}
 > > +
-> > +       data->drdy_trig->ops = &mpl3115_trigger_ops;
-> > +       iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
-> > +       ret = iio_trigger_register(data->drdy_trig);
-> > +       if (ret)
-> > +               return ret;
+> > +	irq_type = irq_get_trigger_type(irq);
+> > +	switch (irq_type) {
+> > +	case IRQF_TRIGGER_RISING:
+> > +		act_high = true;
+> > +		break;
+> > +	case IRQF_TRIGGER_FALLING:
+> > +		act_high = false;
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
 > > +
-> > +       indio_dev->trig = iio_trigger_get(data->drdy_trig);
+> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_PT_DATA_CFG,
+> > +					MPL3115_PT_DATA_EVENT_ALL);
+> > +	if (ret < 0)
+> > +		return ret;
 > > +
-> > +       return devm_request_threaded_irq(&data->client->dev, irq,
-> > +                                        NULL,
-> > +                                        mpl3115_interrupt_handler,
-> > +                                        IRQF_ONESHOT,
-> > +                                        "mpl3115_irq",
-> > +                                        indio_dev);
+> > +	if (!is_int2) {
+> > +		ret = i2c_smbus_write_byte_data(data->client,
+> > +						MPL3115_CTRL_REG5,
+> > +						MPL3115_CTRL_INT_CFG_DRDY);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +	if (act_high) {
+> > +		ret = i2c_smbus_write_byte_data(data->client,
+> > +						MPL3115_CTRL_REG3,
+> > +						is_int2 ? MPL3115_CTRL_IPOL2
+> > :
+> > +							 
+> > MPL3115_CTRL_IPOL1);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	data->drdy_trig = devm_iio_trigger_alloc(&data->client->dev,
+> > +						 "%s-dev%d",
+> > +						 indio_dev->name,
+> > +						 iio_device_id(indio_dev));
+> > +	if (!data->drdy_trig)
+> > +		return -ENOMEM;
+> > +
+> > +	data->drdy_trig->ops = &mpl3115_trigger_ops;
+> > +	iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
+> > +	ret = iio_trigger_register(data->drdy_trig);
+> 
+> devm_iio_trigger_register()
+> 
+> - Nuno Sá
+>
+Will fix in v2
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	indio_dev->trig = iio_trigger_get(data->drdy_trig);
+> > +
+> > +	return devm_request_threaded_irq(&data->client->dev, irq,
+> > +					 NULL,
+> > +					 mpl3115_interrupt_handler,
+> > +					 IRQF_ONESHOT,
+> > +					 "mpl3115_irq",
+> > +					 indio_dev);
 > > +}
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-
-Kind regards,
-Antoni Pokusinski
+> > +
+> >  static int mpl3115_probe(struct i2c_client *client)
+> >  {
+> >  	const struct i2c_device_id *id = i2c_client_get_device_id(client);
+> > @@ -271,6 +424,10 @@ static int mpl3115_probe(struct i2c_client *client)
+> >  	if (ret < 0)
+> >  		return ret;
+> >  
+> > +	ret = mpl3115_trigger_probe(data, indio_dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >  	ret = iio_triggered_buffer_setup(indio_dev, NULL,
+> >  		mpl3115_trigger_handler, NULL);
+> >  	if (ret < 0)
 
