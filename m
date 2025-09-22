@@ -1,127 +1,162 @@
-Return-Path: <devicetree+bounces-220002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBCCB912F4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3871B91312
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1F9542155A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:46:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12754421614
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BFA41A9FB7;
-	Mon, 22 Sep 2025 12:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5F8308F3D;
+	Mon, 22 Sep 2025 12:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="bxLN3kHH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 697C03081C1
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 12:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758545181; cv=none; b=BIUCZnr5rxi5/q1pHR3KqgtvaRFv46RcL7qJRgDgO3aZlknsdpRr3m86dAmBLCcZ1iElXOGZOFylzjZkenP+CeCoeOJ68ARiacXb0mgqSpwg91cqD9thCEtVTtQRp1WiQPqioR0HlDe3jkzX0Jj6s6I79yAqwA/YC3jvAfo1Htc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758545181; c=relaxed/simple;
-	bh=LalxEdf2CLHD+3/DoosjP7R0lybr3lNihZe4lb2nS2I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i89WTvwvcDtOfb7XnWtqjrw0e3pixd9sUpmEmyWwKop8KamtdZVS3V19k0FrGXOZdakCtCGeWEcozNoaRfthEbJ0x5+NJDlAsymV4QYBEWOoOpYA3piclpTp3Jyym5h2pFCeelNL0xpC334AzXmdx56XnJE2gb7HL2EVfjPNlCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-8e8163d94bbso2508318241.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 05:46:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758545178; x=1759149978;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t5J4VRvr1gr76F3lInaspOR1L44Cm4laCA28EiGvaXI=;
-        b=JocxhXcdE5IUArW6/Bgl6vyim3yx4UKRJf6gvUfjgVWlLCNfW1zg1yJ+3DRf3lieA/
-         58CzpNDCpqomuMCTriVtQL8pCqp45vzZvX+Teyd+zF3sY8ZPk/JRfeeOLILqnR82mZS0
-         wJOZwVHbxqJvjgILrzOHy/vBXaOf1kRwarhka64nj3WAYa5S6pbpWerWLAhBKQQhXdwG
-         LUT+GfxRrWjCs2yCLT0nDQ2cvQ42JjZ2SiK2i6ZYj5/iqsbjx5t4BIDUPnFcm75Vhyvs
-         eQXp7dM9YQLEYQKBBTQGcdNmQkCmyspiPPq0LklKSigFNlt8XEv8snweLavy+NTrpk9M
-         oJ3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU4++xSRiOsC6y4om988JtRwo8N2B5OCsCQVfkp5/9sz41fIC5q2VjlCmeQ7pJ4VVlp77iqL+XT+oiQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAbaN6LYiCvgyeSq9Ez++M6zHKnucgMx0xVenwAGFK0JQ5XGKx
-	T+huqXCbFSgccSiKBYHSDhNWHIpwTgA9yww/M2pxP9jkSWMC48iXvQ4qG5Szg3zI
-X-Gm-Gg: ASbGnctu6cnY2OF++3pnMRWni2oukCQRsuEHALC0NyuZjjf7KEeUtzjkVP3VuYsdWNT
-	Ym0lKYxQjSEfrcEZ2YIP6wQxWPVK27Bhx6bEdMfUPi+ASYLEJ+5oPc0k7h9fhLqNc0uIEfTrb5I
-	dxkj9gUj5KUiKpnOxV7ayvk0HLsWAr1jw1f/PPha4AbVJpGU69bkBCgZZmQrqfzSVEcHJVSkMdv
-	aICP54ThNLB2R2rq6/I+Qnl6+c7nZFoajV7cSOI21e7gw06gSWWD30pIYxJHx70sauM7Wfr46Yn
-	QwZJ0UQVaxKihy7LKnCY3tXpRlLmRdVRTdfehOfnOYEP+2ce41Oh2ce513ofoSBL984uvtk17lg
-	nEwUsSAf1nTotKvUG3iNqOcZ/KeRAg+RZ2MbtAM3aJcG8AIwJ0v59bG8PwzId
-X-Google-Smtp-Source: AGHT+IHJ7b404HFUCaE+hg9SMaSe+sMx9GxmHHP2b6ln1tEApy+og9yBRTI+AbjnbGJlJPGYrgH+IA==
-X-Received: by 2002:a05:6102:3fa8:b0:534:cfe0:f86c with SMTP id ada2fe7eead31-588e4de4f32mr4461905137.15.1758545178027;
-        Mon, 22 Sep 2025 05:46:18 -0700 (PDT)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-59c0c715bdbsm1508950137.8.2025.09.22.05.46.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Sep 2025 05:46:17 -0700 (PDT)
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-557a2ba1e65so3690356137.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 05:46:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUiA+osd4z6ZLjVSMDwNogsdybUQ+DGyaETeZB2UuJpFcED1ygT9aNNksQ2nwuPVT6UFpy+d75jIISp@vger.kernel.org
-X-Received: by 2002:a05:6102:3911:b0:5a1:ad18:4a52 with SMTP id
- ada2fe7eead31-5a1ad1854a9mr1056291137.12.1758545177149; Mon, 22 Sep 2025
- 05:46:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB1C30101F;
+	Mon, 22 Sep 2025 12:48:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758545318; cv=pass; b=OlwcQlS/kVxkHacxI/qTwsZHvOd0TyvauR5ah/DiQcy6LN+8pcZikzoSRYJGvfYLv/TY9iW9rHGD/KzITgkoakEnp4oLoq5++ALlvCd+RoGT3uz5TF03aj4tKNaXNGZ/7/hzdrVOX4IOi94JanKi7EmZEsL+VfeGGUDaq+Bs5b0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758545318; c=relaxed/simple;
+	bh=ajgpqeWH1J9OjvBk976S+Q5QHwI27D09dVg+WbxvooQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n0a2ItUIG31cWMneOgw64CsBLWNY63U4h4DqDjo3RIBBZaiGPBd0/Xkp2ipaK4isOrSOcdzH9G6HNIEo3Ns9ROoEjfVlgwCqNVleDH6Q0CuI63Jp2BSDZWhsOSkPxQlRs4N/RbhlLvRGDdXmsoT8wwT6XYycwi+hJOGBxpJ/yG0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=bxLN3kHH; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1758545252; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FLON75iNI9JeHakiKtstQpQY0Ir6xijkmvDbc+pQKZMfTyA9jb5ryUx4wbF9gOxkhEW4ik81Bda4wp+jNwFQ+NhuomroOGnvfuadLWJDjLYIViTCw4MJaqO6+1PvNEsIiH4eXFcbGgLl+mMCnJ3qkCLxdBlRa6JxckaldS4HPL4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758545252; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=QQHfWPLq9h9/26EFDezuhABuHqn17sUNy+23WQyGpPU=; 
+	b=H+RUeXyAvuzi51F/NpdpfmgLuct9VvfsjU8iwVR5n9dfR/yQJ3onNE3GNyI3+qV+8Qoxhe1mwGmUxwBrqlQnUcIOTDR2L5hdYn1cBe8w3xhPED4ogT4lPtdkulbQd49LQj2peIalt4yLo8KbHmOCDws7Ui9r5nsi+YWGXBr6QaY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758545252;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=QQHfWPLq9h9/26EFDezuhABuHqn17sUNy+23WQyGpPU=;
+	b=bxLN3kHHHM0PpnR/N/YnowWACvzX+3ZFxQwHdkbgTlvSh/D5DLMcGjmh/gA59zib
+	xF0PLnUAW7kzpyZf+Du4z1D/VuuI/X6OETsEeQSU7xvi4TD3XG0ZSfSdFLb/yjKIPbf
+	3KmDtov5L9MENQ3v6HXWcX2T7WStGiHvj7v5nz84=
+Received: by mx.zohomail.com with SMTPS id 1758545250603407.16427504257217;
+	Mon, 22 Sep 2025 05:47:30 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH v2 00/11] riscv: Add initial support for Anlogic DR1V90
+Date: Mon, 22 Sep 2025 20:46:30 +0800
+Message-Id: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250920064428.5544-8-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250920064428.5544-8-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 22 Sep 2025 14:46:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVONJVkvBj_AYZxkCZ1Fhr95HGSMNbQa-nn6+NmZc-R-g@mail.gmail.com>
-X-Gm-Features: AS18NWC3NFwLCTMrNfKZ2H-zizbHeBjjhWejGJ6R4dTa1H9iB4dRfBDjP3fzvZE
-Message-ID: <CAMuHMdVONJVkvBj_AYZxkCZ1Fhr95HGSMNbQa-nn6+NmZc-R-g@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/6] arm64: dts: renesas: add SWDT
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACZF0WgC/2WNQQrCMBBFr1Jm7UgSG2JceQ/pIk3HdkDbkoSgl
+ NzdWNy5fA/++xtECkwRLs0GgTJHXuYK6tCAn9w8EvJQGZRQWhgpcAgyW4G9i+xxSHjSiqwj7Xx
+ /hrpaA935tRdvXeWJY1rCez/I8mt/LSX/WlmiQG1a4bW01rfmuvL4XIJ7HBP5CbpSygdnsNQ6s
+ gAAAA==
+X-Change-ID: 20250710-dr1v90-basic-dt-352e9ae5acb8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
+ linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758545232; l=3345;
+ i=junhui.liu@pigmoral.tech; s=20250910; h=from:subject:message-id;
+ bh=ajgpqeWH1J9OjvBk976S+Q5QHwI27D09dVg+WbxvooQ=;
+ b=BM1IXkvoJJUJQu9/EIL9IfPkPgdDl/LrRNrn7XaLuR4FQWU3nNPC6jFTkXc8wd1csYCvwteOC
+ WQ7F3pEnccFDX2VF6rfBWZeZtllg70wToOUT18ZIDm6M/IcCmRpR03z
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=cgATWSU1KfGWmdwNmkPyHGnWgofhqqhE8Vts58wyxe4=
+X-ZohoMailClient: External
 
-Hi Wolfram,
+This patch series introduces initial support for the Anlogic DR1V90 SoC
+[1] and the Milianke MLKPAI-FS01 [2] board.
 
-On Sat, 20 Sept 2025 at 08:44, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> I forgot over the years why we did not enable the SWDT on R-Car Gen3+.
-> The reason is that it is used by the firmware on Renesas boards.
-> However, this was not documented. So, based on a previous discussion
-> with Geert, here is an RFC how this documentation could look like:
->
-> * add the complete node to the SoC DTSI (here only R-Car H3, M3*)
-> * mark the node as "reserved" for the relevant boards
->   (firmware should have done that(tm))
->
-> If this approach is acceptable, I'd handle the other SoCs, too, of
-> course. Looking forward to comments! Passes dtbs_check here BTW.
->
-> Wolfram Sang (6):
->   arm64: dts: renesas: r8a77951: add SWDT node
->   arm64: dts: renesas: r8a77960: add SWDT node
->   arm64: dts: renesas: r8a77961: add SWDT node
->   arm64: dts: renesas: r8a77965: add SWDT node
->   arm64: dts: renesas: salvator-common: mark SWDT as reserved
->   arm64: dts: renesas: ulcb: mark SWDT as reserved
+The DR1V90 is a RISC-V based FPSoC from Anlogic, featuring a Nuclei
+UX900 [3] core as its processing system (PS) and 94,464 LUTs in the
+programmable logic (PL) part. The Milianke MLKPAI-FS01 board is one of
+the first platforms based on this SoC, with UART1 routed to a Type-C
+interface for console access.
 
-Thanks for your series!
+Tested on the Milianke MLKPAI-FS01 board with both the vendor's OpenSBI
+and the not-yet-upstreamed mainline OpenSBI [4], as well as the vendor’s
+U-Boot. Because the vendor’s OpenSBI is loaded at 0x1f300000, we have
+to additionally reserve the DRAM region 0x1fe00000–0x1fffffff to prevent
+overlap if using vendor's OpenSBI.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Notice: A "no4lvl" bootarg or dependency patch [5] is currently required
+for successful boot on the DR1V90 platform, since the SoC hangs if the
+kernel attempts to use unsupported 4-level or 5-level paging modes.
 
-Gr{oetje,eeting}s,
+Link: https://www.anlogic.com/product/fpga/saldragon/dr1 [1]
+Link: https://www.milianke.com/product-item-104.html [2]
+Link: https://nucleisys.com/product/900.php [3]
+Link: https://github.com/pigmoral/opensbi/tree/dr1v90 [4]
+Link: https://lore.kernel.org/linux-riscv/20250722-satp-from-fdt-v1-0-5ba22218fa5f@pigmoral.tech [5]
+---
+Changes in v2:
+- Add MAINTAINERS entry for the DR1V90 platform
+- Remove the riscv,isa property of cpu and reorder propertyies
+- Fix clint base address in the dtsi
+- Change the memory node to cover the full 512MB RAM in board dts
+- Link to v1: https://lore.kernel.org/r/20250721-dr1v90-basic-dt-v1-0-5740c5199c47@pigmoral.tech
 
-                        Geert
+---
+Junhui Liu (11):
+      dt-bindings: vendor-prefixes: Add Anlogic, Milianke and Nuclei
+      dt-bindings: riscv: Add Nuclei UX900 compatibles
+      dt-bindings: riscv: Add Anlogic DR1V90
+      dt-bindings: timer: Add Anlogic DR1V90 CLINT
+      dt-bindings: interrupt-controller: Add Anlogic DR1V90 PLIC
+      dt-bindings: serial: snps-dw-apb-uart: Add Anlogic DR1V90 uart
+      riscv: Add Anlogic SoC famly Kconfig support
+      riscv: dts: Add initial Anlogic DR1V90 SoC device tree
+      riscv: dts: anlogic: Add Milianke MLKPAI FS01 board
+      riscv: defconfig: Enable Anlogic SoC
+      MAINTAINERS: Setup support for Anlogic DR1V90 SoC tree
 
+ .../interrupt-controller/sifive,plic-1.0.0.yaml    |  1 +
+ .../devicetree/bindings/riscv/anlogic.yaml         | 27 +++++++
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |  1 +
+ .../bindings/serial/snps-dw-apb-uart.yaml          |  1 +
+ .../devicetree/bindings/timer/sifive,clint.yaml    |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  6 ++
+ MAINTAINERS                                        |  9 +++
+ arch/riscv/Kconfig.socs                            |  5 ++
+ arch/riscv/boot/dts/Makefile                       |  1 +
+ arch/riscv/boot/dts/anlogic/Makefile               |  2 +
+ arch/riscv/boot/dts/anlogic/dr1v90-mlkpai-fs01.dts | 28 +++++++
+ arch/riscv/boot/dts/anlogic/dr1v90.dtsi            | 85 ++++++++++++++++++++++
+ arch/riscv/configs/defconfig                       |  1 +
+ 13 files changed, 168 insertions(+)
+---
+base-commit: 07e27ad16399afcd693be20211b0dfae63e0615f
+change-id: 20250710-dr1v90-basic-dt-352e9ae5acb8
+
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Junhui Liu <junhui.liu@pigmoral.tech>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
