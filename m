@@ -1,56 +1,69 @@
-Return-Path: <devicetree+bounces-220186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F97B92865
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:59:50 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD9EB9289F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:04:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 489F31905800
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:00:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 306784E032B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:04:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93BC031690E;
-	Mon, 22 Sep 2025 17:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A623164A9;
+	Mon, 22 Sep 2025 18:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADj9m18s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XuO7sf29"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673AF316902;
-	Mon, 22 Sep 2025 17:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23704289824;
+	Mon, 22 Sep 2025 18:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758563985; cv=none; b=NfUtMkPjC2cFFK/zg3BVm58WAfHiwM9TC5GZWm/XrE+6El7l6k2qfCI+m9wwgsEMRtS5HOcZ08U+iPX1mRkw86OVsd+L0PbyESbabRPHanNMgFw1KG2NHd0uthi4a61va98+jxhDfVfCFXkf3Koro3X1gl61Yr9JftD69Pd/h04=
+	t=1758564246; cv=none; b=XGDR8iw5xKAPzUO46BFQd1MqvdI3WZycfrK1P7+ryFyqjUtO6vp5AYqnF/WZB3Lahsg19R1TI2t5MyGWS9mMfmdMTu5KHaD5XtpvCH3IeW1KVoMSeFnK9FQXFN4Z2KfbfkGAVC0C/+J54LAoPs7hPHICWf9inMagDHasLIjUQZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758563985; c=relaxed/simple;
-	bh=fJUUurrcgN6ixpFW10YhsUfI4eXPPj1wQsga8UFRrG8=;
+	s=arc-20240116; t=1758564246; c=relaxed/simple;
+	bh=L9lfSFfAFkIwqNZiT8BuwyifCSThhLnjRTrvPs+IIdI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r6plW9BGS9zPd22bE+0OcsZMAgwoQ14Psj3wL3bhz2iTRvUCVqSAW6ALRPHVjq+ceq1Aq0ME+mTRz7sLxlAr51jWfR+oLodA/zx6FgEFY7rH6yhw6mhQ0GUY95u+wFR2T3ZNpm0erPZOTXXWI66ct2udGzhWqZk5f+3hquINFbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ADj9m18s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5457C4CEF0;
-	Mon, 22 Sep 2025 17:59:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lTEuA4F709qlNMJAdYAhd2B5tyCZ24M6JfkrjlBRw3M3EAiIrdPyQWbjlrRj1DkVondXffRRvSHJ2mRy4FXcV8I+x5AfZbchW84VX79IhlOMFbLaIIuXOrPMI5vyPNGDkK1dB5AJjs9Y+5skNgV7NMIu9nH2Pqw+Y1KENZrjRto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XuO7sf29; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2C4EC4CEF0;
+	Mon, 22 Sep 2025 18:04:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758563985;
-	bh=fJUUurrcgN6ixpFW10YhsUfI4eXPPj1wQsga8UFRrG8=;
+	s=k20201202; t=1758564246;
+	bh=L9lfSFfAFkIwqNZiT8BuwyifCSThhLnjRTrvPs+IIdI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ADj9m18syemd+rLSFrmAS2lXaeAA2Zy9fFJ64DM8rsXHv+qTaqa8gJnoyv/J57obx
-	 GHwlo+PS2FG4sOPvoI6iSVnbSUS0NSDjENf64DS39hM8osp4DZodZ0ViDeoFnpHJ3w
-	 DGs8lXdcT7b98e7n3QtTWqGED6pYibfgAth91DQWHv7dluXYFkasG1e4QSvUULuftM
-	 hyZYhlYtYxZsv7fEK41aS9MzQMMmDWva2LPSHjTl2Ra96uxXiEHBOgogQE7Bn7eojf
-	 Pr1uFtGeJsz99Xb2h6Uq6aPegp6R0bVQV+p0u5lMs4z7EfN9YXISPj4BISgdgkYODW
-	 GM9Mec4PRUItw==
-Date: Mon, 22 Sep 2025 12:59:43 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, konradybcio@kernel.org,
-	quic_gurus@quicinc.com, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, conor+dt@kernel.org,
-	krzk+dt@kernel.org, andersson@kernel.org, robimarko@gmail.com
-Subject: Re: [PATCH] dt-bindings: firmware: qcom,scm: Document Glymur scm
-Message-ID: <175856388250.539663.6638962275159268200.robh@kernel.org>
-References: <20250918141738.2524269-1-pankaj.patil@oss.qualcomm.com>
+	b=XuO7sf29Gl3ExIVcVZoCotjBNm3sk5GSvahi/cVy0jCmUwsRze6ueZWDob1ye9ecZ
+	 Z7y677vHWKpuPqKxHPdGwXBaUnxQtk7nfu+bDD2FMWkSCnDcKXFQTQ6RmMa1GpHtL7
+	 hCDqiwntDiMzz9O+fS0+0F03rrkVX1aVsXXM4zSg82k4YFHElOioIXXCAw004tNAj7
+	 rCMzM9rPjOIB/rOxuQTiY/IiqnngQk4/GqL+9pBiMnzdxqMvQDmabA55m92HTnOGFO
+	 RqBCizGK5IfTUIeDyIguy9vptrroQP7zKvtqUwIC0Mdp11YU+0AKY8f2aFdY/ktorj
+	 kGBrcyWquc0YQ==
+Date: Mon, 22 Sep 2025 13:04:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dang Huynh <dang.huynh@mainlining.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-unisoc@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, dmaengine@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 02/10] dt-bindings: clock: Add RDA Micro RDA8810PL
+ clock/reset controller
+Message-ID: <20250922180404.GA542994-robh@kernel.org>
+References: <20250919-rda8810pl-mmc-v1-0-d4f08a05ba4d@mainlining.org>
+ <20250919-rda8810pl-mmc-v1-2-d4f08a05ba4d@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,19 +72,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250918141738.2524269-1-pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <20250919-rda8810pl-mmc-v1-2-d4f08a05ba4d@mainlining.org>
 
-
-On Thu, 18 Sep 2025 19:47:38 +0530, Pankaj Patil wrote:
-> Document the SCM compatible for Qualcomm Glymur SoC.
-> Secure Channel Manager(SCM) is used to communicate
-> with secure firmware.
+On Fri, Sep 19, 2025 at 01:48:42AM +0700, Dang Huynh wrote:
+> Add documentation describing the RDA8810PL Clock and Reset
+> controller.
 > 
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 > ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/clock/rda,8810pl-apsyscon.yaml        | 43 +++++++++++++
+>  include/dt-bindings/clock/rda,8810pl-apclk.h       | 70 ++++++++++++++++++++++
+>  2 files changed, 113 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/rda,8810pl-apsyscon.yaml b/Documentation/devicetree/bindings/clock/rda,8810pl-apsyscon.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d90dae8ebaa270aa822e4855d2a4a892168c5eea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/rda,8810pl-apsyscon.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/rda,8810pl-apsyscon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RDA Micro RDA8810PL AP Clock Controller
+> +
+> +maintainers:
+> +  - Dang Huynh <dang.huynh@mainlining.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: rda,8810pl-apsyscon
+> +      - const: syscon
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+What makes this a syscon? (Answer in the commit msg). If your only use 
+is so the regmap is automagically created for you, don't. Create a 
+regmap yourself in your driver.
+
+Rob
 
