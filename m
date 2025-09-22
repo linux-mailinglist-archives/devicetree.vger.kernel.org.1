@@ -1,128 +1,185 @@
-Return-Path: <devicetree+bounces-220028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8C8DB915ED
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:20:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2FEB91656
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:29:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249701885FB6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:19:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 932191897666
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615CE30ACF7;
-	Mon, 22 Sep 2025 13:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE30630AD18;
+	Mon, 22 Sep 2025 13:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LG/BtI+1"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="E3+R4Fb7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295EC30AAAD;
-	Mon, 22 Sep 2025 13:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CC630AD16;
+	Mon, 22 Sep 2025 13:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758547164; cv=none; b=UX+N9/c9dAmrILGTW1Wjj6edreW/5iSMwZC4yWKsYRRCCfko0FL1ehoyCW3IN2WK5aoYdBLwjt0jfesZfNHbrx3gcWebeWH9TtEFbkmpIQvUZiLqEk3yorq2VEGE9XEWozIYwH/U142eGbXgYIRx8gSXObCOhg5CAdoCkRb5JVQ=
+	t=1758547750; cv=none; b=CJINABijv0xGFRK64Kcql2GAqvTYCZhOls/4AzYmN8smJeMIH4UAZw1WXoHW4oY5+xPp7ecg3IbbyyzjLYxllgTVcHSiMxKEgZmGDiAduLj9uYtREDTTHcUob3vIxduIlWK2RvVB6x0aQ9CUN3i5RXVpI8p6GHFGiEHV7Qdr5Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758547164; c=relaxed/simple;
-	bh=/2BPc+qmrsh2DgallaqxgQi03F/iwjA/IqFzKaKywSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kpFCnU77Ps/J8wKbRMw/0pwRzgz2/oEuWz0mPJaH3FivLKkRCzxYrYiW8TI6+UI7k4cusSKUrPwXqcH6+Gy4nxgobzSC+60xh5eMbH3yrEBCbAp+Gv+Ob47WgolwYaCjtn4e2y9ZxouPSMHtRKKiB8TZDBfhpFX1XmW9C2XAseg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LG/BtI+1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1236AC4CEF0;
-	Mon, 22 Sep 2025 13:19:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758547162;
-	bh=/2BPc+qmrsh2DgallaqxgQi03F/iwjA/IqFzKaKywSw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LG/BtI+1o28ZEPga/55ETInxWu6RoXLXJhRGIZVOknyJhj1fvYNbUGyqjdViU14CO
-	 4NIo1Jz6kugezCY7caieIF2+gm0DpIGu0imUPyECzH5W5gjFvs+rKgKtukthw/N8/Q
-	 bx4CYhN1uy747NgWfTZfngQEIkc2GPyBY9J0mZY0HaOASfnHY5clIBprv22ChzIZj3
-	 hKO4LsUXrEUbB0a/IvFsk22pJgFcLigRkGNYe1tlsXWnGf4ePzKGilQsBvmaFTdN2p
-	 pmxKoTFv5oCMqFO4lxCEB6HHmgrRyqKU0WLl9jxgYm47kGQwuADxiJgjSfXq0IuDjP
-	 fPKTXU7AI/kMQ==
-Date: Mon, 22 Sep 2025 15:19:14 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Steven Price <steven.price@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
-	kernel@collabora.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v3 05/10] mailbox: add MediaTek GPUEB IPI mailbox
-Message-ID: <aNFM0oWk5S38KBRC@finisterre.sirena.org.uk>
-References: <20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com>
- <20250917-mt8196-gpufreq-v3-5-c4ede4b4399e@collabora.com>
- <CABb+yY0_TZC0Dd3Rue=6Am4=Urs8hdkaa6RE=42t58SYUsLV0w@mail.gmail.com>
- <1933660.tdWV9SEqCh@workhorse>
+	s=arc-20240116; t=1758547750; c=relaxed/simple;
+	bh=ZVX1e3ohbjMRT6yvQbtfGjCtUWRTySjeKIAiaDp53hA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IT+3gPYrtrCXBUmJsK7nhmzIC9UVDm/0UJA2q893gcaTCYZEiKe4uyd/diuusFsNenFVAg2pGJwyaspxoe+ZnHJ538TeodHEUmMptz3hh7Ig7M5CxzKaD+pmCYUhXCYrovtZHrnPQUl/36+DbEB4FgC5+IzD2iGi+0MEGCQze2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=E3+R4Fb7; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1758547749; x=1790083749;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ZVX1e3ohbjMRT6yvQbtfGjCtUWRTySjeKIAiaDp53hA=;
+  b=E3+R4Fb7RFk81DV77SXX5TyLS3eq4C69rVwYAWxZJXDIbXm+KNcfcqoj
+   2gxcnw91VeHyqh/godiMTRUgEAIwlsoUiH4DoxOdF75g1AFYbZViK2eHx
+   hzQtK2YY8yHjsf5H2yZqhkcNGsStJ2ZLnjILwOpamBU6yJHrQN3iFcAZW
+   0PdIY8QHjKOtfBNfjNgWDRFjw+QaIBONkpgeS2O1qjBcEKVTWXDFVjTnC
+   1rfVhgrQAFKArG6D6T+JxQgoAHF7NY+5Q6LttLS5rBL041LgVf4wnTZQv
+   oMdtEklD+43R+MoxEMwfFqN1p3CSkOaZsugZUT9HqDVd4oKDiTjSch4D3
+   g==;
+X-CSE-ConnectionGUID: qeIO0Q34ST+dI1Wb5TenNg==
+X-CSE-MsgGUID: wfSfsjMHTbqnLogYXVIlXg==
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; 
+   d="scan'208";a="214200816"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Sep 2025 06:29:07 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Mon, 22 Sep 2025 06:28:42 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Mon, 22 Sep 2025 06:28:40 -0700
+Message-ID: <d06e5323-995e-425e-8ace-c04e9140f5d0@microchip.com>
+Date: Mon, 22 Sep 2025 15:28:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hWOioVe/sP5fgiHB"
-Content-Disposition: inline
-In-Reply-To: <1933660.tdWV9SEqCh@workhorse>
-X-Cookie: Filmed before a live audience.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: microchip: sama7d65: Add GPIO buttons and
+ LEDs
+To: <Ryan.Wanner@microchip.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
+References: <20250917210409.503830-1-Ryan.Wanner@microchip.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Content-Language: en-US, fr
+Organization: microchip
+In-Reply-To: <20250917210409.503830-1-Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 17/09/2025 at 23:04, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+> 
+> Add the USER button as a GPIO input as well as add the LEDs and enable
+> the blue LED as a heartbeat.
+> 
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 
---hWOioVe/sP5fgiHB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+And queued in at91-dt branch.
 
-On Mon, Sep 22, 2025 at 02:59:43PM +0200, Nicolas Frattaroli wrote:
-> On Sunday, 21 September 2025 07:00:59 Central European Summer Time Jassi Brar wrote:
+Regards,
+   Nicolas
 
-> > > +#define MBOX_FULL              BIT(0) /* i.e. we've received data */
-> > > +#define MBOX_CLOGGED           BIT(1) /* i.e. the channel is shutdown */
+> ---
+> Changes v1 -> v2:
+> - Remove the label node in the LEDs.
+> - Use properties color and function to describe the LEDs.
+> - Add phandles for the LEDs.
+> 
+>   .../dts/microchip/at91-sama7d65_curiosity.dts | 51 +++++++++++++++++++
+>   1 file changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> index f091cc40a9f0..927c27260b6c 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+> @@ -11,6 +11,8 @@
+>   #include "sama7d65-pinfunc.h"
+>   #include "sama7d65.dtsi"
+>   #include <dt-bindings/mfd/atmel-flexcom.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>   #include <dt-bindings/pinctrl/at91.h>
+>   
+>   / {
+> @@ -26,6 +28,43 @@ chosen {
+>   		stdout-path = "serial0:115200n8";
+>   	};
+>   
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +
+> +		button {
+> +			label = "PB_USER";
+> +			gpios = <&pioa PIN_PC10 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_PROG1>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
+> +
+> +		led0: led-red {
+> +			color = <LED_COLOR_ID_RED>;
+> +			gpios = <&pioa PIN_PB17 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
+> +		};
+> +
+> +		led1: led-green {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&pioa PIN_PB15 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
+> +		};
+> +
+> +		led2: led-blue {
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			gpios = <&pioa PIN_PA21 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+>   	memory@60000000 {
+>   		device_type = "memory";
+>   		reg = <0x60000000 0x40000000>;
+> @@ -352,6 +391,18 @@ pinctrl_i2c10_default: i2c10-default {
+>   		bias-pull-up;
+>   	};
+>   
+> +	pinctrl_key_gpio_default: key-gpio-default {
+> +		pinmux = <PIN_PC10__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pinctrl_led_gpio_default: led-gpio-default {
+> +		pinmux = <PIN_PB15__GPIO>,
+> +			 <PIN_PB17__GPIO>,
+> +			 <PIN_PA21__GPIO>;
+> +		bias-pull-up;
+> +	};
+> +
+>   	pinctrl_sdmmc1_default: sdmmc1-default {
+>   		cmd-data {
+>   			pinmux = <PIN_PB22__SDMMC1_CMD>,
 
-> > This is confusing. CLOGGED usually means malfunction, but it seems you
-> > want to call it STOPPED or UNINIT?
-
-> I don't agree that "CLOGGED usually means malfunction". To clog something
-> is to impede its flow, which in this case is the correct terminology to
-> refer to what's happened to the channel. "UNINIT" is wrong, it's initialised
-> properly. "STOPPED" is also wrong, it's not stopped, it still sends, it just
-> won't pass it on through.
-
-As a native English speaker I'd say that clogged has heavy overtones of
-broken and malfunction, like Jassi says it'd usually describe a fault
-condition.  Something like "blocked" might be more neutral.
-
---hWOioVe/sP5fgiHB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjRTMsACgkQJNaLcl1U
-h9BSwgf/UbyytmfMXNaOBq0OXuzH3MlTUpvtouJsg45qiXcqEzcGY0k6+RBIUbc6
-zI4fw9IG0Lv8B4Yrt1hanJqBJ/sKvd/eq065FqSbGMiG9Wyvivn0OGdw9IIP3Wxi
-4TpYVqVul1GtYt3Gp5D4HJbNOaeEZeaOsEUqU0EFD1X5NCviWF7atKprxkvd/e9k
-ZPOQdFVmh48Ln2hsCQ621I8Wemmu+gSVB1aSvD1awF36hp+cCvWz7vSus4z3nX5D
-71oUm+zLms7LtKb9Voz3ReEEmIKjbhG7dUF/xHul+Qg8FQqMxwcBPAyjFzl3g92I
-ZQuum9Wn2rVplW7pwOwJ5YvsRh8BdQ==
-=0rmc
------END PGP SIGNATURE-----
-
---hWOioVe/sP5fgiHB--
 
