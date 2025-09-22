@@ -1,187 +1,197 @@
-Return-Path: <devicetree+bounces-219969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4714FB90459
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:50:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81831B904AD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 13:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 296C63A39AE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:50:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4491C7A3A1D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884A72F5306;
-	Mon, 22 Sep 2025 10:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4546F2FC866;
+	Mon, 22 Sep 2025 11:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qn15K+BD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="F46rgG33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6013D2D97A9;
-	Mon, 22 Sep 2025 10:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC7E2FC008;
+	Mon, 22 Sep 2025 11:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758538199; cv=none; b=Pm43gXjwT+iySY9wFflVmu9NTWkEVruCVLvyJINFLUcrbPhh0tZOOeSwEJ0o3nhbnKAnE9cNDQgW1RLwiP+BQq3RRqXGC8C9l0DJMz8b1iU+3K9VlowVINWkB93is1YQZlRYZNtYQKPm+tgi8k/q7GpSpNKciOGNe8tglv6Mlcg=
+	t=1758538805; cv=none; b=d639zfflEgvHIk6dn3SpSthOXW3z1agLvsoC1e7sPOhlsjfzkk6CGl0jEdd+9BHv1QfdR50loaa7lWbPJXqwuLGBRe8PlIighFjg0G4wTLqRbJSs4EhSkgUmQKT3U3mwTvuY+WsBK2DCvhGLyOIXtkKWj3xwyg9UXNINVZOTg5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758538199; c=relaxed/simple;
-	bh=niid4/G+12MRj1IFs6hp4sxeglXjyvGTGDPW0mtxjKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ueijESFLhaByMQbqA4AVztgRV6OrqWmretnLoZbQiIhzQbyhaI+vJJGTkHYcyJjoeggZ4ZQ8v/bB6wrxHKM39Pxbt1ffx5z6WnAxqptKZ6ry94mIpahuIHDUW5vY5OcmHfC+cB1e8H1uAXGQOX2EzFY/b31AN/NA2Rit6W4Y6bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qn15K+BD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CACBFC4CEF0;
-	Mon, 22 Sep 2025 10:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758538198;
-	bh=niid4/G+12MRj1IFs6hp4sxeglXjyvGTGDPW0mtxjKo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qn15K+BDQCMdtm8fPWDiC0Citf1LHeyLNl9kXRi5WJvwj2/1hIuCpVvsRxGMiSXBP
-	 X1RnlBTgKC6NFyFOYs4Ht4cTAKrG289MkmevTZU02K+unBfSI+7zLjm+dY9XGQsONM
-	 7lfD8Fs5lCSaRp7iG/bLU3B9HB7R1UByh08z+VA/wlsghF52gImFrpJpqb4RfsYH6z
-	 ovVNgbPNhwvW+PRUn4J+Jhqq8YIvSn3QU6DmZ6Z3BDmodPCTMWLjh/1wNOI0WJbnIJ
-	 kTbDqYeC8arkwbeOcl8N4TP51f0ZjiM8O7wsFZv7XPtqlYd5qmvoh3IQU0LEZjc/fB
-	 yAne/WZgkp6yw==
-Date: Mon, 22 Sep 2025 12:49:53 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH] of/irq: Add msi-parent check to of_msi_xlate()
-Message-ID: <aNEp0Ty3+a2oxLNm@lpieralisi>
-References: <20250916091858.257868-1-lpieralisi@kernel.org>
- <20250918135555.GA1540012-robh@kernel.org>
+	s=arc-20240116; t=1758538805; c=relaxed/simple;
+	bh=3o+03UvtuKo6XVZQs/hIKg2h5/JAcBwZytDhnqiwhVk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dhXwJyGGlsDLVoAWn8ICAkJKQCQPF7LLhltDCKz4q8bnykI0U2qe7BFVS7Ep5r0I2Cf3GXZTsGIO93Br2SVI0dM6ZGm8yKxfGIoyuPdHgKQO5zlPHSY/xkLecNbjupG1e8RXjH3gEtV1kbkpDK+pouqXCIIIgDn7U93sj4uFHBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=F46rgG33; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58MAxEfY1220947;
+	Mon, 22 Sep 2025 05:59:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758538754;
+	bh=a07Jje9wgJS411V9TAYdRp6D/A+/X9TQdr2317tN+Jw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=F46rgG33jswHneyWPfRr/B1Vx1kkSi1ndlwOdFNTX32Yo1+g/s5Ajpx5MLqsODlr0
+	 xODnXVWbWqk1mH6HqDUaRJIsdtR7jIhu4CjeMGjgK5kjcwRLQUhBGbZ1pyHqTY/lMa
+	 5SnfW3adXlc+VhXuLyozljYOsgJuLtdkllo6Qyls=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58MAxE2B251090
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 22 Sep 2025 05:59:14 -0500
+Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 22
+ Sep 2025 05:59:13 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 22 Sep 2025 05:59:13 -0500
+Received: from [172.24.231.152] (danish-tpc.dhcp.ti.com [172.24.231.152])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58MAx5q52656697;
+	Mon, 22 Sep 2025 05:59:06 -0500
+Message-ID: <4f6af874-ca9c-48d5-a812-9fd42226ac5c@ti.com>
+Date: Mon, 22 Sep 2025 16:29:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250918135555.GA1540012-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 0/7] Add RPMSG Ethernet Driver
+To: Andrew Davis <afd@ti.com>, "David S. Miller" <davem@davemloft.net>,
+        Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        Mengyuan Lou
+	<mengyuanlou@net-swift.com>,
+        Lei Wei <quic_leiwei@quicinc.com>, Xin Guo
+	<guoxin09@huawei.com>,
+        Michael Ellerman <mpe@ellerman.id.au>, Fan Gong
+	<gongfan1@huawei.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Parthiban
+ Veerasooran <Parthiban.Veerasooran@microchip.com>,
+        Lukas Bulwahn
+	<lukas.bulwahn@redhat.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20250911113612.2598643-1-danishanwar@ti.com>
+ <8a20160e-1528-4d0e-9347-0561fc3426b4@ti.com>
+ <7cd06f8f-bd74-429d-bf2c-71858178950a@ti.com>
+ <65a98655-68a1-4bf9-b139-c4172f48dad4@ti.com>
+Content-Language: en-US
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <65a98655-68a1-4bf9-b139-c4172f48dad4@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Sep 18, 2025 at 08:55:55AM -0500, Rob Herring wrote:
-> On Tue, Sep 16, 2025 at 11:18:58AM +0200, Lorenzo Pieralisi wrote:
-> > In some legacy platforms the MSI controller for a PCI host
-> > bridge is identified by an msi-parent property whose phandle
-> > points at an MSI controller node with no #msi-cells property,
-> > that implicitly means #msi-cells == 0.
-> > 
-> > For such platforms, mapping a device ID and retrieving the
-> > MSI controller node becomes simply a matter of checking
-> > whether in the device hierarchy there is an msi-parent property
-> > pointing at an MSI controller node with such characteristics.
-> > 
-> > Add a helper function to of_msi_xlate() to check the msi-parent
-> > property in addition to msi-map and retrieve the MSI controller
-> > node (with a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to
-> > provide support for deviceID mapping and MSI controller node
-> > retrieval for such platforms.
+Hi Andrew
+
+On 17/09/25 10:07 pm, Andrew Davis wrote:
+> On 9/17/25 6:44 AM, MD Danish Anwar wrote:
+>> Hi Andrew,
+>>
+>> On 11/09/25 9:34 pm, Andrew Davis wrote:
+>>> On 9/11/25 6:36 AM, MD Danish Anwar wrote:
+>>>> This patch series introduces the RPMSG Ethernet driver, which
+>>>> provides a
+>>>> virtual Ethernet interface for communication between a host
+>>>> processor and
+>>>> a remote processor using the RPMSG framework. The driver enables
+>>>> Ethernet-like packet transmission and reception over shared memory,
+>>>> facilitating inter-core communication in systems with heterogeneous
+>>>> processors.
+>>>>
+>>>
+>>> This is neat and all but I have to ask: why? What does this provide
+>>> that couldn't be done with normal RPMSG messages? Or from a userspace
+>>> TAP/TUN driver on top of RPMSG?
+>>>
+>>
+>> This is different from RPMSG because here I am not using RPMSG to do the
+>> actual TX / RX. RPMSG is only used to share information (tx / rx
+>> offsets, buffer size, etc) between driver and firmware. The TX / RX
+>> happens in the shared memory. This implementation uses a shared memory
 > 
-> Your line wrapping is a bit short.
+> This is how RPMSG is supposed to be used, it is meant for small messages
+> and signaling, bulk data should be send out-of-band. We have examples
+> specifically showing how this should be done when using RPMSG[0], and our
+> RPMSG backed frameworks do the same (like DSP audio[1] and OpenVX[2]).
 > 
-> I had a look at who is parsing "msi-parent" themselves as that's 
-> typically a recipe for doing it incorrectly ('interrupt-map' anyone). 
-> Can we make iproc_pcie_msi_enable() use this? It's quite ugly reaching 
-> into the GICv3 node...
+>> circular buffer with head/tail pointers for efficient data passing
+>> without copies between cores.
+>>
+>>> This also feels like some odd layering, as RPMSG sits on virtio, and
+>>> we have virtio-net, couldn't we have a firmware just expose that (or
+>>> would the firmware be vhost-net..)?
+>>>
+>>
+>> PMSG sits on virtio, and we do have virtio-net but I am not trying to do
+>> ethernet communication over RPMSG. RPMSG is only used to exchange
+>> information between cores regarding the shared memory where the actual
+>> ethernet communication happens.
+>>
 > 
-> And perhaps irq-gic-its-msi-parent.c could use this? 
+> Again nothing new here, virtio-net does control plane work though a
+> message channel but the data plane is done using fast shared memory
+> vqueues with vhost-net[3]. Using RPMSG would just be an extra unneeded
+> middle layer and cause you to re-implement what is already done with
+> virtio-net/vhost-net.
 > 
-> And looks like pcie-layerscape-gen4 is leaking a node reference...
 
-Hi Rob,
+virtio-net provides a solution for virtual ethernet interface in a
+virtualized environment. Our use-case here is traffic tunneling between
+heterogeneous processors in a non virtualized environment such as TI's
+AM64x that has Cortex A53 and Cortex R5 where Linux runs on A53 and a
+flavour of RTOS on R5(FreeRTOS) and the ethernet controller is managed
+by R5 and needs to pass some low priority data to A53. The data plane is
+over the shared memory while the control plane is over RPMsg end point
+channel.
 
-given where we are in the development cycle and that technically this
-is a GICv5 fix I would send a patch to fix the issue in GICv5 MSI
-parent code in drivers/irqchip (yes, it is more code handling the
-msi-parent property scattered around) and then will resume this
-thread for v6.19 - starting the clean-up.
+We had aligned with Andrew L [1] and the ask was to create a generic
+Linux Ethernet driver that can be used for heterogeneous system. Similar
+to rpmsg_tty.c. It was suggested to create a new rpmsg_eth.c driver that
+can be used for this purpose.
 
-This patch affects more platforms than GICv5 and I am not sure
-it is safe to rush it in.
+Here I have implemented what was suggested in [1]
 
-Thanks,
-Lorenzo
+[1]
+https://lore.kernel.org/all/8f5d2448-bfd7-48a5-be12-fb16cdc4de79@lunn.ch/
 
-> > 
-> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  drivers/of/irq.c | 38 +++++++++++++++++++++++++++++++++++---
-> >  1 file changed, 35 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> > index e7c12abd10ab..d0e2dfd0ee28 100644
-> > --- a/drivers/of/irq.c
-> > +++ b/drivers/of/irq.c
-> > @@ -670,6 +670,35 @@ void __init of_irq_init(const struct of_device_id *matches)
-> >  	}
-> >  }
-> >  
-> > +static int of_check_msi_parent(struct device_node *dev_node, struct device_node **msi_node)
-> > +{
-> > +	struct of_phandle_args msi_spec;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * An msi-parent phandle with a missing or == 0 #msi-cells
-> > +	 * property identifies a 1:1 ID translation mapping.
-> > +	 *
-> > +	 * Set the msi controller node if the firmware matches this
-> > +	 * condition.
-> > +	 */
-> > +	ret = of_parse_phandle_with_optional_args(dev_node, "msi-parent", "#msi-cells",
-> > +						  0, &msi_spec);
-> > +	if (!ret) {
-> > +		if ((*msi_node && *msi_node != msi_spec.np) || msi_spec.args_count != 0)
-> > +			ret = -EINVAL;
-> > +
-> > +		if (!ret) {
-> > +			/* Return with a node reference held */
-> > +			*msi_node = msi_spec.np;
-> > +			return 0;
-> > +		}
-> > +		of_node_put(msi_spec.np);
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  /**
-> >   * of_msi_xlate - map a MSI ID and find relevant MSI controller node
-> >   * @dev: device for which the mapping is to be done.
-> > @@ -677,7 +706,7 @@ void __init of_irq_init(const struct of_device_id *matches)
-> >   * @id_in: Device ID.
-> >   *
-> >   * Walk up the device hierarchy looking for devices with a "msi-map"
-> > - * property. If found, apply the mapping to @id_in.
-> > + * or "msi-parent" property. If found, apply the mapping to @id_in.
-> >   * If @msi_np points to a non-NULL device node pointer, only entries targeting
-> >   * that node will be matched; if it points to a NULL value, it will receive the
-> >   * device node of the first matching target phandle, with a reference held.
-> > @@ -691,12 +720,15 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
-> >  
-> >  	/*
-> >  	 * Walk up the device parent links looking for one with a
-> > -	 * "msi-map" property.
-> > +	 * "msi-map" or an "msi-parent" property.
-> >  	 */
-> > -	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent)
-> > +	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
-> >  		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
-> >  				"msi-map-mask", msi_np, &id_out))
-> >  			break;
-> > +		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
-> > +			break;
-> > +	}
-> >  	return id_out;
-> >  }
-> >  
-> > -- 
-> > 2.48.0
-> > 
+> Andrew
+> 
+> [0] https://git.ti.com/cgit/rpmsg/rpmsg_char_zerocopy
+> [1] https://github.com/TexasInstruments/rpmsg-dma
+> [2] https://github.com/TexasInstruments/tiovx
+> [3] https://www.redhat.com/en/blog/deep-dive-virtio-networking-and-
+> vhost-net
+> 
+
+
+-- 
+Thanks and Regards,
+Danish
+
 
