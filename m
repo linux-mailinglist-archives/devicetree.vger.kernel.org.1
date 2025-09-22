@@ -1,130 +1,163 @@
-Return-Path: <devicetree+bounces-220194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB6CB92A2C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:45:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86CAFB929CA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 288A51889016
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:45:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C054D4447B1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9451C31A579;
-	Mon, 22 Sep 2025 18:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232AD31A54A;
+	Mon, 22 Sep 2025 18:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="eo1Piz8Z";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="BWB+I0rN"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Rq8DOSPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C556319865;
-	Mon, 22 Sep 2025 18:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC909315D46;
+	Mon, 22 Sep 2025 18:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758566696; cv=none; b=QFZA6P8KittQclGA+aufSLJOFUE3lqRaPu/tQB9+InfCubVs7bzAVoyfamvltZe20f+uiMGlWcOPVg3riliPBoNZaMpmzA51VNeGWjbLBwh37MI/zrQBq5Y6Ad1CYePWwD9IhuLyvwg9MsFlY03wJSjOwycn0nN6h0sVKNQNntA=
+	t=1758566165; cv=none; b=ci887V1wrtPxt1gVzGqxHkY5v9ym33DYq1cJTcGgneZskXs8jr3oa3B2AOz6rxkeg6cRpbrjNO7VN8G3ZOQJNHZy15YynkdLgyB//0SyBBLNTIpMqZJRhGuzEHAudBrbnxHAYOeMWzii1oftP37LRj/Go23OAt/fjwJ2GLSL1CE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758566696; c=relaxed/simple;
-	bh=5uqT9t7LL1q3vO4IziGFJ6VO0hi/i5q9U42aGdBhQg0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=qYSuB2oaxMJPod8qNr+HHVPk8AL/l2Q1vJloBLlNesI5Dbo/+uvaLVhGKhdVYjvlqcL6ubHT8/yQgXPCMkyZvcQWUnaOi9s5pWV/j3H0X/jpkGqvAK/cRiJ7RlkpmbYJQionaeR2aRrjwAA4kqf+LQKDGYfGa3PSR3AZ3u52ELE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=eo1Piz8Z; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=BWB+I0rN; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758566001; bh=LZHdHS0/egfSIVwJPqC+6tM
-	bMT7So0l95Joa495MF4s=; b=eo1Piz8ZM5BZDpfSbRx8Zj6a23YzXpQZHuOF89mE17zE0rEwbH
-	jOQcUzPfEin5QboCMH3DX/K8YrQn3mPk2rN8kCLgbMVl79wtMubqiUof66FVYKgzSBPW8jxnlT9
-	4hGC3iy5scoCGQkTmBS2aYx/eh+fruEOPIi7MtY494b95fIhBfDLd9seY5PN7a/40A43e9cBfZ7
-	OlBmu3a/q6iS5GR6+tNnaNPWEo3w++Eh9/dY7dL5e3tJOMn5LvCeh8r6rWJ9vswBHuUDLATkPKc
-	B61VcYCg0g8CnbT97kR9q9rp7Z7Z2HSKBsGF6tpkr3TM/gQyXzD7mg3MdIVnlpXXY3Q==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1758566001; bh=LZHdHS0/egfSIVwJPqC+6tM
-	bMT7So0l95Joa495MF4s=; b=BWB+I0rNnuo1GzvOkQ2q25+N5gfmlW3Hz0TJRrHHdTwn4h57cl
-	9qYXf64wW+VGtMXrRgZmbEU494DrI1ymkEBg==;
+	s=arc-20240116; t=1758566165; c=relaxed/simple;
+	bh=2cJWyVyj/GX3tOPewGqEX910nRTlTV+vvZm81KH82aE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z5ttdwfFnjNWVvu1reDGUnvuvrv7NYcpEAj7QhCCO+ZxtfISs6lWT+8AYBqkG7TbIW8MiLU7SZqP1MD9F+PjhcLTL2cl0HyWwyEtNUk3WPZrQVwEhAS5JhNW0YE1DIZcuZewTsu4bygVNoOO4vnXVf3wK1Jd28QxZkDzHw8bLnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Rq8DOSPV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24C0C4CEF5;
+	Mon, 22 Sep 2025 18:36:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1758566163;
+	bh=2cJWyVyj/GX3tOPewGqEX910nRTlTV+vvZm81KH82aE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rq8DOSPViLcz6EEOWINWJHoOxVzI7qiZeO5lm1nz5oFG3NLFO5KgCjQAs4JV8AEpl
+	 MG93z+Q4kXzQvTOb6GEmAupmbWLcnYujpSAwu3RyAzzUsBiXiKaYtvBazT1qYM2K8o
+	 23BL4TZk03pTUUSqjILZbM15UVN2peTMwPLU4NTI=
+Date: Mon, 22 Sep 2025 20:36:01 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Nam Tran <trannamatk@gmail.com>
+Cc: lee@kernel.org, pavel@kernel.org, rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v14 0/4] leds: add new LED driver for TI LP5812
+Message-ID: <2025092259-stranger-affecting-1c75@gregkh>
+References: <2025091113-mournful-smirk-8e03@gregkh>
+ <20250922181341.10761-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 22 Sep 2025 20:33:21 +0200
-From: barnabas.czeman@mainlining.org
-To: Pavel Machek <pavel@ucw.cz>
-Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, Linus Walleij
- <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, Joerg Roedel
- <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
- <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, Sean Paul
- <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Marijn Suijten
- <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dmitry Baryshkov
- <lumag@kernel.org>, Adam Skladowski <a_skl39@protonmail.com>, Sireesh Kodali
- <sireeshkodali@protonmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang
- <jessica.zhang@oss.qualcomm.com>, Srinivas Kandagatla <srini@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, iommu@lists.linux.dev,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux@mainlining.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v7 6/6] arm64: dts: qcom: Add Xiaomi Redmi 3S
-In-Reply-To: <aNGLPdmOyh/pfroq@duo.ucw.cz>
-References: <20250831-msm8937-v7-0-232a9fb19ab7@mainlining.org>
- <20250831-msm8937-v7-6-232a9fb19ab7@mainlining.org>
- <aNGLPdmOyh/pfroq@duo.ucw.cz>
-Message-ID: <97ee369f6ffbe42c72c57ebd72887b23@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250922181341.10761-1-trannamatk@gmail.com>
 
-On 2025-09-22 19:45, Pavel Machek wrote:
-> Hi!
+On Tue, Sep 23, 2025 at 01:13:41AM +0700, Nam Tran wrote:
+> On Thu, 11 Sep 2025, Greg KH wrote:
 > 
->> +	led-controller@45 {
->> +		compatible = "awinic,aw2013";
->> +		reg = <0x45>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		vcc-supply = <&pm8937_l10>;
->> +		vio-supply = <&pm8937_l5>;
->> +
->> +		led@0 {
->> +			reg = <0>;
->> +			function = LED_FUNCTION_STATUS;
->> +			led-max-microamp = <5000>;
->> +			color = <LED_COLOR_ID_RED>;
->> +		};
->> +
->> +		led@1 {
->> +			reg = <1>;
->> +			function = LED_FUNCTION_STATUS;
->> +			led-max-microamp = <5000>;
->> +			color = <LED_COLOR_ID_GREEN>;
->> +		};
->> +
->> +		led@2 {
->> +			reg = <2>;
->> +			function = LED_FUNCTION_STATUS;
->> +			led-max-microamp = <5000>;
->> +			color = <LED_COLOR_ID_BLUE>;
->> +		};
->> +	};
->> +};
+> > On Sun, Sep 07, 2025 at 11:09:40PM +0700, Nam Tran wrote:
+> > > This patch series adds initial support for the TI LP5812,
+> > > a 4x3 matrix RGB LED driver with autonomous engine control.
+> > > This version provides a minimal, clean implementation focused
+> > > on core functionality only. The goal is to upstream a solid
+> > > foundation, with the expectation that additional features can
+> > > be added incrementally in future patches.
+> > > 
+> > > The driver integrates with the LED multicolor framework and
+> > > supports a set of basic sysfs interfaces for LED control and
+> > > chip management.
+> > > 
+> > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > 
+> > The sysfs api is really odd here.  WHy not do the same thing as this
+> > other controller recently submitted does:
+> > 	https://lore.kernel.org/r/20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de
 > 
-> That's single, 3-color LED, right? Please see LED multicolor support.
-As far as i know aw2013 driver does not have multicolor support.
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/leds/leds-aw2013.yaml
+> Thank you for the feedback!
+> I agree that consistency is important, and I've reviewed the patch you referenced.
 > 
-> Best regards,
-> 								Pavel
+> I also checked the LP5860 datasheet and noticed that its driver exposes sysfs entries
+> for configuring registers like `R_current_set`, `G_current_set`, and `B_current_set`.
+> Similarly, the LP5812 requires register-level configuration for operation.
+> 
+> In my driver, I've implemented the following sysfs attributes:
+> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/dev_config' - Configures drive mode and
+> scan order (Dev_Config_1 and Dev_Config_2 registers).
+> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/sw_reset' - Triggers a software reset of
+> the device (Reset register).
+> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/fault_clear' - Clears fault status
+> (Fault_Clear register).
+> - '/sys/class/leds/led_<id>/activate' - Activate or deactivate the specified LED channel
+> in runtime (led_en_1, led_en_2 registers).
+> - '/sys/class/leds/led_<id>/led_current' - To change DC/PWM current level of each led
+> (Manual_DC_xx and Manual_PWM_xx registers).
+> - '/sys/class/leds/led_<id>/max_current' - To show max current setting (Dev_Config_0 register).
+> - '/sys/class/leds/led_<id>/lod_lsd' - To read lod, lsd status of each LED
+> (LOD_Status_0, LOD_Status_1, LSD_Status_0, LSD_Status_1 registers).
+> 
+> These attributes map directly to LP5812 registers. I’ve kept the interface minimal and
+> focused only on essential functionality needed to operate the device.
+> 
+> If any of these attributes seem unconventional or redundant, I’d appreciate clarification
+> so I can revise accordingly.
+> 
+> > but better yet, why does this need to be a kernel driver at all?  Why
+> > can't you just control this directly from userspace with a program
+> > there?
+> 
+> LP5812 is controlled via I2C, and its register map is non-trivial. Moving control to userspace
+> would require users to manually handle I2C transactions and understand the register layout,
+> which is error-prone and not user-friendly.
+
+So you write it once in a library, or in a userspace program, and it is
+done.  Don't expose these low-level things in a custom api that could be
+done in userspace instead.
+
+> Moreover, the driver integrates with the LED multicolor framework, allowing standardized control
+> via existing userspace tools. This abstraction is difficult to achieve reliably from userspace alone.
+
+But this is a custom api for the leds, not like any other one out there.
+So how would it integrate with anything else?
+
+> > For USB, we generally do not allow these types of crazy apis to be added
+> > to the kernel when controlling the device can be done from userspace.  I
+> > think the same thing can happen here too, right?
+> 
+> USB devices benefit from standardized descriptors and interfaces, which reduce the need for custom
+> sysfs APIs. In contrast, LP5812 has no such standard interface, and some customization is necessary.
+
+Many USB devices do not benifit from that at all, you directly control
+them from userspace using vendor-specific apis.  Just like this device,
+nothing different just because it is an i2c device.
+
+> I’m open to improving the sysfs interface or moving parts to another method if that’s more appropriate.
+> Please let me know which specific changes you’d recommend.
+
+sysfs really doesn't seem to be the correct api here, you are making a
+custom one just for this one device that is not shared by any other one,
+so userspace has to write custom code to control it.  So why not just
+write one program, in userspace, to handle it all at once, instead of 2?
+
+> For completeness, I considered these methods:
+> - sysfs: Recommended and standard for LED drivers.
+> - i2c-tools: Not recommended, intended for development/debug only.
+> - ioctl: Not recommended for new LED drivers.
+> - debugfs: For debugging only.
+> - Direct I2C register access: Requires users to know the register map and protocol.
+
+A library will handle the i2c direct register access.  Again, do not
+make custom sysfs apis if at all possible.
+
+thanks,
+
+greg k-h
 
