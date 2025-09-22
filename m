@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-220199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17123B92C50
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:26:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20917B92C56
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE0B1903D76
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:27:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 245181903E12
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCA62E5B11;
-	Mon, 22 Sep 2025 19:26:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CBD31A064;
+	Mon, 22 Sep 2025 19:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHTDm6ki"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClYCiVN2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3173D26E711;
-	Mon, 22 Sep 2025 19:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D049E1DE3AC;
+	Mon, 22 Sep 2025 19:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758569202; cv=none; b=cwYgVCBOxyGBoaYuWgmfrgYhiU7MQLDMUL1IgKPza/8yudfE029EK0/aTbrrC83nKB7oe5wtTl7OBKanb4RyqO/G5hUwRY3k/aGM7w2cCbd+qiIGZu45vU4pGhzj80/HVmrqd/1mmcGb7Rx0jt3+vR4PhlbBcMgL6GQFNpXrL9c=
+	t=1758569231; cv=none; b=K8IaMrrz6lA683zf39iP1eBGPrDkQ3dq8OfwFYh3lWwAfCCAM1y65gyYV29gstFSUHJBdik50H0cP7D+KfLADHfBlUMJcYpcVetsoTbqU8D1w2PKFouAZZ+wTc4hu3ejozejmwXxwv4jgZbs7JnEPun9M4eQK0lfG6a5Pjeb3Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758569202; c=relaxed/simple;
-	bh=upj4qQnegJPBP6IU+iQ3qZuAwuV5GgFt4jHCz7IbfrY=;
+	s=arc-20240116; t=1758569231; c=relaxed/simple;
+	bh=ywrd1KKck6bPh6zOwROXdRwybYcsMLOnA7qGs+xm55A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ANcGYTqRx2c07YBCexx5ooohUsBJu0j/TG5WJPma7E9ICMh2Set9Gq54qu9U49yOZ2KN+I4qk9el/3DgnLm2WHSz1oF4enJRxUxVJ1ogew8Xn/xeX/Rf39jJhCmFEqF6ue4uR3M0g8MyoW5/0zOSdQq6A3xQswnkTv6DivfAO3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHTDm6ki; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F50C4CEF0;
-	Mon, 22 Sep 2025 19:26:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cjUXCyfa5WFxrXQuEe/8UUQh4gg2e9ueQ5tOedv8o9E/Bg2ZzpvxxNPV62/7V3ubmq4BRXkoji8NQ385kXu4d6ZdTo6B39Uc90nuCNMVjF2rr6UW5iX2H/PKFgzRzrDz/D09QdVKNX6hd36Ahkf9LASGlYD0uFhfmGbf8yB/reA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClYCiVN2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D487C4CEF0;
+	Mon, 22 Sep 2025 19:27:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758569201;
-	bh=upj4qQnegJPBP6IU+iQ3qZuAwuV5GgFt4jHCz7IbfrY=;
+	s=k20201202; t=1758569230;
+	bh=ywrd1KKck6bPh6zOwROXdRwybYcsMLOnA7qGs+xm55A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iHTDm6ki+Znj5QJhMnKNcuMgPKzKrGrNCytmqYIdxYiQMMF/WDyqrgEz38Ij+uia3
-	 fghV5oWPj07UsrbXfDwkQggml2gkT8+4qmhtQvhU3B7yogjJNkBfJwMuMzYcfp3xj0
-	 X6JTN01vgnXKiFCQONR1XE621SPMITr2OSUJSyXZNxZ9ug7aeR0SpiIlI0quraKqbC
-	 9ovf6GwRsYvKLFi4bY6aX7a/6PvuJv03WVeaNXHwLNviPKVoTtnNBhOrozUXE10XeC
-	 lJ4WVMWyo9A99IiGX30y1cHH0XG5NQ6/36qz3fZCM/7iMGKI10Dn0o+GxtcW/QPjev
-	 sxjhe0G4Q5/zg==
-Date: Mon, 22 Sep 2025 14:26:40 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe
- LEDs
-Message-ID: <20250922192640.GA841738-robh@kernel.org>
-References: <20250919100740.28429-1-wsa+renesas@sang-engineering.com>
+	b=ClYCiVN2ew1t6L0jzuvN8xoBKuEaxl5bkmn5nx+5Y+E5dSaKpq313iVoBQGCSw+Pq
+	 HzyxI5Homtln1D4sifWdsTORikIulp4EadNh8Qdm0EDjobqBNeBEnGfYPozLc6eRwo
+	 /WIR0CDbLzagdlfoIl68pTkLUET+5+fg1cTNKMqxoC/hUJNDJilq1sD4XWWDwjTzsr
+	 q0zQUgB9y8exSeVkEEMkFgJvCWKOvdShnUodAO6jFPLP5pCNQKIndwtz8cJGCl1Mxc
+	 GPXY+WNwa3f4MlFmjk+psgPcnyeDc/fP7yf/KGm0tX7ahkLfuMnNHvaklRBesDTpaa
+	 u6uWyfbwORVNA==
+Date: Mon, 22 Sep 2025 14:27:04 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jens Reidel <adrian@mainlining.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, linux@mainlining.org,
+	phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	linux-clk@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, David Wronek <david@mainlining.org>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: sm7150-dispcc: Add MDSS_CORE
+ reset
+Message-ID: <175856922409.903995.288649430908180602.robh@kernel.org>
+References: <20250919-sm7150-dispcc-fixes-v1-0-308ad47c5fce@mainlining.org>
+ <20250919-sm7150-dispcc-fixes-v1-1-308ad47c5fce@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,81 +66,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919100740.28429-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250919-sm7150-dispcc-fixes-v1-1-308ad47c5fce@mainlining.org>
 
-On Fri, Sep 19, 2025 at 12:07:20PM +0200, Wolfram Sang wrote:
-> To be able to use the LEDs, a configuration switch has to be set to a
-> non-default value. So, infrastructure to support these switches (which
-> modify signal routing via the CPLD on the demo board (DB)) is added as
-> well.
+
+On Fri, 19 Sep 2025 14:34:30 +0200, Jens Reidel wrote:
+> Add the index for a reset inside the dispcc on SM7150 SoC.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Jens Reidel <adrian@mainlining.org>
 > ---
+>  include/dt-bindings/clock/qcom,sm7150-dispcc.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
-> controllers" which is still in-flight. I send this out as RFC already,
-> so we can discuss the introduction of the switch dependant settings. I
-> copied this approach form RZ/G3S.
->  
-> 
->  .../renesas/r9a06g032-rzn1d400-db-switches.h  | 22 ++++++++++++++
->  .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 30 +++++++++++++++++++
->  .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 19 ++++++++++++
->  3 files changed, 71 insertions(+)
->  create mode 100644 arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
-> 
-> diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
-> new file mode 100644
-> index 000000000000..4560d16e7c60
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * On-board switches for the Renesas RZ/N1D demo board (DB) and extension
-> + * board (EB)
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +#ifndef __N1D_DB_EB_SWITCHES_H__
-> +#define __N1D_DB_EB_SWITCHES_H__
-> +
-> +#define SW_OFF         0
-> +#define SW_ON          1
-> +
-> +/*
-> + * SW_2-2:
-> + *     SW_OFF - enable PMOD1-3+LEDs on the extension board
-> + *     SW_ON  - enable CAT/S3 (default)
-> + */
-> +#define SW_2_2 SW_ON
-> +
-> +#endif
-> diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> index 3258b2e27434..849b5ad9c79d 100644
-> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> @@ -15,6 +15,7 @@
->  #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
->  
->  #include "r9a06g032.dtsi"
-> +#include "r9a06g032-rzn1d400-db-switches.h"
->  
->  / {
->  	model = "RZN1D-DB Board";
-> @@ -185,6 +186,14 @@ fixed-link {
->  	};
->  };
->  
-> +#if SW2_2 == SW_OFF
 
-The "rule" for DT headers is #defines for numbers only.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-If the switches are s/w readable, then I'd say firmware should read them 
-and enable/disable the LEDs as appropriate. If not, then maybe the DT 
-should have a property reflecting the switch state and firmware uses 
-that to enable/disable.
-
-Rob
 
