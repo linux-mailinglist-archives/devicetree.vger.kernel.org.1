@@ -1,250 +1,187 @@
-Return-Path: <devicetree+bounces-219968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6E9B90405
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:48:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4714FB90459
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 12:50:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0124C1885997
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:46:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 296C63A39AE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DE7C302CB4;
-	Mon, 22 Sep 2025 10:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884A72F5306;
+	Mon, 22 Sep 2025 10:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gH2nDDxr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qn15K+BD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A682472B1;
-	Mon, 22 Sep 2025 10:42:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6013D2D97A9;
+	Mon, 22 Sep 2025 10:49:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758537757; cv=none; b=kJJwrN7AoLn5vMsKD9YpE/Y2hQMPkY1BWqIUs2fTK9rwpTprbM/0Sg0GIj9b1ZJ6XsFHvglSVKTXS+2fOZejfmqA3waOov3TLTe8UE4uzK2qnUTu0X7lmGEGy0peOGvwTk5cvBmsyZOJZRsID66qiN2zuTCTPelKUdXr3ZZ4/68=
+	t=1758538199; cv=none; b=Pm43gXjwT+iySY9wFflVmu9NTWkEVruCVLvyJINFLUcrbPhh0tZOOeSwEJ0o3nhbnKAnE9cNDQgW1RLwiP+BQq3RRqXGC8C9l0DJMz8b1iU+3K9VlowVINWkB93is1YQZlRYZNtYQKPm+tgi8k/q7GpSpNKciOGNe8tglv6Mlcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758537757; c=relaxed/simple;
-	bh=Ih1cqIyFne9UJCmMiU/r1H207xbYTp3gU6PQi6WJ/js=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hdIQqmXhyF6Hxb7QWVbLgD5sJLGu2ETSRyFeAgWEoYeWhsLuPKfJJ1LEV+8p1lmtprlaVHOj6SSiQE608s1kN6uy0WxpS8TJtCcw+9a17CCDlyuoyvNp77/Ab6KayAeFpWx2sTSba9blRTgJtWD4RkbdxGASKg6/vPwSjf8J2QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gH2nDDxr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1758537753;
-	bh=Ih1cqIyFne9UJCmMiU/r1H207xbYTp3gU6PQi6WJ/js=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gH2nDDxrMAvWyOHVpMLA6hKcjMOujozkD4zDZWlMdKphN0qhDkEz4blZqpQX/mEq9
-	 +O0GZLWMnm9OqJqAzao1t3U0a9VmK2bQFx6ULM7xpgR37XcxtyeSmUtgN8BBB7jcnD
-	 foZ4n7AXc/FW4oVoTyJ5RJUqK7nU5e0vsF3cfu3R+6gU1hgH0jUzZ3kZrmjPWVsNoK
-	 KQ/rms4AJz+3Y5W2wAgNRUQDI9zFeXANCft9o7CrY5CXxjY/5PGktYG678qKG5UadN
-	 O6GEnl6yc/J51h02W6ePQyZX++Azsn8rpwIYMDgI0xGgS+TECp8yZdrn9cL0BJzFP6
-	 wfFxIk4t1iuDg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D0D0217E0125;
-	Mon, 22 Sep 2025 12:42:32 +0200 (CEST)
-Message-ID: <e4a6feaf-a9cd-4092-a083-c356a7d954b2@collabora.com>
-Date: Mon, 22 Sep 2025 12:42:32 +0200
+	s=arc-20240116; t=1758538199; c=relaxed/simple;
+	bh=niid4/G+12MRj1IFs6hp4sxeglXjyvGTGDPW0mtxjKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ueijESFLhaByMQbqA4AVztgRV6OrqWmretnLoZbQiIhzQbyhaI+vJJGTkHYcyJjoeggZ4ZQ8v/bB6wrxHKM39Pxbt1ffx5z6WnAxqptKZ6ry94mIpahuIHDUW5vY5OcmHfC+cB1e8H1uAXGQOX2EzFY/b31AN/NA2Rit6W4Y6bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qn15K+BD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CACBFC4CEF0;
+	Mon, 22 Sep 2025 10:49:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758538198;
+	bh=niid4/G+12MRj1IFs6hp4sxeglXjyvGTGDPW0mtxjKo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qn15K+BDQCMdtm8fPWDiC0Citf1LHeyLNl9kXRi5WJvwj2/1hIuCpVvsRxGMiSXBP
+	 X1RnlBTgKC6NFyFOYs4Ht4cTAKrG289MkmevTZU02K+unBfSI+7zLjm+dY9XGQsONM
+	 7lfD8Fs5lCSaRp7iG/bLU3B9HB7R1UByh08z+VA/wlsghF52gImFrpJpqb4RfsYH6z
+	 ovVNgbPNhwvW+PRUn4J+Jhqq8YIvSn3QU6DmZ6Z3BDmodPCTMWLjh/1wNOI0WJbnIJ
+	 kTbDqYeC8arkwbeOcl8N4TP51f0ZjiM8O7wsFZv7XPtqlYd5qmvoh3IQU0LEZjc/fB
+	 yAne/WZgkp6yw==
+Date: Mon, 22 Sep 2025 12:49:53 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH] of/irq: Add msi-parent check to of_msi_xlate()
+Message-ID: <aNEp0Ty3+a2oxLNm@lpieralisi>
+References: <20250916091858.257868-1-lpieralisi@kernel.org>
+ <20250918135555.GA1540012-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dmaengine: mediatek: mtk-uart-apdma: support more
- than 33 bits for DMA bitmask
-To: wctrl@proton.me, Sean Wang <sean.wang@mediatek.com>,
- Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Long Cheng <long.cheng@mediatek.com>
-Cc: dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250921-uart-apdma-v1-0-107543c7102c@proton.me>
- <20250921-uart-apdma-v1-2-107543c7102c@proton.me>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250921-uart-apdma-v1-2-107543c7102c@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250918135555.GA1540012-robh@kernel.org>
 
-Il 21/09/25 13:03, Max Shevchenko via B4 Relay ha scritto:
-> From: Max Shevchenko <wctrl@proton.me>
+On Thu, Sep 18, 2025 at 08:55:55AM -0500, Rob Herring wrote:
+> On Tue, Sep 16, 2025 at 11:18:58AM +0200, Lorenzo Pieralisi wrote:
+> > In some legacy platforms the MSI controller for a PCI host
+> > bridge is identified by an msi-parent property whose phandle
+> > points at an MSI controller node with no #msi-cells property,
+> > that implicitly means #msi-cells == 0.
+> > 
+> > For such platforms, mapping a device ID and retrieving the
+> > MSI controller node becomes simply a matter of checking
+> > whether in the device hierarchy there is an msi-parent property
+> > pointing at an MSI controller node with such characteristics.
+> > 
+> > Add a helper function to of_msi_xlate() to check the msi-parent
+> > property in addition to msi-map and retrieve the MSI controller
+> > node (with a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to
+> > provide support for deviceID mapping and MSI controller node
+> > retrieval for such platforms.
 > 
-> Drop mediatek,dma-33bits property and introduce a platform data with
-> field representing DMA bitmask.
+> Your line wrapping is a bit short.
 > 
-> The reference SoCs were taken from the downstream kernel (6.6) for
-> the MT6991 SoC.
+> I had a look at who is parsing "msi-parent" themselves as that's 
+> typically a recipe for doing it incorrectly ('interrupt-map' anyone). 
+> Can we make iproc_pcie_msi_enable() use this? It's quite ugly reaching 
+> into the GICv3 node...
 > 
-
-That's a good idea - but it doesn't work like that.
-
-The VFF_4G_SUPPORT register really is called {RX,TX}_VFF_ADDR2 - and on all of
-the newer SoCs that support more than 33 bits, this register holds the upper
-X bits of the TX/RX addr, where X is (dma_bits - 32) meaning that, for example,
-for MT6985 X=(36-32) -> X=4.
-
-The downstream driver does have a reference implementation for this - and there
-is no simpler way around it: you either implement it all, or you don't.
-
-Simply put: with your code, you're not supporting more than 33 bits, because even
-though you're setting the dma mask, you're never correctly using the hardware (as
-in, you're never programming the additional registers to make use of that).
-
-
-> Signed-off-by: Max Shevchenko <wctrl@proton.me>
-> ---
->   drivers/dma/mediatek/mtk-uart-apdma.c | 47 +++++++++++++++++++++++++----------
->   1 file changed, 34 insertions(+), 13 deletions(-)
+> And perhaps irq-gic-its-msi-parent.c could use this? 
 > 
-> diff --git a/drivers/dma/mediatek/mtk-uart-apdma.c b/drivers/dma/mediatek/mtk-uart-apdma.c
-> index 08e15177427b94246951d38a2a1d76875c1e452e..68dd3a4ee0d88fd508870a5de24ae67505023495 100644
-> --- a/drivers/dma/mediatek/mtk-uart-apdma.c
-> +++ b/drivers/dma/mediatek/mtk-uart-apdma.c
-> @@ -42,6 +42,7 @@
->   #define VFF_EN_CLR_B		0
->   #define VFF_INT_EN_CLR_B	0
->   #define VFF_4G_SUPPORT_CLR_B	0
-> +#define VFF_ORI_ADDR_BITS_NUM	32
->   
->   /*
->    * interrupt trigger level for tx
-> @@ -74,10 +75,14 @@
->   #define VFF_DEBUG_STATUS	0x50
->   #define VFF_4G_SUPPORT		0x54
->   
-> +struct mtk_uart_apdma_data {
-> +	unsigned int dma_bits;
-> +};
-> +
->   struct mtk_uart_apdmadev {
->   	struct dma_device ddev;
->   	struct clk *clk;
-> -	bool support_33bits;
-> +	unsigned int support_bits;
+> And looks like pcie-layerscape-gen4 is leaking a node reference...
 
-You don't really need to carry support_bits... there's no real usage of that
-information across the code, if not at probe time.
+Hi Rob,
 
-bool support_extended_addr; /* rename to your liking */
+given where we are in the development cycle and that technically this
+is a GICv5 fix I would send a patch to fix the issue in GICv5 MSI
+parent code in drivers/irqchip (yes, it is more code handling the
+msi-parent property scattered around) and then will resume this
+thread for v6.19 - starting the clean-up.
 
->   	unsigned int dma_requests;
->   };
->   
-> @@ -148,7 +153,7 @@ static void mtk_uart_apdma_start_tx(struct mtk_chan *c)
->   		mtk_uart_apdma_write(c, VFF_WPT, 0);
->   		mtk_uart_apdma_write(c, VFF_INT_FLAG, VFF_TX_INT_CLR_B);
->   
-> -		if (mtkd->support_33bits)
-> +		if (mtkd->support_bits > VFF_ORI_ADDR_BITS_NUM)
+This patch affects more platforms than GICv5 and I am not sure
+it is safe to rush it in.
 
-if (mtkd->support_extended_addr)
-	mtk_uart_apdma_write(c, VFF_4G_SUPPORT, upper_32_bits(d->addr);
+Thanks,
+Lorenzo
 
-... do the same for RX and you should be 99.9% done :-)
-
-
-
->   			mtk_uart_apdma_write(c, VFF_4G_SUPPORT, VFF_4G_EN_B);
->   	}
->   
-> @@ -191,7 +196,7 @@ static void mtk_uart_apdma_start_rx(struct mtk_chan *c)
->   		mtk_uart_apdma_write(c, VFF_RPT, 0);
->   		mtk_uart_apdma_write(c, VFF_INT_FLAG, VFF_RX_INT_CLR_B);
->   
-> -		if (mtkd->support_33bits)
-> +		if (mtkd->support_bits > VFF_ORI_ADDR_BITS_NUM)
->   			mtk_uart_apdma_write(c, VFF_4G_SUPPORT, VFF_4G_EN_B);
->   	}
->   
-> @@ -297,7 +302,7 @@ static int mtk_uart_apdma_alloc_chan_resources(struct dma_chan *chan)
->   		goto err_pm;
->   	}
->   
-> -	if (mtkd->support_33bits)
-> +	if (mtkd->support_bits > VFF_ORI_ADDR_BITS_NUM)
->   		mtk_uart_apdma_write(c, VFF_4G_SUPPORT, VFF_4G_SUPPORT_CLR_B);
->   
->   err_pm:
-> @@ -467,8 +472,27 @@ static void mtk_uart_apdma_free(struct mtk_uart_apdmadev *mtkd)
->   	}
->   }
->   
-> +static const struct mtk_uart_apdma_data mt6577_data = {
-> +	.dma_bits = 32
-> +};
-> +
-> +static const struct mtk_uart_apdma_data mt6795_data = {
-> +	.dma_bits = 33
-> +};
-> +
-> +static const struct mtk_uart_apdma_data mt6779_data = {
-> +	.dma_bits = 34
-> +};
-> +
-> +static const struct mtk_uart_apdma_data mt6985_data = {
-> +	.dma_bits = 35
-> +};
-> +
->   static const struct of_device_id mtk_uart_apdma_match[] = {
-> -	{ .compatible = "mediatek,mt6577-uart-dma", },
-> +	{ .compatible = "mediatek,mt6577-uart-dma", .data = &mt6577_data },
-
-What about doing, instead...
-
-{ .compatible = "mediatek,mt6577-uart-dma", .data = (void *)32 },
-
-> +	{ .compatible = "mediatek,mt6795-uart-dma", .data = &mt6795_data },
-> +	{ .compatible = "mediatek,mt6779-uart-dma", .data = &mt6779_data },
-> +	{ .compatible = "mediatek,mt6985-uart-dma", .data = &mt6985_data },
->   	{ /* sentinel */ },
->   };
->   MODULE_DEVICE_TABLE(of, mtk_uart_apdma_match);
-> @@ -477,7 +501,8 @@ static int mtk_uart_apdma_probe(struct platform_device *pdev)
->   {
->   	struct device_node *np = pdev->dev.of_node;
->   	struct mtk_uart_apdmadev *mtkd;
-> -	int bit_mask = 32, rc;
-> +	const struct mtk_uart_apdma_data *data;
-> +	int rc;
->   	struct mtk_chan *c;
->   	unsigned int i;
->   
-> @@ -492,13 +517,9 @@ static int mtk_uart_apdma_probe(struct platform_device *pdev)
->   		return rc;
->   	}
->   
-> -	if (of_property_read_bool(np, "mediatek,dma-33bits"))
-> -		mtkd->support_33bits = true;
-> -
-> -	if (mtkd->support_33bits)
-> -		bit_mask = 33;
-> -
-> -	rc = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(bit_mask));
-> +	data = of_device_get_match_data(&pdev->dev);
-> +	mtkd->support_bits = data->dma_bits;
-
-...and there you just get that single number you need, store it locally, then you
-can do
-
-mtkd->support_extended_addr = apdma_num_bits > 32;
-
-> +	rc = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(data->dma_bits));
->   	if (rc)
->   		return rc;
->   
-
-
-Cheers,
-Angelo
-
-
+> > 
+> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > Cc: Sascha Bischoff <sascha.bischoff@arm.com>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > ---
+> >  drivers/of/irq.c | 38 +++++++++++++++++++++++++++++++++++---
+> >  1 file changed, 35 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> > index e7c12abd10ab..d0e2dfd0ee28 100644
+> > --- a/drivers/of/irq.c
+> > +++ b/drivers/of/irq.c
+> > @@ -670,6 +670,35 @@ void __init of_irq_init(const struct of_device_id *matches)
+> >  	}
+> >  }
+> >  
+> > +static int of_check_msi_parent(struct device_node *dev_node, struct device_node **msi_node)
+> > +{
+> > +	struct of_phandle_args msi_spec;
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * An msi-parent phandle with a missing or == 0 #msi-cells
+> > +	 * property identifies a 1:1 ID translation mapping.
+> > +	 *
+> > +	 * Set the msi controller node if the firmware matches this
+> > +	 * condition.
+> > +	 */
+> > +	ret = of_parse_phandle_with_optional_args(dev_node, "msi-parent", "#msi-cells",
+> > +						  0, &msi_spec);
+> > +	if (!ret) {
+> > +		if ((*msi_node && *msi_node != msi_spec.np) || msi_spec.args_count != 0)
+> > +			ret = -EINVAL;
+> > +
+> > +		if (!ret) {
+> > +			/* Return with a node reference held */
+> > +			*msi_node = msi_spec.np;
+> > +			return 0;
+> > +		}
+> > +		of_node_put(msi_spec.np);
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >  /**
+> >   * of_msi_xlate - map a MSI ID and find relevant MSI controller node
+> >   * @dev: device for which the mapping is to be done.
+> > @@ -677,7 +706,7 @@ void __init of_irq_init(const struct of_device_id *matches)
+> >   * @id_in: Device ID.
+> >   *
+> >   * Walk up the device hierarchy looking for devices with a "msi-map"
+> > - * property. If found, apply the mapping to @id_in.
+> > + * or "msi-parent" property. If found, apply the mapping to @id_in.
+> >   * If @msi_np points to a non-NULL device node pointer, only entries targeting
+> >   * that node will be matched; if it points to a NULL value, it will receive the
+> >   * device node of the first matching target phandle, with a reference held.
+> > @@ -691,12 +720,15 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
+> >  
+> >  	/*
+> >  	 * Walk up the device parent links looking for one with a
+> > -	 * "msi-map" property.
+> > +	 * "msi-map" or an "msi-parent" property.
+> >  	 */
+> > -	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent)
+> > +	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
+> >  		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
+> >  				"msi-map-mask", msi_np, &id_out))
+> >  			break;
+> > +		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
+> > +			break;
+> > +	}
+> >  	return id_out;
+> >  }
+> >  
+> > -- 
+> > 2.48.0
+> > 
 
