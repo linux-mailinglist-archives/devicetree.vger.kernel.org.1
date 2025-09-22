@@ -1,107 +1,242 @@
-Return-Path: <devicetree+bounces-220231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F062BB93410
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:43:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B3CB93413
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:43:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B01163AC9DF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:43:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8D61888AC9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0753526A0BD;
-	Mon, 22 Sep 2025 20:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10CF26A0DB;
+	Mon, 22 Sep 2025 20:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jXtbP1rp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkxzgKHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412A5268C40
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 20:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84B1261B8F;
+	Mon, 22 Sep 2025 20:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758573810; cv=none; b=ntmfQ4cZMexAn1YFMjWwVTrT3P07KrwW+HzvRXjg+05tv6LWZ6NUnp4sGL+kqUF0OTiSiwJT7DQWrbxxtlZtoWD3UZkxMnH5qZQ4LIXenDhmzz3EqfbbkIwIw/BlJVrgTBLd7iNiRf7i3e/ChdP+QguSHcORu3kIHPVuNdr7Wks=
+	t=1758573830; cv=none; b=keTGKKgjBGE7g55IWAw+W8U4AOy16NuqlcTlTMjWS1xQA5NzeOk8/PIzn+w+sKWin2eLXphSaWYfl+TG7W5oZdMGbunChDDhpV4IclK5JiwX7UsJvIizVZ8PbGvYI6WLPnTPpjwY8kwe0zd3ThdtwLOj6UxtBjpN/eCedduNOV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758573810; c=relaxed/simple;
-	bh=8mdyqw9MjWOGNhllxvabr/uOzspow8KWf8sR0D56cCY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZoCJSc8IVqLzXgFDWWosfMdiSGJn3p07diaCchVqF4dgbf/7MGKQ0rThMBUG4lbJbk9wYWtrO6i77Crq2eG5Eh+vacjYEh4kVOnhyoPXjwNHt5INhQn9PsRUODDOPgIEC4Ae3gWGc6O49VGfepERydbUgO7afeEEBN/QUZPb5JQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jXtbP1rp; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57bd482dfd2so2620907e87.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 13:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758573807; x=1759178607; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8mdyqw9MjWOGNhllxvabr/uOzspow8KWf8sR0D56cCY=;
-        b=jXtbP1rp/PniKszWzYRUEfQlRhUy8sA9xEXVI5Nsy8gkLwu2X2dV5W0JaHtR95oVTi
-         vhGEV2tt01u9Bvo4qGA0KwKaTCQOMz+VavudE5wQjMCp41n78wH3mgVVuDMMVnx4WYQo
-         wH1GJVqkAJ72EvIRDxPg2L917vusTtOcAhaJRGic/hZV0nGsRcHiyaikVPDsitK5DFuj
-         by9+1e+l2kfS4g1MC9oug1OEv30GjM+5B7RH7p+hAA3NlsVx3bd/8iRfsE0vnqSjoP5x
-         LAVUYb6MbTcT3n9swzBn2xisQFFDoUkdxTljJhNBJiKHHqdHwsVFEIkmjl02EtiTMtc8
-         n+SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758573807; x=1759178607;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8mdyqw9MjWOGNhllxvabr/uOzspow8KWf8sR0D56cCY=;
-        b=g7He0irTadep4CU4T0+lnsgq/qcps+SovQbaltSrEXhxuSConPC81MgY0MASFZiBCx
-         rkI435BCMxQhs1PDApHuyG9WadTyDwPQEG4kc8GBGNTPhNO5SsN2qBKrl66254cAKmHn
-         Bu2E4UfsNm/HoUNggQsmzzF4gZZ0sfvKO4UXwmz3gBgyozPgJ6faDwGW60ejHbUnToDZ
-         wF+jCtv2ZNE0hXYzqGBuNL/nlpOUgAqH6Vasu/lCb4LyyPMT1B3XM6/idhRvH1Rf5k6T
-         AhVtzTj2u2KyXEIgxL/1NfNitAQevGgdArVT0bR6ahSELFZpaepKRsKjMHvNmdgmCfDk
-         mD+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXDR0zecLxAcT8XqCu0iX2x462jwEVE058AOotTUbt7GRJiDlbU8/r0QlamQtVFpKI6dsHwxQw/00Or@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3kKMF/G2HRQKfSom1yQqVbJDfTSX+GR/U2zRZIOjUyI2YimyV
-	Im6qQAIUXYTBW6IR1Lh3PLHOUkzexCcyMpBuz69kG837EkpYJVZLZdvi6wKH94O3vr7OlFHliFR
-	UiTYkfwDT4ucIMe2UNCm0lw9KZ8+cPTo=
-X-Gm-Gg: ASbGncuLIlbQ3w26LxByLZnyA5w9JtErVNWbMGi1DNPqvzzJm6e7Hr05+6z8ahOmwJ+
-	SXZQFADE7gJ6X1y05IWYRE+nlnXPYc3tt/7sNzybWGmbiJikfKbMMhuR/YxJZlNtLQ9d8UuOal/
-	Itlxp2WsE8KFabBU8NzRenCtNec5VXSPkfvQcv9Vio7JCB6Kmm03kRiNF9EykbRw/gqBHcneKAa
-	UX3YO0MI/5nwhQheaAsqr5emSrUzuUfmoMz28U=
-X-Google-Smtp-Source: AGHT+IGj3u3vxBovaJkpUOiQLhRlstxy96B8VGbVKJ2qkcwDCxDFJoIh3CGOM7DTK6eraZFEAmgnBu1U+ZWVdqK3ipM=
-X-Received: by 2002:a05:6512:6713:b0:57e:d7be:c01f with SMTP id
- 2adb3069b0e04-58070af43ffmr901e87.14.1758573807102; Mon, 22 Sep 2025 13:43:27
- -0700 (PDT)
+	s=arc-20240116; t=1758573830; c=relaxed/simple;
+	bh=Vy80BelxmGUNpFFuDIVKX3KUuEZh7ay4ov/SQneHVHY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KiQNUqVerouNuc4irdMLQIJIfq8twZtr80zc40Y3862vNW79ZIuXOjIUsi0fgMyMbBlLBJiTWGCYsLb6ItYJT1p252tDf3tl2btmZnkLcjIbjA+suAWj91Un4DXlQ90HpFGFuxeI3Vx44hNQ3JzrRKKlbc8Of2VrmD8Uj8fhVLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkxzgKHm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 028A4C4CEF0;
+	Mon, 22 Sep 2025 20:43:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758573830;
+	bh=Vy80BelxmGUNpFFuDIVKX3KUuEZh7ay4ov/SQneHVHY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lkxzgKHmfF3t4PNAyjogZDoIDiRVy71l18WPbvBAfNwv2BGc8deTkq4LNWRPiL8eW
+	 zDazyR61jMG+X8+v9Lvh4Q2vvZ+e0ObpolgRM/HJuS0uRvelPoklqvfwD9yEzwdgfK
+	 MHIwcokie9KF92Lo/ihQCLLtxpCi8Sez2G3uKpVQlA+6vTaUrw7Na3Dw3Y+0akxF4b
+	 TUjgihjb/ux6nIDi0z5jpKTpCALwwFg6mVQcKpoMrKC0x7ToeivqKafLFVyrtFUKjZ
+	 c9uz8OvOXOhQwrhGLNuxqueS879tNh9XZaavay/Khc45zV1JHczBFJzP+NPoLzQ8SS
+	 RX64uAZLFGgvA==
+Date: Mon, 22 Sep 2025 15:43:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/8] dt-bindings: display: add verisilicon,dc
+Message-ID: <20250922204349.GA1290045-robh@kernel.org>
+References: <20250921083446.790374-1-uwu@icenowy.me>
+ <20250921083446.790374-3-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <aNF1KOCs0eHL1Njb@Lord-Beerus>
-In-Reply-To: <aNF1KOCs0eHL1Njb@Lord-Beerus>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 22 Sep 2025 17:43:15 -0300
-X-Gm-Features: AS18NWB6vAOtYEJHU0O-pWIzCRfwsKb7fBh3jSGnR2BWR_k_vBKvJfHe8Ei0l_k
-Message-ID: <CAOMZO5Ay87qRmWoCELRqCkfZtK+28bAe=0Lvwhzn3RCRKyjX=g@mail.gmail.com>
-Subject: Re: [RFC] arm64: dts: freescale: imx93-var-som: Align dts adding
- missing components
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921083446.790374-3-uwu@icenowy.me>
 
-Hi Stefano,
+On Sun, Sep 21, 2025 at 04:34:40PM +0800, Icenowy Zheng wrote:
+> Verisilicon has a series of display controllers prefixed with DC and
+> with self-identification facility like their GC series GPUs.
+> 
+> Add a device tree binding for it.
+> 
+> Depends on the specific DC model, it can have either one or two display
+> outputs, and each display output could be set to DPI signal or "DP"
+> signal (which seems to be some plain parallel bus to HDMI controllers).
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> ---
+> Changes in v2:
+> - Fixed misspelt "versilicon" in title.
+> - Moved minItems in clock properties to be earlier than items.
+> - Re-aligned multi-line clocks and resets in example.
+> 
+>  .../bindings/display/verisilicon,dc.yaml      | 127 ++++++++++++++++++
+>  1 file changed, 127 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> new file mode 100644
+> index 0000000000000..07fedc4c7cc13
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Verisilicon DC-series display controllers
+> +
+> +maintainers:
+> +  - Icenowy Zheng <uwu@icenowy.me>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^display@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: verisilicon,dc
 
-On Mon, Sep 22, 2025 at 1:11=E2=80=AFPM Stefano Radaelli
-<stefano.radaelli21@gmail.com> wrote:
+This needs an SoC specific compatible. Generally licensed IP compatibles 
+are useless because the specs aren't public and there's always 
+integration quirks.
 
-> Before preparing the patches, I would like to ask for your advice:
-> should I send one patch that performs the full DTS alignment (describing =
-the
-> patch as an alignemnt of the dts with the actual hardware), or would
-> you prefer a patch series with one patch per peripheral (e.g. one for
-> codec, one for PMIC, one for WiFi/BT, etc.)?
-
-Sending a patch series with one patch per peripheral is preferred.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 4
+> +    items:
+> +      - description: DC Core clock
+> +      - description: DMA AXI bus clock
+> +      - description: Configuration AHB bus clock
+> +      - description: Pixel clock of output 0
+> +      - description: Pixel clock of output 1
+> +
+> +  clock-names:
+> +    minItems: 4
+> +    items:
+> +      - const: core
+> +      - const: axi
+> +      - const: ahb
+> +      - const: pix0
+> +      - const: pix1
+> +
+> +  resets:
+> +    items:
+> +      - description: DC Core reset
+> +      - description: DMA AXI bus reset
+> +      - description: Configuration AHB bus reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: core
+> +      - const: axi
+> +      - const: ahb
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: The first output channel, endpoint 0 should be
+> +          used for DPI format output and endpoint 1 should be used
+> +          for DP format output.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: The second output channel if the DC variant
+> +          supports and used. Follow the same endpoint addressing
+> +          rule with the first port.
+> +
+> +    required:
+> +      - port@0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+> +    #include <dt-bindings/reset/thead,th1520-reset.h>
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      display@ffef600000 {
+> +        compatible = "verisilicon,dc";
+> +        reg = <0xff 0xef600000 0x0 0x100000>;
+> +        interrupts = <93 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk_vo CLK_DPU_CCLK>,
+> +                 <&clk_vo CLK_DPU_ACLK>,
+> +                 <&clk_vo CLK_DPU_HCLK>,
+> +                 <&clk_vo CLK_DPU_PIXELCLK0>,
+> +                 <&clk_vo CLK_DPU_PIXELCLK1>;
+> +        clock-names = "core", "axi", "ahb", "pix0", "pix1";
+> +        resets = <&rst TH1520_RESET_ID_DPU_CORE>,
+> +                 <&rst TH1520_RESET_ID_DPU_AXI>,
+> +                 <&rst TH1520_RESET_ID_DPU_AHB>;
+> +        reset-names = "core", "axi", "ahb";
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          port@0 {
+> +            reg = <0>;
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            dpu_out_dp1: endpoint@1 {
+> +              reg = <1>;
+> +              remote-endpoint = <&hdmi_in>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.51.0
+> 
 
