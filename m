@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-220222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9506BB9338C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:26:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CEFCB9339E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:27:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AD3F1905982
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:26:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30C41168102
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23290311955;
-	Mon, 22 Sep 2025 20:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7915F313532;
+	Mon, 22 Sep 2025 20:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fhy16nPq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nmJg1k4B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77D3302748;
-	Mon, 22 Sep 2025 20:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA662F28FA;
+	Mon, 22 Sep 2025 20:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758572790; cv=none; b=pTgDYhov1mDlB2ghUuvYy6T12HlQxVkW+ZmbI/2ehfsNJ/M1SWPOxhHfe3dszkHqwde6D7E4grGR0wyVy7MO4ojTEro+zsG5Jy3ubSZENbIrGk/EGjU4/QHrOT+cOOjwznDZPD+kE9Mm10KYUhdSYBmM81H+IQ8jmJHDE8nL5WE=
+	t=1758572846; cv=none; b=QUfvSl+BWZRmLn+k2W7LScxox6il1RamS+cl4JQuPSlo6YukMODQEmIrJc1ZRRTM9OQHtthTa8nTfEj2todHYCnMuO+XlW3ivpYHqLJk3cQklioU/0Fs036U+UiMy1b96gXfRRkPGLe7ZvpPbitPElwO8PXB5IfsbNvpasCdzqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758572790; c=relaxed/simple;
-	bh=8/Sodj1mjXkjB4zFqzkZm1U4zLysyWPNUhHTxhwMLzI=;
+	s=arc-20240116; t=1758572846; c=relaxed/simple;
+	bh=tT4FFeQGeTkyJQ4zZ5iczXxChUdCnuPLFeL/ZnUoEM8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DF2/TjM2iq7wKdzDIOMN0IMutGOiNLtAhqLOWfXJBLK5KsYw0oQ+4qZQxexO/yn1nnbhnd0WIGMH/XqB0wPJ9bUqfRx2v+trq1wcw2HIifSKuzPRgLFOTEnvhXAIi20GM7t2vNfEf4WIYkoWxpybSupsSNXU+8OKXOYAO4kBtUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fhy16nPq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D38EC4CEF0;
-	Mon, 22 Sep 2025 20:26:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g0pSEutneNCqBU/nPLvZxaCTG8ONGibFykZN4vEu1vkz52rTmA92bLpkEUvsGvyW3M+Yo98X+OainUYq+xUtBWiyqLRLOsY+kLXFn4bb55XY6yLArHvS/Q6gnWbgGrRrFJFTH9fsmGbyaFRIL4qGo+tx2tD5h3zfVSaWbR3UTro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nmJg1k4B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD975C4CEF0;
+	Mon, 22 Sep 2025 20:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758572788;
-	bh=8/Sodj1mjXkjB4zFqzkZm1U4zLysyWPNUhHTxhwMLzI=;
+	s=k20201202; t=1758572845;
+	bh=tT4FFeQGeTkyJQ4zZ5iczXxChUdCnuPLFeL/ZnUoEM8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fhy16nPquN6DthdhSi3nskGzHCgePSJ005XwjNU/5c9UW7WEJxuvogdQjWq67kSDY
-	 iurWMdHX2W0VPJfZE6e3MuU0iuK1Fki+TRt50StIh4VSR2FMZJzVXZMzl+ahXopGXF
-	 FAbrRGpt3cNhO7W6pLgvs4AJyXz0HHPq6yDhjTJowOOUFsODpLRYRXadnrKtFHZJQK
-	 zvnzcUzNlJUVITNEKhdq5eNZG/sRtPdxZYJrnl9jtP96fTGqV/NtcepKYJARUGzlxj
-	 Qdu715H/8m8X+6cXGKykCweVGQvGOqu1D6RoSRJTpWM+z09tWEDPYho+Sx7Zn6imFb
-	 F6AbAtjC4Chhw==
-Date: Mon, 22 Sep 2025 15:26:27 -0500
+	b=nmJg1k4B4Ei+yFQYj2mMJoebyMTY0NwIYCjGfw6MTmu0QG6Zzg/IevnWgI/iJ0oei
+	 FojhVbGOkoUtSeEh40GsTMWklY5xdIjZUE81hLJXS/1PNvqwes8vQb7eVzS2q3MS/G
+	 dvzQRsrW+SkVc4u5FAmKbRvgjPRL/MmwWB/U7UndCEgZ2dM+D4grhyUk7/d67qYYcY
+	 vdfRG5Bo7hzdlz7JSD+O5p88SDXf4h8QvEUGCzc0TZPrPBvBNPWGkuuFY0fOhDrGH9
+	 y2ibosWioyswqyzSfOXPVEG6QH/YKQKMzhnuwptvwOQwndxOFw8EAXmsH0WbQLvrgW
+	 mC+vhBMiRXWuA==
+Date: Mon, 22 Sep 2025 15:27:24 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: vkoul@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: qcom,gpi: Document the glymur GPI DMA
- engine
-Message-ID: <175857278671.1274472.1445857118961212430.robh@kernel.org>
-References: <20250920133305.412974-1-pankaj.patil@oss.qualcomm.com>
+To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+Cc: conor+dt@kernel.org, akhileshpatilvnit@gmail.com,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org,
+	linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, skhan@linuxfoundation.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: rtc: Add ST m41t93
+Message-ID: <175857284421.1275635.17940830202978658586.robh@kernel.org>
+References: <cover.1758379856.git.akhilesh@ee.iitb.ac.in>
+ <b1b1f7abde8a4ee8b625361bca32934679bf1e1a.1758379856.git.akhilesh@ee.iitb.ac.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,21 +60,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250920133305.412974-1-pankaj.patil@oss.qualcomm.com>
+In-Reply-To: <b1b1f7abde8a4ee8b625361bca32934679bf1e1a.1758379856.git.akhilesh@ee.iitb.ac.in>
 
 
-On Sat, 20 Sep 2025 19:03:05 +0530, Pankaj Patil wrote:
-> From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+On Sat, 20 Sep 2025 20:31:24 +0530, Akhilesh Patil wrote:
+> Document DT bindings for m41t93 rtc which supports time, date,
+> alarm, watchdog, square wave clock output provider, user sram
+> and 8 bit timer.
 > 
-> Document the GPI DMA engine on the Glymur.
-> 
-> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
 > ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/rtc/st,m41t93.yaml    | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
