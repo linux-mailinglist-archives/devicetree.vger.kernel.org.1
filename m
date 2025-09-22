@@ -1,83 +1,123 @@
-Return-Path: <devicetree+bounces-220200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20917B92C56
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:27:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234EEB92FB7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:41:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 245181903E12
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:27:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7930E1907B20
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CBD31A064;
-	Mon, 22 Sep 2025 19:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13522F3C23;
+	Mon, 22 Sep 2025 19:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClYCiVN2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QSlPx4Sh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D049E1DE3AC;
-	Mon, 22 Sep 2025 19:27:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71C92F39BF;
+	Mon, 22 Sep 2025 19:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758569231; cv=none; b=K8IaMrrz6lA683zf39iP1eBGPrDkQ3dq8OfwFYh3lWwAfCCAM1y65gyYV29gstFSUHJBdik50H0cP7D+KfLADHfBlUMJcYpcVetsoTbqU8D1w2PKFouAZZ+wTc4hu3ejozejmwXxwv4jgZbs7JnEPun9M4eQK0lfG6a5Pjeb3Zk=
+	t=1758570056; cv=none; b=WefLcJugXAmGsX8TUCgPlyNKHV8QWPCCq6CfRDSRPVCoUAnwd9/qha7tiSxhLzzDSapkJo6nc+Y8i/cc4Kjji3b2sYVZgeu7rioGV4jfnBT1hLHFGi2xY+YCA5MZef5bo7rxFFEPHoEL0qZikvB9z/vSBkr0ivpHX4IVUw1KoL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758569231; c=relaxed/simple;
-	bh=ywrd1KKck6bPh6zOwROXdRwybYcsMLOnA7qGs+xm55A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cjUXCyfa5WFxrXQuEe/8UUQh4gg2e9ueQ5tOedv8o9E/Bg2ZzpvxxNPV62/7V3ubmq4BRXkoji8NQ385kXu4d6ZdTo6B39Uc90nuCNMVjF2rr6UW5iX2H/PKFgzRzrDz/D09QdVKNX6hd36Ahkf9LASGlYD0uFhfmGbf8yB/reA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClYCiVN2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D487C4CEF0;
-	Mon, 22 Sep 2025 19:27:10 +0000 (UTC)
+	s=arc-20240116; t=1758570056; c=relaxed/simple;
+	bh=iiqDCDgZdcVZr0vXnR7UqoT7M33BpEH7LbsLXcuX/3c=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=iXa4Ycl+Re6lE2FxHZGT2u3UpHpVqdmW7DZQLKMvyOqOScyXK2sqTMo6YhhM+EF743RqrrPyPSgNkyrkhiRfXkaIdbk1YMSC6r+3RtrHFS84IkiU29Gx+ZvpzUwFGmaKMc+v9HMVCm52AQWeSGJUrU3NQWwTnAdhFG1dPPTNEjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QSlPx4Sh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61220C4CEF0;
+	Mon, 22 Sep 2025 19:40:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758569230;
-	bh=ywrd1KKck6bPh6zOwROXdRwybYcsMLOnA7qGs+xm55A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ClYCiVN2ew1t6L0jzuvN8xoBKuEaxl5bkmn5nx+5Y+E5dSaKpq313iVoBQGCSw+Pq
-	 HzyxI5Homtln1D4sifWdsTORikIulp4EadNh8Qdm0EDjobqBNeBEnGfYPozLc6eRwo
-	 /WIR0CDbLzagdlfoIl68pTkLUET+5+fg1cTNKMqxoC/hUJNDJilq1sD4XWWDwjTzsr
-	 q0zQUgB9y8exSeVkEEMkFgJvCWKOvdShnUodAO6jFPLP5pCNQKIndwtz8cJGCl1Mxc
-	 GPXY+WNwa3f4MlFmjk+psgPcnyeDc/fP7yf/KGm0tX7ahkLfuMnNHvaklRBesDTpaa
-	 u6uWyfbwORVNA==
-Date: Mon, 22 Sep 2025 14:27:04 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jens Reidel <adrian@mainlining.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, linux@mainlining.org,
-	phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	linux-clk@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org, David Wronek <david@mainlining.org>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Danila Tikhonov <danila@jiaxyga.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: sm7150-dispcc: Add MDSS_CORE
- reset
-Message-ID: <175856922409.903995.288649430908180602.robh@kernel.org>
-References: <20250919-sm7150-dispcc-fixes-v1-0-308ad47c5fce@mainlining.org>
- <20250919-sm7150-dispcc-fixes-v1-1-308ad47c5fce@mainlining.org>
+	s=k20201202; t=1758570056;
+	bh=iiqDCDgZdcVZr0vXnR7UqoT7M33BpEH7LbsLXcuX/3c=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QSlPx4ShwYgZuryexQpl/Rr0eN1QmDS/HtHyyF87LjYA2N89dhSy0aGR2k34xVe5g
+	 FKVTU7i7bDebF9i2EZTBMiIK7bKp47zIhvE5SE001ojwjeBqK1qN3V4T9eI1YpewPQ
+	 Ib45b7GffShCUjdCKTZg1HpcatP7lhLZZ2Dl7vxgSHRYu8fIUXmzbKnLH9rTQqFjUv
+	 2tp1KvdGvDXT9BUzxwcU3LlG3Eiq76FlKYnln968CCSr4drkxf88QeSFpjeuPMo4Sr
+	 lWMsl7xkITD3yMiMKI1qfduJwIhN1MZ0YC62PU7QiX0QLsDuVCJW6TMFtdijvaYaB5
+	 WhiAzzOOKUPDQ==
+Date: Mon, 22 Sep 2025 14:40:55 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919-sm7150-dispcc-fixes-v1-1-308ad47c5fce@mainlining.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ devicetree@vger.kernel.org, Bryan Brattlof <bb@ti.com>
+To: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250922160715.346137-1-jm@ti.com>
+References: <20250922160715.346137-1-jm@ti.com>
+Message-Id: <175857005548.994643.9822023252083969281.robh@kernel.org>
+Subject: Re: [RFC PATCH v2] dt-bindings: nvmem: Introduce nvmem efuse
+ binding for TI K3 SoCs
 
 
-On Fri, 19 Sep 2025 14:34:30 +0200, Jens Reidel wrote:
-> Add the index for a reset inside the dispcc on SM7150 SoC.
+On Mon, 22 Sep 2025 11:07:15 -0500, Judith Mendez wrote:
+> On K3 SoCs there are efuse registers scattered across the memory
+> map. In order to reference these efuse registers like gp-sw which
+> may store SW REV information or other general purpose information
+> for drivers to consume, treat them appropriately as efuse devices
+> with nvmem framework.
 > 
-> Signed-off-by: Jens Reidel <adrian@mainlining.org>
+> Signed-off-by: Judith Mendez <jm@ti.com>
 > ---
->  include/dt-bindings/clock/qcom,sm7150-dispcc.h | 3 +++
->  1 file changed, 3 insertions(+)
+> This patch is not complete and is sent as an RFC to get some initial
+> thoughts on this implementation to solve [0].
+> 
+> [0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
+> 
+> Changes since v1 RFC:
+> - Drop depreciated nvmem-deprecated-cells.yaml since nvmem.yaml
+>   already includes nvmem-layout.yaml.
+> - gp-sw efused-backed reg is 128 bits, so update size of example
+>   to 0x10.
+> 
+> Link to RFC v1:
+> https://lore.kernel.org/linux-devicetree/20250916154809.545283-1-jm@ti.com/
+> ---
+>  .../devicetree/bindings/nvmem/ti,efuses.yaml  | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: ignoring, error in schema: properties: compatible
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: properties:compatible: [{'const': 'ti,am62p-efuse'}] is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml: properties:compatible: [{'const': 'ti,am62p-efuse'}] is not of type 'object', 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Documentation/devicetree/bindings/nvmem/ti,efuses.example.dtb: /example-0/efuse@43000230: failed to match any schema with compatible: ['ti,am62p-efuse']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250922160715.346137-1-jm@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
