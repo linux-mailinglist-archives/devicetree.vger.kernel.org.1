@@ -1,220 +1,231 @@
-Return-Path: <devicetree+bounces-220226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FD8B933B9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1296AB933D4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55B6316D28A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:30:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA53917F01E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:34:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6141FDA89;
-	Mon, 22 Sep 2025 20:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B16125B662;
+	Mon, 22 Sep 2025 20:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="nyo6oT3T";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="U/yyLiv+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfxP7Pvv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71797261D;
-	Mon, 22 Sep 2025 20:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6DB1E833D;
+	Mon, 22 Sep 2025 20:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758573027; cv=none; b=MW26O1LEHEcLD0yUikZ4NXCoEgi+UwMaN5mx016GvvioOQp0MtTsmPzCuJ9q98RRczpwojWMQ4SzQS74ZXY+KM1GVCLXX8iLk81d+AX3baKdg1VekPja/IBKZ6fJ5nJ1xrE1qVj4pvfvr4FrmB4TtoWUHP0/EgT1FG+gykkvphg=
+	t=1758573235; cv=none; b=aJGnKdAHwxiRLO6S/pO/IXMBDb7HbUmtpu3EEIWO9ebQhrdJXcCxBX70pTrlNrTZtR62Wkln/gpqQv+1J/g5kcSpynqGVpJnFATEPe0A7La0UZatPW0pXXv6ZHiwck+6Vk45paDI/NFIoImF3JIpO4EkOrHTK3xVk4JfE41gQKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758573027; c=relaxed/simple;
-	bh=OfAHROsZ/7AD+4yQPz8CC8L4N9Jmv4p9hLytTyE08bE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z6cBRJlNIY5lNw47dnRZzXI8awifbA3e7Uct5KYKAGV+S4mJ/K8W/AC7e12fmmeJpHkD0DhSQhZUbwgveTKviMHDdKQodG0n6yZ0IspRbn+5Vq79Ej4Jwsit6rnxACKLXv1pycjO1n75yyTukrqSpGMOpWcSV+TA7t1fN1CKlBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=nyo6oT3T; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=U/yyLiv+; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id B78311400195;
-	Mon, 22 Sep 2025 16:30:24 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-06.internal (MEProxy); Mon, 22 Sep 2025 16:30:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1758573024;
-	 x=1758659424; bh=f21DJ6iYS1AxepjbbwpyUgIz1EeYo2MNWy5iIbDBSNA=; b=
-	nyo6oT3TzFlY5I0WXnpyAEAGvwZ7yrOX381aUcW9MCrYjV1HUsv9GNg3x9EVY5/Y
-	QWL6QAHCBzf4jqps7hUL3qLz08wWgu5L9PApxBmv5Nq2GjC2S9Mw32eH7y5FSsrL
-	mfMy+vxc2HGCVhIXq5c7ufejrBWddxrhN7H/vmBJ6lIfF2d29hXEE4guxmCGb6O2
-	tAN9UZB/6gYpk3kLx+AOh7wcP9SFQxEWxTgBKNMOYxfIg694Z2HsKPnMoL+Ll5Xv
-	wA9u54MFXg7WqqinMg3l/QI9rhMTX1kA1HkQpcYjsI1CL34LwrH+rbI6Q/DcrN91
-	PsPP3aIPgrWohrbWxj925w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758573024; x=
-	1758659424; bh=f21DJ6iYS1AxepjbbwpyUgIz1EeYo2MNWy5iIbDBSNA=; b=U
-	/yyLiv+pWD3PyJ3colP+XRK6MtW9++tb2sQ00VzQVnQg92g9ccest3ombaG+YE9Z
-	Krp5L8hUTSwwYZBpJHra0KTIURfdnOoyX97uyApKmoZpR+6I9N3SkjCLej4/U4LK
-	W27W/vuevB1bUNXLn79QfBKen7v8V4DZpm0g34qjTPm4Th2j7O3z714F5uVU9yol
-	YAOQTQVGV2eFRnFHuR0t+gdIMGUv+R5x9d/FkA6uAN01QUeF4gXdInta6cHiDpUO
-	hmWokA3rolCedc/plYPHvqBVG/la2lgP/LZNJurANuWShYf7RfoIoqu2BtqcwujY
-	ZqmsIN51rVyGYb1xe6s3g==
-X-ME-Sender: <xms:37HRaIwsafr6gF3kyW0TLuRr05Zet02ihsvoDiCsstmJ3xvHKBm5hQ>
-    <xme:37HRaIKSwoxwHK11CbSILFjipTABJQ4lz85Fs-wSsrqBypGmoJEqed1pxua3eIG4x
-    RWTyUIAPiBNQ6FvK89blT_-RMo88N3Ez91tGliBzaMVDccw0QqEklnX>
-X-ME-Received: <xmr:37HRaHVIHFrvchhMAVw8xJPWG_KL1xYPiWSMNivnGnuUo4hlX_T7MeUbQC7yDEsqLf51VWu0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdehkeekudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptfgvsggvtggt
-    rgcuvehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvg
-    hrnheplefhgeevleehieeuveduudfguedtieetteevhffgfffhhffhveffueegtdegkeek
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsg
-    gvtggtrgessghsughiohdrtghomhdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhm
-    thhpohhuthdprhgtphhtthhopeiivghvsegsvgifihhluggvrhgsvggvshhtrdhnvghtpd
-    hrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdo
-    ughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtghpthhtohep
-    rghnughrvgifsegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhope
-    guvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehl
-    ihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
-    dprhgtphhtthhopehlihhnuhigqdgrshhpvggvugeslhhishhtshdrohiilhgrsghsrdho
-    rhhg
-X-ME-Proxy: <xmx:37HRaLZiMcZINQDA-uN_LIPEmV_2dg0aaXPTlLUgkpr3xZ7YeQEAKA>
-    <xmx:37HRaOzEz13wT_YWvqqDiFluHmxDfIwe9y7cAe2MqgagHS8kgzgsSw>
-    <xmx:37HRaL0doQA-z0ua5-aE69gyuEoO6O8YFf-A-gIHr5jrgYcwcxbgVA>
-    <xmx:37HRaPkNGJxoOUR2aaf1rlJRRsI-G33G6vzTzi4gAB_GkHccQ5D49Q>
-    <xmx:4LHRaF988bm42vHCFUaajGuBKhBjIO4Bn-IfDrAeVWs788Ar0EZuBfyb>
-Feedback-ID: i5b994698:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 22 Sep 2025 16:30:22 -0400 (EDT)
-Message-ID: <354c5977-2bab-446f-9ae0-b01d678fd74f@bsdio.com>
-Date: Mon, 22 Sep 2025 14:30:21 -0600
+	s=arc-20240116; t=1758573235; c=relaxed/simple;
+	bh=BQxZlqkbMQpNLXVzsCQCyONqf9JUCxYeIXzDA691YH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LSEK2+IHgCf10PreGcPUjaASFAw7GtvfstSH79szqN6fjxjm9pn4o+357NbcKCTF2kAATgUKNXOyEJFrYdzlemppw3G3PXF3HERvj3556gej+h5VFwNbw4ngRd6iilwsbHgrXW7S2LgAHhrQZwAmVzBKBZhUAfOwMgCrqdRQiy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfxP7Pvv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25A11C4CEF0;
+	Mon, 22 Sep 2025 20:33:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758573234;
+	bh=BQxZlqkbMQpNLXVzsCQCyONqf9JUCxYeIXzDA691YH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cfxP7PvvPDjqhbZVcosBquL3rnK0NwMA0H3r24O2/ZTFn64MWFQ3PZwB62UlkbZNX
+	 jxomcC3l6k97qjvXiew1Lkah6XaN4Sq0xvU2qP/JWTJ7q4Xk8AG7nLh7+r0fAokMTw
+	 /Rlit71KxbPbUhChMVe8QOCJs0hjqgcR7cpTOy/glr6QL/a7mg5srm2eU4xwADPWgd
+	 G5QfS43/zkUlsMzJ6wp1u1Z7ydXpwvRukQrxB6M2f4fYPGBlyizigSO92YBVRPdLxy
+	 MHOyjNvI7Dr1ECurrMdyDjQhIMziwRy4tN1aqkCEYIuATYHiERNk481XnO/rs+S8Z+
+	 jP8x6l/rBJ3jA==
+Date: Mon, 22 Sep 2025 15:33:52 -0500
+From: Rob Herring <robh@kernel.org>
+To: Philippe Baetens <philippebaetens@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: ams,mira220: Add mira220
+ image sensor
+Message-ID: <20250922203352.GA1278145-robh@kernel.org>
+References: <20250920-mira220-v4-0-921b2e83a352@gmail.com>
+ <20250920-mira220-v4-1-921b2e83a352@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for ASRock Rack
- ALTRAD8 BMC
-To: Zev Weiss <zev@bewilderbeest.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250917180428.810751-1-rebecca@bsdio.com>
- <20250917180428.810751-3-rebecca@bsdio.com>
- <66c5bf80-a3ef-4984-82ce-6d1720b15d38@hatter.bewilderbeest.net>
-Content-Language: en-US
-From: Rebecca Cran <rebecca@bsdio.com>
-In-Reply-To: <66c5bf80-a3ef-4984-82ce-6d1720b15d38@hatter.bewilderbeest.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250920-mira220-v4-1-921b2e83a352@gmail.com>
 
-On 9/22/25 00:29, Zev Weiss wrote:
-> Here and on most of the other i2c busses, is there a particular reason 
-> we want this bus-frequency explicitly specified?  100kHz is the 
-> default according to 
-> Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml (and the other 
-> existing aspeed-bmc-asrock-*.dts files leave it at that implicit 
-> default, FWIW).
+On Sat, Sep 20, 2025 at 09:47:58PM +0200, Philippe Baetens wrote:
+> Mira220 is a global shutter NIR-enhanced image sensor made by AMS.
+> Driver is submitted in the next patch of this series and verified on
+> a raspberry pi.
+> 
+> Signed-off-by: Philippe Baetens <philippebaetens@gmail.com>
+> ---
+>  .../devicetree/bindings/media/i2c/ams,mira220.yaml | 108 +++++++++++++++++++++
+>  MAINTAINERS                                        |   6 ++
+>  2 files changed, 114 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml b/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> new file mode 100644
+> index 000000000..ae4613d0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> @@ -0,0 +1,108 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ams,mira220.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ams 2.2 MP NIR enhanced global shutter image sensor
 
-There's no particular reason - I've deleted them.
+s/ams/AMS/
 
-> It looks like this device only monitors temperatures?  If so, perhaps 
-> temperature-sensor@29 would be a slightly more appropriate node name.
+> +
+> +maintainers:
+> +  - Philippe Baetens <philippebaetens@gmail.com>
+> +
+> +description: |-
 
-The chip can also monitor power supply voltages and fan speeds but on 
-this board it's only used as a temperature sensor, so I'll change the 
-node name.
+Don't need '|' if no formatting to preserve.
 
-> channel@1 and channel@2 block bodies look over-indented by one level 
-> here.
+> +  2.2 MP NIR enhanced global shutter image sensor designed for 2D and 3D
+> +  consumer and industrial machine vision applications.
 
-Thanks - fixed.
+Is this a paragraph or just a odd line break? If a paragraph, add a 
+blank line in between and use '>' modifier.
 
-> Are these correct?  On every other ASRock board I've dealt with, the 
-> eth0 address is at 0x3f80 and eth1 is at 0x3f88.
->
-> If so and they are really for some reason swapped on this platform, as 
-> a slight nitpick I might suggest swapping the order the nodes are 
-> listed in so they go in order of increasing addresses.
+> +  Due to its small size, configurability and high sensitivity both
+> +  in visual as well as NIR, the Mira220 is well suited for 2D and
+> +  3D applications, which include Active Stereo Vision,
+> +  Structured Light Vision for Robotics and AR/VR.
 
-After installing the latest 3.06 BMC firmware from the ASRock website, 
-I'm seeing:
+Wrap at 80 char.
 
-root@altrad8ud-1l2t:~# ifconfig
-eth0      Link encap:Ethernet  HWaddr 9C:6B:00:43:0B:F7
-           inet addr:10.0.0.25  Bcast:10.0.0.255 Mask:255.255.255.0
-           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-           RX packets:457 errors:0 dropped:0 overruns:0 frame:0
-           TX packets:240 errors:0 dropped:0 overruns:0 carrier:0
-           collisions:0 txqueuelen:1000
-           RX bytes:88379 (86.3 KiB)  TX bytes:17663 (17.2 KiB)
-           Interrupt:26
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ams,mira220
+> +
+> +  reg:
+> +    description: I2C device address
 
-eth1      Link encap:Ethernet  HWaddr 9C:6B:00:43:0B:BD
-           inet addr:10.0.0.11  Bcast:10.0.0.255 Mask:255.255.255.0
-           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-           RX packets:368 errors:0 dropped:0 overruns:0 frame:0
-           TX packets:26 errors:0 dropped:0 overruns:0 carrier:0
-           collisions:0 txqueuelen:1000
-           RX bytes:88134 (86.0 KiB)  TX bytes:3507 (3.4 KiB)
-           Interrupt:27
+Drop. That's every device.
 
-lo        Link encap:Local Loopback
-           inet addr:127.0.0.1  Mask:255.0.0.0
-           inet6 addr: ::1/128 Scope:Host
-           UP LOOPBACK RUNNING  MTU:65536  Metric:1
-           RX packets:434 errors:0 dropped:0 overruns:0 frame:0
-           TX packets:434 errors:0 dropped:0 overruns:0 carrier:0
-           collisions:0 txqueuelen:1000
-           RX bytes:34479 (33.6 KiB)  TX bytes:34479 (33.6 KiB)
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  vdig-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.35 volts
+> +
+> +  vana-supply:
+> +    description:
+> +      Analog1 voltage supply, 2.8 volts
+> +
+> +  vddl-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: Sensor reset (XCLR) GPIO
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description:
+> +      Video output port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            anyOf:
 
-usb0      Link encap:Ethernet  HWaddr 4E:F6:84:8E:63:B9
-           inet addr:169.254.0.17  Bcast:169.254.255.255 Mask:255.255.0.0
-           UP BROADCAST MULTICAST  MTU:1500  Metric:1
-           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-           collisions:0 txqueuelen:1000
-           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+Don't need 'anyOf' with a single entry.
 
-root@altrad8ud-1l2t:~# hexdump -C /sys/bus/i2c/devices/7-0057/eeprom
-...
-*
-00003f80  9c 6b 00 43 0b bd ff ff  9c 6b 00 43 0b f7 ff ff 
-|.k.C.....k.C....|
-00003f90  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff 
-|................|
-*
-00003fd0  1e 90 db 9a 13 ff cb ff  4e f6 84 8e 63 b9 8e ff 
-|........N...c...|
-00003fe0  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff 
-|................|
-*
-00004000
-
-
-I don't know why they're swapped, but I think keeping them that way 
-makes sense to avoid people's IP address changing.
-
-> As the DTBS_CHECK lint reported and Andrew Jeffery commented on, these 
-> two partitions overlapping is a bit surprising -- is that intentional?
-
-It was intentional since I've updated the firmware update script to be 
-able to program the TF-A or UEFI areas separately, or the entire code 
-region (i.e. TF-A _and_ UEFI, excluding the data/configuration areas of 
-the EEPROM). But I'll update the script to not depend on there being a 
-'code' partition that covers both areas.
-
-
--- 
-
-Rebecca Cran
-
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +
+> +          clock-noncontinuous: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - vdig-supply
+> +  - vana-supply
+> +  - vddl-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mira220: camera-sensor@54 {
+> +            compatible = "ams,mira220";
+> +            reg = <0x54>;
+> +            clocks = <&cam1_clk>;
+> +            vana-supply = <&cam1_reg>;	/* 2.5v */
+> +            vdig-supply = <&cam_dummy_reg>;	/* 1.8v */
+> +            vddl-supply = <&cam_dummy_reg>;	/* 1.35v */
+> +            port {
+> +                mira220_ep: endpoint {
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2>;
+> +                    link-frequencies = /bits/ 64 <750000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fe168477c..c179b931b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1350,6 +1350,12 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/light/ams,as73211.yaml
+>  F:	drivers/iio/light/as73211.c
+>  
+> +AMS MIRA220 DRIVER
+> +M:	Philippe Baetens <philippebaetens@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/i2c/ams,mira220.yaml
+> +F:	drivers/media/i2c/mira220.c
+> +
+>  AMT (Automatic Multicast Tunneling)
+>  M:	Taehee Yoo <ap420073@gmail.com>
+>  L:	netdev@vger.kernel.org
+> 
+> -- 
+> 2.43.0
+> 
 
