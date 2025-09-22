@@ -1,131 +1,104 @@
-Return-Path: <devicetree+bounces-220148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DA8B923FF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:38:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C0D8B92483
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:45:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE2BB1799C1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:38:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FADB171614
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48EEA311C3A;
-	Mon, 22 Sep 2025 16:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B15717A2EA;
+	Mon, 22 Sep 2025 16:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXZ/+qC3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIfyz9AG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3EF311C2C;
-	Mon, 22 Sep 2025 16:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E0F17C203;
+	Mon, 22 Sep 2025 16:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758559091; cv=none; b=bXJfWyhrOrdGiSD4h7PRUo/pxj1yF/b2kAScpKepddwkGPkvvnZCEKwii1YhOdZTLhVo2R7eAHDiH9xjbmxJ/Be/4khInWxdsnMEEd7ERhLewrBPo0GSWiXXr1mndpd32jpkRwg/QYMAiQSRBHvh77g6T4dq8W1FZEx4oxhRkdE=
+	t=1758559508; cv=none; b=iIuVbt5m0sZJtVkL5nGxnQ3Eu+XfE/OunRx+ay17CYBeTBum1MtFm1S5N7k/WXSeUpsE9xy+kQHuT7VvHSgAk1JgQhKQ+o7uftn+Caia68zANTQZiwPD/2Vimf0ec7ngXQTwC/oAn2E/kSWS4JrDXeCzeWEPsHe99tw+6v0AP6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758559091; c=relaxed/simple;
-	bh=K2AHAOsCHrPVmkffGGFO0G7K+aQn6w79l0lzLivUip0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=eXICZT52tevE03Wt42eJxdrlezPYvH4xA05Gy8rnwmNjeULoDgEO5VA7+8e/ZMIDKneG6DvVD3DU33ohM494+3+53upPFNDFgGmXOlfgoiqIT/0qDm5ERZjlOnINRNCU0WgZcrEX56YY8ISF8aC3jk6r0IeN4tMGAUuowZv59tw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXZ/+qC3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A8B1C4CEF0;
-	Mon, 22 Sep 2025 16:38:10 +0000 (UTC)
+	s=arc-20240116; t=1758559508; c=relaxed/simple;
+	bh=0t57xInRak71R35ROrahgnSbv1afzy9QNVSLOtl8+fU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FtSUfULMhKQ0Xa7DemxAX6JZZL+kCHThV/+DFL3K2pZ3HtELynLYJM6R/eUNgXokGOvZE+ViucAHk0AF2hqTNkfWE76Jm20E0ABVd6JIzxS7gSriHkF+Tp2c4AMo50Eue5TKv59hJ0rxRYNpoe85IA7uawROcppv7by+dAYkG9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIfyz9AG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C23C4CEF0;
+	Mon, 22 Sep 2025 16:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758559090;
-	bh=K2AHAOsCHrPVmkffGGFO0G7K+aQn6w79l0lzLivUip0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=PXZ/+qC3tayDVxVs6qcosI/Cup8bQbBUtDcmCiS7N+yuJL8emHG+1dkAI+5rZHiy/
-	 teS/M6cWWzG4rjZliike5jJfp8JNL9icfYbj/dqNDVLpdYjBV9IU8wO498tdrIDobG
-	 nOuK9FAnhTMc8dXgwZJmItD+iLlPADBilG5WKkl4KigL8WJXEBCfIXXhNctyM/XrDf
-	 sbnWWHZBwp0hj5HQ7mn+bwo7olAAgyL01CaYzEMW8bofyDf7s7Ydru/GWCN7Ph06gQ
-	 S3Z8TXQuJhjpdCayBQf7AFDMTGilvNROX/lCYF2krtsLzry1LP3Z1wtVehc9Agt14D
-	 wapNVCSMELkdw==
-Date: Mon, 22 Sep 2025 11:38:09 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1758559507;
+	bh=0t57xInRak71R35ROrahgnSbv1afzy9QNVSLOtl8+fU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UIfyz9AGQHVaiVvfyGSqO9MDNU63T/YbqonAyTokYTMR8sTYtxojQtZK7wa13gxIB
+	 IMUlkJNnjTFopLrOiGFqOqz2igYKgDgYGFNUBrVy+Rm7eTkV5kcy+H1w0Xv9wahAoZ
+	 ZEsJ6K0HKIelrQHGgURmubysIs4f1N6EzemN+hMYWVyRUNJChkoelXozHPi5EQy+eS
+	 oYNj+mazTy06/rzkQPjccuZtq9KfzAVlfiqHrhvf5RZHaxo6HSdFWn6bvM6evCYXt2
+	 17K4QVCXJfk0jaZona8dUHVRmNlU8b5KI+m9Od9rZ5W99DbIhEvTIDNn9wqlss4UiV
+	 s+FRriqtB7nxQ==
+Date: Mon, 22 Sep 2025 11:45:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jonathan Brophy <professorjonny98@gmail.com>
+Cc: lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: leds: Add YAML bindings for Virtual
+ Color LED Group driver
+Message-ID: <20250922164505.GA390320-robh@kernel.org>
+References: <20250916110217.45894-1-professorjonny98@gmail.com>
+ <20250916110217.45894-3-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org, 
- Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org
-To: Ariana Lazar <ariana.lazar@microchip.com>
-In-Reply-To: <20250922-mcp47feb02-v1-1-06cb4acaa347@microchip.com>
-References: <20250922-mcp47feb02-v1-0-06cb4acaa347@microchip.com>
- <20250922-mcp47feb02-v1-1-06cb4acaa347@microchip.com>
-Message-Id: <175855908971.350343.6210710721753306803.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: adding support for
- Microchip MCP47FEB02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250916110217.45894-3-professorjonny98@gmail.com>
 
-
-On Mon, 22 Sep 2025 14:30:53 +0300, Ariana Lazar wrote:
-> This is the device tree schema for iio driver for Microchip
-> MCP47F(E/V)B(0/1/2)1, MCP47F(E/V)B(0/1/2)2, MCP47F(E/V)B(0/1/2)4 and
-> MCP47F(E/V)B(0/1/2)8 series of buffered voltage output Digital-to-Analog
-> Converters with nonvolatile or volatile memory and an I2C Interface.
+On Tue, Sep 16, 2025 at 11:02:15PM +1200, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
 > 
-> The families support up to 8 output channels.
+> Document Virtual Color device tree bindings.
 > 
-> The devices can be 8-bit, 10-bit and 12-bit.
-> 
-> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
 > ---
->  .../bindings/iio/dac/microchip,mcp47feb02.yaml     | 305 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 311 insertions(+)
+>  .../leds/leds-group-virtualcolor.yaml         | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> new file mode 100644
+> index 000000000..945058415
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/leds/leds-group-virtualcolor.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +title: Virtual LED Group with Priority Control
+> +
+> +maintainers:
+> +  - Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> +
+> +description: |
+> +  Virtual LED group driver that combines multiple monochromatic LEDs into logical
+> +  groups with priority-based control. The driver ensures only the highest-priority
+> +  LED state is active at any given time.
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:199:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:200:9: [warning] wrong indentation: expected 9 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:201:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:202:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:225:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:226:9: [warning] wrong indentation: expected 9 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:227:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:228:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:257:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:258:9: [warning] wrong indentation: expected 9 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:259:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
-./Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml:260:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml: allOf:0:then:patternProperties:^channel@[1]$: 'anyOf' conditional failed, one must be fixed:
-	'^channel@[2-7]$' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml: allOf:1:then:patternProperties:^channel@[1-2]$: 'anyOf' conditional failed, one must be fixed:
-	'^channel@[3-7]$' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.example.dtb: dac@0 (microchip,mcp47feb02): channel@0:reg:0:0: 0 is less than the minimum of 1
-	from schema $id: http://devicetree.org/schemas/iio/dac/microchip,mcp47feb02.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250922-mcp47feb02-v1-1-06cb4acaa347@microchip.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Isn't this what the multi-led binding already does?
 
