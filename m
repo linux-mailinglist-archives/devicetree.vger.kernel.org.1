@@ -1,130 +1,120 @@
-Return-Path: <devicetree+bounces-220136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204B0B9223C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:08:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F143B9224E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D59B53B4E30
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:08:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D63D74E048D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9540D31076B;
-	Mon, 22 Sep 2025 16:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B118E30DD23;
+	Mon, 22 Sep 2025 16:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hN/5y+Lz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MKtazzxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34854310636;
-	Mon, 22 Sep 2025 16:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1DD305E10
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 16:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758557319; cv=none; b=jyTGm/CIGfQyE0iMqIE6Uw/DocJmfxFRbjGcn7zkBw3n7KDcZzzDs1YFLAWgJ0a0RBaCSe8l/q7U+FDm7wC1bVlNfBcGJ/FHQ0RGZNUFECx9LezY1j27PHognG0T+pAFKDNhEWUpesEzsJjM5c+nuBdKeQvOjgJh/pWke3v+qII=
+	t=1758557486; cv=none; b=BOc5LXyuwOISd0lRlcXAiwjkEz2BuyFg7d5vHt4CRogPYItzW9qe9TWKojI52grhzeCRNW3eVnOlHseNy/gktvQAdsxf1L9gX4NXDdA3/2TV8sSBLl8I4c+7ocR15sNmXaEMVJoD0QFCJrdhElc3p/4fydUq8Z/KJw7UIfZbm9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758557319; c=relaxed/simple;
-	bh=1JhvlsGag/g0lsEn3CJ4T79NzeC8MMz8OYCOhlhCcfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AcHmQxhb8CbsUJ/dM7yTY4bfCnkx97WIoQotSBLevmuLDChwOYLwUDp5vCcYFMAnlgiZWEktOSnjbt/hAujyo0a2Dyi1vgcVS8tWAqX7r7hkXp1OOViq5OKGu/pugIpKkBKog2rkP149QQa/O1pVaBOUWZnafs1KigtTpa7rqHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hN/5y+Lz; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7313B1A0F05;
-	Mon, 22 Sep 2025 16:08:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3D28360635;
-	Mon, 22 Sep 2025 16:08:30 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 58A1F102F1942;
-	Mon, 22 Sep 2025 18:08:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1758557309; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Hg2NoZ+lLEZW8Bu+98QwiGq8+y6KwiE9j3xN84DMQww=;
-	b=hN/5y+Lzx6vJQWz5+IvAyWUVCO9Sb8V+lGAwRHtGKlZHhiH9QpCd5NrK4oDe6YpbAmgnIX
-	ku+RMG37326N+lZz5XAgWH5nSuHgiObTTQ/wHd4qezZ/j8mke5Pb9bIu9fQFPd8g1n3Cju
-	Am6lH4IIJK54d9FjDmxzONgPRSDCYyw9zDpWxWdZ4+wDCsvfK9DcwHWCK6V0jRpp4ox2FA
-	yW2suHPc7o8wJjNwTP9+ujj08T4lNrUfePNLgKMmQUwxNcgtFveSJ6/BKajTZCgbJnGNAa
-	jRvZDa5eHTBYhQGXAU44mSibt4ktklGI+5PeSl+6j2yWOvGnTByBDSWp6SI80Q==
-Date: Mon, 22 Sep 2025 18:08:17 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Saravana
- Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Phil
- Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Pascal Eberhard
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO controllers
-Message-ID: <20250922180817.7c1b8f61@bootlin.com>
-In-Reply-To: <CAMRc=MeLDe+o6dWkFCv6zc7ubcXicWdw4FA_A2p519OC4SH2BA@mail.gmail.com>
-References: <20250918104009.94754-1-herve.codina@bootlin.com>
-	<20250918104009.94754-6-herve.codina@bootlin.com>
-	<CAMRc=Mf9OB03FXEpSXG8XeJhtd7MkwJTH=rY11SBb9SazCMqJw@mail.gmail.com>
-	<20250922173145.4d4dbb2f@bootlin.com>
-	<CAMRc=MeLDe+o6dWkFCv6zc7ubcXicWdw4FA_A2p519OC4SH2BA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1758557486; c=relaxed/simple;
+	bh=lbCZuCRT4lMk8VwiDJS9qwmYIpPm3rZqFqTsl8NKnl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=MkY7hzbJOG7WOoRmOm4AxIxM2kR3UHKU/DB6xXLRlPrqy9FPme5t2ca+4QcZdLCeGvKZqEvbhHL3UBAK0nee/gF9MpKMHVFpoCD59NWRgx75B0mCl7N/s1OMoBSp6qZaR1a+E1sM+UH1hGlLZfSt9HZgQxjqD7Y38iAkIAyoErU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MKtazzxM; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-46b7580f09eso10095115e9.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 09:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758557483; x=1759162283; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DEnMMyTPzSbYjCuENNMIPA0pMqJ+aV1qFH9XDih+9hQ=;
+        b=MKtazzxMb+2vnyYCRb70bDr9du3wy8gFEVOiHdNyCR7NJ2afU47JsDbZ8SgS5HDp0j
+         m2xcIhH/c2L7DL8U5gVmYevV053mZDRNr8YEcRUlZsdt6rxuvNyYMto07vRb5Yi84trq
+         4VRAEElrTKr8leOoL9Cpjes5ifbtwahAk9hbbq5Z6GX0sEiNuLBZuNKhShr6Ugg07yQZ
+         OVRQ7iZTVZbt7YQsIHGRn1Kz51azyFCwpCYYhArohSAzsn8s/vRI7S488USpaCfcIpiD
+         r1N4sCAQzcrElcPhhfYFdU+BXYBCYQiSxV5qk20aREPLdH5jJVNQ//qOjCMcuD6N1BPI
+         jTGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758557483; x=1759162283;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DEnMMyTPzSbYjCuENNMIPA0pMqJ+aV1qFH9XDih+9hQ=;
+        b=wmlzj9WUXOVFOZ3G22p0nSoGPdRcZj3eO5SCdYVkn5vWwBb6EUiXnFqgCKvw4yilRw
+         K7iFylKto3qEvf8covndnhdlhvFrZtyL0VtJRiO4E5QTtOG1NDEUz+b+ySbhWxtZc8Bp
+         93OTjHO7+x12lgXLVnX/WYmCiN1BjI9N5gdxpZGgHpVbCIDTQGLGnvjjOVyQcHouscdI
+         zZnvMFxxdNKpKBEXq4RnCWsuNlEIi4XfLgr7q9WA72bNLyZtvteHiHaMyo5XkFwxZpCd
+         fcdB6RK6iIWfrOFPPPgJQUvc2XwsDs/COz9BPcS2QxGm5PY5K68/w3FY4IeV05xQPTzD
+         b13g==
+X-Forwarded-Encrypted: i=1; AJvYcCUOzS3VbUzpXCK/BjbtD5rfD/9ZNDGob7CZeFLUgAG4vjlSUHBg1ttoHSOMPhw4Uam6dd38pa1a5Ik3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTNTUJC3MHhxxRMODEhU0018S2I57KqZbQrSGrIRJpWLSN12zI
+	3J63tPvaVJSGDOtlwzUUmR3dOER4lLnYRHPq0NSb/vw858XVBC6yV+wK
+X-Gm-Gg: ASbGncuCvm5hFnTslhNoKe7W+qSnS5Jo38yGWMXAXAKlu7FsQOPWp+9VjUMxZ0omvHF
+	Y60fGoyIONemT5TsnMh8jUFH9XmxlwlYy4NDxV+lTxQOOqoKtiENAGJ5+LHcnZtgWBzfd0MsUpf
+	YyGmaHopjVojYU9TEleA8t6DpWEzreHyoiuCJwS3MxFAwPJSYtOB9/lAlEYF5wPlEb0uqCD7syH
+	zhKGGdtzobxouA8ED/36CvklXl5/7xkeB8Bg4GfNgo4u+RWGjdmEzO1zXMIxfJl7txslAvlfwYD
+	iWlV5JJAamWFS0IGkCEqVMWACZpCVHUqTnbin1SIY4lAUBmUhYM4t9MvhdUTX1D5N1givyB9Koy
+	++atX4Pbqt5fFhmZFlinVjv8OY3PG+2fcEp8ID+LQ1XMkUQBCbJWu3v3fOFjWGV/IBFqNxL9IZB
+	nwQVoLwA==
+X-Google-Smtp-Source: AGHT+IGdiz7k8V0AhAdxhfd+pKps/rRfo1454RdG9IyhVYMPnmXBEYKoLxSXpCioAD2M8iGpREQWoQ==
+X-Received: by 2002:a05:600c:3b20:b0:45b:9912:9f30 with SMTP id 5b1f17b1804b1-467ead6730bmr108706325e9.6.1758557482842;
+        Mon, 22 Sep 2025 09:11:22 -0700 (PDT)
+Received: from Lord-Beerus (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46de4d67625sm31370685e9.16.2025.09.22.09.11.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 09:11:22 -0700 (PDT)
+Date: Mon, 22 Sep 2025 18:11:20 +0200
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [RFC] arm64: dts: freescale: imx93-var-som: Align dts adding missing
+ components
+Message-ID: <aNF1KOCs0eHL1Njb@Lord-Beerus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi Barosz,
+Hi all,
 
-On Mon, 22 Sep 2025 18:33:49 +0300
-Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+the current device tree for the i.MX93 VAR-SOM is incomplete. 
+In particular, several peripherals that are present on the hardware 
+are not yet described, such as:
 
-> On Mon, 22 Sep 2025 17:31:45 +0200, Herve Codina
-> <herve.codina@bootlin.com> said:
-> > Hi Bartosz,
-> >
-> > On Mon, 22 Sep 2025 16:22:14 +0200
-> > Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> >  
-> >> On Thu, Sep 18, 2025 at 12:40 PM Herve Codina (Schneider Electric)
-> >> <herve.codina@bootlin.com> wrote:  
-> >> >
-> >> > Add GPIO controllers (Synosys DesignWare IPs) available in the
-> >> > r9a06g032 (RZ/N1D) SoC.
-> >> >
-> >> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
-> >> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >> > Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >> > ---  
-> >>
-> >> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>  
-> >
-> > I have just sent the v4 iteration.
-> >
-> > This patch has not been modified in v4.
-> >
-> > Can you add your 'Reviewed-by' in the v4 series?
-> >  
-> 
-> Sure, done.
+  - audio codec
+  - PMIC
+  - WiFi + Bluetooth module
 
-I have seen your 'Reviewed-by' in v4 but on patch 8 ("ARM: dts: r9a06g032:
-Add support for GPIO interrupts").
+My plan is to align the DTS with the actual hardware by adding these 
+missing nodes.
 
-Maybe this is correct but here (v3) your 'Reviewed-by' in on patch 5 ("ARM: dts:
-r9a06g032: Add GPIO controllers").
+Before preparing the patches, I would like to ask for your advice:  
+should I send one patch that performs the full DTS alignment (describing the 
+patch as an alignemnt of the dts with the actual hardware), or would 
+you prefer a patch series with one patch per peripheral (e.g. one for 
+codec, one for PMIC, one for WiFi/BT, etc.)?
 
-This exact same patch 5 exists also in v4.
+I will do the same with the other Variscite SOMs and Carrier Boards
+
+Thanks for your guidance.
 
 Best regards,
-Hervé
+Stefano
 
