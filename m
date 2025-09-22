@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-220205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B675B9325E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:54:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B92B9326A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:56:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5007B1907DEE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:54:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47B6016691C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF1B2F49E3;
-	Mon, 22 Sep 2025 19:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D98530CD80;
+	Mon, 22 Sep 2025 19:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FfSJnZgM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qUmQ/xhS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6201D2DEA9D;
-	Mon, 22 Sep 2025 19:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4A82E2847;
+	Mon, 22 Sep 2025 19:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758570836; cv=none; b=pom09LmWH7IBQNaHRK5TxN85I8vMGdhPH15gA25kIu5Hm+LSL/afnxpsThxtUYpjO/OcFJzFUBdWcw2i/Ip0Xq91/VEmGkxuhcNnFZ6qv5UmnwWlZVzPHAWaluJM2vY4s8CJjVHL5UkThDoRcYAi4PDZD4i1V5xqOMZ7h6vFyF8=
+	t=1758570963; cv=none; b=HOHYFrb/3+8zfOf0IVcIlkf1yVtYa9o5OR389+R0wl+40cgaBuJp2C7GklsT11pAmO+8DsEJbNobvcqOsRGVQ3MOu7lZ5y40JcYD7HL+XtR/TQ6Y7maKAvcFaisBFTjQnJCOxRPSUvMdc90K7ZSb9SVmv95HCeVSC830ZPQljd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758570836; c=relaxed/simple;
-	bh=JaOkQ3CL5j84b3sEHTMILLeyb7louIBqflmOtWnUrYE=;
+	s=arc-20240116; t=1758570963; c=relaxed/simple;
+	bh=wrKLzg8JVJv0MU+Akem4rxVGFTstG95SrVxzXNpDs8o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dN2vefOrKp8fixxxksNuh4t2z6DhVq9yJ/wf1GH/P8nwgispThoMQyO74MdjR34x6EnY60AkYleLA0FP7gHWMsdmMtkPn0LLyA35rkqxSPjQ/KgMrF43Yb5kvymXPt85RhWr5/Q04zIiyBrMC6nq+6lReEcxPQ+/BSqthJk6Ovc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FfSJnZgM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46C45C4CEF5;
-	Mon, 22 Sep 2025 19:53:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m75Hq3PVXYDFwat3XzP+9gH2Ibc7sMKnxiMuzcvZSN4bOWVhmlqXoKD3/o4tC2aGi1pVRukln3wi3b+W8Ox8DJtLomd2DmamWXwcFQRZ2c3KcTJIDWgb+SJtEs/SgfNmkTCyYmREfN8Q3+r8GyrM5UOEVkbjNln1ffA1lcnbUp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qUmQ/xhS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2391C4CEF0;
+	Mon, 22 Sep 2025 19:56:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758570835;
-	bh=JaOkQ3CL5j84b3sEHTMILLeyb7louIBqflmOtWnUrYE=;
+	s=k20201202; t=1758570962;
+	bh=wrKLzg8JVJv0MU+Akem4rxVGFTstG95SrVxzXNpDs8o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FfSJnZgMo9fg9QT8eg+mKuHHHbEKj6Z8TLHSLxLGYzdupZyObeF4tQPB0Ec9cJzpE
-	 sv6hAia69N2imXYz7yyk5QCiJ5T9zq6+3AqgvQIhw04YAlg6pj30r96ol3XjV/JLKT
-	 83jEDrMDM/Kz6OOLmyzOjaL051Y8FjhydkjkKm/QuPfoOLpaLpH97su+CSyEV/8ONx
-	 vfh+K15q7OM4Ksx7IGFrLaCQgmM3Vi6+OM7R47zAsug2v/5jY/plVCXmYkJEpwssY3
-	 x1uTpESIY2K7QrgGRH8ZX/AASjScxuwcqSZFxt7fh8cPrLzv/iOXW1PyyfbDDVq0bi
-	 XvaxzrvEF4zUQ==
-Date: Mon, 22 Sep 2025 14:53:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shubhi Garg <shgarg@nvidia.com>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
-Message-ID: <20250922195354.GA1065946-robh@kernel.org>
-References: <20250919135950.10403-1-shgarg@nvidia.com>
+	b=qUmQ/xhSPD8FnkreADlNy1kDy8UtVNVWXtjiuFHeJ5VhVx01MoYBlYAexm0cbS1of
+	 3sBttZwQYhLajKKgD500EeXcQCl0+aLPCynaD0uE6uqwXbit44EgE05suE+MFyua88
+	 o/biKRRfSrXBlD360yMr5BOOCy3KArOpzFLYoicyl7WrTlyzZPh3/Uz5PR3UaMBClg
+	 AghjOLkOBdVtsQstlsclirzJKpRTN7egdpvRrzpkj7siRf1s6KlzRsIpFGnMIxlWSk
+	 LsfbnT4M4pdk34c5AtfgVPzCbvZiwAFf7nxOtvbzIcbgoiYBNGrvnFda50NKD+TWN6
+	 F8OHhIeKiMY6g==
+Date: Mon, 22 Sep 2025 14:56:01 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: lpieralisi@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kwilczynski@kernel.org,
+	bhelgaas@google.com, conor+dt@kernel.org, andersson@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	mani@kernel.org, krzk+dt@kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom,pcie-x1e80100: Set clocks
+ minItems for the fifth Glymur PCIe Controller
+Message-ID: <175857096123.1104979.8944000757958543283.robh@kernel.org>
+References: <20250919142325.1090059-1-pankaj.patil@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,121 +61,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919135950.10403-1-shgarg@nvidia.com>
+In-Reply-To: <20250919142325.1090059-1-pankaj.patil@oss.qualcomm.com>
 
-On Fri, Sep 19, 2025 at 01:59:50PM +0000, Shubhi Garg wrote:
-> Add device tree bindings for NVIDIA VRS (Voltage Regulator Specification)
-> RTC device. NVIDIA VRS is a Power Management IC (PMIC) that implements a
-> power sequencing solution with I2C interface. The device includes RTC
-> which provides functionality to get/set system time, retain system
-> time across boot, wake system from suspend and shutdown state.
 
-I only see this patch. The threading of this is broken.
-
+On Fri, 19 Sep 2025 19:53:25 +0530, Pankaj Patil wrote:
+> From: Qiang Yu <qiang.yu@oss.qualcomm.com>
 > 
-> Supported platforms:
-> - NVIDIA Jetson AGX Orin Developer Kit
-> - NVIDIA IGX Orin Development Kit
-> - NVIDIA Jetson Orin NX Developer Kit
-> - NVIDIA Jetson Orin Nano Developer Kit
+> On the Qualcomm Glymur platform, the fifth PCIe host is compatible with
+> the DWC controller present on the X1E80100 platform, but does not have
+> cnoc_sf_axi clock. Hence, set minItems of clocks and clock-names to six.
 > 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 > ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> v6:
-> - compatible name fixes to "nvidia,vrs-10"
-> - changed dtb node name to pmic@3c
-> 
-> v5:
-> - moved device tree bindings from mfd to rtc
-> - changed dtb node name to rtc@3c
-> - changed compatible string to "nvidia,vrs10-rtc"
-> 
-> v4:
-> - no changes
-> 
-> v3:
-> - fixed device tree node name to generic "pmic@3c"
-> - fixed indentation
-> 
-> v2:
-> - fixed copyrights
-> - updated description with RTC information
-> - added status node in dtb node example
-> 
->  .../bindings/rtc/nvidia,vrs10-rtc.yaml        | 59 +++++++++++++++++++
 
-Filename should match compatible string.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nvidia,vrs10-rtc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nvidia,vrs10-rtc.yaml b/Documentation/devicetree/bindings/rtc/nvidia,vrs10-rtc.yaml
-> new file mode 100644
-> index 000000000000..e8f3c25607e0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/nvidia,vrs10-rtc.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/nvidia,vrs10-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Voltage Regulator Specification Real Time Clock
-> +
-> +maintainers:
-> +  - Shubhi Garg <shgarg@nvidia.com>
-> +
-> +description:
-> +  NVIDIA VRS-10 (Voltage Regulator Specification) is a Power Management IC
-> +  (PMIC) that implements a power sequencing solution with I2C interface.
-> +  The device includes a real-time clock (RTC) with 32kHz clock output and
-> +  backup battery support, alarm functionality for system wake-up from
-> +  suspend and shutdown states, OTP memory for power sequencing configuration,
-> +  and an interrupt controller for managing VRS events.
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,vrs-10
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@3c {
-> +            compatible = "nvidia,vrs-10";
-> +            reg = <0x3c>;
-> +            interrupt-parent = <&pmc>;
-> +            interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +        };
-> +    };
-> -- 
-> 2.43.0
-> 
 
