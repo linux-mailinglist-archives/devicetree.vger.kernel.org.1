@@ -1,363 +1,88 @@
-Return-Path: <devicetree+bounces-220196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A163CB92BA2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:06:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DB4B92C1E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:18:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89C871905540
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:06:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AA942A51C3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C656119A288;
-	Mon, 22 Sep 2025 19:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7493164B4;
+	Mon, 22 Sep 2025 19:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LcWiGJof"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iWhkh865"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC36D3164C5
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 19:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1B32D739F;
+	Mon, 22 Sep 2025 19:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758567968; cv=none; b=HNIreWqIqv0iwH8b9Z6+iJq3IQFFweSlTkyMjBYOvAO8y/5NGBjy6OpQA1YGFvqcrCBQr3Mrnq2tKQJMS6VHoKUWxp4U2tByFqhcATrdwQpxbrAIknh/xOOlWyqL1b7vfVMiNJuOcrz8/ccuu9WVDDPq0bWx4DTzR5FKDDN2M50=
+	t=1758568683; cv=none; b=f+5mKKydtPkwIbXgzEN0k4PBI5M9TuSyh1DTAdW5xVnhTfq2Ah9Tr5Y7VKvUeQoyCIBpiNk3j63L3qSJ5u+XYgl0T1hQNBJCQ6XFHfQB6lK5MpQHGtRhINYpO0/jTsPFg7B0SKHfCSHuz9meJSbCcTsLO8/xda58cIG9VVfxzNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758567968; c=relaxed/simple;
-	bh=aFWXLiivJ4YUzHUPxpWbeSvezEsm51bwTeklbJQIcYA=;
+	s=arc-20240116; t=1758568683; c=relaxed/simple;
+	bh=zCc9tNG1q472U6/8gOeRaAEy7Q3tksNlUbazLFehR+A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b3xjR5YQky09myFHzh02ZFcb+KNwz4KlGUkoz+Cb5nPpk81GTwkXZneoUeJTflZ03PRwN+MHXjN1PiO0oOYbHKQuVaROJ8o+XGROYmQVljNZYfovMRRxEVAJJ+vfkL2UGns/fSDK+NpfMCQnvjMTT4L+adHLfXa+oWz42dkvdoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LcWiGJof; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-468973c184bso17954145e9.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 12:06:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758567965; x=1759172765; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=xfkY5AXvD0ZvDWTOWzvtBozCzcTw2ZSBgWbw8Ju3dcg=;
-        b=LcWiGJofrtnq5/bRmWEFYgOAdl+fpACZajYlNS/jGSXsWm+7fq5cbf3BDdaTPSqfaM
-         f6JK8EwPcP7zMz4wfGAo0xnhi5KlBwG/VIErv6DuV2fIDak5Zu9uR8nGyi2N1h8A+/d1
-         +eliyOHNpVNUq1uDsvgZ9OVBt7ZKwx6obHNWyrwr16CI1lL4amEF+Rxq9WnyDKXGOnXf
-         Gvtnj7xXKfmXwCAysl3xxw2ThmZISVm75HXGV8AEHL1tkXjmKEU1O6XoQe6quWFTgwc4
-         cef+ou5O2eXdmn4laYUu1vhQRMvwJGj9OhDajlJNNLof/nR87M//y/Ob8FEa7GLKoDxo
-         CyIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758567965; x=1759172765;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xfkY5AXvD0ZvDWTOWzvtBozCzcTw2ZSBgWbw8Ju3dcg=;
-        b=uh0pOuvBbOZ05v7hzxKyVKzAx6hA+nQlqTXctdbfTDLukG/CE/JxqDTrv3Ybuxz7Zv
-         1fyLp9fq+FqJnXojyTtckwJ/wQGMPFZeDJn9HOEW0OTnIvACj9F7WvYrbS6H8FfN/SoO
-         PRrV4Yjx0HSJE4xhSujMG2O6/D1djdiboW+MAAagFhFFL7TWjXEf/074YJX6UwHotb6b
-         n4xDalCrrbhDp5tBAkLQkX9kERApHMydkgjTVdekTLDcYSxBj5oF64cSrCcJ4XsteFug
-         N9gXCgr62P3yeVHxOXmMkbwphnt0QaZBWtx793feVNRS+Ba6UUgBQygryn0CDUY/VY/5
-         n/7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUPm76Bgy/EpT3kaO3yjTvT3m4T0FyfQxt54KAA+NOKY5x+j4cfOc20MZS54LQlMgO7rxxqy6eXE5rC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSQAn935ldOmojJff3gLfVFDCevTMk8N7z1sXuLXqUMwlALE1N
-	gIQfeUPEvBjsdFVv0o6CQn+c3b1Ocwlea5drrTGhhMkm8b5mFX1dVl17
-X-Gm-Gg: ASbGnctS5hF/ZBfzrif+QAIDdy6s7IfRG4tcDStKNlwapOBNYvdiGDP1bG2vK9DJRlY
-	YVTCC0sco1WiaXvlwBtUF3cKhhVYA5WZlNuWK2q9x00Hztw7v+2aMezid7fxQnOnqcEpJLaBoBC
-	SM7/zp9geiF+viQ1llEE4KzISGaTfUSSdqFhkV/r4EKYARMvwGa8yaxJmqtKVF5A+3fsyxWqhKH
-	Eqw4ierx5liqH3YURz/CIZUNocFgtnawGTTR5TrGUHPxb6PvGCrVj57BmM8570g6Yssm8mZfu6e
-	dpEdYF0b0Vpij6zRMDzzv3XidNtHsMvylPuC5eAn5q0p90XXIY4USQQJCb5UmuE0qEshWa8IRK2
-	4lnFCtiXg7WvjhVLzHaZKQ2cQDfiwMYIdnfM2jsrll3NkPD0J9w9hVRkOgf9H9zwoNik=
-X-Google-Smtp-Source: AGHT+IHiYtsZgQnnhYurpBqcCwqkq3VPjSs12XfFd0dBTlEzJMi+R4rGhaLrT5UZpoVZwHHVfGt4pA==
-X-Received: by 2002:a05:600c:6288:b0:46d:996b:8293 with SMTP id 5b1f17b1804b1-46e1dab26ccmr133545e9.22.1758567964495;
-        Mon, 22 Sep 2025 12:06:04 -0700 (PDT)
-Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.163.188.178])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46d1c97a87csm58186295e9.20.2025.09.22.12.06.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Sep 2025 12:06:04 -0700 (PDT)
-Date: Mon, 22 Sep 2025 21:05:49 +0200
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux@roeck-us.net,
-	rodrigo.gobbi.7@gmail.com, naresh.solanki@9elements.com,
-	michal.simek@amd.com, grantpeltier93@gmail.com,
-	farouk.bouabid@cherry.de, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH 2/3] iio: mpl3115: add support for DRDY interrupt
-Message-ID: <20250922190549.22ly3ekwuflgbga7@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250921133327.123726-1-apokusinski01@gmail.com>
- <20250921133327.123726-3-apokusinski01@gmail.com>
- <073de1da8b8f04c037f267765235b3334941844f.camel@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFf+mh2RgtApK+IT4W6V4nAlIuAAWnYBAkvxghgy90qdrt6UyDK/y4OhdCTYwJJC15SqYdeeNHAAQAzhU82UG5W5WRRxdx/nPN+emAJg3JXPjsr6zQ8l3DFi6aZCLXOGbhuiQcE04HHu2cQy9geyYS1UOeKwn3ubWRQjabABCQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iWhkh865; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DBFC4CEF0;
+	Mon, 22 Sep 2025 19:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758568682;
+	bh=zCc9tNG1q472U6/8gOeRaAEy7Q3tksNlUbazLFehR+A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iWhkh865UFh80V8VI//H0GWPdPaSpAvOnQ2i1FEOgSy5NadL3MfiHV49Rpkt/+nbJ
+	 hLct6KggwAgo2X7kIj44Z62PYQo2SaepyOy7nVwVdDPNlQRs0GKFo9C+i3Bw/tYDSL
+	 x4bt3ZnwBWma8vpVSr67k7eLThE2p42zKVJK24Mps8Eg8bfaUweyaDWZW8AHW10IOM
+	 qjcZ11ZoHhJ4P7N0xebWV6ecpvoDJW4/jvadswqXNKarTvKTyll9lvhVJd5Dz5xYOY
+	 bC87E547PWU7zzo0xwjmplafPSzclp02UNZfcQC5/MpUJGWbDJpJgYlVEjsrgHf3B6
+	 q/X9voTgzbwQw==
+Date: Mon, 22 Sep 2025 14:18:01 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Yang <mmyangfl@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next v10 1/5] dt-bindings: ethernet-phy: add reverse
+ SGMII phy interface type
+Message-ID: <175856868047.835812.3464607742164476820.robh@kernel.org>
+References: <20250919094234.1491638-1-mmyangfl@gmail.com>
+ <20250919094234.1491638-2-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <073de1da8b8f04c037f267765235b3334941844f.camel@gmail.com>
+In-Reply-To: <20250919094234.1491638-2-mmyangfl@gmail.com>
 
-On Mon, Sep 22, 2025 at 10:15:19AM +0100, Nuno Sá wrote:
-> On Sun, 2025-09-21 at 15:33 +0200, Antoni Pokusinski wrote:
-> > MPL3115 sensor features a "data ready" interrupt which indicates the
-> > presence of new measurements.
-> > 
-> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> > ---
-> >  drivers/iio/pressure/mpl3115.c | 167 ++++++++++++++++++++++++++++++++-
-> >  1 file changed, 162 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl3115.c
-> > index 579da60ef441..cf34de8f0d7e 100644
-> > --- a/drivers/iio/pressure/mpl3115.c
-> > +++ b/drivers/iio/pressure/mpl3115.c
-> > @@ -7,7 +7,7 @@
-> >   * (7-bit I2C slave address 0x60)
-> >   *
-> >   * TODO: FIFO buffer, altimeter mode, oversampling, continuous mode,
-> > - * interrupts, user offset correction, raw mode
-> > + * user offset correction, raw mode
-> >   */
-> >  
-> >  #include <linux/module.h>
-> > @@ -17,26 +17,45 @@
-> >  #include <linux/iio/trigger_consumer.h>
-> >  #include <linux/iio/buffer.h>
-> >  #include <linux/iio/triggered_buffer.h>
-> > +#include <linux/iio/trigger.h>
-> >  #include <linux/delay.h>
-> > +#include <linux/property.h>
-> >  
-> >  #define MPL3115_STATUS 0x00
-> >  #define MPL3115_OUT_PRESS 0x01 /* MSB first, 20 bit */
-> >  #define MPL3115_OUT_TEMP 0x04 /* MSB first, 12 bit */
-> >  #define MPL3115_WHO_AM_I 0x0c
-> > +#define MPL3115_INT_SOURCE 0x12
-> > +#define MPL3115_PT_DATA_CFG 0x13
-> >  #define MPL3115_CTRL_REG1 0x26
-> > +#define MPL3115_CTRL_REG3 0x28
-> > +#define MPL3115_CTRL_REG4 0x29
-> > +#define MPL3115_CTRL_REG5 0x2a
-> >  
-> >  #define MPL3115_DEVICE_ID 0xc4
-> >  
-> >  #define MPL3115_STATUS_PRESS_RDY BIT(2)
-> >  #define MPL3115_STATUS_TEMP_RDY BIT(1)
-> >  
-> > +#define MPL3115_CTRL_INT_SRC_DRDY BIT(7)
-> > +
-> > +#define MPL3115_PT_DATA_EVENT_ALL (BIT(2) | BIT(1) | BIT(0))
-> > +
-> >  #define MPL3115_CTRL_RESET BIT(2) /* software reset */
-> >  #define MPL3115_CTRL_OST BIT(1) /* initiate measurement */
-> >  #define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
-> >  #define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling */
-> >  
-> > +#define MPL3115_CTRL_IPOL1 BIT(5)
-> > +#define MPL3115_CTRL_IPOL2 BIT(1)
-> > +
-> > +#define MPL3115_CTRL_INT_EN_DRDY BIT(7)
-> > +
-> > +#define MPL3115_CTRL_INT_CFG_DRDY BIT(7)
-> > +
-> >  struct mpl3115_data {
-> >  	struct i2c_client *client;
-> > +	struct iio_trigger *drdy_trig;
-> >  	struct mutex lock;
-> >  	u8 ctrl_reg1;
-> >  };
-> > @@ -164,10 +183,12 @@ static irqreturn_t mpl3115_trigger_handler(int irq, void
-> > *p)
-> >  	int ret, pos = 0;
-> >  
-> >  	mutex_lock(&data->lock);
-> > -	ret = mpl3115_request(data);
-> > -	if (ret < 0) {
-> > -		mutex_unlock(&data->lock);
-> > -		goto done;
-> > +	if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
-> > +		ret = mpl3115_request(data);
-> > +		if (ret < 0) {
-> > +			mutex_unlock(&data->lock);
-> > +			goto done;
-> > +		}
-> >  	}
-> >  
-> >  	if (test_bit(0, indio_dev->active_scan_mask)) {
-> > @@ -228,10 +249,142 @@ static const struct iio_chan_spec mpl3115_channels[] =
-> > {
-> >  	IIO_CHAN_SOFT_TIMESTAMP(2),
-> >  };
-> >  
-> > +static irqreturn_t mpl3115_interrupt_handler(int irq, void *private)
-> > +{
-> > +	struct iio_dev *indio_dev = private;
-> > +	struct mpl3115_data *data = iio_priv(indio_dev);
-> > +	int ret;
-> > +
-> > +	ret = i2c_smbus_read_byte_data(data->client, MPL3115_INT_SOURCE);
-> > +	if (ret < 0)
-> > +		return IRQ_HANDLED;
-> > +
-> > +	if (!(ret & MPL3115_CTRL_INT_SRC_DRDY))
-> > +		return IRQ_NONE;
-> > +
-> > +	iio_trigger_poll_nested(data->drdy_trig);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> > +static int mpl3115_set_trigger_state(struct iio_trigger *trig, bool state)
-> > +{
-> > +	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-> > +	struct mpl3115_data *data = iio_priv(indio_dev);
-> > +	int ret;
-> > +	u8 ctrl_reg1 = data->ctrl_reg1;
-> > +
-> > +	if (state)
-> > +		ctrl_reg1 |= MPL3115_CTRL_ACTIVE;
-> > +	else
-> > +		ctrl_reg1 &= ~MPL3115_CTRL_ACTIVE;
-> > +
-> > +	guard(mutex)(&data->lock);
-> > +
+
+On Fri, 19 Sep 2025 17:42:26 +0800, David Yang wrote:
+> The "reverse SGMII" protocol name is a personal invention, derived from
+> "reverse MII" and "reverse RMII", this means: "behave like an SGMII
+> PHY".
 > 
-> As Andy pointed out, you should have a precursor patch converting the complete
-> driver to use the cleanup logic.
+> Signed-off-by: David Yang <mmyangfl@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Another nice cleanup you could do (if you want of course) would be to get rid of
-> mpl3115_remove().
-> 
-Will add the precursor patch in v2
-> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
-> > +					ctrl_reg1);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG4,
-> > +					state ? MPL3115_CTRL_INT_EN_DRDY :
-> > 0);
-> > +	if (ret < 0)
-> > +		goto reg1_cleanup;
-> > +
-> > +	data->ctrl_reg1 = ctrl_reg1;
-> > +
-> > +	return 0;
-> > +
-> > +reg1_cleanup:
-> > +	i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
-> > +				  data->ctrl_reg1);
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct iio_trigger_ops mpl3115_trigger_ops = {
-> > +	.set_trigger_state = mpl3115_set_trigger_state,
-> > +};
-> > +
-> >  static const struct iio_info mpl3115_info = {
-> >  	.read_raw = &mpl3115_read_raw,
-> >  };
-> >  
-> > +static int mpl3115_trigger_probe(struct mpl3115_data *data,
-> > +				 struct iio_dev *indio_dev)
-> > +{
-> > +	struct fwnode_handle *fwnode;
-> > +	int ret, irq, irq_type;
-> > +	bool act_high, is_int2 = false;
-> > +
-> > +	fwnode = dev_fwnode(&data->client->dev);
-> > +	if (!fwnode)
-> > +		return -ENODEV;
-> > +
-> 
-> And to add to Andy's review, fwnode_irq_get_byname() will give you an error
-> anyways if !fwnode.
-> 
-> > +	irq = fwnode_irq_get_byname(fwnode, "INT1");
-> > +	if (irq < 0) {
-> > +		irq = fwnode_irq_get_byname(fwnode, "INT2");
-> > +		if (irq < 0)
-> > +			return 0;
-> > +
-> > +		is_int2 = true;
-> > +	}
-> > +
-> > +	irq_type = irq_get_trigger_type(irq);
-> > +	switch (irq_type) {
-> > +	case IRQF_TRIGGER_RISING:
-> > +		act_high = true;
-> > +		break;
-> > +	case IRQF_TRIGGER_FALLING:
-> > +		act_high = false;
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ret = i2c_smbus_write_byte_data(data->client, MPL3115_PT_DATA_CFG,
-> > +					MPL3115_PT_DATA_EVENT_ALL);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	if (!is_int2) {
-> > +		ret = i2c_smbus_write_byte_data(data->client,
-> > +						MPL3115_CTRL_REG5,
-> > +						MPL3115_CTRL_INT_CFG_DRDY);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +	if (act_high) {
-> > +		ret = i2c_smbus_write_byte_data(data->client,
-> > +						MPL3115_CTRL_REG3,
-> > +						is_int2 ? MPL3115_CTRL_IPOL2
-> > :
-> > +							 
-> > MPL3115_CTRL_IPOL1);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	data->drdy_trig = devm_iio_trigger_alloc(&data->client->dev,
-> > +						 "%s-dev%d",
-> > +						 indio_dev->name,
-> > +						 iio_device_id(indio_dev));
-> > +	if (!data->drdy_trig)
-> > +		return -ENOMEM;
-> > +
-> > +	data->drdy_trig->ops = &mpl3115_trigger_ops;
-> > +	iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
-> > +	ret = iio_trigger_register(data->drdy_trig);
-> 
-> devm_iio_trigger_register()
-> 
-> - Nuno Sá
->
-Will fix in v2
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	indio_dev->trig = iio_trigger_get(data->drdy_trig);
-> > +
-> > +	return devm_request_threaded_irq(&data->client->dev, irq,
-> > +					 NULL,
-> > +					 mpl3115_interrupt_handler,
-> > +					 IRQF_ONESHOT,
-> > +					 "mpl3115_irq",
-> > +					 indio_dev);
-> > +}
-> > +
-> >  static int mpl3115_probe(struct i2c_client *client)
-> >  {
-> >  	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-> > @@ -271,6 +424,10 @@ static int mpl3115_probe(struct i2c_client *client)
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
-> > +	ret = mpl3115_trigger_probe(data, indio_dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	ret = iio_triggered_buffer_setup(indio_dev, NULL,
-> >  		mpl3115_trigger_handler, NULL);
-> >  	if (ret < 0)
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
