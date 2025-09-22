@@ -1,55 +1,93 @@
-Return-Path: <devicetree+bounces-220193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86CAFB929CA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:36:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E253B92B6C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 21:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C054D4447B1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 18:36:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DAD190639E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232AD31A54A;
-	Mon, 22 Sep 2025 18:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B023331A56C;
+	Mon, 22 Sep 2025 19:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Rq8DOSPV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RiuqbOlg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC909315D46;
-	Mon, 22 Sep 2025 18:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D0319A288
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 19:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758566165; cv=none; b=ci887V1wrtPxt1gVzGqxHkY5v9ym33DYq1cJTcGgneZskXs8jr3oa3B2AOz6rxkeg6cRpbrjNO7VN8G3ZOQJNHZy15YynkdLgyB//0SyBBLNTIpMqZJRhGuzEHAudBrbnxHAYOeMWzii1oftP37LRj/Go23OAt/fjwJ2GLSL1CE=
+	t=1758567695; cv=none; b=bl0Y6PzWp5yaCx7BoqFSJC9neoWca/tfNXWd+Tk01wfwr74mQJhtVo2fVta9ti5SeJyAmCrifdxlgDKKBnhrwgi4AMkzEQ3LM8wRATSscLH8Wop6f6IkxEYqUlvvQdOYjjXxLghY1m4uPqhNXBrAsFB6LyANArntGhSQjL2erwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758566165; c=relaxed/simple;
-	bh=2cJWyVyj/GX3tOPewGqEX910nRTlTV+vvZm81KH82aE=;
+	s=arc-20240116; t=1758567695; c=relaxed/simple;
+	bh=v+AauHexqbsx+kMHbhzLmDqnPPDd/nh8wvUhdAuAo2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z5ttdwfFnjNWVvu1reDGUnvuvrv7NYcpEAj7QhCCO+ZxtfISs6lWT+8AYBqkG7TbIW8MiLU7SZqP1MD9F+PjhcLTL2cl0HyWwyEtNUk3WPZrQVwEhAS5JhNW0YE1DIZcuZewTsu4bygVNoOO4vnXVf3wK1Jd28QxZkDzHw8bLnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Rq8DOSPV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24C0C4CEF5;
-	Mon, 22 Sep 2025 18:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1758566163;
-	bh=2cJWyVyj/GX3tOPewGqEX910nRTlTV+vvZm81KH82aE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rq8DOSPViLcz6EEOWINWJHoOxVzI7qiZeO5lm1nz5oFG3NLFO5KgCjQAs4JV8AEpl
-	 MG93z+Q4kXzQvTOb6GEmAupmbWLcnYujpSAwu3RyAzzUsBiXiKaYtvBazT1qYM2K8o
-	 23BL4TZk03pTUUSqjILZbM15UVN2peTMwPLU4NTI=
-Date: Mon, 22 Sep 2025 20:36:01 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: lee@kernel.org, pavel@kernel.org, rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v14 0/4] leds: add new LED driver for TI LP5812
-Message-ID: <2025092259-stranger-affecting-1c75@gregkh>
-References: <2025091113-mournful-smirk-8e03@gregkh>
- <20250922181341.10761-1-trannamatk@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=O57IupfhG37QU1y6i7pNVzXw0oa4aHZ2VMNcSQl3HggavBBRR8+3QkZuKC+TpU1dxim+uzvIaURvG929HuooIejUJ2W2cxAse+Kqkplm4QwUbF3rxiI94Kw5DPmFDwngPicTM1hmoet+SyelLoRad7QGDf+kWyTZGVS3Ba8vhjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RiuqbOlg; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46b303f755aso20515295e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 12:01:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758567692; x=1759172492; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ig+SGte1YlJLE1MPKQYUa5gbYQHEaBms1N5501hGvqU=;
+        b=RiuqbOlgfp42KZzQgkifQt7JEJM9wlyltLH9yXu9xaFMopger7qPMiJFAqRaTFMTjS
+         E7HnHwnRshV/xxKaURjiI1SqhJxMnGCII7M5JUiY8TS/KLG9jEsJ6jsZ5drw2NeNHTYa
+         fe8QIkYs/BTvz1St1dO55Fr0EY0XWg5nkbWnKY3WcpIKQ9AX/hyKKO26fRs/K4cn4XRG
+         JIGGefH6CZNzbFi062h8HZbSqRD3OMlL4ZqKCQBYKcHG2F1s8CUH/6HGLRyaEZd60JRV
+         0iZ/Shv28ppWLFLDC0MuOUxBg1Vj9ajDnb0Yfh4RjkLyHEWqxHLLEQBf8loeHU9ixEaj
+         wM+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758567692; x=1759172492;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ig+SGte1YlJLE1MPKQYUa5gbYQHEaBms1N5501hGvqU=;
+        b=slnjs0cPbzYBb4IKRqA5zkrCs1I71y8zIv97+9pOp6dUi9vsEU8vBND2XGYngPUZEp
+         4FfgxbykJtFb7eyedbYEwBJ+kkhoyIlMQBNYXK2jbmndEjhOBq+IAusRHxP2xIrWu3PE
+         hZ3qqD2JK0+wX/RJpnXbW47zuOyM5gjMmM2aakXoGlr/ubkdHXWHOPJlZiSygPEM58fd
+         ErQeWu/jo6CX8rI8Z1+OiAjEXRgf+yywjEqtyzYzt+2jfEay7UaCDCUEtONvXG3IFjUC
+         Wrtme1w4RDtAObGxcCl2rP3WLn+Ob58FA/vfyhHovROPkZ5BBfw5UaEuJZihwYAd+nSf
+         lA5A==
+X-Forwarded-Encrypted: i=1; AJvYcCV24Tnm8T09cKOOOda/oFEzO7USzrRFy4+wNn+oKGIwx9PyTYH7FRUjWMdB3rkX0nEHhG6ZA8bcRENa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm9Z1Hy6AKkPLcOGAwSfwZpC69xe0+lPPVXJRwY8uXmDKJCDeu
+	diM5Jspt3wniAjWxmVCzBKwlhLckVu8s4FAPIsjqppWL/PDwCpQgXxt3
+X-Gm-Gg: ASbGncun5GTVloTR254LRcBlrr6J33ZhsQ7iLqy1fml5xmmL3hQplaYM/0TqU9v+pH4
+	f2r0TqcS1VrH6e8k/PJNZV+hGd/rQ9IFp9pOE0VxykfH5R6xtIWrTfQpVkhDMSSSiHDpNWm0d7P
+	XgcR4OJ0sVgfhzgbxW6uakygwRuAbTi+M6OzQJ1+qR+aNyDBDf+QQTDRoifY79CIE86D2zvBgcY
+	m4xnfEyrToss/HHY8SaWeDbs8/EppFbF8m8BicB9z3fkSLeTo3aWMImKKJdBg+1Kn4bm/JDZoqf
+	gcqFE+Vu7KntdlxGI3ObASE46+JSNjTsPoKBg+BSv9WjF8UdYcC90hg4kBfABUo29AAvouOG854
+	ua5/bPNuHFItn15VuFXq6xtmzyQyYoYO2+Dy7FcV6lCgAMYGHSG5XEEdx1Qnm8KEjhX0=
+X-Google-Smtp-Source: AGHT+IEk5XBqJgHzPIl46kgroy3/wNhJN7w0G9fck0gvkY8FvZdMAEzr6qKdAfpmL8ZbDrvtXCU1dw==
+X-Received: by 2002:a05:600c:350d:b0:45c:b6b1:29a7 with SMTP id 5b1f17b1804b1-46e1d98bf58mr151975e9.16.1758567691635;
+        Mon, 22 Sep 2025 12:01:31 -0700 (PDT)
+Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.163.188.178])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f64ad359sm244439725e9.22.2025.09.22.12.01.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 12:01:31 -0700 (PDT)
+Date: Mon, 22 Sep 2025 21:01:13 +0200
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux@roeck-us.net,
+	rodrigo.gobbi.7@gmail.com, naresh.solanki@9elements.com,
+	michal.simek@amd.com, grantpeltier93@gmail.com,
+	farouk.bouabid@cherry.de, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH 2/3] iio: mpl3115: add support for DRDY interrupt
+Message-ID: <20250922190113.xjqujtts7uu4cucg@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+References: <20250921133327.123726-1-apokusinski01@gmail.com>
+ <20250921133327.123726-3-apokusinski01@gmail.com>
+ <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,105 +97,272 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250922181341.10761-1-trannamatk@gmail.com>
+In-Reply-To: <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
 
-On Tue, Sep 23, 2025 at 01:13:41AM +0700, Nam Tran wrote:
-> On Thu, 11 Sep 2025, Greg KH wrote:
+On Sun, Sep 21, 2025 at 10:29:28PM +0300, Andy Shevchenko wrote:
+> On Sun, Sep 21, 2025 at 4:34 PM Antoni Pokusinski
+> <apokusinski01@gmail.com> wrote:
+> >
+> > MPL3115 sensor features a "data ready" interrupt which indicates the
+> > presence of new measurements.
 > 
-> > On Sun, Sep 07, 2025 at 11:09:40PM +0700, Nam Tran wrote:
-> > > This patch series adds initial support for the TI LP5812,
-> > > a 4x3 matrix RGB LED driver with autonomous engine control.
-> > > This version provides a minimal, clean implementation focused
-> > > on core functionality only. The goal is to upstream a solid
-> > > foundation, with the expectation that additional features can
-> > > be added incrementally in future patches.
-> > > 
-> > > The driver integrates with the LED multicolor framework and
-> > > supports a set of basic sysfs interfaces for LED control and
-> > > chip management.
-> > > 
-> > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> > 
-> > The sysfs api is really odd here.  WHy not do the same thing as this
-> > other controller recently submitted does:
-> > 	https://lore.kernel.org/r/20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de
+> ...
 > 
-> Thank you for the feedback!
-> I agree that consistency is important, and I've reviewed the patch you referenced.
+> >  #include <linux/module.h>
 > 
-> I also checked the LP5860 datasheet and noticed that its driver exposes sysfs entries
-> for configuring registers like `R_current_set`, `G_current_set`, and `B_current_set`.
-> Similarly, the LP5812 requires register-level configuration for operation.
+> >  #include <linux/iio/trigger_consumer.h>
+> >  #include <linux/iio/buffer.h>
+> >  #include <linux/iio/triggered_buffer.h>
+> > +#include <linux/iio/trigger.h>
+> >  #include <linux/delay.h>
 > 
-> In my driver, I've implemented the following sysfs attributes:
-> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/dev_config' - Configures drive mode and
-> scan order (Dev_Config_1 and Dev_Config_2 registers).
-> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/sw_reset' - Triggers a software reset of
-> the device (Reset register).
-> - '/sys/bus/i2c/devices/.../lp5812_chip_setup/fault_clear' - Clears fault status
-> (Fault_Clear register).
-> - '/sys/class/leds/led_<id>/activate' - Activate or deactivate the specified LED channel
-> in runtime (led_en_1, led_en_2 registers).
-> - '/sys/class/leds/led_<id>/led_current' - To change DC/PWM current level of each led
-> (Manual_DC_xx and Manual_PWM_xx registers).
-> - '/sys/class/leds/led_<id>/max_current' - To show max current setting (Dev_Config_0 register).
-> - '/sys/class/leds/led_<id>/lod_lsd' - To read lod, lsd status of each LED
-> (LOD_Status_0, LOD_Status_1, LSD_Status_0, LSD_Status_1 registers).
+> > +#include <linux/property.h>
 > 
-> These attributes map directly to LP5812 registers. I’ve kept the interface minimal and
-> focused only on essential functionality needed to operate the device.
+> This is like delay.h is misplaced. What we do here, we group generic
+> ones followed by subsystem (IIO) related ones, and this seems wrong in
+> this driver.
 > 
-> If any of these attributes seem unconventional or redundant, I’d appreciate clarification
-> so I can revise accordingly.
+> Can you rather move delay.h to be the first, and add property.h after
+> i2c.h followed by a blank line, so in the result it will be like
 > 
-> > but better yet, why does this need to be a kernel driver at all?  Why
-> > can't you just control this directly from userspace with a program
-> > there?
+> delay.h
+> i2c.h
+> module.h
+> property.h
+> ...blank.line...
+> iio/*.h
 > 
-> LP5812 is controlled via I2C, and its register map is non-trivial. Moving control to userspace
-> would require users to manually handle I2C transactions and understand the register layout,
-> which is error-prone and not user-friendly.
-
-So you write it once in a library, or in a userspace program, and it is
-done.  Don't expose these low-level things in a custom api that could be
-done in userspace instead.
-
-> Moreover, the driver integrates with the LED multicolor framework, allowing standardized control
-> via existing userspace tools. This abstraction is difficult to achieve reliably from userspace alone.
-
-But this is a custom api for the leds, not like any other one out there.
-So how would it integrate with anything else?
-
-> > For USB, we generally do not allow these types of crazy apis to be added
-> > to the kernel when controlling the device can be done from userspace.  I
-> > think the same thing can happen here too, right?
+> ...
 > 
-> USB devices benefit from standardized descriptors and interfaces, which reduce the need for custom
-> sysfs APIs. In contrast, LP5812 has no such standard interface, and some customization is necessary.
+Sure, will fix this in v2.
 
-Many USB devices do not benifit from that at all, you directly control
-them from userspace using vendor-specific apis.  Just like this device,
-nothing different just because it is an i2c device.
+> > +#define MPL3115_CTRL_INT_SRC_DRDY BIT(7)
+> > +
+> > +#define MPL3115_PT_DATA_EVENT_ALL (BIT(2) | BIT(1) | BIT(0))
+> 
+> Not sure I understand this definition in the following aspects:
+> 1) why is this disrupting the _CTRL_ definitions?
+> 2) why is this using BIT(x) and not respective definitions?
+> 3) why can't you use GENMASK() if you just select all bits in a
+> certain bitfield?
+> 
+> 
+1) I placed the definitions of the bits/masks in the order of the registers
+that they correspond to, i.e.
+  CTRL_INT_SRC_DRDY // bit in reg 0x12
+  PT_DATA_EVENT_ALL // bits in reg 0x13
+  CTRL_RESET        // bit in reg 0x14
 
-> I’m open to improving the sysfs interface or moving parts to another method if that’s more appropriate.
-> Please let me know which specific changes you’d recommend.
+Actually, the wrong name here is the INT_SRC_DRDY definition because it is a
+bit in the INT_SOURCE register, not a control register. Therefore, the
+name should be MPL3115_INT_SRC_DRDY instead of MPL3115_CTRL_INT_SRC_DRDY
 
-sysfs really doesn't seem to be the correct api here, you are making a
-custom one just for this one device that is not shared by any other one,
-so userspace has to write custom code to control it.  So why not just
-write one program, in userspace, to handle it all at once, instead of 2?
+2) I saw that e.g. CTRL_OS_258MS is defined using BIT(x), so I thought
+that this is the convention in this driver that I did not want to
+disrupt by using GENMASK()
 
-> For completeness, I considered these methods:
-> - sysfs: Recommended and standard for LED drivers.
-> - i2c-tools: Not recommended, intended for development/debug only.
-> - ioctl: Not recommended for new LED drivers.
-> - debugfs: For debugging only.
-> - Direct I2C register access: Requires users to know the register map and protocol.
+3) Sure, I'd even prefer GENMASK(), the only reason why I didn't use it
+is explained in 2)
 
-A library will handle the i2c direct register access.  Again, do not
-make custom sysfs apis if at all possible.
+> >  #define MPL3115_CTRL_RESET BIT(2) /* software reset */
+> >  #define MPL3115_CTRL_OST BIT(1) /* initiate measurement */
+> >  #define MPL3115_CTRL_ACTIVE BIT(0) /* continuous measurement */
+> >  #define MPL3115_CTRL_OS_258MS (BIT(5) | BIT(4)) /* 64x oversampling */
+> 
+> ...
+> 
+> >         mutex_lock(&data->lock);
+> > -       ret = mpl3115_request(data);
+> > -       if (ret < 0) {
+> > -               mutex_unlock(&data->lock);
+> > -               goto done;
+> > +       if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
+> > +               ret = mpl3115_request(data);
+> > +               if (ret < 0) {
+> 
+> > +                       mutex_unlock(&data->lock);
+> 
+> Instead, I suggest adding a prerequisite that moves the driver to use
+> cleanup.h, in particular scoped_guard(). This will reduce a churn
+> here,
+>
+Will add in v2.
+> > +                       goto done;
+> > +               }
+> >         }
+> 
+> ...
+> 
+> > +static int mpl3115_set_trigger_state(struct iio_trigger *trig, bool state)
+> > +{
+> > +       struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+> > +       struct mpl3115_data *data = iio_priv(indio_dev);
+> > +       int ret;
+> > +       u8 ctrl_reg1 = data->ctrl_reg1;
+> > +
+> > +       if (state)
+> > +               ctrl_reg1 |= MPL3115_CTRL_ACTIVE;
+> > +       else
+> > +               ctrl_reg1 &= ~MPL3115_CTRL_ACTIVE;
+> 
+> > +       guard(mutex)(&data->lock);
+> 
+> Oh, and you already use this! Definitely, it misses the prerequisite patch.
+> 
+> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
+> > +                                       ctrl_reg1);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG4,
+> > +                                       state ? MPL3115_CTRL_INT_EN_DRDY : 0);
+> > +       if (ret < 0)
+> > +               goto reg1_cleanup;
+> > +
+> > +       data->ctrl_reg1 = ctrl_reg1;
+> > +
+> > +       return 0;
+> > +
+> > +reg1_cleanup:
+> > +       i2c_smbus_write_byte_data(data->client, MPL3115_CTRL_REG1,
+> > +                                 data->ctrl_reg1);
+> > +       return ret;
+> > +}
+> 
+> ...
+> 
+> > +static int mpl3115_trigger_probe(struct mpl3115_data *data,
+> > +                                struct iio_dev *indio_dev)
+> > +{
+> > +       struct fwnode_handle *fwnode;
+> > +       int ret, irq, irq_type;
+> > +       bool act_high, is_int2 = false;
+> 
+> > +       fwnode = dev_fwnode(&data->client->dev);
+> > +       if (!fwnode)
+> > +               return -ENODEV;
+> 
+> 
+> Why is this fatal? Also, do we have a board file for users of this right now?
+> 
+Actually it seems it does not have to be fatal. If we get rid of this
+if, then we'd simply return without setting up the trigger and with no
+interrupt support, which is ok I guess.
 
-thanks,
+As for the board file, do you mean some PCB schematics? I don't know
+about any, I've only used the following datasheet from NXP:
+https://www.nxp.com/docs/en/data-sheet/MPL3115A2S.pdf
 
-greg k-h
+> > +       irq = fwnode_irq_get_byname(fwnode, "INT1");
+> > +       if (irq < 0) {
+> > +               irq = fwnode_irq_get_byname(fwnode, "INT2");
+> > +               if (irq < 0)
+> > +                       return 0;
+> > +
+> > +               is_int2 = true;
+> > +       }
+> > +
+> > +       irq_type = irq_get_trigger_type(irq);
+> > +       switch (irq_type) {
+> > +       case IRQF_TRIGGER_RISING:
+> > +               act_high = true;
+> > +               break;
+> > +       case IRQF_TRIGGER_FALLING:
+> > +               act_high = false;
+> > +               break;
+> > +       default:
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       ret = i2c_smbus_write_byte_data(data->client, MPL3115_PT_DATA_CFG,
+> > +                                       MPL3115_PT_DATA_EVENT_ALL);
+> > +       if (ret < 0)
+> > +               return ret;
+> 
+> > +       if (!is_int2) {
+> > +               ret = i2c_smbus_write_byte_data(data->client,
+> > +                                               MPL3115_CTRL_REG5,
+> > +                                               MPL3115_CTRL_INT_CFG_DRDY);
+> > +               if (ret)
+> > +                       return ret;
+> > +       }
+> > +       if (act_high) {
+> > +               ret = i2c_smbus_write_byte_data(data->client,
+> > +                                               MPL3115_CTRL_REG3,
+> > +                                               is_int2 ? MPL3115_CTRL_IPOL2 :
+> > +                                                         MPL3115_CTRL_IPOL1);
+> > +               if (ret)
+> > +                       return ret;
+> > +       }
+> 
+> This if (!is_int2) and ternary with the same argument is kinda hard to
+> read, can we refactor it somehow?
+> 
+> For example, if these two booleans are represented by a common enum, we can do
+> 
+> switch (cfg_flags) {
+> case INT2_ACTIVE_HIGH:
+>     _write_byte_data(REG3);
+>     break;
+> case INT2_ACTIVE_LOW:
+>     break;
+> case INT1_ACTIVE_HIGH:
+>    _write_byte_data(REG5);
+>    _write_byte_data(REG3);
+>   break;
+> case INT1_ACTIVE_LOW:
+>    _write_byte_data(REG5);
+>    break;
+> default:
+>     return -EINVAL;
+> }
+> 
+> Yes, it's more verbose, but I find this better to read and understand.
+> 
+> Note, you may drop the switch case for IRQ with this approach as you
+> can use a few bits together (separate bits for raising and falling to
+> make the default case working here).
+> 
+Ok, your suggestion looks nice. I think to define maybe the enums like this:
+
+  #define INT2 BIT(2) 
+  enum {
+    INT2_ACTIVE_LOW = INT2 | IRQF_TRIGGER_FALLING,
+    INT2_ACTIVE_HIGH = INT2 | IRQF_TRIGGER_RISING,
+    INT1_ACTIVE_LOW = !INT2 | IRQF_TRIGGER_FALLING,
+    INT1_ACTIVE_HIGH = !INT2 | IRQF_TRIGGER_RISING, 
+  };
+
+This way the cfg_flags could be first |= INT_2 (after the call to the
+fwnode_irq_get_byname) and then |= irq_type (after the call to the irq_get_trigger_type)
+
+> > +       data->drdy_trig = devm_iio_trigger_alloc(&data->client->dev,
+> > +                                                "%s-dev%d",
+> > +                                                indio_dev->name,
+> > +                                                iio_device_id(indio_dev));
+> > +       if (!data->drdy_trig)
+> > +               return -ENOMEM;
+> > +
+> > +       data->drdy_trig->ops = &mpl3115_trigger_ops;
+> > +       iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
+> > +       ret = iio_trigger_register(data->drdy_trig);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       indio_dev->trig = iio_trigger_get(data->drdy_trig);
+> > +
+> > +       return devm_request_threaded_irq(&data->client->dev, irq,
+> > +                                        NULL,
+> > +                                        mpl3115_interrupt_handler,
+> > +                                        IRQF_ONESHOT,
+> > +                                        "mpl3115_irq",
+> > +                                        indio_dev);
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+
+Kind regards,
+Antoni Pokusinski
 
