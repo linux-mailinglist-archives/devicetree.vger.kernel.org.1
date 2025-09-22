@@ -1,85 +1,114 @@
-Return-Path: <devicetree+bounces-220159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B190B925FA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:15:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27A91B92619
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 19:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E27BC7A0104
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:14:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D768D3BEAFA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5301B31283F;
-	Mon, 22 Sep 2025 17:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045EA313523;
+	Mon, 22 Sep 2025 17:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvfpwM20"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Ch9A2iCK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EE9F3101C2;
-	Mon, 22 Sep 2025 17:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FC931283F
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 17:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758561350; cv=none; b=pa9Ujbiu0c6idbhWZCgGp28EAKIPrrxPxlJ6ft1N1XlyRo5FUztLyZtr647xkIAsQHjFz3IUUi+5jbh5z0FQTXDNVlVSipTy3ddCWvvkRtf0Ho2WYLj4urD8t39Txd+148YEmxlzGhCvMnzpAZNzByQ9qZ01CpkO2sTY8BUq3Tw=
+	t=1758561460; cv=none; b=uOt4CO/pW5wvWZb8egeBgQtfnfXGNa+669IRsxONyxHPBfovlALo3lfWaIQDZKBWpXpBpXp+GeYD5GnvziNYWVDgnmxokeloxpY3IzQK4+5mABUjF/RYG3v4QhUsHbEl7aCl6cx17tzuqvX8ejqXH0kivoe7i87QbEpkHmPETo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758561350; c=relaxed/simple;
-	bh=mi0cY+Nvy3Qqsit422rWrrAWc80S+JmM8GQj6PeSV2U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ojNDXKNv+ogD7yIcQgyOPcSGOJGXWNKhEZdsf+SsnYcxZa9PKneHKnFYIS32AjUP1w8qgI4xmHD8Ik6GsqvmtMNJBzYOSdgy6m9MQ6TRUHdyLjQanvJS5DGiQsw/SZvAR0LbNvS9FwEhDPDPIH6AW9N/giL1PDHWwLRpNCi+dLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvfpwM20; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58690C4CEF0;
-	Mon, 22 Sep 2025 17:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758561349;
-	bh=mi0cY+Nvy3Qqsit422rWrrAWc80S+JmM8GQj6PeSV2U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fvfpwM20kmi/LgRVzKQciG+YKjCg0Mx1FzurfkQzFI3ACRPTweEOfg/DxNcvwLtZQ
-	 iR5+FuScP004ixrWCtOX2ZTFZTIwtltSLvhSpGl0BjwX0XQxhU3YzGiF9Uiqf1cH0W
-	 M8LMfyXpmSCosMi5Hh85MmFVG2gy8pF8uzQ/9DgPKtTSDqeZlD6jTsShE0IcUpoeY3
-	 ulHY+lQil5ATUZUwTdPSRdCAFJejFPD8rN7ItMIWcj4/C4Sh8Z+5KM+Sw4GyU9YUhM
-	 9QzQu95/8uJclYKbA1eczKjiqBB+i/PoA0VjY2JWJ+WZ/+ksJ3TYhiiI3++cpaRwgn
-	 Pzlotp4RgnngQ==
-Date: Mon, 22 Sep 2025 12:15:48 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: Jiri Slaby <jirislaby@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-i2c@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-	devicetree@vger.kernel.org,
-	Sam Protsenko <semen.protsenko@linaro.org>
-Subject: Re: [PATCH v3 3/7] dt-bindings: soc: samsung: Add Exynos990 USI
- compatible
-Message-ID: <175856134761.488862.14515741406588517513.robh@kernel.org>
-References: <20250917-perics-add-usinodes-v3-0-a3629e4666ef@gmail.com>
- <20250917-perics-add-usinodes-v3-3-a3629e4666ef@gmail.com>
+	s=arc-20240116; t=1758561460; c=relaxed/simple;
+	bh=yDCyVsMnBe1oen5dvPi/6dU/2jOJ8KUMFS4IHKbrUo0=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=swHs1HaDraBDw4AsV8GNwF/zEo/H3cB3gN62thwY3EhWGpMuQWBP1BSqKeGUs7ECNufhVAGpvJq4nJrS5ntFO1oSisJZgppB4HkXPmb+6DKJwclOcakGkzaQJ3xTpQ81SwaXdExp1V/g9NFbvp92EWMZkyQrWsQz0z1+Q5VHkrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Ch9A2iCK; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57cfe6656dcso1688738e87.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 10:17:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758561456; x=1759166256; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UdkfUJcWiIhWIQMyk8FB1DAT7E/1t3lcPeSZOWW85BE=;
+        b=Ch9A2iCKWlu/r9bbz/b7q4KA3Yuv3HZ012eCJeLS649Q1gaEYghVQbNL+nANsBzIkx
+         OqgyXo3Y9mvzx/JqdcRZMdAQxuE7OXV2ZjUWx+/7TjFBqG4I4kDhV5Ka/w7d8wp5xi85
+         AJ7Qcl9ZxPr0V3Au3dDHeixq8hIUr6vlS0XxqCYo7Xkkp3ek2f/4hHb405Jnif1cTSD9
+         FJXNYOEUCRvGnHieT7jSo2J85KUhIoXGgkE9Ik6g1BywawF3jhD+HPX7zSyoe9l/23Ui
+         NSO1Q068Ix26D4xOZBXDj3n7vkh7LZuBhxIf35SvoGuq+F4Ur3bpsQ156dSARULnm72j
+         6Gcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758561456; x=1759166256;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UdkfUJcWiIhWIQMyk8FB1DAT7E/1t3lcPeSZOWW85BE=;
+        b=Bdhs9r1Gh/xqtgQ88zqmCxiPQort0YiOjssAQbYuPQB0/F4bAuD+DiwK/GQ8wQ/R6S
+         rMS+HlpRxpJ3dc+rln/qfJLmqjsj3Th9VesewbjTJ8vUG3qDyGuovtELP2p3SCghkGtS
+         aGwXkHWAVxx8X4IApbL09VAfXIZle5bqrFxSZ6UghMzDhTRuCILSp+wftrOTCa2JR+7J
+         Lwgx2LE71c84H2B8/xfGlG0z2QhD0ArnL4TAfXSItj1w6yZp/3loZllbvCYrGltTYD80
+         nXsyqxV8MuqEbOFTtsKOyUkjaemKJwELZ4XZQGms4vDlbLf2LGC2JgIfQVJym10SRPAJ
+         Qy+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUXwq7YYsHrduUSFL+0JVAuMT8NVU2T3qZzBN58HsfcjtoeRO9t6CsYbvjChqurfb1jdLsZXLuXlDuC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoTo6zS90sC08VbRmiBu4CfA/fX8sbAns3cos519Fz09lpP76l
+	qMIDlLqKwO3t/V9/1mvrMrOT7toeiJH7EjJ7XubnJaXzsU+imR3o/ZtiNVJVh7Oz17GMSwVC8tn
+	t5wv3DTY4Cv6btdVQaqnd0um+vbYG/43dO6h7ziUpdA==
+X-Gm-Gg: ASbGnctm1YJwwEd9ySGRGkW+frdZFvFqgUth+O9j7HT2Sobo58mELHibdF0AGAP+ELq
+	LFAw9rvGDGFO/FqyVt+mbOsmDhcmlWyRq9AOdmDoZNmZFE9c6ZU4MQuUDU9+MiecWEXI7pMdhU4
+	O12Bb5kQsmKfCMkVlBdMDPj/g8FOWOKKeciEKI+lKSStwJIyw2sRsJAIdjMeDJKDZRrGWfo0/V/
+	CON3XR1ePLnNfu1j30IoHP7M+s/Fj598Pwqfdmyhp1XiytX
+X-Google-Smtp-Source: AGHT+IHa5VS93YBVnCqLOZY3pYwvG4eCX52nyQdKku+32y1T0vkVAt7IQymvU+hEJRGGd/QSDHyzANnwRnT18WFvHlU=
+X-Received: by 2002:a05:6512:61af:b0:57d:6fca:f1f6 with SMTP id
+ 2adb3069b0e04-57d6fcaf45cmr2017701e87.46.1758561455821; Mon, 22 Sep 2025
+ 10:17:35 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 22 Sep 2025 10:17:34 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 22 Sep 2025 10:17:34 -0700
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20250922152640.154092-6-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250917-perics-add-usinodes-v3-3-a3629e4666ef@gmail.com>
+References: <20250922152640.154092-1-herve.codina@bootlin.com> <20250922152640.154092-6-herve.codina@bootlin.com>
+Date: Mon, 22 Sep 2025 10:17:34 -0700
+X-Gm-Features: AS18NWDyCQX1J8uZYK9LHdZ-e3eFX6O7LUqq1XRGpyCJLmgX9_jhMo9add6DPkE
+Message-ID: <CAMRc=McFZ9rDgBEkUBuUX1c2a9PUwX3+ZzOs-KE4jhbU+p6+ww@mail.gmail.com>
+Subject: Re: [PATCH v4 5/8] ARM: dts: r9a06g032: Add GPIO controllers
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Phil Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Saravana Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-
-On Wed, 17 Sep 2025 21:04:23 +0000, Denzeel Oliva wrote:
-> Add samsung,exynos990-usi compatible string to the
-> Universal Serial Interface (USI) bindings.
-> 
-> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+On Mon, 22 Sep 2025 17:26:36 +0200, "Herve Codina (Schneider
+Electric)" <herve.codina@bootlin.com> said:
+> Add GPIO controllers (Synosys DesignWare IPs) available in the
+> r9a06g032 (RZ/N1D) SoC.
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+>  arch/arm/boot/dts/renesas/r9a06g032.dtsi | 121 +++++++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
