@@ -1,96 +1,123 @@
-Return-Path: <devicetree+bounces-220085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882B9B91C95
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:45:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EB47B91CB3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 677172A55C4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:45:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FA1D1896DDA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040B22820B2;
-	Mon, 22 Sep 2025 14:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE4526C3B6;
+	Mon, 22 Sep 2025 14:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbZ8P5og"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="o40c9433"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A0A281378;
-	Mon, 22 Sep 2025 14:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38B526B96A
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 14:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758552305; cv=none; b=UMOfz+kNvIJ44PkTDdislT4qQsZABt1n2W59DOW+n1pAvgbJXi+13rvGbGML1yp/u62aYMFz1oBCNZ4uTsv44UvjYTnKNMWW8oRz973v3trSkzKzr/j2ahgupI0G6eWnI1Wv3qUturnoOIA/YNhUDX2/AuAnP4uJ5WUpb+/EvEw=
+	t=1758552562; cv=none; b=RjBUC0Veg3DntWnpdSVxVUAXoXxXgjGwtjEbWKwnk17PMYuCx6LzrY095lNIevncJPUPNmYP9xrm+5Qqm2ohg4OPEze9WKfTdZQzNjxjmQEQDYIrBXxI8r3lBDcRVAq+97HNwcGiJHkMlV3Adwi4s+pBRWx41HIsrO1dJVNRpOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758552305; c=relaxed/simple;
-	bh=D+LNgfJNYzCpnFJGwhR+lwXuJ0ILIQoGT35vh4i2XBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=WSasQNjvWcbPQBvItv28Zkwqhe0reBCz0gi0FovuyQJ/4jSh0i0xABfA4uTtyODUEW/V/56fmrLf4q8bYCpfvWpivx+7Q7USVCzsfX7RO09COR6L4mbiiZsL5UYjvxHyRgRnsR4yd2NIoZyLsNUjlMGNomylCNBgfwGUpdkeie4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbZ8P5og; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41F36C4CEF0;
-	Mon, 22 Sep 2025 14:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758552305;
-	bh=D+LNgfJNYzCpnFJGwhR+lwXuJ0ILIQoGT35vh4i2XBQ=;
-	h=Date:From:To:Cc:Subject:From;
-	b=dbZ8P5ogAQJxFbT4EfBs9j5q1ngbONMN+GPGjDS72pZp8K5Iu7yqjJzx8x50lU1Vr
-	 PPcpXXiat/SkwL2/JWZ7dflR4RJQBQrwyVKAkh7pJ7K/UmpBgiKcs65+TwIATHeW9t
-	 9MPbNQVtV2sVFRKFdG+9SLw5RPWb7xLiY8Ox8pzArKUr5SRrhkF7WuX6ThVcaGWL3A
-	 /fHW211aJfaIA0Ttx8Lk3nowZIF+aQdUcEIZwWHMXF4rJvWDI+vGhXEuFTZSPJ8I+h
-	 SO7+HOTB9X9vQsoDM1E5KtVw5bYfUyHi22g9eNVL52DROhD2zC277PW8XWd5gDwpTF
-	 odCCKaXxNnU8w==
-Received: by wens.tw (Postfix, from userid 1000)
-	id B2EED5FC15; Mon, 22 Sep 2025 22:45:02 +0800 (CST)
-Date: Mon, 22 Sep 2025 22:45:02 +0800
-From: Chen-Yu Tsai <wens@kernel.org>
-To: soc@kernel.org
-Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Allwinner Device Tree changes for 6.18 part 2
-Message-ID: <aNFg7iuBtyWkCZg6@wens.tw>
+	s=arc-20240116; t=1758552562; c=relaxed/simple;
+	bh=bykbtif9awIBKm3O/qk/D6C7L3MfL80Kt+n3asECuK0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=afXcXm5+/p3UMPfV8/19shIOFU0Tous+cPk1G7LcCCTfQAY/ZyAEjax/N7l8F3IbblAUFcn2gVYNG/mdBIaR7pZHuGyXcEVpMVYZNxk6oWMmIaAwUls1f2loBEzoS4Ebukr/0kBTFX55aas1SU4os1Sty+TRO9uKgvBPfbV9Hv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=o40c9433; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-365df96398bso12675871fa.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 07:49:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1758552559; x=1759157359; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bykbtif9awIBKm3O/qk/D6C7L3MfL80Kt+n3asECuK0=;
+        b=o40c9433dR/xQzpeVjrcG4c0BaQiB8LpWdJjlPQG90a0wouQ1RjeOcCvubVAzMXatL
+         wRMgUTyA1CtxTLg6erioE4TMR2vr132QeJk0ijBH11wTgCS9co6UV4rPXcw7SZ6WUG4G
+         9+Nsa7ThgV9P66WlKnSabDfMvhDVlnHwIOe9i6FizIX4qM+W0Jnb8/On59x/0HZatagx
+         qgx3ctl3zmp/I3sJHtBPpBag7nkpDj3GgPTxWlXPmSwdSfHkk5ZnaFID/l3+5OezrFOL
+         2uanblri6FuNSAdm9Bk4HJhue0RKFIT2MqattmDcFKm4CjCEw5H4XFBVLowaWOLdmMkw
+         sgLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758552559; x=1759157359;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bykbtif9awIBKm3O/qk/D6C7L3MfL80Kt+n3asECuK0=;
+        b=E9rYvMn1JNtmZz3rrwTAObJOB/LPbi2jCdYKb1/9tv5fJvZwEAnT5mPYa73NHPCKjN
+         qQzF6LDh98q45uO2uBmOV+k7pBXFvaSQLylKLWY1JgAecamAiEIGX/rvqSxfWitpjjJ8
+         xDKZVlnZj0zKxp0q2rx5uYSaCU87u36YvPrmi8HTxCLj604kqSyVa2npCsLnODnM01r+
+         HO05TxVmuvU8BjnBTtOG8R/i9dtOdKctctJjjXBFguQ6Xlt/WV6UzcJW+ZUQg1R1NwIJ
+         /DsHU06q5fX77uCglf74jn/gWBBedQ0zcOO3nd6X7iGzQ6g8ZWvk0vu3XurMVaTsNbnv
+         O/ng==
+X-Forwarded-Encrypted: i=1; AJvYcCXuv/pnKWiYG45MGzsgVXVeiKGy38efz9e1dDvlDT/P3dW6EwAyBQrufRKwROocycXmeI5FsZzzpaDn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvcMUbF23uKdnF+vSeJxZHbaDXChAwpaQCHXq4CkbzmcVxWm/s
+	jXO3Zh7mNINpR09ujLJ4BPIh2ejO81+FysPOPngwlKOxhjkggYuFwkzTSmybGvjgFJdq8k8VfSA
+	/JrOLqoCzCgoVagKE1PC1GIR/1BbD4CYhrumLElRL7w==
+X-Gm-Gg: ASbGnctJ9dLtG9/pv8MmFNXx4ehREj9QwehDZV3lfRMKOmbf1q5HC2dd20gfA11Sy2X
+	5kwUM3NMVvZB1nEquzQpk1h/AnLRCa9wJtPsSow0BlRcimC3zo+CLmwtf8sDXmFyEGrNpyQ3JPc
+	TnOsVuxTlDhRjFDbQmVHf7LbGucgrYwJFlWg0t6dNr2iF2BKvkElx+6e6KFYf3nbqaYpe6+MCu+
+	+bOVeCqIikCH9dUdGexGZWEKSYdmwBixeSuJA==
+X-Google-Smtp-Source: AGHT+IGlnNt+fhE5MrqIpFvliSxDtGX2XB40jaaM5K7wfFAvtAE4jBlrlXKvYjLZOIykgctVeiSEZTwWunX74S3veto=
+X-Received: by 2002:a05:651c:2109:b0:36b:8874:cdae with SMTP id
+ 38308e7fff4ca-36b8874d0ebmr12204601fa.15.1758552558756; Mon, 22 Sep 2025
+ 07:49:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+References: <20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com>
+ <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
+ <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
+ <20250918-daffy-steady-griffin-5299ac-mkl@pengutronix.de> <CAMRc=Mfypwopu6daCBzg90i98dbO-7rwAehkiNkA-tF074fO5w@mail.gmail.com>
+ <20250922-magnetic-dashing-piculet-97f38d-mkl@pengutronix.de>
+In-Reply-To: <20250922-magnetic-dashing-piculet-97f38d-mkl@pengutronix.de>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 22 Sep 2025 16:49:07 +0200
+X-Gm-Features: AS18NWBlKhLUvAddoj2mOzUueezFqF7tTTLWH1tXphnQJ1z6UNVeCHLT2id_PP4
+Message-ID: <CAMRc=MdEkp6Mztoe44Nv0orX+f4ops7nh8XS7hbJS2KvQFc3Fg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, mukesh.savaliya@oss.qualcomm.com, 
+	anup.kulkarni@oss.qualcomm.com, 
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>, mani@kernel.org, 
+	thomas.kopp@microchip.com, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Mon, Sep 22, 2025 at 4:43=E2=80=AFPM Marc Kleine-Budde <mkl@pengutronix.=
+de> wrote:
+>
+> On 22.09.2025 16:28:53, Bartosz Golaszewski wrote:
+> > > > You must be rebased on pre v6.17 code, this will not compile with c=
+urrent
+> > > > mainline.
+> > >
+> > > You mean "post" v6.17? Best rebase to latest net-next/main, which
+> > > already contains the new signatures for the GPIO callbacks.
+> >
+> > No, you read that right. The signature of the set() and set_multiple()
+> > callbacks changed in v6.17-rc1 so Viken must have rebased his changes
+> > on v6.16 or earlier.
+>
+> I'm not sure if I understand you correctly. This series must apply on
+> current net-next/main, which is v6.17-rc6.
+>
 
-Here's a very late pull request, adding support for another board.
-This is already included in linux-next, and doesn't show any issues.
+The GPIO driver interface changed between v6.16 and v6.17-rc1. This
+series uses the old interface. It will not apply on top of v6.17-rc6.
 
-The following changes since commit cca07ac2b5f7838b8ff612b53b9f82ac8cb58312:
-
-  arm64: dts: allwinner: sun55i: Complete AXP717A sub-functions (2025-09-15 00:04:32 +0800)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git tags/sunxi-dt-for-6.18-2
-
-for you to fetch changes up to 07c7f4f4e9504da240ef68adfd95a1150d3a6fd4:
-
-  arm64: dts: allwinner: h313: Add Amediatech X96Q (2025-09-19 12:37:16 +0800)
-
-----------------------------------------------------------------
-Allwinner Device Tree changes for 6.18 - part 2
-
-A new board, the Amediatech X96Q, was added.
-
-----------------------------------------------------------------
-J. Neuschäfer (2):
-      dt-bindings: arm: sunxi: Add Amediatech X96Q
-      arm64: dts: allwinner: h313: Add Amediatech X96Q
-
- Documentation/devicetree/bindings/arm/sunxi.yaml   |   5 +
- arch/arm64/boot/dts/allwinner/Makefile             |   1 +
- arch/arm64/boot/dts/allwinner/sun50i-h313-x96q.dts | 230 +++++++++++++++++++++
- 3 files changed, 236 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-x96q.dts
+Bartosz
 
