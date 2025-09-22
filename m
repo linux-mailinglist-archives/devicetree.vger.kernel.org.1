@@ -1,121 +1,115 @@
-Return-Path: <devicetree+bounces-220108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874AEB91EF0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:30:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA52B91F02
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 17:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 653C67A4A79
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:29:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A293B2E82
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 15:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A562E6CD6;
-	Mon, 22 Sep 2025 15:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4D32E719D;
+	Mon, 22 Sep 2025 15:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6N4B1ZW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NPo173pW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0362AF1B;
-	Mon, 22 Sep 2025 15:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9ED2E03FB
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 15:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758555046; cv=none; b=mJVjXHKWwibrxpLKLcLB291UQmVe1/gNsOBbozR7dvIu/og9ceOxQXInzGWPAA4xbMTnPz4Lixhn9A36H7c/cQcOksU6rkVTMIWwyJQ2KuCWd6xXFT3jopOKXCxmCCLOe+rD49bUfRGGO8jrz4o3bEERShHSbXHLNyq/MB6WBgg=
+	t=1758555114; cv=none; b=bpzfEOydjAxIFPxU0B3RvMFFgohtoMypr69AwQaHyXLo7zuRi8xMa+f7Ef8At4Xx2LEBaCRl/SbXOCmOJGjHpEopWuvYxB6iUuFZPDLTvtZj1+Ib1GGmMgw2RQIWYybrhGSw6uE/vMHFjG86mnv/b6hcS4y4RLGpmfaTy1a1SGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758555046; c=relaxed/simple;
-	bh=9rHZ46XQ5Qf/T3d8zzS2nXiEGU9SVrkDNZX4Ew3/lcA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J8H1ejCIvccztbETuMaGWNjoRk/EeX8YhSKFqsip/8zMPPJbbj/WUtG0wHhxr4rjx0ZE2lm4skuNopYE36wOCRu5Jfe6/3wJwU7owNgh3O8u1s8NJ+v6KjJjfimTaBMEKUe2/edwzXmdQaI//hWnqglRhYV5PC7DCaMVU7I5LPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6N4B1ZW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F36D8C4CEF7;
-	Mon, 22 Sep 2025 15:30:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758555046;
-	bh=9rHZ46XQ5Qf/T3d8zzS2nXiEGU9SVrkDNZX4Ew3/lcA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T6N4B1ZWorGk+L/UGZxbHdH1HdmI84ojMsZi6kG5My+Hru+jwCNqOxvOUBjqizQZy
-	 h3o1M9/Yyyvokovm8IqHQ2wlBb0K9NPUwmvRwuw5V1ADrYOG4CpukYgIl5JzboMifB
-	 ULra0fcxgl8oVORd4ETL4ExxVkmG675nIu+X1LiSW2+wMGXM+85EcLokJc4TE5zObb
-	 adXV3rlbHLCytUt8h1gDEsfw27t8TI1q4jgUGvdnQccjBeGq75Ekja7oi6y1jlwoVK
-	 u0aRggSPVtBWHOZvCTpG8m2ylT/P/KFm5Qyqq7faHb5w1N+3gLuoe9OJhqxnd6vx8p
-	 D4UpHSwrUabLA==
-Date: Mon, 22 Sep 2025 10:30:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: max77705: add interrupt-controller
- node
-Message-ID: <20250922153045.GA4143633-robh@kernel.org>
-References: <20250912-starqltechn-correct_max77705_nodes-v3-0-4ce9f694ecd9@gmail.com>
- <20250912-starqltechn-correct_max77705_nodes-v3-1-4ce9f694ecd9@gmail.com>
+	s=arc-20240116; t=1758555114; c=relaxed/simple;
+	bh=qDAPKLAmBW+BbWlMqzRPUrZf2ejgZ/s+bak4MX7qR+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=St2ugUl2PgJGG/AS7oluXBklNrkbO/Ylyxf2xjziMyBdakPvOCoqVE0Mkmb3LNcAdqqgg5cC2t4NMXSoGqzPFh1F/WfN1pLCBPFbb6I6+CgCWXHbUAGSlvzxvgImJlpQdBcYK+/nf6XAz+6DirLCWsaM2Je5wV11IokgB5To+XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NPo173pW; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id BC5B0C01FA0;
+	Mon, 22 Sep 2025 15:31:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BBDB360635;
+	Mon, 22 Sep 2025 15:31:51 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 471F6102F1942;
+	Mon, 22 Sep 2025 17:31:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758555110; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=++hT/gI4Y4VMUAzGdgLP1ng3+Xf93jWlboopap+4PG8=;
+	b=NPo173pWeUqhoCioDsMe7BwxhI/GUauHlbILxe59u8f6SmQ1TlB8ZDyr8H0TZ/WHnocjpO
+	8iLoaKDHRIe4ooQ+8ct5Ygr1oTc3zc5gaW9sjHHY4Gg86yfi8XlVq8JSsIF5GcJdEfKGfp
+	PEZh51dNubkTOiKpRqXJ20HN22rZFYYTTzFKzshCXE1kRMVozUYd4Oc83xnX2/0W4g2nw7
+	zUMRM2mvCcgwykO+wx0LxP9mPeq542fPhB1QVWn72KtLCq4uQ2/jyiVKsMmvJsYdKwxoum
+	z+twfQL4JCM0damPmqA4qW1BbwFyDtv19ZJ3pTL0u4u2pt/HAQXUvJwEjY1jXg==
+Date: Mon, 22 Sep 2025 17:31:45 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Saravana
+ Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Phil
+ Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Pascal Eberhard
+ <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO controllers
+Message-ID: <20250922173145.4d4dbb2f@bootlin.com>
+In-Reply-To: <CAMRc=Mf9OB03FXEpSXG8XeJhtd7MkwJTH=rY11SBb9SazCMqJw@mail.gmail.com>
+References: <20250918104009.94754-1-herve.codina@bootlin.com>
+	<20250918104009.94754-6-herve.codina@bootlin.com>
+	<CAMRc=Mf9OB03FXEpSXG8XeJhtd7MkwJTH=rY11SBb9SazCMqJw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250912-starqltechn-correct_max77705_nodes-v3-1-4ce9f694ecd9@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Sep 12, 2025 at 07:47:01PM +0300, Dzmitry Sankouski wrote:
-> Add interrupt-controller node, because it has dedicated interrupt source
-> register, to determine which sub device triggered an interrupt.
+Hi Bartosz,
 
-The subject and commit msg are wrong. You aren't adding a node.
+On Mon, 22 Sep 2025 16:22:14 +0200
+Bartosz Golaszewski <brgl@bgdev.pl> wrote:
 
+> On Thu, Sep 18, 2025 at 12:40 PM Herve Codina (Schneider Electric)
+> <herve.codina@bootlin.com> wrote:
+> >
+> > Add GPIO controllers (Synosys DesignWare IPs) available in the
+> > r9a06g032 (RZ/N1D) SoC.
+> >
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > ---  
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
-> index 0ec89f0adc64..d265c8213a08 100644
-> --- a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
-> @@ -26,6 +26,18 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  interrupt-controller:
-> +    description:
-> +      The driver implements an interrupt controller for the sub devices.
-> +      The interrupt number mapping is as follows
-> +      0 - charger
-> +      1 - topsys
-> +      2 - fuelgauge
-> +      3 - usb type-c management block.
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
->    haptic:
->      type: object
->      additionalProperties: false
-> @@ -120,8 +132,10 @@ examples:
->              reg = <0x66>;
->              interrupt-parent = <&pm8998_gpios>;
->              interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-controller;
->              pinctrl-0 = <&chg_int_default>;
->              pinctrl-names = "default";
-> +            #interrupt-cells = <1>;
->  
->              leds {
->                  compatible = "maxim,max77705-rgb";
-> 
-> -- 
-> 2.39.5
-> 
+> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+I have just sent the v4 iteration.
+
+This patch has not been modified in v4.
+
+Can you add your 'Reviewed-by' in the v4 series?
+
+Best regards,
+Hervé
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
