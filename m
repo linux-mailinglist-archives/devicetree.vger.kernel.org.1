@@ -1,129 +1,96 @@
-Return-Path: <devicetree+bounces-220084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D160AB91C68
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:43:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882B9B91C95
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 16:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F106B4267F5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:43:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 677172A55C4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 14:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E714281520;
-	Mon, 22 Sep 2025 14:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040B22820B2;
+	Mon, 22 Sep 2025 14:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbZ8P5og"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3859722D4DD
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 14:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A0A281378;
+	Mon, 22 Sep 2025 14:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758552206; cv=none; b=qAVyzVhkUJZEEi/g45DdTMGwNWzCE8GUCpYfOE0Lon1kz5UfPoTI7CJnCsCoQlEbrZ8yaX+5SDty+B8t/IiE1uHRyfMUvH0EJiL7avQI1rLH2MYxKetLM1wWICahr2AfooFBArbp5bMf0Er7vMA6Va/SPZrmBhkJCeijl/NvL0I=
+	t=1758552305; cv=none; b=UMOfz+kNvIJ44PkTDdislT4qQsZABt1n2W59DOW+n1pAvgbJXi+13rvGbGML1yp/u62aYMFz1oBCNZ4uTsv44UvjYTnKNMWW8oRz973v3trSkzKzr/j2ahgupI0G6eWnI1Wv3qUturnoOIA/YNhUDX2/AuAnP4uJ5WUpb+/EvEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758552206; c=relaxed/simple;
-	bh=K3RBSQTM49KUNjw2CtBsyB/PryLCH1PizWHUGDJdndQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bICAvsCYu3uQd3lwAJFIdtasBVHNiIVvyni7RCGELBJAKcGYeuQUNhTBX0B2299rTw6tmExoD2RXxOX7mDSlmpSMUq0TjdEVb+ucPydWyvS6qae9i4fb0W7m4QdUHAThxjnT1MS7k+O/pBL8N8Kkp0etOfS3Cwv7YJnE18/+rwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v0hkx-0002M5-Lq; Mon, 22 Sep 2025 16:43:07 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v0hkw-002bxt-0S;
-	Mon, 22 Sep 2025 16:43:06 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id B7A84477169;
-	Mon, 22 Sep 2025 14:43:05 +0000 (UTC)
-Date: Mon, 22 Sep 2025 16:43:05 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, 
-	mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, mani@kernel.org, thomas.kopp@microchip.com, 
-	mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
-Message-ID: <20250922-magnetic-dashing-piculet-97f38d-mkl@pengutronix.de>
-References: <20250918064903.241372-1-viken.dadhaniya@oss.qualcomm.com>
- <20250918064903.241372-6-viken.dadhaniya@oss.qualcomm.com>
- <CAMRc=Mf2ycyKbL35bdy5m1WBEap7Bu8OO2Q9AdZYgc04Uynf8g@mail.gmail.com>
- <20250918-daffy-steady-griffin-5299ac-mkl@pengutronix.de>
- <CAMRc=Mfypwopu6daCBzg90i98dbO-7rwAehkiNkA-tF074fO5w@mail.gmail.com>
+	s=arc-20240116; t=1758552305; c=relaxed/simple;
+	bh=D+LNgfJNYzCpnFJGwhR+lwXuJ0ILIQoGT35vh4i2XBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=WSasQNjvWcbPQBvItv28Zkwqhe0reBCz0gi0FovuyQJ/4jSh0i0xABfA4uTtyODUEW/V/56fmrLf4q8bYCpfvWpivx+7Q7USVCzsfX7RO09COR6L4mbiiZsL5UYjvxHyRgRnsR4yd2NIoZyLsNUjlMGNomylCNBgfwGUpdkeie4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbZ8P5og; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41F36C4CEF0;
+	Mon, 22 Sep 2025 14:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758552305;
+	bh=D+LNgfJNYzCpnFJGwhR+lwXuJ0ILIQoGT35vh4i2XBQ=;
+	h=Date:From:To:Cc:Subject:From;
+	b=dbZ8P5ogAQJxFbT4EfBs9j5q1ngbONMN+GPGjDS72pZp8K5Iu7yqjJzx8x50lU1Vr
+	 PPcpXXiat/SkwL2/JWZ7dflR4RJQBQrwyVKAkh7pJ7K/UmpBgiKcs65+TwIATHeW9t
+	 9MPbNQVtV2sVFRKFdG+9SLw5RPWb7xLiY8Ox8pzArKUr5SRrhkF7WuX6ThVcaGWL3A
+	 /fHW211aJfaIA0Ttx8Lk3nowZIF+aQdUcEIZwWHMXF4rJvWDI+vGhXEuFTZSPJ8I+h
+	 SO7+HOTB9X9vQsoDM1E5KtVw5bYfUyHi22g9eNVL52DROhD2zC277PW8XWd5gDwpTF
+	 odCCKaXxNnU8w==
+Received: by wens.tw (Postfix, from userid 1000)
+	id B2EED5FC15; Mon, 22 Sep 2025 22:45:02 +0800 (CST)
+Date: Mon, 22 Sep 2025 22:45:02 +0800
+From: Chen-Yu Tsai <wens@kernel.org>
+To: soc@kernel.org
+Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Allwinner Device Tree changes for 6.18 part 2
+Message-ID: <aNFg7iuBtyWkCZg6@wens.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ypln7uuzn6d5ihga"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <CAMRc=Mfypwopu6daCBzg90i98dbO-7rwAehkiNkA-tF074fO5w@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---ypln7uuzn6d5ihga
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 5/6] can: mcp251xfd: add gpio functionality
-MIME-Version: 1.0
+Here's a very late pull request, adding support for another board.
+This is already included in linux-next, and doesn't show any issues.
 
-On 22.09.2025 16:28:53, Bartosz Golaszewski wrote:
-> > > You must be rebased on pre v6.17 code, this will not compile with cur=
-rent
-> > > mainline.
-> >
-> > You mean "post" v6.17? Best rebase to latest net-next/main, which
-> > already contains the new signatures for the GPIO callbacks.
->=20
-> No, you read that right. The signature of the set() and set_multiple()
-> callbacks changed in v6.17-rc1 so Viken must have rebased his changes
-> on v6.16 or earlier.
+The following changes since commit cca07ac2b5f7838b8ff612b53b9f82ac8cb58312:
 
-I'm not sure if I understand you correctly. This series must apply on
-current net-next/main, which is v6.17-rc6.
+  arm64: dts: allwinner: sun55i: Complete AXP717A sub-functions (2025-09-15 00:04:32 +0800)
 
-regards,
-Marc
+are available in the Git repository at:
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+  https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git tags/sunxi-dt-for-6.18-2
 
---ypln7uuzn6d5ihga
-Content-Type: application/pgp-signature; name="signature.asc"
+for you to fetch changes up to 07c7f4f4e9504da240ef68adfd95a1150d3a6fd4:
 
------BEGIN PGP SIGNATURE-----
+  arm64: dts: allwinner: h313: Add Amediatech X96Q (2025-09-19 12:37:16 +0800)
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjRYHQACgkQDHRl3/mQ
-kZzA6AgAj6Har03pBSaJ0EP40FYACFmmLHSn/M7nPaKldDVQIdZ9W+RoQqD2mH9W
-XqbMfcRH1zvXHR0LKF+plVRcgDaZyU0vae0Ioo+gGk+2hMC3ii8oH29fwPioViKB
-nRgCY0ml8TsXbiXI5h5M71ktH4fOU+73/hunXWEE9HyplHocxI42VKDsIezK+MTq
-rKCpttTl/akUcwqrYdm7cUYnabY3SAueM+Cd3pOa0fgQeeazvdP2GHvNv/XYnou+
-mah8lhU24Lw5uD8rHjgbT8T1eFz8QEK6JQP7NJwz9y9rG4NVEp6NsQz88nNCw8Hr
-9YV7uShd8zrW30tshJnPoqACXO453A==
-=bdKu
------END PGP SIGNATURE-----
+----------------------------------------------------------------
+Allwinner Device Tree changes for 6.18 - part 2
 
---ypln7uuzn6d5ihga--
+A new board, the Amediatech X96Q, was added.
+
+----------------------------------------------------------------
+J. Neuschäfer (2):
+      dt-bindings: arm: sunxi: Add Amediatech X96Q
+      arm64: dts: allwinner: h313: Add Amediatech X96Q
+
+ Documentation/devicetree/bindings/arm/sunxi.yaml   |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+ arch/arm64/boot/dts/allwinner/sun50i-h313-x96q.dts | 230 +++++++++++++++++++++
+ 3 files changed, 236 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-x96q.dts
 
