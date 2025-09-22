@@ -1,178 +1,143 @@
-Return-Path: <devicetree+bounces-219926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-219927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51E5B8F6AA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:10:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59416B8F6DD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 10:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E2FC175889
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 08:10:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19F7116232C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 08:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802232FD1B1;
-	Mon, 22 Sep 2025 08:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE432FD1CB;
+	Mon, 22 Sep 2025 08:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HebjR3Og"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mo3vZNXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907692F6562
-	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 08:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACF08F54
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 08:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758528652; cv=none; b=Bt8QN8hKdYwrJbc56Z2r8DBC+ZwopoK1JPVscsJA2LHn0UXBPjo+6eHD+M+NX+bixHBaCypmSste7LGtI8AxK3NMbjZ4LZ+bGTU3lNLvsB4WBm8wwL+6KeybcqNz3Yl6s0nH/ztM/fl8i0ZA8quwJFufw762M8rzJP8QEmNzt7U=
+	t=1758528753; cv=none; b=fIGY446qkZdWLtf6hK/6G6+0UTHDrXwx4GaKUSzYHwsC8k+IVdK3owNKatMjEz/LMeoZRApLlXWgPd9Gk3T1NKYOwhnSy1POGDpjHxzRPpqHaE97FH2msCRAAAwTzjcbDe6uApyExCf0Fz4gUefRfJsP118i8yKcwOEP0h3Msos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758528652; c=relaxed/simple;
-	bh=s7UO2fKhfUCI4YhH5MtiSmIjIIKO8XsVSeOX4a7lczA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IvGqoIBlvZk+lbR11h2w+fQyYGWdBchS0qrKCSAsRt9MaCGWDaBrkdZVE/V/JY11ayZpp0Aj+cglnKUexC9B/IoJxs7iaph5CVn2V8a7Erp8kFMkmov7iNdBkvDIDLzkbayhJxF9khqe5GjEyy7gCA3fiN1k9MAkRSNLi28u370=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HebjR3Og; arc=none smtp.client-ip=209.85.128.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so23609815e9.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 01:10:50 -0700 (PDT)
+	s=arc-20240116; t=1758528753; c=relaxed/simple;
+	bh=kJcnOSQAe5fWK1CCfABptkPbTgi9ddHWv8+d/EVmRNg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sG7+yYQAfTIf4oy/ar0FAOfcYxJQCpEEqczMhtcYi4rFr6aAsVWe69YQBSj2+hg4cPj5xYK6EEWwgoxYLOcF2KQftY61AkDA8QkMig2hH2xnUYVxGdRTXDkFRPZtcf2PYuQZkpRfwDj/e6GnZC5ojEKVWJzEDJ3pzlSLjn2lKx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mo3vZNXv; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45f29e5e89bso49198045e9.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 01:12:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758528649; x=1759133449; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q6oR8Fo0jD+wRtkqL3niLJ+D52o9GcW+sR1rF3CUjoI=;
-        b=HebjR3OgoR37YQlUjIACWF6/9uWGr2CTLWFY4PwC8whzo8fJWI9dAdpPCEEIWblKpB
-         FK5JwUY40AdAai5FFHCjf+QcJ6SzxvUVprelnLWEIKiOzkaDkHNuC6tsUV0ckBnHVoNF
-         jQ8OeLILc2MPRipVjjVw0qCWHXBG9kaRqUVA4HWyFSn2kHTKEtwmLVTJwTgFxJkwVUVi
-         G2nVX5z/kJnpZPaNdl2CHUpe/pvNSlGZCqITTcoalLbUht8Z/JvD5T7zqAm5sS1d7zut
-         iWm5X6vmrP/RbsY8qr9CNVco7lzT+rt5tl6aTRYYgibD/XBaJ3+ZsUQI9V+6EIxsPfQx
-         I3IA==
+        d=gmail.com; s=20230601; t=1758528750; x=1759133550; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eYqKhruI45NqfrcmY2IdIDvWyXftG5Pvnt74G18ZyBg=;
+        b=mo3vZNXvdr9IpM4vgj5pz4AbR3ECNnC5f7RAo1JYrzwCEtR+Kt+SA3QZZ1FEXSt1T8
+         DWFpPCK4Js8wIi8BNZcck4HN8TDv5BpRtN3lQFkC08OuHFYD8Zaj7L7Zvl5owRFQmt7R
+         lZcB9W3KR/kulibonVRAFBoMpXhyaT+igFVwRAWbI7VfRn06yW+8VBtBzSIKtA4OTaLN
+         axX0uFy3UhUQRrxLuN7CP0djVTZ0ZlkYTF188KdUYFDLD0x8ZY6Fybyf7kuWUWCxGd9y
+         VrraYE7Spuj/vQFyrq89IhULUPKjOseWiS79Px+1Yt35xZTTSmkIiFOpKqIK9SBG0lvU
+         hzBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758528649; x=1759133449;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q6oR8Fo0jD+wRtkqL3niLJ+D52o9GcW+sR1rF3CUjoI=;
-        b=kivP89s29GkDA79hBh1vd+U49MI4kbSLgZw2XWfJrmmkUfhNYnA1oPidwE/M0jdF4V
-         97SUnp3spm0cuwdFNTjllt8Y9BhkisVa0ADaa33v7APjGJijjWiaI9h2co4zf55z1fR/
-         GlbDIi8ilgVgRKLIbrAw/THm2d0Kz2Fv+dd56gN293Z5IPD0ZNq1pOJ0w7B/gj9BcB/J
-         g5XnL2Amaqqbr14B0np10RYwyyOMqMUUOgoPfzXaVZmMlPSi6qGVI4GRfWmOlsECyt94
-         /e2T5kBxkXs/ln2ORky0uvCNOE9vAU+ObOmUGDxQ8rF78Ty6S1JZQ1axoAZUKdD3Apwg
-         CKxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOEENKrT7QIKc0RYUF0iMHBDyBvwdJaAF3zUQz8TJHy8gL25ge6PptsAAWEnXqItGt2k+I5WkSq9UW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxr+NM4kqeFn0zs183g/1quye/VDRPxhadjNv3ocBRUwTsySdkA
-	8wBpb2C8RetuJyhDxdrNydM289trDBaJBC2qEx6w5KoApU9Qx6+iL6HWDTRTHHPxWCk=
-X-Gm-Gg: ASbGncvFtVQVBpNxI0wfKag2VhSLG7seTsCZISoBXCYNtoVBczEQCUuP5zIzVMjrkaK
-	DY93SJB+aL8pZtsNJdE8mRQHLTa5+Vw9rbu4zzEZBxGaThtH6jnRMr/mytjsr2JlNqJxg2cO/7t
-	dJQKAf36Ldt5wrIzEPSWkh2e4P2uY4TdvrJTNmAkuRsu61/rExr5EvpKSdHmPxc1EAe97bmdrYI
-	IJzwckWUXG+RF5rGwWChFyRTztVRyH94b3OeWZ1s57jJXnKwHvRsil8vr0n5sbiMH2aoyI2kfCZ
-	XfuyFddL+Qy45NC98DV0efnQS7DwtF+BbWEdpb54gDrAWdfvUgJUKPyiCAvHGyqdCUfuqc2BOGU
-	h4wvD+16zVp28j5Ru2f+lXs8JwQXwXdRH
-X-Google-Smtp-Source: AGHT+IGdrKT0myFfqU5UTIGGqRLFLmRn7oXJe/NQIiIiBcxhj9xZ+01ud7wQJESCIUyS8bhQf9QZTg==
-X-Received: by 2002:a05:600c:3b20:b0:45b:9912:9f30 with SMTP id 5b1f17b1804b1-467ead6730bmr93561975e9.6.1758528648740;
-        Mon, 22 Sep 2025 01:10:48 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:c61f:42e4:1d2c:1992])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3f88de2ced0sm7345719f8f.33.2025.09.22.01.10.47
+        d=1e100.net; s=20230601; t=1758528750; x=1759133550;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eYqKhruI45NqfrcmY2IdIDvWyXftG5Pvnt74G18ZyBg=;
+        b=RbXCfLHJIkQ8lHFPst12zTmDQFTixXyZjRrUFeXGqauGHwN7EBYO0GbkBlL+GpzlpH
+         Hg8Hnuo7VoEDzGu6JYNstoDqBPkc2SNnmeMviGqbikIrRMrtisv2lQdjwxvC6BKDaFbb
+         Fai9V8ZWqx1sa7pKtLd/o9gonGV2LsmkIjdyr5Bucil7o1mfcEERTBTXz49FvAayocLY
+         RvCKhCfeN7UbAuDF3kuHktV6dDVLMXMfp14dZNe5Mm7wcHP9M3ij1p8y2zACpQ6CCEwV
+         iGztsVKlGBb/TsItdWbYe1mYkFMNtVC9EcqjhIHDlt2AaNYtB9Kv1pXMMaNY1jEvEgLI
+         w3Xg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwMopLHjLzUPXyXCHzNP4JtZawhofoCeYX+J2m5MmlDVdBfYqAqeG448+GXtFRy20iaaxQY6+mO7Zw@vger.kernel.org
+X-Gm-Message-State: AOJu0YySHkncX5d60p6jP840Qi2taIvz2gEhsXXONCinrVSHSnh6jfFR
+	1eM0V7rs0tU9CxLON5T5d2AeGZJjYD8Mr823UIf1gVLkDF/XVXRL+H/J
+X-Gm-Gg: ASbGncsI0cTbW+jbmFUPrBEoJC9bAxCx6eBTpe/R8Ec4vTIiQ8Xb8fRXxMJn4DfxBjU
+	2vhahJA76+nKIYdPUL2kEt5yKDqocbswFxS5aboY7T7LBybC9MiEK0uK7gFsq3lELaYAkAZX7Uk
+	ipSFmjI3MBsQ6qNQuIf0JbKurid7VbfcE3+hEklxi3WngRxEPiSwEegRIvQRViTGJ2t8usoJEJQ
+	nAUJ/6ZRvAH/GZvXp+jTSQe9eiuneeAD0XpGk6Iyd4JbMB2LMoku7SD7DklPRTID2MYitDvrnVA
+	OsWYRxKZShA2u8PKDedrnJZaSYm6S0KqHW/CSwJROxku9XMJACmZf4trXybP/YW4cGs4SuRjLy+
+	5FSrTThx/2gWk6uj+oGHhgv+YSBPu/fvj2WLF9AXr60s5QYyRqDOb0LGUxuA7UUgbUrWoe9kv5Z
+	RFUbm4Zn+47GlfSPLF
+X-Google-Smtp-Source: AGHT+IGaW5mf3l3e9WL0amAUkV4jBYZ9TpBBxRsBaTLr99vQ32yK+2WU4XPkn1fwTjqGvgH00a6hfw==
+X-Received: by 2002:a05:600c:3143:b0:450:cabd:b4a9 with SMTP id 5b1f17b1804b1-46d31dcba3dmr18635985e9.29.1758528749751;
+        Mon, 22 Sep 2025 01:12:29 -0700 (PDT)
+Received: from localhost (2a02-8440-750d-3377-171e-75f8-f2d4-2af8.rev.sfr.net. [2a02:8440:750d:3377:171e:75f8:f2d4:2af8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3fd84338ca2sm3903576f8f.42.2025.09.22.01.12.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Sep 2025 01:10:48 -0700 (PDT)
-Date: Mon, 22 Sep 2025 10:10:42 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v3 00/12] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-Message-ID: <aNEEglLZTJuR1sLi@linaro.org>
-References: <20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com>
+        Mon, 22 Sep 2025 01:12:29 -0700 (PDT)
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+Subject: [PATCH v7 0/3] Register the STM32MP25 RCC driver as an access
+ controller.
+Date: Mon, 22 Sep 2025 10:12:17 +0200
+Message-Id: <20250922-b4-rcc-upstream-v7-0-2dfc4e018f40@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAOEE0WgC/02Oyw6DIBREf8XcdUkAK4K/0ri4wqUl8dGC2ibGf
+ y+pi7o8k8zM2SBRDJSgKTaItIYUpjFDfSnAPnC8EwsuM0guK26EYt2VRWvZ8kxzJByYRk1Yolf
+ IHeTWM5IPn9/irT040mvJw/MRQoeJmJ2GIcxNwWuSNTqhSmPQW6dM2VE+E6LjziOpkrgSlYezU
+ FOcdXyI9Ma+/zs5T7rSGqXwullraPf9CzYPxM3pAAAA
+X-Change-ID: 20250916-b4-rcc-upstream-8a8ea3af6a0d
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+X-Mailer: b4 0.15-dev-0dae4
 
-On Sun, Sep 21, 2025 at 01:10:58AM +0530, Mukesh Ojha wrote:
-> A few months ago, we discussed the challenges at Linaro Connect 2025 [1] 
-> related to Secure PAS remoteproc enablement when Linux is running at EL2.
-> 
-> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
-> 
-> Below, is the summary of the discussion.
-> 
-> Qualcomm is working to enable remote processors on the SA8775p SoC with
-> a Linux host running at EL2. In doing so, it has encountered several
-> challenges related to how the remoteproc framework is handled when Linux
-> runs at EL1.
-> 
-> One of the main challenges arises from differences in how IOMMU
-> translation is currently managed on SoCs running the Qualcomm EL2
-> hypervisor (QHEE), where IOMMU translation for any device is entirely
-> owned by the hypervisor. Additionally, the firmware for remote
-> processors does not contain a resource table, which would typically
-> include the necessary IOMMU configuration settings.
-> 
-> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
-> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
-> authenticate and reset remote processors via a single SMC call,
-> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
-> TZ for authentication. Once authentication is complete, the call returns
-> to QHEE, which sets up the IOMMU translation scheme for the remote
-> processors and subsequently brings them out of reset. The design of the
-> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
-> is not permitted to configure IOMMU translation for remote processors,
-> and only a single-stage translation is configured.
-> 
-> To make the remote processor bring-up (PAS) sequence
-> hypervisor-independent, the auth_and_reset SMC call is now handled
-> entirely by TZ. However, the issue of IOMMU configuration remains
-> unresolved, for example a scenario, when KVM host at EL2 has no
-> knowledge of the remote processors’ IOMMU settings.  This is being
-> addressed by overlaying the IOMMU properties when the SoC runs a Linux
-> host at EL2. SMC call is being provided from the TrustZone firmware to
-> retrieve the resource table for a given subsystem.
-> 
-> There are also remote processors such as those for video, camera, and
-> graphics that do not use the remoteproc framework to manage their
-> lifecycle. Instead, they rely on the Qualcomm PAS service to
-> authenticate their firmware. These processors also need to be brought
-> out of reset when Linux is running at EL2. The client drivers for these
-> processors use the MDT loader function to load and authenticate
-> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
-> to retrieve the resource table, create a shared memory bridge
-> (shmbridge), and map the resources before bringing the processors out of
-> reset.
-> 
-> This series has dependency on below series for creating SHMbridge over
-> carveout memory. It seems to be merged on linux-next and pushed for 6.18.
-> 
-> https://lore.kernel.org/lkml/20250911-qcom-tee-using-tee-ss-without-mem-obj-v12-0-17f07a942b8d@oss.qualcomm.com/
-> 
-> It is based on next-20250919 where above series is already merged
-> and tested on SA8775p which is now called Lemans IOT platform and
-> does not addresses DMA problem discussed at [1] which is future
-> scope of the series.
-> 
+The STM32MP25 RCC peripheral as an access controller is allowed to know
+whether the clocks are secured or not.
+The STM32MP25 RCC peripheral knows about the clock secure configuration
+of all non RIF-aware peripheral.
+In parallel all the RIF-aware peripheral configuration information
+are known by the RIFSC peripheral which is already an access
+controller.
 
-When testing your series on Lemans, what happens with the additional
-SIDs from the peripherals assigned to the remoteproc ("DMA masters" in
-your talk)? Are these running in bypass because the previous firmware
-component (Gunyah?) had allocated SMMU SMRs for these?
+This v7 is a subset of the v6 and other prior versions, split to simplify
+the review and merging process.
 
-It would be worth mentioning this in the cover letter (and perhaps as
-part of the EL2 overlay patch as well), since it is unclear otherwise
-why your series does not result in crashes the first time a remoteproc
-tries to use one of these DMA-capable peripherals.
+Changes in v7:
+- None
+- Link to v6: https://lore.kernel.org/all/20250909-b4-ddrperfm-upstream-v6-2-ce082cc801b5@gmail.com/
 
-Thanks,
-Stephan
+Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
+---
+Clément Le Goffic (3):
+      dt-bindings: stm32: stm32mp25: add `#access-controller-cells` property
+      clk: stm32mp25: add firewall grant_access ops
+      arm64: dts: st: set rcc as an access-controller
+
+ .../bindings/clock/st,stm32mp25-rcc.yaml           |  7 ++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |  1 +
+ drivers/clk/stm32/clk-stm32mp25.c                  | 40 +++++++++++++++++++++-
+ 3 files changed, 47 insertions(+), 1 deletion(-)
+---
+base-commit: 07e27ad16399afcd693be20211b0dfae63e0615f
+change-id: 20250916-b4-rcc-upstream-8a8ea3af6a0d
+prerequisite-change-id: 20250916-b4-firewall-upstream-dfe8588a21f8:v7
+prerequisite-patch-id: 1ead960f405c7a2dcc9111acd0bb4c95ed33954f
+
+Best regards,
+--  
+Clément Le Goffic <legoffic.clement@gmail.com>
+
 
