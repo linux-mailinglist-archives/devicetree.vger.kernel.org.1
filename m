@@ -1,59 +1,55 @@
-Return-Path: <devicetree+bounces-220217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E324DB9331C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:14:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD245B93347
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A41912A6792
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:14:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CD363A522E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204A2313260;
-	Mon, 22 Sep 2025 20:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1318D2EF662;
+	Mon, 22 Sep 2025 20:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdQqbZfg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="REGKL9+0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DEF1E32B7;
-	Mon, 22 Sep 2025 20:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D982E2DC1;
+	Mon, 22 Sep 2025 20:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758572091; cv=none; b=uUjf/2B77QfHznyriPOf2A34c7PcsITmlf+A6W/F9tKKAXAm0B9FuiXHV2QNybtZIOthGxCvBkbdmR9TwSaSX5krXKjT6pGImoh6RuXuHMBwdlomjD7z+PRtGrspFVctrnPa5WvtA2e3NhaxI6BHgeD9ayGgSrGlW4RWyYjtLRg=
+	t=1758572418; cv=none; b=BE6URJY3m4dLnLKg8fN7rMQGlV4sJxstgoKzfjlmayozhE9B/kpIaOctl+1PYbeS+tKsrdFyat9dLb8xx5FrqlJSOklFy24IuSyCqZytWfj626Uu7OV78YdkNXkpWSBYqslEc1jpMSuXv1/egK+0yCMaa2onF2NkpHoHpjBZSbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758572091; c=relaxed/simple;
-	bh=n7onidEgsOlpaTA0bHqvezDw24pCCjyLfMiCT8xJbWo=;
+	s=arc-20240116; t=1758572418; c=relaxed/simple;
+	bh=SKHIwH86g+4PIdxQd+vsl7x9QVwZsHHhDsTe90dtEXg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QqV3RskZ0wM+kq8f4SOBRFYhPJlPq8NkCexw8hAl0S5SwAbOHCKkpppTn1eb3v0Jb5ffPJl8UPWlcFub0TNe3l7S24Y1Zy0Q4b5KTCANMjulqxtdUhy2O9c4rNTpLsd+F5PIb/WPEh/tXyTTWJR99ZJNtXBP9MHD7U16CODvRYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdQqbZfg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C36C4CEF0;
-	Mon, 22 Sep 2025 20:14:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RRrEjwIwzszEFcg0yMqLecYbypqKlL5Rnocz+O/H2bowhNxlM2sY5lUKApA8LdCfrb18QXLDJmzHCD87ZY5wLzd17+aOn80JpUMIlmJbwe8Tllq2VS3fu7o1/AElRVh9YSlyLtkPmcMMcXHo+W7IlVRiVGbSjzANDUBwJMlk5jI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=REGKL9+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DCADC4CEF0;
+	Mon, 22 Sep 2025 20:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758572090;
-	bh=n7onidEgsOlpaTA0bHqvezDw24pCCjyLfMiCT8xJbWo=;
+	s=k20201202; t=1758572415;
+	bh=SKHIwH86g+4PIdxQd+vsl7x9QVwZsHHhDsTe90dtEXg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mdQqbZfgkYFBXrVlz9w8YV7KeMdkJVHmaZi+yCE+ct1RDUWErD4fWAkOq468gUbzF
-	 kwuGtAghvJ1UKanzQkz0bBsDj9PbS0r7sUpYUN1YIXuG6TssUBEAnHB2oP+4Uxf1UM
-	 MuVUW9dbu4NXJO0E9eJpQBchM2rAYV0c7isLon4T2e8PEUl1Nea5KraVZtVRrRJNI+
-	 /Ta5aSQoxBG6YS8Bxfr/Mf0PkZ0EA1V8YlQA5f4QTFUb/VKq0ieUnoKhqfc0ZZThu4
-	 U5SiDwQzpAZDBK+7kEu2fSz6mai2vfOaF0pQYvC72vBhklIXZWhFggm79ga3m51zfd
-	 S+02KzwGccjfg==
-Date: Mon, 22 Sep 2025 15:14:49 -0500
+	b=REGKL9+0p0aAaSu9XbgwQD9Yjw9tk6kRwRyRwQOEon1DMRnpg2q/ZXmIJpXp5aUcN
+	 tINWgKWq0xMRb6DUjaJRNqoGezQr0N7pda3g/m/xcs4rK2L3xJrbykE2/qFl0uyshX
+	 LnDA1U2DYi7PIqUxBKO183APHCWGo1YG31Pa+pSU0pSrSgY84+HZVpT/bE4ZVQNeqW
+	 lJJZUUm6nWy+TJ4wwtOXw3joLmeOsj5CkLTX46Z+ZclGwUw9OcfiT+Tsg62bJlbdu2
+	 ytdJD0iMiG7fJKs8IG1jDum2RbOBxc+l9JMfac3vt5ExdoeM55ujfHdSXSmLFoYWe/
+	 HWFQqohmPxnmw==
+Date: Mon, 22 Sep 2025 15:20:14 -0500
 From: Rob Herring <robh@kernel.org>
-To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
-	vkoul@kernel.org, gregkh@linuxfoundation.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH 3/9] dt-bindings: phy: qcom-m31-eusb2: Add Glymur
- compatible
-Message-ID: <20250922201449.GA1235521-robh@kernel.org>
-References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
- <20250920032108.242643-4-wesley.cheng@oss.qualcomm.com>
+To: Ma Ke <make24@iscas.ac.cn>
+Cc: saravanak@google.com, lizhi.hou@amd.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] of: unittest: Fix device reference count leak in
+ of_unittest_pci_node_verify
+Message-ID: <20250922202014.GA1254345-robh@kernel.org>
+References: <20250920085135.21835-1-make24@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,48 +58,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250920032108.242643-4-wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <20250920085135.21835-1-make24@iscas.ac.cn>
 
-On Fri, Sep 19, 2025 at 08:21:02PM -0700, Wesley Cheng wrote:
-> Add the Glymur compatible to the M31 eUSB2 PHY, and use the SM8750 as
-> the fallback.
+On Sat, Sep 20, 2025 at 04:51:35PM +0800, Ma Ke wrote:
+> In of_unittest_pci_node_verify(), when the add parameter is false,
+> device_find_any_child() obtains a reference to a child device. This
+> function implicitly calls get_device() to increment the device's
+> reference count before returning the pointer. However, the caller
+> fails to properly release this reference by calling put_device(),
+> leading to a device reference count leak.
 > 
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> As the comment of device_find_any_child states: "NOTE: you will need
+> to drop the reference with put_device() after use".
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 26409dd04589 ("of: unittest: Add pci_dt_testdrv pci driver")
+> Signed-off-by: Ma Ke <make24@iscas.ac.cn>
 > ---
->  .../devicetree/bindings/phy/qcom,m31-eusb2-phy.yaml   | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
+>  drivers/of/unittest.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.yaml
-> index c84c62d0e8cb..b96b1ee80257 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.yaml
-> @@ -15,9 +15,12 @@ description:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - qcom,sm8750-m31-eusb2-phy
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - qcom,glymur-m31-eusb2-phy
-> +          - const: qcom,sm8750-m31-eusb2-phy
-> +      - const: qcom,sm8750-m31-eusb2-phy
->  
->    reg:
->      maxItems: 1
-> @@ -53,8 +56,6 @@ required:
->    - compatible
->    - reg
->    - "#phy-cells"
-> -  - clocks
-> -  - clock-names
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index e3503ec20f6c..d225e73781fe 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -4271,7 +4271,7 @@ static struct platform_driver unittest_pci_driver = {
+>  static int of_unittest_pci_node_verify(struct pci_dev *pdev, bool add)
+>  {
+>  	struct device_node *pnp, *np = NULL;
+> -	struct device *child_dev;
+> +	struct device *child_dev = NULL;
+>  	char *path = NULL;
+>  	const __be32 *reg;
+>  	int rc = 0;
+> @@ -4306,6 +4306,8 @@ static int of_unittest_pci_node_verify(struct pci_dev *pdev, bool add)
+>  	kfree(path);
+>  	if (np)
+>  		of_node_put(np);
+> +	if (child_dev)
+> +		put_device(child_dev);
 
-How is it compatible if clocks aren't required now? And clocks are 
-suddenly no longer required on sm8750?
+This can go in the else clause. Then child_dev doesn't need to be 
+initialized to NULL.
 
->    - resets
->    - vdd-supply
->    - vdda12-supply
+>  
+>  	return rc;
+>  }
+> -- 
+> 2.17.1
+> 
 
