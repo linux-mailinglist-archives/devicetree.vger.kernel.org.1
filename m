@@ -1,224 +1,643 @@
-Return-Path: <devicetree+bounces-220213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DED0B932D4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:06:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 322FBB932A7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7A071893C24
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:06:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D27517A49A7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F8731D365;
-	Mon, 22 Sep 2025 20:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630752F2617;
+	Mon, 22 Sep 2025 20:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OsEc+83m"
+	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="Sp7ZeRuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013000.outbound.protection.outlook.com [40.107.159.0])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABE931CA5E;
-	Mon, 22 Sep 2025 20:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758571518; cv=fail; b=qyXE9MmzQ4izCOL+lJAVaWYcVJwboopSpjYwFYcFS8FgZ3gIxVt3WZFnXTwebz7TDmVb9qYQwKCLjIVfbKpU3T5M1H2lqdtVIUe4JK9aVXAgHXfaLUgOujkK8jzZSCKYR9LLgidCsd4fTMIhU1VPGPNqvoCg/Mif3/CpSbQnIYw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758571518; c=relaxed/simple;
-	bh=vGLhSV9HOD4MlWjPO5ELI7rFfhHl/ceGxaektFvV2mo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oXX6EB1hM9emFY8CsnFmxZ2hg5FEXiKyIVTh3Q2VdYr1YJ3lckc/VU9zl6Pul3lHjYUE1BPzFYfuZcjnZDklToDLH+Z9A1sYnog3nRv5XzItC9p9ISXXYRhdkEgwPrCVJqXzFEHBr+f5v8qAL0Fe3EQhB2743aYPSv8AmIuCPZE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OsEc+83m; arc=fail smtp.client-ip=40.107.159.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MAEkk58XE3eUgA/ZNAhs/H8XHdWCS9sQxJMUhW/7hW2ZO0hMx0WHkABtIqU9eB7eT3h7oN/TiY2miQ2OU57q/fSodi9rYV5RsSwXqhY0DGcVp0Hf7Fuqpj85jjg6YU8g4c0dpUWflA7shX4WfXYYIxODh+UVaItkqzxV9pIoGwndV7kVQfUodklxvtJkgIwnCu8/3PwSRoVcVJLGURYYnK+vsfJgNTWWkZYI7MiQxbCJ5/70J22D5TP05el/6iiBQ8wIk3tsmg64wAUzT9ZYCIxE7tznQ4v26uDckWJujCpiCEs4IdszcRnDTgBmZHMYb5XHcCKlfEEC5KA2ag1ljw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B2HiVBIMWSRnhCNOweRn6OKMCU2LmeoFk1QA712toKQ=;
- b=Mtn8ekEFzl5zY8QIMgQDKtXo9XvTT0mPmDRzXHq1LOn4Ik6mV4A6npBxnfahGG6tJfptvldRW3P8GwJvY+cQA2Q7wGJw36t2Evqtj0s6mg6jaZxOXZqU+qA6Gny6Y9Ib8OZ2PwLQOBP8RJHD2/gzY5ZI8NBqBxy4d65i9YL0VzjDQiTGn1zJpr2nT4JQ+5VtGN7lxeb/n/GxGDtQT2NOsjV9KcNWgOaKm9Rc18cJrvJ6lfP7DiuYxEGF8/wYa2vSg0/WhOEMXBVYEByA3VvNrV/DdEsEAa9fzwBv5csHeZhQuvmpnsR4lPEJ2jzCgT5vSNti2CYMdESylkhCrx5flw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B2HiVBIMWSRnhCNOweRn6OKMCU2LmeoFk1QA712toKQ=;
- b=OsEc+83m/ClgXpWM/GSCmBIVRi9g4pFCLfbsmyikGUEsjMs+KWxy13JekwOIBKA3p7tDffaf1GVak1xwI5+hXqGixRl+ihKcti6MC+hWzC/Lc4FnobHzTvXIaAReb3pF1LKqCir9LMxqQQLWD3A5CDKwkk8jen6gyzgFmRnF1J8DzNVkbXrV0swaIz/PyjJAHvNr1ftfDNvXpNWRmEkpoV6ZRMCBJWFD/0wZ8kUhX/Qu2rJP/WnChmXe0A0SRXynsQygXaHwhLywl9g9GMMAsod9CnkYrSWL+1zpQKZxMqsQkDmY9NjqjJzFP3JPri1R0s/sPMyjMAvBgyOOU8ujkQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by AM0PR04MB7073.eurprd04.prod.outlook.com (2603:10a6:208:1a0::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.12; Mon, 22 Sep
- 2025 20:05:13 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612%4]) with mapi id 15.20.9160.008; Mon, 22 Sep 2025
- 20:05:13 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-imx@nxp.com,
-	Shenwei Wang <shenwei.wang@nxp.com>
-Subject: [PATCH v2 4/4] arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
-Date: Mon, 22 Sep 2025 15:04:13 -0500
-Message-ID: <20250922200413.309707-5-shenwei.wang@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250922200413.309707-1-shenwei.wang@nxp.com>
-References: <20250922200413.309707-1-shenwei.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR04CA0011.namprd04.prod.outlook.com
- (2603:10b6:a03:217::16) To PAXPR04MB9185.eurprd04.prod.outlook.com
- (2603:10a6:102:231::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FFB2F5320
+	for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 20:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758571483; cv=none; b=coBIHUEIUTmHTdkjt3PnvFxPySn9j0vM+X/U5iPy2CYyacrKfm4wiKAn3kwEONsM9+jmwRglKfovL5J4/14e+FtmSqWSZ/VuaE/KkLu/dxiuDm9JcT7zyg0FoFTsnNQF+Ulg/ElECHHrmH3gTfAYpiMlPar7rjSFLbyAEE8Uxdk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758571483; c=relaxed/simple;
+	bh=ov4FxXKPmgQsjzZeajzGsOfpAyFSkazLFJSinIXAVY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VjZMzj5YWt61O2V3yHto71rYo+RlftBwdRJG4jy1xA0wTmQRaycgSybzeKlGLwdmveGBmCqOLs3/3PoUR7a4rekftLAbXMSmb7VILX7rqYMu/Nwfj/qdmk8ZJcLtBFs5boqYKIrttHQEX1Dela40nvzzMS0L2kfzSnvbaq4L1DA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=Sp7ZeRuX; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
+Date: Mon, 22 Sep 2025 22:04:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+	t=1758571476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GS9QOIT9CUvHJE0VHPRGoH5OMz8vdAI6lcsPk44/KRA=;
+	b=Sp7ZeRuXWqGvsr8wyRsHRhTHEnu2TeihC4R2LphJmg8W4FxOxa6a4S7sJY4JvIgFggeQIP
+	su0I7W06EBVPV6YCUyYp0FZGSq6MEGfPy78P4af3GGPn07ES7DuknnvD2vi+b9SfIxMyPT
+	tpx7KHlnh7RAYj7i5B4zqGjzThd4rf0=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Henrik Grimler <henrik@grimler.se>
+To: Shin Son <shin.son@samsung.com>
+Cc: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] thermal: exynos_tmu: Support new hardware and
+ update TMU interface
+Message-ID: <20250922200430.GA4697@l14.localdomain>
+References: <20250922041857.1107445-1-shin.son@samsung.com>
+ <CGME20250922041902epcas2p3e40ed58737b22b7af9d09f6ba362928d@epcas2p3.samsung.com>
+ <20250922041857.1107445-3-shin.son@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|AM0PR04MB7073:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc7ff512-eec5-4d1e-ce63-08ddfa135726
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|19092799006|366016|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zuhqGuOKuUWpIgWSzuIuS0O8AGbedSMgiidEcnC7takiaPgbjX46uzX3MJcq?=
- =?us-ascii?Q?m14pk3whpu/gRhKegVWnC7n7UCpROyZ+Ga5CFpAYbTSMJECT/GPCqdwgfvpz?=
- =?us-ascii?Q?73SWoAMd/JFbdaeZDQirUIuUnrctnEaueGvYEq6n+pb10pryV4PCvV/dZe7w?=
- =?us-ascii?Q?tbXVhyvXBR2trBJsHvy765mVOgLCQ7T2xP0JepY9XFRnaSNnbjjgs6lsryyV?=
- =?us-ascii?Q?vy580wpO2rte5IhsBDwnO0lZvyeV15M4VO3hI+POR6bg5AvpKe7UjHadY6a3?=
- =?us-ascii?Q?vYR6TqdRiX+M+4VFrgEDIB9vRf/D45Csev67h27mZU6mqAOCcF7AWObtU2mW?=
- =?us-ascii?Q?FCkQOoGKrpCaOAEEt4jz80l14EzUcQMbIi17f1Wmln+Fb6jw4YtzQIxyucaN?=
- =?us-ascii?Q?duOkB1Nli6i5HYeHOq8dGjQWtsagoYRm9TSQtTHKsJQKaSm7sSxZM1RZm33W?=
- =?us-ascii?Q?Bs+L2yjLs61af7sEtzdwIOth2pA258VU97wXJ6ZnSqS8skn4fAtJxFMYcP3l?=
- =?us-ascii?Q?OPAjVuHug0sst20gBqFoaEHBE0zwbfMbzi1Bj007sJPhpLf4iRocN41LMKZ9?=
- =?us-ascii?Q?Qp4iiJf+T2oYWNambIYRNuQA9hAwuagGCFLbq9c0MIr3LQ1ZroAGyZ2qQsgm?=
- =?us-ascii?Q?PTowU3MUZb16Y2ksJykcd8VaUOUJY9yJrIOAM9yiglmYEkEI2/PVK/PTwmpA?=
- =?us-ascii?Q?gvU6DGo5qe4/6EbhjUWwz644hmYzCxxxCBd1ayZ6B0MXVYOojYs92kbDteL9?=
- =?us-ascii?Q?wztgFaIMt4axbaG9McfZWOqVzISbCynhjWfj/Bo5fMpQHJD9pncZMi2cCMah?=
- =?us-ascii?Q?/FgKWPLifo6bSpBNbfblhwg0Vhoq/t2cq5S2VPPE++kU9nUo0i/GfyonS6a3?=
- =?us-ascii?Q?4dSaXgMJa9fbFHxqyM7LhqU0r+AoNBcYKMeZbi6qddUzeCnFBio3c6CgKPly?=
- =?us-ascii?Q?QeO2eo7q+HzBzYAe8HtW7ZY9/J34VX0ZzyWsRCsyilVNXxWGohDoKRHwY8Hg?=
- =?us-ascii?Q?sN3GEQgnAkF/njF5wu5LX5dH9ouo90wZMOQnV8ggtwQiZ5V7cgfq/3v662u1?=
- =?us-ascii?Q?oL1PqtSiSUx079GQygE73qpurWDhFRAStizoIc5r/9c7wBLekzTRkF7YowsA?=
- =?us-ascii?Q?00TkZuIEpPHJuF8UBI8wGK1bfL2415q+sXnJfgaEZPVIbMnNNSR3vSDVB7VO?=
- =?us-ascii?Q?v18bfeQS2EqMXaPADvNBcO5hUIjiJufizcY1/40AX4Eqrxkz2WwaDQBjHQUG?=
- =?us-ascii?Q?3qj1qpstEiFmmJm3RK+7R4E3Hlqch0yV3yf2Nu4fHXaKqhnHt8H7TWNbceeg?=
- =?us-ascii?Q?RljFADP40echHlKixplrl3bJXQGPx0srHw+Pn3jc/QRHUbts6CueBmIZEkxj?=
- =?us-ascii?Q?LRGk3xikPaNoDldGhg2q36P0aTR+M+RQAJDaAmWLrQRXmRgvfBGZDgFz9vhr?=
- =?us-ascii?Q?Mz2dhyTuGFZG/J5UDkgOZEiBdd0fTfoOtYISqF+ODV7PQ4q5My6S6g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(19092799006)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?kslmHddt98en8+UdbzoLSQgLiYUHF6gtgHdnHsfD1ELkcBsWkkXHmiWLt/68?=
- =?us-ascii?Q?4vMtnSHxObiwVnNeLSQz9G9iLEc74EvgpCtL4sdLTDKC+QR5/4pFoHoi1aOn?=
- =?us-ascii?Q?2vPZw+j4uH5mDhIq4uEesU0NZhVz9xvDJ935jLvHKxGK2WqEuQFOya+tS/xN?=
- =?us-ascii?Q?GHdep82AdZqN3fYaLaktT1XQb4Lj536YcTUqZeIO9JLtE+kcDCr7qjPp7vXw?=
- =?us-ascii?Q?oV41M1YoIdReJMuYJqeXruH5qFN0Oc/po1yJfVwKbsifLxWYAz9GmlIi4r6r?=
- =?us-ascii?Q?ebebpjsJY0U9bMj2lUYj9QIbCxpnd/QO7P0uijABn4DvheMupb0nibD93clP?=
- =?us-ascii?Q?rWZJDNDUqlJAPf/SDQdGPRilCtvUmQPUyBxtSyANZujpzT2f2HCf4YFcnzVq?=
- =?us-ascii?Q?znls8puigZlYEHO76Iuyz9DGIKIccLEM6mF/sWXI+CMkAxc9ttUDc6f/XLy1?=
- =?us-ascii?Q?YwF4EJJD9+G+x2QZBEPIzBx97/q6c5+KGBdDFN6vERKQnssGXu/YLYAHnX8R?=
- =?us-ascii?Q?jKZyvNE2Cx0jIyvS7AUHHuE+SlCebovDsiQWdbyAlsv1fSC6tWwwqUqbgTzg?=
- =?us-ascii?Q?0M/wEjJR24QMgsAQ9O5RHJuwSP/gIfyxoGL9R6yt19Ttgp5JxZ/C7YXiVDmx?=
- =?us-ascii?Q?5MDZmGNyBxbWZu3jIcRuYwLmQgt67cN2MHR/d8OEuZ3ezAoCKnEsZxaYgmg7?=
- =?us-ascii?Q?VspiuDR90LofI2gKNGP36voO5l5DvY9WnRgs4yWXobeRLKgzjZLuHQskML4o?=
- =?us-ascii?Q?wgrENG5K4jfccrJbOTc8xrTWcMICaFtWFJJ6oIyxSxY93sDYg27VN3aclbEC?=
- =?us-ascii?Q?ups+N7Ahwf9Pw/1tRsruI8D6WO4uumOkOqkPrETgQqR2ZDq678PRurYYIPvd?=
- =?us-ascii?Q?hw9U9aFXrXHGqbdDmKOinJN5K0Mg0Tt+yiIaLakHC+YHcBYK4f6aK0LiCQO9?=
- =?us-ascii?Q?dUI6aabRSonzjflCAHHbak2Y1MJiQ8qWJEvWcpbISmglPpFyq/DfkhF/PG+c?=
- =?us-ascii?Q?8EEWedQH889BhuXYFdZD+EwN+DXggRT+achvzHDvXK0VqozMYHbAJY9u3M6c?=
- =?us-ascii?Q?swTSNt63u02+1cR1LZejaIsGjaK/GLtDmCGqF+RfOzUO8edXubkpExGVlFNL?=
- =?us-ascii?Q?i7cIZTvWGtQ8CiUgT5LTVMhm15nekv5pGjat2fDimSj++KTSEyp6cuzpKpu/?=
- =?us-ascii?Q?6nSq+Q+A/H2Jw/D3uCuT5ir3ExVhqjzxH06sEQqBV29gw4mJqvbErDuNmgIk?=
- =?us-ascii?Q?facgw4JAntNZZKcyh6rV9zEinixOnFfU6vARIgkrwFQI8hcvVqm8Gq6CHxZO?=
- =?us-ascii?Q?rC2fulB5fEUodRkf/SCfwEES1fxib3VuAVe1W0TWOrSrWMXXNPRDa4gcn2k5?=
- =?us-ascii?Q?RGHKoTr/SEBhcNt6bdtuwpWZ+8st31qEmTKRzQta4/f7oU1UbozDLy9wFgcK?=
- =?us-ascii?Q?8Md1NfbSvoBKhZa3qe6Dybcc2b9iIXjJaczrv7qLUNC8skJhu/5SyvEtTdPy?=
- =?us-ascii?Q?KY3kas3jMQF/vIKAv54FCo0wqIQVqtjhvyiJpJxCKs+7PhTqkggzExcV1cTw?=
- =?us-ascii?Q?bIuZ43hS2OzDGvQR0BhXYJVWw6HIQH3GwGrUJzTn?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc7ff512-eec5-4d1e-ce63-08ddfa135726
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 20:05:13.2072
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lkQIpEI1uMrCeH1UaoFdYlWfk2GDM1MGfsJHWj0UoaY+mO4mzmsAoWEftHYsf3kg1BKHSMCUn75+AxXgho0fRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7073
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250922041857.1107445-3-shin.son@samsung.com>
+X-Migadu-Flow: FLOW_OUT
 
-Add the RPMSG bus node along with its GPIO subnodes to the device
-tree.
+Hi Shin,
 
-Enable remote device communication and GPIO control via RPMSG on
-the i.MX platform.
+On Mon, Sep 22, 2025 at 01:18:56PM +0900, Shin Son wrote:
+> The Exynos tmu driver's private data structure has been extended
+> to support the exynosautov920 hardware, which requires per-sensor interrupt
+> enablement and multiple-zone handling:
+> 
+> - Add 'slope_comp' : compensation parameter below 25 degrees.
+> - Add 'calib_temp' : stores the fused calibaration temperature.
+> - Add 'sensor_count' : reflects the maximum sensor numbers.
+> - Rename 'tzd' -> 'tzd_array' to register multiple thermal zones.
+> 
+> Since splitting this patch causes runtime errors during temperature
+> emulation or problems where the read temperature feature fails to
+> retrieve values, I have submitted it as a single commit. To add support
+> for the exynosautov920 to the exisiting TMU interface, the following
+> changes are included:
+> 
+> 1. Simplify "temp_to_code" and "code_to_temp" to one computation path
+>    by normalizing calib_temp.
+> 2. Loop over 'sensor_count' in critical-point setup.
+> 3. Introduce 'update_con_reg' for exynosautov920 control-register updates.
+> 4. Add exynosautov920-specific branch in 'exynos_tmu_update_temp' function.
+> 5. Skip high & low temperature threshold setup in exynosautov920.
+> 6. Enable interrupts via sensor_count in exynosautov920.
+> 7. Initialize all new members during 'exynosautov920_tmu_initialize'.
+> 8. Clear IRQs by iterating the sensor_count in exynosautov920.
+> 9. Register each zone with 'devm_thermal_of_zone_register()'
+>    based on 'sensor_count'.
+> 
+> Signed-off-by: Shin Son <shin.son@samsung.com>
+> ---
+>  drivers/thermal/samsung/exynos_tmu.c | 322 ++++++++++++++++++++++++---
+>  1 file changed, 285 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/thermal/samsung/exynos_tmu.c b/drivers/thermal/samsung/exynos_tmu.c
+> index 47a99b3c5395..ebcc38f3fff6 100644
+> --- a/drivers/thermal/samsung/exynos_tmu.c
+> +++ b/drivers/thermal/samsung/exynos_tmu.c
+> @@ -121,8 +121,51 @@
+>  
+>  #define EXYNOS_NOISE_CANCEL_MODE		4
+>  
+> +/* ExynosAutov920 specific registers */
+> +#define EXYNOSAUTOV920_SLOPE_COMP		25
+> +#define EXYNOSAUTOV920_SLOPE_COMP_MASK		0xf
+> +#define EXYNOSAUTOV920_CALIB_SEL_TEMP		30
+> +#define EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK	0x2
+> +
+> +#define EXYNOSAUTOV920_SENSOR0_TRIM_INFO	0x10
+> +#define EXYNOSAUTOV920_TRIM_MASK		0x1ff
+> +#define EXYNOSAUTOV920_TRIMINFO_25_SHIFT	0
+> +#define EXYNOSAUTOV920_TRIMINFO_85_SHIFT	9
+> +
+> +#define EXYNOSAUTOV920_TMU_REG_TRIMINFO2	0x04
+> +
+> +#define EXYNOSAUTOV920_TMU_REG_THRESHOLD(p)	(((p)) * 0x50 + 0x00d0)
+> +#define EXYNOSAUTOV920_TMU_REG_INTEN(p)		(((p)) * 0x50 + 0x00f0)
+> +#define EXYNOSAUTOV920_TMU_REG_INT_PEND(p)	(((p)) * 0x50 + 0x00f8)
+> +
+> +#define EXYNOSAUTOV920_CURRENT_TEMP_P1_P0	0x084
+> +#define EXYNOSAUTOV920_TMU_REG_EMUL_CON		0x0b0
+> +
+> +#define EXYNOSAUTOV920_TMU_REG_CONTROL		0x50
+> +#define EXYNOSAUTOV920_TMU_REG_CONTROL1		0x54
+> +#define EXYNOSAUTOV920_TMU_REG_AVG_CONTROL	0x58
+> +#define EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL	0x70
+> +#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0	0x74
+> +#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1	0x78
+> +
+> +#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT		8
+> +#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK		0x1f
+> +#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT	3
+> +#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK		0xf
+> +#define EXYNOSAUTOV920_TMU_NUM_PROBE_MASK		0xf
+> +#define EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT		16
+> +#define EXYNOSAUTOV920_TMU_LPI_MODE_MASK		1
+> +#define EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT		10
+> +
+> +#define EXYNOSAUTOV920_TMU_AVG_CON_UPDATE		0x0008011a
+> +#define EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE	0x030003c0
+> +#define EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE	0x03c0004d
+> +
+>  #define MCELSIUS	1000
+>  
+> +#define EXYNOS_DEFAULT_SENSOR_COUNT			1
+> +#define EXYNOS_MAX_SENSOR_COUNT				16
 
-Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+In patch 1, sensor count is described as a value 0 <= sensor_count <=
+15, but here max sensor count value is set to 16. Shouldn't max value
+be the same in these two places, what is the maximum number of thermal
+sensors that the hardware can have?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 13b01f3aa2a4..6ab1c12a3bc1 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -191,6 +191,33 @@ scmi_sensor: protocol@15 {
- 	cm33: remoteproc-cm33 {
- 		compatible = "fsl,imx8ulp-cm33";
- 		status = "disabled";
-+
-+		rpmsg {
-+			rpmsg-io-channel {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				rpmsg_gpioa: gpio@0 {
-+					compatible = "fsl,imx-rpmsg-gpio";
-+					reg = <0>;
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					#interrupt-cells = <2>;
-+					interrupt-controller;
-+					interrupt-parent = <&rpmsg_gpioa>;
-+				};
-+
-+				rpmsg_gpiob: gpio@1 {
-+					compatible = "fsl,imx-rpmsg-gpio";
-+					reg = <1>;
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					#interrupt-cells = <2>;
-+					interrupt-controller;
-+					interrupt-parent = <&rpmsg_gpiob>;
-+				};
-+			};
-+		};
- 	};
- 
- 	soc: soc@0 {
--- 
-2.43.0
+>  enum soc_type {
+>  	SOC_ARCH_EXYNOS3250 = 1,
+>  	SOC_ARCH_EXYNOS4210,
+> @@ -133,6 +176,7 @@ enum soc_type {
+>  	SOC_ARCH_EXYNOS5420_TRIMINFO,
+>  	SOC_ARCH_EXYNOS5433,
+>  	SOC_ARCH_EXYNOS7,
+> +	SOC_ARCH_EXYNOSAUTOV920,
+>  };
+>  
+>  /**
+> @@ -150,6 +194,8 @@ enum soc_type {
+>   * @efuse_value: SoC defined fuse value
+>   * @min_efuse_value: minimum valid trimming data
+>   * @max_efuse_value: maximum valid trimming data
+> + * @slope_comp: allocated value of the slope compensation.
+> + * @calib_temp: calibration temperature of the TMU.
+>   * @temp_error1: fused value of the first point trim.
+>   * @temp_error2: fused value of the second point trim.
+>   * @gain: gain of amplifier in the positive-TC generator block
+> @@ -157,7 +203,8 @@ enum soc_type {
+>   * @reference_voltage: reference voltage of amplifier
+>   *	in the positive-TC generator block
+>   *	0 < reference_voltage <= 31
+> - * @tzd: pointer to thermal_zone_device structure
+> + * @sensor_count: The maximum number of the sensors
+> + * @tzd_array: pointer array of thermal_zone_device structure
+>   * @enabled: current status of TMU device
+>   * @tmu_set_low_temp: SoC specific method to set trip (falling threshold)
+>   * @tmu_set_high_temp: SoC specific method to set trip (rising threshold)
+> @@ -174,6 +221,7 @@ struct exynos_tmu_data {
+>  	void __iomem *base;
+>  	void __iomem *base_second;
+>  	int irq;
+> +	int sensor_count;
+>  	enum soc_type soc;
+>  	struct mutex lock;
+>  	struct clk *clk, *clk_sec, *sclk;
+> @@ -181,10 +229,12 @@ struct exynos_tmu_data {
+>  	u32 efuse_value;
+>  	u32 min_efuse_value;
+>  	u32 max_efuse_value;
+> +	u16 slope_comp;
+> +	u16 calib_temp;
+>  	u16 temp_error1, temp_error2;
+>  	u8 gain;
+>  	u8 reference_voltage;
+> -	struct thermal_zone_device *tzd;
+> +	struct thermal_zone_device *tzd_array[EXYNOS_MAX_SENSOR_COUNT];
+>  	bool enabled;
+>  
+>  	void (*tmu_set_low_temp)(struct exynos_tmu_data *data, u8 temp);
+> @@ -205,13 +255,20 @@ struct exynos_tmu_data {
+>   */
+>  static int temp_to_code(struct exynos_tmu_data *data, u8 temp)
+>  {
+> +	s32 temp_diff, code;
+> +
+>  	if (data->cal_type == TYPE_ONE_POINT_TRIMMING)
+>  		return temp + data->temp_error1 - EXYNOS_FIRST_POINT_TRIM;
+>  
+> -	return (temp - EXYNOS_FIRST_POINT_TRIM) *
+> -		(data->temp_error2 - data->temp_error1) /
+> -		(EXYNOS_SECOND_POINT_TRIM - EXYNOS_FIRST_POINT_TRIM) +
+> -		data->temp_error1;
+> +	temp_diff = temp - EXYNOS_FIRST_POINT_TRIM;
+> +
+> +	code = temp_diff * (data->temp_error2 - data->temp_error1) * MCELSIUS /
+> +	       (data->calib_temp - EXYNOS_FIRST_POINT_TRIM);
+> +
+> +	if (data->soc == SOC_ARCH_EXYNOSAUTOV920 && temp_diff < 0)
+> +		code = code * (57 + data->slope_comp) / 65;
+> +
+> +	return code / MCELSIUS + data->temp_error1;
+>  }
+>  
+>  /*
+> @@ -220,13 +277,20 @@ static int temp_to_code(struct exynos_tmu_data *data, u8 temp)
+>   */
+>  static int code_to_temp(struct exynos_tmu_data *data, u16 temp_code)
+>  {
+> +	s32 code_diff, temp;
+> +
+>  	if (data->cal_type == TYPE_ONE_POINT_TRIMMING)
+>  		return temp_code - data->temp_error1 + EXYNOS_FIRST_POINT_TRIM;
+>  
+> -	return (temp_code - data->temp_error1) *
+> -		(EXYNOS_SECOND_POINT_TRIM - EXYNOS_FIRST_POINT_TRIM) /
+> -		(data->temp_error2 - data->temp_error1) +
+> -		EXYNOS_FIRST_POINT_TRIM;
+> +	code_diff = temp_code - data->temp_error1;
+> +
+> +	temp = code_diff * (data->calib_temp - EXYNOS_FIRST_POINT_TRIM) * MCELSIUS /
+> +	       (data->temp_error2 - data->temp_error1);
+> +
+> +	if (data->soc == SOC_ARCH_EXYNOSAUTOV920 && code_diff < 0)
+> +		temp = temp * 65 / (57 + data->slope_comp);
+> +
+> +	return temp / MCELSIUS + EXYNOS_FIRST_POINT_TRIM;
+>  }
 
+Nice, these two functions looks much better compared to v2!
+
+>  static void sanitize_temp_error(struct exynos_tmu_data *data, u32 trim_info)
+> @@ -262,6 +326,9 @@ static int exynos_tmu_initialize(struct platform_device *pdev)
+>  		clk_enable(data->clk_sec);
+>  
+>  	status = readb(data->base + EXYNOS_TMU_REG_STATUS);
+> +	if (data->soc == SOC_ARCH_EXYNOSAUTOV920)
+> +		status = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
+> +
+>  	if (!status) {
+>  		ret = -EBUSY;
+>  	} else {
+> @@ -280,27 +347,34 @@ static int exynos_tmu_initialize(struct platform_device *pdev)
+>  static int exynos_thermal_zone_configure(struct platform_device *pdev)
+>  {
+>  	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
+> -	struct thermal_zone_device *tzd = data->tzd;
+> -	int ret, temp;
+> +	struct thermal_zone_device *tzd;
+> +	int ret, temp, idx;
+>  
+> -	ret = thermal_zone_get_crit_temp(tzd, &temp);
+> -	if (ret) {
+> -		/* FIXME: Remove this special case */
+> -		if (data->soc == SOC_ARCH_EXYNOS5433)
+> -			return 0;
+> +	for (idx = 0; idx < data->sensor_count; idx++) {
+> +		tzd = data->tzd_array[idx];
+>  
+> -		dev_err(&pdev->dev,
+> -			"No CRITICAL trip point defined in device tree!\n");
+> -		return ret;
+> -	}
+> +		if (!tzd)
+> +			continue;
+>  
+> -	mutex_lock(&data->lock);
+> -	clk_enable(data->clk);
+> +		ret = thermal_zone_get_crit_temp(tzd, &temp);
+> +		if (ret) {
+> +			/* FIXME: Remove this special case */
+> +			if (data->soc == SOC_ARCH_EXYNOS5433)
+> +				return 0;
+>  
+> -	data->tmu_set_crit_temp(data, temp / MCELSIUS);
+> +			dev_err(&pdev->dev,
+> +				"No CRITICAL trip point defined in device tree!\n");
+> +			return ret;
+> +		}
+>  
+> -	clk_disable(data->clk);
+> -	mutex_unlock(&data->lock);
+> +		mutex_lock(&data->lock);
+> +		clk_enable(data->clk);
+> +
+> +		data->tmu_set_crit_temp(data, temp / MCELSIUS);
+> +
+> +		clk_disable(data->clk);
+> +		mutex_unlock(&data->lock);
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -323,6 +397,37 @@ static u32 get_con_reg(struct exynos_tmu_data *data, u32 con)
+>  	return con;
+>  }
+>  
+> +static void update_con_reg(struct exynos_tmu_data *data)
+> +{
+> +	u32 val, t_buf_vref_sel, t_buf_slope_sel;
+> +
+> +	val = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
+> +	t_buf_vref_sel = (val >> EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT)
+> +				& EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK;
+> +	t_buf_slope_sel = (val >> EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT)
+> +				& EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK;
+> +
+> +	val = readl(data->base +  EXYNOSAUTOV920_TMU_REG_CONTROL);
+> +	val &= ~(EXYNOS_TMU_REF_VOLTAGE_MASK << EXYNOS_TMU_REF_VOLTAGE_SHIFT);
+> +	val |= (t_buf_vref_sel << EXYNOS_TMU_REF_VOLTAGE_SHIFT);
+> +	val &= ~(EXYNOS_TMU_BUF_SLOPE_SEL_MASK << EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
+> +	val |= (t_buf_slope_sel << EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
+> +	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
+> +
+> +	val = readl(data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
+> +	val &= ~(EXYNOSAUTOV920_TMU_NUM_PROBE_MASK << EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT);
+> +	val &= ~(EXYNOSAUTOV920_TMU_LPI_MODE_MASK << EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT);
+> +	val |= (data->sensor_count << EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT);
+> +	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
+> +
+> +	writel(1, data->base + EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL);
+> +	writel(EXYNOSAUTOV920_TMU_AVG_CON_UPDATE, data->base + EXYNOSAUTOV920_TMU_REG_AVG_CONTROL);
+> +	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE,
+> +	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0);
+> +	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE,
+> +	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1);
+> +}
+> +
+>  static void exynos_tmu_control(struct platform_device *pdev, bool on)
+>  {
+>  	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
+> @@ -354,9 +459,8 @@ static void exynos_tmu_update_temp(struct exynos_tmu_data *data, int reg_off,
+>  	u16 tmu_temp_mask;
+>  	u32 th;
+>  
+> -	tmu_temp_mask =
+> -		(data->soc == SOC_ARCH_EXYNOS7) ? EXYNOS7_TMU_TEMP_MASK
+> -						: EXYNOS_TMU_TEMP_MASK;
+> +	tmu_temp_mask = (data->soc == SOC_ARCH_EXYNOS7 || data->soc == SOC_ARCH_EXYNOSAUTOV920)
+> +		? EXYNOS7_TMU_TEMP_MASK	: EXYNOS_TMU_TEMP_MASK;
+>  
+>  	th = readl(data->base + reg_off);
+>  	th &= ~(tmu_temp_mask << bit_off);
+> @@ -582,6 +686,68 @@ static void exynos7_tmu_initialize(struct platform_device *pdev)
+>  	sanitize_temp_error(data, trim_info);
+>  }
+>  
+> +static void exynosautov920_tmu_set_low_temp(struct exynos_tmu_data *data, u8 temp)
+> +{
+> +	/*
+> +	 * Failing thresholds are not supported on Exynosautov920.
+> +	 * We use polling instead.
+> +	 */
+> +}
+> +
+> +static void exynosautov920_tmu_set_high_temp(struct exynos_tmu_data *data, u8 temp)
+> +{
+> +	/*
+> +	 * Rising thresholds are not supported on Exynosautov920.
+> +	 * We use polling instead.
+> +	 */
+> +}
+> +
+> +static void exynosautov920_tmu_disable_low(struct exynos_tmu_data *data)
+> +{
+> +	/* Again, this is handled by polling. */
+> +}
+> +
+> +static void exynosautov920_tmu_disable_high(struct exynos_tmu_data *data)
+> +{
+> +	/* Again, this is handled by polling. */
+> +}
+> +
+> +static void exynosautov920_tmu_set_crit_temp(struct exynos_tmu_data *data, u8 temp)
+> +{
+> +	unsigned int idx;
+> +
+> +	for (idx = 0; idx < data->sensor_count; idx++) {
+> +		if (!data->tzd_array[idx])
+> +			continue;
+> +
+> +		exynos_tmu_update_temp(data, EXYNOSAUTOV920_TMU_REG_THRESHOLD(idx), 16, temp);
+> +		exynos_tmu_update_bit(data, EXYNOSAUTOV920_TMU_REG_INTEN(idx), 7, true);
+> +	}
+> +}
+> +
+> +static void exynosautov920_tmu_initialize(struct platform_device *pdev)
+> +{
+> +	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
+> +	unsigned int val;
+> +
+> +	data->tmu_control(pdev, false);
+> +
+> +	update_con_reg(data);
+> +
+> +	val = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
+> +	data->cal_type = TYPE_TWO_POINT_TRIMMING;
+> +	data->slope_comp = (val >> EXYNOSAUTOV920_SLOPE_COMP) & EXYNOSAUTOV920_SLOPE_COMP_MASK;
+> +
+> +	val = readl(data->base + EXYNOSAUTOV920_SENSOR0_TRIM_INFO);
+> +	data->temp_error1 = (val >> EXYNOSAUTOV920_TRIMINFO_25_SHIFT) & EXYNOSAUTOV920_TRIM_MASK;
+> +	data->temp_error2 = (val >> EXYNOSAUTOV920_TRIMINFO_85_SHIFT) & EXYNOSAUTOV920_TRIM_MASK;
+> +
+> +	val = readl(data->base + EXYNOSAUTOV920_TMU_REG_TRIMINFO2);
+> +	val = (val >> EXYNOSAUTOV920_CALIB_SEL_TEMP) & EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK;
+> +
+> +	data->calib_temp = (EXYNOS_SECOND_POINT_TRIM + (20 * val));
+> +}
+> +
+>  static void exynos4210_tmu_control(struct platform_device *pdev, bool on)
+>  {
+>  	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
+> @@ -633,6 +799,24 @@ static void exynos7_tmu_control(struct platform_device *pdev, bool on)
+>  	writel(con, data->base + EXYNOS_TMU_REG_CONTROL);
+>  }
+>  
+> +static void exynosautov920_tmu_control(struct platform_device *pdev, bool on)
+> +{
+> +	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
+> +	unsigned int con;
+> +
+> +	con = readl(data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
+> +
+> +	if (on) {
+> +		con |= BIT(EXYNOS_TMU_THERM_TRIP_EN_SHIFT);
+> +		con |= BIT(EXYNOS_TMU_CORE_EN_SHIFT);
+> +	} else {
+> +		con &= ~BIT(EXYNOS_TMU_THERM_TRIP_EN_SHIFT);
+> +		con &= ~BIT(EXYNOS_TMU_CORE_EN_SHIFT);
+> +	}
+> +
+> +	writel(con, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
+> +}
+> +
+>  static int exynos_get_temp(struct thermal_zone_device *tz, int *temp)
+>  {
+>  	struct exynos_tmu_data *data = thermal_zone_device_priv(tz);
+> @@ -671,7 +855,7 @@ static u32 get_emul_con_reg(struct exynos_tmu_data *data, unsigned int val,
+>  
+>  		val &= ~(EXYNOS_EMUL_TIME_MASK << EXYNOS_EMUL_TIME_SHIFT);
+>  		val |= (EXYNOS_EMUL_TIME << EXYNOS_EMUL_TIME_SHIFT);
+> -		if (data->soc == SOC_ARCH_EXYNOS7) {
+> +		if (data->soc == SOC_ARCH_EXYNOS7 || data->soc == SOC_ARCH_EXYNOSAUTOV920) {
+>  			val &= ~(EXYNOS7_EMUL_DATA_MASK <<
+>  				EXYNOS7_EMUL_DATA_SHIFT);
+>  			val |= (temp_to_code(data, temp) <<
+> @@ -703,6 +887,8 @@ static void exynos4412_tmu_set_emulation(struct exynos_tmu_data *data,
+>  		emul_con = EXYNOS5433_TMU_EMUL_CON;
+>  	else if (data->soc == SOC_ARCH_EXYNOS7)
+>  		emul_con = EXYNOS7_TMU_REG_EMUL_CON;
+> +	else if (data->soc == SOC_ARCH_EXYNOSAUTOV920)
+> +		emul_con = EXYNOSAUTOV920_TMU_REG_EMUL_CON;
+>  	else
+>  		emul_con = EXYNOS_EMUL_CON;
+>  
+> @@ -756,11 +942,23 @@ static int exynos7_tmu_read(struct exynos_tmu_data *data)
+>  		EXYNOS7_TMU_TEMP_MASK;
+>  }
+>  
+> +static int exynosautov920_tmu_read(struct exynos_tmu_data *data)
+> +{
+> +	return readw(data->base + EXYNOSAUTOV920_CURRENT_TEMP_P1_P0) &
+> +		EXYNOS7_TMU_TEMP_MASK;
+> +}
+> +
+>  static irqreturn_t exynos_tmu_threaded_irq(int irq, void *id)
+>  {
+>  	struct exynos_tmu_data *data = id;
+> +	int idx;
+>  
+> -	thermal_zone_device_update(data->tzd, THERMAL_EVENT_UNSPECIFIED);
+> +	for (idx = 0; idx < data->sensor_count; idx++) {
+> +		if (!data->tzd_array[idx])
+> +			continue;
+> +
+> +		thermal_zone_device_update(data->tzd_array[idx], THERMAL_EVENT_UNSPECIFIED);
+> +	}
+>  
+>  	mutex_lock(&data->lock);
+>  	clk_enable(data->clk);
+> @@ -805,6 +1003,19 @@ static void exynos4210_tmu_clear_irqs(struct exynos_tmu_data *data)
+>  	writel(val_irq, data->base + tmu_intclear);
+>  }
+>  
+> +static void exynosautov920_tmu_clear_irqs(struct exynos_tmu_data *data)
+> +{
+> +	unsigned int idx, val_irq;
+> +
+> +	for (idx = 0; idx < data->sensor_count; idx++) {
+> +		if (!data->tzd_array[idx])
+> +			continue;
+> +
+> +		val_irq = readl(data->base + EXYNOSAUTOV920_TMU_REG_INT_PEND(idx));
+> +		writel(val_irq, data->base + EXYNOSAUTOV920_TMU_REG_INT_PEND(idx));
+> +	}
+> +}
+> +
+>  static const struct of_device_id exynos_tmu_match[] = {
+>  	{
+>  		.compatible = "samsung,exynos3250-tmu",
+> @@ -833,6 +1044,9 @@ static const struct of_device_id exynos_tmu_match[] = {
+>  	}, {
+>  		.compatible = "samsung,exynos7-tmu",
+>  		.data = (const void *)SOC_ARCH_EXYNOS7,
+> +	}, {
+> +		.compatible = "samsung,exynosautov920-tmu",
+> +		.data = (const void *)SOC_ARCH_EXYNOSAUTOV920,
+>  	},
+>  	{ },
+>  };
+> @@ -865,6 +1079,10 @@ static int exynos_map_dt_data(struct platform_device *pdev)
+>  
+>  	data->soc = (uintptr_t)of_device_get_match_data(&pdev->dev);
+>  
+> +	data->sensor_count = EXYNOS_DEFAULT_SENSOR_COUNT;
+> +
+> +	data->calib_temp = EXYNOS_SECOND_POINT_TRIM;
+> +
+>  	switch (data->soc) {
+>  	case SOC_ARCH_EXYNOS4210:
+>  		data->tmu_set_low_temp = exynos4210_tmu_set_low_temp;
+> @@ -945,6 +1163,19 @@ static int exynos_map_dt_data(struct platform_device *pdev)
+>  		data->min_efuse_value = 15;
+>  		data->max_efuse_value = 100;
+>  		break;
+> +	case SOC_ARCH_EXYNOSAUTOV920:
+> +		data->tmu_set_low_temp = exynosautov920_tmu_set_low_temp;
+> +		data->tmu_set_high_temp = exynosautov920_tmu_set_high_temp;
+> +		data->tmu_disable_low = exynosautov920_tmu_disable_low;
+> +		data->tmu_disable_high = exynosautov920_tmu_disable_high;
+> +		data->tmu_set_crit_temp = exynosautov920_tmu_set_crit_temp;
+> +		data->tmu_initialize = exynosautov920_tmu_initialize;
+> +		data->tmu_control = exynosautov920_tmu_control;
+> +		data->tmu_read = exynosautov920_tmu_read;
+> +		data->tmu_set_emulation = exynos4412_tmu_set_emulation;
+> +		data->tmu_clear_irqs = exynosautov920_tmu_clear_irqs;
+> +		data->sensor_count = EXYNOS_MAX_SENSOR_COUNT;
+> +		break;
+>  	default:
+>  		dev_err(&pdev->dev, "Platform not supported\n");
+>  		return -EINVAL;
+> @@ -952,6 +1183,14 @@ static int exynos_map_dt_data(struct platform_device *pdev)
+>  
+>  	data->cal_type = TYPE_ONE_POINT_TRIMMING;
+>  
+> +	if (data->soc == SOC_ARCH_EXYNOSAUTOV920) {
+> +		if (of_property_read_u32(pdev->dev.of_node, "samsung,sensors",
+> +					 &data->sensor_count)) {
+> +			dev_err(&pdev->dev, "failed to get sensor count\n");
+> +			return -ENODEV;
+> +		}
+> +	}
+
+Do we really need the `if (data->soc == SOC_ARCH_EXYNOSAUTOV920)`
+here, I am sure there will be more socs that use
+samsung,sensors. Can't we simply read samsung,sensors for all socs and
+use EXYNOS_DEFAULT_SENSOR_COUNT if it fails, or would it be
+potentially dangerous if samsung,sensors is missing for autov920 dtb and
+default value of 1 is used?
+
+Best regards,
+Henrik Grimler
+
+> +
+>  	/*
+>  	 * Check if the TMU shares some registers and then try to map the
+>  	 * memory of common registers.
+> @@ -1006,7 +1245,8 @@ static int exynos_tmu_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct exynos_tmu_data *data;
+> -	int ret;
+> +	struct thermal_zone_device *tzd;
+> +	int ret, idx;
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -1084,11 +1324,19 @@ static int exynos_tmu_probe(struct platform_device *pdev)
+>  		goto err_sclk;
+>  	}
+>  
+> -	data->tzd = devm_thermal_of_zone_register(dev, 0, data,
+> -						  &exynos_sensor_ops);
+> -	if (IS_ERR(data->tzd)) {
+> -		ret = dev_err_probe(dev, PTR_ERR(data->tzd), "Failed to register sensor\n");
+> -		goto err_sclk;
+> +	for (idx = 0; idx < data->sensor_count; idx++) {
+> +		tzd = devm_thermal_of_zone_register(dev, idx, data, &exynos_sensor_ops);
+> +
+> +		if (IS_ERR(tzd)) {
+> +			if (PTR_ERR(tzd) == -ENODEV)
+> +				continue;
+> +
+> +			ret = dev_err_probe(dev, PTR_ERR(data->tzd_array[idx]),
+> +					    "Failed to register sensor\n");
+> +			goto err_sclk;
+> +		}
+> +
+> +		data->tzd_array[idx] = tzd;
+>  	}
+>  
+>  	ret = exynos_thermal_zone_configure(pdev);
+> -- 
+> 2.50.1
+> 
 
