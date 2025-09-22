@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-220243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F5BB9349A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:55:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D136B934B9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 22:56:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47C921907E6D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:55:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78602E055D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Sep 2025 20:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDF727D780;
-	Mon, 22 Sep 2025 20:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CFBB2FB98D;
+	Mon, 22 Sep 2025 20:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btMCe4pJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Le7ez/gb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF6426F28B;
-	Mon, 22 Sep 2025 20:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142932EA75C;
+	Mon, 22 Sep 2025 20:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758574525; cv=none; b=qvRjTFRIyrSN6tPD1HlCtUj7c6BAiAtbVyVcjyVqQuZkm041RZ+HkGaPAsxekzrBweK+vc0BD98HSInCRIVFYrEzGNYf/U3o9jN348l+haKkfPBB0w47xx2BYS57BJSm4HkGqzOQvotMZCCLJA2Sey0JLarMEnqK1necfwb3R2k=
+	t=1758574569; cv=none; b=Q5xRsTWyPB4pEoMg4CcUN3EhFUxQDq02PEOYZYO3PccSCcWcQVzediSEMtfcDV6FH7Ifsfo2aV0WM4mrdOdl4V3PXvT4MpP43Gb98QuZnDonAdsVdV4VV+rNxZeZ/o7SZRSHbF6LKxDgGk7soiCDKDj96AYj0MZmroxXw44lYZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758574525; c=relaxed/simple;
-	bh=tYpOjofHpW9mWp+Pr+zwn20aiOFBJXMUD80BxBDT1OE=;
+	s=arc-20240116; t=1758574569; c=relaxed/simple;
+	bh=lA0I4opGxZhQyjvHJkWoV1rrN874cWsCfYAyg+K+GmY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJIY3Ydj5UcuSoZ9/SnkJRNbLhNQaGhjpdKI89OmOFdG7M9AiaeuOQi3dhHK2INV4Qo9Tbf7MVBr03boEA7C/MOZ7aODNZzAHKL2LshVTHuPI9PpEoXdZkSfSgHbOCrJovKBvC7nUhOrVZ2zvVrSeHQlU8Xy/B/hBqimLk46Ftk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btMCe4pJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5211C4CEF0;
-	Mon, 22 Sep 2025 20:55:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gn07jK7+dJzUtbQ30kYF/DwjsqGbPwitK/sMJorVkRWMLTgUbnNBjHfgFXmjK28D5l7tVfdghj65Njsm9ahCTq+qf0Hmi85bkJamYb015otHo/s+jl7752XSUH6816815ReSNRIhVOdpG58IaBciZ9FA9lm3DaaHsRqY6iGc/7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Le7ez/gb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B59EC116C6;
+	Mon, 22 Sep 2025 20:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758574524;
-	bh=tYpOjofHpW9mWp+Pr+zwn20aiOFBJXMUD80BxBDT1OE=;
+	s=k20201202; t=1758574568;
+	bh=lA0I4opGxZhQyjvHJkWoV1rrN874cWsCfYAyg+K+GmY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btMCe4pJzrjEFcSIlChfqpHzRKX9nmREvFuQo1txXzAfXiMm7dqUgVYz/Yg24jZfh
-	 oEC0lhquRT3S7V6O3w4AhmbeOIoeL8PEjKvTuf9hYNW3DLFeoNTjSxSkZvta8koKyN
-	 LXm5t6Kbm0VC1PdnmcRy/++FJf3w3qG5pOJYGUGf2wr2YowDAUyHurGLKeI6XZ6PwB
-	 Qttw6vo5oui+LCk5cciNBbSNLP8Z/+yvxIQGRQ8bdkk9ytAxiuFaZRQtIXHpkPh1sN
-	 HvoJimqkW8ltIgE5weKxlHGjBkju03NhQdRKOJ71ZfuCQERW+3wBIu9gPl3p041Bxy
-	 XvQr5ridOkuaw==
-Date: Mon, 22 Sep 2025 15:55:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol.vincent@wanadoo.fr,
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
-	cl@rock-chips.com, kever.yang@rock-chips.com,
-	linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 1/4] dt-bindings: can: rockchip_canfd: add rk3576
- CAN-FD controller
-Message-ID: <20250922205521.GA1307111-robh@kernel.org>
-References: <20250922071543.73923-1-zhangqing@rock-chips.com>
- <20250922071543.73923-2-zhangqing@rock-chips.com>
+	b=Le7ez/gbtNl0rwXZOciHgorHo1T/mjXDa7Sqb5DGeFMvXPlU1fXY7fFL2EXP4MATJ
+	 k4JMAcimAtW56q5h4mEmqv+lZ7CZZgAfTMJPq4aENh/BvRSFtwSmovxi4P8pPlTQuk
+	 Uo39ZFhQv7ro1ce9AbxBovRAWMH/wfbZOoqsUozJgkGTwVCv7uasDxxOF/3mzKnTjb
+	 wdaO43fS/kAsageKBUaOl9+vxC7Xby2vxT+TqWKiWvTqSfmMTlG1g2BPm4KSMUpM9y
+	 dU2JSUWyjRb/o8hIhp8fsaBlxgADVXWQyHTpLwAEe9WsK0J2CKHrbLhz3fVHIF7Hm4
+	 P8tbpW1uO6SuQ==
+Date: Mon, 22 Sep 2025 15:56:06 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Tianling Shen <cnsztl@gmail.com>
+Cc: Jonas Karlman <jonas@kwiboo.se>, linux-arm-kernel@lists.infradead.org,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add FriendlyElec NanoPi
+ R76S
+Message-ID: <175857456614.1309030.10386435757239530357.robh@kernel.org>
+References: <20250922091509.2695565-1-cnsztl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,93 +63,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250922071543.73923-2-zhangqing@rock-chips.com>
+In-Reply-To: <20250922091509.2695565-1-cnsztl@gmail.com>
 
-On Mon, Sep 22, 2025 at 03:15:40PM +0800, Elaine Zhang wrote:
-> Add documentation for the rockchip rk3576 CAN-FD controller.
+
+On Mon, 22 Sep 2025 17:15:08 +0800, Tianling Shen wrote:
+> The NanoPi R76S (as "R76S") is an open-sourced mini IoT gateway
+> device with two 2.5G, designed and developed by FriendlyElec.
 > 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Add devicetree binding documentation for the FriendlyElec NanoPi R76S
+> board.
+> 
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
 > ---
->  .../net/can/rockchip,rk3568v2-canfd.yaml      | 47 +++++++++++++++++--
->  1 file changed, 44 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
-> index a077c0330013..74b1a502f0b7 100644
-> --- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.yaml
-> @@ -10,13 +10,11 @@ title:
->  maintainers:
->    - Marc Kleine-Budde <mkl@pengutronix.de>
->  
-> -allOf:
-> -  - $ref: can-controller.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
->        - const: rockchip,rk3568v2-canfd
-> +      - const: rockchip,rk3576-canfd
 
-Combine these 2 into an enum.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
->        - items:
->            - const: rockchip,rk3568v3-canfd
->            - const: rockchip,rk3568v2-canfd
-> @@ -43,6 +41,31 @@ properties:
->        - const: core
->        - const: apb
->  
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3576-canfd
-> +      required:
-> +        - compatible
-> +    then:
-> +      required:
-> +        - dmas
-> +        - dma-names
-> +    else:
-> +      properties:
-> +        dmas: false
-> +        dma-names: false
-> +
->  required:
->    - compatible
->    - reg
-> @@ -72,3 +95,21 @@ examples:
->              reset-names = "core", "apb";
->          };
->      };
-> +
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        can@2ac00000 {
-> +            compatible = "rockchip,rk3576-canfd";
-> +            reg = <0x0 0x2ac00000 0x0 0x1000>;
-> +            interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cru CLK_CAN0>, <&cru PCLK_CAN0>;
-> +            clock-names = "baud", "pclk";
-> +            resets = <&cru SRST_CAN0>, <&cru SRST_P_CAN0>;
-> +            reset-names = "core", "apb";
-> +            dmas = <&dmac0 20>;
-> +            dma-names = "rx";
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
 
