@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-220394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B07B958BB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:02:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A5BB958BE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F10A3B2F8B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A89119C1CD3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8753E321453;
-	Tue, 23 Sep 2025 11:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04DF23218B3;
+	Tue, 23 Sep 2025 11:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SnOabaAs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WaSiKoVK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F216128A3EF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20F1281530
 	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 11:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758625338; cv=none; b=d6tSjoet+m3GOwxMDFRLpJkA7izlgqzufGAFV8Tsh/soTLztlKW5uJyd7DFR8UmdNW5G623ZvqSoKhZYVYm/mMjrTrDw/w+dIX4ld1ZEa3hCq4y3QM1XChp2P4jQMwPKCGMu0rqTMviP9+KETZ/KL8RgvjFilAUFGsHqXXrt728=
+	t=1758625338; cv=none; b=jqeQW2PZgrRCGGWYSY5ytsy0W42Ct+/Oi89sTo29EZLt00FEWm/7yCxxP6kEozXJWY4d7Dfq4jtA3gveUUswlscCn/DMIpQ4hkvHDp4QeCjeyFX8UK84VWI3RERo1duekvs4OvdFesejk8sxOStppsHKI93TRK2GZ+ajDTwfzpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1758625338; c=relaxed/simple;
-	bh=iLMoVlJmYtd6HczEdyExEbXAySwZHYx/WHqezGjTXaQ=;
+	bh=co+VeRrT5ygqSWlps4tz7VS9I24hEaV1T9pihpVqRYE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GmiQ5htrcI7dn6SLURJ/QgN7E246VYRVjeq/WBw7c5sGGAoZwV2dYaeoFRZkxEljkgq5FP6Vjr1L3qM8GXEfGXa8RslsMcSqclLKvWBObzuDNbJNl0zsiyuvNjDGxvGTVVo2Wj3zCWiNlErJCrHkk2Y64UD487poC5fL+SDMjo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SnOabaAs; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=UsfxtSGmWXzKJP6vQ9jENx99XzHFQh/Q21gWharBSK8ko0woBHiooeKbrMfN1vPdeh0uLneV8frh6tfGfRTWCWZZrBsvRJfL0eGBqiXhrnF0xWKWvqAdM4XBiFhCVZbcJmjqlBePhGl3Fo0iAwEi/e2CV6ZG79ci/LEIb+AXfM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WaSiKoVK; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58N8HCrF020711
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58N8H58W015976
 	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 11:02:16 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6OwBCFG306qly1YwPCrXWNZ696eFbdWgQ4DKgQjVJ58=; b=SnOabaAsWz4fAjNz
-	qUaLCTf4aamHb8zY7SmNh6wWcx3oLgl3w0rdG6QxCylwH8ucpPVRZzieqXHp3dI0
-	N6mHs4zcewGyQUKQz1YKXF21iHb2ddjDlOPkdvmgKEe7CCx9w1cDLzPuPYcHoHih
-	mKMp01GmzEJvZz/hxuBQNxLWY+hjAIp/PxOMK3VzXtR78YMVLy6L1qJvwzwAj9b9
-	oGXLS0QqRJvmmIx1CYVFt9oxbhY8/85X+0we9KdlEsy2JYNssZPmZu3O2jL9cGF0
-	ursFMo3IHcNn0k+U8hmjckrP7x+RhRS+J1wc5P7caxcnQeOOVQ2u+nGIkgyGEPXh
-	6zJbgg==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bhvjsja8-1
+	ymPFTOpdlR/08rMAnNErS8qNHddP60a2XKzYX7gAGZk=; b=WaSiKoVKuN59LdmT
+	PZBR783DpLo0qysLlY9GA8ldPNcHBC07XwPSNXt4nSox6C1JIWXPj8m0fKsOeYGa
+	LPL0IvA6qlXOllVG6hTCy14wMtzl8oAnBjrkMST59U9rr6K+KtxlaLJgAS0ZS1r7
+	c65ozGKpwcVlLw9BgTbi7JA+1Rp+5IRanLVLIRPdF61DePJt5/g70PRlkQWgBJcS
+	qiqtP1GsERgp2Z5y5bVJreMLx17So2hIAXNzoEYT/7Z9xmTUWojLDM8eVVBT99ZZ
+	/pC6/Ix4MpPoSgBbTS4aC/MJxA4XO/0C+LciMWDkMS0SL5OSJlPADfORJKyJVRgS
+	U2lW7Q==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bjpdseq4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
 	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 11:02:16 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-718cb6230afso101596416d6.0
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b793b04fe0so99951141cf.3
         for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 04:02:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1758625335; x=1759230135;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6OwBCFG306qly1YwPCrXWNZ696eFbdWgQ4DKgQjVJ58=;
-        b=LHN4fwZjK6q80H8g5IBFIE8jbR/6+zf5ajlM5Nco5QFzVlysK4BzunSXJEYcDLGzxx
-         wr2Yso4mcyVQiHIfbJcsdmKD5wIxwwpsBnsrTCIwlrsoJvCBTBcfollT9YzjxmCV7cn4
-         qBB47QoJAZto8/xXCEfL/fjkLbXyJ17FhVjrD8NLm13GUnG0Nlo/T9ND6i+QecwXXCfo
-         aNBGTMZ4JYBMhhRtLJ410G/rk6tM1srxk1qH2FWLpkqYuIv5xd3hHJb35lFVEyjJ5DBJ
-         CAScgMqQbR8eV5U79etWdtG2OkhCP0VS+z7KcG8L9LTf6DKvCyf4WGJsWzXg2TW7ULK4
-         KOyw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGAStc9sRbRtjMthbZNs6qhd7M4qCDyAtX3fPczkdLhQXMmEsWy+kDOcUJvZNW1TBZ4/zJUXcwPpWO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHReR19oxD90T2Cx+LhAUYhfHFfPNfFRSWZYlxN6Qs2brRmkAX
-	+Mq2CYd0XdxEriiqRIaSJxLj2uflwiyWbUccFvbNAyT35+szaBlAz7dWfjPWBfJCH6EnXSrUH56
-	DYNndgeJMdsgEdvXskS3HomZTj+JqRUhR65EEKMLvZan9dWLQs/WPcdRny5XCBjN4CiWCzmV4
-X-Gm-Gg: ASbGnctMWv7YtLeAbTnAjzsRTT62gSbiIbBTbRbY5z+ZXNPOJeGVhA6BZmSC1+uEDVg
-	FblJmuCW/iHDsArWlPiMzotevMHfZDY7sWhxzZPtf6jr1qkIl6XY9CYA01E6nn3ptZij17UIJCT
-	41oUKq8mMMnwNEasqEmDgPUlf98cRygRlw9RtHbCQ5PSF/2vfTnum69nBIndLz6hiOyQZoKuuqQ
-	5LG4+bumzSa1PqL+0GIIPj6p7Nw7M/JJ8pLhf/IGSddRm2J7JPyXJ9eSNkYV9HIixmjgkibrm0p
-	UgBMkWAMgwpbnFsZsOCjo+CheT6JfMjpbheGEJ45piUy7GZTvIfr5lJF+C3Hy2n8BOENlSO/Buv
-	Ys+eQCpOa09YlSNErspAkHL9HI5SSqpPM5RNXwaPuMHaLf1f2C5HO
-X-Received: by 2002:ad4:5ca4:0:b0:795:cb4a:9b7c with SMTP id 6a1803df08f44-7e71582ac99mr21921166d6.35.1758625333717;
+        bh=ymPFTOpdlR/08rMAnNErS8qNHddP60a2XKzYX7gAGZk=;
+        b=BAM08AVziD2PBlrfh2b9Z5wjNaVEsaFRUOeTjjYUxzHlXTgu51xPjGFLxFTc5RfNLm
+         W8RVwC0j0g6vOub5flNJKZiIdNxmL246FVNrpZvhCvIZWxCmss3txlczOeluuNzl9oxf
+         eMk0odpEpTjdx88+20NE+tj2UTHTHve7a1Hc7nGNot3Pnd4V0Hcehx/lOkXM0kM0odtl
+         0Y+3JjHBTxVN5x70vuyrM60PNSQLHa8YBcBQJDms8iTzR50L4KydkdlFA1lDX+NKW8i0
+         m/fx4a4bjjztGW4iIIwxoRYWzr9XDkJ+F6bD8aZnWYKRX6gqiv8H8rWtUSB+5oFuiNZB
+         Wfog==
+X-Forwarded-Encrypted: i=1; AJvYcCUGDGEIhN/h/crOGL7Q0JTbogFgWhvD2SUoF7kLI8KU8Y+Dbrh9ZW0ylSWmXz+4d5dqdvDjJij/yWhQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0jpKnIX5tucu/SRKSmgjhkdVoTuVuTQ+zxZDk9OszRRI3qnYU
+	r2sqlAQKqZqGyuQzU9HiyyImkArtiu/jGAAtjfvNEMzy1/ONx1XBQyfC2pGC486ttnprbkZHhC0
+	yXyFXiJn3ph7oXQb8imR5sclNSWXRgtFhg7s/Kloz1HQZW/NufuHc5AdqTLizIPAY
+X-Gm-Gg: ASbGncstaKwnSSDzydkkVbsbfMs73pvqeQion14IMb6ldNIirztJx/5XJ1IrOpiuu9l
+	ZTDWLZETu1UG/FJkjV9w1wpUOhlyAfnKSthWu2Zj78bXs/5JtjOcj49sW0y/MjDc1UMCt6LdJwn
+	H8t9TTpmthlwul6mCRTv0ljoZl32p12gLp4aRApj8yA7rANOwEf/n4rEuAH1chj7yqBLqJWNcJX
+	1gPnNZK1v0MF+JMCBCLsHyuo14pw4xTMVS90S9XkZsrOEC1pCq1eLuA1RNXhJjGy49xdcVr6gQ8
+	aeDNFkgNeXEBFP7TZuDfpKAuOJk+3nwzOPzMMn3zxqT+GfLs04jbN9fuKXX0N/+zwPVnQ0tjO5D
+	ZlGBnDDD0QnaUmTPBjZumrza8UlS6j41aH0cYCEUW3gZn+hhJJ+No
+X-Received: by 2002:a05:622a:1109:b0:4b5:d932:15c5 with SMTP id d75a77b69052e-4d3686a36ccmr25344541cf.25.1758625334405;
+        Tue, 23 Sep 2025 04:02:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFfZBsdETUls+ifyGSQNXyqNKWpAbA0H6TxDOcIMpq0o5AVEd2d+Lc+xmskxJ22S8vTkWOofw==
+X-Received: by 2002:a05:622a:1109:b0:4b5:d932:15c5 with SMTP id d75a77b69052e-4d3686a36ccmr25343781cf.25.1758625333763;
         Tue, 23 Sep 2025 04:02:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFgsCw1vfrpAdR5i1dbQBrqcURljcwF/F/6Z1lDZv+2PnzCx0GYBvjUf6cpkba5O6048hfA+w==
-X-Received: by 2002:ad4:5ca4:0:b0:795:cb4a:9b7c with SMTP id 6a1803df08f44-7e71582ac99mr21919476d6.35.1758625331346;
-        Tue, 23 Sep 2025 04:02:11 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-578a5f4537csm4075975e87.27.2025.09.23.04.02.10
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-578a5f4537csm4075975e87.27.2025.09.23.04.02.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Sep 2025 04:02:10 -0700 (PDT)
+        Tue, 23 Sep 2025 04:02:11 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 23 Sep 2025 14:01:54 +0300
-Subject: [PATCH 1/3] arm64: dts: qcom: rename qcs8300 to monaco
+Date: Tue, 23 Sep 2025 14:01:55 +0300
+Subject: [PATCH 2/3] arm64: dts: qcom: rename x1e80100 to hamoa
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250923-rename-dts-v1-1-21888b68c781@oss.qualcomm.com>
+Message-Id: <20250923-rename-dts-v1-2-21888b68c781@oss.qualcomm.com>
 References: <20250923-rename-dts-v1-0-21888b68c781@oss.qualcomm.com>
 In-Reply-To: <20250923-rename-dts-v1-0-21888b68c781@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -102,92 +102,345 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2454;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=13285;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=iLMoVlJmYtd6HczEdyExEbXAySwZHYx/WHqezGjTXaQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBo0n4wGvN+dWIo7sLxDKaAwiz8WW3t2teh9HSGa
- NkEC1KBpvqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaNJ+MAAKCRCLPIo+Aiko
- 1bonCACGVxHN5ydariXpov2ySAg2vb8owrTn53HKYFizfb2RNQwOor96v/5kugFAX9DwckYduhL
- bJhbZ2J5Vh9lXvXUWMkvKtv+9sB+Gz7AMrNK1FIkguCqYseNRhB5EL0xbOwMTFTFDG67LlhqAGE
- bbPZ/3lw8TlgtN7ZwprAkIdRYGfmhtS4rjU1LqoLnlB5oilmcotjAb0Cg1dlOxnM+SfC/M+tbO/
- eglOx3/+TnV/kHUnsnwZXITaKsBiGOAOwpxR3UVvBP7yuNU9vdUT9nNV8bggRPJpn7NGpE+2DCN
- elUEqkVlb7uyZ4nWSgT7C7BOER3MqrKDgm5PrAa7BHDgM/8n
+ bh=co+VeRrT5ygqSWlps4tz7VS9I24hEaV1T9pihpVqRYE=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBo0n4xV801y1o+yByptBLww7pQ+I32TtRs0Gw5M
+ SzOql45zeuJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaNJ+MQAKCRCLPIo+Aiko
+ 1WisB/9vWdppuxj0ZqL3je51Mg0XUQOylSinGq2N3azZR85MH9P3hk6HxAVUiOA2hsnJ9emRxvS
+ mbTyzCs8PIfXwpntnSa7uMhDmxN/R/yf0U1GiAR8STAp5qVMBUxzfIl+l0x2CRI75SF2Nbd4Uks
+ niTS5BR+HsKMmMeBC6M8LpwIdrtdx6r7o9hCWNsdxIPqCYuHcDO2EGwf3Vy3tztT/OfRISGpvxl
+ YMqdEhXDKs54WbxsVyJBJCcd0DsEaeEIN075clKDWmi3S6GzkHoBvPFqGOgUh7/ZUY0j1yDgXvs
+ m9io1TZVVyLT3IcZb33Ma8TFjH+bpT7kxUy9fV748j4UuE0I
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: DnUTKRevoDiQ41uefr5OseV_f7KPAVKV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAxMSBTYWx0ZWRfX5XAwLaz59Pmq
- CiuTiNJIEEKlXiMZsE+cRFYBFRzs2R2W20o8nw6y8rdc8gBjhn6jBQ7v+IwYKOosP942ekgXYnS
- Sx3RxZU3T3t4QJOomqjd7CJZYJNjDdGJ+wBcyow4Cd8N7g4Pp+oVNxvSTQJR6RWx6u3iVXzliJf
- BL90MyW/EyOoDUWEG7WoIEJC7XtUqgxOuer5s14NnVKQpa9ckhOqsrI2FeoMg7ePQgt0P75RptB
- l5+YVWUT+xl3jLrLsWcKvndLsPIi2hQE99BnBqaHL9Yd2qMLP4IhT2HJq2y9nlcoBCewJHta+n7
- cfZJCCjrvoHF3uR3lWmaKUaR2ouHRo/0UU2LI+IQqGy4QxaWuWJp65m3KfIqibOm8cBE/hxpxGX
- 5J7lx6Xa
-X-Proofpoint-GUID: DnUTKRevoDiQ41uefr5OseV_f7KPAVKV
-X-Authority-Analysis: v=2.4 cv=Csq/cm4D c=1 sm=1 tr=0 ts=68d27e38 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=CGs7eBeCNeLIcw_ASWkA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-ORIG-GUID: K2SuxjYeaFY7HrSWJ5WFjaVb1XATbS29
+X-Authority-Analysis: v=2.4 cv=Pc//hjhd c=1 sm=1 tr=0 ts=68d27e38 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=x-Oks8asmbJDW6zTWl8A:9 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: K2SuxjYeaFY7HrSWJ5WFjaVb1XATbS29
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAyMCBTYWx0ZWRfX1loRPi51Ey+5
+ Ldpqhr5qJb9kRuHKuNDwcUy3VIBRBc1iCIEH3c7nrdBUjWSRjbz4nvCrLYbRW6Hocea7PoqTtg6
+ QcyWyZydbHod6Ux969KI9NgsorBa8s2k0vbIRgl5QVt1pk3rFmZ2uyLvskw56/4fxP0N8okMxIh
+ XE+OLK0iVFdxLpqH39i5sAxjqSNKOcwMUZokQP4gdoe109VV/ThDfqFd1yWUeBNUvdOQPX6Edzk
+ 3O6+M2Ckp5OMyAqWpTm7Da6Nfgc65y4qSWy/b+evv3cTU3zLgtmcshumFOlF97e/DjEtacOYI9S
+ 0GuLT32sSHHVjOwSLsS5djnvZhUpexrrXBJIFryK7Ff8bRZJsa60gnhcW1gnSl6OvlTNk15r8eY
+ M8wRAR3U
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-23_02,2025-09-22_05,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 phishscore=0
- clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230011
+ priorityscore=1501 phishscore=0 bulkscore=0 malwarescore=0 impostorscore=0
+ spamscore=0 suspectscore=0 clxscore=1015 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509230020
 
-The QCS8300 and QCS8275 are two variants of the same die with no
-difference visible to the Linux kernel, which are collectively named as
-'monaco'. Rather than trying to using the name, which is not always
-relevant, follow the example of 'lemans' and rename qcs8300.dtsi to
-monaco.dtsi (and qcs8300-pmics.dtsi to monaco-pmics.dtsi).
+The X1E80100 and several other similar names (X1E78100, X1E001DE) all
+belong to the platform now known as 'hamoa'. Follow the example of
+'lemans' and rename the x1e80100.dtsi to hamoa.dtsi and
+x1e80100-pmics.dtsi to hamoa-pmics.dtsi.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/monaco-evk.dts                            | 4 ++--
- arch/arm64/boot/dts/qcom/{qcs8300-pmics.dtsi => monaco-pmics.dtsi} | 0
- arch/arm64/boot/dts/qcom/{qcs8300.dtsi => monaco.dtsi}             | 0
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts                          | 4 ++--
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi                        | 4 ++--
+ arch/arm64/boot/dts/qcom/{x1e80100-pmics.dtsi => hamoa-pmics.dtsi} | 0
+ arch/arm64/boot/dts/qcom/{x1e80100.dtsi => hamoa.dtsi}             | 0
+ arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi                  | 2 +-
+ arch/arm64/boot/dts/qcom/x1-crd.dtsi                               | 2 +-
+ arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi                        | 2 +-
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts                       | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi        | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts            | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts             | 2 +-
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts                          | 2 +-
+ arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts   | 2 +-
+ arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts           | 2 +-
+ arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts              | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts              | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts           | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi           | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                          | 4 ++--
+ arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts              | 2 +-
+ arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts          | 2 +-
+ arch/arm64/boot/dts/qcom/x1p42100.dtsi                             | 4 ++--
+ 21 files changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-index e72cf6725a52c0c0e017be800bfac1773fad1059..d9e9e65a137da73645aee4a857688a4730875347 100644
---- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-@@ -9,8 +9,8 @@
- #include <dt-bindings/sound/qcom,q6afe.h>
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+index 1aead50b8920b557ca5bd1405da4a9ca658f4417..4de7c0abb25a12f349ab859fd9e5c68600be42c1 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi
+@@ -3,8 +3,8 @@
+  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+  */
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
  
--#include "qcs8300.dtsi"
--#include "qcs8300-pmics.dtsi"
-+#include "monaco.dtsi"
-+#include "monaco-pmics.dtsi"
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/hamoa-pmics.dtsi
+similarity index 100%
+rename from arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+rename to arch/arm64/boot/dts/qcom/hamoa-pmics.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+similarity index 100%
+rename from arch/arm64/boot/dts/qcom/x1e80100.dtsi
+rename to arch/arm64/boot/dts/qcom/hamoa.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
+index ee3c8c5e2c50c405937730c2f7feec43f809af6b..69eccad1a09c240ba721ecfd50d1558aaa1a633a 100644
+--- a/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi
+@@ -11,7 +11,7 @@
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa-pmics.dtsi"
  
  / {
- 	model = "Qualcomm Technologies, Inc. Monaco EVK";
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-rename to arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/qcom/qcs8300.dtsi
-rename to arch/arm64/boot/dts/qcom/monaco.dtsi
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index cabb3f508704bc9eb0038bd797cc547d0c8cb3ed..9bcb869dd270603a34221b905f0946e8af028433 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+ 	model = "ASUS Zenbook A14";
+diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+index 3c9455fede5c09d90e00c98db35d49e8738e6acc..5e324f35547a4c803af51e64328b6fb72b4bf7e9 100644
+--- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+@@ -9,7 +9,7 @@
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. X1E80100 CRD";
+diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+index cc64558ed5e6fa30bef549d076db41ac22faa5a9..10dc191c193adf2d6cf0d6a237cc0fa245d04ccc 100644
+--- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+@@ -12,7 +12,7 @@
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	chassis-type = "laptop";
+diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+index bfc649d4b643ca5d0d12565bf147b9b1df90095c..701f35af7d5cd080de48cb70db3bb9bea3e46264 100644
+--- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
++++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
 @@ -8,8 +8,8 @@
  #include <dt-bindings/gpio/gpio.h>
  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
  
--#include "qcs8300.dtsi"
--#include "qcs8300-pmics.dtsi"
-+#include "monaco.dtsi"
-+#include "monaco-pmics.dtsi"
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
  / {
- 	model = "Qualcomm Technologies, Inc. QCS8300 Ride";
- 	compatible = "qcom,qcs8300-ride", "qcom,qcs8300";
+ 	model = "Qualcomm Technologies, Inc. X1E001DE Snapdragon Devkit for Windows";
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+index 0a989e9d3d23146cb9689b68ba6c5779283b3c98..84dc764657f10c2742bcc3205c44e59be18bda4f 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+@@ -12,8 +12,8 @@
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "Lenovo ThinkPad T14s Gen 6";
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+index 0113d856b3ad4e9d1b15dc6a32b4572867a794ac..f2960953e608fb81be9b941115df6ba2c9913663 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+@@ -11,8 +11,8 @@
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "ASUS Vivobook S 15";
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts
+index 0d0bcc50207d7540285d82304dbc99e82858f6f0..c3cd04c9703d3df6b04ef4a1393e92aa6b60a5a0 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts
+@@ -6,7 +6,7 @@
+ 
+ /dts-v1/;
+ 
+-#include "x1e80100.dtsi"
++#include "hamoa.dtsi"
+ #include "x1-asus-zenbook-a14.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index dfc378e1a056a8af27ef4b646f7589e7198dbaf8..429deffcf3e9dfeb92c9f6141e7611bdec996c8c 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -5,7 +5,7 @@
+ 
+ /dts-v1/;
+ 
+-#include "x1e80100.dtsi"
++#include "hamoa.dtsi"
+ #include "x1-crd.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts
+index cf2a7c2628881e44f093d73e6496462c22326d9a..75e10d97c38674fbe4affabff7d1079de095af91 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dts
+@@ -4,7 +4,7 @@
+  */
+ /dts-v1/;
+ 
+-#include "x1e80100.dtsi"
++#include "hamoa.dtsi"
+ #include "x1-dell-thena.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts
+index 32ad9679550efce1fda1182bd874d6a3c53d8f03..a8ff7ef258a13398679894a14bb3333437717816 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dts
+@@ -4,7 +4,7 @@
+  */
+ /dts-v1/;
+ 
+-#include "x1e80100.dtsi"
++#include "hamoa.dtsi"
+ #include "x1-dell-thena.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+index 58f8caaa7258077d2c267048ca048279109ddb71..c1f49cba61fc40c764122f365f2e4b418579a73b 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+@@ -12,8 +12,8 @@
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "Dell XPS 13 9345";
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index e5a839d458402c46e45a2cba9b92d3eb1e8438c2..b79e59e1c413aeb9f24466cedc2c9abea48a3d52 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -6,8 +6,8 @@
+ 
+ /dts-v1/;
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ #include "x1-hp-omnibook-x14.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index e0642fe8343f6818e1e10656a1d8fec8fb09e7e2..56e4d13cca11165c30dcbed8a1e0a4d7f8fa5cc2 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -9,8 +9,8 @@
+ #include <dt-bindings/input/gpio-keys.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "Lenovo Yoga Slim 7x";
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+index ed468b93ba50e1943671d9e7d8b77d181a7c2658..3b319f65dde1e0df9e53191acfa161ccb49dff7b 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+@@ -9,8 +9,8 @@
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index 4a9b6d791e7f475eed8940cce633ca000bb2ae09..5a121fc4494014f01be5d6e3ab95060581ec83ad 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -8,8 +8,8 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+-#include "x1e80100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. X1E80100 QCP";
+diff --git a/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
+index 6696cab2de3ec899d7ae5498f2f4b75e2131a19c..47ab0c5b30341ee791fd3976da50ada54617a8af 100644
+--- a/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dts
+@@ -3,7 +3,7 @@
+ /dts-v1/;
+ 
+ #include "x1p42100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa-pmics.dtsi"
+ #include "x1-hp-omnibook-x14.dtsi"
+ /delete-node/ &pmc8380_6;
+ /delete-node/ &pmc8380_6_thermal;
+diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+index 1ac46cdc4386120ee18cd60380c1fcd10fbf472e..f7d372d2e96129eaee072504514272f8ae34cb32 100644
+--- a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
++++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+@@ -14,7 +14,7 @@
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+ #include "x1p42100.dtsi"
+-#include "x1e80100-pmics.dtsi"
++#include "hamoa-pmics.dtsi"
+ 
+ /delete-node/ &pmc8380_6;
+ /delete-node/ &pmc8380_6_thermal;
+diff --git a/arch/arm64/boot/dts/qcom/x1p42100.dtsi b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
+index 10d26958d3c66a5a4faf2ca6065e7b661f967b4e..2cecd2dd0de8c39f0702d6983bead2bc2adccf9b 100644
+--- a/arch/arm64/boot/dts/qcom/x1p42100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
+@@ -3,8 +3,8 @@
+  * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+-/* X1P42100 is heavily based on X1E80100, with some meaningful differences */
+-#include "x1e80100.dtsi"
++/* X1P42100 is heavily based on hamoa, with some meaningful differences */
++#include "hamoa.dtsi"
+ 
+ /delete-node/ &bwmon_cluster0;
+ /delete-node/ &cluster_pd2;
 
 -- 
 2.47.3
