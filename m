@@ -1,381 +1,128 @@
-Return-Path: <devicetree+bounces-220348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3FD5B949E6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA41B94A0D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:56:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5D318A699B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:51:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAEA9190167A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792F430F945;
-	Tue, 23 Sep 2025 06:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552BB30F80C;
+	Tue, 23 Sep 2025 06:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="frpSum8p"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="baVXzgA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B6928A73A
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 06:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD452E11B9
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 06:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758610234; cv=none; b=mXqTTQ9Rdxqk4IO9GLki3H+Oh6tRgCpX8z6z6YSuHFfcHVWM9soUORI7qE4yqIFUownVE2QyvSGySWUmyhD5mvJXb5rRmogPri8kFqV+UI0Sl7PfDphC3jfPluT4TjZnw7GMGeSWVts7b7G4OH7x7/KjPA77g481SFKw3dzPZn8=
+	t=1758610585; cv=none; b=tn9RtVJyEJ5YDG/maQYBAI39uWt++rmAAuxrbu+Xzz4zqiU8BEnPLufkNKyPNdCJF9mt8y4aSYloDBpnIdEAUGkvtNoS13M/Km0xGveHjf3BBk+2GTVlSc92A6b++EPdP8LiV0UhbzZH8+yJB8e8ocpurZMyjj0Q53lvjcevlzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758610234; c=relaxed/simple;
-	bh=pPBdSCZ98EIpwgaqHpCLbXJNmqJk8sex29UYfeBRev8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R6laujPcuB5ahHjuWaV7j3vM99dgNd7u/Vbof/TDLV0mP8VVN0idqGEuOvEcKr4LKttc+KgXgJOZo5puY9bUhaiQyajXYCHZbwfX5uj3vkVcuV9zqMzekhxjlGWnsTZ7CpB+jLAv9H/tc5wVOBfXT2sk3m9EID2FhOnfZo45fgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=frpSum8p; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ee12a63af1so2245465f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 23:50:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758610229; x=1759215029; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BlHMNT4xc0wNyFIvmzeOSrTMM9NhDAlJukXUCTenInc=;
-        b=frpSum8pTn6/45zYXuZSfYQRbScJ+haDC53s2YEQMalT6oC4DCxyUvgNZVCspFIu/6
-         Mp96AuVlJOs6mmSEgVWxqBa9YW1RiFFMk0/qu4PUFLddVGWSw/Wffp3NqWjqdvKmSS4N
-         CZ7i1f7dYeq/6u9Zpk5fBzqRzc0vo7zKlKldu794lgXHx3L/Mol0YvJaVgvBsknApKDa
-         BUNHyBnQodvMiEX0H0oErY1jP47a8CH3Yk82sD5KfzabwYUAuAzCNYM60GFurTZaIRZS
-         IrCs6BikAm/TM6WV9/PQSJIidsHARpW86Wib9qztQW4binzf0CMeWXc4npseb0UKT/oT
-         9GXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758610229; x=1759215029;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BlHMNT4xc0wNyFIvmzeOSrTMM9NhDAlJukXUCTenInc=;
-        b=aldBBUz+MDv8P8xa3tUqvm88rpYi0UNF0kUlKefuR9RBpLf7lEiGp1FeXs2AH+CpWb
-         zXBj8eEaPgCos+lIiqNonz1T93R3S5Doxn/QoNQyEW5hil8PUHqfnvR3Gjvh9LxBASf3
-         fM64y00CLqoeTcVddchpnxZEtumGHD5QmECvzUcDmQRpMteGekRGsQc/y61+JqUX2J3Q
-         ibMoUZIjIXA3/Z0QMr8kS7OCJrpMqAB2e4fyVrlemMWDk8p3c3TVWemWLEREqR24xM0h
-         seO5wvQStmldrjjqzEOjfmvBmGeACHFEJUvZIitRJudxlfFgGuwNuUBdOG1x/2ES4Ucz
-         G9rw==
-X-Forwarded-Encrypted: i=1; AJvYcCVl7FcO+jrcM851Kf+lqA1LpSfPZStla4BgdIR73C4o7Bdilq0KQsafCGe+tm4qVNMARxZwu9ODQPjG@vger.kernel.org
-X-Gm-Message-State: AOJu0YztBlT2GpemvAa16XD9YVnnE7mw7d14KXlkW+dauZ7pz8Mviing
-	SNLhOUA5LFevfBLtusrQ2AGw+h6kouZ3lF/4mksI/zrF8nd5ys9LkXsmIS/D4IOFddJnhlfeBOt
-	HFsiTZlZNqlXsWjZQoOofu2O3Yvab+nA=
-X-Gm-Gg: ASbGncvFMo13CD50kIQWPAMHXbeU7dUBT0XIXMKpKyQemMfcql8gHVf6aYS+2cAqkhN
-	ytu157RxWdNnrqt5ls/+yOyUt5Om0r33uPFARa80dhYCcEAifDh5A1YR++N1l0nysyjwU+6Gzwn
-	KKkkdVcNYUcoiMJudZW4ag9LZthx/ZaUyKh/5PSsstmFL20xv2Rj4NV4WnRLnw3C6QGutIlKE6/
-	/qi5fg7
-X-Google-Smtp-Source: AGHT+IFIL9spgkRWeaf/DjU4ZimRMkpNrzt/GsrYPm8NvTEHKwN4tt4n4FOvoiR/fTEyzsskJnG9u+5cLECvuvZfH7Y=
-X-Received: by 2002:a05:6000:1a8b:b0:3ef:42fe:8539 with SMTP id
- ffacd0b85a97d-405c5ccd2e3mr1200526f8f.25.1758610229039; Mon, 22 Sep 2025
- 23:50:29 -0700 (PDT)
+	s=arc-20240116; t=1758610585; c=relaxed/simple;
+	bh=Q1JgOVWrgfnpXgIZeXWfz4VzvMC4tAbZhSpeEIsa6UA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Es9JKdKNz02Ezv6H1lT5pqkXDLCT9uBo0eEe8eVfAAzLf+M73El7HURNEwppBCXrQjkKltOL/bchJJpmaIhJNAOU6YJGJNiwgpUwgRlj9c4Oo8y02T512GfwAoh7OJfJxZ5IpCBz8TRhWSw1VlKURbGIgg4qnyn48+BsVyqWg7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=baVXzgA3; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Q1Jg
+	OVWrgfnpXgIZeXWfz4VzvMC4tAbZhSpeEIsa6UA=; b=baVXzgA3gNuJRgNUduCT
+	9YLAh8ao3jJ4T8cLsmn+INWGot11qAUosE9al7r+2vHxEHf1iIFaX7bt7SMgQiu8
+	Uuo/UA5AIq7jQItsKC97WWxNK5Om8tZHAY2eUTzaaKlev0kiKa2lePNUh1Fs09dE
+	njAyluDzD13VmPy4sxNUGZ/9wbjZK/p+k1wDFsL/iMJBwB7EoxAlosKYDrj47NMQ
+	N16pFj+DMCceGAUjTmo/YJ1ok65CfjxH+sSRD00UAf2hkc4hWQ1YG+OXe0dYC1hI
+	AIL5PkmSTXpLw2RT0AO+B4yj5cfnH5MufMOSNFfl6A4ESHTPULdp3eR5mk+C7Z9C
+	Og==
+Received: (qmail 1004437 invoked from network); 23 Sep 2025 08:56:18 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Sep 2025 08:56:18 +0200
+X-UD-Smtp-Session: l3s3148p1@Rv/NbnI/LtggAwDPXwQHAL/S9V79e5yL
+Date: Tue, 23 Sep 2025 08:56:17 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 4/8] irqchip/renesas-rza1: Use for_each_of_imap_item
+ iterator
+Message-ID: <aNJEkd9C2bDrowHP@shikoro>
+References: <20250922152640.154092-1-herve.codina@bootlin.com>
+ <20250922152640.154092-5-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250906135345.241229-1-clamor95@gmail.com> <3074302.Sgy9Pd6rRy@senjougahara>
- <CAPVz0n1ozJ13MB4eFMAJzESe8iQ7SKjMApZCLFAZ_eubCFs0tg@mail.gmail.com>
- <7680340.18pcnM708K@senjougahara> <CAPVz0n2iRVBf0+BwdV6Le2FhY8xERqbtsyeff26Dh44mKsTy6A@mail.gmail.com>
-In-Reply-To: <CAPVz0n2iRVBf0+BwdV6Le2FhY8xERqbtsyeff26Dh44mKsTy6A@mail.gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 23 Sep 2025 09:50:17 +0300
-X-Gm-Features: AS18NWAPWlBampVZ8t1uLSAdSzhUJXoDcFVyZ2xPhXDe7jRCkvdwCVIoO2M9fsE
-Message-ID: <CAPVz0n1YDdM+EtuO72CNqVE0opJLt5KfONNGenuSKO678mfc4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 16/23] staging: media: tegra-video: tegra20: simplify
- format align calculations
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko <digetx@gmail.com>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TIDIkyJ3Gg25L3Jq"
+Content-Disposition: inline
+In-Reply-To: <20250922152640.154092-5-herve.codina@bootlin.com>
+
+
+--TIDIkyJ3Gg25L3Jq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-=D0=B2=D1=82, 23 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:11 Svya=
-toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> =D0=B2=D1=82, 23 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:04 Mi=
-kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Monday, September 22, 2025 4:36=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 10:2=
-7 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > >
-> > > > On Monday, September 22, 2025 3:30=E2=80=AFPM Svyatoslav Ryhel wrot=
-e:
-> > > > > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE =
-09:23 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > > > >
-> > > > > > On Monday, September 22, 2025 2:13=E2=80=AFPM Svyatoslav Ryhel =
-wrote:
-> > > > > > > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=
-=BE 07:44 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > > > > > >
-> > > > > > > > On Saturday, September 6, 2025 10:53=E2=80=AFPM Svyatoslav =
-Ryhel wrote:
-> > > > > > > > > Simplify format align calculations by slightly modifying =
-supported formats
-> > > > > > > > > structure.
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > > > > > ---
-> > > > > > > > >  drivers/staging/media/tegra-video/tegra20.c | 41 +++++++=
-+-------------
-> > > > > > > > >  1 file changed, 16 insertions(+), 25 deletions(-)
-> > > > > > > > >
-> > > > > > > > > diff --git a/drivers/staging/media/tegra-video/tegra20.c =
-b/drivers/staging/media/tegra-video/tegra20.c
-> > > > > > > > > index 6e0b3b728623..781c4e8ec856 100644
-> > > > > > > > > --- a/drivers/staging/media/tegra-video/tegra20.c
-> > > > > > > > > +++ b/drivers/staging/media/tegra-video/tegra20.c
-> > > > > > > > > @@ -280,20 +280,8 @@ static void tegra20_fmt_align(struct=
- v4l2_pix_format *pix, unsigned int bpp)
-> > > > > > > > >       pix->width  =3D clamp(pix->width,  TEGRA20_MIN_WIDT=
-H,  TEGRA20_MAX_WIDTH);
-> > > > > > > > >       pix->height =3D clamp(pix->height, TEGRA20_MIN_HEIG=
-HT, TEGRA20_MAX_HEIGHT);
-> > > > > > > > >
-> > > > > > > > > -     switch (pix->pixelformat) {
-> > > > > > > > > -     case V4L2_PIX_FMT_UYVY:
-> > > > > > > > > -     case V4L2_PIX_FMT_VYUY:
-> > > > > > > > > -     case V4L2_PIX_FMT_YUYV:
-> > > > > > > > > -     case V4L2_PIX_FMT_YVYU:
-> > > > > > > > > -             pix->bytesperline =3D roundup(pix->width, 2=
-) * 2;
-> > > > > > > > > -             pix->sizeimage =3D roundup(pix->width, 2) *=
- 2 * pix->height;
-> > > > > > > > > -             break;
-> > > > > > > > > -     case V4L2_PIX_FMT_YUV420:
-> > > > > > > > > -     case V4L2_PIX_FMT_YVU420:
-> > > > > > > > > -             pix->bytesperline =3D roundup(pix->width, 8=
-);
-> > > > > > > > > -             pix->sizeimage =3D roundup(pix->width, 8) *=
- pix->height * 3 / 2;
-> > > > > > > > > -             break;
-> > > > > > > > > -     }
-> > > > > > > > > +     pix->bytesperline =3D DIV_ROUND_UP(pix->width * bpp=
-, 8);
-> > > > > > > >
-> > > > > > > > Assuming the bpp is coming from the format table below, thi=
-s changes the value of bytesperline for planar formats. With this it'll be =
-(width * 12) / 8 i.e. width * 3/2, which doesn't sound right.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Downstream uses soc_mbus_bytes_per_line for this calculation =
-which was
-> > > > > > > deprecated some time ago, here is a fragment
-> > > > > > >
-> > > > > > > s32 soc_mbus_bytes_per_line(u32 width, const struct soc_mbus_=
-pixelfmt *mf)
-> > > > > > > {
-> > > > > > >  if (mf->fourcc =3D=3D V4L2_PIX_FMT_JPEG)
-> > > > > > >  return 0;
-> > > > > > >
-> > > > > > >  if (mf->layout !=3D SOC_MBUS_LAYOUT_PACKED)
-> > > > > > >  return width * mf->bits_per_sample / 8;
-> > > > > > >
-> > > > > > >  switch (mf->packing) {
-> > > > > > >  case SOC_MBUS_PACKING_NONE:
-> > > > > > >   return width * mf->bits_per_sample / 8;
-> > > > > > >  case SOC_MBUS_PACKING_2X8_PADHI:
-> > > > > > >  case SOC_MBUS_PACKING_2X8_PADLO:
-> > > > > > >  case SOC_MBUS_PACKING_EXTEND16:
-> > > > > > >   return width * 2;
-> > > > > > >  case SOC_MBUS_PACKING_1_5X8:
-> > > > > > >   return width * 3 / 2;
-> > > > > > >  case SOC_MBUS_PACKING_VARIABLE:
-> > > > > > >   return 0;
-> > > > > > >  }
-> > > > > > >    return -EINVAL;
-> > > > > > > }
-> > > > > > >
-> > > > > > > V4L2_PIX_FMT_YUV420 and V4L2_PIX_FMT_YVU420 are classified as
-> > > > > > > SOC_MBUS_PACKING_1_5X8 hence we get width * 3/2
-> > > > > >
-> > > > > > Googling this brings up the entry
-> > > > > >
-> > > > > > {
-> > > > > >         .code =3D V4L2_MBUS_FMT_YUYV8_1_5X8,
-> > > > > >         .fmt =3D {
-> > > > > >                 .fourcc                 =3D V4L2_PIX_FMT_YUV420=
-,
-> > > > > >                 .name                   =3D "YUYV 4:2:0",
-> > > > > >                 .bits_per_sample                =3D 8,
-> > > > > >                 .packing                        =3D SOC_MBUS_PA=
-CKING_1_5X8,
-> > > > > >                 .order                  =3D SOC_MBUS_ORDER_LE,
-> > > > > >                 .layout                 =3D SOC_MBUS_LAYOUT_PAC=
-KED,
-> > > > > >         },
-> > > > > > }
-> > > > > >
-> > > > > > which matches that you're describing. It doesn't make sense to =
-me, since it at the same time specifies PIX_FMT_YUV420 (which is planar wit=
-h 3 planes, as documented by include/uapi/linux/videodev2.h), and LAYOUT_PA=
-CKED
-> > > > > >
-> > > > > > /**
-> > > > > >  * enum soc_mbus_layout - planes layout in memory
-> > > > > >  * @SOC_MBUS_LAYOUT_PACKED:             color components packed
-> > > > > >  * @SOC_MBUS_LAYOUT_PLANAR_2Y_U_V:      YUV components stored i=
-n 3 planes (4:2:2)
-> > > > > >  * @SOC_MBUS_LAYOUT_PLANAR_2Y_C:        YUV components stored i=
-n a luma and a
-> > > > > >  *                                      chroma plane (C plane i=
-s half the size
-> > > > > >  *                                      of Y plane)
-> > > > > >  * @SOC_MBUS_LAYOUT_PLANAR_Y_C:         YUV components stored i=
-n a luma and a
-> > > > > >  *                                      chroma plane (C plane i=
-s the same size
-> > > > > >  *                                      as Y plane)
-> > > > > >  */
-> > > > > > enum soc_mbus_layout {
-> > > > > >         SOC_MBUS_LAYOUT_PACKED =3D 0,
-> > > > > >         SOC_MBUS_LAYOUT_PLANAR_2Y_U_V,
-> > > > > >         SOC_MBUS_LAYOUT_PLANAR_2Y_C,
-> > > > > >         SOC_MBUS_LAYOUT_PLANAR_Y_C,
-> > > > > > };
-> > > > > >
-> > > > > > i.e. non-planar. The code in the driver is handling it as three=
- planes as well, with addresses VB0_BASE_ADDRESS/VB0_BASE_ADDRESS_U/VB0_BAS=
-E_ADDRESS_V. Since the planes are separate, there should be no need to have=
- more than 'width' samples per line.
-> > > > > >
-> > > > >
-> > > > > I did not invent this, I have just simplified this calculation fr=
-om
-> > > > > downstream, output values remain same. I have no cameras which ca=
-n
-> > > > > output V4L2_PIX_FMT_YUV420 or V4L2_PIX_FMT_YVU420 so I cannot tes=
-t if
-> > > > > this works either. Other YUV and RAW formats were tested on real =
-HW
-> > > > > and work perfectly fine.
-> > > >
-> > > > My understanding from the code was, that the MEDIA_BUS_FMT_ formats=
- listed in the video format table refer to the input formats from the camer=
-a, and the V4L2_PIX_FMT_ formats to output formats from VI. Hence VI could =
-input UYVY8_2X8 and write to memory in YUV420. The code dealing with V4L2_P=
-IX_FMT_ values seems to be related to the output to memory. Is it possible =
-to test this (your camera -> VI converts to YUV420) or am I mistaken?
-> > > >
-> > >
-> > > Camera I am testing with has no YUV420 options available and from wha=
-t
-> > > I can tell there is no way to force VI to output in YUV420 unless
-> > > camera supports it. Any format manipulations should requite hooking u=
-p
-> > > ISP, or am I missing smth?
-> >
-> > From a quick look at the spec it looks to me like for YUV422 packed inp=
-ut formats specifically, VI should be able to convert to YUV420. If that we=
-re not the case, e.g. 'TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YUV42=
-0),' would not make sense anyway as it's talking about both YUV422 packed i=
-nput data and then also YUV420.
-> >
->
-> After additional checking you are correct, VI should be able to
-> perform YUV442 to YUV440. One of the reasons why VI is not exposing
-> YUV440 may be video-centric nature of the driver, so that it exposes
-> only formats supported by camera and VI. I will double check which
-> formats video device exposes. What should I test exactly?
->
+On Mon, Sep 22, 2025 at 05:26:35PM +0200, Herve Codina (Schneider Electric)=
+ wrote:
+> The renesas-rza1 driver parses the interrupt-map property. It does it
+> using open code.
+>=20
+> Recently for_each_of_imap_item iterator has been introduce to help
+> drivers in this parsing.
+>=20
+> Convert the renesas-rza1 driver to use the for_each_of_imap_item
+> iterator instead of open code.
+>=20
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
 
-Alternatively, since code that I propose matches in output with one
-that was before, changes can be applied and revised once there will be
-such need. Especially, since YUV422 and RAW8/10 work fine and were
-tested. I am not sure there will be many use cases which deliberately
-target YUV420.
+SW6 on my Genmai board still delivers irqs via rza1-irqc, so:
 
-> > >
-> > > > It's certainly possible that the current code is functional -- if b=
-ytesperline is set to a too large value and that information flows to users=
-pace, it could still read the buffer. It would just waste memory.
-> > > >
-> > > > >
-> > > > > > >
-> > > > > > > > > +     pix->sizeimage =3D pix->bytesperline * pix->height;
-> > > > > > > > >  }
-> > > > > > > > >
-> > > > > > > > >  /*
-> > > > > > > > > @@ -576,20 +564,23 @@ static const struct tegra_vi_ops te=
-gra20_vi_ops =3D {
-> > > > > > > > >       .vi_stop_streaming =3D tegra20_vi_stop_streaming,
-> > > > > > > > >  };
-> > > > > > > > >
-> > > > > > > > > -#define TEGRA20_VIDEO_FMT(MBUS_CODE, BPP, FOURCC)    \
-> > > > > > > > > -{                                                    \
-> > > > > > > > > -     .code    =3D MEDIA_BUS_FMT_##MBUS_CODE,           \
-> > > > > > > > > -     .bpp     =3D BPP,                                 \
-> > > > > > > > > -     .fourcc  =3D V4L2_PIX_FMT_##FOURCC,               \
-> > > > > > > > > +#define TEGRA20_VIDEO_FMT(DATA_TYPE, BIT_WIDTH, MBUS_COD=
-E, BPP, FOURCC)      \
-> > > > > > > > > +{                                                       =
-             \
-> > > > > > > > > +     .img_dt         =3D TEGRA_IMAGE_DT_##DATA_TYPE,    =
-               \
-> > > > > > > > > +     .bit_width      =3D BIT_WIDTH,                     =
-               \
-> > > > > > > > > +     .code           =3D MEDIA_BUS_FMT_##MBUS_CODE,     =
-               \
-> > > > > > > > > +     .bpp            =3D BPP,                           =
-               \
-> > > > > > > > > +     .fourcc         =3D V4L2_PIX_FMT_##FOURCC,         =
-               \
-> > > > > > > > >  }
-> > > > > > > > >
-> > > > > > > > >  static const struct tegra_video_format tegra20_video_for=
-mats[] =3D {
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 2, UYVY),
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(VYUY8_2X8, 2, VYUY),
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(YUYV8_2X8, 2, YUYV),
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(YVYU8_2X8, 2, YVYU),
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 1, YUV420),
-> > > > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 1, YVU420),
-> > > > > > > > > +     /* YUV422 */
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 16, UYVY=
-),
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, VYUY8_2X8, 16, VYUY=
-),
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, YUYV8_2X8, 16, YUYV=
-),
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, YVYU8_2X8, 16, YVYU=
-),
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YUV4=
-20),
-> > > > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YVU4=
-20),
-> > > > > > > > >  };
-> > > > > > > > >
-> > > > > > > > >  const struct tegra_vi_soc tegra20_vi_soc =3D {
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> >
-> >
-> >
-> >
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+
+--TIDIkyJ3Gg25L3Jq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjSRI0ACgkQFA3kzBSg
+KbY/FxAAlVLFGL6AfVEsCD/oIUfVYSIxAjWEEjVSx/Le5JffJO2Ft1SgnZ9rH8ji
+J1cpy3LuqstvKKD3u/BqrCMZRGjP/l+7iw6g/OSdetuKHf/VpDHpO47xD2LAZzBV
+Y0t0YvhLDN7phe1AfpkL3fVEbLRFX5/h+AcyP9mDReCJqwzV3cs7TDkbfMwbM1L9
++nQ5/4zodr/wkG/jdoMTCR9Acw6rCTFExxy1ay2GbyOponId39hkBneZYpTS/QTZ
+61b5ISD7aoEKu2CU4m32xOdNyep0bWjzgGlnSKl3KXpbKnpxSLvjbUTgBG/LTgXp
+gaBN0qNtqzh47Uzhy1pNjjC9mT/PTkbMg/wHp6bSBV7uMwgvodtT5JXaiGalWKhg
+SRGkvwUEOzRyVcF+07lBd23dP7QCMwkRc6vcI9VwlDQohnGQckIi+/9m2TnKzRtN
+H/TGXeC8oqQYgEgi3JuVY280LOfV0wOnGVe0by48mji6njHcc8PafrkFxExU3JFW
+Yexm+lUlqcVH6CzrGAJItO0aiUEZdeWjCGERIdPaU07M8LXIDbrLfqJkdVQdVief
+NglHPzKbAtsMzRKCXzUZUcVgW2pD06BhBtBOY8vGBroGGQr6NcZCd+B6PpYhHuaX
+DXDsLGKaG5modPfTEoUDF0i0M17lYLe5Cis6icEVXXMK/7EpVG0=
+=YWOY
+-----END PGP SIGNATURE-----
+
+--TIDIkyJ3Gg25L3Jq--
 
