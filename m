@@ -1,156 +1,147 @@
-Return-Path: <devicetree+bounces-220429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CCBB95FC3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:17:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A89EB96091
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:37:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3712819C37D6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:17:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 488FA48275D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BFA7327A01;
-	Tue, 23 Sep 2025 13:17:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACFE6327A2F;
+	Tue, 23 Sep 2025 13:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MVDI0s9V"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DVpWf27E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9C0326D60
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 13:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2917327A1B;
+	Tue, 23 Sep 2025 13:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758633428; cv=none; b=sQ6TIgyGOCQatuEJ2V7OpBwu7q+eau+vAfpGRg5n1L9HUxVCGEnt55KbZku2KUKbnq13a8lbdRI3R6y2rsSs7Xsu7p2/0ca+GcpSZt4xA42clNqvt6Qcg4PMfjPcwI86ZLeihkxSybyAGyHJ9I+tLrDPhm6uitxEGs7G6L5cdnk=
+	t=1758634631; cv=none; b=WYXfwCJGteQ+lalV+qduVR3k65xjQohpzKTlVokR0KZOAdkDP9m+tLKpxdkiU4Vbr8umyfe3uBh0KykSri8AyB0dVp4Wgp1OP8G2eswR8nTwwKmYhvuiaEh4AyYpYJOhB2DPVmusZmE8wD8q66RMxz0L0e/JpYQHObxOGxblmJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758633428; c=relaxed/simple;
-	bh=vLNOpzetH/Y5LAPNxv2ClxExpatuyCXuu8pR0a+rhFg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V1/b0+rbaUJwgcWoj26Eqs3DUb04xi6DMj6usriJYX+VYNVuH0eij6MO+GG7I9izCGlr2rJIxIvNkarebVFtiTzwOfnBPDb0Bh+UKKfcumzZjpzxPnMT/W0cNwCSX92tBnSZ8dRYzOiPU5ldxYo3xeSATmTqvzYkwFlAmuyD2GI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MVDI0s9V; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-626190c9c1eso1881126eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 06:17:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758633425; x=1759238225; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f2WPlGw6ip7PYA/9tuI3OZb0vgkUfUYvz/dn9O4WHM8=;
-        b=MVDI0s9VR5W1ZBAo7u3H8+IS/P7Kl3XF1zwWEicTJV2eh80Q7iu51/7MTyTTVSvbX9
-         oMgHvhNDAXAj/Ym+5RbNdlO5tujFzjykhUn8RQQzJ4i5lHGI/PDhMRtPY6/tR0/1m3Ps
-         gnL8hpyufO/X6PO+PMxOBHd0CLktRtll+nu9sbSw2K8dnSoLzWTYhlw4hnFkZvWtqJ1p
-         mmHGaDNCQ+ZZdSWMpH0U45/JvXGtzuA174ESfDd4LGCqmXiXCfcwwrw9Ya7+KsaWbGdZ
-         SXRYCSKA2zLX9DN0RIsEGU8Q0otJTx5grO6kob4ldboENmpAjk5jw369l0GELidn28So
-         WkEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758633425; x=1759238225;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f2WPlGw6ip7PYA/9tuI3OZb0vgkUfUYvz/dn9O4WHM8=;
-        b=S36gEYnusklWsQ/jkpYJBu/wQrhR58ATQoQZ+0DCdh4S8k9/1iA/alLS1j3jR2OkWr
-         HLmjoNIg3oG1oC1o/KMtOEGHvBqmWdnTKpt1u+378bI/WzXt00unRvC18RM8pYwGRV8N
-         VAnt7ObhO0+Kp5aSFTo5vXGJ98XnCqIDt4K7Mt86IvPai7lF1kUhQezYDde130O0HGCT
-         yutFixn1VrhIjR2dMY9Qm6NvRiAbMHhBwbLuasrWnsFheVhd5I9uKnihw/IkfBsMcAdf
-         0bYqo1tCylSlvHaDh1ZenGJzPwHdiiR4mIs22FO2c9PcMiuhrLQBOiAbDE8BFyQi+tCS
-         R2EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVEWF4AnWKsd3HUEf9wZ+wX8MWSiT8Dla7D4cKpfozDgLxcyCpW8ntXrdLjFp1/1bp7PKE0aMayC33m@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNK0x1SusoTMj2KmOTlrecDtyc0CR1xr3uFLN7h6MP71WQIIJy
-	RUGj8BhEO4MxjEjdqXzarAUv5rOcDzpRefqj3KaJ4eqqCt2Cd2Vs30FfIZHAXQl+fhcaEkB67px
-	p2qW0LWNLcOvEF8mfzTkcVf8xY1+EvNI=
-X-Gm-Gg: ASbGncu6IOUZjB7WrIKDNU0ILUsAEB734dNIZVr6ZDli6oTVPuNgJ8tLo+EIMgwDzBF
-	5SgMHksFEPKPN7WaoXVS+fhF8/KUuSTXOebKeYXt5xop0wVgNfgqiGoorjjuKGYCKHSpPY5FH6x
-	rYLzhZYfxeVEuZhqYZezk8ZFC/nlyNaa4KY6BWxrinKCPPC/n85X7msSMVHZJ1Og9J5I5AU9mJ9
-	1x81rDAdnYF1Dp/IlA=
-X-Google-Smtp-Source: AGHT+IG8OdD4UhyFmVnw+1B4Hou6a7FTFOoQAxaWAXHib0ERshZVgibiY61D/fwCONr+Awn82RcI18YLm8tvlRhZT7k=
-X-Received: by 2002:a05:6808:3194:b0:43d:2dc4:9d16 with SMTP id
- 5614622812f47-43f2d355ee6mr1166642b6e.9.1758633425437; Tue, 23 Sep 2025
- 06:17:05 -0700 (PDT)
+	s=arc-20240116; t=1758634631; c=relaxed/simple;
+	bh=IjG04YAsgqRFw7Eb4bkKvESHmFuVAEmEfIf7vfwOwb4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lNVUwmduxoNAzqpSqloQQ4r8uNNJSQWR1sv3r4rw9VcasbKrZOmUq9E+rwu751Ljp4SoH3mwiXVCX9ChJrdcJOPLfjzrkS0FUATZSpcS8Nd8/lu7xg2U8LFfu+IESXY3fMMfMtmx2t8z5XPBr8cAgaVsf3/1QUD5EoENvB/2ZVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DVpWf27E; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id ACCA44E40CAD;
+	Tue, 23 Sep 2025 13:37:06 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8088C60690;
+	Tue, 23 Sep 2025 13:37:06 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 901BD102F1950;
+	Tue, 23 Sep 2025 15:36:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758634625; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=KBPR5buXz86hknin/D1hAnT/+VJp1Du2pRilGmtvOAw=;
+	b=DVpWf27EyfK2+Gd/sf4BJ5J0yv2Sl36D5fnkCVNFBZOPRkyCLlgY8T+tPxjzW0F5YXpUtf
+	0MpB8DZpOdzDeZ6108lfaKxgN7URcpdc9jNQ9EMVcuAwdFXi7+J6RelhVyIeZ2xgB/cGnf
+	GBZet49ZmXyY4pV55yX0u3ta+loar2Zfq4chLMR2VEnaAn1X+WWdimwOJ/5BUkRc2Hfxlj
+	t75DnNVvgCIXP91f+q52pTUY4itQz9RQ7XJIKAZqL1MiC0N71NUTC1MpBWkfFr52Dv6UvX
+	drfeGAk7+xVfgs7+TNGrJVN8084+YjjJabDjkdZZ3KLOz51RW/D57fI/cdcp9Q==
+Date: Tue, 23 Sep 2025 15:36:46 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Ayush Singh
+ <ayush@beagleboard.org>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring
+ <robh@kernel.org>, Andrew Davis <afd@ti.com>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org, Jason Kridner
+ <jkridner@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <20250923153646.754e86f8@bootlin.com>
+In-Reply-To: <CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
+References: <aL-2fmYsbexEtpNp@zatzit>
+	<20250909114126.219c57b8@bootlin.com>
+	<aMD_qYx4ZEASD9A1@zatzit>
+	<20250911104828.48ef2c0e@bootlin.com>
+	<aMebXe-yJy34kST8@zatzit>
+	<20250916084631.77127e29@bootlin.com>
+	<aMt5kEI_WRDOf-Hw@zatzit>
+	<20250918094409.0d5f92ec@bootlin.com>
+	<aMzhgDYOuG4qNcc0@zatzit>
+	<dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
+	<aNJVqSpdAJzGliNx@zatzit>
+	<20250923114849.2385736d@bootlin.com>
+	<CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250822021217.1598-1-jjian.zhou@mediatek.com>
- <CAGXv+5F-L2+4PGixx7OG2+vp2yXc_2885yMzqWtkQDwhxVAPxw@mail.gmail.com>
- <CABb+yY3N2=01yKJon25_6_vmihj09H=T9pLwzdGPrqY5h=hRFQ@mail.gmail.com>
- <5789241.GXAFRqVoOG@workhorse> <CABb+yY2Ay+KqviJvOQC8X8kfzJN6-fQT04A+TCJAkLnWx+XwZg@mail.gmail.com>
- <a9dd348fd7df95ebd5ad9cc58d57b588a18ccc9d.camel@mediatek.com>
-In-Reply-To: <a9dd348fd7df95ebd5ad9cc58d57b588a18ccc9d.camel@mediatek.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Tue, 23 Sep 2025 08:16:53 -0500
-X-Gm-Features: AS18NWCOZv9Pv2u_322Xt4q4LUafUyRkH0j9o_POX7ZdoLtYf5wU82ru76Msenc
-Message-ID: <CABb+yY2bYh70A=n9+XBBqthjngZP2D8ebFje-F9TN7K0c+fmMA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
-To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>
-Cc: "nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "wenst@chromium.org" <wenst@chromium.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
-	"robh@kernel.org" <robh@kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Sep 22, 2025 at 2:17=E2=80=AFAM Jjian Zhou (=E5=91=A8=E5=BB=BA) <Jj=
-ian.Zhou@mediatek.com> wrote:
->
+On Tue, 23 Sep 2025 12:29:27 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-> > > > > >
-> > > > > > > +       void __iomem *base;
-> > > > > > > +       struct device *dev;
-> > > > > > > +       struct mbox_controller mbox;
-> > > > > > > +       const struct mtk_vcp_mbox_cfg *cfg;
-> > > > > > > +       struct mtk_ipi_info ipi_recv;
-> > > > > >
-> > > > > > Maybe also have "struct mbox_chan chan[1]; " so that you
-> > > > > > don't have to
-> > > > > > allocate one during the probe.
-> > > > > > Also if you have  "struct mbox_controller mbox;" as the first
-> > > > > > member,
-> > > > > > you could simply typecast that to get this structure.
-> > > > > > Something like "struct mpfs_mbox" in mailbox-mpfs.c
-> > > > >
-> > > > > I read somewhere that this way of subclassing is not
-> > > > > recommended.
-> > > > > Instead the base class should explicitly not be the first
-> > > > > member.
-> > > > > And then container_of() should be used.
-> > > > >
-> > > > > I don't remember where I read this though. But I think the
-> > > > > explicit
-> > > > > container_of() is easier for understanding the intent.
-> > > > >
-> > > >
-> > > > And how does container_of() work ? :)
-> > > > typcasting the first member to its parent is the simplest form of
-> > > > container_of.
-> > > >
-> > > > -j
-> > > >
-> > > >
+> Hi Hervé,
+> 
+> On Tue, 23 Sept 2025 at 11:49, Herve Codina <herve.codina@bootlin.com> wrote:
+> > On Tue, 23 Sep 2025 18:09:13 +1000
+> > David Gibson <david@gibson.dropbear.id.au> wrote:  
+> > > Ah, right.  To be clear: we absolutely don't want multiple addons
+> > > altering the same nodes.  But I think we could do that in ways other
+> > > than putting everything under a connector.  This is exactly why I
+> > > think we should think this through as an end-to-end problem, rather
+> > > trying to do it as a tweak to the existing (crap) overlay system.
 > > >
-> > > Which is why it's completely equivalent and since code is supposed
-> > > to communicate meaning to humans, container_of should be used.
+> > > So, if we're thinking of this as an entirely new way of updating the
+> > > base dt - not "an overlay" - we can decide on the rules to ensure that
+> > > addition and removal is sane.  Two obvious ones I think we should
+> > > definitely have are:
 > > >
+> > > a) Addons can only add completely new nodes, never modify existing
+> > >    ones.  This means that whatever addons are present at runtime,
+> > >    every node has a single well defined owner (either base board or
+> > >    addon).  
 > >
-> > Nobody is suggesting typecasting cfg, dev or anything else.
-> > Typecasting between mailbox controllers is fine and arguably easier
-> > on
-> > the eyes than using a container_of.
-> >
-> > -j
->
-> OK. How about:
-> struct mtk_vcp_mbox *priv =3D (struct mtk_vcp_mbox *)chan->con_priv;
->
-You don't need to typecast a void *. So simply do
-    struct mtk_vcp_mbox *priv =3D chan->con_priv;
+> > In this rule I suppose that "never modify existing ones" should be understood
+> > as "never modify, add or remove properties in existing ones". Because, of course
+> > adding a full node in a existing one is allowed (rule b).  
+> 
+> What if the add-on board contains a provider for the base board.
+> E.g. the connector has a clock input, fed by an optional clock generator
+> on the add-on board.  Hooking that into the system requires modifying
+> a clocks property in the base board, cfr. [1].
+> Or is there some other solution?
+> 
+> I was also wondering about endpoints, as they have two sides: one on
+> the base board, and one on the add-on board. But it seems that typically
+> both ends are added by the extension, so these fall under rule b.
+> 
+> Thanks!
+> 
+> [1] https://elixir.bootlin.com/linux/v6.16/source/arch/arm64/boot/dts/renesas/white-hawk-ard-audio-da7212.dtso#L165
+> 
+
+Hi Geert,
+
+Addon DT we talk about is not a way to fine tune base board devices.
+
+For the clock, you need a clock driver which is able to support clock hot-plugging.
+Same for endpoint, the remote endpoint part should support hot-plugging.
+
+I don't think that addon DT should support what is done in the dtso you pointed out.
+
+Best regards,
+Hervé
+
 
