@@ -1,748 +1,258 @@
-Return-Path: <devicetree+bounces-220365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0FBB95014
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 10:33:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BF5B94EC3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 10:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 57F044E2731
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:33:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B3953B09CB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4A131A056;
-	Tue, 23 Sep 2025 08:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF5D318152;
+	Tue, 23 Sep 2025 08:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="Iqob4EWP"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="uc6Dur1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3286.qiye.163.com (mail-m3286.qiye.163.com [220.197.32.86])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 576D631D379;
-	Tue, 23 Sep 2025 08:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A91F265CAD;
+	Tue, 23 Sep 2025 08:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758616383; cv=none; b=LYcxtkeP0nmgHpiQVi+HpBhb9RNhWtp8suqU6nBA9kRN0cQctZF1Qi3IUsSm2rxsFn+85TKChQZjRMow+Wx+74U9GAEC7U95DNdHM9/0aDmiTQkPSpE+15R7+nkDG/MZDp+vmWLFDtT0xodOe4DXcWcf4PUX7WKGRLJ3KG3Rszg=
+	t=1758614972; cv=none; b=DvTT1WzEJd92lgHcDeoGwzI8YrYQ1HcwQ1KP68Uijf8uEV+MH/vUy4/Ewa/DlH4OdAvOr8E05yq+FKU4GhcJOp62nKYFcXZZWMwsrdjU26aV1EN0uM7gIj5A88LrluYFKa9bo59A3Ynx+cIXujB2ixa+qbXbfX/jdZPLADghqZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758616383; c=relaxed/simple;
-	bh=dtxw7tyIU9k30dRcoRvlsMsis9Sox2SrHPPi8ztUYiQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=X6BnQrMixcgj0xTYrXPH+Nlc/ggRg0e3n5Bly85z4O2fji/q9TjXunX2nLxbBXnpWlRRnrtzPqLFdPwuFUdHfJa4N7SlvBQGEUIihaE9bjwWfTzNXCiLy/OzYRUhMfFjTnmQ1uZcYtUDG0uK84xDLhodSq8ooRYIz25gte99L/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=Iqob4EWP; arc=none smtp.client-ip=220.197.32.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from [127.0.1.1] (unknown [117.184.129.134])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 23bdebfeb;
-	Tue, 23 Sep 2025 14:10:34 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-Date: Tue, 23 Sep 2025 14:10:11 +0800
-Subject: [PATCH 5/9] mmc: sdhci: add Black Sesame Technologies BST C1200
- controller driver
+	s=arc-20240116; t=1758614972; c=relaxed/simple;
+	bh=7kc6jlZD7X62wZB0M8B9+bz4psXxD7A9CNwsZ3pJ5Uo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ScLMloS90LDvF0iQPFAgdEpIX+rFgTFBbzVQxgp0EQRnDs4sQN8X/JMwyLVSTE1Agz+6MmEB4feTyAaRbgya7zL7tdQujF2Kds0QyRiYRgU5PRIHr+Bt53+kMJg3ECGYRPuE2BtXF7CEIcYTaIWP7f/7//jPx4TYxBMlgr92s80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=uc6Dur1F; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202508; t=1758614966;
+	bh=zzeqtwEj5UTJKBZZILUt2MPbCrrrroWXRmHWpJZjSXM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uc6Dur1F4v41rVHPdfzJFw80EzCcCxJAmN+Ld/h1WAU/6LZODUYH/jZIaAUNv5rtG
+	 gpkgVKvOwf0lmYtlArYaJfx8bIpS/2CT9/NVYjhDt1Dv2MC4bOeben9y7LsQsaWmoC
+	 AYMPFDaWhCUUYSYl/HXFgWuB69lIinLhvbOLEMc7d+8T9tJXymhrSUDLtx1/QouhOF
+	 Aig1HZ76IDyNDqgw8Iuy58ke0WsBGtOsEXqKdsmoW+79J6YAM3lCpnCDmLpPMtFsgH
+	 8YrSHM+jrahmDPnLqqZ7AyhXTWOGSwBRuRVHdevfHH7W/IQVUmPEXRb47RTXLT/hs0
+	 N4AvuW9mzOtPQ==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4cWCLZ1Czcz4w9Q; Tue, 23 Sep 2025 18:09:26 +1000 (AEST)
+Date: Tue, 23 Sep 2025 18:09:13 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	devicetree@vger.kernel.org, Jason Kridner <jkridner@gmail.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <aNJVqSpdAJzGliNx@zatzit>
+References: <aL-2fmYsbexEtpNp@zatzit>
+ <20250909114126.219c57b8@bootlin.com>
+ <aMD_qYx4ZEASD9A1@zatzit>
+ <20250911104828.48ef2c0e@bootlin.com>
+ <aMebXe-yJy34kST8@zatzit>
+ <20250916084631.77127e29@bootlin.com>
+ <aMt5kEI_WRDOf-Hw@zatzit>
+ <20250918094409.0d5f92ec@bootlin.com>
+ <aMzhgDYOuG4qNcc0@zatzit>
+ <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250923-v4-patch-final-v1-5-2283ad7cbf88@thundersoft.com>
-References: <20250923-v4-patch-final-v1-0-2283ad7cbf88@thundersoft.com>
-In-Reply-To: <20250923-v4-patch-final-v1-0-2283ad7cbf88@thundersoft.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>, 
- BST Linux Kernel Upstream Group <bst-upstream@bstai.top>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Arnd Bergmann <arnd@arndb.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org, 
- soc@lists.linux.dev, Albert Yang <yangzh0906@thundersoft.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758607828; l=22439;
- i=yangzh0906@thundersoft.com; s=20250814; h=from:subject:message-id;
- bh=dtxw7tyIU9k30dRcoRvlsMsis9Sox2SrHPPi8ztUYiQ=;
- b=W1Fyh7Q5hkbmVkfl4+Z8eXLpAY4KvlNGadEzX1ieBFAJ5MyhNerxROrX/xbsa1jquldoHNMoN
- 1+x/6i0dkhvCJJR4m6hEiO0SsFxWnm0HoPqooTicLQh3iQxmL8McWnn
-X-Developer-Key: i=yangzh0906@thundersoft.com; a=ed25519;
- pk=bEcgALL9KpUg/m7zH44r50xa/re91dI9SA0vGV1/bu4=
-X-HM-Tid: 0a997531ff5909cckunmfc27e25b4e02c1
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHx0ZVkhITkwaSkgfGUNNTlYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSk
-	tLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Iqob4EWPsYGgf3+ibT5aPmiEZldU2PWFwF2WxXMHquFY2yB5G6FQFspA8ubF02j3NofY4wEO4E6Jr5GlNUcrnrBo0utb8piB97qf2rmS89X1w8cGzgUxkzWqrsq7hyg0xtC5PS8N9gP5slSWxFIs9lLzAYzRlsDDcLCjQdnu5gY=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=1TROONXzTKwNZvrPtw2bVfogIPTuWxLosKxdo8XFpQg=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Xyxstg8Uj0Y3qEx9"
+Content-Disposition: inline
+In-Reply-To: <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
 
-Add SDHCI controller driver for Black Sesame Technologies C1200 SoC.
 
-This driver supports the DWCMSHC SDHCI controller with BST-specific
-enhancements including:
-- Custom clock management and tuning
-- Power management support
-- BST-specific register configurations
-- Support for eMMC and SD card interfaces
-- Hardware limitation workaround for 32-bit DMA addressing
+--Xyxstg8Uj0Y3qEx9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The driver addresses specific hardware constraints where:
-- System memory uses 64-bit bus, eMMC controller uses 32-bit bus
-- eMMC controller cannot access memory through SMMU due to hardware bug
-- All system DRAM is configured outside 4GB boundary (ZONE_DMA32)
-- Uses SRAM-based bounce buffer within 32-bit address space
+On Fri, Sep 19, 2025 at 10:47:17AM +0530, Ayush Singh wrote:
+> On 9/19/25 10:22, David Gibson wrote:
+>=20
+> > On Thu, Sep 18, 2025 at 09:44:09AM +0200, Herve Codina wrote:
+> > > Hi David,
+> > >=20
+> > > On Thu, 18 Sep 2025 13:16:32 +1000
+> > > David Gibson <david@gibson.dropbear.id.au> wrote:
+> > >=20
+> > > ...
+> > >=20
+> > > > > > Thoughts above suggest a different direction, but here's what I=
+ was
+> > > > > > thinking before:
+> > > > > >=20
+> > > > > > base board:
+> > > > > >=20
+> > > > > > 	connector {
+> > > > > > 		/export/ "i2c" &i2c0;
+> > > > > > 	};
+> > > > > >=20
+> > > > > > addon:
+> > > > > > 	eeprom@10 {
+> > > > > > 		compatible =3D "foo,eeprom";
+> > > > > > 		bus-reg =3D <&i2c 0x10>;
+> > > > > > 	}
+> > > > > >=20
+> > > > > > Or, if the addon had multiple i2c devices, maybe something like:
+> > > > > >=20
+> > > > > > 	board-i2c {
+> > > > > > 		compatible =3D "i2c-simple-bridge";
+> > > > > > 		bus-ranges =3D <&i2c 0 0x3ff>; /* Whole addr space */
+> > > > > > 		eeprom@10 {
+> > > > > > 			compatible =3D "foo,eeprom";
+> > > > > > 			reg =3D <0x10>;
+> > > > > > 		}
+> > > > > > 		widget@20 {
+> > > > > > 			compatible =3D "vendor,widget";
+> > > > > > 			reg =3D <0x20>;
+> > > > > > 		}
+> > > > > > 	}
+> > > > > >=20
+> > > > > > Writing that, I realise I2C introduces some complications for t=
+his.
+> > > > > > Because it has #size-cells =3D <0>, ranges doesn't really work =
+(without
+> > > > > > listing every single address to be translated).  Likewise, beca=
+use we
+> > > > > > always need the parent bus phandle, we can't use the trick of a=
+n empty
+> > > > > > 'ranges' to mean an identity mapping.
+> > > > > >=20
+> > > > > > We could invent encodings to address those, but given the addon=
+ with
+> > > > > > multiple connectors case provides another incentive for a single
+> > > > > > connector to allow adding nodes in multiple (but strictly enume=
+rated)
+> > > > > > places in the base device tree provides a better approach.
+> > > > > and the "place in base device tree" is the goal of the extension =
+bus.
+> > > > >=20
+> > > > > The strict enumeration of nodes enumerated is done by two means:
+> > > > >   - extension busses at connector level
+> > > > >     Those extensions are described as connector sub-nodes.
+> > > > >     The addon DT can only add nodes in those sub-nodes to describ=
+e devices
+> > > > >     connected to the relared extension bus.
+> > > > >   - export symbols
+> > > > >     An addon DT can only use symbols exported to reference symbol=
+s outside
+> > > > >     the addon DT itself.
+> > > > >=20
+> > > > > Can I assume that bus extensions we proposed (i2c-bus-extension a=
+nd
+> > > > > spi-bus-extension) could be a correct solution ?
+> > > > Maybe?  I prefer the idea of a universal mechanism, not one that's
+> > > > defined per-bus-type.
+> > > >=20
+> > > >=20
+> > > > Also, IIUC the way bus extension operates is a bit different - nodes
+> > > > would be "physically" added under the bus extension node, but treat=
+ed
+> > > > logically as if they go under the main bus.  What I'm proposing here
+> > > > is something at the actualy overlay application layer that allows
+> > > > nodes to be added to different parts of the base device tree - so y=
+ou
+> > > > could add your i2c device under the main i2c bus.
+> > > I think we should avoid this kind of node dispatching here and there =
+in
+> > > the base DT.
+> > Until I saw Geert's multi-connector case, I would have agreed.  That
+> > case makes me thing differently: in order to support that case we
+> > already have to handle adding information in multiple places (under
+> > all of the connectors the addon uses).  Given we have to handle that
+> > anyway, I wonder if it makes more sense to lean into that, and allow
+> > updates to multiple (strictly enumerated) places.
+>=20
+> Well, I don't love this idea. Here are my main qalms about the approach of
+> adding devices directly to the actual i2c/spi etc nodes.
+>=20
+> 1. In boards with multiple connectors, they sometimes share the same i2c.
+> Now assume that someone decided to connect the same i2c device to both the
+> connectors. If we are using something like bus extension, while the node
+> would be added, it will fail in the registration since you cannot add the
+> same address device a second time. However, if we are adding the device
+> directly to the `main_i2c`, the overlay application will just end up
+> modifying the exact same device node. There is no error, or even a 2nd
+> device node in this case. It is just lost.
+>=20
+> 2. How well will overlay adding and removing work when the same tree nodes
+> are modified by multiple connectors? I have not looked at the internals of
+> overlay resolution so not sure, but I don't want dynamic addition and
+> removal of devices in independent connectors to somehow become coupled.
 
-Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
-Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+Ah, right.  To be clear: we absolutely don't want multiple addons
+altering the same nodes.  But I think we could do that in ways other
+than putting everything under a connector.  This is exactly why I
+think we should think this through as an end-to-end problem, rather
+trying to do it as a tweak to the existing (crap) overlay system.
 
----
-Changes for v4:
-- Rename all functions from bst_* to sdhci_bst_* for better namespace consistency
-- Rename driver file from sdhci-of-bst-c1200.c to sdhci-of-bst.c
-- Rename dwcmshc_priv structure to sdhci_bst_priv for clarity
-- Update driver name from "sdhci-dwcmshc" to "sdhci-bst" throughout
-- Add comprehensive register bit mask definitions and named constants
-- Replace manual polling loops with read_poll_timeout() for clock stability
-- Add dedicated sdhci_bst_wait_int_clk() function for internal clock management
-- Completely rewrite power management with proper power-off handling
-- Enhance clock control with read-modify-write operations to avoid clobbering
-- Add MBIU burst mode configuration based on power state
-- Improve error handling and cleanup in probe/remove functions
-- Simplify bounce buffer allocation and remove redundant MMC parameter adjustments
-- Add SDHCI_QUIRK_BROKEN_ADMA quirk for hardware limitation
-- Replace ioread32/iowrite32 with readl/writel for consistency
-- Update copyright year and simplify license text
-- Improve tuning algorithm with clearer variable naming
-- Enhance register access patterns with proper bit field manipulation
-- Add power-off clock management to reduce idle power consumption
-- Add Acked-by: Arnd Bergmann
+So, if we're thinking of this as an entirely new way of updating the
+base dt - not "an overlay" - we can decide on the rules to ensure that
+addition and removal is sane.  Two obvious ones I think we should
+definitely have are:
 
-Changes for v3:
-- Simplify dwcmshc_priv structure by removing unused fields
-- Improve helper functions with better encapsulation
-- Use devm_platform_ioremap_resource() for resource management
-- Update Kconfig description and alphabetical ordering
-- Clarify documentation on hardware limitations and bounce buffer approach
-- Remove duplicate sdhci_writew SDHCI_CLOCK_CONTROL
+a) Addons can only add completely new nodes, never modify existing
+   ones.  This means that whatever addons are present at runtime,
+   every node has a single well defined owner (either base board or
+   addon).
 
-Changes for v2:
-- Remove COMMON_CLK dependency from Kconfig (MMC_SDHCI_BST)
-- Add ARCH_BST || COMPILE_TEST dependency from Kconfig (MMC_SDHCI_BST)
-- Replace temporary ioremap with persistent mapping
-- Map CRM registers once during probe instead of per-access
-- Add proper cleanup in remove callback
-- Refactor bounce buffer allocation with simplified error handling
-- Remove unnecessary DMA configuration layers
-- Prune unused headers and legacy vendor debug code
-- Remove deprecated sdhci_bst_print_vendor() export
-- Convert internal functions to static scope
-- Standardize naming conventions (DRIVER_NAME, DEFAULT_MAX_FREQ)
-- Optimize clock configuration routines
-- Fix register access macros for EMMC_CTRL with proper offset calculation
-- Correct device tree compatibility string to "bst,c1200-dwcmshc-sdhci"
-- Add robust ioremap error checking
-- Improve bounce buffer allocation failure handling
-- Update MODULE_DESCRIPTION and AUTHOR fields
-- Add explanatory comments for hardware limitations
-- Remove redundant multi-host setup infrastructure
-- Fix build warnings from lkp (kernel test robot)
----
- drivers/mmc/host/Kconfig        |  14 ++
- drivers/mmc/host/Makefile       |   1 +
- drivers/mmc/host/sdhci-of-bst.c | 544 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 559 insertions(+)
+b) Addons can only add nodes in places that are explicitly allowed by
+   the connectors they're connecting to.
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 7232de1c068873d9bccec0b3b43ece939cb84894..75c37be559d23bff773bbe3f018b76c34ad710ca 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -429,6 +429,20 @@ config MMC_SDHCI_BCM_KONA
- 
- 	  If you have a controller with this interface, say Y or M here.
- 
-+config MMC_SDHCI_BST
-+	tristate "SDHCI support for Black Sesame Technologies BST C1200 controller"
-+	depends on ARCH_BST || COMPILE_TEST
-+	depends on MMC_SDHCI_PLTFM
-+	depends on OF
-+	help
-+	  This selects the Secure Digital Host Controller Interface (SDHCI)
-+	  for Black Sesame Technologies BST C1200 SoC. The controller is
-+	  based on Synopsys DesignWare Cores Mobile Storage Controller but
-+	  requires platform-specific workarounds for hardware limitations.
-+
-+	  If you have a controller with this interface, say Y or M here.
-+	  If unsure, say N.
-+
- config MMC_SDHCI_F_SDH30
- 	tristate "SDHCI support for Fujitsu Semiconductor F_SDH30"
- 	depends on MMC_SDHCI_PLTFM
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index 5057fea8afb696e210e465a6a2aafc68adad7854..ee412e6b84d6c91f80654e53d0a05b549d4b6171 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_MMC_MXS)		+= mxs-mmc.o
- obj-$(CONFIG_MMC_SDHCI)		+= sdhci.o
- obj-$(CONFIG_MMC_SDHCI_UHS2)	+= sdhci-uhs2.o
- obj-$(CONFIG_MMC_SDHCI_PCI)	+= sdhci-pci.o
-+obj-$(CONFIG_MMC_SDHCI_BST)	        += sdhci-of-bst.o
- sdhci-pci-y			+= sdhci-pci-core.o sdhci-pci-o2micro.o sdhci-pci-arasan.o \
- 				   sdhci-pci-dwc-mshc.o sdhci-pci-gli.o
- obj-$(CONFIG_MMC_SDHCI_ACPI)	+= sdhci-acpi.o
-diff --git a/drivers/mmc/host/sdhci-of-bst.c b/drivers/mmc/host/sdhci-of-bst.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..b19b763f216a25f58d37c8e288a8aa791f1e20f7
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-of-bst.c
-@@ -0,0 +1,544 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * SDHCI driver for Black Sesame Technologies C1200 controller
-+ *
-+ * Copyright (c) 2025 Black Sesame Technologies
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/ioport.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/platform_device.h>
-+#include <linux/iopoll.h>
-+#include "sdhci.h"
-+#include "sdhci-pltfm.h"
-+
-+/* SDHCI standard register extensions */
-+#define SDHCI_CLOCK_PLL_EN		0x0008
-+#define SDHCI_TUNING_COUNT		0x20
-+#define SDHCI_VENDOR_PTR_R		0xE8
-+
-+/* Synopsys vendor specific registers */
-+#define SDHC_EMMC_CTRL_R_OFFSET		0x2C
-+#define MBIU_CTRL			0x510
-+
-+/* MBIU burst control bits */
-+#define BURST_INCR16_EN			BIT(3)
-+#define BURST_INCR8_EN			BIT(2)
-+#define BURST_INCR4_EN			BIT(1)
-+#define BURST_EN			(BURST_INCR16_EN | BURST_INCR8_EN | BURST_INCR4_EN)
-+#define MBIU_BURST_MASK			GENMASK(3, 0)
-+
-+/* CRM (Clock/Reset/Management) register offsets */
-+#define SDEMMC_CRM_BCLK_DIV_CTRL	0x08
-+#define SDEMMC_CRM_TIMER_DIV_CTRL	0x0C
-+#define SDEMMC_CRM_RX_CLK_CTRL		0x14
-+#define SDEMMC_CRM_VOL_CTRL		0x1C
-+#define REG_WR_PROTECT			0x88
-+#define DELAY_CHAIN_SEL			0x94
-+
-+/* CRM register values and bit definitions */
-+#define REG_WR_PROTECT_KEY		0x1234abcd
-+#define BST_VOL_STABLE_ON		BIT(7)
-+#define BST_TIMER_DIV_MASK		GENMASK(7, 0)
-+#define BST_TIMER_DIV_VAL		0x20
-+#define BST_TIMER_LOAD_BIT		BIT(8)
-+#define BST_BCLK_EN_BIT			BIT(10)
-+#define BST_RX_UPDATE_BIT		BIT(11)
-+#define BST_EMMC_CTRL_BIT2		BIT(2)
-+
-+/* Clock frequency limits */
-+#define BST_DEFAULT_MAX_FREQ		2000000UL
-+#define BST_DEFAULT_MIN_FREQ		400000UL
-+
-+/* Clock control bit definitions */
-+#define BST_CLOCK_DIV_MASK		GENMASK(7, 0)
-+#define BST_CLOCK_DIV_SHIFT		8
-+#define BST_BCLK_DIV_MASK		GENMASK(9, 0)
-+
-+/* Clock frequency thresholds */
-+#define BST_CLOCK_THRESHOLD_LOW		1500
-+
-+/* Clock stability polling parameters */
-+#define BST_CLK_STABLE_POLL_US		1000	/* Poll interval in microseconds */
-+#define BST_CLK_STABLE_TIMEOUT_US	20000	/* Timeout for internal clock stabilization (us) */
-+
-+struct sdhci_bst_priv {
-+	void __iomem *crm_reg_base;
-+};
-+
-+union sdhci_bst_rx_ctrl {
-+	struct {
-+		u32 rx_revert:1,
-+		    rx_clk_sel_sec:1,
-+		    rx_clk_div:4,
-+		    rx_clk_phase_inner:2,
-+		    rx_clk_sel_first:1,
-+		    rx_clk_phase_out:2,
-+		    rx_clk_en:1,
-+		    res0:20;
-+	};
-+	u32 reg;
-+};
-+
-+static u32 sdhci_bst_crm_read(struct sdhci_pltfm_host *pltfm_host, u32 offset)
-+{
-+	struct sdhci_bst_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+
-+	return readl(priv->crm_reg_base + offset);
-+}
-+
-+static void sdhci_bst_crm_write(struct sdhci_pltfm_host *pltfm_host, u32 offset, u32 value)
-+{
-+	struct sdhci_bst_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+
-+	writel(value, priv->crm_reg_base + offset);
-+}
-+
-+static int sdhci_bst_wait_int_clk(struct sdhci_host *host)
-+{
-+	u16 clk;
-+
-+	if (read_poll_timeout(sdhci_readw, clk, (clk & SDHCI_CLOCK_INT_STABLE),
-+			      BST_CLK_STABLE_POLL_US, BST_CLK_STABLE_TIMEOUT_US, false,
-+			      host, SDHCI_CLOCK_CONTROL))
-+		return -EBUSY;
-+	return 0;
-+}
-+
-+static unsigned int sdhci_bst_get_max_clock(struct sdhci_host *host)
-+{
-+	return BST_DEFAULT_MAX_FREQ;
-+}
-+
-+static unsigned int sdhci_bst_get_min_clock(struct sdhci_host *host)
-+{
-+	return BST_DEFAULT_MIN_FREQ;
-+}
-+
-+static void sdhci_bst_enable_clk(struct sdhci_host *host, unsigned int clk)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	unsigned int div;
-+	u32 val;
-+	union sdhci_bst_rx_ctrl rx_reg;
-+
-+	pltfm_host = sdhci_priv(host);
-+	if (clk == 0) {
-+		div = clk;
-+	} else if (clk > BST_DEFAULT_MAX_FREQ) {
-+		div = clk / 1000;
-+		div = BST_DEFAULT_MAX_FREQ / div;
-+	} else if (clk < BST_CLOCK_THRESHOLD_LOW) {
-+		div = clk;
-+	} else {
-+		div = BST_DEFAULT_MAX_FREQ * 100;
-+		div = div / clk;
-+		div /= 100;
-+	}
-+
-+	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	clk &= ~SDHCI_CLOCK_CARD_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	clk &= ~SDHCI_CLOCK_PLL_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL);
-+	val &= ~BST_TIMER_LOAD_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL, val);
-+
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL);
-+	val &= ~BST_TIMER_DIV_MASK;
-+	val |= BST_TIMER_DIV_VAL;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL, val);
-+
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL);
-+	val |= BST_TIMER_LOAD_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_TIMER_DIV_CTRL, val);
-+
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL);
-+	val &= ~BST_RX_UPDATE_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL, val);
-+
-+	rx_reg.reg = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL);
-+
-+	rx_reg.rx_revert = 0;
-+	rx_reg.rx_clk_sel_sec = 1;
-+	rx_reg.rx_clk_div = 4;
-+	rx_reg.rx_clk_phase_inner = 2;
-+	rx_reg.rx_clk_sel_first = 0;
-+	rx_reg.rx_clk_phase_out = 2;
-+
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL, rx_reg.reg);
-+
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL);
-+	val |= BST_RX_UPDATE_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL, val);
-+
-+	/* Disable clock first */
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL);
-+	val &= ~BST_BCLK_EN_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL, val);
-+
-+	/* Setup clock divider */
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL);
-+	val &= ~BST_BCLK_DIV_MASK;
-+	val |= div;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL, val);
-+
-+	/* Enable clock */
-+	val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL);
-+	val |= BST_BCLK_EN_BIT;
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL, val);
-+
-+	/* RMW the clock divider bits to avoid clobbering other fields */
-+	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	clk &= ~(BST_CLOCK_DIV_MASK << BST_CLOCK_DIV_SHIFT);
-+	clk |= (div & BST_CLOCK_DIV_MASK) << BST_CLOCK_DIV_SHIFT;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	clk |= SDHCI_CLOCK_PLL_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	clk |= SDHCI_CLOCK_CARD_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	clk |= SDHCI_CLOCK_INT_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+}
-+
-+static void sdhci_bst_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	/* Turn off card/internal/PLL clocks when clock==0 to avoid idle power */
-+	u32 clk_reg = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+
-+	if (!clock) {
-+		clk_reg &= ~(SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN | SDHCI_CLOCK_PLL_EN);
-+		sdhci_writew(host, clk_reg, SDHCI_CLOCK_CONTROL);
-+		return;
-+	}
-+	sdhci_bst_enable_clk(host, clock);
-+}
-+
-+/**
-+ * sdhci_bst_reset - Reset the SDHCI host controller
-+ * @host: SDHCI host controller
-+ * @mask: Reset mask
-+ *
-+ * Performs a reset of the SDHCI host controller with special handling for eMMC.
-+ */
-+static void sdhci_bst_reset(struct sdhci_host *host, u8 mask)
-+{
-+	u16 vendor_ptr, emmc_ctrl_reg;
-+	u32 reg;
-+
-+	if (host->mmc->caps2 & MMC_CAP2_NO_SD) {
-+		vendor_ptr = sdhci_readw(host, SDHCI_VENDOR_PTR_R);
-+		emmc_ctrl_reg = vendor_ptr + SDHC_EMMC_CTRL_R_OFFSET;
-+
-+		reg = sdhci_readw(host, emmc_ctrl_reg);
-+		reg &= ~BST_EMMC_CTRL_BIT2;
-+		sdhci_writew(host, reg, emmc_ctrl_reg);
-+		sdhci_reset(host, mask);
-+		usleep_range(10, 20);
-+		reg = sdhci_readw(host, emmc_ctrl_reg);
-+		reg |= BST_EMMC_CTRL_BIT2;
-+		sdhci_writew(host, reg, emmc_ctrl_reg);
-+	} else {
-+		sdhci_reset(host, mask);
-+	}
-+}
-+
-+/**
-+ * sdhci_bst_set_timeout - Set timeout value for commands
-+ * @host: SDHCI host controller
-+ * @cmd: MMC command
-+ *
-+ * Sets the timeout control register to maximum value (0xE).
-+ */
-+static void sdhci_bst_set_timeout(struct sdhci_host *host, struct mmc_command *cmd)
-+{
-+	sdhci_writeb(host, 0xE, SDHCI_TIMEOUT_CONTROL);
-+}
-+
-+/**
-+ * sdhci_bst_set_power - Set power mode and voltage
-+ * @host: SDHCI host controller
-+ * @mode: Power mode to set
-+ * @vdd: Voltage to set
-+ *
-+ * Sets power mode and voltage, also configures MBIU control register.
-+ */
-+static void sdhci_bst_set_power(struct sdhci_host *host, unsigned char mode,
-+				unsigned short vdd)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	u32 reg;
-+	u32 val;
-+
-+	sdhci_set_power(host, mode, vdd);
-+
-+	if (mode == MMC_POWER_OFF) {
-+		/* Disable MBIU burst mode */
-+		reg = sdhci_readw(host, MBIU_CTRL);
-+		reg &= ~BURST_EN; /* Clear all burst enable bits */
-+		sdhci_writew(host, reg, MBIU_CTRL);
-+
-+		/* Disable CRM BCLK */
-+		val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL);
-+		val &= ~BST_BCLK_EN_BIT;
-+		sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_BCLK_DIV_CTRL, val);
-+
-+		/* Disable RX clock */
-+		val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL);
-+		val &= ~BST_RX_UPDATE_BIT;
-+		sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_RX_CLK_CTRL, val);
-+
-+		/* Turn off voltage stable power */
-+		val = sdhci_bst_crm_read(pltfm_host, SDEMMC_CRM_VOL_CTRL);
-+		val &= ~BST_VOL_STABLE_ON;
-+		sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_VOL_CTRL, val);
-+	} else {
-+		/* Configure burst mode only when powered on */
-+		reg = sdhci_readw(host, MBIU_CTRL);
-+		reg &= ~MBIU_BURST_MASK; /* Clear burst related bits */
-+		reg |= BURST_EN; /* Enable burst mode for better bandwidth */
-+		sdhci_writew(host, reg, MBIU_CTRL);
-+	}
-+}
-+
-+/**
-+ * sdhci_bst_execute_tuning - Execute tuning procedure
-+ * @host: SDHCI host controller
-+ * @opcode: Opcode to use for tuning
-+ *
-+ * Performs tuning procedure by trying different values and selecting the best one.
-+ *
-+ * Return: 0 on success, negative errno on failure
-+ */
-+static int sdhci_bst_execute_tuning(struct sdhci_host *host, u32 opcode)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	int ret = 0, error;
-+	int first_start = -1, first_end = -1, best = 0;
-+	int second_start = -1, second_end = -1, has_failure = 0;
-+	int i;
-+
-+	pltfm_host = sdhci_priv(host);
-+
-+	for (i = 0; i < SDHCI_TUNING_COUNT; i++) {
-+		/* Protected write */
-+		sdhci_bst_crm_write(pltfm_host, REG_WR_PROTECT, REG_WR_PROTECT_KEY);
-+		/* Write tuning value */
-+		sdhci_bst_crm_write(pltfm_host, DELAY_CHAIN_SEL, (1ul << i) - 1);
-+
-+		/* Wait for internal clock stable before tuning */
-+		if (sdhci_bst_wait_int_clk(host)) {
-+			dev_err(mmc_dev(host->mmc), "Internal clock never stabilised\n");
-+			return -EBUSY;
-+		}
-+
-+		ret = mmc_send_tuning(host->mmc, opcode, &error);
-+		if (ret != 0) {
-+			has_failure = 1;
-+		} else {
-+			if (has_failure == 0) {
-+				if (first_start == -1)
-+					first_start = i;
-+				first_end = i;
-+			} else {
-+				if (second_start == -1)
-+					second_start = i;
-+				second_end = i;
-+			}
-+		}
-+	}
-+
-+	/* Calculate best tuning value */
-+	if (first_end - first_start >= second_end - second_start)
-+		best = ((first_end - first_start) >> 1) + first_start;
-+	else
-+		best = ((second_end - second_start) >> 1) + second_start;
-+
-+	if (best < 0)
-+		best = 0;
-+
-+	sdhci_bst_crm_write(pltfm_host, DELAY_CHAIN_SEL, (1ul << best) - 1);
-+	/* Confirm internal clock stable after setting best tuning value */
-+	if (sdhci_bst_wait_int_clk(host)) {
-+		dev_err(mmc_dev(host->mmc), "Internal clock never stabilised\n");
-+		return -EBUSY;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * sdhci_bst_voltage_switch - Perform voltage switch
-+ * @host: SDHCI host controller
-+ *
-+ * Enables voltage stable power.
-+ */
-+static void sdhci_bst_voltage_switch(struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+
-+	/* Enable voltage stable power */
-+	sdhci_bst_crm_write(pltfm_host, SDEMMC_CRM_VOL_CTRL, BST_VOL_STABLE_ON);
-+}
-+
-+static const struct sdhci_ops sdhci_bst_ops = {
-+	.set_clock		= sdhci_bst_set_clock,
-+	.set_bus_width		= sdhci_set_bus_width,
-+	.set_uhs_signaling	= sdhci_set_uhs_signaling,
-+	.get_min_clock		= sdhci_bst_get_min_clock,
-+	.get_max_clock		= sdhci_bst_get_max_clock,
-+	.reset			= sdhci_bst_reset,
-+	.set_power		= sdhci_bst_set_power,
-+	.set_timeout		= sdhci_bst_set_timeout,
-+	.platform_execute_tuning = sdhci_bst_execute_tuning,
-+	.voltage_switch		= sdhci_bst_voltage_switch,
-+};
-+
-+static const struct sdhci_pltfm_data sdhci_bst_pdata = {
-+	.ops = &sdhci_bst_ops,
-+	.quirks = SDHCI_QUIRK_BROKEN_ADMA |
-+		  SDHCI_QUIRK_DELAY_AFTER_POWER |
-+		  SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
-+		  SDHCI_QUIRK_INVERTED_WRITE_PROTECT,
-+	.quirks2 = SDHCI_QUIRK2_BROKEN_DDR50 |
-+		   SDHCI_QUIRK2_TUNING_WORK_AROUND |
-+		   SDHCI_QUIRK2_ACMD23_BROKEN,
-+};
-+
-+static int sdhci_bst_alloc_bounce_buffer(struct sdhci_host *host)
-+{
-+	struct mmc_host *mmc = host->mmc;
-+	unsigned int bounce_size;
-+	int ret;
-+
-+	/* Fixed SRAM bounce size to 32KB: verified config under 32-bit DMA addressing limit */
-+	bounce_size = SZ_32K;
-+
-+	ret = of_reserved_mem_device_init_by_idx(mmc_dev(mmc), mmc_dev(mmc)->of_node, 0);
-+	if (ret) {
-+		dev_err(mmc_dev(mmc), "Failed to initialize reserved memory\n");
-+		return ret;
-+	}
-+
-+	host->bounce_buffer = dma_alloc_coherent(mmc_dev(mmc), bounce_size,
-+						 &host->bounce_addr, GFP_KERNEL);
-+	if (!host->bounce_buffer)
-+		return -ENOMEM;
-+
-+	host->bounce_buffer_size = bounce_size;
-+
-+	return 0;
-+}
-+
-+static int sdhci_bst_probe(struct platform_device *pdev)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct sdhci_host *host;
-+	struct sdhci_bst_priv *priv;
-+	int err;
-+
-+	host = sdhci_pltfm_init(pdev, &sdhci_bst_pdata, sizeof(struct sdhci_bst_priv));
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	pltfm_host = sdhci_priv(host);
-+	priv = sdhci_pltfm_priv(pltfm_host); /* Get platform private data */
-+
-+	err = mmc_of_parse(host->mmc);
-+	if (err)
-+		return err;
-+
-+	sdhci_get_of_property(pdev);
-+
-+	/* Get CRM registers from the second reg entry */
-+	priv->crm_reg_base = devm_platform_ioremap_resource(pdev, 1);
-+	if (IS_ERR(priv->crm_reg_base)) {
-+		err = PTR_ERR(priv->crm_reg_base);
-+		return err;
-+	}
-+
-+	/*
-+	 * Silicon constraints for BST C1200:
-+	 * - System RAM base is 0x800000000 (above 32-bit addressable range)
-+	 * - The eMMC controller DMA engine is limited to 32-bit addressing
-+	 * - SMMU cannot be used on this path due to hardware design flaws
-+	 * - These are fixed in silicon and cannot be changed in software
-+	 *
-+	 * Bus/controller mapping:
-+	 * - No registers are available to reprogram the address mapping
-+	 * - The 32-bit DMA limit is a hard constraint of the controller IP
-+	 *
-+	 * Given these constraints, an SRAM-based bounce buffer in the 32-bit
-+	 * address space is required to enable eMMC DMA on this platform.
-+	 */
-+	err = sdhci_bst_alloc_bounce_buffer(host);
-+	if (err) {
-+		dev_err(&pdev->dev, "Failed to allocate bounce buffer: %d\n", err);
-+		return err;
-+	}
-+
-+	err = sdhci_add_host(host);
-+	if (err)
-+		goto err_free_bounce_buffer;
-+
-+	return 0;
-+
-+err_free_bounce_buffer:
-+	if (host->bounce_buffer) {
-+		dma_free_coherent(mmc_dev(host->mmc), host->bounce_buffer_size,
-+				  host->bounce_buffer, host->bounce_addr);
-+		host->bounce_buffer = NULL;
-+	}
-+	of_reserved_mem_device_release(mmc_dev(host->mmc));
-+
-+	return err;
-+}
-+
-+static void sdhci_bst_remove(struct platform_device *pdev)
-+{
-+	struct sdhci_host *host = platform_get_drvdata(pdev);
-+
-+	/* Free bounce buffer if allocated */
-+	if (host->bounce_buffer) {
-+		dma_free_coherent(mmc_dev(host->mmc), host->bounce_buffer_size,
-+				  host->bounce_buffer, host->bounce_addr);
-+		host->bounce_buffer = NULL;
-+	}
-+
-+	/* Release reserved memory */
-+	of_reserved_mem_device_release(mmc_dev(host->mmc));
-+
-+	/* Use platform helper for remove */
-+	sdhci_pltfm_remove(pdev);
-+}
-+
-+static const struct of_device_id sdhci_bst_ids[] = {
-+	{ .compatible = "bst,c1200-dwcmshc-sdhci" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, sdhci_bst_ids);
-+
-+static struct platform_driver sdhci_bst_driver = {
-+	.driver = {
-+		.name = "sdhci-bst",
-+		.of_match_table = sdhci_bst_ids,
-+	},
-+	.probe = sdhci_bst_probe,
-+	.remove = sdhci_bst_remove,
-+};
-+module_platform_driver(sdhci_bst_driver);
-+
-+MODULE_DESCRIPTION("Black Sesame Technologies SDHCI driver (BST)");
-+MODULE_AUTHOR("Black Sesame Technologies Co., Ltd.");
-+MODULE_LICENSE("GPL");
+We could consider further rules as well though.  For example, we could
+say that i2c devices in an addon shouldn't be added directly under the
+base board's i2c controller, but under a subnode of that i2c
+controller assigned to that connector (which would likely have an
+empty 'ranges' property meaning addresses are mapped without
+translation).  Not really sure if that rule has more benefits or
+drawbacks, but it's worth contemplating.
 
--- 
-2.43.0
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
 
+--Xyxstg8Uj0Y3qEx9
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjSVZwACgkQzQJF27ox
+2Gdn5Q//bpdVz4WXYnlnwXzhN/K8EI3FqIjuDRfTVdvbzpX1peYW+buj9IBFhme1
+xBEJ43e/jjU/6S91ITgiDUAx8fyi4D92otfTnRQTDLa97Hy1KWzksDDpbBPZthOn
+UQC865pUyD9H2GoitRAvb6hFfnbM/PP+pf3v9Xv1TiPKg7NPvwl7IW9dZ4+K4Axg
+ju5e5vO7OHM2YWA7/kQM+n1UOMlhFl7i2APUdVYXJoXeHZ5LYbar7lSues+oNS4T
+qc0o2jgVD5pWfhl2/J+0fE3/lw2+vPumkReAONIBGDrvsQ61j+Cn99avOQQPjiqU
+mCs7F9U1mgX/teyuc4prkf69V1lldMhhmhhs62XlIsZ7/04IjfSz+Mg9t4ts6zvi
+8Qepq2BiBd3hhCTeNXs9+5yb7DYvfK6cJd7dcipbXH5lMBj6nZlpZbV/m3M8KVLD
+T9pbx204kUrqWIbh6t89/0DrWeINql0mH0oiIuf7DKn6RL7Q7/R4xtXlqVnYsu0P
+lNExEbO8LklcP9rpi1lCp2KTJPgC42HWGzQHOqsMvUbIkPNbpCdOZw997lEtLta7
+SXR/+KNue/OYnYlR88Iz8zmsIUkfColBS0X2epHGFWmonR/MG6a/qG8XESYLfJ4j
+sfTEfRkGV4TI+ncLSwXEaGxCHVbzX7kNVuTt6vMVZyiBECpHg4w=
+=Fsvn
+-----END PGP SIGNATURE-----
+
+--Xyxstg8Uj0Y3qEx9--
 
