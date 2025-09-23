@@ -1,374 +1,180 @@
-Return-Path: <devicetree+bounces-220338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82707B9483E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:12:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10990B94905
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:32:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62CD518A6FB3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:12:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0A2C3A5F35
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5BC30EF92;
-	Tue, 23 Sep 2025 06:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B7F1DC198;
+	Tue, 23 Sep 2025 06:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="h5wx1SZd"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="lhVitvDP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAB730E834
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 06:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758607938; cv=none; b=HuZcdmQ7mEK+O1w2Fl3TKLBIacDYrGxixVbA2vZgvdA0e8hhakd8g23clsAtnze75j8f5ffN4fW5vcQeLXMbWU3CJrbhYHWpf6QnflI82CayJQ33nZaC8qr9//FWoq3mI2KyBAVQyrawqUADvKVUSPpq/WqbgcstoFafLl2twkI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758607938; c=relaxed/simple;
-	bh=JS+mgHQ2vIQQdgKuXUmiMSrAVGDj2DfRWQZOWqaCyyo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KaM4i7p+mkzMUoXYcSw4fSwUPC8Og+KiiZBNzB6Y5fQjtQfL0/FC9DPi3E/+pTvce0WYDgO+zIWwsKu2ftbB4LDlX8bpgU+ULT9GLn+2HxlrUvJYwley8qam1nlYWZC2dC0+jr5e3IsYVch0aI9szP29zSBaYJqIlqf06BOnot4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=h5wx1SZd; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-30cce892b7dso3412785fac.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 23:12:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1758607934; x=1759212734; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=otbxpskZQ2jszr6scN/t0l115iHPynAVTy5cD9xe/9s=;
-        b=h5wx1SZdIeKttxtB+tEtrI3HytRNqgOnqG5NlWKmtaftTIAQL/ZaTWrrSgITugT/7l
-         p+VwwNHcNYL/SYYCVdrMX1jE+DEgeW5WbGjf4a5zaggN1bwVL7tnNetxjkBE9MAxfvhk
-         GeeYZwVynbyVWCw2bbTFXtkGQGiHMHC05OrC7oNZkz9dq9z3yl2lzmzP2a9soXTzmbC0
-         yQUNIurtnxDRZ69dzdEf7Pp2tDRedIjrEg1SJDVWP48c0G3dfUQ7BFnndiYWBk5SGd5g
-         2bUQNc+oE439X4RVo7YJuE47E1yq1fnh9zzpeP5t2W6R5Dtvya7/F7GNk39+Go9kPkAU
-         nGQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758607934; x=1759212734;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=otbxpskZQ2jszr6scN/t0l115iHPynAVTy5cD9xe/9s=;
-        b=LHYuyJ9YBPOkKL7vkOS/KJdKCA3bKbxuPRg1kAnruINKBzZQgngHxNZJEAWImUeFeB
-         rjhBChk6ahrIlw8PFVanB5D4bkyYqXR19spmAohxmgE7n4cC0pAKBCxsr/5ICQx/rA4B
-         rx7+3ADQcEJ0NG7zpaLZF0OUTysmD2pco4lsEYZTxV+JPd9iGjkP8fFfE01MppyjujCT
-         qPYjjonrE3FbqhysPO1ikG4ku4vXwYozt9H5KldsS7xB9CvB00U5LAjjTQimcs9bMPcl
-         wsje26nBWEsetqeOSmVdMMlS5ejI+w1U+N+zC3Op01SgHiUhQWnIrhHwWYfz0LUbC47k
-         g6kw==
-X-Forwarded-Encrypted: i=1; AJvYcCUg7o135/j2LyWAzRdWZwY8ItBl/x9cwFwyb8xNQ1WDVxNCAmYDp7MdJkM4x/S4rpJGxgJy0n6QgY5m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAVj6SWre/mkm9nRYLk1R/WtHQtK6LeznF6kReErwu9CE/7s6W
-	kCS5fn/iPgYX0OIQeWUh/lZ2CWnfTAkIN4cnB0cLjV+L13/mDk2GoRYayyBQLgEYZqX1Zfz8IVV
-	BLWuKljetfAwr0zCfcdESytZfK6Hle4Rtq7sCwqYzxg==
-X-Gm-Gg: ASbGncujbxHXyqzzCKByVCpPn5AgaOTIbo9bmbV+yha08cnNiSKUNiCLfvIWDAHKUtc
-	WcSPj4Hyok47mqm4Hu3Pnn0vpGW17ZMUgIZQMEkGaBlhbzMr5lfuKlvhqN+2oMtwRMn+hKW/pEg
-	pZShzgpOLjiGB83cvyL869LkUAkF9CFEJLLkQsqNkiM67Bicq5cfGVm/C/CyN+xl6xAATZLFz+3
-	PgQv480Bu8BMsDgtYlPl7CJdtw=
-X-Google-Smtp-Source: AGHT+IEIzs7n1nl91TIN023GUF0KUu3vYki89SdmZKUjsJa36BUfXx8eHWGEvtkrF3jtxJ7k3zA0vEDE+kHUSzoN6S4=
-X-Received: by 2002:a05:6870:6591:b0:2d6:245:a9b3 with SMTP id
- 586e51a60fabf-34c7b236bfemr746748fac.6.1758607934210; Mon, 22 Sep 2025
- 23:12:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3357230E0FC;
+	Tue, 23 Sep 2025 06:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.16
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758609167; cv=pass; b=D+W/gvu/lP/kpRQHOjuMK/kg7rpj3bUoeAKDs5m+IniRRgBOh7W9gYIZA0tbpbnX2kDtlkE6WRs2lWLfl465XkQnx9XUQDeBNrfiTu2YPx6PdM86Ln4uXB+FTRcqfuGjahx5Jroe7eAfGcgJLgSoMQwbhBsJXaclYbarrYokkco=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758609167; c=relaxed/simple;
+	bh=aei6C0VWiguh1PBF0Du2KdAXrweEg8INkXyjAyDsHaY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D33WH8r71jHcFM71A/bnAIQe2Vimq0IcEC83vsfQIK/DJBLi6S1vF9ovjnHJu/IQhXpjbrAFjb/hw542w5tkXfPqN9dQ07MI07cjCYcdbs3ZfbXdLgrqgUiC+A/zAppCbbmNY2eJBOtv50LS4GakyAWVgc87oY9TU44qKX71nLA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=lhVitvDP; arc=pass smtp.client-ip=136.143.188.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1758609104; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jyyQ4VyqYABbZiCkF/HdPD7D7w0rxpDQ/JZZEjz43JXuBVVcE5qdzpMfnLdJ4nhOsaU0+kMSh1yCVILeO48DHntz5RpE+1DGTUclfc1CulRH8tRBDFTDuDH2Yx5AsD64bCv+O9d3FdRSvp13bkSO7STumxN2gpAhK9KuS0KuuNE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758609104; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=kX0WMRIAiTlqH4/0kQPSeJfGukw8qs11oITboMapl7U=; 
+	b=QolxLydcbootGKpejpHChM+hYoa2wrP5p2XzreJ85OhZ1nh3YgwMb00D/1wOjQCq9jAy1diZ0GeQkeGqskVaOhlxb0+o3pNXLghs9uKzr8XSbReDn72FT2rwBmF1kjqOpFY38+erNiM5T0WMu+ebStYFIso0TZslX19Hp6l+VM8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758609104;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=kX0WMRIAiTlqH4/0kQPSeJfGukw8qs11oITboMapl7U=;
+	b=lhVitvDPy9iTCKcGQL10bEW7RbrPWMPzwZm42zlvmidkeRnG8otydOlsA3bGf+1/
+	R3lBHauN/Dk+BRPBLU93bFcXWuEPBzY8PZO+4SKnFWKvf1n7L9c7OgYAeL5OJVZzlYJ
+	nhwOXTwaKDNJo6g3l8hW2s3+pumo9CSMJJSlTkoc=
+Received: by mx.zohomail.com with SMTPS id 1758609101123227.34763562314959;
+	Mon, 22 Sep 2025 23:31:41 -0700 (PDT)
+Message-ID: <a9054501-03ce-4db2-a753-81741c6237b6@pigmoral.tech>
+Date: Tue, 23 Sep 2025 14:31:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250327-counter_delegation-v5-0-1ee538468d1b@rivosinc.com> <20250327-counter_delegation-v5-12-1ee538468d1b@rivosinc.com>
-In-Reply-To: <20250327-counter_delegation-v5-12-1ee538468d1b@rivosinc.com>
-From: yunhui cui <cuiyunhui@bytedance.com>
-Date: Tue, 23 Sep 2025 14:12:03 +0800
-X-Gm-Features: AS18NWCpz0zRDa7TiIE6jd6ds8giKZBrxub6MRRgBhuLhQx-LIu9q4wyCfRpBus
-Message-ID: <CAEEQ3wm-TGcRFjmb7cw5K-M13CicwgJSLZrgY1KMZA5SgUjziw@mail.gmail.com>
-Subject: Re: [External] [PATCH v5 12/21] RISC-V: perf: Modify the counter
- discovery mechanism
-To: Atish Patra <atishp@rivosinc.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@kernel.org>, 
-	Ian Rogers <irogers@google.com>, Adrian Hunter <adrian.hunter@intel.com>, weilin.wang@intel.com, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-perf-users@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] riscv: dts: spacemit: define a SPI controller node
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+ Yixun Lan <dlan@gentoo.org>, Alex Elder <elder@riscstar.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250922161717.1590690-1-elder@riscstar.com>
+ <20250922161717.1590690-4-elder@riscstar.com>
+ <20250923001930-GYB1303776@gentoo.org>
+ <ED4C67FD136DEB19+aNINJJVYbNnT87va@LT-Guozexi>
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+In-Reply-To: <ED4C67FD136DEB19+aNINJJVYbNnT87va@LT-Guozexi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-Hi Atish,
+Hi Troy,
 
-On Fri, Mar 28, 2025 at 3:42=E2=80=AFAM Atish Patra <atishp@rivosinc.com> w=
-rote:
+On 9/23/25 10:59 AM, Troy Mitchell wrote:
+> On Tue, Sep 23, 2025 at 08:19:30AM +0800, Yixun Lan wrote:
+>> Hi Alex,
+>>
+>> On 11:17 Mon 22 Sep     , Alex Elder wrote:
+>>> Define a node for the fourth SoC SPI controller (number 3) on
+>>> the SpacemiT K1 SoC.
+>>>
+>>> Enable it on the Banana Pi BPI-F3 board, which exposes this feature
+>>> via its GPIO block:
+>>>    GPIO PIN 19:  MOSI
+>>>    GPIO PIN 21:  MISO
+>>>    GPIO PIN 23:  SCLK
+>>>    GPIO PIN 24:  SS (inverted)
+>>>
+>>> Define pincontrol configurations for the pins as used on that board.
+>>>
+>>> (This was tested using a GigaDevice GD25Q64E SPI NOR chip.)
+>>>
+>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>> ---
+>>> v3: - Moved the SPI controller into the dma-bus memory region
+>>>
+>>>   .../boot/dts/spacemit/k1-bananapi-f3.dts      |  7 +++++++
+>>>   arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 20 +++++++++++++++++++
+>>>   arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 +++++++++++++++
+>>>   3 files changed, 43 insertions(+)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>>> index 2aaaff77831e1..d9d865fbe320e 100644
+>>> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>>> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>>> @@ -14,6 +14,7 @@ aliases {
+>>>   		ethernet0 = &eth0;
+>>>   		ethernet1 = &eth1;
+>>>   		serial0 = &uart0;
+>>> +		spi3 = &spi3;
+>>>   	};
+>>>   
+>>>   	chosen {
+>>> @@ -92,6 +93,12 @@ &pdma {
+>>>   	status = "okay";
+>>>   };
+>>>   
+>>> +&spi3 {
+>>> +	pinctrl-0 = <&ssp3_0_cfg>;
+>>> +	pinctrl-names = "default";
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>   &uart0 {
+>>>   	pinctrl-names = "default";
+>>>   	pinctrl-0 = <&uart0_2_cfg>;
+>>> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+>>> index aff19c86d5ff3..205c201a3005c 100644
+>>> --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+>>> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+>>> @@ -76,4 +76,24 @@ pwm14-1-pins {
+>>>   			drive-strength = <32>;
+>>>   		};
+>>>   	};
+>>> +
+>>> +	ssp3_0_cfg: ssp3-0-cfg {
+>> ..
+>>> +		ssp3-0-no-pull-pins {
+>> I'd prefer not to enforce "pull" info inside the name, you can't embed
+>> all property info, besides, what's if you want to change/override later?
+>>
+>> how about just name it as ssp3-0-defaul-pins or simply ssp3-0-pins?
+> uart: uart0_2_cfg and function is 2.
+> pwm: pwm14_1_cfg and function is 4
+> spi: ssp3_0_cfg and function is 2
 >
-> If both counter delegation and SBI PMU is present, the counter
-> delegation will be used for hardware pmu counters while the SBI PMU
-> will be used for firmware counters. Thus, the driver has to probe
-> the counters info via SBI PMU to distinguish the firmware counters.
+> I’m a bit confused about the meaning of the second number here.
+> Is it intended to be an index, or the function number?
 >
-> The hybrid scheme also requires improvements of the informational
-> logging messages to indicate the user about underlying interface
-> used for each use case.
+> If it’s an index, should it start from 0 or 1?
+> The starting point seems inconsistent across pwm/spi/uart.
+> If it’s supposed to be the function number,
+> then the spi and pwm parts look incorrect.
 >
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->  drivers/perf/riscv_pmu_dev.c | 130 ++++++++++++++++++++++++++++++++-----=
-------
->  1 file changed, 96 insertions(+), 34 deletions(-)
->
-> diff --git a/drivers/perf/riscv_pmu_dev.c b/drivers/perf/riscv_pmu_dev.c
-> index 6cebbc16bfe4..c0397bd68b91 100644
-> --- a/drivers/perf/riscv_pmu_dev.c
-> +++ b/drivers/perf/riscv_pmu_dev.c
-> @@ -66,6 +66,20 @@ static bool sbi_v2_available;
->  static DEFINE_STATIC_KEY_FALSE(sbi_pmu_snapshot_available);
->  #define sbi_pmu_snapshot_available() \
->         static_branch_unlikely(&sbi_pmu_snapshot_available)
-> +static DEFINE_STATIC_KEY_FALSE(riscv_pmu_sbi_available);
-> +static DEFINE_STATIC_KEY_FALSE(riscv_pmu_cdeleg_available);
-> +
-> +/* Avoid unnecessary code patching in the one time booting path*/
-> +#define riscv_pmu_cdeleg_available_boot() \
-> +       static_key_enabled(&riscv_pmu_cdeleg_available)
-> +#define riscv_pmu_sbi_available_boot() \
-> +       static_key_enabled(&riscv_pmu_sbi_available)
-> +
-> +/* Perform a runtime code patching with static key */
-> +#define riscv_pmu_cdeleg_available() \
-> +       static_branch_unlikely(&riscv_pmu_cdeleg_available)
-> +#define riscv_pmu_sbi_available() \
-> +               static_branch_likely(&riscv_pmu_sbi_available)
->
->  static struct attribute *riscv_arch_formats_attr[] =3D {
->         &format_attr_event.attr,
-> @@ -88,7 +102,8 @@ static int sysctl_perf_user_access __read_mostly =3D S=
-YSCTL_USER_ACCESS;
->
->  /*
->   * This structure is SBI specific but counter delegation also require co=
-unter
-> - * width, csr mapping. Reuse it for now.
-> + * width, csr mapping. Reuse it for now we can have firmware counters fo=
-r
-> + * platfroms with counter delegation support.
->   * RISC-V doesn't have heterogeneous harts yet. This need to be part of
->   * per_cpu in case of harts with different pmu counters
->   */
-> @@ -100,6 +115,8 @@ static unsigned int riscv_pmu_irq;
->
->  /* Cache the available counters in a bitmask */
->  static unsigned long cmask;
-> +/* Cache the available firmware counters in another bitmask */
-> +static unsigned long firmware_cmask;
->
->  struct sbi_pmu_event_data {
->         union {
-> @@ -780,34 +797,38 @@ static int rvpmu_sbi_find_num_ctrs(void)
->                 return sbi_err_map_linux_errno(ret.error);
->  }
->
-> -static int rvpmu_sbi_get_ctrinfo(int nctr, unsigned long *mask)
-> +static u32 rvpmu_deleg_find_ctrs(void)
-> +{
-> +       /* TODO */
-> +       return 0;
-> +}
-> +
-> +static int rvpmu_sbi_get_ctrinfo(u32 nsbi_ctr, u32 *num_fw_ctr, u32 *num=
-_hw_ctr)
->  {
->         struct sbiret ret;
-> -       int i, num_hw_ctr =3D 0, num_fw_ctr =3D 0;
-> +       int i;
->         union sbi_pmu_ctr_info cinfo;
->
-> -       pmu_ctr_list =3D kcalloc(nctr, sizeof(*pmu_ctr_list), GFP_KERNEL)=
-;
-> -       if (!pmu_ctr_list)
-> -               return -ENOMEM;
-> -
-> -       for (i =3D 0; i < nctr; i++) {
-> +       for (i =3D 0; i < nsbi_ctr; i++) {
->                 ret =3D sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_GET_IN=
-FO, i, 0, 0, 0, 0, 0);
->                 if (ret.error)
->                         /* The logical counter ids are not expected to be=
- contiguous */
->                         continue;
->
-> -               *mask |=3D BIT(i);
-> -
->                 cinfo.value =3D ret.value;
-> -               if (cinfo.type =3D=3D SBI_PMU_CTR_TYPE_FW)
-> -                       num_fw_ctr++;
-> -               else
-> -                       num_hw_ctr++;
-> -               pmu_ctr_list[i].value =3D cinfo.value;
-> +               if (cinfo.type =3D=3D SBI_PMU_CTR_TYPE_FW) {
-> +                       /* Track firmware counters in a different mask */
-> +                       firmware_cmask |=3D BIT(i);
-> +                       pmu_ctr_list[i].value =3D cinfo.value;
-> +                       *num_fw_ctr =3D *num_fw_ctr + 1;
-> +               } else if (cinfo.type =3D=3D SBI_PMU_CTR_TYPE_HW &&
-> +                          !riscv_pmu_cdeleg_available_boot()) {
-> +                       *num_hw_ctr =3D *num_hw_ctr + 1;
-> +                       cmask |=3D BIT(i);
-> +                       pmu_ctr_list[i].value =3D cinfo.value;
-> +               }
->         }
->
-> -       pr_info("%d firmware and %d hardware counters\n", num_fw_ctr, num=
-_hw_ctr);
-> -
->         return 0;
->  }
->
-> @@ -1069,16 +1090,41 @@ static void rvpmu_ctr_stop(struct perf_event *eve=
-nt, unsigned long flag)
->         /* TODO: Counter delegation implementation */
->  }
->
-> -static int rvpmu_find_num_ctrs(void)
-> +static int rvpmu_find_ctrs(void)
->  {
-> -       return rvpmu_sbi_find_num_ctrs();
-> -       /* TODO: Counter delegation implementation */
-> -}
-> +       u32 num_sbi_counters =3D 0, num_deleg_counters =3D 0;
-> +       u32 num_hw_ctr =3D 0, num_fw_ctr =3D 0, num_ctr =3D 0;
-> +       /*
-> +        * We don't know how many firmware counters are available. Just a=
-llocate
-> +        * for maximum counters the driver can support. The default is 64=
- anyways.
-> +        */
-> +       pmu_ctr_list =3D kcalloc(RISCV_MAX_COUNTERS, sizeof(*pmu_ctr_list=
-),
-> +                              GFP_KERNEL);
-> +       if (!pmu_ctr_list)
-> +               return -ENOMEM;
->
-> -static int rvpmu_get_ctrinfo(int nctr, unsigned long *mask)
-> -{
-> -       return rvpmu_sbi_get_ctrinfo(nctr, mask);
-> -       /* TODO: Counter delegation implementation */
-> +       if (riscv_pmu_cdeleg_available_boot())
-> +               num_deleg_counters =3D rvpmu_deleg_find_ctrs();
-> +
-> +       /* This is required for firmware counters even if the above is tr=
-ue */
-> +       if (riscv_pmu_sbi_available_boot()) {
-> +               num_sbi_counters =3D rvpmu_sbi_find_num_ctrs();
-> +               /* cache all the information about counters now */
-> +               rvpmu_sbi_get_ctrinfo(num_sbi_counters, &num_hw_ctr, &num=
-_fw_ctr);
-> +       }
-> +
-> +       if (num_sbi_counters > RISCV_MAX_COUNTERS || num_deleg_counters >=
- RISCV_MAX_COUNTERS)
-> +               return -ENOSPC;
-> +
-> +       if (riscv_pmu_cdeleg_available_boot()) {
-> +               pr_info("%u firmware and %u hardware counters\n", num_fw_=
-ctr, num_deleg_counters);
-> +               num_ctr =3D num_fw_ctr + num_deleg_counters;
-> +       } else {
-> +               pr_info("%u firmware and %u hardware counters\n", num_fw_=
-ctr, num_hw_ctr);
-> +               num_ctr =3D num_sbi_counters;
-> +       }
-> +
-> +       return num_ctr;
->  }
->
->  static int rvpmu_event_map(struct perf_event *event, u64 *econfig)
-> @@ -1379,12 +1425,21 @@ static int rvpmu_device_probe(struct platform_dev=
-ice *pdev)
->         int ret =3D -ENODEV;
->         int num_counters;
->
-> -       pr_info("SBI PMU extension is available\n");
-> +       if (riscv_pmu_cdeleg_available_boot()) {
-> +               pr_info("hpmcounters will use the counter delegation ISA =
-extension\n");
-> +               if (riscv_pmu_sbi_available_boot())
-> +                       pr_info("Firmware counters will use SBI PMU exten=
-sion\n");
-> +               else
-> +                       pr_info("Firmware counters will not be available =
-as SBI PMU extension is not present\n");
-> +       } else if (riscv_pmu_sbi_available_boot()) {
-> +               pr_info("Both hpmcounters and firmware counters will use =
-SBI PMU extension\n");
-> +       }
-> +
->         pmu =3D riscv_pmu_alloc();
->         if (!pmu)
->                 return -ENOMEM;
->
-> -       num_counters =3D rvpmu_find_num_ctrs();
-> +       num_counters =3D rvpmu_find_ctrs();
->         if (num_counters < 0) {
->                 pr_err("SBI PMU extension doesn't provide any counters\n"=
-);
->                 goto out_free;
-> @@ -1396,9 +1451,6 @@ static int rvpmu_device_probe(struct platform_devic=
-e *pdev)
->                 pr_info("SBI returned more than maximum number of counter=
-s. Limiting the number of counters to %d\n", num_counters);
->         }
->
-> -       /* cache all the information about counters now */
-> -       if (rvpmu_get_ctrinfo(num_counters, &cmask))
-> -               goto out_free;
->
->         ret =3D rvpmu_setup_irqs(pmu, pdev);
->         if (ret < 0) {
-> @@ -1488,13 +1540,23 @@ static int __init rvpmu_devinit(void)
->         int ret;
->         struct platform_device *pdev;
->
-> -       if (sbi_spec_version < sbi_mk_version(0, 3) ||
-> -           !sbi_probe_extension(SBI_EXT_PMU)) {
-> -               return 0;
-> -       }
-> +       if (sbi_spec_version >=3D sbi_mk_version(0, 3) &&
-> +           sbi_probe_extension(SBI_EXT_PMU))
-> +               static_branch_enable(&riscv_pmu_sbi_available);
->
->         if (sbi_spec_version >=3D sbi_mk_version(2, 0))
->                 sbi_v2_available =3D true;
-> +       /*
-> +        * We need all three extensions to be present to access the count=
-ers
-> +        * in S-mode via Supervisor Counter delegation.
-> +        */
-> +       if (riscv_isa_extension_available(NULL, SSCCFG) &&
-> +           riscv_isa_extension_available(NULL, SMCDELEG) &&
+> Could you clarify this? Yixun.
 
-Is there no need to check SMCDELEG (Machine-level) in the kernel, and
-can it be done directly via SSCCFG or sbi_probe_extension?
-The #define RISCV_ISA_EXT_SMCDELEG 98 also doesn't need to be defined
-in the kernel.
+I think the second number represents the index of the pin group available
+for this device.
 
-> +           riscv_isa_extension_available(NULL, SSCSRIND))
-> +               static_branch_enable(&riscv_pmu_cdeleg_available);
-> +
-> +       if (!(riscv_pmu_sbi_available_boot() || riscv_pmu_cdeleg_availabl=
-e_boot()))
-> +               return 0;
->
->         ret =3D cpuhp_setup_state_multi(CPUHP_AP_PERF_RISCV_STARTING,
->                                       "perf/riscv/pmu:starting",
->
-> --
-> 2.43.0
->
->
+Take pwm14 as an example: according to the manual, the first pin group
+(index 0) available for pwm14 is GPIO6 with function 3, while the second
+group (index 1) is GPIO44 with function 4.
 
-Thanks,
-Yunhui
+>                  - Troy
+
+-- 
+Best regards,
+Junhui Liu
+
 
