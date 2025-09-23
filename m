@@ -1,186 +1,226 @@
-Return-Path: <devicetree+bounces-220443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1835CB964C2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:36:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 561E0B964BF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:36:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 401F51895086
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:32:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 539937B8516
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D32226CE06;
-	Tue, 23 Sep 2025 14:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9923A9AE;
+	Tue, 23 Sep 2025 14:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v8yfZsTW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+XY4Lhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FDDF2475CF
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E3E18E20;
+	Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758637669; cv=none; b=lXjNtcZYxV/MnT3YD8zMI2m4UUjgZZ5iR+7U7T+5H4dEHwdc4rCO9/u7Jwl80luGtce20mYhT9jo2qwHSts+hXqOejFyhzqSgvmyMQzVHL3ToDDBkXowN1aknENG0USVoAAehh7kI5qiq3fwtg33ZX/rWHEO+MldJ5QcyXR0WTI=
+	t=1758637785; cv=none; b=j2OP82Uebl1wHyZ8L6NIRHId6cUggPuY4+yzj8CHZVn74V9d7651pH7qJQ8GTNTTa2+l4wpiy5sL5puBQIKrgFprmq9LjtlupMZFPyVhZpz6yR9X7gSMyvcbokgQmcV93JvsgfHafPZw0kil3HHj6Ar5Dcqb1nBrlSFSCZlZ2sM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758637669; c=relaxed/simple;
-	bh=QSlVRuHGqVrvAwqdZx7uUPyniECMwQzZvqtjdXpsCkE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xb4xUnYxToQ0G5bfF7KFvfc+gxVjxijeUEewM+oxqof7qCV759K5ZJwr+OCvu2AlRR2uS0tHI3IhfvlpXYhFmUyJtMXmy8dWa8GiIgPidvzwfMXBeVM7RGkSGZRQZAyq1qSnJoSLFmUcSxX8wefaOxtS+OfI3RD7fsFnJXnBPG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v8yfZsTW; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-621b965a114so2619030eaf.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:27:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758637666; x=1759242466; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hLJ7BScAjhL/3pW5EapzhVxN4E7gDwKlVKKb8Tfi10Y=;
-        b=v8yfZsTWM3ixJCEtFRsLd6y5101nnPnIQSYTqKzCVPn0Ypd14SYsLsjLzDk4vdAGj4
-         nnFevP86dH85veFbD8CxV1I3VGiDSr4Q0Z42XE7e4VjXiGVARJhszzxztsBs+brWIeC/
-         eyLgGM48uLvsVAQyYvt1BuRKEeIWxPC8h/4Dv4oxbpkFECeq0A8z1kwLeoeoINg2u/03
-         MH84mUyV0iLmsnkfFbi93w768KiKbazFmgJ7H6MydMznNEl8DupDG2WqZFXMe4G4My7m
-         tBJ+rMmx3yodRoIzGEnlmOlMaMDd4TaT50ybMtauUE3oxA55iL8tYkn1hoXQnTRSlZhY
-         xVsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758637666; x=1759242466;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hLJ7BScAjhL/3pW5EapzhVxN4E7gDwKlVKKb8Tfi10Y=;
-        b=XPVPyCZl5lwQqS2rYJ/FGBUOWNrH+5F3F5se9dVQ9gdvZhgDXgsHsLOJz6ZQSo4qW7
-         VN9qtrGlM+sI6XTZqDaJL1A/Rj8sRwYiMhaBNS2TyUpxgB4WX6llZiTdgJCeExvF/T5p
-         J4vU4P7ADZcSv3rwoiOj5htv9Xi5NSlw/dRppxi/hJSEzhD3rcTZZ/I/yhbMS24oiYJX
-         ho7LbPFOeZW2pZ/Kj97tbfwkmtNuX3ve8RSkm7UhBMnzmltTCrKspClIuiKWTECAYDck
-         lKYyonIMZ6dAOJFH/veSRwl24iYk0k5iM110sUv+32oslsOIGYo6DFgOYpCsfkjVZBBv
-         s1+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXLSXHa/MZhF4j7Uicy0uJh2Al2rdmPXyZZ6uZyLhqHj4LnSYc4hVUmVbePqImyZrDRsXQ7+FsA027c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6GemooJ541aUfFIOhtcI4GIKrJrD+ymwewzMCcN9ZbNmWCnUZ
-	597MRZ1TOAUarq/bM6KNdrovKjfpoefqn9dIR1QM9VHOgWOzm4jX7cuqk9jI8IkF6sGkRkc0LWw
-	qMrlqhYs=
-X-Gm-Gg: ASbGncs5tqwZR7jJh9NaQMCvPPtZVL2GFaKmbJ3gDZ7wxxh9yBJBH7Ko4CzCfrWmIfJ
-	tGqNd9VT7I4OwLXL7boT9KxEFBBslD9r3L9O9wY6Npb0lhFeXjRpF43f/irYYS+fWts8pNgo62U
-	wEgFYQcxrcNtFKWewvLyc8xjQ49VfIBurSpzAYt6/QX5uQNjVJeU5wxCAHdC/Hx2a7d+cvq2sK7
-	fQTUb4kFOSk3uh2FskEUDf2n0TcFMy6yWFVbvCpCxzPaxK/x8Z1Eg/9Ry5VE9Pa5/6wM5nfd8Qf
-	bp0En5daVcBwgGSvCv+F55nyaSNXUTPwt1IT1lPlNsBxxyn7/9RojSLqjo92ZUwclrXFnqbkIUQ
-	nR9S/Jaw6a+9knz21e2GXcS3DwGoMpPaFgW4aAJNaPBUQJN3k6DiaW9ho07nPFKFmBz9VDJJwe2
-	M=
-X-Google-Smtp-Source: AGHT+IFL94lBmdZJriTx+SZHET/cqfmupNJowuzMcchFfQ0ZWLkK9i/EadeGAMHUq7kmPPWbmJIiag==
-X-Received: by 2002:a05:6808:f0b:b0:43f:17eb:3134 with SMTP id 5614622812f47-43f2d2e3709mr1548523b6e.13.1758637666225;
-        Tue, 23 Sep 2025 07:27:46 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:505f:96cd:1359:fff4? ([2600:8803:e7e4:1d00:505f:96cd:1359:fff4])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-43d5c6c935fsm5987496b6e.14.2025.09.23.07.27.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Sep 2025 07:27:45 -0700 (PDT)
-Message-ID: <c19fdb3a-e537-4f32-9b69-db819c04f447@baylibre.com>
-Date: Tue, 23 Sep 2025 09:27:44 -0500
+	s=arc-20240116; t=1758637785; c=relaxed/simple;
+	bh=8VR91M07ZYegzZ2sv14LTHAk0HCZvQIK1wKP89nGMd0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L5lbEeFOhKh+t9Qk8iGKiLsHoMAzomvkFDVsKni4JgwzlCJKDxINH0asOq6+lUJKSYYIyEYBPpnz1Up/Q8tef3IR/8v3kO1WEHmcfDi98nMU7WSYBR/rkRjiI0VG7LmqetDfmzczsge2xL7N1Et9t97rGfHS+5Rp7wJwNPqzyOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+XY4Lhc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B966C4CEF5;
+	Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758637784;
+	bh=8VR91M07ZYegzZ2sv14LTHAk0HCZvQIK1wKP89nGMd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N+XY4LhcSTqHUVZos/FJ4QYeoJ/SIoyuCWtGtfXJgStwns6Fm2QWs1iaYMDM3BRYU
+	 DgXVw6S3v7EfFMuf0PAWPz//RRhL8Nsk/8plcNiIIzxlFEhlEnLJMjLb/9xtzFP82A
+	 npEfAfuVboxqB+hX7wxqaFSpO4nZ76XM4yOADGR7pnNcjdcGPOh/AWTWlWz4TgD7uG
+	 5xVyKPUz2WZd647Cu6n81nATrPshBGOM1m4/amJFrAmboLpVLu+MkgRDh1DvB0d5tg
+	 CYjgql2nB+FxE8qjP+iBHnWKf41l6XvzrdaUIk6HoCRzczAShbGz9Ih46mIpY4+nOG
+	 Oab0QuMq5S8bw==
+Date: Tue, 23 Sep 2025 09:29:43 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kael D'Alcamo <dev@kael-k.io>
+Cc: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rng: sparc_sun_oracle_rng: convert to DT
+ schema
+Message-ID: <20250923142943.GA3134901-robh@kernel.org>
+References: <20250923103900.136621-1-dev@kael-k.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 2/3] iio: adc: max14001: New driver
-To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Kim Seer Paller <kimseer.paller@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>,
- Jonathan Santos <Jonathan.Santos@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>
-References: <cover.1757971454.git.marilene.agarcia@gmail.com>
- <c257f7feb92dcf33bf7a55810fe69d13890374d5.1757971454.git.marilene.agarcia@gmail.com>
- <2d5ef36b-ae37-453d-a19b-76fc97b7f14f@baylibre.com>
- <83018b80-b939-4e2f-a9ee-7fbf07648181@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <83018b80-b939-4e2f-a9ee-7fbf07648181@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923103900.136621-1-dev@kael-k.io>
 
-On 9/22/25 7:56 PM, Marilene Andrade Garcia wrote:
-> On 16/09/2025 15:04, David Lechner wrote:
->> On 9/15/25 5:16 PM, Marilene Andrade Garcia wrote:
+On Tue, Sep 23, 2025 at 12:38:22PM +0200, Kael D'Alcamo wrote:
+> Convert the Devicetree binding documentation for:
+> * SUNW,n2-rng
+> * SUNW,vf-rng
+> * SUNW,kt-rng
+> * ORCL,m4-rng
+> * ORCL,m7-rng
+> from plain text to YAML.
 
-...
+While I welcome any conversions, I wouldn't put Sparc stuff high on 
+priority list as we're not going to run the validation tools on them 
+and we can't change anything in their DTs if we did. My priority is the 
+remaining warnings on arm64 and then active arm32 platforms (e.g. 
+aspeed). We're down to <700 unique warnings on arm64 (from ~10000). 
 
+There's builds with warnings of Linus' and next trees here:
 
-In general, please trim out extra stuff like I've done here when you
-reply. It makes it easier to find the important parts. I hope I didn't
-miss any of your questions.
+https://gitlab.com/robherring/linux-dt/-/jobs
 
->>> +    /*
->>> +     * The following buffers will be bit-reversed during device
->>> +     * communication, because the device transmits and receives data
->>> +     * LSB-first.
->>> +     * DMA (thus cache coherency maintenance) requires the transfer
->>> +     * buffers to live in their own cache lines.
->>> +     */
->>> +    __be16 spi_tx_buffer __aligned(IIO_DMA_MINALIGN);
->>> +    __be16 spi_rx_buffer;
->>
->> These would no longer be strictly big-endian, so we could
->> just make them u16 with a note in the comments.
+And some scripts to fetch the warnings here:
+
+https://gitlab.com/robherring/ci-jobs
+
 > 
-> Hello David, I have some doubts that I would like to clarify before sending v12. Since I am not able to test the case using SPI_LSB_FIRST, I noticed that you suggest saving the data as __le in this case. Just out of curiosity, if I use SPI_LSB_FIRST, would saving the data as __be lead to errors?
+> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
+> ---
+>  .../bindings/rng/sparc_sun_oracle_rng.txt     | 30 ---------
+>  .../bindings/rng/sparc_sun_oracle_rng.yaml    | 61 +++++++++++++++++++
 
-My thinking is that since we are sending things out 1 byte at a time, in order
-for the least significant bit of 16 bits to be sent first, the least significant
-byte has to be sent first. So will little-endian, the byte containing the least
-significant bit of the 16 bits will be first in memory.
+SUNW,n2-rng.yaml for the filename.
 
-__be is just a naming convention and doesn't actually cause any bytes to
-be swapped in memory. It just lets readers of the code know that the
-value stored there has to be handled carefully because it may not be
-cpu-endian. It would be confusing to readers to store a little-endian
-value in a __be16 variable, but technically, no, it would not cause any
-errors.
-
-This is why I suggested to make it u16. It is still wrong but it is
-equally wrong in both cases. If you still want to use __be16 though,
-you could make a union instead.
-
-union {
-	__be16 be;
-	__le16 le;
-} spi_tx_buffer;
-union {
-	__be16 be;
-	__le16 le;
-} spi_rx_buffer;
-
->>
->> The scoped_guard() looks a bit odd with the extra indent. I would write
->> it like this instead:
->>
->>
->>
->>     case IIO_CHAN_INFO_RAW: {
->>         guard(mutex)(&st->lock);
->>
->>         ret = regmap_read(st->regmap, MAX14001_REG_ADC, val);
->>         if (ret)
->>             return ret;
->>
->>         return IIO_VAL_INT;
->>     }
->>
+>  2 files changed, 61 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+>  create mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
 > 
-> Ok, thank you. But since I removed the mutex, as it was mentioned in the first comments, I should not use the guard, right? At least not for now.
-> 
+> diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+> deleted file mode 100644
+> index b0b211194c71..000000000000
+> --- a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -HWRNG support for the n2_rng driver
+> -
+> -Required properties:
+> -- reg		: base address to sample from
+> -- compatible	: should contain one of the following
+> -	RNG versions:
+> -	- 'SUNW,n2-rng' for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
+> -	- 'SUNW,vf-rng' for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
+> -	- 'SUNW,kt-rng' for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4), (UltraSPARC KT/Niagara 3 - development names)
+> -	more recent systems (after Oracle acquisition of SUN)
+> -	- 'ORCL,m4-rng' for SPARC T5/M5
+> -	- 'ORCL,m7-rng' for SPARC T7/M7
+> -
+> -Examples:
+> -/* linux LDOM on SPARC T5-2 */
+> -Node 0xf029a4f4
+> -	.node:  f029a4f4
+> -	rng-#units:  00000002
+> -	compatible: 'ORCL,m4-rng'
+> -	reg:  0000000e
+> -	name: 'random-number-generator'
+> -
+> -/* solaris on SPARC M7-8 */
+> -Node 0xf028c08c
+> -	rng-#units:  00000003
+> -	compatible: 'ORCL,m7-rng'
+> -	reg:  0000000e
+> -	name:  'random-number-generator'
+> -
+> -PS: see as well prtconfs.git by DaveM
+> diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> new file mode 100644
+> index 000000000000..fea6be544784
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/sparc_sun_oracle_rng.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HWRNG support for the n2_rng driver
 
-Correct. The regmap_read() has something similar internally already.
+SUN UltraSPARC HWRNG
 
+> +
+> +maintainers:
+> +  - David S. Miller <davem@davemloft.net>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - SUNW,n2-rng  # for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
+> +      - SUNW,vf-rng  # for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
+> +      # for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4),
+> +      #  (UltraSPARC KT/Niagara 3 - development names)
+> +      #  more recent systems (after Oracle acquisition of SUN)
+> +      - SUNW,kt-rng
+> +      - ORCL,m4-rng  # for SPARC T5/M5
+> +      - ORCL,m7-rng  # for SPARC T7/M7
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "rng-#units":
+> +    description: Number of RNG units
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+
+This will need an exception in vendor-prefixes.yaml to fix the warning. 
+Looking at some of the Sparc DTs briefly, there's a few more ways '#' 
+shows up.
+
+I suppose this:
+
+"^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$": true
+
+needs to be:
+
+"^[a-zA-Z0-9#_][a-zA-Z0-9#+\\-._@]{0,63}$": true 
+
+(I think the '@' should be dropped here.)
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +# PS: see as well prtconfs.git by DaveM
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rng@e {
+> +            compatible = "ORCL,m4-rng";
+> +            reg = <0xe>;
+> +            rng-#units = <2>;
+> +        };
+> +    };
+> +  - |
+> +    bus {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rng@e {
+> +            compatible = "ORCL,m7-rng";
+> +            reg = <0xe>;
+> +            rng-#units = <3>;
+> +        };
+> +    };
+
+I think one example is enough.
+
+Rob
 
