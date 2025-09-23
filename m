@@ -1,95 +1,125 @@
-Return-Path: <devicetree+bounces-220545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA6CB974C5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 21:09:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A79B97509
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 21:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6090319C60EE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:09:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8F254C73F7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25343302777;
-	Tue, 23 Sep 2025 19:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B639E2D9ECA;
+	Tue, 23 Sep 2025 19:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C6KwAStQ"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="BvVYgRT4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF32302759;
-	Tue, 23 Sep 2025 19:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D9F7464;
+	Tue, 23 Sep 2025 19:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758654563; cv=none; b=CwXcRYdZ1WbDLPCtGG2Hg+Xu/6nUaxXS7tFziE6LTmYEZLDHB4EhJ0TDePmjqLx1ASfzo7zQ9xaqI+vkITkArfZEPqk5ZyCMlw7F5b/wNSdOTMrfqRggi4nH35sPa3miSlYvLWs32Uxw9CXEy3j5KxLeLdwnzdtUXjcY0mWAGJs=
+	t=1758655041; cv=none; b=LqAxUX2CfAfRj6+mHEdNa3bSbfBYsJPhRoG/4T04v73o6SHcoV1APz1mNoZdiNGCgRxiDHlQ3EOh+l/J6F7pQ7PEtI7xJnR4spExhbntdh9HFaUKwP1/3G3K9PsSzQ+rUXHczkc0rqHDmIyQFn7OGUzvXu3ZsqYzKDgTVTjCoe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758654563; c=relaxed/simple;
-	bh=7LS8gjNHsPEMZPMGHBYnZ5awE0YIkS+TnTm8xVhKxJo=;
+	s=arc-20240116; t=1758655041; c=relaxed/simple;
+	bh=Pi3SNz+uShKCGXI+gMcrVi+CdYh37zlRjLmUIfJJrzw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NcLyUehlWzas6bAQG/4StJeSOCQxiVnLVyML3ANIWbQPIoK8nG29QshpiEoy+KD8NLAYR/QGaUqHAvhw8zTc/p04sRjMrGaQRsAWXjNkCSAhM+LUkzZn5JWvPsw/LjlyvwOfFmxy5JcSbSrHz0eff4wvsDY5P/U/I3gnRsxwPMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C6KwAStQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE91FC4CEF5;
-	Tue, 23 Sep 2025 19:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758654562;
-	bh=7LS8gjNHsPEMZPMGHBYnZ5awE0YIkS+TnTm8xVhKxJo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C6KwAStQTZXF8JqqjgWhhau6i3uU5x4b1VW2Cz/5I/4vTOKvyJuamq0QLBRDzDyLy
-	 xX57VP0hiq5pgzwudrA3tZDEBolW+niULpK3JKAnXV7+HaUGUvZfnIelCu+UpQmyz8
-	 ZwNNH/zWRuKyLWrGOnePn6SXs+Qe/bBWcEr/Gp+XL7nSy7kOIPZV8D7zh7eyNsljF9
-	 l62IknpQNLJTF1Jnl9cQMVGfljwIfwRZRq9t7tGMcZp2NwsOj5Li/ojII4cwd+a23L
-	 Fm2N+j9iN3qjp3HJQlQcJMmi9NjIWEIL6X/ACNPiBp9/JdbuNn/M4Af1MvBycpEom0
-	 7soy6ZKRhac6Q==
-Date: Tue, 23 Sep 2025 20:09:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cjym6vmL0KTY9aFPe9T/sDzNy37YyyvKsz+J9O7Nt22HRSuoF9b3/mJyt/Qd6wHwP0igjbW+HJ9Yn0aZodcEBufbALTaRivymlWYnRT3CRTOdVvQcJ1IWypnjKfKyBY9KhuMKaokhx9pbUigp3rGdMF99RdekkjsQWVqxPD31DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=BvVYgRT4; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=I3aY1gk6xWay8Bb6mAUsHpvmGZGsSP2aFgE4+mhPC70=; b=BvVYgRT4iVakErzwm0W+nRRNZz
+	66r393iFEHhdjEvLUOmP540XWEPOOQHFvCbXyRPi/7bh/sBW9XaP+e5HI/+5AUuPSciozGBTzlr1W
+	UeAjRIHMKLexwUe/WuJBboqGaUPTy8UQO31536BL6AY71+2lcL+4u3BVUITWX8o8O5Z2mXc1J1iIq
+	ZB36Nb8AYBlC1lHsxsbcn9QBtMdZ73xdLBtIixNLSHtKBnNOY4M7POPFg9ZsIs1CLsNPrUfNWfhvM
+	Okd5mkjpoq8CitSV79OGoVtcJuEjVUcTiJwKZ4I7f5MORkotd/p339mAkuEPc+gWrUyRQ+dnx0IFZ
+	jb3TUtWg==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1v18VP-00C9on-0M;
+	Tue, 23 Sep 2025 21:16:51 +0200
+Date: Tue, 23 Sep 2025 21:16:50 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
-	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v2 11/11] MAINTAINERS: Setup support for Anlogic DR1V90
- SoC tree
-Message-ID: <20250923-proofs-crumpet-2951df149529@spud>
-References: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
- <20250922-dr1v90-basic-dt-v2-11-64d28500cb37@pigmoral.tech>
+	Yixun Lan <dlan@gentoo.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
+Subject: Re: [PATCH 1/3] riscv: dts: spacemit: enable the i2c2 adapter on
+ BPI-F3
+Message-ID: <aNLyIvS-UFfplmpu@aurel32.net>
+Mail-Followup-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
+References: <20250921210237.943370-1-aurelien@aurel32.net>
+ <20250921210237.943370-2-aurelien@aurel32.net>
+ <DC360EB139FD9DE5+aNH4l-7SP5KNu-Br@LT-Guozexi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QIhgSGAC/a8UPzR0"
-Content-Disposition: inline
-In-Reply-To: <20250922-dr1v90-basic-dt-v2-11-64d28500cb37@pigmoral.tech>
-
-
---QIhgSGAC/a8UPzR0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <DC360EB139FD9DE5+aNH4l-7SP5KNu-Br@LT-Guozexi>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Hi Troy,
 
---QIhgSGAC/a8UPzR0
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks for the review.
 
------BEGIN PGP SIGNATURE-----
+On 2025-09-23 09:32, Troy Mitchell wrote:
+> On Sun, Sep 21, 2025 at 11:01:41PM +0200, Aurelien Jarno wrote:
+> > Define properties for the I2C adapter, and enable it on the BPI-F3. It
+> > will be used by the 24c02 eeprom.
+> > 
+> > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> > ---
+> > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > @@ -92,6 +92,13 @@ gmac1-pins {
+> >  		};
+> >  	};
+> >  
+> > +	i2c2_0_cfg: i2c2-0-cfg {
+> Should this be i2c2_4_cfg here?
+> From what I see, in the initial version the second cell was meant
+> to be the function number rather than the serial index.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNLwXAAKCRB4tDGHoIJi
-0v8UAP95rgfYb/Q3MF8e0/ovh3F8y3LdFGV9FElTCwnkZg96+AEA818LkOuzpSVR
-gbkzL4Q4bnvLwFFOiYyCvUVymLzeyAM=
-=ZfIE
------END PGP SIGNATURE-----
+Ok, I wasn't aware of that convention, I just reused the same numbering 
+of the downstream 6.6 kernel. I'll fix that and use i2c2_4_cfg.
 
---QIhgSGAC/a8UPzR0--
+> It looks like the pwm part is also incorrect.
+
+Yes, and also the submitted PCIE patches.
+
+Aurelien
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
