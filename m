@@ -1,154 +1,328 @@
-Return-Path: <devicetree+bounces-220522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC49B97366
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:38:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A394B97384
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFE9F18A3CD5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:38:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7F1A7AC338
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618BC301468;
-	Tue, 23 Sep 2025 18:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7477330171C;
+	Tue, 23 Sep 2025 18:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="lJn6nA1H";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="JYAXmHck"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G6JrtzTQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B454D15624D;
-	Tue, 23 Sep 2025 18:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABF01D5146;
+	Tue, 23 Sep 2025 18:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758652711; cv=none; b=eCzOD4lppXePyOahfRfIHHBHJ7T5ly6jDBDXrBNFT5k99KeqjDz2F73/N7iJTUIoBAvPLohKrq1Xkjr5silPRdzWG/P5OLA9TBLL3/pCLCyoNJzK0toSGgw/n39BoPBNRG+XhVbHYzfGAbr3DFmKXSQavtDSIWhDWlO/BCU5mtI=
+	t=1758652909; cv=none; b=ZPQ5XAl7cyvE2Tf2KMiuTAD3mA8OA+u+98n8KGWzF1W9HrAxVhoUlpDeVA5Mquk+wytitJkS0eShS/g+NyXjmJdPqmhG4D0AcSPXqA7ehlNfexpHlWgaffb/wZE51D01Vuir7KiB5tAwtj9/eL+xnA70V2HK9JeBjnxEFWxmU40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758652711; c=relaxed/simple;
-	bh=t2EVhTFHcrFWdD8mGR/DN3WAjW3UGWDzKTUo9Nq/hHU=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=ba4DqKov8Hs+ymGBQu7Sqfzm0N93RIDaX67dutQIHWRg8/fv8qCyGW49K4vztksHCot5qL6NavmX3XxtCJZzmNWUIFVkSOQuP5nxJNNGa9O76WRToAK7F3KRHCJNNPD7wDvG6b3x+qA36wF4T/HBO3wJZJTSTvNvapx9Fvi/+J0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=lJn6nA1H; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=JYAXmHck; arc=none smtp.client-ip=202.12.124.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 386B37A005A;
-	Tue, 23 Sep 2025 14:38:26 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Tue, 23 Sep 2025 14:38:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1758652706;
-	 x=1758739106; bh=nrFGLCTqsqckTBO72y0mzJiE3AI4L/6qnMuJTwts27c=; b=
-	lJn6nA1HpgkmgmqwMc38pEELag25O4m7V1154CFjEaF2JMyFFxmEy3ky5K0Wvbjh
-	yEBVh2XTFkA4eGaO9e5WziEm/2NJI4XXh63+AIzc3NQwb37RmtIGXg5CZOJG4X76
-	gzqobwRnrswlXWsdKmio53LajbWZ3xI0Jwu+sAO7+MwhtDRYYaBS+YgzgEoqNZ7W
-	oTFx/DDHWRlKyXtoJbOuVng0PYJCRwGoZWHFzQkFEZaCTirKlL9dOWuGW/PrTCiX
-	jC1vLziFkOifmn67n5balgePsmEuYvbbFFF5I7U8vIYyHX1UnVX9RSLZjymTTBTd
-	d5PHIXb6fm8fetq6zUPt2Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758652706; x=
-	1758739106; bh=nrFGLCTqsqckTBO72y0mzJiE3AI4L/6qnMuJTwts27c=; b=J
-	YAXmHckyu4MQkIOlTYEc6J05OCQk7KMy0rYBvhKm+/KiQDgRTRxZlBjuzI6cvJxv
-	njBPteLk5DpaneGgjfPuiA/ByYRFTkdhdDsZ9l4xP0HNZ1GyxyyoNcNwhMfZqxO1
-	M3cTJZCaD9qE7FX4Cec+YH0V0sPB/TYweSAzdxQ6F5Bv7bI+IlcxNavD+1PbH65l
-	W2V5maIkVHUD3xRqPkSQVS65qkH68Fc52n3qzDIp3F0lsw6f5xhM0eVvFTSJu0DI
-	xNanhvIL6t4Ien8+l3w2WGC7qzmsB3l2Dzinm1uueUtss82fqCWJQmk2ZNSOaLKH
-	cOXUr5jq6EKcoCBo76YSg==
-X-ME-Sender: <xms:H-nSaPZowPSpN4ObvaPjHY1jIFD0LaqDAgXiXr23B5wn871_AGHJag>
-    <xme:H-nSaJOIkAbliPKAXAasNevLFglGIpEpjqmd68BcffpEwucw2MpCPZP8M9D1aR_nl
-    5HbUhaI7HcwyCXjiaazE31tXiOzMpMVfL5YVKcd0EoW7cND4_VpFZY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiudegjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpedvhfdvkeeuudevfffftefgvdevfedvleehvddvgeejvdefhedtgeegveehfeeljeen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedvkedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhrtg
-    hpthhtohepghhithesrghmugdrtghomhdprhgtphhtthhopehmrghnihhkrghnthgrrdhg
-    uhhnthhuphgrlhhlihesrghmugdrtghomhdprhgtphhtthhopehmihgthhgrlhdrshhimh
-    gvkhesrghmugdrtghomhdprhgtphhtthhopehrrgguhhgvhidrshhhhigrmhdrphgrnhgu
-    vgihsegrmhgurdgtohhmpdhrtghpthhtohepshhhuhgshhhrrghjhihothhirdgurghtth
-    grsegrmhgurdgtohhmpdhrtghpthhtohepshhrihhnihhvrghsrdhgohhuugesrghmugdr
-    tghomhdprhgtphhtthhopehjohhrghgvrdhmrghrqhhuvghssegrnhgrlhhoghdrtghomh
-    dprhgtphhtthhopegsihhllhihpghtshgrihesrghsphgvvgguthgvtghhrdgtohhm
-X-ME-Proxy: <xmx:H-nSaFBWn68svDp462uoZMn7DaJxZR9ykjAminvbrPesSi1cjHpcwg>
-    <xmx:H-nSaFdOPTr3hanxMTPGv8vnrYSE9G3UU2l3Ky8Lr8UsSzCwb-mxng>
-    <xmx:H-nSaK94NjpD3eg0hYqCK5Wqdb8sjguBgaZCFvTczesvvexkmohbZg>
-    <xmx:H-nSaNHCZKDKQnAY0Ntz2XWSItuejCrSVw1e1jm7X4alD8fCeksUAw>
-    <xmx:IunSaAHS6yrl0ixjA0hmHQn6FInEVKycskBZTF3F8YsXkHnTmo3xiJwj>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id C605F70006B; Tue, 23 Sep 2025 14:38:23 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1758652909; c=relaxed/simple;
+	bh=Hqf061t5q3203ZdM7uYVB+F7fFOGaBDfx66exBR4K0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j1WZjL8pP+2yQh+Mas6xbhFUIfQTdqDZF0uEg6uWiizJJbw6RAsZ31G3iONPiTG+BJ9sROYRVzb361LgRDXIfmeFY99EUQljtFZnncaNVYo7YCXvg+vOhdn0xF/xBP7vw7BWdAWlsLvUq/irDdIoSfTgwhKIt92TH+Yy2UgfjcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G6JrtzTQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6411CC4CEF5;
+	Tue, 23 Sep 2025 18:41:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758652908;
+	bh=Hqf061t5q3203ZdM7uYVB+F7fFOGaBDfx66exBR4K0s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G6JrtzTQVih7eArFHAGyZs4M5mx2MrXR5R16/+9YAZN0lanJLRiIBgfF9amqMKcyX
+	 mErGsMH58oaGKDSXYgvK6EYW0qbDHvh8aIDCQUXjEKzUCs/2mUKpPdQDfvzuxei4Hf
+	 TPMpX5k9GWeZU/4oITxSA1T4dNmYlHka8hTH0t36sgIA7KgYYg+YfuP15DaL0vl/lT
+	 oz35QRnFMyMWjRObhQnCyaLvFUcnTXIQF8LM78o+Jbm02But8OWReBSn7Gt27PbXcn
+	 9uYUanpp++gU4FUL0oPskzdAZhoVs7ShWvp8igxDcFSp++Cuaud1SI22mln7qtOYQZ
+	 KlXIxgjen5/zg==
+Date: Tue, 23 Sep 2025 19:41:43 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: iio: adc: document RZ/T2H and RZ/N2H ADC
+Message-ID: <20250923-walmart-shale-359fb66133f8@spud>
+References: <20250923160524.1096720-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20250923160524.1096720-3-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A5BcZzk33eMV
-Date: Tue, 23 Sep 2025 20:38:03 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Manikanta Guntupalli" <manikanta.guntupalli@amd.com>, git@amd.com,
- "Michal Simek" <michal.simek@amd.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- "Frank Li" <Frank.Li@nxp.com>, "Rob Herring" <robh@kernel.org>,
- krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
- =?UTF-8?Q?Przemys=C5=82aw_Gaj?= <pgaj@cadence.com>,
- "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
- tommaso.merciai.xr@bp.renesas.com, quic_msavaliy@quicinc.com,
- Shyam-sundar.S-k@amd.com, "Sakari Ailus" <sakari.ailus@linux.intel.com>,
- "'billy_tsai@aspeedtech.com'" <billy_tsai@aspeedtech.com>,
- "Kees Cook" <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- "Jarkko Nikula" <jarkko.nikula@linux.intel.com>,
- "Jorge Marques" <jorge.marques@analog.com>,
- "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Linux-Arch <linux-arch@vger.kernel.org>, linux-hardening@vger.kernel.org
-Cc: radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
- shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-Message-Id: <cde37e36-4763-48ca-a038-4a19eb1ef914@app.fastmail.com>
-In-Reply-To: <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
-References: <20250923154551.2112388-1-manikanta.guntupalli@amd.com>
- <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V7 2/4] asm-generic/io.h: Add big-endian MMIO accessors
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="aJDuWnn7O/3Zbilf"
+Content-Disposition: inline
+In-Reply-To: <20250923160524.1096720-3-cosmin-gabriel.tanislav.xa@renesas.com>
+
+
+--aJDuWnn7O/3Zbilf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 23, 2025, at 17:45, Manikanta Guntupalli wrote:
-> Add MMIO accessors to support big-endian memory operations. These help=
-ers
-> include {read, write}{w, l, q}_be() and {read, write}s{w, l, q}_be(),
-> which allows to access big-endian memory regions while returning
-> the results in the CPU=E2=80=99s native endianness.
->
-> This provides a consistent interface to interact with hardware using
-> big-endian register layouts.
->
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+On Tue, Sep 23, 2025 at 07:05:16PM +0300, Cosmin Tanislav wrote:
+> Document the A/D 12-Bit successive approximation converters found in the
+> Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
+>=20
+> RZ/T2H has two ADCs with 4 channels and one with 6.
+> RZ/N2H has two ADCs with 4 channels and one with 15.
+>=20
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> ---
+>  .../iio/adc/renesas,r9a09g077-adc.yaml        | 170 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 177 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,r9a=
+09g077-adc.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-=
+adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.=
+yaml
+> new file mode 100644
+> index 000000000000..840108cd317e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.yaml
+> @@ -0,0 +1,170 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/T2H / RZ/N2H ADC12
+> +
+> +maintainers:
+> +  - Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> +
+> +description: |
+> +  A/D Converter block is a successive approximation analog-to-digital co=
+nverter
+> +  with a 12-bit accuracy. Up to 15 analog input channels can be selected.
+> +  Conversions can be performed in single or continuous mode. Result of t=
+he ADC
+> +  is stored in a 16-bit data register corresponding to each channel.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,r9a09g077-adc # RZ/T2H
+> +      - renesas,r9a09g087-adc # RZ/N2H
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: A/D scan end interrupt
+> +      - description: A/D scan end interrupt for Group B
+> +      - description: A/D scan end interrupt for Group C
+> +      - description: Window A compare match
+> +      - description: Window B compare match
+> +      - description: Compare match
+> +      - description: Compare mismatch
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: adi
+> +      - const: gbadi
+> +      - const: gcadi
+> +      - const: cmpai
+> +      - const: cmpbi
+> +      - const: wcmpm
+> +      - const: wcmpum
+> +
+> +  clocks:
+> +    items:
+> +      - description: converter clock
+> +      - description: peripheral clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: adclk
+> +      - const: pclk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  renesas,max-channels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Maximum number of channels supported by the ADC.
+> +      RZ/T2H has two ADCs with 4 channels and one with 6 channels.
+> +      RZ/N2H has two ADCs with 4 channels and one with 15 channels.
 
-I feel like we already have too many accessor functions like these,
-what's wrong with just using io{read,write}{8,16,32,64}be() in
-your driver?
+What is the point of this? Why do you need to know how many channels
+there can be in the driver, isn't it enough to just figure out how many
+child nodes you have?
 
-On most architectures (including arm, riscv, powerpc and microblaze,
-but not x86), the ioread/write helpers are identical to the
-readl/writel style helpers, the only difference being that on x86
-they add an extra indirection for the port I/O check.
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - renesas,max-channels
 
-At the moment, there are only six drivers that use the
-io{read,write}{8,16,32,64}be() style helpers. They
-are all powerpc specific and can probably be changed
-to io{read,write}be.
+This should be after patternProperties.
 
-      Arnd
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-e]$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    description: The external channels which are connected to the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: The channel number.
+> +        maximum: 14
+> +
+> +    required:
+> +      - reg
+> +
+
+> +    additionalProperties: false
+
+You don't include any properties other than reg from adc.yaml, and using
+additionalProperties: false blocks their use. Is that intentional or
+should this be unevaluatedProperties: false?
+
+Cheers,
+Conor.
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g077-adc
+> +    then:
+> +      properties:
+> +        renesas,max-channels:
+> +          enum: [4, 6]
+> +
+> +      patternProperties:
+> +        "^channel@[6-9a-e]$": false
+> +        "^channel@[0-5]$":
+> +          properties:
+> +            reg:
+> +              maximum: 5
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,r9a09g087-adc
+> +    then:
+> +      properties:
+> +        renesas,max-channels:
+> +          enum: [4, 15]
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    adc@80008000 {
+> +      compatible =3D "renesas,r9a09g077-adc";
+> +      reg =3D <0x80008000 0x400>;
+> +      interrupts =3D <GIC_SPI 708 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 709 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 710 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 711 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 712 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 855 IRQ_TYPE_EDGE_RISING>,
+> +                   <GIC_SPI 856 IRQ_TYPE_EDGE_RISING>;
+> +      interrupt-names =3D "adi", "gbadi", "gcadi",
+> +                        "cmpai", "cmpbi", "wcmpm", "wcmpum";
+> +      clocks =3D <&cpg CPG_CORE R9A09G077_CLK_PCLKL>,
+> +               <&cpg CPG_MOD 225>;
+> +      clock-names =3D "adclk", "pclk";
+> +      power-domains =3D <&cpg>;
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +      #io-channel-cells =3D <1>;
+> +      renesas,max-channels =3D <6>;
+> +
+> +      channel@0 {
+> +        reg =3D <0x0>;
+> +      };
+> +      channel@1 {
+> +        reg =3D <0x1>;
+> +      };
+> +      channel@2 {
+> +        reg =3D <0x2>;
+> +      };
+> +      channel@3 {
+> +        reg =3D <0x3>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9f4b48801879..07e0d37cf468 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21822,6 +21822,13 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
+>  F:	drivers/counter/rz-mtu3-cnt.c
+> =20
+> +RENESAS RZ/T2H / RZ/N2H A/D DRIVER
+> +M:	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> +L:	linux-iio@vger.kernel.org
+> +L:	linux-renesas-soc@vger.kernel.org
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.yaml
+> +
+>  RENESAS RTCA-3 RTC DRIVER
+>  M:	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>  L:	linux-rtc@vger.kernel.org
+> --=20
+> 2.51.0
+>=20
+
+--aJDuWnn7O/3Zbilf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNLp5gAKCRB4tDGHoIJi
+0gF8AP0e9IPpkmVVbAYL2Uh5rbwusvJrXFkZkKEhbkNv1YjSJAEA97RhG7uRUc9W
+WWGY5cG6DcxCQkUGOfidMcOgEgHLhgc=
+=iUBj
+-----END PGP SIGNATURE-----
+
+--aJDuWnn7O/3Zbilf--
 
