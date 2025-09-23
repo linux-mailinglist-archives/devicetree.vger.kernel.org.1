@@ -1,108 +1,119 @@
-Return-Path: <devicetree+bounces-220375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD04B9526C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29448B95416
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36F6F1904491
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:09:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4190E1903D44
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3769831A04F;
-	Tue, 23 Sep 2025 09:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56ACA30E0D8;
+	Tue, 23 Sep 2025 09:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UXfEpc5V"
+	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="ZsxxleZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-002bf204.pphosted.com (mx0a-002bf204.pphosted.com [205.220.160.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B54631E888;
-	Tue, 23 Sep 2025 09:09:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622A82AD13;
+	Tue, 23 Sep 2025 09:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.160.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758618568; cv=none; b=ENOgGYngPwM3IiK1p0x4I1oZlZpxPIhWU7Sx5UxiMKqzR1kXu7Yuz+Kw7mqX2K+astdChTlEE+zmuiWBACd6hx+zXSzoLs4XjRjV+ft0GDTd2OCkxN71thD7ubwBpSx+DRtr3qYasuZGadxGfJy2W/QdguS9i3wHSb9VHEDslhg=
+	t=1758619897; cv=none; b=e+puyIv1cZon4hlgkt26ZO3QpUBx9zUgsPUWhszlZ9n6K/9peVMsyjBSwyQw7cBXPMSfV28xHHckqqsZKbDCgWtXhsv27FWqF5GDYixqIh2n5LNJ2QzFuqdJh3yYS98G8u3lFtQX9fhuei8//tHjFERqQb/xaGFC4Lr8hbyQL28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758618568; c=relaxed/simple;
-	bh=Bf18cj0HZKW8sv39LhYfAvcFyUTklun49FrjVhZCSkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AzX2M2Uu2Aql6Bllh2Yrvua/C3ioxLt89ONpGRSxaJP/cH94o8Aw8KlSSOu/MJ+hSoQukMZMn5ZIZXpJINMn01mrMcB1GgYhVYV8V339LEbanblL55X7SrZ0wgu8v4xx21KG/F7teMLBriH/0ll/4d7qGVNLnrP5NKfl/+KsNnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UXfEpc5V; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LNfWHKHbRyM/GBX0pKVevF1bo7N98M4gqN+Cm7IF6fk=; b=UXfEpc5VubhTvRh2RDuRRIh8YM
-	wHrPPSm8C2tHgvqzoDIfqk5TMwb2k4m1mgnmfhb57jFA+ehquSFq7dsoduoRpaanDbZDZLrYuRqLI
-	+9U6n+BiDgOP1U3DoVWYzWXrAFhuu2uP/VZa9LaZ9rF73VrsQStK5HypqZGevNgJoY0zGqTKn9kH3
-	u3wB7yiR64cNSEjnmx+d++TN++QcI+NaYMZ2cIZdogktMk4wtW4rHUP9r2n6Sx+YlW30DufLLJZgi
-	hkOYu+egUknb6FZx53Z59xf8bRp3IQVV6jXtvVtZLivTnVsknAh2L8lahjY8QxwTG3SfaGNGPBgd2
-	rT6EeylA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33712)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1v0z1P-000000006rv-3pdk;
-	Tue, 23 Sep 2025 10:09:16 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1v0z1G-0000000060w-2BgJ;
-	Tue, 23 Sep 2025 10:09:06 +0100
-Date: Tue, 23 Sep 2025 10:09:06 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: =?utf-8?B?6Z+m5bCa5aif?= <weishangjuan@eswincomputing.com>
-Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, vladimir.oltean@nxp.com,
-	yong.liang.choong@linux.intel.com, anthony.l.nguyen@intel.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, jan.petrous@oss.nxp.com,
-	jszhang@kernel.org, inochiama@gmail.com, 0x1207@gmail.com,
-	boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, lizhi2@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v7 2/2] ethernet: eswin: Add eic7700 ethernet driver
-Message-ID: <aNJjshm4Z8H2Z8_V@shell.armlinux.org.uk>
-References: <20250918085612.3176-1-weishangjuan@eswincomputing.com>
- <20250918090026.3280-1-weishangjuan@eswincomputing.com>
- <aMw-dgNiXgPeqeSz@shell.armlinux.org.uk>
- <30080c70.16e1.199748921d3.Coremail.weishangjuan@eswincomputing.com>
+	s=arc-20240116; t=1758619897; c=relaxed/simple;
+	bh=SK08o5jMmktq+j12ohAFj5YUuAH+hnUns+Ln37TmV7g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZGznxoJ9M5oOaNVLq8dw0+qmr/KQefa+qvRslgAiNHR8gt6D8pMbnZCugZxQz0oVcFqUMGhIH8MNEzlF6D252uWsju7TcNbat4LY84rOoztSJGnEccOb2LAPMd/FFGZyBoH5QnTejJGDa4Sc/P7DW0GUGCZlXpOFdn0CrzfNEcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=monolithicpower.com; dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b=ZsxxleZj; arc=none smtp.client-ip=205.220.160.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=monolithicpower.com
+Received: from pps.filterd (m0207524.ppops.net [127.0.0.1])
+	by mx0a-002bf204.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 58N58bjg1331671;
+	Tue, 23 Sep 2025 02:09:52 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	monolithicpower.com; h=cc:content-transfer-encoding:content-type
+	:date:from:message-id:mime-version:subject:to; s=pps1; bh=5BrRan
+	ophlTOQzk7isMVjv+0gTzaWx6yYsZFutNEAL8=; b=ZsxxleZjVnndc4L5LAke36
+	Cx6srhDcEx8y57x57VVsDC3Zt4xHPP2l7AtYw6qpQ0v3WI1/AbEB8WqnIYT/EjrQ
+	x9UMFjKkX3zRTNTLrOeKQOf7l8wE7F7PGwV2ZySkvydU4Lo28V6NroObHkVtIosw
+	f/jz1PePQ3W492BVOrinuA4U4louFSW+/pQdRRe9G7AkwLjYdI1h7wZC39xpN2kP
+	qRVDyFwom29QLAbwzpRFW6rhbMh8HYnS6o2Put/rinTFYGJUizt/nkREsia6F/uH
+	UT58IU3uIiYUA8qGQYYObVW+B20LqBMiRB3H9mWu+jn2jkHYHGzkWVyz3Dpnq7vQ
+	==
+Received: from webmail.monolithicpower.com (mps-vpn.monolithicpower.com [12.33.0.20] (may be forged))
+	by mx0a-002bf204.pphosted.com (PPS) with ESMTPS id 499qpnhh6q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Tue, 23 Sep 2025 02:09:52 -0700 (PDT)
+Received: from CD-MSH04.monolithicpower.com (10.10.70.213) by
+ mps-mslbn03.monolithicpower.com (10.10.10.245) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Tue, 23 Sep 2025 02:09:43 -0700
+Received: from HZ-200L-YUWANG.monolithicpower.com (10.10.86.73) by
+ CD-MSH04.monolithicpower.com (10.10.70.213) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.57; Tue, 23 Sep 2025 17:09:38 +0800
+From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+To: <Yuxi.Wang@monolithicpower.com>, <corbet@lwn.net>, <linux@roeck-us.net>,
+        <jdelvare@suse.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <wyx137120466@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH 0/2] hwmon: Add support for MPS mp5998 chip
+Date: Tue, 23 Sep 2025 17:09:23 +0800
+Message-ID: <20250923090926.619-1-Yuxi.Wang@monolithicpower.com>
+X-Mailer: git-send-email 2.44.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <30080c70.16e1.199748921d3.Coremail.weishangjuan@eswincomputing.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain
+X-ClientProxiedBy: CD-MSLBN02.monolithicpower.com (192.168.86.32) To
+ CD-MSH04.monolithicpower.com (10.10.70.213)
+X-Proofpoint-GUID: ZQdgEHx8RNMO6yTs-B9PunW3UMzSt3j4
+X-Authority-Analysis: v=2.4 cv=S8jZwJsP c=1 sm=1 tr=0 ts=68d263e0 cx=c_pps
+ a=Zb4R73zfuCEKbQz3U9Wi8g==:117 a=Zb4R73zfuCEKbQz3U9Wi8g==:17
+ a=Mn2HaNVs01YA:10 a=yJojWOMRYYMA:10 a=gs3WAU5GOovDNR7Q-woA:9
+X-Proofpoint-ORIG-GUID: ZQdgEHx8RNMO6yTs-B9PunW3UMzSt3j4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDA4NCBTYWx0ZWRfX16krY/DMJZn3
+ MKdet8FyfAgfqlj+LSjv1o/oCrpv4oZlHObH3ML+HRcrRkF17F9VGIqYsezx2srgljxxo6gqges
+ W+DA/YcqHxtglTfTtsQAzSNATIl0TLpW5mj7Ye/OaXqV+IiY7hADEwkfY9ctMCxEdum/lDg6eLq
+ XWz8fQC0L9wFoeNSki/Tn2DvICbsBSnlvJW3tsclO4B2TGUshHmotoc03CB6q0F/dQy1jW0d+b7
+ hAVZPtfSqZ9JXzOQ92LRpDmne0Vb8MFvZ5npppmT/7Q7YvJr8Ea85LWcYMlxQJh6BzWWNIRxvQM
+ oEj37Rdl3g84wzDoWZGP+hNb9yi5x6fipUyGUwdaKncpkt3ZiNW5lX1sQQKAw4=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-23_01,2025-09-22_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1011 priorityscore=1501 suspectscore=0 malwarescore=0
+ phishscore=0 spamscore=0 impostorscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.22.0-2507300000 definitions=firstrun
 
-On Tue, Sep 23, 2025 at 11:06:08AM +0800, 韦尚娟 wrote:
-> In the current eic7700_dwmac glue driver, the regmap_read()/write()
-> operations(for phy_ctrl1, axi_lp_ctrl1, and the RX/TX delay registers))are 
-> performed directly in the probe() function. Would it be cleaner to move these
-> register configurations into the init() callback instead, so that they are
-> also reapplied during resume()?
+Add mp5998 driver in hwmon and add dt-binding for it.
 
-This is a question I can't answer definitively as I don't know what
-happens during a suspend on your hardware, and thus which registers
-are lost / reset by the time the system resumes. So I can only give
-the obvious guidance.
+Yuxi Wang (2):
+  dt-bindings: hwmon: Add MPS mp5998
+  hwmon: add mp5998 driver
 
-If the settings in the delay registers are lost over a suspend/resume
-then they need to be re-initialised after resume.
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/mp5998.rst                |  92 ++++++++++
+ MAINTAINERS                                   |   7 +
+ drivers/hwmon/pmbus/Kconfig                   |   9 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/mp5998.c                  | 162 ++++++++++++++++++
+ 7 files changed, 274 insertions(+)
+ create mode 100644 Documentation/hwmon/mp5998.rst
+ create mode 100644 drivers/hwmon/pmbus/mp5998.c
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.39.2
+
 
