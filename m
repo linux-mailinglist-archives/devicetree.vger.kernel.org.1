@@ -1,176 +1,242 @@
-Return-Path: <devicetree+bounces-220272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF00B93C8F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 03:04:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8629FB93D3F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 03:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7F5119C1827
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 01:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AA012E1A02
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 01:22:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490541DED42;
-	Tue, 23 Sep 2025 01:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA001EFF80;
+	Tue, 23 Sep 2025 01:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U2g7pwnx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kQP4aTFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D91F15ECCC
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D503B1EDA2B
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758589441; cv=none; b=Ny7/bdHCS+Gcmf/4B92Jw2wWHFoX7LjGmqHUWr8ZXelPrLjTZ5HIHYtCxPluF3ntS5KvMaXqiQXOGL1/an9YkToddH5EMRzNrXJCUvApIdEmgOjY/P4d7AtVkqzM+UllYEe05+nOHt+PxZ2fVjU6l6+hcPod3zBijFrX1GBir68=
+	t=1758590537; cv=none; b=kWhkNC22SlkyNVIpoKlqeSFSTpoFoAQZz7UjGBJOftCmWyDaXVhHlW+FoufgDntvRFWlxU0xTUqkfpqFKjEbXc6mCZ4GHF3ueEfZWJ1aTFA2qPw1rLR4foOx9BhBBllkD7n8CfWDUJueBt9ki2Hp/4yOvrjLfvbBF4LErhl8g6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758589441; c=relaxed/simple;
-	bh=AkmFWqZWKDdWgx+k3IxAC0AsHW+/Je62e22sgXDU+2Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sVC1mYJO+Pon2tqeCbMEhQ6iwW+zirMWZrD6kgkkF/N7xxsdjhCLNlXjlHxyV0w5balQHtNxo7l456+PRsO5GMRtz25IkNAlFgDVRcCZaV3pwP6IlRI/OHf+OqMQ/V/qrCh/+cj5szGh9XjETOTVMuwveVPuFVFsHzzGm8dxWYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U2g7pwnx; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1758590537; c=relaxed/simple;
+	bh=501NnXw/vrwTNNKzpgjKhyMk9+1FZM3Scq0hSgAKlMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MtnFaKKvZRjx4gqkk5R3ft60fZSjUwGqhLK2Pz7fVeZA8G68oGK4bIh8rH8bvjbAPKx8K95IqnsWGr/RIHq5hMN539i0stmdVmRJwczULMwfcKFKW/PDHVhyrloaf/SZ0vxCGsvwWwz6axi9r4iAZJGUuU2P4VVuKdjHa6qZJS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kQP4aTFz; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58MGQDfO018940
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:03:57 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58MHM7a7029909
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:22:13 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3r2gyH2o9KM3Y4VR/nSiqz6V1kwzJFKLhM9PNywxZ9M=; b=U2g7pwnx7X8Zkxz2
-	z+R+FuWVj9i6fTjNhzSitDitg/0dKOsNgygJTVMxGczOSmW4fa/yp1tuZTSf09FV
-	geRntp4WiiFIei/DNOpNVcvDXmvNSQSZYkjWFgKioptWGMniAb63x8pXLKrDtVLf
-	UPBah2saDNqTLVn6h1RxHyuRa8ePxH6aOkXSpHospDU719xiWAK/mw8jZIafmXmp
-	J6gZeOpKqxXfCMGp2l9wZb4Fsl2hl5vOnbU23h/Uzy/9k2Hq8wgvNeL1kpssCtFn
-	T29DoN5oVUhwUJRkdd2l/zNMMyWbCDcVWHHNSu7ZUQuxO+14ZYvNKZcOOOYjJMuB
-	vAXjrg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hyepwqk-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=aC6xtZ2Xq3V/aoM/1E2yl/Rv
+	YTGjb8DsxBZkEhoHUs0=; b=kQP4aTFzNQ2UuzbT4ikHpSFm3WaFRyXiNs2GrX1D
+	NOWQh3swouH9vJ1fAxVXC6PCPqnticuckinCgv8kquP2cFLdmTNHqGDbpgIh3ic5
+	HhdSV0BKnlWkJLFZeGrTyNU2cQym6INqa8JoGWm3XQiSkQd1Fv+CWSb1KePAMs2k
+	wGIvF9VgWOBP9v+kIAh4IRCzFD1nQtI8BHSCyjVKIOz8cr1W+zSd/EEDTKsqq248
+	YjLoM6Pq0PFnCL7+VWkYLy7Cy/zDlG7J3Z2vOWAuA+pfn3YrzhzFUnQ9mU9MG101
+	Hb90tz017gvT47+qynKe99HkOwpeaZHUOOOyb39SLXiPMw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kk2jkq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:03:57 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b54d0ffd172so3949804a12.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 18:03:57 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:22:13 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-79e48b76f68so88904646d6.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 18:22:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758589437; x=1759194237;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3r2gyH2o9KM3Y4VR/nSiqz6V1kwzJFKLhM9PNywxZ9M=;
-        b=OqaoOyf8QJsHZbHq8ifCE1Wu3xA5DULz3HI1WlSN4PwV8nlmH469AXoCbL9XUIQLPA
-         FH1Igz7liDMM/rgAvKaS7gZTx34dLtGIZgqejwktrqmke9LT0jROfrMh7ga+FUBGxcB5
-         xwMZrxcXzsznK7GDV1ghdEKKwZJ1H2NS1VQICOK3P8WilUdO1zkTGt5+xiulBsFSko85
-         VVvtoxWmnUwILskhopYtHkMHGeEtyfr/59XWG7cLet+VobvmPvni1JsVSThpBKdfZqzB
-         1VObhi9pYnt05Spa6yUlgTYIIqhRhtmDFa2uRzOQXcCKQl9jLml31DI++KbiF8lzpCvh
-         Tlhw==
-X-Forwarded-Encrypted: i=1; AJvYcCW93YJsLOy5aUBSs/q7vB5d4NWuUnMi1EdDB+Z0o4gu0dC88gaDmWf90fpS8dFvi69H+9B1dQxiYvfd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCq6kmisqUFRcVLAzJo72ls1+D6enIo+CPauC0vY2IkhxrZJqv
-	TGWG2Tb6/emN445JfnArRgybXNZo/ETOomgQvds6NrNrzoN+gdkfaIpNYbIVSh+HOsPM++ZmJF3
-	Ux6NfAOL/++DaXoZcbmgKDij/lS0CEIXDCufPUbUnVI2JOyM/N6QPcxoKx+oljsZW
-X-Gm-Gg: ASbGncuCNGOuG/fYma+TkMl21LkovETTqcwuzZk3lCMiiFbIhlr2RLmQ6ISg3HUD+w6
-	JPU+ej9HaaNS26XGHb23ZSD5ucChA2q/gJ3Bk8dTc/rI/8Wx6dWzV23YQeud0Fd+Yzn5j6Vu+p2
-	2OHubBnb6/wdWWd1k1NVIMLUODvTJXNkjA5ZOZzwOkPC603UemPLcRPJX3dmxg9E54L6rEq1hyo
-	ANCBLcp0pcXDoqWPmWLxAbsxWaZN7l5RzThQiP56TCKuYA5edyGSKOGT4Dhv2i1jUknA1YbxANR
-	J4KxtfKKRUfgv3eKDA2WQRvAqK1sLT8EvNV4g0Xc9DLWPXcmOP11rGtHMf3Y6Qm5dvtKoIdwiJe
-	k340ib8tsCgqH2DnP0gPR1fpg+vXJiz8=
-X-Received: by 2002:a05:6a20:a10f:b0:246:3a6:3e47 with SMTP id adf61e73a8af0-2d10ea02f65mr823599637.12.1758589436711;
-        Mon, 22 Sep 2025 18:03:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGZu5szyIQ3+/h2P8RAeWjsUwtJhLpq8SVRmJe1NhdUsMWX4SpcQc49bQMtqaOjrR0EYSzmzw==
-X-Received: by 2002:a05:6a20:a10f:b0:246:3a6:3e47 with SMTP id adf61e73a8af0-2d10ea02f65mr823558637.12.1758589436149;
-        Mon, 22 Sep 2025 18:03:56 -0700 (PDT)
-Received: from [192.168.1.239] (syn-075-080-180-230.res.spectrum.com. [75.80.180.230])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77f2deca77asm5515903b3a.98.2025.09.22.18.03.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Sep 2025 18:03:55 -0700 (PDT)
-Message-ID: <95c59ba6-fd9c-ef59-c5c5-33cb2fb5db8e@oss.qualcomm.com>
-Date: Mon, 22 Sep 2025 18:03:54 -0700
+        d=1e100.net; s=20230601; t=1758590533; x=1759195333;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aC6xtZ2Xq3V/aoM/1E2yl/RvYTGjb8DsxBZkEhoHUs0=;
+        b=UnbO9ylegx+R97J+dSpcuUR90cG6xcpyxVKfL7Qfv+pWqpOARCzn90aC4W8yCSkyXl
+         LLy91WpT2CtszXuXb5dXj5VhJwyLcfZRQjqJ9NOKMHsH8gPlcpCz0THd+VDU/ZBJtnPK
+         C+LSLl1ORXSbWbhnWBY+n1MqmliLV8tWNEX7VLO0X1HiwNxm2mowL3r6kTeILFYomcgg
+         B9u0M1wsfYtT7huYBji0V0lyBFs3+L45HQrJIG98I2Nhe//8k2ImOSYmjiACfPEUKJwU
+         cs/QmWB2C0YRyDYPmLQIc8M0UphRQrw9z1bMyQzyjXouihczeyUOGrocRw2nk4b4Ynax
+         QODw==
+X-Forwarded-Encrypted: i=1; AJvYcCVbETqRnv8UTIyQIgJLOGpDaa2xWClcjapEXOjM5lnRcFahru+k8BgFIWasUTr1yQbblQXFWuuyTvM2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7UAblyaSWcp/eD001KagJu34/zBCGR7pUsOUrYwzAKi7tWLWe
+	1gUPzzNRWmxULeMGOPDLCvc27b1SRGi72A+Q6jpab8KoapaynQPt5Fjo6SQ3vDgLBJOFULv2e8A
+	vNRLU8rB/Z17ds4+ioso+9UVAEDXd14NDTCVCHEhMzKQvNB12ZkSh4GJtq1ygklkd
+X-Gm-Gg: ASbGnct61ZD+lMIypEEsrh94VU8oWwGXUyqsQ2Iyv+fEif3cUgi58HafVViwNG2F2MW
+	egQG/rZw0Tt3ZifTjEltFkIXGXU3Ij+Fzaj0mNTeq2FcN4fzqubZv0YAPtUUb0UvstmIr8vGzBr
+	JDpqBwkEcUwO/MpzcCtZmruKaF6WdReiZBtSa1lI6+rOs7mSm44EiJ7O5PmCDNHWVYMj/7eoVNa
+	2SPu5+4HNLNcgLNVc9l5M+nK0pUlKIKoeTCs7+b2n++3OnyNafaT6V2OiinafHW5IJMjESCDMUs
+	Bifn+GcF16laB+BTIel+kCWFeg6nc+7laxSxpJ4ktkSAR33jM8dMlu6cdCJOWugX589fiQZ4R2l
+	XEFc/iYv+fccPQTWNlkghAxm3qU85iDVkmJi+fp12VZwbDaR21uHx
+X-Received: by 2002:a05:6214:21cd:b0:75f:6116:83e with SMTP id 6a1803df08f44-7e712ef9c76mr10311996d6.37.1758589820536;
+        Mon, 22 Sep 2025 18:10:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG/AqhiaebrPXH+fi3RCpVWDIqMTUfClYaLPwNMtBGbndVg1ntx4aReI8HayNz/8sSGkQvDNw==
+X-Received: by 2002:a05:6214:21cd:b0:75f:6116:83e with SMTP id 6a1803df08f44-7e712ef9c76mr10311466d6.37.1758589819848;
+        Mon, 22 Sep 2025 18:10:19 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-579e716407dsm3036752e87.97.2025.09.22.18.10.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 18:10:18 -0700 (PDT)
+Date: Tue, 23 Sep 2025 04:10:17 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Yubing Zhang <yubing.zhang@rock-chips.com>,
+        Frank Wang <frank.wang@rock-chips.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Amit Sunil Dhamne <amitsd@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+        Diederik de Haas <didi.debian@cknow.org>,
+        Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/7] usb: typec: Add default HPD device when register
+ DisplayPort altmode
+Message-ID: <mygbqhiom6pkwsadzz2bqf5bth3ogsbd6iku5a7r5swxrakein@fjhz7udnkcks>
+References: <20250922012039.323-1-kernel@airkyi.com>
+ <20250922012039.323-2-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 9/9] phy: qualcomm: m31-eusb2: Make USB repeater optional
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
-        vkoul@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
- <20250920032108.242643-10-wesley.cheng@oss.qualcomm.com>
- <umoo45pmamr3qraaiommpqh37tgmqidylmtjh3iamlxs34s7wf@ouug53aqvdfd>
-From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-In-Reply-To: <umoo45pmamr3qraaiommpqh37tgmqidylmtjh3iamlxs34s7wf@ouug53aqvdfd>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: lc9I7L_wD2MY3QkJnrtHZ7UsBIM__1ym
-X-Authority-Analysis: v=2.4 cv=YMOfyQGx c=1 sm=1 tr=0 ts=68d1f1fd cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=agQD+r7xwyS+FYqxhQjztw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=2H1wgwkl3dmy4IbtCtkA:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwNCBTYWx0ZWRfX4RLUDTtj9iIS
- E30FnUgxc4qw2A2WJM6gLeFdn7Ac+o9MNkLwDx9WCjnnR6A9GCOANgpA/vkL5eKJ37BwLTZdFBF
- QluHVhfavh3LGBTeWqr8lkOsnGpogctkUBK+REMEBWDHzWzJJSdMBLOLu1uNcWamRpp5Fr69LrG
- aSKDLkPJn4EsKT+PIZcFl6ldX7PcaOVYFa8cIFlxHTx9eCLWUQnn116h22e9uvXcCJCzpOO1byr
- T3FnGTTjwL142KPaR2UjORq40o+FHOykwKlFq4rLqk8eizW6m0lJq3y8GLfJdUunTLeFqwN29Ux
- DOP/ObBk01hmUedGBekj0j8/Xq/9VQxT8NQhJdPaQrPMyAiMSuzujLv8GKLC7M/TNrN27XCzZfQ
- Eqg9p4r+
-X-Proofpoint-ORIG-GUID: lc9I7L_wD2MY3QkJnrtHZ7UsBIM__1ym
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250922012039.323-2-kernel@airkyi.com>
+X-Proofpoint-GUID: _9KlsfJMDlsdzmQMcDOEUX7_Il2z86i6
+X-Proofpoint-ORIG-GUID: _9KlsfJMDlsdzmQMcDOEUX7_Il2z86i6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfX9gaGCSxNvVGR
+ scUJl23H/UR7PuOEwQCwFfJxpsO/UM3cPAINYW8c7OXEB6HVChgJb8yRUVKTKhFvMko7R4PBpap
+ Gux8JuwEuEtKWMRwOt/sZFxd3pLgaMqrFBblJ4wgIJQ9SF9txbp9WVp7oZg3g9IudXpvqcAJUa4
+ TA+4RElRxQIhKnRCJLzRL/UNFcz/TGADqmbaSiSGaNUAXNWi/nZmqrGWA84LIqd7FRn55E4h+EX
+ G/h48qO+ClCoq3LWRqNPAZDyPAXKWFNQUXwDufNbcc7fkhIw7htySF4+p+L3fyhK05RMQX2jxra
+ Gf1pkwhC2KLKMjo7fbjN8z0RaUtUWu8fCHoR/opXpF0oXdJYERbPlmDBJ3jKV++2shF5KrYtmR4
+ xEwUuran
+X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d1f645 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=s8YR1HE3AAAA:8 a=BpK9xR3a_xoX_XwHwW8A:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22 a=jGH_LyMDp9YhSvY-UuyI:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-22_05,2025-09-22_05,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200004
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
 
-
-
-On 9/20/2025 8:42 AM, Dmitry Baryshkov wrote:
-> On Fri, Sep 19, 2025 at 08:21:08PM -0700, Wesley Cheng wrote:
->> Change the notation of making the USB repeater a required DT parameter.
->> Issues were seen when supporting USB2 across different form
->> factor/platforms, which led to enumeration issues due to improper eUSB2
->> repeater tuning.  By making the repeater optional, for SMB/QC PMIC based
->> repeaters, it can utilize repeater settings done in the bootloader,
->> which cover a wider range of platforms.
+On Mon, Sep 22, 2025 at 09:20:33AM +0800, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > 
-> No, please don't depend on the bootloader settings. Instead we need to
-> implement proper prgramming / tuning for eUSB2 repeaters
+> Add default DRM AUX HPD bridge device when register DisplayPort
+> altmode. That makes it redundant for each Type-C driver to implement
+> a similar registration process in embedded scenarios.
 > 
-
-Hi Dmitry,
-
-Will update the next rev with the entries to support the SM2370 repeater.
-
-Thanks
-Wesley Cheng
-
->>
->> For other repeater vendors outside of the SMB/QC PMICs the repeater
->> should be defined and managed within the kernel.
->>
->> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
->> index f4355d38aad9..b8ddadf78c53 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
->> @@ -285,7 +285,7 @@ static int m31eusb2_phy_probe(struct platform_device *pdev)
->>   
->>   	phy_set_drvdata(phy->phy, phy);
->>   
->> -	phy->repeater = devm_of_phy_get_by_index(dev, dev->of_node, 0);
->> +	phy->repeater = devm_phy_optional_get(dev, NULL);
->>   	if (IS_ERR(phy->repeater))
->>   		return dev_err_probe(dev, PTR_ERR(phy->repeater),
->>   				     "failed to get repeater\n");
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> ---
+>  drivers/usb/typec/altmodes/displayport.c | 27 ++++++++++++++++++++++++
+>  drivers/usb/typec/altmodes/displayport.h |  2 ++
+>  drivers/usb/typec/class.c                |  8 +++++++
+>  include/linux/usb/typec_altmode.h        |  2 ++
+>  4 files changed, 39 insertions(+)
 > 
+> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+> index 1dcb77faf85d..e026dc6e5430 100644
+> --- a/drivers/usb/typec/altmodes/displayport.c
+> +++ b/drivers/usb/typec/altmodes/displayport.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/property.h>
+>  #include <linux/usb/pd_vdo.h>
+>  #include <linux/usb/typec_dp.h>
+> +#include <drm/bridge/aux-bridge.h>
+>  #include <drm/drm_connector.h>
+>  #include "displayport.h"
+>  
+> @@ -182,6 +183,10 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+>  				dp->pending_irq_hpd = true;
+>  		}
+>  	} else {
+> +		if (dp->port->hpd_dev)
+> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+> +						  hpd ? connector_status_connected :
+> +							connector_status_disconnected);
+
+There should be no need for these calls. Once the HPD bridge is added to
+a correct fwnode, the drm_connector_oob_hotplug_event() calls should
+deliver the signal as expected.
+
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>  						hpd ? connector_status_connected :
+>  						      connector_status_disconnected);
+> @@ -206,6 +211,9 @@ static int dp_altmode_configured(struct dp_altmode *dp)
+>  	 * configuration is complete to signal HPD.
+>  	 */
+>  	if (dp->pending_hpd) {
+> +		if (dp->port->hpd_dev)
+> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+> +						  connector_status_connected);
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>  						connector_status_connected);
+>  		sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
+> @@ -391,6 +399,9 @@ static int dp_altmode_vdm(struct typec_altmode *alt,
+>  			dp->data.status = 0;
+>  			dp->data.conf = 0;
+>  			if (dp->hpd) {
+> +				if (dp->port->hpd_dev)
+> +					drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+> +								  connector_status_disconnected);
+>  				drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>  								connector_status_disconnected);
+>  				dp->hpd = false;
+> @@ -751,6 +762,18 @@ static const struct attribute_group *displayport_groups[] = {
+>  	NULL,
+>  };
+>  
+> +void dp_altmode_hpd_device_register(struct typec_altmode *alt)
+> +{
+> +	if (alt->svid != USB_TYPEC_DP_SID)
+> +		return;
+> +
+> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+> +						  dev_of_node(alt->dev.parent->parent));
+
+This needs at least a comment, what is dev.parent->parent. Also, the
+of_node is not correct here. It should be a node of the connector,
+rather than the device itself. Consider USB-C controllers which handle
+several USB-C connectors (e.g. UCSI). The DRM core won't be able to
+identify the correct bridge.
+
+> +	if (IS_ERR(alt->hpd_dev))
+> +		alt->hpd_dev = NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(dp_altmode_hpd_device_register);
+
+Having the function here will bring a typec -> displayport dependency
+between drivers (which you didn't document). It means it won't be
+possible to build typec core into the kernel, having the DP AltMode
+driver in the module (which also doesn't sound like a good idea).
+
+> +
+>  int dp_altmode_probe(struct typec_altmode *alt)
+>  {
+>  	const struct typec_altmode *port = typec_altmode_get_partner(alt);
+
+-- 
+With best wishes
+Dmitry
 
