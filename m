@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-220475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E1F2B96AB6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:54:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E798B96AE0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5374719C50A5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:55:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19B557A5699
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7C5264A7F;
-	Tue, 23 Sep 2025 15:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90D7273D6C;
+	Tue, 23 Sep 2025 15:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HB0XYEnR"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="d6d07kjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE7416DC28;
-	Tue, 23 Sep 2025 15:54:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FBCC223DDA
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 15:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758642886; cv=none; b=C+iY86QW4IqCp/OMmkKr2cuzVimiDemMrS9dWuInECierVRDl9uyPZGRuxQwcRBqEcXVvhO0IkExHI+zEqhIP9amZnr9849aaXdVIwMD/TCwsdgrcZslwXxcY8H922ku+aKYh3e2CBUBifh9faj5xQYvV6WulW/oK1fQY6YFaBk=
+	t=1758643014; cv=none; b=PPWqr+bMF6mHND2pQdH6XFxAhWvY9N3hlT4vkLAUxqy8dttawnlYHkb+qzjI+vN0aCBgntMn1HRvy45zdtFaLTlF3CoHfn/iJqVIXYbw4E8GAkZce8QPT1TvBj50jK4VQf0sOteqoVW/fzQRWgsMhDP79QnKSwEbUXP1R5bs4EQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758642886; c=relaxed/simple;
-	bh=9PAHk1M/py/wmr9FX/AJcB5+6ZJZbCQJMTHF0F98NFw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=aJhAXGoz8E0BF8obKmfCE3BTf5J9Vlp7cahWXYRDanKMZtkQdKe80zBA6SKwmmPP3ACNGTVJIoevomp8KPvh08Sfzn4WdV2+u0gQvcN0btB0t+AIaFfOr4N5iDFsxkXekZJFlUHnRKhDqywpBzIDxPnZ6MeevLeLt8YAxOimQ28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HB0XYEnR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 552B6C113CF;
-	Tue, 23 Sep 2025 15:54:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758642885;
-	bh=9PAHk1M/py/wmr9FX/AJcB5+6ZJZbCQJMTHF0F98NFw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=HB0XYEnR4MNkE+vIXx7MKexzkD7sZteWlROImwjLYmOQTkC+TRO+FbdgUqwZjKTr0
-	 rdPY61ShmA5mZEfCZ+nh3Vk5sJbUDb6Am8Ar30yP+v4j3hLx66DUUqA3i33LD97yEM
-	 cOEP9MGIhgzOomPU26Q5Dvuyc80y9DnlBz+cyEBuJOJKnmJeAwcp9ZnA1qxBfUbwrV
-	 TR+TJnaVZYVGOjFhxqRu6xwY8iG4FPm433mVuJkL5aBQZ53fpkHzfGBPOCxe8/aG8I
-	 MjRySA+WP+fnJWjfcQ+ep6S00INskkZhdIZBsQeiWDVcH77tGiZSA8EbH+2zpELl7d
-	 oeT+tC+hUDsQg==
-Date: Tue, 23 Sep 2025 10:54:43 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Randolph Lin <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
-	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	ben717@andestech.com, inochiama@gmail.com,
-	thippeswamy.havalige@amd.com, namcao@linutronix.de,
-	shradha.t@samsung.com, randolph.sklin@gmail.com,
-	tim609@andestech.com
-Subject: Re: [PATCH v3 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
- support
-Message-ID: <20250923155443.GA2041202@bhelgaas>
+	s=arc-20240116; t=1758643014; c=relaxed/simple;
+	bh=pdqBZomuWzF2E2Gt4ZnTRDvbQ1JFQQm8XXayTiLLzPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IjvfEvviHSdaFLnO8cnDgu7WHmtyF+a7mSQT71F0aYnT1NqckhySBieEcl2W0q+gBbtaY7Tcf+K33fGmVLgIvD84BQQlcX0IbL4KBOkY+EohtrVl7eB4fscpGM3qSYEVNFSL87V+atMilXuHFPmFrQGfvFm/eAwhsN923Nhk8dI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=d6d07kjy; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1152)
+	id 9BA8B2015510; Tue, 23 Sep 2025 08:56:47 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9BA8B2015510
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1758643007;
+	bh=JW6Pq0osddemYt/bdOCpAcfjllFX2GB9kYb3rxjKU1g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d6d07kjygCRywb698zp2lefj4VDV404AV36O9xh5AE+1GNG0a2jt/0hpzLu8QJQcL
+	 ECN8IvpEiBbc7+D9RGPJsYTiQoEkMb8od7hrQWMMJzQRvlsSxnai4rFnr+3usp0m4Y
+	 ZbxEKaGcTAem4frcTuE0FBtJbFhV335EYU3Zfcfk=
+Date: Tue, 23 Sep 2025 08:56:47 -0700
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Will Deacon <will@kernel.org>
+Cc: thierry.reding@gmail.com, robin.murphy@arm.com, robh@kernel.org,
+	joro@8bytes.org, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev, jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com, saravanak@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lizhi.hou@amd.com,
+	clement.leger@bootlin.com
+Subject: Re: [PATCH v4 3/4] arm-smmu: select suitable MSI IOVA
+Message-ID: <20250923155647.GA22010@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
+ <20250909154600.910110-4-shyamsaini@linux.microsoft.com>
+ <aMw4I0AjKNPY6SOw@willie-the-truck>
+ <20250918224322.GR1326709@ziepe.ca>
+ <aM0HQ51DelZW_Rt8@willie-the-truck>
+ <20250919120839.GV1326709@ziepe.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,142 +67,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250923113647.895686-5-randolph@andestech.com>
+In-Reply-To: <20250919120839.GV1326709@ziepe.ca>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-On Tue, Sep 23, 2025 at 07:36:46PM +0800, Randolph Lin wrote:
-> Add driver support for DesignWare based PCIe controller in Andes
-> QiLai SoC. The driver only supports the Root Complex mode.
+Hi Jason, Will,
 
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -49,6 +49,19 @@ config PCIE_AMD_MDB
->  	  DesignWare IP and therefore the driver re-uses the DesignWare
->  	  core functions to implement the driver.
->  
-> +config PCIE_ANDES_QILAI
-> +	bool "ANDES QiLai PCIe controller"
-> +	depends on ARCH_ANDES || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here to enable PCIe controller support on Andes QiLai SoCs,
-> +	  which operate in Root Complex mode. The Andes QiLai SoCs PCIe
-> +	  controller is based on DesignWare IP (5.97a version) and therefore
-> +	  the driver re-uses the DesignWare core functions to implement the
-> +	  driver. The Andes QiLai SoC features three Root Complexes, each
-> +	  operating on PCIe 4.0.
+On 19 Sep 2025 09:08, Jason Gunthorpe wrote:
+> On Fri, Sep 19, 2025 at 08:33:23AM +0100, Will Deacon wrote:
+> > pieces and will need to work on the userspace side. It's not like
+> > MSI_IOVA2 is magically going to work (and I bet it won't be tested).
+> 
+> It could, if someone checks the default memory map a second constant
+> could be selected that works.
+> 
+> > > Nicolin has some patches on the iommufd side to let userspace select
+> > > the MSI address instead, but they are not done yet.
+> > 
+> > Maybe we should just wait for that? Carrying a temporary hack with ABI
+> > implications to support broken hardware isn't particularly compelling
+> > to me.
+> 
+> This patch would still be needed for kernel users.
+> 
+> Arguably the kernel users should just be using the iova allocator from
+> dma-iommu.c. This whole hard coded constant/sneaky uapi is just a hack
+> to make vfio work..
+> 
+> So maybe if the single constant doesn't work we could set some
+> indication that the caller must allocate the MSI iova, the kernel can
+> use the dma-iommu allocator and VFIO can just refuse to use the device
+> for now.
 
-Sort these by vendor name:
+So, are we settling on having two predefined MSI IOVA base constants,
+and if both of those conflict with reserved regions on a given platform,
+falling back to dynamic allocation via the IOVA allocator? Just checking
+if that's the consensus we're reaching.
 
-  AMD MDB Versal2 PCIe controller
-  Amlogic Meson PCIe controller
-  ANDES QiLai PCIe controller
-  Axis ARTPEC-6 PCIe controller (host mode)
-
->  config PCI_MESON
->  	tristate "Amlogic Meson PCIe controller"
-
-> + * Refer to Table A4-5 (Memory type encoding) in the
-> + * AMBA AXI and ACE Protocol Specification.
-> + *
-> + * The selected value corresponds to the Memory type field:
-> + * "Write-back, Read and Write-allocate".
-> + */
-> +#define IOCP_ARCACHE				0b1111
-> +#define IOCP_AWCACHE				0b1111
-
-Deserves a note about why these values are identical.
-
-> +struct qilai_pcie {
-> +	struct dw_pcie pci;
-> +	struct platform_device *pdev;
-
-"pdev" appears to be set but never used; drop it if you don't need it.
-
-> +/*
-> + * Setup the Qilai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
-> + * Write-Back, Read and Write Allocate mode.
-
-Add blank line or rewrap into single paragraph.
-
-> + * The IOCP HW target is SoC last-level cache (L2 Cache), which serves as the
-> + * system cache. The IOCP HW helps maintain cache monitoring, ensuring that
-> + * the device can snoop data from/to the cache.
-> + */
-> +static void qilai_pcie_iocp_cache_setup(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	u32 val;
-> +
-> +	dw_pcie_dbi_ro_wr_en(pci);
-> +
-> +	dw_pcie_read(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
-> +		     sizeof(val), &val);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_MODE, &val, IOCP_ARCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_MODE, &val, IOCP_AWCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_VALUE, &val, IOCP_ARCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_VALUE, &val, IOCP_AWCACHE);
-> +	dw_pcie_write(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
-> +		      sizeof(val), val);
-> +
-> +	dw_pcie_dbi_ro_wr_dis(pci);
-> +}
-
-> +static int qilai_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-> +
-> +	qilai_pcie_enable_msi(pcie);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dw_pcie_host_ops qilai_pcie_host_ops = {
-> +	.init = qilai_pcie_host_init,
-> +};
-> +
-> +static int qilai_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct qilai_pcie *pcie;
-> +	struct dw_pcie *pci;
-> +	struct device *dev;
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(&pdev->dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	pcie->pdev = pdev;
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pci = &pcie->pci;
-> +	dev = &pcie->pdev->dev;
-> +	pcie->pci.dev = dev;
-> +	pcie->pci.ops = &qilai_pcie_ops;
-> +	pcie->pci.pp.ops = &qilai_pcie_host_ops;
-> +	pci->use_parent_dt_ranges = true;
-> +
-> +	dw_pcie_cap_set(&pcie->pci, REQ_RES);
-> +
-> +	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-> +	if (IS_ERR(pcie->apb_base))
-> +		return PTR_ERR(pcie->apb_base);
-> +
-> +	ret = dw_pcie_host_init(&pcie->pci.pp);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to initialize PCIe host\n");
-> +		return ret;
-> +	}
-> +
-> +	qilai_pcie_iocp_cache_setup(&pcie->pci.pp);
-
-I don't think we should be doing anything after dw_pcie_host_init()
-because by the time we get here, we've already enumerated downstream
-devices and potentially bound drivers to them.
-
-If you need things done in dw_pcie_host_init() before enumeration,
-qilai_pcie_host_init() and similar hooks are possibilities.
-
-> +	return 0;
-> +}
+Thanks,
+Shyam
 
