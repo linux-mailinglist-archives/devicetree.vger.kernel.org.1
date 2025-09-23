@@ -1,274 +1,285 @@
-Return-Path: <devicetree+bounces-220508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77965B96EB5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:06:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEDAB970F6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6499F19C58BD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:06:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C5EC19C1D92
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A329627A446;
-	Tue, 23 Sep 2025 17:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6DA283141;
+	Tue, 23 Sep 2025 17:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mAYDhiir"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wDm0ReiT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C154277CA1;
-	Tue, 23 Sep 2025 17:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F297624677C
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 17:40:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758647135; cv=none; b=YZHZk4fWm8jOb1+LvMnFFiUG1FPnPvBqSEBZyXJpurtquHuZVcE8WBYALqQUGfXPHSTzHKmUMqH187NLgHXnuBsbvG2sLbixp9jV7tJVr5oVOaqUBNdjf/CrZUCFPZybOgvlN8TZQ9HEGnLfVJne1DK75/NBXNpjqx7VYnex5jo=
+	t=1758649256; cv=none; b=gE2y4BiYvgedq8pkWt3I0yxSIRLc3QnTSQFTYgkV0EyC7Ug2nDu1DXfC3z8VQYkWYdcLohbkvcXN0AwJUdW34R6rtoAAqocOTn5k+Q/wZ+XEzZQnTEZvAF/TrsWuN3G5ePw4cJywMYYG979xTvwGT59tDFxr91ANRjhr9RSu8hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758647135; c=relaxed/simple;
-	bh=hV14NGi5CrH131Wx4M4fOh7wVGQBwgsL+TxbUFT+uBo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hOOaLf+KyXIN0E4c7EeI5rQioW0ts93AGqMPDBmeuPIP6yVaGpiKCWmgP9vcPIHiNe/28qL2HEqUvAufFeiOnaj3xxIji0+j0d3TwXA+K8U7Ky24UhkJZxmsuJTqeSon6kyuLV4JMEJoafGtgq9DMfUPYMng873i/2QjUIWbvlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mAYDhiir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2D767C2BC86;
-	Tue, 23 Sep 2025 17:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758647135;
-	bh=hV14NGi5CrH131Wx4M4fOh7wVGQBwgsL+TxbUFT+uBo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mAYDhiir9Cd+uHfrMHR5MPH2vu0QSRIhGXawHgU6C1WyNJ4ULLP5aYu47KttHlzM8
-	 iARw7VBJnK6/6rZ0s+k+QPPTLMTZTUZi191gPV/W3s/rzjZ0SY+a5gTobPlDnoK8vN
-	 tVn+lOavmXlgTv6EF4ADJfu6bjtnXipxrJMIxjgtO8pQzEbVH0wahVitgCBvMK/ChT
-	 hPXeJEZtLYDFVJNcqBNXQeg1BvDpp0G2Dz6hDGMUbizic8xYy/K0EhNI7qLPGMy/WO
-	 ThXw8Yyf4WczQsxw4cxvqAWCcX0RCZws1LyyarubjpgaJ4Ef3/DEMlRYNvck/Hh3Iy
-	 zdIg7nfO3XeGQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 233B5CAC5AC;
-	Tue, 23 Sep 2025 17:05:35 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Tue, 23 Sep 2025 12:05:35 -0500
-Subject: [PATCH v4 9/9] arm64: tegra: Add OPP tables on Tegra210
+	s=arc-20240116; t=1758649256; c=relaxed/simple;
+	bh=gnYeGB2B1v903Xtz4VVWD8MoJQwc4kIonn9k6NGquuU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HVFMCFYCPqQvTWO6ArwvQNJUwO9+j+4o+23BY7uk96+1ENoJgNDc7kuc/GbnPJzKdzPO7GMjyj/J6kOKjviE4CaZ72lEUsbk6FHz4KexUjpByij7dYLCenFm7C7gxbLmDqwM2JmpyVilKAbZyFw1T3J97aSgeMJWz062vO3AyT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wDm0ReiT; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso9516133a12.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 10:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758649252; x=1759254052; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QKpIP4JHqz6cG4UOF6o0Lt4gug+UcA+CBt0Oa3txFso=;
+        b=wDm0ReiT0JO33GRnQsUmiItMDDpOTtlKqwY9GjFzmuoUNUWXlbGD2CboD23oAm5VTD
+         geImEzahHyJH0HF9h/74NVN2TAJkWHBK64r1P5Z0mv/HHSyMQu0ZJKpVy13NKwGH+z3Z
+         5URL+Xdex3XiH+cO9VxhNfafppqkVmIvaYAUBXUUrTDpyRNPM1HxMjLbm8GpDMnzf0mA
+         6jM1475eDg24yW1NWFRXizXCKqScxB5AKA0x0VQH/oH3YEldsdkR7CI5GCyeLulThbEF
+         F5Qu5qUwLg5uW15wI6bG+gny1kioeFU6GvK4sUksb9p1V36V2EPucHaw25HSw26AP+6l
+         ytlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758649252; x=1759254052;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QKpIP4JHqz6cG4UOF6o0Lt4gug+UcA+CBt0Oa3txFso=;
+        b=lFWBj62+PhJHWl3o+bm61OFIhN++kvct5ECaJSrISw8Qt81KK3O8Zhn1BZI6wYaRxm
+         9D/D4bnwsL2dujAJuVJm+a3VW3n6U5GY+Vg9pkjuY4RePp3KbfynFjqRxCLwwTarBjFI
+         QYrqlnQTiwbVFQwJU8UkCi28Zy77984xU1o5QSjBL3z3qYOJ0pOFhUGkG/qMtkO31uU2
+         aCnOWxGHJErSGNunktdNZKr85quB6RXJpm9z5wXjG4ROV7H6ejWNZidaACm39kKuh6wb
+         d4eXgiFDBzCe1kzAtFXY/6p5Ca+0hnrDCsbF+PIBNmGZxBll0tOvA8B8a11vm6JNXW4z
+         hc1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUkLTKfSJXWobQ/qnKHznBPna/mtXOq6ho9EURjUGscDmqcEEaKQyZUJQd77T/G6OAAFJ0abo8uWwn8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbU+WhvAObRGFvkbo3KDyUVtoMagvt1ypcTq2yoRflK3YZM3KV
+	onJGBMVRCBU/SODfwTJ9RVhVxI5OtPNK6Ebsd+nsSVb5zdCO3RJs7YLyocjCqXr0/F+zm190VXi
+	Jd616IdSUgw2/XjQZrCbEAuiV6m/0cKRhUwxOubBSQA==
+X-Gm-Gg: ASbGnctSC1AESkklMptDJGeG2mu5zf4ayTkNg2kP7S2mVKWngzxmujfsGzhlKBS3sHb
+	3a6OX8yk0MfZpt3dFX3yqF5vAVLg9d3rvEgQwN3B30GYez/iQhBxiC8y/bAOm8TEOrVFQYsr+pk
+	ZPlOn4RF5J0iDyvpgqzOgycDqEuxhY6ap+Ut/DF48qtCcy49mUeXbVueL6ZirpZE8k418drx9RA
+	VoKI0v1OVuvtBE7N9OYnhw77qIohECA1wub
+X-Google-Smtp-Source: AGHT+IGKj6Y7Rbxbcuv/p78PYY4VhOn0VuHWkuzF4bBzMgRnn4BUqA5lXuES789K8QEVi7gDnX95FchYWyP/N+Yb7J4=
+X-Received: by 2002:a05:6402:42d4:b0:634:66c8:9e6d with SMTP id
+ 4fb4d7f45d1cf-63467a196c6mr3151558a12.35.1758649252279; Tue, 23 Sep 2025
+ 10:40:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250923-t210-actmon-v4-9-442d1eb6377c@gmail.com>
-References: <20250923-t210-actmon-v4-0-442d1eb6377c@gmail.com>
-In-Reply-To: <20250923-t210-actmon-v4-0-442d1eb6377c@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Dmitry Osipenko <digetx@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758647133; l=4992;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=c3UF+J0NFIjfjdyZNjJHy/D9Hy0JzM3QHoSqUqe7xkk=;
- b=kKOZJHcy7C7xYTI4sjBiVHRZ/QjSbg5uowuD/80WIXj5bhEQ0YLSW5SE7FeCXvOqfxCgxei5+
- ojR/V2uI015Bw/0y/APIV6Vo8MGo2dJnBEkg8pgAIfrvUg6keNuZ5dq
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+References: <20250919155821.95334-1-vincent.guittot@linaro.org>
+ <20250919155821.95334-2-vincent.guittot@linaro.org> <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
+In-Reply-To: <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Tue, 23 Sep 2025 19:40:40 +0200
+X-Gm-Features: AS18NWBNIKbQJlsVTlHAuM-w_iiTyLoHRH4gz5lC-pFfTqvjXuoI-RD55es6jyQ
+Message-ID: <CAKfTPtD2MH9_xT+Fq4vvpGNMJPSkwh3CMaVCLRcNxrn_Ab7eLQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
+	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	cassel@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Aaron Kling <webgeek1234@gmail.com>
+On Mon, 22 Sept 2025 at 08:21, Manivannan Sadhasivam <mani@kernel.org> wrot=
+e:
+>
+> On Fri, Sep 19, 2025 at 05:58:19PM +0200, Vincent Guittot wrote:
+> > Describe the PCIe controller available on the S32G platforms.
+> >
+>
+> You should mention that this binding is for the controller operating in '=
+Root
+> Complex' mode.
+>
+> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+> > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
+> > ---
+> >  .../devicetree/bindings/pci/nxp,s32-pcie.yaml | 131 ++++++++++++++++++
+> >  1 file changed, 131 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32-pcie.=
+yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml b/=
+Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
+> > new file mode 100644
+> > index 000000000000..cabb8b86c042
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
+> > @@ -0,0 +1,131 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/nxp,s32-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP S32G2xx/S32G3xx PCIe controller
+> > +
+> > +maintainers:
+> > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> > +  - Ionut Vicovan <ionut.vicovan@nxp.com>
+> > +
+> > +description:
+> > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
+> > +  The S32G SoC family has two PCIe controllers, which can be configure=
+d as
+> > +  either Root Complex or Endpoint.
+> > +
+>
+> But this binding is going to cover only the 'Root Complex' mode, isn't it=
+?
 
-This adds OPP tables for actmon and emc, enabling dynamic frequency
-scaling for ram.
+I was planning to add the endpoint in the same file as the hardware
+description remains the same between RC and EP but only the use of the
+HW is different. But it looks like I have to separate binding for RC
+and endpoint
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- .../boot/dts/nvidia/tegra210-peripherals-opp.dtsi  | 135 +++++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   7 ++
- 2 files changed, 142 insertions(+)
+>
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nxp,s32g2-pcie     # S32G2 SoCs RC mode
+> > +      - items:
+> > +          - const: nxp,s32g3-pcie
+> > +          - const: nxp,s32g2-pcie
+> > +
+> > +  reg:
+> > +    maxItems: 7
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dbi
+> > +      - const: dbi2
+> > +      - const: atu
+> > +      - const: dma
+> > +      - const: ctrl
+> > +      - const: config
+> > +      - const: addr_space
+> > +
+> > +  interrupts:
+> > +    maxItems: 8
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: link-req-stat
+> > +      - const: dma
+> > +      - const: msi
+> > +      - const: phy-link-down
+> > +      - const: phy-link-up
+> > +      - const: misc
+> > +      - const: pcs
+> > +      - const: tlp-req-no-comp
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - ranges
+> > +  - phys
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/phy/phy.h>
+> > +
+> > +    bus {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        pcie@40400000 {
+> > +            compatible =3D "nxp,s32g3-pcie",
+> > +                         "nxp,s32g2-pcie";
+> > +            reg =3D <0x00 0x40400000 0x0 0x00001000>,   /* dbi registe=
+rs */
+> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 register=
+s */
+> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers=
+ */
+> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers=
+ */
+> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl register=
+s */
+> > +                  /*
+> > +                   * RC configuration space, 4KB each for cfg0 and cfg=
+1
+> > +                   * at the end of the outbound memory map
+> > +                   */
+> > +                  <0x5f 0xffffe000 0x0 0x00002000>,
+> > +                  <0x58 0x00000000 0x0 0x40000000>; /* 1GB EP addr spa=
+ce */
+> > +            reg-names =3D "dbi", "dbi2", "atu", "dma", "ctrl",
+> > +                        "config", "addr_space";
+> > +            dma-coherent;
+> > +            #address-cells =3D <3>;
+> > +            #size-cells =3D <2>;
+> > +            device_type =3D "pci";
+> > +            ranges =3D
+> > +                  /*
+> > +                   * downstream I/O, 64KB and aligned naturally just
+> > +                   * before the config space to minimize fragmentation
+> > +                   */
+> > +                  <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x000=
+10000>,
+>
+> s/0x81000000/0x01000000
+>
+> since the 'relocatable' is irrelevant.
+>
+> > +                  /*
+> > +                   * non-prefetchable memory, with best case size and
+> > +                   * alignment
+> > +                   */
+> > +                  <0x82000000 0x0 0x00000000 0x58 0x00000000 0x7 0xfff=
+e0000>;
+>
+> s/0x82000000/0x02000000
+>
+> And the PCI address really starts from 0x00000000? I don't think so.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..bf2527d737932a1f41aa83d61f44d87ba52b0519
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi
-@@ -0,0 +1,135 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	/* EMC DVFS OPP table */
-+	emc_icc_dvfs_opp_table: opp-table-dvfs0 {
-+		compatible = "operating-points-v2";
-+
-+		opp-40800000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-68000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-102000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-204000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-suspend;
-+		};
-+
-+		opp-408000000-812 {
-+			opp-microvolt = <812000 812000 1150000>;
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-665600000-825 {
-+			opp-microvolt = <825000 825000 1150000>;
-+			opp-hz = /bits/ 64 <665600000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-800000000-825 {
-+			opp-microvolt = <825000 825000 1150000>;
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1065600000-837 {
-+			opp-microvolt = <837000 837000 1150000>;
-+			opp-hz = /bits/ 64 <1065600000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1331200000-850 {
-+			opp-microvolt = <850000 850000 1150000>;
-+			opp-hz = /bits/ 64 <1331200000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1600000000-887 {
-+			opp-microvolt = <887000 887000 1150000>;
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-supported-hw = <0x0007>;
-+		};
-+	};
-+
-+	/* EMC bandwidth OPP table */
-+	emc_bw_dfs_opp_table: opp-table-dvfs1 {
-+		compatible = "operating-points-v2";
-+
-+		opp-40800000 {
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <652800>;
-+		};
-+
-+		opp-68000000 {
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <1088000>;
-+		};
-+
-+		opp-102000000 {
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		opp-204000000 {
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-peak-kBps = <3264000>;
-+			opp-suspend;
-+		};
-+
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <6528000>;
-+		};
-+
-+		opp-665600000 {
-+			opp-hz = /bits/ 64 <665600000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <10649600>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x001F>;
-+			opp-peak-kBps = <12800000>;
-+		};
-+
-+		opp-1065600000 {
-+			opp-hz = /bits/ 64 <1065600000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <17049600>;
-+		};
-+
-+		opp-1331200000 {
-+			opp-hz = /bits/ 64 <1331200000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <21299200>;
-+		};
-+
-+		opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-peak-kBps = <25600000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 2fcc7a28690f7100d49e8b93c4fb77de7947b002..f2961c9e12db1cf91254b75389779955f2a0956d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -9,6 +9,8 @@
- #include <dt-bindings/thermal/tegra124-soctherm.h>
- #include <dt-bindings/soc/tegra-pmc.h>
- 
-+#include "tegra210-peripherals-opp.dtsi"
-+
- / {
- 	compatible = "nvidia,tegra210";
- 	interrupt-parent = <&lic>;
-@@ -516,6 +518,9 @@ actmon@6000c800 {
- 		clock-names = "actmon", "emc";
- 		resets = <&tegra_car 119>;
- 		reset-names = "actmon";
-+		operating-points-v2 = <&emc_bw_dfs_opp_table>;
-+		interconnects = <&mc TEGRA210_MC_MPCORER &emc>;
-+		interconnect-names = "cpu-read";
- 		#cooling-cells = <2>;
- 	};
- 
-@@ -1024,6 +1029,8 @@ emc: external-memory-controller@7001b000 {
- 		clock-names = "emc";
- 		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
- 		nvidia,memory-controller = <&mc>;
-+		operating-points-v2 = <&emc_icc_dvfs_opp_table>;
-+
- 		#interconnect-cells = <0>;
- 		#cooling-cells = <2>;
- 	};
-
--- 
-2.51.0
+I'm going to check why they set this value
 
 
+
+>
+> - Mani
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
