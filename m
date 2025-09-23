@@ -1,155 +1,231 @@
-Return-Path: <devicetree+bounces-220350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381C4B94B96
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:17:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BAE5B94BA5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:17:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDCE1902590
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 07:17:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F89017F145
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 07:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BDA3101DF;
-	Tue, 23 Sep 2025 07:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E2A530FC3F;
+	Tue, 23 Sep 2025 07:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="CgFTgHpq"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OuYfjoI0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973196.qiye.163.com (mail-m1973196.qiye.163.com [220.197.31.96])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1181FF7C5
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC9A86342;
+	Tue, 23 Sep 2025 07:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758611843; cv=none; b=YOkL28Z1xI0WQNEQx779rty2QQjRmKGQP8jzkMGkh1Yi3zeVVTg9YtRbGOArChXC4qmcVQ2X+V1SoLNjM3tJOCTd81E9+7z2xbrIm4dEyYrpMyr3lBPiG6Wu+DPsK5pUOnyeHTLcLM/vkpQ5Gx2EXPyVDPy9F6aruXFjvWBBbnc=
+	t=1758611851; cv=none; b=VLMigj15yk+c6W+3w/1Lg0ILaZhSWoFR40xOlCr7VXW2fJnaEi4+qRcHkzYyuii12E5/PmC5XafNq8uDbDImrFotynMuX591kDKbiOrPYsfdHQHiYLU4Ua6WjAelzmPLfAlDGJWEBieeZQaJAFv64QldnsBrBPgGFRtttY0yOsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758611843; c=relaxed/simple;
-	bh=Kgi6xBpKlXVh0Wl1HR8sB4WMwLoB2WkYMC6YlNhYudQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=Hb0LhOHNHtPoewyfaM8uw6DIteAa94WpTuIfH1xHdfDyQFShWfxnXZGIMf/BpApNGY4g+pX/trWfxzdeiNhTrc0mRFSrJSg8KnhESrIbsMqmEJNCHHz9bVE2NXqSdAxJOo0VH6Psw3LU7ttoXG6XmHA2MiGUK2XBeR8dX7cPjR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=CgFTgHpq; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6228de280a4so7869156a12.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 00:17:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1758611840; x=1759216640; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2xp/wVVYVglDb0K9BV6oQ/Qee7hbnU4VQ4y29oQDrYo=;
-        b=CgFTgHpqdBYfCIALnw/UcKGzGIKnTLHsh41N1CjPc5Iz+vScwbj4YPVv0DbQO306ls
-         lK+HYPLO+ZahqnvTW+qIwpUE4bJMnMiPloTMX0S8BlvMb1tGry6ztVPSIN+XDR4ylawE
-         yJmwoiH71t98e70UkjWS/nfGKNlaWJpNUm5FAKXFJjzGhi8RtteaZ0moSseC978A8/up
-         pIaBm0QZIFMIaL/LxG7n6JmMiOjkwao+4WMnyNssiwzVX91dwQGgFQnd0GZ66X1qwH7J
-         MSGyRcNH1TPVp3P8ThAHsRyIZpXFgHVf4E/I8BljiOV0a3NvpWhkT5TPlMReRoRhXSUa
-         2gwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758611840; x=1759216640;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2xp/wVVYVglDb0K9BV6oQ/Qee7hbnU4VQ4y29oQDrYo=;
-        b=DfxZW/x2CD3SRL3V0x1JtBNmJ4dmU0aSfSYFPCIHPohAIwuS0V9Fx1s8Xnxd76Qun+
-         Pi9KXFyBHUcQWCzQwg1pj1du/NWqjWzZRtazRpev6Gn+lFuoPv7qwR1EQChU4d3dwHt0
-         SG8YSnUQBxvOktY45lw9cTgOEJQJOqiEQZ5vHVnioj3XuWnXs7QXppexkZxCM3owOXt6
-         16aFw1KVaW/q5SNIOV/LY9AnN5C3y//enoma4/t85r/0jfljvocmGCRMIvMkvJ2VjaFX
-         B5aJUi+Qwh90MDY8Cg7caJf+vJxPv6mmEyfHgIvBCMDerPkmIl6uJL6nikZ/B8fZm34O
-         EJVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCQwY6orKPZ9MFiwmMOH/QdINyA6QWMyg6rAinGVz/EVd0TVNuOGin6ngms8MxObmu71t1H0WF39jZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1XtKZuwYbidL+t5bPWNo64U5j2gM4zckCFQ5C4CfkqAz5BIE+
-	HzFRtfRqTGhavr/8oPLyCg4YXyThRj3I1Kyu2ETQYNTvKtUw3B0taj/XScSywQYf/vg=
-X-Gm-Gg: ASbGncvmcqq7/HIHAQSqGfwtO7js74GD3iHcxOr+XNyr6O9TZq4U4wSDeOBVkwQbYe4
-	2bhrRFOXKIU+gjH0f/s3p+TcNHyPB3noVDtVGVWT9EYNyDkT5rb03g2+c30sNvciaJp3CC0clL6
-	QoDqZ2PAsGUVAovfFWll7F69GOFwjMtBUzTj+JVDkS9Sdwga67Dne+/31HDRpMckDiEtmUbpTVx
-	vUppWefEna9KZkXHuanS6JMGMiUeZT2U+GsQmxKgn21sPysv7tE8I9/P5U/8H1eZkqQpCEUJowQ
-	/Hn4X/zJ4odcqCKjzhQM1fbs6zM33W4GfKjsJAS375a6kASlznoKJjtfipLvJHQgodFxPAYEYcL
-	wkTdvpUCeo9/NSr2REQVMWhxbobs1io7pkgidHCislaynam+ekkUrVgGSxvM1upR45Fh9
-X-Google-Smtp-Source: AGHT+IFDB/7GOU93rg3HC6u2rymyBmPfi52FYHKm2lXJfB3vOvNUC7hTsmLAd1+CEV9CwyHGTA0KFw==
-X-Received: by 2002:a17:907:3f20:b0:afe:764d:6b22 with SMTP id a640c23a62f3a-b30263b2e94mr148085666b.9.1758611838518;
-        Tue, 23 Sep 2025 00:17:18 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b2928cd318csm689045766b.98.2025.09.23.00.17.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Sep 2025 00:17:18 -0700 (PDT)
+	s=arc-20240116; t=1758611851; c=relaxed/simple;
+	bh=xaJFnFUsloI8zSn85qWseot4/tYAWVG1JUyDOT1+SDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nkt7GPtGT4ETMHBIHGCWm3ZxMFBGRVpjRDbPvIKBaSR3WqlrTglhFh4PA9q0PgER5NT1WXb1SNFpajvXlnpr6KiPDJ/H+2U+5OsLlvxIpM91sClr7RIJekz3TiILzr/vCLeGu2r6yoZtRuDdkPiyIDchwJLQUjicMESk7ru8oBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OuYfjoI0; arc=none smtp.client-ip=220.197.31.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.153] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 23c09b919;
+	Tue, 23 Sep 2025 15:17:21 +0800 (GMT+08:00)
+Message-ID: <dc554831-4368-43f0-b92b-896fd920e239@rock-chips.com>
+Date: Tue, 23 Sep 2025 15:17:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 23 Sep 2025 09:17:17 +0200
-Message-Id: <DCZZV93PMWRZ.1J9IZBZYP5RGM@fairphone.com>
-Subject: Re: [PATCH 09/14] arm64: dts: qcom: sm6350: add refgen regulator
- and use it for DSI
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-Cc: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250921-refgen-v1-0-9d93e64133ea@oss.qualcomm.com>
- <20250921-refgen-v1-9-9d93e64133ea@oss.qualcomm.com>
-In-Reply-To: <20250921-refgen-v1-9-9d93e64133ea@oss.qualcomm.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/7] dt-bindings: phy: rockchip: rk3399-typec-phy:
+ Support mode-switch
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20250922012039.323-1-kernel@airkyi.com>
+ <20250922012039.323-3-kernel@airkyi.com>
+ <eb6ogrepo5acwcj5gpdolxxyg3xrx7kz6zrbizzseqyavvitfd@cnzurelqeh4t>
+ <533d41bd-9293-4808-85f3-8fb6dc8bcda7@rock-chips.com>
+ <mpyfe63tzxzxyyqf4vxwmrewzeosnaftlkko7pq2ynld6u3lcz@wlpixckov4hg>
+ <8396dd15-9111-4ceb-a561-6ed57727546f@rock-chips.com>
+ <jm32ujhxslsx5snes4o66t2grb5uxhsaapjqahektfck66g6hb@fx6f53yojlcr>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <jm32ujhxslsx5snes4o66t2grb5uxhsaapjqahektfck66g6hb@fx6f53yojlcr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a99756f218d03abkunm5591869a139fab
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUgZT1ZNSE0dGUJJHklDTxhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=OuYfjoI0/KRTSG9Mvp5kZYif7pjSs177Xu8KZpj87g1akZkEF+pMJzmwB3eSidvVAne+dtdEcqRxOUpwCka9htscgTlWFbmWMlv7ZiMuYOV8WMKcRTDPeqIot1jzjkJ8XCw5tP08afglgbemTqC93ar2xwElmLvVYzlSaQtWkqc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=YXgNszLNxTgYBQeXLiuoM2pl3d7cCmFzHYl2QZT0EDg=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi Dmitry,
+On 9/23/2025 12:51 PM, Dmitry Baryshkov wrote:
 
-On Sun Sep 21, 2025 at 9:09 AM CEST, Dmitry Baryshkov wrote:
-> Add the refgen regulator block and use it for the DSI controller.
+> On Tue, Sep 23, 2025 at 11:40:33AM +0800, Chaoyi Chen wrote:
+>> On 9/23/2025 11:17 AM, Dmitry Baryshkov wrote:
+>>
+>>> On Tue, Sep 23, 2025 at 09:53:06AM +0800, Chaoyi Chen wrote:
+>>>> Hi Dmitry,
+>>>>
+>>>> On 9/23/2025 9:12 AM, Dmitry Baryshkov wrote:
+>>>>> On Mon, Sep 22, 2025 at 09:20:34AM +0800, Chaoyi Chen wrote:
+>>>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>>>
+>>>>>> The RK3399 SoC integrates two USB/DP combo PHYs, each of which
+>>>>>> supports software-configurable pin mapping and DisplayPort lane
+>>>>>> assignment. These capabilities enable the PHY itself to handle both
+>>>>>> mode switching and orientation switching, based on the Type-C plug
+>>>>>> orientation and USB PD negotiation results.
+>>>>>>
+>>>>>> While an external Type-C controller is still required to detect cable
+>>>>>> attachment and report USB PD events, the actual mode and orientation
+>>>>>> switching is performed internally by the PHY through software
+>>>>>> configuration. This allows the PHY to act as a Type-C multiplexer for
+>>>>>> both data role and DP altmode configuration.
+>>>>>>
+>>>>>> To reflect this hardware design, this patch introduces a new
+>>>>>> "mode-switch" property for the dp-port node in the device tree bindings.
+>>>>>> This property indicates that the connected PHY is capable of handling
+>>>>>> Type-C mode switching itself.
+>>>>>>
+>>>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>>>
+>>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> ---
+>>>>>>
+>>>>>> Changes in v4:
+>>>>>> - Remove "|" in description.
+>>>>>>
+>>>>>> Changes in v3:
+>>>>>> - Add more descriptions to clarify the role of the PHY in switching.
+>>>>>>
+>>>>>> Changes in v2:
+>>>>>> - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
+>>>>>>
+>>>>>>     .../devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml  | 6 ++++++
+>>>>>>     1 file changed, 6 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+>>>>>> index 91c011f68cd0..83ebcde096ea 100644
+>>>>>> --- a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+>>>>>> @@ -51,6 +51,12 @@ properties:
+>>>>>>           '#phy-cells':
+>>>>>>             const: 0
+>>>>>> +      mode-switch:
+>>>>> Having the mode-switch here is a bit strange. I think the whole PHY
+>>>>> device should be an orientation-switch and mode-switch. Otherwise it
+>>>>> feels weird to me.
+>>>> I think this is a difference in practice. In the previous binding, there was already an orientation-switch under the usb-port. I trying to add both an orientation-switch and a mode-switch to the top-level device in v2. And Krzysztof reminded me that adding a mode-switch under the dp-port would be better, so I changed it to the current form :)
+>>> I couldn't find the comment on lore. Could you please point it out?
+>> Sorry, it is v1. I added an orientation-switch and a mode-switch in the top-level PHY [0]. Comment is here: [1]
+> My interpretation of [1] doesn't quite match yours. It doesn't say
+> anything about moving mode-switch to dp-port. It basically pointed out
+> that you already have two ports.
+
+Yes, I think this can be easily changed, as long as the issue you mentioned below is resolved.
+
+
 >
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Also, I'm not sure how the current construction works: you register
+> switch and mux for the dev_fwnode(tcphy->dev), however the lookfup
+> functions should be looking for a device corresponding to the port OF
+> node (which doesn't exist).
+
+In v1, that is fwnode = dev_fwnode(tcphy->dev) .  And dt like is:
+
+
+&tcphy {
+     port {
+         tcphy0_orientation_switch: endpoint@0 { ... };
+         tcphy_dp_altmode_switch: endpoint@1 { ... };
+     };
+};
+
+
+Since the binding already includes a "usb3-port" and a "dp-port", it can not add another new port.
+
+So after v1, that is fwnode = device_get_named_child_node(tcphy->dev, "usb3-port") . And dt like this:
+
+
+&tcphy0_dp {
+     port { ... };
+};
+
+&tcphy0_usb3 {
+     port { ... };
+};
+
+
+Sorry, this looks a bit hacky. Do you have a better idea? Thank you.
+
+
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/q=
-com/sm6350.dtsi
-> index 8459b27cacc72a4827a2e289e669163ad6250059..dd009569a6683a25f13b068e3=
-e0bd8746b2ac501 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -1768,6 +1768,12 @@ usb_1_hsphy: phy@88e3000 {
->  			resets =3D <&gcc GCC_QUSB2PHY_PRIM_BCR>;
->  		};
-> =20
-> +		refgen: regulator@88e7000 {
-> +			compatible =3D "qcom,sm6350-refgen-regulator",
-> +				     "qcom,sm8250-refgen-regulator";
-> +			reg =3D <0x0 0x088e7000 0x0 0x84>;
+>>
+>> [0] https://lore.kernel.org/all/20250715112456.101-4-kernel@airkyi.com/
+>>
+>> [1] https://lore.kernel.org/all/4dfed94c-665d-4e04-b527-ddd34fd3db8f@kernel.org/
+>>
+>>
+>>
+>>>>
+>>>>>> +        description:
+>>>>>> +          Indicates the PHY can handle altmode switching. In this case,
+>>>>>> +          requires an external USB Type-C controller to report USB PD message.
+>>>>>> +        type: boolean
+>>>>>> +
+>>>>>>           port:
+>>>>>>             $ref: /schemas/graph.yaml#/properties/port
+>>>>>>             description: Connection to USB Type-C connector
+>>>>>> -- 
+>>>>>> 2.49.0
+>>>>>>
+>>>> -- 
+>>>> Best,
+>>>> Chaoyi
+>>>>
+>> -- 
+>> Best,
+>> Chaoyi
+>>
+>>
+>> -- 
+>> linux-phy mailing list
+>> linux-phy@lists.infradead.org
+>> https://lists.infradead.org/mailman/listinfo/linux-phy
 
-Are you sure the size is 0x84? Downstream and hwio_bitra_V1.cmm would
-suggest size to be 0x60.
-
-For sc7280, hwio_kodiak_E5.0.cmm does say 0x84 for refgen.
-
-Apart from that, it's also what I have lying around somewhere, should've
-upstreamed this already.
-
-Reviewed-by: Luca Weiss <luca.weiss@fairphone.com>
-
-Regards
-Luca
-
-> +		};
-> +
->  		usb_1_qmpphy: phy@88e8000 {
->  			compatible =3D "qcom,sm6350-qmp-usb3-dp-phy";
->  			reg =3D <0x0 0x088e8000 0x0 0x3000>;
-> @@ -2360,6 +2366,8 @@ mdss_dsi0: dsi@ae94000 {
->  				phys =3D <&mdss_dsi0_phy>;
->  				phy-names =3D "dsi";
-> =20
-> +				refgen-supply =3D <&refgen>;
-> +
->  				#address-cells =3D <1>;
->  				#size-cells =3D <0>;
-> =20
+-- 
+Best,
+Chaoyi
 
 
