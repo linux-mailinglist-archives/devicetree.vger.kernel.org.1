@@ -1,285 +1,147 @@
-Return-Path: <devicetree+bounces-220512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BEDAB970F6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:41:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94620B9727E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C5EC19C1D92
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:41:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48FF87B389C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6DA283141;
-	Tue, 23 Sep 2025 17:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7C32DF716;
+	Tue, 23 Sep 2025 18:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wDm0ReiT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rRv9AYN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F297624677C
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 17:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A2B296BCB;
+	Tue, 23 Sep 2025 18:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758649256; cv=none; b=gE2y4BiYvgedq8pkWt3I0yxSIRLc3QnTSQFTYgkV0EyC7Ug2nDu1DXfC3z8VQYkWYdcLohbkvcXN0AwJUdW34R6rtoAAqocOTn5k+Q/wZ+XEzZQnTEZvAF/TrsWuN3G5ePw4cJywMYYG979xTvwGT59tDFxr91ANRjhr9RSu8hk=
+	t=1758650596; cv=none; b=AhJ1146HBNXezz2/igAITgBhVbwVwgC4pEwwhzA3HFjZH1Rt9ny5NgPq+vsqHzGhV+73SgFyCMb4J6eKzczdr4qRvNZCPQspWQp6ivRfIje20MOo/wZhvhAzuYvEtzJOvCqdbU0lMQP0/YmX9THEvDZnT2nu9bUEde/EWDopnsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758649256; c=relaxed/simple;
-	bh=gnYeGB2B1v903Xtz4VVWD8MoJQwc4kIonn9k6NGquuU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HVFMCFYCPqQvTWO6ArwvQNJUwO9+j+4o+23BY7uk96+1ENoJgNDc7kuc/GbnPJzKdzPO7GMjyj/J6kOKjviE4CaZ72lEUsbk6FHz4KexUjpByij7dYLCenFm7C7gxbLmDqwM2JmpyVilKAbZyFw1T3J97aSgeMJWz062vO3AyT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wDm0ReiT; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso9516133a12.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 10:40:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758649252; x=1759254052; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QKpIP4JHqz6cG4UOF6o0Lt4gug+UcA+CBt0Oa3txFso=;
-        b=wDm0ReiT0JO33GRnQsUmiItMDDpOTtlKqwY9GjFzmuoUNUWXlbGD2CboD23oAm5VTD
-         geImEzahHyJH0HF9h/74NVN2TAJkWHBK64r1P5Z0mv/HHSyMQu0ZJKpVy13NKwGH+z3Z
-         5URL+Xdex3XiH+cO9VxhNfafppqkVmIvaYAUBXUUrTDpyRNPM1HxMjLbm8GpDMnzf0mA
-         6jM1475eDg24yW1NWFRXizXCKqScxB5AKA0x0VQH/oH3YEldsdkR7CI5GCyeLulThbEF
-         F5Qu5qUwLg5uW15wI6bG+gny1kioeFU6GvK4sUksb9p1V36V2EPucHaw25HSw26AP+6l
-         ytlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758649252; x=1759254052;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QKpIP4JHqz6cG4UOF6o0Lt4gug+UcA+CBt0Oa3txFso=;
-        b=lFWBj62+PhJHWl3o+bm61OFIhN++kvct5ECaJSrISw8Qt81KK3O8Zhn1BZI6wYaRxm
-         9D/D4bnwsL2dujAJuVJm+a3VW3n6U5GY+Vg9pkjuY4RePp3KbfynFjqRxCLwwTarBjFI
-         QYrqlnQTiwbVFQwJU8UkCi28Zy77984xU1o5QSjBL3z3qYOJ0pOFhUGkG/qMtkO31uU2
-         aCnOWxGHJErSGNunktdNZKr85quB6RXJpm9z5wXjG4ROV7H6ejWNZidaACm39kKuh6wb
-         d4eXgiFDBzCe1kzAtFXY/6p5Ca+0hnrDCsbF+PIBNmGZxBll0tOvA8B8a11vm6JNXW4z
-         hc1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUkLTKfSJXWobQ/qnKHznBPna/mtXOq6ho9EURjUGscDmqcEEaKQyZUJQd77T/G6OAAFJ0abo8uWwn8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbU+WhvAObRGFvkbo3KDyUVtoMagvt1ypcTq2yoRflK3YZM3KV
-	onJGBMVRCBU/SODfwTJ9RVhVxI5OtPNK6Ebsd+nsSVb5zdCO3RJs7YLyocjCqXr0/F+zm190VXi
-	Jd616IdSUgw2/XjQZrCbEAuiV6m/0cKRhUwxOubBSQA==
-X-Gm-Gg: ASbGnctSC1AESkklMptDJGeG2mu5zf4ayTkNg2kP7S2mVKWngzxmujfsGzhlKBS3sHb
-	3a6OX8yk0MfZpt3dFX3yqF5vAVLg9d3rvEgQwN3B30GYez/iQhBxiC8y/bAOm8TEOrVFQYsr+pk
-	ZPlOn4RF5J0iDyvpgqzOgycDqEuxhY6ap+Ut/DF48qtCcy49mUeXbVueL6ZirpZE8k418drx9RA
-	VoKI0v1OVuvtBE7N9OYnhw77qIohECA1wub
-X-Google-Smtp-Source: AGHT+IGKj6Y7Rbxbcuv/p78PYY4VhOn0VuHWkuzF4bBzMgRnn4BUqA5lXuES789K8QEVi7gDnX95FchYWyP/N+Yb7J4=
-X-Received: by 2002:a05:6402:42d4:b0:634:66c8:9e6d with SMTP id
- 4fb4d7f45d1cf-63467a196c6mr3151558a12.35.1758649252279; Tue, 23 Sep 2025
- 10:40:52 -0700 (PDT)
+	s=arc-20240116; t=1758650596; c=relaxed/simple;
+	bh=fARKIZXCivIL6H1ia9QrtOaj50XQn23yezu5UTy/HrY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IdVbQmydHB2f16t0LbiQMygvAlkdHYK2IsU3vp2kv3IoNct676gm4KFUet2HsjlZFQRb4QJ7TR1owwK9K6sO4ZWv5pHI8R0WJJjCgoSFjgPpMGYfazkDInHiYxquAYA3P00IqfBvWN03znv+KvvN3CDqikb4iIUB3f3wZFzb8Wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rRv9AYN6; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58NI36hW1528658;
+	Tue, 23 Sep 2025 13:03:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758650586;
+	bh=6kQZdYtmLgeO7HVe3TJI/wyYZG/yCXy6uR7Y9L+JxWM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=rRv9AYN6qyYUSYa4Jy5uWY3rTjphWK+wwJR0hlU/1KOsVju+rXVHraxJdOnt3cdZZ
+	 hn39h/KYu0VQYDVZuUSVu3JCZy+toJ3OE7lw6lihglTze+26FwgdVzEN4aetffrw+V
+	 mSokbRjqc3A8iymUaDYSq1AWLiXYfpAV97mm4eZQ=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58NI35sd2156284
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 23 Sep 2025 13:03:05 -0500
+Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 23
+ Sep 2025 13:03:05 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 23 Sep 2025 13:03:05 -0500
+Received: from localhost (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58NI35iK698776;
+	Tue, 23 Sep 2025 13:03:05 -0500
+Date: Tue, 23 Sep 2025 13:03:05 -0500
+From: Kendall Willis <k-willis@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
+        Kevin
+ Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+        Sebin Francis
+	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
+Subject: Re: [PATCH v2 2/7] arm64: dts: ti: k3-am62: Define possible system
+ states
+Message-ID: <20250923180305.qmgjilxhujgkvfcp@uda0506412>
+References: <20250812-topic-am62-dt-partialio-v6-15-v2-0-25352364a0ac@baylibre.com>
+ <20250812-topic-am62-dt-partialio-v6-15-v2-2-25352364a0ac@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919155821.95334-1-vincent.guittot@linaro.org>
- <20250919155821.95334-2-vincent.guittot@linaro.org> <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
-In-Reply-To: <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Tue, 23 Sep 2025 19:40:40 +0200
-X-Gm-Features: AS18NWBNIKbQJlsVTlHAuM-w_iiTyLoHRH4gz5lC-pFfTqvjXuoI-RD55es6jyQ
-Message-ID: <CAKfTPtD2MH9_xT+Fq4vvpGNMJPSkwh3CMaVCLRcNxrn_Ab7eLQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250812-topic-am62-dt-partialio-v6-15-v2-2-25352364a0ac@baylibre.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, 22 Sept 2025 at 08:21, Manivannan Sadhasivam <mani@kernel.org> wrot=
-e:
+On 11:15-20250812, Markus Schneider-Pargmann wrote:
+> Add the system states that are available on am62 SoCs.
 >
-> On Fri, Sep 19, 2025 at 05:58:19PM +0200, Vincent Guittot wrote:
-> > Describe the PCIe controller available on the S32G platforms.
-> >
->
-> You should mention that this binding is for the controller operating in '=
-Root
-> Complex' mode.
->
-> > Co-developed-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> > Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> > Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> > Co-developed-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> > Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> > Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> > Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/nxp,s32-pcie.yaml | 131 ++++++++++++++++++
-> >  1 file changed, 131 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/nxp,s32-pcie.=
-yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml b/=
-Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
-> > new file mode 100644
-> > index 000000000000..cabb8b86c042
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/nxp,s32-pcie.yaml
-> > @@ -0,0 +1,131 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/nxp,s32-pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP S32G2xx/S32G3xx PCIe controller
-> > +
-> > +maintainers:
-> > +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
-> > +  - Ionut Vicovan <ionut.vicovan@nxp.com>
-> > +
-> > +description:
-> > +  This PCIe controller is based on the Synopsys DesignWare PCIe IP.
-> > +  The S32G SoC family has two PCIe controllers, which can be configure=
-d as
-> > +  either Root Complex or Endpoint.
-> > +
->
-> But this binding is going to cover only the 'Root Complex' mode, isn't it=
-?
 
-I was planning to add the endpoint in the same file as the hardware
-description remains the same between RC and EP but only the use of the
-HW is different. But it looks like I have to separate binding for RC
-and endpoint
+nit: Change "am62 SoCs" to "TI AM62x SoCs"
 
->
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - nxp,s32g2-pcie     # S32G2 SoCs RC mode
-> > +      - items:
-> > +          - const: nxp,s32g3-pcie
-> > +          - const: nxp,s32g2-pcie
-> > +
-> > +  reg:
-> > +    maxItems: 7
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: dbi
-> > +      - const: dbi2
-> > +      - const: atu
-> > +      - const: dma
-> > +      - const: ctrl
-> > +      - const: config
-> > +      - const: addr_space
-> > +
-> > +  interrupts:
-> > +    maxItems: 8
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: link-req-stat
-> > +      - const: dma
-> > +      - const: msi
-> > +      - const: phy-link-down
-> > +      - const: phy-link-up
-> > +      - const: misc
-> > +      - const: pcs
-> > +      - const: tlp-req-no-comp
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - ranges
-> > +  - phys
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/phy/phy.h>
-> > +
-> > +    bus {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        pcie@40400000 {
-> > +            compatible =3D "nxp,s32g3-pcie",
-> > +                         "nxp,s32g2-pcie";
-> > +            reg =3D <0x00 0x40400000 0x0 0x00001000>,   /* dbi registe=
-rs */
-> > +                  <0x00 0x40420000 0x0 0x00001000>,   /* dbi2 register=
-s */
-> > +                  <0x00 0x40460000 0x0 0x00001000>,   /* atu registers=
- */
-> > +                  <0x00 0x40470000 0x0 0x00001000>,   /* dma registers=
- */
-> > +                  <0x00 0x40481000 0x0 0x000000f8>,   /* ctrl register=
-s */
-> > +                  /*
-> > +                   * RC configuration space, 4KB each for cfg0 and cfg=
-1
-> > +                   * at the end of the outbound memory map
-> > +                   */
-> > +                  <0x5f 0xffffe000 0x0 0x00002000>,
-> > +                  <0x58 0x00000000 0x0 0x40000000>; /* 1GB EP addr spa=
-ce */
-> > +            reg-names =3D "dbi", "dbi2", "atu", "dma", "ctrl",
-> > +                        "config", "addr_space";
-> > +            dma-coherent;
-> > +            #address-cells =3D <3>;
-> > +            #size-cells =3D <2>;
-> > +            device_type =3D "pci";
-> > +            ranges =3D
-> > +                  /*
-> > +                   * downstream I/O, 64KB and aligned naturally just
-> > +                   * before the config space to minimize fragmentation
-> > +                   */
-> > +                  <0x81000000 0x0 0x00000000 0x5f 0xfffe0000 0x0 0x000=
-10000>,
->
-> s/0x81000000/0x01000000
->
-> since the 'relocatable' is irrelevant.
->
-> > +                  /*
-> > +                   * non-prefetchable memory, with best case size and
-> > +                   * alignment
-> > +                   */
-> > +                  <0x82000000 0x0 0x00000000 0x58 0x00000000 0x7 0xfff=
-e0000>;
->
-> s/0x82000000/0x02000000
->
-> And the PCI address really starts from 0x00000000? I don't think so.
+Additionally, it would be nice to add what sleep states are supported in
+the commit message.
 
-I'm going to check why they set this value
+These comments also go for the other two patches that are titled
+"Define possible system states".
 
+Best,
+Kendall Willis
 
-
->
-> - Mani
->
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> index 59f6dff552ed40e4ac0f9c7077aa25d68d3b5283..b08b7062060ca12ecae83917a831ee779f1a288f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> @@ -46,6 +46,28 @@ pmu: pmu {
+>  		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+>  	};
+>  
+> +	system-idle-states {
+> +		system_partial_io: system-partial-io {
+> +			compatible = "system-idle-state";
+> +			idle-state-name = "off-wake";
+> +		};
+> +
+> +		system_deep_sleep: system-deep-sleep {
+> +			compatible = "system-idle-state";
+> +			idle-state-name = "mem";
+> +		};
+> +
+> +		system_mcu_only: system-mcu-only {
+> +			compatible = "system-idle-state";
+> +			idle-state-name = "mem-mcu-active";
+> +		};
+> +
+> +		system_standby: system-standby {
+> +			compatible = "system-idle-state";
+> +			idle-state-name = "standby";
+> +		};
+> +	};
+> +
+>  	cbass_main: bus@f0000 {
+>  		bootph-all;
+>  		compatible = "simple-bus";
+> 
+> -- 
+> 2.50.1
+> 
 
