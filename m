@@ -1,190 +1,224 @@
-Return-Path: <devicetree+bounces-220263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABF1B93AC9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 02:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D376B93B02
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 02:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C260144257C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 00:19:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2870A4473DB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 00:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F0D39FD9;
-	Tue, 23 Sep 2025 00:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E4D145A1F;
+	Tue, 23 Sep 2025 00:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="ivaiLEeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022113.outbound.protection.outlook.com [52.101.126.113])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BC11D554;
-	Tue, 23 Sep 2025 00:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758586777; cv=none; b=KXaWv3JA6UWnlFYoyTXi8DGoXnlaApo1pzPCKdumzJkwB7sgGzBqsx4TKRxv9p179opBQYcAZ86gxqEJbS82fLQRZD25y8XzCvnWqBtPmKmMAaWqduonh2hvP5hvy8obWEi+Ov3aayldhXMnDPY7cndQ8fdTyCej+WZBH+gupaI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758586777; c=relaxed/simple;
-	bh=m3PbYU+2V1fFSBAd5hXu+XYNk9LQPcAQq5Ha2JxlPGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W+t1R9KnT0qgq1CASkFfOTbzpSkxHdAG8TJv7pFbHTWaB3V9CTQEsh9hyjS7fbum5BChJXCnvhr9kxvSNnTJdOQYSvx0nyvvtwyQimLG10Cl3k0pK9bqAUj+OdU2NYOSGlertiR+Xl05P4JKphSzfEo6AsHB+LSKvSXzJzPt55c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [180.158.240.90])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id BE58B340F71;
-	Tue, 23 Sep 2025 00:19:34 +0000 (UTC)
-Date: Tue, 23 Sep 2025 08:19:30 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	p.zabel@pengutronix.de, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] riscv: dts: spacemit: define a SPI controller node
-Message-ID: <20250923001930-GYB1303776@gentoo.org>
-References: <20250922161717.1590690-1-elder@riscstar.com>
- <20250922161717.1590690-4-elder@riscstar.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8213595C;
+	Tue, 23 Sep 2025 00:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.113
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758587335; cv=fail; b=RHhPZepmzJKBieLWee3NSvqrvhngzQufJQ2mxSpUv7IvGChtdZYAMdnV4qV81pV4VJwi3JF+R7V7M4e4TjIx1ORy/p4Sv0EeprInrdE1qUiRgn44nMjJJwcKzpU8xTeA8m9HGWXDxndvph3CRRILcwtwcCQGddXpqdxdkqY5X/o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758587335; c=relaxed/simple;
+	bh=tKzv8jri+29enRQBBgeVcHnyQBgTreBX6t/YHvTlaMo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XRc/UlIjiCVyXGSslqfN2fyAA828lPE0BPiFnokacCVElALGgvz7CoQE8uqr+akHU1hk3VR1KG/LX6AxegtHuynoH10EWoFIwEtVZosMSqgsapkduJzv5fVKUIvGGbLet9Pfp5O8hzyEXRbvnVtfxdFgQ1TxRvjJcMSbJ9/RJsE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=ivaiLEeg; arc=fail smtp.client-ip=52.101.126.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=D1iEuJUiVGav3U07P0iYR6Vp3lMmK4eYWKWbfpmP6tK72zl7HG4uk6+GBCHKZwxtevXSd5ciHnj9UVpU+SG2nmBTnAeN18ox0Ludw2k0xAZmkx6TOO7IJrUe6Yd4Xg0iBKrbbS4tazb2DKyEKn1MRVk5RpFbJFYnGLwYAjCMNgCrSzxlziH1hCvzusuzLKaizutYB5qNeXTE8w+QrGzW3Q7cgPvd6GL0OzkikniGn5WQceCP8YxzMvNa7Bgpr17p9eQdlB53t41FgsqYv9JajU6s4hR76Z3q4DjPyKnxnJ4z/g3AErsd/2j9nmPoFQ2S/eY1B3mmuEEFv0fOEGIqNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RkfAxUzWzRjxlUd+vpJZ2Pezm0JHHt1Ly89V+DfSzFI=;
+ b=TkQD2Ws9Q7wH3BnFjl8FEndSbFv6aUoYDgtDLwMhcQUnvmM8coMUrexgIU55u8IOFdshTy3ONMd0EYyINEPXpiOQQ3L3+KY0oe1TPyzcOUUIxpUg2+asVlvRBvo3kTBTL804a5z4SsLj3aMS5UwrUtA7e9CK/PjJniuhJEbkFwVThzQw7D+7FqslF2gfeVII4agLvpCq5ClsOrAzhXi4wa4zUotL2PX8cTcMU9AN3OvO9o0Bl4ufawSa/YUm21YJEm6k9HGVco9oOUjy/D9fb8xOq6X7B9qdW2npPCjHT3F5tTx/sw/l6O1rDGl2zXo38lHplU1X8Czcr3fYuTrejA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RkfAxUzWzRjxlUd+vpJZ2Pezm0JHHt1Ly89V+DfSzFI=;
+ b=ivaiLEeg+4fU83FhVHJK1pWT1IIYm2AGqDNbeMJQUkgMzLsi/XnVI7fmy5oqFmmII8bf/Qc9FRu833BXVC3gzb3s4YmtdjV9oa29OGheLebq40RMislKRJMrvlzKtTUWBg4dNqBaB/EGaU7PCeJW9m3AvO4SpEt5bjOphgNFHCuEFoSCytURcn/AIcFD8SESgnVhNHPi0MK3ncSdoiYcmGCTX2mAPnUsOn8Xdg6GJYIw7zw3iKQkO6jYf3D7pYxnNGJFt2V+wxDcP+oTEDJOFA7TBpgzKxTkvFbQFvplBm9SM6Zz6kdbqXkzedkpwlNEdccNKhc8SwaDpdvtHCNbNQ==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by KL1PR0601MB5581.apcprd06.prod.outlook.com (2603:1096:820:c5::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.20; Tue, 23 Sep
+ 2025 00:28:49 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%6]) with mapi id 15.20.9137.018; Tue, 23 Sep 2025
+ 00:28:48 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Alan Stern <stern@rowland.harvard.edu>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v4 0/4] Add Aspeed AST2700 uhci support
+Thread-Topic: [PATCH v4 0/4] Add Aspeed AST2700 uhci support
+Thread-Index: AQHcK4Co88Hg5mWnq0OFcsMUJ0rkkbSfOuCAgACvorA=
+Date: Tue, 23 Sep 2025 00:28:48 +0000
+Message-ID:
+ <OS8PR06MB7541BE1844B1A3B5709E6E7FF21DA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20250922052045.2421480-1-ryan_chen@aspeedtech.com>
+ <67259dbb-4586-4099-9762-5c1d143db7db@rowland.harvard.edu>
+In-Reply-To: <67259dbb-4586-4099-9762-5c1d143db7db@rowland.harvard.edu>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|KL1PR0601MB5581:EE_
+x-ms-office365-filtering-correlation-id: 6db5cb18-546d-49ee-2706-08ddfa3829b8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?7gHveYULrc5Uc7Y7H8hR6M4QQMibCOrWM5cYXgFYopQlZeKuufyKdVBrPIOo?=
+ =?us-ascii?Q?PU7qxEP82hND9m8BS2eqVY49CPrfUdRY+joKLJsbdzu9H99bDQQNRGYrG4rS?=
+ =?us-ascii?Q?WtUT6QI/XaaxTKihazYfqtG45tEeM+zeG5JSBZCeQBZDQg/Tsb78x3S5M3o9?=
+ =?us-ascii?Q?xn1StumRy5vrfogiyPmpXqyJXmIWsEZnIO7R249id2hhEeqA9lXDaIn/m8An?=
+ =?us-ascii?Q?LLyG/4aJShmvwbmUDi/ZoaKQrFByhOTWJog6NNZrOGGhgrAYLwaD40Tvbh6A?=
+ =?us-ascii?Q?nktJA0hyQlnwTYYNGilFJ+IhoTQAFOoKLr+A07LdowmUvT1R/pC22QyFDUMM?=
+ =?us-ascii?Q?yc+Bh4NxQDgAOB3GtswyE+V9QQxCdSLP9FvD1/0t8V/LQJSL0Se62H5ipoEC?=
+ =?us-ascii?Q?iIskDtJGpgUwdjN1xZWb6rMgtCGC9YV+ws8ye16XgOeOzLrJ+f1SlzftpTIE?=
+ =?us-ascii?Q?i26wGFs/XioiDd1O3uWOUtmc1e/VdNDPG5K+kDMrGMKFM7pdhTqwfaiAHxoo?=
+ =?us-ascii?Q?J6G+66QuG8esnLsUqAw+ZcNMPQb/q8BFW2SfYBLSZWOjR3EljG9qMhVFS3d8?=
+ =?us-ascii?Q?ZEHsHcHqKUc/a11vZ67ldEIUHZZVMQxanHruK0Wqu4upDHAu5e2KEYS1fgpf?=
+ =?us-ascii?Q?UHH3UK4LXGxs3ynQgfocWQ3obiLpmhLrquYZOuyNhx+pF8LVDAelLQeOUhQH?=
+ =?us-ascii?Q?rvPJHJBbxOoK1frXI/feAOpy4kb0/vQav/64fDqzP9gixS1RsNvBGNVLFGZ+?=
+ =?us-ascii?Q?RU6s7E8Utx/fyaTeL6PqXGf5rnzGxtKqorQJ7afSjp4ExRg9Gr0mqMQH3I1t?=
+ =?us-ascii?Q?HMRQAhP14ehL5gqiX+Apqr944pwO+cjSW1vhHFLyKO2baCcNw4VI6DfukcI4?=
+ =?us-ascii?Q?HhtMnaXWezY3+PqLQuGPq+glhdirlHgn/tsDpjNE7jiKD5V/wgQCjE8IN+6b?=
+ =?us-ascii?Q?35fA4h6RCcxg1M0MJV9CcEzjtDr6l4ludgGwrJ/veamvl0K5M6Tyb/kxHvhi?=
+ =?us-ascii?Q?FyNJztFPhmIvFuxv8Dq+ohakwnuPij5IHW5dFVHtfRXUnMeDzohJFE/q/JgT?=
+ =?us-ascii?Q?ssOkZMBIZlyb9zS+29uElPIriEKKronS3oQnStlWyMpHrm0wA64etYlIsyZl?=
+ =?us-ascii?Q?wouYLFSgX2ziKThcvkypxjuEDY54WsV2nIsKL5+azY/n7kDIzMNxeqOrk6w2?=
+ =?us-ascii?Q?PIspNFieRlLovSLIYTA7xcnq66VO9TsDtU3MQOL6m9j8lVTuEUTCg+yMsIVU?=
+ =?us-ascii?Q?zodDV8qjluUbWZbIl6dPDhXpXvEqY7GZk9b7GzywUs/K5Qy5owZFJUtKm2vs?=
+ =?us-ascii?Q?DRrSDcSB/3p2M11YiLGTA1weths2uQ5ky26dEWw4T7VrY8RTlT/sVoWPzUz4?=
+ =?us-ascii?Q?cuZFGjF+SWkchiI/pjrKQI6ycl4i8iQh+2ERwFNjoyuFhvyZnlvPIMmjdJNS?=
+ =?us-ascii?Q?q9tki2tR9gTRURlFuruvqY9h/NdlmgI3Rm4aAh2pjsDncS8Z3osNz9i9QWGF?=
+ =?us-ascii?Q?jePUA+RWKHWtLPc=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?BKnoZn6nDrZZBW30dxCm6ZIpSS7ixGCgiFiHjcaiZSoWmTXZ7SRUR4ZDjzff?=
+ =?us-ascii?Q?fn/LVsdU5sBTBdlrK7L2f/4aj565yAqJU+zuQgsKHQodFvGTxpWjLTl3J7WJ?=
+ =?us-ascii?Q?JVZyrU0SLxxXQmHPW2oNMORmAcso6akVPPziu132pVYTfLD0GAFPovInQKuV?=
+ =?us-ascii?Q?myJtMkHtD1Wg3wnFK2deWMCKzlPhbfUL5pV58UOoRed03mjLTRHEi1iSqG8N?=
+ =?us-ascii?Q?WXE40foHJGlC+Jbm+nnY4Zz1lbg3VWUgerlsqP0yHqzqtcAblIqTB2Gn7Bff?=
+ =?us-ascii?Q?TR+tKkqUgJYNE1L/vQf1Nkr5zl8jA1Ek7mj9CfhYEBM9VrCQY2pyH79PuM3w?=
+ =?us-ascii?Q?vCSE3j9ozJl+YOI+7memwI7ITvtDkXJLvogkP6UMCmrdI/S3+Lz1x/DzNbWD?=
+ =?us-ascii?Q?OSQyqIaSDlIA45SoYvZo3t1PEjx47vO/359yDu1iT057cNCmPxiP+lJQIv4k?=
+ =?us-ascii?Q?lmN123EwuaPBxTbncfmNqFuxRy4Z4iQmo7TwOspKfWa6v8qDU6IA/ff2iPCl?=
+ =?us-ascii?Q?34NInFdz6GCtgZgxYjIq29hk21kpNP0payEzPawXDKASLcY19Gx9e9a3XUTI?=
+ =?us-ascii?Q?5qa6Gh6l1U3zkP3XzP0BHpOitMldzdIsi9vlSGq8hn/JlC0GOeB0a38M79il?=
+ =?us-ascii?Q?jHwRZsxINwBNxxP5XUZj0ZZBvKQi3uyR/ndFCKSP+o3CGJCm0n6iN03fYZtN?=
+ =?us-ascii?Q?EJkzZAi08xjAt2J/huJj2WvFpzyTNv+3X/fhUwTYyGWu9ARquSljzGR8HIWg?=
+ =?us-ascii?Q?3fMSOhE65p5EfAvKS1qMUpGupdoYCCRIVAa1OrvqA2EwqTuec+OjWvH0RuUX?=
+ =?us-ascii?Q?yZAbP5shmKowcpA9RPWUEGjvy4oK+lJpX5SAipSwkGkrN2YQnyMA3+iw7rmV?=
+ =?us-ascii?Q?uapRwPBM2BEfA/79sZV31zp7WRMg3ypEFGInG75xnQ4GG80p44cPq4WoOVUT?=
+ =?us-ascii?Q?+eOuPJkxOFG2Yt9YvJ8zzPpsOBrzd6haBLyjRqVGTIr1zRuOQHaKz5XsaWQP?=
+ =?us-ascii?Q?Kt0mBFjwCyRYmjdAcSSh6CT0mym9NB1Gzgfogu3YwrMqAQ+b0R8Q8UgkDhXT?=
+ =?us-ascii?Q?W6tHkTiyI6FJ9Fm+Zyl0QVJnZhk7Y7quzs54xSgSFqM/m9vXqr4nxryhpiM2?=
+ =?us-ascii?Q?t6Tg6QxrkxdBkrxhvKx8SZi3TsDyrDDxdi6uQeurM9KDIzZ57qQ2z76O6Ys2?=
+ =?us-ascii?Q?MGEHt+gZffdtnXrm63Lhj0MQPmtXKbK0bEEBmDcDSqO6V7veG8ayIoignccE?=
+ =?us-ascii?Q?u7zpuVUWY4slKR/tb8SthPxXdqOBm5P9TE+gTxKC/PxOSPoOcXWFHdAvhW/V?=
+ =?us-ascii?Q?g9xb4EF+ePmXj5zoC9j8aO22UtHKTUyNR4KRD2sJMoJgBaWaSGu9ahdGocvB?=
+ =?us-ascii?Q?JI7TbAvYUk4ILr1f5/tV/O/4myFcrc6+zXI4ce+5mlHA3bMDF0VMcOqXQT5/?=
+ =?us-ascii?Q?RYNfl1t3pdoOaSGS66Hl3WqNSH93hO0kfYNNQwK+xNVIYqU+JLLHPO7bfzC5?=
+ =?us-ascii?Q?mUKj9LA5foHRee4fl18kJ5SYTMuVGIzGINOOrrCiqNlVfVSPIg3bwt4a2LLM?=
+ =?us-ascii?Q?Qu66q+y8A26Bb1usKyX/ljzKj919CaUKAozr+HGj?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250922161717.1590690-4-elder@riscstar.com>
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6db5cb18-546d-49ee-2706-08ddfa3829b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2025 00:28:48.1219
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DHE85SnJfEOD5BL3Bqldyc4/UWvEZ11zXtiLEfWse2diiodVJKerfaDB0ic3fN8qKgDzKHAPEeJY70gFasJsrmYh41vA3nitkkJYJm7KWKE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5581
 
-Hi Alex,
+> Subject: Re: [PATCH v4 0/4] Add Aspeed AST2700 uhci support
+>=20
+> On Mon, Sep 22, 2025 at 01:20:41PM +0800, Ryan Chen wrote:
+> > This patch series adds support for the UHCI controller found on the
+> > Aspeed AST2700 SoC.
+> >
+> > Compared to earlier SoCs (AST2400/2500/2600), AST2700 UHCI:
+> >  - requires a reset line to be deasserted before use
+> >  - supports 64-bit DMA addressing
+> >
+> > This series updates the bindings and platform driver accordingly.
+>=20
+> For patches 2/4 and 4/4:
+>=20
+> Reviewed-by: Alan Stern <stern@rowland.harvard.edu>
+>=20
+> Alan Stern
 
-On 11:17 Mon 22 Sep     , Alex Elder wrote:
-> Define a node for the fourth SoC SPI controller (number 3) on
-> the SpacemiT K1 SoC.
-> 
-> Enable it on the Banana Pi BPI-F3 board, which exposes this feature
-> via its GPIO block:
->   GPIO PIN 19:  MOSI
->   GPIO PIN 21:  MISO
->   GPIO PIN 23:  SCLK
->   GPIO PIN 24:  SS (inverted)
-> 
-> Define pincontrol configurations for the pins as used on that board.
-> 
-> (This was tested using a GigaDevice GD25Q64E SPI NOR chip.)
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
-> v3: - Moved the SPI controller into the dma-bus memory region
-> 
->  .../boot/dts/spacemit/k1-bananapi-f3.dts      |  7 +++++++
->  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 20 +++++++++++++++++++
->  arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 +++++++++++++++
->  3 files changed, 43 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> index 2aaaff77831e1..d9d865fbe320e 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-> @@ -14,6 +14,7 @@ aliases {
->  		ethernet0 = &eth0;
->  		ethernet1 = &eth1;
->  		serial0 = &uart0;
-> +		spi3 = &spi3;
->  	};
->  
->  	chosen {
-> @@ -92,6 +93,12 @@ &pdma {
->  	status = "okay";
->  };
->  
-> +&spi3 {
-> +	pinctrl-0 = <&ssp3_0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
->  &uart0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart0_2_cfg>;
-> diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> index aff19c86d5ff3..205c201a3005c 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> @@ -76,4 +76,24 @@ pwm14-1-pins {
->  			drive-strength = <32>;
->  		};
->  	};
-> +
-> +	ssp3_0_cfg: ssp3-0-cfg {
-..
-> +		ssp3-0-no-pull-pins {
-I'd prefer not to enforce "pull" info inside the name, you can't embed
-all property info, besides, what's if you want to change/override later?
+Thanks your review, I am wondering about the progress,
+should I submit a patch for patches 2/4, 4/4 with your reviewed-by?=20
+Or just leave it?
 
-how about just name it as ssp3-0-defaul-pins or simply ssp3-0-pins?
+Ryan
 
-> +			pinmux = <K1_PADCONF(75, 2)>,	/* SCLK */
-> +				 <K1_PADCONF(77, 2)>,	/* MOSI  */
-> +				 <K1_PADCONF(78, 2)>;	/* MISO */
-> +
-> +			bias-disable;
-> +			drive-strength = <19>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		ssp3-0-frm-pins {
-> +			pinmux = <K1_PADCONF(76, 2)>;	/* FRM (frame) */
-> +
-> +			bias-pull-up = <0>;
-> +			drive-strength = <19>;
-> +			power-source = <3300>;
-> +		};
-> +	};
->  };
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index 6cdcd80a7c83b..eb8a14dd72ea4 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -797,6 +797,22 @@ uart9: serial@d4017800 {
->  				status = "disabled";
->  			};
->  
-> +			spi3: spi@d401c000 {
-> +				compatible = "spacemit,k1-spi";
-> +				reg = <0x0 0xd401c000 0x0 0x30>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&syscon_apbc CLK_SSP3>,
-> +					 <&syscon_apbc CLK_SSP3_BUS>;
-> +				clock-names = "core", "bus";
-> +				resets = <&syscon_apbc RESET_SSP3>;
-> +				interrupts = <55>;
-..
-> +				dmas = <&pdma 20>,
-> +				       <&pdma 19>;
-can we also squash the dmas into one line? but, do split if there are too many..
-
-yes, it's simply a style change that I'd like to keep them consistent at DT level,
-besides you might also want to adjust dt-binding examples to align with them here..
-
-thanks
-
-> +				dma-names = "rx", "tx";
-> +				status = "disabled";
-> +			};
-> +
->  			/* sec_uart1: 0xf0612000, not available from Linux */
->  		};
->  
-> -- 
-> 2.48.1
-> 
-> 
-
--- 
-Yixun Lan (dlan)
+>=20
+> > v4:
+> > - usb-uhci.yaml
+> >  - fix errors 'make dt_binding_check'
+> > - uhci-platform.c
+> >  - remove IS_ERR_OR_NULL(uhci->rsts) check, due to reset_control_assert
+> >    will return 0, when uhci->rsts is null.
+> >  - use dma_mask_32 as default, and just add aspeed,ast2700-uhci for
+> dma_64.
+> >
+> > v3:
+> > - uhci-platform.c
+> >  - add reset_control_assert in uhci_hcd_platform_remove.
+> >
+> > v2:
+> > - usb-uhci.yaml
+> >  - add required resets for aspeed,ast2700-uhci
+> > - uhci-platform.c
+> >  - change the err_clk before err_reset.
+> >
+> > Ryan Chen (4):
+> >   dt-bindings: usb: uhci: Add reset property
+> >   usb: uhci: Add reset control support
+> >   dt-bindings: usb: uhci: Add Aspeed AST2700 compatible
+> >   usb: uhci: Add Aspeed AST2700 support
+> >
+> >  .../devicetree/bindings/usb/usb-uhci.yaml     | 13 ++++++++
+> >  drivers/usb/host/uhci-hcd.h                   |  1 +
+> >  drivers/usb/host/uhci-platform.c              | 31
+> ++++++++++++++++---
+> >  3 files changed, 41 insertions(+), 4 deletions(-)
+> >
+> > --
+> > 2.34.1
+> >
 
