@@ -1,173 +1,152 @@
-Return-Path: <devicetree+bounces-220427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F7FB95F1F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 818E6B95F79
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BD601627E8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:09:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFF4F3A36EC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:11:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051C0324B25;
-	Tue, 23 Sep 2025 13:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66ABC32142A;
+	Tue, 23 Sep 2025 13:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="K1XuejZc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="il3P0xHv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020133.outbound.protection.outlook.com [52.101.84.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C84330FC3D;
-	Tue, 23 Sep 2025 13:09:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.133
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758632968; cv=fail; b=V34PGnn+7aloUsTolnVGXxaFhuFcPL0XoG6rxBZ1tiWcZsQ7yjBUN4aK2MpRGLpe9AMNeMer7rEAP7H8DrufII8/OF2A1f9sbIlsAvoGk8wlnsoxd864IEPLHQVLBoywKO2X2r6ZEfw84C1955TW37eGUSqW/FmGpXpWtQ39yFM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758632968; c=relaxed/simple;
-	bh=UoF64wzFr4OEgMlSkrgbRNIGvqSWM6AZiYv24tB/Y5M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q2tWqTDYOYT6T/i7qDk3x43HEPyjO0lZtBe08j3+wy4V+JtYP6xwSAh3Jlhs3m8uLoho/bqUGn4lvJU4es9TRhI1iH+JSXMlz+Lu6ulqlxw2vCaQZlDAW7ndYOBKBJoj4Ww/h/ChoG8o//TxOL0PyzBFN93+Xh8XeRlK1FWPGZk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=K1XuejZc; arc=fail smtp.client-ip=52.101.84.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=htx1UMS47rRckcPwJrJptir+3uYW1JxLVesLeDALwvVShFjeR4CWcqdbi0d5N5MWNcMQA+sF2G40wmkJYPB49NoCxLMMNTl/Y7I7Ps9n8K+tI2jhdExockWKbrNy3nDeplje2eCVLp6ykJFTrnvfuN/Jgnsqqj0cfxFjWfwdhYv/4jMiHFWzZuq49xV3UA4lFQBOfDoi6uzFFRfYbGRbT5SXOkyb7R4Z4Fn/iqR8jRi6/7qn0jyJgLDhzIfum1pzZ94PEXkx3fotUKrCDa2jEEhCMliIL3UrVpsnynIe2A34uyWMs1cKDikI638n8GyF+k31yckIPwFHq9tDr2Wefg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U7JQEniHWNT+x93uSxXrGwu2CE14CqgGzYmtYLrCSyw=;
- b=DcVv342R3ohKjh4bj+TbJk79O6U2Dslz+oUf0KKR2qLKqZ4oNYYl3K0jnuyQmUiI8I7AyOPeyrcX8Or5TlD+Psy4t3mArprnq7BBiwCBCdqI1GqNwlUq9pPoKQ2l/Ewim8saJ6OE6D1XRjeoL+INSQ7qNpgUPPotUUNSKQN9RnR+HbM9tzPR5C5ftR/uUlrIteUgCLOkvAp72ctkpayMw9O+JDW1DE4epdpshp55ShN8cbMb0g7NOEfsSzgx9R9Gs5cpLmJoZrU8q+IkRj1b7FweMlO+RHKK0oa28JAM/9OusYgbQCjuj6m3QIQmeSMX1CcgPESPe/obc4PRqvwtxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U7JQEniHWNT+x93uSxXrGwu2CE14CqgGzYmtYLrCSyw=;
- b=K1XuejZcUueReG00RgcGeuVFDMtlL1seVgxAa6JVjHi/OBedb3iJpkPxKXPUYTzrwK+hjnAznQHC9bYodpsUQLbQdyDdGYpvDpJYGoItDN7VCGVgX7JN75pt6dCTbJyegCFIvGiHJDb2TUENJqqGo9K2rwi0bDkAtl4l6jo5u+Dzff4HAqItxHL0XTvc9KkrvRhlfIJOQXOT+g1DKC7KOvGDzo4P4XCFJ2B3dCxc9gePilSfeF2aSJckP1ETCXsu4OCGx5c6uminAWVe9CYXKnx/cAE8m01OKk83mwiI5TN/2HLBPTRikn0nRz/iTfyusPkB1xvAyMDAUMle09ZU4g==
-Received: from DUZPR01CA0114.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bb::13) by PR3P195MB0636.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:102:31::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Tue, 23 Sep
- 2025 13:09:22 +0000
-Received: from DB1PEPF000509EC.eurprd03.prod.outlook.com
- (2603:10a6:10:4bb:cafe::3c) by DUZPR01CA0114.outlook.office365.com
- (2603:10a6:10:4bb::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.20 via Frontend Transport; Tue,
- 23 Sep 2025 13:09:36 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DB1PEPF000509EC.mail.protection.outlook.com (10.167.242.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9137.12 via Frontend Transport; Tue, 23 Sep 2025 13:09:21 +0000
-Received: from ls-radium.phytec (172.25.39.17) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 23 Sep
- 2025 15:09:18 +0200
-From: Daniel Schultz <d.schultz@phytec.de>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <upstream@lists.phytec.de>, Daniel Schultz <d.schultz@phytec.de>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am62a-wakeup: Enable cpsw_mac_syscon in U-Boot
-Date: Tue, 23 Sep 2025 06:09:01 -0700
-Message-ID: <20250923130901.4110013-2-d.schultz@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250923130901.4110013-1-d.schultz@phytec.de>
-References: <20250923130901.4110013-1-d.schultz@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF7330FC37
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 13:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758633104; cv=none; b=GLu9M7ndVJMdWwrPksNxuRcgYCmgqC7gnTc/bkWSl5YMZ4qpwCkFVHO4f3w+sQ6GNFO0Q7QzX46t9Hi8k98YIR2PUiPCziEScrwsjZ0SEoZaYb4k1AJg0TeU3LrvCKHyztHAxHaJSFW8W0JGLedE95QfeURGhLtfdhV9lijPvdA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758633104; c=relaxed/simple;
+	bh=+jMu3mWxHYwqLRuWyAD19NE2SkDUi2oO5dL4rd/KzTs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OaGTZ9Tvbv7fv/ejWooViD1ygayR4gtshGMILFVrwCkgmbZA43geJnvGB6fozG7ToeDs4w7OlYcKz9n+Q75GVTzfxSRE+uVeFcS8YkOB17cCt7m26D2BMGb7de/n5QIWrCOauJWcl852+OqpXdaoMqTwBtuKgcwOkzLpJKEa8uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=il3P0xHv; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-6327423f190so448066eaf.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 06:11:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758633102; x=1759237902; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cYLukBQ17FPEmEKg/j/keCvoGNFtY2B2OCdn9YrZHqE=;
+        b=il3P0xHvu23llByn47+ZGri26hWfzRGMEj9Qc+6Qor0nG2k248L2dcjYLNw8a2eeA3
+         7Cz1NEsfwJp02AUE2NW7eVdnxwPpy3oARYCTvuXsma/uYod0qNdpoZdg9VKBaYmoGVy+
+         YCX95YW9UcTi46rJDJUugWTJq/jNTjrjEOgpKywNA4I8oY7xcSTctgwWtcCzEOS7ic8R
+         zoM2YuEBmT2Sy4D6XohQSDaUfeB2p3zha2Ihi4J+sJUZA1sYp0enSCXhPnCFqtcrXP3O
+         6keoYF6OhGLoxl98YSB3OzK1chfVdUxK6mTHCClBWVg1V5juGD8lKbtIqMyNVhfVutFt
+         GVcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758633102; x=1759237902;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cYLukBQ17FPEmEKg/j/keCvoGNFtY2B2OCdn9YrZHqE=;
+        b=T35iaA2tyHyUetR+l/2B9Tqpk2/n+IGdgyMFE0RhxKQYKfDqF0/aR4fNvPjWNi1ae+
+         LBH1icvWN8ilVnD5jX1WXBuNgEynQQSsiUKqtWKgve7YiIivFzuFXRQtT4h+XD78dtDO
+         HTdSrSClsw5dSb/+etsxUtdzMnkjlNWwZuWpqxiX5vDAUcPYtazSr5ai+VL8yLDVZXnB
+         K6V8MfFxIbJZnbtmfIcC7ILwdnRbmXEdUXIrd0CpW6gof/zoIzaDrTMuhgxInGtxTBxc
+         0MdhBD0daJtV2275mx5Pkz+88PH/MJQQaKNHanwEBwqEGB96mAzXR4Jai7bwPqbU/Leu
+         feVw==
+X-Forwarded-Encrypted: i=1; AJvYcCXcDp0zPq33IxCsPRHyIEpUEfL5e0Su1kTPrmjtN4UChjkZ8TS/I75mtPIBME2PLixcbXwl/Cot/pyF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyry8hKIfy9/pyplbDtQFUaTO9EPpdKSB45f6OCMZ4o3pKzUr/N
+	arRoAHskdSYl9kItCb/ZFI2nQpnwWI7Bd5Do5E2TonQ/qmsvqlhzvOT+Rsrwrf55KT6DLWNtXAK
+	P+5peULWdIlHCHHlu8m6n0YswtDN1RzNDFnik
+X-Gm-Gg: ASbGncvVF+sp1HxeuMhPr+7FYgaGDLGUnpIz2GgYTb0HwQ7+7CuUP+rv/qfPsDB8zlr
+	KS/miEOJbdnLiugyTlybOL7VwLDLxKjsVs1DgDrYSMErLAjKODP1YPTbSFkhPCwGDuHL9JPlqNQ
+	2xbRCeLg+cUWNzRgyACScBwkI9Bh2mPE/D/IG885cAhF+Bqe29a9VvGwKVPNj63d637CcamFWWn
+	ImTXFLk
+X-Google-Smtp-Source: AGHT+IFk37z9A5OnXp4wGR0Qz6tmc2B/fCuFkSXnr4AQAOqobsq/8dZcTNp3FhmVzy9qfW4xwfMc32NUWauN7gIvh50=
+X-Received: by 2002:a05:6808:344c:b0:439:b1eb:300e with SMTP id
+ 5614622812f47-43f2d445abemr977911b6e.33.1758633101752; Tue, 23 Sep 2025
+ 06:11:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509EC:EE_|PR3P195MB0636:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e49017e-49ea-4bf8-8a14-08ddfaa26956
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?62Mlb6SwOtn/gWURM+SoUjx0Pb0pigKrq1JPQ1NEq6LVF/WAf7Q+PH6fqnni?=
- =?us-ascii?Q?RefXpm2mS6IRCZW/Cab0s8Y9B3HkQuaXmQdd6jRP1mab0qMN6oke2DPMTCjU?=
- =?us-ascii?Q?YAvdJ3PJei6PMvqxWayRINVj2lb5VfM7yV7ml40Yf8O/62FHqcRz8quL2anX?=
- =?us-ascii?Q?M5xWnoYN1K+lzWdqC4l+Ve/wxG0Rjmx68YBKjCkpXV1vPgvQK903s+8UUEl6?=
- =?us-ascii?Q?sIUzLkHafpsaIusSTFqgLcm3lCPU4+hXVRYFeXiJTch7BOl0bZP23piVFsGl?=
- =?us-ascii?Q?Bka3RAWdytrHyOqJrMpViEud6Qnhs6QRUKxadudGFFRrzIQagirH81eA+x26?=
- =?us-ascii?Q?vsKnbplUlZLX9bl24DN765qs/BXc4qz7ee0/LUDcH4+YI1NV1aus9QYQQsV4?=
- =?us-ascii?Q?NSHw3JAwPyNfPZuxjpFegRNUol+lgmAqI1znIzFbcbi6ON0AuNA1ykzH0cR4?=
- =?us-ascii?Q?cAIaUWfyp7KEBLDgA7VGUY8xcKmbR4kRLGk4N+fTTf0UCldUCVM8FRAmezRj?=
- =?us-ascii?Q?LXTlTYnqssTQMy6atGfyPXfQ1Ul5hQpPjfs0vr8+PqS5ydNb7WLwG6SX/VAR?=
- =?us-ascii?Q?r4m8Spcj5YKnSb+oyoe6ONJjVPPKZVTbJbz5mNxtTHazJr/4S/DGs5+pVyxl?=
- =?us-ascii?Q?ss3A2BekMXO5ZVO3/dz3h96B3I4zXTVn2Gwta70ue8bNISLI+Pekvt9aksM9?=
- =?us-ascii?Q?JOw8iISfWfj0yFUSuNAYwVgYjD90e9DghZLVrIo6Rs1z2TrjIb8eSgweuxi1?=
- =?us-ascii?Q?lyU27yDmK4tSZl3DXNbwsaR1CodMj2u1oG6tg6Jsispxy2VrcIZx3YQgPHiB?=
- =?us-ascii?Q?y2fQpbyiICj228tariBdu910jBjFPOEnoRI8oBB0UwiZqGzHIdoXIAHRu73a?=
- =?us-ascii?Q?vC8sLbdC4p6QTEiHLwlDIY9knpZY28ktunCbmfEYD4qtRkESC3ak5qN3zyNU?=
- =?us-ascii?Q?EndaKQQeLA2Z+9VevZeb2F2lHX4OB4iOfbJe4t3NJuD14gafEqzqkww2X71d?=
- =?us-ascii?Q?BHAY2iv8wd9toSJ/EOO1HIFhuxzuMEnPMVDTruhtzqe0k0C50d5/VP2o3w/4?=
- =?us-ascii?Q?iTetXkP2nwLtbyFVNETd5kvnyE0QNzR3fKU2wQT4oLVuTmqiRg0skHkPuZxt?=
- =?us-ascii?Q?U6i5Oc9Z2JJddD8kPqE5GNhWB2MxOWyFmofNLMXMZ8DTHezgpi0rbRsxXqj+?=
- =?us-ascii?Q?p3ORTd1WpKp6mOu0lfWeCQMUzMY7yde7A6MSYqsQdkk2qdV0M3Y8nGOARzsB?=
- =?us-ascii?Q?b93O/tQSFJik8do/qSN2KyjqWndMfiwmyWpOYpziGRsoN5cs8nol8/a2MeY6?=
- =?us-ascii?Q?GOxtpxrtqq/SqLXxZXoK6fZgWEuBbjmZ7LsQ7s4VSRdLaVlzC8+mtWWVZiDA?=
- =?us-ascii?Q?HtYSn2qFgxPZs6Bh8KMjH2pF1WPWf88w911W4zvkZV6HATsoa5Cfh6r6KPO/?=
- =?us-ascii?Q?z9+jxgoeoEOLmOuumdtSDmB4zeRTm9Ob0DDsIuqRFZgDW70Gi8bCkdeWlBPk?=
- =?us-ascii?Q?FoNvgAvRJ8SiqwLUF4FdKzqnh7Mw6D4a7Lhu?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 13:09:21.4696
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e49017e-49ea-4bf8-8a14-08ddfaa26956
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509EC.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P195MB0636
+References: <20250822021217.1598-1-jjian.zhou@mediatek.com>
+ <20250822021217.1598-3-jjian.zhou@mediatek.com> <CABb+yY16DPJwVTHap4F6n5YJoOJzQLtqKiCQ-2MUm67pzF8uXg@mail.gmail.com>
+ <24a916ece6971d3ab9156dd8277eb23935e9cb13.camel@mediatek.com>
+In-Reply-To: <24a916ece6971d3ab9156dd8277eb23935e9cb13.camel@mediatek.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Tue, 23 Sep 2025 08:11:30 -0500
+X-Gm-Features: AS18NWBF4NguOxMN8xnesFe-YY3RY5n_pyTUQl_94Lw7IZuBIdJPh4k0eaZQ2eo
+Message-ID: <CABb+yY0njdWUd=HWT1rSYSpNM9QoO_jf6piY9ny1enB+rZZF+g@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
+To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"wenst@chromium.org" <wenst@chromium.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	"robh@kernel.org" <robh@kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the "bootph-all" property to cpsw_mac_syscon.
-
-This fuse region contains the internal MAC address. Without this
-syscon node enabled, this interface will get a random MAC during
-network boot. This is problematic because the AM62Ax network
-boot is using BOOTP protocol for some binaries and this protocol
-does not support dynamic lease expiration. Therefore, the DHCP
-server can run out of free IP addresses.
-
-Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
----
- arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-index 9ef1c829a9df..f29279d1e4a9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-@@ -28,6 +28,7 @@ opp_efuse_table: syscon@18 {
- 		cpsw_mac_syscon: ethernet-mac-syscon@200 {
- 			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
- 			reg = <0x200 0x8>;
-+			bootph-all;
- 		};
- 
- 		usb0_phy_ctrl: syscon@4008 {
--- 
-2.25.1
-
+On Tue, Sep 23, 2025 at 1:46=E2=80=AFAM Jjian Zhou (=E5=91=A8=E5=BB=BA) <Jj=
+ian.Zhou@mediatek.com> wrote:
+>
+> On Thu, 2025-09-18 at 18:50 -0500, Jassi Brar wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >
+> >
+> > On Thu, Aug 21, 2025 at 9:12=E2=80=AFPM Jjian Zhou <jjian.zhou@mediatek=
+.com>
+> > wrote:
+> >
+> > .....
+> >
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/slab.h>
+> > > +
+> > > +struct mtk_vcp_mbox_priv {
+> >
+> > Maybe 'mtk_vcp_mbox' is a more appropriate name ?
+> >
+> > > +       void __iomem *base;
+> > > +       struct device *dev;
+> > > +       struct mbox_controller mbox;
+> > > +       const struct mtk_vcp_mbox_cfg *cfg;
+> > > +       struct mtk_ipi_info ipi_recv;
+> >
+> > Maybe also have "struct mbox_chan chan[1]; " so that you don't have
+> > to
+> > allocate one during the probe.
+> > Also if you have  "struct mbox_controller mbox;" as the first member,
+> > you could simply typecast that to get this structure.
+> > Something like "struct mpfs_mbox" in mailbox-mpfs.c
+> >
+>
+>
+> ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see
+> https://docs.kernel.org/process/deprecated.html#zero-length-and-one-eleme=
+nt-arrays
+> #81: FILE: drivers/mailbox/mtk-vcp-mailbox.c:24:
+> +       struct mbox_chan chans[1];
+> +};
+>
+> Can we ignore this error?
+>
+It seems single element style is deprecated. While we know what we are
+doing, let us placate that error by
+       struct mbox_chan mch;
+       struct mbox_chan chans[];
+and set  chans =3D &mch
 
