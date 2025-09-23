@@ -1,218 +1,131 @@
-Return-Path: <devicetree+bounces-220440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D89EB96248
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:05:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBE9B9645F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690A12E4277
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:05:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4BC33ADABA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB6122D7A5;
-	Tue, 23 Sep 2025 14:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF686257AC6;
+	Tue, 23 Sep 2025 14:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="tCRKXwwT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NL79GJmF";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="tCRKXwwT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="NL79GJmF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ieP1rUai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D35322DF86
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B0B21FF46
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758636252; cv=none; b=tEL7awINWGI6PGffsSPLGUO1KPLCCIIISltWQnUzOQMAFaepUnx7X3r7DaRhZLy0Tg5ta8FUNM7HI7VDyZ3fnTRymZMAZgmifruRjoWSsE1v72ZHvLdRLEGnrArPn4rjQWttGUTw4+R+++osuLFg8xeBKpLIj0vCGg9Oi5fZfGo=
+	t=1758637352; cv=none; b=AnLx+mdQcCe8/Y32YoPgM7EbXMSIIysn0/FYS0Zy+l5I1hzSTXlbrPR1FW2L9xR/LNZCFkkE3qX9/g299iyp3Nt3D1JpX6tDxmn0mFUPm+G80lxdHZyfxRzyAqPd8+g9HFpR6ufduSeYjJXDViuMby9/4YTCsVRO2r5b8C6gTGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758636252; c=relaxed/simple;
-	bh=C/pqfpq2n33ei9UVPcDT7adUzqYKnNF9cNwhyINn4dU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=crJsFClpkUzxAVJYFNKHnfd8abxS44EGVApQcuPXbGC+4Cvkwfsi0MJSspWaNrks+62F8ErcO3Q5INknIofaS69cPTkbILVuHOSBLI//XowOUn79yfHkh70DURLV2Uo0oZswUFT9B0+QFMHjTNUoUR3RFEkR+/ES/2kR+u6GNqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=tCRKXwwT; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=NL79GJmF; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=tCRKXwwT; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=NL79GJmF; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 83A6E1F7E4;
-	Tue, 23 Sep 2025 14:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758636248; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=lAbA8uet9nln2jYceX2bIfUMjKO0namb6mYHyV11xlc=;
-	b=tCRKXwwTO0/KfyGW2JtT2i4ZO99Lo/xOYWqORJWCqbu6sOUD/8DzT59v4lRWz2e72Hrw6Y
-	MnAmyRf/o4Z4aYIRqnubDHZUO21bi/yySElvdDwzlKhWndxFJYKpI9CV8DwnUtFUpj+hg0
-	udD7qOMkLKkLzv9iitEYJj4ay7hxz8o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758636248;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=lAbA8uet9nln2jYceX2bIfUMjKO0namb6mYHyV11xlc=;
-	b=NL79GJmFJLdmmAgz2i60aPIdXg2VPjBUnpUzz7VhMe5PMpsdHsCG2WO0kpe/+KsS5zi39Y
-	LBi6LDcz3KdumvBg==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=tCRKXwwT;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=NL79GJmF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758636248; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=lAbA8uet9nln2jYceX2bIfUMjKO0namb6mYHyV11xlc=;
-	b=tCRKXwwTO0/KfyGW2JtT2i4ZO99Lo/xOYWqORJWCqbu6sOUD/8DzT59v4lRWz2e72Hrw6Y
-	MnAmyRf/o4Z4aYIRqnubDHZUO21bi/yySElvdDwzlKhWndxFJYKpI9CV8DwnUtFUpj+hg0
-	udD7qOMkLKkLzv9iitEYJj4ay7hxz8o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758636248;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=lAbA8uet9nln2jYceX2bIfUMjKO0namb6mYHyV11xlc=;
-	b=NL79GJmFJLdmmAgz2i60aPIdXg2VPjBUnpUzz7VhMe5PMpsdHsCG2WO0kpe/+KsS5zi39Y
-	LBi6LDcz3KdumvBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 143DA132C9;
-	Tue, 23 Sep 2025 14:04:08 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id GmKAA9io0mjSOgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 23 Sep 2025 14:04:08 +0000
-Message-ID: <e2ce647a-c911-4148-9d1d-be9f2715a227@suse.de>
-Date: Tue, 23 Sep 2025 16:04:07 +0200
+	s=arc-20240116; t=1758637352; c=relaxed/simple;
+	bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T8qLrXoY4vrTZtRcuVMo9ZwaInRupx3q3YlYJcGNadUZZtXWbT9DfdjsjfRTNyUTN8X0HjXx7o85k7yn5+8Q50GqYhKe22YyRtjZORIe4xoZlwWPBn9gTGADzgyr2jmA1U32prg06MifZWOASqatXJ2BMJ3BxJrxK8p62k1fvA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ieP1rUai; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3ecde0be34eso3405238f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:22:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758637349; x=1759242149; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
+        b=ieP1rUaiX7+hB5KNhsbem9pHhGx7kV0jCpeUea6d7aysjErYzPmoA0KMz8iM4SqFQx
+         qoMMsuboVl/G4DlBv1xWX5NWM6r++qAxJYao2xth8lfRmZby90vlHapCHC6XbmhNS2Ys
+         CbMldAsX/sRRXk/M7NXdm4oWbfKuOqbtwnmeWFklHPGZ7/DO5zXSMtjrD2vSNgMaasod
+         D2vAzwCBixULa5/yekSdpDoeiCYLqoRDb0Oi0pxQbGw/6TTYnd6gIVHWHnl2yeWjMHeO
+         s5SVzkoR1wgzv2NrTZe/K8bBAYTpqkPtIhsomv1R2HKSIOnji5qh1abGI2fYF/var9yT
+         OWPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758637349; x=1759242149;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
+        b=L0NchVH8TUovHY1cssFDk8gJTokgAz6+rT8IcQ1SYR1POG7UTnviPqYeMuK0aqqXSA
+         qa8TfbuXXSqu92orkS9pmFSbENdjtGZm18+z8pxI49sGQcot/mNLFYScCUssnqLyhcdK
+         JN9rKBqVEMl7f/c8X4mGgUi1CbXkntzTUR+LFFBclRDpOjV5Tg5AYJ7+PxuTLnf2MthQ
+         AIfcu620um8OpTqCaqbSfJrugDteYjuCJ6m70hMmCPvUjinJy7+kWyFN2FVDiugVm82M
+         29el7b7PzpAEH1tOaoOtonEAtZRfXq9LkcD+Dt94/+c4NKYtJ3DnNes0KFSHquDKY58z
+         USnA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9JHxuLPWELeTLTdm0GE48GqMS4Fv+rK5xCj2LhnuHyONrx6SGUUs/exKcVb5rYZd0w7MreYYxeEeX@vger.kernel.org
+X-Gm-Message-State: AOJu0YygF5ymy3/T5v97MWdzFRi9K3LZPT3iPdK3uljGsxqQzuUDjJqC
+	ISPIEvpPzB2gXsxGuK7gSRIokTAU8FVhg6UyaB/87CFI/a78YkFzr3je
+X-Gm-Gg: ASbGncsYq0e8RcmyD7WGEoo0w3/GYit2zS7bDpZ1Yl+l0Us4Dlt1uM5xC0BuziiLi9R
+	UWma2KUn0Y14l2XzjPgtHlOM9uZv9uoV1d54lTrem+SQ6f/rw3RxU/O/xAnMuvZL2U/cZMGciME
+	2XDYu+dtUQkQq3C0aauf0heX9+COofa3Q3ee/roUbJfAIIcchW0oC4qnbVgQ0zFGKQhRfsilTzF
+	4hg3LXWBUG+1jVbcet0SsPvcJ/99Rv6nxYgcn5SPRSyOgsM6BzvBXrekj/kbgaqBBmskMJ+v42t
+	oUrl11FwONLL7YT/Vqi9FAiywUROAw8D4P8r5MCkZo5wwTMYjkQwIXEwtlFuKhajeqsETFK/gHL
+	IxfGQLthf57BZ3aoPfUeauNIc1hfnF0kFPu1v74nAvP1Ud+mXn6KUc3kTTmhtqnTKP87JLoF4z8
+	Dor9J1
+X-Google-Smtp-Source: AGHT+IGjet5wQJA7x9sBQkHVST1A9uu//deoXDFw+WZ7o8/Afi/1TjeFJpy7+SiHbPkDBXjldSD9Ag==
+X-Received: by 2002:a05:6000:290a:b0:3e8:f67:894f with SMTP id ffacd0b85a97d-405d299fc65mr2558272f8f.26.1758637349101;
+        Tue, 23 Sep 2025 07:22:29 -0700 (PDT)
+Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee074121b2sm24139332f8f.27.2025.09.23.07.22.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Sep 2025 07:22:28 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chen-Yu Tsai <wens@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
+Subject:
+ Re: [PATCH net-next v7 2/6] net: stmmac: Add support for Allwinner A523
+ GMAC200
+Date: Tue, 23 Sep 2025 16:22:26 +0200
+Message-ID: <2797545.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20250923140247.2622602-3-wens@kernel.org>
+References:
+ <20250923140247.2622602-1-wens@kernel.org>
+ <20250923140247.2622602-3-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] fbdev/simplefb: Sort headers correctly
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250623-simple-drm-fb-icc-v2-0-f69b86cd3d7d@fairphone.com>
- <20250623-simple-drm-fb-icc-v2-4-f69b86cd3d7d@fairphone.com>
- <87o6u9d3kg.fsf@minerva.mail-host-address-is-not-set>
- <DCZDZ037P56C.3MS3HI55IN41J@fairphone.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <DCZDZ037P56C.3MS3HI55IN41J@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 83A6E1F7E4
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_TO(0.00)[fairphone.com,redhat.com,linux.intel.com,kernel.org,gmail.com,ffwll.ch,gmx.de];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	ARC_NA(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -3.01
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi
+Dne torek, 23. september 2025 ob 16:02:42 Srednjeevropski poletni =C4=8Das =
+je Chen-Yu Tsai napisal(a):
+> From: Chen-Yu Tsai <wens@csie.org>
+>=20
+> The Allwinner A523 SoC family has a second Ethernet controller, called
+> the GMAC200 in the BSP and T527 datasheet, and referred to as GMAC1 for
+> numbering. This controller, according to BSP sources, is fully
+> compatible with a slightly newer version of the Synopsys DWMAC core.
+> The glue layer around the controller is the same as found around older
+> DWMAC cores on Allwinner SoCs. The only slight difference is that since
+> this is the second controller on the SoC, the register for the clock
+> delay controls is at a different offset. Last, the integration includes
+> a dedicated clock gate for the memory bus and the whole thing is put in
+> a separately controllable power domain.
+>=20
+> Add a new driver for this hardware supporting the integration layer.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-Am 22.09.25 um 16:07 schrieb Luca Weiss:
-> Hi all,
->
-> On Fri Jun 27, 2025 at 9:52 AM CEST, Javier Martinez Canillas wrote:
->> Luca Weiss <luca.weiss@fairphone.com> writes:
->>
->>> Make sure the headers are sorted alphabetically to ensure consistent
->>> code.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> While there's still some open questions surrounding dt-bindings and how
-> exactly to do that, I think it would be good to pick up the two
-> "Sort headers correctly" patches so that they already get in. They're
-> good to have in any case in my opinion.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Good idea. I've added them to drm-misc-next.
-
-Best regards
-Thomas
-
->
-> Regards
-> Luca
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Best regards,
+Jernej
 
 
 
