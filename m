@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-220534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A6EB97438
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 21:00:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A69FB97447
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 21:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1434A3AE32D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:00:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 342A62E8691
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 19:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6F62D7812;
-	Tue, 23 Sep 2025 19:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539292DAFC4;
+	Tue, 23 Sep 2025 19:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MEPo+aRh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFE0L+0+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D7219AD70;
-	Tue, 23 Sep 2025 19:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2525F26E706;
+	Tue, 23 Sep 2025 19:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758654024; cv=none; b=NLsQmg7XuTspEVY3ybRk0xtdwNp8GMPbGWASd9J94i5SFDuzSrcq9X9nzj0MTp8Yr42+Mw46FUMn4R+EihqHvM5jAXVk9fNYtMIItg1lJJZwYe29xQVx6xvy+zeFooX08Z7Y1p/30SXGC1gt3vLGe1ScDGr7hAiySRqMTLwqw58=
+	t=1758654164; cv=none; b=GgGpLkWEBkr0mSnBfNsE4fETwH0ud7Jv64uvjUtTELFucj+6GeIYcjoHhkwwcMhujVgMHrSQWjD1nybkmV1sAtHfb4FVsbEULgJ/5FJ31g52W8K5X3Y4sygUnY6wXoQA3Kd+IfNPdUjPsxwcZ5q9wKPefNJ4EExOsr28DY7V71M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758654024; c=relaxed/simple;
-	bh=XUTFqyLsRiUw4+Nvp52DmyRLNg8nvrGqeV2q6vnRQUw=;
+	s=arc-20240116; t=1758654164; c=relaxed/simple;
+	bh=MNCGLYKm4on4u/ee0QpshIh7g/1iu74HGsb1YK+Aibw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mbDpanyK8yqr2y6LmKcR6DPBUUJQSdg/cPubhlQOo7d15rYpt6LVVWCCMn+sO0A3ClScXsLUT+gNslFhyMDdJrd0c2W+JMaj6LZ0u6Wnl3mPMULAaZn5t2KebgEu8g/NObLv0HLdPEg3Yb/InO5dde8ej5ZcJXaJQIQpjisEros=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MEPo+aRh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53752C4CEF5;
-	Tue, 23 Sep 2025 19:00:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EJx1ZtlgXxEoT318AO0PxtjU+wqr+EhgLzXU4Ao4pPYIa1fWKZuA5fcUQuH0ZEEgOali0xmDewIKO69dStTe4u6YjUl8QNgy47FQmm4043XHHc+FNvuDvfyJBH2rx3EF+oppW6oGz9sgkBpc8wA6Yc/P81ceDRpmS8tx2oELjck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFE0L+0+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA248C4CEF5;
+	Tue, 23 Sep 2025 19:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758654023;
-	bh=XUTFqyLsRiUw4+Nvp52DmyRLNg8nvrGqeV2q6vnRQUw=;
+	s=k20201202; t=1758654163;
+	bh=MNCGLYKm4on4u/ee0QpshIh7g/1iu74HGsb1YK+Aibw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MEPo+aRh1jkDSXtKrDyj3L26eYMPhxNsgkT7S5Xf/1owH/w9y8Mn+e5D7+VYI5laI
-	 XL8ibTOX4L9HebPN1wJr3iL79Uif/P5t65Dasdd//bVMhmo+Tv1kbPmisthASxKiyy
-	 iNTOfU2//lRCwraOOgo+gaf7WHuKLmu0I8zBQxCv15c9PgIJWAghPaxKPZBym5w+A+
-	 u2jfm1IpxwDhxHCTBgFGuVWXf4RLJzLdc7XjhRAr/s0oMV7yeHQj7GDGMRbkPohPEv
-	 q15LzgmGwttYrHL9mTo20Vp3auNOh0mmKIhCzIOuC1Sjg0dt5EYrXARJMUvXCp19Qa
-	 3STSUFJcZhl8g==
-Date: Tue, 23 Sep 2025 20:00:16 +0100
+	b=YFE0L+0+CvqhghdBr8GrcfXgzMghGeuzg82fZL/ANbMx8p06EM+pmPK6qW7giVxMY
+	 4lezfrGeVb3lwff6JszTyLnYRHLZvQMUpuHS9QXgWnK4lkAy9vBWiDrKnWDi8YDf9S
+	 SZAsgeMVH2YnSwg2cUd8lhnT8XY5kA6KnMpy/h0c16NI0UY6EcznUXuCWPTKBgVyu1
+	 wJctx6hS/CrMzwwmw6i88ZSHiQpFDG/KAInowVijjdSTR85m+jqZerjrw353nxOZuA
+	 q3B4rOlHp869XST1wzhNcyJ311w4OrBDauYJAjja59Wq++RUMsxI2JXsTWJZJpth94
+	 5mFHF04PKnX6g==
+Date: Tue, 23 Sep 2025 20:02:38 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Rogerio Pimentel <rpimentel.silva@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, xiaofeng.wei@nxp.com,
-	kernel@pengutronix.de, festevam@gmail.com,
-	alexander.stein@ew.tq-group.com,
-	dario.binacchi@amarulasolutions.com, marex@denx.de,
-	Markus.Niebel@tq-group.com, y.moog@phytec.de,
-	joao.goncalves@toradex.com, frieder.schrempf@kontron.de,
-	josua@solid-run.com, francesco.dolcini@toradex.com,
-	primoz.fiser@norik.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add i.MX8MP FRDM board
-Message-ID: <20250923-closable-duvet-741100cc086b@spud>
-References: <20250922232523.844633-1-rpimentel.silva@gmail.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	"fushan.zeng" <fushan.zeng@anlogic.com>
+Subject: Re: [PATCH 2/5] dt-bindings: clock: add Anlogic DR1V90 CRU
+Message-ID: <20250923-cork-clarity-40358e06d361@spud>
+References: <20250922-dr1v90-cru-v1-0-e393d758de4e@pigmoral.tech>
+ <20250922-dr1v90-cru-v1-2-e393d758de4e@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,27 +66,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nTbosrGlPtwTCxyt"
+	protocol="application/pgp-signature"; boundary="cXQbIvmswZwfd+Xe"
 Content-Disposition: inline
-In-Reply-To: <20250922232523.844633-1-rpimentel.silva@gmail.com>
+In-Reply-To: <20250922-dr1v90-cru-v1-2-e393d758de4e@pigmoral.tech>
 
 
---nTbosrGlPtwTCxyt
+--cXQbIvmswZwfd+Xe
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---nTbosrGlPtwTCxyt
+--cXQbIvmswZwfd+Xe
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNLuQAAKCRB4tDGHoIJi
-0oYdAPiLZjc1vLxHXffdihKk1uGPPqVJhdk/F29RKN5MCd9/AQCLChUxXA/UMhul
-cgT7Ah/f+QkxEN3CmyC1LRiLogkTBA==
-=Nt33
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNLuzgAKCRB4tDGHoIJi
+0rwtAP0fn0XwIXbjq5PVgdtSJxA38UMz2JFYXsDJnwLnKO8rUAD+MHiGKBTenito
+DVaMH1nw1vvZWEhPOZgX/2B/yC+LzQE=
+=BIbT
 -----END PGP SIGNATURE-----
 
---nTbosrGlPtwTCxyt--
+--cXQbIvmswZwfd+Xe--
 
